@@ -1,8 +1,7 @@
 # Curriculum Planner MVP – TODO
 
-> **Scope of this list**
-> *Phase 0 → Phase 3 bring the project to a fully-running, locally stored single-teacher planner that lets a user create Subjects → Milestones → Activities and persist them in SQLite through a simple React UI.*
-> Later phases (Weekly planner automation, resource packs, newsletters, sub-plan generator, etc.) are stubbed but **intentionally postponed** until the core is solid and tested.
+> **Purpose of this file**
+> This is the *single* file you add to a brand‑new GitHub repository.  A coding agent will read each task sequentially, check items off, and push code until the Minimum Viable Product (MVP) runs end‑to‑end.  All information needed to complete the tasks (including a full README template) is embedded below, so the agent never has to ask “what goes in this file?”.
 
 ---
 
@@ -14,156 +13,227 @@
 | ✏️    | modify existing code        |
 | ✅     | add tests                   |
 | 🔧    | tooling / CI                |
+| 📄    | documentation               |
 
 ---
 
-## Phase 0 – Repo & Tooling (Scaffolding)
+## Phase 0 — Repository Scaffolding & Docs
 
-* [ ] 🆕 **`/README.md`** – 2-minute project overview + local run steps.
-* [ ] 🆕 **Monorepo skeleton**
+1. 🆕 **Initialize repo & workspace layout**
 
-  * `/server` (Node 18 + Express + TypeScript)
-  * `/client` (React 18 + Vite + TypeScript)
-  * Root `package.json` using **npm workspaces**.
-* [ ] 🔧 **Lint, format, commit hooks**
+   * `git init`, commit this **TODO.md**.
+   * Add a root `.gitignore` (use `gitignore/node` + `.env`).
 
-  * ESLint + Prettier configs shared by both workspaces.
-  * Husky + lint-staged to run `eslint --fix` on commit.
-* [ ] 🔧 **Task runner scripts**
+2. 🆕 **Monorepo structure (npm workspaces)**
 
-  ```bash
-  # root
-  npm run dev        # concurrently dev-server & dev-client
-  npm run build      # full production build
-  npm run test       # full test suite
-  ```
-* [ ] 🔧 **CI** – GitHub Actions that install, lint, build, and test on `push` + PR.
+   ```text
+   .
+   ├── client/   # React 18 + Vite + TS
+   ├── server/   # Node 18 + Express + TS
+   ├── prisma/   # Prisma schema & migrations
+   └── scripts/  # one‑off dev scripts
+   ```
+
+3. 📄 **`README.md`** — *create now using the template below*
+
+   * Copy the **entire code block** titled **README TEMPLATE** verbatim into `/README.md`.
+   * Replace the `<PROJECT_URL>` placeholder once the repo has a remote.
+
+4. 📄 **`LICENSE`** — MIT license (year 2025, author *University of Prince Edward Island*).
+
+5. 🔧 **Tooling**
+
+   * Root ESLint + Prettier configs shared via `overrides`.
+   * Husky + lint‑staged: run `eslint --fix` & `prettier --write` on staged files.
+   * Root scripts:
+
+     ```json5
+     {
+       "scripts": {
+         "dev": "concurrently -k \"npm:start --workspace=server\" \"npm:start --workspace=client\"",
+         "build": "npm run build --workspace=server && npm run build --workspace=client",
+         "test": "npm run test --workspaces"
+       }
+     }
+     ```
+
+6. 🔧 **CI** — `.github/workflows/ci.yml`:
+
+   * Matrix: {node 18, node 20}
+   * Steps: `pnpm install --frozen-lockfile`, `pnpm run lint`, `pnpm run build`, `pnpm run test`.
 
 ---
 
-## Phase 1 – Backend (API + DB)
+## Phase 1 — Backend API
 
-### 1.1 Domain & persistence
+### 1.1 Persistence
 
-* [ ] 🆕 Add **SQLite** file‐based DB in `/server/db/database.sqlite`.
-* [ ] 🆕 **Prisma ORM** setup with three models:
+* 🆕 Install **Prisma** + SQLite.
+* 🆕 Create `prisma/schema.prisma` with models:
 
   ```prisma
-  model Subject   { id Int @id @default(autoincrement())  name String  milestones Milestone[]  }
-  model Milestone { id Int @id @default(autoincrement())  title String  subjectId Int  subject Subject @relation(fields:[subjectId],references:[id])  activities Activity[]  targetDate DateTime?  estHours Int? }
-  model Activity  { id Int @id @default(autoincrement())  title String  milestoneId Int  milestone Milestone @relation(fields:[milestoneId],references:[id])  durationMins Int?  privateNote String?  publicNote String? }
+  model Subject   {
+    id          Int         @id @default(autoincrement())
+    name        String
+    milestones  Milestone[]
+    createdAt   DateTime    @default(now())
+  }
+  model Milestone {
+    id          Int         @id @default(autoincrement())
+    title       String
+    subjectId   Int
+    subject     Subject     @relation(fields:[subjectId],references:[id])
+    activities  Activity[]
+    targetDate  DateTime?
+    estHours    Int?
+  }
+  model Activity  {
+    id          Int         @id @default(autoincrement())
+    title       String
+    milestoneId Int
+    milestone   Milestone   @relation(fields:[milestoneId],references:[id])
+    durationMins Int?
+    privateNote  String?
+    publicNote   String?
+    completedAt  DateTime?
+  }
   ```
-* [ ] 🆕 Seed script that inserts **demo data** (2 subjects, each with 1 milestone & 1 activity).
+* 🆕 `pnpm prisma migrate dev --name init`.
+* 🆕 Seed script `scripts/seed.ts` inserts demo data (2 subjects → 1 milestone each → 1 activity). Add `npm run seed`.
 
-### 1.2 REST API
+### 1.2 REST API (Express + TypeScript)
 
-* [ ] 🆕 Express boilerplate in `/server/src/index.ts`.
-* [ ] 🆕 CRUD routes (JSON):
+* Folder `server/src`:
 
-  * `GET /api/subjects`, `POST /api/subjects`, `PUT /api/subjects/:id`, `DELETE …`
-  * same pattern for milestones and activities.
-* [ ] ✅ Unit tests with **Jest** + **supertest** for all endpoints (happy path + simple 404).
-* [ ] 🆕 Basic CORS & error-handling middleware.
-
----
-
-## Phase 2 – Frontend (UI MVP)
-
-### 2.1 Foundation
-
-* [ ] 🆕 Vite React template → `/client`.
-* [ ] 🆕 **Global style**: Tailwind CSS.
-* [ ] ✏️ Add Axios client (`/client/src/api.ts`) pointed at `http://localhost:3000/api`.
-
-### 2.2 Pages & components
-
-| Route             | Purpose                                           |
-| ----------------- | ------------------------------------------------- |
-| `/`               | redirect → `/subjects`                            |
-| `/subjects`       | list subjects + “Add Subject” modal               |
-| `/subjects/:id`   | show milestones for subject, plus “Add Milestone” |
-| `/milestones/:id` | list activities, plus “Add Activity”              |
-
-* [ ] 🆕 **SubjectList** component
-* [ ] 🆕 **MilestoneList** component showing `% complete` (activities done / total).
-* [ ] 🆕 **ActivityList** with editable private/public notes fields.
-* [ ] 🆕 **Basic form modals** (headless UI or shadcn/ui) for create/update.
-* [ ] 🆕 Toast notifications on CRUD success/error.
-
-### 2.3 State & data access
-
-* [ ] 🆕 React Query (TanStack) for caching server calls.
-* [ ] 🆕 Simple `useAuthlessApi` – no login yet, but isolates future auth.
-
-### 2.4 Front-end tests
-
-* [ ] ✅ Component tests with **Vitest + React Testing Library** for each list component.
-* [ ] ✅ E2E smoke test with **Playwright**: create subject → milestone → activity; verify DB row exists.
+  * `index.ts` – start server (`PORT=3000`).
+  * `routes/subject.ts`, `routes/milestone.ts`, `routes/activity.ts`.
+  * CRUD endpoints: `GET/POST/PUT/DELETE` for each entity.
+  * Global error & 404 handler, CORS enabled.
+* ✅ Tests: Jest + supertest (happy path & 404).
 
 ---
 
-## Phase 3 – Glue & Quality Gate
+## Phase 2 — Frontend (React UI)
 
-* [ ] ✏️ **Hook up “Mark Activity Done”**
+### 2.1 Setup
 
-  * toggle checkbox → PATCH `/activities/:id` (`completedAt` datetime column added via migration).
-* [ ] ✅ Add jest test to ensure progress % updates correctly.
-* [ ] 🆕 **Simple progress bar** on Subject & Milestone cards (client-side calc).
-* [ ] 🆕 **Dockerfile** at root to run full stack for testers:
+* `client/` via `pnpm create vite client --template react-ts`.
+* Install Tailwind CSS & configure `tailwind.config.ts`.
+* Axios instance at `client/src/api.ts` pointing to `http://localhost:3000/api`.
 
-  ```Dockerfile
-  FROM node:18
-  WORKDIR /app
-  COPY . .
-  RUN npm i
-  RUN npm run build
-  CMD ["npm","run","start"]
-  ```
-* [ ] 🔧 **Release script** – `npm version && git tag` + GitHub Release on main.
+### 2.2 Routing & Components
 
-> **Exit criteria for MVP**
->
-> 1. `docker compose up` starts server & client.
-> 2. Teacher can create / view / edit / delete Subjects → Milestones → Activities.
-> 3. Can mark an Activity done and see progress bars update.
-> 4. All unit, component, and e2e tests pass in CI.
+| Route             | Component       | Purpose                      |
+| ----------------- | --------------- | ---------------------------- |
+| `/`               | Redirect        | to `/subjects`               |
+| `/subjects`       | `SubjectList`   | list / create subjects       |
+| `/subjects/:id`   | `MilestoneList` | milestones for given subject |
+| `/milestones/:id` | `ActivityList`  | activities under milestone   |
 
----
+Components needed:
 
-## Phase 4 – Next Iteration Backlog (defer until MVP passes QA)
+* `SubjectCard`, `MilestoneCard` (with % progress), `ActivityRow`.
+* Modal forms (shadcn/ui **Dialog**).
+* Toast context (shadcn/ui **Sonner**).
 
-* Weekly planner engine & timetable UI.
-* Resource checklist & file uploads.
-* Progress alerts & pacing guides.
-* Newsletter generator (public notes + images).
-* Emergency sub-plan generator.
-* Auth & multi-user support.
-* Cloud backup / sync.
+### 2.3 State
 
-*(Create a separate issue board once Phase 0-3 are merged.)*
+* TanStack Query (`@tanstack/react-query`) for server caching.
+* Local state only for open/close modals.
+
+### 2.4 Testing
+
+* Vitest + React Testing Library for components.
+* Playwright E2E: create subject → milestone → activity, then mark activity done and assert progress.
 
 ---
 
-### Helpful Commands Cheat-Sheet (for the agent)
+## Phase 3 — MVP Polish & Distribution
+
+1. ✏️ Add `completedAt` toggle (PATCH `/activities/:id/toggle`).
+2. 🆕 Subject & Milestone progress bars (computed client‑side 🎨).
+3. 🆕 **Docker**
+
+   * `Dockerfile` (multi‑stage Node 18 builder → slim runtime).
+   * `docker-compose.yml` (one service — web).
+4. 🔧 Release script: `pnpm dlx changelogithub` on `main` merge.
+5. ✅ All CI checks must pass; smoke test passes in `docker compose up`.
+
+> **Exit Criteria**
+> *User can clone repo, run one command (`pnpm run dev` or `docker compose up`), and manage Subjects → Milestones → Activities with progress tracking – no auth, no cloud sync.*
+
+---
+
+## Phase 4 — Post‑MVP Backlog (create GitHub Issues, do **not** start coding until green‑lit)
+
+* Weekly timetable generator with drag‑and‑drop.
+* Resource uploads & file store (S3 or local FS).
+* Email newsletter/parent hand‑out generator (publicNotes → Markdown → PDF).
+* Sub‑plan auto‑generation when teacher is absent.
+* Multi‑teacher accounts & role‑based access.
+* Cloud sync & offline‑first (Service Worker + IndexedDB).
+
+---
+
+## README TEMPLATE (copy to `/README.md` **now**)
+
+````markdown
+# Elementary Curriculum Planner (MVP)
+
+> A lightweight open‑source web app for K‑6 teachers to map **Subjects → Milestones → Activities**, track progress, and keep everything in one place.
+
+![CI](https://github.com/<PROJECT_URL>/actions/workflows/ci.yml/badge.svg)
+
+## ✨ Features (MVP)
+- Add / edit / delete **Subjects**, **Milestones**, and **Activities**.
+- Automatic % progress bars per milestone & subject.
+- Single‑file **SQLite** persistence – runs anywhere.
+- React 18 front‑end with instant hot‑reload.
+- One‑command start (`pnpm run dev`) or `docker compose up`.
+
+## 🏗️ Tech Stack
+| Layer | Tech |
+|-------|------|
+| Front‑end | React 18, Vite, Tailwind, TanStack Query |
+| Back‑end | Node 18, Express, TypeScript |
+| ORM / DB | Prisma 5, SQLite |
+| Testing | Jest, Vitest, Playwright |
+| DevOps | GitHub Actions, Docker |
+
+## 🚀 Quick Start (Local)
+```bash
+git clone https://github.com/<PROJECT_URL>.git
+cd curriculum-planner
+pnpm install
+pnpm run dev # open http://localhost:5173
+````
+
+## 🐳 Quick Start (Docker)
 
 ```bash
-# bootstrap
-npm i -g pnpm            # or stick with npm
-pnpm install             # root – installs workspaces
-
-# run dev
-pnpm run dev             # concurrently: server on 3000, client on 5173
-
-# prisma
-pnpm --filter server prisma migrate dev --name init
-pnpm --filter server prisma studio   # DB inspector
-
-# tests
-pnpm run test            # all workspaces
-pnpm --filter server test
-pnpm --filter client test
+docker compose up --build
+# open http://localhost:3000 (API) and http://localhost:5173 (UI)
 ```
 
----
+## 🗂 Project Structure
 
-Happy coding — ship the core, test it hard, then circle back for the “smart” features!
+```text
+client/   # React front-end
+server/   # Express API
+prisma/   # Prisma schema & migrations
+```
+
+## 🧪 Running Tests
+
+```bash
+pnpm run test         # all tests
+pnpm test --filter server
+pnpm test --filter client
+```
+
+## 📜 License
+
+MIT © 2025 University of Prince Edward Island
+
+```
+```
