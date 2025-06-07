@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 import subjectRoutes from './routes/subject';
 import milestoneRoutes from './routes/milestone';
 import activityRoutes from './routes/activity';
@@ -11,9 +12,14 @@ app.use(express.json());
 app.use('/api/subjects', subjectRoutes);
 app.use('/api/milestones', milestoneRoutes);
 app.use('/api/activities', activityRoutes);
-
-app.use((req, res) => {
+app.use('/api/*', (_req, res) => {
   res.status(404).json({ error: 'Not Found' });
+});
+
+const clientDist = path.join(__dirname, '../../client/dist');
+app.use(express.static(clientDist));
+app.get('*', (_req, res) => {
+  res.sendFile(path.join(clientDist, 'index.html'));
 });
 
 app.use(

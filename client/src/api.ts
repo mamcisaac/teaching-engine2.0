@@ -70,3 +70,18 @@ export const useCreateActivity = () => {
     },
   );
 };
+
+export const useUpdateActivity = () => {
+  const qc = useQueryClient();
+  return useMutation(
+    (data: { id: number; milestoneId: number; subjectId?: number; completedAt: string | null }) =>
+      api.put(`/activities/${data.id}`, { completedAt: data.completedAt }),
+    {
+      onSuccess: (_res, vars) => {
+        qc.invalidateQueries(['milestone', vars.milestoneId]);
+        if (vars.subjectId) qc.invalidateQueries(['subject', vars.subjectId]);
+        qc.invalidateQueries(['subjects']);
+      },
+    },
+  );
+};

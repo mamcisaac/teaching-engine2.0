@@ -9,6 +9,7 @@ vi.mock('../api', async () => {
   return {
     ...actual,
     useCreateActivity: () => ({ mutate: vi.fn() }),
+    useUpdateActivity: () => ({ mutate: vi.fn() }),
   };
 });
 
@@ -19,7 +20,7 @@ describe('ActivityList', () => {
       { id: 2, title: 'A2', milestoneId: 1, completedAt: null },
     ];
 
-    renderWithRouter(<ActivityList activities={activities} />);
+    renderWithRouter(<ActivityList activities={activities} milestoneId={1} />);
 
     expect(screen.getByText('A1')).toBeInTheDocument();
     expect(screen.getByText('A2')).toBeInTheDocument();
