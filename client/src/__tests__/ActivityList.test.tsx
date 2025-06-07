@@ -2,6 +2,15 @@ import { screen } from '@testing-library/react';
 import ActivityList from '../components/ActivityList';
 import type { Activity } from '../api';
 import { renderWithRouter } from '../test-utils';
+import { vi } from 'vitest';
+
+vi.mock('../api', async () => {
+  const actual = await vi.importActual('../api');
+  return {
+    ...actual,
+    useCreateActivity: () => ({ mutate: vi.fn() }),
+  };
+});
 
 describe('ActivityList', () => {
   it('renders activities', () => {

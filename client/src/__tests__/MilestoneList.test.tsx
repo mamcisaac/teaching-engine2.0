@@ -2,6 +2,15 @@ import { screen } from '@testing-library/react';
 import MilestoneList from '../components/MilestoneList';
 import type { Milestone } from '../api';
 import { renderWithRouter } from '../test-utils';
+import { vi } from 'vitest';
+
+vi.mock('../api', async () => {
+  const actual = await vi.importActual('../api');
+  return {
+    ...actual,
+    useCreateMilestone: () => ({ mutate: vi.fn() }),
+  };
+});
 
 describe('MilestoneList', () => {
   it('renders milestones with links', () => {
