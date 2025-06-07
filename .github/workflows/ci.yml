@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PRISMA_NO_ENGINE_DOWNLOAD: '1'
+      PRISMA_ENGINES_CHECKSUM_IGNORE_MISSING: '1'
     strategy:
       matrix:
         node-version: [18, 20]

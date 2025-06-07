@@ -14,9 +14,7 @@ afterAll(async () => {
 
 describe('Subject API', () => {
   it('creates and retrieves a subject', async () => {
-    const create = await request(app)
-      .post('/api/subjects')
-      .send({ name: 'Test' });
+    const create = await request(app).post('/api/subjects').send({ name: 'Test' });
     expect(create.status).toBe(201);
     const id = create.body.id;
     const get = await request(app).get(`/api/subjects/${id}`);
@@ -26,6 +24,55 @@ describe('Subject API', () => {
 
   it('returns 404 for missing subject', async () => {
     const res = await request(app).get('/api/subjects/99999');
+    expect(res.status).toBe(404);
+  });
+});
+
+describe('Milestone API', () => {
+  let subjectId: number;
+
+  beforeAll(async () => {
+    const subject = await prisma.subject.create({ data: { name: 'Subj' } });
+    subjectId = subject.id;
+  });
+
+  it('creates and retrieves a milestone', async () => {
+    const create = await request(app).post('/api/milestones').send({ title: 'MS', subjectId });
+    expect(create.status).toBe(201);
+    const id = create.body.id;
+    const get = await request(app).get(`/api/milestones/${id}`);
+    expect(get.status).toBe(200);
+    expect(get.body.title).toBe('MS');
+  });
+
+  it('returns 404 for missing milestone', async () => {
+    const res = await request(app).get('/api/milestones/99999');
+    expect(res.status).toBe(404);
+  });
+});
+
+describe('Activity API', () => {
+  let milestoneId: number;
+
+  beforeAll(async () => {
+    const subject = await prisma.subject.create({ data: { name: 'S2' } });
+    const milestone = await prisma.milestone.create({
+      data: { title: 'M2', subjectId: subject.id },
+    });
+    milestoneId = milestone.id;
+  });
+
+  it('creates and retrieves an activity', async () => {
+    const create = await request(app).post('/api/activities').send({ title: 'Act', milestoneId });
+    expect(create.status).toBe(201);
+    const id = create.body.id;
+    const get = await request(app).get(`/api/activities/${id}`);
+    expect(get.status).toBe(200);
+    expect(get.body.title).toBe('Act');
+  });
+
+  it('returns 404 for missing activity', async () => {
+    const res = await request(app).get('/api/activities/99999');
     expect(res.status).toBe(404);
   });
 });
