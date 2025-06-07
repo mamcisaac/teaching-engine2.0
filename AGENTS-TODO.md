@@ -136,13 +136,33 @@
 
 ### 1.2 REST API (Express + TypeScript)
 
-* Folder `server/src`:
+**Required dev dependencies** (install at the **root** so they’re hoisted for every workspace):
 
-  * `index.ts` – start server (`PORT=3000`).
-  * `routes/subject.ts`, `routes/milestone.ts`, `routes/activity.ts`.
-  * CRUD endpoints: `GET/POST/PUT/DELETE` for each entity.
-  * Global error & 404 handler, CORS enabled.
-* ✅ Tests: Jest + supertest (happy path & 404).
+```bash
+pnpm add -D jest ts-jest @types/jest supertest @types/supertest cross-env
+```
+
+Create `jest.config.ts` at the root:
+
+```ts
+import type { Config } from 'jest';
+const config: Config = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  testMatch: ['<rootDir>/server/**/*.spec.ts'],
+};
+export default config;
+```
+
+Add `"type": "module"` to root `package.json` **or** rename the file `jest.config.js` and use `module.exports` if you prefer CommonJS.
+
+Folder `server/src`:
+
+* `index.ts` – start server (`PORT=3000`).
+* `routes/subject.ts`, `routes/milestone.ts`, `routes/activity.ts`.
+* CRUD endpoints: `GET/POST/PUT/DELETE` for each entity.
+* Global error & 404 handler, CORS enabled.
+* ✅ Tests: Jest + supertest (happy path & 404). + supertest (happy path & 404).
 
 ---
 
