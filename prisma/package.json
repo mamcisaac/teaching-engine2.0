@@ -8,5 +8,8 @@
   },
   "devDependencies": {
     "prisma": "^5.10.2"
+  },
+  "dependencies": {
+    "@prisma/client": "5.22.0"
   }
 }

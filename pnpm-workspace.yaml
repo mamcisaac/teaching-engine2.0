@@ -1,7 +1,6 @@
 packages:
   - client
   - server
-  - prisma
   - scripts
 onlyBuiltDependencies:
   - '@prisma/client'
