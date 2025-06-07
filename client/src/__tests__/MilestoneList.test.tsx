@@ -21,7 +21,7 @@ describe('MilestoneList', () => {
       { id: 2, title: 'M2', subjectId: 1, activities: [] },
     ];
 
-    renderWithRouter(<MilestoneList milestones={milestones} />);
+    renderWithRouter(<MilestoneList milestones={milestones} subjectId={1} />);
 
     expect(screen.getByText('M1')).toHaveAttribute('href', '/milestones/1');
     expect(screen.getByText('M2')).toHaveAttribute('href', '/milestones/2');
