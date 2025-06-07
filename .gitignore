@@ -135,7 +135,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 .env
-
+server/.env.test
 # SQLite databases
 *.sqlite
 prisma/dev.db

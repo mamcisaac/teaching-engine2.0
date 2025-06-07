@@ -54,6 +54,12 @@ pnpm test --filter server
 pnpm test --filter client
 ```
 
+## 🤝 Contributing
+
+Copy `server/.env.test.example` to `server/.env.test` before running tests.
+This file stores your local test database URL and is gitignored to avoid
+accidental commits.
+
 ## 📜 License
 
 MIT © 2025 University of Prince Edward Island
