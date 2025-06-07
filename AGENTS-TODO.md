@@ -173,6 +173,89 @@
 
 ---
 
+## Phase 1 — Backend API (Express + Prisma)
+
+1. 🆕 **Prisma setup**
+
+   * Add `prisma/schema.prisma` with `Subject`, `Milestone`, `Activity` models.
+   * `pnpm --filter server exec prisma migrate dev --name init` generates SQLite DB.
+   * Seed script (`server/prisma/seed.ts`) inserts demo data.
+
+2. 🆕 **Express scaffolding** (`server/src/`)
+
+   * `index.ts` bootstraps server on `PORT=3000`.
+   * CRUD routes for subjects, milestones, activities in `routes/` folder, each using Prisma client.
+
+3. ✅ **Tests**
+
+   * Jest + supertest. Cover happy‑path and 404 for each entity.
+
+---
+
+## Phase 2 — Frontend UI (React + Vite)
+
+1. 🆕 **Vite React app** (`client/`)
+
+   * Install React 18, React Router, Tailwind, TanStack Query.
+   * Pages: `/subjects`, `/subjects/:id`, `/milestones/:id`.
+
+2. 🆕 **Components**
+
+   * `SubjectList`, `MilestoneList`, `ActivityList` with modal forms.
+   * Progress bars per card (client‑side calc for now).
+
+3. 🆕 **API layer**
+
+   * `src/api.ts` wraps Axios calls to `/api/*` with React Query hooks.
+
+4. ✅ **Tests**
+
+   * Vitest + RTL for components.
+   * Playwright e2e: create subject→milestone→activity.
+
+---
+
+## Phase 3 — MVP Polish & Distribution
+
+1. ✏️ **Mark Activity done**
+
+   * Add `completedAt` field (Prisma migration) and checkbox UI.
+   * Progress bars auto‑update.
+
+2. 🆕 **Docker**
+
+   * Multi‑stage Dockerfile builds server & client, copies static bundle.
+   * `docker compose.yml` runs API + client.
+
+3. 🔧 **Release workflow**
+
+   * GitHub Action publishes Docker image on tag.
+
+---
+
+## Phase 4 — Post‑MVP Backlog (defer)
+
+* Weekly planner automation
+* Resource uploads
+* Progress alerts
+* Newsletter generator
+* Emergency sub‑plan creator
+* Auth & multi‑user
+* Cloud backup
+
+---
+
+## Phase Validation Checklist
+
+| Phase | Definition‑of‑Done                                                               | Verification                   |
+| ----- | -------------------------------------------------------------------------------- | ------------------------------ |
+| 0     | Repo scaffolds, `pnpm run lint && pnpm run build` pass in CI matrix (Node 18/20) | GitHub Actions green           |
+| 1     | All CRUD endpoints persist & return data                                         | Jest + supertest pass          |
+| 2     | UI creates entities without console errors                                       | Vitest + Playwright pass       |
+| 3     | Progress bars work; Docker image runs                                            | Manual smoke test + CI release |
+
+---
+
 ## README TEMPLATE (copy to `/README.md` **now**)
 
 ````markdown
