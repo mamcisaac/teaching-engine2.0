@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import prisma from '../prisma';
 
 const router = Router();
@@ -33,9 +34,7 @@ router.post('/', async (req, res, next) => {
         durationMins: req.body.durationMins,
         privateNote: req.body.privateNote,
         publicNote: req.body.publicNote,
-        completedAt: req.body.completedAt
-          ? new Date(req.body.completedAt)
-          : undefined,
+        completedAt: req.body.completedAt ? new Date(req.body.completedAt) : undefined,
       },
     });
     res.status(201).json(activity);
@@ -53,13 +52,14 @@ router.put('/:id', async (req, res, next) => {
         durationMins: req.body.durationMins,
         privateNote: req.body.privateNote,
         publicNote: req.body.publicNote,
-        completedAt: req.body.completedAt
-          ? new Date(req.body.completedAt)
-          : undefined,
+        completedAt: req.body.completedAt ? new Date(req.body.completedAt) : undefined,
       },
     });
     res.json(activity);
   } catch (err) {
+    if (err instanceof PrismaClientKnownRequestError && err.code === 'P2025') {
+      return res.status(404).json({ error: 'Not Found' });
+    }
     next(err);
   }
 });
@@ -69,6 +69,9 @@ router.delete('/:id', async (req, res, next) => {
     await prisma.activity.delete({ where: { id: Number(req.params.id) } });
     res.status(204).end();
   } catch (err) {
+    if (err instanceof PrismaClientKnownRequestError && err.code === 'P2025') {
+      return res.status(404).json({ error: 'Not Found' });
+    }
     next(err);
   }
 });
