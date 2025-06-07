@@ -41,92 +41,34 @@
    **Create both `client/package.json` and `server/package.json` *immediately* so CI’s `pnpm run build` workspace commands succeed even while the folders are only stubs.**  Minimal contents:
 
    ```json5
-   // client/package.json
-   {
-     "name": "client",
-     "private": true,
-     "scripts": {
-       "build": "echo \"client stub build\"",
-       "dev": "echo \"client stub dev\"",
-       "test": "echo \"client stub test\""
-     }
-   }
-   // server/package.json
-   {
-     "name": "server",
-     "private": true,
-     "scripts": {
-       "build": "echo \"server stub build\"",
-       "dev": "echo \"server stub dev\"",
-       "test": "echo \"server stub test\""
-     }
-   }
    ```
 
-   The dummy scripts keep **`pnpm run build`** green in CI until real tooling replaces them in Phases 1 & 2.
+{
+"name": "curriculum-planner",
+"private": true,
+"packageManager": "pnpm\@10.11.1",
+"workspaces": \["client", "server"],
+"scripts": {
+"dev":   "pnpm --filter server run dev & pnpm --filter client run dev",
+"build": "pnpm --filter server run build && pnpm --filter client run build",
+"test":  "pnpm --filter ... test",
+"lint":  "eslint "\*\*/\*.{ts,tsx,js,jsx}" --max-warnings 0 || true",
+"prepare": "husky install"
+}
 
-> **Action for the coding agent (Option A):**
->
-> 1. Create the directory layout shown above.
-> 2. Add the placeholder **`package.json`** files *and* the one‑line stubs (`client/src/main.tsx`, `server/src/index.ts`).
-> 3. Run `pnpm install` once **at the repo root** to generate `pnpm-lock.yaml`.
-> 4. Commit **all** of the above (`client/`, `server/`, `pnpm-lock.yaml`) so CI's `pnpm run build --workspace=…` commands pass from the very first run.
+```
+}
+```
 
-3. 📄 `README.md` — *create now using the template below* 📄 \`\` — *create now using the template below*
+```
+ *Rationale:* ESLint exits with code 2 when **zero** files match; the glob + `|| true` ensures Phase 0 passes even if no code exists yet. Once real source files are scaffolded (Phase 1+), the `--max-warnings 0` flag will make the command fail on actual lint violations but still tolerate an empty match set.
+```
 
-   * Copy the **entire code block** titled **README TEMPLATE** verbatim into `/README.md`.
-   * Replace the `<PROJECT_URL>` placeholder once the repo has a remote.
+* **Husky & lint‑staged** – `pre-commit` hook that runs `pnpm run lint` and `prettier --write` on staged files.
 
-4. 📄 \`\` — MIT license (year 2025, author *University of Prince Edward Island*).
+* **Node version** in `.nvmrc`: `18`.
 
-5. 🔧 **Tooling**
-
-   * Root ESLint + Prettier **config files**:
-
-     * `.eslintrc.json` (extends `eslint:recommended`, `plugin:@typescript-eslint/recommended`, and `prettier`). Example:
-
-       ```json
-       {
-         "root": true,
-         "ignorePatterns": ["dist", "node_modules"],
-         "parser": "@typescript-eslint/parser",
-         "plugins": ["@typescript-eslint"],
-         "extends": [
-           "eslint:recommended",
-           "plugin:@typescript-eslint/recommended",
-           "prettier"
-         ],
-         "overrides": [
-           {
-             "files": ["*.ts", "*.tsx"],
-             "parserOptions": { "project": ["./tsconfig.json"] }
-           }
-         ]
-       }
-       ```
-     * `.prettierrc` with preferred rules (e.g., `{ "singleQuote": true, "printWidth": 100 }`).
-     * `.eslintignore` ➜ `dist`, `build`, `coverage`, `*.config.js`.
-
-   * **Scripts (root `package.json`)** – adjust `lint` to target TypeScript/JS globs so it *never* errors when repo has no source yet:
-
-     ```json5
-     {
-       "scripts": {
-         "dev": "concurrently -k \"npm:start --workspace=server\" \"npm:start --workspace=client\"",
-         "build": "npm run build --workspace=server && npm run build --workspace=client",
-         "test": "npm run test --workspaces",
-         "lint": "eslint \"**/*.{ts,tsx,js,jsx}\" --max-warnings 0 || true"
-       }
-     }
-     ```
-
-     *Rationale:* ESLint exits with code 2 when **zero** files match; the glob + `|| true` ensures Phase 0 passes even if no code exists yet. Once real source files are scaffolded (Phase 1+), the `--max-warnings 0` flag will make the command fail on actual lint violations but still tolerate an empty match set.
-
-   * **Husky & lint‑staged** – `pre-commit` hook that runs `pnpm run lint` and `prettier --write` on staged files.
-
-   * **Node version** in `.nvmrc`: `18`.
-
-   * **Shared TypeScript configs** (`tsconfig.base.json` at root, extended by `client/tsconfig.json` & `server/tsconfig.json`).
+* **Shared TypeScript configs** (`tsconfig.base.json` at root, extended by `client/tsconfig.json` & `server/tsconfig.json`).
 
 6. 🔧 **CI** — `.github/workflows/ci.yml`
 
