@@ -4,17 +4,15 @@
   "private": true,
   "workspaces": [
     "client",
-    "server",
-    "prisma",
-    "scripts"
+    "server"
   ],
   "scripts": {
-    "dev": "pnpm --filter server run dev & pnpm --filter client run dev",
+    "dev": "concurrently -k \"pnpm --filter server run start\" \"pnpm --filter client run dev\"",
     "build": "pnpm --filter server run build && pnpm --filter client run build",
-    "test": "pnpm --filter ... test",
+    "test": "pnpm --filter server run test && pnpm --filter client run test",
     "lint": "eslint \"**/*.{ts,tsx,js,jsx}\" --max-warnings 0 || true",
     "prepare": "husky install",
-    "seed": "pnpm --filter scripts run seed"
+    "seed": "pnpm --filter server run seed"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.0.0",
