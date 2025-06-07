@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'sonner';
 
 const api = axios.create({
   baseURL: 'http://localhost:3000/api',
@@ -37,7 +38,10 @@ export const useMilestone = (id: number) =>
 export const useCreateSubject = () => {
   const qc = useQueryClient();
   return useMutation((data: { name: string }) => api.post('/subjects', data), {
-    onSuccess: () => qc.invalidateQueries(['subjects']),
+    onSuccess: () => {
+      qc.invalidateQueries(['subjects']);
+      toast.success('Subject created');
+    },
   });
 };
 
@@ -48,6 +52,7 @@ export const useCreateMilestone = () => {
     {
       onSuccess: (_res, vars) => {
         qc.invalidateQueries(['subject', vars.subjectId]);
+        toast.success('Milestone created');
       },
     },
   );
@@ -60,6 +65,7 @@ export const useCreateActivity = () => {
     {
       onSuccess: (_res, vars) => {
         qc.invalidateQueries(['milestone', vars.milestoneId]);
+        toast.success('Activity created');
       },
     },
   );

@@ -1,4 +1,5 @@
-import { ReactNode, useEffect } from 'react';
+import { ReactNode } from 'react';
+import * as RadixDialog from '@radix-ui/react-dialog';
 
 interface DialogProps {
   open: boolean;
@@ -7,25 +8,16 @@ interface DialogProps {
 }
 
 export default function Dialog({ open, onOpenChange, children }: DialogProps) {
-  useEffect(() => {
-    const onEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onOpenChange(false);
-    };
-    if (open) {
-      window.addEventListener('keydown', onEsc);
-    }
-    return () => window.removeEventListener('keydown', onEsc);
-  }, [open, onOpenChange]);
-
-  if (!open) return null;
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
-      onClick={() => onOpenChange(false)}
-    >
-      <div className="bg-white p-4 rounded shadow" onClick={(e) => e.stopPropagation()}>
-        {children}
-      </div>
-    </div>
+    <RadixDialog.Root open={open} onOpenChange={onOpenChange}>
+      <RadixDialog.Portal>
+        <RadixDialog.Overlay className="fixed inset-0 bg-black/50 z-50" />
+        <RadixDialog.Content className="fixed inset-0 z-50 flex items-center justify-center outline-none">
+          <div className="bg-white p-4 rounded shadow" onClick={(e) => e.stopPropagation()}>
+            {children}
+          </div>
+        </RadixDialog.Content>
+      </RadixDialog.Portal>
+    </RadixDialog.Root>
   );
 }
