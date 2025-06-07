@@ -8,11 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      PRISMA_CLIENT_ENGINE_TYPE: wasm
-      PRISMA_CLI_QUERY_ENGINE_TYPE: wasm
-      PRISMA_NO_ENGINE_DOWNLOAD: 1
-      PRISMA_ENGINES_CHECKSUM_IGNORE_MISSING: 1
     strategy:
       matrix:
         node-version: [18, 20]
