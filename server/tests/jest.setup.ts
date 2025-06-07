@@ -1,3 +1,5 @@
 import { config } from 'dotenv';
 
-config({ path: './.env.offline' });
+export default async () => {
+  config({ path: './.env.offline' });
+};
