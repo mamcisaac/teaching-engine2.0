@@ -1,0 +1,8 @@
+{
+  "name": "client",
+  "private": true,
+  "scripts": {
+    "build": "echo 'client build placeholder'",
+    "test": "echo skipped"
+  }
+}
