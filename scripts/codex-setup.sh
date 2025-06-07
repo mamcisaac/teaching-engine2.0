@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
-export PRISMA_CLIENT_ENGINE_TYPE=wasm
-export PRISMA_CLI_QUERY_ENGINE_TYPE=wasm
 export $(grep -v '^#' server/.env.offline | xargs)
 
 ###############################################################################
@@ -28,9 +26,7 @@ if ! command -v node >/dev/null 2>&1 \
   exit 1
 fi
 
-# 2. Offline Prisma / WASM engine ---------------------------------------------
-export PRISMA_CLIENT_ENGINE_TYPE=wasm
-export PRISMA_CLI_QUERY_ENGINE_TYPE=wasm
+# 2. Offline Prisma setup ------------------------------------------------------
 export PRISMA_NO_ENGINE_DOWNLOAD=1
 export PRISMA_ENGINES_CHECKSUM_IGNORE_MISSING=1
 
