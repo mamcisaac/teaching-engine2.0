@@ -1,18 +1,60 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { Subject } from '../api';
+import { useCreateSubject } from '../api';
+import Dialog from './Dialog';
 
 interface Props {
   subjects: Subject[];
 }
 
 export default function SubjectList({ subjects }: Props) {
+  const create = useCreateSubject();
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim()) return;
+    create.mutate({ name });
+    setName('');
+    setOpen(false);
+  };
+
   return (
-    <ul>
-      {subjects.map((s) => (
-        <li key={s.id}>
-          <Link to={`/subjects/${s.id}`}>{s.name}</Link>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <button className="mb-2 px-2 py-1 bg-blue-600 text-white" onClick={() => setOpen(true)}>
+        Add Subject
+      </button>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="New subject"
+            className="border p-2"
+          />
+          <button type="submit" className="self-end px-2 py-1 bg-blue-600 text-white">
+            Save
+          </button>
+        </form>
+      </Dialog>
+      <ul className="space-y-2">
+        {subjects.map((s) => {
+          const completed = s.milestones.filter(
+            (m) => m.activities.length > 0 && m.activities.every((a) => a.completedAt),
+          ).length;
+          const progress = s.milestones.length ? (completed / s.milestones.length) * 100 : 0;
+          return (
+            <li key={s.id} className="border p-2 rounded">
+              <Link to={`/subjects/${s.id}`}>{s.name}</Link>
+              <div className="h-2 mt-1 bg-gray-200 rounded">
+                <div className="h-full bg-blue-500" style={{ width: `${progress}%` }} />
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
