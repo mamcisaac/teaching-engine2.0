@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PRISMA_CLIENT_ENGINE_TYPE=wasm
+export PRISMA_CLI_QUERY_ENGINE_TYPE=wasm
 export $(grep -v '^#' server/.env.offline | xargs)
 
 ###############################################################################

@@ -1,9 +1,9 @@
 {
   "name": "server",
     "dev": "ts-node src/index.ts",
-    "pretest": "pnpm exec prisma generate --schema=../prisma/schema.prisma --wasm"
-  "private": true,
-  "scripts": {
+    "pretest": "pnpm exec prisma generate --wasm --schema=../prisma/schema.prisma && pnpm exec prisma migrate deploy --wasm --schema=../prisma/schema.prisma"
+    "@prisma/client": "^6.9.0",
+    "prisma": "^6.9.0"
     "start": "ts-node src/index.ts",
     "build": "tsc",
     "test": "jest",
