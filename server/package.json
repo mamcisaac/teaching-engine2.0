@@ -1,7 +1,7 @@
 {
   "name": "server",
     "dev": "ts-node src/index.ts",
-    "pretest": "pnpm exec prisma generate --skip-download --schema=../prisma/schema.prisma && pnpm exec prisma migrate deploy --schema=../prisma/schema.prisma"
+    "pretest": "pnpm exec prisma generate --schema=../prisma/schema.prisma --wasm"
   "private": true,
   "scripts": {
     "start": "ts-node src/index.ts",
