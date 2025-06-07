@@ -1,5 +1,9 @@
 packages:
-  - 'client'
-  - 'server'
-  - 'prisma'
-  - 'scripts'
+  - client
+  - server
+  - prisma
+  - scripts
+onlyBuiltDependencies:
+  - '@prisma/client'
+  - '@prisma/engines'
+  - prisma
