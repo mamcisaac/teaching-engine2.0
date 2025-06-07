@@ -14,7 +14,8 @@
     "test": "pnpm --filter server run test && pnpm --filter client run test",
     "lint": "eslint \"**/*.{ts,tsx,js,jsx}\" --max-warnings 0 || true",
     "prepare": "husky install",
-    "seed": "pnpm --filter server run seed"
+    "seed": "pnpm --filter server run seed",
+    "postinstall": "cd prisma && pnpm exec prisma generate"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.0.0",
