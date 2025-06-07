@@ -79,9 +79,6 @@ fi
 # 8. Seed database (optional) --------------------------------------------------
 if [[ -d server ]] && [[ -f scripts/seed.ts ]]; then
   echo "🌱  Seeding database..." >&2
-  # Install tsx as a dev dependency first
-  pnpm --filter server add -D tsx
-  # Now run the seed script
   cd server
   pnpm exec tsx ../scripts/seed.ts || {
     echo "⚠️  Seed script failed (non-critical)" >&2
