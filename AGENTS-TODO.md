@@ -65,6 +65,13 @@
 
    The dummy scripts keep **`pnpm run build`** green in CI until real tooling replaces them in Phases 1 & 2.
 
+> **Action for the coding agent (Option A):**
+>
+> 1. Create the directory layout shown above.
+> 2. Add the placeholder **`package.json`** files *and* the one‑line stubs (`client/src/main.tsx`, `server/src/index.ts`).
+> 3. Run `pnpm install` once **at the repo root** to generate `pnpm-lock.yaml`.
+> 4. Commit **all** of the above (`client/`, `server/`, `pnpm-lock.yaml`) so CI's `pnpm run build --workspace=…` commands pass from the very first run.
+
 3. 📄 `README.md` — *create now using the template below* 📄 \`\` — *create now using the template below*
 
    * Copy the **entire code block** titled **README TEMPLATE** verbatim into `/README.md`.
