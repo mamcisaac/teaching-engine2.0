@@ -1,9 +1,8 @@
-````markdown
 # Elementary Curriculum Planner (MVP)
 
 > A lightweight open‑source web app for K‑6 teachers to map **Subjects → Milestones → Activities**, track progress, and keep everything in one place.
 
-![CI](https://github.com/<PROJECT_URL>/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/openai/curriculum-planner/actions/workflows/ci.yml/badge.svg)
 
 ## ✨ Features (MVP)
 
@@ -26,12 +25,11 @@
 ## 🚀 Quick Start (Local)
 
 ```bash
-git clone https://github.com/<PROJECT_URL>.git
+git clone https://github.com/openai/curriculum-planner.git
 cd curriculum-planner
 pnpm install
 pnpm run dev # open http://localhost:5173
 ```
-````
 
 ## 🐳 Quick Start (Docker)
 
@@ -59,7 +57,3 @@ pnpm test --filter client
 ## 📜 License
 
 MIT © 2025 University of Prince Edward Island
-
-```
-
-```
