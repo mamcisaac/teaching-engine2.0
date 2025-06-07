@@ -6,7 +6,9 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "seed": "ts-node ../scripts/seed.ts",
+    "pretest": "pnpm exec prisma generate --schema=../prisma/schema.prisma && pnpm exec prisma migrate deploy --schema=../prisma/schema.prisma"
   },
   "dependencies": {
     "@prisma/client": "^5.10.2",
@@ -23,6 +25,7 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2",
     "@types/supertest": "^2.0.12",
-    "@types/cors": "^2.8.13"
+    "@types/cors": "^2.8.13",
+    "prisma": "^5.10.2"
   }
 }

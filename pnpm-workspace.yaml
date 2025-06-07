@@ -3,3 +3,7 @@ packages:
   - 'server'
   - 'prisma'
   - 'scripts'
+onlyBuiltDependencies:
+  - prisma
+  - '@prisma/engines'
+  - '@prisma/client'
