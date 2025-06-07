@@ -136,3 +136,7 @@ dist
 .pnp.*
 .env
 server/.env.test
+# SQLite databases
+*.sqlite
+prisma/dev.db
+server/dev-test.sqlite
