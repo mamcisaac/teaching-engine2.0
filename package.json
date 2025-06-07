@@ -1,5 +1,6 @@
 {
   "name": "curriculum-planner",
+  "packageManager": "pnpm@10.11.1",
   "private": true,
   "workspaces": [
     "client",
@@ -8,12 +9,12 @@
     "scripts"
   ],
   "scripts": {
-    "dev": "concurrently -k \"npm:start --workspace=server\" \"npm:start --workspace=client\"",
-    "build": "npm run build --workspace=server && npm run build --workspace=client",
-    "test": "npm run test --workspaces",
+    "dev": "pnpm --filter server run dev & pnpm --filter client run dev",
+    "build": "pnpm --filter server run build && pnpm --filter client run build",
+    "test": "pnpm --filter ... test",
     "lint": "eslint \"**/*.{ts,tsx,js,jsx}\" --max-warnings 0 || true",
     "prepare": "husky install",
-    "seed": "npm run seed --workspace=scripts"
+    "seed": "pnpm --filter scripts run seed"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.0.0",
