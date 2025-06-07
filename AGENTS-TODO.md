@@ -29,12 +29,43 @@
    ```text
    .
    ├── client/   # React 18 + Vite + TS
+   │   ├── package.json   # placeholder now, real deps later
+   │   └── src/main.tsx   # 1‑line stub so ESLint & build never fail
    ├── server/   # Node 18 + Express + TS
-   ├── prisma/   # Prisma schema & migrations
+   │   ├── package.json   # placeholder now, real deps later
+   │   └── src/index.ts   # 1‑line stub (console.log)
+   ├── prisma/   # Prisma schema & migrations (empty for Phase 0)
    └── scripts/  # one‑off dev scripts
    ```
 
-3. 📄 \`\` — *create now using the template below*
+   **Create both `client/package.json` and `server/package.json` *immediately* so CI’s `pnpm run build` workspace commands succeed even while the folders are only stubs.**  Minimal contents:
+
+   ```json5
+   // client/package.json
+   {
+     "name": "client",
+     "private": true,
+     "scripts": {
+       "build": "echo \"client stub build\"",
+       "dev": "echo \"client stub dev\"",
+       "test": "echo \"client stub test\""
+     }
+   }
+   // server/package.json
+   {
+     "name": "server",
+     "private": true,
+     "scripts": {
+       "build": "echo \"server stub build\"",
+       "dev": "echo \"server stub dev\"",
+       "test": "echo \"server stub test\""
+     }
+   }
+   ```
+
+   The dummy scripts keep **`pnpm run build`** green in CI until real tooling replaces them in Phases 1 & 2.
+
+3. 📄 `README.md` — *create now using the template below* 📄 \`\` — *create now using the template below*
 
    * Copy the **entire code block** titled **README TEMPLATE** verbatim into `/README.md`.
    * Replace the `<PROJECT_URL>` placeholder once the repo has a remote.
@@ -90,10 +121,34 @@
 
    * **Shared TypeScript configs** (`tsconfig.base.json` at root, extended by `client/tsconfig.json` & `server/tsconfig.json`).
 
-6. 🔧 **CI** — `.github/workflows/ci.yml`:
+6. 🔧 **CI** — `.github/workflows/ci.yml`
 
-   * **Generate and commit `pnpm-lock.yaml` during Phase 0.**  (Run `pnpm install` locally once; commit the resulting lockfile.)  CI relies on that file.
+   * **Pin the same pnpm major version you use locally** so the lockfile is deemed compatible:
+
+     ```yaml
+     - uses: pnpm/action-setup@v2
+       with:
+         version: 10.11.1   # keep in sync with packageManager field in package.json
+     - uses: actions/setup-node@v3
+       with:
+         node-version: ${{ matrix.node-version }}
+     ```
+
+     *(pnpm v10 generates a "lockfile v6"; earlier CI defaults run v8 and reject it as “not compatible.”)*
+
+   * **Generate and commit `pnpm-lock.yaml` during Phase 0.**  Run `pnpm install` once locally; commit the resulting lockfile.  CI insists on its presence.
+
    * Matrix: {node 18, node 20}
+
+   * Steps:
+
+     ```yaml
+     - name: Install deps (use lockfile)
+       run: pnpm install --frozen-lockfile
+     ```
+
+     *Tip for very first commit:* If the repo truly has **no** lockfile yet, use `--no-frozen-lockfile`, then commit the generated file so subsequent CI runs can switch back to strict mode. {node 18, node 20}
+
    * Steps:
 
      ```yaml
