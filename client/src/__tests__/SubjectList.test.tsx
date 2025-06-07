@@ -10,6 +10,8 @@ vi.mock('../api', async () => {
   return {
     ...actual,
     useCreateSubject: () => ({ mutate: vi.fn() }),
+    useUpdateSubject: () => ({ mutate: vi.fn() }),
+    useDeleteSubject: () => ({ mutate: vi.fn() }),
   };
 });
 
