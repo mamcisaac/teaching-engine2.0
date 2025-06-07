@@ -10,6 +10,7 @@ vi.mock('../api', async () => {
     ...actual,
     useCreateActivity: () => ({ mutate: vi.fn() }),
     useUpdateActivity: () => ({ mutate: vi.fn() }),
+    useDeleteActivity: () => ({ mutate: vi.fn() }),
   };
 });
 

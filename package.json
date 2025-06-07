@@ -16,7 +16,8 @@
     "prepare": "husky install",
     "seed": "pnpm --filter server run seed",
     "postinstall": "cd prisma && pnpm exec prisma generate",
-    "playwright:test": "playwright test"
+    "playwright:test": "playwright test",
+    "preplaywright:test": "pnpm exec playwright install"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.0.0",

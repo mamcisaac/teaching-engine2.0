@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Activity } from '../api';
-import { useCreateActivity, useUpdateActivity } from '../api';
+import { useCreateActivity, useUpdateActivity, useDeleteActivity } from '../api';
 import Dialog from './Dialog';
 
 interface Props {
@@ -12,8 +12,11 @@ interface Props {
 export default function ActivityList({ activities, milestoneId, subjectId }: Props) {
   const create = useCreateActivity();
   const update = useUpdateActivity();
+  const remove = useDeleteActivity();
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
+  const [editId, setEditId] = useState<number | null>(null);
+  const [editTitle, setEditTitle] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,6 +24,14 @@ export default function ActivityList({ activities, milestoneId, subjectId }: Pro
     create.mutate({ title, milestoneId });
     setTitle('');
     setOpen(false);
+  };
+
+  const handleEditSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (editId === null || !editTitle.trim()) return;
+    update.mutate({ id: editId, milestoneId, subjectId, title: editTitle });
+    setEditId(null);
+    setEditTitle('');
   };
 
   return (
@@ -45,27 +56,58 @@ export default function ActivityList({ activities, milestoneId, subjectId }: Pro
         {activities.map((a) => {
           const progress = a.completedAt ? 100 : 0;
           return (
-            <li key={a.id} className="border p-2 rounded flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={!!a.completedAt}
-                onChange={(e) =>
-                  update.mutate({
-                    id: a.id,
-                    milestoneId,
-                    subjectId,
-                    completedAt: e.target.checked ? new Date().toISOString() : null,
-                  })
-                }
-              />
-              <span className="flex-1">{a.title}</span>
-              <div className="h-2 flex-1 bg-gray-200 rounded">
+            <li key={a.id} className="border p-2 rounded space-y-1">
+              <div className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={!!a.completedAt}
+                  onChange={(e) =>
+                    update.mutate({
+                      id: a.id,
+                      milestoneId,
+                      subjectId,
+                      completedAt: e.target.checked ? new Date().toISOString() : null,
+                    })
+                  }
+                />
+                <span className="flex-1">{a.title}</span>
+                <div className="flex gap-1">
+                  <button
+                    className="px-1 text-sm bg-gray-200"
+                    onClick={() => {
+                      setEditId(a.id);
+                      setEditTitle(a.title);
+                    }}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="px-1 text-sm bg-red-600 text-white"
+                    onClick={() => remove.mutate({ id: a.id, milestoneId, subjectId })}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+              <div className="h-2 bg-gray-200 rounded">
                 <div className="h-full bg-blue-500" style={{ width: `${progress}%` }} />
               </div>
             </li>
           );
         })}
       </ul>
+      <Dialog open={editId !== null} onOpenChange={() => setEditId(null)}>
+        <form onSubmit={handleEditSubmit} className="flex flex-col gap-2">
+          <input
+            value={editTitle}
+            onChange={(e) => setEditTitle(e.target.value)}
+            className="border p-2"
+          />
+          <button type="submit" className="self-end px-2 py-1 bg-blue-600 text-white">
+            Save
+          </button>
+        </form>
+      </Dialog>
     </div>
   );
 }

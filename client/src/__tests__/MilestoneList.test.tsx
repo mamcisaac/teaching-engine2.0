@@ -9,6 +9,8 @@ vi.mock('../api', async () => {
   return {
     ...actual,
     useCreateMilestone: () => ({ mutate: vi.fn() }),
+    useUpdateMilestone: () => ({ mutate: vi.fn() }),
+    useDeleteMilestone: () => ({ mutate: vi.fn() }),
   };
 });
 

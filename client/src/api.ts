@@ -74,13 +74,88 @@ export const useCreateActivity = () => {
 export const useUpdateActivity = () => {
   const qc = useQueryClient();
   return useMutation(
-    (data: { id: number; milestoneId: number; subjectId?: number; completedAt: string | null }) =>
-      api.put(`/activities/${data.id}`, { completedAt: data.completedAt }),
+    (data: {
+      id: number;
+      milestoneId: number;
+      subjectId?: number;
+      title?: string;
+      completedAt?: string | null;
+    }) => api.put(`/activities/${data.id}`, { title: data.title, completedAt: data.completedAt }),
     {
       onSuccess: (_res, vars) => {
         qc.invalidateQueries(['milestone', vars.milestoneId]);
         if (vars.subjectId) qc.invalidateQueries(['subject', vars.subjectId]);
         qc.invalidateQueries(['subjects']);
+      },
+    },
+  );
+};
+
+export const useDeleteActivity = () => {
+  const qc = useQueryClient();
+  return useMutation(
+    (data: { id: number; milestoneId: number; subjectId?: number }) =>
+      api.delete(`/activities/${data.id}`),
+    {
+      onSuccess: (_res, vars) => {
+        qc.invalidateQueries(['milestone', vars.milestoneId]);
+        if (vars.subjectId) qc.invalidateQueries(['subject', vars.subjectId]);
+        qc.invalidateQueries(['subjects']);
+        toast.success('Activity deleted');
+      },
+    },
+  );
+};
+
+export const useUpdateSubject = () => {
+  const qc = useQueryClient();
+  return useMutation(
+    (data: { id: number; name: string }) => api.put(`/subjects/${data.id}`, { name: data.name }),
+    {
+      onSuccess: (_res, vars) => {
+        qc.invalidateQueries(['subjects']);
+        qc.invalidateQueries(['subject', vars.id]);
+        toast.success('Subject updated');
+      },
+    },
+  );
+};
+
+export const useDeleteSubject = () => {
+  const qc = useQueryClient();
+  return useMutation((id: number) => api.delete(`/subjects/${id}`), {
+    onSuccess: () => {
+      qc.invalidateQueries(['subjects']);
+      toast.success('Subject deleted');
+    },
+  });
+};
+
+export const useUpdateMilestone = () => {
+  const qc = useQueryClient();
+  return useMutation(
+    (data: { id: number; title: string; subjectId: number }) =>
+      api.put(`/milestones/${data.id}`, { title: data.title }),
+    {
+      onSuccess: (_res, vars) => {
+        qc.invalidateQueries(['milestone', vars.id]);
+        qc.invalidateQueries(['subject', vars.subjectId]);
+        qc.invalidateQueries(['subjects']);
+        toast.success('Milestone updated');
+      },
+    },
+  );
+};
+
+export const useDeleteMilestone = () => {
+  const qc = useQueryClient();
+  return useMutation(
+    (data: { id: number; subjectId: number }) => api.delete(`/milestones/${data.id}`),
+    {
+      onSuccess: (_res, vars) => {
+        qc.invalidateQueries(['subject', vars.subjectId]);
+        qc.invalidateQueries(['subjects']);
+        toast.success('Milestone deleted');
       },
     },
   );
