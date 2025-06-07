@@ -48,10 +48,16 @@ prisma/   # Prisma schema & migrations
 
 ## 🧪 Running Tests
 
+After running `pnpm install`, you need to download the browsers required by
+Playwright. Run `pnpm exec playwright install` (or simply execute
+`pnpm playwright:test` once, which triggers the same step automatically) before
+running the end-to-end tests.
+
 ```bash
 pnpm run test         # all tests
 pnpm test --filter server
 pnpm test --filter client
+pnpm playwright:test # end-to-end tests
 ```
 
 ## 🤝 Contributing
