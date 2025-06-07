@@ -156,13 +156,21 @@ _The script assumes the default SQLite database. Override `DATABASE_URL` before 
    * Add `prisma/schema.prisma` with `Subject`, `Milestone`, `Activity` models.
    * `pnpm --filter server exec prisma migrate dev --name init` generates SQLite DB.
    * Seed script (`server/prisma/seed.ts`) inserts demo data.
+   * **Offline / air‑gapped runners**  ▶️  Add the env var `PRISMA_CLIENT_ENGINE_TYPE=wasm` in
 
-2. 🆕 **Express scaffolding** (`server/src/`)
+     * `server/.env.test` (loaded by Jest)
+     * CI job `env:` block, and
+     * `scripts/codex-setup.sh` **before** `pnpm install`.
+       This forces Prisma to use the WebAssembly engine already bundled in `@prisma/client`, removing all network calls to `binaries.prisma.sh`.  Performance hit is negligible for test/CI.
+
+2. 🆕 **Express scaffolding** (`server/src/`) (`server/prisma/seed.ts`) inserts demo data.
+
+3. 🆕 **Express scaffolding** (`server/src/`)
 
    * `index.ts` bootstraps server on `PORT=3000`.
    * CRUD routes for subjects, milestones, activities in `routes/` folder, each using Prisma client.
 
-3. ✅ **Tests**
+4. ✅ **Tests**
 
    * Jest + supertest. Cover happy‑path and 404 for each entity.
 
@@ -333,13 +341,19 @@ if ! command -v node >/dev/null 2>&1 || [[ "$(node -v | tr -d 'v' | cut -d. -f1)
   exit 1
 fi
 
-# 2. Ensure pnpm exists --------------------------------------------------------
+# 2. Set env for offline Prisma -------------------------------------------
+export PRISMA_CLIENT_ENGINE_TYPE=wasm  # use WASM engine; avoids network fetch
+
+# 3. Ensure pnpm exists ------------------------------------------------------ --------------------------------------------------------
 if ! command -v pnpm >/dev/null 2>&1; then
   echo "🔧 Installing pnpm globally..." >&2
   npm install -g pnpm
 fi
 
-# 3. Install workspaces --------------------------------------------------------
+# — Add WebAssembly engine flag to avoid Prisma network fetch --------------
+export PRISMA_CLIENT_ENGINE_TYPE=wasm
+
+# 3. Install workspaces -------------------------------------------------------- Install workspaces --------------------------------------------------------
 pnpm install --frozen-lockfile
 
 # 4. Generate Prisma client & apply migrations --------------------------------

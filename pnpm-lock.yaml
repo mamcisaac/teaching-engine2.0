@@ -40,6 +40,7 @@ importers:
         specifier: ^5.10.2
         version: 5.22.0
 
+
   scripts:
     dependencies:
       '@prisma/client':
@@ -58,6 +59,7 @@ importers:
       '@prisma/client':
         specifier: ^6.9.0
         version: 6.9.0(prisma@6.9.0(typescript@5.8.3))(typescript@5.8.3)
+
       cors:
         specifier: ^2.8.5
         version: 2.8.5
@@ -86,6 +88,7 @@ importers:
       prisma:
         specifier: ^6.9.0
         version: 6.9.0(typescript@5.8.3)
+
       supertest:
         specifier: ^6.3.3
         version: 6.3.4
@@ -4399,6 +4402,7 @@ snapshots:
   '@prisma/engines-version@5.22.0-44.605197351a3c8bdd595af2d2a9bc3025bca48ea2': {}
 
   '@prisma/engines-version@6.9.0-10.81e4af48011447c3cc503a190e86995b66d2a28e': {}
+
 
   '@prisma/engines@5.22.0':
     dependencies:
