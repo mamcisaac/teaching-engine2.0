@@ -47,8 +47,8 @@ importers:
   scripts:
     dependencies:
       '@prisma/client':
-        specifier: ^5.10.2
-        version: 5.22.0(prisma@6.9.0(typescript@5.8.3))
+        specifier: 6.9.0
+        version: 6.9.0(prisma@6.9.0(typescript@5.8.3))(typescript@5.8.3)
     devDependencies:
       ts-node:
         specifier: ^10.9.1
@@ -637,18 +637,6 @@ packages:
       {
         integrity: sha512-ZOBkgDwEdoYVlSeRbYYXs0S9MejQofiVYoTbKzy/6GQa39/q5tQU2IX46+shYnUkpEl3wc+J6wRlar7r2EK2xA==,
       }
-
-  '@prisma/client@5.22.0':
-    resolution:
-      {
-        integrity: sha512-M0SVXfyHnQREBKxCgyo7sffrKttwE6R8PMq330MIUF0pTwjUhLbW84pFDlf06B27XyCR++VtjugEnIHdr07SVA==,
-      }
-    engines: { node: '>=16.13' }
-    peerDependencies:
-      prisma: '*'
-    peerDependenciesMeta:
-      prisma:
-        optional: true
 
   '@prisma/client@6.9.0':
     resolution:
@@ -4354,10 +4342,6 @@ snapshots:
   '@paralleldrive/cuid2@2.2.2':
     dependencies:
       '@noble/hashes': 1.8.0
-
-  '@prisma/client@5.22.0(prisma@6.9.0(typescript@5.8.3))':
-    optionalDependencies:
-      prisma: 6.9.0(typescript@5.8.3)
 
   '@prisma/client@6.9.0(prisma@6.9.0(typescript@5.8.3))(typescript@5.8.3)':
     optionalDependencies:
