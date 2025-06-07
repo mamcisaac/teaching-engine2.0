@@ -2,7 +2,7 @@
   "name": "server",
     "dev": "ts-node src/index.ts",
     "seed": "node --loader ts-node/esm ../scripts/seed.ts",
-    "pretest": "pnpm exec prisma generate --schema=../prisma/schema.prisma && pnpm exec prisma migrate deploy --schema=../prisma/schema.prisma"
+    "pretest": "PRISMA_CLIENT_ENGINE_TYPE=wasm PRISMA_CLI_QUERY_ENGINE_TYPE=wasm PRISMA_NO_ENGINE_DOWNLOAD=1 PRISMA_ENGINES_CHECKSUM_IGNORE_MISSING=1 pnpm exec prisma generate --schema=../prisma/schema.prisma && PRISMA_CLIENT_ENGINE_TYPE=wasm PRISMA_CLI_QUERY_ENGINE_TYPE=wasm PRISMA_NO_ENGINE_DOWNLOAD=1 PRISMA_ENGINES_CHECKSUM_IGNORE_MISSING=1 pnpm exec prisma migrate deploy --schema=../prisma/schema.prisma"
     "dotenv": "^16.5.0",
     "prisma": "^6.9.0"
     "start": "ts-node src/index.ts",

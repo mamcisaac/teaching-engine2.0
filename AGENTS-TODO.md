@@ -1,7 +1,7 @@
 # Curriculum Planner MVP – TODO
 
 > **Purpose of this file**
-> This is the *single* file you add to a brand‑new GitHub repository.  A coding agent will read each task sequentially, check items off, and push code until the Minimum Viable Product (MVP) runs end‑to‑end.  All information needed to complete the tasks (including a full README template) is embedded below, so the agent never has to ask “what goes in this file?”.
+> This is the _single_ file you add to a brand‑new GitHub repository. A coding agent will read each task sequentially, check items off, and push code until the Minimum Viable Product (MVP) runs end‑to‑end. All information needed to complete the tasks (including a full README template) is embedded below, so the agent never has to ask “what goes in this file?”.
 
 ---
 
@@ -11,7 +11,7 @@
 | ----- | --------------------------- |
 | 🆕    | create a new file / package |
 | ✏️    | modify existing code        |
-| ✅     | add tests                   |
+| ✅    | add tests                   |
 | 🔧    | tooling / CI                |
 | 📄    | documentation               |
 
@@ -21,88 +21,122 @@
 
 1. 🆕 **Initialize repo & workspace layout**
 
-   * `git init`, commit this **TODO.md**.
-   * Add a root `.gitignore` (use `gitignore/node` + `.env`).
+   - `git init`, commit this **TODO.md**.
+   - Add a root `.gitignore` (use `gitignore/node` + `.env`).
 
 2. 🆕 **Monorepo structure (npm workspaces)**
 
    ```text
    .
    ├── client/   # React 18 + Vite + TS
-   │   ├── package.json   # placeholder now, real deps later
-   │   └── src/main.tsx   # 1‑line stub so ESLint & build never fail
-   ├── server/   # Node 18 + Express + TS
-   │   ├── package.json   # placeholder now, real deps later
-   │   └── src/index.ts   # 1‑line stub (console.log)
-   ├── prisma/   # Prisma schema & migrations (empty for Phase 0)
-   └── scripts/  # one‑off dev scripts
-   ```
+3. 📄 \`\` — _create now using the template below_
+   - Copy the **entire code block** titled **README TEMPLATE** verbatim into `/README.md`.
+   - Replace the `<PROJECT_URL>` placeholder once the repo has a remote.
+4. 📄 \`\` — MIT license (year 2025, author _University of Prince Edward Island_).
+   - Root ESLint + Prettier **config files**:
+     - `.eslintrc.json` (extends `eslint:recommended`, `plugin:@typescript-eslint/recommended`, and `prettier`). Example:
+         "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
 
-   **Create both `client/package.json` and `server/package.json` *immediately* so CI’s `pnpm run build` workspace commands succeed even while the folders are only stubs.**  Minimal contents:
+     - `.prettierrc` with preferred rules (e.g., `{ "singleQuote": true, "printWidth": 100 }`).
+     - `.eslintignore` ➜ `dist`, `build`, `coverage`, `*.config.js`.
 
-   ```json5
-   ```
+   - **Scripts (root `package.json`)** – adjust `lint` to target TypeScript/JS globs so it _never_ errors when repo has no source yet:
+       scripts: {
+         dev: 'concurrently -k "npm:start --workspace=server" "npm:start --workspace=client"',
+         build: 'npm run build --workspace=server && npm run build --workspace=client',
+         test: 'npm run test --workspaces',
+         lint: 'eslint "**/*.{ts,tsx,js,jsx}" --max-warnings 0 || true',
+       },
+     _Rationale:_ ESLint exits with code 2 when **zero** files match; the glob + `|| true` ensures Phase 0 passes even if no code exists yet. Once real source files are scaffolded (Phase 1+), the `--max-warnings 0` flag will make the command fail on actual lint violations but still tolerate an empty match set.
+   - **Husky & lint‑staged** – `pre-commit` hook that runs `pnpm run lint` and `prettier --write` on staged files.
+   - **Node version** in `.nvmrc`: `18`.
+   - **Shared TypeScript configs** (`tsconfig.base.json` at root, extended by `client/tsconfig.json` & `server/tsconfig.json`).
+   - Matrix: {node 18, node 20}
+   - Steps: `pnpm install --frozen-lockfile`, `pnpm run lint`, `pnpm run build`, `pnpm run test`.
+- 🆕 Install **Prisma** + SQLite.
+- 🆕 `.env.offline` in `server/` to keep Prisma 100 % offline:
+  ```env
+  PRISMA_CLIENT_ENGINE_TYPE=wasm
+  PRISMA_CLI_QUERY_ENGINE_TYPE=wasm
+  PRISMA_NO_ENGINE_DOWNLOAD=1
+  PRISMA_ENGINES_CHECKSUM_IGNORE_MISSING=1
+  DATABASE_URL="file:./dev-test.sqlite"
+  ```
+- 🆕 Create `prisma/schema.prisma` with models:
 
-{
-"name": "curriculum-planner",
-"private": true,
-"packageManager": "pnpm\@10.11.1",
-"workspaces": \["client", "server"],
-"scripts": {
-"dev":   "pnpm --filter server run dev & pnpm --filter client run dev",
-"build": "pnpm --filter server run build && pnpm --filter client run build",
-"test":  "pnpm --filter ... test",
-"lint":  "eslint "\*\*/\*.{ts,tsx,js,jsx}" --max-warnings 0 || true",
-"prepare": "husky install"
-}
+- 🆕 `pnpm prisma migrate dev --name init`.
+- 🆕 Seed script `scripts/seed.ts` inserts demo data (2 subjects → 1 milestone each → 1 activity). Add `npm run seed`.
+- Folder `server/src`:
+
+  - `index.ts` – start server (`PORT=3000`).
+  - `routes/subject.ts`, `routes/milestone.ts`, `routes/activity.ts`.
+  - CRUD endpoints: `GET/POST/PUT/DELETE` for each entity.
+  - Global error & 404 handler, CORS enabled.
+
+- ✅ Tests: install `jest`, `ts-jest`, `supertest`,
+  `@types/jest`, `@types/supertest`, `ts-node`, and `dotenv`.
+  Create `server/jest.config.ts`:
+
+  ```ts
+  import type { Config } from 'jest';
+
+  const config: Config = {
+    preset: 'ts-jest/presets/default-esm',
+    testEnvironment: 'node',
+    testMatch: ['**/tests/**/*.test.ts'],
+    moduleNameMapper: { '^(\\.{1,2}/.*)\\.js$': '$1' },
+    globalSetup: './tests/jest.setup.ts',
+  };
+  export default config;
+  ```
+
+  Use Jest + supertest to cover the happy path and 404.
+- `client/` via `pnpm create vite client --template react-ts`.
+- Install Tailwind CSS & configure `tailwind.config.ts`.
+- Axios instance at `client/src/api.ts` pointing to `http://localhost:3000/api`.
+
+- `SubjectCard`, `MilestoneCard` (with % progress), `ActivityRow`.
+- Modal forms (shadcn/ui **Dialog**).
+- Toast context (shadcn/ui **Sonner**).
+
+- TanStack Query (`@tanstack/react-query`) for server caching.
+- Local state only for open/close modals.
+- Vitest + React Testing Library for components.
+- Playwright E2E: create subject → milestone → activity, then mark activity done and assert progress.
+   - `Dockerfile` (multi‑stage Node 18 builder → slim runtime).
+   - `docker-compose.yml` (one service — web).
+
+> **Exit Criteria** _User can clone repo, run one command (**`** or **`**), and manage Subjects → Milestones → Activities with progress tracking – no auth, no cloud sync._
+- Weekly timetable generator with drag‑and‑drop.
+- Resource uploads & file store (S3 or local FS).
+- Email newsletter/parent hand‑out generator (publicNotes → Markdown → PDF).
+- Sub‑plan auto‑generation when teacher is absent.
+- Multi‑teacher accounts & role‑based access.
+- Cloud sync & offline‑first (Service Worker + IndexedDB).
+| Phase                             | One‑liner **definition of done**                                                 | Verification steps                                                                                                                                                               | Automated?                 |
+| --------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| **0 — Repo Scaffolding & Docs**   | Repo boots with docs & tooling; `pnpm install` yields _no_ lint errors.          | 1. `pnpm install` <br>2. `pnpm run lint` returns 0 <br>3. CI matrix (Node 18/20) passes.                                                                                         | ✅ CI runs `lint`, `build` |
+| **4 — Post‑MVP Backlog**          | _Not started until stakeholder sign‑off._                                        | Create GitHub Issues only.                                                                                                                                                       | –                          |
+
+
+| Layer     | Tech                                     |
+| --------- | ---------------------------------------- |
+| Back‑end  | Node 18, Express, TypeScript             |
+| ORM / DB  | Prisma 5, SQLite                         |
+| Testing   | Jest, Vitest, Playwright                 |
+| DevOps    | GitHub Actions, Docker                   |
+
 
 ```
-}
-```
 
-```
- *Rationale:* ESLint exits with code 2 when **zero** files match; the glob + `|| true` ensures Phase 0 passes even if no code exists yet. Once real source files are scaffolded (Phase 1+), the `--max-warnings 0` flag will make the command fail on actual lint violations but still tolerate an empty match set.
-```
-
-* **Husky & lint‑staged** – `pre-commit` hook that runs `pnpm run lint` and `prettier --write` on staged files.
-
-* **Node version** in `.nvmrc`: `18`.
-
-* **Shared TypeScript configs** (`tsconfig.base.json` at root, extended by `client/tsconfig.json` & `server/tsconfig.json`).
-
-6. 🔧 **CI** — `.github/workflows/ci.yml`
-
-   * **Pin the same pnpm major version you use locally** so the lockfile is deemed compatible:
-
-     ```yaml
-     - uses: pnpm/action-setup@v2
-       with:
-         version: 10.11.1   # keep in sync with packageManager field in package.json
-     - uses: actions/setup-node@v3
-       with:
-         node-version: ${{ matrix.node-version }}
-     ```
-
-     *(pnpm v10 generates a "lockfile v6"; earlier CI defaults run v8 and reject it as “not compatible.”)*
-
-   * **Generate and commit `pnpm-lock.yaml` during Phase 0.**  Run `pnpm install` once locally; commit the resulting lockfile.  CI insists on its presence.
-
-   * Matrix: {node 18, node 20}
-
-   * Steps:
-
-     ```yaml
-     - name: Install deps (use lockfile)
-       run: pnpm install --frozen-lockfile
-     ```
-
-     *Tip for very first commit:* If the repo truly has **no** lockfile yet, use `--no-frozen-lockfile`, then commit the generated file so subsequent CI runs can switch back to strict mode. {node 18, node 20}
-
-   * Steps:
-
-     ```yaml
-     - name: Install deps (use lockfile)
-       run: pnpm install --frozen-lockfile
+export PRISMA_CLIENT_ENGINE_TYPE=wasm
+export PRISMA_CLI_QUERY_ENGINE_TYPE=wasm
+export $(grep -v '^#' server/.env.offline | xargs)
+  pnpm --filter server exec prisma generate --schema=../prisma/schema.prisma
+  pnpm --filter server exec prisma migrate deploy --schema=../prisma/schema.prisma
+pnpm --filter server exec prisma generate --schema=../prisma/schema.prisma
+pnpm --filter server exec prisma migrate deploy --schema=../prisma/schema.prisma
+_The script assumes the default SQLite database. Override `DATABASE_URL` before running if you point Prisma to a different database._
      ```
 
      *Tip for early commits:* If the repo truly has **no** `pnpm-lock.yaml` yet, replace the step with `pnpm install --no-frozen-lockfile`, then commit the generated lockfile so subsequent CI runs can switch back to `--frozen-lockfile`.  The definition‑of‑done for Phase 0 now requires that lockfile to be present. (Node 18/20) passes. | ✅ CI runs `lint`, `build` |
