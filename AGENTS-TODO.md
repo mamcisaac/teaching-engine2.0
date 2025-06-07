@@ -90,154 +90,22 @@
 
    * **Shared TypeScript configs** (`tsconfig.base.json` at root, extended by `client/tsconfig.json` & `server/tsconfig.json`).
 
-6. 🔧 **CI** — `.github/workflows/ci.yml`: **CI** — `.github/workflows/ci.yml`:
+6. 🔧 **CI** — `.github/workflows/ci.yml`:
 
+   * **Generate and commit `pnpm-lock.yaml` during Phase 0.**  (Run `pnpm install` locally once; commit the resulting lockfile.)  CI relies on that file.
    * Matrix: {node 18, node 20}
-   * Steps: `pnpm install --frozen-lockfile`, `pnpm run lint`, `pnpm run build`, `pnpm run test`.
+   * Steps:
 
----
+     ```yaml
+     - name: Install deps (use lockfile)
+       run: pnpm install --frozen-lockfile
+     ```
 
-## Phase 1 — Backend API
-
-### 1.1 Persistence
-
-* 🆕 Install **Prisma** + SQLite.
-* 🆕 Create `prisma/schema.prisma` with models:
-
-  ```prisma
-  model Subject   {
-    id          Int         @id @default(autoincrement())
-    name        String
-    milestones  Milestone[]
-    createdAt   DateTime    @default(now())
-  }
-  model Milestone {
-    id          Int         @id @default(autoincrement())
-    title       String
-    subjectId   Int
-    subject     Subject     @relation(fields:[subjectId],references:[id])
-    activities  Activity[]
-    targetDate  DateTime?
-    estHours    Int?
-  }
-  model Activity  {
-    id          Int         @id @default(autoincrement())
-    title       String
-    milestoneId Int
-    milestone   Milestone   @relation(fields:[milestoneId],references:[id])
-    durationMins Int?
-    privateNote  String?
-    publicNote   String?
-    completedAt  DateTime?
-  }
-  ```
-* 🆕 `pnpm prisma migrate dev --name init`.
-* 🆕 Seed script `scripts/seed.ts` inserts demo data (2 subjects → 1 milestone each → 1 activity). Add `npm run seed`.
-
-### 1.2 REST API (Express + TypeScript)
-
-**Required dev dependencies** (install at the **root** so they’re hoisted for every workspace):
-
-```bash
-pnpm add -D jest ts-jest @types/jest supertest @types/supertest cross-env
-```
-
-Create `jest.config.ts` at the root:
-
-```ts
-import type { Config } from 'jest';
-const config: Config = {
-  preset: 'ts-jest',
-  testEnvironment: 'node',
-  testMatch: ['<rootDir>/server/**/*.spec.ts'],
-};
-export default config;
-```
-
-Add `"type": "module"` to root `package.json` **or** rename the file `jest.config.js` and use `module.exports` if you prefer CommonJS.
-
-Folder `server/src`:
-
-* `index.ts` – start server (`PORT=3000`).
-* `routes/subject.ts`, `routes/milestone.ts`, `routes/activity.ts`.
-* CRUD endpoints: `GET/POST/PUT/DELETE` for each entity.
-* Global error & 404 handler, CORS enabled.
-* ✅ Tests: Jest + supertest (happy path & 404). + supertest (happy path & 404).
-
----
-
-## Phase 2 — Frontend (React UI)
-
-### 2.1 Setup
-
-* `client/` via `pnpm create vite client --template react-ts`.
-* Install Tailwind CSS & configure `tailwind.config.ts`.
-* Axios instance at `client/src/api.ts` pointing to `http://localhost:3000/api`.
-
-### 2.2 Routing & Components
-
-| Route             | Component       | Purpose                      |
-| ----------------- | --------------- | ---------------------------- |
-| `/`               | Redirect        | to `/subjects`               |
-| `/subjects`       | `SubjectList`   | list / create subjects       |
-| `/subjects/:id`   | `MilestoneList` | milestones for given subject |
-| `/milestones/:id` | `ActivityList`  | activities under milestone   |
-
-Components needed:
-
-* `SubjectCard`, `MilestoneCard` (with % progress), `ActivityRow`.
-* Modal forms (shadcn/ui **Dialog**).
-* Toast context (shadcn/ui **Sonner**).
-
-### 2.3 State
-
-* TanStack Query (`@tanstack/react-query`) for server caching.
-* Local state only for open/close modals.
-
-### 2.4 Testing
-
-* Vitest + React Testing Library for components.
-* Playwright E2E: create subject → milestone → activity, then mark activity done and assert progress.
-
----
-
-## Phase 3 — MVP Polish & Distribution
-
-1. ✏️ Add `completedAt` toggle (PATCH `/activities/:id/toggle`).
-2. 🆕 Subject & Milestone progress bars (computed client‑side 🎨).
-3. 🆕 **Docker**
-
-   * `Dockerfile` (multi‑stage Node 18 builder → slim runtime).
-   * `docker-compose.yml` (one service — web).
-4. 🔧 Release script: `pnpm dlx changelogithub` on `main` merge.
-5. ✅ All CI checks must pass; smoke test passes in `docker compose up`.
-
-> **Exit Criteria** *User can clone repo, run one command (**`** or **`**), and manage Subjects → Milestones → Activities with progress tracking – no auth, no cloud sync.*
-
----
-
-## Phase 4 — Post‑MVP Backlog (create GitHub Issues, do **not** start coding until green‑lit)
-
-* Weekly timetable generator with drag‑and‑drop.
-* Resource uploads & file store (S3 or local FS).
-* Email newsletter/parent hand‑out generator (publicNotes → Markdown → PDF).
-* Sub‑plan auto‑generation when teacher is absent.
-* Multi‑teacher accounts & role‑based access.
-* Cloud sync & offline‑first (Service Worker + IndexedDB).
-
----
-
-## Phase Validation Checklist
-
-> Use this section as an acceptance‑testing playbook. Each phase is **done** only when every item in its checklist passes. CI steps should be green and manual smoke‑tests should behave as described.
-
-| Phase                             | One‑liner **definition of done**                                                 | Verification steps                                                                                                                                                               | Automated?                |
-| --------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| **0 — Repo Scaffolding & Docs**   | Repo boots with docs & tooling; `pnpm install` yields *no* lint errors.          | 1. `pnpm install` <br>2. `pnpm run lint` returns 0 <br>3. CI matrix (Node 18/20) passes.                                                                                         | ✅ CI runs `lint`, `build` |
-| **1 — Backend API**               | All CRUD endpoints return correct JSON & DB persists data.                       | 1. `pnpm --filter server test` passes (Jest). <br>2. `curl -X POST /api/subjects …` then `GET /api/subjects` returns new row.                                                    | ✅ Jest + supertest        |
-| **2 — Frontend UI**               | Teacher can create Subject → Milestone → Activity in browser w/o console errors. | 1. `pnpm --filter client dev` opens UI. <br>2. Manual flow: add entities & verify list refresh. <br>3. `pnpm --filter client test` passes. <br>4. `pnpm playwright test` passes. | ✅ Vitest, Playwright      |
-| **3 — MVP Polish & Distribution** | Progress bars update; Docker image runs full stack.                              | 1. Manual: mark Activity done → bars update. <br>2. `docker compose up --build -d` then hit UI/API. <br>3. CI publishes release artifact (Docker image or tarball).              | ✅ CI build + smoke test   |
-| **4 — Post‑MVP Backlog**          | *Not started until stakeholder sign‑off.*                                        | Create GitHub Issues only.                                                                                                                                                       | –                         |
+     *Tip for early commits:* If the repo truly has **no** `pnpm-lock.yaml` yet, replace the step with `pnpm install --no-frozen-lockfile`, then commit the generated lockfile so subsequent CI runs can switch back to `--frozen-lockfile`.  The definition‑of‑done for Phase 0 now requires that lockfile to be present. (Node 18/20) passes. | ✅ CI runs `lint`, `build` |
+     \| **1 — Backend API** | All CRUD endpoints return correct JSON & DB persists data. | 1. `pnpm --filter server test` passes (Jest). <br>2. `curl -X POST /api/subjects …` then `GET /api/subjects` returns new row. | ✅ Jest + supertest |
+     \| **2 — Frontend UI** | Teacher can create Subject → Milestone → Activity in browser w/o console errors. | 1. `pnpm --filter client dev` opens UI. <br>2. Manual flow: add entities & verify list refresh. <br>3. `pnpm --filter client test` passes. <br>4. `pnpm playwright test` passes. | ✅ Vitest, Playwright |
+     \| **3 — MVP Polish & Distribution** | Progress bars update; Docker image runs full stack. | 1. Manual: mark Activity done → bars update. <br>2. `docker compose up --build -d` then hit UI/API. <br>3. CI publishes release artifact (Docker image or tarball). | ✅ CI build + smoke test |
+     \| **4 — Post‑MVP Backlog** | *Not started until stakeholder sign‑off.* | Create GitHub Issues only. | – |
 
 > **Tip for reviewers:** run `pnpm dlx @caporal/servecoverage` after Jest/Vitest to visually inspect coverage and ensure critical paths are exercised.
 
