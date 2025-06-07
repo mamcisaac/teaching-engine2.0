@@ -38,6 +38,17 @@ docker compose up --build
 # open http://localhost:3000 (API) and http://localhost:5173 (UI)
 ```
 
+## 🌐 Environment Variables
+
+Set `VITE_API_URL` in `client/.env` if the API is not running on
+`http://localhost:3000/api`.
+
+```env
+VITE_API_URL=http://my-api-host/api
+```
+
+If unset, the client falls back to `http://localhost:3000/api`.
+
 ## 🗂 Project Structure
 
 ```text
