@@ -1,5 +1,6 @@
 {
   "name": "curriculum-planner",
+  "packageManager": "pnpm@10.11.1",
   "private": true,
   "workspaces": [
     "client",
