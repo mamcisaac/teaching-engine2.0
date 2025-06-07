@@ -6,6 +6,7 @@ const config: Config = {
   testMatch: ['**/tests/**/*.test.ts'],
   moduleNameMapper: { '^(\\.{1,2}/.*)\\.js$': '$1' },
   globalSetup: './tests/jest.setup.ts',
+
 };
 
 export default config;

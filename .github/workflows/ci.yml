@@ -1,5 +1,4 @@
 name: CI
-
 on:
   push:
     branches: [main]
@@ -12,15 +11,18 @@ jobs:
     strategy:
       matrix:
         node-version: [18, 20]
+
     steps:
       - uses: actions/checkout@v3
+
       - uses: pnpm/action-setup@v2
         with:
-          version: 10.11.1
+          version: 10.11.1 # keep this in sync with local version
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
+
       - run: pnpm install --frozen-lockfile
       - run: pnpm run lint
       - run: pnpm run build
