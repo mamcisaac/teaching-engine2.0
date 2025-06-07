@@ -6,7 +6,7 @@ const config: Config = {
   testMatch: ['**/tests/**/*.test.ts'],
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
-    '^@prisma/client$': '<rootDir>/node_modules/.prisma/client',
+    '^@prisma/client$': '<rootDir>/../node_modules/.prisma/client',
   },
   globalSetup: './tests/jest.setup.ts',
   transformIgnorePatterns: ['node_modules/(?!(@prisma/client)/)'],
