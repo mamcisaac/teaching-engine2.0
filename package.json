@@ -4,7 +4,9 @@
   "private": true,
   "workspaces": [
     "client",
-    "server"
+    "server",
+    "prisma",
+    "scripts"
   ],
   "scripts": {
     "dev": "concurrently -k --success first \"pnpm --filter server run start\" \"pnpm --filter client run dev\"",
