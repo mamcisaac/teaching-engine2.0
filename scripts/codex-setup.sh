@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PRISMA_CLIENT_ENGINE_TYPE=wasm
 
 ###############################################################################
 # Curriculum Planner – Codex setup script                                     #
