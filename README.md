@@ -64,6 +64,12 @@ Playwright. Run `pnpm exec playwright install` (or simply execute
 `pnpm playwright:test` once, which triggers the same step automatically) before
 running the end-to-end tests.
 
+Create `server/.env.test` by copying `server/.env.test.example`:
+
+```bash
+cp server/.env.test.example server/.env.test
+```
+
 ```bash
 pnpm run test         # all tests
 pnpm test --filter server
