@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "ts-node src/index.ts",
     "start": "ts-node src/index.ts",
+    "prebuild": "cd ../prisma && pnpm exec prisma generate && cd ../server",
     "build": "tsc",
     "test": "jest",
     "seed": "ts-node ../scripts/seed.ts",
