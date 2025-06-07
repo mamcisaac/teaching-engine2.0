@@ -12,7 +12,11 @@ export default function MilestoneDetailPage() {
   return (
     <div>
       <h1>{data.title}</h1>
-      <ActivityList activities={data.activities} milestoneId={milestoneId} />
+      <ActivityList
+        activities={data.activities}
+        milestoneId={milestoneId}
+        subjectId={data.subjectId}
+      />
     </div>
   );
 }

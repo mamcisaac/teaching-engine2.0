@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import type { Activity } from '../api';
-import { useCreateActivity } from '../api';
+import { useCreateActivity, useUpdateActivity } from '../api';
 import Dialog from './Dialog';
 
 interface Props {
   activities: Activity[];
   milestoneId: number;
+  subjectId?: number;
 }
 
-export default function ActivityList({ activities, milestoneId }: Props) {
+export default function ActivityList({ activities, milestoneId, subjectId }: Props) {
   const create = useCreateActivity();
+  const update = useUpdateActivity();
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
 
@@ -43,9 +45,21 @@ export default function ActivityList({ activities, milestoneId }: Props) {
         {activities.map((a) => {
           const progress = a.completedAt ? 100 : 0;
           return (
-            <li key={a.id} className="border p-2 rounded">
-              {a.title}
-              <div className="h-2 mt-1 bg-gray-200 rounded">
+            <li key={a.id} className="border p-2 rounded flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={!!a.completedAt}
+                onChange={(e) =>
+                  update.mutate({
+                    id: a.id,
+                    milestoneId,
+                    subjectId,
+                    completedAt: e.target.checked ? new Date().toISOString() : null,
+                  })
+                }
+              />
+              <span className="flex-1">{a.title}</span>
+              <div className="h-2 flex-1 bg-gray-200 rounded">
                 <div className="h-full bg-blue-500" style={{ width: `${progress}%` }} />
               </div>
             </li>
