@@ -11,7 +11,7 @@
     "dev": "concurrently -k \"npm:start --workspace=server\" \"npm:start --workspace=client\"",
     "build": "npm run build --workspace=server && npm run build --workspace=client",
     "test": "npm run test --workspaces",
-    "lint": "eslint . || true",
+    "lint": "eslint \"**/*.{ts,tsx,js,jsx}\" --max-warnings 0 || true",
     "prepare": "husky install",
     "seed": "npm run seed --workspace=scripts"
   },
