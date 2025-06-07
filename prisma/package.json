@@ -1,0 +1,12 @@
+{
+  "name": "prisma",
+  "private": true,
+  "scripts": {
+    "migrate": "prisma migrate dev --name init",
+    "generate": "prisma generate",
+    "test": "echo skipped"
+  },
+  "devDependencies": {
+    "prisma": "^5.10.2"
+  }
+}
