@@ -7,9 +7,10 @@
     "test": "echo skipped"
   },
   "devDependencies": {
-    "prisma": "^5.10.2"
+    "prisma": "^6.9.0"
   },
   "dependencies": {
-    "@prisma/client": "5.22.0"
+    "@prisma/client": "6.9.0"
+
   }
 }

@@ -2,6 +2,7 @@
   "name": "client",
   "private": true,
   "scripts": {
+    "dev": "echo stub",
     "build": "echo stub",
     "test": "echo skipped"
   }

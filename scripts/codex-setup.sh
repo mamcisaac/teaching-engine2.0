@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PRISMA_CLIENT_ENGINE_TYPE=wasm
+export PRISMA_CLI_QUERY_ENGINE_TYPE=wasm
+export $(grep -v '^#' server/.env.offline | xargs)
 
 ###############################################################################
 # Curriculum Planner – Codex setup script                                     #
@@ -42,8 +45,9 @@ pnpm install --frozen-lockfile
 
 # 5. Generate Prisma client & apply migrations --------------------------------
 if [[ -d server ]]; then
-  pnpm --filter server exec prisma generate --wasm --schema=../prisma/schema.prisma
-  pnpm --filter server exec prisma migrate deploy --wasm --schema=../prisma/schema.prisma
+  pnpm --filter server exec prisma generate --schema=../prisma/schema.prisma
+  pnpm --filter server exec prisma migrate deploy --schema=../prisma/schema.prisma
+
   pnpm --filter server run seed || true
 fi
 
