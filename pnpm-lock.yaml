@@ -35,11 +35,14 @@ importers:
   client: {}
 
   prisma:
+    dependencies:
+      '@prisma/client':
+        specifier: 6.9.0
+        version: 6.9.0(prisma@6.9.0(typescript@5.8.3))(typescript@5.8.3)
     devDependencies:
       prisma:
-        specifier: ^5.10.2
-        version: 5.22.0
-
+        specifier: ^6.9.0
+        version: 6.9.0(typescript@5.8.3)
 
   scripts:
     dependencies:
@@ -57,9 +60,8 @@ importers:
   server:
     dependencies:
       '@prisma/client':
-        specifier: ^6.9.0
-        version: 6.9.0(prisma@6.9.0(typescript@5.8.3))(typescript@5.8.3)
-
+        specifier: 5.22.0
+        version: 5.22.0(prisma@5.22.0)
       cors:
         specifier: ^2.8.5
         version: 2.8.5
@@ -82,13 +84,15 @@ importers:
       '@types/supertest':
         specifier: ^2.0.12
         version: 2.0.16
+      dotenv:
+        specifier: ^16.5.0
+        version: 16.5.0
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@18.19.111)(ts-node@10.9.2(@types/node@18.19.111)(typescript@5.8.3))
       prisma:
-        specifier: ^6.9.0
-        version: 6.9.0(typescript@5.8.3)
-
+        specifier: 5.22.0
+        version: 5.22.0
       supertest:
         specifier: ^6.3.3
         version: 6.3.4
@@ -1628,6 +1632,13 @@ packages:
         integrity: sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==,
       }
     engines: { node: '>=6.0.0' }
+
+  dotenv@16.5.0:
+    resolution:
+      {
+        integrity: sha512-m/C+AwOAr9/W1UOIZUo232ejMNnJAJtYQjUbHoNTBNTJSvqzzDh7vnrei3o3r3m9blf6ZoDkvcw0VmozNRFJxg==,
+      }
+    engines: { node: '>=12' }
 
   dunder-proto@1.0.1:
     resolution:
@@ -4382,6 +4393,10 @@ snapshots:
     dependencies:
       '@noble/hashes': 1.8.0
 
+  '@prisma/client@5.22.0(prisma@5.22.0)':
+    optionalDependencies:
+      prisma: 5.22.0
+
   '@prisma/client@5.22.0(prisma@6.9.0(typescript@5.8.3))':
     optionalDependencies:
       prisma: 6.9.0(typescript@5.8.3)
@@ -4402,7 +4417,6 @@ snapshots:
   '@prisma/engines-version@5.22.0-44.605197351a3c8bdd595af2d2a9bc3025bca48ea2': {}
 
   '@prisma/engines-version@6.9.0-10.81e4af48011447c3cc503a190e86995b66d2a28e': {}
-
 
   '@prisma/engines@5.22.0':
     dependencies:
@@ -4996,6 +5010,8 @@ snapshots:
   doctrine@3.0.0:
     dependencies:
       esutils: 2.0.3
+
+  dotenv@16.5.0: {}
 
   dunder-proto@1.0.1:
     dependencies:
