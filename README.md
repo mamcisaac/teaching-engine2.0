@@ -22,6 +22,16 @@
 | Testing   | Jest, Vitest, Playwright                 |
 | DevOps    | GitHub Actions, Docker                   |
 
+## 🛠️ Setup Script
+
+Run the bootstrap script once after cloning to install dependencies, generate
+the Prisma client, apply migrations, and build all packages:
+
+```bash
+chmod +x ./scripts/codex-setup.sh
+./scripts/codex-setup.sh
+```
+
 ## 🚀 Quick Start (Local)
 
 ```bash
@@ -38,6 +48,17 @@ docker compose up --build
 # open http://localhost:3000 (API) and http://localhost:5173 (UI)
 ```
 
+## 🌐 Environment Variables
+
+Set `VITE_API_URL` in `client/.env` if the API is not running on
+`http://localhost:3000/api`.
+
+```env
+VITE_API_URL=http://my-api-host/api
+```
+
+If unset, the client falls back to `http://localhost:3000/api`.
+
 ## 🗂 Project Structure
 
 ```text
@@ -48,17 +69,31 @@ prisma/   # Prisma schema & migrations
 
 ## 🧪 Running Tests
 
-After running `pnpm install`, you need to download the browsers required by
-Playwright along with their system dependencies. Run
-`pnpm exec playwright install --with-deps` (or simply execute
-`pnpm playwright:test` once, which triggers the same step automatically) before
-running the end-to-end tests.
+
+After running `pnpm install`, you need to download the browsers and required
+OS libraries for Playwright. Run `pnpm exec playwright install --with-deps`
+(or simply execute `pnpm playwright:test` once, which triggers the same step
+automatically) before running the end-to-end tests.
+
+Create `server/.env.test` by copying `server/.env.test.example`:
+
+```bash
+cp server/.env.test.example server/.env.test
+```
 
 ```bash
 pnpm run test         # all tests
 pnpm test --filter server
 pnpm test --filter client
 pnpm playwright:test # end-to-end tests
+```
+
+### Docker Image for Tests
+
+Build the full test image (including Playwright browsers) with:
+
+```bash
+docker build -t curriculum-planner-test .
 ```
 
 ## 🤝 Contributing
