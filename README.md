@@ -38,6 +38,17 @@ docker compose up --build
 # open http://localhost:3000 (API) and http://localhost:5173 (UI)
 ```
 
+## 🌐 Environment Variables
+
+Set `VITE_API_URL` in `client/.env` if the API is not running on
+`http://localhost:3000/api`.
+
+```env
+VITE_API_URL=http://my-api-host/api
+```
+
+If unset, the client falls back to `http://localhost:3000/api`.
+
 ## 🗂 Project Structure
 
 ```text
@@ -52,6 +63,12 @@ After running `pnpm install`, you need to download the browsers required by
 Playwright. Run `pnpm exec playwright install` (or simply execute
 `pnpm playwright:test` once, which triggers the same step automatically) before
 running the end-to-end tests.
+
+Create `server/.env.test` by copying `server/.env.test.example`:
+
+```bash
+cp server/.env.test.example server/.env.test
+```
 
 ```bash
 pnpm run test         # all tests
