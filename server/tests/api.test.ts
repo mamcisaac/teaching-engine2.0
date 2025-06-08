@@ -135,3 +135,19 @@ describe('Preferences API', () => {
     expect(res.body.pacePreference).toBe('balanced');
   });
 });
+
+describe('Resource API', () => {
+  it('uploads and lists resources', async () => {
+    const upload = await request(app)
+      .post('/api/resources')
+      .send({
+        filename: 'test.txt',
+        data: Buffer.from('hi').toString('base64'),
+        type: 'text/plain',
+        size: 2,
+      });
+    expect(upload.status).toBe(201);
+    const list = await request(app).get('/api/resources');
+    expect(list.body.length).toBeGreaterThan(0);
+  });
+});

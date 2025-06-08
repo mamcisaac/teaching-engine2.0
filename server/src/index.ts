@@ -6,6 +6,8 @@ import milestoneRoutes from './routes/milestone';
 import activityRoutes from './routes/activity';
 import subPlanRoutes from './routes/subplan';
 import lessonPlanRoutes, { savePreferences } from './routes/lessonPlan';
+import resourceRoutes from './routes/resource';
+import materialListRoutes from './routes/materialList';
 import logger from './logger';
 
 const app = express();
@@ -17,6 +19,8 @@ app.use('/api/milestones', milestoneRoutes);
 app.use('/api/activities', activityRoutes);
 app.use('/api/subplan', subPlanRoutes);
 app.use('/api/lesson-plans', lessonPlanRoutes);
+app.use('/api/resources', resourceRoutes);
+app.use('/api/material-lists', materialListRoutes);
 app.post('/api/preferences', savePreferences);
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
@@ -26,6 +30,7 @@ app.use('/api/*', (_req, res) => {
 });
 
 const clientDist = path.join(__dirname, '../../client/dist');
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 app.use(express.static(clientDist));
 app.get('*', (_req, res) => {
   res.sendFile(path.join(clientDist, 'index.html'));

@@ -141,6 +141,7 @@ server/.env.test
 prisma/dev.db
 prisma/dev.db-journal
 server/dev-test.sqlite
+server/uploads/
 
 # Test output directories
 test-results/

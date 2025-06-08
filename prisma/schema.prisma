@@ -38,6 +38,7 @@ model Activity {
   publicNote   String?
   completedAt  DateTime?
   weeklySchedules WeeklySchedule[]
+  resources   Resource[]
 }
 
 model LessonPlan {
@@ -62,5 +63,23 @@ model TeacherPreferences {
   teachingStyles String
   pacePreference String
   prepTime       Int
+}
+
+model Resource {
+  id         Int      @id @default(autoincrement())
+  filename   String
+  url        String
+  type       String
+  size       Int
+  activityId Int?
+  activity   Activity? @relation(fields: [activityId], references: [id])
+  createdAt  DateTime @default(now())
+}
+
+model MaterialList {
+  id        Int      @id @default(autoincrement())
+  weekStart DateTime
+  items     String
+  prepared  Boolean  @default(false)
 }
 
