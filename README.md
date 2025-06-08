@@ -128,6 +128,13 @@ pnpm run test:e2e
 pnpm run test:all
 ```
 
+If the automatic Playwright installation fails (e.g., due to restricted `sudo` access in CI), install browsers and dependencies manually:
+
+```bash
+pnpm exec playwright install-deps
+pnpm exec playwright install
+```
+
 ## 📋 Usage Guide
 
 ### Basic Workflow
