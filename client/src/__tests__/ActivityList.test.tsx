@@ -26,4 +26,16 @@ describe('ActivityList', () => {
     expect(screen.getByText('A1')).toBeInTheDocument();
     expect(screen.getByText('A2')).toBeInTheDocument();
   });
+
+  it('associates checkboxes with accessible labels', () => {
+    const activities: Activity[] = [{ id: 1, title: 'A1', milestoneId: 1, completedAt: null }];
+
+    renderWithRouter(<ActivityList activities={activities} milestoneId={1} />);
+
+    const checkbox = screen.getByRole('checkbox', {
+      name: /mark a1 completed/i,
+    });
+
+    expect(checkbox).toBeInTheDocument();
+  });
 });
