@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import logger from '../logger';
 
 let transporter: nodemailer.Transporter | null = null;
 
@@ -14,7 +15,7 @@ if (process.env.SMTP_HOST) {
 
 export async function sendEmail(to: string, subject: string, text: string) {
   if (!transporter) {
-    console.log('Email:', { to, subject, text });
+    logger.info({ to, subject, text }, 'Email');
     return;
   }
   await transporter.sendMail({
