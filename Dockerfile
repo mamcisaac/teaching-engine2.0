@@ -3,6 +3,7 @@ FROM node:18 AS build
 WORKDIR /app
 COPY . .
 RUN corepack enable && pnpm install --frozen-lockfile
+RUN pnpm exec playwright install --with-deps
 RUN pnpm run build
 
 FROM node:18-slim AS runner
