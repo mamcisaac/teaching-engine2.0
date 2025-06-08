@@ -8,6 +8,8 @@ import subPlanRoutes from './routes/subplan';
 import lessonPlanRoutes, { savePreferences } from './routes/lessonPlan';
 import resourceRoutes from './routes/resource';
 import materialListRoutes from './routes/materialList';
+import notificationRoutes from './routes/notification';
+import { scheduleProgressCheck } from './jobs/progressCheck';
 import logger from './logger';
 
 const app = express();
@@ -21,6 +23,7 @@ app.use('/api/subplan', subPlanRoutes);
 app.use('/api/lesson-plans', lessonPlanRoutes);
 app.use('/api/resources', resourceRoutes);
 app.use('/api/material-lists', materialListRoutes);
+app.use('/api/notifications', notificationRoutes);
 app.post('/api/preferences', savePreferences);
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
@@ -51,6 +54,7 @@ app.use(
 
 const PORT = process.env.PORT || 3000;
 if (process.env.NODE_ENV !== 'test') {
+  scheduleProgressCheck();
   app.listen(PORT, () => {
     logger.info(`Server listening on port ${PORT}`);
   });
