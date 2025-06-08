@@ -2,7 +2,7 @@
 
 > A lightweight open‑source web app for K‑6 teachers to map **Subjects → Milestones → Activities**, track progress, and keep everything in one place.
 
-![CI](https://github.com/openai/curriculum-planner/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/mamcisaac/teaching-engine2.0/actions/workflows/ci.yml/badge.svg)
 
 ## ✨ Features (MVP)
 

@@ -140,3 +140,7 @@ server/.env.test
 *.sqlite
 prisma/dev.db
 server/dev-test.sqlite
+
+# Test output directories
+test-results/
+node-compile-cache/
