@@ -48,6 +48,8 @@ docker compose up --build
 # open http://localhost:3000 (API) and http://localhost:5173 (UI)
 ```
 
+Database migrations are automatically applied each time the container starts.
+
 ## 🌐 Environment Variables
 
 Set `VITE_API_URL` in `client/.env` if the API is not running on
@@ -68,7 +70,6 @@ prisma/   # Prisma schema & migrations
 ```
 
 ## 🧪 Running Tests
-
 
 After running `pnpm install`, you need to download the browsers and required
 OS libraries for Playwright. Run `pnpm exec playwright install --with-deps`
