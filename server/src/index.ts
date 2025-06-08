@@ -9,6 +9,7 @@ import lessonPlanRoutes, { savePreferences } from './routes/lessonPlan';
 import resourceRoutes from './routes/resource';
 import materialListRoutes from './routes/materialList';
 import notificationRoutes from './routes/notification';
+import newsletterRoutes from './routes/newsletter';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import logger from './logger';
 
@@ -24,6 +25,7 @@ app.use('/api/lesson-plans', lessonPlanRoutes);
 app.use('/api/resources', resourceRoutes);
 app.use('/api/material-lists', materialListRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/newsletters', newsletterRoutes);
 app.post('/api/preferences', savePreferences);
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });

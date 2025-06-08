@@ -270,3 +270,28 @@ export const useMarkNotificationRead = () => {
     },
   });
 };
+
+export interface Newsletter {
+  id: number;
+  title: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export const useCreateNewsletter = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: { title: string; content: string; template?: string }) =>
+      api.post('/newsletters', data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['newsletters'] });
+    },
+  });
+};
+
+export const useNewsletters = () =>
+  useQuery<Newsletter[]>({
+    queryKey: ['newsletters'],
+    queryFn: async () => (await api.get('/newsletters')).data,
+  });

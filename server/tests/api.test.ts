@@ -159,3 +159,17 @@ describe('Resource API', () => {
     expect(list.body.length).toBeGreaterThan(0);
   });
 });
+
+describe('Newsletter API', () => {
+  it('creates and exports newsletter', async () => {
+    const res = await request(app)
+      .post('/api/newsletters')
+      .send({ title: 'News', content: 'Hello' });
+    expect(res.status).toBe(201);
+    const id = res.body.id;
+    const pdf = await request(app).get(`/api/newsletters/${id}/pdf`);
+    expect(pdf.status).toBe(200);
+    const docx = await request(app).get(`/api/newsletters/${id}/docx`);
+    expect(docx.status).toBe(200);
+  });
+});
