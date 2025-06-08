@@ -8,7 +8,7 @@ const config: Config = {
     '^(\\.{1,2}/.*)\\.js$': '$1',
     '^@teaching-engine/database$': '<rootDir>/../packages/database/src/index.ts',
   },
-  globalSetup: './tests/jest.setup.ts',
+  globalSetup: './tests/setup-test-db.ts',
   transformIgnorePatterns: ['node_modules/(?!(@teaching-engine/database)/)'],
 };
 

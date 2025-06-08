@@ -5,12 +5,9 @@
   "scripts": {
     "dev": "ts-node src/index.ts",
     "start": "ts-node src/index.ts",
-    "prestart": "./node_modules/.bin/prisma generate --schema=../packages/database/prisma/schema.prisma",
-    "prebuild": "./node_modules/.bin/prisma generate --schema=../packages/database/prisma/schema.prisma",
     "build": "tsc",
     "test": "jest",
-    "seed": "ts-node ../scripts/seed.ts",
-    "pretest": "./node_modules/.bin/prisma generate --schema=../packages/database/prisma/schema.prisma && ./node_modules/.bin/prisma migrate deploy --schema=../packages/database/prisma/schema.prisma"
+    "seed": "ts-node ../scripts/seed.ts"
   },
   "dependencies": {
     "cors": "2.8.5",

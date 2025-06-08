@@ -31,7 +31,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate Prisma Client
-        run: cd packages/database/prisma && pnpm exec prisma generate
+        run: pnpm db:generate
 
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
