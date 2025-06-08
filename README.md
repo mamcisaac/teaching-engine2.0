@@ -94,8 +94,8 @@ teaching-engine2.0/
    # Copy environment template
    cp server/.env.offline server/.env
 
-   # Run migrations
-   pnpm --filter server exec prisma migrate dev
+   # Run migrations (apply database migrations defined in the prisma workspace)
+   pnpm --filter prisma exec prisma migrate dev
    ```
 
 3. **Start Development Servers**
@@ -104,6 +104,13 @@ teaching-engine2.0/
    ```
    - Frontend: http://localhost:5173
    - Backend: http://localhost:3000
+
+  **Note:** In development mode, the backend does not serve frontend assets. Use the Vite dev server at http://localhost:5173. To preview the production build locally, run:
+  ```bash
+  pnpm run build
+  # Run server in production mode bound to localhost
+  NODE_ENV=production HOST=127.0.0.1 pnpm --filter server run start
+  ```
 
 ### Docker Deployment
 
@@ -122,7 +129,7 @@ cp server/.env.test.example server/.env.test
 # Unit tests
 pnpm run test
 
-# E2E tests
+# E2E tests (runs against the production build on http://localhost:3000)
 pnpm run test:e2e
 
 # All tests with coverage

@@ -8,7 +8,7 @@
     "prestart": "pnpm exec prisma generate --schema=../prisma/schema.prisma",
     "prebuild": "pnpm exec prisma generate --schema=../prisma/schema.prisma",
     "build": "tsc",
-    "test": "jest",
+    "test": "jest --runInBand",
     "seed": "ts-node ../scripts/seed.ts",
     "pretest": "pnpm exec prisma generate --schema=../prisma/schema.prisma && pnpm exec prisma migrate deploy --schema=../prisma/schema.prisma"
   },

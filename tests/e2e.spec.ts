@@ -7,6 +7,8 @@ test('create subject, milestone and activity', async ({ page }) => {
   await page.click('text=Add Subject');
   await page.fill('input[placeholder="New subject"]', 'Playwright');
   await page.click('button:has-text("Save")');
+  // wait for the new subject to appear in the list
+  await expect(page.locator('text=Playwright')).toBeVisible();
 
   // navigate to the newly created subject
   await page.click('text=Playwright');

@@ -4,12 +4,13 @@ export default defineConfig({
   testDir: './tests',
   globalSetup: './playwright.global-setup',
   webServer: {
-    command: 'pnpm dev',
-    port: 5173,
+    // Build the production client and start the server to serve static files and API
+    command: 'pnpm run build && NODE_ENV=production pnpm --filter server run start',
+    port: 3000,
     timeout: 120 * 1000,
     reuseExistingServer: true,
   },
   use: {
-    baseURL: 'http://localhost:5173',
+    baseURL: 'http://127.0.0.1:3000',
   },
 });

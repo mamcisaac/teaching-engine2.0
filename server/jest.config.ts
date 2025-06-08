@@ -10,6 +10,8 @@ const config: Config = {
   },
   globalSetup: './tests/jest.setup.ts',
   transformIgnorePatterns: ['node_modules/(?!(@prisma/client)/)'],
+  // Increase default timeout for tests and hooks (including beforeAll/afterAll)
+  testTimeout: 20000,
 };
 
 export default config;

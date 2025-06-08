@@ -17,8 +17,7 @@
     "seed": "pnpm --filter server run seed",
     "postinstall": "cd prisma && pnpm exec prisma generate",
     "playwright:test": "playwright test",
-    "preplaywright:test": "pnpm exec playwright install --with-deps",
-    "test:e2e": "pnpm playwright:test",
+    "test:e2e": "mkdir -p tmp && TMPDIR=./tmp pnpm playwright:test",
     "test:all": "pnpm run test && pnpm run test:e2e"
   },
   "devDependencies": {

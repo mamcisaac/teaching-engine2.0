@@ -28,11 +28,13 @@ app.use('/api/*', (_req, res) => {
   res.status(404).json({ error: 'Not Found' });
 });
 
-const clientDist = path.join(__dirname, '../../client/dist');
-app.use(express.static(clientDist));
-app.get('*', (_req, res) => {
-  res.sendFile(path.join(clientDist, 'index.html'));
-});
+if (process.env.NODE_ENV === 'production') {
+  const clientDist = path.join(__dirname, '../../client/dist');
+  app.use(express.static(clientDist));
+  app.get('*', (_req, res) => {
+    res.sendFile(path.join(clientDist, 'index.html'));
+  });
+}
 
 app.use(
   (
@@ -47,12 +49,21 @@ app.use(
   },
 );
 
-const PORT = process.env.PORT || 3000;
+// Parse PORT env var as a number, defaulting to 3000
+const PORT = Number(process.env.PORT) || 3000;
+// Respect HOST env var to bind to specific interface (e.g., for prod preview and E2E tests)
+const HOST = process.env.HOST;
 if (process.env.NODE_ENV !== 'test') {
   startCronJobs();
-  app.listen(PORT, () => {
-    logger.info(`Server listening on port ${PORT}`);
-  });
+  if (HOST) {
+    app.listen(PORT, HOST, () => {
+      logger.info(`Server listening on http://${HOST}:${PORT}`);
+    });
+  } else {
+    app.listen(PORT, () => {
+      logger.info(`Server listening on port ${PORT}`);
+    });
+  }
 }
 
 export default app;

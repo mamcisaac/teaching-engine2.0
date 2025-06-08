@@ -3,9 +3,15 @@ import app from '../src/index';
 import prisma from '../src/prisma';
 
 beforeAll(async () => {
+  // Ensure SQLite waits for locks to avoid socket timeouts
+  await prisma.$queryRawUnsafe('PRAGMA busy_timeout = 20000');
+  await prisma.weeklySchedule.deleteMany();
+  await prisma.lessonPlan.deleteMany();
+  await prisma.notification.deleteMany();
   await prisma.activity.deleteMany();
   await prisma.milestone.deleteMany();
   await prisma.subject.deleteMany();
+  await prisma.teacherPreferences.deleteMany();
 });
 
 afterAll(async () => {

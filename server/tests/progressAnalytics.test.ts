@@ -1,7 +1,9 @@
 import prisma from '../src/prisma';
 import { checkAlerts } from '../src/services/progressAnalytics';
 
+// Use global testTimeout; set SQLite busy_timeout to avoid socket timeouts
 beforeAll(async () => {
+  await prisma.$queryRawUnsafe('PRAGMA busy_timeout = 20000');
   await prisma.notification.deleteMany();
   await prisma.weeklySchedule.deleteMany();
   await prisma.lessonPlan.deleteMany();
