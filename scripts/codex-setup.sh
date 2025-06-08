@@ -115,6 +115,7 @@ echo -e "\n✅  Quick setup complete! Ready for development.\n" >&2
 # Show available commands
 echo "📝  Available commands:" >&2
 echo "    - pnpm run dev          # Start development" >&2
-echo "    - ./codex-setup.sh --full     # Run complete setup" >&2
-echo "    - ./codex-setup.sh --build    # Build packages" >&2
-echo "    - ./codex-setup.sh --migrate  # Run DB migrations" >&2
+echo "    - scripts/codex-setup.sh --full     # Run complete setup" >&2
+echo "    - scripts/codex-setup.sh --build    # Build packages" >&2
+echo "    - scripts/codex-setup.sh --migrate  # Run DB migrations" >&2
+echo "    - scripts/codex-setup.sh --docker   # Check Docker availability" >&2
