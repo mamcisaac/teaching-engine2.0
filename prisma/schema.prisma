@@ -83,3 +83,10 @@ model MaterialList {
   prepared  Boolean  @default(false)
 }
 
+model Notification {
+  id        Int      @id @default(autoincrement())
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+

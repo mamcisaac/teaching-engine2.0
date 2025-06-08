@@ -247,3 +247,26 @@ export const useCreateMaterialList = () =>
   useMutation((data: { weekStart: string; items: string[] }) =>
     api.post('/material-lists', data).then((res) => res.data as MaterialList),
   );
+
+export interface Notification {
+  id: number;
+  message: string;
+  read: boolean;
+  createdAt: string;
+}
+
+export const useNotifications = () =>
+  useQuery<Notification[]>({
+    queryKey: ['notifications'],
+    queryFn: async () => (await api.get('/notifications')).data,
+  });
+
+export const useMarkNotificationRead = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => api.put(`/notifications/${id}/read`),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['notifications'] });
+    },
+  });
+};
