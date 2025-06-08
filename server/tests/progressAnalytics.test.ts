@@ -3,6 +3,8 @@ import { checkAlerts } from '../src/services/progressAnalytics';
 
 beforeAll(async () => {
   await prisma.notification.deleteMany();
+  await prisma.weeklySchedule.deleteMany();
+  await prisma.lessonPlan.deleteMany();
   await prisma.activity.deleteMany();
   await prisma.milestone.deleteMany();
   await prisma.subject.deleteMany();
