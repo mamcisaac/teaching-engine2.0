@@ -30,6 +30,11 @@ describe('Subject API', () => {
     expect(get.body.name).toBe('Test');
   });
 
+  it('rejects invalid subject data', async () => {
+    const res = await request(app).post('/api/subjects').send({});
+    expect(res.status).toBe(400);
+  });
+
   it('returns 404 for missing subject', async () => {
     const res = await request(app).get('/api/subjects/99999');
     expect(res.status).toBe(404);
@@ -51,6 +56,11 @@ describe('Milestone API', () => {
     const get = await request(app).get(`/api/milestones/${id}`);
     expect(get.status).toBe(200);
     expect(get.body.title).toBe('MS');
+  });
+
+  it('rejects invalid milestone data', async () => {
+    const res = await request(app).post('/api/milestones').send({ title: '' });
+    expect(res.status).toBe(400);
   });
 
   it('returns 404 for missing milestone', async () => {
@@ -77,6 +87,11 @@ describe('Activity API', () => {
     const get = await request(app).get(`/api/activities/${id}`);
     expect(get.status).toBe(200);
     expect(get.body.title).toBe('Act');
+  });
+
+  it('rejects invalid activity data', async () => {
+    const res = await request(app).post('/api/activities').send({ title: 'A' });
+    expect(res.status).toBe(400);
   });
 
   it('returns 404 for missing activity', async () => {
