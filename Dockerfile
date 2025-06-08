@@ -9,6 +9,7 @@ RUN pnpm run build
 FROM node:18-slim AS runner
 WORKDIR /app
 ENV NODE_ENV=production
+RUN corepack enable
 COPY --from=build /app/server/dist ./server/dist
 COPY --from=build /app/client/dist ./client/dist
 COPY --from=build /app/prisma ./prisma
@@ -18,4 +19,4 @@ COPY --from=build /app/package.json ./package.json
 COPY --from=build /app/pnpm-workspace.yaml ./pnpm-workspace.yaml
 COPY --from=build /app/server/node_modules ./server/node_modules
 EXPOSE 3000
-CMD ["node", "server/dist/index.js"]
+CMD ["sh", "-c", "pnpm exec prisma migrate deploy --schema=./prisma/schema.prisma && node server/dist/index.js"]
