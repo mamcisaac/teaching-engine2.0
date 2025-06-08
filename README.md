@@ -11,6 +11,7 @@ Teaching Engine 2.0 aims to be the "digital teaching assistant" that reduces adm
 ## ✨ Core Features
 
 ### Currently Implemented (Phases 0-3)
+
 - **Subject-Milestone-Activity Hierarchy**: Organize curriculum into subjects, break down into milestones (units/goals), and populate with specific activities
 - **Progress Tracking**: Automatic calculation of completion percentages at activity, milestone, and subject levels
 - **CRUD Operations**: Full create, read, update, delete functionality for all entities
@@ -20,6 +21,7 @@ Teaching Engine 2.0 aims to be the "digital teaching assistant" that reduces adm
 - **Test Coverage**: Comprehensive unit, integration, and E2E tests
 
 ### Phase 4 - Post-MVP Enhancements (To Be Implemented)
+
 1. **Weekly Planner Automation**: Intelligent activity suggestions based on curriculum pacing, teaching styles, and milestone deadlines
 2. **Resource Management**: File uploads, material lists, and printable preparation checklists
 3. **Progress Alerts**: Automated notifications when milestones fall behind schedule
@@ -29,6 +31,7 @@ Teaching Engine 2.0 aims to be the "digital teaching assistant" that reduces adm
 7. **Cloud Backup**: Optional cloud storage integration for data safety
 
 ### Phase 5 - Curriculum Intelligence (To Be Implemented)
+
 - **Provincial Curriculum Integration**: Import PEI (and other provincial) curriculum standards
 - **AI-Powered Planning**: Use embeddings to automatically generate milestone-activity mappings
 - **Standards Alignment**: Track coverage of official learning outcomes
@@ -37,15 +40,17 @@ Teaching Engine 2.0 aims to be the "digital teaching assistant" that reduces adm
 ## 🏗️ Technical Architecture
 
 ### Tech Stack
-| Layer | Technology |
-|-------|------------|
+
+| Layer    | Technology                                                          |
+| -------- | ------------------------------------------------------------------- |
 | Frontend | React 18, TypeScript, Vite, TanStack Query, Tailwind CSS, shadcn/ui |
-| Backend | Node.js 18/20, Express, TypeScript |
-| Database | Prisma 5, SQLite (development), PostgreSQL (production ready) |
-| Testing | Jest (backend), Vitest (frontend), Playwright (E2E) |
-| DevOps | GitHub Actions, Docker, pnpm workspaces |
+| Backend  | Node.js 18/20, Express, TypeScript                                  |
+| Database | Prisma 5, SQLite (development), PostgreSQL (production ready)       |
+| Testing  | Jest (backend), Vitest (frontend), Playwright (E2E)                 |
+| DevOps   | GitHub Actions, Docker, pnpm workspaces                             |
 
 ### Project Structure
+
 ```
 teaching-engine2.0/
 ├── client/                 # React frontend application
@@ -67,6 +72,7 @@ teaching-engine2.0/
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Node.js 18 or 20
 - pnpm 8+
 - Docker (optional)
@@ -74,6 +80,7 @@ teaching-engine2.0/
 ### Development Setup
 
 1. **Clone and Install**
+
    ```bash
    git clone https://github.com/mamcisaac/teaching-engine2.0.git
    cd teaching-engine2.0
@@ -81,10 +88,11 @@ teaching-engine2.0/
    ```
 
 2. **Database Setup**
+
    ```bash
    # Copy environment template
    cp server/.env.example server/.env
-   
+
    # Run migrations
    pnpm --filter server prisma:migrate
    ```
@@ -97,14 +105,19 @@ teaching-engine2.0/
    - Backend: http://localhost:3000
 
 ### Docker Deployment
+
 ```bash
 docker compose up --build
 ```
+
 Access the application at http://localhost:3000
 
 ## 🧪 Testing
 
 ```bash
+# Set up test environment
+cp server/.env.test.example server/.env.test
+
 # Unit tests
 pnpm run test
 
@@ -118,6 +131,7 @@ pnpm run test:all
 ## 📋 Usage Guide
 
 ### Basic Workflow
+
 1. **Initial Setup**: Create subjects for your curriculum (Math, Science, Language Arts, etc.)
 2. **Add Milestones**: Define major units or learning goals with target completion dates
 3. **Create Activities**: Populate milestones with specific lessons, assignments, and projects
@@ -126,6 +140,7 @@ pnpm run test:all
 6. **Communicate**: Generate parent newsletters from completed activities (Phase 4)
 
 ### Key Concepts
+
 - **Subject**: Top-level curriculum area (e.g., Mathematics)
 - **Milestone**: Major learning unit or goal (e.g., "Multiplication Mastery")
 - **Activity**: Specific lesson or task (e.g., "Times tables worksheet")
