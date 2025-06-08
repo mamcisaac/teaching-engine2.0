@@ -1,108 +1,166 @@
-# Elementary Curriculum Planner (MVP)
+# Teaching Engine 2.0 - Elementary Curriculum Planner
 
-> A lightweight open‑source web app for K‑6 teachers to map **Subjects → Milestones → Activities**, track progress, and keep everything in one place.
+> A comprehensive web-based curriculum planning and management system designed specifically for elementary school teachers in Canada. This tool streamlines yearly planning, weekly scheduling, progress tracking, parent communication, and emergency preparedness - all in one integrated platform.
 
 ![CI](https://github.com/mamcisaac/teaching-engine2.0/actions/workflows/ci.yml/badge.svg)
 
-## ✨ Features (MVP)
+## 🎯 Project Vision
 
-- Add / edit / delete **Subjects**, **Milestones**, and **Activities**.
-- Automatic % progress bars per milestone & subject.
-- Single‑file **SQLite** persistence – runs anywhere.
-- React 18 front‑end with instant hot‑reload.
-- One‑command start (`pnpm run dev`) or `docker compose up`.
+Teaching Engine 2.0 aims to be the "digital teaching assistant" that reduces administrative overhead for elementary teachers by 80%, allowing them to focus on what matters most - teaching. By consolidating curriculum mapping, lesson planning, resource management, progress tracking, and parent communication into a single intuitive interface, we eliminate the need for multiple spreadsheets, documents, and manual cross-referencing.
 
-## 🏗️ Tech Stack
+## ✨ Core Features
 
-| Layer     | Tech                                     |
-| --------- | ---------------------------------------- |
-| Front‑end | React 18, Vite, Tailwind, TanStack Query |
-| Back‑end  | Node 18, Express, TypeScript             |
-| ORM / DB  | Prisma 5, SQLite                         |
-| Testing   | Jest, Vitest, Playwright                 |
-| DevOps    | GitHub Actions, Docker                   |
+### Currently Implemented (Phases 0-3)
+- **Subject-Milestone-Activity Hierarchy**: Organize curriculum into subjects, break down into milestones (units/goals), and populate with specific activities
+- **Progress Tracking**: Automatic calculation of completion percentages at activity, milestone, and subject levels
+- **CRUD Operations**: Full create, read, update, delete functionality for all entities
+- **Responsive UI**: Modern React interface with Tailwind CSS and shadcn/ui components
+- **Data Persistence**: SQLite database with Prisma ORM for reliable local storage
+- **Docker Deployment**: Containerized application for easy deployment
+- **Test Coverage**: Comprehensive unit, integration, and E2E tests
 
-## 🛠️ Setup Script
+### Phase 4 - Post-MVP Enhancements (To Be Implemented)
+1. **Weekly Planner Automation**: Intelligent activity suggestions based on curriculum pacing, teaching styles, and milestone deadlines
+2. **Resource Management**: File uploads, material lists, and printable preparation checklists
+3. **Progress Alerts**: Automated notifications when milestones fall behind schedule
+4. **Newsletter Generator**: Auto-draft parent communications based on completed activities
+5. **Emergency Sub Plans**: One-click generation of detailed substitute teacher plans
+6. **Authentication & Multi-user**: Teacher accounts with secure data isolation
+7. **Cloud Backup**: Optional cloud storage integration for data safety
 
-Run the bootstrap script once after cloning to install dependencies, generate
-the Prisma client, apply migrations, and build all packages:
+### Phase 5 - Curriculum Intelligence (To Be Implemented)
+- **Provincial Curriculum Integration**: Import PEI (and other provincial) curriculum standards
+- **AI-Powered Planning**: Use embeddings to automatically generate milestone-activity mappings
+- **Standards Alignment**: Track coverage of official learning outcomes
+- **Holiday-Aware Scheduling**: Integrate school calendar for accurate pacing
 
-```bash
-chmod +x ./scripts/codex-setup.sh
-./scripts/codex-setup.sh
+## 🏗️ Technical Architecture
+
+### Tech Stack
+| Layer | Technology |
+|-------|------------|
+| Frontend | React 18, TypeScript, Vite, TanStack Query, Tailwind CSS, shadcn/ui |
+| Backend | Node.js 18/20, Express, TypeScript |
+| Database | Prisma 5, SQLite (development), PostgreSQL (production ready) |
+| Testing | Jest (backend), Vitest (frontend), Playwright (E2E) |
+| DevOps | GitHub Actions, Docker, pnpm workspaces |
+
+### Project Structure
+```
+teaching-engine2.0/
+├── client/                 # React frontend application
+│   ├── src/
+│   │   ├── components/    # UI components (Cards, Forms, etc.)
+│   │   ├── api.ts        # API client with React Query hooks
+│   │   └── App.tsx       # Main application component
+├── server/                # Express backend API
+│   ├── src/
+│   │   ├── routes/       # API endpoints
+│   │   ├── models/       # TypeScript interfaces
+│   │   └── app.ts        # Express application setup
+├── prisma/               # Database schema and migrations
+├── tests/                # E2E Playwright tests
+├── scripts/              # Utility scripts
+└── docker-compose.yml    # Container orchestration
 ```
 
-## 🚀 Quick Start (Local)
+## 🚀 Quick Start
 
-```bash
-git clone https://github.com/openai/curriculum-planner.git
-cd curriculum-planner
-pnpm install
-pnpm run dev # open http://localhost:5173
-```
+### Prerequisites
+- Node.js 18 or 20
+- pnpm 8+
+- Docker (optional)
 
-## 🐳 Quick Start (Docker)
+### Development Setup
 
+1. **Clone and Install**
+   ```bash
+   git clone https://github.com/mamcisaac/teaching-engine2.0.git
+   cd teaching-engine2.0
+   pnpm install
+   ```
+
+2. **Database Setup**
+   ```bash
+   # Copy environment template
+   cp server/.env.example server/.env
+   
+   # Run migrations
+   pnpm --filter server prisma:migrate
+   ```
+
+3. **Start Development Servers**
+   ```bash
+   pnpm run dev
+   ```
+   - Frontend: http://localhost:5173
+   - Backend: http://localhost:3000
+
+### Docker Deployment
 ```bash
 docker compose up --build
-# open http://localhost:3000 (API) and http://localhost:5173 (UI)
 ```
+Access the application at http://localhost:3000
 
-Database migrations are automatically applied each time the container starts.
-
-## 🌐 Environment Variables
-
-Set `VITE_API_URL` in `client/.env` if the API is not running on
-`http://localhost:3000/api`.
-
-```env
-VITE_API_URL=http://my-api-host/api
-```
-
-If unset, the client falls back to `http://localhost:3000/api`.
-
-## 🗂 Project Structure
-
-```text
-client/   # React front-end
-server/   # Express API
-prisma/   # Prisma schema & migrations
-```
-
-## 🧪 Running Tests
-
-After running `pnpm install`, you need to download the browsers and required
-OS libraries for Playwright. Run `pnpm exec playwright install --with-deps`
-(or simply execute `pnpm playwright:test` once, which triggers the same step
-automatically) before running the end-to-end tests.
-
-Create `server/.env.test` by copying `server/.env.test.example`:
+## 🧪 Testing
 
 ```bash
-cp server/.env.test.example server/.env.test
+# Unit tests
+pnpm run test
+
+# E2E tests
+pnpm run test:e2e
+
+# All tests with coverage
+pnpm run test:all
 ```
 
-```bash
-pnpm run test         # all tests
-pnpm test --filter server
-pnpm test --filter client
-pnpm playwright:test # end-to-end tests
-```
+## 📋 Usage Guide
 
-### Docker Image for Tests
+### Basic Workflow
+1. **Initial Setup**: Create subjects for your curriculum (Math, Science, Language Arts, etc.)
+2. **Add Milestones**: Define major units or learning goals with target completion dates
+3. **Create Activities**: Populate milestones with specific lessons, assignments, and projects
+4. **Track Progress**: Mark activities as complete to automatically update progress bars
+5. **Plan Weekly**: Use the weekly planner (Phase 4) to schedule activities across your timetable
+6. **Communicate**: Generate parent newsletters from completed activities (Phase 4)
 
-Build the full test image (including Playwright browsers) with:
+### Key Concepts
+- **Subject**: Top-level curriculum area (e.g., Mathematics)
+- **Milestone**: Major learning unit or goal (e.g., "Multiplication Mastery")
+- **Activity**: Specific lesson or task (e.g., "Times tables worksheet")
+- **Progress**: Automatic calculation based on completed vs. total activities
 
-```bash
-docker build -t curriculum-planner-test .
-```
+## 🤝 Agent Collaboration Guidelines
 
-## 🤝 Contributing
+This project is designed for autonomous agent implementation. Agents should:
 
-Copy `server/.env.test.example` to `server/.env.test` before running tests.
-This file stores your local test database URL and is gitignored to avoid
-accidental commits.
+1. **Follow Existing Patterns**: Study phases 0-3 implementation for coding style and architecture
+2. **Maintain Test Coverage**: Write tests before implementation (TDD approach)
+3. **Use Conventional Commits**: `feat:`, `fix:`, `docs:`, `test:`, `chore:`
+4. **Branch Strategy**: Create feature branches like `feat/4a-weekly-planner`
+5. **Atomic Commits**: Small, focused commits that pass all tests
+6. **Documentation**: Update relevant docs with each feature
 
-## 📜 License
+## 🛡️ Security & Performance
 
-MIT © 2025 University of Prince Edward Island
+- Input validation on all API endpoints
+- Parameterized queries prevent SQL injection
+- Rate limiting on API routes (Phase 4)
+- Efficient database queries with Prisma
+- React Query for optimal caching
+- Lazy loading for large datasets
+
+## 📝 License
+
+MIT License - see LICENSE file for details
+
+## 🙋 Support & Contribution
+
+- **Issues**: Report bugs or request features via GitHub Issues
+- **Discussions**: Join project discussions for design decisions
+- **PRs**: Contributions welcome! See AGENTS.md for implementation guidelines
+
+---
+
+**Note**: This is an active development project. Phases 4 and 5 are pending implementation. See AGENTS-TODO.md for the detailed implementation roadmap.
