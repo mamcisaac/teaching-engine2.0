@@ -22,6 +22,16 @@
 | Testing   | Jest, Vitest, Playwright                 |
 | DevOps    | GitHub Actions, Docker                   |
 
+## 🛠️ Setup Script
+
+Run the bootstrap script once after cloning to install dependencies, generate
+the Prisma client, apply migrations, and build all packages:
+
+```bash
+chmod +x ./scripts/codex-setup.sh
+./scripts/codex-setup.sh
+```
+
 ## 🚀 Quick Start (Local)
 
 ```bash
