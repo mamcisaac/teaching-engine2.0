@@ -13,6 +13,9 @@ app.use(express.json());
 app.use('/api/subjects', subjectRoutes);
 app.use('/api/milestones', milestoneRoutes);
 app.use('/api/activities', activityRoutes);
+app.get('/api/health', (_req, res) => {
+  res.json({ status: 'ok' });
+});
 app.use('/api/*', (_req, res) => {
   res.status(404).json({ error: 'Not Found' });
 });

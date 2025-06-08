@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import prisma from '../prisma';
+import { validate, activityCreateSchema, activityUpdateSchema } from '../validation';
 
 const router = Router();
 
@@ -25,7 +26,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', validate(activityCreateSchema), async (req, res, next) => {
   try {
     const activity = await prisma.activity.create({
       data: {
@@ -43,7 +44,7 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', validate(activityUpdateSchema), async (req, res, next) => {
   try {
     const activity = await prisma.activity.update({
       where: { id: Number(req.params.id) },
