@@ -4,6 +4,7 @@ import path from 'path';
 import subjectRoutes from './routes/subject';
 import milestoneRoutes from './routes/milestone';
 import activityRoutes from './routes/activity';
+import logger from './logger';
 
 const app = express();
 app.use(cors());
@@ -33,7 +34,7 @@ app.use(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _next: express.NextFunction,
   ) => {
-    console.error(err);
+    logger.error(err);
     res.status(500).json({ error: 'Internal Server Error' });
   },
 );
@@ -41,7 +42,7 @@ app.use(
 const PORT = process.env.PORT || 3000;
 if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`);
+    logger.info(`Server listening on port ${PORT}`);
   });
 }
 
