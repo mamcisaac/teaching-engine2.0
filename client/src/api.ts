@@ -158,3 +158,44 @@ export const useDeleteMilestone = () => {
     },
   });
 };
+
+export interface Resource {
+  id: number;
+  filename: string;
+  url: string;
+  type: string;
+  size: number;
+  activityId?: number | null;
+}
+
+export interface MaterialList {
+  id: number;
+  weekStart: string;
+  items: string;
+  prepared: boolean;
+}
+
+export const useResources = () =>
+  useQuery<Resource[]>({
+    queryKey: ['resources'],
+    queryFn: async () => (await api.get('/resources')).data,
+  });
+
+export const useUploadResource = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: FormData) =>
+      api.post('/resources', data, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['resources'] }),
+  });
+};
+
+export const useCreateMaterialList = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: { weekStart: string }) => api.post('/material-lists', data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['material-lists'] }),
+  });
+};

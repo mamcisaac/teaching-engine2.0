@@ -4,6 +4,8 @@ import path from 'path';
 import subjectRoutes from './routes/subject';
 import milestoneRoutes from './routes/milestone';
 import activityRoutes from './routes/activity';
+import resourceRoutes from './routes/resource';
+import materialListRoutes from './routes/materialList';
 import logger from './logger';
 
 const app = express();
@@ -13,6 +15,8 @@ app.use(express.json());
 app.use('/api/subjects', subjectRoutes);
 app.use('/api/milestones', milestoneRoutes);
 app.use('/api/activities', activityRoutes);
+app.use('/api/resources', resourceRoutes);
+app.use('/api/material-lists', materialListRoutes);
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
 });
@@ -22,6 +26,7 @@ app.use('/api/*', (_req, res) => {
 
 const clientDist = path.join(__dirname, '../../client/dist');
 app.use(express.static(clientDist));
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 app.get('*', (_req, res) => {
   res.sendFile(path.join(clientDist, 'index.html'));
 });

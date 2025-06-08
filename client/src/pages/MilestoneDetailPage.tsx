@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useMilestone } from '../api';
 import ActivityList from '../components/ActivityList';
+import ResourceUpload from '../components/ResourceUpload';
 
 export default function MilestoneDetailPage() {
   const { id } = useParams();
@@ -17,6 +18,8 @@ export default function MilestoneDetailPage() {
         milestoneId={milestoneId}
         subjectId={data.subjectId}
       />
+      <h2 className="mt-4">Upload Resource</h2>
+      <ResourceUpload />
     </div>
   );
 }

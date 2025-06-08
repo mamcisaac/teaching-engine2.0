@@ -1,6 +1,6 @@
 datasource db {
   provider = "sqlite"
-  url = "file:./dev.db"
+  url      = "file:./dev.db"
 }
 
 generator client {
@@ -9,33 +9,49 @@ generator client {
   output        = "../node_modules/.prisma/client"
 }
 
-
-
 model Subject {
-  id         Int        @id @default(autoincrement())
+  id         Int         @id @default(autoincrement())
   name       String
   milestones Milestone[]
-  createdAt  DateTime   @default(now())
+  createdAt  DateTime    @default(now())
 }
 
 model Milestone {
-  id         Int       @id @default(autoincrement())
+  id         Int        @id @default(autoincrement())
   title      String
   subjectId  Int
-  subject    Subject   @relation(fields: [subjectId], references: [id])
+  subject    Subject    @relation(fields: [subjectId], references: [id])
   activities Activity[]
   targetDate DateTime?
   estHours   Int?
 }
 
 model Activity {
-  id          Int       @id @default(autoincrement())
-  title       String
-  milestoneId Int
-  milestone   Milestone  @relation(fields: [milestoneId], references: [id])
+  id           Int        @id @default(autoincrement())
+  title        String
+  milestoneId  Int
+  milestone    Milestone  @relation(fields: [milestoneId], references: [id])
   durationMins Int?
   privateNote  String?
   publicNote   String?
   completedAt  DateTime?
+  resources    Resource[]
 }
 
+model Resource {
+  id         Int       @id @default(autoincrement())
+  filename   String
+  url        String
+  type       String
+  size       Int
+  activityId Int?
+  activity   Activity? @relation(fields: [activityId], references: [id])
+  createdAt  DateTime  @default(now())
+}
+
+model MaterialList {
+  id        Int      @id @default(autoincrement())
+  weekStart DateTime
+  items     String
+  prepared  Boolean  @default(false)
+}

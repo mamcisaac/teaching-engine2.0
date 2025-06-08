@@ -99,3 +99,24 @@ describe('Activity API', () => {
     expect(res.status).toBe(404);
   });
 });
+
+describe('Resource API', () => {
+  it('uploads a file', async () => {
+    const res = await request(app)
+      .post('/api/resources')
+      .attach('file', Buffer.from('hello'), 'test.txt')
+      .field('type', 'document');
+    expect(res.status).toBe(201);
+    expect(res.body.filename).toBe('test.txt');
+  });
+});
+
+describe('MaterialList API', () => {
+  it('creates a material list', async () => {
+    const res = await request(app)
+      .post('/api/material-lists')
+      .send({ weekStart: new Date().toISOString() });
+    expect(res.status).toBe(201);
+    expect(res.body.items).toBeDefined();
+  });
+});

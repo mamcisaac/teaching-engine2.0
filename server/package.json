@@ -18,7 +18,10 @@
     "express": "4.21.2",
     "pino": "8.21.0",
     "prisma": "6.9.0",
-    "zod": "3.25.56"
+    "zod": "3.25.56",
+    "multer": "^1.4.5-lts.1",
+    "@aws-sdk/client-s3": "^3.577.0",
+    "@aws-sdk/s3-request-presigner": "^3.577.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
@@ -26,6 +29,7 @@
     "@types/jest": "^29.5.3",
     "@types/node": "^18.18.0",
     "@types/supertest": "^2.0.12",
+    "@types/multer": "^1.4.7",
     "dotenv": "^16.5.0",
     "jest": "^29.7.0",
     "supertest": "^6.3.3",
