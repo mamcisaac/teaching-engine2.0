@@ -13,6 +13,29 @@ router.get('/', async (_req, res, next) => {
   }
 });
 
+router.get('/:id', async (req, res, next) => {
+  try {
+    const resource = await prisma.resource.findUnique({
+      where: { id: Number(req.params.id) },
+    });
+    if (!resource) return res.status(404).json({ error: 'Not Found' });
+    res.json(resource);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/activity/:activityId', async (req, res, next) => {
+  try {
+    const resources = await prisma.resource.findMany({
+      where: { activityId: Number(req.params.activityId) },
+    });
+    res.json(resources);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.post('/', async (req, res, next) => {
   try {
     const { filename, data, type, size, activityId } = req.body as {
@@ -31,6 +54,15 @@ router.post('/', async (req, res, next) => {
       data: { filename, url, type, size, activityId },
     });
     res.status(201).json(resource);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    await prisma.resource.delete({ where: { id: Number(req.params.id) } });
+    res.status(204).end();
   } catch (err) {
     next(err);
   }
