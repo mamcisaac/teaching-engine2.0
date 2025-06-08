@@ -144,3 +144,4 @@ server/dev-test.sqlite
 # Test output directories
 test-results/
 node-compile-cache/
+v8-compile-cache-*
