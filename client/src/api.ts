@@ -31,6 +31,7 @@ export interface Notification {
   message: string;
   read: boolean;
   createdAt: string;
+}
 export interface WeeklyScheduleItem {
   id: number;
   day: number;
