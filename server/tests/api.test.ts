@@ -99,3 +99,39 @@ describe('Activity API', () => {
     expect(res.status).toBe(404);
   });
 });
+
+describe('Lesson Plan API', () => {
+  let milestoneId: number;
+
+  beforeAll(async () => {
+    const subject = await prisma.subject.create({ data: { name: 'PlanSubj' } });
+    const milestone = await prisma.milestone.create({
+      data: { title: 'PlanM', subjectId: subject.id },
+    });
+    milestoneId = milestone.id;
+    await prisma.activity.create({ data: { title: 'PlanAct', milestoneId } });
+  });
+
+  it('generates and retrieves a plan', async () => {
+    const weekStart = '2024-01-01T00:00:00.000Z';
+    const gen = await request(app).post('/api/lesson-plans/generate').send({ weekStart });
+    expect(gen.status).toBe(201);
+    const get = await request(app).get(`/api/lesson-plans/${weekStart}`);
+    expect(get.status).toBe(200);
+    expect(get.body.schedule.length).toBeGreaterThan(0);
+  });
+});
+
+describe('Preferences API', () => {
+  it('saves preferences', async () => {
+    const res = await request(app)
+      .post('/api/preferences')
+      .send({
+        teachingStyles: ['hands-on'],
+        pacePreference: 'balanced',
+        prepTime: 60,
+      });
+    expect(res.status).toBe(201);
+    expect(res.body.pacePreference).toBe('balanced');
+  });
+});

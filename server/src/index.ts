@@ -4,6 +4,7 @@ import path from 'path';
 import subjectRoutes from './routes/subject';
 import milestoneRoutes from './routes/milestone';
 import activityRoutes from './routes/activity';
+import lessonPlanRoutes, { savePreferences } from './routes/lessonPlan';
 import logger from './logger';
 
 const app = express();
@@ -13,6 +14,8 @@ app.use(express.json());
 app.use('/api/subjects', subjectRoutes);
 app.use('/api/milestones', milestoneRoutes);
 app.use('/api/activities', activityRoutes);
+app.use('/api/lesson-plans', lessonPlanRoutes);
+app.post('/api/preferences', savePreferences);
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
 });
