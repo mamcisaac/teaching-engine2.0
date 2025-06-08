@@ -61,8 +61,9 @@ teaching-engine2.0/
 ├── server/                # Express backend API
 │   ├── src/
 │   │   ├── routes/       # API endpoints
-│   │   ├── models/       # TypeScript interfaces
-│   │   └── app.ts        # Express application setup
+│   │   ├── prisma.ts     # Prisma client setup
+│   │   ├── validation.ts # Request schemas
+│   │   └── index.ts      # Express application setup
 ├── prisma/               # Database schema and migrations
 ├── tests/                # E2E Playwright tests
 ├── scripts/              # Utility scripts
