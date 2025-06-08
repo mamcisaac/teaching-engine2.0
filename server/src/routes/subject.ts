@@ -7,7 +7,11 @@ const router = Router();
 router.get('/', async (_req, res, next) => {
   try {
     const subjects = await prisma.subject.findMany({
-      include: { milestones: true },
+      include: {
+        milestones: {
+          include: { activities: true },
+        },
+      },
     });
     res.json(subjects);
   } catch (err) {
@@ -19,7 +23,11 @@ router.get('/:id', async (req, res, next) => {
   try {
     const subject = await prisma.subject.findUnique({
       where: { id: Number(req.params.id) },
-      include: { milestones: true },
+      include: {
+        milestones: {
+          include: { activities: true },
+        },
+      },
     });
     if (!subject) return res.status(404).json({ error: 'Not Found' });
     res.json(subject);

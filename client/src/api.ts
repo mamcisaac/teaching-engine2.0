@@ -27,19 +27,29 @@ export interface Activity {
 }
 
 export const useSubjects = () =>
-  useQuery<Subject[]>(['subjects'], async () => (await api.get('/subjects')).data);
+  useQuery<Subject[]>({
+    queryKey: ['subjects'],
+    queryFn: async () => (await api.get('/subjects')).data,
+  });
 
 export const useSubject = (id: number) =>
-  useQuery<Subject>(['subject', id], async () => (await api.get(`/subjects/${id}`)).data);
+  useQuery<Subject>({
+    queryKey: ['subject', id],
+    queryFn: async () => (await api.get(`/subjects/${id}`)).data,
+  });
 
 export const useMilestone = (id: number) =>
-  useQuery<Milestone>(['milestone', id], async () => (await api.get(`/milestones/${id}`)).data);
+  useQuery<Milestone>({
+    queryKey: ['milestone', id],
+    queryFn: async () => (await api.get(`/milestones/${id}`)).data,
+  });
 
 export const useCreateSubject = () => {
   const qc = useQueryClient();
-  return useMutation((data: { name: string }) => api.post('/subjects', data), {
+  return useMutation({
+    mutationFn: (data: { name: string }) => api.post('/subjects', data),
     onSuccess: () => {
-      qc.invalidateQueries(['subjects']);
+      qc.invalidateQueries({ queryKey: ['subjects'] });
       toast.success('Subject created');
     },
   });
@@ -47,85 +57,77 @@ export const useCreateSubject = () => {
 
 export const useCreateMilestone = () => {
   const qc = useQueryClient();
-  return useMutation(
-    (data: { title: string; subjectId: number }) => api.post('/milestones', data),
-    {
-      onSuccess: (_res, vars) => {
-        qc.invalidateQueries(['subject', vars.subjectId]);
-        toast.success('Milestone created');
-      },
+  return useMutation({
+    mutationFn: (data: { title: string; subjectId: number }) => api.post('/milestones', data),
+    onSuccess: (_res, vars) => {
+      qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });
+      toast.success('Milestone created');
     },
-  );
+  });
 };
 
 export const useCreateActivity = () => {
   const qc = useQueryClient();
-  return useMutation(
-    (data: { title: string; milestoneId: number }) => api.post('/activities', data),
-    {
-      onSuccess: (_res, vars) => {
-        qc.invalidateQueries(['milestone', vars.milestoneId]);
-        toast.success('Activity created');
-      },
+  return useMutation({
+    mutationFn: (data: { title: string; milestoneId: number }) => api.post('/activities', data),
+    onSuccess: (_res, vars) => {
+      qc.invalidateQueries({ queryKey: ['milestone', vars.milestoneId] });
+      toast.success('Activity created');
     },
-  );
+  });
 };
 
 export const useUpdateActivity = () => {
   const qc = useQueryClient();
-  return useMutation(
-    (data: {
+  return useMutation({
+    mutationFn: (data: {
       id: number;
       milestoneId: number;
       subjectId?: number;
       title?: string;
       completedAt?: string | null;
     }) => api.put(`/activities/${data.id}`, { title: data.title, completedAt: data.completedAt }),
-    {
-      onSuccess: (_res, vars) => {
-        qc.invalidateQueries(['milestone', vars.milestoneId]);
-        if (vars.subjectId) qc.invalidateQueries(['subject', vars.subjectId]);
-        qc.invalidateQueries(['subjects']);
-      },
+    onSuccess: (_res, vars) => {
+      qc.invalidateQueries({ queryKey: ['milestone', vars.milestoneId] });
+      if (vars.subjectId) qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });
+      qc.invalidateQueries({ queryKey: ['subjects'] });
     },
-  );
+  });
 };
 
 export const useDeleteActivity = () => {
   const qc = useQueryClient();
-  return useMutation(
-    (data: { id: number; milestoneId: number; subjectId?: number }) =>
+  return useMutation({
+    mutationFn: (data: { id: number; milestoneId: number; subjectId?: number }) =>
       api.delete(`/activities/${data.id}`),
-    {
-      onSuccess: (_res, vars) => {
-        qc.invalidateQueries(['milestone', vars.milestoneId]);
-        if (vars.subjectId) qc.invalidateQueries(['subject', vars.subjectId]);
-        qc.invalidateQueries(['subjects']);
-        toast.success('Activity deleted');
-      },
+    onSuccess: (_res, vars) => {
+      qc.invalidateQueries({ queryKey: ['milestone', vars.milestoneId] });
+      if (vars.subjectId) qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });
+      qc.invalidateQueries({ queryKey: ['subjects'] });
+      toast.success('Activity deleted');
     },
-  );
+  });
 };
 
 export const useUpdateSubject = () => {
   const qc = useQueryClient();
-  return useMutation(
-    (data: { id: number; name: string }) => api.put(`/subjects/${data.id}`, { name: data.name }),
-    {
-      onSuccess: (_res, vars) => {
-        qc.invalidateQueries(['subjects']);
-        qc.invalidateQueries(['subject', vars.id]);
-        toast.success('Subject updated');
-      },
+  return useMutation({
+    mutationFn: (data: { id: number; name: string }) =>
+      api.put(`/subjects/${data.id}`, { name: data.name }),
+    onSuccess: (_res, vars) => {
+      qc.invalidateQueries({ queryKey: ['subjects'] });
+      qc.invalidateQueries({ queryKey: ['subject', vars.id] });
+      toast.success('Subject updated');
     },
-  );
+  });
 };
 
 export const useDeleteSubject = () => {
   const qc = useQueryClient();
-  return useMutation((id: number) => api.delete(`/subjects/${id}`), {
+  return useMutation({
+    mutationFn: (id: number) => api.delete(`/subjects/${id}`),
     onSuccess: () => {
-      qc.invalidateQueries(['subjects']);
+      qc.invalidateQueries({ queryKey: ['subjects'] });
       toast.success('Subject deleted');
     },
   });
@@ -133,30 +135,26 @@ export const useDeleteSubject = () => {
 
 export const useUpdateMilestone = () => {
   const qc = useQueryClient();
-  return useMutation(
-    (data: { id: number; title: string; subjectId: number }) =>
+  return useMutation({
+    mutationFn: (data: { id: number; title: string; subjectId: number }) =>
       api.put(`/milestones/${data.id}`, { title: data.title }),
-    {
-      onSuccess: (_res, vars) => {
-        qc.invalidateQueries(['milestone', vars.id]);
-        qc.invalidateQueries(['subject', vars.subjectId]);
-        qc.invalidateQueries(['subjects']);
-        toast.success('Milestone updated');
-      },
+    onSuccess: (_res, vars) => {
+      qc.invalidateQueries({ queryKey: ['milestone', vars.id] });
+      qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });
+      qc.invalidateQueries({ queryKey: ['subjects'] });
+      toast.success('Milestone updated');
     },
-  );
+  });
 };
 
 export const useDeleteMilestone = () => {
   const qc = useQueryClient();
-  return useMutation(
-    (data: { id: number; subjectId: number }) => api.delete(`/milestones/${data.id}`),
-    {
-      onSuccess: (_res, vars) => {
-        qc.invalidateQueries(['subject', vars.subjectId]);
-        qc.invalidateQueries(['subjects']);
-        toast.success('Milestone deleted');
-      },
+  return useMutation({
+    mutationFn: (data: { id: number; subjectId: number }) => api.delete(`/milestones/${data.id}`),
+    onSuccess: (_res, vars) => {
+      qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });
+      qc.invalidateQueries({ queryKey: ['subjects'] });
+      toast.success('Milestone deleted');
     },
-  );
+  });
 };
