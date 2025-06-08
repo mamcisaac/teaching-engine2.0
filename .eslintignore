@@ -2,3 +2,6 @@ dist
 build
 coverage
 *.config.js
+
+tmp
+client/tmp
