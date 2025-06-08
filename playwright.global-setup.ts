@@ -1,5 +1,13 @@
 import { execSync } from 'child_process';
 
-export default async function globalSetup() {
-  execSync('pnpm exec playwright install --with-deps', { stdio: 'inherit' });
+/**
+ * Ensures Playwright browsers are installed before tests run.
+ * Skips installation if dependencies cannot be installed.
+ */
+export default async function globalSetup(): Promise<void> {
+  try {
+    execSync('pnpm exec playwright install --with-deps', { stdio: 'inherit' });
+  } catch {
+    console.warn('Playwright install failed; skipping global setup.');
+  }
 }

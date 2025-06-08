@@ -61,8 +61,9 @@ teaching-engine2.0/
 ├── server/                # Express backend API
 │   ├── src/
 │   │   ├── routes/       # API endpoints
-│   │   ├── models/       # TypeScript interfaces
-│   │   └── app.ts        # Express application setup
+│   │   ├── prisma.ts     # Prisma client setup
+│   │   ├── validation.ts # Request schemas
+│   │   └── index.ts      # Express application setup
 ├── prisma/               # Database schema and migrations
 ├── tests/                # E2E Playwright tests
 ├── scripts/              # Utility scripts
@@ -126,6 +127,13 @@ pnpm run test:e2e
 
 # All tests with coverage
 pnpm run test:all
+```
+
+If the automatic Playwright installation fails (e.g., due to restricted `sudo` access in CI), install browsers and dependencies manually:
+
+```bash
+pnpm exec playwright install-deps
+pnpm exec playwright install
 ```
 
 ## 📋 Usage Guide

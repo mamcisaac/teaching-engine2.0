@@ -3,6 +3,7 @@ import SubjectsPage from './pages/SubjectsPage';
 import SubjectDetailPage from './pages/SubjectDetailPage';
 import MilestoneDetailPage from './pages/MilestoneDetailPage';
 import NewsletterEditor from './pages/NewsletterEditor';
+import WeeklyPlannerPage from './pages/WeeklyPlannerPage';
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
       <Route path="/subjects/:id" element={<SubjectDetailPage />} />
       <Route path="/milestones/:id" element={<MilestoneDetailPage />} />
       <Route path="/newsletter" element={<NewsletterEditor />} />
+      <Route path="/planner" element={<WeeklyPlannerPage />} />
     </Routes>
   );
 }
