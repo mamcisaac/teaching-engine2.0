@@ -139,6 +139,7 @@ server/.env.test
 # SQLite databases
 *.sqlite
 prisma/dev.db
+prisma/dev.db-journal
 server/dev-test.sqlite
 
 # Test output directories

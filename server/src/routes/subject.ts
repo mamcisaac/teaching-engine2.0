@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import prisma from '../prisma';
+import { validate, subjectSchema } from '../validation';
 
 const router = Router();
 
@@ -36,7 +37,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', validate(subjectSchema), async (req, res, next) => {
   try {
     const subject = await prisma.subject.create({
       data: { name: req.body.name },
@@ -47,7 +48,7 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', validate(subjectSchema), async (req, res, next) => {
   try {
     const subject = await prisma.subject.update({
       where: { id: Number(req.params.id) },

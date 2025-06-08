@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import prisma from '../prisma';
+import { validate, milestoneCreateSchema, milestoneUpdateSchema } from '../validation';
 
 const router = Router();
 
@@ -28,7 +29,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', validate(milestoneCreateSchema), async (req, res, next) => {
   try {
     const milestone = await prisma.milestone.create({
       data: {
@@ -44,7 +45,7 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', validate(milestoneUpdateSchema), async (req, res, next) => {
   try {
     const milestone = await prisma.milestone.update({
       where: { id: Number(req.params.id) },

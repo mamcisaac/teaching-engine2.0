@@ -1,0 +1,37 @@
+import { z, ZodSchema } from 'zod';
+import { Request, Response, NextFunction } from 'express';
+
+export const subjectSchema = z.object({
+  name: z.string().min(1),
+});
+
+export const milestoneCreateSchema = z.object({
+  title: z.string().min(1),
+  subjectId: z.number(),
+  targetDate: z.string().datetime().optional(),
+  estHours: z.number().int().optional(),
+});
+
+export const milestoneUpdateSchema = milestoneCreateSchema.omit({ subjectId: true });
+
+export const activityCreateSchema = z.object({
+  title: z.string().min(1),
+  milestoneId: z.number(),
+  durationMins: z.number().int().optional(),
+  privateNote: z.string().optional(),
+  publicNote: z.string().optional(),
+  completedAt: z.string().datetime().optional(),
+});
+
+export const activityUpdateSchema = activityCreateSchema.omit({ milestoneId: true });
+
+export function validate(schema: ZodSchema) {
+  return (req: Request, res: Response, next: NextFunction) => {
+    const result = schema.safeParse(req.body);
+    if (!result.success) {
+      return res.status(400).json({ errors: result.error.flatten() });
+    }
+    req.body = result.data;
+    next();
+  };
+}
