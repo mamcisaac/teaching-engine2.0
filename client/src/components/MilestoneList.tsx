@@ -83,7 +83,8 @@ export default function MilestoneList({ milestones, subjectId }: Props) {
               </div>
             </li>
           );
-        })}
+        })
+      }
       </ul>
       <Dialog open={editId !== null} onOpenChange={() => setEditId(null)}>
         <form onSubmit={handleEditSubmit} className="flex flex-col gap-2">

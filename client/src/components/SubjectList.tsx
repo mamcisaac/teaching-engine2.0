@@ -84,7 +84,8 @@ export default function SubjectList({ subjects }: Props) {
               </div>
             </li>
           );
-        })}
+        })
+      }
       </ul>
       <Dialog open={editId !== null} onOpenChange={() => setEditId(null)}>
         <form onSubmit={handleEditSubmit} className="flex flex-col gap-2">
