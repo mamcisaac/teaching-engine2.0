@@ -122,16 +122,19 @@ importers:
         specifier: 6.9.0
         version: 6.9.0(prisma@6.9.0(typescript@5.8.3))(typescript@5.8.3)
       cors:
-        specifier: ^2.8.5
+        specifier: 2.8.5
         version: 2.8.5
       express:
-        specifier: ^4.18.2
+        specifier: 4.21.2
         version: 4.21.2
       pino:
-        specifier: ^8.0.0
+        specifier: 8.21.0
         version: 8.21.0
+      prisma:
+        specifier: 6.9.0
+        version: 6.9.0(typescript@5.8.3)
       zod:
-        specifier: ^3.25.6
+        specifier: 3.25.56
         version: 3.25.56
     devDependencies:
       '@types/cors':
@@ -155,9 +158,6 @@ importers:
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@18.19.111)(ts-node@10.9.2(@types/node@18.19.111)(typescript@5.8.3))
-      prisma:
-        specifier: 6.9.0
-        version: 6.9.0(typescript@5.8.3)
       supertest:
         specifier: ^6.3.3
         version: 6.3.4
