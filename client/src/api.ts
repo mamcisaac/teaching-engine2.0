@@ -26,6 +26,23 @@ export interface Activity {
   completedAt?: string | null;
 }
 
+export interface Resource {
+  id: number;
+  filename: string;
+  url: string;
+  type: string;
+  size: number;
+  activityId?: number | null;
+  createdAt: string;
+}
+
+export interface MaterialList {
+  id: number;
+  weekStart: string;
+  items: string[];
+  prepared: boolean;
+}
+
 export interface WeeklyScheduleItem {
   id: number;
   day: number;
@@ -187,4 +204,46 @@ export const useLessonPlan = (weekStart: string) =>
 export const useSavePreferences = () =>
   useMutation((data: { teachingStyles: string[]; pacePreference: string; prepTime: number }) =>
     api.post('/preferences', data),
+  );
+
+export const useUploadResource = () =>
+  useMutation(
+    (data: { filename: string; file: File; type: string; size: number; activityId?: number }) => {
+      return new Promise<Resource>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = async () => {
+          try {
+            const res = await api.post('/resources', {
+              filename: data.filename,
+              type: data.type,
+              size: data.size,
+              activityId: data.activityId,
+              data: (reader.result as string).split(',')[1],
+            });
+            resolve(res.data as Resource);
+          } catch (err) {
+            reject(err);
+          }
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(data.file);
+      });
+    },
+  );
+
+export const useMaterialList = (weekStart: string) =>
+  useQuery<MaterialList>({
+    queryKey: ['materialList', weekStart],
+    queryFn: async () => {
+      const res = await api.get(`/material-lists/${weekStart}`);
+      const ml = res.data as MaterialList;
+      ml.items = JSON.parse(ml.items as unknown as string);
+      return ml;
+    },
+    enabled: !!weekStart,
+  });
+
+export const useCreateMaterialList = () =>
+  useMutation((data: { weekStart: string; items: string[] }) =>
+    api.post('/material-lists', data).then((res) => res.data as MaterialList),
   );
