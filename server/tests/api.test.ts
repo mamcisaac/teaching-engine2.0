@@ -1,6 +1,6 @@
 import request from 'supertest';
 import app from '../src/index';
-import prisma from '../src/prisma';
+import { prisma } from '../src/prisma';
 
 beforeAll(async () => {
   // Ensure SQLite doesn't immediately error when the database is busy
