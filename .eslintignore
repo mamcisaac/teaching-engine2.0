@@ -1,4 +1,5 @@
 dist
 build
 coverage
+packages/database/src/generated
 *.config.js

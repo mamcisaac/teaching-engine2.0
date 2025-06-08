@@ -46,9 +46,9 @@ else
 fi
 
 # 5. Generate Prisma client (only if needed)
-if [[ -d prisma ]] && [[ ! -d node_modules/.prisma/client ]]; then
+if [[ -d packages/database/prisma ]] && [[ ! -d node_modules/.prisma/client ]]; then
   echo "🗄️  Generating Prisma client..." >&2
-  cd prisma
+  cd packages/database/prisma
   pnpm exec prisma generate
   cd ..
 fi
@@ -64,9 +64,9 @@ while [[ $# -gt 0 ]]; do
       pnpm exec playwright install --with-deps
       
       # Run migrations
-      if [[ -d prisma ]]; then
+      if [[ -d packages/database/prisma ]]; then
         echo "🗄️  Running migrations..." >&2
-        cd prisma
+        cd packages/database/prisma
         pnpm exec prisma migrate deploy || true
         cd ..
       fi
@@ -88,9 +88,9 @@ while [[ $# -gt 0 ]]; do
       pnpm run build
       ;;
     --migrate)
-      if [[ -d prisma ]]; then
+      if [[ -d packages/database/prisma ]]; then
         echo "🗄️  Running migrations..." >&2
-        cd prisma
+        cd packages/database/prisma
         pnpm exec prisma migrate deploy || true
         cd ..
       fi

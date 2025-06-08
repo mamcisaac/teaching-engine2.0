@@ -5,4 +5,4 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - ./prisma/dev.db:/app/prisma/dev.db
+      - ./packages/database/prisma/dev.db:/app/prisma/dev.db

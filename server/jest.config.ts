@@ -6,10 +6,10 @@ const config: Config = {
   testMatch: ['**/tests/**/*.test.ts'],
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
-    '^@prisma/client$': '<rootDir>/../node_modules/.prisma/client',
+    '^@teaching-engine/database$': '<rootDir>/../packages/database/src/index.ts',
   },
   globalSetup: './tests/jest.setup.ts',
-  transformIgnorePatterns: ['node_modules/(?!(@prisma/client)/)'],
+  transformIgnorePatterns: ['node_modules/(?!(@teaching-engine/database)/)'],
 };
 
 export default config;

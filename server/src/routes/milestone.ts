@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
-import prisma from '../prisma';
+import { Prisma } from '@teaching-engine/database';
+import { prisma } from '../prisma';
 import { validate, milestoneCreateSchema, milestoneUpdateSchema } from '../validation';
 
 const router = Router();
@@ -57,7 +57,7 @@ router.put('/:id', validate(milestoneUpdateSchema), async (req, res, next) => {
     });
     res.json(milestone);
   } catch (err) {
-    if (err instanceof PrismaClientKnownRequestError && err.code === 'P2025') {
+    if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
       return res.status(404).json({ error: 'Not Found' });
     }
     next(err);
@@ -69,7 +69,7 @@ router.delete('/:id', async (req, res, next) => {
     await prisma.milestone.delete({ where: { id: Number(req.params.id) } });
     res.status(204).end();
   } catch (err) {
-    if (err instanceof PrismaClientKnownRequestError && err.code === 'P2025') {
+    if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
       return res.status(404).json({ error: 'Not Found' });
     }
     next(err);
