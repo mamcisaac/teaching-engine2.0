@@ -3,18 +3,36 @@ import prisma from '../prisma';
 
 const router = Router();
 
-// simple planning algorithm: grab first 5 incomplete activities ordered by id
+// simple planning algorithm with basic subject rotation
 async function generateSchedule() {
   const activities = await prisma.activity.findMany({
     where: { completedAt: null },
+    include: { milestone: { select: { subjectId: true } } },
     orderBy: { id: 'asc' },
-    take: 5,
   });
 
-  return activities.map((activity, idx) => ({
-    day: idx,
-    activityId: activity.id,
-  }));
+  const bySubject: Record<number, (typeof activities)[number][]> = {};
+  for (const act of activities) {
+    const subjectId = act.milestone.subjectId;
+    if (!bySubject[subjectId]) bySubject[subjectId] = [];
+    bySubject[subjectId].push(act);
+  }
+
+  const subjects = Object.keys(bySubject).map(Number);
+  const schedule: { day: number; activityId: number }[] = [];
+  let day = 0;
+  while (day < 5 && subjects.some((s) => bySubject[s].length > 0)) {
+    for (const s of subjects) {
+      const next = bySubject[s].shift();
+      if (next) {
+        schedule.push({ day, activityId: next.id });
+        day++;
+        if (day >= 5) break;
+      }
+    }
+  }
+
+  return schedule;
 }
 
 router.post('/generate', async (req, res, next) => {
