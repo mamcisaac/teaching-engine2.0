@@ -91,10 +91,10 @@ teaching-engine2.0/
 
    ```bash
    # Copy environment template
-   cp server/.env.example server/.env
+   cp server/.env.offline server/.env
 
    # Run migrations
-   pnpm --filter server prisma:migrate
+   pnpm --filter server exec prisma migrate dev
    ```
 
 3. **Start Development Servers**
