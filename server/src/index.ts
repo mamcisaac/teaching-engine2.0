@@ -4,6 +4,8 @@ import path from 'path';
 import subjectRoutes from './routes/subject';
 import milestoneRoutes from './routes/milestone';
 import activityRoutes from './routes/activity';
+import notificationRoutes from './routes/notification';
+import { startCronJobs } from './cron';
 import logger from './logger';
 
 const app = express();
@@ -13,6 +15,7 @@ app.use(express.json());
 app.use('/api/subjects', subjectRoutes);
 app.use('/api/milestones', milestoneRoutes);
 app.use('/api/activities', activityRoutes);
+app.use('/api/notifications', notificationRoutes);
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
 });
@@ -41,6 +44,7 @@ app.use(
 
 const PORT = process.env.PORT || 3000;
 if (process.env.NODE_ENV !== 'test') {
+  startCronJobs();
   app.listen(PORT, () => {
     logger.info(`Server listening on port ${PORT}`);
   });

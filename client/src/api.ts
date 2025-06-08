@@ -26,6 +26,13 @@ export interface Activity {
   completedAt?: string | null;
 }
 
+export interface Notification {
+  id: number;
+  message: string;
+  read: boolean;
+  createdAt: string;
+}
+
 export const useSubjects = () =>
   useQuery<Subject[]>({
     queryKey: ['subjects'],
@@ -155,6 +162,22 @@ export const useDeleteMilestone = () => {
       qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });
       qc.invalidateQueries({ queryKey: ['subjects'] });
       toast.success('Milestone deleted');
+    },
+  });
+};
+
+export const useNotifications = () =>
+  useQuery<Notification[]>({
+    queryKey: ['notifications'],
+    queryFn: async () => (await api.get('/notifications')).data,
+  });
+
+export const useMarkNotificationRead = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => api.post(`/notifications/${id}/read`),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['notifications'] });
     },
   });
 };
