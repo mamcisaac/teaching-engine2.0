@@ -9,7 +9,7 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "pnpm db:generate && concurrently \"pnpm:dev:*\"",
+    "dev": "pnpm db:generate && concurrently -k --success first \"pnpm --filter server run dev\" \"pnpm --filter client run dev\"",
     "build": "pnpm db:generate && pnpm -r build",
     "test": "pnpm --filter server run test && pnpm --filter client run test",
     "lint": "eslint --config .eslintrc.json \"**/*.{ts,tsx,js,jsx}\" --max-warnings 0",
