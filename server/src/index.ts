@@ -4,6 +4,7 @@ import path from 'path';
 import subjectRoutes from './routes/subject';
 import milestoneRoutes from './routes/milestone';
 import activityRoutes from './routes/activity';
+import subPlanRoutes from './routes/subplan';
 import lessonPlanRoutes, { savePreferences } from './routes/lessonPlan';
 import logger from './logger';
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use('/api/subjects', subjectRoutes);
 app.use('/api/milestones', milestoneRoutes);
 app.use('/api/activities', activityRoutes);
+app.use('/api/subplan', subPlanRoutes);
 app.use('/api/lesson-plans', lessonPlanRoutes);
 app.post('/api/preferences', savePreferences);
 app.get('/api/health', (_req, res) => {
