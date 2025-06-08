@@ -5,17 +5,22 @@
   "workspaces": [
     "client",
     "server",
-    "prisma",
-    "scripts"
+    "scripts",
+    "packages/*"
   ],
   "scripts": {
-    "dev": "concurrently -k --success first \"pnpm --filter server run start\" \"pnpm --filter client run dev\"",
-    "build": "pnpm --filter server run build && pnpm --filter client run build",
+    "dev": "pnpm db:generate && concurrently \"pnpm:dev:*\"",
+    "build": "pnpm db:generate && pnpm -r build",
     "test": "pnpm --filter server run test && pnpm --filter client run test",
     "lint": "eslint --config .eslintrc.json \"**/*.{ts,tsx,js,jsx}\" --max-warnings 0",
     "prepare": "husky install",
-    "seed": "pnpm --filter server run seed",
-    "postinstall": "cd prisma && pnpm exec prisma generate",
+    "db:generate": "pnpm --filter @teaching-engine/database db:generate",
+    "db:migrate": "pnpm --filter @teaching-engine/database db:migrate",
+    "db:push": "pnpm --filter @teaching-engine/database db:push",
+    "db:deploy": "pnpm --filter @teaching-engine/database db:deploy",
+    "db:studio": "pnpm --filter @teaching-engine/database db:studio",
+    "db:seed": "pnpm --filter @teaching-engine/database db:seed",
+    "postinstall": "pnpm --filter @teaching-engine/database db:generate",
     "playwright:test": "playwright test",
     "preplaywright:test": "pnpm exec playwright install --with-deps",
     "test:e2e": "pnpm playwright:test",

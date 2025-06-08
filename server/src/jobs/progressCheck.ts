@@ -1,5 +1,5 @@
 import cron from 'node-cron';
-import prisma from '../prisma';
+import { prisma } from '../prisma';
 import { sendEmail } from '../services/emailService';
 
 export async function runProgressCheck() {
