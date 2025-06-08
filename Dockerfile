@@ -2,7 +2,7 @@
 FROM node:18 AS build
 WORKDIR /app
 COPY . .
-RUN corepack enable && pnpm install --frozen-lockfile
+RUN corepack enable && pnpm install --no-frozen-lockfile
 RUN pnpm exec playwright install --with-deps
 RUN pnpm run build
 # Remove development dependencies to keep the runtime image small
@@ -11,7 +11,9 @@ RUN pnpm prune --prod
 FROM node:18-slim AS runner
 WORKDIR /app
 ENV NODE_ENV=production
-RUN corepack enable
+RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/* \
+    && corepack enable \
+    && corepack prepare pnpm@10.11.1 --activate
 COPY --from=build /app/server/dist ./server/dist
 COPY --from=build /app/client/dist ./client/dist
 COPY --from=build /app/prisma ./prisma
@@ -22,4 +24,4 @@ COPY --from=build /app/pnpm-workspace.yaml ./pnpm-workspace.yaml
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/server/node_modules ./server/node_modules
 EXPOSE 3000
-CMD ["sh", "-c", "pnpm exec prisma migrate deploy --schema=./prisma/schema.prisma && node server/dist/index.js"]
+CMD ["sh", "-c", "pnpm --filter server exec prisma migrate deploy --schema=../prisma/schema.prisma && node server/dist/index.js"]
