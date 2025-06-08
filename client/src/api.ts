@@ -31,6 +31,17 @@ export interface Notification {
   message: string;
   read: boolean;
   createdAt: string;
+export interface WeeklyScheduleItem {
+  id: number;
+  day: number;
+  activityId: number;
+  activity: Activity;
+}
+
+export interface LessonPlan {
+  id: number;
+  weekStart: string;
+  schedule: WeeklyScheduleItem[];
 }
 
 export const useSubjects = () =>
@@ -181,3 +192,19 @@ export const useMarkNotificationRead = () => {
     },
   });
 };
+export const useGeneratePlan = () =>
+  useMutation((weekStart: string) =>
+    api.post('/lesson-plans/generate', { weekStart }).then((res) => res.data as LessonPlan),
+  );
+
+export const useLessonPlan = (weekStart: string) =>
+  useQuery<LessonPlan>({
+    queryKey: ['lessonPlan', weekStart],
+    queryFn: async () => (await api.get(`/lesson-plans/${weekStart}`)).data,
+    enabled: !!weekStart,
+  });
+
+export const useSavePreferences = () =>
+  useMutation((data: { teachingStyles: string[]; pacePreference: string; prepTime: number }) =>
+    api.post('/preferences', data),
+  );

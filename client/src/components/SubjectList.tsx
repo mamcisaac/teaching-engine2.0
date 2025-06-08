@@ -40,12 +40,16 @@ export default function SubjectList({ subjects }: Props) {
       </button>
       <Dialog open={open} onOpenChange={setOpen}>
         <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="New subject"
-            className="border p-2"
-          />
+          <label htmlFor="subject-name" className="flex flex-col">
+            <span className="sr-only">Subject name</span>
+            <input
+              id="subject-name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="New subject"
+              className="border p-2"
+            />
+          </label>
           <button type="submit" className="self-end px-2 py-1 bg-blue-600 text-white">
             Save
           </button>
@@ -84,16 +88,19 @@ export default function SubjectList({ subjects }: Props) {
               </div>
             </li>
           );
-        })
-      }
+        })}
       </ul>
       <Dialog open={editId !== null} onOpenChange={() => setEditId(null)}>
         <form onSubmit={handleEditSubmit} className="flex flex-col gap-2">
-          <input
-            value={editName}
-            onChange={(e) => setEditName(e.target.value)}
-            className="border p-2"
-          />
+          <label htmlFor="edit-subject-name" className="flex flex-col">
+            <span className="sr-only">Edit subject name</span>
+            <input
+              id="edit-subject-name"
+              value={editName}
+              onChange={(e) => setEditName(e.target.value)}
+              className="border p-2"
+            />
+          </label>
           <button type="submit" className="self-end px-2 py-1 bg-blue-600 text-white">
             Save
           </button>

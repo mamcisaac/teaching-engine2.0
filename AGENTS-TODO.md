@@ -1,7 +1,7 @@
 # Teaching Engine 2.0 - Agent TODO List (All Phases)
 
 > 🎯 **Current Status**: Phases 0-3 should be complete. Use this checklist to verify before proceeding to Phase 4.
-> 
+>
 > 📋 **Instructions**: Verify all items in Phases 0-3 are checked. Then work through Phase 4 & 5 tasks sequentially.
 
 ---
@@ -9,7 +9,9 @@
 ## ✅ Phase 0 - Repository Scaffolding & Docs (COMPLETED)
 
 ### Initial Setup
+
 - [x] **Initialize repository**
+
   ```bash
   # Task 0.1: Git initialization
   git init
@@ -33,12 +35,14 @@
   ```
 
 ### Monorepo Structure
+
 - [x] **Configure pnpm workspaces**
+
   ```yaml
   # Task 0.3: pnpm-workspace.yaml
   packages:
-    - "client"
-    - "server"
+    - 'client'
+    - 'server'
   ```
 
 - [x] **Create package.json files**
@@ -57,6 +61,7 @@
   ```
 
 ### Project Structure
+
 - [x] **Create directory structure**
   ```
   # Task 0.5: Directory setup
@@ -73,7 +78,9 @@
   ```
 
 ### Development Tools
+
 - [x] **ESLint configuration**
+
   ```json
   // Task 0.6: .eslintrc.json
   {
@@ -84,6 +91,7 @@
   ```
 
 - [x] **Prettier configuration**
+
   ```json
   // Task 0.7: .prettierrc
   {
@@ -110,6 +118,7 @@
   ```
 
 ### CI/CD Pipeline
+
 - [x] **GitHub Actions workflow**
   ```yaml
   # Task 0.9: .github/workflows/ci.yml
@@ -124,12 +133,14 @@
   ```
 
 ### Documentation
+
 - [x] **Create README.md** with project overview
 - [x] **Create LICENSE** file (MIT)
 - [x] **Create CONTRIBUTING.md** guidelines
 - [x] **Node version specification** (.nvmrc with "18")
 
 ### Scripts
+
 - [x] **Codex setup script**
   ```bash
   # Task 0.10: scripts/codex-setup.sh
@@ -144,7 +155,9 @@
 ## ✅ Phase 1 - Backend API (COMPLETED)
 
 ### Server Setup
+
 - [x] **Initialize Express server**
+
   ```typescript
   // Task 1.1: server/src/app.ts
   import express from 'express';
@@ -163,7 +176,9 @@
   ```
 
 ### Database Setup
+
 - [x] **Initialize Prisma**
+
   ```bash
   # Task 1.3: Prisma setup
   cd server
@@ -172,6 +187,7 @@
   ```
 
 - [x] **Create database schema**
+
   ```prisma
   // Task 1.4: prisma/schema.prisma
   model Subject {
@@ -213,6 +229,7 @@
   ```
 
 ### API Routes - Subjects
+
 - [x] **GET /api/subjects** - List all subjects
 - [x] **GET /api/subjects/:id** - Get subject with milestones
 - [x] **POST /api/subjects** - Create new subject
@@ -220,6 +237,7 @@
 - [x] **DELETE /api/subjects/:id** - Delete subject
 
 ### API Routes - Milestones
+
 - [x] **GET /api/milestones** - List all milestones
 - [x] **GET /api/milestones/:id** - Get milestone with activities
 - [x] **POST /api/milestones** - Create new milestone
@@ -227,6 +245,7 @@
 - [x] **DELETE /api/milestones/:id** - Delete milestone
 
 ### API Routes - Activities
+
 - [x] **GET /api/activities** - List all activities
 - [x] **GET /api/activities/:id** - Get single activity
 - [x] **POST /api/activities** - Create new activity
@@ -234,7 +253,9 @@
 - [x] **DELETE /api/activities/:id** - Delete activity
 
 ### Testing
+
 - [x] **Jest configuration**
+
   ```javascript
   // Task 1.6: server/jest.config.js
   module.exports = {
@@ -243,7 +264,7 @@
     roots: ['<rootDir>/src', '<rootDir>/tests'],
     testMatch: ['**/*.test.ts'],
     collectCoverageFrom: ['src/**/*.ts'],
-    globalSetup: './tests/jest.setup.ts'
+    globalSetup: './tests/jest.setup.ts',
   };
   ```
 
@@ -254,6 +275,7 @@
   - [x] Error handling tests (404, 400, 500)
 
 ### Middleware
+
 - [x] **Error handling middleware**
 - [x] **Request logging middleware**
 - [x] **Validation middleware** (express-validator)
@@ -263,7 +285,9 @@
 ## ✅ Phase 2 - Frontend UI (COMPLETED)
 
 ### React Setup
+
 - [x] **Create Vite React app**
+
   ```bash
   # Task 2.1: Initialize client
   pnpm create vite client --template react-ts
@@ -279,7 +303,9 @@
   ```
 
 ### Tailwind CSS Setup
+
 - [x] **Install Tailwind**
+
   ```bash
   # Task 2.3: Tailwind setup
   pnpm add -D tailwindcss postcss autoprefixer
@@ -292,28 +318,32 @@
   module.exports = {
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
     theme: { extend: {} },
-    plugins: []
+    plugins: [],
   };
   ```
 
 ### API Client
+
 - [x] **Create API instance**
   ```typescript
   // Task 2.5: client/src/api.ts
   import axios from 'axios';
   const api = axios.create({
-    baseURL: 'http://localhost:3000/api'
+    baseURL: 'http://localhost:3000/api',
   });
   ```
 
 ### Components - Cards
+
 - [x] **SubjectCard component**
+
   - [x] Display subject name
   - [x] Show milestone count
   - [x] Progress indicator
   - [x] Edit/Delete buttons
 
 - [x] **MilestoneCard component**
+
   - [x] Display title and target date
   - [x] Progress bar (% complete)
   - [x] Activity count
@@ -326,24 +356,28 @@
   - [x] Edit/Delete buttons
 
 ### Components - Forms
+
 - [x] **Subject form modal** (using shadcn/ui Dialog)
 - [x] **Milestone form modal** with date picker
 - [x] **Activity form modal** with duration input
 
 ### Components - Layout
+
 - [x] **App layout with navigation**
 - [x] **Toast notifications** (shadcn/ui Sonner)
 - [x] **Loading states**
 - [x] **Error boundaries**
 
 ### State Management
+
 - [x] **TanStack Query setup**
+
   ```typescript
   // Task 2.6: Query client configuration
   const queryClient = new QueryClient({
     defaultOptions: {
-      queries: { staleTime: 5 * 60 * 1000 }
-    }
+      queries: { staleTime: 5 * 60 * 1000 },
+    },
   });
   ```
 
@@ -354,6 +388,7 @@
   - [x] Mutation hooks for CRUD
 
 ### Testing
+
 - [x] **Vitest configuration**
 - [x] **React Testing Library setup**
 - [x] **Component tests**
@@ -363,14 +398,16 @@
   - [x] Form validation tests
 
 ### E2E Testing
+
 - [x] **Playwright setup**
+
   ```javascript
   // Task 2.7: playwright.config.ts
   export default {
     testDir: './tests/e2e',
     use: {
-      baseURL: 'http://localhost:5173'
-    }
+      baseURL: 'http://localhost:5173',
+    },
   };
   ```
 
@@ -385,13 +422,16 @@
 ## ✅ Phase 3 - MVP Polish & Distribution (COMPLETED)
 
 ### Progress Tracking
+
 - [x] **Add completedAt field to Activity model**
+
   ```bash
   # Task 3.1: Database migration
   pnpm prisma migrate dev --name add_activity_completion
   ```
 
 - [x] **Progress calculation logic**
+
   ```typescript
   // Task 3.2: Progress service
   // Calculate % complete for milestones and subjects
@@ -404,7 +444,9 @@
   - [x] Cache invalidation
 
 ### Docker Setup
+
 - [x] **Create Dockerfile**
+
   ```dockerfile
   # Task 3.3: Multi-stage Dockerfile
   FROM node:18-alpine AS builder
@@ -412,7 +454,7 @@
   COPY . .
   RUN pnpm install --frozen-lockfile
   RUN pnpm run build
-  
+
   FROM node:18-alpine
   WORKDIR /app
   COPY --from=builder /app/dist ./dist
@@ -421,6 +463,7 @@
   ```
 
 - [x] **Docker Compose configuration**
+
   ```yaml
   # Task 3.4: docker-compose.yml
   version: '3.8'
@@ -428,7 +471,7 @@
     web:
       build: .
       ports:
-        - "3000:3000"
+        - '3000:3000'
       environment:
         - NODE_ENV=production
   ```
@@ -444,6 +487,7 @@
   ```
 
 ### Release Automation
+
 - [x] **GitHub Actions release workflow**
   ```yaml
   # Task 3.6: .github/workflows/release.yml
@@ -459,7 +503,9 @@
   ```
 
 ### Production Optimizations
+
 - [x] **Build optimization**
+
   - [x] Tree shaking
   - [x] Code splitting
   - [x] Asset compression
@@ -469,6 +515,7 @@
   - [x] Bundle size tracking
 
 ### Documentation Updates
+
 - [x] **API documentation**
 - [x] **Deployment guide**
 - [x] **User manual draft**
@@ -480,6 +527,7 @@
 ### 4.1 Weekly Planner Automation ⏰
 
 - [ ] **Database Schema Updates**
+
   ```bash
   # Task 4.1.1: Create new Prisma models
   # File: prisma/schema.prisma
@@ -487,7 +535,8 @@
   # Run: pnpm --filter server prisma migrate dev --name add_lesson_planning
   ```
 
-- [ ] **API Development** 
+- [ ] **API Development**
+
   ```typescript
   // Task 4.1.2: Create lesson plan routes
   // File: server/src/routes/lessonPlans.ts
@@ -499,6 +548,7 @@
   ```
 
 - [ ] **Planning Algorithm**
+
   ```typescript
   // Task 4.1.3: Implement activity suggestion engine
   // File: server/src/services/planningEngine.ts
@@ -510,6 +560,7 @@
   ```
 
 - [ ] **Frontend Components**
+
   ```typescript
   // Task 4.1.4: Build weekly planner UI
   // Files:
@@ -520,6 +571,7 @@
   ```
 
 - [ ] **Drag-and-Drop Implementation**
+
   ```typescript
   // Task 4.1.5: Add @dnd-kit/sortable
   // Enable dragging activities from suggestions to calendar slots
@@ -538,6 +590,7 @@
 ### 4.2 Resource Management System 📁
 
 - [ ] **File Storage Setup**
+
   ```bash
   # Task 4.2.1: Configure file storage
   # Create: server/uploads/ directory
@@ -546,6 +599,7 @@
   ```
 
 - [ ] **Database Models**
+
   ```prisma
   // Task 4.2.2: Add Resource model
   // File: prisma/schema.prisma
@@ -562,6 +616,7 @@
   ```
 
 - [ ] **Upload API**
+
   ```typescript
   // Task 4.2.3: Create upload endpoints
   // File: server/src/routes/resources.ts
@@ -572,6 +627,7 @@
   ```
 
 - [ ] **S3 Integration (Optional)**
+
   ```typescript
   // Task 4.2.4: Add cloud storage
   // File: server/src/services/s3Storage.ts
@@ -580,6 +636,7 @@
   ```
 
 - [ ] **Material Lists**
+
   ```typescript
   // Task 4.2.5: Generate prep lists
   // File: server/src/services/materialGenerator.ts
@@ -601,6 +658,7 @@
 ### 4.3 Progress Tracking & Alerts 📊
 
 - [ ] **Progress Analytics Service**
+
   ```typescript
   // Task 4.3.1: Create progress analyzer
   // File: server/src/services/progressAnalytics.ts
@@ -612,6 +670,7 @@
   ```
 
 - [ ] **Alert Configuration**
+
   ```typescript
   // Task 4.3.2: Define alert rules
   // File: server/src/models/alerts.ts
@@ -623,6 +682,7 @@
   ```
 
 - [ ] **Cron Job Setup**
+
   ```typescript
   // Task 4.3.3: Daily progress check
   // File: server/src/jobs/progressCheck.ts
@@ -631,6 +691,7 @@
   ```
 
 - [ ] **Email Service**
+
   ```typescript
   // Task 4.3.4: Configure email sending
   // File: server/src/services/emailService.ts
@@ -650,6 +711,7 @@
 ### 4.4 Newsletter Generator 📰
 
 - [ ] **Template System**
+
   ```typescript
   // Task 4.4.1: Create newsletter templates
   // File: server/src/templates/newsletters/
@@ -660,6 +722,7 @@
   ```
 
 - [ ] **Content Aggregation**
+
   ```typescript
   // Task 4.4.2: Build content collector
   // File: server/src/services/newsletterGenerator.ts
@@ -671,6 +734,7 @@
   ```
 
 - [ ] **Export Formats**
+
   ```typescript
   // Task 4.4.3: Multi-format export
   // Install: puppeteer (PDF), docx (Word)
@@ -691,7 +755,8 @@
 
 ### 4.5 Emergency Sub Plans 🚨
 
-- [ ] **Sub Plan Generator**
+- [x] **Sub Plan Generator**
+
   ```typescript
   // Task 4.5.1: Create sub plan service
   // File: server/src/services/subPlanGenerator.ts
@@ -703,7 +768,7 @@
   // - Emergency contacts
   ```
 
-- [ ] **Quick Access UI**
+- [x] **Quick Access UI**
   ```typescript
   // Task 4.5.2: Emergency button component
   // File: client/src/components/EmergencyPlanButton.tsx
@@ -716,6 +781,7 @@
 ### 4.6 Authentication & Multi-User 🔐
 
 - [ ] **Auth Setup**
+
   ```typescript
   // Task 4.6.1: Implement authentication
   // Options: NextAuth, Auth0, or custom JWT
@@ -725,6 +791,7 @@
   ```
 
 - [ ] **User Model**
+
   ```prisma
   // Task 4.6.2: Add User model
   model User {
@@ -761,6 +828,7 @@
 ### 5.1 Data Extraction Pipeline 📚
 
 - [ ] **PDF Parser Setup**
+
   ```typescript
   // Task 5.1.1: Configure PDF extraction
   // Install: pdf-parse
@@ -781,6 +849,7 @@
 ### 5.2 AI Integration 🤖
 
 - [ ] **OpenAI Setup**
+
   ```typescript
   // Task 5.2.1: Configure OpenAI client
   // File: server/src/services/openaiService.ts
@@ -789,6 +858,7 @@
   ```
 
 - [ ] **Embedding Generation**
+
   ```typescript
   // Task 5.2.2: Create embeddings for outcomes
   // Cache embeddings in database
@@ -808,6 +878,7 @@
 ### 5.3 Curriculum Wizard UI 🧙
 
 - [ ] **Multi-Step Form**
+
   ```typescript
   // Task 5.3.1: Build setup wizard
   // Files:
@@ -829,6 +900,7 @@
 ### 5.4 Schedule Generation 📅
 
 - [ ] **Holiday Integration**
+
   ```typescript
   // Task 5.4.1: Fetch school calendar
   // API: https://www.princeedwardisland.ca/api/holidays
@@ -849,6 +921,7 @@
 ### 5.5 Security & Admin Features 🔒
 
 - [ ] **Admin Token Gate**
+
   ```typescript
   // Task 5.5.1: Protect curriculum import
   // Middleware: requireAdminToken
@@ -869,6 +942,7 @@
 ## ✅ Definition of Done Checklists
 
 ### Phase 0 Checklist (VERIFY COMPLETE)
+
 - [x] Repository initialized with git
 - [x] .gitignore includes all necessary patterns
 - [x] pnpm workspaces configured
@@ -881,6 +955,7 @@
 - [x] Codex setup script executable
 
 ### Phase 1 Checklist (VERIFY COMPLETE)
+
 - [x] Express server starts on port 3000
 - [x] CORS enabled for frontend
 - [x] Prisma schema includes all three models
@@ -893,6 +968,7 @@
 - [x] API responds to health check endpoint
 
 ### Phase 2 Checklist (VERIFY COMPLETE)
+
 - [x] Vite dev server runs without errors
 - [x] Tailwind styles apply correctly
 - [x] All component files created
@@ -905,6 +981,7 @@
 - [x] E2E tests pass in Playwright
 
 ### Phase 3 Checklist (VERIFY COMPLETE)
+
 - [x] Activities can be marked complete
 - [x] Progress updates automatically
 - [x] Docker image builds successfully
@@ -917,6 +994,7 @@
 - [x] README includes all setup instructions
 
 ### Phase 4 Checklist (TO COMPLETE)
+
 - [ ] All features implemented and tested
 - [ ] 90%+ test coverage on new code
 - [ ] API documentation updated
@@ -927,6 +1005,7 @@
 - [ ] CI/CD pipeline passing
 
 ### Phase 5 Checklist (TO COMPLETE)
+
 - [ ] Curriculum import working for Math, Science, Language Arts
 - [ ] 90%+ accuracy in outcome clustering
 - [ ] Full year schedule generated in <30 seconds
@@ -940,6 +1019,7 @@
 ## 🚀 Deployment Steps
 
 1. **Environment Variables**
+
    ```bash
    # Add to server/.env
    AWS_ACCESS_KEY_ID=
@@ -950,11 +1030,13 @@
    ```
 
 2. **Database Migrations**
+
    ```bash
    pnpm --filter server prisma migrate deploy
    ```
 
 3. **Build & Test**
+
    ```bash
    pnpm run build
    pnpm run test:all
@@ -971,6 +1053,7 @@
 ## 📊 Success Metrics
 
 Track these metrics after each phase:
+
 - **Planning Time Reduction**: Target 60% less time on weekly planning
 - **User Satisfaction**: Survey teachers monthly
 - **System Adoption**: Track daily active users
