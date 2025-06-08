@@ -58,6 +58,9 @@ fi
 echo "📦  Installing dependencies..." >&2
 pnpm install --frozen-lockfile
 
+# Install Playwright browsers and required OS dependencies
+pnpm exec playwright install --with-deps
+
 # 6. Generate Prisma client ----------------------------------------------------
 if [[ -d prisma ]]; then
   echo "🗄️  Generating Prisma client..." >&2
