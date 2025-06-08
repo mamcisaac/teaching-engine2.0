@@ -20,15 +20,15 @@ Teaching Engine 2.0 aims to be the "digital teaching assistant" that reduces adm
 - **Docker Deployment**: Containerized application for easy deployment
 - **Test Coverage**: Comprehensive unit, integration, and E2E tests
 
-### Phase 4 - Post-MVP Enhancements (To Be Implemented)
+### Phase 4 - Implemented Features
 
-1. **Weekly Planner Automation**: Intelligent activity suggestions based on curriculum pacing, teaching styles, and milestone deadlines
-2. **Resource Management**: File uploads, material lists, and printable preparation checklists
+1. **Weekly Planner Automation**: Intelligent activity suggestions and drag-and-drop scheduling
+2. **Resource Management**: File uploads, material lists, and preparation checklists
 3. **Progress Alerts**: Automated notifications when milestones fall behind schedule
-4. **Newsletter Generator**: Auto-draft parent communications based on completed activities
+4. **Newsletter Generator**: Draft newsletters from recent activities
 5. **Emergency Sub Plans**: One-click generation of detailed substitute teacher plans
-6. **Authentication & Multi-user**: Teacher accounts with secure data isolation
-7. **Cloud Backup**: Optional cloud storage integration for data safety
+6. **Authentication & Multi-user**: _pending_
+7. **Cloud Backup**: _pending_
 
 ### Phase 5 - Curriculum Intelligence (To Be Implemented)
 

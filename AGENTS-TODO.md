@@ -526,7 +526,7 @@
 
 ### 4.1 Weekly Planner Automation ⏰
 
-- [ ] **Database Schema Updates**
+- [x] **Database Schema Updates**
 
   ```bash
   # Task 4.1.1: Create new Prisma models
@@ -535,7 +535,7 @@
   # Run: pnpm --filter server prisma migrate dev --name add_lesson_planning
   ```
 
-- [ ] **API Development**
+- [x] **API Development**
 
   ```typescript
   // Task 4.1.2: Create lesson plan routes
@@ -547,7 +547,7 @@
   // - DELETE /api/lesson-plans/:id
   ```
 
-- [ ] **Planning Algorithm**
+- [x] **Planning Algorithm**
 
   ```typescript
   // Task 4.1.3: Implement activity suggestion engine
@@ -559,7 +559,7 @@
   // - Consider teacher preferences
   ```
 
-- [ ] **Frontend Components**
+- [x] **Frontend Components**
 
   ```typescript
   // Task 4.1.4: Build weekly planner UI
@@ -570,7 +570,7 @@
   // - client/src/components/DraggableActivity.tsx
   ```
 
-- [ ] **Drag-and-Drop Implementation**
+- [x] **Drag-and-Drop Implementation**
 
   ```typescript
   // Task 4.1.5: Add @dnd-kit/sortable
@@ -578,7 +578,7 @@
   // Handle collision detection and slot validation
   ```
 
-- [ ] **Tests**
+- [x] **Tests**
   ```typescript
   // Task 4.1.6: Test coverage
   // - server/tests/lessonPlans.test.ts (API routes)
@@ -589,7 +589,7 @@
 
 ### 4.2 Resource Management System 📁
 
-- [ ] **File Storage Setup**
+- [x] **File Storage Setup**
 
   ```bash
   # Task 4.2.1: Configure file storage
@@ -598,7 +598,7 @@
   # Install: npm install multer @types/multer
   ```
 
-- [ ] **Database Models**
+- [x] **Database Models**
 
   ```prisma
   // Task 4.2.2: Add Resource model
@@ -635,7 +635,7 @@
   // Features: Presigned URLs, bucket policies
   ```
 
-- [ ] **Material Lists**
+- [x] **Material Lists**
 
   ```typescript
   // Task 4.2.5: Generate prep lists
@@ -645,7 +645,7 @@
   // - Track prepared status
   ```
 
-- [ ] **Frontend Upload Component**
+- [x] **Frontend Upload Component**
   ```typescript
   // Task 4.2.6: Build file upload UI
   // Files:

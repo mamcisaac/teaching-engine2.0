@@ -1,21 +1,9 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import prisma from '../prisma';
+import { generateSchedule } from '../services/planningEngine';
 
 const router = Router();
 
-// simple planning algorithm: grab first 5 incomplete activities ordered by id
-async function generateSchedule() {
-  const activities = await prisma.activity.findMany({
-    where: { completedAt: null },
-    orderBy: { id: 'asc' },
-    take: 5,
-  });
-
-  return activities.map((activity, idx) => ({
-    day: idx,
-    activityId: activity.id,
-  }));
-}
 
 router.post('/generate', async (req, res, next) => {
   try {
