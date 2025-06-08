@@ -3,6 +3,8 @@ import app from '../src/index';
 import prisma from '../src/prisma';
 
 beforeAll(async () => {
+  // Ensure SQLite doesn't immediately error when the database is busy
+  await prisma.$queryRawUnsafe('PRAGMA busy_timeout = 20000');
   await prisma.activity.deleteMany();
   await prisma.milestone.deleteMany();
   await prisma.subject.deleteMany();
