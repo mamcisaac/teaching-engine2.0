@@ -1,5 +1,3 @@
-import { PrismaClient } from '../../node_modules/.prisma/client';
-
-const prisma = new PrismaClient();
-
-export default prisma;
+export { prisma } from '@teaching-engine/database';
+export { PrismaClient } from '@teaching-engine/database';
+export type { Prisma } from '@teaching-engine/database';

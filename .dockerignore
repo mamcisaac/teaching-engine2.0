@@ -1,7 +1,7 @@
 node_modules
 client/node_modules
 server/node_modules
-prisma/node_modules
+packages/database/prisma/node_modules
 scripts/node_modules
 
 dist
@@ -14,4 +14,4 @@ tests
 
 *.env
 *.sqlite
-prisma/dev.db
+packages/database/prisma/dev.db

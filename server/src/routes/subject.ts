@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
-import prisma from '../prisma';
+import { PrismaClientKnownRequestError } from '@teaching-engine/database/runtime/library';
+import { prisma } from '../prisma';
 import { validate, subjectSchema } from '../validation';
 
 const router = Router();
