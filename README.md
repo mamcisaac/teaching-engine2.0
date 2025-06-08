@@ -77,6 +77,14 @@ pnpm test --filter client
 pnpm playwright:test # end-to-end tests
 ```
 
+### Docker Image for Tests
+
+Build the full test image (including Playwright browsers) with:
+
+```bash
+docker build -t curriculum-planner-test .
+```
+
 ## 🤝 Contributing
 
 Copy `server/.env.test.example` to `server/.env.test` before running tests.
