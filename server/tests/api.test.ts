@@ -145,6 +145,20 @@ describe('Preferences API', () => {
 });
 
 describe('Resource API', () => {
+  let resourceId: number;
+  let activityId: number;
+
+  beforeAll(async () => {
+    const subject = await prisma.subject.create({ data: { name: 'ResSubj' } });
+    const milestone = await prisma.milestone.create({
+      data: { title: 'ResM', subjectId: subject.id },
+    });
+    const activity = await prisma.activity.create({
+      data: { title: 'ResA', milestoneId: milestone.id },
+    });
+    activityId = activity.id;
+  });
+
   it('uploads and lists resources', async () => {
     const upload = await request(app)
       .post('/api/resources')
@@ -153,10 +167,31 @@ describe('Resource API', () => {
         data: Buffer.from('hi').toString('base64'),
         type: 'text/plain',
         size: 2,
+        activityId,
       });
     expect(upload.status).toBe(201);
+    resourceId = upload.body.id;
     const list = await request(app).get('/api/resources');
     expect(list.body.length).toBeGreaterThan(0);
+  });
+
+  it('retrieves single resource', async () => {
+    const res = await request(app).get(`/api/resources/${resourceId}`);
+    expect(res.status).toBe(200);
+    expect(res.body.id).toBe(resourceId);
+  });
+
+  it('lists resources by activity', async () => {
+    const res = await request(app).get(`/api/resources/activity/${activityId}`);
+    expect(res.status).toBe(200);
+    expect(res.body.length).toBeGreaterThan(0);
+  });
+
+  it('deletes resource', async () => {
+    const del = await request(app).delete(`/api/resources/${resourceId}`);
+    expect(del.status).toBe(204);
+    const check = await request(app).get(`/api/resources/${resourceId}`);
+    expect(check.status).toBe(404);
   });
 });
 

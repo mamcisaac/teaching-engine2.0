@@ -231,6 +231,31 @@ export const useUploadResource = () =>
     },
   );
 
+export const useResource = (id: number) =>
+  useQuery<Resource>({
+    queryKey: ['resource', id],
+    queryFn: async () => (await api.get(`/resources/${id}`)).data,
+    enabled: !!id,
+  });
+
+export const useResourcesByActivity = (activityId: number) =>
+  useQuery<Resource[]>({
+    queryKey: ['resources', 'activity', activityId],
+    queryFn: async () => (await api.get(`/resources/activity/${activityId}`)).data,
+    enabled: !!activityId,
+  });
+
+export const useDeleteResource = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => api.delete(`/resources/${id}`),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['resources'] });
+      qc.invalidateQueries({ queryKey: ['resource'] });
+    },
+  });
+};
+
 export const useMaterialList = (weekStart: string) =>
   useQuery<MaterialList>({
     queryKey: ['materialList', weekStart],
