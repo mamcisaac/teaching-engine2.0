@@ -5,24 +5,23 @@
   "scripts": {
     "dev": "ts-node src/index.ts",
     "start": "ts-node src/index.ts",
-    "prestart": "pnpm exec prisma generate --schema=../prisma/schema.prisma",
-    "prebuild": "pnpm exec prisma generate --schema=../prisma/schema.prisma",
+    "prestart": "pnpm exec prisma generate --schema=../packages/database/prisma/schema.prisma",
+    "prebuild": "pnpm exec prisma generate --schema=../packages/database/prisma/schema.prisma",
     "build": "tsc",
     "test": "jest",
     "seed": "ts-node ../scripts/seed.ts",
-    "pretest": "pnpm exec prisma generate --schema=../prisma/schema.prisma && pnpm exec prisma migrate deploy --schema=../prisma/schema.prisma"
+    "pretest": "pnpm exec prisma generate --schema=../packages/database/prisma/schema.prisma && pnpm exec prisma migrate deploy --schema=../packages/database/prisma/schema.prisma"
   },
   "dependencies": {
-    "@prisma/client": "6.9.0",
     "cors": "2.8.5",
     "express": "4.21.2",
     "pdfkit": "^0.17.1",
     "handlebars": "^4.7.8",
     "pino": "8.21.0",
-    "prisma": "6.9.0",
     "zod": "3.25.56",
     "node-cron": "^3.0.3",
-    "nodemailer": "^6.9.11"
+    "nodemailer": "^6.9.11",
+    "@teaching-engine/database": "workspace:*"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
