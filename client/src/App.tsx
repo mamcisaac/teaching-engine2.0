@@ -4,6 +4,7 @@ import SubjectDetailPage from './pages/SubjectDetailPage';
 import MilestoneDetailPage from './pages/MilestoneDetailPage';
 import WeeklyPlannerPage from './pages/WeeklyPlannerPage';
 import NotificationsPage from './pages/NotificationsPage';
+import NewsletterEditor from './pages/NewsletterEditor';
 import { NotificationProvider } from './contexts/NotificationContext';
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/milestones/:id" element={<MilestoneDetailPage />} />
         <Route path="/planner" element={<WeeklyPlannerPage />} />
         <Route path="/notifications" element={<NotificationsPage />} />
+        <Route path="/newsletters/new" element={<NewsletterEditor />} />
       </Routes>
     </NotificationProvider>
   );
