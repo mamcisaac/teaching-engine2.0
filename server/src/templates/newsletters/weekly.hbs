@@ -1,0 +1,13 @@
+<h1>Weekly Newsletter</h1>
+<ul>
+{{#each subjects}}
+<li>
+  <h2>{{this.name}}</h2>
+  <ul>
+    {{#each this.activities}}
+    <li>{{this.title}}</li>
+    {{/each}}
+  </ul>
+</li>
+{{/each}}
+</ul>

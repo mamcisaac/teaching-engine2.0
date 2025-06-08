@@ -1,0 +1,9 @@
+<h1>Monthly Newsletter</h1>
+{{> summary }}
+<ul>
+{{#each subjects}}
+<li>
+  <strong>{{this.name}}</strong>: {{this.count}} activities completed
+</li>
+{{/each}}
+</ul>
