@@ -94,7 +94,8 @@ export default function ActivityList({ activities, milestoneId, subjectId }: Pro
               </div>
             </li>
           );
-        })}
+        })
+      }
       </ul>
       <Dialog open={editId !== null} onOpenChange={() => setEditId(null)}>
         <form onSubmit={handleEditSubmit} className="flex flex-col gap-2">
