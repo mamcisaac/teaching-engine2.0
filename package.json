@@ -12,7 +12,7 @@
     "dev": "concurrently -k --success first \"pnpm --filter server run start\" \"pnpm --filter client run dev\"",
     "build": "pnpm --filter server run build && pnpm --filter client run build",
     "test": "pnpm --filter server run test && pnpm --filter client run test",
-    "lint": "eslint \"**/*.{ts,tsx,js,jsx}\" --max-warnings 0 || true",
+    "lint": "eslint \"**/*.{ts,tsx,js,jsx}\" --max-warnings 0",
     "prepare": "husky install",
     "seed": "pnpm --filter server run seed",
     "postinstall": "cd prisma && pnpm exec prisma generate",
