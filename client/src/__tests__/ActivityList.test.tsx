@@ -26,4 +26,20 @@ describe('ActivityList', () => {
     expect(screen.getByText('A1')).toBeInTheDocument();
     expect(screen.getByText('A2')).toBeInTheDocument();
   });
+
+  it('associates each checkbox with a label', () => {
+    const activities: Activity[] = [
+      { id: 1, title: 'A1', milestoneId: 1, completedAt: null },
+      { id: 2, title: 'A2', milestoneId: 1, completedAt: null },
+    ];
+
+    renderWithRouter(<ActivityList activities={activities} milestoneId={1} />);
+
+    activities.forEach((a) => {
+      const labelText = `Mark ${a.title} complete`;
+      const checkbox = screen.getByLabelText(labelText) as HTMLInputElement;
+      expect(checkbox).toBeInTheDocument();
+      expect(checkbox.type).toBe('checkbox');
+    });
+  });
 });

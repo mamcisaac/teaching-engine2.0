@@ -59,10 +59,12 @@ export default function ActivityList({ activities, milestoneId, subjectId }: Pro
       <ul className="space-y-2">
         {activities.map((a) => {
           const progress = a.completedAt ? 100 : 0;
+          const checkboxId = `activity-${a.id}`;
           return (
             <li key={a.id} className="border p-2 rounded space-y-1">
               <div className="flex items-center gap-2">
                 <input
+                  id={checkboxId}
                   type="checkbox"
                   checked={!!a.completedAt}
                   onChange={(e) =>
@@ -74,6 +76,9 @@ export default function ActivityList({ activities, milestoneId, subjectId }: Pro
                     })
                   }
                 />
+                <label htmlFor={checkboxId} className="sr-only">
+                  Mark {a.title} complete
+                </label>
                 <span className="flex-1">{a.title}</span>
                 <div className="flex gap-1">
                   <button
