@@ -1,4 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import WeeklyPlannerPage from '../src/pages/WeeklyPlannerPage';
 import { renderWithRouter } from '../src/test-utils';
 import type { LessonPlan } from '../src/api';
@@ -23,6 +23,20 @@ let lessonPlanData: LessonPlan | undefined = {
   weekStart: '2025-01-01T00:00:00.000Z',
   schedule: [],
 };
+let subjectsData = [
+  {
+    id: 1,
+    name: 'Subj',
+    milestones: [
+      {
+        id: 1,
+        title: 'M1',
+        subjectId: 1,
+        activities: [{ id: 1, title: 'Act1', milestoneId: 1, completedAt: null }],
+      },
+    ],
+  },
+];
 
 vi.mock('../src/api', async () => {
   const actual = await vi.importActual('../src/api');
@@ -32,7 +46,7 @@ vi.mock('../src/api', async () => {
       data: lessonPlanData,
       refetch: refetchMock,
     }),
-    useSubjects: () => ({ data: [] }),
+    useSubjects: () => ({ data: subjectsData }),
     useGeneratePlan: () => generateState,
   };
 });
@@ -43,6 +57,21 @@ beforeEach(() => {
     weekStart: '2025-01-01T00:00:00.000Z',
     schedule: [],
   };
+  generateState.isPending = false;
+  subjectsData = [
+    {
+      id: 1,
+      name: 'Subj',
+      milestones: [
+        {
+          id: 1,
+          title: 'M1',
+          subjectId: 1,
+          activities: [{ id: 1, title: 'Act1', milestoneId: 1, completedAt: null }],
+        },
+      ],
+    },
+  ];
   mutateMock.mockClear();
   refetchMock.mockClear();
   toastErrorMock.mockClear();
@@ -90,4 +119,30 @@ test('handles missing plan gracefully', () => {
   expect(screen.getByTestId('day-0')).toBeInTheDocument();
   // Check if it shows Monday label
   expect(screen.getByText('Mon')).toBeInTheDocument();
+});
+
+test('dragging activity onto day triggers save', async () => {
+  // @ts-expect-error - global defined in vitest
+  global.fetch = vi.fn(() => Promise.resolve({ ok: true })) as unknown as typeof fetch;
+  const { rerender } = renderWithRouter(<WeeklyPlannerPage />);
+  const activity = screen.getByText('Act1');
+  const dayZone = screen.getByTestId('day-0');
+
+  fireEvent.pointerDown(activity);
+  fireEvent.pointerMove(dayZone);
+  fireEvent.pointerUp(dayZone);
+
+  await screen.findByTestId('day-0');
+  await waitFor(() => expect(global.fetch).toHaveBeenCalled());
+  expect(refetchMock).toHaveBeenCalled();
+
+  // simulate updated data returned from refetch
+  lessonPlanData!.schedule.push({
+    id: 0,
+    day: 0,
+    activityId: 1,
+    activity: subjectsData[0].milestones[0].activities[0],
+  });
+  rerender(<WeeklyPlannerPage />);
+  expect(screen.getByText('Act1')).toBeInTheDocument();
 });
