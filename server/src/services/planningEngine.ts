@@ -3,6 +3,7 @@ import type { Activity } from '@teaching-engine/database';
 
 export interface ScheduleItem {
   day: number;
+  slotId: number;
   activityId: number;
 }
 
@@ -25,17 +26,17 @@ export async function generateWeeklySchedule(): Promise<ScheduleItem[]> {
     bySubject[s].push(act);
   }
 
-  const subjects = Object.keys(bySubject).map(Number);
+  const slots = await prisma.timetableSlot.findMany({
+    where: { subjectId: { not: null } },
+    orderBy: [{ day: 'asc' }, { startMin: 'asc' }],
+  });
+
   const schedule: ScheduleItem[] = [];
-  let day = 0;
-  while (day < 5 && subjects.some((s) => bySubject[s].length > 0)) {
-    for (const s of subjects) {
-      const next = bySubject[s].shift();
-      if (next) {
-        schedule.push({ day, activityId: next.id });
-        day++;
-        if (day >= 5) break;
-      }
+  for (const slot of slots) {
+    const list = slot.subjectId ? bySubject[slot.subjectId] : undefined;
+    const next = list?.shift();
+    if (next) {
+      schedule.push({ day: slot.day, slotId: slot.id, activityId: next.id });
     }
   }
 

@@ -52,6 +52,7 @@ export interface MaterialList {
 export interface WeeklyScheduleItem {
   id: number;
   day: number;
+  slotId: number;
   activityId: number;
   activity: Activity;
 }
@@ -340,3 +341,28 @@ export const useNewsletters = () =>
     queryKey: ['newsletters'],
     queryFn: async () => (await api.get('/newsletters')).data,
   });
+
+export interface TimetableSlot {
+  id: number;
+  day: number;
+  startMin: number;
+  endMin: number;
+  subjectId?: number | null;
+  subject?: Subject | null;
+}
+
+export const useTimetable = () =>
+  useQuery<TimetableSlot[]>({
+    queryKey: ['timetable'],
+    queryFn: async () => (await api.get('/timetable')).data,
+  });
+
+export const useSaveTimetable = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (slots: Omit<TimetableSlot, 'id' | 'subject'>[]) => api.put('/timetable', slots),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['timetable'] });
+    },
+  });
+};

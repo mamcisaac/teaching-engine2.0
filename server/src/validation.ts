@@ -26,6 +26,13 @@ export const activityCreateSchema = z.object({
 
 export const activityUpdateSchema = activityCreateSchema.omit({ milestoneId: true });
 
+export const timetableEntrySchema = z.object({
+  day: z.number().int().min(0).max(6),
+  startMin: z.number().int().min(0).max(1440),
+  endMin: z.number().int().min(1).max(1440),
+  subjectId: z.number().int().optional().nullable(),
+});
+
 export const newsletterGenerateSchema = z.object({
   startDate: z.string().datetime(),
   endDate: z.string().datetime(),

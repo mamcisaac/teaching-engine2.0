@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { DndContext, DragEndEvent } from '@dnd-kit/core';
-import { useLessonPlan, useSubjects, Activity, getWeekStartISO } from '../api';
+import { useLessonPlan, useSubjects, Activity, getWeekStartISO, useTimetable } from '../api';
 import ActivitySuggestionList from '../components/ActivitySuggestionList';
 import WeekCalendarGrid from '../components/WeekCalendarGrid';
 import AutoFillButton from '../components/AutoFillButton';
@@ -9,6 +9,7 @@ export default function WeeklyPlannerPage() {
   const [weekStart, setWeekStart] = useState(() => getWeekStartISO(new Date()));
   const { data: plan, refetch } = useLessonPlan(weekStart);
   const subjects = useSubjects().data ?? [];
+  const { data: timetable } = useTimetable();
   const activities = useMemo(() => {
     const all: Record<number, Activity> = {};
     subjects.forEach((s) =>
@@ -50,7 +51,7 @@ export default function WeeklyPlannerPage() {
         <AutoFillButton weekStart={weekStart} onGenerated={() => refetch()} />
       </div>
       <DndContext onDragEnd={handleDragEnd}>
-        <WeekCalendarGrid schedule={schedule} activities={activities} />
+        <WeekCalendarGrid schedule={schedule} activities={activities} timetable={timetable} />
         {!plan && (
           <p data-testid="no-plan-message" className="text-sm text-gray-600">
             No plan for this week. Click Auto Fill to generate one.

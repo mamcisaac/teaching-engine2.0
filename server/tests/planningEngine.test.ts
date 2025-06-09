@@ -6,6 +6,7 @@ describe('planning engine', () => {
     await prisma.$queryRawUnsafe('PRAGMA busy_timeout = 20000');
     await prisma.weeklySchedule.deleteMany();
     await prisma.lessonPlan.deleteMany();
+    await prisma.timetableSlot.deleteMany();
     await prisma.resource.deleteMany();
     await prisma.activity.deleteMany();
     await prisma.milestone.deleteMany();
@@ -15,6 +16,7 @@ describe('planning engine', () => {
   afterAll(async () => {
     await prisma.weeklySchedule.deleteMany();
     await prisma.lessonPlan.deleteMany();
+    await prisma.timetableSlot.deleteMany();
     await prisma.resource.deleteMany();
     await prisma.activity.deleteMany();
     await prisma.milestone.deleteMany();
@@ -26,6 +28,14 @@ describe('planning engine', () => {
     const subj = await prisma.subject.create({ data: { name: 'S' } });
     const milestone = await prisma.milestone.create({
       data: { title: 'M', subjectId: subj.id },
+    });
+    await prisma.timetableSlot.createMany({
+      data: [0, 1, 2, 3, 4].map((d) => ({
+        day: d,
+        startMin: 540,
+        endMin: 600,
+        subjectId: subj.id,
+      })),
     });
     await prisma.activity.createMany({
       data: [
@@ -46,6 +56,7 @@ describe('planning engine', () => {
   it('rotates subjects sequentially', async () => {
     await prisma.weeklySchedule.deleteMany();
     await prisma.lessonPlan.deleteMany();
+    await prisma.timetableSlot.deleteMany();
     await prisma.resource.deleteMany();
     await prisma.activity.deleteMany();
     await prisma.milestone.deleteMany();
@@ -58,6 +69,14 @@ describe('planning engine', () => {
     });
     const m2 = await prisma.milestone.create({
       data: { title: 'M2', subjectId: s2.id },
+    });
+    await prisma.timetableSlot.createMany({
+      data: [
+        { day: 0, startMin: 540, endMin: 600, subjectId: s1.id },
+        { day: 1, startMin: 540, endMin: 600, subjectId: s2.id },
+        { day: 2, startMin: 540, endMin: 600, subjectId: s1.id },
+        { day: 3, startMin: 540, endMin: 600, subjectId: s2.id },
+      ],
     });
     const a1 = await prisma.activity.create({ data: { title: 'A1', milestoneId: m1.id } });
     const a2 = await prisma.activity.create({ data: { title: 'A2', milestoneId: m2.id } });
