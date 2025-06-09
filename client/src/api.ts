@@ -6,6 +6,12 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL ?? 'http://localhost:3000/api',
 });
 
+export const getWeekStartISO = (date: Date): string => {
+  const d = new Date(date);
+  d.setUTCHours(0, 0, 0, 0);
+  return d.toISOString().split('T')[0];
+};
+
 export interface Subject {
   id: number;
   name: string;
@@ -190,16 +196,20 @@ export const useDeleteMilestone = () => {
 };
 
 export const useGeneratePlan = () =>
-  useMutation((weekStart: string) =>
-    api.post('/lesson-plans/generate', { weekStart }).then((res) => res.data as LessonPlan),
-  );
+  useMutation((weekStart: string) => {
+    const isoWeekStart = getWeekStartISO(new Date(weekStart));
+    return api
+      .post('/lesson-plans/generate', { weekStart: isoWeekStart })
+      .then((res) => res.data as LessonPlan);
+  });
 
 export const useLessonPlan = (weekStart: string) =>
   useQuery<LessonPlan | undefined>({
-    queryKey: ['lessonPlan', weekStart],
+    queryKey: ['lessonPlan', getWeekStartISO(new Date(weekStart))],
     queryFn: async () => {
+      const isoDate = getWeekStartISO(new Date(weekStart));
       try {
-        const res = await api.get(`/lesson-plans/${weekStart}`);
+        const res = await api.get(`/lesson-plans/${isoDate}`);
         return res.data as LessonPlan;
       } catch (err) {
         if (axios.isAxiosError(err) && err.response?.status === 404) {

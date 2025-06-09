@@ -1,12 +1,12 @@
 import { useState, useMemo } from 'react';
 import { DndContext, DragEndEvent } from '@dnd-kit/core';
-import { useLessonPlan, useSubjects, Activity } from '../api';
+import { useLessonPlan, useSubjects, Activity, getWeekStartISO } from '../api';
 import ActivitySuggestionList from '../components/ActivitySuggestionList';
 import WeekCalendarGrid from '../components/WeekCalendarGrid';
 import AutoFillButton from '../components/AutoFillButton';
 
 export default function WeeklyPlannerPage() {
-  const [weekStart, setWeekStart] = useState(() => new Date().toISOString());
+  const [weekStart, setWeekStart] = useState(() => getWeekStartISO(new Date()));
   const { data: plan, refetch } = useLessonPlan(weekStart);
   const subjects = useSubjects().data ?? [];
   const activities = useMemo(() => {
@@ -43,8 +43,8 @@ export default function WeeklyPlannerPage() {
       <div className="flex gap-2 items-center">
         <input
           type="date"
-          value={weekStart.split('T')[0]}
-          onChange={(e) => setWeekStart(new Date(e.target.value).toISOString())}
+          value={weekStart}
+          onChange={(e) => setWeekStart(getWeekStartISO(new Date(e.target.value)))}
           className="border p-1"
         />
         <AutoFillButton weekStart={weekStart} onGenerated={() => refetch()} />
