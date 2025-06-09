@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { prisma } from '../prisma';
+import { generateMaterialList } from '../services/materialGenerator';
 
 const router = Router();
 
@@ -21,6 +22,30 @@ router.post('/', async (req, res, next) => {
     const list = await prisma.materialList.create({
       data: { weekStart: new Date(weekStart), items: JSON.stringify(items) },
     });
+    res.status(201).json(list);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/generate', async (req, res, next) => {
+  try {
+    const { weekStart } = req.body as { weekStart: string };
+    const items = await generateMaterialList(weekStart);
+    const existing = await prisma.materialList.findFirst({
+      where: { weekStart: new Date(weekStart) },
+    });
+    let list;
+    if (existing) {
+      list = await prisma.materialList.update({
+        where: { id: existing.id },
+        data: { items: JSON.stringify(items) },
+      });
+    } else {
+      list = await prisma.materialList.create({
+        data: { weekStart: new Date(weekStart), items: JSON.stringify(items) },
+      });
+    }
     res.status(201).json(list);
   } catch (err) {
     next(err);

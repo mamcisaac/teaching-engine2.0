@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import Handlebars from 'handlebars';
 import PDFDocument from 'pdfkit';
+import { prisma } from '../prisma';
 
 export function renderTemplate(name: string, data: { title: string; content: string }): string {
   const file = path.join(__dirname, `../templates/newsletters/${name}.hbs`);
@@ -22,4 +23,36 @@ export function generatePdf(text: string): Promise<Buffer> {
 
 export async function generateDocx(text: string): Promise<Buffer> {
   return Buffer.from(text);
+}
+
+export interface NewsletterContent {
+  activities: Record<string, string[]>;
+  photos: string[];
+}
+
+/**
+ * Collect data for a weekly newsletter based on completed activities.
+ */
+export async function collectWeeklyContent(weekStart: string): Promise<NewsletterContent> {
+  const start = new Date(weekStart);
+  const end = new Date(start);
+  end.setDate(start.getDate() + 7);
+
+  const acts = await prisma.activity.findMany({
+    where: { completedAt: { gte: start, lt: end } },
+    include: {
+      milestone: { include: { subject: true } },
+      resources: true,
+    },
+  });
+
+  const bySubject: Record<string, string[]> = {};
+  const photos: string[] = [];
+  for (const a of acts) {
+    const subject = a.milestone.subject.name;
+    (bySubject[subject] ??= []).push(a.title);
+    a.resources.forEach((r) => photos.push(r.url));
+  }
+
+  return { activities: bySubject, photos };
 }
