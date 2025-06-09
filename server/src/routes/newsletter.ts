@@ -1,6 +1,13 @@
 import { Router } from 'express';
 import { prisma } from '../prisma';
-import { renderTemplate, generatePdf, generateDocx } from '../services/newsletterGenerator';
+import {
+  renderTemplate,
+  generatePdf,
+  generateDocx,
+  NewsletterTemplate,
+  collectWeeklyContent,
+} from '../services/newsletterGenerator';
+import { validate, newsletterGenerateSchema } from '../validation';
 
 const router = Router();
 
@@ -8,6 +15,43 @@ router.get('/', async (_req, res, next) => {
   try {
     const newsletters = await prisma.newsletter.findMany();
     res.json(newsletters);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/generate', validate(newsletterGenerateSchema), async (req, res, next) => {
+  try {
+    const {
+      startDate,
+      endDate,
+      template = 'weekly',
+      includePhotos = false,
+    } = req.body as {
+      startDate: string;
+      endDate: string;
+      template?: NewsletterTemplate;
+      includePhotos?: boolean;
+    };
+
+    const data = await collectWeeklyContent(startDate);
+    let text = '';
+    for (const [subject, acts] of Object.entries(data.activities)) {
+      text += `${subject}: ${acts.join(', ')}\n`;
+    }
+    if (includePhotos && data.photos.length) {
+      text += data.photos.join('\n');
+    }
+
+    const html = renderTemplate(template, {
+      title: `Newsletter ${startDate} - ${endDate}`,
+      content: text,
+    });
+
+    const newsletter = await prisma.newsletter.create({
+      data: { title: `Newsletter`, content: html },
+    });
+    res.status(201).json(newsletter);
   } catch (err) {
     next(err);
   }

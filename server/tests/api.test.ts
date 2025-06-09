@@ -214,4 +214,32 @@ describe('Newsletter API', () => {
       .send({ title: 'Bad', content: 'X', template: 'oops' });
     expect(res.status).toBe(400);
   });
+
+  it('rejects invalid dates for generate', async () => {
+    const res = await request(app)
+      .post('/api/newsletters/generate')
+      .send({ startDate: 'not-a-date', endDate: '2024-01-02T00:00:00.000Z' });
+    expect(res.status).toBe(400);
+  });
+
+  it('rejects invalid template in generate', async () => {
+    const res = await request(app).post('/api/newsletters/generate').send({
+      startDate: '2024-01-01T00:00:00.000Z',
+      endDate: '2024-01-02T00:00:00.000Z',
+      template: 'bad',
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('rejects non-boolean includePhotos', async () => {
+    const res = await request(app)
+      .post('/api/newsletters/generate')
+      // @ts-expect-error intentional bad type for test
+      .send({
+        startDate: '2024-01-01T00:00:00.000Z',
+        endDate: '2024-01-02T00:00:00.000Z',
+        includePhotos: 'yes',
+      });
+    expect(res.status).toBe(400);
+  });
 });
