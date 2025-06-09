@@ -142,7 +142,7 @@ pnpm exec playwright install
 2. **Add Milestones**: Define major units or learning goals with target completion dates
 3. **Create Activities**: Populate milestones with specific lessons, assignments, and projects
 4. **Track Progress**: Mark activities as complete to automatically update progress bars
-5. **Plan Weekly**: Use the weekly planner (Phase 4) to schedule activities across your timetable
+5. **Plan Weekly**: Use the weekly planner (Phase 4) to schedule activities across your timetable. At least one activity must exist to auto-fill a plan
 6. **Communicate**: Generate parent newsletters from completed activities (Phase 4)
 
 ### Key Concepts

@@ -22,6 +22,7 @@ afterAll(async () => {
 
 describe('lesson plan routes', () => {
   let activityId: number;
+  let milestoneId: number;
   const weekStart = '2025-01-01T00:00:00.000Z';
 
   beforeAll(async () => {
@@ -29,8 +30,20 @@ describe('lesson plan routes', () => {
     const milestone = await prisma.milestone.create({
       data: { title: 'MP', subjectId: subject.id },
     });
+    milestoneId = milestone.id;
     const activity = await prisma.activity.create({
       data: { title: 'AP', milestoneId: milestone.id },
+    });
+    activityId = activity.id;
+  });
+
+  it('returns 400 when no activities exist', async () => {
+    await prisma.activity.deleteMany();
+    const res = await request(app).post('/api/lesson-plans/generate').send({ weekStart });
+    expect(res.status).toBe(400);
+    expect(res.body.error).toBe('No activities available');
+    const activity = await prisma.activity.create({
+      data: { title: 'AP', milestoneId },
     });
     activityId = activity.id;
   });

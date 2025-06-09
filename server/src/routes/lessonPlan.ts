@@ -8,6 +8,9 @@ router.post('/generate', async (req, res, next) => {
   try {
     const { weekStart } = req.body as { weekStart: string };
     const scheduleData = await generateWeeklySchedule();
+    if (scheduleData.length === 0) {
+      return res.status(400).json({ error: 'No activities available' });
+    }
     const plan = await prisma.lessonPlan.create({
       data: {
         weekStart: new Date(weekStart),
