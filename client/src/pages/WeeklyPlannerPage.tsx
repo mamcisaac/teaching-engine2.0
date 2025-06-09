@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { DndContext, DragEndEvent } from '@dnd-kit/core';
 import { useLessonPlan, useSubjects, Activity } from '../api';
 import ActivitySuggestionList from '../components/ActivitySuggestionList';
 import WeekCalendarGrid from '../components/WeekCalendarGrid';
@@ -28,6 +29,13 @@ export default function WeeklyPlannerPage() {
     }).then(() => refetch());
   };
 
+  const handleDragEnd = (event: DragEndEvent) => {
+    const day = event.over?.data?.current?.day;
+    if (typeof day === 'number') {
+      handleDrop(day, Number(event.active.id));
+    }
+  };
+
   return (
     <div className="space-y-4">
       <div className="flex gap-2 items-center">
@@ -39,11 +47,11 @@ export default function WeeklyPlannerPage() {
         />
         <AutoFillButton weekStart={weekStart} />
       </div>
-      {plan && (
-        <WeekCalendarGrid schedule={plan.schedule} onDrop={handleDrop} activities={activities} />
-      )}
-      <h2>Suggestions</h2>
-      <ActivitySuggestionList activities={Object.values(activities)} />
+      <DndContext onDragEnd={handleDragEnd}>
+        {plan && <WeekCalendarGrid schedule={plan.schedule} activities={activities} />}
+        <h2>Suggestions</h2>
+        <ActivitySuggestionList activities={Object.values(activities)} />
+      </DndContext>
     </div>
   );
 }

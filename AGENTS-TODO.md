@@ -570,13 +570,13 @@
   // - client/src/components/DraggableActivity.tsx
   ```
 
-- [ ] **Drag-and-Drop Implementation**
+- [x] **Drag-and-Drop Implementation**
 
-  ```typescript
-  // Task 4.1.5: Add @dnd-kit/sortable
-  // Enable dragging activities from suggestions to calendar slots
-  // Handle collision detection and slot validation
-  ```
+```typescript
+// Task 4.1.5: Add @dnd-kit/sortable
+// Enable dragging activities from suggestions to calendar slots
+// Handle collision detection and slot validation
+```
 
 - [ ] **Tests**
   ```typescript
@@ -657,69 +657,70 @@
 
 ### 4.3 Progress Tracking & Alerts 📊
 
- - [x] **Progress Analytics Service**
+- [x] **Progress Analytics Service**
 
-  ```typescript
-  // Task 4.3.1: Create progress analyzer
-  // File: server/src/services/progressAnalytics.ts
-  // Calculate:
-  // - Milestone completion rates
-  // - Subject pacing vs. targets
-  // - Days since last activity
-  // - Projected completion dates
-  ```
+```typescript
+// Task 4.3.1: Create progress analyzer
+// File: server/src/services/progressAnalytics.ts
+// Calculate:
+// - Milestone completion rates
+// - Subject pacing vs. targets
+// - Days since last activity
+// - Projected completion dates
+```
 
- - [x] **Alert Configuration**
+- [x] **Alert Configuration**
 
-  ```typescript
-  // Task 4.3.2: Define alert rules
-  // File: server/src/models/alerts.ts
-  interface AlertRule {
-    type: 'BEHIND_SCHEDULE' | 'NO_ACTIVITY' | 'MILESTONE_DUE';
-    threshold: number;
-    severity: 'info' | 'warning' | 'critical';
-  }
-  ```
+```typescript
+// Task 4.3.2: Define alert rules
+// File: server/src/models/alerts.ts
+interface AlertRule {
+  type: 'BEHIND_SCHEDULE' | 'NO_ACTIVITY' | 'MILESTONE_DUE';
+  threshold: number;
+  severity: 'info' | 'warning' | 'critical';
+}
+```
 
- - [x] **Cron Job Setup**
+- [x] **Cron Job Setup**
 
-  ```typescript
-  // Task 4.3.3: Daily progress check
-  // File: server/src/jobs/progressCheck.ts
-  // Use: node-cron or GitHub Actions
-  // Schedule: Daily at 6 AM
-  ```
+```typescript
+// Task 4.3.3: Daily progress check
+// File: server/src/jobs/progressCheck.ts
+// Use: node-cron or GitHub Actions
+// Schedule: Daily at 6 AM
+```
 
- - [x] **Email Service**
+- [x] **Email Service**
 
-  ```typescript
-  // Task 4.3.4: Configure email sending
-  // File: server/src/services/emailService.ts
-  // Options: Resend, SendGrid, or SMTP
-  // Templates: Progress alerts, weekly summaries
-  ```
+```typescript
+// Task 4.3.4: Configure email sending
+// File: server/src/services/emailService.ts
+// Options: Resend, SendGrid, or SMTP
+// Templates: Progress alerts, weekly summaries
+```
 
- - [x] **In-App Notifications**
-  ```typescript
-  // Task 4.3.5: Build notification system
-  // Files:
-  // - client/src/contexts/NotificationContext.tsx
-  // - client/src/components/NotificationCenter.tsx
-  // Features: Toast messages, badge counts
-  ```
+- [x] **In-App Notifications**
+
+```typescript
+// Task 4.3.5: Build notification system
+// Files:
+// - client/src/contexts/NotificationContext.tsx
+// - client/src/components/NotificationCenter.tsx
+// Features: Toast messages, badge counts
+```
 
 ### 4.4 Newsletter Generator 📰
 
- - [x] **Template System**
+- [x] **Template System**
 
-  ```typescript
-  // Task 4.4.1: Create newsletter templates
-  // File: server/src/templates/newsletters/
-  // - monthly.hbs
-  // - weekly.hbs
-  // - custom.hbs
-  // Use: Handlebars or similar
-  ```
+```typescript
+// Task 4.4.1: Create newsletter templates
+// File: server/src/templates/newsletters/
+// - monthly.hbs
+// - weekly.hbs
+// - custom.hbs
+// Use: Handlebars or similar
+```
 
 - [x] **Content Aggregation**
 
@@ -733,25 +734,26 @@
   // - Photos from resources
   ```
 
- - [x] **Export Formats**
+- [x] **Export Formats**
 
-  ```typescript
-  // Task 4.4.3: Multi-format export
-  // Install: puppeteer (PDF), docx (Word)
-  // Endpoints:
-  // - POST /api/newsletters/generate
-  // - GET /api/newsletters/:id/pdf
-  // - GET /api/newsletters/:id/docx
-  ```
+```typescript
+// Task 4.4.3: Multi-format export
+// Install: puppeteer (PDF), docx (Word)
+// Endpoints:
+// - POST /api/newsletters/generate
+// - GET /api/newsletters/:id/pdf
+// - GET /api/newsletters/:id/docx
+```
 
- - [x] **Newsletter Editor UI**
-  ```typescript
-  // Task 4.4.4: Build editor component
-  // Files:
-  // - client/src/pages/NewsletterEditor.tsx
-  // - client/src/components/RichTextEditor.tsx
-  // Features: Preview, photo insertion, templates
-  ```
+- [x] **Newsletter Editor UI**
+
+```typescript
+// Task 4.4.4: Build editor component
+// Files:
+// - client/src/pages/NewsletterEditor.tsx
+// - client/src/components/RichTextEditor.tsx
+// Features: Preview, photo insertion, templates
+```
 
 ### 4.5 Emergency Sub Plans 🚨
 
