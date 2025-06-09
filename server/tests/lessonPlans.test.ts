@@ -1,0 +1,62 @@
+import request from 'supertest';
+import app from '../src/index';
+import { prisma } from '../src/prisma';
+
+beforeAll(async () => {
+  await prisma.$queryRawUnsafe('PRAGMA busy_timeout = 20000');
+  await prisma.weeklySchedule.deleteMany();
+  await prisma.lessonPlan.deleteMany();
+  await prisma.activity.deleteMany();
+  await prisma.milestone.deleteMany();
+  await prisma.subject.deleteMany();
+});
+
+afterAll(async () => {
+  await prisma.weeklySchedule.deleteMany();
+  await prisma.lessonPlan.deleteMany();
+  await prisma.activity.deleteMany();
+  await prisma.milestone.deleteMany();
+  await prisma.subject.deleteMany();
+  await prisma.$disconnect();
+});
+
+describe('lesson plan routes', () => {
+  let activityId: number;
+  const weekStart = '2025-01-01T00:00:00.000Z';
+
+  beforeAll(async () => {
+    const subject = await prisma.subject.create({ data: { name: 'PlanTest' } });
+    const milestone = await prisma.milestone.create({
+      data: { title: 'MP', subjectId: subject.id },
+    });
+    const activity = await prisma.activity.create({
+      data: { title: 'AP', milestoneId: milestone.id },
+    });
+    activityId = activity.id;
+  });
+
+  it('generates a plan', async () => {
+    const res = await request(app).post('/api/lesson-plans/generate').send({ weekStart });
+    expect(res.status).toBe(201);
+    expect(res.body.schedule.length).toBeGreaterThan(0);
+  });
+
+  it('retrieves the plan', async () => {
+    await request(app).post('/api/lesson-plans/generate').send({ weekStart });
+    const res = await request(app).get(`/api/lesson-plans/${weekStart}`);
+    expect(res.status).toBe(200);
+    expect(res.body.schedule.length).toBeGreaterThan(0);
+  });
+
+  it('updates the plan', async () => {
+    const create = await request(app).post('/api/lesson-plans/generate').send({ weekStart });
+    const planId = create.body.id as number;
+    const res = await request(app)
+      .put(`/api/lesson-plans/${planId}`)
+      .send({
+        schedule: [{ id: 0, day: 0, activityId }],
+      });
+    expect(res.status).toBe(200);
+    expect(res.body.schedule[0].activityId).toBe(activityId);
+  });
+});
