@@ -2,8 +2,9 @@ import axios from 'axios';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
+const base = import.meta.env.VITE_API_BASE_URL;
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL ?? 'http://localhost:3000/api',
+  baseURL: base ? `${base.replace(/\/$/, '')}/api` : '/api',
 });
 
 export const getWeekStartISO = (date: Date): string => {
