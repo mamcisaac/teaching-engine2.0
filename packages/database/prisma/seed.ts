@@ -3,46 +3,91 @@ import { PrismaClient } from '@teaching-engine/database';
 const prisma = new PrismaClient();
 
 async function main() {
+  // Clear existing data
+  await prisma.weeklySchedule.deleteMany();
+  await prisma.lessonPlan.deleteMany();
   await prisma.activity.deleteMany();
   await prisma.milestone.deleteMany();
   await prisma.subject.deleteMany();
 
-  const subject1 = await prisma.subject.create({
-    data: { name: 'Math' },
-  });
-  const subject2 = await prisma.subject.create({
-    data: { name: 'Science' },
-  });
+  const now = new Date();
+  const mondayThisWeek = new Date(now);
+  mondayThisWeek.setUTCDate(now.getUTCDate() - now.getUTCDay() + 1); // Ensure Monday
+  mondayThisWeek.setUTCHours(0, 0, 0, 0);
 
-  await prisma.milestone.create({
+  const [math, science, health] = await Promise.all([
+    prisma.subject.create({ data: { name: 'Math' } }),
+    prisma.subject.create({ data: { name: 'Science' } }),
+    prisma.subject.create({ data: { name: 'Health' } }),
+  ]);
+
+  const mathMilestone1 = await prisma.milestone.create({
     data: {
-      title: 'Milestone 1',
-      subjectId: subject1.id,
+      title: 'Addition and Subtraction',
+      subjectId: math.id,
+      createdAt: new Date('2025-01-15'),
       activities: {
-        create: {
-          title: 'Activity 1',
-        },
+        create: [
+          { title: '1 + 1', completedAt: null },
+          { title: '2 + 3', completedAt: new Date('2025-02-01') },
+        ],
       },
     },
   });
 
-  await prisma.milestone.create({
+  const scienceMilestone = await prisma.milestone.create({
     data: {
-      title: 'Milestone 2',
-      subjectId: subject2.id,
+      title: 'Living Things',
+      subjectId: science.id,
+      createdAt: new Date('2025-02-01'),
       activities: {
-        create: {
-          title: 'Activity 2',
-        },
+        create: [
+          { title: 'Plant Parts', completedAt: null },
+          { title: 'Animal Habitats', completedAt: null },
+        ],
       },
     },
   });
+
+  const healthMilestone = await prisma.milestone.create({
+    data: {
+      title: 'Wellness',
+      subjectId: health.id,
+      createdAt: new Date('2025-03-01'),
+      activities: {
+        create: [
+          { title: 'Healthy Bodies', completedAt: null },
+          { title: 'Healthy Minds', completedAt: new Date('2025-05-10') },
+        ],
+      },
+    },
+  });
+
+  // Optional: seed one completed lesson plan
+  const existingPlan = await prisma.lessonPlan.create({
+    data: {
+      weekStart: mondayThisWeek,
+      schedule: {
+        create: [
+          {
+            dayOfWeek: 0,
+            activity: { connect: { title: '1 + 1' } },
+          },
+          {
+            dayOfWeek: 1,
+            activity: { connect: { title: 'Plant Parts' } },
+          },
+        ],
+      },
+    },
+  });
+
+  console.log('✅ Seed complete: subjects, milestones, activities, and one plan seeded');
 }
 
 main()
   .catch((e) => {
-    console.error(e);
+    console.error('❌ Seed error:', e);
+    process.exit(1);
   })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+  .finally(() => prisma.$disconnect());
