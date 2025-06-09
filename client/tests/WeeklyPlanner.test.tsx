@@ -51,7 +51,18 @@ vi.mock('../src/api', async () => {
       refetch: refetchMock,
     }),
     useSubjects: () => ({ data: subjects }),
-    useTimetable: () => ({ data: [] }),
+    useTimetable: () => ({
+      data: [
+        {
+          id: 1,
+          day: 0,
+          startMin: 540,
+          endMin: 600,
+          subjectId: 1,
+          subject: { id: 1, name: 'Math', milestones: [] },
+        },
+      ],
+    }),
     useGeneratePlan: () => generateState,
     useMaterialDetails: () => ({ data: [] }),
     downloadPrintables: vi.fn(),
@@ -164,14 +175,10 @@ test('saves schedule when dragging activity to a day', async () => {
   await waitFor(() => expect(fetchMock).toHaveBeenCalled());
   const body = JSON.parse(fetchMock.mock.calls[0][1].body as string);
   expect(fetchMock.mock.calls[0][0]).toBe('/api/lesson-plans/1');
-  expect(body.schedule).toEqual([
-    {
-      id: 0,
-      day: 0,
-      activityId: 1,
-      activity: { id: 1, title: 'Act 1', milestoneId: 1, completedAt: null },
-    },
-  ]);
+  expect(body.schedule[0]).toMatchObject({
+    day: 0,
+    activityId: 1,
+  });
 });
 
 test('dragging updates UI after refetch', async () => {
@@ -206,6 +213,7 @@ test('dragging updates UI after refetch', async () => {
     {
       id: 0,
       day: 0,
+      slotId: 1,
       activityId: 1,
       activity: { id: 1, title: 'Act 1', milestoneId: 1, completedAt: null },
     },

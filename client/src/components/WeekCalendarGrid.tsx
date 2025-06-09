@@ -12,8 +12,9 @@ export default function WeekCalendarGrid({ schedule, activities, timetable }: Pr
   return (
     <div className="grid grid-cols-5 gap-2">
       {days.map((d, idx) => {
-        const item = schedule.find((s) => s.day === idx);
-        const title = item ? activities[item.activityId]?.title : '';
+        const items = schedule
+          .filter((s) => s.day === idx)
+          .sort((a, b) => (a.slot?.startMin ?? 0) - (b.slot?.startMin ?? 0));
         const daySlot = timetable?.find((t) => t.day === idx);
         const blocked = daySlot && !daySlot.subjectId;
         const label = daySlot?.subject?.name ?? (blocked ? 'Prep' : '');
@@ -26,11 +27,15 @@ export default function WeekCalendarGrid({ schedule, activities, timetable }: Pr
             key={idx}
             ref={setNodeRef}
             data-testid={`day-${idx}`}
-            className={`h-24 border flex flex-col items-center justify-center bg-gray-50${blocked ? ' opacity-50 pointer-events-none' : ''}${isOver ? ' bg-blue-100' : ''}`}
+            className={`min-h-24 border flex flex-col items-center justify-start bg-gray-50 p-1${blocked ? ' opacity-50 pointer-events-none' : ''}${isOver ? ' bg-blue-100' : ''}`}
           >
             <span>{d}</span>
             {label && <div className="text-xs">{label}</div>}
-            {title && <div className="mt-2 text-sm">{title}</div>}
+            {items.map((it) => (
+              <div key={it.id} className="mt-1 text-sm">
+                {activities[it.activityId]?.title}
+              </div>
+            ))}
           </div>
         );
       })}

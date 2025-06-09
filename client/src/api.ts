@@ -56,6 +56,7 @@ export interface WeeklyScheduleItem {
   slotId: number;
   activityId: number;
   activity: Activity;
+  slot?: TimetableSlot;
 }
 
 export interface LessonPlan {

@@ -132,7 +132,14 @@ export async function generateNewsletterDraft(
     .map((m) => `${m.title}: ${Math.round(m.completionRate * 100)}%`)
     .join(', ');
 
-  let content = '<h2>What we did</h2><ul>';
+  const highlights = Object.values(data.activities).flat().slice(0, 3);
+
+  let content = '';
+  if (highlights.length) {
+    content +=
+      '<h2>Weekly Highlights</h2><ul>' + highlights.map((h) => `<li>${h}</li>`).join('') + '</ul>';
+  }
+  content += '<h2>What we did</h2><ul>';
   for (const [subject, acts] of Object.entries(data.activities)) {
     content += `<li><strong>${subject}:</strong> ${acts.join(', ')}</li>`;
   }
@@ -155,7 +162,8 @@ export async function generateNewsletterDraft(
   }
 
   if (upcoming.length) {
-    content += '<h2>Coming Up</h2><ul>' + upcoming.map((u) => `<li>${u}</li>`).join('') + '</ul>';
+    content +=
+      '<h2>Learning Goals</h2><ul>' + upcoming.map((u) => `<li>${u}</li>`).join('') + '</ul>';
   }
 
   if (useLLM) {
