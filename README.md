@@ -94,8 +94,8 @@ teaching-engine2.0/
    # Copy environment template
    cp server/.env.offline server/.env
 
-   # Run migrations
-   pnpm --filter server exec prisma migrate dev
+   # Run migrations and generate Prisma client
+   pnpm db:deploy
    ```
 
 3. **Start Development Servers**
