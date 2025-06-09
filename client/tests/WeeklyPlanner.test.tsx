@@ -53,6 +53,8 @@ vi.mock('../src/api', async () => {
     useSubjects: () => ({ data: subjects }),
     useTimetable: () => ({ data: [] }),
     useGeneratePlan: () => generateState,
+    useMaterialDetails: () => ({ data: [] }),
+    downloadPrintables: vi.fn(),
   };
 });
 
@@ -91,7 +93,7 @@ test('auto fill generates plan and refetches', () => {
 test('shows loading state while generating', () => {
   generateState.isPending = true;
   renderWithRouter(<WeeklyPlannerPage />);
-  const button = screen.getByRole('button');
+  const button = screen.getByText(/fill/i).closest('button')!;
   expect(button).toBeDisabled();
   expect(button.textContent).toMatch(/filling/i);
   generateState.isPending = false;

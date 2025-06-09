@@ -1,6 +1,10 @@
 import { Router } from 'express';
 import { prisma } from '../prisma';
-import { generateMaterialList } from '../services/materialGenerator';
+import {
+  generateMaterialList,
+  generateMaterialDetails,
+  zipWeeklyPrintables,
+} from '../services/materialGenerator';
 
 const router = Router();
 
@@ -47,6 +51,26 @@ router.post('/generate', async (req, res, next) => {
       });
     }
     res.status(201).json(list);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/:weekStart/details', async (req, res, next) => {
+  try {
+    const details = await generateMaterialDetails(req.params.weekStart);
+    res.json(details);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/:weekStart/zip', async (req, res, next) => {
+  try {
+    const zip = await zipWeeklyPrintables(req.params.weekStart);
+    res.set('Content-Type', 'application/zip');
+    res.set('Content-Disposition', 'attachment; filename="printables.zip"');
+    res.send(zip);
   } catch (err) {
     next(err);
   }

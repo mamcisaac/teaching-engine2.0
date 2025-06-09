@@ -295,6 +295,23 @@ export const useCreateMaterialList = () =>
     api.post('/material-lists', data).then((res) => res.data as MaterialList),
   );
 
+export interface ActivityMaterials {
+  day: number;
+  activityId: number;
+  title: string;
+  materials: string[];
+}
+
+export const useMaterialDetails = (weekStart: string) =>
+  useQuery<ActivityMaterials[]>({
+    queryKey: ['materialDetails', weekStart],
+    queryFn: async () => (await api.get(`/material-lists/${weekStart}/details`)).data,
+    enabled: !!weekStart,
+  });
+
+export const downloadPrintables = (weekStart: string) =>
+  api.get(`/material-lists/${weekStart}/zip`, { responseType: 'blob' });
+
 export interface Notification {
   id: number;
   message: string;
