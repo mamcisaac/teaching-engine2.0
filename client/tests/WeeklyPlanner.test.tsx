@@ -5,6 +5,18 @@ import { vi } from 'vitest';
 
 const mutateMock = vi.fn();
 const refetchMock = vi.fn();
+// eslint-disable-next-line no-var, @typescript-eslint/no-explicit-any
+var toastErrorMock: any;
+
+vi.mock('sonner', () => {
+  toastErrorMock = vi.fn();
+  return {
+    toast: { error: toastErrorMock, success: vi.fn() },
+    Toaster: () => null,
+  };
+});
+
+const generateState = { mutate: mutateMock, isPending: false };
 
 vi.mock('../src/api', async () => {
   const actual = await vi.importActual('../src/api');
@@ -15,7 +27,7 @@ vi.mock('../src/api', async () => {
       refetch: refetchMock,
     }),
     useSubjects: () => ({ data: [] }),
-    useGeneratePlan: () => ({ mutate: mutateMock }),
+    useGeneratePlan: () => generateState,
   };
 });
 
@@ -33,4 +45,21 @@ test('auto fill generates plan and refetches', () => {
   const options = mutateMock.mock.calls[0][1];
   if (options?.onSuccess) options.onSuccess();
   expect(refetchMock).toHaveBeenCalled();
+});
+
+test('shows loading state while generating', () => {
+  generateState.isPending = true;
+  renderWithRouter(<WeeklyPlannerPage />);
+  const button = screen.getByRole('button');
+  expect(button).toBeDisabled();
+  expect(button.textContent).toMatch(/filling/i);
+  generateState.isPending = false;
+});
+
+test('displays toast on failure', () => {
+  renderWithRouter(<WeeklyPlannerPage />);
+  fireEvent.click(screen.getByText('Auto Fill'));
+  const options = mutateMock.mock.calls[0][1];
+  if (options?.onError) options.onError();
+  expect(toastErrorMock).toHaveBeenCalled();
 });
