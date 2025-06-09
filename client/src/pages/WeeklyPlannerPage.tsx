@@ -4,6 +4,8 @@ import { useLessonPlan, useSubjects, Activity, getWeekStartISO, useTimetable } f
 import ActivitySuggestionList from '../components/ActivitySuggestionList';
 import WeekCalendarGrid from '../components/WeekCalendarGrid';
 import AutoFillButton from '../components/AutoFillButton';
+import WeeklyMaterialsChecklist from '../components/WeeklyMaterialsChecklist';
+import DownloadPrintablesButton from '../components/DownloadPrintablesButton';
 
 export default function WeeklyPlannerPage() {
   const [weekStart, setWeekStart] = useState(() => getWeekStartISO(new Date()));
@@ -56,6 +58,12 @@ export default function WeeklyPlannerPage() {
           <p data-testid="no-plan-message" className="text-sm text-gray-600">
             No plan for this week. Click Auto Fill to generate one.
           </p>
+        )}
+        {plan && (
+          <div className="space-y-2 my-4">
+            <DownloadPrintablesButton weekStart={weekStart} />
+            <WeeklyMaterialsChecklist weekStart={weekStart} />
+          </div>
         )}
         <h2>Suggestions</h2>
         <ActivitySuggestionList activities={Object.values(activities)} />
