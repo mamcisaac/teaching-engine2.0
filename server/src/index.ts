@@ -16,10 +16,22 @@ import noteRoutes from './routes/note';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import logger from './logger';
+import { prisma } from './prisma';
+import jwt from 'jsonwebtoken';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+app.post('/api/login', async (req, res) => {
+  const { email, password } = req.body as { email: string; password: string };
+  const user = await prisma.user.findUnique({ where: { email } });
+  if (!user || user.password !== password) {
+    return res.status(401).json({ error: 'Invalid credentials' });
+  }
+  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET || 'secret');
+  res.json({ token });
+});
 
 app.use('/api/subjects', subjectRoutes);
 app.use('/api/milestones', milestoneRoutes);

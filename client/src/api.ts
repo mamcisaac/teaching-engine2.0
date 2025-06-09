@@ -3,7 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 const base = import.meta.env.VITE_API_BASE_URL;
-const api = axios.create({
+export const api = axios.create({
   baseURL: base ? `${base.replace(/\/$/, '')}/api` : '/api',
 });
 
