@@ -45,7 +45,7 @@ export default function WeeklyPlannerPage() {
           onChange={(e) => setWeekStart(new Date(e.target.value).toISOString())}
           className="border p-1"
         />
-        <AutoFillButton weekStart={weekStart} />
+        <AutoFillButton weekStart={weekStart} onGenerated={() => refetch()} />
       </div>
       <DndContext onDragEnd={handleDragEnd}>
         {plan && <WeekCalendarGrid schedule={plan.schedule} activities={activities} />}
