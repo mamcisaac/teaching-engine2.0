@@ -204,8 +204,18 @@ describe('Newsletter API', () => {
     const id = res.body.id;
     const pdf = await request(app).get(`/api/newsletters/${id}/pdf`);
     expect(pdf.status).toBe(200);
-    const docx = await request(app).get(`/api/newsletters/${id}/docx`);
+    const binaryParser = (
+      res: NodeJS.ReadableStream,
+      callback: (err: Error | null, data: Buffer) => void,
+    ) => {
+      const data: Buffer[] = [];
+      res.on('data', (chunk) => data.push(Buffer.from(chunk)));
+      res.on('end', () => callback(null, Buffer.concat(data)));
+    };
+    const docx = await request(app).get(`/api/newsletters/${id}/docx`).buffer().parse(binaryParser);
     expect(docx.status).toBe(200);
+    expect(Buffer.isBuffer(docx.body)).toBe(true);
+    expect(docx.body.slice(0, 2).toString()).toBe('PK');
   });
 
   it('rejects invalid template name', async () => {

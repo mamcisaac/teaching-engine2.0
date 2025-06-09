@@ -133,6 +133,7 @@ router.get('/:id/docx', async (req, res, next) => {
       'Content-Type',
       'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
     );
+    res.setHeader('Content-Disposition', 'attachment; filename="newsletter.docx"');
     res.send(docx);
   } catch (err) {
     next(err);

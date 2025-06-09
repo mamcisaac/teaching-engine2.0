@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import Handlebars from 'handlebars';
 import PDFDocument from 'pdfkit';
+import htmlToDocx from 'html-to-docx';
 import { prisma } from '../prisma';
 
 export const ALLOWED_TEMPLATES = ['weekly', 'monthly'] as const;
@@ -27,8 +28,9 @@ export function generatePdf(text: string): Promise<Buffer> {
   });
 }
 
-export async function generateDocx(text: string): Promise<Buffer> {
-  return Buffer.from(text);
+export async function generateDocx(html: string): Promise<Buffer> {
+  const arrayBuffer = (await htmlToDocx(html)) as ArrayBuffer;
+  return Buffer.from(arrayBuffer);
 }
 
 export interface NewsletterContent {
