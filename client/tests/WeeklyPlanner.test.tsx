@@ -85,6 +85,7 @@ test('handles missing plan gracefully', () => {
   lessonPlanData = undefined;
   renderWithRouter(<WeeklyPlannerPage />);
   expect(screen.getByText('Auto Fill')).toBeInTheDocument();
+  expect(screen.getByTestId('no-plan-message')).toBeInTheDocument();
   // The component still renders the day grid even without plan data
   expect(screen.getByTestId('day-0')).toBeInTheDocument();
   // Check if it shows Monday label
