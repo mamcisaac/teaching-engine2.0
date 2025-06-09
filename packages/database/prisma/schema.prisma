@@ -39,12 +39,14 @@ model Activity {
   completedAt  DateTime?
   weeklySchedules WeeklySchedule[]
   resources   Resource[]
+  dailyPlanItems DailyPlanItem[]
 }
 
 model LessonPlan {
   id         Int             @id @default(autoincrement())
   weekStart  DateTime
   schedule   WeeklySchedule[]
+  dailyPlans DailyPlan[]
   createdAt  DateTime        @default(now())
   updatedAt  DateTime        @updatedAt
 }
@@ -57,6 +59,7 @@ model TimetableSlot {
   subjectId Int?
   subject   Subject? @relation(fields: [subjectId], references: [id])
   weeklySchedules WeeklySchedule[]
+  dailyPlanItems DailyPlanItem[]
 }
 
 model WeeklySchedule {
@@ -108,5 +111,28 @@ model Newsletter {
   content   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model DailyPlan {
+  id           Int            @id @default(autoincrement())
+  date         DateTime
+  lessonPlanId Int
+  lessonPlan   LessonPlan     @relation(fields: [lessonPlanId], references: [id])
+  items        DailyPlanItem[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+}
+
+model DailyPlanItem {
+  id          Int          @id @default(autoincrement())
+  startMin    Int
+  endMin      Int
+  slotId      Int?
+  slot        TimetableSlot? @relation(fields: [slotId], references: [id])
+  activityId  Int?
+  activity    Activity?    @relation(fields: [activityId], references: [id])
+  notes       String?
+  dailyPlanId Int
+  dailyPlan   DailyPlan    @relation(fields: [dailyPlanId], references: [id])
 }
 

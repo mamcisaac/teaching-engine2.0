@@ -5,6 +5,8 @@ describe('planning engine', () => {
   beforeAll(async () => {
     await prisma.$queryRawUnsafe('PRAGMA busy_timeout = 20000');
     await prisma.weeklySchedule.deleteMany();
+    await prisma.dailyPlanItem.deleteMany();
+    await prisma.dailyPlan.deleteMany();
     await prisma.lessonPlan.deleteMany();
     await prisma.timetableSlot.deleteMany();
     await prisma.resource.deleteMany();
@@ -15,6 +17,8 @@ describe('planning engine', () => {
 
   afterAll(async () => {
     await prisma.weeklySchedule.deleteMany();
+    await prisma.dailyPlanItem.deleteMany();
+    await prisma.dailyPlan.deleteMany();
     await prisma.lessonPlan.deleteMany();
     await prisma.timetableSlot.deleteMany();
     await prisma.resource.deleteMany();

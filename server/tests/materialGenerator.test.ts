@@ -5,6 +5,8 @@ describe('material generator', () => {
   beforeAll(async () => {
     await prisma.$queryRawUnsafe('PRAGMA busy_timeout = 20000');
     await prisma.weeklySchedule.deleteMany();
+    await prisma.dailyPlanItem.deleteMany();
+    await prisma.dailyPlan.deleteMany();
     await prisma.lessonPlan.deleteMany();
     await prisma.activity.deleteMany();
     await prisma.milestone.deleteMany();
@@ -13,6 +15,8 @@ describe('material generator', () => {
 
   afterAll(async () => {
     await prisma.weeklySchedule.deleteMany();
+    await prisma.dailyPlanItem.deleteMany();
+    await prisma.dailyPlan.deleteMany();
     await prisma.lessonPlan.deleteMany();
     await prisma.activity.deleteMany();
     await prisma.milestone.deleteMany();
