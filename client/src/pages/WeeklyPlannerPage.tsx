@@ -36,6 +36,8 @@ export default function WeeklyPlannerPage() {
     }
   };
 
+  const schedule = plan?.schedule ?? [];
+
   return (
     <div className="space-y-4">
       <div className="flex gap-2 items-center">
@@ -48,7 +50,12 @@ export default function WeeklyPlannerPage() {
         <AutoFillButton weekStart={weekStart} onGenerated={() => refetch()} />
       </div>
       <DndContext onDragEnd={handleDragEnd}>
-        {plan && <WeekCalendarGrid schedule={plan.schedule} activities={activities} />}
+        <WeekCalendarGrid schedule={schedule} activities={activities} />
+        {!plan && (
+          <p data-testid="no-plan-message" className="text-sm text-gray-600">
+            No plan for this week. Click Auto Fill to generate one.
+          </p>
+        )}
         <h2>Suggestions</h2>
         <ActivitySuggestionList activities={Object.values(activities)} />
       </DndContext>
