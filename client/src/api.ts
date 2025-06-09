@@ -195,9 +195,19 @@ export const useGeneratePlan = () =>
   );
 
 export const useLessonPlan = (weekStart: string) =>
-  useQuery<LessonPlan>({
+  useQuery<LessonPlan | undefined>({
     queryKey: ['lessonPlan', weekStart],
-    queryFn: async () => (await api.get(`/lesson-plans/${weekStart}`)).data,
+    queryFn: async () => {
+      try {
+        const res = await api.get(`/lesson-plans/${weekStart}`);
+        return res.data as LessonPlan;
+      } catch (err) {
+        if (axios.isAxiosError(err) && err.response?.status === 404) {
+          return undefined;
+        }
+        throw err;
+      }
+    },
     enabled: !!weekStart,
   });
 

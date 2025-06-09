@@ -1,17 +1,33 @@
 import { fireEvent, screen } from '@testing-library/react';
 import WeeklyPlannerPage from '../src/pages/WeeklyPlannerPage';
 import { renderWithRouter } from '../src/test-utils';
+import type { LessonPlan } from '../src/api';
 import { vi } from 'vitest';
 
 const mutateMock = vi.fn();
 const refetchMock = vi.fn();
+let lessonPlanData: LessonPlan | undefined = {
+  id: 1,
+  weekStart: '2025-01-01T00:00:00.000Z',
+  schedule: [],
+};
+
+beforeEach(() => {
+  lessonPlanData = {
+    id: 1,
+    weekStart: '2025-01-01T00:00:00.000Z',
+    schedule: [],
+  };
+  mutateMock.mockClear();
+  refetchMock.mockClear();
+});
 
 vi.mock('../src/api', async () => {
   const actual = await vi.importActual('../src/api');
   return {
     ...actual,
     useLessonPlan: () => ({
-      data: { id: 1, weekStart: '2025-01-01T00:00:00.000Z', schedule: [] },
+      data: lessonPlanData,
       refetch: refetchMock,
     }),
     useSubjects: () => ({ data: [] }),
@@ -33,4 +49,11 @@ test('auto fill generates plan and refetches', () => {
   const options = mutateMock.mock.calls[0][1];
   if (options?.onSuccess) options.onSuccess();
   expect(refetchMock).toHaveBeenCalled();
+});
+
+test('handles missing plan gracefully', () => {
+  lessonPlanData = undefined;
+  renderWithRouter(<WeeklyPlannerPage />);
+  expect(screen.getByText('Auto Fill')).toBeInTheDocument();
+  expect(screen.queryByTestId('day-0')).not.toBeInTheDocument();
 });
