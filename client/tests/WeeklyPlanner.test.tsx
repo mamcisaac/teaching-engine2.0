@@ -81,6 +81,18 @@ test('displays toast on failure', () => {
   expect(toastErrorMock).toHaveBeenCalled();
 });
 
+test('shows server message on 400 failure', () => {
+  renderWithRouter(<WeeklyPlannerPage />);
+  fireEvent.click(screen.getByText('Auto Fill'));
+  const options = mutateMock.mock.calls[0][1];
+  if (options?.onError)
+    options.onError({
+      response: { status: 400, data: { error: 'No activities available' } },
+      isAxiosError: true,
+    });
+  expect(toastErrorMock).toHaveBeenCalledWith('No activities available');
+});
+
 test('handles missing plan gracefully', () => {
   lessonPlanData = undefined;
   renderWithRouter(<WeeklyPlannerPage />);

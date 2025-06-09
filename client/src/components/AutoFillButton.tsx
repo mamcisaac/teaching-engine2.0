@@ -1,5 +1,6 @@
 import { useGeneratePlan, LessonPlan } from '../api';
 import { toast } from 'sonner';
+import axios from 'axios';
 
 interface Props {
   weekStart: string;
@@ -11,7 +12,17 @@ export default function AutoFillButton({ weekStart, onGenerated }: Props) {
   const handleClick = () =>
     generate.mutate(weekStart, {
       onSuccess: (plan) => onGenerated?.(plan),
-      onError: () => toast.error('Failed to generate plan'),
+      onError: (err) => {
+        if (
+          axios.isAxiosError(err) &&
+          err.response?.status === 400 &&
+          typeof err.response.data?.error === 'string'
+        ) {
+          toast.error(err.response.data.error);
+        } else {
+          toast.error('Failed to generate plan');
+        }
+      },
     });
 
   return (
