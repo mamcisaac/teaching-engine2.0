@@ -15,6 +15,7 @@ import timetableRoutes from './routes/timetable';
 import noteRoutes from './routes/note';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
+import { scheduleBackups } from './services/backupService';
 import logger from './logger';
 import { prisma } from './prisma';
 import jwt from 'jsonwebtoken';
@@ -77,6 +78,7 @@ const PORT = process.env.PORT || 3000;
 if (process.env.NODE_ENV !== 'test') {
   scheduleProgressCheck();
   scheduleUnreadNotificationEmails();
+  scheduleBackups();
   app.listen(PORT, () => {
     logger.info(`Server listening on port ${PORT}`);
   });
