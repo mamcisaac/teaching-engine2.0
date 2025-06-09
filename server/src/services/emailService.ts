@@ -13,9 +13,19 @@ if (process.env.SMTP_HOST) {
   });
 }
 
-export async function sendEmail(to: string, subject: string, text: string) {
+export interface EmailAttachment {
+  filename: string;
+  content: Buffer;
+}
+
+export async function sendEmail(
+  to: string,
+  subject: string,
+  text: string,
+  attachment?: EmailAttachment,
+) {
   if (!transporter) {
-    logger.info({ to, subject, text }, 'Email');
+    logger.info({ to, subject, text, attachment: !!attachment }, 'Email');
     return;
   }
   await transporter.sendMail({
@@ -23,5 +33,6 @@ export async function sendEmail(to: string, subject: string, text: string) {
     to,
     subject,
     text,
+    attachments: attachment ? [attachment] : undefined,
   });
 }

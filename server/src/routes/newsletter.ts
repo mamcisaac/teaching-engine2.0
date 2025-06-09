@@ -5,8 +5,9 @@ import {
   generatePdf,
   generateDocx,
   NewsletterTemplate,
-  collectWeeklyContent,
+  generateNewsletterDraft,
 } from '../services/newsletterGenerator';
+import { sendEmail } from '../services/emailService';
 import { validate, newsletterGenerateSchema } from '../validation';
 
 const router = Router();
@@ -27,29 +28,19 @@ router.post('/generate', validate(newsletterGenerateSchema), async (req, res, ne
       endDate,
       template = 'weekly',
       includePhotos = false,
+      useLLM = false,
     } = req.body as {
       startDate: string;
       endDate: string;
       template?: NewsletterTemplate;
       includePhotos?: boolean;
+      useLLM?: boolean;
     };
 
-    const data = await collectWeeklyContent(startDate);
-    let text = '';
-    for (const [subject, acts] of Object.entries(data.activities)) {
-      text += `${subject}: ${acts.join(', ')}\n`;
-    }
-    if (includePhotos && data.photos.length) {
-      text += data.photos.join('\n');
-    }
-
-    const html = renderTemplate(template, {
-      title: `Newsletter ${startDate} - ${endDate}`,
-      content: text,
-    });
-
+    const draft = await generateNewsletterDraft(startDate, endDate, includePhotos, useLLM);
+    const html = renderTemplate(template, draft);
     const newsletter = await prisma.newsletter.create({
-      data: { title: `Newsletter`, content: html },
+      data: { title: draft.title, content: html },
     });
     res.status(201).json(newsletter);
   } catch (err) {
@@ -135,6 +126,24 @@ router.get('/:id/docx', async (req, res, next) => {
     );
     res.setHeader('Content-Disposition', 'attachment; filename="newsletter.docx"');
     res.send(docx);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/:id/send', async (req, res, next) => {
+  try {
+    const nl = await prisma.newsletter.findUnique({ where: { id: Number(req.params.id) } });
+    if (!nl) return res.status(404).json({ error: 'Not Found' });
+    const contacts = await prisma.parentContact.findMany();
+    const pdf = await generatePdf(nl.content);
+    for (const c of contacts) {
+      await sendEmail(c.email, nl.title, 'Please see the attached newsletter.', {
+        filename: 'newsletter.pdf',
+        content: pdf,
+      });
+    }
+    res.json({ sent: contacts.length });
   } catch (err) {
     next(err);
   }

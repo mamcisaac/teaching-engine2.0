@@ -136,3 +136,11 @@ model DailyPlanItem {
   dailyPlan   DailyPlan    @relation(fields: [dailyPlanId], references: [id])
 }
 
+
+model ParentContact {
+  id          Int    @id @default(autoincrement())
+  name        String
+  email       String  @unique
+  studentName String
+}
+
