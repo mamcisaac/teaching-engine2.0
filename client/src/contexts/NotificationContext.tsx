@@ -6,7 +6,10 @@ interface NotificationContextValue {
   markRead: (id: number) => void;
 }
 
-const NotificationContext = createContext<NotificationContextValue>({} as NotificationContextValue);
+const NotificationContext = createContext<NotificationContextValue>({
+  notifications: [],
+  markRead: () => {},
+});
 
 export function NotificationProvider({ children }: { children: React.ReactNode }) {
   const { data = [] } = useNotifications();

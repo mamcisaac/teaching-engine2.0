@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { DndContext, DragEndEvent } from '@dnd-kit/core';
 import { useLessonPlan, useSubjects, Activity, getWeekStartISO, useTimetable } from '../api';
 import ActivitySuggestionList from '../components/ActivitySuggestionList';
@@ -6,6 +6,8 @@ import WeekCalendarGrid from '../components/WeekCalendarGrid';
 import AutoFillButton from '../components/AutoFillButton';
 import WeeklyMaterialsChecklist from '../components/WeeklyMaterialsChecklist';
 import DownloadPrintablesButton from '../components/DownloadPrintablesButton';
+import PlannerNotificationBanner from '../components/PlannerNotificationBanner';
+import { toast } from 'sonner';
 
 export default function WeeklyPlannerPage() {
   const [weekStart, setWeekStart] = useState(() => getWeekStartISO(new Date()));
@@ -41,6 +43,12 @@ export default function WeeklyPlannerPage() {
 
   const schedule = plan?.schedule ?? [];
 
+  useEffect(() => {
+    if (new Date().getDay() === 5) {
+      toast.message("It's Friday! Generate a newsletter from this week?");
+    }
+  }, []);
+
   return (
     <div className="space-y-4">
       <div className="flex gap-2 items-center">
@@ -52,6 +60,7 @@ export default function WeeklyPlannerPage() {
         />
         <AutoFillButton weekStart={weekStart} onGenerated={() => refetch()} />
       </div>
+      <PlannerNotificationBanner />
       <DndContext onDragEnd={handleDragEnd}>
         <WeekCalendarGrid schedule={schedule} activities={activities} timetable={timetable} />
         {!plan && (

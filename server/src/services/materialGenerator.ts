@@ -62,6 +62,26 @@ export async function generateMaterialList(weekStart: string): Promise<string[]>
   return Array.from(items);
 }
 
+/**
+ * Update or create the material list record for the given week.
+ */
+export async function updateMaterialList(weekStart: string): Promise<void> {
+  const items = await generateMaterialList(weekStart);
+  const existing = await prisma.materialList.findFirst({
+    where: { weekStart: new Date(weekStart) },
+  });
+  if (existing) {
+    await prisma.materialList.update({
+      where: { id: existing.id },
+      data: { items: JSON.stringify(items) },
+    });
+  } else {
+    await prisma.materialList.create({
+      data: { weekStart: new Date(weekStart), items: JSON.stringify(items) },
+    });
+  }
+}
+
 export interface ActivityMaterials {
   day: number;
   activityId: number;

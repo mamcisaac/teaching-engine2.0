@@ -128,6 +128,9 @@ export async function generateNewsletterDraft(
   const upcoming = await collectUpcomingActivities(startDate);
   const progress = await getMilestoneProgress();
   const completed = progress.filter((m) => m.completionRate === 1).map((m) => m.title);
+  const summary = progress
+    .map((m) => `${m.title}: ${Math.round(m.completionRate * 100)}%`)
+    .join(', ');
 
   let content = '<h2>What we did</h2><ul>';
   for (const [subject, acts] of Object.entries(data.activities)) {
@@ -145,6 +148,10 @@ export async function generateNewsletterDraft(
       '<h2>Milestones Completed</h2><ul>' +
       completed.map((c) => `<li>${c}</li>`).join('') +
       '</ul>';
+  }
+
+  if (summary) {
+    content += `<p><strong>Progress:</strong> ${summary}</p>`;
   }
 
   if (upcoming.length) {
