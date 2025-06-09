@@ -4,7 +4,7 @@ import Handlebars from 'handlebars';
 import PDFDocument from 'pdfkit';
 import { prisma } from '../prisma';
 
-const ALLOWED_TEMPLATES = ['weekly', 'monthly'] as const;
+export const ALLOWED_TEMPLATES = ['weekly', 'monthly'] as const;
 export type NewsletterTemplate = (typeof ALLOWED_TEMPLATES)[number];
 
 export function renderTemplate(name: string, data: { title: string; content: string }): string {

@@ -1,5 +1,6 @@
 import { z, ZodSchema } from 'zod';
 import { Request, Response, NextFunction } from 'express';
+import { ALLOWED_TEMPLATES } from './services/newsletterGenerator';
 
 export const subjectSchema = z.object({
   name: z.string().min(1),
@@ -24,6 +25,13 @@ export const activityCreateSchema = z.object({
 });
 
 export const activityUpdateSchema = activityCreateSchema.omit({ milestoneId: true });
+
+export const newsletterGenerateSchema = z.object({
+  startDate: z.string().datetime(),
+  endDate: z.string().datetime(),
+  template: z.enum(ALLOWED_TEMPLATES).optional(),
+  includePhotos: z.boolean().optional(),
+});
 
 export function validate(schema: ZodSchema) {
   return (req: Request, res: Response, next: NextFunction) => {
