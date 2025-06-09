@@ -321,3 +321,37 @@ describe('Daily Plan API', () => {
     expect(res.body.items.length).toBeGreaterThan(0);
   });
 });
+
+describe('Notes API', () => {
+  let activityId: number;
+
+  beforeAll(async () => {
+    const subject = await prisma.subject.create({ data: { name: 'NoteSubj' } });
+    const milestone = await prisma.milestone.create({
+      data: { title: 'NoteMilestone', subjectId: subject.id },
+    });
+    const act = await prisma.activity.create({
+      data: { title: 'NoteAct', milestoneId: milestone.id },
+    });
+    activityId = act.id;
+  });
+
+  it('creates, updates and deletes a note', async () => {
+    const create = await request(app)
+      .post('/api/notes')
+      .send({ content: 'hi', public: true, activityId });
+    expect(create.status).toBe(201);
+    const id = create.body.id;
+
+    const get = await request(app).get(`/api/notes/${id}`);
+    expect(get.status).toBe(200);
+    expect(get.body.content).toBe('hi');
+
+    const upd = await request(app).put(`/api/notes/${id}`).send({ content: 'bye', public: false });
+    expect(upd.status).toBe(200);
+    expect(upd.body.public).toBe(false);
+
+    const del = await request(app).delete(`/api/notes/${id}`);
+    expect(del.status).toBe(204);
+  });
+});

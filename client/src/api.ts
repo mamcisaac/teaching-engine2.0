@@ -438,3 +438,34 @@ export const useUpdateDailyPlan = () => {
     },
   });
 };
+
+export interface Note {
+  id: number;
+  content: string;
+  public: boolean;
+  activityId?: number | null;
+  dailyPlanId?: number | null;
+  createdAt: string;
+}
+
+export const useNotes = () =>
+  useQuery<Note[]>({
+    queryKey: ['notes'],
+    queryFn: async () => (await api.get('/notes')).data,
+  });
+
+export const useAddNote = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: Omit<Note, 'id' | 'createdAt'>) => api.post('/notes', data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['notes'] }),
+  });
+};
+
+export const useDeleteNote = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => api.delete(`/notes/${id}`),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['notes'] }),
+  });
+};

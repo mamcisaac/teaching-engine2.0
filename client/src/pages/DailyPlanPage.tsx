@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDailyPlan, useGenerateDailyPlan, useUpdateDailyPlan, DailyPlanItem } from '../api';
+import DailyNotesEditor from '../components/DailyNotesEditor';
 
 export default function DailyPlanPage() {
   const [date, setDate] = useState(() => new Date().toISOString().split('T')[0]);
@@ -48,24 +49,27 @@ export default function DailyPlanPage() {
         )}
       </div>
       {plan.data ? (
-        <table className="w-full text-sm border">
-          <thead>
-            <tr>
-              <th>Time</th>
-              <th>Activity</th>
-            </tr>
-          </thead>
-          <tbody>
-            {plan.data.items.map((it) => (
-              <tr key={it.id} className="border-t">
-                <td>
-                  {it.startMin}-{it.endMin}
-                </td>
-                <td>{it.activity?.title ?? ''}</td>
+        <>
+          <table className="w-full text-sm border">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Activity</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {plan.data.items.map((it) => (
+                <tr key={it.id} className="border-t">
+                  <td>
+                    {it.startMin}-{it.endMin}
+                  </td>
+                  <td>{it.activity?.title ?? ''}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <DailyNotesEditor dailyPlanId={plan.data.id} />
+        </>
       ) : (
         <p>No plan for this day.</p>
       )}

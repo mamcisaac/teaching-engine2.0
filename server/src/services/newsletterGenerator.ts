@@ -39,6 +39,24 @@ export interface NewsletterContent {
   photos: string[];
 }
 
+export async function collectPublicNotes(startDate: string, endDate: string): Promise<string[]> {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  end.setDate(end.getDate() + 1);
+
+  const notes = await prisma.note.findMany({
+    where: {
+      public: true,
+      OR: [
+        { createdAt: { gte: start, lt: end } },
+        { dailyPlan: { date: { gte: start, lt: end } } },
+        { activity: { completedAt: { gte: start, lt: end } } },
+      ],
+    },
+  });
+  return notes.map((n) => n.content);
+}
+
 export interface NewsletterDraft {
   title: string;
   content: string;
@@ -126,6 +144,7 @@ export async function generateNewsletterDraft(
 ): Promise<NewsletterDraft> {
   const data = await collectWeeklyContent(startDate);
   const upcoming = await collectUpcomingActivities(startDate);
+  const notes = await collectPublicNotes(startDate, endDate);
   const progress = await getMilestoneProgress();
   const completed = progress.filter((m) => m.completionRate === 1).map((m) => m.title);
   const summary = progress
@@ -164,6 +183,13 @@ export async function generateNewsletterDraft(
   if (upcoming.length) {
     content +=
       '<h2>Learning Goals</h2><ul>' + upcoming.map((u) => `<li>${u}</li>`).join('') + '</ul>';
+  }
+
+  if (notes.length) {
+    content +=
+      '<h2>Notes from the Classroom</h2><ul>' +
+      notes.map((n) => `<li>${n}</li>`).join('') +
+      '</ul>';
   }
 
   if (useLLM) {

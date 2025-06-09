@@ -12,6 +12,7 @@ import materialListRoutes from './routes/materialList';
 import notificationRoutes from './routes/notification';
 import newsletterRoutes from './routes/newsletter';
 import timetableRoutes from './routes/timetable';
+import noteRoutes from './routes/note';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import logger from './logger';
@@ -31,6 +32,7 @@ app.use('/api/material-lists', materialListRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/newsletters', newsletterRoutes);
 app.use('/api/timetable', timetableRoutes);
+app.use('/api/notes', noteRoutes);
 app.post('/api/preferences', savePreferences);
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
