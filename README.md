@@ -94,6 +94,8 @@ teaching-engine2.0/
 
    # Run migrations and generate Prisma client
    pnpm db:deploy
+   # Seed sample data
+   pnpm db:seed
    ```
 
 3. **Start Development Servers**
