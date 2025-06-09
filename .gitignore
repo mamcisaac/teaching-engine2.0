@@ -147,3 +147,8 @@ server/uploads/
 test-results/
 node-compile-cache/
 v8-compile-cache-*
+
+# Prisma generated files
+packages/database/src/generated
+*.db
+*.db-journal

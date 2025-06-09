@@ -1,4 +1,4 @@
-import prisma from '../src/prisma';
+import { prisma } from '../src/prisma';
 import { runProgressCheck } from '../src/jobs/progressCheck';
 
 beforeAll(async () => {

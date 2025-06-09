@@ -1,4 +1,4 @@
-import prisma from '../prisma';
+import { prisma } from '../prisma';
 
 export interface MilestoneProgress {
   id: number;
@@ -11,7 +11,7 @@ export async function getMilestoneProgress(): Promise<MilestoneProgress[]> {
   const milestones = await prisma.milestone.findMany({ include: { activities: true } });
   return milestones.map((m) => {
     const total = m.activities.length;
-    const completed = m.activities.filter((a) => a.completedAt !== null).length;
+    const completed = m.activities.reduce((sum, a) => sum + (a.completedAt ? 1 : 0), 0);
     return {
       id: m.id,
       title: m.title,

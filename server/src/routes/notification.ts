@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
-import prisma from '../prisma';
+import { Prisma } from '@teaching-engine/database';
+import { prisma } from '../prisma';
 
 const router = Router();
 
@@ -34,7 +34,7 @@ router.put('/:id/read', async (req, res, next) => {
     });
     res.json(note);
   } catch (err) {
-    if (err instanceof PrismaClientKnownRequestError && err.code === 'P2025') {
+    if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
       return res.status(404).json({ error: 'Not Found' });
     }
     next(err);
