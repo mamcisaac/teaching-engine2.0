@@ -351,6 +351,23 @@ export interface TimetableSlot {
   subject?: Subject | null;
 }
 
+export interface DailyPlanItem {
+  id: number;
+  startMin: number;
+  endMin: number;
+  slotId?: number | null;
+  activityId?: number | null;
+  activity?: Activity | null;
+  notes?: string | null;
+}
+
+export interface DailyPlan {
+  id: number;
+  date: string;
+  lessonPlanId: number;
+  items: DailyPlanItem[];
+}
+
 export const useTimetable = () =>
   useQuery<TimetableSlot[]>({
     queryKey: ['timetable'],
@@ -363,6 +380,37 @@ export const useSaveTimetable = () => {
     mutationFn: (slots: Omit<TimetableSlot, 'id' | 'subject'>[]) => api.put('/timetable', slots),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['timetable'] });
+    },
+  });
+};
+
+export const useDailyPlan = (date: string) =>
+  useQuery<DailyPlan | undefined>({
+    queryKey: ['dailyPlan', date],
+    queryFn: async () => {
+      try {
+        const res = await api.get(`/daily-plans/${date}`);
+        return res.data as DailyPlan;
+      } catch (err) {
+        if (axios.isAxiosError(err) && err.response?.status === 404) return undefined;
+        throw err;
+      }
+    },
+    enabled: !!date,
+  });
+
+export const useGenerateDailyPlan = () =>
+  useMutation((date: string) =>
+    api.post('/daily-plans/generate', { date }).then((r) => r.data as DailyPlan),
+  );
+
+export const useUpdateDailyPlan = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: { id: number; items: Omit<DailyPlanItem, 'id'>[] }) =>
+      api.put(`/daily-plans/${data.id}`, { items: data.items }),
+    onSuccess: (_res, vars) => {
+      qc.invalidateQueries({ queryKey: ['dailyPlan', vars.id] });
     },
   });
 };

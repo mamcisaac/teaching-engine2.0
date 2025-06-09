@@ -5,6 +5,8 @@ import { prisma } from '../src/prisma';
 beforeAll(async () => {
   await prisma.$queryRawUnsafe('PRAGMA busy_timeout = 20000');
   await prisma.weeklySchedule.deleteMany();
+  await prisma.dailyPlanItem.deleteMany();
+  await prisma.dailyPlan.deleteMany();
   await prisma.lessonPlan.deleteMany();
   await prisma.timetableSlot.deleteMany();
   await prisma.activity.deleteMany();
@@ -14,6 +16,8 @@ beforeAll(async () => {
 
 afterAll(async () => {
   await prisma.weeklySchedule.deleteMany();
+  await prisma.dailyPlanItem.deleteMany();
+  await prisma.dailyPlan.deleteMany();
   await prisma.lessonPlan.deleteMany();
   await prisma.timetableSlot.deleteMany();
   await prisma.activity.deleteMany();

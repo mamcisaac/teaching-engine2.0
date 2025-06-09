@@ -6,6 +6,8 @@ beforeAll(async () => {
   // Ensure SQLite doesn't immediately error when the database is busy
   await prisma.$queryRawUnsafe('PRAGMA busy_timeout = 20000');
   await prisma.weeklySchedule.deleteMany();
+  await prisma.dailyPlanItem.deleteMany();
+  await prisma.dailyPlan.deleteMany();
   await prisma.lessonPlan.deleteMany();
   await prisma.notification.deleteMany();
   await prisma.activity.deleteMany();
@@ -16,6 +18,8 @@ beforeAll(async () => {
 
 afterAll(async () => {
   await prisma.weeklySchedule.deleteMany();
+  await prisma.dailyPlanItem.deleteMany();
+  await prisma.dailyPlan.deleteMany();
   await prisma.lessonPlan.deleteMany();
   await prisma.notification.deleteMany();
   await prisma.timetableSlot.deleteMany();
@@ -270,5 +274,34 @@ describe('Newsletter API', () => {
         includePhotos: 'yes',
       });
     expect(res.status).toBe(400);
+  });
+});
+
+describe('Daily Plan API', () => {
+  const weekStart = '2025-01-06T00:00:00.000Z';
+
+  beforeAll(async () => {
+    const subject = await prisma.subject.create({ data: { name: 'DPSubj' } });
+    const milestone = await prisma.milestone.create({
+      data: { title: 'DPM', subjectId: subject.id },
+    });
+    await prisma.activity.create({ data: { title: 'DPA', milestoneId: milestone.id } });
+    await prisma.timetableSlot.create({
+      data: { day: 0, startMin: 540, endMin: 600, subjectId: subject.id },
+    });
+    await request(app).post('/api/lesson-plans/generate').send({ weekStart });
+  });
+
+  it('generates daily plan from weekly', async () => {
+    const res = await request(app).post('/api/daily-plans/generate').send({ date: weekStart });
+    expect(res.status).toBe(201);
+    expect(res.body.items.length).toBeGreaterThan(0);
+  });
+
+  it('retrieves the daily plan', async () => {
+    await request(app).post('/api/daily-plans/generate').send({ date: weekStart });
+    const res = await request(app).get(`/api/daily-plans/${weekStart}`);
+    expect(res.status).toBe(200);
+    expect(res.body.items.length).toBeGreaterThan(0);
   });
 });
