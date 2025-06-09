@@ -10,6 +10,7 @@ import resourceRoutes from './routes/resource';
 import materialListRoutes from './routes/materialList';
 import notificationRoutes from './routes/notification';
 import newsletterRoutes from './routes/newsletter';
+import timetableRoutes from './routes/timetable';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import logger from './logger';
 
@@ -26,6 +27,7 @@ app.use('/api/resources', resourceRoutes);
 app.use('/api/material-lists', materialListRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/newsletters', newsletterRoutes);
+app.use('/api/timetable', timetableRoutes);
 app.post('/api/preferences', savePreferences);
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });

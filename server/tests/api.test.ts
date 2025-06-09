@@ -11,12 +11,14 @@ beforeAll(async () => {
   await prisma.activity.deleteMany();
   await prisma.milestone.deleteMany();
   await prisma.subject.deleteMany();
+  await prisma.timetableSlot.deleteMany();
 });
 
 afterAll(async () => {
   await prisma.weeklySchedule.deleteMany();
   await prisma.lessonPlan.deleteMany();
   await prisma.notification.deleteMany();
+  await prisma.timetableSlot.deleteMany();
   await prisma.$disconnect();
 });
 
@@ -46,6 +48,20 @@ describe('Subject API', () => {
   it('returns 404 for missing subject', async () => {
     const res = await request(app).get('/api/subjects/99999');
     expect(res.status).toBe(404);
+  });
+});
+
+describe('Timetable API', () => {
+  it('saves and retrieves slots', async () => {
+    const subject = await prisma.subject.create({ data: { name: 'TSubj' } });
+    const res = await request(app)
+      .put('/api/timetable')
+      .send([{ day: 0, startMin: 540, endMin: 600, subjectId: subject.id }]);
+    expect(res.status).toBe(200);
+    expect(res.body.length).toBe(1);
+    const list = await request(app).get('/api/timetable');
+    expect(list.status).toBe(200);
+    expect(list.body[0].subjectId).toBe(subject.id);
   });
 });
 
@@ -115,6 +131,9 @@ describe('Lesson Plan API', () => {
     const subject = await prisma.subject.create({ data: { name: 'PlanSubj' } });
     const milestone = await prisma.milestone.create({
       data: { title: 'PlanM', subjectId: subject.id },
+    });
+    await prisma.timetableSlot.create({
+      data: { day: 0, startMin: 540, endMin: 600, subjectId: subject.id },
     });
     milestoneId = milestone.id;
     await prisma.activity.create({ data: { title: 'PlanAct', milestoneId } });

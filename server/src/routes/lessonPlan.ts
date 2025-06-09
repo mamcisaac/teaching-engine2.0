@@ -18,7 +18,7 @@ router.post('/generate', async (req, res, next) => {
           create: scheduleData,
         },
       },
-      include: { schedule: true },
+      include: { schedule: { include: { slot: true } } },
     });
     res.status(201).json(plan);
   } catch (err) {
@@ -31,7 +31,7 @@ router.get('/:weekStart', async (req, res, next) => {
     const plan = await prisma.lessonPlan.findFirst({
       where: { weekStart: new Date(req.params.weekStart) },
       include: {
-        schedule: true,
+        schedule: { include: { slot: true } },
       },
     });
     if (!plan) return res.status(404).json({ error: 'Not Found' });
@@ -44,14 +44,14 @@ router.get('/:weekStart', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const { schedule } = req.body as {
-      schedule: { id: number; day: number; activityId: number }[];
+      schedule: { id: number; day: number; slotId?: number; activityId: number }[];
     };
     const plan = await prisma.lessonPlan.update({
       where: { id: Number(req.params.id) },
       data: {
         schedule: {
           deleteMany: {},
-          create: schedule.map((s) => ({ day: s.day, activityId: s.activityId })),
+          create: schedule.map((s) => ({ day: s.day, slotId: s.slotId, activityId: s.activityId })),
         },
       },
       include: { schedule: true },

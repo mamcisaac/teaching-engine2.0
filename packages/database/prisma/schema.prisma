@@ -14,6 +14,7 @@ model Subject {
   id         Int        @id @default(autoincrement())
   name       String
   milestones Milestone[]
+  timetableSlots TimetableSlot[]
   createdAt  DateTime   @default(now())
 }
 
@@ -48,6 +49,16 @@ model LessonPlan {
   updatedAt  DateTime        @updatedAt
 }
 
+model TimetableSlot {
+  id        Int      @id @default(autoincrement())
+  day       Int
+  startMin  Int
+  endMin    Int
+  subjectId Int?
+  subject   Subject? @relation(fields: [subjectId], references: [id])
+  weeklySchedules WeeklySchedule[]
+}
+
 model WeeklySchedule {
   id          Int        @id @default(autoincrement())
   day         Int
@@ -55,6 +66,8 @@ model WeeklySchedule {
   lessonPlan  LessonPlan @relation(fields: [lessonPlanId], references: [id])
   activityId  Int
   activity    Activity   @relation(fields: [activityId], references: [id])
+  slotId      Int?
+  slot        TimetableSlot? @relation(fields: [slotId], references: [id])
 }
 
 model TeacherPreferences {

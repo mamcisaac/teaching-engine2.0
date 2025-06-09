@@ -51,6 +51,7 @@ vi.mock('../src/api', async () => {
       refetch: refetchMock,
     }),
     useSubjects: () => ({ data: subjects }),
+    useTimetable: () => ({ data: [] }),
     useGeneratePlan: () => generateState,
   };
 });
