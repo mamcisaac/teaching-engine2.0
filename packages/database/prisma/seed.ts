@@ -25,7 +25,6 @@ async function main() {
     data: {
       title: 'Addition and Subtraction',
       subjectId: math.id,
-      createdAt: new Date('2025-01-15'),
       activities: {
         create: [
           { title: '1 + 1', completedAt: null },
@@ -39,7 +38,6 @@ async function main() {
     data: {
       title: 'Living Things',
       subjectId: science.id,
-      createdAt: new Date('2025-02-01'),
       activities: {
         create: [
           { title: 'Plant Parts', completedAt: null },
@@ -53,7 +51,6 @@ async function main() {
     data: {
       title: 'Wellness',
       subjectId: health.id,
-      createdAt: new Date('2025-03-01'),
       activities: {
         create: [
           { title: 'Healthy Bodies', completedAt: null },
