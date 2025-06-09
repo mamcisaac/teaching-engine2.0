@@ -20,7 +20,15 @@ router.post('/', async (req, res, next) => {
       content: string;
       template?: string;
     };
-    const html = renderTemplate(template ?? 'weekly', { title, content });
+    let html: string;
+    try {
+      html = renderTemplate(template ?? 'weekly', { title, content });
+    } catch (err) {
+      if (err instanceof Error && err.message === 'Invalid template') {
+        return res.status(400).json({ error: err.message });
+      }
+      throw err;
+    }
     const newsletter = await prisma.newsletter.create({ data: { title, content: html } });
     res.status(201).json(newsletter);
   } catch (err) {

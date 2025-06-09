@@ -4,7 +4,13 @@ import Handlebars from 'handlebars';
 import PDFDocument from 'pdfkit';
 import { prisma } from '../prisma';
 
+const ALLOWED_TEMPLATES = ['weekly', 'monthly'] as const;
+export type NewsletterTemplate = (typeof ALLOWED_TEMPLATES)[number];
+
 export function renderTemplate(name: string, data: { title: string; content: string }): string {
+  if (!ALLOWED_TEMPLATES.includes(name as NewsletterTemplate)) {
+    throw new Error('Invalid template');
+  }
   const file = path.join(__dirname, `../templates/newsletters/${name}.hbs`);
   const tmpl = fs.readFileSync(file, 'utf-8');
   return Handlebars.compile(tmpl)(data);
