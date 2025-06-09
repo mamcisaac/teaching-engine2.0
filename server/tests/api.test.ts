@@ -207,4 +207,39 @@ describe('Newsletter API', () => {
     const docx = await request(app).get(`/api/newsletters/${id}/docx`);
     expect(docx.status).toBe(200);
   });
+
+  it('generates newsletter from activities', async () => {
+    const subject = await prisma.subject.create({ data: { name: 'GenSub' } });
+    const milestone = await prisma.milestone.create({
+      data: { title: 'GenM', subjectId: subject.id },
+    });
+    const activity = await prisma.activity.create({
+      data: {
+        title: 'GenAct',
+        milestoneId: milestone.id,
+        completedAt: new Date('2024-01-10T00:00:00.000Z'),
+      },
+    });
+    await prisma.resource.create({
+      data: {
+        filename: 'p.jpg',
+        url: 'http://example.com/p.jpg',
+        type: 'image/jpeg',
+        size: 1,
+        activityId: activity.id,
+      },
+    });
+
+    const res = await request(app).post('/api/newsletters/generate').send({
+      startDate: '2024-01-01',
+      endDate: '2024-01-31',
+      template: 'monthly',
+      includePhotos: true,
+    });
+    expect(res.status).toBe(201);
+    const id = res.body.id;
+    const html = await request(app).get(`/api/newsletters/${id}/html`);
+    expect(html.status).toBe(200);
+    expect(html.text).toContain('GenAct');
+  });
 });

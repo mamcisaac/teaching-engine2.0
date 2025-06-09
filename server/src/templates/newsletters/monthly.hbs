@@ -1,2 +1,20 @@
 <h1>{{title}}</h1>
-<div>{{{content}}}</div>
+{{#if activities}}
+  {{#each activities}}
+    <h2>{{@key}}</h2>
+    <ul>
+      {{#each this}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  {{/each}}
+{{/if}}
+{{#if photos}}
+  <h2>Photos</h2>
+  {{#each photos}}
+    <img src="{{this}}" alt="photo" />
+  {{/each}}
+{{/if}}
+{{#if content}}
+  <div>{{{content}}}</div>
+{{/if}}

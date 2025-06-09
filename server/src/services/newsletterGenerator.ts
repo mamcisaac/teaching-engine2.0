@@ -4,7 +4,7 @@ import Handlebars from 'handlebars';
 import PDFDocument from 'pdfkit';
 import { prisma } from '../prisma';
 
-export function renderTemplate(name: string, data: { title: string; content: string }): string {
+export function renderTemplate(name: string, data: Record<string, unknown>): string {
   const file = path.join(__dirname, `../templates/newsletters/${name}.hbs`);
   const tmpl = fs.readFileSync(file, 'utf-8');
   return Handlebars.compile(tmpl)(data);
@@ -30,13 +30,12 @@ export interface NewsletterContent {
   photos: string[];
 }
 
-/**
- * Collect data for a weekly newsletter based on completed activities.
- */
-export async function collectWeeklyContent(weekStart: string): Promise<NewsletterContent> {
-  const start = new Date(weekStart);
-  const end = new Date(start);
-  end.setDate(start.getDate() + 7);
+export async function collectContent(
+  startDate: string,
+  endDate: string,
+): Promise<NewsletterContent> {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
 
   const acts = await prisma.activity.findMany({
     where: { completedAt: { gte: start, lt: end } },
@@ -55,4 +54,14 @@ export async function collectWeeklyContent(weekStart: string): Promise<Newslette
   }
 
   return { activities: bySubject, photos };
+}
+
+/**
+ * Collect data for a weekly newsletter based on completed activities.
+ */
+export async function collectWeeklyContent(weekStart: string): Promise<NewsletterContent> {
+  const start = new Date(weekStart);
+  const end = new Date(start);
+  end.setDate(start.getDate() + 7);
+  return collectContent(start.toISOString(), end.toISOString());
 }

@@ -145,6 +145,20 @@ pnpm exec playwright install
 5. **Plan Weekly**: Use the weekly planner (Phase 4) to schedule activities across your timetable
 6. **Communicate**: Generate parent newsletters from completed activities (Phase 4)
 
+### Newsletter Generator API
+
+Auto-create newsletters based on a date range of completed activities.
+
+```bash
+POST /api/newsletters/generate
+{
+  "startDate": "2024-01-01",
+  "endDate": "2024-01-31",
+  "template": "monthly",
+  "includePhotos": true
+}
+```
+
 ### Key Concepts
 
 - **Subject**: Top-level curriculum area (e.g., Mathematics)

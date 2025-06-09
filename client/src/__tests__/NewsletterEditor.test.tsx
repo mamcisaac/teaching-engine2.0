@@ -8,6 +8,7 @@ vi.mock('../api', async () => {
   return {
     ...actual,
     useCreateNewsletter: () => ({ mutate: vi.fn() }),
+    useGenerateNewsletter: () => ({ mutate: vi.fn() }),
   };
 });
 
@@ -21,4 +22,10 @@ it('edits and saves newsletter', () => {
   });
   fireEvent.click(screen.getByText('Save'));
   expect(screen.getByDisplayValue('My News')).toBeInTheDocument();
+});
+
+it('generates newsletter', () => {
+  renderWithRouter(<NewsletterEditor />);
+  fireEvent.click(screen.getByText('Generate'));
+  expect(screen.getByText('Generate')).toBeInTheDocument();
 });

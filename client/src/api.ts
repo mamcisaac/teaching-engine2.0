@@ -325,6 +325,21 @@ export const useCreateNewsletter = () => {
   });
 };
 
+export const useGenerateNewsletter = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: {
+      startDate: string;
+      endDate: string;
+      template: string;
+      includePhotos: boolean;
+    }) => api.post('/newsletters/generate', data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['newsletters'] });
+    },
+  });
+};
+
 export const useNewsletters = () =>
   useQuery<Newsletter[]>({
     queryKey: ['newsletters'],

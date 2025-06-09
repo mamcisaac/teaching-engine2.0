@@ -1,6 +1,11 @@
 import { Router } from 'express';
 import { prisma } from '../prisma';
-import { renderTemplate, generatePdf, generateDocx } from '../services/newsletterGenerator';
+import {
+  renderTemplate,
+  generatePdf,
+  generateDocx,
+  collectContent,
+} from '../services/newsletterGenerator';
 
 const router = Router();
 
@@ -22,6 +27,34 @@ router.post('/', async (req, res, next) => {
     };
     const html = renderTemplate(template ?? 'weekly', { title, content });
     const newsletter = await prisma.newsletter.create({ data: { title, content: html } });
+    res.status(201).json(newsletter);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/generate', async (req, res, next) => {
+  try {
+    const {
+      startDate,
+      endDate,
+      template = 'weekly',
+      includePhotos,
+    } = req.body as {
+      startDate: string;
+      endDate: string;
+      template?: string;
+      includePhotos?: boolean;
+    };
+    const data = await collectContent(startDate, endDate);
+    const html = renderTemplate(template, {
+      title: `Newsletter ${startDate} - ${endDate}`,
+      activities: data.activities,
+      photos: includePhotos ? data.photos : [],
+    });
+    const newsletter = await prisma.newsletter.create({
+      data: { title: `Newsletter ${startDate} - ${endDate}`, content: html },
+    });
     res.status(201).json(newsletter);
   } catch (err) {
     next(err);
@@ -82,6 +115,17 @@ router.get('/:id/docx', async (req, res, next) => {
       'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
     );
     res.send(docx);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/:id/html', async (req, res, next) => {
+  try {
+    const nl = await prisma.newsletter.findUnique({ where: { id: Number(req.params.id) } });
+    if (!nl) return res.status(404).json({ error: 'Not Found' });
+    res.setHeader('Content-Type', 'text/html');
+    res.send(nl.content);
   } catch (err) {
     next(err);
   }
