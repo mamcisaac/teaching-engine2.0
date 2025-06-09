@@ -361,6 +361,11 @@ export const useNewsletters = () =>
     queryFn: async () => (await api.get('/newsletters')).data,
   });
 
+export const useGenerateNewsletter = () =>
+  useMutation((data: { startDate: string; endDate: string }) =>
+    api.post('/newsletters/generate', data).then((r) => r.data as Newsletter),
+  );
+
 export interface TimetableSlot {
   id: number;
   day: number;
