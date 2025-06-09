@@ -21,7 +21,7 @@ async function main() {
     prisma.subject.create({ data: { name: 'Health' } }),
   ]);
 
-  await prisma.milestone.create({
+  const additionMilestone = await prisma.milestone.create({
     data: {
       title: 'Addition and Subtraction',
       subjectId: math.id,
@@ -32,9 +32,15 @@ async function main() {
         ],
       },
     },
+    include: { activities: true },
   });
 
-  await prisma.milestone.create({
+  const activityIds: Record<string, number> = {};
+  additionMilestone.activities.forEach((a) => {
+    activityIds[a.title] = a.id;
+  });
+
+  const livingMilestone = await prisma.milestone.create({
     data: {
       title: 'Living Things',
       subjectId: science.id,
@@ -45,9 +51,14 @@ async function main() {
         ],
       },
     },
+    include: { activities: true },
   });
 
-  await prisma.milestone.create({
+  livingMilestone.activities.forEach((a) => {
+    activityIds[a.title] = a.id;
+  });
+
+  const wellnessMilestone = await prisma.milestone.create({
     data: {
       title: 'Wellness',
       subjectId: health.id,
@@ -58,6 +69,11 @@ async function main() {
         ],
       },
     },
+    include: { activities: true },
+  });
+
+  wellnessMilestone.activities.forEach((a) => {
+    activityIds[a.title] = a.id;
   });
 
   // Optional: seed one completed lesson plan
@@ -67,12 +83,12 @@ async function main() {
       schedule: {
         create: [
           {
-            dayOfWeek: 0,
-            activity: { connect: { title: '1 + 1' } },
+            day: 0,
+            activity: { connect: { id: activityIds['1 + 1'] } },
           },
           {
-            dayOfWeek: 1,
-            activity: { connect: { title: 'Plant Parts' } },
+            day: 1,
+            activity: { connect: { id: activityIds['Plant Parts'] } },
           },
         ],
       },
