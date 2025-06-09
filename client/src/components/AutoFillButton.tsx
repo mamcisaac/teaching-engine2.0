@@ -11,7 +11,10 @@ export default function AutoFillButton({ weekStart, onGenerated }: Props) {
   const generate = useGeneratePlan();
   const handleClick = () =>
     generate.mutate(weekStart, {
-      onSuccess: (plan) => onGenerated?.(plan),
+      onSuccess: (plan) => {
+        toast.success('Plan generated! Review the materials list.');
+        onGenerated?.(plan);
+      },
       onError: (err) => {
         if (
           axios.isAxiosError(err) &&

@@ -96,4 +96,34 @@ describe('planning engine', () => {
     expect(i2).toBeLessThan(i3);
     expect(i3).toBeLessThan(i4);
   });
+
+  it('prioritizes urgent milestones', async () => {
+    await prisma.weeklySchedule.deleteMany();
+    await prisma.lessonPlan.deleteMany();
+    await prisma.timetableSlot.deleteMany();
+    await prisma.activity.deleteMany();
+    await prisma.milestone.deleteMany();
+    await prisma.subject.deleteMany();
+
+    const subj = await prisma.subject.create({ data: { name: 'U' } });
+    const dueSoon = await prisma.milestone.create({
+      data: { title: 'Soon', subjectId: subj.id, targetDate: new Date() },
+    });
+    const later = await prisma.milestone.create({
+      data: {
+        title: 'Later',
+        subjectId: subj.id,
+        targetDate: new Date(Date.now() + 7 * 86400000),
+      },
+    });
+    await prisma.timetableSlot.createMany({
+      data: [0, 1].map((d) => ({ day: d, startMin: 540, endMin: 600, subjectId: subj.id })),
+    });
+    const aSoon = await prisma.activity.create({ data: { title: 'A1', milestoneId: dueSoon.id } });
+    const aLater = await prisma.activity.create({ data: { title: 'A2', milestoneId: later.id } });
+
+    const schedule = await generateWeeklySchedule();
+    expect(schedule[0].activityId).toBe(aSoon.id);
+    expect(schedule[1].activityId).toBe(aLater.id);
+  });
 });

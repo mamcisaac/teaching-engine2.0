@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { prisma } from '../prisma';
 import { generateWeeklySchedule } from '../services/planningEngine';
+import { updateMaterialList } from '../services/materialGenerator';
 
 const router = Router();
 
@@ -20,6 +21,7 @@ router.post('/generate', async (req, res, next) => {
       },
       include: { schedule: { include: { slot: true } } },
     });
+    await updateMaterialList(weekStart);
     res.status(201).json(plan);
   } catch (err) {
     next(err);
@@ -56,6 +58,7 @@ router.put('/:id', async (req, res, next) => {
       },
       include: { schedule: true },
     });
+    await updateMaterialList(plan.weekStart.toISOString());
     res.json(plan);
   } catch (err) {
     next(err);

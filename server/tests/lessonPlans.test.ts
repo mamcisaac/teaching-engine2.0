@@ -82,4 +82,12 @@ describe('lesson plan routes', () => {
     expect(res.status).toBe(200);
     expect(res.body.schedule[0].activityId).toBe(activityId);
   });
+
+  it('generates material list with plan', async () => {
+    const date = '2026-01-01T00:00:00.000Z';
+    const res = await request(app).post('/api/lesson-plans/generate').send({ weekStart: date });
+    expect(res.status).toBe(201);
+    const list = await prisma.materialList.findFirst({ where: { weekStart: new Date(date) } });
+    expect(list).not.toBeNull();
+  });
 });

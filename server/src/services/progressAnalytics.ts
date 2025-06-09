@@ -20,3 +20,25 @@ export async function getMilestoneProgress(): Promise<MilestoneProgress[]> {
     };
   });
 }
+
+export interface MilestoneUrgency extends MilestoneProgress {
+  urgency: number;
+}
+
+/**
+ * Calculate milestone urgency based on remaining time and completion rate.
+ * Higher values indicate milestones that need attention sooner.
+ */
+export async function getMilestoneUrgency(): Promise<MilestoneUrgency[]> {
+  const progress = await getMilestoneProgress();
+  const today = new Date();
+  return progress
+    .map((p) => {
+      const daysLeft = p.targetDate
+        ? Math.max(1, Math.ceil((p.targetDate.getTime() - today.getTime()) / 86400000))
+        : 30;
+      const urgency = (1 - p.completionRate) / daysLeft;
+      return { ...p, urgency };
+    })
+    .sort((a, b) => b.urgency - a.urgency);
+}
