@@ -275,6 +275,18 @@ describe('Newsletter API', () => {
       });
     expect(res.status).toBe(400);
   });
+
+  it('sends newsletter to contacts', async () => {
+    const nl = await prisma.newsletter.create({
+      data: { title: 'Send', content: 'Hi' },
+    });
+    await prisma.parentContact.create({
+      data: { name: 'Parent', email: 'p@example.com', studentName: 'Kid' },
+    });
+    const res = await request(app).post(`/api/newsletters/${nl.id}/send`);
+    expect(res.status).toBe(200);
+    expect(res.body.sent).toBe(1);
+  });
 });
 
 describe('Daily Plan API', () => {

@@ -38,6 +38,7 @@ export const newsletterGenerateSchema = z.object({
   endDate: z.string().datetime(),
   template: z.enum(ALLOWED_TEMPLATES).optional(),
   includePhotos: z.boolean().optional(),
+  useLLM: z.boolean().optional(),
 });
 
 export function validate(schema: ZodSchema) {
