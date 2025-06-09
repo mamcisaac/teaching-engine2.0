@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, screen, waitFor, act } from '@testing-library/react';
+import { fireEvent, screen, waitFor, act, within } from '@testing-library/react';
 import WeeklyPlannerPage from '../src/pages/WeeklyPlannerPage';
 import { renderWithRouter } from '../src/test-utils';
 import type { LessonPlan, Subject } from '../src/api';
@@ -154,7 +154,7 @@ test('saves schedule when dragging activity to a day', async () => {
   act(() => {
     triggerDrop({
       active: { id: 1 },
-      over: { data: { current: { day: 0 } } },
+      over: { id: 'day-0', data: { current: { day: 0 } } },
     } as DragEndEvent);
   });
 
@@ -169,4 +169,44 @@ test('saves schedule when dragging activity to a day', async () => {
       activity: { id: 1, title: 'Act 1', milestoneId: 1, completedAt: null },
     },
   ]);
+});
+
+test('dragging updates UI after refetch', async () => {
+  subjects = [
+    {
+      id: 1,
+      name: 'Math',
+      milestones: [
+        {
+          id: 1,
+          title: 'M1',
+          subjectId: 1,
+          activities: [{ id: 1, title: 'Act 1', milestoneId: 1, completedAt: null }],
+        },
+      ],
+    },
+  ];
+  const fetchMock = vi.fn().mockResolvedValue({ ok: true });
+  // @ts-expect-error mock fetch
+  global.fetch = fetchMock;
+
+  const { rerender } = renderWithRouter(<WeeklyPlannerPage />);
+  act(() => {
+    triggerDrop({
+      active: { id: 1 },
+      over: { id: 'day-0', data: { current: { day: 0 } } },
+    } as DragEndEvent);
+  });
+
+  await waitFor(() => expect(fetchMock).toHaveBeenCalled());
+  lessonPlanData!.schedule = [
+    {
+      id: 0,
+      day: 0,
+      activityId: 1,
+      activity: { id: 1, title: 'Act 1', milestoneId: 1, completedAt: null },
+    },
+  ];
+  rerender(<WeeklyPlannerPage />);
+  expect(within(screen.getByTestId('day-0')).getByText('Act 1')).toBeInTheDocument();
 });

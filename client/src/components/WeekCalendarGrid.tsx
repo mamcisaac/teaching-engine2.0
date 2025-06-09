@@ -13,7 +13,10 @@ export default function WeekCalendarGrid({ schedule, activities }: Props) {
       {days.map((d, idx) => {
         const item = schedule.find((s) => s.day === idx);
         const title = item ? activities[item.activityId]?.title : '';
-        const { isOver, setNodeRef } = useDroppable({ id: idx, data: { day: idx } });
+        const { isOver, setNodeRef } = useDroppable({
+          id: `day-${idx}`,
+          data: { day: idx },
+        });
         return (
           <div
             key={idx}
