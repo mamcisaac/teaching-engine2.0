@@ -21,7 +21,7 @@ async function main() {
     prisma.subject.create({ data: { name: 'Health' } }),
   ]);
 
-  const _mathMilestone1 = await prisma.milestone.create({
+  await prisma.milestone.create({
     data: {
       title: 'Addition and Subtraction',
       subjectId: math.id,
@@ -35,7 +35,7 @@ async function main() {
     },
   });
 
-  const _scienceMilestone = await prisma.milestone.create({
+  await prisma.milestone.create({
     data: {
       title: 'Living Things',
       subjectId: science.id,
@@ -49,7 +49,7 @@ async function main() {
     },
   });
 
-  const _healthMilestone = await prisma.milestone.create({
+  await prisma.milestone.create({
     data: {
       title: 'Wellness',
       subjectId: health.id,
@@ -64,7 +64,7 @@ async function main() {
   });
 
   // Optional: seed one completed lesson plan
-  const _existingPlan = await prisma.lessonPlan.create({
+  await prisma.lessonPlan.create({
     data: {
       weekStart: mondayThisWeek,
       schedule: {
