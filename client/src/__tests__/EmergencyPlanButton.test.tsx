@@ -5,8 +5,8 @@ import axios from 'axios';
 
 vi.mock('axios');
 
-const mockedPost = vi.fn().mockResolvedValue({ data: new ArrayBuffer(10) });
-(axios as unknown as { post: typeof mockedPost }).post = mockedPost;
+const mockedGet = vi.fn().mockResolvedValue({ data: new ArrayBuffer(10) });
+(axios as unknown as { get: typeof mockedGet }).get = mockedGet;
 
 beforeAll(() => {
   // jsdom lacks createObjectURL; provide a stub
@@ -33,7 +33,7 @@ describe('EmergencyPlanButton', () => {
     const { getByText } = render(<EmergencyPlanButton />);
     fireEvent.click(getByText('Emergency Plan'));
     await waitFor(() => {
-      expect(mockedPost).toHaveBeenCalled();
+      expect(mockedGet).toHaveBeenCalled();
     });
   });
 });

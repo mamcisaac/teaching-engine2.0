@@ -13,6 +13,7 @@ import notificationRoutes from './routes/notification';
 import newsletterRoutes from './routes/newsletter';
 import timetableRoutes from './routes/timetable';
 import { scheduleProgressCheck } from './jobs/progressCheck';
+import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import logger from './logger';
 
 const app = express();
@@ -61,6 +62,7 @@ app.use(
 const PORT = process.env.PORT || 3000;
 if (process.env.NODE_ENV !== 'test') {
   scheduleProgressCheck();
+  scheduleUnreadNotificationEmails();
   app.listen(PORT, () => {
     logger.info(`Server listening on port ${PORT}`);
   });

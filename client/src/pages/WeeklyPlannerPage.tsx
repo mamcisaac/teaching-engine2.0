@@ -24,9 +24,17 @@ export default function WeeklyPlannerPage() {
 
   const handleDrop = (day: number, activityId: number) => {
     if (!plan) return;
-    const schedule = plan.schedule.filter((s) => s.day !== day);
-    schedule.push({ id: 0, day, activityId, activity: activities[activityId] });
-    // naive update
+    const slots = timetable?.filter((t) => t.day === day && t.subjectId) ?? [];
+    const used = new Set(plan.schedule.filter((s) => s.day === day).map((s) => s.slotId));
+    const slot = slots.find((s) => !used.has(s.id));
+    if (!slot) {
+      toast.error('No available slot');
+      return;
+    }
+    const schedule = [
+      ...plan.schedule,
+      { id: 0, day, slotId: slot.id, activityId, activity: activities[activityId] },
+    ];
     fetch(`/api/lesson-plans/${plan.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },

@@ -24,6 +24,33 @@ export async function sendEmail(
   text: string,
   attachment?: EmailAttachment,
 ) {
+  if (process.env.SENDGRID_API_KEY) {
+    const body: Record<string, unknown> = {
+      personalizations: [{ to: [{ email: to }] }],
+      from: { email: process.env.EMAIL_FROM || 'no-reply@example.com' },
+      subject,
+      content: [{ type: 'text/plain', value: text }],
+    };
+    if (attachment) {
+      body.attachments = [
+        {
+          content: attachment.content.toString('base64'),
+          filename: attachment.filename,
+          type: 'application/pdf',
+          disposition: 'attachment',
+        },
+      ];
+    }
+    await fetch('https://api.sendgrid.com/v3/mail/send', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${process.env.SENDGRID_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+    return;
+  }
   if (!transporter) {
     logger.info({ to, subject, text, attachment: !!attachment }, 'Email');
     return;
