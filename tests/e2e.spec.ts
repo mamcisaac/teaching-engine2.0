@@ -24,5 +24,6 @@ test('create subject, milestone and activity', async ({ page }) => {
   await page.fill('input[placeholder="New activity"]', 'A1');
   await page.click('button:has-text("Save")');
 
-  await expect(page.locator('text=A1')).toBeVisible();
+  // check new activity appears exactly once
+  await expect(page.locator('text="A1"')).toBeVisible();
 });
