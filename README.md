@@ -27,6 +27,7 @@ Teaching Engine 2.0 aims to be the "digital teaching assistant" that reduces adm
 3. **Progress Alerts**: Notifications warn when milestones are falling behind.
 4. **Newsletter Generator**: Content is collected from completed activities for easy parent updates.
 5. **Emergency Sub Plans**: One-click PDFs provide substitute teachers with the current plan.
+6. **Notes & Reflection Management**: Private notes can be added to activities and days; public notes appear in newsletters.
 
 ### Phase 5 - Curriculum Intelligence (To Be Implemented)
 

@@ -8,6 +8,7 @@ import NewsletterEditor from './pages/NewsletterEditor';
 import DailyPlanPage from './pages/DailyPlanPage';
 import TimetablePage from './pages/TimetablePage';
 import DashboardPage from './pages/DashboardPage';
+import NotesPage from './pages/NotesPage';
 import { NotificationProvider } from './contexts/NotificationContext';
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/planner" element={<WeeklyPlannerPage />} />
         <Route path="/timetable" element={<TimetablePage />} />
         <Route path="/daily" element={<DailyPlanPage />} />
+        <Route path="/notes" element={<NotesPage />} />
         <Route path="/notifications" element={<NotificationsPage />} />
         <Route path="/newsletters/new" element={<NewsletterEditor />} />
       </Routes>
