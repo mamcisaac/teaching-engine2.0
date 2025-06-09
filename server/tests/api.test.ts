@@ -207,4 +207,11 @@ describe('Newsletter API', () => {
     const docx = await request(app).get(`/api/newsletters/${id}/docx`);
     expect(docx.status).toBe(200);
   });
+
+  it('rejects invalid template name', async () => {
+    const res = await request(app)
+      .post('/api/newsletters')
+      .send({ title: 'Bad', content: 'X', template: 'oops' });
+    expect(res.status).toBe(400);
+  });
 });
