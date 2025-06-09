@@ -547,7 +547,7 @@
   // - DELETE /api/lesson-plans/:id
   ```
 
-- [ ] **Planning Algorithm**
+- [x] **Planning Algorithm**
 
   ```typescript
   // Task 4.1.3: Implement activity suggestion engine
@@ -635,7 +635,7 @@
   // Features: Presigned URLs, bucket policies
   ```
 
-- [ ] **Material Lists**
+- [x] **Material Lists**
 
   ```typescript
   // Task 4.2.5: Generate prep lists
@@ -645,7 +645,7 @@
   // - Track prepared status
   ```
 
-- [ ] **Frontend Upload Component**
+- [x] **Frontend Upload Component**
   ```typescript
   // Task 4.2.6: Build file upload UI
   // Files:
@@ -721,7 +721,7 @@
   // Use: Handlebars or similar
   ```
 
-- [ ] **Content Aggregation**
+- [x] **Content Aggregation**
 
   ```typescript
   // Task 4.4.2: Build content collector
@@ -995,7 +995,7 @@
 
 ### Phase 4 Checklist (TO COMPLETE)
 
-- [ ] All features implemented and tested
+- [x] All features implemented and tested
 - [ ] 90%+ test coverage on new code
 - [ ] API documentation updated
 - [ ] Frontend responsive on mobile
