@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import type { VEvent } from 'node-ical';
+import ical, { VEvent } from 'node-ical';
 import { prisma } from '../prisma';
 import { z } from 'zod';
 import { validate } from '../validation';
@@ -67,7 +67,6 @@ router.post('/sync/ical', async (req, res, next) => {
   try {
     const { feedUrl } = req.body as { feedUrl: string };
     if (!feedUrl) return res.status(400).json({ error: 'feedUrl required' });
-    const ical = await import('node-ical');
     const data = (await ical.async.fromURL(feedUrl)) as Record<string, VEvent>;
     const eventsToCreate = Object.values(data)
       .filter((e): e is VEvent => e.type === 'VEVENT')
