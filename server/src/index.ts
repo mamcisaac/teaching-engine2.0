@@ -14,6 +14,7 @@ import newsletterRoutes from './routes/newsletter';
 import timetableRoutes from './routes/timetable';
 import noteRoutes from './routes/note';
 import calendarEventRoutes from './routes/calendarEvent';
+import unavailableBlockRoutes from './routes/unavailableBlock';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleBackups } from './services/backupService';
@@ -48,6 +49,7 @@ app.use('/api/newsletters', newsletterRoutes);
 app.use('/api/timetable', timetableRoutes);
 app.use('/api/notes', noteRoutes);
 app.use('/api/calendar-events', calendarEventRoutes);
+app.use('/api/unavailable-blocks', unavailableBlockRoutes);
 app.post('/api/preferences', savePreferences);
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });

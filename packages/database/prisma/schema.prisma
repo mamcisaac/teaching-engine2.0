@@ -173,6 +173,7 @@ model User {
   milestones Milestone[]
   activities Activity[]
   events    CalendarEvent[]
+  unavailableBlocks UnavailableBlock[]
 }
 
 enum CalendarEventType {
@@ -203,5 +204,24 @@ model CalendarEvent {
   schoolId    Int?
   createdAt   DateTime            @default(now())
   updatedAt   DateTime            @updatedAt
+}
+
+enum UnavailableBlockType {
+  TEACHER_ABSENCE
+  STUDENT_PULL_OUT
+}
+
+model UnavailableBlock {
+  id                Int                  @id @default(autoincrement())
+  teacherId         Int?
+  teacher           User?               @relation(fields: [teacherId], references: [id])
+  date              DateTime
+  startMin          Int
+  endMin            Int
+  reason            String
+  blockType         UnavailableBlockType
+  affectedStudentIds String?
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
 }
 

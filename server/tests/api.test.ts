@@ -355,3 +355,19 @@ describe('Notes API', () => {
     expect(del.status).toBe(204);
   });
 });
+
+describe('Unavailable Blocks API', () => {
+  it('creates and lists blocks', async () => {
+    const create = await request(app).post('/api/unavailable-blocks').send({
+      date: '2025-02-03T00:00:00.000Z',
+      startMin: 540,
+      endMin: 600,
+      reason: 'Workshop',
+      blockType: 'TEACHER_ABSENCE',
+    });
+    expect(create.status).toBe(201);
+    const list = await request(app).get('/api/unavailable-blocks?from=2025-02-03&to=2025-02-03');
+    expect(list.status).toBe(200);
+    expect(list.body.length).toBeGreaterThan(0);
+  });
+});

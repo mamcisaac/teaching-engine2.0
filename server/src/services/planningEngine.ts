@@ -1,5 +1,10 @@
 import { prisma } from '../prisma';
-import type { Activity, TimetableSlot, CalendarEvent } from '@teaching-engine/database';
+import type {
+  Activity,
+  TimetableSlot,
+  CalendarEvent,
+  UnavailableBlock,
+} from '@teaching-engine/database';
 
 export interface ScheduleItem {
   day: number;
@@ -25,6 +30,7 @@ export interface GenerateScheduleOptions {
 export function filterAvailableBlocksByCalendar(
   slots: TimetableSlot[],
   events: CalendarEvent[],
+  unavailable: UnavailableBlock[] = [],
 ): DailyBlock[] {
   return slots
     .filter((s) => s.subjectId)
@@ -39,6 +45,12 @@ export function filterAvailableBlocksByCalendar(
           : new Date(ev.end).getUTCHours() * 60 + new Date(ev.end).getUTCMinutes();
         return end <= slot.startMin || start >= slot.endMin;
       });
+    })
+    .filter((slot) => {
+      const dayBlocks = unavailable.filter(
+        (b) => (new Date(b.date).getUTCDay() + 6) % 7 === slot.day,
+      );
+      return dayBlocks.every((b) => b.endMin <= slot.startMin || b.startMin >= slot.endMin);
     })
     .map((s) => ({
       day: s.day,
