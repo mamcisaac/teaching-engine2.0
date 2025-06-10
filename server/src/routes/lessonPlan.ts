@@ -1,14 +1,47 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { prisma } from '../prisma';
-import { generateWeeklySchedule } from '../services/planningEngine';
+import {
+  generateWeeklySchedule,
+  filterAvailableBlocksByCalendar,
+} from '../services/planningEngine';
+import { getMilestoneUrgency } from '../services/progressAnalytics';
 import { updateMaterialList } from '../services/materialGenerator';
 
 const router = Router();
 
 router.post('/generate', async (req, res, next) => {
   try {
-    const { weekStart } = req.body as { weekStart: string };
-    const scheduleData = await generateWeeklySchedule();
+    const {
+      weekStart,
+      pacingStrategy = 'relaxed',
+      preserveBuffer = false,
+    } = req.body as {
+      weekStart: string;
+      pacingStrategy?: 'strict' | 'relaxed';
+      preserveBuffer?: boolean;
+    };
+
+    const startDate = new Date(weekStart);
+    const endDate = new Date(startDate);
+    endDate.setUTCDate(startDate.getUTCDate() + 6);
+    const slots = await prisma.timetableSlot.findMany({
+      orderBy: [{ day: 'asc' }, { startMin: 'asc' }],
+    });
+    const events = await prisma.calendarEvent.findMany({
+      where: {
+        start: { lte: endDate },
+        end: { gte: startDate },
+      },
+    });
+    const availableBlocks = filterAvailableBlocksByCalendar(slots, events);
+    const urg = await getMilestoneUrgency();
+    const priorityMap = new Map(urg.map((u) => [u.id, u.urgency]));
+    const scheduleData = await generateWeeklySchedule({
+      availableBlocks,
+      milestonePriorities: priorityMap,
+      pacingStrategy,
+      preserveBuffer,
+    });
     if (scheduleData.length === 0) {
       return res.status(400).json({ error: 'No activities available' });
     }

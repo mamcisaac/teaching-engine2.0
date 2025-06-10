@@ -18,6 +18,8 @@ import { toast } from 'sonner';
 
 export default function UnifiedWeekViewComponent() {
   const [weekStart, setWeekStart] = useState(() => getWeekStartISO(new Date()));
+  const [preserveBuffer, setPreserveBuffer] = useState(true);
+  const [skipLow, setSkipLow] = useState(true);
   const { data: plan, refetch } = useLessonPlan(weekStart);
   const subjects = useSubjects().data ?? [];
   const { data: timetable } = useTimetable();
@@ -84,7 +86,26 @@ export default function UnifiedWeekViewComponent() {
           onChange={(e) => setWeekStart(getWeekStartISO(new Date(e.target.value)))}
           className="border p-1"
         />
-        <AutoFillButton weekStart={weekStart} onGenerated={handleGenerated} />
+        <AutoFillButton
+          weekStart={weekStart}
+          preserveBuffer={preserveBuffer}
+          pacingStrategy={skipLow ? 'relaxed' : 'strict'}
+          onGenerated={handleGenerated}
+        />
+      </div>
+      <div className="flex gap-4 items-center">
+        <label className="inline-flex items-center gap-2">
+          <input
+            type="checkbox"
+            checked={preserveBuffer}
+            onChange={(e) => setPreserveBuffer(e.target.checked)}
+          />
+          Preserve daily buffer block
+        </label>
+        <label className="inline-flex items-center gap-2">
+          <input type="checkbox" checked={skipLow} onChange={(e) => setSkipLow(e.target.checked)} />
+          Skip lowest priority activity on short weeks
+        </label>
       </div>
       {showPrompts && (
         <div className="bg-blue-50 p-2 flex gap-2 items-center text-sm">
