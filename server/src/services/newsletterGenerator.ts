@@ -208,3 +208,26 @@ export async function generateNewsletterDraft(
     content,
   };
 }
+
+export interface TermNewsletterInput {
+  completedActivities: string[];
+  classMilestones: string[];
+  teacherTone: string;
+  term: string;
+  includeUpcomingTopics: boolean;
+}
+
+export async function generateTermNewsletterDraft(
+  input: TermNewsletterInput,
+): Promise<NewsletterDraft> {
+  const { completedActivities, classMilestones, teacherTone, term, includeUpcomingTopics } = input;
+
+  const prompt =
+    `Write a short classroom newsletter in a ${teacherTone} tone.\n` +
+    `Term: ${term}.\nCompleted: ${completedActivities.join(', ')}.\n` +
+    `Milestones: ${classMilestones.join(', ')}.` +
+    (includeUpcomingTopics ? '\nInclude a section about upcoming topics.' : '');
+
+  const content = await polishWithLLM(prompt);
+  return { title: `${term} Update`, content: content || prompt };
+}

@@ -108,6 +108,8 @@ model MaterialList {
 model Notification {
   id        Int      @id @default(autoincrement())
   message   String
+  type      String?
+  dueDate   DateTime?
   read      Boolean  @default(false)
   createdAt DateTime @default(now())
 }
