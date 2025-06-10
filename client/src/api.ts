@@ -155,6 +155,31 @@ export const useDeleteActivity = () => {
   });
 };
 
+export const useReorderActivities = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: { milestoneId: number; activityIds: number[] }) =>
+      api.patch('/activities/reorder', data).then((r) => r.data),
+    onMutate: async (vars) => {
+      await qc.cancelQueries({ queryKey: ['milestone', vars.milestoneId] });
+      const prev = qc.getQueryData<Milestone>(['milestone', vars.milestoneId]);
+      if (prev) {
+        qc.setQueryData<Milestone>(['milestone', vars.milestoneId], {
+          ...prev,
+          activities: vars.activityIds.map((id) => prev.activities.find((a) => a.id === id)!),
+        });
+      }
+      return { prev };
+    },
+    onError: (_err, _vars, ctx) => {
+      if (ctx?.prev) qc.setQueryData(['milestone', ctx.prev.id], ctx.prev);
+    },
+    onSettled: (_res, vars) => {
+      qc.invalidateQueries({ queryKey: ['milestone', vars.milestoneId] });
+    },
+  });
+};
+
 export const useUpdateSubject = () => {
   const qc = useQueryClient();
   return useMutation({
