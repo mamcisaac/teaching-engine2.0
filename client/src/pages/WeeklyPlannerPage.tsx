@@ -1,6 +1,13 @@
 import { useState, useMemo, useEffect } from 'react';
 import { DndContext, DragEndEvent } from '@dnd-kit/core';
-import { useLessonPlan, useSubjects, Activity, getWeekStartISO, useTimetable } from '../api';
+import {
+  useLessonPlan,
+  useSubjects,
+  Activity,
+  getWeekStartISO,
+  useTimetable,
+  useCalendarEvents,
+} from '../api';
 import ActivitySuggestionList from '../components/ActivitySuggestionList';
 import WeekCalendarGrid from '../components/WeekCalendarGrid';
 import AutoFillButton from '../components/AutoFillButton';
@@ -14,6 +21,10 @@ export default function WeeklyPlannerPage() {
   const { data: plan, refetch } = useLessonPlan(weekStart);
   const subjects = useSubjects().data ?? [];
   const { data: timetable } = useTimetable();
+  const { data: events } = useCalendarEvents(
+    weekStart,
+    new Date(new Date(weekStart).getTime() + 6 * 86400000).toISOString(),
+  );
   const activities = useMemo(() => {
     const all: Record<number, Activity> = {};
     subjects.forEach((s) =>
@@ -70,7 +81,12 @@ export default function WeeklyPlannerPage() {
       </div>
       <PlannerNotificationBanner />
       <DndContext onDragEnd={handleDragEnd}>
-        <WeekCalendarGrid schedule={schedule} activities={activities} timetable={timetable} />
+        <WeekCalendarGrid
+          schedule={schedule}
+          activities={activities}
+          timetable={timetable}
+          events={events}
+        />
         {!plan && (
           <p data-testid="no-plan-message" className="text-sm text-gray-600">
             No plan for this week. Click Auto Fill to generate one.

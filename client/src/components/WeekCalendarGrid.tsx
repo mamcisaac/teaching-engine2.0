@@ -1,13 +1,14 @@
-import type { WeeklyScheduleItem, Activity, TimetableSlot } from '../api';
+import type { WeeklyScheduleItem, Activity, TimetableSlot, CalendarEvent } from '../api';
 import { useDroppable } from '@dnd-kit/core';
 
 interface Props {
   schedule: WeeklyScheduleItem[];
   activities: Record<number, Activity>;
   timetable?: TimetableSlot[];
+  events?: CalendarEvent[];
 }
 
-export default function WeekCalendarGrid({ schedule, activities, timetable }: Props) {
+export default function WeekCalendarGrid({ schedule, activities, timetable, events }: Props) {
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
   return (
     <div className="grid grid-cols-5 gap-2">
@@ -18,6 +19,7 @@ export default function WeekCalendarGrid({ schedule, activities, timetable }: Pr
         const daySlot = timetable?.find((t) => t.day === idx);
         const blocked = daySlot && !daySlot.subjectId;
         const label = daySlot?.subject?.name ?? (blocked ? 'Prep' : '');
+        const dayEvents = events?.filter((e) => new Date(e.start).getUTCDay() === (idx + 1) % 7);
         const { isOver, setNodeRef } = useDroppable({
           id: `day-${idx}`,
           data: { day: idx },
@@ -31,6 +33,11 @@ export default function WeekCalendarGrid({ schedule, activities, timetable }: Pr
           >
             <span>{d}</span>
             {label && <div className="text-xs">{label}</div>}
+            {dayEvents?.map((ev) => (
+              <div key={ev.id} className="text-xs bg-yellow-200 w-full mt-1" title={ev.title}>
+                {ev.title}
+              </div>
+            ))}
             {items.map((it) => (
               <div key={it.id} className="mt-1 text-sm">
                 {activities[it.activityId]?.title}
