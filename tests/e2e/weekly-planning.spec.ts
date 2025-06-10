@@ -20,5 +20,5 @@ test('generate weekly plan from activity', async ({ page }) => {
 
   await page.goto('/planner');
   await page.click('text=Auto Fill');
-  await expect(page.locator('text=Aplan')).toBeVisible();
+  await expect(page.locator('text=Aplan').first()).toBeVisible();
 });

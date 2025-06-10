@@ -1,5 +1,5 @@
 import { prisma } from '../src/prisma';
-import { generateSubPlan } from '../src/services/subPlanService';
+import { generateSubPlan, buildSubPlanData } from '../src/services/subPlanService';
 
 describe('sub plan service', () => {
   beforeAll(async () => {
@@ -81,5 +81,8 @@ describe('sub plan service', () => {
     });
     const buf = await generateSubPlan('2025-06-15', 1);
     expect(buf.length).toBeGreaterThan(0);
+    const data = await buildSubPlanData('2025-06-15');
+    const hasEvent = data.schedule.some((s) => s.note === 'Assembly');
+    expect(hasEvent).toBe(true);
   });
 });
