@@ -30,6 +30,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Verify Jest and Prisma availability
+        run: |
+          pnpm exec jest --version
+          pnpm exec prisma --version
+
       - name: Generate Prisma Client
         run: pnpm db:generate
 
@@ -38,6 +43,9 @@ jobs:
 
       - name: Lint
         run: pnpm run lint
+
+      - name: Install dependencies before build/test
+        run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm run build

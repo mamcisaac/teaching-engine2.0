@@ -37,13 +37,9 @@ if ! command -v pnpm >/dev/null 2>&1; then
   npm install -g pnpm@latest --silent
 fi
 
-# 4. Smart dependency installation (only if needed)
-if [[ ! -d node_modules ]] || [[ ! -f node_modules/.modules.yaml ]]; then
-  echo "📦  Installing dependencies (first run)..." >&2
-  pnpm install --frozen-lockfile
-else
-  echo "✅  Dependencies already installed" >&2
-fi
+# 4. Ensure dependencies are installed before any build or test
+echo "📦  Installing dependencies..." >&2
+pnpm install --frozen-lockfile
 
 # 5. Generate Prisma client (only if needed)
 if [[ -d packages/database/prisma ]] && [[ ! -d node_modules/.prisma/client ]]; then
