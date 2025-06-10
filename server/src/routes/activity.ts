@@ -32,6 +32,7 @@ router.post('/', validate(activityCreateSchema), async (req, res, next) => {
       data: {
         title: req.body.title,
         milestoneId: req.body.milestoneId,
+        activityType: req.body.activityType ?? 'LESSON',
         durationMins: req.body.durationMins,
         privateNote: req.body.privateNote,
         publicNote: req.body.publicNote,
@@ -50,6 +51,7 @@ router.put('/:id', validate(activityUpdateSchema), async (req, res, next) => {
       where: { id: Number(req.params.id) },
       data: {
         title: req.body.title,
+        activityType: req.body.activityType,
         durationMins: req.body.durationMins,
         privateNote: req.body.privateNote,
         publicNote: req.body.publicNote,

@@ -30,11 +30,14 @@ model Milestone {
   user       User?     @relation(fields: [userId], references: [id])
   targetDate DateTime?
   estHours   Int?
+  deadline   ReportDeadline? @relation(fields: [deadlineId], references: [id])
+  deadlineId Int?
 }
 
 model Activity {
   id          Int       @id @default(autoincrement())
   title       String
+  activityType ActivityType @default(LESSON)
   milestoneId Int
   milestone   Milestone  @relation(fields: [milestoneId], references: [id])
   userId      Int?
@@ -176,6 +179,12 @@ model User {
   activities Activity[]
   events    CalendarEvent[]
   unavailableBlocks UnavailableBlock[]
+  reportDeadlines ReportDeadline[]
+}
+
+enum ActivityType {
+  LESSON
+  ASSESSMENT
 }
 
 enum CalendarEventType {
@@ -225,5 +234,15 @@ model UnavailableBlock {
   affectedStudentIds String?
   createdAt         DateTime            @default(now())
   updatedAt         DateTime            @updatedAt
+}
+
+model ReportDeadline {
+  id               Int      @id @default(autoincrement())
+  teacherId        Int
+  teacher          User     @relation(fields: [teacherId], references: [id])
+  name             String
+  date             DateTime
+  remindDaysBefore Int      @default(14)
+  milestones       Milestone[]
 }
 
