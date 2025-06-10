@@ -4,29 +4,39 @@ import axios from 'axios';
 
 interface Props {
   weekStart: string;
+  preserveBuffer: boolean;
+  pacingStrategy: 'strict' | 'relaxed';
   onGenerated?: (plan: LessonPlan) => void;
 }
 
-export default function AutoFillButton({ weekStart, onGenerated }: Props) {
+export default function AutoFillButton({
+  weekStart,
+  preserveBuffer,
+  pacingStrategy,
+  onGenerated,
+}: Props) {
   const generate = useGeneratePlan();
   const handleClick = () =>
-    generate.mutate(weekStart, {
-      onSuccess: (plan) => {
-        toast.success('Plan generated! Review the materials list.');
-        onGenerated?.(plan);
+    generate.mutate(
+      { weekStart, preserveBuffer, pacingStrategy },
+      {
+        onSuccess: (plan) => {
+          toast.success('Plan generated! Review the materials list.');
+          onGenerated?.(plan);
+        },
+        onError: (err) => {
+          if (
+            axios.isAxiosError(err) &&
+            err.response?.status === 400 &&
+            typeof err.response.data?.error === 'string'
+          ) {
+            toast.error(err.response.data.error);
+          } else {
+            toast.error('Failed to generate plan');
+          }
+        },
       },
-      onError: (err) => {
-        if (
-          axios.isAxiosError(err) &&
-          err.response?.status === 400 &&
-          typeof err.response.data?.error === 'string'
-        ) {
-          toast.error(err.response.data.error);
-        } else {
-          toast.error('Failed to generate plan');
-        }
-      },
-    });
+    );
 
   return (
     <button

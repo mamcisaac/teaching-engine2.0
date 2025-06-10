@@ -1,6 +1,5 @@
 import { prisma } from '../prisma';
-import type { Activity } from '@teaching-engine/database';
-import { getMilestoneUrgency } from './progressAnalytics';
+import type { Activity, TimetableSlot, CalendarEvent } from '@teaching-engine/database';
 
 export interface ScheduleItem {
   day: number;
@@ -8,20 +7,96 @@ export interface ScheduleItem {
   activityId: number;
 }
 
+export interface DailyBlock {
+  day: number;
+  slotId: number;
+  startMin: number;
+  endMin: number;
+  subjectId?: number | null;
+}
+
+export interface GenerateScheduleOptions {
+  availableBlocks: DailyBlock[];
+  milestonePriorities: Map<number, number>;
+  pacingStrategy: 'strict' | 'relaxed';
+  preserveBuffer: boolean;
+}
+
+export function filterAvailableBlocksByCalendar(
+  slots: TimetableSlot[],
+  events: CalendarEvent[],
+): DailyBlock[] {
+  return slots
+    .filter((s) => s.subjectId)
+    .filter((slot) => {
+      const dayEvents = events.filter((e) => (new Date(e.start).getUTCDay() + 6) % 7 === slot.day);
+      return dayEvents.every((ev) => {
+        const start = ev.allDay
+          ? 0
+          : new Date(ev.start).getUTCHours() * 60 + new Date(ev.start).getUTCMinutes();
+        const end = ev.allDay
+          ? 1440
+          : new Date(ev.end).getUTCHours() * 60 + new Date(ev.end).getUTCMinutes();
+        return end <= slot.startMin || start >= slot.endMin;
+      });
+    })
+    .map((s) => ({
+      day: s.day,
+      slotId: s.id,
+      startMin: s.startMin,
+      endMin: s.endMin,
+      subjectId: s.subjectId,
+    }));
+}
+
+export function scheduleBufferBlockPerDay(
+  schedule: ScheduleItem[],
+  blocks: DailyBlock[],
+  preserve: boolean,
+): ScheduleItem[] {
+  if (!preserve) return schedule;
+  const byDay = new Map<number, DailyBlock[]>();
+  for (const b of blocks) {
+    if (!byDay.has(b.day)) byDay.set(b.day, []);
+    byDay.get(b.day)!.push(b);
+  }
+
+  const result = [...schedule];
+  for (const [day, dayBlocks] of byDay.entries()) {
+    const used = new Set(result.filter((s) => s.day === day).map((s) => s.slotId));
+    const free = dayBlocks.find((b) => !used.has(b.slotId));
+    if (free) {
+      result.push({ day, slotId: free.slotId, activityId: 0 });
+    } else {
+      const idx = result
+        .map((s, i) => [s, i] as const)
+        .filter(([s]) => s.day === day)
+        .pop();
+      if (idx) {
+        const [removed, index] = idx;
+        result.splice(index, 1);
+        result.push({ day, slotId: removed.slotId, activityId: 0 });
+      }
+    }
+  }
+  return result;
+}
+
 /**
  * Generate a simple weekly schedule by rotating through subjects.
  * Activities are grouped by subject and assigned sequentially to
  * the five days of the week.
  */
-export async function generateWeeklySchedule(): Promise<ScheduleItem[]> {
+export async function generateWeeklySchedule(
+  opts: GenerateScheduleOptions,
+): Promise<ScheduleItem[]> {
   const activities = await prisma.activity.findMany({
     where: { completedAt: null },
     include: { milestone: { select: { id: true, subjectId: true } } },
     orderBy: { id: 'asc' },
   });
 
-  const urgencies = await getMilestoneUrgency();
-  const urgencyMap = new Map(urgencies.map((u) => [u.id, u.urgency]));
+  const urgencyMap = opts.milestonePriorities;
 
   const bySubject: Record<number, Activity[]> = {};
   for (const act of activities) {
@@ -38,19 +113,23 @@ export async function generateWeeklySchedule(): Promise<ScheduleItem[]> {
     });
   }
 
-  const slots = await prisma.timetableSlot.findMany({
-    where: { subjectId: { not: null } },
-    orderBy: [{ day: 'asc' }, { startMin: 'asc' }],
-  });
+  const blocks = [...opts.availableBlocks].sort((a, b) => a.day - b.day || a.startMin - b.startMin);
 
+  const totalDays = new Set(blocks.map((b) => b.day)).size;
+  let remainingSlots = blocks.length;
+  if (opts.preserveBuffer) remainingSlots -= totalDays;
+
+  let remaining = remainingSlots;
   const schedule: ScheduleItem[] = [];
-  for (const slot of slots) {
-    const list = slot.subjectId ? bySubject[slot.subjectId] : undefined;
+  for (const block of blocks) {
+    if (opts.pacingStrategy === 'relaxed' && remaining <= 0) break;
+    const list = block.subjectId ? bySubject[block.subjectId] : undefined;
     const next = list?.shift();
     if (next) {
-      schedule.push({ day: slot.day, slotId: slot.id, activityId: next.id });
+      schedule.push({ day: block.day, slotId: block.slotId, activityId: next.id });
+      if (opts.pacingStrategy === 'relaxed') remaining--;
     }
   }
 
-  return schedule;
+  return scheduleBufferBlockPerDay(schedule, blocks, opts.preserveBuffer);
 }

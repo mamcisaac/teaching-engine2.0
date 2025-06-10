@@ -199,12 +199,22 @@ export const useDeleteMilestone = () => {
 };
 
 export const useGeneratePlan = () =>
-  useMutation((weekStart: string) => {
-    const isoWeekStart = getWeekStartISO(new Date(weekStart));
-    return api
-      .post('/lesson-plans/generate', { weekStart: isoWeekStart })
-      .then((res) => res.data as LessonPlan);
-  });
+  useMutation(
+    (data: {
+      weekStart: string;
+      preserveBuffer: boolean;
+      pacingStrategy: 'strict' | 'relaxed';
+    }) => {
+      const isoWeekStart = getWeekStartISO(new Date(data.weekStart));
+      return api
+        .post('/lesson-plans/generate', {
+          weekStart: isoWeekStart,
+          pacingStrategy: data.pacingStrategy,
+          preserveBuffer: data.preserveBuffer,
+        })
+        .then((res) => res.data as LessonPlan);
+    },
+  );
 
 export const useLessonPlan = (weekStart: string) =>
   useQuery<LessonPlan | undefined>({
