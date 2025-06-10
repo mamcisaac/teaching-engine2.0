@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { prisma } from '../prisma';
 import { generateSubPlanPDF, SubPlanInput } from '../services/subPlanGenerator';
+import { generateSubPlan } from '../services/subPlanService';
 
 const router = Router();
 
@@ -32,6 +33,17 @@ router.post('/', async (req, res, next) => {
       }
     }
     const pdf = await generateSubPlanPDF(data);
+    res.setHeader('Content-Type', 'application/pdf');
+    res.send(pdf);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/generate', async (req, res, next) => {
+  try {
+    const date = (req.query.date as string) || new Date().toISOString().slice(0, 10);
+    const pdf = await generateSubPlan(date);
     res.setHeader('Content-Type', 'application/pdf');
     res.send(pdf);
   } catch (err) {
