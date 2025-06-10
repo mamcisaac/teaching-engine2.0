@@ -14,6 +14,7 @@ describe('planning engine', () => {
     await prisma.lessonPlan.deleteMany();
     await prisma.timetableSlot.deleteMany();
     await prisma.resource.deleteMany();
+    await prisma.unavailableBlock.deleteMany();
     await prisma.activity.deleteMany();
     await prisma.milestone.deleteMany();
     await prisma.subject.deleteMany();
@@ -68,6 +69,41 @@ describe('planning engine', () => {
     expect(schedule.length).toBe(5);
     const days = new Set(schedule.map((s) => s.day));
     expect(days.size).toBe(5);
+  });
+
+  it('excludes teacher absences from blocks', async () => {
+    await prisma.weeklySchedule.deleteMany();
+    await prisma.timetableSlot.deleteMany();
+    await prisma.unavailableBlock.deleteMany();
+    await prisma.activity.deleteMany();
+    await prisma.milestone.deleteMany();
+    await prisma.subject.deleteMany();
+
+    const subj = await prisma.subject.create({ data: { name: 'Abs' } });
+    const milestone = await prisma.milestone.create({
+      data: { title: 'MA', subjectId: subj.id },
+    });
+    await prisma.timetableSlot.create({
+      data: { day: 0, startMin: 540, endMin: 600, subjectId: subj.id },
+    });
+    await prisma.activity.create({ data: { title: 'A1', milestoneId: milestone.id } });
+    await prisma.unavailableBlock.create({
+      data: {
+        date: new Date('2025-01-06T00:00:00Z'),
+        startMin: 540,
+        endMin: 600,
+        reason: 'Away',
+        blockType: 'TEACHER_ABSENCE',
+      },
+    });
+    const slots = await prisma.timetableSlot.findMany();
+    const blocks = filterAvailableBlocksByCalendar(
+      slots,
+      [],
+      await prisma.unavailableBlock.findMany(),
+    );
+    expect(blocks.length).toBe(0);
+    await prisma.unavailableBlock.deleteMany();
   });
 
   it('rotates subjects sequentially', async () => {
