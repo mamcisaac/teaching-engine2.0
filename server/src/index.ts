@@ -17,9 +17,11 @@ import timetableRoutes from './routes/timetable';
 import noteRoutes from './routes/note';
 import calendarEventRoutes from './routes/calendarEvent';
 import unavailableBlockRoutes from './routes/unavailableBlock';
+import reportDeadlineRoutes from './routes/reportDeadline';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
+import { scheduleReportDeadlineReminders } from './jobs/reportDeadlineReminder';
 import { scheduleBackups } from './services/backupService';
 import logger from './logger';
 import { prisma } from './prisma';
@@ -55,6 +57,7 @@ app.use('/api/timetable', timetableRoutes);
 app.use('/api/notes', noteRoutes);
 app.use('/api/calendar-events', calendarEventRoutes);
 app.use('/api/unavailable-blocks', unavailableBlockRoutes);
+app.use('/api/report-deadlines', reportDeadlineRoutes);
 app.post('/api/preferences', savePreferences);
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
@@ -88,6 +91,7 @@ if (process.env.NODE_ENV !== 'test') {
   scheduleProgressCheck();
   scheduleUnreadNotificationEmails();
   scheduleNewsletterTriggers();
+  scheduleReportDeadlineReminders();
   scheduleBackups();
   app.listen(PORT, () => {
     logger.info(`Server listening on port ${PORT}`);

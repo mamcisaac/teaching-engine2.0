@@ -18,6 +18,7 @@ export const milestoneUpdateSchema = milestoneCreateSchema.omit({ subjectId: tru
 export const activityCreateSchema = z.object({
   title: z.string().min(1),
   milestoneId: z.number(),
+  activityType: z.enum(['LESSON', 'ASSESSMENT']).optional(),
   durationMins: z.number().int().optional(),
   privateNote: z.string().optional(),
   publicNote: z.string().optional(),

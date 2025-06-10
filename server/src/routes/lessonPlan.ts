@@ -47,6 +47,22 @@ router.post('/generate', async (req, res, next) => {
       pacingStrategy,
       preserveBuffer,
     });
+    const activities = await prisma.activity.findMany({
+      where: { id: { in: scheduleData.map((s) => s.activityId) } },
+      include: { milestone: { include: { deadline: true } } },
+    });
+    for (const item of scheduleData) {
+      const act = activities.find((a) => a.id === item.activityId);
+      if (act && act.activityType === 'ASSESSMENT' && act.milestone.deadline) {
+        const date = new Date(weekStart);
+        date.setUTCDate(date.getUTCDate() + item.day);
+        if (date > act.milestone.deadline.date) {
+          return res.status(400).json({
+            error: `Assessment ${act.title} is after the deadline ${act.milestone.deadline.name}`,
+          });
+        }
+      }
+    }
     if (scheduleData.length === 0) {
       return res.status(400).json({ error: 'No activities available' });
     }
