@@ -1,10 +1,4 @@
-Below is a **complete, implementation‑ready to‑do list** for the *AI coding agent* to eliminate every shortcoming flagged in the Phase 0 – 4 audit.
-Save the content **verbatim** to a new repository file named `AGENTS_FIXES_TODO.md` (or replace the existing AGENTS.md if you prefer).
-Each task block is self‑contained: it states *why* the change is needed, *what* must be done (broken down by layer), *technical hints*, *acceptance tests / success criteria,* and *cross‑links* to related tasks so the agent can schedule work intelligently.
 
----
-
-# AGENTS\_FIXES\_TODO.md
 
 > **Scope:** Close all Phase 0‑4 gaps and raise system quality to “Implementation Plan ++” level.
 > **Owner:** AI Coding Agent
