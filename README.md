@@ -114,6 +114,20 @@ docker compose up --build
 
 Access the application at http://localhost:3000
 
+## API
+
+### Calendar Events
+
+- `POST /api/calendar-events/sync/ical` – Import an external iCal feed. Each
+  event from the feed is stored as a holiday `CalendarEvent`.
+
+### Report Deadlines
+
+- `GET /api/report-deadlines?teacherId=` – List deadlines for a teacher.
+- `POST /api/report-deadlines` – Create a new deadline.
+- `PUT /api/report-deadlines/:id` – Update an existing deadline.
+- `DELETE /api/report-deadlines/:id` – Remove a deadline.
+
 ## 🧪 Testing
 
 ```bash
@@ -129,6 +143,9 @@ pnpm run test:e2e
 # All tests with coverage
 pnpm run test:all
 ```
+
+Unit tests cover the iCal import logic and integration tests ensure the
+`/api/report-deadlines` CRUD endpoints behave correctly.
 
 If the automatic Playwright installation fails (e.g., due to restricted `sudo` access in CI), install browsers and dependencies manually:
 
