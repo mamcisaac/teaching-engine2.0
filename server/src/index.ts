@@ -20,10 +20,12 @@ import unavailableBlockRoutes from './routes/unavailableBlock';
 import reportDeadlineRoutes from './routes/reportDeadline';
 import yearPlanRoutes from './routes/yearPlan';
 import shareRoutes from './routes/share';
+import equipmentBookingRoutes from './routes/equipmentBooking';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
 import { scheduleReportDeadlineReminders } from './jobs/reportDeadlineReminder';
+import { scheduleEquipmentBookingReminders } from './jobs/bookingReminder';
 import { scheduleBackups } from './services/backupService';
 import logger from './logger';
 import { prisma } from './prisma';
@@ -62,6 +64,7 @@ app.use('/api/unavailable-blocks', unavailableBlockRoutes);
 app.use('/api/report-deadlines', reportDeadlineRoutes);
 app.use('/api/year-plan', yearPlanRoutes);
 app.use('/api/share', shareRoutes);
+app.use('/api/equipment-bookings', equipmentBookingRoutes);
 app.post('/api/preferences', savePreferences);
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
@@ -96,6 +99,7 @@ if (process.env.NODE_ENV !== 'test') {
   scheduleUnreadNotificationEmails();
   scheduleNewsletterTriggers();
   scheduleReportDeadlineReminders();
+  scheduleEquipmentBookingReminders();
   scheduleBackups();
   app.listen(PORT, () => {
     logger.info(`Server listening on port ${PORT}`);

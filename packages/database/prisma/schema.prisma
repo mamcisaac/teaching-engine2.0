@@ -182,6 +182,7 @@ model User {
   reportDeadlines ReportDeadline[]
   yearPlanEntries YearPlanEntry[]
   shareLinks ShareLink[]
+  equipmentBookings EquipmentBooking[]
 }
 
 enum ActivityType {
@@ -281,4 +282,22 @@ model ShareLink {
   year      Int
   expiresAt DateTime
   createdAt DateTime      @default(now())
+}
+
+enum EquipmentBookingStatus {
+  REQUESTED
+  CONFIRMED
+  CANCELLED
+}
+
+model EquipmentBooking {
+  id            Int                    @id @default(autoincrement())
+  teacherId     Int
+  teacher       User                   @relation(fields: [teacherId], references: [id])
+  resourceName  String
+  neededBy      DateTime
+  leadTimeDays  Int                    @default(14)
+  status        EquipmentBookingStatus @default(REQUESTED)
+  createdAt     DateTime               @default(now())
+  updatedAt     DateTime               @updatedAt
 }
