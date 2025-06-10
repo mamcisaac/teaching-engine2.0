@@ -526,3 +526,24 @@ export const useAddCalendarEvent = () => {
     onSuccess: () => qc.invalidateQueries({ queryKey: ['calendarEvents'] }),
   });
 };
+
+export interface YearPlanEntry {
+  id: number;
+  teacherId: number;
+  entryType: 'UNIT' | 'ASSESSMENT' | 'EVENT';
+  title: string;
+  start: string;
+  end: string;
+  colorCode?: string | null;
+}
+
+export const useYearPlan = (teacherId: number, year: number) =>
+  useQuery<YearPlanEntry[]>({
+    queryKey: ['yearPlan', teacherId, year],
+    queryFn: async () => (await api.get('/year-plan', { params: { teacherId, year } })).data,
+  });
+
+export const useShareYearPlan = () =>
+  useMutation(({ teacherId, year }: { teacherId: number; year: number }) =>
+    api.post('/share/year-plan', { teacherId, year }).then((r) => r.data),
+  );

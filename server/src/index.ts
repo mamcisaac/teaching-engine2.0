@@ -18,6 +18,8 @@ import noteRoutes from './routes/note';
 import calendarEventRoutes from './routes/calendarEvent';
 import unavailableBlockRoutes from './routes/unavailableBlock';
 import reportDeadlineRoutes from './routes/reportDeadline';
+import yearPlanRoutes from './routes/yearPlan';
+import shareRoutes from './routes/share';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
@@ -58,6 +60,8 @@ app.use('/api/notes', noteRoutes);
 app.use('/api/calendar-events', calendarEventRoutes);
 app.use('/api/unavailable-blocks', unavailableBlockRoutes);
 app.use('/api/report-deadlines', reportDeadlineRoutes);
+app.use('/api/year-plan', yearPlanRoutes);
+app.use('/api/share', shareRoutes);
 app.post('/api/preferences', savePreferences);
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
