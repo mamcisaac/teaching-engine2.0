@@ -25,6 +25,7 @@ export const activityCreateSchema = z.object({
   privateNote: z.string().optional(),
   publicNote: z.string().optional(),
   completedAt: z.string().datetime().optional(),
+  tags: z.array(z.string()).optional(),
 });
 
 export const activityUpdateSchema = activityCreateSchema.omit({ milestoneId: true });

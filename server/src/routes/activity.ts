@@ -42,6 +42,7 @@ router.post('/', validate(activityCreateSchema), async (req, res, next) => {
         durationMins: req.body.durationMins,
         privateNote: req.body.privateNote,
         publicNote: req.body.publicNote,
+        tags: req.body.tags,
         completedAt: req.body.completedAt ? new Date(req.body.completedAt) : undefined,
       },
     });
@@ -74,6 +75,7 @@ router.put('/:id', validate(activityUpdateSchema), async (req, res, next) => {
         durationMins: req.body.durationMins,
         privateNote: req.body.privateNote,
         publicNote: req.body.publicNote,
+        tags: req.body.tags,
         completedAt: req.body.completedAt ? new Date(req.body.completedAt) : undefined,
       },
     });

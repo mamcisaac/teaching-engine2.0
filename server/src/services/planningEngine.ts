@@ -145,3 +145,17 @@ export async function generateWeeklySchedule(
 
   return scheduleBufferBlockPerDay(schedule, blocks, opts.preserveBuffer);
 }
+
+export async function generateSuggestions(
+  options: { filters?: Record<string, boolean> } = {},
+): Promise<Activity[]> {
+  const acts = await prisma.activity.findMany({ where: { completedAt: null } });
+  const filters = options.filters ?? {};
+  return acts.filter((a) => {
+    const tags: string[] = Array.isArray(a.tags) ? (a.tags as unknown as string[]) : [];
+    for (const [tag, include] of Object.entries(filters)) {
+      if (include === false && tags.includes(tag)) return false;
+    }
+    return true;
+  });
+}
