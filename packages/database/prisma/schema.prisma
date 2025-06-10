@@ -28,6 +28,9 @@ model Milestone {
   activities Activity[]
   userId     Int?
   user       User?     @relation(fields: [userId], references: [id])
+  description String?
+  /// Array of curriculum standard codes associated with the milestone
+  standardCodes Json    @default("[]")
   targetDate DateTime?
   estHours   Int?
   deadline   ReportDeadline? @relation(fields: [deadlineId], references: [id])

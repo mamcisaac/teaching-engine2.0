@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import type { Milestone } from '../api';
 import { useCreateMilestone, useUpdateMilestone, useDeleteMilestone } from '../api';
 import Dialog from './Dialog';
+import TagInput from './TagInput';
 
 interface Props {
   milestones: Milestone[];
@@ -15,23 +16,37 @@ export default function MilestoneList({ milestones, subjectId }: Props) {
   const remove = useDeleteMilestone();
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [codes, setCodes] = useState<string[]>([]);
   const [editId, setEditId] = useState<number | null>(null);
   const [editTitle, setEditTitle] = useState('');
+  const [editDescription, setEditDescription] = useState('');
+  const [editCodes, setEditCodes] = useState<string[]>([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!title.trim()) return;
-    create.mutate({ title, subjectId });
+    create.mutate({ title, subjectId, description, standardCodes: codes });
     setTitle('');
+    setDescription('');
+    setCodes([]);
     setOpen(false);
   };
 
   const handleEditSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (editId === null || !editTitle.trim()) return;
-    update.mutate({ id: editId, title: editTitle, subjectId });
+    update.mutate({
+      id: editId,
+      title: editTitle,
+      subjectId,
+      description: editDescription,
+      standardCodes: editCodes,
+    });
     setEditId(null);
     setEditTitle('');
+    setEditDescription('');
+    setEditCodes([]);
   };
 
   return (
@@ -51,6 +66,16 @@ export default function MilestoneList({ milestones, subjectId }: Props) {
               className="border p-2"
             />
           </label>
+          <label className="flex flex-col">
+            <span className="sr-only">Description</span>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Description"
+              className="border p-2"
+            />
+          </label>
+          <TagInput tags={codes} onChange={setCodes} placeholder="Add standard code" />
           <button type="submit" className="self-end px-2 py-1 bg-blue-600 text-white">
             Save
           </button>
@@ -70,6 +95,8 @@ export default function MilestoneList({ milestones, subjectId }: Props) {
                     onClick={() => {
                       setEditId(m.id);
                       setEditTitle(m.title);
+                      setEditDescription(m.description ?? '');
+                      setEditCodes(m.standardCodes ?? []);
                     }}
                   >
                     Edit
@@ -82,6 +109,16 @@ export default function MilestoneList({ milestones, subjectId }: Props) {
                   </button>
                 </div>
               </div>
+              {m.description && <p className="italic text-sm">{m.description}</p>}
+              {m.standardCodes && m.standardCodes.length > 0 && (
+                <div className="flex flex-wrap gap-1">
+                  {m.standardCodes.map((c) => (
+                    <span key={c} className="bg-gray-200 px-1 text-xs">
+                      {c}
+                    </span>
+                  ))}
+                </div>
+              )}
               <div className="h-2 bg-gray-200 rounded">
                 <div className="h-full bg-blue-500" style={{ width: `${progress}%` }} />
               </div>
@@ -100,6 +137,16 @@ export default function MilestoneList({ milestones, subjectId }: Props) {
               className="border p-2"
             />
           </label>
+          <label className="flex flex-col">
+            <span className="sr-only">Edit description</span>
+            <textarea
+              value={editDescription}
+              onChange={(e) => setEditDescription(e.target.value)}
+              className="border p-2"
+              placeholder="Description"
+            />
+          </label>
+          <TagInput tags={editCodes} onChange={setEditCodes} placeholder="Add standard code" />
           <button type="submit" className="self-end px-2 py-1 bg-blue-600 text-white">
             Save
           </button>
