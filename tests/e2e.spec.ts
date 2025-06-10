@@ -14,10 +14,18 @@ test('create subject, milestone and activity', async ({ page }) => {
   // open milestone dialog
   await page.click('text=Add Milestone');
   await page.fill('input[placeholder="New milestone"]', 'M1');
+  await page.fill('textarea[placeholder="Description"]', 'desc');
+  await page.fill('input[placeholder="Add code"]', 'ELA1.4');
+  await page.keyboard.press('Enter');
+  await page.fill('input[placeholder="Add code"]', 'MATH1.2');
+  await page.keyboard.press('Enter');
   await page.click('button:has-text("Save")');
 
   // navigate to the milestone detail page
   await page.click('text=M1');
+
+  await expect(page.locator('text=ELA1.4')).toBeVisible();
+  await expect(page.locator('text=MATH1.2')).toBeVisible();
 
   // open activity dialog
   await page.click('text=Add Activity');

@@ -17,8 +17,8 @@ vi.mock('../api', async () => {
 describe('MilestoneList', () => {
   it('renders milestones with links', () => {
     const milestones: Milestone[] = [
-      { id: 1, title: 'M1', subjectId: 1, activities: [] },
-      { id: 2, title: 'M2', subjectId: 1, activities: [] },
+      { id: 1, title: 'M1', subjectId: 1, description: 'd1', standardCodes: [], activities: [] },
+      { id: 2, title: 'M2', subjectId: 1, description: 'd2', standardCodes: [], activities: [] },
     ];
 
     renderWithRouter(<MilestoneList milestones={milestones} subjectId={1} />);

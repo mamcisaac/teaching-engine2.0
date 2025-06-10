@@ -11,6 +11,8 @@ export const milestoneCreateSchema = z.object({
   subjectId: z.number(),
   targetDate: z.string().datetime().optional(),
   estHours: z.number().int().optional(),
+  description: z.string().max(10000).optional(),
+  standardCodes: z.array(z.string()).max(10).optional(),
 });
 
 export const milestoneUpdateSchema = milestoneCreateSchema.omit({ subjectId: true });

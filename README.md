@@ -69,6 +69,18 @@ teaching-engine2.0/
 └── docker-compose.yml    # Container orchestration
 ```
 
+### Database Schema (simplified)
+
+```prisma
+model Milestone {
+  id            Int      @id @default(autoincrement())
+  title         String
+  description   String?
+  standardCodes String   @default("[]")
+  subjectId     Int
+}
+```
+
 ## 🚀 Quick Start
 
 ### Prerequisites
