@@ -1,7 +1,13 @@
 import { Router } from 'express';
 import { Prisma } from '@teaching-engine/database';
 import { prisma } from '../prisma';
-import { validate, activityCreateSchema, activityUpdateSchema } from '../validation';
+import {
+  validate,
+  activityCreateSchema,
+  activityUpdateSchema,
+  activityReorderSchema,
+} from '../validation';
+import { reorderActivities } from '../services/activityService';
 
 const router = Router();
 
@@ -40,6 +46,19 @@ router.post('/', validate(activityCreateSchema), async (req, res, next) => {
       },
     });
     res.status(201).json(activity);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.patch('/reorder', validate(activityReorderSchema), async (req, res, next) => {
+  const { milestoneId, activityIds } = req.body as {
+    milestoneId: number;
+    activityIds: number[];
+  };
+  try {
+    const activities = await reorderActivities(milestoneId, activityIds);
+    res.json(activities);
   } catch (err) {
     next(err);
   }

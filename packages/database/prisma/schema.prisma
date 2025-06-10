@@ -42,6 +42,8 @@ model Activity {
   title       String
   activityType ActivityType @default(LESSON)
   milestoneId Int
+  /// Position of the activity within its milestone
+  orderIndex  Int       @default(0)
   milestone   Milestone  @relation(fields: [milestoneId], references: [id])
   userId      Int?
   user        User?      @relation(fields: [userId], references: [id])
@@ -53,6 +55,7 @@ model Activity {
   resources   Resource[]
   dailyPlanItems DailyPlanItem[]
   notes       Note[]
+  @@index([milestoneId, orderIndex])
 }
 
 model LessonPlan {
