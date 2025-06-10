@@ -19,13 +19,13 @@ Ensure weekly activity scheduling respects the teacher’s fixed timetable (e.g.
 
 **\[Frontend]**
 
-- `CreateTimetableUIComponent`: Build an interactive weekly grid editor (e.g., 30-min blocks 8:30–3:00) allowing teachers to mark subject slots, breaks, and prep time.
-- `DisplayTimetableInPlanner`: Show the defined timetable overlay in the weekly planner view (e.g., greyed out blocks for prep, labeled blocks for each subject).
+- [x] `CreateTimetableUIComponent`: Build an interactive weekly grid editor (e.g., 30-min blocks 8:30–3:00) allowing teachers to mark subject slots, breaks, and prep time.
+- [x] `DisplayTimetableInPlanner`: Show the defined timetable overlay in the weekly planner view (e.g., greyed out blocks for prep, labeled blocks for each subject).
 
 **\[Backend]**
 
-- `TeacherTimetableModel`: Create DB model for teacher schedules: `day`, `startTime`, `endTime`, `subject`.
-- `UpdateWeeklyPlanAlgorithm`: Modify the `generateWeeklySchedule` function to:
+- [x] `TeacherTimetableModel`: Create DB model for teacher schedules: `day`, `startTime`, `endTime`, `subject`.
+- [x] `UpdateWeeklyPlanAlgorithm`: Modify the `generateWeeklySchedule` function to:
 
   - Place activities only in valid subject blocks
   - Leave prep and breaks unscheduled
@@ -55,15 +55,15 @@ Automatically generate detailed daily lesson plans from the weekly schedule, inc
 
 **\[Frontend]**
 
-- `DailyPlanEditor`: Visual editor for structuring a day's lessons, tied to the timetable
-- `PrintableDailyPlanView`: PDF export of the daily plan with proper formatting
-- `AutoPopulateFromWeeklyPlan`: Fill daily slots with activities based on weekly plan + timetable
+- [x] `DailyPlanEditor`: Visual editor for structuring a day's lessons, tied to the timetable
+- [ ] `PrintableDailyPlanView`: PDF export of the daily plan with proper formatting
+- [x] `AutoPopulateFromWeeklyPlan`: Fill daily slots with activities based on weekly plan + timetable
 
 **\[Backend]**
 
-- `DailyPlanModel`: Store per-day structured plans linked to weekly plan and activity list
-- `GenerateDefaultDailyPlanFromWeekly`: API endpoint to generate a stub daily plan with time slots, placeholder notes
-- `LinkEmergencySubPlanToDailyPlan`: Emergency plan uses latest saved daily plan, with optional override
+- [x] `DailyPlanModel`: Store per-day structured plans linked to weekly plan and activity list
+- [x] `GenerateDefaultDailyPlanFromWeekly`: API endpoint to generate a stub daily plan with time slots, placeholder notes
+- [x] `LinkEmergencySubPlanToDailyPlan`: Emergency plan uses latest saved daily plan, with optional override
 
 ---
 
@@ -84,24 +84,24 @@ Generate, preview, and send a newsletter using the data already in the system—
 
 **\[Backend]**
 
-- `NewsletterAutoDraftService`: Generate newsletter content based on:
+- [x] `NewsletterAutoDraftService`: Generate newsletter content based on:
 
   - Completed activities
   - Progress updates (e.g., milestones hit)
   - Upcoming scheduled items
 
-- `ParentContactModel`: Store parent email list per class
-- `SendNewsletterAPI`: Endpoint to email PDF newsletter using SendGrid (or other provider)
+- [x] `ParentContactModel`: Store parent email list per class
+- [x] `SendNewsletterAPI`: Endpoint to email PDF newsletter using SendGrid (or other provider)
 
 **\[Frontend]**
 
-- `NewsletterGenerationUI`: Interface to select week range, generate draft, and preview auto-filled content
-- `EditNewsletterWithSuggestions`: Rich text editor with pre-filled content blocks for each section
-- `ExportAndSendOptions`: UI buttons to export PDF and to email all parent contacts
+- [x] `NewsletterGenerationUI`: Interface to select week range, generate draft, and preview auto-filled content
+- [x] `EditNewsletterWithSuggestions`: Rich text editor with pre-filled content blocks for each section
+- [x] `ExportAndSendOptions`: UI buttons to export PDF and to email all parent contacts
 
 **\[Templates]**
 
-- `weekly_newsletter.hbs`: Improve template to support dynamic sections (e.g., “What we did”, “Photos”, “Coming up”)
+- [x] `weekly_newsletter.hbs`: Improve template to support dynamic sections (e.g., “What we did”, “Photos”, “Coming up”)
 
 ---
 
@@ -122,14 +122,14 @@ Ensure the teacher has a clear checklist of all materials needed for the week, a
 
 **\[Backend]**
 
-- `AutoExtractMaterialsFromActivityNotes`: Improve regex/NLP to extract material names even from freeform text
-- `BuildWeeklyMaterialListService`: Given weekly plan, return materials checklist grouped by day/activity
-- `ZipPrintableResourcesEndpoint`: Package all activity-linked printable files for a week into one downloadable ZIP
+- [x] `AutoExtractMaterialsFromActivityNotes`: Improve regex/NLP to extract material names even from freeform text
+- [x] `BuildWeeklyMaterialListService`: Given weekly plan, return materials checklist grouped by day/activity
+- [x] `ZipPrintableResourcesEndpoint`: Package all activity-linked printable files for a week into one downloadable ZIP
 
 **\[Frontend]**
 
-- `WeeklyMaterialsChecklistUI`: Show grouped list of needed materials with checkboxes and links to relevant activities
-- `DownloadAllPrintablesButton`: Allows teacher to fetch all printable files for the week in one ZIP
+- [x] `WeeklyMaterialsChecklistUI`: Show grouped list of needed materials with checkboxes and links to relevant activities
+- [x] `DownloadAllPrintablesButton`: Allows teacher to fetch all printable files for the week in one ZIP
 - `FlagMissingPrintables`: Alert if scheduled activities have missing resources
 
 ---
@@ -151,15 +151,15 @@ Unify the system flow so that weekly planning, daily execution, materials prep, 
 
 **\[Backend]**
 
-- `PlanningIntegrationWithProgress`: Update planning algorithm to consider milestone urgency when selecting activities
-- `ReactiveMaterialListUpdate`: Regenerate material list whenever weekly/daily plan is updated
-- `ProgressInfluencesNewsletterContent`: Include milestone completion summaries automatically in newsletter drafts
+- [x] `PlanningIntegrationWithProgress`: Update planning algorithm to consider milestone urgency when selecting activities
+- [x] `ReactiveMaterialListUpdate`: Regenerate material list whenever weekly/daily plan is updated
+- [x] `ProgressInfluencesNewsletterContent`: Include milestone completion summaries automatically in newsletter drafts
 
 **\[Frontend]**
 
-- `PlannerNotificationBanner`: Surface progress alerts in weekly planner with one-click “Insert Recovery Activity”
-- `MaterialsReminderPrompt`: After planning, prompt user to review/print materials
-- `AutoNewsletterPrompt`: On Fridays, offer to generate a newsletter from weekly summary
+- [x] `PlannerNotificationBanner`: Surface progress alerts in weekly planner with one-click “Insert Recovery Activity”
+- [x] `MaterialsReminderPrompt`: After planning, prompt user to review/print materials
+- [x] `AutoNewsletterPrompt`: On Fridays, offer to generate a newsletter from weekly summary
 
 ---
 
@@ -185,18 +185,18 @@ Ensure features marked “done” are actually useful and production-ready (e.g.
 
 **\[Newsletter]**
 
-- `ContentTemplateBlocks`: Add weekly highlights, class photos, and learning goals to draft generation
-- `EmailServiceIntegration`: Set up SendGrid or Mailgun API for email delivery
+- [x] `ContentTemplateBlocks`: Add weekly highlights, class photos, and learning goals to draft generation
+- [x] `EmailServiceIntegration`: Set up SendGrid or Mailgun API for email delivery
 
 **\[Emergency Plan]**
 
-- `PullRealDailyPlan`: Replace hardcoded sample with latest saved daily plan
+- [x] `PullRealDailyPlan`: Replace hardcoded sample with latest saved daily plan
 - `IncludeContactAndProcedureFields`: Allow teacher to pre-fill school routines, contacts, etc.
 
 **\[Alerts]**
 
-- `NotificationCenterComponent`: Build frontend UI to show all triggered alerts
-- `EmailFallbackForIn-App Alerts`: If not read in-app in 48h, alert is emailed
+- [x] `NotificationCenterComponent`: Build frontend UI to show all triggered alerts
+- [x] `EmailFallbackForIn-App Alerts`: If not read in-app in 48h, alert is emailed
 
 ---
 
@@ -259,13 +259,13 @@ Capture private reflections and public comments linked to activities and daily p
 
 **[Backend]**
 
-- `CreateNotesModel`: Add `Note` model linked to activities and days
-- `NotesAPIRoutes`: CRUD endpoints `/api/notes`
-- `IncludeNotesInNewsletter`: Pull public notes into newsletter drafts
+- [x] `CreateNotesModel`: Add `Note` model linked to activities and days
+- [x] `NotesAPIRoutes`: CRUD endpoints `/api/notes`
+- [x] `IncludeNotesInNewsletter`: Pull public notes into newsletter drafts
 
 **[Frontend]**
 
-- `DailyNotesEditor`: Form for notes within DailyPlanPage
+- [x] `DailyNotesEditor`: Form for notes within DailyPlanPage
 - `NotesSearchView`: Filter notes by date or subject
 
 Would you like me to also:
