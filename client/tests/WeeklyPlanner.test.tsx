@@ -51,6 +51,9 @@ vi.mock('../src/api', async () => {
       refetch: refetchMock,
     }),
     useSubjects: () => ({ data: subjects }),
+    usePlannerSuggestions: () => ({
+      data: subjects.flatMap((s) => s.milestones.flatMap((m) => m.activities)),
+    }),
     useTimetable: () => ({
       data: [
         {

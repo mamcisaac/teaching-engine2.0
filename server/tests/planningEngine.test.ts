@@ -2,6 +2,7 @@ import { prisma } from '../src/prisma';
 import {
   generateWeeklySchedule,
   filterAvailableBlocksByCalendar,
+  generateSuggestions,
 } from '../src/services/planningEngine';
 import { getMilestoneUrgency } from '../src/services/progressAnalytics';
 
@@ -246,5 +247,25 @@ describe('planning engine', () => {
     expect(bufferCount).toBe(4);
     const assigned = schedule.filter((s) => s.activityId !== 0).map((s) => s.activityId);
     expect(assigned.length).toBe(2);
+  });
+
+  it('filters suggestions by tags', async () => {
+    await prisma.activity.deleteMany();
+    await prisma.milestone.deleteMany();
+    await prisma.subject.deleteMany();
+
+    const subj = await prisma.subject.create({ data: { name: 'F' } });
+    const m = await prisma.milestone.create({ data: { title: 'MF', subjectId: subj.id } });
+    await prisma.activity.createMany({
+      data: [
+        { title: 'A1', milestoneId: m.id, tags: ['HandsOn'] },
+        { title: 'A2', milestoneId: m.id, tags: ['Worksheet'] },
+      ],
+    });
+
+    const res = await generateSuggestions({ filters: { HandsOn: false } });
+    const titles = res.map((a) => a.title);
+    expect(titles).not.toContain('A1');
+    expect(titles).toContain('A2');
   });
 });
