@@ -23,6 +23,8 @@ export interface Milestone {
   id: number;
   title: string;
   subjectId: number;
+  description?: string | null;
+  standardCodes: string[];
   activities: Activity[];
 }
 
@@ -97,7 +99,12 @@ export const useCreateSubject = () => {
 export const useCreateMilestone = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: { title: string; subjectId: number }) => api.post('/milestones', data),
+    mutationFn: (data: {
+      title: string;
+      subjectId: number;
+      description?: string;
+      standardCodes?: string[];
+    }) => api.post('/milestones', data),
     onSuccess: (_res, vars) => {
       qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });
       toast.success('Milestone created');
@@ -175,8 +182,18 @@ export const useDeleteSubject = () => {
 export const useUpdateMilestone = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: { id: number; title: string; subjectId: number }) =>
-      api.put(`/milestones/${data.id}`, { title: data.title }),
+    mutationFn: (data: {
+      id: number;
+      title: string;
+      subjectId: number;
+      description?: string;
+      standardCodes?: string[];
+    }) =>
+      api.put(`/milestones/${data.id}`, {
+        title: data.title,
+        description: data.description,
+        standardCodes: data.standardCodes,
+      }),
     onSuccess: (_res, vars) => {
       qc.invalidateQueries({ queryKey: ['milestone', vars.id] });
       qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });

@@ -37,6 +37,8 @@ router.post('/', validate(milestoneCreateSchema), async (req, res, next) => {
         subjectId: req.body.subjectId,
         targetDate: req.body.targetDate ? new Date(req.body.targetDate) : undefined,
         estHours: req.body.estHours,
+        description: req.body.description,
+        standardCodes: req.body.standardCodes,
       },
     });
     res.status(201).json(milestone);
@@ -53,6 +55,8 @@ router.put('/:id', validate(milestoneUpdateSchema), async (req, res, next) => {
         title: req.body.title,
         targetDate: req.body.targetDate ? new Date(req.body.targetDate) : undefined,
         estHours: req.body.estHours,
+        description: req.body.description,
+        standardCodes: req.body.standardCodes,
       },
     });
     res.json(milestone);
