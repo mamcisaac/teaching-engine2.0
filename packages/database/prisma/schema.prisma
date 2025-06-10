@@ -180,6 +180,8 @@ model User {
   events    CalendarEvent[]
   unavailableBlocks UnavailableBlock[]
   reportDeadlines ReportDeadline[]
+  yearPlanEntries YearPlanEntry[]
+  shareLinks ShareLink[]
 }
 
 enum ActivityType {
@@ -246,3 +248,37 @@ model ReportDeadline {
   milestones       Milestone[]
 }
 
+
+enum YearPlanEntryType {
+  UNIT
+  ASSESSMENT
+  EVENT
+}
+
+model YearPlanEntry {
+  id        Int              @id @default(autoincrement())
+  teacherId Int
+  teacher   User             @relation(fields: [teacherId], references: [id])
+  entryType YearPlanEntryType
+  title     String
+  start     DateTime
+  end       DateTime
+  colorCode String?
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+}
+
+enum ShareLinkType {
+  YEAR_PLAN
+}
+
+model ShareLink {
+  id        Int           @id @default(autoincrement())
+  token     String        @unique
+  type      ShareLinkType
+  teacherId Int
+  teacher   User          @relation(fields: [teacherId], references: [id])
+  year      Int
+  expiresAt DateTime
+  createdAt DateTime      @default(now())
+}
