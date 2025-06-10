@@ -1,6 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { Activity } from '../api';
-import { useCreateActivity, useUpdateActivity, useDeleteActivity } from '../api';
+import {
+  useCreateActivity,
+  useUpdateActivity,
+  useDeleteActivity,
+  useReorderActivities,
+} from '../api';
+import { DndContext, closestCenter, DragEndEvent } from '@dnd-kit/core';
+import {
+  SortableContext,
+  useSortable,
+  arrayMove,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import Dialog from './Dialog';
 
 interface Props {
@@ -9,14 +22,79 @@ interface Props {
   subjectId?: number;
 }
 
+function SortableActivity({
+  activity,
+  onEdit,
+  onDelete,
+  onToggle,
+}: {
+  activity: Activity;
+  onEdit: () => void;
+  onDelete: () => void;
+  onToggle: (checked: boolean) => void;
+}) {
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+    id: activity.id,
+  });
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+  const progress = activity.completedAt ? 100 : 0;
+  const checkboxId = `activity-${activity.id}`;
+  return (
+    <li ref={setNodeRef} style={style} className="border p-2 rounded space-y-1">
+      <div className="flex items-center gap-2" {...attributes} {...listeners}>
+        <input
+          id={checkboxId}
+          type="checkbox"
+          checked={!!activity.completedAt}
+          onChange={(e) => onToggle(e.target.checked)}
+        />
+        <label htmlFor={checkboxId} className="sr-only">
+          Mark {activity.title} complete
+        </label>
+        <span className="flex-1">{activity.title}</span>
+        <div className="flex gap-1">
+          <button className="px-1 text-sm bg-gray-200" onClick={onEdit}>
+            Edit
+          </button>
+          <button className="px-1 text-sm bg-red-600 text-white" onClick={onDelete}>
+            Delete
+          </button>
+        </div>
+      </div>
+      <div className="h-2 bg-gray-200 rounded">
+        <div className="h-full bg-blue-500" style={{ width: `${progress}%` }} />
+      </div>
+    </li>
+  );
+}
+
 export default function ActivityList({ activities, milestoneId, subjectId }: Props) {
   const create = useCreateActivity();
   const update = useUpdateActivity();
   const remove = useDeleteActivity();
+  const reorder = useReorderActivities();
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
   const [editId, setEditId] = useState<number | null>(null);
   const [editTitle, setEditTitle] = useState('');
+  const [ids, setIds] = useState<number[]>([]);
+
+  useEffect(() => {
+    setIds(activities.map((a) => a.id));
+  }, [activities]);
+
+  const handleDragEnd = (evt: DragEndEvent) => {
+    const { active, over } = evt;
+    if (!over || active.id === over.id) return;
+    const oldIndex = ids.indexOf(active.id as number);
+    const newIndex = ids.indexOf(over.id as number);
+    const newIds = arrayMove(ids, oldIndex, newIndex);
+    setIds(newIds);
+    reorder.mutate({ milestoneId, activityIds: newIds });
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,55 +134,34 @@ export default function ActivityList({ activities, milestoneId, subjectId }: Pro
           </button>
         </form>
       </Dialog>
-      <ul className="space-y-2">
-        {activities.map((a) => {
-          const progress = a.completedAt ? 100 : 0;
-          const checkboxId = `activity-${a.id}`;
-          return (
-            <li key={a.id} className="border p-2 rounded space-y-1">
-              <div className="flex items-center gap-2">
-                <input
-                  id={checkboxId}
-                  type="checkbox"
-                  checked={!!a.completedAt}
-                  onChange={(e) =>
+      <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+        <SortableContext items={ids} strategy={verticalListSortingStrategy}>
+          <ul className="space-y-2">
+            {ids.map((id) => {
+              const a = activities.find((x) => x.id === id)!;
+              return (
+                <SortableActivity
+                  key={a.id}
+                  activity={a}
+                  onEdit={() => {
+                    setEditId(a.id);
+                    setEditTitle(a.title);
+                  }}
+                  onDelete={() => remove.mutate({ id: a.id, milestoneId, subjectId })}
+                  onToggle={(checked) =>
                     update.mutate({
                       id: a.id,
                       milestoneId,
                       subjectId,
-                      completedAt: e.target.checked ? new Date().toISOString() : null,
+                      completedAt: checked ? new Date().toISOString() : null,
                     })
                   }
                 />
-                <label htmlFor={checkboxId} className="sr-only">
-                  Mark {a.title} complete
-                </label>
-                <span className="flex-1">{a.title}</span>
-                <div className="flex gap-1">
-                  <button
-                    className="px-1 text-sm bg-gray-200"
-                    onClick={() => {
-                      setEditId(a.id);
-                      setEditTitle(a.title);
-                    }}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="px-1 text-sm bg-red-600 text-white"
-                    onClick={() => remove.mutate({ id: a.id, milestoneId, subjectId })}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
-              <div className="h-2 bg-gray-200 rounded">
-                <div className="h-full bg-blue-500" style={{ width: `${progress}%` }} />
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+              );
+            })}
+          </ul>
+        </SortableContext>
+      </DndContext>
       <Dialog open={editId !== null} onOpenChange={() => setEditId(null)}>
         <form onSubmit={handleEditSubmit} className="flex flex-col gap-2">
           <label htmlFor="edit-activity-title" className="flex flex-col">

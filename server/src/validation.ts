@@ -29,6 +29,11 @@ export const activityCreateSchema = z.object({
 
 export const activityUpdateSchema = activityCreateSchema.omit({ milestoneId: true });
 
+export const activityReorderSchema = z.object({
+  milestoneId: z.number(),
+  activityIds: z.array(z.number()),
+});
+
 export const timetableEntrySchema = z.object({
   day: z.number().int().min(0).max(6),
   startMin: z.number().int().min(0).max(1440),
