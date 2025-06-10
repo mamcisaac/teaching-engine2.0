@@ -1,12 +1,10 @@
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import EmergencyPlanButton from '../components/EmergencyPlanButton';
 import { vi } from 'vitest';
-import axios from 'axios';
+import * as apiModule from '../api';
 
-vi.mock('axios');
-
-const mockedGet = vi.fn().mockResolvedValue({ data: new ArrayBuffer(10) });
-(axios as unknown as { get: typeof mockedGet }).get = mockedGet;
+const mockedPost = vi.fn().mockResolvedValue({ data: new ArrayBuffer(10) });
+(apiModule.api as unknown as { post: typeof mockedPost }).post = mockedPost;
 
 beforeAll(() => {
   // jsdom lacks createObjectURL; provide a stub
@@ -32,8 +30,9 @@ describe('EmergencyPlanButton', () => {
   it('calls API on click', async () => {
     const { getByText } = render(<EmergencyPlanButton />);
     fireEvent.click(getByText('Emergency Plan'));
+    fireEvent.click(getByText('Generate'));
     await waitFor(() => {
-      expect(mockedGet).toHaveBeenCalled();
+      expect(mockedPost).toHaveBeenCalled();
     });
   });
 });

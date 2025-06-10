@@ -88,6 +88,13 @@ model TeacherPreferences {
   teachingStyles String
   pacePreference String
   prepTime       Int
+  /**
+   * JSON object storing contact info for sub plans
+   * e.g. { "principal": "Name", "office": "555-1234" }
+   */
+  subPlanContacts Json?
+  /// Special procedures or notes for substitute teachers
+  subPlanProcedures String?
 }
 
 model Resource {

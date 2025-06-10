@@ -234,10 +234,16 @@ export const useLessonPlan = (weekStart: string) =>
     enabled: !!weekStart,
   });
 
+export interface TeacherPreferencesInput {
+  teachingStyles: string[];
+  pacePreference: string;
+  prepTime: number;
+  subPlanContacts?: Record<string, string>;
+  subPlanProcedures?: string;
+}
+
 export const useSavePreferences = () =>
-  useMutation((data: { teachingStyles: string[]; pacePreference: string; prepTime: number }) =>
-    api.post('/preferences', data),
-  );
+  useMutation((data: TeacherPreferencesInput) => api.post('/preferences', data));
 
 export const useUploadResource = () =>
   useMutation(
@@ -547,3 +553,9 @@ export const useShareYearPlan = () =>
   useMutation(({ teacherId, year }: { teacherId: number; year: number }) =>
     api.post('/share/year-plan', { teacherId, year }).then((r) => r.data),
   );
+
+export const fetchSubPlan = (date: string) =>
+  api.post('/subplan/generate', null, {
+    params: { date },
+    responseType: 'blob',
+  });
