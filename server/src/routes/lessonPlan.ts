@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { prisma } from '../prisma';
+import { prisma, Prisma } from '../prisma';
 import {
   generateWeeklySchedule,
   filterAvailableBlocksByCalendar,
@@ -121,11 +121,14 @@ router.put('/:id', async (req, res, next) => {
 
 export async function savePreferences(req: Request, res: Response, next: NextFunction) {
   try {
-    const { teachingStyles, pacePreference, prepTime } = req.body as {
-      teachingStyles: string[];
-      pacePreference: string;
-      prepTime: number;
-    };
+    const { teachingStyles, pacePreference, prepTime, subPlanContacts, subPlanProcedures } =
+      req.body as {
+        teachingStyles: string[];
+        pacePreference: string;
+        prepTime: number;
+        subPlanContacts?: Record<string, string>;
+        subPlanProcedures?: string;
+      };
     const prefs = await prisma.teacherPreferences.upsert({
       where: { id: 1 },
       create: {
@@ -133,11 +136,15 @@ export async function savePreferences(req: Request, res: Response, next: NextFun
         teachingStyles: JSON.stringify(teachingStyles),
         pacePreference,
         prepTime,
+        subPlanContacts: subPlanContacts as Prisma.InputJsonValue | undefined,
+        subPlanProcedures,
       },
       update: {
         teachingStyles: JSON.stringify(teachingStyles),
         pacePreference,
         prepTime,
+        subPlanContacts: subPlanContacts as Prisma.InputJsonValue | undefined,
+        subPlanProcedures,
       },
     });
     res.status(201).json(prefs);
