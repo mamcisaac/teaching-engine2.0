@@ -326,6 +326,8 @@ export const downloadPrintables = (weekStart: string) =>
 export interface Notification {
   id: number;
   message: string;
+  type?: string;
+  dueDate?: string;
   read: boolean;
   createdAt: string;
 }
@@ -374,6 +376,21 @@ export const useNewsletters = () =>
 export const useGenerateNewsletter = () =>
   useMutation((data: { startDate: string; endDate: string }) =>
     api.post('/newsletters/generate', data).then((r) => r.data as Newsletter),
+  );
+
+export interface NewsletterDraft {
+  title: string;
+  content: string;
+}
+
+export const fetchNewsletterSuggestions = () =>
+  api
+    .get('/newsletter-suggestions')
+    .then((r) => r.data as { suggested: boolean; notification?: Notification });
+
+export const useCreateNewsletterDraft = () =>
+  useMutation((data: unknown) =>
+    api.post('/newsletter-draft', data).then((r) => r.data as NewsletterDraft),
   );
 
 export interface TimetableSlot {

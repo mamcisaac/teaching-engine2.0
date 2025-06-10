@@ -5,6 +5,7 @@ import MilestoneDetailPage from './pages/MilestoneDetailPage';
 import WeeklyPlannerPage from './pages/WeeklyPlannerPage';
 import NotificationsPage from './pages/NotificationsPage';
 import NewsletterEditor from './pages/NewsletterEditor';
+import NewsletterDraftViewer from './pages/NewsletterDraftViewer';
 import DailyPlanPage from './pages/DailyPlanPage';
 import TimetablePage from './pages/TimetablePage';
 import DashboardPage from './pages/DashboardPage';
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/notes" element={<NotesPage />} />
         <Route path="/notifications" element={<NotificationsPage />} />
         <Route path="/newsletters/new" element={<NewsletterEditor />} />
+        <Route path="/newsletters/draft" element={<NewsletterDraftViewer />} />
       </Routes>
     </NotificationProvider>
   );
