@@ -21,6 +21,7 @@
     "node-cron": "^3.0.3",
     "nodemailer": "^6.9.11",
     "pdfkit": "^0.17.1",
+    "node-ical": "^0.20.1",
     "pino": "8.21.0",
     "unzipper": "^0.12.3",
     "zod": "3.25.56"

@@ -469,3 +469,33 @@ export const useDeleteNote = () => {
     onSuccess: () => qc.invalidateQueries({ queryKey: ['notes'] }),
   });
 };
+
+export interface CalendarEvent {
+  id: number;
+  title: string;
+  description?: string;
+  start: string;
+  end: string;
+  allDay: boolean;
+  eventType: 'PD_DAY' | 'ASSEMBLY' | 'TRIP' | 'HOLIDAY' | 'CUSTOM';
+  source: 'MANUAL' | 'ICAL_FEED' | 'SYSTEM';
+}
+
+export const useCalendarEvents = (from: string, to: string) =>
+  useQuery<CalendarEvent[]>({
+    queryKey: ['calendarEvents', from, to],
+    queryFn: async () =>
+      (
+        await api.get('/calendar-events', {
+          params: { from, to },
+        })
+      ).data,
+  });
+
+export const useAddCalendarEvent = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: Omit<CalendarEvent, 'id'>) => api.post('/calendar-events', data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['calendarEvents'] }),
+  });
+};

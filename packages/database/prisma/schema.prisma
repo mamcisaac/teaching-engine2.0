@@ -172,5 +172,36 @@ model User {
   subjects Subject[]
   milestones Milestone[]
   activities Activity[]
+  events    CalendarEvent[]
+}
+
+enum CalendarEventType {
+  PD_DAY
+  ASSEMBLY
+  TRIP
+  HOLIDAY
+  CUSTOM
+}
+
+enum CalendarEventSource {
+  MANUAL
+  ICAL_FEED
+  SYSTEM
+}
+
+model CalendarEvent {
+  id          Int                 @id @default(autoincrement())
+  title       String
+  description String?
+  start       DateTime
+  end         DateTime
+  allDay      Boolean             @default(false)
+  eventType   CalendarEventType
+  source      CalendarEventSource @default(MANUAL)
+  teacherId   Int?
+  teacher     User?               @relation(fields: [teacherId], references: [id])
+  schoolId    Int?
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
 }
 
