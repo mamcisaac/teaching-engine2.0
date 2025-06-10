@@ -30,6 +30,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Verify Jest and Prisma availability
+        run: |
+          pnpm --filter server exec jest --version
+          pnpm --filter @teaching-engine/database exec prisma --version
+
       - name: Generate Prisma Client
         run: pnpm db:generate
 
