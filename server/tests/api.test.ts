@@ -90,6 +90,19 @@ describe('Milestone API', () => {
     expect(get.body.title).toBe('MS');
   });
 
+  it('accepts long description and codes', async () => {
+    const desc = 'a'.repeat(10000);
+    const codes = ['C1', 'C2'];
+    const create = await request(app)
+      .post('/api/milestones')
+      .send({ title: 'Rich', subjectId, description: desc, standardCodes: codes });
+    expect(create.status).toBe(201);
+    const get = await request(app).get(`/api/milestones/${create.body.id}`);
+    expect(get.status).toBe(200);
+    expect(get.body.description).toBe(desc);
+    expect(get.body.standardCodes).toEqual(codes);
+  });
+
   it('rejects invalid milestone data', async () => {
     const res = await request(app).post('/api/milestones').send({ title: '' });
     expect(res.status).toBe(400);

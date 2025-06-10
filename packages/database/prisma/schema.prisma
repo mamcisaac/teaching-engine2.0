@@ -32,6 +32,8 @@ model Milestone {
   estHours   Int?
   deadline   ReportDeadline? @relation(fields: [deadlineId], references: [id])
   deadlineId Int?
+  description String?
+  standardCodes String  @default("[]")
 }
 
 model Activity {
