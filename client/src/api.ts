@@ -33,6 +33,7 @@ export interface Activity {
   title: string;
   milestoneId: number;
   completedAt?: string | null;
+  tags?: string[];
 }
 
 export interface Resource {
@@ -272,6 +273,18 @@ export const useLessonPlan = (weekStart: string) =>
         }
         throw err;
       }
+    },
+    enabled: !!weekStart,
+  });
+
+export const usePlannerSuggestions = (weekStart: string, filters: Record<string, boolean>) =>
+  useQuery<Activity[]>({
+    queryKey: ['plannerSuggestions', getWeekStartISO(new Date(weekStart)), JSON.stringify(filters)],
+    queryFn: async () => {
+      const res = await api.get('/planner/suggestions', {
+        params: { weekStart, filters: JSON.stringify(filters) },
+      });
+      return res.data as Activity[];
     },
     enabled: !!weekStart,
   });

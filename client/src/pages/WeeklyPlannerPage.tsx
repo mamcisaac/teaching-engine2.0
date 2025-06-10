@@ -7,6 +7,7 @@ import {
   getWeekStartISO,
   useTimetable,
   useCalendarEvents,
+  usePlannerSuggestions,
 } from '../api';
 import ActivitySuggestionList from '../components/ActivitySuggestionList';
 import WeekCalendarGrid from '../components/WeekCalendarGrid';
@@ -14,12 +15,14 @@ import AutoFillButton from '../components/AutoFillButton';
 import WeeklyMaterialsChecklist from '../components/WeeklyMaterialsChecklist';
 import DownloadPrintablesButton from '../components/DownloadPrintablesButton';
 import PlannerNotificationBanner from '../components/PlannerNotificationBanner';
+import PlannerFilters, { loadPlannerFilters } from '../components/planner/PlannerFilters';
 import { toast } from 'sonner';
 
 export default function WeeklyPlannerPage() {
   const [weekStart, setWeekStart] = useState(() => getWeekStartISO(new Date()));
   const [preserveBuffer, setPreserveBuffer] = useState(true);
   const [skipLow, setSkipLow] = useState(true);
+  const [filters, setFilters] = useState<Record<string, boolean>>(loadPlannerFilters);
   const { data: plan, refetch } = useLessonPlan(weekStart);
   const subjects = useSubjects().data ?? [];
   const { data: timetable } = useTimetable();
@@ -27,6 +30,7 @@ export default function WeeklyPlannerPage() {
     weekStart,
     new Date(new Date(weekStart).getTime() + 6 * 86400000).toISOString(),
   );
+  const { data: suggestions } = usePlannerSuggestions(weekStart, filters);
   const activities = useMemo(() => {
     const all: Record<number, Activity> = {};
     subjects.forEach((s) =>
@@ -119,8 +123,9 @@ export default function WeeklyPlannerPage() {
             <WeeklyMaterialsChecklist weekStart={weekStart} />
           </div>
         )}
+        <PlannerFilters filters={filters} onChange={setFilters} />
         <h2>Suggestions</h2>
-        <ActivitySuggestionList activities={Object.values(activities)} />
+        <ActivitySuggestionList activities={suggestions ?? []} />
       </DndContext>
     </div>
   );
