@@ -35,6 +35,7 @@ model Milestone {
   estHours   Int?
   deadline   ReportDeadline? @relation(fields: [deadlineId], references: [id])
   deadlineId Int?
+  outcomes   MilestoneOutcome[]
 }
 
 model Activity {
@@ -63,6 +64,7 @@ model Activity {
   resources   Resource[]
   dailyPlanItems DailyPlanItem[]
   notes       Note[]
+  outcomes    ActivityOutcome[]
   @@index([milestoneId, orderIndex])
 }
 
@@ -340,4 +342,33 @@ model Holiday {
   id   Int      @id @default(autoincrement())
   date DateTime
   name String
+}
+
+model Outcome {
+  id          String   @id @default(cuid())
+  subject     String
+  grade       Int
+  code        String   @unique
+  description String
+  domain      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  milestones  MilestoneOutcome[]
+  activities  ActivityOutcome[]
+}
+
+model MilestoneOutcome {
+  milestone   Milestone @relation(fields: [milestoneId], references: [id])
+  milestoneId Int
+  outcome     Outcome   @relation(fields: [outcomeId], references: [id])
+  outcomeId   String
+  @@id([milestoneId, outcomeId])
+}
+
+model ActivityOutcome {
+  activity    Activity  @relation(fields: [activityId], references: [id])
+  activityId  Int
+  outcome     Outcome   @relation(fields: [outcomeId], references: [id])
+  outcomeId   String
+  @@id([activityId, outcomeId])
 }

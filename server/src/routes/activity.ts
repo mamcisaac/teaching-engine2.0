@@ -14,7 +14,9 @@ const router = Router();
 
 router.get('/', async (_req, res, next) => {
   try {
-    const activities = await prisma.activity.findMany();
+    const activities = await prisma.activity.findMany({
+      include: { outcomes: { include: { outcome: true } } },
+    });
     res.json(activities);
   } catch (err) {
     next(err);
@@ -25,6 +27,7 @@ router.get('/:id', async (req, res, next) => {
   try {
     const activity = await prisma.activity.findUnique({
       where: { id: Number(req.params.id) },
+      include: { outcomes: { include: { outcome: true } } },
     });
     if (!activity) return res.status(404).json({ error: 'Not Found' });
     res.json(activity);
@@ -47,7 +50,23 @@ router.post('/', validate(activityCreateSchema), async (req, res, next) => {
         completedAt: req.body.completedAt ? new Date(req.body.completedAt) : undefined,
       },
     });
-    res.status(201).json(activity);
+    const codes: string[] = req.body.outcomes ?? [];
+    for (const code of codes) {
+      const outcome = await prisma.outcome.upsert({
+        where: { code },
+        update: {},
+        create: { subject: 'FRA', grade: 1, code, description: '' },
+      });
+      await prisma.activityOutcome.create({
+        data: { activityId: activity.id, outcomeId: outcome.id },
+      });
+    }
+
+    const refreshed = await prisma.activity.findUnique({
+      where: { id: activity.id },
+      include: { outcomes: { include: { outcome: true } } },
+    });
+    res.status(201).json(refreshed);
   } catch (err) {
     next(err);
   }
@@ -95,7 +114,24 @@ router.put('/:id', validate(activityUpdateSchema), async (req, res, next) => {
         completedAt: req.body.completedAt ? new Date(req.body.completedAt) : undefined,
       },
     });
-    res.json(activity);
+    await prisma.activityOutcome.deleteMany({ where: { activityId: activity.id } });
+    const codes: string[] = req.body.outcomes ?? [];
+    for (const code of codes) {
+      const outcome = await prisma.outcome.upsert({
+        where: { code },
+        update: {},
+        create: { subject: 'FRA', grade: 1, code, description: '' },
+      });
+      await prisma.activityOutcome.create({
+        data: { activityId: activity.id, outcomeId: outcome.id },
+      });
+    }
+
+    const refreshed = await prisma.activity.findUnique({
+      where: { id: activity.id },
+      include: { outcomes: { include: { outcome: true } } },
+    });
+    res.json(refreshed);
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
       return res.status(404).json({ error: 'Not Found' });
