@@ -7,6 +7,7 @@ test('create subject, milestone and activity', async ({ page }) => {
   await page.click('text=Add Subject');
   await page.fill('input[placeholder="New subject"]', 'Playwright');
   await page.click('button:has-text("Save")');
+  await page.waitForLoadState('networkidle');
   await expect(page.locator('text=Playwright')).toBeVisible();
   await page.click('text=Playwright');
 
@@ -14,6 +15,7 @@ test('create subject, milestone and activity', async ({ page }) => {
   await page.click('text=Add Milestone');
   await page.fill('input[placeholder="New milestone"]', 'M1');
   await page.click('button:has-text("Save")');
+  await page.waitForLoadState('networkidle');
   await expect(page.locator('text=M1')).toBeVisible();
   await page.click('text=M1');
 
@@ -21,6 +23,7 @@ test('create subject, milestone and activity', async ({ page }) => {
   await page.click('text=Add Activity');
   await page.fill('input[placeholder="New activity"]', 'A1');
   await page.click('button:has-text("Save")');
+  await page.waitForLoadState('networkidle');
 
   // check new activity appears exactly once
   await expect(page.locator('text="A1"').first()).toBeVisible();

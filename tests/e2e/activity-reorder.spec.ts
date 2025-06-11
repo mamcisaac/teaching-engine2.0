@@ -9,12 +9,14 @@ test('reorders activities within milestone', async ({ page }) => {
   await page.click('text=Add Subject');
   await page.fill('input[placeholder="New subject"]', `Sub${ts}`);
   await page.click('button:has-text("Save")');
+  await page.waitForLoadState('networkidle');
   await expect(page.locator(`text=Sub${ts}`)).toBeVisible();
   await page.click(`text=Sub${ts}`);
 
   await page.click('text=Add Milestone');
   await page.fill('input[placeholder="New milestone"]', 'M');
   await page.click('button:has-text("Save")');
+  await page.waitForLoadState('networkidle');
   await expect(page.locator('a:has-text("M")')).toBeVisible();
   await page.click('a:has-text("M")');
   await page.waitForSelector('button:has-text("Add Activity")');

@@ -8,12 +8,14 @@ test('rejects drop when activity longer than slot', async ({ page }) => {
   await page.click('text=Add Subject');
   await page.fill('input[placeholder="New subject"]', `Dur${ts}`);
   await page.click('button:has-text("Save")');
+  await page.waitForLoadState('networkidle');
   await expect(page.locator(`text=Dur${ts}`)).toBeVisible();
   await page.click(`text=Dur${ts}`);
 
   await page.click('text=Add Milestone');
   await page.fill('input[placeholder="New milestone"]', 'Mdur');
   await page.click('button:has-text("Save")');
+  await page.waitForLoadState('networkidle');
   await expect(page.locator('text=Mdur')).toBeVisible();
   await page.click('text=Mdur');
 
