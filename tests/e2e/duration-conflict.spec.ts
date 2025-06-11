@@ -21,8 +21,40 @@ test('rejects drop when activity longer than slot', async ({ page }) => {
   await page.request.post('/api/activities', {
     data: { title: 'LongAct', milestoneId, durationMins: 60 },
   });
+  await page.request.post('/api/activities', {
+    data: { title: 'ShortAct', milestoneId, durationMins: 30 },
+  });
   await page.request.put('/api/timetable', {
     data: [{ day: 0, startMin: 540, endMin: 585, subjectId: 1 }],
+  });
+
+  const weekStart = new Date().toISOString().split('T')[0];
+  await page.route('**/api/lesson-plans/*', async (route) => {
+    if (route.request().method() === 'GET') {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ id: 1, weekStart, schedule: [] }),
+      });
+    } else {
+      await route.fallback();
+    }
+  });
+  await page.route('**/api/timetable', async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify([
+        {
+          id: 1,
+          day: 0,
+          startMin: 540,
+          endMin: 585,
+          subjectId: 1,
+          subject: { id: 1, name: 'Math', milestones: [] },
+        },
+      ]),
+    });
   });
 
   await page.goto('/planner');
