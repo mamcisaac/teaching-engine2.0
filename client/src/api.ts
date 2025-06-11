@@ -165,6 +165,33 @@ export const useDeleteActivity = () => {
   });
 };
 
+export interface CompleteActivityResponse {
+  activity: Activity;
+  showNotePrompt: boolean;
+}
+
+export const useCompleteActivity = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: {
+      id: number;
+      completed: boolean;
+      milestoneId: number;
+      interactive?: boolean;
+    }) =>
+      api
+        .patch(`/activities/${data.id}/complete`, {
+          completed: data.completed,
+          interactive: data.interactive ?? true,
+        })
+        .then((r) => r.data as CompleteActivityResponse),
+    onSuccess: (_res, vars) => {
+      qc.invalidateQueries({ queryKey: ['milestone', vars.milestoneId] });
+      qc.invalidateQueries({ queryKey: ['newsletter-draft'] });
+    },
+  });
+};
+
 export const useReorderActivities = () => {
   const qc = useQueryClient();
   return useMutation({
@@ -558,6 +585,14 @@ export interface Note {
   createdAt: string;
 }
 
+export interface NoteInput {
+  content: string;
+  type?: 'private' | 'public';
+  activityId?: number;
+  dailyPlanId?: number;
+  milestoneId?: number;
+}
+
 export const useNotes = () =>
   useQuery<Note[]>({
     queryKey: ['notes'],
@@ -567,8 +602,13 @@ export const useNotes = () =>
 export const useAddNote = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Note, 'id' | 'createdAt'>) => api.post('/notes', data),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['notes'] }),
+    mutationFn: (data: NoteInput) => api.post('/notes', data),
+    onSuccess: (_res, vars) => {
+      qc.invalidateQueries({ queryKey: ['notes'] });
+      if (vars.activityId && vars.milestoneId)
+        qc.invalidateQueries({ queryKey: ['milestone', vars.milestoneId] });
+      qc.invalidateQueries({ queryKey: ['newsletter-draft'] });
+    },
   });
 };
 

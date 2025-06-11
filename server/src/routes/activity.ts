@@ -104,6 +104,25 @@ router.put('/:id', validate(activityUpdateSchema), async (req, res, next) => {
   }
 });
 
+router.patch('/:id/complete', async (req, res, next) => {
+  const { completed = true, interactive = false } = req.body as {
+    completed?: boolean;
+    interactive?: boolean;
+  };
+  try {
+    const activity = await prisma.activity.update({
+      where: { id: Number(req.params.id) },
+      data: { completedAt: completed ? new Date() : null },
+    });
+    res.json({ activity, showNotePrompt: interactive });
+  } catch (err) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
+      return res.status(404).json({ error: 'Not Found' });
+    }
+    next(err);
+  }
+});
+
 router.delete('/:id', async (req, res, next) => {
   try {
     await prisma.activity.delete({ where: { id: Number(req.params.id) } });

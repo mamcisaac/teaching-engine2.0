@@ -12,7 +12,7 @@ export default function DailyNotesEditor({
   const addNote = useAddNote();
 
   const handleSave = () => {
-    addNote.mutate({ content, public: false, activityId, dailyPlanId });
+    addNote.mutate({ content, type: 'private', activityId, dailyPlanId });
     setContent('');
   };
 
