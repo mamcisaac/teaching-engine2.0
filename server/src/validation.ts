@@ -13,6 +13,7 @@ export const milestoneCreateSchema = z.object({
   estHours: z.number().int().optional(),
   description: z.string().max(10000).optional(),
   standardCodes: z.array(z.string().min(1).max(50)).max(10).optional().default([]),
+  outcomes: z.array(z.string()).optional(),
 });
 
 export const milestoneUpdateSchema = milestoneCreateSchema.omit({ subjectId: true });
@@ -27,6 +28,7 @@ export const activityCreateSchema = z.object({
   materialsText: z.string().max(500).optional(),
   completedAt: z.string().datetime().optional(),
   tags: z.array(z.string()).optional(),
+  outcomes: z.array(z.string()).optional(),
 });
 
 export const activityUpdateSchema = activityCreateSchema.omit({ milestoneId: true });
