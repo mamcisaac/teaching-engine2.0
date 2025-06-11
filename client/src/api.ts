@@ -393,6 +393,9 @@ export const useMaterialDetails = (weekStart: string) =>
 export const downloadPrintables = (weekStart: string) =>
   api.get(`/material-lists/${weekStart}/zip`, { responseType: 'blob' });
 
+export const downloadWeekResources = (weekId: number) =>
+  api.get(`/weeks/${weekId}/resources.zip`, { responseType: 'blob' });
+
 export interface Notification {
   id: number;
   message: string;
