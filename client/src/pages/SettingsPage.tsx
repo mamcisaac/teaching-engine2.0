@@ -1,5 +1,6 @@
 import HolidaySettings from '../components/settings/HolidaySettings';
 import SubstituteInfoForm from '../components/settings/SubstituteInfoForm';
+import BackupButton from '../components/settings/BackupButton';
 
 export default function SettingsPage() {
   return (
@@ -7,6 +8,7 @@ export default function SettingsPage() {
       <h1 className="text-xl">Settings</h1>
       <HolidaySettings />
       <SubstituteInfoForm />
+      <BackupButton />
     </div>
   );
 }
