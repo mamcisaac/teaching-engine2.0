@@ -22,20 +22,13 @@ test('create subject, milestone and activity', async ({ page }) => {
   await page.click('text=Add Milestone');
   await page.fill('input[placeholder="New milestone"]', `M${ts}`);
   await Promise.all([
-    page.waitForResponse(
-      (res) => res.url().match(/\/api\/subjects\//) && res.request().method() === 'GET',
-    ),
+    page.waitForResponse((res) => res.url().includes('/api/subjects/') && res.status() === 200),
     page.click('button:has-text("Save")'),
   ]);
-  await page.waitForLoadState('networkidle');
-  await Promise.all([
-    page.waitForResponse(
-      (res) => res.url().match(/\/api\/subjects\/?(\d+)?$/) && res.request().method() === 'GET',
-    ),
-    page.reload(),
-  ]);
-  await expect(page.locator(`text=M${ts}`)).toBeVisible({ timeout: 15000 });
-  await page.click(`text=M${ts}`);
+
+  await page.reload();
+  await expect(page.getByText(`M${ts}`)).toBeVisible({ timeout: 5000 });
+  await page.getByText(`M${ts}`).click();
 
   // open activity dialog
   await page.click('text=Add Activity');
