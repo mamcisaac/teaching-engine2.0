@@ -7,21 +7,30 @@ test('generate weekly plan from activity', async ({ page }) => {
   await page.click('text=Add Subject');
   await page.fill('input[placeholder="New subject"]', `Plan${ts}`);
   await page.click('button:has-text("Save")');
-  await page.waitForLoadState('networkidle');
-  await expect(page.locator(`text=Plan${ts}`)).toBeVisible();
+  await page.waitForResponse(
+    (res) => res.url().match(/\/api\/subjects\/?(\d+)?$/) && res.request().method() === 'GET',
+  );
+  await page.reload();
+  await expect(page.locator(`text=Plan${ts}`)).toBeVisible({ timeout: 15000 });
   await page.click(`text=Plan${ts}`);
 
   await page.click('text=Add Milestone');
   await page.fill('input[placeholder="New milestone"]', 'Mplan');
   await page.click('button:has-text("Save")');
-  await page.waitForLoadState('networkidle');
-  await expect(page.locator('text=Mplan')).toBeVisible();
+  await page.waitForResponse(
+    (res) => res.url().match(/\/api\/subjects\//) && res.request().method() === 'GET',
+  );
+  await page.reload();
+  await expect(page.locator('text=Mplan')).toBeVisible({ timeout: 15000 });
   await page.click('text=Mplan');
 
   await page.click('text=Add Activity');
   await page.fill('input[placeholder="New activity"]', 'Aplan');
   await page.click('button:has-text("Save")');
-  await page.waitForLoadState('networkidle');
+  await page.waitForResponse(
+    (res) => res.url().match(/\/api\/milestones\//) && res.request().method() === 'GET',
+  );
+  await page.reload();
 
   await page.goto('/planner');
   await page.click('text=Auto Fill');

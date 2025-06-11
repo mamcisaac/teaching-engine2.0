@@ -9,6 +9,8 @@ beforeAll(async () => {
   await prisma.dailyPlan.deleteMany();
   await prisma.lessonPlan.deleteMany();
   await prisma.timetableSlot.deleteMany();
+  await prisma.activityOutcome.deleteMany();
+  await prisma.milestoneOutcome.deleteMany();
   await prisma.activity.deleteMany();
   await prisma.milestone.deleteMany();
   await prisma.subject.deleteMany();
@@ -20,6 +22,8 @@ afterAll(async () => {
   await prisma.dailyPlan.deleteMany();
   await prisma.lessonPlan.deleteMany();
   await prisma.timetableSlot.deleteMany();
+  await prisma.activityOutcome.deleteMany();
+  await prisma.milestoneOutcome.deleteMany();
   await prisma.activity.deleteMany();
   await prisma.milestone.deleteMany();
   await prisma.subject.deleteMany();
