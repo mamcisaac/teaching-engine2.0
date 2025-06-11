@@ -41,6 +41,23 @@ let lessonPlanData: LessonPlan | undefined = {
   schedule: [],
 };
 let subjects: Subject[] = [];
+let timetable: Array<{
+  id: number;
+  day: number;
+  startMin: number;
+  endMin: number;
+  subjectId: number;
+  subject: Subject;
+}> = [
+  {
+    id: 1,
+    day: 0,
+    startMin: 540,
+    endMin: 600,
+    subjectId: 1,
+    subject: { id: 1, name: 'Math', milestones: [] },
+  },
+];
 
 vi.mock('../src/api', async () => {
   const actual = await vi.importActual('../src/api');
@@ -54,18 +71,7 @@ vi.mock('../src/api', async () => {
     usePlannerSuggestions: () => ({
       data: subjects.flatMap((s) => s.milestones.flatMap((m) => m.activities)),
     }),
-    useTimetable: () => ({
-      data: [
-        {
-          id: 1,
-          day: 0,
-          startMin: 540,
-          endMin: 600,
-          subjectId: 1,
-          subject: { id: 1, name: 'Math', milestones: [] },
-        },
-      ],
-    }),
+    useTimetable: () => ({ data: timetable }),
     useGeneratePlan: () => generateState,
     useMaterialDetails: () => ({ data: [] }),
     useCalendarEvents: () => ({ data: [] }),
@@ -101,7 +107,8 @@ test('auto fill generates plan and refetches', () => {
   expect(mutateMock).toHaveBeenCalled();
   // simulate success callback
   const options = mutateMock.mock.calls[0][1];
-  if (options?.onSuccess) options.onSuccess();
+  if (options?.onSuccess)
+    options.onSuccess({ id: 1, weekStart: '', schedule: [] } as unknown as LessonPlan);
   expect(refetchMock).toHaveBeenCalled();
 });
 
@@ -224,4 +231,53 @@ test('dragging updates UI after refetch', async () => {
   ];
   rerender(<WeeklyPlannerPage />);
   expect(within(screen.getByTestId('day-0')).getByText('Act 1')).toBeInTheDocument();
+});
+
+test('rejects drag when activity exceeds slot', async () => {
+  subjects = [
+    {
+      id: 1,
+      name: 'Math',
+      milestones: [
+        {
+          id: 1,
+          title: 'M1',
+          subjectId: 1,
+          activities: [
+            {
+              id: 1,
+              title: 'Long',
+              milestoneId: 1,
+              completedAt: null,
+              durationMins: 60,
+            },
+          ],
+        },
+      ],
+    },
+  ];
+  timetable = [
+    {
+      id: 1,
+      day: 0,
+      startMin: 540,
+      endMin: 585,
+      subjectId: 1,
+      subject: { id: 1, name: 'Math', milestones: [] },
+    },
+  ];
+  const fetchMock = vi.fn().mockResolvedValue({ ok: true });
+  // @ts-expect-error mock fetch
+  global.fetch = fetchMock;
+
+  renderWithRouter(<WeeklyPlannerPage />);
+  act(() => {
+    triggerDrop({
+      active: { id: 1 },
+      over: { id: 'day-0', data: { current: { day: 0 } } },
+    } as DragEndEvent);
+  });
+
+  await waitFor(() => expect(fetchMock).not.toHaveBeenCalled());
+  expect(screen.getByTestId('slot-warning')).toBeInTheDocument();
 });

@@ -38,6 +38,7 @@ export default function WeeklyPlannerPage() {
     );
     return all;
   }, [subjects]);
+  const [invalidDay, setInvalidDay] = useState<number | undefined>();
 
   const handleDrop = (day: number, activityId: number) => {
     if (!plan) return;
@@ -46,6 +47,12 @@ export default function WeeklyPlannerPage() {
     const slot = slots.find((s) => !used.has(s.id));
     if (!slot) {
       toast.error('No available slot');
+      return;
+    }
+    const act = activities[activityId];
+    if (act?.durationMins && act.durationMins > slot.endMin - slot.startMin) {
+      setInvalidDay(day);
+      setTimeout(() => setInvalidDay(undefined), 1500);
       return;
     }
     const schedule = [
@@ -111,6 +118,7 @@ export default function WeeklyPlannerPage() {
           activities={activities}
           timetable={timetable}
           events={events}
+          invalidDay={invalidDay}
         />
         {!plan && (
           <p data-testid="no-plan-message" className="text-sm text-gray-600">
