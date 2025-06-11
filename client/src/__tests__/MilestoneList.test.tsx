@@ -23,7 +23,7 @@ describe('MilestoneList', () => {
 
     renderWithRouter(<MilestoneList milestones={milestones} subjectId={1} />);
 
-    expect(screen.getByText('M1')).toHaveAttribute('href', '/milestones/1');
-    expect(screen.getByText('M2')).toHaveAttribute('href', '/milestones/2');
+    expect(screen.getByTestId('milestone-1')).toHaveAttribute('href', '/milestones/1');
+    expect(screen.getByTestId('milestone-2')).toHaveAttribute('href', '/milestones/2');
   });
 });

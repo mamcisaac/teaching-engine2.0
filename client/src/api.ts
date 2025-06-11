@@ -139,6 +139,7 @@ export const useCreateMilestone = () => {
     }) => api.post('/milestones', data),
     onSuccess: (_res, vars) => {
       qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });
+      qc.invalidateQueries({ queryKey: ['subjects'] });
       toast.success('Milestone created');
     },
   });

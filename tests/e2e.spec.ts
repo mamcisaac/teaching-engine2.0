@@ -6,10 +6,13 @@ test('create subject, milestone and activity', async ({ page }) => {
   // open subject dialog
   await page.click('text=Add Subject');
   await page.fill('input[placeholder="New subject"]', 'Playwright');
-  await page.click('button:has-text("Save")');
-  await page.waitForResponse(
-    (res) => res.url().match(/\/api\/subjects\/?(\d+)?$/) && res.request().method() === 'GET',
-  );
+  await Promise.all([
+    page.waitForResponse(
+      (res) => res.url().match(/\/api\/subjects\/?(\d+)?$/) && res.request().method() === 'GET',
+    ),
+    page.click('button:has-text("Save")'),
+  ]);
+  await page.waitForLoadState('networkidle');
   await page.reload();
   await expect(page.locator('text=Playwright')).toBeVisible({ timeout: 15000 });
   await page.click('text=Playwright');
@@ -17,10 +20,13 @@ test('create subject, milestone and activity', async ({ page }) => {
   // open milestone dialog
   await page.click('text=Add Milestone');
   await page.fill('input[placeholder="New milestone"]', 'M1');
-  await page.click('button:has-text("Save")');
-  await page.waitForResponse(
-    (res) => res.url().match(/\/api\/subjects\//) && res.request().method() === 'GET',
-  );
+  await Promise.all([
+    page.waitForResponse(
+      (res) => res.url().match(/\/api\/subjects\//) && res.request().method() === 'GET',
+    ),
+    page.click('button:has-text("Save")'),
+  ]);
+  await page.waitForLoadState('networkidle');
   await page.reload();
   await expect(page.locator('text=M1')).toBeVisible({ timeout: 15000 });
   await page.click('text=M1');

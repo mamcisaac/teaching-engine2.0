@@ -88,7 +88,9 @@ export default function MilestoneList({ milestones, subjectId }: Props) {
           return (
             <li key={m.id} className="border p-2 rounded space-y-1">
               <div className="flex items-center justify-between gap-2">
-                <Link to={`/milestones/${m.id}`}>{m.title}</Link>
+                <Link to={`/milestones/${m.id}`} data-testid={`milestone-${m.id}`}>
+                  {m.title}
+                </Link>
                 <div className="flex gap-1">
                   <button
                     className="px-1 text-sm bg-gray-200"
