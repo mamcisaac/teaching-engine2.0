@@ -35,6 +35,7 @@ export interface Activity {
   completedAt?: string | null;
   tags?: string[];
   durationMins?: number;
+  materialsText?: string | null;
 }
 
 export interface Resource {
@@ -117,7 +118,8 @@ export const useCreateMilestone = () => {
 export const useCreateActivity = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: { title: string; milestoneId: number }) => api.post('/activities', data),
+    mutationFn: (data: { title: string; milestoneId: number; materialsText?: string }) =>
+      api.post('/activities', data),
     onSuccess: (_res, vars) => {
       qc.invalidateQueries({ queryKey: ['milestone', vars.milestoneId] });
       toast.success('Activity created');
@@ -133,8 +135,14 @@ export const useUpdateActivity = () => {
       milestoneId: number;
       subjectId?: number;
       title?: string;
+      materialsText?: string;
       completedAt?: string | null;
-    }) => api.put(`/activities/${data.id}`, { title: data.title, completedAt: data.completedAt }),
+    }) =>
+      api.put(`/activities/${data.id}`, {
+        title: data.title,
+        completedAt: data.completedAt,
+        materialsText: data.materialsText,
+      }),
     onSuccess: (_res, vars) => {
       qc.invalidateQueries({ queryKey: ['milestone', vars.milestoneId] });
       if (vars.subjectId) qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });

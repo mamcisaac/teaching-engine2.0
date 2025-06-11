@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import MaterialsInput from './activity/MaterialsInput';
 import type { Activity } from '../api';
 import {
   useCreateActivity,
@@ -78,6 +79,7 @@ export default function ActivityList({ activities, milestoneId, subjectId }: Pro
   const reorder = useReorderActivities();
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
+  const [materials, setMaterials] = useState('');
   const [editId, setEditId] = useState<number | null>(null);
   const [editTitle, setEditTitle] = useState('');
   const [ids, setIds] = useState<number[]>([]);
@@ -99,8 +101,9 @@ export default function ActivityList({ activities, milestoneId, subjectId }: Pro
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!title.trim()) return;
-    create.mutate({ title, milestoneId });
+    create.mutate({ title, milestoneId, materialsText: materials });
     setTitle('');
+    setMaterials('');
     setOpen(false);
   };
 
@@ -126,6 +129,16 @@ export default function ActivityList({ activities, milestoneId, subjectId }: Pro
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="New activity"
+              className="border p-2"
+            />
+          </label>
+          <label htmlFor="activity-materials" className="flex flex-col">
+            <span className="sr-only">Materials</span>
+            <textarea
+              id="activity-materials"
+              value={materials}
+              onChange={(e) => setMaterials(e.target.value)}
+              placeholder="glue, scissors"
               className="border p-2"
             />
           </label>
@@ -173,6 +186,12 @@ export default function ActivityList({ activities, milestoneId, subjectId }: Pro
               className="border p-2"
             />
           </label>
+          {editId !== null && (
+            <MaterialsInput
+              activityId={editId}
+              initial={activities.find((a) => a.id === editId)?.materialsText ?? ''}
+            />
+          )}
           <button type="submit" className="self-end px-2 py-1 bg-blue-600 text-white">
             Save
           </button>

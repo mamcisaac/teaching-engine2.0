@@ -50,6 +50,8 @@ model Activity {
   durationMins Int?
   privateNote  String?
   publicNote   String?
+  /// Comma-separated list of needed materials
+  materialsText String?
   /// Optional list of activity tags (e.g. "HandsOn")
   tags         Json     @default("[]")
   completedAt  DateTime?

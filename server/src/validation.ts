@@ -24,6 +24,7 @@ export const activityCreateSchema = z.object({
   durationMins: z.number().int().optional(),
   privateNote: z.string().optional(),
   publicNote: z.string().optional(),
+  materialsText: z.string().max(500).optional(),
   completedAt: z.string().datetime().optional(),
   tags: z.array(z.string()).optional(),
 });
@@ -33,6 +34,10 @@ export const activityUpdateSchema = activityCreateSchema.omit({ milestoneId: tru
 export const activityReorderSchema = z.object({
   milestoneId: z.number(),
   activityIds: z.array(z.number()),
+});
+
+export const activityMaterialsSchema = z.object({
+  materialsText: z.string().max(500).optional(),
 });
 
 export const timetableEntrySchema = z.object({
