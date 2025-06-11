@@ -296,6 +296,18 @@ describe('Newsletter API', () => {
     expect(res.status).toBe(400);
   });
 
+  it('returns raw draft by version query', async () => {
+    const res = await request(app).post('/api/newsletters/generate').send({
+      startDate: '2025-01-01T00:00:00.000Z',
+      endDate: '2025-01-07T00:00:00.000Z',
+    });
+    expect(res.status).toBe(201);
+    const id = res.body.id;
+    const rawRes = await request(app).get(`/api/newsletters/${id}?version=raw`);
+    expect(rawRes.status).toBe(200);
+    expect(rawRes.body.content).toBe(res.body.rawDraft);
+  });
+
   it('sends newsletter to contacts', async () => {
     const nl = await prisma.newsletter.create({
       data: { title: 'Send', content: 'Hi' },

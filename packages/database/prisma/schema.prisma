@@ -152,6 +152,8 @@ model Newsletter {
   id        Int      @id @default(autoincrement())
   title     String
   content   String
+  rawDraft  String?
+  polishedDraft String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
