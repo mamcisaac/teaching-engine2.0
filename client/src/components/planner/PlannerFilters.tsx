@@ -16,9 +16,9 @@ export default function PlannerFilters({ filters, onChange }: Props) {
   }, [filters]);
 
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2" title="Filter suggested activities">
       {TAGS.map((t) => (
-        <label key={t} className="inline-flex items-center gap-1">
+        <label key={t} className="inline-flex items-center gap-1" title={`Show ${t} activities`}>
           <input
             type="checkbox"
             checked={filters[t] ?? true}

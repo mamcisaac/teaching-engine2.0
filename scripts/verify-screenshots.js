@@ -2,7 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const guidePath = path.resolve('USER_GUIDE.md');
+const guidePath = path.resolve(process.cwd(), '..', 'docs/USER_GUIDE.md');
 if (!fs.existsSync(guidePath)) {
   console.log('USER_GUIDE.md not found, skipping screenshot verification.');
   process.exit(0);
@@ -10,7 +10,7 @@ if (!fs.existsSync(guidePath)) {
 
 const md = fs.readFileSync(guidePath, 'utf8');
 const regex = /!\[[^\]]*\]\(([^)]+)\)/g;
-const imagesDir = path.resolve('docs/images');
+const imagesDir = path.resolve(process.cwd(), '..', 'docs/images');
 const missing = [];
 const notInDir = [];
 let match;

@@ -31,7 +31,11 @@ export default function HolidaySettings() {
           onChange={(e) => setName(e.target.value)}
           className="border p-1"
         />
-        <button className="px-2 py-1 bg-blue-600 text-white" onClick={handleAdd}>
+        <button
+          className="px-2 py-1 bg-blue-600 text-white"
+          onClick={handleAdd}
+          title="Add holiday"
+        >
           Add
         </button>
       </div>
@@ -44,6 +48,7 @@ export default function HolidaySettings() {
             <button
               className="px-1 text-sm bg-red-600 text-white"
               onClick={() => remove.mutate(h.id)}
+              title="Remove holiday"
             >
               Delete
             </button>
