@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.skip('planner blocks times from calendar events', async ({ page }) => {
+test('planner blocks times from calendar events', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('onboarded', 'true'));
   const today = new Date().toISOString().split('T')[0];
   await page.request.post('/api/calendar-events', {
