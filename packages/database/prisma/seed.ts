@@ -76,6 +76,36 @@ async function main() {
     activityIds[a.title] = a.id;
   });
 
+  const existingFallbacks = await prisma.activity.count({ where: { isFallback: true } });
+  if (existingFallbacks === 0) {
+    const fs = await import('fs/promises');
+    const path = await import('path');
+    const file = await fs.readFile(path.join(__dirname, 'seed', 'fallbackActivities.json'), 'utf8');
+    const fallbackData: { subject: string; title: string; publicNote?: string }[] =
+      JSON.parse(file);
+    for (const fb of fallbackData) {
+      const subject = await prisma.subject.findFirst({ where: { name: fb.subject } });
+      if (!subject) continue;
+      let milestone = await prisma.milestone.findFirst({
+        where: { subjectId: subject.id, title: 'Fallback Activities' },
+      });
+      if (!milestone) {
+        milestone = await prisma.milestone.create({
+          data: { title: 'Fallback Activities', subjectId: subject.id },
+        });
+      }
+      await prisma.activity.create({
+        data: {
+          title: fb.title,
+          publicNote: fb.publicNote,
+          milestoneId: milestone.id,
+          isSubFriendly: true,
+          isFallback: true,
+        },
+      });
+    }
+  }
+
   // Optional: seed one completed lesson plan
   await prisma.lessonPlan.create({
     data: {

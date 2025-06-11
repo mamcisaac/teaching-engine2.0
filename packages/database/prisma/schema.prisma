@@ -54,6 +54,10 @@ model Activity {
   materialsText String?
   /// Optional list of activity tags (e.g. "HandsOn")
   tags         Json     @default("[]")
+  /// True if suitable for substitute teachers
+  isSubFriendly Boolean  @default(true)
+  /// Mark as generic fallback activity for the subject
+  isFallback   Boolean   @default(false)
   completedAt  DateTime?
   weeklySchedules WeeklySchedule[]
   resources   Resource[]
