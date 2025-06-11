@@ -21,6 +21,16 @@ async function main() {
     prisma.subject.create({ data: { name: 'Health' } }),
   ]);
 
+  // Seed a sample outcome for tests
+  await prisma.outcome.create({
+    data: {
+      subject: 'MTH',
+      grade: 1,
+      code: '1MA.1',
+      description: 'Demonstrate simple addition',
+    },
+  });
+
   const additionMilestone = await prisma.milestone.create({
     data: {
       title: 'Addition and Subtraction',

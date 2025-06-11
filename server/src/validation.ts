@@ -12,7 +12,6 @@ export const milestoneCreateSchema = z.object({
   targetDate: z.string().datetime().optional(),
   estHours: z.number().int().optional(),
   description: z.string().max(10000).optional(),
-  standardCodes: z.array(z.string().min(1).max(50)).max(10).optional().default([]),
   outcomes: z.array(z.string()).optional(),
 });
 

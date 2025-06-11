@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import type { Milestone } from '../api';
 import { useCreateMilestone, useUpdateMilestone, useDeleteMilestone } from '../api';
 import Dialog from './Dialog';
-import TagInput from './TagInput';
+import OutcomeSelect from './OutcomeSelect';
 
 interface Props {
   milestones: Milestone[];
@@ -26,7 +26,7 @@ export default function MilestoneList({ milestones, subjectId }: Props) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!title.trim()) return;
-    create.mutate({ title, subjectId, description, standardCodes: codes });
+    create.mutate({ title, subjectId, description, outcomes: codes });
     setTitle('');
     setDescription('');
     setCodes([]);
@@ -41,7 +41,7 @@ export default function MilestoneList({ milestones, subjectId }: Props) {
       title: editTitle,
       subjectId,
       description: editDescription,
-      standardCodes: editCodes,
+      outcomes: editCodes,
     });
     setEditId(null);
     setEditTitle('');
@@ -75,7 +75,7 @@ export default function MilestoneList({ milestones, subjectId }: Props) {
               className="border p-2"
             />
           </label>
-          <TagInput tags={codes} onChange={setCodes} placeholder="Add standard code" />
+          <OutcomeSelect selected={codes} onChange={setCodes} />
           <button type="submit" className="self-end px-2 py-1 bg-blue-600 text-white">
             Save
           </button>
@@ -96,7 +96,7 @@ export default function MilestoneList({ milestones, subjectId }: Props) {
                       setEditId(m.id);
                       setEditTitle(m.title);
                       setEditDescription(m.description ?? '');
-                      setEditCodes(m.standardCodes ?? []);
+                      setEditCodes(m.outcomes.map((o) => o.outcome.code));
                     }}
                   >
                     Edit
@@ -110,11 +110,11 @@ export default function MilestoneList({ milestones, subjectId }: Props) {
                 </div>
               </div>
               {m.description && <p className="italic text-sm">{m.description}</p>}
-              {m.standardCodes && m.standardCodes.length > 0 && (
+              {m.outcomes.length > 0 && (
                 <div className="flex flex-wrap gap-1">
-                  {m.standardCodes.map((c) => (
-                    <span key={c} className="bg-gray-200 px-1 text-xs">
-                      {c}
+                  {m.outcomes.map((mo) => (
+                    <span key={mo.outcomeId} className="bg-gray-200 px-1 text-xs">
+                      {mo.outcome.code}
                     </span>
                   ))}
                 </div>
@@ -146,7 +146,7 @@ export default function MilestoneList({ milestones, subjectId }: Props) {
               placeholder="Description"
             />
           </label>
-          <TagInput tags={editCodes} onChange={setEditCodes} placeholder="Add standard code" />
+          <OutcomeSelect selected={editCodes} onChange={setEditCodes} />
           <button type="submit" className="self-end px-2 py-1 bg-blue-600 text-white">
             Save
           </button>

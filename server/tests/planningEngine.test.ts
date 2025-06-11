@@ -16,6 +16,8 @@ describe('planning engine', () => {
     await prisma.timetableSlot.deleteMany();
     await prisma.resource.deleteMany();
     await prisma.unavailableBlock.deleteMany();
+    await prisma.activityOutcome.deleteMany();
+    await prisma.milestoneOutcome.deleteMany();
     await prisma.activity.deleteMany();
     await prisma.milestone.deleteMany();
     await prisma.subject.deleteMany();
@@ -28,6 +30,8 @@ describe('planning engine', () => {
     await prisma.lessonPlan.deleteMany();
     await prisma.timetableSlot.deleteMany();
     await prisma.resource.deleteMany();
+    await prisma.activityOutcome.deleteMany();
+    await prisma.milestoneOutcome.deleteMany();
     await prisma.activity.deleteMany();
     await prisma.milestone.deleteMany();
     await prisma.subject.deleteMany();

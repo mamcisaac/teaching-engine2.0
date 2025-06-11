@@ -97,13 +97,13 @@ describe('Milestone API', () => {
         title: 'MS2',
         subjectId,
         description: 'desc',
-        standardCodes: ['A', 'B'],
+        outcomes: ['1MA.1'],
       });
     expect(create.status).toBe(201);
     const id = create.body.id;
     const get = await request(app).get(`/api/milestones/${id}`);
     expect(get.body.description).toBe('desc');
-    expect(get.body.standardCodes).toEqual(['A', 'B']);
+    expect(get.body.outcomes.length).toBe(1);
   });
 
   it('rejects invalid milestone data', async () => {
