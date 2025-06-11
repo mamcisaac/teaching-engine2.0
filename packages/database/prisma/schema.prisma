@@ -68,7 +68,7 @@ model Activity {
 
 model LessonPlan {
   id         Int             @id @default(autoincrement())
-  weekStart  DateTime
+  weekStart  DateTime        @unique
   schedule   WeeklySchedule[]
   dailyPlans DailyPlan[]
   createdAt  DateTime        @default(now())

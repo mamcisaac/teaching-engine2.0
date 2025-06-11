@@ -69,32 +69,17 @@ router.post('/generate', async (req, res, next) => {
     if (scheduleData.length === 0) {
       return res.status(400).json({ error: 'No activities available' });
     }
-    const existing = await prisma.lessonPlan.findFirst({
+    const plan = await prisma.lessonPlan.upsert({
       where: { weekStart: new Date(weekStart) },
+      create: {
+        weekStart: new Date(weekStart),
+        schedule: { create: scheduleData },
+      },
+      update: {
+        schedule: { deleteMany: {}, create: scheduleData },
+      },
+      include: { schedule: { include: { slot: true } } },
     });
-    let plan;
-    if (existing) {
-      plan = await prisma.lessonPlan.update({
-        where: { id: existing.id },
-        data: {
-          schedule: {
-            deleteMany: {},
-            create: scheduleData,
-          },
-        },
-        include: { schedule: { include: { slot: true } } },
-      });
-    } else {
-      plan = await prisma.lessonPlan.create({
-        data: {
-          weekStart: new Date(weekStart),
-          schedule: {
-            create: scheduleData,
-          },
-        },
-        include: { schedule: { include: { slot: true } } },
-      });
-    }
     await updateMaterialList(weekStart);
     res.status(201).json(plan);
   } catch (err) {
