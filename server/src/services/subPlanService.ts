@@ -31,7 +31,14 @@ export async function buildSubPlanData(date: string): Promise<SubPlanData> {
   const [plan, events, blocks, prefs] = await Promise.all([
     prisma.dailyPlan.findFirst({
       where: { date: dayStart },
-      include: { items: { include: { activity: true } } },
+      include: {
+        items: {
+          include: {
+            activity: { include: { milestone: { select: { subjectId: true } } } },
+            slot: true,
+          },
+        },
+      },
     }),
     prisma.calendarEvent.findMany({
       where: { start: { lte: dayEnd }, end: { gte: dayStart } },
@@ -41,9 +48,25 @@ export async function buildSubPlanData(date: string): Promise<SubPlanData> {
   ]);
 
   const schedule: ScheduleEntry[] = [];
-  plan?.items.forEach((i) =>
-    schedule.push({ time: minToTime(i.startMin), activity: i.activity?.title ?? '' }),
-  );
+  if (plan) {
+    for (const item of plan.items) {
+      const subjectId = item.slot?.subjectId ?? item.activity?.milestone.subjectId;
+      let act = item.activity;
+      if (act?.id && !act.isSubFriendly && subjectId) {
+        act = await prisma.activity.findFirst({
+          where: { isFallback: true, milestone: { subjectId } },
+          include: { milestone: { select: { subjectId: true } } },
+        });
+      }
+      if (!act && subjectId) {
+        act = await prisma.activity.findFirst({
+          where: { isFallback: true, milestone: { subjectId } },
+          include: { milestone: { select: { subjectId: true } } },
+        });
+      }
+      schedule.push({ time: minToTime(item.startMin), activity: act?.title ?? '' });
+    }
+  }
   events.forEach((e) =>
     schedule.push({
       time: minToTime(new Date(e.start).getUTCHours() * 60 + new Date(e.start).getUTCMinutes()),
