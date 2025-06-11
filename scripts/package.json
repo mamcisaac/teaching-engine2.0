@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "seed": "ts-node seed.ts",
+    "verify-docs": "node verify-screenshots.js",
     "test": "echo skipped"
   },
   "dependencies": {
