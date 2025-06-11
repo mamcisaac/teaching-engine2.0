@@ -5,7 +5,11 @@ import path from 'path';
 
 const icsPath = path.join(__dirname, '../../server/tests/fixtures/sample.ics');
 
-/** E2E scenario: Teacher imports iCal feed, planner blocks event, and sub plan includes it */
+/**
+ * E2E scenario: Teacher imports iCal feed, planner blocks event, and sub plan includes it
+ * Previously skipped due to dependency on external iCal feed in test environment.
+ * Now enabled with a local test fixture for reliable testing.
+ */
 test('ical import blocks planner and sub plan lists event', async ({ page }) => {
   const ics = fs.readFileSync(icsPath);
   const srv = http.createServer((req, res) => {

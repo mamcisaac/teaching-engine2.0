@@ -1,5 +1,10 @@
 import { test, expect } from '@playwright/test';
 
+/**
+ * Test that verifies the planner correctly blocks times based on calendar events.
+ * Previously skipped due to incomplete calendar blocking feature.
+ * Now enabled as the feature is fully implemented and stable.
+ */
 test('planner blocks times from calendar events', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('onboarded', 'true'));
   const today = new Date().toISOString().split('T')[0];
