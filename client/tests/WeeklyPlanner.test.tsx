@@ -75,6 +75,7 @@ vi.mock('../src/api', async () => {
     useGeneratePlan: () => generateState,
     useMaterialDetails: () => ({ data: [] }),
     useCalendarEvents: () => ({ data: [] }),
+    useHolidays: () => ({ data: [] }),
     downloadPrintables: vi.fn(),
   };
 });

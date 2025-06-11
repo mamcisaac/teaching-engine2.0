@@ -4,6 +4,7 @@ import type {
   TimetableSlot,
   CalendarEvent,
   UnavailableBlock,
+  Holiday,
 } from '@teaching-engine/database';
 
 export interface ScheduleItem {
@@ -31,9 +32,13 @@ export function filterAvailableBlocksByCalendar(
   slots: TimetableSlot[],
   events: CalendarEvent[],
   unavailable: UnavailableBlock[] = [],
+  holidays: Holiday[] = [],
 ): DailyBlock[] {
   return slots
     .filter((s) => s.subjectId)
+    .filter((slot) => {
+      return !holidays.some((h) => (new Date(h.date).getUTCDay() + 6) % 7 === slot.day);
+    })
     .filter((slot) => {
       const dayEvents = events.filter((e) => (new Date(e.start).getUTCDay() + 6) % 7 === slot.day);
       return dayEvents.every((ev) => {
