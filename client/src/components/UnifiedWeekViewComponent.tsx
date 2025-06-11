@@ -25,6 +25,7 @@ export default function UnifiedWeekViewComponent() {
   const { data: timetable } = useTimetable();
   const genNewsletter = useGenerateNewsletter();
   const [showPrompts, setShowPrompts] = useState(false);
+  const [invalidDay, setInvalidDay] = useState<number | undefined>();
 
   const activities = useMemo(() => {
     const all: Record<number, Activity> = {};
@@ -41,6 +42,12 @@ export default function UnifiedWeekViewComponent() {
     const slot = slots.find((s) => !used.has(s.id));
     if (!slot) {
       toast.error('No available slot');
+      return;
+    }
+    const act = activities[activityId];
+    if (act?.durationMins && act.durationMins > slot.endMin - slot.startMin) {
+      setInvalidDay(day);
+      setTimeout(() => setInvalidDay(undefined), 1500);
       return;
     }
     const schedule = [
@@ -118,7 +125,12 @@ export default function UnifiedWeekViewComponent() {
       )}
       <PlannerNotificationBanner />
       <DndContext onDragEnd={handleDragEnd}>
-        <WeekCalendarGrid schedule={schedule} activities={activities} timetable={timetable} />
+        <WeekCalendarGrid
+          schedule={schedule}
+          activities={activities}
+          timetable={timetable}
+          invalidDay={invalidDay}
+        />
         {!plan && (
           <p data-testid="no-plan-message" className="text-sm text-gray-600">
             No plan for this week. Click Auto Fill to generate one.

@@ -6,9 +6,16 @@ interface Props {
   activities: Record<number, Activity>;
   timetable?: TimetableSlot[];
   events?: CalendarEvent[];
+  invalidDay?: number;
 }
 
-export default function WeekCalendarGrid({ schedule, activities, timetable, events }: Props) {
+export default function WeekCalendarGrid({
+  schedule,
+  activities,
+  timetable,
+  events,
+  invalidDay,
+}: Props) {
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
   return (
     <div className="grid grid-cols-5 gap-2">
@@ -24,15 +31,21 @@ export default function WeekCalendarGrid({ schedule, activities, timetable, even
           id: `day-${idx}`,
           data: { day: idx },
         });
+        const invalid = invalidDay === idx;
         return (
           <div
             key={idx}
             ref={setNodeRef}
             data-testid={`day-${idx}`}
-            className={`min-h-24 border flex flex-col items-center justify-start bg-gray-50 p-1${blocked ? ' opacity-50 pointer-events-none' : ''}${isOver ? ' bg-blue-100' : ''}`}
+            className={`min-h-24 border flex flex-col items-center justify-start bg-gray-50 p-1${blocked ? ' opacity-50 pointer-events-none' : ''}${isOver ? ' bg-blue-100' : ''}${invalid ? ' border-red-500' : ''}`}
           >
             <span>{d}</span>
             {label && <div className="text-xs">{label}</div>}
+            {invalid && (
+              <div className="text-xs text-red-600" data-testid="slot-warning">
+                Too long for this slot
+              </div>
+            )}
             {dayEvents?.map((ev) => (
               <div key={ev.id} className="text-xs bg-yellow-200 w-full mt-1" title={ev.title}>
                 {ev.title}

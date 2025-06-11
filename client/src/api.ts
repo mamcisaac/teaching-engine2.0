@@ -34,6 +34,7 @@ export interface Activity {
   milestoneId: number;
   completedAt?: string | null;
   tags?: string[];
+  durationMins?: number;
 }
 
 export interface Resource {
@@ -403,6 +404,16 @@ export const useMarkNotificationRead = () => {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (id: number) => api.put(`/notifications/${id}/read`),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['notifications'] });
+    },
+  });
+};
+
+export const useAddNotification = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: { message: string; type?: string }) => api.post('/notifications', data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['notifications'] });
     },
