@@ -175,6 +175,9 @@ importers:
       nodemailer:
         specifier: ^6.9.11
         version: 6.10.1
+      openai:
+        specifier: ^5.3.0
+        version: 5.3.0(ws@8.18.2)(zod@3.25.56)
       pdfkit:
         specifier: ^0.17.1
         version: 0.17.1
@@ -6206,6 +6209,21 @@ packages:
         integrity: sha512-VXJjc87FScF88uafS3JllDgvAm+c/Slfz06lorj2uAY34rlUu0Nt+v8wreiImcrgAjjIHp1rXpTDlLOGw29WwQ==,
       }
     engines: { node: '>=18' }
+
+  openai@5.3.0:
+    resolution:
+      {
+        integrity: sha512-VIKmoF7y4oJCDOwP/oHXGzM69+x0dpGFmN9QmYO+uPbLFOmmnwO+x1GbsgUtI+6oraxomGZ566Y421oYVu191w==,
+      }
+    hasBin: true
+    peerDependencies:
+      ws: ^8.18.0
+      zod: ^3.23.8
+    peerDependenciesMeta:
+      ws:
+        optional: true
+      zod:
+        optional: true
 
   optionator@0.9.4:
     resolution:
@@ -12433,6 +12451,11 @@ snapshots:
   onetime@7.0.0:
     dependencies:
       mimic-function: 5.0.1
+
+  openai@5.3.0(ws@8.18.2)(zod@3.25.56):
+    optionalDependencies:
+      ws: 8.18.2
+      zod: 3.25.56
 
   optionator@0.9.4:
     dependencies:

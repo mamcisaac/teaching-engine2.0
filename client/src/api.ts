@@ -462,6 +462,8 @@ export interface Newsletter {
   id: number;
   title: string;
   content: string;
+  rawDraft?: string | null;
+  polishedDraft?: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -481,6 +483,18 @@ export const useNewsletters = () =>
   useQuery<Newsletter[]>({
     queryKey: ['newsletters'],
     queryFn: async () => (await api.get('/newsletters')).data,
+  });
+
+export const useNewsletter = (id: number, version?: 'raw' | 'polished') =>
+  useQuery<Newsletter>({
+    queryKey: ['newsletter', id, version],
+    queryFn: async () =>
+      (
+        await api.get(`/newsletters/${id}`, {
+          params: version ? { version } : {},
+        })
+      ).data,
+    enabled: !!id,
   });
 
 export const useGenerateNewsletter = () =>

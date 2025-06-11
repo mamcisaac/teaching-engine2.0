@@ -8,6 +8,7 @@ vi.mock('../api', async () => {
   return {
     ...actual,
     useCreateNewsletter: () => ({ mutate: vi.fn() }),
+    useNewsletter: () => ({ data: undefined }),
   };
 });
 

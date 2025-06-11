@@ -7,6 +7,8 @@ import {
   NewsletterTemplate,
   generateNewsletterDraft,
 } from '../services/newsletterGenerator';
+import { rewriteNewsletter } from '../services/newsletterLLM';
+import logger from '../logger';
 import { sendEmail } from '../services/emailService';
 import { validate, newsletterGenerateSchema } from '../validation';
 
@@ -38,9 +40,22 @@ router.post('/generate', validate(newsletterGenerateSchema), async (req, res, ne
     };
 
     const draft = await generateNewsletterDraft(startDate, endDate, includePhotos, useLLM);
-    const html = renderTemplate(template, draft);
+    const raw = renderTemplate(template, draft);
+    let polished: string | null = null;
+    if (process.env.ENABLE_LLM === 'true') {
+      try {
+        polished = await rewriteNewsletter(raw);
+      } catch (err) {
+        logger.error({ err }, 'polish failed');
+      }
+    }
     const newsletter = await prisma.newsletter.create({
-      data: { title: draft.title, content: html },
+      data: {
+        title: draft.title,
+        content: polished ?? raw,
+        rawDraft: raw,
+        polishedDraft: polished,
+      },
     });
     res.status(201).json(newsletter);
   } catch (err) {
@@ -73,8 +88,17 @@ router.post('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const newsletter = await prisma.newsletter.findUnique({ where: { id: Number(req.params.id) } });
+    const newsletter = await prisma.newsletter.findUnique({
+      where: { id: Number(req.params.id) },
+    });
     if (!newsletter) return res.status(404).json({ error: 'Not Found' });
+
+    const version = req.query.version as string | undefined;
+    if (version === 'raw' && newsletter.rawDraft)
+      return res.json({ ...newsletter, content: newsletter.rawDraft });
+    if (version === 'polished' && newsletter.polishedDraft)
+      return res.json({ ...newsletter, content: newsletter.polishedDraft });
+
     res.json(newsletter);
   } catch (err) {
     next(err);
