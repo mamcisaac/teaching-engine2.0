@@ -57,6 +57,13 @@ export async function generateMaterialList(weekStart: string): Promise<string[]>
   const items = new Set<string>();
   for (const entry of plan.schedule) {
     extractMaterials(entry.activity.publicNote ?? '').forEach((m) => items.add(m));
+    if (entry.activity.materialsText) {
+      entry.activity.materialsText
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean)
+        .forEach((m) => items.add(m));
+    }
   }
 
   return Array.from(items);
@@ -97,13 +104,22 @@ export async function generateMaterialDetails(weekStart: string): Promise<Activi
   if (!plan) return [];
   const details: ActivityMaterials[] = [];
   for (const entry of plan.schedule) {
-    const materials = extractMaterials(entry.activity.publicNote ?? '');
-    if (materials.length) {
+    const materials = [
+      ...extractMaterials(entry.activity.publicNote ?? ''),
+      ...(entry.activity.materialsText
+        ? entry.activity.materialsText
+            .split(',')
+            .map((s) => s.trim())
+            .filter(Boolean)
+        : []),
+    ];
+    const unique = Array.from(new Set(materials));
+    if (unique.length) {
       details.push({
         day: entry.day,
         activityId: entry.activityId,
         title: entry.activity.title,
-        materials,
+        materials: unique,
       });
     }
   }

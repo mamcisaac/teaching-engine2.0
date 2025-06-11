@@ -6,6 +6,7 @@ import {
   activityCreateSchema,
   activityUpdateSchema,
   activityReorderSchema,
+  activityMaterialsSchema,
 } from '../validation';
 import { reorderActivities } from '../services/activityService';
 
@@ -61,6 +62,21 @@ router.patch('/reorder', validate(activityReorderSchema), async (req, res, next)
     const activities = await reorderActivities(milestoneId, activityIds);
     res.json(activities);
   } catch (err) {
+    next(err);
+  }
+});
+
+router.patch('/:id', validate(activityMaterialsSchema), async (req, res, next) => {
+  try {
+    const activity = await prisma.activity.update({
+      where: { id: Number(req.params.id) },
+      data: { materialsText: req.body.materialsText ?? null },
+    });
+    res.json(activity);
+  } catch (err) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
+      return res.status(404).json({ error: 'Not Found' });
+    }
     next(err);
   }
 });
