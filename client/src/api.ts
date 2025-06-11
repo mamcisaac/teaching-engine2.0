@@ -625,3 +625,31 @@ export const fetchSubPlan = (date: string) =>
     params: { date },
     responseType: 'blob',
   });
+
+export interface Holiday {
+  id: number;
+  date: string;
+  name: string;
+}
+
+export const useHolidays = () =>
+  useQuery<Holiday[]>({
+    queryKey: ['holidays'],
+    queryFn: async () => (await api.get('/holidays')).data,
+  });
+
+export const useAddHoliday = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: Omit<Holiday, 'id'>) => api.post('/holidays', data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['holidays'] }),
+  });
+};
+
+export const useDeleteHoliday = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => api.delete(`/holidays/${id}`),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['holidays'] }),
+  });
+};

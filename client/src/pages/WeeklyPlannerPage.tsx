@@ -8,6 +8,7 @@ import {
   useTimetable,
   useCalendarEvents,
   usePlannerSuggestions,
+  useHolidays,
 } from '../api';
 import ActivitySuggestionList from '../components/ActivitySuggestionList';
 import WeekCalendarGrid from '../components/WeekCalendarGrid';
@@ -30,7 +31,17 @@ export default function WeeklyPlannerPage() {
     weekStart,
     new Date(new Date(weekStart).getTime() + 6 * 86400000).toISOString(),
   );
+  const { data: holidays } = useHolidays();
   const { data: suggestions } = usePlannerSuggestions(weekStart, filters);
+  const weekHolidays = useMemo(() => {
+    if (!holidays) return [];
+    const start = new Date(weekStart);
+    const end = new Date(start.getTime() + 6 * 86400000);
+    return holidays.filter((h) => {
+      const d = new Date(h.date);
+      return d >= start && d <= end;
+    });
+  }, [holidays, weekStart]);
   const activities = useMemo(() => {
     const all: Record<number, Activity> = {};
     subjects.forEach((s) =>
@@ -118,6 +129,7 @@ export default function WeeklyPlannerPage() {
           activities={activities}
           timetable={timetable}
           events={events}
+          holidays={weekHolidays}
           invalidDay={invalidDay}
         />
         {!plan && (

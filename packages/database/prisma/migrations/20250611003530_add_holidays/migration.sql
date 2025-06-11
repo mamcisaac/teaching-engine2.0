@@ -1,0 +1,6 @@
+-- CreateTable
+CREATE TABLE "Holiday" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "date" DATETIME NOT NULL,
+    "name" TEXT NOT NULL
+);

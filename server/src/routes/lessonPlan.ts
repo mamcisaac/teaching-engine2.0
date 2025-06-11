@@ -38,7 +38,10 @@ router.post('/generate', async (req, res, next) => {
         date: { gte: startDate, lte: endDate },
       },
     });
-    const availableBlocks = filterAvailableBlocksByCalendar(slots, events, unavail);
+    const holidays = await prisma.holiday.findMany({
+      where: { date: { gte: startDate, lte: endDate } },
+    });
+    const availableBlocks = filterAvailableBlocksByCalendar(slots, events, unavail, holidays);
     const urg = await getMilestoneUrgency();
     const priorityMap = new Map(urg.map((u) => [u.id, u.urgency]));
     const scheduleData = await generateWeeklySchedule({

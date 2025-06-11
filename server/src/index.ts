@@ -22,6 +22,7 @@ import reportDeadlineRoutes from './routes/reportDeadline';
 import yearPlanRoutes from './routes/yearPlan';
 import shareRoutes from './routes/share';
 import equipmentBookingRoutes from './routes/equipmentBooking';
+import holidayRoutes from './routes/holiday';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
@@ -67,6 +68,7 @@ app.use('/api/report-deadlines', reportDeadlineRoutes);
 app.use('/api/year-plan', yearPlanRoutes);
 app.use('/api/share', shareRoutes);
 app.use('/api/equipment-bookings', equipmentBookingRoutes);
+app.use('/api/holidays', holidayRoutes);
 app.post('/api/preferences', savePreferences);
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
