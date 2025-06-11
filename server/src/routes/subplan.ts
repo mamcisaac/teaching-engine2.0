@@ -43,7 +43,8 @@ router.post('/', async (req, res, next) => {
 router.post('/generate', async (req, res, next) => {
   try {
     const date = (req.query.date as string) || new Date().toISOString().slice(0, 10);
-    const pdf = await generateSubPlan(date);
+    const days = Math.min(3, Math.max(1, Number(req.query.days) || 1));
+    const pdf = await generateSubPlan(date, days);
     res.setHeader('Content-Type', 'application/pdf');
     res.send(pdf);
   } catch (err) {

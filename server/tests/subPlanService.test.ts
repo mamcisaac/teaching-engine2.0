@@ -2,6 +2,7 @@ import { prisma } from '../src/prisma';
 import { generateSubPlan, buildSubPlanData } from '../src/services/subPlanService';
 
 describe('sub plan service', () => {
+  let teacherId: number;
   beforeAll(async () => {
     await prisma.$queryRawUnsafe('PRAGMA busy_timeout = 20000');
     await prisma.calendarEvent.deleteMany();
@@ -11,9 +12,15 @@ describe('sub plan service', () => {
     await prisma.weeklySchedule.deleteMany();
     await prisma.lessonPlan.deleteMany();
     await prisma.teacherPreferences.deleteMany();
+    await prisma.substituteInfo.deleteMany();
     await prisma.activity.deleteMany();
     await prisma.milestone.deleteMany();
     await prisma.subject.deleteMany();
+    await prisma.user.deleteMany();
+    const teacher = await prisma.user.create({
+      data: { email: 't@example.com', password: 'x', name: 'T' },
+    });
+    teacherId = teacher.id;
   });
 
   afterAll(async () => {
@@ -24,9 +31,11 @@ describe('sub plan service', () => {
     await prisma.weeklySchedule.deleteMany();
     await prisma.lessonPlan.deleteMany();
     await prisma.teacherPreferences.deleteMany();
+    await prisma.substituteInfo.deleteMany();
     await prisma.activity.deleteMany();
     await prisma.milestone.deleteMany();
     await prisma.subject.deleteMany();
+    await prisma.user.deleteMany();
     await prisma.$disconnect();
   });
 
@@ -84,5 +93,15 @@ describe('sub plan service', () => {
     const data = await buildSubPlanData('2025-06-15');
     const hasEvent = data.schedule.some((s) => s.note === 'Assembly');
     expect(hasEvent).toBe(true);
+  });
+
+  it('generates multi-day sub plan', async () => {
+    await prisma.substituteInfo.upsert({
+      where: { id: 1 },
+      create: { id: 1, teacherId, procedures: 'Fire drill at 10am' },
+      update: { procedures: 'Fire drill at 10am' },
+    });
+    const buf = await generateSubPlan('2025-06-15', 2);
+    expect(buf.length).toBeGreaterThan(0);
   });
 });

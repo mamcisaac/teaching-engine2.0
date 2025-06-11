@@ -1,4 +1,5 @@
 import { prisma } from '../prisma';
+import PDFDocument from 'pdfkit';
 import { generateSubPlanPDF } from './subPlanGenerator';
 import { Prisma } from '@teaching-engine/database';
 
@@ -96,15 +97,30 @@ export async function buildSubPlanData(date: string): Promise<SubPlanData> {
   };
 }
 
-export async function generateSubPlan(date: string): Promise<Buffer> {
-  const data = await buildSubPlanData(date);
-  return generateSubPlanPDF({
-    today: data.schedule.map((s) => ({ time: s.time, activity: s.activity ?? s.note ?? '' })),
-    upcoming: [],
-    procedures: data.procedures || '',
-    studentNotes: pullOutsText(data.pullOuts),
-    emergencyContacts: formatContacts(data.contacts),
-  });
+export async function generateSubPlan(date: string, days = 1): Promise<Buffer> {
+  const doc = new PDFDocument();
+  const chunks: Buffer[] = [];
+  doc.on('data', (c) => chunks.push(c));
+  const info = await prisma.substituteInfo.findFirst({ where: { id: 1 } });
+  for (let i = 0; i < days; i++) {
+    if (i > 0) doc.addPage();
+    const d = new Date(date);
+    d.setUTCDate(d.getUTCDate() + i);
+    const data = await buildSubPlanData(d.toISOString().slice(0, 10));
+    await generateSubPlanPDF(
+      {
+        today: data.schedule.map((s) => ({ time: s.time, activity: s.activity ?? s.note ?? '' })),
+        upcoming: [],
+        procedures: info?.procedures || data.procedures || '',
+        studentNotes:
+          pullOutsText(data.pullOuts) + (info?.allergies ? `\nAllergies: ${info.allergies}` : ''),
+        emergencyContacts: formatContacts(data.contacts),
+      },
+      doc,
+    );
+  }
+  doc.end();
+  return new Promise((resolve) => doc.on('end', () => resolve(Buffer.concat(chunks))));
 }
 
 function pullOutsText(pullOuts: { time: string; reason: string }[]): string {

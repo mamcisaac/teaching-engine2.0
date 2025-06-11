@@ -1,4 +1,5 @@
 import PDFDocument from 'pdfkit';
+import type * as PDFKit from 'pdfkit';
 
 export interface DaySchedule {
   time: string;
@@ -21,39 +22,48 @@ export interface SubPlanInput {
 /**
  * Generate a PDF buffer for an emergency substitute plan.
  */
-export function generateSubPlanPDF(data: SubPlanInput): Promise<Buffer> {
+export function generateSubPlanPDF(
+  data: SubPlanInput,
+  doc?: PDFKit.PDFDocument,
+): Promise<Buffer | void> {
   return new Promise((resolve) => {
-    const doc = new PDFDocument();
+    const d = doc ?? new PDFDocument();
     const chunks: Buffer[] = [];
-    doc.on('data', (chunk) => chunks.push(chunk));
-    doc.on('end', () => resolve(Buffer.concat(chunks)));
+    if (!doc) {
+      d.on('data', (chunk: Buffer) => chunks.push(chunk));
+      d.on('end', () => resolve(Buffer.concat(chunks)));
+    }
 
-    doc.fontSize(16).text('Emergency Sub Plan', { align: 'center' });
-    doc.moveDown();
+    d.fontSize(16).text('Emergency Sub Plan', { align: 'center' });
+    d.moveDown();
 
-    doc.fontSize(12).text('Today', { underline: true });
+    d.fontSize(12).text('Today', { underline: true });
     data.today.forEach((item) => {
-      doc.text(`${item.time} - ${item.activity}`);
+      d.text(`${item.time} - ${item.activity}`);
     });
-    doc.moveDown();
+    d.moveDown();
 
-    doc.text('Next 3 Days', { underline: true });
+    d.text('Next 3 Days', { underline: true });
     data.upcoming.forEach((day) => {
-      doc.text(`${day.date}: ${day.summary}`);
+      d.text(`${day.date}: ${day.summary}`);
     });
-    doc.moveDown();
+    d.moveDown();
 
-    doc.text('Classroom Procedures', { underline: true });
-    doc.text(data.procedures);
-    doc.moveDown();
+    d.text('Classroom Procedures', { underline: true });
+    d.text(data.procedures);
+    d.moveDown();
 
-    doc.text('Student Notes', { underline: true });
-    doc.text(data.studentNotes);
-    doc.moveDown();
+    d.text('Student Notes', { underline: true });
+    d.text(data.studentNotes);
+    d.moveDown();
 
-    doc.text('Emergency Contacts', { underline: true });
-    doc.text(data.emergencyContacts);
+    d.text('Emergency Contacts', { underline: true });
+    d.text(data.emergencyContacts);
 
-    doc.end();
+    if (!doc) {
+      d.end();
+    } else {
+      resolve();
+    }
   });
 }

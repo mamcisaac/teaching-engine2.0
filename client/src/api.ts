@@ -690,9 +690,9 @@ export const useShareYearPlan = () =>
     api.post('/share/year-plan', { teacherId, year }).then((r) => r.data),
   );
 
-export const fetchSubPlan = (date: string) =>
+export const fetchSubPlan = (date: string, days = 1) =>
   api.post('/subplan/generate', null, {
-    params: { date },
+    params: { date, days },
     responseType: 'blob',
   });
 
@@ -721,5 +721,27 @@ export const useDeleteHoliday = () => {
   return useMutation({
     mutationFn: (id: number) => api.delete(`/holidays/${id}`),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['holidays'] }),
+  });
+};
+
+export interface SubstituteInfo {
+  id: number;
+  teacherId: number;
+  procedures?: string | null;
+  allergies?: string | null;
+}
+
+export const useSubstituteInfo = () =>
+  useQuery<SubstituteInfo | null>({
+    queryKey: ['substitute-info'],
+    queryFn: async () => (await api.get('/substitute-info')).data,
+  });
+
+export const useSaveSubstituteInfo = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: { procedures?: string; allergies?: string }) =>
+      api.post('/substitute-info', data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['substitute-info'] }),
   });
 };
