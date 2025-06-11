@@ -585,6 +585,14 @@ export interface Note {
   createdAt: string;
 }
 
+export interface NoteDetail extends Note {
+  activity?:
+    | (Activity & {
+        milestone: Milestone & { subject: Subject };
+      })
+    | null;
+}
+
 export interface NoteInput {
   content: string;
   type?: 'private' | 'public';
@@ -597,6 +605,17 @@ export const useNotes = () =>
   useQuery<Note[]>({
     queryKey: ['notes'],
     queryFn: async () => (await api.get('/notes')).data,
+  });
+
+export const useFilteredNotes = (params: {
+  type?: 'public' | 'private';
+  subjectId?: number;
+  dateFrom?: string;
+  dateTo?: string;
+}) =>
+  useQuery<NoteDetail[]>({
+    queryKey: ['notes', params],
+    queryFn: async () => (await api.get('/notes', { params })).data,
   });
 
 export const useAddNote = () => {

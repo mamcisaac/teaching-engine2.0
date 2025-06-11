@@ -4,9 +4,32 @@ import { prisma } from '../prisma';
 
 const router = Router();
 
-router.get('/', async (_req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
-    const notes = await prisma.note.findMany();
+    const { type, subjectId, dateFrom, dateTo } = req.query as {
+      type?: 'public' | 'private';
+      subjectId?: string;
+      dateFrom?: string;
+      dateTo?: string;
+    };
+
+    const notes = await prisma.note.findMany({
+      where: {
+        ...(type && { public: type === 'public' }),
+        ...(dateFrom && { createdAt: { gte: new Date(dateFrom) } }),
+        ...(dateTo && { createdAt: { lte: new Date(dateTo) } }),
+        ...(subjectId && {
+          activity: {
+            milestone: { subjectId: Number(subjectId) },
+          },
+        }),
+      },
+      include: {
+        activity: { include: { milestone: { include: { subject: true } } } },
+      },
+      orderBy: { createdAt: 'desc' },
+    });
+
     res.json(notes);
   } catch (err) {
     next(err);

@@ -11,6 +11,7 @@ import TimetablePage from './pages/TimetablePage';
 import YearAtAGlancePage from './pages/YearAtAGlancePage';
 import DashboardPage from './pages/DashboardPage';
 import NotesPage from './pages/NotesPage';
+import ReflectionsPage from './pages/ReflectionsPage';
 import SettingsPage from './pages/SettingsPage';
 import { NotificationProvider } from './contexts/NotificationContext';
 
@@ -28,6 +29,7 @@ export default function App() {
         <Route path="/daily" element={<DailyPlanPage />} />
         <Route path="/notes" element={<NotesPage />} />
         <Route path="/notifications" element={<NotificationsPage />} />
+        <Route path="/reflections" element={<ReflectionsPage />} />
         <Route path="/newsletters/new" element={<NewsletterEditor />} />
         <Route path="/newsletters/draft" element={<NewsletterDraftViewer />} />
         <Route path="/settings" element={<SettingsPage />} />
