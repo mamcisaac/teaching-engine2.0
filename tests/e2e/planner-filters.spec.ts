@@ -6,11 +6,13 @@ test('planner tag filters', async ({ page }) => {
   await page.click('text=Add Subject');
   await page.fill('input[placeholder="New subject"]', `F${ts}`);
   await page.click('button:has-text("Save")');
+  await expect(page.locator(`text=F${ts}`)).toBeVisible();
   await page.click(`text=F${ts}`);
 
   await page.click('text=Add Milestone');
   await page.fill('input[placeholder="New milestone"]', `M${ts}`);
   await page.click('button:has-text("Save")');
+  await expect(page.locator(`text=M${ts}`)).toBeVisible();
   await page.click(`text=M${ts}`);
 
   const mRes = await page.request.get('/api/milestones');

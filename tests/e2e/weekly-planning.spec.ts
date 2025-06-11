@@ -7,11 +7,13 @@ test('generate weekly plan from activity', async ({ page }) => {
   await page.click('text=Add Subject');
   await page.fill('input[placeholder="New subject"]', `Plan${ts}`);
   await page.click('button:has-text("Save")');
+  await expect(page.locator(`text=Plan${ts}`)).toBeVisible();
   await page.click(`text=Plan${ts}`);
 
   await page.click('text=Add Milestone');
   await page.fill('input[placeholder="New milestone"]', 'Mplan');
   await page.click('button:has-text("Save")');
+  await expect(page.locator('text=Mplan')).toBeVisible();
   await page.click('text=Mplan');
 
   await page.click('text=Add Activity');

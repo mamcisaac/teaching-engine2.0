@@ -6,6 +6,7 @@ export default defineConfig({
   webServer: {
     command: 'pnpm dev',
     port: 5173,
+    env: { PORT: '3001' },
     timeout: 120 * 1000,
     reuseExistingServer: true,
   },
