@@ -26,7 +26,7 @@
     "pdfkit": "^0.17.1",
     "pino": "8.21.0",
     "unzipper": "^0.12.3",
-    "zod": "3.25.56"
+    "zod": "3.25.58"
   },
   "devDependencies": {
     "@types/archiver": "^6.0.3",
@@ -46,7 +46,7 @@
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
-    "tsx": "^4.19.4",
+    "tsx": "^4.20.0",
     "typescript": "^5.2.2"
   }
 }
