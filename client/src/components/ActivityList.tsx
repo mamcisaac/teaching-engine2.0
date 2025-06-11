@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import MaterialsInput from './activity/MaterialsInput';
 import type { Activity } from '../api';
+import CompleteActivityButton from './CompleteActivityButton';
 import {
   useCreateActivity,
   useUpdateActivity,
@@ -27,12 +28,12 @@ function SortableActivity({
   activity,
   onEdit,
   onDelete,
-  onToggle,
+  milestoneId,
 }: {
   activity: Activity;
   onEdit: () => void;
   onDelete: () => void;
-  onToggle: (checked: boolean) => void;
+  milestoneId: number;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
     id: activity.id,
@@ -42,19 +43,10 @@ function SortableActivity({
     transition,
   };
   const progress = activity.completedAt ? 100 : 0;
-  const checkboxId = `activity-${activity.id}`;
   return (
     <li ref={setNodeRef} style={style} className="border p-2 rounded space-y-1">
       <div className="flex items-center gap-2" {...attributes} {...listeners}>
-        <input
-          id={checkboxId}
-          type="checkbox"
-          checked={!!activity.completedAt}
-          onChange={(e) => onToggle(e.target.checked)}
-        />
-        <label htmlFor={checkboxId} className="sr-only">
-          Mark {activity.title} complete
-        </label>
+        <CompleteActivityButton activity={activity} milestoneId={milestoneId} />
         <span className="flex-1">{activity.title}</span>
         <div className="flex gap-1">
           <button className="px-1 text-sm bg-gray-200" onClick={onEdit}>
@@ -161,14 +153,7 @@ export default function ActivityList({ activities, milestoneId, subjectId }: Pro
                     setEditTitle(a.title);
                   }}
                   onDelete={() => remove.mutate({ id: a.id, milestoneId, subjectId })}
-                  onToggle={(checked) =>
-                    update.mutate({
-                      id: a.id,
-                      milestoneId,
-                      subjectId,
-                      completedAt: checked ? new Date().toISOString() : null,
-                    })
-                  }
+                  milestoneId={milestoneId}
                 />
               );
             })}

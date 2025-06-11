@@ -27,11 +27,13 @@ router.post('/', async (req, res, next) => {
   try {
     const {
       content,
+      type,
       public: isPublic,
       activityId,
       dailyPlanId,
     } = req.body as {
       content: string;
+      type?: 'private' | 'public';
       public?: boolean;
       activityId?: number;
       dailyPlanId?: number;
@@ -39,7 +41,7 @@ router.post('/', async (req, res, next) => {
     const note = await prisma.note.create({
       data: {
         content,
-        public: isPublic ?? false,
+        public: type ? type === 'public' : (isPublic ?? false),
         activityId: activityId ?? undefined,
         dailyPlanId: dailyPlanId ?? undefined,
       },
