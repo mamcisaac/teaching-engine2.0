@@ -24,7 +24,9 @@
     "playwright:test": "playwright test",
     "preplaywright:test": "pnpm exec playwright install --with-deps",
     "test:e2e": "pnpm playwright:test",
-    "test:all": "pnpm run test && pnpm run test:e2e"
+    "test:all": "pnpm run test && pnpm run test:e2e",
+    "check:docs": "pnpm --filter scripts run verify-docs",
+    "analyze:bundle": "source-map-explorer 'client/dist/assets/index-*.js' --no-border-checks --html client/dist/bundle-report.html"
   },
   "devDependencies": {
     "@playwright/test": "^1.43.1",
@@ -36,7 +38,8 @@
     "husky": "^8.0.0",
     "lint-staged": "^15.0.0",
     "pdf-parse": "^1.1.1",
-    "prettier": "^3.0.0"
+    "prettier": "^3.0.0",
+    "source-map-explorer": "^2.5.3"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
