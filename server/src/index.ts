@@ -25,6 +25,7 @@ import equipmentBookingRoutes from './routes/equipmentBooking';
 import holidayRoutes from './routes/holiday';
 import weekRoutes from './routes/week';
 import substituteInfoRoutes from './routes/substituteInfo';
+import backupRoutes from './routes/backupRoutes';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
@@ -73,6 +74,7 @@ app.use('/api/equipment-bookings', equipmentBookingRoutes);
 app.use('/api/holidays', holidayRoutes);
 app.use('/api/weeks', weekRoutes);
 app.use('/api/substitute-info', substituteInfoRoutes);
+app.use('/api/backup', backupRoutes);
 app.post('/api/preferences', savePreferences);
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
