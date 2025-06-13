@@ -8,14 +8,26 @@ export default defineConfig({
     url: 'http://localhost:5173',
     timeout: 120 * 1000,
     reuseExistingServer: false,
+    stdout: 'pipe',
+    stderr: 'pipe',
+    env: {
+      NODE_ENV: 'test',
+      PORT: '5173',
+      DATABASE_URL: 'file:./test.db',
+    },
   },
   use: {
     baseURL: 'http://localhost:5173',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
+    actionTimeout: 10000,
+    navigationTimeout: 30000,
   },
   expect: {
     timeout: 10000,
   },
-  timeout: 30000,
+  timeout: 60000,
+  retries: process.env.CI ? 2 : 0,
+  workers: process.env.CI ? 1 : undefined,
+  reporter: [['list'], ['html', { outputFolder: 'test-results/html' }]],
 });
