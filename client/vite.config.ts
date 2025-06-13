@@ -6,13 +6,8 @@ export default defineConfig({
   plugins: [react()],
   envPrefix: 'VITE_',
   server: {
-    proxy: {
-      '/api': {
-        target: 'http://127.0.0.1:3000',
-        changeOrigin: true,
-        rewrite: (path) => path,
-      },
-    },
+    port: 5173,
+    strictPort: true,
   },
   test: {
     environment: 'jsdom',

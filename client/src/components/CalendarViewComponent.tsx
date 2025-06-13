@@ -13,15 +13,28 @@ export default function CalendarViewComponent({ month, events }: Props) {
   const from = startOfMonth(month).toISOString();
   const to = endOfMonth(month).toISOString();
   const fetch = useCalendarEvents(from, to);
-  const evts = events ?? fetch.data;
+  // Ensure we always have an array, even if the data is undefined or not an array
+  const evts = Array.isArray(events) ? events : Array.isArray(fetch.data) ? fetch.data : [];
+
+  // Log any errors for debugging
+  if (fetch.error) {
+    console.error('Error loading calendar events:', fetch.error);
+  }
 
   const days = eachDayOfInterval({ start: new Date(from), end: new Date(to) });
   const grouped: Record<string, CalendarEvent[]> = {};
-  evts?.forEach((e) => {
-    const d = e.start.split('T')[0];
-    if (!grouped[d]) grouped[d] = [];
-    grouped[d].push(e);
-  });
+  // Safely process events
+  if (Array.isArray(evts)) {
+    evts.forEach((e) => {
+      if (e?.start) {
+        const d = e.start.split('T')[0];
+        if (d) {
+          if (!grouped[d]) grouped[d] = [];
+          grouped[d].push(e);
+        }
+      }
+    });
+  }
 
   return (
     <div className="border rounded p-2">

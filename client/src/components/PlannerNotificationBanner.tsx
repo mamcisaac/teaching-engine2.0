@@ -6,7 +6,12 @@ interface Props {
 
 export default function PlannerNotificationBanner({ onRecovery }: Props) {
   const { notifications } = useNotificationContext();
-  const note = notifications.find((n) => !n.read && n.message.includes('Milestone'));
+
+  // Ensure notifications is an array before calling find
+  const note = Array.isArray(notifications)
+    ? notifications.find((n) => n && !n.read && n.message && n.message.includes('Milestone'))
+    : null;
+
   if (!note) return null;
   return (
     <div

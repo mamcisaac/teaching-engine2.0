@@ -12,14 +12,15 @@
     "dev": "pnpm db:generate && concurrently -k --success first \"pnpm --filter server run dev\" \"pnpm --filter client run dev\"",
     "build": "pnpm db:generate && pnpm -r build",
     "test": "pnpm --filter server run test && pnpm --filter client run test",
+    "test:ci": "pnpm run test && pnpm run test:e2e",
     "lint": "eslint --config .eslintrc.json \"**/*.{ts,tsx,js,jsx}\" --max-warnings 0",
     "prepare": "husky install",
     "db:generate": "pnpm --filter @teaching-engine/database db:generate",
     "db:migrate": "pnpm --filter @teaching-engine/database db:migrate",
     "db:push": "pnpm --filter @teaching-engine/database db:push",
-    "db:deploy": "pnpm --filter @teaching-engine/database db:deploy",
+    "db:deploy": "prisma migrate deploy",
     "db:studio": "pnpm --filter @teaching-engine/database db:studio",
-    "db:seed": "pnpm --filter @teaching-engine/database db:seed",
+    "db:seed": "ts-node scripts/seed.ts",
     "postinstall": "pnpm --filter @teaching-engine/database db:generate",
     "playwright:test": "playwright test",
     "preplaywright:test": "pnpm exec playwright install --with-deps",
@@ -39,7 +40,9 @@
     "lint-staged": "^15.0.0",
     "pdf-parse": "^1.1.1",
     "prettier": "^3.0.0",
-    "source-map-explorer": "^2.5.3"
+    "source-map-explorer": "^2.5.3",
+    "tsconfig-paths": "^4.2.0",
+    "ts-node": "^10.9.1"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
@@ -49,5 +52,8 @@
     "*.{json,md,yml,yaml}": [
       "prettier --write"
     ]
+  },
+  "dependencies": {
+    "date-fns": "^2.30.0"
   }
 }

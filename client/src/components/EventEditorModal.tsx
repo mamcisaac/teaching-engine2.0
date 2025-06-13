@@ -40,9 +40,18 @@ export default function EventEditorModal({ onClose }: Props) {
           value={date}
           onChange={(e) => setDate(e.target.value)}
         />
-        <button className="px-2 py-1 bg-blue-500 text-white rounded" onClick={submit}>
-          Save
-        </button>
+        <div className="flex gap-2 mt-2">
+          <button className="px-2 py-1 bg-blue-500 text-white rounded" onClick={submit}>
+            Save
+          </button>
+          <button
+            className="px-2 py-1 bg-gray-200 text-gray-800 rounded border"
+            onClick={onClose}
+            type="button"
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </Dialog>
   );

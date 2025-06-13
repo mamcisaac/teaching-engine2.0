@@ -243,9 +243,9 @@ describe('planning engine', () => {
       preserveBuffer: true,
     });
 
-    const bufferCount = schedule.filter((s) => s.activityId === 0).length;
+    const bufferCount = schedule.filter((s) => s.activityId == null).length;
     expect(bufferCount).toBe(4);
-    const assigned = schedule.filter((s) => s.activityId !== 0).map((s) => s.activityId);
+    const assigned = schedule.filter((s) => s.activityId != null).map((s) => s.activityId);
     expect(assigned.length).toBe(2);
   });
 

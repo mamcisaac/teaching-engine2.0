@@ -1,11 +1,18 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import path from 'path';
-import subjectRoutes from './routes/subject';
+import jwt, { JwtPayload } from 'jsonwebtoken';
+
+// Extend the Express Request type to include the user property
+interface AuthenticatedRequest extends Request {
+  user?: {
+    userId: string;
+  };
+}
+
+import lessonPlanRoutes from './routes/lessonPlan';
 import milestoneRoutes from './routes/milestone';
 import activityRoutes from './routes/activity';
-import subPlanRoutes from './routes/subplan';
-import lessonPlanRoutes, { savePreferences } from './routes/lessonPlan';
 import dailyPlanRoutes from './routes/dailyPlan';
 import resourceRoutes from './routes/resource';
 import materialListRoutes from './routes/materialList';
@@ -27,6 +34,7 @@ import outcomeRoutes from './routes/outcome';
 import weekRoutes from './routes/week';
 import substituteInfoRoutes from './routes/substituteInfo';
 import backupRoutes from './routes/backupRoutes';
+import subjectRoutes from './routes/subject';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
@@ -35,27 +43,132 @@ import { scheduleEquipmentBookingReminders } from './jobs/bookingReminder';
 import { scheduleBackups } from './services/backupService';
 import logger from './logger';
 import { prisma } from './prisma';
-import jwt from 'jsonwebtoken';
 
 const app = express();
-app.use(cors());
+
+// Configure CORS with credentials support
+// CORS options
+const corsOptions: cors.CorsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || origin.startsWith('http://localhost') || origin.startsWith('http://127.0.0.1')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['Content-Range', 'X-Total-Count'],
+};
+
+// Handle preflight requests
+app.options('*', cors(corsOptions));
+
+// Apply CORS to all routes
+app.use(cors(corsOptions));
 app.use(express.json());
 
-app.post('/api/login', async (req, res) => {
-  const { email, password } = req.body as { email: string; password: string };
-  const user = await prisma.user.findUnique({ where: { email } });
-  if (!user || user.password !== password) {
-    return res.status(401).json({ error: 'Invalid credentials' });
+// Middleware to verify JWT token
+const authenticateToken = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) return res.sendStatus(401);
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as JwtPayload;
+    req.user = { userId: String(decoded?.userId || '') };
+    next();
+  } catch (err) {
+    return res.sendStatus(403);
   }
-  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET || 'secret');
-  res.json({ token });
+};
+
+// Login endpoint
+app.post('/api/login', async (req, res) => {
+  console.log('Login request received:', { body: req.body });
+
+  try {
+    const { email, password: passwordInput } = req.body as { email: string; password: string };
+
+    if (!email || !passwordInput) {
+      console.log('Missing email or password');
+      return res.status(400).json({ error: 'Email and password are required' });
+    }
+
+    console.log('Looking up user with email:', email);
+    const user = await prisma.user.findUnique({
+      where: { email },
+      select: { id: true, email: true, name: true, role: true, password: true },
+    });
+
+    console.log('User found:', user ? 'yes' : 'no');
+
+    if (!user) {
+      console.log('No user found with email:', email);
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    // Debug: Log the password comparison
+    console.log('Password comparison:', {
+      providedPassword: passwordInput,
+      storedPassword: user.password,
+      match: passwordInput === user.password,
+    });
+
+    if (user.password !== passwordInput) {
+      console.log('Password does not match');
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    console.log('Creating JWT token for user ID:', user.id);
+    const token = jwt.sign({ userId: user.id.toString() }, process.env.JWT_SECRET || 'secret', {
+      expiresIn: process.env.JWT_EXPIRES_IN || '7d',
+      algorithm: 'HS256',
+    } as jwt.SignOptions);
+
+    // Return user data without password
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...userData } = user;
+    const response = {
+      token,
+      user: userData,
+    };
+
+    console.log('Login successful, sending response');
+    res.json(response);
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
-app.use('/api/subjects', subjectRoutes);
+// Auth check endpoint
+app.get('/api/auth/me', authenticateToken, async (req: AuthenticatedRequest, res: Response) => {
+  try {
+    if (!req.user?.userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+    const user = await prisma.user.findUnique({
+      where: { id: Number(req.user.userId) },
+      select: { id: true, email: true, name: true, role: true },
+    });
+    if (!user) return res.status(404).json({ error: 'User not found' });
+    res.json(user);
+  } catch (error) {
+    console.error('Auth check error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.get('/api/auth/check', authenticateToken, (req: AuthenticatedRequest, res: Response) => {
+  res.json({ userId: req.user?.userId });
+});
+
+app.use('/api/lesson-plans', lessonPlanRoutes);
 app.use('/api/milestones', milestoneRoutes);
 app.use('/api/activities', activityRoutes);
-app.use('/api/subplan', subPlanRoutes);
-app.use('/api/lesson-plans', lessonPlanRoutes);
 app.use('/api/daily-plans', dailyPlanRoutes);
 app.use('/api/resources', resourceRoutes);
 app.use('/api/material-lists', materialListRoutes);
@@ -77,7 +190,7 @@ app.use('/api/outcomes', outcomeRoutes);
 app.use('/api/weeks', weekRoutes);
 app.use('/api/substitute-info', substituteInfoRoutes);
 app.use('/api/backup', backupRoutes);
-app.post('/api/preferences', savePreferences);
+app.use('/api/subjects', subjectRoutes);
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
 });
@@ -105,7 +218,7 @@ app.use(
   },
 );
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 if (process.env.NODE_ENV !== 'test') {
   scheduleProgressCheck();
   scheduleUnreadNotificationEmails();

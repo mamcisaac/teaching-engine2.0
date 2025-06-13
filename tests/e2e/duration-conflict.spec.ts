@@ -1,30 +1,35 @@
 import { test, expect } from '@playwright/test';
+import { login, API_BASE } from './helpers';
 
 // dragging long activity into short slot should be rejected
 
 test('rejects drop when activity longer than slot', async ({ page }) => {
   const ts = Date.now();
-  await page.goto('/subjects');
-  await page.click('text=Add Subject');
-  await page.fill('input[placeholder="New subject"]', `Dur${ts}`);
-  await page.click('button:has-text("Save")');
-  await page.click(`text=Dur${ts}`);
+  const token = await login(page);
+  const subjectRes = await page.request.post(`${API_BASE}/api/subjects`, {
+    headers: { Authorization: `Bearer ${token}` },
+    data: { name: `Dur${ts}` },
+  });
+  const subjectId = (await subjectRes.json()).id as number;
 
-  await page.click('text=Add Milestone');
-  await page.fill('input[placeholder="New milestone"]', 'Mdur');
-  await page.click('button:has-text("Save")');
-  await page.click('text=Mdur');
+  const milestoneRes = await page.request.post(`${API_BASE}/api/milestones`, {
+    headers: { Authorization: `Bearer ${token}` },
+    data: { title: 'Mdur', subjectId },
+  });
+  const milestoneId = (await milestoneRes.json()).id as number;
 
-  const mRes = await page.request.get('/api/milestones');
-  const milestoneList = (await mRes.json()) as Array<{ id: number; title: string }>;
-  const milestoneId = milestoneList.find((m) => m.title === 'Mdur')!.id;
-  await page.request.post('/api/activities', {
+  await page.goto(`/milestones/${milestoneId}`);
+
+  await page.request.post(`${API_BASE}/api/activities`, {
+    headers: { Authorization: `Bearer ${token}` },
     data: { title: 'LongAct', milestoneId, durationMins: 60 },
   });
-  await page.request.post('/api/activities', {
+  await page.request.post(`${API_BASE}/api/activities`, {
+    headers: { Authorization: `Bearer ${token}` },
     data: { title: 'ShortAct', milestoneId, durationMins: 30 },
   });
-  await page.request.put('/api/timetable', {
+  await page.request.put(`${API_BASE}/api/timetable`, {
+    headers: { Authorization: `Bearer ${token}` },
     data: [{ day: 0, startMin: 540, endMin: 585, subjectId: 1 }],
   });
 
@@ -58,6 +63,8 @@ test('rejects drop when activity longer than slot', async ({ page }) => {
   });
 
   await page.goto('/planner');
+  await page.waitForSelector('.planner-grid', { timeout: 10000 });
+  await page.waitForResponse((r) => r.url().includes('/calendar-events') && r.status() === 200);
   const card = page.locator('text=LongAct').first();
   const target = page.locator('[data-testid="day-0"]');
   await card.dragTo(target);

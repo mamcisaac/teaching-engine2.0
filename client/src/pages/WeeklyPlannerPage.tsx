@@ -1,15 +1,24 @@
 import { useState, useMemo, useEffect } from 'react';
 import { DndContext, DragEndEvent } from '@dnd-kit/core';
+import { api } from '../api';
 import {
   useLessonPlan,
   useSubjects,
-  Activity,
+  type Activity,
   getWeekStartISO,
   useTimetable,
   useCalendarEvents,
   usePlannerSuggestions,
   useHolidays,
 } from '../api';
+import type {
+  CalendarEvent,
+  LessonPlan as LessonPlanType,
+  WeeklyScheduleItem,
+  TimetableSlot as TimetableSlotType,
+} from '../types';
+
+// No need for separate Holiday type, using CalendarEvent from types
 import ActivitySuggestionList from '../components/ActivitySuggestionList';
 import WeekCalendarGrid from '../components/WeekCalendarGrid';
 import AutoFillButton from '../components/AutoFillButton';
@@ -24,71 +33,186 @@ export default function WeeklyPlannerPage() {
   const [preserveBuffer, setPreserveBuffer] = useState(true);
   const [skipLow, setSkipLow] = useState(true);
   const [filters, setFilters] = useState<Record<string, boolean>>(loadPlannerFilters);
-  const { data: plan, refetch } = useLessonPlan(weekStart);
+  const { data: plan, refetch } = useLessonPlan(weekStart) as {
+    data?: LessonPlanType;
+    refetch: () => void;
+  };
   const subjects = useSubjects().data ?? [];
-  const { data: timetable } = useTimetable();
+  console.log('Subjects from useSubjects:', subjects);
+  const { data: timetable } = useTimetable() as { data?: TimetableSlotType[] };
   const { data: events } = useCalendarEvents(
     weekStart,
     new Date(new Date(weekStart).getTime() + 6 * 86400000).toISOString(),
-  );
-  const { data: holidays } = useHolidays();
+  ) as { data?: CalendarEvent[] };
+  // Cast holidays to CalendarEvent[] since that's what WeekCalendarGrid expects
+  const { data: holidays } = useHolidays() as { data?: CalendarEvent[] };
   const { data: suggestions } = usePlannerSuggestions(weekStart, filters);
+
+  // Define activities first since it's used in handleDrop
+  const activities = useMemo(() => {
+    const all: Record<number, Activity> = {};
+    subjects.forEach((subject: { milestones: Array<{ activities: Activity[] }> }) =>
+      subject.milestones.forEach((milestone: { activities: Activity[] }) =>
+        milestone.activities.forEach((activity: Activity) => (all[activity.id] = activity)),
+      ),
+    );
+    return all;
+  }, [subjects]);
+
   const weekHolidays = useMemo(() => {
     if (!holidays) return [];
     const start = new Date(weekStart);
     const end = new Date(start.getTime() + 6 * 86400000);
     return holidays.filter((h) => {
-      const d = new Date(h.date);
+      const d = new Date(h.start);
       return d >= start && d <= end;
     });
   }, [holidays, weekStart]);
-  const activities = useMemo(() => {
-    const all: Record<number, Activity> = {};
-    subjects.forEach((s) =>
-      s.milestones.forEach((m) => m.activities.forEach((a) => (all[a.id] = a))),
-    );
-    return all;
-  }, [subjects]);
+
   const [invalidDay, setInvalidDay] = useState<number | undefined>();
 
   const handleDrop = (day: number, activityId: number) => {
+    if (!plan?.schedule) return;
+
+    // Type assertion for schedule item
+    type ScheduleItem = WeeklyScheduleItem & { activityId?: number };
+    // eslint-disable-next-line no-console
+    console.log('handleDrop called with:', { day, activityId });
+
     if (!plan) return;
-    const slots = timetable?.filter((t) => t.day === day && t.subjectId) ?? [];
-    const used = new Set(plan.schedule.filter((s) => s.day === day).map((s) => s.slotId));
-    const slot = slots.find((s) => !used.has(s.id));
-    if (!slot) {
-      toast.error('No available slot');
+
+    const activity = activities[activityId];
+    if (!activity) {
+      console.error('Activity not found:', activityId, 'Available activities:', activities);
+      toast.error('Activity not found');
       return;
     }
-    const act = activities[activityId];
-    if (act?.durationMins && act.durationMins > slot.endMin - slot.startMin) {
+
+    console.log('Found activity:', activity);
+
+    // Find matching time slots for the activity's subject
+    const subjectId = activity.milestone?.subjectId;
+    if (!subjectId) {
+      console.error('No subject ID found for activity:', activity);
+      toast.error('Activity is not associated with a subject');
+      return;
+    }
+    console.log('Subject ID:', subjectId);
+
+    const matchingSlots =
+      timetable?.filter((t) => t.day === day && t.subjectId === subjectId) ?? [];
+    console.log('Matching slots:', matchingSlots);
+
+    if (matchingSlots.length === 0) {
+      console.error(
+        'No matching time slots found for subject:',
+        subjectId,
+        'All time slots:',
+        timetable,
+      );
       setInvalidDay(day);
       setTimeout(() => setInvalidDay(undefined), 1500);
+      toast.error('No time slots available for this subject');
       return;
     }
-    const schedule = [
-      ...plan.schedule,
-      { id: 0, day, slotId: slot.id, activityId, activity: activities[activityId] },
+
+    // Find the first available slot that's not already used
+    const usedSlotIds = new Set(
+      plan.schedule
+        .filter((scheduleItem: { day: number }) => scheduleItem.day === day)
+        .map((scheduleItem: { slotId: number }) => scheduleItem.slotId),
+    );
+    console.log('Used slot IDs for day', day, ':', usedSlotIds);
+
+    const availableSlot = matchingSlots.find((s) => !usedSlotIds.has(s.id));
+    console.log('Available slot:', availableSlot);
+
+    if (!availableSlot) {
+      console.error('No available slots for day:', day, 'Used slots:', usedSlotIds);
+      setInvalidDay(day);
+      setTimeout(() => setInvalidDay(undefined), 1500);
+      toast.error('No available time slots for this day');
+      return;
+    }
+
+    // Check activity duration fits in the slot
+    const slotDuration = availableSlot.endMin - availableSlot.startMin;
+    console.log('Slot duration:', slotDuration, 'Activity duration:', activity.durationMins);
+
+    if (activity.durationMins && activity.durationMins > slotDuration) {
+      console.error('Activity too long for slot');
+      setInvalidDay(day);
+      setTimeout(() => setInvalidDay(undefined), 1500);
+      toast.error('Activity is too long for this time slot');
+      return;
+    }
+
+    // Create the updated schedule with only the required fields
+    const updatedSchedule = [
+      ...plan.schedule.map((item: ScheduleItem) => ({
+        id: item.id,
+        day: item.day,
+        slotId: item.slotId,
+        activityId: item.activityId,
+      })),
+      {
+        day,
+        slotId: availableSlot.id,
+        activityId: activity.id,
+      },
     ];
-    fetch(`/api/lesson-plans/${plan.id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ schedule }),
-    }).then(() => refetch());
+
+    console.log('Updating schedule with:', {
+      planId: plan.id,
+      schedule: updatedSchedule,
+      request: {
+        url: `/api/lesson-plans/${plan.id}`,
+        method: 'PUT',
+        data: { schedule: updatedSchedule },
+      },
+    });
+
+    // Send the update to the server using the api client
+    api
+      .put(`/api/lesson-plans/${plan.id}`, { schedule: updatedSchedule })
+      .then((response) => {
+        console.log('Update successful:', response.data);
+        toast.success('Schedule updated successfully');
+        return refetch();
+      })
+      .then(() => {
+        console.log('Data refetched successfully');
+      })
+      .catch((error: unknown) => {
+        // Log error in development
+        if (import.meta.env.DEV) {
+          console.error('Error updating schedule:', error);
+        }
+
+        // Show user-friendly error message
+        toast.error('Failed to update schedule. Please try again.');
+      });
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
-    const day = event.over?.data?.current?.day;
-    if (typeof day === 'number') {
+    const day = event.over?.data?.current?.day as number | undefined;
+    if (typeof day === 'number' && event.active?.id) {
       handleDrop(day, Number(event.active.id));
     }
   };
 
-  const schedule = plan?.schedule ?? [];
+  // Transform schedule items to include activity data for WeekCalendarGrid
+  const schedule = useMemo(() => {
+    if (!plan?.schedule) return [];
+    return plan.schedule.map((item) => ({
+      ...item,
+      activity: item.activityId ? activities[item.activityId] : null,
+    }));
+  }, [plan?.schedule, activities]) as WeeklyScheduleItem[];
 
   useEffect(() => {
     if (new Date().getDay() === 5) {
-      toast.message("It's Friday! Generate a newsletter from this week?");
+      toast("It's Friday! Generate a newsletter from this week?");
     }
   }, []);
 
@@ -100,6 +224,7 @@ export default function WeeklyPlannerPage() {
           value={weekStart}
           onChange={(e) => setWeekStart(getWeekStartISO(new Date(e.target.value)))}
           className="border p-1"
+          data-testid="week-start-input"
         />
         <AutoFillButton
           weekStart={weekStart}
@@ -134,7 +259,7 @@ export default function WeeklyPlannerPage() {
         />
         {!plan && (
           <p data-testid="no-plan-message" className="text-sm text-gray-600">
-            No plan for this week. Click Auto Fill to generate one.
+            No plan available for this week.
           </p>
         )}
         {plan && (

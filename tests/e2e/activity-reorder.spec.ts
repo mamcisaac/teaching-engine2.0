@@ -1,21 +1,25 @@
 import { test, expect } from '@playwright/test';
+import { login, API_BASE } from './helpers';
 
 // drag first activity to last and ensure order persists
 
 test('reorders activities within milestone', async ({ page }) => {
   const ts = Date.now();
-  await page.goto('/subjects');
+  const token = await login(page);
+  const subjectRes = await page.request.post(`${API_BASE}/api/subjects`, {
+    headers: { Authorization: `Bearer ${token}` },
+    data: { name: `Sub${ts}` },
+  });
+  const subjectId = (await subjectRes.json()).id as number;
 
-  await page.click('text=Add Subject');
-  await page.fill('input[placeholder="New subject"]', `Sub${ts}`);
-  await page.click('button:has-text("Save")');
-  await page.click(`text=Sub${ts}`);
+  await page.request.post(`${API_BASE}/api/milestones`, {
+    headers: { Authorization: `Bearer ${token}` },
+    data: { title: 'M', subjectId },
+  });
 
-  await page.click('text=Add Milestone');
-  await page.fill('input[placeholder="New milestone"]', 'M');
-  await page.click('button:has-text("Save")');
-  await page.click('a:has-text("M")');
-  await page.waitForSelector('button:has-text("Add Activity")');
+  await page.goto('/milestones');
+  await page.click('text=M');
+  await page.waitForSelector('button:has-text("Add Activity")', { timeout: 10000 });
 
   for (const a of ['A1', 'A2', 'A3']) {
     await page.click('button:has-text("Add Activity")');
