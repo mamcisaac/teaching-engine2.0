@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { login } from './helpers';
+import { login, API_BASE } from './helpers';
 import http from 'http';
 import fs from 'fs';
 import path from 'path';
@@ -21,17 +21,24 @@ test('ical import blocks planner and sub plan lists event', async ({ page }) => 
   const { port } = srv.address() as import('net').AddressInfo;
   const feedUrl = `http://127.0.0.1:${port}/sample.ics`;
 
-  await page.request.post('/api/calendar-events/sync/ical', { data: { feedUrl } });
+  const token = await login(page);
+  await page.request.post(`${API_BASE}/api/calendar-events/sync/ical`, {
+    headers: { Authorization: `Bearer ${token}` },
+    data: { feedUrl },
+  });
 
-  await login(page);
   await page.goto('/planner');
-  await page.fill('input[type="date"]', '2025-01-01');
+  const dateInput = page.locator('input[type="date"]');
+  await dateInput.waitFor({ state: 'visible' });
+  await dateInput.fill('2025-01-01');
   await page.waitForResponse(
     (r) => r.url().includes('/calendar-events') && r.request().method() === 'GET',
   );
   await expect(page.getByText('Test Event').first()).toBeVisible();
 
-  const resp = await page.request.post('/api/subplan/generate?date=2025-01-01');
+  const resp = await page.request.post(`${API_BASE}/api/subplan/generate?date=2025-01-01`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
   expect(resp.ok()).toBe(true);
 
   srv.close();
