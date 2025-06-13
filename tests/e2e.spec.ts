@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
+import { login } from './e2e/helpers';
 
 test('create subject, milestone and activity', async ({ page }) => {
+  await login(page);
   await page.goto('/subjects');
 
   // open subject dialog

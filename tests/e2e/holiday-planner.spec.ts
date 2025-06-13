@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { login } from './helpers';
 
 // Ensure planner skips holidays when auto-filling
 
@@ -13,6 +14,7 @@ test('planner skips holiday dates', async ({ page }) => {
     data: [{ day: 3, startMin: 540, endMin: 600, subjectId }],
   });
 
+  await login(page);
   await page.goto('/settings');
   await page.fill('input[type="date"]', '2025-12-25');
   await page.fill('input[placeholder="Holiday name"]', 'Christmas');

@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { login } from './helpers';
 import http from 'http';
 import fs from 'fs';
 import path from 'path';
@@ -22,6 +23,7 @@ test('ical import blocks planner and sub plan lists event', async ({ page }) => 
 
   await page.request.post('/api/calendar-events/sync/ical', { data: { feedUrl } });
 
+  await login(page);
   await page.goto('/planner');
   await page.fill('input[type="date"]', '2025-01-01');
   await page.waitForResponse(

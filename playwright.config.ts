@@ -3,8 +3,23 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
   globalSetup: './playwright.global-setup',
-  // Web server is managed by the test script
-  webServer: undefined,
+
+  webServer: {
+    command: 'pnpm dev',
+    url: 'http://localhost:5173',
+    timeout: 120 * 1000,
+    reuseExistingServer: false,
+    stdout: 'pipe',
+    stderr: 'pipe',
+    env: {
+      // Use development mode so the Express server actually starts
+      NODE_ENV: 'development',
+      // Run the API server on its default port
+      PORT: '3001',
+      DATABASE_URL: 'file:./test.db',
+    },
+  },
+
   use: {
     baseURL: 'http://localhost:5173',
     trace: 'on-first-retry',

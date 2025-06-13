@@ -1,9 +1,11 @@
 import { test, expect } from '@playwright/test';
+import { login } from './helpers';
 
 // dragging long activity into short slot should be rejected
 
 test('rejects drop when activity longer than slot', async ({ page }) => {
   const ts = Date.now();
+  await login(page);
   await page.goto('/subjects');
   await page.click('text=Add Subject');
   await page.fill('input[placeholder="New subject"]', `Dur${ts}`);
