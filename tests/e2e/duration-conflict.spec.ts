@@ -6,21 +6,18 @@ import { login, API_BASE } from './helpers';
 test('rejects drop when activity longer than slot', async ({ page }) => {
   const ts = Date.now();
   const token = await login(page);
-  await page.goto('/subjects');
-  await page.click('text=Add Subject');
-  await page.fill('input[placeholder="New subject"]', `Dur${ts}`);
-  await page.click('button:has-text("Save")');
-  await page.click(`text=Dur${ts}`);
-
-  await page.click('text=Add Milestone');
-  await page.fill('input[placeholder="New milestone"]', 'Mdur');
-  await page.click('button:has-text("Save")');
-  const mRes = await page.request.get(`${API_BASE}/api/milestones`, {
+  const subjectRes = await page.request.post(`${API_BASE}/api/subjects`, {
     headers: { Authorization: `Bearer ${token}` },
+    data: { name: `Dur${ts}` },
   });
-  const milestoneId = (await mRes.json()).find(
-    (m: { id: number; title: string }) => m.title === 'Mdur',
-  )!.id;
+  const subjectId = (await subjectRes.json()).id as number;
+
+  const milestoneRes = await page.request.post(`${API_BASE}/api/milestones`, {
+    headers: { Authorization: `Bearer ${token}` },
+    data: { title: 'Mdur', subjectId },
+  });
+  const milestoneId = (await milestoneRes.json()).id as number;
+
   await page.goto(`/milestones/${milestoneId}`);
 
   await page.request.post(`${API_BASE}/api/activities`, {

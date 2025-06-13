@@ -6,21 +6,18 @@ import { login, API_BASE } from './helpers';
 test('reorders activities within milestone', async ({ page }) => {
   const ts = Date.now();
   const token = await login(page);
-  await page.goto('/subjects');
-
-  await page.click('text=Add Subject');
-  await page.fill('input[placeholder="New subject"]', `Sub${ts}`);
-  await page.click('button:has-text("Save")');
-  await page.click(`text=Sub${ts}`);
-
-  await page.click('text=Add Milestone');
-  await page.fill('input[placeholder="New milestone"]', 'M');
-  await page.click('button:has-text("Save")');
-  const mRes = await page.request.get(`${API_BASE}/api/milestones`, {
+  const subjectRes = await page.request.post(`${API_BASE}/api/subjects`, {
     headers: { Authorization: `Bearer ${token}` },
+    data: { name: `Sub${ts}` },
   });
-  const ms = (await mRes.json()) as Array<{ id: number; title: string }>;
-  const mId = ms.find((m) => m.title === 'M')!.id;
+  const subjectId = (await subjectRes.json()).id as number;
+
+  const milestoneRes = await page.request.post(`${API_BASE}/api/milestones`, {
+    headers: { Authorization: `Bearer ${token}` },
+    data: { title: 'M', subjectId },
+  });
+  const mId = (await milestoneRes.json()).id as number;
+
   await page.goto(`/milestones/${mId}`);
   await page.waitForSelector('button:has-text("Add Activity")');
 

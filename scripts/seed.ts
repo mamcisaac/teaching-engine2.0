@@ -16,7 +16,7 @@ async function main() {
 
   await prisma.milestone.create({
     data: {
-      title: 'Milestone 1',
+      title: 'M1',
       subjectId: subject1.id,
       activities: {
         create: {
@@ -28,7 +28,19 @@ async function main() {
 
   await prisma.milestone.create({
     data: {
-      title: 'Milestone 2',
+      title: 'M',
+      subjectId: subject1.id,
+      activities: {
+        create: {
+          title: 'Activity M',
+        },
+      },
+    },
+  });
+
+  await prisma.milestone.create({
+    data: {
+      title: 'M2',
       subjectId: subject2.id,
       activities: {
         create: {
