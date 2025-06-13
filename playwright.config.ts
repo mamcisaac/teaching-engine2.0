@@ -5,11 +5,17 @@ export default defineConfig({
   globalSetup: './playwright.global-setup',
   webServer: {
     command: 'pnpm dev',
-    port: 5173,
+    url: 'http://localhost:5173',
     timeout: 120 * 1000,
-    reuseExistingServer: true,
+    reuseExistingServer: false,
   },
   use: {
     baseURL: 'http://localhost:5173',
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
   },
+  expect: {
+    timeout: 10000,
+  },
+  timeout: 30000,
 });
