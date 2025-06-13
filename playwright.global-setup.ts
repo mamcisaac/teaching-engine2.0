@@ -15,7 +15,8 @@ export default async function globalSetup(): Promise<void> {
 
     // Set up test database
     console.log('Setting up test database...');
-    execSync('pnpm db:reset --force', { stdio: 'inherit' });
+    execSync('pnpm db:generate', { stdio: 'inherit' });
+    execSync('pnpm db:push --force-reset', { stdio: 'inherit' });
     execSync('pnpm db:seed', { stdio: 'inherit' });
 
     // Create a new browser context to ensure everything works

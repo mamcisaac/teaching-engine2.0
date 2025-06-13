@@ -10,7 +10,8 @@ pnpm install
 
 # Set up the database
 echo "Setting up test database..."
-pnpm db:reset --force
+pnpm db:generate
+pnpm db:push --force-reset
 pnpm db:seed
 
 # Install Playwright browsers
