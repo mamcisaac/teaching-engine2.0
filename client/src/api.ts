@@ -1,85 +1,355 @@
 import axios from 'axios';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
+import type {
+  Activity,
+  Milestone,
+  Newsletter,
+  Note,
+  NoteInput,
+  Resource,
+  Subject,
+  TeacherPreferencesInput,
+  TimetableSlot,
+  YearPlanEntry,
+  Notification,
+  CalendarEvent,
+} from './types';
 
-const base = import.meta.env.VITE_API_BASE_URL;
-export const api = axios.create({
-  baseURL: base ? `${base.replace(/\/$/, '')}/api` : '/api',
-});
-
-export const getWeekStartISO = (date: Date): string => {
-  const d = new Date(date);
-  d.setUTCHours(0, 0, 0, 0);
-  return d.toISOString().split('T')[0];
-};
-
-export interface Subject {
+// Define missing types that are used but not exported from types
+type Material = {
   id: number;
   name: string;
-  milestones: Milestone[];
-}
-
-export interface Milestone {
-  id: number;
-  title: string;
-  subjectId: number;
-  description?: string | null;
-  standardCodes: string[];
-  activities: Activity[];
-}
-
-export interface Activity {
-  id: number;
-  title: string;
-  milestoneId: number;
-  completedAt?: string | null;
-  tags?: string[];
-  durationMins?: number;
-  materialsText?: string | null;
-}
-
-export interface Resource {
-  id: number;
-  filename: string;
-  url: string;
   type: string;
-  size: number;
-  activityId?: number | null;
-  createdAt: string;
-}
+  url: string;
+};
 
-export interface MaterialList {
+type MaterialList = Material[];
+
+type DailyPlan = {
+  id: number;
+  date: string;
+  activities: Activity[];
+  notes?: string;
+};
+
+type LessonPlan = {
   id: number;
   weekStart: string;
-  items: string[];
-  prepared: boolean;
+  dailyPlans: DailyPlan[];
+  materials?: MaterialList;
+};
+
+// Extend the ImportMeta interface to include Vite's environment variables
+declare global {
+  interface ImportMetaEnv {
+    VITE_API_BASE_URL: string;
+  }
+
+  interface ImportMeta {
+    env: ImportMetaEnv;
+  }
 }
 
-export interface WeeklyScheduleItem {
-  id: number;
-  day: number;
-  slotId: number;
-  activityId: number;
-  activity: Activity;
-  slot?: TimetableSlot;
-}
+// Point directly to the backend server
+const base = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
 
-export interface LessonPlan {
-  id: number;
-  weekStart: string;
-  schedule: WeeklyScheduleItem[];
-}
+export const api = axios.create({
+  // Point directly to the backend server
+  baseURL: base,
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+// Add request interceptor to add auth token to requests
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
+
+// Add response interceptor for error handling
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // Clear auth data and redirect to login
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  },
+);
+
+// Helper function to get ISO week start date
+export const getWeekStartISO = (date: Date): string => {
+  const d = new Date(date);
+  const day = d.getUTCDay();
+  const diff = d.getUTCDate() - day + (day === 0 ? -6 : 1); // Adjust when day is Sunday
+  const monday = new Date(d.setUTCDate(diff));
+  return monday.toISOString().split('T')[0];
+};
+
+// Re-export all types for backward compatibility
+export type {
+  Activity,
+  CompleteActivityResponse,
+  DailyPlan,
+  DailyPlanItem,
+  LessonPlan,
+  MaterialList,
+  Milestone,
+  Newsletter,
+  Note,
+  NoteDetail,
+  NoteInput,
+  Resource,
+  Subject,
+  TeacherPreferencesInput,
+  TimetableSlot,
+  WeeklyScheduleItem,
+  YearPlanEntry,
+  Notification,
+  CalendarEvent,
+} from './types';
+
+// Query hooks
+export const useNewsletter = (id: number, type: 'raw' | 'polished' = 'raw') =>
+  useQuery<Newsletter>({
+    queryKey: ['newsletter', id, type],
+    queryFn: async () => (await api.get(`/newsletters/${id}?type=${type}`)).data,
+  });
+
+export const useFilteredNotes = (filters: {
+  subjectId?: string;
+  type?: string;
+  dateFrom?: string;
+  dateTo?: string;
+}) =>
+  useQuery<Note[]>({
+    queryKey: ['notes', filters],
+    queryFn: async () => (await api.get('/notes', { params: filters })).data,
+  });
+
+export const useMaterialList = (weekStart: string) =>
+  useQuery<MaterialList>({
+    queryKey: ['material-list', weekStart],
+    queryFn: async () => (await api.get(`/materials?weekStart=${weekStart}`)).data,
+  });
+
+export const useDailyPlan = (date: string) =>
+  useQuery<DailyPlan>({
+    queryKey: ['daily-plan', date],
+    queryFn: async () => (await api.get(`/daily-plans?date=${date}`)).data,
+  });
+
+export const useCreateNewsletterDraft = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: { content: string }) => api.post('/newsletters/draft', data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['newsletters'] });
+      toast.success('Draft created');
+    },
+  });
+};
+
+export const useCreateNewsletter = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: { title: string; content: string }) => api.post('/newsletters', data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['newsletters'] });
+      toast.success('Newsletter created');
+    },
+  });
+};
+
+export const useAddNote = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: NoteInput) => api.post('/notes', data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['notes'] });
+      toast.success('Note added');
+    },
+  });
+};
+
+export const useAddCalendarEvent = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: Omit<CalendarEvent, 'id'>) => api.post('/calendar/events', data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['calendar-events'] });
+      toast.success('Event added');
+    },
+  });
+};
+
+// Notification hooks
+export const useNotifications = () =>
+  useQuery<Notification[]>({
+    queryKey: ['notifications'],
+    queryFn: async () => (await api.get('/notifications')).data,
+  });
+
+export const useMarkNotificationRead = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => api.post(`/notifications/${id}/read`),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['notifications'] });
+    },
+  });
+};
+
+// Year plan hooks
+export const useYearPlan = (teacherId: number, year: number) =>
+  useQuery<YearPlanEntry[]>({
+    queryKey: ['year-plan', teacherId, year],
+    queryFn: async () => (await api.get(`/year-plan?teacherId=${teacherId}&year=${year}`)).data,
+  });
+
+// Notes hooks
+export const useNotes = () =>
+  useQuery<Note[]>({
+    queryKey: ['notes'],
+    queryFn: async () => (await api.get('/notes')).data,
+  });
+
+// Material hooks
+export const useMaterialDetails = (weekStart: string) =>
+  useQuery<MaterialList>({
+    queryKey: ['material-details', weekStart],
+    queryFn: async () => (await api.get(`/materials/details?weekStart=${weekStart}`)).data,
+  });
+
+// Resource hooks
+export const useResourcesByActivity = (activityId: number) =>
+  useQuery<Resource[]>({
+    queryKey: ['resources', activityId],
+    queryFn: async () => (await api.get(`/resources/activity/${activityId}`)).data,
+  });
+
+export const useDeleteResource = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => api.delete(`/resources/${id}`),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['resources'] });
+      toast.success('Resource deleted');
+    },
+  });
+};
+
+// Sub plan generator
+export const fetchSubPlan = async (data: { date: string; reason: string }) => {
+  const response = await api.post('/sub-plan', data);
+  return response.data;
+};
+
+// Newsletter suggestions
+export const fetchNewsletterSuggestions = async () => {
+  const response = await api.get('/newsletter-suggestions');
+  return response.data;
+};
+
+export const useGenerateNewsletter = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: {
+      weekStart: string;
+      weekEnd: string;
+      subject: string;
+      highlights: string[];
+    }) => api.post('/newsletters/generate', data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['newsletters'] });
+      toast.success('Newsletter generated successfully');
+    },
+  });
+};
+
+export const useLessonPlan = (weekStart: string) => {
+  // Query client is available if needed for future use
+
+  return useQuery<LessonPlan>({
+    queryKey: ['lesson-plan', weekStart],
+    queryFn: async () => {
+      try {
+        // First try to get the existing plan
+        return (await api.get(`/api/lesson-plans/${weekStart}`)).data;
+      } catch (error) {
+        // If plan doesn't exist, generate a new one
+        const axiosError = error as { response?: { status?: number } };
+        if (axiosError.response?.status === 404) {
+          const response = await api.post('/api/lesson-plans/generate', {
+            weekStart,
+            preserveBuffer: true,
+            pacingStrategy: 'relaxed',
+          });
+          return response.data;
+        }
+        throw error;
+      }
+    },
+    retry: false, // Don't retry on 404
+  });
+};
+
+export const useTimetable = () =>
+  useQuery<TimetableSlot[]>({
+    queryKey: ['timetable'],
+    queryFn: async () => (await api.get('/api/timetable')).data,
+  });
+
+export const useSaveTimetable = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (
+      slots: Array<{ day: number; startMin: number; endMin: number; subjectId?: number | null }>,
+    ) => api.put('/timetable', { slots }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['timetable'] });
+      toast.success('Timetable saved');
+    },
+  });
+};
+
+export const useCalendarEvents = (start: string, end: string) =>
+  useQuery<CalendarEvent[]>({
+    queryKey: ['calendar-events', start, end],
+    queryFn: async () => (await api.get(`/calendar/events?start=${start}&end=${end}`)).data,
+  });
+
+export const usePlannerSuggestions = (weekStart: string, filters: Record<string, boolean>) =>
+  useQuery<Activity[]>({
+    queryKey: ['planner-suggestions', weekStart, filters],
+    queryFn: async () =>
+      (await api.get(`/planner/suggestions?weekStart=${weekStart}`, { params: { filters } })).data,
+  });
 
 export const useSubjects = () =>
   useQuery<Subject[]>({
     queryKey: ['subjects'],
-    queryFn: async () => (await api.get('/subjects')).data,
+    queryFn: async () => (await api.get('/api/subjects')).data,
   });
 
 export const useSubject = (id: number) =>
   useQuery<Subject>({
     queryKey: ['subject', id],
-    queryFn: async () => (await api.get(`/subjects/${id}`)).data,
+    queryFn: async () => (await api.get(`/api/subjects/${id}`)).data,
   });
 
 export const useMilestone = (id: number) =>
@@ -88,13 +358,37 @@ export const useMilestone = (id: number) =>
     queryFn: async () => (await api.get(`/milestones/${id}`)).data,
   });
 
+// Mutation hooks
 export const useCreateSubject = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: { name: string }) => api.post('/subjects', data),
+    mutationFn: (data: { name: string }) => api.post('/api/subjects', data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['subjects'] });
       toast.success('Subject created');
+    },
+  });
+};
+
+export const useUpdateSubject = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: { id: number; name: string }) =>
+      api.put(`/api/subjects/${data.id}`, { name: data.name }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['subjects'] });
+      toast.success('Subject updated');
+    },
+  });
+};
+
+export const useDeleteSubject = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => api.delete(`/api/subjects/${id}`),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['subjects'] });
+      toast.success('Subject deleted');
     },
   });
 };
@@ -108,9 +402,42 @@ export const useCreateMilestone = () => {
       description?: string;
       standardCodes?: string[];
     }) => api.post('/milestones', data),
-    onSuccess: (_res, vars) => {
+    onSuccess: (data, vars) => {
+      qc.invalidateQueries({ queryKey: ['milestones', vars.subjectId] });
       qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });
       toast.success('Milestone created');
+    },
+  });
+};
+
+export const useUpdateMilestone = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: {
+      id: number;
+      title: string;
+      subjectId: number;
+      description?: string;
+      standardCodes?: string[];
+    }) => api.put(`/milestones/${data.id}`, data),
+    onSuccess: (data, vars) => {
+      qc.invalidateQueries({ queryKey: ['milestones', vars.subjectId] });
+      qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });
+      toast.success('Milestone updated');
+    },
+  });
+};
+
+export const useDeleteMilestone = () => {
+  const qc = useQueryClient();
+  return useMutation<void, Error, number, { previousMilestones?: unknown }>({
+    mutationFn: (id: number) => api.delete(`/milestones/${id}`).then(() => {}),
+    onSuccess: () => {
+      // The context here should contain the subjectId from the onMutate function
+      // If not, we'll need to refetch all milestones
+      qc.invalidateQueries({ queryKey: ['milestones'] });
+      qc.invalidateQueries({ queryKey: ['subject'] });
+      toast.success('Milestone deleted');
     },
   });
 };
@@ -119,7 +446,7 @@ export const useCreateActivity = () => {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (data: { title: string; milestoneId: number; materialsText?: string }) =>
-      api.post('/activities', data),
+      api.post('/api/activities', data),
     onSuccess: (_res, vars) => {
       qc.invalidateQueries({ queryKey: ['milestone', vars.milestoneId] });
       toast.success('Activity created');
@@ -138,7 +465,7 @@ export const useUpdateActivity = () => {
       materialsText?: string;
       completedAt?: string | null;
     }) =>
-      api.put(`/activities/${data.id}`, {
+      api.put(`/api/activities/${data.id}`, {
         title: data.title,
         completedAt: data.completedAt,
         materialsText: data.materialsText,
@@ -146,7 +473,7 @@ export const useUpdateActivity = () => {
     onSuccess: (_res, vars) => {
       qc.invalidateQueries({ queryKey: ['milestone', vars.milestoneId] });
       if (vars.subjectId) qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });
-      qc.invalidateQueries({ queryKey: ['subjects'] });
+      toast.success('Activity updated');
     },
   });
 };
@@ -155,39 +482,31 @@ export const useDeleteActivity = () => {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (data: { id: number; milestoneId: number; subjectId?: number }) =>
-      api.delete(`/activities/${data.id}`),
+      api.delete(`/api/activities/${data.id}`),
     onSuccess: (_res, vars) => {
       qc.invalidateQueries({ queryKey: ['milestone', vars.milestoneId] });
       if (vars.subjectId) qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });
-      qc.invalidateQueries({ queryKey: ['subjects'] });
       toast.success('Activity deleted');
     },
   });
 };
 
-export interface CompleteActivityResponse {
-  activity: Activity;
-  showNotePrompt: boolean;
-}
-
 export const useCompleteActivity = () => {
   const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (data: {
-      id: number;
-      completed: boolean;
-      milestoneId: number;
-      interactive?: boolean;
-    }) =>
-      api
-        .patch(`/activities/${data.id}/complete`, {
-          completed: data.completed,
-          interactive: data.interactive ?? true,
-        })
-        .then((r) => r.data as CompleteActivityResponse),
-    onSuccess: (_res, vars) => {
-      qc.invalidateQueries({ queryKey: ['milestone', vars.milestoneId] });
-      qc.invalidateQueries({ queryKey: ['newsletter-draft'] });
+  return useMutation<unknown, Error, { activityId: number; note?: string }>({
+    mutationFn: async (data: { activityId: number; note?: string }) => {
+      const response = await api.put(`/api/activities/${data.activityId}/complete`, {
+        note: data.note,
+      });
+      toast.success('Activity completed');
+      return response.data;
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['lesson-plan'] });
+      qc.invalidateQueries({ queryKey: ['subjects'] });
+      qc.invalidateQueries({ queryKey: ['materials'] });
+      qc.invalidateQueries({ queryKey: ['activities'] });
+      toast.success('Activity marked as complete');
     },
   });
 };
@@ -195,549 +514,140 @@ export const useCompleteActivity = () => {
 export const useReorderActivities = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: { milestoneId: number; activityIds: number[] }) =>
-      api.patch('/activities/reorder', data).then((r) => r.data),
-    onMutate: async (vars) => {
-      await qc.cancelQueries({ queryKey: ['milestone', vars.milestoneId] });
-      const prev = qc.getQueryData<Milestone>(['milestone', vars.milestoneId]);
-      if (prev) {
-        qc.setQueryData<Milestone>(['milestone', vars.milestoneId], {
-          ...prev,
-          activities: vars.activityIds.map((id) => prev.activities.find((a) => a.id === id)!),
-        });
-      }
-      return { prev };
-    },
-    onError: (_err, _vars, ctx) => {
-      if (ctx?.prev) qc.setQueryData(['milestone', ctx.prev.id], ctx.prev);
-    },
-    onSettled: (_res, vars) => {
-      qc.invalidateQueries({ queryKey: ['milestone', vars.milestoneId] });
-    },
-  });
-};
-
-export const useUpdateSubject = () => {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (data: { id: number; name: string }) =>
-      api.put(`/subjects/${data.id}`, { name: data.name }),
-    onSuccess: (_res, vars) => {
-      qc.invalidateQueries({ queryKey: ['subjects'] });
-      qc.invalidateQueries({ queryKey: ['subject', vars.id] });
-      toast.success('Subject updated');
-    },
-  });
-};
-
-export const useDeleteSubject = () => {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (id: number) => api.delete(`/subjects/${id}`),
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['subjects'] });
-      toast.success('Subject deleted');
-    },
-  });
-};
-
-export const useUpdateMilestone = () => {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (data: {
-      id: number;
-      title: string;
-      subjectId: number;
-      description?: string;
-      standardCodes?: string[];
-    }) =>
-      api.put(`/milestones/${data.id}`, {
-        title: data.title,
-        description: data.description,
-        standardCodes: data.standardCodes,
-      }),
-    onSuccess: (_res, vars) => {
-      qc.invalidateQueries({ queryKey: ['milestone', vars.id] });
-      qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });
-      qc.invalidateQueries({ queryKey: ['subjects'] });
-      toast.success('Milestone updated');
-    },
-  });
-};
-
-export const useDeleteMilestone = () => {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (data: { id: number; subjectId: number }) => api.delete(`/milestones/${data.id}`),
-    onSuccess: (_res, vars) => {
-      qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });
-      qc.invalidateQueries({ queryKey: ['subjects'] });
-      toast.success('Milestone deleted');
-    },
-  });
-};
-
-export const useGeneratePlan = () =>
-  useMutation(
-    (data: {
-      weekStart: string;
-      preserveBuffer: boolean;
-      pacingStrategy: 'strict' | 'relaxed';
-    }) => {
-      const isoWeekStart = getWeekStartISO(new Date(data.weekStart));
-      return api
-        .post('/lesson-plans/generate', {
-          weekStart: isoWeekStart,
-          pacingStrategy: data.pacingStrategy,
-          preserveBuffer: data.preserveBuffer,
-        })
-        .then((res) => res.data as LessonPlan);
-    },
-  );
-
-export const useLessonPlan = (weekStart: string) =>
-  useQuery<LessonPlan | undefined>({
-    queryKey: ['lessonPlan', getWeekStartISO(new Date(weekStart))],
-    queryFn: async () => {
-      const isoDate = getWeekStartISO(new Date(weekStart));
-      try {
-        const res = await api.get(`/lesson-plans/${isoDate}`);
-        return res.data as LessonPlan;
-      } catch (err) {
-        if (axios.isAxiosError(err) && err.response?.status === 404) {
-          return undefined;
-        }
-        throw err;
-      }
-    },
-    enabled: !!weekStart,
-  });
-
-export const usePlannerSuggestions = (weekStart: string, filters: Record<string, boolean>) =>
-  useQuery<Activity[]>({
-    queryKey: ['plannerSuggestions', getWeekStartISO(new Date(weekStart)), JSON.stringify(filters)],
-    queryFn: async () => {
-      const res = await api.get('/planner/suggestions', {
-        params: { weekStart, filters: JSON.stringify(filters) },
-      });
-      return res.data as Activity[];
-    },
-    enabled: !!weekStart,
-  });
-
-export interface TeacherPreferencesInput {
-  teachingStyles: string[];
-  pacePreference: string;
-  prepTime: number;
-  subPlanContacts?: Record<string, string>;
-  subPlanProcedures?: string;
-}
-
-export const useSavePreferences = () =>
-  useMutation((data: TeacherPreferencesInput) => api.post('/preferences', data));
-
-export const useUploadResource = () =>
-  useMutation(
-    (data: { filename: string; file: File; type: string; size: number; activityId?: number }) => {
-      return new Promise<Resource>((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = async () => {
-          try {
-            const res = await api.post('/resources', {
-              filename: data.filename,
-              type: data.type,
-              size: data.size,
-              activityId: data.activityId,
-              data: (reader.result as string).split(',')[1],
-            });
-            resolve(res.data as Resource);
-          } catch (err) {
-            reject(err);
-          }
-        };
-        reader.onerror = reject;
-        reader.readAsDataURL(data.file);
-      });
-    },
-  );
-
-export const useResource = (id: number) =>
-  useQuery<Resource>({
-    queryKey: ['resource', id],
-    queryFn: async () => (await api.get(`/resources/${id}`)).data,
-    enabled: !!id,
-  });
-
-export const useResourcesByActivity = (activityId: number) =>
-  useQuery<Resource[]>({
-    queryKey: ['resources', 'activity', activityId],
-    queryFn: async () => (await api.get(`/resources/activity/${activityId}`)).data,
-    enabled: !!activityId,
-  });
-
-export const useDeleteResource = () => {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (id: number) => api.delete(`/resources/${id}`),
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['resources'] });
-      qc.invalidateQueries({ queryKey: ['resource'] });
-    },
-  });
-};
-
-export const useMaterialList = (weekStart: string) =>
-  useQuery<MaterialList>({
-    queryKey: ['materialList', weekStart],
-    queryFn: async () => {
-      const res = await api.get(`/material-lists/${weekStart}`);
-      const ml = res.data as MaterialList;
-      ml.items = JSON.parse(ml.items as unknown as string);
-      return ml;
-    },
-    enabled: !!weekStart,
-  });
-
-export const useCreateMaterialList = () =>
-  useMutation((data: { weekStart: string; items: string[] }) =>
-    api.post('/material-lists', data).then((res) => res.data as MaterialList),
-  );
-
-export interface ActivityMaterials {
-  day: number;
-  activityId: number;
-  title: string;
-  materials: string[];
-}
-
-export const useMaterialDetails = (weekStart: string) =>
-  useQuery<ActivityMaterials[]>({
-    queryKey: ['materialDetails', weekStart],
-    queryFn: async () => (await api.get(`/material-lists/${weekStart}/details`)).data,
-    enabled: !!weekStart,
-  });
-
-export const downloadPrintables = (weekStart: string) =>
-  api.get(`/material-lists/${weekStart}/zip`, { responseType: 'blob' });
-
-export const downloadWeekResources = (weekId: number) =>
-  api.get(`/weeks/${weekId}/resources.zip`, { responseType: 'blob' });
-
-export interface Notification {
-  id: number;
-  message: string;
-  type?: string;
-  dueDate?: string;
-  read: boolean;
-  createdAt: string;
-}
-
-export const useNotifications = () =>
-  useQuery<Notification[]>({
-    queryKey: ['notifications'],
-    queryFn: async () => (await api.get('/notifications')).data,
-  });
-
-export const useMarkNotificationRead = () => {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (id: number) => api.put(`/notifications/${id}/read`),
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['notifications'] });
-    },
-  });
-};
-
-export const useAddNotification = () => {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (data: { message: string; type?: string }) => api.post('/notifications', data),
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['notifications'] });
-    },
-  });
-};
-
-export interface Newsletter {
-  id: number;
-  title: string;
-  content: string;
-  rawDraft?: string | null;
-  polishedDraft?: string | null;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export const useCreateNewsletter = () => {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (data: { title: string; content: string; template?: string }) =>
-      api.post('/newsletters', data),
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['newsletters'] });
-    },
-  });
-};
-
-export const useNewsletters = () =>
-  useQuery<Newsletter[]>({
-    queryKey: ['newsletters'],
-    queryFn: async () => (await api.get('/newsletters')).data,
-  });
-
-export const useNewsletter = (id: number, version?: 'raw' | 'polished') =>
-  useQuery<Newsletter>({
-    queryKey: ['newsletter', id, version],
-    queryFn: async () =>
+    mutationFn: async (data: { milestoneId: number; activityIds: number[] }) =>
       (
-        await api.get(`/newsletters/${id}`, {
-          params: version ? { version } : {},
+        await api.patch('/api/activities/reorder', {
+          milestoneId: data.milestoneId,
+          activityIds: data.activityIds,
         })
       ).data,
-    enabled: !!id,
-  });
-
-export const useGenerateNewsletter = () =>
-  useMutation((data: { startDate: string; endDate: string }) =>
-    api.post('/newsletters/generate', data).then((r) => r.data as Newsletter),
-  );
-
-export interface NewsletterDraft {
-  title: string;
-  content: string;
-}
-
-export const fetchNewsletterSuggestions = () =>
-  api
-    .get('/newsletter-suggestions')
-    .then((r) => r.data as { suggested: boolean; notification?: Notification });
-
-export const useCreateNewsletterDraft = () =>
-  useMutation((data: unknown) =>
-    api.post('/newsletter-draft', data).then((r) => r.data as NewsletterDraft),
-  );
-
-export interface TimetableSlot {
-  id: number;
-  day: number;
-  startMin: number;
-  endMin: number;
-  subjectId?: number | null;
-  subject?: Subject | null;
-}
-
-export interface DailyPlanItem {
-  id: number;
-  startMin: number;
-  endMin: number;
-  slotId?: number | null;
-  activityId?: number | null;
-  activity?: Activity | null;
-  notes?: string | null;
-}
-
-export interface DailyPlan {
-  id: number;
-  date: string;
-  lessonPlanId: number;
-  items: DailyPlanItem[];
-}
-
-export const useTimetable = () =>
-  useQuery<TimetableSlot[]>({
-    queryKey: ['timetable'],
-    queryFn: async () => (await api.get('/timetable')).data,
-  });
-
-export const useSaveTimetable = () => {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (slots: Omit<TimetableSlot, 'id' | 'subject'>[]) => api.put('/timetable', slots),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['timetable'] });
+      qc.invalidateQueries({ queryKey: ['subjects'] });
+      qc.invalidateQueries({ queryKey: ['activities'] });
+      toast.success('Activities reordered successfully');
     },
   });
 };
 
-export const useDailyPlan = (date: string) =>
-  useQuery<DailyPlan | undefined>({
-    queryKey: ['dailyPlan', date],
-    queryFn: async () => {
-      try {
-        const res = await api.get(`/daily-plans/${date}`);
-        return res.data as DailyPlan;
-      } catch (err) {
-        if (axios.isAxiosError(err) && err.response?.status === 404) return undefined;
-        throw err;
-      }
+// Teacher preferences
+export const useUpdateTeacherPreferences = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: TeacherPreferencesInput) => api.put('/teacher/preferences', data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['teacher'] });
+      toast.success('Preferences updated');
     },
-    enabled: !!date,
   });
+};
 
-export const useGenerateDailyPlan = () =>
-  useMutation((date: string) =>
-    api.post('/daily-plans/generate', { date }).then((r) => r.data as DailyPlan),
-  );
+// Resource management
+export const downloadPrintables = async (weekStart: string) => {
+  return api.get(`/printables?weekStart=${weekStart}`, {
+    responseType: 'blob',
+  });
+};
+
+export const useUploadResource = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: FormData) =>
+      api.post<Resource>('/resources/upload', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['resources'] });
+      toast.success('Resource uploaded');
+    },
+  });
+};
+
+// Planning and scheduling
+export const useGenerateDailyPlan = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (date: string) => api.post('/daily-plans/generate', { date }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['daily-plan'] });
+    },
+  });
+};
 
 export const useUpdateDailyPlan = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: { id: number; items: Omit<DailyPlanItem, 'id'>[] }) =>
-      api.put(`/daily-plans/${data.id}`, { items: data.items }),
-    onSuccess: (_res, vars) => {
-      qc.invalidateQueries({ queryKey: ['dailyPlan', vars.id] });
+    mutationFn: (data: {
+      id: number;
+      items: Array<{
+        startMin: number;
+        endMin: number;
+        activityId?: number | null;
+        notes?: string | null;
+      }>;
+    }) => api.put(`/daily-plans/${data.id}`, { items: data.items }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['daily-plan'] });
+      toast.success('Daily plan updated');
     },
   });
 };
 
-export interface Note {
-  id: number;
-  content: string;
-  public: boolean;
-  activityId?: number | null;
-  dailyPlanId?: number | null;
-  createdAt: string;
-}
-
-export interface NoteDetail extends Note {
-  activity?:
-    | (Activity & {
-        milestone: Milestone & { subject: Subject };
-      })
-    | null;
-}
-
-export interface NoteInput {
-  content: string;
-  type?: 'private' | 'public';
-  activityId?: number;
-  dailyPlanId?: number;
-  milestoneId?: number;
-}
-
-export const useNotes = () =>
-  useQuery<Note[]>({
-    queryKey: ['notes'],
-    queryFn: async () => (await api.get('/notes')).data,
-  });
-
-export const useFilteredNotes = (params: {
-  type?: 'public' | 'private';
-  subjectId?: number;
-  dateFrom?: string;
-  dateTo?: string;
-}) =>
-  useQuery<NoteDetail[]>({
-    queryKey: ['notes', params],
-    queryFn: async () => (await api.get('/notes', { params })).data,
-  });
-
-export const useAddNote = () => {
+export const useGeneratePlan = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: NoteInput) => api.post('/notes', data),
-    onSuccess: (_res, vars) => {
-      qc.invalidateQueries({ queryKey: ['notes'] });
-      if (vars.activityId && vars.milestoneId)
-        qc.invalidateQueries({ queryKey: ['milestone', vars.milestoneId] });
-      qc.invalidateQueries({ queryKey: ['newsletter-draft'] });
+    mutationFn: (data: {
+      weekStart: string;
+      preserveBuffer: boolean;
+      pacingStrategy: 'strict' | 'relaxed';
+    }) => api.post<LessonPlan>('/api/lesson-plans/generate', data),
+    onSuccess: (_, { weekStart }) => {
+      qc.invalidateQueries({ queryKey: ['weekly-plan', weekStart] });
+      qc.invalidateQueries({ queryKey: ['subjects'] });
     },
   });
 };
 
-export const useDeleteNote = () => {
-  const qc = useQueryClient();
+// Year plan
+export const useShareYearPlan = () => {
   return useMutation({
-    mutationFn: (id: number) => api.delete(`/notes/${id}`),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['notes'] }),
+    mutationFn: (data: { teacherId: number; year: number }) =>
+      api.post<{ shareToken: string }>('/year-plan/share', data),
   });
 };
 
-export interface CalendarEvent {
-  id: number;
-  title: string;
-  description?: string;
-  start: string;
-  end: string;
-  allDay: boolean;
-  eventType: 'PD_DAY' | 'ASSEMBLY' | 'TRIP' | 'HOLIDAY' | 'CUSTOM';
-  source: 'MANUAL' | 'ICAL_FEED' | 'SYSTEM';
-}
-
-export const useCalendarEvents = (from: string, to: string) =>
-  useQuery<CalendarEvent[]>({
-    queryKey: ['calendarEvents', from, to],
-    queryFn: async () =>
-      (
-        await api.get('/calendar-events', {
-          params: { from, to },
-        })
-      ).data,
-  });
-
-export const useAddCalendarEvent = () => {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (data: Omit<CalendarEvent, 'id'>) => api.post('/calendar-events', data),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['calendarEvents'] }),
-  });
-};
-
-export interface YearPlanEntry {
-  id: number;
-  teacherId: number;
-  entryType: 'UNIT' | 'ASSESSMENT' | 'EVENT';
-  title: string;
-  start: string;
-  end: string;
-  colorCode?: string | null;
-}
-
-export const useYearPlan = (teacherId: number, year: number) =>
-  useQuery<YearPlanEntry[]>({
-    queryKey: ['yearPlan', teacherId, year],
-    queryFn: async () => (await api.get('/year-plan', { params: { teacherId, year } })).data,
-  });
-
-export const useShareYearPlan = () =>
-  useMutation(({ teacherId, year }: { teacherId: number; year: number }) =>
-    api.post('/share/year-plan', { teacherId, year }).then((r) => r.data),
-  );
-
-export const fetchSubPlan = (date: string, days = 1) =>
-  api.post('/subplan/generate', null, {
-    params: { date, days },
-    responseType: 'blob',
-  });
-
-export interface Holiday {
-  id: number;
-  date: string;
-  name: string;
-}
-
-export const useHolidays = () =>
-  useQuery<Holiday[]>({
+// Calendar events
+export const useHolidays = () => {
+  return useQuery<CalendarEvent[]>({
     queryKey: ['holidays'],
-    queryFn: async () => (await api.get('/holidays')).data,
+    queryFn: async () => (await api.get('/calendar/holidays')).data,
   });
+};
 
 export const useAddHoliday = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<Holiday, 'id'>) => api.post('/holidays', data),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['holidays'] }),
+    mutationFn: (data: { date: string; name: string }) => api.post('/calendar/holidays', data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['holidays'] });
+      toast.success('Holiday added');
+    },
   });
 };
 
 export const useDeleteHoliday = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (id: number) => api.delete(`/holidays/${id}`),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['holidays'] }),
+    mutationFn: (id: number) => api.delete(`/calendar/holidays/${id}`),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['holidays'] });
+      toast.success('Holiday removed');
+    },
   });
 };
 
+// Substitute information
 export interface SubstituteInfo {
   id: number;
   teacherId: number;
@@ -745,17 +655,21 @@ export interface SubstituteInfo {
   allergies?: string | null;
 }
 
-export const useSubstituteInfo = () =>
-  useQuery<SubstituteInfo | null>({
+export const useSubstituteInfo = () => {
+  return useQuery<SubstituteInfo>({
     queryKey: ['substitute-info'],
-    queryFn: async () => (await api.get('/substitute-info')).data,
+    queryFn: async () => (await api.get('/substitute/info')).data,
   });
+};
 
 export const useSaveSubstituteInfo = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: { procedures?: string; allergies?: string }) =>
-      api.post('/substitute-info', data),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['substitute-info'] }),
+    mutationFn: (data: Omit<SubstituteInfo, 'id' | 'teacherId'>) =>
+      api.put('/substitute/info', data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['substitute-info'] });
+      toast.success('Substitute information saved');
+    },
   });
 };

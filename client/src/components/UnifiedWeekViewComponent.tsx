@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { DndContext, DragEndEvent } from '@dnd-kit/core';
 import {
+  api,
   useLessonPlan,
   useSubjects,
   Activity,
@@ -8,6 +9,7 @@ import {
   useTimetable,
   useGenerateNewsletter,
 } from '../api';
+import { AxiosError } from 'axios';
 import ActivitySuggestionList from './ActivitySuggestionList';
 import WeekCalendarGrid from './WeekCalendarGrid';
 import AutoFillButton from './AutoFillButton';
@@ -21,25 +23,70 @@ export default function UnifiedWeekViewComponent() {
   const [preserveBuffer, setPreserveBuffer] = useState(true);
   const [skipLow, setSkipLow] = useState(true);
   const { data: plan, refetch } = useLessonPlan(weekStart);
-  const subjects = useSubjects().data ?? [];
-  const { data: timetable } = useTimetable();
+  const { data: subjectsData, error: subjectsError } = useSubjects();
+  const subjects = Array.isArray(subjectsData) ? subjectsData : [];
+
+  // Log any errors for debugging
+  if (subjectsError) {
+    console.error('Error loading subjects:', subjectsError);
+  }
+  const { data: timetableData, error: timetableError } = useTimetable();
+  const timetable = Array.isArray(timetableData) ? timetableData : [];
+
+  // Log any errors for debugging
+  if (timetableError) {
+    console.error('Error loading timetable:', timetableError);
+  }
   const genNewsletter = useGenerateNewsletter();
   const [showPrompts, setShowPrompts] = useState(false);
   const [invalidDay, setInvalidDay] = useState<number | undefined>();
 
   const activities = useMemo(() => {
     const all: Record<number, Activity> = {};
-    subjects.forEach((s) =>
-      s.milestones.forEach((m) => m.activities.forEach((a) => (all[a.id] = a))),
-    );
+
+    // Safely handle the case where subjects or their nested properties are not arrays
+    if (Array.isArray(subjects)) {
+      subjects.forEach((s) => {
+        if (s?.milestones && Array.isArray(s.milestones)) {
+          s.milestones.forEach((m) => {
+            if (m?.activities && Array.isArray(m.activities)) {
+              m.activities.forEach((a) => a?.id && (all[a.id] = a));
+            }
+          });
+        }
+      });
+    }
+
     return all;
   }, [subjects]);
 
   const handleDrop = (day: number, activityId: number) => {
-    if (!plan) return;
-    const slots = timetable?.filter((t) => t.day === day && t.subjectId) ?? [];
+    if (!plan) {
+      toast.error('Lesson plan not loaded.');
+      return;
+    }
+    if (!timetable) {
+      toast.error('Timetable not loaded.');
+      return;
+    }
+    if (!plan.schedule) {
+      toast.error('Lesson plan schedule not loaded.');
+      return;
+    }
+
+    // DEBUG LOGGING
+    console.log('handleDrop called:', { day, activityId });
+    console.log('timetable:', timetable);
+    const slots = timetable.filter((t) => t.day === day) ?? [];
+    console.log('slots for day', day, ':', slots);
     const used = new Set(plan.schedule.filter((s) => s.day === day).map((s) => s.slotId));
-    const slot = slots.find((s) => !used.has(s.id));
+    console.log('used slotIds:', Array.from(used));
+    let slot = slots.find((s) => !used.has(s.id));
+    // If all slots are used, allow swapping: pick the first slot of the day
+    if (!slot && slots.length > 0) {
+      slot = slots[0];
+    }
+    console.log('chosen slot:', slot);
     if (!slot) {
       toast.error('No available slot');
       return;
@@ -50,15 +97,26 @@ export default function UnifiedWeekViewComponent() {
       setTimeout(() => setInvalidDay(undefined), 1500);
       return;
     }
-    const schedule = [
-      ...plan.schedule,
-      { id: 0, day, slotId: slot.id, activityId, activity: activities[activityId] },
-    ];
-    fetch(`/api/lesson-plans/${plan.id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ schedule }),
-    }).then(() => refetch());
+    // Remove any existing activity from this slot (if swapping)
+    const schedule = plan.schedule
+      .filter((item) => !(item.day === day && item.slotId === slot.id))
+      .map((item) => ({
+        day: item.day,
+        slotId: item.slotId,
+        activityId: item.activityId,
+      }));
+    schedule.push({ day, slotId: slot.id, activityId });
+    console.log('new schedule to send:', schedule);
+    api
+      .put(`/api/lesson-plans/${plan.id}`, { schedule })
+      .then(() => {
+        toast.success('Schedule updated!');
+        refetch();
+      })
+      .catch((err: AxiosError<{ message: string }>) => {
+        console.error('Failed to update lesson plan', err);
+        toast.error(err.response?.data?.message || 'Failed to update schedule.');
+      });
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -77,7 +135,12 @@ export default function UnifiedWeekViewComponent() {
     const end = new Date(weekStart);
     end.setDate(end.getDate() + 6);
     genNewsletter.mutate(
-      { startDate: weekStart, endDate: getWeekStartISO(end) },
+      {
+        weekStart: weekStart,
+        weekEnd: getWeekStartISO(end),
+        subject: `Weekly Update - ${weekStart}`,
+        highlights: [],
+      },
       { onSuccess: () => toast.success('Newsletter draft created') },
     );
   };

@@ -1,4 +1,4 @@
-import type { WeeklyScheduleItem, Activity, TimetableSlot, CalendarEvent, Holiday } from '../api';
+import type { WeeklyScheduleItem, Activity, TimetableSlot, CalendarEvent } from '../api';
 import { useDroppable } from '@dnd-kit/core';
 
 interface Props {
@@ -6,7 +6,7 @@ interface Props {
   activities: Record<number, Activity>;
   timetable?: TimetableSlot[];
   events?: CalendarEvent[];
-  holidays?: Holiday[];
+  holidays?: CalendarEvent[];
   invalidDay?: number;
 }
 
@@ -25,11 +25,15 @@ export default function WeekCalendarGrid({
         const items = schedule
           .filter((s) => s.day === idx)
           .sort((a, b) => (a.slot?.startMin ?? 0) - (b.slot?.startMin ?? 0));
-        const daySlot = timetable?.find((t) => t.day === idx);
+        const daySlot = Array.isArray(timetable)
+          ? timetable.find((t) => t?.day === idx)
+          : undefined;
         const blocked = daySlot && !daySlot.subjectId;
         const label = daySlot?.subject?.name ?? (blocked ? 'Prep' : '');
         const dayEvents = events?.filter((e) => new Date(e.start).getUTCDay() === (idx + 1) % 7);
-        const dayHolidays = holidays?.filter((h) => (new Date(h.date).getUTCDay() + 6) % 7 === idx);
+        const dayHolidays = holidays?.filter(
+          (h) => (new Date(h.start).getUTCDay() + 6) % 7 === idx,
+        );
         const isHoliday = dayHolidays && dayHolidays.length > 0;
         const { isOver, setNodeRef } = useDroppable({
           id: `day-${idx}`,
@@ -48,8 +52,8 @@ export default function WeekCalendarGrid({
             <span>{d}</span>
             {label && <div className="text-xs">{label}</div>}
             {dayHolidays?.map((h) => (
-              <div key={h.id} className="text-xs bg-yellow-200 w-full mt-1">
-                {h.name}
+              <div key={h.id} className="text-xs text-red-600">
+                {h.title}
               </div>
             ))}
             {invalid && (

@@ -11,7 +11,7 @@ export default function MaterialsInput({ activityId, initial }: Props) {
 
   const save = async () => {
     try {
-      await api.patch(`/activities/${activityId}`, {
+      await api.patch(`/api/activities/${activityId}`, {
         materialsText: value.trim() || null,
       });
     } catch (err) {
