@@ -25,6 +25,8 @@ async function main() {
       title: 'M1',
       subjectId: subject.id,
       userId: user.id,
+      // ensure planner tests have at least one future-dated milestone
+      targetDate: new Date('2025-09-01T00:00:00.000Z'),
       activities: {
         create: [
           { title: 'A1', userId: user.id },

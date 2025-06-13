@@ -12,14 +12,14 @@ test('reorders activities within milestone', async ({ page }) => {
   });
   const subjectId = (await subjectRes.json()).id as number;
 
-  const milestoneRes = await page.request.post(`${API_BASE}/api/milestones`, {
+  await page.request.post(`${API_BASE}/api/milestones`, {
     headers: { Authorization: `Bearer ${token}` },
     data: { title: 'M', subjectId },
   });
-  const mId = (await milestoneRes.json()).id as number;
 
-  await page.goto(`/milestones/${mId}`);
-  await page.waitForSelector('button:has-text("Add Activity")');
+  await page.goto('/milestones');
+  await page.click('text=M');
+  await page.waitForSelector('button:has-text("Add Activity")', { timeout: 10000 });
 
   for (const a of ['A1', 'A2', 'A3']) {
     await page.click('button:has-text("Add Activity")');
