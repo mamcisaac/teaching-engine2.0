@@ -1,4 +1,5 @@
-import { PrismaClient } from '@teaching-engine/database';
+import pkg from '@teaching-engine/database';
+const { PrismaClient } = pkg;
 
 const prisma = new PrismaClient();
 
