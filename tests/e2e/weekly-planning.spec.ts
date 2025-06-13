@@ -14,6 +14,7 @@ test('generate weekly plan from activity', async ({ page }) => {
   await page.click('text=Add Milestone');
   await page.fill('input[placeholder="New milestone"]', 'Mplan');
   await page.click('button:has-text("Save")');
+  await page.waitForSelector('text=Mplan', { timeout: 30000 });
   await page.click('text=Mplan');
 
   await page.click('text=Add Activity');

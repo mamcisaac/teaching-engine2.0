@@ -3,6 +3,7 @@ import { login } from './helpers';
 
 test('filters notes by subject and type', async ({ page }) => {
   const ts = Date.now();
+  await login(page);
   await page.request.post('/api/subjects', { data: { name: `Math${ts}` } });
   await page.request.post('/api/subjects', { data: { name: `Sci${ts}` } });
 
@@ -43,7 +44,6 @@ test('filters notes by subject and type', async ({ page }) => {
     data: { content: 'Sci Public', type: 'public', activityId: sciActId },
   });
 
-  await login(page);
   await page.goto('/reflections');
   await page.selectOption('select', `${mathId}`);
   await page.check('label:has-text("Public") input');

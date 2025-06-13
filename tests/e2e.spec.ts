@@ -19,6 +19,7 @@ test('create subject, milestone and activity', async ({ page }) => {
   await page.click('button:has-text("Save")');
 
   // navigate to the milestone detail page
+  await page.waitForSelector('text=M1', { timeout: 30000 });
   await page.click('text=M1');
 
   // open activity dialog

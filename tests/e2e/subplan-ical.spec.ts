@@ -21,11 +21,13 @@ test('ical import blocks planner and sub plan lists event', async ({ page }) => 
   const { port } = srv.address() as import('net').AddressInfo;
   const feedUrl = `http://127.0.0.1:${port}/sample.ics`;
 
+  await login(page);
   await page.request.post('/api/calendar-events/sync/ical', { data: { feedUrl } });
 
-  await login(page);
   await page.goto('/planner');
-  await page.fill('input[type="date"]', '2025-01-01');
+  const dateInput = page.locator('input[type="date"]');
+  await dateInput.waitFor({ state: 'visible' });
+  await dateInput.fill('2025-01-01');
   await page.waitForResponse(
     (r) => r.url().includes('/calendar-events') && r.request().method() === 'GET',
   );

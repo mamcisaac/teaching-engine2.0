@@ -16,6 +16,7 @@ test('reorders activities within milestone', async ({ page }) => {
   await page.click('text=Add Milestone');
   await page.fill('input[placeholder="New milestone"]', 'M');
   await page.click('button:has-text("Save")');
+  await page.waitForSelector('a:has-text("M")', { timeout: 30000 });
   await page.click('a:has-text("M")');
   await page.waitForSelector('button:has-text("Add Activity")');
 

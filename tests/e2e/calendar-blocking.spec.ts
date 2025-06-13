@@ -7,6 +7,7 @@ import { login } from './helpers';
  * Now enabled as the feature is fully implemented and stable.
  */
 test('planner blocks times from calendar events', async ({ page }) => {
+  await login(page);
   await page.addInitScript(() => localStorage.setItem('onboarded', 'true'));
   const today = new Date().toISOString().split('T')[0];
   await page.request.post('/api/calendar-events', {
@@ -18,8 +19,6 @@ test('planner blocks times from calendar events', async ({ page }) => {
       eventType: 'ASSEMBLY',
     },
   });
-
-  await login(page);
   await page.goto('/planner');
   const blocked = page.locator('text=Assembly').first();
   await expect(blocked).toBeVisible();

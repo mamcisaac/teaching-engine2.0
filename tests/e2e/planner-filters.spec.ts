@@ -13,6 +13,7 @@ test('planner tag filters', async ({ page }) => {
   await page.click('text=Add Milestone');
   await page.fill('input[placeholder="New milestone"]', `M${ts}`);
   await page.click('button:has-text("Save")');
+  await page.waitForSelector(`text=M${ts}`, { timeout: 30000 });
   await page.click(`text=M${ts}`);
 
   const mRes = await page.request.get('/api/milestones');

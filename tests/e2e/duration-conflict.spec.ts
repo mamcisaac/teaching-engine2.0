@@ -15,6 +15,7 @@ test('rejects drop when activity longer than slot', async ({ page }) => {
   await page.click('text=Add Milestone');
   await page.fill('input[placeholder="New milestone"]', 'Mdur');
   await page.click('button:has-text("Save")');
+  await page.waitForSelector('text=Mdur', { timeout: 30000 });
   await page.click('text=Mdur');
 
   const mRes = await page.request.get('/api/milestones');

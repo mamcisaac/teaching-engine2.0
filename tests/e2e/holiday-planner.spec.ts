@@ -5,6 +5,7 @@ import { login } from './helpers';
 
 test('planner skips holiday dates', async ({ page }) => {
   const ts = Date.now();
+  await login(page);
   const subRes = await page.request.post('/api/subjects', { data: { name: `H${ts}` } });
   const subjectId = (await subRes.json()).id as number;
   const msRes = await page.request.post('/api/milestones', { data: { title: 'HM', subjectId } });
@@ -14,7 +15,6 @@ test('planner skips holiday dates', async ({ page }) => {
     data: [{ day: 3, startMin: 540, endMin: 600, subjectId }],
   });
 
-  await login(page);
   await page.goto('/settings');
   await page.fill('input[type="date"]', '2025-12-25');
   await page.fill('input[placeholder="Holiday name"]', 'Christmas');
