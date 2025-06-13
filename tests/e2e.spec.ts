@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
-import { login } from './e2e/helpers';
+import { login, API_BASE } from './e2e/helpers';
 
 test('create subject, milestone and activity', async ({ page }) => {
-  await login(page);
+  const token = await login(page);
   await page.goto('/subjects');
 
   // open subject dialog
@@ -17,9 +17,11 @@ test('create subject, milestone and activity', async ({ page }) => {
   await page.click('text=Add Milestone');
   await page.fill('input[placeholder="New milestone"]', 'M1');
   await page.click('button:has-text("Save")');
-
-  // navigate to the milestone detail page
-  await page.click('text=M1');
+  const mRes = await page.request.get(`${API_BASE}/api/milestones`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const mId = (await mRes.json()).find((m: { title: string }) => m.title === 'M1').id;
+  await page.goto(`/milestones/${mId}`);
 
   // open activity dialog
   await page.click('text=Add Activity');
