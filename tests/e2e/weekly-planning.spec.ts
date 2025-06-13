@@ -3,7 +3,7 @@ import { login } from './helpers';
 
 test('generate weekly plan from activity', async ({ page }) => {
   const ts = Date.now();
-  await login(page);
+  const token = await login(page);
   await page.goto('/subjects');
 
   await page.click('text=Add Subject');
@@ -14,8 +14,11 @@ test('generate weekly plan from activity', async ({ page }) => {
   await page.click('text=Add Milestone');
   await page.fill('input[placeholder="New milestone"]', 'Mplan');
   await page.click('button:has-text("Save")');
-  await page.waitForSelector('text=Mplan', { timeout: 30000 });
-  await page.click('text=Mplan');
+  const mRes = await page.request.get('/api/milestones', {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const mId = (await mRes.json()).find((m: { title: string }) => m.title === 'Mplan').id;
+  await page.goto(`/milestones/${mId}`);
 
   await page.click('text=Add Activity');
   await page.fill('input[placeholder="New activity"]', 'Aplan');

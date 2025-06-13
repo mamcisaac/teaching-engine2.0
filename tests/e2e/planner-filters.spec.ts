@@ -3,7 +3,7 @@ import { login } from './helpers';
 
 test('planner tag filters', async ({ page }) => {
   const ts = Date.now();
-  await login(page);
+  const token = await login(page);
   await page.goto('/subjects');
   await page.click('text=Add Subject');
   await page.fill('input[placeholder="New subject"]', `F${ts}`);
@@ -13,19 +13,22 @@ test('planner tag filters', async ({ page }) => {
   await page.click('text=Add Milestone');
   await page.fill('input[placeholder="New milestone"]', `M${ts}`);
   await page.click('button:has-text("Save")');
-  await page.waitForSelector(`text=M${ts}`, { timeout: 30000 });
-  await page.click(`text=M${ts}`);
+  const mRes = await page.request.get('/api/milestones', {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const ms = (await mRes.json()) as Array<{ id: number; title: string }>;
+  const mId = ms.find((milestone) => milestone.title === `M${ts}`)!.id;
+  await page.goto(`/milestones/${mId}`);
 
-  const mRes = await page.request.get('/api/milestones');
-  const milestoneList = (await mRes.json()) as Array<{ id: number; title: string }>;
-  const m = milestoneList.find((milestone) => milestone.title === `M${ts}`);
-  const milestoneId = m?.id ?? 1;
+  const milestoneId = mId;
 
   // create activities via API with tags
   await page.request.post('/api/activities', {
+    headers: { Authorization: `Bearer ${token}` },
     data: { title: 'WorksheetAct', milestoneId, tags: ['Worksheet'] },
   });
   await page.request.post('/api/activities', {
+    headers: { Authorization: `Bearer ${token}` },
     data: { title: 'VideoAct', milestoneId, tags: ['Video'] },
   });
 

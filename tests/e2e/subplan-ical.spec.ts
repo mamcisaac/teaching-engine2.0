@@ -21,8 +21,11 @@ test('ical import blocks planner and sub plan lists event', async ({ page }) => 
   const { port } = srv.address() as import('net').AddressInfo;
   const feedUrl = `http://127.0.0.1:${port}/sample.ics`;
 
-  await login(page);
-  await page.request.post('/api/calendar-events/sync/ical', { data: { feedUrl } });
+  const token = await login(page);
+  await page.request.post('/api/calendar-events/sync/ical', {
+    headers: { Authorization: `Bearer ${token}` },
+    data: { feedUrl },
+  });
 
   await page.goto('/planner');
   const dateInput = page.locator('input[type="date"]');
@@ -33,7 +36,9 @@ test('ical import blocks planner and sub plan lists event', async ({ page }) => 
   );
   await expect(page.getByText('Test Event').first()).toBeVisible();
 
-  const resp = await page.request.post('/api/subplan/generate?date=2025-01-01');
+  const resp = await page.request.post('/api/subplan/generate?date=2025-01-01', {
+    headers: { Authorization: `Bearer ${token}` },
+  });
   expect(resp.ok()).toBe(true);
 
   srv.close();

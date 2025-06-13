@@ -5,13 +5,23 @@ import { login } from './helpers';
 
 test('planner skips holiday dates', async ({ page }) => {
   const ts = Date.now();
-  await login(page);
-  const subRes = await page.request.post('/api/subjects', { data: { name: `H${ts}` } });
+  const token = await login(page);
+  const subRes = await page.request.post('/api/subjects', {
+    headers: { Authorization: `Bearer ${token}` },
+    data: { name: `H${ts}` },
+  });
   const subjectId = (await subRes.json()).id as number;
-  const msRes = await page.request.post('/api/milestones', { data: { title: 'HM', subjectId } });
+  const msRes = await page.request.post('/api/milestones', {
+    headers: { Authorization: `Bearer ${token}` },
+    data: { title: 'HM', subjectId },
+  });
   const milestoneId = (await msRes.json()).id as number;
-  await page.request.post('/api/activities', { data: { title: 'HA', milestoneId } });
+  await page.request.post('/api/activities', {
+    headers: { Authorization: `Bearer ${token}` },
+    data: { title: 'HA', milestoneId },
+  });
   await page.request.put('/api/timetable', {
+    headers: { Authorization: `Bearer ${token}` },
     data: [{ day: 3, startMin: 540, endMin: 600, subjectId }],
   });
 

@@ -3,18 +3,34 @@ import { login } from './helpers';
 
 test('filters notes by subject and type', async ({ page }) => {
   const ts = Date.now();
-  await login(page);
-  await page.request.post('/api/subjects', { data: { name: `Math${ts}` } });
-  await page.request.post('/api/subjects', { data: { name: `Sci${ts}` } });
+  const token = await login(page);
+  await page.request.post('/api/subjects', {
+    headers: { Authorization: `Bearer ${token}` },
+    data: { name: `Math${ts}` },
+  });
+  await page.request.post('/api/subjects', {
+    headers: { Authorization: `Bearer ${token}` },
+    data: { name: `Sci${ts}` },
+  });
 
-  const subjectsRes = await page.request.get('/api/subjects');
+  const subjectsRes = await page.request.get('/api/subjects', {
+    headers: { Authorization: `Bearer ${token}` },
+  });
   const subjects = (await subjectsRes.json()) as Array<{ id: number; name: string }>;
   const mathId = subjects.find((s) => s.name === `Math${ts}`)!.id;
   const sciId = subjects.find((s) => s.name === `Sci${ts}`)!.id;
 
-  await page.request.post('/api/milestones', { data: { title: `M1${ts}`, subjectId: mathId } });
-  await page.request.post('/api/milestones', { data: { title: `M2${ts}`, subjectId: sciId } });
-  const milestones = (await (await page.request.get('/api/milestones')).json()) as Array<{
+  await page.request.post('/api/milestones', {
+    headers: { Authorization: `Bearer ${token}` },
+    data: { title: `M1${ts}`, subjectId: mathId },
+  });
+  await page.request.post('/api/milestones', {
+    headers: { Authorization: `Bearer ${token}` },
+    data: { title: `M2${ts}`, subjectId: sciId },
+  });
+  const milestones = (await (
+    await page.request.get('/api/milestones', { headers: { Authorization: `Bearer ${token}` } })
+  ).json()) as Array<{
     id: number;
     title: string;
   }>;
@@ -22,12 +38,16 @@ test('filters notes by subject and type', async ({ page }) => {
   const sciMilestoneId = milestones.find((m) => m.title === `M2${ts}`)!.id;
 
   await page.request.post('/api/activities', {
+    headers: { Authorization: `Bearer ${token}` },
     data: { title: `A1${ts}`, milestoneId: mathMilestoneId },
   });
   await page.request.post('/api/activities', {
+    headers: { Authorization: `Bearer ${token}` },
     data: { title: `A2${ts}`, milestoneId: sciMilestoneId },
   });
-  const activities = (await (await page.request.get('/api/activities')).json()) as Array<{
+  const activities = (await (
+    await page.request.get('/api/activities', { headers: { Authorization: `Bearer ${token}` } })
+  ).json()) as Array<{
     id: number;
     title: string;
   }>;
@@ -35,12 +55,15 @@ test('filters notes by subject and type', async ({ page }) => {
   const sciActId = activities.find((a) => a.title === `A2${ts}`)!.id;
 
   await page.request.post('/api/notes', {
+    headers: { Authorization: `Bearer ${token}` },
     data: { content: 'Math Public', type: 'public', activityId: mathActId },
   });
   await page.request.post('/api/notes', {
+    headers: { Authorization: `Bearer ${token}` },
     data: { content: 'Math Private', type: 'private', activityId: mathActId },
   });
   await page.request.post('/api/notes', {
+    headers: { Authorization: `Bearer ${token}` },
     data: { content: 'Sci Public', type: 'public', activityId: sciActId },
   });
 

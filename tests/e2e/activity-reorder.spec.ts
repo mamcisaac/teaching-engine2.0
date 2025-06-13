@@ -5,7 +5,7 @@ import { login } from './helpers';
 
 test('reorders activities within milestone', async ({ page }) => {
   const ts = Date.now();
-  await login(page);
+  const token = await login(page);
   await page.goto('/subjects');
 
   await page.click('text=Add Subject');
@@ -16,8 +16,12 @@ test('reorders activities within milestone', async ({ page }) => {
   await page.click('text=Add Milestone');
   await page.fill('input[placeholder="New milestone"]', 'M');
   await page.click('button:has-text("Save")');
-  await page.waitForSelector('a:has-text("M")', { timeout: 30000 });
-  await page.click('a:has-text("M")');
+  const mRes = await page.request.get('/api/milestones', {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const ms = (await mRes.json()) as Array<{ id: number; title: string }>;
+  const mId = ms.find((m) => m.title === 'M')!.id;
+  await page.goto(`/milestones/${mId}`);
   await page.waitForSelector('button:has-text("Add Activity")');
 
   for (const a of ['A1', 'A2', 'A3']) {
