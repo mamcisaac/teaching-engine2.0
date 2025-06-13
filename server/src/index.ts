@@ -1,18 +1,13 @@
-import express, { Request, Response, NextFunction, RequestHandler } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import path from 'path';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
 // Extend the Express Request type to include the user property
-// Extend Express Request type to include user
-type User = {
-  userId: string;
-};
-
-declare module 'express-serve-static-core' {
-  interface Request {
-    user?: User;
-  }
+interface AuthenticatedRequest extends Request {
+  user?: {
+    userId: string;
+  };
 }
 
 import lessonPlanRoutes from './routes/lessonPlan';
@@ -75,7 +70,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Middleware to verify JWT token
-const authenticateToken: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
+const authenticateToken = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 
@@ -150,7 +145,7 @@ app.post('/api/login', async (req, res) => {
 });
 
 // Auth check endpoint
-app.get('/api/auth/me', authenticateToken, async (req: Request, res: Response) => {
+app.get('/api/auth/me', authenticateToken, async (req: AuthenticatedRequest, res: Response) => {
   try {
     if (!req.user?.userId) {
       return res.status(401).json({ error: 'Unauthorized' });
@@ -167,7 +162,7 @@ app.get('/api/auth/me', authenticateToken, async (req: Request, res: Response) =
   }
 });
 
-app.get('/api/auth/check', authenticateToken, (req: Request, res: Response) => {
+app.get('/api/auth/check', authenticateToken, (req: AuthenticatedRequest, res: Response) => {
   res.json({ userId: req.user?.userId });
 });
 
