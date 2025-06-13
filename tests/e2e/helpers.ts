@@ -1,15 +1,26 @@
 import { Page } from '@playwright/test';
 
 /**
- * Log in via the UI and return the auth token for API requests.
- * Also marks onboarding complete.
+ * Authenticate using the API and initialize local storage for the UI.
+ * Returns the auth token for subsequent API requests.
  */
 export async function login(page: Page): Promise<string> {
-  await page.addInitScript(() => localStorage.setItem('onboarded', 'true'));
-  await page.goto('/login');
-  await page.fill('input[name="email"]', 'teacher@example.com');
-  await page.fill('input[name="password"]', 'password123');
-  await page.click('button:has-text("Sign in")');
+  const res = await page.request.post('http://localhost:3001/api/login', {
+    data: { email: 'teacher@example.com', password: 'password123' },
+  });
+  const { token, user } = (await res.json()) as { token: string; user: unknown };
+
+  await page.addInitScript(
+    ({ t, u }) => {
+      localStorage.setItem('token', t);
+      localStorage.setItem('user', JSON.stringify(u));
+      localStorage.setItem('onboarded', 'true');
+    },
+    { t: token, u: user },
+  );
+
+  await page.goto('/');
   await page.waitForLoadState('networkidle');
-  return (await page.evaluate(() => localStorage.getItem('token'))) ?? '';
+
+  return token;
 }
