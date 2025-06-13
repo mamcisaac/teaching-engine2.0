@@ -212,7 +212,7 @@ export default function WeeklyPlannerPage() {
 
   useEffect(() => {
     if (new Date().getDay() === 5) {
-      toast.message("It's Friday! Generate a newsletter from this week?");
+      toast("It's Friday! Generate a newsletter from this week?");
     }
   }, []);
 
