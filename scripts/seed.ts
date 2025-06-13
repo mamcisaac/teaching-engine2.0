@@ -6,46 +6,31 @@ async function main() {
   await prisma.activity.deleteMany();
   await prisma.milestone.deleteMany();
   await prisma.subject.deleteMany();
+  await prisma.user.deleteMany();
 
-  const subject1 = await prisma.subject.create({
-    data: { name: 'Math' },
+  const user = await prisma.user.create({
+    data: {
+      email: 'teacher@example.com',
+      password: 'password123',
+      name: 'Teacher',
+    },
   });
-  const subject2 = await prisma.subject.create({
-    data: { name: 'Science' },
+
+  const subject = await prisma.subject.create({
+    data: { name: 'Math', userId: user.id },
   });
 
   await prisma.milestone.create({
     data: {
       title: 'M1',
-      subjectId: subject1.id,
+      subjectId: subject.id,
+      userId: user.id,
       activities: {
-        create: {
-          title: 'Activity 1',
-        },
-      },
-    },
-  });
-
-  await prisma.milestone.create({
-    data: {
-      title: 'M',
-      subjectId: subject1.id,
-      activities: {
-        create: {
-          title: 'Activity M',
-        },
-      },
-    },
-  });
-
-  await prisma.milestone.create({
-    data: {
-      title: 'M2',
-      subjectId: subject2.id,
-      activities: {
-        create: {
-          title: 'Activity 2',
-        },
+        create: [
+          { title: 'A1', userId: user.id },
+          { title: 'A2', userId: user.id },
+          { title: 'A3', userId: user.id },
+        ],
       },
     },
   });

@@ -18,9 +18,9 @@
     "db:generate": "pnpm --filter @teaching-engine/database db:generate",
     "db:migrate": "pnpm --filter @teaching-engine/database db:migrate",
     "db:push": "pnpm --filter @teaching-engine/database db:push",
-    "db:deploy": "pnpm --filter @teaching-engine/database db:deploy",
+    "db:deploy": "prisma migrate deploy",
     "db:studio": "pnpm --filter @teaching-engine/database db:studio",
-    "db:seed": "pnpm --filter @teaching-engine/database db:seed",
+    "db:seed": "ts-node scripts/seed.ts",
     "postinstall": "pnpm --filter @teaching-engine/database db:generate",
     "playwright:test": "playwright test",
     "preplaywright:test": "pnpm exec playwright install --with-deps",
@@ -41,7 +41,8 @@
     "pdf-parse": "^1.1.1",
     "prettier": "^3.0.0",
     "source-map-explorer": "^2.5.3",
-    "tsconfig-paths": "^4.2.0"
+    "tsconfig-paths": "^4.2.0",
+    "ts-node": "^10.9.1"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
