@@ -1,22 +1,18 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express, { Request, Response, NextFunction, RequestHandler } from 'express';
 import cors from 'cors';
 import path from 'path';
-import { sign, JwtPayload } from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
 // Extend the Express Request type to include the user property
+// Extend Express Request type to include user
+type User = {
+  userId: string;
+};
+
 declare module 'express-serve-static-core' {
   interface Request {
-    user?: {
-      userId: string;
-    };
+    user?: User;
   }
-}
-
-interface CustomRequest extends Request {
-  user?: {
-    userId: string;
-  };
-  [key: string]: unknown;
 }
 
 import lessonPlanRoutes from './routes/lessonPlan';
@@ -79,7 +75,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Middleware to verify JWT token
-const authenticateToken = (req: CustomRequest, res: Response, next: NextFunction) => {
+const authenticateToken: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 
@@ -99,9 +95,9 @@ app.post('/api/login', async (req, res) => {
   console.log('Login request received:', { body: req.body });
 
   try {
-    const { email, password } = req.body as { email: string; password: string };
+    const { email, password: passwordInput } = req.body as { email: string; password: string };
 
-    if (!email || !password) {
+    if (!email || !passwordInput) {
       console.log('Missing email or password');
       return res.status(400).json({ error: 'Email and password are required' });
     }
@@ -121,21 +117,21 @@ app.post('/api/login', async (req, res) => {
 
     // Debug: Log the password comparison
     console.log('Password comparison:', {
-      providedPassword: password,
+      providedPassword: passwordInput,
       storedPassword: user.password,
-      match: password === user.password,
+      match: passwordInput === user.password,
     });
 
-    if (user.password !== password) {
+    if (user.password !== passwordInput) {
       console.log('Password does not match');
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     console.log('Creating JWT token for user ID:', user.id);
-    const token = sign({ userId: user.id.toString() }, process.env.JWT_SECRET || 'secret', {
+    const token = jwt.sign({ userId: user.id.toString() }, process.env.JWT_SECRET || 'secret', {
       expiresIn: process.env.JWT_EXPIRES_IN || '7d',
       algorithm: 'HS256',
-    });
+    } as jwt.SignOptions);
 
     // Return user data without password
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -154,7 +150,7 @@ app.post('/api/login', async (req, res) => {
 });
 
 // Auth check endpoint
-app.get('/api/auth/me', authenticateToken, async (req: CustomRequest, res: Response) => {
+app.get('/api/auth/me', authenticateToken, async (req: Request, res: Response) => {
   try {
     if (!req.user?.userId) {
       return res.status(401).json({ error: 'Unauthorized' });
@@ -171,7 +167,7 @@ app.get('/api/auth/me', authenticateToken, async (req: CustomRequest, res: Respo
   }
 });
 
-app.get('/api/auth/check', authenticateToken, (req: CustomRequest, res: Response) => {
+app.get('/api/auth/check', authenticateToken, (req: Request, res: Response) => {
   res.json({ userId: req.user?.userId });
 });
 
