@@ -19,6 +19,7 @@ test('generate weekly plan from activity', async ({ page }) => {
   });
   const mId = (await mRes.json()).find((m: { title: string }) => m.title === 'Mplan').id;
   await page.goto(`/milestones/${mId}`);
+  await page.waitForSelector('button:has-text("Add Activity")');
 
   await page.click('text=Add Activity');
   await page.fill('input[placeholder="New activity"]', 'Aplan');

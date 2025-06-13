@@ -22,6 +22,7 @@ test('create subject, milestone and activity', async ({ page }) => {
   });
   const mId = (await mRes.json()).find((m: { title: string }) => m.title === 'M1').id;
   await page.goto(`/milestones/${mId}`);
+  await page.waitForSelector('button:has-text("Add Activity")');
 
   // open activity dialog
   await page.click('text=Add Activity');

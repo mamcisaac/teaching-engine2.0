@@ -19,6 +19,7 @@ test('planner tag filters', async ({ page }) => {
   const ms = (await mRes.json()) as Array<{ id: number; title: string }>;
   const mId = ms.find((milestone) => milestone.title === `M${ts}`)!.id;
   await page.goto(`/milestones/${mId}`);
+  await page.waitForSelector('button:has-text("Add Activity")');
 
   const milestoneId = mId;
 

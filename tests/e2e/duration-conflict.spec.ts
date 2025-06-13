@@ -22,6 +22,7 @@ test('rejects drop when activity longer than slot', async ({ page }) => {
     (m: { id: number; title: string }) => m.title === 'Mdur',
   )!.id;
   await page.goto(`/milestones/${milestoneId}`);
+  await page.waitForSelector('button:has-text("Add Activity")');
 
   await page.request.post(`${API_BASE}/api/activities`, {
     headers: { Authorization: `Bearer ${token}` },
