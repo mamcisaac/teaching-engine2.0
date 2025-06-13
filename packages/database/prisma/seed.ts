@@ -140,6 +140,31 @@ async function main() {
 
   await Promise.all(timetableSlots);
 
+  // Short milestone titles for E2E tests
+  await prisma.milestone.create({
+    data: {
+      title: 'M1',
+      subjectId: math.id,
+      activities: { create: { title: 'Activity 1' } },
+    },
+  });
+
+  await prisma.milestone.create({
+    data: {
+      title: 'M',
+      subjectId: math.id,
+      activities: { create: { title: 'Activity M' } },
+    },
+  });
+
+  await prisma.milestone.create({
+    data: {
+      title: 'M2',
+      subjectId: science.id,
+      activities: { create: { title: 'Activity 2' } },
+    },
+  });
+
   // Create Math milestones and activities
   const additionMilestone = await prisma.milestone.create({
     data: {
