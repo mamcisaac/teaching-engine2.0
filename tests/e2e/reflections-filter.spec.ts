@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { login } from './helpers';
 
 test('filters notes by subject and type', async ({ page }) => {
   const ts = Date.now();
@@ -42,6 +43,7 @@ test('filters notes by subject and type', async ({ page }) => {
     data: { content: 'Sci Public', type: 'public', activityId: sciActId },
   });
 
+  await login(page);
   await page.goto('/reflections');
   await page.selectOption('select', `${mathId}`);
   await page.check('label:has-text("Public") input');

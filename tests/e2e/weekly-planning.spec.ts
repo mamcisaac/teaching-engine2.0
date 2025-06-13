@@ -1,7 +1,9 @@
 import { test, expect } from '@playwright/test';
+import { login } from './helpers';
 
 test('generate weekly plan from activity', async ({ page }) => {
   const ts = Date.now();
+  await login(page);
   await page.goto('/subjects');
 
   await page.click('text=Add Subject');

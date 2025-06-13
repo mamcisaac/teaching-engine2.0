@@ -6,5 +6,5 @@ export default async function setup() {
   await envSetup();
   const root = resolve(__dirname, '..', '..');
   execSync('pnpm db:generate', { stdio: 'inherit', cwd: root });
-  execSync('pnpm db:deploy', { stdio: 'inherit', cwd: root });
+  execSync('pnpm db:push --force-reset', { stdio: 'inherit', cwd: root });
 }

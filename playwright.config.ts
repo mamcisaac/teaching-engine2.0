@@ -11,8 +11,10 @@ export default defineConfig({
     stdout: 'pipe',
     stderr: 'pipe',
     env: {
-      NODE_ENV: 'test',
-      PORT: '5173',
+      // Use development mode so the Express server actually starts
+      NODE_ENV: 'development',
+      // Run the API server on its default port
+      PORT: '3001',
       DATABASE_URL: 'file:./test.db',
     },
   },

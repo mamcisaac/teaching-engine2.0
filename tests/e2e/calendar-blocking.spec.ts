@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { login } from './helpers';
 
 /**
  * Test that verifies the planner correctly blocks times based on calendar events.
@@ -18,6 +19,7 @@ test('planner blocks times from calendar events', async ({ page }) => {
     },
   });
 
+  await login(page);
   await page.goto('/planner');
   const blocked = page.locator('text=Assembly').first();
   await expect(blocked).toBeVisible();

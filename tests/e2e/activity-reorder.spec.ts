@@ -1,9 +1,11 @@
 import { test, expect } from '@playwright/test';
+import { login } from './helpers';
 
 // drag first activity to last and ensure order persists
 
 test('reorders activities within milestone', async ({ page }) => {
   const ts = Date.now();
+  await login(page);
   await page.goto('/subjects');
 
   await page.click('text=Add Subject');
