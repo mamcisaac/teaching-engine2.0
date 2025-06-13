@@ -55,8 +55,39 @@ pnpm exec playwright install --with-deps
 
 # Run the tests
 echo "=== Starting e2e tests ==="
-# Add a small delay to ensure the server has time to start
-sleep 5
+
+# Start the server in the background
+echo "Starting development server..."
+pnpm dev &
+SERVER_PID=$!
+
+# Function to check if the server is ready
+wait_for_server() {
+  echo "Waiting for server to be ready..."
+  MAX_WAIT=60
+  WAIT_COUNT=0
+  
+  while [ $WAIT_COUNT -lt $MAX_WAIT ]; do
+    if curl -s -o /dev/null http://localhost:5173; then
+      echo "Server is ready!"
+      return 0
+    fi
+    
+    echo "Waiting for server to start... (${WAIT_COUNT}s / ${MAX_WAIT}s)"
+    sleep 1
+    WAIT_COUNT=$((WAIT_COUNT + 1))
+  done
+  
+  echo "Timed out waiting for server to start"
+  return 1
+}
+
+# Wait for the server to be ready
+if ! wait_for_server; then
+  echo "Error: Server failed to start"
+  kill $SERVER_PID 2>/dev/null || true
+  exit 1
+fi
 
 # Run tests with retries for flaky tests
 MAX_RETRIES=2
@@ -88,6 +119,10 @@ while [ $RETRY_COUNT -le $MAX_RETRIES ]; do
     break
   fi
 done
+
+# Clean up server process
+echo "Stopping development server..."
+kill $SERVER_PID 2>/dev/null || true
 
 echo "=== Test run completed with exit code: $TEST_EXIT_CODE ==="
 exit $TEST_EXIT_CODE
