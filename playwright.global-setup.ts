@@ -18,7 +18,7 @@ export default async function globalSetup(): Promise<void> {
     process.env.DATABASE_URL = 'file:./test.db';
     execSync('pnpm db:generate', { stdio: 'inherit' });
     execSync('pnpm db:push --force-reset', { stdio: 'inherit' });
-    execSync('pnpm db:seed', { stdio: 'inherit' });
+    execSync('pnpm --filter @teaching-engine/database db:seed', { stdio: 'inherit' });
 
     // Create a new browser context to ensure everything works
     console.log('Verifying browser setup...');
