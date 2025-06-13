@@ -20,6 +20,8 @@ test('planner blocks times from calendar events', async ({ page }) => {
     },
   });
   await page.goto('/planner');
+  await page.waitForSelector('.planner-grid', { timeout: 10000 });
+  await page.waitForResponse((r) => r.url().includes('/calendar-events') && r.status() === 200);
   const blocked = page.locator('text=Assembly').first();
   await expect(blocked).toBeVisible();
 });
