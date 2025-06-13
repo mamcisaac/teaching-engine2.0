@@ -23,7 +23,7 @@ describe('WeeklyPlannerPage', () => {
       </QueryClientProvider>,
     );
 
-    // Just verify something renders without errors
-    expect(screen.getByRole('main')).toBeInTheDocument();
+    // Check for the week start input field
+    expect(screen.getByTestId('week-start-input')).toBeInTheDocument();
   });
 });
