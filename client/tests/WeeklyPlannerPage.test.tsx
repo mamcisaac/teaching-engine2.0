@@ -136,24 +136,8 @@ vi.mock('@dnd-kit/core', () => ({
 }));
 
 // Mock sonner
-declare global {
-  // eslint-disable-next-line no-var
-  var toast: {
-    success: () => void;
-    error: () => void;
-  };
-}
-
-globalThis.toast = {
-  success: vi.fn(),
-  error: vi.fn(),
-};
-
 vi.mock('sonner', () => ({
-  toast: {
-    success: vi.fn(),
-    error: vi.fn(),
-  },
+  toast: vi.fn(),
 }));
 
 describe('WeeklyPlannerPage', () => {
