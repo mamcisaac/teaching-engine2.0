@@ -175,11 +175,11 @@ router.post('/generate', async (req, res, next) => {
       next(err);
     }
   } catch (err) {
-    __next(err);
+    next(err);
   }
 });
 
-router.get('/:weekStart', async (req, res, __next) => {
+router.get('/:weekStart', async (req, res, next) => {
   try {
     // Normalize weekStart param
     const weekStart = req.params.weekStart;
@@ -197,11 +197,11 @@ router.get('/:weekStart', async (req, res, __next) => {
     if (!plan) return res.status(404).json({ error: 'Not Found' });
     res.json(plan);
   } catch (err) {
-    __next(err);
+    next(err);
   }
 });
 
-router.put('/:id', async (req, res, __next) => {
+router.put('/:id', async (req, res, next) => {
   // Log incoming schedule for debugging
   console.log('PUT /api/lesson-plans/:id called with schedule:', req.body.schedule);
 
@@ -286,7 +286,7 @@ router.put('/:id', async (req, res, __next) => {
       stack: err instanceof Error ? err.stack : undefined,
       schedule: req.body.schedule,
     });
-    __next(err);
+    next(err);
   }
 });
 

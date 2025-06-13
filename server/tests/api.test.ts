@@ -176,7 +176,7 @@ describe('Lesson Plan API', () => {
 describe('Preferences API', () => {
   it('saves preferences', async () => {
     const res = await request(app)
-      .post('/api/preferences')
+      .post('/api/lesson-plans/preferences')
       .send({
         teachingStyles: ['hands-on'],
         pacePreference: 'balanced',

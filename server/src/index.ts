@@ -1,6 +1,7 @@
-import express, { Response, NextFunction } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import path from 'path';
+import { sign, JwtPayload } from 'jsonwebtoken';
 
 // Extend the Express Request type to include the user property
 declare module 'express-serve-static-core' {
@@ -11,7 +12,14 @@ declare module 'express-serve-static-core' {
   }
 }
 
-import lessonPlanRoutes, { savePreferences } from './routes/lessonPlan';
+interface CustomRequest extends Request {
+  user?: {
+    userId: string;
+  };
+  [key: string]: unknown;
+}
+
+import lessonPlanRoutes from './routes/lessonPlan';
 import milestoneRoutes from './routes/milestone';
 import activityRoutes from './routes/activity';
 import dailyPlanRoutes from './routes/dailyPlan';
@@ -44,17 +52,10 @@ import { scheduleEquipmentBookingReminders } from './jobs/bookingReminder';
 import { scheduleBackups } from './services/backupService';
 import logger from './logger';
 import { prisma } from './prisma';
-import jwt from 'jsonwebtoken';
 
 const app = express();
 
 // Configure CORS with credentials support
-// const allowedOrigins = [
-'http://localhost:5173', // Vite dev server
-  'http://127.0.0.1:5173', // Vite dev server alternative
-  'http://localhost:3000', // Production build
-  'http://127.0.0.1:3000'; // Production build alternative
-
 // CORS options
 const corsOptions: cors.CorsOptions = {
   origin: (origin, callback) => {
@@ -84,11 +85,13 @@ const authenticateToken = (req: CustomRequest, res: Response, next: NextFunction
 
   if (!token) return res.sendStatus(401);
 
-  jwt.verify(token, process.env.JWT_SECRET || 'secret', (err: Error | null, decoded: Error) => {
-    if (err) return res.sendStatus(403);
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as JwtPayload;
     req.user = { userId: String(decoded?.userId || '') };
     next();
-  });
+  } catch (err) {
+    return res.sendStatus(403);
+  }
 };
 
 // Login endpoint
@@ -129,12 +132,13 @@ app.post('/api/login', async (req, res) => {
     }
 
     console.log('Creating JWT token for user ID:', user.id);
-    const token = jwt.sign({ userId: user.id.toString() }, process.env.JWT_SECRET || 'secret', {
+    const token = sign({ userId: user.id.toString() }, process.env.JWT_SECRET || 'secret', {
       expiresIn: process.env.JWT_EXPIRES_IN || '7d',
       algorithm: 'HS256',
-    } as jwt.SignOptions);
+    });
 
     // Return user data without password
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...userData } = user;
     const response = {
       token,
@@ -196,7 +200,6 @@ app.use('/api/weeks', weekRoutes);
 app.use('/api/substitute-info', substituteInfoRoutes);
 app.use('/api/backup', backupRoutes);
 app.use('/api/subjects', subjectRoutes);
-app.post('/api/preferences', savePreferences);
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
 });
