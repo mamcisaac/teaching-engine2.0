@@ -8,33 +8,35 @@ async function main() {
   await prisma.subject.deleteMany();
   await prisma.user.deleteMany();
 
-  const user = await prisma.user.create({
+  const teacher = await prisma.user.create({
     data: {
       email: 'teacher@example.com',
       password: 'password123',
+      role: 'TEACHER',
       name: 'Teacher',
     },
   });
 
   const subject = await prisma.subject.create({
-    data: { name: 'Math', userId: user.id },
+    data: { name: 'Math', userId: teacher.id },
   });
 
-  await prisma.milestone.create({
+  const milestone = await prisma.milestone.create({
     data: {
       title: 'M1',
       subjectId: subject.id,
-      userId: user.id,
       // ensure planner tests have at least one future-dated milestone
-      targetDate: new Date('2025-09-01T00:00:00.000Z'),
-      activities: {
-        create: [
-          { title: 'A1', userId: user.id },
-          { title: 'A2', userId: user.id },
-          { title: 'A3', userId: user.id },
-        ],
-      },
+      targetDate: new Date('2025-09-01'),
     },
+  });
+
+  await prisma.activity.createMany({
+    data: ['A1', 'A2', 'A3'].map((title, i) => ({
+      title,
+      milestoneId: milestone.id,
+      durationMins: 30,
+      orderIndex: i,
+    })),
   });
 }
 
