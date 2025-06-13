@@ -53,5 +53,11 @@ jobs:
       - name: Test
         run: pnpm run test
 
+      - name: Deploy database schema
+        run: pnpm db:deploy
+
+      - name: Seed database
+        run: pnpm db:seed
+
       - name: Playwright E2E Tests
-        run: pnpm playwright:test
+        run: pnpm run test:e2e
