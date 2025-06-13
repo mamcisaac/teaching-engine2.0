@@ -2,7 +2,7 @@ import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
-  globalSetup: './playwright.global-setup',
+  globalSetup: require.resolve('./tests/global-setup'),
 
   webServer: {
     command: 'pnpm dev',
@@ -22,6 +22,7 @@ export default defineConfig({
 
   use: {
     baseURL: 'http://localhost:5173',
+    storageState: 'tests/storage/auth.json',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     actionTimeout: 10000,
