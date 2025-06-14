@@ -10,6 +10,7 @@ import MainLayout from './components/MainLayout';
 // Lazy load pages
 const SubjectsPage = lazy(() => import('./pages/SubjectsPage'));
 const SubjectDetailPage = lazy(() => import('./pages/SubjectDetailPage'));
+const UnitPlannerPage = lazy(() => import('./pages/UnitPlannerPage'));
 const MilestoneDetailPage = lazy(() => import('./pages/MilestoneDetailPage'));
 const NotificationsPage = lazy(() => import('./pages/NotificationsPage'));
 const NewsletterDraftViewer = lazy(() => import('./pages/NewsletterDraftViewer'));
@@ -105,7 +106,7 @@ function AppRoutes() {
             path="unit/:id"
             element={
               <Suspense fallback={<SuspenseFallback />}>
-                <SubjectDetailPage />
+                <UnitPlannerPage />
               </Suspense>
             }
           />
