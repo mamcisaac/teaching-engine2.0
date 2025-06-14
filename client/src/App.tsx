@@ -1,10 +1,11 @@
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import { useAuth } from './contexts/AuthContext';
 import { api } from './api';
 import { NotificationProvider } from './contexts/NotificationContext';
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import MainLayout from './components/MainLayout';
 
 // Lazy load pages
 const SubjectsPage = lazy(() => import('./pages/SubjectsPage'));
@@ -24,6 +25,13 @@ const NewsletterEditor = lazy(() => import('./pages/NewsletterEditor'));
 const OutcomesPage = lazy(() => import('./pages/OutcomesPage'));
 const CoveragePage = lazy(() => import('./pages/CoveragePage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
+
+// Common suspense fallback
+const SuspenseFallback = () => (
+  <div className="flex items-center justify-center min-h-screen">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+  </div>
+);
 
 function AppRoutes() {
   const { token } = useAuth();
@@ -55,191 +63,196 @@ function AppRoutes() {
   }, [token]);
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
+    return <SuspenseFallback />;
   }
 
   return (
     <Routes>
+      {/* Public routes */}
       <Route path="/login" element={token ? <Navigate to="/" replace /> : <LoginPage />} />
 
-      {/* Protected routes */}
+      {/* Protected routes with MainLayout */}
       <Route
-        path="/"
         element={
           <ProtectedRoute>
-            <DashboardPage />
+            <MainLayout>
+              <Outlet />
+            </MainLayout>
           </ProtectedRoute>
         }
-      />
+      >
+        {/* Dashboard */}
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <DashboardPage />
+            </Suspense>
+          }
+        />
 
-      <Route
-        path="/subjects"
-        element={
-          <ProtectedRoute>
-            <Suspense fallback={<div>Loading...</div>}>
+        {/* Planner routes */}
+        <Route path="/planner">
+          <Route
+            path="year"
+            element={
+              <Suspense fallback={<SuspenseFallback />}>
+                <YearAtAGlancePage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="unit/:id"
+            element={
+              <Suspense fallback={<SuspenseFallback />}>
+                <SubjectDetailPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="week/:weekId"
+            element={
+              <Suspense fallback={<SuspenseFallback />}>
+                <WeeklyPlannerPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="week"
+            element={
+              <Suspense fallback={<SuspenseFallback />}>
+                <WeeklyPlannerPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="day/:date"
+            element={
+              <Suspense fallback={<SuspenseFallback />}>
+                <DailyPlanPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="day"
+            element={
+              <Suspense fallback={<SuspenseFallback />}>
+                <DailyPlanPage />
+              </Suspense>
+            }
+          />
+        </Route>
+
+        {/* Subject routes */}
+        <Route
+          path="/subjects"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
               <SubjectsPage />
             </Suspense>
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/subjects/:id"
-        element={
-          <ProtectedRoute>
-            <Suspense fallback={<div>Loading...</div>}>
+          }
+        />
+        <Route
+          path="/subjects/:id"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
               <SubjectDetailPage />
             </Suspense>
-          </ProtectedRoute>
-        }
-      />
+          }
+        />
 
-      <Route
-        path="/milestones/:id"
-        element={
-          <ProtectedRoute>
-            <Suspense fallback={<div>Loading...</div>}>
+        {/* Milestones */}
+        <Route
+          path="/milestones/:id"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
               <MilestoneDetailPage />
             </Suspense>
-          </ProtectedRoute>
-        }
-      />
+          }
+        />
 
-      <Route
-        path="/planner"
-        element={
-          <ProtectedRoute>
-            <Suspense fallback={<div>Loading...</div>}>
-              <WeeklyPlannerPage />
-            </Suspense>
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/timetable"
-        element={
-          <ProtectedRoute>
-            <Suspense fallback={<div>Loading...</div>}>
-              <TimetablePage />
-            </Suspense>
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/year"
-        element={
-          <ProtectedRoute>
-            <Suspense fallback={<div>Loading...</div>}>
-              <YearAtAGlancePage />
-            </Suspense>
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/daily"
-        element={
-          <ProtectedRoute>
-            <Suspense fallback={<div>Loading...</div>}>
-              <DailyPlanPage />
-            </Suspense>
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/notes"
-        element={
-          <ProtectedRoute>
-            <Suspense fallback={<div>Loading...</div>}>
-              <NotesPage />
-            </Suspense>
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/notifications"
-        element={
-          <ProtectedRoute>
-            <Suspense fallback={<div>Loading...</div>}>
-              <NotificationsPage />
-            </Suspense>
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/reflections"
-        element={
-          <ProtectedRoute>
-            <Suspense fallback={<div>Loading...</div>}>
-              <ReflectionsPage />
-            </Suspense>
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/newsletters/new"
-        element={
-          <ProtectedRoute>
-            <Suspense fallback={<div>Loading...</div>}>
-              <NewsletterEditor />
-            </Suspense>
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/newsletters/draft"
-        element={
-          <ProtectedRoute>
-            <Suspense fallback={<div>Loading...</div>}>
-              <NewsletterDraftViewer />
-            </Suspense>
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/settings"
-        element={
-          <ProtectedRoute>
-            <Suspense fallback={<div>Loading...</div>}>
-              <SettingsPage />
-            </Suspense>
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/outcomes"
-        element={
-          <ProtectedRoute>
-            <Suspense fallback={<div>Loading...</div>}>
+        {/* Curriculum outcomes and coverage */}
+        <Route
+          path="/outcomes"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
               <OutcomesPage />
             </Suspense>
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/coverage"
-        element={
-          <ProtectedRoute>
-            <Suspense fallback={<div>Loading...</div>}>
+          }
+        />
+        <Route
+          path="/coverage"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
               <CoveragePage />
             </Suspense>
-          </ProtectedRoute>
-        }
-      />
+          }
+        />
+
+        {/* Resources */}
+        <Route
+          path="/notes"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <NotesPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/reflections"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <ReflectionsPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/timetable"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <TimetablePage />
+            </Suspense>
+          }
+        />
+
+        {/* Newsletters */}
+        <Route
+          path="/newsletters/new"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <NewsletterEditor />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/newsletters/draft"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <NewsletterDraftViewer />
+            </Suspense>
+          }
+        />
+
+        {/* Notifications */}
+        <Route
+          path="/notifications"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <NotificationsPage />
+            </Suspense>
+          }
+        />
+
+        {/* Settings */}
+        <Route
+          path="/settings"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <SettingsPage />
+            </Suspense>
+          }
+        />
+      </Route>
 
       {/* Redirect any unknown routes to home */}
       <Route path="*" element={<Navigate to="/" replace />} />
