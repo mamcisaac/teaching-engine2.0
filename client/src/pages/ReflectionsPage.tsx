@@ -47,16 +47,28 @@ export default function ReflectionsPage() {
           <label className="inline-flex items-center gap-1">
             <input
               type="checkbox"
-              checked={type === 'public' || type === 'all'}
-              onChange={(e) => setType(e.target.checked ? 'public' : 'all')}
+              checked={type === 'public'}
+              onChange={(e) => {
+                if (e.target.checked) {
+                  setType('public');
+                } else {
+                  setType('all');
+                }
+              }}
             />
             Public
           </label>
           <label className="inline-flex items-center gap-1">
             <input
               type="checkbox"
-              checked={type === 'private' || type === 'all'}
-              onChange={(e) => setType(e.target.checked ? 'private' : 'all')}
+              checked={type === 'private'}
+              onChange={(e) => {
+                if (e.target.checked) {
+                  setType('private');
+                } else {
+                  setType('all');
+                }
+              }}
             />
             Private
           </label>
