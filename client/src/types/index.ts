@@ -20,6 +20,8 @@ export interface Milestone {
   title: string;
   subjectId: number;
   description?: string | null;
+  startDate?: string | null;
+  endDate?: string | null;
   activities: Activity[];
   subject?: Subject;
   outcomes?: Array<{ outcome: Outcome }>;

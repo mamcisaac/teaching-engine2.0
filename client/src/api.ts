@@ -413,11 +413,13 @@ export const useCreateMilestone = () => {
       title: string;
       subjectId: number;
       description?: string;
+      startDate?: string;
+      endDate?: string;
       outcomes?: string[];
     }) => api.post('/api/milestones', data),
-    onSuccess: (data, vars) => {
-      qc.invalidateQueries({ queryKey: ['milestones', vars.subjectId] });
-      qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });
+    onSuccess: (data, { subjectId }) => {
+      qc.invalidateQueries({ queryKey: ['milestones', subjectId] });
+      qc.invalidateQueries({ queryKey: ['subject', subjectId] });
       toast.success('Milestone created');
     },
   });
@@ -431,6 +433,8 @@ export const useUpdateMilestone = () => {
       title: string;
       subjectId: number;
       description?: string;
+      startDate?: string;
+      endDate?: string;
       outcomes?: string[];
     }) => api.put(`/milestones/${data.id}`, data),
     onSuccess: (data, vars) => {
@@ -443,14 +447,21 @@ export const useUpdateMilestone = () => {
 
 export const useDeleteMilestone = () => {
   const qc = useQueryClient();
-  return useMutation<void, Error, number, { previousMilestones?: unknown }>({
-    mutationFn: (id: number) => api.delete(`/milestones/${id}`).then(() => {}),
-    onSuccess: () => {
-      // The context here should contain the subjectId from the onMutate function
-      // If not, we'll need to refetch all milestones
-      qc.invalidateQueries({ queryKey: ['milestones'] });
-      qc.invalidateQueries({ queryKey: ['subject'] });
+  return useMutation<
+    void,
+    Error,
+    { id: number; subjectId: number },
+    { previousMilestones?: unknown }
+  >({
+    mutationFn: ({ id }) => api.delete(`/milestones/${id}`).then(() => {}),
+    onSuccess: (_, { subjectId }) => {
+      qc.invalidateQueries({ queryKey: ['milestones', subjectId] });
+      qc.invalidateQueries({ queryKey: ['subject', subjectId] });
       toast.success('Milestone deleted');
+    },
+    onError: (error) => {
+      console.error('Error deleting milestone:', error);
+      toast.error('Failed to delete milestone');
     },
   });
 };

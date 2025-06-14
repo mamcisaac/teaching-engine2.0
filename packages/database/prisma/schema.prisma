@@ -30,6 +30,8 @@ model Milestone {
   user       User?     @relation(fields: [userId], references: [id])
   description String?
   targetDate DateTime?
+  startDate  DateTime?
+  endDate    DateTime?
   estHours   Int?
   deadline   ReportDeadline? @relation(fields: [deadlineId], references: [id])
   deadlineId Int?

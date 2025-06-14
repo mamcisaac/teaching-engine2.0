@@ -9,6 +9,7 @@ router.get('/', async (_req, res, next) => {
   try {
     const milestones = await prisma.milestone.findMany({
       include: { activities: true, outcomes: { include: { outcome: true } } },
+      orderBy: { startDate: 'asc' },
     });
     res.json(milestones);
   } catch (err) {
@@ -20,7 +21,15 @@ router.get('/:id', async (req, res, next) => {
   try {
     const milestone = await prisma.milestone.findUnique({
       where: { id: Number(req.params.id) },
-      include: { activities: true, outcomes: { include: { outcome: true } } },
+      include: {
+        activities: {
+          orderBy: { orderIndex: 'asc' },
+        },
+        outcomes: {
+          include: { outcome: true },
+          orderBy: { outcome: { code: 'asc' } },
+        },
+      },
     });
     if (!milestone) return res.status(404).json({ error: 'Not Found' });
     res.json(milestone);
@@ -36,6 +45,8 @@ router.post('/', validate(milestoneCreateSchema), async (req, res, next) => {
         title: req.body.title,
         subjectId: req.body.subjectId,
         targetDate: req.body.targetDate ? new Date(req.body.targetDate) : undefined,
+        startDate: req.body.startDate ? new Date(req.body.startDate) : undefined,
+        endDate: req.body.endDate ? new Date(req.body.endDate) : undefined,
         estHours: req.body.estHours,
         description: req.body.description,
       },
@@ -70,6 +81,8 @@ router.put('/:id', validate(milestoneUpdateSchema), async (req, res, next) => {
       data: {
         title: req.body.title,
         targetDate: req.body.targetDate ? new Date(req.body.targetDate) : undefined,
+        startDate: req.body.startDate ? new Date(req.body.startDate) : undefined,
+        endDate: req.body.endDate ? new Date(req.body.endDate) : undefined,
         estHours: req.body.estHours,
         description: req.body.description,
       },

@@ -6,16 +6,36 @@ export const subjectSchema = z.object({
   name: z.string().min(1),
 });
 
-export const milestoneCreateSchema = z.object({
+// Create base schema without refinement for update
+const baseMilestoneSchema = z.object({
   title: z.string().min(1),
   subjectId: z.number(),
   targetDate: z.string().datetime().optional(),
+  startDate: z.string().datetime().optional(),
+  endDate: z.string().datetime().optional(),
   estHours: z.number().int().optional(),
   description: z.string().max(10000).optional(),
   outcomes: z.array(z.string()).optional(),
 });
 
-export const milestoneUpdateSchema = milestoneCreateSchema.omit({ subjectId: true });
+export const milestoneCreateSchema = baseMilestoneSchema.refine(
+  (data) => !(data.startDate && data.endDate) || new Date(data.startDate) <= new Date(data.endDate),
+  {
+    message: 'End date must be after or equal to start date',
+    path: ['endDate'],
+  },
+);
+
+export const milestoneUpdateSchema = baseMilestoneSchema
+  .omit({ subjectId: true })
+  .refine(
+    (data) =>
+      !(data.startDate && data.endDate) || new Date(data.startDate) <= new Date(data.endDate),
+    {
+      message: 'End date must be after or equal to start date',
+      path: ['endDate'],
+    },
+  );
 
 export const activityCreateSchema = z.object({
   title: z.string().min(1),
