@@ -259,14 +259,14 @@ export const useDeleteResource = () => {
 
 // Sub plan generator
 export const fetchSubPlan = async (data: { date: string; reason: string }) => {
-  const response = await api.post('/sub-plan', data);
+  const response = await api.post('/api/sub-plan', data);
   return response.data;
 };
 
 // Sub plan generator for multiple days
 export const generateSubPlan = async (date: string, days: number) => {
   const response = await api.post(
-    `/sub-plan/generate?date=${date}&days=${days}`,
+    `/api/sub-plan/generate?date=${date}&days=${days}`,
     {},
     {
       responseType: 'blob',

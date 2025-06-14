@@ -35,6 +35,7 @@ import weekRoutes from './routes/week';
 import substituteInfoRoutes from './routes/substituteInfo';
 import backupRoutes from './routes/backupRoutes';
 import subjectRoutes from './routes/subject';
+import subplanRoutes from './routes/subplan';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
@@ -191,6 +192,7 @@ app.use('/api/weeks', weekRoutes);
 app.use('/api/substitute-info', substituteInfoRoutes);
 app.use('/api/backup', backupRoutes);
 app.use('/api/subjects', subjectRoutes);
+app.use('/api/sub-plan', subplanRoutes);
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
 });

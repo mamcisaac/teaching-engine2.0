@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Dialog from './Dialog';
 import { generateSubPlan } from '../api';
 
@@ -14,8 +14,23 @@ export default function SubPlanGenerator({ onClose }: Props) {
   const generate = async () => {
     const res = await generateSubPlan(date, days);
     const blob = new Blob([res.data], { type: 'application/pdf' });
+
+    // Clean up previous URL if it exists
+    if (url) {
+      URL.revokeObjectURL(url);
+    }
+
     setUrl(URL.createObjectURL(blob));
   };
+
+  // Clean up URL when component unmounts
+  useEffect(() => {
+    return () => {
+      if (url) {
+        URL.revokeObjectURL(url);
+      }
+    };
+  }, [url]);
 
   return (
     <Dialog open={true} onOpenChange={onClose}>
