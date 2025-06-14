@@ -449,8 +449,12 @@ export const useDeleteMilestone = () => {
 export const useCreateActivity = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: { title: string; milestoneId: number; materialsText?: string }) =>
-      api.post('/api/activities', data),
+    mutationFn: (data: {
+      title: string;
+      milestoneId: number;
+      materialsText?: string;
+      outcomes?: string[];
+    }) => api.post('/api/activities', data),
     onSuccess: (_res, vars) => {
       qc.invalidateQueries({ queryKey: ['milestone', vars.milestoneId] });
       toast.success('Activity created');
@@ -468,15 +472,18 @@ export const useUpdateActivity = () => {
       title?: string;
       materialsText?: string;
       completedAt?: string | null;
+      outcomes?: string[];
     }) =>
       api.put(`/api/activities/${data.id}`, {
         title: data.title,
         completedAt: data.completedAt,
         materialsText: data.materialsText,
+        outcomes: data.outcomes,
       }),
     onSuccess: (_res, vars) => {
       qc.invalidateQueries({ queryKey: ['milestone', vars.milestoneId] });
       if (vars.subjectId) qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });
+      qc.invalidateQueries({ queryKey: ['lesson-plan'] });
       toast.success('Activity updated');
     },
   });

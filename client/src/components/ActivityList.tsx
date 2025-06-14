@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import MaterialsInput from './activity/MaterialsInput';
 import type { Activity } from '../api';
 import CompleteActivityButton from './CompleteActivityButton';
+import OutcomeSelector from './OutcomeSelector';
+import OutcomeTag from './OutcomeTag';
 import {
   useCreateActivity,
   useUpdateActivity,
@@ -57,6 +59,13 @@ function SortableActivity({
           </button>
         </div>
       </div>
+      {activity.outcomes && activity.outcomes.length > 0 && (
+        <div className="flex flex-wrap gap-1 mt-1">
+          {activity.outcomes.map(({ outcome }) => (
+            <OutcomeTag key={outcome.id} outcome={outcome} size="small" />
+          ))}
+        </div>
+      )}
       <div className="h-2 bg-gray-200 rounded">
         <div className="h-full bg-blue-500" style={{ width: `${progress}%` }} />
       </div>
@@ -72,8 +81,10 @@ export default function ActivityList({ activities, milestoneId, subjectId }: Pro
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
   const [materials, setMaterials] = useState('');
+  const [selectedOutcomes, setSelectedOutcomes] = useState<string[]>([]);
   const [editId, setEditId] = useState<number | null>(null);
   const [editTitle, setEditTitle] = useState('');
+  const [editOutcomes, setEditOutcomes] = useState<string[]>([]);
   const [ids, setIds] = useState<number[]>([]);
 
   useEffect(() => {
@@ -93,18 +104,31 @@ export default function ActivityList({ activities, milestoneId, subjectId }: Pro
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!title.trim()) return;
-    create.mutate({ title, milestoneId, materialsText: materials });
+    create.mutate({
+      title,
+      milestoneId,
+      materialsText: materials,
+      outcomes: selectedOutcomes,
+    });
     setTitle('');
     setMaterials('');
+    setSelectedOutcomes([]);
     setOpen(false);
   };
 
   const handleEditSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (editId === null || !editTitle.trim()) return;
-    update.mutate({ id: editId, milestoneId, subjectId, title: editTitle });
+    update.mutate({
+      id: editId,
+      milestoneId,
+      subjectId,
+      title: editTitle,
+      outcomes: editOutcomes,
+    });
     setEditId(null);
     setEditTitle('');
+    setEditOutcomes([]);
   };
 
   return (
@@ -113,29 +137,33 @@ export default function ActivityList({ activities, milestoneId, subjectId }: Pro
         Add Activity
       </button>
       <Dialog open={open} onOpenChange={setOpen}>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-4">
           <label htmlFor="activity-title" className="flex flex-col">
-            <span className="sr-only">Activity title</span>
+            <span className="block text-sm font-medium text-gray-700 mb-1">Activity title</span>
             <input
               id="activity-title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="New activity"
-              className="border p-2"
+              className="border p-2 rounded-md"
             />
           </label>
+
           <label htmlFor="activity-materials" className="flex flex-col">
-            <span className="sr-only">Materials</span>
+            <span className="block text-sm font-medium text-gray-700 mb-1">Materials</span>
             <textarea
               id="activity-materials"
               value={materials}
               onChange={(e) => setMaterials(e.target.value)}
               placeholder="glue, scissors"
-              className="border p-2"
+              className="border p-2 rounded-md"
             />
           </label>
-          <button type="submit" className="self-end px-2 py-1 bg-blue-600 text-white">
-            Save
+
+          <OutcomeSelector selectedOutcomes={selectedOutcomes} onChange={setSelectedOutcomes} />
+
+          <button type="submit" className="self-end px-4 py-2 bg-blue-600 text-white rounded-md">
+            Save Activity
           </button>
         </form>
       </Dialog>
@@ -151,6 +179,9 @@ export default function ActivityList({ activities, milestoneId, subjectId }: Pro
                   onEdit={() => {
                     setEditId(a.id);
                     setEditTitle(a.title);
+                    // Extract outcome codes from the activity's outcomes
+                    const outcomeCodes = a.outcomes?.map((o) => o.outcome.code) || [];
+                    setEditOutcomes(outcomeCodes);
                   }}
                   onDelete={() => remove.mutate({ id: a.id, milestoneId, subjectId })}
                   milestoneId={milestoneId}
@@ -161,24 +192,28 @@ export default function ActivityList({ activities, milestoneId, subjectId }: Pro
         </SortableContext>
       </DndContext>
       <Dialog open={editId !== null} onOpenChange={() => setEditId(null)}>
-        <form onSubmit={handleEditSubmit} className="flex flex-col gap-2">
+        <form onSubmit={handleEditSubmit} className="flex flex-col gap-4 p-4">
           <label htmlFor="edit-activity-title" className="flex flex-col">
-            <span className="sr-only">Edit activity title</span>
+            <span className="block text-sm font-medium text-gray-700 mb-1">Activity title</span>
             <input
               id="edit-activity-title"
               value={editTitle}
               onChange={(e) => setEditTitle(e.target.value)}
-              className="border p-2"
+              className="border p-2 rounded-md"
             />
           </label>
+
           {editId !== null && (
             <MaterialsInput
               activityId={editId}
               initial={activities.find((a) => a.id === editId)?.materialsText ?? ''}
             />
           )}
-          <button type="submit" className="self-end px-2 py-1 bg-blue-600 text-white">
-            Save
+
+          <OutcomeSelector selectedOutcomes={editOutcomes} onChange={setEditOutcomes} />
+
+          <button type="submit" className="self-end px-4 py-2 bg-blue-600 text-white rounded-md">
+            Update Activity
           </button>
         </form>
       </Dialog>
