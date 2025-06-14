@@ -216,39 +216,67 @@ export default function WeeklyPlannerPage() {
     }
   }, []);
 
+  // Format week display
+  const weekStartDate = new Date(weekStart);
+  const weekEndDate = new Date(weekStartDate.getTime() + 4 * 86400000); // Add 4 days (Mon-Fri)
+  const formatDate = (date: Date) =>
+    date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
   return (
-    <div className="space-y-4">
-      <div className="flex gap-2 items-center">
-        <input
-          type="date"
-          value={weekStart}
-          onChange={(e) => setWeekStart(getWeekStartISO(new Date(e.target.value)))}
-          className="border p-1"
-          data-testid="week-start-input"
-        />
-        <AutoFillButton
-          weekStart={weekStart}
-          preserveBuffer={preserveBuffer}
-          pacingStrategy={skipLow ? 'relaxed' : 'strict'}
-          onGenerated={() => refetch()}
-        />
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="bg-white rounded-lg shadow-sm border p-6">
+        <div className="flex justify-between items-start mb-4">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Weekly Planner</h1>
+            <p className="text-gray-600 mt-1">
+              {formatDate(weekStartDate)} - {formatDate(weekEndDate)}, {weekStartDate.getFullYear()}
+            </p>
+          </div>
+          <div className="flex gap-3 items-center">
+            <input
+              type="date"
+              value={weekStart}
+              onChange={(e) => setWeekStart(getWeekStartISO(new Date(e.target.value)))}
+              className="px-3 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+              data-testid="week-start-input"
+            />
+            <AutoFillButton
+              weekStart={weekStart}
+              preserveBuffer={preserveBuffer}
+              pacingStrategy={skipLow ? 'relaxed' : 'strict'}
+              onGenerated={() => refetch()}
+            />
+          </div>
+        </div>
+
+        {/* Options */}
+        <div className="flex gap-6 items-center text-sm">
+          <label className="inline-flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={preserveBuffer}
+              onChange={(e) => setPreserveBuffer(e.target.checked)}
+              className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+            />
+            <span className="text-gray-700">Preserve daily buffer block</span>
+          </label>
+          <label className="inline-flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={skipLow}
+              onChange={(e) => setSkipLow(e.target.checked)}
+              className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+            />
+            <span className="text-gray-700">Skip lowest priority activity on short weeks</span>
+          </label>
+        </div>
       </div>
-      <div className="flex gap-4 items-center">
-        <label className="inline-flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={preserveBuffer}
-            onChange={(e) => setPreserveBuffer(e.target.checked)}
-          />
-          Preserve daily buffer block
-        </label>
-        <label className="inline-flex items-center gap-2">
-          <input type="checkbox" checked={skipLow} onChange={(e) => setSkipLow(e.target.checked)} />
-          Skip lowest priority activity on short weeks
-        </label>
-      </div>
+
       <PlannerNotificationBanner />
+
       <DndContext onDragEnd={handleDragEnd}>
+        {/* Main Calendar */}
         <WeekCalendarGrid
           schedule={schedule}
           activities={activities}
@@ -257,20 +285,46 @@ export default function WeeklyPlannerPage() {
           holidays={weekHolidays}
           invalidDay={invalidDay}
         />
+
+        {/* No Plan Message */}
         {!plan && (
-          <p data-testid="no-plan-message" className="text-sm text-gray-600">
-            No plan available for this week.
-          </p>
-        )}
-        {plan && (
-          <div className="space-y-2 my-4">
-            <DownloadPrintablesButton weekStart={weekStart} />
-            <WeeklyMaterialsChecklist weekStart={weekStart} />
+          <div className="bg-white rounded-lg border p-8 text-center">
+            <div className="text-4xl mb-4">📅</div>
+            <h3 className="text-lg font-medium text-gray-900 mb-2">
+              No plan available for this week
+            </h3>
+            <p className="text-gray-600 mb-4">
+              Generate a lesson plan to start scheduling activities
+            </p>
+            <AutoFillButton
+              weekStart={weekStart}
+              preserveBuffer={preserveBuffer}
+              pacingStrategy={skipLow ? 'relaxed' : 'strict'}
+              onGenerated={() => refetch()}
+            />
           </div>
         )}
-        <PlannerFilters filters={filters} onChange={setFilters} />
-        <h2>Suggestions</h2>
-        <ActivitySuggestionList activities={suggestions ?? []} />
+
+        {/* Week Resources */}
+        {plan && (
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white rounded-lg border p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Week Resources</h3>
+              <div className="space-y-3">
+                <DownloadPrintablesButton weekStart={weekStart} />
+                <WeeklyMaterialsChecklist weekStart={weekStart} />
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg border p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Activity Suggestions</h3>
+              <PlannerFilters filters={filters} onChange={setFilters} />
+              <div className="mt-4">
+                <ActivitySuggestionList activities={suggestions ?? []} />
+              </div>
+            </div>
+          </div>
+        )}
       </DndContext>
     </div>
   );
