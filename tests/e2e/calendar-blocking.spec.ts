@@ -8,20 +8,27 @@ import { login, API_BASE } from './helpers';
  */
 test('planner blocks times from calendar events', async ({ page }) => {
   const token = await login(page);
-  const today = new Date().toISOString().split('T')[0];
+  // Use a Monday (weekday) for the event since planner only shows Mon-Fri
+  const currentWeek = new Date();
+  const monday = new Date(currentWeek.getTime() - (currentWeek.getDay() - 1) * 86400000);
+  const mondayISO = monday.toISOString().split('T')[0];
   await page.request.post(`${API_BASE}/api/calendar-events`, {
     headers: { Authorization: `Bearer ${token}` },
     data: {
       title: 'Assembly',
-      start: `${today}T00:00:00.000Z`,
-      end: `${today}T23:59:59.000Z`,
+      start: `${mondayISO}T00:00:00.000Z`,
+      end: `${mondayISO}T23:59:59.000Z`,
       allDay: true,
       eventType: 'ASSEMBLY',
     },
   });
   await page.goto('/planner');
   await page.waitForSelector('.planner-grid', { timeout: 10000 });
-  await page.waitForResponse((r) => r.url().includes('/api/calendar-events') && r.status() === 200);
+  await page
+    .waitForResponse((r) => r.url().includes('/api/calendar-events') && r.status() === 200, {
+      timeout: 5000,
+    })
+    .catch(() => console.log('Calendar events API timeout, proceeding...'));
   const blocked = page.locator('text=Assembly').first();
   await expect(blocked).toBeVisible();
 });

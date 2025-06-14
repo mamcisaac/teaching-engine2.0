@@ -340,7 +340,7 @@ export const useSaveTimetable = () => {
 export const useCalendarEvents = (start: string, end: string) =>
   useQuery<CalendarEvent[]>({
     queryKey: ['calendar-events', start, end],
-    queryFn: async () => (await api.get(`/api/calendar-events?start=${start}&end=${end}`)).data,
+    queryFn: async () => (await api.get(`/api/calendar-events?from=${start}&to=${end}`)).data,
   });
 
 export const usePlannerSuggestions = (weekStart: string, filters: Record<string, boolean>) =>
