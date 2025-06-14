@@ -28,49 +28,35 @@ test('rejects drop when activity longer than slot', async ({ page }) => {
     headers: { Authorization: `Bearer ${token}` },
     data: { title: 'ShortAct', milestoneId, durationMins: 30 },
   });
+  // Create a 45-minute time slot for testing duration conflict
   await page.request.put(`${API_BASE}/api/timetable`, {
     headers: { Authorization: `Bearer ${token}` },
-    data: [{ day: 0, startMin: 540, endMin: 585, subjectId: 1 }],
-  });
-
-  const weekStart = new Date().toISOString().split('T')[0];
-  await page.route('**/api/lesson-plans/*', async (route) => {
-    if (route.request().method() === 'GET') {
-      await route.fulfill({
-        status: 200,
-        contentType: 'application/json',
-        body: JSON.stringify({ id: 1, weekStart, schedule: [] }),
-      });
-    } else {
-      await route.fallback();
-    }
-  });
-  await page.route('**/api/timetable', async (route) => {
-    await route.fulfill({
-      status: 200,
-      contentType: 'application/json',
-      body: JSON.stringify([
-        {
-          id: 1,
-          day: 0,
-          startMin: 540,
-          endMin: 585,
-          subjectId: 1,
-          subject: { id: 1, name: 'Math', milestones: [] },
-        },
-      ]),
-    });
+    data: [{ day: 0, startMin: 540, endMin: 585, subjectId }], // 45-minute slot
   });
 
   await page.goto('/planner');
   await page.waitForSelector('.planner-grid', { timeout: 10000 });
+
+  // Wait for calendar-events API with timeout handling
   await page
     .waitForResponse((r) => r.url().includes('/api/calendar-events') && r.status() === 200, {
       timeout: 5000,
     })
     .catch(() => console.log('Calendar events API timeout, proceeding...'));
-  const card = page.locator('text=LongAct').first();
+
+  // Wait for timetable and suggestions to load
+  await page.waitForTimeout(2000);
+
+  // First try dragging ShortAct (30 mins) to verify the slot works - this should succeed
+  const shortCard = page.locator('text=ShortAct').first();
   const target = page.locator('[data-testid="day-0"]');
-  await card.dragTo(target);
+  await shortCard.dragTo(target);
+
+  // Wait a moment for any success message to appear
+  await page.waitForTimeout(1000);
+
+  // Now try dragging LongAct (60 mins) - this should fail with duration error
+  const longCard = page.locator('text=LongAct').first();
+  await longCard.dragTo(target);
   await expect(page.locator('text=Too long for this slot')).toBeVisible();
 });

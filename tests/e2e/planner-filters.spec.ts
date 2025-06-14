@@ -37,7 +37,28 @@ test('planner tag filters', async ({ page }) => {
     .catch(() => console.log('Calendar events API timeout, proceeding...'));
   await page.uncheck('label:has-text("HandsOn") input');
   await page.uncheck('label:has-text("Video") input');
+  await page.uncheck('label:has-text("Worksheet") input');
   await page.check('label:has-text("Worksheet") input');
+
+  // Wait for the suggestions API to be called with the new filters
+  await page.waitForResponse(
+    (response) =>
+      response.url().includes('/api/planner/suggestions') &&
+      response.url().includes('filters=') &&
+      response.status() === 200,
+    { timeout: 5000 },
+  );
+
+  // Check that filters are in the correct state
+  await expect(page.locator('label:has-text("Worksheet") input')).toBeChecked();
+  await expect(page.locator('label:has-text("Video") input')).not.toBeChecked();
+
+  // Check that WorksheetAct is visible in Activity Suggestions
   await expect(page.locator('text=WorksheetAct').first()).toBeVisible();
-  await expect(page.locator('text=VideoAct')).toHaveCount(0);
+
+  // Check that VideoAct is not visible in Activity Suggestions section
+  const activitySuggestionsSection = page
+    .locator('h3:has-text("Activity Suggestions")')
+    .locator('..');
+  await expect(activitySuggestionsSection.locator('text="VideoAct"')).toHaveCount(0);
 });

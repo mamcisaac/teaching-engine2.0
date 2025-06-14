@@ -72,6 +72,20 @@ test('filters notes by subject and type', async ({ page }) => {
   });
 
   await page.goto('/reflections');
+
+  // Wait for the page to load and data to be fetched
+  await page.waitForSelector('select', { timeout: 10000 });
+  await page.waitForLoadState('networkidle');
+
+  // Wait for the select to have options (subjects loaded)
+  await page.waitForFunction(
+    () => {
+      const select = document.querySelector('select');
+      return select && select.options.length > 1; // More than just "All Subjects"
+    },
+    { timeout: 10000 },
+  );
+
   await page.selectOption('select', `${mathId}`);
   await page.check('label:has-text("Public") input');
 

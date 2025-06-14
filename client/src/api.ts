@@ -346,8 +346,11 @@ export const useCalendarEvents = (start: string, end: string) =>
 export const usePlannerSuggestions = (weekStart: string, filters: Record<string, boolean>) =>
   useQuery<Activity[]>({
     queryKey: ['planner-suggestions', weekStart, filters],
-    queryFn: async () =>
-      (await api.get(`/planner/suggestions?weekStart=${weekStart}`, { params: { filters } })).data,
+    queryFn: async () => {
+      const filtersParam = `&filters=${encodeURIComponent(JSON.stringify(filters))}`;
+      const url = `/api/planner/suggestions?weekStart=${weekStart}${filtersParam}`;
+      return (await api.get(url)).data;
+    },
   });
 
 export const useSubjects = () =>
