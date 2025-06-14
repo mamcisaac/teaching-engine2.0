@@ -142,7 +142,7 @@ export default function WeeklyPlannerPage() {
       console.error('Activity too long for slot');
       setInvalidDay(day);
       setTimeout(() => setInvalidDay(undefined), 1500);
-      toast.error('Activity is too long for this time slot');
+      toast.error('Too long for this slot');
       return;
     }
 

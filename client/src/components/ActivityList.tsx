@@ -46,7 +46,12 @@ function SortableActivity({
   };
   const progress = activity.completedAt ? 100 : 0;
   return (
-    <li ref={setNodeRef} style={style} className="border p-2 rounded space-y-1">
+    <li
+      ref={setNodeRef}
+      style={style}
+      className="border p-2 rounded space-y-1"
+      data-testid="activity-item"
+    >
       <div className="flex items-center gap-2" {...attributes} {...listeners}>
         <CompleteActivityButton activity={activity} milestoneId={milestoneId} />
         <span className="flex-1">{activity.title}</span>

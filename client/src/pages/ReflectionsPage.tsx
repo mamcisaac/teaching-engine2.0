@@ -46,28 +46,17 @@ export default function ReflectionsPage() {
         <div className="flex gap-2">
           <label className="inline-flex items-center gap-1">
             <input
-              type="radio"
-              value="all"
-              checked={type === 'all'}
-              onChange={(e) => setType(e.target.value)}
-            />
-            All
-          </label>
-          <label className="inline-flex items-center gap-1">
-            <input
-              type="radio"
-              value="public"
-              checked={type === 'public'}
-              onChange={(e) => setType(e.target.value)}
+              type="checkbox"
+              checked={type === 'public' || type === 'all'}
+              onChange={(e) => setType(e.target.checked ? 'public' : 'all')}
             />
             Public
           </label>
           <label className="inline-flex items-center gap-1">
             <input
-              type="radio"
-              value="private"
-              checked={type === 'private'}
-              onChange={(e) => setType(e.target.value)}
+              type="checkbox"
+              checked={type === 'private' || type === 'all'}
+              onChange={(e) => setType(e.target.checked ? 'private' : 'all')}
             />
             Private
           </label>

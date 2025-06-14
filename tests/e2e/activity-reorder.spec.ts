@@ -1,4 +1,5 @@
 import { test, expect, Page } from '@playwright/test';
+import { login } from './helpers';
 
 const API_BASE = process.env.API_BASE || 'http://localhost:3001';
 
