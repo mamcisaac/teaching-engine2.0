@@ -170,7 +170,7 @@ test.describe('Activity Reorder', () => {
       }
 
       // Navigate to the milestone page
-      await page.goto(`/subjects/${subject.id}/milestones/${milestone.id}`);
+      await page.goto(`/milestones/${milestone.id}`);
 
       // Wait for activities to load
       await page.waitForSelector('[data-testid="activity-item"]', { timeout: 10000 });

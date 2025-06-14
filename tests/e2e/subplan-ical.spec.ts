@@ -42,7 +42,7 @@ test('ical import blocks planner and sub plan lists event', async ({ page }) => 
   );
   await expect(page.getByText('Test Event').first()).toBeVisible();
 
-  const resp = await page.request.post(`${API_BASE}/api/subplan/generate?date=2025-01-01`, {
+  const resp = await page.request.post(`${API_BASE}/api/sub-plan/generate?date=2025-01-01`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   expect(resp.ok()).toBe(true);
