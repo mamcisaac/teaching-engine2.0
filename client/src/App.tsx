@@ -22,6 +22,7 @@ const SettingsPage = lazy(() => import('./pages/SettingsPage'));
 const WeeklyPlannerPage = lazy(() => import('./pages/WeeklyPlannerPage'));
 const NewsletterEditor = lazy(() => import('./pages/NewsletterEditor'));
 const OutcomesPage = lazy(() => import('./pages/OutcomesPage'));
+const CoveragePage = lazy(() => import('./pages/CoveragePage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 
 function AppRoutes() {
@@ -224,6 +225,17 @@ function AppRoutes() {
           <ProtectedRoute>
             <Suspense fallback={<div>Loading...</div>}>
               <OutcomesPage />
+            </Suspense>
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/coverage"
+        element={
+          <ProtectedRoute>
+            <Suspense fallback={<div>Loading...</div>}>
+              <CoveragePage />
             </Suspense>
           </ProtectedRoute>
         }

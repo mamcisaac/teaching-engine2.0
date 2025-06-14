@@ -124,6 +124,9 @@ export type {
   CalendarEvent,
 } from './types';
 
+// Export OutcomeCoverage type directly from api.ts
+export type { OutcomeCoverage };
+
 // Query hooks
 export const useNewsletter = (id: number, type: 'raw' | 'polished' = 'raw') =>
   useQuery<Newsletter>({
@@ -640,6 +643,42 @@ export const useOutcomes = (filters?: {
         return response.data;
       } catch (error) {
         console.error('Error fetching outcomes:', error);
+        throw error;
+      }
+    },
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
+};
+
+// Type for outcome coverage data
+export interface OutcomeCoverage {
+  outcomeId: string;
+  code: string;
+  description: string;
+  subject: string;
+  domain: string | null;
+  grade: number;
+  isCovered: boolean;
+  coveredBy: Array<{
+    id: number;
+    title: string;
+  }>;
+}
+
+// Hook for outcome coverage data
+export const useOutcomeCoverage = (filters?: {
+  subject?: string;
+  grade?: string | number;
+  domain?: string;
+}) => {
+  return useQuery<OutcomeCoverage[]>({
+    queryKey: ['outcome-coverage', filters],
+    queryFn: async () => {
+      try {
+        const response = await api.get('/api/outcomes/coverage', { params: filters });
+        return response.data;
+      } catch (error) {
+        console.error('Error fetching outcome coverage:', error);
         throw error;
       }
     },

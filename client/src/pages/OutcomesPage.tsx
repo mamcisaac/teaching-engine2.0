@@ -91,9 +91,14 @@ export default function OutcomesPage() {
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Curriculum Outcomes</h1>
-        <a href="/" className="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300">
-          Back to Dashboard
-        </a>
+        <div className="flex space-x-2">
+          <a href="/coverage" className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+            View Coverage Dashboard
+          </a>
+          <a href="/" className="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300">
+            Back to Dashboard
+          </a>
+        </div>
       </div>
 
       {/* Search and filters */}
