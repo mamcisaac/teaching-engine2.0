@@ -136,7 +136,7 @@ export const useFilteredNotes = (filters: {
 }) =>
   useQuery<Note[]>({
     queryKey: ['notes', filters],
-    queryFn: async () => (await api.get('/notes', { params: filters })).data,
+    queryFn: async () => (await api.get('/api/notes', { params: filters })).data,
   });
 
 export const useMaterialList = (weekStart: string) =>
@@ -154,7 +154,7 @@ export const useDailyPlan = (date: string) =>
 export const useCreateNewsletterDraft = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: { content: string }) => api.post('/newsletters/draft', data),
+    mutationFn: (data: { content: string }) => api.post('/api/newsletters/draft', data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['newsletters'] });
       toast.success('Draft created');
@@ -165,7 +165,7 @@ export const useCreateNewsletterDraft = () => {
 export const useCreateNewsletter = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: { title: string; content: string }) => api.post('/newsletters', data),
+    mutationFn: (data: { title: string; content: string }) => api.post('/api/newsletters', data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['newsletters'] });
       toast.success('Newsletter created');
@@ -176,7 +176,7 @@ export const useCreateNewsletter = () => {
 export const useAddNote = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: NoteInput) => api.post('/notes', data),
+    mutationFn: (data: NoteInput) => api.post('/api/notes', data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['notes'] });
       toast.success('Note added');
@@ -199,7 +199,7 @@ export const useAddCalendarEvent = () => {
 export const useNotifications = () =>
   useQuery<Notification[]>({
     queryKey: ['notifications'],
-    queryFn: async () => (await api.get('/notifications')).data,
+    queryFn: async () => (await api.get('/api/notifications')).data,
   });
 
 export const useMarkNotificationRead = () => {
@@ -223,7 +223,7 @@ export const useYearPlan = (teacherId: number, year: number) =>
 export const useNotes = () =>
   useQuery<Note[]>({
     queryKey: ['notes'],
-    queryFn: async () => (await api.get('/notes')).data,
+    queryFn: async () => (await api.get('/api/notes')).data,
   });
 
 // Material hooks
@@ -271,7 +271,7 @@ export const generateSubPlan = async (date: string, days: number) => {
 
 // Newsletter suggestions
 export const fetchNewsletterSuggestions = async () => {
-  const response = await api.get('/newsletter-suggestions');
+  const response = await api.get('/api/newsletter-suggestions');
   return response.data;
 };
 
@@ -283,7 +283,7 @@ export const useGenerateNewsletter = () => {
       weekEnd: string;
       subject: string;
       highlights: string[];
-    }) => api.post('/newsletters/generate', data),
+    }) => api.post('/api/newsletters/generate', data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['newsletters'] });
       toast.success('Newsletter generated successfully');
@@ -329,7 +329,7 @@ export const useSaveTimetable = () => {
   return useMutation({
     mutationFn: (
       slots: Array<{ day: number; startMin: number; endMin: number; subjectId?: number | null }>,
-    ) => api.put('/timetable', { slots }),
+    ) => api.put('/api/timetable', { slots }),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['timetable'] });
       toast.success('Timetable saved');
@@ -414,7 +414,7 @@ export const useCreateMilestone = () => {
       subjectId: number;
       description?: string;
       outcomes?: string[];
-    }) => api.post('/milestones', data),
+    }) => api.post('/api/milestones', data),
     onSuccess: (data, vars) => {
       qc.invalidateQueries({ queryKey: ['milestones', vars.subjectId] });
       qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });
@@ -553,7 +553,7 @@ export const useReorderActivities = () => {
 export const useUpdateTeacherPreferences = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: TeacherPreferencesInput) => api.put('/teacher/preferences', data),
+    mutationFn: (data: TeacherPreferencesInput) => api.put('/api/teacher/preferences', data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['teacher'] });
       toast.success('Preferences updated');
@@ -572,7 +572,7 @@ export const useUploadResource = () => {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (data: FormData) =>
-      api.post<Resource>('/resources/upload', data, {
+      api.post<Resource>('/api/resources/upload', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -588,7 +588,7 @@ export const useUploadResource = () => {
 export const useGenerateDailyPlan = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (date: string) => api.post('/daily-plans/generate', { date }),
+    mutationFn: (date: string) => api.post('/api/daily-plans/generate', { date }),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['daily-plan'] });
     },
@@ -633,7 +633,7 @@ export const useGeneratePlan = () => {
 export const useShareYearPlan = () => {
   return useMutation({
     mutationFn: (data: { teacherId: number; year: number }) =>
-      api.post<{ shareToken: string }>('/year-plan/share', data),
+      api.post<{ shareToken: string }>('/api/year-plan/share', data),
   });
 };
 
@@ -735,7 +735,7 @@ export interface SubstituteInfo {
 export const useSubstituteInfo = () => {
   return useQuery<SubstituteInfo>({
     queryKey: ['substitute-info'],
-    queryFn: async () => (await api.get('/substitute/info')).data,
+    queryFn: async () => (await api.get('/api/substitute-info')).data,
   });
 };
 
@@ -743,7 +743,7 @@ export const useSaveSubstituteInfo = () => {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (data: Omit<SubstituteInfo, 'id' | 'teacherId'>) =>
-      api.put('/substitute/info', data),
+      api.put('/api/substitute-info', data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['substitute-info'] });
       toast.success('Substitute information saved');
