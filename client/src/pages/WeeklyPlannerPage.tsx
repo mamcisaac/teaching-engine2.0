@@ -46,12 +46,14 @@ export default function WeeklyPlannerPage() {
       return {};
     }
   });
+
   const {
     data: plan,
     refetch,
     isLoading: planLoading,
     error: planError,
   } = useLessonPlan(weekStart);
+
   const { data: subjects, isLoading: subjectsLoading, error: subjectsError } = useSubjects();
   const { data: timetable } = useTimetable() as { data?: TimetableSlotType[] };
   const { data: events } = useCalendarEvents(
@@ -59,13 +61,21 @@ export default function WeeklyPlannerPage() {
     new Date(new Date(weekStart).getTime() + 6 * 86400000).toISOString(),
   ) as { data?: CalendarEvent[] };
   // Cast holidays to CalendarEvent[] since that's what WeekCalendarGrid expects
-  const { data: holidays } = useHolidays() as { data?: CalendarEvent[] };
+  const { data: holidays, error: holidaysError } = useHolidays() as {
+    data?: CalendarEvent[];
+    error?: unknown;
+  };
   const { data: suggestions } = usePlannerSuggestions(weekStart, filters);
 
   // Handle errors gracefully
   if (planError) {
     console.error('Error loading lesson plan:', planError);
     // Don't throw error for lesson plan - it's normal to not have one initially
+  }
+
+  if (holidaysError) {
+    console.error('Error loading holidays:', holidaysError);
+    // Don't throw error for holidays - gracefully handle missing endpoint
   }
 
   if (subjectsError) {
@@ -107,39 +117,59 @@ export default function WeeklyPlannerPage() {
   // Define activities first since it's used in handleDrop
   const activities = useMemo(() => {
     const all: Record<number, Activity> = {};
-    if (subjects && Array.isArray(subjects)) {
-      try {
-        subjects.forEach((subject) => {
-          if (subject && subject.milestones && Array.isArray(subject.milestones)) {
-            subject.milestones.forEach((milestone) => {
-              if (milestone && milestone.activities && Array.isArray(milestone.activities)) {
-                milestone.activities.forEach((activity) => {
-                  if (activity && activity.id) {
-                    all[activity.id] = activity;
-                  }
-                });
-              }
-            });
-          }
-        });
-      } catch (error) {
-        console.error('Error processing subjects/activities:', error, subjects);
-        throw new Error(
-          `Failed to process activities: ${error instanceof Error ? error.message : 'Unknown error'}`,
-        );
+
+    try {
+      if (!subjects || !Array.isArray(subjects)) {
+        return all;
       }
+
+      subjects.forEach((subject) => {
+        if (!subject?.milestones || !Array.isArray(subject.milestones)) {
+          return;
+        }
+
+        subject.milestones.forEach((milestone) => {
+          if (!milestone?.activities || !Array.isArray(milestone.activities)) {
+            return;
+          }
+
+          milestone.activities.forEach((activity) => {
+            if (activity?.id) {
+              all[activity.id] = activity;
+            }
+          });
+        });
+      });
+
+      return all;
+    } catch (error) {
+      console.error('Error processing activities:', error);
+      return all;
     }
-    return all;
   }, [subjects]);
 
   const weekHolidays = useMemo(() => {
-    if (!holidays) return [];
-    const start = new Date(weekStart);
-    const end = new Date(start.getTime() + 6 * 86400000);
-    return holidays.filter((h) => {
-      const d = new Date(h.start);
-      return d >= start && d <= end;
-    });
+    try {
+      // Provide a safe default if holidays are undefined or not an array
+      const safeHolidays = holidays && Array.isArray(holidays) ? holidays : [];
+
+      const start = new Date(weekStart);
+      const end = new Date(start.getTime() + 6 * 86400000);
+
+      return safeHolidays.filter((h) => {
+        if (!h?.start) return false;
+
+        try {
+          const d = new Date(h.start);
+          return d >= start && d <= end;
+        } catch {
+          return false;
+        }
+      });
+    } catch (error) {
+      console.error('Error processing holidays:', error);
+      return [];
+    }
   }, [holidays, weekStart]);
 
   const [invalidDay, setInvalidDay] = useState<number | undefined>();
@@ -276,11 +306,13 @@ export default function WeeklyPlannerPage() {
 
   // Transform schedule items to include activity data for WeekCalendarGrid
   const schedule = useMemo(() => {
-    if (!plan?.schedule || !Array.isArray(plan.schedule)) return [];
     try {
+      if (!plan?.schedule || !Array.isArray(plan.schedule)) {
+        return [];
+      }
+
       return plan.schedule
         .map((item) => {
-          // Server now returns the activity data directly, so we don't need to look it up
           if (!item) return null;
           return {
             ...item,
@@ -289,10 +321,8 @@ export default function WeeklyPlannerPage() {
         })
         .filter(Boolean);
     } catch (error) {
-      console.error('Error processing lesson plan schedule:', error, plan);
-      throw new Error(
-        `Failed to process lesson plan schedule: ${error instanceof Error ? error.message : 'Unknown error'}`,
-      );
+      console.error('Error processing schedule:', error);
+      return [];
     }
   }, [plan?.schedule]) as WeeklyScheduleItem[];
 
@@ -427,6 +457,18 @@ export default function WeeklyPlannerPage() {
     );
   } catch (error) {
     console.error('Error in WeeklyPlannerPage render:', error);
-    throw error;
+
+    // Return a fallback UI instead of throwing to prevent app crash
+    return (
+      <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+        <h3 className="text-red-800 font-medium">Planner Error</h3>
+        <p className="text-red-600 text-sm mt-1">
+          Unable to render the weekly planner. Check console for details.
+        </p>
+        <pre className="text-xs text-red-500 mt-2 bg-red-100 p-2 rounded max-h-32 overflow-auto">
+          {error instanceof Error ? error.message : 'Unknown error'}
+        </pre>
+      </div>
+    );
   }
 }
