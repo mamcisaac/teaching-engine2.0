@@ -45,7 +45,7 @@ function AppRoutes() {
       try {
         if (token) {
           // Only validate token with the server if we have one
-          await api.get('/auth/me');
+          await api.get('/api/auth/me');
         }
       } catch (error) {
         console.error('Auth check failed:', error);
