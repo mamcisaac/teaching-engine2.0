@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   useSubjects,
   useCreateMilestone,
@@ -61,7 +62,11 @@ function MilestoneCard({ milestone, subjectColor, onEdit, onDelete }: MilestoneC
         className={`p-3 rounded-lg border shadow-sm hover:shadow-md transition-shadow cursor-pointer ${subjectColor}`}
       >
         <div className="flex justify-between items-start mb-2">
-          <h4 className="font-medium text-sm leading-tight">{milestone.title}</h4>
+          <Link to={`/planner/unit/${milestone.id}`} className="flex-1">
+            <h4 className="font-medium text-sm leading-tight hover:text-gray-900">
+              {milestone.title}
+            </h4>
+          </Link>
           <div className="flex gap-1 ml-2">
             <button
               onClick={(e) => {
@@ -84,14 +89,16 @@ function MilestoneCard({ milestone, subjectColor, onEdit, onDelete }: MilestoneC
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <span className="text-xs font-medium px-2 py-1 bg-white/60 rounded">
-            {milestone.subject?.name}
-          </span>
-          {outcomeCount > 0 && (
-            <span className="text-xs bg-white/40 px-1 py-0.5 rounded">📘 {outcomeCount}</span>
-          )}
-        </div>
+        <Link to={`/planner/unit/${milestone.id}`}>
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-medium px-2 py-1 bg-white/60 rounded">
+              {milestone.subject?.name}
+            </span>
+            {outcomeCount > 0 && (
+              <span className="text-xs bg-white/40 px-1 py-0.5 rounded">📘 {outcomeCount}</span>
+            )}
+          </div>
+        </Link>
       </div>
 
       {/* Tooltip showing outcomes */}
