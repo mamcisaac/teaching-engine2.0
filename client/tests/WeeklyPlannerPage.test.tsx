@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { vi, describe, it, expect, beforeEach } from 'vitest';
+import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import WeeklyPlannerPage from '../src/pages/WeeklyPlannerPage';
 
@@ -102,6 +102,11 @@ vi.mock('../src/api', () => {
         materials: [],
         checklist: {},
       },
+      isLoading: false,
+      error: null,
+    }),
+    useUpdateActivity: vi.fn().mockReturnValue({
+      mutate: vi.fn(),
       isLoading: false,
       error: null,
     }),
