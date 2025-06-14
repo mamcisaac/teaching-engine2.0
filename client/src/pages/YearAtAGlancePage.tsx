@@ -9,7 +9,7 @@ export default function YearAtAGlancePage() {
 
   const generateShare = async () => {
     const res = await share.mutateAsync({ teacherId: 1, year });
-    setShareUrl(`${window.location.origin}/share/${res.shareToken}`);
+    setShareUrl(`${window.location.origin}/share/${res.data.shareToken}`);
   };
 
   return (
