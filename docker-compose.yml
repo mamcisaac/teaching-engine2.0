@@ -1,8 +1,23 @@
-version: '3'
 services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: teaching_engine
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  
   app:
     build: .
     ports:
       - '3000:3000'
-    volumes:
-      - ./packages/database/prisma/dev.db:/app/prisma/dev.db
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/teaching_engine
+
+volumes:
+  postgres_data:

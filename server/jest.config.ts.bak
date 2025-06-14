@@ -1,0 +1,33 @@
+import type { Config } from '@jest/types';
+
+const config: Config.InitialOptions = {
+  preset: 'ts-jest/presets/default-esm',
+  testEnvironment: 'node',
+  testMatch: ['**/tests/**/*.test.ts'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '^@teaching-engine/database$': '<rootDir>/../packages/database/src/index.ts',
+  },
+  transform: {
+    '^.+\\.tsx?$': ['ts-jest', {
+      useESM: true,
+      tsconfig: 'tsconfig.json',
+    }],
+  },
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  extensionsToTreatAsEsm: ['.ts'],
+  setupFiles: ['<rootDir>/tests/jest.setup.ts'],
+  setupFilesAfterEnv: ['<rootDir>/tests/setup-test-db.ts'],
+  testTimeout: 30000,
+  verbose: true,
+  forceExit: true,
+  detectOpenHandles: true,
+  // Clear mocks and reset modules between tests
+  clearMocks: true,
+  resetMocks: true,
+  resetModules: true,
+  // Use a single worker to avoid database connection issues
+  maxWorkers: 1,
+};
+
+export default config;

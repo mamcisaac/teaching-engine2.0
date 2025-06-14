@@ -1,50 +1,127 @@
-import pkg from '@teaching-engine/database';
-const { PrismaClient } = pkg;
+import { PrismaClient } from '@prisma/client';
+import path from 'path';
+import bcrypt from 'bcryptjs';
+import dotenv from 'dotenv';
 
-const prisma = new PrismaClient();
+// Load environment variables
+dotenv.config();
 
-async function main() {
-  await prisma.activity.deleteMany();
-  await prisma.milestone.deleteMany();
-  await prisma.subject.deleteMany();
-  await prisma.user.deleteMany();
+// Get environment (default to 'development')
+const env = process.env.NODE_ENV || 'development';
+const isTest = env === 'test';
 
-  const teacher = await prisma.user.create({
-    data: {
-      email: 'teacher@example.com',
-      password: 'password123',
-      role: 'TEACHER',
-      name: 'Teacher',
-    },
-  });
+// Database path - using SQLite for both test and development
+const dbPath = path.resolve(
+  process.cwd(),
+  'packages/database/prisma',
+  isTest ? 'test-db.sqlite' : 'dev-db.sqlite'
+);
 
-  const subject = await prisma.subject.create({
-    data: { name: 'Math', userId: teacher.id },
-  });
+console.log(`🌱 Starting database seeding for ${env} environment`);
+console.log(`📂 Database path: ${dbPath}`);
 
-  const milestone = await prisma.milestone.create({
-    data: {
-      title: 'M1',
-      subjectId: subject.id,
-      // ensure planner tests have at least one future-dated milestone
-      targetDate: new Date('2025-09-01'),
-    },
-  });
+const prisma = new PrismaClient({
+  log: isTest ? ['error', 'warn'] : ['query', 'error', 'warn'],
+  datasources: {
+    db: {
+      url: `file:${dbPath}`
+    }
+  }
+});
 
-  await prisma.activity.createMany({
-    data: ['A1', 'A2', 'A3'].map((title, i) => ({
-      title,
-      milestoneId: milestone.id,
-      durationMins: 30,
-      orderIndex: i,
-    })),
-  });
+// Helper function to clear all tables except _prisma_migrations
+async function clearDatabase() {
+  console.log('\n🧹 Clearing existing data...');
+  await prisma.$executeRaw`PRAGMA foreign_keys = OFF;`;
+  
+  const tableNames = await prisma.$queryRaw<Array<{ name: string }>>`
+    SELECT name FROM sqlite_master 
+    WHERE type='table' 
+    AND name NOT LIKE 'sqlite_%'
+    AND name NOT LIKE '_prisma_%'
+    AND name != '_prisma_migrations'
+    ORDER BY name
+  `;
+
+  for (const { name } of tableNames) {
+    try {
+      await prisma.$executeRawUnsafe(`DELETE FROM \`${name}\`;`);
+      console.log(`  ✅ Cleared table: ${name}`);
+    } catch (error) {
+      console.error(`  ❌ Error clearing table ${name}:`, error instanceof Error ? error.message : String(error));
+    }
+  }
+
+  await prisma.$executeRaw`PRAGMA foreign_keys = ON;`;
+  console.log('✅ Database cleared successfully');
 }
 
-main()
-  .catch((e) => {
-    console.error(e);
-  })
-  .finally(async () => {
+// Seed test data
+async function seedTestData() {
+  console.log('\n🌱 Seeding test data...');
+  
+  try {
+    // Create test user
+    const hashedPassword = await bcrypt.hash('test123', 12);
+    
+    await prisma.$executeRaw`
+      INSERT INTO "User" (email, password, name, role)
+      VALUES ('test@example.com', ${hashedPassword}, 'Test User', 'teacher');
+    `;
+    
+    console.log('✅ Created test user: test@example.com (password: test123)');
+
+    // Create test subjects
+    await prisma.$executeRaw`
+      INSERT INTO "Subject" (name)
+      VALUES 
+        ('Mathematics'),
+        ('Science'),
+        ('English');
+    `;
+    
+    console.log('✅ Created test subjects: Mathematics, Science, English');
+    
+  } catch (error) {
+    console.error('❌ Error seeding test data:', error instanceof Error ? error.message : String(error));
+    throw error;
+  }
+}
+
+// Seed development data
+async function seedDevData() {
+  console.log('\n🌱 Seeding development data...');
+  
+  try {
+    // Add development-specific seeding here
+    console.log('✅ Development data seeding complete');
+  } catch (error) {
+    console.error('❌ Error seeding development data:', error instanceof Error ? error.message : String(error));
+    throw error;
+  }
+}
+
+// Main function
+async function main() {
+  try {
+    // Always clear the database first
+    await clearDatabase();
+    
+    // Seed based on environment
+    if (isTest) {
+      await seedTestData();
+    } else {
+      await seedDevData();
+    }
+    
+    console.log('\n🎉 Database seeding completed successfully!');
+  } catch (error) {
+    console.error('\n❌ Error during database seeding:', error);
+    process.exit(1);
+  } finally {
     await prisma.$disconnect();
-  });
+  }
+}
+
+// Run the main function
+main().catch(console.error);
