@@ -15,6 +15,11 @@ export interface SubPlanData {
   pullOuts: { time: string; reason: string }[];
   contacts: Record<string, string>;
   procedures?: string;
+  outcomes?: Array<{
+    code: string;
+    description: string;
+    subject: string;
+  }>;
 }
 
 function minToTime(min: number): string {
@@ -35,7 +40,12 @@ export async function buildSubPlanData(date: string): Promise<SubPlanData> {
       include: {
         items: {
           include: {
-            activity: { include: { milestone: { select: { subjectId: true } } } },
+            activity: { 
+              include: { 
+                milestone: { select: { subjectId: true } },
+                outcomes: { include: { outcome: true } }
+              } 
+            },
             slot: true,
           },
         },
@@ -88,12 +98,35 @@ export async function buildSubPlanData(date: string): Promise<SubPlanData> {
     | Record<string, string>
     | undefined;
 
+  // Extract all unique outcomes from activities
+  const uniqueOutcomes = new Map<string, {
+    code: string;
+    description: string;
+    subject: string;
+  }>();
+  
+  if (plan) {
+    for (const item of plan.items) {
+      if (item.activity?.outcomes) {
+        for (const outcomeRelation of item.activity.outcomes) {
+          const outcome = outcomeRelation.outcome;
+          uniqueOutcomes.set(outcome.id, {
+            code: outcome.code,
+            description: outcome.description,
+            subject: outcome.subject
+          });
+        }
+      }
+    }
+  }
+
   return {
     date: dayStart.toISOString().split('T')[0],
     schedule,
     pullOuts,
     contacts: contacts || {},
     procedures: prefs?.subPlanProcedures || undefined,
+    outcomes: Array.from(uniqueOutcomes.values())
   };
 }
 
@@ -115,6 +148,7 @@ export async function generateSubPlan(date: string, days = 1): Promise<Buffer> {
         studentNotes:
           pullOutsText(data.pullOuts) + (info?.allergies ? `\nAllergies: ${info.allergies}` : ''),
         emergencyContacts: formatContacts(data.contacts),
+        curriculumOutcomes: data.outcomes
       },
       doc,
     );
