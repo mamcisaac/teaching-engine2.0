@@ -113,6 +113,7 @@ export type {
   Note,
   NoteDetail,
   NoteInput,
+  Outcome,
   Resource,
   Subject,
   TeacherPreferencesInput,
@@ -622,6 +623,27 @@ export const useHolidays = () => {
   return useQuery<CalendarEvent[]>({
     queryKey: ['holidays'],
     queryFn: async () => (await api.get('/calendar/holidays')).data,
+  });
+};
+
+// Outcomes hooks
+export const useOutcomes = (filters?: {
+  subject?: string;
+  grade?: string | number;
+  search?: string;
+}) => {
+  return useQuery<Outcome[]>({
+    queryKey: ['outcomes', filters],
+    queryFn: async () => {
+      try {
+        const response = await api.get('/api/outcomes', { params: filters });
+        return response.data;
+      } catch (error) {
+        console.error('Error fetching outcomes:', error);
+        throw error;
+      }
+    },
+    staleTime: 5 * 60 * 1000, // 5 minutes
   });
 };
 
