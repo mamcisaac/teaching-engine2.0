@@ -36,7 +36,7 @@ vi.mock('../src/api', async (importOriginal) => {
       data: {
         id: 1,
         weekStart: '2025-01-01',
-        dailyPlans: [],
+        schedule: [],
       },
       isLoading: false,
       error: null,
@@ -85,6 +85,21 @@ vi.mock('../src/api', async (importOriginal) => {
     }),
     useCalendarEvents: vi.fn().mockReturnValue({
       data: [],
+      isLoading: false,
+      error: null,
+    }),
+    useHolidays: vi.fn().mockReturnValue({
+      data: [],
+      isLoading: false,
+      error: null,
+    }),
+    usePlannerSuggestions: vi.fn().mockReturnValue({
+      data: [],
+      isLoading: false,
+      error: null,
+    }),
+    useUpdateActivity: vi.fn().mockReturnValue({
+      mutate: vi.fn(),
       isLoading: false,
       error: null,
     }),

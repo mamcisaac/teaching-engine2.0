@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import type {
   Activity,
+  LessonPlan,
   Milestone,
   Newsletter,
   Note,
@@ -31,13 +32,6 @@ type DailyPlan = {
   date: string;
   activities: Activity[];
   notes?: string;
-};
-
-type LessonPlan = {
-  id: number;
-  weekStart: string;
-  dailyPlans: DailyPlan[];
-  materials?: MaterialList;
 };
 
 // Extend the ImportMeta interface to include Vite's environment variables

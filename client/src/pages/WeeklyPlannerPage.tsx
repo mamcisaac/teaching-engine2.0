@@ -28,10 +28,24 @@ import PlannerFilters, { loadPlannerFilters } from '../components/planner/Planne
 import { toast } from 'sonner';
 
 export default function WeeklyPlannerPage() {
-  const [weekStart, setWeekStart] = useState(() => getWeekStartISO(new Date()));
+  const [weekStart, setWeekStart] = useState(() => {
+    try {
+      return getWeekStartISO(new Date());
+    } catch (error) {
+      console.error('Error getting week start:', error);
+      return new Date().toISOString().split('T')[0];
+    }
+  });
   const [preserveBuffer, setPreserveBuffer] = useState(true);
   const [skipLow, setSkipLow] = useState(true);
-  const [filters, setFilters] = useState<Record<string, boolean>>(loadPlannerFilters);
+  const [filters, setFilters] = useState<Record<string, boolean>>(() => {
+    try {
+      return loadPlannerFilters();
+    } catch (error) {
+      console.error('Error loading planner filters:', error);
+      return {};
+    }
+  });
   const {
     data: plan,
     refetch,
@@ -110,6 +124,9 @@ export default function WeeklyPlannerPage() {
         });
       } catch (error) {
         console.error('Error processing subjects/activities:', error, subjects);
+        throw new Error(
+          `Failed to process activities: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        );
       }
     }
     return all;
@@ -273,7 +290,9 @@ export default function WeeklyPlannerPage() {
         .filter(Boolean);
     } catch (error) {
       console.error('Error processing lesson plan schedule:', error, plan);
-      return [];
+      throw new Error(
+        `Failed to process lesson plan schedule: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      );
     }
   }, [plan?.schedule]) as WeeklyScheduleItem[];
 
@@ -298,110 +317,116 @@ export default function WeeklyPlannerPage() {
     );
   }
 
-  return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
-        <div className="flex justify-between items-start mb-4">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Weekly Planner</h1>
-            <p className="text-gray-600 mt-1">
-              {formatDate(weekStartDate)} - {formatDate(weekEndDate)}, {weekStartDate.getFullYear()}
-            </p>
+  try {
+    return (
+      <div className="space-y-6">
+        {/* Header */}
+        <div className="bg-white rounded-lg shadow-sm border p-6">
+          <div className="flex justify-between items-start mb-4">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Weekly Planner</h1>
+              <p className="text-gray-600 mt-1">
+                {formatDate(weekStartDate)} - {formatDate(weekEndDate)},{' '}
+                {weekStartDate.getFullYear()}
+              </p>
+            </div>
+            <div className="flex gap-3 items-center">
+              <input
+                type="date"
+                value={weekStart}
+                onChange={(e) => setWeekStart(getWeekStartISO(new Date(e.target.value)))}
+                className="px-3 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                data-testid="week-start-input"
+              />
+              <AutoFillButton
+                weekStart={weekStart}
+                preserveBuffer={preserveBuffer}
+                pacingStrategy={skipLow ? 'relaxed' : 'strict'}
+                onGenerated={() => refetch()}
+              />
+            </div>
           </div>
-          <div className="flex gap-3 items-center">
-            <input
-              type="date"
-              value={weekStart}
-              onChange={(e) => setWeekStart(getWeekStartISO(new Date(e.target.value)))}
-              className="px-3 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-              data-testid="week-start-input"
-            />
-            <AutoFillButton
-              weekStart={weekStart}
-              preserveBuffer={preserveBuffer}
-              pacingStrategy={skipLow ? 'relaxed' : 'strict'}
-              onGenerated={() => refetch()}
-            />
+
+          {/* Options */}
+          <div className="flex gap-6 items-center text-sm">
+            <label className="inline-flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={preserveBuffer}
+                onChange={(e) => setPreserveBuffer(e.target.checked)}
+                className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+              />
+              <span className="text-gray-700">Preserve daily buffer block</span>
+            </label>
+            <label className="inline-flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={skipLow}
+                onChange={(e) => setSkipLow(e.target.checked)}
+                className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+              />
+              <span className="text-gray-700">Skip lowest priority activity on short weeks</span>
+            </label>
           </div>
         </div>
 
-        {/* Options */}
-        <div className="flex gap-6 items-center text-sm">
-          <label className="inline-flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={preserveBuffer}
-              onChange={(e) => setPreserveBuffer(e.target.checked)}
-              className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-            />
-            <span className="text-gray-700">Preserve daily buffer block</span>
-          </label>
-          <label className="inline-flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={skipLow}
-              onChange={(e) => setSkipLow(e.target.checked)}
-              className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-            />
-            <span className="text-gray-700">Skip lowest priority activity on short weeks</span>
-          </label>
-        </div>
+        <PlannerNotificationBanner />
+
+        <DndContext onDragEnd={handleDragEnd}>
+          {/* Main Calendar - Always render grid */}
+          <WeekCalendarGrid
+            schedule={schedule}
+            activities={activities}
+            timetable={timetable}
+            events={events}
+            holidays={weekHolidays}
+            invalidDay={invalidDay}
+          />
+
+          {/* No Plan Message - Show below grid when no plan */}
+          {!plan && (
+            <div className="bg-white rounded-lg border p-8 text-center">
+              <div className="text-4xl mb-4">📅</div>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">
+                No plan available for this week
+              </h3>
+              <p className="text-gray-600 mb-4">
+                Generate a lesson plan to start scheduling activities
+              </p>
+              <AutoFillButton
+                weekStart={weekStart}
+                preserveBuffer={preserveBuffer}
+                pacingStrategy={skipLow ? 'relaxed' : 'strict'}
+                onGenerated={() => refetch()}
+              />
+            </div>
+          )}
+
+          {/* Week Resources */}
+          {plan && (
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-white rounded-lg border p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Week Resources</h3>
+                <div className="space-y-3">
+                  <DownloadPrintablesButton weekStart={weekStart} />
+                  <WeeklyMaterialsChecklist weekStart={weekStart} />
+                </div>
+              </div>
+
+              <div className="bg-white rounded-lg border p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Activity Suggestions</h3>
+                <PlannerFilters filters={filters} onChange={setFilters} />
+                <div className="mt-4">
+                  <ActivitySuggestionList activities={suggestions ?? []} />
+                </div>
+              </div>
+            </div>
+          )}
+        </DndContext>
       </div>
-
-      <PlannerNotificationBanner />
-
-      <DndContext onDragEnd={handleDragEnd}>
-        {/* Main Calendar - Always render grid */}
-        <WeekCalendarGrid
-          schedule={schedule}
-          activities={activities}
-          timetable={timetable}
-          events={events}
-          holidays={weekHolidays}
-          invalidDay={invalidDay}
-        />
-
-        {/* No Plan Message - Show below grid when no plan */}
-        {!plan && (
-          <div className="bg-white rounded-lg border p-8 text-center">
-            <div className="text-4xl mb-4">📅</div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
-              No plan available for this week
-            </h3>
-            <p className="text-gray-600 mb-4">
-              Generate a lesson plan to start scheduling activities
-            </p>
-            <AutoFillButton
-              weekStart={weekStart}
-              preserveBuffer={preserveBuffer}
-              pacingStrategy={skipLow ? 'relaxed' : 'strict'}
-              onGenerated={() => refetch()}
-            />
-          </div>
-        )}
-
-        {/* Week Resources */}
-        {plan && (
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-lg border p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Week Resources</h3>
-              <div className="space-y-3">
-                <DownloadPrintablesButton weekStart={weekStart} />
-                <WeeklyMaterialsChecklist weekStart={weekStart} />
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg border p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Activity Suggestions</h3>
-              <PlannerFilters filters={filters} onChange={setFilters} />
-              <div className="mt-4">
-                <ActivitySuggestionList activities={suggestions ?? []} />
-              </div>
-            </div>
-          </div>
-        )}
-      </DndContext>
-    </div>
-  );
+    );
+  } catch (error) {
+    console.error('Error in WeeklyPlannerPage render:', error);
+    throw error;
+  }
 }
