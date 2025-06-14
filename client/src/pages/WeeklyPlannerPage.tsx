@@ -65,7 +65,7 @@ export default function WeeklyPlannerPage() {
     data?: CalendarEvent[];
     error?: unknown;
   };
-  const { data: suggestions } = usePlannerSuggestions(weekStart, filters);
+  const { data: suggestions, error: suggestionsError } = usePlannerSuggestions(weekStart, filters);
 
   // Handle errors gracefully
   if (planError) {
@@ -78,40 +78,17 @@ export default function WeeklyPlannerPage() {
     // Don't throw error for holidays - gracefully handle missing endpoint
   }
 
+  // Log errors for debugging but don't crash
   if (subjectsError) {
     console.error('Error loading subjects:', subjectsError);
-    // Only throw if it's a critical error that prevents rendering
-    const isNetworkError =
-      subjectsError && typeof subjectsError === 'object' && 'message' in subjectsError;
-    if (isNetworkError && !subjectsLoading) {
-      // Show error message but don't crash the component
-      return (
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="max-w-md mx-auto text-center">
-            <div className="mx-auto h-12 w-12 text-red-400">
-              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
-                />
-              </svg>
-            </div>
-            <h1 className="mt-4 text-xl font-semibold text-gray-900">Failed to load subjects</h1>
-            <p className="mt-2 text-gray-600">
-              Unable to load curriculum data. Please check your connection and try again.
-            </p>
-            <button
-              onClick={() => window.location.reload()}
-              className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
-            >
-              Retry
-            </button>
-          </div>
-        </div>
-      );
-    }
+  }
+
+  if (suggestionsError) {
+    console.error('Error loading suggestions:', suggestionsError);
+  }
+
+  if (holidaysError) {
+    console.error('Error loading holidays:', holidaysError);
   }
 
   // Define activities first since it's used in handleDrop
@@ -447,7 +424,9 @@ export default function WeeklyPlannerPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Activity Suggestions</h3>
                 <PlannerFilters filters={filters} onChange={setFilters} />
                 <div className="mt-4">
-                  <ActivitySuggestionList activities={suggestions ?? []} />
+                  <ActivitySuggestionList
+                    activities={Array.isArray(suggestions) ? suggestions : []}
+                  />
                 </div>
               </div>
             </div>
