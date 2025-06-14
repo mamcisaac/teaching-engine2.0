@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import type { Milestone } from '../api';
 import { useCreateMilestone, useUpdateMilestone, useDeleteMilestone } from '../api';
 import Dialog from './Dialog';
-import TagInput from './TagInput';
+import OutcomeSelect from './OutcomeSelect';
 
 interface Props {
   milestones: Milestone[];
@@ -17,19 +17,19 @@ export default function MilestoneList({ milestones, subjectId }: Props) {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [codes, setCodes] = useState<string[]>([]);
+  const [outcomeCodes, setOutcomeCodes] = useState<string[]>([]);
   const [editId, setEditId] = useState<number | null>(null);
   const [editTitle, setEditTitle] = useState('');
   const [editDescription, setEditDescription] = useState('');
-  const [editCodes, setEditCodes] = useState<string[]>([]);
+  const [editOutcomeCodes, setEditOutcomeCodes] = useState<string[]>([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!title.trim()) return;
-    create.mutate({ title, subjectId, description, standardCodes: codes });
+    create.mutate({ title, subjectId, description, outcomes: outcomeCodes });
     setTitle('');
     setDescription('');
-    setCodes([]);
+    setOutcomeCodes([]);
     setOpen(false);
   };
 
@@ -41,12 +41,12 @@ export default function MilestoneList({ milestones, subjectId }: Props) {
       title: editTitle,
       subjectId,
       description: editDescription,
-      standardCodes: editCodes,
+      outcomes: editOutcomeCodes,
     });
     setEditId(null);
     setEditTitle('');
     setEditDescription('');
-    setEditCodes([]);
+    setEditOutcomeCodes([]);
   };
 
   return (
@@ -75,7 +75,7 @@ export default function MilestoneList({ milestones, subjectId }: Props) {
               className="border p-2"
             />
           </label>
-          <TagInput tags={codes} onChange={setCodes} placeholder="Add standard code" />
+          <OutcomeSelect value={outcomeCodes} onChange={setOutcomeCodes} placeholder="Search for outcomes" />
           <button type="submit" className="self-end px-2 py-1 bg-blue-600 text-white">
             Save
           </button>
@@ -96,7 +96,7 @@ export default function MilestoneList({ milestones, subjectId }: Props) {
                       setEditId(m.id);
                       setEditTitle(m.title);
                       setEditDescription(m.description ?? '');
-                      setEditCodes(m.standardCodes ?? []);
+                      setEditOutcomeCodes(m.outcomes?.map(o => o.outcome.code) ?? []);
                     }}
                   >
                     Edit
@@ -110,11 +110,11 @@ export default function MilestoneList({ milestones, subjectId }: Props) {
                 </div>
               </div>
               {m.description && <p className="italic text-sm">{m.description}</p>}
-              {m.standardCodes && m.standardCodes.length > 0 && (
+              {m.outcomes && m.outcomes.length > 0 && (
                 <div className="flex flex-wrap gap-1">
-                  {m.standardCodes.map((c) => (
-                    <span key={c} className="bg-gray-200 px-1 text-xs">
-                      {c}
+                  {m.outcomes.map((o) => (
+                    <span key={o.outcome.id} className="bg-gray-200 px-1 text-xs" title={o.outcome.description}>
+                      {o.outcome.code}
                     </span>
                   ))}
                 </div>
@@ -146,7 +146,7 @@ export default function MilestoneList({ milestones, subjectId }: Props) {
               placeholder="Description"
             />
           </label>
-          <TagInput tags={editCodes} onChange={setEditCodes} placeholder="Add standard code" />
+          <OutcomeSelect value={editOutcomeCodes} onChange={setEditOutcomeCodes} placeholder="Search for outcomes" />
           <button type="submit" className="self-end px-2 py-1 bg-blue-600 text-white">
             Save
           </button>

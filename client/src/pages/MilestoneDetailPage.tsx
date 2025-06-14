@@ -13,11 +13,11 @@ export default function MilestoneDetailPage() {
     <div>
       <h1>{data.title}</h1>
       {data.description && <p className="italic mb-2">{data.description}</p>}
-      {data.standardCodes && data.standardCodes.length > 0 && (
+      {data.outcomes && data.outcomes.length > 0 && (
         <div className="flex flex-wrap gap-1 mb-2">
-          {data.standardCodes.map((c) => (
-            <span key={c} className="bg-gray-200 px-1 text-xs">
-              {c}
+          {data.outcomes.map((o) => (
+            <span key={o.outcome.id} className="bg-gray-200 px-1 text-xs" title={o.outcome.description}>
+              {o.outcome.code}
             </span>
           ))}
         </div>

@@ -90,20 +90,21 @@ describe('Milestone API', () => {
     expect(get.body.title).toBe('MS');
   });
 
-  it('creates milestone with description and codes', async () => {
+  it('creates milestone with description and outcomes', async () => {
     const create = await request(app)
       .post('/api/milestones')
       .send({
         title: 'MS2',
         subjectId,
         description: 'desc',
-        standardCodes: ['A', 'B'],
+        outcomes: ['A', 'B'],
       });
     expect(create.status).toBe(201);
     const id = create.body.id;
     const get = await request(app).get(`/api/milestones/${id}`);
     expect(get.body.description).toBe('desc');
-    expect(get.body.standardCodes).toEqual(['A', 'B']);
+    expect(get.body.outcomes.length).toBe(2);
+    expect(get.body.outcomes.map(o => o.outcome.code).sort()).toEqual(['A', 'B']);
   });
 
   it('rejects invalid milestone data', async () => {

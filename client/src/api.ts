@@ -400,7 +400,7 @@ export const useCreateMilestone = () => {
       title: string;
       subjectId: number;
       description?: string;
-      standardCodes?: string[];
+      outcomes?: string[];
     }) => api.post('/milestones', data),
     onSuccess: (data, vars) => {
       qc.invalidateQueries({ queryKey: ['milestones', vars.subjectId] });
@@ -418,7 +418,7 @@ export const useUpdateMilestone = () => {
       title: string;
       subjectId: number;
       description?: string;
-      standardCodes?: string[];
+      outcomes?: string[];
     }) => api.put(`/milestones/${data.id}`, data),
     onSuccess: (data, vars) => {
       qc.invalidateQueries({ queryKey: ['milestones', vars.subjectId] });

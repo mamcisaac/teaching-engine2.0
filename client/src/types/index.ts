@@ -6,14 +6,23 @@ export interface Subject {
   milestones: Milestone[];
 }
 
+export interface Outcome {
+  id: string;
+  subject: string;
+  grade: number;
+  code: string;
+  description: string;
+  domain?: string | null;
+}
+
 export interface Milestone {
   id: number;
   title: string;
   subjectId: number;
   description?: string | null;
-  standardCodes: string[];
   activities: Activity[];
   subject?: Subject;
+  outcomes?: Array<{outcome: Outcome}>;
 }
 
 export interface Activity {
