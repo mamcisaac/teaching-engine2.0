@@ -28,7 +28,8 @@
     "test:e2e": "pnpm playwright:test",
     "test:all": "pnpm run test && pnpm run test:e2e",
     "check:docs": "pnpm --filter scripts run verify-docs",
-    "analyze:bundle": "source-map-explorer 'client/dist/assets/index-*.js' --no-border-checks --html client/dist/bundle-report.html"
+    "analyze:bundle": "source-map-explorer 'client/dist/assets/index-*.js' --no-border-checks --html client/dist/bundle-report.html",
+    "curriculum:import": "pnpm --filter scripts run curriculum:import"
   },
   "devDependencies": {
     "@playwright/test": "^1.43.1",
@@ -59,6 +60,8 @@
   "dependencies": {
     "@types/bcryptjs": "^3.0.0",
     "bcryptjs": "^3.0.2",
-    "date-fns": "^2.30.0"
+    "date-fns": "^2.30.0",
+    "franc": "^6.2.0",
+    "luxon": "^3.6.1"
   }
 }

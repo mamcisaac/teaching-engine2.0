@@ -5,7 +5,8 @@
   "scripts": {
     "seed": "ts-node seed.ts",
     "verify-docs": "node verify-screenshots.js",
-    "test": "echo skipped"
+    "test": "echo skipped",
+    "curriculum:import": "NODE_OPTIONS='--no-warnings' tsx importPeiFrenchOutcomes.ts"
   },
   "dependencies": {
     "@teaching-engine/database": "workspace:*"

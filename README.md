@@ -29,9 +29,11 @@ Teaching Engine 2.0 aims to be the "digital teaching assistant" that reduces adm
 5. **Emergency Sub Plans**: One-click PDFs provide substitute teachers with the current plan.
 6. **Notes & Reflection Management**: Private notes can be added to activities and days; public notes appear in newsletters.
 
-### Phase 5 - Curriculum Intelligence (To Be Implemented)
+### Phase 5 - Curriculum Intelligence
 
 - **Provincial Curriculum Integration**: Import PEI (and other provincial) curriculum standards
+  - Run `pnpm curriculum:import pei-fi-1` to import PEI French Immersion Grade 1 outcomes
+  - Use `--overwrite` flag to reset existing outcomes
 - **AI-Powered Planning**: Use embeddings to automatically generate milestone-activity mappings
 - **Standards Alignment**: Track coverage of official learning outcomes
 - **Holiday-Aware Scheduling**: Integrate school calendar for accurate pacing
@@ -127,6 +129,12 @@ Access the application at http://localhost:3000
 - `POST /api/report-deadlines` – Create a new deadline.
 - `PUT /api/report-deadlines/:id` – Update an existing deadline.
 - `DELETE /api/report-deadlines/:id` – Remove a deadline.
+
+### Curriculum Outcomes
+
+- `GET /api/outcomes` – List all curriculum outcomes.
+- `GET /api/outcomes?subject=FRA&grade=1` – Filter outcomes by subject and grade.
+- `GET /api/outcomes?search=keyword` – Search outcomes by code or description.
 
 ## 🧪 Testing
 
