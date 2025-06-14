@@ -17,6 +17,11 @@ export interface SubPlanInput {
   procedures: string;
   studentNotes: string;
   emergencyContacts: string;
+  curriculumOutcomes?: Array<{
+    code: string;
+    description: string;
+    subject: string;
+  }>;
 }
 
 /**
@@ -59,6 +64,38 @@ export function generateSubPlanPDF(
 
     d.text('Emergency Contacts', { underline: true });
     d.text(data.emergencyContacts);
+    d.moveDown();
+
+    // Add curriculum outcomes section if available
+    if (data.curriculumOutcomes && data.curriculumOutcomes.length > 0) {
+      d.text('Curriculum Outcomes Covered', { underline: true });
+      
+      // Group outcomes by subject
+      const bySubject: Record<string, Array<{code: string, description: string}>> = {};
+      data.curriculumOutcomes.forEach(outcome => {
+        if (!bySubject[outcome.subject]) {
+          bySubject[outcome.subject] = [];
+        }
+        bySubject[outcome.subject].push({
+          code: outcome.code,
+          description: outcome.description
+        });
+      });
+      
+      // Print outcomes by subject
+      Object.entries(bySubject).forEach(([subject, outcomes]) => {
+        d.font('Helvetica-Bold').text(subject);
+        d.font('Helvetica');
+        
+        outcomes.forEach(outcome => {
+          d.text(`${outcome.code}: ${outcome.description}`, {
+            indent: 20,
+            continued: false
+          });
+        });
+        d.moveDown(0.5);
+      });
+    }
 
     if (!doc) {
       d.end();

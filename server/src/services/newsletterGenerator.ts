@@ -37,6 +37,11 @@ export async function generateDocx(html: string): Promise<Buffer> {
 export interface NewsletterContent {
   activities: Record<string, string[]>;
   photos: string[];
+  outcomes: Array<{
+    code: string;
+    description: string;
+    subject: string;
+  }>;
 }
 
 export async function collectPublicNotes(startDate: string, endDate: string): Promise<string[]> {
@@ -75,18 +80,43 @@ export async function collectWeeklyContent(weekStart: string): Promise<Newslette
     include: {
       milestone: { include: { subject: true } },
       resources: true,
+      outcomes: { include: { outcome: true } }
     },
   });
 
   const bySubject: Record<string, string[]> = {};
   const photos: string[] = [];
+  
+  // Map to store unique outcomes
+  const uniqueOutcomes = new Map<string, {
+    code: string;
+    description: string;
+    subject: string;
+  }>();
+  
   for (const a of acts) {
     const subject = a.milestone.subject.name;
     (bySubject[subject] ??= []).push(a.title);
     a.resources.forEach((r) => photos.push(r.url));
+    
+    // Extract outcomes
+    if (a.outcomes) {
+      for (const outcomeRelation of a.outcomes) {
+        const outcome = outcomeRelation.outcome;
+        uniqueOutcomes.set(outcome.id, {
+          code: outcome.code,
+          description: outcome.description,
+          subject: outcome.subject
+        });
+      }
+    }
   }
 
-  return { activities: bySubject, photos };
+  return { 
+    activities: bySubject, 
+    photos,
+    outcomes: Array.from(uniqueOutcomes.values())
+  };
 }
 
 export async function collectUpcomingActivities(weekStart: string): Promise<string[]> {
@@ -178,6 +208,32 @@ export async function generateNewsletterDraft(
 
   if (summary) {
     content += `<p><strong>Progress:</strong> ${summary}</p>`;
+  }
+
+  // Add curriculum outcomes section
+  if (data.outcomes.length > 0) {
+    content += '<h2>Curriculum Outcomes Covered</h2>';
+    
+    // Group outcomes by subject
+    const bySubject: Record<string, Array<{code: string, description: string}>> = {};
+    data.outcomes.forEach(outcome => {
+      if (!bySubject[outcome.subject]) {
+        bySubject[outcome.subject] = [];
+      }
+      bySubject[outcome.subject].push({
+        code: outcome.code,
+        description: outcome.description
+      });
+    });
+    
+    // Add outcomes by subject
+    Object.entries(bySubject).forEach(([subject, outcomes]) => {
+      content += `<h3>${subject}</h3><ul>`;
+      outcomes.forEach(outcome => {
+        content += `<li><strong>${outcome.code}</strong>: ${outcome.description}</li>`;
+      });
+      content += '</ul>';
+    });
   }
 
   if (upcoming.length) {

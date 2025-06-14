@@ -17,9 +17,41 @@ router.post('/', async (req, res, next) => {
     if (!data.today && req.query.date) {
       const plan = await prisma.dailyPlan.findFirst({
         where: { date: new Date(String(req.query.date)) },
-        include: { items: { include: { activity: true, slot: true } } },
+        include: { 
+          items: { 
+            include: { 
+              activity: { 
+                include: { 
+                  outcomes: { include: { outcome: true } } 
+                } 
+              }, 
+              slot: true 
+            } 
+          } 
+        },
       });
+      
       if (plan) {
+        // Extract all unique outcomes from activities
+        const uniqueOutcomes = new Map<string, {
+          code: string;
+          description: string;
+          subject: string;
+        }>();
+        
+        for (const item of plan.items) {
+          if (item.activity?.outcomes) {
+            for (const outcomeRelation of item.activity.outcomes) {
+              const outcome = outcomeRelation.outcome;
+              uniqueOutcomes.set(outcome.id, {
+                code: outcome.code,
+                description: outcome.description,
+                subject: outcome.subject
+              });
+            }
+          }
+        }
+        
         data = {
           today: plan.items.map((i) => ({
             time: minToTime(i.startMin),
@@ -29,6 +61,7 @@ router.post('/', async (req, res, next) => {
           procedures: '',
           studentNotes: '',
           emergencyContacts: '',
+          curriculumOutcomes: Array.from(uniqueOutcomes.values())
         };
       }
     }
