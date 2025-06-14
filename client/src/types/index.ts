@@ -22,7 +22,7 @@ export interface Milestone {
   description?: string | null;
   activities: Activity[];
   subject?: Subject;
-  outcomes?: Array<{outcome: Outcome}>;
+  outcomes?: Array<{ outcome: Outcome }>;
 }
 
 export interface Activity {
@@ -41,6 +41,9 @@ export interface Activity {
       name: string;
     };
   };
+  outcomes?: Array<{
+    outcome: Outcome;
+  }>;
 }
 
 export interface Resource {

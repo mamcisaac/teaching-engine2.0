@@ -1,5 +1,6 @@
 import type { WeeklyScheduleItem, Activity, TimetableSlot, CalendarEvent } from '../api';
 import { useDroppable } from '@dnd-kit/core';
+import OutcomeTag from './OutcomeTag';
 
 interface Props {
   schedule: WeeklyScheduleItem[];
@@ -66,11 +67,31 @@ export default function WeekCalendarGrid({
                 {ev.title}
               </div>
             ))}
-            {items.map((it) => (
-              <div key={it.id} className="mt-1 text-sm">
-                {activities[it.activityId]?.title}
-              </div>
-            ))}
+            {items.map((it) => {
+              const activity = activities[it.activityId];
+              if (!activity) return null;
+
+              // Determine if activity has outcomes attached
+              const hasOutcomes = activity.outcomes && activity.outcomes.length > 0;
+
+              return (
+                <div
+                  key={it.id}
+                  className={`mt-1 text-sm p-1 border rounded ${hasOutcomes ? 'border-blue-200 bg-blue-50' : 'border-gray-200'}`}
+                >
+                  <div>{activity.title}</div>
+
+                  {/* Display outcome tags */}
+                  {hasOutcomes && (
+                    <div className="flex flex-wrap gap-1 mt-1">
+                      {activity.outcomes?.map(({ outcome }) => (
+                        <OutcomeTag key={outcome.id} outcome={outcome} size="small" />
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         );
       })}
