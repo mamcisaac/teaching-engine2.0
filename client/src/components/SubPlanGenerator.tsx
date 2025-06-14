@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Dialog from './Dialog';
-import { fetchSubPlan } from '../api';
+import { generateSubPlan } from '../api';
 
 interface Props {
   onClose: () => void;
@@ -12,7 +12,7 @@ export default function SubPlanGenerator({ onClose }: Props) {
   const [url, setUrl] = useState<string>();
 
   const generate = async () => {
-    const res = await fetchSubPlan(date, days);
+    const res = await generateSubPlan(date, days);
     const blob = new Blob([res.data], { type: 'application/pdf' });
     setUrl(URL.createObjectURL(blob));
   };

@@ -263,6 +263,18 @@ export const fetchSubPlan = async (data: { date: string; reason: string }) => {
   return response.data;
 };
 
+// Sub plan generator for multiple days
+export const generateSubPlan = async (date: string, days: number) => {
+  const response = await api.post(
+    `/sub-plan/generate?date=${date}&days=${days}`,
+    {},
+    {
+      responseType: 'blob',
+    },
+  );
+  return response;
+};
+
 // Newsletter suggestions
 export const fetchNewsletterSuggestions = async () => {
   const response = await api.get('/newsletter-suggestions');

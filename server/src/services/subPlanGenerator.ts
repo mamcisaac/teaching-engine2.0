@@ -68,29 +68,29 @@ export function generateSubPlanPDF(
 
     // Add curriculum outcomes section if available
     if (data.curriculumOutcomes && data.curriculumOutcomes.length > 0) {
-      d.text('Curriculum Outcomes Covered', { underline: true });
-      
+      d.text('Learning Goals (Curriculum Outcomes)', { underline: true });
+
       // Group outcomes by subject
-      const bySubject: Record<string, Array<{code: string, description: string}>> = {};
-      data.curriculumOutcomes.forEach(outcome => {
+      const bySubject: Record<string, Array<{ code: string; description: string }>> = {};
+      data.curriculumOutcomes.forEach((outcome) => {
         if (!bySubject[outcome.subject]) {
           bySubject[outcome.subject] = [];
         }
         bySubject[outcome.subject].push({
           code: outcome.code,
-          description: outcome.description
+          description: outcome.description,
         });
       });
-      
+
       // Print outcomes by subject
       Object.entries(bySubject).forEach(([subject, outcomes]) => {
         d.font('Helvetica-Bold').text(subject);
         d.font('Helvetica');
-        
-        outcomes.forEach(outcome => {
-          d.text(`${outcome.code}: ${outcome.description}`, {
+
+        outcomes.forEach((outcome) => {
+          d.text(`• ${outcome.code} – ${outcome.description}`, {
             indent: 20,
-            continued: false
+            continued: false,
           });
         });
         d.moveDown(0.5);
