@@ -95,6 +95,8 @@ function AppRoutes() {
 
         {/* Planner routes */}
         <Route path="/planner">
+          {/* Default planner route redirects to current week */}
+          <Route index element={<Navigate to="/planner/week" replace />} />
           <Route
             path="year"
             element={

@@ -40,11 +40,11 @@ export async function buildSubPlanData(date: string): Promise<SubPlanData> {
       include: {
         items: {
           include: {
-            activity: { 
-              include: { 
+            activity: {
+              include: {
                 milestone: { select: { subjectId: true } },
-                outcomes: { include: { outcome: true } }
-              } 
+                outcomes: { include: { outcome: true } },
+              },
             },
             slot: true,
           },
@@ -66,13 +66,19 @@ export async function buildSubPlanData(date: string): Promise<SubPlanData> {
       if (act?.id && !act.isSubFriendly && subjectId) {
         act = await prisma.activity.findFirst({
           where: { isFallback: true, milestone: { subjectId } },
-          include: { milestone: { select: { subjectId: true } } },
+          include: {
+            milestone: { select: { subjectId: true } },
+            outcomes: { include: { outcome: true } },
+          },
         });
       }
       if (!act && subjectId) {
         act = await prisma.activity.findFirst({
           where: { isFallback: true, milestone: { subjectId } },
-          include: { milestone: { select: { subjectId: true } } },
+          include: {
+            milestone: { select: { subjectId: true } },
+            outcomes: { include: { outcome: true } },
+          },
         });
       }
       schedule.push({ time: minToTime(item.startMin), activity: act?.title ?? '' });
@@ -99,12 +105,15 @@ export async function buildSubPlanData(date: string): Promise<SubPlanData> {
     | undefined;
 
   // Extract all unique outcomes from activities
-  const uniqueOutcomes = new Map<string, {
-    code: string;
-    description: string;
-    subject: string;
-  }>();
-  
+  const uniqueOutcomes = new Map<
+    string,
+    {
+      code: string;
+      description: string;
+      subject: string;
+    }
+  >();
+
   if (plan) {
     for (const item of plan.items) {
       if (item.activity?.outcomes) {
@@ -113,7 +122,7 @@ export async function buildSubPlanData(date: string): Promise<SubPlanData> {
           uniqueOutcomes.set(outcome.id, {
             code: outcome.code,
             description: outcome.description,
-            subject: outcome.subject
+            subject: outcome.subject,
           });
         }
       }
@@ -126,7 +135,7 @@ export async function buildSubPlanData(date: string): Promise<SubPlanData> {
     pullOuts,
     contacts: contacts || {},
     procedures: prefs?.subPlanProcedures || undefined,
-    outcomes: Array.from(uniqueOutcomes.values())
+    outcomes: Array.from(uniqueOutcomes.values()),
   };
 }
 
@@ -148,7 +157,7 @@ export async function generateSubPlan(date: string, days = 1): Promise<Buffer> {
         studentNotes:
           pullOutsText(data.pullOuts) + (info?.allergies ? `\nAllergies: ${info.allergies}` : ''),
         emergencyContacts: formatContacts(data.contacts),
-        curriculumOutcomes: data.outcomes
+        curriculumOutcomes: data.outcomes,
       },
       doc,
     );

@@ -275,7 +275,7 @@ export default function WeeklyPlannerPage() {
       <PlannerNotificationBanner />
 
       <DndContext onDragEnd={handleDragEnd}>
-        {/* Main Calendar */}
+        {/* Main Calendar - Always render grid */}
         <WeekCalendarGrid
           schedule={schedule}
           activities={activities}
@@ -285,7 +285,7 @@ export default function WeeklyPlannerPage() {
           invalidDay={invalidDay}
         />
 
-        {/* No Plan Message */}
+        {/* No Plan Message - Show below grid when no plan */}
         {!plan && (
           <div className="bg-white rounded-lg border p-8 text-center">
             <div className="text-4xl mb-4">📅</div>

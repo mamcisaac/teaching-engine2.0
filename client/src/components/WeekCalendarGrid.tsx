@@ -122,7 +122,7 @@ export default function WeekCalendarGrid({
         </div>
 
         {/* Calendar Grid */}
-        <div className="grid grid-cols-5 min-h-[500px]">
+        <div className="planner-grid grid grid-cols-5 min-h-[500px]">
           {days.map((_, idx) => {
             const items = schedule
               .filter((s) => s.day === idx)
