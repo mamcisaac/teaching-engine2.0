@@ -21,9 +21,7 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      console.log('Attempting login with:', { email });
       const response = await api.post('/api/login', { email, password });
-      console.log('Login response:', response.data);
 
       if (response.data.token && response.data.user) {
         login(response.data.token, response.data.user);

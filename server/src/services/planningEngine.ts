@@ -108,12 +108,7 @@ export async function generateWeeklySchedule(
   opts: GenerateScheduleOptions,
 ): Promise<ScheduleItem[]> {
   try {
-    console.log('Starting schedule generation with options:', {
-      weekStart: opts.availableBlocks[0]?.day,
-      preserveBuffer: opts.preserveBuffer,
-      pacingStrategy: opts.pacingStrategy,
-      availableBlocks: opts.availableBlocks.length,
-    });
+    // Starting schedule generation
 
     // Get all active activities with their milestone and subject info
     const activities = await prisma.activity.findMany({
@@ -130,7 +125,7 @@ export async function generateWeeklySchedule(
       orderBy: { id: 'asc' },
     });
 
-    console.log(`Found ${activities.length} activities to schedule`);
+    // Found activities to schedule
 
     if (activities.length === 0) {
       console.warn('No activities available to schedule');
@@ -138,7 +133,7 @@ export async function generateWeeklySchedule(
     }
 
     const urgencyMap = opts.milestonePriorities;
-    console.log('Milestone urgencies:', Object.fromEntries(urgencyMap.entries()));
+    // Calculated milestone urgencies
 
     // Group activities by subject
     const bySubject: Record<number, Activity[]> = {};
@@ -160,7 +155,7 @@ export async function generateWeeklySchedule(
         if (ub !== ua) return ub - ua; // Higher urgency first
         return a.id - b.id; // Fallback to ID for stable sort
       });
-      console.log(`Subject ${subjectId} has ${list.length} activities`);
+      // Processing subject activities
     }
 
     // Sort blocks by day and time
@@ -177,7 +172,7 @@ export async function generateWeeklySchedule(
     let remainingSlots = blocks.length;
     if (opts.preserveBuffer) {
       remainingSlots -= totalDays; // Reserve one slot per day for buffer
-      console.log(`Reserving ${totalDays} slots for buffer, ${remainingSlots} remaining`);
+      // Reserving slots for buffer
     }
 
     const schedule: ScheduleItem[] = [];
@@ -186,29 +181,26 @@ export async function generateWeeklySchedule(
     // Assign activities to time slots
     for (const block of blocks) {
       if (opts.pacingStrategy === 'relaxed' && remaining <= 0) {
-        console.log('Reached slot limit in relaxed mode');
+        // Reached slot limit in relaxed mode
         break;
       }
 
       const subjectId = block.subjectId;
       if (!subjectId) {
-        console.log(`Skipping block with no subject on day ${block.day}`);
+        // Skipping block with no subject
         continue;
       }
 
       const availableActivities = bySubject[subjectId] || [];
       if (availableActivities.length === 0) {
-        console.log(`No activities for subject ${subjectId} on day ${block.day}`);
+        // No activities available for subject
         continue;
       }
 
       // Take the next activity for this subject
       const nextActivity = availableActivities.shift()!;
 
-      console.log(
-        `Scheduling activity ${nextActivity.id} (${nextActivity.title}) ` +
-          `in subject ${subjectId} on day ${block.day}`,
-      );
+      // Scheduling activity in block
 
       schedule.push({
         day: block.day,
@@ -222,7 +214,7 @@ export async function generateWeeklySchedule(
     }
 
     const finalSchedule = scheduleBufferBlockPerDay(schedule, blocks, opts.preserveBuffer);
-    console.log(`Generated schedule with ${finalSchedule.length} items`);
+    // Generated schedule complete
 
     return finalSchedule;
   } catch (error) {

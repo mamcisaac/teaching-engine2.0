@@ -13,6 +13,8 @@ export default function OutcomesPage() {
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [searchFilters, setSearchFilters] = useState<Record<string, string>>({});
   const [viewMode, setViewMode] = useState<'table' | 'cards' | 'details'>('table');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(50); // Show 50 items per page
 
   // Use the API hook to fetch outcomes
   // Use React Query hook to fetch outcomes from API
@@ -29,6 +31,7 @@ export default function OutcomesPage() {
     if (selectedGrade) filters.grade = selectedGrade;
     if (selectedDomain) filters.domain = selectedDomain;
     setSearchFilters(filters);
+    setCurrentPage(1); // Reset to first page when searching
   };
 
   // Reset all filters
@@ -38,6 +41,7 @@ export default function OutcomesPage() {
     setSelectedGrade('');
     setSelectedDomain('');
     setSearchFilters({});
+    setCurrentPage(1); // Reset to first page when resetting
   };
 
   // Handle sorting
@@ -69,6 +73,12 @@ export default function OutcomesPage() {
       return aValue > bValue ? -1 : 1;
     }
   });
+
+  // Calculate pagination
+  const totalPages = Math.ceil(sortedOutcomes.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedOutcomes = sortedOutcomes.slice(startIndex, endIndex);
 
   // Group outcomes by subject for the card view
   const outcomesBySubject = sortedOutcomes.reduce(
@@ -238,8 +248,36 @@ export default function OutcomesPage() {
             <div className="text-center py-4">No outcomes found matching your criteria.</div>
           ) : (
             <>
-              <div className="mb-4">
-                <h2 className="text-xl font-semibold">All Outcomes ({sortedOutcomes.length})</h2>
+              <div className="mb-4 flex justify-between items-center">
+                <h2 className="text-xl font-semibold">
+                  All Outcomes ({sortedOutcomes.length})
+                  {totalPages > 1 && (
+                    <span className="text-sm font-normal text-gray-600 ml-2">
+                      Showing {startIndex + 1}-{Math.min(endIndex, sortedOutcomes.length)} of {sortedOutcomes.length}
+                    </span>
+                  )}
+                </h2>
+                {totalPages > 1 && (
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                      disabled={currentPage === 1}
+                      className="px-3 py-1 border rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+                    >
+                      Previous
+                    </button>
+                    <span className="text-sm text-gray-600">
+                      Page {currentPage} of {totalPages}
+                    </span>
+                    <button
+                      onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                      disabled={currentPage === totalPages}
+                      className="px-3 py-1 border rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+                    >
+                      Next
+                    </button>
+                  </div>
+                )}
               </div>
 
               {/* Table View */}
@@ -282,7 +320,7 @@ export default function OutcomesPage() {
                         </tr>
                       </thead>
                       <tbody>
-                        {sortedOutcomes.map((outcome) => (
+                        {paginatedOutcomes.map((outcome) => (
                           <tr key={outcome.id} className="hover:bg-gray-50">
                             <td className="px-4 py-2 border font-mono">
                               <OutcomeTooltip outcome={outcome}>
@@ -351,7 +389,7 @@ export default function OutcomesPage() {
               {/* Detailed View */}
               {viewMode === 'details' && (
                 <div className="mb-8">
-                  {sortedOutcomes.map((outcome) => (
+                  {paginatedOutcomes.map((outcome) => (
                     <OutcomeDetail key={outcome.id} outcome={outcome} />
                   ))}
                 </div>

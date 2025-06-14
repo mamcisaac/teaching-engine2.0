@@ -167,35 +167,38 @@ app.get('/api/auth/check', authenticateToken, (req: AuthenticatedRequest, res: R
   res.json({ userId: req.user?.userId });
 });
 
-app.use('/api/lesson-plans', lessonPlanRoutes);
-app.use('/api/milestones', milestoneRoutes);
-app.use('/api/activities', activityRoutes);
-app.use('/api/daily-plans', dailyPlanRoutes);
-app.use('/api/resources', resourceRoutes);
-app.use('/api/material-lists', materialListRoutes);
-app.use('/api/notifications', notificationRoutes);
-app.use('/api/newsletters', newsletterRoutes);
-app.use('/api/newsletter-draft', newsletterDraftRoutes);
-app.use('/api/newsletter-suggestions', newsletterSuggestionRoutes);
-app.use('/api/planner/suggestions', plannerSuggestionRoutes);
-app.use('/api/timetable', timetableRoutes);
-app.use('/api/notes', noteRoutes);
-app.use('/api/calendar-events', calendarEventRoutes);
-app.use('/api/unavailable-blocks', unavailableBlockRoutes);
-app.use('/api/report-deadlines', reportDeadlineRoutes);
-app.use('/api/year-plan', yearPlanRoutes);
-app.use('/api/share', shareRoutes);
-app.use('/api/equipment-bookings', equipmentBookingRoutes);
-app.use('/api/holidays', holidayRoutes);
-app.use('/api/outcomes', outcomeRoutes);
-app.use('/api/weeks', weekRoutes);
-app.use('/api/substitute-info', substituteInfoRoutes);
-app.use('/api/backup', backupRoutes);
-app.use('/api/subjects', subjectRoutes);
-app.use('/api/sub-plan', subplanRoutes);
+// Health check should remain public
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
 });
+
+// Apply authentication to all other API routes
+app.use('/api/lesson-plans', authenticateToken, lessonPlanRoutes);
+app.use('/api/milestones', authenticateToken, milestoneRoutes);
+app.use('/api/activities', authenticateToken, activityRoutes);
+app.use('/api/daily-plans', authenticateToken, dailyPlanRoutes);
+app.use('/api/resources', authenticateToken, resourceRoutes);
+app.use('/api/material-lists', authenticateToken, materialListRoutes);
+app.use('/api/notifications', authenticateToken, notificationRoutes);
+app.use('/api/newsletters', authenticateToken, newsletterRoutes);
+app.use('/api/newsletter-draft', authenticateToken, newsletterDraftRoutes);
+app.use('/api/newsletter-suggestions', authenticateToken, newsletterSuggestionRoutes);
+app.use('/api/planner/suggestions', authenticateToken, plannerSuggestionRoutes);
+app.use('/api/timetable', authenticateToken, timetableRoutes);
+app.use('/api/notes', authenticateToken, noteRoutes);
+app.use('/api/calendar-events', authenticateToken, calendarEventRoutes);
+app.use('/api/unavailable-blocks', authenticateToken, unavailableBlockRoutes);
+app.use('/api/report-deadlines', authenticateToken, reportDeadlineRoutes);
+app.use('/api/year-plan', authenticateToken, yearPlanRoutes);
+app.use('/api/share', authenticateToken, shareRoutes);
+app.use('/api/equipment-bookings', authenticateToken, equipmentBookingRoutes);
+app.use('/api/holidays', authenticateToken, holidayRoutes);
+app.use('/api/outcomes', authenticateToken, outcomeRoutes);
+app.use('/api/weeks', authenticateToken, weekRoutes);
+app.use('/api/substitute-info', authenticateToken, substituteInfoRoutes);
+app.use('/api/backup', authenticateToken, backupRoutes);
+app.use('/api/subjects', authenticateToken, subjectRoutes);
+app.use('/api/sub-plan', authenticateToken, subplanRoutes);
 app.use('/api/*', (_req, res) => {
   res.status(404).json({ error: 'Not Found' });
 });

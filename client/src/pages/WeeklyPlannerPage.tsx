@@ -38,7 +38,6 @@ export default function WeeklyPlannerPage() {
     refetch: () => void;
   };
   const subjects = useSubjects().data ?? [];
-  console.log('Subjects from useSubjects:', subjects);
   const { data: timetable } = useTimetable() as { data?: TimetableSlotType[] };
   const { data: events } = useCalendarEvents(
     weekStart,

@@ -76,6 +76,19 @@ router.post('/', async (req, res, next) => {
 router.post('/generate', async (req, res, next) => {
   try {
     const date = (req.query.date as string) || new Date().toISOString().slice(0, 10);
+    
+    // Validate date format
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dateRegex.test(date)) {
+      return res.status(400).json({ error: 'Date must be in YYYY-MM-DD format' });
+    }
+    
+    // Validate date is valid
+    const testDate = new Date(date);
+    if (isNaN(testDate.getTime())) {
+      return res.status(400).json({ error: 'Invalid date provided' });
+    }
+    
     const days = Math.min(3, Math.max(1, Number(req.query.days) || 1));
     const pdf = await generateSubPlan(date, days);
     res.setHeader('Content-Type', 'application/pdf');

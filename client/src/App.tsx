@@ -6,6 +6,7 @@ import { NotificationProvider } from './contexts/NotificationContext';
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import MainLayout from './components/MainLayout';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // Lazy load pages
 const SubjectsPage = lazy(() => import('./pages/SubjectsPage'));
@@ -263,10 +264,12 @@ function AppRoutes() {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <NotificationProvider>
-        <AppRoutes />
-      </NotificationProvider>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <NotificationProvider>
+          <AppRoutes />
+        </NotificationProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }

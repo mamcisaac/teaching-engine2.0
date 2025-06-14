@@ -181,66 +181,46 @@ export default function DailyPlanPage() {
     setItemNotes(item.notes || '');
   };
 
-  const handleSaveActivity = () => {
-    if (!editingItem?.activity) return;
+  const handleSaveActivity = async () => {
+    if (!editingItem?.activity || !plan) return;
 
-    updateActivity.mutate(
-      {
+    try {
+      // Update activity first
+      await updateActivity.mutateAsync({
         id: editingItem.activity.id,
         milestoneId: editingItem.activity.milestoneId,
         subjectId: editingItem.activity.milestone?.subjectId,
         title: activityTitle,
         materialsText: activityMaterials,
         outcomes: selectedOutcomes,
-      },
-      {
-        onSuccess: () => {
-          // Update the item notes separately if changed
-          if (itemNotes !== editingItem.notes) {
-            handleUpdateItemNotes();
-          } else {
-            toast.success('Activity updated successfully');
-            setEditingItem(null);
-            refetch();
-          }
-        },
-        onError: () => {
-          toast.error('Failed to update activity');
-        },
-      },
-    );
+      });
+
+      // If notes changed, update them atomically
+      if (itemNotes !== editingItem.notes) {
+        const updatedItems = plan.items.map((item) =>
+          item.id === editingItem.id ? { ...item, notes: itemNotes } : item,
+        );
+
+        await update.mutateAsync({
+          id: plan.id,
+          items: updatedItems.map((i) => ({
+            startMin: i.startMin,
+            endMin: i.endMin,
+            slotId: i.slotId ?? undefined,
+            activityId: i.activityId ?? undefined,
+            notes: i.notes ?? undefined,
+          })),
+        });
+      }
+
+      toast.success('Activity updated successfully');
+      setEditingItem(null);
+      refetch();
+    } catch (error) {
+      toast.error('Failed to update activity');
+    }
   };
 
-  const handleUpdateItemNotes = () => {
-    if (!plan || !editingItem) return;
-
-    const updatedItems = plan.items.map((item) =>
-      item.id === editingItem.id ? { ...item, notes: itemNotes } : item,
-    );
-
-    update.mutate(
-      {
-        id: plan.id,
-        items: updatedItems.map((i) => ({
-          startMin: i.startMin,
-          endMin: i.endMin,
-          slotId: i.slotId ?? undefined,
-          activityId: i.activityId ?? undefined,
-          notes: i.notes ?? undefined,
-        })),
-      },
-      {
-        onSuccess: () => {
-          toast.success('Notes updated successfully');
-          setEditingItem(null);
-          refetch();
-        },
-        onError: () => {
-          toast.error('Failed to update notes');
-        },
-      },
-    );
-  };
 
   const handleDeleteActivity = (item: DailyPlanItem) => {
     if (!plan) return;
