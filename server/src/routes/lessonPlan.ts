@@ -167,7 +167,23 @@ router.post('/generate', async (req, res, next) => {
       await updateMaterialList(weekStart);
       const scheduleEntries = await prisma.weeklySchedule.findMany({
         where: { lessonPlanId: result.id },
-        include: { slot: true, activity: true },
+        include: {
+          slot: true,
+          activity: {
+            include: {
+              milestone: {
+                include: {
+                  subject: true,
+                },
+              },
+              outcomes: {
+                include: {
+                  outcome: true,
+                },
+              },
+            },
+          },
+        },
       });
       return res.status(201).json({ id: result.id, schedule: scheduleEntries });
     } catch (err) {
@@ -191,7 +207,25 @@ router.get('/:weekStart', async (req, res, next) => {
     const plan = await prisma.lessonPlan.findFirst({
       where: { weekStart: weekStartDate },
       include: {
-        schedule: { include: { slot: true } },
+        schedule: {
+          include: {
+            slot: true,
+            activity: {
+              include: {
+                milestone: {
+                  include: {
+                    subject: true,
+                  },
+                },
+                outcomes: {
+                  include: {
+                    outcome: true,
+                  },
+                },
+              },
+            },
+          },
+        },
       },
     });
     if (!plan) return res.status(404).json({ error: 'Not Found' });
@@ -261,7 +295,20 @@ router.put('/:id', async (req, res, next) => {
         include: {
           schedule: {
             include: {
-              activity: true,
+              activity: {
+                include: {
+                  milestone: {
+                    include: {
+                      subject: true,
+                    },
+                  },
+                  outcomes: {
+                    include: {
+                      outcome: true,
+                    },
+                  },
+                },
+              },
               slot: true,
             },
           },

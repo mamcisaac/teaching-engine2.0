@@ -13,7 +13,6 @@ import {
 } from '../api';
 import type {
   CalendarEvent,
-  LessonPlan as LessonPlanType,
   WeeklyScheduleItem,
   TimetableSlot as TimetableSlotType,
 } from '../types';
@@ -33,11 +32,13 @@ export default function WeeklyPlannerPage() {
   const [preserveBuffer, setPreserveBuffer] = useState(true);
   const [skipLow, setSkipLow] = useState(true);
   const [filters, setFilters] = useState<Record<string, boolean>>(loadPlannerFilters);
-  const { data: plan, refetch } = useLessonPlan(weekStart) as {
-    data?: LessonPlanType;
-    refetch: () => void;
-  };
-  const subjects = useSubjects().data ?? [];
+  const {
+    data: plan,
+    refetch,
+    isLoading: planLoading,
+    error: planError,
+  } = useLessonPlan(weekStart);
+  const { data: subjects, isLoading: subjectsLoading, error: subjectsError } = useSubjects();
   const { data: timetable } = useTimetable() as { data?: TimetableSlotType[] };
   const { data: events } = useCalendarEvents(
     weekStart,
@@ -47,14 +48,70 @@ export default function WeeklyPlannerPage() {
   const { data: holidays } = useHolidays() as { data?: CalendarEvent[] };
   const { data: suggestions } = usePlannerSuggestions(weekStart, filters);
 
+  // Handle errors gracefully
+  if (planError) {
+    console.error('Error loading lesson plan:', planError);
+    // Don't throw error for lesson plan - it's normal to not have one initially
+  }
+
+  if (subjectsError) {
+    console.error('Error loading subjects:', subjectsError);
+    // Only throw if it's a critical error that prevents rendering
+    const isNetworkError =
+      subjectsError && typeof subjectsError === 'object' && 'message' in subjectsError;
+    if (isNetworkError && !subjectsLoading) {
+      // Show error message but don't crash the component
+      return (
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="max-w-md mx-auto text-center">
+            <div className="mx-auto h-12 w-12 text-red-400">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+                />
+              </svg>
+            </div>
+            <h1 className="mt-4 text-xl font-semibold text-gray-900">Failed to load subjects</h1>
+            <p className="mt-2 text-gray-600">
+              Unable to load curriculum data. Please check your connection and try again.
+            </p>
+            <button
+              onClick={() => window.location.reload()}
+              className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+      );
+    }
+  }
+
   // Define activities first since it's used in handleDrop
   const activities = useMemo(() => {
     const all: Record<number, Activity> = {};
-    subjects.forEach((subject: { milestones: Array<{ activities: Activity[] }> }) =>
-      subject.milestones.forEach((milestone: { activities: Activity[] }) =>
-        milestone.activities.forEach((activity: Activity) => (all[activity.id] = activity)),
-      ),
-    );
+    if (subjects && Array.isArray(subjects)) {
+      try {
+        subjects.forEach((subject) => {
+          if (subject && subject.milestones && Array.isArray(subject.milestones)) {
+            subject.milestones.forEach((milestone) => {
+              if (milestone && milestone.activities && Array.isArray(milestone.activities)) {
+                milestone.activities.forEach((activity) => {
+                  if (activity && activity.id) {
+                    all[activity.id] = activity;
+                  }
+                });
+              }
+            });
+          }
+        });
+      } catch (error) {
+        console.error('Error processing subjects/activities:', error, subjects);
+      }
+    }
     return all;
   }, [subjects]);
 
@@ -202,12 +259,23 @@ export default function WeeklyPlannerPage() {
 
   // Transform schedule items to include activity data for WeekCalendarGrid
   const schedule = useMemo(() => {
-    if (!plan?.schedule) return [];
-    return plan.schedule.map((item) => ({
-      ...item,
-      activity: item.activityId ? activities[item.activityId] : null,
-    }));
-  }, [plan?.schedule, activities]) as WeeklyScheduleItem[];
+    if (!plan?.schedule || !Array.isArray(plan.schedule)) return [];
+    try {
+      return plan.schedule
+        .map((item) => {
+          // Server now returns the activity data directly, so we don't need to look it up
+          if (!item) return null;
+          return {
+            ...item,
+            activity: item.activity || null,
+          };
+        })
+        .filter(Boolean);
+    } catch (error) {
+      console.error('Error processing lesson plan schedule:', error, plan);
+      return [];
+    }
+  }, [plan?.schedule]) as WeeklyScheduleItem[];
 
   useEffect(() => {
     if (new Date().getDay() === 5) {
@@ -220,6 +288,15 @@ export default function WeeklyPlannerPage() {
   const weekEndDate = new Date(weekStartDate.getTime() + 4 * 86400000); // Add 4 days (Mon-Fri)
   const formatDate = (date: Date) =>
     date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+  // Show loading state while essential data is loading
+  if (subjectsLoading || planLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">

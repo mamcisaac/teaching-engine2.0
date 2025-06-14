@@ -193,7 +193,7 @@ export const useAddNote = () => {
 export const useAddCalendarEvent = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<CalendarEvent, 'id'>) => api.post('/calendar/events', data),
+    mutationFn: (data: Omit<CalendarEvent, 'id'>) => api.post('/api/calendar-events', data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['calendar-events'] });
       toast.success('Event added');
@@ -346,7 +346,7 @@ export const useSaveTimetable = () => {
 export const useCalendarEvents = (start: string, end: string) =>
   useQuery<CalendarEvent[]>({
     queryKey: ['calendar-events', start, end],
-    queryFn: async () => (await api.get(`/calendar/events?start=${start}&end=${end}`)).data,
+    queryFn: async () => (await api.get(`/api/calendar-events?start=${start}&end=${end}`)).data,
   });
 
 export const usePlannerSuggestions = (weekStart: string, filters: Record<string, boolean>) =>
@@ -644,7 +644,7 @@ export const useShareYearPlan = () => {
 export const useHolidays = () => {
   return useQuery<CalendarEvent[]>({
     queryKey: ['holidays'],
-    queryFn: async () => (await api.get('/calendar/holidays')).data,
+    queryFn: async () => (await api.get('/api/holidays')).data,
   });
 };
 
@@ -708,7 +708,7 @@ export const useOutcomeCoverage = (filters?: {
 export const useAddHoliday = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: { date: string; name: string }) => api.post('/calendar/holidays', data),
+    mutationFn: (data: { date: string; name: string }) => api.post('/api/holidays', data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['holidays'] });
       toast.success('Holiday added');
@@ -719,7 +719,7 @@ export const useAddHoliday = () => {
 export const useDeleteHoliday = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (id: number) => api.delete(`/calendar/holidays/${id}`),
+    mutationFn: (id: number) => api.delete(`/api/holidays/${id}`),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['holidays'] });
       toast.success('Holiday removed');

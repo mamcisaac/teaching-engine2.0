@@ -33,7 +33,7 @@ test('planner skips holiday dates', async ({ page }) => {
 
   await page.goto('/planner');
   await page.waitForSelector('.planner-grid', { timeout: 10000 });
-  await page.waitForResponse((r) => r.url().includes('/calendar-events') && r.status() === 200);
+  await page.waitForResponse((r) => r.url().includes('/api/calendar-events') && r.status() === 200);
   await page.fill('input[type="date"]', '2025-12-22');
   await page.click('text=Auto Fill');
   await expect(page.getByText('Christmas')).toBeVisible();

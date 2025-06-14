@@ -148,7 +148,7 @@ export async function generateWeeklySchedule(
     }
 
     // Sort activities within each subject by priority
-    for (const [subjectId, list] of Object.entries(bySubject)) {
+    for (const list of Object.values(bySubject)) {
       list.sort((a, b) => {
         const ua = urgencyMap.get(a.milestoneId) ?? 0;
         const ub = urgencyMap.get(b.milestoneId) ?? 0;

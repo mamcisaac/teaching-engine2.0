@@ -64,7 +64,7 @@ test('rejects drop when activity longer than slot', async ({ page }) => {
 
   await page.goto('/planner');
   await page.waitForSelector('.planner-grid', { timeout: 10000 });
-  await page.waitForResponse((r) => r.url().includes('/calendar-events') && r.status() === 200);
+  await page.waitForResponse((r) => r.url().includes('/api/calendar-events') && r.status() === 200);
   const card = page.locator('text=LongAct').first();
   const target = page.locator('[data-testid="day-0"]');
   await card.dragTo(target);

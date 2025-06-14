@@ -29,12 +29,12 @@ test('ical import blocks planner and sub plan lists event', async ({ page }) => 
 
   await page.goto('/planner');
   await page.waitForSelector('.planner-grid', { timeout: 10000 });
-  await page.waitForResponse((r) => r.url().includes('/calendar-events') && r.status() === 200);
+  await page.waitForResponse((r) => r.url().includes('/api/calendar-events') && r.status() === 200);
   const dateInput = page.locator('input[type="date"]');
   await dateInput.waitFor({ state: 'visible' });
   await dateInput.fill('2025-01-01', { force: true });
   await page.waitForResponse(
-    (r) => r.url().includes('/calendar-events') && r.request().method() === 'GET',
+    (r) => r.url().includes('/api/calendar-events') && r.request().method() === 'GET',
   );
   await expect(page.getByText('Test Event').first()).toBeVisible();
 
