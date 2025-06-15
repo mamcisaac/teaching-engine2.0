@@ -4,6 +4,7 @@ import type { Activity } from '../api';
 import CompleteActivityButton from './CompleteActivityButton';
 import OutcomeSelector from './OutcomeSelector';
 import OutcomeTag from './OutcomeTag';
+import SuggestedResourcesPanel from './SuggestedResourcesPanel';
 import {
   useCreateActivity,
   useUpdateActivity,
@@ -216,6 +217,8 @@ export default function ActivityList({ activities, milestoneId, subjectId }: Pro
           )}
 
           <OutcomeSelector selectedOutcomes={editOutcomes} onChange={setEditOutcomes} />
+
+          <SuggestedResourcesPanel activityId={editId} />
 
           <button type="submit" className="self-end px-4 py-2 bg-blue-600 text-white rounded-md">
             Update Activity

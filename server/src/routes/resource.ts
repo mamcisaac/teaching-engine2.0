@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { prisma } from '../prisma';
 import { saveFile } from '../storage';
+import { getResourceSuggestions } from '../services/resourceSuggestions.js';
 
 const router = Router();
 
@@ -31,6 +32,19 @@ router.get('/activity/:activityId', async (req, res, next) => {
       where: { activityId: Number(req.params.activityId) },
     });
     res.json(resources);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/suggestions', async (req, res, next) => {
+  try {
+    const activityId = Number(req.query.activityId);
+    if (!activityId || isNaN(activityId)) {
+      return res.status(400).json({ error: 'Valid activityId is required' });
+    }
+    const suggestions = await getResourceSuggestions(activityId);
+    res.json(suggestions);
   } catch (err) {
     next(err);
   }

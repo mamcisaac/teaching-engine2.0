@@ -255,6 +255,38 @@ export const useDeleteResource = () => {
   });
 };
 
+export type ResourceSuggestion = {
+  title: string;
+  type: 'worksheet' | 'video' | 'audio' | 'link';
+  description?: string;
+  url: string;
+  rationale: string;
+};
+
+export const useResourceSuggestions = (activityId: number | null) =>
+  useQuery<ResourceSuggestion[]>({
+    queryKey: ['resource-suggestions', activityId],
+    queryFn: async () => (await api.get(`/resources/suggestions?activityId=${activityId}`)).data,
+    enabled: !!activityId,
+  });
+
+export const useCreateResource = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: {
+      filename: string;
+      url: string;
+      type: string;
+      size: number;
+      activityId: number;
+    }) => api.post('/resources', data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['resources'] });
+      toast.success('Resource attached');
+    },
+  });
+};
+
 // Sub plan generator
 export const fetchSubPlan = async (data: { date: string; reason: string }) => {
   const response = await api.post('/api/sub-plan', data);
