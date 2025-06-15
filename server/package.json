@@ -2,19 +2,24 @@
   "name": "server",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "ts-node src/index.ts",
-    "start": "ts-node src/index.ts",
+    "dev": "NODE_OPTIONS='--experimental-specifier-resolution=node' tsx watch src/index.ts",
+    "start": "NODE_OPTIONS='--experimental-specifier-resolution=node' tsx src/index.ts",
     "build": "tsc",
-    "test": "jest --runInBand --detectOpenHandles --forceExit --logHeapUsage --verbose",
-    "test:auth": "jest --runInBand --detectOpenHandles --forceExit --logHeapUsage --verbose tests/auth.test.ts",
-    "test:api": "jest --runInBand --detectOpenHandles --forceExit --logHeapUsage --verbose tests/api.test.ts"
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
+    "test:coverage": "NODE_OPTIONS='--experimental-vm-modules' jest --coverage",
+    "test:watch": "NODE_OPTIONS='--experimental-vm-modules' jest --watch",
+    "test:outcome": "NODE_OPTIONS='--experimental-vm-modules' jest src/__tests__/outcomeCoverage.integration.test.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.826.0",
     "@teaching-engine/database": "workspace:*",
     "archiver": "^7.0.1",
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
     "cors": "2.8.5",
+    "debug": "^4.4.1",
     "express": "4.21.2",
     "handlebars": "^4.7.8",
     "html-to-docx": "^1.8.0",
@@ -28,6 +33,36 @@
     "pino": "8.21.0",
     "unzipper": "^0.12.3",
     "zod": "3.25.58"
+  },
+  "jest": {
+    "preset": "ts-jest/presets/default-esm",
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/__tests__/**/*.test.ts"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json",
+      "node"
+    ],
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
+    "moduleNameMapper": {
+      "^@/(.*)\\.js$": "<rootDir>/$1"
+    },
+    "transform": {
+      "^.+\\.tsx?$": [
+        "ts-jest",
+        {
+          "useESM": true
+        }
+      ]
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!(.*\\.mjs|@prisma/client)/)"
+    ]
   },
   "devDependencies": {
     "@jest/globals": "^30.0.0",
@@ -49,7 +84,7 @@
     "supertest": "^6.3.3",
     "ts-jest": "^29.3.4",
     "ts-node": "^10.9.2",
-    "tsx": "^4.7.1",
+    "tsx": "^4.20.0",
     "typescript": "^5.8.3"
   }
 }

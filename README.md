@@ -36,6 +36,9 @@ Teaching Engine 2.0 aims to be the "digital teaching assistant" that reduces adm
   - Use `--overwrite` flag to reset existing outcomes
 - **AI-Powered Planning**: Use embeddings to automatically generate milestone-activity mappings
 - **Standards Alignment**: Track coverage of official learning outcomes
+  - Real-time coverage status (covered/partial/uncovered)
+  - Detailed coverage statistics and reporting
+  - Integration with curriculum standards
 - **Holiday-Aware Scheduling**: Integrate school calendar for accurate pacing
 
 ## 🏗️ Technical Architecture

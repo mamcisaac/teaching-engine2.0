@@ -13,6 +13,8 @@ generator client {
 model Subject {
   id         Int        @id @default(autoincrement())
   name       String
+  nameEn     String?
+  nameFr     String?
   milestones Milestone[]
   timetableSlots TimetableSlot[]
   userId     Int?
@@ -23,12 +25,16 @@ model Subject {
 model Milestone {
   id         Int       @id @default(autoincrement())
   title      String
+  titleEn    String?
+  titleFr    String?
   subjectId  Int
   subject    Subject   @relation(fields: [subjectId], references: [id])
   activities Activity[]
   userId     Int?
   user       User?     @relation(fields: [userId], references: [id])
   description String?
+  descriptionEn String?
+  descriptionFr String?
   targetDate DateTime?
   startDate  DateTime?
   endDate    DateTime?
@@ -42,6 +48,8 @@ model Milestone {
 model Activity {
   id          Int       @id @default(autoincrement())
   title       String
+  titleEn     String?
+  titleFr     String?
   activityType ActivityType @default(LESSON)
   milestoneId Int
   /// Position of the activity within its milestone
@@ -51,9 +59,15 @@ model Activity {
   user        User?      @relation(fields: [userId], references: [id])
   durationMins Int?
   privateNote  String?
+  privateNoteEn String?
+  privateNoteFr String?
   publicNote   String?
+  publicNoteEn String?
+  publicNoteFr String?
   /// Comma-separated list of needed materials
   materialsText String?
+  materialsTextEn String?
+  materialsTextFr String?
   /// Optional list of activity tags (e.g. "HandsOn")
   tags         Json     @default("[]")
   /// True if suitable for substitute teachers
@@ -154,9 +168,17 @@ model Notification {
 model Newsletter {
   id        Int      @id @default(autoincrement())
   title     String
+  titleEn   String?
+  titleFr   String?
   content   String
+  contentEn String?
+  contentFr String?
   rawDraft  String?
+  rawDraftEn String?
+  rawDraftFr String?
   polishedDraft String?
+  polishedDraftEn String?
+  polishedDraftFr String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -210,6 +232,7 @@ model User {
   password String
   name     String
   role     String   @default("teacher")
+  preferredLanguage String @default("en")
   subjects Subject[]
   milestones Milestone[]
   activities Activity[]
@@ -398,7 +421,11 @@ model SmartGoal {
 model OralRoutineTemplate {
   id            Int                      @id @default(autoincrement())
   title         String
+  titleEn       String?
+  titleFr       String?
   description   String?
+  descriptionEn String?
+  descriptionFr String?
   userId        Int
   user          User                     @relation(fields: [userId], references: [id])
   outcomes      OralRoutineOutcome[]

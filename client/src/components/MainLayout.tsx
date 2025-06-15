@@ -2,6 +2,7 @@ import { ReactNode, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import NotificationBell from './NotificationBell';
+import LanguageSwitcher from './LanguageSwitcher';
 
 // Navigation item interface
 interface NavItem {
@@ -343,6 +344,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
               'Dashboard'}
           </div>
           <div className="flex items-center space-x-4">
+            <LanguageSwitcher />
             <NotificationBell />
             <div className="h-8 w-8 rounded-full bg-indigo-500 flex items-center justify-center text-white">
               <span className="font-semibold">TP</span>

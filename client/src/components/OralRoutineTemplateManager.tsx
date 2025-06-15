@@ -8,6 +8,8 @@ import {
 } from '../api';
 import Dialog from './Dialog';
 import OutcomeSelect from './OutcomeSelect';
+import BilingualTextInput from './BilingualTextInput';
+import { useLanguage } from '../contexts/LanguageContext';
 import type { OralRoutineTemplate } from '../types';
 
 interface OralRoutineTemplateManagerProps {
@@ -21,13 +23,18 @@ export default function OralRoutineTemplateManager({
   const [editingTemplate, setEditingTemplate] = useState<OralRoutineTemplate | null>(null);
   const [formData, setFormData] = useState({
     title: '',
+    titleEn: '',
+    titleFr: '',
     description: '',
+    descriptionEn: '',
+    descriptionFr: '',
     outcomes: [] as string[],
   });
 
   // Fetch data
   const { data: templates = [], isLoading } = useOralRoutineTemplates();
   const { data: outcomes = [] } = useOutcomes();
+  const { t, getLocalizedField } = useLanguage();
 
   // Mutations
   const createTemplate = useCreateOralRoutineTemplate();
@@ -36,7 +43,15 @@ export default function OralRoutineTemplateManager({
 
   const handleCreateTemplate = () => {
     setEditingTemplate(null);
-    setFormData({ title: '', description: '', outcomes: [] });
+    setFormData({
+      title: '',
+      titleEn: '',
+      titleFr: '',
+      description: '',
+      descriptionEn: '',
+      descriptionFr: '',
+      outcomes: [],
+    });
     setIsEditorOpen(true);
   };
 
@@ -44,7 +59,11 @@ export default function OralRoutineTemplateManager({
     setEditingTemplate(template);
     setFormData({
       title: template.title,
+      titleEn: template.titleEn || '',
+      titleFr: template.titleFr || '',
       description: template.description || '',
+      descriptionEn: template.descriptionEn || '',
+      descriptionFr: template.descriptionFr || '',
       outcomes: template.outcomes.map((o) => o.outcome.id),
     });
     setIsEditorOpen(true);
@@ -55,7 +74,11 @@ export default function OralRoutineTemplateManager({
 
     const templateData = {
       title: formData.title.trim(),
+      titleEn: formData.titleEn.trim() || undefined,
+      titleFr: formData.titleFr.trim() || undefined,
       description: formData.description.trim() || undefined,
+      descriptionEn: formData.descriptionEn.trim() || undefined,
+      descriptionFr: formData.descriptionFr.trim() || undefined,
       outcomes: formData.outcomes,
     };
 
@@ -87,7 +110,15 @@ export default function OralRoutineTemplateManager({
   const handleClose = () => {
     setIsEditorOpen(false);
     setEditingTemplate(null);
-    setFormData({ title: '', description: '', outcomes: [] });
+    setFormData({
+      title: '',
+      titleEn: '',
+      titleFr: '',
+      description: '',
+      descriptionEn: '',
+      descriptionFr: '',
+      outcomes: [],
+    });
   };
 
   if (isLoading) {
@@ -124,10 +155,12 @@ export default function OralRoutineTemplateManager({
             >
               <div className="flex justify-between items-start mb-3">
                 <div className="flex-1">
-                  <h3 className="font-semibold text-gray-900">{template.title}</h3>
-                  {template.description && (
+                  <h3 className="font-semibold text-gray-900">
+                    {getLocalizedField(template, 'title')}
+                  </h3>
+                  {getLocalizedField(template, 'description') && (
                     <p className="text-sm text-gray-600 mt-1 line-clamp-2">
-                      {template.description}
+                      {getLocalizedField(template, 'description')}
                     </p>
                   )}
                 </div>
@@ -209,36 +242,39 @@ export default function OralRoutineTemplateManager({
             className="space-y-4"
           >
             {/* Title */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Title *</label>
-              <input
-                type="text"
-                value={formData.title}
-                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                placeholder="e.g., Morning Bonjour Routine"
-                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                required
-                maxLength={200}
-              />
-            </div>
+            <BilingualTextInput
+              label={t('title')}
+              valueEn={formData.titleEn}
+              valueFr={formData.titleFr}
+              onChangeEn={(value) => setFormData({ ...formData, titleEn: value, title: value })}
+              onChangeFr={(value) =>
+                setFormData({ ...formData, titleFr: value, title: formData.title || value })
+              }
+              placeholderEn="e.g., Morning Greeting Routine"
+              placeholderFr="e.g., Routine de salutation matinale"
+              required
+            />
 
             {/* Description */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Description (Optional)
-              </label>
-              <textarea
-                value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                placeholder="e.g., Students greet each other in French and respond to question of the day"
-                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                rows={3}
-                maxLength={1000}
-              />
-              <p className="text-xs text-gray-500 mt-1">
-                {formData.description.length}/1000 characters
-              </p>
-            </div>
+            <BilingualTextInput
+              label={`${t('description')} (${t('optional', 'Optional')})`}
+              valueEn={formData.descriptionEn}
+              valueFr={formData.descriptionFr}
+              onChangeEn={(value) =>
+                setFormData({ ...formData, descriptionEn: value, description: value })
+              }
+              onChangeFr={(value) =>
+                setFormData({
+                  ...formData,
+                  descriptionFr: value,
+                  description: formData.description || value,
+                })
+              }
+              placeholderEn="e.g., Students greet each other and respond to question of the day"
+              placeholderFr="e.g., Les élèves se saluent et répondent à la question du jour"
+              multiline
+              rows={3}
+            />
 
             {/* Linked Outcomes */}
             <div>

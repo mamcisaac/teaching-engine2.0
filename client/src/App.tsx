@@ -4,6 +4,7 @@ import { useAuth } from './contexts/AuthContext';
 import { api } from './api';
 import { NotificationProvider } from './contexts/NotificationContext';
 import { AuthProvider } from './contexts/AuthContext';
+import { LanguageProvider } from './contexts/LanguageContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import MainLayout from './components/MainLayout';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -268,9 +269,11 @@ export default function App() {
   return (
     <ErrorBoundary>
       <AuthProvider>
-        <NotificationProvider>
-          <AppRoutes />
-        </NotificationProvider>
+        <LanguageProvider>
+          <NotificationProvider>
+            <AppRoutes />
+          </NotificationProvider>
+        </LanguageProvider>
       </AuthProvider>
     </ErrorBoundary>
   );

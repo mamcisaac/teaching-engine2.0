@@ -4,17 +4,23 @@ import { ALLOWED_TEMPLATES } from './services/newsletterGenerator';
 
 export const subjectSchema = z.object({
   name: z.string().min(1),
+  nameEn: z.string().optional(),
+  nameFr: z.string().optional(),
 });
 
 // Create base schema without refinement for update
 const baseMilestoneSchema = z.object({
   title: z.string().min(1),
+  titleEn: z.string().optional(),
+  titleFr: z.string().optional(),
   subjectId: z.number(),
   targetDate: z.string().datetime().optional(),
   startDate: z.string().datetime().optional(),
   endDate: z.string().datetime().optional(),
   estHours: z.number().int().optional(),
   description: z.string().max(10000).optional(),
+  descriptionEn: z.string().max(10000).optional(),
+  descriptionFr: z.string().max(10000).optional(),
   outcomes: z.array(z.string()).optional(),
 });
 
@@ -39,12 +45,20 @@ export const milestoneUpdateSchema = baseMilestoneSchema
 
 export const activityCreateSchema = z.object({
   title: z.string().min(1),
+  titleEn: z.string().optional(),
+  titleFr: z.string().optional(),
   milestoneId: z.number(),
   activityType: z.enum(['LESSON', 'ASSESSMENT']).optional(),
   durationMins: z.number().int().optional(),
   privateNote: z.string().optional(),
+  privateNoteEn: z.string().optional(),
+  privateNoteFr: z.string().optional(),
   publicNote: z.string().optional(),
+  publicNoteEn: z.string().optional(),
+  publicNoteFr: z.string().optional(),
   materialsText: z.string().max(500).optional(),
+  materialsTextEn: z.string().max(500).optional(),
+  materialsTextFr: z.string().max(500).optional(),
   completedAt: z.string().datetime().optional(),
   tags: z.array(z.string()).optional(),
   outcomes: z.array(z.string()).optional(),
@@ -74,7 +88,25 @@ export const newsletterGenerateSchema = z.object({
   template: z.enum(ALLOWED_TEMPLATES).optional(),
   includePhotos: z.boolean().optional(),
   useLLM: z.boolean().optional(),
+  language: z.enum(['en', 'fr', 'both']).optional(),
 });
+
+export const newsletterCreateSchema = z.object({
+  title: z.string().min(1),
+  titleEn: z.string().optional(),
+  titleFr: z.string().optional(),
+  content: z.string().min(1),
+  contentEn: z.string().optional(),
+  contentFr: z.string().optional(),
+  rawDraft: z.string().optional(),
+  rawDraftEn: z.string().optional(),
+  rawDraftFr: z.string().optional(),
+  polishedDraft: z.string().optional(),
+  polishedDraftEn: z.string().optional(),
+  polishedDraftFr: z.string().optional(),
+});
+
+export const newsletterUpdateSchema = newsletterCreateSchema.partial();
 
 export const smartGoalCreateSchema = z.object({
   outcomeId: z.string(),
@@ -104,13 +136,21 @@ export const smartGoalUpdateSchema = z.object({
 
 export const oralRoutineTemplateCreateSchema = z.object({
   title: z.string().min(1).max(200),
+  titleEn: z.string().max(200).optional(),
+  titleFr: z.string().max(200).optional(),
   description: z.string().max(1000).optional(),
+  descriptionEn: z.string().max(1000).optional(),
+  descriptionFr: z.string().max(1000).optional(),
   outcomes: z.array(z.string()).optional(),
 });
 
 export const oralRoutineTemplateUpdateSchema = z.object({
   title: z.string().min(1).max(200).optional(),
+  titleEn: z.string().max(200).optional(),
+  titleFr: z.string().max(200).optional(),
   description: z.string().max(1000).optional(),
+  descriptionEn: z.string().max(1000).optional(),
+  descriptionFr: z.string().max(1000).optional(),
   outcomes: z.array(z.string()).optional(),
 });
 

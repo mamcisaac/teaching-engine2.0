@@ -46,7 +46,11 @@ export interface SmartGoal {
 export interface OralRoutineTemplate {
   id: number;
   title: string;
+  titleEn?: string | null;
+  titleFr?: string | null;
   description?: string | null;
+  descriptionEn?: string | null;
+  descriptionFr?: string | null;
   userId: number;
   createdAt: string;
   updatedAt: string;

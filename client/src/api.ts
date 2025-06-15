@@ -892,8 +892,15 @@ export const useOralRoutineTemplates = (filters?: { userId?: number }) =>
 export const useCreateOralRoutineTemplate = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: Partial<OralRoutineTemplate> & { outcomes?: string[] }) =>
-      api.post('/api/oral-routines/templates', data),
+    mutationFn: (data: {
+      title: string;
+      titleEn?: string;
+      titleFr?: string;
+      description?: string;
+      descriptionEn?: string;
+      descriptionFr?: string;
+      outcomes?: string[];
+    }) => api.post('/api/oral-routines/templates', data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['oral-routine-templates'] });
       toast.success('Oral routine template created');
@@ -916,7 +923,15 @@ export const useUpdateOralRoutineTemplate = () => {
       data,
     }: {
       id: number;
-      data: Partial<OralRoutineTemplate> & { outcomes?: string[] };
+      data: {
+        title?: string;
+        titleEn?: string;
+        titleFr?: string;
+        description?: string;
+        descriptionEn?: string;
+        descriptionFr?: string;
+        outcomes?: string[];
+      };
     }) => api.put(`/api/oral-routines/templates/${id}`, data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['oral-routine-templates'] });

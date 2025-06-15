@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { prisma } from '../prisma';
+import { getOutcomesCoverage } from '../utils/outcomeCoverage';
 
 const router = Router();
 
@@ -28,56 +29,48 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-// New endpoint for outcome coverage
+// Get outcome coverage data
 router.get('/coverage', async (req, res, next) => {
-  const { subject, grade, domain } = req.query as {
+  const { subject, grade, milestoneId } = req.query as {
     subject?: string;
     grade?: string;
-    domain?: string;
+    milestoneId?: string;
   };
-  
+
   try {
-    // Get all outcomes with their related activities
-    const outcomes = await prisma.outcome.findMany({
-      where: {
-        ...(subject ? { subject } : {}),
-        ...(grade ? { grade: Number(grade) } : {}),
-        ...(domain ? { domain } : {}),
-      },
-      include: {
-        activities: {
-          include: {
-            activity: {
-              select: {
-                id: true,
-                title: true,
-              },
-            },
-          },
-        },
-      },
-      orderBy: { code: 'asc' },
+    const coverage = await getOutcomesCoverage({
+      ...(subject && { subject }),
+      ...(grade && { grade: Number(grade) }),
+      ...(milestoneId && { milestoneId: Number(milestoneId) }),
     });
 
-    // Transform the outcomes into the coverage format
-    const coverageData = outcomes.map(outcome => {
-      // Get the activities covering this outcome
-      const activities = outcome.activities.map(ao => ao.activity);
-      
-      return {
-        outcomeId: outcome.id,
-        code: outcome.code,
-        description: outcome.description,
-        subject: outcome.subject,
-        domain: outcome.domain,
-        grade: outcome.grade,
-        isCovered: activities.length > 0,
-        coveredBy: activities.map(activity => ({
-          id: activity.id,
-          title: activity.title,
-        })),
-      };
+    // Get additional outcome details for the response
+    const outcomeIds = coverage.map((cov: { outcomeId: string }) => cov.outcomeId);
+    const outcomes = await prisma.outcome.findMany({
+      where: { id: { in: outcomeIds } },
+      select: {
+        id: true,
+        code: true,
+        description: true,
+        subject: true,
+        domain: true,
+        grade: true,
+      },
     });
+
+    // Combine coverage data with outcome details
+    const coverageData = coverage.map(
+      (cov: { outcomeId: string; status: string; linked: number; completed: number }) => {
+        const outcome = outcomes.find((o) => o.id === cov.outcomeId);
+        return {
+          outcomeId: cov.outcomeId,
+          status: cov.status,
+          linked: cov.linked,
+          completed: cov.completed,
+          ...outcome,
+        };
+      },
+    );
 
     res.json(coverageData);
   } catch (err) {

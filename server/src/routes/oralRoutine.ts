@@ -56,7 +56,15 @@ router.get('/templates', async (req, res, next) => {
 
 // POST /api/oral-routines/templates - Create a new oral routine template
 router.post('/templates', validate(oralRoutineTemplateCreateSchema), async (req, res, next) => {
-  const { title, description, outcomes = [] } = req.body;
+  const {
+    title,
+    titleEn,
+    titleFr,
+    description,
+    descriptionEn,
+    descriptionFr,
+    outcomes = [],
+  } = req.body;
   // @ts-expect-error - Express auth middleware adds user to request
   const userId = req.user?.userId ? Number(req.user.userId) : 1;
 
@@ -64,7 +72,11 @@ router.post('/templates', validate(oralRoutineTemplateCreateSchema), async (req,
     const template = await prisma.oralRoutineTemplate.create({
       data: {
         title,
+        titleEn,
+        titleFr,
         description,
+        descriptionEn,
+        descriptionFr,
         userId,
         outcomes: {
           create: outcomes.map((outcomeId: string) => ({
@@ -106,7 +118,7 @@ router.post('/templates', validate(oralRoutineTemplateCreateSchema), async (req,
 // PUT /api/oral-routines/templates/:id - Update an oral routine template
 router.put('/templates/:id', validate(oralRoutineTemplateUpdateSchema), async (req, res, next) => {
   const { id } = req.params;
-  const { title, description, outcomes } = req.body;
+  const { title, titleEn, titleFr, description, descriptionEn, descriptionFr, outcomes } = req.body;
 
   try {
     const existingTemplate = await prisma.oralRoutineTemplate.findUnique({
@@ -120,14 +132,22 @@ router.put('/templates/:id', validate(oralRoutineTemplateUpdateSchema), async (r
     // If outcomes are provided, update the relationships
     const updateData: {
       title?: string;
+      titleEn?: string;
+      titleFr?: string;
       description?: string;
+      descriptionEn?: string;
+      descriptionFr?: string;
       outcomes?: {
         deleteMany: Record<string, never>;
         create: Array<{ outcome: { connect: { id: string } } }>;
       };
     } = {
       ...(title !== undefined ? { title } : {}),
+      ...(titleEn !== undefined ? { titleEn } : {}),
+      ...(titleFr !== undefined ? { titleFr } : {}),
       ...(description !== undefined ? { description } : {}),
+      ...(descriptionEn !== undefined ? { descriptionEn } : {}),
+      ...(descriptionFr !== undefined ? { descriptionFr } : {}),
     };
 
     if (outcomes !== undefined) {

@@ -1,5 +1,9 @@
 import fs from 'fs/promises';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // use any to avoid requiring aws-sdk types when not installed
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
