@@ -264,3 +264,52 @@ export interface NoteInput {
   dailyPlanId?: number;
   milestoneId?: number;
 }
+
+export interface ThematicUnit {
+  id: number;
+  title: string;
+  titleEn?: string | null;
+  titleFr?: string | null;
+  description?: string | null;
+  descriptionEn?: string | null;
+  descriptionFr?: string | null;
+  startDate: string;
+  endDate: string;
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+  outcomes?: Array<{
+    outcome: {
+      id: string;
+      code: string;
+      description: string;
+      subject: string;
+      grade: number;
+      domain?: string | null;
+    };
+  }>;
+  activities?: Array<{
+    activity: {
+      id: number;
+      title: string;
+      titleEn?: string | null;
+      titleFr?: string | null;
+      tags?: unknown;
+      durationMins?: number | null;
+      milestone?: {
+        id: number;
+        title: string;
+        subject?: {
+          id: number;
+          name: string;
+          nameEn?: string | null;
+          nameFr?: string | null;
+        };
+      };
+    };
+  }>;
+  user?: {
+    id: number;
+    name: string;
+  };
+}

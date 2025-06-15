@@ -168,6 +168,38 @@ export const dailyOralRoutineUpdateSchema = z.object({
   participation: z.number().int().min(0).max(100).optional(),
 });
 
+const baseThematicUnitSchema = z.object({
+  title: z.string().min(1).max(200),
+  titleEn: z.string().max(200).optional(),
+  titleFr: z.string().max(200).optional(),
+  description: z.string().max(2000).optional(),
+  descriptionEn: z.string().max(2000).optional(),
+  descriptionFr: z.string().max(2000).optional(),
+  startDate: z.string().datetime(),
+  endDate: z.string().datetime(),
+  outcomes: z.array(z.string()).optional(),
+  activities: z.array(z.number().int()).optional(),
+});
+
+export const thematicUnitCreateSchema = baseThematicUnitSchema.refine(
+  (data) => new Date(data.startDate) <= new Date(data.endDate),
+  {
+    message: 'End date must be after or equal to start date',
+    path: ['endDate'],
+  },
+);
+
+export const thematicUnitUpdateSchema = baseThematicUnitSchema
+  .partial()
+  .refine(
+    (data) =>
+      !(data.startDate && data.endDate) || new Date(data.startDate) <= new Date(data.endDate),
+    {
+      message: 'End date must be after or equal to start date',
+      path: ['endDate'],
+    },
+  );
+
 export function validate(schema: ZodSchema) {
   return (req: Request, res: Response, next: NextFunction) => {
     const result = schema.safeParse(req.body);

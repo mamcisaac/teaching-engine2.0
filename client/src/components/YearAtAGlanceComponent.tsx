@@ -5,7 +5,9 @@ import {
   useCreateMilestone,
   useUpdateMilestone,
   useDeleteMilestone,
+  useThematicUnits,
   type Milestone,
+  type ThematicUnit,
 } from '../api';
 import Dialog from './Dialog';
 import OutcomeSelect from './OutcomeSelect';
@@ -119,8 +121,107 @@ function MilestoneCard({ milestone, subjectColor, onEdit, onDelete }: MilestoneC
   );
 }
 
+interface ThematicUnitCardProps {
+  thematicUnit: ThematicUnit;
+  onView: (thematicUnit: ThematicUnit) => void;
+}
+
+function ThematicUnitCard({ thematicUnit, onView }: ThematicUnitCardProps) {
+  const [showTooltip, setShowTooltip] = useState(false);
+  const outcomeCount = thematicUnit.outcomes?.length || 0;
+  const activityCount = thematicUnit.activities?.length || 0;
+  const subjects = new Set(
+    thematicUnit.activities?.map((a) => a.activity.milestone?.subject?.name).filter(Boolean) || [],
+  );
+
+  const formatDateRange = (startDate: string, endDate: string) => {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const options: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric' };
+
+    if (start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear()) {
+      return `${start.toLocaleDateString('en-US', { month: 'short' })} ${start.getDate()}-${end.getDate()}`;
+    }
+
+    return `${start.toLocaleDateString('en-US', options)} - ${end.toLocaleDateString('en-US', options)}`;
+  };
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setShowTooltip(true)}
+      onMouseLeave={() => setShowTooltip(false)}
+    >
+      <div className="p-3 rounded-lg border shadow-sm hover:shadow-md transition-shadow cursor-pointer bg-emerald-100 text-emerald-800 border-emerald-200">
+        <div className="flex justify-between items-start mb-2">
+          <button onClick={() => onView(thematicUnit)} className="flex-1 text-left">
+            <h4 className="font-medium text-sm leading-tight hover:text-emerald-900">
+              🌍 {thematicUnit.title}
+            </h4>
+          </button>
+        </div>
+
+        <button onClick={() => onView(thematicUnit)} className="w-full text-left">
+          <div className="text-xs text-emerald-600 mb-2">
+            {formatDateRange(thematicUnit.startDate, thematicUnit.endDate)}
+          </div>
+          <div className="flex flex-wrap gap-1 mb-2">
+            {Array.from(subjects)
+              .slice(0, 2)
+              .map((subject) => (
+                <span key={subject} className="text-xs font-medium px-2 py-1 bg-white/60 rounded">
+                  {subject}
+                </span>
+              ))}
+            {subjects.size > 2 && (
+              <span className="text-xs bg-white/40 px-1 py-0.5 rounded">+{subjects.size - 2}</span>
+            )}
+          </div>
+          <div className="flex items-center gap-2">
+            {outcomeCount > 0 && (
+              <span className="text-xs bg-white/40 px-1 py-0.5 rounded">🎯 {outcomeCount}</span>
+            )}
+            {activityCount > 0 && (
+              <span className="text-xs bg-white/40 px-1 py-0.5 rounded">📚 {activityCount}</span>
+            )}
+          </div>
+        </button>
+      </div>
+
+      {/* Tooltip showing details */}
+      {showTooltip && (outcomeCount > 0 || activityCount > 0) && (
+        <div className="absolute z-50 bottom-full left-0 mb-2 p-3 bg-gray-900 text-white text-xs rounded-lg shadow-lg max-w-xs">
+          <div className="font-medium mb-2">Thematic Unit Details:</div>
+          {thematicUnit.description && (
+            <div className="mb-2 text-gray-200">{thematicUnit.description}</div>
+          )}
+          {subjects.size > 0 && (
+            <div className="mb-2">
+              <span className="font-medium text-yellow-300">Subjects: </span>
+              <span className="text-gray-200">{Array.from(subjects).join(', ')}</span>
+            </div>
+          )}
+          {outcomeCount > 0 && (
+            <div className="mb-1">
+              <span className="font-medium text-yellow-300">Outcomes: </span>
+              <span className="text-gray-200">{outcomeCount} linked</span>
+            </div>
+          )}
+          {activityCount > 0 && (
+            <div>
+              <span className="font-medium text-yellow-300">Activities: </span>
+              <span className="text-gray-200">{activityCount} planned</span>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function YearAtAGlanceComponent({ year }: Props) {
   const { data: subjects } = useSubjects();
+  const { data: thematicUnits } = useThematicUnits();
   const createMilestone = useCreateMilestone();
   const updateMilestone = useUpdateMilestone();
   const deleteMilestone = useDeleteMilestone();
@@ -148,6 +249,30 @@ export default function YearAtAGlanceComponent({ year }: Props) {
   const getMilestonesForMonth = (monthValue: number) => {
     // For demo, we'll show milestones based on their ID mod 10 to distribute across months
     return allMilestones.filter((_, index) => index % 10 === monthValue % 10);
+  };
+
+  // Get thematic units for a specific month
+  const getThematicUnitsForMonth = (monthValue: number, year: number) => {
+    if (!thematicUnits) return [];
+
+    return thematicUnits.filter((unit) => {
+      const startDate = new Date(unit.startDate);
+      const endDate = new Date(unit.endDate);
+
+      // Check if the unit spans or occurs within this month
+      const monthStart = new Date(year, monthValue, 1);
+      const monthEnd = new Date(year, monthValue + 1, 0);
+
+      // Unit overlaps with month if:
+      // - Unit starts before month ends AND unit ends after month starts
+      return startDate <= monthEnd && endDate >= monthStart;
+    });
+  };
+
+  const handleViewThematicUnit = (unit: ThematicUnit) => {
+    // For now, we'll just log it. Later this could open a detailed view or redirect
+    console.log('Viewing thematic unit:', unit);
+    // Could redirect to: `/thematic-units/${unit.id}` or open a modal
   };
 
   const openCreateModal = () => {
@@ -201,13 +326,18 @@ export default function YearAtAGlanceComponent({ year }: Props) {
         <h2 className="text-2xl font-bold text-gray-900">
           Year at a Glance - {year}/{year + 1}
         </h2>
-        <div className="text-sm text-gray-600">Total Milestones: {allMilestones.length}</div>
+        <div className="text-sm text-gray-600">
+          Total Milestones: {allMilestones.length} • Thematic Units: {thematicUnits?.length || 0}
+        </div>
       </div>
 
       {/* Monthly Grid */}
       <div className="grid grid-cols-5 gap-4 lg:grid-cols-10">
         {SCHOOL_MONTHS.map((month) => {
           const monthMilestones = getMilestonesForMonth(month.value);
+          const monthThematicUnits = getThematicUnitsForMonth(month.value, year);
+          const hasContent = monthMilestones.length > 0 || monthThematicUnits.length > 0;
+
           return (
             <div key={month.value} className="border rounded-lg p-4 bg-gray-50 min-h-[300px]">
               {/* Month Header */}
@@ -221,19 +351,32 @@ export default function YearAtAGlanceComponent({ year }: Props) {
                 </button>
               </div>
 
-              {/* Milestones */}
+              {/* Content */}
               <div className="space-y-3">
+                {/* Thematic Units */}
+                {monthThematicUnits.map((unit) => (
+                  <ThematicUnitCard
+                    key={`theme-${unit.id}`}
+                    thematicUnit={unit}
+                    onView={handleViewThematicUnit}
+                  />
+                ))}
+
+                {/* Milestones */}
                 {monthMilestones.map((milestone) => (
                   <MilestoneCard
-                    key={milestone.id}
+                    key={`milestone-${milestone.id}`}
                     milestone={milestone}
                     subjectColor={SUBJECT_COLORS[milestone.subjectId % SUBJECT_COLORS.length]}
                     onEdit={openEditModal}
                     onDelete={handleDelete}
                   />
                 ))}
-                {monthMilestones.length === 0 && (
-                  <div className="text-gray-400 text-xs text-center py-4">No milestones</div>
+
+                {!hasContent && (
+                  <div className="text-gray-400 text-xs text-center py-4">
+                    No milestones or thematic units
+                  </div>
                 )}
               </div>
             </div>

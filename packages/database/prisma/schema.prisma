@@ -80,6 +80,7 @@ model Activity {
   dailyPlanItems DailyPlanItem[]
   notes       Note[]
   outcomes    ActivityOutcome[]
+  thematicUnits ThematicUnitActivity[]
   @@index([milestoneId, orderIndex])
 }
 
@@ -246,6 +247,7 @@ model User {
   smartGoals SmartGoal[]
   oralRoutineTemplates OralRoutineTemplate[]
   dailyOralRoutines DailyOralRoutine[]
+  thematicUnits ThematicUnit[]
 }
 
 enum ActivityType {
@@ -384,6 +386,7 @@ model Outcome {
   activities  ActivityOutcome[]
   smartGoals  SmartGoal[]
   oralRoutines OralRoutineOutcome[]
+  thematicUnits ThematicUnitOutcome[]
 }
 
 model MilestoneOutcome {
@@ -454,4 +457,38 @@ model OralRoutineOutcome {
   outcome    Outcome             @relation(fields: [outcomeId], references: [id])
   outcomeId  String
   @@id([templateId, outcomeId])
+}
+
+model ThematicUnit {
+  id           Int        @id @default(autoincrement())
+  title        String
+  titleEn      String?
+  titleFr      String?
+  description  String?
+  descriptionEn String?
+  descriptionFr String?
+  startDate    DateTime
+  endDate      DateTime
+  userId       Int
+  user         User       @relation(fields: [userId], references: [id])
+  outcomes     ThematicUnitOutcome[]
+  activities   ThematicUnitActivity[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model ThematicUnitOutcome {
+  thematicUnit   ThematicUnit @relation(fields: [thematicUnitId], references: [id])
+  thematicUnitId Int
+  outcome        Outcome      @relation(fields: [outcomeId], references: [id])
+  outcomeId      String
+  @@id([thematicUnitId, outcomeId])
+}
+
+model ThematicUnitActivity {
+  thematicUnit   ThematicUnit @relation(fields: [thematicUnitId], references: [id])
+  thematicUnitId Int
+  activity       Activity     @relation(fields: [activityId], references: [id])
+  activityId     Int
+  @@id([thematicUnitId, activityId])
 }

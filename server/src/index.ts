@@ -50,6 +50,7 @@ import subjectRoutes from './routes/subject';
 import subplanRoutes from './routes/subplan';
 import smartGoalRoutes from './routes/smartGoal';
 import oralRoutineRoutes from './routes/oralRoutine';
+import thematicUnitRoutes from './routes/thematicUnit';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
@@ -225,6 +226,7 @@ app.use('/api/subjects', authenticateToken, subjectRoutes);
 app.use('/api/sub-plan', authenticateToken, subplanRoutes);
 app.use('/api/smart-goals', authenticateToken, smartGoalRoutes);
 app.use('/api/oral-routines', authenticateToken, oralRoutineRoutes);
+app.use('/api/thematic-units', authenticateToken, thematicUnitRoutes);
 log('All API routes mounted successfully.');
 app.use('/api/*', (_req, res) => {
   res.status(404).json({ error: 'Not Found' });

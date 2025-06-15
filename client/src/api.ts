@@ -20,6 +20,7 @@ import type {
   OralRoutineTemplate,
   DailyOralRoutine,
   OralRoutineStats,
+  ThematicUnit,
 } from './types';
 
 import type {
@@ -1053,3 +1054,97 @@ export const useOralRoutineStats = (filters?: {
     queryKey: ['oral-routine-stats', filters],
     queryFn: async () => (await api.get('/api/oral-routines/stats', { params: filters })).data,
   });
+
+// Thematic Unit hooks
+export const useThematicUnits = (filters?: {
+  userId?: number;
+  startDate?: string;
+  endDate?: string;
+}) =>
+  useQuery<ThematicUnit[]>({
+    queryKey: ['thematic-units', filters],
+    queryFn: async () => (await api.get('/api/thematic-units', { params: filters })).data,
+  });
+
+export const useThematicUnit = (id: number) =>
+  useQuery<ThematicUnit>({
+    queryKey: ['thematic-units', id],
+    queryFn: async () => (await api.get(`/api/thematic-units/${id}`)).data,
+    enabled: !!id,
+  });
+
+export const useCreateThematicUnit = () => {
+  const queryClient = useQueryClient();
+  return useMutation<
+    ThematicUnit,
+    Error,
+    {
+      title: string;
+      titleEn?: string;
+      titleFr?: string;
+      description?: string;
+      descriptionEn?: string;
+      descriptionFr?: string;
+      startDate: string;
+      endDate: string;
+      outcomes?: string[];
+      activities?: number[];
+    }
+  >({
+    mutationFn: async (data) => (await api.post('/api/thematic-units', data)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['thematic-units'] });
+      toast.success('Thematic unit created successfully!');
+    },
+    onError: (error) => {
+      toast.error(`Failed to create thematic unit: ${error.message}`);
+    },
+  });
+};
+
+export const useUpdateThematicUnit = () => {
+  const queryClient = useQueryClient();
+  return useMutation<
+    ThematicUnit,
+    Error,
+    {
+      id: number;
+      data: {
+        title?: string;
+        titleEn?: string;
+        titleFr?: string;
+        description?: string;
+        descriptionEn?: string;
+        descriptionFr?: string;
+        startDate?: string;
+        endDate?: string;
+        outcomes?: string[];
+        activities?: number[];
+      };
+    }
+  >({
+    mutationFn: async ({ id, data }) => (await api.put(`/api/thematic-units/${id}`, data)).data,
+    onSuccess: (_, { id }) => {
+      queryClient.invalidateQueries({ queryKey: ['thematic-units'] });
+      queryClient.invalidateQueries({ queryKey: ['thematic-units', id] });
+      toast.success('Thematic unit updated successfully!');
+    },
+    onError: (error) => {
+      toast.error(`Failed to update thematic unit: ${error.message}`);
+    },
+  });
+};
+
+export const useDeleteThematicUnit = () => {
+  const queryClient = useQueryClient();
+  return useMutation<void, Error, number>({
+    mutationFn: async (id) => (await api.delete(`/api/thematic-units/${id}`)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['thematic-units'] });
+      toast.success('Thematic unit deleted successfully!');
+    },
+    onError: (error) => {
+      toast.error(`Failed to delete thematic unit: ${error.message}`);
+    },
+  });
+};

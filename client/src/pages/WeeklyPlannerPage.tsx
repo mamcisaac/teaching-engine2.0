@@ -4,6 +4,7 @@ import { api } from '../api';
 import {
   useLessonPlan,
   useSubjects,
+  useThematicUnits,
   type Activity,
   getWeekStartISO,
   useTimetable,
@@ -68,6 +69,9 @@ export default function WeeklyPlannerPage() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data: _suggestions, error: suggestionsError } = usePlannerSuggestions(weekStart, filters);
 
+  // Get thematic units active during this week
+  const { data: thematicUnits } = useThematicUnits();
+
   // Handle errors gracefully
   if (planError) {
     console.error('Error loading lesson plan:', planError);
@@ -125,6 +129,24 @@ export default function WeeklyPlannerPage() {
       return all;
     }
   }, [subjects]);
+
+  // Get thematic units active during the current week
+  const activeThematicUnits = useMemo(() => {
+    if (!thematicUnits || !Array.isArray(thematicUnits)) {
+      return [];
+    }
+
+    const weekStartDate = new Date(weekStart);
+    const weekEndDate = new Date(weekStartDate.getTime() + 6 * 24 * 60 * 60 * 1000);
+
+    return thematicUnits.filter((unit) => {
+      const unitStart = new Date(unit.startDate);
+      const unitEnd = new Date(unit.endDate);
+
+      // Unit is active if it overlaps with the current week
+      return unitStart <= weekEndDate && unitEnd >= weekStartDate;
+    });
+  }, [thematicUnits, weekStart]);
 
   const weekHolidays = useMemo(() => {
     try {
@@ -377,6 +399,53 @@ export default function WeeklyPlannerPage() {
             </label>
           </div>
         </div>
+
+        {/* Active Thematic Units */}
+        {activeThematicUnits.length > 0 && (
+          <div className="bg-emerald-50 rounded-lg shadow-sm border border-emerald-200 p-4">
+            <h3 className="text-lg font-semibold text-emerald-800 mb-3 flex items-center gap-2">
+              🌍 Active Thematic Units
+            </h3>
+            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+              {activeThematicUnits.map((unit) => (
+                <div
+                  key={unit.id}
+                  className="bg-white rounded-lg p-3 border border-emerald-200 hover:shadow-md transition-shadow"
+                >
+                  <div className="flex justify-between items-start mb-2">
+                    <h4 className="font-medium text-emerald-900 text-sm">{unit.title}</h4>
+                    <span className="text-xs text-emerald-600 bg-emerald-100 px-2 py-1 rounded">
+                      {new Date(unit.startDate).toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                      })}{' '}
+                      -
+                      {new Date(unit.endDate).toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                      })}
+                    </span>
+                  </div>
+                  {unit.description && (
+                    <p className="text-xs text-gray-600 mb-2 line-clamp-2">{unit.description}</p>
+                  )}
+                  <div className="flex gap-2 text-xs">
+                    {unit.outcomes && unit.outcomes.length > 0 && (
+                      <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                        🎯 {unit.outcomes.length} outcomes
+                      </span>
+                    )}
+                    {unit.activities && unit.activities.length > 0 && (
+                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded">
+                        📚 {unit.activities.length} activities
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         <PlannerNotificationBanner />
 
