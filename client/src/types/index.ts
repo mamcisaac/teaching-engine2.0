@@ -43,6 +43,55 @@ export interface SmartGoal {
   };
 }
 
+export interface OralRoutineTemplate {
+  id: number;
+  title: string;
+  description?: string | null;
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+  outcomes: Array<{
+    outcome: {
+      id: string;
+      code: string;
+      description: string;
+      subject: string;
+      grade: number;
+    };
+  }>;
+  user: {
+    id: number;
+    name: string;
+  };
+  _count?: {
+    dailyRoutines: number;
+  };
+}
+
+export interface DailyOralRoutine {
+  id: number;
+  date: string;
+  templateId: number;
+  completed: boolean;
+  notes?: string | null;
+  participation?: number | null;
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+  template: OralRoutineTemplate;
+  user: {
+    id: number;
+    name: string;
+  };
+}
+
+export interface OralRoutineStats {
+  totalRoutines: number;
+  completedRoutines: number;
+  completionRate: number;
+  averageParticipation: number | null;
+}
+
 export interface Milestone {
   id: number;
   title: string;

@@ -13,6 +13,7 @@ import DailyNotesEditor from '../components/DailyNotesEditor';
 import Dialog from '../components/Dialog';
 import OutcomeSelect from '../components/OutcomeSelect';
 import OutcomeTag from '../components/OutcomeTag';
+import DailyOralRoutineWidget from '../components/DailyOralRoutineWidget';
 import { toast } from 'sonner';
 
 interface ActivityCardProps {
@@ -221,7 +222,6 @@ export default function DailyPlanPage() {
     }
   };
 
-
   const handleDeleteActivity = (item: DailyPlanItem) => {
     if (!plan) return;
 
@@ -282,6 +282,11 @@ export default function DailyPlanPage() {
             </button>
           </div>
         </div>
+      </div>
+
+      {/* Oral Language Routines */}
+      <div className="bg-white rounded-lg shadow-sm border p-6">
+        <DailyOralRoutineWidget date={date} />
       </div>
 
       {/* Daily Timeline */}

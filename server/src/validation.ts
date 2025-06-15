@@ -102,6 +102,32 @@ export const smartGoalUpdateSchema = z.object({
   observedValue: z.number().int().min(0).max(100).optional(),
 });
 
+export const oralRoutineTemplateCreateSchema = z.object({
+  title: z.string().min(1).max(200),
+  description: z.string().max(1000).optional(),
+  outcomes: z.array(z.string()).optional(),
+});
+
+export const oralRoutineTemplateUpdateSchema = z.object({
+  title: z.string().min(1).max(200).optional(),
+  description: z.string().max(1000).optional(),
+  outcomes: z.array(z.string()).optional(),
+});
+
+export const dailyOralRoutineCreateSchema = z.object({
+  date: z.string().datetime(),
+  templateId: z.number().int().positive(),
+  completed: z.boolean().optional(),
+  notes: z.string().max(500).optional(),
+  participation: z.number().int().min(0).max(100).optional(),
+});
+
+export const dailyOralRoutineUpdateSchema = z.object({
+  completed: z.boolean().optional(),
+  notes: z.string().max(500).optional(),
+  participation: z.number().int().min(0).max(100).optional(),
+});
+
 export function validate(schema: ZodSchema) {
   return (req: Request, res: Response, next: NextFunction) => {
     const result = schema.safeParse(req.body);

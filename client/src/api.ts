@@ -17,6 +17,9 @@ import type {
   CalendarEvent,
   Outcome,
   SmartGoal,
+  OralRoutineTemplate,
+  DailyOralRoutine,
+  OralRoutineStats,
 } from './types';
 
 import type {
@@ -878,3 +881,160 @@ export const useDeleteSmartGoal = () => {
     },
   });
 };
+
+// Oral Routine Templates API
+export const useOralRoutineTemplates = (filters?: { userId?: number }) =>
+  useQuery<OralRoutineTemplate[]>({
+    queryKey: ['oral-routine-templates', filters],
+    queryFn: async () => (await api.get('/api/oral-routines/templates', { params: filters })).data,
+  });
+
+export const useCreateOralRoutineTemplate = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: Partial<OralRoutineTemplate> & { outcomes?: string[] }) =>
+      api.post('/api/oral-routines/templates', data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['oral-routine-templates'] });
+      toast.success('Oral routine template created');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to create template: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useUpdateOralRoutineTemplate = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({
+      id,
+      data,
+    }: {
+      id: number;
+      data: Partial<OralRoutineTemplate> & { outcomes?: string[] };
+    }) => api.put(`/api/oral-routines/templates/${id}`, data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['oral-routine-templates'] });
+      toast.success('Template updated');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to update template: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useDeleteOralRoutineTemplate = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => api.delete(`/api/oral-routines/templates/${id}`),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['oral-routine-templates'] });
+      toast.success('Template deleted');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to delete template: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+// Daily Oral Routines API
+export const useDailyOralRoutines = (filters?: {
+  date?: string;
+  userId?: number;
+  startDate?: string;
+  endDate?: string;
+}) =>
+  useQuery<DailyOralRoutine[]>({
+    queryKey: ['daily-oral-routines', filters],
+    queryFn: async () => (await api.get('/api/oral-routines/daily', { params: filters })).data,
+  });
+
+export const useCreateDailyOralRoutine = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: {
+      date: string;
+      templateId: number;
+      completed?: boolean;
+      notes?: string;
+      participation?: number;
+    }) => api.post('/api/oral-routines/daily', data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['daily-oral-routines'] });
+      toast.success('Daily routine scheduled');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to schedule routine: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useUpdateDailyOralRoutine = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({
+      id,
+      data,
+    }: {
+      id: number;
+      data: { completed?: boolean; notes?: string; participation?: number };
+    }) => api.put(`/api/oral-routines/daily/${id}`, data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['daily-oral-routines'] });
+      toast.success('Routine updated');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to update routine: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useDeleteDailyOralRoutine = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => api.delete(`/api/oral-routines/daily/${id}`),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['daily-oral-routines'] });
+      toast.success('Routine removed');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to remove routine: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+// Oral Routine Stats API
+export const useOralRoutineStats = (filters?: {
+  userId?: number;
+  startDate?: string;
+  endDate?: string;
+}) =>
+  useQuery<OralRoutineStats>({
+    queryKey: ['oral-routine-stats', filters],
+    queryFn: async () => (await api.get('/api/oral-routines/stats', { params: filters })).data,
+  });

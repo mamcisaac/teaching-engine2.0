@@ -221,6 +221,8 @@ model User {
   equipmentBookings EquipmentBooking[]
   substituteInfos SubstituteInfo[]
   smartGoals SmartGoal[]
+  oralRoutineTemplates OralRoutineTemplate[]
+  dailyOralRoutines DailyOralRoutine[]
 }
 
 enum ActivityType {
@@ -358,6 +360,7 @@ model Outcome {
   milestones  MilestoneOutcome[]
   activities  ActivityOutcome[]
   smartGoals  SmartGoal[]
+  oralRoutines OralRoutineOutcome[]
 }
 
 model MilestoneOutcome {
@@ -390,4 +393,38 @@ model SmartGoal {
   user          User       @relation(fields: [userId], references: [id])
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @updatedAt
+}
+
+model OralRoutineTemplate {
+  id            Int                      @id @default(autoincrement())
+  title         String
+  description   String?
+  userId        Int
+  user          User                     @relation(fields: [userId], references: [id])
+  outcomes      OralRoutineOutcome[]
+  dailyRoutines DailyOralRoutine[]
+  createdAt     DateTime                 @default(now())
+  updatedAt     DateTime                 @updatedAt
+}
+
+model DailyOralRoutine {
+  id            Int                 @id @default(autoincrement())
+  date          DateTime
+  templateId    Int
+  template      OralRoutineTemplate @relation(fields: [templateId], references: [id])
+  completed     Boolean             @default(false)
+  notes         String?
+  participation Int?
+  userId        Int
+  user          User                @relation(fields: [userId], references: [id])
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+}
+
+model OralRoutineOutcome {
+  template   OralRoutineTemplate @relation(fields: [templateId], references: [id])
+  templateId Int
+  outcome    Outcome             @relation(fields: [outcomeId], references: [id])
+  outcomeId  String
+  @@id([templateId, outcomeId])
 }
