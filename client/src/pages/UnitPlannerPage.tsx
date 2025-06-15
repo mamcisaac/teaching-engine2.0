@@ -5,6 +5,7 @@ import Dialog from '../components/Dialog';
 import OutcomeSelect from '../components/OutcomeSelect';
 import RichTextEditor from '../components/RichTextEditor';
 import ActivityList from '../components/ActivityList';
+import SmartGoalDisplay from '../components/SmartGoalDisplay';
 
 export default function UnitPlannerPage() {
   const { id } = useParams();
@@ -214,6 +215,11 @@ export default function UnitPlannerPage() {
                 <p className="text-sm">Add outcomes to track assessment</p>
               </div>
             )}
+          </div>
+
+          {/* SMART Goals */}
+          <div className="bg-white rounded-lg shadow-sm border p-6">
+            <SmartGoalDisplay milestoneId={milestone.id} showOutcomeColumn={true} />
           </div>
 
           {/* Learning Goals */}

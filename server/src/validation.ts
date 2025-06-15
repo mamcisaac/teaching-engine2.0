@@ -76,6 +76,32 @@ export const newsletterGenerateSchema = z.object({
   useLLM: z.boolean().optional(),
 });
 
+export const smartGoalCreateSchema = z.object({
+  outcomeId: z.string(),
+  milestoneId: z.number().optional(),
+  description: z.string().min(1).max(1000),
+  targetDate: z
+    .string()
+    .datetime()
+    .refine((date) => new Date(date) >= new Date(), {
+      message: 'Target date must be today or in the future',
+    }),
+  targetValue: z.number().int().min(0).max(100),
+});
+
+export const smartGoalUpdateSchema = z.object({
+  description: z.string().min(1).max(1000).optional(),
+  targetDate: z
+    .string()
+    .datetime()
+    .refine((date) => new Date(date) >= new Date(), {
+      message: 'Target date must be today or in the future',
+    })
+    .optional(),
+  targetValue: z.number().int().min(0).max(100).optional(),
+  observedValue: z.number().int().min(0).max(100).optional(),
+});
+
 export function validate(schema: ZodSchema) {
   return (req: Request, res: Response, next: NextFunction) => {
     const result = schema.safeParse(req.body);

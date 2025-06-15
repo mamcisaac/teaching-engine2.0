@@ -16,6 +16,7 @@ import type {
   Notification,
   CalendarEvent,
   Outcome,
+  SmartGoal,
 } from './types';
 
 import type {
@@ -407,6 +408,12 @@ export const useSubject = (id: number) =>
   useQuery<Subject>({
     queryKey: ['subject', id],
     queryFn: async () => (await api.get(`/api/subjects/${id}`)).data,
+  });
+
+export const useMilestones = () =>
+  useQuery<Milestone[]>({
+    queryKey: ['milestones'],
+    queryFn: async () => (await api.get('/api/milestones')).data,
   });
 
 export const useMilestone = (id: number) =>
@@ -802,6 +809,72 @@ export const useSaveSubstituteInfo = () => {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['substitute-info'] });
       toast.success('Substitute information saved');
+    },
+  });
+};
+
+// SMART Goals API
+export const useSmartGoals = (filters?: {
+  outcomeId?: string;
+  milestoneId?: number;
+  userId?: number;
+}) =>
+  useQuery<SmartGoal[]>({
+    queryKey: ['smart-goals', filters],
+    queryFn: async () => (await api.get('/api/smart-goals', { params: filters })).data,
+  });
+
+export const useCreateSmartGoal = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: Partial<SmartGoal>) => api.post('/api/smart-goals', data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['smart-goals'] });
+      toast.success('SMART goal created');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to create SMART goal: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useUpdateSmartGoal = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, data }: { id: number; data: Partial<SmartGoal> }) =>
+      api.put(`/api/smart-goals/${id}`, data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['smart-goals'] });
+      toast.success('SMART goal updated');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to update SMART goal: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useDeleteSmartGoal = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => api.delete(`/api/smart-goals/${id}`),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['smart-goals'] });
+      toast.success('SMART goal deleted');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to delete SMART goal: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
     },
   });
 };

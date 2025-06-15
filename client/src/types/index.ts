@@ -15,6 +15,34 @@ export interface Outcome {
   domain?: string | null;
 }
 
+export interface SmartGoal {
+  id: number;
+  outcomeId: string;
+  milestoneId?: number | null;
+  description: string;
+  targetDate: string;
+  targetValue: number;
+  observedValue?: number | null;
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+  outcome: {
+    id: string;
+    code: string;
+    description: string;
+    subject: string;
+    grade: number;
+  };
+  milestone?: {
+    id: number;
+    title: string;
+  } | null;
+  user: {
+    id: number;
+    name: string;
+  };
+}
+
 export interface Milestone {
   id: number;
   title: string;

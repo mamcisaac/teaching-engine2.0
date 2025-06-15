@@ -48,6 +48,7 @@ import substituteInfoRoutes from './routes/substituteInfo';
 import backupRoutes from './routes/backupRoutes';
 import subjectRoutes from './routes/subject';
 import subplanRoutes from './routes/subplan';
+import smartGoalRoutes from './routes/smartGoal';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
@@ -221,6 +222,7 @@ app.use('/api/substitute-info', authenticateToken, substituteInfoRoutes);
 app.use('/api/backup', authenticateToken, backupRoutes);
 app.use('/api/subjects', authenticateToken, subjectRoutes);
 app.use('/api/sub-plan', authenticateToken, subplanRoutes);
+app.use('/api/smart-goals', authenticateToken, smartGoalRoutes);
 log('All API routes mounted successfully.');
 app.use('/api/*', (_req, res) => {
   res.status(404).json({ error: 'Not Found' });

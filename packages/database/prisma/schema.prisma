@@ -36,6 +36,7 @@ model Milestone {
   deadline   ReportDeadline? @relation(fields: [deadlineId], references: [id])
   deadlineId Int?
   outcomes   MilestoneOutcome[]
+  smartGoals SmartGoal[]
 }
 
 model Activity {
@@ -219,6 +220,7 @@ model User {
   shareLinks ShareLink[]
   equipmentBookings EquipmentBooking[]
   substituteInfos SubstituteInfo[]
+  smartGoals SmartGoal[]
 }
 
 enum ActivityType {
@@ -355,6 +357,7 @@ model Outcome {
   updatedAt   DateTime @updatedAt
   milestones  MilestoneOutcome[]
   activities  ActivityOutcome[]
+  smartGoals  SmartGoal[]
 }
 
 model MilestoneOutcome {
@@ -371,4 +374,20 @@ model ActivityOutcome {
   outcome     Outcome   @relation(fields: [outcomeId], references: [id])
   outcomeId   String
   @@id([activityId, outcomeId])
+}
+
+model SmartGoal {
+  id            Int        @id @default(autoincrement())
+  outcomeId     String
+  outcome       Outcome    @relation(fields: [outcomeId], references: [id])
+  milestoneId   Int?
+  milestone     Milestone? @relation(fields: [milestoneId], references: [id])
+  description   String
+  targetDate    DateTime
+  targetValue   Int
+  observedValue Int?
+  userId        Int
+  user          User       @relation(fields: [userId], references: [id])
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
 }
