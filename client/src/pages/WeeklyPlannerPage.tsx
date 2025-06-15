@@ -18,7 +18,7 @@ import type {
 } from '../types';
 
 // No need for separate Holiday type, using CalendarEvent from types
-import ActivitySuggestionList from '../components/ActivitySuggestionList';
+import { PlannerSuggestions } from '../components/planner/PlannerSuggestions';
 import WeekCalendarGrid from '../components/WeekCalendarGrid';
 import AutoFillButton from '../components/AutoFillButton';
 import WeeklyMaterialsChecklist from '../components/WeeklyMaterialsChecklist';
@@ -65,7 +65,8 @@ export default function WeeklyPlannerPage() {
     data?: CalendarEvent[];
     error?: unknown;
   };
-  const { data: suggestions, error: suggestionsError } = usePlannerSuggestions(weekStart, filters);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { data: _suggestions, error: suggestionsError } = usePlannerSuggestions(weekStart, filters);
 
   // Handle errors gracefully
   if (planError) {
@@ -421,12 +422,10 @@ export default function WeeklyPlannerPage() {
               </div>
 
               <div className="bg-white rounded-lg border p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Activity Suggestions</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Suggested Activities</h3>
                 <PlannerFilters filters={filters} onChange={setFilters} />
                 <div className="mt-4">
-                  <ActivitySuggestionList
-                    activities={Array.isArray(suggestions) ? suggestions : []}
-                  />
+                  <PlannerSuggestions weekStart={weekStart} />
                 </div>
               </div>
             </div>

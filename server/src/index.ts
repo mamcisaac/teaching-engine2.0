@@ -1,7 +1,19 @@
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import jwt, { JwtPayload } from 'jsonwebtoken';
+import cookieParser from 'cookie-parser';
+import bcrypt from 'bcryptjs';
+import debug from 'debug';
+
+// Create debug logger
+const log = debug('server:main');
+const error = debug('server:error');
+
+// Get directory name in ES module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Extend the Express Request type to include the user property
 interface AuthenticatedRequest extends Request {
@@ -45,9 +57,12 @@ import { scheduleBackups } from './services/backupService';
 import logger from './logger';
 import { prisma } from './prisma';
 
+// Initialize Express app
+log('Initializing Express application...');
 const app = express();
 
 // Configure CORS with credentials support
+log('Configuring CORS...');
 // CORS options
 const corsOptions: cors.CorsOptions = {
   origin: (origin, callback) => {
@@ -64,9 +79,11 @@ const corsOptions: cors.CorsOptions = {
 };
 
 // Handle preflight requests
+log('Configuring CORS preflight...');
 app.options('*', cors(corsOptions));
 
 // Apply CORS to all routes
+log('Applying CORS and JSON middleware...');
 app.use(cors(corsOptions));
 app.use(express.json());
 
@@ -111,14 +128,17 @@ app.post('/api/login', async (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
+    // Compare the provided password with the hashed password in the database
+    const isPasswordValid = await bcrypt.compare(passwordInput, user.password);
+
     // Debug: Log the password comparison
     console.log('Password comparison:', {
       providedPassword: passwordInput,
       storedPassword: user.password,
-      match: passwordInput === user.password,
+      match: isPasswordValid,
     });
 
-    if (user.password !== passwordInput) {
+    if (!isPasswordValid) {
       console.log('Password does not match');
       return res.status(401).json({ error: 'Invalid credentials' });
     }
@@ -173,6 +193,7 @@ app.get('/api/health', (_req, res) => {
 });
 
 // Apply authentication to all other API routes
+log('Mounting API routes...');
 app.use('/api/lesson-plans', authenticateToken, lessonPlanRoutes);
 app.use('/api/milestones', authenticateToken, milestoneRoutes);
 app.use('/api/activities', authenticateToken, activityRoutes);
@@ -183,6 +204,7 @@ app.use('/api/notifications', authenticateToken, notificationRoutes);
 app.use('/api/newsletters', authenticateToken, newsletterRoutes);
 app.use('/api/newsletter-draft', authenticateToken, newsletterDraftRoutes);
 app.use('/api/newsletter-suggestions', authenticateToken, newsletterSuggestionRoutes);
+log('Mounting planner suggestions route...');
 app.use('/api/planner/suggestions', authenticateToken, plannerSuggestionRoutes);
 app.use('/api/timetable', authenticateToken, timetableRoutes);
 app.use('/api/notes', authenticateToken, noteRoutes);
@@ -199,13 +221,20 @@ app.use('/api/substitute-info', authenticateToken, substituteInfoRoutes);
 app.use('/api/backup', authenticateToken, backupRoutes);
 app.use('/api/subjects', authenticateToken, subjectRoutes);
 app.use('/api/sub-plan', authenticateToken, subplanRoutes);
+log('All API routes mounted successfully.');
 app.use('/api/*', (_req, res) => {
   res.status(404).json({ error: 'Not Found' });
 });
 
 const clientDist = path.join(__dirname, '../../client/dist');
+log('Configuring URL-encoded and cookie parser middleware...');
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+log('Configuring static file serving for uploads...');
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+log('Configuring static file serving for client distribution...');
 app.use(express.static(clientDist));
+log('Configuring catch-all route for client-side routing...');
 app.get('*', (_req, res) => {
   res.sendFile(path.join(clientDist, 'index.html'));
 });
@@ -223,17 +252,25 @@ app.use(
   },
 );
 
-const PORT = process.env.PORT || 3001;
-if (process.env.NODE_ENV !== 'test') {
-  scheduleProgressCheck();
-  scheduleUnreadNotificationEmails();
-  scheduleNewsletterTriggers();
-  scheduleReportDeadlineReminders();
-  scheduleEquipmentBookingReminders();
-  scheduleBackups();
-  app.listen(PORT, () => {
-    logger.info(`Server listening on port ${PORT}`);
-  });
-}
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3002;
+log(`Starting server on port ${PORT}...`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server is running on port ${PORT}`);
+  log('Server started successfully');
+
+  // Schedule background jobs
+  log('Scheduling background jobs...');
+  try {
+    scheduleProgressCheck();
+    scheduleUnreadNotificationEmails();
+    scheduleNewsletterTriggers();
+    scheduleReportDeadlineReminders();
+    scheduleEquipmentBookingReminders();
+    scheduleBackups();
+    log('All background jobs scheduled');
+  } catch (err) {
+    error('Error scheduling background jobs:', err);
+  }
+});
 
 export default app;

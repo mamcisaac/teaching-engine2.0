@@ -15,7 +15,14 @@ import type {
   YearPlanEntry,
   Notification,
   CalendarEvent,
+  Outcome,
 } from './types';
+
+import type {
+  ActivitySuggestion,
+  OutcomeCoverage as PlannerOutcomeCoverage,
+  OutcomeCoverageResult,
+} from './types/planner';
 
 // Define missing types that are used but not exported from types
 type Material = {
@@ -37,11 +44,11 @@ type DailyPlan = {
 // Extend the ImportMeta interface to include Vite's environment variables
 declare global {
   interface ImportMetaEnv {
-    VITE_API_BASE_URL: string;
+    readonly VITE_API_BASE_URL: string;
   }
 
   interface ImportMeta {
-    env: ImportMetaEnv;
+    readonly env: ImportMetaEnv;
   }
 }
 
@@ -97,29 +104,26 @@ export const getWeekStartISO = (date: Date): string => {
 // Re-export all types for backward compatibility
 export type {
   Activity,
-  CompleteActivityResponse,
-  DailyPlan,
-  DailyPlanItem,
   LessonPlan,
-  MaterialList,
   Milestone,
   Newsletter,
   Note,
-  NoteDetail,
   NoteInput,
-  Outcome,
   Resource,
   Subject,
   TeacherPreferencesInput,
   TimetableSlot,
-  WeeklyScheduleItem,
   YearPlanEntry,
   Notification,
   CalendarEvent,
-} from './types';
+};
 
-// Export OutcomeCoverage type directly from api.ts
-export type { OutcomeCoverage };
+// Export planner-specific types
+export type {
+  ActivitySuggestion,
+  PlannerOutcomeCoverage as OutcomeCoverage,
+  OutcomeCoverageResult,
+};
 
 // Query hooks
 export const useNewsletter = (id: number, type: 'raw' | 'polished' = 'raw') =>
@@ -343,14 +347,22 @@ export const useCalendarEvents = (start: string, end: string) =>
     queryFn: async () => (await api.get(`/api/calendar-events?from=${start}&to=${end}`)).data,
   });
 
-export const usePlannerSuggestions = (weekStart: string, filters: Record<string, boolean>) =>
-  useQuery<Activity[]>({
-    queryKey: ['planner-suggestions', weekStart, filters],
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const usePlannerSuggestions = (weekStart: string, _filters?: Record<string, boolean>) =>
+  useQuery<ActivitySuggestion[]>({
+    queryKey: ['planner-suggestions', weekStart],
     queryFn: async () => {
-      const filtersParam = `&filters=${encodeURIComponent(JSON.stringify(filters))}`;
-      const url = `/api/planner/suggestions?weekStart=${weekStart}${filtersParam}`;
-      return (await api.get(url)).data;
+      try {
+        const url = `/api/planner/suggestions?weekStart=${weekStart}`;
+        const response = await api.get<ActivitySuggestion[]>(url);
+        return response.data;
+      } catch (error) {
+        console.error('Error fetching planner suggestions:', error);
+        throw error;
+      }
     },
+    // Only enable the query if we have a valid weekStart
+    enabled: !!weekStart,
   });
 
 export const useSubjects = () =>
@@ -697,8 +709,8 @@ export const useOutcomeCoverage = (filters?: {
   subject?: string;
   grade?: string | number;
   domain?: string;
-}) => {
-  return useQuery<OutcomeCoverage[]>({
+}): OutcomeCoverageResult => {
+  return useQuery<PlannerOutcomeCoverage[]>({
     queryKey: ['outcome-coverage', filters],
     queryFn: async () => {
       try {
