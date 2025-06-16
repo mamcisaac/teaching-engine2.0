@@ -2,7 +2,7 @@ import { toast } from 'sonner';
 
 export default function BackupButton() {
   const handleClick = () => {
-    toast.message('Backup starting…');
+    toast('Backup starting…');
     window.location.href = '/api/backup';
   };
   return (

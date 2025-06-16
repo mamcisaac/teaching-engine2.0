@@ -1,4 +1,5 @@
-import { useGeneratePlan, LessonPlan } from '../api';
+import { useGeneratePlan } from '../api';
+import type { LessonPlan } from '../types';
 import { toast } from 'sonner';
 import axios from 'axios';
 

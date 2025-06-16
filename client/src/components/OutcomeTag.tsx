@@ -1,4 +1,4 @@
-import { Outcome } from '../api';
+import { Outcome } from '../types';
 
 interface Props {
   outcome: Outcome;

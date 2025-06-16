@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { Outcome } from '../api';
+import type { Outcome } from '../types';
 
 interface Props {
   outcome: Outcome;

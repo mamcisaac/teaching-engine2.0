@@ -70,6 +70,7 @@ export interface OralRoutineTemplate {
   _count?: {
     dailyRoutines: number;
   };
+  [key: string]: unknown;
 }
 
 export interface DailyOralRoutine {
@@ -106,6 +107,7 @@ export interface Milestone {
   activities: Activity[];
   subject?: Subject;
   outcomes?: Array<{ outcome: Outcome }>;
+  standardCodes?: string[];
 }
 
 export interface Activity {
@@ -302,7 +304,7 @@ export interface ThematicUnit {
       title: string;
       titleEn?: string | null;
       titleFr?: string | null;
-      tags?: unknown;
+      tags?: string[];
       durationMins?: number | null;
       milestone?: {
         id: number;
@@ -320,6 +322,7 @@ export interface ThematicUnit {
     id: number;
     name: string;
   };
+  [key: string]: unknown;
 }
 
 export interface CognatePair {

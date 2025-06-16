@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import MilestoneList from '../components/MilestoneList';
-import type { Milestone } from '../api';
+import type { Milestone } from '../types';
 import { renderWithRouter } from '../test-utils';
 import { vi } from 'vitest';
 

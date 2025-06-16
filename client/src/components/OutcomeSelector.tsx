@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Outcome, useOutcomes } from '../api';
+import { useOutcomes } from '../api';
+import { Outcome } from '../types';
 
 interface Props {
   selectedOutcomes: string[];

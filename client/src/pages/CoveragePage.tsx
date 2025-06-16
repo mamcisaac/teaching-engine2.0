@@ -6,8 +6,8 @@ import {
   useCognates,
   useOutcomeAssessments,
   type OutcomeCoverage,
-  type ThematicUnit,
 } from '../api';
+import type { ThematicUnit } from '../types';
 import { useAuth } from '../contexts/AuthContext';
 
 // Component to display assessment data for a specific outcome
@@ -283,8 +283,8 @@ export default function CoveragePage() {
             >
               <option value="">All Domains</option>
               {domains.map((domain) => (
-                <option key={domain} value={domain}>
-                  {domain}
+                <option key={domain} value={domain || ''}>
+                  {domain || 'No Domain'}
                 </option>
               ))}
             </select>
@@ -397,6 +397,7 @@ export default function CoveragePage() {
           {Object.keys(outcomesByThematicUnit).length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {Object.entries(outcomesByThematicUnit).map(([unitId, data]) => {
+                const safeUnitId = String(unitId);
                 const unitCoveragePercent =
                   data.total > 0 ? Math.round((data.covered / data.total) * 100) : 0;
 
@@ -416,7 +417,7 @@ export default function CoveragePage() {
                 };
 
                 return (
-                  <div key={unitId} className="bg-white rounded-lg shadow-md overflow-hidden">
+                  <div key={safeUnitId} className="bg-white rounded-lg shadow-md overflow-hidden">
                     <div className="bg-emerald-600 text-white p-3">
                       <h3 className="font-semibold flex items-center gap-2">
                         🌍 {data.unit.title}

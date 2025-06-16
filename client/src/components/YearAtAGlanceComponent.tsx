@@ -6,9 +6,8 @@ import {
   useUpdateMilestone,
   useDeleteMilestone,
   useThematicUnits,
-  type Milestone,
-  type ThematicUnit,
 } from '../api';
+import type { Milestone, ThematicUnit } from '../types';
 import Dialog from './Dialog';
 import OutcomeSelect from './OutcomeSelect';
 
@@ -47,7 +46,7 @@ interface MilestoneCardProps {
   milestone: Milestone;
   subjectColor: string;
   onEdit: (milestone: Milestone) => void;
-  onDelete: (milestoneId: number) => void;
+  onDelete: (milestone: Milestone) => void;
 }
 
 function MilestoneCard({ milestone, subjectColor, onEdit, onDelete }: MilestoneCardProps) {
@@ -82,7 +81,7 @@ function MilestoneCard({ milestone, subjectColor, onEdit, onDelete }: MilestoneC
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                onDelete(milestone.id);
+                onDelete(milestone);
               }}
               className="text-xs px-1 py-0.5 bg-red-100 text-red-700 rounded hover:bg-red-200"
             >
@@ -313,9 +312,9 @@ export default function YearAtAGlanceComponent({ year }: Props) {
     setIsModalOpen(false);
   };
 
-  const handleDelete = (milestoneId: number) => {
+  const handleDelete = (milestone: Milestone) => {
     if (confirm('Are you sure you want to delete this milestone?')) {
-      deleteMilestone.mutate(milestoneId);
+      deleteMilestone.mutate({ id: milestone.id, subjectId: milestone.subjectId });
     }
   };
 

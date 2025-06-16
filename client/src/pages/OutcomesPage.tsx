@@ -67,6 +67,11 @@ export default function OutcomesPage() {
 
     if (aValue === bValue) return 0;
 
+    // Handle null/undefined values
+    if (aValue == null && bValue == null) return 0;
+    if (aValue == null) return 1;
+    if (bValue == null) return -1;
+
     if (sortDirection === 'asc') {
       return aValue < bValue ? -1 : 1;
     } else {
@@ -189,8 +194,8 @@ export default function OutcomesPage() {
             >
               <option value="">All Domains</option>
               {domains.map((domain) => (
-                <option key={domain} value={domain}>
-                  {domain}
+                <option key={domain} value={domain || ''}>
+                  {domain || 'No Domain'}
                 </option>
               ))}
             </select>
@@ -253,7 +258,8 @@ export default function OutcomesPage() {
                   All Outcomes ({sortedOutcomes.length})
                   {totalPages > 1 && (
                     <span className="text-sm font-normal text-gray-600 ml-2">
-                      Showing {startIndex + 1}-{Math.min(endIndex, sortedOutcomes.length)} of {sortedOutcomes.length}
+                      Showing {startIndex + 1}-{Math.min(endIndex, sortedOutcomes.length)} of{' '}
+                      {sortedOutcomes.length}
                     </span>
                   )}
                 </h2>

@@ -10,7 +10,7 @@ export default function ReflectionsPage() {
   const { data: subjects } = useSubjects();
   const { data: notes } = useFilteredNotes({
     type: type === 'all' ? undefined : (type as 'public' | 'private'),
-    subjectId: subjectId ? Number(subjectId) : undefined,
+    subjectId: subjectId ? String(Number(subjectId)) : undefined,
     dateFrom: dateFrom || undefined,
     dateTo: dateTo || undefined,
   });

@@ -50,7 +50,7 @@ export default function UnitPlannerPage() {
       id: milestone.id,
       title: milestone.title,
       subjectId: milestone.subjectId,
-      description: milestone.description,
+      description: milestone.description ?? undefined,
       outcomes: selectedOutcomes,
     });
     setIsOutcomeModalOpen(false);
@@ -86,7 +86,7 @@ export default function UnitPlannerPage() {
       title: activityTitle,
       milestoneId: milestone.id,
       materialsText: activityMaterials || undefined,
-      cognates: selectedCognates.length > 0 ? selectedCognates : undefined,
+      cognateIds: selectedCognates.length > 0 ? selectedCognates : undefined,
     });
     setIsActivityModalOpen(false);
   };

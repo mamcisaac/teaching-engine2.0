@@ -193,7 +193,8 @@ export default function DailyOralRoutineWidget({
                     {routine.completed && (
                       <div className="mb-2">
                         <label className="text-xs text-gray-600 block mb-1">
-                          Student Participation: {getParticipationIcon(routine.participation)}{' '}
+                          Student Participation:{' '}
+                          {getParticipationIcon(routine.participation ?? null)}{' '}
                           {routine.participation || 0}%
                         </label>
                         <input

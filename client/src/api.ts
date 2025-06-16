@@ -7,6 +7,7 @@ import type {
   Milestone,
   Newsletter,
   Note,
+  NoteDetail,
   NoteInput,
   Resource,
   Subject,
@@ -32,6 +33,9 @@ import type {
   MediaResourceInput,
   ParentMessage,
   ParentMessageInput,
+  MaterialList,
+  DailyPlan,
+  CompleteActivityResponse,
 } from './types';
 
 import type {
@@ -41,21 +45,6 @@ import type {
 } from './types/planner';
 
 // Define missing types that are used but not exported from types
-type Material = {
-  id: number;
-  name: string;
-  type: string;
-  url: string;
-};
-
-type MaterialList = Material[];
-
-type DailyPlan = {
-  id: number;
-  date: string;
-  activities: Activity[];
-  notes?: string;
-};
 
 // Extend the ImportMeta interface to include Vite's environment variables
 declare global {
@@ -69,7 +58,7 @@ declare global {
 }
 
 // Point directly to the backend server
-const base = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
+const base = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
 export const api = axios.create({
   // Point directly to the backend server
@@ -135,11 +124,7 @@ export type {
 };
 
 // Export planner-specific types
-export type {
-  ActivitySuggestion,
-  PlannerOutcomeCoverage as OutcomeCoverage,
-  OutcomeCoverageResult,
-};
+export type { ActivitySuggestion, OutcomeCoverageResult };
 
 // Query hooks
 export const useNewsletter = (id: number, type: 'raw' | 'polished' = 'raw') =>
@@ -154,7 +139,7 @@ export const useFilteredNotes = (filters: {
   dateFrom?: string;
   dateTo?: string;
 }) =>
-  useQuery<Note[]>({
+  useQuery<NoteDetail[]>({
     queryKey: ['notes', filters],
     queryFn: async () => (await api.get('/api/notes', { params: filters })).data,
   });
@@ -395,15 +380,64 @@ export const useCalendarEvents = (start: string, end: string) =>
     queryFn: async () => (await api.get(`/api/calendar-events?from=${start}&to=${end}`)).data,
   });
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const usePlannerSuggestions = (weekStart: string, _filters?: Record<string, boolean>) =>
+export const usePlannerSuggestions = (weekStart: string, filters?: Record<string, boolean>) =>
   useQuery<ActivitySuggestion[]>({
-    queryKey: ['planner-suggestions', weekStart],
+    queryKey: ['planner-suggestions', weekStart, filters],
     queryFn: async () => {
       try {
         const url = `/api/planner/suggestions?weekStart=${weekStart}`;
         const response = await api.get<ActivitySuggestion[]>(url);
-        return response.data;
+        let suggestions = response.data;
+
+        // Apply client-side filtering based on activity tags
+        if (filters && Object.keys(filters).length > 0) {
+          console.log(
+            'Applying filters:',
+            filters,
+            'to suggestions:',
+            suggestions.map((s) => s.title),
+          );
+          suggestions = suggestions.filter((suggestion) => {
+            // If no filters are enabled, show all
+            const enabledFilters = Object.entries(filters)
+              .filter(([, enabled]) => enabled)
+              .map(([tag]) => tag);
+            if (enabledFilters.length === 0) return true; // Changed from false to true - show all if no filters
+
+            // Check if the suggestion has any of the enabled filter tags
+            // This requires getting the activity data to check tags
+            // For now, we'll do a simple check based on activity title patterns
+            const matches = enabledFilters.some((tag) => {
+              switch (tag) {
+                case 'Worksheet':
+                  return (
+                    suggestion.title.toLowerCase().includes('worksheet') ||
+                    suggestion.title.includes('WorksheetAct')
+                  );
+                case 'Video':
+                  return (
+                    suggestion.title.toLowerCase().includes('video') ||
+                    suggestion.title.includes('VideoAct')
+                  );
+                case 'HandsOn':
+                  return (
+                    suggestion.title.toLowerCase().includes('handson') ||
+                    suggestion.title.toLowerCase().includes('hands-on')
+                  );
+                default:
+                  return false;
+              }
+            });
+            console.log(`Suggestion "${suggestion.title}" matches filters:`, matches);
+            return matches;
+          });
+          console.log(
+            'Filtered suggestions:',
+            suggestions.map((s) => s.title),
+          );
+        }
+
+        return suggestions;
       } catch (error) {
         console.error('Error fetching planner suggestions:', error);
         throw error;
@@ -434,7 +468,13 @@ export const useMilestones = () =>
 export const useMilestone = (id: number) =>
   useQuery<Milestone>({
     queryKey: ['milestone', id],
-    queryFn: async () => (await api.get(`/milestones/${id}`)).data,
+    queryFn: async () => (await api.get(`/api/milestones/${id}`)).data,
+  });
+
+export const useActivities = () =>
+  useQuery<Activity[]>({
+    queryKey: ['activities'],
+    queryFn: async () => (await api.get('/api/activities')).data,
   });
 
 // Mutation hooks
@@ -540,6 +580,7 @@ export const useCreateActivity = () => {
       milestoneId: number;
       materialsText?: string;
       outcomes?: string[];
+      cognateIds?: number[];
     }) => api.post('/api/activities', data),
     onSuccess: (_res, vars) => {
       qc.invalidateQueries({ queryKey: ['milestone', vars.milestoneId] });
@@ -590,7 +631,7 @@ export const useDeleteActivity = () => {
 
 export const useCompleteActivity = () => {
   const qc = useQueryClient();
-  return useMutation<unknown, Error, { activityId: number; note?: string }>({
+  return useMutation<CompleteActivityResponse, Error, { activityId: number; note?: string }>({
     mutationFn: async (data: { activityId: number; note?: string }) => {
       const response = await api.put(`/api/activities/${data.activityId}/complete`, {
         note: data.note,
@@ -694,11 +735,11 @@ export const useUpdateDailyPlan = () => {
 export const useGeneratePlan = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: {
+    mutationFn: async (data: {
       weekStart: string;
       preserveBuffer: boolean;
       pacingStrategy: 'strict' | 'relaxed';
-    }) => api.post<LessonPlan>('/api/lesson-plans/generate', data),
+    }) => (await api.post<LessonPlan>('/api/lesson-plans/generate', data)).data,
     onSuccess: (_, { weekStart }) => {
       qc.invalidateQueries({ queryKey: ['weekly-plan', weekStart] });
       qc.invalidateQueries({ queryKey: ['subjects'] });

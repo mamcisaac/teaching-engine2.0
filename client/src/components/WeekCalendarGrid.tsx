@@ -1,4 +1,4 @@
-import type { WeeklyScheduleItem, Activity, TimetableSlot, CalendarEvent } from '../api';
+import type { WeeklyScheduleItem, Activity, TimetableSlot, CalendarEvent } from '../types';
 import { useDroppable } from '@dnd-kit/core';
 import { useState } from 'react';
 import OutcomeTag from './OutcomeTag';

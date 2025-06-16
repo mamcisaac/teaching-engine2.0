@@ -10,14 +10,10 @@ export default function NewsletterDraftViewer() {
 
   useEffect(() => {
     mutateAsync({
-      completedActivities: [],
-      classMilestones: [],
-      teacherTone: 'warm, professional',
-      term: 'Term 2',
-      includeUpcomingTopics: true,
+      content: 'Sample newsletter content',
     }).then((d) => {
-      setContent(d.content);
-      setTitle(d.title);
+      setContent(d?.data?.content || 'Default content');
+      setTitle(d?.data?.title || 'Default title');
     });
   }, [mutateAsync]);
 

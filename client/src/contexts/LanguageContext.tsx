@@ -91,7 +91,7 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     const localizedValue = obj[localizedFieldName];
 
     // Return localized version if it exists, otherwise fall back to base field
-    return localizedValue || obj[field] || '';
+    return String(localizedValue || obj[field] || '');
   };
 
   return (

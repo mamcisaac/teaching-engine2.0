@@ -14,7 +14,7 @@ export default function CompleteActivityButton({
 
   const handleClick = () => {
     complete.mutate(
-      { id: activity.id, completed: !activity.completedAt, milestoneId, interactive: true },
+      { activityId: activity.id },
       {
         onSuccess: (res) => {
           if (res.showNotePrompt) setShowNoteModal(true);
