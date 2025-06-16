@@ -1,9 +1,41 @@
 import { test } from '@playwright/test'; // expect not used in this file
 
 test('debug login page', async ({ page }) => {
-  // Navigate to the login page
+  // Clear any existing auth state first
+  await page.context().clearCookies();
+  await page.goto('http://localhost:5173', { waitUntil: 'domcontentloaded' });
+  await page.evaluate(() => {
+    localStorage.clear();
+    sessionStorage.clear();
+  });
+
+  // Wait for frontend to be ready
+  console.log('Waiting for frontend to be ready...');
+  for (let i = 0; i < 30; i++) {
+    try {
+      const frontendResp = await page.request.get('http://localhost:5173');
+      if (frontendResp.ok()) {
+        console.log('Frontend is ready');
+        break;
+      }
+    } catch (error) {
+      console.log(`Frontend check attempt ${i + 1} failed:`, error);
+    }
+    await new Promise((r) => setTimeout(r, 1000));
+  }
+
+  // Navigate to the login page with extended timeout
   console.log('Navigating to login page...');
-  await page.goto('http://localhost:5173/login');
+  await page.goto('http://localhost:5173/login', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000,
+  });
+
+  // Wait for page to load
+  await page.waitForLoadState('load');
+
+  // Give React time to hydrate
+  await page.waitForTimeout(2000);
 
   // Log the page title and URL
   console.log('Page URL:', page.url());
@@ -11,6 +43,16 @@ test('debug login page', async ({ page }) => {
 
   // Take a screenshot
   await page.screenshot({ path: 'test-results/debug-login.png', fullPage: true });
+
+  // Wait for login form elements to appear
+  try {
+    await page.waitForSelector('input[name="email"]', { timeout: 10000 });
+    await page.waitForSelector('input[name="password"]', { timeout: 10000 });
+    await page.waitForSelector('button[type="submit"]', { timeout: 10000 });
+    console.log('Login form elements found successfully');
+  } catch (error) {
+    console.log('Login form elements not found within timeout:', error);
+  }
 
   // Log all input fields on the page
   const inputs = await page.$$eval('input', (inputs) =>
@@ -20,7 +62,7 @@ test('debug login page', async ({ page }) => {
       type: input.type,
       placeholder: input.placeholder,
       value: input.value,
-      outerHTML: input.outerHTML,
+      visible: input.offsetParent !== null,
     })),
   );
   console.log('Input fields:', JSON.stringify(inputs, null, 2));
@@ -31,7 +73,7 @@ test('debug login page', async ({ page }) => {
       text: button.textContent?.trim(),
       type: button.type,
       disabled: button.disabled,
-      outerHTML: button.outerHTML,
+      visible: button.offsetParent !== null,
     })),
   );
   console.log('Buttons:', JSON.stringify(buttons, null, 2));
@@ -42,10 +84,15 @@ test('debug login page', async ({ page }) => {
       id: form.id,
       action: form.action,
       method: form.method,
-      innerHTML: form.innerHTML,
+      visible: form.offsetParent !== null,
     })),
   );
   console.log('Forms:', JSON.stringify(forms, null, 2));
+
+  // Check if we're being redirected
+  if (page.url() !== 'http://localhost:5173/login') {
+    console.log('Page was redirected from /login to:', page.url());
+  }
 
   // Log the entire page HTML for debugging
   const html = await page.content();
