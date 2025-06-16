@@ -40,7 +40,7 @@ describe('Simple Outcome Coverage', () => {
 
       // First test the simple implementation
       console.log('getOutcomeCoverage called with: TEST-1');
-      const simpleResult = getOutcomeCoverageSimple('TEST-1');
+      const simpleResult = await getOutcomeCoverageSimple('TEST-1');
       expect(simpleResult).toEqual({
         outcomeId: 'TEST-1',
         status: 'uncovered',
