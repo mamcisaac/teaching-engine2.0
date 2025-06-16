@@ -4,63 +4,62 @@ import path from 'path';
 import fs from 'fs/promises';
 import { fileURLToPath } from 'url';
 import { prisma } from '../prisma';
+import { authMiddleware, AuthRequest } from '../middleware/auth.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const router = Router();
 
-// Configure multer for file uploads
-const upload = multer({
-  storage: multer.diskStorage({
-    destination: async (req, file, cb) => {
-      const userId = req.body.userId || 'default';
-      const userUploadDir = path.join(__dirname, '../uploads', userId.toString());
-      await fs.mkdir(userUploadDir, { recursive: true });
-      cb(null, userUploadDir);
-    },
-    filename: (req, file, cb) => {
-      // Generate unique filename
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-      const ext = path.extname(file.originalname);
-      const name = path.basename(file.originalname, ext);
-      cb(null, `${name}-${uniqueSuffix}${ext}`);
-    },
-  }),
-  fileFilter: (req, file, cb) => {
-    // Accept images, PDFs, videos, and audio files
-    const allowedMimeTypes = [
-      'image/jpeg',
-      'image/png',
-      'image/gif',
-      'image/webp',
-      'application/pdf',
-      'video/mp4',
-      'video/webm',
-      'video/quicktime',
-      'audio/mpeg',
-      'audio/wav',
-      'audio/ogg',
-    ];
+// Configure multer for file uploads with auth-aware storage
+const createUploadStorage = () =>
+  multer({
+    storage: multer.diskStorage({
+      destination: async (req: AuthRequest, file, cb) => {
+        const userId = req.userId || 'default';
+        const userUploadDir = path.join(__dirname, '../uploads', userId.toString());
+        await fs.mkdir(userUploadDir, { recursive: true });
+        cb(null, userUploadDir);
+      },
+      filename: (req, file, cb) => {
+        // Generate unique filename
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+        const ext = path.extname(file.originalname);
+        const name = path.basename(file.originalname, ext);
+        cb(null, `${name}-${uniqueSuffix}${ext}`);
+      },
+    }),
+    fileFilter: (req, file, cb) => {
+      // Accept images, PDFs, videos, and audio files
+      const allowedMimeTypes = [
+        'image/jpeg',
+        'image/png',
+        'image/gif',
+        'image/webp',
+        'application/pdf',
+        'video/mp4',
+        'video/webm',
+        'video/quicktime',
+        'audio/mpeg',
+        'audio/wav',
+        'audio/ogg',
+      ];
 
-    if (allowedMimeTypes.includes(file.mimetype)) {
-      cb(null, true);
-    } else {
-      cb(new Error(`File type ${file.mimetype} not allowed`));
-    }
-  },
-  limits: {
-    fileSize: 50 * 1024 * 1024, // 50MB limit
-  },
-});
+      if (allowedMimeTypes.includes(file.mimetype)) {
+        cb(null, true);
+      } else {
+        cb(new Error(`File type ${file.mimetype} not allowed`));
+      }
+    },
+    limits: {
+      fileSize: 50 * 1024 * 1024, // 50MB limit
+    },
+  });
 
 // Get all media resources for a user
-router.get('/', async (req, res, next) => {
+router.get('/', authMiddleware, async (req: AuthRequest, res, next) => {
   try {
-    const userId = parseInt(req.query.userId as string);
-    if (!userId || isNaN(userId)) {
-      return res.status(400).json({ error: 'Valid userId is required' });
-    }
+    const userId = req.userId!;
 
     const resources = await prisma.mediaResource.findMany({
       where: { userId },
@@ -82,7 +81,7 @@ router.get('/', async (req, res, next) => {
 });
 
 // Get a specific media resource
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', authMiddleware, async (req: AuthRequest, res, next) => {
   try {
     const id = parseInt(req.params.id);
     const resource = await prisma.mediaResource.findUnique({
@@ -108,106 +107,111 @@ router.get('/:id', async (req, res, next) => {
 });
 
 // Upload a new media resource
-router.post('/upload', upload.single('file'), async (req, res, next) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({ error: 'No file uploaded' });
-    }
-
-    const { userId, title, tags, linkedOutcomeIds, linkedActivityIds } = req.body;
-
-    if (!userId || !title) {
-      return res.status(400).json({ error: 'userId and title are required' });
-    }
-
-    // Determine file type based on MIME type
-    let fileType = 'unknown';
-    if (req.file.mimetype.startsWith('image/')) {
-      fileType = 'image';
-    } else if (req.file.mimetype === 'application/pdf') {
-      fileType = 'pdf';
-    } else if (req.file.mimetype.startsWith('video/')) {
-      fileType = 'video';
-    } else if (req.file.mimetype.startsWith('audio/')) {
-      fileType = 'audio';
-    }
-
-    // Parse tags (JSON array)
-    let parsedTags = '[]';
-    if (tags) {
-      try {
-        parsedTags = Array.isArray(tags) ? JSON.stringify(tags) : tags;
-      } catch (e) {
-        parsedTags = '[]';
+router.post(
+  '/upload',
+  authMiddleware,
+  createUploadStorage().single('file'),
+  async (req: AuthRequest, res, next) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: 'No file uploaded' });
       }
-    }
 
-    // Create the media resource
-    const resource = await prisma.mediaResource.create({
-      data: {
-        userId: parseInt(userId),
-        title,
-        filePath: req.file.path,
-        fileType,
-        fileSize: req.file.size,
-        mimeType: req.file.mimetype,
-        tags: parsedTags,
-      },
-    });
+      const { title, tags, linkedOutcomeIds, linkedActivityIds } = req.body;
 
-    // Link to outcomes if provided
-    if (linkedOutcomeIds) {
-      const outcomeIds = Array.isArray(linkedOutcomeIds) ? linkedOutcomeIds : [linkedOutcomeIds];
-      await Promise.all(
-        outcomeIds.map((outcomeId: string) =>
-          prisma.mediaResourceOutcome.create({
-            data: {
-              mediaResourceId: resource.id,
-              outcomeId,
-            },
-          }),
-        ),
-      );
-    }
+      if (!title) {
+        return res.status(400).json({ error: 'title is required' });
+      }
 
-    // Link to activities if provided
-    if (linkedActivityIds) {
-      const activityIds = Array.isArray(linkedActivityIds)
-        ? linkedActivityIds
-        : [linkedActivityIds];
-      await Promise.all(
-        activityIds.map((activityId: string) =>
-          prisma.mediaResourceActivity.create({
-            data: {
-              mediaResourceId: resource.id,
-              activityId: parseInt(activityId),
-            },
-          }),
-        ),
-      );
-    }
+      // Determine file type based on MIME type
+      let fileType = 'unknown';
+      if (req.file.mimetype.startsWith('image/')) {
+        fileType = 'image';
+      } else if (req.file.mimetype === 'application/pdf') {
+        fileType = 'pdf';
+      } else if (req.file.mimetype.startsWith('video/')) {
+        fileType = 'video';
+      } else if (req.file.mimetype.startsWith('audio/')) {
+        fileType = 'audio';
+      }
 
-    // Fetch the complete resource with relations
-    const completeResource = await prisma.mediaResource.findUnique({
-      where: { id: resource.id },
-      include: {
-        linkedOutcomes: {
-          include: { outcome: true },
+      // Parse tags (JSON array)
+      let parsedTags = '[]';
+      if (tags) {
+        try {
+          parsedTags = Array.isArray(tags) ? JSON.stringify(tags) : tags;
+        } catch (e) {
+          parsedTags = '[]';
+        }
+      }
+
+      // Create the media resource
+      const resource = await prisma.mediaResource.create({
+        data: {
+          userId: req.userId!,
+          title,
+          filePath: req.file.path,
+          fileType,
+          fileSize: req.file.size,
+          mimeType: req.file.mimetype,
+          tags: parsedTags,
         },
-        linkedActivities: {
-          include: { activity: true },
-        },
-      },
-    });
+      });
 
-    res.status(201).json(completeResource);
-  } catch (err) {
-    next(err);
-  }
-});
+      // Link to outcomes if provided
+      if (linkedOutcomeIds) {
+        const outcomeIds = Array.isArray(linkedOutcomeIds) ? linkedOutcomeIds : [linkedOutcomeIds];
+        await Promise.all(
+          outcomeIds.map((outcomeId: string) =>
+            prisma.mediaResourceOutcome.create({
+              data: {
+                mediaResourceId: resource.id,
+                outcomeId,
+              },
+            }),
+          ),
+        );
+      }
+
+      // Link to activities if provided
+      if (linkedActivityIds) {
+        const activityIds = Array.isArray(linkedActivityIds)
+          ? linkedActivityIds
+          : [linkedActivityIds];
+        await Promise.all(
+          activityIds.map((activityId: string) =>
+            prisma.mediaResourceActivity.create({
+              data: {
+                mediaResourceId: resource.id,
+                activityId: parseInt(activityId),
+              },
+            }),
+          ),
+        );
+      }
+
+      // Fetch the complete resource with relations
+      const completeResource = await prisma.mediaResource.findUnique({
+        where: { id: resource.id },
+        include: {
+          linkedOutcomes: {
+            include: { outcome: true },
+          },
+          linkedActivities: {
+            include: { activity: true },
+          },
+        },
+      });
+
+      res.status(201).json(completeResource);
+    } catch (err) {
+      next(err);
+    }
+  },
+);
 
 // Update media resource metadata
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', authMiddleware, async (req: AuthRequest, res, next) => {
   try {
     const id = parseInt(req.params.id);
     const { title, tags, linkedOutcomeIds, linkedActivityIds } = req.body;
@@ -291,7 +295,7 @@ router.put('/:id', async (req, res, next) => {
 });
 
 // Delete a media resource
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', authMiddleware, async (req: AuthRequest, res, next) => {
   try {
     const id = parseInt(req.params.id);
 
@@ -323,9 +327,16 @@ router.delete('/:id', async (req, res, next) => {
 });
 
 // Serve uploaded files
-router.get('/file/:userId/:filename', async (req, res, next) => {
+router.get('/file/:userId/:filename', authMiddleware, async (req: AuthRequest, res, next) => {
   try {
     const { userId, filename } = req.params;
+    const authenticatedUserId = req.userId!;
+
+    // Ensure users can only access their own files
+    if (parseInt(userId) !== authenticatedUserId) {
+      return res.status(403).json({ error: 'Access denied' });
+    }
+
     const filePath = path.join(__dirname, '../uploads', userId, filename);
 
     // Check if file exists
