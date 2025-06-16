@@ -17,10 +17,27 @@ test('debug planner component errors', async ({ page }) => {
   await login(page);
 
   console.log('Navigating to planner page...');
-  await page.goto('/planner');
+  await page.goto('/planner', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000,
+  });
 
-  // Wait a bit for any errors to surface
-  await page.waitForTimeout(3000);
+  // Wait for page to load completely
+  await page.waitForLoadState('load');
+
+  // Give React time to hydrate and render
+  await page.waitForTimeout(2000);
+
+  // Wait for planner components to load
+  try {
+    await page.waitForSelector('.planner-grid, [data-testid="planner"]', { timeout: 10000 });
+    console.log('Planner components loaded successfully');
+  } catch (error) {
+    console.log('Planner components not found within timeout:', error);
+  }
+
+  // Wait a bit more for any errors to surface
+  await page.waitForTimeout(2000);
 
   // Check if we can find the error boundary
   const errorBoundary = page.locator('text=Something went wrong');
