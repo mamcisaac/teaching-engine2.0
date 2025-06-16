@@ -14,6 +14,11 @@ async function main() {
   // Delete from join/child tables first
   await prisma.milestoneOutcome.deleteMany();
   await prisma.activityOutcome.deleteMany();
+  await prisma.parentMessageOutcome.deleteMany();
+  await prisma.parentMessageActivity.deleteMany();
+  await prisma.mediaResourceOutcome.deleteMany();
+  await prisma.mediaResourceActivity.deleteMany();
+  await prisma.assessmentResult.deleteMany();
   await prisma.resource.deleteMany();
   await prisma.materialList.deleteMany();
   await prisma.note.deleteMany();
@@ -24,6 +29,9 @@ async function main() {
   await prisma.weeklySchedule.deleteMany();
   await prisma.lessonPlan.deleteMany();
   await prisma.timetableSlot.deleteMany();
+  await prisma.parentMessage.deleteMany();
+  await prisma.mediaResource.deleteMany();
+  await prisma.assessmentTemplate.deleteMany();
   await prisma.activity.deleteMany();
   await prisma.milestone.deleteMany();
   await prisma.subject.deleteMany();
