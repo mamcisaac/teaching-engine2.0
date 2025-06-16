@@ -27,6 +27,7 @@ const WeeklyPlannerPage = lazy(() => import('./pages/WeeklyPlannerPage'));
 const NewsletterEditor = lazy(() => import('./pages/NewsletterEditor'));
 const OutcomesPage = lazy(() => import('./pages/OutcomesPage'));
 const CoveragePage = lazy(() => import('./pages/CoveragePage'));
+const ParentMessagesPage = lazy(() => import('./pages/ParentMessagesPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 
 // Common suspense fallback
@@ -234,6 +235,16 @@ function AppRoutes() {
           element={
             <Suspense fallback={<SuspenseFallback />}>
               <NewsletterDraftViewer />
+            </Suspense>
+          }
+        />
+
+        {/* Parent Communications */}
+        <Route
+          path="/parent-messages"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <ParentMessagesPage />
             </Suspense>
           }
         />

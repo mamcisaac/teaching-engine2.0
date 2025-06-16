@@ -370,3 +370,118 @@ export interface CognateInput {
   linkedActivities?: number[];
   userId: number;
 }
+
+export interface AssessmentTemplate {
+  id: number;
+  title: string;
+  type: 'oral' | 'reading' | 'writing' | 'mixed';
+  description?: string | null;
+  outcomeIds: string[];
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+  results?: AssessmentResult[];
+  lastResult?: AssessmentResult | null;
+  totalResults?: number;
+}
+
+export interface AssessmentResult {
+  id: number;
+  templateId: number;
+  date: string;
+  groupScore?: number | null;
+  notes?: string | null;
+  createdAt: string;
+  updatedAt: string;
+  template?: {
+    title: string;
+    type: string;
+    outcomeIds: string[];
+  };
+}
+
+export interface AssessmentInput {
+  title: string;
+  type: 'oral' | 'reading' | 'writing' | 'mixed';
+  description?: string;
+  outcomeIds: string[];
+}
+
+export interface AssessmentResultInput {
+  templateId: number;
+  date: string;
+  groupScore?: number;
+  notes?: string;
+}
+
+export interface OutcomeAssessmentData {
+  outcomeId: string;
+  assessmentCount: number;
+  totalResults: number;
+  averageScore: number;
+  lastAssessmentDate: string | null;
+  assessments: Array<{
+    id: number;
+    title: string;
+    type: string;
+    resultCount: number;
+    averageScore: number;
+    lastResult: AssessmentResult | null;
+  }>;
+}
+
+export interface MediaResource {
+  id: number;
+  userId: number;
+  title: string;
+  filePath: string;
+  fileType: 'image' | 'pdf' | 'video' | 'audio';
+  fileSize?: number | null;
+  mimeType?: string | null;
+  tags: string[];
+  linkedOutcomes?: Array<{
+    outcome: Outcome;
+  }>;
+  linkedActivities?: Array<{
+    activity: Activity;
+  }>;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface MediaResourceInput {
+  title: string;
+  tags?: string[];
+  linkedOutcomeIds?: string[];
+  linkedActivityIds?: number[];
+}
+
+export interface ParentMessage {
+  id: number;
+  userId: number;
+  title: string;
+  timeframe: string;
+  contentFr: string;
+  contentEn: string;
+  linkedOutcomes?: Array<{
+    outcome: Outcome;
+  }>;
+  linkedActivities?: Array<{
+    activity: Activity;
+  }>;
+  createdAt: string;
+  updatedAt: string;
+  user?: {
+    id: number;
+    name: string;
+  };
+}
+
+export interface ParentMessageInput {
+  title: string;
+  timeframe: string;
+  contentFr: string;
+  contentEn: string;
+  linkedOutcomeIds?: string[];
+  linkedActivityIds?: number[];
+}

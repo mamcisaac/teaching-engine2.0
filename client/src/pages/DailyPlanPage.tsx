@@ -8,12 +8,17 @@ import {
   useUpdateActivity,
   DailyPlanItem,
   type TimetableSlot,
+  useAssessmentTemplates,
+  useAssessmentResults,
 } from '../api';
 import DailyNotesEditor from '../components/DailyNotesEditor';
 import Dialog from '../components/Dialog';
 import OutcomeSelect from '../components/OutcomeSelect';
 import OutcomeTag from '../components/OutcomeTag';
 import DailyOralRoutineWidget from '../components/DailyOralRoutineWidget';
+import AssessmentBuilder from '../components/AssessmentBuilder';
+import ResourceSelector from '../components/ResourceSelector';
+import type { MediaResource } from '../types';
 import { toast } from 'sonner';
 
 interface ActivityCardProps {
@@ -146,12 +151,25 @@ export default function DailyPlanPage() {
   const [activityMaterials, setActivityMaterials] = useState('');
   const [selectedOutcomes, setSelectedOutcomes] = useState<string[]>([]);
   const [itemNotes, setItemNotes] = useState('');
+  const [showAssessmentBuilder, setShowAssessmentBuilder] = useState(false);
+  const [showResourceSelector, setShowResourceSelector] = useState(false);
 
   const { data: plan, refetch } = useDailyPlan(date);
   const { data: timetable } = useTimetable();
   const generate = useGenerateDailyPlan();
   const update = useUpdateDailyPlan();
   const updateActivity = useUpdateActivity();
+
+  // Assessment data for this date
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { data: assessmentTemplates } = useAssessmentTemplates();
+  const { data: dailyAssessments } = useAssessmentResults({
+    week: date.substring(0, 7) + '-01', // Get assessments for this month (simplified)
+  });
+
+  // Filter assessments for this specific date
+  const todaysAssessments =
+    dailyAssessments?.filter((assessment) => assessment.date.startsWith(date)) || [];
 
   // Format date for display
   const selectedDate = new Date(date + 'T00:00:00');
@@ -254,6 +272,30 @@ export default function DailyPlanPage() {
     }
   };
 
+  const handleResourceSelect = (resource: MediaResource) => {
+    const filename = resource.filePath.split('/').pop();
+    const resourceUrl = `/api/media-resources/file/${resource.userId}/${filename}`;
+
+    let resourceText = '';
+    if (resource.fileType === 'image') {
+      resourceText = `\n📷 Image: ${resource.title} (${resourceUrl})`;
+    } else if (resource.fileType === 'pdf') {
+      resourceText = `\n📄 PDF: ${resource.title} (${resourceUrl})`;
+    } else if (resource.fileType === 'video') {
+      resourceText = `\n🎥 Video: ${resource.title} (${resourceUrl})`;
+    } else if (resource.fileType === 'audio') {
+      resourceText = `\n🎵 Audio: ${resource.title} (${resourceUrl})`;
+    } else {
+      resourceText = `\n📎 Resource: ${resource.title} (${resourceUrl})`;
+    }
+
+    setActivityMaterials((prev) => prev + resourceText);
+    setShowResourceSelector(false);
+  };
+
+  // Get current user ID (you may need to adjust this based on your auth context)
+  const currentUserId = 1; // This should come from your auth context
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -280,6 +322,13 @@ export default function DailyPlanPage() {
             >
               {generate.isPending ? 'Generating...' : 'Generate Plan'}
             </button>
+            <button
+              onClick={() => setShowAssessmentBuilder(true)}
+              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center gap-2"
+            >
+              <span>📝</span>
+              Add Assessment
+            </button>
           </div>
         </div>
       </div>
@@ -288,6 +337,51 @@ export default function DailyPlanPage() {
       <div className="bg-white rounded-lg shadow-sm border p-6">
         <DailyOralRoutineWidget date={date} />
       </div>
+
+      {/* Today's Assessments */}
+      {todaysAssessments.length > 0 && (
+        <div className="bg-blue-50 rounded-lg shadow-sm border border-blue-200 p-6">
+          <h2 className="text-lg font-semibold text-blue-800 mb-4 flex items-center gap-2">
+            📝 Today's Assessments
+          </h2>
+          <div className="grid gap-4 md:grid-cols-2">
+            {todaysAssessments.map((assessment) => (
+              <div
+                key={assessment.id}
+                className="bg-white rounded-lg p-4 border border-blue-200 hover:shadow-md transition-shadow"
+              >
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="font-medium text-blue-900">{assessment.template?.title}</h3>
+                  <span
+                    className={`text-xs px-2 py-1 rounded font-medium ${
+                      assessment.template?.type === 'oral'
+                        ? 'bg-purple-100 text-purple-800'
+                        : assessment.template?.type === 'writing'
+                          ? 'bg-green-100 text-green-800'
+                          : assessment.template?.type === 'reading'
+                            ? 'bg-yellow-100 text-yellow-800'
+                            : 'bg-gray-100 text-gray-800'
+                    }`}
+                  >
+                    {assessment.template?.type}
+                  </span>
+                </div>
+                {assessment.groupScore !== null ? (
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="text-green-600 font-medium">✅ Completed</span>
+                    <span className="text-gray-600">Score: {assessment.groupScore}%</span>
+                  </div>
+                ) : (
+                  <div className="text-orange-600 text-sm font-medium">⏳ Pending</div>
+                )}
+                {assessment.notes && (
+                  <p className="text-sm text-gray-600 mt-2">{assessment.notes}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Daily Timeline */}
       {plan ? (
@@ -379,12 +473,21 @@ export default function DailyPlanPage() {
             </div>
 
             <div>
-              <label
-                htmlFor="edit-activity-materials"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Materials & Resources
-              </label>
+              <div className="flex justify-between items-center mb-1">
+                <label
+                  htmlFor="edit-activity-materials"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Materials & Resources
+                </label>
+                <button
+                  type="button"
+                  onClick={() => setShowResourceSelector(true)}
+                  className="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200"
+                >
+                  📎 Insert Resource
+                </button>
+              </div>
               <textarea
                 id="edit-activity-materials"
                 value={activityMaterials}
@@ -442,6 +545,32 @@ export default function DailyPlanPage() {
           </form>
         </div>
       </Dialog>
+
+      {/* Assessment Builder Dialog */}
+      <Dialog
+        open={showAssessmentBuilder}
+        onClose={() => setShowAssessmentBuilder(false)}
+        title="Create Assessment Template"
+        maxWidth="3xl"
+      >
+        <AssessmentBuilder
+          onSuccess={() => {
+            setShowAssessmentBuilder(false);
+            // Refresh assessment data if needed
+          }}
+          onCancel={() => setShowAssessmentBuilder(false)}
+        />
+      </Dialog>
+
+      {/* Resource Selector */}
+      {showResourceSelector && (
+        <ResourceSelector
+          userId={currentUserId}
+          onSelect={handleResourceSelect}
+          onClose={() => setShowResourceSelector(false)}
+          title="Insert Resource into Materials"
+        />
+      )}
     </div>
   );
 }

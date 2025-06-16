@@ -115,6 +115,27 @@ vi.mock('../src/api', () => {
       isLoading: false,
       error: null,
     }),
+    // Assessment mock functions
+    useAssessmentTemplates: vi.fn().mockReturnValue({
+      data: [],
+      isLoading: false,
+      error: null,
+    }),
+    useAssessmentResults: vi.fn().mockReturnValue({
+      data: [],
+      isLoading: false,
+      error: null,
+    }),
+    useCreateAssessmentTemplate: vi.fn().mockReturnValue({
+      mutate: vi.fn(),
+      isPending: false,
+      error: null,
+    }),
+    useCreateAssessmentResult: vi.fn().mockReturnValue({
+      mutate: vi.fn(),
+      isPending: false,
+      error: null,
+    }),
   };
 });
 

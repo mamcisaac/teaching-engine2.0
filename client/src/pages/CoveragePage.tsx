@@ -4,16 +4,50 @@ import {
   useOutcomeCoverage,
   useThematicUnits,
   useCognates,
+  useOutcomeAssessments,
   type OutcomeCoverage,
   type ThematicUnit,
 } from '../api';
 import { useAuth } from '../contexts/AuthContext';
+
+// Component to display assessment data for a specific outcome
+function OutcomeAssessmentCell({ outcomeId }: { outcomeId: string }) {
+  const { data: assessmentData } = useOutcomeAssessments(outcomeId);
+
+  if (!assessmentData || assessmentData.assessmentCount === 0) {
+    return <div className="text-gray-500 text-center text-sm">No assessments</div>;
+  }
+
+  return (
+    <div className="space-y-1">
+      <div className="text-sm font-medium text-blue-900">
+        {assessmentData.assessmentCount} assessment{assessmentData.assessmentCount > 1 ? 's' : ''}
+      </div>
+      {assessmentData.averageScore > 0 && (
+        <div className="text-xs text-gray-600">Avg: {assessmentData.averageScore}%</div>
+      )}
+      {assessmentData.lastAssessmentDate && (
+        <div className="text-xs text-gray-500">
+          Last:{' '}
+          {new Date(assessmentData.lastAssessmentDate).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+          })}
+        </div>
+      )}
+      {assessmentData.totalResults === 0 && (
+        <div className="text-xs text-orange-600">⏳ Pending results</div>
+      )}
+    </div>
+  );
+}
 
 export default function CoveragePage() {
   const [selectedSubject, setSelectedSubject] = useState<string>('');
   const [selectedGrade, setSelectedGrade] = useState<string>('');
   const [selectedDomain, setSelectedDomain] = useState<string>('');
   const [showCognateOutcomes, setShowCognateOutcomes] = useState<boolean>(false);
+  const [showAssessedOutcomes, setShowAssessedOutcomes] = useState<boolean>(false);
   const [viewMode, setViewMode] = useState<'subject' | 'thematic'>('subject');
   const [filterParams, setFilterParams] = useState<{
     subject?: string;
@@ -258,22 +292,36 @@ export default function CoveragePage() {
         </div>
 
         <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="cognate-filter"
-              checked={showCognateOutcomes}
-              onChange={(e) => setShowCognateOutcomes(e.target.checked)}
-              className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-            />
-            <label htmlFor="cognate-filter" className="ml-2 text-sm text-gray-700">
-              🧠 Show only outcomes linked to cognates
-              {cognateLinkedOutcomeIds.size > 0 && (
-                <span className="ml-1 text-indigo-600">
-                  ({cognateLinkedOutcomeIds.size} available)
-                </span>
-              )}
-            </label>
+          <div className="flex flex-col space-y-3">
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="cognate-filter"
+                checked={showCognateOutcomes}
+                onChange={(e) => setShowCognateOutcomes(e.target.checked)}
+                className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+              />
+              <label htmlFor="cognate-filter" className="ml-2 text-sm text-gray-700">
+                🧠 Show only outcomes linked to cognates
+                {cognateLinkedOutcomeIds.size > 0 && (
+                  <span className="ml-1 text-indigo-600">
+                    ({cognateLinkedOutcomeIds.size} available)
+                  </span>
+                )}
+              </label>
+            </div>
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="assessment-filter"
+                checked={showAssessedOutcomes}
+                onChange={(e) => setShowAssessedOutcomes(e.target.checked)}
+                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              />
+              <label htmlFor="assessment-filter" className="ml-2 text-sm text-gray-700">
+                📝 Show only outcomes with no assessments
+              </label>
+            </div>
           </div>
 
           <div className="flex gap-2">
@@ -439,6 +487,7 @@ export default function CoveragePage() {
                   <th className="px-4 py-2 border">Grade</th>
                   <th className="px-4 py-2 border">Status</th>
                   <th className="px-4 py-2 border">Activities</th>
+                  <th className="px-4 py-2 border">Assessments</th>
                 </tr>
               </thead>
               <tbody>
@@ -480,6 +529,9 @@ export default function CoveragePage() {
                       ) : (
                         <span className="text-gray-500">-</span>
                       )}
+                    </td>
+                    <td className="px-4 py-2 border">
+                      <OutcomeAssessmentCell outcomeId={outcome.outcomeId} />
                     </td>
                   </tr>
                 ))}

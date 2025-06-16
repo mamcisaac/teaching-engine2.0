@@ -107,6 +107,35 @@ vi.mock('../src/api', () => {
       isLoading: false,
       error: null,
     }),
+    useOutcomeAssessments: vi.fn().mockReturnValue({
+      data: {
+        outcomeId: 'M1.1',
+        assessmentCount: 2,
+        totalResults: 5,
+        averageScore: 85,
+        lastAssessmentDate: '2024-01-15',
+        assessments: [],
+      },
+      isLoading: false,
+      error: null,
+    }),
+    useMediaResources: vi.fn().mockReturnValue({
+      data: [],
+      isLoading: false,
+      error: null,
+    }),
+    useUploadMediaResource: vi.fn().mockReturnValue({
+      mutate: vi.fn(),
+      isPending: false,
+    }),
+    useUpdateMediaResource: vi.fn().mockReturnValue({
+      mutate: vi.fn(),
+      isPending: false,
+    }),
+    useDeleteMediaResource: vi.fn().mockReturnValue({
+      mutate: vi.fn(),
+      isPending: false,
+    }),
   };
 });
 

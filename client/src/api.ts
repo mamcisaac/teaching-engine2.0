@@ -23,6 +23,15 @@ import type {
   ThematicUnit,
   CognatePair,
   CognateInput,
+  AssessmentTemplate,
+  AssessmentResult,
+  AssessmentInput,
+  AssessmentResultInput,
+  OutcomeAssessmentData,
+  MediaResource,
+  MediaResourceInput,
+  ParentMessage,
+  ParentMessageInput,
 } from './types';
 
 import type {
@@ -1221,6 +1230,265 @@ export const useDeleteCognate = () => {
       const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
       toast.error(
         'Failed to delete cognate pair: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+// Parent Message hooks
+export const useParentMessages = () =>
+  useQuery<ParentMessage[]>({
+    queryKey: ['parent-messages'],
+    queryFn: async () => (await api.get('/api/parent-messages')).data,
+  });
+
+export const useParentMessage = (id: number) =>
+  useQuery<ParentMessage>({
+    queryKey: ['parent-messages', id],
+    queryFn: async () => (await api.get(`/api/parent-messages/${id}`)).data,
+    enabled: !!id,
+  });
+
+export const useCreateParentMessage = () => {
+  const queryClient = useQueryClient();
+  return useMutation<ParentMessage, Error, ParentMessageInput>({
+    mutationFn: async (data) => (await api.post('/api/parent-messages', data)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['parent-messages'] });
+      toast.success('Parent message created successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to create parent message: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useUpdateParentMessage = () => {
+  const queryClient = useQueryClient();
+  return useMutation<
+    ParentMessage,
+    Error,
+    {
+      id: number;
+      data: Partial<ParentMessageInput>;
+    }
+  >({
+    mutationFn: async ({ id, data }) => (await api.put(`/api/parent-messages/${id}`, data)).data,
+    onSuccess: (_, { id }) => {
+      queryClient.invalidateQueries({ queryKey: ['parent-messages'] });
+      queryClient.invalidateQueries({ queryKey: ['parent-messages', id] });
+      toast.success('Parent message updated successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to update parent message: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useDeleteParentMessage = () => {
+  const queryClient = useQueryClient();
+  return useMutation<void, Error, number>({
+    mutationFn: async (id) => (await api.delete(`/api/parent-messages/${id}`)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['parent-messages'] });
+      toast.success('Parent message deleted successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to delete parent message: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+// Assessment Templates API
+export const useAssessmentTemplates = () => {
+  return useQuery<AssessmentTemplate[]>({
+    queryKey: ['assessment-templates'],
+    queryFn: async () => (await api.get('/api/assessments/templates')).data,
+  });
+};
+
+export const useCreateAssessmentTemplate = () => {
+  const queryClient = useQueryClient();
+  return useMutation<AssessmentTemplate, Error, AssessmentInput>({
+    mutationFn: async (data) => (await api.post('/api/assessments/templates', data)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['assessment-templates'] });
+      toast.success('Assessment template created successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to create assessment template: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useUpdateAssessmentTemplate = () => {
+  const queryClient = useQueryClient();
+  return useMutation<AssessmentTemplate, Error, { id: number; data: Partial<AssessmentInput> }>({
+    mutationFn: async ({ id, data }) =>
+      (await api.put(`/api/assessments/templates/${id}`, data)).data,
+    onSuccess: (_, { id }) => {
+      queryClient.invalidateQueries({ queryKey: ['assessment-templates'] });
+      queryClient.invalidateQueries({ queryKey: ['assessment-templates', id] });
+      toast.success('Assessment template updated successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to update assessment template: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useDeleteAssessmentTemplate = () => {
+  const queryClient = useQueryClient();
+  return useMutation<void, Error, number>({
+    mutationFn: async (id) => (await api.delete(`/api/assessments/templates/${id}`)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['assessment-templates'] });
+      toast.success('Assessment template deleted successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to delete assessment template: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+// Assessment Results API
+export const useAssessmentResults = (filters?: { week?: string; templateId?: number }) => {
+  return useQuery<AssessmentResult[]>({
+    queryKey: ['assessment-results', filters],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (filters?.week) params.append('week', filters.week);
+      if (filters?.templateId) params.append('templateId', filters.templateId.toString());
+      return (await api.get(`/api/assessments/results?${params.toString()}`)).data;
+    },
+  });
+};
+
+export const useCreateAssessmentResult = () => {
+  const queryClient = useQueryClient();
+  return useMutation<AssessmentResult, Error, AssessmentResultInput>({
+    mutationFn: async (data) => (await api.post('/api/assessments/results', data)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['assessment-results'] });
+      queryClient.invalidateQueries({ queryKey: ['assessment-templates'] });
+      queryClient.invalidateQueries({ queryKey: ['outcome-coverage'] });
+      toast.success('Assessment result logged successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to log assessment result: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+// Assessment by Outcome API
+export const useOutcomeAssessments = (outcomeId: string) => {
+  return useQuery<OutcomeAssessmentData>({
+    queryKey: ['outcome-assessments', outcomeId],
+    queryFn: async () => (await api.get(`/api/assessments/by-outcome/${outcomeId}`)).data,
+    enabled: !!outcomeId,
+  });
+};
+
+// Media Resource hooks
+export const useMediaResources = (userId: number) =>
+  useQuery<MediaResource[]>({
+    queryKey: ['media-resources', userId],
+    queryFn: async () => (await api.get('/api/media-resources', { params: { userId } })).data,
+    enabled: !!userId,
+  });
+
+export const useMediaResource = (id: number) =>
+  useQuery<MediaResource>({
+    queryKey: ['media-resources', id],
+    queryFn: async () => (await api.get(`/api/media-resources/${id}`)).data,
+    enabled: !!id,
+  });
+
+export const useUploadMediaResource = () => {
+  const queryClient = useQueryClient();
+  return useMutation<MediaResource, Error, FormData>({
+    mutationFn: async (formData) =>
+      (
+        await api.post('/api/media-resources/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+      ).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['media-resources'] });
+      toast.success('Media resource uploaded successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to upload media resource: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useUpdateMediaResource = () => {
+  const queryClient = useQueryClient();
+  return useMutation<MediaResource, Error, { id: number; data: Partial<MediaResourceInput> }>({
+    mutationFn: async ({ id, data }) => (await api.put(`/api/media-resources/${id}`, data)).data,
+    onSuccess: (_, { id }) => {
+      queryClient.invalidateQueries({ queryKey: ['media-resources'] });
+      queryClient.invalidateQueries({ queryKey: ['media-resources', id] });
+      toast.success('Media resource updated successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to update media resource: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useDeleteMediaResource = () => {
+  const queryClient = useQueryClient();
+  return useMutation<void, Error, number>({
+    mutationFn: async (id) => (await api.delete(`/api/media-resources/${id}`)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['media-resources'] });
+      toast.success('Media resource deleted successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to delete media resource: ' +
           (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
       );
     },

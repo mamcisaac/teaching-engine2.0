@@ -82,6 +82,8 @@ model Activity {
   outcomes    ActivityOutcome[]
   thematicUnits ThematicUnitActivity[]
   cognatePairs CognateActivity[]
+  mediaResources MediaResourceActivity[]
+  parentMessages ParentMessageActivity[]
   @@index([milestoneId, orderIndex])
 }
 
@@ -185,6 +187,20 @@ model Newsletter {
   updatedAt DateTime @updatedAt
 }
 
+model ParentMessage {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  user         User     @relation(fields: [userId], references: [id])
+  title        String
+  timeframe    String
+  contentFr    String
+  contentEn    String
+  linkedOutcomes ParentMessageOutcome[]
+  linkedActivities ParentMessageActivity[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
 model DailyPlan {
   id           Int            @id @default(autoincrement())
   date         DateTime
@@ -250,6 +266,9 @@ model User {
   dailyOralRoutines DailyOralRoutine[]
   thematicUnits ThematicUnit[]
   cognatePairs CognatePair[]
+  assessmentTemplates AssessmentTemplate[]
+  mediaResources MediaResource[]
+  parentMessages ParentMessage[]
 }
 
 enum ActivityType {
@@ -390,6 +409,8 @@ model Outcome {
   oralRoutines OralRoutineOutcome[]
   thematicUnits ThematicUnitOutcome[]
   cognatePairs CognateOutcome[]
+  mediaResources MediaResourceOutcome[]
+  parentMessages ParentMessageOutcome[]
 }
 
 model MilestoneOutcome {
@@ -523,4 +544,76 @@ model CognateActivity {
   activity      Activity    @relation(fields: [activityId], references: [id])
   activityId    Int
   @@id([cognatePairId, activityId])
+}
+
+model AssessmentTemplate {
+  id          Int        @id @default(autoincrement())
+  title       String
+  type        String     // "oral" | "reading" | "writing" | "mixed"
+  description String?
+  outcomeIds  String     @default("[]")
+  userId      Int
+  user        User       @relation(fields: [userId], references: [id])
+  results     AssessmentResult[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model AssessmentResult {
+  id         Int        @id @default(autoincrement())
+  templateId Int
+  template   AssessmentTemplate @relation(fields: [templateId], references: [id])
+  date       DateTime
+  groupScore Int?       // 0–100
+  notes      String?
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+model MediaResource {
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  user           User     @relation(fields: [userId], references: [id])
+  title          String
+  filePath       String
+  fileType       String   // "image", "pdf", "video", "audio"
+  fileSize       Int?     // file size in bytes
+  mimeType       String?  // MIME type for validation
+  tags           String   @default("[]") // JSON array of tags
+  linkedOutcomes MediaResourceOutcome[]
+  linkedActivities MediaResourceActivity[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model MediaResourceOutcome {
+  mediaResource   MediaResource @relation(fields: [mediaResourceId], references: [id])
+  mediaResourceId Int
+  outcome         Outcome       @relation(fields: [outcomeId], references: [id])
+  outcomeId       String
+  @@id([mediaResourceId, outcomeId])
+}
+
+model MediaResourceActivity {
+  mediaResource   MediaResource @relation(fields: [mediaResourceId], references: [id])
+  mediaResourceId Int
+  activity        Activity      @relation(fields: [activityId], references: [id])
+  activityId      Int
+  @@id([mediaResourceId, activityId])
+}
+
+model ParentMessageOutcome {
+  parentMessage   ParentMessage @relation(fields: [parentMessageId], references: [id])
+  parentMessageId Int
+  outcome         Outcome       @relation(fields: [outcomeId], references: [id])
+  outcomeId       String
+  @@id([parentMessageId, outcomeId])
+}
+
+model ParentMessageActivity {
+  parentMessage   ParentMessage @relation(fields: [parentMessageId], references: [id])
+  parentMessageId Int
+  activity        Activity      @relation(fields: [activityId], references: [id])
+  activityId      Int
+  @@id([parentMessageId, activityId])
 }
