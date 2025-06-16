@@ -8,9 +8,18 @@
     "start": "NODE_OPTIONS='--experimental-specifier-resolution=node' tsx src/index.ts",
     "build": "tsc",
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
-    "test:coverage": "NODE_OPTIONS='--experimental-vm-modules' jest --coverage",
+    "test:coverage": "NODE_OPTIONS='--experimental-vm-modules' COVERAGE=true jest --coverage",
     "test:watch": "NODE_OPTIONS='--experimental-vm-modules' jest --watch",
-    "test:outcome": "NODE_OPTIONS='--experimental-vm-modules' jest src/__tests__/outcomeCoverage.integration.test.ts"
+    "test:parallel": "NODE_OPTIONS='--experimental-vm-modules' jest --maxWorkers=4",
+    "test:serial": "NODE_OPTIONS='--experimental-vm-modules' jest --maxWorkers=1",
+    "test:isolation": "NODE_OPTIONS='--experimental-vm-modules' jest src/__tests__/database-isolation.test.ts",
+    "test:outcome": "NODE_OPTIONS='--experimental-vm-modules' jest src/__tests__/outcomeCoverage.integration.test.ts",
+    "test:debug": "NODE_OPTIONS='--experimental-vm-modules' DEBUG_TESTS=true jest --verbose",
+    "test:setup": "tsx scripts/setup-test-env.ts",
+    "test:validate": "tsx scripts/validate-test-env.ts",
+    "test:ci": "pnpm test:validate && NODE_OPTIONS='--experimental-vm-modules' jest --ci --coverage --maxWorkers=2",
+    "test:performance": "NODE_OPTIONS='--experimental-vm-modules' TEST_PERFORMANCE=true jest --maxWorkers=1",
+    "test:flaky": "NODE_OPTIONS='--experimental-vm-modules' jest --testNamePattern='flaky' --maxWorkers=1"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.826.0",
@@ -37,11 +46,15 @@
   "jest": {
     "preset": "ts-jest/presets/default-esm",
     "testEnvironment": "node",
+    "globalSetup": "<rootDir>/tests/global-setup.ts",
+    "globalTeardown": "<rootDir>/tests/global-teardown.ts",
     "setupFilesAfterEnv": [
-      "<rootDir>/jest.setup.js"
+      "<rootDir>/jest.setup.js",
+      "<rootDir>/tests/jest.setup.ts"
     ],
     "testMatch": [
-      "**/__tests__/**/*.test.ts"
+      "**/__tests__/**/*.test.ts",
+      "**/tests/**/*.test.ts"
     ],
     "moduleFileExtensions": [
       "ts",
@@ -65,7 +78,11 @@
     },
     "transformIgnorePatterns": [
       "node_modules/(?!(.*\\.mjs|@prisma/client)/)"
-    ]
+    ],
+    "maxWorkers": "50%",
+    "testTimeout": 30000,
+    "forceExit": true,
+    "detectOpenHandles": true
   },
   "devDependencies": {
     "@jest/globals": "^30.0.0",
@@ -78,12 +95,14 @@
     "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "^20.19.0",
     "@types/node-cron": "^3.0.9",
+    "@types/node-fetch": "^2.6.12",
     "@types/nodemailer": "^6.4.14",
     "@types/pdfkit": "^0.13.9",
     "@types/supertest": "^6.0.3",
     "@types/unzipper": "^0.10.7",
     "dotenv": "^16.4.5",
     "jest": "^29.7.0",
+    "node-fetch": "^3.3.2",
     "supertest": "^6.3.3",
     "ts-jest": "^29.3.4",
     "ts-node": "^10.9.2",
