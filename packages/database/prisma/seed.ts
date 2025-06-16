@@ -1,4 +1,5 @@
 import { PrismaClient } from '@teaching-engine/database';
+import bcrypt from 'bcryptjs';
 
 // Initialize Prisma client
 const prisma = new PrismaClient();
@@ -39,13 +40,16 @@ async function main() {
   await prisma.outcome.deleteMany();
 
   // Create a default user
+  const hashedPassword = await bcrypt.hash('password123', 12);
   const defaultUser = await prisma.user.upsert({
     where: { email: 'teacher@example.com' },
-    update: {},
+    update: {
+      password: hashedPassword,
+    },
     create: {
       email: 'teacher@example.com',
       name: 'Test Teacher',
-      password: 'password123', // In a real app, this should be hashed
+      password: hashedPassword,
       role: 'TEACHER',
     },
   });
@@ -310,36 +314,45 @@ async function main() {
     }
   }
 
-  // Create a comprehensive lesson plan for the current week
-  await prisma.lessonPlan.create({
-    data: {
-      weekStart: mondayThisWeek,
-      schedule: {
-        create: [
-          // Only connect activities that exist
-          ...[
-            { day: 0, title: '1 + 1' },
-            { day: 0, title: 'Reading Short Stories' },
-            { day: 0, title: 'Plant Parts' },
-            { day: 1, title: '2 + 3' },
-            { day: 1, title: 'Creative Writing' },
-            { day: 1, title: 'Animal Habitats' },
-            { day: 2, title: 'Subtraction Basics' },
-            { day: 2, title: 'Spelling Practice' },
-            { day: 2, title: 'Healthy Bodies' },
-            { day: 3, title: 'Number Patterns' },
-            { day: 3, title: 'Reading Comprehension' },
-            { day: 3, title: 'Community Helpers' },
-            { day: 4, title: 'Math Games' },
-            { day: 4, title: 'Show and Tell' },
-            { day: 4, title: 'Healthy Minds' },
-          ]
-            .filter(({ title }) => activityIds[title] !== undefined)
-            .map(({ day, title }) => ({ day, activity: { connect: { id: activityIds[title] } } })),
-        ],
-      },
-    },
+  // Create a comprehensive lesson plan for the current week (if it doesn't exist)
+  const existingPlan = await prisma.lessonPlan.findUnique({
+    where: { weekStart: mondayThisWeek },
   });
+
+  if (!existingPlan) {
+    await prisma.lessonPlan.create({
+      data: {
+        weekStart: mondayThisWeek,
+        schedule: {
+          create: [
+            // Only connect activities that exist
+            ...[
+              { day: 0, title: '1 + 1' },
+              { day: 0, title: 'Reading Short Stories' },
+              { day: 0, title: 'Plant Parts' },
+              { day: 1, title: '2 + 3' },
+              { day: 1, title: 'Creative Writing' },
+              { day: 1, title: 'Animal Habitats' },
+              { day: 2, title: 'Subtraction Basics' },
+              { day: 2, title: 'Spelling Practice' },
+              { day: 2, title: 'Healthy Bodies' },
+              { day: 3, title: 'Number Patterns' },
+              { day: 3, title: 'Reading Comprehension' },
+              { day: 3, title: 'Community Helpers' },
+              { day: 4, title: 'Math Games' },
+              { day: 4, title: 'Show and Tell' },
+              { day: 4, title: 'Healthy Minds' },
+            ]
+              .filter(({ title }) => activityIds[title] !== undefined)
+              .map(({ day, title }) => ({
+                day,
+                activity: { connect: { id: activityIds[title] } },
+              })),
+          ],
+        },
+      },
+    });
+  }
 
   console.log('✅ Seed complete: subjects, milestones, activities, and one plan seeded');
 }

@@ -14,6 +14,7 @@
     "test": "pnpm --filter server run test && pnpm --filter client run test",
     "test:ci": "pnpm run test && pnpm run test:e2e",
     "lint": "eslint --config .eslintrc.json \"**/*.{ts,tsx,js,jsx}\" --max-warnings 0",
+    "typecheck": "pnpm --filter client run typecheck && pnpm --filter server run typecheck",
     "prepare": "husky install",
     "db:generate": "pnpm --filter @teaching-engine/database db:generate",
     "db:migrate": "pnpm --filter @teaching-engine/database db:migrate",

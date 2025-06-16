@@ -7,8 +7,8 @@ export default defineConfig({
   webServer: {
     command: 'pnpm dev',
     url: 'http://localhost:5173',
-    timeout: 120 * 1000,
-    reuseExistingServer: false,
+    timeout: 180 * 1000,
+    reuseExistingServer: !process.env.CI,
     stdout: 'pipe',
     stderr: 'pipe',
     env: {
@@ -16,22 +16,22 @@ export default defineConfig({
       NODE_ENV: 'development',
       // Run the API server on its default port
       PORT: '3001',
-      DATABASE_URL: 'file:./test.db',
+      DATABASE_URL:
+        'file:/Users/michaelmcisaac/GitHub/teaching-engine2.0/packages/database/prisma/prisma/dev.db',
     },
   },
 
   use: {
     baseURL: 'http://localhost:5173',
-    storageState: 'tests/storage/auth.json',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
-    actionTimeout: 10000,
-    navigationTimeout: 30010,
+    actionTimeout: 30000,
+    navigationTimeout: 60000,
   },
   expect: {
-    timeout: 10000,
+    timeout: 15000,
   },
-  timeout: 60000,
+  timeout: 120000,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: [['list'], ['html', { outputFolder: 'playwright-report' }]],

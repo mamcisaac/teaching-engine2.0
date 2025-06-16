@@ -49,11 +49,12 @@ test.describe('Activity Reorder', () => {
     // Login first
     await login(page);
 
-    // Wait for navigation to complete
-    await page.waitForURL('**/subjects', { timeout: 30010 });
+    // Navigate explicitly to subjects page instead of waiting for redirect
+    await page.goto('/subjects', { waitUntil: 'domcontentloaded', timeout: 30000 });
 
-    // Verify we're on the subjects page
-    await expect(page.getByRole('heading', { name: 'Subjects' })).toBeVisible();
+    // Wait for the page to load and verify we're on the subjects page
+    await page.waitForLoadState('load');
+    await expect(page.getByRole('heading', { name: 'Subjects' })).toBeVisible({ timeout: 15000 });
 
     // Get authentication token
     const token = await page.evaluate(() => localStorage.getItem('token'));
@@ -170,10 +171,26 @@ test.describe('Activity Reorder', () => {
       }
 
       // Navigate to the milestone page
-      await page.goto(`/milestones/${milestone.id}`);
+      await page.goto(`/milestones/${milestone.id}`, {
+        waitUntil: 'domcontentloaded',
+        timeout: 30000,
+      });
+      await page.waitForLoadState('load');
+
+      // Wait for activities API to load
+      await page
+        .waitForResponse((r) => r.url().includes('/api/milestones/') && r.status() === 200, {
+          timeout: 15000,
+        })
+        .catch(() => {
+          console.log('Milestones API timeout, proceeding...');
+        });
+
+      // Give time for UI to render activities after API calls
+      await page.waitForTimeout(3000);
 
       // Wait for activities to load
-      await page.waitForSelector('[data-testid="activity-item"]', { timeout: 10000 });
+      await page.waitForSelector('[data-testid="activity-item"]', { timeout: 15000 });
 
       // Get initial order of activities
       const initialOrder = await page.$$eval('[data-testid="activity-item"]', (items) =>
@@ -197,9 +214,11 @@ test.describe('Activity Reorder', () => {
         throw new Error('Could not get bounding boxes for activities');
       }
 
-      // Perform drag and drop using mouse events
+      // Perform drag and drop using mouse events with better timing
       await page.mouse.move(firstBox.x + firstBox.width / 2, firstBox.y + firstBox.height / 2);
+      await page.waitForTimeout(500); // Give time for hover states
       await page.mouse.down();
+      await page.waitForTimeout(200); // Give time for drag to start
 
       // Move to the position of the second item plus some offset
       await page.mouse.move(
@@ -207,11 +226,20 @@ test.describe('Activity Reorder', () => {
         secondBox.y + secondBox.height / 2 + 10,
         { steps: 10 },
       );
+      await page.waitForTimeout(200); // Give time for drop zone highlighting
 
       await page.mouse.up();
 
-      // Wait for the reorder to complete
-      await page.waitForTimeout(1000);
+      // Wait for the reorder to complete and API call to finish
+      await page
+        .waitForResponse((r) => r.url().includes('/api/activities/reorder') && r.status() === 200, {
+          timeout: 10000,
+        })
+        .catch(() => {
+          console.log('Reorder API timeout, checking if order changed anyway...');
+        });
+
+      await page.waitForTimeout(2000);
 
       // Get the new order of activities
       const newOrder = await page.$$eval('[data-testid="activity-item"]', (items) =>

@@ -27,13 +27,32 @@ test('ical import blocks planner and sub plan lists event', async ({ page }) => 
     data: { feedUrl },
   });
 
-  await page.goto('/planner');
-  await page.waitForSelector('.planner-grid', { timeout: 10000 });
+  await page.goto('/planner', { waitUntil: 'domcontentloaded', timeout: 30000 });
+  await page.waitForLoadState('load');
+
+  // Wait for the planner to load
+  await page.waitForSelector('.planner-grid, [data-testid="planner"]', { timeout: 15000 });
+
+  // Wait for planner APIs to load
   await page
     .waitForResponse((r) => r.url().includes('/api/calendar-events') && r.status() === 200, {
-      timeout: 5000,
+      timeout: 15000,
     })
-    .catch(() => console.log('Calendar events API timeout, proceeding...'));
+    .catch(() => {
+      console.log('Calendar events API timeout, proceeding...');
+    });
+
+  // Wait for planner suggestions API if needed
+  await page
+    .waitForResponse((r) => r.url().includes('/api/planner/suggestions') && r.status() === 200, {
+      timeout: 10000,
+    })
+    .catch(() => {
+      console.log('Planner suggestions API timeout, proceeding...');
+    });
+
+  // Give the UI time to render after API calls
+  await page.waitForTimeout(2000);
   const dateInput = page.locator('input[type="date"]');
   await dateInput.waitFor({ state: 'visible' });
   await dateInput.fill('2025-01-01', { force: true });

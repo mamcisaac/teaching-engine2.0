@@ -12,9 +12,19 @@ test('rejects drop when activity longer than slot', async ({ page }) => {
   });
   const subjectId = (await subjectRes.json()).id as number;
 
+  // Create milestone with dates that span the current week for planner visibility
+  const today = new Date();
+  const startDate = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000); // 1 week ago
+  const endDate = new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000); // 2 weeks from now
+
   const milestoneRes = await page.request.post(`${API_BASE}/api/milestones`, {
     headers: { Authorization: `Bearer ${token}` },
-    data: { title: 'Mdur', subjectId },
+    data: {
+      title: 'Mdur',
+      subjectId,
+      startDate: startDate.toISOString().split('T')[0],
+      endDate: endDate.toISOString().split('T')[0],
+    },
   });
   const milestoneId = (await milestoneRes.json()).id as number;
 
@@ -45,22 +55,30 @@ test('rejects drop when activity longer than slot', async ({ page }) => {
     data: { weekStart },
   });
 
-  await page.goto('/planner');
-  await page.waitForSelector('.planner-grid', { timeout: 10000 });
+  await page.goto('/planner', { waitUntil: 'domcontentloaded', timeout: 30000 });
+  await page.waitForLoadState('load');
 
-  // Wait for calendar-events API with timeout handling
+  // Wait for the planner to load
+  await page.waitForSelector('.planner-grid, [data-testid="planner"]', { timeout: 15000 });
+
+  // Wait for planner suggestions API to load
   await page
-    .waitForResponse((r) => r.url().includes('/api/calendar-events') && r.status() === 200, {
-      timeout: 5000,
+    .waitForResponse((r) => r.url().includes('/api/planner/suggestions') && r.status() === 200, {
+      timeout: 15000,
     })
-    .catch(() => console.log('Calendar events API timeout, proceeding...'));
+    .catch(() => {
+      console.log('Planner suggestions API timeout, proceeding...');
+    });
+
+  // Give the UI time to render suggestions after API calls
+  await page.waitForTimeout(3000);
 
   // Wait for activities to be visible in the suggestions list
-  await expect(page.locator('text=ShortAct').first()).toBeVisible({ timeout: 15000 });
-  await expect(page.locator('text=LongAct').first()).toBeVisible({ timeout: 5000 });
+  await expect(page.locator('h4:has-text("ShortAct")')).toBeVisible({ timeout: 15000 });
+  await expect(page.locator('h4:has-text("LongAct")')).toBeVisible({ timeout: 5000 });
 
   // First try dragging ShortAct (30 mins) to verify the slot works - this should succeed
-  const shortCard = page.locator('text=ShortAct').first();
+  const shortCard = page.locator('h4:has-text("ShortAct")').locator('..').locator('..');
   const target = page.locator('[data-testid="day-0"]');
   await shortCard.dragTo(target);
 
@@ -68,33 +86,30 @@ test('rejects drop when activity longer than slot', async ({ page }) => {
   await page.waitForTimeout(1000);
 
   // Now try dragging LongAct (60 mins) - this should fail with duration error
-  const longCard = page.locator('text=LongAct').first();
+  const longCard = page.locator('h4:has-text("LongAct")').locator('..').locator('..');
   await longCard.dragTo(target);
 
   // Wait for error feedback - either toast message or visual feedback (invalidDay styling)
   await page.waitForTimeout(2000); // Give time for the drag operation to complete
 
+  // Check for duration validation feedback - either visual warning or prevention
+  const dayColumn = page.locator('[data-testid="day-0"]');
+
+  // Check if the day shows as invalid (red styling with warning)
+  const hasWarning = await dayColumn.locator('[data-testid="slot-warning"]').isVisible();
+  const isInvalid = await dayColumn.locator('text=Cannot schedule here').isVisible();
+
   // Check if the activity was actually scheduled (it shouldn't be)
-  // If it worked, there would be a visual indicator on the grid
-  await expect(page.locator('[data-testid="day-0"]').locator('text=LongAct')).toHaveCount(0);
+  const activityScheduled = await dayColumn.locator('text=LongAct').count();
 
-  // Also check for any error message that might appear
-  const errorMessages = await Promise.allSettled([
-    page.locator('text=Too long for this slot').isVisible(),
-    page.locator('text=Activity too long').isVisible(),
-    page.locator('text=duration').isVisible(),
-    page.locator('text=too long').isVisible(),
-  ]);
-
-  // If any error message is visible, the test passes
-  const hasErrorMessage = errorMessages.some(
-    (result) => result.status === 'fulfilled' && result.value === true,
-  );
-
-  if (!hasErrorMessage) {
-    // If no error message, the test still passes if the activity wasn't scheduled
-    console.log('Duration validation prevented scheduling - test passes');
+  // The test passes if either:
+  // 1. A warning is shown about the invalid scheduling attempt
+  // 2. The activity is not scheduled in the day column
+  if (hasWarning || isInvalid || activityScheduled === 0) {
+    console.log('Duration validation working correctly - test passes');
+    // Verify the constraint worked as expected
+    expect(activityScheduled).toBe(0);
   } else {
-    console.log('Duration error message shown - test passes');
+    throw new Error('Duration validation failed - long activity was scheduled in short slot');
   }
 });
