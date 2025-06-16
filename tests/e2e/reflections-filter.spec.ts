@@ -20,14 +20,38 @@ test('filters notes by subject and type', async ({ page }) => {
   const mathId = subjects.find((s) => s.name === `Math${ts}`)!.id;
   const sciId = subjects.find((s) => s.name === `Sci${ts}`)!.id;
 
-  await page.request.post(`${API_BASE}/api/milestones`, {
+  // Create milestones with dates that span the current week for planner visibility
+  const today = new Date();
+  const startDate = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000); // 1 week ago
+  const endDate = new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000); // 2 weeks from now
+
+  const mathMilestoneRes = await page.request.post(`${API_BASE}/api/milestones`, {
     headers: { Authorization: `Bearer ${token}` },
-    data: { title: `M1${ts}`, subjectId: mathId },
+    data: {
+      title: `M1${ts}`,
+      subjectId: mathId,
+      startDate: startDate.toISOString(),
+      endDate: endDate.toISOString(),
+    },
   });
-  await page.request.post(`${API_BASE}/api/milestones`, {
+
+  if (!mathMilestoneRes.ok()) {
+    throw new Error(`Failed to create math milestone: ${await mathMilestoneRes.text()}`);
+  }
+
+  const sciMilestoneRes = await page.request.post(`${API_BASE}/api/milestones`, {
     headers: { Authorization: `Bearer ${token}` },
-    data: { title: `M2${ts}`, subjectId: sciId },
+    data: {
+      title: `M2${ts}`,
+      subjectId: sciId,
+      startDate: startDate.toISOString(),
+      endDate: endDate.toISOString(),
+    },
   });
+
+  if (!sciMilestoneRes.ok()) {
+    throw new Error(`Failed to create science milestone: ${await sciMilestoneRes.text()}`);
+  }
   const milestones = (await (
     await page.request.get(`${API_BASE}/api/milestones`, {
       headers: { Authorization: `Bearer ${token}` },
@@ -36,8 +60,17 @@ test('filters notes by subject and type', async ({ page }) => {
     id: number;
     title: string;
   }>;
-  const mathMilestoneId = milestones.find((m) => m.title === `M1${ts}`)!.id;
-  const sciMilestoneId = milestones.find((m) => m.title === `M2${ts}`)!.id;
+  const mathMilestone = milestones.find((m) => m.title === `M1${ts}`);
+  const sciMilestone = milestones.find((m) => m.title === `M2${ts}`);
+
+  if (!mathMilestone || !sciMilestone) {
+    throw new Error(
+      `Could not find test milestones. Available: ${milestones.map((m) => m.title).join(', ')}`,
+    );
+  }
+
+  const mathMilestoneId = mathMilestone.id;
+  const sciMilestoneId = sciMilestone.id;
 
   await page.request.post(`${API_BASE}/api/activities`, {
     headers: { Authorization: `Bearer ${token}` },
@@ -89,7 +122,7 @@ test('filters notes by subject and type', async ({ page }) => {
   await page.selectOption('select', `${mathId}`);
   await page.check('label:has-text("Public") input');
 
-  await expect(page.locator('text=Math Public')).toBeVisible();
+  await expect(page.locator('text=Math Public').first()).toBeVisible();
   await expect(page.locator('text=Math Private')).toHaveCount(0);
   await expect(page.locator('text=Sci Public')).toHaveCount(0);
 });

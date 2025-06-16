@@ -27,8 +27,14 @@ const Skeleton = ({ className = '' }: { className?: string }) => (
   </div>
 );
 
-export function PlannerSuggestions({ weekStart }: { weekStart: string }) {
-  const { data: suggestions, isLoading, error } = usePlannerSuggestions(weekStart);
+export function PlannerSuggestions({
+  weekStart,
+  filters,
+}: {
+  weekStart: string;
+  filters?: Record<string, boolean>;
+}) {
+  const { data: suggestions, isLoading, error } = usePlannerSuggestions(weekStart, filters);
 
   if (isLoading) {
     return (

@@ -6,13 +6,14 @@ import {
   assessmentTemplateUpdateSchema,
   assessmentResultCreateSchema,
 } from '../validation';
+import { authMiddleware, AuthRequest } from '../middleware/auth.js';
 
 const router = Router();
 
 // GET /api/assessments/templates - Get all assessment templates
-router.get('/templates', async (req, res, next) => {
+router.get('/templates', authMiddleware, async (req: AuthRequest, res, next) => {
   try {
-    const userId = 1; // TODO: Get from auth context
+    const userId = req.userId!;
 
     const templates = await prisma.assessmentTemplate.findMany({
       where: { userId },
@@ -47,62 +48,72 @@ router.get('/templates', async (req, res, next) => {
 });
 
 // POST /api/assessments/templates - Create assessment template
-router.post('/templates', validate(assessmentTemplateCreateSchema), async (req, res, next) => {
-  try {
-    const userId = 1; // TODO: Get from auth context
-    const { title, type, description, outcomeIds } = req.body;
+router.post(
+  '/templates',
+  authMiddleware,
+  validate(assessmentTemplateCreateSchema),
+  async (req: AuthRequest, res, next) => {
+    try {
+      const userId = req.userId!;
+      const { title, type, description, outcomeIds } = req.body;
 
-    const template = await prisma.assessmentTemplate.create({
-      data: {
-        title,
-        type,
-        description,
-        outcomeIds: JSON.stringify(outcomeIds),
-        userId,
-      },
-    });
+      const template = await prisma.assessmentTemplate.create({
+        data: {
+          title,
+          type,
+          description,
+          outcomeIds: JSON.stringify(outcomeIds),
+          userId,
+        },
+      });
 
-    res.status(201).json({
-      ...template,
-      outcomeIds: JSON.parse(template.outcomeIds),
-    });
-  } catch (err) {
-    next(err);
-  }
-});
+      res.status(201).json({
+        ...template,
+        outcomeIds: JSON.parse(template.outcomeIds),
+      });
+    } catch (err) {
+      next(err);
+    }
+  },
+);
 
 // PUT /api/assessments/templates/:id - Update assessment template
-router.put('/templates/:id', validate(assessmentTemplateUpdateSchema), async (req, res, next) => {
-  try {
-    const userId = 1; // TODO: Get from auth context
-    const { id } = req.params;
-    const updateData = { ...req.body };
+router.put(
+  '/templates/:id',
+  authMiddleware,
+  validate(assessmentTemplateUpdateSchema),
+  async (req: AuthRequest, res, next) => {
+    try {
+      const userId = req.userId!;
+      const { id } = req.params;
+      const updateData = { ...req.body };
 
-    if (updateData.outcomeIds) {
-      updateData.outcomeIds = JSON.stringify(updateData.outcomeIds);
+      if (updateData.outcomeIds) {
+        updateData.outcomeIds = JSON.stringify(updateData.outcomeIds);
+      }
+
+      const template = await prisma.assessmentTemplate.update({
+        where: {
+          id: parseInt(id),
+          userId, // Ensure user owns the template
+        },
+        data: updateData,
+      });
+
+      res.json({
+        ...template,
+        outcomeIds: JSON.parse(template.outcomeIds),
+      });
+    } catch (err) {
+      next(err);
     }
-
-    const template = await prisma.assessmentTemplate.update({
-      where: {
-        id: parseInt(id),
-        userId, // Ensure user owns the template
-      },
-      data: updateData,
-    });
-
-    res.json({
-      ...template,
-      outcomeIds: JSON.parse(template.outcomeIds),
-    });
-  } catch (err) {
-    next(err);
-  }
-});
+  },
+);
 
 // DELETE /api/assessments/templates/:id - Delete assessment template
-router.delete('/templates/:id', async (req, res, next) => {
+router.delete('/templates/:id', authMiddleware, async (req: AuthRequest, res, next) => {
   try {
-    const userId = 1; // TODO: Get from auth context
+    const userId = req.userId!;
     const { id } = req.params;
 
     // Delete associated results first

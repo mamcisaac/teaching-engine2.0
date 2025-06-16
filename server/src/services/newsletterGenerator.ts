@@ -323,7 +323,8 @@ export async function generateBilingualNewsletterDraft(
   const notes = await collectPublicNotes(startDate, endDate);
 
   // Get milestone completions
-  const completed = await getMilestoneProgress();
+  const milestoneProgress = await getMilestoneProgress();
+  const completed = milestoneProgress.filter((m) => m.completionRate === 1).map((m) => m.title);
 
   // Generate content in both languages if requested
   const titleEn = `Newsletter ${startDate} - ${endDate}`;

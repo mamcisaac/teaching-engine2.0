@@ -1,5 +1,11 @@
 import { prisma } from '../prisma';
-import type { Activity, TimetableSlot, CalendarEvent, UnavailableBlock, Holiday } from '../prisma';
+import type {
+  Activity,
+  TimetableSlot,
+  CalendarEvent,
+  UnavailableBlock,
+  Holiday,
+} from '@teaching-engine/database';
 
 export interface ScheduleItem {
   day: number;

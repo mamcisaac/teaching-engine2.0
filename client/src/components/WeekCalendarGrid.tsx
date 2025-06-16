@@ -159,12 +159,8 @@ export default function WeekCalendarGrid({
                 : [];
 
               const blocked = daySlots.length === 0;
-              const dayEvents = events?.filter(
-                (e) => new Date(e.start).getUTCDay() === (idx + 1) % 7,
-              );
-              const dayHolidays = holidays?.filter(
-                (h) => (new Date(h.start).getUTCDay() + 6) % 7 === idx,
-              );
+              const dayEvents = events?.filter((e) => new Date(e.start).getDay() === idx + 1);
+              const dayHolidays = holidays?.filter((h) => new Date(h.start).getDay() === idx + 1);
               const isHoliday = dayHolidays && dayHolidays.length > 0;
 
               const { isOver, setNodeRef } = useDroppable({

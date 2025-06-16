@@ -16,14 +16,17 @@ export default function FileUpload({ activityId }: Props) {
         className="border px-2 py-1"
         disabled={!file}
         onClick={() => {
-          if (file)
-            upload.mutate({
-              filename: file.name,
-              file,
-              type: file.type,
-              size: file.size,
-              activityId,
-            });
+          if (file) {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('filename', file.name);
+            formData.append('type', file.type);
+            formData.append('size', file.size.toString());
+            if (activityId) {
+              formData.append('activityId', activityId.toString());
+            }
+            upload.mutate(formData);
+          }
         }}
       >
         Upload

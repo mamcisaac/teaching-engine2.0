@@ -6,7 +6,7 @@ let apiContext: APIRequestContext;
 // Initialize API context
 type PlaywrightType = typeof import('@playwright/test');
 export async function initApiContext(playwright: PlaywrightType) {
-  const baseURL = process.env.API_BASE || 'http://localhost:3001';
+  const baseURL = process.env.API_BASE || 'http://localhost:3000';
   console.log(`Initializing API context with base URL: ${baseURL}`);
 
   apiContext = await playwright.request.newContext({

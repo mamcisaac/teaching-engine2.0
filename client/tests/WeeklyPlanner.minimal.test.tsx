@@ -9,7 +9,7 @@ import { vi } from 'vitest';
 vi.mock('../src/api', async (importOriginal) => {
   const actual = await importOriginal();
   return {
-    ...actual,
+    ...(actual as object),
     useLessonPlan: () => ({
       data: null,
       refetch: vi.fn(),

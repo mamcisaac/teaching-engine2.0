@@ -6,6 +6,7 @@ const router = Router();
 
 router.get('/', async (req, res, next) => {
   try {
+    const userId = parseInt(req.user?.userId || '0');
     const { type, subjectId, dateFrom, dateTo } = req.query as {
       type?: 'public' | 'private';
       subjectId?: string;
@@ -13,17 +14,23 @@ router.get('/', async (req, res, next) => {
       dateTo?: string;
     };
 
-    const notes = await prisma.note.findMany({
-      where: {
-        ...(type && { public: type === 'public' }),
-        ...(dateFrom && { createdAt: { gte: new Date(dateFrom) } }),
-        ...(dateTo && { createdAt: { lte: new Date(dateTo) } }),
+    const whereClause: Prisma.NoteWhereInput = {
+      ...(type && { public: type === 'public' }),
+      ...(dateFrom && { createdAt: { gte: new Date(dateFrom) } }),
+      ...(dateTo && { createdAt: { lte: new Date(dateTo) } }),
+      activity: {
+        OR: [{ userId: userId }, { userId: null }],
         ...(subjectId && {
-          activity: {
-            milestone: { subjectId: Number(subjectId) },
+          milestone: {
+            subjectId: Number(subjectId),
+            OR: [{ userId: userId }, { userId: null }],
           },
         }),
       },
+    };
+
+    const notes = await prisma.note.findMany({
+      where: whereClause,
       include: {
         activity: { include: { milestone: { include: { subject: true } } } },
       },

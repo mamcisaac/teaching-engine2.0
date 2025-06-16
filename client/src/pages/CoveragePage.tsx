@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   useOutcomeCoverage,
@@ -42,7 +42,7 @@ function OutcomeAssessmentCell({ outcomeId }: { outcomeId: string }) {
   );
 }
 
-export default function CoveragePage() {
+export default function CoveragePage(): React.JSX.Element {
   const [selectedSubject, setSelectedSubject] = useState<string>('');
   const [selectedGrade, setSelectedGrade] = useState<string>('');
   const [selectedDomain, setSelectedDomain] = useState<string>('');
@@ -58,7 +58,11 @@ export default function CoveragePage() {
   const { user } = useAuth();
 
   // Fetch outcome coverage data with the current filters
-  const { data: coverageData = [], isLoading, error } = useOutcomeCoverage(filterParams);
+  const {
+    data: coverageData = [] as OutcomeCoverage[],
+    isLoading,
+    error,
+  } = useOutcomeCoverage(filterParams);
 
   // Fetch thematic units for the thematic view
   const { data: thematicUnits = [] } = useThematicUnits();
@@ -72,7 +76,7 @@ export default function CoveragePage() {
   );
 
   // Filter coverage data based on cognate filter
-  const filteredCoverageData = showCognateOutcomes
+  const filteredCoverageData: OutcomeCoverage[] = showCognateOutcomes
     ? coverageData.filter((outcome) => cognateLinkedOutcomeIds.has(outcome.outcomeId))
     : coverageData;
 
@@ -83,12 +87,21 @@ export default function CoveragePage() {
     totalOutcomes > 0 ? Math.round((coveredOutcomes / totalOutcomes) * 100) : 0;
 
   // Extract unique subjects, grades, and domains for filter dropdowns
-  const subjects = [...new Set(coverageData.map((o) => o.subject))];
-  const grades = [...new Set(coverageData.map((o) => o.grade))].sort((a, b) => a - b);
-  const domains = [...new Set(coverageData.map((o) => o.domain).filter(Boolean))];
+  const subjects: string[] = Array.from(new Set(coverageData.map((o) => o.subject)));
+  const grades: number[] = Array.from(new Set(coverageData.map((o) => o.grade))).sort(
+    (a, b) => a - b,
+  );
+  const domains: string[] = Array.from(
+    new Set(
+      coverageData.map((o) => o.domain).filter((d): d is string => d !== null && d !== undefined),
+    ),
+  );
 
   // Group outcomes by subject for the summary view (using filtered data)
-  const outcomesBySubject = filteredCoverageData.reduce(
+  const outcomesBySubject: Record<
+    string,
+    { total: number; covered: number; outcomes: OutcomeCoverage[] }
+  > = filteredCoverageData.reduce(
     (acc, outcome) => {
       if (!acc[outcome.subject]) {
         acc[outcome.subject] = {
@@ -110,7 +123,15 @@ export default function CoveragePage() {
   );
 
   // Group outcomes by thematic units for the thematic view
-  const outcomesByThematicUnit = thematicUnits.reduce(
+  const outcomesByThematicUnit: Record<
+    number,
+    {
+      unit: ThematicUnit;
+      total: number;
+      covered: number;
+      outcomes: OutcomeCoverage[];
+    }
+  > = thematicUnits.reduce(
     (acc, unit) => {
       if (!unit.outcomes) {
         acc[unit.id] = {
@@ -204,7 +225,6 @@ export default function CoveragePage() {
         </a>
       </div>
 
-      {/* Coverage Summary */}
       <div className="bg-white rounded-lg shadow-md p-4 mb-6">
         <h2 className="text-xl font-semibold mb-3">Overall Coverage</h2>
         <div className="flex flex-wrap gap-6">
@@ -229,7 +249,6 @@ export default function CoveragePage() {
         </div>
       </div>
 
-      {/* Filters */}
       <div className="bg-gray-100 p-4 rounded-lg mb-6">
         <h2 className="text-lg font-semibold mb-3">Filter Outcomes</h2>
         <div className="flex flex-wrap gap-4 mb-4">
@@ -244,7 +263,7 @@ export default function CoveragePage() {
               onChange={(e) => setSelectedSubject(e.target.value)}
             >
               <option value="">All Subjects</option>
-              {subjects.map((subject) => (
+              {subjects.map((subject: string) => (
                 <option key={subject} value={subject}>
                   {subject}
                 </option>
@@ -263,8 +282,8 @@ export default function CoveragePage() {
               onChange={(e) => setSelectedGrade(e.target.value)}
             >
               <option value="">All Grades</option>
-              {grades.map((grade) => (
-                <option key={grade} value={grade}>
+              {grades.map((grade: number) => (
+                <option key={grade} value={String(grade)}>
                   {grade}
                 </option>
               ))}
@@ -282,9 +301,9 @@ export default function CoveragePage() {
               onChange={(e) => setSelectedDomain(e.target.value)}
             >
               <option value="">All Domains</option>
-              {domains.map((domain) => (
-                <option key={domain} value={domain || ''}>
-                  {domain || 'No Domain'}
+              {domains.map((domain: string) => (
+                <option key={domain} value={domain}>
+                  {domain}
                 </option>
               ))}
             </select>
@@ -303,11 +322,11 @@ export default function CoveragePage() {
               />
               <label htmlFor="cognate-filter" className="ml-2 text-sm text-gray-700">
                 🧠 Show only outcomes linked to cognates
-                {cognateLinkedOutcomeIds.size > 0 && (
+                {cognateLinkedOutcomeIds.size > 0 ? (
                   <span className="ml-1 text-indigo-600">
-                    ({cognateLinkedOutcomeIds.size} available)
+                    ({String(cognateLinkedOutcomeIds.size)} available)
                   </span>
-                )}
+                ) : null}
               </label>
             </div>
             <div className="flex items-center">
@@ -341,27 +360,27 @@ export default function CoveragePage() {
         </div>
       </div>
 
-      {/* Loading and error states */}
       {isLoading && <div className="text-center py-4">Loading coverage data...</div>}
-      {error && (
+      {error ? (
         <div className="bg-red-100 text-red-700 p-4 rounded-lg mb-6">
           Error loading coverage data. Please try again.
         </div>
-      )}
+      ) : null}
 
-      {/* Subject-wise breakdown */}
       {!isLoading && !error && coverageData.length > 0 && viewMode === 'subject' && (
         <div className="mb-8">
           <h2 className="text-xl font-semibold mb-3">Coverage by Subject</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {Object.entries(outcomesBySubject).map(([subject, data]) => {
+            {Object.keys(outcomesBySubject).map((subject) => {
+              const data = outcomesBySubject[subject];
+              const safeSubject = String(subject);
               const subjectCoveragePercent =
                 data.total > 0 ? Math.round((data.covered / data.total) * 100) : 0;
 
               return (
-                <div key={subject} className="bg-white rounded-lg shadow-md overflow-hidden">
+                <div key={safeSubject} className="bg-white rounded-lg shadow-md overflow-hidden">
                   <div className="bg-blue-600 text-white p-3">
-                    <h3 className="font-semibold">{subject}</h3>
+                    <h3 className="font-semibold">{safeSubject}</h3>
                   </div>
                   <div className="p-4">
                     <div className="flex justify-between mb-2">
@@ -390,13 +409,16 @@ export default function CoveragePage() {
         </div>
       )}
 
-      {/* Thematic Units breakdown */}
       {!isLoading && !error && viewMode === 'thematic' && (
         <div className="mb-8">
           <h2 className="text-xl font-semibold mb-3">Coverage by Thematic Unit</h2>
           {Object.keys(outcomesByThematicUnit).length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {Object.entries(outcomesByThematicUnit).map(([unitId, data]) => {
+              {(Object.keys(outcomesByThematicUnit) as string[]).map((unitId) => {
+                const numericUnitId = Number(unitId);
+                const data = outcomesByThematicUnit[numericUnitId];
+                if (!data) return null;
+
                 const safeUnitId = String(unitId);
                 const unitCoveragePercent =
                   data.total > 0 ? Math.round((data.covered / data.total) * 100) : 0;
@@ -420,7 +442,7 @@ export default function CoveragePage() {
                   <div key={safeUnitId} className="bg-white rounded-lg shadow-md overflow-hidden">
                     <div className="bg-emerald-600 text-white p-3">
                       <h3 className="font-semibold flex items-center gap-2">
-                        🌍 {data.unit.title}
+                        🌍 {String(data.unit.title)}
                       </h3>
                       <p className="text-emerald-100 text-sm mt-1">
                         {formatDateRange(data.unit.startDate, data.unit.endDate)}
@@ -429,7 +451,7 @@ export default function CoveragePage() {
                     <div className="p-4">
                       {data.unit.description && (
                         <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-                          {data.unit.description}
+                          {String(data.unit.description)}
                         </p>
                       )}
                       <div className="flex justify-between mb-2">
@@ -473,7 +495,6 @@ export default function CoveragePage() {
         </div>
       )}
 
-      {/* Detailed outcomes table */}
       {!isLoading && !error && coverageData.length > 0 && (
         <div>
           <h2 className="text-xl font-semibold mb-3">Detailed Outcome Coverage</h2>
@@ -542,7 +563,6 @@ export default function CoveragePage() {
         </div>
       )}
 
-      {/* No data state */}
       {!isLoading && !error && coverageData.length === 0 && (
         <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 text-center">
           <p className="text-lg text-yellow-700 mb-2">No outcomes found</p>

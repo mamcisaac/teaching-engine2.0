@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { prisma } from '../prisma';
 import { validate } from '../validation';
 import { z } from 'zod';
+import { authMiddleware, AuthRequest } from '../middleware/auth.js';
 
 const router = Router();
 
@@ -11,7 +12,6 @@ const cognateCreateSchema = z.object({
   notes: z.string().optional(),
   linkedOutcomes: z.array(z.string()).optional(),
   linkedActivities: z.array(z.number()).optional(),
-  userId: z.number(),
 });
 
 const cognateUpdateSchema = z.object({
@@ -22,12 +22,12 @@ const cognateUpdateSchema = z.object({
   linkedActivities: z.array(z.number()).optional(),
 });
 
-router.get('/', async (req, res, next) => {
+router.get('/', authMiddleware, async (req: AuthRequest, res, next) => {
   try {
-    const userId = req.query.userId ? Number(req.query.userId) : undefined;
+    const userId = req.userId!;
 
     const cognates = await prisma.cognatePair.findMany({
-      where: userId ? { userId } : {},
+      where: { userId },
       include: {
         linkedOutcomes: {
           include: {
@@ -58,7 +58,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', authMiddleware, async (req: AuthRequest, res, next) => {
   try {
     const cognate = await prisma.cognatePair.findUnique({
       where: { id: Number(req.params.id) },
@@ -93,113 +93,125 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', validate(cognateCreateSchema), async (req, res, next) => {
-  try {
-    const { linkedOutcomes = [], linkedActivities = [], ...cognateData } = req.body;
+router.post(
+  '/',
+  authMiddleware,
+  validate(cognateCreateSchema),
+  async (req: AuthRequest, res, next) => {
+    try {
+      const { linkedOutcomes = [], linkedActivities = [], ...cognateData } = req.body;
+      const userId = req.userId!;
 
-    const cognate = await prisma.cognatePair.create({
-      data: {
-        ...cognateData,
-        linkedOutcomes: {
-          create: linkedOutcomes.map((outcomeId: string) => ({
-            outcome: { connect: { id: outcomeId } },
-          })),
-        },
-        linkedActivities: {
-          create: linkedActivities.map((activityId: number) => ({
-            activity: { connect: { id: activityId } },
-          })),
-        },
-      },
-      include: {
-        linkedOutcomes: {
-          include: {
-            outcome: true,
-          },
-        },
-        linkedActivities: {
-          include: {
-            activity: true,
-          },
-        },
-        user: {
-          select: {
-            id: true,
-            name: true,
-            email: true,
-          },
-        },
-      },
-    });
-
-    res.status(201).json(cognate);
-  } catch (err) {
-    if (err.code === 'P2002') {
-      return res.status(400).json({ error: 'This cognate pair already exists for this user' });
-    }
-    next(err);
-  }
-});
-
-router.put('/:id', validate(cognateUpdateSchema), async (req, res, next) => {
-  try {
-    const { linkedOutcomes, linkedActivities, ...updateData } = req.body;
-
-    const cognate = await prisma.cognatePair.update({
-      where: { id: Number(req.params.id) },
-      data: {
-        ...updateData,
-        ...(linkedOutcomes && {
+      const cognate = await prisma.cognatePair.create({
+        data: {
+          ...cognateData,
+          userId,
           linkedOutcomes: {
-            deleteMany: {},
             create: linkedOutcomes.map((outcomeId: string) => ({
               outcome: { connect: { id: outcomeId } },
             })),
           },
-        }),
-        ...(linkedActivities && {
           linkedActivities: {
-            deleteMany: {},
             create: linkedActivities.map((activityId: number) => ({
               activity: { connect: { id: activityId } },
             })),
           },
-        }),
-      },
-      include: {
-        linkedOutcomes: {
-          include: {
-            outcome: true,
+        },
+        include: {
+          linkedOutcomes: {
+            include: {
+              outcome: true,
+            },
+          },
+          linkedActivities: {
+            include: {
+              activity: true,
+            },
+          },
+          user: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+            },
           },
         },
-        linkedActivities: {
-          include: {
-            activity: true,
-          },
-        },
-        user: {
-          select: {
-            id: true,
-            name: true,
-            email: true,
-          },
-        },
-      },
-    });
+      });
 
-    res.json(cognate);
-  } catch (err) {
-    if (err.code === 'P2025') {
-      return res.status(404).json({ error: 'Cognate pair not found' });
+      res.status(201).json(cognate);
+    } catch (err) {
+      if (err.code === 'P2002') {
+        return res.status(400).json({ error: 'This cognate pair already exists for this user' });
+      }
+      next(err);
     }
-    if (err.code === 'P2002') {
-      return res.status(400).json({ error: 'This cognate pair already exists for this user' });
-    }
-    next(err);
-  }
-});
+  },
+);
 
-router.delete('/:id', async (req, res, next) => {
+router.put(
+  '/:id',
+  authMiddleware,
+  validate(cognateUpdateSchema),
+  async (req: AuthRequest, res, next) => {
+    try {
+      const { linkedOutcomes, linkedActivities, ...updateData } = req.body;
+
+      const cognate = await prisma.cognatePair.update({
+        where: { id: Number(req.params.id) },
+        data: {
+          ...updateData,
+          ...(linkedOutcomes && {
+            linkedOutcomes: {
+              deleteMany: {},
+              create: linkedOutcomes.map((outcomeId: string) => ({
+                outcome: { connect: { id: outcomeId } },
+              })),
+            },
+          }),
+          ...(linkedActivities && {
+            linkedActivities: {
+              deleteMany: {},
+              create: linkedActivities.map((activityId: number) => ({
+                activity: { connect: { id: activityId } },
+              })),
+            },
+          }),
+        },
+        include: {
+          linkedOutcomes: {
+            include: {
+              outcome: true,
+            },
+          },
+          linkedActivities: {
+            include: {
+              activity: true,
+            },
+          },
+          user: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+            },
+          },
+        },
+      });
+
+      res.json(cognate);
+    } catch (err) {
+      if (err.code === 'P2025') {
+        return res.status(404).json({ error: 'Cognate pair not found' });
+      }
+      if (err.code === 'P2002') {
+        return res.status(400).json({ error: 'This cognate pair already exists for this user' });
+      }
+      next(err);
+    }
+  },
+);
+
+router.delete('/:id', authMiddleware, async (req: AuthRequest, res, next) => {
   try {
     await prisma.cognatePair.delete({
       where: { id: Number(req.params.id) },

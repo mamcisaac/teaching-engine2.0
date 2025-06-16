@@ -11,7 +11,7 @@ import Dialog from './Dialog';
 import OutcomeSelect from './OutcomeSelect';
 import BilingualTextInput from './BilingualTextInput';
 import { useLanguage } from '../contexts/LanguageContext';
-import type { ThematicUnit, Activity } from '../types/index';
+import type { ThematicUnit } from '../types/index';
 
 interface ThematicUnitPlannerPageProps {
   className?: string;
@@ -137,9 +137,11 @@ export default function ThematicUnitPlannerPage({ className = '' }: ThematicUnit
     });
   };
 
-  const getSubjectTags = (activities: Activity[]) => {
+  const getSubjectTags = (
+    activities: Array<{ activity: { milestone?: { subject?: { name: string } } } }>,
+  ) => {
     const subjects = new Set<string>();
-    activities.forEach((activity) => {
+    activities.forEach(({ activity }) => {
       if (activity.milestone?.subject?.name) {
         subjects.add(activity.milestone.subject.name);
       }
@@ -233,7 +235,7 @@ export default function ThematicUnitPlannerPage({ className = '' }: ThematicUnit
                 <div className="mb-4">
                   <div className="text-xs text-gray-500 mb-2">Subjects:</div>
                   <div className="flex flex-wrap gap-1">
-                    {getSubjectTags(unit.activities.map((a) => a.activity)).map((subject) => (
+                    {getSubjectTags(unit.activities).map((subject) => (
                       <span
                         key={subject}
                         className="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded"

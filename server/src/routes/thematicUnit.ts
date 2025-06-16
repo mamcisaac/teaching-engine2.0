@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { AuthRequest } from '../middleware/auth';
 import { prisma } from '../prisma';
 import { validate } from '../validation';
 import { thematicUnitCreateSchema, thematicUnitUpdateSchema } from '../validation';
@@ -105,8 +106,7 @@ router.post('/', validate(thematicUnitCreateSchema), async (req, res, next) => {
     outcomes = [],
     activities = [],
   } = req.body;
-  // @ts-expect-error - Express auth middleware adds user to request
-  const userId = req.user?.userId ? Number(req.user.userId) : 1;
+  const userId = (req as AuthRequest).userId!;
 
   try {
     // Validate date range

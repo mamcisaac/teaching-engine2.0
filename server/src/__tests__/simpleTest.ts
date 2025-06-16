@@ -1,11 +1,11 @@
 console.log('Simple test running');
 
-function test() {
+function simpleTest() {
   console.log('Test function called');
   return 1 + 1;
 }
 
-const result = test();
+const result = simpleTest();
 console.log('Test result:', result);
 
 if (result === 2) {

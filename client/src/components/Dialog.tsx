@@ -8,6 +8,7 @@ interface DialogProps {
   children: ReactNode;
   title?: string;
   maxWidth?: string;
+  description?: string;
 }
 
 export default function Dialog({
@@ -17,6 +18,7 @@ export default function Dialog({
   children,
   title,
   maxWidth = 'lg',
+  description,
 }: DialogProps) {
   const handleOpenChange = (newOpen: boolean) => {
     if (onOpenChange) {
@@ -40,16 +42,33 @@ export default function Dialog({
   return (
     <RadixDialog.Root open={open} onOpenChange={handleOpenChange}>
       <RadixDialog.Portal>
-        <RadixDialog.Overlay className="fixed inset-0 bg-black/50 z-50" />
-        <RadixDialog.Content className="fixed inset-0 z-50 flex items-center justify-center outline-none">
+        <RadixDialog.Overlay className="fixed inset-0 bg-black/50 z-50" aria-hidden="true" />
+        <RadixDialog.Content
+          className="fixed inset-0 z-50 flex items-center justify-center outline-none"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={title ? 'dialog-title' : undefined}
+          aria-describedby={description ? 'dialog-description' : undefined}
+        >
           <div
             className={`bg-white rounded shadow w-full ${maxWidthClasses[maxWidth as keyof typeof maxWidthClasses] || maxWidthClasses.lg} mx-4`}
             onClick={(e) => e.stopPropagation()}
           >
             {title && (
               <div className="px-6 py-4 border-b">
-                <h2 className="text-lg font-semibold">{title}</h2>
+                <RadixDialog.Title asChild>
+                  <h2 id="dialog-title" className="text-lg font-semibold">
+                    {title}
+                  </h2>
+                </RadixDialog.Title>
               </div>
+            )}
+            {description && (
+              <RadixDialog.Description asChild>
+                <p id="dialog-description" className="sr-only">
+                  {description}
+                </p>
+              </RadixDialog.Description>
             )}
             <div className="p-6">{children}</div>
           </div>

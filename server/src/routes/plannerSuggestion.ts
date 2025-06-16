@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { parseISO, startOfWeek } from 'date-fns';
 import { getPlannerSuggestions } from '../services/plannerSuggestions.js';
+import { authMiddleware, AuthRequest } from '../middleware/auth.js';
 
 const router = Router();
 
@@ -10,7 +11,7 @@ const router = Router();
  * Query params:
  *   - weekStart: ISO date string for Monday of the target week (defaults to current week)
  */
-router.get('/', async (req, res, next) => {
+router.get('/', authMiddleware, async (req: AuthRequest, res, next) => {
   try {
     // Parse weekStart from query params, default to start of current week
     const weekStartParam = req.query.weekStart as string | undefined;
@@ -18,9 +19,8 @@ router.get('/', async (req, res, next) => {
       ? startOfWeek(parseISO(weekStartParam), { weekStartsOn: 1 })
       : startOfWeek(new Date(), { weekStartsOn: 1 });
 
-    // Get user ID from session or auth context
-    // TODO: Replace with actual auth middleware
-    const userId = 1; // Default to user 1 for now, will be replaced with actual auth
+    // Get user ID from authenticated request
+    const userId = req.userId!;
 
     const suggestions = await getPlannerSuggestions(weekStart, userId);
     res.json(suggestions);

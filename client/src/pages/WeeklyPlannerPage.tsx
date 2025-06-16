@@ -574,7 +574,7 @@ export default function WeeklyPlannerPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Suggested Activities</h3>
                 <PlannerFilters filters={filters} onChange={setFilters} />
                 <div className="mt-4">
-                  <PlannerSuggestions weekStart={weekStart} />
+                  <PlannerSuggestions weekStart={weekStart} filters={filters} />
                 </div>
               </div>
             </div>

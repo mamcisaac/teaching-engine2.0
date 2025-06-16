@@ -38,7 +38,7 @@ export default function UploadResourceModal({
   const { data: subjects = [] } = useSubjects();
 
   // Get activities from subjects for linking
-  const allActivities = subjects.flatMap(
+  const allActivities: Activity[] = subjects.flatMap(
     (subject) => subject.milestones?.flatMap((milestone) => milestone.activities || []) || [],
   );
 
@@ -267,8 +267,7 @@ export default function UploadResourceModal({
             >
               {allActivities.map((activity) => (
                 <option key={activity.id} value={activity.id}>
-                  {activity.milestone?.subject?.name} → {activity.milestone?.title} →{' '}
-                  {activity.title}
+                  {activity.milestone?.subject?.name} → {activity.title}
                 </option>
               ))}
             </select>

@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { AuthRequest } from '../middleware/auth';
 import { prisma } from '../prisma';
 import { validate } from '../validation';
 import { smartGoalCreateSchema, smartGoalUpdateSchema } from '../validation';
@@ -55,8 +56,7 @@ router.get('/', async (req, res, next) => {
 // POST /api/smart-goals - Create a new SMART goal
 router.post('/', validate(smartGoalCreateSchema), async (req, res, next) => {
   const { outcomeId, milestoneId, description, targetDate, targetValue } = req.body;
-  // @ts-expect-error - Express auth middleware adds user to request
-  const userId = req.user?.userId ? Number(req.user.userId) : 1;
+  const userId = (req as AuthRequest).userId!;
 
   try {
     // Verify outcome exists

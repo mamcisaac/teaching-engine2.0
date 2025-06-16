@@ -13,9 +13,9 @@ const prisma = new PrismaClient({
   log: ['query', 'info', 'warn', 'error'],
   datasources: {
     db: {
-      url: `file:${dbPath}`
-    }
-  }
+      url: `file:${dbPath}`,
+    },
+  },
 });
 
 console.log(`Using database at: ${dbPath}`);
@@ -33,7 +33,7 @@ app.get('/api/test', async (req, res) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
   console.log(`Test server running on port ${PORT}`);
   console.log(`Test endpoint: http://localhost:${PORT}/api/test`);

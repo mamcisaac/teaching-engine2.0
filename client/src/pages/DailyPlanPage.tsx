@@ -6,11 +6,11 @@ import {
   useUpdateDailyPlan,
   useTimetable,
   useUpdateActivity,
-  DailyPlanItem,
   type TimetableSlot,
   useAssessmentTemplates,
   useAssessmentResults,
 } from '../api';
+import type { DailyPlanItem } from '../types';
 import DailyNotesEditor from '../components/DailyNotesEditor';
 import Dialog from '../components/Dialog';
 import OutcomeSelect from '../components/OutcomeSelect';

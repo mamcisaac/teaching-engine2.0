@@ -1,5 +1,5 @@
 // Import everything directly from the generated client to avoid ES module issues
-import { PrismaClient, Prisma } from '@teaching-engine/database/generated/client';
+import { PrismaClient, Prisma } from '@teaching-engine/database';
 
 // Create singleton instance for server usage
 const globalForPrisma = globalThis as unknown as {

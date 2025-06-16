@@ -167,25 +167,6 @@ vi.mock('@dnd-kit/core', () => ({
 }));
 
 // Mock sonner
-declare module 'sonner' {
-  interface ToastOptions {
-    // Add any toast options you need to mock
-    duration?: number;
-    description?: string;
-    action?: {
-      label: string;
-      onClick: () => void;
-    };
-  }
-
-  export const toast: {
-    (message: string, options?: ToastOptions): string | number;
-    success(message: string, options?: ToastOptions): string | number;
-    error(message: string, options?: ToastOptions): string | number;
-    // Add other toast methods as needed
-  };
-}
-
 vi.mock('sonner', () => ({
   toast: vi.fn().mockImplementation((message) => {
     console.log('Mock toast called with:', message);

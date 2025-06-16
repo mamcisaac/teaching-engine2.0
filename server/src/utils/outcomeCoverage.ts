@@ -110,7 +110,12 @@ export async function getOutcomesCoverage(
   // Get all relevant outcomes
   const whereConditions: string[] = [];
 
-  if (whereClause.id?.in) {
+  if (
+    whereClause.id &&
+    typeof whereClause.id === 'object' &&
+    'in' in whereClause.id &&
+    whereClause.id.in
+  ) {
     whereConditions.push(
       `id IN (${(whereClause.id.in as string[]).map((id) => `'${id}'`).join(',')})`,
     );

@@ -27,8 +27,10 @@ router.get('/', async (req, res, next) => {
     const to = req.query.to as string | undefined;
     const events = await prisma.calendarEvent.findMany({
       where: {
-        ...(from && { start: { gte: new Date(from) } }),
-        ...(to && { end: { lte: new Date(to) } }),
+        AND: [
+          from ? { start: { lte: new Date(to || from) } } : {},
+          to ? { end: { gte: new Date(from || to) } } : {},
+        ],
       },
       orderBy: { start: 'asc' },
     });

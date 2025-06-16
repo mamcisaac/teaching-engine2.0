@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { AuthRequest } from '../middleware/auth';
 import { prisma } from '../prisma';
 import { validate } from '../validation';
 import {
@@ -65,8 +66,7 @@ router.post('/templates', validate(oralRoutineTemplateCreateSchema), async (req,
     descriptionFr,
     outcomes = [],
   } = req.body;
-  // @ts-expect-error - Express auth middleware adds user to request
-  const userId = req.user?.userId ? Number(req.user.userId) : 1;
+  const userId = (req as AuthRequest).userId!;
 
   try {
     const template = await prisma.oralRoutineTemplate.create({
@@ -290,8 +290,7 @@ router.get('/daily', async (req, res, next) => {
 // POST /api/oral-routines/daily - Create a new daily oral routine
 router.post('/daily', validate(dailyOralRoutineCreateSchema), async (req, res, next) => {
   const { date, templateId, completed = false, notes, participation } = req.body;
-  // @ts-expect-error - Express auth middleware adds user to request
-  const userId = req.user?.userId ? Number(req.user.userId) : 1;
+  const userId = (req as AuthRequest).userId!;
 
   try {
     // Verify template exists

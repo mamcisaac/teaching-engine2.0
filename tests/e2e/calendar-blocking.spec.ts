@@ -8,46 +8,55 @@ import { login, API_BASE } from './helpers';
  */
 test('planner blocks times from calendar events', async ({ page }) => {
   const token = await login(page);
+
   // Use a Monday (weekday) for the event since planner only shows Mon-Fri
-  const currentWeek = new Date();
-  const monday = new Date(currentWeek.getTime() - (currentWeek.getDay() - 1) * 86400000);
-  const mondayISO = monday.toISOString().split('T')[0];
+  // Get the start of the current week (Monday)
+  const today = new Date();
+  const dayOfWeek = today.getDay();
+  const daysToMonday = dayOfWeek === 0 ? 6 : dayOfWeek - 1; // Sunday is 0, so we need to go back 6 days
+  const monday = new Date(today);
+  monday.setDate(today.getDate() - daysToMonday);
+  monday.setHours(0, 0, 0, 0); // Set to start of day
+  // const mondayISO = monday.toISOString();
+  // Create event that ends within the same day to ensure it's within the query range
+  const eventStart = new Date(monday);
+  eventStart.setHours(9, 0, 0, 0);
+  const eventEnd = new Date(monday);
+  eventEnd.setHours(10, 0, 0, 0);
+
   await page.request.post(`${API_BASE}/api/calendar-events`, {
     headers: { Authorization: `Bearer ${token}` },
     data: {
       title: 'Assembly',
-      start: `${mondayISO}T00:00:00.000Z`,
-      end: `${mondayISO}T23:59:59.000Z`,
-      allDay: true,
+      start: eventStart.toISOString(),
+      end: eventEnd.toISOString(),
+      allDay: false,
       eventType: 'ASSEMBLY',
     },
   });
+
   await page.goto('/planner', { waitUntil: 'domcontentloaded', timeout: 30000 });
   await page.waitForLoadState('load');
 
-  // Wait for the planner to load
-  await page.waitForSelector('.planner-grid, [data-testid="planner"]', { timeout: 15000 });
+  // Wait for the planner to load - look for specific planner elements
+  await page.waitForSelector('h1:has-text("Weekly Planner")', { timeout: 15000 });
 
-  // Wait for planner APIs to load
-  await page
-    .waitForResponse((r) => r.url().includes('/api/calendar-events') && r.status() === 200, {
-      timeout: 15000,
-    })
-    .catch(() => {
-      console.log('Calendar events API timeout, proceeding...');
-    });
+  // Set the week to the Monday we created the event for
+  const weekStartFormatted = monday.toISOString().split('T')[0];
+  await page.fill('input[type="date"][data-testid="week-start-input"]', weekStartFormatted);
+  await page.waitForTimeout(2000); // Give time for content to load
 
-  // Wait for planner suggestions API if needed
-  await page
-    .waitForResponse((r) => r.url().includes('/api/planner/suggestions') && r.status() === 200, {
-      timeout: 10000,
-    })
-    .catch(() => {
-      console.log('Planner suggestions API timeout, proceeding...');
-    });
+  // Wait for the page to stabilize
+  await page.waitForLoadState('networkidle');
 
-  // Give the UI time to render after API calls
-  await page.waitForTimeout(2000);
-  const blocked = page.locator('text=Assembly').first();
-  await expect(blocked).toBeVisible();
+  // Wait specifically for calendar events to be displayed
+  // Calendar events are shown in yellow boxes on the calendar
+  await page.waitForSelector('.bg-yellow-100', { timeout: 15000 });
+
+  // Give extra time for rendering
+  await page.waitForTimeout(1000);
+
+  // The calendar event should be visible
+  const assemblyEvent = page.locator('.bg-yellow-100:has-text("Assembly")').first();
+  await expect(assemblyEvent).toBeVisible();
 });

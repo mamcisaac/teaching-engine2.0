@@ -25,7 +25,7 @@ interface PlannerSuggestionItemProps {
 
 export function PlannerSuggestionItem({ suggestion }: PlannerSuggestionItemProps) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: `suggestion-${suggestion.activityId}`,
+    id: suggestion.activityId,
     data: { type: 'suggestion', suggestion },
   });
 

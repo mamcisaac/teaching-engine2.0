@@ -5,9 +5,16 @@ import { validate, subjectSchema } from '../validation';
 
 const router = Router();
 
-router.get('/', async (_req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
+    const userId = parseInt(req.user?.userId || '0');
     const subjects = await prisma.subject.findMany({
+      where: {
+        OR: [
+          { userId: userId },
+          { userId: null }, // Include subjects without a user (shared/system subjects)
+        ],
+      },
       include: {
         milestones: {
           include: { activities: true },
@@ -39,8 +46,12 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', validate(subjectSchema), async (req, res, next) => {
   try {
+    const userId = parseInt(req.user?.userId || '0');
     const subject = await prisma.subject.create({
-      data: { name: req.body.name },
+      data: {
+        name: req.body.name,
+        userId: userId,
+      },
     });
     res.status(201).json(subject);
   } catch (err) {

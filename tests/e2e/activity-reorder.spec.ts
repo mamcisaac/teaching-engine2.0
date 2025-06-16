@@ -1,25 +1,9 @@
 import { test, expect, Page } from '@playwright/test';
 import { login } from './helpers';
 
-const API_BASE = process.env.API_BASE || 'http://localhost:3001';
+const API_BASE = process.env.API_BASE || 'http://127.0.0.1:3000';
 
-// Initialize API context before all tests
-test.beforeAll(async () => {
-  // Check if the server is running
-  try {
-    const response = await fetch(`${process.env.API_BASE || 'http://localhost:3001'}/api/health`);
-    if (!response.ok) {
-      console.error(
-        'Server is not running or not responding correctly. Please start the server on port 3001.',
-      );
-      process.exit(1);
-    }
-  } catch (error) {
-    console.error('Failed to connect to the server:', error);
-    console.error('Please make sure the server is running on port 3001.');
-    process.exit(1);
-  }
-});
+// The server check is handled in the login helper
 
 // Helper function to capture page state for debugging
 async function capturePageState(page: Page, name: string) {
@@ -72,24 +56,18 @@ test.describe('Activity Reorder', () => {
         description: 'Test subject for activity reorder test',
       };
 
-      const subjectRes = await page.evaluate(
-        async ({ url, data, token }) => {
-          const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(data),
-          });
-          return await response.json();
+      const subjectResponse = await page.request.post(`${API_BASE}/api/subjects`, {
+        data: subjectData,
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-        {
-          url: `${API_BASE}/api/subjects`,
-          data: subjectData,
-          token,
-        },
-      );
+      });
+
+      if (!subjectResponse.ok()) {
+        throw new Error(`Failed to create subject: ${await subjectResponse.text()}`);
+      }
+
+      const subjectRes = await subjectResponse.json();
 
       if (!subjectRes || !subjectRes.id) {
         throw new Error('Failed to create test subject');
@@ -98,31 +76,30 @@ test.describe('Activity Reorder', () => {
       const subject = subjectRes;
 
       // Create a test milestone
+      const today = new Date();
+      const startDate = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000); // 1 week ago
+      const endDate = new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000); // 2 weeks from now
+
       const milestoneData = {
         subjectId: subject.id,
         title: `Test Milestone ${timestamp}`,
         description: 'Test milestone for activity reorder test',
-        dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
       };
 
-      const milestoneRes = await page.evaluate(
-        async ({ url, data, token }) => {
-          const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(data),
-          });
-          return await response.json();
+      const milestoneResponse = await page.request.post(`${API_BASE}/api/milestones`, {
+        data: milestoneData,
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-        {
-          url: `${API_BASE}/api/milestones`,
-          data: milestoneData,
-          token,
-        },
-      );
+      });
+
+      if (!milestoneResponse.ok()) {
+        throw new Error(`Failed to create milestone: ${await milestoneResponse.text()}`);
+      }
+
+      const milestoneRes = await milestoneResponse.json();
 
       if (!milestoneRes || !milestoneRes.id) {
         throw new Error('Failed to create test milestone');
@@ -140,28 +117,22 @@ test.describe('Activity Reorder', () => {
       const createdActivities = [];
 
       for (const activity of activities) {
-        const activityRes = await page.evaluate(
-          async ({ url, data, token }) => {
-            const response = await fetch(url, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-              },
-              body: JSON.stringify(data),
-            });
-            return await response.json();
+        const activityResponse = await page.request.post(`${API_BASE}/api/activities`, {
+          data: {
+            ...activity,
+            milestoneId: milestone.id,
+            subjectId: subject.id,
           },
-          {
-            url: `${API_BASE}/api/activities`,
-            data: {
-              ...activity,
-              milestoneId: milestone.id,
-              subjectId: subject.id,
-            },
-            token,
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        );
+        });
+
+        if (!activityResponse.ok()) {
+          throw new Error(`Failed to create activity: ${await activityResponse.text()}`);
+        }
+
+        const activityRes = await activityResponse.json();
 
         if (!activityRes || !activityRes.id) {
           throw new Error(`Failed to create test activity: ${activity.title}`);
@@ -170,27 +141,100 @@ test.describe('Activity Reorder', () => {
         createdActivities.push(activityRes);
       }
 
+      console.log('Created milestone ID:', milestone.id);
+      console.log(
+        'Created activities:',
+        createdActivities.map((a) => ({ id: a.id, title: a.title })),
+      );
+
+      // Verify the milestone exists via API
+      const verifyResponse = await page.request.get(`${API_BASE}/api/milestones/${milestone.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (verifyResponse.ok()) {
+        const verifyData = await verifyResponse.json();
+        console.log('Milestone verified via API:', {
+          id: verifyData.id,
+          title: verifyData.title,
+          activitiesCount: verifyData.activities?.length || 0,
+        });
+      } else {
+        console.log(
+          'Failed to verify milestone:',
+          verifyResponse.status(),
+          await verifyResponse.text(),
+        );
+      }
+
+      // Track API requests
+      const apiRequests: string[] = [];
+      page.on('request', (request) => {
+        if (request.url().includes('/api/')) {
+          apiRequests.push(`${request.method()} ${request.url()}`);
+        }
+      });
+
       // Navigate to the milestone page
-      await page.goto(`/milestones/${milestone.id}`, {
-        waitUntil: 'domcontentloaded',
+      const url = `/milestones/${milestone.id}`;
+      console.log('Navigating to:', url);
+
+      await page.goto(url, {
+        waitUntil: 'networkidle',
         timeout: 30000,
       });
-      await page.waitForLoadState('load');
 
-      // Wait for activities API to load
-      await page
-        .waitForResponse((r) => r.url().includes('/api/milestones/') && r.status() === 200, {
-          timeout: 15000,
-        })
-        .catch(() => {
-          console.log('Milestones API timeout, proceeding...');
-        });
+      // Check if we're on the right page
+      const currentUrl = page.url();
+      console.log('Current URL:', currentUrl);
 
-      // Give time for UI to render activities after API calls
+      // Give time for React to render
       await page.waitForTimeout(3000);
 
-      // Wait for activities to load
-      await page.waitForSelector('[data-testid="activity-item"]', { timeout: 15000 });
+      // Check for loading state
+      const loadingExists = await page.locator('text="Loading..."').isVisible();
+      console.log('Page shows loading:', loadingExists);
+
+      // Check for error messages
+      const hasError = await page.locator('text=/error|failed|not found/i').count();
+      console.log('Error messages found:', hasError);
+
+      // Log API requests made
+      console.log('API requests made:', apiRequests);
+
+      // Listen for console errors
+      page.on('console', (msg) => {
+        if (msg.type() === 'error') {
+          console.log('Console error:', msg.text());
+        }
+      });
+
+      // Check network failures
+      page.on('requestfailed', (request) => {
+        console.log('Request failed:', request.url(), request.failure()?.errorText);
+      });
+
+      // Check if the ActivityList component is rendered
+      const activityListExists = await page.locator('text="Add Activity"').isVisible();
+      console.log('ActivityList component rendered:', activityListExists);
+
+      // Wait for activities to load - check if any activities exist first
+      const activityCount = await page.locator('[data-testid="activity-item"]').count();
+      console.log('Number of activity items found:', activityCount);
+
+      if (activityCount === 0) {
+        // Take a screenshot for debugging
+        await page.screenshot({ path: 'test-results/activity-reorder-debug.png', fullPage: true });
+
+        // Check the page structure
+        const pageText = await page.textContent('body');
+        console.log('Page text content:', pageText?.substring(0, 500));
+      }
+
+      // Wait for activities to load with longer timeout
+      await page.waitForSelector('[data-testid="activity-item"]', { timeout: 30000 });
 
       // Get initial order of activities
       const initialOrder = await page.$$eval('[data-testid="activity-item"]', (items) =>

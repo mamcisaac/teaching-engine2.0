@@ -37,7 +37,7 @@ async function checkAuthState(page: Page, context: string): Promise<AuthState> {
     // Check auth/me endpoint
     const authResponse = await page.evaluate(async () => {
       try {
-        const response = await fetch('http://localhost:3001/auth/me', {
+        const response = await fetch('http://localhost:3000/auth/me', {
           credentials: 'include',
           headers: {
             Accept: 'application/json',

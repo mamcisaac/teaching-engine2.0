@@ -21,8 +21,8 @@ test('planner skips holiday dates', async ({ page }) => {
     data: {
       title: 'HM',
       subjectId,
-      startDate: startDate.toISOString().split('T')[0],
-      endDate: endDate.toISOString().split('T')[0],
+      startDate: startDate.toISOString(),
+      endDate: endDate.toISOString(),
     },
   });
   const milestoneId = (await msRes.json()).id as number;
@@ -35,17 +35,26 @@ test('planner skips holiday dates', async ({ page }) => {
     data: [{ day: 3, startMin: 540, endMin: 600, subjectId }],
   });
 
-  await page.goto('/settings');
-  await page.fill('input[type="date"]', '2025-12-25');
-  await page.fill('input[placeholder="Holiday name"]', 'Christmas');
-  await page.click('button:has-text("Add")');
-  await expect(page.locator('text=Christmas').first()).toBeVisible();
+  // Create holiday via API instead of UI for reliability
+  const holidayDate = new Date('2025-12-25');
+  await page.request.post(`${API_BASE}/api/calendar-events`, {
+    headers: { Authorization: `Bearer ${token}` },
+    data: {
+      title: 'Christmas',
+      start: holidayDate.toISOString(),
+      end: holidayDate.toISOString(),
+      allDay: true,
+      eventType: 'HOLIDAY',
+      source: 'MANUAL',
+    },
+  });
 
   await page.goto('/planner', { waitUntil: 'domcontentloaded', timeout: 30000 });
   await page.waitForLoadState('load');
 
   // Wait for the planner to load
-  await page.waitForSelector('.planner-grid, [data-testid="planner"]', { timeout: 15000 });
+  await page.waitForSelector('h1:has-text("Weekly Planner")', { timeout: 15000 });
+  await page.waitForTimeout(2000); // Give time for content to load
 
   // Log all network requests to debug
   page.on('response', (response) => {

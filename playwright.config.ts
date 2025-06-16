@@ -15,7 +15,7 @@ export default defineConfig({
       // Use development mode so the Express server actually starts
       NODE_ENV: 'development',
       // Run the API server on its default port
-      PORT: '3001',
+      PORT: '3000',
       DATABASE_URL:
         'file:/Users/michaelmcisaac/GitHub/teaching-engine2.0/packages/database/prisma/prisma/dev.db',
     },

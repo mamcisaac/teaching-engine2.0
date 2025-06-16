@@ -8,7 +8,14 @@ const router = Router();
 router.get('/', async (_req, res, next) => {
   try {
     const milestones = await prisma.milestone.findMany({
-      include: { activities: true, outcomes: { include: { outcome: true } } },
+      include: {
+        activities: {
+          include: {
+            outcomes: { include: { outcome: true } },
+          },
+        },
+        outcomes: { include: { outcome: true } },
+      },
       orderBy: { startDate: 'asc' },
     });
     res.json(milestones);
@@ -24,6 +31,9 @@ router.get('/:id', async (req, res, next) => {
       include: {
         activities: {
           orderBy: { orderIndex: 'asc' },
+          include: {
+            outcomes: { include: { outcome: true } },
+          },
         },
         outcomes: {
           include: { outcome: true },
@@ -40,6 +50,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', validate(milestoneCreateSchema), async (req, res, next) => {
   try {
+    const userId = parseInt(req.user?.userId || '0');
     const milestone = await prisma.milestone.create({
       data: {
         title: req.body.title,
@@ -49,6 +60,7 @@ router.post('/', validate(milestoneCreateSchema), async (req, res, next) => {
         endDate: req.body.endDate ? new Date(req.body.endDate) : undefined,
         estHours: req.body.estHours,
         description: req.body.description,
+        userId: userId,
       },
     });
 
@@ -66,7 +78,14 @@ router.post('/', validate(milestoneCreateSchema), async (req, res, next) => {
 
     const refreshed = await prisma.milestone.findUnique({
       where: { id: milestone.id },
-      include: { activities: true, outcomes: { include: { outcome: true } } },
+      include: {
+        activities: {
+          include: {
+            outcomes: { include: { outcome: true } },
+          },
+        },
+        outcomes: { include: { outcome: true } },
+      },
     });
     res.status(201).json(refreshed);
   } catch (err) {
@@ -103,7 +122,14 @@ router.put('/:id', validate(milestoneUpdateSchema), async (req, res, next) => {
 
     const refreshed = await prisma.milestone.findUnique({
       where: { id: milestone.id },
-      include: { activities: true, outcomes: { include: { outcome: true } } },
+      include: {
+        activities: {
+          include: {
+            outcomes: { include: { outcome: true } },
+          },
+        },
+        outcomes: { include: { outcome: true } },
+      },
     });
     res.json(refreshed);
   } catch (err) {
