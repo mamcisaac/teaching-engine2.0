@@ -1,7 +1,7 @@
 import { prisma } from '../prisma';
 import PDFDocument from 'pdfkit';
 import { generateSubPlanPDF } from './subPlanGenerator';
-import { Prisma } from '@teaching-engine/database';
+import { Prisma } from '../prisma';
 
 export interface ScheduleEntry {
   time: string;

@@ -127,6 +127,14 @@ export interface Activity {
   outcomes?: Array<{
     outcome: Outcome;
   }>;
+  cognatePairs?: Array<{
+    cognatePair: {
+      id: number;
+      wordFr: string;
+      wordEn: string;
+      notes?: string | null;
+    };
+  }>;
 }
 
 export interface Resource {
@@ -312,4 +320,53 @@ export interface ThematicUnit {
     id: number;
     name: string;
   };
+}
+
+export interface CognatePair {
+  id: number;
+  wordFr: string;
+  wordEn: string;
+  notes?: string | null;
+  userId: number;
+  createdAt: string;
+  linkedOutcomes?: Array<{
+    outcome: {
+      id: string;
+      code: string;
+      description: string;
+      subject: string;
+      grade: number;
+      domain?: string | null;
+    };
+  }>;
+  linkedActivities?: Array<{
+    activity: {
+      id: number;
+      title: string;
+      titleEn?: string | null;
+      titleFr?: string | null;
+      milestone?: {
+        id: number;
+        title: string;
+        subject?: {
+          id: number;
+          name: string;
+        };
+      };
+    };
+  }>;
+  user?: {
+    id: number;
+    name: string;
+    email: string;
+  };
+}
+
+export interface CognateInput {
+  wordFr: string;
+  wordEn: string;
+  notes?: string;
+  linkedOutcomes?: string[];
+  linkedActivities?: number[];
+  userId: number;
 }

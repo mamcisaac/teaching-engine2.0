@@ -81,6 +81,7 @@ model Activity {
   notes       Note[]
   outcomes    ActivityOutcome[]
   thematicUnits ThematicUnitActivity[]
+  cognatePairs CognateActivity[]
   @@index([milestoneId, orderIndex])
 }
 
@@ -248,6 +249,7 @@ model User {
   oralRoutineTemplates OralRoutineTemplate[]
   dailyOralRoutines DailyOralRoutine[]
   thematicUnits ThematicUnit[]
+  cognatePairs CognatePair[]
 }
 
 enum ActivityType {
@@ -387,6 +389,7 @@ model Outcome {
   smartGoals  SmartGoal[]
   oralRoutines OralRoutineOutcome[]
   thematicUnits ThematicUnitOutcome[]
+  cognatePairs CognateOutcome[]
 }
 
 model MilestoneOutcome {
@@ -491,4 +494,33 @@ model ThematicUnitActivity {
   activity       Activity     @relation(fields: [activityId], references: [id])
   activityId     Int
   @@id([thematicUnitId, activityId])
+}
+
+model CognatePair {
+  id               Int                    @id @default(autoincrement())
+  wordFr           String
+  wordEn           String
+  notes            String?
+  linkedOutcomes   CognateOutcome[]
+  linkedActivities CognateActivity[]
+  userId           Int
+  user             User                   @relation(fields: [userId], references: [id])
+  createdAt        DateTime               @default(now())
+  @@unique([wordFr, wordEn, userId])
+}
+
+model CognateOutcome {
+  cognatePair   CognatePair @relation(fields: [cognatePairId], references: [id])
+  cognatePairId Int
+  outcome       Outcome     @relation(fields: [outcomeId], references: [id])
+  outcomeId     String
+  @@id([cognatePairId, outcomeId])
+}
+
+model CognateActivity {
+  cognatePair   CognatePair @relation(fields: [cognatePairId], references: [id])
+  cognatePairId Int
+  activity      Activity    @relation(fields: [activityId], references: [id])
+  activityId    Int
+  @@id([cognatePairId, activityId])
 }

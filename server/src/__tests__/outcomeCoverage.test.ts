@@ -1,22 +1,41 @@
-import { getCoverageSummary, getOutcomeCoverage } from '../utils/outcomeCoverage';
+import { describe, it, expect, jest, beforeEach, beforeAll } from '@jest/globals';
 
-// Mock the prisma client
+// Mock the prisma client first
 const mockQueryRaw = jest.fn();
 
-jest.mock('../prisma', () => ({
+// Mock the module before any imports
+jest.unstable_mockModule('../prisma', () => ({
   prisma: {
     $queryRaw: mockQueryRaw,
   },
 }));
 
-// Remove unused import
-// import { prisma } from '../prisma';
-
 describe('Outcome Coverage', () => {
+  let getCoverageSummary: (
+    coverage: Array<{
+      outcomeId: string;
+      status: 'covered' | 'partial' | 'uncovered';
+      linked: number;
+      completed: number;
+    }>,
+  ) => { total: number; covered: number; partial: number; uncovered: number };
+  let getOutcomeCoverage: (
+    outcomeId: string,
+  ) => Promise<{
+    outcomeId: string;
+    status: 'covered' | 'partial' | 'uncovered';
+    linked: number;
+    completed: number;
+  }>;
+
+  beforeAll(async () => {
+    // Import after mocking
+    const module = await import('../utils/outcomeCoverage');
+    getCoverageSummary = module.getCoverageSummary;
+    getOutcomeCoverage = module.getOutcomeCoverage;
+  });
   describe('getCoverageSummary', () => {
     it('should return correct summary for coverage data', () => {
-      console.log('Running getCoverageSummary test');
-
       const coverage = [
         { outcomeId: '1', status: 'covered' as const, linked: 1, completed: 1 },
         { outcomeId: '2', status: 'uncovered' as const, linked: 0, completed: 0 },
@@ -40,8 +59,6 @@ describe('Outcome Coverage', () => {
     });
 
     it('should return uncovered status for outcome with no activities', async () => {
-      console.log('Running getOutcomeCoverage test');
-
       // Mock the database query to return no activities
       mockQueryRaw.mockImplementation((strings, ...values) => {
         // Verify the SQL template string and parameters

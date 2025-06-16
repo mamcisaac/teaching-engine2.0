@@ -1,5 +1,5 @@
 import { describe, it, expect } from '@jest/globals';
-import { getCoverageSummary, type CoverageStatus } from '../utils/outcomeCoverage.js';
+import { getCoverageSummary, type CoverageStatus } from '../utils/outcomeCoverage';
 
 // Helper to create typed test data
 const createCoverage = (id: string, status: CoverageStatus, linked: number, completed: number) => ({
@@ -17,7 +17,6 @@ describe('getCoverageSummary', () => {
       covered: 0,
       partial: 0,
       uncovered: 0,
-      coveragePercentage: 0,
     });
   });
 

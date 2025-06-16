@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { Prisma } from '@teaching-engine/database';
+import { Prisma } from '../prisma';
 import { prisma } from '../prisma';
 
 const router = Router();

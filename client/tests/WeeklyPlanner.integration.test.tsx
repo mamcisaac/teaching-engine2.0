@@ -12,14 +12,8 @@ import WeeklyPlannerPage from '../src/pages/WeeklyPlannerPage';
 // Mock the API module
 vi.mock('../src/api', async (importOriginal) => {
   const actual = await importOriginal();
-  // Helper function to get ISO week start date
-  const getWeekStartISO = (date: Date): string => {
-    const d = new Date(date);
-    const day = d.getUTCDay();
-    const diff = d.getUTCDate() - day + (day === 0 ? -6 : 1);
-    const monday = new Date(d.setUTCDate(diff));
-    return monday.toISOString().split('T')[0];
-  };
+  // Helper function to get ISO week start date - mocked to return consistent date
+  const getWeekStartISO = vi.fn().mockReturnValue('2025-06-09');
 
   return {
     ...(actual as object),

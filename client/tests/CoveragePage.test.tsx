@@ -5,6 +5,14 @@ import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import CoveragePage from '../src/pages/CoveragePage';
 
+// Mock the auth context
+vi.mock('../src/contexts/AuthContext', () => ({
+  useAuth: vi.fn().mockReturnValue({
+    user: { id: '1', name: 'Test User', email: 'test@example.com' },
+    isAuthenticated: true,
+  }),
+}));
+
 // Mock the API module
 vi.mock('../src/api', () => {
   const mockCoverageData = [
@@ -86,6 +94,16 @@ vi.mock('../src/api', () => {
   return {
     useOutcomeCoverage: vi.fn().mockReturnValue({
       data: mockCoverageData,
+      isLoading: false,
+      error: null,
+    }),
+    useThematicUnits: vi.fn().mockReturnValue({
+      data: [],
+      isLoading: false,
+      error: null,
+    }),
+    useCognates: vi.fn().mockReturnValue({
+      data: [],
       isLoading: false,
       error: null,
     }),

@@ -132,6 +132,41 @@ vi.mock('../src/api', () => {
       isPending: false,
       error: null,
     }),
+    useOralRoutineTemplates: vi.fn().mockReturnValue({
+      data: [],
+      isLoading: false,
+      error: null,
+    }),
+    useDailyOralRoutines: vi.fn().mockReturnValue({
+      data: [],
+      isLoading: false,
+      error: null,
+    }),
+    useOralRoutineStats: vi.fn().mockReturnValue({
+      data: {
+        totalRoutines: 0,
+        completedRoutines: 0,
+        completionRate: 0,
+        averageParticipation: null,
+      },
+      isLoading: false,
+      error: null,
+    }),
+    useCreateDailyOralRoutine: vi.fn().mockReturnValue({
+      mutate: vi.fn(),
+      isPending: false,
+      error: null,
+    }),
+    useUpdateDailyOralRoutine: vi.fn().mockReturnValue({
+      mutate: vi.fn(),
+      isPending: false,
+      error: null,
+    }),
+    useDeleteDailyOralRoutine: vi.fn().mockReturnValue({
+      mutate: vi.fn(),
+      isPending: false,
+      error: null,
+    }),
   };
 });
 

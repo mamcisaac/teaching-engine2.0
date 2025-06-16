@@ -21,6 +21,8 @@ import type {
   DailyOralRoutine,
   OralRoutineStats,
   ThematicUnit,
+  CognatePair,
+  CognateInput,
 } from './types';
 
 import type {
@@ -1145,6 +1147,82 @@ export const useDeleteThematicUnit = () => {
     },
     onError: (error) => {
       toast.error(`Failed to delete thematic unit: ${error.message}`);
+    },
+  });
+};
+
+// Cognate Pair hooks
+export const useCognates = (userId?: number) =>
+  useQuery<CognatePair[]>({
+    queryKey: ['cognates', userId],
+    queryFn: async () => (await api.get('/api/cognates', { params: { userId } })).data,
+  });
+
+export const useCognate = (id: number) =>
+  useQuery<CognatePair>({
+    queryKey: ['cognates', id],
+    queryFn: async () => (await api.get(`/api/cognates/${id}`)).data,
+    enabled: !!id,
+  });
+
+export const useCreateCognate = () => {
+  const queryClient = useQueryClient();
+  return useMutation<CognatePair, Error, CognateInput>({
+    mutationFn: async (data) => (await api.post('/api/cognates', data)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['cognates'] });
+      toast.success('Cognate pair created successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to create cognate pair: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useUpdateCognate = () => {
+  const queryClient = useQueryClient();
+  return useMutation<
+    CognatePair,
+    Error,
+    {
+      id: number;
+      data: Partial<CognateInput>;
+    }
+  >({
+    mutationFn: async ({ id, data }) => (await api.put(`/api/cognates/${id}`, data)).data,
+    onSuccess: (_, { id }) => {
+      queryClient.invalidateQueries({ queryKey: ['cognates'] });
+      queryClient.invalidateQueries({ queryKey: ['cognates', id] });
+      toast.success('Cognate pair updated successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to update cognate pair: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useDeleteCognate = () => {
+  const queryClient = useQueryClient();
+  return useMutation<void, Error, number>({
+    mutationFn: async (id) => (await api.delete(`/api/cognates/${id}`)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['cognates'] });
+      toast.success('Cognate pair deleted successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to delete cognate pair: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
     },
   });
 };

@@ -23,6 +23,7 @@ interface ActivityCardProps {
 
 function ActivityCard({ activity, slot, onEdit }: ActivityCardProps) {
   const hasOutcomes = activity.outcomes && activity.outcomes.length > 0;
+  const hasCognates = activity.cognatePairs && activity.cognatePairs.length > 0;
 
   // Format time from slot
   const formatTime = (minutes: number) => {
@@ -49,6 +50,29 @@ function ActivityCard({ activity, slot, onEdit }: ActivityCardProps) {
 
       {/* Activity title */}
       <div className="font-medium text-sm text-gray-900 mb-2 leading-tight">{activity.title}</div>
+
+      {/* Cognate display */}
+      {hasCognates && (
+        <div className="mb-2">
+          <div className="text-xs text-indigo-600 font-medium mb-1">🧠 Language Transfer:</div>
+          <div className="flex flex-wrap gap-1">
+            {activity.cognatePairs?.slice(0, 2).map(({ cognatePair }) => (
+              <span
+                key={cognatePair.id}
+                className="text-xs bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded"
+                title={cognatePair.notes || undefined}
+              >
+                {cognatePair.wordFr} – {cognatePair.wordEn}
+              </span>
+            ))}
+            {activity.cognatePairs && activity.cognatePairs.length > 2 && (
+              <span className="text-xs text-indigo-500 bg-indigo-50 px-1 py-0.5 rounded">
+                +{activity.cognatePairs.length - 2} more
+              </span>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Outcome tags */}
       {hasOutcomes && (

@@ -110,6 +110,11 @@ vi.mock('../src/api', () => {
       isLoading: false,
       error: null,
     }),
+    useThematicUnits: vi.fn().mockReturnValue({
+      data: [],
+      isLoading: false,
+      error: null,
+    }),
   };
 });
 

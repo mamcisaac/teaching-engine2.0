@@ -1,23 +1,19 @@
+import { jest } from '@jest/globals';
 import { getResourceSuggestions } from '../services/resourceSuggestions';
+import { prisma } from '../prisma';
 
-// Mock the prisma client
-const mockPrisma = {
-  activity: {
-    findUnique: jest.fn(),
-  },
-};
-
-jest.mock('../prisma', () => ({
-  prisma: mockPrisma,
-}));
+// Create a mock for the findUnique method
+const mockFindUnique = jest.fn();
 
 describe('Resource Suggestions Service', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    // Spy on the prisma.activity.findUnique method and replace it with our mock
+    jest.spyOn(prisma.activity, 'findUnique').mockImplementation(mockFindUnique);
   });
 
   it('should return empty array for non-existent activity', async () => {
-    mockPrisma.activity.findUnique.mockResolvedValue(null);
+    mockFindUnique.mockResolvedValue(null);
 
     const suggestions = await getResourceSuggestions(999);
     expect(suggestions).toEqual([]);
@@ -42,7 +38,7 @@ describe('Resource Suggestions Service', () => {
       },
     };
 
-    mockPrisma.activity.findUnique.mockResolvedValue(mockActivity);
+    mockFindUnique.mockResolvedValue(mockActivity);
 
     const suggestions = await getResourceSuggestions(1);
 
@@ -78,7 +74,7 @@ describe('Resource Suggestions Service', () => {
       },
     };
 
-    mockPrisma.activity.findUnique.mockResolvedValue(mockActivity);
+    mockFindUnique.mockResolvedValue(mockActivity);
 
     const suggestions = await getResourceSuggestions(2);
 
@@ -102,7 +98,7 @@ describe('Resource Suggestions Service', () => {
       },
     };
 
-    mockPrisma.activity.findUnique.mockResolvedValue(mockActivity);
+    mockFindUnique.mockResolvedValue(mockActivity);
 
     const suggestions = await getResourceSuggestions(3);
 
@@ -140,7 +136,7 @@ describe('Resource Suggestions Service', () => {
       },
     };
 
-    mockPrisma.activity.findUnique.mockResolvedValue(mockActivity);
+    mockFindUnique.mockResolvedValue(mockActivity);
 
     const suggestions = await getResourceSuggestions(4);
 

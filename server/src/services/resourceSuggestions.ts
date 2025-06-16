@@ -1,4 +1,4 @@
-import { prisma } from '../prisma.js';
+import { prisma } from '../prisma';
 
 export type ResourceSuggestion = {
   title: string;
@@ -84,7 +84,7 @@ export async function getResourceSuggestions(activityId: number): Promise<Resour
   }
 
   // Subject-based suggestions
-  if (subject.includes('francais') || subject.includes('french')) {
+  if (subject.includes('français') || subject.includes('francais') || subject.includes('french')) {
     // Title keyword-based suggestions
     if (title.includes('syllable') || title.includes('syllabe')) {
       suggestions.push({

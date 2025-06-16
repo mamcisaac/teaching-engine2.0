@@ -3,7 +3,7 @@ import {
   getCoverageSummary,
   type OutcomeCoverage,
   type CoverageStatus,
-} from '../utils/outcomeCoverage.js';
+} from '../utils/outcomeCoverage';
 
 describe('getCoverageSummary', () => {
   it('should return zero counts for empty array', () => {
@@ -40,7 +40,7 @@ describe('getCoverageSummary', () => {
       total: 4,
       covered: 0,
       partial: 0,
-      uncovered: 0,
+      uncovered: 4,
     });
   });
 });

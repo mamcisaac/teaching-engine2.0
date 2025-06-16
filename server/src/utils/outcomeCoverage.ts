@@ -1,4 +1,4 @@
-import { prisma } from '../prisma.js';
+import { prisma } from '../prisma';
 
 export type CoverageStatus = 'covered' | 'uncovered' | 'partial';
 
@@ -50,9 +50,13 @@ export async function getOutcomeCoverage(outcomeId: string): Promise<OutcomeCove
       (a: ActivityWithCompletion) => a.completedAt !== null,
     ).length;
 
-    let status: CoverageStatus = 'uncovered';
-    if (totalActivities > 0) {
-      status = completedActivities > 0 ? 'covered' : 'partial';
+    let status: CoverageStatus;
+    if (completedActivities === totalActivities) {
+      status = 'covered';
+    } else if (completedActivities > 0) {
+      status = 'partial';
+    } else {
+      status = 'uncovered';
     }
 
     return {

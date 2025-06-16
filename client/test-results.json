@@ -1,0 +1,638 @@
+{
+  "numTotalTestSuites": 36,
+  "numPassedTestSuites": 36,
+  "numFailedTestSuites": 0,
+  "numPendingTestSuites": 0,
+  "numTotalTests": 52,
+  "numPassedTests": 49,
+  "numFailedTests": 3,
+  "numPendingTests": 0,
+  "numTodoTests": 0,
+  "startTime": 1750035238881,
+  "success": false,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["", "CoveragePage"],
+          "fullName": " CoveragePage renders without crashing",
+          "status": "passed",
+          "title": "renders without crashing",
+          "duration": 149,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "CoveragePage"],
+          "fullName": " CoveragePage displays overall coverage statistics correctly",
+          "status": "passed",
+          "title": "displays overall coverage statistics correctly",
+          "duration": 44,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "CoveragePage"],
+          "fullName": " CoveragePage displays detailed outcome table with color-coded rows",
+          "status": "passed",
+          "title": "displays detailed outcome table with color-coded rows",
+          "duration": 593,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "CoveragePage"],
+          "fullName": " CoveragePage displays subject-wise coverage breakdown",
+          "status": "passed",
+          "title": "displays subject-wise coverage breakdown",
+          "duration": 168,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "CoveragePage"],
+          "fullName": " CoveragePage filters by subject correctly (Math example)",
+          "status": "passed",
+          "title": "filters by subject correctly (Math example)",
+          "duration": 184,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "CoveragePage"],
+          "fullName": " CoveragePage shows visual indicators for coverage status",
+          "status": "passed",
+          "title": "shows visual indicators for coverage status",
+          "duration": 99,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "CoveragePage"],
+          "fullName": " CoveragePage displays color-coded table rows correctly",
+          "status": "passed",
+          "title": "displays color-coded table rows correctly",
+          "duration": 106,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "CoveragePage"],
+          "fullName": " CoveragePage shows progress bars with appropriate colors",
+          "status": "passed",
+          "title": "shows progress bars with appropriate colors",
+          "duration": 16,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "CoveragePage"],
+          "fullName": " CoveragePage resets filters correctly",
+          "status": "passed",
+          "title": "resets filters correctly",
+          "duration": 96,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "CoveragePage"],
+          "fullName": " CoveragePage handles filtering by grade",
+          "status": "passed",
+          "title": "handles filtering by grade",
+          "duration": 84,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "CoveragePage"],
+          "fullName": " CoveragePage handles filtering by domain",
+          "status": "passed",
+          "title": "handles filtering by domain",
+          "duration": 163,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "CoveragePage"],
+          "fullName": " CoveragePage shows back to dashboard link",
+          "status": "passed",
+          "title": "shows back to dashboard link",
+          "duration": 56,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "CoveragePage"],
+          "fullName": " CoveragePage displays activity links for covered outcomes",
+          "status": "passed",
+          "title": "displays activity links for covered outcomes",
+          "duration": 35,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035241667,
+      "endTime": 1750035243460,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/tests/CoveragePage.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["", "DailyPlanPage"],
+          "fullName": " DailyPlanPage renders without crashing",
+          "status": "failed",
+          "title": "renders without crashing",
+          "duration": 292,
+          "failureMessages": [
+            "[vitest] No \"useDeleteDailyOralRoutine\" export is defined on the \"../src/api\" mock. Did you forget to return it from \"vi.mock\"?\nIf you need to partially mock a module, you can use \"importOriginal\" helper inside:\n"
+          ],
+          "location": { "line": 43, "column": 30 }
+        },
+        {
+          "ancestorTitles": ["", "DailyPlanPage"],
+          "fullName": " DailyPlanPage displays the daily timeline with activities",
+          "status": "failed",
+          "title": "displays the daily timeline with activities",
+          "duration": 45,
+          "failureMessages": [
+            "[vitest] No \"useDeleteDailyOralRoutine\" export is defined on the \"../src/api\" mock. Did you forget to return it from \"vi.mock\"?\nIf you need to partially mock a module, you can use \"importOriginal\" helper inside:\n"
+          ],
+          "location": { "line": 43, "column": 30 }
+        },
+        {
+          "ancestorTitles": ["", "DailyPlanPage"],
+          "fullName": " DailyPlanPage shows generate plan button",
+          "status": "failed",
+          "title": "shows generate plan button",
+          "duration": 13,
+          "failureMessages": [
+            "[vitest] No \"useDeleteDailyOralRoutine\" export is defined on the \"../src/api\" mock. Did you forget to return it from \"vi.mock\"?\nIf you need to partially mock a module, you can use \"importOriginal\" helper inside:\n"
+          ],
+          "location": { "line": 43, "column": 30 }
+        }
+      ],
+      "startTime": 1750035241982,
+      "endTime": 1750035242332,
+      "status": "failed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/tests/DailyPlannerPage.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["", "OutcomesPage"],
+          "fullName": " OutcomesPage renders without crashing",
+          "status": "passed",
+          "title": "renders without crashing",
+          "duration": 89,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "OutcomesPage"],
+          "fullName": " OutcomesPage displays all outcomes in table format by default",
+          "status": "passed",
+          "title": "displays all outcomes in table format by default",
+          "duration": 321,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "OutcomesPage"],
+          "fullName": " OutcomesPage filters by subject correctly (French example)",
+          "status": "passed",
+          "title": "filters by subject correctly (French example)",
+          "duration": 339,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "OutcomesPage"],
+          "fullName": " OutcomesPage searches by keyword correctly (oral example)",
+          "status": "passed",
+          "title": "searches by keyword correctly (oral example)",
+          "duration": 104,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "OutcomesPage"],
+          "fullName": " OutcomesPage filters by grade correctly",
+          "status": "passed",
+          "title": "filters by grade correctly",
+          "duration": 45,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "OutcomesPage"],
+          "fullName": " OutcomesPage filters by domain correctly",
+          "status": "passed",
+          "title": "filters by domain correctly",
+          "duration": 169,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "OutcomesPage"],
+          "fullName": " OutcomesPage can switch between view modes",
+          "status": "passed",
+          "title": "can switch between view modes",
+          "duration": 119,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "OutcomesPage"],
+          "fullName": " OutcomesPage resets filters correctly",
+          "status": "passed",
+          "title": "resets filters correctly",
+          "duration": 87,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "OutcomesPage"],
+          "fullName": " OutcomesPage handles search on Enter key",
+          "status": "passed",
+          "title": "handles search on Enter key",
+          "duration": 58,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "OutcomesPage"],
+          "fullName": " OutcomesPage shows navigation links",
+          "status": "passed",
+          "title": "shows navigation links",
+          "duration": 15,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035241874,
+      "endTime": 1750035243222,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/tests/OutcomesPage.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["", "SubPlanGenerator"],
+          "fullName": " SubPlanGenerator renders with default values",
+          "status": "passed",
+          "title": "renders with default values",
+          "duration": 485,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "SubPlanGenerator"],
+          "fullName": " SubPlanGenerator allows selecting different number of days",
+          "status": "passed",
+          "title": "allows selecting different number of days",
+          "duration": 104,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "SubPlanGenerator"],
+          "fullName": " SubPlanGenerator calls generateSubPlan API when Generate button is clicked",
+          "status": "passed",
+          "title": "calls generateSubPlan API when Generate button is clicked",
+          "duration": 288,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "SubPlanGenerator"],
+          "fullName": " SubPlanGenerator handles API call when Generate button is clicked",
+          "status": "passed",
+          "title": "handles API call when Generate button is clicked",
+          "duration": 23,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035241818,
+      "endTime": 1750035242718,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/tests/SubPlanGenerator.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["", "WeeklyPlannerPage"],
+          "fullName": " WeeklyPlannerPage renders without crashing",
+          "status": "passed",
+          "title": "renders without crashing",
+          "duration": 91,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035245136,
+      "endTime": 1750035245227,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/tests/WeeklyPlanner.basic.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["", "WeeklyPlannerPage - Integration"],
+          "fullName": " WeeklyPlannerPage - Integration renders without crashing",
+          "status": "passed",
+          "title": "renders without crashing",
+          "duration": 232,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "WeeklyPlannerPage - Integration"],
+          "fullName": " WeeklyPlannerPage - Integration displays week days",
+          "status": "passed",
+          "title": "displays week days",
+          "duration": 229,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "WeeklyPlannerPage - Integration"],
+          "fullName": " WeeklyPlannerPage - Integration displays activity filters",
+          "status": "passed",
+          "title": "displays activity filters",
+          "duration": 80,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "WeeklyPlannerPage - Integration"],
+          "fullName": " WeeklyPlannerPage - Integration allows selecting a date",
+          "status": "passed",
+          "title": "allows selecting a date",
+          "duration": 102,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035242161,
+      "endTime": 1750035242804,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/tests/WeeklyPlanner.integration.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["", "WeeklyPlannerPage"],
+          "fullName": " WeeklyPlannerPage renders without crashing",
+          "status": "passed",
+          "title": "renders without crashing",
+          "duration": 311,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035242020,
+      "endTime": 1750035242331,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/tests/WeeklyPlanner.minimal.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["", "WeeklyPlannerPage"],
+          "fullName": " WeeklyPlannerPage renders without crashing",
+          "status": "passed",
+          "title": "renders without crashing",
+          "duration": 120,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035242218,
+      "endTime": 1750035242338,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/tests/WeeklyPlannerPage.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["", "Simple test"],
+          "fullName": " Simple test should pass",
+          "status": "passed",
+          "title": "should pass",
+          "duration": 2,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035245865,
+      "endTime": 1750035245867,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/tests/simple.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["", "ActivityList"],
+          "fullName": " ActivityList renders activities",
+          "status": "passed",
+          "title": "renders activities",
+          "duration": 189,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["", "ActivityList"],
+          "fullName": " ActivityList shows complete buttons",
+          "status": "passed",
+          "title": "shows complete buttons",
+          "duration": 121,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035242200,
+      "endTime": 1750035242511,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/__tests__/ActivityList.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [""],
+          "fullName": " renders suggestions",
+          "status": "passed",
+          "title": "renders suggestions",
+          "duration": 69,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035245258,
+      "endTime": 1750035245327,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/__tests__/ActivitySuggestionList.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["", "EmergencyPlanButton"],
+          "fullName": " EmergencyPlanButton calls API on click",
+          "status": "passed",
+          "title": "calls API on click",
+          "duration": 408,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035241950,
+      "endTime": 1750035242358,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/__tests__/EmergencyPlanButton.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["", "FileUpload"],
+          "fullName": " FileUpload calls upload on click",
+          "status": "passed",
+          "title": "calls upload on click",
+          "duration": 91,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035245470,
+      "endTime": 1750035245561,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/__tests__/FileUpload.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["", "MilestoneList"],
+          "fullName": " MilestoneList renders milestones with links",
+          "status": "passed",
+          "title": "renders milestones with links",
+          "duration": 51,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035242301,
+      "endTime": 1750035242352,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/__tests__/MilestoneList.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [""],
+          "fullName": " edits and saves newsletter",
+          "status": "passed",
+          "title": "edits and saves newsletter",
+          "duration": 188,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035245622,
+      "endTime": 1750035245810,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/__tests__/NewsletterEditor.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["", "PlannerNotificationBanner"],
+          "fullName": " PlannerNotificationBanner shows alert when milestone notification exists",
+          "status": "passed",
+          "title": "shows alert when milestone notification exists",
+          "duration": 30,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035245318,
+      "endTime": 1750035245348,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/__tests__/PlannerNotificationBanner.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [""],
+          "fullName": " renders list of subjects",
+          "status": "passed",
+          "title": "renders list of subjects",
+          "duration": 122,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035245622,
+      "endTime": 1750035245744,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/__tests__/SubjectList.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [""],
+          "fullName": " shows and dismisses overlay",
+          "status": "passed",
+          "title": "shows and dismisses overlay",
+          "duration": 115,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035245507,
+      "endTime": 1750035245622,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/__tests__/TeacherOnboardingFlow.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [""],
+          "fullName": " shows prompts after generating plan",
+          "status": "passed",
+          "title": "shows prompts after generating plan",
+          "duration": 470,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035242019,
+      "endTime": 1750035242489,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/__tests__/UnifiedWeekViewComponent.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [""],
+          "fullName": " renders droppable zones for five days",
+          "status": "passed",
+          "title": "renders droppable zones for five days",
+          "duration": 52,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035245793,
+      "endTime": 1750035245845,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/__tests__/WeekCalendarGrid.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [""],
+          "fullName": " renders download button",
+          "status": "passed",
+          "title": "renders download button",
+          "duration": 34,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035245561,
+      "endTime": 1750035245595,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/__tests__/WeekResources.test.tsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [""],
+          "fullName": " normalizes week start to YYYY-MM-DD",
+          "status": "passed",
+          "title": "normalizes week start to YYYY-MM-DD",
+          "duration": 2,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1750035245880,
+      "endTime": 1750035245882,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/michaelmcisaac/GitHub/teaching-engine2.0/client/src/__tests__/getWeekStartISO.test.ts"
+    }
+  ]
+}

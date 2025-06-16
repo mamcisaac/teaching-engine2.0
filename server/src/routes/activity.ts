@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { Prisma } from '@teaching-engine/database';
+import { Prisma } from '../prisma';
 import { prisma } from '../prisma';
 import {
   validate,
@@ -15,7 +15,10 @@ const router = Router();
 router.get('/', async (_req, res, next) => {
   try {
     const activities = await prisma.activity.findMany({
-      include: { outcomes: { include: { outcome: true } } },
+      include: {
+        outcomes: { include: { outcome: true } },
+        cognatePairs: { include: { cognatePair: true } },
+      },
     });
     res.json(activities);
   } catch (err) {
@@ -27,7 +30,10 @@ router.get('/:id', async (req, res, next) => {
   try {
     const activity = await prisma.activity.findUnique({
       where: { id: Number(req.params.id) },
-      include: { outcomes: { include: { outcome: true } } },
+      include: {
+        outcomes: { include: { outcome: true } },
+        cognatePairs: { include: { cognatePair: true } },
+      },
     });
     if (!activity) return res.status(404).json({ error: 'Not Found' });
     res.json(activity);
@@ -48,6 +54,7 @@ router.post('/', validate(activityCreateSchema), async (req, res, next) => {
         publicNote: req.body.publicNote,
         tags: req.body.tags,
         completedAt: req.body.completedAt ? new Date(req.body.completedAt) : undefined,
+        materialsText: req.body.materialsText,
       },
     });
     const codes: string[] = req.body.outcomes ?? [];
@@ -62,9 +69,20 @@ router.post('/', validate(activityCreateSchema), async (req, res, next) => {
       });
     }
 
+    // Handle cognate associations
+    const cognateIds: number[] = req.body.cognates ?? [];
+    for (const cognateId of cognateIds) {
+      await prisma.cognateActivity.create({
+        data: { activityId: activity.id, cognatePairId: cognateId },
+      });
+    }
+
     const refreshed = await prisma.activity.findUnique({
       where: { id: activity.id },
-      include: { outcomes: { include: { outcome: true } } },
+      include: {
+        outcomes: { include: { outcome: true } },
+        cognatePairs: { include: { cognatePair: true } },
+      },
     });
     res.status(201).json(refreshed);
   } catch (err) {

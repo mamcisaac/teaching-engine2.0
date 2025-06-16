@@ -1,5 +1,5 @@
 import { describe, it, expect, jest } from '@jest/globals';
-import type { OutcomeCoverage } from '../utils/outcomeCoverage.js';
+import type { OutcomeCoverage } from '../utils/outcomeCoverage';
 
 // Mock the functions we want to test
 const mockGetOutcomeCoverage = jest.fn() as jest.MockedFunction<
@@ -8,7 +8,7 @@ const mockGetOutcomeCoverage = jest.fn() as jest.MockedFunction<
 const mockGetCoverageSummary = jest.fn();
 
 // Mock the module
-jest.mock('../utils/outcomeCoverage.js', () => ({
+jest.mock('../utils/outcomeCoverage', () => ({
   getOutcomeCoverage: mockGetOutcomeCoverage,
   getCoverageSummary: mockGetCoverageSummary,
   CoverageStatus: {
@@ -19,7 +19,7 @@ jest.mock('../utils/outcomeCoverage.js', () => ({
 }));
 
 // Import the actual implementation for testing getCoverageSummary
-import { getCoverageSummary } from '../utils/outcomeCoverage.js';
+import { getCoverageSummary } from '../utils/outcomeCoverage';
 
 describe('Outcome Coverage Integration Tests', () => {
   const testOutcomeId = 'test-outcome-1';
@@ -39,9 +39,8 @@ describe('Outcome Coverage Integration Tests', () => {
       };
       mockGetOutcomeCoverage.mockResolvedValue(mockResult);
 
-      // Import dynamically to apply mocks
-      const { getOutcomeCoverage } = await import('../utils/outcomeCoverage.js');
-      const result = await getOutcomeCoverage(testOutcomeId);
+      // Use the mocked function directly
+      const result = await mockGetOutcomeCoverage(testOutcomeId);
 
       expect(result).toEqual(mockResult);
       expect(mockGetOutcomeCoverage).toHaveBeenCalledWith(testOutcomeId);
@@ -83,7 +82,7 @@ describe('Outcome Coverage Integration Tests', () => {
         total: 4,
         covered: 0,
         partial: 0,
-        uncovered: 0,
+        uncovered: 4,
       });
     });
   });

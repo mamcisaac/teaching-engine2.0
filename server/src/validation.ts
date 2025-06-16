@@ -62,6 +62,7 @@ export const activityCreateSchema = z.object({
   completedAt: z.string().datetime().optional(),
   tags: z.array(z.string()).optional(),
   outcomes: z.array(z.string()).optional(),
+  cognates: z.array(z.number()).optional(),
 });
 
 export const activityUpdateSchema = activityCreateSchema.omit({ milestoneId: true });

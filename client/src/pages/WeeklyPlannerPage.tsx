@@ -26,6 +26,7 @@ import WeeklyMaterialsChecklist from '../components/WeeklyMaterialsChecklist';
 import DownloadPrintablesButton from '../components/DownloadPrintablesButton';
 import PlannerNotificationBanner from '../components/PlannerNotificationBanner';
 import PlannerFilters, { loadPlannerFilters } from '../components/planner/PlannerFilters';
+import CognateSummaryWidget from '../components/CognateSummaryWidget';
 import { toast } from 'sonner';
 
 export default function WeeklyPlannerPage() {
@@ -487,6 +488,7 @@ export default function WeeklyPlannerPage() {
                 <div className="space-y-3">
                   <DownloadPrintablesButton weekStart={weekStart} />
                   <WeeklyMaterialsChecklist weekStart={weekStart} />
+                  <CognateSummaryWidget activities={activities} />
                 </div>
               </div>
 

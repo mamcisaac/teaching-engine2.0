@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useMilestone, useUpdateMilestone, useCreateActivity } from '../api';
+import { useMilestone, useUpdateMilestone, useCreateActivity, useCognates } from '../api';
+import { useAuth } from '../contexts/AuthContext';
 import Dialog from '../components/Dialog';
 import OutcomeSelect from '../components/OutcomeSelect';
 import RichTextEditor from '../components/RichTextEditor';
@@ -9,8 +10,10 @@ import SmartGoalDisplay from '../components/SmartGoalDisplay';
 
 export default function UnitPlannerPage() {
   const { id } = useParams();
+  const { user } = useAuth();
   const milestoneId = Number(id);
   const { data: milestone, isLoading } = useMilestone(milestoneId);
+  const { data: cognates = [] } = useCognates(user ? Number(user.id) : undefined);
   const updateMilestone = useUpdateMilestone();
   const createActivity = useCreateActivity();
 
@@ -24,6 +27,7 @@ export default function UnitPlannerPage() {
   const [learningGoals, setLearningGoals] = useState('');
   const [activityTitle, setActivityTitle] = useState('');
   const [activityMaterials, setActivityMaterials] = useState('');
+  const [selectedCognates, setSelectedCognates] = useState<number[]>([]);
 
   // Assessment tracking
   const [assessmentStatus, setAssessmentStatus] = useState<Record<string, boolean>>({});
@@ -71,6 +75,7 @@ export default function UnitPlannerPage() {
   const handleAddActivity = () => {
     setActivityTitle('');
     setActivityMaterials('');
+    setSelectedCognates([]);
     setIsActivityModalOpen(true);
   };
 
@@ -81,6 +86,7 @@ export default function UnitPlannerPage() {
       title: activityTitle,
       milestoneId: milestone.id,
       materialsText: activityMaterials || undefined,
+      cognates: selectedCognates.length > 0 ? selectedCognates : undefined,
     });
     setIsActivityModalOpen(false);
   };
@@ -397,6 +403,42 @@ export default function UnitPlannerPage() {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
                 placeholder="List materials, resources, or preparation needed"
               />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                🧠 Cognates Supported (Optional)
+              </label>
+              {cognates.length > 0 ? (
+                <div className="space-y-2 max-h-32 overflow-y-auto">
+                  {cognates.map((cognate) => (
+                    <label key={cognate.id} className="flex items-center space-x-2">
+                      <input
+                        type="checkbox"
+                        checked={selectedCognates.includes(cognate.id)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setSelectedCognates([...selectedCognates, cognate.id]);
+                          } else {
+                            setSelectedCognates(selectedCognates.filter((id) => id !== cognate.id));
+                          }
+                        }}
+                        className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+                      />
+                      <span className="text-sm">
+                        🇫🇷 {cognate.wordFr} – 🇬🇧 {cognate.wordEn}
+                        {cognate.notes && (
+                          <span className="text-gray-500 ml-1">({cognate.notes})</span>
+                        )}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-gray-500 italic">
+                  No cognate pairs available. Create some in the Cognate Library first.
+                </p>
+              )}
             </div>
 
             <div className="flex justify-end gap-3 pt-4">

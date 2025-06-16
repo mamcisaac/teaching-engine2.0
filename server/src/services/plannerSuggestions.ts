@@ -1,5 +1,5 @@
-import { prisma } from '../prisma.js';
-import { getOutcomesCoverage } from './outcomeCoverage.js';
+import { prisma } from '../prisma';
+import { getOutcomesCoverage } from './outcomeCoverage';
 import { addDays } from 'date-fns';
 
 export interface PlannerSuggestion {

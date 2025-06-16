@@ -1,25 +1,38 @@
-import { describe, it, expect, jest, beforeEach } from '@jest/globals';
-import { prisma } from '../../dist/prisma.js';
-import { getOutcomeCoverage } from '../../dist/utils/outcomeCoverage.js';
+import { describe, it, expect, jest, beforeEach, beforeAll } from '@jest/globals';
 
-// Mock the prisma client
-jest.mock('../prisma.js', () => ({
+// Mock the prisma client first
+const mockQueryRaw = jest.fn();
+
+// Mock the module before any imports
+jest.unstable_mockModule('../prisma', () => ({
   prisma: {
-    $queryRaw: jest.fn(),
+    $queryRaw: mockQueryRaw,
   },
 }));
 
-const mockQueryRaw = prisma.$queryRaw as jest.Mock;
-
 describe('getOutcomeCoverage', () => {
   const outcomeId = 'test-outcome-1';
+  let getOutcomeCoverage: (outcomeId: string) => Promise<{
+    isCovered: boolean;
+    linked: number;
+    completed: number;
+    activities: unknown[];
+  }>;
+
+  beforeAll(async () => {
+    // Import after mocking
+    const module = await import('../utils/outcomeCoverage');
+    getOutcomeCoverage = module.getOutcomeCoverage;
+  });
 
   beforeEach(() => {
     jest.clearAllMocks();
+    // Reset the mock implementation
+    mockQueryRaw.mockImplementation(() => Promise.resolve([]));
   });
 
   it('should return uncovered status when no activities exist', async () => {
-    mockQueryRaw.mockResolvedValueOnce([]);
+    mockQueryRaw.mockImplementation(() => Promise.resolve([]));
 
     const result = await getOutcomeCoverage(outcomeId);
 
@@ -32,10 +45,12 @@ describe('getOutcomeCoverage', () => {
   });
 
   it('should return covered status when all activities are completed', async () => {
-    mockQueryRaw.mockResolvedValueOnce([
-      { id: 1, completedAt: new Date() },
-      { id: 2, completedAt: new Date() },
-    ]);
+    mockQueryRaw.mockImplementation(() =>
+      Promise.resolve([
+        { id: 1, completedAt: new Date() },
+        { id: 2, completedAt: new Date() },
+      ]),
+    );
 
     const result = await getOutcomeCoverage(outcomeId);
 
@@ -48,10 +63,12 @@ describe('getOutcomeCoverage', () => {
   });
 
   it('should return partial status when some activities are completed', async () => {
-    mockQueryRaw.mockResolvedValueOnce([
-      { id: 1, completedAt: new Date() },
-      { id: 2, completedAt: null },
-    ]);
+    mockQueryRaw.mockImplementation(() =>
+      Promise.resolve([
+        { id: 1, completedAt: new Date() },
+        { id: 2, completedAt: null },
+      ]),
+    );
 
     const result = await getOutcomeCoverage(outcomeId);
 
@@ -64,7 +81,7 @@ describe('getOutcomeCoverage', () => {
   });
 
   it('should handle database errors gracefully', async () => {
-    mockQueryRaw.mockRejectedValueOnce(new Error('Database error'));
+    mockQueryRaw.mockImplementation(() => Promise.reject(new Error('Database error')));
 
     await expect(getOutcomeCoverage(outcomeId)).rejects.toThrow(
       'Failed to get coverage for outcome: Database error',

@@ -1,3 +1,4 @@
+import { describe, it, expect, jest, beforeEach } from '@jest/globals';
 import { getOutcomeCoverage } from '../utils/outcomeCoverage';
 
 // Mock the prisma client

@@ -3,14 +3,17 @@ import { Link } from 'react-router-dom';
 import {
   useOutcomeCoverage,
   useThematicUnits,
+  useCognates,
   type OutcomeCoverage,
   type ThematicUnit,
 } from '../api';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function CoveragePage() {
   const [selectedSubject, setSelectedSubject] = useState<string>('');
   const [selectedGrade, setSelectedGrade] = useState<string>('');
   const [selectedDomain, setSelectedDomain] = useState<string>('');
+  const [showCognateOutcomes, setShowCognateOutcomes] = useState<boolean>(false);
   const [viewMode, setViewMode] = useState<'subject' | 'thematic'>('subject');
   const [filterParams, setFilterParams] = useState<{
     subject?: string;
@@ -18,15 +21,30 @@ export default function CoveragePage() {
     domain?: string;
   }>({});
 
+  const { user } = useAuth();
+
   // Fetch outcome coverage data with the current filters
   const { data: coverageData = [], isLoading, error } = useOutcomeCoverage(filterParams);
 
   // Fetch thematic units for the thematic view
   const { data: thematicUnits = [] } = useThematicUnits();
 
-  // Calculate coverage statistics
-  const totalOutcomes = coverageData.length;
-  const coveredOutcomes = coverageData.filter((outcome) => outcome.isCovered).length;
+  // Fetch cognates for filtering
+  const { data: cognates = [] } = useCognates(user ? Number(user.id) : undefined);
+
+  // Get outcomes linked to cognates
+  const cognateLinkedOutcomeIds = new Set(
+    cognates.flatMap((cognate) => cognate.linkedOutcomes?.map((link) => link.outcome.id) || []),
+  );
+
+  // Filter coverage data based on cognate filter
+  const filteredCoverageData = showCognateOutcomes
+    ? coverageData.filter((outcome) => cognateLinkedOutcomeIds.has(outcome.outcomeId))
+    : coverageData;
+
+  // Calculate coverage statistics based on filtered data
+  const totalOutcomes = filteredCoverageData.length;
+  const coveredOutcomes = filteredCoverageData.filter((outcome) => outcome.isCovered).length;
   const coveragePercentage =
     totalOutcomes > 0 ? Math.round((coveredOutcomes / totalOutcomes) * 100) : 0;
 
@@ -35,8 +53,8 @@ export default function CoveragePage() {
   const grades = [...new Set(coverageData.map((o) => o.grade))].sort((a, b) => a - b);
   const domains = [...new Set(coverageData.map((o) => o.domain).filter(Boolean))];
 
-  // Group outcomes by subject for the summary view
-  const outcomesBySubject = coverageData.reduce(
+  // Group outcomes by subject for the summary view (using filtered data)
+  const outcomesBySubject = filteredCoverageData.reduce(
     (acc, outcome) => {
       if (!acc[outcome.subject]) {
         acc[outcome.subject] = {
@@ -71,7 +89,7 @@ export default function CoveragePage() {
       }
 
       const unitOutcomeIds = new Set(unit.outcomes.map((o) => o.outcome.id));
-      const unitCoverageData = coverageData.filter((coverage) =>
+      const unitCoverageData = filteredCoverageData.filter((coverage) =>
         unitOutcomeIds.has(coverage.outcomeId),
       );
 
@@ -115,6 +133,7 @@ export default function CoveragePage() {
     setSelectedSubject('');
     setSelectedGrade('');
     setSelectedDomain('');
+    setShowCognateOutcomes(false);
     setFilterParams({});
   };
 
@@ -238,19 +257,39 @@ export default function CoveragePage() {
           </div>
         </div>
 
-        <div className="flex justify-end gap-2">
-          <button
-            className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
-            onClick={handleResetFilters}
-          >
-            Reset
-          </button>
-          <button
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-            onClick={handleApplyFilters}
-          >
-            Apply Filters
-          </button>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="cognate-filter"
+              checked={showCognateOutcomes}
+              onChange={(e) => setShowCognateOutcomes(e.target.checked)}
+              className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+            />
+            <label htmlFor="cognate-filter" className="ml-2 text-sm text-gray-700">
+              🧠 Show only outcomes linked to cognates
+              {cognateLinkedOutcomeIds.size > 0 && (
+                <span className="ml-1 text-indigo-600">
+                  ({cognateLinkedOutcomeIds.size} available)
+                </span>
+              )}
+            </label>
+          </div>
+
+          <div className="flex gap-2">
+            <button
+              className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
+              onClick={handleResetFilters}
+            >
+              Reset
+            </button>
+            <button
+              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+              onClick={handleApplyFilters}
+            >
+              Apply Filters
+            </button>
+          </div>
         </div>
       </div>
 
