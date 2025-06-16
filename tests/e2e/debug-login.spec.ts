@@ -38,56 +38,84 @@ test('debug login page', async ({ page }) => {
   await page.waitForTimeout(2000);
 
   // Log the page title and URL
-  console.log('Page URL:', page.url());
-  console.log('Page title:', await page.title());
+  try {
+    console.log('Page URL:', page.url());
+    const title = await page.title();
+    console.log('Page title:', title);
+  } catch (error) {
+    console.log('Could not get page info:', error);
+  }
 
   // Take a screenshot
-  await page.screenshot({ path: 'test-results/debug-login.png', fullPage: true });
+  try {
+    await page.screenshot({ path: 'test-results/debug-login.png', fullPage: true });
+  } catch (error) {
+    console.log('Could not take screenshot:', error);
+  }
 
   // Wait for login form elements to appear
   try {
-    await page.waitForSelector('input[name="email"]', { timeout: 10000 });
-    await page.waitForSelector('input[name="password"]', { timeout: 10000 });
-    await page.waitForSelector('button[type="submit"]', { timeout: 10000 });
-    console.log('Login form elements found successfully');
+    // Check if we're already authenticated and redirected
+    const currentUrl = page.url();
+    if (currentUrl.includes('/login')) {
+      await page.waitForSelector('input[name="email"]', { timeout: 10000 });
+      await page.waitForSelector('input[name="password"]', { timeout: 10000 });
+      await page.waitForSelector('button[type="submit"]', { timeout: 10000 });
+      console.log('Login form elements found successfully');
+    } else {
+      console.log('Already authenticated or redirected to:', currentUrl);
+    }
   } catch (error) {
     console.log('Login form elements not found within timeout:', error);
+    // Continue with test to gather diagnostic information
   }
 
   // Log all input fields on the page
-  const inputs = await page.$$eval('input', (inputs) =>
-    inputs.map((input) => ({
-      id: input.id,
-      name: input.name,
-      type: input.type,
-      placeholder: input.placeholder,
-      value: input.value,
-      visible: input.offsetParent !== null,
-    })),
-  );
-  console.log('Input fields:', JSON.stringify(inputs, null, 2));
+  try {
+    const inputs = await page.$$eval('input', (inputs) =>
+      inputs.map((input) => ({
+        id: input.id,
+        name: input.name,
+        type: input.type,
+        placeholder: input.placeholder,
+        value: input.value,
+        visible: input.offsetParent !== null,
+      })),
+    );
+    console.log('Input fields:', JSON.stringify(inputs, null, 2));
+  } catch (error) {
+    console.log('Could not evaluate input fields:', error);
+  }
 
   // Log all buttons on the page
-  const buttons = await page.$$eval('button', (buttons) =>
-    buttons.map((button) => ({
-      text: button.textContent?.trim(),
-      type: button.type,
-      disabled: button.disabled,
-      visible: button.offsetParent !== null,
-    })),
-  );
-  console.log('Buttons:', JSON.stringify(buttons, null, 2));
+  try {
+    const buttons = await page.$$eval('button', (buttons) =>
+      buttons.map((button) => ({
+        text: button.textContent?.trim(),
+        type: button.type,
+        disabled: button.disabled,
+        visible: button.offsetParent !== null,
+      })),
+    );
+    console.log('Buttons:', JSON.stringify(buttons, null, 2));
+  } catch (error) {
+    console.log('Could not evaluate buttons:', error);
+  }
 
   // Log any forms on the page
-  const forms = await page.$$eval('form', (forms) =>
-    forms.map((form) => ({
-      id: form.id,
-      action: form.action,
-      method: form.method,
-      visible: form.offsetParent !== null,
-    })),
-  );
-  console.log('Forms:', JSON.stringify(forms, null, 2));
+  try {
+    const forms = await page.$$eval('form', (forms) =>
+      forms.map((form) => ({
+        id: form.id,
+        action: form.action,
+        method: form.method,
+        visible: form.offsetParent !== null,
+      })),
+    );
+    console.log('Forms:', JSON.stringify(forms, null, 2));
+  } catch (error) {
+    console.log('Could not evaluate forms:', error);
+  }
 
   // Check if we're being redirected
   if (page.url() !== 'http://localhost:5173/login') {
