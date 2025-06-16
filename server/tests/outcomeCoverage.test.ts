@@ -21,7 +21,7 @@ interface OutcomeCoverageResponse {
 describe('Outcome Coverage API', () => {
   let token: string;
   // Using underscore prefix to indicate unused variable (to satisfy ESLint)
-  let _userId: number;
+  // let _userId: number;
   let subjectId: number;
   let milestoneId: number;
   let outcomeId: string;
@@ -30,7 +30,7 @@ describe('Outcome Coverage API', () => {
   beforeAll(async () => {
     // Setup: Create a user and login
     const email = `test-${uuidv4()}@example.com`;
-    const user = await prisma.user.create({
+    await prisma.user.create({
       data: {
         email,
         name: 'Test User',
@@ -38,12 +38,10 @@ describe('Outcome Coverage API', () => {
         role: 'TEACHER',
       },
     });
-    _userId = user.id;
+    // _userId = user.id;
 
-    const loginRes = await request(app)
-      .post('/api/login')
-      .send({ email, password: 'password123' });
-    
+    const loginRes = await request(app).post('/api/login').send({ email, password: 'password123' });
+
     token = loginRes.body.token;
 
     // Create a subject
@@ -51,18 +49,18 @@ describe('Outcome Coverage API', () => {
       .post('/api/subjects')
       .set('Authorization', `Bearer ${token}`)
       .send({ name: 'Test Subject' });
-    
+
     subjectId = subjectRes.body.id;
 
     // Create a milestone
     const milestoneRes = await request(app)
       .post('/api/milestones')
       .set('Authorization', `Bearer ${token}`)
-      .send({ 
-        title: 'Test Milestone', 
-        subjectId 
+      .send({
+        title: 'Test Milestone',
+        subjectId,
       });
-    
+
     milestoneId = milestoneRes.body.id;
 
     // Create an outcome
@@ -106,11 +104,11 @@ describe('Outcome Coverage API', () => {
     const activityRes = await request(app)
       .post('/api/activities')
       .set('Authorization', `Bearer ${token}`)
-      .send({ 
+      .send({
         title: 'Test Activity',
         milestoneId,
       });
-    
+
     activityId = activityRes.body.id;
 
     // Link outcome to activity

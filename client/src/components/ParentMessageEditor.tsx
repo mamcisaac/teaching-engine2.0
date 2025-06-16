@@ -231,10 +231,9 @@ export function ParentMessageEditor({ message, onSave, onCancel, prefillData }: 
             <label className="block text-sm font-medium text-gray-700 mb-2">Linked Outcomes</label>
             <OutcomeSelector
               selectedOutcomes={formData.linkedOutcomeIds || []}
-              onSelectionChange={(outcomes) =>
+              onChange={(outcomes) =>
                 setFormData((prev) => ({ ...prev, linkedOutcomeIds: outcomes }))
               }
-              multiple
             />
           </div>
           <div>

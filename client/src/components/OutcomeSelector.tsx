@@ -7,7 +7,7 @@ interface Props {
   className?: string;
 }
 
-export default function OutcomeSelector({ selectedOutcomes, onChange, className = '' }: Props) {
+export function OutcomeSelector({ selectedOutcomes, onChange, className = '' }: Props) {
   const [search, setSearch] = useState('');
   const [selectedSubject, setSelectedSubject] = useState<string>('');
   const { data: outcomes = [], isLoading } = useOutcomes({

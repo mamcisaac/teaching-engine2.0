@@ -27,6 +27,10 @@ describe('SubPlanGenerator', () => {
 
     mockOnClose = vi.fn();
 
+    // Mock URL.createObjectURL and revokeObjectURL
+    global.URL.createObjectURL = vi.fn(() => 'mock-url');
+    global.URL.revokeObjectURL = vi.fn();
+
     // Suppress React 18 console errors
     vi.spyOn(console, 'error').mockImplementation(() => {});
   });

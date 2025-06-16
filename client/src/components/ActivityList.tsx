@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import MaterialsInput from './activity/MaterialsInput';
 import type { Activity } from '../api';
 import CompleteActivityButton from './CompleteActivityButton';
-import OutcomeSelector from './OutcomeSelector';
+import { OutcomeSelector } from './OutcomeSelector';
 import OutcomeTag from './OutcomeTag';
 import SuggestedResourcesPanel from './SuggestedResourcesPanel';
 import {
