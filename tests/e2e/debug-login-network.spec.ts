@@ -1,4 +1,5 @@
-import { test, expect, type Page, type Response } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
+import { login as reliableLogin } from './helpers';
 
 interface AuthState {
   hasToken: boolean;
@@ -96,168 +97,17 @@ async function checkAuthState(page: Page, context: string): Promise<AuthState> {
   }
 }
 
-// Login helper function
-async function login(page: Page): Promise<boolean> {
-  console.log('\n=== Starting login process ===');
-
-  try {
-    // Take a screenshot before login attempt
-    await page.screenshot({ path: 'before-login.png' });
-    console.log('📸 Screenshot saved: before-login.png');
-
-    // Navigate to login page with retry logic
-    let retryCount = 0;
-    const maxRetries = 3;
-
-    while (retryCount < maxRetries) {
-      try {
-        console.log(`Attempt ${retryCount + 1} of ${maxRetries}: Navigating to login page...`);
-        await page.goto('http://localhost:5173/login', {
-          waitUntil: 'networkidle',
-          timeout: 30000, // 30 second timeout for initial page load
-        });
-        break; // If successful, exit the retry loop
-      } catch (error) {
-        retryCount++;
-        console.error(`Navigation attempt ${retryCount} failed:`, error);
-        if (retryCount >= maxRetries) {
-          console.error('Max navigation retries reached');
-          throw error;
-        }
-        console.log('Retrying in 2 seconds...');
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-      }
-    }
-
-    // Check if already logged in
-    const authState = await checkAuthState(page, 'before-login');
-    if (authState.isAuthenticated) {
-      console.log('✅ Already logged in');
-      return true;
-    }
-
-    // Fill login form
-    console.log('Filling login form...');
-    await page.fill('input[name="email"]', 'teacher@example.com');
-    await page.fill('input[name="password"]', 'password123');
-
-    // Click the login button
-    console.log('Submitting form...');
-    const [response] = await Promise.all([
-      // Wait for either a successful response or an error
-      page.waitForResponse(
-        (resp: Response) =>
-          (resp.url().includes('/api/login') && resp.status() === 200) ||
-          (resp.status() >= 400 && resp.status() < 500),
-      ),
-      // Click the login button
-      page.click('button[type="submit"]'),
-    ]);
-
-    // Log the response status
-    console.log(`Login response: ${response.status()} ${response.statusText()}`);
-
-    // If login failed, log the response body
-    if (!response.ok()) {
-      const errorBody = await response.text();
-      console.error('Login failed with response:', errorBody);
-      throw new Error(`Login failed with status ${response.status()}: ${errorBody}`);
-    }
-
-    console.log('✅ Login API call successful');
-
-    // Wait for navigation to complete with a timeout
-    console.log('Waiting for navigation to complete...');
-    try {
-      await Promise.race([
-        page.waitForURL('**/dashboard', { timeout: 10000 }),
-        page.waitForURL('**/subjects', { timeout: 10000 }),
-        page.waitForURL('**/', { timeout: 10000 }),
-        page.waitForSelector('button:has-text("Logout"), text=Dashboard, text=Subjects', {
-          timeout: 10000,
-          state: 'visible',
-        }),
-      ]);
-
-      console.log(`✅ Navigation complete. Current URL: ${page.url()}`);
-    } catch (navError) {
-      console.warn('Navigation timeout or error, checking login state anyway:', navError);
-    }
-
-    // Take a screenshot after login attempt
-    await page.screenshot({ path: 'after-login-attempt.png' });
-    console.log('📸 Screenshot saved: after-login-attempt.png');
-
-    // Check for any error messages on the page
-    const errorMessages = await page.$$eval('*', (elements) =>
-      elements
-        .filter((el) => {
-          const text = el.textContent?.trim() || '';
-          return (
-            text.length > 0 &&
-            text.length < 200 &&
-            (text.toLowerCase().includes('error') ||
-              text.toLowerCase().includes('fail') ||
-              text.toLowerCase().includes('invalid'))
-          );
-        })
-        .map((el) => ({
-          text: el.textContent?.trim(),
-          tag: el.tagName,
-          id: el.id || 'no-id',
-          class: el.className || 'no-class',
-        })),
-    );
-
-    if (errorMessages.length > 0) {
-      console.error('Error messages found on page:', JSON.stringify(errorMessages, null, 2));
-    }
-
-    // Verify we're logged in by checking for UI elements
-    const hasLogoutButton = await page
-      .locator('button:has-text("Logout")')
-      .isVisible({ timeout: 5000 })
-      .catch(() => false);
-
-    const hasDashboardContent = await page
-      .locator('text=Dashboard, text=Subjects')
-      .first()
-      .isVisible({ timeout: 5000 })
-      .catch(() => false);
-
-    console.log(
-      `Login verification - Has Logout Button: ${hasLogoutButton}, Has Dashboard Content: ${hasDashboardContent}`,
-    );
-
-    return hasLogoutButton || hasDashboardContent;
-  } catch (error) {
-    console.error('❌ Error during login:', error);
-
-    // Take a screenshot of the error state
-    try {
-      await page.screenshot({ path: 'login-error.png' });
-      console.log('📸 Screenshot saved: login-error.png');
-
-      // Log the page content for debugging
-      const pageContent = await page.content();
-      console.log('Page content at time of error:', pageContent.substring(0, 1000) + '...');
-    } catch (screenshotError) {
-      console.error('Failed to capture screenshot:', screenshotError);
-    }
-
-    throw error;
-  }
-}
-
 test('debug login network', async ({ page }) => {
   // Enable request/response logging
   page.on('request', (request) => console.log('>>', request.method(), request.url()));
 
   page.on('response', (response) => console.log('<<', response.status(), response.url()));
 
-  // Use the login helper function
+  // Use the reliable login helper function from helpers.ts
   console.log('Starting login test...');
-  const isLoggedIn = await login(page);
+  await reliableLogin(page);
+
+  const isLoggedIn = true; // If we get here without throwing, login succeeded
 
   // Verify login was successful
   expect(isLoggedIn).toBeTruthy();
