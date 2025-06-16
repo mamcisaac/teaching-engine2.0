@@ -1,5 +1,7 @@
 import { describe, it, expect, jest, beforeEach } from '@jest/globals';
-import { getOutcomeCoverage } from '../utils/outcomeCoverage';
+
+// Set DATABASE_URL for test environment
+process.env.DATABASE_URL = process.env.DATABASE_URL || 'file:./test.db';
 
 // Mock the prisma client
 const mockQueryRaw = jest.fn();
@@ -9,6 +11,8 @@ jest.mock('../prisma', () => ({
     $queryRaw: mockQueryRaw,
   },
 }));
+
+import { getOutcomeCoverage } from '../utils/outcomeCoverage';
 
 describe('getOutcomeCoverage', () => {
   beforeEach(() => {
