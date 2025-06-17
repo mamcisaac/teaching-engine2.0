@@ -237,7 +237,6 @@ export class NoteFactory implements Factory<any> {
     return {
       content: `Test note content ${id}`,
       public: false,
-      type: 'REFLECTION',
       ...overrides,
     };
   }

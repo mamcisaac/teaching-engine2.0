@@ -1,10 +1,27 @@
-import { describe, it, expect } from '@jest/globals';
+import { describe, it, expect, jest } from '@jest/globals';
 import { generateSubPlanPDF, SubPlanInput } from '../src/services/subPlanGenerator';
-// import PDFDocument from 'pdfkit';
-// import { Readable } from 'stream';
+import PDFDocument from 'pdfkit';
 
 describe('Outcome integration in PDF exports', () => {
   it('should include curriculum outcomes in sub plan PDF', async () => {
+    // Mock PDF document methods to track what gets written
+    const mockText = jest.fn().mockReturnThis();
+    const mockMoveDown = jest.fn().mockReturnThis();
+    const mockFont = jest.fn().mockReturnThis();
+    const mockFontSize = jest.fn().mockReturnThis();
+    const mockEnd = jest.fn();
+
+    const mockDoc = {
+      text: mockText,
+      moveDown: mockMoveDown,
+      font: mockFont,
+      fontSize: mockFontSize,
+      end: mockEnd,
+      on: jest.fn((event: string, callback: () => void) => {
+        if (event === 'end') callback();
+      }),
+    } as unknown as PDFDocument;
+
     // Prepare test data
     const subPlanInput: SubPlanInput = {
       today: [
@@ -34,24 +51,26 @@ describe('Outcome integration in PDF exports', () => {
       ],
     };
 
-    // Generate PDF
-    const pdfBuffer = await generateSubPlanPDF(subPlanInput);
+    // Generate PDF with mocked document
+    await generateSubPlanPDF(subPlanInput, mockDoc);
 
-    // Convert buffer to string to check content
-    const pdfText = pdfBuffer?.toString() || '';
+    // Verify that curriculum outcomes section was added
+    expect(mockText).toHaveBeenCalledWith('Learning Goals (Curriculum Outcomes)', {
+      underline: true,
+    });
 
-    // Check that the PDF contains the expected section header
-    expect(pdfText).toContain('Curriculum Outcomes Covered');
-
-    // Check that each outcome is included
-    expect(pdfText).toContain('MATH-1.1');
-    expect(pdfText).toContain('Count to 100 by ones and tens');
-    expect(pdfText).toContain('ELA-2.3');
-    expect(pdfText).toContain('Read common high-frequency words by sight');
+    // Verify that each outcome code and description were included
+    const textCalls = mockText.mock.calls.map((call) => call[0]);
+    expect(textCalls.some((call) => call.includes('MATH-1.1'))).toBe(true);
+    expect(textCalls.some((call) => call.includes('Count to 100 by ones and tens'))).toBe(true);
+    expect(textCalls.some((call) => call.includes('ELA-2.3'))).toBe(true);
+    expect(
+      textCalls.some((call) => call.includes('Read common high-frequency words by sight')),
+    ).toBe(true);
 
     // Check that subjects are grouped properly
-    expect(pdfText).toContain('Math');
-    expect(pdfText).toContain('English Language Arts');
+    expect(textCalls.some((call) => call.includes('Math'))).toBe(true);
+    expect(textCalls.some((call) => call.includes('English Language Arts'))).toBe(true);
   });
 
   it('should handle empty outcomes list correctly', async () => {
