@@ -146,17 +146,23 @@ export async function loginAsTestUser(page: Page, user: TestUser): Promise<void>
 
   // If we already have a token, just set it
   if (user.token) {
-    await page.addInitScript((token) => {
-      window.localStorage.setItem('token', token);
-      window.localStorage.setItem('auth-token', token);
+    // Use addInitScript to set localStorage before any navigation
+    await page.addInitScript((data) => {
+      window.localStorage.setItem('token', data.token);
+      window.localStorage.setItem('auth-token', data.token);
       window.localStorage.setItem('onboarded', 'true');
-    }, user.token);
-
-    await page.evaluate((token) => {
-      window.localStorage.setItem('token', token);
-      window.localStorage.setItem('auth-token', token);
-      window.localStorage.setItem('onboarded', 'true');
-    }, user.token);
+      window.localStorage.setItem('user', JSON.stringify({
+        email: data.email,
+        name: data.name,
+        role: data.role
+      }));
+    }, user);
+    
+    // Navigate to the app if not already there
+    const currentUrl = page.url();
+    if (!currentUrl.startsWith('http://localhost:5173')) {
+      await page.goto('http://localhost:5173/');
+    }
 
     console.log('Set authentication token in localStorage');
     return;
@@ -178,20 +184,16 @@ export async function loginAsTestUser(page: Page, user: TestUser): Promise<void>
   const loginData = await loginResponse.json();
   user.token = loginData.token;
 
-  // Set token in page context
+  // Set token in page context using addInitScript
   await page.addInitScript((data) => {
     window.localStorage.setItem('token', data.token);
     window.localStorage.setItem('auth-token', data.token);
     window.localStorage.setItem('user', JSON.stringify(data.user));
     window.localStorage.setItem('onboarded', 'true');
   }, loginData);
-
-  await page.evaluate((data) => {
-    window.localStorage.setItem('token', data.token);
-    window.localStorage.setItem('auth-token', data.token);
-    window.localStorage.setItem('user', JSON.stringify(data.user));
-    window.localStorage.setItem('onboarded', 'true');
-  }, loginData);
+  
+  // Navigate to ensure localStorage is set
+  await page.goto('http://localhost:5173/');
 
   console.log('Login successful');
 }
@@ -201,10 +203,15 @@ export async function loginAsTestUser(page: Page, user: TestUser): Promise<void>
  */
 export async function useDefaultTestUser(page: Page): Promise<void> {
   // The storage state is already applied by Playwright config
-  // Just verify that we're authenticated
   console.log('Using default E2E test user from storage state');
-
-  // Optionally verify the token exists
+  
+  // Navigate to app if not already there
+  const currentUrl = page.url();
+  if (!currentUrl.startsWith('http://localhost:5173')) {
+    await page.goto('http://localhost:5173/');
+  }
+  
+  // Verify the token exists
   const token = await page.evaluate(() => localStorage.getItem('token'));
   if (!token) {
     console.warn('No token found in localStorage. Storage state might not be loaded properly.');
@@ -234,6 +241,12 @@ export async function verifyAuthenticated(page: Page): Promise<void> {
  * Logout
  */
 export async function logout(page: Page): Promise<void> {
+  // Navigate to app if not already there
+  const currentUrl = page.url();
+  if (!currentUrl.startsWith('http://localhost:5173')) {
+    await page.goto('http://localhost:5173/');
+  }
+  
   await page.evaluate(() => {
     localStorage.removeItem('token');
     localStorage.removeItem('auth-token');

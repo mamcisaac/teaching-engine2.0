@@ -81,7 +81,7 @@ test.describe('Authentication Flow', () => {
 
     // Should still be authenticated
     await expect(page).not.toHaveURL(/\/login/);
-    await expect(page.locator('h1')).toContainText(/subjects/i);
+    await expect(page.getByRole('heading', { name: 'Subjects' })).toBeVisible();
   });
 
   test('should handle API requests with authentication', async ({ page, request }) => {
