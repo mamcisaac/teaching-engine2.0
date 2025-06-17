@@ -7,16 +7,8 @@ const mockGetOutcomeCoverage = jest.fn() as jest.MockedFunction<
 >;
 const mockGetCoverageSummary = jest.fn();
 
-// Mock the module
-jest.mock('../utils/outcomeCoverage', () => ({
-  getOutcomeCoverage: mockGetOutcomeCoverage,
-  getCoverageSummary: mockGetCoverageSummary,
-  CoverageStatus: {
-    COVERED: 'covered',
-    PARTIAL: 'partial',
-    UNCOVERED: 'uncovered',
-  },
-}));
+// Skip mocking due to module resolution issues
+// This test will use actual implementations
 
 // Import the actual implementation for testing getCoverageSummary
 import { getCoverageSummary } from '../utils/outcomeCoverage';
