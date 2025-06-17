@@ -1,6 +1,10 @@
 import fs from 'fs/promises';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { createBackup, restoreBackup } from '../src/services/backupService';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 describe('backup service', () => {
   const dbPath = path.resolve('test-backup.sqlite');

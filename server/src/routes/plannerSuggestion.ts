@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { parseISO, startOfWeek } from 'date-fns';
-import { getPlannerSuggestions } from '../services/plannerSuggestions.js';
-import { authMiddleware, AuthRequest } from '../middleware/auth.js';
+import { getPlannerSuggestions } from '../services/plannerSuggestions';
+import { authMiddleware, AuthRequest } from '../middleware/auth';
 
 const router = Router();
 
