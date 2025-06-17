@@ -24,7 +24,7 @@ type EmailHandler = (
   subject: string,
   text: string,
   html?: string,
-  attachment?: EmailAttachment
+  attachment?: EmailAttachment,
 ) => Promise<void>;
 
 let customEmailHandler: EmailHandler | null = null;
@@ -41,26 +41,43 @@ export async function sendEmail(
   to: string,
   subject: string,
   text: string,
+  htmlOrAttachment?: string | EmailAttachment,
   attachment?: EmailAttachment,
 ) {
+  // Handle overloaded parameters
+  let html: string | undefined;
+  let actualAttachment: EmailAttachment | undefined;
+
+  if (typeof htmlOrAttachment === 'string') {
+    html = htmlOrAttachment;
+    actualAttachment = attachment;
+  } else {
+    actualAttachment = htmlOrAttachment;
+  }
+
   // Use custom handler if set (for testing)
   if (customEmailHandler) {
-    await customEmailHandler(to, subject, text, undefined, attachment);
+    await customEmailHandler(to, subject, text, html, actualAttachment);
     return;
   }
-  
+
   if (process.env.SENDGRID_API_KEY) {
+    const content = [{ type: 'text/plain', value: text }];
+    if (html) {
+      content.push({ type: 'text/html', value: html });
+    }
+
     const body: Record<string, unknown> = {
       personalizations: [{ to: [{ email: to }] }],
       from: { email: process.env.EMAIL_FROM || 'no-reply@example.com' },
       subject,
-      content: [{ type: 'text/plain', value: text }],
+      content,
     };
-    if (attachment) {
+    if (actualAttachment) {
       body.attachments = [
         {
-          content: attachment.content.toString('base64'),
-          filename: attachment.filename,
+          content: actualAttachment.content.toString('base64'),
+          filename: actualAttachment.filename,
           type: 'application/pdf',
           disposition: 'attachment',
         },
@@ -77,7 +94,7 @@ export async function sendEmail(
     return;
   }
   if (!transporter) {
-    logger.info({ to, subject, text, attachment: !!attachment }, 'Email');
+    logger.info({ to, subject, text, html, attachment: !!actualAttachment }, 'Email');
     return;
   }
   await transporter.sendMail({
@@ -85,6 +102,7 @@ export async function sendEmail(
     to,
     subject,
     text,
-    attachments: attachment ? [attachment] : undefined,
+    html,
+    attachments: actualAttachment ? [actualAttachment] : undefined,
   });
 }

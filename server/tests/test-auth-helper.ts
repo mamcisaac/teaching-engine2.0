@@ -1,7 +1,7 @@
 import request from 'supertest';
 import type { Application } from 'express';
 import bcrypt from 'bcryptjs';
-import { getTestPrismaClient } from './jest.setup';
+import { getTestPrismaClient } from './jest.setup.js';
 
 /**
  * Helper to create a test user and get authentication token

@@ -201,9 +201,12 @@ app.get('/api/health', (_req, res) => {
 });
 
 // Mount test routes (only available in test environment)
+log(`NODE_ENV is: ${process.env.NODE_ENV}`);
 if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
   log('Mounting test routes...');
   app.use('/api/test', testRoutes);
+} else {
+  log('Skipping test routes - not in test or development mode');
 }
 
 // Apply authentication to all other API routes

@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { app } from '../src/index';
-import { getTestPrismaClient } from './jest.setup';
-import { authRequest } from './test-auth-helper';
+import { getTestPrismaClient } from './jest.setup.js';
+import { authRequest } from './test-auth-helper.js';
 
 const auth = authRequest(app);
 let prisma: ReturnType<typeof getTestPrismaClient>;

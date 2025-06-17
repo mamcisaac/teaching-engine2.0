@@ -5,9 +5,13 @@ import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 
-// Middleware to ensure these endpoints are only available in test mode
-const testOnlyMiddleware = (req: express.Request, res: express.Response, next: express.NextFunction) => {
-  if (process.env.NODE_ENV !== 'test') {
+// Middleware to ensure these endpoints are only available in test/development mode
+const testOnlyMiddleware = (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction,
+) => {
+  if (process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'development') {
     return res.status(403).json({ error: 'Test endpoints are only available in test mode' });
   }
   next();
@@ -57,11 +61,9 @@ router.post('/users', async (req, res) => {
     });
 
     // Generate token
-    const token = jwt.sign(
-      { userId: user.id.toString() },
-      process.env.JWT_SECRET || 'secret',
-      { expiresIn: '24h' }
-    );
+    const token = jwt.sign({ userId: user.id.toString() }, process.env.JWT_SECRET || 'secret', {
+      expiresIn: '24h',
+    });
 
     res.status(201).json({
       user,
@@ -135,8 +137,8 @@ router.post('/reset', async (req, res) => {
   try {
     // Only allow in test environment with explicit confirmation
     if (req.body.confirm !== 'RESET_TEST_DATABASE') {
-      return res.status(400).json({ 
-        error: 'Confirmation required. Send { confirm: "RESET_TEST_DATABASE" }' 
+      return res.status(400).json({
+        error: 'Confirmation required. Send { confirm: "RESET_TEST_DATABASE" }',
       });
     }
 
@@ -145,13 +147,13 @@ router.post('/reset', async (req, res) => {
       // Activities and related data
       prisma.activityOutcome.deleteMany(),
       prisma.activity.deleteMany(),
-      
+
       // Milestones
       prisma.milestone.deleteMany(),
-      
+
       // Subjects
       prisma.subject.deleteMany(),
-      
+
       // Other entities
       prisma.note.deleteMany(),
       prisma.calendarEvent.deleteMany(),
@@ -159,7 +161,7 @@ router.post('/reset', async (req, res) => {
       prisma.timetableSlot.deleteMany(),
       prisma.unavailableBlock.deleteMany(),
       prisma.notification.deleteMany(),
-      
+
       // Finally, users
       prisma.user.deleteMany(),
     ]);

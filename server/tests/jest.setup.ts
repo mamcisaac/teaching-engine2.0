@@ -1,5 +1,5 @@
 import { beforeEach, afterEach, beforeAll, afterAll } from '@jest/globals';
-import { testDb } from './setup-test-db';
+import { testDb } from './setup-test-db.js';
 import { randomBytes } from 'crypto';
 import { PrismaClient } from '@teaching-engine/database';
 
