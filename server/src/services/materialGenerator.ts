@@ -13,7 +13,9 @@ export function extractMaterials(note: string): string[] {
   const lines = note.split(/\r?\n/);
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
-    const header = line.match(/^materials?:?\s*(.*)/i);
+    const header = line.match(
+      /^(?:additional\s+|extra\s+)?(?:materials?|supplies)(?:\s+needed)?:?\s*(.*)/i,
+    );
     if (header) {
       const rest = header[1];
       if (rest) {
@@ -23,6 +25,7 @@ export function extractMaterials(note: string): string[] {
           .filter(Boolean)
           .forEach((m) => items.add(m));
       }
+      // Look for list items after the header
       for (let j = i + 1; j < lines.length; j++) {
         const next = lines[j].trim();
         if (/^[-*]\s+/.test(next)) {
@@ -38,7 +41,7 @@ export function extractMaterials(note: string): string[] {
           break;
         }
       }
-      break;
+      // Don't break - continue looking for more material sections
     }
   }
   return Array.from(items);
