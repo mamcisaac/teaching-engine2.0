@@ -11,6 +11,9 @@ const router = Router();
 router.get('/', async (req: AuthenticatedRequest, res, next) => {
   try {
     const userId = parseInt(req.user?.userId || '0', 10);
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
     const { type, subjectId, dateFrom, dateTo } = req.query as {
       type?: 'public' | 'private';
       subjectId?: string;

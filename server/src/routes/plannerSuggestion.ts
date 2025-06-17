@@ -24,6 +24,9 @@ router.get('/', async (req: AuthenticatedRequest, res, next) => {
 
     // Get user ID from authenticated request
     const userId = parseInt(req.user?.userId || '0', 10);
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
 
     const suggestions = await getPlannerSuggestions(weekStart, userId);
     res.json(suggestions);

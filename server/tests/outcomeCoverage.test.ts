@@ -48,9 +48,9 @@ describe('Outcome Coverage API', () => {
     });
     // _userId = user.id;
 
-    const loginRes = await auth.post('/api/login').send({ email, password });
+    await auth.post('/api/login').send({ email, password });
 
-    token = loginRes.body.token;
+    // Login is handled by authRequest helper
 
     // Create a subject
     const subjectRes = await auth.post('/api/subjects').send({ name: 'Test Subject' });

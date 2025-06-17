@@ -142,6 +142,9 @@ router.put(
         };
 
       const userId = parseInt(req.user?.userId || '0', 10);
+      if (!userId) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
       // First verify the message exists and belongs to user
       const existingMessage = await prisma.parentMessage.findFirst({
         where: {

@@ -12,6 +12,9 @@ const router = Router();
 router.get('/', async (req: AuthenticatedRequest, res, next) => {
   try {
     const userId = parseInt(req.user?.userId || '0', 10);
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
     const subjects = await prisma.subject.findMany({
       where: {
         OR: [
@@ -50,10 +53,14 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', validate(subjectSchema), async (req: AuthenticatedRequest, res, next) => {
   try {
+    const userId = parseInt(req.user?.userId || '0', 10);
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
     const subject = await prisma.subject.create({
       data: {
         name: req.body.name,
-        userId: parseInt(req.user?.userId || '0', 10),
+        userId,
       },
     });
     res.status(201).json(subject);
