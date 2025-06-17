@@ -1,17 +1,11 @@
 import { app } from '../src/index';
 import { authRequest } from './test-auth-helper';
-import { getTestPrismaClient } from './jest.setup';
 
 describe('calendar events', () => {
-  let prisma: ReturnType<typeof getTestPrismaClient>;
   const auth = authRequest(app);
 
   beforeAll(async () => {
     await auth.setup();
-  });
-
-  beforeEach(async () => {
-    prisma = getTestPrismaClient();
   });
 
   it('creates and lists events', async () => {
@@ -23,7 +17,7 @@ describe('calendar events', () => {
       eventType: 'PD_DAY',
     });
     expect(res.status).toBe(201);
-    
+
     const list = await auth.get('/api/calendar-events?from=2025-01-01&to=2025-01-03');
     expect(list.status).toBe(200);
     expect(list.body.length).toBe(1);
