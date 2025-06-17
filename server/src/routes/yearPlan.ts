@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { prisma, Prisma } from '../prisma';
+import { prisma, Prisma, YearPlanEntryType } from '../prisma';
 
 const router = Router();
 
@@ -44,7 +44,7 @@ router.post('/', async (req, res, next) => {
     const entry = await prisma.yearPlanEntry.create({
       data: {
         teacherId,
-        entryType,
+        entryType: entryType as YearPlanEntryType,
         title,
         start: new Date(start),
         end: new Date(end),
@@ -69,7 +69,7 @@ router.put('/:id', async (req, res, next) => {
     };
 
     const updateData: Record<string, unknown> = {};
-    if (entryType !== undefined) updateData.entryType = entryType;
+    if (entryType !== undefined) updateData.entryType = entryType as YearPlanEntryType;
     if (title !== undefined) updateData.title = title;
     if (start !== undefined) updateData.start = new Date(start);
     if (end !== undefined) updateData.end = new Date(end);
