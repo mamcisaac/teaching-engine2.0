@@ -43,47 +43,6 @@
     "unzipper": "^0.12.3",
     "zod": "3.25.58"
   },
-  "jest": {
-    "preset": "ts-jest/presets/default-esm",
-    "testEnvironment": "node",
-    "globalSetup": "<rootDir>/tests/global-setup.ts",
-    "globalTeardown": "<rootDir>/tests/global-teardown.ts",
-    "setupFilesAfterEnv": [
-      "<rootDir>/jest.setup.js",
-      "<rootDir>/tests/jest.setup.ts"
-    ],
-    "testMatch": [
-      "**/__tests__/**/*.test.ts",
-      "**/tests/**/*.test.ts"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "js",
-      "json",
-      "node"
-    ],
-    "extensionsToTreatAsEsm": [
-      ".ts"
-    ],
-    "moduleNameMapper": {
-      "^@/(.*)\\.js$": "<rootDir>/$1"
-    },
-    "transform": {
-      "^.+\\.tsx?$": [
-        "ts-jest",
-        {
-          "useESM": true
-        }
-      ]
-    },
-    "transformIgnorePatterns": [
-      "node_modules/(?!(.*\\.mjs|@prisma/client)/)"
-    ],
-    "maxWorkers": "50%",
-    "testTimeout": 30000,
-    "forceExit": true,
-    "detectOpenHandles": true
-  },
   "devDependencies": {
     "@jest/globals": "^30.0.0",
     "@types/archiver": "^6.0.3",

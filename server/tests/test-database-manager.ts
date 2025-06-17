@@ -151,9 +151,22 @@ class TestDatabaseManager {
   }
 
   getPrismaClient(workerId: string): PrismaClient {
-    const client = this.clients.get(workerId);
+    let client = this.clients.get(workerId);
     if (!client) {
-      throw new Error(`No client found for worker ${workerId}`);
+      // Create client on demand if it doesn't exist
+      const databaseUrl = this.getDatabaseUrl(workerId);
+      process.env.DATABASE_URL = databaseUrl;
+      
+      client = new PrismaClient({
+        datasources: {
+          db: {
+            url: databaseUrl,
+          },
+        },
+      });
+      
+      this.clients.set(workerId, client);
+      this.connectionStats.set(workerId, { queries: 0, startTime: Date.now() });
     }
     return client;
   }

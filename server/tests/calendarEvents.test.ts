@@ -1,6 +1,6 @@
 import request from 'supertest';
 import http from 'http';
-import app from '../src/index';
+import { app } from '../src/index';
 import { prisma } from '../src/prisma';
 import fs from 'fs';
 import path from 'path';

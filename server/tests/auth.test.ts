@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { describe, beforeAll, afterAll, it, expect } from '@jest/globals';
-import app from '../src';
+import { app } from '../src/index';
 import { prisma } from '../src/prisma';
 
 // Test user credentials

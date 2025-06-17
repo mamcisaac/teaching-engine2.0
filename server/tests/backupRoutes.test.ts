@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from '../src/index';
+import { app } from '../src/index';
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';

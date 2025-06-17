@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from '../src';
+import { app } from '../src/index';
 import { prisma } from '../src/prisma';
 import { v4 as uuidv4 } from 'uuid';
 

@@ -4,7 +4,7 @@ import {
   type CoverageStatus
 } from '../../src/utils/outcomeCoverage';
 import { enhancedFactories } from '../enhanced-factories';
-import { getTestPrismaClient } from '../setup-all-tests';
+import { getTestPrismaClient } from '../jest.setup';
 
 describe('OutcomeCoverage Utils Unit Tests', () => {
   let prisma: ReturnType<typeof getTestPrismaClient>;
