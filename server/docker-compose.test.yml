@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - "1025:1025"  # SMTP port
+      - "8025:8025"  # Web UI port
+    environment:
+      - MH_STORAGE=memory
+    command: [
+      "MailHog",
+      "-storage=memory",
+      "-smtp-bind-addr=0.0.0.0:1025",
+      "-ui-bind-addr=0.0.0.0:8025",
+      "-api-bind-addr=0.0.0.0:8025"
+    ]
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8025/api/v1/messages"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  # Optional: Database for integration tests
+  test-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: teaching_engine_test
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+    ports:
+      - "5433:5432"
+    volumes:
+      - test_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U test -d teaching_engine_test"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  test_db_data:

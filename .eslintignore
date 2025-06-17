@@ -3,3 +3,12 @@ build
 coverage
 packages/database/src/generated
 *.config.js
+playwright.config.ts
+playwright-report/
+test-results/
+tests/storage/
+tests/global-setup-e2e.js
+tests/global-teardown-e2e.js
+tests/test-server.cjs
+server/tests/factories.ts
+server/tests/enhanced-factories.ts
