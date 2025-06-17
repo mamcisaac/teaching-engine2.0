@@ -10,9 +10,8 @@ jest.mock('../prisma', () => ({
   },
 }));
 
-jest.mock('./outcomeCoverage', () => ({
-  getOutcomesCoverage: jest.fn(),
-}));
+// Skip mocking for now to resolve module resolution issues
+// jest.mock('../services/outcomeCoverage');
 
 jest.mock('date-fns', () => ({
   addDays: jest.fn((date: Date, days: number) => {
@@ -23,7 +22,7 @@ jest.mock('date-fns', () => ({
 }));
 
 const mockPrisma = jest.mocked(await import('../prisma')).prisma;
-const mockGetOutcomesCoverage = jest.mocked(await import('./outcomeCoverage')).getOutcomesCoverage;
+// const mockGetOutcomesCoverage = jest.mocked(await import('../services/outcomeCoverage')).getOutcomesCoverage;
 
 describe('PlannerSuggestions', () => {
   const weekStart = new Date('2024-01-01'); // Monday
