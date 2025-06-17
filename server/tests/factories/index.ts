@@ -1,15 +1,13 @@
-import { 
-  PrismaClient, 
-  User, 
-  Subject, 
-  Outcome, 
-  Activity, 
+import {
+  PrismaClient,
+  User,
+  Subject,
+  Outcome,
+  Activity,
   DailyPlan,
   Milestone,
   Note,
   ActivityType,
-  GroupingType,
-  AssessmentType
 } from '@teaching-engine/database';
 import { randomBytes } from 'crypto';
 import { getTestPrismaClient, executeWithRetry } from '../jest.setup';
@@ -36,31 +34,26 @@ export const userFactory = {
   async create(overrides: Partial<User> = {}): Promise<User> {
     const client = getClient();
     const id = generateId('user_');
-    
-    return executeWithRetry(() => 
+
+    return executeWithRetry(() =>
       client.user.create({
         data: {
-          id,
-          username: `test_${id}`,
-          email: `${id}@test.com`,
-          passwordHash: 'hashed_password',
-          firstName: 'Test',
-          lastName: 'User',
-          role: 'TEACHER',
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          email: overrides.email || `${id}@test.com`,
+          password: overrides.password || 'hashed_password',
+          name: overrides.name || `Test User ${id}`,
+          role: overrides.role || 'teacher',
+          preferredLanguage: overrides.preferredLanguage || 'en',
           ...overrides,
         },
-      })
+      }),
     );
   },
-  
+
   async createMany(count: number, overrides: Partial<User> = {}): Promise<User[]> {
     const users: User[] = [];
     for (let i = 0; i < count; i++) {
       const user = await this.create({
         ...overrides,
-        username: overrides.username ? `${overrides.username}_${i}` : undefined,
         email: overrides.email ? `${i}_${overrides.email}` : undefined,
       });
       users.push(user);
@@ -76,21 +69,19 @@ export const subjectFactory = {
   async create(overrides: Partial<Subject> = {}): Promise<Subject> {
     const client = getClient();
     const id = generateId('subject_');
-    
+
     return executeWithRetry(() =>
       client.subject.create({
         data: {
-          id,
-          name: `Test Subject ${id}`,
+          name: overrides.name || `Test Subject ${id}`,
           nameEn: overrides.nameEn || `Test Subject ${id}`,
           nameFr: overrides.nameFr || `Matière de test ${id}`,
-          gradeLevel: 5,
           ...overrides,
         },
-      })
+      }),
     );
   },
-  
+
   async createMany(count: number, overrides: Partial<Subject> = {}): Promise<Subject[]> {
     const subjects: Subject[] = [];
     for (let i = 0; i < count; i++) {
@@ -102,8 +93,11 @@ export const subjectFactory = {
     }
     return subjects;
   },
-  
-  async createWithUser(userOverrides: Partial<User> = {}, subjectOverrides: Partial<Subject> = {}): Promise<{ user: User; subject: Subject }> {
+
+  async createWithUser(
+    userOverrides: Partial<User> = {},
+    subjectOverrides: Partial<Subject> = {},
+  ): Promise<{ user: User; subject: Subject }> {
     const user = await userFactory.create(userOverrides);
     const subject = await this.create({
       ...subjectOverrides,
@@ -120,31 +114,30 @@ export const milestoneFactory = {
   async create(overrides: Partial<Milestone> = {}): Promise<Milestone> {
     const client = getClient();
     const id = generateId('milestone_');
-    
+
     // Ensure we have a subject
     let subjectId = overrides.subjectId;
     if (!subjectId) {
       const subject = await subjectFactory.create();
       subjectId = subject.id;
     }
-    
+
+    const safeOverrides = { ...overrides };
+    delete safeOverrides.subjectId;
+
     return executeWithRetry(() =>
       client.milestone.create({
         data: {
-          id,
-          title: `Test Milestone ${id}`,
-          description: `Description for milestone ${id}`,
-          targetDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
-          completed: false,
+          title: overrides.title || `Test Milestone ${id}`,
+          description: overrides.description || `Description for milestone ${id}`,
+          targetDate: overrides.targetDate || new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
           subjectId,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-          ...overrides,
+          ...safeOverrides,
         },
-      })
+      }),
     );
   },
-  
+
   async createMany(count: number, overrides: Partial<Milestone> = {}): Promise<Milestone[]> {
     const milestones: Milestone[] = [];
     for (let i = 0; i < count; i++) {
@@ -165,30 +158,22 @@ export const outcomeFactory = {
   async create(overrides: Partial<Outcome> = {}): Promise<Outcome> {
     const client = getClient();
     const id = generateId('outcome_');
-    
-    // Ensure we have a subject
-    let subjectId = overrides.subjectId;
-    if (!subjectId) {
-      const subject = await subjectFactory.create();
-      subjectId = subject.id;
-    }
-    
+
     return executeWithRetry(() =>
       client.outcome.create({
         data: {
           id,
-          code: `TEST.${id}`,
-          description: `Test outcome ${id}`,
-          subjectId,
-          gradeLevel: 5,
-          strand: 'Test Strand',
-          createdAt: new Date(),
+          code: overrides.code || `TEST.${id}`,
+          description: overrides.description || `Test outcome ${id}`,
+          subject: overrides.subject || 'Test Subject',
+          grade: overrides.grade || 5,
+          domain: overrides.domain || 'Test Domain',
           ...overrides,
         },
-      })
+      }),
     );
   },
-  
+
   async createMany(count: number, overrides: Partial<Outcome> = {}): Promise<Outcome[]> {
     const outcomes: Outcome[] = [];
     for (let i = 0; i < count; i++) {
@@ -201,12 +186,15 @@ export const outcomeFactory = {
     }
     return outcomes;
   },
-  
-  async createWithSubject(subjectOverrides: Partial<Subject> = {}, outcomeOverrides: Partial<Outcome> = {}): Promise<{ subject: Subject; outcome: Outcome }> {
+
+  async createWithSubject(
+    subjectOverrides: Partial<Subject> = {},
+    outcomeOverrides: Partial<Outcome> = {},
+  ): Promise<{ subject: Subject; outcome: Outcome }> {
     const subject = await subjectFactory.create(subjectOverrides);
     const outcome = await this.create({
       ...outcomeOverrides,
-      subjectId: subject.id,
+      subject: outcomeOverrides.subject || subject.name,
     });
     return { subject, outcome };
   },
@@ -219,38 +207,38 @@ export const activityFactory = {
   async create(overrides: Partial<Activity> = {}): Promise<Activity> {
     const client = getClient();
     const id = generateId('activity_');
-    
+
     // Ensure we have a milestone
     let milestoneId = overrides.milestoneId;
     if (!milestoneId) {
       const milestone = await milestoneFactory.create();
       milestoneId = milestone.id;
     }
-    
+
+    const safeOverrides = { ...overrides };
+    delete safeOverrides.milestoneId;
+
     return executeWithRetry(() =>
       client.activity.create({
         data: {
-          id,
-          title: `Test Activity ${id}`,
-          type: 'MINDS_ON' as ActivityType,
-          description: `Description for ${id}`,
-          duration: 30,
-          materials: ['pencil', 'paper'],
-          teachingStrategies: ['discussion', 'demonstration'],
-          groupingType: 'WHOLE_CLASS' as GroupingType,
-          differentiationStrategies: [],
-          accommodations: [],
-          assessmentType: 'FORMATIVE' as AssessmentType,
-          safetyConsiderations: null,
+          title: overrides.title || `Test Activity ${id}`,
+          activityType: overrides.activityType || ('LESSON' as ActivityType),
           milestoneId,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-          ...overrides,
+          orderIndex: overrides.orderIndex ?? 0,
+          durationMins: overrides.durationMins ?? 30,
+          privateNote: overrides.privateNote,
+          publicNote: overrides.publicNote,
+          materialsText: overrides.materialsText || 'pencil, paper',
+          tags: overrides.tags || [],
+          isSubFriendly: overrides.isSubFriendly ?? true,
+          isFallback: overrides.isFallback ?? false,
+          completedAt: overrides.completedAt,
+          ...safeOverrides,
         },
-      })
+      }),
     );
   },
-  
+
   async createMany(count: number, overrides: Partial<Activity> = {}): Promise<Activity[]> {
     const activities: Activity[] = [];
     for (let i = 0; i < count; i++) {
@@ -262,39 +250,39 @@ export const activityFactory = {
     }
     return activities;
   },
-  
-  async createWithOutcomes(outcomeIds: string[], overrides: Partial<Activity> = {}): Promise<Activity> {
+
+  async createWithOutcomes(
+    outcomeIds: string[],
+    overrides: Partial<Activity> = {},
+  ): Promise<Activity> {
     const client = getClient();
     const id = generateId('activity_');
-    
+
     // Ensure we have a milestone
     let milestoneId = overrides.milestoneId;
     if (!milestoneId) {
       const milestone = await milestoneFactory.create();
       milestoneId = milestone.id;
     }
-    
+
     return executeWithRetry(() =>
       client.activity.create({
         data: {
-          id,
-          title: `Test Activity ${id}`,
-          type: 'MINDS_ON' as ActivityType,
-          description: `Description for ${id}`,
-          duration: 30,
-          materials: ['pencil', 'paper'],
-          teachingStrategies: ['discussion', 'demonstration'],
-          groupingType: 'WHOLE_CLASS' as GroupingType,
-          differentiationStrategies: [],
-          accommodations: [],
-          assessmentType: 'FORMATIVE' as AssessmentType,
-          safetyConsiderations: null,
+          title: overrides.title || `Test Activity ${id}`,
+          activityType: overrides.activityType || ('LESSON' as ActivityType),
           milestoneId,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          orderIndex: overrides.orderIndex ?? 0,
+          durationMins: overrides.durationMins ?? 30,
+          privateNote: overrides.privateNote,
+          publicNote: overrides.publicNote,
+          materialsText: overrides.materialsText || 'pencil, paper',
+          tags: overrides.tags || [],
+          isSubFriendly: overrides.isSubFriendly ?? true,
+          isFallback: overrides.isFallback ?? false,
+          completedAt: overrides.completedAt,
           ...overrides,
           outcomes: {
-            create: outcomeIds.map(outcomeId => ({
+            create: outcomeIds.map((outcomeId) => ({
               outcomeId,
             })),
           },
@@ -302,7 +290,7 @@ export const activityFactory = {
         include: {
           outcomes: true,
         },
-      })
+      }),
     );
   },
 };
@@ -314,28 +302,26 @@ export const noteFactory = {
   async create(overrides: Partial<Note> = {}): Promise<Note> {
     const client = getClient();
     const id = generateId('note_');
-    
+
     // Ensure we have an activity
     let activityId = overrides.activityId;
     if (!activityId) {
       const activity = await activityFactory.create();
       activityId = activity.id;
     }
-    
+
     return executeWithRetry(() =>
       client.note.create({
         data: {
-          id,
-          content: `Test note content for ${id}`,
+          content: overrides.content || `Test note content for ${id}`,
+          public: overrides.public ?? false,
           activityId,
-          createdAt: new Date(),
-          updatedAt: new Date(),
           ...overrides,
         },
-      })
+      }),
     );
   },
-  
+
   async createMany(count: number, overrides: Partial<Note> = {}): Promise<Note[]> {
     const notes: Note[] = [];
     for (let i = 0; i < count; i++) {
@@ -355,72 +341,70 @@ export const noteFactory = {
 export const dailyPlanFactory = {
   async create(overrides: Partial<DailyPlan> = {}): Promise<DailyPlan> {
     const client = getClient();
-    const id = generateId('plan_');
-    
-    // Ensure we have a user
-    let userId = overrides.userId;
-    if (!userId) {
-      const user = await userFactory.create();
-      userId = user.id;
+
+    // Ensure we have a lessonPlan
+    let lessonPlanId = overrides.lessonPlanId;
+    if (!lessonPlanId) {
+      const lessonPlan = await client.lessonPlan.create({
+        data: {
+          weekStart: new Date(),
+        },
+      });
+      lessonPlanId = lessonPlan.id;
     }
-    
+
     return executeWithRetry(() =>
       client.dailyPlan.create({
         data: {
-          id,
-          date: new Date(),
-          userId,
-          notes: `Test notes for ${id}`,
-          reflections: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          date: overrides.date || new Date(),
+          lessonPlanId,
           ...overrides,
         },
-      })
+      }),
     );
   },
-  
-  async createWithItems(itemCount: number = 3, overrides: Partial<DailyPlan> = {}): Promise<DailyPlan> {
+
+  async createWithItems(
+    itemCount: number = 3,
+    overrides: Partial<DailyPlan> = {},
+  ): Promise<DailyPlan> {
     const client = getClient();
-    const id = generateId('plan_');
-    
-    // Ensure we have a user
-    let userId = overrides.userId;
-    if (!userId) {
-      const user = await userFactory.create();
-      userId = user.id;
+
+    // Ensure we have a lessonPlan
+    let lessonPlanId = overrides.lessonPlanId;
+    if (!lessonPlanId) {
+      const lessonPlan = await client.lessonPlan.create({
+        data: {
+          weekStart: new Date(),
+        },
+      });
+      lessonPlanId = lessonPlan.id;
     }
-    
-    // Create subjects for the items
-    const subjects = await Promise.all(
-      Array.from({ length: itemCount }, () => subjectFactory.create())
+
+    // Create activities for the items
+    const activities = await Promise.all(
+      Array.from({ length: itemCount }, () => activityFactory.create()),
     );
-    
+
     return executeWithRetry(() =>
       client.dailyPlan.create({
         data: {
-          id,
-          date: new Date(),
-          userId,
-          notes: `Test notes for ${id}`,
-          reflections: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          date: overrides.date || new Date(),
+          lessonPlanId,
           ...overrides,
           items: {
-            create: subjects.map((subject, index) => ({
-              timeSlot: `${9 + index}:00-${9 + index}:50`,
-              subjectId: subject.id,
-              activities: [`Activity ${index + 1}`],
+            create: activities.map((activity, index) => ({
+              startMin: (9 + index) * 60, // 9am, 10am, 11am
+              endMin: (9 + index) * 60 + 50, // 50 minutes later
+              activityId: activity.id,
               notes: `Notes for item ${index + 1}`,
-              order: index,
             })),
           },
         },
         include: {
           items: true,
         },
-      })
+      }),
     );
   },
 };
@@ -455,13 +439,13 @@ export async function createTestScenario(options: TestScenarioOptions = {}) {
     activitiesPerMilestone = 1,
     outcomesPerActivity = 1,
   } = options;
-  
+
   const user = await userFactory.create();
   const subjects: Subject[] = [];
   const milestones: Milestone[] = [];
   const activities: Activity[] = [];
   const outcomes: Outcome[] = [];
-  
+
   // Create subjects
   for (let i = 0; i < subjectCount; i++) {
     const subject = await subjectFactory.create({
@@ -469,7 +453,7 @@ export async function createTestScenario(options: TestScenarioOptions = {}) {
       userId: user.id,
     });
     subjects.push(subject);
-    
+
     // Create milestones for each subject
     for (let j = 0; j < milestonesPerSubject; j++) {
       const milestone = await milestoneFactory.create({
@@ -477,7 +461,7 @@ export async function createTestScenario(options: TestScenarioOptions = {}) {
         subjectId: subject.id,
       });
       milestones.push(milestone);
-      
+
       // Create activities for each milestone
       for (let k = 0; k < activitiesPerMilestone; k++) {
         const activity = await activityFactory.create({
@@ -485,7 +469,7 @@ export async function createTestScenario(options: TestScenarioOptions = {}) {
           milestoneId: milestone.id,
         });
         activities.push(activity);
-        
+
         // Create outcomes for each activity
         for (let l = 0; l < outcomesPerActivity; l++) {
           const outcome = await outcomeFactory.create({
@@ -494,7 +478,7 @@ export async function createTestScenario(options: TestScenarioOptions = {}) {
             subjectId: subject.id,
           });
           outcomes.push(outcome);
-          
+
           // Link outcome to activity
           await getClient().activityOutcome.create({
             data: {
@@ -506,7 +490,7 @@ export async function createTestScenario(options: TestScenarioOptions = {}) {
       }
     }
   }
-  
+
   return {
     user,
     subjects,
@@ -531,7 +515,7 @@ export const testSeeder = {
       outcomesPerActivity: 2,
     });
   },
-  
+
   /**
    * Create minimal test data
    */
@@ -540,7 +524,7 @@ export const testSeeder = {
     const milestone = await milestoneFactory.create({ subjectId: subject.id });
     const outcome = await outcomeFactory.create({ subjectId: subject.id });
     const activity = await activityFactory.create({ milestoneId: milestone.id });
-    
+
     return { user, subject, milestone, outcome, activity };
   },
 };

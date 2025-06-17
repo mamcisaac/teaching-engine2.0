@@ -1,10 +1,10 @@
 import { describe, beforeAll, afterAll, beforeEach, it, expect, jest } from '@jest/globals';
-import { prisma } from '../src/prisma';
+import { authRequest } from './test-auth-helper';
+import { getTestPrismaClient } from './jest.setup';
 import { getTestEmailService, resetTestEmailService } from './helpers/testEmailService';
 import { generateTestEmail, expectEmailContent } from './helpers/emailTestHelper';
 import { randomBytes } from 'crypto';
 import bcrypt from 'bcryptjs';
-import request from 'supertest';
 import { app } from '../src/index';
 import { setEmailHandler, clearEmailHandler } from '../src/services/emailService';
 
@@ -20,18 +20,30 @@ describe('Email Service Integration Tests', () => {
     name: string;
     role: 'teacher';
   };
+  let prisma: ReturnType<typeof getTestPrismaClient>;
+  const auth = authRequest(app);
 
   beforeAll(async () => {
+    prisma = getTestPrismaClient();
+    await auth.setup();
     testEmailService = getTestEmailService();
-    
+
     // Set up email handler to capture emails in tests
     setEmailHandler(async (to, subject, text, html, attachment) => {
-      await testEmailService.sendEmail(to, subject, text, html, attachment ? {
-        filename: attachment.filename,
-        content: attachment.content
-      } : undefined);
+      await testEmailService.sendEmail(
+        to,
+        subject,
+        text,
+        html,
+        attachment
+          ? {
+              filename: attachment.filename,
+              content: attachment.content,
+            }
+          : undefined,
+      );
     });
-    
+
     // Create test user
     const id = randomBytes(4).toString('hex');
     testUser = {
@@ -40,7 +52,7 @@ describe('Email Service Integration Tests', () => {
       name: `Teacher ${id}`,
       role: 'teacher',
     };
-    
+
     const hashedPassword = await bcrypt.hash(testUser.password, 10);
     await prisma.user.create({
       data: {
@@ -50,15 +62,13 @@ describe('Email Service Integration Tests', () => {
         role: testUser.role,
       },
     });
-    
+
     // Get auth token
-    const loginRes = await request(app)
-      .post('/api/login')
-      .send({
-        email: testUser.email,
-        password: testUser.password,
-      });
-    
+    const loginRes = await auth.post('/api/login').send({
+      email: testUser.email,
+      password: testUser.password,
+    });
+
     teacherToken = loginRes.body.token;
   });
 
@@ -91,28 +101,27 @@ describe('Email Service Integration Tests', () => {
           studentName: 'John Jr',
         },
         {
-          name: 'Jane Parent', 
+          name: 'Jane Parent',
           email: generateTestEmail(),
           studentName: 'Jane Jr',
         },
       ];
 
       await Promise.all(
-        parentContacts.map(contact =>
-          prisma.parentContact.create({ data: contact })
-        )
+        parentContacts.map((contact) => prisma.parentContact.create({ data: contact })),
       );
 
       // Create newsletter
       const newsletter = await prisma.newsletter.create({
         data: {
           title: 'Weekly Newsletter - Test Edition',
-          content: '<h1>Weekly Newsletter</h1><p>This is a test newsletter with important updates.</p>',
+          content:
+            '<h1>Weekly Newsletter</h1><p>This is a test newsletter with important updates.</p>',
         },
       });
 
       // Send newsletter
-      const sendRes = await request(app)
+      const sendRes = await auth
         .post(`/api/newsletters/${newsletter.id}/send`)
         .set('Authorization', `Bearer ${teacherToken}`);
 
@@ -124,11 +133,9 @@ describe('Email Service Integration Tests', () => {
       expect(emails).toHaveLength(2);
 
       // Check first email
-      const firstEmail = emails.find(email => 
-        email.to.includes(parentContacts[0].email)
-      );
+      const firstEmail = emails.find((email) => email.to.includes(parentContacts[0].email));
       expect(firstEmail).toBeDefined();
-      
+
       expectEmailContent(firstEmail!, {
         subject: 'Weekly Newsletter - Test Edition',
         text: 'Please see the attached newsletter.',
@@ -152,7 +159,7 @@ describe('Email Service Integration Tests', () => {
         },
       });
 
-      const sendRes = await request(app)
+      const sendRes = await auth
         .post(`/api/newsletters/${newsletter.id}/send`)
         .set('Authorization', `Bearer ${teacherToken}`);
 
@@ -180,9 +187,7 @@ describe('Email Service Integration Tests', () => {
       ];
 
       await Promise.all(
-        parentContacts.map(contact =>
-          prisma.parentContact.create({ data: contact })
-        )
+        parentContacts.map((contact) => prisma.parentContact.create({ data: contact })),
       );
 
       const newsletter = await prisma.newsletter.create({
@@ -193,7 +198,7 @@ describe('Email Service Integration Tests', () => {
       });
 
       // Newsletter sending should not fail completely
-      const sendRes = await request(app)
+      const sendRes = await auth
         .post(`/api/newsletters/${newsletter.id}/send`)
         .set('Authorization', `Bearer ${teacherToken}`);
 
@@ -205,11 +210,7 @@ describe('Email Service Integration Tests', () => {
 
   describe('Bulk Email Operations', () => {
     it('sends bulk emails to multiple recipients', async () => {
-      const recipients = [
-        generateTestEmail(),
-        generateTestEmail(),
-        generateTestEmail(),
-      ];
+      const recipients = [generateTestEmail(), generateTestEmail(), generateTestEmail()];
 
       const subject = 'Bulk Email Test';
       const text = 'This is a bulk email test message';
@@ -223,8 +224,8 @@ describe('Email Service Integration Tests', () => {
       const emails = await testEmailService.getEmails();
       expect(emails).toHaveLength(3);
 
-      recipients.forEach(recipient => {
-        const email = emails.find(e => e.to.includes(recipient));
+      recipients.forEach((recipient) => {
+        const email = emails.find((e) => e.to.includes(recipient));
         expect(email).toBeDefined();
         expectEmailContent(email!, {
           subject,
@@ -234,17 +235,14 @@ describe('Email Service Integration Tests', () => {
     });
 
     it('handles partial failures in bulk email sending', async () => {
-      const validRecipients = [
-        generateTestEmail(),
-        generateTestEmail(),
-      ];
+      const validRecipients = [generateTestEmail(), generateTestEmail()];
       const invalidRecipients = ['invalid-email-1', 'invalid-email-2'];
       const allRecipients = [...validRecipients, ...invalidRecipients];
 
       const result = await testEmailService.sendBulkEmails(
-        allRecipients, 
+        allRecipients,
         'Bulk Test',
-        'Test message'
+        'Test message',
       );
 
       // Should have some successes and some failures
@@ -262,7 +260,7 @@ describe('Email Service Integration Tests', () => {
 
       // First attempt should succeed after retries
       await expect(
-        testEmailService.sendEmailWithRetry(recipient, subject, text, undefined, 3, 100)
+        testEmailService.sendEmailWithRetry(recipient, subject, text, undefined, 3, 100),
       ).resolves.not.toThrow();
 
       // Verify email was eventually sent
@@ -283,7 +281,14 @@ describe('Email Service Integration Tests', () => {
       const recipient = generateTestEmail();
 
       await expect(
-        testEmailService.sendEmailWithRetry(recipient, 'Fail Test', 'Should fail', undefined, 2, 50)
+        testEmailService.sendEmailWithRetry(
+          recipient,
+          'Fail Test',
+          'Should fail',
+          undefined,
+          2,
+          50,
+        ),
       ).rejects.toThrow('Failed to send email after 2 attempts');
 
       // Restore original function
@@ -342,7 +347,7 @@ describe('Email Service Integration Tests', () => {
         },
       });
 
-      await request(app)
+      await auth
         .post(`/api/newsletters/${newsletter.id}/send`)
         .set('Authorization', `Bearer ${teacherToken}`);
 
@@ -375,9 +380,11 @@ describe('Email Service Integration Tests', () => {
       const recipient = generateTestEmail();
       const subject = 'PDF Test';
       const text = 'Email with PDF attachment';
-      
+
       // Create a simple PDF buffer (mock PDF content)
-      const pdfContent = Buffer.from('%PDF-1.4\n1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n%%EOF');
+      const pdfContent = Buffer.from(
+        '%PDF-1.4\n1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n%%EOF',
+      );
       const attachment = {
         filename: 'test-document.pdf',
         content: pdfContent,
@@ -390,7 +397,7 @@ describe('Email Service Integration Tests', () => {
 
       const email = emails[0];
       expect(email.attachments).toHaveLength(1);
-      
+
       const receivedAttachment = email.attachments![0];
       expect(receivedAttachment.filename).toBe('test-document.pdf');
       expect(receivedAttachment.content).toEqual(pdfContent);
@@ -401,22 +408,22 @@ describe('Email Service Integration Tests', () => {
       const recipient = generateTestEmail();
       const subject = 'Multiple Attachments Test';
       const text = 'Email with multiple attachments';
-      
+
       // For this test, we'll simulate multiple attachments by sending multiple emails
       // In a real scenario, you'd modify the sendEmail function to accept multiple attachments
       const attachment1 = {
         filename: 'document1.pdf',
         content: Buffer.from('PDF content 1'),
       };
-      
+
       const attachment2 = {
-        filename: 'document2.pdf', 
+        filename: 'document2.pdf',
         content: Buffer.from('PDF content 2'),
       };
 
       // Send first email with first attachment
       await testEmailService.sendEmail(recipient, subject + ' 1', text, undefined, attachment1);
-      
+
       // Send second email with second attachment
       await testEmailService.sendEmail(recipient, subject + ' 2', text, undefined, attachment2);
 
@@ -424,9 +431,9 @@ describe('Email Service Integration Tests', () => {
       expect(emails).toHaveLength(2);
 
       // Verify both attachments were sent correctly
-      const email1 = emails.find(e => e.subject.includes('1'));
-      const email2 = emails.find(e => e.subject.includes('2'));
-      
+      const email1 = emails.find((e) => e.subject.includes('1'));
+      const email2 = emails.find((e) => e.subject.includes('2'));
+
       expect(email1?.attachments?.[0].filename).toBe('document1.pdf');
       expect(email2?.attachments?.[0].filename).toBe('document2.pdf');
     });
@@ -435,7 +442,7 @@ describe('Email Service Integration Tests', () => {
       const recipient = generateTestEmail();
       const subject = 'Encoding Test';
       const text = 'Email with binary attachment';
-      
+
       // Create binary content with various byte values
       const binaryContent = Buffer.from([0, 1, 2, 3, 255, 254, 253, 252, 127, 128, 129]);
       const attachment = {
@@ -457,7 +464,7 @@ describe('Email Service Integration Tests', () => {
       const recipient = generateTestEmail();
       const subject = 'Empty Attachment Test';
       const text = 'Email with empty attachment';
-      
+
       const attachment = {
         filename: 'empty-file.txt',
         content: Buffer.alloc(0), // Empty buffer

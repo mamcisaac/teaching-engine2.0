@@ -10,9 +10,10 @@ export function createTestUtils(prisma: PrismaClient) {
      * Get the count of records in a table
      */
     async getTableCount(tableName: string): Promise<number> {
-      const result = await prisma.$queryRaw<Array<{ count: number }>>`
-        SELECT COUNT(*) as count FROM ${tableName}
-      `;
+      // Use $queryRawUnsafe for dynamic table names
+      const result = await prisma.$queryRawUnsafe<Array<{ count: number }>>(
+        `SELECT COUNT(*) as count FROM ${tableName}`,
+      );
       return Number(result[0].count);
     },
 
@@ -32,9 +33,7 @@ export function createTestUtils(prisma: PrismaClient) {
       const operations = Array.from({ length: 5 }, (_, i) =>
         prisma.subject.create({
           data: {
-            id: `isolation_test_${i}`,
             name: `Isolation Test ${i}`,
-            gradeLevel: 5,
           },
         }),
       );
@@ -44,7 +43,7 @@ export function createTestUtils(prisma: PrismaClient) {
 
       // Verify all were created
       const subjects = await prisma.subject.findMany({
-        where: { id: { startsWith: 'isolation_test_' } },
+        where: { name: { startsWith: 'Isolation Test' } },
       });
       expect(subjects).toHaveLength(5);
     },
@@ -72,24 +71,29 @@ export function createTestUtils(prisma: PrismaClient) {
      * Test unique constraints
      */
     async testUniqueConstraints(): Promise<void> {
-      const id = 'unique_test_id';
-
-      // Create a subject
-      await prisma.subject.create({
+      // Create an outcome with a specific code
+      const outcomeCode = 'TEST.UNIQUE.001';
+      await prisma.outcome.create({
         data: {
-          id,
-          name: 'Unique Test',
-          gradeLevel: 5,
+          id: 'unique_test_outcome_1',
+          code: outcomeCode,
+          description: 'Test unique constraint',
+          subject: 'Test Subject',
+          grade: 5,
+          domain: 'Test Domain',
         },
       });
 
-      // Attempt to create another with the same ID
+      // Attempt to create another with the same code
       await expect(
-        prisma.subject.create({
+        prisma.outcome.create({
           data: {
-            id,
-            name: 'Duplicate ID',
-            gradeLevel: 5,
+            id: 'unique_test_outcome_2',
+            code: outcomeCode, // Same code should fail
+            description: 'Duplicate code test',
+            subject: 'Test Subject',
+            grade: 5,
+            domain: 'Test Domain',
           },
         }),
       ).rejects.toThrow();

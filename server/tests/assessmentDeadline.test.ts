@@ -1,35 +1,13 @@
-import request from 'supertest';
 import { app } from '../src/index';
-import { prisma } from '../src/prisma';
+import { getTestPrismaClient } from './jest.setup';
+import { authRequest } from './test-auth-helper';
+
+const auth = authRequest(app);
+let prisma: ReturnType<typeof getTestPrismaClient>;
 
 beforeAll(async () => {
-  await prisma.$queryRawUnsafe('PRAGMA busy_timeout = 20000');
-  await prisma.weeklySchedule.deleteMany();
-  await prisma.dailyPlanItem.deleteMany();
-  await prisma.dailyPlan.deleteMany();
-  await prisma.lessonPlan.deleteMany();
-  await prisma.timetableSlot.deleteMany();
-  await prisma.resource.deleteMany();
-  await prisma.unavailableBlock.deleteMany();
-  await prisma.reportDeadline.deleteMany();
-  await prisma.activity.deleteMany();
-  await prisma.milestone.deleteMany();
-  await prisma.subject.deleteMany();
-});
-
-afterAll(async () => {
-  await prisma.reportDeadline.deleteMany();
-  await prisma.weeklySchedule.deleteMany();
-  await prisma.dailyPlanItem.deleteMany();
-  await prisma.dailyPlan.deleteMany();
-  await prisma.lessonPlan.deleteMany();
-  await prisma.timetableSlot.deleteMany();
-  await prisma.resource.deleteMany();
-  await prisma.unavailableBlock.deleteMany();
-  await prisma.activity.deleteMany();
-  await prisma.milestone.deleteMany();
-  await prisma.subject.deleteMany();
-  await prisma.$disconnect();
+  prisma = getTestPrismaClient();
+  await auth.setup();
 });
 
 test('rejects assessment scheduled after deadline', async () => {
@@ -49,7 +27,7 @@ test('rejects assessment scheduled after deadline', async () => {
   await prisma.timetableSlot.create({
     data: { day: 0, startMin: 540, endMin: 600, subjectId: subject.id },
   });
-  const res = await request(app)
+  const res = await auth
     .post('/api/lesson-plans/generate')
     .send({ weekStart: '2025-02-17T00:00:00.000Z' });
   expect(res.status).toBe(400);

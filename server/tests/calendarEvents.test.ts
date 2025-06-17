@@ -1,15 +1,19 @@
-import request from 'supertest';
 import http from 'http';
 import { app } from '../src/index';
-import { prisma } from '../src/prisma';
+import { authRequest } from './test-auth-helper';
+import { getTestPrismaClient } from './jest.setup';
 import fs from 'fs';
 import path from 'path';
 
 describe('calendar events', () => {
   let server: http.Server;
   let baseUrl: string;
+  let prisma: ReturnType<typeof getTestPrismaClient>;
+  const auth = authRequest(app);
 
   beforeAll(async () => {
+    prisma = getTestPrismaClient();
+    await auth.setup();
     await prisma.$queryRawUnsafe('PRAGMA busy_timeout = 20000');
     await prisma.calendarEvent.deleteMany();
     const ics = fs.readFileSync(path.join(__dirname, 'fixtures', 'sample.ics'));
@@ -29,7 +33,7 @@ describe('calendar events', () => {
   });
 
   it('creates and lists events', async () => {
-    const res = await request(app).post('/api/calendar-events').send({
+    const res = await auth.post('/api/calendar-events').send({
       title: 'PD Day',
       start: '2025-01-02T00:00:00.000Z',
       end: '2025-01-02T23:59:59.000Z',
@@ -37,15 +41,13 @@ describe('calendar events', () => {
       eventType: 'PD_DAY',
     });
     expect(res.status).toBe(201);
-    const list = await request(app).get('/api/calendar-events?from=2025-01-01&to=2025-01-03');
+    const list = await auth.get('/api/calendar-events?from=2025-01-01&to=2025-01-03');
     expect(list.status).toBe(200);
     expect(list.body.length).toBe(1);
   });
 
   it('imports events from ical', async () => {
-    const res = await request(app)
-      .post('/api/calendar-events/sync/ical')
-      .send({ feedUrl: baseUrl });
+    const res = await auth.post('/api/calendar-events/sync/ical').send({ feedUrl: baseUrl });
     expect(res.status).toBe(200);
     const events = await prisma.calendarEvent.findMany();
     expect(events.length).toBeGreaterThan(1);
@@ -54,7 +56,7 @@ describe('calendar events', () => {
   describe('Edge Cases', () => {
     it('should handle empty data scenarios', async () => {
       // Test with missing required fields
-      const missingTitle = await request(app).post('/api/calendar-events').send({
+      const missingTitle = await auth.post('/api/calendar-events').send({
         start: '2025-01-02T00:00:00.000Z',
         end: '2025-01-02T23:59:59.000Z',
         allDay: true,
@@ -62,7 +64,7 @@ describe('calendar events', () => {
       });
       expect(missingTitle.status).toBe(400);
 
-      const missingStart = await request(app).post('/api/calendar-events').send({
+      const missingStart = await auth.post('/api/calendar-events').send({
         title: 'Test Event',
         end: '2025-01-02T23:59:59.000Z',
         allDay: true,
@@ -71,7 +73,7 @@ describe('calendar events', () => {
       expect(missingStart.status).toBe(400);
 
       // Test empty string values
-      const emptyTitle = await request(app).post('/api/calendar-events').send({
+      const emptyTitle = await auth.post('/api/calendar-events').send({
         title: '',
         start: '2025-01-02T00:00:00.000Z',
         end: '2025-01-02T23:59:59.000Z',
@@ -84,7 +86,7 @@ describe('calendar events', () => {
     it('should handle maximum data limits', async () => {
       // Test extremely long titles
       const longTitle = 'a'.repeat(1000);
-      const longTitleRes = await request(app).post('/api/calendar-events').send({
+      const longTitleRes = await auth.post('/api/calendar-events').send({
         title: longTitle,
         start: '2025-01-02T00:00:00.000Z',
         end: '2025-01-02T23:59:59.000Z',
@@ -94,7 +96,7 @@ describe('calendar events', () => {
       expect(longTitleRes.status).toBe(400);
 
       // Test large date ranges
-      const largeRange = await request(app).post('/api/calendar-events').send({
+      const largeRange = await auth.post('/api/calendar-events').send({
         title: 'Long Event',
         start: '2025-01-01T00:00:00.000Z',
         end: '2035-12-31T23:59:59.000Z', // 10 year span
@@ -119,7 +121,7 @@ describe('calendar events', () => {
       ];
 
       for (const title of specialTitles) {
-        const response = await request(app).post('/api/calendar-events').send({
+        const response = await auth.post('/api/calendar-events').send({
           title,
           start: '2025-01-02T00:00:00.000Z',
           end: '2025-01-02T23:59:59.000Z',
@@ -146,7 +148,7 @@ describe('calendar events', () => {
       ];
 
       for (const date of invalidDates) {
-        const response = await request(app).post('/api/calendar-events').send({
+        const response = await auth.post('/api/calendar-events').send({
           title: 'Test Event',
           start: date,
           end: '2025-01-02T23:59:59.000Z',
@@ -159,7 +161,7 @@ describe('calendar events', () => {
 
     it('should handle start/end date validation', async () => {
       // Test end before start
-      const endBeforeStart = await request(app).post('/api/calendar-events').send({
+      const endBeforeStart = await auth.post('/api/calendar-events').send({
         title: 'Invalid Range Event',
         start: '2025-01-02T00:00:00.000Z',
         end: '2025-01-01T23:59:59.000Z',
@@ -169,7 +171,7 @@ describe('calendar events', () => {
       expect(endBeforeStart.status).toBe(400);
 
       // Test same start and end time
-      const sameTime = await request(app).post('/api/calendar-events').send({
+      const sameTime = await auth.post('/api/calendar-events').send({
         title: 'Same Time Event',
         start: '2025-01-02T12:00:00.000Z',
         end: '2025-01-02T12:00:00.000Z',
@@ -205,15 +207,13 @@ describe('calendar events', () => {
 
       for (let i = 0; i < timezoneTestCases.length; i++) {
         const testCase = timezoneTestCases[i];
-        const response = await request(app)
-          .post('/api/calendar-events')
-          .send({
-            title: `Timezone Test ${i + 1}`,
-            start: testCase.start,
-            end: testCase.end,
-            allDay: false,
-            eventType: 'OTHER',
-          });
+        const response = await auth.post('/api/calendar-events').send({
+          title: `Timezone Test ${i + 1}`,
+          start: testCase.start,
+          end: testCase.end,
+          allDay: false,
+          eventType: 'OTHER',
+        });
 
         // Should handle all valid ISO date formats
         expect([200, 201]).toContain(response.status);
@@ -240,13 +240,11 @@ describe('calendar events', () => {
       ];
 
       for (const testCase of leapYearCases) {
-        const response = await request(app)
-          .post('/api/calendar-events')
-          .send({
-            ...testCase,
-            allDay: true,
-            eventType: 'OTHER',
-          });
+        const response = await auth.post('/api/calendar-events').send({
+          ...testCase,
+          allDay: true,
+          eventType: 'OTHER',
+        });
 
         expect([200, 201]).toContain(response.status);
       }
@@ -263,12 +261,10 @@ describe('calendar events', () => {
 
       // Create multiple concurrent event requests
       const concurrentCreations = Array.from({ length: 5 }, (_, i) =>
-        request(app)
-          .post('/api/calendar-events')
-          .send({
-            ...eventData,
-            title: `${eventData.title} ${i + 1}`,
-          }),
+        auth.post('/api/calendar-events').send({
+          ...eventData,
+          title: `${eventData.title} ${i + 1}`,
+        }),
       );
 
       const responses = await Promise.all(concurrentCreations);
@@ -303,13 +299,11 @@ describe('calendar events', () => {
       ];
 
       for (const testCase of extremeDates) {
-        const response = await request(app)
-          .post('/api/calendar-events')
-          .send({
-            ...testCase,
-            allDay: true,
-            eventType: 'OTHER',
-          });
+        const response = await auth.post('/api/calendar-events').send({
+          ...testCase,
+          allDay: true,
+          eventType: 'OTHER',
+        });
 
         // Should handle extreme but valid dates
         expect([200, 201]).toContain(response.status);
@@ -320,15 +314,13 @@ describe('calendar events', () => {
       const invalidEventTypes = ['INVALID_TYPE', '', null, undefined, 123, { nested: 'object' }];
 
       for (const eventType of invalidEventTypes) {
-        const response = await request(app)
-          .post('/api/calendar-events')
-          .send({
-            title: 'Invalid Type Event',
-            start: '2025-01-02T00:00:00.000Z',
-            end: '2025-01-02T23:59:59.000Z',
-            allDay: true,
-            eventType: eventType as string,
-          });
+        const response = await auth.post('/api/calendar-events').send({
+          title: 'Invalid Type Event',
+          start: '2025-01-02T00:00:00.000Z',
+          end: '2025-01-02T23:59:59.000Z',
+          allDay: true,
+          eventType: eventType as string,
+        });
 
         expect(response.status).toBe(400);
       }
@@ -339,9 +331,7 @@ describe('calendar events', () => {
       const invalidUrls = ['not-a-url', 'http://localhost:99999/nonexistent', '', null, undefined];
 
       for (const url of invalidUrls) {
-        const response = await request(app)
-          .post('/api/calendar-events/sync/ical')
-          .send({ feedUrl: url });
+        const response = await auth.post('/api/calendar-events/sync/ical').send({ feedUrl: url });
 
         expect(response.status).toBe(400);
       }
@@ -359,7 +349,7 @@ describe('calendar events', () => {
       ];
 
       for (const query of invalidQueries) {
-        const response = await request(app).get(`/api/calendar-events${query}`);
+        const response = await auth.get(`/api/calendar-events${query}`);
 
         // Should handle gracefully, either return 400 or empty results
         expect([200, 400]).toContain(response.status);

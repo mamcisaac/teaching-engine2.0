@@ -1,11 +1,11 @@
 import { describe, beforeAll, afterAll, beforeEach, it, expect } from '@jest/globals';
-import { prisma } from '../src/prisma';
+import { authRequest } from './test-auth-helper';
+import { getTestPrismaClient } from './jest.setup';
 import { getTestEmailService, resetTestEmailService } from './helpers/testEmailService';
 import { generateTestEmail, expectEmailContent } from './helpers/emailTestHelper';
 import { renderTemplate, NewsletterTemplate } from '../src/services/newsletterGenerator';
 import { randomBytes } from 'crypto';
 import bcrypt from 'bcryptjs';
-import request from 'supertest';
 import { app } from '../src/index';
 import { setEmailHandler, clearEmailHandler } from '../src/services/emailService';
 
@@ -18,18 +18,30 @@ describe('Email Template Tests', () => {
     name: string;
     role: 'teacher';
   };
+  let prisma: ReturnType<typeof getTestPrismaClient>;
+  const auth = authRequest(app);
 
   beforeAll(async () => {
+    prisma = getTestPrismaClient();
+    await auth.setup();
     testEmailService = getTestEmailService();
-    
+
     // Set up email handler to capture emails in tests
     setEmailHandler(async (to, subject, text, html, attachment) => {
-      await testEmailService.sendEmail(to, subject, text, html, attachment ? {
-        filename: attachment.filename,
-        content: attachment.content
-      } : undefined);
+      await testEmailService.sendEmail(
+        to,
+        subject,
+        text,
+        html,
+        attachment
+          ? {
+              filename: attachment.filename,
+              content: attachment.content,
+            }
+          : undefined,
+      );
     });
-    
+
     // Create test user
     const id = randomBytes(4).toString('hex');
     testUser = {
@@ -38,7 +50,7 @@ describe('Email Template Tests', () => {
       name: `Teacher ${id}`,
       role: 'teacher',
     };
-    
+
     const hashedPassword = await bcrypt.hash(testUser.password, 10);
     await prisma.user.create({
       data: {
@@ -48,15 +60,13 @@ describe('Email Template Tests', () => {
         role: testUser.role,
       },
     });
-    
+
     // Get auth token
-    const loginRes = await request(app)
-      .post('/api/login')
-      .send({
-        email: testUser.email,
-        password: testUser.password,
-      });
-    
+    const loginRes = await auth.post('/api/login').send({
+      email: testUser.email,
+      password: testUser.password,
+    });
+
     teacherToken = loginRes.body.token;
   });
 
@@ -97,17 +107,17 @@ describe('Email Template Tests', () => {
 
     it('renders weekly template correctly', async () => {
       const renderedHtml = renderTemplate('weekly', testTemplateData);
-      
+
       expect(renderedHtml).toContain(testTemplateData.title);
       expect(renderedHtml).toContain('Math Adventures');
       expect(renderedHtml).toContain('Science Discovery');
       expect(renderedHtml).toContain('Parent-Teacher Conferences');
-      
+
       // Check for proper HTML structure
       expect(renderedHtml).toContain('<html>');
       expect(renderedHtml).toContain('<body>');
       expect(renderedHtml).toContain('</html>');
-      
+
       // Check for styling
       expect(renderedHtml).toContain('<style>');
       expect(renderedHtml).toMatch(/font-family.*Arial|Helvetica|sans-serif/);
@@ -129,11 +139,11 @@ describe('Email Template Tests', () => {
       };
 
       const renderedHtml = renderTemplate('monthly', monthlyData);
-      
+
       expect(renderedHtml).toContain('Monthly Newsletter - March 2024');
       expect(renderedHtml).toContain('Academic Progress');
       expect(renderedHtml).toContain('Special Events');
-      
+
       // Monthly template should have different styling than weekly
       expect(renderedHtml).toContain('<html>');
       expect(renderedHtml).toContain('<style>');
@@ -158,7 +168,7 @@ describe('Email Template Tests', () => {
       };
 
       const renderedHtml = renderTemplate('weekly', customData);
-      
+
       expect(renderedHtml).toContain('Daily Update - March 15, 2024');
       expect(renderedHtml).toContain('Morning Circle');
       expect(renderedHtml).toContain('Learning Centers');
@@ -178,7 +188,7 @@ describe('Email Template Tests', () => {
       };
 
       const renderedHtml = renderTemplate('weekly', emptyData);
-      
+
       expect(renderedHtml).toContain('Empty Newsletter');
       expect(renderedHtml).toContain('<html>');
       expect(renderedHtml).toContain('<body>');
@@ -194,11 +204,13 @@ describe('Email Template Tests', () => {
       };
 
       const renderedHtml = renderTemplate('weekly', dangerousData);
-      
+
       // Title should be escaped
-      expect(renderedHtml).toContain('Security Test &lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;');
+      expect(renderedHtml).toContain(
+        'Security Test &lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;',
+      );
       expect(renderedHtml).not.toContain('<script>alert("xss")</script>');
-      
+
       // Content should be preserved as HTML
       expect(renderedHtml).toContain('<h2>Safe Content</h2>');
     });
@@ -220,7 +232,7 @@ describe('Email Template Tests', () => {
       };
 
       const renderedHtml = renderTemplate('weekly', formattedData);
-      
+
       expect(renderedHtml).toContain('<strong>bold</strong>');
       expect(renderedHtml).toContain('<em>italic</em>');
       expect(renderedHtml).toContain('<ul>');
@@ -253,7 +265,7 @@ describe('Email Template Tests', () => {
         template: 'weekly',
       };
 
-      const createRes = await request(app)
+      const createRes = await auth
         .post('/api/newsletters')
         .set('Authorization', `Bearer ${teacherToken}`)
         .send(newsletterData);
@@ -262,7 +274,7 @@ describe('Email Template Tests', () => {
       const newsletterId = createRes.body.id;
 
       // Send the newsletter
-      const sendRes = await request(app)
+      const sendRes = await auth
         .post(`/api/newsletters/${newsletterId}/send`)
         .set('Authorization', `Bearer ${teacherToken}`);
 
@@ -318,7 +330,7 @@ describe('Email Template Tests', () => {
       });
 
       // Generate newsletter
-      const generateRes = await request(app)
+      const generateRes = await auth
         .post('/api/newsletters/generate')
         .set('Authorization', `Bearer ${teacherToken}`)
         .send({
@@ -332,7 +344,7 @@ describe('Email Template Tests', () => {
       const newsletterId = generateRes.body.id;
 
       // Send the generated newsletter
-      const sendRes = await request(app)
+      const sendRes = await auth
         .post(`/api/newsletters/${newsletterId}/send`)
         .set('Authorization', `Bearer ${teacherToken}`);
 
@@ -369,7 +381,7 @@ describe('Email Template Tests', () => {
       expect(renderedHtml).toContain('Large Newsletter');
       expect(renderedHtml).toContain('paragraph 1');
       expect(renderedHtml).toContain('paragraph 1000');
-      
+
       // Should render quickly (less than 1 second for 1000 paragraphs)
       expect(endTime - startTime).toBeLessThan(1000);
     });
@@ -386,7 +398,7 @@ describe('Email Template Tests', () => {
       };
 
       const renderedHtml = renderTemplate('weekly', specialCharData);
-      
+
       expect(renderedHtml).toContain('Spécial Chäractërs');
       expect(renderedHtml).toContain('🎉');
       expect(renderedHtml).toContain('àáâãäåæçèéêë');

@@ -34,6 +34,7 @@ export const milestoneCreateSchema = baseMilestoneSchema.refine(
 
 export const milestoneUpdateSchema = baseMilestoneSchema
   .omit({ subjectId: true })
+  .partial()
   .refine(
     (data) =>
       !(data.startDate && data.endDate) || new Date(data.startDate) <= new Date(data.endDate),
@@ -65,7 +66,7 @@ export const activityCreateSchema = z.object({
   cognates: z.array(z.number()).optional(),
 });
 
-export const activityUpdateSchema = activityCreateSchema.omit({ milestoneId: true });
+export const activityUpdateSchema = activityCreateSchema.omit({ milestoneId: true }).partial();
 
 export const activityReorderSchema = z.object({
   milestoneId: z.number(),

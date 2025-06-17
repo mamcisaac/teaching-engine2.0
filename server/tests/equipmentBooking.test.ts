@@ -1,11 +1,15 @@
-import request from 'supertest';
 import { app } from '../src/index';
-import { prisma } from '../src/prisma';
+import { authRequest } from './test-auth-helper';
+import { getTestPrismaClient } from './jest.setup';
 
 describe('Equipment Booking API', () => {
   let teacherId: number;
+  let prisma: ReturnType<typeof getTestPrismaClient>;
+  const auth = authRequest(app);
 
   beforeAll(async () => {
+    prisma = getTestPrismaClient();
+    await auth.setup();
     const teacher = await prisma.user.create({
       data: { email: `eb${Date.now()}@e.com`, password: 'x', name: 'EB' },
     });
@@ -19,14 +23,14 @@ describe('Equipment Booking API', () => {
   });
 
   it('creates and lists bookings', async () => {
-    const create = await request(app).post('/api/equipment-bookings').send({
+    const create = await auth.post('/api/equipment-bookings').send({
       teacherId,
       resourceName: 'iPad Cart',
       neededBy: '2025-03-01T00:00:00.000Z',
       leadTimeDays: 10,
     });
     expect(create.status).toBe(201);
-    const list = await request(app).get(`/api/equipment-bookings?teacherId=${teacherId}`);
+    const list = await auth.get(`/api/equipment-bookings?teacherId=${teacherId}`);
     expect(list.status).toBe(200);
     expect(list.body.length).toBeGreaterThan(0);
   });
@@ -34,14 +38,14 @@ describe('Equipment Booking API', () => {
   describe('Edge Cases', () => {
     it('should handle empty data scenarios', async () => {
       // Test with missing required fields
-      const missingTeacher = await request(app).post('/api/equipment-bookings').send({
+      const missingTeacher = await auth.post('/api/equipment-bookings').send({
         resourceName: 'iPad Cart',
         neededBy: '2025-03-01T00:00:00.000Z',
         leadTimeDays: 10,
       });
       expect(missingTeacher.status).toBe(400);
 
-      const missingResource = await request(app).post('/api/equipment-bookings').send({
+      const missingResource = await auth.post('/api/equipment-bookings').send({
         teacherId,
         neededBy: '2025-03-01T00:00:00.000Z',
         leadTimeDays: 10,
@@ -49,7 +53,7 @@ describe('Equipment Booking API', () => {
       expect(missingResource.status).toBe(400);
 
       // Test empty string values
-      const emptyResource = await request(app).post('/api/equipment-bookings').send({
+      const emptyResource = await auth.post('/api/equipment-bookings').send({
         teacherId,
         resourceName: '',
         neededBy: '2025-03-01T00:00:00.000Z',
@@ -61,7 +65,7 @@ describe('Equipment Booking API', () => {
     it('should handle maximum data limits', async () => {
       // Test extremely long resource names
       const longResourceName = 'a'.repeat(1000);
-      const longName = await request(app).post('/api/equipment-bookings').send({
+      const longName = await auth.post('/api/equipment-bookings').send({
         teacherId,
         resourceName: longResourceName,
         neededBy: '2025-03-01T00:00:00.000Z',
@@ -70,7 +74,7 @@ describe('Equipment Booking API', () => {
       expect(longName.status).toBe(400);
 
       // Test maximum lead time
-      const maxLeadTime = await request(app).post('/api/equipment-bookings').send({
+      const maxLeadTime = await auth.post('/api/equipment-bookings').send({
         teacherId,
         resourceName: 'iPad Cart',
         neededBy: '2025-03-01T00:00:00.000Z',
@@ -91,7 +95,7 @@ describe('Equipment Booking API', () => {
       ];
 
       for (const resourceName of specialChars) {
-        const response = await request(app).post('/api/equipment-bookings').send({
+        const response = await auth.post('/api/equipment-bookings').send({
           teacherId,
           resourceName,
           neededBy: '2025-03-01T00:00:00.000Z',
@@ -115,7 +119,7 @@ describe('Equipment Booking API', () => {
       ];
 
       for (const date of invalidDates) {
-        const response = await request(app).post('/api/equipment-bookings').send({
+        const response = await auth.post('/api/equipment-bookings').send({
           teacherId,
           resourceName: 'iPad Cart',
           neededBy: date,
@@ -127,7 +131,7 @@ describe('Equipment Booking API', () => {
 
     it('should handle past dates', async () => {
       const pastDate = new Date('2020-01-01T00:00:00.000Z');
-      const response = await request(app).post('/api/equipment-bookings').send({
+      const response = await auth.post('/api/equipment-bookings').send({
         teacherId,
         resourceName: 'iPad Cart',
         neededBy: pastDate.toISOString(),
@@ -138,7 +142,7 @@ describe('Equipment Booking API', () => {
 
     it('should handle negative and zero values', async () => {
       // Test negative lead time
-      const negativeLeadTime = await request(app).post('/api/equipment-bookings').send({
+      const negativeLeadTime = await auth.post('/api/equipment-bookings').send({
         teacherId,
         resourceName: 'iPad Cart',
         neededBy: '2025-03-01T00:00:00.000Z',
@@ -147,7 +151,7 @@ describe('Equipment Booking API', () => {
       expect(negativeLeadTime.status).toBe(400);
 
       // Test zero lead time
-      const zeroLeadTime = await request(app).post('/api/equipment-bookings').send({
+      const zeroLeadTime = await auth.post('/api/equipment-bookings').send({
         teacherId,
         resourceName: 'iPad Cart',
         neededBy: '2025-03-01T00:00:00.000Z',
@@ -156,7 +160,7 @@ describe('Equipment Booking API', () => {
       expect([200, 201, 400]).toContain(zeroLeadTime.status);
 
       // Test negative teacher ID
-      const negativeTeacher = await request(app).post('/api/equipment-bookings').send({
+      const negativeTeacher = await auth.post('/api/equipment-bookings').send({
         teacherId: -1,
         resourceName: 'iPad Cart',
         neededBy: '2025-03-01T00:00:00.000Z',
@@ -175,7 +179,7 @@ describe('Equipment Booking API', () => {
 
       // Create multiple concurrent booking requests
       const concurrentRequests = Array.from({ length: 5 }, () =>
-        request(app).post('/api/equipment-bookings').send(bookingData),
+        auth.post('/api/equipment-bookings').send(bookingData),
       );
 
       const responses = await Promise.all(concurrentRequests);
@@ -195,7 +199,7 @@ describe('Equipment Booking API', () => {
       ];
 
       for (const value of extremeValues) {
-        const response = await request(app).post('/api/equipment-bookings').send({
+        const response = await auth.post('/api/equipment-bookings').send({
           teacherId: value,
           resourceName: 'iPad Cart',
           neededBy: '2025-03-01T00:00:00.000Z',
@@ -215,15 +219,13 @@ describe('Equipment Booking API', () => {
       ];
 
       for (const data of malformedRequests) {
-        const response = await request(app)
-          .post('/api/equipment-bookings')
-          .send({
-            ...data,
-            teacherId: data.teacherId || teacherId,
-            resourceName: 'iPad Cart',
-            neededBy: data.neededBy || '2025-03-01T00:00:00.000Z',
-            leadTimeDays: data.leadTimeDays || 10,
-          });
+        const response = await auth.post('/api/equipment-bookings').send({
+          ...data,
+          teacherId: data.teacherId || teacherId,
+          resourceName: 'iPad Cart',
+          neededBy: data.neededBy || '2025-03-01T00:00:00.000Z',
+          leadTimeDays: data.leadTimeDays || 10,
+        });
 
         // Should handle malformed data gracefully
         expect([200, 201, 400]).toContain(response.status);
@@ -239,7 +241,7 @@ describe('Equipment Booking API', () => {
       ];
 
       for (const dateString of timezoneTestCases) {
-        const response = await request(app).post('/api/equipment-bookings').send({
+        const response = await auth.post('/api/equipment-bookings').send({
           teacherId,
           resourceName: 'Timezone Test Cart',
           neededBy: dateString,
@@ -261,7 +263,7 @@ describe('Equipment Booking API', () => {
       ];
 
       for (const dateString of specialDates) {
-        const response = await request(app).post('/api/equipment-bookings').send({
+        const response = await auth.post('/api/equipment-bookings').send({
           teacherId,
           resourceName: 'Calendar Edge Case Cart',
           neededBy: dateString,

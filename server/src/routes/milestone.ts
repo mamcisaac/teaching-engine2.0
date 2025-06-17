@@ -69,7 +69,13 @@ router.post('/', validate(milestoneCreateSchema), async (req, res, next) => {
       const outcome = await prisma.outcome.upsert({
         where: { code },
         update: {},
-        create: { subject: 'FRA', grade: 1, code, description: '' },
+        create: {
+          subject: 'General',
+          grade: 1,
+          code,
+          description: `Outcome ${code}`,
+          domain: 'General',
+        },
       });
       await prisma.milestoneOutcome.create({
         data: { milestoneId: milestone.id, outcomeId: outcome.id },
@@ -113,7 +119,13 @@ router.put('/:id', validate(milestoneUpdateSchema), async (req, res, next) => {
       const outcome = await prisma.outcome.upsert({
         where: { code },
         update: {},
-        create: { subject: 'FRA', grade: 1, code, description: '' },
+        create: {
+          subject: 'General',
+          grade: 1,
+          code,
+          description: `Outcome ${code}`,
+          domain: 'General',
+        },
       });
       await prisma.milestoneOutcome.create({
         data: { milestoneId: milestone.id, outcomeId: outcome.id },

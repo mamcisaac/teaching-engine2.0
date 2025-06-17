@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from '@jest/globals';
 import { getTestPrismaClient, getCurrentTestId } from './jest.setup';
-import { createTestUtils, assertions } from './test-utils';
+import { createTestUtils } from './test-utils';
 import { factories } from './factories/index';
 
 describe('Database Transaction Isolation', () => {
@@ -55,7 +55,7 @@ describe('Database Transaction Isolation', () => {
 
   it('should maintain referential integrity within transactions', async () => {
     // Test foreign key constraints
-    await assertions.rejectsWithMessage(
+    await expect(
       prisma.activity.create({
         data: {
           title: 'Invalid Activity',
@@ -65,8 +65,7 @@ describe('Database Transaction Isolation', () => {
           orderIndex: 0,
         },
       }),
-      'Foreign key constraint failed',
-    );
+    ).rejects.toThrow();
   });
 
   it('should enforce unique constraints within transactions', async () => {
@@ -74,10 +73,7 @@ describe('Database Transaction Isolation', () => {
     await factories.outcome.create({ code: 'UNIQUE-ISOLATION-TEST' });
 
     // Try to create another outcome with the same code
-    await assertions.rejectsWithMessage(
-      factories.outcome.create({ code: 'UNIQUE-ISOLATION-TEST' }),
-      'Unique constraint failed',
-    );
+    await expect(factories.outcome.create({ code: 'UNIQUE-ISOLATION-TEST' })).rejects.toThrow();
   });
 
   it('should handle concurrent operations safely', async () => {

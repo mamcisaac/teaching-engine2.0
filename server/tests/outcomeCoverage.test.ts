@@ -1,6 +1,6 @@
-import request from 'supertest';
 import { app } from '../src/index';
-import { prisma } from '../src/prisma';
+import { authRequest } from './test-auth-helper';
+import { getTestPrismaClient } from './jest.setup';
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcryptjs';
 
@@ -20,15 +20,18 @@ interface OutcomeCoverageResponse {
 }
 
 describe('Outcome Coverage API', () => {
-  let token: string;
   // Using underscore prefix to indicate unused variable (to satisfy ESLint)
   // let _userId: number;
   let subjectId: number;
   let milestoneId: number;
   let outcomeId: string;
   let activityId: number;
+  let prisma: ReturnType<typeof getTestPrismaClient>;
+  const auth = authRequest(app);
 
   beforeAll(async () => {
+    prisma = getTestPrismaClient();
+    await auth.setup();
     // Setup: Create a user and login
     const email = `test-${uuidv4()}@example.com`;
     const password = 'password123';
@@ -44,26 +47,20 @@ describe('Outcome Coverage API', () => {
     });
     // _userId = user.id;
 
-    const loginRes = await request(app).post('/api/login').send({ email, password });
+    const loginRes = await auth.post('/api/login').send({ email, password });
 
     token = loginRes.body.token;
 
     // Create a subject
-    const subjectRes = await request(app)
-      .post('/api/subjects')
-      .set('Authorization', `Bearer ${token}`)
-      .send({ name: 'Test Subject' });
+    const subjectRes = await auth.post('/api/subjects').send({ name: 'Test Subject' });
 
     subjectId = subjectRes.body.id;
 
     // Create a milestone
-    const milestoneRes = await request(app)
-      .post('/api/milestones')
-      .set('Authorization', `Bearer ${token}`)
-      .send({
-        title: 'Test Milestone',
-        subjectId,
-      });
+    const milestoneRes = await auth.post('/api/milestones').send({
+      title: 'Test Milestone',
+      subjectId,
+    });
 
     milestoneId = milestoneRes.body.id;
 
@@ -92,9 +89,7 @@ describe('Outcome Coverage API', () => {
   });
 
   it('should return outcomes with no coverage initially', async () => {
-    const res = await request(app)
-      .get('/api/outcomes/coverage')
-      .set('Authorization', `Bearer ${token}`);
+    const res = await auth.get('/api/outcomes/coverage');
 
     expect(res.status).toBe(200);
     const outcomeData = res.body.find((o: OutcomeCoverageResponse) => o.outcomeId === outcomeId);
@@ -105,13 +100,10 @@ describe('Outcome Coverage API', () => {
 
   it('should mark an outcome as covered when linked to an activity', async () => {
     // Create an activity
-    const activityRes = await request(app)
-      .post('/api/activities')
-      .set('Authorization', `Bearer ${token}`)
-      .send({
-        title: 'Test Activity',
-        milestoneId,
-      });
+    const activityRes = await auth.post('/api/activities').send({
+      title: 'Test Activity',
+      milestoneId,
+    });
 
     activityId = activityRes.body.id;
 
@@ -124,9 +116,7 @@ describe('Outcome Coverage API', () => {
     });
 
     // Check coverage again
-    const res = await request(app)
-      .get('/api/outcomes/coverage')
-      .set('Authorization', `Bearer ${token}`);
+    const res = await auth.get('/api/outcomes/coverage');
 
     expect(res.status).toBe(200);
     const outcomeData = res.body.find((o: OutcomeCoverageResponse) => o.outcomeId === outcomeId);
@@ -138,9 +128,7 @@ describe('Outcome Coverage API', () => {
   });
 
   it('should filter outcomes by subject', async () => {
-    const res = await request(app)
-      .get('/api/outcomes/coverage?subject=Test%20Subject')
-      .set('Authorization', `Bearer ${token}`);
+    const res = await auth.get('/api/outcomes/coverage?subject=Test%20Subject');
 
     expect(res.status).toBe(200);
     expect(res.body.length).toBeGreaterThan(0);
@@ -148,9 +136,7 @@ describe('Outcome Coverage API', () => {
   });
 
   it('should filter outcomes by grade', async () => {
-    const res = await request(app)
-      .get('/api/outcomes/coverage?grade=1')
-      .set('Authorization', `Bearer ${token}`);
+    const res = await auth.get('/api/outcomes/coverage?grade=1');
 
     expect(res.status).toBe(200);
     expect(res.body.length).toBeGreaterThan(0);
@@ -158,9 +144,7 @@ describe('Outcome Coverage API', () => {
   });
 
   it('should filter outcomes by domain', async () => {
-    const res = await request(app)
-      .get('/api/outcomes/coverage?domain=Test%20Domain')
-      .set('Authorization', `Bearer ${token}`);
+    const res = await auth.get('/api/outcomes/coverage?domain=Test%20Domain');
 
     expect(res.status).toBe(200);
     expect(res.body.length).toBeGreaterThan(0);

@@ -1,7 +1,7 @@
 import request from 'supertest';
-import { describe, beforeAll, afterAll, it, expect } from '@jest/globals';
+import { describe, beforeEach, it, expect } from '@jest/globals';
 import { app } from '../src/index';
-import { prisma } from '../src/prisma';
+import { getTestPrismaClient } from './jest.setup';
 import bcrypt from 'bcryptjs';
 
 // Test user credentials
@@ -11,7 +11,11 @@ const TEST_USER = {
 };
 
 describe('Authentication API', () => {
-  beforeAll(async () => {
+  let prisma: ReturnType<typeof getTestPrismaClient>;
+
+  beforeEach(async () => {
+    prisma = getTestPrismaClient();
+
     // Hash the password before creating the user
     const hashedPassword = await bcrypt.hash(TEST_USER.password, 10);
 
@@ -26,12 +30,6 @@ describe('Authentication API', () => {
         role: 'teacher',
       },
     });
-  });
-
-  afterAll(async () => {
-    // Clean up test data
-    await prisma.user.deleteMany({ where: { email: TEST_USER.email } });
-    await prisma.$disconnect();
   });
 
   describe('POST /api/login', () => {
@@ -60,7 +58,7 @@ describe('Authentication API', () => {
   describe('GET /api/auth/me', () => {
     let authToken: string;
 
-    beforeAll(async () => {
+    beforeEach(async () => {
       // Log in to get a token
       const res = await request(app).post('/api/login').send({
         email: TEST_USER.email,

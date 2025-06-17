@@ -90,27 +90,28 @@ class TestDatabaseManager {
     const client = this.clients.get(workerId);
     if (!client) return;
 
-    // Clear all data from tables in the correct order to avoid foreign key constraints
-    const tables = [
-      'WeeklySchedule',
-      'DailyPlanItem',
-      'DailyPlan',
-      'LessonPlan',
-      'ParentContact',
-      'Newsletter',
-      'Notification',
-      'Activity',
-      'Milestone',
-      'Subject',
-      'TimetableSlot',
-      'Outcome',
-      'User',
-    ];
-
     try {
-      for (const table of tables) {
-        await client.$executeRawUnsafe(`DELETE FROM ${table}`);
+      // For SQLite, get all table names dynamically
+      const tables = await client.$queryRaw<Array<{ name: string }>>`
+        SELECT name FROM sqlite_master 
+        WHERE type='table' 
+        AND name NOT LIKE 'sqlite_%'
+        AND name NOT LIKE '_prisma_migrations'
+      `;
+
+      // Disable foreign key constraints for SQLite
+      await client.$executeRawUnsafe('PRAGMA foreign_keys = OFF');
+
+      // Clear all tables
+      for (const { name } of tables) {
+        await client.$executeRawUnsafe(`DELETE FROM "${name}"`);
       }
+
+      // Reset autoincrement sequences
+      await client.$executeRawUnsafe(`DELETE FROM sqlite_sequence`);
+
+      // Re-enable foreign key constraints
+      await client.$executeRawUnsafe('PRAGMA foreign_keys = ON');
     } catch (error) {
       console.error(`Failed to reset database for worker ${workerId}:`, error);
       throw error;

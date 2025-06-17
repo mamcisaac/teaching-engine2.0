@@ -1,9 +1,14 @@
-import request from 'supertest';
 import { app } from '../src/index';
-import { prisma } from '../src/prisma';
+import { authRequest } from './test-auth-helper';
+import { getTestPrismaClient } from './jest.setup';
 
 let teacherId: number;
+let prisma: ReturnType<typeof getTestPrismaClient>;
+const auth = authRequest(app);
+
 beforeAll(async () => {
+  prisma = getTestPrismaClient();
+  await auth.setup();
   await prisma.$queryRawUnsafe('PRAGMA busy_timeout = 20000');
   await prisma.yearPlanEntry.deleteMany();
   await prisma.shareLink.deleteMany();
@@ -32,14 +37,14 @@ describe('year plan routes', () => {
         end: new Date('2025-01-31'),
       },
     });
-    const res = await request(app).get('/api/year-plan').query({ teacherId, year: 2025 });
+    const res = await auth.get('/api/year-plan').query({ teacherId, year: 2025 });
     expect(res.status).toBe(200);
     expect(res.body.length).toBe(1);
     expect(res.body[0].title).toBe('Numbers to 20');
   });
 
   it('creates share link', async () => {
-    const res = await request(app).post('/api/share/year-plan').send({ teacherId, year: 2025 });
+    const res = await auth.post('/api/share/year-plan').send({ teacherId, year: 2025 });
     expect(res.status).toBe(201);
     expect(res.body.shareToken).toBeTruthy();
   });
