@@ -4,16 +4,39 @@ import { PrismaClient, Prisma } from '@teaching-engine/database';
 // Create singleton instance for server usage
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
+  testPrismaClient: PrismaClient | undefined;
 };
 
-export const prisma =
-  globalForPrisma.prisma ??
-  new PrismaClient({
-    log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
-  });
+// In test environment, use the test client if available
+const isTestEnvironment = process.env.NODE_ENV === 'test' || process.env.JEST_WORKER_ID;
 
-if (process.env.NODE_ENV !== 'production') {
-  globalForPrisma.prisma = prisma;
+// Create a getter that always returns the current test client
+const getPrisma = () => {
+  if (isTestEnvironment && globalForPrisma.testPrismaClient) {
+    return globalForPrisma.testPrismaClient;
+  }
+  return (
+    globalForPrisma.prisma ??
+    new PrismaClient({
+      log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+    })
+  );
+};
+
+// Create a proxy to always use the current client
+export const prisma = new Proxy({} as PrismaClient, {
+  get(target, prop) {
+    const client = getPrisma();
+    return client[prop as keyof PrismaClient];
+  },
+  has(target, prop) {
+    const client = getPrisma();
+    return prop in client;
+  },
+});
+
+if (process.env.NODE_ENV !== 'production' && !isTestEnvironment) {
+  globalForPrisma.prisma = getPrisma();
 }
 
 export { PrismaClient, Prisma };

@@ -1,33 +1,17 @@
-import { prisma } from '../src/prisma';
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { generateMaterialList, zipWeeklyPrintables } from '../src/services/materialGenerator';
+import { getTestPrismaClient } from './jest.setup';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 describe('material generator', () => {
-  beforeAll(async () => {
-    await prisma.$queryRawUnsafe('PRAGMA busy_timeout = 20000');
-    await prisma.weeklySchedule.deleteMany();
-    await prisma.dailyPlanItem.deleteMany();
-    await prisma.dailyPlan.deleteMany();
-    await prisma.lessonPlan.deleteMany();
-    await prisma.activity.deleteMany();
-    await prisma.milestone.deleteMany();
-    await prisma.subject.deleteMany();
-  });
+  let prisma: ReturnType<typeof getTestPrismaClient>;
 
-  afterAll(async () => {
-    await prisma.weeklySchedule.deleteMany();
-    await prisma.dailyPlanItem.deleteMany();
-    await prisma.dailyPlan.deleteMany();
-    await prisma.lessonPlan.deleteMany();
-    await prisma.activity.deleteMany();
-    await prisma.milestone.deleteMany();
-    await prisma.subject.deleteMany();
-    await prisma.$disconnect();
+  beforeEach(() => {
+    prisma = getTestPrismaClient();
   });
 
   it('extracts materials from notes', async () => {
@@ -36,13 +20,30 @@ describe('material generator', () => {
     const act = await prisma.activity.create({
       data: { title: 'A', milestoneId: milestone.id, publicNote: 'Materials: glue, paper' },
     });
-    await prisma.lessonPlan.create({
+    const lessonPlan = await prisma.lessonPlan.create({
       data: {
         weekStart: new Date('2024-01-01'),
         schedule: { create: { day: 0, activityId: act.id } },
       },
     });
+
+    // Verify the data was created
+    const checkPlan = await prisma.lessonPlan.findFirst({
+      where: { id: lessonPlan.id },
+      include: { schedule: { include: { activity: true } } },
+    });
+    console.log('Created lesson plan:', checkPlan);
+
+    // Check if the service can see the data
+    const servicePrisma = (await import('../src/prisma')).prisma;
+    const servicePlan = await servicePrisma.lessonPlan.findFirst({
+      where: { weekStart: new Date('2024-01-01') },
+      include: { schedule: { include: { activity: true } } },
+    });
+    console.log('Service sees plan:', servicePlan);
+
     const list = await generateMaterialList('2024-01-01');
+    console.log('Generated material list:', list);
     expect(list).toContain('glue');
     expect(list).toContain('paper');
   });

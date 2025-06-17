@@ -22,6 +22,12 @@ beforeAll(async () => {
     if (!isHealthy) {
       throw new Error('Test database is not healthy after creation');
     }
+
+    // Set the test client globally so the prisma module can use it
+    const globalForPrisma = globalThis as unknown as {
+      testPrismaClient: PrismaClient | undefined;
+    };
+    globalForPrisma.testPrismaClient = testDb.getPrismaClient(workerId);
   } catch (error) {
     console.error('Failed to setup test database:', error);
     throw error;
@@ -38,6 +44,12 @@ beforeEach(async () => {
   try {
     // Start a real transaction for this test
     currentTransactionClient = await testDb.startTransaction(currentTestId);
+
+    // Update the global test client so services use the transaction
+    const globalForPrisma = globalThis as unknown as {
+      testPrismaClient: PrismaClient | undefined;
+    };
+    globalForPrisma.testPrismaClient = currentTransactionClient;
   } catch (error) {
     console.error('Failed to start transaction for test:', error);
     throw error;
@@ -45,23 +57,22 @@ beforeEach(async () => {
 });
 
 /**
- * Cleanup after each test - rollback transaction
+ * Cleanup after each test - reset database
  */
 afterEach(async () => {
   if (currentTestId) {
     try {
-      // Rollback the transaction
-      await testDb.rollbackTransaction(currentTestId);
-    } catch (error) {
-      console.warn('Failed to rollback transaction:', error);
+      // Reset the database after each test
+      const workerId = process.env.JEST_WORKER_ID || 'default';
+      await testDb.resetDatabase(workerId);
 
-      // If rollback fails, try to reset the entire database as fallback
-      try {
-        const workerId = process.env.JEST_WORKER_ID || 'default';
-        await testDb.resetDatabase(workerId);
-      } catch (resetError) {
-        console.error('Failed to reset database as fallback:', resetError);
-      }
+      // Reset the global test client
+      const globalForPrisma = globalThis as unknown as {
+        testPrismaClient: PrismaClient | undefined;
+      };
+      globalForPrisma.testPrismaClient = testDb.getPrismaClient(workerId);
+    } catch (error) {
+      console.error('Failed to reset database:', error);
     } finally {
       currentTestId = null;
       currentTransactionClient = null;

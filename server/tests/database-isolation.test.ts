@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from '@jest/globals';
 import { getTestPrismaClient, getCurrentTestId } from './jest.setup';
 import { createTestUtils, assertions } from './test-utils';
-import { factories } from './factories';
+import { factories } from './factories/index';
 
 describe('Database Transaction Isolation', () => {
   let testUtils: ReturnType<typeof createTestUtils>;

@@ -2,6 +2,7 @@ import request from 'supertest';
 import { app } from '../src/index';
 import { prisma } from '../src/prisma';
 import { v4 as uuidv4 } from 'uuid';
+import bcrypt from 'bcryptjs';
 
 // Define interface for outcome coverage response
 interface OutcomeCoverageResponse {
@@ -30,17 +31,20 @@ describe('Outcome Coverage API', () => {
   beforeAll(async () => {
     // Setup: Create a user and login
     const email = `test-${uuidv4()}@example.com`;
+    const password = 'password123';
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     await prisma.user.create({
       data: {
         email,
         name: 'Test User',
-        password: 'password123',
+        password: hashedPassword,
         role: 'TEACHER',
       },
     });
     // _userId = user.id;
 
-    const loginRes = await request(app).post('/api/login').send({ email, password: 'password123' });
+    const loginRes = await request(app).post('/api/login').send({ email, password });
 
     token = loginRes.body.token;
 

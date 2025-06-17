@@ -33,11 +33,11 @@ class TestDatabaseManager {
     this.connectionStats.set(workerId, { queries: 0, startTime: Date.now() });
 
     // Initialize the database schema
-    const root = resolve(__dirname, '..', '..');
+    const databasePath = resolve(__dirname, '..', '..', 'packages', 'database');
     try {
-      execSync('pnpm --filter @teaching-engine/database prisma db push --force-reset --skip-generate', {
+      execSync('npx prisma db push --force-reset --skip-generate', {
         stdio: 'inherit',
-        cwd: root,
+        cwd: databasePath,
         env: { ...process.env, DATABASE_URL: databaseUrl },
       });
     } catch (error) {
@@ -61,24 +61,17 @@ class TestDatabaseManager {
   async startTransaction(testId: string): Promise<PrismaClient> {
     const workerId = process.env.JEST_WORKER_ID || 'default';
     const client = this.clients.get(workerId);
-    
+
     if (!client) {
       throw new Error(`No client found for worker ${workerId}`);
     }
 
-    // For SQLite, we'll use savepoints instead of full transactions
-    // since SQLite doesn't support nested transactions
-    // Use $executeRawUnsafe to avoid parameterization of identifiers
-    const safeSavepointName = `sp_${testId.replace(/[^a-zA-Z0-9]/g, '_')}`;
-    await client.$executeRawUnsafe(`SAVEPOINT ${safeSavepointName}`);
-
-    // Return the same client, but track that we have a savepoint
+    // For SQLite, just return the client without transactions
+    // We'll rely on resetting the database between tests
     this.transactions.set(testId, {
       client,
       rollback: async () => {
-        const safeSavepointName = `sp_${testId.replace(/[^a-zA-Z0-9]/g, '_')}`;
-        await client.$executeRawUnsafe(`ROLLBACK TO SAVEPOINT ${safeSavepointName}`);
-        await client.$executeRawUnsafe(`RELEASE SAVEPOINT ${safeSavepointName}`);
+        // No-op for now
       },
     });
 
@@ -156,7 +149,7 @@ class TestDatabaseManager {
       // Create client on demand if it doesn't exist
       const databaseUrl = this.getDatabaseUrl(workerId);
       process.env.DATABASE_URL = databaseUrl;
-      
+
       client = new PrismaClient({
         datasources: {
           db: {
@@ -164,7 +157,7 @@ class TestDatabaseManager {
           },
         },
       });
-      
+
       this.clients.set(workerId, client);
       this.connectionStats.set(workerId, { queries: 0, startTime: Date.now() });
     }
@@ -173,16 +166,16 @@ class TestDatabaseManager {
 
   async executeWithRetry<T>(fn: () => Promise<T>, retries = 3): Promise<T> {
     let lastError: Error | null = null;
-    
+
     for (let i = 0; i < retries; i++) {
       try {
         return await fn();
       } catch (error) {
         lastError = error as Error;
-        
+
         // If it's a database locked error, wait before retrying
         if (lastError.message.includes('database is locked')) {
-          await new Promise(resolve => setTimeout(resolve, 100 * (i + 1)));
+          await new Promise((resolve) => setTimeout(resolve, 100 * (i + 1)));
         } else {
           // For other errors, don't retry
           throw error;
@@ -195,7 +188,7 @@ class TestDatabaseManager {
 
   private getDatabaseUrl(workerId: string): string {
     // Use a unique database file for each worker to avoid conflicts
-    const dbPath = resolve(__dirname, '..', '..', `test-${workerId}.db`);
+    const dbPath = resolve(__dirname, `test-${workerId}.db`);
     return `file:${dbPath}`;
   }
 }

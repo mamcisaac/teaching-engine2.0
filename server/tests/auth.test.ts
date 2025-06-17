@@ -2,6 +2,7 @@ import request from 'supertest';
 import { describe, beforeAll, afterAll, it, expect } from '@jest/globals';
 import { app } from '../src/index';
 import { prisma } from '../src/prisma';
+import bcrypt from 'bcryptjs';
 
 // Test user credentials
 const TEST_USER = {
@@ -11,13 +12,16 @@ const TEST_USER = {
 
 describe('Authentication API', () => {
   beforeAll(async () => {
+    // Hash the password before creating the user
+    const hashedPassword = await bcrypt.hash(TEST_USER.password, 10);
+
     // Ensure the test user exists
     await prisma.user.upsert({
       where: { email: TEST_USER.email },
       update: {},
       create: {
         email: TEST_USER.email,
-        password: TEST_USER.password,
+        password: hashedPassword,
         name: 'Test User',
         role: 'teacher',
       },
@@ -32,12 +36,10 @@ describe('Authentication API', () => {
 
   describe('POST /api/login', () => {
     it('should log in with valid credentials', async () => {
-      const res = await request(app)
-        .post('/api/login')
-        .send({
-          email: TEST_USER.email,
-          password: TEST_USER.password,
-        });
+      const res = await request(app).post('/api/login').send({
+        email: TEST_USER.email,
+        password: TEST_USER.password,
+      });
 
       expect(res.status).toBe(200);
       expect(res.body).toHaveProperty('token');
@@ -46,12 +48,10 @@ describe('Authentication API', () => {
     });
 
     it('should return 401 with invalid credentials', async () => {
-      const res = await request(app)
-        .post('/api/login')
-        .send({
-          email: 'nonexistent@example.com',
-          password: 'wrongpassword',
-        });
+      const res = await request(app).post('/api/login').send({
+        email: 'nonexistent@example.com',
+        password: 'wrongpassword',
+      });
 
       expect(res.status).toBe(401);
     });
@@ -62,13 +62,11 @@ describe('Authentication API', () => {
 
     beforeAll(async () => {
       // Log in to get a token
-      const res = await request(app)
-        .post('/api/login')
-        .send({
-          email: TEST_USER.email,
-          password: TEST_USER.password,
-        });
-      
+      const res = await request(app).post('/api/login').send({
+        email: TEST_USER.email,
+        password: TEST_USER.password,
+      });
+
       authToken = res.body.token;
     });
 
@@ -82,8 +80,7 @@ describe('Authentication API', () => {
     });
 
     it('should return 401 without valid token', async () => {
-      const res = await request(app)
-        .get('/api/auth/me');
+      const res = await request(app).get('/api/auth/me');
 
       expect(res.status).toBe(401);
     });
