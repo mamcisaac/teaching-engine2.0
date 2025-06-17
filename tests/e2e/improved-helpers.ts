@@ -246,7 +246,7 @@ export class PlannerPageObject {
   }
 
   async expectCalendarEvent(eventName: string): Promise<void> {
-    const eventElement = this.page.locator('.bg-yellow-100').filter({ hasText: eventName });
+    const eventElement = this.page.locator('.bg-yellow-100').filter({ hasText: eventName }).first();
     await expect(eventElement).toBeVisible({ timeout: 15000 });
   }
 }

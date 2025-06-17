@@ -1,12 +1,16 @@
-import { Router } from 'express';
+import { Router, Request } from 'express';
 import { Prisma } from '../prisma';
 import { prisma } from '../prisma';
 
+interface AuthenticatedRequest extends Request {
+  user?: { userId: string };
+}
+
 const router = Router();
 
-router.get('/', async (req, res, next) => {
+router.get('/', async (req: AuthenticatedRequest, res, next) => {
   try {
-    const userId = req.userId || 0;
+    const userId = parseInt(req.user?.userId || '0', 10);
     const { type, subjectId, dateFrom, dateTo } = req.query as {
       type?: 'public' | 'private';
       subjectId?: string;
