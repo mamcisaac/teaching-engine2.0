@@ -32,7 +32,7 @@ describe('PlannerSuggestions', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    
+
     // Mock console.error to prevent test noise
     jest.spyOn(console, 'error').mockImplementation(() => {});
   });
@@ -123,15 +123,15 @@ describe('PlannerSuggestions', () => {
     ];
 
     beforeEach(() => {
-      mockPrisma.milestone.findMany.mockResolvedValue(mockMilestones as any);
-      mockGetOutcomesCoverage.mockResolvedValue(mockOutcomesCoverage as any);
+      mockPrisma.milestone.findMany.mockResolvedValue(mockMilestones as unknown);
+      mockGetOutcomesCoverage.mockResolvedValue(mockOutcomesCoverage as unknown);
     });
 
     it('should return suggestions sorted by coverage status', async () => {
       const suggestions = await getPlannerSuggestions(weekStart, userId);
 
       expect(suggestions).toHaveLength(4);
-      
+
       // First suggestion should cover uncovered outcomes
       expect(suggestions[0]).toEqual({
         activityId: 1,
@@ -143,14 +143,16 @@ describe('PlannerSuggestions', () => {
       });
 
       // Suggestions covering uncovered outcomes should come first
-      const uncoveredSuggestions = suggestions.filter(s => s.coverageStatus === 'covers_uncovered');
+      const uncoveredSuggestions = suggestions.filter(
+        (s) => s.coverageStatus === 'covers_uncovered',
+      );
       expect(uncoveredSuggestions).toHaveLength(1);
     });
 
     it('should handle activities with no outcomes', async () => {
       const suggestions = await getPlannerSuggestions(weekStart, userId);
 
-      const generalSuggestion = suggestions.find(s => s.activityId === 3);
+      const generalSuggestion = suggestions.find((s) => s.activityId === 3);
       expect(generalSuggestion).toEqual({
         activityId: 3,
         title: 'Plant Growth Experiment',
@@ -164,7 +166,7 @@ describe('PlannerSuggestions', () => {
     it('should handle activities with already covered outcomes', async () => {
       const suggestions = await getPlannerSuggestions(weekStart, userId);
 
-      const alreadyCoveredSuggestion = suggestions.find(s => s.activityId === 4);
+      const alreadyCoveredSuggestion = suggestions.find((s) => s.activityId === 4);
       expect(alreadyCoveredSuggestion).toEqual({
         activityId: 4,
         title: 'Reading Comprehension',
@@ -178,7 +180,7 @@ describe('PlannerSuggestions', () => {
     it('should handle milestones without subjects', async () => {
       const suggestions = await getPlannerSuggestions(weekStart, userId);
 
-      const uncategorizedSuggestion = suggestions.find(s => s.subject === 'Uncategorized');
+      const uncategorizedSuggestion = suggestions.find((s) => s.subject === 'Uncategorized');
       expect(uncategorizedSuggestion).toBeTruthy();
       expect(uncategorizedSuggestion?.subject).toBe('Uncategorized');
     });
@@ -229,7 +231,7 @@ describe('PlannerSuggestions', () => {
           where: expect.objectContaining({
             userId: undefined,
           }),
-        })
+        }),
       );
     });
 
@@ -259,9 +261,7 @@ describe('PlannerSuggestions', () => {
               title: 'Activity with 1 outcome',
               completedAt: null,
               dailyPlanItems: [],
-              outcomes: [
-                { outcome: { id: 'covered-4' } },
-              ],
+              outcomes: [{ outcome: { id: 'covered-4' } }],
             },
           ],
         },
@@ -274,8 +274,8 @@ describe('PlannerSuggestions', () => {
         { outcomeId: 'covered-4', status: 'covered' },
       ];
 
-      mockPrisma.milestone.findMany.mockResolvedValue(equalCoverageMilestones as any);
-      mockGetOutcomesCoverage.mockResolvedValue(allCoveredOutcomes as any);
+      mockPrisma.milestone.findMany.mockResolvedValue(equalCoverageMilestones as unknown);
+      mockGetOutcomesCoverage.mockResolvedValue(allCoveredOutcomes as unknown);
 
       const suggestions = await getPlannerSuggestions(weekStart, userId);
 
@@ -304,7 +304,7 @@ describe('PlannerSuggestions', () => {
         },
       ];
 
-      mockPrisma.milestone.findMany.mockResolvedValue(milestonesWithNoActivities as any);
+      mockPrisma.milestone.findMany.mockResolvedValue(milestonesWithNoActivities as unknown);
 
       const suggestions = await getPlannerSuggestions(weekStart, userId);
 
@@ -315,12 +315,12 @@ describe('PlannerSuggestions', () => {
       mockGetOutcomesCoverage.mockRejectedValue(new Error('Coverage error'));
 
       await expect(getPlannerSuggestions(weekStart, userId)).rejects.toThrow(
-        'Failed to generate planner suggestions'
+        'Failed to generate planner suggestions',
       );
 
       expect(console.error).toHaveBeenCalledWith(
         'Error generating planner suggestions:',
-        expect.any(Error)
+        expect.any(Error),
       );
     });
 
@@ -328,12 +328,12 @@ describe('PlannerSuggestions', () => {
       mockPrisma.milestone.findMany.mockRejectedValue(new Error('Database error'));
 
       await expect(getPlannerSuggestions(weekStart, userId)).rejects.toThrow(
-        'Failed to generate planner suggestions'
+        'Failed to generate planner suggestions',
       );
 
       expect(console.error).toHaveBeenCalledWith(
         'Error generating planner suggestions:',
-        expect.any(Error)
+        expect.any(Error),
       );
     });
 
@@ -345,7 +345,7 @@ describe('PlannerSuggestions', () => {
         undefined,
       ];
 
-      mockGetOutcomesCoverage.mockResolvedValue(malformedCoverage as any);
+      mockGetOutcomesCoverage.mockResolvedValue(malformedCoverage as unknown);
 
       const suggestions = await getPlannerSuggestions(weekStart, userId);
 
@@ -382,8 +382,8 @@ describe('PlannerSuggestions', () => {
         { outcomeId: 'covered-outcome', status: 'covered' },
       ];
 
-      mockPrisma.milestone.findMany.mockResolvedValue(mixedMilestone as any);
-      mockGetOutcomesCoverage.mockResolvedValue(mixedCoverage as any);
+      mockPrisma.milestone.findMany.mockResolvedValue(mixedMilestone as unknown);
+      mockGetOutcomesCoverage.mockResolvedValue(mixedCoverage as unknown);
 
       const suggestions = await getPlannerSuggestions(weekStart, userId);
 
@@ -394,7 +394,7 @@ describe('PlannerSuggestions', () => {
   describe('edge cases', () => {
     it('should handle week boundary dates correctly', async () => {
       const weekStartBoundary = new Date('2024-01-01T00:00:00.000Z');
-      
+
       await getPlannerSuggestions(weekStartBoundary, userId);
 
       // Verify that addDays was called to calculate week end
@@ -404,7 +404,7 @@ describe('PlannerSuggestions', () => {
 
     it('should handle timezone considerations', async () => {
       const weekStartWithTimezone = new Date('2024-01-01T23:59:59.999Z');
-      
+
       await getPlannerSuggestions(weekStartWithTimezone, userId);
 
       expect(mockPrisma.milestone.findMany).toHaveBeenCalledWith(
@@ -417,7 +417,7 @@ describe('PlannerSuggestions', () => {
               }),
             ]),
           }),
-        })
+        }),
       );
     });
   });
