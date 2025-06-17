@@ -5,8 +5,8 @@ import fs from 'fs';
 import archiver from 'archiver';
 
 // Get directory name in ES module
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __filename_backupRoutes = fileURLToPath(import.meta.url);
+const __dirname_backupRoutes = path.dirname(__filename_backupRoutes);
 
 const router = Router();
 
@@ -20,7 +20,7 @@ function getDbPath() {
 }
 
 function getUploadsPath() {
-  return path.join(__dirname, '../uploads');
+  return path.join(__dirname_backupRoutes, '../uploads');
 }
 
 router.get('/', async (_req, res, next) => {

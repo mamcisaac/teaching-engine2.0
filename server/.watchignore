@@ -1,0 +1,9 @@
+# Ignore generated Prisma client files
+../packages/database/src/generated/**
+../packages/database/src/generated/client/**
+**/node_modules/**
+**/.git/**
+**/dist/**
+**/coverage/**
+**/*.db
+**/*.db-journal

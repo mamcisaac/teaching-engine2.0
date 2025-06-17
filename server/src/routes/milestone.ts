@@ -1,7 +1,11 @@
-import { Router } from 'express';
+import { Router, Request } from 'express';
 import { Prisma } from '../prisma';
 import { prisma } from '../prisma';
 import { validate, milestoneCreateSchema, milestoneUpdateSchema } from '../validation';
+
+interface AuthenticatedRequest extends Request {
+  user?: { userId: string };
+}
 
 const router = Router();
 
@@ -48,7 +52,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', validate(milestoneCreateSchema), async (req, res, next) => {
+router.post('/', validate(milestoneCreateSchema), async (req: AuthenticatedRequest, res, next) => {
   try {
     const milestone = await prisma.milestone.create({
       data: {
@@ -59,7 +63,7 @@ router.post('/', validate(milestoneCreateSchema), async (req, res, next) => {
         endDate: req.body.endDate ? new Date(req.body.endDate) : undefined,
         estHours: req.body.estHours,
         description: req.body.description,
-        userId: req.userId,
+        userId: parseInt(req.user?.userId || '0', 10),
       },
     });
 

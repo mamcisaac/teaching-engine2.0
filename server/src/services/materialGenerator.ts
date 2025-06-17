@@ -4,9 +4,9 @@ import { fileURLToPath } from 'url';
 import archiver from 'archiver';
 import { prisma } from '../prisma';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const uploadDir = path.join(__dirname, '../../uploads');
+const __filename_materialGen = fileURLToPath(import.meta.url);
+const __dirname_materialGen = path.dirname(__filename_materialGen);
+const uploadDir = path.join(__dirname_materialGen, '../../uploads');
 
 export function extractMaterials(note: string): string[] {
   const items = new Set<string>();

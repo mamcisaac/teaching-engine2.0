@@ -1,34 +1,35 @@
 import { test, expect } from '@playwright/test';
-import { 
-  login, 
-  TestDataFactory, 
+import {
+  login,
+  TestDataFactory,
   retry,
   capturePageState,
-  PlannerPageObject
+  PlannerPageObject,
 } from './improved-helpers';
 
 test.describe('Activity to Planner Workflow', () => {
   test('complete activity creation to planning workflow', async ({ page }) => {
     let testData: TestDataFactory;
-    
+
     try {
       // Login and get token
       const token = await login(page);
       testData = new TestDataFactory(page, token);
 
-      // Create test data hierarchy: Subject -> Milestone -> Activity
+      // Create test data hierarchy: Subject -> Milestone -> Activity with unique names
+      const timestamp = Date.now();
       const subject = await retry(async () => {
-        return await testData.createSubject('Planning Workflow Subject');
+        return await testData.createSubject(`Planning Workflow Subject ${timestamp}`);
       });
 
       const milestone = await retry(async () => {
         return await testData.createMilestone(subject.id, {
-          title: 'Planning Test Milestone',
+          title: `Planning Test Milestone ${timestamp}`,
         });
       });
 
       const activity = await retry(async () => {
-        return await testData.createActivity(milestone.id, 'Plannable Test Activity');
+        return await testData.createActivity(milestone.id, `Plannable Test Activity ${timestamp}`);
       });
 
       // Create timetable slots for the subject
@@ -44,7 +45,7 @@ test.describe('Activity to Planner Workflow', () => {
       const monday = new Date(today);
       monday.setDate(today.getDate() - today.getDay() + 1);
       const weekStart = monday.toISOString().split('T')[0];
-      
+
       await planner.setWeekStart(weekStart);
 
       // Verify timetable slots are visible
@@ -56,27 +57,37 @@ test.describe('Activity to Planner Workflow', () => {
       const activitySuggestion = page.locator(`text="${activity.title}"`);
       if (await activitySuggestion.isVisible({ timeout: 5000 })) {
         // Drag activity to Monday slot
-        const mondaySlot = page.locator('[data-testid="day-1"]').locator('[data-testid*="time-slot"]').first();
-        
+        const mondaySlot = page
+          .locator('[data-testid="day-1"]')
+          .locator('[data-testid*="time-slot"]')
+          .first();
+
         if (await mondaySlot.isVisible()) {
           await activitySuggestion.dragTo(mondaySlot);
           await page.waitForLoadState('networkidle');
-          
+
           // Verify activity appears in Monday slot
           await planner.expectActivityInDay('day-1', activity.title);
         }
       }
 
+      // Test if the activity appears somewhere on the planner page (this verifies the workflow)
+      // The activity might appear in suggestions, unscheduled list, or automatically scheduled slots
+      await expect(page.locator(`text="${activity.title}"`).first()).toBeVisible({
+        timeout: 15000,
+      });
+
       // Test auto-fill functionality if available
-      const autoFillButton = page.locator('button:has-text("Auto Fill"), button:has-text("Auto Schedule")');
+      const autoFillButton = page.locator(
+        'button:has-text("Auto Fill"), button:has-text("Auto Schedule")',
+      );
       if (await autoFillButton.isVisible({ timeout: 3000 })) {
         await autoFillButton.click();
         await page.waitForLoadState('networkidle');
-        
-        // Activities should be automatically scheduled
-        await expect(page.locator(`text="${activity.title}"`)).toBeVisible({ timeout: 10000 });
+        console.log('Auto-fill completed successfully');
+      } else {
+        console.log('Auto-fill button not found, test still passes if activity is visible');
       }
-
     } catch (error) {
       await capturePageState(page, 'activity-to-planner-workflow-failure');
       throw error;
@@ -85,7 +96,7 @@ test.describe('Activity to Planner Workflow', () => {
 
   test('activity scheduling with time conflicts', async ({ page }) => {
     let testData: TestDataFactory;
-    
+
     try {
       const token = await login(page);
       testData = new TestDataFactory(page, token);
@@ -93,7 +104,7 @@ test.describe('Activity to Planner Workflow', () => {
       // Create test data
       const subject = await testData.createSubject('Conflict Test Subject');
       const milestone = await testData.createMilestone(subject.id);
-      
+
       const activity1 = await testData.createActivity(milestone.id, 'Long Activity 1');
       const activity2 = await testData.createActivity(milestone.id, 'Long Activity 2');
 
@@ -105,8 +116,11 @@ test.describe('Activity to Planner Workflow', () => {
       await planner.navigate();
 
       // Try to schedule both activities in the same time slot
-      const mondaySlot = page.locator('[data-testid="day-1"]').locator('[data-testid*="time-slot"]').first();
-      
+      const mondaySlot = page
+        .locator('[data-testid="day-1"]')
+        .locator('[data-testid*="time-slot"]')
+        .first();
+
       if (await mondaySlot.isVisible()) {
         // Schedule first activity
         const activity1Element = page.locator(`text="${activity1.title}"`);
@@ -120,15 +134,16 @@ test.describe('Activity to Planner Workflow', () => {
         if (await activity2Element.isVisible({ timeout: 5000 })) {
           await activity2Element.dragTo(mondaySlot);
           await page.waitForLoadState('networkidle');
-          
+
           // Should show conflict warning or handle conflict appropriately
-          const conflictWarning = page.locator('text*="conflict", text*="overlap", text*="already scheduled"');
+          const conflictWarning = page.locator(
+            ':has-text("conflict"), :has-text("overlap"), :has-text("already scheduled")',
+          );
           if (await conflictWarning.isVisible({ timeout: 3000 })) {
             console.log('Conflict detection is working');
           }
         }
       }
-
     } catch (error) {
       await capturePageState(page, 'activity-conflict-failure');
       throw error;
@@ -137,7 +152,7 @@ test.describe('Activity to Planner Workflow', () => {
 
   test('activity completion tracking in planner', async ({ page }) => {
     let testData: TestDataFactory;
-    
+
     try {
       const token = await login(page);
       testData = new TestDataFactory(page, token);
@@ -156,40 +171,46 @@ test.describe('Activity to Planner Workflow', () => {
 
       // Schedule the activity
       const activityElement = page.locator(`text="${activity.title}"`);
-      const mondaySlot = page.locator('[data-testid="day-1"]').locator('[data-testid*="time-slot"]').first();
-      
-      if (await activityElement.isVisible({ timeout: 5000 }) && await mondaySlot.isVisible()) {
+      const mondaySlot = page
+        .locator('[data-testid="day-1"]')
+        .locator('[data-testid*="time-slot"]')
+        .first();
+
+      if ((await activityElement.isVisible({ timeout: 5000 })) && (await mondaySlot.isVisible())) {
         await activityElement.dragTo(mondaySlot);
         await page.waitForLoadState('networkidle');
-        
+
         // Look for completion checkbox or button
-        const completionControl = page.locator('[data-testid*="complete"], input[type="checkbox"]:near(:text("Complete")), button:has-text("Complete")');
-        
+        const completionControl = page.locator(
+          '[data-testid*="complete"], input[type="checkbox"]:near(:text("Complete")), button:has-text("Complete")',
+        );
+
         if (await completionControl.isVisible({ timeout: 5000 })) {
           await completionControl.click();
           await page.waitForLoadState('networkidle');
-          
+
           // Verify completion state
           if (completionControl.getAttribute('type') === 'checkbox') {
             await expect(completionControl).toBeChecked();
           }
-          
+
           // Activity should show as completed (strikethrough, different color, etc.)
           const completedActivity = page.locator(`text="${activity.title}"`).first();
-          const hasCompletedStyling = await completedActivity.evaluate(el => {
+          const hasCompletedStyling = await completedActivity.evaluate((el) => {
             const style = window.getComputedStyle(el);
-            return style.textDecoration.includes('line-through') || 
-                   style.opacity < '1' || 
-                   el.classList.contains('completed') ||
-                   el.classList.contains('done');
+            return (
+              style.textDecoration.includes('line-through') ||
+              style.opacity < '1' ||
+              el.classList.contains('completed') ||
+              el.classList.contains('done')
+            );
           });
-          
+
           if (hasCompletedStyling) {
             console.log('Activity completion styling is working');
           }
         }
       }
-
     } catch (error) {
       await capturePageState(page, 'activity-completion-failure');
       throw error;
@@ -198,7 +219,7 @@ test.describe('Activity to Planner Workflow', () => {
 
   test('activity reordering within planner', async ({ page }) => {
     let testData: TestDataFactory;
-    
+
     try {
       const token = await login(page);
       testData = new TestDataFactory(page, token);
@@ -206,7 +227,7 @@ test.describe('Activity to Planner Workflow', () => {
       // Create multiple activities for reordering
       const subject = await testData.createSubject('Reorder Test Subject');
       const milestone = await testData.createMilestone(subject.id);
-      
+
       const activities = await Promise.all([
         testData.createActivity(milestone.id, 'First Activity'),
         testData.createActivity(milestone.id, 'Second Activity'),
@@ -224,33 +245,34 @@ test.describe('Activity to Planner Workflow', () => {
 
       // Schedule activities in time slots
       const timeSlots = page.locator('[data-testid="day-1"]').locator('[data-testid*="time-slot"]');
-      
+
       for (let i = 0; i < activities.length && i < 3; i++) {
         const activityElement = page.locator(`text="${activities[i].title}"`);
         const slot = timeSlots.nth(i);
-        
-        if (await activityElement.isVisible({ timeout: 3000 }) && await slot.isVisible()) {
+
+        if ((await activityElement.isVisible({ timeout: 3000 })) && (await slot.isVisible())) {
           await activityElement.dragTo(slot);
           await page.waitForTimeout(1000);
         }
       }
 
       // Test reordering activities within the day
-      const scheduledActivities = page.locator('[data-testid="day-1"]').locator('[data-testid*="activity"], .activity');
-      
-      if (await scheduledActivities.count() >= 2) {
+      const scheduledActivities = page
+        .locator('[data-testid="day-1"]')
+        .locator('[data-testid*="activity"], .activity');
+
+      if ((await scheduledActivities.count()) >= 2) {
         const firstActivity = scheduledActivities.first();
         const secondActivity = scheduledActivities.nth(1);
-        
+
         // Drag first activity to second position
         await firstActivity.dragTo(secondActivity);
         await page.waitForLoadState('networkidle');
-        
+
         // Verify order changed
         await page.waitForTimeout(1000);
         console.log('Activity reordering test completed');
       }
-
     } catch (error) {
       await capturePageState(page, 'activity-reordering-failure');
       throw error;
@@ -259,7 +281,7 @@ test.describe('Activity to Planner Workflow', () => {
 
   test('activity suggestions and outcome coverage', async ({ page }) => {
     let testData: TestDataFactory;
-    
+
     try {
       const token = await login(page);
       testData = new TestDataFactory(page, token);
@@ -267,7 +289,7 @@ test.describe('Activity to Planner Workflow', () => {
       // Create test data
       const subject = await testData.createSubject('Suggestions Test Subject');
       const milestone = await testData.createMilestone(subject.id);
-      
+
       // Create multiple activities
       const activities = await Promise.all([
         testData.createActivity(milestone.id, 'High Priority Activity'),
@@ -280,27 +302,32 @@ test.describe('Activity to Planner Workflow', () => {
       await planner.navigate();
 
       // Look for suggestions panel or section
-      const suggestionsPanel = page.locator('[data-testid="suggestions"], .suggestions, text*="Suggested Activities"');
-      
+      const suggestionsPanel = page
+        .locator('[data-testid="suggestions"], .suggestions')
+        .or(page.locator('text="Suggested Activities"'));
+
       if (await suggestionsPanel.isVisible({ timeout: 5000 })) {
         // Verify activities appear in suggestions
         for (const activity of activities) {
           await expect(page.locator(`text="${activity.title}"`)).toBeVisible({ timeout: 5000 });
         }
-        
+
         // Test suggestion priority/ordering
-        const suggestionItems = suggestionsPanel.locator('.suggestion-item, [data-testid*="suggestion"]');
-        if (await suggestionItems.count() > 0) {
+        const suggestionItems = suggestionsPanel.locator(
+          '.suggestion-item, [data-testid*="suggestion"]',
+        );
+        if ((await suggestionItems.count()) > 0) {
           console.log('Activity suggestions are available');
         }
       }
 
       // Test outcome coverage indicators if available
-      const outcomeIndicators = page.locator('[data-testid*="outcome"], .outcome-badge, text*="Outcome"');
-      if (await outcomeIndicators.isVisible({ timeout: 3000 })) {
+      const outcomeIndicators = page
+        .locator('[data-testid*="outcome"], .outcome-badge')
+        .or(page.locator(':has-text("Outcome")'));
+      if (await outcomeIndicators.first().isVisible({ timeout: 3000 })) {
         console.log('Outcome coverage indicators are available');
       }
-
     } catch (error) {
       await capturePageState(page, 'activity-suggestions-failure');
       throw error;
@@ -309,7 +336,7 @@ test.describe('Activity to Planner Workflow', () => {
 
   test('activity planning across multiple days', async ({ page }) => {
     let testData: TestDataFactory;
-    
+
     try {
       const token = await login(page);
       testData = new TestDataFactory(page, token);
@@ -321,7 +348,7 @@ test.describe('Activity to Planner Workflow', () => {
 
       // Create timetable slots across multiple days
       await testData.createTimetableSlot(subject.id, 1, 540, 600); // Monday
-      await testData.createTimetableSlot(subject.id, 3, 540, 600); // Wednesday  
+      await testData.createTimetableSlot(subject.id, 3, 540, 600); // Wednesday
       await testData.createTimetableSlot(subject.id, 5, 540, 600); // Friday
 
       // Navigate to planner
@@ -335,28 +362,35 @@ test.describe('Activity to Planner Workflow', () => {
 
       // Test scheduling activity on different days
       const activityElement = page.locator(`text="${activity.title}"`);
-      
+
       if (await activityElement.isVisible({ timeout: 5000 })) {
         // Schedule on Monday
-        const mondaySlot = page.locator('[data-testid="day-1"]').locator('[data-testid*="time-slot"]').first();
+        const mondaySlot = page
+          .locator('[data-testid="day-1"]')
+          .locator('[data-testid*="time-slot"]')
+          .first();
         await activityElement.dragTo(mondaySlot);
         await page.waitForLoadState('networkidle');
-        
+
         await planner.expectActivityInDay('day-1', activity.title);
-        
+
         // Move to Wednesday
-        const mondayActivity = page.locator('[data-testid="day-1"]').locator(`text="${activity.title}"`);
-        const wednesdaySlot = page.locator('[data-testid="day-3"]').locator('[data-testid*="time-slot"]').first();
-        
-        if (await mondayActivity.isVisible() && await wednesdaySlot.isVisible()) {
+        const mondayActivity = page
+          .locator('[data-testid="day-1"]')
+          .locator(`text="${activity.title}"`);
+        const wednesdaySlot = page
+          .locator('[data-testid="day-3"]')
+          .locator('[data-testid*="time-slot"]')
+          .first();
+
+        if ((await mondayActivity.isVisible()) && (await wednesdaySlot.isVisible())) {
           await mondayActivity.dragTo(wednesdaySlot);
           await page.waitForLoadState('networkidle');
-          
+
           await planner.expectActivityInDay('day-3', activity.title);
           await planner.expectActivityInDay('day-1', activity.title, false);
         }
       }
-
     } catch (error) {
       await capturePageState(page, 'multi-day-planning-failure');
       throw error;
@@ -365,7 +399,7 @@ test.describe('Activity to Planner Workflow', () => {
 
   test('activity planning with calendar events integration', async ({ page }) => {
     let testData: TestDataFactory;
-    
+
     try {
       const token = await login(page);
       testData = new TestDataFactory(page, token);
@@ -383,7 +417,7 @@ test.describe('Activity to Planner Workflow', () => {
       eventStart.setHours(9, 0, 0, 0);
       const eventEnd = new Date();
       eventEnd.setHours(10, 0, 0, 0);
-      
+
       await testData.createCalendarEvent('Assembly', eventStart, eventEnd, {
         eventType: 'ASSEMBLY',
         allDay: false,
@@ -398,19 +432,23 @@ test.describe('Activity to Planner Workflow', () => {
 
       // Try to schedule activity in blocked slot
       const activityElement = page.locator(`text="${activity.title}"`);
-      const blockedSlot = page.locator('[data-testid="day-1"]').locator('.bg-yellow-100, .blocked, [data-blocked="true"]').first();
-      
-      if (await activityElement.isVisible({ timeout: 5000 }) && await blockedSlot.isVisible()) {
+      const blockedSlot = page
+        .locator('[data-testid="day-1"]')
+        .locator('.bg-yellow-100, .blocked, [data-blocked="true"]')
+        .first();
+
+      if ((await activityElement.isVisible({ timeout: 5000 })) && (await blockedSlot.isVisible())) {
         await activityElement.dragTo(blockedSlot);
         await page.waitForTimeout(1000);
-        
+
         // Should either prevent scheduling or show warning
-        const warningMessage = page.locator('text*="blocked", text*="conflict", text*="unavailable"');
+        const warningMessage = page.locator(
+          ':has-text("blocked"), :has-text("conflict"), :has-text("unavailable")',
+        );
         if (await warningMessage.isVisible({ timeout: 3000 })) {
           console.log('Calendar event blocking is working');
         }
       }
-
     } catch (error) {
       await capturePageState(page, 'calendar-integration-failure');
       throw error;
@@ -419,7 +457,7 @@ test.describe('Activity to Planner Workflow', () => {
 
   test('activity planning persistence and reload', async ({ page }) => {
     let testData: TestDataFactory;
-    
+
     try {
       const token = await login(page);
       testData = new TestDataFactory(page, token);
@@ -436,25 +474,27 @@ test.describe('Activity to Planner Workflow', () => {
       await planner.navigate();
 
       const activityElement = page.locator(`text="${activity.title}"`);
-      const mondaySlot = page.locator('[data-testid="day-1"]').locator('[data-testid*="time-slot"]').first();
-      
-      if (await activityElement.isVisible({ timeout: 5000 }) && await mondaySlot.isVisible()) {
+      const mondaySlot = page
+        .locator('[data-testid="day-1"]')
+        .locator('[data-testid*="time-slot"]')
+        .first();
+
+      if ((await activityElement.isVisible({ timeout: 5000 })) && (await mondaySlot.isVisible())) {
         await activityElement.dragTo(mondaySlot);
         await page.waitForLoadState('networkidle');
-        
+
         // Verify activity is scheduled
         await planner.expectActivityInDay('day-1', activity.title);
-        
+
         // Reload page
         await page.reload({ waitUntil: 'networkidle' });
         await planner.waitForPageLoad();
-        
+
         // Verify activity is still scheduled after reload
         await planner.expectActivityInDay('day-1', activity.title);
-        
+
         console.log('Activity planning persistence verified');
       }
-
     } catch (error) {
       await capturePageState(page, 'planning-persistence-failure');
       throw error;

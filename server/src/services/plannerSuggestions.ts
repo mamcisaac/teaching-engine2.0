@@ -21,8 +21,27 @@ export async function getPlannerSuggestions(
   userId?: number,
 ): Promise<PlannerSuggestion[]> {
   try {
+    console.log('getPlannerSuggestions called with:', { weekStart, userId });
+
     // Calculate week range
     const weekEnd = addDays(weekStart, 6);
+    console.log('Week range:', { weekStart, weekEnd });
+
+    // Debug: Get ALL milestones for this user first
+    const allMilestones = await prisma.milestone.findMany({
+      where: { userId },
+      include: { subject: true, activities: true },
+    });
+    console.log(
+      `All milestones for user ${userId}:`,
+      allMilestones.map((m) => ({
+        id: m.id,
+        title: m.title,
+        startDate: m.startDate,
+        endDate: m.endDate,
+        activitiesCount: m.activities.length,
+      })),
+    );
 
     // 1. Get all active milestones for the week
     // First, get all active milestones for the week
@@ -61,6 +80,17 @@ export async function getPlannerSuggestions(
         },
       },
     });
+
+    console.log(
+      `Found ${activeMilestones.length} active milestones:`,
+      activeMilestones.map((m) => ({
+        id: m.id,
+        title: m.title,
+        startDate: m.startDate,
+        endDate: m.endDate,
+        activitiesCount: m.activities.length,
+      })),
+    );
 
     // 2. Get outcome coverage for all outcomes
     const outcomesCoverage = await getOutcomesCoverage({});
@@ -105,8 +135,10 @@ export async function getPlannerSuggestions(
       }
     }
 
+    console.log(`Generated ${suggestions.length} total suggestions`);
+
     // Sort suggestions - uncovered outcomes first, then by milestone date
-    return suggestions.sort((a, b) => {
+    const sortedSuggestions = suggestions.sort((a, b) => {
       // Sort by coverage status first
       if (a.coverageStatus === 'covers_uncovered' && b.coverageStatus !== 'covers_uncovered')
         return -1;
@@ -116,6 +148,12 @@ export async function getPlannerSuggestions(
       // Then by number of outcomes covered
       return b.linkedOutcomes.length - a.linkedOutcomes.length;
     });
+
+    console.log(
+      'Final suggestions:',
+      sortedSuggestions.map((s) => s.title),
+    );
+    return sortedSuggestions;
   } catch (error) {
     console.error('Error generating planner suggestions:', error);
     throw new Error('Failed to generate planner suggestions');

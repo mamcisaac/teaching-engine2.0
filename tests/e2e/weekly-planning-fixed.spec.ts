@@ -1,16 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { 
-  login, 
-  TestDataFactory, 
-  retry,
-  capturePageState,
-  waitForResponse 
-} from './improved-helpers';
+import { login, TestDataFactory, retry, capturePageState } from './improved-helpers';
 
 test.describe('Weekly Planning', () => {
   test('generate weekly plan from activity', async ({ page }) => {
     let testData: TestDataFactory;
-    
+
     try {
       // Login and get token
       const token = await login(page);
@@ -32,7 +26,7 @@ test.describe('Weekly Planning', () => {
       expect(milestone.title).toBe('Weekly Plan Test Milestone');
 
       // Create activity with proper error handling
-      await retry(async () => {
+      const activity = await retry(async () => {
         return await testData.createActivity(milestone.id, 'Weekly Plan Test Activity');
       });
 
@@ -45,7 +39,7 @@ test.describe('Weekly Planning', () => {
         `${testData.constructor.name.includes('TestDataFactory') ? 'http://127.0.0.1:3000' : ''}/api/milestones/${milestone.id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
-        }
+        },
       );
 
       if (!verificationResponse.ok()) {
@@ -56,7 +50,6 @@ test.describe('Weekly Planning', () => {
       expect(milestoneData.id).toBe(milestone.id);
       expect(milestoneData.activities).toBeDefined();
       expect(milestoneData.activities.length).toBeGreaterThan(0);
-
     } catch (error) {
       await capturePageState(page, 'weekly-planning-failure');
       throw error;
@@ -65,7 +58,7 @@ test.describe('Weekly Planning', () => {
 
   test('create lesson plan with timetable integration', async ({ page }) => {
     let testData: TestDataFactory;
-    
+
     try {
       const token = await login(page);
       testData = new TestDataFactory(page, token);
@@ -82,25 +75,24 @@ test.describe('Weekly Planning', () => {
 
       // Navigate to planner
       await page.goto('/planner', { waitUntil: 'domcontentloaded' });
-      
+
       // Wait for planner to load completely
       await page.waitForSelector('h1:has-text("Weekly Planner")', { timeout: 15000 });
       await page.waitForLoadState('networkidle');
 
       // Wait for timetable data to load
-      await retry(async () => {
-        await waitForResponse(page, '/api/timetable');
-      });
+      await page.waitForTimeout(2000); // Give time for timetable creation to sync
 
       // Verify timetable slots are visible
       const mondaySlot = page.locator('[data-testid="day-1"]').locator('text=8:00 AM - 9:00 AM');
-      const wednesdaySlot = page.locator('[data-testid="day-3"]').locator('text=9:00 AM - 10:00 AM');
+      const wednesdaySlot = page
+        .locator('[data-testid="day-3"]')
+        .locator('text=9:00 AM - 10:00 AM');
       const fridaySlot = page.locator('[data-testid="day-5"]').locator('text=10:00 AM - 11:00 AM');
 
       await expect(mondaySlot).toBeVisible({ timeout: 10000 });
       await expect(wednesdaySlot).toBeVisible({ timeout: 10000 });
       await expect(fridaySlot).toBeVisible({ timeout: 10000 });
-
     } catch (error) {
       await capturePageState(page, 'timetable-integration-failure');
       throw error;
@@ -114,15 +106,16 @@ test.describe('Weekly Planning', () => {
 
       // Navigate to planner
       await page.goto('/planner', { waitUntil: 'domcontentloaded' });
-      
+
       // Wait for planner to load
       await page.waitForSelector('h1:has-text("Weekly Planner")', { timeout: 15000 });
       await page.waitForLoadState('networkidle');
 
-      // Should show empty state message
+      // Should show empty state message - use first() to avoid strict mode violation
       const emptyStateMessage = page.locator('text=No activities scheduled');
-      await expect(emptyStateMessage.or(page.locator('text=No time slots'))).toBeVisible({ timeout: 10000 });
-
+      await expect(emptyStateMessage.or(page.locator('text=No time slots').first())).toBeVisible({
+        timeout: 10000,
+      });
     } catch (error) {
       await capturePageState(page, 'empty-state-failure');
       throw error;

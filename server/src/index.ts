@@ -12,8 +12,8 @@ const log = debug('server:main');
 const error = debug('server:error');
 
 // Get directory name in ES module
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __filename_index = fileURLToPath(import.meta.url);
+const __dirname_index = path.dirname(__filename_index);
 
 // Extend the Express Request type to include the user property
 interface AuthenticatedRequest extends Request {
@@ -250,12 +250,12 @@ app.use('/api/*', (_req, res) => {
   res.status(404).json({ error: 'Not Found' });
 });
 
-const clientDist = path.join(__dirname, '../../client/dist');
+const clientDist = path.join(__dirname_index, '../../client/dist');
 log('Configuring URL-encoded and cookie parser middleware...');
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 log('Configuring static file serving for uploads...');
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+app.use('/uploads', express.static(path.join(__dirname_index, '../uploads')));
 log('Configuring static file serving for client distribution...');
 app.use(express.static(clientDist));
 log('Configuring catch-all route for client-side routing...');

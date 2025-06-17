@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import ical, { VEvent } from 'node-ical';
-import { prisma } from '../prisma';
+import { prisma, Prisma } from '../prisma';
 import { z } from 'zod';
 import { validate } from '../validation';
 
@@ -65,6 +65,50 @@ router.post('/', validate(eventSchema), async (req, res, next) => {
 /**
  * Import events from an iCal feed URL and store them as HOLIDAY events.
  */
+router.put('/:id', validate(eventSchema.partial()), async (req, res, next) => {
+  try {
+    const id = Number(req.params.id);
+    const data = req.body as Partial<z.infer<typeof eventSchema>>;
+    const updateData: Record<string, unknown> = {};
+
+    if (data.title !== undefined) updateData.title = data.title;
+    if (data.description !== undefined) updateData.description = data.description;
+    if (data.start !== undefined) updateData.start = new Date(data.start);
+    if (data.end !== undefined) updateData.end = new Date(data.end);
+    if (data.allDay !== undefined) updateData.allDay = data.allDay;
+    if (data.eventType !== undefined) updateData.eventType = data.eventType;
+    if (data.source !== undefined) updateData.source = data.source;
+    if (data.teacherId !== undefined) updateData.teacherId = data.teacherId;
+    if (data.schoolId !== undefined) updateData.schoolId = data.schoolId;
+
+    const event = await prisma.calendarEvent.update({
+      where: { id },
+      data: updateData,
+    });
+    res.json(event);
+  } catch (err) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
+      return res.status(404).json({ error: 'Calendar event not found' });
+    }
+    next(err);
+  }
+});
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const id = Number(req.params.id);
+    await prisma.calendarEvent.delete({
+      where: { id },
+    });
+    res.status(204).send();
+  } catch (err) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
+      return res.status(404).json({ error: 'Calendar event not found' });
+    }
+    next(err);
+  }
+});
+
 router.post('/sync/ical', async (req, res, next) => {
   try {
     const { feedUrl } = req.body as { feedUrl: string };

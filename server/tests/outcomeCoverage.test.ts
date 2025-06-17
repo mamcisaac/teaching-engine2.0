@@ -22,6 +22,7 @@ interface OutcomeCoverageResponse {
 describe('Outcome Coverage API', () => {
   // Using underscore prefix to indicate unused variable (to satisfy ESLint)
   // let _userId: number;
+  // let _token: string;
   let subjectId: number;
   let milestoneId: number;
   let outcomeId: string;

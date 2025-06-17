@@ -78,8 +78,15 @@ router.delete('/:id', async (req, res, next) => {
     await prisma.subject.delete({ where: { id: Number(req.params.id) } });
     res.status(204).end();
   } catch (err) {
-    if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
-      return res.status(404).json({ error: 'Not Found' });
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      if (err.code === 'P2025') {
+        return res.status(404).json({ error: 'Not Found' });
+      }
+      if (err.code === 'P2003') {
+        return res
+          .status(400)
+          .json({ error: 'Cannot delete subject with existing milestones or activities' });
+      }
     }
     next(err);
   }
