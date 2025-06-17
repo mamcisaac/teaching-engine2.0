@@ -104,7 +104,10 @@ const authenticateToken = (req: AuthenticatedRequest, res: Response, next: NextF
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as JwtPayload;
-    req.user = { userId: String(decoded?.userId || '') };
+    if (!decoded?.userId) {
+      return res.sendStatus(403);
+    }
+    req.user = { userId: String(decoded.userId) };
     next();
   } catch (err) {
     return res.sendStatus(403);
