@@ -1,5 +1,5 @@
 import { jest } from '@jest/globals';
-import { getPlannerSuggestions, PlannerSuggestion } from '../services/plannerSuggestions.js';
+import { getPlannerSuggestions } from '../services/plannerSuggestions.js';
 
 // Mock dependencies
 jest.mock('../prisma', () => ({

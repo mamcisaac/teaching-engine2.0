@@ -36,7 +36,7 @@ const mockUnzipperResult = {
     {
       path: 'test.db',
       stream: () => ({
-        pipe: (_dest: NodeJS.WritableStream) => ({
+        pipe: () => ({
           on: (event: string, callback: () => void) => {
             if (event === 'finish') setTimeout(callback, 0);
             return { on: jest.fn() };
@@ -47,7 +47,7 @@ const mockUnzipperResult = {
     {
       path: 'uploads/test.jpg',
       stream: () => ({
-        pipe: (_dest: NodeJS.WritableStream) => ({
+        pipe: () => ({
           on: (event: string, callback: () => void) => {
             if (event === 'finish') setTimeout(callback, 0);
             return { on: jest.fn() };
