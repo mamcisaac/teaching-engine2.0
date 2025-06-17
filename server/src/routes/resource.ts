@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { prisma } from '../prisma';
 import { saveFile } from '../storage';
-import { getResourceSuggestions } from '../services/resourceSuggestions.js';
+import { getResourceSuggestions } from '../services/resourceSuggestions';
 
 const router = Router();
 

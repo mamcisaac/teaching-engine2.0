@@ -1,11 +1,14 @@
 import { execSync } from 'child_process';
-import { cleanTestDatabase } from './jest.setup';
 import { resolve } from 'path';
-// PrismaClient and randomBytes are used in the actual test files
+import { testDb } from './test-database-manager';
+
+// Export testDb for use in jest.setup.ts
+export { testDb };
 
 export default async function setup() {
-  // Clean the test database before running tests
-  await cleanTestDatabase();
+  // Initialize the test database manager
+  const workerId = 'global-setup';
+  await testDb.createTestDatabase(workerId);
   
   const root = resolve(__dirname, '..', '..');
   
