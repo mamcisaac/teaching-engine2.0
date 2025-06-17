@@ -68,14 +68,17 @@ class TestDatabaseManager {
 
     // For SQLite, we'll use savepoints instead of full transactions
     // since SQLite doesn't support nested transactions
-    await client.$executeRaw`SAVEPOINT ${testId}`;
+    // Use $executeRawUnsafe to avoid parameterization of identifiers
+    const safeSavepointName = `sp_${testId.replace(/[^a-zA-Z0-9]/g, '_')}`;
+    await client.$executeRawUnsafe(`SAVEPOINT ${safeSavepointName}`);
 
     // Return the same client, but track that we have a savepoint
     this.transactions.set(testId, {
       client,
       rollback: async () => {
-        await client.$executeRaw`ROLLBACK TO SAVEPOINT ${testId}`;
-        await client.$executeRaw`RELEASE SAVEPOINT ${testId}`;
+        const safeSavepointName = `sp_${testId.replace(/[^a-zA-Z0-9]/g, '_')}`;
+        await client.$executeRawUnsafe(`ROLLBACK TO SAVEPOINT ${safeSavepointName}`);
+        await client.$executeRawUnsafe(`RELEASE SAVEPOINT ${safeSavepointName}`);
       },
     });
 
