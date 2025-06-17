@@ -28,7 +28,7 @@ export async function saveFile(filename: string, buffer: Buffer): Promise<string
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { PutObjectCommand } = require('@aws-sdk/client-s3');
     const key = `${Date.now()}-${filename}`;
-    await s3Client.send(new PutObjectCommand({ Bucket: bucket, Key: key, Body: buffer }));
+    await (s3Client as any).send(new PutObjectCommand({ Bucket: bucket, Key: key, Body: buffer }));
     return `https://${bucket}.s3.amazonaws.com/${key}`;
   }
   await fs.mkdir(localDir, { recursive: true });
