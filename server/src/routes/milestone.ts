@@ -50,7 +50,6 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', validate(milestoneCreateSchema), async (req, res, next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0');
     const milestone = await prisma.milestone.create({
       data: {
         title: req.body.title,
@@ -60,7 +59,7 @@ router.post('/', validate(milestoneCreateSchema), async (req, res, next) => {
         endDate: req.body.endDate ? new Date(req.body.endDate) : undefined,
         estHours: req.body.estHours,
         description: req.body.description,
-        userId: userId,
+        userId: req.userId,
       },
     });
 

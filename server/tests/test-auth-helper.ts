@@ -6,12 +6,12 @@ import { getTestPrismaClient } from './jest.setup';
 /**
  * Helper to create a test user and get authentication token
  */
-export async function getAuthToken(app: Application): Promise<string> {
+export async function getAuthToken(app: Application): Promise<{ token: string; userId: number }> {
   const prisma = getTestPrismaClient();
 
   // Create a test user with hashed password
   const hashedPassword = await bcrypt.hash('testpassword', 10);
-  await prisma.user.create({
+  const user = await prisma.user.create({
     data: {
       email: 'test@example.com',
       name: 'Test User',
@@ -30,7 +30,7 @@ export async function getAuthToken(app: Application): Promise<string> {
     throw new Error(`Login failed: ${loginResponse.status} ${loginResponse.text}`);
   }
 
-  return loginResponse.body.token;
+  return { token: loginResponse.body.token, userId: user.id };
 }
 
 /**
@@ -38,10 +38,16 @@ export async function getAuthToken(app: Application): Promise<string> {
  */
 export function authRequest(app: Application) {
   let token: string;
+  let userId: number;
 
   return {
     async setup(): Promise<void> {
-      token = await getAuthToken(app);
+      const authData = await getAuthToken(app);
+      token = authData.token;
+      userId = authData.userId;
+    },
+    get userId() {
+      return userId;
     },
     get(url: string) {
       return request(app).get(url).set('Authorization', `Bearer ${token}`);

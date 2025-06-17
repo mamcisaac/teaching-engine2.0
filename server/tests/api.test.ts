@@ -22,6 +22,9 @@ describe('Health API', () => {
 describe('Subject API', () => {
   it('creates and retrieves a subject', async () => {
     const create = await auth.post('/api/subjects').send({ name: 'Test' });
+    if (create.status !== 201) {
+      console.error('Subject creation failed:', create.status, create.body);
+    }
     expect(create.status).toBe(201);
     const id = create.body.id;
     const get = await auth.get(`/api/subjects/${id}`);
@@ -57,7 +60,7 @@ describe('Timetable API', () => {
 describe('Milestone API', () => {
   let subjectId: number;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     const subject = await prisma.subject.create({ data: { name: 'Subj' } });
     subjectId = subject.id;
   });
@@ -78,6 +81,9 @@ describe('Milestone API', () => {
       description: 'desc',
       outcomes: ['A', 'B'],
     });
+    if (create.status !== 201) {
+      console.error('Failed to create milestone:', create.status, create.body);
+    }
     expect(create.status).toBe(201);
     const id = create.body.id;
     const get = await auth.get(`/api/milestones/${id}`);
@@ -100,7 +106,7 @@ describe('Milestone API', () => {
 describe('Activity API', () => {
   let milestoneId: number;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     const subject = await prisma.subject.create({ data: { name: 'S2' } });
     const milestone = await prisma.milestone.create({
       data: { title: 'M2', subjectId: subject.id },
@@ -131,7 +137,7 @@ describe('Activity API', () => {
 describe('Lesson Plan API', () => {
   let milestoneId: number;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     const subject = await prisma.subject.create({ data: { name: 'PlanSubj' } });
     const milestone = await prisma.milestone.create({
       data: { title: 'PlanM', subjectId: subject.id },
@@ -166,10 +172,9 @@ describe('Preferences API', () => {
 });
 
 describe('Resource API', () => {
-  let resourceId: number;
   let activityId: number;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     const subject = await prisma.subject.create({ data: { name: 'ResSubj' } });
     const milestone = await prisma.milestone.create({
       data: { title: 'ResM', subjectId: subject.id },
@@ -189,7 +194,6 @@ describe('Resource API', () => {
       activityId,
     });
     expect(upload.status).toBe(201);
-    resourceId = upload.body.id;
     const list = await auth.get('/api/resources');
     expect(list.body.length).toBeGreaterThan(0);
   });
@@ -213,15 +217,35 @@ describe('Resource API', () => {
   });
 
   it('lists resources by activity', async () => {
+    // First create a resource for this activity
+    await auth.post('/api/resources').send({
+      filename: 'test-list.txt',
+      data: Buffer.from('list test').toString('base64'),
+      type: 'text/plain',
+      size: 9,
+      activityId,
+    });
+
     const res = await auth.get(`/api/resources/activity/${activityId}`);
     expect(res.status).toBe(200);
     expect(res.body.length).toBeGreaterThan(0);
   });
 
   it('deletes resource', async () => {
-    const del = await auth.delete(`/api/resources/${resourceId}`);
+    // Create a resource to delete
+    const upload = await auth.post('/api/resources').send({
+      filename: 'test-delete.txt',
+      data: Buffer.from('delete me').toString('base64'),
+      type: 'text/plain',
+      size: 9,
+      activityId,
+    });
+    expect(upload.status).toBe(201);
+    const deleteResourceId = upload.body.id;
+
+    const del = await auth.delete(`/api/resources/${deleteResourceId}`);
     expect(del.status).toBe(204);
-    const check = await auth.get(`/api/resources/${resourceId}`);
+    const check = await auth.get(`/api/resources/${deleteResourceId}`);
     expect(check.status).toBe(404);
   });
 });
@@ -309,8 +333,9 @@ describe('Newsletter API', () => {
 
 describe('Daily Plan API', () => {
   const weekStart = '2025-01-06T00:00:00.000Z';
+  const dateOnly = '2025-01-06';
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     const subject = await prisma.subject.create({ data: { name: 'DPSubj' } });
     const milestone = await prisma.milestone.create({
       data: { title: 'DPM', subjectId: subject.id },
@@ -323,13 +348,13 @@ describe('Daily Plan API', () => {
   });
 
   it('generates daily plan from weekly', async () => {
-    const res = await auth.post('/api/daily-plans/generate').send({ date: weekStart });
+    const res = await auth.post('/api/daily-plans/generate').send({ date: dateOnly });
     expect(res.status).toBe(201);
     expect(res.body.items.length).toBeGreaterThan(0);
   });
 
   it('retrieves the daily plan', async () => {
-    await auth.post('/api/daily-plans/generate').send({ date: weekStart });
+    await auth.post('/api/daily-plans/generate').send({ date: dateOnly });
     const res = await auth.get(`/api/daily-plans/${weekStart}`);
     expect(res.status).toBe(200);
     expect(res.body.items.length).toBeGreaterThan(0);
@@ -339,7 +364,7 @@ describe('Daily Plan API', () => {
 describe('Notes API', () => {
   let activityId: number;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     const subject = await prisma.subject.create({ data: { name: 'NoteSubj' } });
     const milestone = await prisma.milestone.create({
       data: { title: 'NoteMilestone', subjectId: subject.id },

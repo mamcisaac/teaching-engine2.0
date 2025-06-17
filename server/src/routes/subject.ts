@@ -7,7 +7,7 @@ const router = Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0');
+    const userId = req.userId || 0;
     const subjects = await prisma.subject.findMany({
       where: {
         OR: [
@@ -46,11 +46,10 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', validate(subjectSchema), async (req, res, next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0');
     const subject = await prisma.subject.create({
       data: {
         name: req.body.name,
-        userId: userId,
+        userId: req.userId,
       },
     });
     res.status(201).json(subject);

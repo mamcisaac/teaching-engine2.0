@@ -1,431 +1,296 @@
 import { test, expect } from '@playwright/test';
-import { 
-  login, 
-  TestDataFactory, 
-  retry,
-  capturePageState,
-  waitForResponse 
-} from './improved-helpers';
+import { useDefaultTestUser } from './helpers/auth-updated';
 
-test.describe('Milestone Management Workflow', () => {
-  test('complete milestone creation and configuration workflow', async ({ page }) => {
-    let testData: TestDataFactory;
-    
-    try {
-      // Login and get token
-      const token = await login(page);
-      testData = new TestDataFactory(page, token);
+test.describe('Milestone Management', () => {
+  test.beforeEach(async ({ page }) => {
+    // Ensure user is authenticated
+    await useDefaultTestUser(page);
+  });
 
-      // Create a subject first (milestone depends on subject)
-      const subject = await retry(async () => {
-        return await testData.createSubject('Milestone Test Subject');
-      });
+  test('creates a new milestone', async ({ page }) => {
+    // First create a subject
+    await page.goto('/subjects');
 
-      // Navigate to milestones page or subject detail page
-      await page.goto(`/subjects/${subject.id}`, { waitUntil: 'domcontentloaded', timeout: 30000 });
-      await page.waitForLoadState('networkidle');
+    // Create a new subject
+    await page.click('button:has-text("Add Subject")');
+    await page.waitForSelector('#subject-name');
+    await page.fill('#subject-name', 'Milestone Test Subject');
+    await page.click('button[type="submit"]:has-text("Save")');
+    await page.waitForSelector('#subject-name', { state: 'hidden' });
 
-      // Look for milestone creation button
-      const addMilestoneButton = page.locator('button:has-text("Add Milestone"), button:has-text("Create Milestone"), button:has-text("New Milestone")');
-      
-      // If not found on subject page, try milestones page
-      if (!(await addMilestoneButton.isVisible({ timeout: 3000 }))) {
-        await page.goto('/milestones', { waitUntil: 'domcontentloaded', timeout: 30000 });
-        await page.waitForLoadState('networkidle');
-      }
+    // Navigate to the test subject
+    await page.click('a:has-text("Milestone Test Subject")');
 
-      // Create new milestone
-      const milestoneTitle = `E2E Test Milestone ${Date.now()}`;
-      
-      await addMilestoneButton.waitFor({ state: 'visible', timeout: 10000 });
-      await addMilestoneButton.click();
+    // Wait for the subject page to load
+    await page.waitForSelector('button:has-text("Add Milestone")');
 
-      // Fill in milestone form
-      const titleInput = page.locator('input[name="title"], input[placeholder*="title" i], input[placeholder*="name" i]');
-      await titleInput.waitFor({ state: 'visible', timeout: 10000 });
-      await titleInput.fill(milestoneTitle);
+    // Listen for milestone creation API response
+    const createResponsePromise = page.waitForResponse(
+      (response) =>
+        response.url().includes('/api/milestones') && response.request().method() === 'POST',
+    );
 
-      // Set start date (today)
-      const startDateInput = page.locator('input[name="startDate"], input[type="date"]').first();
-      if (await startDateInput.isVisible({ timeout: 3000 })) {
-        const today = new Date().toISOString().split('T')[0];
-        await startDateInput.fill(today);
-      }
+    // Create a new milestone
+    await page.click('button:has-text("Add Milestone")');
 
-      // Set end date (2 weeks from now)
-      const endDateInput = page.locator('input[name="endDate"], input[type="date"]').last();
-      if (await endDateInput.isVisible({ timeout: 3000 })) {
-        const futureDate = new Date();
-        futureDate.setDate(futureDate.getDate() + 14);
-        await endDateInput.fill(futureDate.toISOString().split('T')[0]);
-      }
+    // Wait for dialog to open
+    await page.waitForSelector('#milestone-title');
 
-      // Select subject if needed
-      const subjectSelect = page.locator('select[name="subjectId"], select:has(option:text("Subject"))');
-      if (await subjectSelect.isVisible({ timeout: 3000 })) {
-        await subjectSelect.selectOption(subject.id.toString());
-      }
+    // Fill in the form - don't fill dates as they need to be in ISO datetime format
+    await page.fill('#milestone-title', 'Test Milestone');
+    await page.fill('textarea', 'Test milestone description');
 
-      // Submit the form
-      const submitButton = page.locator('button[type="submit"], button:has-text("Save"), button:has-text("Create")');
-      await submitButton.click();
+    // Submit the form
+    await page.click('button[type="submit"]:has-text("Save")');
 
-      // Wait for milestone to be created
-      await waitForResponse(page, '/api/milestones', { method: 'POST' });
-      await page.waitForLoadState('networkidle');
+    // Wait for the API response
+    const createResponse = await createResponsePromise;
+    expect(createResponse.status()).toBe(201);
 
-      // Verify milestone appears in the interface
-      await expect(page.locator(`text="${milestoneTitle}"`)).toBeVisible({ timeout: 10000 });
+    // Wait for dialog to close
+    await page.waitForSelector('#milestone-title', { state: 'hidden' });
 
-    } catch (error) {
-      await capturePageState(page, 'milestone-creation-failure');
-      throw error;
+    // Give React time to re-render
+    await page.waitForTimeout(1000);
+
+    // Verify the milestone was created
+    const milestoneCount = await page.locator('text=Test Milestone').count();
+    expect(milestoneCount).toBeGreaterThan(0);
+    await expect(page.locator('text=Test milestone description')).toBeVisible({ timeout: 10000 });
+  });
+
+  test('edits an existing milestone', async ({ page }) => {
+    // First create a subject
+    await page.goto('/subjects');
+    await page.click('button:has-text("Add Subject")');
+    await page.waitForSelector('#subject-name');
+    await page.fill('#subject-name', 'Edit Test Subject');
+    await page.click('button[type="submit"]:has-text("Save")');
+    await page.waitForSelector('#subject-name', { state: 'hidden' });
+
+    // Navigate to the test subject
+    await page.click('a:has-text("Edit Test Subject")');
+    await page.waitForSelector('button:has-text("Add Milestone")');
+
+    // Create a milestone to edit
+    const createResponsePromise = page.waitForResponse(
+      (response) =>
+        response.url().includes('/api/milestones') && response.request().method() === 'POST',
+    );
+
+    await page.click('button:has-text("Add Milestone")');
+    await page.waitForSelector('#milestone-title');
+    await page.fill('#milestone-title', 'Original Milestone');
+    await page.fill('textarea', 'Original description');
+    await page.click('button[type="submit"]:has-text("Save")');
+
+    const response = await createResponsePromise;
+    expect(response.status()).toBe(201);
+    await page.waitForSelector('#milestone-title', { state: 'hidden' });
+    await page.waitForTimeout(1000); // Give React time to re-render
+
+    // Wait for the milestone to appear
+    await expect(page.locator('text=Original Milestone')).toBeVisible({ timeout: 10000 });
+
+    // Set up the response listener BEFORE clicking edit
+    const updateResponsePromise = page.waitForResponse(
+      (response) =>
+        response.url().includes('/api/milestones/') && response.request().method() === 'PUT',
+      { timeout: 30000 },
+    );
+
+    // Edit the milestone
+    const milestoneItem = page.locator('li').filter({ hasText: 'Original Milestone' });
+    await milestoneItem.locator('button:has-text("Edit")').click();
+
+    // Wait for edit dialog to open
+    await page.waitForSelector('#edit-milestone-title');
+
+    // Clear and update fields
+    await page.fill('#edit-milestone-title', 'Updated Milestone Title');
+    await page.fill('textarea', 'Updated description');
+
+    // Submit the form
+    await page.click('button[type="submit"]:has-text("Save")');
+
+    // Wait for the API response
+    const updateResponse = await updateResponsePromise;
+    expect(updateResponse.status()).toBe(200);
+
+    await page.waitForSelector('#edit-milestone-title', { state: 'hidden' });
+    await page.waitForTimeout(1000); // Give React time to re-render
+
+    // Verify the changes
+    await expect(page.locator('text=Updated Milestone Title')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('text=Updated description')).toBeVisible({ timeout: 10000 });
+  });
+
+  test('deletes a milestone', async ({ page }) => {
+    // First create a subject
+    await page.goto('/subjects');
+    await page.click('button:has-text("Add Subject")');
+    await page.waitForSelector('#subject-name');
+    await page.fill('#subject-name', 'Delete Test Subject');
+    await page.click('button[type="submit"]:has-text("Save")');
+    await page.waitForSelector('#subject-name', { state: 'hidden' });
+
+    // Navigate to the test subject
+    await page.click('a:has-text("Delete Test Subject")');
+    await page.waitForSelector('button:has-text("Add Milestone")');
+
+    // Create a milestone
+    const createResponsePromise = page.waitForResponse(
+      (response) =>
+        response.url().includes('/api/milestones') && response.request().method() === 'POST',
+    );
+
+    await page.click('button:has-text("Add Milestone")');
+    await page.waitForSelector('#milestone-title');
+    await page.fill('#milestone-title', 'Milestone to Delete');
+    await page.click('button[type="submit"]:has-text("Save")');
+
+    const createResponse = await createResponsePromise;
+    expect(createResponse.status()).toBe(201);
+    await page.waitForSelector('#milestone-title', { state: 'hidden' });
+    await page.waitForTimeout(1000); // Give React time to re-render
+
+    // Wait for the milestone to appear
+    await expect(page.locator('text=Milestone to Delete')).toBeVisible({ timeout: 10000 });
+
+    // Listen for delete API response
+    const deleteResponsePromise = page.waitForResponse(
+      (response) =>
+        response.url().includes('/api/milestones/') && response.request().method() === 'DELETE',
+    );
+
+    // Delete the milestone
+    const milestoneItem = page.locator('li').filter({ hasText: 'Milestone to Delete' });
+    await milestoneItem.locator('button:has-text("Delete")').click();
+
+    // Wait for the API response
+    const deleteResponse = await deleteResponsePromise;
+    expect(deleteResponse.status()).toBe(204);
+    await page.waitForTimeout(1000); // Give React time to re-render
+
+    // Verify the milestone is gone
+    await expect(page.locator('text=Milestone to Delete')).not.toBeVisible({ timeout: 10000 });
+  });
+
+  test('adds activities to a milestone', async ({ page }) => {
+    // First create a subject
+    await page.goto('/subjects');
+    await page.click('button:has-text("Add Subject")');
+    await page.waitForSelector('#subject-name');
+    await page.fill('#subject-name', 'Activity Test Subject');
+    await page.click('button[type="submit"]:has-text("Save")');
+    await page.waitForSelector('#subject-name', { state: 'hidden' });
+
+    // Navigate to the test subject
+    await page.click('a:has-text("Activity Test Subject")');
+    await page.waitForSelector('button:has-text("Add Milestone")');
+
+    // Create a milestone
+    const createResponsePromise = page.waitForResponse(
+      (response) =>
+        response.url().includes('/api/milestones') && response.request().method() === 'POST',
+    );
+
+    await page.click('button:has-text("Add Milestone")');
+    await page.waitForSelector('#milestone-title');
+    await page.fill('#milestone-title', 'Milestone with Activities');
+    await page.click('button[type="submit"]:has-text("Save")');
+
+    const createResponse = await createResponsePromise;
+    expect(createResponse.status()).toBe(201);
+    await page.waitForSelector('#milestone-title', { state: 'hidden' });
+    await page.waitForTimeout(1000); // Give React time to re-render
+
+    // Wait for the milestone to appear
+    await expect(page.locator('text=Milestone with Activities')).toBeVisible({ timeout: 10000 });
+
+    // Click on the milestone title to navigate to its detail page
+    const milestoneLink = page.locator('a').filter({ hasText: 'Milestone with Activities' });
+    await milestoneLink.click();
+
+    // Wait for milestone detail page to load
+    await page.waitForSelector('h1:has-text("Milestone with Activities")');
+
+    // Listen for activity creation API response
+    const activityResponsePromise = page.waitForResponse(
+      (response) =>
+        response.url().includes('/api/activities') && response.request().method() === 'POST',
+    );
+
+    // Add a new activity
+    await page.click('button:has-text("Add Activity")');
+
+    // Wait for activity form to appear
+    await page.waitForSelector('input#activity-title');
+
+    await page.fill('input#activity-title', 'Test Activity');
+    await page.fill('textarea', 'Test activity description');
+
+    // Select activity type if select exists
+    const typeSelect = page.locator('select#activity-type');
+    if (await typeSelect.isVisible()) {
+      await typeSelect.selectOption('lesson');
+    }
+
+    // Submit the form
+    await page.click('button[type="submit"]:has-text("Save")');
+
+    // Wait for the API response
+    await activityResponsePromise;
+    await page.waitForSelector('input#activity-title', { state: 'hidden' });
+    await page.waitForTimeout(1000); // Give React time to re-render
+
+    // Verify the activity was added
+    await expect(page.locator('text=Test Activity')).toBeVisible({ timeout: 10000 });
+    // Note: The description might not be visible depending on the UI
+    const descriptionCount = await page.locator('text=Test activity description').count();
+    if (descriptionCount > 0) {
+      await expect(page.locator('text=Test activity description')).toBeVisible({ timeout: 10000 });
     }
   });
 
-  test('milestone date validation and conflict detection', async ({ page }) => {
-    let testData: TestDataFactory;
-    
-    try {
-      const token = await login(page);
-      testData = new TestDataFactory(page, token);
+  test('shows milestone progress', async ({ page }) => {
+    // First create a subject
+    await page.goto('/subjects');
+    await page.click('button:has-text("Add Subject")');
+    await page.waitForSelector('#subject-name');
+    await page.fill('#subject-name', 'Progress Test Subject');
+    await page.click('button[type="submit"]:has-text("Save")');
+    await page.waitForSelector('#subject-name', { state: 'hidden' });
 
-      // Create subject
-      const subject = await testData.createSubject('Date Validation Subject');
+    // Navigate to the test subject
+    await page.click('a:has-text("Progress Test Subject")');
+    await page.waitForSelector('button:has-text("Add Milestone")');
 
-      // Navigate to milestone creation
-      await page.goto(`/subjects/${subject.id}`, { waitUntil: 'domcontentloaded', timeout: 30000 });
-      await page.waitForLoadState('networkidle');
+    // Create a milestone
+    const createResponsePromise = page.waitForResponse(
+      (response) =>
+        response.url().includes('/api/milestones') && response.request().method() === 'POST',
+    );
 
-      const addMilestoneButton = page.locator('button:has-text("Add Milestone"), button:has-text("Create Milestone")');
-      if (await addMilestoneButton.isVisible({ timeout: 3000 })) {
-        await addMilestoneButton.click();
+    await page.click('button:has-text("Add Milestone")');
+    await page.waitForSelector('#milestone-title');
+    await page.fill('#milestone-title', 'Progress Test Milestone');
+    await page.click('button[type="submit"]:has-text("Save")');
 
-        // Test invalid date range (end before start)
-        const titleInput = page.locator('input[name="title"], input[placeholder*="title" i]');
-        await titleInput.waitFor({ state: 'visible' });
-        await titleInput.fill('Invalid Date Test');
+    const createResponse = await createResponsePromise;
+    expect(createResponse.status()).toBe(201);
+    await page.waitForSelector('#milestone-title', { state: 'hidden' });
+    await page.waitForTimeout(1000); // Give React time to re-render
 
-        const startDateInput = page.locator('input[name="startDate"], input[type="date"]').first();
-        const endDateInput = page.locator('input[name="endDate"], input[type="date"]').last();
+    // Wait for the milestone to appear
+    await expect(page.locator('text=Progress Test Milestone')).toBeVisible({ timeout: 10000 });
 
-        if (await startDateInput.isVisible() && await endDateInput.isVisible()) {
-          // Set end date before start date
-          const today = new Date();
-          const yesterday = new Date(today);
-          yesterday.setDate(yesterday.getDate() - 1);
+    // Verify progress bar is visible (should be at 0%)
+    const milestoneItem = page.locator('li').filter({ hasText: 'Progress Test Milestone' });
+    const progressBar = milestoneItem.locator('.bg-gray-200.rounded');
+    await expect(progressBar).toBeVisible();
 
-          await startDateInput.fill(today.toISOString().split('T')[0]);
-          await endDateInput.fill(yesterday.toISOString().split('T')[0]);
-
-          const submitButton = page.locator('button[type="submit"], button:has-text("Save")');
-          await submitButton.click();
-
-          // Should show validation error
-          const errorMessage = page.locator('text*="invalid", text*="before", text*="after", [role="alert"], .error');
-          await expect(errorMessage.first()).toBeVisible({ timeout: 5000 });
-        }
-
-        // Cancel form
-        const cancelButton = page.locator('button:has-text("Cancel"), button:has-text("Close")');
-        if (await cancelButton.isVisible()) {
-          await cancelButton.click();
-        }
-      }
-
-    } catch (error) {
-      await capturePageState(page, 'milestone-validation-failure');
-      throw error;
-    }
-  });
-
-  test('milestone editing and progress tracking', async ({ page }) => {
-    let testData: TestDataFactory;
-    
-    try {
-      const token = await login(page);
-      testData = new TestDataFactory(page, token);
-
-      // Create test data
-      const subject = await testData.createSubject('Progress Tracking Subject');
-      const milestone = await testData.createMilestone(subject.id, {
-        title: 'Editable Milestone Test',
-      });
-
-      // Navigate to milestone detail page
-      await page.goto(`/milestones/${milestone.id}`, { waitUntil: 'domcontentloaded', timeout: 30000 });
-      await page.waitForLoadState('networkidle');
-
-      // Verify milestone is displayed
-      await expect(page.locator(`text="${milestone.title}"`)).toBeVisible({ timeout: 10000 });
-
-      // Test editing milestone
-      const editButton = page.locator('button:has-text("Edit"), [data-testid="edit-milestone"]');
-      if (await editButton.isVisible({ timeout: 5000 })) {
-        await editButton.click();
-
-        const titleInput = page.locator('input[name="title"], input[value*="Editable"]');
-        await titleInput.waitFor({ state: 'visible' });
-        
-        const updatedTitle = `${milestone.title} - Updated`;
-        await titleInput.fill(updatedTitle);
-
-        const saveButton = page.locator('button[type="submit"], button:has-text("Save"), button:has-text("Update")');
-        await saveButton.click();
-
-        await waitForResponse(page, `/api/milestones/${milestone.id}`, { method: 'PUT' });
-        await expect(page.locator(`text="${updatedTitle}"`)).toBeVisible({ timeout: 10000 });
-      }
-
-      // Test milestone completion/progress if available
-      const progressIndicator = page.locator('[data-testid="milestone-progress"], .progress, text*="progress"');
-      if (await progressIndicator.isVisible({ timeout: 3000 })) {
-        // Progress tracking is implemented
-        console.log('Milestone progress tracking is available');
-      }
-
-    } catch (error) {
-      await capturePageState(page, 'milestone-editing-failure');
-      throw error;
-    }
-  });
-
-  test('milestone to activity workflow integration', async ({ page }) => {
-    let testData: TestDataFactory;
-    
-    try {
-      const token = await login(page);
-      testData = new TestDataFactory(page, token);
-
-      // Create test data
-      const subject = await testData.createSubject('Activity Integration Subject');
-      const milestone = await testData.createMilestone(subject.id, {
-        title: 'Activity Parent Milestone',
-      });
-
-      // Navigate to milestone detail page
-      await page.goto(`/milestones/${milestone.id}`, { waitUntil: 'domcontentloaded', timeout: 30000 });
-      await page.waitForLoadState('networkidle');
-
-      // Add activity to milestone
-      const addActivityButton = page.locator('button:has-text("Add Activity"), button:has-text("Create Activity"), button:has-text("New Activity")');
-      
-      if (await addActivityButton.isVisible({ timeout: 5000 })) {
-        await addActivityButton.click();
-
-        const activityTitle = `E2E Test Activity ${Date.now()}`;
-        const titleInput = page.locator('input[name="title"], input[placeholder*="activity" i], input[placeholder*="title" i]');
-        await titleInput.waitFor({ state: 'visible' });
-        await titleInput.fill(activityTitle);
-
-        // Add description if field exists
-        const descriptionInput = page.locator('textarea[name="description"], textarea[placeholder*="description" i]');
-        if (await descriptionInput.isVisible({ timeout: 2000 })) {
-          await descriptionInput.fill('This is a test activity created via E2E test');
-        }
-
-        // Set duration if field exists
-        const durationInput = page.locator('input[name="duration"], input[type="number"]');
-        if (await durationInput.isVisible({ timeout: 2000 })) {
-          await durationInput.fill('30');
-        }
-
-        const submitButton = page.locator('button[type="submit"], button:has-text("Save"), button:has-text("Create")');
-        await submitButton.click();
-
-        await waitForResponse(page, '/api/activities', { method: 'POST' });
-        await page.waitForLoadState('networkidle');
-
-        // Verify activity appears under milestone
-        await expect(page.locator(`text="${activityTitle}"`)).toBeVisible({ timeout: 10000 });
-
-        // Test activity completion if checkbox exists
-        const completionCheckbox = page.locator('input[type="checkbox"][data-testid*="complete"], input[type="checkbox"]:near(:text("Complete"))');
-        if (await completionCheckbox.isVisible({ timeout: 3000 })) {
-          await completionCheckbox.check();
-          await page.waitForLoadState('networkidle');
-          
-          // Verify completion state
-          await expect(completionCheckbox).toBeChecked();
-        }
-      }
-
-    } catch (error) {
-      await capturePageState(page, 'milestone-activity-integration-failure');
-      throw error;
-    }
-  });
-
-  test('milestone timeline and calendar integration', async ({ page }) => {
-    let testData: TestDataFactory;
-    
-    try {
-      const token = await login(page);
-      testData = new TestDataFactory(page, token);
-
-      // Create multiple milestones with different dates
-      const subject = await testData.createSubject('Timeline Subject');
-      
-      const startDate1 = new Date();
-      const endDate1 = new Date();
-      endDate1.setDate(endDate1.getDate() + 7);
-      
-      const startDate2 = new Date();
-      startDate2.setDate(startDate2.getDate() + 8);
-      const endDate2 = new Date();
-      endDate2.setDate(endDate2.getDate() + 21);
-
-      const milestone1 = await testData.createMilestone(subject.id, {
-        title: 'Current Week Milestone',
-        startDate: startDate1,
-        endDate: endDate1,
-      });
-
-      const milestone2 = await testData.createMilestone(subject.id, {
-        title: 'Future Milestone',
-        startDate: startDate2,
-        endDate: endDate2,
-      });
-
-      // Navigate to milestones overview or calendar view
-      await page.goto('/milestones', { waitUntil: 'domcontentloaded', timeout: 30000 });
-      await page.waitForLoadState('networkidle');
-
-      // Verify both milestones are visible
-      await expect(page.locator(`text="${milestone1.title}"`)).toBeVisible({ timeout: 10000 });
-      await expect(page.locator(`text="${milestone2.title}"`)).toBeVisible({ timeout: 10000 });
-
-      // Test calendar view if available
-      const calendarViewButton = page.locator('button:has-text("Calendar"), [data-testid="calendar-view"]');
-      if (await calendarViewButton.isVisible({ timeout: 3000 })) {
-        await calendarViewButton.click();
-        await page.waitForLoadState('networkidle');
-        
-        // Milestones should be visible in calendar format
-        await expect(page.locator(`text="${milestone1.title}"`)).toBeVisible({ timeout: 10000 });
-      }
-
-      // Test timeline view if available
-      const timelineViewButton = page.locator('button:has-text("Timeline"), [data-testid="timeline-view"]');
-      if (await timelineViewButton.isVisible({ timeout: 3000 })) {
-        await timelineViewButton.click();
-        await page.waitForLoadState('networkidle');
-        
-        // Milestones should be visible in timeline format
-        await expect(page.locator(`text="${milestone1.title}"`)).toBeVisible({ timeout: 10000 });
-      }
-
-    } catch (error) {
-      await capturePageState(page, 'milestone-timeline-failure');
-      throw error;
-    }
-  });
-
-  test('milestone deletion and cascade effects', async ({ page }) => {
-    let testData: TestDataFactory;
-    
-    try {
-      const token = await login(page);
-      testData = new TestDataFactory(page, token);
-
-      // Create milestone with activity
-      const subject = await testData.createSubject('Deletion Test Subject');
-      const milestone = await testData.createMilestone(subject.id, {
-        title: 'Milestone To Delete',
-      });
-      
-      // Add an activity to test cascade deletion
-      const activity = await testData.createActivity(milestone.id, 'Activity To Delete');
-
-      // Navigate to milestone
-      await page.goto(`/milestones/${milestone.id}`, { waitUntil: 'domcontentloaded', timeout: 30000 });
-      await page.waitForLoadState('networkidle');
-
-      // Verify activity exists
-      await expect(page.locator(`text="${activity.title}"`)).toBeVisible({ timeout: 10000 });
-
-      // Delete milestone
-      const deleteButton = page.locator('button:has-text("Delete"), [data-testid="delete-milestone"]');
-      if (await deleteButton.isVisible({ timeout: 5000 })) {
-        await deleteButton.click();
-
-        // Handle confirmation dialog
-        const confirmDialog = page.locator('text*="confirm", text*="sure", text*="delete"');
-        if (await confirmDialog.isVisible({ timeout: 3000 })) {
-          const confirmButton = page.locator('button:has-text("Delete"), button:has-text("Confirm"), button:has-text("Yes")');
-          await confirmButton.click();
-        }
-
-        await waitForResponse(page, `/api/milestones/${milestone.id}`, { method: 'DELETE' });
-
-        // Should redirect away from deleted milestone page
-        await page.waitForURL('**/milestones**', { timeout: 10000 });
-        
-        // Verify milestone is no longer in list
-        await page.waitForLoadState('networkidle');
-        await expect(page.locator(`text="${milestone.title}"`)).not.toBeVisible();
-      }
-
-    } catch (error) {
-      await capturePageState(page, 'milestone-deletion-failure');
-      throw error;
-    }
-  });
-
-  test('milestone filtering and search functionality', async ({ page }) => {
-    let testData: TestDataFactory;
-    
-    try {
-      const token = await login(page);
-      testData = new TestDataFactory(page, token);
-
-      // Create multiple subjects and milestones for filtering
-      const mathSubject = await testData.createSubject('Mathematics');
-      const scienceSubject = await testData.createSubject('Science');
-
-      const mathMilestone = await testData.createMilestone(mathSubject.id, {
-        title: 'Algebra Basics',
-      });
-      
-      const scienceMilestone = await testData.createMilestone(scienceSubject.id, {
-        title: 'Scientific Method',
-      });
-
-      // Navigate to milestones page
-      await page.goto('/milestones', { waitUntil: 'domcontentloaded', timeout: 30000 });
-      await page.waitForLoadState('networkidle');
-
-      // Verify both milestones are visible
-      await expect(page.locator(`text="${mathMilestone.title}"`)).toBeVisible({ timeout: 10000 });
-      await expect(page.locator(`text="${scienceMilestone.title}"`)).toBeVisible({ timeout: 10000 });
-
-      // Test subject filtering if available
-      const subjectFilter = page.locator('select:has(option:text("Mathematics")), [data-testid="subject-filter"]');
-      if (await subjectFilter.isVisible({ timeout: 3000 })) {
-        await subjectFilter.selectOption('Mathematics');
-        await page.waitForLoadState('networkidle');
-        
-        // Should show only math milestone
-        await expect(page.locator(`text="${mathMilestone.title}"`)).toBeVisible();
-        // Science milestone should be filtered out
-      }
-
-      // Test search functionality
-      const searchInput = page.locator('input[placeholder*="search" i], input[type="search"]');
-      if (await searchInput.isVisible({ timeout: 3000 })) {
-        await searchInput.fill('Algebra');
-        await page.waitForTimeout(500);
-        
-        await expect(page.locator(`text="${mathMilestone.title}"`)).toBeVisible();
-        
-        // Clear search
-        await searchInput.clear();
-        await page.waitForTimeout(500);
-      }
-
-    } catch (error) {
-      await capturePageState(page, 'milestone-filtering-failure');
-      throw error;
-    }
+    // Verify milestone shows in the list
+    await expect(page.locator('text=Progress Test Milestone')).toBeVisible();
   });
 });

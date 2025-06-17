@@ -44,7 +44,6 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', validate(activityCreateSchema), async (req, res, next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0');
     const activity = await prisma.activity.create({
       data: {
         title: req.body.title,
@@ -54,7 +53,7 @@ router.post('/', validate(activityCreateSchema), async (req, res, next) => {
         privateNote: req.body.privateNote,
         publicNote: req.body.publicNote,
         tags: req.body.tags,
-        userId: userId,
+        userId: req.userId,
         completedAt: req.body.completedAt ? new Date(req.body.completedAt) : undefined,
         materialsText: req.body.materialsText,
       },

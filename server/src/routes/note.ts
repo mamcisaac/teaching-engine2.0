@@ -6,7 +6,7 @@ const router = Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0');
+    const userId = req.userId || 0;
     const { type, subjectId, dateFrom, dateTo } = req.query as {
       type?: 'public' | 'private';
       subjectId?: string;
