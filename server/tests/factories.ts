@@ -21,7 +21,7 @@ export class UserFactory implements Factory<any> {
     this.prisma = prisma || getTestPrismaClient();
   }
 
-  build(overrides: any = {}) {
+  build(overrides: unknown = {}) {
     const id = randomBytes(4).toString('hex');
     return {
       email: `test-${id}@example.com`,
@@ -32,14 +32,14 @@ export class UserFactory implements Factory<any> {
     };
   }
 
-  async create(overrides: any = {}) {
+  async create(overrides: unknown = {}) {
     const userData = this.build(overrides);
     return await this.prisma.user.create({
       data: userData,
     });
   }
 
-  async createMany(count: number, overrides: any = {}) {
+  async createMany(count: number, overrides: unknown = {}) {
     const users = [];
     for (let i = 0; i < count; i++) {
       users.push(await this.create(overrides));
@@ -58,7 +58,7 @@ export class SubjectFactory implements Factory<any> {
     this.prisma = prisma || getTestPrismaClient();
   }
 
-  build(overrides: any = {}) {
+  build(overrides: unknown = {}) {
     const id = randomBytes(4).toString('hex');
     return {
       name: `Test Subject ${id}`,
@@ -68,14 +68,14 @@ export class SubjectFactory implements Factory<any> {
     };
   }
 
-  async create(overrides: any = {}) {
+  async create(overrides: unknown = {}) {
     const subjectData = this.build(overrides);
     return await this.prisma.subject.create({
       data: subjectData,
     });
   }
 
-  async createMany(count: number, overrides: any = {}) {
+  async createMany(count: number, overrides: unknown = {}) {
     const subjects = [];
     for (let i = 0; i < count; i++) {
       subjects.push(await this.create(overrides));
@@ -94,11 +94,11 @@ export class MilestoneFactory implements Factory<any> {
     this.prisma = prisma || getTestPrismaClient();
   }
 
-  build(overrides: any = {}) {
+  build(overrides: unknown = {}) {
     const id = randomBytes(4).toString('hex');
     const now = new Date();
     const oneWeekFromNow = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
-    
+
     return {
       title: `Test Milestone ${id}`,
       titleEn: `Test Milestone ${id} EN`,
@@ -111,9 +111,9 @@ export class MilestoneFactory implements Factory<any> {
     };
   }
 
-  async create(overrides: any = {}) {
+  async create(overrides: unknown = {}) {
     const milestoneData = this.build(overrides);
-    
+
     // Ensure we have a subjectId
     if (!milestoneData.subjectId) {
       const subject = await new SubjectFactory(this.prisma).create();
@@ -125,7 +125,7 @@ export class MilestoneFactory implements Factory<any> {
     });
   }
 
-  async createMany(count: number, overrides: any = {}) {
+  async createMany(count: number, overrides: unknown = {}) {
     const milestones = [];
     for (let i = 0; i < count; i++) {
       milestones.push(await this.create(overrides));
@@ -144,9 +144,9 @@ export class ActivityFactory implements Factory<any> {
     this.prisma = prisma || getTestPrismaClient();
   }
 
-  build(overrides: any = {}) {
+  build(overrides: unknown = {}) {
     const id = randomBytes(4).toString('hex');
-    
+
     return {
       title: `Test Activity ${id}`,
       activityType: 'LESSON',
@@ -160,9 +160,9 @@ export class ActivityFactory implements Factory<any> {
     };
   }
 
-  async create(overrides: any = {}) {
+  async create(overrides: unknown = {}) {
     const activityData = this.build(overrides);
-    
+
     // Ensure we have a milestoneId
     if (!activityData.milestoneId) {
       const milestone = await new MilestoneFactory(this.prisma).create();
@@ -174,7 +174,7 @@ export class ActivityFactory implements Factory<any> {
     });
   }
 
-  async createMany(count: number, overrides: any = {}) {
+  async createMany(count: number, overrides: unknown = {}) {
     const activities = [];
     for (let i = 0; i < count; i++) {
       activities.push(await this.create({ ...overrides, orderIndex: i }));
@@ -193,9 +193,9 @@ export class OutcomeFactory implements Factory<any> {
     this.prisma = prisma || getTestPrismaClient();
   }
 
-  build(overrides: any = {}) {
+  build(overrides: unknown = {}) {
     const id = randomBytes(4).toString('hex');
-    
+
     return {
       code: `TEST-${id}`,
       subject: 'FRA',
@@ -205,14 +205,14 @@ export class OutcomeFactory implements Factory<any> {
     };
   }
 
-  async create(overrides: any = {}) {
+  async create(overrides: unknown = {}) {
     const outcomeData = this.build(overrides);
     return await this.prisma.outcome.create({
       data: outcomeData,
     });
   }
 
-  async createMany(count: number, overrides: any = {}) {
+  async createMany(count: number, overrides: unknown = {}) {
     const outcomes = [];
     for (let i = 0; i < count; i++) {
       outcomes.push(await this.create(overrides));
@@ -231,9 +231,9 @@ export class NoteFactory implements Factory<any> {
     this.prisma = prisma || getTestPrismaClient();
   }
 
-  build(overrides: any = {}) {
+  build(overrides: unknown = {}) {
     const id = randomBytes(4).toString('hex');
-    
+
     return {
       content: `Test note content ${id}`,
       public: false,
@@ -242,9 +242,9 @@ export class NoteFactory implements Factory<any> {
     };
   }
 
-  async create(overrides: any = {}) {
+  async create(overrides: unknown = {}) {
     const noteData = this.build(overrides);
-    
+
     // Ensure we have an activityId
     if (!noteData.activityId) {
       const activity = await new ActivityFactory(this.prisma).create();
@@ -256,7 +256,7 @@ export class NoteFactory implements Factory<any> {
     });
   }
 
-  async createMany(count: number, overrides: any = {}) {
+  async createMany(count: number, overrides: unknown = {}) {
     const notes = [];
     for (let i = 0; i < count; i++) {
       notes.push(await this.create(overrides));
@@ -275,11 +275,11 @@ export class CalendarEventFactory implements Factory<any> {
     this.prisma = prisma || getTestPrismaClient();
   }
 
-  build(overrides: any = {}) {
+  build(overrides: unknown = {}) {
     const id = randomBytes(4).toString('hex');
     const now = new Date();
     const oneHourLater = new Date(now.getTime() + 60 * 60 * 1000);
-    
+
     return {
       title: `Test Event ${id}`,
       start: now,
@@ -290,14 +290,14 @@ export class CalendarEventFactory implements Factory<any> {
     };
   }
 
-  async create(overrides: any = {}) {
+  async create(overrides: unknown = {}) {
     const eventData = this.build(overrides);
     return await this.prisma.calendarEvent.create({
       data: eventData,
     });
   }
 
-  async createMany(count: number, overrides: any = {}) {
+  async createMany(count: number, overrides: unknown = {}) {
     const events = [];
     for (let i = 0; i < count; i++) {
       events.push(await this.create(overrides));
@@ -320,12 +320,14 @@ export const factories = {
 /**
  * Create a complete test scenario with related data
  */
-export async function createTestScenario(options: {
-  subjectCount?: number;
-  milestonesPerSubject?: number;
-  activitiesPerMilestone?: number;
-  outcomesPerActivity?: number;
-} = {}) {
+export async function createTestScenario(
+  options: {
+    subjectCount?: number;
+    milestonesPerSubject?: number;
+    activitiesPerMilestone?: number;
+    outcomesPerActivity?: number;
+  } = {},
+) {
   const {
     subjectCount = 1,
     milestonesPerSubject = 2,
@@ -333,7 +335,7 @@ export async function createTestScenario(options: {
     outcomesPerActivity = 2,
   } = options;
 
-  const scenario: any = {
+  const scenario: unknown = {
     subjects: [],
     milestones: [],
     activities: [],
@@ -352,9 +354,9 @@ export async function createTestScenario(options: {
 
       // Create activities for each milestone
       for (let k = 0; k < activitiesPerMilestone; k++) {
-        const activity = await factories.activity.create({ 
+        const activity = await factories.activity.create({
           milestoneId: milestone.id,
-          orderIndex: k 
+          orderIndex: k,
         });
         scenario.activities.push(activity);
 

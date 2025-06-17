@@ -39,15 +39,15 @@ export class TestServer {
   private async waitForServerReady(): Promise<void> {
     const maxAttempts = 60; // 30 seconds with 500ms intervals
     const interval = 500;
-    
+
     // Dynamic import of node-fetch for ESM compatibility
     const fetch = (await import('node-fetch')).default;
-    
+
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
       try {
         const response = await fetch(`${this.baseUrl}/health`);
         if (response.ok) {
-          const data = await response.json() as any;
+          const data = (await response.json()) as unknown;
           if (data.status === 'healthy') {
             return;
           }
@@ -55,10 +55,10 @@ export class TestServer {
       } catch (error) {
         // Server not ready yet, continue waiting
       }
-      
-      await new Promise(resolve => setTimeout(resolve, interval));
+
+      await new Promise((resolve) => setTimeout(resolve, interval));
     }
-    
+
     throw new Error('Server failed to start within timeout period');
   }
 
@@ -75,13 +75,13 @@ export class TestServer {
       // Get available port
       this.port = await this.getAvailablePort();
       this.baseUrl = `http://localhost:${this.port}`;
-      
+
       // Set test environment variables
       process.env.PORT = String(this.port);
       process.env.NODE_ENV = 'test';
       process.env.JWT_SECRET = 'test-secret-key';
       process.env.LOG_LEVEL = 'error'; // Reduce noise during tests
-      
+
       // Ensure test database URL is set
       if (!process.env.DATABASE_URL?.includes('test')) {
         const workerId = process.env.JEST_WORKER_ID || 'default';
@@ -95,7 +95,7 @@ export class TestServer {
 
       // Import and start the server
       const serverModule = await import('../src/index.js');
-      
+
       // The server should be available as a named export
       if (serverModule.server) {
         this.server = serverModule.server;
@@ -105,7 +105,7 @@ export class TestServer {
 
       // Wait for server to be ready
       await this.waitForServerReady();
-      
+
       this.isRunning = true;
       console.log(`Test server started successfully on ${this.baseUrl}`);
     } catch (error) {
@@ -128,7 +128,7 @@ export class TestServer {
       // Get available port
       this.port = await this.getAvailablePort();
       this.baseUrl = `http://localhost:${this.port}`;
-      
+
       // Prepare environment variables
       const env = {
         ...process.env,
@@ -166,7 +166,7 @@ export class TestServer {
 
       // Wait for server to be ready
       await this.waitForServerReady();
-      
+
       this.isRunning = true;
       console.log(`Test server process started successfully on ${this.baseUrl}`);
     } catch (error) {
@@ -270,7 +270,7 @@ export class TestServer {
   getAuthHeaders(userId: number = 1): Record<string, string> {
     const jwt = this.createTestJWT(userId);
     return {
-      'Authorization': `Bearer ${jwt}`,
+      Authorization: `Bearer ${jwt}`,
       'Content-Type': 'application/json',
     };
   }

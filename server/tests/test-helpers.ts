@@ -20,7 +20,7 @@ export function getServerUrl(): string {
 export function getAuthHeaders(userId: number = 1): Record<string, string> {
   const token = createTestJWT(userId);
   return {
-    'Authorization': `Bearer ${token}`,
+    Authorization: `Bearer ${token}`,
     'Content-Type': 'application/json',
   };
 }
@@ -49,8 +49,8 @@ export async function authenticatedGet(path: string, userId: number = 1): Promis
  */
 export async function authenticatedPost(
   path: string,
-  body: any,
-  userId: number = 1
+  body: unknown,
+  userId: number = 1,
 ): Promise<Response> {
   const response = await fetch(`${getServerUrl()}${path}`, {
     method: 'POST',
@@ -65,8 +65,8 @@ export async function authenticatedPost(
  */
 export async function authenticatedPut(
   path: string,
-  body: any,
-  userId: number = 1
+  body: unknown,
+  userId: number = 1,
 ): Promise<Response> {
   const response = await fetch(`${getServerUrl()}${path}`, {
     method: 'PUT',
@@ -92,18 +92,18 @@ export async function authenticatedDelete(path: string, userId: number = 1): Pro
  */
 export async function waitFor(
   condition: () => boolean | Promise<boolean>,
-  options: { timeout?: number; interval?: number } = {}
+  options: { timeout?: number; interval?: number } = {},
 ): Promise<void> {
   const { timeout = 5000, interval = 100 } = options;
   const startTime = Date.now();
-  
+
   while (Date.now() - startTime < timeout) {
     if (await condition()) {
       return;
     }
-    await new Promise(resolve => setTimeout(resolve, interval));
+    await new Promise((resolve) => setTimeout(resolve, interval));
   }
-  
+
   throw new Error('Timeout waiting for condition');
 }
 
@@ -124,7 +124,7 @@ export function createMockRequest(overrides: Partial<AuthRequest> = {}): AuthReq
  * Create a mock Express response object for unit tests
  */
 export function createMockResponse(): Response {
-  const res: any = {
+  const res: unknown = {
     status: jest.fn().mockReturnThis(),
     json: jest.fn().mockReturnThis(),
     send: jest.fn().mockReturnThis(),

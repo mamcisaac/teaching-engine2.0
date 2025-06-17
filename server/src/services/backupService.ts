@@ -80,7 +80,7 @@ export async function loadBackup(key: string): Promise<Buffer> {
     const realKey = key.slice(`s3://${bucket}/`.length);
     const res = await s3.send(new GetObjectCommand({ Bucket: bucket, Key: realKey }));
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const stream = res.Body as any as NodeJS.ReadableStream;
+    const stream = res.Body as unknown as NodeJS.ReadableStream;
     const chunks: Buffer[] = [];
     for await (const chunk of stream) chunks.push(Buffer.from(chunk));
     return Buffer.concat(chunks);

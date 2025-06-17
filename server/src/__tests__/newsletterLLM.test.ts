@@ -30,7 +30,7 @@ describe('NewsletterLLM', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     process.env = { ...originalEnv };
-    mockOpenAI.mockImplementation(() => mockOpenAIInstance as any);
+    mockOpenAI.mockImplementation(() => mockOpenAIInstance as unknown);
   });
 
   afterEach(() => {
@@ -67,7 +67,8 @@ describe('NewsletterLLM', () => {
           messages: [
             {
               role: 'system',
-              content: 'Rewrite the classroom newsletter in a warm, engaging tone for parents. Keep length similar.',
+              content:
+                'Rewrite the classroom newsletter in a warm, engaging tone for parents. Keep length similar.',
             },
             {
               role: 'user',
@@ -82,7 +83,7 @@ describe('NewsletterLLM', () => {
 
       it('should log token usage when available', async () => {
         const mockLogger = jest.mocked(await import('../logger')).default;
-        
+
         mockOpenAIInstance.chat.completions.create.mockResolvedValue({
           choices: [
             {
@@ -98,10 +99,7 @@ describe('NewsletterLLM', () => {
 
         await rewriteNewsletter(testDraft);
 
-        expect(mockLogger.info).toHaveBeenCalledWith(
-          { tokens: 200 },
-          'llm tokens used'
-        );
+        expect(mockLogger.info).toHaveBeenCalledWith({ tokens: 200 }, 'llm tokens used');
       });
 
       it('should handle missing content in response', async () => {
@@ -150,29 +148,26 @@ describe('NewsletterLLM', () => {
       it('should handle OpenAI API errors gracefully', async () => {
         const mockLogger = jest.mocked(await import('../logger')).default;
         const apiError = new Error('OpenAI API error');
-        
+
         mockOpenAIInstance.chat.completions.create.mockRejectedValue(apiError);
 
         const result = await rewriteNewsletter(testDraft);
 
-        expect(mockLogger.error).toHaveBeenCalledWith(
-          { err: apiError },
-          'llm rewrite failed'
-        );
+        expect(mockLogger.error).toHaveBeenCalledWith({ err: apiError }, 'llm rewrite failed');
         expect(result).toBe(testDraft);
       });
 
       it('should handle rate limiting errors', async () => {
         const mockLogger = jest.mocked(await import('../logger')).default;
         const rateLimitError = new Error('Rate limit exceeded');
-        
+
         mockOpenAIInstance.chat.completions.create.mockRejectedValue(rateLimitError);
 
         const result = await rewriteNewsletter(testDraft);
 
         expect(mockLogger.error).toHaveBeenCalledWith(
           { err: rateLimitError },
-          'llm rewrite failed'
+          'llm rewrite failed',
         );
         expect(result).toBe(testDraft);
       });
@@ -180,21 +175,18 @@ describe('NewsletterLLM', () => {
       it('should handle network timeouts', async () => {
         const mockLogger = jest.mocked(await import('../logger')).default;
         const timeoutError = new Error('Request timeout');
-        
+
         mockOpenAIInstance.chat.completions.create.mockRejectedValue(timeoutError);
 
         const result = await rewriteNewsletter(testDraft);
 
-        expect(mockLogger.error).toHaveBeenCalledWith(
-          { err: timeoutError },
-          'llm rewrite failed'
-        );
+        expect(mockLogger.error).toHaveBeenCalledWith({ err: timeoutError }, 'llm rewrite failed');
         expect(result).toBe(testDraft);
       });
 
       it('should not log token usage when not available', async () => {
         const mockLogger = jest.mocked(await import('../logger')).default;
-        
+
         mockOpenAIInstance.chat.completions.create.mockResolvedValue({
           choices: [
             {
@@ -210,7 +202,7 @@ describe('NewsletterLLM', () => {
 
         expect(mockLogger.info).not.toHaveBeenCalledWith(
           expect.objectContaining({ tokens: expect.any(Number) }),
-          'llm tokens used'
+          'llm tokens used',
         );
       });
     });
@@ -252,7 +244,7 @@ describe('NewsletterLLM', () => {
       it('should handle very long drafts', async () => {
         const longDraft = 'A'.repeat(10000);
         const rewrittenText = 'B'.repeat(10000);
-        
+
         mockOpenAIInstance.chat.completions.create.mockResolvedValue({
           choices: [
             {
@@ -273,14 +265,14 @@ describe('NewsletterLLM', () => {
                 content: longDraft,
               }),
             ]),
-          })
+          }),
         );
       });
 
       it('should handle special characters in draft', async () => {
         const specialCharDraft = 'Newsletter with émojis 🎉 and spëcial chars: @#$%^&*()';
         const rewrittenText = 'Beautiful newsletter with émojis 🎉 and special characters!';
-        
+
         mockOpenAIInstance.chat.completions.create.mockResolvedValue({
           choices: [
             {
@@ -301,10 +293,10 @@ describe('NewsletterLLM', () => {
   describe('OpenAI client initialization', () => {
     it('should create OpenAI client when API key is provided', () => {
       process.env.OPENAI_API_KEY = 'test-api-key';
-      
+
       // Re-import to trigger client creation
       jest.resetModules();
-      
+
       expect(mockOpenAI).toHaveBeenCalledWith({
         apiKey: 'test-api-key',
       });
@@ -312,10 +304,10 @@ describe('NewsletterLLM', () => {
 
     it('should not create OpenAI client when API key is missing', () => {
       delete process.env.OPENAI_API_KEY;
-      
+
       // Re-import to trigger client creation
       jest.resetModules();
-      
+
       expect(mockOpenAI).not.toHaveBeenCalled();
     });
   });

@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename);
 
 // use any to avoid requiring aws-sdk types when not installed
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-let s3Client: any = null;
+let s3Client: unknown = null;
 const bucket = process.env.AWS_BUCKET_NAME;
 if (bucket && process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY) {
   // eslint-disable-next-line @typescript-eslint/no-var-requires

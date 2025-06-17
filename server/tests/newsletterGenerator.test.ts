@@ -11,7 +11,7 @@ describe('newsletter template renderer', () => {
 
   it('throws on invalid template name', () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    expect(() => renderTemplate('bad' as any, { title: 'T', content: 'C' })).toThrow(
+    expect(() => renderTemplate('bad' as unknown, { title: 'T', content: 'C' })).toThrow(
       'Invalid template',
     );
   });

@@ -32,16 +32,19 @@ describe('Data Transformation Unit Tests', () => {
 
     it('should extract materials list from materialsText', () => {
       const activity = createRawActivity({
-        materialsText: 'paper, pencils, rulers, erasers'
+        materialsText: 'paper, pencils, rulers, erasers',
       });
 
       const extractMaterialsList = (text: string | null): string[] => {
         if (!text) return [];
-        return text.split(',').map(item => item.trim()).filter(Boolean);
+        return text
+          .split(',')
+          .map((item) => item.trim())
+          .filter(Boolean);
       };
 
       const materialsList = extractMaterialsList(activity.materialsText);
-      
+
       expect(materialsList).toEqual(['paper', 'pencils', 'rulers', 'erasers']);
     });
 
@@ -76,10 +79,10 @@ describe('Data Transformation Unit Tests', () => {
     });
 
     it('should transform activity for API response', () => {
-      const transformActivityForAPI = (activity: any, language = 'en') => {
+      const transformActivityForAPI = (activity: unknown, language = 'en') => {
         const titleKey = language === 'fr' ? 'titleFr' : 'titleEn';
         const noteKey = language === 'fr' ? 'publicNoteFr' : 'publicNoteEn';
-        
+
         return {
           id: activity.id,
           title: activity[titleKey] || activity.title,
@@ -95,7 +98,7 @@ describe('Data Transformation Unit Tests', () => {
       };
 
       const activity = createRawActivity();
-      
+
       const englishTransform = transformActivityForAPI(activity, 'en');
       expect(englishTransform.title).toBe('Test Activity EN');
       expect(englishTransform.note).toBe('Public note EN');
@@ -130,9 +133,9 @@ describe('Data Transformation Unit Tests', () => {
     });
 
     it('should calculate milestone progress', () => {
-      const calculateProgress = (activities: any[]): number => {
+      const calculateProgress = (activities: unknown[]): number => {
         if (activities.length === 0) return 0;
-        const completed = activities.filter(a => a.completedAt).length;
+        const completed = activities.filter((a) => a.completedAt).length;
         return completed / activities.length;
       };
 
@@ -162,7 +165,7 @@ describe('Data Transformation Unit Tests', () => {
 
       const futureDate = new Date();
       futureDate.setDate(futureDate.getDate() + 7);
-      
+
       const pastDate = new Date();
       pastDate.setDate(pastDate.getDate() - 3);
 
@@ -174,16 +177,16 @@ describe('Data Transformation Unit Tests', () => {
     it('should determine milestone status', () => {
       const getMilestoneStatus = (
         endDate: Date | null,
-        progress: number
+        progress: number,
       ): 'completed' | 'in-progress' | 'overdue' | 'not-started' => {
         if (progress === 1) return 'completed';
         if (!endDate) {
           return progress > 0 ? 'in-progress' : 'not-started';
         }
-        
+
         const today = new Date();
         const isOverdue = endDate < today;
-        
+
         if (isOverdue && progress === 0) return 'overdue';
         if (isOverdue) return 'in-progress'; // Overdue but some progress
         return progress > 0 ? 'in-progress' : 'not-started';
@@ -205,14 +208,17 @@ describe('Data Transformation Unit Tests', () => {
     });
 
     it('should transform milestone for dashboard display', () => {
-      const transformMilestoneForDashboard = (milestone: any) => {
+      const transformMilestoneForDashboard = (milestone: unknown) => {
         const activities = milestone.activities || [];
-        const progress = activities.length === 0 ? 0 : 
-          activities.filter((a: any) => a.completedAt).length / activities.length;
+        const progress =
+          activities.length === 0
+            ? 0
+            : activities.filter((a: unknown) => a.completedAt).length / activities.length;
 
         const today = new Date();
-        const daysRemaining = milestone.endDate ? 
-          Math.ceil((milestone.endDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)) : null;
+        const daysRemaining = milestone.endDate
+          ? Math.ceil((milestone.endDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
+          : null;
 
         return {
           id: milestone.id,
@@ -221,7 +227,7 @@ describe('Data Transformation Unit Tests', () => {
           daysRemaining,
           isOverdue: milestone.endDate ? milestone.endDate < today : false,
           totalActivities: activities.length,
-          completedActivities: activities.filter((a: any) => a.completedAt).length,
+          completedActivities: activities.filter((a: unknown) => a.completedAt).length,
           estHours: milestone.estHours,
         };
       };
@@ -236,7 +242,7 @@ describe('Data Transformation Unit Tests', () => {
       });
 
       const transformed = transformMilestoneForDashboard(milestone);
-      
+
       expect(transformed.progress).toBe(67); // 2/3 * 100
       expect(transformed.totalActivities).toBe(3);
       expect(transformed.completedActivities).toBe(2);
@@ -246,10 +252,9 @@ describe('Data Transformation Unit Tests', () => {
 
   describe('Date and Time Transformations', () => {
     it('should format dates for different locales', () => {
-
       // Use UTC to avoid timezone issues
       const testDate = new Date(Date.UTC(2024, 2, 15)); // Month is 0-indexed, so 2 = March
-      
+
       // Use toLocaleDateString with UTC timezone to get consistent results
       const formatDateForLocaleUTC = (date: Date, locale: string): string => {
         return date.toLocaleDateString(locale, {
@@ -259,7 +264,7 @@ describe('Data Transformation Unit Tests', () => {
           timeZone: 'UTC',
         });
       };
-      
+
       expect(formatDateForLocaleUTC(testDate, 'en-US')).toBe('March 15, 2024');
       expect(formatDateForLocaleUTC(testDate, 'fr-FR')).toBe('15 mars 2024');
     });
@@ -269,7 +274,7 @@ describe('Data Transformation Unit Tests', () => {
         const now = new Date();
         const diffMs = now.getTime() - date.getTime();
         const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-        
+
         if (diffDays === 0) return 'today';
         if (diffDays === 1) return 'yesterday';
         if (diffDays === -1) return 'tomorrow';
@@ -312,10 +317,10 @@ describe('Data Transformation Unit Tests', () => {
 
   describe('Aggregation Transformations', () => {
     it('should aggregate outcome coverage by subject', () => {
-      const aggregateOutcomeCoverageBySubject = (coverage: any[]): Record<string, any> => {
-        const subjects: Record<string, any> = {};
-        
-        coverage.forEach(item => {
+      const aggregateOutcomeCoverageBySubject = (coverage: unknown[]): Record<string, unknown> => {
+        const subjects: Record<string, unknown> = {};
+
+        coverage.forEach((item) => {
           const subject = item.outcome.subject;
           if (!subjects[subject]) {
             subjects[subject] = {
@@ -325,16 +330,18 @@ describe('Data Transformation Unit Tests', () => {
               uncovered: 0,
             };
           }
-          
+
           subjects[subject].total++;
           subjects[subject][item.status]++;
         });
 
         // Calculate percentages
-        Object.keys(subjects).forEach(subject => {
+        Object.keys(subjects).forEach((subject) => {
           const data = subjects[subject];
-          data.coveragePercentage = data.total > 0 ? 
-            Math.round(((data.covered + data.partial * 0.5) / data.total) * 100) : 0;
+          data.coveragePercentage =
+            data.total > 0
+              ? Math.round(((data.covered + data.partial * 0.5) / data.total) * 100)
+              : 0;
         });
 
         return subjects;
@@ -349,7 +356,7 @@ describe('Data Transformation Unit Tests', () => {
       ];
 
       const result = aggregateOutcomeCoverageBySubject(coverageData);
-      
+
       expect(result.FRA.total).toBe(3);
       expect(result.FRA.covered).toBe(1);
       expect(result.FRA.partial).toBe(1);
@@ -362,7 +369,7 @@ describe('Data Transformation Unit Tests', () => {
     });
 
     it('should group activities by week', () => {
-      const groupActivitiesByWeek = (activities: any[]): Record<string, any[]> => {
+      const groupActivitiesByWeek = (activities: unknown[]): Record<string, unknown[]> => {
         const getWeekKey = (date: Date): string => {
           const startOfWeek = new Date(date);
           const day = startOfWeek.getDay();
@@ -371,9 +378,9 @@ describe('Data Transformation Unit Tests', () => {
           return startOfWeek.toISOString().split('T')[0];
         };
 
-        const groups: Record<string, any[]> = {};
-        
-        activities.forEach(activity => {
+        const groups: Record<string, unknown[]> = {};
+
+        activities.forEach((activity) => {
           if (activity.completedAt) {
             const weekKey = getWeekKey(new Date(activity.completedAt));
             if (!groups[weekKey]) {
@@ -394,10 +401,10 @@ describe('Data Transformation Unit Tests', () => {
       ];
 
       const grouped = groupActivitiesByWeek(activities);
-      
+
       // Should have 2 weeks with activities
       expect(Object.keys(grouped)).toHaveLength(2);
-      
+
       // Check that activities are grouped correctly
       const weekKeys = Object.keys(grouped).sort();
       expect(grouped[weekKeys[0]]).toHaveLength(2); // Jan 1 and Jan 3

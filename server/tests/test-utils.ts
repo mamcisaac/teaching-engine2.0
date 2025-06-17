@@ -29,14 +29,14 @@ export function createTestUtils(prisma: PrismaClient) {
      */
     async testTransactionIsolation(): Promise<void> {
       // Create multiple subjects concurrently to test isolation
-      const operations = Array.from({ length: 5 }, (_, i) => 
+      const operations = Array.from({ length: 5 }, (_, i) =>
         prisma.subject.create({
           data: {
             id: `isolation_test_${i}`,
             name: `Isolation Test ${i}`,
             gradeLevel: 5,
           },
-        })
+        }),
       );
 
       const results = await Promise.all(operations);
@@ -64,7 +64,7 @@ export function createTestUtils(prisma: PrismaClient) {
             duration: 30,
             description: 'Test',
           },
-        })
+        }),
       ).rejects.toThrow();
     },
 
@@ -73,7 +73,7 @@ export function createTestUtils(prisma: PrismaClient) {
      */
     async testUniqueConstraints(): Promise<void> {
       const id = 'unique_test_id';
-      
+
       // Create a subject
       await prisma.subject.create({
         data: {
@@ -91,7 +91,7 @@ export function createTestUtils(prisma: PrismaClient) {
             name: 'Duplicate ID',
             gradeLevel: 5,
           },
-        })
+        }),
       ).rejects.toThrow();
     },
 
@@ -118,17 +118,17 @@ export function createTestUtils(prisma: PrismaClient) {
     async waitFor(
       condition: () => Promise<boolean>,
       timeout: number = 5000,
-      interval: number = 100
+      interval: number = 100,
     ): Promise<void> {
       const startTime = Date.now();
-      
+
       while (Date.now() - startTime < timeout) {
         if (await condition()) {
           return;
         }
-        await new Promise(resolve => setTimeout(resolve, interval));
+        await new Promise((resolve) => setTimeout(resolve, interval));
       }
-      
+
       throw new Error(`Timeout waiting for condition after ${timeout}ms`);
     },
 
@@ -138,11 +138,11 @@ export function createTestUtils(prisma: PrismaClient) {
     async createSnapshot(): Promise<Record<string, number>> {
       const tables = ['Subject', 'Milestone', 'Activity', 'Outcome', 'Note'];
       const snapshot: Record<string, number> = {};
-      
+
       for (const table of tables) {
         snapshot[table] = await this.getTableCount(table);
       }
-      
+
       return snapshot;
     },
 
@@ -166,42 +166,35 @@ export const assertions = {
    * Assert that two objects match, ignoring specified fields
    */
   objectMatches(
-    actual: any,
-    expected: any,
-    ignoreFields: string[] = ['id', 'createdAt', 'updatedAt']
+    actual: unknown,
+    expected: unknown,
+    ignoreFields: string[] = ['id', 'createdAt', 'updatedAt'],
   ): void {
     const actualCopy = { ...actual };
     const expectedCopy = { ...expected };
-    
+
     // Remove ignored fields
     for (const field of ignoreFields) {
       delete actualCopy[field];
       delete expectedCopy[field];
     }
-    
+
     expect(actualCopy).toEqual(expectedCopy);
   },
 
   /**
    * Assert that a promise rejects with a specific error message
    */
-  async rejectsWithMessage(
-    promise: Promise<any>,
-    expectedMessage: string
-  ): Promise<void> {
+  async rejectsWithMessage(promise: Promise<unknown>, expectedMessage: string): Promise<void> {
     await expect(promise).rejects.toThrow(expectedMessage);
   },
 
   /**
    * Assert that an array contains items matching a predicate
    */
-  arrayContains<T>(
-    array: T[],
-    predicate: (item: T) => boolean,
-    expectedCount?: number
-  ): void {
+  arrayContains<T>(array: T[], predicate: (item: T) => boolean, expectedCount?: number): void {
     const matches = array.filter(predicate);
-    
+
     if (expectedCount !== undefined) {
       expect(matches).toHaveLength(expectedCount);
     } else {
@@ -216,11 +209,11 @@ export const assertions = {
     if (!date) {
       throw new Error('Date is null or undefined');
     }
-    
+
     const dateObj = typeof date === 'string' ? new Date(date) : date;
     const now = new Date();
     const diffMs = now.getTime() - dateObj.getTime();
-    
+
     expect(diffMs).toBeGreaterThanOrEqual(0);
     expect(diffMs).toBeLessThan(60000); // 1 minute
   },
