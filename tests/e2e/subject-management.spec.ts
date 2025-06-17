@@ -14,6 +14,7 @@ test.describe('Subject Management Workflow', () => {
     try {
       // Login and get token
       const token = await login(page);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       testData = new TestDataFactory(page, token);
 
       // Navigate to subjects page
