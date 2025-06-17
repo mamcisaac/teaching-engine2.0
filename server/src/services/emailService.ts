@@ -18,12 +18,37 @@ export interface EmailAttachment {
   content: Buffer;
 }
 
+// Allow overriding email handler for testing
+type EmailHandler = (
+  to: string,
+  subject: string,
+  text: string,
+  html?: string,
+  attachment?: EmailAttachment
+) => Promise<void>;
+
+let customEmailHandler: EmailHandler | null = null;
+
+export function setEmailHandler(handler: EmailHandler) {
+  customEmailHandler = handler;
+}
+
+export function clearEmailHandler() {
+  customEmailHandler = null;
+}
+
 export async function sendEmail(
   to: string,
   subject: string,
   text: string,
   attachment?: EmailAttachment,
 ) {
+  // Use custom handler if set (for testing)
+  if (customEmailHandler) {
+    await customEmailHandler(to, subject, text, undefined, attachment);
+    return;
+  }
+  
   if (process.env.SENDGRID_API_KEY) {
     const body: Record<string, unknown> = {
       personalizations: [{ to: [{ email: to }] }],

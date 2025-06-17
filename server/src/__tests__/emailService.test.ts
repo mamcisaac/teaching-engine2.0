@@ -4,7 +4,7 @@ import {
   setEmailHandler,
   clearEmailHandler,
   EmailAttachment,
-} from '../services/emailService.js';
+} from '../services/emailService';
 
 // Mock dependencies
 jest.mock('nodemailer');

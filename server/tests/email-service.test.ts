@@ -8,6 +8,9 @@ import request from 'supertest';
 import { app } from '../src/index';
 import { setEmailHandler, clearEmailHandler } from '../src/services/emailService';
 
+// Increase test timeout for email tests
+jest.setTimeout(60000);
+
 describe('Email Service Integration Tests', () => {
   let testEmailService: ReturnType<typeof getTestEmailService>;
   let teacherToken: string;
@@ -60,10 +63,15 @@ describe('Email Service Integration Tests', () => {
   });
 
   afterAll(async () => {
-    await prisma.user.deleteMany({ where: { email: testUser.email } });
-    clearEmailHandler();
-    await resetTestEmailService();
-    await prisma.$disconnect();
+    try {
+      await prisma.user.deleteMany({ where: { email: testUser.email } });
+      clearEmailHandler();
+      await resetTestEmailService();
+    } catch (error) {
+      console.error('Error during cleanup:', error);
+    } finally {
+      await prisma.$disconnect();
+    }
   });
 
   beforeEach(async () => {

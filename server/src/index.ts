@@ -268,23 +268,27 @@ app.use(
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 log(`Starting server on port ${PORT}...`);
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server is running on port ${PORT}`);
-  log('Server started successfully');
+// Export app before starting the server
+export { app };
 
-  // Schedule background jobs
-  log('Scheduling background jobs...');
-  try {
-    scheduleProgressCheck();
-    scheduleUnreadNotificationEmails();
-    scheduleNewsletterTriggers();
-    scheduleReportDeadlineReminders();
-    scheduleEquipmentBookingReminders();
-    scheduleBackups();
-    log('All background jobs scheduled');
-  } catch (err) {
-    error('Error scheduling background jobs:', err);
-  }
-});
+// Only start the server if this file is run directly
+if (import.meta.url === `file://${process.argv[1]}`) {
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server is running on port ${PORT}`);
+    log('Server started successfully');
 
-export default app;
+    // Schedule background jobs
+    log('Scheduling background jobs...');
+    try {
+      scheduleProgressCheck();
+      scheduleUnreadNotificationEmails();
+      scheduleNewsletterTriggers();
+      scheduleReportDeadlineReminders();
+      scheduleEquipmentBookingReminders();
+      scheduleBackups();
+      log('All background jobs scheduled');
+    } catch (err) {
+      error('Error scheduling background jobs:', err);
+    }
+  });
+}

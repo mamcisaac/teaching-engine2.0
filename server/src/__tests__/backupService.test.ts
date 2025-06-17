@@ -7,7 +7,7 @@ import {
   loadBackup,
   runBackupJob,
   scheduleBackups,
-} from '../services/backupService.js';
+} from '../services/backupService';
 
 // Mock dependencies
 jest.mock('fs');

@@ -6,7 +6,7 @@ import {
   assessmentTemplateUpdateSchema,
   assessmentResultCreateSchema,
 } from '../validation';
-import { authMiddleware, AuthRequest } from '../middleware/auth.js';
+import { authMiddleware, AuthRequest } from '../middleware/auth';
 
 const router = Router();
 

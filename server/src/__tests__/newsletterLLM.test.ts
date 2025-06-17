@@ -1,5 +1,5 @@
 import { jest } from '@jest/globals';
-import { rewriteNewsletter } from '../services/newsletterLLM.js';
+import { rewriteNewsletter } from '../services/newsletterLLM';
 
 // Mock OpenAI
 jest.mock('openai');

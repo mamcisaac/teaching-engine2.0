@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals';
 import { prisma } from '../src/prisma';
 import { sendUnreadNotifications } from '../src/jobs/unreadNotificationEmail';
 import * as email from '../src/services/emailService';
