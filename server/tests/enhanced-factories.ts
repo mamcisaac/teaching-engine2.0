@@ -1,6 +1,6 @@
 import { PrismaClient } from '@teaching-engine/database';
 import { randomBytes } from 'crypto';
-import { getTestPrismaClient } from './setup-all-tests';
+import { getTestPrismaClient } from './jest.setup';
 
 /**
  * Enhanced factory system for test data creation with better type safety and domain scenarios

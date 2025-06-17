@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from '@jest/globals';
 import { reorderActivities } from '../../src/services/activityService';
 import { enhancedFactories } from '../enhanced-factories';
-import { getTestPrismaClient } from '../setup-all-tests';
+import { getTestPrismaClient } from '../jest.setup';
 
 describe('ActivityService Unit Tests', () => {
   let prisma: ReturnType<typeof getTestPrismaClient>;
