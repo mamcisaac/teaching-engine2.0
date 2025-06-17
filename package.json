@@ -33,6 +33,7 @@
     "curriculum:import": "pnpm --filter scripts run curriculum:import"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^19.8.1",
     "@playwright/test": "^1.43.1",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
