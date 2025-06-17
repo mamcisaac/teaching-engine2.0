@@ -14,19 +14,19 @@ describe('Server Integration Tests', () => {
   });
 
   describe('Health Check', () => {
-    it('should respond to health check endpoint', async () => {
-      const response = await request(app).get('/health');
-
-      expect(response.status).toBe(200);
-      expect(response.text).toBeDefined();
-      expect(response.text).toBe('OK');
-    });
-
     it('should respond to API health check endpoint', async () => {
       const response = await request(app).get('/api/health');
 
       expect(response.status).toBe(200);
       expect(response.body).toEqual({ status: 'ok' });
+    });
+
+    it('should serve client app for root route', async () => {
+      const response = await request(app).get('/');
+
+      expect(response.status).toBe(200);
+      expect(response.text).toContain('<!DOCTYPE html>');
+      expect(response.text).toContain('Curriculum Planner');
     });
   });
 
