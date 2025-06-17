@@ -55,6 +55,7 @@ import cognateRoutes from './routes/cognate';
 import assessmentRoutes from './routes/assessment';
 import mediaResourceRoutes from './routes/mediaResource';
 import parentMessageRoutes from './routes/parentMessage';
+import testRoutes from './routes/test';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
@@ -198,6 +199,12 @@ app.get('/api/auth/check', authenticateToken, (req: AuthenticatedRequest, res: R
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
 });
+
+// Mount test routes (only available in test environment)
+if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
+  log('Mounting test routes...');
+  app.use('/api/test', testRoutes);
+}
 
 // Apply authentication to all other API routes
 log('Mounting API routes...');

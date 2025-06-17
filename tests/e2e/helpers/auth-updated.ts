@@ -30,7 +30,7 @@ export function getApiContext(): APIRequestContext {
 // Create authenticated API context
 export function getAuthenticatedApiContext(token: string): APIRequestContext {
   const baseContext = getApiContext();
-  
+
   return {
     ...baseContext,
     post: async (url: string, options?: { headers?: Record<string, string>; data?: unknown }) => {
@@ -98,11 +98,11 @@ const createdTestUsers: TestUser[] = [];
  */
 export async function createTestUser(
   role: 'teacher' | 'admin' = 'teacher',
-  customData?: Partial<TestUser>
+  customData?: Partial<TestUser>,
 ): Promise<TestUser> {
   const timestamp = Date.now();
   const random = Math.random().toString(36).substring(7);
-  
+
   const user: TestUser = {
     email: `e2e-${role}-${timestamp}-${random}@example.com`,
     password: `e2epass-${timestamp}`,
@@ -112,7 +112,7 @@ export async function createTestUser(
   };
 
   const api = getApiContext();
-  
+
   try {
     // Create user via test endpoint
     const createResponse = await api.post('/api/test/users', {
@@ -126,10 +126,10 @@ export async function createTestUser(
 
     const responseData = await createResponse.json();
     user.token = responseData.token;
-    
+
     // Track for cleanup
     createdTestUsers.push(user);
-    
+
     console.log(`Created test user: ${user.email}`);
     return user;
   } catch (error) {
@@ -143,7 +143,7 @@ export async function createTestUser(
  */
 export async function loginAsTestUser(page: Page, user: TestUser): Promise<void> {
   console.log(`Logging in as ${user.email}...`);
-  
+
   // If we already have a token, just set it
   if (user.token) {
     await page.addInitScript((token) => {
@@ -151,17 +151,17 @@ export async function loginAsTestUser(page: Page, user: TestUser): Promise<void>
       window.localStorage.setItem('auth-token', token);
       window.localStorage.setItem('onboarded', 'true');
     }, user.token);
-    
+
     await page.evaluate((token) => {
       window.localStorage.setItem('token', token);
       window.localStorage.setItem('auth-token', token);
       window.localStorage.setItem('onboarded', 'true');
     }, user.token);
-    
+
     console.log('Set authentication token in localStorage');
     return;
   }
-  
+
   // Otherwise, login via API
   const api = getApiContext();
   const loginResponse = await api.post('/api/login', {
@@ -177,7 +177,7 @@ export async function loginAsTestUser(page: Page, user: TestUser): Promise<void>
 
   const loginData = await loginResponse.json();
   user.token = loginData.token;
-  
+
   // Set token in page context
   await page.addInitScript((data) => {
     window.localStorage.setItem('token', data.token);
@@ -185,14 +185,14 @@ export async function loginAsTestUser(page: Page, user: TestUser): Promise<void>
     window.localStorage.setItem('user', JSON.stringify(data.user));
     window.localStorage.setItem('onboarded', 'true');
   }, loginData);
-  
+
   await page.evaluate((data) => {
     window.localStorage.setItem('token', data.token);
     window.localStorage.setItem('auth-token', data.token);
     window.localStorage.setItem('user', JSON.stringify(data.user));
     window.localStorage.setItem('onboarded', 'true');
   }, loginData);
-  
+
   console.log('Login successful');
 }
 
@@ -200,19 +200,15 @@ export async function loginAsTestUser(page: Page, user: TestUser): Promise<void>
  * Use the default E2E test user from global setup
  */
 export async function useDefaultTestUser(page: Page): Promise<void> {
-  const testUser = global.__E2E_TEST_USER__;
-  
-  if (!testUser) {
-    throw new Error('No default test user available. Make sure global setup ran successfully.');
+  // The storage state is already applied by Playwright config
+  // Just verify that we're authenticated
+  console.log('Using default E2E test user from storage state');
+
+  // Optionally verify the token exists
+  const token = await page.evaluate(() => localStorage.getItem('token'));
+  if (!token) {
+    console.warn('No token found in localStorage. Storage state might not be loaded properly.');
   }
-  
-  await page.addInitScript((token) => {
-    window.localStorage.setItem('token', token);
-    window.localStorage.setItem('auth-token', token);
-    window.localStorage.setItem('onboarded', 'true');
-  }, testUser.token);
-  
-  console.log('Using default E2E test user');
 }
 
 /**
@@ -224,13 +220,13 @@ export async function verifyAuthenticated(page: Page): Promise<void> {
   if (!token) {
     throw new Error('No authentication token found');
   }
-  
+
   // Navigate to a protected route
   await page.goto('/subjects');
-  
+
   // Should not redirect to login
   await expect(page).not.toHaveURL(/\/login/);
-  
+
   console.log('Authentication verified');
 }
 
@@ -244,7 +240,7 @@ export async function logout(page: Page): Promise<void> {
     localStorage.removeItem('user');
     localStorage.removeItem('onboarded');
   });
-  
+
   console.log('Logged out');
 }
 
@@ -252,11 +248,10 @@ export async function logout(page: Page): Promise<void> {
  * Clean up test users created during test
  */
 export async function cleanupTestUsers(): Promise<void> {
-  
   for (const user of createdTestUsers) {
     try {
       const token = user.token || global.__E2E_TEST_USER__?.token;
-      
+
       if (token) {
         const authApi = getAuthenticatedApiContext(token);
         await authApi.delete(`/api/test/users/${user.email}`);
@@ -268,7 +263,7 @@ export async function cleanupTestUsers(): Promise<void> {
       console.warn(`Failed to cleanup test user ${user.email}:`, error);
     }
   }
-  
+
   createdTestUsers.length = 0;
 }
 
@@ -277,7 +272,7 @@ export async function cleanupTestUsers(): Promise<void> {
  */
 export async function cleanupAllE2EData(): Promise<void> {
   const api = getApiContext();
-  
+
   try {
     const response = await api.post('/api/test/cleanup');
     if (response.ok()) {

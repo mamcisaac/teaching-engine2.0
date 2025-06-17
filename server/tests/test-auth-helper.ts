@@ -6,7 +6,7 @@ import { getTestPrismaClient } from './jest.setup';
 /**
  * Helper to create a test user and get authentication token
  */
-export async function getAuthToken(): Promise<string> {
+export async function getAuthToken(app: Application): Promise<string> {
   const prisma = getTestPrismaClient();
 
   // Create a test user with hashed password
@@ -41,7 +41,7 @@ export function authRequest(app: Application) {
 
   return {
     async setup(): Promise<void> {
-      token = await getAuthToken();
+      token = await getAuthToken(app);
     },
     get(url: string) {
       return request(app).get(url).set('Authorization', `Bearer ${token}`);

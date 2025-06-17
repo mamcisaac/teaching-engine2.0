@@ -38,17 +38,28 @@ export default async function globalSetup() {
       const loginData = await response.json();
       console.log('Login successful, setting up auth state');
 
-      // Navigate to the app and set the token in localStorage
-      await page.goto('http://localhost:5173/');
-      await page.evaluate((data) => {
+      // Set up localStorage before navigation using addInitScript
+      await page.addInitScript((data) => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('auth-token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
         localStorage.setItem('onboarded', 'true');
       }, loginData);
 
+      // Navigate to the app - localStorage will be set automatically
+      await page.goto('http://localhost:5173/');
+      await page.waitForTimeout(1000); // Give time for any redirects to settle
+
       // Save the authentication state including localStorage
       await context.storageState({ path: 'tests/storage/auth.json' });
+
+      // Store the test user globally for use in tests
+      (global as unknown as { __E2E_TEST_USER__: unknown }).__E2E_TEST_USER__ = {
+        email: 'teacher@example.com',
+        password: 'password123',
+        token: loginData.token,
+        user: loginData.user,
+      };
     } else {
       let errorBody = 'Unable to read response body';
       try {

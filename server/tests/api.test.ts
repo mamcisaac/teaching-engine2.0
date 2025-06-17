@@ -195,9 +195,21 @@ describe('Resource API', () => {
   });
 
   it('retrieves single resource', async () => {
-    const res = await auth.get(`/api/resources/${resourceId}`);
+    // Create a resource first
+    const upload = await auth.post('/api/resources').send({
+      filename: 'test-retrieve.txt',
+      data: Buffer.from('test content').toString('base64'),
+      type: 'text/plain',
+      size: 12,
+      activityId,
+    });
+    expect(upload.status).toBe(201);
+    const createdResourceId = upload.body.id;
+
+    // Now retrieve it
+    const res = await auth.get(`/api/resources/${createdResourceId}`);
     expect(res.status).toBe(200);
-    expect(res.body.id).toBe(resourceId);
+    expect(res.body.id).toBe(createdResourceId);
   });
 
   it('lists resources by activity', async () => {

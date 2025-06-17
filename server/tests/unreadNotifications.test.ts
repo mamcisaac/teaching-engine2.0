@@ -1,24 +1,37 @@
 import { jest } from '@jest/globals';
-import { prisma } from '../src/prisma';
+import { getTestPrismaClient } from './jest.setup';
 import { sendUnreadNotifications } from '../src/jobs/unreadNotificationEmail';
-import * as email from '../src/services/emailService';
 
-jest.spyOn(email, 'sendEmail').mockResolvedValue(Promise.resolve());
+// Mock the email service
+const mockSendEmail = jest.fn().mockResolvedValue(undefined);
+jest.unstable_mockModule('../src/services/emailService', () => ({
+  sendEmail: mockSendEmail,
+}));
 
-beforeAll(async () => {
-  await prisma.notification.deleteMany();
-});
+describe('Unread Notifications', () => {
+  let prisma: ReturnType<typeof getTestPrismaClient>;
 
-afterAll(async () => {
-  await prisma.notification.deleteMany();
-  await prisma.$disconnect();
-});
-
-test('emails unread notifications older than 48h', async () => {
-  const old = await prisma.notification.create({
-    data: { message: 'Old note', createdAt: new Date(Date.now() - 3 * 86400000) },
+  beforeEach(() => {
+    prisma = getTestPrismaClient();
+    jest.clearAllMocks();
   });
-  await sendUnreadNotifications();
-  expect(email.sendEmail).toHaveBeenCalled();
-  await prisma.notification.delete({ where: { id: old.id } });
+
+  test('emails unread notifications older than 48h', async () => {
+    // Create old notification (older than 48 hours)
+    await prisma.notification.create({
+      data: {
+        message: 'Old note',
+        createdAt: new Date(Date.now() - 3 * 86400000), // 3 days ago
+        read: false,
+      },
+    });
+
+    await sendUnreadNotifications();
+    expect(mockSendEmail).toHaveBeenCalled();
+    expect(mockSendEmail).toHaveBeenCalledWith(
+      'teacher@example.com',
+      'Unread Notification',
+      'Old note',
+    );
+  });
 });

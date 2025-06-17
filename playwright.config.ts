@@ -12,12 +12,11 @@ export default defineConfig({
     stdout: 'pipe',
     stderr: 'pipe',
     env: {
-      // Use development mode so the Express server actually starts
-      NODE_ENV: 'development',
+      // Use test mode to enable test endpoints
+      NODE_ENV: 'test',
       // Run the API server on its default port
       PORT: '3000',
-      DATABASE_URL:
-        'file:/Users/michaelmcisaac/GitHub/teaching-engine2.0/packages/database/prisma/prisma/dev.db',
+      DATABASE_URL: 'file:./test.db',
     },
   },
 
@@ -27,6 +26,7 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     actionTimeout: 30000,
     navigationTimeout: 60000,
+    storageState: 'tests/storage/auth.json',
   },
   expect: {
     timeout: 15000,
