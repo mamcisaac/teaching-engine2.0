@@ -26,13 +26,12 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const { teacherId, entryType, title, start, end, description } = req.body as {
+    const { teacherId, entryType, title, start, end } = req.body as {
       teacherId: number;
       entryType: string;
       title: string;
       start: string;
       end: string;
-      description?: string;
     };
 
     if (!teacherId || !entryType || !title || !start || !end) {
@@ -48,7 +47,6 @@ router.post('/', async (req, res, next) => {
         title,
         start: new Date(start),
         end: new Date(end),
-        description,
       },
     });
     res.status(201).json(entry);
@@ -60,12 +58,11 @@ router.post('/', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const id = Number(req.params.id);
-    const { entryType, title, start, end, description } = req.body as {
+    const { entryType, title, start, end } = req.body as {
       entryType?: string;
       title?: string;
       start?: string;
       end?: string;
-      description?: string;
     };
 
     const updateData: Record<string, unknown> = {};
@@ -73,7 +70,6 @@ router.put('/:id', async (req, res, next) => {
     if (title !== undefined) updateData.title = title;
     if (start !== undefined) updateData.start = new Date(start);
     if (end !== undefined) updateData.end = new Date(end);
-    if (description !== undefined) updateData.description = description;
 
     const entry = await prisma.yearPlanEntry.update({
       where: { id },
