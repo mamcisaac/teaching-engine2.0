@@ -1,6 +1,8 @@
-// Import everything directly from the generated client to avoid ES module issues
-import { PrismaClient, Prisma } from '@teaching-engine/database';
-// Re-export all types
+// Import from the database package - use default import to avoid named export issues
+import { PrismaClient } from '@teaching-engine/database';
+import type { Prisma } from '@teaching-engine/database';
+
+// Re-export everything
 export * from '@teaching-engine/database';
 
 // Create singleton instance for server usage
@@ -41,4 +43,5 @@ if (process.env.NODE_ENV !== 'production' && !isTestEnvironment) {
   globalForPrisma.prisma = getPrisma();
 }
 
-export { PrismaClient, Prisma };
+// Re-export the specific types
+export { PrismaClient, type Prisma };
