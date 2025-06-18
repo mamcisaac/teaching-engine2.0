@@ -2,7 +2,13 @@ import { Router, Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
 import { authMiddleware } from '../middleware/auth';
 
-interface RouteFactoryOptions<T = Record<string, unknown>> {
+// Base interface for models that might have userId
+interface BaseModel {
+  id: number;
+  userId?: number;
+}
+
+interface RouteFactoryOptions<T extends BaseModel = BaseModel> {
   modelName: string;
   prismaModel: {
     findMany: (args: Record<string, unknown>) => Promise<T[]>;
@@ -19,15 +25,24 @@ interface RouteFactoryOptions<T = Record<string, unknown>> {
   includeRelations?: Record<string, boolean | object>;
   orderBy?: Record<string, 'asc' | 'desc'>;
   transformResponse?: (data: T) => T;
-  beforeCreate?: (data: Record<string, unknown>, req: Request) => Promise<Record<string, unknown>> | Record<string, unknown>;
+  beforeCreate?: (
+    data: Record<string, unknown>,
+    req: Request,
+  ) => Promise<Record<string, unknown>> | Record<string, unknown>;
   afterCreate?: (data: T, req: Request) => Promise<void> | void;
-  beforeUpdate?: (id: number, data: Record<string, unknown>, req: Request) => Promise<Record<string, unknown>> | Record<string, unknown>;
+  beforeUpdate?: (
+    id: number,
+    data: Record<string, unknown>,
+    req: Request,
+  ) => Promise<Record<string, unknown>> | Record<string, unknown>;
   afterUpdate?: (data: T, req: Request) => Promise<void> | void;
   beforeDelete?: (id: number, req: Request) => Promise<void> | void;
   afterDelete?: (id: number, req: Request) => Promise<void> | void;
 }
 
-export function createCrudRoutes<T = Record<string, unknown>>(options: RouteFactoryOptions<T>): Router {
+export function createCrudRoutes<T extends BaseModel = BaseModel>(
+  options: RouteFactoryOptions<T>,
+): Router {
   const router = Router();
   const {
     modelName,
@@ -54,18 +69,20 @@ export function createCrudRoutes<T = Record<string, unknown>>(options: RouteFact
   router.get('/', async (req: Request, res: Response) => {
     try {
       const query = querySchema ? querySchema.parse(req.query) : req.query;
-      
+
       const { page = 1, limit = 20, search, ...filters } = query;
       const skip = (Number(page) - 1) * Number(limit);
 
-      const where = search ? {
-        OR: [
-          { name: { contains: search, mode: 'insensitive' } },
-          { title: { contains: search, mode: 'insensitive' } },
-          // Add more searchable fields as needed
-        ],
-        ...filters
-      } : filters;
+      const where = search
+        ? {
+            OR: [
+              { name: { contains: search, mode: 'insensitive' } },
+              { title: { contains: search, mode: 'insensitive' } },
+              // Add more searchable fields as needed
+            ],
+            ...filters,
+          }
+        : filters;
 
       const [items, total] = await Promise.all([
         prismaModel.findMany({
@@ -95,7 +112,7 @@ export function createCrudRoutes<T = Record<string, unknown>>(options: RouteFact
   router.get('/:id', async (req: Request, res: Response) => {
     try {
       const id = parseInt(req.params.id);
-      
+
       const item = await prismaModel.findUnique({
         where: { id },
         include: includeRelations,
@@ -116,7 +133,7 @@ export function createCrudRoutes<T = Record<string, unknown>>(options: RouteFact
   router.post('/', async (req: Request, res: Response) => {
     try {
       let data = createSchema ? createSchema.parse(req.body) : req.body;
-      
+
       // Add user ID if authenticated
       if (req.user) {
         data.userId = req.user.userId;
@@ -160,7 +177,7 @@ export function createCrudRoutes<T = Record<string, unknown>>(options: RouteFact
       }
 
       // Check ownership if user ID exists
-      if (req.user && existing.userId && existing.userId !== req.user.userId) {
+      if (req.user && existing.userId && existing.userId !== parseInt(req.user.userId)) {
         return res.status(403).json({ message: 'Unauthorized' });
       }
 
@@ -202,7 +219,7 @@ export function createCrudRoutes<T = Record<string, unknown>>(options: RouteFact
       }
 
       // Check ownership if user ID exists
-      if (req.user && existing.userId && existing.userId !== req.user.userId) {
+      if (req.user && existing.userId && existing.userId !== parseInt(req.user.userId)) {
         return res.status(403).json({ message: 'Unauthorized' });
       }
 
