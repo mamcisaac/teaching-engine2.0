@@ -53,7 +53,9 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', validate(subjectSchema), async (req: AuthenticatedRequest, res, next) => {
   try {
+    console.log('Creating subject - req.user:', req.user);
     const userId = parseInt(req.user?.userId || '0', 10);
+    console.log('Parsed userId:', userId);
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }

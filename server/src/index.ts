@@ -104,12 +104,16 @@ const authenticateToken = (req: AuthenticatedRequest, res: Response, next: NextF
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as JwtPayload;
+    console.log('Decoded JWT:', decoded);
     if (!decoded?.userId) {
+      console.log('No userId in decoded token');
       return res.sendStatus(403);
     }
     req.user = { userId: String(decoded.userId) };
+    console.log('Set req.user to:', req.user);
     next();
   } catch (err) {
+    console.log('JWT verification error:', err);
     return res.sendStatus(403);
   }
 };
@@ -154,11 +158,15 @@ app.post('/api/login', async (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    console.log('Creating JWT token for user ID:', user.id);
+    console.log('Creating JWT token for user ID:', user.id, 'type:', typeof user.id);
     const token = jwt.sign({ userId: user.id.toString() }, process.env.JWT_SECRET || 'secret', {
       expiresIn: process.env.JWT_EXPIRES_IN || '7d',
       algorithm: 'HS256',
     } as jwt.SignOptions);
+
+    // Verify the token we just created
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as JwtPayload;
+    console.log('Token created with payload:', decoded);
 
     // Return user data without password
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
