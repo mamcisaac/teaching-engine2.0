@@ -1,6 +1,7 @@
 import { app } from '../src/index';
 import { authRequest } from './test-auth-helper';
 import { getTestPrismaClient } from './jest.setup';
+import { setupAuthenticatedTest } from './test-setup-helpers';
 
 describe('Equipment Booking API', () => {
   let teacherId: number;
@@ -9,18 +10,20 @@ describe('Equipment Booking API', () => {
 
   beforeAll(async () => {
     prisma = getTestPrismaClient();
-    await auth.setup();
+  });
+
+  beforeEach(async () => {
+    // Setup auth for each test to handle database resets
+    await setupAuthenticatedTest(prisma, auth);
+
+    // Create a teacher for the equipment bookings
     const teacher = await prisma.user.create({
       data: { email: `eb${Date.now()}@e.com`, password: 'x', name: 'EB' },
     });
     teacherId = teacher.id;
   });
 
-  afterAll(async () => {
-    await prisma.equipmentBooking.deleteMany();
-    await prisma.user.deleteMany();
-    await prisma.$disconnect();
-  });
+  // No need for afterAll cleanup - database is reset after each test
 
   it('creates and lists bookings', async () => {
     const create = await auth.post('/api/equipment-bookings').send({

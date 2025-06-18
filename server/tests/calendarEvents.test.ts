@@ -1,11 +1,19 @@
 import { app } from '../src/index';
 import { authRequest } from './test-auth-helper';
+import { getTestPrismaClient } from './jest.setup';
+import { setupAuthenticatedTest } from './test-setup-helpers';
 
 describe('calendar events', () => {
   const auth = authRequest(app);
+  let prisma: ReturnType<typeof getTestPrismaClient>;
 
   beforeAll(async () => {
-    await auth.setup();
+    prisma = getTestPrismaClient();
+  });
+
+  beforeEach(async () => {
+    // Setup auth for each test to handle database resets
+    await setupAuthenticatedTest(prisma, auth);
   });
 
   it('creates and lists events', async () => {
