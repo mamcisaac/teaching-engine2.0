@@ -1,11 +1,11 @@
 import { z, ZodSchema } from 'zod';
 import { Request, Response, NextFunction } from 'express';
 import { ALLOWED_TEMPLATES } from './services/newsletterGenerator';
+import { createBilingualSchema } from './utils/schemaFactory';
 
-export const subjectSchema = z.object({
+// Using bilingual schema factory
+export const subjectSchema = createBilingualSchema({
   name: z.string().min(1),
-  nameEn: z.string().optional(),
-  nameFr: z.string().optional(),
 });
 
 // Create base schema without refinement for update

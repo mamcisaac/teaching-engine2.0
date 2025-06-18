@@ -3,6 +3,8 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
   globalSetup: require.resolve('./tests/global-setup'),
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,
 
   webServer: {
     command: 'pnpm dev',

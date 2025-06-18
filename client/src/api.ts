@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
+import { createMutation, createDeleteMutation, createUpdateMutation } from './lib/apiFactory';
 import type {
   Activity,
   LessonPlan,
@@ -428,40 +429,24 @@ export const useMilestone = (id: number) =>
     queryFn: async () => (await api.get(`/milestones/${id}`)).data,
   });
 
-// Mutation hooks
-export const useCreateSubject = () => {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (data: { name: string }) => api.post('/api/subjects', data),
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['subjects'] });
-      toast.success('Subject created');
-    },
-  });
-};
+// Mutation hooks - Refactored to use factory
+export const useCreateSubject = createMutation<Subject, { name: string }>({
+  endpoint: '/api/subjects',
+  queryKey: 'subjects',
+  successMessage: 'Subject created',
+});
 
-export const useUpdateSubject = () => {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (data: { id: number; name: string }) =>
-      api.put(`/api/subjects/${data.id}`, { name: data.name }),
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['subjects'] });
-      toast.success('Subject updated');
-    },
-  });
-};
+export const useUpdateSubject = createUpdateMutation<Subject, { id: number; name: string }>({
+  endpoint: '/api/subjects',
+  queryKey: 'subjects',
+  successMessage: 'Subject updated',
+});
 
-export const useDeleteSubject = () => {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (id: number) => api.delete(`/api/subjects/${id}`),
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['subjects'] });
-      toast.success('Subject deleted');
-    },
-  });
-};
+export const useDeleteSubject = createDeleteMutation<void>({
+  endpoint: '/api/subjects',
+  queryKey: 'subjects',
+  successMessage: 'Subject deleted',
+});
 
 export const useCreateMilestone = () => {
   const qc = useQueryClient();
