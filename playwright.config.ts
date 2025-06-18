@@ -4,24 +4,26 @@ export default defineConfig({
   testDir: './tests',
   globalSetup: require.resolve('./tests/global-setup'),
 
-  webServer: {
-    command: process.env.CI ? 'pnpm --filter server start' : 'pnpm dev',
-    port: process.env.CI ? 3000 : 5173,
-    timeout: 120 * 1000,
-    reuseExistingServer: !process.env.CI,
-    stdout: 'pipe',
-    stderr: 'pipe',
-    env: {
-      NODE_ENV: 'test',
-      PORT: '3000',
-      DATABASE_URL: process.env.DATABASE_URL || 'file:./packages/database/prisma/test.db',
-      JWT_SECRET: process.env.JWT_SECRET || 'test-secret-key',
-      JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '1h',
-    },
-  },
+  webServer: process.env.CI
+    ? undefined // In CI, we manage servers manually
+    : {
+        command: 'pnpm dev',
+        url: 'http://localhost:5173',
+        timeout: 120 * 1000,
+        reuseExistingServer: true,
+        stdout: 'pipe',
+        stderr: 'pipe',
+        env: {
+          NODE_ENV: 'test',
+          PORT: '3000',
+          DATABASE_URL: process.env.DATABASE_URL || 'file:./packages/database/prisma/test.db',
+          JWT_SECRET: process.env.JWT_SECRET || 'test-secret-key',
+          JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '1h',
+        },
+      },
 
   use: {
-    baseURL: process.env.CI ? 'http://localhost:3000' : 'http://localhost:5173',
+    baseURL: 'http://localhost:5173',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     actionTimeout: 30000,

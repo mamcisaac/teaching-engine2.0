@@ -67,7 +67,42 @@ jobs:
           DATABASE_URL: file:./packages/database/prisma/test.db
         run: pnpm db:seed
 
-      - name: Playwright API Tests
+      - name: Build client for E2E
+        run: pnpm --filter client build
+
+      - name: Start servers for E2E tests
+        env:
+          DATABASE_URL: file:./packages/database/prisma/test.db
+          JWT_SECRET: test-secret-key
+          JWT_EXPIRES_IN: 1h
+          NODE_ENV: test
+          PORT: 3000
+        run: |
+          echo "Starting backend server..."
+          cd server && nohup pnpm start > ../server.log 2>&1 &
+          echo "Waiting for backend to be ready..."
+          for i in {1..30}; do
+            if curl -s http://localhost:3000/api/health > /dev/null; then
+              echo "Backend is ready!"
+              break
+            fi
+            echo "Waiting for backend... attempt $i/30"
+            sleep 2
+          done
+
+          echo "Starting frontend server..."
+          cd ../client && nohup pnpm preview --port 5173 > ../client.log 2>&1 &
+          echo "Waiting for frontend to be ready..."
+          for i in {1..30}; do
+            if curl -s http://localhost:5173 > /dev/null; then
+              echo "Frontend is ready!"
+              break
+            fi
+            echo "Waiting for frontend... attempt $i/30"
+            sleep 2
+          done
+
+      - name: Playwright E2E Tests
         env:
           DATABASE_URL: file:./packages/database/prisma/test.db
           JWT_SECRET: test-secret-key
@@ -76,11 +111,8 @@ jobs:
           PORT: 3000
           CI: true
         run: |
-          echo "Starting API smoke tests..."
-          echo "DATABASE_URL: $DATABASE_URL"
-          echo "Checking database file:"
-          ls -la packages/database/prisma/test.db || echo "Database file not found"
-          pnpm exec playwright test tests/e2e/api-smoke.spec.ts --reporter=list || (echo "API tests failed. Uploading artifacts..." && exit 1)
+          echo "Starting full E2E test suite..."
+          pnpm run test:e2e || (echo "E2E tests failed. Uploading logs..." && cat server.log && cat client.log && exit 1)
 
       - name: Upload Playwright Report
         uses: actions/upload-artifact@v4
