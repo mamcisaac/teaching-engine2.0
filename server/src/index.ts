@@ -95,6 +95,15 @@ log('Applying CORS and JSON middleware...');
 app.use(cors(corsOptions));
 app.use(express.json());
 
+// Health check endpoints
+app.get('/health', (_req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
+app.get('/api/health', (_req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 // Middleware to verify JWT token
 const authenticateToken = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   const authHeader = req.headers['authorization'];
@@ -231,6 +240,13 @@ app.use('/api/cognates', authenticateToken, cognateRoutes);
 app.use('/api/assessments', authenticateToken, assessmentRoutes);
 app.use('/api/media-resources', authenticateToken, mediaResourceRoutes);
 app.use('/api/parent-messages', authenticateToken, parentMessageRoutes);
+
+// Mount test routes (only in test/development mode)
+if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
+  log('Mounting test routes...');
+  app.use('/api/test', testRoutes);
+}
+
 log('All API routes mounted successfully.');
 app.use('/api/*', (_req, res) => {
   res.status(404).json({ error: 'Not Found' });
