@@ -2,7 +2,7 @@ import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
-  globalSetup: require.resolve('./tests/global-setup'),
+  globalSetup: process.env.CI ? undefined : require.resolve('./tests/global-setup'),
 
   webServer: process.env.CI
     ? undefined // In CI, we manage servers manually
@@ -28,7 +28,7 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     actionTimeout: 30000,
     navigationTimeout: 60000,
-    storageState: 'tests/storage/auth.json',
+    storageState: process.env.CI ? undefined : 'tests/storage/auth.json',
     headless: true,
     video: process.env.CI ? 'retain-on-failure' : 'off',
   },
