@@ -2,6 +2,12 @@ import { prisma } from '../prisma';
 
 export type CoverageStatus = 'covered' | 'uncovered' | 'partial';
 
+export const CoverageStatus = {
+  COVERED: 'covered' as const,
+  UNCOVERED: 'uncovered' as const,
+  PARTIAL: 'partial' as const,
+};
+
 export interface ActivityWithCompletion {
   id: number;
   completedAt: Date | null;
@@ -28,20 +34,13 @@ export interface CoverageSummary {
  */
 export async function getOutcomeCoverage(outcomeId: string): Promise<OutcomeCoverage> {
   try {
-    // Get all activities linked to this outcome using Prisma query builder
-    const activities = await prisma.activity.findMany({
-      where: {
-        outcomes: {
-          some: {
-            outcomeId: outcomeId,
-          },
-        },
-      },
-      select: {
-        id: true,
-        completedAt: true,
-      },
-    });
+    // Get all activities linked to this outcome
+    const activities = await prisma.$queryRaw<ActivityWithCompletion[]>`
+      SELECT a.id, a."completedAt"
+      FROM "Activity" a
+      JOIN "ActivityOutcome" ao ON a.id = ao."activityId"
+      WHERE ao."outcomeId" = ${outcomeId}
+    `;
 
     if (!activities || activities.length === 0) {
       return {
@@ -103,39 +102,18 @@ export async function getOutcomesCoverage(
 
   // If milestoneId is provided, only get outcomes linked to this milestone
   if (milestoneId) {
-    const milestoneOutcomes = await prisma.milestoneOutcome.findMany({
-      where: { milestoneId },
-      select: { outcomeId: true },
-    });
+    const milestoneOutcomes = (await prisma.$queryRaw`
+      SELECT "outcomeId" 
+      FROM "MilestoneOutcome" 
+      WHERE "milestoneId" = ${milestoneId}
+    `) as { outcomeId: string }[];
 
     whereClause.id = {
       in: milestoneOutcomes.map((mo) => mo.outcomeId),
     };
   }
 
-  // Get all relevant outcomes
-  const whereConditions: string[] = [];
-
-  if (
-    whereClause.id &&
-    typeof whereClause.id === 'object' &&
-    'in' in whereClause.id &&
-    whereClause.id.in
-  ) {
-    whereConditions.push(
-      `id IN (${(whereClause.id.in as string[]).map((id) => `'${id}'`).join(',')})`,
-    );
-  }
-
-  if (whereClause.subject) {
-    whereConditions.push(`subject = '${whereClause.subject as string}'`);
-  }
-
-  if (whereClause.grade) {
-    whereConditions.push(`grade = ${whereClause.grade as number}`);
-  }
-
-  // Use Prisma's query builder instead of raw SQL to avoid SQLite syntax issues
+  // Get all relevant outcomes using Prisma query
   const outcomes = await prisma.outcome.findMany({
     where: whereClause,
     select: { id: true },

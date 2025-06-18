@@ -10,6 +10,11 @@ jest.unstable_mockModule('../src/services/emailService', () => ({
 // Import after mock is set up
 const { sendUnreadNotifications } = await import('../src/jobs/unreadNotificationEmail');
 
+/**
+ * @todo This test uses mocked email service and should be converted to integration test
+ * @mocked emailService - prevents testing actual email notification flow
+ * @not-fully-implemented - should use real email service with test configuration
+ */
 describe('Unread Notifications', () => {
   let prisma: ReturnType<typeof getTestPrismaClient>;
 

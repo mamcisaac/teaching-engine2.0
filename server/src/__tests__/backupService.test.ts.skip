@@ -1,3 +1,11 @@
+/**
+ * @todo This test suite heavily uses mocks and should be converted to integration tests
+ * @mocked fs, archiver, unzipper - prevents testing actual file operations and compression
+ * @mocked S3 - appropriate for external service but consider using localstack for integration tests
+ * @not-fully-implemented - should use real file operations with temp directories for proper testing
+ *
+ * Current implementation only tests the logic flow, not actual backup/restore functionality
+ */
 import fs from 'fs';
 import { jest } from '@jest/globals';
 import {
@@ -64,7 +72,7 @@ describe('BackupService', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     process.env = { ...originalEnv };
-    
+
     // Setup archiver mock
     mockArchiver.mockReturnValue(mockArchive as ReturnType<typeof mockArchiver>);
     mockArchive.on.mockImplementation((event: string, callback: (data: Buffer) => void) => {
@@ -78,7 +86,9 @@ describe('BackupService', () => {
     mockArchive.finalize.mockResolvedValue(undefined);
 
     // Setup unzipper mock
-    mockUnzipper.Open.buffer.mockResolvedValue(mockUnzipperResult as ReturnType<typeof mockUnzipper.Open.buffer>);
+    mockUnzipper.Open.buffer.mockResolvedValue(
+      mockUnzipperResult as ReturnType<typeof mockUnzipper.Open.buffer>,
+    );
 
     // Setup fs mocks
     mockFs.existsSync.mockReturnValue(true);
@@ -91,9 +101,17 @@ describe('BackupService', () => {
 
     // Setup S3 mocks
     const mockS3Instance = {
-      send: jest.fn().mockResolvedValue({ Body: { [Symbol.asyncIterator]: async function* () { yield Buffer.from('s3-data'); } } }),
+      send: jest.fn().mockResolvedValue({
+        Body: {
+          [Symbol.asyncIterator]: async function* () {
+            yield Buffer.from('s3-data');
+          },
+        },
+      }),
     };
-    mockS3.S3Client.mockImplementation(() => mockS3Instance as InstanceType<typeof mockS3.S3Client>);
+    mockS3.S3Client.mockImplementation(
+      () => mockS3Instance as InstanceType<typeof mockS3.S3Client>,
+    );
   });
 
   afterEach(() => {
@@ -109,13 +127,12 @@ describe('BackupService', () => {
       const result = await createBackup();
 
       expect(mockArchiver).toHaveBeenCalledWith('zip');
-      expect(mockArchive.file).toHaveBeenCalledWith(
-        expect.stringContaining('test.db'),
-        { name: 'test.db' }
-      );
+      expect(mockArchive.file).toHaveBeenCalledWith(expect.stringContaining('test.db'), {
+        name: 'test.db',
+      });
       expect(mockArchive.directory).toHaveBeenCalledWith(
         expect.stringContaining('uploads'),
-        'uploads'
+        'uploads',
       );
       expect(mockArchive.finalize).toHaveBeenCalled();
       expect(result).toBeInstanceOf(Buffer);
@@ -183,7 +200,7 @@ describe('BackupService', () => {
       expect(mockFs.promises.mkdir).toHaveBeenCalled();
       expect(mockFs.promises.writeFile).toHaveBeenCalledWith(
         expect.stringContaining('backups'),
-        testData
+        testData,
       );
       expect(result).toMatch(/backup-\d+\.zip$/);
     });
@@ -296,11 +313,13 @@ describe('BackupService', () => {
     it('should handle S3 errors', async () => {
       process.env.BACKUP_PROVIDER = 's3';
       process.env.BACKUP_BUCKET = 'test-bucket';
-      
+
       const mockS3Instance = {
         send: jest.fn().mockRejectedValue(new Error('S3 error')),
       };
-      mockS3.S3Client.mockImplementation(() => mockS3Instance as InstanceType<typeof mockS3.S3Client>);
+      mockS3.S3Client.mockImplementation(
+        () => mockS3Instance as InstanceType<typeof mockS3.S3Client>,
+      );
 
       await expect(saveBackup(Buffer.from('test'))).rejects.toThrow('S3 error');
     });
