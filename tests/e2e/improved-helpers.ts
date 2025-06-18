@@ -48,6 +48,11 @@ export async function login(page: Page): Promise<string> {
     await page.waitForLoadState('load', { timeout: 5000 });
   }
 
+  // Additional wait for CI stability
+  if (process.env.CI) {
+    await page.waitForTimeout(2000);
+  }
+
   // Verify authentication state
   await expect(page.evaluate(() => localStorage.getItem('token'))).resolves.toBeTruthy();
 
@@ -68,7 +73,7 @@ async function waitForServices(page: Page, maxRetries = 60): Promise<void> {
     try {
       // Check API health endpoint
       if (!apiReady) {
-        const apiResponse = await page.request.get(`${API_BASE}/health`, { timeout: 5000 });
+        const apiResponse = await page.request.get(`${API_BASE}/api/health`, { timeout: 5000 });
         if (apiResponse.ok()) {
           apiReady = true;
           console.log('✅ API service is ready');
