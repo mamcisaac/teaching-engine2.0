@@ -1,4 +1,4 @@
-import { getOutcomeCoverage, getCoverageSummary } from '../utils/outcomeCoverageSimple.mjs';
+import { getOutcomeCoverage, getCoverageSummary } from '../utils/outcomeCoverage';
 
 describe('Simple Outcome Coverage', () => {
   describe('getOutcomeCoverage', () => {

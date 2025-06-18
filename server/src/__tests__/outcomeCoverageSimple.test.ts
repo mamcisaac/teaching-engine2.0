@@ -26,10 +26,10 @@ describe('Simple Outcome Coverage', () => {
         },
       });
 
-      const result = await getOutcomeCoverage(outcome.code);
+      const result = await getOutcomeCoverage(outcome.id);
 
       expect(result).toEqual({
-        outcomeId: 'TEST-1',
+        outcomeId: outcome.id,
         status: CoverageStatus.UNCOVERED,
         linked: 0,
         completed: 0,
@@ -73,10 +73,10 @@ describe('Simple Outcome Coverage', () => {
         },
       });
 
-      const result = await getOutcomeCoverage(outcome.code);
+      const result = await getOutcomeCoverage(outcome.id);
 
       expect(result).toEqual({
-        outcomeId: 'TEST-2',
+        outcomeId: outcome.id,
         status: CoverageStatus.COVERED,
         linked: 1,
         completed: 1,
@@ -207,7 +207,7 @@ describe('Simple Outcome Coverage', () => {
 
       // Get coverage for all outcomes
       const coverageResults = await Promise.all(
-        outcomes.map((outcome) => getOutcomeCoverage(outcome.code)),
+        outcomes.map((outcome) => getOutcomeCoverage(outcome.id)),
       );
 
       // Verify individual coverage
