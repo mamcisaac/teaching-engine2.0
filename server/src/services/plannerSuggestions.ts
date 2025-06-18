@@ -111,6 +111,9 @@ export async function getPlannerSuggestions(
         const linkedOutcomeIds = activity.outcomes.map(
           (outcome: { outcome: { id: string } }) => outcome.outcome.id,
         );
+        const linkedOutcomeCodes = activity.outcomes.map(
+          (outcome: { outcome: { id: string; code: string } }) => outcome.outcome.code,
+        );
         const coversUncovered = linkedOutcomeIds.some((id: string) => uncoveredOutcomeIds.has(id));
 
         // Determine coverage status
@@ -129,7 +132,7 @@ export async function getPlannerSuggestions(
           title: activity.title,
           milestoneTitle: milestone.title,
           subject: milestone.subject ? milestone.subject.name : 'Uncategorized',
-          linkedOutcomes: linkedOutcomeIds,
+          linkedOutcomes: linkedOutcomeCodes,
           coverageStatus,
         });
       }

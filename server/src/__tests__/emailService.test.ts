@@ -107,9 +107,7 @@ describe('EmailService', () => {
           personalizations: [{ to: [{ email: 'test@example.com' }] }],
           from: { email: 'sender@example.com' },
           subject: 'Test Subject',
-          content: [
-            { type: 'text/plain', value: 'Test text' },
-          ],
+          content: [{ type: 'text/plain', value: 'Test text' }],
         }),
       });
     });

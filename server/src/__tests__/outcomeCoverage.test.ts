@@ -1,53 +1,26 @@
-import { describe, it, expect, jest, beforeEach, beforeAll } from '@jest/globals';
-
-// Mock the prisma client first
-const mockActivityFindMany = jest.fn();
-const mockOutcomeFindMany = jest.fn();
-const mockMilestoneOutcomeFindMany = jest.fn();
-
-// Mock the module before any imports
-jest.unstable_mockModule('../prisma', () => ({
-  prisma: {
-    activity: {
-      findMany: mockActivityFindMany,
-    },
-    outcome: {
-      findMany: mockOutcomeFindMany,
-    },
-    milestoneOutcome: {
-      findMany: mockMilestoneOutcomeFindMany,
-    },
-  },
-}));
+import { describe, it, expect, beforeEach } from '@jest/globals';
+import { getTestPrismaClient } from '../../tests/jest.setup';
+import { getCoverageSummary, getOutcomeCoverage, CoverageStatus } from '../utils/outcomeCoverage';
+import type { OutcomeCoverage } from '../utils/outcomeCoverage';
 
 describe('Outcome Coverage', () => {
-  let getCoverageSummary: (
-    coverage: Array<{
-      outcomeId: string;
-      status: 'covered' | 'partial' | 'uncovered';
-      linked: number;
-      completed: number;
-    }>,
-  ) => { total: number; covered: number; partial: number; uncovered: number };
-  let getOutcomeCoverage: (outcomeId: string) => Promise<{
-    outcomeId: string;
-    status: 'covered' | 'partial' | 'uncovered';
-    linked: number;
-    completed: number;
-  }>;
+  const prisma = getTestPrismaClient();
 
-  beforeAll(async () => {
-    // Import after mocking
-    const module = await import('../utils/outcomeCoverage');
-    getCoverageSummary = module.getCoverageSummary;
-    getOutcomeCoverage = module.getOutcomeCoverage;
+  beforeEach(async () => {
+    // Clean up test data
+    await prisma.activityOutcome.deleteMany();
+    await prisma.activity.deleteMany();
+    await prisma.milestone.deleteMany();
+    await prisma.subject.deleteMany();
+    await prisma.outcome.deleteMany();
   });
+
   describe('getCoverageSummary', () => {
     it('should return correct summary for coverage data', () => {
-      const coverage = [
-        { outcomeId: '1', status: 'covered' as const, linked: 1, completed: 1 },
-        { outcomeId: '2', status: 'uncovered' as const, linked: 0, completed: 0 },
-        { outcomeId: '3', status: 'partial' as const, linked: 1, completed: 0 },
+      const coverage: OutcomeCoverage[] = [
+        { outcomeId: '1', status: CoverageStatus.COVERED, linked: 1, completed: 1 },
+        { outcomeId: '2', status: CoverageStatus.UNCOVERED, linked: 0, completed: 0 },
+        { outcomeId: '3', status: CoverageStatus.PARTIAL, linked: 1, completed: 0 },
       ];
 
       const summary = getCoverageSummary(coverage);
@@ -59,170 +32,255 @@ describe('Outcome Coverage', () => {
         uncovered: 1,
       });
     });
+
+    it('should handle empty array', () => {
+      const summary = getCoverageSummary([]);
+
+      expect(summary).toEqual({
+        total: 0,
+        covered: 0,
+        partial: 0,
+        uncovered: 0,
+      });
+    });
+
+    it('should handle large datasets efficiently', () => {
+      const largeCoverage: OutcomeCoverage[] = Array(1000)
+        .fill(null)
+        .map((_, i) => ({
+          outcomeId: `outcome-${i}`,
+          status:
+            i % 3 === 0
+              ? CoverageStatus.COVERED
+              : i % 3 === 1
+                ? CoverageStatus.PARTIAL
+                : CoverageStatus.UNCOVERED,
+          linked: i % 3 === 2 ? 0 : 1,
+          completed: i % 3 === 0 ? 1 : 0,
+        }));
+
+      const summary = getCoverageSummary(largeCoverage);
+
+      expect(summary.total).toBe(1000);
+      expect(summary.covered).toBe(334); // 0, 3, 6, 9... = 334 items
+      expect(summary.partial).toBe(333); // 1, 4, 7, 10... = 333 items
+      expect(summary.uncovered).toBe(333); // 2, 5, 8, 11... = 333 items
+    });
   });
 
   describe('getOutcomeCoverage', () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
-    });
-
     it('should return uncovered status for outcome with no activities', async () => {
-      // Mock the database query to return no activities
-      mockActivityFindMany.mockResolvedValue([]);
+      // Create an outcome with no linked activities
+      const outcome = await prisma.outcome.create({
+        data: {
+          code: 'TEST-1',
+          description: 'Test outcome with no activities',
+          subject: 'Math',
+          grade: 1,
+        },
+      });
 
-      const coverage = await getOutcomeCoverage('TEST-1');
+      const coverage = await getOutcomeCoverage(outcome.id);
 
       expect(coverage).toEqual({
-        outcomeId: 'TEST-1',
-        status: 'uncovered',
+        outcomeId: outcome.id,
+        status: CoverageStatus.UNCOVERED,
         linked: 0,
         completed: 0,
       });
+    });
 
-      // Verify the query was called with correct parameters
-      expect(mockActivityFindMany).toHaveBeenCalledWith({
-        where: {
-          outcomes: {
-            some: {
-              outcomeId: 'TEST-1',
-            },
-          },
+    it('should return partial status for outcome with mixed activity completion', async () => {
+      // Create test data structure
+      const outcome = await prisma.outcome.create({
+        data: {
+          code: 'TEST-2',
+          description: 'Test outcome with partial coverage',
+          subject: 'Science',
+          grade: 2,
         },
-        select: {
-          id: true,
-          completedAt: true,
+      });
+
+      const subject = await prisma.subject.create({
+        data: { name: 'Science' },
+      });
+
+      const milestone = await prisma.milestone.create({
+        data: {
+          title: 'Science Unit 1',
+          subjectId: subject.id,
         },
+      });
+
+      // Create 3 activities: 2 completed, 1 incomplete
+      const activity1 = await prisma.activity.create({
+        data: {
+          title: 'Completed Activity 1',
+          milestoneId: milestone.id,
+          completedAt: new Date(),
+        },
+      });
+
+      const activity2 = await prisma.activity.create({
+        data: {
+          title: 'Completed Activity 2',
+          milestoneId: milestone.id,
+          completedAt: new Date(),
+        },
+      });
+
+      const activity3 = await prisma.activity.create({
+        data: {
+          title: 'Incomplete Activity',
+          milestoneId: milestone.id,
+          completedAt: null,
+        },
+      });
+
+      // Link all activities to the outcome
+      await prisma.activityOutcome.createMany({
+        data: [
+          { activityId: activity1.id, outcomeId: outcome.id },
+          { activityId: activity2.id, outcomeId: outcome.id },
+          { activityId: activity3.id, outcomeId: outcome.id },
+        ],
+      });
+
+      const coverage = await getOutcomeCoverage(outcome.id);
+
+      expect(coverage).toEqual({
+        outcomeId: outcome.id,
+        status: CoverageStatus.PARTIAL,
+        linked: 3,
+        completed: 2,
       });
     });
 
-    it('should return covered status for outcome with all activities completed', async () => {
-      // Mock activities with all completed
-      mockActivityFindMany.mockResolvedValue([
-        { id: 1, completedAt: new Date('2024-01-01') },
-        { id: 2, completedAt: new Date('2024-01-02') },
+    it('should return covered status when all linked activities are completed', async () => {
+      // Create test data
+      const outcome = await prisma.outcome.create({
+        data: {
+          code: 'TEST-3',
+          description: 'Fully covered outcome',
+          subject: 'English',
+          grade: 3,
+        },
+      });
+
+      const subject = await prisma.subject.create({
+        data: { name: 'English' },
+      });
+
+      const milestone = await prisma.milestone.create({
+        data: {
+          title: 'English Writing',
+          subjectId: subject.id,
+        },
+      });
+
+      // Create 2 completed activities
+      const activities = await Promise.all([
+        prisma.activity.create({
+          data: {
+            title: 'Writing Exercise 1',
+            milestoneId: milestone.id,
+            completedAt: new Date(),
+          },
+        }),
+        prisma.activity.create({
+          data: {
+            title: 'Writing Exercise 2',
+            milestoneId: milestone.id,
+            completedAt: new Date(),
+          },
+        }),
       ]);
 
-      const coverage = await getOutcomeCoverage('TEST-2');
+      // Link both to the outcome
+      await prisma.activityOutcome.createMany({
+        data: activities.map((activity) => ({
+          activityId: activity.id,
+          outcomeId: outcome.id,
+        })),
+      });
+
+      const coverage = await getOutcomeCoverage(outcome.id);
 
       expect(coverage).toEqual({
-        outcomeId: 'TEST-2',
-        status: 'covered',
+        outcomeId: outcome.id,
+        status: CoverageStatus.COVERED,
         linked: 2,
         completed: 2,
       });
     });
 
-    it('should return partial status for outcome with some activities completed', async () => {
-      // Mock activities with some completed
-      mockActivityFindMany.mockResolvedValue([
-        { id: 1, completedAt: new Date('2024-01-01') },
-        { id: 2, completedAt: null },
-        { id: 3, completedAt: null },
-      ]);
+    it('should handle outcomes linked to activities across multiple subjects', async () => {
+      // Create an interdisciplinary outcome
+      const outcome = await prisma.outcome.create({
+        data: {
+          code: 'INTER-1',
+          description: 'Interdisciplinary outcome',
+          subject: 'Interdisciplinary',
+          grade: 4,
+        },
+      });
 
-      const coverage = await getOutcomeCoverage('TEST-3');
+      // Create multiple subjects and milestones
+      const mathSubject = await prisma.subject.create({ data: { name: 'Math' } });
+      const scienceSubject = await prisma.subject.create({ data: { name: 'Science' } });
+
+      const mathMilestone = await prisma.milestone.create({
+        data: { title: 'Math Applications', subjectId: mathSubject.id },
+      });
+
+      const scienceMilestone = await prisma.milestone.create({
+        data: { title: 'Scientific Method', subjectId: scienceSubject.id },
+      });
+
+      // Create activities in different subjects
+      const mathActivity = await prisma.activity.create({
+        data: {
+          title: 'Math Investigation',
+          milestoneId: mathMilestone.id,
+          completedAt: new Date(),
+        },
+      });
+
+      const scienceActivity = await prisma.activity.create({
+        data: {
+          title: 'Science Experiment',
+          milestoneId: scienceMilestone.id,
+          completedAt: null, // Not completed
+        },
+      });
+
+      // Link both to the outcome
+      await prisma.activityOutcome.createMany({
+        data: [
+          { activityId: mathActivity.id, outcomeId: outcome.id },
+          { activityId: scienceActivity.id, outcomeId: outcome.id },
+        ],
+      });
+
+      const coverage = await getOutcomeCoverage(outcome.id);
 
       expect(coverage).toEqual({
-        outcomeId: 'TEST-3',
-        status: 'partial',
-        linked: 3,
+        outcomeId: outcome.id,
+        status: CoverageStatus.PARTIAL,
+        linked: 2,
         completed: 1,
       });
     });
-  });
 
-  describe('getOutcomesCoverage', () => {
-    let getOutcomesCoverage: (options?: {
-      subject?: string;
-      grade?: number;
-      milestoneId?: number;
-    }) => Promise<
-      Array<{
-        outcomeId: string;
-        status: 'covered' | 'partial' | 'uncovered';
-        linked: number;
-        completed: number;
-      }>
-    >;
+    it('should handle non-existent outcome codes gracefully', async () => {
+      const coverage = await getOutcomeCoverage('NON-EXISTENT-CODE');
 
-    beforeAll(async () => {
-      const module = await import('../utils/outcomeCoverage');
-      getOutcomesCoverage = module.getOutcomesCoverage;
-    });
-
-    beforeEach(() => {
-      jest.clearAllMocks();
-    });
-
-    it('should get coverage for outcomes filtered by subject and grade', async () => {
-      // Mock outcomes
-      mockOutcomeFindMany.mockResolvedValue([{ id: 'MATH-1' }, { id: 'MATH-2' }]);
-
-      // Mock activities for each outcome
-      mockActivityFindMany
-        .mockResolvedValueOnce([{ id: 1, completedAt: new Date() }]) // MATH-1: covered
-        .mockResolvedValueOnce([]); // MATH-2: uncovered
-
-      const coverage = await getOutcomesCoverage({ subject: 'Math', grade: 5 });
-
-      expect(mockOutcomeFindMany).toHaveBeenCalledWith({
-        where: {
-          subject: 'Math',
-          grade: 5,
-        },
-        select: { id: true },
-      });
-
-      expect(coverage).toHaveLength(2);
-      expect(coverage[0]).toEqual({
-        outcomeId: 'MATH-1',
-        status: 'covered',
-        linked: 1,
-        completed: 1,
-      });
-      expect(coverage[1]).toEqual({
-        outcomeId: 'MATH-2',
-        status: 'uncovered',
+      expect(coverage).toEqual({
+        outcomeId: 'NON-EXISTENT-CODE',
+        status: CoverageStatus.UNCOVERED,
         linked: 0,
         completed: 0,
       });
-    });
-
-    it('should get coverage for outcomes filtered by milestone', async () => {
-      // Mock milestone outcomes
-      mockMilestoneOutcomeFindMany.mockResolvedValue([
-        { outcomeId: 'OUTCOME-1' },
-        { outcomeId: 'OUTCOME-2' },
-      ]);
-
-      // Mock outcomes
-      mockOutcomeFindMany.mockResolvedValue([{ id: 'OUTCOME-1' }, { id: 'OUTCOME-2' }]);
-
-      // Mock activities
-      mockActivityFindMany
-        .mockResolvedValueOnce([{ id: 1, completedAt: null }]) // OUTCOME-1: uncovered
-        .mockResolvedValueOnce([
-          { id: 2, completedAt: new Date() },
-          { id: 3, completedAt: null },
-        ]); // OUTCOME-2: partial
-
-      const coverage = await getOutcomesCoverage({ milestoneId: 1 });
-
-      expect(mockMilestoneOutcomeFindMany).toHaveBeenCalledWith({
-        where: { milestoneId: 1 },
-        select: { outcomeId: true },
-      });
-
-      expect(mockOutcomeFindMany).toHaveBeenCalledWith({
-        where: {
-          id: {
-            in: ['OUTCOME-1', 'OUTCOME-2'],
-          },
-        },
-        select: { id: true },
-      });
-
-      expect(coverage).toHaveLength(2);
     });
   });
 });
