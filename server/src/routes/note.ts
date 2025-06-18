@@ -1,6 +1,5 @@
 import { Router, Request } from 'express';
-import { Prisma } from '../prisma';
-import { prisma } from '../prisma';
+import { prisma, Prisma } from '../prisma';
 
 interface AuthenticatedRequest extends Request {
   user?: { userId: string };
