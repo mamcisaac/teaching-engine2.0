@@ -126,7 +126,20 @@ jobs:
 
           echo "Both servers running - Backend PID: $BACKEND_PID, Frontend PID: $FRONTEND_PID"
 
+      - name: Run E2E smoke tests
+        timeout-minutes: 5
+        env:
+          DATABASE_URL: file:./packages/database/prisma/test.db
+          JWT_SECRET: test-secret-key
+          JWT_EXPIRES_IN: 1h
+          NODE_ENV: test
+          CI: true
+        run: |
+          echo "Running E2E smoke tests first..."
+          pnpm run test:e2e:smoke --reporter=list --workers=1
+
       - name: Run full E2E tests
+        timeout-minutes: 15
         env:
           DATABASE_URL: file:./packages/database/prisma/test.db
           JWT_SECRET: test-secret-key
