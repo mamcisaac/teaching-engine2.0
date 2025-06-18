@@ -5,16 +5,14 @@ export default defineConfig({
   globalSetup: require.resolve('./tests/global-setup'),
 
   webServer: {
-    command: 'pnpm dev',
-    url: 'http://localhost:5173',
-    timeout: 180 * 1000,
+    command: process.env.CI ? 'pnpm --filter server start' : 'pnpm dev',
+    port: process.env.CI ? 3000 : 5173,
+    timeout: 120 * 1000,
     reuseExistingServer: !process.env.CI,
     stdout: 'pipe',
     stderr: 'pipe',
     env: {
-      // Use test mode to enable test endpoints
       NODE_ENV: 'test',
-      // Run the API server on its default port
       PORT: '3000',
       DATABASE_URL: process.env.DATABASE_URL || 'file:./packages/database/prisma/test.db',
       JWT_SECRET: process.env.JWT_SECRET || 'test-secret-key',
@@ -23,7 +21,7 @@ export default defineConfig({
   },
 
   use: {
-    baseURL: 'http://localhost:5173',
+    baseURL: process.env.CI ? 'http://localhost:3000' : 'http://localhost:5173',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     actionTimeout: 30000,
