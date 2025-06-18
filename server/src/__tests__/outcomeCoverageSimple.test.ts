@@ -190,17 +190,28 @@ describe('Simple Outcome Coverage', () => {
         data: { activityId: countingActivity.id, outcomeId: outcomes[0].id },
       });
 
-      // Outcome 2: Partially covered (1 incomplete activity)
-      const additionActivity = await prisma.activity.create({
+      // Outcome 2: Partially covered (2 activities: 1 complete, 1 incomplete)
+      const additionActivity1 = await prisma.activity.create({
         data: {
-          title: 'Addition Worksheets',
+          title: 'Addition Worksheets Part 1',
+          milestoneId: milestone.id,
+          completedAt: new Date(),
+        },
+      });
+
+      const additionActivity2 = await prisma.activity.create({
+        data: {
+          title: 'Addition Worksheets Part 2',
           milestoneId: milestone.id,
           completedAt: null,
         },
       });
 
-      await prisma.activityOutcome.create({
-        data: { activityId: additionActivity.id, outcomeId: outcomes[1].id },
+      await prisma.activityOutcome.createMany({
+        data: [
+          { activityId: additionActivity1.id, outcomeId: outcomes[1].id },
+          { activityId: additionActivity2.id, outcomeId: outcomes[1].id },
+        ],
       });
 
       // Outcome 3: Uncovered (no activities)
