@@ -104,69 +104,45 @@ const authenticateToken = (req: AuthenticatedRequest, res: Response, next: NextF
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as JwtPayload;
-    console.log('Decoded JWT:', decoded);
     if (!decoded?.userId) {
-      console.log('No userId in decoded token');
       return res.sendStatus(403);
     }
     req.user = { userId: String(decoded.userId) };
-    console.log('Set req.user to:', req.user);
     next();
   } catch (err) {
-    console.log('JWT verification error:', err);
     return res.sendStatus(403);
   }
 };
 
 // Login endpoint
 app.post('/api/login', async (req, res) => {
-  console.log('Login request received:', { body: req.body });
-
   try {
     const { email, password: passwordInput } = req.body as { email: string; password: string };
 
     if (!email || !passwordInput) {
-      console.log('Missing email or password');
       return res.status(400).json({ error: 'Email and password are required' });
     }
 
-    console.log('Looking up user with email:', email);
     const user = await prisma.user.findUnique({
       where: { email },
       select: { id: true, email: true, name: true, role: true, password: true },
     });
 
-    console.log('User found:', user ? 'yes' : 'no');
-
     if (!user) {
-      console.log('No user found with email:', email);
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     // Compare the provided password with the hashed password in the database
     const isPasswordValid = await bcrypt.compare(passwordInput, user.password);
 
-    // Debug: Log the password comparison
-    console.log('Password comparison:', {
-      providedPassword: passwordInput,
-      storedPassword: user.password,
-      match: isPasswordValid,
-    });
-
     if (!isPasswordValid) {
-      console.log('Password does not match');
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    console.log('Creating JWT token for user ID:', user.id, 'type:', typeof user.id);
     const token = jwt.sign({ userId: user.id.toString() }, process.env.JWT_SECRET || 'secret', {
       expiresIn: process.env.JWT_EXPIRES_IN || '7d',
       algorithm: 'HS256',
     } as jwt.SignOptions);
-
-    // Verify the token we just created
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as JwtPayload;
-    console.log('Token created with payload:', decoded);
 
     // Return user data without password
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -176,7 +152,6 @@ app.post('/api/login', async (req, res) => {
       user: userData,
     };
 
-    console.log('Login successful, sending response');
     res.json(response);
   } catch (error) {
     console.error('Login error:', error);

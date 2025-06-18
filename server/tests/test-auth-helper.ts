@@ -56,8 +56,8 @@ export async function getAuthToken(app: Application): Promise<{ token: string; u
  * Helper to make authenticated requests
  */
 export function authRequest(app: Application) {
-  let token: string;
-  let userId: number;
+  let token: string | null = null;
+  let userId: number | null = null;
 
   return {
     async setup(): Promise<void> {

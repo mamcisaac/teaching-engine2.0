@@ -2,12 +2,30 @@ import request from 'supertest';
 import { app } from '../src/index';
 import { getTestPrismaClient } from './jest.setup.js';
 import { authRequest } from './test-auth-helper.js';
+import bcrypt from 'bcryptjs';
 
 const auth = authRequest(app);
 let prisma: ReturnType<typeof getTestPrismaClient>;
 
 beforeAll(async () => {
   prisma = getTestPrismaClient();
+});
+
+beforeEach(async () => {
+  // Create test user before each test to ensure it exists after db reset
+  const hashedPassword = await bcrypt.hash('testpassword', 10);
+  await prisma.user.upsert({
+    where: { email: 'test@example.com' },
+    update: {},
+    create: {
+      email: 'test@example.com',
+      password: hashedPassword,
+      name: 'Test User',
+      role: 'teacher',
+    },
+  });
+
+  // Setup auth after creating user
   await auth.setup();
 });
 
@@ -22,9 +40,6 @@ describe('Health API', () => {
 describe('Subject API', () => {
   it('creates and retrieves a subject', async () => {
     const create = await auth.post('/api/subjects').send({ name: 'Test' });
-    if (create.status !== 201) {
-      console.error('Subject creation failed:', create.status, create.body);
-    }
     expect(create.status).toBe(201);
     const id = create.body.id;
     const get = await auth.get(`/api/subjects/${id}`);
@@ -81,9 +96,6 @@ describe('Milestone API', () => {
       description: 'desc',
       outcomes: ['A', 'B'],
     });
-    if (create.status !== 201) {
-      console.error('Failed to create milestone:', create.status, create.body);
-    }
     expect(create.status).toBe(201);
     const id = create.body.id;
     const get = await auth.get(`/api/milestones/${id}`);
