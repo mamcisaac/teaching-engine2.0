@@ -1,14 +1,16 @@
-// Import from the database package - use default import to avoid named export issues
-import { PrismaClient } from '@teaching-engine/database';
-import type { Prisma } from '@teaching-engine/database';
+// Import everything from the database package as a namespace
+import * as Database from '@teaching-engine/database';
+
+// Extract what we need
+const { PrismaClient } = Database;
 
 // Re-export everything
 export * from '@teaching-engine/database';
 
 // Create singleton instance for server usage
 const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClient | undefined;
-  testPrismaClient: PrismaClient | undefined;
+  prisma: InstanceType<typeof PrismaClient> | undefined;
+  testPrismaClient: InstanceType<typeof PrismaClient> | undefined;
 };
 
 // In test environment, use the test client if available
@@ -28,10 +30,10 @@ const getPrisma = () => {
 };
 
 // Create a proxy to always use the current client
-export const prisma = new Proxy({} as PrismaClient, {
+export const prisma = new Proxy({} as InstanceType<typeof PrismaClient>, {
   get(target, prop) {
     const client = getPrisma();
-    return client[prop as keyof PrismaClient];
+    return client[prop as keyof InstanceType<typeof PrismaClient>];
   },
   has(target, prop) {
     const client = getPrisma();
@@ -43,5 +45,6 @@ if (process.env.NODE_ENV !== 'production' && !isTestEnvironment) {
   globalForPrisma.prisma = getPrisma();
 }
 
-// Re-export the specific types
-export { PrismaClient, type Prisma };
+// Re-export with proper handling of the Prisma namespace
+export { PrismaClient };
+export const Prisma = Database.Prisma;
