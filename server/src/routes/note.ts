@@ -1,12 +1,18 @@
-import { Router } from 'express';
-import { Prisma } from '../prisma';
-import { prisma } from '../prisma';
+import { Router, Request } from 'express';
+import { prisma, Prisma } from '../prisma';
+
+interface AuthenticatedRequest extends Request {
+  user?: { userId: string };
+}
 
 const router = Router();
 
-router.get('/', async (req, res, next) => {
+router.get('/', async (req: AuthenticatedRequest, res, next) => {
   try {
-    const userId = req.userId || 0;
+    const userId = parseInt(req.user?.userId || '0', 10);
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
     const { type, subjectId, dateFrom, dateTo } = req.query as {
       type?: 'public' | 'private';
       subjectId?: string;

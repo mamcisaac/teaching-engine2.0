@@ -28,13 +28,20 @@ export interface CoverageSummary {
  */
 export async function getOutcomeCoverage(outcomeId: string): Promise<OutcomeCoverage> {
   try {
-    // Get all activities linked to this outcome
-    const activities = await prisma.$queryRaw<ActivityWithCompletion[]>`
-      SELECT a.id, a."completedAt"
-      FROM "Activity" a
-      JOIN "ActivityOutcome" ao ON a.id = ao."activityId"
-      WHERE ao."outcomeId" = ${outcomeId}
-    `;
+    // Get all activities linked to this outcome using Prisma query builder
+    const activities = await prisma.activity.findMany({
+      where: {
+        outcomes: {
+          some: {
+            outcomeId: outcomeId,
+          },
+        },
+      },
+      select: {
+        id: true,
+        completedAt: true,
+      },
+    });
 
     if (!activities || activities.length === 0) {
       return {
@@ -96,11 +103,10 @@ export async function getOutcomesCoverage(
 
   // If milestoneId is provided, only get outcomes linked to this milestone
   if (milestoneId) {
-    const milestoneOutcomes = (await prisma.$queryRaw`
-      SELECT "outcomeId" 
-      FROM "MilestoneOutcome" 
-      WHERE "milestoneId" = ${milestoneId}
-    `) as { outcomeId: string }[];
+    const milestoneOutcomes = await prisma.milestoneOutcome.findMany({
+      where: { milestoneId },
+      select: { outcomeId: true },
+    });
 
     whereClause.id = {
       in: milestoneOutcomes.map((mo) => mo.outcomeId),
@@ -129,10 +135,11 @@ export async function getOutcomesCoverage(
     whereConditions.push(`grade = ${whereClause.grade as number}`);
   }
 
-  const outcomes = await prisma.$queryRaw<Array<{ id: string }>>`
-    SELECT id FROM "Outcome"
-    ${whereConditions.length > 0 ? `WHERE ${whereConditions.join(' AND ')}` : ''}
-  `;
+  // Use Prisma's query builder instead of raw SQL to avoid SQLite syntax issues
+  const outcomes = await prisma.outcome.findMany({
+    where: whereClause,
+    select: { id: true },
+  });
 
   // Get coverage for each outcome
   const coveragePromises = outcomes.map((outcome: { id: string }) =>

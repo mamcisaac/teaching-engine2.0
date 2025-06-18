@@ -49,7 +49,7 @@ test.describe('Authentication Flow', () => {
     await verifyAuthenticated(page);
 
     // Should see dashboard content
-    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.locator('h1').first()).toBeVisible();
   });
 
   test('should handle logout correctly', async ({ page }) => {
@@ -116,6 +116,9 @@ test.describe('Authentication Flow', () => {
     await page.goto('/');
     const token = await page.evaluate(() => localStorage.getItem('token'));
 
+    // Create a unique subject name to avoid conflicts with other test runs
+    const uniqueSubjectName = `E2E Test Subject ${Date.now()}`;
+
     // Create a subject via API
     const serverUrl = global.__TEST_SERVER_URL__ || 'http://localhost:3000';
     const createResponse = await page.request.post(`${serverUrl}/api/subjects`, {
@@ -124,7 +127,7 @@ test.describe('Authentication Flow', () => {
         'Content-Type': 'application/json',
       },
       data: {
-        name: 'E2E Test Subject',
+        name: uniqueSubjectName,
         color: '#FF0000',
       },
     });
@@ -135,8 +138,8 @@ test.describe('Authentication Flow', () => {
     // Navigate to subjects page
     await page.goto('/subjects');
 
-    // Should see the created subject
-    await expect(page.locator('text=E2E Test Subject')).toBeVisible();
+    // Should see the created subject with the unique name
+    await expect(page.locator(`text=${uniqueSubjectName}`)).toBeVisible();
 
     // Clean up - delete the subject
     const deleteResponse = await page.request.delete(`${serverUrl}/api/subjects/${subject.id}`, {

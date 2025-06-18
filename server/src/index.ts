@@ -12,8 +12,8 @@ const log = debug('server:main');
 const error = debug('server:error');
 
 // Get directory name in ES module
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __filename_index = fileURLToPath(import.meta.url);
+const __dirname_index = path.dirname(__filename_index);
 
 // Extend the Express Request type to include the user property
 interface AuthenticatedRequest extends Request {
@@ -95,6 +95,15 @@ log('Applying CORS and JSON middleware...');
 app.use(cors(corsOptions));
 app.use(express.json());
 
+// Health check endpoints
+app.get('/health', (_req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
+app.get('/api/health', (_req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 // Middleware to verify JWT token
 const authenticateToken = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   const authHeader = req.headers['authorization'];
@@ -104,7 +113,10 @@ const authenticateToken = (req: AuthenticatedRequest, res: Response, next: NextF
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as JwtPayload;
-    req.user = { userId: String(decoded?.userId || '') };
+    if (!decoded?.userId) {
+      return res.sendStatus(403);
+    }
+    req.user = { userId: String(decoded.userId) };
     next();
   } catch (err) {
     return res.sendStatus(403);
@@ -113,45 +125,29 @@ const authenticateToken = (req: AuthenticatedRequest, res: Response, next: NextF
 
 // Login endpoint
 app.post('/api/login', async (req, res) => {
-  console.log('Login request received:', { body: req.body });
-
   try {
     const { email, password: passwordInput } = req.body as { email: string; password: string };
 
     if (!email || !passwordInput) {
-      console.log('Missing email or password');
       return res.status(400).json({ error: 'Email and password are required' });
     }
 
-    console.log('Looking up user with email:', email);
     const user = await prisma.user.findUnique({
       where: { email },
       select: { id: true, email: true, name: true, role: true, password: true },
     });
 
-    console.log('User found:', user ? 'yes' : 'no');
-
     if (!user) {
-      console.log('No user found with email:', email);
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     // Compare the provided password with the hashed password in the database
     const isPasswordValid = await bcrypt.compare(passwordInput, user.password);
 
-    // Debug: Log the password comparison
-    console.log('Password comparison:', {
-      providedPassword: passwordInput,
-      storedPassword: user.password,
-      match: isPasswordValid,
-    });
-
     if (!isPasswordValid) {
-      console.log('Password does not match');
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    console.log('Creating JWT token for user ID:', user.id);
     const token = jwt.sign({ userId: user.id.toString() }, process.env.JWT_SECRET || 'secret', {
       expiresIn: process.env.JWT_EXPIRES_IN || '7d',
       algorithm: 'HS256',
@@ -165,7 +161,6 @@ app.post('/api/login', async (req, res) => {
       user: userData,
     };
 
-    console.log('Login successful, sending response');
     res.json(response);
   } catch (error) {
     console.error('Login error:', error);
@@ -245,17 +240,24 @@ app.use('/api/cognates', authenticateToken, cognateRoutes);
 app.use('/api/assessments', authenticateToken, assessmentRoutes);
 app.use('/api/media-resources', authenticateToken, mediaResourceRoutes);
 app.use('/api/parent-messages', authenticateToken, parentMessageRoutes);
+
+// Mount test routes (only in test/development mode)
+if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
+  log('Mounting test routes...');
+  app.use('/api/test', testRoutes);
+}
+
 log('All API routes mounted successfully.');
 app.use('/api/*', (_req, res) => {
   res.status(404).json({ error: 'Not Found' });
 });
 
-const clientDist = path.join(__dirname, '../../client/dist');
+const clientDist = path.join(__dirname_index, '../../client/dist');
 log('Configuring URL-encoded and cookie parser middleware...');
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 log('Configuring static file serving for uploads...');
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+app.use('/uploads', express.static(path.join(__dirname_index, '../uploads')));
 log('Configuring static file serving for client distribution...');
 app.use(express.static(clientDist));
 log('Configuring catch-all route for client-side routing...');

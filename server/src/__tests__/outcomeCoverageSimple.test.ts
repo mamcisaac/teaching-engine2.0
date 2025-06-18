@@ -1,12 +1,22 @@
 import { describe, it, expect, jest, beforeEach, beforeAll } from '@jest/globals';
 
 // Mock the prisma client first
-const mockQueryRaw = jest.fn();
+const mockActivityFindMany = jest.fn();
+const mockOutcomeFindMany = jest.fn();
+const mockMilestoneOutcomeFindMany = jest.fn();
 
 // Mock the module before any imports
 jest.unstable_mockModule('../prisma', () => ({
   prisma: {
-    $queryRaw: mockQueryRaw,
+    activity: {
+      findMany: mockActivityFindMany,
+    },
+    outcome: {
+      findMany: mockOutcomeFindMany,
+    },
+    milestoneOutcome: {
+      findMany: mockMilestoneOutcomeFindMany,
+    },
   },
 }));
 
@@ -30,8 +40,10 @@ describe('Simple Outcome Coverage', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    // Reset the mock implementation
-    mockQueryRaw.mockImplementation(() => Promise.resolve([]));
+    // Reset the mock implementations
+    mockActivityFindMany.mockReset();
+    mockOutcomeFindMany.mockReset();
+    mockMilestoneOutcomeFindMany.mockReset();
   });
 
   describe('getOutcomeCoverage', () => {
@@ -49,7 +61,7 @@ describe('Simple Outcome Coverage', () => {
       });
 
       // Then test the actual implementation
-      mockQueryRaw.mockImplementation(() => Promise.resolve([]));
+      mockActivityFindMany.mockResolvedValue([]);
       const result = await getOutcomeCoverage('TEST-1');
 
       expect(result).toEqual({
@@ -57,6 +69,55 @@ describe('Simple Outcome Coverage', () => {
         status: 'uncovered',
         linked: 0,
         completed: 0,
+      });
+
+      // Verify the query was called with correct parameters
+      expect(mockActivityFindMany).toHaveBeenCalledWith({
+        where: {
+          outcomes: {
+            some: {
+              outcomeId: 'TEST-1',
+            },
+          },
+        },
+        select: {
+          id: true,
+          completedAt: true,
+        },
+      });
+    });
+
+    it('should return covered status for outcome with all activities completed', async () => {
+      // Mock activities with all completed
+      mockActivityFindMany.mockResolvedValue([
+        { id: 1, completedAt: new Date('2024-01-01') },
+        { id: 2, completedAt: new Date('2024-01-02') },
+      ]);
+
+      const result = await getOutcomeCoverage('TEST-2');
+
+      expect(result).toEqual({
+        outcomeId: 'TEST-2',
+        status: 'covered',
+        linked: 2,
+        completed: 2,
+      });
+    });
+
+    it('should return partial status for outcome with some activities completed', async () => {
+      // Mock activities with some completed
+      mockActivityFindMany.mockResolvedValue([
+        { id: 1, completedAt: new Date('2024-01-01') },
+        { id: 2, completedAt: null },
+      ]);
+
+      const result = await getOutcomeCoverage('TEST-3');
+
+      expect(result).toEqual({
+        outcomeId: 'TEST-3',
+        status: 'partial',
+        linked: 2,
+        completed: 1,
       });
     });
   });

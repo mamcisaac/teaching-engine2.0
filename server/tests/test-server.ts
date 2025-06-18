@@ -4,7 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { spawn, ChildProcess } from 'child_process';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const __dirname_testServer = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * Test server manager for integration tests
@@ -148,7 +148,7 @@ export class TestServer {
 
       // Spawn server process
       this.serverProcess = spawn('tsx', ['src/index.ts'], {
-        cwd: path.join(__dirname, '..'),
+        cwd: path.join(__dirname_testServer, '..'),
         env,
         stdio: ['ignore', 'pipe', 'pipe'],
       });

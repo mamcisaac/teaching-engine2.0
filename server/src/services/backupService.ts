@@ -7,8 +7,8 @@ import { S3Client, PutObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3
 import cron from 'node-cron';
 
 // Get directory name in ES module
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __filename_backup = fileURLToPath(import.meta.url);
+const __dirname_backup = path.dirname(__filename_backup);
 
 let s3: S3Client | null = null;
 const bucket = process.env.BACKUP_BUCKET;
@@ -26,7 +26,7 @@ function getDbPath() {
 }
 
 function getUploadsPath() {
-  return path.join(__dirname, '../uploads');
+  return path.join(__dirname_backup, '../uploads');
 }
 
 /** Create zip archive containing database and uploads */
@@ -67,7 +67,7 @@ export async function saveBackup(data: Buffer): Promise<string> {
     await s3.send(new PutObjectCommand({ Bucket: bucket, Key: key, Body: data }));
     return `s3://${bucket}/${key}`;
   }
-  const backupDir = path.join(__dirname, '../backups');
+  const backupDir = path.join(__dirname_backup, '../backups');
   await fs.promises.mkdir(backupDir, { recursive: true });
   const file = path.join(backupDir, key);
   await fs.promises.writeFile(file, data);

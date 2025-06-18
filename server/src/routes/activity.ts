@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request } from 'express';
 import { Prisma } from '../prisma';
 import { prisma } from '../prisma';
 import {
@@ -9,6 +9,10 @@ import {
   activityMaterialsSchema,
 } from '../validation';
 import { reorderActivities } from '../services/activityService';
+
+interface AuthenticatedRequest extends Request {
+  user?: { userId: string };
+}
 
 const router = Router();
 
@@ -42,8 +46,12 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', validate(activityCreateSchema), async (req, res, next) => {
+router.post('/', validate(activityCreateSchema), async (req: AuthenticatedRequest, res, next) => {
   try {
+    const userId = parseInt(req.user?.userId || '0', 10);
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
     const activity = await prisma.activity.create({
       data: {
         title: req.body.title,
@@ -53,7 +61,7 @@ router.post('/', validate(activityCreateSchema), async (req, res, next) => {
         privateNote: req.body.privateNote,
         publicNote: req.body.publicNote,
         tags: req.body.tags,
-        userId: req.userId,
+        userId,
         completedAt: req.body.completedAt ? new Date(req.body.completedAt) : undefined,
         materialsText: req.body.materialsText,
       },

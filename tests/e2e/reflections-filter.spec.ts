@@ -93,15 +93,15 @@ test('filters notes by subject and type', async ({ page }) => {
 
   await page.request.post(`${API_BASE}/api/notes`, {
     headers: { Authorization: `Bearer ${token}` },
-    data: { content: 'Math Public', type: 'public', activityId: mathActId },
+    data: { content: 'Math Public', public: true, activityId: mathActId },
   });
   await page.request.post(`${API_BASE}/api/notes`, {
     headers: { Authorization: `Bearer ${token}` },
-    data: { content: 'Math Private', type: 'private', activityId: mathActId },
+    data: { content: 'Math Private', public: false, activityId: mathActId },
   });
   await page.request.post(`${API_BASE}/api/notes`, {
     headers: { Authorization: `Bearer ${token}` },
-    data: { content: 'Sci Public', type: 'public', activityId: sciActId },
+    data: { content: 'Sci Public', public: true, activityId: sciActId },
   });
 
   await page.goto('/reflections');

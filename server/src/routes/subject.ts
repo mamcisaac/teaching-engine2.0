@@ -1,13 +1,20 @@
-import { Router } from 'express';
+import { Router, Request } from 'express';
 import { Prisma } from '../prisma';
 import { prisma } from '../prisma';
 import { validate, subjectSchema } from '../validation';
 
+interface AuthenticatedRequest extends Request {
+  user?: { userId: string };
+}
+
 const router = Router();
 
-router.get('/', async (req, res, next) => {
+router.get('/', async (req: AuthenticatedRequest, res, next) => {
   try {
-    const userId = req.userId || 0;
+    const userId = parseInt(req.user?.userId || '0', 10);
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
     const subjects = await prisma.subject.findMany({
       where: {
         OR: [
@@ -44,12 +51,16 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', validate(subjectSchema), async (req, res, next) => {
+router.post('/', validate(subjectSchema), async (req: AuthenticatedRequest, res, next) => {
   try {
+    const userId = parseInt(req.user?.userId || '0', 10);
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
     const subject = await prisma.subject.create({
       data: {
         name: req.body.name,
-        userId: req.userId,
+        userId,
       },
     });
     res.status(201).json(subject);
@@ -78,8 +89,15 @@ router.delete('/:id', async (req, res, next) => {
     await prisma.subject.delete({ where: { id: Number(req.params.id) } });
     res.status(204).end();
   } catch (err) {
-    if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
-      return res.status(404).json({ error: 'Not Found' });
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      if (err.code === 'P2025') {
+        return res.status(404).json({ error: 'Not Found' });
+      }
+      if (err.code === 'P2003') {
+        return res
+          .status(400)
+          .json({ error: 'Cannot delete subject with existing milestones or activities' });
+      }
     }
     next(err);
   }

@@ -1,10 +1,6 @@
 import { PrismaClient } from '@teaching-engine/database';
 import { execSync } from 'child_process';
-import { resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { resolve } from 'path';
 
 interface TransactionClient {
   client: PrismaClient;
@@ -33,7 +29,7 @@ class TestDatabaseManager {
     this.connectionStats.set(workerId, { queries: 0, startTime: Date.now() });
 
     // Initialize the database schema
-    const databasePath = resolve(__dirname, '..', '..', 'packages', 'database');
+    const databasePath = resolve(process.cwd(), '..', 'packages', 'database');
     try {
       execSync('npx prisma db push --force-reset --skip-generate', {
         stdio: 'inherit',
@@ -189,7 +185,7 @@ class TestDatabaseManager {
 
   private getDatabaseUrl(workerId: string): string {
     // Use a unique database file for each worker to avoid conflicts
-    const dbPath = resolve(__dirname, `test-${workerId}.db`);
+    const dbPath = resolve(process.cwd(), 'tests', `test-${workerId}.db`);
     return `file:${dbPath}`;
   }
 }

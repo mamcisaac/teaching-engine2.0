@@ -15,10 +15,19 @@ export default async function globalSetup(): Promise<void> {
 
     // Set up test database
     console.log('Setting up test database...');
-    process.env.DATABASE_URL = 'file:./test.db';
+    const dbUrl = process.env.DATABASE_URL || 'file:./packages/database/prisma/test.db';
+    process.env.DATABASE_URL = dbUrl;
+    console.log(`Using DATABASE_URL: ${dbUrl}`);
+
     execSync('pnpm db:generate', { stdio: 'inherit' });
-    execSync('pnpm db:push --force-reset', { stdio: 'inherit' });
-    execSync('pnpm --filter @teaching-engine/database db:seed', { stdio: 'inherit' });
+    execSync('pnpm db:push --force-reset', {
+      stdio: 'inherit',
+      env: { ...process.env, DATABASE_URL: dbUrl },
+    });
+    execSync('pnpm --filter @teaching-engine/database db:seed', {
+      stdio: 'inherit',
+      env: { ...process.env, DATABASE_URL: dbUrl },
+    });
 
     // Create a new browser context to ensure everything works
     console.log('Verifying browser setup...');

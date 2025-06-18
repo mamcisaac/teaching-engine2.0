@@ -9,6 +9,25 @@ import { getTestPrismaClient } from './jest.setup.js';
 export async function getAuthToken(app: Application): Promise<{ token: string; userId: number }> {
   const prisma = getTestPrismaClient();
 
+  // First check if user already exists
+  const existingUser = await prisma.user.findUnique({
+    where: { email: 'test@example.com' },
+  });
+
+  if (existingUser) {
+    // If user exists, just return login
+    const loginResponse = await request(app).post('/api/login').send({
+      email: 'test@example.com',
+      password: 'testpassword',
+    });
+
+    if (loginResponse.status !== 200) {
+      throw new Error(`Login failed: ${loginResponse.status} ${loginResponse.text}`);
+    }
+
+    return { token: loginResponse.body.token, userId: existingUser.id };
+  }
+
   // Create a test user with hashed password
   const hashedPassword = await bcrypt.hash('testpassword', 10);
   const user = await prisma.user.create({
@@ -37,8 +56,8 @@ export async function getAuthToken(app: Application): Promise<{ token: string; u
  * Helper to make authenticated requests
  */
 export function authRequest(app: Application) {
-  let token: string;
-  let userId: number;
+  let token: string | null = null;
+  let userId: number | null = null;
 
   return {
     async setup(): Promise<void> {

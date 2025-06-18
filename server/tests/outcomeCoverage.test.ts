@@ -1,8 +1,8 @@
 import { app } from '../src/index';
 import { authRequest } from './test-auth-helper';
 import { getTestPrismaClient } from './jest.setup';
+import { setupAuthenticatedTest } from './test-setup-helpers';
 import { v4 as uuidv4 } from 'uuid';
-import bcrypt from 'bcryptjs';
 
 // Define interface for outcome coverage response
 interface OutcomeCoverageResponse {
@@ -22,6 +22,7 @@ interface OutcomeCoverageResponse {
 describe('Outcome Coverage API', () => {
   // Using underscore prefix to indicate unused variable (to satisfy ESLint)
   // let _userId: number;
+  // let _token: string;
   let subjectId: number;
   let milestoneId: number;
   let outcomeId: string;
@@ -31,25 +32,11 @@ describe('Outcome Coverage API', () => {
 
   beforeAll(async () => {
     prisma = getTestPrismaClient();
-    await auth.setup();
-    // Setup: Create a user and login
-    const email = `test-${uuidv4()}@example.com`;
-    const password = 'password123';
-    const hashedPassword = await bcrypt.hash(password, 10);
+  });
 
-    await prisma.user.create({
-      data: {
-        email,
-        name: 'Test User',
-        password: hashedPassword,
-        role: 'TEACHER',
-      },
-    });
-    // _userId = user.id;
-
-    const loginRes = await auth.post('/api/login').send({ email, password });
-
-    token = loginRes.body.token;
+  beforeEach(async () => {
+    // Setup auth for each test to handle database resets
+    await setupAuthenticatedTest(prisma, auth);
 
     // Create a subject
     const subjectRes = await auth.post('/api/subjects').send({ name: 'Test Subject' });
@@ -78,15 +65,7 @@ describe('Outcome Coverage API', () => {
     });
   });
 
-  afterAll(async () => {
-    // Clean up
-    await prisma.activityOutcome.deleteMany({});
-    await prisma.activity.deleteMany({});
-    await prisma.outcome.deleteMany({});
-    await prisma.milestone.deleteMany({});
-    await prisma.subject.deleteMany({});
-    await prisma.user.deleteMany({});
-  });
+  // No need for afterAll cleanup - database is reset after each test
 
   it('should return outcomes with no coverage initially', async () => {
     const res = await auth.get('/api/outcomes/coverage');

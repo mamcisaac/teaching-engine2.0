@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { login, API_BASE } from './helpers';
+import { login, API_BASE } from './improved-helpers';
 
 // Helper function to get the Monday of the current week in ISO format
 const getWeekStartISO = (date: Date): string => {
@@ -14,11 +14,31 @@ test('planner tag filters', async ({ page }) => {
   const ts = Date.now();
   const token = await login(page);
 
-  // Use the seeded subjects and create test data
-  const subjectsRes = await page.request.get(`${API_BASE}/api/subjects`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  const subjects = await subjectsRes.json();
+  // Use the seeded subjects and create test data with retry logic
+  let subjects;
+  let attempts = 0;
+  const maxAttempts = 3;
+
+  while (attempts < maxAttempts) {
+    try {
+      const subjectsRes = await page.request.get(`${API_BASE}/api/subjects`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!subjectsRes.ok()) {
+        throw new Error(`HTTP ${subjectsRes.status()}: ${await subjectsRes.text()}`);
+      }
+      subjects = await subjectsRes.json();
+      break;
+    } catch (error) {
+      attempts++;
+      console.log(`Attempt ${attempts} to get subjects failed:`, error);
+      if (attempts >= maxAttempts) {
+        throw error;
+      }
+      await page.waitForTimeout(2000); // Wait 2 seconds before retry
+    }
+  }
+
   const subjectId = subjects[0].id; // Use first seeded subject
 
   // Create milestone with dates that span the current week
