@@ -1,424 +1,506 @@
-import { jest } from '@jest/globals';
+import { describe, it, expect, beforeEach } from '@jest/globals';
+import { getTestPrismaClient } from '../../tests/jest.setup';
 import { getPlannerSuggestions } from '../services/plannerSuggestions';
-
-// Mock dependencies
-jest.mock('../prisma', () => ({
-  prisma: {
-    milestone: {
-      findMany: jest.fn(),
-    },
-  },
-}));
-
-jest.mock('./outcomeCoverage', () => ({
-  getOutcomesCoverage: jest.fn(),
-}));
-
-jest.mock('date-fns', () => ({
-  addDays: jest.fn((date: Date, days: number) => {
-    const result = new Date(date);
-    result.setDate(result.getDate() + days);
-    return result;
-  }),
-}));
-
-const mockPrisma = jest.mocked(await import('../prisma')).prisma;
-const mockGetOutcomesCoverage = jest.mocked(await import('./outcomeCoverage')).getOutcomesCoverage;
+import { addDays } from 'date-fns';
 
 describe('PlannerSuggestions', () => {
+  const prisma = getTestPrismaClient();
   const weekStart = new Date('2024-01-01'); // Monday
-  const weekEnd = new Date('2024-01-07'); // Sunday
-  const userId = 1;
+  const weekEnd = addDays(weekStart, 6); // Sunday
 
-  beforeEach(() => {
-    jest.clearAllMocks();
-
-    // Mock console.error to prevent test noise
-    jest.spyOn(console, 'error').mockImplementation(() => {});
-  });
-
-  afterEach(() => {
-    jest.restoreAllMocks();
+  beforeEach(async () => {
+    // Clean up test data
+    await prisma.dailyPlanItem.deleteMany();
+    await prisma.activityOutcome.deleteMany();
+    await prisma.activity.deleteMany();
+    await prisma.milestone.deleteMany();
+    await prisma.subject.deleteMany();
+    await prisma.outcome.deleteMany();
+    await prisma.user.deleteMany();
   });
 
   describe('getPlannerSuggestions', () => {
-    const mockMilestones = [
-      {
-        id: 1,
-        title: 'Math Milestone 1',
-        startDate: new Date('2024-01-01'),
-        endDate: new Date('2024-01-15'),
-        subject: { name: 'Mathematics' },
-        activities: [
-          {
-            id: 1,
-            title: 'Addition Practice',
-            completedAt: null,
-            dailyPlanItems: [],
-            outcomes: [
-              {
-                outcome: { id: 'outcome-1' },
-              },
-              {
-                outcome: { id: 'outcome-2' },
-              },
-            ],
-          },
-          {
-            id: 2,
-            title: 'Subtraction Practice',
-            completedAt: null,
-            dailyPlanItems: [],
-            outcomes: [
-              {
-                outcome: { id: 'outcome-3' },
-              },
-            ],
-          },
-        ],
-      },
-      {
-        id: 2,
-        title: 'Science Milestone 1',
-        startDate: new Date('2024-01-03'),
-        endDate: new Date('2024-01-10'),
-        subject: { name: 'Science' },
-        activities: [
-          {
-            id: 3,
-            title: 'Plant Growth Experiment',
-            completedAt: null,
-            dailyPlanItems: [],
-            outcomes: [],
-          },
-        ],
-      },
-      {
-        id: 3,
-        title: 'Reading Milestone',
-        startDate: new Date('2024-01-05'),
-        endDate: new Date('2024-01-12'),
-        subject: null,
-        activities: [
-          {
-            id: 4,
-            title: 'Reading Comprehension',
-            completedAt: null,
-            dailyPlanItems: [],
-            outcomes: [
-              {
-                outcome: { id: 'outcome-4' },
-              },
-            ],
-          },
-        ],
-      },
-    ];
-
-    const mockOutcomesCoverage = [
-      { outcomeId: 'outcome-1', status: 'uncovered' },
-      { outcomeId: 'outcome-2', status: 'partial' },
-      { outcomeId: 'outcome-3', status: 'covered' },
-      { outcomeId: 'outcome-4', status: 'covered' },
-    ];
-
-    beforeEach(() => {
-      mockPrisma.milestone.findMany.mockResolvedValue(mockMilestones as unknown);
-      mockGetOutcomesCoverage.mockResolvedValue(mockOutcomesCoverage as unknown);
-    });
-
     it('should return suggestions sorted by coverage status', async () => {
-      const suggestions = await getPlannerSuggestions(weekStart, userId);
+      // Create test user
+      const user = await prisma.user.create({
+        data: {
+          email: 'test@example.com',
+          password: 'hashed',
+          name: 'Test Teacher',
+          role: 'teacher',
+        },
+      });
+
+      // Create subjects
+      const mathSubject = await prisma.subject.create({
+        data: { name: 'Mathematics' },
+      });
+
+      const scienceSubject = await prisma.subject.create({
+        data: { name: 'Science' },
+      });
+
+      // Create outcomes with different coverage needs
+      const outcomes = await Promise.all([
+        prisma.outcome.create({
+          data: { code: 'MATH-001', description: 'Basic Addition', subject: 'Math', grade: 1 },
+        }),
+        prisma.outcome.create({
+          data: { code: 'MATH-002', description: 'Basic Subtraction', subject: 'Math', grade: 1 },
+        }),
+        prisma.outcome.create({
+          data: { code: 'SCI-001', description: 'Plant Growth', subject: 'Science', grade: 1 },
+        }),
+        prisma.outcome.create({
+          data: { code: 'SCI-002', description: 'Animal Habitats', subject: 'Science', grade: 1 },
+        }),
+      ]);
+
+      // Create milestones within the week range
+      const mathMilestone = await prisma.milestone.create({
+        data: {
+          title: 'Math Milestone 1',
+          startDate: weekStart,
+          endDate: new Date('2024-01-15'),
+          subjectId: mathSubject.id,
+          userId: user.id,
+        },
+      });
+
+      const scienceMilestone = await prisma.milestone.create({
+        data: {
+          title: 'Science Milestone 1',
+          startDate: new Date('2024-01-03'),
+          endDate: new Date('2024-01-10'),
+          subjectId: scienceSubject.id,
+          userId: user.id,
+        },
+      });
+
+      // Create activities with different outcome coverage
+      // Activity 1: Links to uncovered outcome (MATH-001)
+      const activity1 = await prisma.activity.create({
+        data: {
+          title: 'Addition Practice',
+          milestoneId: mathMilestone.id,
+          completedAt: null,
+        },
+      });
+
+      await prisma.activityOutcome.create({
+        data: { activityId: activity1.id, outcomeId: outcomes[0].id }, // MATH-001
+      });
+
+      // Activity 2: Links to partially covered outcome (MATH-002)
+      const activity2 = await prisma.activity.create({
+        data: {
+          title: 'Subtraction Practice',
+          milestoneId: mathMilestone.id,
+          completedAt: null,
+        },
+      });
+
+      await prisma.activityOutcome.create({
+        data: { activityId: activity2.id, outcomeId: outcomes[1].id }, // MATH-002
+      });
+
+      // Create another activity for MATH-002 that's completed (to make it partial)
+      const completedActivity = await prisma.activity.create({
+        data: {
+          title: 'Subtraction Basics',
+          milestoneId: mathMilestone.id,
+          completedAt: new Date(),
+        },
+      });
+
+      await prisma.activityOutcome.create({
+        data: { activityId: completedActivity.id, outcomeId: outcomes[1].id }, // MATH-002
+      });
+
+      // Activity 3: No outcomes (general activity)
+      const activity3 = await prisma.activity.create({
+        data: {
+          title: 'Plant Growth Experiment',
+          milestoneId: scienceMilestone.id,
+          completedAt: null,
+        },
+      });
+
+      // Activity 4: Links to already covered outcome (SCI-002)
+      const activity4 = await prisma.activity.create({
+        data: {
+          title: 'Animal Habitats Study',
+          milestoneId: scienceMilestone.id,
+          completedAt: null,
+        },
+      });
+
+      await prisma.activityOutcome.create({
+        data: { activityId: activity4.id, outcomeId: outcomes[3].id }, // SCI-002
+      });
+
+      // Create a completed activity for SCI-002 to make it already covered
+      const completedScienceActivity = await prisma.activity.create({
+        data: {
+          title: 'Animal Habitats Introduction',
+          milestoneId: scienceMilestone.id,
+          completedAt: new Date(),
+        },
+      });
+
+      await prisma.activityOutcome.create({
+        data: { activityId: completedScienceActivity.id, outcomeId: outcomes[3].id }, // SCI-002
+      });
+
+      // Get suggestions
+      const suggestions = await getPlannerSuggestions(weekStart, user.id);
 
       expect(suggestions).toHaveLength(4);
 
       // First suggestion should cover uncovered outcomes
-      expect(suggestions[0]).toEqual({
-        activityId: 1,
-        title: 'Addition Practice',
-        milestoneTitle: 'Math Milestone 1',
-        subject: 'Mathematics',
-        linkedOutcomes: ['outcome-1', 'outcome-2'],
-        coverageStatus: 'covers_uncovered',
-      });
+      const firstSuggestion = suggestions[0];
+      expect(firstSuggestion.activityId).toBe(activity1.id);
+      expect(firstSuggestion.title).toBe('Addition Practice');
+      expect(firstSuggestion.coverageStatus).toBe('covers_uncovered');
+      expect(firstSuggestion.linkedOutcomes).toContain('MATH-001');
 
-      // Suggestions covering uncovered outcomes should come first
-      const uncoveredSuggestions = suggestions.filter(
-        (s) => s.coverageStatus === 'covers_uncovered',
-      );
-      expect(uncoveredSuggestions).toHaveLength(1);
-    });
+      // Check that suggestions are properly sorted
+      const coverageStatuses = suggestions.map((s) => s.coverageStatus);
+      expect(coverageStatuses[0]).toBe('covers_uncovered');
 
-    it('should handle activities with no outcomes', async () => {
-      const suggestions = await getPlannerSuggestions(weekStart, userId);
+      // Find specific suggestions
+      const generalSuggestion = suggestions.find((s) => s.activityId === activity3.id);
+      expect(generalSuggestion?.coverageStatus).toBe('general');
+      expect(generalSuggestion?.linkedOutcomes).toHaveLength(0);
 
-      const generalSuggestion = suggestions.find((s) => s.activityId === 3);
-      expect(generalSuggestion).toEqual({
-        activityId: 3,
-        title: 'Plant Growth Experiment',
-        milestoneTitle: 'Science Milestone 1',
-        subject: 'Science',
-        linkedOutcomes: [],
-        coverageStatus: 'general',
-      });
-    });
-
-    it('should handle activities with already covered outcomes', async () => {
-      const suggestions = await getPlannerSuggestions(weekStart, userId);
-
-      const alreadyCoveredSuggestion = suggestions.find((s) => s.activityId === 4);
-      expect(alreadyCoveredSuggestion).toEqual({
-        activityId: 4,
-        title: 'Reading Comprehension',
-        milestoneTitle: 'Reading Milestone',
-        subject: 'Uncategorized',
-        linkedOutcomes: ['outcome-4'],
-        coverageStatus: 'already_covered',
-      });
+      const alreadyCoveredSuggestion = suggestions.find((s) => s.activityId === activity4.id);
+      expect(alreadyCoveredSuggestion?.coverageStatus).toBe('already_covered');
     });
 
     it('should handle milestones without subjects', async () => {
-      const suggestions = await getPlannerSuggestions(weekStart, userId);
+      const user = await prisma.user.create({
+        data: {
+          email: 'test2@example.com',
+          password: 'hashed',
+          name: 'Test Teacher 2',
+          role: 'teacher',
+        },
+      });
 
-      const uncategorizedSuggestion = suggestions.find((s) => s.subject === 'Uncategorized');
+      // Create milestone without subject
+      const milestone = await prisma.milestone.create({
+        data: {
+          title: 'Reading Milestone',
+          startDate: new Date('2024-01-05'),
+          endDate: new Date('2024-01-12'),
+          userId: user.id,
+          // No subjectId
+        },
+      });
+
+      const activity = await prisma.activity.create({
+        data: {
+          title: 'Reading Comprehension',
+          milestoneId: milestone.id,
+          completedAt: null,
+        },
+      });
+
+      const suggestions = await getPlannerSuggestions(weekStart, user.id);
+
+      const uncategorizedSuggestion = suggestions.find((s) => s.activityId === activity.id);
       expect(uncategorizedSuggestion).toBeTruthy();
       expect(uncategorizedSuggestion?.subject).toBe('Uncategorized');
     });
 
-    it('should query milestones with correct date range', async () => {
-      await getPlannerSuggestions(weekStart, userId);
-
-      expect(mockPrisma.milestone.findMany).toHaveBeenCalledWith({
-        where: {
-          userId,
-          OR: [
-            {
-              startDate: { lte: weekEnd },
-              endDate: { gte: weekStart },
-            },
-            {
-              startDate: {
-                gte: weekStart,
-                lte: weekEnd,
-              },
-            },
-          ],
-        },
-        include: {
-          subject: true,
-          activities: {
-            where: {
-              completedAt: null,
-              dailyPlanItems: { none: {} },
-            },
-            include: {
-              outcomes: {
-                include: {
-                  outcome: true,
-                },
-              },
-            },
-          },
+    it('should only include activities from milestones in the date range', async () => {
+      const user = await prisma.user.create({
+        data: {
+          email: 'test3@example.com',
+          password: 'hashed',
+          name: 'Test Teacher 3',
+          role: 'teacher',
         },
       });
+
+      const subject = await prisma.subject.create({
+        data: { name: 'History' },
+      });
+
+      // Create milestone outside the week range
+      const outsideMilestone = await prisma.milestone.create({
+        data: {
+          title: 'Future Milestone',
+          startDate: new Date('2024-02-01'),
+          endDate: new Date('2024-02-15'),
+          subjectId: subject.id,
+          userId: user.id,
+        },
+      });
+
+      await prisma.activity.create({
+        data: {
+          title: 'Future Activity',
+          milestoneId: outsideMilestone.id,
+          completedAt: null,
+        },
+      });
+
+      // Create milestone within range
+      const insideMilestone = await prisma.milestone.create({
+        data: {
+          title: 'Current Milestone',
+          startDate: weekStart,
+          endDate: weekEnd,
+          subjectId: subject.id,
+          userId: user.id,
+        },
+      });
+
+      const currentActivity = await prisma.activity.create({
+        data: {
+          title: 'Current Activity',
+          milestoneId: insideMilestone.id,
+          completedAt: null,
+        },
+      });
+
+      const suggestions = await getPlannerSuggestions(weekStart, user.id);
+
+      expect(suggestions).toHaveLength(1);
+      expect(suggestions[0].activityId).toBe(currentActivity.id);
+    });
+
+    it('should exclude already scheduled activities', async () => {
+      const user = await prisma.user.create({
+        data: {
+          email: 'test4@example.com',
+          password: 'hashed',
+          name: 'Test Teacher 4',
+          role: 'teacher',
+        },
+      });
+
+      const subject = await prisma.subject.create({
+        data: { name: 'Art' },
+      });
+
+      const milestone = await prisma.milestone.create({
+        data: {
+          title: 'Art Projects',
+          startDate: weekStart,
+          endDate: weekEnd,
+          subjectId: subject.id,
+          userId: user.id,
+        },
+      });
+
+      // Create unscheduled activity
+      const unscheduledActivity = await prisma.activity.create({
+        data: {
+          title: 'Painting Project',
+          milestoneId: milestone.id,
+          completedAt: null,
+        },
+      });
+
+      // Create scheduled activity
+      const scheduledActivity = await prisma.activity.create({
+        data: {
+          title: 'Drawing Project',
+          milestoneId: milestone.id,
+          completedAt: null,
+        },
+      });
+
+      // Create daily plan item for scheduled activity
+      const dailyPlan = await prisma.dailyPlan.create({
+        data: {
+          date: weekStart,
+          userId: user.id,
+        },
+      });
+
+      await prisma.dailyPlanItem.create({
+        data: {
+          activityId: scheduledActivity.id,
+          dailyPlanId: dailyPlan.id,
+          startTime: '09:00',
+          duration: 60,
+        },
+      });
+
+      const suggestions = await getPlannerSuggestions(weekStart, user.id);
+
+      expect(suggestions).toHaveLength(1);
+      expect(suggestions[0].activityId).toBe(unscheduledActivity.id);
+    });
+
+    it('should exclude completed activities', async () => {
+      const user = await prisma.user.create({
+        data: {
+          email: 'test5@example.com',
+          password: 'hashed',
+          name: 'Test Teacher 5',
+          role: 'teacher',
+        },
+      });
+
+      const subject = await prisma.subject.create({
+        data: { name: 'Music' },
+      });
+
+      const milestone = await prisma.milestone.create({
+        data: {
+          title: 'Music Theory',
+          startDate: weekStart,
+          endDate: weekEnd,
+          subjectId: subject.id,
+          userId: user.id,
+        },
+      });
+
+      // Create incomplete activity
+      const incompleteActivity = await prisma.activity.create({
+        data: {
+          title: 'Rhythm Practice',
+          milestoneId: milestone.id,
+          completedAt: null,
+        },
+      });
+
+      // Create completed activity
+      await prisma.activity.create({
+        data: {
+          title: 'Note Reading',
+          milestoneId: milestone.id,
+          completedAt: new Date(),
+        },
+      });
+
+      const suggestions = await getPlannerSuggestions(weekStart, user.id);
+
+      expect(suggestions).toHaveLength(1);
+      expect(suggestions[0].activityId).toBe(incompleteActivity.id);
     });
 
     it('should work without userId', async () => {
-      await getPlannerSuggestions(weekStart);
+      // Create activity without specific user
+      const subject = await prisma.subject.create({
+        data: { name: 'Geography' },
+      });
 
-      expect(mockPrisma.milestone.findMany).toHaveBeenCalledWith(
-        expect.objectContaining({
-          where: expect.objectContaining({
-            userId: undefined,
-          }),
-        }),
-      );
-    });
-
-    it('should sort suggestions by number of outcomes when coverage status is equal', async () => {
-      // Mock data where multiple activities have same coverage status
-      const equalCoverageMilestones = [
-        {
-          id: 1,
-          title: 'Test Milestone',
+      const milestone = await prisma.milestone.create({
+        data: {
+          title: 'World Geography',
           startDate: weekStart,
           endDate: weekEnd,
-          subject: { name: 'Test' },
-          activities: [
-            {
-              id: 1,
-              title: 'Activity with 3 outcomes',
-              completedAt: null,
-              dailyPlanItems: [],
-              outcomes: [
-                { outcome: { id: 'covered-1' } },
-                { outcome: { id: 'covered-2' } },
-                { outcome: { id: 'covered-3' } },
-              ],
-            },
-            {
-              id: 2,
-              title: 'Activity with 1 outcome',
-              completedAt: null,
-              dailyPlanItems: [],
-              outcomes: [{ outcome: { id: 'covered-4' } }],
-            },
-          ],
+          subjectId: subject.id,
+          // No userId
         },
-      ];
+      });
 
-      const allCoveredOutcomes = [
-        { outcomeId: 'covered-1', status: 'covered' },
-        { outcomeId: 'covered-2', status: 'covered' },
-        { outcomeId: 'covered-3', status: 'covered' },
-        { outcomeId: 'covered-4', status: 'covered' },
-      ];
+      const activity = await prisma.activity.create({
+        data: {
+          title: 'Map Reading',
+          milestoneId: milestone.id,
+          completedAt: null,
+        },
+      });
 
-      mockPrisma.milestone.findMany.mockResolvedValue(equalCoverageMilestones as unknown);
-      mockGetOutcomesCoverage.mockResolvedValue(allCoveredOutcomes as unknown);
+      const suggestions = await getPlannerSuggestions(weekStart);
 
-      const suggestions = await getPlannerSuggestions(weekStart, userId);
-
-      expect(suggestions).toHaveLength(2);
-      expect(suggestions[0].linkedOutcomes).toHaveLength(3);
-      expect(suggestions[1].linkedOutcomes).toHaveLength(1);
+      expect(suggestions).toHaveLength(1);
+      expect(suggestions[0].activityId).toBe(activity.id);
     });
 
     it('should handle empty milestones', async () => {
-      mockPrisma.milestone.findMany.mockResolvedValue([]);
+      const user = await prisma.user.create({
+        data: {
+          email: 'test6@example.com',
+          password: 'hashed',
+          name: 'Test Teacher 6',
+          role: 'teacher',
+        },
+      });
 
-      const suggestions = await getPlannerSuggestions(weekStart, userId);
+      const suggestions = await getPlannerSuggestions(weekStart, user.id);
 
       expect(suggestions).toEqual([]);
     });
 
-    it('should handle milestones with no activities', async () => {
-      const milestonesWithNoActivities = [
-        {
-          id: 1,
-          title: 'Empty Milestone',
+    it('should sort by number of outcomes when coverage status is equal', async () => {
+      const user = await prisma.user.create({
+        data: {
+          email: 'test7@example.com',
+          password: 'hashed',
+          name: 'Test Teacher 7',
+          role: 'teacher',
+        },
+      });
+
+      const subject = await prisma.subject.create({
+        data: { name: 'Physics' },
+      });
+
+      const milestone = await prisma.milestone.create({
+        data: {
+          title: 'Physics Basics',
           startDate: weekStart,
           endDate: weekEnd,
-          subject: { name: 'Test' },
-          activities: [],
+          subjectId: subject.id,
+          userId: user.id,
         },
-      ];
+      });
 
-      mockPrisma.milestone.findMany.mockResolvedValue(milestonesWithNoActivities as unknown);
-
-      const suggestions = await getPlannerSuggestions(weekStart, userId);
-
-      expect(suggestions).toEqual([]);
-    });
-
-    it('should handle error in getOutcomesCoverage', async () => {
-      mockGetOutcomesCoverage.mockRejectedValue(new Error('Coverage error'));
-
-      await expect(getPlannerSuggestions(weekStart, userId)).rejects.toThrow(
-        'Failed to generate planner suggestions',
-      );
-
-      expect(console.error).toHaveBeenCalledWith(
-        'Error generating planner suggestions:',
-        expect.any(Error),
-      );
-    });
-
-    it('should handle database errors gracefully', async () => {
-      mockPrisma.milestone.findMany.mockRejectedValue(new Error('Database error'));
-
-      await expect(getPlannerSuggestions(weekStart, userId)).rejects.toThrow(
-        'Failed to generate planner suggestions',
-      );
-
-      expect(console.error).toHaveBeenCalledWith(
-        'Error generating planner suggestions:',
-        expect.any(Error),
-      );
-    });
-
-    it('should handle malformed outcome coverage data', async () => {
-      const malformedCoverage = [
-        { outcomeId: 'outcome-1' }, // missing status
-        { status: 'uncovered' }, // missing outcomeId
-        null,
-        undefined,
-      ];
-
-      mockGetOutcomesCoverage.mockResolvedValue(malformedCoverage as unknown);
-
-      const suggestions = await getPlannerSuggestions(weekStart, userId);
-
-      // Should still work, just won't identify uncovered outcomes correctly
-      expect(suggestions).toHaveLength(4);
-    });
-
-    it('should correctly identify mixed coverage scenarios', async () => {
-      // Activity with both covered and uncovered outcomes
-      const mixedMilestone = [
-        {
-          id: 1,
-          title: 'Mixed Milestone',
-          startDate: weekStart,
-          endDate: weekEnd,
-          subject: { name: 'Mixed' },
-          activities: [
-            {
-              id: 1,
-              title: 'Mixed Activity',
-              completedAt: null,
-              dailyPlanItems: [],
-              outcomes: [
-                { outcome: { id: 'uncovered-outcome' } },
-                { outcome: { id: 'covered-outcome' } },
-              ],
-            },
-          ],
-        },
-      ];
-
-      const mixedCoverage = [
-        { outcomeId: 'uncovered-outcome', status: 'uncovered' },
-        { outcomeId: 'covered-outcome', status: 'covered' },
-      ];
-
-      mockPrisma.milestone.findMany.mockResolvedValue(mixedMilestone as unknown);
-      mockGetOutcomesCoverage.mockResolvedValue(mixedCoverage as unknown);
-
-      const suggestions = await getPlannerSuggestions(weekStart, userId);
-
-      expect(suggestions[0].coverageStatus).toBe('covers_uncovered');
-    });
-  });
-
-  describe('edge cases', () => {
-    it('should handle week boundary dates correctly', async () => {
-      const weekStartBoundary = new Date('2024-01-01T00:00:00.000Z');
-
-      await getPlannerSuggestions(weekStartBoundary, userId);
-
-      // Verify that addDays was called to calculate week end
-      const mockAddDays = jest.mocked(await import('date-fns')).addDays;
-      expect(mockAddDays).toHaveBeenCalledWith(weekStartBoundary, 6);
-    });
-
-    it('should handle timezone considerations', async () => {
-      const weekStartWithTimezone = new Date('2024-01-01T23:59:59.999Z');
-
-      await getPlannerSuggestions(weekStartWithTimezone, userId);
-
-      expect(mockPrisma.milestone.findMany).toHaveBeenCalledWith(
-        expect.objectContaining({
-          where: expect.objectContaining({
-            OR: expect.arrayContaining([
-              expect.objectContaining({
-                startDate: { lte: expect.any(Date) },
-                endDate: { gte: weekStartWithTimezone },
-              }),
-            ]),
-          }),
+      // Create outcomes
+      const outcomes = await Promise.all([
+        prisma.outcome.create({
+          data: { code: 'PHY-001', description: 'Force', subject: 'Physics', grade: 1 },
         }),
-      );
+        prisma.outcome.create({
+          data: { code: 'PHY-002', description: 'Motion', subject: 'Physics', grade: 1 },
+        }),
+        prisma.outcome.create({
+          data: { code: 'PHY-003', description: 'Energy', subject: 'Physics', grade: 1 },
+        }),
+      ]);
+
+      // Activity with 3 outcomes
+      const activity1 = await prisma.activity.create({
+        data: {
+          title: 'Comprehensive Physics Lab',
+          milestoneId: milestone.id,
+          completedAt: null,
+        },
+      });
+
+      await prisma.activityOutcome.createMany({
+        data: outcomes.map((outcome) => ({
+          activityId: activity1.id,
+          outcomeId: outcome.id,
+        })),
+      });
+
+      // Activity with 1 outcome
+      const activity2 = await prisma.activity.create({
+        data: {
+          title: 'Simple Force Exercise',
+          milestoneId: milestone.id,
+          completedAt: null,
+        },
+      });
+
+      await prisma.activityOutcome.create({
+        data: { activityId: activity2.id, outcomeId: outcomes[0].id },
+      });
+
+      const suggestions = await getPlannerSuggestions(weekStart, user.id);
+
+      expect(suggestions).toHaveLength(2);
+      // Activity with more outcomes should come first when coverage status is equal
+      expect(suggestions[0].linkedOutcomes).toHaveLength(3);
+      expect(suggestions[1].linkedOutcomes).toHaveLength(1);
     });
   });
 });

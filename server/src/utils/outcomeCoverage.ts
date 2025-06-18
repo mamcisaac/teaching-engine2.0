@@ -2,6 +2,12 @@ import { prisma } from '../prisma';
 
 export type CoverageStatus = 'covered' | 'uncovered' | 'partial';
 
+export const CoverageStatus = {
+  COVERED: 'covered' as const,
+  UNCOVERED: 'uncovered' as const,
+  PARTIAL: 'partial' as const,
+};
+
 export interface ActivityWithCompletion {
   id: number;
   completedAt: Date | null;
@@ -107,32 +113,11 @@ export async function getOutcomesCoverage(
     };
   }
 
-  // Get all relevant outcomes
-  const whereConditions: string[] = [];
-
-  if (
-    whereClause.id &&
-    typeof whereClause.id === 'object' &&
-    'in' in whereClause.id &&
-    whereClause.id.in
-  ) {
-    whereConditions.push(
-      `id IN (${(whereClause.id.in as string[]).map((id) => `'${id}'`).join(',')})`,
-    );
-  }
-
-  if (whereClause.subject) {
-    whereConditions.push(`subject = '${whereClause.subject as string}'`);
-  }
-
-  if (whereClause.grade) {
-    whereConditions.push(`grade = ${whereClause.grade as number}`);
-  }
-
-  const outcomes = await prisma.$queryRaw<Array<{ id: string }>>`
-    SELECT id FROM "Outcome"
-    ${whereConditions.length > 0 ? `WHERE ${whereConditions.join(' AND ')}` : ''}
-  `;
+  // Get all relevant outcomes using Prisma query
+  const outcomes = await prisma.outcome.findMany({
+    where: whereClause,
+    select: { id: true },
+  });
 
   // Get coverage for each outcome
   const coveragePromises = outcomes.map((outcome: { id: string }) =>

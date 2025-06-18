@@ -273,6 +273,11 @@ describe('Email Service Integration Tests', () => {
       });
     });
 
+    /**
+     * @todo This test uses jest.spyOn and should test real retry behavior
+     * @mocked sendEmail - prevents testing actual retry mechanism with real email service
+     * @not-fully-implemented - should test retries with actual network failures
+     */
     it('fails after maximum retry attempts', async () => {
       // Mock the send function to always fail
       const originalSend = testEmailService.sendEmail;

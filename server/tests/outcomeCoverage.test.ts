@@ -12,11 +12,9 @@ interface OutcomeCoverageResponse {
   subject: string;
   domain: string | null;
   grade: number;
-  isCovered: boolean;
-  coveredBy: Array<{
-    id: number;
-    title: string;
-  }>;
+  status: 'covered' | 'partial' | 'uncovered';
+  linked: number;
+  completed: number;
 }
 
 describe('Outcome Coverage API', () => {
@@ -47,9 +45,7 @@ describe('Outcome Coverage API', () => {
     });
     // _userId = user.id;
 
-    const loginRes = await auth.post('/api/login').send({ email, password });
-
-    token = loginRes.body.token;
+    await auth.post('/api/login').send({ email, password });
 
     // Create a subject
     const subjectRes = await auth.post('/api/subjects').send({ name: 'Test Subject' });
@@ -94,8 +90,9 @@ describe('Outcome Coverage API', () => {
     expect(res.status).toBe(200);
     const outcomeData = res.body.find((o: OutcomeCoverageResponse) => o.outcomeId === outcomeId);
     expect(outcomeData).toBeDefined();
-    expect(outcomeData.isCovered).toBe(false);
-    expect(outcomeData.coveredBy).toEqual([]);
+    expect(outcomeData.status).toBe('uncovered');
+    expect(outcomeData.linked).toBe(0);
+    expect(outcomeData.completed).toBe(0);
   });
 
   it('should mark an outcome as covered when linked to an activity', async () => {
@@ -105,6 +102,8 @@ describe('Outcome Coverage API', () => {
       milestoneId,
     });
 
+    expect(activityRes.status).toBe(201);
+    expect(activityRes.body).toHaveProperty('id');
     activityId = activityRes.body.id;
 
     // Link outcome to activity
@@ -121,10 +120,9 @@ describe('Outcome Coverage API', () => {
     expect(res.status).toBe(200);
     const outcomeData = res.body.find((o: OutcomeCoverageResponse) => o.outcomeId === outcomeId);
     expect(outcomeData).toBeDefined();
-    expect(outcomeData.isCovered).toBe(true);
-    expect(outcomeData.coveredBy).toHaveLength(1);
-    expect(outcomeData.coveredBy[0].id).toBe(activityId);
-    expect(outcomeData.coveredBy[0].title).toBe('Test Activity');
+    expect(outcomeData.status).toBe('uncovered'); // Activity exists but is not completed
+    expect(outcomeData.linked).toBe(1);
+    expect(outcomeData.completed).toBe(0); // Activity is not completed yet
   });
 
   it('should filter outcomes by subject', async () => {
