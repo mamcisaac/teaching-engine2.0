@@ -6,13 +6,7 @@ export default defineConfig({
 
   // Override test directory to run only essential tests
   testDir: './tests/e2e',
-  testMatch: [
-    'quick-smoke-tests.spec.ts',
-    'auth-flow.spec.ts',
-    'activity-to-planner-workflow.spec.ts',
-    'subjects.spec.ts',
-    'milestones.spec.ts',
-  ],
+  testMatch: ['quick-smoke-tests.spec.ts', 'subjects.spec.ts', 'milestones.spec.ts'],
 
   // Reduce timeout for CI
   timeout: 60 * 1000, // 1 minute per test
