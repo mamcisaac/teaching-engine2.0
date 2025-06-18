@@ -165,7 +165,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: playwright-report
+          name: playwright-report-${{ matrix.node-version }}
           path: playwright-report/
           retention-days: 30
 
@@ -173,6 +173,6 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: test-results
+          name: test-results-${{ matrix.node-version }}
           path: test-results/
           retention-days: 30
