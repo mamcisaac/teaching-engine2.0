@@ -10,21 +10,23 @@ dotenv.config();
 const env = process.env.NODE_ENV || 'development';
 const isTest = env === 'test';
 
-// Database path - using SQLite for both test and development
-const dbPath = path.resolve(
-  process.cwd(),
-  'packages/database/prisma',
-  isTest ? 'test-db.sqlite' : 'dev-db.sqlite',
-);
+// Use DATABASE_URL from environment if available, otherwise use default path
+const databaseUrl =
+  process.env.DATABASE_URL ||
+  `file:${path.resolve(
+    process.cwd(),
+    'packages/database/prisma',
+    isTest ? 'test-db.sqlite' : 'dev-db.sqlite',
+  )}`;
 
 console.log(`🌱 Starting database seeding for ${env} environment`);
-console.log(`📂 Database path: ${dbPath}`);
+console.log(`📂 Database URL: ${databaseUrl}`);
 
 const prisma = new PrismaClient({
   log: isTest ? ['error', 'warn'] : ['query', 'error', 'warn'],
   datasources: {
     db: {
-      url: `file:${dbPath}`,
+      url: databaseUrl,
     },
   },
 });
