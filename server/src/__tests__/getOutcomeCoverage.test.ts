@@ -1,12 +1,14 @@
 import { describe, it, expect, jest, beforeEach, beforeAll } from '@jest/globals';
 
 // Mock the prisma client first
-const mockQueryRaw = jest.fn();
+const mockFindMany = jest.fn();
 
 // Mock the module before any imports
 jest.unstable_mockModule('../prisma', () => ({
   prisma: {
-    $queryRaw: mockQueryRaw,
+    activity: {
+      findMany: mockFindMany,
+    },
   },
 }));
 
@@ -28,11 +30,11 @@ describe('getOutcomeCoverage', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     // Reset the mock implementation
-    mockQueryRaw.mockImplementation(() => Promise.resolve([]));
+    mockFindMany.mockImplementation(() => Promise.resolve([]));
   });
 
   it('should return uncovered status when no activities exist', async () => {
-    mockQueryRaw.mockImplementation(() => Promise.resolve([]));
+    mockFindMany.mockImplementation(() => Promise.resolve([]));
 
     const result = await getOutcomeCoverage(outcomeId);
 
@@ -45,7 +47,7 @@ describe('getOutcomeCoverage', () => {
   });
 
   it('should return covered status when all activities are completed', async () => {
-    mockQueryRaw.mockImplementation(() =>
+    mockFindMany.mockImplementation(() =>
       Promise.resolve([
         { id: 1, completedAt: new Date() },
         { id: 2, completedAt: new Date() },
@@ -63,7 +65,7 @@ describe('getOutcomeCoverage', () => {
   });
 
   it('should return partial status when some activities are completed', async () => {
-    mockQueryRaw.mockImplementation(() =>
+    mockFindMany.mockImplementation(() =>
       Promise.resolve([
         { id: 1, completedAt: new Date() },
         { id: 2, completedAt: null },
@@ -81,7 +83,7 @@ describe('getOutcomeCoverage', () => {
   });
 
   it('should handle database errors gracefully', async () => {
-    mockQueryRaw.mockImplementation(() => Promise.reject(new Error('Database error')));
+    mockFindMany.mockImplementation(() => Promise.reject(new Error('Database error')));
 
     await expect(getOutcomeCoverage(outcomeId)).rejects.toThrow(
       'Failed to get coverage for outcome: Database error',
