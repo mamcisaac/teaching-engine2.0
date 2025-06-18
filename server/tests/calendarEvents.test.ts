@@ -125,7 +125,7 @@ describe('calendar events', () => {
         title: 'Event A',
         start: '2025-04-01T10:00:00.000Z',
         end: '2025-04-01T12:00:00.000Z',
-        eventType: 'MEETING',
+        eventType: 'CUSTOM',
       });
 
       // Create overlapping event - should succeed
@@ -133,7 +133,7 @@ describe('calendar events', () => {
         title: 'Event B',
         start: '2025-04-01T11:00:00.000Z',
         end: '2025-04-01T13:00:00.000Z',
-        eventType: 'MEETING',
+        eventType: 'CUSTOM',
       });
       expect(res.status).toBe(201);
     });

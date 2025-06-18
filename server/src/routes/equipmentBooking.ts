@@ -46,8 +46,24 @@ router.post('/', async (req, res, next) => {
     }
 
     // Date validation
+    if (!neededBy || typeof neededBy !== 'string') {
+      return res.status(400).json({ error: 'Invalid date' });
+    }
+
+    // Check if date includes time component (expecting full ISO format)
+    if (!neededBy.includes('T') || !neededBy.includes(':')) {
+      return res.status(400).json({ error: 'Invalid date format' });
+    }
+
     const parsedDate = new Date(neededBy);
     if (isNaN(parsedDate.getTime())) {
+      return res.status(400).json({ error: 'Invalid date' });
+    }
+
+    // Check if the date string matches what was parsed (to catch dates like Feb 30)
+    const originalDate = neededBy.substring(0, 10); // Get YYYY-MM-DD part
+    const parsedDateString = parsedDate.toISOString().substring(0, 10);
+    if (originalDate !== parsedDateString) {
       return res.status(400).json({ error: 'Invalid date' });
     }
 
