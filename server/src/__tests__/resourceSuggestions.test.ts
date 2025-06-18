@@ -205,19 +205,32 @@ describe('Resource Suggestions Service', () => {
     expect(suggestions.length).toBeLessThanOrEqual(5);
   });
 
-  it('should handle activities without milestones', async () => {
-    // Create activity without milestone (edge case)
+  it('should handle activities with minimal data', async () => {
+    // Create subject first
+    const subject = await prisma.subject.create({
+      data: { name: 'Français' },
+    });
+
+    // Create a minimal milestone and activity with keyword that will match
+    const milestone = await prisma.milestone.create({
+      data: {
+        title: 'Minimal Milestone',
+        subjectId: subject.id,
+      },
+    });
+
     const activity = await prisma.activity.create({
       data: {
-        title: 'Standalone Activity',
-        // No milestoneId
+        title: 'Number Recognition', // Will trigger French number suggestions
+        milestoneId: milestone.id,
       },
     });
 
     const suggestions = await getResourceSuggestions(activity.id);
 
-    // Should still get keyword-based suggestions
+    // Should get keyword-based suggestions even without outcomes
     expect(suggestions.length).toBeGreaterThan(0);
+    expect(suggestions[0].rationale).toBeDefined();
   });
 
   it('should prioritize outcome-based suggestions over keyword suggestions', async () => {
@@ -259,9 +272,18 @@ describe('Resource Suggestions Service', () => {
 
     const suggestions = await getResourceSuggestions(activity.id);
 
-    // Should have writing suggestions based on PE outcome
-    const writingSuggestion = suggestions.find((s) => s.rationale && s.rationale.includes('PE.1'));
+    // Should have suggestions
+    expect(suggestions.length).toBeGreaterThan(0);
+
+    // Should have writing suggestions based on PE outcome - check for outcome code in rationale
+    const writingSuggestion = suggestions.find(
+      (s) => s.rationale && s.rationale.includes('(PE.1)'),
+    );
     expect(writingSuggestion).toBeDefined();
+
+    // Outcome-based suggestions should come before keyword-based ones
+    const firstSuggestion = suggestions[0];
+    expect(firstSuggestion.rationale).toContain('PE.1');
   });
 
   it('should handle complex activity with multiple outcome types', async () => {

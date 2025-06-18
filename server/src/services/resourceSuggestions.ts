@@ -1,25 +1,29 @@
-import { prisma } from '../prisma';
+import { PrismaClient } from '@teaching-engine/database';
 
-export type ResourceSuggestion = {
+const prisma = new PrismaClient();
+
+interface ResourceSuggestion {
   title: string;
-  type: 'worksheet' | 'video' | 'audio' | 'link';
-  description?: string;
+  type: 'worksheet' | 'link' | 'audio' | 'video';
   url: string;
-  rationale: string;
-};
+  rationale?: string;
+}
 
 export async function getResourceSuggestions(activityId: number): Promise<ResourceSuggestion[]> {
+  const suggestions: ResourceSuggestion[] = [];
+
+  // Get activity with its relationships
   const activity = await prisma.activity.findUnique({
     where: { id: activityId },
     include: {
-      outcomes: {
-        include: {
-          outcome: true,
-        },
-      },
       milestone: {
         include: {
           subject: true,
+        },
+      },
+      outcomes: {
+        include: {
+          outcome: true,
         },
       },
     },
@@ -29,51 +33,48 @@ export async function getResourceSuggestions(activityId: number): Promise<Resour
     return [];
   }
 
-  const suggestions: ResourceSuggestion[] = [];
-  const subject = activity.milestone.subject.name.toLowerCase();
   const title = activity.title.toLowerCase();
-  const outcomesCodes = activity.outcomes.map(
-    (ao: { outcome: { code: string } }) => ao.outcome.code,
-  );
+  const subject = activity.milestone.subject.name.toLowerCase();
 
-  // Hardcoded rules for French Immersion Grade 1
-  for (const outcomeCode of outcomesCodes) {
-    // Oral communication outcomes
+  // Process outcomes first (higher priority)
+  for (const activityOutcome of activity.outcomes) {
+    const outcomeCode = activityOutcome.outcome.code;
+    const outcomeDesc = activityOutcome.outcome.description.toLowerCase();
+
+    // Oral Communication outcomes (CO)
     if (outcomeCode.startsWith('CO.')) {
       suggestions.push({
-        title: 'French Listening Song – Les Animaux',
+        title: 'French Audio Story: Les Animaux de la Ferme',
         type: 'audio',
-        url: 'https://www.youtube.com/watch?v=8eSgTKJx2f8',
-        rationale: `This supports oral comprehension (${outcomeCode})`,
+        url: 'https://www.iletaitunehistoire.com/genres/contes-legendes/lire/les-animaux-de-la-ferme-biblidcon_012',
+        rationale: `Audio story for oral comprehension practice (${outcomeCode})`,
       });
-
       suggestions.push({
-        title: 'Interactive French Vocabulary Game',
+        title: 'Interactive French Speaking Activities',
         type: 'link',
-        url: 'https://www.logicieleducatif.fr/francais/vocabulaire/vocabulaire.php',
-        rationale: `Interactive vocabulary practice for oral communication (${outcomeCode})`,
+        url: 'https://www.digitaldialects.com/French.htm',
+        rationale: `Interactive exercises for oral communication practice (${outcomeCode})`,
       });
     }
 
-    // Reading outcomes
-    if (outcomeCode.startsWith('CL.')) {
+    // Reading outcomes (CL)
+    if (outcomeCode.startsWith('CL.') || outcomeDesc.includes('reading')) {
       suggestions.push({
-        title: 'French Alphabet Song',
+        title: 'French Reading Videos',
         type: 'video',
-        url: 'https://www.youtube.com/watch?v=UsEz58b86Ho',
-        rationale: `Supports letter recognition and reading skills (${outcomeCode})`,
+        url: 'https://www.youtube.com/playlist?list=PLwwL7zPWwLXX_mL5kscJe1dXIGkJNS9xl',
+        rationale: `Video stories for reading comprehension (${outcomeCode})`,
       });
-
       suggestions.push({
-        title: 'Simple French Reading Comprehension Worksheets',
-        type: 'worksheet',
+        title: 'French Reading Comprehension Guide',
+        type: 'link',
         url: 'https://www.education.gouv.qc.ca/fileadmin/site_web/documents/education/jeunes/pfeq/PFEQ_francais-langue-enseignement-primaire.pdf',
         rationale: `Reading practice aligned with curriculum (${outcomeCode})`,
       });
     }
 
-    // Writing outcomes
-    if (outcomeCode.startsWith('CE.')) {
+    // Writing outcomes (CE or PE)
+    if (outcomeCode.startsWith('CE.') || outcomeCode.startsWith('PE.')) {
       suggestions.push({
         title: 'French Handwriting Practice Sheets',
         type: 'worksheet',
@@ -83,7 +84,7 @@ export async function getResourceSuggestions(activityId: number): Promise<Resour
     }
   }
 
-  // Subject-based suggestions
+  // Subject-based suggestions (lower priority)
   if (subject.includes('français') || subject.includes('francais') || subject.includes('french')) {
     // Title keyword-based suggestions
     if (title.includes('syllable') || title.includes('syllabe')) {
