@@ -78,29 +78,50 @@ jobs:
           NODE_ENV: test
           PORT: 3000
         run: |
+          echo "Current directory: $(pwd)"
           echo "Starting backend server..."
-          cd server && nohup pnpm start > ../server.log 2>&1 &
+          (cd server && nohup pnpm start > ../server.log 2>&1 &)
+          SERVER_PID=$!
+          echo "Backend server PID: $SERVER_PID"
+
           echo "Waiting for backend to be ready..."
           for i in {1..30}; do
             if curl -s http://localhost:3000/api/health > /dev/null; then
               echo "Backend is ready!"
               break
             fi
+            if [ $i -eq 30 ]; then
+              echo "Backend failed to start. Server log:"
+              cat server.log || echo "No server log found"
+              exit 1
+            fi
             echo "Waiting for backend... attempt $i/30"
             sleep 2
           done
 
-          echo "Starting frontend server..."
-          cd ../client && nohup pnpm preview --port 5173 > ../client.log 2>&1 &
+          echo "Starting frontend server from root directory..."
+          (cd client && nohup pnpm preview --port 5173 --host > ../client.log 2>&1 &)
+          CLIENT_PID=$!
+          echo "Frontend server PID: $CLIENT_PID"
+
           echo "Waiting for frontend to be ready..."
           for i in {1..30}; do
             if curl -s http://localhost:5173 > /dev/null; then
               echo "Frontend is ready!"
               break
             fi
+            if [ $i -eq 30 ]; then
+              echo "Frontend failed to start. Client log:"
+              cat client.log || echo "No client log found"
+              echo "Checking if client build exists:"
+              ls -la client/dist || echo "No dist directory found"
+              exit 1
+            fi
             echo "Waiting for frontend... attempt $i/30"
             sleep 2
           done
+
+          echo "Both servers are running. PIDs: Backend=$SERVER_PID, Frontend=$CLIENT_PID"
 
       - name: Playwright E2E Tests
         env:
@@ -112,7 +133,20 @@ jobs:
           CI: true
         run: |
           echo "Starting full E2E test suite..."
-          pnpm run test:e2e || (echo "E2E tests failed. Uploading logs..." && cat server.log && cat client.log && exit 1)
+          echo "Checking server status..."
+          curl -s http://localhost:3000/api/health || echo "Backend health check failed"
+          curl -s http://localhost:5173 || echo "Frontend check failed"
+
+          pnpm run test:e2e || (
+            echo "E2E tests failed. Server logs:"
+            echo "=== Backend log ==="
+            cat server.log || echo "No server log"
+            echo "=== Frontend log ==="
+            cat client.log || echo "No client log"
+            echo "=== Process check ==="
+            ps aux | grep -E "(pnpm|node|tsx)" | grep -v grep || echo "No node processes found"
+            exit 1
+          )
 
       - name: Upload Playwright Report
         uses: actions/upload-artifact@v4
