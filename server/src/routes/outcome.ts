@@ -31,10 +31,11 @@ router.get('/', async (req, res, next) => {
 
 // Get outcome coverage data
 router.get('/coverage', async (req, res, next) => {
-  const { subject, grade, milestoneId } = req.query as {
+  const { subject, grade, milestoneId, domain } = req.query as {
     subject?: string;
     grade?: string;
     milestoneId?: string;
+    domain?: string;
   };
 
   try {
@@ -58,21 +59,47 @@ router.get('/coverage', async (req, res, next) => {
       },
     });
 
-    // Combine coverage data with outcome details
-    const coverageData = coverage.map(
-      (cov: { outcomeId: string; status: string; linked: number; completed: number }) => {
+    // Get activities linked to each outcome for the coveredBy field
+    const coverageDataPromises = coverage.map(
+      async (cov: { outcomeId: string; status: string; linked: number; completed: number }) => {
         const outcome = outcomes.find((o) => o.id === cov.outcomeId);
+
+        // Get activities that cover this outcome
+        const coveredByActivities = await prisma.activity.findMany({
+          where: {
+            outcomes: {
+              some: {
+                outcomeId: cov.outcomeId,
+              },
+            },
+          },
+          select: {
+            id: true,
+            title: true,
+          },
+        });
+
         return {
           outcomeId: cov.outcomeId,
-          status: cov.status,
-          linked: cov.linked,
-          completed: cov.completed,
-          ...outcome,
+          code: outcome?.code || '',
+          description: outcome?.description || '',
+          subject: outcome?.subject || '',
+          domain: outcome?.domain || null,
+          grade: outcome?.grade || 0,
+          isCovered: cov.linked > 0,
+          coveredBy: coveredByActivities,
         };
       },
     );
 
-    res.json(coverageData);
+    const coverageData = await Promise.all(coverageDataPromises);
+
+    // Filter by domain if specified
+    const filteredData = domain
+      ? coverageData.filter((item) => item.domain === domain)
+      : coverageData;
+
+    res.json(filteredData);
   } catch (err) {
     next(err);
   }
