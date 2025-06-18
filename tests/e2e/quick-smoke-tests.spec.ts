@@ -64,14 +64,16 @@ test.describe('Quick Smoke Tests', () => {
       // Ignore timeout - some apps have continuous polling
     });
 
-    // Look for planner heading with more flexible selector
-    const plannerHeading = page.locator('h1:has-text("Weekly Planner"), h1:has-text("Planner")');
+    // Look for planner heading with more specific selector
+    const plannerHeading = page.locator('h1:has-text("Weekly Planner")').first();
     await expect(plannerHeading).toBeVisible({
       timeout: process.env.CI ? 30000 : 15000,
     });
 
     // Verify basic planner elements exist with retry
-    const plannerGrid = page.locator('.planner-grid, [data-testid="planner-grid"], #planner-grid');
+    const plannerGrid = page
+      .locator('.planner-grid, [data-testid="planner-grid"], #planner-grid, .calendar-grid')
+      .first();
     await expect(plannerGrid).toBeVisible({
       timeout: process.env.CI ? 20000 : 10000,
     });
