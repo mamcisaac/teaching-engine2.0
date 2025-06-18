@@ -52,31 +52,33 @@ jobs:
 
       - name: Test
         env:
-          DATABASE_URL: file:./test.db
+          DATABASE_URL: file:./packages/database/prisma/test.db
           JWT_SECRET: test-secret-key
           JWT_EXPIRES_IN: 1h
         run: pnpm run test
 
       - name: Deploy database schema
         env:
-          DATABASE_URL: file:./test.db
+          DATABASE_URL: file:./packages/database/prisma/test.db
         run: pnpm db:deploy
 
       - name: Seed database
         env:
-          DATABASE_URL: file:./test.db
+          DATABASE_URL: file:./packages/database/prisma/test.db
         run: pnpm db:seed
 
       - name: Playwright E2E Tests
         env:
-          DATABASE_URL: file:./test.db
+          DATABASE_URL: file:./packages/database/prisma/test.db
           JWT_SECRET: test-secret-key
           JWT_EXPIRES_IN: 1h
           NODE_ENV: test
           PORT: 3000
           CI: true
+          DEBUG: pw:webserver
         run: |
           echo "Starting E2E tests..."
+          echo "DATABASE_URL: $DATABASE_URL"
           pnpm run test:e2e || (echo "E2E tests failed. Uploading artifacts..." && exit 1)
 
       - name: Upload Playwright Report

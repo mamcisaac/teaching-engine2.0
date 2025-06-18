@@ -16,9 +16,9 @@ export default defineConfig({
       NODE_ENV: 'test',
       // Run the API server on its default port
       PORT: '3000',
-      DATABASE_URL: 'file:./test.db',
-      JWT_SECRET: 'test-secret-key',
-      JWT_EXPIRES_IN: '1h',
+      DATABASE_URL: process.env.DATABASE_URL || 'file:./packages/database/prisma/test.db',
+      JWT_SECRET: process.env.JWT_SECRET || 'test-secret-key',
+      JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '1h',
     },
   },
 
