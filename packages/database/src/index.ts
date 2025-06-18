@@ -1,13 +1,12 @@
 // Re-export all Prisma Client types and functions
 export * from './generated/client';
-export { PrismaClient, Prisma } from './generated/client';
-export type { PrismaClientKnownRequestError } from './generated/client/runtime/library';
 
-// Create singleton instance for development
+// Import for singleton
 import { PrismaClient } from './generated/client';
 
+// Create singleton instance for development
 const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClient | undefined;
+  prisma: InstanceType<typeof PrismaClient> | undefined;
 };
 
 export const prisma =

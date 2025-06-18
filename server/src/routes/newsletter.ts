@@ -161,12 +161,19 @@ router.post('/:id/send', async (req, res, next) => {
     if (!nl) return res.status(404).json({ error: 'Not Found' });
     const contacts = await prisma.parentContact.findMany();
     const pdf = await generatePdf(nl.content);
+
     for (const c of contacts) {
-      await sendEmail(c.email, nl.title, 'Please see the attached newsletter.', {
-        filename: 'newsletter.pdf',
-        content: pdf,
-      });
+      try {
+        await sendEmail(c.email, nl.title, 'Please see the attached newsletter.', nl.content, {
+          filename: 'newsletter.pdf',
+          content: pdf,
+        });
+      } catch (emailError) {
+        // Log the error but continue with other emails
+        console.warn(`Failed to send newsletter to ${c.email}:`, emailError);
+      }
     }
+
     res.json({ sent: contacts.length });
   } catch (err) {
     next(err);

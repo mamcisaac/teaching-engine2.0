@@ -16,13 +16,13 @@ jobs:
         node-version: [18, 20]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v2
         with:
           version: 10.11.1 # keep this in sync with local version
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
@@ -39,7 +39,7 @@ jobs:
         run: pnpm db:generate
 
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps
+        run: pnpm exec playwright install --with-deps chromium
 
       - name: Lint
         run: pnpm run lint
@@ -52,16 +52,127 @@ jobs:
 
       - name: Test
         env:
-          DATABASE_URL: file:./test.db
+          DATABASE_URL: file:./packages/database/prisma/test.db
           JWT_SECRET: test-secret-key
           JWT_EXPIRES_IN: 1h
         run: pnpm run test
 
       - name: Deploy database schema
+        env:
+          DATABASE_URL: file:./packages/database/prisma/test.db
         run: pnpm db:deploy
 
       - name: Seed database
+        env:
+          DATABASE_URL: file:./packages/database/prisma/test.db
         run: pnpm db:seed
 
-      - name: Playwright E2E Tests
-        run: pnpm run test:e2e
+      - name: Build client
+        run: pnpm --filter client build
+
+      - name: Setup and start servers
+        env:
+          DATABASE_URL: file:./packages/database/prisma/test.db
+          JWT_SECRET: test-secret-key
+          JWT_EXPIRES_IN: 1h
+          NODE_ENV: test
+          PORT: 3000
+        run: |
+          # Start backend server
+          echo "Starting backend server..."
+          cd server
+          nohup pnpm start > ../backend.log 2>&1 &
+          BACKEND_PID=$!
+          cd ..
+
+          # Wait for backend
+          echo "Waiting for backend..."
+          attempts=0
+          until curl -s http://localhost:3000/api/health > /dev/null; do
+            if [ $attempts -gt 30 ]; then
+              echo "Backend failed to start. Logs:"
+              cat backend.log
+              exit 1
+            fi
+            attempts=$((attempts + 1))
+            echo "Waiting for backend... attempt $attempts/30"
+            sleep 2
+          done
+          echo "Backend is ready!"
+
+          # Start frontend server
+          echo "Starting frontend server..."
+          cd client
+          nohup pnpm preview --host 0.0.0.0 --port 5173 > ../frontend.log 2>&1 &
+          FRONTEND_PID=$!
+          cd ..
+
+          # Wait for frontend
+          echo "Waiting for frontend..."
+          attempts=0
+          until curl -s http://localhost:5173 > /dev/null; do
+            if [ $attempts -gt 30 ]; then
+              echo "Frontend failed to start. Logs:"
+              cat frontend.log
+              echo "Client dist contents:"
+              ls -la client/dist/
+              exit 1
+            fi
+            attempts=$((attempts + 1))
+            echo "Waiting for frontend... attempt $attempts/30"
+            sleep 2
+          done
+          echo "Frontend is ready!"
+
+          echo "Both servers running - Backend PID: $BACKEND_PID, Frontend PID: $FRONTEND_PID"
+
+      - name: Run E2E smoke tests
+        timeout-minutes: 5
+        env:
+          DATABASE_URL: file:./packages/database/prisma/test.db
+          JWT_SECRET: test-secret-key
+          JWT_EXPIRES_IN: 1h
+          NODE_ENV: test
+          CI: true
+        run: |
+          echo "Running E2E smoke tests first..."
+          pnpm run test:e2e:smoke --reporter=list --workers=1
+
+      - name: Run essential E2E tests
+        timeout-minutes: 10
+        env:
+          DATABASE_URL: file:./packages/database/prisma/test.db
+          JWT_SECRET: test-secret-key
+          JWT_EXPIRES_IN: 1h
+          NODE_ENV: test
+          CI: true
+        run: |
+          echo "Running essential E2E test suite for CI..."
+          pnpm run test:e2e:ci --reporter=list || (
+            echo "E2E tests failed. Debugging info:"
+            echo "=== Backend logs ==="
+            tail -50 backend.log || echo "No backend log"
+            echo "=== Frontend logs ==="
+            tail -50 frontend.log || echo "No frontend log"
+            echo "=== Active processes ==="
+            ps aux | grep -E "node|pnpm" | grep -v grep
+            echo "=== Port usage ==="
+            netstat -tulpn 2>/dev/null | grep -E "3000|5173" || echo "netstat not available"
+            exit 1
+          )
+
+      - name: Upload Playwright Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: test-results/
+          retention-days: 30

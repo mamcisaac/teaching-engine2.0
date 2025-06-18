@@ -9,29 +9,32 @@ export default async function setup() {
   // Initialize the test database manager
   const workerId = 'global-setup';
   await testDb.createTestDatabase(workerId);
-  
-  const root = resolve(__dirname, '..', '..');
-  
+
+  const root = resolve(process.cwd(), '..');
+
   try {
     // Generate Prisma client
     console.log('Generating Prisma client...');
-    execSync('pnpm --filter @teaching-engine/database db:generate', { 
-      stdio: 'inherit', 
-      cwd: root 
+    execSync('pnpm --filter @teaching-engine/database db:generate', {
+      stdio: 'inherit',
+      cwd: root,
     });
 
     // Reset and push the database schema
     console.log('Resetting test database...');
-    execSync('pnpm --filter @teaching-engine/database prisma db push --force-reset --skip-generate', { 
-      stdio: 'inherit', 
-      cwd: root 
-    });
+    execSync(
+      'pnpm --filter @teaching-engine/database prisma db push --force-reset --skip-generate',
+      {
+        stdio: 'inherit',
+        cwd: root,
+      },
+    );
 
     // Seed the test database
     console.log('Seeding test database...');
-    execSync('pnpm --filter @teaching-engine/database prisma db seed', { 
-      stdio: 'inherit', 
-      cwd: root 
+    execSync('pnpm --filter @teaching-engine/database prisma db seed', {
+      stdio: 'inherit',
+      cwd: root,
     });
 
     console.log('Test database setup completed successfully');

@@ -8,10 +8,10 @@ import archiver from 'archiver';
 const router = Router();
 
 // Get directory name in ES module
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __filename_week = fileURLToPath(import.meta.url);
+const __dirname_week = path.dirname(__filename_week);
 
-const uploadDir = path.join(__dirname, '../uploads');
+const uploadDir = path.join(__dirname_week, '../uploads');
 
 router.get('/:id/resources.zip', async (req, res, next) => {
   try {

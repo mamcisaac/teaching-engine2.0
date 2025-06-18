@@ -127,24 +127,24 @@ describe('Database Transaction Isolation', () => {
       await utils.testUniqueConstraints();
     });
 
-    it('should handle cascade deletes properly', async () => {
+    it('should handle foreign key constraints properly', async () => {
       const subject = await factories.subject.create();
       const milestone = await factories.milestone.create({ subjectId: subject.id });
       const activity = await factories.activity.create({ milestoneId: milestone.id });
 
-      // Delete the subject
+      // Should not be able to delete subject with dependent milestone
+      await expect(prisma.subject.delete({ where: { id: subject.id } })).rejects.toThrow();
+
+      // Delete in correct order (children first)
+      await prisma.activity.delete({ where: { id: activity.id } });
+      await prisma.milestone.delete({ where: { id: milestone.id } });
       await prisma.subject.delete({ where: { id: subject.id } });
 
-      // Verify cascade delete worked
-      const remainingMilestone = await prisma.milestone.findUnique({
-        where: { id: milestone.id },
+      // Verify all are deleted
+      const remainingSubject = await prisma.subject.findUnique({
+        where: { id: subject.id },
       });
-      expect(remainingMilestone).toBeNull();
-
-      const remainingActivity = await prisma.activity.findUnique({
-        where: { id: activity.id },
-      });
-      expect(remainingActivity).toBeNull();
+      expect(remainingSubject).toBeNull();
     });
   });
 

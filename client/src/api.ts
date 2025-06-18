@@ -542,7 +542,7 @@ export const useUpdateMilestone = () => {
       startDate?: string;
       endDate?: string;
       outcomes?: string[];
-    }) => api.put(`/milestones/${data.id}`, data),
+    }) => api.put(`/api/milestones/${data.id}`, data),
     onSuccess: (data, vars) => {
       qc.invalidateQueries({ queryKey: ['milestones', vars.subjectId] });
       qc.invalidateQueries({ queryKey: ['subject', vars.subjectId] });
@@ -559,7 +559,7 @@ export const useDeleteMilestone = () => {
     { id: number; subjectId: number },
     { previousMilestones?: unknown }
   >({
-    mutationFn: ({ id }) => api.delete(`/milestones/${id}`).then(() => {}),
+    mutationFn: ({ id }) => api.delete(`/api/milestones/${id}`).then(() => {}),
     onSuccess: (_, { subjectId }) => {
       qc.invalidateQueries({ queryKey: ['milestones', subjectId] });
       qc.invalidateQueries({ queryKey: ['subject', subjectId] });

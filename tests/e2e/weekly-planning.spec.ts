@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { login, API_BASE } from './helpers';
+import { login, API_BASE } from './improved-helpers';
 
 test('generate weekly plan from activity', async ({ page }) => {
   const ts = Date.now();

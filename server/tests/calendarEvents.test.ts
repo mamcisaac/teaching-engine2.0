@@ -1,17 +1,19 @@
 import { app } from '../src/index';
 import { authRequest } from './test-auth-helper';
 import { getTestPrismaClient } from './jest.setup';
+import { setupAuthenticatedTest } from './test-setup-helpers';
 
 describe('calendar events', () => {
-  let prisma: ReturnType<typeof getTestPrismaClient>;
   const auth = authRequest(app);
+  let prisma: ReturnType<typeof getTestPrismaClient>;
 
   beforeAll(async () => {
-    await auth.setup();
+    prisma = getTestPrismaClient();
   });
 
   beforeEach(async () => {
-    prisma = getTestPrismaClient();
+    // Setup auth for each test to handle database resets
+    await setupAuthenticatedTest(prisma, auth);
   });
 
   it('creates and lists events', async () => {
@@ -23,7 +25,7 @@ describe('calendar events', () => {
       eventType: 'PD_DAY',
     });
     expect(res.status).toBe(201);
-    
+
     const list = await auth.get('/api/calendar-events?from=2025-01-01&to=2025-01-03');
     expect(list.status).toBe(200);
     expect(list.body.length).toBe(1);
@@ -123,7 +125,7 @@ describe('calendar events', () => {
         title: 'Event A',
         start: '2025-04-01T10:00:00.000Z',
         end: '2025-04-01T12:00:00.000Z',
-        eventType: 'MEETING',
+        eventType: 'CUSTOM',
       });
 
       // Create overlapping event - should succeed
@@ -131,7 +133,7 @@ describe('calendar events', () => {
         title: 'Event B',
         start: '2025-04-01T11:00:00.000Z',
         end: '2025-04-01T13:00:00.000Z',
-        eventType: 'MEETING',
+        eventType: 'CUSTOM',
       });
       expect(res.status).toBe(201);
     });

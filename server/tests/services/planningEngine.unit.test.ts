@@ -4,7 +4,13 @@ import type { TimetableSlot, CalendarEvent, Holiday } from '@teaching-engine/dat
 
 describe('PlanningEngine Unit Tests', () => {
   describe('filterAvailableBlocksByCalendar', () => {
-    const createTimetableSlot = (id: number, day: number, startMin: number, endMin: number, subjectId: number | null = 1): TimetableSlot => ({
+    const createTimetableSlot = (
+      id: number,
+      day: number,
+      startMin: number,
+      endMin: number,
+      subjectId: number | null = 1,
+    ): TimetableSlot => ({
       id,
       day,
       startMin,
@@ -41,7 +47,7 @@ describe('PlanningEngine Unit Tests', () => {
       ];
 
       const result = filterAvailableBlocksByCalendar(slots, [], [], []);
-      
+
       expect(result).toHaveLength(2);
       expect(result[0].day).toBe(1);
       expect(result[1].day).toBe(3);
@@ -50,68 +56,68 @@ describe('PlanningEngine Unit Tests', () => {
     it('should filter out slots that conflict with holidays', () => {
       const slots: TimetableSlot[] = [
         createTimetableSlot(1, 1, 480, 540), // Monday
-        createTimetableSlot(2, 2, 540, 600), // Tuesday  
+        createTimetableSlot(2, 2, 540, 600), // Tuesday
         createTimetableSlot(3, 3, 600, 660), // Wednesday
       ];
 
-      // Holiday on Tuesday (day 2)
+      // Holiday on Wednesday (day 2 in converted system)
       const holidays: Holiday[] = [
-        createHoliday('2024-01-02'), // Assuming this is a Tuesday
+        createHoliday('2024-01-03'), // Wednesday, converts to day 2
       ];
 
       const result = filterAvailableBlocksByCalendar(slots, [], [], holidays);
-      
-      // Should filter out Tuesday slot due to holiday
+
+      // Should filter out Wednesday slot due to holiday
       expect(result.length).toBeLessThan(3);
-      expect(result.every(block => block.day !== 2)).toBe(true);
+      expect(result.every((block) => block.day !== 2)).toBe(true);
     });
 
     it('should filter out slots that conflict with all-day events', () => {
       const slots: TimetableSlot[] = [
-        createTimetableSlot(1, 1, 480, 540), // Monday 8:00-9:00 AM
-        createTimetableSlot(2, 1, 600, 660), // Monday 10:00-11:00 AM
+        createTimetableSlot(1, 1, 480, 540), // Day 1 8:00-9:00 AM
+        createTimetableSlot(2, 1, 600, 660), // Day 1 10:00-11:00 AM
       ];
 
       const events: CalendarEvent[] = [
-        createCalendarEvent('2024-01-01T00:00:00', '2024-01-01T23:59:59', true), // All-day Monday event
+        createCalendarEvent('2024-01-02T00:00:00', '2024-01-02T23:59:59', true), // Tuesday converts to day 1
       ];
 
       const result = filterAvailableBlocksByCalendar(slots, events, [], []);
-      
-      // All Monday slots should be filtered out due to all-day event
+
+      // All day 1 slots should be filtered out due to all-day event
       expect(result).toHaveLength(0);
     });
 
     it('should filter out slots that conflict with timed events', () => {
       const slots: TimetableSlot[] = [
-        createTimetableSlot(1, 1, 480, 540), // Monday 8:00-9:00 AM
-        createTimetableSlot(2, 1, 540, 600), // Monday 9:00-10:00 AM
-        createTimetableSlot(3, 1, 600, 660), // Monday 10:00-11:00 AM
+        createTimetableSlot(1, 1, 480, 540), // Day 1 8:00-9:00 AM
+        createTimetableSlot(2, 1, 540, 600), // Day 1 9:00-10:00 AM
+        createTimetableSlot(3, 1, 600, 660), // Day 1 10:00-11:00 AM
       ];
 
       const events: CalendarEvent[] = [
-        createCalendarEvent('2024-01-01T09:00:00', '2024-01-01T10:00:00', false), // 9:00-10:00 AM event
+        createCalendarEvent('2024-01-02T09:00:00.000Z', '2024-01-02T10:00:00.000Z', false), // 9:00-10:00 AM UTC event on day 1
       ];
 
       const result = filterAvailableBlocksByCalendar(slots, events, [], []);
-      
+
       // Should keep 8:00-9:00 and 10:00-11:00 slots, filter out 9:00-10:00
       expect(result).toHaveLength(2);
-      expect(result.some(block => block.startMin === 540 && block.endMin === 600)).toBe(false);
+      expect(result.some((block) => block.startMin === 540 && block.endMin === 600)).toBe(false);
     });
 
     it('should handle partial overlaps correctly', () => {
       const slots: TimetableSlot[] = [
-        createTimetableSlot(1, 1, 480, 540), // Monday 8:00-9:00 AM
-        createTimetableSlot(2, 1, 520, 580), // Monday 8:40-9:40 AM (overlaps)
+        createTimetableSlot(1, 1, 480, 540), // Day 1 8:00-9:00 AM
+        createTimetableSlot(2, 1, 520, 580), // Day 1 8:40-9:40 AM (overlaps)
       ];
 
       const events: CalendarEvent[] = [
-        createCalendarEvent('2024-01-01T08:30:00', '2024-01-01T09:15:00', false), // 8:30-9:15 AM event
+        createCalendarEvent('2024-01-02T08:30:00.000Z', '2024-01-02T09:15:00.000Z', false), // 8:30-9:15 AM UTC event on day 1
       ];
 
       const result = filterAvailableBlocksByCalendar(slots, events, [], []);
-      
+
       // Both slots should be filtered out due to overlap
       expect(result).toHaveLength(0);
     });
@@ -128,7 +134,7 @@ describe('PlanningEngine Unit Tests', () => {
       ];
 
       const result = filterAvailableBlocksByCalendar(slots, events, [], []);
-      
+
       // All slots should be preserved as none conflict with the afternoon event
       expect(result).toHaveLength(3);
     });
@@ -142,27 +148,25 @@ describe('PlanningEngine Unit Tests', () => {
       ];
 
       const events: CalendarEvent[] = [
-        createCalendarEvent('2024-01-03T10:00:00', '2024-01-03T11:00:00', false), // Wednesday event
+        createCalendarEvent('2024-01-04T10:00:00.000Z', '2024-01-04T11:00:00.000Z', false), // Thursday event conflicts with day 3 slot
       ];
 
       const holidays: Holiday[] = [
-        createHoliday('2024-01-02'), // Tuesday holiday
+        createHoliday('2024-01-03'), // Wednesday holiday conflicts with day 2 slot
       ];
 
       const result = filterAvailableBlocksByCalendar(slots, events, [], holidays);
-      
+
       // Only Thursday slot should remain
       expect(result).toHaveLength(1);
       expect(result[0].day).toBe(4);
     });
 
     it('should return correct DailyBlock format', () => {
-      const slots: TimetableSlot[] = [
-        createTimetableSlot(1, 1, 480, 540, 5),
-      ];
+      const slots: TimetableSlot[] = [createTimetableSlot(1, 1, 480, 540, 5)];
 
       const result = filterAvailableBlocksByCalendar(slots, [], [], []);
-      
+
       expect(result).toHaveLength(1);
       expect(result[0]).toEqual({
         day: 1,
@@ -175,15 +179,15 @@ describe('PlanningEngine Unit Tests', () => {
 
     it('should handle edge case of event exactly matching slot time', () => {
       const slots: TimetableSlot[] = [
-        createTimetableSlot(1, 1, 540, 600), // Monday 9:00-10:00 AM
+        createTimetableSlot(1, 1, 540, 600), // Day 1 9:00-10:00 AM
       ];
 
       const events: CalendarEvent[] = [
-        createCalendarEvent('2024-01-01T09:00:00', '2024-01-01T10:00:00', false), // Exact match
+        createCalendarEvent('2024-01-02T09:00:00.000Z', '2024-01-02T10:00:00.000Z', false), // Exact match on day 1
       ];
 
       const result = filterAvailableBlocksByCalendar(slots, events, [], []);
-      
+
       // Should filter out the exactly matching slot
       expect(result).toHaveLength(0);
     });

@@ -1,10 +1,13 @@
-// Import everything directly from the generated client to avoid ES module issues
-import { PrismaClient, Prisma } from '@teaching-engine/database';
+// Import from the database package
+import { PrismaClient } from '@teaching-engine/database';
+
+// Re-export everything from database package (including Prisma namespace)
+export * from '@teaching-engine/database';
 
 // Create singleton instance for server usage
 const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClient | undefined;
-  testPrismaClient: PrismaClient | undefined;
+  prisma: InstanceType<typeof PrismaClient> | undefined;
+  testPrismaClient: InstanceType<typeof PrismaClient> | undefined;
 };
 
 // In test environment, use the test client if available
@@ -24,10 +27,10 @@ const getPrisma = () => {
 };
 
 // Create a proxy to always use the current client
-export const prisma = new Proxy({} as PrismaClient, {
+export const prisma = new Proxy({} as InstanceType<typeof PrismaClient>, {
   get(target, prop) {
     const client = getPrisma();
-    return client[prop as keyof PrismaClient];
+    return client[prop as keyof InstanceType<typeof PrismaClient>];
   },
   has(target, prop) {
     const client = getPrisma();
@@ -39,4 +42,5 @@ if (process.env.NODE_ENV !== 'production' && !isTestEnvironment) {
   globalForPrisma.prisma = getPrisma();
 }
 
-export { PrismaClient, Prisma };
+// Re-export PrismaClient
+export { PrismaClient };

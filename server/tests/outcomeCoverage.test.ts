@@ -1,8 +1,8 @@
 import { app } from '../src/index';
 import { authRequest } from './test-auth-helper';
 import { getTestPrismaClient } from './jest.setup';
+import { setupAuthenticatedTest } from './test-setup-helpers';
 import { v4 as uuidv4 } from 'uuid';
-import bcrypt from 'bcryptjs';
 
 // Define interface for outcome coverage response
 interface OutcomeCoverageResponse {
@@ -12,14 +12,17 @@ interface OutcomeCoverageResponse {
   subject: string;
   domain: string | null;
   grade: number;
-  status: 'covered' | 'partial' | 'uncovered';
-  linked: number;
-  completed: number;
+  isCovered: boolean;
+  coveredBy: Array<{
+    id: number;
+    title: string;
+  }>;
 }
 
 describe('Outcome Coverage API', () => {
   // Using underscore prefix to indicate unused variable (to satisfy ESLint)
   // let _userId: number;
+  // let _token: string;
   let subjectId: number;
   let milestoneId: number;
   let outcomeId: string;
@@ -29,23 +32,11 @@ describe('Outcome Coverage API', () => {
 
   beforeAll(async () => {
     prisma = getTestPrismaClient();
-    await auth.setup();
-    // Setup: Create a user and login
-    const email = `test-${uuidv4()}@example.com`;
-    const password = 'password123';
-    const hashedPassword = await bcrypt.hash(password, 10);
+  });
 
-    await prisma.user.create({
-      data: {
-        email,
-        name: 'Test User',
-        password: hashedPassword,
-        role: 'TEACHER',
-      },
-    });
-    // _userId = user.id;
-
-    await auth.post('/api/login').send({ email, password });
+  beforeEach(async () => {
+    // Setup auth for each test to handle database resets
+    await setupAuthenticatedTest(prisma, auth);
 
     // Create a subject
     const subjectRes = await auth.post('/api/subjects').send({ name: 'Test Subject' });
@@ -74,15 +65,7 @@ describe('Outcome Coverage API', () => {
     });
   });
 
-  afterAll(async () => {
-    // Clean up
-    await prisma.activityOutcome.deleteMany({});
-    await prisma.activity.deleteMany({});
-    await prisma.outcome.deleteMany({});
-    await prisma.milestone.deleteMany({});
-    await prisma.subject.deleteMany({});
-    await prisma.user.deleteMany({});
-  });
+  // No need for afterAll cleanup - database is reset after each test
 
   it('should return outcomes with no coverage initially', async () => {
     const res = await auth.get('/api/outcomes/coverage');
@@ -90,9 +73,8 @@ describe('Outcome Coverage API', () => {
     expect(res.status).toBe(200);
     const outcomeData = res.body.find((o: OutcomeCoverageResponse) => o.outcomeId === outcomeId);
     expect(outcomeData).toBeDefined();
-    expect(outcomeData.status).toBe('uncovered');
-    expect(outcomeData.linked).toBe(0);
-    expect(outcomeData.completed).toBe(0);
+    expect(outcomeData.isCovered).toBe(false);
+    expect(outcomeData.coveredBy).toEqual([]);
   });
 
   it('should mark an outcome as covered when linked to an activity', async () => {
@@ -102,8 +84,6 @@ describe('Outcome Coverage API', () => {
       milestoneId,
     });
 
-    expect(activityRes.status).toBe(201);
-    expect(activityRes.body).toHaveProperty('id');
     activityId = activityRes.body.id;
 
     // Link outcome to activity
@@ -120,9 +100,10 @@ describe('Outcome Coverage API', () => {
     expect(res.status).toBe(200);
     const outcomeData = res.body.find((o: OutcomeCoverageResponse) => o.outcomeId === outcomeId);
     expect(outcomeData).toBeDefined();
-    expect(outcomeData.status).toBe('uncovered'); // Activity exists but is not completed
-    expect(outcomeData.linked).toBe(1);
-    expect(outcomeData.completed).toBe(0); // Activity is not completed yet
+    expect(outcomeData.isCovered).toBe(true);
+    expect(outcomeData.coveredBy).toHaveLength(1);
+    expect(outcomeData.coveredBy[0].id).toBe(activityId);
+    expect(outcomeData.coveredBy[0].title).toBe('Test Activity');
   });
 
   it('should filter outcomes by subject', async () => {

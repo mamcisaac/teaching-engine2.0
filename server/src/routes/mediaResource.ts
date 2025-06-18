@@ -6,8 +6,8 @@ import { fileURLToPath } from 'url';
 import { prisma } from '../prisma';
 import { authMiddleware, AuthRequest } from '../middleware/auth';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __filename_mediaResource = fileURLToPath(import.meta.url);
+const __dirname_mediaResource = path.dirname(__filename_mediaResource);
 
 const router = Router();
 
@@ -17,7 +17,7 @@ const createUploadStorage = () =>
     storage: multer.diskStorage({
       destination: async (req: AuthRequest, file, cb) => {
         const userId = req.userId || 'default';
-        const userUploadDir = path.join(__dirname, '../uploads', userId.toString());
+        const userUploadDir = path.join(__dirname_mediaResource, '../uploads', userId.toString());
         await fs.mkdir(userUploadDir, { recursive: true });
         cb(null, userUploadDir);
       },
@@ -337,7 +337,7 @@ router.get('/file/:userId/:filename', authMiddleware, async (req: AuthRequest, r
       return res.status(403).json({ error: 'Access denied' });
     }
 
-    const filePath = path.join(__dirname, '../uploads', userId, filename);
+    const filePath = path.join(__dirname_mediaResource, '../uploads', userId, filename);
 
     // Check if file exists
     try {

@@ -3,16 +3,14 @@ import { prisma } from '../prisma';
 import { validate, parentMessageCreateSchema, parentMessageUpdateSchema } from '../validation';
 
 interface AuthenticatedRequest extends Request {
-  user?: {
-    userId: string;
-  };
+  user?: { userId: string };
 }
 
 const router = Router();
 
 router.get('/', async (req: AuthenticatedRequest, res, next) => {
   try {
-    const userId = Number(req.user?.userId);
+    const userId = parseInt(req.user?.userId || '0', 10);
     const parentMessages = await prisma.parentMessage.findMany({
       where: { userId },
       include: {
@@ -56,7 +54,7 @@ router.post(
         linkedActivityIds?: number[];
       };
 
-      const userId = Number(req.user?.userId);
+      const userId = parseInt(req.user?.userId || '0', 10);
       const parentMessage = await prisma.parentMessage.create({
         data: {
           userId,
@@ -98,7 +96,7 @@ router.post(
 
 router.get('/:id', async (req: AuthenticatedRequest, res, next) => {
   try {
-    const userId = Number(req.user?.userId);
+    const userId = parseInt(req.user?.userId || '0', 10);
     const parentMessage = await prisma.parentMessage.findFirst({
       where: {
         id: Number(req.params.id),
@@ -143,7 +141,10 @@ router.put(
           linkedActivityIds?: number[];
         };
 
-      const userId = Number(req.user?.userId);
+      const userId = parseInt(req.user?.userId || '0', 10);
+      if (!userId) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
       // First verify the message exists and belongs to user
       const existingMessage = await prisma.parentMessage.findFirst({
         where: {
@@ -224,7 +225,7 @@ router.put(
 
 router.delete('/:id', async (req: AuthenticatedRequest, res, next) => {
   try {
-    const userId = Number(req.user?.userId);
+    const userId = parseInt(req.user?.userId || '0', 10);
     const parentMessage = await prisma.parentMessage.findFirst({
       where: {
         id: Number(req.params.id),

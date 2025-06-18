@@ -46,9 +46,13 @@ export default async function globalSetup() {
         localStorage.setItem('onboarded', 'true');
       }, loginData);
 
-      // Navigate to the app - localStorage will be set automatically
-      await page.goto('http://localhost:5173/');
-      await page.waitForTimeout(1000); // Give time for any redirects to settle
+      // In CI, we don't need to navigate to the app since servers aren't started yet
+      // Just save the auth state with the token
+      if (!process.env.CI) {
+        // Navigate to the app - localStorage will be set automatically
+        await page.goto('http://localhost:5173/');
+        await page.waitForTimeout(1000); // Give time for any redirects to settle
+      }
 
       // Save the authentication state including localStorage
       await context.storageState({ path: 'tests/storage/auth.json' });
