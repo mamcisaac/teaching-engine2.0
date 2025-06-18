@@ -17,6 +17,8 @@ export default defineConfig({
       // Run the API server on its default port
       PORT: '3000',
       DATABASE_URL: 'file:./test.db',
+      JWT_SECRET: 'test-secret-key',
+      JWT_EXPIRES_IN: '1h',
     },
   },
 
@@ -27,6 +29,8 @@ export default defineConfig({
     actionTimeout: 30000,
     navigationTimeout: 60000,
     storageState: 'tests/storage/auth.json',
+    headless: true,
+    video: process.env.CI ? 'retain-on-failure' : 'off',
   },
   expect: {
     timeout: 15000,
