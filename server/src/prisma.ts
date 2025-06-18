@@ -1,11 +1,7 @@
-// Import everything from the database package
-import * as DatabaseExports from '@teaching-engine/database';
+// Import from the database package
 import { PrismaClient } from '@teaching-engine/database';
 
-// Re-export Prisma namespace from the imported module
-export const Prisma = DatabaseExports.Prisma;
-
-// Re-export everything else
+// Re-export everything from database package (including Prisma namespace)
 export * from '@teaching-engine/database';
 
 // Create singleton instance for server usage
