@@ -1,10 +1,9 @@
-// Import everything from the database package as a namespace
-import * as Database from '@teaching-engine/database';
+// Import from the database package
+import { PrismaClient } from '@teaching-engine/database';
+// Import and immediately re-export Prisma to ensure it's available
+export { Prisma } from '@teaching-engine/database';
 
-// Extract what we need
-const { PrismaClient } = Database;
-
-// Re-export everything
+// Re-export everything else
 export * from '@teaching-engine/database';
 
 // Create singleton instance for server usage
@@ -45,6 +44,5 @@ if (process.env.NODE_ENV !== 'production' && !isTestEnvironment) {
   globalForPrisma.prisma = getPrisma();
 }
 
-// Re-export with proper handling of the Prisma namespace
+// Re-export PrismaClient
 export { PrismaClient };
-export const Prisma = Database.Prisma;
