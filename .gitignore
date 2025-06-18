@@ -164,3 +164,14 @@ v8-compile-cache-*
 packages/database/src/generated
 *.db
 *.db-journal
+
+# Debug and temporary files
+debug-*.json
+debug-*.png
+*.log
+test-*.db
+test-results/
+playwright-report/
+
+# Build artifacts
+1_build*.txt

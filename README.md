@@ -65,10 +65,13 @@ teaching-engine2.0/
 ├── server/                # Express backend API
 │   ├── src/
 │   │   ├── routes/       # API endpoints
-│   │   ├── prisma.ts     # Prisma client setup
+│   │   ├── prisma.ts     # Prisma client wrapper
 │   │   ├── validation.ts # Request schemas
 │   │   └── index.ts      # Express application setup
-├── prisma/               # Database schema and migrations
+├── packages/
+│   └── database/         # Shared Prisma database package
+│       ├── prisma/       # Schema and migrations
+│       └── src/          # Generated client and exports
 ├── tests/                # E2E Playwright tests
 ├── scripts/              # Utility scripts
 └── docker-compose.yml    # Container orchestration
@@ -99,9 +102,9 @@ teaching-engine2.0/
    cp server/.env.offline server/.env
 
    # Run migrations and generate Prisma client
-   pnpm db:deploy
+   pnpm --filter @teaching-engine/database db:migrate
    # Seed sample data
-   pnpm db:seed
+   pnpm --filter @teaching-engine/database db:seed
    ```
 
 3. **Start Development Servers**
