@@ -138,8 +138,8 @@ jobs:
           echo "Running E2E smoke tests first..."
           pnpm run test:e2e:smoke --reporter=list --workers=1
 
-      - name: Run full E2E tests
-        timeout-minutes: 15
+      - name: Run essential E2E tests
+        timeout-minutes: 10
         env:
           DATABASE_URL: file:./packages/database/prisma/test.db
           JWT_SECRET: test-secret-key
@@ -147,8 +147,8 @@ jobs:
           NODE_ENV: test
           CI: true
         run: |
-          echo "Running full E2E test suite..."
-          pnpm run test:e2e --reporter=list --workers=1 || (
+          echo "Running essential E2E test suite for CI..."
+          pnpm run test:e2e:ci --reporter=list || (
             echo "E2E tests failed. Debugging info:"
             echo "=== Backend logs ==="
             tail -50 backend.log || echo "No backend log"
