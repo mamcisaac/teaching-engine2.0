@@ -1,9 +1,11 @@
 {
   "name": "@teaching-engine/database",
   "version": "1.0.0",
+  "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {
+    "build": "tsc",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
