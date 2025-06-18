@@ -1,7 +1,6 @@
 import { chromium } from '@playwright/test';
-import baseSetup from '../playwright.global-setup';
+
 export default async function globalSetup() {
-  await baseSetup();
 
   // For now, let's manually create the auth state by making a login API call
   // This bypasses the problematic UI login that's having issues with 401 errors

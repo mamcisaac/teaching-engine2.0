@@ -477,40 +477,29 @@ export const useActivities = () =>
     queryFn: async () => (await api.get('/api/activities')).data,
   });
 
-// Mutation hooks
-export const useCreateSubject = () => {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (data: { name: string }) => api.post('/api/subjects', data),
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['subjects'] });
-      toast.success('Subject created');
-    },
-  });
+import { createCrudMutations } from './utils/apiFactory';
+
+// Subject API functions
+const subjectApi = {
+  create: async (data: { name: string }) => {
+    const response = await api.post<Subject>('/api/subjects', data);
+    return response.data;
+  },
+  update: async (id: number, data: { name: string }) => {
+    const response = await api.put<Subject>(`/api/subjects/${id}`, data);
+    return response.data;
+  },
+  delete: async (id: number) => {
+    await api.delete(`/api/subjects/${id}`);
+  },
 };
 
-export const useUpdateSubject = () => {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (data: { id: number; name: string }) =>
-      api.put(`/api/subjects/${data.id}`, { name: data.name }),
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['subjects'] });
-      toast.success('Subject updated');
-    },
-  });
-};
+// Subject mutation hooks using factory
+const subjectMutations = createCrudMutations('Subject', subjectApi);
 
-export const useDeleteSubject = () => {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (id: number) => api.delete(`/api/subjects/${id}`),
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['subjects'] });
-      toast.success('Subject deleted');
-    },
-  });
-};
+export const useCreateSubject = subjectMutations.useCreate;
+export const useUpdateSubject = subjectMutations.useUpdate;
+export const useDeleteSubject = subjectMutations.useDelete;
 
 export const useCreateMilestone = () => {
   const qc = useQueryClient();
