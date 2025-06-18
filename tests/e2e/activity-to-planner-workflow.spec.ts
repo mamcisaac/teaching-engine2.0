@@ -5,6 +5,7 @@ import {
   retry,
   capturePageState,
   PlannerPageObject,
+  waitForResponse,
 } from './improved-helpers';
 
 test.describe('Activity to Planner Workflow', () => {
@@ -22,9 +23,18 @@ test.describe('Activity to Planner Workflow', () => {
         return await testData.createSubject(`Planning Workflow Subject ${timestamp}`);
       });
 
+      // Create milestone with dates that span the current week
+      const today = new Date();
+      const startDate = new Date(today);
+      startDate.setDate(today.getDate() - 7); // Start a week ago
+      const endDate = new Date(today);
+      endDate.setDate(today.getDate() + 14); // End two weeks from now
+      
       const milestone = await retry(async () => {
         return await testData.createMilestone(subject.id, {
           title: `Planning Test Milestone ${timestamp}`,
+          startDate: startDate.toISOString(),
+          endDate: endDate.toISOString(),
         });
       });
 
@@ -41,12 +51,18 @@ test.describe('Activity to Planner Workflow', () => {
       await planner.navigate();
 
       // Set week to current week
-      const today = new Date();
-      const monday = new Date(today);
-      monday.setDate(today.getDate() - today.getDay() + 1);
+      const currentDate = new Date();
+      const monday = new Date(currentDate);
+      monday.setDate(currentDate.getDate() - currentDate.getDay() + 1);
       const weekStart = monday.toISOString().split('T')[0];
 
       await planner.setWeekStart(weekStart);
+      
+      // Wait for planner suggestions to load
+      await waitForResponse(page, '/api/planner-suggestions').catch(() => {
+        console.log('Planner suggestions API not called, continuing...');
+      });
+      await page.waitForLoadState('networkidle');
 
       // Verify timetable slots are visible
       await expect(page.locator('[data-testid="day-1"]')).toBeVisible({ timeout: 10000 });
@@ -341,9 +357,21 @@ test.describe('Activity to Planner Workflow', () => {
       const token = await login(page);
       testData = new TestDataFactory(page, token);
 
-      // Create test data
+      // Create test data with proper dates
       const subject = await testData.createSubject('Multi-day Subject');
-      const milestone = await testData.createMilestone(subject.id);
+      
+      // Create milestone with dates that span the current week
+      const today = new Date();
+      const startDate = new Date(today);
+      startDate.setDate(today.getDate() - 7); // Start a week ago
+      const endDate = new Date(today);
+      endDate.setDate(today.getDate() + 14); // End two weeks from now
+      
+      const milestone = await testData.createMilestone(subject.id, {
+        title: 'Multi-day Test Milestone',
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+      });
 
       // Create multiple activities for different days
       const activities = await Promise.all([
@@ -355,6 +383,12 @@ test.describe('Activity to Planner Workflow', () => {
       // Navigate to planner
       const planner = new PlannerPageObject(page);
       await planner.navigate();
+      
+      // Wait for planner suggestions to load
+      await waitForResponse(page, '/api/planner-suggestions').catch(() => {
+        console.log('Planner suggestions API not called, continuing...');
+      });
+      await page.waitForLoadState('networkidle');
 
       // Verify all weekdays are visible (UI uses 0-based index: Mon=0, Tue=1, Wed=2, Thu=3, Fri=4)
       await expect(page.locator('[data-testid="day-0"]')).toBeVisible({ timeout: 10000 }); // Monday

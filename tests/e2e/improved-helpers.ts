@@ -397,22 +397,27 @@ export class TestDataFactory {
     subjectId: number,
     options: {
       title?: string;
-      startDate?: Date;
-      endDate?: Date;
+      startDate?: Date | string;
+      endDate?: Date | string;
     } = {},
   ): Promise<{ id: number; title: string }> {
     const timestamp = Date.now();
     const today = new Date();
 
+    // Convert string dates to Date objects if needed
+    const startDate = options.startDate ? 
+      (typeof options.startDate === 'string' ? new Date(options.startDate) : options.startDate) :
+      new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+      
+    const endDate = options.endDate ?
+      (typeof options.endDate === 'string' ? new Date(options.endDate) : options.endDate) :
+      new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000);
+
     const milestoneData = {
       title: options.title || `Test Milestone ${timestamp}`,
       subjectId,
-      startDate: (
-        options.startDate || new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000)
-      ).toISOString(),
-      endDate: (
-        options.endDate || new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000)
-      ).toISOString(),
+      startDate: startDate.toISOString(),
+      endDate: endDate.toISOString(),
     };
 
     return await retry(

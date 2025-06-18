@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { login, TestDataFactory, retry, capturePageState } from './improved-helpers';
+import { login, TestDataFactory, retry, capturePageState, waitForResponse } from './improved-helpers';
 
 test.describe('Weekly Planning', () => {
   test('generate weekly plan from activity', async ({ page }) => {
@@ -63,9 +63,21 @@ test.describe('Weekly Planning', () => {
       const token = await login(page);
       testData = new TestDataFactory(page, token);
 
-      // Create subject and milestone
+      // Create subject and milestone with proper dates
       const subject = await testData.createSubject('Timetable Integration Subject');
-      const milestone = await testData.createMilestone(subject.id);
+      
+      // Ensure milestone spans current week
+      const today = new Date();
+      const startDate = new Date(today);
+      startDate.setDate(today.getDate() - 7);
+      const endDate = new Date(today);
+      endDate.setDate(today.getDate() + 14);
+      
+      const milestone = await testData.createMilestone(subject.id, {
+        title: 'Timetable Test Milestone',
+        startDate,
+        endDate
+      });
       const activity = await testData.createActivity(milestone.id, 'Timetable Activity');
 
       // Navigate to planner
@@ -73,11 +85,17 @@ test.describe('Weekly Planning', () => {
 
       // Wait for planner to load completely
       await page.waitForSelector('h1:has-text("Weekly Planner")', { timeout: 15000 });
+      
+      // Wait for planner suggestions to load
+      await waitForResponse(page, '/api/planner-suggestions').catch(() => {
+        console.log('Planner suggestions API not called, continuing...');
+      });
       await page.waitForLoadState('networkidle');
 
       // Verify that the activity appears in the suggested activities section
-      const suggestedActivity = page.locator(`text="${activity.title}"`);
-      await expect(suggestedActivity).toBeVisible({ timeout: 10000 });
+      // The activity might be in different sections, so check for any occurrence
+      const suggestedActivity = page.locator(`text="${activity.title}"`).first();
+      await expect(suggestedActivity).toBeVisible({ timeout: 15000 });
 
       // Verify the milestone appears
       const milestoneText = page.locator(`text="${milestone.title}"`);

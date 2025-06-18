@@ -66,15 +66,15 @@ async function seedTestData() {
   console.log('\n🌱 Seeding test data...');
 
   try {
-    // Create test user
-    const hashedPassword = await bcrypt.hash('test123', 12);
+    // Create test user (same as dev for E2E tests)
+    const hashedPassword = await bcrypt.hash('password123', 12);
 
     await prisma.$executeRaw`
       INSERT INTO "User" (email, password, name, role)
-      VALUES ('test@example.com', ${hashedPassword}, 'Test User', 'teacher');
+      VALUES ('teacher@example.com', ${hashedPassword}, 'Test Teacher', 'teacher');
     `;
 
-    console.log('✅ Created test user: test@example.com (password: test123)');
+    console.log('✅ Created test user: teacher@example.com (password: password123)');
 
     // Create test subjects
     await prisma.$executeRaw`
