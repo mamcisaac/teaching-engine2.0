@@ -58,9 +58,13 @@ jobs:
         run: pnpm run test
 
       - name: Deploy database schema
+        env:
+          DATABASE_URL: file:./test.db
         run: pnpm db:deploy
 
       - name: Seed database
+        env:
+          DATABASE_URL: file:./test.db
         run: pnpm db:seed
 
       - name: Playwright E2E Tests
