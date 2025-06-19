@@ -219,7 +219,7 @@ Provide the response in this JSON format:
     };
   }
 
-  async getUncoveredOutcomes(userId: number, theme?: string) {
+  async getUncoveredOutcomes(userId: number, theme?: string, limit?: number) {
     // Get all outcomes
     const allOutcomes = await prisma.outcome.findMany({
       include: {
@@ -276,10 +276,13 @@ Provide the response in this JSON format:
     // Map suggestions by outcome ID for easy lookup
     const suggestionsByOutcome = new Map(suggestions.map((s) => [s.outcomeId, s]));
 
-    return uncoveredOutcomes.map((outcome) => ({
+    const result = uncoveredOutcomes.map((outcome) => ({
       outcome,
       suggestion: suggestionsByOutcome.get(outcome.id) || null,
     }));
+
+    // Apply limit if specified
+    return limit ? result.slice(0, limit) : result;
   }
 
   async convertToActivity(

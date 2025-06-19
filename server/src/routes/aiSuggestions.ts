@@ -60,7 +60,11 @@ router.get('/uncovered', authMiddleware, async (req: AuthRequest, res) => {
     const params = getUncoveredSchema.parse(req.query);
     const userId = req.userId!;
 
-    const uncoveredOutcomes = await aiActivityGenerator.getUncoveredOutcomes(userId, params.theme);
+    const uncoveredOutcomes = await aiActivityGenerator.getUncoveredOutcomes(
+      userId,
+      params.theme,
+      params.limit,
+    );
 
     // Format suggestions with parsed materials
     const formatted = uncoveredOutcomes.map((item) => ({
