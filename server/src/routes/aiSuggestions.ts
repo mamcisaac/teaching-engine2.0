@@ -94,6 +94,10 @@ router.get('/uncovered', authMiddleware, async (req: AuthRequest, res) => {
 // Convert AI suggestion to actual activity
 const convertToActivitySchema = z.object({
   suggestionId: z.number(),
+  milestoneId: z.number().optional(),
+  title: z.string().optional(),
+  durationMins: z.number().optional(),
+  publicNote: z.string().optional(),
   scheduleData: z
     .object({
       date: z.string(),
@@ -108,7 +112,12 @@ router.post('/convert-to-activity', authMiddleware, async (req: AuthRequest, res
     const params = convertToActivitySchema.parse(req.body);
     const userId = req.userId!;
 
-    const activity = await aiActivityGenerator.convertToActivity(params.suggestionId, userId);
+    const activity = await aiActivityGenerator.convertToActivity(params.suggestionId, userId, {
+      milestoneId: params.milestoneId,
+      title: params.title,
+      durationMins: params.durationMins,
+      publicNote: params.publicNote,
+    });
 
     res.json(activity);
   } catch (error) {

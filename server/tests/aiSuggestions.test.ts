@@ -295,7 +295,7 @@ describe('AI Suggestions API', () => {
       expect(response.status).toBe(200);
 
       const activity = await prisma.activity.findUnique({
-        where: { id: response.body.activityId },
+        where: { id: response.body.id },
       });
 
       expect(activity?.title).toBe('Custom Title');

@@ -288,11 +288,16 @@ Provide the response in this JSON format:
   async convertToActivity(
     suggestionId: number,
     userId: number,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    scheduleData?: {
-      date: string;
-      startTime: string;
-      endTime: string;
+    customData?: {
+      milestoneId?: number;
+      title?: string;
+      durationMins?: number;
+      publicNote?: string;
+      scheduleData?: {
+        date: string;
+        startTime: string;
+        endTime: string;
+      };
     },
   ) {
     const suggestion = await prisma.aISuggestedActivity.findUnique({
@@ -317,21 +322,22 @@ Provide the response in this JSON format:
     // Parse materials from JSON
     const materials = JSON.parse(suggestion.materials) as string[];
 
-    // Get the first milestone associated with this outcome
-    const milestoneId = suggestion.outcome.milestones[0]?.milestoneId || 1;
+    // Get the first milestone associated with this outcome or use custom milestoneId
+    const milestoneId =
+      customData?.milestoneId || suggestion.outcome.milestones[0]?.milestoneId || 1;
 
-    // Create the activity
+    // Create the activity with custom data if provided
     const activity = await prisma.activity.create({
       data: {
-        title: suggestion.title,
-        titleFr: suggestion.title,
-        titleEn: suggestion.descriptionEn ? suggestion.title : undefined,
-        publicNote: suggestion.descriptionFr,
-        publicNoteFr: suggestion.descriptionFr,
-        publicNoteEn: suggestion.descriptionEn,
+        title: customData?.title || suggestion.title,
+        titleFr: customData?.title || suggestion.title,
+        titleEn: suggestion.descriptionEn ? customData?.title || suggestion.title : undefined,
+        publicNote: customData?.publicNote || suggestion.descriptionFr,
+        publicNoteFr: customData?.publicNote || suggestion.descriptionFr,
+        publicNoteEn: suggestion.descriptionEn || undefined,
         materialsText: materials.join(', '),
         materialsTextFr: materials.join(', '),
-        durationMins: suggestion.duration,
+        durationMins: customData?.durationMins || suggestion.duration,
         userId,
         milestoneId,
         outcomes: {
