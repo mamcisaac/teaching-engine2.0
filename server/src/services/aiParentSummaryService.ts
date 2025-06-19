@@ -101,7 +101,7 @@ export async function generateParentSummary(
 
     // Generate summary based on collected data
     const summaryData = {
-      studentName: student.name,
+      studentName: `${student.firstName} ${student.lastName}`,
       period: { from, to },
       focus: focus || [],
       activities: activities.length,
