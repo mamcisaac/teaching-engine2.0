@@ -43,6 +43,7 @@ model Milestone {
   deadlineId Int?
   outcomes   MilestoneOutcome[]
   smartGoals SmartGoal[]
+  alerts     MilestoneAlert[]
 }
 
 model Activity {
@@ -84,6 +85,7 @@ model Activity {
   cognatePairs CognateActivity[]
   mediaResources MediaResourceActivity[]
   parentMessages ParentMessageActivity[]
+  studentReflections StudentReflection[]
   @@index([milestoneId, orderIndex])
 }
 
@@ -240,8 +242,10 @@ model Note {
 model ParentContact {
   id          Int    @id @default(autoincrement())
   name        String
-  email       String  @unique
-  studentName String
+  email       String
+  studentId   Int
+  student     Student @relation(fields: [studentId], references: [id])
+  @@unique([email, studentId])
 }
 
 model User {
@@ -273,6 +277,8 @@ model User {
   aiSuggestedActivities AISuggestedActivity[]
   students Student[]
   activityTemplates ActivityTemplate[]
+  teacherReflections TeacherReflection[]
+  milestoneAlerts MilestoneAlert[]
 }
 
 enum ActivityType {
@@ -419,6 +425,7 @@ model Outcome {
   aiSuggestedActivities AISuggestedActivity[]
   studentGoals StudentGoal[]
   studentReflections StudentReflection[]
+  teacherReflections TeacherReflection[]
 }
 
 model MilestoneOutcome {
@@ -580,6 +587,7 @@ model AssessmentResult {
   groupScore Int?       // 0–100
   notes      String?
   reflections ReflectionJournalEntry[]
+  studentResults StudentAssessmentResult[]
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
 }
@@ -672,14 +680,21 @@ model AISuggestedActivity {
 }
 
 model Student {
-  id        Int      @id @default(autoincrement())
-  name      String
-  userId    Int      // The teacher who manages this student
-  user      User     @relation(fields: [userId], references: [id])
-  goals     StudentGoal[]
+  id          Int    @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  grade       Int
+  userId      Int
+  user        User   @relation(fields: [userId], references: [id])
+  parentContacts ParentContact[]
+  assessmentResults StudentAssessmentResult[]
+  artifacts   StudentArtifact[]
   reflections StudentReflection[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  parentSummaries ParentSummary[]
+  goals       StudentGoal[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  @@index([userId, lastName])
 }
 
 model StudentGoal {
@@ -696,18 +711,21 @@ model StudentGoal {
 }
 
 model StudentReflection {
-  id         Int       @id @default(autoincrement())
-  studentId  Int
-  student    Student   @relation(fields: [studentId], references: [id])
-  date       DateTime
-  text       String?
-  emoji      String?   // e.g. "🙂", "😐", "😕"
-  voicePath  String?   // path to optional recording
-  outcomeId  String?
-  outcome    Outcome?  @relation(fields: [outcomeId], references: [id])
-  themeId    Int?
-  theme      ThematicUnit? @relation(fields: [themeId], references: [id])
-  createdAt  DateTime  @default(now())
+  id          Int      @id @default(autoincrement())
+  studentId   Int
+  student     Student  @relation(fields: [studentId], references: [id])
+  activityId  Int?
+  activity    Activity? @relation(fields: [activityId], references: [id])
+  content     String?
+  text        String?   // Keep both content and text for compatibility
+  date        DateTime? // Optional date
+  emoji       String?   // e.g. "🙂", "😐", "😕"
+  voicePath   String?   // path to optional recording
+  outcomeId   String?
+  outcome     Outcome? @relation(fields: [outcomeId], references: [id])
+  themeId     Int?
+  theme       ThematicUnit? @relation(fields: [themeId], references: [id])
+  createdAt   DateTime @default(now())
 }
 
 model ActivityTemplate {
@@ -729,4 +747,70 @@ model ActivityTemplate {
   createdByUser  User     @relation(fields: [createdBy], references: [id])
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+}
+
+model StudentAssessmentResult {
+  id          Int        @id @default(autoincrement())
+  studentId   Int
+  student     Student    @relation(fields: [studentId], references: [id])
+  assessmentId Int
+  assessment  AssessmentResult @relation(fields: [assessmentId], references: [id])
+  score       Int?       // 0-100 or null if not scored
+  notes       String?
+  createdAt   DateTime   @default(now())
+  @@unique([studentId, assessmentId])
+}
+
+model StudentArtifact {
+  id          Int      @id @default(autoincrement())
+  studentId   Int
+  student     Student  @relation(fields: [studentId], references: [id])
+  title       String
+  description String?
+  fileUrl     String?
+  outcomeIds  String   @default("[]") // JSON array of outcome IDs
+  createdAt   DateTime @default(now())
+}
+
+model ParentSummary {
+  id          Int      @id @default(autoincrement())
+  studentId   Int
+  student     Student  @relation(fields: [studentId], references: [id])
+  dateFrom    DateTime
+  dateTo      DateTime
+  focus       String?  @default("[]") // JSON array of focus areas
+  contentFr   String
+  contentEn   String
+  isDraft     Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model TeacherReflection {
+  id          Int      @id @default(autoincrement())
+  content     String
+  outcomeId   String
+  outcome     Outcome  @relation(fields: [outcomeId], references: [id])
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  @@index([userId, outcomeId])
+}
+
+model MilestoneAlert {
+  id          Int      @id @default(autoincrement())
+  type        String   // "deadline" | "progress" | "coverage"
+  severity    String   // "low" | "medium" | "high" | "critical"
+  title       String
+  description String
+  milestoneId Int
+  milestone   Milestone @relation(fields: [milestoneId], references: [id])
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
+  isRead      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  @@index([userId, isRead])
+  @@index([userId, milestoneId])
 }

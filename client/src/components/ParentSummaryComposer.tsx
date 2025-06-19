@@ -1,254 +1,419 @@
-import { useState } from 'react';
-import { useStudents, useGenerateParentSummary } from '../api';
+import React, { useState, useEffect } from 'react';
+import { toast } from 'sonner';
 import { Button } from './ui/Button';
-import { Input } from './ui/Input';
-import { Label } from './ui/Label';
-import { Textarea } from './ui/Textarea';
+import Dialog from './Dialog';
+import {
+  useStudents,
+  useGenerateParentSummary,
+  useSaveParentSummary,
+  useRegenerateParentSummary,
+} from '../api';
 
-interface ParentSummary {
+interface ParentSummaryComposerProps {
+  isOpen: boolean;
+  onClose: () => void;
+  preselectedStudentId?: number;
+}
+
+interface GeneratedSummary {
   french: string;
   english: string;
 }
 
-export function ParentSummaryComposer() {
-  const [selectedStudentId, setSelectedStudentId] = useState<number | null>(null);
-  const [fromDate, setFromDate] = useState('');
-  const [toDate, setToDate] = useState('');
-  const [focus, setFocus] = useState<string[]>([]);
-  const [focusInput, setFocusInput] = useState('');
-  const [generatedSummary, setGeneratedSummary] = useState<ParentSummary | null>(null);
-  const [editedSummary, setEditedSummary] = useState<ParentSummary | null>(null);
+const focusOptions = [
+  'oral language',
+  'literacy',
+  'numeracy',
+  'science',
+  'social studies',
+  'arts',
+  'physical education',
+];
 
+export default function ParentSummaryComposer({
+  isOpen,
+  onClose,
+  preselectedStudentId,
+}: ParentSummaryComposerProps) {
+  const [selectedStudentId, setSelectedStudentId] = useState<number | null>(
+    preselectedStudentId || null,
+  );
+  const [dateFrom, setDateFrom] = useState(() => {
+    const date = new Date();
+    date.setMonth(date.getMonth() - 3); // Default to 3 months ago
+    return date.toISOString().slice(0, 10);
+  });
+  const [dateTo, setDateTo] = useState(() => {
+    return new Date().toISOString().slice(0, 10);
+  });
+  const [focusAreas, setFocusAreas] = useState<string[]>([]);
+  const [customFocus, setCustomFocus] = useState('');
+  const [generatedSummary, setGeneratedSummary] = useState<GeneratedSummary | null>(null);
+  const [editedFrench, setEditedFrench] = useState('');
+  const [editedEnglish, setEditedEnglish] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
+  const [isDraft, setIsDraft] = useState(true);
+
+  // API hooks
   const { data: students = [] } = useStudents();
   const generateSummary = useGenerateParentSummary();
+  const regenerateSummary = useRegenerateParentSummary();
+  const saveSummary = useSaveParentSummary();
+
+  // Reset form when dialog opens/closes
+  useEffect(() => {
+    if (isOpen) {
+      setSelectedStudentId(preselectedStudentId || null);
+      setGeneratedSummary(null);
+      setEditedFrench('');
+      setEditedEnglish('');
+      setIsEditing(false);
+      setFocusAreas([]);
+      setCustomFocus('');
+    }
+  }, [isOpen, preselectedStudentId]);
+
+  // Update edited content when summary is generated
+  useEffect(() => {
+    if (generatedSummary) {
+      setEditedFrench(generatedSummary.french);
+      setEditedEnglish(generatedSummary.english);
+    }
+  }, [generatedSummary]);
+
+  const selectedStudent = students.find((s) => s.id === selectedStudentId);
 
   const handleGenerateSummary = async () => {
-    if (!selectedStudentId || !fromDate || !toDate) {
+    if (!selectedStudentId) {
+      toast.error('Please select a student');
       return;
     }
 
+    const allFocusAreas = [...focusAreas];
+    if (customFocus.trim()) {
+      allFocusAreas.push(customFocus.trim());
+    }
+
     try {
-      const summary = await generateSummary.mutateAsync({
+      const result = await generateSummary.mutateAsync({
         studentId: selectedStudentId,
-        from: fromDate,
-        to: toDate,
-        focus,
+        from: new Date(dateFrom).toISOString(),
+        to: new Date(dateTo).toISOString(),
+        focus: allFocusAreas.length > 0 ? allFocusAreas : undefined,
       });
-      setGeneratedSummary(summary);
-      setEditedSummary(summary);
+
+      setGeneratedSummary(result);
+      toast.success('Parent summary generated successfully!');
     } catch (error) {
-      console.error('Error generating summary:', error);
+      console.error('Failed to generate summary:', error);
     }
   };
 
-  const handleAddFocus = () => {
-    if (focusInput.trim() && !focus.includes(focusInput.trim())) {
-      setFocus([...focus, focusInput.trim()]);
-      setFocusInput('');
+  const handleRegenerateSummary = async (tone: 'formal' | 'informal' = 'formal') => {
+    if (!selectedStudentId || !generatedSummary) return;
+
+    const allFocusAreas = [...focusAreas];
+    if (customFocus.trim()) {
+      allFocusAreas.push(customFocus.trim());
+    }
+
+    try {
+      const result = await regenerateSummary.mutateAsync({
+        originalFrench: editedFrench,
+        originalEnglish: editedEnglish,
+        studentId: selectedStudentId,
+        from: new Date(dateFrom).toISOString(),
+        to: new Date(dateTo).toISOString(),
+        focus: allFocusAreas.length > 0 ? allFocusAreas : undefined,
+        tone,
+      });
+
+      setGeneratedSummary(result);
+      toast.success('Summary regenerated with variation!');
+    } catch (error) {
+      console.error('Failed to regenerate summary:', error);
     }
   };
 
-  const handleRemoveFocus = (item: string) => {
-    setFocus(focus.filter((f) => f !== item));
+  const handleSaveSummary = async () => {
+    if (!selectedStudentId || !editedFrench || !editedEnglish) {
+      toast.error('Please ensure all fields are filled');
+      return;
+    }
+
+    const allFocusAreas = [...focusAreas];
+    if (customFocus.trim()) {
+      allFocusAreas.push(customFocus.trim());
+    }
+
+    try {
+      await saveSummary.mutateAsync({
+        studentId: selectedStudentId,
+        dateFrom: new Date(dateFrom).toISOString(),
+        dateTo: new Date(dateTo).toISOString(),
+        focus: allFocusAreas,
+        contentFr: editedFrench,
+        contentEn: editedEnglish,
+        isDraft,
+      });
+
+      onClose();
+    } catch (error) {
+      console.error('Failed to save summary:', error);
+    }
+  };
+
+  const handleFocusAreaToggle = (area: string) => {
+    setFocusAreas((prev) =>
+      prev.includes(area) ? prev.filter((a) => a !== area) : [...prev, area],
+    );
   };
 
   const handleExport = (format: 'pdf' | 'html' | 'markdown') => {
-    if (!editedSummary) return;
+    if (!generatedSummary || !selectedStudent) return;
 
-    const content = `# Parent Summary
+    const content = `
+# Parent Summary - ${selectedStudent.firstName} ${selectedStudent.lastName}
 
-## French
-${editedSummary.french}
+**Period:** ${dateFrom} to ${dateTo}
+${focusAreas.length > 0 || customFocus ? `**Focus Areas:** ${[...focusAreas, customFocus].filter(Boolean).join(', ')}` : ''}
 
-## English
-${editedSummary.english}
-`;
+## French Summary
+${editedFrench}
 
-    const blob = new Blob([content], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `parent-summary-${selectedStudentId}-${fromDate}-to-${toDate}.${format === 'markdown' ? 'md' : 'txt'}`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+## English Summary
+${editedEnglish}
+
+---
+Generated with Teaching Engine 2.0
+    `;
+
+    if (format === 'markdown') {
+      const blob = new Blob([content], { type: 'text/markdown' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `parent-summary-${selectedStudent.firstName}-${selectedStudent.lastName}.md`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } else if (format === 'html') {
+      const htmlContent = content
+        .replace(/# /g, '<h1>')
+        .replace(/## /g, '<h2>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n/g, '<br>');
+
+      const blob = new Blob([`<html><body>${htmlContent}</body></html>`], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `parent-summary-${selectedStudent.firstName}-${selectedStudent.lastName}.html`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } else if (format === 'pdf') {
+      // For PDF, we'd need a PDF library - for now just show a message
+      toast.info('PDF export would require additional library integration');
+    }
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6">
-      <div className="bg-white rounded-lg shadow-sm border p-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">AI Parent Summary Composer</h2>
+    <Dialog
+      open={isOpen}
+      onOpenChange={(open) => !open && onClose()}
+      title="AI Parent Summary Composer"
+      maxWidth="4xl"
+    >
+      <div className="space-y-6">
+        {/* Student Selection */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Select Student</label>
+          <select
+            value={selectedStudentId || ''}
+            onChange={(e) => setSelectedStudentId(e.target.value ? parseInt(e.target.value) : null)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="">Choose a student...</option>
+            {students.map((student) => (
+              <option key={student.id} value={student.id}>
+                {student.firstName} {student.lastName} (Grade {student.grade})
+              </option>
+            ))}
+          </select>
+        </div>
 
-        {/* Configuration Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        {/* Date Range */}
+        <div className="grid grid-cols-2 gap-4">
           <div>
-            <Label htmlFor="student">Student</Label>
-            <select
-              id="student"
-              value={selectedStudentId || ''}
-              onChange={(e) => setSelectedStudentId(Number(e.target.value) || null)}
+            <label className="block text-sm font-medium text-gray-700 mb-2">From Date</label>
+            <input
+              type="date"
+              value={dateFrom}
+              onChange={(e) => setDateFrom(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="">Select a student</option>
-              {students.map((student) => (
-                <option key={student.id} value={student.id}>
-                  {student.name}
-                </option>
-              ))}
-            </select>
+            />
           </div>
-
-          <div className="grid grid-cols-2 gap-2">
-            <div>
-              <Label htmlFor="fromDate">From Date</Label>
-              <Input
-                type="date"
-                id="fromDate"
-                value={fromDate}
-                onChange={(e) => setFromDate(e.target.value)}
-              />
-            </div>
-            <div>
-              <Label htmlFor="toDate">To Date</Label>
-              <Input
-                type="date"
-                id="toDate"
-                value={toDate}
-                onChange={(e) => setToDate(e.target.value)}
-              />
-            </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">To Date</label>
+            <input
+              type="date"
+              value={dateTo}
+              onChange={(e) => setDateTo(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
           </div>
         </div>
 
-        {/* Focus Areas Section */}
-        <div className="mb-6">
-          <Label htmlFor="focus">Focus Areas (optional)</Label>
-          <div className="flex gap-2 mb-2">
-            <Input
-              id="focus"
-              value={focusInput}
-              onChange={(e) => setFocusInput(e.target.value)}
-              placeholder="e.g., oral language, literacy"
-              onKeyPress={(e) => e.key === 'Enter' && handleAddFocus()}
-            />
-            <Button type="button" onClick={handleAddFocus} variant="outline">
-              Add
-            </Button>
+        {/* Focus Areas */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Focus Areas (Optional)
+          </label>
+          <div className="flex flex-wrap gap-2 mb-3">
+            {focusOptions.map((area) => (
+              <button
+                key={area}
+                type="button"
+                onClick={() => handleFocusAreaToggle(area)}
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                  focusAreas.includes(area)
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                {area}
+              </button>
+            ))}
           </div>
-          {focus.length > 0 && (
-            <div className="flex flex-wrap gap-1">
-              {focus.map((item, index) => (
-                <span
-                  key={index}
-                  className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
-                >
-                  {item}
-                  <button
-                    onClick={() => handleRemoveFocus(item)}
-                    className="ml-1 text-blue-600 hover:text-blue-800"
-                  >
-                    ×
-                  </button>
-                </span>
-              ))}
-            </div>
-          )}
+          <input
+            type="text"
+            placeholder="Add custom focus area..."
+            value={customFocus}
+            onChange={(e) => setCustomFocus(e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
         </div>
 
         {/* Generate Button */}
-        <Button
-          onClick={handleGenerateSummary}
-          disabled={!selectedStudentId || !fromDate || !toDate || generateSummary.isPending}
-          className="w-full md:w-auto"
-        >
-          {generateSummary.isPending ? '🧠 Generating...' : '🧠 Generate Summary'}
-        </Button>
-      </div>
-
-      {/* Generated Summary Section */}
-      {generatedSummary && editedSummary && (
-        <div className="bg-white rounded-lg shadow-sm border p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Generated Summary</h3>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* French Summary */}
-            <div>
-              <Label htmlFor="french-summary">🇫🇷 French Summary</Label>
-              <Textarea
-                id="french-summary"
-                value={editedSummary.french}
-                onChange={(e) =>
-                  setEditedSummary({
-                    ...editedSummary,
-                    french: e.target.value,
-                  })
-                }
-                rows={8}
-                className="w-full"
-              />
-            </div>
-
-            {/* English Summary */}
-            <div>
-              <Label htmlFor="english-summary">🇬🇧 English Summary</Label>
-              <Textarea
-                id="english-summary"
-                value={editedSummary.english}
-                onChange={(e) =>
-                  setEditedSummary({
-                    ...editedSummary,
-                    english: e.target.value,
-                  })
-                }
-                rows={8}
-                className="w-full"
-              />
-            </div>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex flex-wrap gap-2 mt-6">
-            <Button onClick={() => setEditedSummary(generatedSummary)} variant="outline">
-              🔄 Reset to Original
-            </Button>
+        {!generatedSummary && (
+          <div className="flex justify-center">
             <Button
               onClick={handleGenerateSummary}
-              variant="outline"
-              disabled={generateSummary.isPending}
+              disabled={!selectedStudentId || generateSummary.isPending}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2"
             >
-              🔄 Regenerate
-            </Button>
-            <Button onClick={() => handleExport('markdown')} variant="outline">
-              📤 Export (Markdown)
-            </Button>
-            <Button onClick={() => handleExport('html')} variant="outline">
-              📤 Export (HTML)
-            </Button>
-            <Button
-              onClick={() =>
-                navigator.clipboard?.writeText(
-                  `French:\n${editedSummary.french}\n\nEnglish:\n${editedSummary.english}`,
-                )
-              }
-              variant="outline"
-            >
-              📋 Copy to Clipboard
+              {generateSummary.isPending ? (
+                <>
+                  <span className="animate-spin mr-2">🧠</span>
+                  Generating Summary...
+                </>
+              ) : (
+                <>🧠 Generate Summary</>
+              )}
             </Button>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Tips Section */}
-      <div className="bg-blue-50 rounded-lg p-4">
-        <h4 className="font-medium text-blue-900 mb-2">💡 Tips for Better Summaries</h4>
-        <ul className="text-sm text-blue-800 space-y-1">
-          <li>• Select a meaningful date range (e.g., term or month)</li>
-          <li>• Add focus areas to target specific subjects or skills</li>
-          <li>• Edit the generated text to add personal observations</li>
-          <li>• Use these summaries for parent-teacher conferences or report cards</li>
-        </ul>
+        {/* Generated Summary Display */}
+        {generatedSummary && (
+          <div className="space-y-4">
+            <div className="flex justify-between items-center">
+              <h3 className="text-lg font-semibold">Generated Summary</h3>
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => handleRegenerateSummary('formal')}
+                  disabled={regenerateSummary.isPending}
+                  variant="secondary"
+                  size="sm"
+                >
+                  🔄 Regenerate
+                </Button>
+                <Button onClick={() => setIsEditing(!isEditing)} variant="secondary" size="sm">
+                  ✏️ {isEditing ? 'Preview' : 'Edit'}
+                </Button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              {/* French Summary */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+                  🇫🇷 French Summary
+                </label>
+                {isEditing ? (
+                  <textarea
+                    value={editedFrench}
+                    onChange={(e) => setEditedFrench(e.target.value)}
+                    rows={8}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                ) : (
+                  <div className="p-3 border border-gray-300 rounded-md bg-gray-50 min-h-[200px] whitespace-pre-wrap">
+                    {editedFrench}
+                  </div>
+                )}
+              </div>
+
+              {/* English Summary */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+                  🇬🇧 English Summary
+                </label>
+                {isEditing ? (
+                  <textarea
+                    value={editedEnglish}
+                    onChange={(e) => setEditedEnglish(e.target.value)}
+                    rows={8}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                ) : (
+                  <div className="p-3 border border-gray-300 rounded-md bg-gray-50 min-h-[200px] whitespace-pre-wrap">
+                    {editedEnglish}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Draft Toggle */}
+            <div className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                id="isDraft"
+                checked={isDraft}
+                onChange={(e) => setIsDraft(e.target.checked)}
+                className="rounded"
+              />
+              <label htmlFor="isDraft" className="text-sm text-gray-700">
+                Save as draft
+              </label>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex justify-between">
+              <div className="flex gap-2">
+                <Button onClick={() => handleExport('markdown')} variant="secondary" size="sm">
+                  📤 Export MD
+                </Button>
+                <Button onClick={() => handleExport('html')} variant="secondary" size="sm">
+                  📤 Export HTML
+                </Button>
+              </div>
+
+              <div className="flex gap-2">
+                <Button onClick={onClose} variant="secondary">
+                  Cancel
+                </Button>
+                <Button
+                  onClick={handleSaveSummary}
+                  disabled={saveSummary.isPending}
+                  className="bg-green-600 hover:bg-green-700 text-white"
+                >
+                  {saveSummary.isPending ? 'Saving...' : '🗂️ Save to Student Profile'}
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-    </div>
+    </Dialog>
   );
 }

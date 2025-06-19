@@ -36,11 +36,18 @@ export function useForm<T extends Record<string, unknown>>({
       if (!validationSchema) return undefined;
 
       try {
-        const fieldSchema = validationSchema.shape?.[name as keyof T];
-        if (fieldSchema) {
-          fieldSchema.parse(value);
+        // For object schemas, try to get the field schema
+        if ('shape' in validationSchema && validationSchema.shape) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const fieldSchema = (validationSchema.shape as Record<string, any>)[name];
+          if (fieldSchema && typeof fieldSchema === 'object' && 'parse' in fieldSchema) {
+            (fieldSchema as z.ZodSchema).parse(value);
+          } else {
+            // Validate entire object if can't extract field schema
+            validationSchema.parse({ ...values, [name]: value });
+          }
         } else {
-          // Validate entire object if can't extract field schema
+          // Validate entire object for non-object schemas
           validationSchema.parse({ ...values, [name]: value });
         }
         return undefined;
@@ -184,12 +191,12 @@ export function useForm<T extends Record<string, unknown>>({
   // Get field props
   const getFieldProps = useCallback(
     (name: keyof T) => ({
-      name: name as string,
+      name: String(name),
       value: values[name] || '',
       onChange: handleChange,
       onBlur: handleBlur,
-      'aria-invalid': !!errors[name as string],
-      'aria-describedby': errors[name as string] ? `${name}-error` : undefined,
+      'aria-invalid': !!errors[String(name)],
+      'aria-describedby': errors[String(name)] ? `${String(name)}-error` : undefined,
     }),
     [values, handleChange, handleBlur, errors],
   );

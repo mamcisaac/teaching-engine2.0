@@ -1,262 +1,143 @@
-import React, { useState, useEffect } from 'react';
-import { format } from 'date-fns';
-// Using simple text icons instead of lucide-react
-import { ReflectionJournalEntry, ReflectionInput } from '../../types';
-import { useCreateReflection, useUpdateReflection } from '../../hooks/useReflections';
-import { useOutcomes, useThematicUnits, useAssessmentTemplates } from '../../api';
-import { OutcomeSelector } from '../OutcomeSelector';
-import { useToast } from '../../hooks/useToast';
+import React, { useState } from 'react';
+import { Button } from '../ui/Button';
+import { Textarea } from '../ui/Textarea';
+import { useOutcomes } from '../../api';
 
 interface ReflectionEditorProps {
-  reflection?: ReflectionJournalEntry;
-  initialOutcomeId?: string;
-  initialThemeId?: number;
-  initialAssessmentId?: number;
-  onSave?: (reflection: ReflectionJournalEntry) => void;
-  onCancel?: () => void;
+  outcomeId?: string;
+  onSave: (reflection: { content: string; outcomeId?: string }) => void;
+  onCancel: () => void;
+  initialContent?: string;
+  isLoading?: boolean;
 }
 
 export default function ReflectionEditor({
-  reflection,
-  initialOutcomeId,
-  initialThemeId,
-  initialAssessmentId,
+  outcomeId,
   onSave,
   onCancel,
+  initialContent = '',
+  isLoading = false,
 }: ReflectionEditorProps) {
-  const { toast } = useToast();
-  const createReflection = useCreateReflection();
-  const updateReflection = useUpdateReflection();
+  const [content, setContent] = useState(initialContent);
+  const [selectedOutcomeId, setSelectedOutcomeId] = useState(outcomeId || '');
+
   const { data: outcomes = [] } = useOutcomes();
-  const { data: thematicUnits = [] } = useThematicUnits();
-  const { data: assessmentTemplates = [] } = useAssessmentTemplates();
 
-  const [formData, setFormData] = useState<ReflectionInput>({
-    date: reflection?.date || format(new Date(), 'yyyy-MM-dd'),
-    content: reflection?.content || '',
-    outcomeIds:
-      reflection?.outcomes?.map((o) => o.outcome.id) ||
-      (initialOutcomeId ? [initialOutcomeId] : []),
-    themeId: reflection?.themeId ?? initialThemeId,
-    assessmentId: reflection?.assessmentId ?? initialAssessmentId,
-  });
+  const handleSave = () => {
+    if (!content.trim()) return;
 
-  const [showOutcomeSelector, setShowOutcomeSelector] = useState(false);
-
-  useEffect(() => {
-    if (reflection) {
-      setFormData({
-        date: reflection.date,
-        content: reflection.content,
-        outcomeIds: reflection.outcomes?.map((o) => o.outcome.id) || [],
-        themeId: reflection.themeId ?? undefined,
-        assessmentId: reflection.assessmentId ?? undefined,
-      });
-    }
-  }, [reflection]);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!formData.content.trim()) {
-      toast({ type: 'error', message: 'Please enter reflection content' });
-      return;
-    }
-
-    try {
-      let savedReflection: ReflectionJournalEntry;
-
-      if (reflection) {
-        savedReflection = await updateReflection.mutateAsync({
-          id: reflection.id,
-          data: formData,
-        });
-        toast({ type: 'success', message: 'Reflection updated successfully' });
-      } else {
-        savedReflection = await createReflection.mutateAsync(formData);
-        toast({ type: 'success', message: 'Reflection created successfully' });
-      }
-
-      onSave?.(savedReflection);
-
-      // Reset form if creating new
-      if (!reflection) {
-        setFormData({
-          date: format(new Date(), 'yyyy-MM-dd'),
-          content: '',
-          outcomeIds: initialOutcomeId ? [initialOutcomeId] : [],
-          themeId: initialThemeId,
-          assessmentId: initialAssessmentId,
-        });
-      }
-    } catch (error) {
-      toast({ type: 'error', message: 'Failed to save reflection' });
-    }
+    onSave({
+      content: content.trim(),
+      outcomeId: selectedOutcomeId || undefined,
+    });
   };
 
-  const selectedOutcomes = outcomes.filter((o) => formData.outcomeIds?.includes(o.id));
+  const selectedOutcome = outcomes.find((o) => o.id === selectedOutcomeId);
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">📅 Date</label>
-          <input
-            type="date"
-            value={formData.date}
-            onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
-          />
-        </div>
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+      <h3 className="text-lg font-semibold text-gray-900 mb-4">Add Reflection</h3>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            📚 Theme (Optional)
-          </label>
-          <select
-            value={formData.themeId || ''}
-            onChange={(e) =>
-              setFormData({
-                ...formData,
-                themeId: e.target.value ? parseInt(e.target.value) : undefined,
-              })
-            }
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="">Select a theme...</option>
-            {thematicUnits.map((theme) => (
-              <option key={theme.id} value={theme.id}>
-                {theme.title}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          📋 Assessment (Optional)
+      {/* Outcome Selection */}
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Related Outcome (Optional)
         </label>
         <select
-          value={formData.assessmentId || ''}
-          onChange={(e) =>
-            setFormData({
-              ...formData,
-              assessmentId: e.target.value ? parseInt(e.target.value) : undefined,
-            })
-          }
+          value={selectedOutcomeId}
+          onChange={(e) => setSelectedOutcomeId(e.target.value)}
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          <option value="">Select an assessment...</option>
-          {assessmentTemplates.map((assessment) => (
-            <option key={assessment.id} value={assessment.id}>
-              {assessment.title} ({assessment.type})
+          <option value="">No specific outcome</option>
+          {outcomes.map((outcome) => (
+            <option key={outcome.id} value={outcome.id}>
+              {outcome.code}: {outcome.description}
             </option>
           ))}
         </select>
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Linked Outcomes</label>
-        <div className="space-y-2">
-          {selectedOutcomes.length > 0 ? (
-            <div className="flex flex-wrap gap-2">
-              {selectedOutcomes.map((outcome) => (
-                <div
-                  key={outcome.id}
-                  className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-700"
-                >
-                  <span>
-                    {outcome.code}: {outcome.description}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setFormData({
-                        ...formData,
-                        outcomeIds: formData.outcomeIds?.filter((id) => id !== outcome.id),
-                      })
-                    }
-                    className="ml-2 text-blue-500 hover:text-blue-700"
-                  >
-                    ×
-                  </button>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className="text-gray-500 text-sm">No outcomes linked</p>
-          )}
-          <button
-            type="button"
-            onClick={() => setShowOutcomeSelector(true)}
-            className="px-4 py-2 text-blue-600 border border-blue-600 rounded-md hover:bg-blue-50"
-          >
-            Select Outcomes
-          </button>
-        </div>
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Reflection Content</label>
-        <textarea
-          value={formData.content}
-          onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-          rows={6}
-          maxLength={1000}
-          placeholder="Write your reflection here... What worked well? What challenges did you face? How did students respond?"
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        />
-        <p className="text-sm text-gray-500 mt-1">{formData.content.length}/1000 characters</p>
-      </div>
-
-      <div className="flex justify-end gap-2">
-        {onCancel && (
-          <button
-            type="button"
-            onClick={onCancel}
-            className="px-4 py-2 text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
-          >
-            Cancel
-          </button>
+        {selectedOutcome && (
+          <p className="text-sm text-gray-600 mt-1">{selectedOutcome.description}</p>
         )}
-        <button
-          type="submit"
-          disabled={createReflection.isPending || updateReflection.isPending}
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
-        >
-          {createReflection.isPending || updateReflection.isPending
-            ? 'Saving...'
-            : reflection
-              ? 'Update Reflection'
-              : 'Save Reflection'}
-        </button>
       </div>
 
-      {showOutcomeSelector && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 max-h-96 overflow-y-auto">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold">Select Outcomes</h3>
-              <button
-                onClick={() => setShowOutcomeSelector(false)}
-                className="text-gray-500 hover:text-gray-700"
-              >
-                ×
-              </button>
-            </div>
-            <OutcomeSelector
-              selectedOutcomes={formData.outcomeIds || []}
-              onChange={(outcomeIds) => {
-                setFormData({ ...formData, outcomeIds });
-                setShowOutcomeSelector(false);
-              }}
-            />
-          </div>
+      {/* Content Editor */}
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-2">Reflection Content</label>
+        <Textarea
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          placeholder="Write your reflection here... What went well? What could be improved? What did students learn?"
+          rows={6}
+          className="w-full"
+        />
+        <div className="text-sm text-gray-500 mt-1">{content.length} characters</div>
+      </div>
+
+      {/* Reflection Prompts */}
+      <div className="mb-6">
+        <p className="text-sm font-medium text-gray-700 mb-2">Reflection Prompts:</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          <button
+            type="button"
+            onClick={() =>
+              setContent(
+                (prev) => prev + (prev ? '\n\n' : '') + 'What went well in this activity? ',
+              )
+            }
+            className="text-left text-sm text-blue-600 hover:text-blue-800 p-2 rounded border border-blue-200 hover:bg-blue-50"
+          >
+            💫 What went well?
+          </button>
+          <button
+            type="button"
+            onClick={() =>
+              setContent(
+                (prev) => prev + (prev ? '\n\n' : '') + 'What challenges did students face? ',
+              )
+            }
+            className="text-left text-sm text-blue-600 hover:text-blue-800 p-2 rounded border border-blue-200 hover:bg-blue-50"
+          >
+            🤔 What challenges arose?
+          </button>
+          <button
+            type="button"
+            onClick={() =>
+              setContent(
+                (prev) => prev + (prev ? '\n\n' : '') + 'How could this be improved next time? ',
+              )
+            }
+            className="text-left text-sm text-blue-600 hover:text-blue-800 p-2 rounded border border-blue-200 hover:bg-blue-50"
+          >
+            🔄 How to improve?
+          </button>
+          <button
+            type="button"
+            onClick={() =>
+              setContent(
+                (prev) =>
+                  prev + (prev ? '\n\n' : '') + 'What did students demonstrate they learned? ',
+              )
+            }
+            className="text-left text-sm text-blue-600 hover:text-blue-800 p-2 rounded border border-blue-200 hover:bg-blue-50"
+          >
+            🎯 Student learning evidence?
+          </button>
         </div>
-      )}
-    </form>
+      </div>
+
+      {/* Actions */}
+      <div className="flex justify-end gap-3">
+        <Button variant="secondary" onClick={onCancel} disabled={isLoading}>
+          Cancel
+        </Button>
+        <Button
+          onClick={handleSave}
+          disabled={!content.trim() || isLoading}
+          className="bg-blue-600 hover:bg-blue-700 text-white"
+        >
+          {isLoading ? 'Saving...' : 'Save Reflection'}
+        </Button>
+      </div>
+    </div>
   );
 }

@@ -1,284 +1,295 @@
 import { Router, Request } from 'express';
-import { PrismaClient } from '@teaching-engine/database';
+import { prisma } from '../prisma';
 import { z } from 'zod';
 
-// Extend Request interface to match the auth middleware in index.ts
 interface AuthenticatedRequest extends Request {
-  user?: {
-    userId: string;
-  };
+  user?: { userId: string };
 }
 
 const router = Router();
-const prisma = new PrismaClient();
 
+// Validation schemas
 const createReflectionSchema = z.object({
-  date: z.string().transform((str) => new Date(str)),
-  content: z.string().min(1).max(1000),
-  outcomeIds: z.array(z.string()).default([]),
-  themeId: z.number().optional(),
-  assessmentId: z.number().optional(),
+  content: z.string().min(1).max(5000),
+  outcomeId: z.string(),
 });
 
 const updateReflectionSchema = z.object({
-  date: z
-    .string()
-    .transform((str) => new Date(str))
-    .optional(),
-  content: z.string().min(1).max(1000).optional(),
-  outcomeIds: z.array(z.string()).optional(),
-  themeId: z.number().nullable().optional(),
-  assessmentId: z.number().nullable().optional(),
+  content: z.string().min(1).max(5000),
 });
 
-// Auth middleware is applied at the app level
-
-// GET /api/reflections
-router.get('/', async (req: AuthenticatedRequest, res) => {
+// Get all reflections for the authenticated user
+router.get('/', async (req: AuthenticatedRequest, res, next) => {
   try {
-    const userId = parseInt(req.user!.userId);
-    const { outcomeId, themeId, term, startDate, endDate } = req.query;
-
-    const where: {
-      userId: number;
-      outcomes?: { some: { outcomeId: string } };
-      themeId?: number;
-      date?: { gte?: Date; lte?: Date };
-    } = { userId };
-
-    if (outcomeId) {
-      where.outcomes = {
-        some: { outcomeId: outcomeId as string },
-      };
+    const userId = req.user?.userId;
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    if (themeId) {
-      where.themeId = parseInt(themeId as string);
-    }
-
-    if (startDate || endDate || term) {
-      where.date = {};
-
-      if (term) {
-        // Handle term-based filtering (e.g., "2024-T1", "2024-T2", etc.)
-        const [year, termNum] = (term as string).split('-T');
-        const yearNum = parseInt(year);
-
-        switch (termNum) {
-          case '1': // Sept-Nov
-            where.date.gte = new Date(yearNum, 8, 1); // September 1
-            where.date.lte = new Date(yearNum, 11, 0); // November 30
-            break;
-          case '2': // Dec-Feb
-            where.date.gte = new Date(yearNum, 11, 1); // December 1
-            where.date.lte = new Date(yearNum + 1, 2, 0); // February 28/29
-            break;
-          case '3': // Mar-Jun
-            where.date.gte = new Date(yearNum + 1, 2, 1); // March 1
-            where.date.lte = new Date(yearNum + 1, 5, 30); // June 30
-            break;
-        }
-      } else {
-        if (startDate) where.date.gte = new Date(startDate as string);
-        if (endDate) where.date.lte = new Date(endDate as string);
-      }
-    }
-
-    const reflections = await prisma.reflectionJournalEntry.findMany({
-      where,
+    const reflections = await prisma.teacherReflection.findMany({
+      where: { userId: parseInt(userId) },
+      orderBy: { createdAt: 'desc' },
       include: {
-        outcomes: {
-          include: { outcome: true },
-        },
-        theme: true,
-        assessment: {
-          include: { template: true },
+        outcome: {
+          select: {
+            id: true,
+            code: true,
+            description: true,
+          },
         },
       },
-      orderBy: { date: 'desc' },
     });
 
     res.json(reflections);
-  } catch (error) {
-    console.error('Error fetching reflections:', error);
-    res.status(500).json({ error: 'Failed to fetch reflections' });
+  } catch (err) {
+    next(err);
   }
 });
 
-// POST /api/reflections
-router.post('/', async (req: AuthenticatedRequest, res) => {
+// Get reflections for a specific outcome
+router.get('/outcome/:outcomeId', async (req: AuthenticatedRequest, res, next) => {
   try {
-    const userId = parseInt(req.user!.userId);
-    const validatedData = createReflectionSchema.parse(req.body);
+    const userId = req.user?.userId;
+    const { outcomeId } = req.params;
 
-    const { outcomeIds, ...reflectionData } = validatedData;
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
 
-    // Create the reflection entry first
-    const reflection = await prisma.reflectionJournalEntry.create({
-      data: {
-        date: reflectionData.date,
-        content: reflectionData.content,
-        themeId: reflectionData.themeId || null,
-        assessmentId: reflectionData.assessmentId || null,
-        userId,
+    const reflections = await prisma.teacherReflection.findMany({
+      where: {
+        userId: parseInt(userId),
+        outcomeId,
+      },
+      orderBy: { createdAt: 'desc' },
+      include: {
+        outcome: {
+          select: {
+            id: true,
+            code: true,
+            description: true,
+          },
+        },
       },
     });
 
-    // Then create the outcome relationships
-    if (outcomeIds.length > 0) {
-      await prisma.reflectionOutcome.createMany({
-        data: outcomeIds.map((outcomeId) => ({
-          reflectionId: reflection.id,
-          outcomeId,
-        })),
+    res.json(reflections);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Create a new reflection
+router.post('/', async (req: AuthenticatedRequest, res, next) => {
+  try {
+    const userId = req.user?.userId;
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const validation = createReflectionSchema.safeParse(req.body);
+    if (!validation.success) {
+      return res.status(400).json({
+        error: 'Invalid request data',
+        details: validation.error.flatten(),
       });
     }
 
-    // Fetch the complete reflection with relationships
-    const completeReflection = await prisma.reflectionJournalEntry.findUnique({
-      where: { id: reflection.id },
-      include: {
-        outcomes: {
-          include: { outcome: true },
-        },
-        theme: true,
-        assessment: {
-          include: { template: true },
+    const { content, outcomeId } = validation.data;
+
+    // Verify that the outcome exists and is accessible to the user
+    const outcome = await prisma.outcome.findFirst({
+      where: {
+        id: outcomeId,
+        milestones: {
+          some: {
+            milestone: {
+              subject: {
+                userId: parseInt(userId),
+              },
+            },
+          },
         },
       },
     });
 
-    res.status(201).json(completeReflection);
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      return res.status(400).json({ error: 'Invalid data', details: error.errors });
+    if (!outcome) {
+      return res.status(404).json({ error: 'Outcome not found or not accessible' });
     }
-    console.error('Error creating reflection:', error);
-    res.status(500).json({ error: 'Failed to create reflection' });
+
+    const reflection = await prisma.teacherReflection.create({
+      data: {
+        content,
+        outcomeId,
+        userId: parseInt(userId),
+      },
+      include: {
+        outcome: {
+          select: {
+            id: true,
+            code: true,
+            description: true,
+          },
+        },
+      },
+    });
+
+    res.status(201).json(reflection);
+  } catch (err) {
+    next(err);
   }
 });
 
-// PATCH /api/reflections/:id
-router.patch('/:id', async (req: AuthenticatedRequest, res) => {
+// Update a reflection
+router.put('/:id', async (req: AuthenticatedRequest, res, next) => {
   try {
-    const userId = parseInt(req.user!.userId);
+    const userId = req.user?.userId;
     const reflectionId = parseInt(req.params.id);
 
-    // Verify ownership
-    const existing = await prisma.reflectionJournalEntry.findFirst({
-      where: { id: reflectionId, userId },
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const validation = updateReflectionSchema.safeParse(req.body);
+    if (!validation.success) {
+      return res.status(400).json({
+        error: 'Invalid request data',
+        details: validation.error.flatten(),
+      });
+    }
+
+    const { content } = validation.data;
+
+    // Verify the reflection belongs to the user
+    const existingReflection = await prisma.teacherReflection.findFirst({
+      where: {
+        id: reflectionId,
+        userId: parseInt(userId),
+      },
     });
 
-    if (!existing) {
+    if (!existingReflection) {
       return res.status(404).json({ error: 'Reflection not found' });
     }
 
-    const validatedData = updateReflectionSchema.parse(req.body);
-    const { outcomeIds, ...updateData } = validatedData;
-
-    // Handle outcome updates separately if provided
-    if (outcomeIds !== undefined) {
-      // Delete existing outcome connections
-      await prisma.reflectionOutcome.deleteMany({
-        where: { reflectionId },
-      });
-
-      // Create new outcome connections
-      if (outcomeIds.length > 0) {
-        await prisma.reflectionOutcome.createMany({
-          data: outcomeIds.map((outcomeId) => ({
-            reflectionId,
-            outcomeId,
-          })),
-        });
-      }
-    }
-
-    const reflection = await prisma.reflectionJournalEntry.update({
+    const reflection = await prisma.teacherReflection.update({
       where: { id: reflectionId },
-      data: updateData,
+      data: { content },
       include: {
-        outcomes: {
-          include: { outcome: true },
-        },
-        theme: true,
-        assessment: {
-          include: { template: true },
+        outcome: {
+          select: {
+            id: true,
+            code: true,
+            description: true,
+          },
         },
       },
     });
 
     res.json(reflection);
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      return res.status(400).json({ error: 'Invalid data', details: error.errors });
-    }
-    console.error('Error updating reflection:', error);
-    res.status(500).json({ error: 'Failed to update reflection' });
+  } catch (err) {
+    next(err);
   }
 });
 
-// DELETE /api/reflections/:id
-router.delete('/:id', async (req: AuthenticatedRequest, res) => {
+// Delete a reflection
+router.delete('/:id', async (req: AuthenticatedRequest, res, next) => {
   try {
-    const userId = parseInt(req.user!.userId);
+    const userId = req.user?.userId;
     const reflectionId = parseInt(req.params.id);
 
-    // Verify ownership
-    const existing = await prisma.reflectionJournalEntry.findFirst({
-      where: { id: reflectionId, userId },
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    // Verify the reflection belongs to the user
+    const existingReflection = await prisma.teacherReflection.findFirst({
+      where: {
+        id: reflectionId,
+        userId: parseInt(userId),
+      },
     });
 
-    if (!existing) {
+    if (!existingReflection) {
       return res.status(404).json({ error: 'Reflection not found' });
     }
 
-    // Delete related outcomes first
-    await prisma.reflectionOutcome.deleteMany({
-      where: { reflectionId },
-    });
-
-    // Delete the reflection
-    await prisma.reflectionJournalEntry.delete({
+    await prisma.teacherReflection.delete({
       where: { id: reflectionId },
     });
 
     res.status(204).send();
-  } catch (error) {
-    console.error('Error deleting reflection:', error);
-    res.status(500).json({ error: 'Failed to delete reflection' });
+  } catch (err) {
+    next(err);
   }
 });
 
-// GET /api/reflections/by-outcome/:outcomeId
-router.get('/by-outcome/:outcomeId', async (req: AuthenticatedRequest, res) => {
+// Get reflection statistics
+router.get('/stats', async (req: AuthenticatedRequest, res, next) => {
   try {
-    const userId = parseInt(req.user!.userId);
-    const outcomeId = req.params.outcomeId;
+    const userId = req.user?.userId;
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
 
-    const reflections = await prisma.reflectionJournalEntry.findMany({
-      where: {
-        userId,
-        outcomes: {
-          some: { outcomeId },
-        },
-      },
-      include: {
-        outcomes: {
-          include: { outcome: true },
-        },
-        theme: true,
-        assessment: {
-          include: { template: true },
-        },
-      },
-      orderBy: { date: 'desc' },
+    const totalReflections = await prisma.teacherReflection.count({
+      where: { userId: parseInt(userId) },
     });
 
-    res.json(reflections);
-  } catch (error) {
-    console.error('Error fetching reflections by outcome:', error);
-    res.status(500).json({ error: 'Failed to fetch reflections' });
+    const reflectionsThisMonth = await prisma.teacherReflection.count({
+      where: {
+        userId: parseInt(userId),
+        createdAt: {
+          gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+        },
+      },
+    });
+
+    const outcomesWithReflections = await prisma.teacherReflection.groupBy({
+      by: ['outcomeId'],
+      where: { userId: parseInt(userId) },
+      _count: { outcomeId: true },
+    });
+
+    const mostReflectedOutcome =
+      outcomesWithReflections.length > 0
+        ? await prisma.outcome.findFirst({
+            where: {
+              id: outcomesWithReflections.reduce((prev, current) =>
+                prev._count.outcomeId > current._count.outcomeId ? prev : current,
+              ).outcomeId,
+            },
+            select: {
+              id: true,
+              code: true,
+              description: true,
+            },
+          })
+        : null;
+
+    const recentReflections = await prisma.teacherReflection.findMany({
+      where: { userId: parseInt(userId) },
+      orderBy: { createdAt: 'desc' },
+      take: 5,
+      include: {
+        outcome: {
+          select: {
+            id: true,
+            code: true,
+          },
+        },
+      },
+    });
+
+    res.json({
+      totalReflections,
+      reflectionsThisMonth,
+      uniqueOutcomesReflected: outcomesWithReflections.length,
+      mostReflectedOutcome,
+      recentReflections,
+    });
+  } catch (err) {
+    next(err);
   }
 });
 

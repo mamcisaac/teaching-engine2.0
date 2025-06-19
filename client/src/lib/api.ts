@@ -29,3 +29,6 @@ apiClient.interceptors.response.use(
     return Promise.reject(error);
   },
 );
+
+// Export as 'api' for backward compatibility
+export const api = apiClient;

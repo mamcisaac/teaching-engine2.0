@@ -18,7 +18,12 @@ export function ActivitySelectorMulti({ selectedActivities, onSelectionChange }:
 
     const grouped = new Map<
       number,
-      { milestone: { id: number; title: string } | undefined; activities: Activity[] }
+      {
+        milestone:
+          | { id: number; subjectId: number; subject?: { id: number; name: string } }
+          | undefined;
+        activities: Activity[];
+      }
     >();
 
     activities.forEach((activity) => {

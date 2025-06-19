@@ -270,22 +270,14 @@ describe('AI Suggestions API', () => {
         });
 
       expect(response.status).toBe(200);
-      expect(response.body.activityId).toBeDefined();
-
-      // Verify the activity was created
-      const activity = await prisma.activity.findUnique({
-        where: { id: response.body.activityId },
-        include: { outcomes: true },
-      });
-
-      expect(activity).toBeTruthy();
-      expect(activity?.title).toBe('Test Suggestion');
-      expect(activity?.milestoneId).toBe(milestoneId);
-      expect(activity?.durationMins).toBe(45);
+      expect(response.body.id).toBeDefined();
+      expect(response.body.title).toBe('Test Suggestion');
+      expect(response.body.publicNoteFr).toBe('Description française');
+      expect(response.body.durationMins).toBe(45);
 
       // Verify outcome linkage
-      expect(activity?.outcomes).toHaveLength(1);
-      expect(activity?.outcomes[0].outcomeId).toBe(outcomeId);
+      expect(response.body.outcomes).toHaveLength(1);
+      expect(response.body.outcomes[0].outcomeId).toBe(outcomeId);
     });
 
     it('should allow customizing activity details', async () => {
@@ -303,7 +295,7 @@ describe('AI Suggestions API', () => {
       expect(response.status).toBe(200);
 
       const activity = await prisma.activity.findUnique({
-        where: { id: response.body.activityId },
+        where: { id: response.body.id },
       });
 
       expect(activity?.title).toBe('Custom Title');
