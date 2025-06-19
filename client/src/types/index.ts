@@ -488,3 +488,95 @@ export interface ParentMessageInput {
   linkedOutcomeIds?: string[];
   linkedActivityIds?: number[];
 }
+
+export interface Student {
+  id: number;
+  firstName: string;
+  lastName: string;
+  grade?: string | null;
+  teacherId: number;
+  parentEmail?: string | null;
+  notes?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface StudentArtifact {
+  id: number;
+  studentId: number;
+  title: string;
+  filePath: string;
+  type: 'image' | 'audio' | 'video' | 'pdf';
+  date: string;
+  notes?: string | null;
+  outcomeIds: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface StudentAssessmentResult {
+  id: number;
+  studentId: number;
+  assessmentResultId: number;
+  score?: number | null;
+  notes?: string | null;
+  createdAt: string;
+  updatedAt: string;
+  assessmentResult?: AssessmentResult | null;
+}
+
+export interface ReflectionJournalEntry {
+  id: number;
+  teacherId: number;
+  date: string;
+  content: string;
+  tags: string[];
+  outcomeIds: string[];
+  createdAt: string;
+  updatedAt: string;
+  studentTags?: Student[];
+}
+
+export interface StudentProfile extends Student {
+  artifacts: StudentArtifact[];
+  assessmentResults: StudentAssessmentResult[];
+  reflectionTags: ReflectionJournalEntry[];
+}
+
+export interface StudentInput {
+  firstName: string;
+  lastName: string;
+  grade?: string;
+  parentEmail?: string;
+  notes?: string;
+}
+
+export interface StudentArtifactInput {
+  title: string;
+  filePath: string;
+  type: 'image' | 'audio' | 'video' | 'pdf';
+  date: string;
+  outcomeIds?: string[];
+  notes?: string;
+}
+
+export interface ReflectionInput {
+  date: string;
+  content: string;
+  tags?: string[];
+  studentIds?: number[];
+  outcomeIds?: string[];
+}
+
+export interface StudentOutcomeSummary {
+  studentId: number;
+  totalOutcomesCovered: number;
+  outcomeSummary: Array<{
+    outcome: Outcome;
+    coverage: {
+      count: number;
+      lastActivity: string | null;
+      sources: string[];
+    };
+  }>;
+}

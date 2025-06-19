@@ -36,6 +36,11 @@ import type {
   MaterialList,
   DailyPlan,
   CompleteActivityResponse,
+  Student,
+  StudentInput,
+  StudentArtifact,
+  StudentArtifactInput,
+  ReflectionInput,
 } from './types';
 
 import type {
@@ -1519,6 +1524,163 @@ export const useDeleteMediaResource = () => {
       const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
       toast.error(
         'Failed to delete media resource: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+// Student Management API Functions
+export const useStudents = () => {
+  return useQuery({
+    queryKey: ['students'],
+    queryFn: async () => (await api.get('/api/students')).data,
+  });
+};
+
+export const useStudent = (id: number) => {
+  return useQuery({
+    queryKey: ['students', id],
+    queryFn: async () => (await api.get(`/api/students/${id}`)).data,
+    enabled: id > 0,
+  });
+};
+
+export const useStudentProfile = (id: number) => {
+  return useQuery({
+    queryKey: ['students', id, 'profile'],
+    queryFn: async () => (await api.get(`/api/students/${id}/profile`)).data,
+    enabled: id > 0,
+  });
+};
+
+export const useCreateStudent = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (data: StudentInput) => (await api.post('/api/students', data)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['students'] });
+      toast.success('Student created successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to create student: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useUpdateStudent = () => {
+  const queryClient = useQueryClient();
+  return useMutation<Student, Error, { id: number; data: Partial<StudentInput> }>({
+    mutationFn: async ({ id, data }) => (await api.put(`/api/students/${id}`, data)).data,
+    onSuccess: (_, { id }) => {
+      queryClient.invalidateQueries({ queryKey: ['students'] });
+      queryClient.invalidateQueries({ queryKey: ['students', id] });
+      toast.success('Student updated successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to update student: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useDeleteStudent = () => {
+  const queryClient = useQueryClient();
+  return useMutation<void, Error, number>({
+    mutationFn: async (id) => (await api.delete(`/api/students/${id}`)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['students'] });
+      toast.success('Student deleted successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to delete student: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+// Student Artifacts API Functions
+export const useStudentArtifacts = (studentId: number) => {
+  return useQuery({
+    queryKey: ['students', studentId, 'artifacts'],
+    queryFn: async () => (await api.get(`/api/students/${studentId}/artifacts`)).data,
+    enabled: studentId > 0,
+  });
+};
+
+export const useCreateStudentArtifact = () => {
+  const queryClient = useQueryClient();
+  return useMutation<StudentArtifact, Error, { studentId: number; data: StudentArtifactInput }>({
+    mutationFn: async ({ studentId, data }) =>
+      (await api.post(`/api/students/${studentId}/artifacts`, data)).data,
+    onSuccess: (_, { studentId }) => {
+      queryClient.invalidateQueries({ queryKey: ['students', studentId, 'artifacts'] });
+      queryClient.invalidateQueries({ queryKey: ['students', studentId, 'profile'] });
+      toast.success('Artifact uploaded successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to upload artifact: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useDeleteStudentArtifact = () => {
+  const queryClient = useQueryClient();
+  return useMutation<void, Error, { studentId: number; artifactId: number }>({
+    mutationFn: async ({ studentId, artifactId }) =>
+      (await api.delete(`/api/students/${studentId}/artifacts/${artifactId}`)).data,
+    onSuccess: (_, { studentId }) => {
+      queryClient.invalidateQueries({ queryKey: ['students', studentId, 'artifacts'] });
+      queryClient.invalidateQueries({ queryKey: ['students', studentId, 'profile'] });
+      toast.success('Artifact deleted successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to delete artifact: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+// Student Outcome Summary
+export const useStudentOutcomeSummary = (studentId: number) => {
+  return useQuery({
+    queryKey: ['students', studentId, 'outcome-summary'],
+    queryFn: async () => (await api.get(`/api/students/${studentId}/outcome-summary`)).data,
+    enabled: studentId > 0,
+  });
+};
+
+// Reflection Journal API Functions
+export const useCreateReflection = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (data: ReflectionInput) =>
+      (await api.post('/api/students/reflections', data)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['reflections'] });
+      toast.success('Reflection created successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to create reflection: ' +
           (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
       );
     },
