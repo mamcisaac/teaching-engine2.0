@@ -43,10 +43,18 @@ Teaching Engine 2.0 aims to be the "digital teaching assistant" that reduces adm
   - Integrated resource selector in Daily Planner and Newsletter Editor
   - Automatic file type detection and validation
 - **Parent Communication Center**: Centralized hub for parent communications
+
   - Create bilingual newsletters (French/English) with activity links
   - Link messages to classroom activities and learning outcomes
   - Export in multiple formats (PDF, HTML, Markdown)
   - Manage all parent communications from one location
+
+- **Curriculum Alignment Audit Tool**: Comprehensive curriculum coverage analysis
+  - Visual dashboard showing outcome coverage status and gaps
+  - Filter by term, subject, grade, and domain
+  - Identify uncovered, overused, and unassessed outcomes
+  - Export audit reports in CSV and Markdown formats
+  - Color-coded indicators for quick visual assessment
 
 #### In Progress
 
@@ -168,6 +176,16 @@ Centralized parent communication management:
 - Link activities and outcomes to provide context
 - Export newsletters in multiple formats
 - Track communication history
+
+### Curriculum Alignment Audit Tool
+
+Analyze curriculum coverage and identify gaps:
+
+- Access via Navigation → Curriculum Audit
+- Filter outcomes by subject, grade, term, or domain
+- View detailed coverage statistics and visual indicators
+- Export comprehensive reports for planning and accountability
+- Identify outcomes that need attention or are overused
 
 ## API
 

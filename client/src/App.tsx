@@ -27,6 +27,7 @@ const WeeklyPlannerPage = lazy(() => import('./pages/WeeklyPlannerPage'));
 const NewsletterEditor = lazy(() => import('./pages/NewsletterEditor'));
 const OutcomesPage = lazy(() => import('./pages/OutcomesPage'));
 const CoveragePage = lazy(() => import('./pages/CoveragePage'));
+const CurriculumAuditPage = lazy(() => import('./pages/CurriculumAuditPage'));
 const ParentMessagesPage = lazy(() => import('./pages/ParentMessagesPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 
@@ -191,6 +192,14 @@ function AppRoutes() {
           element={
             <Suspense fallback={<SuspenseFallback />}>
               <CoveragePage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/curriculum-audit"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <CurriculumAuditPage />
             </Suspense>
           }
         />
