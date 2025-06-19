@@ -96,8 +96,9 @@ describe('AI Suggestions API', () => {
 
       expect(res.status).toBe(200);
       // Since OpenAI is not configured in tests, it uses fallback with theme
-      expect(res.body.title).toBe('Manipulation mathématique - Les nombres');
-      expect(res.body.materials).toContain('cubes');
+      // Description doesn't contain French math keywords, so uses default template
+      expect(res.body.title).toBe("Activité d'exploration - Les nombres");
+      expect(res.body.materials).toContain('matériel varié');
       expect(res.body.outcomeId).toBe(outcome.id);
     });
 

@@ -272,7 +272,7 @@ describe('AI Suggestions API', () => {
       expect(response.status).toBe(200);
       expect(response.body.id).toBeDefined();
       expect(response.body.title).toBe('Test Suggestion');
-      expect(response.body.publicNote).toBe('Test description');
+      expect(response.body.publicNoteFr).toBe('Description française');
       expect(response.body.durationMins).toBe(45);
 
       // Verify outcome linkage
