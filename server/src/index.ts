@@ -55,6 +55,7 @@ import cognateRoutes from './routes/cognate';
 import assessmentRoutes from './routes/assessment';
 import mediaResourceRoutes from './routes/mediaResource';
 import parentMessageRoutes from './routes/parentMessage';
+import studentRoutes from './routes/student';
 import testRoutes from './routes/test';
 import timelineRoutes from './routes/timeline';
 import { aiSuggestionsRouter } from './routes/aiSuggestions';
@@ -243,6 +244,7 @@ app.use('/api/assessments', authenticateToken, assessmentRoutes);
 app.use('/api/media-resources', authenticateToken, mediaResourceRoutes);
 app.use('/api/parent-messages', authenticateToken, parentMessageRoutes);
 app.use('/api/timeline', authenticateToken, timelineRoutes);
+app.use('/api/students', authenticateToken, studentRoutes);
 app.use('/api/ai-suggestions', authenticateToken, aiSuggestionsRouter);
 
 // Mount test routes (only in test/development mode)
