@@ -1,46 +1,39 @@
 import request from 'supertest';
-import type { Request, Response, NextFunction } from 'express';
-import { app } from '../index';
-import { prisma } from '../prisma';
+import { app } from '../src/index';
+import { getTestPrismaClient } from './jest.setup.js';
+import { authRequest } from './test-auth-helper.js';
+import bcrypt from 'bcryptjs';
 
-interface AuthRequest extends Request {
-  user?: { userId: string };
-}
+const auth = authRequest(app);
+let prisma: ReturnType<typeof getTestPrismaClient>;
 
-// Mock authentication
-jest.mock('../middleware/auth', () => ({
-  authenticateToken: (req: AuthRequest, res: Response, next: NextFunction) => {
-    req.user = { userId: '1' };
-    next();
-  },
-}));
+beforeAll(async () => {
+  prisma = getTestPrismaClient();
+});
+
+beforeEach(async () => {
+  // Create test user before each test
+  const hashedPassword = await bcrypt.hash('testpassword', 10);
+  await prisma.user.upsert({
+    where: { email: 'test@example.com' },
+    update: {},
+    create: {
+      id: 1,
+      email: 'test@example.com',
+      password: hashedPassword,
+      name: 'Test User',
+      role: 'teacher',
+    },
+  });
+
+  // Setup auth after creating user
+  await auth.setup();
+});
 
 describe('Timeline API', () => {
   const testUserId = 1;
-  const authToken = 'test-token';
 
   beforeEach(async () => {
-    // Clean up test data
-    await prisma.activity.deleteMany();
-    await prisma.assessmentResult.deleteMany();
-    await prisma.assessmentTemplate.deleteMany();
-    await prisma.thematicUnit.deleteMany();
-    await prisma.parentMessage.deleteMany();
-    await prisma.milestone.deleteMany();
-    await prisma.subject.deleteMany();
-    await prisma.outcome.deleteMany();
-    await prisma.user.deleteMany();
-
-    // Create test user
-    await prisma.user.create({
-      data: {
-        id: testUserId,
-        email: 'test@example.com',
-        password: 'hashed-password',
-        name: 'Test User',
-      },
-    });
-
     // Create test outcomes
     await prisma.outcome.createMany({
       data: [
@@ -169,13 +162,10 @@ describe('Timeline API', () => {
 
   describe('GET /api/timeline/events', () => {
     it('should return timeline events for the user', async () => {
-      const response = await request(app)
-        .get('/api/timeline/events')
-        .set('Authorization', `Bearer ${authToken}`)
-        .query({
-          from: '2024-01-01',
-          to: '2024-02-01',
-        });
+      const response = await auth.get('/api/timeline/events').query({
+        from: '2024-01-01',
+        to: '2024-02-01',
+      });
 
       expect(response.status).toBe(200);
       expect(response.body).toHaveLength(5); // 2 activities + 1 assessment + 1 theme + 1 newsletter
@@ -197,14 +187,11 @@ describe('Timeline API', () => {
     });
 
     it('should filter events by subject', async () => {
-      const response = await request(app)
-        .get('/api/timeline/events')
-        .set('Authorization', `Bearer ${authToken}`)
-        .query({
-          from: '2024-01-01',
-          to: '2024-02-01',
-          subjectId: '1',
-        });
+      const response = await auth.get('/api/timeline/events').query({
+        from: '2024-01-01',
+        to: '2024-02-01',
+        subjectId: '1',
+      });
 
       expect(response.status).toBe(200);
       // Should include activities from the subject but not assessments, themes, or newsletters
@@ -215,14 +202,11 @@ describe('Timeline API', () => {
     });
 
     it('should filter events by outcome', async () => {
-      const response = await request(app)
-        .get('/api/timeline/events')
-        .set('Authorization', `Bearer ${authToken}`)
-        .query({
-          from: '2024-01-01',
-          to: '2024-02-01',
-          outcomeId: 'outcome-1',
-        });
+      const response = await auth.get('/api/timeline/events').query({
+        from: '2024-01-01',
+        to: '2024-02-01',
+        outcomeId: 'outcome-1',
+      });
 
       expect(response.status).toBe(200);
       const eventsWithOutcome1 = response.body.filter((e: { linkedOutcomeIds: string[] }) =>
@@ -232,13 +216,10 @@ describe('Timeline API', () => {
     });
 
     it('should return events sorted by date', async () => {
-      const response = await request(app)
-        .get('/api/timeline/events')
-        .set('Authorization', `Bearer ${authToken}`)
-        .query({
-          from: '2024-01-01',
-          to: '2024-02-01',
-        });
+      const response = await auth.get('/api/timeline/events').query({
+        from: '2024-01-01',
+        to: '2024-02-01',
+      });
 
       expect(response.status).toBe(200);
 
@@ -253,13 +234,10 @@ describe('Timeline API', () => {
 
   describe('GET /api/timeline/summary', () => {
     it('should return timeline summary with outcome coverage', async () => {
-      const response = await request(app)
-        .get('/api/timeline/summary')
-        .set('Authorization', `Bearer ${authToken}`)
-        .query({
-          from: '2024-01-01',
-          to: '2024-02-01',
-        });
+      const response = await auth.get('/api/timeline/summary').query({
+        from: '2024-01-01',
+        to: '2024-02-01',
+      });
 
       expect(response.status).toBe(200);
       expect(response.body).toHaveProperty('totalOutcomes');
@@ -284,9 +262,7 @@ describe('Timeline API', () => {
         },
       });
 
-      const response = await request(app)
-        .get('/api/timeline/summary')
-        .set('Authorization', `Bearer ${authToken}`);
+      const response = await auth.get('/api/timeline/summary');
 
       expect(response.status).toBe(200);
       expect(response.body.nextMilestone).toBeTruthy();
