@@ -269,6 +269,7 @@ model User {
   assessmentTemplates AssessmentTemplate[]
   mediaResources MediaResource[]
   parentMessages ParentMessage[]
+  reflectionJournalEntries ReflectionJournalEntry[]
 }
 
 enum ActivityType {
@@ -411,6 +412,7 @@ model Outcome {
   cognatePairs CognateOutcome[]
   mediaResources MediaResourceOutcome[]
   parentMessages ParentMessageOutcome[]
+  reflections ReflectionOutcome[]
 }
 
 model MilestoneOutcome {
@@ -497,6 +499,7 @@ model ThematicUnit {
   user         User       @relation(fields: [userId], references: [id])
   outcomes     ThematicUnitOutcome[]
   activities   ThematicUnitActivity[]
+  reflections  ReflectionJournalEntry[]
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 }
@@ -567,6 +570,7 @@ model AssessmentResult {
   date       DateTime
   groupScore Int?       // 0–100
   notes      String?
+  reflections ReflectionJournalEntry[]
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
 }
@@ -617,4 +621,27 @@ model ParentMessageActivity {
   activity        Activity      @relation(fields: [activityId], references: [id])
   activityId      Int
   @@id([parentMessageId, activityId])
+}
+
+model ReflectionJournalEntry {
+  id             Int                       @id @default(autoincrement())
+  userId         Int
+  user           User                      @relation(fields: [userId], references: [id])
+  date           DateTime
+  content        String
+  themeId        Int?
+  theme          ThematicUnit?             @relation(fields: [themeId], references: [id])
+  assessmentId   Int?
+  assessment     AssessmentResult?         @relation(fields: [assessmentId], references: [id])
+  outcomes       ReflectionOutcome[]
+  createdAt      DateTime                  @default(now())
+  updatedAt      DateTime                  @updatedAt
+}
+
+model ReflectionOutcome {
+  reflection     ReflectionJournalEntry @relation(fields: [reflectionId], references: [id])
+  reflectionId   Int
+  outcome        Outcome                @relation(fields: [outcomeId], references: [id])
+  outcomeId      String
+  @@id([reflectionId, outcomeId])
 }

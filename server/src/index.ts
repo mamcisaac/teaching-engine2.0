@@ -55,6 +55,7 @@ import cognateRoutes from './routes/cognate';
 import assessmentRoutes from './routes/assessment';
 import mediaResourceRoutes from './routes/mediaResource';
 import parentMessageRoutes from './routes/parentMessage';
+import reflectionRoutes from './routes/reflections';
 import testRoutes from './routes/test';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
@@ -240,6 +241,7 @@ app.use('/api/cognates', authenticateToken, cognateRoutes);
 app.use('/api/assessments', authenticateToken, assessmentRoutes);
 app.use('/api/media-resources', authenticateToken, mediaResourceRoutes);
 app.use('/api/parent-messages', authenticateToken, parentMessageRoutes);
+app.use('/api/reflections', authenticateToken, reflectionRoutes);
 
 // Mount test routes (only in test/development mode)
 if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {

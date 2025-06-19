@@ -1,5 +1,8 @@
 import { useState } from 'react';
+// Using simple text icons instead of lucide-react
 import type { Outcome } from '../types';
+import { useReflectionsByOutcome } from '../hooks/useReflections';
+import OutcomeReflectionsView from './reflections/OutcomeReflectionsView';
 
 interface Props {
   outcome: Outcome;
@@ -7,6 +10,8 @@ interface Props {
 
 export default function OutcomeDetail({ outcome }: Props) {
   const [expanded, setExpanded] = useState(false);
+  const [showReflections, setShowReflections] = useState(false);
+  const { data: reflections = [] } = useReflectionsByOutcome(outcome.id);
 
   const toggleExpanded = () => {
     setExpanded(!expanded);
@@ -52,9 +57,9 @@ export default function OutcomeDetail({ outcome }: Props) {
 
       {expanded && (
         <div className="p-3 bg-white">
-          <p className="mb-2">{outcome.description}</p>
+          <p className="mb-4">{outcome.description}</p>
 
-          <div className="grid grid-cols-2 gap-2 text-sm">
+          <div className="grid grid-cols-2 gap-2 text-sm mb-4">
             <div>
               <span className="font-semibold">Subject:</span> {outcome.subject}
             </div>
@@ -70,6 +75,31 @@ export default function OutcomeDetail({ outcome }: Props) {
               <span className="font-semibold">Code:</span> {outcome.code}
             </div>
           </div>
+
+          <div className="border-t pt-3">
+            <button
+              onClick={() => setShowReflections(!showReflections)}
+              className="flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium"
+            >
+              🧠 Teacher Reflections
+              {reflections.length > 0 && (
+                <span className="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded-full">
+                  {reflections.length}
+                </span>
+              )}
+              <span
+                className={`transition-transform inline-block ${showReflections ? 'rotate-90' : ''}`}
+              >
+                ▶
+              </span>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {showReflections && (
+        <div className="border-t">
+          <OutcomeReflectionsView outcome={outcome} />
         </div>
       )}
     </div>
