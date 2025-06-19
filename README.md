@@ -29,7 +29,37 @@ Teaching Engine 2.0 aims to be the "digital teaching assistant" that reduces adm
 5. **Emergency Sub Plans**: One-click PDFs provide substitute teachers with the current plan.
 6. **Notes & Reflection Management**: Private notes can be added to activities and days; public notes appear in newsletters.
 
-### Phase 5 - Curriculum Intelligence
+### Phase 5 - Curriculum Intelligence (Partially Implemented)
+
+#### Completed Features
+
+- **Language-Sensitive Assessment Builder**: Create French Immersion assessments with bilingual rubric criteria
+  - Pre-defined rubric templates for oral, reading, writing, and mixed assessments
+  - Custom rubric criteria support with JSON format
+  - Fully integrated with existing assessment system
+- **Visual Resource Organizer**: Manage visual teaching resources with curriculum integration
+  - Upload and tag images, PDFs, videos, and audio files
+  - Link resources to specific outcomes and activities
+  - Integrated resource selector in Daily Planner and Newsletter Editor
+  - Automatic file type detection and validation
+- **Parent Communication Center**: Centralized hub for parent communications
+  - Create bilingual newsletters (French/English) with activity links
+  - Link messages to classroom activities and learning outcomes
+  - Export in multiple formats (PDF, HTML, Markdown)
+  - Manage all parent communications from one location
+- **Student Timeline Generator**: Comprehensive timeline interface for visualizing student learning journeys
+  - Interactive week-based timeline with horizontal scroll navigation
+  - Aggregates events from activities, assessments, themes, and newsletters
+  - Outcome coverage statistics and next milestone tracking
+  - Filtering by subject, outcome, or theme with real-time updates
+  - Color-coded event types with contextual metadata display
+- **AI Activity Generator**: AI-powered activity suggestion system for uncovered curriculum outcomes
+  - Generates developmentally appropriate Grade 1 activities for French Immersion
+  - Editable suggestions with theme awareness and material tracking
+  - Direct integration with weekly planner for seamless workflow
+  - Mock generator for development with OpenAI integration ready
+
+#### In Progress
 
 - **Provincial Curriculum Integration**: Import PEI (and other provincial) curriculum standards
   - Run `pnpm curriculum:import pei-fi-1` to import PEI French Immersion Grade 1 outcomes
@@ -122,6 +152,56 @@ docker compose up --build
 
 Access the application at http://localhost:3000
 
+## 📚 Feature Documentation
+
+### Assessment Builder
+
+The Language-Sensitive Assessment Builder helps create French Immersion assessments with appropriate rubric criteria:
+
+- Access via Activities page → Create Activity → Assessment type
+- Choose from pre-defined rubric templates or create custom criteria
+- Supports oral, reading, writing, and mixed assessment types
+
+### Visual Resource Organizer
+
+Manage visual teaching resources:
+
+- Upload resources via the Resources page
+- Supported formats: Images (JPG, PNG, GIF), PDFs, Videos (MP4, WebM), Audio (MP3, WAV)
+- Tag resources with subjects and outcomes for easy filtering
+- Use resources in Daily Planner and Newsletter Editor
+
+### Parent Communication Center
+
+Centralized parent communication management:
+
+- Create messages from Weekly Planner or Messages page
+- Link activities and outcomes to provide context
+- Export newsletters in multiple formats
+- Track communication history
+
+### Student Timeline Generator
+
+Visualize student learning journeys with an interactive timeline:
+
+- Access via the Timeline page or dashboard quick access
+- View activities, assessments, themes, and newsletters in chronological order
+- Filter by subject, outcome, or theme to focus on specific learning areas
+- Navigate through different time periods (3-month windows)
+- Track outcome coverage statistics and upcoming milestones
+- Color-coded events: blue (activities), purple (assessments), green (themes), yellow (newsletters)
+
+### AI Activity Generator
+
+Generate activities for uncovered curriculum outcomes:
+
+- Available in the Weekly Planner for outcomes lacking sufficient activities
+- Click "Generate Activity" for any uncovered outcome
+- Edit generated suggestions before adding to your plan
+- Automatically includes materials list and theme connections
+- Supports French Immersion Grade 1 curriculum requirements
+- Integrates seamlessly with existing milestone and activity structure
+
 ## API
 
 ### Calendar Events
@@ -141,6 +221,19 @@ Access the application at http://localhost:3000
 - `GET /api/outcomes` – List all curriculum outcomes.
 - `GET /api/outcomes?subject=FRA&grade=1` – Filter outcomes by subject and grade.
 - `GET /api/outcomes?search=keyword` – Search outcomes by code or description.
+
+### Timeline
+
+- `GET /api/timeline/events` – Get timeline events with optional filtering by date range, subject, outcome, or theme.
+- `GET /api/timeline/summary` – Get timeline summary with outcome coverage statistics and next milestone.
+
+### AI Suggestions
+
+- `GET /api/ai-suggestions` – List AI-generated activity suggestions.
+- `POST /api/ai-suggestions` – Create a new AI activity suggestion for an outcome.
+- `PUT /api/ai-suggestions/:id` – Update an existing suggestion.
+- `DELETE /api/ai-suggestions/:id` – Remove a suggestion.
+- `POST /api/ai-suggestions/:id/add-to-plan` – Add suggestion to weekly plan as an activity.
 
 ## 🧪 Testing
 
@@ -176,8 +269,11 @@ pnpm exec playwright install
 2. **Add Milestones**: Define major units or learning goals with target completion dates
 3. **Create Activities**: Populate milestones with specific lessons, assignments, and projects
 4. **Track Progress**: Mark activities as complete to automatically update progress bars
-5. **Plan Weekly**: Use the weekly planner (Phase 4) to schedule activities across your timetable. At least one activity must exist to auto-fill a plan
-6. **Communicate**: Generate parent newsletters from completed activities (Phase 4)
+5. **Plan Weekly**: Use the weekly planner to schedule activities across your timetable
+   - Use AI Activity Generator for uncovered outcomes
+   - At least one activity must exist to auto-fill a plan
+6. **Monitor Progress**: View the Student Timeline to visualize learning journeys and track outcome coverage
+7. **Communicate**: Generate parent newsletters from completed activities
 
 ### Key Concepts
 

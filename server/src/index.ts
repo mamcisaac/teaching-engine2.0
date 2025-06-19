@@ -56,7 +56,10 @@ import assessmentRoutes from './routes/assessment';
 import mediaResourceRoutes from './routes/mediaResource';
 import parentMessageRoutes from './routes/parentMessage';
 import reflectionRoutes from './routes/reflections';
+import studentRoutes from './routes/student';
 import testRoutes from './routes/test';
+import timelineRoutes from './routes/timeline';
+import { aiSuggestionsRouter } from './routes/aiSuggestions';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
@@ -242,6 +245,9 @@ app.use('/api/assessments', authenticateToken, assessmentRoutes);
 app.use('/api/media-resources', authenticateToken, mediaResourceRoutes);
 app.use('/api/parent-messages', authenticateToken, parentMessageRoutes);
 app.use('/api/reflections', authenticateToken, reflectionRoutes);
+app.use('/api/timeline', authenticateToken, timelineRoutes);
+app.use('/api/students', authenticateToken, studentRoutes);
+app.use('/api/ai-suggestions', authenticateToken, aiSuggestionsRouter);
 
 // Mount test routes (only in test/development mode)
 if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
