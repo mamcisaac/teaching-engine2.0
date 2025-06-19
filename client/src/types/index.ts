@@ -380,6 +380,7 @@ export interface AssessmentTemplate {
   type: 'oral' | 'reading' | 'writing' | 'mixed';
   description?: string | null;
   outcomeIds: string[];
+  rubricCriteria?: string | null;
   userId: number;
   createdAt: string;
   updatedAt: string;
@@ -408,6 +409,7 @@ export interface AssessmentInput {
   type: 'oral' | 'reading' | 'writing' | 'mixed';
   description?: string;
   outcomeIds: string[];
+  rubricCriteria?: string;
 }
 
 export interface AssessmentResultInput {

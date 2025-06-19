@@ -14,8 +14,14 @@ const bilingualString = (fieldName: string, required = false, options?: { max?: 
   const schema = options?.max ? baseSchema.max(options.max) : baseSchema;
   return {
     [fieldName]: required ? schema : schema.optional(),
-    [`${fieldName}En`]: z.string().max(options?.max || Infinity).optional(),
-    [`${fieldName}Fr`]: z.string().max(options?.max || Infinity).optional(),
+    [`${fieldName}En`]: z
+      .string()
+      .max(options?.max || Infinity)
+      .optional(),
+    [`${fieldName}Fr`]: z
+      .string()
+      .max(options?.max || Infinity)
+      .optional(),
   };
 };
 
@@ -186,6 +192,7 @@ export const assessmentTemplateCreateSchema = z.object({
   type: z.enum(['oral', 'reading', 'writing', 'mixed']),
   description: z.string().max(1000).optional(),
   outcomeIds: z.array(z.string()).default([]),
+  rubricCriteria: z.string().optional(),
 });
 
 export const assessmentTemplateUpdateSchema = assessmentTemplateCreateSchema.partial();
