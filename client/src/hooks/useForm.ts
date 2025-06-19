@@ -17,7 +17,7 @@ export interface FormTouched {
   [key: string]: boolean;
 }
 
-export function useForm<T extends Record<string, any>>({
+export function useForm<T extends Record<string, unknown>>({
   initialValues,
   validationSchema,
   onSubmit,
@@ -32,7 +32,7 @@ export function useForm<T extends Record<string, any>>({
 
   // Validate a single field
   const validateField = useCallback(
-    (name: string, value: any): string | undefined => {
+    (name: string, value: unknown): string | undefined => {
       if (!validationSchema) return undefined;
 
       try {
@@ -51,7 +51,7 @@ export function useForm<T extends Record<string, any>>({
         return 'Validation error';
       }
     },
-    [validationSchema, values]
+    [validationSchema, values],
   );
 
   // Validate all fields
@@ -90,7 +90,7 @@ export function useForm<T extends Record<string, any>>({
         setErrors((prev) => ({ ...prev, [name]: error }));
       }
     },
-    [validateField, validateOnChange]
+    [validateField, validateOnChange],
   );
 
   // Handle field blur
@@ -104,12 +104,12 @@ export function useForm<T extends Record<string, any>>({
         setErrors((prev) => ({ ...prev, [name]: error }));
       }
     },
-    [validateField, validateOnBlur, values]
+    [validateField, validateOnBlur, values],
   );
 
   // Set field value programmatically
   const setFieldValue = useCallback(
-    (name: keyof T, value: any) => {
+    (name: keyof T, value: T[keyof T]) => {
       setValues((prev) => ({ ...prev, [name]: value }));
       setIsDirty(true);
 
@@ -118,7 +118,7 @@ export function useForm<T extends Record<string, any>>({
         setErrors((prev) => ({ ...prev, [name]: error }));
       }
     },
-    [validateField, validateOnChange, touched]
+    [validateField, validateOnChange, touched],
   );
 
   // Set field error programmatically
@@ -136,7 +136,7 @@ export function useForm<T extends Record<string, any>>({
         setErrors((prev) => ({ ...prev, [name]: error }));
       }
     },
-    [validateField, validateOnBlur, values]
+    [validateField, validateOnBlur, values],
   );
 
   // Handle form submission
@@ -166,7 +166,7 @@ export function useForm<T extends Record<string, any>>({
         setIsSubmitting(false);
       }
     },
-    [validate, onSubmit, values]
+    [validate, onSubmit, values],
   );
 
   // Reset form
@@ -178,7 +178,7 @@ export function useForm<T extends Record<string, any>>({
       setIsDirty(false);
       setIsSubmitting(false);
     },
-    [initialValues]
+    [initialValues],
   );
 
   // Get field props
@@ -191,7 +191,7 @@ export function useForm<T extends Record<string, any>>({
       'aria-invalid': !!errors[name as string],
       'aria-describedby': errors[name as string] ? `${name}-error` : undefined,
     }),
-    [values, handleChange, handleBlur, errors]
+    [values, handleChange, handleBlur, errors],
   );
 
   // Check if field has error and is touched
@@ -199,7 +199,7 @@ export function useForm<T extends Record<string, any>>({
     (name: string) => {
       return touched[name] && errors[name] ? errors[name] : undefined;
     },
-    [touched, errors]
+    [touched, errors],
   );
 
   return {

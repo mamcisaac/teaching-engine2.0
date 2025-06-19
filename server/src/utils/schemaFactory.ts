@@ -17,7 +17,7 @@ export interface BilingualSchemaOptions {
 export function createBilingualSchema(
   fieldName: string,
   baseSchema: z.ZodTypeAny,
-  options: BilingualSchemaOptions = {}
+  options: BilingualSchemaOptions = {},
 ) {
   const { requireBilingual = false } = options;
 
@@ -41,7 +41,7 @@ export function createBilingualSchema(
  */
 export function createBilingualObjectSchema<T extends Record<string, z.ZodTypeAny>>(
   fields: T,
-  options: BilingualSchemaOptions = {}
+  options: BilingualSchemaOptions = {},
 ): z.ZodObject<T & Record<string, z.ZodTypeAny>> {
   const schemaFields: Record<string, z.ZodTypeAny> = {};
 
@@ -57,7 +57,10 @@ export function createBilingualObjectSchema<T extends Record<string, z.ZodTypeAn
  */
 export const bilingualSchemas = {
   // String field with bilingual support
-  string: (fieldName: string, options?: BilingualSchemaOptions & { min?: number; max?: number }) => {
+  string: (
+    fieldName: string,
+    options?: BilingualSchemaOptions & { min?: number; max?: number },
+  ) => {
     let schema = z.string();
     if (options?.min) schema = schema.min(options.min);
     if (options?.max) schema = schema.max(options.max);
@@ -65,7 +68,10 @@ export const bilingualSchemas = {
   },
 
   // Required string with bilingual support
-  requiredString: (fieldName: string, options?: BilingualSchemaOptions & { min?: number; max?: number }) => {
+  requiredString: (
+    fieldName: string,
+    options?: BilingualSchemaOptions & { min?: number; max?: number },
+  ) => {
     let schema = z.string().min(1, `${fieldName} is required`);
     if (options?.min) schema = schema.min(options.min);
     if (options?.max) schema = schema.max(options.max);
@@ -84,7 +90,11 @@ export const bilingualSchemas = {
 
   // Date field
   date: (fieldName: string) => ({
-    [fieldName]: z.string().datetime().or(z.date()).transform(val => new Date(val)),
+    [fieldName]: z
+      .string()
+      .datetime()
+      .or(z.date())
+      .transform((val) => new Date(val)),
   }),
 
   // Number field
@@ -109,7 +119,9 @@ export const bilingualSchemas = {
 /**
  * Merges multiple schema objects into one
  */
-export function mergeSchemas(...schemas: Record<string, z.ZodTypeAny>[]): z.ZodObject<any> {
+export function mergeSchemas(
+  ...schemas: Record<string, z.ZodTypeAny>[]
+): z.ZodObject<Record<string, z.ZodTypeAny>> {
   const merged = schemas.reduce((acc, schema) => ({ ...acc, ...schema }), {});
   return z.object(merged);
 }
@@ -117,50 +129,55 @@ export function mergeSchemas(...schemas: Record<string, z.ZodTypeAny>[]): z.ZodO
 /**
  * Creates a schema that validates bilingual data consistency
  */
-export function createBilingualValidation(fieldName: string, options?: {
-  requireAtLeastOne?: boolean;
-  requireAll?: boolean;
-}) {
-  return z.object({
-    [fieldName]: z.string().optional(),
-    [`${fieldName}En`]: z.string().optional(),
-    [`${fieldName}Fr`]: z.string().optional(),
-  }).refine(
-    (data) => {
-      const base = data[fieldName];
-      const en = data[`${fieldName}En`];
-      const fr = data[`${fieldName}Fr`];
+export function createBilingualValidation(
+  fieldName: string,
+  options?: {
+    requireAtLeastOne?: boolean;
+    requireAll?: boolean;
+  },
+) {
+  return z
+    .object({
+      [fieldName]: z.string().optional(),
+      [`${fieldName}En`]: z.string().optional(),
+      [`${fieldName}Fr`]: z.string().optional(),
+    })
+    .refine(
+      (data) => {
+        const base = data[fieldName];
+        const en = data[`${fieldName}En`];
+        const fr = data[`${fieldName}Fr`];
 
-      if (options?.requireAll) {
-        return !!(base && en && fr);
-      }
+        if (options?.requireAll) {
+          return !!(base && en && fr);
+        }
 
-      if (options?.requireAtLeastOne) {
-        return !!(base || en || fr);
-      }
+        if (options?.requireAtLeastOne) {
+          return !!(base || en || fr);
+        }
 
-      return true;
-    },
-    {
-      message: options?.requireAll 
-        ? `All versions of ${fieldName} are required`
-        : options?.requireAtLeastOne 
-        ? `At least one version of ${fieldName} is required`
-        : undefined,
-    }
-  );
+        return true;
+      },
+      {
+        message: options?.requireAll
+          ? `All versions of ${fieldName} are required`
+          : options?.requireAtLeastOne
+            ? `At least one version of ${fieldName} is required`
+            : undefined,
+      },
+    );
 }
 
 /**
  * Example usage:
- * 
+ *
  * const subjectSchema = mergeSchemas(
  *   bilingualSchemas.requiredString('name'),
  *   bilingualSchemas.text('description'),
  *   bilingualSchemas.number('estHours', { min: 0 }),
  *   bilingualSchemas.date('targetDate')
  * );
- * 
+ *
  * // Or with custom validation:
  * const activitySchema = createBilingualObjectSchema({
  *   title: z.string().min(1).max(100),
