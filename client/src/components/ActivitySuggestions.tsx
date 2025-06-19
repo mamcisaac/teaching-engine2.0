@@ -41,57 +41,62 @@ export function ActivitySuggestions({
     }
   };
 
+  const getRelevanceColor = (score: number) => {
+    if (score > 0.7) return 'bg-green-100 text-green-800';
+    if (score > 0.3) return 'bg-yellow-100 text-yellow-800';
+    return 'bg-gray-100 text-gray-800';
+  };
+
+  const getRelevanceText = (score: number) => {
+    if (score > 0.7) return 'High Match';
+    if (score > 0.3) return 'Partial Match';
+    return 'General';
+  };
+
   if (isLoading) {
     return (
       <div className="space-y-3">
         <div className="flex items-center gap-2">
-          <div className="animate-spin rounded-full h-4 w-4 border-2 border-blue-500 border-t-transparent"></div>
-          <span className="text-sm text-gray-600">Finding relevant activities...</span>
+          <div className="w-4 h-4 bg-blue-100 rounded animate-pulse"></div>
+          <h3 className="text-sm font-medium text-gray-700">Activity Suggestions</h3>
         </div>
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="animate-pulse">
+            <div className="h-20 bg-gray-200 rounded-md"></div>
+          </div>
+        ))}
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="bg-red-50 rounded-lg border border-red-200 p-3">
-        <p className="text-red-700 text-sm">Failed to load activity suggestions.</p>
-      </div>
-    );
-  }
-
-  if (outcomeIds.length === 0 && !themeId && !domain && !subject) {
-    return (
-      <div className="bg-gray-50 rounded-lg border border-gray-200 p-4 text-center">
-        <p className="text-gray-600 text-sm">
-          Link outcomes or select filters to see activity suggestions.
-        </p>
+      <div className="p-4 bg-red-50 border border-red-200 rounded-md">
+        <p className="text-red-700 text-sm">Failed to load suggestions. Please try again later.</p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-medium text-gray-900">
-          {suggestions.length > 0
-            ? `${suggestions.length} Activity ${suggestions.length === 1 ? 'Suggestion' : 'Suggestions'}`
-            : 'Activity Suggestions'}
+        <h3 className="text-sm font-medium text-gray-700 flex items-center gap-2">
+          🧩 Activity Suggestions
+          {suggestions.length > 0 && (
+            <span className="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded-full">
+              {suggestions.length}
+            </span>
+          )}
         </h3>
         {suggestions.length >= limit && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setLimit((prev) => prev + 5)}
-            className="text-xs"
-          >
+          <Button variant="outline" size="sm" onClick={() => setLimit((prev) => prev + 5)}>
             Show More
           </Button>
         )}
       </div>
 
       {suggestions.length === 0 ? (
-        <div className="bg-blue-50 rounded-lg border border-blue-200 p-4 text-center">
+        <div className="p-4 bg-blue-50 border border-blue-200 rounded-md text-center">
           <p className="text-blue-700 text-sm">
             {outcomeIds.length === 0 && !themeId && !domain && !subject
               ? 'Link outcomes or select a theme to see activity suggestions.'
@@ -110,6 +115,13 @@ export function ActivitySuggestions({
                   <h4 className="font-medium text-gray-900 text-sm">{suggestion.titleEn}</h4>
                   <p className="text-xs text-gray-600">{suggestion.titleFr}</p>
                 </div>
+                {'relevanceScore' in suggestion && suggestion.relevanceScore !== undefined && (
+                  <span
+                    className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getRelevanceColor(suggestion.relevanceScore || 0)}`}
+                  >
+                    {getRelevanceText(suggestion.relevanceScore || 0)}
+                  </span>
+                )}
               </div>
 
               <p className="text-xs text-gray-700 mb-2 line-clamp-2">{suggestion.descriptionEn}</p>
@@ -138,20 +150,23 @@ export function ActivitySuggestions({
                 )}
               </div>
 
-              {suggestion.outcomeIds && suggestion.outcomeIds.length > 0 && (
+              {suggestion.outcomeIds.length > 0 && (
                 <div className="mb-2">
-                  <p className="text-xs font-medium text-gray-700 mb-1">Linked Outcomes:</p>
                   <div className="flex flex-wrap gap-1">
-                    {suggestion.outcomeIds.slice(0, 3).map((outcomeId) => (
+                    {suggestion.outcomeIds.slice(0, 3).map((outcomeId: string, index: number) => (
                       <span
-                        key={outcomeId}
-                        className="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800"
+                        key={index}
+                        className={`text-xs px-1 py-0.5 rounded ${
+                          outcomeIds.includes(outcomeId)
+                            ? 'bg-green-100 text-green-800 font-medium'
+                            : 'bg-gray-100 text-gray-600'
+                        }`}
                       >
                         {outcomeId}
                       </span>
                     ))}
                     {suggestion.outcomeIds.length > 3 && (
-                      <span className="text-xs text-gray-500">
+                      <span className="text-xs bg-gray-100 text-gray-600 px-1 py-0.5 rounded">
                         +{suggestion.outcomeIds.length - 3} more
                       </span>
                     )}
@@ -161,30 +176,59 @@ export function ActivitySuggestions({
 
               {suggestion.theme && (
                 <div className="mb-2">
-                  <p className="text-xs text-gray-600">
-                    Theme:{' '}
-                    <span className="font-medium">
-                      {suggestion.theme.titleEn || suggestion.theme.title}
-                    </span>
-                  </p>
+                  <span className="text-xs text-gray-500">
+                    Theme: {suggestion.theme.titleEn || suggestion.theme.title}
+                  </span>
                 </div>
               )}
 
-              <div className="flex gap-2 mt-3">
+              <div className="flex gap-2 pt-2 border-t border-gray-100">
                 <Button
-                  variant="primary"
+                  variant="outline"
                   size="sm"
                   onClick={() => handleAddToPlanner(suggestion)}
                   className="flex-1 text-xs"
                 >
-                  Add to Planner
+                  📅 Add to Plan
                 </Button>
-                <Button variant="secondary" size="sm" className="text-xs">
-                  Preview
+                <Button variant="outline" size="sm" className="px-2 text-xs" title="View details">
+                  👁️
+                </Button>
+                <Button variant="outline" size="sm" className="px-2 text-xs" title="Save for later">
+                  ⭐
                 </Button>
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Context Information */}
+      {(outcomeIds.length > 0 || themeId || domain || subject) && (
+        <div className="p-3 bg-gray-50 rounded-md">
+          <p className="text-xs text-gray-600 mb-1">Suggestions based on:</p>
+          <div className="flex flex-wrap gap-1">
+            {outcomeIds.length > 0 && (
+              <span className="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded">
+                {outcomeIds.length} outcome{outcomeIds.length !== 1 ? 's' : ''}
+              </span>
+            )}
+            {domain && (
+              <span className="text-xs bg-purple-100 text-purple-800 px-2 py-0.5 rounded">
+                {domain} domain
+              </span>
+            )}
+            {subject && (
+              <span className="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded">
+                {subject} subject
+              </span>
+            )}
+            {themeId && (
+              <span className="text-xs bg-orange-100 text-orange-800 px-2 py-0.5 rounded">
+                Current theme
+              </span>
+            )}
+          </div>
         </div>
       )}
     </div>

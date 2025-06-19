@@ -11,10 +11,12 @@ beforeAll(async () => {
   prisma = getTestPrismaClient();
 });
 
+let user: { id: number; email: string; name: string; role: string };
+
 beforeEach(async () => {
   // Create test user before each test to ensure it exists after db reset
   const hashedPassword = await bcrypt.hash('testpassword', 10);
-  await prisma.user.upsert({
+  user = await prisma.user.upsert({
     where: { email: 'test@example.com' },
     update: {},
     create: {
@@ -334,8 +336,11 @@ describe('Newsletter API', () => {
     const nl = await prisma.newsletter.create({
       data: { title: 'Send', content: 'Hi' },
     });
+    const student = await prisma.student.create({
+      data: { firstName: 'Kid', lastName: 'Smith', grade: 1, userId: user.id },
+    });
     await prisma.parentContact.create({
-      data: { name: 'Parent', email: 'p@example.com', studentName: 'Kid' },
+      data: { name: 'Parent', email: 'p@example.com', studentId: student.id },
     });
     const res = await auth.post(`/api/newsletters/${nl.id}/send`);
     expect(res.status).toBe(200);

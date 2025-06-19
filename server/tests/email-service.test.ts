@@ -20,6 +20,7 @@ describe('Email Service Integration Tests', () => {
     name: string;
     role: 'teacher';
   };
+  let user: { id: number; email: string; name: string; role: string };
   let prisma: ReturnType<typeof getTestPrismaClient>;
   const auth = authRequest(app);
 
@@ -54,7 +55,7 @@ describe('Email Service Integration Tests', () => {
     };
 
     const hashedPassword = await bcrypt.hash(testUser.password, 10);
-    await prisma.user.create({
+    user = await prisma.user.create({
       data: {
         email: testUser.email,
         password: hashedPassword,
@@ -88,22 +89,45 @@ describe('Email Service Integration Tests', () => {
     await testEmailService.clearEmails();
     // Clear any existing test data
     await prisma.parentContact.deleteMany();
+    await prisma.student.deleteMany();
     await prisma.newsletter.deleteMany();
+
+    // Ensure user exists after cleanup
+    const currentUser = await prisma.user.findUnique({ where: { id: user.id } });
+    if (!currentUser) {
+      const hashedPassword = await bcrypt.hash(testUser.password, 10);
+      await prisma.user.create({
+        data: {
+          id: user.id,
+          email: testUser.email,
+          password: hashedPassword,
+          name: testUser.name,
+          role: testUser.role,
+        },
+      });
+    }
   });
 
   describe('Newsletter Email Tests', () => {
     it('sends newsletter with PDF attachment to parent contacts', async () => {
-      // Create test parent contacts
+      // Create test students and parent contacts
+      const student1 = await prisma.student.create({
+        data: { firstName: 'John', lastName: 'Jr', grade: 1, userId: user.id },
+      });
+      const student2 = await prisma.student.create({
+        data: { firstName: 'Jane', lastName: 'Jr', grade: 1, userId: user.id },
+      });
+
       const parentContacts = [
         {
           name: 'John Parent',
           email: generateTestEmail(),
-          studentName: 'John Jr',
+          studentId: student1.id,
         },
         {
           name: 'Jane Parent',
           email: generateTestEmail(),
-          studentName: 'Jane Jr',
+          studentId: student2.id,
         },
       ];
 
@@ -172,17 +196,24 @@ describe('Email Service Integration Tests', () => {
     });
 
     it('handles newsletter sending failures gracefully', async () => {
-      // Create parent contact with invalid email format
+      // Create students and parent contacts with invalid email format
+      const validStudent = await prisma.student.create({
+        data: { firstName: 'Valid', lastName: 'Student', grade: 1, userId: user.id },
+      });
+      const invalidStudent = await prisma.student.create({
+        data: { firstName: 'Invalid', lastName: 'Student', grade: 1, userId: user.id },
+      });
+
       const parentContacts = [
         {
           name: 'Valid Parent',
           email: generateTestEmail(),
-          studentName: 'Valid Student',
+          studentId: validStudent.id,
         },
         {
           name: 'Invalid Parent',
           email: 'invalid-email',
-          studentName: 'Invalid Student',
+          studentId: invalidStudent.id,
         },
       ];
 
@@ -324,11 +355,14 @@ describe('Email Service Integration Tests', () => {
     });
 
     it('handles HTML content in newsletters', async () => {
+      const htmlStudent = await prisma.student.create({
+        data: { firstName: 'HTML', lastName: 'Student', grade: 1, userId: user.id },
+      });
       await prisma.parentContact.create({
         data: {
           name: 'HTML Parent',
           email: generateTestEmail(),
-          studentName: 'HTML Student',
+          studentId: htmlStudent.id,
         },
       });
 

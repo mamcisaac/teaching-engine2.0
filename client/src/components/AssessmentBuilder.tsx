@@ -22,9 +22,11 @@ const AssessmentBuilder: React.FC<AssessmentBuilderProps> = ({ template, onSucce
     type: 'oral',
     description: '',
     outcomeIds: [],
+    rubricCriteria: '',
   });
 
   const [selectedOutcomes, setSelectedOutcomes] = useState<string[]>([]);
+  const [useDefaultCriteria, setUseDefaultCriteria] = useState(true);
 
   useEffect(() => {
     if (template) {
@@ -33,8 +35,10 @@ const AssessmentBuilder: React.FC<AssessmentBuilderProps> = ({ template, onSucce
         type: template.type,
         description: template.description || '',
         outcomeIds: template.outcomeIds,
+        rubricCriteria: template.rubricCriteria || '',
       });
       setSelectedOutcomes(template.outcomeIds);
+      setUseDefaultCriteria(!template.rubricCriteria);
     }
   }, [template]);
 
@@ -49,6 +53,9 @@ const AssessmentBuilder: React.FC<AssessmentBuilderProps> = ({ template, onSucce
     const assessmentData = {
       ...formData,
       outcomeIds: selectedOutcomes,
+      rubricCriteria: useDefaultCriteria
+        ? JSON.stringify(getDefaultCriteriaArray(formData.type))
+        : formData.rubricCriteria,
     };
 
     try {
@@ -73,26 +80,50 @@ const AssessmentBuilder: React.FC<AssessmentBuilderProps> = ({ template, onSucce
     );
   };
 
-  const getDefaultCriteria = (type: AssessmentTemplate['type']) => {
+  const getDefaultCriteriaArray = (type: AssessmentTemplate['type']) => {
     switch (type) {
       case 'oral':
         return language === 'fr'
-          ? 'Prononciation, fluidité, écoute'
-          : 'Pronunciation, fluency, listening';
+          ? [
+              { name: 'Prononciation', description: 'Clarté et exactitude de la prononciation' },
+              { name: 'Fluidité', description: 'Aisance et débit de parole' },
+              { name: 'Écoute', description: 'Compréhension et réponse appropriée' },
+            ]
+          : [
+              { name: 'Pronunciation', description: 'Clarity and accuracy of pronunciation' },
+              { name: 'Fluency', description: 'Ease and flow of speech' },
+              { name: 'Listening', description: 'Understanding and appropriate response' },
+            ];
       case 'writing':
         return language === 'fr'
-          ? 'Vocabulaire, orthographe, structure des phrases'
-          : 'Vocabulary, spelling, sentence structure';
+          ? [
+              { name: 'Vocabulaire', description: 'Richesse et pertinence du vocabulaire' },
+              { name: 'Orthographe', description: "Exactitude de l'orthographe" },
+              { name: 'Structure', description: 'Construction des phrases et organisation' },
+            ]
+          : [
+              { name: 'Vocabulary', description: 'Richness and relevance of vocabulary' },
+              { name: 'Spelling', description: 'Spelling accuracy' },
+              { name: 'Structure', description: 'Sentence construction and organization' },
+            ];
       case 'reading':
         return language === 'fr'
-          ? 'Compréhension, fluidité, précision'
-          : 'Comprehension, fluency, accuracy';
+          ? [
+              { name: 'Compréhension', description: 'Compréhension du texte' },
+              { name: 'Fluidité', description: 'Lecture fluide et rythmée' },
+              { name: 'Précision', description: 'Exactitude de la lecture' },
+            ]
+          : [
+              { name: 'Comprehension', description: 'Understanding of the text' },
+              { name: 'Fluency', description: 'Smooth and rhythmic reading' },
+              { name: 'Accuracy', description: 'Reading accuracy' },
+            ];
       case 'mixed':
         return language === 'fr'
-          ? 'Critères multiples selon les activités'
-          : 'Multiple criteria based on activities';
+          ? [{ name: 'Général', description: 'Performance globale' }]
+          : [{ name: 'General', description: 'Overall performance' }];
       default:
-        return '';
+        return [];
     }
   };
 
@@ -183,11 +214,59 @@ const AssessmentBuilder: React.FC<AssessmentBuilderProps> = ({ template, onSucce
                 : 'Describe the assessment and its objectives...'
             }
           />
-          {formData.type && (
-            <p className="mt-1 text-sm text-gray-500">
-              {language === 'fr' ? 'Critères suggérés: ' : 'Suggested criteria: '}
-              {getDefaultCriteria(formData.type)}
-            </p>
+        </div>
+
+        {/* Rubric Criteria */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            {language === 'fr' ? 'Critères de notation' : 'Rubric Criteria'}
+          </label>
+
+          <div className="mb-3">
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                checked={useDefaultCriteria}
+                onChange={(e) => {
+                  setUseDefaultCriteria(e.target.checked);
+                  if (e.target.checked) {
+                    setFormData({ ...formData, rubricCriteria: '' });
+                  }
+                }}
+                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              />
+              <span className="text-sm text-gray-700">
+                {language === 'fr' ? 'Utiliser les critères par défaut' : 'Use default criteria'}
+              </span>
+            </label>
+          </div>
+
+          {useDefaultCriteria ? (
+            <div className="bg-gray-50 p-4 rounded-md">
+              <p className="text-sm font-medium text-gray-700 mb-2">
+                {language === 'fr' ? 'Critères par défaut:' : 'Default criteria:'}
+              </p>
+              <ul className="space-y-2">
+                {getDefaultCriteriaArray(formData.type).map((criterion, index) => (
+                  <li key={index} className="text-sm">
+                    <span className="font-medium text-gray-900">{criterion.name}:</span>{' '}
+                    <span className="text-gray-600">{criterion.description}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <textarea
+              value={formData.rubricCriteria}
+              onChange={(e) => setFormData({ ...formData, rubricCriteria: e.target.value })}
+              rows={4}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder={
+                language === 'fr'
+                  ? 'Entrez vos critères personnalisés (format JSON recommandé)...'
+                  : 'Enter your custom criteria (JSON format recommended)...'
+              }
+            />
           )}
         </div>
 

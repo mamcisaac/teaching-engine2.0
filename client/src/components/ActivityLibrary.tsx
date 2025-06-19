@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { useActivityTemplates, useCreateActivityTemplate, ActivityTemplateInput } from '../api';
 import { ActivityTemplate } from '../types';
 import { Button } from './ui/Button';
+import { Input } from './ui/Input';
+import { Label } from './ui/Label';
+import { Textarea } from './ui/Textarea';
 import { Modal } from './ui/Modal';
 
 export function ActivityLibrary() {
@@ -14,7 +17,7 @@ export function ActivityLibrary() {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
-  const { data: templates = [], isLoading } = useActivityTemplates();
+  const { data: templates = [], isLoading } = useActivityTemplates(filters);
   const createTemplate = useCreateActivityTemplate();
 
   const handleFilterChange = (key: string, value: string) => {
@@ -73,7 +76,7 @@ export function ActivityLibrary() {
         <h1 className="text-2xl font-bold text-gray-900">Activity Library</h1>
         <div className="flex items-center gap-2">
           <Button
-            variant="secondary"
+            variant="outline"
             onClick={() => setViewMode(viewMode === 'grid' ? 'list' : 'grid')}
           >
             {viewMode === 'grid' ? '📋' : '⊞'} {viewMode === 'grid' ? 'List' : 'Grid'}
@@ -86,21 +89,16 @@ export function ActivityLibrary() {
       <div className="bg-white rounded-lg shadow-sm border p-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
-            <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-1">
-              Search
-            </label>
-            <input
+            <Label htmlFor="search">Search</Label>
+            <Input
               id="search"
               placeholder="Search activities..."
               value={filters.search}
               onChange={(e) => handleFilterChange('search', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div>
-            <label htmlFor="domain" className="block text-sm font-medium text-gray-700 mb-1">
-              Domain
-            </label>
+            <Label htmlFor="domain">Domain</Label>
             <select
               id="domain"
               value={filters.domain}
@@ -115,9 +113,7 @@ export function ActivityLibrary() {
             </select>
           </div>
           <div>
-            <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
-              Subject
-            </label>
+            <Label htmlFor="subject">Subject</Label>
             <select
               id="subject"
               value={filters.subject}
@@ -132,9 +128,7 @@ export function ActivityLibrary() {
             </select>
           </div>
           <div>
-            <label htmlFor="groupType" className="block text-sm font-medium text-gray-700 mb-1">
-              Group Type
-            </label>
+            <Label htmlFor="groupType">Group Type</Label>
             <select
               id="groupType"
               value={filters.groupType}
@@ -222,14 +216,14 @@ export function ActivityLibrary() {
 
               <div className="flex gap-2 pt-2 border-t">
                 <Button
-                  variant="secondary"
+                  variant="outline"
                   size="sm"
                   onClick={() => handleUseTemplate(template)}
                   className="flex-1"
                 >
                   📎 Use Template
                 </Button>
-                <Button variant="secondary" size="sm" className="px-2" title="Save for later">
+                <Button variant="outline" size="sm" className="px-2" title="Save for later">
                   ⭐
                 </Button>
               </div>
@@ -292,65 +286,51 @@ function ActivityTemplateEditor({
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="titleEn" className="block text-sm font-medium text-gray-700 mb-1">
-              English Title
-            </label>
-            <input
+            <Label htmlFor="titleEn">English Title</Label>
+            <Input
               id="titleEn"
               value={formData.titleEn}
               onChange={(e) => handleChange('titleEn', e.target.value)}
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div>
-            <label htmlFor="titleFr" className="block text-sm font-medium text-gray-700 mb-1">
-              French Title
-            </label>
-            <input
+            <Label htmlFor="titleFr">French Title</Label>
+            <Input
               id="titleFr"
               value={formData.titleFr}
               onChange={(e) => handleChange('titleFr', e.target.value)}
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="descriptionEn" className="block text-sm font-medium text-gray-700 mb-1">
-              English Description
-            </label>
-            <textarea
+            <Label htmlFor="descriptionEn">English Description</Label>
+            <Textarea
               id="descriptionEn"
               value={formData.descriptionEn}
               onChange={(e) => handleChange('descriptionEn', e.target.value)}
               rows={3}
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div>
-            <label htmlFor="descriptionFr" className="block text-sm font-medium text-gray-700 mb-1">
-              French Description
-            </label>
-            <textarea
+            <Label htmlFor="descriptionFr">French Description</Label>
+            <Textarea
               id="descriptionFr"
               value={formData.descriptionFr}
               onChange={(e) => handleChange('descriptionFr', e.target.value)}
               rows={3}
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label htmlFor="domain" className="block text-sm font-medium text-gray-700 mb-1">
-              Domain
-            </label>
+            <Label htmlFor="domain">Domain</Label>
             <select
               id="domain"
               value={formData.domain}
@@ -366,9 +346,7 @@ function ActivityTemplateEditor({
             </select>
           </div>
           <div>
-            <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
-              Subject
-            </label>
+            <Label htmlFor="subject">Subject</Label>
             <select
               id="subject"
               value={formData.subject}
@@ -384,9 +362,7 @@ function ActivityTemplateEditor({
             </select>
           </div>
           <div>
-            <label htmlFor="groupType" className="block text-sm font-medium text-gray-700 mb-1">
-              Group Type
-            </label>
+            <Label htmlFor="groupType">Group Type</Label>
             <select
               id="groupType"
               value={formData.groupType}
@@ -401,51 +377,42 @@ function ActivityTemplateEditor({
         </div>
 
         <div>
-          <label htmlFor="prepTimeMin" className="block text-sm font-medium text-gray-700 mb-1">
-            Preparation Time (minutes)
-          </label>
-          <input
+          <Label htmlFor="prepTimeMin">Preparation Time (minutes)</Label>
+          <Input
             type="number"
             id="prepTimeMin"
             value={formData.prepTimeMin}
             onChange={(e) => handleChange('prepTimeMin', e.target.value)}
             min="0"
             max="180"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="materialsEn" className="block text-sm font-medium text-gray-700 mb-1">
-              Materials (English)
-            </label>
-            <textarea
+            <Label htmlFor="materialsEn">Materials (English)</Label>
+            <Textarea
               id="materialsEn"
               value={formData.materialsEn}
               onChange={(e) => handleChange('materialsEn', e.target.value)}
               rows={2}
               placeholder="List materials needed..."
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div>
-            <label htmlFor="materialsFr" className="block text-sm font-medium text-gray-700 mb-1">
-              Materials (French)
-            </label>
-            <textarea
+            <Label htmlFor="materialsFr">Materials (French)</Label>
+            <Textarea
               id="materialsFr"
               value={formData.materialsFr}
               onChange={(e) => handleChange('materialsFr', e.target.value)}
               rows={2}
               placeholder="Liste du matériel nécessaire..."
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         </div>
 
         <div className="flex gap-2 pt-4 border-t">
-          <Button type="button" variant="secondary" onClick={onClose}>
+          <Button type="button" variant="outline" onClick={onClose}>
             Cancel
           </Button>
           <Button type="submit" disabled={isLoading}>

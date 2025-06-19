@@ -1534,10 +1534,23 @@ export const useDeleteMediaResource = () => {
 };
 
 // Activity Template hooks
-export const useActivityTemplates = () => {
+export const useActivityTemplates = (filters?: {
+  domain?: string;
+  subject?: string;
+  groupType?: string;
+  search?: string;
+}) => {
   return useQuery<ActivityTemplate[]>({
-    queryKey: ['activity-templates'],
-    queryFn: async () => (await api.get('/api/activity-templates')).data,
+    queryKey: ['activity-templates', filters],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (filters?.domain) params.append('domain', filters.domain);
+      if (filters?.subject) params.append('subject', filters.subject);
+      if (filters?.groupType) params.append('groupType', filters.groupType);
+      if (filters?.search) params.append('search', filters.search);
+      const query = params.toString();
+      return (await api.get(`/api/activity-templates${query ? '?' + query : ''}`)).data;
+    },
   });
 };
 
