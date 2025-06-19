@@ -825,7 +825,31 @@ interface AlertRule {
 
 ---
 
-## 🧠 Phase 5 - Curriculum Intelligence (TO DO)
+## 🧠 Phase 5 - Curriculum Intelligence (IN PROGRESS)
+
+### ✅ Completed Phase 5 Features
+
+- [x] **Language-Sensitive Assessment Builder** 🌐
+
+  - Created bilingual assessment system with French/English rubric criteria
+  - Pre-defined templates for oral, reading, writing, and mixed assessments
+  - Custom rubric criteria support with JSON format
+  - Full integration with existing assessment workflow
+
+- [x] **Visual Resource Organizer** 📸
+
+  - Implemented resource upload and management system
+  - Support for images, PDFs, videos, and audio files
+  - Tag-based organization with subject and outcome linking
+  - Integration with Daily Planner and Newsletter Editor
+  - File type validation and storage optimization
+
+- [x] **Parent Communication Center** 📧
+  - Built centralized parent communication hub
+  - Bilingual newsletter creation with activity linking
+  - Multiple export formats (PDF, HTML, Markdown)
+  - Message history tracking and management
+  - Integration with weekly planner for easy content creation
 
 ### 5.1 Data Extraction Pipeline 📚
 
