@@ -273,8 +273,10 @@ model User {
   assessmentTemplates AssessmentTemplate[]
   mediaResources MediaResource[]
   parentMessages ParentMessage[]
+  reflectionJournalEntries ReflectionJournalEntry[]
   aiSuggestedActivities AISuggestedActivity[]
   students Student[]
+  activityTemplates ActivityTemplate[]
   teacherReflections TeacherReflection[]
   milestoneAlerts MilestoneAlert[]
 }
@@ -419,6 +421,7 @@ model Outcome {
   cognatePairs CognateOutcome[]
   mediaResources MediaResourceOutcome[]
   parentMessages ParentMessageOutcome[]
+  reflections ReflectionOutcome[]
   aiSuggestedActivities AISuggestedActivity[]
   studentGoals StudentGoal[]
   studentReflections StudentReflection[]
@@ -509,8 +512,10 @@ model ThematicUnit {
   user         User       @relation(fields: [userId], references: [id])
   outcomes     ThematicUnitOutcome[]
   activities   ThematicUnitActivity[]
+  reflections  ReflectionJournalEntry[]
   studentGoals StudentGoal[]
   studentReflections StudentReflection[]
+  activityTemplates ActivityTemplate[]
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 }
@@ -581,6 +586,7 @@ model AssessmentResult {
   date       DateTime
   groupScore Int?       // 0–100
   notes      String?
+  reflections ReflectionJournalEntry[]
   studentResults StudentAssessmentResult[]
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
@@ -632,6 +638,29 @@ model ParentMessageActivity {
   activity        Activity      @relation(fields: [activityId], references: [id])
   activityId      Int
   @@id([parentMessageId, activityId])
+}
+
+model ReflectionJournalEntry {
+  id             Int                       @id @default(autoincrement())
+  userId         Int
+  user           User                      @relation(fields: [userId], references: [id])
+  date           DateTime
+  content        String
+  themeId        Int?
+  theme          ThematicUnit?             @relation(fields: [themeId], references: [id])
+  assessmentId   Int?
+  assessment     AssessmentResult?         @relation(fields: [assessmentId], references: [id])
+  outcomes       ReflectionOutcome[]
+  createdAt      DateTime                  @default(now())
+  updatedAt      DateTime                  @updatedAt
+}
+
+model ReflectionOutcome {
+  reflection     ReflectionJournalEntry @relation(fields: [reflectionId], references: [id])
+  reflectionId   Int
+  outcome        Outcome                @relation(fields: [outcomeId], references: [id])
+  outcomeId      String
+  @@id([reflectionId, outcomeId])
 }
 
 model AISuggestedActivity {
@@ -687,12 +716,37 @@ model StudentReflection {
   student     Student  @relation(fields: [studentId], references: [id])
   activityId  Int?
   activity    Activity? @relation(fields: [activityId], references: [id])
-  content     String
+  content     String?
+  text        String?   // Keep both content and text for compatibility
+  date        DateTime? // Optional date
+  emoji       String?   // e.g. "🙂", "😐", "😕"
+  voicePath   String?   // path to optional recording
   outcomeId   String?
   outcome     Outcome? @relation(fields: [outcomeId], references: [id])
   themeId     Int?
   theme       ThematicUnit? @relation(fields: [themeId], references: [id])
   createdAt   DateTime @default(now())
+}
+
+model ActivityTemplate {
+  id             Int      @id @default(autoincrement())
+  titleFr        String
+  titleEn        String
+  descriptionFr  String
+  descriptionEn  String
+  domain         String   // e.g., "oral", "reading", "writing", "math"
+  subject        String   // e.g., "francais", "english", "math"
+  outcomeIds     String   @default("[]") // JSON array of outcome IDs
+  themeId        Int?
+  theme          ThematicUnit? @relation(fields: [themeId], references: [id])
+  materialsFr    String?
+  materialsEn    String?
+  prepTimeMin    Int?     // preparation time in minutes
+  groupType      String   @default("Whole class") // "Whole class", "Small group", "Individual"
+  createdBy      Int
+  createdByUser  User     @relation(fields: [createdBy], references: [id])
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
 
 model StudentAssessmentResult {

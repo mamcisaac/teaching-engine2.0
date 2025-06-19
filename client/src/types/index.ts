@@ -494,6 +494,26 @@ export interface ParentMessageInput {
   linkedActivityIds?: number[];
 }
 
+export interface ReflectionJournalEntry {
+  id: number;
+  userId: number;
+  date: string;
+  content: string;
+  themeId?: number | null;
+  theme?: ThematicUnit | null;
+  assessmentId?: number | null;
+  assessment?: (AssessmentResult & { template?: AssessmentTemplate }) | null;
+  outcomes?: Array<{
+    outcome: Outcome;
+  }>;
+  createdAt: string;
+  updatedAt: string;
+  user?: {
+    id: number;
+    name: string;
+  };
+}
+
 export interface Student {
   id: number;
   firstName: string;
@@ -520,6 +540,22 @@ export interface Student {
   };
   // Legacy name field for backward compatibility
   name?: string;
+}
+
+export interface ReflectionInput {
+  date: string;
+  content: string;
+  outcomeIds?: string[];
+  themeId?: number;
+  assessmentId?: number;
+}
+
+export interface ReflectionUpdate {
+  date?: string;
+  content?: string;
+  outcomeIds?: string[];
+  themeId?: number | null;
+  assessmentId?: number | null;
 }
 
 export interface StudentGoal {

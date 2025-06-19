@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Button } from '../ui/Button';
 import ReflectionEditor from './ReflectionEditor';
 import {
-  useReflections,
-  useCreateReflection,
-  useDeleteReflection,
+  useTeacherReflections,
+  useCreateTeacherReflection,
+  useDeleteTeacherReflection,
 } from '../../hooks/useReflections';
 import type { Outcome } from '../../types';
 
@@ -15,9 +15,9 @@ interface OutcomeReflectionsViewProps {
 export default function OutcomeReflectionsView({ outcome }: OutcomeReflectionsViewProps) {
   const [isEditorOpen, setIsEditorOpen] = useState(false);
 
-  const { data: reflections = [], isLoading } = useReflections(outcome.id);
-  const createReflection = useCreateReflection();
-  const deleteReflection = useDeleteReflection();
+  const { data: reflections = [], isLoading } = useTeacherReflections(outcome.id);
+  const createReflection = useCreateTeacherReflection();
+  const deleteReflection = useDeleteTeacherReflection();
 
   const handleSaveReflection = async (reflectionData: { content: string; outcomeId?: string }) => {
     try {
@@ -71,7 +71,7 @@ export default function OutcomeReflectionsView({ outcome }: OutcomeReflectionsVi
         <div className="flex justify-between items-start">
           <div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Reflections for: {outcome.title}
+              Reflections for: {outcome.code}
             </h3>
             <p className="text-sm text-gray-600">{outcome.description}</p>
           </div>
@@ -113,52 +113,27 @@ export default function OutcomeReflectionsView({ outcome }: OutcomeReflectionsVi
             </Button>
           </div>
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-4">
             {reflections.map((reflection) => (
               <div
                 key={reflection.id}
-                className="border border-gray-200 rounded-lg p-4 hover:shadow-sm transition-shadow"
+                className="p-4 border border-gray-200 rounded-lg hover:shadow-sm transition-shadow"
               >
                 <div className="flex justify-between items-start mb-3">
-                  <div className="flex items-center gap-2 text-sm text-gray-500">
-                    <span>📅 {formatDate(reflection.createdAt)}</span>
-                    {reflection.createdAt !== reflection.updatedAt && (
-                      <span className="text-blue-600">
-                        • Updated {formatDate(reflection.updatedAt)}
-                      </span>
-                    )}
-                  </div>
+                  <div className="text-sm text-gray-500">{formatDate(reflection.createdAt)}</div>
                   <button
                     onClick={() => handleDeleteReflection(reflection.id)}
-                    className="text-red-600 hover:text-red-800 text-sm"
-                    title="Delete reflection"
+                    className="text-red-600 hover:text-red-700 text-sm"
                   >
-                    🗑️
+                    Delete
                   </button>
                 </div>
-
-                <div className="prose max-w-none">
-                  <p className="text-gray-700 whitespace-pre-wrap leading-relaxed">
-                    {reflection.content}
-                  </p>
-                </div>
+                <p className="text-gray-700 whitespace-pre-wrap">{reflection.content}</p>
               </div>
             ))}
           </div>
         )}
       </div>
-
-      {/* Summary Stats */}
-      {reflections.length > 0 && (
-        <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
-          <div className="flex items-center justify-between text-sm text-gray-600">
-            <span>
-              {reflections.length} reflection{reflections.length !== 1 ? 's' : ''} recorded
-            </span>
-            <span>Last reflection: {formatDate(reflections[0]?.createdAt)}</span>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

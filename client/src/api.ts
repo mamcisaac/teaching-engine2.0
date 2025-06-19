@@ -1838,9 +1838,43 @@ export const useDeleteParentContact = () => {
 
 // =================== PARENT SUMMARY API ===================
 
+// Simple parent summary types for backward compatibility
+export interface ParentSummaryRequest {
+  studentId: number;
+  from: string;
+  to: string;
+  focus?: string[];
+}
+
+export interface ParentSummaryResponse {
+  french: string;
+  english: string;
+}
+
+// Simple version for our implementation
+export const useGenerateParentSummarySimple = () => {
+  return useMutation<ParentSummaryResponse, Error, ParentSummaryRequest>({
+    mutationFn: async (data) => (await api.post('/api/ai-parent-summary', data)).data,
+    onSuccess: () => {
+      toast.success('Parent summary generated successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to generate parent summary: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+// Enhanced version from main branch
 export const useGenerateParentSummary = () => {
   return useMutation<ParentSummaryGeneration, Error, GenerateParentSummaryRequest>({
     mutationFn: async (data) => (await api.post('/api/ai-parent-summary/generate', data)).data,
+    onSuccess: () => {
+      toast.success('Parent summary generated successfully!');
+    },
     onError: (error: unknown) => {
       const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
       toast.error(

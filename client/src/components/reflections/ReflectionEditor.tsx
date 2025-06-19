@@ -51,7 +51,7 @@ export default function ReflectionEditor({
           <option value="">No specific outcome</option>
           {outcomes.map((outcome) => (
             <option key={outcome.id} value={outcome.id}>
-              {outcome.title}
+              {outcome.code}: {outcome.description}
             </option>
           ))}
         </select>
