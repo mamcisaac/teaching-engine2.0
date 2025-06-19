@@ -552,6 +552,7 @@ model AssessmentTemplate {
   type        String     // "oral" | "reading" | "writing" | "mixed"
   description String?
   outcomeIds  String     @default("[]")
+  rubricCriteria String? // JSON array of criteria with descriptions
   userId      Int
   user        User       @relation(fields: [userId], references: [id])
   results     AssessmentResult[]
