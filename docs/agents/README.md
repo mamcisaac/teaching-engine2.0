@@ -10,6 +10,10 @@ This directory contains comprehensive documentation for AI coding agents working
 - **[IMPLEMENTATION_GUIDE.md](./IMPLEMENTATION_GUIDE.md)** - Complete technical implementation guide for phases 4-5
 - **[AGENT_DOCUMENTATION_INSTRUCTIONS.md](../../AGENT_DOCUMENTATION_INSTRUCTIONS.md)** - Instructions for creating detailed documentation
 
+### 🤝 Multi-Agent Development
+
+- **[MULTI_AGENT_SETUP.md](./MULTI_AGENT_SETUP.md)** - Complete setup guide for multi-agent development workflow
+
 ### 📋 Task Management
 
 - **[PHASE_IMPLEMENTATION_CHECKLIST.md](./PHASE_IMPLEMENTATION_CHECKLIST.md)** - Comprehensive checklist for all project phases (0-5)
@@ -25,6 +29,15 @@ This directory contains comprehensive documentation for AI coding agents working
 - **[logs/](./logs/)** - Individual agent development logs and progress tracking
 
 ## 🚀 Quick Start for New Agents
+
+### 0. Setup Your Development Environment
+
+Follow [MULTI_AGENT_SETUP.md](./MULTI_AGENT_SETUP.md) to:
+
+- Create your personal git worktree
+- Install dependencies and verify tests
+- Set up your agent log file
+- Understand coordination protocols
 
 ### 1. Understand the Project Goals
 
