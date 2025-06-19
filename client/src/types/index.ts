@@ -490,3 +490,65 @@ export interface ParentMessageInput {
   linkedOutcomeIds?: string[];
   linkedActivityIds?: number[];
 }
+
+export interface Student {
+  id: number;
+  name: string;
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+  goals?: StudentGoal[];
+  reflections?: StudentReflection[];
+  user?: {
+    id: number;
+    name: string;
+  };
+}
+
+export interface StudentGoal {
+  id: number;
+  studentId: number;
+  text: string;
+  outcomeId?: string | null;
+  themeId?: number | null;
+  createdAt: string;
+  status: 'active' | 'completed' | 'abandoned';
+  outcome?: Outcome | null;
+  theme?: ThematicUnit | null;
+  student?: Student;
+}
+
+export interface StudentReflection {
+  id: number;
+  studentId: number;
+  date: string;
+  text?: string | null;
+  emoji?: string | null;
+  voicePath?: string | null;
+  outcomeId?: string | null;
+  themeId?: number | null;
+  createdAt: string;
+  outcome?: Outcome | null;
+  theme?: ThematicUnit | null;
+  student?: Student;
+}
+
+export interface StudentInput {
+  name: string;
+}
+
+export interface StudentGoalInput {
+  text: string;
+  outcomeId?: string;
+  themeId?: number;
+  status?: 'active' | 'completed' | 'abandoned';
+}
+
+export interface StudentReflectionInput {
+  date?: string;
+  text?: string;
+  emoji?: string;
+  voicePath?: string;
+  outcomeId?: string;
+  themeId?: number;
+}
