@@ -151,6 +151,7 @@ describe('Timeline API', () => {
         timeframe: 'January 2024',
         contentEn: 'Test content',
         contentFr: 'Contenu test',
+        createdAt: new Date('2024-01-28'),
         linkedOutcomes: {
           create: {
             outcomeId: 'outcome-2',
