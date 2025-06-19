@@ -39,3 +39,4 @@ Implementing assessment planning and tracking for French Immersion classrooms wi
 (Track your commits for merge coordination)
 
 - 2025-06-19 01:10:00 - Added rubric criteria support to assessment templates
+- 2025-06-19 01:15:00 - Fixed rubricCriteria field handling in assessment API
