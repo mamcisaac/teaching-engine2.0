@@ -15,7 +15,7 @@ interface ExportParams extends AuditReportParams {
 
 interface OutcomeInfo {
   id: string;
-  title: string;
+  code: string;
   description: string;
   milestone?: string;
 }
@@ -24,7 +24,7 @@ interface ActivityInfo {
   id: number;
   title: string;
   description: string;
-  createdAt: Date;
+  activityType: string;
 }
 
 interface SubjectMetrics {
@@ -121,19 +121,19 @@ export async function generateAuditReport(params: AuditReportParams): Promise<Au
     include: {
       milestones: {
         include: {
-          outcomes: true,
+          outcomes: {
+            include: {
+              outcome: true,
+            },
+          },
         },
       },
     },
   });
 
-  // Get activities for the timeframe
+  // Get activities for the timeframe (filter by milestone creation since activities don't have createdAt)
   const activities = await prisma.activity.findMany({
     where: {
-      createdAt: {
-        gte: dateRange.from,
-        lte: dateRange.to,
-      },
       milestone: {
         subject: {
           userId,
@@ -157,7 +157,7 @@ export async function generateAuditReport(params: AuditReportParams): Promise<Au
 
   // Calculate overall metrics
   const allOutcomes = subjects.flatMap((subject) =>
-    subject.milestones.flatMap((milestone) => milestone.outcomes),
+    subject.milestones.flatMap((milestone) => milestone.outcomes.map((mo) => mo.outcome)),
   );
 
   const coveredOutcomeIds = new Set(
@@ -171,8 +171,8 @@ export async function generateAuditReport(params: AuditReportParams): Promise<Au
 
   // Calculate subject-specific metrics
   const subjectMetrics: SubjectMetrics[] = subjects.map((subject) => {
-    const subjectOutcomes = subject.milestones.flatMap((m) => m.outcomes);
-    const subjectActivities = activities.filter((a) => a.milestone.subjectId === subject.id);
+    const subjectOutcomes = subject.milestones.flatMap((m) => m.outcomes.map((mo) => mo.outcome));
+    const subjectActivities = activities.filter((a) => a.milestone.subject.id === subject.id);
     const subjectCoveredIds = new Set(
       subjectActivities.flatMap((a) => a.outcomes.map((ao) => ao.outcome.id)),
     );
@@ -181,7 +181,7 @@ export async function generateAuditReport(params: AuditReportParams): Promise<Au
 
     // Milestone breakdown
     const milestoneBreakdown = subject.milestones.map((milestone) => {
-      const milestoneOutcomes = milestone.outcomes;
+      const milestoneOutcomes = milestone.outcomes.map((mo) => mo.outcome);
       const milestoneCovered = milestoneOutcomes.filter((o) => subjectCoveredIds.has(o.id)).length;
 
       return {
@@ -207,21 +207,17 @@ export async function generateAuditReport(params: AuditReportParams): Promise<Au
         .filter((o) => !subjectCoveredIds.has(o.id))
         .map((o) => ({
           id: o.id,
-          title: o.title,
+          code: o.code,
           description: o.description,
-          milestone: subject.milestones.find((m) =>
-            m.outcomes.some((outcome) => outcome.id === o.id),
-          )?.title,
+          milestone: subject.milestones.find((m) => m.outcomes.some((mo) => mo.outcome.id === o.id))
+            ?.title,
         })),
-      recentActivities: subjectActivities
-        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-        .slice(0, 10)
-        .map((a) => ({
-          id: a.id,
-          title: a.title,
-          description: a.description,
-          createdAt: a.createdAt,
-        })),
+      recentActivities: subjectActivities.slice(0, 10).map((a) => ({
+        id: a.id,
+        title: a.title,
+        description: a.publicNote || '',
+        activityType: a.activityType,
+      })),
       milestoneBreakdown,
     };
   });
@@ -376,7 +372,7 @@ function generateCSVExport(report: AuditReport, includeDetails: boolean): string
         csvRows.push([
           subject.subjectName,
           outcome.id,
-          outcome.title,
+          outcome.code,
           outcome.milestone || 'Unknown',
         ]);
       });

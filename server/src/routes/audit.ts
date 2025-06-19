@@ -52,23 +52,31 @@ router.get('/overview', async (req: AuthenticatedRequest, res, next) => {
       include: {
         milestones: {
           include: {
-            outcomes: true,
+            outcomes: {
+              include: {
+                outcome: true,
+              },
+            },
           },
         },
       },
     });
 
     // Get activities for the timeframe
+    // For activities, we'll filter based on milestone creation since activities don't have createdAt
     let dateFilter = {};
     if (fromDate && toDate) {
+      // Filter by milestone creation time instead since activities don't have createdAt
       dateFilter = {
-        createdAt: {
-          gte: new Date(fromDate),
-          lte: new Date(toDate),
+        milestone: {
+          createdAt: {
+            gte: new Date(fromDate),
+            lte: new Date(toDate),
+          },
         },
       };
     } else {
-      // Default timeframe calculations
+      // Default timeframe calculations based on milestone creation
       const now = new Date();
       const currentYear = now.getFullYear();
       const currentMonth = now.getMonth();
@@ -94,9 +102,11 @@ router.get('/overview', async (req: AuthenticatedRequest, res, next) => {
       }
 
       dateFilter = {
-        createdAt: {
-          gte: startDate,
-          lte: endDate,
+        milestone: {
+          createdAt: {
+            gte: startDate,
+            lte: endDate,
+          },
         },
       };
     }
@@ -127,7 +137,7 @@ router.get('/overview', async (req: AuthenticatedRequest, res, next) => {
 
     // Calculate coverage metrics
     const allOutcomes = subjects.flatMap((subject) =>
-      subject.milestones.flatMap((milestone) => milestone.outcomes),
+      subject.milestones.flatMap((milestone) => milestone.outcomes.map((mo) => mo.outcome)),
     );
 
     const coveredOutcomeIds = new Set(
@@ -143,7 +153,7 @@ router.get('/overview', async (req: AuthenticatedRequest, res, next) => {
 
     // Subject-specific metrics
     const subjectMetrics = subjects.map((subject) => {
-      const subjectOutcomes = subject.milestones.flatMap((m) => m.outcomes);
+      const subjectOutcomes = subject.milestones.flatMap((m) => m.outcomes.map((mo) => mo.outcome));
       const subjectActivities = activities.filter((a) => a.milestone.subjectId === subject.id);
       const subjectCoveredIds = new Set(
         subjectActivities.flatMap((a) => a.outcomes.map((ao) => ao.outcome.id)),
@@ -164,28 +174,28 @@ router.get('/overview', async (req: AuthenticatedRequest, res, next) => {
           .filter((o) => !subjectCoveredIds.has(o.id))
           .map((o) => ({
             id: o.id,
-            title: o.title,
+            code: o.code,
             description: o.description,
           })),
-        recentActivities: subjectActivities
-          .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-          .slice(0, 5)
-          .map((a) => ({
-            id: a.id,
-            title: a.title,
-            description: a.description,
-            createdAt: a.createdAt,
-          })),
+        recentActivities: subjectActivities.slice(0, 5).map((a) => ({
+          id: a.id,
+          title: a.title,
+          description: a.publicNote || '',
+          activityType: a.activityType,
+        })),
       };
     });
 
     const auditData = {
       generatedAt: new Date().toISOString(),
       timeframe,
-      dateRange: dateFilter.createdAt
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      dateRange: (dateFilter as any).milestone?.createdAt
         ? {
-            from: dateFilter.createdAt.gte,
-            to: dateFilter.createdAt.lte,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            from: (dateFilter as any).milestone.createdAt.gte,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            to: (dateFilter as any).milestone.createdAt.lte,
           }
         : null,
       overallMetrics: {
@@ -310,7 +320,11 @@ router.get('/uncovered/:subjectId', async (req: AuthenticatedRequest, res, next)
       include: {
         milestones: {
           include: {
-            outcomes: true,
+            outcomes: {
+              include: {
+                outcome: true,
+              },
+            },
           },
         },
       },
@@ -321,7 +335,7 @@ router.get('/uncovered/:subjectId', async (req: AuthenticatedRequest, res, next)
     }
 
     // Get all outcomes for this subject
-    const allOutcomes = subject.milestones.flatMap((m) => m.outcomes);
+    const allOutcomes = subject.milestones.flatMap((m) => m.outcomes.map((mo) => mo.outcome));
 
     // Get covered outcomes
     const activities = await prisma.activity.findMany({
@@ -352,10 +366,11 @@ router.get('/uncovered/:subjectId', async (req: AuthenticatedRequest, res, next)
       uncoveredCount: uncoveredOutcomes.length,
       uncoveredOutcomes: uncoveredOutcomes.map((outcome) => ({
         id: outcome.id,
-        title: outcome.title,
+        code: outcome.code,
         description: outcome.description,
-        milestone: subject.milestones.find((m) => m.outcomes.some((o) => o.id === outcome.id))
-          ?.title,
+        milestone: subject.milestones.find((m) =>
+          m.outcomes.some((mo) => mo.outcome.id === outcome.id),
+        )?.title,
       })),
     });
   } catch (err) {

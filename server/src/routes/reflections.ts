@@ -33,7 +33,7 @@ router.get('/', async (req: AuthenticatedRequest, res, next) => {
         outcome: {
           select: {
             id: true,
-            title: true,
+            code: true,
             description: true,
           },
         },
@@ -66,7 +66,7 @@ router.get('/outcome/:outcomeId', async (req: AuthenticatedRequest, res, next) =
         outcome: {
           select: {
             id: true,
-            title: true,
+            code: true,
             description: true,
           },
         },
@@ -103,8 +103,10 @@ router.post('/', async (req: AuthenticatedRequest, res, next) => {
         id: outcomeId,
         milestones: {
           some: {
-            subject: {
-              userId: parseInt(userId),
+            milestone: {
+              subject: {
+                userId: parseInt(userId),
+              },
             },
           },
         },
@@ -125,7 +127,7 @@ router.post('/', async (req: AuthenticatedRequest, res, next) => {
         outcome: {
           select: {
             id: true,
-            title: true,
+            code: true,
             description: true,
           },
         },
@@ -177,7 +179,7 @@ router.put('/:id', async (req: AuthenticatedRequest, res, next) => {
         outcome: {
           select: {
             id: true,
-            title: true,
+            code: true,
             description: true,
           },
         },
@@ -259,7 +261,7 @@ router.get('/stats', async (req: AuthenticatedRequest, res, next) => {
             },
             select: {
               id: true,
-              title: true,
+              code: true,
               description: true,
             },
           })
@@ -273,7 +275,7 @@ router.get('/stats', async (req: AuthenticatedRequest, res, next) => {
         outcome: {
           select: {
             id: true,
-            title: true,
+            code: true,
           },
         },
       },
