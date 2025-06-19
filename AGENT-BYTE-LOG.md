@@ -39,3 +39,5 @@ Creating an AI-powered feature to suggest French Immersion activities for outcom
 ## Pull Requests
 
 - [#207](https://github.com/mamcisaac/teaching-engine2.0/pull/207) - feat: implement AI activity generator for uncovered outcomes
+  - Fixed CI failures: auth middleware imports, test database setup
+  - All tests passing, build successful

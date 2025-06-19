@@ -1,26 +1,20 @@
 import { describe, it, expect, beforeEach, afterEach } from '@jest/globals';
 import request from 'supertest';
 import { app } from '../src';
-import { prisma } from '@teaching-engine/database';
-import { createAuthToken } from './test-auth-helper';
+import { getTestPrismaClient } from './jest.setup';
+import { getAuthToken } from './test-auth-helper';
 
 describe('AI Suggestions API', () => {
   let authToken: string;
   let userId: number;
   let outcomeId: string;
+  const prisma = getTestPrismaClient();
 
   beforeEach(async () => {
-    // Create test user
-    const user = await prisma.user.create({
-      data: {
-        email: 'test@example.com',
-        password: 'hashedpassword',
-        name: 'Test User',
-        role: 'teacher',
-      },
-    });
-    userId = user.id;
-    authToken = createAuthToken(user.id);
+    // Get auth token (this will create/login user)
+    const authData = await getAuthToken(app);
+    authToken = authData.token;
+    userId = authData.userId;
 
     // Create test outcome
     const outcome = await prisma.outcome.create({
@@ -36,6 +30,10 @@ describe('AI Suggestions API', () => {
 
   afterEach(async () => {
     await prisma.aISuggestedActivity.deleteMany();
+    await prisma.activityOutcome.deleteMany();
+    await prisma.activity.deleteMany();
+    await prisma.milestone.deleteMany();
+    await prisma.subject.deleteMany();
     await prisma.outcome.deleteMany();
     await prisma.user.deleteMany();
   });
@@ -363,6 +361,7 @@ describe('AI Suggestions API', () => {
           email: 'other@example.com',
           password: 'hashedpassword',
           name: 'Other User',
+          role: 'teacher',
         },
       });
 

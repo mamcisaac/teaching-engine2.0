@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { z } from 'zod';
-import { prisma } from '@teaching-engine/database';
+import { prisma } from '../prisma';
 import { AIActivitySuggestionService } from '../services/aiSuggestionService';
 import { authMiddleware, AuthRequest } from '../middleware/auth';
 
@@ -48,7 +48,7 @@ const getUncoveredSchema = z.object({
   startDate: z.string().datetime().optional(),
   endDate: z.string().datetime().optional(),
   theme: z.string().optional(),
-  limit: z.number().int().positive().optional(),
+  limit: z.coerce.number().int().positive().optional(),
 });
 
 router.get('/uncovered', authMiddleware, async (req: AuthRequest, res) => {
