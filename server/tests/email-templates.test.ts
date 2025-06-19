@@ -80,6 +80,7 @@ describe('Email Template Tests', () => {
   beforeEach(async () => {
     await testEmailService.clearEmails();
     await prisma.parentContact.deleteMany();
+    await prisma.student.deleteMany();
     await prisma.newsletter.deleteMany();
   });
 
@@ -244,12 +245,20 @@ describe('Email Template Tests', () => {
 
   describe('Email Template Integration with Newsletter Sending', () => {
     it('sends newsletter with weekly template and verifies rendering', async () => {
-      // Create parent contact
+      // Create student and parent contact
+      const student = await prisma.student.create({
+        data: {
+          firstName: 'Template',
+          lastName: 'Student',
+          grade: 1,
+          userId: parseInt(auth.userId!),
+        },
+      });
       const parentContact = await prisma.parentContact.create({
         data: {
           name: 'Template Parent',
           email: generateTestEmail(),
-          studentName: 'Template Student',
+          studentId: student.id,
         },
       });
 
@@ -311,21 +320,29 @@ describe('Email Template Tests', () => {
         },
       });
 
-      const user = await prisma.user.findFirst({ where: { email: testUser.email } });
+      const testUserRecord = await prisma.user.findFirst({ where: { email: testUser.email } });
       await prisma.activity.create({
         data: {
           title: 'Test Activity',
           milestoneId: milestone.id,
-          userId: user?.id,
+          userId: testUserRecord?.id,
         },
       });
 
-      // Create parent contact
+      // Create student and parent contact
+      const student2 = await prisma.student.create({
+        data: {
+          firstName: 'Generated',
+          lastName: 'Student',
+          grade: 1,
+          userId: parseInt(auth.userId!),
+        },
+      });
       const parentContact = await prisma.parentContact.create({
         data: {
           name: 'Generated Parent',
           email: generateTestEmail(),
-          studentName: 'Generated Student',
+          studentId: student2.id,
         },
       });
 
