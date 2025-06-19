@@ -47,6 +47,17 @@ Teaching Engine 2.0 aims to be the "digital teaching assistant" that reduces adm
   - Link messages to classroom activities and learning outcomes
   - Export in multiple formats (PDF, HTML, Markdown)
   - Manage all parent communications from one location
+- **Student Timeline Generator**: Comprehensive timeline interface for visualizing student learning journeys
+  - Interactive week-based timeline with horizontal scroll navigation
+  - Aggregates events from activities, assessments, themes, and newsletters
+  - Outcome coverage statistics and next milestone tracking
+  - Filtering by subject, outcome, or theme with real-time updates
+  - Color-coded event types with contextual metadata display
+- **AI Activity Generator**: AI-powered activity suggestion system for uncovered curriculum outcomes
+  - Generates developmentally appropriate Grade 1 activities for French Immersion
+  - Editable suggestions with theme awareness and material tracking
+  - Direct integration with weekly planner for seamless workflow
+  - Mock generator for development with OpenAI integration ready
 
 #### In Progress
 
@@ -169,6 +180,28 @@ Centralized parent communication management:
 - Export newsletters in multiple formats
 - Track communication history
 
+### Student Timeline Generator
+
+Visualize student learning journeys with an interactive timeline:
+
+- Access via the Timeline page or dashboard quick access
+- View activities, assessments, themes, and newsletters in chronological order
+- Filter by subject, outcome, or theme to focus on specific learning areas
+- Navigate through different time periods (3-month windows)
+- Track outcome coverage statistics and upcoming milestones
+- Color-coded events: blue (activities), purple (assessments), green (themes), yellow (newsletters)
+
+### AI Activity Generator
+
+Generate activities for uncovered curriculum outcomes:
+
+- Available in the Weekly Planner for outcomes lacking sufficient activities
+- Click "Generate Activity" for any uncovered outcome
+- Edit generated suggestions before adding to your plan
+- Automatically includes materials list and theme connections
+- Supports French Immersion Grade 1 curriculum requirements
+- Integrates seamlessly with existing milestone and activity structure
+
 ## API
 
 ### Calendar Events
@@ -188,6 +221,19 @@ Centralized parent communication management:
 - `GET /api/outcomes` – List all curriculum outcomes.
 - `GET /api/outcomes?subject=FRA&grade=1` – Filter outcomes by subject and grade.
 - `GET /api/outcomes?search=keyword` – Search outcomes by code or description.
+
+### Timeline
+
+- `GET /api/timeline/events` – Get timeline events with optional filtering by date range, subject, outcome, or theme.
+- `GET /api/timeline/summary` – Get timeline summary with outcome coverage statistics and next milestone.
+
+### AI Suggestions
+
+- `GET /api/ai-suggestions` – List AI-generated activity suggestions.
+- `POST /api/ai-suggestions` – Create a new AI activity suggestion for an outcome.
+- `PUT /api/ai-suggestions/:id` – Update an existing suggestion.
+- `DELETE /api/ai-suggestions/:id` – Remove a suggestion.
+- `POST /api/ai-suggestions/:id/add-to-plan` – Add suggestion to weekly plan as an activity.
 
 ## 🧪 Testing
 
@@ -223,8 +269,11 @@ pnpm exec playwright install
 2. **Add Milestones**: Define major units or learning goals with target completion dates
 3. **Create Activities**: Populate milestones with specific lessons, assignments, and projects
 4. **Track Progress**: Mark activities as complete to automatically update progress bars
-5. **Plan Weekly**: Use the weekly planner (Phase 4) to schedule activities across your timetable. At least one activity must exist to auto-fill a plan
-6. **Communicate**: Generate parent newsletters from completed activities (Phase 4)
+5. **Plan Weekly**: Use the weekly planner to schedule activities across your timetable
+   - Use AI Activity Generator for uncovered outcomes
+   - At least one activity must exist to auto-fill a plan
+6. **Monitor Progress**: View the Student Timeline to visualize learning journeys and track outcome coverage
+7. **Communicate**: Generate parent newsletters from completed activities
 
 ### Key Concepts
 
