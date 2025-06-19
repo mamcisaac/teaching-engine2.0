@@ -33,6 +33,8 @@ import AssessmentBuilder from '../components/AssessmentBuilder';
 import { ParentMessageEditor } from '../components/ParentMessageEditor';
 import Dialog from '../components/Dialog';
 import { toast } from 'sonner';
+import { UncoveredOutcomesPanel } from '../components/planning/UncoveredOutcomesPanel';
+import { AISuggestionModal } from '../components/planning/AISuggestionModal';
 
 export default function WeeklyPlannerPage() {
   const [weekStart, setWeekStart] = useState(() => {
@@ -55,6 +57,20 @@ export default function WeeklyPlannerPage() {
   });
   const [showAssessmentBuilder, setShowAssessmentBuilder] = useState(false);
   const [showNewsletterEditor, setShowNewsletterEditor] = useState(false);
+  const [showUncoveredOutcomes, setShowUncoveredOutcomes] = useState(false);
+  const [selectedAISuggestion, setSelectedAISuggestion] = useState<{
+    id: number;
+    outcomeId: string;
+    userId: number;
+    title: string;
+    descriptionFr: string;
+    descriptionEn?: string;
+    materials: string[];
+    duration: number;
+    theme?: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null>(null);
 
   const {
     data: plan,
@@ -567,6 +583,12 @@ export default function WeeklyPlannerPage() {
                   >
                     📰 Create Newsletter
                   </button>
+                  <button
+                    onClick={() => setShowUncoveredOutcomes(true)}
+                    className="w-full flex items-center justify-center px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors"
+                  >
+                    🎯 View Uncovered Outcomes
+                  </button>
                 </div>
               </div>
 
@@ -621,6 +643,38 @@ export default function WeeklyPlannerPage() {
             onCancel={() => setShowNewsletterEditor(false)}
           />
         </Dialog>
+
+        {/* Uncovered Outcomes Dialog */}
+        <Dialog
+          open={showUncoveredOutcomes}
+          onClose={() => setShowUncoveredOutcomes(false)}
+          title="Uncovered Curriculum Outcomes"
+          maxWidth="3xl"
+        >
+          <UncoveredOutcomesPanel
+            startDate={new Date(weekStart)}
+            endDate={new Date(new Date(weekStart).getTime() + 6 * 86400000)}
+            onSelectSuggestion={(suggestion) => {
+              setSelectedAISuggestion(suggestion);
+              setShowUncoveredOutcomes(false);
+            }}
+          />
+        </Dialog>
+
+        {/* AI Suggestion Modal */}
+        {selectedAISuggestion && (
+          <AISuggestionModal
+            suggestion={selectedAISuggestion}
+            open={!!selectedAISuggestion}
+            onClose={() => setSelectedAISuggestion(null)}
+            onAddToWeek={() => {
+              // For now, just show a toast - full integration would require
+              // creating an activity from the suggestion and adding it to the week
+              toast.success('Activity suggestion saved! You can now add it to your week plan.');
+              setSelectedAISuggestion(null);
+            }}
+          />
+        )}
       </div>
     );
   } catch (error) {
