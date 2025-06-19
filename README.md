@@ -29,7 +29,26 @@ Teaching Engine 2.0 aims to be the "digital teaching assistant" that reduces adm
 5. **Emergency Sub Plans**: One-click PDFs provide substitute teachers with the current plan.
 6. **Notes & Reflection Management**: Private notes can be added to activities and days; public notes appear in newsletters.
 
-### Phase 5 - Curriculum Intelligence
+### Phase 5 - Curriculum Intelligence (Partially Implemented)
+
+#### Completed Features
+
+- **Language-Sensitive Assessment Builder**: Create French Immersion assessments with bilingual rubric criteria
+  - Pre-defined rubric templates for oral, reading, writing, and mixed assessments
+  - Custom rubric criteria support with JSON format
+  - Fully integrated with existing assessment system
+- **Visual Resource Organizer**: Manage visual teaching resources with curriculum integration
+  - Upload and tag images, PDFs, videos, and audio files
+  - Link resources to specific outcomes and activities
+  - Integrated resource selector in Daily Planner and Newsletter Editor
+  - Automatic file type detection and validation
+- **Parent Communication Center**: Centralized hub for parent communications
+  - Create bilingual newsletters (French/English) with activity links
+  - Link messages to classroom activities and learning outcomes
+  - Export in multiple formats (PDF, HTML, Markdown)
+  - Manage all parent communications from one location
+
+#### In Progress
 
 - **Provincial Curriculum Integration**: Import PEI (and other provincial) curriculum standards
   - Run `pnpm curriculum:import pei-fi-1` to import PEI French Immersion Grade 1 outcomes
@@ -121,6 +140,34 @@ docker compose up --build
 ```
 
 Access the application at http://localhost:3000
+
+## 📚 Feature Documentation
+
+### Assessment Builder
+
+The Language-Sensitive Assessment Builder helps create French Immersion assessments with appropriate rubric criteria:
+
+- Access via Activities page → Create Activity → Assessment type
+- Choose from pre-defined rubric templates or create custom criteria
+- Supports oral, reading, writing, and mixed assessment types
+
+### Visual Resource Organizer
+
+Manage visual teaching resources:
+
+- Upload resources via the Resources page
+- Supported formats: Images (JPG, PNG, GIF), PDFs, Videos (MP4, WebM), Audio (MP3, WAV)
+- Tag resources with subjects and outcomes for easy filtering
+- Use resources in Daily Planner and Newsletter Editor
+
+### Parent Communication Center
+
+Centralized parent communication management:
+
+- Create messages from Weekly Planner or Messages page
+- Link activities and outcomes to provide context
+- Export newsletters in multiple formats
+- Track communication history
 
 ## API
 

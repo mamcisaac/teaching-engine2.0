@@ -1686,3 +1686,66 @@ export const useCreateReflection = () => {
     },
   });
 };
+
+// Timeline types
+export interface TimelineEvent {
+  id: string;
+  date: string;
+  type: 'activity' | 'assessment' | 'theme' | 'newsletter';
+  label: string;
+  linkedOutcomeIds: string[];
+  subjectId?: number;
+  metadata?: {
+    score?: number;
+    milestoneId?: number;
+    endDate?: string;
+  };
+}
+
+export interface TimelineSummary {
+  totalOutcomes: number;
+  coveredOutcomes: number;
+  coveragePercentage: number;
+  nextMilestone: {
+    id: number;
+    title: string;
+    targetDate: string;
+  } | null;
+}
+
+export interface TimelineFilters {
+  from?: string;
+  to?: string;
+  studentId?: string;
+  subjectId?: string;
+  outcomeId?: string;
+  themeId?: string;
+}
+
+// Timeline API hooks
+export const useTimelineEvents = (filters: TimelineFilters = {}) => {
+  return useQuery({
+    queryKey: ['timeline', 'events', filters],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      Object.entries(filters).forEach(([key, value]) => {
+        if (value) params.append(key, value);
+      });
+      const { data } = await api.get<TimelineEvent[]>(`/timeline/events?${params.toString()}`);
+      return data;
+    },
+  });
+};
+
+export const useTimelineSummary = (filters: { from?: string; to?: string } = {}) => {
+  return useQuery({
+    queryKey: ['timeline', 'summary', filters],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (filters.from) params.append('from', filters.from);
+      if (filters.to) params.append('to', filters.to);
+      const { data } = await api.get<TimelineSummary>(`/timeline/summary?${params.toString()}`);
+      return data;
+    },
+  });
+};

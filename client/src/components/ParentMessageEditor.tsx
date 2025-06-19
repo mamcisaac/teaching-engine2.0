@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useCreateParentMessage, useUpdateParentMessage } from '../api';
 import { ParentMessage, ParentMessageInput } from '../types';
 import { OutcomeSelector } from './OutcomeSelector';
+import { ActivitySelectorMulti } from './ActivitySelectorMulti';
 import RichTextEditor from './RichTextEditor';
 
 interface Props {
@@ -273,23 +274,6 @@ export function ParentMessageEditor({ message, onSave, onCancel, prefillData }: 
           </button>
         </div>
       </form>
-    </div>
-  );
-}
-
-// Simple multi-select activity component
-function ActivitySelectorMulti({
-  selectedActivities,
-}: {
-  selectedActivities: number[];
-  onSelectionChange: (activities: number[]) => void;
-}) {
-  // This would need to be implemented to show available activities
-  // For now, just a placeholder
-  return (
-    <div className="border border-gray-300 rounded-md p-3 min-h-[100px]">
-      <p className="text-gray-500 text-sm">Activity selector component to be implemented</p>
-      <p className="text-xs text-gray-400 mt-1">Selected: {selectedActivities.length} activities</p>
     </div>
   );
 }

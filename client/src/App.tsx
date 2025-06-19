@@ -30,6 +30,7 @@ const CoveragePage = lazy(() => import('./pages/CoveragePage'));
 const ParentMessagesPage = lazy(() => import('./pages/ParentMessagesPage'));
 const StudentsPage = lazy(() => import('./pages/StudentsPage'));
 const StudentProfilePage = lazy(() => import('./pages/StudentProfilePage'));
+const TimelinePage = lazy(() => import('./pages/TimelinePage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 
 // Common suspense fallback
@@ -193,6 +194,14 @@ function AppRoutes() {
           element={
             <Suspense fallback={<SuspenseFallback />}>
               <CoveragePage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/timeline"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <TimelinePage />
             </Suspense>
           }
         />
