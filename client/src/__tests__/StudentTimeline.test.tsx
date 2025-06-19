@@ -212,11 +212,11 @@ describe('StudentTimeline', () => {
     vi.mocked(api.useTimelineEvents).mockReturnValue({
       data: [],
       isLoading: true,
-    } as ReturnType<typeof api.useTimelineEvents>);
+    } as unknown as ReturnType<typeof api.useTimelineEvents>);
     vi.mocked(api.useTimelineSummary).mockReturnValue({
       data: null,
       isLoading: true,
-    } as ReturnType<typeof api.useTimelineSummary>);
+    } as unknown as ReturnType<typeof api.useTimelineSummary>);
 
     renderComponent();
     expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
@@ -226,7 +226,7 @@ describe('StudentTimeline', () => {
     vi.mocked(api.useTimelineEvents).mockReturnValue({
       data: [],
       isLoading: false,
-    } as ReturnType<typeof api.useTimelineEvents>);
+    } as unknown as ReturnType<typeof api.useTimelineEvents>);
 
     renderComponent();
     expect(screen.getByText('No timeline events found for this period.')).toBeInTheDocument();

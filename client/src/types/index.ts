@@ -12,6 +12,7 @@ export interface Outcome {
   grade: number;
   code: string;
   description: string;
+  title?: string; // Added for compatibility
   domain?: string | null;
 }
 
@@ -118,6 +119,8 @@ export interface Activity {
   tags?: string[];
   durationMins?: number;
   materialsText?: string | null;
+  description?: string; // Added for compatibility
+  createdAt?: string; // Added for compatibility
   milestone?: {
     id: number;
     subjectId: number;
@@ -493,16 +496,30 @@ export interface ParentMessageInput {
 
 export interface Student {
   id: number;
-  name: string;
+  firstName: string;
+  lastName: string;
+  grade: number;
   userId: number;
+  parentContacts: ParentContact[];
+  assessmentResults?: StudentAssessmentResult[];
+  artifacts?: StudentArtifact[];
+  reflections?: StudentReflection[];
+  parentSummaries?: ParentSummary[];
+  goals?: StudentGoal[];
   createdAt: string;
   updatedAt: string;
-  goals?: StudentGoal[];
-  reflections?: StudentReflection[];
+  _count?: {
+    assessmentResults: number;
+    artifacts: number;
+    reflections: number;
+    parentSummaries: number;
+  };
   user?: {
     id: number;
     name: string;
   };
+  // Legacy name field for backward compatibility
+  name?: string;
 }
 
 export interface StudentGoal {
@@ -521,20 +538,31 @@ export interface StudentGoal {
 export interface StudentReflection {
   id: number;
   studentId: number;
-  date: string;
-  text?: string | null;
+  date?: string;
+  content?: string; // New field for parent communication reflections
+  text?: string | null; // Legacy field for goal-based reflections
   emoji?: string | null;
   voicePath?: string | null;
   outcomeId?: string | null;
   themeId?: number | null;
+  activityId?: number | null;
   createdAt: string;
   outcome?: Outcome | null;
   theme?: ThematicUnit | null;
+  activity?: {
+    id: number;
+    title: string;
+  } | null;
   student?: Student;
 }
 
 export interface StudentInput {
-  name: string;
+  firstName: string;
+  lastName: string;
+  grade: number;
+  parentContacts?: Array<{ name: string; email: string }>;
+  // Legacy name field for backward compatibility
+  name?: string;
 }
 
 export interface StudentGoalInput {
@@ -551,4 +579,73 @@ export interface StudentReflectionInput {
   voicePath?: string;
   outcomeId?: string;
   themeId?: number;
+}
+
+export interface ParentContact {
+  id: number;
+  name: string;
+  email: string;
+  studentId: number;
+}
+
+export interface StudentAssessmentResult {
+  id: number;
+  studentId: number;
+  assessmentId: number;
+  score: number | null;
+  notes: string | null;
+  createdAt: string;
+  assessment?: {
+    id: number;
+    date: string;
+    template: {
+      title: string;
+      type: string;
+    };
+  };
+}
+
+export interface StudentArtifact {
+  id: number;
+  studentId: number;
+  title: string;
+  description: string | null;
+  fileUrl: string | null;
+  outcomeIds: string;
+  createdAt: string;
+}
+
+export interface ParentSummary {
+  id: number;
+  studentId: number;
+  dateFrom: string;
+  dateTo: string;
+  focus: string;
+  contentFr: string;
+  contentEn: string;
+  isDraft: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ParentSummaryGeneration {
+  french: string;
+  english: string;
+}
+
+export interface GenerateParentSummaryRequest {
+  studentId: number;
+  from: string;
+  to: string;
+  focus?: string[];
+}
+
+export interface SaveParentSummaryRequest {
+  studentId: number;
+  dateFrom: string;
+  dateTo: string;
+  focus?: string[];
+  contentFr: string;
+  contentEn: string;
+  isDraft?: boolean;
 }
