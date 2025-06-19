@@ -55,7 +55,7 @@ router.post(
   async (req: AuthRequest, res, next) => {
     try {
       const userId = req.userId!;
-      const { title, type, description, outcomeIds } = req.body;
+      const { title, type, description, outcomeIds, rubricCriteria } = req.body;
 
       const template = await prisma.assessmentTemplate.create({
         data: {
@@ -63,6 +63,7 @@ router.post(
           type,
           description,
           outcomeIds: JSON.stringify(outcomeIds),
+          rubricCriteria,
           userId,
         },
       });
