@@ -1784,3 +1784,123 @@ export const useDeleteStudentReflection = () => {
     },
   });
 };
+
+// AI Parent Summary API
+export interface ParentSummaryRequest {
+  studentId: number;
+  from: string;
+  to: string;
+  focus?: string[];
+}
+
+export interface ParentSummaryResponse {
+  french: string;
+  english: string;
+}
+
+export const useGenerateParentSummary = () => {
+  return useMutation<ParentSummaryResponse, Error, ParentSummaryRequest>({
+    mutationFn: async (data) => (await api.post('/api/ai-parent-summary', data)).data,
+    onSuccess: () => {
+      toast.success('Parent summary generated successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to generate parent summary: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+// Activity Templates and Suggestions API
+export interface ActivityTemplate {
+  id: number;
+  titleFr: string;
+  titleEn: string;
+  descriptionFr: string;
+  descriptionEn: string;
+  domain: string;
+  subject: string;
+  outcomeIds: string[];
+  materialsFr?: string;
+  materialsEn?: string;
+  prepTimeMin?: number;
+  groupType: string;
+  theme?: {
+    id: number;
+    title: string;
+    titleEn?: string;
+    titleFr?: string;
+  };
+  createdBy: {
+    id: number;
+    name: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+  relevanceScore?: number;
+}
+
+export interface ActivityTemplateInput {
+  titleFr: string;
+  titleEn: string;
+  descriptionFr: string;
+  descriptionEn: string;
+  domain: string;
+  subject: string;
+  outcomeIds?: string[];
+  themeId?: number;
+  materialsFr?: string;
+  materialsEn?: string;
+  prepTimeMin?: number;
+  groupType?: string;
+}
+
+export const useActivitySuggestions = (filters?: {
+  suggestFor?: string;
+  theme?: number;
+  domain?: string;
+  subject?: string;
+  limit?: number;
+}) =>
+  useQuery<ActivityTemplate[]>({
+    queryKey: ['activity-suggestions', filters],
+    queryFn: async () =>
+      (await api.get('/api/activity-templates/suggestions', { params: filters })).data,
+    enabled: !!(filters?.suggestFor || filters?.theme || filters?.domain || filters?.subject),
+  });
+
+export const useActivityTemplates = (filters?: {
+  domain?: string;
+  subject?: string;
+  outcomeId?: string;
+  themeId?: number;
+  groupType?: string;
+  search?: string;
+}) =>
+  useQuery<ActivityTemplate[]>({
+    queryKey: ['activity-templates', filters],
+    queryFn: async () =>
+      (await api.get('/api/activity-templates/templates', { params: filters })).data,
+  });
+
+export const useCreateActivityTemplate = () => {
+  const queryClient = useQueryClient();
+  return useMutation<ActivityTemplate, Error, ActivityTemplateInput>({
+    mutationFn: async (data) => (await api.post('/api/activity-templates/templates', data)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['activity-templates'] });
+      queryClient.invalidateQueries({ queryKey: ['activity-suggestions'] });
+      toast.success('Activity template created successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to create activity template: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};

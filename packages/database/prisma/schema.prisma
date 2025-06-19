@@ -272,6 +272,7 @@ model User {
   reflectionJournalEntries ReflectionJournalEntry[]
   aiSuggestedActivities AISuggestedActivity[]
   students Student[]
+  activityTemplates ActivityTemplate[]
 }
 
 enum ActivityType {
@@ -507,6 +508,7 @@ model ThematicUnit {
   reflections  ReflectionJournalEntry[]
   studentGoals StudentGoal[]
   studentReflections StudentReflection[]
+  activityTemplates ActivityTemplate[]
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 }
@@ -706,4 +708,25 @@ model StudentReflection {
   themeId    Int?
   theme      ThematicUnit? @relation(fields: [themeId], references: [id])
   createdAt  DateTime  @default(now())
+}
+
+model ActivityTemplate {
+  id             Int      @id @default(autoincrement())
+  titleFr        String
+  titleEn        String
+  descriptionFr  String
+  descriptionEn  String
+  domain         String   // e.g., "oral", "reading", "writing", "math"
+  subject        String   // e.g., "francais", "english", "math"
+  outcomeIds     String   @default("[]") // JSON array of outcome IDs
+  themeId        Int?
+  theme          ThematicUnit? @relation(fields: [themeId], references: [id])
+  materialsFr    String?
+  materialsEn    String?
+  prepTimeMin    Int?     // preparation time in minutes
+  groupType      String   @default("Whole class") // "Whole class", "Small group", "Individual"
+  createdBy      Int
+  createdByUser  User     @relation(fields: [createdBy], references: [id])
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }

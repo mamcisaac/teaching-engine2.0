@@ -60,6 +60,8 @@ import studentRoutes from './routes/student';
 import testRoutes from './routes/test';
 import timelineRoutes from './routes/timeline';
 import { aiSuggestionsRouter } from './routes/aiSuggestions';
+import aiParentSummaryRoutes from './routes/aiParentSummary';
+import activityTemplateRoutes from './routes/activityTemplate';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
@@ -248,6 +250,8 @@ app.use('/api/reflections', authenticateToken, reflectionRoutes);
 app.use('/api/timeline', authenticateToken, timelineRoutes);
 app.use('/api/students', authenticateToken, studentRoutes);
 app.use('/api/ai-suggestions', authenticateToken, aiSuggestionsRouter);
+app.use('/api/ai-parent-summary', authenticateToken, aiParentSummaryRoutes);
+app.use('/api/activity-templates', authenticateToken, activityTemplateRoutes);
 
 // Mount test routes (only in test/development mode)
 if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
