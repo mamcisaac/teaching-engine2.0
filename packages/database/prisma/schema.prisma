@@ -84,6 +84,7 @@ model Activity {
   cognatePairs CognateActivity[]
   mediaResources MediaResourceActivity[]
   parentMessages ParentMessageActivity[]
+  studentReflections StudentReflection[]
   @@index([milestoneId, orderIndex])
 }
 
@@ -237,11 +238,77 @@ model Note {
 }
 
 
+model Student {
+  id          Int    @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  grade       Int
+  userId      Int
+  user        User   @relation(fields: [userId], references: [id])
+  parentContacts ParentContact[]
+  assessmentResults StudentAssessmentResult[]
+  artifacts   StudentArtifact[]
+  reflections StudentReflection[]
+  parentSummaries ParentSummary[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  @@index([userId, lastName])
+}
+
 model ParentContact {
   id          Int    @id @default(autoincrement())
   name        String
-  email       String  @unique
-  studentName String
+  email       String
+  studentId   Int
+  student     Student @relation(fields: [studentId], references: [id])
+  @@unique([email, studentId])
+}
+
+model StudentAssessmentResult {
+  id          Int        @id @default(autoincrement())
+  studentId   Int
+  student     Student    @relation(fields: [studentId], references: [id])
+  assessmentId Int
+  assessment  AssessmentResult @relation(fields: [assessmentId], references: [id])
+  score       Int?       // 0-100 or null if not scored
+  notes       String?
+  createdAt   DateTime   @default(now())
+  @@unique([studentId, assessmentId])
+}
+
+model StudentArtifact {
+  id          Int      @id @default(autoincrement())
+  studentId   Int
+  student     Student  @relation(fields: [studentId], references: [id])
+  title       String
+  description String?
+  fileUrl     String?
+  outcomeIds  String   @default("[]") // JSON array of outcome IDs
+  createdAt   DateTime @default(now())
+}
+
+model StudentReflection {
+  id          Int      @id @default(autoincrement())
+  studentId   Int
+  student     Student  @relation(fields: [studentId], references: [id])
+  activityId  Int?
+  activity    Activity? @relation(fields: [activityId], references: [id])
+  content     String
+  createdAt   DateTime @default(now())
+}
+
+model ParentSummary {
+  id          Int      @id @default(autoincrement())
+  studentId   Int
+  student     Student  @relation(fields: [studentId], references: [id])
+  dateFrom    DateTime
+  dateTo      DateTime
+  focus       String?  @default("[]") // JSON array of focus areas
+  contentFr   String
+  contentEn   String
+  isDraft     Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model User {
@@ -269,6 +336,7 @@ model User {
   assessmentTemplates AssessmentTemplate[]
   mediaResources MediaResource[]
   parentMessages ParentMessage[]
+  students Student[]
 }
 
 enum ActivityType {
@@ -566,6 +634,7 @@ model AssessmentResult {
   date       DateTime
   groupScore Int?       // 0–100
   notes      String?
+  studentResults StudentAssessmentResult[]
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
 }

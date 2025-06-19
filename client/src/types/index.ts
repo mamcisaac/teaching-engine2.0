@@ -1,5 +1,114 @@
 // Common types used across the application
 
+export interface Student {
+  id: number;
+  firstName: string;
+  lastName: string;
+  grade: number;
+  userId: number;
+  parentContacts: ParentContact[];
+  assessmentResults?: StudentAssessmentResult[];
+  artifacts?: StudentArtifact[];
+  reflections?: StudentReflection[];
+  parentSummaries?: ParentSummary[];
+  createdAt: string;
+  updatedAt: string;
+  _count?: {
+    assessmentResults: number;
+    artifacts: number;
+    reflections: number;
+    parentSummaries: number;
+  };
+}
+
+export interface ParentContact {
+  id: number;
+  name: string;
+  email: string;
+  studentId: number;
+}
+
+export interface StudentAssessmentResult {
+  id: number;
+  studentId: number;
+  assessmentId: number;
+  score: number | null;
+  notes: string | null;
+  createdAt: string;
+  assessment?: {
+    id: number;
+    date: string;
+    template: {
+      title: string;
+      type: string;
+    };
+  };
+}
+
+export interface StudentArtifact {
+  id: number;
+  studentId: number;
+  title: string;
+  description: string | null;
+  fileUrl: string | null;
+  outcomeIds: string;
+  createdAt: string;
+}
+
+export interface StudentReflection {
+  id: number;
+  studentId: number;
+  activityId: number | null;
+  content: string;
+  createdAt: string;
+  activity?: {
+    id: number;
+    title: string;
+  } | null;
+}
+
+export interface ParentSummary {
+  id: number;
+  studentId: number;
+  dateFrom: string;
+  dateTo: string;
+  focus: string;
+  contentFr: string;
+  contentEn: string;
+  isDraft: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ParentSummaryGeneration {
+  french: string;
+  english: string;
+}
+
+export interface GenerateParentSummaryRequest {
+  studentId: number;
+  from: string;
+  to: string;
+  focus?: string[];
+}
+
+export interface SaveParentSummaryRequest {
+  studentId: number;
+  dateFrom: string;
+  dateTo: string;
+  focus?: string[];
+  contentFr: string;
+  contentEn: string;
+  isDraft?: boolean;
+}
+
+export interface StudentInput {
+  firstName: string;
+  lastName: string;
+  grade: number;
+  parentContacts?: Array<{ name: string; email: string }>;
+}
+
 export interface Subject {
   id: number;
   name: string;
