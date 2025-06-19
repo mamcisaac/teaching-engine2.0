@@ -416,6 +416,7 @@ model Outcome {
   aiSuggestedActivities AISuggestedActivity[]
   studentGoals StudentGoal[]
   studentReflections StudentReflection[]
+  milestoneDefinitions MilestoneDefinition[]
 }
 
 model MilestoneOutcome {
@@ -504,6 +505,7 @@ model ThematicUnit {
   activities   ThematicUnitActivity[]
   studentGoals StudentGoal[]
   studentReflections StudentReflection[]
+  milestoneDefinitions MilestoneDefinition[]
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 }
@@ -679,4 +681,21 @@ model StudentReflection {
   themeId    Int?
   theme      ThematicUnit? @relation(fields: [themeId], references: [id])
   createdAt  DateTime  @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model MilestoneDefinition {
+  id                     Int      @id @default(autoincrement())
+  outcomeId              String?
+  outcome                Outcome? @relation(fields: [outcomeId], references: [id])
+  thematicUnitId         Int?
+  thematicUnit           ThematicUnit? @relation(fields: [thematicUnitId], references: [id])
+  domain                 String?  // For domain-level alerts like "Oral Language"
+  dueDate                DateTime
+  minCoverageCount       Int?
+  minAssessmentRequired  Boolean  @default(false)
+  description            String?
+  priority               String   @default("medium") // "low", "medium", "high"
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
 }

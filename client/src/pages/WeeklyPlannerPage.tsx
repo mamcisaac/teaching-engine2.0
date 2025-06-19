@@ -35,6 +35,8 @@ import Dialog from '../components/Dialog';
 import { toast } from 'sonner';
 import { UncoveredOutcomesPanel } from '../components/planning/UncoveredOutcomesPanel';
 import { AISuggestionModal } from '../components/planning/AISuggestionModal';
+import MilestoneAlertCard from '../components/MilestoneAlertCard';
+import useMilestoneAlerts from '../hooks/useMilestoneAlerts';
 
 export default function WeeklyPlannerPage() {
   const [weekStart, setWeekStart] = useState(() => {
@@ -92,6 +94,9 @@ export default function WeeklyPlannerPage() {
   };
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data: _suggestions, error: suggestionsError } = usePlannerSuggestions(weekStart, filters);
+
+  // Get milestone alerts
+  const { data: milestoneAlerts = [], isLoading: alertsLoading } = useMilestoneAlerts();
 
   // Get thematic units active during this week
   const { data: thematicUnits } = useThematicUnits();
@@ -435,6 +440,46 @@ export default function WeeklyPlannerPage() {
             </label>
           </div>
         </div>
+
+        {/* Milestone Alerts Banner */}
+        {!alertsLoading && milestoneAlerts.length > 0 && (
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-lg font-semibold text-orange-800 flex items-center gap-2">
+                ⚠️ Milestone Alerts ({milestoneAlerts.length})
+              </h3>
+              <button
+                onClick={() => (window.location.href = '/dashboard#alerts')}
+                className="text-sm text-orange-600 hover:text-orange-800 font-medium"
+              >
+                View all alerts →
+              </button>
+            </div>
+            <div className="grid gap-3 md:grid-cols-2">
+              {milestoneAlerts.slice(0, 2).map((alert, index) => (
+                <MilestoneAlertCard
+                  key={index}
+                  alert={alert}
+                  onPlanActivity={() => {
+                    // Filter activities for this alert's outcome/domain
+                    toast.success('Use the filters below to find relevant activities');
+                  }}
+                  onViewDetails={() => {
+                    if (alert.outcomeId) {
+                      window.location.href = `/outcomes/${alert.outcomeId}`;
+                    }
+                  }}
+                  onDismiss={() => {
+                    toast.info('Alert dismissed (feature coming soon)');
+                  }}
+                  onSnooze={() => {
+                    toast.info('Alert snoozed (feature coming soon)');
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Active Thematic Units */}
         {activeThematicUnits.length > 0 && (

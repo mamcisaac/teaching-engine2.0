@@ -58,6 +58,7 @@ import parentMessageRoutes from './routes/parentMessage';
 import studentRoutes from './routes/student';
 import testRoutes from './routes/test';
 import timelineRoutes from './routes/timeline';
+import alertsRoutes from './routes/alerts';
 import { aiSuggestionsRouter } from './routes/aiSuggestions';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
@@ -245,6 +246,7 @@ app.use('/api/media-resources', authenticateToken, mediaResourceRoutes);
 app.use('/api/parent-messages', authenticateToken, parentMessageRoutes);
 app.use('/api/timeline', authenticateToken, timelineRoutes);
 app.use('/api/students', authenticateToken, studentRoutes);
+app.use('/api/alerts', authenticateToken, alertsRoutes);
 app.use('/api/ai-suggestions', authenticateToken, aiSuggestionsRouter);
 
 // Mount test routes (only in test/development mode)
