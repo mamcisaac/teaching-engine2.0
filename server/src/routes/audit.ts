@@ -1,381 +1,224 @@
-import { Router, Request } from 'express';
-import { prisma } from '../prisma';
-import { generateAuditReport, exportAuditData } from '../services/curriculumAuditService';
+import { Router } from 'express';
 import { z } from 'zod';
-
-interface AuthenticatedRequest extends Request {
-  user?: { userId: string };
-}
+import {
+  CurriculumAuditService,
+  OutcomeCoverage,
+  AuditFilters,
+  CoverageSummary,
+} from '../services/curriculumAuditService';
 
 const router = Router();
+const auditService = new CurriculumAuditService();
 
-// Validation schemas
-const auditRequestSchema = z.object({
-  subjectIds: z.array(z.number()).optional(),
-  timeframe: z.enum(['term', 'semester', 'year']).default('term'),
-  fromDate: z.string().datetime().optional(),
-  toDate: z.string().datetime().optional(),
-});
-
-const exportRequestSchema = z.object({
-  format: z.enum(['pdf', 'csv', 'json']).default('json'),
-  subjectIds: z.array(z.number()).optional(),
-  timeframe: z.enum(['term', 'semester', 'year']).default('term'),
-  includeDetails: z.boolean().default(true),
-});
-
-// Get curriculum audit overview
-router.get('/overview', async (req: AuthenticatedRequest, res, next) => {
+/**
+ * GET /api/audit/curriculum-coverage
+ * Get curriculum coverage audit data
+ */
+router.get('/curriculum-coverage', async (req, res) => {
   try {
-    const userId = req.user?.userId;
-    if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
-    }
-
-    const validation = auditRequestSchema.safeParse(req.query);
-    if (!validation.success) {
-      return res.status(400).json({
-        error: 'Invalid request parameters',
-        details: validation.error.flatten(),
-      });
-    }
-
-    const { subjectIds, timeframe, fromDate, toDate } = validation.data;
-    const userIdInt = parseInt(userId);
-
-    // Get user's subjects
-    const subjects = await prisma.subject.findMany({
-      where: {
-        userId: userIdInt,
-        ...(subjectIds && subjectIds.length > 0 ? { id: { in: subjectIds } } : {}),
-      },
-      include: {
-        milestones: {
-          include: {
-            outcomes: {
-              include: {
-                outcome: true,
-              },
-            },
-          },
-        },
-      },
+    // Validate query parameters
+    const querySchema = z.object({
+      classId: z.string().optional(),
+      term: z.string().optional(),
+      subject: z.string().optional(),
+      grade: z.string().optional(),
+      domain: z.string().optional(),
+      startDate: z.string().optional(),
+      endDate: z.string().optional(),
     });
 
-    // Get activities for the timeframe
-    // For activities, we'll filter based on milestone creation since activities don't have createdAt
-    let dateFilter = {};
-    if (fromDate && toDate) {
-      // Filter by milestone creation time instead since activities don't have createdAt
-      dateFilter = {
-        milestone: {
-          createdAt: {
-            gte: new Date(fromDate),
-            lte: new Date(toDate),
-          },
-        },
-      };
-    } else {
-      // Default timeframe calculations based on milestone creation
-      const now = new Date();
-      const currentYear = now.getFullYear();
-      const currentMonth = now.getMonth();
+    const query = querySchema.parse(req.query);
 
-      let startDate: Date;
-      const endDate: Date = now;
-
-      switch (timeframe) {
-        case 'term':
-          // Assume term is 4 months
-          startDate = new Date(currentYear, currentMonth - 4, 1);
-          break;
-        case 'semester':
-          // Assume semester is 6 months
-          startDate = new Date(currentYear, currentMonth - 6, 1);
-          break;
-        case 'year':
-          // Academic year
-          startDate = new Date(currentYear - 1, 8, 1); // September 1st
-          break;
-        default:
-          startDate = new Date(currentYear, currentMonth - 4, 1);
-      }
-
-      dateFilter = {
-        milestone: {
-          createdAt: {
-            gte: startDate,
-            lte: endDate,
-          },
-        },
-      };
-    }
-
-    const activities = await prisma.activity.findMany({
-      where: {
-        ...dateFilter,
-        milestone: {
-          subject: {
-            userId: userIdInt,
-            ...(subjectIds && subjectIds.length > 0 ? { id: { in: subjectIds } } : {}),
-          },
-        },
-      },
-      include: {
-        milestone: {
-          include: {
-            subject: true,
-          },
-        },
-        outcomes: {
-          include: {
-            outcome: true,
-          },
-        },
-      },
-    });
-
-    // Calculate coverage metrics
-    const allOutcomes = subjects.flatMap((subject) =>
-      subject.milestones.flatMap((milestone) => milestone.outcomes.map((mo) => mo.outcome)),
-    );
-
-    const coveredOutcomeIds = new Set(
-      activities.flatMap((activity) => activity.outcomes.map((ao) => ao.outcome.id)),
-    );
-
-    const totalOutcomes = allOutcomes.length;
-    const coveredOutcomes = allOutcomes.filter((outcome) =>
-      coveredOutcomeIds.has(outcome.id),
-    ).length;
-    const uncoveredOutcomes = totalOutcomes - coveredOutcomes;
-    const coveragePercentage = totalOutcomes > 0 ? (coveredOutcomes / totalOutcomes) * 100 : 0;
-
-    // Subject-specific metrics
-    const subjectMetrics = subjects.map((subject) => {
-      const subjectOutcomes = subject.milestones.flatMap((m) => m.outcomes.map((mo) => mo.outcome));
-      const subjectActivities = activities.filter((a) => a.milestone.subjectId === subject.id);
-      const subjectCoveredIds = new Set(
-        subjectActivities.flatMap((a) => a.outcomes.map((ao) => ao.outcome.id)),
-      );
-
-      const subjectCovered = subjectOutcomes.filter((o) => subjectCoveredIds.has(o.id)).length;
-
-      return {
-        subjectId: subject.id,
-        subjectName: subject.name,
-        totalOutcomes: subjectOutcomes.length,
-        coveredOutcomes: subjectCovered,
-        uncoveredOutcomes: subjectOutcomes.length - subjectCovered,
-        coveragePercentage:
-          subjectOutcomes.length > 0 ? (subjectCovered / subjectOutcomes.length) * 100 : 0,
-        activitiesCount: subjectActivities.length,
-        uncoveredOutcomeDetails: subjectOutcomes
-          .filter((o) => !subjectCoveredIds.has(o.id))
-          .map((o) => ({
-            id: o.id,
-            code: o.code,
-            description: o.description,
-          })),
-        recentActivities: subjectActivities.slice(0, 5).map((a) => ({
-          id: a.id,
-          title: a.title,
-          description: a.publicNote || '',
-          activityType: a.activityType,
-        })),
-      };
-    });
-
-    const auditData = {
-      generatedAt: new Date().toISOString(),
-      timeframe,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      dateRange: (dateFilter as any).milestone?.createdAt
-        ? {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            from: (dateFilter as any).milestone.createdAt.gte,
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            to: (dateFilter as any).milestone.createdAt.lte,
-          }
-        : null,
-      overallMetrics: {
-        totalOutcomes,
-        coveredOutcomes,
-        uncoveredOutcomes,
-        coveragePercentage,
-        activitiesCount: activities.length,
-        subjectsAudited: subjects.length,
-      },
-      subjectMetrics,
+    // Build filters
+    const filters = {
+      userId: req.user?.id,
+      classId: query.classId ? parseInt(query.classId) : undefined,
+      term: query.term,
+      subject: query.subject,
+      grade: query.grade ? parseInt(query.grade) : undefined,
+      domain: query.domain,
+      startDate: query.startDate ? new Date(query.startDate) : undefined,
+      endDate: query.endDate ? new Date(query.endDate) : undefined,
     };
 
-    res.json(auditData);
-  } catch (err) {
-    console.error('Error generating audit overview:', err);
-    next(err);
+    const coverage = await auditService.getCurriculumCoverage(filters);
+
+    res.json(coverage);
+  } catch (error) {
+    console.error('Error fetching curriculum coverage:', error);
+    if (error instanceof z.ZodError) {
+      res.status(400).json({ error: 'Invalid query parameters', details: error.errors });
+    } else {
+      res.status(500).json({ error: 'Failed to fetch curriculum coverage' });
+    }
   }
 });
 
-// Generate detailed audit report
-router.post('/generate', async (req: AuthenticatedRequest, res, next) => {
+/**
+ * GET /api/audit/curriculum-coverage/summary
+ * Get curriculum coverage summary statistics
+ */
+router.get('/curriculum-coverage/summary', async (req, res) => {
   try {
-    const userId = req.user?.userId;
-    if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
-    }
-
-    const validation = auditRequestSchema.safeParse(req.body);
-    if (!validation.success) {
-      return res.status(400).json({
-        error: 'Invalid request data',
-        details: validation.error.flatten(),
-      });
-    }
-
-    const { subjectIds, timeframe, fromDate, toDate } = validation.data;
-
-    const report = await generateAuditReport({
-      userId: parseInt(userId),
-      subjectIds,
-      timeframe,
-      fromDate: fromDate ? new Date(fromDate) : undefined,
-      toDate: toDate ? new Date(toDate) : undefined,
+    // Use same query validation as main endpoint
+    const querySchema = z.object({
+      classId: z.string().optional(),
+      term: z.string().optional(),
+      subject: z.string().optional(),
+      grade: z.string().optional(),
+      domain: z.string().optional(),
+      startDate: z.string().optional(),
+      endDate: z.string().optional(),
     });
 
-    res.json(report);
-  } catch (err) {
-    console.error('Error generating detailed audit report:', err);
-    next(err);
+    const query = querySchema.parse(req.query);
+
+    // Build filters
+    const filters = {
+      userId: req.user?.id,
+      classId: query.classId ? parseInt(query.classId) : undefined,
+      term: query.term,
+      subject: query.subject,
+      grade: query.grade ? parseInt(query.grade) : undefined,
+      domain: query.domain,
+      startDate: query.startDate ? new Date(query.startDate) : undefined,
+      endDate: query.endDate ? new Date(query.endDate) : undefined,
+    };
+
+    const summary = await auditService.getCoverageSummary(filters);
+
+    res.json(summary);
+  } catch (error) {
+    console.error('Error fetching coverage summary:', error);
+    if (error instanceof z.ZodError) {
+      res.status(400).json({ error: 'Invalid query parameters', details: error.errors });
+    } else {
+      res.status(500).json({ error: 'Failed to fetch coverage summary' });
+    }
   }
 });
 
-// Export audit data in various formats
-router.post('/export', async (req: AuthenticatedRequest, res, next) => {
+/**
+ * GET /api/audit/curriculum-coverage/export
+ * Export curriculum coverage data in various formats
+ */
+router.get('/curriculum-coverage/export', async (req, res) => {
   try {
-    const userId = req.user?.userId;
-    if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
-    }
-
-    const validation = exportRequestSchema.safeParse(req.body);
-    if (!validation.success) {
-      return res.status(400).json({
-        error: 'Invalid export request',
-        details: validation.error.flatten(),
-      });
-    }
-
-    const { format, subjectIds, timeframe, includeDetails } = validation.data;
-
-    const exportData = await exportAuditData({
-      userId: parseInt(userId),
-      format,
-      subjectIds,
-      timeframe,
-      includeDetails,
+    const querySchema = z.object({
+      format: z.enum(['csv', 'markdown', 'json']).default('json'),
+      classId: z.string().optional(),
+      term: z.string().optional(),
+      subject: z.string().optional(),
+      grade: z.string().optional(),
+      domain: z.string().optional(),
+      startDate: z.string().optional(),
+      endDate: z.string().optional(),
     });
 
-    // Set appropriate headers based on format
-    const timestamp = new Date().toISOString().slice(0, 10);
-    const filename = `curriculum-audit-${timeframe}-${timestamp}`;
+    const query = querySchema.parse(req.query);
 
-    switch (format) {
-      case 'csv':
+    // Build filters
+    const filters = {
+      userId: req.user?.id,
+      classId: query.classId ? parseInt(query.classId) : undefined,
+      term: query.term,
+      subject: query.subject,
+      grade: query.grade ? parseInt(query.grade) : undefined,
+      domain: query.domain,
+      startDate: query.startDate ? new Date(query.startDate) : undefined,
+      endDate: query.endDate ? new Date(query.endDate) : undefined,
+    };
+
+    const coverage = await auditService.getCurriculumCoverage(filters);
+    const summary = await auditService.getCoverageSummary(filters);
+
+    switch (query.format) {
+      case 'csv': {
+        const csv = generateCSV(coverage);
         res.setHeader('Content-Type', 'text/csv');
-        res.setHeader('Content-Disposition', `attachment; filename="${filename}.csv"`);
+        res.setHeader('Content-Disposition', 'attachment; filename="curriculum-audit.csv"');
+        res.send(csv);
         break;
-      case 'json':
-        res.setHeader('Content-Type', 'application/json');
-        res.setHeader('Content-Disposition', `attachment; filename="${filename}.json"`);
-        break;
-      case 'pdf':
-        res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', `attachment; filename="${filename}.pdf"`);
-        break;
-    }
+      }
 
-    res.send(exportData);
-  } catch (err) {
-    console.error('Error exporting audit data:', err);
-    next(err);
+      case 'markdown': {
+        const markdown = generateMarkdown(coverage, summary, filters);
+        res.setHeader('Content-Type', 'text/markdown');
+        res.setHeader('Content-Disposition', 'attachment; filename="curriculum-audit.md"');
+        res.send(markdown);
+        break;
+      }
+
+      default:
+        res.json({ coverage, summary });
+    }
+  } catch (error) {
+    console.error('Error exporting curriculum coverage:', error);
+    if (error instanceof z.ZodError) {
+      res.status(400).json({ error: 'Invalid query parameters', details: error.errors });
+    } else {
+      res.status(500).json({ error: 'Failed to export curriculum coverage' });
+    }
   }
 });
 
-// Get uncovered outcomes for a specific subject
-router.get('/uncovered/:subjectId', async (req: AuthenticatedRequest, res, next) => {
-  try {
-    const userId = req.user?.userId;
-    const subjectId = parseInt(req.params.subjectId);
+// Helper functions for export formats
+function generateCSV(coverage: OutcomeCoverage[]): string {
+  const headers = [
+    'Outcome Code',
+    'Description',
+    'Domain',
+    'Times Covered',
+    'Assessed',
+    'Last Used',
+  ];
+  const rows = coverage.map((item) => [
+    item.outcomeCode,
+    `"${item.outcomeDescription.replace(/"/g, '""')}"`,
+    item.domain || '',
+    item.coveredCount,
+    item.assessed ? 'Yes' : 'No',
+    item.lastUsed ? new Date(item.lastUsed).toISOString().split('T')[0] : '',
+  ]);
 
-    if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
-    }
+  return [headers, ...rows].map((row) => row.join(',')).join('\n');
+}
 
-    // Verify subject belongs to user
-    const subject = await prisma.subject.findFirst({
-      where: {
-        id: subjectId,
-        userId: parseInt(userId),
-      },
-      include: {
-        milestones: {
-          include: {
-            outcomes: {
-              include: {
-                outcome: true,
-              },
-            },
-          },
-        },
-      },
-    });
+function generateMarkdown(
+  coverage: OutcomeCoverage[],
+  summary: CoverageSummary,
+  filters: AuditFilters,
+): string {
+  const date = new Date().toLocaleDateString();
+  let markdown = `# Curriculum Coverage Audit Report\n\n`;
+  markdown += `**Generated:** ${date}\n\n`;
 
-    if (!subject) {
-      return res.status(404).json({ error: 'Subject not found' });
-    }
+  if (filters.term) markdown += `**Term:** ${filters.term}\n`;
+  if (filters.subject) markdown += `**Subject:** ${filters.subject}\n`;
+  if (filters.grade) markdown += `**Grade:** ${filters.grade}\n`;
+  if (filters.domain) markdown += `**Domain:** ${filters.domain}\n`;
 
-    // Get all outcomes for this subject
-    const allOutcomes = subject.milestones.flatMap((m) => m.outcomes.map((mo) => mo.outcome));
+  markdown += `\n## Summary\n\n`;
+  markdown += `- **Total Outcomes:** ${summary.total}\n`;
+  markdown += `- **Covered:** ${summary.covered} (${summary.coveragePercentage}%)\n`;
+  markdown += `- **Assessed:** ${summary.assessed} (${summary.assessmentPercentage}%)\n`;
+  markdown += `- **Overused (>3x):** ${summary.overused}\n`;
+  markdown += `- **Not Covered:** ${summary.uncovered}\n`;
 
-    // Get covered outcomes
-    const activities = await prisma.activity.findMany({
-      where: {
-        milestone: {
-          subjectId,
-        },
-      },
-      include: {
-        outcomes: {
-          include: {
-            outcome: true,
-          },
-        },
-      },
-    });
+  markdown += `\n## Detailed Coverage\n\n`;
+  markdown += `| Outcome | Description | Domain | Covered | Assessed | Overused | Last Used |\n`;
+  markdown += `|---------|-------------|--------|---------|----------|----------|------------|\n`;
 
-    const coveredOutcomeIds = new Set(
-      activities.flatMap((a) => a.outcomes.map((ao) => ao.outcome.id)),
-    );
+  coverage.forEach((item) => {
+    const covered = item.coveredCount > 0 ? '✅' : '❌';
+    const assessed = item.assessed ? '✅' : '❌';
+    const overused = item.coveredCount > 3 ? '⚠️' : '✅';
+    const lastUsed = item.lastUsed ? new Date(item.lastUsed).toLocaleDateString() : '—';
 
-    const uncoveredOutcomes = allOutcomes.filter((outcome) => !coveredOutcomeIds.has(outcome.id));
+    markdown += `| ${item.outcomeCode} | ${item.outcomeDescription} | ${item.domain || '—'} | ${covered} | ${assessed} | ${overused} | ${lastUsed} |\n`;
+  });
 
-    res.json({
-      subjectId,
-      subjectName: subject.name,
-      totalOutcomes: allOutcomes.length,
-      uncoveredCount: uncoveredOutcomes.length,
-      uncoveredOutcomes: uncoveredOutcomes.map((outcome) => ({
-        id: outcome.id,
-        code: outcome.code,
-        description: outcome.description,
-        milestone: subject.milestones.find((m) =>
-          m.outcomes.some((mo) => mo.outcome.id === outcome.id),
-        )?.title,
-      })),
-    });
-  } catch (err) {
-    next(err);
-  }
-});
+  return markdown;
+}
 
 export default router;
