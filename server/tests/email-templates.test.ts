@@ -82,6 +82,20 @@ describe('Email Template Tests', () => {
     await prisma.parentContact.deleteMany();
     await prisma.student.deleteMany();
     await prisma.newsletter.deleteMany();
+
+    // Ensure user exists after cleanup
+    const existingUser = await prisma.user.findUnique({ where: { email: testUser.email } });
+    if (!existingUser) {
+      const hashedPassword = await bcrypt.hash(testUser.password, 10);
+      await prisma.user.create({
+        data: {
+          email: testUser.email,
+          password: hashedPassword,
+          name: testUser.name,
+          role: testUser.role,
+        },
+      });
+    }
   });
 
   describe('Newsletter Template Rendering', () => {

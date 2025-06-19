@@ -91,6 +91,21 @@ describe('Email Service Integration Tests', () => {
     await prisma.parentContact.deleteMany();
     await prisma.student.deleteMany();
     await prisma.newsletter.deleteMany();
+
+    // Ensure user exists after cleanup
+    const currentUser = await prisma.user.findUnique({ where: { id: user.id } });
+    if (!currentUser) {
+      const hashedPassword = await bcrypt.hash(testUser.password, 10);
+      await prisma.user.create({
+        data: {
+          id: user.id,
+          email: testUser.email,
+          password: hashedPassword,
+          name: testUser.name,
+          role: testUser.role,
+        },
+      });
+    }
   });
 
   describe('Newsletter Email Tests', () => {
