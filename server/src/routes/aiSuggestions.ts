@@ -104,11 +104,7 @@ router.post('/convert-to-activity', authMiddleware, async (req: AuthRequest, res
     const params = convertToActivitySchema.parse(req.body);
     const userId = req.userId!;
 
-    const activity = await aiActivityGenerator.convertToActivity(
-      params.suggestionId,
-      userId,
-      params.scheduleData,
-    );
+    const activity = await aiActivityGenerator.convertToActivity(params.suggestionId, userId);
 
     res.json(activity);
   } catch (error) {
