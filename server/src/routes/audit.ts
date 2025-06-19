@@ -31,7 +31,7 @@ router.get('/curriculum-coverage', async (req, res) => {
 
     // Build filters
     const filters = {
-      userId: req.user?.id,
+      userId: req.user?.userId,
       classId: query.classId ? parseInt(query.classId) : undefined,
       term: query.term,
       subject: query.subject,
@@ -75,7 +75,7 @@ router.get('/curriculum-coverage/summary', async (req, res) => {
 
     // Build filters
     const filters = {
-      userId: req.user?.id,
+      userId: req.user?.userId,
       classId: query.classId ? parseInt(query.classId) : undefined,
       term: query.term,
       subject: query.subject,
@@ -119,7 +119,7 @@ router.get('/curriculum-coverage/export', async (req, res) => {
 
     // Build filters
     const filters = {
-      userId: req.user?.id,
+      userId: req.user?.userId,
       classId: query.classId ? parseInt(query.classId) : undefined,
       term: query.term,
       subject: query.subject,
