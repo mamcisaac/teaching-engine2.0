@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { loginAsTestUser } from './helpers/auth-updated';
+import { loginAsTestUser, DEFAULT_TEST_USER } from './helpers/auth-updated';
 import { waitForElement } from './helpers/ci-stability';
 
 test.describe('Parent Communication Center', () => {
   test.beforeEach(async ({ page }) => {
-    await loginAsTestUser(page);
+    await loginAsTestUser(page, DEFAULT_TEST_USER);
   });
 
   test('should create a new parent newsletter from weekly planner', async ({ page }) => {

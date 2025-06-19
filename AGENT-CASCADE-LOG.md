@@ -36,7 +36,7 @@ Implementing bilingual parent communication system with newsletters, messages, a
 
 (Track your commits for merge coordination)
 
--
+- e861c0f: feat: add ActivitySelectorMulti component and tests
 
 ## Sync History
 
