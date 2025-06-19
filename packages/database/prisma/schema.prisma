@@ -270,6 +270,7 @@ model User {
   mediaResources MediaResource[]
   parentMessages ParentMessage[]
   aiSuggestedActivities AISuggestedActivity[]
+  students Student[]
 }
 
 enum ActivityType {
@@ -413,6 +414,8 @@ model Outcome {
   mediaResources MediaResourceOutcome[]
   parentMessages ParentMessageOutcome[]
   aiSuggestedActivities AISuggestedActivity[]
+  studentGoals StudentGoal[]
+  studentReflections StudentReflection[]
 }
 
 model MilestoneOutcome {
@@ -499,6 +502,8 @@ model ThematicUnit {
   user         User       @relation(fields: [userId], references: [id])
   outcomes     ThematicUnitOutcome[]
   activities   ThematicUnitActivity[]
+  studentGoals StudentGoal[]
+  studentReflections StudentReflection[]
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 }
@@ -635,4 +640,43 @@ model AISuggestedActivity {
   theme        String?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
+}
+
+model Student {
+  id        Int      @id @default(autoincrement())
+  name      String
+  userId    Int      // The teacher who manages this student
+  user      User     @relation(fields: [userId], references: [id])
+  goals     StudentGoal[]
+  reflections StudentReflection[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model StudentGoal {
+  id         Int       @id @default(autoincrement())
+  studentId  Int
+  student    Student   @relation(fields: [studentId], references: [id])
+  text       String
+  outcomeId  String?
+  outcome    Outcome?  @relation(fields: [outcomeId], references: [id])
+  themeId    Int?      // For thematic unit goals
+  theme      ThematicUnit? @relation(fields: [themeId], references: [id])
+  createdAt  DateTime  @default(now())
+  status     String    @default("active") // "active" | "completed" | "abandoned"
+}
+
+model StudentReflection {
+  id         Int       @id @default(autoincrement())
+  studentId  Int
+  student    Student   @relation(fields: [studentId], references: [id])
+  date       DateTime
+  text       String?
+  emoji      String?   // e.g. "🙂", "😐", "😕"
+  voicePath  String?   // path to optional recording
+  outcomeId  String?
+  outcome    Outcome?  @relation(fields: [outcomeId], references: [id])
+  themeId    Int?
+  theme      ThematicUnit? @relation(fields: [themeId], references: [id])
+  createdAt  DateTime  @default(now())
 }
