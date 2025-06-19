@@ -22,7 +22,7 @@ export interface CoverageSummary {
 
 export interface AuditFilters {
   classId?: number;
-  userId?: number;
+  userId?: string;
   term?: string;
   startDate?: Date;
   endDate?: Date;
@@ -76,20 +76,6 @@ export class CurriculumAuditService {
             },
           },
         },
-        assessmentTemplates: {
-          include: {
-            assessmentTemplate: {
-              include: {
-                results: {
-                  select: {
-                    id: true,
-                    date: true,
-                  },
-                },
-              },
-            },
-          },
-        },
       },
     });
 
@@ -101,10 +87,9 @@ export class CurriculumAuditService {
       let relevantActivities = outcome.activities;
 
       if (filters.userId) {
+        const userIdNum = parseInt(filters.userId);
         relevantActivities = relevantActivities.filter(
-          (ao) =>
-            ao.activity.userId === filters.userId ||
-            ao.activity.milestone?.userId === filters.userId,
+          (ao) => ao.activity.userId === userIdNum || ao.activity.milestone?.userId === userIdNum,
         );
       }
 
@@ -138,20 +123,39 @@ export class CurriculumAuditService {
         }
       }
 
-      // Also check formal assessments
-      if (!assessed && outcome.assessmentTemplates) {
-        for (const at of outcome.assessmentTemplates) {
-          const template = at.assessmentTemplate;
+      // Check for assessment templates that include this outcome
+      if (!assessed) {
+        const assessmentTemplates = await prisma.assessmentTemplate.findMany({
+          where: {
+            userId: filters.userId ? parseInt(filters.userId) : undefined,
+          },
+          include: {
+            results: {
+              select: {
+                date: true,
+              },
+            },
+          },
+        });
 
-          // Check if template has results within date range
-          const hasResults = template.results.some((result) => {
-            if (!startDate || !endDate) return true;
-            return result.date >= startDate && result.date <= endDate;
-          });
+        for (const template of assessmentTemplates) {
+          try {
+            const outcomeIds = JSON.parse(template.outcomeIds) as string[];
+            if (outcomeIds.includes(outcome.id)) {
+              // Check if template has results within date range
+              const hasResults = template.results.some((result) => {
+                if (!startDate || !endDate) return true;
+                return result.date >= startDate && result.date <= endDate;
+              });
 
-          if (hasResults) {
-            assessed = true;
-            break;
+              if (hasResults) {
+                assessed = true;
+                break;
+              }
+            }
+          } catch {
+            // Skip templates with invalid JSON
+            continue;
           }
         }
       }
