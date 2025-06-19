@@ -36,13 +36,8 @@ export function useForm<T extends Record<string, unknown>>({
       if (!validationSchema) return undefined;
 
       try {
-        const fieldSchema = validationSchema.shape?.[name as keyof T];
-        if (fieldSchema) {
-          fieldSchema.parse(value);
-        } else {
-          // Validate entire object if can't extract field schema
-          validationSchema.parse({ ...values, [name]: value });
-        }
+        // Validate entire object with the new value
+        validationSchema.parse({ ...values, [name]: value });
         return undefined;
       } catch (error) {
         if (error instanceof z.ZodError) {
@@ -189,7 +184,7 @@ export function useForm<T extends Record<string, unknown>>({
       onChange: handleChange,
       onBlur: handleBlur,
       'aria-invalid': !!errors[name as string],
-      'aria-describedby': errors[name as string] ? `${name}-error` : undefined,
+      'aria-describedby': errors[name as string] ? `${String(name)}-error` : undefined,
     }),
     [values, handleChange, handleBlur, errors],
   );

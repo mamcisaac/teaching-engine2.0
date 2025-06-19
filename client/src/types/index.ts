@@ -488,3 +488,42 @@ export interface ParentMessageInput {
   linkedOutcomeIds?: string[];
   linkedActivityIds?: number[];
 }
+
+export interface ActivityTemplate {
+  id: number;
+  titleFr: string;
+  titleEn: string;
+  descriptionFr: string;
+  descriptionEn: string;
+  domain: string;
+  subject: string;
+  outcomeIds: string[];
+  themeId?: number | null;
+  materialsFr?: string | null;
+  materialsEn?: string | null;
+  prepTimeMin?: number | null;
+  groupType: string;
+  createdBy: number;
+  createdAt: string;
+  updatedAt: string;
+  theme?: ThematicUnit | null;
+  createdByUser?: {
+    id: number;
+    name: string;
+  };
+}
+
+export interface ActivityTemplateInput {
+  titleFr: string;
+  titleEn: string;
+  descriptionFr: string;
+  descriptionEn: string;
+  domain: string;
+  subject: string;
+  outcomeIds?: string[];
+  themeId?: number;
+  materialsFr?: string;
+  materialsEn?: string;
+  prepTimeMin?: number;
+  groupType?: string;
+}

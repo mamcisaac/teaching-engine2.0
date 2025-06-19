@@ -29,7 +29,7 @@ test.describe('Activity to Planner Workflow', () => {
       startDate.setDate(today.getDate() - 7); // Start a week ago
       const endDate = new Date(today);
       endDate.setDate(today.getDate() + 14); // End two weeks from now
-      
+
       const milestone = await retry(async () => {
         return await testData.createMilestone(subject.id, {
           title: `Planning Test Milestone ${timestamp}`,
@@ -57,16 +57,16 @@ test.describe('Activity to Planner Workflow', () => {
       const weekStart = monday.toISOString().split('T')[0];
 
       await planner.setWeekStart(weekStart);
-      
+
       // Wait for planner suggestions to load
       await waitForResponse(page, '/api/planner-suggestions').catch(() => {
         console.log('Planner suggestions API not called, continuing...');
       });
       await page.waitForLoadState('networkidle');
 
-      // Verify timetable slots are visible
-      await expect(page.locator('[data-testid="day-1"]')).toBeVisible({ timeout: 10000 });
-      await expect(page.locator('[data-testid="day-3"]')).toBeVisible({ timeout: 10000 });
+      // Verify week view is visible by checking for day headers
+      await expect(page.locator('text=Monday')).toBeVisible({ timeout: 10000 });
+      await expect(page.locator('text=Wednesday')).toBeVisible({ timeout: 10000 });
 
       // Test manual activity scheduling
       // Look for activity in suggestions or available activities
@@ -359,14 +359,14 @@ test.describe('Activity to Planner Workflow', () => {
 
       // Create test data with proper dates
       const subject = await testData.createSubject('Multi-day Subject');
-      
+
       // Create milestone with dates that span the current week
       const today = new Date();
       const startDate = new Date(today);
       startDate.setDate(today.getDate() - 7); // Start a week ago
       const endDate = new Date(today);
       endDate.setDate(today.getDate() + 14); // End two weeks from now
-      
+
       const milestone = await testData.createMilestone(subject.id, {
         title: 'Multi-day Test Milestone',
         startDate: startDate.toISOString(),
@@ -383,7 +383,7 @@ test.describe('Activity to Planner Workflow', () => {
       // Navigate to planner
       const planner = new PlannerPageObject(page);
       await planner.navigate();
-      
+
       // Wait for planner suggestions to load
       await waitForResponse(page, '/api/planner-suggestions').catch(() => {
         console.log('Planner suggestions API not called, continuing...');

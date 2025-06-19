@@ -36,6 +36,8 @@ import type {
   MaterialList,
   DailyPlan,
   CompleteActivityResponse,
+  ActivityTemplate,
+  ActivityTemplateInput,
 } from './types';
 
 import type {
@@ -43,6 +45,9 @@ import type {
   OutcomeCoverage as PlannerOutcomeCoverage,
   OutcomeCoverageResult,
 } from './types/planner';
+
+// Export ActivityTemplateInput for use in components
+export type { ActivityTemplateInput } from './types';
 
 // Define missing types that are used but not exported from types
 
@@ -481,12 +486,15 @@ import { createCrudMutations } from './utils/apiFactory';
 
 // Subject API functions
 const subjectApi = {
-  create: async (data: { name: string }) => {
-    const response = await api.post<Subject>('/api/subjects', data);
+  create: async (data: Omit<Subject, 'id'>) => {
+    // Only send name to the API, ignoring milestones
+    const response = await api.post<Subject>('/api/subjects', { name: data.name });
     return response.data;
   },
-  update: async (id: number, data: { name: string }) => {
-    const response = await api.put<Subject>(`/api/subjects/${id}`, data);
+  update: async (id: number, data: Partial<Subject>) => {
+    // Only send name to the API if it's provided
+    const updateData = data.name ? { name: data.name } : {};
+    const response = await api.put<Subject>(`/api/subjects/${id}`, updateData);
     return response.data;
   },
   delete: async (id: number) => {
@@ -1522,5 +1530,49 @@ export const useDeleteMediaResource = () => {
           (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
       );
     },
+  });
+};
+
+// Activity Template hooks
+export const useActivityTemplates = () => {
+  return useQuery<ActivityTemplate[]>({
+    queryKey: ['activity-templates'],
+    queryFn: async () => (await api.get('/api/activity-templates')).data,
+  });
+};
+
+export const useCreateActivityTemplate = () => {
+  const queryClient = useQueryClient();
+  return useMutation<ActivityTemplate, Error, ActivityTemplateInput>({
+    mutationFn: async (data) => (await api.post('/api/activity-templates', data)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['activity-templates'] });
+      toast.success('Activity template created successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to create activity template: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+// Activity Suggestions hooks
+export const useActivitySuggestions = (params: {
+  suggestFor?: string;
+  theme?: number;
+  domain?: string;
+  subject?: string;
+  limit?: number;
+}) => {
+  return useQuery<ActivityTemplate[]>({
+    queryKey: ['activity-suggestions', params],
+    queryFn: async () => {
+      // For now, return empty array until the API is implemented
+      return [];
+    },
+    enabled: !!params.suggestFor,
   });
 };

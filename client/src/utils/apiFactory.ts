@@ -12,7 +12,7 @@ interface ApiFactoryOptions<TData, TVariables> {
 }
 
 export function createApiMutation<TData = unknown, TVariables = void>(
-  options: ApiFactoryOptions<TData, TVariables>
+  options: ApiFactoryOptions<TData, TVariables>,
 ) {
   return (overrides?: Partial<UseMutationOptions<TData, AxiosError, TVariables>>) => {
     const queryClient = useQueryClient();
@@ -23,16 +23,17 @@ export function createApiMutation<TData = unknown, TVariables = void>(
       onSuccess: (data, variables) => {
         // Invalidate queries
         if (options.invalidateQueries) {
-          options.invalidateQueries.forEach(queryKey => {
+          options.invalidateQueries.forEach((queryKey) => {
             queryClient.invalidateQueries({ queryKey: [queryKey] });
           });
         }
 
         // Show success message
         if (options.successMessage) {
-          const message = typeof options.successMessage === 'function' 
-            ? options.successMessage(data) 
-            : options.successMessage;
+          const message =
+            typeof options.successMessage === 'function'
+              ? options.successMessage(data)
+              : options.successMessage;
           toast({ type: 'success', message });
         }
 
@@ -43,13 +44,16 @@ export function createApiMutation<TData = unknown, TVariables = void>(
       onError: (error, variables) => {
         // Show error message
         if (options.errorMessage) {
-          const message = typeof options.errorMessage === 'function'
-            ? options.errorMessage(error)
-            : options.errorMessage;
+          const message =
+            typeof options.errorMessage === 'function'
+              ? options.errorMessage(error)
+              : options.errorMessage;
           toast({ type: 'error', message });
         } else {
           // Default error message
-          const message = error.response?.data?.message || 'An error occurred';
+          const axiosError = error as AxiosError<{ message?: string }>;
+          const message =
+            axiosError.response?.data?.message || axiosError.message || 'An error occurred';
           toast({ type: 'error', message });
         }
 
@@ -57,7 +61,7 @@ export function createApiMutation<TData = unknown, TVariables = void>(
         options.onError?.(error, variables);
         overrides?.onError?.(error, variables, undefined);
       },
-      ...overrides
+      ...overrides,
     });
   };
 }
@@ -69,7 +73,7 @@ export const createCrudMutations = <TEntity extends { id: number }>(
     create: (data: Omit<TEntity, 'id'>) => Promise<TEntity>;
     update: (id: number, data: Partial<TEntity>) => Promise<TEntity>;
     delete: (id: number) => Promise<void>;
-  }
+  },
 ) => {
   const queryKey = entityName.toLowerCase() + 's';
 
@@ -80,9 +84,8 @@ export const createCrudMutations = <TEntity extends { id: number }>(
       successMessage: `${entityName} created successfully`,
     }),
 
-    useUpdate: createApiMutation({
-      mutationFn: ({ id, ...data }: Partial<TEntity> & { id: number }) => 
-        api.update(id, data),
+    useUpdate: createApiMutation<TEntity, { id: number; data: Partial<TEntity> }>({
+      mutationFn: ({ id, data }) => api.update(id, data),
       invalidateQueries: [queryKey],
       successMessage: `${entityName} updated successfully`,
     }),

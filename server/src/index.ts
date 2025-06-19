@@ -241,12 +241,6 @@ app.use('/api/assessments', authenticateToken, assessmentRoutes);
 app.use('/api/media-resources', authenticateToken, mediaResourceRoutes);
 app.use('/api/parent-messages', authenticateToken, parentMessageRoutes);
 
-// Mount test routes (only in test/development mode)
-if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
-  log('Mounting test routes...');
-  app.use('/api/test', testRoutes);
-}
-
 log('All API routes mounted successfully.');
 app.use('/api/*', (_req, res) => {
   res.status(404).json({ error: 'Not Found' });
