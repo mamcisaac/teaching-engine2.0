@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { z } from 'zod';
 import { prisma } from '@teaching-engine/database';
 import { AIActivitySuggestionService } from '../services/aiSuggestionService';
-import { authenticateToken } from '../middleware/auth';
+import { authMiddleware, AuthRequest } from '../middleware/auth';
 
 const router = Router();
 const aiService = new AIActivitySuggestionService(prisma);
@@ -14,10 +14,10 @@ const generateSuggestionSchema = z.object({
   languageLevel: z.string().optional(),
 });
 
-router.post('/generate', authenticateToken, async (req, res) => {
+router.post('/generate', authMiddleware, async (req: AuthRequest, res) => {
   try {
     const { outcomeId, theme, languageLevel } = generateSuggestionSchema.parse(req.body);
-    const userId = req.user!.id;
+    const userId = req.userId!;
 
     const suggestion = await aiService.generateActivitySuggestion(outcomeId, userId, {
       theme,
@@ -51,10 +51,10 @@ const getUncoveredSchema = z.object({
   limit: z.number().int().positive().optional(),
 });
 
-router.get('/uncovered', authenticateToken, async (req, res) => {
+router.get('/uncovered', authMiddleware, async (req: AuthRequest, res) => {
   try {
     const params = getUncoveredSchema.parse(req.query);
-    const userId = req.user!.id;
+    const userId = req.userId!;
 
     const uncoveredOutcomes = await aiService.getUncoveredOutcomes(userId, {
       startDate: params.startDate ? new Date(params.startDate) : undefined,
@@ -94,7 +94,7 @@ const convertToActivitySchema = z.object({
   publicNote: z.string().optional(),
 });
 
-router.post('/convert-to-activity', authenticateToken, async (req, res) => {
+router.post('/convert-to-activity', authMiddleware, async (req: AuthRequest, res) => {
   try {
     const params = convertToActivitySchema.parse(req.body);
 
@@ -118,7 +118,7 @@ router.post('/convert-to-activity', authenticateToken, async (req, res) => {
 });
 
 // Get a specific AI suggestion
-router.get('/suggestions/:id', authenticateToken, async (req, res) => {
+router.get('/suggestions/:id', authMiddleware, async (req: AuthRequest, res) => {
   try {
     const id = parseInt(req.params.id, 10);
     if (isNaN(id)) {
@@ -135,7 +135,7 @@ router.get('/suggestions/:id', authenticateToken, async (req, res) => {
     }
 
     // Check if user owns this suggestion
-    if (suggestion.userId !== req.user!.id) {
+    if (suggestion.userId !== req.userId!) {
       return res.status(403).json({ error: 'Access denied' });
     }
 
@@ -153,7 +153,7 @@ router.get('/suggestions/:id', authenticateToken, async (req, res) => {
 });
 
 // Delete an AI suggestion
-router.delete('/suggestions/:id', authenticateToken, async (req, res) => {
+router.delete('/suggestions/:id', authMiddleware, async (req: AuthRequest, res) => {
   try {
     const id = parseInt(req.params.id, 10);
     if (isNaN(id)) {
@@ -169,7 +169,7 @@ router.delete('/suggestions/:id', authenticateToken, async (req, res) => {
       return res.status(404).json({ error: 'Suggestion not found' });
     }
 
-    if (suggestion.userId !== req.user!.id) {
+    if (suggestion.userId !== req.userId!) {
       return res.status(403).json({ error: 'Access denied' });
     }
 
