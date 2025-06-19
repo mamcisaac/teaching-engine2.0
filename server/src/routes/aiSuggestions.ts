@@ -28,7 +28,10 @@ router.post('/generate', authMiddleware, async (req: AuthRequest, res) => {
     // Parse materials back to array for response
     const response = {
       ...suggestion,
-      materials: JSON.parse(suggestion.materials),
+      materials:
+        typeof suggestion.materials === 'string'
+          ? JSON.parse(suggestion.materials)
+          : suggestion.materials,
     };
 
     res.json(response);
@@ -65,7 +68,10 @@ router.get('/uncovered', authMiddleware, async (req: AuthRequest, res) => {
       suggestion: item.suggestion
         ? {
             ...item.suggestion,
-            materials: JSON.parse(item.suggestion.materials),
+            materials:
+              typeof item.suggestion.materials === 'string'
+                ? JSON.parse(item.suggestion.materials)
+                : item.suggestion.materials,
           }
         : null,
     }));
@@ -142,7 +148,10 @@ router.get('/suggestions/:id', authMiddleware, async (req: AuthRequest, res) => 
     // Parse materials for response
     const response = {
       ...suggestion,
-      materials: JSON.parse(suggestion.materials),
+      materials:
+        typeof suggestion.materials === 'string'
+          ? JSON.parse(suggestion.materials)
+          : suggestion.materials,
     };
 
     res.json(response);

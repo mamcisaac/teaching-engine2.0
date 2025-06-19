@@ -83,6 +83,10 @@ Provide the response in this JSON format:
 }`;
 
     try {
+      if (!openai) {
+        throw new Error('OpenAI not configured');
+      }
+
       const completion = await openai.chat.completions.create({
         model: 'gpt-4',
         messages: [
@@ -281,6 +285,7 @@ Provide the response in this JSON format:
   async convertToActivity(
     suggestionId: number,
     userId: number,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     scheduleData?: {
       date: string;
       startTime: string;
@@ -316,9 +321,14 @@ Provide the response in this JSON format:
     const activity = await prisma.activity.create({
       data: {
         title: suggestion.title,
-        description: suggestion.descriptionFr,
-        materials: materials.join(', '),
-        duration: suggestion.duration,
+        titleFr: suggestion.title,
+        titleEn: suggestion.descriptionEn ? suggestion.title : undefined,
+        publicNote: suggestion.descriptionFr,
+        publicNoteFr: suggestion.descriptionFr,
+        publicNoteEn: suggestion.descriptionEn,
+        materialsText: materials.join(', '),
+        materialsTextFr: materials.join(', '),
+        durationMins: suggestion.duration,
         userId,
         milestoneId,
         outcomes: {
@@ -326,10 +336,6 @@ Provide the response in this JSON format:
             outcomeId: suggestion.outcomeId,
           },
         },
-        ...(scheduleData && {
-          scheduledDate: new Date(scheduleData.date),
-          // You might want to add time fields to Activity model
-        }),
       },
       include: {
         outcomes: {

@@ -6,6 +6,8 @@ if (process.env.OPENAI_API_KEY) {
   openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 }
 
+export { openai };
+
 export async function generateContent(prompt: string, systemMessage?: string): Promise<string> {
   if (!openai) {
     logger.warn('OpenAI API key not configured, returning placeholder content');
