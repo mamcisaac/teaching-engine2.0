@@ -174,8 +174,11 @@ const StudentTimeline: React.FC = () => {
           <div className="border-t pt-4 mt-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-2">Subject</label>
+                <label htmlFor="subject-filter" className="block text-sm font-medium mb-2">
+                  Subject
+                </label>
                 <select
+                  id="subject-filter"
                   value={filters.subjectId || ''}
                   onChange={(e) =>
                     setFilters({ ...filters, subjectId: e.target.value || undefined })
@@ -192,8 +195,11 @@ const StudentTimeline: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Outcome</label>
+                <label htmlFor="outcome-filter" className="block text-sm font-medium mb-2">
+                  Outcome
+                </label>
                 <select
+                  id="outcome-filter"
                   value={filters.outcomeId || ''}
                   onChange={(e) =>
                     setFilters({ ...filters, outcomeId: e.target.value || undefined })
@@ -210,8 +216,11 @@ const StudentTimeline: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Theme</label>
+                <label htmlFor="theme-filter" className="block text-sm font-medium mb-2">
+                  Theme
+                </label>
                 <select
+                  id="theme-filter"
                   value={filters.themeId || ''}
                   onChange={(e) => setFilters({ ...filters, themeId: e.target.value || undefined })}
                   className="w-full px-3 py-2 border rounded-lg"
