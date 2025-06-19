@@ -184,7 +184,9 @@ export default function StudentsPage() {
             {selectedStudent ? (
               <div className="bg-white rounded-lg shadow">
                 <div className="p-4 border-b border-gray-200">
-                  <h2 className="text-xl font-semibold text-gray-900">{selectedStudent.name}</h2>
+                  <h2 className="text-xl font-semibold text-gray-900">
+                    {selectedStudent.firstName} {selectedStudent.lastName}
+                  </h2>
                   <div className="flex gap-4 mt-2">
                     <button
                       onClick={() => setActiveTab('goals')}

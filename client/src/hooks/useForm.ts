@@ -38,9 +38,10 @@ export function useForm<T extends Record<string, unknown>>({
       try {
         // For object schemas, try to get the field schema
         if ('shape' in validationSchema && validationSchema.shape) {
-          const fieldSchema = (validationSchema.shape as Record<string, unknown>)[name as keyof T];
-          if (fieldSchema) {
-            fieldSchema.parse(value);
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const fieldSchema = (validationSchema.shape as Record<string, any>)[name];
+          if (fieldSchema && typeof fieldSchema === 'object' && 'parse' in fieldSchema) {
+            (fieldSchema as z.ZodSchema).parse(value);
           } else {
             // Validate entire object if can't extract field schema
             validationSchema.parse({ ...values, [name]: value });
