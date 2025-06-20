@@ -131,8 +131,11 @@ describe('EvidenceQuickEntry', () => {
   it('allows selecting individual students', () => {
     renderWithProviders(<EvidenceQuickEntry />);
 
-    const marieCheckbox = screen.getByLabelText('Marie Dubois Grade 1');
-    fireEvent.click(marieCheckbox);
+    // Find the label containing Marie Dubois
+    const marieLabel = screen.getByText('Marie').closest('label');
+    const marieCheckbox = marieLabel?.querySelector('input[type="checkbox"]');
+
+    fireEvent.click(marieCheckbox!);
 
     expect(marieCheckbox).toBeChecked();
     expect(screen.getByText('Selected: Marie Dubois')).toBeInTheDocument();
@@ -144,8 +147,10 @@ describe('EvidenceQuickEntry', () => {
     const selectAllButton = screen.getByText('Select all');
     fireEvent.click(selectAllButton);
 
-    const marieCheckbox = screen.getByLabelText('Marie Dubois Grade 1');
-    const jeanCheckbox = screen.getByLabelText('Jean Martin Grade 1');
+    const marieLabel = screen.getByText('Marie').closest('label');
+    const marieCheckbox = marieLabel?.querySelector('input[type="checkbox"]');
+    const jeanLabel = screen.getByText('Jean').closest('label');
+    const jeanCheckbox = jeanLabel?.querySelector('input[type="checkbox"]');
 
     expect(marieCheckbox).toBeChecked();
     expect(jeanCheckbox).toBeChecked();
@@ -163,8 +168,10 @@ describe('EvidenceQuickEntry', () => {
     const deselectAllButton = screen.getByText('Deselect all');
     fireEvent.click(deselectAllButton);
 
-    const marieCheckbox = screen.getByLabelText('Marie Dubois Grade 1');
-    const jeanCheckbox = screen.getByLabelText('Jean Martin Grade 1');
+    const marieLabel = screen.getByText('Marie').closest('label');
+    const marieCheckbox = marieLabel?.querySelector('input[type="checkbox"]');
+    const jeanLabel = screen.getByText('Jean').closest('label');
+    const jeanCheckbox = jeanLabel?.querySelector('input[type="checkbox"]');
 
     expect(marieCheckbox).not.toBeChecked();
     expect(jeanCheckbox).not.toBeChecked();
@@ -290,8 +297,9 @@ describe('EvidenceQuickEntry', () => {
     renderWithProviders(<EvidenceQuickEntry />);
 
     // Select a student
-    const marieCheckbox = screen.getByLabelText('Marie Dubois Grade 1');
-    fireEvent.click(marieCheckbox);
+    const marieLabel = screen.getByText('Marie').closest('label');
+    const marieCheckbox = marieLabel?.querySelector('input[type="checkbox"]');
+    fireEvent.click(marieCheckbox!);
 
     // Try to submit without evidence text or emoji
     const saveButton = screen.getByText('Save Evidence');
@@ -309,10 +317,12 @@ describe('EvidenceQuickEntry', () => {
     renderWithProviders(<EvidenceQuickEntry onSuccess={mockOnSuccess} />);
 
     // Select students
-    const marieCheckbox = screen.getByLabelText('Marie Dubois Grade 1');
-    const jeanCheckbox = screen.getByLabelText('Jean Martin Grade 1');
-    fireEvent.click(marieCheckbox);
-    fireEvent.click(jeanCheckbox);
+    const marieLabel = screen.getByText('Marie').closest('label');
+    const marieCheckbox = marieLabel?.querySelector('input[type="checkbox"]');
+    const jeanLabel = screen.getByText('Jean').closest('label');
+    const jeanCheckbox = jeanLabel?.querySelector('input[type="checkbox"]');
+    fireEvent.click(marieCheckbox!);
+    fireEvent.click(jeanCheckbox!);
 
     // Add evidence text
     const textArea = screen.getByPlaceholderText('Describe what you observed...');
@@ -336,8 +346,9 @@ describe('EvidenceQuickEntry', () => {
     renderWithProviders(<EvidenceQuickEntry />);
 
     // Select student and add evidence
-    const marieCheckbox = screen.getByLabelText('Marie Dubois Grade 1');
-    fireEvent.click(marieCheckbox);
+    const marieLabel = screen.getByText('Marie').closest('label');
+    const marieCheckbox = marieLabel?.querySelector('input[type="checkbox"]');
+    fireEvent.click(marieCheckbox!);
 
     const textArea = screen.getByPlaceholderText('Describe what you observed...');
     fireEvent.change(textArea, { target: { value: 'Test evidence' } });
@@ -359,7 +370,7 @@ describe('EvidenceQuickEntry', () => {
   it('handles quick mode toggle', () => {
     renderWithProviders(<EvidenceQuickEntry />);
 
-    const quickModeCheckbox = screen.getByLabelText('Quick mode');
+    const quickModeCheckbox = screen.getByRole('checkbox', { name: /Quick mode/i });
     expect(quickModeCheckbox).toBeChecked();
 
     // Disable quick mode
