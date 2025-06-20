@@ -12,8 +12,8 @@ jest.mock('../../src/services/clusteringService');
 describe('Curriculum Import Routes', () => {
   let prisma: ReturnType<typeof getTestPrismaClient>;
   let authToken: string;
-  let mockCurriculumImportService: any;
-  let mockClusteringService: any;
+  let mockCurriculumImportService: unknown;
+  let mockClusteringService: unknown;
 
   beforeEach(async () => {
     prisma = getTestPrismaClient();
@@ -31,8 +31,8 @@ describe('Curriculum Import Routes', () => {
     authToken = jwt.sign({ userId: user.id.toString() }, process.env.JWT_SECRET || 'secret');
 
     // Get mocked services
-    const { curriculumImportService } = require('../../src/services/curriculumImportService');
-    const { clusteringService } = require('../../src/services/clusteringService');
+    const { curriculumImportService } = await import('../../src/services/curriculumImportService');
+    const { clusteringService } = await import('../../src/services/clusteringService');
     mockCurriculumImportService = curriculumImportService;
     mockClusteringService = clusteringService;
   });
