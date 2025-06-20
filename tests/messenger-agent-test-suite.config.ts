@@ -48,7 +48,7 @@ export default defineConfig({
     {
       name: 'messenger-agent-chrome',
       use: { 
-        // @ts-ignore
+        // @ts-expect-error Using require for Playwright device config
         ...require('@playwright/test').devices['Desktop Chrome'],
         viewport: { width: 1280, height: 720 }
       },
@@ -56,7 +56,7 @@ export default defineConfig({
     {
       name: 'messenger-agent-firefox',
       use: { 
-        // @ts-ignore
+        // @ts-expect-error Using require for Playwright device config
         ...require('@playwright/test').devices['Desktop Firefox'],
         viewport: { width: 1280, height: 720 }
       },

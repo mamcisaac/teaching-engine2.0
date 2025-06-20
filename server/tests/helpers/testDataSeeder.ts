@@ -431,9 +431,10 @@ Best regards,
     return templates;
   }
 
-  private async createTestAssessmentData(_students: Student[], _subjects: Subject[]) {
+  private async createTestAssessmentData(_students?: Student[], _subjects?: Subject[]) {
     // For now, return empty array since we don't have assessment tables in schema
     // This would be implemented when assessment models are added
+    // Parameters are optional for future implementation
     return [];
   }
 

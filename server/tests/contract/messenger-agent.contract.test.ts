@@ -173,13 +173,13 @@ describe('Messenger Agent Contract Tests', () => {
       });
     });
 
-    const _reportSchema = {
-      studentName: 'string',
-      period: 'string',
-      sections: 'array',
-      overallComments: 'string',
-      nextSteps: 'array'
-    };
+    // const _reportSchema = {
+    //   studentName: 'string',
+    //   period: 'string',
+    //   sections: 'array',
+    //   overallComments: 'string',
+    //   nextSteps: 'array'
+    // };
 
     const validateReportSchema = (report: Record<string, unknown>) => {
       expect(typeof report.studentName).toBe('string');
@@ -292,10 +292,10 @@ describe('Messenger Agent Contract Tests', () => {
   });
 
   describe('Email Communication API Contract', () => {
-    const _bulkEmailResponseSchema = {
-      results: 'array',
-      summary: 'object'
-    };
+    // const _bulkEmailResponseSchema = {
+    //   results: 'array',
+    //   summary: 'object'
+    // };
 
     const validateBulkEmailResponse = (response: Record<string, unknown>) => {
       expect(Array.isArray(response.results)).toBe(true);

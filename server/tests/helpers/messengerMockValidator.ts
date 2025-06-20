@@ -375,7 +375,7 @@ export function compareMockWithActual(mockData: unknown, actualData: unknown, pa
  * Test helper to validate that unit test mocks match integration test results
  */
 export class MockValidationTestSuite {
-  private integrationResults: Map<string, any> = new Map();
+  private integrationResults: Map<string, unknown> = new Map();
   
   recordIntegrationResult(testName: string, result: unknown) {
     this.integrationResults.set(testName, result);
