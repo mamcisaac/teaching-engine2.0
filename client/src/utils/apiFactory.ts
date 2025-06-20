@@ -51,8 +51,9 @@ export function createApiMutation<TData = unknown, TVariables = void>(
           toast({ type: 'error', message });
         } else {
           // Default error message
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const message = (error.response?.data as any)?.message || 'An error occurred';
+          const axiosError = error as AxiosError<{ message?: string }>;
+          const message =
+            axiosError.response?.data?.message || axiosError.message || 'An error occurred';
           toast({ type: 'error', message });
         }
 
@@ -83,8 +84,8 @@ export const createCrudMutations = <TEntity extends { id: number }>(
       successMessage: `${entityName} created successfully`,
     }),
 
-    useUpdate: createApiMutation({
-      mutationFn: ({ id, data }: { id: number; data: Partial<TEntity> }) => api.update(id, data),
+    useUpdate: createApiMutation<TEntity, { id: number; data: Partial<TEntity> }>({
+      mutationFn: ({ id, data }) => api.update(id, data),
       invalidateQueries: [queryKey],
       successMessage: `${entityName} updated successfully`,
     }),
