@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { vi, type MockedFunction } from 'vitest';
-import { ActivityLibrary } from '../ActivityLibrary';
+import { ActivityLibrary } from '../../ActivityLibrary';
 
 // Mock the toast hook
 vi.mock('../../ui/use-toast', () => ({
