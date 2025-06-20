@@ -5,7 +5,11 @@ export default {
   extensionsToTreatAsEsm: ['.ts'],
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '^tests/(.*)$': '<rootDir>/tests/$1',
   },
+  moduleDirectories: ['node_modules', 'src'],
+  roots: ['<rootDir>/src', '<rootDir>/tests'],
   transform: {
     '^.+\\.tsx?$': [
       'ts-jest',
@@ -35,4 +39,11 @@ export default {
   clearMocks: true,
   resetMocks: true,
   restoreMocks: true,
+  // Auto-mock prisma for unit tests
+  automock: false,
+  unmockedModulePathPatterns: [
+    'node_modules',
+    '<rootDir>/src/services/.*\\.ts$',
+    '<rootDir>/src/utils/.*\\.ts$',
+  ],
 };
