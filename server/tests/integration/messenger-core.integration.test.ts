@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { app } from '../../src/index';
 import { getTestPrismaClient } from '../jest.setup.js';
-import { seedTestData, cleanupTestData } from '../helpers/testDataSeeder';
+import { seedTestData } from '../helpers/testDataSeeder';
 import { createAuthToken } from '../test-auth-helper';
 
 describe('Messenger Agent Core Integration Tests', () => {
