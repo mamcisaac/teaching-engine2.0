@@ -84,7 +84,8 @@ Object.defineProperty(window, 'HTMLCanvasElement', {
 });
 
 // Mock HTMLCanvasElement.prototype.getContext
-HTMLCanvasElement.prototype.getContext = () => mockCanvas.getContext() as RenderingContext | null;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+HTMLCanvasElement.prototype.getContext = (() => mockCanvas.getContext()) as any;
 HTMLCanvasElement.prototype.toDataURL = () => mockCanvas.toDataURL();
 
 // Mock window.matchMedia for responsive components
