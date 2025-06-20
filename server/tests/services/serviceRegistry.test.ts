@@ -51,7 +51,7 @@ describe('ServiceRegistry', () => {
 
   afterEach(() => {
     // Clean up any intervals
-    (registry as any).shutdown();
+    (registry as unknown as { shutdown: () => void }).shutdown();
     jest.useRealTimers();
   });
 
@@ -422,7 +422,7 @@ describe('ServiceRegistry', () => {
       });
 
       // Manually set the health status
-      (registry as any).healthStatus.set('ServiceA', testHealth);
+      (registry as unknown as { healthStatus: Map<string, unknown> }).healthStatus.set('ServiceA', testHealth);
 
       const healthStatus = await registry.getHealthStatus();
       const serviceHealth = healthStatus.find(h => h.serviceName === 'ServiceA');

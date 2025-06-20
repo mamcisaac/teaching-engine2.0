@@ -25,16 +25,16 @@ jest.mock('../../src/services/llmService', () => ({
 
 describe('EmbeddingService Unit Tests', () => {
   let embeddingService: EmbeddingService;
-  let mockPrisma: any;
-  let mockOpenAI: any;
+  let mockPrisma: unknown;
+  let mockOpenAI: unknown;
 
   beforeEach(() => {
     // Clear all mocks
     jest.clearAllMocks();
     
     // Get mocked instances
-    const { prisma } = require('../../src/prisma');
-    const { openai } = require('../../src/services/llmService');
+    const { prisma } = await import('../../src/prisma');
+    const { openai } = await import('../../src/services/llmService');
     mockPrisma = prisma;
     mockOpenAI = openai;
     

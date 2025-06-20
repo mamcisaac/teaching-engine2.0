@@ -1,6 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from '@jest/globals';
 import { EmbeddingService } from '../../src/services/embeddingService';
-import { getTestPrismaClient } from '../jest.setup';
 
 // Mock OpenAI
 jest.mock('../../src/services/llmService', () => ({
@@ -94,7 +93,6 @@ describe('EmbeddingService', () => {
 
     it('should return null when OpenAI is not configured', async () => {
       // Temporarily set openai to null
-      const originalOpenAI = (embeddingService as unknown as { constructor: { prototype: { generateEmbeddingVector: unknown } } }).constructor.prototype.generateEmbeddingVector;
       (embeddingService as unknown as { generateEmbeddingVector: () => Promise<null> }).generateEmbeddingVector = async () => null;
 
       const result = await embeddingService.generateEmbedding(outcomeId, text);
