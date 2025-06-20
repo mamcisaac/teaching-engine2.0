@@ -16,7 +16,7 @@ import Dialog from '../components/Dialog';
 import OutcomeSelect from '../components/OutcomeSelect';
 import OutcomeTag from '../components/OutcomeTag';
 import DailyOralRoutineWidget from '../components/DailyOralRoutineWidget';
-import AssessmentBuilder from '../components/AssessmentBuilder';
+import AssessmentBuilder from '../components/assessment/AssessmentBuilder';
 import ResourceSelector from '../components/ResourceSelector';
 import type { MediaResource } from '../types';
 import { toast } from 'sonner';
