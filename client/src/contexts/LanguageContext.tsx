@@ -9,6 +9,8 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+export { LanguageContext };
+
 // Simple translation function - in a real app, you'd load these from files
 const translations: Record<string, Record<string, string>> = {
   en: {

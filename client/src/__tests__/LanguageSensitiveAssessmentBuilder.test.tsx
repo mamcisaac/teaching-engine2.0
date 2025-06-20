@@ -56,6 +56,14 @@ const renderWithProviders = (component: React.ReactElement, language = 'en') => 
   const languageValue = {
     language: language as 'en' | 'fr',
     setLanguage: vi.fn(),
+    t: vi.fn((key: string, fallback?: string) => fallback || key),
+    getLocalizedField: vi.fn((obj: Record<string, unknown>, field: string) => {
+      if (language === 'fr') {
+        const frenchField = field + 'Fr';
+        return String(obj[frenchField] || obj[field] || '');
+      }
+      return String(obj[field] || '');
+    }),
   };
 
   return render(
@@ -98,10 +106,7 @@ describe('LanguageSensitiveAssessmentBuilder', () => {
   it('shows default Grade 1 French Immersion criteria for oral assessment', () => {
     renderWithProviders(<LanguageSensitiveAssessmentBuilder />);
 
-    // Select oral assessment type
-    fireEvent.click(screen.getByLabelText('Oral'));
-
-    // Should show Grade 1 adapted criteria
+    // Oral should be selected by default and should show Grade 1 adapted criteria
     expect(screen.getByText('Use Grade 1 adapted criteria')).toBeInTheDocument();
     expect(screen.getByText('French Immersion adapted criteria (Grade 1):')).toBeInTheDocument();
   });
@@ -199,7 +204,7 @@ describe('LanguageSensitiveAssessmentBuilder', () => {
     });
 
     // Select an outcome
-    fireEvent.click(screen.getByLabelText('FL1.CO.1'));
+    fireEvent.click(screen.getByRole('checkbox', { name: /FL1.CO.1/ }));
 
     // Submit form
     fireEvent.click(screen.getByText('Create Template'));
@@ -213,18 +218,17 @@ describe('LanguageSensitiveAssessmentBuilder', () => {
   it('displays different criteria for different assessment types', () => {
     renderWithProviders(<LanguageSensitiveAssessmentBuilder />);
 
-    // Test oral criteria
-    fireEvent.click(screen.getByLabelText('Oral'));
+    // Test oral criteria (should be selected by default)
     expect(screen.getByText('Pronunciation')).toBeInTheDocument();
     expect(screen.getByText('Fluency')).toBeInTheDocument();
 
     // Test writing criteria
-    fireEvent.click(screen.getByLabelText('Writing'));
+    fireEvent.click(screen.getByText('Writing'));
     expect(screen.getByText('Vocabulary')).toBeInTheDocument();
     expect(screen.getByText('Spelling')).toBeInTheDocument();
 
     // Test reading criteria
-    fireEvent.click(screen.getByLabelText('Reading'));
+    fireEvent.click(screen.getByText('Reading'));
     expect(screen.getByText('Comprehension')).toBeInTheDocument();
     expect(screen.getByText('Reading Fluency')).toBeInTheDocument();
   });
@@ -232,13 +236,12 @@ describe('LanguageSensitiveAssessmentBuilder', () => {
   it('shows correct French criteria for assessment types', () => {
     renderWithProviders(<LanguageSensitiveAssessmentBuilder />, 'fr');
 
-    // Test oral criteria in French
-    fireEvent.click(screen.getByLabelText('Oral'));
+    // Test oral criteria in French (should be selected by default)
     expect(screen.getByText('Prononciation')).toBeInTheDocument();
     expect(screen.getByText('Fluidité')).toBeInTheDocument();
 
     // Test writing criteria in French
-    fireEvent.click(screen.getByLabelText('Écriture'));
+    fireEvent.click(screen.getByText('Écriture'));
     expect(screen.getByText('Vocabulaire')).toBeInTheDocument();
     expect(screen.getByText('Orthographe')).toBeInTheDocument();
   });

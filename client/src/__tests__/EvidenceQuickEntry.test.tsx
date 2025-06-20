@@ -86,6 +86,10 @@ const renderWithProviders = (component: React.ReactElement, language = 'en') => 
   const languageValue = {
     language: language as 'en' | 'fr',
     setLanguage: vi.fn(),
+    t: vi.fn((key: string, fallback?: string) => fallback || key),
+    getLocalizedField: vi.fn((obj: Record<string, unknown>, field: string) =>
+      String(obj[field] || ''),
+    ),
   };
 
   return render(
