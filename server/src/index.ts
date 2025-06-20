@@ -66,12 +66,17 @@ import timelineRoutes from './routes/timeline';
 import { aiSuggestionsRouter } from './routes/aiSuggestions';
 import aiParentSummaryRoutes from './routes/aiParentSummary';
 import activityTemplateRoutes from './routes/activityTemplate';
+import curriculumImportRoutes from './routes/curriculumImport';
+import embeddingRoutes from './routes/embedding';
+import enhancedPlanningRoutes from './routes/enhancedPlanning';
+import enhancedMaterialRoutes from './routes/enhancedMaterial';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
 import { scheduleReportDeadlineReminders } from './jobs/reportDeadlineReminder';
 import { scheduleEquipmentBookingReminders } from './jobs/bookingReminder';
 import { scheduleBackups } from './services/backupService';
+import { initializeServices, shutdownServices, getServiceHealth } from './services/initializeServices';
 import logger from './logger';
 import { prisma } from './prisma';
 
@@ -261,6 +266,22 @@ app.use('/api/ai-suggestions', authenticateToken, aiSuggestionsRouter);
 app.use('/api/ai-parent-summary', authenticateToken, aiParentSummaryRoutes);
 app.use('/api/activity-templates', authenticateToken, activityTemplateRoutes);
 
+// Phase 5 Routes
+app.use('/api/curriculum-import', authenticateToken, curriculumImportRoutes);
+app.use('/api/embeddings', authenticateToken, embeddingRoutes);
+app.use('/api/enhanced-planning', authenticateToken, enhancedPlanningRoutes);
+app.use('/api/enhanced-materials', authenticateToken, enhancedMaterialRoutes);
+
+// Service health check endpoint (no auth required for monitoring)
+app.get('/api/health/services', async (_req, res) => {
+  try {
+    const health = await getServiceHealth();
+    res.status(health.healthy ? 200 : 503).json(health);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to get service health' });
+  }
+});
+
 log('All API routes mounted successfully.');
 app.use('/api/*', (_req, res) => {
   res.status(404).json({ error: 'Not Found' });
@@ -299,22 +320,43 @@ export { app };
 
 // Only start the server if this file is run directly
 if (import.meta.url === `file://${process.argv[1]}`) {
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server is running on port ${PORT}`);
-    log('Server started successfully');
+  // Initialize services before starting the server
+  initializeServices()
+    .then(() => {
+      app.listen(PORT, '0.0.0.0', () => {
+        console.log(`Server is running on port ${PORT}`);
+        log('Server started successfully');
 
-    // Schedule background jobs
-    log('Scheduling background jobs...');
-    try {
-      scheduleProgressCheck();
-      scheduleUnreadNotificationEmails();
-      scheduleNewsletterTriggers();
-      scheduleReportDeadlineReminders();
-      scheduleEquipmentBookingReminders();
-      scheduleBackups();
-      log('All background jobs scheduled');
-    } catch (err) {
-      error('Error scheduling background jobs:', err);
-    }
+        // Schedule background jobs
+        log('Scheduling background jobs...');
+        try {
+          scheduleProgressCheck();
+          scheduleUnreadNotificationEmails();
+          scheduleNewsletterTriggers();
+          scheduleReportDeadlineReminders();
+          scheduleEquipmentBookingReminders();
+          scheduleBackups();
+          log('All background jobs scheduled');
+        } catch (err) {
+          error('Error scheduling background jobs:', err);
+        }
+      });
+    })
+    .catch((err) => {
+      error('Failed to initialize services:', err);
+      process.exit(1);
+    });
+
+  // Graceful shutdown
+  process.on('SIGTERM', async () => {
+    log('SIGTERM received, shutting down gracefully...');
+    await shutdownServices();
+    process.exit(0);
+  });
+
+  process.on('SIGINT', async () => {
+    log('SIGINT received, shutting down gracefully...');
+    await shutdownServices();
+    process.exit(0);
   });
 }
