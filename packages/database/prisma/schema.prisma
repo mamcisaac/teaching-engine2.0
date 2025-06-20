@@ -279,6 +279,7 @@ model User {
   activityTemplates ActivityTemplate[]
   teacherReflections TeacherReflection[]
   milestoneAlerts MilestoneAlert[]
+  curriculumImports CurriculumImport[]
 }
 
 enum ActivityType {
@@ -413,6 +414,12 @@ model Outcome {
   domain      String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  
+  // Phase 5: Curriculum Intelligence relationships
+  importId    String?
+  import      CurriculumImport? @relation(fields: [importId], references: [id])
+  embedding   OutcomeEmbedding?
+  
   milestones  MilestoneOutcome[]
   activities  ActivityOutcome[]
   smartGoals  SmartGoal[]
@@ -813,4 +820,69 @@ model MilestoneAlert {
   updatedAt   DateTime @updatedAt
   @@index([userId, isRead])
   @@index([userId, milestoneId])
+}
+
+// ==================== Phase 5: Curriculum Intelligence Models ====================
+
+enum ImportStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+// Stores vector embeddings for curriculum outcomes to enable semantic search and clustering
+model OutcomeEmbedding {
+  id         String   @id @default(cuid())
+  outcomeId  String   @unique
+  outcome    Outcome  @relation(fields: [outcomeId], references: [id], onDelete: Cascade)
+  embedding  Json     // Array of float values from OpenAI embedding API
+  model      String   // e.g., "text-embedding-3-small"
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  @@index([outcomeId])
+}
+
+// Tracks curriculum import sessions from various file formats (PDF, DOCX, CSV)
+model CurriculumImport {
+  id                String           @id @default(cuid())
+  userId            Int
+  user              User             @relation(fields: [userId], references: [id])
+  grade             Int
+  subject           String
+  status            ImportStatus     @default(PENDING)
+  sourceFormat      String?          // "pdf" | "docx" | "csv" | "manual"
+  sourceFile        String?          // Path or URL to original file
+  totalOutcomes     Int              @default(0)
+  processedOutcomes Int              @default(0)
+  errorLog          Json?            // Array of error objects with details
+  metadata          Json?            // Additional import metadata (e.g., parsing settings)
+  createdAt         DateTime         @default(now())
+  completedAt       DateTime?
+  
+  clusters          OutcomeCluster[]
+  outcomes          Outcome[]        // Outcomes created from this import
+  
+  @@index([userId, status])
+  @@index([createdAt])
+}
+
+// Stores clustered groups of related outcomes for intelligent curriculum organization
+model OutcomeCluster {
+  id             String           @id @default(cuid())
+  importId       String
+  import         CurriculumImport @relation(fields: [importId], references: [id], onDelete: Cascade)
+  clusterName    String           // Human-readable cluster name
+  clusterType    String           // "theme" | "skill" | "concept"
+  outcomeIds     Json             // Array of outcome IDs in this cluster
+  centroid       Json?            // Centroid embedding vector for the cluster
+  confidence     Float            @default(0.0) // Clustering confidence score (0-1)
+  suggestedTheme String?          // AI-suggested theme name
+  metadata       Json?            // Additional cluster metadata
+  createdAt      DateTime         @default(now())
+  
+  @@index([importId])
+  @@index([clusterType])
 }
