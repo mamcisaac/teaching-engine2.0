@@ -16,7 +16,7 @@ const createUploadStorage = () =>
   multer({
     storage: multer.diskStorage({
       destination: async (req: AuthRequest, file, cb) => {
-        const userId = req.userId || 'default';
+        const userId = req.user?.userId || 'default';
         const userUploadDir = path.join(__dirname_mediaResource, '../uploads', userId.toString());
         await fs.mkdir(userUploadDir, { recursive: true });
         cb(null, userUploadDir);
@@ -59,7 +59,7 @@ const createUploadStorage = () =>
 // Get all media resources for a user
 router.get('/', authMiddleware, async (req: AuthRequest, res, next) => {
   try {
-    const userId = req.userId!;
+    const userId = parseInt(req.user!.userId, 10);
 
     const resources = await prisma.mediaResource.findMany({
       where: { userId },
@@ -148,7 +148,7 @@ router.post(
       // Create the media resource
       const resource = await prisma.mediaResource.create({
         data: {
-          userId: req.userId!,
+          userId: parseInt(req.user!.userId, 10),
           title,
           filePath: req.file.path,
           fileType,
@@ -330,7 +330,7 @@ router.delete('/:id', authMiddleware, async (req: AuthRequest, res, next) => {
 router.get('/file/:userId/:filename', authMiddleware, async (req: AuthRequest, res, next) => {
   try {
     const { userId, filename } = req.params;
-    const authenticatedUserId = req.userId!;
+    const authenticatedUserId = parseInt(req.user!.userId, 10);
 
     // Ensure users can only access their own files
     if (parseInt(userId) !== authenticatedUserId) {

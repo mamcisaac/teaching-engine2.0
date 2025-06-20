@@ -66,7 +66,7 @@ router.post('/templates', validate(oralRoutineTemplateCreateSchema), async (req,
     descriptionFr,
     outcomes = [],
   } = req.body;
-  const userId = (req as AuthRequest).userId!;
+  const userId = parseInt((req as AuthRequest).user!.userId, 10);
 
   try {
     const template = await prisma.oralRoutineTemplate.create({
@@ -290,7 +290,7 @@ router.get('/daily', async (req, res, next) => {
 // POST /api/oral-routines/daily - Create a new daily oral routine
 router.post('/daily', validate(dailyOralRoutineCreateSchema), async (req, res, next) => {
   const { date, templateId, completed = false, notes, participation } = req.body;
-  const userId = (req as AuthRequest).userId!;
+  const userId = parseInt((req as AuthRequest).user!.userId, 10);
 
   try {
     // Verify template exists

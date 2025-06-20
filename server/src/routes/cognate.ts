@@ -24,7 +24,7 @@ const cognateUpdateSchema = z.object({
 
 router.get('/', authMiddleware, async (req: AuthRequest, res, next) => {
   try {
-    const userId = req.userId!;
+    const userId = parseInt(req.user!.userId, 10);
 
     const cognates = await prisma.cognatePair.findMany({
       where: { userId },
@@ -100,7 +100,7 @@ router.post(
   async (req: AuthRequest, res, next) => {
     try {
       const { linkedOutcomes = [], linkedActivities = [], ...cognateData } = req.body;
-      const userId = req.userId!;
+      const userId = parseInt(req.user!.userId, 10);
 
       const cognate = await prisma.cognatePair.create({
         data: {

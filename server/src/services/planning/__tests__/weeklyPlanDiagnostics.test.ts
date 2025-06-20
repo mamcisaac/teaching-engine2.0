@@ -1,9 +1,6 @@
 import { describe, it, expect, beforeEach } from '@jest/globals';
 import { prisma } from '../../../prisma';
-import { 
-  calculateWeeklyPlanDiagnostics, 
-  getPlanningQualityTrend 
-} from '../weeklyPlanDiagnostics';
+import { calculateWeeklyPlanDiagnostics, getPlanningQualityTrend } from '../weeklyPlanDiagnostics';
 
 // Mock Prisma
 jest.mock('../../../prisma', () => ({
@@ -51,7 +48,7 @@ describe('weeklyPlanDiagnostics', () => {
       expect(result.metrics.overallScore).toBe(0);
       expect(result.warnings).toContain('Empty weekly plan detected');
       expect(result.suggestions).toContain(
-        'No activities scheduled for this week. Start by adding activities to your weekly plan.'
+        'No activities scheduled for this week. Start by adding activities to your weekly plan.',
       );
     });
 
@@ -122,16 +119,16 @@ describe('weeklyPlanDiagnostics', () => {
         ],
       };
 
-      (prisma.lessonPlan.findFirst as any).mockResolvedValue(mockLessonPlan);
+      (prisma.lessonPlan.findFirst as jest.Mock).mockResolvedValue(mockLessonPlan);
 
-      (prisma.outcome.findMany as any).mockResolvedValue([
+      (prisma.outcome.findMany as jest.Mock).mockResolvedValue([
         { id: 'OUT1', code: 'LA.1.1' },
         { id: 'OUT2', code: 'MA.1.1' },
         { id: 'OUT3', code: 'SC.1.1' },
         { id: 'OUT4', code: 'SS.1.1' },
       ]);
 
-      (prisma.subject.findMany as any).mockResolvedValue([
+      (prisma.subject.findMany as jest.Mock).mockResolvedValue([
         { id: 1, name: 'Language Arts' },
         { id: 2, name: 'Mathematics' },
         { id: 3, name: 'Science' },
@@ -236,9 +233,9 @@ describe('weeklyPlanDiagnostics', () => {
         ],
       };
 
-      (prisma.lessonPlan.findFirst as any).mockResolvedValue(mockLessonPlan);
-      (prisma.outcome.findMany as any).mockResolvedValue([]);
-      (prisma.subject.findMany as any).mockResolvedValue([
+      (prisma.lessonPlan.findFirst as jest.Mock).mockResolvedValue(mockLessonPlan);
+      (prisma.outcome.findMany as jest.Mock).mockResolvedValue([]);
+      (prisma.subject.findMany as jest.Mock).mockResolvedValue([
         { id: 1, name: 'Mathematics' },
         { id: 2, name: 'Language Arts' },
       ]);
@@ -253,7 +250,7 @@ describe('weeklyPlanDiagnostics', () => {
     });
 
     it('handles no lesson plan gracefully', async () => {
-      (prisma.lessonPlan.findFirst as any).mockResolvedValue(null);
+      (prisma.lessonPlan.findFirst as jest.Mock).mockResolvedValue(null);
 
       const result = await calculateWeeklyPlanDiagnostics({
         weekStart: new Date('2024-01-22'),
@@ -262,7 +259,7 @@ describe('weeklyPlanDiagnostics', () => {
 
       expect(result.metrics.overallScore).toBe(0);
       expect(result.suggestions).toContain(
-        'No activities scheduled for this week. Start by adding activities to your weekly plan.'
+        'No activities scheduled for this week. Start by adding activities to your weekly plan.',
       );
     });
   });
@@ -272,26 +269,28 @@ describe('weeklyPlanDiagnostics', () => {
       // Mock test data setup for trend calculation
 
       // Mock the lesson plan for each week
-      (prisma.lessonPlan.findFirst as any).mockResolvedValue({
+      (prisma.lessonPlan.findFirst as jest.Mock).mockResolvedValue({
         id: 1,
         weekStart: new Date(),
-        schedule: [{
-          id: 1,
-          day: 1,
-          activity: {
+        schedule: [
+          {
             id: 1,
-            title: 'Test Activity',
-            activityType: 'LESSON',
-            milestone: { subject: { name: 'Math' }, outcomes: [] },
-            outcomes: [],
-            thematicUnits: [],
-            cognatePairs: [],
+            day: 1,
+            activity: {
+              id: 1,
+              title: 'Test Activity',
+              activityType: 'LESSON',
+              milestone: { subject: { name: 'Math' }, outcomes: [] },
+              outcomes: [],
+              thematicUnits: [],
+              cognatePairs: [],
+            },
           },
-        }],
+        ],
       });
 
-      (prisma.outcome.findMany as any).mockResolvedValue([]);
-      (prisma.subject.findMany as any).mockResolvedValue([]);
+      (prisma.outcome.findMany as jest.Mock).mockResolvedValue([]);
+      (prisma.subject.findMany as jest.Mock).mockResolvedValue([]);
 
       const trend = await getPlanningQualityTrend(1, 4);
 
@@ -303,12 +302,12 @@ describe('weeklyPlanDiagnostics', () => {
 
     it('handles calculation errors gracefully', async () => {
       // Make one week fail
-      (prisma.lessonPlan.findFirst as any)
+      (prisma.lessonPlan.findFirst as jest.Mock)
         .mockRejectedValueOnce(new Error('DB Error'))
         .mockResolvedValue({ id: 1, weekStart: new Date(), schedule: [] });
 
-      (prisma.outcome.findMany as any).mockResolvedValue([]);
-      (prisma.subject.findMany as any).mockResolvedValue([]);
+      (prisma.outcome.findMany as jest.Mock).mockResolvedValue([]);
+      (prisma.subject.findMany as jest.Mock).mockResolvedValue([]);
 
       const trend = await getPlanningQualityTrend(1, 2);
 

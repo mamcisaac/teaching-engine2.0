@@ -1,16 +1,16 @@
 import { prisma } from '../../prisma';
-import { startOfWeek, endOfWeek } from 'date-fns';
+import { startOfWeek } from 'date-fns';
 
 export interface QualityMetrics {
-  outcomesCoverage: number;      // 0-100%
-  assessmentBalance: number;     // 0-100%
-  engagementVariety: number;     // 0-100%
-  differentiationScore: number;  // 0-100%
-  timeEfficiency: number;        // 0-100%
-  domainBalance: number;         // 0-100%
-  themeConsistency: number;      // 0-100%
+  outcomesCoverage: number; // 0-100%
+  assessmentBalance: number; // 0-100%
+  engagementVariety: number; // 0-100%
+  differentiationScore: number; // 0-100%
+  timeEfficiency: number; // 0-100%
+  domainBalance: number; // 0-100%
+  themeConsistency: number; // 0-100%
   vocabularyIntegration: number; // 0-100%
-  overallScore: number;          // 0-100%
+  overallScore: number; // 0-100%
 }
 
 export interface DiagnosticDetails {
@@ -32,7 +32,7 @@ export interface WeeklyPlanDiagnosticsInput {
  * Calculate comprehensive quality metrics for a weekly plan
  */
 export async function calculateWeeklyPlanDiagnostics(
-  input: WeeklyPlanDiagnosticsInput
+  input: WeeklyPlanDiagnosticsInput,
 ): Promise<DiagnosticDetails> {
   const { weekStart, userId } = input;
   // weekEnd could be used for future date range queries
@@ -89,7 +89,9 @@ export async function calculateWeeklyPlanDiagnostics(
           vocabularyIntegration: 0,
           overallScore: 0,
         },
-        suggestions: ['No activities scheduled for this week. Start by adding activities to your weekly plan.'],
+        suggestions: [
+          'No activities scheduled for this week. Start by adding activities to your weekly plan.',
+        ],
         warnings: ['Empty weekly plan detected'],
         strengths: [],
         missingDomains: [],
@@ -99,9 +101,7 @@ export async function calculateWeeklyPlanDiagnostics(
     }
 
     // Extract activities from schedule
-    const activities = lessonPlan.schedule
-      .map(item => item.activity)
-      .filter(Boolean);
+    const activities = lessonPlan.schedule.map((item) => item.activity).filter(Boolean);
 
     // 1. Calculate Outcome Coverage
     const allOutcomes = await prisma.outcome.findMany({
@@ -117,55 +117,52 @@ export async function calculateWeeklyPlanDiagnostics(
     });
 
     const coveredOutcomeIds = new Set<string>();
-    activities.forEach(activity => {
-      activity.outcomes?.forEach(ao => {
+    activities.forEach((activity) => {
+      activity.outcomes?.forEach((ao) => {
         coveredOutcomeIds.add(ao.outcomeId);
       });
-      activity.milestone?.outcomes?.forEach(mo => {
+      activity.milestone?.outcomes?.forEach((mo) => {
         coveredOutcomeIds.add(mo.outcomeId);
       });
     });
 
-    const outcomesCoverage = allOutcomes.length > 0
-      ? (coveredOutcomeIds.size / allOutcomes.length) * 100
-      : 0;
+    const outcomesCoverage =
+      allOutcomes.length > 0 ? (coveredOutcomeIds.size / allOutcomes.length) * 100 : 0;
 
     // 2. Calculate Assessment Balance
-    const assessmentActivities = activities.filter(a => a.activityType === 'ASSESSMENT');
-    const assessmentBalance = activities.length > 0
-      ? Math.min((assessmentActivities.length / activities.length) * 100 * 5, 100) // Target ~20% assessments
-      : 0;
+    const assessmentActivities = activities.filter((a) => a.activityType === 'ASSESSMENT');
+    const assessmentBalance =
+      activities.length > 0
+        ? Math.min((assessmentActivities.length / activities.length) * 100 * 5, 100) // Target ~20% assessments
+        : 0;
 
     // 3. Calculate Engagement Variety (based on activity types and tags)
     const activityTypes = new Set<string>();
     const activityTags = new Set<string>();
-    
-    activities.forEach(activity => {
+
+    activities.forEach((activity) => {
       activityTypes.add(activity.activityType);
       if (activity.tags && typeof activity.tags === 'object') {
         const tags = activity.tags as string[];
-        tags.forEach(tag => activityTags.add(tag));
+        tags.forEach((tag) => activityTags.add(tag));
       }
     });
 
-    const engagementVariety = Math.min(
-      ((activityTypes.size + activityTags.size) / 10) * 100,
-      100
-    );
+    const engagementVariety = Math.min(((activityTypes.size + activityTags.size) / 10) * 100, 100);
 
     // 4. Calculate Differentiation Score (based on group types and individualized activities)
-    const hasIndividualActivities = activities.some(a => 
-      a.privateNote?.toLowerCase().includes('individual') ||
-      a.privateNote?.toLowerCase().includes('differentiat')
+    const hasIndividualActivities = activities.some(
+      (a) =>
+        a.privateNote?.toLowerCase().includes('individual') ||
+        a.privateNote?.toLowerCase().includes('differentiat'),
     );
-    const hasGroupActivities = activities.some(a => 
-      a.privateNote?.toLowerCase().includes('group') ||
-      a.privateNote?.toLowerCase().includes('partner')
+    const hasGroupActivities = activities.some(
+      (a) =>
+        a.privateNote?.toLowerCase().includes('group') ||
+        a.privateNote?.toLowerCase().includes('partner'),
     );
-    
-    const differentiationScore = 
-      (hasIndividualActivities ? 50 : 0) + 
-      (hasGroupActivities ? 50 : 0);
+
+    const differentiationScore = (hasIndividualActivities ? 50 : 0) + (hasGroupActivities ? 50 : 0);
 
     // 5. Calculate Time Efficiency
     const totalMinutesPlanned = activities.reduce((sum, a) => sum + (a.durationMins || 0), 0);
@@ -174,7 +171,7 @@ export async function calculateWeeklyPlanDiagnostics(
 
     // 6. Calculate Domain Balance
     const domainCounts = new Map<string, number>();
-    activities.forEach(activity => {
+    activities.forEach((activity) => {
       const domain = activity.milestone?.subject?.name || 'Unknown';
       domainCounts.set(domain, (domainCounts.get(domain) || 0) + 1);
     });
@@ -182,35 +179,40 @@ export async function calculateWeeklyPlanDiagnostics(
     const domains = Array.from(domainCounts.keys());
     const domainValues = Array.from(domainCounts.values());
     const avgActivitiesPerDomain = domainValues.reduce((sum, v) => sum + v, 0) / domains.length;
-    const domainVariance = domainValues.reduce((sum, v) => 
-      sum + Math.pow(v - avgActivitiesPerDomain, 2), 0
-    ) / domains.length;
-    
+    const domainVariance =
+      domainValues.reduce((sum, v) => sum + Math.pow(v - avgActivitiesPerDomain, 2), 0) /
+      domains.length;
+
     // Lower variance means better balance
-    const domainBalance = Math.max(100 - (domainVariance * 10), 0);
+    const domainBalance = Math.max(100 - domainVariance * 10, 0);
 
     // 7. Calculate Theme Consistency
     const themeCount = new Set(
-      activities.flatMap(a => a.thematicUnits?.map(tu => tu.thematicUnitId) || [])
+      activities.flatMap((a) => a.thematicUnits?.map((tu) => tu.thematicUnitId) || []),
     ).size;
-    
-    const themeConsistency = themeCount > 0
-      ? Math.min((activities.filter(a => a.thematicUnits?.length > 0).length / activities.length) * 100, 100)
-      : 50; // Neutral score if no themes
+
+    const themeConsistency =
+      themeCount > 0
+        ? Math.min(
+            (activities.filter((a) => a.thematicUnits?.length > 0).length / activities.length) *
+              100,
+            100,
+          )
+        : 50; // Neutral score if no themes
 
     // 8. Calculate Vocabulary Integration
-    const vocabActivities = activities.filter(a => 
-      a.cognatePairs?.length > 0 ||
-      a.title?.toLowerCase().includes('vocab') ||
-      a.title?.toLowerCase().includes('word')
+    const vocabActivities = activities.filter(
+      (a) =>
+        a.cognatePairs?.length > 0 ||
+        a.title?.toLowerCase().includes('vocab') ||
+        a.title?.toLowerCase().includes('word'),
     );
-    
-    const vocabularyIntegration = activities.length > 0
-      ? (vocabActivities.length / activities.length) * 100
-      : 0;
+
+    const vocabularyIntegration =
+      activities.length > 0 ? (vocabActivities.length / activities.length) * 100 : 0;
 
     // Calculate overall score
-    const overallScore = (
+    const overallScore =
       outcomesCoverage * 0.2 +
       assessmentBalance * 0.15 +
       engagementVariety * 0.15 +
@@ -218,8 +220,7 @@ export async function calculateWeeklyPlanDiagnostics(
       timeEfficiency * 0.1 +
       domainBalance * 0.1 +
       themeConsistency * 0.1 +
-      vocabularyIntegration * 0.1
-    );
+      vocabularyIntegration * 0.1;
 
     // Generate suggestions, warnings, and strengths
     const suggestions: string[] = [];
@@ -268,7 +269,7 @@ export async function calculateWeeklyPlanDiagnostics(
     const overusedDomains = Array.from(domainCounts.entries())
       .filter(([, count]) => count > avgActivitiesPerDomain * 1.5)
       .map(([domain]) => domain);
-    
+
     const underusedDomains = Array.from(domainCounts.entries())
       .filter(([, count]) => count < avgActivitiesPerDomain * 0.5)
       .map(([domain]) => domain);
@@ -276,7 +277,7 @@ export async function calculateWeeklyPlanDiagnostics(
     if (overusedDomains.length > 0) {
       warnings.push(`Overemphasis on: ${overusedDomains.join(', ')}`);
     }
-    
+
     if (underusedDomains.length > 0) {
       suggestions.push(`Add more activities for: ${underusedDomains.join(', ')}`);
     }
@@ -297,22 +298,22 @@ export async function calculateWeeklyPlanDiagnostics(
 
     // Find uncovered outcomes
     const uncoveredOutcomes = allOutcomes
-      .filter(o => !coveredOutcomeIds.has(o.id))
-      .map(o => o.code)
+      .filter((o) => !coveredOutcomeIds.has(o.id))
+      .map((o) => o.code)
       .slice(0, 5); // Limit to top 5
 
     // Find missing domains
     const allSubjects = await prisma.subject.findMany({
       where: { userId },
     });
-    
+
     const scheduledSubjectIds = new Set(
-      activities.map(a => a.milestone?.subjectId).filter(Boolean)
+      activities.map((a) => a.milestone?.subjectId).filter(Boolean),
     );
-    
+
     const missingDomains = allSubjects
-      .filter(s => !scheduledSubjectIds.has(s.id))
-      .map(s => s.name);
+      .filter((s) => !scheduledSubjectIds.has(s.id))
+      .map((s) => s.name);
 
     return {
       metrics: {
@@ -344,14 +345,14 @@ export async function calculateWeeklyPlanDiagnostics(
  */
 export async function getPlanningQualityTrend(
   userId: number,
-  weeks: number = 8
+  weeks: number = 8,
 ): Promise<{ week: string; score: number }[]> {
   const trend: { week: string; score: number }[] = [];
   const currentDate = new Date();
 
   for (let i = 0; i < weeks; i++) {
     const weekStart = new Date(currentDate);
-    weekStart.setDate(currentDate.getDate() - (i * 7));
+    weekStart.setDate(currentDate.getDate() - i * 7);
     const mondayStart = startOfWeek(weekStart, { weekStartsOn: 1 });
 
     try {

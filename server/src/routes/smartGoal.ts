@@ -56,7 +56,7 @@ router.get('/', async (req, res, next) => {
 // POST /api/smart-goals - Create a new SMART goal
 router.post('/', validate(smartGoalCreateSchema), async (req, res, next) => {
   const { outcomeId, milestoneId, description, targetDate, targetValue } = req.body;
-  const userId = (req as AuthRequest).userId!;
+  const userId = parseInt((req as AuthRequest).user!.userId, 10);
 
   try {
     // Verify outcome exists
