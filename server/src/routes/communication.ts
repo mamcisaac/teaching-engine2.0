@@ -272,9 +272,9 @@ router.get('/delivery-status', async (req: AuthenticatedRequest, res, next) => {
     const recent = [
       {
         id: 1,
-        recipient: 'test@example.com',
+        email: 'test@example.com',
         status: 'delivered',
-        timestamp: new Date().toISOString(),
+        sentAt: new Date().toISOString(),
         subject: 'Test Email',
       },
     ];
