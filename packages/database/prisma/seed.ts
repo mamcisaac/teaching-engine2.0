@@ -45,6 +45,7 @@ async function main() {
   await prisma.equipmentBooking.deleteMany();
   await prisma.substituteInfo.deleteMany();
   await prisma.holiday.deleteMany();
+  await prisma.milestoneDefinition.deleteMany();
   await prisma.outcome.deleteMany();
 
   // Create a default user
@@ -362,7 +363,182 @@ async function main() {
     });
   }
 
-  console.log('✅ Seed complete: subjects, milestones, activities, and one plan seeded');
+  // Create curriculum outcomes
+  const outcomes = await Promise.all([
+    // French Grade 1 Communication orale
+    prisma.outcome.create({
+      data: {
+        code: '1CO.1',
+        description: 'Distinguer les sons dans la chaîne parlée',
+        domain: 'Communication orale',
+        subject: 'FRA',
+        grade: 1,
+      },
+    }),
+    prisma.outcome.create({
+      data: {
+        code: '1CO.2',
+        description: 'Suivre des consignes simples',
+        domain: 'Communication orale',
+        subject: 'FRA',
+        grade: 1,
+      },
+    }),
+    prisma.outcome.create({
+      data: {
+        code: '1CO.3',
+        description: 'Exprimer ses besoins et ses sentiments',
+        domain: 'Communication orale',
+        subject: 'FRA',
+        grade: 1,
+      },
+    }),
+    // French Grade 1 Lecture
+    prisma.outcome.create({
+      data: {
+        code: '1LE.1',
+        description: "Reconnaître les lettres de l'alphabet",
+        domain: 'Lecture',
+        subject: 'FRA',
+        grade: 1,
+      },
+    }),
+    prisma.outcome.create({
+      data: {
+        code: '1LE.2',
+        description: 'Associer des sons aux lettres',
+        domain: 'Lecture',
+        subject: 'FRA',
+        grade: 1,
+      },
+    }),
+    // French Grade 1 Écriture
+    prisma.outcome.create({
+      data: {
+        code: '1EC.1',
+        description: 'Tracer les lettres en respectant leur forme',
+        domain: 'Écriture',
+        subject: 'FRA',
+        grade: 1,
+      },
+    }),
+    prisma.outcome.create({
+      data: {
+        code: '1EC.2',
+        description: 'Écrire des mots simples',
+        domain: 'Écriture',
+        subject: 'FRA',
+        grade: 1,
+      },
+    }),
+  ]);
+
+  // Create milestone definitions for curriculum tracking
+  const currentSchoolYear = new Date().getFullYear();
+
+  await Promise.all([
+    // Communication orale outcomes - should be introduced early and practiced regularly
+    prisma.milestoneDefinition.create({
+      data: {
+        outcomeId: outcomes[0].id, // 1CO.1
+        dueDate: new Date(currentSchoolYear, 9, 15), // October 15
+        minCoverageCount: 3,
+        minAssessmentRequired: true,
+        description: 'Sound discrimination should be introduced early in oral language',
+        priority: 'high',
+      },
+    }),
+    prisma.milestoneDefinition.create({
+      data: {
+        outcomeId: outcomes[1].id, // 1CO.2
+        dueDate: new Date(currentSchoolYear, 8, 30), // September 30
+        minCoverageCount: 5,
+        minAssessmentRequired: false,
+        description: 'Following simple instructions is fundamental',
+        priority: 'high',
+      },
+    }),
+    prisma.milestoneDefinition.create({
+      data: {
+        outcomeId: outcomes[2].id, // 1CO.3
+        dueDate: new Date(currentSchoolYear, 10, 1), // November 1
+        minCoverageCount: 2,
+        minAssessmentRequired: true,
+        description: 'Expression of needs and feelings for social-emotional learning',
+        priority: 'medium',
+      },
+    }),
+
+    // Lecture outcomes - reading foundation skills
+    prisma.milestoneDefinition.create({
+      data: {
+        outcomeId: outcomes[3].id, // 1LE.1
+        dueDate: new Date(currentSchoolYear, 9, 30), // October 30
+        minCoverageCount: 4,
+        minAssessmentRequired: true,
+        description: 'Letter recognition is critical for reading development',
+        priority: 'high',
+      },
+    }),
+    prisma.milestoneDefinition.create({
+      data: {
+        outcomeId: outcomes[4].id, // 1LE.2
+        dueDate: new Date(currentSchoolYear, 10, 31), // November 30
+        minCoverageCount: 3,
+        minAssessmentRequired: true,
+        description: 'Sound-letter association builds phonetic awareness',
+        priority: 'high',
+      },
+    }),
+
+    // Écriture outcomes - writing skills
+    prisma.milestoneDefinition.create({
+      data: {
+        outcomeId: outcomes[5].id, // 1EC.1
+        dueDate: new Date(currentSchoolYear, 10, 15), // November 15
+        minCoverageCount: 2,
+        minAssessmentRequired: false,
+        description: 'Letter formation practice throughout the term',
+        priority: 'medium',
+      },
+    }),
+    prisma.milestoneDefinition.create({
+      data: {
+        outcomeId: outcomes[6].id, // 1EC.2
+        dueDate: new Date(currentSchoolYear, 11, 31), // December 31
+        minCoverageCount: 2,
+        minAssessmentRequired: true,
+        description: 'Simple word writing by end of first term',
+        priority: 'medium',
+      },
+    }),
+
+    // Domain-level milestone definitions
+    prisma.milestoneDefinition.create({
+      data: {
+        domain: 'Communication orale',
+        dueDate: new Date(currentSchoolYear + 1, 1, 31), // February 28
+        minCoverageCount: 12,
+        minAssessmentRequired: true,
+        description: 'Minimum oral language activities expected by mid-year',
+        priority: 'medium',
+      },
+    }),
+    prisma.milestoneDefinition.create({
+      data: {
+        domain: 'Lecture',
+        dueDate: new Date(currentSchoolYear + 1, 2, 28), // March 31
+        minCoverageCount: 8,
+        minAssessmentRequired: true,
+        description: 'Reading activities should be well-established by spring',
+        priority: 'high',
+      },
+    }),
+  ]);
+
+  console.log(
+    '✅ Seed complete: subjects, milestones, activities, outcomes, milestone definitions, and one plan seeded',
+  );
 }
 
 // Use a self-executing async function to handle top-level await

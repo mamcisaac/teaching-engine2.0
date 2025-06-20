@@ -1,21 +1,9 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '../lib/api';
 import { toast } from 'sonner';
+import { MilestoneAlert } from '../components/MilestoneAlertCard';
 
-interface MilestoneAlert {
-  id: number;
-  type: 'deadline' | 'progress' | 'coverage';
-  severity: 'low' | 'medium' | 'high' | 'critical';
-  title: string;
-  description: string;
-  milestoneId: number;
-  milestoneName: string;
-  subjectName: string;
-  daysUntilDeadline?: number;
-  coveragePercentage?: number;
-  createdAt: string;
-  isRead: boolean;
-}
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 interface AlertsResponse {
   alerts: MilestoneAlert[];
@@ -30,8 +18,42 @@ interface AlertFilters {
   subjectId?: number;
 }
 
-// Get all milestone alerts for the authenticated user
-export const useMilestoneAlerts = (filters: AlertFilters = {}) => {
+/**
+ * Fetch milestone alerts from the legacy API (for backward compatibility)
+ */
+const fetchLegacyMilestoneAlerts = async (classId?: string): Promise<MilestoneAlert[]> => {
+  const url = new URL(`${API_BASE_URL}/alerts/milestones`);
+  if (classId) {
+    url.searchParams.append('classId', classId);
+  }
+
+  const response = await fetch(url.toString(), {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch milestone alerts');
+  }
+
+  return response.json();
+};
+
+// Get all milestone alerts for the authenticated user (new API)
+export const useMilestoneAlerts = (filters: AlertFilters | string = {}) => {
+  // Handle legacy string parameter (classId)
+  if (typeof filters === 'string') {
+    return useQuery({
+      queryKey: ['milestoneAlerts', filters],
+      queryFn: () => fetchLegacyMilestoneAlerts(filters),
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      refetchInterval: 10 * 60 * 1000, // Refetch every 10 minutes
+    });
+  }
+
+  // New API implementation
   return useQuery<AlertsResponse>({
     queryKey: ['milestone-alerts', filters],
     queryFn: async () => {
@@ -195,3 +217,5 @@ export const useTriggerAlertCheck = () => {
     },
   });
 };
+
+export default useMilestoneAlerts;

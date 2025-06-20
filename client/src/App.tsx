@@ -29,6 +29,7 @@ const OutcomesPage = lazy(() => import('./pages/OutcomesPage'));
 const CoveragePage = lazy(() => import('./pages/CoveragePage'));
 const CurriculumAuditPage = lazy(() => import('./pages/CurriculumAuditPage'));
 const ParentMessagesPage = lazy(() => import('./pages/ParentMessagesPage'));
+const ParentContactsPage = lazy(() => import('./pages/ParentContactsPage'));
 const TimelinePage = lazy(() => import('./pages/TimelinePage'));
 const StudentsPage = lazy(() => import('./pages/StudentsPage'));
 const ParentSummariesPage = lazy(() => import('./pages/ParentSummariesPage'));
@@ -265,6 +266,14 @@ function AppRoutes() {
           element={
             <Suspense fallback={<SuspenseFallback />}>
               <ParentMessagesPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/parent-contacts"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <ParentContactsPage />
             </Suspense>
           }
         />

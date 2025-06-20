@@ -32,7 +32,7 @@ const studentCreateSchema = z.object({
     .refine(
       (data) => {
         // Either use new fields (firstName, lastName, grade) or legacy name field
-        return (data.firstName && data.lastName && data.grade !== undefined) || data.name;
+        return (data.firstName && data.lastName && typeof data.grade === 'number') || data.name;
       },
       {
         message: 'Either provide firstName, lastName, and grade, or provide name',

@@ -1,38 +1,23 @@
 import request from 'supertest';
 import type { Application } from 'express';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 import { getTestPrismaClient } from './jest.setup.js';
 
 /**
  * Helper to create a test user and get authentication token
  */
-export async function getAuthToken(app: Application): Promise<{ token: string; userId: number }> {
+export async function getAuthToken(app: Application, email?: string): Promise<{ token: string; userId: number }> {
   const prisma = getTestPrismaClient();
 
-  // First check if user already exists
-  const existingUser = await prisma.user.findUnique({
-    where: { email: 'test@example.com' },
-  });
-
-  if (existingUser) {
-    // If user exists, just return login
-    const loginResponse = await request(app).post('/api/login').send({
-      email: 'test@example.com',
-      password: 'testpassword',
-    });
-
-    if (loginResponse.status !== 200) {
-      throw new Error(`Login failed: ${loginResponse.status} ${loginResponse.text}`);
-    }
-
-    return { token: loginResponse.body.token, userId: existingUser.id };
-  }
+  // Generate unique email if not provided
+  const userEmail = email || `test-${Date.now()}-${Math.random().toString(36).substring(7)}@example.com`;
 
   // Create a test user with hashed password
   const hashedPassword = await bcrypt.hash('testpassword', 10);
   const user = await prisma.user.create({
     data: {
-      email: 'test@example.com',
+      email: userEmail,
       name: 'Test User',
       password: hashedPassword,
       role: 'teacher',
@@ -41,7 +26,7 @@ export async function getAuthToken(app: Application): Promise<{ token: string; u
 
   // Login to get token
   const loginResponse = await request(app).post('/api/login').send({
-    email: 'test@example.com',
+    email: userEmail,
     password: 'testpassword',
   });
 
@@ -84,4 +69,32 @@ export function authRequest(app: Application) {
       return request(app).patch(url).set('Authorization', `Bearer ${token}`);
     },
   };
+}
+
+/**
+ * Create a test user without going through HTTP
+ */
+export async function createTestUser(email?: string) {
+  const prisma = getTestPrismaClient();
+  
+  // Generate unique email if not provided
+  const userEmail = email || `test-${Date.now()}-${Math.random().toString(36).substring(7)}@example.com`;
+  
+  const hashedPassword = await bcrypt.hash('testpassword', 10);
+  return await prisma.user.create({
+    data: {
+      email: userEmail,
+      name: 'Test User',
+      password: hashedPassword,
+      role: 'teacher',
+    },
+  });
+}
+
+/**
+ * Create an auth token for a user ID
+ */
+export function createAuthToken(userId: number): string {
+  const secret = process.env.JWT_SECRET || 'test-secret';
+  return jwt.sign({ userId: userId.toString() }, secret, { expiresIn: '24h' });
 }

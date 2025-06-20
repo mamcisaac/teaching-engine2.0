@@ -2028,3 +2028,226 @@ export const useDeleteParentSummary = () => {
     },
   });
 };
+
+// Email Communication API
+
+export interface BulkEmailRecipient {
+  email: string;
+  name: string;
+}
+
+export interface EmailDeliveryStats {
+  total: number;
+  sent: number;
+  delivered: number;
+  failed: number;
+  pending: number;
+}
+
+export interface EmailDelivery {
+  id: number;
+  recipientEmail: string;
+  recipientName: string;
+  subject: string;
+  language: string;
+  status: string;
+  sentAt: string | null;
+  failureReason: string | null;
+  createdAt: string;
+}
+
+export interface SendEmailResponse {
+  success: boolean;
+  message: string;
+  sentCount: number;
+}
+
+export const useSendParentMessage = () => {
+  const queryClient = useQueryClient();
+  return useMutation<SendEmailResponse, Error, { 
+    id: number; 
+    recipients: BulkEmailRecipient[]; 
+    language?: 'en' | 'fr' 
+  }>({
+    mutationFn: async ({ id, recipients, language = 'en' }) => 
+      (await api.post(`/api/communication/parent-messages/${id}/send`, { recipients, language })).data,
+    onSuccess: (response) => {
+      queryClient.invalidateQueries({ queryKey: ['parent-messages'] });
+      toast.success(response.message);
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to send newsletter: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useSendParentSummary = () => {
+  const queryClient = useQueryClient();
+  return useMutation<SendEmailResponse, Error, { 
+    id: number; 
+    recipients: BulkEmailRecipient[]; 
+    language?: 'en' | 'fr' 
+  }>({
+    mutationFn: async ({ id, recipients, language = 'en' }) => 
+      (await api.post(`/api/communication/parent-summaries/${id}/send`, { recipients, language })).data,
+    onSuccess: (response) => {
+      queryClient.invalidateQueries({ queryKey: ['parent-summaries'] });
+      toast.success(response.message);
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to send parent summary: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useParentMessageDeliveries = (id: number) =>
+  useQuery<{ deliveries: EmailDelivery[]; stats: EmailDeliveryStats }>({
+    queryKey: ['parent-message-deliveries', id],
+    queryFn: async () => (await api.get(`/api/communication/parent-messages/${id}/deliveries`)).data,
+    enabled: !!id,
+  });
+
+export const useParentSummaryDeliveries = (id: number) =>
+  useQuery<{ deliveries: EmailDelivery[]; stats: EmailDeliveryStats }>({
+    queryKey: ['parent-summary-deliveries', id],
+    queryFn: async () => (await api.get(`/api/communication/parent-summaries/${id}/deliveries`)).data,
+    enabled: !!id,
+  });
+
+export const useParentContacts = () =>
+  useQuery<BulkEmailRecipient[]>({
+    queryKey: ['parent-contacts'],
+    queryFn: async () => (await api.get('/api/communication/parent-contacts')).data,
+  });
+
+export const useStudentParentContacts = (studentId: number) =>
+  useQuery<BulkEmailRecipient[]>({
+    queryKey: ['student-parent-contacts', studentId],
+    queryFn: async () => (await api.get(`/api/communication/students/${studentId}/parent-contacts`)).data,
+    enabled: !!studentId,
+  });
+
+// Email Templates
+export interface EmailTemplate {
+  id: number;
+  name: string;
+  subject: string;
+  contentFr: string;
+  contentEn: string;
+  variables: string;
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export const useEmailTemplates = () =>
+  useQuery<EmailTemplate[]>({
+    queryKey: ['email-templates'],
+    queryFn: async () => (await api.get('/api/email-templates')).data,
+  });
+
+export const useEmailTemplate = (id: number) =>
+  useQuery<EmailTemplate>({
+    queryKey: ['email-templates', id],
+    queryFn: async () => (await api.get(`/api/email-templates/${id}`)).data,
+    enabled: !!id,
+  });
+
+export const useCreateEmailTemplate = () => {
+  const queryClient = useQueryClient();
+  return useMutation<EmailTemplate, Error, {
+    name: string;
+    subject: string;
+    contentFr: string;
+    contentEn: string;
+    variables?: string[];
+  }>({
+    mutationFn: async (data) => (await api.post('/api/email-templates', data)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['email-templates'] });
+      toast.success('Email template created successfully');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to create template: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useUpdateEmailTemplate = () => {
+  const queryClient = useQueryClient();
+  return useMutation<EmailTemplate, Error, {
+    id: number;
+    data: {
+      name?: string;
+      subject?: string;
+      contentFr?: string;
+      contentEn?: string;
+      variables?: string[];
+    };
+  }>({
+    mutationFn: async ({ id, data }) => (await api.put(`/api/email-templates/${id}`, data)).data,
+    onSuccess: (_, { id }) => {
+      queryClient.invalidateQueries({ queryKey: ['email-templates'] });
+      queryClient.invalidateQueries({ queryKey: ['email-templates', id] });
+      toast.success('Email template updated successfully');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to update template: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useDeleteEmailTemplate = () => {
+  const queryClient = useQueryClient();
+  return useMutation<void, Error, number>({
+    mutationFn: async (id) => {
+      await api.delete(`/api/email-templates/${id}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['email-templates'] });
+      toast.success('Email template deleted successfully');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to delete template: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useCloneEmailTemplate = () => {
+  const queryClient = useQueryClient();
+  return useMutation<EmailTemplate, Error, { id: number; name: string }>({
+    mutationFn: async ({ id, name }) => 
+      (await api.post(`/api/email-templates/${id}/clone`, { name })).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['email-templates'] });
+      toast.success('Email template cloned successfully');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to clone template: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};

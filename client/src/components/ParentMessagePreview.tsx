@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { ParentMessage } from '../types';
+import { useSendParentMessage, useParentContacts, BulkEmailRecipient } from '../api';
+import Dialog from './Dialog';
+import { EmailDeliveryStatus } from './EmailDeliveryStatus';
 
 interface Props {
   message: ParentMessage;
@@ -9,6 +12,12 @@ interface Props {
 
 export function ParentMessagePreview({ message, onEdit, onDelete }: Props) {
   const [activeLanguage, setActiveLanguage] = useState<'fr' | 'en' | 'both'>('both');
+  const [showSendDialog, setShowSendDialog] = useState(false);
+  const [selectedRecipients, setSelectedRecipients] = useState<BulkEmailRecipient[]>([]);
+  const [emailLanguage, setEmailLanguage] = useState<'en' | 'fr'>('en');
+  
+  const sendMessageMutation = useSendParentMessage();
+  const { data: parentContacts = [] } = useParentContacts();
 
   const handleExportPDF = () => {
     // Create a printable version of the newsletter
@@ -56,6 +65,51 @@ export function ParentMessagePreview({ message, onEdit, onDelete }: Props) {
       document.body.removeChild(textArea);
       alert('Markdown content copied to clipboard!');
     }
+  };
+
+  const handleSendEmail = () => {
+    setShowSendDialog(true);
+    setSelectedRecipients(parentContacts); // Pre-select all contacts
+  };
+
+  const handleConfirmSend = async () => {
+    if (selectedRecipients.length === 0) {
+      alert('Please select at least one recipient');
+      return;
+    }
+
+    try {
+      await sendMessageMutation.mutateAsync({
+        id: message.id,
+        recipients: selectedRecipients,
+        language: emailLanguage,
+      });
+      setShowSendDialog(false);
+      setSelectedRecipients([]);
+      // The success toast is handled by the mutation hook
+    } catch (error) {
+      console.error('Failed to send newsletter:', error);
+      // Error toast is handled by the mutation hook
+    }
+  };
+
+  const handleToggleRecipient = (recipient: BulkEmailRecipient) => {
+    setSelectedRecipients(prev => {
+      const isSelected = prev.some(r => r.email === recipient.email);
+      if (isSelected) {
+        return prev.filter(r => r.email !== recipient.email);
+      } else {
+        return [...prev, recipient];
+      }
+    });
+  };
+
+  const handleSelectAll = () => {
+    setSelectedRecipients(parentContacts);
+  };
+
+  const handleDeselectAll = () => {
+    setSelectedRecipients([]);
   };
 
   return (
@@ -126,6 +180,12 @@ export function ParentMessagePreview({ message, onEdit, onDelete }: Props) {
 
         {/* Export Options */}
         <div className="flex space-x-2">
+          <button
+            onClick={handleSendEmail}
+            className="px-3 py-2 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 font-medium"
+          >
+            📧 Send Newsletter
+          </button>
           <button
             onClick={handleExportPDF}
             className="px-3 py-2 text-sm bg-green-100 text-green-700 rounded hover:bg-green-200"
@@ -211,7 +271,124 @@ export function ParentMessagePreview({ message, onEdit, onDelete }: Props) {
             )}
           </div>
         )}
+        
+        {/* Email Delivery Status */}
+        <EmailDeliveryStatus parentMessageId={message.id} />
       </div>
+
+      {/* Send Email Dialog */}
+      <Dialog
+        open={showSendDialog}
+        onClose={() => setShowSendDialog(false)}
+        title="Send Newsletter to Parents"
+        maxWidth="lg"
+      >
+        <div className="space-y-6">
+          {/* Language Selection */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Email Language
+            </label>
+            <div className="flex space-x-2">
+              <button
+                onClick={() => setEmailLanguage('en')}
+                className={`px-3 py-2 text-sm rounded ${
+                  emailLanguage === 'en'
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                🇬🇧 English
+              </button>
+              <button
+                onClick={() => setEmailLanguage('fr')}
+                className={`px-3 py-2 text-sm rounded ${
+                  emailLanguage === 'fr'
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                🇫🇷 Français
+              </button>
+            </div>
+          </div>
+
+          {/* Recipient Selection */}
+          <div>
+            <div className="flex justify-between items-center mb-2">
+              <label className="block text-sm font-medium text-gray-700">
+                Recipients ({selectedRecipients.length} selected)
+              </label>
+              <div className="flex space-x-2">
+                <button
+                  onClick={handleSelectAll}
+                  className="text-sm text-blue-600 hover:text-blue-800"
+                >
+                  Select All
+                </button>
+                <button
+                  onClick={handleDeselectAll}
+                  className="text-sm text-gray-600 hover:text-gray-800"
+                >
+                  Deselect All
+                </button>
+              </div>
+            </div>
+            
+            <div className="border border-gray-300 rounded-md max-h-48 overflow-y-auto">
+              {parentContacts.length === 0 ? (
+                <div className="p-4 text-center text-gray-500">
+                  No parent contacts found. Add parent contacts to your students first.
+                </div>
+              ) : (
+                <div className="p-2 space-y-1">
+                  {parentContacts.map((contact) => (
+                    <label
+                      key={contact.email}
+                      className="flex items-center space-x-2 p-2 hover:bg-gray-50 cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedRecipients.some(r => r.email === contact.email)}
+                        onChange={() => handleToggleRecipient(contact)}
+                        className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                      />
+                      <div className="flex-1">
+                        <div className="text-sm font-medium text-gray-900">{contact.name}</div>
+                        <div className="text-xs text-gray-500">{contact.email}</div>
+                      </div>
+                    </label>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex justify-end space-x-3">
+            <button
+              onClick={() => setShowSendDialog(false)}
+              className="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleConfirmSend}
+              disabled={selectedRecipients.length === 0 || sendMessageMutation.isPending}
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {sendMessageMutation.isPending ? (
+                <>
+                  <span className="inline-block animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></span>
+                  Sending...
+                </>
+              ) : (
+                `Send to ${selectedRecipients.length} recipients`
+              )}
+            </button>
+          </div>
+        </div>
+      </Dialog>
     </div>
   );
 }
