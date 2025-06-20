@@ -38,6 +38,16 @@ import type {
   CompleteActivityResponse,
   ActivityTemplate,
   ActivityTemplateInput,
+  Student,
+  StudentInput,
+  StudentGoal,
+  StudentGoalInput,
+  StudentReflection,
+  StudentReflectionInput,
+  ParentSummary,
+  ParentSummaryGeneration,
+  GenerateParentSummaryRequest,
+  SaveParentSummaryRequest,
 } from './types';
 
 import type {
@@ -1587,5 +1597,369 @@ export const useActivitySuggestions = (params: {
       return [];
     },
     enabled: !!params.suggestFor,
+  });
+};
+
+// Timeline types and hooks
+export interface TimelineEvent {
+  id: string;
+  date: string;
+  type: 'activity' | 'assessment' | 'theme' | 'newsletter';
+  label: string;
+  linkedOutcomeIds: string[];
+  subjectId?: number;
+  metadata?: {
+    score?: number;
+    milestoneId?: number;
+    endDate?: string;
+  };
+}
+
+export interface TimelineSummary {
+  totalOutcomes: number;
+  coveredOutcomes: number;
+  coveragePercentage: number;
+  nextMilestone: {
+    id: number;
+    title: string;
+    targetDate: string;
+  } | null;
+}
+
+export interface TimelineFilters {
+  from?: string;
+  to?: string;
+  studentId?: number;
+  subjectId?: number;
+  outcomeId?: string;
+}
+
+export const useTimelineEvents = (filters?: TimelineFilters) => {
+  return useQuery<TimelineEvent[]>({
+    queryKey: ['timeline-events', filters],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (filters?.from) params.append('from', filters.from);
+      if (filters?.to) params.append('to', filters.to);
+      if (filters?.studentId) params.append('studentId', filters.studentId.toString());
+      if (filters?.subjectId) params.append('subjectId', filters.subjectId.toString());
+      if (filters?.outcomeId) params.append('outcomeId', filters.outcomeId);
+      const query = params.toString();
+      return (await api.get(`/api/timeline/events${query ? '?' + query : ''}`)).data;
+    },
+  });
+};
+
+export const useTimelineSummary = (filters?: TimelineFilters) => {
+  return useQuery<TimelineSummary>({
+    queryKey: ['timeline-summary', filters],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (filters?.from) params.append('from', filters.from);
+      if (filters?.to) params.append('to', filters.to);
+      if (filters?.studentId) params.append('studentId', filters.studentId.toString());
+      if (filters?.subjectId) params.append('subjectId', filters.subjectId.toString());
+      const query = params.toString();
+      return (await api.get(`/api/timeline/summary${query ? '?' + query : ''}`)).data;
+    },
+  });
+};
+
+// Student API hooks
+export const useStudents = () => {
+  return useQuery<Student[]>({
+    queryKey: ['students'],
+    queryFn: async () => (await api.get('/api/students')).data,
+  });
+};
+
+export const useStudent = (id: number) => {
+  return useQuery<Student>({
+    queryKey: ['students', id],
+    queryFn: async () => (await api.get(`/api/students/${id}`)).data,
+    enabled: !!id,
+  });
+};
+
+export const useCreateStudent = () => {
+  const queryClient = useQueryClient();
+  return useMutation<Student, Error, StudentInput>({
+    mutationFn: async (data) => (await api.post('/api/students', data)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['students'] });
+      toast.success('Student created successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to create student: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useUpdateStudent = () => {
+  const queryClient = useQueryClient();
+  return useMutation<Student, Error, { id: number; data: StudentInput }>({
+    mutationFn: async ({ id, data }) => (await api.put(`/api/students/${id}`, data)).data,
+    onSuccess: (_, { id }) => {
+      queryClient.invalidateQueries({ queryKey: ['students'] });
+      queryClient.invalidateQueries({ queryKey: ['students', id] });
+      toast.success('Student updated successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to update student: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useDeleteStudent = () => {
+  const queryClient = useQueryClient();
+  return useMutation<void, Error, number>({
+    mutationFn: async (id) => (await api.delete(`/api/students/${id}`)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['students'] });
+      toast.success('Student deleted successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to delete student: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+// Student Goals API
+export const useStudentGoals = (studentId: number) => {
+  return useQuery<StudentGoal[]>({
+    queryKey: ['students', studentId, 'goals'],
+    queryFn: async () => (await api.get(`/api/students/${studentId}/goals`)).data,
+    enabled: !!studentId,
+  });
+};
+
+export const useCreateStudentGoal = () => {
+  const queryClient = useQueryClient();
+  return useMutation<StudentGoal, Error, { studentId: number; data: StudentGoalInput }>({
+    mutationFn: async ({ studentId, data }) =>
+      (await api.post(`/api/students/${studentId}/goals`, data)).data,
+    onSuccess: (_, { studentId }) => {
+      queryClient.invalidateQueries({ queryKey: ['students', studentId, 'goals'] });
+      queryClient.invalidateQueries({ queryKey: ['students', studentId] });
+      toast.success('Goal created successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to create goal: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useUpdateStudentGoal = () => {
+  const queryClient = useQueryClient();
+  return useMutation<
+    StudentGoal,
+    Error,
+    { studentId: number; goalId: number; data: Partial<StudentGoalInput> }
+  >({
+    mutationFn: async ({ studentId, goalId, data }) =>
+      (await api.put(`/api/students/${studentId}/goals/${goalId}`, data)).data,
+    onSuccess: (_, { studentId }) => {
+      queryClient.invalidateQueries({ queryKey: ['students', studentId, 'goals'] });
+      queryClient.invalidateQueries({ queryKey: ['students', studentId] });
+      toast.success('Goal updated successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to update goal: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useDeleteStudentGoal = () => {
+  const queryClient = useQueryClient();
+  return useMutation<void, Error, { studentId: number; goalId: number }>({
+    mutationFn: async ({ studentId, goalId }) =>
+      (await api.delete(`/api/students/${studentId}/goals/${goalId}`)).data,
+    onSuccess: (_, { studentId }) => {
+      queryClient.invalidateQueries({ queryKey: ['students', studentId, 'goals'] });
+      queryClient.invalidateQueries({ queryKey: ['students', studentId] });
+      toast.success('Goal deleted successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to delete goal: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+// Student Reflections API functions
+export const useStudentReflections = (studentId: number) =>
+  useQuery<StudentReflection[]>({
+    queryKey: ['students', studentId, 'reflections'],
+    queryFn: async () => (await api.get(`/api/students/${studentId}/reflections`)).data,
+    enabled: !!studentId,
+  });
+
+export const useCreateStudentReflection = () => {
+  const queryClient = useQueryClient();
+  return useMutation<StudentReflection, Error, { studentId: number; data: StudentReflectionInput }>(
+    {
+      mutationFn: async ({ studentId, data }) =>
+        (await api.post(`/api/students/${studentId}/reflections`, data)).data,
+      onSuccess: (_, { studentId }) => {
+        queryClient.invalidateQueries({ queryKey: ['students', studentId, 'reflections'] });
+        queryClient.invalidateQueries({ queryKey: ['students', studentId] });
+        toast.success('Reflection created successfully!');
+      },
+      onError: (error: unknown) => {
+        const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+        toast.error(
+          'Failed to create reflection: ' +
+            (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+        );
+      },
+    },
+  );
+};
+
+export const useDeleteStudentReflection = () => {
+  const queryClient = useQueryClient();
+  return useMutation<void, Error, { studentId: number; reflectionId: number }>({
+    mutationFn: async ({ studentId, reflectionId }) =>
+      (await api.delete(`/api/students/${studentId}/reflections/${reflectionId}`)).data,
+    onSuccess: (_, { studentId }) => {
+      queryClient.invalidateQueries({ queryKey: ['students', studentId, 'reflections'] });
+      queryClient.invalidateQueries({ queryKey: ['students', studentId] });
+      toast.success('Reflection deleted successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to delete reflection: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+// Parent Summary API functions (these already exist above, need to be accessible)
+export const useGenerateParentSummary = () => {
+  return useMutation<ParentSummaryGeneration, Error, GenerateParentSummaryRequest>({
+    mutationFn: async (data) => (await api.post('/api/ai-parent-summary/generate', data)).data,
+    onSuccess: () => {
+      toast.success('Parent summary generated successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to generate parent summary: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useRegenerateParentSummary = () => {
+  return useMutation<
+    ParentSummaryGeneration,
+    Error,
+    {
+      originalFrench: string;
+      originalEnglish: string;
+      studentId: number;
+      from: string;
+      to: string;
+      focus?: string[];
+      tone?: 'formal' | 'informal';
+    }
+  >({
+    mutationFn: async (data) => (await api.post('/api/ai-parent-summary/regenerate', data)).data,
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to regenerate parent summary: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useSaveParentSummary = () => {
+  const queryClient = useQueryClient();
+  return useMutation<ParentSummary, Error, SaveParentSummaryRequest>({
+    mutationFn: async (data) => (await api.post('/api/ai-parent-summary/save', data)).data,
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['parent-summaries', data.studentId] });
+      queryClient.invalidateQueries({ queryKey: ['students', data.studentId] });
+      toast.success('Parent summary saved successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to save parent summary: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useStudentParentSummaries = (studentId: number) => {
+  return useQuery<ParentSummary[]>({
+    queryKey: ['parent-summaries', studentId],
+    queryFn: async () => (await api.get(`/api/ai-parent-summary/student/${studentId}`)).data,
+    enabled: !!studentId,
+  });
+};
+
+export const useUpdateParentSummary = () => {
+  const queryClient = useQueryClient();
+  return useMutation<ParentSummary, Error, { id: number; data: Partial<ParentSummary> }>({
+    mutationFn: async ({ id, data }) => (await api.put(`/api/ai-parent-summary/${id}`, data)).data,
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['parent-summaries', data.studentId] });
+      toast.success('Parent summary updated successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to update parent summary: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useDeleteParentSummary = () => {
+  const queryClient = useQueryClient();
+  return useMutation<void, Error, { id: number; studentId: number }>({
+    mutationFn: async ({ id }) => (await api.delete(`/api/ai-parent-summary/${id}`)).data,
+    onSuccess: (_, { studentId }) => {
+      queryClient.invalidateQueries({ queryKey: ['parent-summaries', studentId] });
+      toast.success('Parent summary deleted successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to delete parent summary: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
   });
 };
