@@ -1,5 +1,11 @@
 import { test, expect, type Page } from '@playwright/test';
 import { login as reliableLogin } from './helpers';
+import { initApiContext } from './helpers/auth-updated';
+
+// Initialize API context before all tests
+test.beforeAll(async ({ playwright }) => {
+  await initApiContext(playwright);
+});
 
 interface AuthState {
   hasToken: boolean;

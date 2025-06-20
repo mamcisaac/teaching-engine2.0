@@ -10,7 +10,6 @@ vi.mock('../api', () => ({
   useTimelineSummary: vi.fn(),
   useSubjects: vi.fn(),
   useOutcomes: vi.fn(),
-  useThematicUnits: vi.fn(),
 }));
 
 describe('StudentTimeline', () => {
@@ -83,11 +82,6 @@ describe('StudentTimeline', () => {
     { id: 'CO.2', code: 'CO.2', description: 'Oral communication' },
   ];
 
-  const mockThemes = [
-    { id: 1, title: 'Space Exploration' },
-    { id: 2, title: 'Community Helpers' },
-  ];
-
   beforeEach(() => {
     vi.clearAllMocks();
     vi.mocked(api.useTimelineEvents).mockReturnValue({
@@ -103,9 +97,6 @@ describe('StudentTimeline', () => {
     >);
     vi.mocked(api.useOutcomes).mockReturnValue({ data: mockOutcomes } as ReturnType<
       typeof api.useOutcomes
-    >);
-    vi.mocked(api.useThematicUnits).mockReturnValue({ data: mockThemes } as ReturnType<
-      typeof api.useThematicUnits
     >);
   });
 
@@ -174,7 +165,6 @@ describe('StudentTimeline', () => {
     fireEvent.click(filterButton);
     expect(screen.getByLabelText('Subject')).toBeInTheDocument();
     expect(screen.getByLabelText('Outcome')).toBeInTheDocument();
-    expect(screen.getByLabelText('Theme')).toBeInTheDocument();
   });
 
   it('should update filters when selections change', () => {
@@ -188,7 +178,7 @@ describe('StudentTimeline', () => {
 
     expect(vi.mocked(api.useTimelineEvents)).toHaveBeenCalledWith(
       expect.objectContaining({
-        subjectId: '1',
+        subjectId: 1,
       }),
     );
   });

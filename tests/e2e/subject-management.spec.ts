@@ -104,11 +104,11 @@ test.describe('Subject Management Workflow', () => {
       await page.goto('/subjects');
       await page.waitForLoadState('networkidle');
 
-      // Verify subject is visible
-      await expect(page.locator(`text="${subject.name}"`)).toBeVisible({ timeout: 10000 });
+      // Verify subject is visible - use first() to handle duplicates
+      await expect(page.locator(`text="${subject.name}"`).first()).toBeVisible({ timeout: 10000 });
 
-      // Click on subject to view details
-      const subjectLink = page.locator(`a:has-text("${subject.name}")`);
+      // Click on subject to view details - use first() to handle duplicates
+      const subjectLink = page.locator(`a:has-text("${subject.name}")`).first();
       if (await subjectLink.isVisible({ timeout: 5000 })) {
         await subjectLink.click();
 
@@ -218,7 +218,7 @@ test.describe('Subject Management Workflow', () => {
           await page.waitForLoadState('networkidle');
           // Wait for dialog to close
           await page.waitForTimeout(1000);
-          await expect(page.locator('a:has-text("Valid Test Subject")')).toBeVisible({
+          await expect(page.locator('a:has-text("Valid Test Subject")').first()).toBeVisible({
             timeout: 5000,
           });
         }
