@@ -61,7 +61,7 @@ export interface DeliveryStatusResponse {
 /**
  * Validates that a mock EmailTemplate matches the real API structure
  */
-export function validateEmailTemplateMock(mock: any): asserts mock is EmailTemplate {
+export function validateEmailTemplateMock(mock: unknown): asserts mock is EmailTemplate {
   const requiredFields = ['id', 'name', 'subject', 'contentFr', 'contentEn', 'variables', 'userId', 'createdAt', 'updatedAt'];
   
   for (const field of requiredFields) {
@@ -96,7 +96,7 @@ export function validateEmailTemplateMock(mock: any): asserts mock is EmailTempl
 /**
  * Validates that a mock GeneratedReport matches the real API structure
  */
-export function validateGeneratedReportMock(mock: any): asserts mock is GeneratedReport {
+export function validateGeneratedReportMock(mock: unknown): asserts mock is GeneratedReport {
   const requiredFields = ['studentName', 'period', 'sections', 'overallComments', 'nextSteps'];
   
   for (const field of requiredFields) {
@@ -118,7 +118,7 @@ export function validateGeneratedReportMock(mock: any): asserts mock is Generate
   }
 
   // Validate each section
-  mock.sections.forEach((section: any, index: number) => {
+  mock.sections.forEach((section: unknown, index: number) => {
     if (!section.title || typeof section.title !== 'string') {
       throw new Error(`GeneratedReport.sections[${index}].title must be a non-empty string`);
     }
@@ -131,7 +131,7 @@ export function validateGeneratedReportMock(mock: any): asserts mock is Generate
 /**
  * Validates that a mock BulkEmailResponse matches the real API structure
  */
-export function validateBulkEmailResponseMock(mock: any): asserts mock is BulkEmailResponse {
+export function validateBulkEmailResponseMock(mock: unknown): asserts mock is BulkEmailResponse {
   if (!mock.results || !Array.isArray(mock.results)) {
     throw new Error('BulkEmailResponse.results must be an array');
   }
@@ -148,7 +148,7 @@ export function validateBulkEmailResponseMock(mock: any): asserts mock is BulkEm
   }
 
   // Validate each result
-  mock.results.forEach((result: any, index: number) => {
+  mock.results.forEach((result: unknown, index: number) => {
     if (!result.email || typeof result.email !== 'string') {
       throw new Error(`BulkEmailResponse.results[${index}].email must be a string`);
     }
@@ -162,8 +162,8 @@ export function validateBulkEmailResponseMock(mock: any): asserts mock is BulkEm
 
   // Validate summary matches results
   const totalResults = mock.results.length;
-  const successfulResults = mock.results.filter((r: any) => r.status === 'sent').length;
-  const failedResults = mock.results.filter((r: any) => r.status === 'failed').length;
+  const successfulResults = mock.results.filter((r: Record<string, unknown>) => r.status === 'sent').length;
+  const failedResults = mock.results.filter((r: Record<string, unknown>) => r.status === 'failed').length;
 
   if (mock.summary.total !== totalResults) {
     throw new Error(`BulkEmailResponse.summary.total (${mock.summary.total}) doesn't match results length (${totalResults})`);
@@ -310,7 +310,7 @@ export function createMockDeliveryStatusResponse(overrides: Partial<DeliveryStat
 /**
  * Helper to compare mock data with actual API response
  */
-export function compareMockWithActual(mockData: any, actualData: any, path: string = ''): string[] {
+export function compareMockWithActual(mockData: unknown, actualData: unknown, path: string = ''): string[] {
   const differences: string[] = [];
 
   if (typeof mockData !== typeof actualData) {
@@ -377,11 +377,11 @@ export function compareMockWithActual(mockData: any, actualData: any, path: stri
 export class MockValidationTestSuite {
   private integrationResults: Map<string, any> = new Map();
   
-  recordIntegrationResult(testName: string, result: any) {
+  recordIntegrationResult(testName: string, result: unknown) {
     this.integrationResults.set(testName, result);
   }
   
-  validateUnitTestMock(testName: string, mockData: any): void {
+  validateUnitTestMock(testName: string, mockData: unknown): void {
     const integrationResult = this.integrationResults.get(testName);
     if (!integrationResult) {
       throw new Error(`No integration result recorded for test: ${testName}`);
@@ -393,7 +393,7 @@ export class MockValidationTestSuite {
     }
   }
   
-  generateMockFromIntegrationResult(testName: string): any {
+  generateMockFromIntegrationResult(testName: string): unknown {
     const result = this.integrationResults.get(testName);
     if (!result) {
       throw new Error(`No integration result available for: ${testName}`);

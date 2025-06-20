@@ -7,13 +7,15 @@
 import { PrismaClient } from '@teaching-engine/database';
 import bcrypt from 'bcryptjs';
 
+import { User, Student, ParentContact, EmailTemplate, Subject } from '@teaching-engine/database';
+
 export interface TestDataSeed {
-  users: any[];
-  students: any[];
-  parentContacts: any[];
-  emailTemplates: any[];
-  assessmentResults: any[];
-  subjects: any[];
+  users: User[];
+  students: Student[];
+  parentContacts: ParentContact[];
+  emailTemplates: EmailTemplate[];
+  assessmentResults: unknown[];
+  subjects: Subject[];
 }
 
 export class TestDataSeeder {
@@ -239,7 +241,7 @@ export class TestDataSeeder {
     return students;
   }
 
-  private async createTestParentContacts(students: any[]) {
+  private async createTestParentContacts(students: Student[]) {
     const contacts = [];
 
     // Emma's parents
@@ -429,7 +431,7 @@ Best regards,
     return templates;
   }
 
-  private async createTestAssessmentData(students: any[], subjects: any[]) {
+  private async createTestAssessmentData(_students: Student[], _subjects: Subject[]) {
     // For now, return empty array since we don't have assessment tables in schema
     // This would be implemented when assessment models are added
     return [];

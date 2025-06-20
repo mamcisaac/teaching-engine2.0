@@ -15,7 +15,7 @@ import { createTestUser, createAuthToken } from '../test-auth-helper';
 describe('Messenger Agent Contract Tests', () => {
   let authToken: string;
   let userId: number;
-  let testUser: any;
+  let testUser: { id: number; email: string; name: string; role: string };
 
   beforeAll(async () => {
     testUser = await createTestUser();
@@ -51,7 +51,7 @@ describe('Messenger Agent Contract Tests', () => {
       updatedAt: 'string'
     };
 
-    const validateSchema = (obj: any, schema: Record<string, string>) => {
+    const validateSchema = (obj: Record<string, unknown>, schema: Record<string, string>) => {
       for (const [key, expectedType] of Object.entries(schema)) {
         expect(obj).toHaveProperty(key);
         if (expectedType === 'string') {
@@ -85,7 +85,7 @@ describe('Messenger Agent Contract Tests', () => {
       expect(Array.isArray(response.body)).toBe(true);
       expect(response.body.length).toBeGreaterThan(0);
       
-      response.body.forEach((template: any) => {
+      response.body.forEach((template: Record<string, unknown>) => {
         validateSchema(template, validTemplateSchema);
       });
     });
@@ -160,7 +160,7 @@ describe('Messenger Agent Contract Tests', () => {
   });
 
   describe('Report Generation API Contract', () => {
-    let student: any;
+    let student: { id: number; firstName: string; lastName: string; grade: number; userId: number };
 
     beforeEach(async () => {
       student = await prisma.student.create({
@@ -173,7 +173,7 @@ describe('Messenger Agent Contract Tests', () => {
       });
     });
 
-    const reportSchema = {
+    const _reportSchema = {
       studentName: 'string',
       period: 'string',
       sections: 'array',
@@ -181,7 +181,7 @@ describe('Messenger Agent Contract Tests', () => {
       nextSteps: 'array'
     };
 
-    const validateReportSchema = (report: any) => {
+    const validateReportSchema = (report: Record<string, unknown>) => {
       expect(typeof report.studentName).toBe('string');
       expect(typeof report.period).toBe('string');
       expect(Array.isArray(report.sections)).toBe(true);
@@ -189,7 +189,7 @@ describe('Messenger Agent Contract Tests', () => {
       expect(Array.isArray(report.nextSteps)).toBe(true);
 
       // Validate section structure
-      report.sections.forEach((section: any) => {
+      (report.sections as Array<Record<string, unknown>>).forEach((section) => {
         expect(section).toHaveProperty('title');
         expect(section).toHaveProperty('content');
         expect(typeof section.title).toBe('string');
@@ -205,7 +205,7 @@ describe('Messenger Agent Contract Tests', () => {
 
       expect(Array.isArray(response.body)).toBe(true);
       
-      response.body.forEach((reportType: any) => {
+      response.body.forEach((reportType: Record<string, unknown>) => {
         expect(reportType).toHaveProperty('id');
         expect(reportType).toHaveProperty('name');
         expect(reportType).toHaveProperty('nameFr');
@@ -214,7 +214,7 @@ describe('Messenger Agent Contract Tests', () => {
       });
 
       const expectedTypes = ['progress', 'narrative', 'term_summary', 'report_card'];
-      const actualTypes = response.body.map((t: any) => t.id);
+      const actualTypes = response.body.map((t: Record<string, unknown>) => t.id);
       expectedTypes.forEach(type => {
         expect(actualTypes).toContain(type);
       });
@@ -292,12 +292,12 @@ describe('Messenger Agent Contract Tests', () => {
   });
 
   describe('Email Communication API Contract', () => {
-    const bulkEmailResponseSchema = {
+    const _bulkEmailResponseSchema = {
       results: 'array',
       summary: 'object'
     };
 
-    const validateBulkEmailResponse = (response: any) => {
+    const validateBulkEmailResponse = (response: Record<string, unknown>) => {
       expect(Array.isArray(response.results)).toBe(true);
       expect(typeof response.summary).toBe('object');
       expect(response.summary).toHaveProperty('total');
@@ -307,7 +307,7 @@ describe('Messenger Agent Contract Tests', () => {
       expect(typeof response.summary.successful).toBe('number');
       expect(typeof response.summary.failed).toBe('number');
 
-      response.results.forEach((result: any) => {
+      (response.results as Array<Record<string, unknown>>).forEach((result) => {
         expect(result).toHaveProperty('email');
         expect(result).toHaveProperty('status');
         expect(['sent', 'failed', 'pending']).toContain(result.status);
@@ -356,7 +356,7 @@ describe('Messenger Agent Contract Tests', () => {
       expect(typeof response.body.summary).toBe('object');
 
       if (response.body.recent.length > 0) {
-        response.body.recent.forEach((delivery: any) => {
+        (response.body.recent as Array<Record<string, unknown>>).forEach((delivery) => {
           expect(delivery).toHaveProperty('id');
           expect(delivery).toHaveProperty('email');
           expect(delivery).toHaveProperty('status');
@@ -433,7 +433,7 @@ describe('Messenger Agent Contract Tests', () => {
       expect(Array.isArray(studentDetailResponse.body.parentContacts)).toBe(true);
       
       const parentContact = studentDetailResponse.body.parentContacts.find(
-        (c: any) => c.id === contactResponse.body.id
+        (c: Record<string, unknown>) => c.id === contactResponse.body.id
       );
       expect(parentContact).toBeDefined();
       expect(parentContact.email).toBe('integration.parent@example.com');

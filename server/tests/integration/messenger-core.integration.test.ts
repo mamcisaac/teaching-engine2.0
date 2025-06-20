@@ -7,7 +7,7 @@ import { createAuthToken } from '../test-auth-helper';
 describe('Messenger Agent Core Integration Tests', () => {
   let authToken: string;
   let userId: number;
-  let testData: any;
+  let testData: import('../helpers/testDataSeeder').TestDataSeed;
   let prisma: ReturnType<typeof getTestPrismaClient>;
 
   beforeAll(async () => {
@@ -241,14 +241,14 @@ describe('Messenger Agent Core Integration Tests', () => {
       expect(Array.isArray(response.body)).toBe(true);
       expect(response.body.length).toBe(4);
 
-      const reportTypes = response.body.map((t: any) => t.id);
+      const reportTypes = response.body.map((t: Record<string, unknown>) => t.id);
       expect(reportTypes).toContain('progress');
       expect(reportTypes).toContain('narrative');
       expect(reportTypes).toContain('term_summary');
       expect(reportTypes).toContain('report_card');
 
       // Validate structure
-      response.body.forEach((reportType: any) => {
+      response.body.forEach((reportType: Record<string, unknown>) => {
         expect(reportType).toHaveProperty('id');
         expect(reportType).toHaveProperty('name');
         expect(reportType).toHaveProperty('nameFr');
@@ -283,7 +283,7 @@ describe('Messenger Agent Core Integration Tests', () => {
       expect(Array.isArray(response.body.nextSteps)).toBe(true);
 
       // Validate section structure
-      response.body.sections.forEach((section: any) => {
+      response.body.sections.forEach((section: Record<string, unknown>) => {
         expect(section).toHaveProperty('title');
         expect(section).toHaveProperty('content');
         expect(typeof section.title).toBe('string');
@@ -398,7 +398,7 @@ describe('Messenger Agent Core Integration Tests', () => {
       expect(response.body.summary.total).toBe(2);
 
       // Validate result structure
-      response.body.results.forEach((result: any) => {
+      response.body.results.forEach((result: Record<string, unknown>) => {
         expect(result).toHaveProperty('email');
         expect(result).toHaveProperty('status');
         expect(result).toHaveProperty('timestamp');
@@ -483,7 +483,7 @@ describe('Messenger Agent Core Integration Tests', () => {
         .expect(200);
 
       const user1TemplateInUser2List = user2Templates.body.find(
-        (t: any) => t.id === templateId
+        (t: Record<string, unknown>) => t.id === templateId
       );
       expect(user1TemplateInUser2List).toBeUndefined();
     });

@@ -199,6 +199,7 @@ model ParentMessage {
   contentEn    String
   linkedOutcomes ParentMessageOutcome[]
   linkedActivities ParentMessageActivity[]
+  emailDeliveries EmailDelivery[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
@@ -279,6 +280,7 @@ model User {
   activityTemplates ActivityTemplate[]
   teacherReflections TeacherReflection[]
   milestoneAlerts MilestoneAlert[]
+  emailTemplates EmailTemplate[]
 }
 
 enum ActivityType {
@@ -783,6 +785,43 @@ model ParentSummary {
   contentFr   String
   contentEn   String
   isDraft     Boolean  @default(true)
+  emailDeliveries EmailDelivery[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model EmailDelivery {
+  id                Int      @id @default(autoincrement())
+  parentMessageId   Int?
+  parentMessage     ParentMessage? @relation(fields: [parentMessageId], references: [id])
+  parentSummaryId   Int?
+  parentSummary     ParentSummary? @relation(fields: [parentSummaryId], references: [id])
+  recipientEmail    String
+  recipientName     String
+  subject           String
+  content           String
+  language          String   // "en" or "fr"
+  status            String   // "pending", "sent", "delivered", "failed", "bounced"
+  providerId        String?  // SendGrid message ID
+  sentAt            DateTime?
+  deliveredAt       DateTime?
+  failureReason     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  @@index([parentMessageId])
+  @@index([parentSummaryId])
+  @@index([status])
+}
+
+model EmailTemplate {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  subject     String
+  contentFr   String
+  contentEn   String
+  variables   String   @default("[]") // JSON array of available variables
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

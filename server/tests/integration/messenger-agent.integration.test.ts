@@ -6,7 +6,7 @@ import { createTestUser, createAuthToken } from '../test-auth-helper';
 describe('Messenger Agent Integration Tests', () => {
   let authToken: string;
   let userId: number;
-  let testUser: any;
+  let testUser: { id: number; email: string; name: string; role: string };
 
   beforeAll(async () => {
     testUser = await createTestUser();
@@ -83,8 +83,8 @@ describe('Messenger Agent Integration Tests', () => {
         .expect(200);
 
       expect(response.body).toHaveLength(2);
-      expect(response.body.map((t: any) => t.id)).toContain(template1.id);
-      expect(response.body.map((t: any) => t.id)).toContain(template2.id);
+      expect(response.body.map((t: Record<string, unknown>) => t.id)).toContain(template1.id);
+      expect(response.body.map((t: Record<string, unknown>) => t.id)).toContain(template2.id);
     });
 
     it('should update an email template', async () => {
@@ -196,7 +196,7 @@ describe('Messenger Agent Integration Tests', () => {
   });
 
   describe('Report Generation API', () => {
-    let student: any;
+    let student: { id: number; firstName: string; lastName: string; grade: number; userId: number };
 
     beforeEach(async () => {
       // Create a test student
@@ -217,10 +217,10 @@ describe('Messenger Agent Integration Tests', () => {
         .expect(200);
 
       expect(response.body).toHaveLength(4);
-      expect(response.body.map((t: any) => t.id)).toContain('progress');
-      expect(response.body.map((t: any) => t.id)).toContain('narrative');
-      expect(response.body.map((t: any) => t.id)).toContain('term_summary');
-      expect(response.body.map((t: any) => t.id)).toContain('report_card');
+      expect(response.body.map((t: Record<string, unknown>) => t.id)).toContain('progress');
+      expect(response.body.map((t: Record<string, unknown>) => t.id)).toContain('narrative');
+      expect(response.body.map((t: Record<string, unknown>) => t.id)).toContain('term_summary');
+      expect(response.body.map((t: Record<string, unknown>) => t.id)).toContain('report_card');
     });
 
     it('should generate a progress report', async () => {
@@ -363,8 +363,8 @@ describe('Messenger Agent Integration Tests', () => {
   });
 
   describe('Email Communication API', () => {
-    let student: any;
-    let parentContact: any;
+    let student: { id: number; firstName: string; lastName: string; grade: number; userId: number };
+    // let parentContact: { id: number; name: string; email: string; studentId: number };
 
     beforeEach(async () => {
       // Create test student and parent contact

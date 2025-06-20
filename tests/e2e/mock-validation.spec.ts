@@ -127,9 +127,9 @@ test.describe('Frontend Mock Validation', () => {
         const data = await response.json();
         return {
           isArray: Array.isArray(data),
-          hasExpectedTypes: data.some((t: any) => t.id === 'progress'),
+          hasExpectedTypes: data.some((t: Record<string, unknown>) => t.id === 'progress'),
           firstItemStructure: data.length > 0 ? Object.keys(data[0]).sort() : [],
-          allHaveRequiredFields: data.every((t: any) => 
+          allHaveRequiredFields: data.every((t: Record<string, unknown>) => 
             t.id && t.name && t.description && typeof t.id === 'string'
           )
         };
@@ -203,7 +203,7 @@ test.describe('Frontend Mock Validation', () => {
           hasSections: Array.isArray(report.sections),
           hasOverallComments: typeof report.overallComments === 'string',
           hasNextSteps: Array.isArray(report.nextSteps),
-          sectionsHaveStructure: report.sections.every((s: any) => 
+          sectionsHaveStructure: report.sections.every((s: Record<string, unknown>) => 
             typeof s.title === 'string' && typeof s.content === 'string'
           ),
           structure: Object.keys(report).sort()

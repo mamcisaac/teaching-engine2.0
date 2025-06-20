@@ -1,4 +1,4 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { loginAsTestUser, DEFAULT_TEST_USER, initApiContext } from './helpers/auth-updated';
 import { waitForElement } from './helpers/ci-stability';
 
@@ -737,7 +737,7 @@ test.describe('Messenger Agent E2E Tests', () => {
       const accessibilityCheck = await page.evaluate(() => {
         const buttons = document.querySelectorAll('button');
         const inputs = document.querySelectorAll('input');
-        const forms = document.querySelectorAll('form');
+        // const forms = document.querySelectorAll('form');
         
         let hasAriaLabels = false;
         let hasProperLabels = false;
