@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
-import { useCreateAssessmentResult } from '../api';
-import { AssessmentTemplate, AssessmentResultInput } from '../types';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { useCreateAssessmentResult } from '../../api';
+import { AssessmentTemplate, AssessmentResultInput } from '../../types';
 import { toast } from 'sonner';
 
 interface AssessmentResultLoggerProps {

@@ -48,6 +48,7 @@ import type {
   ParentSummaryGeneration,
   GenerateParentSummaryRequest,
   SaveParentSummaryRequest,
+  TeacherReflectionInput,
 } from './types';
 
 import type {
@@ -1463,6 +1464,70 @@ export const useOutcomeAssessments = (outcomeId: string) => {
     queryKey: ['outcome-assessments', outcomeId],
     queryFn: async () => (await api.get(`/api/assessments/by-outcome/${outcomeId}`)).data,
     enabled: !!outcomeId,
+  });
+};
+
+// Teacher Reflection hooks
+export const useTeacherReflections = () => {
+  return useQuery({
+    queryKey: ['teacher-reflections'],
+    queryFn: async () => (await api.get('/api/reflections')).data,
+  });
+};
+
+export const useCreateTeacherReflection = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (data: TeacherReflectionInput) =>
+      (await api.post('/api/reflections', data)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['teacher-reflections'] });
+      toast.success('Reflection saved successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to save reflection: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useUpdateTeacherReflection = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ id, content }: { id: number; content: string }) =>
+      (await api.put(`/api/reflections/${id}`, { content })).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['teacher-reflections'] });
+      toast.success('Reflection updated successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to update reflection: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useDeleteTeacherReflection = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: number) => (await api.delete(`/api/reflections/${id}`)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['teacher-reflections'] });
+      toast.success('Reflection deleted successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to delete reflection: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
   });
 };
 

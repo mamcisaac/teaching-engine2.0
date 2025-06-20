@@ -29,7 +29,7 @@ import DownloadPrintablesButton from '../components/DownloadPrintablesButton';
 import PlannerNotificationBanner from '../components/PlannerNotificationBanner';
 import PlannerFilters, { loadPlannerFilters } from '../components/planner/PlannerFilters';
 import CognateSummaryWidget from '../components/CognateSummaryWidget';
-import AssessmentBuilder from '../components/AssessmentBuilder';
+import AssessmentBuilder from '../components/assessment/AssessmentBuilder';
 import { ParentMessageEditor } from '../components/ParentMessageEditor';
 import Dialog from '../components/Dialog';
 import { toast } from 'sonner';

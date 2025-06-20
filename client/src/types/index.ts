@@ -632,6 +632,25 @@ export interface StudentReflection {
   student?: Student;
 }
 
+export interface TeacherReflection {
+  id: number;
+  content: string;
+  outcomeId: string;
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+  outcome?: Outcome;
+  user?: {
+    id: number;
+    name: string;
+  };
+}
+
+export interface TeacherReflectionInput {
+  content: string;
+  outcomeId: string;
+}
+
 export interface StudentInput {
   firstName: string;
   lastName: string;
