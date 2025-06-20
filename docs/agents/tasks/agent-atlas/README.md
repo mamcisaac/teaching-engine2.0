@@ -25,6 +25,14 @@ Create the database infrastructure that enables all other agents to build their 
 7. **SPT Export Engine** - Creates SPTExportLog model for export tracking
 8. **Enable Start:End Dates for Milestones** - Extends existing Milestone model
 
+### Phase 4: Next-Tier AI Foundation (CRITICAL PRIORITY)
+
+9. **E1: Curriculum Embeddings Engine** - Vector embedding service for semantic curriculum matching
+   - Creates embedding infrastructure for all AI features
+   - Enables semantic search across curriculum outcomes
+   - Foundation for AI-powered activity generation and planning
+   - **MUST BE COMPLETED FIRST** - All other AI features depend on this
+
 ## Technical Guidelines
 
 ### Database Schema Rules
@@ -79,9 +87,15 @@ model YourModel {
 
 - **Agent-Scholar**: StudentArtifact, StudentGoal, Milestone models
 - **Agent-Evaluator**: AssessmentTemplate, Evidence models
-- **Agent-Planner**: ActivityTemplate, Theme updates
+- **Agent-Planner**: ActivityTemplate, Theme updates, **E1 Embeddings** (CRITICAL)
 - **Agent-Insight**: No new models (uses existing)
 - **Agent-Messenger**: ParentMessage, FamilyContact models
+
+### CRITICAL NEXT-TIER DEPENDENCY:
+
+- **ALL AI FEATURES** depend on E1 Curriculum Embeddings completion
+- Agent-Planner cannot implement A1, A2, A4, E2 without E1
+- Agent-Evaluator cannot implement A3 without E1
 
 ### Key Integration Points
 

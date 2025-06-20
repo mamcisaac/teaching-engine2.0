@@ -31,6 +31,15 @@ Build comprehensive communication tools that strengthen the home-school connecti
 
 11. **AI-Assisted Summary Builder** - Enhanced summary tools
 
+### Phase 5: Next-Tier Export Features (SUPPORTING)
+
+12. **D3: Sub Plan Extractor** - One-click substitute plan generation
+    - Automated extraction of weekly plans into substitute-ready format
+    - PDF export functionality with clear instructions
+    - Emergency planning templates for different scenarios
+    - Integration with existing weekly planner data
+    - **Dependency**: A1 Activity Generator, A2 Weekly Planner (Agent-Planner)
+
 ## Technical Guidelines
 
 ### Component Structure
