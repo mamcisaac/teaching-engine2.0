@@ -10,33 +10,19 @@ describe('Messenger Agent Core Integration Tests', () => {
   let testData: import('../helpers/testDataSeeder').TestDataSeed;
   let prisma: ReturnType<typeof getTestPrismaClient>;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     prisma = getTestPrismaClient();
     
-    // Seed test data
+    // Seed test data for each test
     testData = await seedTestData(prisma);
     userId = testData.users[0].id;
     authToken = createAuthToken(userId);
   });
 
-  afterAll(async () => {
-    // Cleanup test data
-    await cleanupTestData(prisma);
-  });
+  // No cleanup needed - test setup handles via transactions
 
   describe('Email Templates API - Core Functions', () => {
-    beforeEach(async () => {
-      // Clean up any templates created in previous tests to avoid conflicts
-      // Only delete templates created by our test user to avoid affecting seeded data
-      await prisma.emailTemplate.deleteMany({
-        where: {
-          AND: [
-            { userId: userId },
-            { name: { startsWith: 'Test' } }
-          ]
-        }
-      });
-    });
+    // Tests run in isolated transactions - no cleanup needed
 
     it('should get all email templates for authenticated user', async () => {
       const response = await request(app)

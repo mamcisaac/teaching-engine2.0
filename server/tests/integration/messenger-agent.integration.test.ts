@@ -1,33 +1,25 @@
 import request from 'supertest';
 import { app } from '../../src/index';
-import { prisma } from '../../src/prisma';
+import { getTestPrismaClient } from '../jest.setup';
 import { createTestUser, createAuthToken } from '../test-auth-helper';
 
 describe('Messenger Agent Integration Tests', () => {
   let authToken: string;
   let userId: number;
   let testUser: { id: number; email: string; name: string; role: string };
+  let prisma: ReturnType<typeof getTestPrismaClient>;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
+    // Get the test-specific Prisma client
+    prisma = getTestPrismaClient();
+    
+    // Create a fresh test user for each test
     testUser = await createTestUser();
     userId = testUser.id;
     authToken = createAuthToken(userId);
   });
 
-  afterAll(async () => {
-    // Cleanup test data
-    await prisma.emailTemplate.deleteMany({ where: { userId } });
-    await prisma.parentContact.deleteMany({});
-    await prisma.student.deleteMany({ where: { userId } });
-    await prisma.user.deleteMany({ where: { id: userId } });
-  });
-
-  beforeEach(async () => {
-    // Clean up test data before each test
-    await prisma.emailTemplate.deleteMany({ where: { userId } });
-    await prisma.parentContact.deleteMany({});
-    await prisma.student.deleteMany({ where: { userId } });
-  });
+  // No additional cleanup needed - test setup handles via transactions
 
   describe('Email Templates API', () => {
     it('should create a new email template', async () => {

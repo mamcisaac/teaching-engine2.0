@@ -22,21 +22,10 @@ export class TestDataSeeder {
   constructor(private prisma: PrismaClient) {}
 
   async seedAll(): Promise<TestDataSeed> {
-    // Clean existing data but keep users
-    await this.cleanupTestData();
-
-    // Always ensure users exist (create if missing)
-    let users = await this.prisma.user.findMany({
-      where: {
-        email: {
-          in: ['test@example.com', 'test2@example.com']
-        }
-      }
-    });
+    // No cleanup needed - transactions handle isolation
     
-    if (users.length === 0) {
-      users = await this.createTestUsers();
-    }
+    // Create new users for this test
+    const users = await this.createTestUsers();
     
     // Create subjects (needed for assessments)
     const subjects = await this.createTestSubjects(users[0].id);
@@ -64,52 +53,8 @@ export class TestDataSeeder {
   }
 
   async cleanupTestData(): Promise<void> {
-    // Delete in correct order to respect foreign key constraints
-    // NOTE: We keep users around to avoid foreign key issues in tests
-    await this.prisma.emailTemplate.deleteMany({
-      where: { 
-        user: { 
-          email: { 
-            in: ['test@example.com', 'test2@example.com', 'teacher@test.com'] 
-          } 
-        } 
-      }
-    });
-    
-    await this.prisma.parentContact.deleteMany({
-      where: {
-        student: {
-          user: {
-            email: {
-              in: ['test@example.com', 'test2@example.com', 'teacher@test.com']
-            }
-          }
-        }
-      }
-    });
-    
-    await this.prisma.student.deleteMany({
-      where: {
-        user: {
-          email: {
-            in: ['test@example.com', 'test2@example.com', 'teacher@test.com']
-          }
-        }
-      }
-    });
-    
-    await this.prisma.subject.deleteMany({
-      where: {
-        user: {
-          email: {
-            in: ['test@example.com', 'test2@example.com', 'teacher@test.com']
-          }
-        }
-      }
-    });
-    
-    // Don't delete users - let Jest global teardown handle this
-    // This prevents foreign key constraint issues when tests run together
+    // No cleanup needed when using transactions
+    // Each test runs in its own transaction that gets rolled back
   }
   
   async forceCleanupUsers(): Promise<void> {
@@ -128,10 +73,11 @@ export class TestDataSeeder {
     
     const users = [];
     
-    // Primary test user
+    // Primary test user with unique email
+    const timestamp = Date.now();
     const user1 = await this.prisma.user.create({
       data: {
-        email: 'test@example.com',
+        email: `test-${timestamp}-1@example.com`,
         name: 'Test Teacher',
         password: hashedPassword,
         role: 'teacher',
@@ -143,7 +89,7 @@ export class TestDataSeeder {
     // Secondary test user for isolation testing
     const user2 = await this.prisma.user.create({
       data: {
-        email: 'test2@example.com',
+        email: `test-${timestamp}-2@example.com`,
         name: 'Test Teacher 2',
         password: hashedPassword,
         role: 'teacher',

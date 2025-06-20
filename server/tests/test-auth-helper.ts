@@ -7,33 +7,17 @@ import { getTestPrismaClient } from './jest.setup.js';
 /**
  * Helper to create a test user and get authentication token
  */
-export async function getAuthToken(app: Application): Promise<{ token: string; userId: number }> {
+export async function getAuthToken(app: Application, email?: string): Promise<{ token: string; userId: number }> {
   const prisma = getTestPrismaClient();
 
-  // First check if user already exists
-  const existingUser = await prisma.user.findUnique({
-    where: { email: 'test@example.com' },
-  });
-
-  if (existingUser) {
-    // If user exists, just return login
-    const loginResponse = await request(app).post('/api/login').send({
-      email: 'test@example.com',
-      password: 'testpassword',
-    });
-
-    if (loginResponse.status !== 200) {
-      throw new Error(`Login failed: ${loginResponse.status} ${loginResponse.text}`);
-    }
-
-    return { token: loginResponse.body.token, userId: existingUser.id };
-  }
+  // Generate unique email if not provided
+  const userEmail = email || `test-${Date.now()}-${Math.random().toString(36).substring(7)}@example.com`;
 
   // Create a test user with hashed password
   const hashedPassword = await bcrypt.hash('testpassword', 10);
   const user = await prisma.user.create({
     data: {
-      email: 'test@example.com',
+      email: userEmail,
       name: 'Test User',
       password: hashedPassword,
       role: 'teacher',
@@ -42,7 +26,7 @@ export async function getAuthToken(app: Application): Promise<{ token: string; u
 
   // Login to get token
   const loginResponse = await request(app).post('/api/login').send({
-    email: 'test@example.com',
+    email: userEmail,
     password: 'testpassword',
   });
 
@@ -90,22 +74,16 @@ export function authRequest(app: Application) {
 /**
  * Create a test user without going through HTTP
  */
-export async function createTestUser() {
+export async function createTestUser(email?: string) {
   const prisma = getTestPrismaClient();
   
-  // Check if user already exists
-  const existingUser = await prisma.user.findUnique({
-    where: { email: 'test@example.com' },
-  });
-
-  if (existingUser) {
-    return existingUser;
-  }
-
+  // Generate unique email if not provided
+  const userEmail = email || `test-${Date.now()}-${Math.random().toString(36).substring(7)}@example.com`;
+  
   const hashedPassword = await bcrypt.hash('testpassword', 10);
   return await prisma.user.create({
     data: {
-      email: 'test@example.com',
+      email: userEmail,
       name: 'Test User',
       password: hashedPassword,
       role: 'teacher',
