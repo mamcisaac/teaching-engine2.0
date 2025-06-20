@@ -251,9 +251,12 @@ describe('CurriculumAuditDashboard', () => {
       href: '',
       download: '',
       click: mockClick,
-    };
+      style: {},
+      appendChild: vi.fn(),
+      removeChild: vi.fn(),
+    } as unknown as HTMLAnchorElement;
 
-    vi.spyOn(document, 'createElement').mockReturnValue(mockAnchor as HTMLAnchorElement);
+    vi.spyOn(document, 'createElement').mockReturnValue(mockAnchor);
     vi.spyOn(document.body, 'appendChild').mockImplementation(mockAppendChild);
     vi.spyOn(document.body, 'removeChild').mockImplementation(mockRemoveChild);
 

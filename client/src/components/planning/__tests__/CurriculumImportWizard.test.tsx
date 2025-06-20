@@ -1,16 +1,17 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { vi } from 'vitest';
 import { CurriculumImportWizard } from '../CurriculumImportWizard';
 
 // Mock the file upload functionality
-const mockFetch = jest.fn();
+const mockFetch = vi.fn();
 global.fetch = mockFetch;
 
 // Mock localStorage
 const mockLocalStorage = {
-  getItem: jest.fn(() => 'mock-token'),
-  setItem: jest.fn(),
-  removeItem: jest.fn(),
+  getItem: vi.fn(() => 'mock-token'),
+  setItem: vi.fn(),
+  removeItem: vi.fn(),
 };
 Object.defineProperty(window, 'localStorage', {
   value: mockLocalStorage,
@@ -19,12 +20,12 @@ Object.defineProperty(window, 'localStorage', {
 describe('CurriculumImportWizard', () => {
   const mockProps = {
     isOpen: true,
-    onClose: jest.fn(),
-    onSuccess: jest.fn(),
+    onClose: vi.fn(),
+    onSuccess: vi.fn(),
   };
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('renders upload step initially', () => {
@@ -42,9 +43,7 @@ describe('CurriculumImportWizard', () => {
 
     render(<CurriculumImportWizard {...mockProps} />);
     
-    // Mock file upload
-    const file = new File(['test content'], 'test.pdf', { type: 'application/pdf' });
-    const fileInput = screen.getByRole('button'); // This would need proper file input implementation
+    // Test simplified for now - full file upload testing would need more setup
     
     // This is a simplified test - actual implementation would need proper file upload mocking
     expect(screen.getByText('Import Curriculum')).toBeInTheDocument();

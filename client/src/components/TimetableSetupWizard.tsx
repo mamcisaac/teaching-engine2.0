@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { useSaveTimetable, useTimetable, useSubjects, TimetableSlot } from '../api';
+import { useSaveTimetable, useSubjects } from '../api';
 import { Button } from './ui/Button';
 import Dialog from './Dialog';
 import { useToast } from './ui/use-toast';
@@ -61,12 +61,10 @@ interface TimetableSetupWizardProps {
 
 export function TimetableSetupWizard({ isOpen, onClose, onSuccess }: TimetableSetupWizardProps) {
   const [currentStep, setCurrentStep] = useState<'template' | 'customize' | 'review'>('template');
-  const [selectedTemplate, setSelectedTemplate] = useState<number | null>(null);
   const [customSlots, setCustomSlots] = useState<TimeSlot[]>([]);
   const [editingSlot, setEditingSlot] = useState<TimeSlot | null>(null);
 
   const { data: subjects = [] } = useSubjects();
-  const { data: existingSlots } = useTimetable();
   const saveTimetable = useSaveTimetable();
   const { toast } = useToast();
 

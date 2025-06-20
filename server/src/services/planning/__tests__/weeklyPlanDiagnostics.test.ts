@@ -269,26 +269,7 @@ describe('weeklyPlanDiagnostics', () => {
 
   describe('getPlanningQualityTrend', () => {
     it('returns trend data for specified weeks', async () => {
-      // Mock diagnostics for each week
-      const mockDiagnostics = {
-        metrics: {
-          outcomesCoverage: 75,
-          assessmentBalance: 80,
-          engagementVariety: 70,
-          differentiationScore: 85,
-          timeEfficiency: 90,
-          domainBalance: 75,
-          themeConsistency: 80,
-          vocabularyIntegration: 65,
-          overallScore: 77.5,
-        },
-        suggestions: [],
-        warnings: [],
-        strengths: [],
-        missingDomains: [],
-        overusedDomains: [],
-        uncoveredOutcomes: [],
-      };
+      // Mock test data setup for trend calculation
 
       // Mock the lesson plan for each week
       (prisma.lessonPlan.findFirst as any).mockResolvedValue({

@@ -86,14 +86,16 @@ export class CurriculumImportService {
       const fileBuffer = await fs.readFile(filePath);
 
       switch (mimeType) {
-        case 'application/pdf':
+        case 'application/pdf': {
           const pdfData = await pdf(fileBuffer);
           return pdfData.text;
+        }
 
         case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-        case 'application/msword':
+        case 'application/msword': {
           const docResult = await mammoth.extractRawText({ buffer: fileBuffer });
           return docResult.value;
+        }
 
         case 'text/plain':
           return fileBuffer.toString('utf-8');

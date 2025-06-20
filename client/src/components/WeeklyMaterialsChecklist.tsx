@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { SmartMaterialsChecklist } from './SmartMaterialsChecklist';
 import { useMaterialDetails } from '../api';
 
 interface MaterialChecklistData {
@@ -13,14 +14,21 @@ interface MaterialChecklistData {
 
 interface Props {
   weekStart: string;
+  useSmartVersion?: boolean;
 }
 
-export default function WeeklyMaterialsChecklist({ weekStart }: Props) {
+export default function WeeklyMaterialsChecklist({ weekStart, useSmartVersion = true }: Props) {
   const { data } = useMaterialDetails(weekStart) as { data?: MaterialChecklistData };
   const [checked, setChecked] = useState<Record<string, boolean>>({});
 
   const toggle = (key: string) => setChecked((c) => ({ ...c, [key]: !c[key] }));
 
+  // Use smart version if enabled
+  if (useSmartVersion) {
+    return <SmartMaterialsChecklist weekStart={weekStart} />;
+  }
+
+  // Fallback to original simple version
   // If no data or no items, don't render anything
   if (!data?.items?.length) return null;
 

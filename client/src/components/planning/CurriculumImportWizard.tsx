@@ -32,7 +32,7 @@ interface CurriculumImportWizardProps {
 export function CurriculumImportWizard({ isOpen, onClose, onSuccess }: CurriculumImportWizardProps) {
   const [currentStep, setCurrentStep] = useState<'upload' | 'processing' | 'review' | 'confirmation'>('upload');
   const [importId, setImportId] = useState<number | null>(null);
-  const [importStatus, setImportStatus] = useState<ImportStatus | null>(null);
+  const [, setImportStatus] = useState<ImportStatus | null>(null);
   const [reviewedData, setReviewedData] = useState<ParsedCurriculum | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [isConfirming, setIsConfirming] = useState(false);

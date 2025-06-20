@@ -53,7 +53,7 @@ const mockTrend = [
 describe('QualityScorecard', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    (api.get as any).mockImplementation((url: string) => {
+    (api.get as ReturnType<typeof vi.fn>).mockImplementation((url: string) => {
       if (url === '/api/planning/quality-score') {
         return Promise.resolve({ data: mockDiagnostics });
       }
@@ -175,7 +175,7 @@ describe('QualityScorecard', () => {
   });
 
   it('handles API errors gracefully', async () => {
-    (api.get as any).mockRejectedValue(new Error('API Error'));
+    (api.get as ReturnType<typeof vi.fn>).mockRejectedValue(new Error('API Error'));
 
     render(<QualityScorecard weekStart="2024-01-22" />);
 

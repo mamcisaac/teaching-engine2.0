@@ -15,7 +15,7 @@ const router = Router();
 router.get('/quality-score', authMiddleware, async (req: AuthRequest, res, next) => {
   try {
     const { weekStart } = req.query;
-    const userId = req.userId;
+    const userId = req.user?.userId;
 
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
@@ -28,7 +28,7 @@ router.get('/quality-score', authMiddleware, async (req: AuthRequest, res, next)
 
     const diagnostics = await calculateWeeklyPlanDiagnostics({
       weekStart: parsedWeekStart,
-      userId,
+      userId: parseInt(userId, 10),
     });
 
     res.json(diagnostics);
@@ -44,14 +44,14 @@ router.get('/quality-score', authMiddleware, async (req: AuthRequest, res, next)
  */
 router.get('/quality-trend', authMiddleware, async (req: AuthRequest, res, next) => {
   try {
-    const userId = req.userId;
+    const userId = req.user?.userId;
     const weeks = parseInt(req.query.weeks as string) || 8;
 
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    const trend = await getPlanningQualityTrend(userId, weeks);
+    const trend = await getPlanningQualityTrend(parseInt(userId, 10), weeks);
     res.json(trend);
   } catch (error) {
     console.error('Error in GET /api/planning/quality-trend:', error);

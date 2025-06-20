@@ -35,7 +35,7 @@ export async function calculateWeeklyPlanDiagnostics(
   input: WeeklyPlanDiagnosticsInput
 ): Promise<DiagnosticDetails> {
   const { weekStart, userId } = input;
-  const weekEnd = endOfWeek(weekStart, { weekStartsOn: 1 });
+  // weekEnd could be used for future date range queries
 
   try {
     // Get the lesson plan for the week
@@ -266,11 +266,11 @@ export async function calculateWeeklyPlanDiagnostics(
 
     // Domain balance feedback
     const overusedDomains = Array.from(domainCounts.entries())
-      .filter(([_, count]) => count > avgActivitiesPerDomain * 1.5)
+      .filter(([, count]) => count > avgActivitiesPerDomain * 1.5)
       .map(([domain]) => domain);
     
     const underusedDomains = Array.from(domainCounts.entries())
-      .filter(([_, count]) => count < avgActivitiesPerDomain * 0.5)
+      .filter(([, count]) => count < avgActivitiesPerDomain * 0.5)
       .map(([domain]) => domain);
 
     if (overusedDomains.length > 0) {

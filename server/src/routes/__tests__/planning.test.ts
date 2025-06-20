@@ -1,11 +1,14 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import request from 'supertest';
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import planningRoutes from '../planning';
 import { 
   calculateWeeklyPlanDiagnostics, 
   getPlanningQualityTrend 
 } from '../../services/planning/weeklyPlanDiagnostics';
+
+const mockCalculateWeeklyPlanDiagnostics = calculateWeeklyPlanDiagnostics as ReturnType<typeof vi.fn>;
+const mockGetPlanningQualityTrend = getPlanningQualityTrend as ReturnType<typeof vi.fn>;
 
 // Mock the services
 vi.mock('../../services/planning/weeklyPlanDiagnostics', () => ({
@@ -15,7 +18,7 @@ vi.mock('../../services/planning/weeklyPlanDiagnostics', () => ({
 
 // Mock auth middleware
 vi.mock('../../middleware/auth', () => ({
-  requireAuth: (req: any, res: any, next: any) => {
+  requireAuth: (req: Request, res: Response, next: NextFunction) => {
     req.user = { userId: '1' };
     next();
   },
@@ -53,7 +56,7 @@ describe('Planning Routes', () => {
     };
 
     it('returns diagnostics for specified week', async () => {
-      (calculateWeeklyPlanDiagnostics as any).mockResolvedValue(mockDiagnostics);
+      mockCalculateWeeklyPlanDiagnostics.mockResolvedValue(mockDiagnostics);
 
       const response = await request(app)
         .get('/api/planning/quality-score')
@@ -68,7 +71,7 @@ describe('Planning Routes', () => {
     });
 
     it('uses current week when weekStart not provided', async () => {
-      (calculateWeeklyPlanDiagnostics as any).mockResolvedValue(mockDiagnostics);
+      mockCalculateWeeklyPlanDiagnostics.mockResolvedValue(mockDiagnostics);
 
       const response = await request(app)
         .get('/api/planning/quality-score');
@@ -81,7 +84,7 @@ describe('Planning Routes', () => {
     });
 
     it('handles service errors', async () => {
-      (calculateWeeklyPlanDiagnostics as any).mockRejectedValue(
+      mockCalculateWeeklyPlanDiagnostics.mockRejectedValue(
         new Error('Service error')
       );
 
@@ -101,7 +104,7 @@ describe('Planning Routes', () => {
     ];
 
     it('returns trend data for default weeks', async () => {
-      (getPlanningQualityTrend as any).mockResolvedValue(mockTrend);
+      mockGetPlanningQualityTrend.mockResolvedValue(mockTrend);
 
       const response = await request(app)
         .get('/api/planning/quality-trend');
@@ -112,7 +115,7 @@ describe('Planning Routes', () => {
     });
 
     it('returns trend data for specified weeks', async () => {
-      (getPlanningQualityTrend as any).mockResolvedValue(mockTrend.slice(0, 2));
+      mockGetPlanningQualityTrend.mockResolvedValue(mockTrend.slice(0, 2));
 
       const response = await request(app)
         .get('/api/planning/quality-trend')
@@ -123,7 +126,7 @@ describe('Planning Routes', () => {
     });
 
     it('handles service errors', async () => {
-      (getPlanningQualityTrend as any).mockRejectedValue(
+      mockGetPlanningQualityTrend.mockRejectedValue(
         new Error('Service error')
       );
 
@@ -139,7 +142,7 @@ describe('Planning Routes', () => {
       // Override the mock auth middleware for this test
       const unauthApp = express();
       unauthApp.use(express.json());
-      unauthApp.use('/api/planning', (req: any, res: any, next: any) => {
+      unauthApp.use('/api/planning', (req: Request, res: Response, next: NextFunction) => {
         req.user = null; // No user
         next();
       }, planningRoutes);
