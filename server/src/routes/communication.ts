@@ -239,7 +239,7 @@ const bulkEmailSchema = z.object({
 // Send bulk email (generic endpoint for tests)
 router.post('/send-bulk', async (req: AuthenticatedRequest, res, next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const _userId = parseInt(req.user?.userId || '0', 10);
     const data = bulkEmailSchema.parse(req.body);
 
     // Mock implementation for testing
@@ -269,7 +269,7 @@ router.post('/send-bulk', async (req: AuthenticatedRequest, res, next) => {
 // Get delivery status (generic endpoint for tests)
 router.get('/delivery-status', async (req: AuthenticatedRequest, res, next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const _userId = parseInt(req.user?.userId || '0', 10);
 
     // Mock implementation - in real app would aggregate across all delivery records
     const recent = [
