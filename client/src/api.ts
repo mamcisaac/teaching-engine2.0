@@ -36,13 +36,14 @@ import type {
   MaterialList,
   DailyPlan,
   CompleteActivityResponse,
+  ActivityTemplate,
+  ActivityTemplateInput,
   Student,
-  StudentGoal,
-  StudentReflection,
   StudentInput,
+  StudentGoal,
   StudentGoalInput,
+  StudentReflection,
   StudentReflectionInput,
-  ParentContact,
   ParentSummary,
   ParentSummaryGeneration,
   GenerateParentSummaryRequest,
@@ -54,6 +55,9 @@ import type {
   OutcomeCoverage as PlannerOutcomeCoverage,
   OutcomeCoverageResult,
 } from './types/planner';
+
+// Export ActivityTemplateInput for use in components
+export type { ActivityTemplateInput } from './types';
 
 // Define missing types that are used but not exported from types
 
@@ -492,12 +496,15 @@ import { createCrudMutations } from './utils/apiFactory';
 
 // Subject API functions
 const subjectApi = {
-  create: async (data: Omit<Subject, 'id' | 'milestones'>) => {
-    const response = await api.post<Subject>('/api/subjects', data);
+  create: async (data: Omit<Subject, 'id'>) => {
+    // Only send name to the API, ignoring milestones
+    const response = await api.post<Subject>('/api/subjects', { name: data.name });
     return response.data;
   },
-  update: async (id: number, data: Partial<Omit<Subject, 'id' | 'milestones'>>) => {
-    const response = await api.put<Subject>(`/api/subjects/${id}`, data);
+  update: async (id: number, data: Partial<Subject>) => {
+    // Only send name to the API if it's provided
+    const updateData = data.name ? { name: data.name } : {};
+    const response = await api.put<Subject>(`/api/subjects/${id}`, updateData);
     return response.data;
   },
   delete: async (id: number) => {
@@ -1536,7 +1543,64 @@ export const useDeleteMediaResource = () => {
   });
 };
 
-// Timeline types
+// Activity Template hooks
+export const useActivityTemplates = (filters?: {
+  domain?: string;
+  subject?: string;
+  groupType?: string;
+  search?: string;
+}) => {
+  return useQuery<ActivityTemplate[]>({
+    queryKey: ['activity-templates', filters],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (filters?.domain) params.append('domain', filters.domain);
+      if (filters?.subject) params.append('subject', filters.subject);
+      if (filters?.groupType) params.append('groupType', filters.groupType);
+      if (filters?.search) params.append('search', filters.search);
+      const query = params.toString();
+      return (await api.get(`/api/activity-templates${query ? '?' + query : ''}`)).data;
+    },
+  });
+};
+
+export const useCreateActivityTemplate = () => {
+  const queryClient = useQueryClient();
+  return useMutation<ActivityTemplate, Error, ActivityTemplateInput>({
+    mutationFn: async (data) => (await api.post('/api/activity-templates', data)).data,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['activity-templates'] });
+      toast.success('Activity template created successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to create activity template: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+// Activity Suggestions hooks
+export const useActivitySuggestions = (params: {
+  suggestFor?: string;
+  theme?: number;
+  domain?: string;
+  subject?: string;
+  limit?: number;
+}) => {
+  return useQuery<ActivityTemplate[]>({
+    queryKey: ['activity-suggestions', params],
+    queryFn: async () => {
+      // For now, return empty array until the API is implemented
+      return [];
+    },
+    enabled: !!params.suggestFor,
+  });
+};
+
+// Timeline types and hooks
 export interface TimelineEvent {
   id: string;
   date: string;
@@ -1565,53 +1629,57 @@ export interface TimelineSummary {
 export interface TimelineFilters {
   from?: string;
   to?: string;
-  studentId?: string;
-  subjectId?: string;
+  studentId?: number;
+  subjectId?: number;
   outcomeId?: string;
-  themeId?: string;
 }
 
-// Timeline API hooks
-export const useTimelineEvents = (filters: TimelineFilters = {}) => {
-  return useQuery({
-    queryKey: ['timeline', 'events', filters],
+export const useTimelineEvents = (filters?: TimelineFilters) => {
+  return useQuery<TimelineEvent[]>({
+    queryKey: ['timeline-events', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      Object.entries(filters).forEach(([key, value]) => {
-        if (value) params.append(key, value);
-      });
-      const { data } = await api.get<TimelineEvent[]>(`/timeline/events?${params.toString()}`);
-      return data;
+      if (filters?.from) params.append('from', filters.from);
+      if (filters?.to) params.append('to', filters.to);
+      if (filters?.studentId) params.append('studentId', filters.studentId.toString());
+      if (filters?.subjectId) params.append('subjectId', filters.subjectId.toString());
+      if (filters?.outcomeId) params.append('outcomeId', filters.outcomeId);
+      const query = params.toString();
+      return (await api.get(`/api/timeline/events${query ? '?' + query : ''}`)).data;
     },
   });
 };
 
-export const useTimelineSummary = (filters: { from?: string; to?: string } = {}) => {
-  return useQuery({
-    queryKey: ['timeline', 'summary', filters],
+export const useTimelineSummary = (filters?: TimelineFilters) => {
+  return useQuery<TimelineSummary>({
+    queryKey: ['timeline-summary', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters.from) params.append('from', filters.from);
-      if (filters.to) params.append('to', filters.to);
-      const { data } = await api.get<TimelineSummary>(`/timeline/summary?${params.toString()}`);
-      return data;
+      if (filters?.from) params.append('from', filters.from);
+      if (filters?.to) params.append('to', filters.to);
+      if (filters?.studentId) params.append('studentId', filters.studentId.toString());
+      if (filters?.subjectId) params.append('subjectId', filters.subjectId.toString());
+      const query = params.toString();
+      return (await api.get(`/api/timeline/summary${query ? '?' + query : ''}`)).data;
     },
   });
 };
 
-// Student API functions
-export const useStudents = () =>
-  useQuery<Student[]>({
+// Student API hooks
+export const useStudents = () => {
+  return useQuery<Student[]>({
     queryKey: ['students'],
     queryFn: async () => (await api.get('/api/students')).data,
   });
+};
 
-export const useStudent = (id: number) =>
-  useQuery<Student>({
+export const useStudent = (id: number) => {
+  return useQuery<Student>({
     queryKey: ['students', id],
     queryFn: async () => (await api.get(`/api/students/${id}`)).data,
     enabled: !!id,
   });
+};
 
 export const useCreateStudent = () => {
   const queryClient = useQueryClient();
@@ -1668,13 +1736,14 @@ export const useDeleteStudent = () => {
   });
 };
 
-// Student Goals API functions
-export const useStudentGoals = (studentId: number) =>
-  useQuery<StudentGoal[]>({
+// Student Goals API
+export const useStudentGoals = (studentId: number) => {
+  return useQuery<StudentGoal[]>({
     queryKey: ['students', studentId, 'goals'],
     queryFn: async () => (await api.get(`/api/students/${studentId}/goals`)).data,
     enabled: !!studentId,
   });
+};
 
 export const useCreateStudentGoal = () => {
   const queryClient = useQueryClient();
@@ -1704,7 +1773,7 @@ export const useUpdateStudentGoal = () => {
     { studentId: number; goalId: number; data: Partial<StudentGoalInput> }
   >({
     mutationFn: async ({ studentId, goalId, data }) =>
-      (await api.patch(`/api/students/${studentId}/goals/${goalId}`, data)).data,
+      (await api.put(`/api/students/${studentId}/goals/${goalId}`, data)).data,
     onSuccess: (_, { studentId }) => {
       queryClient.invalidateQueries({ queryKey: ['students', studentId, 'goals'] });
       queryClient.invalidateQueries({ queryKey: ['students', studentId] });
@@ -1790,85 +1859,7 @@ export const useDeleteStudentReflection = () => {
   });
 };
 
-// =================== PARENT CONTACT API ===================
-
-export const useAddParentContact = () => {
-  const queryClient = useQueryClient();
-  return useMutation<
-    ParentContact,
-    Error,
-    { studentId: number; data: { name: string; email: string } }
-  >({
-    mutationFn: async ({ studentId, data }) =>
-      (await api.post(`/api/students/${studentId}/contacts`, data)).data,
-    onSuccess: (_, { studentId }) => {
-      queryClient.invalidateQueries({ queryKey: ['students'] });
-      queryClient.invalidateQueries({ queryKey: ['students', studentId] });
-      toast.success('Parent contact added successfully!');
-    },
-    onError: (error: unknown) => {
-      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
-      toast.error(
-        'Failed to add parent contact: ' +
-          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
-      );
-    },
-  });
-};
-
-export const useDeleteParentContact = () => {
-  const queryClient = useQueryClient();
-  return useMutation<void, Error, { studentId: number; contactId: number }>({
-    mutationFn: async ({ studentId, contactId }) =>
-      (await api.delete(`/api/students/${studentId}/contacts/${contactId}`)).data,
-    onSuccess: (_, { studentId }) => {
-      queryClient.invalidateQueries({ queryKey: ['students'] });
-      queryClient.invalidateQueries({ queryKey: ['students', studentId] });
-      toast.success('Parent contact deleted successfully!');
-    },
-    onError: (error: unknown) => {
-      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
-      toast.error(
-        'Failed to delete parent contact: ' +
-          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
-      );
-    },
-  });
-};
-
-// =================== PARENT SUMMARY API ===================
-
-// Simple parent summary types for backward compatibility
-export interface ParentSummaryRequest {
-  studentId: number;
-  from: string;
-  to: string;
-  focus?: string[];
-}
-
-export interface ParentSummaryResponse {
-  french: string;
-  english: string;
-}
-
-// Simple version for our implementation
-export const useGenerateParentSummarySimple = () => {
-  return useMutation<ParentSummaryResponse, Error, ParentSummaryRequest>({
-    mutationFn: async (data) => (await api.post('/api/ai-parent-summary', data)).data,
-    onSuccess: () => {
-      toast.success('Parent summary generated successfully!');
-    },
-    onError: (error: unknown) => {
-      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
-      toast.error(
-        'Failed to generate parent summary: ' +
-          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
-      );
-    },
-  });
-};
-
-// Enhanced version from main branch
+// Parent Summary API functions (these already exist above, need to be accessible)
 export const useGenerateParentSummary = () => {
   return useMutation<ParentSummaryGeneration, Error, GenerateParentSummaryRequest>({
     mutationFn: async (data) => (await api.post('/api/ai-parent-summary/generate', data)).data,
