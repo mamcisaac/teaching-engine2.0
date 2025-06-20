@@ -1,9 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { format, startOfWeek, endOfWeek, parseISO } from 'date-fns';
-import { useTimelineEvents, useTimelineSummary, TimelineEvent } from '../api';
+import { useTimelineEvents, useTimelineSummary, TimelineEvent, TimelineFilters } from '../api';
 import { useSubjects } from '../api';
 import { useOutcomes } from '../api';
-import { useThematicUnits } from '../api';
 import {
   Activity,
   GraduationCap,
@@ -14,12 +13,6 @@ import {
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react';
-
-interface TimelineFilters {
-  subjectId?: string;
-  outcomeId?: string;
-  themeId?: string;
-}
 
 interface TimelineWeek {
   weekStart: Date;
@@ -45,7 +38,6 @@ const StudentTimeline: React.FC = () => {
   const { data: summary, isLoading: summaryLoading } = useTimelineSummary(dateRange);
   const { data: subjects = [] } = useSubjects();
   const { data: outcomes = [] } = useOutcomes();
-  const { data: themes = [] } = useThematicUnits();
 
   // Group events by week
   const weeklyEvents = useMemo(() => {
@@ -179,9 +171,12 @@ const StudentTimeline: React.FC = () => {
                 </label>
                 <select
                   id="subject-filter"
-                  value={filters.subjectId || ''}
+                  value={filters.subjectId?.toString() || ''}
                   onChange={(e) =>
-                    setFilters({ ...filters, subjectId: e.target.value || undefined })
+                    setFilters({
+                      ...filters,
+                      subjectId: e.target.value ? parseInt(e.target.value, 10) : undefined,
+                    })
                   }
                   className="w-full px-3 py-2 border rounded-lg"
                 >
@@ -210,25 +205,6 @@ const StudentTimeline: React.FC = () => {
                   {outcomes.map((outcome) => (
                     <option key={outcome.id} value={outcome.id}>
                       {outcome.code} - {outcome.description}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="theme-filter" className="block text-sm font-medium mb-2">
-                  Theme
-                </label>
-                <select
-                  id="theme-filter"
-                  value={filters.themeId || ''}
-                  onChange={(e) => setFilters({ ...filters, themeId: e.target.value || undefined })}
-                  className="w-full px-3 py-2 border rounded-lg"
-                >
-                  <option value="">All Themes</option>
-                  {themes.map((theme) => (
-                    <option key={theme.id} value={theme.id}>
-                      {theme.title}
                     </option>
                   ))}
                 </select>

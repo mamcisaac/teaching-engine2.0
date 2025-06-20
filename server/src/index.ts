@@ -265,12 +265,6 @@ app.use('/api/activity-templates', authenticateToken, activityTemplateRoutes);
 app.use('/api/planning', authenticateToken, planningRoutes);
 app.use('/api/curriculum/import', authenticateToken, curriculumImportRoutes);
 
-// Mount test routes (only in test/development mode)
-if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
-  log('Mounting test routes...');
-  app.use('/api/test', testRoutes);
-}
-
 log('All API routes mounted successfully.');
 app.use('/api/*', (_req, res) => {
   res.status(404).json({ error: 'Not Found' });
