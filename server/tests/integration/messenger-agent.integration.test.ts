@@ -356,7 +356,6 @@ describe('Messenger Agent Integration Tests', () => {
 
   describe('Email Communication API', () => {
     let student: { id: number; firstName: string; lastName: string; grade: number; userId: number };
-    let _parentContact: { id: number; name: string; email: string; studentId: number };
 
     beforeEach(async () => {
       // Create test student and parent contact
@@ -369,7 +368,8 @@ describe('Messenger Agent Integration Tests', () => {
         }
       });
 
-      _parentContact = await prisma.parentContact.create({
+      // Create parent contact for test data completeness (not used in these tests)
+      await prisma.parentContact.create({
         data: {
           name: 'Test Parent',
           email: 'test.parent@example.com',
