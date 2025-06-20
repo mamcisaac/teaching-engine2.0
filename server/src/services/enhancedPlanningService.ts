@@ -288,7 +288,7 @@ export class EnhancedPlanningService extends BaseService {
       // Find similar outcomes and group them
       const processedOutcomes = new Set<string>();
       
-      for (const [outcomeId, activityIds] of outcomeActivityMap.entries()) {
+      for (const [outcomeId] of outcomeActivityMap.entries()) {
         if (processedOutcomes.has(outcomeId)) continue;
 
         const similarOutcomes = await clusteringService.suggestSimilarOutcomes(outcomeId, 0.8, 5);

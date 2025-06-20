@@ -17,27 +17,27 @@ class TestService extends BaseService {
   }
 
   // Expose protected methods for testing
-  async testWithRetry<T>(operation: () => Promise<T>, options?: any) {
+  async testWithRetry<T>(operation: () => Promise<T>, options?: unknown) {
     return this.withRetry(operation, options);
   }
 
-  async testWithTransaction<T>(operation: (tx: any) => Promise<T>) {
+  async testWithTransaction<T>(operation: (tx: unknown) => Promise<T>) {
     return this.withTransaction(operation);
   }
 
-  async testWithParallel<T>(operations: (() => Promise<T>)[], options?: any) {
+  async testWithParallel<T>(operations: (() => Promise<T>)[], options?: unknown) {
     return this.withParallel(operations, options);
   }
 
-  testHandleError(error: unknown, context?: Record<string, any>): never {
+  testHandleError(error: unknown, context?: Record<string, unknown>): never {
     return this.handleError(error, context);
   }
 
-  testValidateRequired(params: Record<string, any>, required: string[]) {
+  testValidateRequired(params: Record<string, unknown>, required: string[]) {
     return this.validateRequired(params, required);
   }
 
-  testSanitizeInput<T extends Record<string, any>>(input: T, schema: any) {
+  testSanitizeInput<T extends Record<string, unknown>>(input: T, schema: unknown) {
     return this.sanitizeInput(input, schema);
   }
 }

@@ -39,7 +39,7 @@ export class CurriculumImportService extends BaseService {
     subject: string,
     sourceFormat: 'csv' | 'pdf' | 'docx' | 'manual',
     sourceFile?: string,
-    metadata?: Record<string, any>
+    metadata?: Record<string, unknown>
   ): Promise<string> {
     try {
       const curriculumImport = await this.prisma.curriculumImport.create({
@@ -238,7 +238,7 @@ export class CurriculumImportService extends BaseService {
   /**
    * Get import history for a user
    */
-  async getImportHistory(userId: number, limit: number = 20): Promise<any[]> {
+  async getImportHistory(userId: number, limit: number = 20): Promise<unknown[]> {
     try {
       const imports = await this.prisma.curriculumImport.findMany({
         where: { userId },

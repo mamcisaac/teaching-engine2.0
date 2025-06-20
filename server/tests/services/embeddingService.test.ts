@@ -16,8 +16,7 @@ import { openai } from '../../src/services/llmService';
 
 describe('EmbeddingService', () => {
   let embeddingService: EmbeddingService;
-  let prisma: ReturnType<typeof getTestPrismaClient>;
-  const mockOpenAI = openai as any;
+  const mockOpenAI = openai as unknown;
 
   beforeEach(() => {
     embeddingService = new EmbeddingService();
@@ -95,8 +94,8 @@ describe('EmbeddingService', () => {
 
     it('should return null when OpenAI is not configured', async () => {
       // Temporarily set openai to null
-      const originalOpenAI = (embeddingService as any).constructor.prototype.generateEmbeddingVector;
-      (embeddingService as any).generateEmbeddingVector = async () => null;
+      const originalOpenAI = (embeddingService as unknown as { constructor: { prototype: { generateEmbeddingVector: unknown } } }).constructor.prototype.generateEmbeddingVector;
+      (embeddingService as unknown as { generateEmbeddingVector: () => Promise<null> }).generateEmbeddingVector = async () => null;
 
       const result = await embeddingService.generateEmbedding(outcomeId, text);
 
