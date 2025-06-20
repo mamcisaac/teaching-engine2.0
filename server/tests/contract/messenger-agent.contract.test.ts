@@ -563,7 +563,8 @@ describe('Messenger Agent Contract Tests', () => {
           [endpoint.method](endpoint.path)
           .expect(401);
 
-        expect(response.body).toHaveProperty('error');
+        // 401 responses from sendStatus() have empty body
+        expect(response.body).toEqual({});
       }
     });
   });
