@@ -11,33 +11,35 @@ vi.mock('openai', () => ({
     chat: {
       completions: {
         create: vi.fn().mockResolvedValue({
-          choices: [{
-            message: {
-              content: JSON.stringify({
-                materials: [
-                  {
-                    name: 'Math workbooks',
-                    category: 'supplies',
-                    priority: 'essential',
-                    quantity: '30 copies',
-                    prepTime: 5,
-                    notes: 'One per student'
-                  },
-                  {
-                    name: 'Calculator',
-                    category: 'equipment',
-                    priority: 'helpful',
-                    quantity: '15 units',
-                    prepTime: 0
-                  }
-                ]
-              })
-            }
-          }]
-        })
-      }
-    }
-  }))
+          choices: [
+            {
+              message: {
+                content: JSON.stringify({
+                  materials: [
+                    {
+                      name: 'Math workbooks',
+                      category: 'supplies',
+                      priority: 'essential',
+                      quantity: '30 copies',
+                      prepTime: 5,
+                      notes: 'One per student',
+                    },
+                    {
+                      name: 'Calculator',
+                      category: 'equipment',
+                      priority: 'helpful',
+                      quantity: '15 units',
+                      prepTime: 0,
+                    },
+                  ],
+                }),
+              },
+            },
+          ],
+        }),
+      },
+    },
+  })),
 }));
 
 describe('Smart Materials Integration', () => {
@@ -54,7 +56,7 @@ describe('Smart Materials Integration', () => {
 
     // Create test data
     testWeekStart = '2024-01-22';
-    
+
     // Create test lesson plan with activities
     const lessonPlan = await prisma.lessonPlan.create({
       data: {
@@ -74,15 +76,15 @@ describe('Smart Materials Integration', () => {
                       subject: {
                         create: {
                           name: 'Mathematics',
-                          userId: testUserId
-                        }
+                          userId: testUserId,
+                        },
                       },
-                      userId: testUserId
-                    }
+                      userId: testUserId,
+                    },
                   },
-                  userId: testUserId
-                }
-              }
+                  userId: testUserId,
+                },
+              },
             },
             {
               day: 2,
@@ -97,19 +99,19 @@ describe('Smart Materials Integration', () => {
                       subject: {
                         create: {
                           name: 'Language Arts',
-                          userId: testUserId
-                        }
+                          userId: testUserId,
+                        },
                       },
-                      userId: testUserId
-                    }
+                      userId: testUserId,
+                    },
                   },
-                  userId: testUserId
-                }
-              }
-            }
-          ]
-        }
-      }
+                  userId: testUserId,
+                },
+              },
+            },
+          ],
+        },
+      },
     });
 
     lessonPlanId = lessonPlan.id;
@@ -118,28 +120,28 @@ describe('Smart Materials Integration', () => {
   afterEach(async () => {
     // Clean up test data
     await prisma.materialList.deleteMany({
-      where: { weekStart: new Date(testWeekStart) }
+      where: { weekStart: new Date(testWeekStart) },
     });
-    
+
     await prisma.weeklySchedule.deleteMany({
-      where: { lessonPlanId }
+      where: { lessonPlanId },
     });
-    
+
     await prisma.lessonPlan.deleteMany({
-      where: { id: lessonPlanId }
+      where: { id: lessonPlanId },
     });
 
     // Clean up all user-related data
     await prisma.activity.deleteMany({
-      where: { userId: testUserId }
+      where: { userId: testUserId },
     });
-    
+
     await prisma.milestone.deleteMany({
-      where: { userId: testUserId }
+      where: { userId: testUserId },
     });
-    
+
     await prisma.subject.deleteMany({
-      where: { userId: testUserId }
+      where: { userId: testUserId },
     });
   });
 
@@ -177,7 +179,7 @@ describe('Smart Materials Integration', () => {
     it('should handle week with no activities', async () => {
       // Use a different week with no lesson plan
       const emptyWeekStart = '2024-02-05';
-      
+
       const response = await request(app)
         .get(`/api/material-lists/${emptyWeekStart}/smart-plan`)
         .set('Authorization', `Bearer ${authToken}`)
@@ -189,9 +191,7 @@ describe('Smart Materials Integration', () => {
     });
 
     it('should require authentication', async () => {
-      await request(app)
-        .get(`/api/material-lists/${testWeekStart}/smart-plan`)
-        .expect(401);
+      await request(app).get(`/api/material-lists/${testWeekStart}/smart-plan`).expect(401);
     });
 
     it('should validate week start date format', async () => {
@@ -218,12 +218,12 @@ describe('Smart Materials Integration', () => {
 
       // Verify material list was created/updated
       const materialList = await prisma.materialList.findFirst({
-        where: { weekStart: new Date(testWeekStart) }
+        where: { weekStart: new Date(testWeekStart) },
       });
 
       expect(materialList).toBeDefined();
       expect(materialList?.items).toBeDefined();
-      
+
       const items = JSON.parse(materialList?.items || '[]');
       expect(Array.isArray(items)).toBe(true);
     });
@@ -272,8 +272,9 @@ describe('Smart Materials Integration', () => {
     });
 
     it('should extract materials from activity text', async () => {
-      const activityText = 'Students will use math workbooks and calculators to practice addition. Need pencils and erasers.';
-      
+      const activityText =
+        'Students will use math workbooks and calculators to practice addition. Need pencils and erasers.';
+
       const materials = await extractor.extractMaterials(activityText);
 
       expect(Array.isArray(materials)).toBe(true);
@@ -284,8 +285,9 @@ describe('Smart Materials Integration', () => {
       expect(material).toHaveProperty('name');
       expect(material).toHaveProperty('category');
       expect(material).toHaveProperty('priority');
-      expect(['supplies', 'technology', 'books', 'equipment', 'printables', 'other'])
-        .toContain(material.category);
+      expect(['supplies', 'technology', 'books', 'equipment', 'printables', 'other']).toContain(
+        material.category,
+      );
       expect(['essential', 'helpful', 'optional']).toContain(material.priority);
     });
 
@@ -295,14 +297,14 @@ describe('Smart Materials Integration', () => {
         { text: 'reading books and novels', expectedCategory: 'books' },
         { text: 'pencils and paper', expectedCategory: 'supplies' },
         { text: 'worksheets to print', expectedCategory: 'printables' },
-        { text: 'microscope and scale', expectedCategory: 'equipment' }
+        { text: 'microscope and scale', expectedCategory: 'equipment' },
       ];
 
       for (const testCase of testCases) {
         const materials = await extractor.extractMaterials(testCase.text);
-        
+
         // Should have at least one material with expected category
-        const hasExpectedCategory = materials.some(m => m.category === testCase.expectedCategory);
+        const hasExpectedCategory = materials.some((m) => m.category === testCase.expectedCategory);
         expect(hasExpectedCategory).toBe(true);
       }
     });
@@ -314,11 +316,11 @@ describe('Smart Materials Integration', () => {
 
     it('should assign preparation time estimates', async () => {
       const activityText = 'Print worksheets and set up science experiment stations';
-      
+
       const materials = await extractor.extractMaterials(activityText);
 
       // At least one material should have prep time > 0
-      const hasPreparationTime = materials.some(m => (m.prepTime || 0) > 0);
+      const hasPreparationTime = materials.some((m) => (m.prepTime || 0) > 0);
       expect(hasPreparationTime).toBe(true);
     });
 
@@ -326,7 +328,7 @@ describe('Smart Materials Integration', () => {
       const activities = [
         'Print math worksheets',
         'Set up art supplies at stations',
-        'Need to purchase science materials'
+        'Need to purchase science materials',
       ];
 
       const results = await extractor.analyzeWeeklyPreparation(activities);
@@ -365,7 +367,7 @@ describe('Smart Materials Integration', () => {
 
       // Verify daily breakdown
       expect(Array.isArray(plan.byDay)).toBe(true);
-      
+
       if (plan.byDay.length > 0) {
         const day = plan.byDay[0];
         expect(day).toHaveProperty('day');
@@ -384,9 +386,12 @@ describe('Smart Materials Integration', () => {
       const plan = response.body;
 
       // Total prep time should be sum of all material prep times
-      const expectedTotal = plan.materials.reduce((sum: number, material: any) => {
-        return sum + (material.prepTime || 0);
-      }, 0);
+      const expectedTotal = plan.materials.reduce(
+        (sum: number, material: { prepTime?: number }) => {
+          return sum + (material.prepTime || 0);
+        },
+        0,
+      );
 
       expect(plan.totalPrepTime).toBe(expectedTotal);
     });
@@ -404,7 +409,7 @@ describe('Smart Materials Integration', () => {
         expect(day.day).toBeGreaterThanOrEqual(1);
         expect(day.day).toBeLessThanOrEqual(7);
         expect(typeof day.dayName).toBe('string');
-        
+
         for (const activity of day.activities) {
           expect(activity).toHaveProperty('activityId');
           expect(activity).toHaveProperty('title');
@@ -417,20 +422,11 @@ describe('Smart Materials Integration', () => {
 
   describe('Performance and Edge Cases', () => {
     it('should handle large number of activities efficiently', async () => {
-      // Create multiple activities for stress testing
-      const activities = Array.from({ length: 20 }, (_, i) => ({
-        title: `Activity ${i}`,
-        activityType: 'LESSON' as const,
-        materialsText: `Materials for activity ${i}: paper, pencils, books`,
-        milestoneId: 1, // Would need valid milestone
-        userId: testUserId
-      }));
-
-      // Note: In a real test, we'd create these activities
+      // Note: In a real test, we'd create multiple activities for stress testing
       // For this test, we'll just verify the endpoint handles the request
 
       const startTime = Date.now();
-      
+
       const response = await request(app)
         .get(`/api/material-lists/${testWeekStart}/smart-plan`)
         .set('Authorization', `Bearer ${authToken}`)
@@ -449,30 +445,21 @@ describe('Smart Materials Integration', () => {
       const requests = Array.from({ length: 5 }, () =>
         request(app)
           .get(`/api/material-lists/${testWeekStart}/smart-plan`)
-          .set('Authorization', `Bearer ${authToken}`)
+          .set('Authorization', `Bearer ${authToken}`),
       );
 
       const responses = await Promise.all(requests);
 
       // All requests should succeed
-      responses.forEach(response => {
+      responses.forEach((response) => {
         expect(response.status).toBe(200);
         expect(response.body).toHaveProperty('materials');
       });
     });
 
     it('should handle malformed activity data gracefully', async () => {
-      // Create activity with problematic material text
-      const problematicTexts = [
-        null,
-        undefined,
-        '',
-        '   ',
-        'Special characters: @#$%^&*(){}[]|\\;:"<>?,./',
-        'Very long text: ' + 'a'.repeat(1000),
-        'Unicode: 🚀 📚 ✏️ 🔬 💻'
-      ];
-
+      // Note: The endpoint should handle problematic material text including:
+      // null, undefined, empty strings, special characters, long text, and unicode
       // The endpoint should handle these gracefully
       const response = await request(app)
         .get(`/api/material-lists/${testWeekStart}/smart-plan`)

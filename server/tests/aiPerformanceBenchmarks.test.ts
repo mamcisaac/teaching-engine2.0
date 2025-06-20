@@ -1,7 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { curriculumImportService } from '../src/services/curriculumImportService';
 import { SmartMaterialExtractor } from '../src/services/smartMaterialExtractor';
-import { ImportStatus } from '@teaching-engine/database';
 
 // Performance test configuration
 const PERFORMANCE_THRESHOLDS = {
@@ -13,25 +12,27 @@ const PERFORMANCE_THRESHOLDS = {
 };
 
 describe('AI Features Performance Benchmarks', () => {
-  let mockOpenAIResponse: any;
+  let mockOpenAIResponse: { choices: Array<{ message: { content: string } }> };
   let mockExtractor: SmartMaterialExtractor;
 
   beforeEach(() => {
     // Mock OpenAI with realistic response times
     mockOpenAIResponse = {
-      choices: [{
-        message: {
-          content: JSON.stringify({
-            subject: 'Mathematics',
-            grade: 1,
-            outcomes: [
-              { code: 'M1.1', description: 'Count to 10' },
-              { code: 'M1.2', description: 'Recognize numbers 1-10' },
-              { code: 'M1.3', description: 'Compare quantities' }
-            ]
-          })
-        }
-      }]
+      choices: [
+        {
+          message: {
+            content: JSON.stringify({
+              subject: 'Mathematics',
+              grade: 1,
+              outcomes: [
+                { code: 'M1.1', description: 'Count to 10' },
+                { code: 'M1.2', description: 'Recognize numbers 1-10' },
+                { code: 'M1.3', description: 'Compare quantities' },
+              ],
+            }),
+          },
+        },
+      ],
     };
 
     vi.mock('openai', () => ({
@@ -40,12 +41,12 @@ describe('AI Features Performance Benchmarks', () => {
           completions: {
             create: vi.fn().mockImplementation(async () => {
               // Simulate realistic API response time
-              await new Promise(resolve => setTimeout(resolve, 800 + Math.random() * 400));
+              await new Promise((resolve) => setTimeout(resolve, 800 + Math.random() * 400));
               return mockOpenAIResponse;
-            })
-          }
-        }
-      }))
+            }),
+          },
+        },
+      })),
     }));
 
     mockExtractor = new SmartMaterialExtractor();
@@ -74,16 +75,16 @@ describe('AI Features Performance Benchmarks', () => {
       `;
 
       const startTime = performance.now();
-      
+
       // Test curriculum parsing performance
       const parsedData = await curriculumImportService.parseWithAI(sampleText);
-      
+
       const endTime = performance.now();
       const processingTime = endTime - startTime;
 
       // Verify performance threshold
       expect(processingTime).toBeLessThan(PERFORMANCE_THRESHOLDS.curriculumParsingTime);
-      
+
       // Verify output quality
       expect(parsedData).toHaveProperty('subject');
       expect(parsedData).toHaveProperty('grade');
@@ -96,15 +97,17 @@ describe('AI Features Performance Benchmarks', () => {
 
     it('should handle large curriculum documents efficiently', async () => {
       // Generate large curriculum text
-      const largeCurriculumText = Array.from({ length: 100 }, (_, i) => 
-        `Outcome ${i + 1}: Students will demonstrate understanding of concept ${i + 1} by completing tasks and assessments.`
+      const largeCurriculumText = Array.from(
+        { length: 100 },
+        (_, i) =>
+          `Outcome ${i + 1}: Students will demonstrate understanding of concept ${i + 1} by completing tasks and assessments.`,
       ).join('\n');
 
       const startTime = performance.now();
-      
+
       try {
         const parsedData = await curriculumImportService.parseWithAI(largeCurriculumText);
-        
+
         const endTime = performance.now();
         const processingTime = endTime - startTime;
 
@@ -124,10 +127,9 @@ describe('AI Features Performance Benchmarks', () => {
         'Mathematics Grade 1: Counting 1-10, basic addition',
         'Language Arts Grade 2: Reading comprehension, writing sentences',
         'Science Grade 1: Weather patterns, plant life cycles',
-        'Social Studies Grade 2: Community helpers, maps and directions'
+        'Social Studies Grade 2: Community helpers, maps and directions',
       ];
 
-      const results: any[] = [];
       const startTime = performance.now();
 
       // Process multiple curricula in parallel
@@ -137,21 +139,23 @@ describe('AI Features Performance Benchmarks', () => {
       });
 
       const parsedResults = await Promise.all(promises);
-      
+
       const endTime = performance.now();
       const totalTime = endTime - startTime;
 
       // Should process all in parallel efficiently
       expect(totalTime).toBeLessThan(PERFORMANCE_THRESHOLDS.curriculumParsingTime * 1.5);
-      
+
       // All results should be valid
-      parsedResults.forEach(result => {
+      parsedResults.forEach((result) => {
         expect(result).toHaveProperty('subject');
         expect(result).toHaveProperty('grade');
         expect(result.outcomes.length).toBeGreaterThan(0);
       });
 
-      console.log(`Parallel curriculum parsing took ${totalTime.toFixed(2)}ms for ${testTexts.length} documents`);
+      console.log(
+        `Parallel curriculum parsing took ${totalTime.toFixed(2)}ms for ${testTexts.length} documents`,
+      );
     });
   });
 
@@ -165,9 +169,9 @@ describe('AI Features Performance Benchmarks', () => {
       `;
 
       const startTime = performance.now();
-      
+
       const materials = await mockExtractor.extractMaterials(activityText);
-      
+
       const endTime = performance.now();
       const processingTime = endTime - startTime;
 
@@ -187,32 +191,36 @@ describe('AI Features Performance Benchmarks', () => {
         'Writing workshop with paper, pencils, and dictionaries',
         'Physical education with balls, cones, and sports equipment',
         'Music class with instruments and sheet music',
-        'Technology lab with computers and headphones'
+        'Technology lab with computers and headphones',
       ];
 
       const startTime = performance.now();
-      
+
       // Process all activities in batch
       const results = await mockExtractor.analyzeWeeklyPreparation(activities);
-      
+
       const endTime = performance.now();
       const processingTime = endTime - startTime;
 
       expect(processingTime).toBeLessThan(PERFORMANCE_THRESHOLDS.batchProcessingTime);
-      
+
       expect(results).toHaveProperty('printingNeeded');
       expect(results).toHaveProperty('setupRequired');
       expect(results).toHaveProperty('purchaseNeeded');
 
-      console.log(`Batch material extraction took ${processingTime.toFixed(2)}ms for ${activities.length} activities`);
+      console.log(
+        `Batch material extraction took ${processingTime.toFixed(2)}ms for ${activities.length} activities`,
+      );
     });
 
     it('should maintain memory efficiency during processing', async () => {
       const initialMemory = process.memoryUsage().heapUsed;
-      
+
       // Process many material extractions
-      const largeBatch = Array.from({ length: 50 }, (_, i) => 
-        `Activity ${i}: Various materials needed including supplies, books, technology, and equipment for comprehensive learning experience.`
+      const largeBatch = Array.from(
+        { length: 50 },
+        (_, i) =>
+          `Activity ${i}: Various materials needed including supplies, books, technology, and equipment for comprehensive learning experience.`,
       );
 
       for (const activity of largeBatch) {
@@ -223,20 +231,25 @@ describe('AI Features Performance Benchmarks', () => {
       const memoryIncrease = finalMemory - initialMemory;
 
       expect(memoryIncrease).toBeLessThan(PERFORMANCE_THRESHOLDS.memorySafetyLimit);
-      
-      console.log(`Memory increase: ${(memoryIncrease / 1024 / 1024).toFixed(2)}MB for ${largeBatch.length} operations`);
+
+      console.log(
+        `Memory increase: ${(memoryIncrease / 1024 / 1024).toFixed(2)}MB for ${largeBatch.length} operations`,
+      );
     });
   });
 
   describe('Concurrent Request Handling', () => {
     it('should handle concurrent AI requests efficiently', async () => {
-      const concurrentRequests = Array.from({ length: PERFORMANCE_THRESHOLDS.concurrentRequestLimit }, (_, i) => ({
-        text: `Test curriculum ${i}: Basic learning outcomes for grade ${(i % 3) + 1}`,
-        id: i
-      }));
+      const concurrentRequests = Array.from(
+        { length: PERFORMANCE_THRESHOLDS.concurrentRequestLimit },
+        (_, i) => ({
+          text: `Test curriculum ${i}: Basic learning outcomes for grade ${(i % 3) + 1}`,
+          id: i,
+        }),
+      );
 
       const startTime = performance.now();
-      
+
       // Execute concurrent requests
       const promises = concurrentRequests.map(async (request) => {
         try {
@@ -248,26 +261,32 @@ describe('AI Features Performance Benchmarks', () => {
       });
 
       const results = await Promise.all(promises);
-      
+
       const endTime = performance.now();
       const totalTime = endTime - startTime;
 
       // Should handle concurrent requests efficiently
-      const successfulResults = results.filter(r => r.success);
-      expect(successfulResults.length).toBeGreaterThan(PERFORMANCE_THRESHOLDS.concurrentRequestLimit * 0.8); // 80% success rate
-      
+      const successfulResults = results.filter((r) => r.success);
+      expect(successfulResults.length).toBeGreaterThan(
+        PERFORMANCE_THRESHOLDS.concurrentRequestLimit * 0.8,
+      ); // 80% success rate
+
       // Should not take much longer than sequential processing
       const averageTimePerRequest = totalTime / results.length;
-      expect(averageTimePerRequest).toBeLessThan(PERFORMANCE_THRESHOLDS.curriculumParsingTime * 1.2);
+      expect(averageTimePerRequest).toBeLessThan(
+        PERFORMANCE_THRESHOLDS.curriculumParsingTime * 1.2,
+      );
 
-      console.log(`Concurrent processing: ${results.length} requests in ${totalTime.toFixed(2)}ms (${averageTimePerRequest.toFixed(2)}ms avg)`);
+      console.log(
+        `Concurrent processing: ${results.length} requests in ${totalTime.toFixed(2)}ms (${averageTimePerRequest.toFixed(2)}ms avg)`,
+      );
     });
 
     it('should gracefully handle API rate limiting', async () => {
       // Mock rate limiting scenario
       let requestCount = 0;
       const mockOpenAI = await import('openai');
-      
+
       vi.mocked(mockOpenAI.default).mockImplementation(() => ({
         chat: {
           completions: {
@@ -275,29 +294,29 @@ describe('AI Features Performance Benchmarks', () => {
               requestCount++;
               if (requestCount > 5) {
                 // Simulate rate limiting after 5 requests
-                const error = new Error('Rate limit exceeded');
-                (error as any).status = 429;
+                const error = new Error('Rate limit exceeded') as Error & { status: number };
+                error.status = 429;
                 throw error;
               }
-              await new Promise(resolve => setTimeout(resolve, 500));
+              await new Promise((resolve) => setTimeout(resolve, 500));
               return mockOpenAIResponse;
-            })
-          }
-        }
+            }),
+          },
+        },
       }));
 
-      const requests = Array.from({ length: 8 }, (_, i) => 
-        curriculumImportService.parseWithAI(`Test text ${i}`)
+      const requests = Array.from({ length: 8 }, (_, i) =>
+        curriculumImportService.parseWithAI(`Test text ${i}`),
       );
 
       const results = await Promise.allSettled(requests);
-      
-      const successful = results.filter(r => r.status === 'fulfilled').length;
-      const failed = results.filter(r => r.status === 'rejected').length;
+
+      const successful = results.filter((r) => r.status === 'fulfilled').length;
+      const failed = results.filter((r) => r.status === 'rejected').length;
 
       expect(successful).toBeGreaterThan(0);
       expect(failed).toBeGreaterThan(0); // Should have some failures due to rate limiting
-      
+
       console.log(`Rate limiting test: ${successful} successful, ${failed} rate-limited`);
     });
   });
@@ -306,7 +325,7 @@ describe('AI Features Performance Benchmarks', () => {
     it('should recover quickly from API errors', async () => {
       let errorThrown = false;
       const mockOpenAI = await import('openai');
-      
+
       vi.mocked(mockOpenAI.default).mockImplementation(() => ({
         chat: {
           completions: {
@@ -315,15 +334,15 @@ describe('AI Features Performance Benchmarks', () => {
                 errorThrown = true;
                 throw new Error('API temporarily unavailable');
               }
-              await new Promise(resolve => setTimeout(resolve, 200));
+              await new Promise((resolve) => setTimeout(resolve, 200));
               return mockOpenAIResponse;
-            })
-          }
-        }
+            }),
+          },
+        },
       }));
 
       const startTime = performance.now();
-      
+
       // First request should fail
       try {
         await curriculumImportService.parseWithAI('Test text 1');
@@ -334,45 +353,47 @@ describe('AI Features Performance Benchmarks', () => {
 
       // Second request should succeed
       const result = await curriculumImportService.parseWithAI('Test text 2');
-      
+
       const endTime = performance.now();
       const recoveryTime = endTime - startTime;
 
       expect(result).toHaveProperty('subject');
       expect(recoveryTime).toBeLessThan(3000); // Should recover within 3 seconds
-      
+
       console.log(`Error recovery took ${recoveryTime.toFixed(2)}ms`);
     });
 
     it('should handle malformed AI responses gracefully', async () => {
       const mockOpenAI = await import('openai');
-      
+
       vi.mocked(mockOpenAI.default).mockImplementation(() => ({
         chat: {
           completions: {
             create: vi.fn().mockResolvedValue({
-              choices: [{
-                message: {
-                  content: 'Invalid JSON response {malformed'
-                }
-              }]
-            })
-          }
-        }
+              choices: [
+                {
+                  message: {
+                    content: 'Invalid JSON response {malformed',
+                  },
+                },
+              ],
+            }),
+          },
+        },
       }));
 
       const startTime = performance.now();
-      
+
       try {
         await curriculumImportService.parseWithAI('Test curriculum text');
         expect.fail('Should have thrown an error for malformed response');
       } catch (error) {
         const endTime = performance.now();
         const errorHandlingTime = endTime - startTime;
-        
+
         expect(error).toBeDefined();
         expect(errorHandlingTime).toBeLessThan(1000); // Should fail fast
-        
+
         console.log(`Malformed response handling took ${errorHandlingTime.toFixed(2)}ms`);
       }
     });
@@ -385,19 +406,19 @@ describe('AI Features Performance Benchmarks', () => {
         materialExtractionThreshold: PERFORMANCE_THRESHOLDS.materialExtractionTime,
         batchProcessingThreshold: PERFORMANCE_THRESHOLDS.batchProcessingTime,
         concurrentRequestLimit: PERFORMANCE_THRESHOLDS.concurrentRequestLimit,
-        memorySafetyLimit: PERFORMANCE_THRESHOLDS.memorySafetyLimit
+        memorySafetyLimit: PERFORMANCE_THRESHOLDS.memorySafetyLimit,
       };
 
       // Verify all thresholds are reasonable
       expect(metrics.curriculumParsingThreshold).toBeGreaterThan(1000); // At least 1 second
       expect(metrics.curriculumParsingThreshold).toBeLessThan(30000); // Less than 30 seconds
-      
+
       expect(metrics.materialExtractionThreshold).toBeGreaterThan(500);
       expect(metrics.materialExtractionThreshold).toBeLessThan(10000);
-      
+
       expect(metrics.concurrentRequestLimit).toBeGreaterThan(5);
       expect(metrics.concurrentRequestLimit).toBeLessThan(50);
-      
+
       console.log('Performance thresholds configured:', metrics);
     });
 
@@ -407,23 +428,23 @@ describe('AI Features Performance Benchmarks', () => {
         successfulRequests: 0,
         failedRequests: 0,
         averageResponseTime: 0,
-        totalProcessingTime: 0
+        totalProcessingTime: 0,
       };
 
       const testRequests = [
         'Simple curriculum text',
         'Complex curriculum with multiple subjects',
-        'Material extraction test'
+        'Material extraction test',
       ];
 
       for (const request of testRequests) {
         const startTime = performance.now();
         usageStats.totalRequests++;
-        
+
         try {
           await curriculumImportService.parseWithAI(request);
           usageStats.successfulRequests++;
-          
+
           const endTime = performance.now();
           const requestTime = endTime - startTime;
           usageStats.totalProcessingTime += requestTime;
@@ -432,12 +453,13 @@ describe('AI Features Performance Benchmarks', () => {
         }
       }
 
-      usageStats.averageResponseTime = usageStats.totalProcessingTime / usageStats.successfulRequests;
+      usageStats.averageResponseTime =
+        usageStats.totalProcessingTime / usageStats.successfulRequests;
 
       expect(usageStats.totalRequests).toBe(testRequests.length);
       expect(usageStats.successfulRequests).toBeGreaterThan(0);
       expect(usageStats.averageResponseTime).toBeGreaterThan(0);
-      
+
       console.log('API usage statistics:', usageStats);
     });
   });
