@@ -106,7 +106,7 @@ router.post('/', validate(thematicUnitCreateSchema), async (req, res, next) => {
     outcomes = [],
     activities = [],
   } = req.body;
-  const userId = (req as AuthRequest).userId!;
+  const userId = parseInt((req as AuthRequest).user!.userId, 10);
 
   try {
     // Validate date range

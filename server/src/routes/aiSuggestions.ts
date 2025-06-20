@@ -16,7 +16,7 @@ const generateSuggestionSchema = z.object({
 router.post('/generate', authMiddleware, async (req: AuthRequest, res) => {
   try {
     const { outcomeId, theme, languageLevel } = generateSuggestionSchema.parse(req.body);
-    const userId = req.userId!;
+    const userId = parseInt(req.user!.userId, 10);
 
     const suggestion = await aiActivityGenerator.generateActivity({
       outcomeId,
@@ -58,7 +58,7 @@ const getUncoveredSchema = z.object({
 router.get('/uncovered', authMiddleware, async (req: AuthRequest, res) => {
   try {
     const params = getUncoveredSchema.parse(req.query);
-    const userId = req.userId!;
+    const userId = parseInt(req.user!.userId, 10);
 
     const uncoveredOutcomes = await aiActivityGenerator.getUncoveredOutcomes(
       userId,
@@ -110,7 +110,7 @@ const convertToActivitySchema = z.object({
 router.post('/convert-to-activity', authMiddleware, async (req: AuthRequest, res) => {
   try {
     const params = convertToActivitySchema.parse(req.body);
-    const userId = req.userId!;
+    const userId = parseInt(req.user!.userId, 10);
 
     const activity = await aiActivityGenerator.convertToActivity(params.suggestionId, userId, {
       milestoneId: params.milestoneId,
@@ -150,7 +150,7 @@ router.get('/suggestions/:id', authMiddleware, async (req: AuthRequest, res) => 
     }
 
     // Check if user owns this suggestion
-    if (suggestion.userId !== req.userId!) {
+    if (suggestion.userId !== parseInt(req.user!.userId, 10)) {
       return res.status(403).json({ error: 'Access denied' });
     }
 
@@ -187,7 +187,7 @@ router.delete('/suggestions/:id', authMiddleware, async (req: AuthRequest, res) 
       return res.status(404).json({ error: 'Suggestion not found' });
     }
 
-    if (suggestion.userId !== req.userId!) {
+    if (suggestion.userId !== parseInt(req.user!.userId, 10)) {
       return res.status(403).json({ error: 'Access denied' });
     }
 

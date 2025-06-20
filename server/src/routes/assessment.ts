@@ -13,7 +13,7 @@ const router = Router();
 // GET /api/assessments/templates - Get all assessment templates
 router.get('/templates', authMiddleware, async (req: AuthRequest, res, next) => {
   try {
-    const userId = req.userId!;
+    const userId = parseInt(req.user!.userId, 10);
 
     const templates = await prisma.assessmentTemplate.findMany({
       where: { userId },
@@ -54,7 +54,7 @@ router.post(
   validate(assessmentTemplateCreateSchema),
   async (req: AuthRequest, res, next) => {
     try {
-      const userId = req.userId!;
+      const userId = parseInt(req.user!.userId, 10);
       const { title, type, description, outcomeIds, rubricCriteria } = req.body;
 
       const template = await prisma.assessmentTemplate.create({
@@ -85,7 +85,7 @@ router.put(
   validate(assessmentTemplateUpdateSchema),
   async (req: AuthRequest, res, next) => {
     try {
-      const userId = req.userId!;
+      const userId = parseInt(req.user!.userId, 10);
       const { id } = req.params;
       const updateData = { ...req.body };
 
@@ -114,7 +114,7 @@ router.put(
 // DELETE /api/assessments/templates/:id - Delete assessment template
 router.delete('/templates/:id', authMiddleware, async (req: AuthRequest, res, next) => {
   try {
-    const userId = req.userId!;
+    const userId = parseInt(req.user!.userId, 10);
     const { id } = req.params;
 
     // Delete associated results first

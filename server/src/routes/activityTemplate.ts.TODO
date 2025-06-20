@@ -1,0 +1,195 @@
+// TODO: Complete these endpoints after ActivityTemplate model is added to database
+
+import { Router, Request } from 'express';
+import { prisma } from '../prisma';
+
+interface AuthenticatedRequest extends Request {
+  user?: { userId: string };
+}
+
+const router = Router();
+
+/**
+ * PUT /api/activity-templates/templates/:id
+ * Update an existing activity template
+ * 
+ * @requires Authentication
+ * @requires User must own the template
+ */
+router.put('/templates/:id', async (req: AuthenticatedRequest, res, next) => {
+  try {
+    const templateId = parseInt(req.params.id, 10);
+    const userId = parseInt(req.user?.userId || '0', 10);
+
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    // TODO: Uncomment when ActivityTemplate model exists
+    /*
+    // Check if template exists and user owns it
+    const existingTemplate = await prisma.activityTemplate.findFirst({
+      where: {
+        id: templateId,
+        createdBy: userId,
+      },
+    });
+
+    if (!existingTemplate) {
+      return res.status(404).json({ error: 'Template not found or unauthorized' });
+    }
+
+    // Update the template
+    const updatedTemplate = await prisma.activityTemplate.update({
+      where: { id: templateId },
+      data: {
+        titleFr: req.body.titleFr,
+        titleEn: req.body.titleEn,
+        descriptionFr: req.body.descriptionFr,
+        descriptionEn: req.body.descriptionEn,
+        domain: req.body.domain,
+        subject: req.body.subject,
+        outcomeIds: req.body.outcomeIds || [],
+        materialsFr: req.body.materialsFr,
+        materialsEn: req.body.materialsEn,
+        prepTimeMin: req.body.prepTimeMin,
+        groupType: req.body.groupType,
+        themeId: req.body.themeId,
+        updatedAt: new Date(),
+      },
+      include: {
+        theme: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
+
+    res.json(updatedTemplate);
+    */
+
+    // Temporary response
+    res.status(501).json({ 
+      error: 'Not implemented', 
+      message: 'ActivityTemplate model needs to be added to database schema' 
+    });
+  } catch (err) {
+    console.error('Error in PUT /api/activity-templates/templates/:id:', err);
+    next(err);
+  }
+});
+
+/**
+ * DELETE /api/activity-templates/templates/:id
+ * Delete an activity template (soft delete recommended)
+ * 
+ * @requires Authentication
+ * @requires User must own the template
+ */
+router.delete('/templates/:id', async (req: AuthenticatedRequest, res, next) => {
+  try {
+    const templateId = parseInt(req.params.id, 10);
+    const userId = parseInt(req.user?.userId || '0', 10);
+
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    // TODO: Uncomment when ActivityTemplate model exists
+    /*
+    // Check if template exists and user owns it
+    const existingTemplate = await prisma.activityTemplate.findFirst({
+      where: {
+        id: templateId,
+        createdBy: userId,
+      },
+    });
+
+    if (!existingTemplate) {
+      return res.status(404).json({ error: 'Template not found or unauthorized' });
+    }
+
+    // Option 1: Soft delete (add deletedAt field to model)
+    // const deletedTemplate = await prisma.activityTemplate.update({
+    //   where: { id: templateId },
+    //   data: { deletedAt: new Date() },
+    // });
+
+    // Option 2: Hard delete
+    await prisma.activityTemplate.delete({
+      where: { id: templateId },
+    });
+
+    res.json({ success: true, message: 'Template deleted successfully' });
+    */
+
+    // Temporary response
+    res.status(501).json({ 
+      error: 'Not implemented', 
+      message: 'ActivityTemplate model needs to be added to database schema' 
+    });
+  } catch (err) {
+    console.error('Error in DELETE /api/activity-templates/templates/:id:', err);
+    next(err);
+  }
+});
+
+/**
+ * GET /api/activity-templates/templates/:id
+ * Get a single activity template by ID
+ * 
+ * @requires Authentication
+ */
+router.get('/templates/:id', async (req: AuthenticatedRequest, res, next) => {
+  try {
+    const templateId = parseInt(req.params.id, 10);
+    const userId = parseInt(req.user?.userId || '0', 10);
+
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    // TODO: Uncomment when ActivityTemplate model exists
+    /*
+    const template = await prisma.activityTemplate.findFirst({
+      where: {
+        id: templateId,
+        // Either public or owned by user
+        OR: [
+          { createdBy: userId },
+          { isPublic: true }, // If you add a public flag
+        ],
+      },
+      include: {
+        theme: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
+
+    if (!template) {
+      return res.status(404).json({ error: 'Template not found' });
+    }
+
+    res.json(template);
+    */
+
+    // Temporary response
+    res.status(501).json({ 
+      error: 'Not implemented', 
+      message: 'ActivityTemplate model needs to be added to database schema' 
+    });
+  } catch (err) {
+    console.error('Error in GET /api/activity-templates/templates/:id:', err);
+    next(err);
+  }
+});
+
+export default router;

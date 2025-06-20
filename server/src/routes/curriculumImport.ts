@@ -14,12 +14,15 @@ router.post('/upload', auth, uploadMiddleware.single('document'), async (req, re
       return res.status(400).json({ error: 'No file uploaded' });
     }
 
-    if (!req.user?.id) {
+    if (!req.user?.userId) {
       return res.status(401).json({ error: 'User not authenticated' });
     }
 
-    const importId = await curriculumImportService.uploadDocument(req.file, req.user.id);
-    
+    const importId = await curriculumImportService.uploadDocument(
+      req.file,
+      parseInt(req.user.userId, 10),
+    );
+
     res.json({
       success: true,
       importId,
@@ -44,11 +47,14 @@ router.get('/:id/status', auth, async (req, res) => {
       return res.status(400).json({ error: 'Invalid import ID' });
     }
 
-    if (!req.user?.id) {
+    if (!req.user?.userId) {
       return res.status(401).json({ error: 'User not authenticated' });
     }
 
-    const status = await curriculumImportService.getImportStatus(importId, req.user.id);
+    const status = await curriculumImportService.getImportStatus(
+      importId,
+      parseInt(req.user.userId, 10),
+    );
     res.json(status);
   } catch (error) {
     console.error('Status check error:', error);
@@ -72,7 +78,7 @@ router.post('/:id/confirm', auth, async (req, res) => {
       return res.status(400).json({ error: 'Invalid import ID' });
     }
 
-    if (!req.user?.id) {
+    if (!req.user?.userId) {
       return res.status(401).json({ error: 'User not authenticated' });
     }
 
@@ -82,11 +88,19 @@ router.post('/:id/confirm', auth, async (req, res) => {
     }
 
     // Validate reviewed data structure
-    if (!reviewedData.subject || typeof reviewedData.grade !== 'number' || !Array.isArray(reviewedData.outcomes)) {
+    if (
+      !reviewedData.subject ||
+      typeof reviewedData.grade !== 'number' ||
+      !Array.isArray(reviewedData.outcomes)
+    ) {
       return res.status(400).json({ error: 'Invalid curriculum data format' });
     }
 
-    const result = await curriculumImportService.confirmImport(importId, req.user.id, reviewedData);
+    const result = await curriculumImportService.confirmImport(
+      importId,
+      parseInt(req.user.userId, 10),
+      reviewedData,
+    );
     res.json(result);
   } catch (error) {
     console.error('Confirm import error:', error);
@@ -110,11 +124,11 @@ router.post('/:id/confirm', auth, async (req, res) => {
  */
 router.get('/history', auth, async (req, res) => {
   try {
-    if (!req.user?.id) {
+    if (!req.user?.userId) {
       return res.status(401).json({ error: 'User not authenticated' });
     }
 
-    const imports = await curriculumImportService.getUserImports(req.user.id);
+    const imports = await curriculumImportService.getUserImports(parseInt(req.user.userId, 10));
     res.json(imports);
   } catch (error) {
     console.error('Import history error:', error);
@@ -135,7 +149,7 @@ router.delete('/:id', auth, async (req, res) => {
       return res.status(400).json({ error: 'Invalid import ID' });
     }
 
-    if (!req.user?.id) {
+    if (!req.user?.userId) {
       return res.status(401).json({ error: 'User not authenticated' });
     }
 
