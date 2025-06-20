@@ -61,6 +61,7 @@ interface TimetableSetupWizardProps {
 
 export function TimetableSetupWizard({ isOpen, onClose, onSuccess }: TimetableSetupWizardProps) {
   const [currentStep, setCurrentStep] = useState<'template' | 'customize' | 'review'>('template');
+  const [, setSelectedTemplate] = useState<number | null>(null);
   const [customSlots, setCustomSlots] = useState<TimeSlot[]>([]);
   const [editingSlot, setEditingSlot] = useState<TimeSlot | null>(null);
 
