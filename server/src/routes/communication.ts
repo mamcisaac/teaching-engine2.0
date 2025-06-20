@@ -244,7 +244,7 @@ router.post('/send-bulk', async (req: AuthenticatedRequest, res, next) => {
     // Mock implementation for testing
     const results = data.recipients.map(recipient => ({
       email: recipient.email,
-      status: 'sent' as const,
+      status: 'sent' as 'sent' | 'failed' | 'pending',
       timestamp: new Date().toISOString(),
       messageId: `msg_${Date.now()}_${Math.random().toString(36).substring(7)}`,
     }));
