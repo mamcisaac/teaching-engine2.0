@@ -182,6 +182,26 @@ export default function MainLayout({ children }: MainLayoutProps) {
         </svg>
       ),
     },
+    {
+      path: '/analytics',
+      label: 'Analytics',
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+          />
+        </svg>
+      ),
+    },
   ];
 
   // Secondary navigation items
@@ -439,9 +459,22 @@ export default function MainLayout({ children }: MainLayoutProps) {
         <div className="bg-white shadow-sm p-4 flex justify-between items-center">
           <div className="text-xl font-semibold">
             {/* Current page title based on route */}
-            {navItems.find((item) => location.pathname.startsWith(item.path))?.label ||
-              secondaryNavItems.find((item) => location.pathname.startsWith(item.path))?.label ||
-              'Dashboard'}
+            {(() => {
+              // Check for exact analytics match
+              if (location.pathname === '/analytics') {
+                return 'Analytics';
+              }
+              // Check primary nav items
+              const primaryMatch = navItems.find((item) => location.pathname.startsWith(item.path));
+              if (primaryMatch) return primaryMatch.label;
+              // Check secondary nav items
+              const secondaryMatch = secondaryNavItems.find((item) =>
+                location.pathname.startsWith(item.path),
+              );
+              if (secondaryMatch) return secondaryMatch.label;
+              // Default
+              return 'Dashboard';
+            })()}
           </div>
           <div className="flex items-center space-x-4">
             <LanguageSwitcher />

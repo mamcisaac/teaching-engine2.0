@@ -16,7 +16,11 @@
     "isolatedModules": true,
     "noEmit": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": ["vite/client", "node", "vitest/globals"]
+    "types": ["vite/client", "node", "vitest/globals", "@testing-library/jest-dom"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src/**/*", "vite.config.ts", "tests/**/*.ts", "tests/**/*.tsx", "vitest.d.ts"],
   "exclude": ["node_modules"]

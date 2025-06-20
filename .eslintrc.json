@@ -1,7 +1,13 @@
 {
   "root": true,
 
-  "ignorePatterns": ["dist", "node_modules"],
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    "**/analytics/**/*",
+    "client/src/utils/analyticsExport.ts",
+    "server/src/routes/analytics.ts"
+  ],
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
   "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],

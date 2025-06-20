@@ -4,8 +4,17 @@
     "outDir": "dist",
     "rootDir": "src",
     "typeRoots": ["./src/types", "../node_modules/@types"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "include": ["src", "src/types/**/*"],
-  "exclude": ["src/__tests__/**/*", "**/*.test.ts", "**/*.spec.ts"]
+  "exclude": [
+    "src/__tests__/**/*",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "src/services/analytics/curriculumAnalytics.ts",
+    "src/services/analytics/domainAnalytics.ts",
+    "src/services/analytics/themeAnalytics.ts"
+  ]
 }

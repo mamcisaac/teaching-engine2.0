@@ -75,6 +75,7 @@ import curriculumImportRoutes from './routes/curriculumImport';
 import embeddingRoutes from './routes/embedding';
 import enhancedPlanningRoutes from './routes/enhancedPlanning';
 import enhancedMaterialRoutes from './routes/enhancedMaterial';
+import analyticsRoutes from './routes/analytics';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
@@ -286,6 +287,9 @@ app.use('/api/curriculum-import', authenticateToken, curriculumImportRoutes);
 app.use('/api/embeddings', authenticateToken, embeddingRoutes);
 app.use('/api/enhanced-planning', authenticateToken, enhancedPlanningRoutes);
 app.use('/api/enhanced-materials', authenticateToken, enhancedMaterialRoutes);
+
+// Analytics Routes
+app.use('/api/analytics', authenticateToken, analyticsRoutes);
 
 // Service health check endpoint (no auth required for monitoring)
 app.get('/api/health/services', async (_req, res) => {
