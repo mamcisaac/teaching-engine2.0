@@ -5,6 +5,7 @@ import {
   generateMaterialDetails,
   zipWeeklyPrintables,
 } from '../services/materialGenerator';
+import { smartMaterialExtractor } from '../services/smartMaterialExtractor';
 
 const router = Router();
 
@@ -71,6 +72,25 @@ router.get('/:weekStart/zip', async (req, res, next) => {
     res.set('Content-Type', 'application/zip');
     res.set('Content-Disposition', 'attachment; filename="printables.zip"');
     res.send(zip);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Smart material planning endpoints
+router.get('/:weekStart/smart-plan', async (req, res, next) => {
+  try {
+    const plan = await smartMaterialExtractor.generateWeeklyMaterialPlan(req.params.weekStart);
+    res.json(plan);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/:weekStart/auto-update', async (req, res, next) => {
+  try {
+    await smartMaterialExtractor.autoUpdateMaterialList(req.params.weekStart);
+    res.json({ success: true, message: 'Material list updated with smart extraction' });
   } catch (err) {
     next(err);
   }

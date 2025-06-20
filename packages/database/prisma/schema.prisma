@@ -279,6 +279,7 @@ model User {
   activityTemplates ActivityTemplate[]
   teacherReflections TeacherReflection[]
   milestoneAlerts MilestoneAlert[]
+  curriculumImports CurriculumImport[]
 }
 
 enum ActivityType {
@@ -813,4 +814,31 @@ model MilestoneAlert {
   updatedAt   DateTime @updatedAt
   @@index([userId, isRead])
   @@index([userId, milestoneId])
+}
+
+enum ImportStatus {
+  UPLOADING
+  PROCESSING
+  READY_FOR_REVIEW
+  CONFIRMED
+  FAILED
+}
+
+model CurriculumImport {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
+  filename    String
+  originalName String
+  mimeType    String
+  fileSize    Int
+  filePath    String   // Path to uploaded file
+  status      ImportStatus @default(UPLOADING)
+  rawText     String?  // Extracted text from document
+  parsedData  String?  // JSON string of parsed curriculum data
+  errorMessage String? // Error details if parsing fails
+  processedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  @@index([userId, status])
 }
