@@ -116,8 +116,8 @@ export async function shutdownServices(): Promise<void> {
  */
 export async function getServiceHealth(): Promise<{
   healthy: boolean;
-  services: any[];
-  metrics: any[];
+  services: unknown[];
+  metrics: unknown[];
 }> {
   const healthStatus = await serviceRegistry.getHealthStatus();
   const metrics = serviceRegistry.getAllMetrics();

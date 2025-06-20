@@ -215,8 +215,8 @@ export class EmbeddingService extends BaseService {
         }
 
         return response.data[0].embedding;
-      } catch (error: any) {
-        this.logger.warn({ error: error.message, attempt, maxRetries: this.maxRetries }, 
+      } catch (error: unknown) {
+        this.logger.warn({ error: error instanceof Error ? error.message : String(error), attempt, maxRetries: this.maxRetries }, 
           'Embedding generation attempt failed');
 
         if (attempt === this.maxRetries) {

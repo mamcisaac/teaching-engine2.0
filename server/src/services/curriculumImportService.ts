@@ -182,7 +182,7 @@ export class CurriculumImportService extends BaseService {
   /**
    * Extract outcomes from PDF (placeholder for future implementation)
    */
-  async parsePDF(filePath: string): Promise<ImportOutcome[]> {
+  async parsePDF(_filePath: string): Promise<ImportOutcome[]> {
     // TODO: Implement PDF parsing using pdf-parse or similar library
     this.logger.warn('PDF parsing not yet implemented');
     throw new Error('PDF parsing is not yet implemented. Please use CSV format or manual entry.');
@@ -191,7 +191,7 @@ export class CurriculumImportService extends BaseService {
   /**
    * Extract outcomes from DOCX (placeholder for future implementation)
    */
-  async parseDOCX(filePath: string): Promise<ImportOutcome[]> {
+  async parseDOCX(_filePath: string): Promise<ImportOutcome[]> {
     // TODO: Implement DOCX parsing using mammoth or similar library
     this.logger.warn('DOCX parsing not yet implemented');
     throw new Error('DOCX parsing is not yet implemented. Please use CSV format or manual entry.');
@@ -364,7 +364,7 @@ export class CurriculumImportService extends BaseService {
   }
 
   private async updateImportStatus(importId: string, status: ImportStatus, totalOutcomes?: number): Promise<void> {
-    const updateData: any = { status };
+    const updateData: unknown = { status };
     if (totalOutcomes !== undefined) {
       updateData.totalOutcomes = totalOutcomes;
     }
