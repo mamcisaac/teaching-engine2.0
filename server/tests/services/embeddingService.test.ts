@@ -1,17 +1,7 @@
-import { describe, it, expect, beforeEach, afterEach } from '@jest/globals';
+import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
 import { EmbeddingService } from '../../src/services/embeddingService';
-
-// Mock OpenAI
-jest.mock('../../src/services/llmService', () => ({
-  openai: {
-    embeddings: {
-      create: jest.fn(),
-    },
-  },
-}));
-
-// Import the mocked openai after mocking
 import { openai } from '../../src/services/llmService';
+import { prisma as mockPrisma } from '../../src/prisma';
 
 describe('EmbeddingService', () => {
   let embeddingService: EmbeddingService;
@@ -34,7 +24,7 @@ describe('EmbeddingService', () => {
     it('should generate and store a new embedding', async () => {
       // Mock no existing embedding
       (mockPrisma.outcomeEmbedding.findUnique as jest.Mock).mockResolvedValue(null);
-      
+
       // Mock OpenAI response
       (mockOpenAI.embeddings.create as jest.Mock).mockResolvedValue({
         data: [{ embedding: mockEmbedding }],
@@ -93,7 +83,9 @@ describe('EmbeddingService', () => {
 
     it('should return null when OpenAI is not configured', async () => {
       // Temporarily set openai to null
-      (embeddingService as unknown as { generateEmbeddingVector: () => Promise<null> }).generateEmbeddingVector = async () => null;
+      (
+        embeddingService as unknown as { generateEmbeddingVector: () => Promise<null> }
+      ).generateEmbeddingVector = async () => null;
 
       const result = await embeddingService.generateEmbedding(outcomeId, text);
 
@@ -101,7 +93,9 @@ describe('EmbeddingService', () => {
     });
 
     it('should handle errors gracefully', async () => {
-      (mockPrisma.outcomeEmbedding.findUnique as jest.Mock).mockRejectedValue(new Error('Database error'));
+      (mockPrisma.outcomeEmbedding.findUnique as jest.Mock).mockRejectedValue(
+        new Error('Database error'),
+      );
 
       const result = await embeddingService.generateEmbedding(outcomeId, text);
 
@@ -119,7 +113,7 @@ describe('EmbeddingService', () => {
     it('should process outcomes in batches', async () => {
       // Mock no existing embeddings
       (mockPrisma.outcomeEmbedding.findMany as jest.Mock).mockResolvedValue([]);
-      
+
       // Mock OpenAI batch response
       (mockOpenAI.embeddings.create as jest.Mock).mockResolvedValue({
         data: outcomes.map(() => ({ embedding: Array(1536).fill(0.1) })),
@@ -149,10 +143,7 @@ describe('EmbeddingService', () => {
 
       // Mock OpenAI response for remaining outcomes
       (mockOpenAI.embeddings.create as jest.Mock).mockResolvedValue({
-        data: [
-          { embedding: Array(1536).fill(0.2) },
-          { embedding: Array(1536).fill(0.3) },
-        ],
+        data: [{ embedding: Array(1536).fill(0.2) }, { embedding: Array(1536).fill(0.3) }],
         usage: { total_tokens: 20 },
       });
 
@@ -173,33 +164,33 @@ describe('EmbeddingService', () => {
     it('should calculate cosine similarity correctly', () => {
       const embedding1 = [1, 0, 0];
       const embedding2 = [0, 1, 0];
-      
+
       const similarity = embeddingService.calculateSimilarity(embedding1, embedding2);
-      
+
       expect(similarity).toBe(0); // Orthogonal vectors
     });
 
     it('should return 1 for identical embeddings', () => {
       const embedding = [0.5, 0.5, 0.5];
-      
+
       const similarity = embeddingService.calculateSimilarity(embedding, embedding);
-      
+
       expect(similarity).toBeCloseTo(1, 10);
     });
 
     it('should handle zero vectors', () => {
       const embedding1 = [0, 0, 0];
       const embedding2 = [1, 1, 1];
-      
+
       const similarity = embeddingService.calculateSimilarity(embedding1, embedding2);
-      
+
       expect(similarity).toBe(0);
     });
 
     it('should throw error for embeddings of different lengths', () => {
       const embedding1 = [1, 2, 3];
       const embedding2 = [1, 2];
-      
+
       expect(() => {
         embeddingService.calculateSimilarity(embedding1, embedding2);
       }).toThrow('Embeddings must have the same length');
@@ -244,10 +235,12 @@ describe('EmbeddingService', () => {
       });
 
       // Mock many similar embeddings
-      const manyEmbeddings = Array(20).fill(null).map((_, i) => ({
-        outcomeId: `outcome-${i}`,
-        embedding: [0.9 + i * 0.001, 0.1, 0], // Slightly different similarities
-      }));
+      const manyEmbeddings = Array(20)
+        .fill(null)
+        .map((_, i) => ({
+          outcomeId: `outcome-${i}`,
+          embedding: [0.9 + i * 0.001, 0.1, 0], // Slightly different similarities
+        }));
 
       (mockPrisma.outcomeEmbedding.findMany as jest.Mock).mockResolvedValue(manyEmbeddings);
 
@@ -270,7 +263,9 @@ describe('EmbeddingService', () => {
     });
 
     it('should handle cleanup errors gracefully', async () => {
-      (mockPrisma.outcomeEmbedding.deleteMany as jest.Mock).mockRejectedValue(new Error('Database error'));
+      (mockPrisma.outcomeEmbedding.deleteMany as jest.Mock).mockRejectedValue(
+        new Error('Database error'),
+      );
 
       const count = await embeddingService.cleanupOldEmbeddings('text-embedding-3-small');
 
@@ -299,7 +294,9 @@ describe('EmbeddingService', () => {
     });
 
     it('should handle errors gracefully', async () => {
-      (mockPrisma.outcomeEmbedding.findUnique as jest.Mock).mockRejectedValue(new Error('Database error'));
+      (mockPrisma.outcomeEmbedding.findUnique as jest.Mock).mockRejectedValue(
+        new Error('Database error'),
+      );
 
       const result = await embeddingService.getEmbedding('outcome-123');
 

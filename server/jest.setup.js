@@ -8,6 +8,7 @@ process.env.NODE_ENV = 'test';
 
 // Set DATABASE_URL with a consistent default for both local and CI
 // In CI, this can be overridden by the workflow file if needed
+// Use a relative path that works from the server directory
 process.env.DATABASE_URL = process.env.DATABASE_URL || 'file:../packages/database/prisma/test.db';
 
 // Set other required environment variables for tests

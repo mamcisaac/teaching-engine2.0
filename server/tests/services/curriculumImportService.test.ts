@@ -1,29 +1,8 @@
 import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
 import { CurriculumImportService } from '../../src/services/curriculumImportService';
+import { ImportStatus } from '@teaching-engine/database';
 import { embeddingService } from '../../src/services/embeddingService';
 import { prisma } from '../../src/prisma';
-import { ImportStatus } from '@teaching-engine/database';
-
-// Mock dependencies
-jest.mock('../../src/services/embeddingService');
-jest.mock('../../src/prisma', () => ({
-  prisma: {
-    curriculumImport: {
-      create: jest.fn(),
-      update: jest.fn(),
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-    },
-    outcome: {
-      create: jest.fn(),
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-    },
-    outcomeCluster: {
-      create: jest.fn(),
-    },
-  },
-}));
 
 describe('CurriculumImportService', () => {
   let curriculumImportService: CurriculumImportService;
@@ -69,9 +48,13 @@ describe('CurriculumImportService', () => {
     });
 
     it('should handle errors during import creation', async () => {
-      (mockPrisma.curriculumImport.create as jest.Mock).mockRejectedValue(new Error('Database error'));
+      (mockPrisma.curriculumImport.create as jest.Mock).mockRejectedValue(
+        new Error('Database error'),
+      );
 
-      await expect(curriculumImportService.startImport(1, 5, 'MATH', 'csv')).rejects.toThrow('Failed to start import session');
+      await expect(curriculumImportService.startImport(1, 5, 'MATH', 'csv')).rejects.toThrow(
+        'Failed to start import session',
+      );
     });
   });
 
@@ -136,7 +119,9 @@ M1.2,Add single digits,MATH,1,Number`;
       const csvContent = `name,value
 Test,123`;
 
-      expect(() => curriculumImportService.parseCSV(csvContent)).toThrow('CSV must contain "code" and "description" columns');
+      expect(() => curriculumImportService.parseCSV(csvContent)).toThrow(
+        'CSV must contain "code" and "description" columns',
+      );
     });
   });
 
@@ -144,16 +129,22 @@ Test,123`;
     const importId = 'import-123';
     const testOutcomes = [
       { code: 'M1.1', description: 'Count to 100', subject: 'MATH', grade: 1, domain: 'Number' },
-      { code: 'M1.2', description: 'Add single digits', subject: 'MATH', grade: 1, domain: 'Number' },
+      {
+        code: 'M1.2',
+        description: 'Add single digits',
+        subject: 'MATH',
+        grade: 1,
+        domain: 'Number',
+      },
     ];
 
     beforeEach(() => {
       // Mock update status calls
       (mockPrisma.curriculumImport.update as jest.Mock).mockResolvedValue({});
-      
+
       // Mock embedding service
       (mockEmbeddingService.generateBatchEmbeddings as jest.Mock).mockResolvedValue([]);
-      
+
       // Mock cluster creation
       (mockPrisma.outcomeCluster.create as jest.Mock).mockResolvedValue({
         id: 'cluster-1',
@@ -165,7 +156,7 @@ Test,123`;
     it('should process outcomes successfully', async () => {
       // Mock no existing outcomes
       (mockPrisma.outcome.findUnique as jest.Mock).mockResolvedValue(null);
-      
+
       // Mock outcome creation
       (mockPrisma.outcome.create as jest.Mock)
         .mockResolvedValueOnce({ id: 'outcome-1', code: 'M1.1' })
@@ -227,17 +218,19 @@ Test,123`;
 
     it('should process outcomes in batches', async () => {
       // Create 60 test outcomes (more than batch size of 50)
-      const manyOutcomes = Array(60).fill(null).map((_, i) => ({
-        code: `M1.${i}`,
-        description: `Outcome ${i}`,
-        subject: 'MATH',
-        grade: 1,
-        domain: 'Number',
-      }));
+      const manyOutcomes = Array(60)
+        .fill(null)
+        .map((_, i) => ({
+          code: `M1.${i}`,
+          description: `Outcome ${i}`,
+          subject: 'MATH',
+          grade: 1,
+          domain: 'Number',
+        }));
 
       (mockPrisma.outcome.findUnique as jest.Mock).mockResolvedValue(null);
-      (mockPrisma.outcome.create as jest.Mock).mockImplementation((args) => 
-        Promise.resolve({ id: `outcome-${args.data.code}`, code: args.data.code })
+      (mockPrisma.outcome.create as jest.Mock).mockImplementation((args) =>
+        Promise.resolve({ id: `outcome-${args.data.code}`, code: args.data.code }),
       );
 
       const result = await curriculumImportService.processImport(importId, manyOutcomes);
@@ -383,9 +376,10 @@ M1.2,"Add & subtract (with symbols)",MATH,1,Number`;
     it('should handle very large CSV files', () => {
       // Generate CSV with 1000 rows
       const headers = 'code,description,subject,grade,domain\n';
-      const rows = Array(1000).fill(null).map((_, i) => 
-        `M${i}.1,Description ${i},MATH,${(i % 12) + 1},Domain`
-      ).join('\n');
+      const rows = Array(1000)
+        .fill(null)
+        .map((_, i) => `M${i}.1,Description ${i},MATH,${(i % 12) + 1},Domain`)
+        .join('\n');
       const csvContent = headers + rows;
 
       const outcomes = curriculumImportService.parseCSV(csvContent);

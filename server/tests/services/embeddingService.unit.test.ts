@@ -1,43 +1,21 @@
-import { describe, it, expect, beforeEach } from '@jest/globals';
+import { describe, it, expect, jest, beforeEach } from '@jest/globals';
 import { EmbeddingService } from '../../src/services/embeddingService';
-
-// Mock the entire Prisma module
-jest.mock('../../src/prisma', () => ({
-  prisma: {
-    outcomeEmbedding: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      deleteMany: jest.fn(),
-    },
-  },
-}));
-
-// Mock OpenAI
-jest.mock('../../src/services/llmService', () => ({
-  openai: {
-    embeddings: {
-      create: jest.fn(),
-    },
-  },
-}));
 
 describe('EmbeddingService Unit Tests', () => {
   let embeddingService: EmbeddingService;
   let mockPrisma: unknown;
   let mockOpenAI: unknown;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     // Clear all mocks
     jest.clearAllMocks();
-    
+
     // Get mocked instances
     const { prisma } = await import('../../src/prisma');
     const { openai } = await import('../../src/services/llmService');
     mockPrisma = prisma;
     mockOpenAI = openai;
-    
+
     // Create service instance
     embeddingService = new EmbeddingService();
   });
@@ -46,33 +24,33 @@ describe('EmbeddingService Unit Tests', () => {
     it('should calculate cosine similarity correctly', () => {
       const embedding1 = [1, 0, 0];
       const embedding2 = [0, 1, 0];
-      
+
       const similarity = embeddingService.calculateSimilarity(embedding1, embedding2);
-      
+
       expect(similarity).toBe(0); // Orthogonal vectors
     });
 
     it('should return 1 for identical embeddings', () => {
       const embedding = [0.5, 0.5, 0.5];
-      
+
       const similarity = embeddingService.calculateSimilarity(embedding, embedding);
-      
+
       expect(similarity).toBeCloseTo(1, 10);
     });
 
     it('should handle zero vectors', () => {
       const embedding1 = [0, 0, 0];
       const embedding2 = [1, 1, 1];
-      
+
       const similarity = embeddingService.calculateSimilarity(embedding1, embedding2);
-      
+
       expect(similarity).toBe(0);
     });
 
     it('should throw error for embeddings of different lengths', () => {
       const embedding1 = [1, 2, 3];
       const embedding2 = [1, 2];
-      
+
       expect(() => {
         embeddingService.calculateSimilarity(embedding1, embedding2);
       }).toThrow('Embeddings must have the same length');
@@ -82,9 +60,9 @@ describe('EmbeddingService Unit Tests', () => {
       // Simulated embeddings for similar concepts
       const mathEmbedding1 = [0.8, 0.2, 0.1, 0.05];
       const mathEmbedding2 = [0.75, 0.25, 0.15, 0.1];
-      
+
       const similarity = embeddingService.calculateSimilarity(mathEmbedding1, mathEmbedding2);
-      
+
       expect(similarity).toBeGreaterThan(0.9); // High similarity
     });
   });
@@ -97,7 +75,7 @@ describe('EmbeddingService Unit Tests', () => {
     it('should generate and store a new embedding', async () => {
       // Mock no existing embedding
       mockPrisma.outcomeEmbedding.findUnique.mockResolvedValue(null);
-      
+
       // Mock OpenAI response
       mockOpenAI.embeddings.create.mockResolvedValue({
         data: [{ embedding: mockEmbedding }],
@@ -193,10 +171,12 @@ describe('EmbeddingService Unit Tests', () => {
       });
 
       // Mock many similar embeddings
-      const manyEmbeddings = Array(20).fill(null).map((_, i) => ({
-        outcomeId: `outcome-${i}`,
-        embedding: [0.9 - i * 0.01, 0.1, 0], // Slightly different similarities
-      }));
+      const manyEmbeddings = Array(20)
+        .fill(null)
+        .map((_, i) => ({
+          outcomeId: `outcome-${i}`,
+          embedding: [0.9 - i * 0.01, 0.1, 0], // Slightly different similarities
+        }));
 
       mockPrisma.outcomeEmbedding.findMany.mockResolvedValue(manyEmbeddings);
 
@@ -218,7 +198,7 @@ describe('EmbeddingService Unit Tests', () => {
     it('should process new outcomes in batch', async () => {
       // Mock no existing embeddings
       mockPrisma.outcomeEmbedding.findMany.mockResolvedValue([]);
-      
+
       // Mock OpenAI batch response
       mockOpenAI.embeddings.create.mockResolvedValue({
         data: outcomes.map(() => ({ embedding: Array(1536).fill(0.1) })),
@@ -250,10 +230,7 @@ describe('EmbeddingService Unit Tests', () => {
 
       // Mock OpenAI response for remaining outcomes
       mockOpenAI.embeddings.create.mockResolvedValue({
-        data: [
-          { embedding: Array(1536).fill(0.2) },
-          { embedding: Array(1536).fill(0.3) },
-        ],
+        data: [{ embedding: Array(1536).fill(0.2) }, { embedding: Array(1536).fill(0.3) }],
         usage: { total_tokens: 20 },
       });
 
@@ -271,10 +248,12 @@ describe('EmbeddingService Unit Tests', () => {
 
     it('should handle batches larger than API limit', async () => {
       // Create 150 outcomes (more than batch size of 100)
-      const manyOutcomes = Array(150).fill(null).map((_, i) => ({
-        id: `outcome-${i}`,
-        text: `Text ${i}`,
-      }));
+      const manyOutcomes = Array(150)
+        .fill(null)
+        .map((_, i) => ({
+          id: `outcome-${i}`,
+          text: `Text ${i}`,
+        }));
 
       mockPrisma.outcomeEmbedding.findMany.mockResolvedValue([]);
       mockOpenAI.embeddings.create.mockResolvedValue({

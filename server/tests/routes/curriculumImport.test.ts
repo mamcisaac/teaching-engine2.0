@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { describe, it, expect, beforeEach, afterEach } from '@jest/globals';
+import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
 import { app } from '../../src/index';
 import { getTestPrismaClient } from '../jest.setup';
 import jwt from 'jsonwebtoken';
@@ -17,7 +17,7 @@ describe('Curriculum Import Routes', () => {
 
   beforeEach(async () => {
     prisma = getTestPrismaClient();
-    
+
     // Create test user and generate auth token
     const user = await prisma.user.create({
       data: {
@@ -64,18 +64,16 @@ describe('Curriculum Import Routes', () => {
         expect.any(Number), // userId
         5,
         'MATH',
-        'csv'
+        'csv',
       );
     });
 
     it('should require authentication', async () => {
-      const response = await request(app)
-        .post('/api/curriculum-import/start')
-        .send({
-          grade: 5,
-          subject: 'MATH',
-          sourceFormat: 'csv',
-        });
+      const response = await request(app).post('/api/curriculum-import/start').send({
+        grade: 5,
+        subject: 'MATH',
+        sourceFormat: 'csv',
+      });
 
       expect(response.status).toBe(401);
     });
@@ -97,7 +95,7 @@ describe('Curriculum Import Routes', () => {
   describe('POST /api/curriculum-import/:importId/upload', () => {
     it('should process CSV file upload', async () => {
       const csvContent = 'code,description,subject,grade,domain\nM1.1,Count to 100,MATH,1,Number';
-      
+
       mockCurriculumImportService.parseCSV.mockReturnValue([
         { code: 'M1.1', description: 'Count to 100', subject: 'MATH', grade: 1, domain: 'Number' },
       ]);
@@ -280,7 +278,7 @@ describe('Curriculum Import Routes', () => {
       expect(response.body).toHaveLength(1);
       expect(mockCurriculumImportService.getImportHistory).toHaveBeenCalledWith(
         expect.any(Number),
-        10
+        10,
       );
     });
   });
