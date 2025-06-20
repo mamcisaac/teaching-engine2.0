@@ -21,7 +21,7 @@ export async function initializeServices(): Promise<void> {
       instance: cacheService,
       dependencies: [],
       singleton: true,
-      healthCheckInterval: 5 * 60 * 1000 // 5 minutes
+      healthCheckInterval: 5 * 60 * 1000, // 5 minutes
     });
 
     serviceRegistry.register({
@@ -29,35 +29,35 @@ export async function initializeServices(): Promise<void> {
       instance: embeddingService,
       dependencies: ['CacheService'],
       singleton: true,
-      healthCheckInterval: 10 * 60 * 1000 // 10 minutes
+      healthCheckInterval: 10 * 60 * 1000, // 10 minutes
     });
 
     serviceRegistry.register({
       name: 'CurriculumImportService',
       instance: curriculumImportService,
       dependencies: ['EmbeddingService'],
-      singleton: true
+      singleton: true,
     });
 
     serviceRegistry.register({
       name: 'ClusteringService',
       instance: clusteringService,
       dependencies: ['EmbeddingService'],
-      singleton: true
+      singleton: true,
     });
 
     serviceRegistry.register({
       name: 'EnhancedPlanningService',
       instance: enhancedPlanningService,
       dependencies: ['EmbeddingService', 'ClusteringService'],
-      singleton: true
+      singleton: true,
     });
 
     serviceRegistry.register({
       name: 'EnhancedMaterialService',
       instance: enhancedMaterialService,
       dependencies: [],
-      singleton: true
+      singleton: true,
     });
 
     serviceRegistry.register({
@@ -65,7 +65,7 @@ export async function initializeServices(): Promise<void> {
       instance: notificationService,
       dependencies: [],
       singleton: true,
-      healthCheckInterval: 15 * 60 * 1000 // 15 minutes
+      healthCheckInterval: 15 * 60 * 1000, // 15 minutes
     });
 
     // Initialize all services in dependency order
@@ -73,18 +73,22 @@ export async function initializeServices(): Promise<void> {
 
     if (failed.length > 0) {
       logger.error({ failed }, 'Some services failed to initialize');
-      throw new Error(`Failed to initialize services: ${failed.map(f => f.serviceName).join(', ')}`);
+      throw new Error(
+        `Failed to initialize services: ${failed.map((f) => f.serviceName).join(', ')}`,
+      );
     }
 
     logger.info({ initialized }, 'All services initialized successfully');
 
     // Log initial health status
     const healthStatus = await serviceRegistry.getHealthStatus();
-    const unhealthy = healthStatus.filter(s => !s.healthy);
-    
+    const unhealthy = healthStatus.filter((s) => !s.healthy);
+
     if (unhealthy.length > 0) {
-      logger.warn({ unhealthy: unhealthy.map(s => s.serviceName) }, 
-        'Some services are unhealthy at startup');
+      logger.warn(
+        { unhealthy: unhealthy.map((s) => s.serviceName) },
+        'Some services are unhealthy at startup',
+      );
     }
   } catch (error) {
     logger.error({ error }, 'Failed to initialize services');
@@ -98,13 +102,13 @@ export async function initializeServices(): Promise<void> {
 export async function shutdownServices(): Promise<void> {
   try {
     logger.info('Shutting down services...');
-    
+
     await serviceRegistry.shutdown();
-    
+
     // Cleanup any resources specific to services
     notificationService.destroy();
     cacheService.destroy();
-    
+
     logger.info('All services shut down successfully');
   } catch (error) {
     logger.error({ error }, 'Error during service shutdown');
@@ -121,12 +125,12 @@ export async function getServiceHealth(): Promise<{
 }> {
   const healthStatus = await serviceRegistry.getHealthStatus();
   const metrics = serviceRegistry.getAllMetrics();
-  
-  const healthy = healthStatus.every(s => s.healthy);
-  
+
+  const healthy = healthStatus.every((s) => s.healthy);
+
   return {
     healthy,
     services: healthStatus,
-    metrics
+    metrics,
   };
 }

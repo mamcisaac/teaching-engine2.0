@@ -86,16 +86,16 @@ describe('Phase 5 Services Integration', () => {
   describe('Service Dependencies', () => {
     it('should show correct dependency graph', () => {
       const graph = serviceRegistry.getDependencyGraph();
-      
+
       // Check that CurriculumImportService depends on EmbeddingService
-      const importDependency = graph.edges.find(e => 
-        e.from === 'EmbeddingService' && e.to === 'CurriculumImportService'
+      const importDependency = graph.edges.find(
+        (e) => e.from === 'EmbeddingService' && e.to === 'CurriculumImportService',
       );
       expect(importDependency).toBeDefined();
 
       // Check that EnhancedPlanningService depends on ClusteringService
-      const planningDependency = graph.edges.find(e => 
-        e.from === 'ClusteringService' && e.to === 'EnhancedPlanningService'
+      const planningDependency = graph.edges.find(
+        (e) => e.from === 'ClusteringService' && e.to === 'EnhancedPlanningService',
       );
       expect(planningDependency).toBeDefined();
     });
@@ -104,13 +104,13 @@ describe('Phase 5 Services Integration', () => {
   describe('Service Health', () => {
     it('should report health status for all services', async () => {
       const healthStatus = await serviceRegistry.getHealthStatus();
-      
-      const serviceNames = healthStatus.map(h => h.serviceName);
+
+      const serviceNames = healthStatus.map((h) => h.serviceName);
       expect(serviceNames).toContain('CacheService');
       expect(serviceNames).toContain('NotificationService');
-      
+
       // Most services should be healthy (database connection might fail in test env)
-      const healthyServices = healthStatus.filter(h => h.healthy);
+      const healthyServices = healthStatus.filter((h) => h.healthy);
       expect(healthyServices.length).toBeGreaterThan(0);
     });
   });
@@ -164,7 +164,7 @@ describe('Phase 5 Services Integration', () => {
       await cacheService.set('test-key', 'test-value');
       const value = await cacheService.get('test-key');
       expect(value).toBe('test-value');
-      
+
       await cacheService.delete('test-key');
       const deletedValue = await cacheService.get('test-key');
       expect(deletedValue).toBeNull();

@@ -825,8 +825,10 @@ model MilestoneAlert {
 // ==================== Phase 5: Curriculum Intelligence Models ====================
 
 enum ImportStatus {
-  PENDING
+  UPLOADING
   PROCESSING
+  READY_FOR_REVIEW
+  CONFIRMED
   COMPLETED
   FAILED
   CANCELLED
@@ -850,16 +852,26 @@ model CurriculumImport {
   id                String           @id @default(cuid())
   userId            Int
   user              User             @relation(fields: [userId], references: [id])
-  grade             Int
-  subject           String
-  status            ImportStatus     @default(PENDING)
+  filename          String?          // For planner agent compatibility
+  originalName      String?          // Original uploaded filename
+  mimeType          String?          // File MIME type
+  fileSize          Int?             // File size in bytes
+  filePath          String?          // Path to uploaded file
+  grade             Int?             // Grade level for import
+  subject           String?          // Subject area
+  status            ImportStatus     @default(UPLOADING)
   sourceFormat      String?          // "pdf" | "docx" | "csv" | "manual"
   sourceFile        String?          // Path or URL to original file
+  rawText           String?          // Extracted text from document
+  parsedData        String?          // JSON string of parsed curriculum data
+  errorMessage      String?          // Error details if parsing fails
   totalOutcomes     Int              @default(0)
   processedOutcomes Int              @default(0)
   errorLog          Json?            // Array of error objects with details
   metadata          Json?            // Additional import metadata (e.g., parsing settings)
+  processedAt       DateTime?        // When processing completed
   createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
   completedAt       DateTime?
   
   clusters          OutcomeCluster[]

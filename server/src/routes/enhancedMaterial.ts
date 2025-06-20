@@ -76,8 +76,8 @@ router.post('/templates', async (req, res, next) => {
     const { name, description, template, variables, category } = req.body;
 
     if (!name || !template || !Array.isArray(variables) || !category) {
-      return res.status(400).json({ 
-        error: 'Missing required fields: name, template, variables (array), category' 
+      return res.status(400).json({
+        error: 'Missing required fields: name, template, variables (array), category',
       });
     }
 
@@ -112,7 +112,7 @@ router.post('/templates/:templateId/generate', async (req, res, next) => {
     const filePath = await enhancedMaterialService.generateFromTemplate(
       templateId,
       variables,
-      outputFormat as 'pdf' | 'docx'
+      outputFormat as 'pdf' | 'docx',
     );
 
     const filename = filePath.split('/').pop();
@@ -133,7 +133,7 @@ router.get('/usage/analysis', async (req, res, next) => {
 
     const analysis = await enhancedMaterialService.analyzeMaterialUsage(
       1, // TODO: Get userId from auth context
-      Number(days)
+      Number(days),
     );
 
     res.json(analysis);
@@ -147,7 +147,7 @@ router.get('/usage/analysis', async (req, res, next) => {
 router.get('/download/:filename', async (req, res, next) => {
   try {
     const { filename } = req.params;
-    
+
     // Security: Validate filename to prevent directory traversal
     if (filename.includes('..') || filename.includes('/')) {
       return res.status(400).json({ error: 'Invalid filename' });

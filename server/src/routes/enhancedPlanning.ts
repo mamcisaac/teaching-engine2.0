@@ -19,8 +19,8 @@ router.post('/schedule/generate', async (req, res, next) => {
     } = req.body;
 
     if (!availableBlocks || !Array.isArray(availableBlocks)) {
-      return res.status(400).json({ 
-        error: 'Missing required field: availableBlocks (array)' 
+      return res.status(400).json({
+        error: 'Missing required field: availableBlocks (array)',
       });
     }
 
@@ -28,14 +28,16 @@ router.post('/schedule/generate', async (req, res, next) => {
       1, // TODO: Get userId from auth context
       {
         availableBlocks,
-        milestonePriorities: new Map(Object.entries(milestonePriorities).map(([k, v]) => [Number(k), Number(v)])),
+        milestonePriorities: new Map(
+          Object.entries(milestonePriorities).map(([k, v]) => [Number(k), Number(v)]),
+        ),
         pacingStrategy,
         preserveBuffer,
         useThematicGrouping,
         enableProgressTracking,
         considerPrerequisites,
         materialPrepTime,
-      }
+      },
     );
 
     res.json(result);
@@ -74,7 +76,7 @@ router.post('/schedule/optimize', async (req, res, next) => {
 
     const result = await enhancedPlanningService.optimizeScheduleForProgress(
       1, // TODO: Get userId from auth context
-      schedule
+      schedule,
     );
 
     res.json(result);

@@ -58,7 +58,7 @@ router.post('/outcomes/batch', async (req, res, next) => {
       return res.status(404).json({ error: 'No outcomes found' });
     }
 
-    const outcomeData = outcomes.map(o => ({
+    const outcomeData = outcomes.map((o) => ({
       id: o.id,
       text: `${o.code}: ${o.description}`,
     }));
@@ -69,7 +69,7 @@ router.post('/outcomes/batch', async (req, res, next) => {
       message: 'Embeddings generated successfully',
       total: outcomeIds.length,
       generated: results.length,
-      results: results.map(r => ({
+      results: results.map((r) => ({
         outcomeId: r.outcomeId,
         model: r.model,
       })),
@@ -110,7 +110,7 @@ router.get('/outcomes/:outcomeId/similar', async (req, res, next) => {
     const suggestions = await clusteringService.suggestSimilarOutcomes(
       outcomeId,
       Number(threshold),
-      Number(limit)
+      Number(limit),
     );
 
     res.json(suggestions);
@@ -185,7 +185,7 @@ router.get('/stats', async (req, res, next) => {
       totalOutcomes,
       embeddingsCount,
       coveragePercentage: Math.round((embeddingsCount / totalOutcomes) * 100),
-      embeddingsByModel: embeddingsByModel.map(item => ({
+      embeddingsByModel: embeddingsByModel.map((item) => ({
         model: item.model,
         count: item._count,
       })),

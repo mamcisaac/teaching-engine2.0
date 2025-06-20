@@ -20,7 +20,7 @@ export interface NotificationPreferences {
   pushEnabled: boolean;
   quietHours: {
     start: string; // HH:MM format
-    end: string;   // HH:MM format
+    end: string; // HH:MM format
   };
   categories: {
     [category: string]: {
@@ -57,27 +57,27 @@ export class NotificationService extends BaseService {
    */
   async sendNotification(
     userId: number,
-    notification: Omit<Notification, 'id' | 'userId' | 'createdAt'>
+    notification: Omit<Notification, 'id' | 'userId' | 'createdAt'>,
   ): Promise<string> {
     try {
-      this.validateRequired({ userId, title: notification.title, message: notification.message }, 
-        ['userId', 'title', 'message']);
+      this.validateRequired({ userId, title: notification.title, message: notification.message }, [
+        'userId',
+        'title',
+        'message',
+      ]);
 
       const notificationId = `notif_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-      
+
       const fullNotification: Notification = {
         id: notificationId,
         userId,
         createdAt: new Date(),
-        ...notification
+        ...notification,
       };
 
       // Check user preferences
       const userPrefs = await this.getUserPreferences(userId);
-      const effectiveChannels = this.filterChannelsByPreferences(
-        notification.channels, 
-        userPrefs
-      );
+      const effectiveChannels = this.filterChannelsByPreferences(notification.channels, userPrefs);
 
       if (effectiveChannels.length === 0) {
         this.logger.info({ userId, notificationId }, 'No enabled channels for notification');
@@ -99,12 +99,15 @@ export class NotificationService extends BaseService {
         await this.sendPushNotification(userId, fullNotification);
       }
 
-      this.logger.info({ 
-        userId, 
-        notificationId, 
-        type: notification.type,
-        channels: effectiveChannels 
-      }, 'Notification sent successfully');
+      this.logger.info(
+        {
+          userId,
+          notificationId,
+          type: notification.type,
+          channels: effectiveChannels,
+        },
+        'Notification sent successfully',
+      );
 
       return notificationId;
     } catch (error) {
@@ -124,7 +127,7 @@ export class NotificationService extends BaseService {
       channels?: ('in_app' | 'email' | 'push')[];
       expiresAt?: Date;
       metadata?: Record<string, unknown>;
-    } = {}
+    } = {},
   ): Promise<string> {
     try {
       const template = this.templates.get(templateId);
@@ -152,7 +155,7 @@ export class NotificationService extends BaseService {
         priority: options.priority || 'medium',
         channels: options.channels || template.defaultChannels,
         metadata: options.metadata,
-        expiresAt: options.expiresAt
+        expiresAt: options.expiresAt,
       });
     } catch (error) {
       this.handleError(error, { userId, templateId, variables });
@@ -168,7 +171,7 @@ export class NotificationService extends BaseService {
       limit?: number;
       offset?: number;
       unreadOnly?: boolean;
-    } = {}
+    } = {},
   ): Promise<{
     notifications: Notification[];
     total: number;
@@ -176,14 +179,14 @@ export class NotificationService extends BaseService {
   }> {
     try {
       const { limit = 50, offset = 0, unreadOnly = false } = options;
-      
+
       const userNotifications = Array.from(this.notifications.values())
-        .filter(n => n.userId === userId)
-        .filter(n => !unreadOnly || !this.isNotificationRead(n.id))
+        .filter((n) => n.userId === userId)
+        .filter((n) => !unreadOnly || !this.isNotificationRead(n.id))
         .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
 
       const total = userNotifications.length;
-      const unreadCount = userNotifications.filter(n => !this.isNotificationRead(n.id)).length;
+      const unreadCount = userNotifications.filter((n) => !this.isNotificationRead(n.id)).length;
       const notifications = userNotifications.slice(offset, offset + limit);
 
       return { notifications, total, unreadCount };
@@ -220,7 +223,7 @@ export class NotificationService extends BaseService {
   async markAllAsRead(userId: number): Promise<number> {
     try {
       let markedCount = 0;
-      
+
       for (const notification of this.notifications.values()) {
         if (notification.userId === userId && !this.isNotificationRead(notification.id)) {
           this.setNotificationRead(notification.id, true);
@@ -259,15 +262,15 @@ export class NotificationService extends BaseService {
    * Update user notification preferences
    */
   async updatePreferences(
-    userId: number, 
-    preferences: Partial<NotificationPreferences>
+    userId: number,
+    preferences: Partial<NotificationPreferences>,
   ): Promise<void> {
     try {
       const current = this.preferences.get(userId) || this.getDefaultPreferences(userId);
       const updated = { ...current, ...preferences, userId };
-      
+
       this.preferences.set(userId, updated);
-      
+
       // TODO: Persist to database
       this.logger.info({ userId }, 'User notification preferences updated');
     } catch (error) {
@@ -281,7 +284,7 @@ export class NotificationService extends BaseService {
   async getUserPreferences(userId: number): Promise<NotificationPreferences> {
     try {
       let prefs = this.preferences.get(userId);
-      
+
       if (!prefs) {
         // Try to load from database
         // TODO: Load from database
@@ -301,7 +304,10 @@ export class NotificationService extends BaseService {
    */
   createTemplate(template: NotificationTemplate): void {
     this.templates.set(template.id, template);
-    this.logger.info({ templateId: template.id, name: template.name }, 'Notification template created');
+    this.logger.info(
+      { templateId: template.id, name: template.name },
+      'Notification template created',
+    );
   }
 
   /**
@@ -316,18 +322,16 @@ export class NotificationService extends BaseService {
    */
   async sendBulkNotification(
     userIds: number[],
-    notification: Omit<Notification, 'id' | 'userId' | 'createdAt'>
+    notification: Omit<Notification, 'id' | 'userId' | 'createdAt'>,
   ): Promise<{
     sent: string[];
     failed: { userId: number; error: string }[];
   }> {
-    const operations = userIds.map(userId => 
-      () => this.sendNotification(userId, notification)
-    );
+    const operations = userIds.map((userId) => () => this.sendNotification(userId, notification));
 
-    const { results, errors } = await this.withParallel(operations, { 
-      failFast: false, 
-      maxConcurrency: 10 
+    const { results, errors } = await this.withParallel(operations, {
+      failFast: false,
+      maxConcurrency: 10,
     });
 
     const sent: string[] = [];
@@ -339,16 +343,19 @@ export class NotificationService extends BaseService {
       } else {
         failed.push({
           userId: userIds[i],
-          error: errors[i]?.message || 'Unknown error'
+          error: errors[i]?.message || 'Unknown error',
         });
       }
     }
 
-    this.logger.info({ 
-      totalUsers: userIds.length, 
-      sent: sent.length, 
-      failed: failed.length 
-    }, 'Bulk notification completed');
+    this.logger.info(
+      {
+        totalUsers: userIds.length,
+        sent: sent.length,
+        failed: failed.length,
+      },
+      'Bulk notification completed',
+    );
 
     return { sent, failed };
   }
@@ -360,7 +367,7 @@ export class NotificationService extends BaseService {
       // Get user email
       const user = await this.prisma.user.findUnique({
         where: { id: userId },
-        select: { email: true, name: true }
+        select: { email: true, name: true },
       });
 
       if (!user?.email) {
@@ -378,25 +385,29 @@ export class NotificationService extends BaseService {
       const html = this.formatEmailNotification(notification, user.name);
 
       await emailService.sendEmail(user.email, subject, notification.message, html);
-      
+
       this.logger.debug({ userId, notificationId: notification.id }, 'Email notification sent');
     } catch (error) {
-      this.logger.error({ error, userId, notificationId: notification.id }, 
-        'Failed to send email notification');
+      this.logger.error(
+        { error, userId, notificationId: notification.id },
+        'Failed to send email notification',
+      );
     }
   }
 
   private async sendPushNotification(userId: number, notification: Notification): Promise<void> {
     // TODO: Implement push notifications
-    this.logger.debug({ userId, notificationId: notification.id }, 
-      'Push notification not yet implemented');
+    this.logger.debug(
+      { userId, notificationId: notification.id },
+      'Push notification not yet implemented',
+    );
   }
 
   private filterChannelsByPreferences(
     requestedChannels: ('in_app' | 'email' | 'push')[],
-    preferences: NotificationPreferences
+    preferences: NotificationPreferences,
   ): ('in_app' | 'email' | 'push')[] {
-    return requestedChannels.filter(channel => {
+    return requestedChannels.filter((channel) => {
       switch (channel) {
         case 'email':
           return preferences.emailEnabled;
@@ -415,7 +426,7 @@ export class NotificationService extends BaseService {
       low: '#28a745',
       medium: '#ffc107',
       high: '#fd7e14',
-      urgent: '#dc3545'
+      urgent: '#dc3545',
     }[notification.priority];
 
     return `
@@ -445,23 +456,23 @@ export class NotificationService extends BaseService {
       pushEnabled: false,
       quietHours: {
         start: '22:00',
-        end: '07:00'
+        end: '07:00',
       },
       categories: {
         milestone: { enabled: true, channels: ['in_app', 'email'] },
         activity: { enabled: true, channels: ['in_app'] },
         system: { enabled: true, channels: ['in_app', 'email'] },
-        reminder: { enabled: true, channels: ['in_app'] }
-      }
+        reminder: { enabled: true, channels: ['in_app'] },
+      },
     };
   }
 
   private isInQuietHours(quietHours: { start: string; end: string }): boolean {
     const now = new Date();
     const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-    
+
     const { start, end } = quietHours;
-    
+
     if (start <= end) {
       // Same day quiet hours (e.g., 22:00 to 23:59)
       return currentTime >= start && currentTime <= end;
@@ -494,9 +505,10 @@ export class NotificationService extends BaseService {
         name: 'Milestone Deadline',
         type: 'warning',
         title: 'Milestone Deadline Approaching',
-        messageTemplate: 'The milestone "{{milestoneName}}" is due on {{dueDate}}. You have {{daysLeft}} days remaining.',
+        messageTemplate:
+          'The milestone "{{milestoneName}}" is due on {{dueDate}}. You have {{daysLeft}} days remaining.',
         defaultChannels: ['in_app', 'email'],
-        variables: ['milestoneName', 'dueDate', 'daysLeft']
+        variables: ['milestoneName', 'dueDate', 'daysLeft'],
       },
       {
         id: 'activity_completed',
@@ -505,26 +517,28 @@ export class NotificationService extends BaseService {
         title: 'Activity Completed',
         messageTemplate: 'Great job! You have completed the activity "{{activityName}}".',
         defaultChannels: ['in_app'],
-        variables: ['activityName']
+        variables: ['activityName'],
       },
       {
         id: 'coverage_gap',
         name: 'Coverage Gap Alert',
         type: 'warning',
         title: 'Curriculum Coverage Gap Detected',
-        messageTemplate: 'We detected a gap in your curriculum coverage for {{subject}}. Consider reviewing outcomes: {{outcomes}}.',
+        messageTemplate:
+          'We detected a gap in your curriculum coverage for {{subject}}. Consider reviewing outcomes: {{outcomes}}.',
         defaultChannels: ['in_app', 'email'],
-        variables: ['subject', 'outcomes']
+        variables: ['subject', 'outcomes'],
       },
       {
         id: 'system_maintenance',
         name: 'System Maintenance',
         type: 'info',
         title: 'Scheduled Maintenance',
-        messageTemplate: 'Teaching Engine will undergo maintenance on {{date}} from {{startTime}} to {{endTime}}. Please save your work.',
+        messageTemplate:
+          'Teaching Engine will undergo maintenance on {{date}} from {{startTime}} to {{endTime}}. Please save your work.',
         defaultChannels: ['in_app', 'email'],
-        variables: ['date', 'startTime', 'endTime']
-      }
+        variables: ['date', 'startTime', 'endTime'],
+      },
     ];
 
     for (const template of templates) {
@@ -534,21 +548,24 @@ export class NotificationService extends BaseService {
 
   private startCleanupTask(): void {
     // Clean up expired notifications every hour
-    this.cleanupInterval = setInterval(() => {
-      const now = new Date();
-      let cleanedCount = 0;
+    this.cleanupInterval = setInterval(
+      () => {
+        const now = new Date();
+        let cleanedCount = 0;
 
-      for (const [id, notification] of this.notifications.entries()) {
-        if (notification.expiresAt && notification.expiresAt < now) {
-          this.notifications.delete(id);
-          cleanedCount++;
+        for (const [id, notification] of this.notifications.entries()) {
+          if (notification.expiresAt && notification.expiresAt < now) {
+            this.notifications.delete(id);
+            cleanedCount++;
+          }
         }
-      }
 
-      if (cleanedCount > 0) {
-        this.logger.info({ cleanedCount }, 'Cleaned up expired notifications');
-      }
-    }, 60 * 60 * 1000); // 1 hour
+        if (cleanedCount > 0) {
+          this.logger.info({ cleanedCount }, 'Cleaned up expired notifications');
+        }
+      },
+      60 * 60 * 1000,
+    ); // 1 hour
   }
 
   /**

@@ -30,17 +30,20 @@ export class ServiceRegistry {
     }
 
     this.services.set(registration.name, registration);
-    
+
     // Start health monitoring if interval specified
     if (registration.healthCheckInterval) {
       this.startHealthMonitoring(registration.name, registration.healthCheckInterval);
     }
 
-    logger.info({ 
-      serviceName: registration.name, 
-      dependencies: registration.dependencies,
-      singleton: registration.singleton
-    }, 'Service registered');
+    logger.info(
+      {
+        serviceName: registration.name,
+        dependencies: registration.dependencies,
+        singleton: registration.singleton,
+      },
+      'Service registered',
+    );
   }
 
   /**
@@ -110,11 +113,9 @@ export class ServiceRegistry {
 
       for (const serviceName of remaining) {
         const registration = this.services.get(serviceName)!;
-        
+
         // Check if all dependencies are initialized
-        const dependenciesMet = registration.dependencies.every(dep => 
-          initialized.includes(dep)
-        );
+        const dependenciesMet = registration.dependencies.every((dep) => initialized.includes(dep));
 
         if (dependenciesMet) {
           try {
@@ -126,9 +127,9 @@ export class ServiceRegistry {
 
             logger.info({ serviceName }, 'Service initialized successfully');
           } catch (error) {
-            failed.push({ 
-              serviceName, 
-              error: error instanceof Error ? error.message : 'Unknown error' 
+            failed.push({
+              serviceName,
+              error: error instanceof Error ? error.message : 'Unknown error',
             });
             remaining.delete(serviceName);
             progress = true;
@@ -142,11 +143,11 @@ export class ServiceRegistry {
       if (!progress) {
         const remainingServices = Array.from(remaining);
         logger.error({ remainingServices }, 'Circular dependency detected or missing dependencies');
-        
+
         for (const serviceName of remaining) {
-          failed.push({ 
-            serviceName, 
-            error: 'Circular dependency or missing dependencies' 
+          failed.push({
+            serviceName,
+            error: 'Circular dependency or missing dependencies',
           });
         }
         break;
@@ -167,7 +168,7 @@ export class ServiceRegistry {
           serviceName: registration.name,
           healthy: health.healthy,
           lastCheck: new Date(),
-          details: health.details
+          details: health.details,
         };
 
         this.healthStatus.set(registration.name, status);
@@ -177,7 +178,7 @@ export class ServiceRegistry {
           serviceName: registration.name,
           healthy: false,
           lastCheck: new Date(),
-          details: { error: error instanceof Error ? error.message : 'Unknown error' }
+          details: { error: error instanceof Error ? error.message : 'Unknown error' },
         };
 
         this.healthStatus.set(registration.name, status);
@@ -195,18 +196,18 @@ export class ServiceRegistry {
     nodes: { id: string; label: string }[];
     edges: { from: string; to: string }[];
   } {
-    const nodes = Array.from(this.services.values()).map(reg => ({
+    const nodes = Array.from(this.services.values()).map((reg) => ({
       id: reg.name,
-      label: reg.name
+      label: reg.name,
     }));
 
     const edges: { from: string; to: string }[] = [];
-    
+
     for (const registration of this.services.values()) {
       for (const dependency of registration.dependencies) {
         edges.push({
           from: dependency,
-          to: registration.name
+          to: registration.name,
         });
       }
     }
@@ -221,7 +222,7 @@ export class ServiceRegistry {
     for (const registration of this.services.values()) {
       registration.instance.resetMetrics();
     }
-    
+
     logger.info('All service metrics reset');
   }
 
@@ -229,9 +230,9 @@ export class ServiceRegistry {
    * Get performance metrics for all services
    */
   getAllMetrics(): { serviceName: string; metrics: unknown }[] {
-    return Array.from(this.services.values()).map(registration => ({
+    return Array.from(this.services.values()).map((registration) => ({
       serviceName: registration.name,
-      metrics: registration.instance.getMetrics()
+      metrics: registration.instance.getMetrics(),
     }));
   }
 
@@ -272,7 +273,7 @@ export class ServiceRegistry {
           serviceName,
           healthy: health.healthy,
           lastCheck: new Date(),
-          details: health.details
+          details: health.details,
         };
 
         this.healthStatus.set(serviceName, status);
@@ -282,12 +283,12 @@ export class ServiceRegistry {
         }
       } catch (error) {
         logger.error({ serviceName, error }, 'Health check error');
-        
+
         this.healthStatus.set(serviceName, {
           serviceName,
           healthy: false,
           lastCheck: new Date(),
-          details: { error: error instanceof Error ? error.message : 'Unknown error' }
+          details: { error: error instanceof Error ? error.message : 'Unknown error' },
         });
       }
     }, intervalMs);

@@ -55,10 +55,13 @@ export class EnhancedMaterialService extends BaseService {
     errors: string[];
   }> {
     try {
-      this.logger.info({ 
-        activityCount: request.activityIds.length, 
-        format: request.format 
-      }, 'Starting bulk material generation');
+      this.logger.info(
+        {
+          activityCount: request.activityIds.length,
+          format: request.format,
+        },
+        'Starting bulk material generation',
+      );
 
       const materials: GeneratedMaterial[] = [];
       const errors: string[] = [];
@@ -70,19 +73,19 @@ export class EnhancedMaterialService extends BaseService {
         include: {
           milestone: {
             include: {
-              subject: true
-            }
+              subject: true,
+            },
           },
           outcomes: {
             include: {
-              outcome: true
-            }
-          }
-        }
+              outcome: true,
+            },
+          },
+        },
       });
 
       // Group by theme if requested
-      let activityGroups: typeof activities[];
+      let activityGroups: (typeof activities)[];
       if (request.groupByTheme) {
         activityGroups = this.groupActivitiesByTheme(activities);
       } else {
@@ -110,17 +113,20 @@ export class EnhancedMaterialService extends BaseService {
         zipPath = await this.createMaterialsZip(materials, request.groupByTheme);
       }
 
-      this.logger.info({ 
-        materialsGenerated: materials.length, 
-        totalPrepTime, 
-        errorsCount: errors.length 
-      }, 'Completed bulk material generation');
+      this.logger.info(
+        {
+          materialsGenerated: materials.length,
+          totalPrepTime,
+          errorsCount: errors.length,
+        },
+        'Completed bulk material generation',
+      );
 
       return {
         zipPath,
         materials,
         totalPrepTime,
-        errors
+        errors,
       };
     } catch (error) {
       this.logger.error({ error, request }, 'Failed bulk material generation');
@@ -140,7 +146,7 @@ export class EnhancedMaterialService extends BaseService {
     try {
       const activities = await this.prisma.activity.findMany({
         where: { id: { in: activityIds } },
-        select: { id: true, title: true, privateNote: true, publicNote: true }
+        select: { id: true, title: true, privateNote: true, publicNote: true },
       });
 
       const allMaterialsSet = new Set<string>();
@@ -154,11 +160,11 @@ export class EnhancedMaterialService extends BaseService {
 
         for (const material of materials) {
           allMaterialsSet.add(material.toLowerCase().trim());
-          
+
           // Categorize materials
           const category = this.categorizeMaterial(material);
           if (!byCategory[category]) byCategory[category] = [];
-          
+
           // Avoid duplicates in categories too
           const normalizedMaterial = material.trim();
           if (!byCategory[category].includes(normalizedMaterial)) {
@@ -172,7 +178,7 @@ export class EnhancedMaterialService extends BaseService {
 
       // Sort materials for better organization
       allMaterials.sort();
-      Object.keys(byCategory).forEach(category => {
+      Object.keys(byCategory).forEach((category) => {
         byCategory[category].sort();
       });
 
@@ -180,7 +186,7 @@ export class EnhancedMaterialService extends BaseService {
         allMaterials,
         byCategory,
         duplicatesRemoved,
-        estimatedCost: this.estimateMaterialCost(allMaterials)
+        estimatedCost: this.estimateMaterialCost(allMaterials),
       };
     } catch (error) {
       this.logger.error({ error, activityIds }, 'Failed to generate consolidated material list');
@@ -193,17 +199,17 @@ export class EnhancedMaterialService extends BaseService {
    */
   async createMaterialTemplate(template: Omit<MaterialTemplate, 'id'>): Promise<string> {
     const id = `template_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    
+
     const newTemplate: MaterialTemplate = {
       id,
-      ...template
+      ...template,
     };
 
     this.templates.set(id, newTemplate);
-    
+
     // TODO: Persist templates to database
     this.logger.info({ templateId: id, name: template.name }, 'Created new material template');
-    
+
     return id;
   }
 
@@ -218,9 +224,9 @@ export class EnhancedMaterialService extends BaseService {
    * Generate materials using a specific template
    */
   async generateFromTemplate(
-    templateId: string, 
+    templateId: string,
     variables: { [key: string]: string },
-    outputFormat: 'pdf' | 'docx' = 'pdf'
+    outputFormat: 'pdf' | 'docx' = 'pdf',
   ): Promise<string> {
     const template = this.templates.get(templateId);
     if (!template) {
@@ -228,7 +234,7 @@ export class EnhancedMaterialService extends BaseService {
     }
 
     let content = template.template;
-    
+
     // Replace template variables
     for (const [key, value] of Object.entries(variables)) {
       const regex = new RegExp(`{{${key}}}`, 'g');
@@ -243,14 +249,17 @@ export class EnhancedMaterialService extends BaseService {
     fs.writeFileSync(filePath.replace(`.${outputFormat}`, '.txt'), content);
 
     this.logger.info({ templateId, fileName }, 'Generated material from template');
-    
+
     return filePath;
   }
 
   /**
    * Analyze material usage patterns
    */
-  async analyzeMaterialUsage(userId: number, days: number = 30): Promise<{
+  async analyzeMaterialUsage(
+    userId: number,
+    days: number = 30,
+  ): Promise<{
     mostUsedMaterials: { material: string; count: number }[];
     categoryDistribution: { category: string; percentage: number }[];
     trends: string[];
@@ -261,9 +270,9 @@ export class EnhancedMaterialService extends BaseService {
 
       const activities = await this.prisma.activity.findMany({
         where: {
-          milestone: { userId }
+          milestone: { userId },
         },
-        select: { privateNote: true, publicNote: true }
+        select: { privateNote: true, publicNote: true },
       });
 
       const materialCounts = new Map<string, number>();
@@ -272,11 +281,11 @@ export class EnhancedMaterialService extends BaseService {
       for (const activity of activities) {
         const allNotes = [activity.privateNote, activity.publicNote].filter(Boolean).join('\n');
         const materials = extractMaterials(allNotes);
-        
+
         for (const material of materials) {
           const normalizedMaterial = material.toLowerCase().trim();
           materialCounts.set(normalizedMaterial, (materialCounts.get(normalizedMaterial) || 0) + 1);
-          
+
           const category = this.categorizeMaterial(material);
           categoryCounts.set(category, (categoryCounts.get(category) || 0) + 1);
         }
@@ -293,31 +302,35 @@ export class EnhancedMaterialService extends BaseService {
       const categoryDistribution = Array.from(categoryCounts.entries())
         .map(([category, count]) => ({
           category,
-          percentage: totalMaterials > 0 ? (count / totalMaterials) * 100 : 0
+          percentage: totalMaterials > 0 ? (count / totalMaterials) * 100 : 0,
         }))
         .sort((a, b) => b.percentage - a.percentage);
 
       // Generate trends
       const trends: string[] = [];
       if (mostUsedMaterials.length > 0) {
-        trends.push(`Most frequently used: ${mostUsedMaterials[0].material} (${mostUsedMaterials[0].count} times)`);
+        trends.push(
+          `Most frequently used: ${mostUsedMaterials[0].material} (${mostUsedMaterials[0].count} times)`,
+        );
       }
-      
+
       if (categoryDistribution.length > 0) {
-        trends.push(`Primary category: ${categoryDistribution[0].category} (${categoryDistribution[0].percentage.toFixed(1)}%)`);
+        trends.push(
+          `Primary category: ${categoryDistribution[0].category} (${categoryDistribution[0].percentage.toFixed(1)}%)`,
+        );
       }
 
       return {
         mostUsedMaterials,
         categoryDistribution,
-        trends
+        trends,
       };
     } catch (error) {
       this.logger.error({ error, userId }, 'Failed to analyze material usage');
       return {
         mostUsedMaterials: [],
         categoryDistribution: [],
-        trends: []
+        trends: [],
       };
     }
   }
@@ -325,25 +338,25 @@ export class EnhancedMaterialService extends BaseService {
   // Private helper methods
 
   private async generateActivityMaterials(
-    activity: any, 
-    request: BulkMaterialRequest
+    activity: any,
+    request: BulkMaterialRequest,
   ): Promise<GeneratedMaterial> {
     const allNotes = [activity.privateNote, activity.publicNote].filter(Boolean).join('\n');
     const materials = extractMaterials(allNotes);
     const filePaths: string[] = [];
-    
+
     // Generate instruction file if requested
     let instructions: string | undefined;
     if (request.includeInstructions) {
       instructions = this.generateInstructions(activity, materials);
-      
+
       const instructionFile = path.join(tempDir, `instructions_${activity.id}.txt`);
       fs.writeFileSync(instructionFile, instructions);
       filePaths.push(instructionFile);
     }
 
     // Estimate preparation time (5 minutes base + 2 minutes per material)
-    const estimatedPrepTime = 5 + (materials.length * 2);
+    const estimatedPrepTime = 5 + materials.length * 2;
 
     return {
       activityId: activity.id,
@@ -351,19 +364,19 @@ export class EnhancedMaterialService extends BaseService {
       materials,
       filePaths,
       instructions,
-      estimatedPrepTime
+      estimatedPrepTime,
     };
   }
 
-  private groupActivitiesByTheme(activities: any[]): typeof activities[] {
+  private groupActivitiesByTheme(activities: any[]): (typeof activities)[] {
     // Simple grouping by subject and grade level
     const groups = new Map<string, typeof activities>();
-    
+
     for (const activity of activities) {
       const subject = activity.milestone?.subject?.name || 'Unknown';
       const outcomes = activity.outcomes?.map((ao: any) => ao.outcome.grade).join(',') || '0';
       const key = `${subject}_${outcomes}`;
-      
+
       if (!groups.has(key)) {
         groups.set(key, []);
       }
@@ -374,12 +387,12 @@ export class EnhancedMaterialService extends BaseService {
   }
 
   private async createMaterialsZip(
-    materials: GeneratedMaterial[], 
-    groupByTheme: boolean
+    materials: GeneratedMaterial[],
+    groupByTheme: boolean,
   ): Promise<string> {
     const zipFileName = `materials_${Date.now()}.zip`;
     const zipPath = path.join(uploadDir, zipFileName);
-    
+
     const output = fs.createWriteStream(zipPath);
     const archive = archiver('zip', { zlib: { level: 9 } });
 
@@ -398,8 +411,9 @@ export class EnhancedMaterialService extends BaseService {
 
       // Add materials to ZIP
       for (const material of materials) {
-        const folderName = groupByTheme ? 
-          `${material.activityTitle.replace(/[^a-zA-Z0-9]/g, '_')}/` : '';
+        const folderName = groupByTheme
+          ? `${material.activityTitle.replace(/[^a-zA-Z0-9]/g, '_')}/`
+          : '';
 
         // Add material list
         const materialList = material.materials.join('\n');
@@ -407,7 +421,9 @@ export class EnhancedMaterialService extends BaseService {
 
         // Add instruction file if exists
         if (material.instructions) {
-          archive.append(material.instructions, { name: `${folderName}instructions_${material.activityId}.txt` });
+          archive.append(material.instructions, {
+            name: `${folderName}instructions_${material.activityId}.txt`,
+          });
         }
 
         // Add any generated files
@@ -430,10 +446,10 @@ export class EnhancedMaterialService extends BaseService {
   private generateInstructions(activity: any, materials: string[]): string {
     const instructions = [
       `PREPARATION INSTRUCTIONS FOR: ${activity.title}`,
-      '=' .repeat(50),
+      '='.repeat(50),
       '',
       'MATERIALS NEEDED:',
-      ...materials.map(m => `• ${m}`),
+      ...materials.map((m) => `• ${m}`),
       '',
       'PREPARATION STEPS:',
       '1. Gather all materials listed above',
@@ -445,7 +461,8 @@ export class EnhancedMaterialService extends BaseService {
       'ESTIMATED PREP TIME: ' + (5 + materials.length * 2) + ' minutes',
       '',
       'NOTES:',
-      [activity.privateNote, activity.publicNote].filter(Boolean).join('\n') || 'No additional notes provided'
+      [activity.privateNote, activity.publicNote].filter(Boolean).join('\n') ||
+        'No additional notes provided',
     ];
 
     return instructions.join('\n');
@@ -455,22 +472,24 @@ export class EnhancedMaterialService extends BaseService {
     const totalActivities = materials.length;
     const totalPrepTime = materials.reduce((sum, m) => sum + m.estimatedPrepTime, 0);
     const uniqueMaterials = new Set<string>();
-    
-    materials.forEach(m => m.materials.forEach(mat => uniqueMaterials.add(mat.toLowerCase())));
+
+    materials.forEach((m) => m.materials.forEach((mat) => uniqueMaterials.add(mat.toLowerCase())));
 
     const summary = [
       'BULK MATERIALS GENERATION SUMMARY',
-      '=' .repeat(40),
+      '='.repeat(40),
       '',
       `Total Activities: ${totalActivities}`,
-      `Total Preparation Time: ${totalPrepTime} minutes (${Math.round(totalPrepTime / 60 * 10) / 10} hours)`,
+      `Total Preparation Time: ${totalPrepTime} minutes (${Math.round((totalPrepTime / 60) * 10) / 10} hours)`,
       `Unique Materials Needed: ${uniqueMaterials.size}`,
       '',
       'ACTIVITIES INCLUDED:',
-      ...materials.map(m => `• ${m.activityTitle} (${m.estimatedPrepTime} min prep)`),
+      ...materials.map((m) => `• ${m.activityTitle} (${m.estimatedPrepTime} min prep)`),
       '',
       'ALL UNIQUE MATERIALS:',
-      ...Array.from(uniqueMaterials).sort().map(m => `• ${m}`),
+      ...Array.from(uniqueMaterials)
+        .sort()
+        .map((m) => `• ${m}`),
       '',
       `Generated on: ${new Date().toLocaleString()}`,
     ];
@@ -480,40 +499,58 @@ export class EnhancedMaterialService extends BaseService {
 
   private categorizeMaterial(material: string): string {
     const materialLower = material.toLowerCase();
-    
-    if (materialLower.includes('paper') || materialLower.includes('worksheet') || materialLower.includes('handout')) {
+
+    if (
+      materialLower.includes('paper') ||
+      materialLower.includes('worksheet') ||
+      materialLower.includes('handout')
+    ) {
       return 'Paper Materials';
     }
-    if (materialLower.includes('pen') || materialLower.includes('pencil') || materialLower.includes('marker') || materialLower.includes('crayon')) {
+    if (
+      materialLower.includes('pen') ||
+      materialLower.includes('pencil') ||
+      materialLower.includes('marker') ||
+      materialLower.includes('crayon')
+    ) {
       return 'Writing Tools';
     }
-    if (materialLower.includes('computer') || materialLower.includes('tablet') || materialLower.includes('laptop')) {
+    if (
+      materialLower.includes('computer') ||
+      materialLower.includes('tablet') ||
+      materialLower.includes('laptop')
+    ) {
       return 'Technology';
     }
     if (materialLower.includes('book') || materialLower.includes('textbook')) {
       return 'Books';
     }
-    if (materialLower.includes('scissors') || materialLower.includes('glue') || materialLower.includes('tape')) {
+    if (
+      materialLower.includes('scissors') ||
+      materialLower.includes('glue') ||
+      materialLower.includes('tape')
+    ) {
       return 'Craft Supplies';
     }
-    
+
     return 'General Supplies';
   }
 
   private estimateMaterialCost(materials: string[]): number {
     // Simple cost estimation based on material types
     let totalCost = 0;
-    
+
     for (const material of materials) {
       const materialLower = material.toLowerCase();
-      
+
       if (materialLower.includes('paper')) totalCost += 0.05;
-      else if (materialLower.includes('pen') || materialLower.includes('pencil')) totalCost += 1.00;
-      else if (materialLower.includes('book')) totalCost += 15.00;
-      else if (materialLower.includes('computer') || materialLower.includes('tablet')) totalCost += 0; // Assume already owned
-      else totalCost += 2.00; // Default for other supplies
+      else if (materialLower.includes('pen') || materialLower.includes('pencil')) totalCost += 1.0;
+      else if (materialLower.includes('book')) totalCost += 15.0;
+      else if (materialLower.includes('computer') || materialLower.includes('tablet'))
+        totalCost += 0; // Assume already owned
+      else totalCost += 2.0; // Default for other supplies
     }
-    
+
     return Math.round(totalCost * 100) / 100;
   }
 
@@ -533,7 +570,7 @@ Name: _________________ Date: _________________
 
 `,
       variables: ['title', 'instructions', 'questions'],
-      category: 'worksheet'
+      category: 'worksheet',
     });
 
     this.templates.set('activity_plan', {
@@ -556,12 +593,12 @@ ASSESSMENT:
 TIME: {{duration}} minutes
 `,
       variables: ['title', 'objective', 'materials', 'instructions', 'assessment', 'duration'],
-      category: 'activity'
+      category: 'activity',
     });
   }
 
   private ensureDirectories(): void {
-    [uploadDir, tempDir].forEach(dir => {
+    [uploadDir, tempDir].forEach((dir) => {
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });
       }

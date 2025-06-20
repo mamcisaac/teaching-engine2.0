@@ -23,8 +23,16 @@ export type { EmbeddingResult } from './embeddingService';
 export type { ImportOutcome, ImportProgress, ImportResult } from './curriculumImportService';
 export type { ClusterResult, ClusteringOptions } from './clusteringService';
 export type { ThematicGroup, EnhancedScheduleOptions } from './enhancedPlanningService';
-export type { BulkMaterialRequest, MaterialTemplate, GeneratedMaterial } from './enhancedMaterialService';
-export type { Notification, NotificationPreferences, NotificationTemplate } from './NotificationService';
+export type {
+  BulkMaterialRequest,
+  MaterialTemplate,
+  GeneratedMaterial,
+} from './enhancedMaterialService';
+export type {
+  Notification,
+  NotificationPreferences,
+  NotificationTemplate,
+} from './NotificationService';
 export type { CacheEntry, CacheOptions, CacheStats } from './CacheService';
 export type { ServiceMetrics, RetryOptions } from './base/BaseService';
 export type { ServiceHealth, ServiceRegistration } from './ServiceRegistry';

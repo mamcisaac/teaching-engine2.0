@@ -13,7 +13,7 @@ class TestServiceB extends BaseService {
   constructor() {
     super('TestServiceB');
   }
-  
+
   // Override health check for testing
   async healthCheck() {
     return {
@@ -31,7 +31,7 @@ class FailingService extends BaseService {
   constructor() {
     super('FailingService');
   }
-  
+
   async healthCheck() {
     throw new Error('Service is unhealthy');
   }
@@ -154,8 +154,8 @@ describe('ServiceRegistry', () => {
 
       const all = registry.getAll();
       expect(all).toHaveLength(2);
-      expect(all.map(s => s.name)).toContain('ServiceA');
-      expect(all.map(s => s.name)).toContain('ServiceB');
+      expect(all.map((s) => s.name)).toContain('ServiceA');
+      expect(all.map((s) => s.name)).toContain('ServiceB');
     });
   });
 
@@ -169,7 +169,7 @@ describe('ServiceRegistry', () => {
       });
 
       const success = registry.unregister('ServiceA');
-      
+
       expect(success).toBe(true);
       expect(registry.has('ServiceA')).toBe(false);
     });
@@ -410,9 +410,9 @@ describe('ServiceRegistry', () => {
         serviceName: 'ServiceA',
         healthy: true,
         lastCheck: new Date(),
-        details: { database: true, metrics: serviceA.getMetrics(), uptime: 1000 }
+        details: { database: true, metrics: serviceA.getMetrics(), uptime: 1000 },
       };
-      
+
       registry.register({
         name: 'ServiceA',
         instance: serviceA,
@@ -422,11 +422,14 @@ describe('ServiceRegistry', () => {
       });
 
       // Manually set the health status
-      (registry as unknown as { healthStatus: Map<string, unknown> }).healthStatus.set('ServiceA', testHealth);
+      (registry as unknown as { healthStatus: Map<string, unknown> }).healthStatus.set(
+        'ServiceA',
+        testHealth,
+      );
 
       const healthStatus = await registry.getHealthStatus();
-      const serviceHealth = healthStatus.find(h => h.serviceName === 'ServiceA');
-      
+      const serviceHealth = healthStatus.find((h) => h.serviceName === 'ServiceA');
+
       expect(serviceHealth).toBeDefined();
       expect(serviceHealth?.lastCheck).toBeInstanceOf(Date);
       expect(serviceHealth?.healthy).toBe(true);

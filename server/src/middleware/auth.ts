@@ -2,7 +2,9 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
 export interface AuthRequest extends Request {
-  userId?: number;
+  user?: {
+    userId: string;
+  };
 }
 
 export function authMiddleware(req: AuthRequest, res: Response, next: NextFunction) {
@@ -11,9 +13,12 @@ export function authMiddleware(req: AuthRequest, res: Response, next: NextFuncti
   const token = header.replace('Bearer ', '');
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { userId: string };
-    req.userId = parseInt(payload.userId, 10);
+    req.user = { userId: payload.userId };
     next();
   } catch {
     res.status(401).json({ error: 'Unauthorized' });
   }
 }
+
+// Export as 'auth' for consistency with service
+export const auth = authMiddleware;

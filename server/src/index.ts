@@ -66,6 +66,7 @@ import timelineRoutes from './routes/timeline';
 import { aiSuggestionsRouter } from './routes/aiSuggestions';
 import aiParentSummaryRoutes from './routes/aiParentSummary';
 import activityTemplateRoutes from './routes/activityTemplate';
+import planningRoutes from './routes/planning';
 import curriculumImportRoutes from './routes/curriculumImport';
 import embeddingRoutes from './routes/embedding';
 import enhancedPlanningRoutes from './routes/enhancedPlanning';
@@ -76,7 +77,11 @@ import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
 import { scheduleReportDeadlineReminders } from './jobs/reportDeadlineReminder';
 import { scheduleEquipmentBookingReminders } from './jobs/bookingReminder';
 import { scheduleBackups } from './services/backupService';
-import { initializeServices, shutdownServices, getServiceHealth } from './services/initializeServices';
+import {
+  initializeServices,
+  shutdownServices,
+  getServiceHealth,
+} from './services/initializeServices';
 import logger from './logger';
 import { prisma } from './prisma';
 
@@ -265,6 +270,8 @@ app.use('/api/alerts', authenticateToken, alertsRoutes);
 app.use('/api/ai-suggestions', authenticateToken, aiSuggestionsRouter);
 app.use('/api/ai-parent-summary', authenticateToken, aiParentSummaryRoutes);
 app.use('/api/activity-templates', authenticateToken, activityTemplateRoutes);
+app.use('/api/planning', authenticateToken, planningRoutes);
+app.use('/api/curriculum/import', authenticateToken, curriculumImportRoutes);
 
 // Phase 5 Routes
 app.use('/api/curriculum-import', authenticateToken, curriculumImportRoutes);

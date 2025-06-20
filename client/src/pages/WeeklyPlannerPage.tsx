@@ -35,6 +35,7 @@ import Dialog from '../components/Dialog';
 import { toast } from 'sonner';
 import { UncoveredOutcomesPanel } from '../components/planning/UncoveredOutcomesPanel';
 import { AISuggestionModal } from '../components/planning/AISuggestionModal';
+import { QualityScorecard } from '../components/planning/QualityScorecard';
 
 export default function WeeklyPlannerPage() {
   const [weekStart, setWeekStart] = useState(() => {
@@ -570,36 +571,52 @@ export default function WeeklyPlannerPage() {
 
           {/* Week Resources */}
           {plan && (
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white rounded-lg border p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Week Resources</h3>
-                <div className="space-y-3">
-                  <DownloadPrintablesButton weekStart={weekStart} />
-                  <WeeklyMaterialsChecklist weekStart={weekStart} />
-                  <CognateSummaryWidget activities={activities} />
-                  <button
-                    onClick={() => setShowNewsletterEditor(true)}
-                    className="w-full flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-                  >
-                    📰 Create Newsletter
-                  </button>
-                  <button
-                    onClick={() => setShowUncoveredOutcomes(true)}
-                    className="w-full flex items-center justify-center px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors"
-                  >
-                    🎯 View Uncovered Outcomes
-                  </button>
+            <>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-white rounded-lg border p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Week Resources</h3>
+                  <div className="space-y-3">
+                    <DownloadPrintablesButton weekStart={weekStart} />
+                    <WeeklyMaterialsChecklist weekStart={weekStart} />
+                    <CognateSummaryWidget activities={activities} />
+                    <button
+                      onClick={() => setShowNewsletterEditor(true)}
+                      className="w-full flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                    >
+                      📰 Create Newsletter
+                    </button>
+                    <button
+                      onClick={() => setShowUncoveredOutcomes(true)}
+                      className="w-full flex items-center justify-center px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors"
+                    >
+                      🎯 View Uncovered Outcomes
+                    </button>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg border p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Suggested Activities</h3>
+                  <PlannerFilters filters={filters} onChange={setFilters} />
+                  <div className="mt-4">
+                    <PlannerSuggestions weekStart={weekStart} filters={filters} />
+                  </div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg border p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Suggested Activities</h3>
-                <PlannerFilters filters={filters} onChange={setFilters} />
-                <div className="mt-4">
-                  <PlannerSuggestions weekStart={weekStart} filters={filters} />
-                </div>
-              </div>
-            </div>
+              {/* Quality Scorecard */}
+              <QualityScorecard 
+                weekStart={weekStart} 
+                onSuggestionClick={(suggestion) => {
+                  // Handle suggestion clicks - could open relevant sections or filters
+                  if (suggestion.toLowerCase().includes('assessment')) {
+                    setShowAssessmentBuilder(true);
+                  } else if (suggestion.toLowerCase().includes('outcome')) {
+                    setShowUncoveredOutcomes(true);
+                  }
+                  // Add more handlers as needed
+                }}
+              />
+            </>
           )}
         </DndContext>
 

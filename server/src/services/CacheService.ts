@@ -28,7 +28,7 @@ export class CacheService extends BaseService {
   private cache = new Map<string, CacheEntry>();
   private stats = {
     hits: 0,
-    misses: 0
+    misses: 0,
   };
   private cleanupInterval: NodeJS.Timeout;
   private readonly defaultTTL: number;
@@ -37,11 +37,11 @@ export class CacheService extends BaseService {
 
   constructor(options: CacheOptions = {}) {
     super('CacheService');
-    
+
     this.defaultTTL = options.defaultTTL || 5 * 60 * 1000; // 5 minutes
     this.maxSize = options.maxSize || 10000; // Maximum cache entries
     this.cleanupIntervalMs = options.cleanupInterval || 10 * 60 * 1000; // 10 minutes
-    
+
     this.startCleanupTask();
   }
 
@@ -49,9 +49,9 @@ export class CacheService extends BaseService {
    * Store a value in the cache
    */
   async set<T>(
-    key: string, 
-    value: T, 
-    options: { ttl?: number; namespace?: string } = {}
+    key: string,
+    value: T,
+    options: { ttl?: number; namespace?: string } = {},
   ): Promise<void> {
     try {
       const fullKey = this.buildKey(key, options.namespace);
@@ -64,7 +64,7 @@ export class CacheService extends BaseService {
         ttl,
         createdAt: now,
         accessCount: 0,
-        lastAccessed: now
+        lastAccessed: now,
       };
 
       // Check if we need to evict entries to make room
@@ -73,7 +73,7 @@ export class CacheService extends BaseService {
       }
 
       this.cache.set(fullKey, entry);
-      
+
       this.logger.debug({ key: fullKey, ttl }, 'Value cached');
     } catch (error) {
       this.handleError(error, { key, options });
@@ -83,10 +83,7 @@ export class CacheService extends BaseService {
   /**
    * Retrieve a value from the cache
    */
-  async get<T>(
-    key: string, 
-    options: { namespace?: string } = {}
-  ): Promise<T | null> {
+  async get<T>(key: string, options: { namespace?: string } = {}): Promise<T | null> {
     try {
       const fullKey = this.buildKey(key, options.namespace);
       const entry = this.cache.get(fullKey) as CacheEntry<T> | undefined;
@@ -125,7 +122,7 @@ export class CacheService extends BaseService {
   async getOrSet<T>(
     key: string,
     factory: () => Promise<T>,
-    options: { ttl?: number; namespace?: string } = {}
+    options: { ttl?: number; namespace?: string } = {},
   ): Promise<T> {
     try {
       const cached = await this.get<T>(key, options);
@@ -135,7 +132,7 @@ export class CacheService extends BaseService {
 
       const value = await factory();
       await this.set(key, value, options);
-      
+
       this.logger.debug({ key }, 'Value computed and cached');
       return value;
     } catch (error) {
@@ -150,11 +147,11 @@ export class CacheService extends BaseService {
     try {
       const fullKey = this.buildKey(key, options.namespace);
       const deleted = this.cache.delete(fullKey);
-      
+
       if (deleted) {
         this.logger.debug({ key: fullKey }, 'Cache entry deleted');
       }
-      
+
       return deleted;
     } catch (error) {
       this.logger.error({ error, key }, 'Failed to delete cache entry');
@@ -223,7 +220,7 @@ export class CacheService extends BaseService {
   getStats(): CacheStats {
     const totalRequests = this.stats.hits + this.stats.misses;
     const hitRate = totalRequests > 0 ? this.stats.hits / totalRequests : 0;
-    
+
     // Approximate memory usage calculation
     let memoryUsage = 0;
     for (const entry of this.cache.values()) {
@@ -236,7 +233,7 @@ export class CacheService extends BaseService {
       hitRate: Math.round(hitRate * 10000) / 100, // Percentage with 2 decimal places
       size: this.cache.size,
       maxSize: this.maxSize,
-      memoryUsage
+      memoryUsage,
     };
   }
 
@@ -246,9 +243,7 @@ export class CacheService extends BaseService {
   async getKeys(pattern: string, namespace?: string): Promise<string[]> {
     try {
       const fullPattern = namespace ? `${namespace}:${pattern}` : pattern;
-      const regex = new RegExp(
-        '^' + fullPattern.replace(/\*/g, '.*').replace(/\?/g, '.') + '$'
-      );
+      const regex = new RegExp('^' + fullPattern.replace(/\*/g, '.*').replace(/\?/g, '.') + '$');
 
       const matchingKeys: string[] = [];
       for (const key of this.cache.keys()) {
@@ -271,28 +266,30 @@ export class CacheService extends BaseService {
    */
   async setMultiple<T>(
     entries: { key: string; value: T; ttl?: number }[],
-    options: { namespace?: string } = {}
+    options: { namespace?: string } = {},
   ): Promise<{ successful: number; failed: string[] }> {
-    const operations = entries.map(entry => 
-      () => this.set(entry.key, entry.value, { 
-        ttl: entry.ttl, 
-        namespace: options.namespace 
-      })
+    const operations = entries.map(
+      (entry) => () =>
+        this.set(entry.key, entry.value, {
+          ttl: entry.ttl,
+          namespace: options.namespace,
+        }),
     );
 
-    const { successCount, errors } = await this.withParallel(operations, { 
-      failFast: false 
+    const { successCount, errors } = await this.withParallel(operations, {
+      failFast: false,
     });
 
-    const failed = entries
-      .filter((_, index) => errors[index] !== null)
-      .map(entry => entry.key);
+    const failed = entries.filter((_, index) => errors[index] !== null).map((entry) => entry.key);
 
-    this.logger.info({ 
-      total: entries.length, 
-      successful: successCount, 
-      failed: failed.length 
-    }, 'Batch cache set completed');
+    this.logger.info(
+      {
+        total: entries.length,
+        successful: successCount,
+        failed: failed.length,
+      },
+      'Batch cache set completed',
+    );
 
     return { successful: successCount, failed };
   }
@@ -302,14 +299,12 @@ export class CacheService extends BaseService {
    */
   async getMultiple<T>(
     keys: string[],
-    options: { namespace?: string } = {}
+    options: { namespace?: string } = {},
   ): Promise<{ [key: string]: T | null }> {
-    const operations = keys.map(key => 
-      () => this.get<T>(key, options)
-    );
+    const operations = keys.map((key) => () => this.get<T>(key, options));
 
-    const { results } = await this.withParallel(operations, { 
-      failFast: false 
+    const { results } = await this.withParallel(operations, {
+      failFast: false,
     });
 
     const result: { [key: string]: T | null } = {};
@@ -323,11 +318,7 @@ export class CacheService extends BaseService {
   /**
    * Extend the TTL of an existing cache entry
    */
-  async touch(
-    key: string, 
-    newTTL: number, 
-    options: { namespace?: string } = {}
-  ): Promise<boolean> {
+  async touch(key: string, newTTL: number, options: { namespace?: string } = {}): Promise<boolean> {
     try {
       const fullKey = this.buildKey(key, options.namespace);
       const entry = this.cache.get(fullKey);
@@ -358,14 +349,14 @@ export class CacheService extends BaseService {
    */
   getTopEntries(
     sortBy: 'accessCount' | 'lastAccessed' | 'createdAt' = 'accessCount',
-    limit: number = 10
+    limit: number = 10,
   ): Array<{ key: string; accessCount: number; lastAccessed: Date; createdAt: Date }> {
     const entries = Array.from(this.cache.entries())
       .map(([, entry]) => ({
         key: entry.key, // Use the original key stored in the entry
         accessCount: entry.accessCount,
         lastAccessed: entry.lastAccessed,
-        createdAt: entry.createdAt
+        createdAt: entry.createdAt,
       }))
       .sort((a, b) => {
         switch (sortBy) {
@@ -380,11 +371,11 @@ export class CacheService extends BaseService {
         }
       })
       .slice(0, limit)
-      .map(entry => ({
+      .map((entry) => ({
         key: entry.key,
         accessCount: entry.accessCount,
         lastAccessed: new Date(entry.lastAccessed),
-        createdAt: new Date(entry.createdAt)
+        createdAt: new Date(entry.createdAt),
       }));
 
     return entries;
@@ -412,11 +403,14 @@ export class CacheService extends BaseService {
 
     if (lruKey) {
       this.cache.delete(lruKey);
-      this.logger.info({ 
-        evictedKey: lruKey, 
-        cacheSize: this.cache.size,
-        oldestAccess 
-      }, 'Evicted LRU cache entry');
+      this.logger.info(
+        {
+          evictedKey: lruKey,
+          cacheSize: this.cache.size,
+          oldestAccess,
+        },
+        'Evicted LRU cache entry',
+      );
     }
   }
 
@@ -425,31 +419,31 @@ export class CacheService extends BaseService {
     const keySize = entry.key.length * 2; // 2 bytes per character (UTF-16)
     const valueSize = this.estimateValueSize(entry.value);
     const overhead = 100; // Approximate overhead for entry metadata
-    
+
     return keySize + valueSize + overhead;
   }
 
   private estimateValueSize(value: unknown): number {
     if (value === null || value === undefined) return 0;
-    
+
     if (typeof value === 'string') {
       return value.length * 2; // 2 bytes per character
     }
-    
+
     if (typeof value === 'number') {
       return 8; // 64-bit number
     }
-    
+
     if (typeof value === 'boolean') {
       return 1;
     }
-    
+
     if (typeof value === 'object') {
       // Rough estimation for objects
       const jsonString = JSON.stringify(value);
       return jsonString.length * 2;
     }
-    
+
     return 100; // Default estimation
   }
 

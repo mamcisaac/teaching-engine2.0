@@ -29,7 +29,7 @@ export class EmbeddingService extends BaseService {
     try {
       // Check if embedding already exists
       const existing = await this.prisma.outcomeEmbedding.findUnique({
-        where: { outcomeId }
+        where: { outcomeId },
       });
 
       if (existing) {
@@ -37,7 +37,7 @@ export class EmbeddingService extends BaseService {
         return {
           outcomeId,
           embedding: existing.embedding as number[],
-          model: existing.model
+          model: existing.model,
         };
       }
 
@@ -49,16 +49,19 @@ export class EmbeddingService extends BaseService {
         data: {
           outcomeId,
           embedding,
-          model: this.model
-        }
+          model: this.model,
+        },
       });
 
-      this.logger.info({ outcomeId, model: this.model }, 'Generated and stored embedding for outcome');
+      this.logger.info(
+        { outcomeId, model: this.model },
+        'Generated and stored embedding for outcome',
+      );
 
       return {
         outcomeId,
         embedding,
-        model: this.model
+        model: this.model,
       };
     } catch (error) {
       this.logger.error({ error, outcomeId }, 'Failed to generate embedding for outcome');
@@ -69,7 +72,9 @@ export class EmbeddingService extends BaseService {
   /**
    * Generate embeddings for multiple outcomes in batches
    */
-  async generateBatchEmbeddings(outcomes: { id: string; text: string }[]): Promise<EmbeddingResult[]> {
+  async generateBatchEmbeddings(
+    outcomes: { id: string; text: string }[],
+  ): Promise<EmbeddingResult[]> {
     if (!openai) {
       this.logger.warn('OpenAI API key not configured, skipping batch embedding generation');
       return [];
@@ -80,8 +85,10 @@ export class EmbeddingService extends BaseService {
 
     for (let i = 0; i < batches.length; i++) {
       const batch = batches[i];
-      this.logger.info({ batchIndex: i + 1, totalBatches: batches.length, batchSize: batch.length }, 
-        'Processing embedding batch');
+      this.logger.info(
+        { batchIndex: i + 1, totalBatches: batches.length, batchSize: batch.length },
+        'Processing embedding batch',
+      );
 
       try {
         const batchResults = await this.processBatch(batch);
@@ -105,7 +112,7 @@ export class EmbeddingService extends BaseService {
   async getEmbedding(outcomeId: string): Promise<number[] | null> {
     try {
       const embedding = await this.prisma.outcomeEmbedding.findUnique({
-        where: { outcomeId }
+        where: { outcomeId },
       });
 
       return embedding ? (embedding.embedding as number[]) : null;
@@ -146,10 +153,16 @@ export class EmbeddingService extends BaseService {
   /**
    * Find similar outcomes based on embedding similarity
    */
-  async findSimilarOutcomes(outcomeId: string, threshold: number = 0.8, limit: number = 10): Promise<{
-    outcomeId: string;
-    similarity: number;
-  }[]> {
+  async findSimilarOutcomes(
+    outcomeId: string,
+    threshold: number = 0.8,
+    limit: number = 10,
+  ): Promise<
+    {
+      outcomeId: string;
+      similarity: number;
+    }[]
+  > {
     try {
       const targetEmbedding = await this.getEmbedding(outcomeId);
       if (!targetEmbedding) return [];
@@ -158,16 +171,16 @@ export class EmbeddingService extends BaseService {
       // TODO: Implement vector database for larger datasets
       const allEmbeddings = await this.prisma.outcomeEmbedding.findMany({
         where: {
-          outcomeId: { not: outcomeId }
-        }
+          outcomeId: { not: outcomeId },
+        },
       });
 
       const similarities = allEmbeddings
-        .map(emb => ({
+        .map((emb) => ({
           outcomeId: emb.outcomeId,
-          similarity: this.calculateSimilarity(targetEmbedding, emb.embedding as number[])
+          similarity: this.calculateSimilarity(targetEmbedding, emb.embedding as number[]),
         }))
-        .filter(item => item.similarity >= threshold)
+        .filter((item) => item.similarity >= threshold)
         .sort((a, b) => b.similarity - a.similarity)
         .slice(0, limit);
 
@@ -184,11 +197,13 @@ export class EmbeddingService extends BaseService {
   async cleanupOldEmbeddings(model: string): Promise<number> {
     try {
       const result = await this.prisma.outcomeEmbedding.deleteMany({
-        where: { model: { not: model } }
+        where: { model: { not: model } },
       });
 
-      this.logger.info({ deletedCount: result.count, currentModel: model }, 
-        'Cleaned up old embeddings');
+      this.logger.info(
+        { deletedCount: result.count, currentModel: model },
+        'Cleaned up old embeddings',
+      );
 
       return result.count;
     } catch (error) {
@@ -207,7 +222,7 @@ export class EmbeddingService extends BaseService {
         const response = await openai.embeddings.create({
           model: this.model,
           input: text,
-          encoding_format: 'float'
+          encoding_format: 'float',
         });
 
         if (response.usage?.total_tokens) {
@@ -216,8 +231,14 @@ export class EmbeddingService extends BaseService {
 
         return response.data[0].embedding;
       } catch (error: unknown) {
-        this.logger.warn({ error: error instanceof Error ? error.message : String(error), attempt, maxRetries: this.maxRetries }, 
-          'Embedding generation attempt failed');
+        this.logger.warn(
+          {
+            error: error instanceof Error ? error.message : String(error),
+            attempt,
+            maxRetries: this.maxRetries,
+          },
+          'Embedding generation attempt failed',
+        );
 
         if (attempt === this.maxRetries) {
           this.logger.error({ error }, 'All embedding generation attempts failed');
@@ -238,19 +259,19 @@ export class EmbeddingService extends BaseService {
     // Check for existing embeddings
     const existingEmbeddings = await this.prisma.outcomeEmbedding.findMany({
       where: {
-        outcomeId: { in: batch.map(item => item.id) }
-      }
+        outcomeId: { in: batch.map((item) => item.id) },
+      },
     });
 
-    const existingIds = new Set(existingEmbeddings.map(emb => emb.outcomeId));
-    const newItems = batch.filter(item => !existingIds.has(item.id));
+    const existingIds = new Set(existingEmbeddings.map((emb) => emb.outcomeId));
+    const newItems = batch.filter((item) => !existingIds.has(item.id));
 
     // Add existing embeddings to results
     for (const existing of existingEmbeddings) {
       results.push({
         outcomeId: existing.outcomeId,
         embedding: existing.embedding as number[],
-        model: existing.model
+        model: existing.model,
       });
     }
 
@@ -262,28 +283,32 @@ export class EmbeddingService extends BaseService {
     try {
       const response = await openai!.embeddings.create({
         model: this.model,
-        input: newItems.map(item => item.text),
-        encoding_format: 'float'
+        input: newItems.map((item) => item.text),
+        encoding_format: 'float',
       });
 
       // Store new embeddings
       const embeddings = response.data.map((embedding, index) => ({
         outcomeId: newItems[index].id,
         embedding: embedding.embedding,
-        model: this.model
+        model: this.model,
       }));
 
       await this.prisma.outcomeEmbedding.createMany({
-        data: embeddings
+        data: embeddings,
       });
 
       results.push(...embeddings);
 
-      this.logger.info({ newEmbeddings: newItems.length, totalTokens: response.usage?.total_tokens }, 
-        'Generated batch embeddings');
-
+      this.logger.info(
+        { newEmbeddings: newItems.length, totalTokens: response.usage?.total_tokens },
+        'Generated batch embeddings',
+      );
     } catch (error) {
-      this.logger.error({ error, batchSize: newItems.length }, 'Failed to generate batch embeddings');
+      this.logger.error(
+        { error, batchSize: newItems.length },
+        'Failed to generate batch embeddings',
+      );
     }
 
     return results;
@@ -298,7 +323,7 @@ export class EmbeddingService extends BaseService {
   }
 
   private sleepEmbed(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }
 

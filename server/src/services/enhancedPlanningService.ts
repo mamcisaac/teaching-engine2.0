@@ -28,7 +28,7 @@ export class EnhancedPlanningService extends BaseService {
    */
   async generateIntelligentSchedule(
     userId: number,
-    opts: EnhancedScheduleOptions
+    opts: EnhancedScheduleOptions,
   ): Promise<{
     schedule: ScheduleItem[];
     thematicGroups: ThematicGroup[];
@@ -42,12 +42,12 @@ export class EnhancedPlanningService extends BaseService {
 
       // Get user's activities and outcomes
       const activities = await this.getUserActivities(userId);
-      
+
       if (activities.length === 0) {
         return {
           schedule: [],
           thematicGroups: [],
-          recommendations: ['No activities found. Create some activities first.']
+          recommendations: ['No activities found. Create some activities first.'],
         };
       }
 
@@ -55,7 +55,9 @@ export class EnhancedPlanningService extends BaseService {
       if (opts.useThematicGrouping) {
         thematicGroups = await this.generateThematicGroups(activities);
         if (thematicGroups.length > 0) {
-          recommendations.push(`Found ${thematicGroups.length} thematic groups for better learning coherence`);
+          recommendations.push(
+            `Found ${thematicGroups.length} thematic groups for better learning coherence`,
+          );
         }
       }
 
@@ -76,16 +78,19 @@ export class EnhancedPlanningService extends BaseService {
         await this.trackScheduleGeneration(userId, schedulWithBuffers);
       }
 
-      this.logger.info({ 
-        userId, 
-        scheduledActivities: schedulWithBuffers.length,
-        thematicGroups: thematicGroups.length 
-      }, 'Completed intelligent schedule generation');
+      this.logger.info(
+        {
+          userId,
+          scheduledActivities: schedulWithBuffers.length,
+          thematicGroups: thematicGroups.length,
+        },
+        'Completed intelligent schedule generation',
+      );
 
       return {
         schedule: schedulWithBuffers,
         thematicGroups,
-        recommendations
+        recommendations,
       };
     } catch (error) {
       this.logger.error({ error, userId }, 'Failed to generate intelligent schedule');
@@ -108,8 +113,8 @@ export class EnhancedPlanningService extends BaseService {
           code: true,
           description: true,
           grade: true,
-          domain: true
-        }
+          domain: true,
+        },
       });
 
       // Simple prerequisite detection based on grade and complexity
@@ -119,12 +124,12 @@ export class EnhancedPlanningService extends BaseService {
       // Sort by grade and domain complexity
       const sortedOutcomes = outcomes.sort((a, b) => {
         if (a.grade !== b.grade) return a.grade - b.grade;
-        
+
         // Simple domain complexity ordering
         const complexityOrder = ['number', 'algebra', 'geometry', 'statistics'];
         const aIndex = complexityOrder.indexOf(a.domain?.toLowerCase() || '');
         const bIndex = complexityOrder.indexOf(b.domain?.toLowerCase() || '');
-        
+
         if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
         return a.code.localeCompare(b.code);
       });
@@ -132,7 +137,7 @@ export class EnhancedPlanningService extends BaseService {
       for (let i = 0; i < sortedOutcomes.length; i++) {
         const outcome = sortedOutcomes[i];
         const priorOutcomes = sortedOutcomes.slice(0, i);
-        
+
         // Find potential prerequisites
         const requires: string[] = [];
         for (const prior of priorOutcomes) {
@@ -165,7 +170,7 @@ export class EnhancedPlanningService extends BaseService {
    */
   async optimizeScheduleForProgress(
     userId: number,
-    currentSchedule: ScheduleItem[]
+    currentSchedule: ScheduleItem[],
   ): Promise<{
     optimizedSchedule: ScheduleItem[];
     changes: string[];
@@ -187,31 +192,31 @@ export class EnhancedPlanningService extends BaseService {
           outcomes: {
             some: {
               outcome: {
-                id: { in: coverageData.gaps }
-              }
-            }
-          }
+                id: { in: coverageData.gaps },
+              },
+            },
+          },
         },
         include: {
           outcomes: {
             include: {
-              outcome: true
-            }
-          }
-        }
+              outcome: true,
+            },
+          },
+        },
       });
 
       // Prioritize gap-filling activities
       let optimizedSchedule = [...currentSchedule];
-      
+
       if (gapActivities.length > 0) {
         // Move gap-filling activities to earlier slots
-        const gapActivityIds = gapActivities.map(a => a.id);
-        
+        const gapActivityIds = gapActivities.map((a) => a.id);
+
         optimizedSchedule = optimizedSchedule.sort((a, b) => {
           const aIsGap = a.activityId ? gapActivityIds.includes(a.activityId) : false;
           const bIsGap = b.activityId ? gapActivityIds.includes(b.activityId) : false;
-          
+
           if (aIsGap && !bIsGap) return -1;
           if (!aIsGap && bIsGap) return 1;
           return 0;
@@ -223,20 +228,20 @@ export class EnhancedPlanningService extends BaseService {
       const coverageAnalysis = {
         totalOutcomes: coverageData.totalOutcomes,
         coveredOutcomes: coverageData.coveredOutcomes,
-        gaps: coverageData.gaps
+        gaps: coverageData.gaps,
       };
 
       return {
         optimizedSchedule,
         changes,
-        coverageAnalysis
+        coverageAnalysis,
       };
     } catch (error) {
       this.logger.error({ error, userId }, 'Failed to optimize schedule for progress');
       return {
         optimizedSchedule: currentSchedule,
         changes: [],
-        coverageAnalysis: { totalOutcomes: 0, coveredOutcomes: 0, gaps: [] }
+        coverageAnalysis: { totalOutcomes: 0, coveredOutcomes: 0, gaps: [] },
       };
     }
   }
@@ -247,7 +252,7 @@ export class EnhancedPlanningService extends BaseService {
     return await this.prisma.activity.findMany({
       where: {
         milestone: { userId },
-        completedAt: null
+        completedAt: null,
       },
       include: {
         milestone: {
@@ -255,27 +260,27 @@ export class EnhancedPlanningService extends BaseService {
             subject: true,
             outcomes: {
               include: {
-                outcome: true
-              }
-            }
-          }
+                outcome: true,
+              },
+            },
+          },
         },
         outcomes: {
           include: {
-            outcome: true
-          }
-        }
-      }
+            outcome: true,
+          },
+        },
+      },
     });
   }
 
   private async generateThematicGroups(activities: any[]): Promise<ThematicGroup[]> {
     try {
       const groups: ThematicGroup[] = [];
-      
+
       // Group activities by similar outcomes using clustering
       const outcomeActivityMap = new Map<string, number[]>();
-      
+
       for (const activity of activities) {
         for (const activityOutcome of activity.outcomes) {
           const outcomeId = activityOutcome.outcome.id;
@@ -288,22 +293,22 @@ export class EnhancedPlanningService extends BaseService {
 
       // Find similar outcomes and group them
       const processedOutcomes = new Set<string>();
-      
+
       for (const [outcomeId] of outcomeActivityMap.entries()) {
         if (processedOutcomes.has(outcomeId)) continue;
 
         const similarOutcomes = await clusteringService.suggestSimilarOutcomes(outcomeId, 0.8, 5);
-        const groupOutcomes = [outcomeId, ...similarOutcomes.map(s => s.outcomeId)];
-        
+        const groupOutcomes = [outcomeId, ...similarOutcomes.map((s) => s.outcomeId)];
+
         // Collect all activities for this thematic group
         const groupActivityIds = new Set<number>();
         let totalDuration = 0;
 
         for (const oId of groupOutcomes) {
           const relatedActivities = outcomeActivityMap.get(oId) || [];
-          relatedActivities.forEach(aId => {
+          relatedActivities.forEach((aId) => {
             groupActivityIds.add(aId);
-            const activity = activities.find(a => a.id === aId);
+            const activity = activities.find((a) => a.id === aId);
             if (activity) totalDuration += activity.estimatedDuration || 45;
           });
           processedOutcomes.add(oId);
@@ -313,7 +318,7 @@ export class EnhancedPlanningService extends BaseService {
           // Get outcome descriptions for theme naming
           const outcomes = await this.prisma.outcome.findMany({
             where: { id: { in: groupOutcomes } },
-            select: { description: true, domain: true }
+            select: { description: true, domain: true },
           });
 
           const domain = outcomes[0]?.domain || 'General';
@@ -324,7 +329,7 @@ export class EnhancedPlanningService extends BaseService {
             outcomeIds: groupOutcomes,
             activityIds: Array.from(groupActivityIds),
             estimatedDuration: totalDuration,
-            prerequisites: [] // TODO: Implement prerequisite detection
+            prerequisites: [], // TODO: Implement prerequisite detection
           });
         }
       }
@@ -338,10 +343,10 @@ export class EnhancedPlanningService extends BaseService {
 
   private async checkPrerequisites(activities: any[]): Promise<string[]> {
     const issues: string[] = [];
-    
+
     // Simple prerequisite checking based on grade levels
     const gradeMap = new Map<number, number[]>();
-    
+
     for (const activity of activities) {
       for (const activityOutcome of activity.outcomes) {
         const grade = activityOutcome.outcome.grade;
@@ -354,9 +359,11 @@ export class EnhancedPlanningService extends BaseService {
     for (let i = 1; i < grades.length; i++) {
       const currentGrade = grades[i];
       const prevGrade = grades[i - 1];
-      
+
       if (currentGrade - prevGrade > 1) {
-        issues.push(`Gap detected: Activities jump from grade ${prevGrade} to ${currentGrade} - consider adding transitional content`);
+        issues.push(
+          `Gap detected: Activities jump from grade ${prevGrade} to ${currentGrade} - consider adding transitional content`,
+        );
       }
     }
 
@@ -366,15 +373,15 @@ export class EnhancedPlanningService extends BaseService {
   private async createEnhancedSchedule(
     activities: any[],
     opts: EnhancedScheduleOptions,
-    thematicGroups: ThematicGroup[]
+    thematicGroups: ThematicGroup[],
   ): Promise<ScheduleItem[]> {
     const schedule: ScheduleItem[] = [];
     const availableSlots = opts.availableBlocks;
-    
+
     if (thematicGroups.length > 0) {
       // Schedule thematic groups together
       let slotIndex = 0;
-      
+
       for (const group of thematicGroups) {
         for (const activityId of group.activityIds) {
           if (slotIndex < availableSlots.length) {
@@ -382,7 +389,7 @@ export class EnhancedPlanningService extends BaseService {
             schedule.push({
               day: slot.day,
               slotId: slot.slotId,
-              activityId
+              activityId,
             });
             slotIndex++;
           }
@@ -390,16 +397,16 @@ export class EnhancedPlanningService extends BaseService {
       }
 
       // Schedule remaining activities
-      const scheduledActivityIds = new Set(schedule.map(s => s.activityId).filter(Boolean));
-      const remainingActivities = activities.filter(a => !scheduledActivityIds.has(a.id));
-      
+      const scheduledActivityIds = new Set(schedule.map((s) => s.activityId).filter(Boolean));
+      const remainingActivities = activities.filter((a) => !scheduledActivityIds.has(a.id));
+
       for (const activity of remainingActivities) {
         if (slotIndex < availableSlots.length) {
           const slot = availableSlots[slotIndex];
           schedule.push({
             day: slot.day,
             slotId: slot.slotId,
-            activityId: activity.id
+            activityId: activity.id,
           });
           slotIndex++;
         }
@@ -411,7 +418,7 @@ export class EnhancedPlanningService extends BaseService {
         schedule.push({
           day: slot.day,
           slotId: slot.slotId,
-          activityId: activities[i].id
+          activityId: activities[i].id,
         });
       }
     }
@@ -421,13 +428,13 @@ export class EnhancedPlanningService extends BaseService {
 
   private addMaterialPrepBuffers(
     schedule: ScheduleItem[],
-    materialPrepTime: number
+    materialPrepTime: number,
   ): ScheduleItem[] {
     if (materialPrepTime <= 0) return schedule;
 
     // Add buffer time before activities that require materials
     // This is a simplified implementation - in reality, you'd check activity.notes for material requirements
-    return schedule.map(item => {
+    return schedule.map((item) => {
       // For now, assume all activities need some prep time
       // TODO: Integrate with material detection from activity notes
       return item;
@@ -437,12 +444,15 @@ export class EnhancedPlanningService extends BaseService {
   private async trackScheduleGeneration(userId: number, schedule: ScheduleItem[]): Promise<void> {
     try {
       // Log schedule generation for analytics
-      this.logger.info({
-        userId,
-        scheduledActivities: schedule.filter(s => s.activityId).length,
-        totalSlots: schedule.length,
-        timestamp: new Date()
-      }, 'Schedule generation tracked');
+      this.logger.info(
+        {
+          userId,
+          scheduledActivities: schedule.filter((s) => s.activityId).length,
+          totalSlots: schedule.length,
+          timestamp: new Date(),
+        },
+        'Schedule generation tracked',
+      );
 
       // TODO: Store schedule generation metrics in database for analysis
     } catch (error) {
@@ -453,12 +463,12 @@ export class EnhancedPlanningService extends BaseService {
   private async isPrerequisite(prerequisite: any, outcome: any): Promise<boolean> {
     // Simple heuristic: lower grades are prerequisites for higher grades
     if (prerequisite.grade < outcome.grade) return true;
-    
+
     // Same grade: check if descriptions suggest a dependency
     if (prerequisite.grade === outcome.grade && prerequisite.domain === outcome.domain) {
       const prereqDesc = prerequisite.description.toLowerCase();
       const outcomeDesc = outcome.description.toLowerCase();
-      
+
       // Basic patterns that suggest prerequisite relationships
       if (prereqDesc.includes('basic') && !outcomeDesc.includes('basic')) return true;
       if (prereqDesc.includes('introduce') && outcomeDesc.includes('apply')) return true;
@@ -481,12 +491,12 @@ export class EnhancedPlanningService extends BaseService {
             include: {
               outcomes: {
                 include: {
-                  outcome: true
-                }
-              }
-            }
-          }
-        }
+                  outcome: true,
+                },
+              },
+            },
+          },
+        },
       });
 
       const allOutcomeIds = new Set<string>();
@@ -502,21 +512,21 @@ export class EnhancedPlanningService extends BaseService {
       const coveredOutcomes = await this.prisma.activityOutcome.findMany({
         where: {
           activity: {
-            milestone: { userId }
-          }
+            milestone: { userId },
+          },
         },
         select: {
-          outcomeId: true
-        }
+          outcomeId: true,
+        },
       });
 
-      const coveredOutcomeIds = new Set(coveredOutcomes.map(co => co.outcomeId));
-      const gaps = Array.from(allOutcomeIds).filter(id => !coveredOutcomeIds.has(id));
+      const coveredOutcomeIds = new Set(coveredOutcomes.map((co) => co.outcomeId));
+      const gaps = Array.from(allOutcomeIds).filter((id) => !coveredOutcomeIds.has(id));
 
       return {
         totalOutcomes: allOutcomeIds.size,
         coveredOutcomes: coveredOutcomeIds.size,
-        gaps
+        gaps,
       };
     } catch (error) {
       this.logger.error({ error, userId }, 'Failed to analyze coverage gaps');
