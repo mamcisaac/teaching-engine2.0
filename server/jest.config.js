@@ -7,6 +7,9 @@ export default {
     '^(\\.{1,2}/.*)\\.js$': '$1',
     '^../prisma$': '<rootDir>/tests/__mocks__/prisma.ts',
     '^../../prisma$': '<rootDir>/tests/__mocks__/prisma.ts',
+    '^../../src/prisma$': '<rootDir>/tests/__mocks__/prisma.ts',
+    '^../../src/services/embeddingService$': '<rootDir>/src/services/embeddingService',
+    '^../../src/services/llmService$': '<rootDir>/src/services/llmService',
   },
   transform: {
     '^.+\\.tsx?$': [
@@ -20,6 +23,7 @@ export default {
   globalTeardown: '<rootDir>/tests/global-teardown.ts',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js', '<rootDir>/tests/jest.setup.ts'],
   testMatch: ['**/__tests__/**/*.test.ts', '**/tests/**/*.test.ts'],
+  testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   moduleFileExtensions: ['ts', 'js', 'json', 'node'],
   transformIgnorePatterns: ['node_modules/(?!(.*\\.mjs|@prisma/client)/)'],
   maxWorkers: '50%',
