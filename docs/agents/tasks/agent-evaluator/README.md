@@ -32,6 +32,15 @@ Build comprehensive assessment tools that make evidence collection effortless an
 11. **Personalized Outcome Plans** - Individual learning paths
 12. **Longitudinal Reading Tracker** - Long-term reading progress
 
+### Phase 5: Next-Tier AI Assessment (ENHANCEMENT)
+
+13. **A3: Reflection Classifier** - Outcome-linked reflection analysis
+    - Automatic classification of teacher reflections to curriculum outcomes
+    - AI-powered reflection tagging and categorization
+    - Progress tracking integration with reflection data
+    - Enhanced reflection-to-report workflows
+    - **Dependency**: E1 Curriculum Embeddings (Agent-Atlas)
+
 ## Technical Guidelines
 
 ### Component Structure

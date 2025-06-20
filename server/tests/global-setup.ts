@@ -8,13 +8,13 @@ import path from 'path';
  */
 export default async function globalSetup() {
   console.log('🔧 Setting up test environment...');
-  
+
   // Ensure test directory exists
   const testTempDir = path.join(process.cwd(), 'tests', 'temp');
   if (!fs.existsSync(testTempDir)) {
     fs.mkdirSync(testTempDir, { recursive: true });
   }
-  
+
   // Clean up any leftover test databases from previous runs
   console.log('🧹 Cleaning up old test databases...');
   try {
@@ -37,32 +37,36 @@ export default async function globalSetup() {
   } catch (error) {
     console.warn('Failed to clean up old test databases:', error);
   }
-  
+
   // Ensure Prisma client is generated
   console.log('📦 Generating Prisma client...');
   try {
-    execSync('cd .. && pnpm db:generate', {
+    // Run from the monorepo root
+    execSync('pnpm --filter @teaching-engine/database db:generate', {
       stdio: 'inherit',
       timeout: 60000, // 1 minute timeout
+      cwd: path.resolve(__dirname, '../..'), // Go to monorepo root
     });
   } catch (error) {
     console.error('Failed to generate Prisma client:', error);
     throw error;
   }
-  
+
   // Set test environment variables
   process.env.NODE_ENV = 'test';
-  process.env.DATABASE_URL = process.env.DATABASE_URL || 'file:./test.db';
+  // Use absolute path to ensure consistency across environments
+  const dbPath = path.resolve(__dirname, '../../packages/database/prisma/test.db');
+  process.env.DATABASE_URL = process.env.DATABASE_URL || `file:${dbPath}`;
   process.env.JWT_SECRET = process.env.JWT_SECRET || 'test-secret-key';
   process.env.JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '1h';
-  
+
   // Suppress console warnings in tests unless debugging
   if (!process.env.DEBUG_TESTS) {
     global.console.warn = () => {};
   }
-  
+
   console.log('✅ Test environment setup complete');
-  
+
   // Return a teardown function
   return async () => {
     // This runs after all tests are complete

@@ -34,6 +34,35 @@ Build intelligent planning tools that reduce teacher workload by 60% while ensur
 13. **Theme-to-Outcome Planning** - Thematic unit planning
 14. **Daily Oral Language Routines** - Routine template system
 
+### Phase 5: Next-Tier AI Planning Features (HIGH PRIORITY)
+
+15. **A1: AI Activity Generator** - Smart activity creation aligned with curriculum outcomes
+
+    - AI-powered activity generation based on outcomes and constraints
+    - Bilingual activity creation and labeling
+    - Integration with existing activity library
+    - **Dependency**: E1 Curriculum Embeddings (Agent-Atlas)
+
+16. **A2: AI Weekly Planner Agent** - Conversational planning assistance
+
+    - Natural language planning interface ("Plan week 6 to review science outcomes")
+    - Context-aware plan generation using term/goal context
+    - Full structured week plans with domain mix
+    - **Dependency**: E1 Curriculum Embeddings, A1 Activity Generator
+
+17. **A4: AI Prompt Generator** - Dynamic prompt creation for planning
+
+    - Context-aware prompt generation for AI interactions
+    - Planning scenario templates
+    - Optimization of AI planning conversations
+    - **Dependency**: E1, A1, A2
+
+18. **E2: GPT Planning Agent** - Natural language planning interface
+    - GPT-powered conversational planning assistant
+    - Smart suggestions with source references
+    - Teacher can regenerate, refine, accept, or reject suggestions
+    - **Dependency**: E1 Curriculum Embeddings
+
 ## Technical Guidelines
 
 ### Component Structure

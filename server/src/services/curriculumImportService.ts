@@ -1,441 +1,429 @@
-import { PrismaClient, ImportStatus } from '@teaching-engine/database';
-import fs from 'fs/promises';
-import path from 'path';
-import { v4 as uuidv4 } from 'uuid';
-import OpenAI from 'openai';
-import multer from 'multer';
-import mammoth from 'mammoth';
-import pdf from 'pdf-parse';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { embeddingService } from './embeddingService';
+import BaseService from './base/BaseService';
+import { ImportStatus } from '@teaching-engine/database';
 
-const prisma = new PrismaClient();
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
-export interface ParsedOutcome {
+export interface ImportOutcome {
   code: string;
   description: string;
-  strand?: string;
-  substrand?: string;
-}
-
-export interface ParsedCurriculum {
   subject: string;
   grade: number;
-  outcomes: ParsedOutcome[];
+  domain?: string;
+}
+
+export interface ImportProgress {
+  importId: string;
+  status: ImportStatus;
+  totalOutcomes: number;
+  processedOutcomes: number;
+  errors: string[];
 }
 
 export interface ImportResult {
-  importId: number;
-  status: ImportStatus;
-  outcomesCount: number;
-  errorMessage?: string;
+  importId: string;
+  outcomes: { id: string; code: string }[];
+  clusters: { id: string; name: string; outcomeIds: string[] }[];
+  errors: string[];
 }
 
-export class CurriculumImportService {
-  private readonly uploadsDir = process.env.UPLOAD_DIR || './uploads';
-
+export class CurriculumImportService extends BaseService {
   constructor() {
-    // Ensure uploads directory exists
-    this.ensureUploadsDir();
-  }
-
-  private async ensureUploadsDir(): Promise<void> {
-    try {
-      await fs.access(this.uploadsDir);
-    } catch {
-      await fs.mkdir(this.uploadsDir, { recursive: true });
-    }
+    super('CurriculumImportService');
   }
 
   /**
-   * Upload and save document file
+   * Start a new curriculum import session
    */
-  async uploadDocument(
-    file: Express.Multer.File,
-    userId: number
-  ): Promise<number> {
-    const filename = `${uuidv4()}-${file.originalname}`;
-    const filePath = path.join(this.uploadsDir, filename);
-
-    await fs.writeFile(filePath, file.buffer);
-
-    const importRecord = await prisma.curriculumImport.create({
-      data: {
-        userId,
-        filename,
-        originalName: file.originalname,
-        mimeType: file.mimetype,
-        fileSize: file.size,
-        filePath,
-        status: ImportStatus.UPLOADING,
-      },
-    });
-
-    // Start processing asynchronously
-    this.processDocument(importRecord.id).catch(console.error);
-
-    return importRecord.id;
-  }
-
-  /**
-   * Extract text from uploaded document
-   */
-  private async extractText(filePath: string, mimeType: string): Promise<string> {
+  async startImport(
+    userId: number,
+    grade: number,
+    subject: string,
+    sourceFormat: 'csv' | 'pdf' | 'docx' | 'manual',
+    sourceFile?: string,
+    metadata?: Record<string, unknown>,
+  ): Promise<string> {
     try {
-      const fileBuffer = await fs.readFile(filePath);
-
-      switch (mimeType) {
-        case 'application/pdf': {
-          const pdfData = await pdf(fileBuffer);
-          return pdfData.text;
-        }
-
-        case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-        case 'application/msword': {
-          const docResult = await mammoth.extractRawText({ buffer: fileBuffer });
-          return docResult.value;
-        }
-
-        case 'text/plain':
-          return fileBuffer.toString('utf-8');
-
-        default:
-          throw new Error(`Unsupported file type: ${mimeType}`);
-      }
-    } catch (error) {
-      throw new Error(`Failed to extract text: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    }
-  }
-
-  /**
-   * Parse curriculum text using OpenAI
-   */
-  private async parseWithAI(text: string): Promise<ParsedCurriculum> {
-    if (!process.env.OPENAI_API_KEY) {
-      throw new Error('OpenAI API key not configured');
-    }
-
-    const prompt = `
-You are a curriculum parser. Extract learning outcomes from the following curriculum document.
-
-Please analyze the text and return a JSON object in this exact format:
-{
-  "subject": "string (e.g., 'Mathematics', 'English Language Arts', 'French')",
-  "grade": number (1-12),
-  "outcomes": [
-    {
-      "code": "string (e.g., 'M1.1', 'ELA2.3')",
-      "description": "string (the full outcome description)",
-      "strand": "string (optional - subject area like 'Number', 'Reading')",
-      "substrand": "string (optional - more specific area)"
-    }
-  ]
-}
-
-Guidelines:
-- Extract ALL learning outcomes/expectations from the document
-- If no grade is specified, try to infer from context or use 1
-- If no subject is clear, use "General"
-- Outcome codes should follow the pattern found in the document
-- Keep descriptions exactly as written in the source
-- If strands/substrands aren't clear, leave them empty
-
-Text to parse:
-${text.substring(0, 8000)} ${text.length > 8000 ? '...(truncated)' : ''}
-`;
-
-    try {
-      const response = await openai.chat.completions.create({
-        model: 'gpt-4o-mini',
-        messages: [
-          {
-            role: 'system',
-            content: 'You are a curriculum parsing assistant. Return only valid JSON.',
-          },
-          {
-            role: 'user',
-            content: prompt,
-          },
-        ],
-        temperature: 0.1,
-        max_tokens: 4000,
+      const curriculumImport = await this.prisma.curriculumImport.create({
+        data: {
+          userId,
+          grade,
+          subject,
+          sourceFormat,
+          sourceFile,
+          status: ImportStatus.PENDING,
+          metadata: (metadata || {}) as any,
+        },
       });
 
-      const content = response.choices[0]?.message?.content;
-      if (!content) {
-        throw new Error('No response from OpenAI');
-      }
+      this.logger.info(
+        { importId: curriculumImport.id, userId, grade, subject, sourceFormat },
+        'Started curriculum import session',
+      );
 
-      // Extract JSON from response (in case there's extra text)
-      const jsonMatch = content.match(/\{[\s\S]*\}/);
-      if (!jsonMatch) {
-        throw new Error('No valid JSON found in OpenAI response');
-      }
-
-      const parsed = JSON.parse(jsonMatch[0]) as ParsedCurriculum;
-      
-      // Validate the parsed result
-      if (!parsed.subject || typeof parsed.grade !== 'number' || !Array.isArray(parsed.outcomes)) {
-        throw new Error('Invalid curriculum format from AI parsing');
-      }
-
-      return parsed;
+      return curriculumImport.id;
     } catch (error) {
-      console.error('AI parsing error:', error);
-      throw new Error(`AI parsing failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      this.logger.error({ error, userId, grade, subject }, 'Failed to start curriculum import');
+      throw new Error('Failed to start import session');
     }
   }
 
   /**
-   * Process uploaded document (extract text and parse with AI)
+   * Process curriculum import from various sources
    */
-  private async processDocument(importId: number): Promise<void> {
+  async processImport(importId: string, outcomes: ImportOutcome[]): Promise<ImportResult> {
     try {
       // Update status to processing
-      await prisma.curriculumImport.update({
-        where: { id: importId },
-        data: { status: ImportStatus.PROCESSING },
-      });
+      await this.updateImportStatus(importId, ImportStatus.PROCESSING, outcomes.length);
 
-      const importRecord = await prisma.curriculumImport.findUnique({
-        where: { id: importId },
-      });
+      const errors: string[] = [];
+      const createdOutcomes: { id: string; code: string }[] = [];
 
-      if (!importRecord) {
-        throw new Error('Import record not found');
-      }
+      // Process outcomes in batches
+      const batchSize = 50;
+      for (let i = 0; i < outcomes.length; i += batchSize) {
+        const batch = outcomes.slice(i, i + batchSize);
 
-      // Extract text
-      const rawText = await this.extractText(importRecord.filePath, importRecord.mimeType);
-
-      // Parse with AI
-      const parsedData = await this.parseWithAI(rawText);
-
-      // Update record with results
-      await prisma.curriculumImport.update({
-        where: { id: importId },
-        data: {
-          status: ImportStatus.READY_FOR_REVIEW,
-          rawText,
-          parsedData: JSON.stringify(parsedData),
-          processedAt: new Date(),
-        },
-      });
-    } catch (error) {
-      console.error('Document processing error:', error);
-      
-      // Update record with error
-      await prisma.curriculumImport.update({
-        where: { id: importId },
-        data: {
-          status: ImportStatus.FAILED,
-          errorMessage: error instanceof Error ? error.message : 'Unknown error',
-          processedAt: new Date(),
-        },
-      });
-    }
-  }
-
-  /**
-   * Get import status and parsed data
-   */
-  async getImportStatus(importId: number, userId: number): Promise<{
-    status: ImportStatus;
-    parsedData?: ParsedCurriculum;
-    errorMessage?: string;
-    originalName: string;
-  }> {
-    const importRecord = await prisma.curriculumImport.findFirst({
-      where: { id: importId, userId },
-    });
-
-    if (!importRecord) {
-      throw new Error('Import not found');
-    }
-
-    let parsedData: ParsedCurriculum | undefined;
-    if (importRecord.parsedData) {
-      try {
-        parsedData = JSON.parse(importRecord.parsedData);
-      } catch {
-        // If parsing fails, treat as error
-      }
-    }
-
-    return {
-      status: importRecord.status,
-      parsedData,
-      errorMessage: importRecord.errorMessage || undefined,
-      originalName: importRecord.originalName,
-    };
-  }
-
-  /**
-   * Save confirmed curriculum to database
-   */
-  async confirmImport(
-    importId: number, 
-    userId: number, 
-    reviewedData: ParsedCurriculum
-  ): Promise<ImportResult> {
-    const importRecord = await prisma.curriculumImport.findFirst({
-      where: { id: importId, userId },
-    });
-
-    if (!importRecord) {
-      throw new Error('Import not found');
-    }
-
-    if (importRecord.status !== ImportStatus.READY_FOR_REVIEW) {
-      throw new Error('Import not ready for confirmation');
-    }
-
-    try {
-      // Create subject if it doesn't exist
-      let subject = await prisma.subject.findFirst({
-        where: { 
-          name: reviewedData.subject,
-          userId 
-        },
-      });
-
-      if (!subject) {
-        subject = await prisma.subject.create({
-          data: {
-            name: reviewedData.subject,
-            userId,
-          },
-        });
-      }
-
-      // Create outcomes
-      const createdOutcomes = [];
-      for (const outcome of reviewedData.outcomes) {
         try {
-          const createdOutcome = await prisma.outcome.create({
-            data: {
-              code: outcome.code,
-              description: outcome.description,
-              subject: reviewedData.subject,
-              grade: reviewedData.grade,
-              domain: outcome.strand || null,
-            },
-          });
-          createdOutcomes.push(createdOutcome);
+          const batchResults = await this.processBatchOutcomes(importId, batch);
+          createdOutcomes.push(...batchResults.outcomes);
+          errors.push(...batchResults.errors);
+
+          // Update progress
+          await this.updateProgress(importId, i + batch.length);
         } catch (error) {
-          // Skip duplicate outcomes (code constraint violation)
-          console.warn(`Skipping duplicate outcome: ${outcome.code}`);
+          this.logger.error({ error, importId, batchIndex: i }, 'Failed to process batch');
+          errors.push(`Batch ${Math.floor(i / batchSize) + 1}: ${error}`);
         }
       }
 
-      // Mark import as confirmed
-      await prisma.curriculumImport.update({
-        where: { id: importId },
-        data: { status: ImportStatus.CONFIRMED },
-      });
+      // Generate embeddings for created outcomes
+      this.logger.info(
+        { importId, outcomeCount: createdOutcomes.length },
+        'Generating embeddings for imported outcomes',
+      );
+      const embeddingData = createdOutcomes.map((outcome) => ({
+        id: outcome.id,
+        text: `${outcome.code}: ${outcomes.find((o) => o.code === outcome.code)?.description || ''}`,
+      }));
+
+      await embeddingService.generateBatchEmbeddings(embeddingData);
+
+      // Generate initial clusters
+      const clusters = await this.generateInitialClusters(
+        importId,
+        createdOutcomes.map((o) => o.id),
+      );
+
+      // Mark as completed
+      await this.updateImportStatus(importId, ImportStatus.COMPLETED);
+      await this.setCompletionTime(importId);
+
+      this.logger.info(
+        {
+          importId,
+          outcomesCreated: createdOutcomes.length,
+          clustersGenerated: clusters.length,
+          errorsCount: errors.length,
+        },
+        'Completed curriculum import',
+      );
 
       return {
         importId,
-        status: ImportStatus.CONFIRMED,
-        outcomesCount: createdOutcomes.length,
+        outcomes: createdOutcomes,
+        clusters,
+        errors,
       };
     } catch (error) {
-      console.error('Import confirmation error:', error);
-      
-      await prisma.curriculumImport.update({
-        where: { id: importId },
-        data: { 
-          status: ImportStatus.FAILED,
-          errorMessage: `Confirmation failed: ${error instanceof Error ? error.message : 'Unknown error'}`
-        },
-      });
-
+      this.logger.error({ error, importId }, 'Failed to process curriculum import');
+      await this.updateImportStatus(importId, ImportStatus.FAILED);
+      await this.logErrors(importId, [error.toString()]);
       throw error;
     }
   }
 
   /**
-   * Get user's import history
+   * Parse CSV content into outcomes
    */
-  async getUserImports(userId: number): Promise<Array<{
-    id: number;
-    originalName: string;
-    status: ImportStatus;
-    createdAt: Date;
-    processedAt?: Date;
-    outcomesCount?: number;
-  }>> {
-    const imports = await prisma.curriculumImport.findMany({
-      where: { userId },
-      orderBy: { createdAt: 'desc' },
-    });
+  parseCSV(csvContent: string): ImportOutcome[] {
+    try {
+      const lines = csvContent.split('\n');
+      const headers = lines[0]
+        .toLowerCase()
+        .split(',')
+        .map((h) => h.trim());
 
-    return imports.map(imp => ({
-      id: imp.id,
-      originalName: imp.originalName,
-      status: imp.status,
-      createdAt: imp.createdAt,
-      processedAt: imp.processedAt || undefined,
-      outcomesCount: imp.parsedData ? JSON.parse(imp.parsedData).outcomes?.length : undefined,
-    }));
+      const codeIndex = headers.indexOf('code');
+      const descriptionIndex = headers.indexOf('description');
+      const subjectIndex = headers.indexOf('subject');
+      const gradeIndex = headers.indexOf('grade');
+      const domainIndex = headers.indexOf('domain');
+
+      if (codeIndex === -1 || descriptionIndex === -1) {
+        throw new Error('CSV must contain "code" and "description" columns');
+      }
+
+      const outcomes: ImportOutcome[] = [];
+
+      for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+
+        const columns = line.split(',').map((col) => col.trim().replace(/^"(.*)"$/, '$1'));
+
+        if (columns.length < Math.max(codeIndex, descriptionIndex) + 1) {
+          this.logger.warn({ lineNumber: i + 1, line }, 'Skipping invalid CSV line');
+          continue;
+        }
+
+        const outcome: ImportOutcome = {
+          code: columns[codeIndex],
+          description: columns[descriptionIndex],
+          subject: subjectIndex >= 0 ? columns[subjectIndex] : 'Unknown',
+          grade: gradeIndex >= 0 ? parseInt(columns[gradeIndex]) || 0 : 0,
+          domain: domainIndex >= 0 ? columns[domainIndex] : undefined,
+        };
+
+        outcomes.push(outcome);
+      }
+
+      return outcomes;
+    } catch (error) {
+      this.logger.error({ error }, 'Failed to parse CSV content');
+      throw new Error(`CSV parsing failed: ${error.message}`);
+    }
   }
 
   /**
-   * Clean up old failed imports
+   * Extract outcomes from PDF (placeholder for future implementation)
    */
-  async cleanupFailedImports(olderThanDays: number = 7): Promise<number> {
-    const cutoffDate = new Date();
-    cutoffDate.setDate(cutoffDate.getDate() - olderThanDays);
+  async parsePDF(): Promise<ImportOutcome[]> {
+    // TODO: Implement PDF parsing using pdf-parse or similar library
+    this.logger.warn('PDF parsing not yet implemented');
+    throw new Error('PDF parsing is not yet implemented. Please use CSV format or manual entry.');
+  }
 
-    const failedImports = await prisma.curriculumImport.findMany({
-      where: {
-        status: ImportStatus.FAILED,
-        createdAt: { lt: cutoffDate },
-      },
-    });
+  /**
+   * Extract outcomes from DOCX (placeholder for future implementation)
+   */
+  async parseDOCX(): Promise<ImportOutcome[]> {
+    // TODO: Implement DOCX parsing using mammoth or similar library
+    this.logger.warn('DOCX parsing not yet implemented');
+    throw new Error('DOCX parsing is not yet implemented. Please use CSV format or manual entry.');
+  }
 
-    // Delete files
-    for (const imp of failedImports) {
+  /**
+   * Get import progress
+   */
+  async getImportProgress(importId: string): Promise<ImportProgress | null> {
+    try {
+      const importRecord = await this.prisma.curriculumImport.findUnique({
+        where: { id: importId },
+      });
+
+      if (!importRecord) return null;
+
+      return {
+        importId,
+        status: importRecord.status,
+        totalOutcomes: importRecord.totalOutcomes,
+        processedOutcomes: importRecord.processedOutcomes,
+        errors: (importRecord.errorLog as string[]) || [],
+      };
+    } catch (error) {
+      this.logger.error({ error, importId }, 'Failed to get import progress');
+      return null;
+    }
+  }
+
+  /**
+   * Cancel an import session
+   */
+  async cancelImport(importId: string): Promise<boolean> {
+    try {
+      await this.updateImportStatus(importId, ImportStatus.CANCELLED);
+      this.logger.info({ importId }, 'Cancelled curriculum import');
+      return true;
+    } catch (error) {
+      this.logger.error({ error, importId }, 'Failed to cancel import');
+      return false;
+    }
+  }
+
+  /**
+   * Get import history for a user
+   */
+  async getImportHistory(userId: number, limit: number = 20): Promise<unknown[]> {
+    try {
+      const imports = await this.prisma.curriculumImport.findMany({
+        where: { userId },
+        orderBy: { createdAt: 'desc' },
+        take: limit,
+        include: {
+          clusters: {
+            select: {
+              id: true,
+              clusterName: true,
+              clusterType: true,
+            },
+          },
+          _count: {
+            select: {
+              outcomes: true,
+            },
+          },
+        },
+      });
+
+      return imports;
+    } catch (error) {
+      this.logger.error({ error, userId }, 'Failed to get import history');
+      return [];
+    }
+  }
+
+  // Private helper methods
+
+  private async processBatchOutcomes(
+    importId: string,
+    outcomes: ImportOutcome[],
+  ): Promise<{
+    outcomes: { id: string; code: string }[];
+    errors: string[];
+  }> {
+    const results: { id: string; code: string }[] = [];
+    const errors: string[] = [];
+
+    for (const outcomeData of outcomes) {
       try {
-        await fs.unlink(imp.filePath);
-      } catch {
-        // Ignore file deletion errors
+        // Check if outcome already exists
+        const existing = await this.prisma.outcome.findUnique({
+          where: { code: outcomeData.code },
+        });
+
+        if (existing) {
+          this.logger.debug({ code: outcomeData.code }, 'Outcome already exists, skipping');
+          results.push({ id: existing.id, code: existing.code });
+          continue;
+        }
+
+        // Create new outcome
+        const outcome = await this.prisma.outcome.create({
+          data: {
+            code: outcomeData.code,
+            description: outcomeData.description,
+            subject: outcomeData.subject,
+            grade: outcomeData.grade,
+            domain: outcomeData.domain,
+            importId,
+          },
+        });
+
+        results.push({ id: outcome.id, code: outcome.code });
+      } catch (error) {
+        const errorMsg = `Failed to create outcome ${outcomeData.code}: ${error.message}`;
+        this.logger.error({ error, outcome: outcomeData }, errorMsg);
+        errors.push(errorMsg);
       }
     }
 
-    // Delete records
-    const result = await prisma.curriculumImport.deleteMany({
-      where: {
-        status: ImportStatus.FAILED,
-        createdAt: { lt: cutoffDate },
-      },
-    });
+    return { outcomes: results, errors };
+  }
 
-    return result.count;
+  private async generateInitialClusters(
+    importId: string,
+    outcomeIds: string[],
+  ): Promise<
+    {
+      id: string;
+      name: string;
+      outcomeIds: string[];
+    }[]
+  > {
+    // Simple initial clustering by subject/domain
+    // TODO: Implement proper embedding-based clustering in clusteringService
+    try {
+      const outcomes = await this.prisma.outcome.findMany({
+        where: { id: { in: outcomeIds } },
+        select: { id: true, subject: true, domain: true, grade: true },
+      });
+
+      const subjectGroups = new Map<string, string[]>();
+
+      for (const outcome of outcomes) {
+        const key = `${outcome.subject}-${outcome.domain || 'General'}-Grade${outcome.grade}`;
+        if (!subjectGroups.has(key)) {
+          subjectGroups.set(key, []);
+        }
+        subjectGroups.get(key)!.push(outcome.id);
+      }
+
+      const clusters = [];
+      for (const [clusterName, ids] of subjectGroups.entries()) {
+        if (ids.length > 1) {
+          // Only create clusters with multiple outcomes
+          const cluster = await this.prisma.outcomeCluster.create({
+            data: {
+              importId,
+              clusterName,
+              clusterType: 'subject',
+              outcomeIds: ids,
+              confidence: 0.7, // Initial clustering confidence
+            },
+          });
+
+          clusters.push({
+            id: cluster.id,
+            name: cluster.clusterName,
+            outcomeIds: ids,
+          });
+        }
+      }
+
+      return clusters;
+    } catch (error) {
+      this.logger.error({ error, importId }, 'Failed to generate initial clusters');
+      return [];
+    }
+  }
+
+  private async updateImportStatus(
+    importId: string,
+    status: ImportStatus,
+    totalOutcomes?: number,
+  ): Promise<void> {
+    const updateData: any = { status };
+    if (totalOutcomes !== undefined) {
+      updateData.totalOutcomes = totalOutcomes;
+    }
+
+    await this.prisma.curriculumImport.update({
+      where: { id: importId },
+      data: updateData,
+    });
+  }
+
+  private async updateProgress(importId: string, processedOutcomes: number): Promise<void> {
+    await this.prisma.curriculumImport.update({
+      where: { id: importId },
+      data: { processedOutcomes },
+    });
+  }
+
+  private async setCompletionTime(importId: string): Promise<void> {
+    await this.prisma.curriculumImport.update({
+      where: { id: importId },
+      data: { completedAt: new Date() },
+    });
+  }
+
+  private async logErrors(importId: string, errors: string[]): Promise<void> {
+    await this.prisma.curriculumImport.update({
+      where: { id: importId },
+      data: { errorLog: errors },
+    });
   }
 }
 
-// Configure multer for file uploads
-export const uploadMiddleware = multer({
-  storage: multer.memoryStorage(),
-  limits: {
-    fileSize: 10 * 1024 * 1024, // 10MB
-  },
-  fileFilter: (req, file, cb) => {
-    const allowedTypes = [
-      'application/pdf',
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-      'application/msword',
-      'text/plain',
-    ];
-
-    if (allowedTypes.includes(file.mimetype)) {
-      cb(null, true);
-    } else {
-      cb(new Error('Unsupported file type. Please upload PDF, DOC, DOCX, or TXT files.'));
-    }
-  },
-});
-
+// Export singleton instance
 export const curriculumImportService = new CurriculumImportService();
