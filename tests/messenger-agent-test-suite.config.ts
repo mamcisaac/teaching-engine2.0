@@ -5,7 +5,7 @@
  * and validates that integration, E2E, and contract tests are consistent.
  */
 
-import { defineConfig } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './e2e',
@@ -48,16 +48,14 @@ export default defineConfig({
     {
       name: 'messenger-agent-chrome',
       use: { 
-        // @ts-expect-error Using require for Playwright device config
-        ...require('@playwright/test').devices['Desktop Chrome'],
+        ...devices['Desktop Chrome'],
         viewport: { width: 1280, height: 720 }
       },
     },
     {
       name: 'messenger-agent-firefox',
       use: { 
-        // @ts-expect-error Using require for Playwright device config
-        ...require('@playwright/test').devices['Desktop Firefox'],
+        ...devices['Desktop Firefox'],
         viewport: { width: 1280, height: 720 }
       },
     }

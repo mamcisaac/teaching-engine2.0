@@ -51,7 +51,7 @@ export class TestDataSeeder {
     const emailTemplates = await this.createTestEmailTemplates(users[0].id);
     
     // Create assessment data for report generation
-    const assessmentResults = await this.createTestAssessmentData(students, subjects);
+    const assessmentResults = await this.createTestAssessmentData();
 
     return {
       users,
@@ -431,10 +431,10 @@ Best regards,
     return templates;
   }
 
-  private async createTestAssessmentData(_students?: Student[], _subjects?: Subject[]) {
+  private async createTestAssessmentData() {
     // For now, return empty array since we don't have assessment tables in schema
     // This would be implemented when assessment models are added
-    // Parameters are optional for future implementation
+    // Will accept students and subjects parameters when implemented
     return [];
   }
 
