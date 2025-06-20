@@ -1,11 +1,6 @@
 import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
 import { CurriculumImportService } from '../../src/services/curriculumImportService';
 import { ImportStatus } from '@teaching-engine/database';
-
-// Mock dependencies
-jest.mock('../../src/services/embeddingService');
-jest.mock('../../src/prisma');
-
 import { embeddingService } from '../../src/services/embeddingService';
 import { prisma } from '../../src/prisma';
 

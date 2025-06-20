@@ -1,9 +1,5 @@
 import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
 import BaseService from '../../src/services/base/BaseService';
-
-// Mock Prisma
-jest.mock('../../src/prisma');
-
 import { prisma } from '../../src/prisma';
 
 // Create a test service that extends BaseService

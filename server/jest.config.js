@@ -27,6 +27,7 @@ export default {
   },
   globalSetup: '<rootDir>/tests/global-setup.ts',
   globalTeardown: '<rootDir>/tests/global-teardown.ts',
+  setupFiles: ['<rootDir>/tests/setup-all-mocks.ts'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js', '<rootDir>/tests/jest.setup.ts'],
   testMatch: ['**/__tests__/**/*.test.ts', '**/tests/**/*.test.ts'],
   testPathIgnorePatterns: ['/node_modules/', '/dist/', '/__mocks__/'],

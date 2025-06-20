@@ -1,11 +1,5 @@
 import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
 import { EmbeddingService } from '../../src/services/embeddingService';
-
-// Mock modules manually
-jest.mock('../../src/services/llmService');
-jest.mock('../../src/prisma');
-
-// Import the mocked modules
 import { openai } from '../../src/services/llmService';
 import { prisma as mockPrisma } from '../../src/prisma';
 

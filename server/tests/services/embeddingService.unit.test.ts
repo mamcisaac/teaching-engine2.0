@@ -1,10 +1,6 @@
 import { describe, it, expect, jest, beforeEach } from '@jest/globals';
 import { EmbeddingService } from '../../src/services/embeddingService';
 
-// Mock the modules
-jest.mock('../../src/prisma');
-jest.mock('../../src/services/llmService');
-
 describe('EmbeddingService Unit Tests', () => {
   let embeddingService: EmbeddingService;
   let mockPrisma: unknown;
