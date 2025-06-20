@@ -32,22 +32,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: client/package-lock.json
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: |
-          cd client
-          npm ci
+          pnpm install
 
       - name: Run unit tests
         run: |
-          cd client
-          npm run test:unit
+          pnpm --filter client test:unit
 
       - name: Upload unit test results
         uses: actions/upload-artifact@v4
@@ -79,32 +80,32 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: |
-          npm install
-          cd client && npm ci
-          cd ../server && npm ci
+          pnpm install
 
       - name: Setup test database
         run: |
-          cd server
-          cp .env.example .env.test
-          sed -i 's/DATABASE_URL=.*/DATABASE_URL="postgresql:\/\/postgres:postgres@localhost:5432\/teaching_engine_test"/' .env.test
-          npm run db:migrate
-          npm run db:seed
+          cp server/.env.example server/.env.test
+          sed -i 's/DATABASE_URL=.*/DATABASE_URL="postgresql:\/\/postgres:postgres@localhost:5432\/teaching_engine_test"/' server/.env.test
+          pnpm db:migrate
+          pnpm db:seed
         env:
           NODE_ENV: test
 
       - name: Start API server
         run: |
-          cd server
-          npm run dev &
+          pnpm --filter server dev &
           sleep 10
         env:
           NODE_ENV: test
@@ -112,8 +113,7 @@ jobs:
 
       - name: Run integration tests
         run: |
-          cd client
-          npm run test:integration
+          pnpm --filter client test:integration
         env:
           VITE_API_URL: http://localhost:3000
 
@@ -147,32 +147,32 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: |
-          npm install
-          cd client && npm ci
-          cd ../server && npm ci
+          pnpm install
 
       - name: Setup test database
         run: |
-          cd server
-          cp .env.example .env.test
-          sed -i 's/DATABASE_URL=.*/DATABASE_URL="postgresql:\/\/postgres:postgres@localhost:5432\/teaching_engine_test"/' .env.test
-          npm run db:migrate
-          npm run db:seed
+          cp server/.env.example server/.env.test
+          sed -i 's/DATABASE_URL=.*/DATABASE_URL="postgresql:\/\/postgres:postgres@localhost:5432\/teaching_engine_test"/' server/.env.test
+          pnpm db:migrate
+          pnpm db:seed
         env:
           NODE_ENV: test
 
       - name: Start API server
         run: |
-          cd server
-          npm run dev &
+          pnpm --filter server dev &
           sleep 10
         env:
           NODE_ENV: test
@@ -180,8 +180,7 @@ jobs:
 
       - name: Run contract tests
         run: |
-          cd client
-          npm run test:contract
+          pnpm --filter client test:contract
         env:
           VITE_API_URL: http://localhost:3000
 
@@ -213,37 +212,36 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: |
-          npm install
-          cd client && npm ci
-          cd ../server && npm ci
+          pnpm install
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
       - name: Setup test database
         run: |
-          cd server
-          cp .env.example .env.test
-          sed -i 's/DATABASE_URL=.*/DATABASE_URL="postgresql:\/\/postgres:postgres@localhost:5432\/teaching_engine_test"/' .env.test
-          npm run db:migrate
-          npm run db:seed
+          cp server/.env.example server/.env.test
+          sed -i 's/DATABASE_URL=.*/DATABASE_URL="postgresql:\/\/postgres:postgres@localhost:5432\/teaching_engine_test"/' server/.env.test
+          pnpm db:migrate
+          pnpm db:seed
         env:
           NODE_ENV: test
 
       - name: Start servers
         run: |
-          cd server
-          npm run dev &
-          cd ../client
-          npm run dev &
+          pnpm --filter server dev &
+          pnpm --filter client dev &
           sleep 15
         env:
           NODE_ENV: test
