@@ -40,7 +40,7 @@ export class CurriculumImportService extends BaseService {
     subject: string,
     sourceFormat: 'csv' | 'pdf' | 'docx' | 'manual',
     sourceFile?: string,
-    metadata?: Record<string, unknown>
+    metadata?: Record<string, unknown>,
   ): Promise<string> {
     try {
       const curriculumImport = await this.prisma.curriculumImport.create({
@@ -51,12 +51,14 @@ export class CurriculumImportService extends BaseService {
           sourceFormat,
           sourceFile,
           status: ImportStatus.PENDING,
-          metadata: metadata || {}
-        }
+          metadata: (metadata || {}) as any,
+        },
       });
 
-      this.logger.info({ importId: curriculumImport.id, userId, grade, subject, sourceFormat }, 
-        'Started curriculum import session');
+      this.logger.info(
+        { importId: curriculumImport.id, userId, grade, subject, sourceFormat },
+        'Started curriculum import session',
+      );
 
       return curriculumImport.id;
     } catch (error) {
@@ -80,7 +82,7 @@ export class CurriculumImportService extends BaseService {
       const batchSize = 50;
       for (let i = 0; i < outcomes.length; i += batchSize) {
         const batch = outcomes.slice(i, i + batchSize);
-        
+
         try {
           const batchResults = await this.processBatchOutcomes(importId, batch);
           createdOutcomes.push(...batchResults.outcomes);
@@ -95,33 +97,42 @@ export class CurriculumImportService extends BaseService {
       }
 
       // Generate embeddings for created outcomes
-      this.logger.info({ importId, outcomeCount: createdOutcomes.length }, 'Generating embeddings for imported outcomes');
-      const embeddingData = createdOutcomes.map(outcome => ({
+      this.logger.info(
+        { importId, outcomeCount: createdOutcomes.length },
+        'Generating embeddings for imported outcomes',
+      );
+      const embeddingData = createdOutcomes.map((outcome) => ({
         id: outcome.id,
-        text: `${outcome.code}: ${outcomes.find(o => o.code === outcome.code)?.description || ''}`
+        text: `${outcome.code}: ${outcomes.find((o) => o.code === outcome.code)?.description || ''}`,
       }));
 
       await embeddingService.generateBatchEmbeddings(embeddingData);
 
       // Generate initial clusters
-      const clusters = await this.generateInitialClusters(importId, createdOutcomes.map(o => o.id));
+      const clusters = await this.generateInitialClusters(
+        importId,
+        createdOutcomes.map((o) => o.id),
+      );
 
       // Mark as completed
       await this.updateImportStatus(importId, ImportStatus.COMPLETED);
       await this.setCompletionTime(importId);
 
-      this.logger.info({ 
-        importId, 
-        outcomesCreated: createdOutcomes.length, 
-        clustersGenerated: clusters.length,
-        errorsCount: errors.length 
-      }, 'Completed curriculum import');
+      this.logger.info(
+        {
+          importId,
+          outcomesCreated: createdOutcomes.length,
+          clustersGenerated: clusters.length,
+          errorsCount: errors.length,
+        },
+        'Completed curriculum import',
+      );
 
       return {
         importId,
         outcomes: createdOutcomes,
         clusters,
-        errors
+        errors,
       };
     } catch (error) {
       this.logger.error({ error, importId }, 'Failed to process curriculum import');
@@ -137,8 +148,11 @@ export class CurriculumImportService extends BaseService {
   parseCSV(csvContent: string): ImportOutcome[] {
     try {
       const lines = csvContent.split('\n');
-      const headers = lines[0].toLowerCase().split(',').map(h => h.trim());
-      
+      const headers = lines[0]
+        .toLowerCase()
+        .split(',')
+        .map((h) => h.trim());
+
       const codeIndex = headers.indexOf('code');
       const descriptionIndex = headers.indexOf('description');
       const subjectIndex = headers.indexOf('subject');
@@ -155,8 +169,8 @@ export class CurriculumImportService extends BaseService {
         const line = lines[i].trim();
         if (!line) continue;
 
-        const columns = line.split(',').map(col => col.trim().replace(/^"(.*)"$/, '$1'));
-        
+        const columns = line.split(',').map((col) => col.trim().replace(/^"(.*)"$/, '$1'));
+
         if (columns.length < Math.max(codeIndex, descriptionIndex) + 1) {
           this.logger.warn({ lineNumber: i + 1, line }, 'Skipping invalid CSV line');
           continue;
@@ -167,7 +181,7 @@ export class CurriculumImportService extends BaseService {
           description: columns[descriptionIndex],
           subject: subjectIndex >= 0 ? columns[subjectIndex] : 'Unknown',
           grade: gradeIndex >= 0 ? parseInt(columns[gradeIndex]) || 0 : 0,
-          domain: domainIndex >= 0 ? columns[domainIndex] : undefined
+          domain: domainIndex >= 0 ? columns[domainIndex] : undefined,
         };
 
         outcomes.push(outcome);
@@ -204,7 +218,7 @@ export class CurriculumImportService extends BaseService {
   async getImportProgress(importId: string): Promise<ImportProgress | null> {
     try {
       const importRecord = await this.prisma.curriculumImport.findUnique({
-        where: { id: importId }
+        where: { id: importId },
       });
 
       if (!importRecord) return null;
@@ -214,7 +228,7 @@ export class CurriculumImportService extends BaseService {
         status: importRecord.status,
         totalOutcomes: importRecord.totalOutcomes,
         processedOutcomes: importRecord.processedOutcomes,
-        errors: (importRecord.errorLog as string[]) || []
+        errors: (importRecord.errorLog as string[]) || [],
       };
     } catch (error) {
       this.logger.error({ error, importId }, 'Failed to get import progress');
@@ -250,15 +264,15 @@ export class CurriculumImportService extends BaseService {
             select: {
               id: true,
               clusterName: true,
-              clusterType: true
-            }
+              clusterType: true,
+            },
           },
           _count: {
             select: {
-              outcomes: true
-            }
-          }
-        }
+              outcomes: true,
+            },
+          },
+        },
       });
 
       return imports;
@@ -270,7 +284,10 @@ export class CurriculumImportService extends BaseService {
 
   // Private helper methods
 
-  private async processBatchOutcomes(importId: string, outcomes: ImportOutcome[]): Promise<{
+  private async processBatchOutcomes(
+    importId: string,
+    outcomes: ImportOutcome[],
+  ): Promise<{
     outcomes: { id: string; code: string }[];
     errors: string[];
   }> {
@@ -281,7 +298,7 @@ export class CurriculumImportService extends BaseService {
       try {
         // Check if outcome already exists
         const existing = await this.prisma.outcome.findUnique({
-          where: { code: outcomeData.code }
+          where: { code: outcomeData.code },
         });
 
         if (existing) {
@@ -298,8 +315,8 @@ export class CurriculumImportService extends BaseService {
             subject: outcomeData.subject,
             grade: outcomeData.grade,
             domain: outcomeData.domain,
-            importId
-          }
+            importId,
+          },
         });
 
         results.push({ id: outcome.id, code: outcome.code });
@@ -313,21 +330,26 @@ export class CurriculumImportService extends BaseService {
     return { outcomes: results, errors };
   }
 
-  private async generateInitialClusters(importId: string, outcomeIds: string[]): Promise<{
-    id: string;
-    name: string;
-    outcomeIds: string[];
-  }[]> {
+  private async generateInitialClusters(
+    importId: string,
+    outcomeIds: string[],
+  ): Promise<
+    {
+      id: string;
+      name: string;
+      outcomeIds: string[];
+    }[]
+  > {
     // Simple initial clustering by subject/domain
     // TODO: Implement proper embedding-based clustering in clusteringService
     try {
       const outcomes = await this.prisma.outcome.findMany({
         where: { id: { in: outcomeIds } },
-        select: { id: true, subject: true, domain: true, grade: true }
+        select: { id: true, subject: true, domain: true, grade: true },
       });
 
       const subjectGroups = new Map<string, string[]>();
-      
+
       for (const outcome of outcomes) {
         const key = `${outcome.subject}-${outcome.domain || 'General'}-Grade${outcome.grade}`;
         if (!subjectGroups.has(key)) {
@@ -338,21 +360,22 @@ export class CurriculumImportService extends BaseService {
 
       const clusters = [];
       for (const [clusterName, ids] of subjectGroups.entries()) {
-        if (ids.length > 1) { // Only create clusters with multiple outcomes
+        if (ids.length > 1) {
+          // Only create clusters with multiple outcomes
           const cluster = await this.prisma.outcomeCluster.create({
             data: {
               importId,
               clusterName,
               clusterType: 'subject',
               outcomeIds: ids,
-              confidence: 0.7 // Initial clustering confidence
-            }
+              confidence: 0.7, // Initial clustering confidence
+            },
           });
 
           clusters.push({
             id: cluster.id,
             name: cluster.clusterName,
-            outcomeIds: ids
+            outcomeIds: ids,
           });
         }
       }
@@ -364,7 +387,11 @@ export class CurriculumImportService extends BaseService {
     }
   }
 
-  private async updateImportStatus(importId: string, status: ImportStatus, totalOutcomes?: number): Promise<void> {
+  private async updateImportStatus(
+    importId: string,
+    status: ImportStatus,
+    totalOutcomes?: number,
+  ): Promise<void> {
     const updateData: any = { status };
     if (totalOutcomes !== undefined) {
       updateData.totalOutcomes = totalOutcomes;
@@ -372,28 +399,28 @@ export class CurriculumImportService extends BaseService {
 
     await this.prisma.curriculumImport.update({
       where: { id: importId },
-      data: updateData
+      data: updateData,
     });
   }
 
   private async updateProgress(importId: string, processedOutcomes: number): Promise<void> {
     await this.prisma.curriculumImport.update({
       where: { id: importId },
-      data: { processedOutcomes }
+      data: { processedOutcomes },
     });
   }
 
   private async setCompletionTime(importId: string): Promise<void> {
     await this.prisma.curriculumImport.update({
       where: { id: importId },
-      data: { completedAt: new Date() }
+      data: { completedAt: new Date() },
     });
   }
 
   private async logErrors(importId: string, errors: string[]): Promise<void> {
     await this.prisma.curriculumImport.update({
       where: { id: importId },
-      data: { errorLog: errors }
+      data: { errorLog: errors },
     });
   }
 }

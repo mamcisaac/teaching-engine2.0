@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useCallback, FormEvent, ChangeEvent } from 'react';
 import { z } from 'zod';
 
@@ -51,9 +52,14 @@ export function useForm<T extends Record<string, unknown>>({
           validationSchema.parse({ ...values, [name]: value });
         }
         return undefined;
-      } catch (error) {
-        if (error instanceof z.ZodError) {
-          return error.errors[0]?.message || 'Invalid value';
+      } catch (error: unknown) {
+        if (
+          error &&
+          typeof error === 'object' &&
+          'errors' in error &&
+          Array.isArray((error as any).errors)
+        ) {
+          return ((error as any).errors[0]?.message as string) || 'Invalid value';
         }
         return 'Validation error';
       }
@@ -69,10 +75,15 @@ export function useForm<T extends Record<string, unknown>>({
       validationSchema.parse(values);
       setErrors({});
       return true;
-    } catch (error) {
-      if (error instanceof z.ZodError) {
+    } catch (error: unknown) {
+      if (
+        error &&
+        typeof error === 'object' &&
+        'errors' in error &&
+        Array.isArray((error as any).errors)
+      ) {
         const newErrors: FormError = {};
-        error.errors.forEach((err) => {
+        ((error as any).errors as any[]).forEach((err: any) => {
           const path = err.path.join('.');
           newErrors[path] = err.message;
         });
