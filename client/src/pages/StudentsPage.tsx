@@ -11,7 +11,11 @@ export default function StudentsPage() {
   const [isAddStudentModalOpen, setIsAddStudentModalOpen] = useState(false);
   const [isEditStudentModalOpen, setIsEditStudentModalOpen] = useState(false);
   const [editingStudent, setEditingStudent] = useState<Student | null>(null);
-  const [studentForm, setStudentForm] = useState<StudentInput>({ name: '' });
+  const [studentForm, setStudentForm] = useState<StudentInput>({
+    firstName: '',
+    lastName: '',
+    grade: 1,
+  });
 
   // Fetch data
   const { data: students = [], isLoading } = useStudents();
@@ -25,14 +29,18 @@ export default function StudentsPage() {
     createStudent.mutate(studentForm, {
       onSuccess: () => {
         setIsAddStudentModalOpen(false);
-        setStudentForm({ name: '' });
+        setStudentForm({ firstName: '', lastName: '', grade: 1 });
       },
     });
   };
 
   const handleEditStudent = (student: Student) => {
     setEditingStudent(student);
-    setStudentForm({ name: student.name });
+    setStudentForm({
+      firstName: student.firstName,
+      lastName: student.lastName,
+      grade: student.grade,
+    });
     setIsEditStudentModalOpen(true);
   };
 
@@ -45,7 +53,7 @@ export default function StudentsPage() {
         onSuccess: (updatedStudent) => {
           setIsEditStudentModalOpen(false);
           setEditingStudent(null);
-          setStudentForm({ name: '' });
+          setStudentForm({ firstName: '', lastName: '', grade: 1 });
           // Update selected student if it was being edited
           if (selectedStudent?.id === updatedStudent.id) {
             setSelectedStudent(updatedStudent);
@@ -58,7 +66,7 @@ export default function StudentsPage() {
   const handleDeleteStudent = (student: Student) => {
     if (
       confirm(
-        `Are you sure you want to delete ${student.name}? This will also delete all their goals and reflections.`,
+        `Are you sure you want to delete ${student.firstName} ${student.lastName}? This will also delete all their goals and reflections.`,
       )
     ) {
       deleteStudent.mutate(student.id, {
@@ -123,7 +131,9 @@ export default function StudentsPage() {
                         onClick={() => setSelectedStudent(student)}
                       >
                         <div className="flex items-center justify-between">
-                          <span className="font-medium text-gray-900">{student.name}</span>
+                          <span className="font-medium text-gray-900">
+                            {student.firstName} {student.lastName}
+                          </span>
                           <div className="flex items-center gap-1">
                             <button
                               onClick={(e) => {
@@ -174,7 +184,9 @@ export default function StudentsPage() {
             {selectedStudent ? (
               <div className="bg-white rounded-lg shadow">
                 <div className="p-4 border-b border-gray-200">
-                  <h2 className="text-xl font-semibold text-gray-900">{selectedStudent.name}</h2>
+                  <h2 className="text-xl font-semibold text-gray-900">
+                    {selectedStudent.firstName} {selectedStudent.lastName}
+                  </h2>
                   <div className="flex gap-4 mt-2">
                     <button
                       onClick={() => setActiveTab('goals')}
@@ -202,12 +214,12 @@ export default function StudentsPage() {
                   {activeTab === 'goals' ? (
                     <StudentGoals
                       studentId={selectedStudent.id}
-                      studentName={selectedStudent.name}
+                      studentName={`${selectedStudent.firstName} ${selectedStudent.lastName}`}
                     />
                   ) : (
                     <StudentReflectionJournal
                       studentId={selectedStudent.id}
-                      studentName={selectedStudent.name}
+                      studentName={`${selectedStudent.firstName} ${selectedStudent.lastName}`}
                     />
                   )}
                 </div>
@@ -231,27 +243,58 @@ export default function StudentsPage() {
           isOpen={isAddStudentModalOpen}
           onClose={() => {
             setIsAddStudentModalOpen(false);
-            setStudentForm({ name: '' });
+            setStudentForm({ firstName: '', lastName: '', grade: 1 });
           }}
           title="Add New Student"
         >
           <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                <input
+                  type="text"
+                  value={studentForm.firstName}
+                  onChange={(e) => setStudentForm({ ...studentForm, firstName: e.target.value })}
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  placeholder="First name"
+                  autoFocus
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                <input
+                  type="text"
+                  value={studentForm.lastName}
+                  onChange={(e) => setStudentForm({ ...studentForm, lastName: e.target.value })}
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  placeholder="Last name"
+                />
+              </div>
+            </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Student Name</label>
-              <input
-                type="text"
-                value={studentForm.name}
-                onChange={(e) => setStudentForm({ name: e.target.value })}
+              <label className="block text-sm font-medium text-gray-700 mb-1">Grade</label>
+              <select
+                value={studentForm.grade}
+                onChange={(e) =>
+                  setStudentForm({ ...studentForm, grade: parseInt(e.target.value) })
+                }
                 className="w-full p-2 border border-gray-300 rounded-md"
-                placeholder="Enter student's name"
-                autoFocus
-              />
+              >
+                <option value={1}>Grade 1</option>
+                <option value={2}>Grade 2</option>
+                <option value={3}>Grade 3</option>
+                <option value={4}>Grade 4</option>
+                <option value={5}>Grade 5</option>
+                <option value={6}>Grade 6</option>
+                <option value={7}>Grade 7</option>
+                <option value={8}>Grade 8</option>
+              </select>
             </div>
             <div className="flex justify-end gap-2 pt-4">
               <button
                 onClick={() => {
                   setIsAddStudentModalOpen(false);
-                  setStudentForm({ name: '' });
+                  setStudentForm({ firstName: '', lastName: '', grade: 1 });
                 }}
                 className="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50"
               >
@@ -259,7 +302,7 @@ export default function StudentsPage() {
               </button>
               <button
                 onClick={handleCreateStudent}
-                disabled={!studentForm.name.trim()}
+                disabled={!studentForm.firstName.trim() || !studentForm.lastName.trim()}
                 className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
               >
                 Add Student
@@ -274,28 +317,59 @@ export default function StudentsPage() {
           onClose={() => {
             setIsEditStudentModalOpen(false);
             setEditingStudent(null);
-            setStudentForm({ name: '' });
+            setStudentForm({ firstName: '', lastName: '', grade: 1 });
           }}
           title="Edit Student"
         >
           <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                <input
+                  type="text"
+                  value={studentForm.firstName}
+                  onChange={(e) => setStudentForm({ ...studentForm, firstName: e.target.value })}
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  placeholder="First name"
+                  autoFocus
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                <input
+                  type="text"
+                  value={studentForm.lastName}
+                  onChange={(e) => setStudentForm({ ...studentForm, lastName: e.target.value })}
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  placeholder="Last name"
+                />
+              </div>
+            </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Student Name</label>
-              <input
-                type="text"
-                value={studentForm.name}
-                onChange={(e) => setStudentForm({ name: e.target.value })}
+              <label className="block text-sm font-medium text-gray-700 mb-1">Grade</label>
+              <select
+                value={studentForm.grade}
+                onChange={(e) =>
+                  setStudentForm({ ...studentForm, grade: parseInt(e.target.value) })
+                }
                 className="w-full p-2 border border-gray-300 rounded-md"
-                placeholder="Enter student's name"
-                autoFocus
-              />
+              >
+                <option value={1}>Grade 1</option>
+                <option value={2}>Grade 2</option>
+                <option value={3}>Grade 3</option>
+                <option value={4}>Grade 4</option>
+                <option value={5}>Grade 5</option>
+                <option value={6}>Grade 6</option>
+                <option value={7}>Grade 7</option>
+                <option value={8}>Grade 8</option>
+              </select>
             </div>
             <div className="flex justify-end gap-2 pt-4">
               <button
                 onClick={() => {
                   setIsEditStudentModalOpen(false);
                   setEditingStudent(null);
-                  setStudentForm({ name: '' });
+                  setStudentForm({ firstName: '', lastName: '', grade: 1 });
                 }}
                 className="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50"
               >
@@ -303,7 +377,7 @@ export default function StudentsPage() {
               </button>
               <button
                 onClick={handleUpdateStudent}
-                disabled={!studentForm.name.trim()}
+                disabled={!studentForm.firstName.trim() || !studentForm.lastName.trim()}
                 className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
               >
                 Update Student

@@ -1,11 +1,10 @@
 import { Router } from 'express';
 import { z } from 'zod';
 import { prisma } from '../prisma';
-import { AIActivitySuggestionService } from '../services/aiSuggestionService';
+import { aiActivityGenerator } from '../services/aiActivityGenerator';
 import { authMiddleware, AuthRequest } from '../middleware/auth';
 
 const router = Router();
-const aiService = new AIActivitySuggestionService(prisma);
 
 // Generate AI suggestion for an outcome
 const generateSuggestionSchema = z.object({
@@ -19,7 +18,9 @@ router.post('/generate', authMiddleware, async (req: AuthRequest, res) => {
     const { outcomeId, theme, languageLevel } = generateSuggestionSchema.parse(req.body);
     const userId = req.userId!;
 
-    const suggestion = await aiService.generateActivitySuggestion(outcomeId, userId, {
+    const suggestion = await aiActivityGenerator.generateActivity({
+      outcomeId,
+      userId,
       theme,
       languageLevel,
     });
@@ -27,7 +28,10 @@ router.post('/generate', authMiddleware, async (req: AuthRequest, res) => {
     // Parse materials back to array for response
     const response = {
       ...suggestion,
-      materials: JSON.parse(suggestion.materials),
+      materials:
+        typeof suggestion.materials === 'string'
+          ? JSON.parse(suggestion.materials)
+          : suggestion.materials,
     };
 
     res.json(response);
@@ -56,12 +60,11 @@ router.get('/uncovered', authMiddleware, async (req: AuthRequest, res) => {
     const params = getUncoveredSchema.parse(req.query);
     const userId = req.userId!;
 
-    const uncoveredOutcomes = await aiService.getUncoveredOutcomes(userId, {
-      startDate: params.startDate ? new Date(params.startDate) : undefined,
-      endDate: params.endDate ? new Date(params.endDate) : undefined,
-      theme: params.theme,
-      limit: params.limit,
-    });
+    const uncoveredOutcomes = await aiActivityGenerator.getUncoveredOutcomes(
+      userId,
+      params.theme,
+      params.limit,
+    );
 
     // Format suggestions with parsed materials
     const formatted = uncoveredOutcomes.map((item) => ({
@@ -69,7 +72,10 @@ router.get('/uncovered', authMiddleware, async (req: AuthRequest, res) => {
       suggestion: item.suggestion
         ? {
             ...item.suggestion,
-            materials: JSON.parse(item.suggestion.materials),
+            materials:
+              typeof item.suggestion.materials === 'string'
+                ? JSON.parse(item.suggestion.materials)
+                : item.suggestion.materials,
           }
         : null,
     }));
@@ -88,28 +94,37 @@ router.get('/uncovered', authMiddleware, async (req: AuthRequest, res) => {
 // Convert AI suggestion to actual activity
 const convertToActivitySchema = z.object({
   suggestionId: z.number(),
-  milestoneId: z.number(),
+  milestoneId: z.number().optional(),
   title: z.string().optional(),
   durationMins: z.number().optional(),
   publicNote: z.string().optional(),
+  scheduleData: z
+    .object({
+      date: z.string(),
+      startTime: z.string(),
+      endTime: z.string(),
+    })
+    .optional(),
 });
 
 router.post('/convert-to-activity', authMiddleware, async (req: AuthRequest, res) => {
   try {
     const params = convertToActivitySchema.parse(req.body);
+    const userId = req.userId!;
 
-    const activityId = await aiService.convertToActivity(params.suggestionId, params.milestoneId, {
+    const activity = await aiActivityGenerator.convertToActivity(params.suggestionId, userId, {
+      milestoneId: params.milestoneId,
       title: params.title,
       durationMins: params.durationMins,
       publicNote: params.publicNote,
     });
 
-    res.json({ activityId });
+    res.json(activity);
   } catch (error) {
     console.error('Error converting suggestion to activity:', error);
     if (error instanceof z.ZodError) {
       res.status(400).json({ error: 'Invalid request data', details: error.errors });
-    } else if (error instanceof Error && error.message === 'Suggestion not found') {
+    } else if (error instanceof Error && error.message.includes('not found')) {
       res.status(404).json({ error: 'Suggestion not found' });
     } else {
       res.status(500).json({ error: 'Failed to convert suggestion to activity' });
@@ -142,7 +157,10 @@ router.get('/suggestions/:id', authMiddleware, async (req: AuthRequest, res) => 
     // Parse materials for response
     const response = {
       ...suggestion,
-      materials: JSON.parse(suggestion.materials),
+      materials:
+        typeof suggestion.materials === 'string'
+          ? JSON.parse(suggestion.materials)
+          : suggestion.materials,
     };
 
     res.json(response);

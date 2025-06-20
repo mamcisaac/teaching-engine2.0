@@ -1,211 +1,502 @@
-import { Router } from 'express';
-import { PrismaClient } from '@teaching-engine/database';
+import { Router, Request } from 'express';
+import { prisma } from '../prisma';
+import { z } from 'zod';
+
+interface AuthenticatedRequest extends Request {
+  user?: { userId: string };
+}
 
 const router = Router();
-const prisma = new PrismaClient();
 
-/**
- * GET /api/alerts/milestones
- * Returns milestone alert data for tracking progress against curriculum expectations
- */
-router.get('/milestones', async (req, res) => {
-  try {
-    // const { classId } = req.query; // TODO: Use for filtering by class
-
-    // For now, we'll work with all data. In future, filter by classId
-    const currentDate = new Date();
-
-    // Get all milestone definitions
-    const milestoneDefinitions = await prisma.milestoneDefinition.findMany({
-      include: {
-        outcome: true,
-        thematicUnit: true,
-      },
-    });
-
-    const alerts = [];
-
-    // Check each milestone definition for violations
-    for (const definition of milestoneDefinitions) {
-      const alert = await checkMilestoneDefinition(definition, currentDate);
-      if (alert) {
-        alerts.push(alert);
-      }
-    }
-
-    res.json(alerts);
-  } catch (error) {
-    console.error('Error fetching milestone alerts:', error);
-    res.status(500).json({ error: 'Failed to fetch milestone alerts' });
-  }
+// Validation schemas
+const alertFiltersSchema = z.object({
+  type: z.enum(['deadline', 'progress', 'coverage']).optional(),
+  severity: z.enum(['low', 'medium', 'high', 'critical']).optional(),
+  isRead: z
+    .string()
+    .transform((val) => val === 'true')
+    .optional(),
+  subjectId: z
+    .string()
+    .transform((val) => parseInt(val))
+    .optional(),
 });
 
-/**
- * Check a single milestone definition for violations
- */
-async function checkMilestoneDefinition(
-  definition: {
-    id: number;
-    outcomeId?: string | null;
-    thematicUnitId?: number | null;
-    domain?: string | null;
-    dueDate: Date;
-    minCoverageCount?: number | null;
-    minAssessmentRequired: boolean;
-    description?: string | null;
-    priority: string;
-    outcome?: { id: string; code: string; domain?: string | null } | null;
-    thematicUnit?: { id: number; title: string; startDate: Date; endDate: Date } | null;
-  },
-  currentDate: Date,
-) {
-  const isPastDue = currentDate > definition.dueDate;
+const createAlertSchema = z.object({
+  type: z.enum(['deadline', 'progress', 'coverage']),
+  severity: z.enum(['low', 'medium', 'high', 'critical']),
+  title: z.string().min(1).max(200),
+  description: z.string().min(1).max(1000),
+  milestoneId: z.number().int().positive(),
+});
 
-  if (definition.outcomeId) {
-    // Outcome-specific alert
-    const outcome = definition.outcome;
+// Get all alerts for the authenticated user
+router.get('/', async (req: AuthenticatedRequest, res, next) => {
+  try {
+    const userId = req.user?.userId;
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
 
-    // Count activities that address this outcome
-    const activityCount = await prisma.activityOutcome.count({
-      where: {
-        outcomeId: definition.outcomeId,
-      },
-    });
+    const validation = alertFiltersSchema.safeParse(req.query);
+    if (!validation.success) {
+      return res.status(400).json({
+        error: 'Invalid query parameters',
+        details: validation.error.flatten(),
+      });
+    }
 
-    // Count assessments that address this outcome
-    const assessmentCount = await prisma.assessmentResult.count({
-      where: {
-        template: {
-          outcomeIds: {
-            contains: definition.outcomeId,
+    const filters = validation.data;
+    const userIdInt = parseInt(userId);
+
+    // Build where clause
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const whereClause: any = { userId: userIdInt };
+    if (filters.type) whereClause.type = filters.type;
+    if (filters.severity) whereClause.severity = filters.severity;
+    if (filters.isRead !== undefined) whereClause.isRead = filters.isRead;
+    if (filters.subjectId) {
+      whereClause.milestone = {
+        subjectId: filters.subjectId,
+      };
+    }
+
+    const alerts = await prisma.milestoneAlert.findMany({
+      where: whereClause,
+      include: {
+        milestone: {
+          include: {
+            subject: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
           },
         },
       },
+      orderBy: [
+        { severity: 'desc' }, // Critical first
+        { createdAt: 'desc' }, // Newest first
+      ],
     });
 
-    // Check for violations
-    const hasInsufficientCoverage =
-      definition.minCoverageCount && activityCount < definition.minCoverageCount;
-    const hasInsufficientAssessment = definition.minAssessmentRequired && assessmentCount === 0;
-    const isNotIntroduced = activityCount === 0;
+    // Transform alerts to include computed fields
+    const transformedAlerts = alerts.map((alert) => ({
+      ...alert,
+      milestoneName: alert.milestone.title,
+      subjectName: alert.milestone.subject.name,
+      daysUntilDeadline: alert.milestone.targetDate
+        ? Math.ceil(
+            (new Date(alert.milestone.targetDate).getTime() - new Date().getTime()) /
+              (1000 * 60 * 60 * 24),
+          )
+        : undefined,
+    }));
 
-    if (isPastDue && isNotIntroduced) {
-      return {
-        type: 'outcome_missed',
-        outcomeId: definition.outcomeId,
-        outcomeCode: outcome.code,
-        message: `Outcome ${outcome.code} has not been introduced. Target date: ${definition.dueDate.toLocaleDateString()}.`,
-        severity: 'warning' as const,
-        dueDate: definition.dueDate,
-        priority: definition.priority,
-        description: definition.description,
-      };
-    }
-
-    if (isPastDue && hasInsufficientCoverage) {
-      return {
-        type: 'outcome_undercovered',
-        outcomeId: definition.outcomeId,
-        outcomeCode: outcome.code,
-        message: `Outcome ${outcome.code} has only ${activityCount} activities (expected ${definition.minCoverageCount}). Target date: ${definition.dueDate.toLocaleDateString()}.`,
-        severity: 'notice' as const,
-        dueDate: definition.dueDate,
-        priority: definition.priority,
-        description: definition.description,
-      };
-    }
-
-    if (isPastDue && hasInsufficientAssessment) {
-      return {
-        type: 'outcome_unassessed',
-        outcomeId: definition.outcomeId,
-        outcomeCode: outcome.code,
-        message: `Outcome ${outcome.code} has not been assessed. Target date: ${definition.dueDate.toLocaleDateString()}.`,
-        severity: 'notice' as const,
-        dueDate: definition.dueDate,
-        priority: definition.priority,
-        description: definition.description,
-      };
-    }
-  } else if (definition.domain) {
-    // Domain-level alert
-    const domainActivityCount = await prisma.activity.count({
+    const unreadCount = await prisma.milestoneAlert.count({
       where: {
-        outcomes: {
-          some: {
-            outcome: {
-              domain: definition.domain,
+        userId: userIdInt,
+        isRead: false,
+      },
+    });
+
+    res.json({
+      alerts: transformedAlerts,
+      unreadCount,
+      totalCount: alerts.length,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Get unread alert count
+router.get('/count', async (req: AuthenticatedRequest, res, next) => {
+  try {
+    const userId = req.user?.userId;
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const unreadCount = await prisma.milestoneAlert.count({
+      where: {
+        userId: parseInt(userId),
+        isRead: false,
+      },
+    });
+
+    res.json({ unreadCount });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Create a new alert
+router.post('/', async (req: AuthenticatedRequest, res, next) => {
+  try {
+    const userId = req.user?.userId;
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const validation = createAlertSchema.safeParse(req.body);
+    if (!validation.success) {
+      return res.status(400).json({
+        error: 'Invalid request data',
+        details: validation.error.flatten(),
+      });
+    }
+
+    const { type, severity, title, description, milestoneId } = validation.data;
+    const userIdInt = parseInt(userId);
+
+    // Verify milestone belongs to user
+    const milestone = await prisma.milestone.findFirst({
+      where: {
+        id: milestoneId,
+        subject: {
+          userId: userIdInt,
+        },
+      },
+      include: {
+        subject: true,
+      },
+    });
+
+    if (!milestone) {
+      return res.status(404).json({ error: 'Milestone not found or not accessible' });
+    }
+
+    const alert = await prisma.milestoneAlert.create({
+      data: {
+        type,
+        severity,
+        title,
+        description,
+        milestoneId,
+        userId: userIdInt,
+      },
+      include: {
+        milestone: {
+          include: {
+            subject: {
+              select: {
+                id: true,
+                name: true,
+              },
             },
           },
         },
       },
     });
 
-    const domainAssessmentCount = await prisma.assessmentResult.count({
+    const transformedAlert = {
+      ...alert,
+      milestoneName: alert.milestone.title,
+      subjectName: alert.milestone.subject.name,
+      daysUntilDeadline: alert.milestone.targetDate
+        ? Math.ceil(
+            (new Date(alert.milestone.targetDate).getTime() - new Date().getTime()) /
+              (1000 * 60 * 60 * 24),
+          )
+        : undefined,
+    };
+
+    res.status(201).json(transformedAlert);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Mark an alert as read
+router.patch('/:id/read', async (req: AuthenticatedRequest, res, next) => {
+  try {
+    const userId = req.user?.userId;
+    const alertId = parseInt(req.params.id);
+
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    // Verify alert belongs to user
+    const existingAlert = await prisma.milestoneAlert.findFirst({
       where: {
-        template: {
-          outcomeIds: {
-            not: '[]',
+        id: alertId,
+        userId: parseInt(userId),
+      },
+    });
+
+    if (!existingAlert) {
+      return res.status(404).json({ error: 'Alert not found' });
+    }
+
+    await prisma.milestoneAlert.update({
+      where: { id: alertId },
+      data: { isRead: true },
+    });
+
+    res.status(204).send();
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Mark all alerts as read
+router.patch('/read-all', async (req: AuthenticatedRequest, res, next) => {
+  try {
+    const userId = req.user?.userId;
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    await prisma.milestoneAlert.updateMany({
+      where: {
+        userId: parseInt(userId),
+        isRead: false,
+      },
+      data: { isRead: true },
+    });
+
+    res.status(204).send();
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Delete/dismiss an alert
+router.delete('/:id', async (req: AuthenticatedRequest, res, next) => {
+  try {
+    const userId = req.user?.userId;
+    const alertId = parseInt(req.params.id);
+
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    // Verify alert belongs to user
+    const existingAlert = await prisma.milestoneAlert.findFirst({
+      where: {
+        id: alertId,
+        userId: parseInt(userId),
+      },
+    });
+
+    if (!existingAlert) {
+      return res.status(404).json({ error: 'Alert not found' });
+    }
+
+    await prisma.milestoneAlert.delete({
+      where: { id: alertId },
+    });
+
+    res.status(204).send();
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Get alert statistics
+router.get('/stats', async (req: AuthenticatedRequest, res, next) => {
+  try {
+    const userId = req.user?.userId;
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const userIdInt = parseInt(userId);
+
+    const totalAlerts = await prisma.milestoneAlert.count({
+      where: { userId: userIdInt },
+    });
+
+    const unreadAlerts = await prisma.milestoneAlert.count({
+      where: { userId: userIdInt, isRead: false },
+    });
+
+    const alertsBySeverity = await prisma.milestoneAlert.groupBy({
+      by: ['severity'],
+      where: { userId: userIdInt },
+      _count: { severity: true },
+    });
+
+    const alertsByType = await prisma.milestoneAlert.groupBy({
+      by: ['type'],
+      where: { userId: userIdInt },
+      _count: { type: true },
+    });
+
+    const recentAlerts = await prisma.milestoneAlert.findMany({
+      where: { userId: userIdInt },
+      orderBy: { createdAt: 'desc' },
+      take: 5,
+      include: {
+        milestone: {
+          include: {
+            subject: {
+              select: {
+                name: true,
+              },
+            },
           },
         },
       },
     });
 
-    const hasInsufficientCoverage =
-      definition.minCoverageCount && domainActivityCount < definition.minCoverageCount;
-    const hasInsufficientAssessment =
-      definition.minAssessmentRequired && domainAssessmentCount === 0;
+    res.json({
+      totalAlerts,
+      unreadAlerts,
+      readAlerts: totalAlerts - unreadAlerts,
+      alertsBySeverity: alertsBySeverity.reduce(
+        (acc, item) => {
+          acc[item.severity] = item._count.severity;
+          return acc;
+        },
+        {} as Record<string, number>,
+      ),
+      alertsByType: alertsByType.reduce(
+        (acc, item) => {
+          acc[item.type] = item._count.type;
+          return acc;
+        },
+        {} as Record<string, number>,
+      ),
+      recentAlerts: recentAlerts.map((alert) => ({
+        id: alert.id,
+        title: alert.title,
+        severity: alert.severity,
+        type: alert.type,
+        milestoneName: alert.milestone.title,
+        subjectName: alert.milestone.subject.name,
+        createdAt: alert.createdAt,
+        isRead: alert.isRead,
+      })),
+    });
+  } catch (err) {
+    next(err);
+  }
+});
 
-    if (isPastDue && hasInsufficientCoverage) {
-      return {
-        type: 'underassessed_domain',
-        domain: definition.domain,
-        message: `Only ${domainActivityCount} ${definition.domain} activities logged. Expected ≥ ${definition.minCoverageCount} by now.`,
-        severity: 'notice' as const,
-        dueDate: definition.dueDate,
-        priority: definition.priority,
-        description: definition.description,
-      };
+// Trigger manual alert check
+router.post('/check', async (req: AuthenticatedRequest, res, next) => {
+  try {
+    const userId = req.user?.userId;
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    if (isPastDue && hasInsufficientAssessment) {
-      return {
-        type: 'underassessed_domain',
-        domain: definition.domain,
-        message: `No assessments logged for ${definition.domain}. Assessment expected by ${definition.dueDate.toLocaleDateString()}.`,
-        severity: 'notice' as const,
-        dueDate: definition.dueDate,
-        priority: definition.priority,
-        description: definition.description,
-      };
-    }
-  } else if (definition.thematicUnitId) {
-    // Thematic unit alert
-    const unit = definition.thematicUnit;
-    const unitActivityCount = await prisma.thematicUnitActivity.count({
+    const userIdInt = parseInt(userId);
+
+    // Get all milestones for the user
+    const milestones = await prisma.milestone.findMany({
       where: {
-        thematicUnitId: definition.thematicUnitId,
+        subject: {
+          userId: userIdInt,
+        },
+      },
+      include: {
+        subject: true,
+        activities: {
+          include: {
+            outcomes: true,
+          },
+        },
+        outcomes: true,
       },
     });
 
-    const isInScheduledWindow = currentDate >= unit.startDate && currentDate <= unit.endDate;
-    const hasNoActivities = unitActivityCount === 0;
+    const alertsToCreate = [];
+    const now = new Date();
 
-    if (isInScheduledWindow && hasNoActivities) {
-      return {
-        type: 'theme_unaddressed',
-        thematicUnitId: definition.thematicUnitId,
-        thematicUnitTitle: unit.title,
-        message: `Theme "${unit.title}" has no scheduled activities during its window (${unit.startDate.toLocaleDateString()} - ${unit.endDate.toLocaleDateString()}).`,
-        severity: 'warning' as const,
-        dueDate: definition.dueDate,
-        priority: definition.priority,
-        description: definition.description,
-      };
+    for (const milestone of milestones) {
+      // Check for deadline alerts
+      if (milestone.targetDate) {
+        const daysUntilDeadline = Math.ceil(
+          (new Date(milestone.targetDate).getTime() - now.getTime()) / (1000 * 60 * 60 * 24),
+        );
+
+        // Create deadline alerts
+        if (daysUntilDeadline <= 7 && daysUntilDeadline > 0) {
+          // Check if alert already exists
+          const existingAlert = await prisma.milestoneAlert.findFirst({
+            where: {
+              userId: userIdInt,
+              milestoneId: milestone.id,
+              type: 'deadline',
+              createdAt: {
+                gte: new Date(now.getTime() - 24 * 60 * 60 * 1000), // Within last 24 hours
+              },
+            },
+          });
+
+          if (!existingAlert) {
+            alertsToCreate.push({
+              type: 'deadline',
+              severity:
+                daysUntilDeadline <= 3 ? 'critical' : daysUntilDeadline <= 5 ? 'high' : 'medium',
+              title: `Milestone Deadline Approaching`,
+              description: `Milestone "${milestone.title}" in ${milestone.subject.name} is due in ${daysUntilDeadline} day${daysUntilDeadline !== 1 ? 's' : ''}.`,
+              milestoneId: milestone.id,
+              userId: userIdInt,
+            });
+          }
+        }
+      }
+
+      // Check for coverage alerts
+      const totalOutcomes = milestone.outcomes.length;
+      if (totalOutcomes > 0) {
+        const coveredOutcomes = new Set();
+        milestone.activities.forEach((activity) => {
+          activity.outcomes.forEach((ao) => {
+            coveredOutcomes.add(ao.outcomeId);
+          });
+        });
+
+        const coveragePercentage = (coveredOutcomes.size / totalOutcomes) * 100;
+
+        if (coveragePercentage < 50) {
+          // Check if alert already exists
+          const existingAlert = await prisma.milestoneAlert.findFirst({
+            where: {
+              userId: userIdInt,
+              milestoneId: milestone.id,
+              type: 'coverage',
+              createdAt: {
+                gte: new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000), // Within last 7 days
+              },
+            },
+          });
+
+          if (!existingAlert) {
+            alertsToCreate.push({
+              type: 'coverage',
+              severity:
+                coveragePercentage < 20 ? 'critical' : coveragePercentage < 35 ? 'high' : 'medium',
+              title: `Low Curriculum Coverage`,
+              description: `Milestone "${milestone.title}" in ${milestone.subject.name} has only ${coveragePercentage.toFixed(1)}% outcome coverage.`,
+              milestoneId: milestone.id,
+              userId: userIdInt,
+            });
+          }
+        }
+      }
     }
-  }
 
-  return null;
-}
+    // Create all new alerts
+    if (alertsToCreate.length > 0) {
+      await prisma.milestoneAlert.createMany({
+        data: alertsToCreate,
+      });
+    }
+
+    res.json({
+      message: 'Alert check completed',
+      newAlertsCreated: alertsToCreate.length,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
 
 export default router;

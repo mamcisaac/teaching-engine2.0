@@ -59,6 +59,13 @@ Teaching Engine 2.0 aims to be the "digital teaching assistant" that reduces adm
   - Direct integration with weekly planner for seamless workflow
   - Mock generator for development with OpenAI integration ready
 
+#### ⚠️ CRITICAL MISSING FEATURE
+
+- **AI-Powered Curriculum Import**: ❌ NOT IMPLEMENTED
+  - This feature was marked as "the most important piece" but is completely missing
+  - Should allow teachers to upload curriculum documents (PDF/DOC) and use AI to parse outcomes
+  - See [CRITICAL_MISSING_AI_CURRICULUM_IMPORT.md](docs/agents/CRITICAL_MISSING_AI_CURRICULUM_IMPORT.md) for details
+
 #### In Progress
 
 - **Provincial Curriculum Integration**: Import PEI (and other provincial) curriculum standards

@@ -20,7 +20,7 @@ export default function SubjectList({ subjects }: Props) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim()) return;
-    create.mutate({ name });
+    create.mutate({ name, milestones: [] });
     setName('');
     setOpen(false);
   };
@@ -28,7 +28,7 @@ export default function SubjectList({ subjects }: Props) {
   const handleEditSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (editId === null || !editName.trim()) return;
-    update.mutate({ id: editId, name: editName });
+    update.mutate({ id: editId, data: { name: editName } });
     setEditId(null);
     setEditName('');
   };

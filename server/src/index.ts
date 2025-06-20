@@ -55,11 +55,17 @@ import cognateRoutes from './routes/cognate';
 import assessmentRoutes from './routes/assessment';
 import mediaResourceRoutes from './routes/mediaResource';
 import parentMessageRoutes from './routes/parentMessage';
+import reflectionRoutes from './routes/reflections';
 import studentRoutes from './routes/student';
+import parentSummaryRoutes from './routes/parentSummary';
+import auditRoutes from './routes/audit';
+import reflectionsRoutes from './routes/reflections';
+import alertsRoutes from './routes/alerts';
 import testRoutes from './routes/test';
 import timelineRoutes from './routes/timeline';
-import alertsRoutes from './routes/alerts';
 import { aiSuggestionsRouter } from './routes/aiSuggestions';
+import aiParentSummaryRoutes from './routes/aiParentSummary';
+import activityTemplateRoutes from './routes/activityTemplate';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
@@ -244,10 +250,16 @@ app.use('/api/cognates', authenticateToken, cognateRoutes);
 app.use('/api/assessments', authenticateToken, assessmentRoutes);
 app.use('/api/media-resources', authenticateToken, mediaResourceRoutes);
 app.use('/api/parent-messages', authenticateToken, parentMessageRoutes);
+app.use('/api/reflections', authenticateToken, reflectionRoutes);
 app.use('/api/timeline', authenticateToken, timelineRoutes);
 app.use('/api/students', authenticateToken, studentRoutes);
+app.use('/api/ai-parent-summary', authenticateToken, parentSummaryRoutes);
+app.use('/api/audit', authenticateToken, auditRoutes);
+app.use('/api/reflections', authenticateToken, reflectionsRoutes);
 app.use('/api/alerts', authenticateToken, alertsRoutes);
 app.use('/api/ai-suggestions', authenticateToken, aiSuggestionsRouter);
+app.use('/api/ai-parent-summary', authenticateToken, aiParentSummaryRoutes);
+app.use('/api/activity-templates', authenticateToken, activityTemplateRoutes);
 
 // Mount test routes (only in test/development mode)
 if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {

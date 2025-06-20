@@ -89,7 +89,7 @@ export default function StudentReflectionJournal({
     const grouped: { [key: string]: typeof reflections } = {};
 
     reflections.forEach((reflection) => {
-      const date = new Date(reflection.date);
+      const date = new Date(reflection.date || reflection.createdAt);
       const monthKey = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
 
       if (!grouped[monthKey]) {
@@ -100,7 +100,10 @@ export default function StudentReflectionJournal({
 
     // Sort each month's reflections by date (newest first)
     Object.keys(grouped).forEach((month) => {
-      grouped[month].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      grouped[month].sort(
+        (a, b) =>
+          new Date(b.date || b.createdAt).getTime() - new Date(a.date || a.createdAt).getTime(),
+      );
     });
 
     return grouped;
@@ -151,7 +154,9 @@ export default function StudentReflectionJournal({
                           <div className="flex items-center gap-2 mb-2">
                             <span className="text-2xl">{reflection.emoji}</span>
                             <span className="text-sm font-medium text-gray-600">
-                              {new Date(reflection.date).toLocaleDateString()}
+                              {new Date(
+                                reflection.date || reflection.createdAt,
+                              ).toLocaleDateString()}
                             </span>
                             {reflection.outcome && (
                               <span className="font-mono text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded">
