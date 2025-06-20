@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { clusteringService } from './clusteringService';
 import BaseService from './base/BaseService';
 import type { GenerateScheduleOptions, ScheduleItem } from './planningEngine';
@@ -268,7 +269,7 @@ export class EnhancedPlanningService extends BaseService {
     });
   }
 
-  private async generateThematicGroups(activities: unknown[]): Promise<ThematicGroup[]> {
+  private async generateThematicGroups(activities: any[]): Promise<ThematicGroup[]> {
     try {
       const groups: ThematicGroup[] = [];
       
@@ -335,7 +336,7 @@ export class EnhancedPlanningService extends BaseService {
     }
   }
 
-  private async checkPrerequisites(activities: unknown[]): Promise<string[]> {
+  private async checkPrerequisites(activities: any[]): Promise<string[]> {
     const issues: string[] = [];
     
     // Simple prerequisite checking based on grade levels
@@ -363,7 +364,7 @@ export class EnhancedPlanningService extends BaseService {
   }
 
   private async createEnhancedSchedule(
-    activities: unknown[],
+    activities: any[],
     opts: EnhancedScheduleOptions,
     thematicGroups: ThematicGroup[]
   ): Promise<ScheduleItem[]> {
@@ -449,7 +450,7 @@ export class EnhancedPlanningService extends BaseService {
     }
   }
 
-  private async isPrerequisite(prerequisite: unknown, outcome: unknown): Promise<boolean> {
+  private async isPrerequisite(prerequisite: any, outcome: any): Promise<boolean> {
     // Simple heuristic: lower grades are prerequisites for higher grades
     if (prerequisite.grade < outcome.grade) return true;
     

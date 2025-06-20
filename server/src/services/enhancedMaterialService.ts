@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -324,7 +325,7 @@ export class EnhancedMaterialService extends BaseService {
   // Private helper methods
 
   private async generateActivityMaterials(
-    activity: unknown, 
+    activity: any, 
     request: BulkMaterialRequest
   ): Promise<GeneratedMaterial> {
     const allNotes = [activity.privateNote, activity.publicNote].filter(Boolean).join('\n');
@@ -354,13 +355,13 @@ export class EnhancedMaterialService extends BaseService {
     };
   }
 
-  private groupActivitiesByTheme(activities: unknown[]): typeof activities[] {
+  private groupActivitiesByTheme(activities: any[]): typeof activities[] {
     // Simple grouping by subject and grade level
     const groups = new Map<string, typeof activities>();
     
     for (const activity of activities) {
       const subject = activity.milestone?.subject?.name || 'Unknown';
-      const outcomes = activity.outcomes?.map((ao: unknown) => ao.outcome.grade).join(',') || '0';
+      const outcomes = activity.outcomes?.map((ao: any) => ao.outcome.grade).join(',') || '0';
       const key = `${subject}_${outcomes}`;
       
       if (!groups.has(key)) {
@@ -426,7 +427,7 @@ export class EnhancedMaterialService extends BaseService {
     });
   }
 
-  private generateInstructions(activity: unknown, materials: string[]): string {
+  private generateInstructions(activity: any, materials: string[]): string {
     const instructions = [
       `PREPARATION INSTRUCTIONS FOR: ${activity.title}`,
       '=' .repeat(50),
