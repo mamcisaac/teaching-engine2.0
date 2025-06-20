@@ -9,7 +9,7 @@ export interface Notification {
   message: string;
   priority: 'low' | 'medium' | 'high' | 'urgent';
   channels: ('in_app' | 'email' | 'push')[];
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   expiresAt?: Date;
   createdAt: Date;
 }
@@ -76,8 +76,7 @@ export class NotificationService extends BaseService {
       const userPrefs = await this.getUserPreferences(userId);
       const effectiveChannels = this.filterChannelsByPreferences(
         notification.channels, 
-        userPrefs, 
-        notification.type
+        userPrefs
       );
 
       if (effectiveChannels.length === 0) {
@@ -124,7 +123,7 @@ export class NotificationService extends BaseService {
       priority?: 'low' | 'medium' | 'high' | 'urgent';
       channels?: ('in_app' | 'email' | 'push')[];
       expiresAt?: Date;
-      metadata?: Record<string, any>;
+      metadata?: Record<string, unknown>;
     } = {}
   ): Promise<string> {
     try {
@@ -395,8 +394,7 @@ export class NotificationService extends BaseService {
 
   private filterChannelsByPreferences(
     requestedChannels: ('in_app' | 'email' | 'push')[],
-    preferences: NotificationPreferences,
-    notificationType: string
+    preferences: NotificationPreferences
   ): ('in_app' | 'email' | 'push')[] {
     return requestedChannels.filter(channel => {
       switch (channel) {

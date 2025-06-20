@@ -51,7 +51,7 @@ export abstract class BaseService {
     };
 
     const startTime = Date.now();
-    let lastError: any;
+    let lastError: unknown;
 
     for (let attempt = 1; attempt <= opts.maxRetries + 1; attempt++) {
       try {
@@ -171,7 +171,7 @@ export abstract class BaseService {
   /**
    * Standardized error handling
    */
-  protected handleError(error: unknown, context?: Record<string, any>): never {
+  protected handleError(error: unknown, context?: Record<string, unknown>): never {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     const errorStack = error instanceof Error ? error.stack : undefined;
     
@@ -195,7 +195,7 @@ export abstract class BaseService {
    * Validate required parameters
    */
   protected validateRequired(
-    params: Record<string, any>, 
+    params: Record<string, unknown>, 
     required: string[]
   ): void {
     const missing = required.filter(key => 
@@ -210,7 +210,7 @@ export abstract class BaseService {
   /**
    * Sanitize and validate input data
    */
-  protected sanitizeInput<T extends Record<string, any>>(
+  protected sanitizeInput<T extends Record<string, unknown>>(
     input: T,
     schema: Record<keyof T, 'string' | 'number' | 'boolean' | 'object' | 'array'>
   ): T {
@@ -224,10 +224,10 @@ export abstract class BaseService {
       switch (expectedType) {
         case 'string':
           if (typeof value !== 'string') {
-            sanitized[key as keyof T] = String(value) as any;
+            (sanitized as Record<string, unknown>)[key] = String(value);
           }
           // Trim whitespace and limit length
-          sanitized[key as keyof T] = String(value).trim().slice(0, 1000) as any;
+          (sanitized as Record<string, unknown>)[key] = String(value).trim().slice(0, 1000);
           break;
           
         case 'number':
@@ -236,13 +236,13 @@ export abstract class BaseService {
             if (isNaN(parsed)) {
               throw new Error(`Invalid number value for ${key}: ${value}`);
             }
-            sanitized[key as keyof T] = parsed as any;
+            (sanitized as Record<string, unknown>)[key] = parsed;
           }
           break;
           
         case 'boolean':
           if (typeof value !== 'boolean') {
-            sanitized[key as keyof T] = Boolean(value) as any;
+            (sanitized as Record<string, unknown>)[key] = Boolean(value);
           }
           break;
           

@@ -5,7 +5,7 @@ export interface ServiceHealth {
   serviceName: string;
   healthy: boolean;
   lastCheck: Date;
-  details: any;
+  details: unknown;
 }
 
 export interface ServiceRegistration {
@@ -228,7 +228,7 @@ export class ServiceRegistry {
   /**
    * Get performance metrics for all services
    */
-  getAllMetrics(): { serviceName: string; metrics: any }[] {
+  getAllMetrics(): { serviceName: string; metrics: unknown }[] {
     return Array.from(this.services.values()).map(registration => ({
       serviceName: registration.name,
       metrics: registration.instance.getMetrics()
