@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { vi, type MockedFunction } from 'vitest';
-import { ActivitySuggestions } from '../../ActivitySuggestions';
+import { ActivitySuggestions } from '../ActivitySuggestions';
 
 // Mock the toast hook
 vi.mock('../../ui/use-toast', () => ({
@@ -21,7 +21,9 @@ const queryClient = new QueryClient({
 });
 
 const wrapper = ({ children }: { children: React.ReactNode }) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  <QueryClientProvider client={queryClient}>
+    {children}
+  </QueryClientProvider>
 );
 
 describe('ActivitySuggestions', () => {
@@ -40,14 +42,22 @@ describe('ActivitySuggestions', () => {
   });
 
   it('renders loading state initially', () => {
-    (global.fetch as MockedFunction<typeof fetch>).mockImplementationOnce(
-      () => new Promise(() => {}), // Never resolves to keep loading
+    (global.fetch as MockedFunction<typeof fetch>).mockImplementationOnce(() => 
+      new Promise(() => {}) // Never resolves to keep loading
     );
 
-    render(<ActivitySuggestions outcomeIds={['FR4.1']} />, { wrapper });
+    render(
+      <ActivitySuggestions 
+        outcomeIds={['FR4.1']} 
+        language="en"
+      />, 
+      { wrapper }
+    );
 
-    // Should render without crashing
-    expect(document.body).toBeInTheDocument();
+    expect(screen.getByText('Activity Suggestions')).toBeInTheDocument();
+    // Check for loading skeletons
+    const loadingCards = screen.getAllByTestId('loading-skeleton');
+    expect(loadingCards).toHaveLength(3);
   });
 
   it('displays suggestions when data loads', async () => {
@@ -72,7 +82,13 @@ describe('ActivitySuggestions', () => {
       json: async () => mockSuggestions,
     } as Response);
 
-    render(<ActivitySuggestions outcomeIds={['EN4.1']} />, { wrapper });
+    render(
+      <ActivitySuggestions 
+        outcomeIds={['EN4.1']} 
+        language="en"
+      />, 
+      { wrapper }
+    );
 
     await waitFor(() => {
       expect(screen.getByText('Activity 1')).toBeInTheDocument();
@@ -103,9 +119,14 @@ describe('ActivitySuggestions', () => {
       json: async () => mockSuggestions,
     } as Response);
 
-    render(<ActivitySuggestions outcomeIds={['EN4.1']} onAddToPlanner={mockAddToPlan} />, {
-      wrapper,
-    });
+    render(
+      <ActivitySuggestions 
+        outcomeIds={['EN4.1']} 
+        language="en"
+        onAddToPlan={mockAddToPlan}
+      />, 
+      { wrapper }
+    );
 
     await waitFor(() => {
       expect(screen.getByText('Activity 1')).toBeInTheDocument();
@@ -114,12 +135,12 @@ describe('ActivitySuggestions', () => {
     const addButton = screen.getByText('Add');
     fireEvent.click(addButton);
 
-    expect(mockAddToPlan).toHaveBeenCalledWith(
-      expect.objectContaining({
-        id: 1,
-        titleEn: 'Activity 1',
-      }),
-    );
+    expect(mockAddToPlan).toHaveBeenCalledWith(expect.objectContaining({
+      id: 1,
+      titleEn: 'Activity 1',
+      domain: 'reading',
+      subject: 'english',
+    }));
   });
 
   it('shows and hides filters', async () => {
@@ -128,10 +149,22 @@ describe('ActivitySuggestions', () => {
       json: async () => [],
     } as Response);
 
-    render(<ActivitySuggestions outcomeIds={[]} />, { wrapper });
+    render(
+      <ActivitySuggestions 
+        outcomeIds={[]} 
+        showFilters={true}
+      />, 
+      { wrapper }
+    );
 
-    // Test passes if component renders without crashing
-    expect(document.body).toBeInTheDocument();
+    const filterButton = screen.getByText('Filters');
+    expect(screen.queryByText('Filter Activities')).not.toBeInTheDocument();
+
+    fireEvent.click(filterButton);
+    
+    await waitFor(() => {
+      expect(screen.getByText('Filter Activities')).toBeInTheDocument();
+    });
   });
 
   it('handles API errors gracefully', async () => {
@@ -141,14 +174,18 @@ describe('ActivitySuggestions', () => {
       json: async () => ({ error: 'Server error' }),
     } as Response);
 
-    render(<ActivitySuggestions outcomeIds={['FR4.1']} />, { wrapper });
+    render(
+      <ActivitySuggestions 
+        outcomeIds={['FR4.1']} 
+      />, 
+      { wrapper }
+    );
 
     await waitFor(
       () => {
-        // Component should handle error gracefully
-        expect(document.body).toBeInTheDocument();
+        expect(screen.getByText('Unable to load activity suggestions. Please try again.')).toBeInTheDocument();
       },
-      { timeout: 3000 },
+      { timeout: 3000 }
     );
   });
 
@@ -158,11 +195,16 @@ describe('ActivitySuggestions', () => {
       json: async () => [],
     } as Response);
 
-    render(<ActivitySuggestions outcomeIds={['FR4.1']} />, { wrapper });
+    render(
+      <ActivitySuggestions 
+        outcomeIds={['FR4.1']} 
+      />, 
+      { wrapper }
+    );
 
     await waitFor(() => {
-      // Component should handle empty state
-      expect(document.body).toBeInTheDocument();
+      expect(screen.getByText('No activities found')).toBeInTheDocument();
+      expect(screen.getByText('Try adjusting your filters or selecting different outcomes.')).toBeInTheDocument();
     });
   });
 
@@ -186,16 +228,28 @@ describe('ActivitySuggestions', () => {
       json: async () => mockSuggestions,
     } as Response);
 
-    const { rerender } = render(<ActivitySuggestions outcomeIds={['FR4.1']} />, {
-      wrapper,
-    });
+    const { rerender } = render(
+      <ActivitySuggestions 
+        outcomeIds={['FR4.1']} 
+        language="fr"
+      />, 
+      { wrapper }
+    );
 
     await waitFor(() => {
-      expect(document.body).toBeInTheDocument();
+      expect(screen.getByText('Titre Français')).toBeInTheDocument();
+      expect(screen.getByText('Description française')).toBeInTheDocument();
     });
 
-    // Test rerender
-    rerender(<ActivitySuggestions outcomeIds={['FR4.1']} />);
-    expect(document.body).toBeInTheDocument();
+    // Change language
+    rerender(
+      <ActivitySuggestions 
+        outcomeIds={['FR4.1']} 
+        language="en"
+      />
+    );
+
+    expect(screen.queryByText('Titre Français')).not.toBeInTheDocument();
+    expect(screen.getByText('English Title')).toBeInTheDocument();
   });
 });

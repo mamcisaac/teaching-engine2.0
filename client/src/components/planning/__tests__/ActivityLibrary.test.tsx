@@ -1,8 +1,8 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { vi, type MockedFunction } from 'vitest';
-import { ActivityLibrary } from '../../ActivityLibrary';
+import { ActivityLibrary } from '../ActivityLibrary';
 
 // Mock the toast hook
 vi.mock('../../ui/use-toast', () => ({
@@ -21,7 +21,9 @@ const queryClient = new QueryClient({
 });
 
 const wrapper = ({ children }: { children: React.ReactNode }) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  <QueryClientProvider client={queryClient}>
+    {children}
+  </QueryClientProvider>
 );
 
 const mockActivities = [
@@ -45,7 +47,7 @@ const mockActivities = [
     id: 2,
     titleFr: 'Écriture créative',
     titleEn: 'Creative Writing',
-    descriptionFr: "Exercice d'écriture créative",
+    descriptionFr: 'Exercice d\'écriture créative',
     descriptionEn: 'Creative writing exercise',
     domain: 'writing',
     subject: 'francais',
@@ -70,15 +72,18 @@ describe('ActivityLibrary', () => {
   });
 
   it('renders library header and controls', () => {
+    const mockOnCreateNew = vi.fn();
     (global.fetch as MockedFunction<typeof fetch>).mockResolvedValueOnce({
       ok: true,
       json: async () => [],
     } as Response);
 
-    render(<ActivityLibrary />, { wrapper });
+    render(<ActivityLibrary showCreateButton={true} onCreateNew={mockOnCreateNew} />, { wrapper });
 
-    // Component should render without crashing
-    expect(document.body).toBeInTheDocument();
+    expect(screen.getByText('Activity Library')).toBeInTheDocument();
+    expect(screen.getByText('Browse and manage your activity templates')).toBeInTheDocument();
+    expect(screen.getByText('New Activity')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Search activities...')).toBeInTheDocument();
   });
 
   it('displays activities in grid view', async () => {
@@ -87,43 +92,58 @@ describe('ActivityLibrary', () => {
       json: async () => mockActivities,
     } as Response);
 
-    render(<ActivityLibrary />, { wrapper });
+    render(<ActivityLibrary defaultView="grid" language="en" />, { wrapper });
 
     await waitFor(() => {
-      // Component should render activities
-      expect(document.body).toBeInTheDocument();
+      expect(screen.getByText('Guided Reading')).toBeInTheDocument();
+      expect(screen.getByText('Creative Writing')).toBeInTheDocument();
+      expect(screen.getByText('Small group reading activity')).toBeInTheDocument();
+      expect(screen.getByText('20m')).toBeInTheDocument();
+      expect(screen.getByText('2 outcomes')).toBeInTheDocument();
     });
   });
 
   it('shows empty state when no activities', async () => {
+    const mockOnCreateNew = vi.fn();
     (global.fetch as MockedFunction<typeof fetch>).mockResolvedValueOnce({
       ok: true,
       json: async () => [],
     } as Response);
 
-    render(<ActivityLibrary />, { wrapper });
+    render(<ActivityLibrary showCreateButton={true} onCreateNew={mockOnCreateNew} />, { wrapper });
 
     await waitFor(() => {
-      // Component should handle empty state
-      expect(document.body).toBeInTheDocument();
+      expect(screen.getByText('No activities found')).toBeInTheDocument();
+      expect(screen.getByText('Get started by creating your first activity template.')).toBeInTheDocument();
+      expect(screen.getByText('Create New Activity')).toBeInTheDocument();
     });
   });
 
   it('handles create new activity', async () => {
+    const mockOnCreateNew = vi.fn();
+    
     (global.fetch as MockedFunction<typeof fetch>).mockResolvedValueOnce({
       ok: true,
       json: async () => [],
     } as Response);
 
-    render(<ActivityLibrary />, { wrapper });
+    render(
+      <ActivityLibrary 
+        showCreateButton={true} 
+        onCreateNew={mockOnCreateNew}
+      />, 
+      { wrapper }
+    );
 
-    // Component should handle creation flow
-    expect(document.body).toBeInTheDocument();
+    const newButton = screen.getByText('New Activity');
+    fireEvent.click(newButton);
+
+    expect(mockOnCreateNew).toHaveBeenCalled();
   });
 
   it('handles loading state', () => {
-    (global.fetch as MockedFunction<typeof fetch>).mockImplementationOnce(
-      () => new Promise(() => {}), // Never resolves
+    (global.fetch as MockedFunction<typeof fetch>).mockImplementationOnce(() => 
+      new Promise(() => {}) // Never resolves
     );
 
     render(<ActivityLibrary />, { wrapper });
@@ -132,15 +152,13 @@ describe('ActivityLibrary', () => {
   });
 
   it('handles error state', async () => {
-    (global.fetch as MockedFunction<typeof fetch>).mockRejectedValueOnce(
-      new Error('Network error'),
-    );
+    (global.fetch as MockedFunction<typeof fetch>).mockRejectedValueOnce(new Error('Network error'));
 
     render(<ActivityLibrary />, { wrapper });
 
     await waitFor(() => {
-      // Component should handle error gracefully
-      expect(document.body).toBeInTheDocument();
+      expect(screen.getByText('Unable to load activity library. Please try again.')).toBeInTheDocument();
+      expect(screen.getByText('Retry')).toBeInTheDocument();
     });
   });
 
@@ -150,11 +168,11 @@ describe('ActivityLibrary', () => {
       json: async () => mockActivities,
     } as Response);
 
-    render(<ActivityLibrary />, { wrapper });
+    render(<ActivityLibrary language="fr" />, { wrapper });
 
     await waitFor(() => {
-      // Component should handle language preference
-      expect(document.body).toBeInTheDocument();
+      expect(screen.getByText('Lecture guidée')).toBeInTheDocument();
+      expect(screen.getByText('Écriture créative')).toBeInTheDocument();
     });
   });
 
@@ -164,11 +182,10 @@ describe('ActivityLibrary', () => {
       json: async () => mockActivities,
     } as Response);
 
-    render(<ActivityLibrary />, { wrapper });
+    render(<ActivityLibrary language="en" />, { wrapper });
 
     await waitFor(() => {
-      // Component should show activity count
-      expect(document.body).toBeInTheDocument();
+      expect(screen.getByText('2 activities found')).toBeInTheDocument();
     });
   });
 });
