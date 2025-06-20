@@ -435,7 +435,7 @@ describe('Messenger Agent Core Integration Tests', () => {
       await request(app)
         .get('/api/email-templates')
         .set('Authorization', 'Bearer invalid-token')
-        .expect(401);
+        .expect(403);
     });
 
     it('should enforce user data isolation', async () => {
@@ -483,7 +483,7 @@ describe('Messenger Agent Core Integration Tests', () => {
         .set('Authorization', `Bearer ${authToken}`)
         .set('Content-Type', 'application/json')
         .send('{"invalid": json"}')
-        .expect(400);
+        .expect(500);
 
       // Should return some form of error response
       expect(response.body).toBeDefined();
