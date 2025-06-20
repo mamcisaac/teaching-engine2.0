@@ -13,35 +13,35 @@ describe('Phase 5 Services Integration', () => {
     // Register all Phase 5 services
     serviceRegistry.register({
       name: 'EmbeddingService',
-      instance: embeddingService as any,
+      instance: embeddingService as unknown,
       dependencies: [],
       singleton: true,
     });
 
     serviceRegistry.register({
       name: 'CurriculumImportService',
-      instance: curriculumImportService as any,
+      instance: curriculumImportService as unknown,
       dependencies: ['EmbeddingService'],
       singleton: true,
     });
 
     serviceRegistry.register({
       name: 'ClusteringService',
-      instance: clusteringService as any,
+      instance: clusteringService as unknown,
       dependencies: ['EmbeddingService'],
       singleton: true,
     });
 
     serviceRegistry.register({
       name: 'EnhancedPlanningService',
-      instance: enhancedPlanningService as any,
+      instance: enhancedPlanningService as unknown,
       dependencies: ['ClusteringService'],
       singleton: true,
     });
 
     serviceRegistry.register({
       name: 'EnhancedMaterialService',
-      instance: enhancedMaterialService as any,
+      instance: enhancedMaterialService as unknown,
       dependencies: [],
       singleton: true,
     });
