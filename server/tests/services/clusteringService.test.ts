@@ -7,18 +7,7 @@ import { prisma } from '../../src/prisma';
 // Mock dependencies
 jest.mock('../../src/services/embeddingService');
 jest.mock('../../src/services/llmService');
-jest.mock('../../src/prisma', () => ({
-  prisma: {
-    outcome: {
-      findMany: jest.fn(),
-    },
-    outcomeCluster: {
-      create: jest.fn(),
-      findMany: jest.fn(),
-      deleteMany: jest.fn(),
-    },
-  },
-}));
+jest.mock('../../src/prisma');
 
 describe('ClusteringService', () => {
   let clusteringService: ClusteringService;
@@ -67,7 +56,7 @@ describe('ClusteringService', () => {
     beforeEach(() => {
       // Mock outcome retrieval
       (mockPrisma.outcome.findMany as jest.Mock).mockResolvedValue(mockOutcomes);
-      
+
       // Mock embedding service similarity calculations
       (mockEmbeddingService.calculateSimilarity as jest.Mock).mockImplementation((emb1, emb2) => {
         // Simple dot product for testing
@@ -80,8 +69,8 @@ describe('ClusteringService', () => {
       });
 
       // Mock cluster creation
-      (mockPrisma.outcomeCluster.create as jest.Mock).mockImplementation((args) => 
-        Promise.resolve({ id: `cluster-${Date.now()}`, ...args.data })
+      (mockPrisma.outcomeCluster.create as jest.Mock).mockImplementation((args) =>
+        Promise.resolve({ id: `cluster-${Date.now()}`, ...args.data }),
       );
     });
 
@@ -89,12 +78,12 @@ describe('ClusteringService', () => {
       const results = await clusteringService.clusterOutcomes(importId);
 
       expect(results).toHaveLength(2); // Two clusters: Math and Geometry
-      
+
       // Verify clusters contain related outcomes
-      const mathCluster = results.find(c => c.outcomeIds.includes('outcome-1'));
+      const mathCluster = results.find((c) => c.outcomeIds.includes('outcome-1'));
       expect(mathCluster?.outcomeIds).toContain('outcome-2');
-      
-      const geometryCluster = results.find(c => c.outcomeIds.includes('outcome-3'));
+
+      const geometryCluster = results.find((c) => c.outcomeIds.includes('outcome-3'));
       expect(geometryCluster?.outcomeIds).toContain('outcome-4');
     });
 
@@ -109,12 +98,14 @@ describe('ClusteringService', () => {
 
     it('should limit maximum clusters', async () => {
       // Add more outcomes
-      const manyOutcomes = Array(50).fill(null).map((_, i) => ({
-        id: `outcome-${i}`,
-        code: `M1.${i}`,
-        description: `Outcome ${i}`,
-        embedding: { embedding: [Math.random(), Math.random(), Math.random()] },
-      }));
+      const manyOutcomes = Array(50)
+        .fill(null)
+        .map((_, i) => ({
+          id: `outcome-${i}`,
+          code: `M1.${i}`,
+          description: `Outcome ${i}`,
+          embedding: { embedding: [Math.random(), Math.random(), Math.random()] },
+        }));
 
       (mockPrisma.outcome.findMany as jest.Mock).mockResolvedValue(manyOutcomes);
 
@@ -159,12 +150,13 @@ describe('ClusteringService', () => {
       ];
 
       (mockPrisma.outcome.findMany as jest.Mock).mockResolvedValue(outcomesWithoutEmbeddings);
-      
+
       // Mock embedding generation
       (mockEmbeddingService.generateBatchEmbeddings as jest.Mock).mockResolvedValue([]);
-      
+
       // Mock re-fetch with embeddings
-      (mockPrisma.outcome.findMany as jest.Mock).mockResolvedValueOnce(outcomesWithoutEmbeddings)
+      (mockPrisma.outcome.findMany as jest.Mock)
+        .mockResolvedValueOnce(outcomesWithoutEmbeddings)
         .mockResolvedValueOnce([
           { ...outcomesWithoutEmbeddings[0], embedding: { embedding: [1, 0, 0] } },
           { ...outcomesWithoutEmbeddings[1], embedding: { embedding: [0.9, 0.1, 0] } },
@@ -208,10 +200,10 @@ describe('ClusteringService', () => {
 
       const results = await clusteringService.clusterOutcomes(importId);
 
-      const skillCluster = results.find(c => c.outcomeIds.includes('outcome-1'));
+      const skillCluster = results.find((c) => c.outcomeIds.includes('outcome-1'));
       expect(skillCluster?.type).toBe('skill');
 
-      const conceptCluster = results.find(c => c.outcomeIds.includes('outcome-3'));
+      const conceptCluster = results.find((c) => c.outcomeIds.includes('outcome-3'));
       expect(conceptCluster?.type).toBe('concept');
     });
   });
@@ -219,10 +211,10 @@ describe('ClusteringService', () => {
   describe('reclusterOutcomes', () => {
     it('should delete existing clusters before reclustering', async () => {
       const importId = 'import-123';
-      
+
       // Mock deletion
       (mockPrisma.outcomeCluster.deleteMany as jest.Mock).mockResolvedValue({ count: 3 });
-      
+
       // Mock outcomes for new clustering
       (mockPrisma.outcome.findMany as jest.Mock).mockResolvedValue([]);
 
@@ -323,7 +315,7 @@ describe('ClusteringService', () => {
           type: 'theme' as const,
           outcomeIds: c.outcomeIds,
           confidence: c.confidence,
-        }))
+        })),
       );
 
       const analysis = await clusteringService.analyzeClusterQuality('import-123');
@@ -331,8 +323,12 @@ describe('ClusteringService', () => {
       expect(analysis.totalClusters).toBe(4);
       expect(analysis.averageConfidence).toBeCloseTo(0.6425, 2);
       expect(analysis.clustersWithLowConfidence).toBe(2);
-      expect(analysis.suggestions).toContain('Consider adjusting similarity threshold for better clustering');
-      expect(analysis.suggestions).toContain('Many small clusters detected - consider increasing minimum cluster size');
+      expect(analysis.suggestions).toContain(
+        'Consider adjusting similarity threshold for better clustering',
+      );
+      expect(analysis.suggestions).toContain(
+        'Many small clusters detected - consider increasing minimum cluster size',
+      );
     });
 
     it('should handle no clusters', async () => {
@@ -342,19 +338,23 @@ describe('ClusteringService', () => {
 
       expect(analysis.totalClusters).toBe(0);
       expect(analysis.averageConfidence).toBe(0);
-      expect(analysis.suggestions).toContain('No clusters found. Consider running clustering first.');
+      expect(analysis.suggestions).toContain(
+        'No clusters found. Consider running clustering first.',
+      );
     });
   });
 
   describe('Performance and Edge Cases', () => {
     it('should handle clustering with very similar embeddings', async () => {
       // All outcomes have nearly identical embeddings
-      const similarOutcomes = Array(10).fill(null).map((_, i) => ({
-        id: `outcome-${i}`,
-        code: `M1.${i}`,
-        description: `Very similar outcome ${i}`,
-        embedding: { embedding: [0.99 + i * 0.001, 0.01, 0] },
-      }));
+      const similarOutcomes = Array(10)
+        .fill(null)
+        .map((_, i) => ({
+          id: `outcome-${i}`,
+          code: `M1.${i}`,
+          description: `Very similar outcome ${i}`,
+          embedding: { embedding: [0.99 + i * 0.001, 0.01, 0] },
+        }));
 
       (mockPrisma.outcome.findMany as jest.Mock).mockResolvedValue(similarOutcomes);
 
