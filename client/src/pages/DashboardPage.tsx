@@ -9,7 +9,10 @@ import { Link } from 'react-router-dom';
 import { TrendingUp, AlertTriangle } from 'lucide-react';
 
 export default function DashboardPage() {
-  const { data: alerts = [], isLoading: alertsLoading } = useMilestoneAlerts();
+  const { data: alertsData, isLoading: alertsLoading } = useMilestoneAlerts();
+  
+  // Extract alerts array from response (handle both legacy and new API)
+  const alerts = Array.isArray(alertsData) ? alertsData : alertsData?.alerts || [];
 
   // Filter alerts by priority for display
   const highPriorityAlerts = alerts.filter((alert) => alert.priority === 'high');

@@ -13,6 +13,9 @@ interface Props {
     activities?: number[];
     outcomes?: string[];
     timeframe?: string;
+    title?: string;
+    contentFr?: string;
+    contentEn?: string;
   };
 }
 
@@ -46,9 +49,12 @@ export function ParentMessageEditor({ message, onSave, onCancel, prefillData }: 
     } else if (prefillData) {
       setFormData((prev) => ({
         ...prev,
+        title: prefillData.title || '',
+        timeframe: prefillData.timeframe || '',
+        contentFr: prefillData.contentFr || '',
+        contentEn: prefillData.contentEn || '',
         linkedActivityIds: prefillData.activities || [],
         linkedOutcomeIds: prefillData.outcomes || [],
-        timeframe: prefillData.timeframe || '',
       }));
     }
   }, [message, prefillData]);

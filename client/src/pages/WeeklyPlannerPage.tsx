@@ -59,6 +59,14 @@ export default function WeeklyPlannerPage() {
   });
   const [showAssessmentBuilder, setShowAssessmentBuilder] = useState(false);
   const [showNewsletterEditor, setShowNewsletterEditor] = useState(false);
+  const [weeklyPrefillData, setWeeklyPrefillData] = useState<{
+    activities?: number[];
+    outcomes?: string[];
+    timeframe?: string;
+    title?: string;
+    contentFr?: string;
+    contentEn?: string;
+  } | null>(null);
   const [showUncoveredOutcomes, setShowUncoveredOutcomes] = useState(false);
   const [selectedAISuggestion, setSelectedAISuggestion] = useState<{
     id: number;
@@ -96,7 +104,10 @@ export default function WeeklyPlannerPage() {
   const { data: _suggestions, error: suggestionsError } = usePlannerSuggestions(weekStart, filters);
 
   // Get milestone alerts
-  const { data: milestoneAlerts = [], isLoading: alertsLoading } = useMilestoneAlerts();
+  const { data: alertsData, isLoading: alertsLoading } = useMilestoneAlerts();
+  
+  // Extract alerts array from response (handle both legacy and new API)
+  const milestoneAlerts = Array.isArray(alertsData) ? alertsData : alertsData?.alerts || [];
 
   // Get thematic units active during this week
   const { data: thematicUnits } = useThematicUnits();
@@ -336,6 +347,60 @@ export default function WeeklyPlannerPage() {
     if (typeof day === 'number' && event.active?.id) {
       handleDrop(day, Number(event.active.id));
     }
+  };
+
+  const handleShareWeeklySummary = () => {
+    // Generate automated weekly summary content
+    const weeklyActivities = Object.values(activities || {}).filter(activity => {
+      // Check if this activity is scheduled for this week
+      return plan?.schedule?.some(item => item.activityId === activity.id);
+    });
+
+    const activitiesBySubject = weeklyActivities.reduce((acc, activity) => {
+      const subjectName = activity.milestone?.subject?.name || 'Other';
+      if (!acc[subjectName]) acc[subjectName] = [];
+      acc[subjectName].push(activity);
+      return acc;
+    }, {} as Record<string, Activity[]>);
+
+    // Generate automated content
+    const generateWeeklySummary = (language: 'fr' | 'en') => {
+      const isEnglish = language === 'en';
+      
+      let content = isEnglish 
+        ? `<h2>Week of ${formatDate(weekStartDate)} - ${formatDate(weekEndDate)}</h2>`
+        : `<h2>Semaine du ${formatDate(weekStartDate)} au ${formatDate(weekEndDate)}</h2>`;
+
+      content += isEnglish 
+        ? `<p>Dear Parents,</p><p>Here's a summary of what we've been learning this week:</p>`
+        : `<p>Chers parents,</p><p>Voici un résumé de ce que nous avons appris cette semaine :</p>`;
+
+      Object.entries(activitiesBySubject).forEach(([subject, activities]) => {
+        content += `<h3>${subject}</h3><ul>`;
+        activities.forEach(activity => {
+          // Use the activity title (bilingual support would need to be added to the Activity type)
+          content += `<li>${activity.title}</li>`;
+        });
+        content += '</ul>';
+      });
+
+      content += isEnglish
+        ? `<p>Thank you for your continued support!</p><p>Best regards,<br>Your Teacher</p>`
+        : `<p>Merci pour votre soutien continu !</p><p>Cordialement,<br>Votre enseignant(e)</p>`;
+
+      return content;
+    };
+
+    // Open newsletter editor with pre-filled weekly summary
+    setWeeklyPrefillData({
+      title: `Weekly Summary - ${formatDate(weekStartDate)} to ${formatDate(weekEndDate)}`,
+      timeframe: `Week of ${weekStart}`,
+      contentFr: generateWeeklySummary('fr'),
+      contentEn: generateWeeklySummary('en'),
+      outcomes: [...new Set(weeklyActivities.flatMap(a => a.outcomes?.map(o => o.outcome.id) || []))],
+      activities: weeklyActivities.map(a => a.id),
+    });
+    setShowNewsletterEditor(true);
   };
 
   // Transform schedule items to include activity data for WeekCalendarGrid
@@ -623,10 +688,19 @@ export default function WeeklyPlannerPage() {
                   <WeeklyMaterialsChecklist weekStart={weekStart} />
                   <CognateSummaryWidget activities={activities} />
                   <button
-                    onClick={() => setShowNewsletterEditor(true)}
+                    onClick={() => {
+                      setWeeklyPrefillData(null);
+                      setShowNewsletterEditor(true);
+                    }}
                     className="w-full flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
                   >
                     📰 Create Newsletter
+                  </button>
+                  <button
+                    onClick={handleShareWeeklySummary}
+                    className="w-full flex items-center justify-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+                  >
+                    📤 Share Weekly Summary
                   </button>
                   <button
                     onClick={() => setShowUncoveredOutcomes(true)}
@@ -667,12 +741,15 @@ export default function WeeklyPlannerPage() {
         {/* Newsletter Editor Dialog */}
         <Dialog
           open={showNewsletterEditor}
-          onClose={() => setShowNewsletterEditor(false)}
-          title="Create Parent Newsletter"
+          onClose={() => {
+            setShowNewsletterEditor(false);
+            setWeeklyPrefillData(null);
+          }}
+          title={weeklyPrefillData ? "Share Weekly Summary" : "Create Parent Newsletter"}
           maxWidth="4xl"
         >
           <ParentMessageEditor
-            prefillData={{
+            prefillData={weeklyPrefillData || {
               activities: Object.values(activities || {}).map((a) => a.id),
               outcomes: Object.values(activities || {}).flatMap(
                 (a) => a.outcomes?.map((o) => o.outcome.id) || [],
@@ -681,11 +758,17 @@ export default function WeeklyPlannerPage() {
             }}
             onSave={() => {
               setShowNewsletterEditor(false);
+              setWeeklyPrefillData(null);
               toast.success(
-                'Newsletter created successfully! You can view and edit it in the Parent Communications section.',
+                weeklyPrefillData 
+                  ? 'Weekly summary created successfully! You can view and send it in the Parent Communications section.'
+                  : 'Newsletter created successfully! You can view and edit it in the Parent Communications section.',
               );
             }}
-            onCancel={() => setShowNewsletterEditor(false)}
+            onCancel={() => {
+              setShowNewsletterEditor(false);
+              setWeeklyPrefillData(null);
+            }}
           />
         </Dialog>
 

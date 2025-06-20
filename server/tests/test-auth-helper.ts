@@ -1,6 +1,7 @@
 import request from 'supertest';
 import type { Application } from 'express';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 import { getTestPrismaClient } from './jest.setup.js';
 
 /**
@@ -84,4 +85,38 @@ export function authRequest(app: Application) {
       return request(app).patch(url).set('Authorization', `Bearer ${token}`);
     },
   };
+}
+
+/**
+ * Create a test user without going through HTTP
+ */
+export async function createTestUser() {
+  const prisma = getTestPrismaClient();
+  
+  // Check if user already exists
+  const existingUser = await prisma.user.findUnique({
+    where: { email: 'test@example.com' },
+  });
+
+  if (existingUser) {
+    return existingUser;
+  }
+
+  const hashedPassword = await bcrypt.hash('testpassword', 10);
+  return await prisma.user.create({
+    data: {
+      email: 'test@example.com',
+      name: 'Test User',
+      password: hashedPassword,
+      role: 'teacher',
+    },
+  });
+}
+
+/**
+ * Create an auth token for a user ID
+ */
+export function createAuthToken(userId: number): string {
+  const secret = process.env.JWT_SECRET || 'test-secret';
+  return jwt.sign({ userId: userId.toString() }, secret, { expiresIn: '24h' });
 }

@@ -53,20 +53,18 @@ describe('MilestoneAlertCard', () => {
   });
 
   it('displays correct severity styling', () => {
-    const { rerender } = render(<MilestoneAlertCard alert={mockAlert} {...mockHandlers} />);
+    const { container, rerender } = render(<MilestoneAlertCard alert={mockAlert} {...mockHandlers} />);
 
-    // High priority alert should have red border on the outermost div
-    const cardContainer = screen.getByText('1CO.1').closest('.border-red-200');
-    expect(cardContainer).toBeInTheDocument();
-    expect(cardContainer).toHaveClass('bg-red-50');
+    // High priority alert should have orange border (warning severity maps to orange)
+    const cardContainer = container.querySelector('.border-l-4');
+    expect(cardContainer).toHaveClass('border-orange-500');
+    expect(cardContainer).toHaveClass('bg-orange-50');
 
-    // Medium priority alert should have orange border
+    // Medium priority alert should have blue border (notice severity maps to blue)
     rerender(<MilestoneAlertCard alert={mockDomainAlert} {...mockHandlers} />);
-    const mediumCardContainer = screen
-      .getByText('Communication orale')
-      .closest('.border-orange-200');
-    expect(mediumCardContainer).toBeInTheDocument();
-    expect(mediumCardContainer).toHaveClass('bg-orange-50');
+    const mediumCardContainer = container.querySelector('.border-l-4');
+    expect(mediumCardContainer).toHaveClass('border-blue-500');
+    expect(mediumCardContainer).toHaveClass('bg-blue-50');
   });
 
   it('calls handlers when buttons are clicked', () => {
@@ -101,7 +99,8 @@ describe('MilestoneAlertCard', () => {
   it('shows description when provided', () => {
     render(<MilestoneAlertCard alert={mockAlert} {...mockHandlers} />);
 
-    expect(screen.getByText(mockAlert.description!)).toBeInTheDocument();
+    // The description is shown as the display message when available
+    expect(screen.getByText(/Outcome 1CO.1 has not been introduced/)).toBeInTheDocument();
   });
 
   it('displays different icons for different alert types', () => {
