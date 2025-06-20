@@ -1,32 +1,13 @@
 import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
 import { EmbeddingService } from '../../src/services/embeddingService';
 
-// Mock OpenAI
-jest.mock('../../src/services/llmService', () => ({
-  openai: {
-    embeddings: {
-      create: jest.fn(),
-    },
-  },
-}));
+// Mock modules manually
+jest.mock('../../src/services/llmService');
+jest.mock('../../src/prisma');
 
-// Mock Prisma
-const mockPrisma = {
-  outcomeEmbedding: {
-    findUnique: jest.fn(),
-    findMany: jest.fn(),
-    create: jest.fn(),
-    createMany: jest.fn(),
-    deleteMany: jest.fn(),
-  },
-};
-
-jest.mock('../../src/prisma', () => ({
-  prisma: mockPrisma,
-}));
-
-// Import the mocked openai after mocking
+// Import the mocked modules
 import { openai } from '../../src/services/llmService';
+import { prisma as mockPrisma } from '../../src/prisma';
 
 describe('EmbeddingService', () => {
   let embeddingService: EmbeddingService;

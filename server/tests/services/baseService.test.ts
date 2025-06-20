@@ -1,14 +1,10 @@
 import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
 import BaseService from '../../src/services/base/BaseService';
-import { prisma } from '../../src/prisma';
 
 // Mock Prisma
-jest.mock('../../src/prisma', () => ({
-  prisma: {
-    $transaction: jest.fn(),
-    $queryRaw: jest.fn(),
-  },
-}));
+jest.mock('../../src/prisma');
+
+import { prisma } from '../../src/prisma';
 
 // Create a test service that extends BaseService
 class TestService extends BaseService {
@@ -68,16 +64,17 @@ describe('BaseService', () => {
     });
 
     it('should retry on failure and succeed', async () => {
-      const mockOperation = jest.fn()
+      const mockOperation = jest
+        .fn()
         .mockRejectedValueOnce(new Error('First failure'))
         .mockRejectedValueOnce(new Error('Second failure'))
         .mockResolvedValue('success');
 
       const resultPromise = testService.testWithRetry(mockOperation, { maxRetries: 3 });
-      
+
       // Fast-forward through delays
       jest.runAllTimers();
-      
+
       const result = await resultPromise;
 
       expect(result).toBe('success');
@@ -88,7 +85,7 @@ describe('BaseService', () => {
       const mockOperation = jest.fn().mockRejectedValue(new Error('Persistent failure'));
 
       const resultPromise = testService.testWithRetry(mockOperation, { maxRetries: 2 });
-      
+
       jest.runAllTimers();
 
       await expect(resultPromise).rejects.toThrow('Persistent failure');
@@ -96,7 +93,8 @@ describe('BaseService', () => {
     });
 
     it('should use exponential backoff', async () => {
-      const mockOperation = jest.fn()
+      const mockOperation = jest
+        .fn()
         .mockRejectedValueOnce(new Error('Failure 1'))
         .mockRejectedValueOnce(new Error('Failure 2'))
         .mockResolvedValue('success');
@@ -121,7 +119,8 @@ describe('BaseService', () => {
     });
 
     it('should respect maxDelay', async () => {
-      const mockOperation = jest.fn()
+      const mockOperation = jest
+        .fn()
         .mockRejectedValueOnce(new Error('Failure'))
         .mockResolvedValue('success');
 
@@ -138,7 +137,7 @@ describe('BaseService', () => {
       await resultPromise;
 
       // Even with exponential backoff, delay should not exceed maxDelay
-      const delays = setTimeoutSpy.mock.calls.map(call => call[1]);
+      const delays = setTimeoutSpy.mock.calls.map((call) => call[1]);
       expect(Math.max(...delays)).toBeLessThanOrEqual(2000);
     });
   });
@@ -147,7 +146,7 @@ describe('BaseService', () => {
     it('should execute operation within transaction', async () => {
       const mockOperation = jest.fn().mockResolvedValue('result');
       const mockTx = { query: jest.fn() };
-      
+
       (mockPrisma.$transaction as jest.Mock).mockImplementation(async (fn) => {
         return fn(mockTx);
       });
@@ -160,17 +159,18 @@ describe('BaseService', () => {
     });
 
     it('should retry transaction on failure', async () => {
-      const mockOperation = jest.fn()
+      const mockOperation = jest
+        .fn()
         .mockRejectedValueOnce(new Error('Transaction failed'))
         .mockResolvedValue('success');
-      
+
       (mockPrisma.$transaction as jest.Mock)
         .mockRejectedValueOnce(new Error('Transaction failed'))
         .mockImplementation(async (fn) => fn({}));
 
       const resultPromise = testService.testWithTransaction(mockOperation);
       jest.runAllTimers();
-      
+
       const result = await resultPromise;
 
       expect(result).toBe('success');
@@ -191,7 +191,7 @@ describe('BaseService', () => {
       expect(result.results).toEqual(['result1', 'result2', 'result3']);
       expect(result.errors).toEqual([null, null, null]);
       expect(result.successCount).toBe(3);
-      operations.forEach(op => expect(op).toHaveBeenCalledTimes(1));
+      operations.forEach((op) => expect(op).toHaveBeenCalledTimes(1));
     });
 
     it('should handle mixed success and failure', async () => {
@@ -217,9 +217,9 @@ describe('BaseService', () => {
         jest.fn().mockResolvedValue('result3'),
       ];
 
-      await expect(
-        testService.testWithParallel(operations, { failFast: true })
-      ).rejects.toThrow('Failed');
+      await expect(testService.testWithParallel(operations, { failFast: true })).rejects.toThrow(
+        'Failed',
+      );
 
       // Third operation should not be called due to fail fast
       expect(operations[2]).not.toHaveBeenCalled();
@@ -229,19 +229,21 @@ describe('BaseService', () => {
       let concurrent = 0;
       let maxConcurrent = 0;
 
-      const operations = Array(10).fill(null).map(() => 
-        jest.fn().mockImplementation(async () => {
-          concurrent++;
-          maxConcurrent = Math.max(maxConcurrent, concurrent);
-          await new Promise(resolve => setTimeout(resolve, 10));
-          concurrent--;
-          return 'result';
-        })
-      );
+      const operations = Array(10)
+        .fill(null)
+        .map(() =>
+          jest.fn().mockImplementation(async () => {
+            concurrent++;
+            maxConcurrent = Math.max(maxConcurrent, concurrent);
+            await new Promise((resolve) => setTimeout(resolve, 10));
+            concurrent--;
+            return 'result';
+          }),
+        );
 
       const resultPromise = testService.testWithParallel(operations, { maxConcurrency: 3 });
       jest.runAllTimers();
-      
+
       await resultPromise;
 
       expect(maxConcurrent).toBeLessThanOrEqual(3);
@@ -251,7 +253,7 @@ describe('BaseService', () => {
   describe('handleError', () => {
     it('should handle Error instances', () => {
       const error = new Error('Test error');
-      
+
       expect(() => {
         testService.testHandleError(error, { userId: 123 });
       }).toThrow('TestService: Test error');
@@ -271,7 +273,7 @@ describe('BaseService', () => {
   describe('validateRequired', () => {
     it('should pass validation for all required fields present', () => {
       const params = { name: 'Test', age: 25, email: 'test@example.com' };
-      
+
       expect(() => {
         testService.testValidateRequired(params, ['name', 'age', 'email']);
       }).not.toThrow();
@@ -279,7 +281,7 @@ describe('BaseService', () => {
 
     it('should throw for missing required fields', () => {
       const params = { name: 'Test', age: null, email: '' };
-      
+
       expect(() => {
         testService.testValidateRequired(params, ['name', 'age', 'email']);
       }).toThrow('Missing required parameters: age, email');
@@ -287,7 +289,7 @@ describe('BaseService', () => {
 
     it('should handle undefined values', () => {
       const params = { name: 'Test' };
-      
+
       expect(() => {
         testService.testValidateRequired(params, ['name', 'age']);
       }).toThrow('Missing required parameters: age');
@@ -379,19 +381,20 @@ describe('BaseService', () => {
 
   describe('metrics', () => {
     it('should track operation metrics', async () => {
-      const mockOperation = jest.fn()
+      const mockOperation = jest
+        .fn()
         .mockResolvedValueOnce('success')
         .mockRejectedValueOnce(new Error('Failed'))
         .mockResolvedValueOnce('success');
 
       await testService.testWithRetry(mockOperation);
-      
+
       try {
         await testService.testWithRetry(mockOperation, { maxRetries: 0 });
       } catch (e) {
         // Expected failure
       }
-      
+
       await testService.testWithRetry(mockOperation);
 
       const metrics = testService.getMetrics();
@@ -404,7 +407,7 @@ describe('BaseService', () => {
 
     it('should reset metrics', () => {
       testService.resetMetrics();
-      
+
       const metrics = testService.getMetrics();
 
       expect(metrics.operationCount).toBe(0);

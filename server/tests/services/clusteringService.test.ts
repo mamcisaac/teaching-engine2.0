@@ -1,13 +1,14 @@
 import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
 import { ClusteringService } from '../../src/services/clusteringService';
-import { embeddingService } from '../../src/services/embeddingService';
-import { openai } from '../../src/services/llmService';
-import { prisma } from '../../src/prisma';
 
 // Mock dependencies
 jest.mock('../../src/services/embeddingService');
 jest.mock('../../src/services/llmService');
 jest.mock('../../src/prisma');
+
+import { embeddingService } from '../../src/services/embeddingService';
+import { openai } from '../../src/services/llmService';
+import { prisma } from '../../src/prisma';
 
 describe('ClusteringService', () => {
   let clusteringService: ClusteringService;
