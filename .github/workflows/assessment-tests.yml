@@ -1,0 +1,392 @@
+name: Assessment Tests
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'client/src/components/assessment/**'
+      - 'client/src/components/evidence/**'
+      - 'client/src/__tests__/**/*assessment*'
+      - 'client/src/__tests__/**/*evidence*'
+      - 'tests/e2e/assessment-workflows.spec.ts'
+      - 'server/src/routes/assessment.ts'
+      - 'server/src/routes/reflections.ts'
+      - 'server/src/routes/student.ts'
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - 'client/src/components/assessment/**'
+      - 'client/src/components/evidence/**'
+      - 'client/src/__tests__/**/*assessment*'
+      - 'client/src/__tests__/**/*evidence*'
+      - 'tests/e2e/assessment-workflows.spec.ts'
+      - 'server/src/routes/assessment.ts'
+      - 'server/src/routes/reflections.ts'
+      - 'server/src/routes/student.ts'
+
+jobs:
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: client/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd client
+          npm ci
+
+      - name: Run unit tests
+        run: |
+          cd client
+          npm run test:unit
+
+      - name: Upload unit test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unit-test-results
+          path: |
+            client/coverage/
+            client/test-results/
+
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: teaching_engine_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm install
+          cd client && npm ci
+          cd ../server && npm ci
+
+      - name: Setup test database
+        run: |
+          cd server
+          cp .env.example .env.test
+          sed -i 's/DATABASE_URL=.*/DATABASE_URL="postgresql:\/\/postgres:postgres@localhost:5432\/teaching_engine_test"/' .env.test
+          npm run db:migrate
+          npm run db:seed
+        env:
+          NODE_ENV: test
+
+      - name: Start API server
+        run: |
+          cd server
+          npm run dev &
+          sleep 10
+        env:
+          NODE_ENV: test
+          DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/teaching_engine_test'
+
+      - name: Run integration tests
+        run: |
+          cd client
+          npm run test:integration
+        env:
+          VITE_API_URL: http://localhost:3000
+
+      - name: Upload integration test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: integration-test-results
+          path: |
+            client/coverage/integration/
+            client/test-results/integration-results.json
+
+  contract-tests:
+    name: Contract Tests
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: teaching_engine_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm install
+          cd client && npm ci
+          cd ../server && npm ci
+
+      - name: Setup test database
+        run: |
+          cd server
+          cp .env.example .env.test
+          sed -i 's/DATABASE_URL=.*/DATABASE_URL="postgresql:\/\/postgres:postgres@localhost:5432\/teaching_engine_test"/' .env.test
+          npm run db:migrate
+          npm run db:seed
+        env:
+          NODE_ENV: test
+
+      - name: Start API server
+        run: |
+          cd server
+          npm run dev &
+          sleep 10
+        env:
+          NODE_ENV: test
+          DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/teaching_engine_test'
+
+      - name: Run contract tests
+        run: |
+          cd client
+          npm run test:contract
+        env:
+          VITE_API_URL: http://localhost:3000
+
+      - name: Upload contract test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: contract-test-results
+          path: client/test-results/
+
+  e2e-tests:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: teaching_engine_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm install
+          cd client && npm ci
+          cd ../server && npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Setup test database
+        run: |
+          cd server
+          cp .env.example .env.test
+          sed -i 's/DATABASE_URL=.*/DATABASE_URL="postgresql:\/\/postgres:postgres@localhost:5432\/teaching_engine_test"/' .env.test
+          npm run db:migrate
+          npm run db:seed
+        env:
+          NODE_ENV: test
+
+      - name: Start servers
+        run: |
+          cd server
+          npm run dev &
+          cd ../client
+          npm run dev &
+          sleep 15
+        env:
+          NODE_ENV: test
+          DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/teaching_engine_test'
+
+      - name: Run E2E tests
+        run: npx playwright test --config=playwright.assessment.config.ts
+        env:
+          BASE_URL: http://localhost:5173
+          VITE_API_URL: http://localhost:3000
+
+      - name: Upload E2E test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-test-results
+          path: |
+            playwright-report/assessment/
+            test-results/assessment-e2e-results.json
+
+  test-report:
+    name: Generate Test Report
+    runs-on: ubuntu-latest
+    needs: [unit-tests, integration-tests, contract-tests, e2e-tests]
+    if: always()
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download test artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: test-artifacts
+
+      - name: Generate comprehensive test report
+        run: |
+          mkdir -p test-results
+
+          # Create summary report
+          cat > test-results/assessment-test-summary.md << EOF
+          # Assessment Features Test Report
+
+          Generated: $(date)
+          Commit: ${{ github.sha }}
+          Branch: ${{ github.ref_name }}
+
+          ## Test Results Summary
+
+          | Test Type | Status | Details |
+          |-----------|--------|---------|
+          | Unit Tests | ${{ needs.unit-tests.result == 'success' && '✅ PASSED' || '❌ FAILED' }} | Component-level testing with mocks |
+          | Integration Tests | ${{ needs.integration-tests.result == 'success' && '✅ PASSED' || '❌ FAILED' }} | Real API endpoint testing |
+          | Contract Tests | ${{ needs.contract-tests.result == 'success' && '✅ PASSED' || '❌ FAILED' }} | Mock vs Reality validation |
+          | E2E Tests | ${{ needs.e2e-tests.result == 'success' && '✅ PASSED' || '❌ FAILED' }} | Full user workflow testing |
+
+          ## Coverage Areas
+
+          ### Features Tested
+          - Evidence Quick Entry workflow
+          - Outcome Reflections Journal
+          - Language-Sensitive Assessment Builder
+          - Cross-component integration
+          - API contracts and data consistency
+
+          ### Test Types Implemented
+          - ✅ Unit tests with comprehensive mocking
+          - ✅ Integration tests hitting real APIs
+          - ✅ Contract tests ensuring mock accuracy
+          - ✅ E2E tests covering user workflows
+
+          ## Quality Metrics
+
+          - **Test Coverage**: Comprehensive across all assessment components
+          - **Mock Accuracy**: Contract tests validate mock vs reality
+          - **User Experience**: E2E tests cover complete workflows
+          - **API Reliability**: Integration tests verify backend contracts
+
+          ## Recommendations
+
+          ${{ needs.unit-tests.result == 'success' && '- ✅ Unit tests stable - component logic verified' || '- ❌ Fix unit test failures before deployment' }}
+          ${{ needs.integration-tests.result == 'success' && '- ✅ Integration tests passing - API contracts stable' || '- ❌ Address integration test failures - API issues detected' }}
+          ${{ needs.contract-tests.result == 'success' && '- ✅ Mocks match reality - test reliability confirmed' || '- ❌ Update mocks to match real API behavior' }}
+          ${{ needs.e2e-tests.result == 'success' && '- ✅ E2E workflows functional - ready for user testing' || '- ❌ Fix E2E failures before production deployment' }}
+
+          ## Deployment Readiness
+
+          Overall Status: ${{ (needs.unit-tests.result == 'success' && needs.integration-tests.result == 'success' && needs.contract-tests.result == 'success' && needs.e2e-tests.result == 'success') && '🟢 READY FOR DEPLOYMENT' || '🔴 NOT READY - FIXES REQUIRED' }}
+
+          EOF
+
+          echo "Test report generated successfully"
+          cat test-results/assessment-test-summary.md
+
+      - name: Upload test report
+        uses: actions/upload-artifact@v4
+        with:
+          name: assessment-test-report
+          path: test-results/assessment-test-summary.md
+
+      - name: Comment PR with test results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('test-results/assessment-test-summary.md', 'utf8');
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: report
+            });
+
+  # Only run on main branch or when tests pass
+  deployment-check:
+    name: Deployment Readiness Check
+    runs-on: ubuntu-latest
+    needs: [unit-tests, integration-tests, contract-tests, e2e-tests]
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Check deployment readiness
+        run: |
+          echo "Checking assessment feature deployment readiness..."
+
+          if [[ "${{ needs.unit-tests.result }}" == "success" && 
+                "${{ needs.integration-tests.result }}" == "success" && 
+                "${{ needs.contract-tests.result }}" == "success" && 
+                "${{ needs.e2e-tests.result }}" == "success" ]]; then
+            echo "✅ All assessment tests passed - deployment approved"
+            echo "DEPLOYMENT_READY=true" >> $GITHUB_ENV
+          else
+            echo "❌ Some assessment tests failed - deployment blocked"
+            echo "DEPLOYMENT_READY=false" >> $GITHUB_ENV
+            exit 1
+          fi
+
+      - name: Notify deployment status
+        if: always()
+        run: |
+          if [[ "$DEPLOYMENT_READY" == "true" ]]; then
+            echo "🚀 Assessment features are ready for production deployment"
+          else
+            echo "🚫 Assessment features require fixes before deployment"
+          fi
