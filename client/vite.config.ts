@@ -28,7 +28,14 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
-    setupFiles: './src/setupTests.ts',
+    setupFiles: ['./src/setupTests.ts'],
+    deps: {
+      optimizer: {
+        web: {
+          include: ['@testing-library/jest-dom'],
+        },
+      },
+    },
   },
   build: {
     sourcemap: true,

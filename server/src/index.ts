@@ -66,6 +66,7 @@ import timelineRoutes from './routes/timeline';
 import { aiSuggestionsRouter } from './routes/aiSuggestions';
 import aiParentSummaryRoutes from './routes/aiParentSummary';
 import activityTemplateRoutes from './routes/activityTemplate';
+import analyticsRoutes from './routes/analytics';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
@@ -260,6 +261,7 @@ app.use('/api/alerts', authenticateToken, alertsRoutes);
 app.use('/api/ai-suggestions', authenticateToken, aiSuggestionsRouter);
 app.use('/api/ai-parent-summary', authenticateToken, aiParentSummaryRoutes);
 app.use('/api/activity-templates', authenticateToken, activityTemplateRoutes);
+app.use('/api/analytics', authenticateToken, analyticsRoutes);
 
 log('All API routes mounted successfully.');
 app.use('/api/*', (_req, res) => {
