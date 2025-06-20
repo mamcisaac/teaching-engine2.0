@@ -50,6 +50,15 @@ try {
     addPage() {
       return this;
     }
+    moveDown() {
+      return this;
+    }
+    bufferedPageRange() {
+      return { count: 1 };
+    }
+    switchToPage() {
+      return this;
+    }
     end() {
       // Trigger end event immediately for mock
       if (this._endCallback) this._endCallback();
@@ -60,6 +69,7 @@ try {
     }
     _endCallback: any;
     page = { height: 800, width: 600 };
+    y = 100; // Mock y position for text placement
   };
 
   // Mock Parser
