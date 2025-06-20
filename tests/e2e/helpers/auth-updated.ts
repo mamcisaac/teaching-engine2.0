@@ -90,6 +90,14 @@ interface TestUser {
   token?: string;
 }
 
+// Default test user
+export const DEFAULT_TEST_USER: TestUser = {
+  email: 'teacher@example.com',
+  password: 'password123',
+  name: 'Test Teacher',
+  role: 'teacher',
+};
+
 // Track created test users for cleanup
 const createdTestUsers: TestUser[] = [];
 
@@ -151,13 +159,16 @@ export async function loginAsTestUser(page: Page, user: TestUser): Promise<void>
       window.localStorage.setItem('token', data.token);
       window.localStorage.setItem('auth-token', data.token);
       window.localStorage.setItem('onboarded', 'true');
-      window.localStorage.setItem('user', JSON.stringify({
-        email: data.email,
-        name: data.name,
-        role: data.role
-      }));
+      window.localStorage.setItem(
+        'user',
+        JSON.stringify({
+          email: data.email,
+          name: data.name,
+          role: data.role,
+        }),
+      );
     }, user);
-    
+
     // Navigate to the app if not already there
     const currentUrl = page.url();
     if (!currentUrl.startsWith('http://localhost:5173')) {
@@ -191,7 +202,7 @@ export async function loginAsTestUser(page: Page, user: TestUser): Promise<void>
     window.localStorage.setItem('user', JSON.stringify(data.user));
     window.localStorage.setItem('onboarded', 'true');
   }, loginData);
-  
+
   // Navigate to ensure localStorage is set
   await page.goto('http://localhost:5173/');
 
@@ -204,13 +215,13 @@ export async function loginAsTestUser(page: Page, user: TestUser): Promise<void>
 export async function useDefaultTestUser(page: Page): Promise<void> {
   // The storage state is already applied by Playwright config
   console.log('Using default E2E test user from storage state');
-  
+
   // Navigate to app if not already there
   const currentUrl = page.url();
   if (!currentUrl.startsWith('http://localhost:5173')) {
     await page.goto('http://localhost:5173/');
   }
-  
+
   // Verify the token exists
   const token = await page.evaluate(() => localStorage.getItem('token'));
   if (!token) {
@@ -246,7 +257,7 @@ export async function logout(page: Page): Promise<void> {
   if (!currentUrl.startsWith('http://localhost:5173')) {
     await page.goto('http://localhost:5173/');
   }
-  
+
   await page.evaluate(() => {
     localStorage.removeItem('token');
     localStorage.removeItem('auth-token');

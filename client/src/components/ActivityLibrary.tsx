@@ -1,37 +1,11 @@
 import { useState } from 'react';
 import { useActivityTemplates, useCreateActivityTemplate, ActivityTemplateInput } from '../api';
+import { ActivityTemplate } from '../types';
 import { Button } from './ui/Button';
 import { Input } from './ui/Input';
 import { Label } from './ui/Label';
 import { Textarea } from './ui/Textarea';
 import { Modal } from './ui/Modal';
-
-interface ActivityTemplate {
-  id: number;
-  titleFr: string;
-  titleEn: string;
-  descriptionFr: string;
-  descriptionEn: string;
-  domain: string;
-  subject: string;
-  outcomeIds: string[];
-  materialsFr?: string;
-  materialsEn?: string;
-  prepTimeMin?: number;
-  groupType: string;
-  theme?: {
-    id: number;
-    title: string;
-    titleEn?: string;
-    titleFr?: string;
-  };
-  createdBy: {
-    id: number;
-    name: string;
-  };
-  createdAt: string;
-  updatedAt: string;
-}
 
 export function ActivityLibrary() {
   const [filters, setFilters] = useState({

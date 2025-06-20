@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useActivitySuggestions, ActivityTemplate } from '../api';
+import { useActivitySuggestions } from '../api';
+import { ActivityTemplate } from '../types';
 import { Button } from './ui/Button';
 
 interface ActivitySuggestionsProps {
@@ -114,11 +115,13 @@ export function ActivitySuggestions({
                   <h4 className="font-medium text-gray-900 text-sm">{suggestion.titleEn}</h4>
                   <p className="text-xs text-gray-600">{suggestion.titleFr}</p>
                 </div>
-                <span
-                  className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getRelevanceColor(suggestion.relevanceScore || 0)}`}
-                >
-                  {getRelevanceText(suggestion.relevanceScore || 0)}
-                </span>
+                {'relevanceScore' in suggestion && suggestion.relevanceScore !== undefined && (
+                  <span
+                    className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getRelevanceColor(suggestion.relevanceScore || 0)}`}
+                  >
+                    {getRelevanceText(suggestion.relevanceScore || 0)}
+                  </span>
+                )}
               </div>
 
               <p className="text-xs text-gray-700 mb-2 line-clamp-2">{suggestion.descriptionEn}</p>
