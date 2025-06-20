@@ -12,6 +12,7 @@ export default {
       {
         useESM: true,
         isolatedModules: true,
+        tsconfig: 'tsconfig.test.json',
       },
     ],
   },
@@ -22,7 +23,7 @@ export default {
   },
   globalSetup: '<rootDir>/tests/global-setup.ts',
   globalTeardown: '<rootDir>/tests/global-teardown.ts',
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js', '<rootDir>/tests/jest.setup.ts'],
   testMatch: ['**/__tests__/**/*.test.ts', '**/tests/**/*.test.ts'],
   testPathIgnorePatterns: ['/node_modules/', '/dist/', '/__mocks__/'],
   moduleFileExtensions: ['ts', 'js', 'json', 'node'],

@@ -10,6 +10,21 @@ jest.mock('../../src/services/llmService', () => ({
   },
 }));
 
+// Mock Prisma
+const mockPrisma = {
+  outcomeEmbedding: {
+    findUnique: jest.fn(),
+    findMany: jest.fn(),
+    create: jest.fn(),
+    createMany: jest.fn(),
+    deleteMany: jest.fn(),
+  },
+};
+
+jest.mock('../../src/prisma', () => ({
+  prisma: mockPrisma,
+}));
+
 // Import the mocked openai after mocking
 import { openai } from '../../src/services/llmService';
 
