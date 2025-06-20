@@ -12,6 +12,7 @@ import {
   themeAnalyticsService,
   vocabularyAnalyticsService,
   exportService,
+  analyticsCache,
 } from '../services/analytics';
 
 const router = express.Router();
@@ -33,11 +34,17 @@ router.get('/curriculum-heatmap', async (req, res) => {
       year,
     } = req.query;
 
+    // Validate viewMode parameter
+    const validViewModes = ['planned', 'taught', 'assessed', 'reinforced'];
+    const validatedViewMode = validViewModes.includes(viewMode as string)
+      ? (viewMode as 'planned' | 'taught' | 'assessed' | 'reinforced')
+      : 'planned';
+
     const params = {
       ...(teacherId && { teacherId: parseInt(teacherId as string) }),
       ...(subject && { subject: subject as string }),
       ...(domain && { domain: domain as string }),
-      viewMode: viewMode as 'planned' | 'taught' | 'assessed' | 'reinforced',
+      viewMode: validatedViewMode,
       ...(startWeek && { startWeek: parseInt(startWeek as string) }),
       ...(endWeek && { endWeek: parseInt(endWeek as string) }),
       ...(year && { year: parseInt(year as string) }),
@@ -247,8 +254,8 @@ router.get('/theme-trends/:theme', async (req, res) => {
     //   ...(year && { year: parseInt(year as string) }),
     // };
 
-    const trendData = await themeAnalyticsService.generateThemeTrends();
-    res.json(trendData);
+    // For now, return empty trends data as the method doesn't exist yet
+    res.json({ trends: [], message: 'Theme trends visualization coming soon' });
   } catch (error) {
     console.error('Error generating theme trends:', error);
     res.status(500).json({
@@ -380,30 +387,27 @@ router.post('/invalidate-cache', async (req, res) => {
 
     switch (service) {
       case 'curriculum':
-        curriculumAnalyticsService.invalidateCache(teacherId);
+        analyticsCache.invalidatePattern(`curriculum.*${teacherId || ''}`);
         break;
       case 'domain':
         if (studentId) {
-          domainAnalyticsService.invalidateStudentCache();
+          analyticsCache.invalidatePattern(`domain.*student.*${studentId}`);
         } else if (teacherId) {
-          domainAnalyticsService.invalidateTeacherCache();
+          analyticsCache.invalidatePattern(`domain.*teacher.*${teacherId}`);
         }
         break;
       case 'theme':
-        themeAnalyticsService.invalidateCache();
+        analyticsCache.invalidatePattern('theme.*');
         break;
       case 'vocabulary':
         if (studentId) {
-          vocabularyAnalyticsService.invalidateStudentCache(studentId);
+          analyticsCache.invalidatePattern(`vocabulary.*student.*${studentId}`);
         } else if (teacherId) {
-          vocabularyAnalyticsService.invalidateTeacherCache(teacherId);
+          analyticsCache.invalidatePattern(`vocabulary.*teacher.*${teacherId}`);
         }
         break;
       case 'all':
-        curriculumAnalyticsService.invalidateCache(teacherId);
-        domainAnalyticsService.invalidateTeacherCache();
-        themeAnalyticsService.invalidateCache();
-        if (teacherId) vocabularyAnalyticsService.invalidateTeacherCache(teacherId);
+        analyticsCache.clear();
         break;
       default:
         return res.status(400).json({ error: 'Invalid service specified' });

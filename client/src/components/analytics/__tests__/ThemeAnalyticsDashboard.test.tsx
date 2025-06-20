@@ -400,7 +400,7 @@ describe('ThemeAnalyticsDashboard', () => {
 
   it('should export analytics data', async () => {
     const mockExport = vi.fn();
-    (analyticsExport.exportAnalytics as any) = mockExport;
+    (analyticsExport.exportAnalyticsData as any) = mockExport;
 
     renderWithQueryClient(<ThemeAnalyticsDashboard />);
 

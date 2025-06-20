@@ -84,7 +84,7 @@ Object.defineProperty(window, 'HTMLCanvasElement', {
 });
 
 // Mock HTMLCanvasElement.prototype.getContext
-HTMLCanvasElement.prototype.getContext = () => mockCanvas.getContext();
+HTMLCanvasElement.prototype.getContext = () => mockCanvas.getContext() as RenderingContext | null;
 HTMLCanvasElement.prototype.toDataURL = () => mockCanvas.toDataURL();
 
 // Mock window.matchMedia for responsive components
@@ -101,6 +101,17 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: () => {},
   }),
 });
+
+// Mock pointer capture methods for Radix UI
+if (!Element.prototype.hasPointerCapture) {
+  Element.prototype.hasPointerCapture = () => false;
+}
+if (!Element.prototype.setPointerCapture) {
+  Element.prototype.setPointerCapture = () => {};
+}
+if (!Element.prototype.releasePointerCapture) {
+  Element.prototype.releasePointerCapture = () => {};
+}
 
 // Mock IntersectionObserver for lazy loading components
 class MockIntersectionObserver {

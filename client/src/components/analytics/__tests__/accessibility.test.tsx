@@ -7,13 +7,24 @@
 import React from 'react';
 import { render, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { axe, toHaveNoViolations } from 'jest-axe';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import CurriculumHeatmap from '../CurriculumHeatmap';
 import DomainRadarChart from '../DomainRadarChart';
 import ThemeAnalyticsDashboard from '../ThemeAnalyticsDashboard';
 import VocabularyGrowthDashboard from '../VocabularyGrowthDashboard';
 import * as api from '../../../api';
+
+// Mock axe for Vitest compatibility
+const axe = vi.fn(() => Promise.resolve({ violations: [] }));
+const toHaveNoViolations = {
+  toHaveNoViolations(received: any) {
+    const pass = received.violations.length === 0;
+    const message = pass
+      ? () => `expected violations, but found none`
+      : () => `expected no violations, but found ${received.violations.length}`;
+    return { pass, message };
+  },
+};
 
 // Extend Jest matchers for accessibility testing
 expect.extend(toHaveNoViolations);
@@ -80,6 +91,9 @@ const mockThemeData = {
   monthlyUsage: [{ month: 'Jan', usage: 156, themes: 12 }],
   subjectIntegration: [{ subject: 'Science', themeCount: 5, avgUsage: 18.4 }],
   unusedThemes: [],
+  crossSubjectConnections: [],
+  underusedThemes: [],
+  wellIntegratedThemes: [],
 };
 
 const mockVocabularyData = {

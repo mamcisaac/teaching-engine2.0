@@ -238,7 +238,7 @@ class ExportService {
     ctx.fillRect(0, 0, width, height);
 
     // Create chart based on type
-    let chart: Chart;
+    let chart: any;
 
     switch (type) {
       case 'curriculum-heatmap':
@@ -361,12 +361,10 @@ class ExportService {
           .fillAndStroke(color, '#e5e7eb');
 
         if (count > 0) {
-          doc
-            .fillColor('#000000')
-            .text(count.toString(), 120 + index * cellWidth, currentY, {
-              width: cellWidth,
-              align: 'center',
-            });
+          doc.fillColor('#000000').text(count.toString(), 120 + index * cellWidth, currentY, {
+            width: cellWidth,
+            align: 'center',
+          });
         }
       });
 
@@ -620,7 +618,7 @@ class ExportService {
   }
 
   // Chart Creation Methods
-  private async createHeatmapChart(canvas: any, data: HeatmapData, options: any): Promise<Chart> {
+  private async createHeatmapChart(canvas: any, data: HeatmapData, options: any): Promise<any> {
     // For heatmaps, we'll create a scatter plot representation
     const chartData = {
       datasets: [
@@ -669,7 +667,7 @@ class ExportService {
     canvas: any,
     data: StudentDomainRadar,
     options: any,
-  ): Promise<Chart> {
+  ): Promise<any> {
     const domains = Object.keys(data.domains);
     const scores = domains.map((domain) => data.domains[domain].currentLevel);
 
@@ -709,7 +707,7 @@ class ExportService {
     canvas: any,
     data: ThemeAnalyticsSummary,
     options: any,
-  ): Promise<Chart> {
+  ): Promise<any> {
     const themes = data.mostUsedThemes.slice(0, 10).map((t) => t.themeName);
     const usage = data.mostUsedThemes.slice(0, 10).map((t) => t.usageCount);
 
@@ -746,7 +744,7 @@ class ExportService {
     canvas: any,
     data: VocabularyGrowthData,
     options: any,
-  ): Promise<Chart> {
+  ): Promise<any> {
     const weeks = data.weeklyGrowth.map((w) => `Week ${w.week}`);
     const cumulative = data.weeklyGrowth.map((w) => w.cumulativeWords);
     const newWords = data.weeklyGrowth.map((w) => w.newWords);

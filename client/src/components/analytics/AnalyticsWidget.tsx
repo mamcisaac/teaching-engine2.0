@@ -123,7 +123,7 @@ export const AnalyticsWidget: React.FC<AnalyticsWidgetConfig> = ({
           queries: {
             retry: 1,
             staleTime: 5 * 60 * 1000, // 5 minutes
-            cacheTime: 10 * 60 * 1000, // 10 minutes
+            gcTime: 10 * 60 * 1000, // 10 minutes
           },
         },
       }),
@@ -136,13 +136,13 @@ export const AnalyticsWidget: React.FC<AnalyticsWidgetConfig> = ({
         return <CurriculumHeatmap className="h-full" {...props} />;
 
       case 'domain-radar':
-        return <DomainRadarChart className="h-full" {...props} />;
+        return <DomainRadarChart className="h-full" studentId={1} {...props} />;
 
       case 'theme-analytics':
         return <ThemeAnalyticsDashboard className="h-full" {...props} />;
 
       case 'vocabulary-growth':
-        return <VocabularyGrowthDashboard className="h-full" {...props} />;
+        return <VocabularyGrowthDashboard className="h-full" studentId={1} {...props} />;
 
       case 'mini-curriculum-summary':
         return <MiniCurriculumSummary {...props} />;
