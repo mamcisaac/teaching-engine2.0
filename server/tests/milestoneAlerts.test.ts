@@ -45,132 +45,132 @@ describe('Milestone Alerts API', () => {
     // Clean up any test data if needed
   });
 
-  describe('GET /api/alerts/milestones', () => {
+  describe('GET /api/alerts', () => {
     it('should return milestone alerts when authenticated', async () => {
       const response = await request(app)
-        .get('/api/alerts/milestones')
+        .get('/api/alerts')
         .set('Authorization', `Bearer ${authToken}`);
 
       expect(response.status).toBe(200);
-      expect(Array.isArray(response.body)).toBe(true);
+      expect(response.body).toHaveProperty('alerts');
+      expect(Array.isArray(response.body.alerts)).toBe(true);
     });
 
     it('should return 401 when not authenticated', async () => {
-      const response = await request(app).get('/api/alerts/milestones');
+      const response = await request(app).get('/api/alerts');
 
       expect(response.status).toBe(401);
     });
 
     it('should return alerts with correct structure', async () => {
       const response = await request(app)
-        .get('/api/alerts/milestones')
+        .get('/api/alerts')
         .set('Authorization', `Bearer ${authToken}`);
 
       expect(response.status).toBe(200);
 
-      if (response.body.length > 0) {
-        const alert = response.body[0];
+      if (response.body.alerts && response.body.alerts.length > 0) {
+        const alert = response.body.alerts[0];
         expect(alert).toHaveProperty('type');
-        expect(alert).toHaveProperty('message');
+        expect(alert).toHaveProperty('title');
+        expect(alert).toHaveProperty('description');
         expect(alert).toHaveProperty('severity');
-        expect(alert).toHaveProperty('dueDate');
-        expect(alert).toHaveProperty('priority');
+        expect(alert).toHaveProperty('isRead');
+        expect(alert).toHaveProperty('createdAt');
+        expect(alert).toHaveProperty('milestoneId');
 
         // Check alert types are valid
-        expect([
-          'outcome_missed',
-          'outcome_undercovered',
-          'outcome_unassessed',
-          'underassessed_domain',
-          'theme_unaddressed',
-        ]).toContain(alert.type);
+        expect(['deadline', 'progress', 'coverage']).toContain(alert.type);
 
         // Check severity is valid
-        expect(['warning', 'notice']).toContain(alert.severity);
-
-        // Check priority is valid
-        expect(['low', 'medium', 'high']).toContain(alert.priority);
+        expect(['low', 'medium', 'high', 'critical']).toContain(alert.severity);
       }
     });
 
-    it('should filter alerts by classId when provided', async () => {
+    it('should filter alerts by subjectId when provided', async () => {
       const response = await request(app)
-        .get('/api/alerts/milestones?classId=1')
+        .get('/api/alerts?subjectId=1')
         .set('Authorization', `Bearer ${authToken}`);
 
       expect(response.status).toBe(200);
-      expect(Array.isArray(response.body)).toBe(true);
-      // In the future, we would test that only alerts for the specified class are returned
+      expect(response.body).toHaveProperty('alerts');
+      expect(Array.isArray(response.body.alerts)).toBe(true);
+      // In the future, we would test that only alerts for the specified subject are returned
     });
   });
 
   describe('Milestone Alert Logic', () => {
-    it('should detect overdue outcomes', async () => {
-      // This test would require setting up test data with overdue milestone definitions
-      // and checking that the appropriate alerts are generated
+    it('should create deadline alerts', async () => {
+      // First trigger alert generation
+      const checkResponse = await request(app)
+        .post('/api/alerts/check')
+        .set('Authorization', `Bearer ${authToken}`);
+
+      expect(checkResponse.status).toBe(200);
+      expect(checkResponse.body).toHaveProperty('message');
+
+      // Then fetch alerts
       const response = await request(app)
-        .get('/api/alerts/milestones')
+        .get('/api/alerts?type=deadline')
         .set('Authorization', `Bearer ${authToken}`);
 
       expect(response.status).toBe(200);
+      expect(response.body).toHaveProperty('alerts');
 
-      // Look for overdue outcome alerts
-      const overdueAlerts = response.body.filter(
-        (alert: { type: string; severity: string }) =>
-          alert.type === 'outcome_missed' && alert.severity === 'warning',
+      // Look for deadline alerts
+      const deadlineAlerts = response.body.alerts.filter(
+        (alert: { type: string }) => alert.type === 'deadline',
       );
 
-      // Since we have milestone definitions in our seed data that are overdue,
-      // we should get some alerts
-      if (overdueAlerts.length > 0) {
-        expect(overdueAlerts[0]).toHaveProperty('outcomeCode');
-        expect(overdueAlerts[0].message).toContain('has not been introduced');
+      if (deadlineAlerts.length > 0) {
+        expect(deadlineAlerts[0]).toHaveProperty('title');
+        expect(deadlineAlerts[0].title).toContain('Deadline');
       }
     });
 
-    it('should detect underassessed domains', async () => {
+    it('should create coverage alerts', async () => {
+      // First trigger alert generation
+      const checkResponse = await request(app)
+        .post('/api/alerts/check')
+        .set('Authorization', `Bearer ${authToken}`);
+
+      expect(checkResponse.status).toBe(200);
+
       const response = await request(app)
-        .get('/api/alerts/milestones')
+        .get('/api/alerts?type=coverage')
         .set('Authorization', `Bearer ${authToken}`);
 
       expect(response.status).toBe(200);
 
-      // Look for domain-level alerts
-      const domainAlerts = response.body.filter(
-        (alert: { type: string }) => alert.type === 'underassessed_domain',
+      // Look for coverage alerts
+      const coverageAlerts = response.body.alerts.filter(
+        (alert: { type: string }) => alert.type === 'coverage',
       );
 
-      if (domainAlerts.length > 0) {
-        expect(domainAlerts[0]).toHaveProperty('domain');
-        expect(domainAlerts[0].message).toContain('activities logged');
+      if (coverageAlerts.length > 0) {
+        expect(coverageAlerts[0]).toHaveProperty('description');
+        expect(coverageAlerts[0].description).toContain('coverage');
       }
     });
 
-    it('should prioritize high-priority alerts', async () => {
+    it('should return alert statistics', async () => {
       const response = await request(app)
-        .get('/api/alerts/milestones')
+        .get('/api/alerts/stats')
         .set('Authorization', `Bearer ${authToken}`);
 
       expect(response.status).toBe(200);
+      expect(response.body).toHaveProperty('totalAlerts');
+      expect(response.body).toHaveProperty('unreadAlerts');
+      expect(response.body).toHaveProperty('readAlerts');
+      expect(response.body).toHaveProperty('alertsBySeverity');
+      expect(response.body).toHaveProperty('alertsByType');
+      expect(response.body).toHaveProperty('recentAlerts');
 
-      const highPriorityAlerts = response.body.filter(
-        (alert: { priority: string }) => alert.priority === 'high',
-      );
-
-      const mediumPriorityAlerts = response.body.filter(
-        (alert: { priority: string }) => alert.priority === 'medium',
-      );
-
-      // High priority alerts should come first (if any exist)
-      if (highPriorityAlerts.length > 0 && mediumPriorityAlerts.length > 0) {
-        const firstHighIndex = response.body.findIndex(
-          (alert: { priority: string }) => alert.priority === 'high',
-        );
-        const firstMediumIndex = response.body.findIndex(
-          (alert: { priority: string }) => alert.priority === 'medium',
-        );
-
-        expect(firstHighIndex).toBeLessThan(firstMediumIndex);
+      // Verify the structure of alertsBySeverity and alertsByType
+      if (response.body.totalAlerts > 0) {
+        expect(typeof response.body.alertsBySeverity).toBe('object');
+        expect(typeof response.body.alertsByType).toBe('object');
+        expect(Array.isArray(response.body.recentAlerts)).toBe(true);
       }
     });
   });

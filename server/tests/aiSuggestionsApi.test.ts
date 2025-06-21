@@ -29,9 +29,15 @@ beforeEach(async () => {
   // Setup auth first to get the authenticated user
   await auth.setup();
 
-  // Get the authenticated user from the auth helper
+  // Get the user ID from the auth helper
+  const userId = auth.userId;
+  if (!userId) {
+    throw new Error('No user ID from auth helper');
+  }
+
+  // Get the authenticated user from the database
   user = await prisma.user.findUnique({
-    where: { email: 'test@example.com' },
+    where: { id: userId },
   });
 
   if (!user) {
@@ -40,13 +46,17 @@ beforeEach(async () => {
 
   // Create test data
   const subject = await prisma.subject.create({
-    data: { name: 'Mathematics' },
+    data: {
+      name: 'Mathematics',
+      userId: user.id,
+    },
   });
 
   milestone = await prisma.milestone.create({
     data: {
       title: 'Number Sense',
       subjectId: subject.id,
+      userId: user.id,
     },
   });
 
