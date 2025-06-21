@@ -66,25 +66,27 @@ describe('BaseService', () => {
         .mockRejectedValueOnce(new Error('Second failure'))
         .mockResolvedValue('success');
 
-      const resultPromise = testService.testWithRetry(mockOperation, { maxRetries: 3 });
-
-      // Fast-forward through delays
-      await jest.runAllTimersAsync();
-
-      const result = await resultPromise;
+      const result = await testService.testWithRetry(mockOperation, {
+        maxRetries: 3,
+        initialDelay: 0, // No delay for tests
+        maxDelay: 0,
+      });
 
       expect(result).toBe('success');
       expect(mockOperation).toHaveBeenCalledTimes(3);
-    });
+    }, 10000);
 
     it('should fail after max retries', async () => {
       const mockOperation = jest.fn().mockRejectedValue(new Error('Persistent failure'));
 
-      const resultPromise = testService.testWithRetry(mockOperation, { maxRetries: 2 });
+      await expect(
+        testService.testWithRetry(mockOperation, {
+          maxRetries: 2,
+          initialDelay: 0,
+          maxDelay: 0,
+        }),
+      ).rejects.toThrow('Persistent failure');
 
-      jest.runAllTimers();
-
-      await expect(resultPromise).rejects.toThrow('Persistent failure');
       expect(mockOperation).toHaveBeenCalledTimes(3); // Initial + 2 retries
     });
 

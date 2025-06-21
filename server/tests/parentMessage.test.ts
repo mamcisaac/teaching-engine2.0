@@ -176,7 +176,7 @@ describe('Parent Message API', () => {
       // Create message for current user
       await prisma.parentMessage.create({
         data: {
-          userId: 1,
+          userId: auth.userId!,
           title: 'My Newsletter',
           timeframe: 'Week 1',
           contentFr: 'Contenu',
@@ -195,7 +195,7 @@ describe('Parent Message API', () => {
     it('should return a specific parent message', async () => {
       const message = await prisma.parentMessage.create({
         data: {
-          userId: 1,
+          userId: auth.userId!,
           title: 'Test Newsletter',
           timeframe: 'Week 1',
           contentFr: 'Contenu test',
@@ -247,7 +247,7 @@ describe('Parent Message API', () => {
     it('should update a parent message', async () => {
       const message = await prisma.parentMessage.create({
         data: {
-          userId: 1,
+          userId: auth.userId!,
           title: 'Original Title',
           timeframe: 'Week 1',
           contentFr: 'Contenu original',
@@ -279,7 +279,7 @@ describe('Parent Message API', () => {
       const subject = await prisma.subject.create({
         data: {
           name: 'Math',
-          userId: 1,
+          userId: auth.userId!,
         },
       });
 
@@ -287,7 +287,7 @@ describe('Parent Message API', () => {
         data: {
           title: 'Numbers',
           subjectId: subject.id,
-          userId: 1,
+          userId: auth.userId!,
         },
       });
 
@@ -295,7 +295,7 @@ describe('Parent Message API', () => {
         data: {
           title: 'Activity 1',
           milestoneId: milestone.id,
-          userId: 1,
+          userId: auth.userId!,
         },
       });
 
@@ -303,13 +303,13 @@ describe('Parent Message API', () => {
         data: {
           title: 'Activity 2',
           milestoneId: milestone.id,
-          userId: 1,
+          userId: auth.userId!,
         },
       });
 
       const message = await prisma.parentMessage.create({
         data: {
-          userId: 1,
+          userId: auth.userId!,
           title: 'Test Newsletter',
           timeframe: 'Week 1',
           contentFr: 'Contenu',
@@ -338,7 +338,7 @@ describe('Parent Message API', () => {
     it('should delete a parent message', async () => {
       const message = await prisma.parentMessage.create({
         data: {
-          userId: 1,
+          userId: auth.userId!,
           title: 'To Delete',
           timeframe: 'Week 1',
           contentFr: 'À supprimer',
