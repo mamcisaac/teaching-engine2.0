@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach } from '@jest/globals';
+import { describe, it, expect, beforeEach, afterEach, jest } from '@jest/globals';
 import { curriculumImportService } from '../src/services/curriculumImportService';
 import { SmartMaterialExtractor } from '../src/services/smartMaterialExtractor';
 

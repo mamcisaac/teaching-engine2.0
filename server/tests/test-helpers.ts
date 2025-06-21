@@ -2,10 +2,32 @@ import { getTestServer } from './test-server';
 import type { AuthRequest } from '../src/middleware/auth';
 import type { Response } from 'express';
 import jwt from 'jsonwebtoken';
+import { prisma } from '../src/prisma';
 
 /**
  * Helper functions for integration tests
  */
+
+/**
+ * Create a test user
+ */
+export async function createTestUser(email: string = 'test@example.com') {
+  return await prisma.user.create({
+    data: {
+      email,
+      name: 'Test User',
+      password: 'hashed_password',
+      role: 'TEACHER',
+    },
+  });
+}
+
+/**
+ * Get auth token for a user ID
+ */
+export function getAuthToken(userId: number): string {
+  return createTestJWT(userId);
+}
 
 /**
  * Get the base URL of the test server

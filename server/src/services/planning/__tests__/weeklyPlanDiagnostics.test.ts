@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from '@jest/globals';
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
 import { prisma } from '../../../prisma';
 import { calculateWeeklyPlanDiagnostics, getPlanningQualityTrend } from '../weeklyPlanDiagnostics';
 

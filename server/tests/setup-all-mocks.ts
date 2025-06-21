@@ -176,3 +176,52 @@ jest.mock('../src/services/emailService', () => ({
   sendEmail: jest.fn().mockResolvedValue(true),
   sendBulkEmails: jest.fn().mockResolvedValue({ sent: [], failed: [] }),
 }));
+
+// Mock llmService
+jest.mock('../src/services/llmService', () => ({
+  openai: {
+    chat: {
+      completions: {
+        create: jest.fn().mockResolvedValue({
+          id: 'mock-completion',
+          choices: [
+            {
+              message: {
+                role: 'assistant',
+                content: 'Mocked AI response',
+              },
+              finish_reason: 'stop',
+              index: 0,
+            },
+          ],
+          usage: {
+            prompt_tokens: 50,
+            completion_tokens: 100,
+            total_tokens: 150,
+          },
+        }),
+      },
+    },
+    embeddings: {
+      create: jest.fn().mockResolvedValue({
+        data: [
+          {
+            embedding: Array(1536)
+              .fill(0)
+              .map(() => Math.random()),
+            index: 0,
+          },
+        ],
+        usage: {
+          prompt_tokens: 100,
+          total_tokens: 100,
+        },
+      }),
+    },
+  },
+  generateContent: jest.fn().mockResolvedValue('This is a mock response for testing purposes.'),
+  generateBilingualContent: jest.fn().mockResolvedValue({
+    english: 'Mock English content',
+    french: 'Mock French content',
+  }),
+}));
