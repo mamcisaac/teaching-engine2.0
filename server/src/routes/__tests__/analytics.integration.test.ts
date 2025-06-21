@@ -266,6 +266,9 @@ describe('Analytics API Routes', () => {
     });
 
     it('should handle export errors gracefully', async () => {
+      // Mock console.error to suppress expected error output
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
       const exportRequest = {
         type: 'invalid-type',
         format: 'invalid-format',
@@ -279,6 +282,9 @@ describe('Analytics API Routes', () => {
 
       expect(response.body).toHaveProperty('error');
       expect(response.body.error).toContain('Failed to export data');
+
+      // Restore console.error
+      consoleErrorSpy.mockRestore();
     });
   });
 

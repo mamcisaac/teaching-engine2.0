@@ -4,19 +4,39 @@ import { ImportStatus } from '@teaching-engine/database';
 import { embeddingService } from '../../src/services/embeddingService';
 import { prisma } from '../../src/prisma';
 
+// Mock prisma before importing anything else
+jest.mock('../../src/prisma');
+jest.mock('../../src/services/embeddingService');
+
 describe('CurriculumImportService', () => {
   let curriculumImportService: CurriculumImportService;
-  let mockPrisma: typeof prisma;
-  let mockEmbeddingService: typeof embeddingService;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let mockPrisma: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let mockEmbeddingService: any;
 
   beforeEach(async () => {
     jest.clearAllMocks();
 
     // Get mocked instances
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    mockPrisma = prisma as any;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    mockEmbeddingService = embeddingService as any;
+    mockPrisma = jest.mocked(prisma);
+    mockEmbeddingService = jest.mocked(embeddingService);
+
+    // Set up mock implementations
+    mockPrisma.curriculumImport = {
+      create: jest.fn(),
+      update: jest.fn(),
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+    };
+    mockPrisma.outcome = {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      create: jest.fn(),
+    };
+    mockPrisma.outcomeCluster = {
+      create: jest.fn(),
+    };
 
     curriculumImportService = new CurriculumImportService();
   });

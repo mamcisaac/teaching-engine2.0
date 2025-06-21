@@ -177,6 +177,33 @@ jest.mock('@/services/emailService', () => ({
   sendBulkEmails: jest.fn().mockResolvedValue({ sent: [], failed: [] }),
 }));
 
+// Mock curriculumImportService
+jest.mock('../src/services/curriculumImportService', () => ({
+  CurriculumImportService: jest.fn().mockImplementation(() => ({
+    startImport: jest.fn(),
+    parseCSV: jest.fn(),
+    processImport: jest.fn(),
+    getImportProgress: jest.fn(),
+    cancelImport: jest.fn(),
+    getImportHistory: jest.fn(),
+  })),
+  curriculumImportService: {
+    startImport: jest.fn(),
+    parseCSV: jest.fn(),
+    processImport: jest.fn(),
+    getImportProgress: jest.fn(),
+    cancelImport: jest.fn(),
+    getImportHistory: jest.fn(),
+  },
+}));
+
+// Mock clusteringService
+jest.mock('../src/services/clusteringService', () => ({
+  clusteringService: {
+    generateClusters: jest.fn(),
+  },
+}));
+
 // Mock llmService
 jest.mock('@/services/llmService', () => ({
   openai: {
