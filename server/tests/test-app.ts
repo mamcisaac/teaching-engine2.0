@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { authenticateToken } from '../src/middleware/auth';
+import { auth } from '../src/middleware/auth';
 
 // Create a test app instance
 export function createTestApp() {
@@ -27,7 +27,7 @@ export function createTestApp() {
 
   // Import routes that are being tested
   import('../src/routes/materialList').then((module) => {
-    app.use('/api/material-lists', authenticateToken, module.default);
+    app.use('/api/material-lists', auth, module.default);
   });
 
   return app;
