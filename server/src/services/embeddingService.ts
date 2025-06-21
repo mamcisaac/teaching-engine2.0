@@ -18,6 +18,13 @@ export class EmbeddingService extends BaseService {
   }
 
   /**
+   * Check if embedding service is available
+   */
+  isEmbeddingServiceAvailable(): boolean {
+    return !!openai;
+  }
+
+  /**
    * Generate embedding for a single outcome
    */
   async generateEmbedding(outcomeId: string, text: string): Promise<EmbeddingResult | null> {
@@ -161,17 +168,27 @@ export class EmbeddingService extends BaseService {
     {
       outcomeId: string;
       similarity: number;
+      outcome?: {
+        id: string;
+        code: string;
+        description: string;
+        subject: string;
+        grade: number;
+      };
     }[]
   > {
     try {
       const targetEmbedding = await this.getEmbedding(outcomeId);
       if (!targetEmbedding) return [];
 
-      // Get all embeddings (for small datasets)
+      // Get all embeddings with outcome data (for small datasets)
       // TODO: Implement vector database for larger datasets
       const allEmbeddings = await this.prisma.outcomeEmbedding.findMany({
         where: {
           outcomeId: { not: outcomeId },
+        },
+        include: {
+          outcome: true,
         },
       });
 
@@ -179,6 +196,13 @@ export class EmbeddingService extends BaseService {
         .map((emb) => ({
           outcomeId: emb.outcomeId,
           similarity: this.calculateSimilarity(targetEmbedding, emb.embedding as number[]),
+          outcome: {
+            id: emb.outcome.id,
+            code: emb.outcome.code,
+            description: emb.outcome.description,
+            subject: emb.outcome.subject,
+            grade: emb.outcome.grade,
+          },
         }))
         .filter((item) => item.similarity >= threshold)
         .sort((a, b) => b.similarity - a.similarity)
@@ -188,6 +212,156 @@ export class EmbeddingService extends BaseService {
     } catch (error) {
       this.logger.error({ error, outcomeId }, 'Failed to find similar outcomes');
       return [];
+    }
+  }
+
+  /**
+   * Generate embeddings for all outcomes missing them
+   */
+  async generateMissingEmbeddings(forceRegenerate: boolean = false): Promise<number> {
+    try {
+      if (!openai) {
+        this.logger.warn('OpenAI API key not configured');
+        return 0;
+      }
+
+      let outcomes;
+      if (forceRegenerate) {
+        // Get all outcomes
+        outcomes = await this.prisma.outcome.findMany({
+          select: { id: true, code: true, description: true },
+        });
+      } else {
+        // Get outcomes without embeddings
+        outcomes = await this.prisma.outcome.findMany({
+          where: {
+            embedding: null,
+          },
+          select: { id: true, code: true, description: true },
+        });
+      }
+
+      if (outcomes.length === 0) {
+        this.logger.info('No outcomes need embeddings');
+        return 0;
+      }
+
+      this.logger.info({ count: outcomes.length }, 'Found outcomes needing embeddings');
+
+      // Prepare data for batch processing
+      const outcomeData = outcomes.map((outcome) => ({
+        id: outcome.id,
+        text: `${outcome.code}: ${outcome.description}`,
+      }));
+
+      const results = await this.generateBatchEmbeddings(outcomeData);
+
+      this.logger.info(
+        { total: outcomes.length, generated: results.length },
+        'Finished generating embeddings',
+      );
+
+      return results.length;
+    } catch (error) {
+      this.logger.error({ error }, 'Failed to generate missing embeddings');
+      return 0;
+    }
+  }
+
+  /**
+   * Search outcomes by text similarity
+   */
+  async searchOutcomesByText(
+    searchText: string,
+    limit: number = 20,
+    threshold: number = 0.7,
+  ): Promise<
+    {
+      outcomeId: string;
+      similarity: number;
+      outcome: {
+        id: string;
+        code: string;
+        description: string;
+        subject: string;
+        grade: number;
+      };
+    }[]
+  > {
+    try {
+      if (!openai) {
+        this.logger.warn('OpenAI API key not configured');
+        return [];
+      }
+
+      // Generate embedding for search text
+      const searchEmbedding = await this.generateEmbeddingVector(searchText);
+      if (!searchEmbedding) return [];
+
+      // Get all embeddings with outcome data
+      const allEmbeddings = await this.prisma.outcomeEmbedding.findMany({
+        include: {
+          outcome: true,
+        },
+      });
+
+      const similarities = allEmbeddings
+        .map((emb) => ({
+          outcomeId: emb.outcomeId,
+          similarity: this.calculateSimilarity(searchEmbedding, emb.embedding as number[]),
+          outcome: {
+            id: emb.outcome.id,
+            code: emb.outcome.code,
+            description: emb.outcome.description,
+            subject: emb.outcome.subject,
+            grade: emb.outcome.grade,
+          },
+        }))
+        .filter((item) => item.similarity >= threshold)
+        .sort((a, b) => b.similarity - a.similarity)
+        .slice(0, limit);
+
+      return similarities;
+    } catch (error) {
+      this.logger.error({ error, searchText }, 'Failed to search outcomes by text');
+      return [];
+    }
+  }
+
+  /**
+   * Get or create embedding for a specific outcome
+   */
+  async getOrCreateOutcomeEmbedding(outcomeId: string): Promise<EmbeddingResult | null> {
+    try {
+      // Check if embedding exists
+      const existing = await this.prisma.outcomeEmbedding.findUnique({
+        where: { outcomeId },
+      });
+
+      if (existing) {
+        return {
+          outcomeId,
+          embedding: existing.embedding as number[],
+          model: existing.model,
+        };
+      }
+
+      // Get outcome details
+      const outcome = await this.prisma.outcome.findUnique({
+        where: { id: outcomeId },
+        select: { code: true, description: true },
+      });
+
+      if (!outcome) {
+        throw new Error(`Outcome ${outcomeId} not found`);
+      }
+
+      // Generate embedding
+      const text = `${outcome.code}: ${outcome.description}`;
+      return await this.generateEmbedding(outcomeId, text);
+    } catch (error) {
+      this.logger.error({ error, outcomeId }, 'Failed to get or create outcome embedding');
+      return null;
     }
   }
 

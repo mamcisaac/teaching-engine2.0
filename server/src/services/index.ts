@@ -16,7 +16,7 @@ export { openai } from './llmService';
 export * from './emailService';
 export { extractMaterials } from './materialGenerator';
 export { generateWeeklySchedule } from './planningEngine';
-export { generateAuditReport, exportAuditData } from './curriculumAuditService';
+export * from './curriculumAuditService';
 
 // Service types
 export type { EmbeddingResult } from './embeddingService';
