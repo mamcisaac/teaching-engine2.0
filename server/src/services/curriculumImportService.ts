@@ -50,7 +50,7 @@ export class CurriculumImportService extends BaseService {
           subject,
           sourceFormat,
           sourceFile,
-          status: ImportStatus.PENDING,
+          status: ImportStatus.UPLOADING,
           metadata: (metadata || {}) as any,
         },
       });
@@ -421,6 +421,71 @@ export class CurriculumImportService extends BaseService {
     await this.prisma.curriculumImport.update({
       where: { id: importId },
       data: { errorLog: errors },
+    });
+  }
+
+  // Compatibility methods for routes
+  async processUpload(file: any, userId: number): Promise<any> {
+    const importId = await this.startImport(
+      userId,
+      5, // Default grade
+      'general', // Default subject
+      file.mimetype === 'text/csv' ? 'csv' : 
+      file.mimetype === 'application/pdf' ? 'pdf' : 'docx',
+      file.originalname
+    );
+    return { importId, status: 'uploaded' };
+  }
+
+  async getImportStatus(importId: string): Promise<any> {
+    const progress = await this.getImportProgress(importId);
+    if (!progress) {
+      throw new Error('Import not found');
+    }
+    return progress;
+  }
+
+  async confirmImport(importId: string): Promise<any> {
+    const curriculumImport = await this.prisma.curriculumImport.findUnique({
+      where: { id: importId },
+      include: { outcomes: true }
+    });
+
+    if (!curriculumImport) {
+      throw new Error('Import not found');
+    }
+
+    // Map to outcome format
+    const outcomes: ImportOutcome[] = curriculumImport.outcomes.map(io => ({
+      code: io.code,
+      description: io.description,
+      domain: io.domain || undefined,
+      grade: curriculumImport.grade || 5,
+      subject: curriculumImport.subject || 'general'
+    }));
+
+    return this.processImport(importId, outcomes);
+  }
+
+  async getImportOutcomes(importId: string, limit: number = 100, offset: number = 0): Promise<any> {
+    const outcomes = await this.prisma.outcome.findMany({
+      where: { importId },
+      skip: offset,
+      take: limit,
+      orderBy: { createdAt: 'desc' }
+    });
+
+    return {
+      outcomes,
+      total: await this.prisma.outcome.count({
+        where: { importId }
+      })
+    };
+  }
+
+  async deleteImport(importId: string): Promise<void> {
+    await this.prisma.curriculumImport.delete({
+      where: { id: importId }
     });
   }
 }

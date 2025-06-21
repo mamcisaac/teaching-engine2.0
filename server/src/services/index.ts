@@ -4,7 +4,7 @@ export { curriculumImportService } from './curriculumImportService';
 export { clusteringService } from './clusteringService';
 export { enhancedPlanningService } from './enhancedPlanningService';
 export { enhancedMaterialService } from './enhancedMaterialService';
-export { notificationService } from './NotificationService';
+export { notificationService } from './notificationService';
 export { cacheService } from './CacheService';
 
 // Service infrastructure
@@ -16,7 +16,7 @@ export { openai } from './llmService';
 export * from './emailService';
 export { extractMaterials } from './materialGenerator';
 export { generateWeeklySchedule } from './planningEngine';
-export { generateAuditReport, exportAuditData } from './curriculumAuditService';
+export { CurriculumAuditService } from './curriculumAuditService';
 
 // Service types
 export type { EmbeddingResult } from './embeddingService';
@@ -30,9 +30,8 @@ export type {
 } from './enhancedMaterialService';
 export type {
   Notification,
-  NotificationPreferences,
-  NotificationTemplate,
-} from './NotificationService';
+  CreateNotificationData,
+} from './notificationService';
 export type { CacheEntry, CacheOptions, CacheStats } from './CacheService';
 export type { ServiceMetrics, RetryOptions } from './base/BaseService';
 export type { ServiceHealth, ServiceRegistration } from './ServiceRegistry';

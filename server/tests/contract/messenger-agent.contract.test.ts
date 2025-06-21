@@ -398,7 +398,8 @@ describe('Messenger Agent Contract Tests', () => {
         .send({
           firstName: 'Integration',
           lastName: 'Student',
-          grade: 3
+          grade: 3,
+          parentContacts: []
         })
         .expect(201);
 

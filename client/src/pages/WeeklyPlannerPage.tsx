@@ -21,13 +21,12 @@ import type {
 } from '../types';
 
 // No need for separate Holiday type, using CalendarEvent from types
-import { PlannerSuggestions } from '../components/planner/PlannerSuggestions';
 import WeekCalendarGrid from '../components/WeekCalendarGrid';
 import AutoFillButton from '../components/AutoFillButton';
 import WeeklyMaterialsChecklist from '../components/WeeklyMaterialsChecklist';
 import DownloadPrintablesButton from '../components/DownloadPrintablesButton';
 import PlannerNotificationBanner from '../components/PlannerNotificationBanner';
-import PlannerFilters, { loadPlannerFilters } from '../components/planner/PlannerFilters';
+import { loadPlannerFilters } from '../components/planner/PlannerFilters';
 import CognateSummaryWidget from '../components/CognateSummaryWidget';
 import AssessmentBuilder from '../components/assessment/AssessmentBuilder';
 import { ParentMessageEditor } from '../components/ParentMessageEditor';
@@ -50,7 +49,7 @@ export default function WeeklyPlannerPage() {
   });
   const [preserveBuffer, setPreserveBuffer] = useState(true);
   const [skipLow, setSkipLow] = useState(true);
-  const [filters, setFilters] = useState<Record<string, boolean>>(() => {
+  const [filters] = useState<Record<string, boolean>>(() => {
     try {
       return loadPlannerFilters();
     } catch (error) {

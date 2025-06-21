@@ -2,7 +2,6 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 import { QualityScorecard } from '../QualityScorecard';
-import { api } from '../../../api';
 
 // Mock the API
 vi.mock('../../../api', () => ({
@@ -50,10 +49,14 @@ const mockTrend = [
   { week: '2024-01-22', score: 72.5 },
 ];
 
+// Get mock functions
+import { api } from '../../../api';
+const mockApi = api as { get: ReturnType<typeof vi.fn> };
+
 describe('QualityScorecard', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    (api.get as ReturnType<typeof vi.fn>).mockImplementation((url: string) => {
+    mockApi.get.mockImplementation((url: string) => {
       if (url === '/api/planning/quality-score') {
         return Promise.resolve({ data: mockDiagnostics });
       }
@@ -86,14 +89,14 @@ describe('QualityScorecard', () => {
     render(<QualityScorecard weekStart="2024-01-22" />);
 
     await waitFor(() => {
-      expect(screen.getByText('Show Detailed Analysis')).toBeInTheDocument();
+      expect(screen.getByText(/Show.*Detailed Analysis/)).toBeInTheDocument();
     });
 
     // Initially hidden
     expect(screen.queryByTestId('radar-chart')).not.toBeInTheDocument();
 
     // Click to show
-    await user.click(screen.getByText('Show Detailed Analysis'));
+    await user.click(screen.getByText(/Show.*Detailed Analysis/));
     expect(screen.getByTestId('radar-chart')).toBeInTheDocument();
     expect(screen.getByTestId('line-chart')).toBeInTheDocument();
 
@@ -102,7 +105,7 @@ describe('QualityScorecard', () => {
     expect(screen.getByText('75%')).toBeInTheDocument();
 
     // Click to hide
-    await user.click(screen.getByText('Hide Detailed Analysis'));
+    await user.click(screen.getByText(/Hide.*Detailed Analysis/));
     expect(screen.queryByTestId('radar-chart')).not.toBeInTheDocument();
   });
 
@@ -175,7 +178,7 @@ describe('QualityScorecard', () => {
   });
 
   it('handles API errors gracefully', async () => {
-    (api.get as ReturnType<typeof vi.fn>).mockRejectedValue(new Error('API Error'));
+    mockApi.get.mockRejectedValue(new Error('API Error'));
 
     render(<QualityScorecard weekStart="2024-01-22" />);
 
@@ -188,11 +191,11 @@ describe('QualityScorecard', () => {
     render(<QualityScorecard weekStart="2024-01-22" />);
 
     await waitFor(() => {
-      expect(screen.getByText('Show Detailed Analysis')).toBeInTheDocument();
+      expect(screen.getByText(/Show.*Detailed Analysis/)).toBeInTheDocument();
     });
 
     const user = userEvent.setup();
-    await user.click(screen.getByText('Show Detailed Analysis'));
+    await user.click(screen.getByText(/Show.*Detailed Analysis/));
 
     // Check that metric values are displayed
     expect(screen.getByText('85%')).toBeInTheDocument(); // Assessment Balance

@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { vi, describe, it, expect, beforeEach, afterEach, type MockedFunction } from 'vitest';
-import { ActivitySuggestions } from '../ActivitySuggestions';
-import { ActivityLibrary } from '../ActivityLibrary';
+import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { ActivitySuggestions } from '../../ActivitySuggestions';
+import { ActivityLibrary } from '../../ActivityLibrary';
 
 /**
  * Performance Tests for Activity Components
@@ -86,7 +86,7 @@ describe.skip('Activity Components Performance Tests', () => {
     it('should render large dataset of suggestions efficiently', async () => {
       const largeDataset = generateLargeActivityDataset(100);
       
-      (global.fetch as MockedFunction<typeof fetch>).mockResolvedValueOnce({
+      (global.fetch as any).mockResolvedValueOnce({
         ok: true,
         json: async () => largeDataset,
       } as Response);
@@ -96,7 +96,7 @@ describe.skip('Activity Components Performance Tests', () => {
       render(
         <ActivitySuggestions 
           outcomeIds={['FR4.1', 'FR4.2', 'FR4.3']}
-          language="en"
+          
         />, 
         { wrapper }
       );
@@ -143,7 +143,7 @@ describe.skip('Activity Components Performance Tests', () => {
       const dataset = generateLargeActivityDataset(50);
       
       // Mock different responses for different filters
-      (global.fetch as MockedFunction<typeof fetch>)
+      (global.fetch as any)
         .mockResolvedValueOnce({
           ok: true,
           json: async () => dataset,
@@ -160,7 +160,7 @@ describe.skip('Activity Components Performance Tests', () => {
       const { rerender } = render(
         <ActivitySuggestions 
           outcomeIds={['FR4.1']}
-          language="en"
+          
         />, 
         { wrapper }
       );
@@ -178,7 +178,7 @@ describe.skip('Activity Components Performance Tests', () => {
         <ActivitySuggestions 
           outcomeIds={['FR4.1']}
           domain="reading"
-          language="en"
+          
         />
       );
 
@@ -187,7 +187,7 @@ describe.skip('Activity Components Performance Tests', () => {
           outcomeIds={['FR4.1']}
           domain="reading"
           subject="francais"
-          language="en"
+          
         />
       );
 
@@ -210,7 +210,7 @@ describe.skip('Activity Components Performance Tests', () => {
     it('should not cause memory leaks with frequent re-renders', async () => {
       const dataset = generateLargeActivityDataset(20);
       
-      (global.fetch as MockedFunction<typeof fetch>).mockResolvedValue({
+      (global.fetch as any).mockResolvedValue({
         ok: true,
         json: async () => dataset,
       } as Response);
@@ -218,7 +218,7 @@ describe.skip('Activity Components Performance Tests', () => {
       const { rerender, unmount } = render(
         <ActivitySuggestions 
           outcomeIds={['FR4.1']}
-          language="en"
+          
         />, 
         { wrapper }
       );
@@ -228,7 +228,7 @@ describe.skip('Activity Components Performance Tests', () => {
         rerender(
           <ActivitySuggestions 
             outcomeIds={[`FR4.${i + 1}`]}
-            language={i % 2 === 0 ? 'en' : 'fr'}
+            
           />
         );
       }
@@ -253,7 +253,7 @@ describe.skip('Activity Components Performance Tests', () => {
     it('should efficiently render large activity library', async () => {
       const largeLibrary = generateLargeActivityDataset(200);
       
-      (global.fetch as MockedFunction<typeof fetch>).mockResolvedValueOnce({
+      (global.fetch as any).mockResolvedValueOnce({
         ok: true,
         json: async () => largeLibrary,
       } as Response);
@@ -262,8 +262,8 @@ describe.skip('Activity Components Performance Tests', () => {
       
       render(
         <ActivityLibrary 
-          language="en"
-          defaultView="grid"
+          
+          
         />, 
         { wrapper }
       );
@@ -300,15 +300,15 @@ describe.skip('Activity Components Performance Tests', () => {
     it('should handle view mode switching efficiently', async () => {
       const dataset = generateLargeActivityDataset(50);
       
-      (global.fetch as MockedFunction<typeof fetch>).mockResolvedValue({
+      (global.fetch as any).mockResolvedValue({
         ok: true,
         json: async () => dataset,
       } as Response);
 
       const { rerender } = render(
         <ActivityLibrary 
-          language="en"
-          defaultView="grid"
+          
+          
         />, 
         { wrapper }
       );
@@ -323,16 +323,16 @@ describe.skip('Activity Components Performance Tests', () => {
       // Switch to list view
       rerender(
         <ActivityLibrary 
-          language="en"
-          defaultView="list"
+          
+          
         />
       );
 
       // Switch back to grid
       rerender(
         <ActivityLibrary 
-          language="en"
-          defaultView="grid"
+          
+          
         />
       );
 
@@ -349,7 +349,7 @@ describe.skip('Activity Components Performance Tests', () => {
     it('should handle search and filtering without blocking UI', async () => {
       const largeDataset = generateLargeActivityDataset(100);
       
-      (global.fetch as MockedFunction<typeof fetch>)
+      (global.fetch as any)
         .mockResolvedValueOnce({
           ok: true,
           json: async () => largeDataset,
@@ -360,7 +360,7 @@ describe.skip('Activity Components Performance Tests', () => {
         } as Response);
 
       const { rerender } = render(
-        <ActivityLibrary language="en" />, 
+        <ActivityLibrary />, 
         { wrapper }
       );
 
@@ -372,7 +372,7 @@ describe.skip('Activity Components Performance Tests', () => {
       markPerformance('search-start');
 
       // Simulate search with re-render (in real app this would be user typing)
-      rerender(<ActivityLibrary language="en" />);
+      rerender(<ActivityLibrary />);
 
       markPerformance('search-end');
 
@@ -395,7 +395,7 @@ describe.skip('Activity Components Performance Tests', () => {
       const suggestionsData = generateLargeActivityDataset(30);
       const libraryData = generateLargeActivityDataset(50);
       
-      (global.fetch as MockedFunction<typeof fetch>)
+      (global.fetch as any)
         .mockResolvedValueOnce({
           ok: true,
           json: async () => suggestionsData,
@@ -411,14 +411,14 @@ describe.skip('Activity Components Performance Tests', () => {
       const SuggestionsComponent = (
         <ActivitySuggestions 
           outcomeIds={['FR4.1']}
-          language="en"
+          
         />
       );
 
       const LibraryComponent = (
         <ActivityLibrary 
-          language="en"
-          showCreateButton={true}
+          
+          
         />
       );
 
@@ -464,7 +464,7 @@ describe.skip('Activity Components Performance Tests', () => {
   describe('Error Handling Performance', () => {
     it('should handle API errors without performance degradation', async () => {
       // Mock API errors
-      (global.fetch as MockedFunction<typeof fetch>).mockRejectedValue(
+      (global.fetch as any).mockRejectedValue(
         new Error('Network error')
       );
 
@@ -473,7 +473,7 @@ describe.skip('Activity Components Performance Tests', () => {
       render(
         <ActivitySuggestions 
           outcomeIds={['FR4.1']}
-          language="en"
+          
         />, 
         { wrapper }
       );
@@ -499,7 +499,7 @@ describe.skip('Activity Components Performance Tests', () => {
       const { unmount } = render(
         <ActivitySuggestions 
           outcomeIds={['FR4.1']}
-          language="en"
+          
         />, 
         { wrapper }
       );
@@ -513,7 +513,7 @@ describe.skip('Activity Components Performance Tests', () => {
 
     it('should handle component unmounting during async operations', async () => {
       // Mock a slow API response
-      (global.fetch as MockedFunction<typeof fetch>).mockImplementation(
+      (global.fetch as any).mockImplementation(
         () => new Promise(resolve => setTimeout(() => resolve({
           ok: true,
           json: async () => [],
@@ -523,7 +523,7 @@ describe.skip('Activity Components Performance Tests', () => {
       const { unmount } = render(
         <ActivitySuggestions 
           outcomeIds={['FR4.1']}
-          language="en"
+          
         />, 
         { wrapper }
       );

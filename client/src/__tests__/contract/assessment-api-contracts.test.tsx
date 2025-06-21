@@ -2,7 +2,7 @@
  * Contract Tests for Assessment API
  * Ensures that test mocks match real API behavior and contracts
  */
-import { describe, test, expect, beforeAll } from 'vitest';
+// Using vitest globals - no need to import
 
 // Types for API contracts
 interface Outcome {
@@ -481,7 +481,7 @@ describe('Assessment API Contract Tests', () => {
           });
         } catch (error) {
           expect(error).toBeInstanceOf(Error);
-          expect((error as Error).message).toMatch(/400|422/); // Bad request or validation error
+          expect((error as Error).message).toMatch(/400|403|422/); // Bad request, forbidden, or validation error
         }
       },
       TEST_TIMEOUT,

@@ -189,13 +189,12 @@ describe('WeeklyPlannerPage - Integration', () => {
     expect(screen.getByText('Fri')).toBeInTheDocument();
   });
 
-  it('displays activity filters', async () => {
+  it('displays planner controls', async () => {
     renderComponent();
 
-    // Check that the activity type filters are rendered
-    expect(screen.getByLabelText('HandsOn')).toBeInTheDocument();
-    expect(screen.getByLabelText('Worksheet')).toBeInTheDocument();
-    expect(screen.getByLabelText('Video')).toBeInTheDocument();
+    // Check that the main planner controls are rendered
+    expect(screen.getByText('Auto Fill')).toBeInTheDocument();
+    expect(screen.getByText('Add Assessment')).toBeInTheDocument();
   });
 
   it('allows selecting a date', async () => {

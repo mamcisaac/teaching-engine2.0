@@ -2,9 +2,14 @@ import { PrismaClient } from '@teaching-engine/database';
 import OpenAI from 'openai';
 
 const prisma = new PrismaClient();
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+
+// Only create OpenAI instance if API key is available
+let openai: OpenAI | null = null;
+if (process.env.OPENAI_API_KEY) {
+  openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+}
 
 export interface SmartMaterial {
   name: string;
@@ -48,7 +53,7 @@ export class SmartMaterialExtractor {
     const patternMaterials = this.extractMaterialsPattern(text);
     
     // If OpenAI is available and we have meaningful text, enhance with AI
-    if (process.env.OPENAI_API_KEY && text.length > 50) {
+    if (openai && text.length > 50) {
       try {
         const aiMaterials = await this.extractMaterialsWithAI(text);
         // Merge AI results with pattern results, preferring AI categorization
@@ -136,6 +141,10 @@ Example output:
   }
 ]
 `;
+
+    if (!openai) {
+      throw new Error('OpenAI not configured');
+    }
 
     try {
       const response = await openai.chat.completions.create({

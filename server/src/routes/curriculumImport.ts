@@ -70,10 +70,7 @@ router.get('/:id/status', async (req: AuthenticatedRequest, res) => {
       });
     }
 
-    const status = await curriculumImportService.getImportStatus(
-      importId,
-      parseInt(req.user.userId),
-    );
+    const status = await curriculumImportService.getImportStatus(importId);
 
     if (!status) {
       return res.status(404).json({
@@ -101,7 +98,7 @@ router.post('/:id/confirm', async (req: AuthenticatedRequest, res) => {
       });
     }
 
-    const result = await curriculumImportService.confirmImport(importId, parseInt(req.user.userId));
+    const result = await curriculumImportService.confirmImport(importId);
 
     res.json(result);
   } catch (error) {
@@ -122,12 +119,8 @@ router.get('/history', async (req: AuthenticatedRequest, res) => {
     }
 
     const limit = parseInt(req.query.limit as string) || 10;
-    const offset = parseInt(req.query.offset as string) || 0;
 
-    const history = await curriculumImportService.getImportHistory(parseInt(req.user.userId), {
-      limit,
-      offset,
-    });
+    const history = await curriculumImportService.getImportHistory(parseInt(req.user.userId), limit);
 
     res.json(history);
   } catch (error) {
@@ -174,13 +167,7 @@ router.delete('/:id', async (req: AuthenticatedRequest, res) => {
       });
     }
 
-    const result = await curriculumImportService.deleteImport(importId, parseInt(req.user.userId));
-
-    if (!result) {
-      return res.status(404).json({
-        error: 'Import not found',
-      });
-    }
+    await curriculumImportService.deleteImport(importId);
 
     res.json({ message: 'Import deleted successfully' });
   } catch (error) {

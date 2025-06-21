@@ -1,5 +1,19 @@
 /* eslint-env node */
 
+import path from 'path';
+import fs from 'fs';
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load .env.test file if it exists
+const envPath = path.resolve(__dirname, '../.env.test');
+if (fs.existsSync(envPath)) {
+  dotenv.config({ path: envPath });
+}
+
 // Jest setup file for server tests
 // This ensures consistent test environment between local and CI
 

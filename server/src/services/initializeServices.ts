@@ -4,7 +4,7 @@ import { curriculumImportService } from './curriculumImportService';
 import { clusteringService } from './clusteringService';
 import { enhancedPlanningService } from './enhancedPlanningService';
 import { enhancedMaterialService } from './enhancedMaterialService';
-import { notificationService } from './NotificationService';
+import { notificationService } from './notificationService';
 import { cacheService } from './CacheService';
 import logger from '../logger';
 
@@ -60,13 +60,8 @@ export async function initializeServices(): Promise<void> {
       singleton: true,
     });
 
-    serviceRegistry.register({
-      name: 'NotificationService',
-      instance: notificationService,
-      dependencies: [],
-      singleton: true,
-      healthCheckInterval: 15 * 60 * 1000, // 15 minutes
-    });
+    // NotificationService is not a BaseService, so we don't register it in the service registry
+    // It's still available as a singleton export for direct use
 
     // Initialize all services in dependency order
     const { initialized, failed } = await serviceRegistry.initializeAll();

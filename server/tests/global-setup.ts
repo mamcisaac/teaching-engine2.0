@@ -1,6 +1,7 @@
 import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
+import dotenv from 'dotenv';
 
 /**
  * Global setup that runs once before all test suites
@@ -8,6 +9,13 @@ import path from 'path';
  */
 export default async function globalSetup() {
   console.log('🔧 Setting up test environment...');
+
+  // Load .env.test file
+  const envPath = path.resolve(__dirname, '../../.env.test');
+  if (fs.existsSync(envPath)) {
+    dotenv.config({ path: envPath });
+    console.log('📋 Loaded .env.test file');
+  }
 
   // Ensure test directory exists
   const testTempDir = path.join(process.cwd(), 'tests', 'temp');

@@ -2,6 +2,7 @@ import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
+  testMatch: '**/*.spec.{ts,js}',
   globalSetup: process.env.CI ? undefined : require.resolve('./tests/global-setup'),
 
   webServer: process.env.CI

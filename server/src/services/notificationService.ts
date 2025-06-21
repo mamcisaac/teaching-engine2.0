@@ -173,6 +173,11 @@ export class NotificationService {
       metadata: { itemCount, itemType },
     });
   }
+
+  // Cleanup method for shutdown
+  destroy(): void {
+    logger.info('NotificationService destroyed');
+  }
 }
 
 export const notificationService = new NotificationService();

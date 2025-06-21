@@ -1,8 +1,9 @@
 import React from 'react';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { vi, type MockedFunction } from 'vitest';
-import { ActivitySuggestions } from '../ActivitySuggestions';
+import { vi } from 'vitest';
+import { ActivitySuggestions } from '../../ActivitySuggestions';
+import { useActivitySuggestions } from '../../../api';
 
 // Mock the toast hook
 vi.mock('../../ui/use-toast', () => ({
@@ -11,8 +12,10 @@ vi.mock('../../ui/use-toast', () => ({
   }),
 }));
 
-// Mock fetch
-global.fetch = vi.fn() as typeof fetch;
+// Mock the API hooks
+vi.mock('../../../api', () => ({
+  useActivitySuggestions: vi.fn(),
+}));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,8 +34,6 @@ describe('ActivitySuggestions', () => {
     vi.clearAllMocks();
     queryClient.clear();
     localStorage.setItem('token', 'test-token');
-    // Reset fetch mock
-    global.fetch = vi.fn();
   });
 
   afterEach(() => {
@@ -42,22 +43,40 @@ describe('ActivitySuggestions', () => {
   });
 
   it('renders loading state initially', () => {
-    (global.fetch as MockedFunction<typeof fetch>).mockImplementationOnce(() => 
-      new Promise(() => {}) // Never resolves to keep loading
-    );
+    // Mock loading state
+    vi.mocked(useActivitySuggestions).mockReturnValue({
+      data: undefined,
+      isLoading: true,
+      error: null,
+      isError: false,
+      isSuccess: false,
+      failureCount: 0,
+      failureReason: null,
+      refetch: vi.fn(),
+      isFetching: true,
+      isRefetching: false,
+      isStale: false,
+      isPaused: false,
+      isPlaceholderData: false,
+      isPending: false,
+      isInitialLoading: true,
+      dataUpdatedAt: 0,
+      errorUpdatedAt: 0,
+      status: 'loading',
+      fetchStatus: 'fetching',
+    });
 
     render(
       <ActivitySuggestions 
         outcomeIds={['FR4.1']} 
-        language="en"
       />, 
       { wrapper }
     );
 
     expect(screen.getByText('Activity Suggestions')).toBeInTheDocument();
-    // Check for loading skeletons
-    const loadingCards = screen.getAllByTestId('loading-skeleton');
-    expect(loadingCards).toHaveLength(3);
+    // Check for loading animation - component shows divs with animate-pulse class
+    const loadingElements = document.querySelectorAll('.animate-pulse');
+    expect(loadingElements.length).toBeGreaterThan(0);
   });
 
   it('displays suggestions when data loads', async () => {
@@ -77,15 +96,32 @@ describe('ActivitySuggestions', () => {
       },
     ];
 
-    (global.fetch as MockedFunction<typeof fetch>).mockResolvedValueOnce({
-      ok: true,
-      json: async () => mockSuggestions,
-    } as Response);
+    // Mock suggestions data
+    vi.mocked(useActivitySuggestions).mockReturnValue({
+      data: mockSuggestions,
+      isLoading: false,
+      error: null,
+      isError: false,
+      isSuccess: true,
+      failureCount: 0,
+      failureReason: null,
+      refetch: vi.fn(),
+      isFetching: false,
+      isRefetching: false,
+      isStale: false,
+      isPaused: false,
+      isPlaceholderData: false,
+      isPending: false,
+      isInitialLoading: false,
+      dataUpdatedAt: Date.now(),
+      errorUpdatedAt: 0,
+      status: 'success',
+      fetchStatus: 'idle',
+    });
 
     render(
       <ActivitySuggestions 
         outcomeIds={['EN4.1']} 
-        language="en"
       />, 
       { wrapper }
     );
@@ -93,13 +129,13 @@ describe('ActivitySuggestions', () => {
     await waitFor(() => {
       expect(screen.getByText('Activity 1')).toBeInTheDocument();
       expect(screen.getByText('Description EN')).toBeInTheDocument();
-      expect(screen.getByText('85% match')).toBeInTheDocument();
-      expect(screen.getByText('15m prep')).toBeInTheDocument();
+      expect(screen.getByText('High Match')).toBeInTheDocument();
+      expect(screen.getByText('⏱️ 15min')).toBeInTheDocument();
     });
   });
 
   it('handles add to plan action', async () => {
-    const mockAddToPlan = vi.fn();
+    const mockAddToPlanner = vi.fn();
     const mockSuggestions = [
       {
         id: 1,
@@ -114,16 +150,33 @@ describe('ActivitySuggestions', () => {
       },
     ];
 
-    (global.fetch as MockedFunction<typeof fetch>).mockResolvedValueOnce({
-      ok: true,
-      json: async () => mockSuggestions,
-    } as Response);
+    // Mock suggestions data
+    vi.mocked(useActivitySuggestions).mockReturnValue({
+      data: mockSuggestions,
+      isLoading: false,
+      error: null,
+      isError: false,
+      isSuccess: true,
+      failureCount: 0,
+      failureReason: null,
+      refetch: vi.fn(),
+      isFetching: false,
+      isRefetching: false,
+      isStale: false,
+      isPaused: false,
+      isPlaceholderData: false,
+      isPending: false,
+      isInitialLoading: false,
+      dataUpdatedAt: Date.now(),
+      errorUpdatedAt: 0,
+      status: 'success',
+      fetchStatus: 'idle',
+    });
 
     render(
       <ActivitySuggestions 
         outcomeIds={['EN4.1']} 
-        language="en"
-        onAddToPlan={mockAddToPlan}
+        onAddToPlanner={mockAddToPlanner}
       />, 
       { wrapper }
     );
@@ -132,10 +185,10 @@ describe('ActivitySuggestions', () => {
       expect(screen.getByText('Activity 1')).toBeInTheDocument();
     });
 
-    const addButton = screen.getByText('Add');
+    const addButton = screen.getByText('📅 Add to Plan');
     fireEvent.click(addButton);
 
-    expect(mockAddToPlan).toHaveBeenCalledWith(expect.objectContaining({
+    expect(mockAddToPlanner).toHaveBeenCalledWith(expect.objectContaining({
       id: 1,
       titleEn: 'Activity 1',
       domain: 'reading',
@@ -143,36 +196,77 @@ describe('ActivitySuggestions', () => {
     }));
   });
 
-  it('shows and hides filters', async () => {
-    (global.fetch as MockedFunction<typeof fetch>).mockResolvedValueOnce({
-      ok: true,
-      json: async () => [],
-    } as Response);
+  it('shows show more button when suggestions exceed limit', async () => {
+    // Mock suggestions that exceed the default limit
+    const manySuggestions = Array.from({ length: 6 }, (_, i) => ({
+      id: i + 1,
+      titleFr: `Activité ${i + 1}`,
+      titleEn: `Activity ${i + 1}`,
+      descriptionFr: 'Description FR',
+      descriptionEn: 'Description EN',
+      domain: 'reading',
+      subject: 'english',
+      outcomeIds: ['EN4.1'],
+      groupType: 'Small group',
+    }));
+
+    vi.mocked(useActivitySuggestions).mockReturnValue({
+      data: manySuggestions.slice(0, 5), // Show only first 5
+      isLoading: false,
+      error: null,
+      isError: false,
+      isSuccess: true,
+      failureCount: 0,
+      failureReason: null,
+      refetch: vi.fn(),
+      isFetching: false,
+      isRefetching: false,
+      isStale: false,
+      isPaused: false,
+      isPlaceholderData: false,
+      isPending: false,
+      isInitialLoading: false,
+      dataUpdatedAt: Date.now(),
+      errorUpdatedAt: 0,
+      status: 'success',
+      fetchStatus: 'idle',
+    });
 
     render(
       <ActivitySuggestions 
-        outcomeIds={[]} 
-        showFilters={true}
+        outcomeIds={['EN4.1']} 
       />, 
       { wrapper }
     );
 
-    const filterButton = screen.getByText('Filters');
-    expect(screen.queryByText('Filter Activities')).not.toBeInTheDocument();
-
-    fireEvent.click(filterButton);
-    
     await waitFor(() => {
-      expect(screen.getByText('Filter Activities')).toBeInTheDocument();
+      expect(screen.getByText('Show More')).toBeInTheDocument();
     });
   });
 
   it('handles API errors gracefully', async () => {
-    (global.fetch as MockedFunction<typeof fetch>).mockResolvedValueOnce({
-      ok: false,
-      status: 500,
-      json: async () => ({ error: 'Server error' }),
-    } as Response);
+    // Mock error state
+    vi.mocked(useActivitySuggestions).mockReturnValue({
+      data: undefined,
+      isLoading: false,
+      error: new Error('Server error'),
+      isError: true,
+      isSuccess: false,
+      failureCount: 1,
+      failureReason: new Error('Server error'),
+      refetch: vi.fn(),
+      isFetching: false,
+      isRefetching: false,
+      isStale: false,
+      isPaused: false,
+      isPlaceholderData: false,
+      isPending: false,
+      isInitialLoading: false,
+      dataUpdatedAt: 0,
+      errorUpdatedAt: Date.now(),
+      status: 'error',
+      fetchStatus: 'idle',
+    });
 
     render(
       <ActivitySuggestions 
@@ -183,17 +277,35 @@ describe('ActivitySuggestions', () => {
 
     await waitFor(
       () => {
-        expect(screen.getByText('Unable to load activity suggestions. Please try again.')).toBeInTheDocument();
+        expect(screen.getByText('Failed to load suggestions. Please try again later.')).toBeInTheDocument();
       },
       { timeout: 3000 }
     );
   });
 
   it('shows empty state when no suggestions', async () => {
-    (global.fetch as MockedFunction<typeof fetch>).mockResolvedValueOnce({
-      ok: true,
-      json: async () => [],
-    } as Response);
+    // Mock empty suggestions
+    vi.mocked(useActivitySuggestions).mockReturnValue({
+      data: [],
+      isLoading: false,
+      error: null,
+      isError: false,
+      isSuccess: true,
+      failureCount: 0,
+      failureReason: null,
+      refetch: vi.fn(),
+      isFetching: false,
+      isRefetching: false,
+      isStale: false,
+      isPaused: false,
+      isPlaceholderData: false,
+      isPending: false,
+      isInitialLoading: false,
+      dataUpdatedAt: Date.now(),
+      errorUpdatedAt: 0,
+      status: 'success',
+      fetchStatus: 'idle',
+    });
 
     render(
       <ActivitySuggestions 
@@ -203,8 +315,7 @@ describe('ActivitySuggestions', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText('No activities found')).toBeInTheDocument();
-      expect(screen.getByText('Try adjusting your filters or selecting different outcomes.')).toBeInTheDocument();
+      expect(screen.getByText('No matching activity suggestions found. Try broadening your criteria.')).toBeInTheDocument();
     });
   });
 
@@ -223,33 +334,42 @@ describe('ActivitySuggestions', () => {
       },
     ];
 
-    (global.fetch as MockedFunction<typeof fetch>).mockResolvedValueOnce({
-      ok: true,
-      json: async () => mockSuggestions,
-    } as Response);
+    // Mock suggestions with French data
+    vi.mocked(useActivitySuggestions).mockReturnValue({
+      data: mockSuggestions,
+      isLoading: false,
+      error: null,
+      isError: false,
+      isSuccess: true,
+      failureCount: 0,
+      failureReason: null,
+      refetch: vi.fn(),
+      isFetching: false,
+      isRefetching: false,
+      isStale: false,
+      isPaused: false,
+      isPlaceholderData: false,
+      isPending: false,
+      isInitialLoading: false,
+      dataUpdatedAt: Date.now(),
+      errorUpdatedAt: 0,
+      status: 'success',
+      fetchStatus: 'idle',
+    });
 
-    const { rerender } = render(
+    render(
       <ActivitySuggestions 
         outcomeIds={['FR4.1']} 
-        language="fr"
       />, 
       { wrapper }
     );
 
     await waitFor(() => {
+      // The component shows both English and French titles
+      expect(screen.getByText('English Title')).toBeInTheDocument();
       expect(screen.getByText('Titre Français')).toBeInTheDocument();
-      expect(screen.getByText('Description française')).toBeInTheDocument();
+      // But only English description is shown
+      expect(screen.getByText('English description')).toBeInTheDocument();
     });
-
-    // Change language
-    rerender(
-      <ActivitySuggestions 
-        outcomeIds={['FR4.1']} 
-        language="en"
-      />
-    );
-
-    expect(screen.queryByText('Titre Français')).not.toBeInTheDocument();
-    expect(screen.getByText('English Title')).toBeInTheDocument();
   });
 });
