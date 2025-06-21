@@ -14,18 +14,22 @@ jest.mock('@/prisma', () => ({
   },
 }));
 
-jest.mock('@/services/llmService', () => ({
-  openai: {
+jest.mock('@/services/llmService', () => {
+  const mockOpenAI = {
     embeddings: {
-      create: jest.fn(),
+      create: jest.fn().mockResolvedValue({
+        data: [{ embedding: Array(1536).fill(0.1) }],
+        usage: { total_tokens: 10 },
+      }),
     },
     chat: {
       completions: {
         create: jest.fn(),
       },
     },
-  },
-}));
+  };
+  return { openai: mockOpenAI };
+});
 
 describe('EmbeddingService Unit Tests', () => {
   let embeddingService: EmbeddingService;
@@ -45,12 +49,11 @@ describe('EmbeddingService Unit Tests', () => {
     mockPrisma = prisma;
     mockOpenAI = openai;
 
-    // Ensure openai is defined for the service
-    if (!mockOpenAI.embeddings) {
-      mockOpenAI.embeddings = {
-        create: jest.fn(),
-      };
-    }
+    // Reset mock implementations
+    mockOpenAI.embeddings.create.mockResolvedValue({
+      data: [{ embedding: Array(1536).fill(0.1) }],
+      usage: { total_tokens: 10 },
+    });
 
     // Create service instance
     embeddingService = new EmbeddingService();
