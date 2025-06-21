@@ -4,7 +4,7 @@ import { curriculumImportService } from './curriculumImportService';
 import { clusteringService } from './clusteringService';
 import { enhancedPlanningService } from './enhancedPlanningService';
 import { enhancedMaterialService } from './enhancedMaterialService';
-import { notificationService } from './NotificationService';
+import { notificationService } from './notificationService';
 import { cacheService } from './CacheService';
 import logger from '../logger';
 

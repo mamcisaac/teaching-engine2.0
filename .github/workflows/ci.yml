@@ -55,6 +55,7 @@ jobs:
           DATABASE_URL: file:./packages/database/prisma/test.db
           JWT_SECRET: test-secret-key
           JWT_EXPIRES_IN: 1h
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY || 'test-api-key' }}
         run: pnpm run test
 
       - name: Deploy database schema

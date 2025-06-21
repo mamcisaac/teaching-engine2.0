@@ -1,13 +1,13 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { vi, describe, it, expect, beforeEach, afterEach, type MockedFunction } from 'vitest';
-import { ActivitySuggestions } from '../ActivitySuggestions';
-import { ActivityLibrary } from '../ActivityLibrary';
+import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { ActivitySuggestions } from '../../ActivitySuggestions';
+import { ActivityLibrary } from '../../ActivityLibrary';
 
 /**
  * Performance Tests for Activity Components
- * 
+ *
  * These tests ensure components perform well under various conditions:
  * 1. Large datasets
  * 2. Rapid state changes
@@ -32,7 +32,7 @@ describe.skip('Activity Components Performance Tests', () => {
   beforeEach(() => {
     queryClient = new QueryClient({
       defaultOptions: {
-        queries: { 
+        queries: {
           retry: false,
           refetchOnWindowFocus: false,
         },
@@ -40,7 +40,7 @@ describe.skip('Activity Components Performance Tests', () => {
     });
     localStorage.setItem('token', 'performance-test-token');
     performanceMarks = [];
-    
+
     // Clear all mocks
     vi.clearAllMocks();
   });
@@ -51,9 +51,7 @@ describe.skip('Activity Components Performance Tests', () => {
   });
 
   const wrapper = ({ children }: { children: React.ReactNode }) => (
-    <QueryClientProvider client={queryClient}>
-      {children}
-    </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 
   // Helper to mark performance points
@@ -85,31 +83,27 @@ describe.skip('Activity Components Performance Tests', () => {
   describe('ActivitySuggestions Performance', () => {
     it('should render large dataset of suggestions efficiently', async () => {
       const largeDataset = generateLargeActivityDataset(100);
-      
-      (global.fetch as MockedFunction<typeof fetch>).mockResolvedValueOnce({
+
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => largeDataset,
       } as Response);
 
       markPerformance('render-start');
-      
-      render(
-        <ActivitySuggestions 
-          outcomeIds={['FR4.1', 'FR4.2', 'FR4.3']}
-          language="en"
-        />, 
-        { wrapper }
-      );
+
+      render(<ActivitySuggestions outcomeIds={['FR4.1', 'FR4.2', 'FR4.3']} />, {
+        wrapper,
+      });
 
       markPerformance('render-complete');
 
       // Wait for data to load
       await waitFor(
         () => {
-          const loadingSkeletons = screen.queryAllByTestId('loading-skeleton');
-          expect(loadingSkeletons).toHaveLength(0);
+          const loadingElements = document.querySelectorAll('.animate-pulse');
+          expect(loadingElements).toHaveLength(0);
         },
-        { timeout: 15000 }
+        { timeout: 15000 },
       );
 
       markPerformance('data-loaded');
@@ -117,15 +111,17 @@ describe.skip('Activity Components Performance Tests', () => {
       // Should render all activities efficiently
       const addButtons = screen.getAllByText('Add');
       expect(addButtons.length).toBeGreaterThan(0);
-      
+
       markPerformance('ui-ready');
 
       // Calculate performance metrics
-      const renderTime = performanceMarks.find(m => m.name === 'render-complete')!.timestamp - 
-                        performanceMarks.find(m => m.name === 'render-start')!.timestamp;
-      
-      const loadTime = performanceMarks.find(m => m.name === 'data-loaded')!.timestamp - 
-                      performanceMarks.find(m => m.name === 'render-complete')!.timestamp;
+      const renderTime =
+        performanceMarks.find((m) => m.name === 'render-complete')!.timestamp -
+        performanceMarks.find((m) => m.name === 'render-start')!.timestamp;
+
+      const loadTime =
+        performanceMarks.find((m) => m.name === 'data-loaded')!.timestamp -
+        performanceMarks.find((m) => m.name === 'render-complete')!.timestamp;
 
       // Performance assertions
       expect(renderTime).toBeLessThan(100); // Should render in under 100ms
@@ -135,72 +131,56 @@ describe.skip('Activity Components Performance Tests', () => {
         renderTime: `${renderTime.toFixed(2)}ms`,
         loadTime: `${loadTime.toFixed(2)}ms`,
         itemCount: largeDataset.length,
-        throughput: `${(largeDataset.length / loadTime * 1000).toFixed(2)} items/second`,
+        throughput: `${((largeDataset.length / loadTime) * 1000).toFixed(2)} items/second`,
       });
     });
 
     it('should handle rapid filter changes without performance degradation', async () => {
       const dataset = generateLargeActivityDataset(50);
-      
+
       // Mock different responses for different filters
-      (global.fetch as MockedFunction<typeof fetch>)
+      (global.fetch as ReturnType<typeof vi.fn>)
         .mockResolvedValueOnce({
           ok: true,
           json: async () => dataset,
         } as Response)
         .mockResolvedValueOnce({
           ok: true,
-          json: async () => dataset.filter(a => a.domain === 'reading'),
+          json: async () => dataset.filter((a) => a.domain === 'reading'),
         } as Response)
         .mockResolvedValueOnce({
           ok: true,
-          json: async () => dataset.filter(a => a.subject === 'francais'),
+          json: async () => dataset.filter((a) => a.subject === 'francais'),
         } as Response);
 
-      const { rerender } = render(
-        <ActivitySuggestions 
-          outcomeIds={['FR4.1']}
-          language="en"
-        />, 
-        { wrapper }
-      );
+      const { rerender } = render(<ActivitySuggestions outcomeIds={['FR4.1']} />, {
+        wrapper,
+      });
 
       // Wait for initial load
       await waitFor(() => {
-        const loadingSkeletons = screen.queryAllByTestId('loading-skeleton');
-        expect(loadingSkeletons).toHaveLength(0);
+        const loadingElements = document.querySelectorAll('.animate-pulse');
+        expect(loadingElements).toHaveLength(0);
       });
 
       markPerformance('rapid-changes-start');
 
       // Simulate rapid filter changes
-      rerender(
-        <ActivitySuggestions 
-          outcomeIds={['FR4.1']}
-          domain="reading"
-          language="en"
-        />
-      );
+      rerender(<ActivitySuggestions outcomeIds={['FR4.1']} domain="reading" />);
 
-      rerender(
-        <ActivitySuggestions 
-          outcomeIds={['FR4.1']}
-          domain="reading"
-          subject="francais"
-          language="en"
-        />
-      );
+      rerender(<ActivitySuggestions outcomeIds={['FR4.1']} domain="reading" subject="francais" />);
 
       markPerformance('rapid-changes-end');
 
       // Wait for final state
       await waitFor(() => {
-        const loadingSkeletons = screen.queryAllByTestId('loading-skeleton');
-        expect(loadingSkeletons).toHaveLength(0);
+        const loadingElements = document.querySelectorAll('.animate-pulse');
+        expect(loadingElements).toHaveLength(0);
       });
 
-      const rapidChangeTime = performanceMarks.find(m => m.name === 'rapid-changes-end')!.timestamp - 
-                             performanceMarks.find(m => m.name === 'rapid-changes-start')!.timestamp;
+      const rapidChangeTime =
+        performanceMarks.find((m) => m.name === 'rapid-changes-end')!.timestamp -
+        performanceMarks.find((m) => m.name === 'rapid-changes-start')!.timestamp;
 
       expect(rapidChangeTime).toBeLessThan(200); // Should handle rapid changes in under 200ms
 
@@ -209,34 +189,25 @@ describe.skip('Activity Components Performance Tests', () => {
 
     it('should not cause memory leaks with frequent re-renders', async () => {
       const dataset = generateLargeActivityDataset(20);
-      
-      (global.fetch as MockedFunction<typeof fetch>).mockResolvedValue({
+
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({
         ok: true,
         json: async () => dataset,
       } as Response);
 
-      const { rerender, unmount } = render(
-        <ActivitySuggestions 
-          outcomeIds={['FR4.1']}
-          language="en"
-        />, 
-        { wrapper }
-      );
+      const { rerender, unmount } = render(<ActivitySuggestions outcomeIds={['FR4.1']} />, {
+        wrapper,
+      });
 
       // Simulate many re-renders
       for (let i = 0; i < 20; i++) {
-        rerender(
-          <ActivitySuggestions 
-            outcomeIds={[`FR4.${i + 1}`]}
-            language={i % 2 === 0 ? 'en' : 'fr'}
-          />
-        );
+        rerender(<ActivitySuggestions outcomeIds={[`FR4.${i + 1}`]} />);
       }
 
       // Wait for final render
       await waitFor(() => {
-        const loadingSkeletons = screen.queryAllByTestId('loading-skeleton');
-        expect(loadingSkeletons).toHaveLength(0);
+        const loadingElements = document.querySelectorAll('.animate-pulse');
+        expect(loadingElements).toHaveLength(0);
       });
 
       // Clean up
@@ -252,21 +223,15 @@ describe.skip('Activity Components Performance Tests', () => {
   describe('ActivityLibrary Performance', () => {
     it('should efficiently render large activity library', async () => {
       const largeLibrary = generateLargeActivityDataset(200);
-      
-      (global.fetch as MockedFunction<typeof fetch>).mockResolvedValueOnce({
+
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => largeLibrary,
       } as Response);
 
       markPerformance('library-render-start');
-      
-      render(
-        <ActivityLibrary 
-          language="en"
-          defaultView="grid"
-        />, 
-        { wrapper }
-      );
+
+      render(<ActivityLibrary defaultView="grid" />, { wrapper });
 
       markPerformance('library-render-complete');
 
@@ -275,16 +240,18 @@ describe.skip('Activity Components Performance Tests', () => {
         () => {
           expect(screen.getByText(/\d+ activities found/)).toBeInTheDocument();
         },
-        { timeout: 15000 }
+        { timeout: 15000 },
       );
 
       markPerformance('library-data-loaded');
 
-      const renderTime = performanceMarks.find(m => m.name === 'library-render-complete')!.timestamp - 
-                        performanceMarks.find(m => m.name === 'library-render-start')!.timestamp;
-      
-      const loadTime = performanceMarks.find(m => m.name === 'library-data-loaded')!.timestamp - 
-                      performanceMarks.find(m => m.name === 'library-render-complete')!.timestamp;
+      const renderTime =
+        performanceMarks.find((m) => m.name === 'library-render-complete')!.timestamp -
+        performanceMarks.find((m) => m.name === 'library-render-start')!.timestamp;
+
+      const loadTime =
+        performanceMarks.find((m) => m.name === 'library-data-loaded')!.timestamp -
+        performanceMarks.find((m) => m.name === 'library-render-complete')!.timestamp;
 
       expect(renderTime).toBeLessThan(150); // Should render in under 150ms
       expect(loadTime).toBeLessThan(8000); // Should load large dataset in under 8s
@@ -293,25 +260,21 @@ describe.skip('Activity Components Performance Tests', () => {
         renderTime: `${renderTime.toFixed(2)}ms`,
         loadTime: `${loadTime.toFixed(2)}ms`,
         itemCount: largeLibrary.length,
-        throughput: `${(largeLibrary.length / loadTime * 1000).toFixed(2)} items/second`,
+        throughput: `${((largeLibrary.length / loadTime) * 1000).toFixed(2)} items/second`,
       });
     });
 
     it('should handle view mode switching efficiently', async () => {
       const dataset = generateLargeActivityDataset(50);
-      
-      (global.fetch as MockedFunction<typeof fetch>).mockResolvedValue({
+
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({
         ok: true,
         json: async () => dataset,
       } as Response);
 
-      const { rerender } = render(
-        <ActivityLibrary 
-          language="en"
-          defaultView="grid"
-        />, 
-        { wrapper }
-      );
+      const { rerender } = render(<ActivityLibrary defaultView="grid" />, {
+        wrapper,
+      });
 
       // Wait for initial load
       await waitFor(() => {
@@ -321,25 +284,16 @@ describe.skip('Activity Components Performance Tests', () => {
       markPerformance('view-switch-start');
 
       // Switch to list view
-      rerender(
-        <ActivityLibrary 
-          language="en"
-          defaultView="list"
-        />
-      );
+      rerender(<ActivityLibrary defaultView="list" />);
 
       // Switch back to grid
-      rerender(
-        <ActivityLibrary 
-          language="en"
-          defaultView="grid"
-        />
-      );
+      rerender(<ActivityLibrary defaultView="grid" />);
 
       markPerformance('view-switch-end');
 
-      const switchTime = performanceMarks.find(m => m.name === 'view-switch-end')!.timestamp - 
-                        performanceMarks.find(m => m.name === 'view-switch-start')!.timestamp;
+      const switchTime =
+        performanceMarks.find((m) => m.name === 'view-switch-end')!.timestamp -
+        performanceMarks.find((m) => m.name === 'view-switch-start')!.timestamp;
 
       expect(switchTime).toBeLessThan(100); // View switching should be fast
 
@@ -348,21 +302,18 @@ describe.skip('Activity Components Performance Tests', () => {
 
     it('should handle search and filtering without blocking UI', async () => {
       const largeDataset = generateLargeActivityDataset(100);
-      
-      (global.fetch as MockedFunction<typeof fetch>)
+
+      (global.fetch as ReturnType<typeof vi.fn>)
         .mockResolvedValueOnce({
           ok: true,
           json: async () => largeDataset,
         } as Response)
         .mockResolvedValueOnce({
           ok: true,
-          json: async () => largeDataset.filter(a => a.titleEn.includes('1')),
+          json: async () => largeDataset.filter((a) => a.titleEn.includes('1')),
         } as Response);
 
-      const { rerender } = render(
-        <ActivityLibrary language="en" />, 
-        { wrapper }
-      );
+      const { rerender } = render(<ActivityLibrary />, { wrapper });
 
       // Wait for initial load
       await waitFor(() => {
@@ -372,7 +323,7 @@ describe.skip('Activity Components Performance Tests', () => {
       markPerformance('search-start');
 
       // Simulate search with re-render (in real app this would be user typing)
-      rerender(<ActivityLibrary language="en" />);
+      rerender(<ActivityLibrary />);
 
       markPerformance('search-end');
 
@@ -381,8 +332,9 @@ describe.skip('Activity Components Performance Tests', () => {
         expect(screen.getByText(/\d+ activities found/)).toBeInTheDocument();
       });
 
-      const searchTime = performanceMarks.find(m => m.name === 'search-end')!.timestamp - 
-                        performanceMarks.find(m => m.name === 'search-start')!.timestamp;
+      const searchTime =
+        performanceMarks.find((m) => m.name === 'search-end')!.timestamp -
+        performanceMarks.find((m) => m.name === 'search-start')!.timestamp;
 
       expect(searchTime).toBeLessThan(50); // Search should not block UI
 
@@ -394,8 +346,8 @@ describe.skip('Activity Components Performance Tests', () => {
     it('should handle multiple components rendering simultaneously', async () => {
       const suggestionsData = generateLargeActivityDataset(30);
       const libraryData = generateLargeActivityDataset(50);
-      
-      (global.fetch as MockedFunction<typeof fetch>)
+
+      (global.fetch as ReturnType<typeof vi.fn>)
         .mockResolvedValueOnce({
           ok: true,
           json: async () => suggestionsData,
@@ -408,19 +360,9 @@ describe.skip('Activity Components Performance Tests', () => {
       markPerformance('multi-component-start');
 
       // Render both components simultaneously
-      const SuggestionsComponent = (
-        <ActivitySuggestions 
-          outcomeIds={['FR4.1']}
-          language="en"
-        />
-      );
+      const SuggestionsComponent = <ActivitySuggestions outcomeIds={['FR4.1']} />;
 
-      const LibraryComponent = (
-        <ActivityLibrary 
-          language="en"
-          showCreateButton={true}
-        />
-      );
+      const LibraryComponent = <ActivityLibrary showCreateButton={true} />;
 
       const { container } = render(
         <QueryClientProvider client={queryClient}>
@@ -428,27 +370,32 @@ describe.skip('Activity Components Performance Tests', () => {
             {SuggestionsComponent}
             {LibraryComponent}
           </div>
-        </QueryClientProvider>
+        </QueryClientProvider>,
       );
 
       markPerformance('multi-component-rendered');
 
       // Wait for both to load
-      await waitFor(() => {
-        const hasActivitySuggestions = screen.queryByText('Activity Suggestions');
-        const hasActivityLibrary = screen.queryByText('Activity Library');
-        const noLoadingSkeletons = screen.queryAllByTestId('loading-skeleton').length === 0;
-        
-        return hasActivitySuggestions && hasActivityLibrary && noLoadingSkeletons;
-      }, { timeout: 20000 });
+      await waitFor(
+        () => {
+          const hasActivitySuggestions = screen.queryByText('Activity Suggestions');
+          const hasActivityLibrary = screen.queryByText('Activity Library');
+          const noLoadingSkeletons = document.querySelectorAll('.animate-pulse').length === 0;
+
+          return hasActivitySuggestions && hasActivityLibrary && noLoadingSkeletons;
+        },
+        { timeout: 20000 },
+      );
 
       markPerformance('multi-component-loaded');
 
-      const renderTime = performanceMarks.find(m => m.name === 'multi-component-rendered')!.timestamp - 
-                        performanceMarks.find(m => m.name === 'multi-component-start')!.timestamp;
-      
-      const loadTime = performanceMarks.find(m => m.name === 'multi-component-loaded')!.timestamp - 
-                      performanceMarks.find(m => m.name === 'multi-component-rendered')!.timestamp;
+      const renderTime =
+        performanceMarks.find((m) => m.name === 'multi-component-rendered')!.timestamp -
+        performanceMarks.find((m) => m.name === 'multi-component-start')!.timestamp;
+
+      const loadTime =
+        performanceMarks.find((m) => m.name === 'multi-component-loaded')!.timestamp -
+        performanceMarks.find((m) => m.name === 'multi-component-rendered')!.timestamp;
 
       expect(renderTime).toBeLessThan(200); // Should render both in under 200ms
       expect(loadTime).toBeLessThan(15000); // Should load both in under 15s
@@ -464,29 +411,25 @@ describe.skip('Activity Components Performance Tests', () => {
   describe('Error Handling Performance', () => {
     it('should handle API errors without performance degradation', async () => {
       // Mock API errors
-      (global.fetch as MockedFunction<typeof fetch>).mockRejectedValue(
-        new Error('Network error')
-      );
+      (global.fetch as ReturnType<typeof vi.fn>).mockRejectedValue(new Error('Network error'));
 
       markPerformance('error-handling-start');
 
-      render(
-        <ActivitySuggestions 
-          outcomeIds={['FR4.1']}
-          language="en"
-        />, 
-        { wrapper }
-      );
+      render(<ActivitySuggestions outcomeIds={['FR4.1']} />, { wrapper });
 
       // Wait for error state
-      await waitFor(() => {
-        expect(screen.getByText(/Unable to load/)).toBeInTheDocument();
-      }, { timeout: 10000 });
+      await waitFor(
+        () => {
+          expect(screen.getByText(/Unable to load/)).toBeInTheDocument();
+        },
+        { timeout: 10000 },
+      );
 
       markPerformance('error-handling-complete');
 
-      const errorHandlingTime = performanceMarks.find(m => m.name === 'error-handling-complete')!.timestamp - 
-                               performanceMarks.find(m => m.name === 'error-handling-start')!.timestamp;
+      const errorHandlingTime =
+        performanceMarks.find((m) => m.name === 'error-handling-complete')!.timestamp -
+        performanceMarks.find((m) => m.name === 'error-handling-start')!.timestamp;
 
       expect(errorHandlingTime).toBeLessThan(5000); // Should handle errors quickly
 
@@ -496,13 +439,9 @@ describe.skip('Activity Components Performance Tests', () => {
 
   describe('Memory Usage Tests', () => {
     it('should cleanup event listeners and subscriptions', async () => {
-      const { unmount } = render(
-        <ActivitySuggestions 
-          outcomeIds={['FR4.1']}
-          language="en"
-        />, 
-        { wrapper }
-      );
+      const { unmount } = render(<ActivitySuggestions outcomeIds={['FR4.1']} />, {
+        wrapper,
+      });
 
       // Simulate component cleanup
       unmount();
@@ -513,20 +452,23 @@ describe.skip('Activity Components Performance Tests', () => {
 
     it('should handle component unmounting during async operations', async () => {
       // Mock a slow API response
-      (global.fetch as MockedFunction<typeof fetch>).mockImplementation(
-        () => new Promise(resolve => setTimeout(() => resolve({
-          ok: true,
-          json: async () => [],
-        } as Response), 5000))
+      (global.fetch as ReturnType<typeof vi.fn>).mockImplementation(
+        () =>
+          new Promise((resolve) =>
+            setTimeout(
+              () =>
+                resolve({
+                  ok: true,
+                  json: async () => [],
+                } as Response),
+              5000,
+            ),
+          ),
       );
 
-      const { unmount } = render(
-        <ActivitySuggestions 
-          outcomeIds={['FR4.1']}
-          language="en"
-        />, 
-        { wrapper }
-      );
+      const { unmount } = render(<ActivitySuggestions outcomeIds={['FR4.1']} />, {
+        wrapper,
+      });
 
       // Unmount immediately
       unmount();

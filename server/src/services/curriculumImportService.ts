@@ -50,7 +50,7 @@ export class CurriculumImportService extends BaseService {
           subject,
           sourceFormat,
           sourceFile,
-          status: ImportStatus.PENDING,
+          status: ImportStatus.UPLOADING,
           metadata: (metadata || {}) as any,
         },
       });

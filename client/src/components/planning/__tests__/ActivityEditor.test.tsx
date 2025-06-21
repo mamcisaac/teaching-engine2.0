@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { vi, type MockedFunction } from 'vitest';
-import { ActivityEditor } from '../ActivityEditor';
+import { vi } from 'vitest';
+import { ActivityEditor } from '../../ActivityEditor';
 
 // Mock the toast hook
 vi.mock('../../ui/use-toast', () => ({
@@ -22,9 +22,7 @@ const queryClient = new QueryClient({
 });
 
 const wrapper = ({ children }: { children: React.ReactNode }) => (
-  <QueryClientProvider client={queryClient}>
-    {children}
-  </QueryClientProvider>
+  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 );
 
 const mockActivity = {
@@ -52,9 +50,9 @@ describe.skip('ActivityEditor', () => {
     vi.clearAllMocks();
     queryClient.clear();
     localStorage.setItem('token', 'test-token');
-    
+
     // Mock themes fetch with proper response
-    (global.fetch as MockedFunction<typeof fetch>).mockImplementation((url: string | URL | Request) => {
+    (global.fetch as ReturnType<typeof vi.fn>).mockImplementation((url: string | URL | Request) => {
       const urlString = url.toString();
       if (urlString.includes('/api/themes')) {
         return Promise.resolve({
@@ -80,18 +78,13 @@ describe.skip('ActivityEditor', () => {
     queryClient.clear();
   });
 
-  it('renders when closed', () => {
-    render(
-      <ActivityEditor
-        open={false}
-        onClose={vi.fn()}
-        onSave={vi.fn()}
-        language="en"
-      />,
-      { wrapper }
-    );
+  it('renders the activity editor', () => {
+    render(<ActivityEditor onSave={vi.fn()} onCancel={vi.fn()} />, {
+      wrapper,
+    });
 
-    // When closed, dialog should not be visible
-    expect(screen.queryByText('New Activity')).not.toBeInTheDocument();
+    // Check that the component renders
+    expect(screen.getByText('Activity Editor')).toBeInTheDocument();
+    expect(screen.getByText('Activity ID: New Activity')).toBeInTheDocument();
   });
 });

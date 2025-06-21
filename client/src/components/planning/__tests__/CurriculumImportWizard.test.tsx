@@ -30,7 +30,7 @@ describe('CurriculumImportWizard', () => {
 
   it('renders upload step initially', () => {
     render(<CurriculumImportWizard {...mockProps} />);
-    
+
     expect(screen.getByText('Import Curriculum')).toBeInTheDocument();
     expect(screen.getByText(/Upload your curriculum document/)).toBeInTheDocument();
   });
@@ -42,9 +42,9 @@ describe('CurriculumImportWizard', () => {
     });
 
     render(<CurriculumImportWizard {...mockProps} />);
-    
+
     // Test simplified for now - full file upload testing would need more setup
-    
+
     // This is a simplified test - actual implementation would need proper file upload mocking
     expect(screen.getByText('Import Curriculum')).toBeInTheDocument();
   });
@@ -53,24 +53,25 @@ describe('CurriculumImportWizard', () => {
     mockFetch.mockRejectedValueOnce(new Error('Upload failed'));
 
     render(<CurriculumImportWizard {...mockProps} />);
-    
+
     // Test error handling
     expect(screen.getByText('Import Curriculum')).toBeInTheDocument();
   });
 
   it('shows review step with parsed data', () => {
     render(<CurriculumImportWizard {...mockProps} />);
-    
+
     // Test would need to mock the wizard being in review state
     expect(screen.getByText('Import Curriculum')).toBeInTheDocument();
   });
 
   it('closes wizard when close button is clicked', () => {
     render(<CurriculumImportWizard {...mockProps} />);
-    
-    const closeButton = screen.getByRole('button', { name: /close/i });
+
+    // Find the close button by its class (it's an X icon button without text)
+    const closeButton = screen.getByRole('button', { name: '' });
     fireEvent.click(closeButton);
-    
+
     expect(mockProps.onClose).toHaveBeenCalled();
   });
 
@@ -78,9 +79,7 @@ describe('CurriculumImportWizard', () => {
     const testData = {
       subject: 'Mathematics',
       grade: 1,
-      outcomes: [
-        { code: 'M1.1', description: 'Count to 10' }
-      ]
+      outcomes: [{ code: 'M1.1', description: 'Count to 10' }],
     };
 
     expect(testData.subject).toBe('Mathematics');
