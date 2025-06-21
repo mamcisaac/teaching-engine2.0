@@ -13,8 +13,10 @@ describe('CurriculumImportService', () => {
     jest.clearAllMocks();
 
     // Get mocked instances
-    mockPrisma = prisma as jest.Mocked<typeof prisma>;
-    mockEmbeddingService = embeddingService as jest.Mocked<typeof embeddingService>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    mockPrisma = prisma as any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    mockEmbeddingService = embeddingService as any;
 
     curriculumImportService = new CurriculumImportService();
   });
@@ -235,6 +237,7 @@ Test,123`;
 
       (mockPrisma.outcome.findUnique as jest.Mock).mockResolvedValue(null);
       (mockPrisma.outcome.create as jest.Mock).mockImplementation(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (args: { data: { code: string } }) =>
           Promise.resolve({ id: `outcome-${args.data.code}`, code: args.data.code }),
       );

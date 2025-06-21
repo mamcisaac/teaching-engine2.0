@@ -1,5 +1,5 @@
 import { describe, it, expect, jest, beforeEach } from '@jest/globals';
-import { EmbeddingService } from '../../src/services/embeddingService';
+import { EmbeddingService } from '@/services/embeddingService';
 
 // Create manual mocks for dependencies
 const mockPrisma = {
@@ -24,11 +24,11 @@ const mockOpenAI = {
 };
 
 // Mock the modules
-jest.mock('../../src/prisma', () => ({
+jest.mock('@/prisma', () => ({
   prisma: mockPrisma,
 }));
 
-jest.mock('../../src/services/llmService', () => ({
+jest.mock('@/services/llmService', () => ({
   openai: mockOpenAI,
 }));
 

@@ -3,9 +3,11 @@ import { EmbeddingService } from '../../src/services/embeddingService';
 import { openai } from '../../src/services/llmService';
 import { prisma } from '../../src/prisma';
 
-// Get the mocked version
-const mockPrisma = jest.mocked(prisma);
-const mockOpenAI = jest.mocked(openai);
+// Get the mocked version - cast to any to access mock methods
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const mockPrisma = prisma as any;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const mockOpenAI = openai as any;
 
 describe('EmbeddingService', () => {
   let embeddingService: EmbeddingService;
@@ -86,6 +88,7 @@ describe('EmbeddingService', () => {
 
     it('should return null when OpenAI is not configured', async () => {
       // Temporarily set openai to null
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (
         embeddingService as unknown as { generateEmbeddingVector: () => Promise<null> }
       ).generateEmbeddingVector = async () => null;

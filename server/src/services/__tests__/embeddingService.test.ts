@@ -1,5 +1,4 @@
 import { jest } from '@jest/globals';
-import { PrismaClient } from '@teaching-engine/database';
 import * as embeddingService from '../embeddingService';
 
 // Mock dependencies
@@ -17,7 +16,6 @@ jest.mock('@teaching-engine/database', () => {
   };
   return {
     PrismaClient: jest.fn(() => mockPrismaClient),
-    ...jest.requireActual('@teaching-engine/database'),
   };
 });
 
@@ -39,7 +37,7 @@ jest.mock('openai', () => {
   };
 });
 
-jest.mock('../logger', () => ({
+jest.mock('@/logger', () => ({
   debug: jest.fn(),
   info: jest.fn(),
   warn: jest.fn(),
@@ -47,11 +45,15 @@ jest.mock('../logger', () => ({
 }));
 
 describe('EmbeddingService', () => {
-  let prisma: PrismaClient;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let prisma: any;
 
   beforeEach(() => {
     jest.clearAllMocks();
-    prisma = new PrismaClient();
+    // Get the mocked PrismaClient instance
+    const { PrismaClient } = jest.requireMock('@teaching-engine/database');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    prisma = new PrismaClient() as any;
     // Set up OpenAI API key for tests
     process.env.OPENAI_API_KEY = 'test-api-key';
   });
@@ -342,7 +344,7 @@ describe('EmbeddingService', () => {
       expect(embeddingService.isEmbeddingServiceAvailable()).toBe(true);
     });
 
-    it('should return false when OpenAI is not configured', () => {
+    it('should return false when OpenAI is not configured', async () => {
       delete process.env.OPENAI_API_KEY;
 
       // Force module re-evaluation to pick up missing API key

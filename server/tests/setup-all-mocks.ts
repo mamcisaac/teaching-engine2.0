@@ -57,7 +57,7 @@ jest.mock('@prisma/client', () => ({
 }));
 
 // Mock logger to avoid console spam during tests
-jest.mock('../src/logger', () => ({
+jest.mock('@/logger', () => ({
   debug: jest.fn(),
   info: jest.fn(),
   warn: jest.fn(),
@@ -71,7 +71,7 @@ jest.mock('../src/logger', () => ({
 }));
 
 // Mock embeddingService
-jest.mock('../src/services/embeddingService', () => ({
+jest.mock('@/services/embeddingService', () => ({
   embeddingService: {
     calculateSimilarity: jest.fn(),
     generateBatchEmbeddings: jest.fn(),
@@ -172,13 +172,13 @@ jest.mock('openai', () => {
 });
 
 // Mock email service
-jest.mock('../src/services/emailService', () => ({
+jest.mock('@/services/emailService', () => ({
   sendEmail: jest.fn().mockResolvedValue(true),
   sendBulkEmails: jest.fn().mockResolvedValue({ sent: [], failed: [] }),
 }));
 
 // Mock llmService
-jest.mock('../src/services/llmService', () => ({
+jest.mock('@/services/llmService', () => ({
   openai: {
     chat: {
       completions: {
