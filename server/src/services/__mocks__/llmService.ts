@@ -40,21 +40,32 @@ const mockEmbedding = {
   },
 };
 
+// Create mock functions with proper typing
+const mockChatCreate = jest.fn();
+mockChatCreate.mockResolvedValue(mockChatCompletion);
+
+const mockEmbeddingsCreate = jest.fn();
+mockEmbeddingsCreate.mockResolvedValue(mockEmbedding);
+
+const mockGenerateContent = jest.fn();
+mockGenerateContent.mockResolvedValue('This is a mock response for testing purposes.');
+
+const mockGenerateBilingualContent = jest.fn();
+mockGenerateBilingualContent.mockResolvedValue({
+  english: 'Mock English content',
+  french: 'Mock French content',
+});
+
 export const openai = {
   chat: {
     completions: {
-      create: jest.fn().mockResolvedValue(mockChatCompletion) as jest.Mock,
+      create: mockChatCreate,
     },
   },
   embeddings: {
-    create: jest.fn().mockResolvedValue(mockEmbedding) as jest.Mock,
+    create: mockEmbeddingsCreate,
   },
 };
 
-export const generateContent = jest
-  .fn()
-  .mockResolvedValue('This is a mock response for testing purposes.') as jest.Mock;
-export const generateBilingualContent = jest.fn().mockResolvedValue({
-  english: 'Mock English content',
-  french: 'Mock French content',
-}) as jest.Mock;
+export const generateContent = mockGenerateContent;
+export const generateBilingualContent = mockGenerateBilingualContent;
