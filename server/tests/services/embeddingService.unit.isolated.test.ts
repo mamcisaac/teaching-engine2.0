@@ -1,47 +1,43 @@
 import { describe, it, expect, jest, beforeEach } from '@jest/globals';
 import { EmbeddingService } from '../../src/services/embeddingService';
 
-// Manually mock the dependencies
-jest.mock('../../src/prisma', () => ({
-  prisma: {
-    outcomeEmbedding: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
+// Create manual mocks for dependencies
+const mockPrisma = {
+  outcomeEmbedding: {
+    findUnique: jest.fn(),
+    findMany: jest.fn(),
+    create: jest.fn(),
+    createMany: jest.fn(),
+    deleteMany: jest.fn(),
+  },
+};
+
+const mockOpenAI = {
+  embeddings: {
+    create: jest.fn(),
+  },
+  chat: {
+    completions: {
       create: jest.fn(),
-      createMany: jest.fn(),
-      deleteMany: jest.fn(),
     },
   },
+};
+
+// Mock the modules
+jest.mock('../../src/prisma', () => ({
+  prisma: mockPrisma,
 }));
 
 jest.mock('../../src/services/llmService', () => ({
-  openai: {
-    embeddings: {
-      create: jest.fn(),
-    },
-    chat: {
-      completions: {
-        create: jest.fn(),
-      },
-    },
-  },
+  openai: mockOpenAI,
 }));
 
 describe('EmbeddingService Unit Tests', () => {
   let embeddingService: EmbeddingService;
-  let mockPrisma: jest.Mocked<typeof prisma>;
-  let mockOpenAI: jest.Mocked<typeof openai>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     // Clear all mocks
     jest.clearAllMocks();
-
-    // Get mocked instances
-    const { prisma } = await import('../../src/prisma');
-    const { openai } = await import('../../src/services/llmService');
-
-    mockPrisma = prisma;
-    mockOpenAI = openai;
 
     // Create service instance
     embeddingService = new EmbeddingService();

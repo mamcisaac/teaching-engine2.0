@@ -1,11 +1,14 @@
 import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
 import { EmbeddingService } from '../../src/services/embeddingService';
 import { openai } from '../../src/services/llmService';
-import { prisma as mockPrisma } from '../../src/prisma';
+import { prisma } from '../../src/prisma';
+
+// Get the mocked version
+const mockPrisma = jest.mocked(prisma);
+const mockOpenAI = jest.mocked(openai);
 
 describe('EmbeddingService', () => {
   let embeddingService: EmbeddingService;
-  const mockOpenAI = openai as unknown;
 
   beforeEach(() => {
     embeddingService = new EmbeddingService();
@@ -23,16 +26,16 @@ describe('EmbeddingService', () => {
 
     it('should generate and store a new embedding', async () => {
       // Mock no existing embedding
-      (mockPrisma.outcomeEmbedding.findUnique as jest.Mock).mockResolvedValue(null);
+      mockPrisma.outcomeEmbedding.findUnique.mockResolvedValue(null);
 
       // Mock OpenAI response
-      (mockOpenAI.embeddings.create as jest.Mock).mockResolvedValue({
+      mockOpenAI.embeddings.create.mockResolvedValue({
         data: [{ embedding: mockEmbedding }],
         usage: { total_tokens: 10 },
       });
 
       // Mock create
-      (mockPrisma.outcomeEmbedding.create as jest.Mock).mockResolvedValue({
+      mockPrisma.outcomeEmbedding.create.mockResolvedValue({
         outcomeId,
         embedding: mockEmbedding,
         model: 'text-embedding-3-small',
@@ -72,7 +75,7 @@ describe('EmbeddingService', () => {
         model: 'text-embedding-3-small',
       };
 
-      (mockPrisma.outcomeEmbedding.findUnique as jest.Mock).mockResolvedValue(existingEmbedding);
+      mockPrisma.outcomeEmbedding.findUnique.mockResolvedValue(existingEmbedding);
 
       const result = await embeddingService.generateEmbedding(outcomeId, text);
 
@@ -93,9 +96,7 @@ describe('EmbeddingService', () => {
     });
 
     it('should handle errors gracefully', async () => {
-      (mockPrisma.outcomeEmbedding.findUnique as jest.Mock).mockRejectedValue(
-        new Error('Database error'),
-      );
+      mockPrisma.outcomeEmbedding.findUnique.mockRejectedValue(new Error('Database error'));
 
       const result = await embeddingService.generateEmbedding(outcomeId, text);
 
@@ -112,16 +113,16 @@ describe('EmbeddingService', () => {
 
     it('should process outcomes in batches', async () => {
       // Mock no existing embeddings
-      (mockPrisma.outcomeEmbedding.findMany as jest.Mock).mockResolvedValue([]);
+      mockPrisma.outcomeEmbedding.findMany.mockResolvedValue([]);
 
       // Mock OpenAI batch response
-      (mockOpenAI.embeddings.create as jest.Mock).mockResolvedValue({
+      mockOpenAI.embeddings.create.mockResolvedValue({
         data: outcomes.map(() => ({ embedding: Array(1536).fill(0.1) })),
         usage: { total_tokens: 30 },
       });
 
       // Mock createMany
-      (mockPrisma.outcomeEmbedding.createMany as jest.Mock).mockResolvedValue({ count: 3 });
+      mockPrisma.outcomeEmbedding.createMany.mockResolvedValue({ count: 3 });
 
       const results = await embeddingService.generateBatchEmbeddings(outcomes);
 
@@ -133,7 +134,7 @@ describe('EmbeddingService', () => {
 
     it('should skip outcomes with existing embeddings', async () => {
       // Mock one existing embedding
-      (mockPrisma.outcomeEmbedding.findMany as jest.Mock).mockResolvedValue([
+      mockPrisma.outcomeEmbedding.findMany.mockResolvedValue([
         {
           outcomeId: 'outcome-1',
           embedding: Array(1536).fill(0.1),
@@ -142,12 +143,12 @@ describe('EmbeddingService', () => {
       ]);
 
       // Mock OpenAI response for remaining outcomes
-      (mockOpenAI.embeddings.create as jest.Mock).mockResolvedValue({
+      mockOpenAI.embeddings.create.mockResolvedValue({
         data: [{ embedding: Array(1536).fill(0.2) }, { embedding: Array(1536).fill(0.3) }],
         usage: { total_tokens: 20 },
       });
 
-      (mockPrisma.outcomeEmbedding.createMany as jest.Mock).mockResolvedValue({ count: 2 });
+      mockPrisma.outcomeEmbedding.createMany.mockResolvedValue({ count: 2 });
 
       const results = await embeddingService.generateBatchEmbeddings(outcomes);
 
@@ -203,12 +204,12 @@ describe('EmbeddingService', () => {
 
     it('should find similar outcomes above threshold', async () => {
       // Mock target embedding
-      (mockPrisma.outcomeEmbedding.findUnique as jest.Mock).mockResolvedValue({
+      mockPrisma.outcomeEmbedding.findUnique.mockResolvedValue({
         embedding: targetEmbedding,
       });
 
       // Mock all embeddings
-      (mockPrisma.outcomeEmbedding.findMany as jest.Mock).mockResolvedValue([
+      mockPrisma.outcomeEmbedding.findMany.mockResolvedValue([
         { outcomeId: 'outcome-1', embedding: [0.9, 0.1, 0] },
         { outcomeId: 'outcome-2', embedding: [0, 1, 0] },
         { outcomeId: 'outcome-3', embedding: [0.95, 0.05, 0] },
@@ -222,7 +223,7 @@ describe('EmbeddingService', () => {
     });
 
     it('should return empty array if target embedding not found', async () => {
-      (mockPrisma.outcomeEmbedding.findUnique as jest.Mock).mockResolvedValue(null);
+      mockPrisma.outcomeEmbedding.findUnique.mockResolvedValue(null);
 
       const results = await embeddingService.findSimilarOutcomes(targetOutcomeId, 0.8, 10);
 
@@ -230,7 +231,7 @@ describe('EmbeddingService', () => {
     });
 
     it('should limit results to specified limit', async () => {
-      (mockPrisma.outcomeEmbedding.findUnique as jest.Mock).mockResolvedValue({
+      mockPrisma.outcomeEmbedding.findUnique.mockResolvedValue({
         embedding: targetEmbedding,
       });
 
@@ -242,7 +243,7 @@ describe('EmbeddingService', () => {
           embedding: [0.9 + i * 0.001, 0.1, 0], // Slightly different similarities
         }));
 
-      (mockPrisma.outcomeEmbedding.findMany as jest.Mock).mockResolvedValue(manyEmbeddings);
+      mockPrisma.outcomeEmbedding.findMany.mockResolvedValue(manyEmbeddings);
 
       const results = await embeddingService.findSimilarOutcomes(targetOutcomeId, 0.8, 5);
 
@@ -252,7 +253,7 @@ describe('EmbeddingService', () => {
 
   describe('cleanupOldEmbeddings', () => {
     it('should delete embeddings for different models', async () => {
-      (mockPrisma.outcomeEmbedding.deleteMany as jest.Mock).mockResolvedValue({ count: 10 });
+      mockPrisma.outcomeEmbedding.deleteMany.mockResolvedValue({ count: 10 });
 
       const count = await embeddingService.cleanupOldEmbeddings('text-embedding-3-small');
 
@@ -263,9 +264,7 @@ describe('EmbeddingService', () => {
     });
 
     it('should handle cleanup errors gracefully', async () => {
-      (mockPrisma.outcomeEmbedding.deleteMany as jest.Mock).mockRejectedValue(
-        new Error('Database error'),
-      );
+      mockPrisma.outcomeEmbedding.deleteMany.mockRejectedValue(new Error('Database error'));
 
       const count = await embeddingService.cleanupOldEmbeddings('text-embedding-3-small');
 
@@ -276,7 +275,7 @@ describe('EmbeddingService', () => {
   describe('getEmbedding', () => {
     it('should retrieve embedding from database', async () => {
       const mockEmbedding = Array(1536).fill(0.1);
-      (mockPrisma.outcomeEmbedding.findUnique as jest.Mock).mockResolvedValue({
+      mockPrisma.outcomeEmbedding.findUnique.mockResolvedValue({
         embedding: mockEmbedding,
       });
 
@@ -286,7 +285,7 @@ describe('EmbeddingService', () => {
     });
 
     it('should return null if embedding not found', async () => {
-      (mockPrisma.outcomeEmbedding.findUnique as jest.Mock).mockResolvedValue(null);
+      mockPrisma.outcomeEmbedding.findUnique.mockResolvedValue(null);
 
       const result = await embeddingService.getEmbedding('outcome-123');
 
@@ -294,9 +293,7 @@ describe('EmbeddingService', () => {
     });
 
     it('should handle errors gracefully', async () => {
-      (mockPrisma.outcomeEmbedding.findUnique as jest.Mock).mockRejectedValue(
-        new Error('Database error'),
-      );
+      mockPrisma.outcomeEmbedding.findUnique.mockRejectedValue(new Error('Database error'));
 
       const result = await embeddingService.getEmbedding('outcome-123');
 

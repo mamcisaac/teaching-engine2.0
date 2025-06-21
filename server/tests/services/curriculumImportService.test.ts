@@ -6,12 +6,17 @@ import { prisma } from '../../src/prisma';
 
 describe('CurriculumImportService', () => {
   let curriculumImportService: CurriculumImportService;
-  const mockPrisma = prisma as jest.Mocked<typeof prisma>;
-  const mockEmbeddingService = embeddingService as jest.Mocked<typeof embeddingService>;
+  let mockPrisma: typeof prisma;
+  let mockEmbeddingService: typeof embeddingService;
 
-  beforeEach(() => {
-    curriculumImportService = new CurriculumImportService();
+  beforeEach(async () => {
     jest.clearAllMocks();
+
+    // Get mocked instances
+    mockPrisma = prisma as jest.Mocked<typeof prisma>;
+    mockEmbeddingService = embeddingService as jest.Mocked<typeof embeddingService>;
+
+    curriculumImportService = new CurriculumImportService();
   });
 
   afterEach(() => {
@@ -229,8 +234,9 @@ Test,123`;
         }));
 
       (mockPrisma.outcome.findUnique as jest.Mock).mockResolvedValue(null);
-      (mockPrisma.outcome.create as jest.Mock).mockImplementation((args) =>
-        Promise.resolve({ id: `outcome-${args.data.code}`, code: args.data.code }),
+      (mockPrisma.outcome.create as jest.Mock).mockImplementation(
+        (args: { data: { code: string } }) =>
+          Promise.resolve({ id: `outcome-${args.data.code}`, code: args.data.code }),
       );
 
       const result = await curriculumImportService.processImport(importId, manyOutcomes);

@@ -6,10 +6,19 @@ import { prisma } from '../../src/prisma';
 
 describe.skip('ClusteringService', () => {
   let clusteringService: ClusteringService;
+  let mockEmbeddingService: typeof embeddingService;
+  let mockOpenAI: typeof openai;
+  let mockPrisma: typeof prisma;
 
-  beforeEach(() => {
-    clusteringService = new ClusteringService();
+  beforeEach(async () => {
     jest.clearAllMocks();
+
+    // Get mocked instances
+    mockEmbeddingService = embeddingService as jest.Mocked<typeof embeddingService>;
+    mockOpenAI = openai as jest.Mocked<typeof openai>;
+    mockPrisma = prisma as jest.Mocked<typeof prisma>;
+
+    clusteringService = new ClusteringService();
   });
 
   afterEach(() => {
@@ -47,22 +56,24 @@ describe.skip('ClusteringService', () => {
 
     beforeEach(() => {
       // Mock outcome retrieval
-      (prisma.outcome.findMany as jest.Mock).mockResolvedValue(mockOutcomes);
+      (mockPrisma.outcome.findMany as jest.Mock).mockResolvedValue(mockOutcomes);
 
       // Mock embedding service similarity calculations
-      (embeddingService.calculateSimilarity as jest.Mock).mockImplementation((emb1, emb2) => {
-        // Simple dot product for testing
-        return emb1.reduce((sum: number, val: number, i: number) => sum + val * emb2[i], 0);
-      });
+      (mockEmbeddingService.calculateSimilarity as jest.Mock).mockImplementation(
+        (emb1: number[], emb2: number[]) => {
+          // Simple dot product for testing
+          return emb1.reduce((sum: number, val: number, i: number) => sum + val * emb2[i], 0);
+        },
+      );
 
       // Mock OpenAI theme generation
-      (openai.chat.completions.create as jest.Mock).mockResolvedValue({
+      (mockOpenAI.chat.completions.create as jest.Mock).mockResolvedValue({
         choices: [{ message: { content: 'Number Concepts' } }],
       });
 
       // Mock cluster creation
-      (prisma.outcomeCluster.create as jest.Mock).mockImplementation((args) =>
-        Promise.resolve({ id: `cluster-${Date.now()}`, ...args.data }),
+      (mockPrisma.outcomeCluster.create as jest.Mock).mockImplementation(
+        (args: { data: unknown }) => Promise.resolve({ id: `cluster-${Date.now()}`, ...args.data }),
       );
     });
 
@@ -99,7 +110,7 @@ describe.skip('ClusteringService', () => {
           embedding: { embedding: [Math.random(), Math.random(), Math.random()] },
         }));
 
-      (prisma.outcome.findMany as jest.Mock).mockResolvedValue(manyOutcomes);
+      (mockPrisma.outcome.findMany as jest.Mock).mockResolvedValue(manyOutcomes);
 
       const results = await clusteringService.clusterOutcomes(importId, {
         maxClusters: 5,
@@ -113,7 +124,7 @@ describe.skip('ClusteringService', () => {
         useAISuggestions: true,
       });
 
-      expect(openai.chat.completions.create).toHaveBeenCalled();
+      expect(mockOpenAI.chat.completions.create).toHaveBeenCalled();
       expect(results[0].suggestedTheme).toBeDefined();
     });
 
@@ -122,12 +133,12 @@ describe.skip('ClusteringService', () => {
         useAISuggestions: false,
       });
 
-      expect(openai.chat.completions.create).not.toHaveBeenCalled();
+      expect(mockOpenAI.chat.completions.create).not.toHaveBeenCalled();
       expect(results[0].suggestedTheme).toBeUndefined();
     });
 
     it('should handle empty outcome list', async () => {
-      (prisma.outcome.findMany as jest.Mock).mockResolvedValue([]);
+      (mockPrisma.outcome.findMany as jest.Mock).mockResolvedValue([]);
 
       const results = await clusteringService.clusterOutcomes(importId);
 
@@ -141,13 +152,13 @@ describe.skip('ClusteringService', () => {
         { id: 'outcome-2', code: 'M1.2', description: 'Add', embedding: null },
       ];
 
-      (prisma.outcome.findMany as jest.Mock).mockResolvedValue(outcomesWithoutEmbeddings);
+      (mockPrisma.outcome.findMany as jest.Mock).mockResolvedValue(outcomesWithoutEmbeddings);
 
       // Mock embedding generation
-      (embeddingService.generateBatchEmbeddings as jest.Mock).mockResolvedValue([]);
+      (mockEmbeddingService.generateBatchEmbeddings as jest.Mock).mockResolvedValue([]);
 
       // Mock re-fetch with embeddings
-      (prisma.outcome.findMany as jest.Mock)
+      (mockPrisma.outcome.findMany as jest.Mock)
         .mockResolvedValueOnce(outcomesWithoutEmbeddings)
         .mockResolvedValueOnce([
           { ...outcomesWithoutEmbeddings[0], embedding: { embedding: [1, 0, 0] } },
@@ -156,7 +167,7 @@ describe.skip('ClusteringService', () => {
 
       await clusteringService.clusterOutcomes(importId);
 
-      expect(embeddingService.generateBatchEmbeddings).toHaveBeenCalled();
+      expect(mockEmbeddingService.generateBatchEmbeddings).toHaveBeenCalled();
     });
 
     it('should determine cluster types correctly', async () => {
@@ -188,7 +199,7 @@ describe.skip('ClusteringService', () => {
         },
       ];
 
-      (prisma.outcome.findMany as jest.Mock).mockResolvedValue(typedOutcomes);
+      (mockPrisma.outcome.findMany as jest.Mock).mockResolvedValue(typedOutcomes);
 
       const results = await clusteringService.clusterOutcomes(importId);
 
@@ -205,14 +216,14 @@ describe.skip('ClusteringService', () => {
       const importId = 'import-123';
 
       // Mock deletion
-      (prisma.outcomeCluster.deleteMany as jest.Mock).mockResolvedValue({ count: 3 });
+      (mockPrisma.outcomeCluster.deleteMany as jest.Mock).mockResolvedValue({ count: 3 });
 
       // Mock outcomes for new clustering
-      (prisma.outcome.findMany as jest.Mock).mockResolvedValue([]);
+      (mockPrisma.outcome.findMany as jest.Mock).mockResolvedValue([]);
 
       await clusteringService.reclusterOutcomes(importId);
 
-      expect(prisma.outcomeCluster.deleteMany).toHaveBeenCalledWith({
+      expect(mockPrisma.outcomeCluster.deleteMany).toHaveBeenCalledWith({
         where: { importId },
       });
     });
@@ -239,7 +250,7 @@ describe.skip('ClusteringService', () => {
         },
       ];
 
-      (prisma.outcomeCluster.findMany as jest.Mock).mockResolvedValue(mockClusters);
+      (mockPrisma.outcomeCluster.findMany as jest.Mock).mockResolvedValue(mockClusters);
 
       const results = await clusteringService.getClusters('import-123');
 
@@ -263,9 +274,9 @@ describe.skip('ClusteringService', () => {
         { outcomeId: 'outcome-3', similarity: 0.82 },
       ];
 
-      (embeddingService.findSimilarOutcomes as jest.Mock).mockResolvedValue(mockSimilarities);
+      (mockEmbeddingService.findSimilarOutcomes as jest.Mock).mockResolvedValue(mockSimilarities);
 
-      (prisma.outcome.findMany as jest.Mock).mockResolvedValue([
+      (mockPrisma.outcome.findMany as jest.Mock).mockResolvedValue([
         { id: 'outcome-2', code: 'M1.2', description: 'Add numbers' },
         { id: 'outcome-3', code: 'M1.3', description: 'Subtract numbers' },
       ]);
@@ -282,7 +293,7 @@ describe.skip('ClusteringService', () => {
     });
 
     it('should handle no similar outcomes', async () => {
-      (embeddingService.findSimilarOutcomes as jest.Mock).mockResolvedValue([]);
+      (mockEmbeddingService.findSimilarOutcomes as jest.Mock).mockResolvedValue([]);
 
       const results = await clusteringService.suggestSimilarOutcomes('outcome-1');
 
@@ -348,7 +359,7 @@ describe.skip('ClusteringService', () => {
           embedding: { embedding: [0.99 + i * 0.001, 0.01, 0] },
         }));
 
-      (prisma.outcome.findMany as jest.Mock).mockResolvedValue(similarOutcomes);
+      (mockPrisma.outcome.findMany as jest.Mock).mockResolvedValue(similarOutcomes);
 
       const results = await clusteringService.clusterOutcomes('import-123', {
         similarityThreshold: 0.99,
@@ -368,7 +379,7 @@ describe.skip('ClusteringService', () => {
         { id: 'o3', code: 'E1', description: 'English', embedding: { embedding: [0, 0, 1] } },
       ];
 
-      (prisma.outcome.findMany as jest.Mock).mockResolvedValue(orthogonalOutcomes);
+      (mockPrisma.outcome.findMany as jest.Mock).mockResolvedValue(orthogonalOutcomes);
 
       const results = await clusteringService.clusterOutcomes('import-123', {
         similarityThreshold: 0.5,
@@ -380,13 +391,13 @@ describe.skip('ClusteringService', () => {
     });
 
     it('should handle errors during theme generation gracefully', async () => {
-      (prisma.outcome.findMany as jest.Mock).mockResolvedValue([
+      (mockPrisma.outcome.findMany as jest.Mock).mockResolvedValue([
         { id: 'o1', code: 'M1', description: 'Math', embedding: { embedding: [1, 0, 0] } },
         { id: 'o2', code: 'M2', description: 'More Math', embedding: { embedding: [0.9, 0.1, 0] } },
       ]);
 
       // Mock OpenAI error
-      (openai.chat.completions.create as jest.Mock).mockRejectedValue(new Error('API error'));
+      (mockOpenAI.chat.completions.create as jest.Mock).mockRejectedValue(new Error('API error'));
 
       const results = await clusteringService.clusterOutcomes('import-123', {
         useAISuggestions: true,
