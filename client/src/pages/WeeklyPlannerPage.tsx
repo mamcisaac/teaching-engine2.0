@@ -21,13 +21,14 @@ import type {
 } from '../types';
 
 // No need for separate Holiday type, using CalendarEvent from types
-import { PlannerSuggestions } from '../components/planner/PlannerSuggestions';
+// import { PlannerSuggestions } from '../components/planner/PlannerSuggestions';
 import WeekCalendarGrid from '../components/WeekCalendarGrid';
 import AutoFillButton from '../components/AutoFillButton';
 import WeeklyMaterialsChecklist from '../components/WeeklyMaterialsChecklist';
 import DownloadPrintablesButton from '../components/DownloadPrintablesButton';
 import PlannerNotificationBanner from '../components/PlannerNotificationBanner';
-import PlannerFilters, { loadPlannerFilters } from '../components/planner/PlannerFilters';
+// import PlannerFilters, { loadPlannerFilters } from '../components/planner/PlannerFilters';
+import { loadPlannerFilters } from '../components/planner/PlannerFilters';
 import CognateSummaryWidget from '../components/CognateSummaryWidget';
 import AssessmentBuilder from '../components/assessment/AssessmentBuilder';
 import { ParentMessageEditor } from '../components/ParentMessageEditor';
@@ -50,7 +51,7 @@ export default function WeeklyPlannerPage() {
   });
   const [preserveBuffer, setPreserveBuffer] = useState(true);
   const [skipLow, setSkipLow] = useState(true);
-  const [filters, setFilters] = useState<Record<string, boolean>>(() => {
+  const [filters /*, setFilters*/] = useState<Record<string, boolean>>(() => {
     try {
       return loadPlannerFilters();
     } catch (error) {
@@ -106,7 +107,7 @@ export default function WeeklyPlannerPage() {
 
   // Get milestone alerts
   const { data: alertsData, isLoading: alertsLoading } = useMilestoneAlerts();
-  
+
   // Extract alerts array from response (handle both legacy and new API)
   const milestoneAlerts = Array.isArray(alertsData) ? alertsData : alertsData?.alerts || [];
 
@@ -352,33 +353,36 @@ export default function WeeklyPlannerPage() {
 
   const handleShareWeeklySummary = () => {
     // Generate automated weekly summary content
-    const weeklyActivities = Object.values(activities || {}).filter(activity => {
+    const weeklyActivities = Object.values(activities || {}).filter((activity) => {
       // Check if this activity is scheduled for this week
-      return plan?.schedule?.some(item => item.activityId === activity.id);
+      return plan?.schedule?.some((item) => item.activityId === activity.id);
     });
 
-    const activitiesBySubject = weeklyActivities.reduce((acc, activity) => {
-      const subjectName = activity.milestone?.subject?.name || 'Other';
-      if (!acc[subjectName]) acc[subjectName] = [];
-      acc[subjectName].push(activity);
-      return acc;
-    }, {} as Record<string, Activity[]>);
+    const activitiesBySubject = weeklyActivities.reduce(
+      (acc, activity) => {
+        const subjectName = activity.milestone?.subject?.name || 'Other';
+        if (!acc[subjectName]) acc[subjectName] = [];
+        acc[subjectName].push(activity);
+        return acc;
+      },
+      {} as Record<string, Activity[]>,
+    );
 
     // Generate automated content
     const generateWeeklySummary = (language: 'fr' | 'en') => {
       const isEnglish = language === 'en';
-      
-      let content = isEnglish 
+
+      let content = isEnglish
         ? `<h2>Week of ${formatDate(weekStartDate)} - ${formatDate(weekEndDate)}</h2>`
         : `<h2>Semaine du ${formatDate(weekStartDate)} au ${formatDate(weekEndDate)}</h2>`;
 
-      content += isEnglish 
+      content += isEnglish
         ? `<p>Dear Parents,</p><p>Here's a summary of what we've been learning this week:</p>`
         : `<p>Chers parents,</p><p>Voici un résumé de ce que nous avons appris cette semaine :</p>`;
 
       Object.entries(activitiesBySubject).forEach(([subject, activities]) => {
         content += `<h3>${subject}</h3><ul>`;
-        activities.forEach(activity => {
+        activities.forEach((activity) => {
           // Use the activity title (bilingual support would need to be added to the Activity type)
           content += `<li>${activity.title}</li>`;
         });
@@ -398,8 +402,10 @@ export default function WeeklyPlannerPage() {
       timeframe: `Week of ${weekStart}`,
       contentFr: generateWeeklySummary('fr'),
       contentEn: generateWeeklySummary('en'),
-      outcomes: [...new Set(weeklyActivities.flatMap(a => a.outcomes?.map(o => o.outcome.id) || []))],
-      activities: weeklyActivities.map(a => a.id),
+      outcomes: [
+        ...new Set(weeklyActivities.flatMap((a) => a.outcomes?.map((o) => o.outcome.id) || [])),
+      ],
+      activities: weeklyActivities.map((a) => a.id),
     });
     setShowNewsletterEditor(true);
   };
@@ -713,8 +719,8 @@ export default function WeeklyPlannerPage() {
               </div>
 
               {/* Quality Scorecard */}
-              <QualityScorecard 
-                weekStart={weekStart} 
+              <QualityScorecard
+                weekStart={weekStart}
                 onSuggestionClick={(suggestion) => {
                   // Handle suggestion clicks - could open relevant sections or filters
                   if (suggestion.toLowerCase().includes('assessment')) {
@@ -752,22 +758,24 @@ export default function WeeklyPlannerPage() {
             setShowNewsletterEditor(false);
             setWeeklyPrefillData(null);
           }}
-          title={weeklyPrefillData ? "Share Weekly Summary" : "Create Parent Newsletter"}
+          title={weeklyPrefillData ? 'Share Weekly Summary' : 'Create Parent Newsletter'}
           maxWidth="4xl"
         >
           <ParentMessageEditor
-            prefillData={weeklyPrefillData || {
-              activities: Object.values(activities || {}).map((a) => a.id),
-              outcomes: Object.values(activities || {}).flatMap(
-                (a) => a.outcomes?.map((o) => o.outcome.id) || [],
-              ),
-              timeframe: `Week of ${weekStart}`,
-            }}
+            prefillData={
+              weeklyPrefillData || {
+                activities: Object.values(activities || {}).map((a) => a.id),
+                outcomes: Object.values(activities || {}).flatMap(
+                  (a) => a.outcomes?.map((o) => o.outcome.id) || [],
+                ),
+                timeframe: `Week of ${weekStart}`,
+              }
+            }
             onSave={() => {
               setShowNewsletterEditor(false);
               setWeeklyPrefillData(null);
               toast.success(
-                weeklyPrefillData 
+                weeklyPrefillData
                   ? 'Weekly summary created successfully! You can view and send it in the Parent Communications section.'
                   : 'Newsletter created successfully! You can view and edit it in the Parent Communications section.',
               );

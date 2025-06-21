@@ -56,11 +56,10 @@ describe('Embeddings Routes', () => {
   describe('GET /embeddings/status', () => {
     it('should return status when service is available', async () => {
       (embeddingService.isEmbeddingServiceAvailable as jest.Mock).mockReturnValue(true);
-      
-      const { PrismaClient } = require('@teaching-engine/database');
-      const prisma = new PrismaClient();
-      prisma.outcome.count.mockResolvedValue(100);
-      prisma.outcomeEmbedding.count.mockResolvedValue(80);
+
+      // Mock prisma is already available from jest setup
+      (prismaMock.outcome.count as jest.Mock).mockResolvedValue(100);
+      (prismaMock.outcomeEmbedding.count as jest.Mock).mockResolvedValue(80);
 
       const res = await request(app).get('/embeddings/status');
 
@@ -105,9 +104,7 @@ describe('Embeddings Routes', () => {
     });
 
     it('should reject request without admin token', async () => {
-      const res = await request(app)
-        .post('/embeddings/generate')
-        .send({ forceRegenerate: false });
+      const res = await request(app).post('/embeddings/generate').send({ forceRegenerate: false });
 
       expect(res.status).toBe(403);
       expect(res.body).toEqual({ error: 'Invalid admin token' });
@@ -145,9 +142,7 @@ describe('Embeddings Routes', () => {
         },
       ]);
 
-      const res = await request(app)
-        .get('/embeddings/similar/outcome-1')
-        .query({ limit: 5 });
+      const res = await request(app).get('/embeddings/similar/outcome-1').query({ limit: 5 });
 
       expect(res.status).toBe(200);
       expect(res.body.results).toHaveLength(1);
@@ -191,9 +186,7 @@ describe('Embeddings Routes', () => {
     it('should return 400 for missing query', async () => {
       (embeddingService.isEmbeddingServiceAvailable as jest.Mock).mockReturnValue(true);
 
-      const res = await request(app)
-        .post('/embeddings/search')
-        .send({ limit: 5 });
+      const res = await request(app).post('/embeddings/search').send({ limit: 5 });
 
       expect(res.status).toBe(400);
       expect(res.body).toEqual({ error: 'Query text is required' });
@@ -203,10 +196,9 @@ describe('Embeddings Routes', () => {
   describe('POST /embeddings/outcome/:outcomeId', () => {
     it('should generate embedding for specific outcome', async () => {
       (embeddingService.isEmbeddingServiceAvailable as jest.Mock).mockReturnValue(true);
-      
-      const { PrismaClient } = require('@teaching-engine/database');
-      const prisma = new PrismaClient();
-      prisma.outcome.findUnique.mockResolvedValue({
+
+      // Mock prisma is already available from jest setup
+      (prismaMock.outcome.findUnique as jest.Mock).mockResolvedValue({
         id: 'outcome-1',
         code: 'M3.1',
         description: 'Test outcome',
@@ -235,10 +227,9 @@ describe('Embeddings Routes', () => {
 
     it('should return 404 for non-existent outcome', async () => {
       (embeddingService.isEmbeddingServiceAvailable as jest.Mock).mockReturnValue(true);
-      
-      const { PrismaClient } = require('@teaching-engine/database');
-      const prisma = new PrismaClient();
-      prisma.outcome.findUnique.mockResolvedValue(null);
+
+      // Mock prisma is already available from jest setup
+      (prismaMock.outcome.findUnique as jest.Mock).mockResolvedValue(null);
 
       const res = await request(app)
         .post('/embeddings/outcome/non-existent')

@@ -26,9 +26,13 @@ jest.mock('openai', () => {
     default: jest.fn().mockImplementation(() => ({
       embeddings: {
         create: jest.fn().mockResolvedValue({
-          data: [{
-            embedding: Array(1536).fill(0).map(() => Math.random()),
-          }],
+          data: [
+            {
+              embedding: Array(1536)
+                .fill(0)
+                .map(() => Math.random()),
+            },
+          ],
         }),
       },
     })),
@@ -43,7 +47,7 @@ jest.mock('../logger', () => ({
 }));
 
 describe('EmbeddingService', () => {
-  let prisma: any;
+  let prisma: PrismaClient;
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -119,16 +123,16 @@ describe('EmbeddingService', () => {
 
     it('should throw error if OpenAI is not configured', async () => {
       delete process.env.OPENAI_API_KEY;
-      
+
       // Force module re-evaluation to pick up missing API key
       jest.resetModules();
-      const embeddingServiceNoKey = require('../embeddingService');
-      
+      const { embeddingService: embeddingServiceNoKey } = await import('../embeddingService');
+
       prisma.outcomeEmbedding.findUnique.mockResolvedValue(null);
 
-      await expect(
-        embeddingServiceNoKey.getOrCreateOutcomeEmbedding(mockOutcome)
-      ).rejects.toThrow('OpenAI API key not configured');
+      await expect(embeddingServiceNoKey.getOrCreateOutcomeEmbedding(mockOutcome)).rejects.toThrow(
+        'OpenAI API key not configured',
+      );
     });
   });
 
@@ -140,7 +144,7 @@ describe('EmbeddingService', () => {
 
       // Orthogonal vectors should have similarity 0
       expect(embeddingService.cosineSimilarity(vector1, vector2)).toBe(0);
-      
+
       // Identical vectors should have similarity 1
       expect(embeddingService.cosineSimilarity(vector1, vector3)).toBe(1);
     });
@@ -149,8 +153,9 @@ describe('EmbeddingService', () => {
       const vector1 = [1, 0, 0];
       const vector2 = [1, 0];
 
-      expect(() => embeddingService.cosineSimilarity(vector1, vector2))
-        .toThrow('Embeddings must have the same dimensions');
+      expect(() => embeddingService.cosineSimilarity(vector1, vector2)).toThrow(
+        'Embeddings must have the same dimensions',
+      );
     });
 
     it('should handle zero vectors', () => {
@@ -291,9 +296,9 @@ describe('EmbeddingService', () => {
     it('should throw error if no embedding found for outcome', async () => {
       prisma.outcomeEmbedding.findUnique.mockResolvedValue(null);
 
-      await expect(
-        embeddingService.findSimilarOutcomes('outcome-1')
-      ).rejects.toThrow('No embedding found for outcome outcome-1');
+      await expect(embeddingService.findSimilarOutcomes('outcome-1')).rejects.toThrow(
+        'No embedding found for outcome outcome-1',
+      );
     });
   });
 
@@ -339,11 +344,11 @@ describe('EmbeddingService', () => {
 
     it('should return false when OpenAI is not configured', () => {
       delete process.env.OPENAI_API_KEY;
-      
+
       // Force module re-evaluation to pick up missing API key
       jest.resetModules();
-      const embeddingServiceNoKey = require('../embeddingService');
-      
+      const { embeddingService: embeddingServiceNoKey } = await import('../embeddingService');
+
       expect(embeddingServiceNoKey.isEmbeddingServiceAvailable()).toBe(false);
     });
   });

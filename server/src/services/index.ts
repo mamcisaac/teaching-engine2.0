@@ -4,7 +4,7 @@ export { curriculumImportService } from './curriculumImportService';
 export { clusteringService } from './clusteringService';
 export { enhancedPlanningService } from './enhancedPlanningService';
 export { enhancedMaterialService } from './enhancedMaterialService';
-export { notificationService } from './NotificationService';
+export { notificationService } from './notificationService';
 export { cacheService } from './CacheService';
 
 // Service infrastructure
@@ -32,7 +32,7 @@ export type {
   Notification,
   NotificationPreferences,
   NotificationTemplate,
-} from './NotificationService';
+} from './notificationService';
 export type { CacheEntry, CacheOptions, CacheStats } from './CacheService';
 export type { ServiceMetrics, RetryOptions } from './base/BaseService';
 export type { ServiceHealth, ServiceRegistration } from './ServiceRegistry';
