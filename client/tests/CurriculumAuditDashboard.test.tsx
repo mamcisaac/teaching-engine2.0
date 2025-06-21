@@ -99,8 +99,8 @@ describe('CurriculumAuditDashboard', () => {
     });
 
     expect(screen.getByText('3')).toBeInTheDocument(); // Total outcomes
-    expect(screen.getByText('2 (67%)')).toBeInTheDocument(); // Covered
-    expect(screen.getByText('1 (33%)')).toBeInTheDocument(); // Assessed
+    expect(screen.getByText(/2 \(67%\)/)).toBeInTheDocument(); // Covered
+    expect(screen.getByText(/1 \(33%\)/)).toBeInTheDocument(); // Assessed
     expect(screen.getByText('1')).toBeInTheDocument(); // Not covered
   });
 

@@ -113,7 +113,9 @@ describe('QualityScorecard', () => {
       expect(screen.getByText('Strengths')).toBeInTheDocument();
     });
 
-    expect(screen.getByText('• Excellent theme consistency throughout the week')).toBeInTheDocument();
+    expect(
+      screen.getByText('• Excellent theme consistency throughout the week'),
+    ).toBeInTheDocument();
     expect(screen.getByText('• Good balance between teaching and assessment')).toBeInTheDocument();
   });
 
@@ -125,20 +127,15 @@ describe('QualityScorecard', () => {
     });
 
     expect(
-      screen.getByText('• Schedule is very full - ensure buffer time for transitions')
+      screen.getByText('• Schedule is very full - ensure buffer time for transitions'),
     ).toBeInTheDocument();
   });
 
   it('displays suggestions with action buttons', async () => {
     const onSuggestionClick = vi.fn();
     const user = userEvent.setup();
-    
-    render(
-      <QualityScorecard 
-        weekStart="2024-01-22" 
-        onSuggestionClick={onSuggestionClick}
-      />
-    );
+
+    render(<QualityScorecard weekStart="2024-01-22" onSuggestionClick={onSuggestionClick} />);
 
     await waitFor(() => {
       expect(screen.getByText('Suggestions')).toBeInTheDocument();
@@ -155,6 +152,13 @@ describe('QualityScorecard', () => {
     render(<QualityScorecard weekStart="2024-01-22" />);
 
     await waitFor(() => {
+      expect(screen.getByText('Show Detailed Analysis')).toBeInTheDocument();
+    });
+
+    const user = userEvent.setup();
+    await user.click(screen.getByText('Show Detailed Analysis'));
+
+    await waitFor(() => {
       expect(screen.getByText('Domain Analysis')).toBeInTheDocument();
     });
 
@@ -166,6 +170,13 @@ describe('QualityScorecard', () => {
 
   it('displays uncovered outcomes', async () => {
     render(<QualityScorecard weekStart="2024-01-22" />);
+
+    await waitFor(() => {
+      expect(screen.getByText('Show Detailed Analysis')).toBeInTheDocument();
+    });
+
+    const user = userEvent.setup();
+    await user.click(screen.getByText('Show Detailed Analysis'));
 
     await waitFor(() => {
       expect(screen.getByText('Uncovered Outcomes')).toBeInTheDocument();
@@ -196,7 +207,7 @@ describe('QualityScorecard', () => {
 
     // Check that metric values are displayed
     expect(screen.getByText('85%')).toBeInTheDocument(); // Assessment Balance
-    expect(screen.getByText('60%')).toBeInTheDocument(); // Engagement Variety  
+    expect(screen.getByText('60%')).toBeInTheDocument(); // Engagement Variety
     expect(screen.getByText('55%')).toBeInTheDocument(); // Vocabulary Focus
   });
 });

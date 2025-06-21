@@ -2,7 +2,7 @@
  * Contract Tests for Assessment API
  * Ensures that test mocks match real API behavior and contracts
  */
-import { describe, test, expect, beforeAll } from 'vitest';
+import { describe, it as test, expect, beforeAll } from 'vitest';
 
 // Types for API contracts
 interface Outcome {

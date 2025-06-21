@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ActivityLibrary } from '../ActivityLibrary';
+import { ActivityLibrary } from '../../ActivityLibrary';
 
 // Mock only the toast - everything else uses real APIs
 vi.mock('../../ui/use-toast', () => ({
@@ -16,13 +16,13 @@ describe.skip('ActivityLibrary Integration Tests', () => {
   beforeEach(() => {
     queryClient = new QueryClient({
       defaultOptions: {
-        queries: { 
+        queries: {
           retry: false,
           refetchOnWindowFocus: false,
         },
       },
     });
-    
+
     localStorage.setItem('token', 'integration-test-token');
   });
 
@@ -32,21 +32,15 @@ describe.skip('ActivityLibrary Integration Tests', () => {
   });
 
   const wrapper = ({ children }: { children: React.ReactNode }) => (
-    <QueryClientProvider client={queryClient}>
-      {children}
-    </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 
   it('should load activity templates from real API', async () => {
     const mockOnCreateNew = vi.fn();
-    
+
     render(
-      <ActivityLibrary 
-        showCreateButton={true} 
-        onCreateNew={mockOnCreateNew}
-        language="en"
-      />, 
-      { wrapper }
+      <ActivityLibrary showCreateButton={true} onCreateNew={mockOnCreateNew} language="en" />,
+      { wrapper },
     );
 
     // Should show header immediately
@@ -60,12 +54,12 @@ describe.skip('ActivityLibrary Integration Tests', () => {
         const countText = screen.getByText(/\d+ activit(y|ies) found/);
         expect(countText).toBeInTheDocument();
       },
-      { timeout: 10000 }
+      { timeout: 10000 },
     );
 
     // Should show either activities or empty state
     const hasActivities = !screen.queryByText('No activities found');
-    
+
     if (hasActivities) {
       // Should have grid/list toggle
       const gridButton = screen.getByRole('button', { name: /grid/i });
@@ -83,7 +77,7 @@ describe.skip('ActivityLibrary Integration Tests', () => {
       () => {
         expect(screen.getByText(/\d+ activit(y|ies) found/)).toBeInTheDocument();
       },
-      { timeout: 10000 }
+      { timeout: 10000 },
     );
 
     // Test search filter
@@ -96,7 +90,7 @@ describe.skip('ActivityLibrary Integration Tests', () => {
         // Should still show count (may be different)
         expect(screen.getByText(/\d+ activit(y|ies) found/)).toBeInTheDocument();
       },
-      { timeout: 10000 }
+      { timeout: 10000 },
     );
 
     // Test filters panel
@@ -118,12 +112,12 @@ describe.skip('ActivityLibrary Integration Tests', () => {
       () => {
         expect(screen.getByText(/\d+ activit(y|ies) found/)).toBeInTheDocument();
       },
-      { timeout: 10000 }
+      { timeout: 10000 },
     );
 
     // Only test view toggle if we have activities
     const hasActivities = !screen.queryByText('No activities found');
-    
+
     if (hasActivities) {
       // Switch to list view
       const listButton = screen.getByRole('button', { name: /list/i });
@@ -153,10 +147,12 @@ describe.skip('ActivityLibrary Integration Tests', () => {
     await waitFor(
       () => {
         // Should show error state
-        expect(screen.getByText('Unable to load activity library. Please try again.')).toBeInTheDocument();
+        expect(
+          screen.getByText('Unable to load activity library. Please try again.'),
+        ).toBeInTheDocument();
         expect(screen.getByText('Retry')).toBeInTheDocument();
       },
-      { timeout: 10000 }
+      { timeout: 10000 },
     );
   });
 
@@ -166,9 +162,12 @@ describe.skip('ActivityLibrary Integration Tests', () => {
 
     render(<ActivityLibrary />, { wrapper });
 
-    await waitFor(() => {
-      expect(screen.getByText('Retry')).toBeInTheDocument();
-    }, { timeout: 10000 });
+    await waitFor(
+      () => {
+        expect(screen.getByText('Retry')).toBeInTheDocument();
+      },
+      { timeout: 10000 },
+    );
 
     // Add token back
     localStorage.setItem('token', 'integration-test-token');
@@ -182,7 +181,7 @@ describe.skip('ActivityLibrary Integration Tests', () => {
       () => {
         expect(screen.getByText(/\d+ activit(y|ies) found/)).toBeInTheDocument();
       },
-      { timeout: 10000 }
+      { timeout: 10000 },
     );
   });
 
@@ -194,7 +193,7 @@ describe.skip('ActivityLibrary Integration Tests', () => {
       () => {
         expect(screen.getByText(/\d+ activit(y|ies) found/)).toBeInTheDocument();
       },
-      { timeout: 10000 }
+      { timeout: 10000 },
     );
 
     // Open filters to access sorting
@@ -209,7 +208,7 @@ describe.skip('ActivityLibrary Integration Tests', () => {
     // Change sort order - this should trigger new API call
     const sortSelect = screen.getByDisplayValue('Recently updated');
     fireEvent.click(sortSelect);
-    
+
     // Try to select different sort option
     await waitFor(() => {
       const titleOption = screen.queryByText('Title');
@@ -223,27 +222,21 @@ describe.skip('ActivityLibrary Integration Tests', () => {
       () => {
         expect(screen.getByText(/\d+ activit(y|ies) found/)).toBeInTheDocument();
       },
-      { timeout: 10000 }
+      { timeout: 10000 },
     );
   });
 
   it('should handle create new activity workflow', async () => {
     const mockOnCreateNew = vi.fn();
-    
-    render(
-      <ActivityLibrary 
-        showCreateButton={true}
-        onCreateNew={mockOnCreateNew}
-      />, 
-      { wrapper }
-    );
+
+    render(<ActivityLibrary showCreateButton={true} onCreateNew={mockOnCreateNew} />, { wrapper });
 
     // Wait for load
     await waitFor(
       () => {
         expect(screen.getByText('New Activity')).toBeInTheDocument();
       },
-      { timeout: 10000 }
+      { timeout: 10000 },
     );
 
     // Click create button
