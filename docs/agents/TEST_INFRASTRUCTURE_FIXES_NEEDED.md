@@ -11,6 +11,7 @@ This document outlines all remaining test infrastructure issues that need to be 
 **Root Cause**: The `pdf-parse` npm module (v1.1.1) tries to load a test PDF file using a relative path from its own directory, but the path resolution fails in our test environment.
 
 **Affected Files**:
+
 - All test files that import services using `pdf-parse`:
   - `/server/tests/server-integration.test.ts`
   - `/server/tests/aiSuggestions.test.ts`
@@ -18,6 +19,7 @@ This document outlines all remaining test infrastructure issues that need to be 
   - `/server/tests/curriculumImportIntegration.test.ts`
 
 **Fix Strategy**:
+
 ```bash
 # Option 1: Mock pdf-parse in test setup
 # Create: /server/tests/__mocks__/pdf-parse.js
@@ -48,9 +50,11 @@ jest.mock('pdf-parse', () => {
 ```
 
 **Files to Create**:
+
 - `/server/tests/__mocks__/pdf-parse.js` (new mock file)
 
 **Files to Modify**:
+
 - `/server/tests/jest.setup.ts` (add mock at the top)
 
 ---
@@ -62,19 +66,21 @@ jest.mock('pdf-parse', () => {
 **Root Cause**: Async operations continuing after test completion, likely due to missing cleanup in tests.
 
 **Affected Test Files**:
+
 - `/server/tests/aiSuggestions.test.ts`
 - `/server/tests/parentMessage.test.ts`
 
 **Fix Strategy**:
+
 ```typescript
 // Add to each affected test file's afterEach block:
 afterEach(async () => {
   // Clean up any pending timers
   jest.clearAllTimers();
-  
+
   // Wait for pending promises
-  await new Promise(resolve => setImmediate(resolve));
-  
+  await new Promise((resolve) => setImmediate(resolve));
+
   // Clean up database connections
   await prisma.$disconnect();
 });
@@ -91,6 +97,7 @@ module.exports = {
 ```
 
 **Files to Modify**:
+
 - `/server/jest.config.js` (update configuration)
 - Each affected test file (add proper cleanup)
 
@@ -101,10 +108,12 @@ module.exports = {
 **Problem**: TypeScript compilation errors due to mismatched `AuthRequest` interfaces
 
 **Root Cause**: Multiple definitions of AuthRequest with incompatible structures:
+
 - `/server/src/middleware/auth.ts`: `{ user?: { userId: string } }`
 - Various routes expecting: `{ user?: { id: number; userId?: string } }`
 
 **Fix Strategy**:
+
 ```typescript
 // Create a single source of truth
 // File: /server/src/types/auth.ts
@@ -122,9 +131,11 @@ import { AuthRequest } from '../types/auth';
 ```
 
 **Files to Create**:
+
 - `/server/src/types/auth.ts` (new shared type definition)
 
 **Files to Modify** (update imports only):
+
 - `/server/src/middleware/auth.ts`
 - `/server/src/routes/aiSuggestions.ts`
 - `/server/src/routes/planning.ts`
@@ -134,6 +145,7 @@ import { AuthRequest } from '../types/auth';
 - All other route files using AuthRequest
 
 **Change Pattern**:
+
 ```typescript
 // Remove local interface definition
 - interface AuthRequest extends Request { ... }
@@ -151,7 +163,9 @@ import { AuthRequest } from '../types/auth';
 **Affected Files and Specific Fixes**:
 
 #### `/server/src/services/planning/__tests__/weeklyPlanDiagnostics.test.ts`
+
 Lines with `as any` casts (125, 127, 134, 239, 240, 241, etc.):
+
 ```typescript
 // Replace all instances of:
 (prisma.lessonPlan.findFirst as any).mockResolvedValue(...)
@@ -162,12 +176,15 @@ mockFindFirst.mockResolvedValue(...);
 ```
 
 #### `/server/src/__tests__/curriculumImport.test.ts`
+
 Remove unused import:
+
 ```typescript
 - import { curriculumImportService } from '../services/curriculumImportService';
 ```
 
 #### `/server/src/routes/__tests__/planning.test.ts`
+
 Already fixed in previous work - no additional changes needed.
 
 ---
@@ -177,6 +194,7 @@ Already fixed in previous work - no additional changes needed.
 **Problem**: Jest warns about duplicate manual mocks in dist and src directories
 
 **Warning Messages**:
+
 ```
 jest-haste-map: duplicate manual mock found: logger
   * <rootDir>/dist/__mocks__/logger.js
@@ -184,6 +202,7 @@ jest-haste-map: duplicate manual mock found: logger
 ```
 
 **Fix Strategy**:
+
 ```json
 // Add to /server/.gitignore:
 dist/
@@ -197,6 +216,7 @@ module.exports = {
 ```
 
 **Files to Modify**:
+
 - `/server/.gitignore` (add dist/)
 - `/server/jest.config.js` (add ignore patterns)
 
@@ -207,6 +227,7 @@ module.exports = {
 **Problem**: Multiple "database reset" messages indicating inefficient test setup
 
 **Fix Strategy**:
+
 ```typescript
 // Create: /server/tests/helpers/testDbSetup.ts
 import { prisma } from '../../src/prisma';
@@ -232,9 +253,11 @@ export async function cleanupTestDb() {
 ```
 
 **Files to Create**:
+
 - `/server/tests/helpers/testDbSetup.ts`
 
 **Files to Modify**:
+
 - Update test files to use shared setup/cleanup utilities
 
 ---
@@ -242,20 +265,24 @@ export async function cleanupTestDb() {
 ## 🔧 Implementation Order (To Avoid Conflicts)
 
 ### Phase 1: Create New Files (No Conflicts)
+
 1. `/server/tests/__mocks__/pdf-parse.js`
 2. `/server/src/types/auth.ts`
 3. `/server/tests/helpers/testDbSetup.ts`
 
 ### Phase 2: Update Configuration Files (Low Conflict Risk)
+
 1. `/server/jest.config.js` - Add timeout, environment, and ignore patterns
 2. `/server/.gitignore` - Add dist/ directory
 3. `/server/tests/jest.setup.ts` - Add global mocks
 
 ### Phase 3: Update Import Statements (Medium Conflict Risk)
+
 1. Update all route files to import AuthRequest from shared location
 2. Update test files to import shared test utilities
 
 ### Phase 4: Fix Test Files (Higher Conflict Risk)
+
 1. Add cleanup blocks to test files with teardown errors
 2. Replace `as any` casts with properly typed mocks
 3. Remove unused imports and variables
@@ -331,6 +358,43 @@ echo "✅ Test infrastructure fixes applied!"
 
 ---
 
-*Last Updated: December 2024*
-*Created by: Agent Planner*
-*Purpose: Enable clean test runs without modifying core functionality*
+_Last Updated: December 2024_
+_Created by: Agent Planner_
+_Purpose: Enable clean test runs without modifying core functionality_
+
+---
+
+## ✅ Fixes Completed in PR #224
+
+### ESLint Fixes Applied
+
+Successfully fixed all ESLint errors in:
+
+- `server/src/services/planning/__tests__/weeklyPlanDiagnostics.test.ts` - Replaced `any` with `jest.Mock`
+- `server/src/services/planning/weeklyPlanDiagnostics.ts` - Removed unused `endOfWeek` import
+- `server/tests/aiPerformanceBenchmarks.test.ts` - Fixed `any` types, removed unused variables
+- `server/tests/smartMaterialsIntegration.test.ts` - Fixed `any` types, removed unused variables
+
+### TypeScript Compilation Fixes Applied
+
+Fixed all `AuthRequest` interface issues in:
+
+- `server/src/routes/aiSuggestions.ts` - Changed `req.userId` to `req.user!.userId`
+- `server/src/routes/assessment.ts` - Changed `req.userId` to `req.user!.userId`
+- `server/src/routes/cognate.ts` - Changed `req.userId` to `req.user!.userId`
+- `server/src/routes/curriculumImport.ts` - Changed `req.user?.id` to `req.user?.userId`
+- `server/src/routes/mediaResource.ts` - Changed `req.userId` to `req.user!.userId`
+- `server/src/routes/oralRoutine.ts` - Changed `req.userId` to `req.user!.userId`
+- `server/src/routes/smartGoal.ts` - Changed `req.userId` to `req.user!.userId`
+- `server/src/routes/thematicUnit.ts` - Changed `req.userId` to `req.user!.userId`
+
+### Unit Tests Added
+
+- `client/src/components/planning/__tests__/ActivitySuggestions.test.tsx` - 7 test cases
+- `client/src/components/planning/__tests__/ActivityLibrary.test.tsx` - 8 test cases
+
+### Current CI Status
+
+- ✅ Lint phase passes
+- ✅ Build phase passes
+- ❌ Test phase fails due to missing PDF file (pre-existing issue)
