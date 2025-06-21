@@ -1,5 +1,4 @@
 import { jest } from '@jest/globals';
-import type { Mock } from 'jest-mock';
 
 const mockChatCompletion = {
   id: 'mock-completion-id',
@@ -44,18 +43,18 @@ const mockEmbedding = {
 export const openai = {
   chat: {
     completions: {
-      create: jest.fn().mockResolvedValue(mockChatCompletion) as Mock,
+      create: jest.fn().mockResolvedValue(mockChatCompletion) as jest.Mock,
     },
   },
   embeddings: {
-    create: jest.fn().mockResolvedValue(mockEmbedding) as Mock,
+    create: jest.fn().mockResolvedValue(mockEmbedding) as jest.Mock,
   },
 };
 
 export const generateContent = jest
   .fn()
-  .mockResolvedValue('This is a mock response for testing purposes.') as Mock<Promise<string>>;
+  .mockResolvedValue('This is a mock response for testing purposes.') as jest.Mock;
 export const generateBilingualContent = jest.fn().mockResolvedValue({
   english: 'Mock English content',
   french: 'Mock French content',
-}) as Mock<Promise<{ english: string; french: string }>>;
+}) as jest.Mock;
