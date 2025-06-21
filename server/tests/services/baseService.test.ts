@@ -69,7 +69,7 @@ describe('BaseService', () => {
       const resultPromise = testService.testWithRetry(mockOperation, { maxRetries: 3 });
 
       // Fast-forward through delays
-      jest.runAllTimers();
+      await jest.runAllTimersAsync();
 
       const result = await resultPromise;
 

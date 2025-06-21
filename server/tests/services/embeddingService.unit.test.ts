@@ -45,6 +45,13 @@ describe('EmbeddingService Unit Tests', () => {
     mockPrisma = prisma;
     mockOpenAI = openai;
 
+    // Ensure openai is defined for the service
+    if (!mockOpenAI.embeddings) {
+      mockOpenAI.embeddings = {
+        create: jest.fn(),
+      };
+    }
+
     // Create service instance
     embeddingService = new EmbeddingService();
   });

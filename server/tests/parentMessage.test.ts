@@ -63,7 +63,7 @@ describe('Parent Message API', () => {
         data: {
           title: 'Winter Vocabulary',
           subjectId: subject.id,
-          userId: 1,
+          userId: auth.userId!,
         },
       });
 
@@ -71,7 +71,7 @@ describe('Parent Message API', () => {
         data: {
           title: 'Winter Words Practice',
           milestoneId: milestone.id,
-          userId: 1,
+          userId: auth.userId!,
         },
       });
 
@@ -118,18 +118,22 @@ describe('Parent Message API', () => {
 
   describe('GET /api/parent-messages', () => {
     it('should return all parent messages for the authenticated user', async () => {
+      // Get the authenticated user ID
+      const userId = auth.userId;
+      if (!userId) throw new Error('No authenticated user');
+
       // Create test messages
       await prisma.parentMessage.createMany({
         data: [
           {
-            userId: 1,
+            userId: userId,
             title: 'Newsletter 1',
             timeframe: 'Week 1',
             contentFr: 'Contenu 1',
             contentEn: 'Content 1',
           },
           {
-            userId: 1,
+            userId: userId,
             title: 'Newsletter 2',
             timeframe: 'Week 2',
             contentFr: 'Contenu 2',
