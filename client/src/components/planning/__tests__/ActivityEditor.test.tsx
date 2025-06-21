@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { vi, type MockedFunction } from 'vitest';
+import { vi } from 'vitest';
 import { ActivityEditor } from '../../ActivityEditor';
 
 // Mock the toast hook
@@ -52,27 +52,25 @@ describe.skip('ActivityEditor', () => {
     localStorage.setItem('token', 'test-token');
 
     // Mock themes fetch with proper response
-    (global.fetch as MockedFunction<typeof fetch>).mockImplementation(
-      (url: string | URL | Request) => {
-        const urlString = url.toString();
-        if (urlString.includes('/api/themes')) {
-          return Promise.resolve({
-            ok: true,
-            json: async () => mockThemes,
-          } as Response);
-        }
-        if (urlString.includes('/api/activity-templates')) {
-          return Promise.resolve({
-            ok: true,
-            json: async () => ({ ...mockActivity, id: 1 }),
-          } as Response);
-        }
+    (global.fetch as ReturnType<typeof vi.fn>).mockImplementation((url: string | URL | Request) => {
+      const urlString = url.toString();
+      if (urlString.includes('/api/themes')) {
         return Promise.resolve({
           ok: true,
-          json: async () => ({}),
+          json: async () => mockThemes,
         } as Response);
-      },
-    );
+      }
+      if (urlString.includes('/api/activity-templates')) {
+        return Promise.resolve({
+          ok: true,
+          json: async () => ({ ...mockActivity, id: 1 }),
+        } as Response);
+      }
+      return Promise.resolve({
+        ok: true,
+        json: async () => ({}),
+      } as Response);
+    });
   });
 
   afterEach(() => {
@@ -80,13 +78,13 @@ describe.skip('ActivityEditor', () => {
     queryClient.clear();
   });
 
-  it('renders when closed', () => {
-    render(<ActivityEditor open={false} onClose={vi.fn()} onSave={vi.fn()} language="en" />, {
+  it('renders the activity editor', () => {
+    render(<ActivityEditor onSave={vi.fn()} onCancel={vi.fn()} />, {
       wrapper,
     });
 
-    // When closed, the component shouldn't render (depending on implementation)
-    // Since this is a stub component, let's just check the container exists
-    expect(wrapper).toBeDefined();
+    // Check that the component renders
+    expect(screen.getByText('Activity Editor')).toBeInTheDocument();
+    expect(screen.getByText('Activity ID: New Activity')).toBeInTheDocument();
   });
 });

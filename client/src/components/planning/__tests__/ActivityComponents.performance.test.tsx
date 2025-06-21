@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { vi, describe, it, expect, beforeEach, afterEach, type MockedFunction } from 'vitest';
+import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { ActivitySuggestions } from '../../ActivitySuggestions';
 import { ActivityLibrary } from '../../ActivityLibrary';
 
@@ -84,14 +84,14 @@ describe.skip('Activity Components Performance Tests', () => {
     it('should render large dataset of suggestions efficiently', async () => {
       const largeDataset = generateLargeActivityDataset(100);
 
-      (global.fetch as MockedFunction<typeof fetch>).mockResolvedValueOnce({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => largeDataset,
       } as Response);
 
       markPerformance('render-start');
 
-      render(<ActivitySuggestions outcomeIds={['FR4.1', 'FR4.2', 'FR4.3']} language="en" />, {
+      render(<ActivitySuggestions outcomeIds={['FR4.1', 'FR4.2', 'FR4.3']} />, {
         wrapper,
       });
 
@@ -139,7 +139,7 @@ describe.skip('Activity Components Performance Tests', () => {
       const dataset = generateLargeActivityDataset(50);
 
       // Mock different responses for different filters
-      (global.fetch as MockedFunction<typeof fetch>)
+      (global.fetch as ReturnType<typeof vi.fn>)
         .mockResolvedValueOnce({
           ok: true,
           json: async () => dataset,
@@ -153,7 +153,7 @@ describe.skip('Activity Components Performance Tests', () => {
           json: async () => dataset.filter((a) => a.subject === 'francais'),
         } as Response);
 
-      const { rerender } = render(<ActivitySuggestions outcomeIds={['FR4.1']} language="en" />, {
+      const { rerender } = render(<ActivitySuggestions outcomeIds={['FR4.1']} />, {
         wrapper,
       });
 
@@ -166,16 +166,9 @@ describe.skip('Activity Components Performance Tests', () => {
       markPerformance('rapid-changes-start');
 
       // Simulate rapid filter changes
-      rerender(<ActivitySuggestions outcomeIds={['FR4.1']} domain="reading" language="en" />);
+      rerender(<ActivitySuggestions outcomeIds={['FR4.1']} domain="reading" />);
 
-      rerender(
-        <ActivitySuggestions
-          outcomeIds={['FR4.1']}
-          domain="reading"
-          subject="francais"
-          language="en"
-        />,
-      );
+      rerender(<ActivitySuggestions outcomeIds={['FR4.1']} domain="reading" subject="francais" />);
 
       markPerformance('rapid-changes-end');
 
@@ -197,24 +190,18 @@ describe.skip('Activity Components Performance Tests', () => {
     it('should not cause memory leaks with frequent re-renders', async () => {
       const dataset = generateLargeActivityDataset(20);
 
-      (global.fetch as MockedFunction<typeof fetch>).mockResolvedValue({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({
         ok: true,
         json: async () => dataset,
       } as Response);
 
-      const { rerender, unmount } = render(
-        <ActivitySuggestions outcomeIds={['FR4.1']} language="en" />,
-        { wrapper },
-      );
+      const { rerender, unmount } = render(<ActivitySuggestions outcomeIds={['FR4.1']} />, {
+        wrapper,
+      });
 
       // Simulate many re-renders
       for (let i = 0; i < 20; i++) {
-        rerender(
-          <ActivitySuggestions
-            outcomeIds={[`FR4.${i + 1}`]}
-            language={i % 2 === 0 ? 'en' : 'fr'}
-          />,
-        );
+        rerender(<ActivitySuggestions outcomeIds={[`FR4.${i + 1}`]} />);
       }
 
       // Wait for final render
@@ -237,14 +224,14 @@ describe.skip('Activity Components Performance Tests', () => {
     it('should efficiently render large activity library', async () => {
       const largeLibrary = generateLargeActivityDataset(200);
 
-      (global.fetch as MockedFunction<typeof fetch>).mockResolvedValueOnce({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => largeLibrary,
       } as Response);
 
       markPerformance('library-render-start');
 
-      render(<ActivityLibrary language="en" defaultView="grid" />, { wrapper });
+      render(<ActivityLibrary defaultView="grid" />, { wrapper });
 
       markPerformance('library-render-complete');
 
@@ -280,12 +267,12 @@ describe.skip('Activity Components Performance Tests', () => {
     it('should handle view mode switching efficiently', async () => {
       const dataset = generateLargeActivityDataset(50);
 
-      (global.fetch as MockedFunction<typeof fetch>).mockResolvedValue({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({
         ok: true,
         json: async () => dataset,
       } as Response);
 
-      const { rerender } = render(<ActivityLibrary language="en" defaultView="grid" />, {
+      const { rerender } = render(<ActivityLibrary defaultView="grid" />, {
         wrapper,
       });
 
@@ -297,10 +284,10 @@ describe.skip('Activity Components Performance Tests', () => {
       markPerformance('view-switch-start');
 
       // Switch to list view
-      rerender(<ActivityLibrary language="en" defaultView="list" />);
+      rerender(<ActivityLibrary defaultView="list" />);
 
       // Switch back to grid
-      rerender(<ActivityLibrary language="en" defaultView="grid" />);
+      rerender(<ActivityLibrary defaultView="grid" />);
 
       markPerformance('view-switch-end');
 
@@ -316,7 +303,7 @@ describe.skip('Activity Components Performance Tests', () => {
     it('should handle search and filtering without blocking UI', async () => {
       const largeDataset = generateLargeActivityDataset(100);
 
-      (global.fetch as MockedFunction<typeof fetch>)
+      (global.fetch as ReturnType<typeof vi.fn>)
         .mockResolvedValueOnce({
           ok: true,
           json: async () => largeDataset,
@@ -326,7 +313,7 @@ describe.skip('Activity Components Performance Tests', () => {
           json: async () => largeDataset.filter((a) => a.titleEn.includes('1')),
         } as Response);
 
-      const { rerender } = render(<ActivityLibrary language="en" />, { wrapper });
+      const { rerender } = render(<ActivityLibrary />, { wrapper });
 
       // Wait for initial load
       await waitFor(() => {
@@ -336,7 +323,7 @@ describe.skip('Activity Components Performance Tests', () => {
       markPerformance('search-start');
 
       // Simulate search with re-render (in real app this would be user typing)
-      rerender(<ActivityLibrary language="en" />);
+      rerender(<ActivityLibrary />);
 
       markPerformance('search-end');
 
@@ -360,7 +347,7 @@ describe.skip('Activity Components Performance Tests', () => {
       const suggestionsData = generateLargeActivityDataset(30);
       const libraryData = generateLargeActivityDataset(50);
 
-      (global.fetch as MockedFunction<typeof fetch>)
+      (global.fetch as ReturnType<typeof vi.fn>)
         .mockResolvedValueOnce({
           ok: true,
           json: async () => suggestionsData,
@@ -373,9 +360,9 @@ describe.skip('Activity Components Performance Tests', () => {
       markPerformance('multi-component-start');
 
       // Render both components simultaneously
-      const SuggestionsComponent = <ActivitySuggestions outcomeIds={['FR4.1']} language="en" />;
+      const SuggestionsComponent = <ActivitySuggestions outcomeIds={['FR4.1']} />;
 
-      const LibraryComponent = <ActivityLibrary language="en" showCreateButton={true} />;
+      const LibraryComponent = <ActivityLibrary showCreateButton={true} />;
 
       const { container } = render(
         <QueryClientProvider client={queryClient}>
@@ -424,11 +411,11 @@ describe.skip('Activity Components Performance Tests', () => {
   describe('Error Handling Performance', () => {
     it('should handle API errors without performance degradation', async () => {
       // Mock API errors
-      (global.fetch as MockedFunction<typeof fetch>).mockRejectedValue(new Error('Network error'));
+      (global.fetch as ReturnType<typeof vi.fn>).mockRejectedValue(new Error('Network error'));
 
       markPerformance('error-handling-start');
 
-      render(<ActivitySuggestions outcomeIds={['FR4.1']} language="en" />, { wrapper });
+      render(<ActivitySuggestions outcomeIds={['FR4.1']} />, { wrapper });
 
       // Wait for error state
       await waitFor(
@@ -452,7 +439,7 @@ describe.skip('Activity Components Performance Tests', () => {
 
   describe('Memory Usage Tests', () => {
     it('should cleanup event listeners and subscriptions', async () => {
-      const { unmount } = render(<ActivitySuggestions outcomeIds={['FR4.1']} language="en" />, {
+      const { unmount } = render(<ActivitySuggestions outcomeIds={['FR4.1']} />, {
         wrapper,
       });
 
@@ -465,7 +452,7 @@ describe.skip('Activity Components Performance Tests', () => {
 
     it('should handle component unmounting during async operations', async () => {
       // Mock a slow API response
-      (global.fetch as MockedFunction<typeof fetch>).mockImplementation(
+      (global.fetch as ReturnType<typeof vi.fn>).mockImplementation(
         () =>
           new Promise((resolve) =>
             setTimeout(
@@ -479,7 +466,7 @@ describe.skip('Activity Components Performance Tests', () => {
           ),
       );
 
-      const { unmount } = render(<ActivitySuggestions outcomeIds={['FR4.1']} language="en" />, {
+      const { unmount } = render(<ActivitySuggestions outcomeIds={['FR4.1']} />, {
         wrapper,
       });
 

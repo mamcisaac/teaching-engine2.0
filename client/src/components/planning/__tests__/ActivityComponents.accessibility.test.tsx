@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import userEvent from '@testing-library/user-event';
 // import { axe, toHaveNoViolations } from 'jest-axe';
-import { vi, describe, it, expect, beforeEach, afterEach, type MockedFunction } from 'vitest';
+import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { ActivitySuggestions } from '../../ActivitySuggestions';
 import { ActivityLibrary } from '../../ActivityLibrary';
 import { ActivityEditor } from '../../ActivityEditor';
@@ -92,17 +92,14 @@ describe.skip('Activity Components Accessibility Tests', () => {
 
   describe('ActivitySuggestions Accessibility', () => {
     beforeEach(() => {
-      (global.fetch as MockedFunction<typeof fetch>).mockResolvedValue({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({
         ok: true,
         json: async () => mockActivities,
       } as Response);
     });
 
     it('should have no accessibility violations', async () => {
-      const { container } = render(
-        <ActivitySuggestions outcomeIds={['FR4.1']} showFilters={true} />,
-        { wrapper },
-      );
+      const { container } = render(<ActivitySuggestions outcomeIds={['FR4.1']} />, { wrapper });
 
       await waitFor(() => {
         const loadingElements = document.querySelectorAll('.animate-pulse');
@@ -119,7 +116,7 @@ describe.skip('Activity Components Accessibility Tests', () => {
     });
 
     it('should be navigable with keyboard', async () => {
-      render(<ActivitySuggestions outcomeIds={['FR4.1']} showFilters={true} />, { wrapper });
+      render(<ActivitySuggestions outcomeIds={['FR4.1']} />, { wrapper });
 
       await waitFor(() => {
         const loadingElements = document.querySelectorAll('.animate-pulse');
@@ -163,7 +160,7 @@ describe.skip('Activity Components Accessibility Tests', () => {
     });
 
     it('should have proper ARIA labels and roles', async () => {
-      render(<ActivitySuggestions outcomeIds={['FR4.1']} showFilters={true} />, { wrapper });
+      render(<ActivitySuggestions outcomeIds={['FR4.1']} />, { wrapper });
 
       await waitFor(() => {
         const loadingElements = document.querySelectorAll('.animate-pulse');
@@ -186,7 +183,7 @@ describe.skip('Activity Components Accessibility Tests', () => {
     });
 
     it('should manage focus properly when filters open/close', async () => {
-      render(<ActivitySuggestions outcomeIds={['FR4.1']} showFilters={true} />, { wrapper });
+      render(<ActivitySuggestions outcomeIds={['FR4.1']} />, { wrapper });
 
       await waitFor(() => {
         const loadingElements = document.querySelectorAll('.animate-pulse');
@@ -247,7 +244,7 @@ describe.skip('Activity Components Accessibility Tests', () => {
     });
 
     it('should handle empty state accessibly', async () => {
-      (global.fetch as MockedFunction<typeof fetch>).mockResolvedValueOnce({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => [],
       } as Response);
@@ -277,7 +274,7 @@ describe.skip('Activity Components Accessibility Tests', () => {
 
   describe('ActivityLibrary Accessibility', () => {
     beforeEach(() => {
-      (global.fetch as MockedFunction<typeof fetch>).mockResolvedValue({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({
         ok: true,
         json: async () => mockActivities,
       } as Response);
@@ -340,7 +337,7 @@ describe.skip('Activity Components Accessibility Tests', () => {
     });
 
     it('should make search accessible', async () => {
-      const { container } = render(<ActivityLibrary language="en" />, { wrapper });
+      const { container } = render(<ActivityLibrary />, { wrapper });
 
       await waitFor(() => {
         expect(screen.getByText(/\d+ activities found/)).toBeInTheDocument();
@@ -390,15 +387,7 @@ describe.skip('Activity Components Accessibility Tests', () => {
     });
 
     it('should make activity cards accessible', async () => {
-      render(
-        <ActivityLibrary
-          showCreateButton={true}
-          onCreateNew={vi.fn()}
-          onSelectActivity={vi.fn()}
-          showFavorites={true}
-        />,
-        { wrapper },
-      );
+      render(<ActivityLibrary showCreateButton={true} onCreateNew={vi.fn()} />, { wrapper });
 
       await waitFor(() => {
         expect(screen.getByText(/\d+ activities found/)).toBeInTheDocument();
@@ -433,7 +422,7 @@ describe.skip('Activity Components Accessibility Tests', () => {
     ];
 
     beforeEach(() => {
-      (global.fetch as MockedFunction<typeof fetch>).mockImplementation(
+      (global.fetch as ReturnType<typeof vi.fn>).mockImplementation(
         (url: string | URL | Request) => {
           const urlString = url.toString();
           if (urlString.includes('/api/themes')) {
@@ -451,10 +440,9 @@ describe.skip('Activity Components Accessibility Tests', () => {
     });
 
     it('should have no accessibility violations', async () => {
-      const { container } = render(
-        <ActivityEditor open={true} onClose={vi.fn()} onSave={vi.fn()} />,
-        { wrapper },
-      );
+      const { container } = render(<ActivityEditor onSave={vi.fn()} onCancel={vi.fn()} />, {
+        wrapper,
+      });
 
       await waitFor(() => {
         expect(screen.getByText('Create Activity Template')).toBeInTheDocument();
@@ -470,7 +458,7 @@ describe.skip('Activity Components Accessibility Tests', () => {
     });
 
     it('should manage focus properly in modal', async () => {
-      render(<ActivityEditor open={true} onClose={vi.fn()} onSave={vi.fn()} />, { wrapper });
+      render(<ActivityEditor onSave={vi.fn()} onCancel={vi.fn()} />, { wrapper });
 
       await waitFor(() => {
         expect(screen.getByText('Create Activity Template')).toBeInTheDocument();
@@ -493,7 +481,7 @@ describe.skip('Activity Components Accessibility Tests', () => {
     });
 
     it('should have proper form labels and validation', async () => {
-      render(<ActivityEditor open={true} onClose={vi.fn()} onSave={vi.fn()} />, { wrapper });
+      render(<ActivityEditor onSave={vi.fn()} onCancel={vi.fn()} />, { wrapper });
 
       await waitFor(() => {
         expect(screen.getByText('Create Activity Template')).toBeInTheDocument();
@@ -520,7 +508,7 @@ describe.skip('Activity Components Accessibility Tests', () => {
     });
 
     it('should handle keyboard navigation in form', async () => {
-      render(<ActivityEditor open={true} onClose={vi.fn()} onSave={vi.fn()} />, { wrapper });
+      render(<ActivityEditor onSave={vi.fn()} onCancel={vi.fn()} />, { wrapper });
 
       await waitFor(() => {
         expect(screen.getByText('Create Activity Template')).toBeInTheDocument();
@@ -548,10 +536,9 @@ describe.skip('Activity Components Accessibility Tests', () => {
     });
 
     it('should announce validation errors to screen readers', async () => {
-      const { container } = render(
-        <ActivityEditor open={true} onClose={vi.fn()} onSave={vi.fn()} />,
-        { wrapper },
-      );
+      const { container } = render(<ActivityEditor onSave={vi.fn()} onCancel={vi.fn()} />, {
+        wrapper,
+      });
 
       await waitFor(() => {
         expect(screen.getByText('Create Activity Template')).toBeInTheDocument();
@@ -574,7 +561,7 @@ describe.skip('Activity Components Accessibility Tests', () => {
 
   describe('Cross-Component Accessibility', () => {
     it('should maintain accessibility when components are used together', async () => {
-      (global.fetch as MockedFunction<typeof fetch>).mockResolvedValue({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({
         ok: true,
         json: async () => mockActivities,
       } as Response);
@@ -604,14 +591,14 @@ describe.skip('Activity Components Accessibility Tests', () => {
     });
 
     it('should handle focus management between components', async () => {
-      (global.fetch as MockedFunction<typeof fetch>).mockResolvedValue({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({
         ok: true,
         json: async () => mockActivities,
       } as Response);
 
       render(
         <div>
-          <ActivitySuggestions outcomeIds={['FR4.1']} showFilters={true} />
+          <ActivitySuggestions outcomeIds={['FR4.1']} />
           <ActivityLibrary showCreateButton={true} onCreateNew={vi.fn()} />
         </div>,
         { wrapper },
@@ -643,7 +630,7 @@ describe.skip('Activity Components Accessibility Tests', () => {
       // Simulate high contrast mode
       document.documentElement.style.setProperty('forced-colors', 'active');
 
-      (global.fetch as MockedFunction<typeof fetch>).mockResolvedValue({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({
         ok: true,
         json: async () => mockActivities,
       } as Response);
@@ -669,7 +656,7 @@ describe.skip('Activity Components Accessibility Tests', () => {
     });
 
     it('should not rely solely on color for information', async () => {
-      (global.fetch as MockedFunction<typeof fetch>).mockResolvedValue({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({
         ok: true,
         json: async () => mockActivities,
       } as Response);

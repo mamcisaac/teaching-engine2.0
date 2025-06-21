@@ -28,23 +28,25 @@ const originalFetch = global.fetch;
 beforeEach(() => {
   actualApiCalls = [];
 
-  global.fetch = vi.fn().mockImplementation(async (url, options = {}) => {
-    const response = await originalFetch(url, options);
-    const responseData = await response
-      .clone()
-      .json()
-      .catch(() => null);
+  global.fetch = vi
+    .fn()
+    .mockImplementation(async (url: string | URL, options: RequestInit = {}) => {
+      const response = await originalFetch(url, options);
+      const responseData = await response
+        .clone()
+        .json()
+        .catch(() => null);
 
-    actualApiCalls.push({
-      url: url.toString(),
-      method: options.method || 'GET',
-      headers: (options.headers as Record<string, string>) || {},
-      response: responseData,
-      status: response.status,
+      actualApiCalls.push({
+        url: url.toString(),
+        method: options.method || 'GET',
+        headers: (options.headers as Record<string, string>) || {},
+        response: responseData,
+        status: response.status,
+      });
+
+      return response;
     });
-
-    return response;
-  });
 });
 
 afterEach(() => {
@@ -147,8 +149,7 @@ describe.skip('ActivityLibrary Contract Tests', () => {
   it('validates search query parameters', async () => {
     render(
       <ActivityLibrary
-        language="en"
-        // This should trigger a search query
+      // This should trigger a search query
       />,
       { wrapper },
     );

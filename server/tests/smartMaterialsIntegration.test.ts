@@ -1,16 +1,16 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from '@jest/globals';
 import request from 'supertest';
 import { app } from '../src/index';
 import { prisma } from '../src/prisma';
-import { createTestUser, getAuthToken } from './test-helpers';
+import { createTestUser, getAuthToken } from './test-auth-helper';
 import { SmartMaterialExtractor } from '../src/services/smartMaterialExtractor';
 
 // Mock OpenAI
-vi.mock('openai', () => ({
-  default: vi.fn().mockImplementation(() => ({
+jest.mock('openai', () => ({
+  default: jest.fn().mockImplementation(() => ({
     chat: {
       completions: {
-        create: vi.fn().mockResolvedValue({
+        create: jest.fn().mockResolvedValue({
           choices: [
             {
               message: {
@@ -231,7 +231,7 @@ describe('Smart Materials Integration', () => {
     it('should handle OpenAI API errors gracefully', async () => {
       // Mock OpenAI to throw an error
       const mockOpenAI = await import('openai');
-      vi.mocked(mockOpenAI.default).mockImplementationOnce(() => {
+      jest.mocked(mockOpenAI.default).mockImplementationOnce(() => {
         throw new Error('OpenAI API Error');
       });
 

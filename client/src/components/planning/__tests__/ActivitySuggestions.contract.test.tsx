@@ -30,23 +30,25 @@ const originalFetch = global.fetch;
 beforeEach(() => {
   actualApiCalls = [];
 
-  global.fetch = vi.fn().mockImplementation(async (url, options = {}) => {
-    const response = await originalFetch(url, options);
-    const responseData = await response
-      .clone()
-      .json()
-      .catch(() => null);
+  global.fetch = vi
+    .fn()
+    .mockImplementation(async (url: string | URL, options: RequestInit = {}) => {
+      const response = await originalFetch(url, options);
+      const responseData = await response
+        .clone()
+        .json()
+        .catch(() => null);
 
-    actualApiCalls.push({
-      url: url.toString(),
-      method: options.method || 'GET',
-      headers: (options.headers as Record<string, string>) || {},
-      response: responseData,
-      status: response.status,
+      actualApiCalls.push({
+        url: url.toString(),
+        method: options.method || 'GET',
+        headers: (options.headers as Record<string, string>) || {},
+        response: responseData,
+        status: response.status,
+      });
+
+      return response;
     });
-
-    return response;
-  });
 });
 
 afterEach(() => {
@@ -149,7 +151,6 @@ describe.skip('ActivitySuggestions Contract Tests', () => {
         themeId={5}
         domain="reading"
         subject="francais"
-        limit={5}
       />,
       { wrapper },
     );

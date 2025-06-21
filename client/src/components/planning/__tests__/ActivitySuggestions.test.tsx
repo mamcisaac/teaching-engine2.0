@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { vi, type MockedFunction } from 'vitest';
+import { vi } from 'vitest';
 import { ActivitySuggestions } from '../../ActivitySuggestions';
 
 // Mock the toast hook
@@ -40,7 +40,7 @@ describe('ActivitySuggestions', () => {
   });
 
   it('renders loading state initially', () => {
-    (global.fetch as MockedFunction<typeof fetch>).mockImplementationOnce(
+    (global.fetch as ReturnType<typeof vi.fn>).mockImplementationOnce(
       () => new Promise(() => {}), // Never resolves to keep loading
     );
 
@@ -67,7 +67,9 @@ describe('ActivitySuggestions', () => {
     // This test is skipped because useActivitySuggestions currently returns empty array
     const mockAddToPlan = vi.fn();
 
-    render(<ActivitySuggestions outcomeIds={['EN4.1']} onAddToPlan={mockAddToPlan} />, { wrapper });
+    render(<ActivitySuggestions outcomeIds={['EN4.1']} onAddToPlanner={mockAddToPlan} />, {
+      wrapper,
+    });
 
     // Since the API returns empty array, we'll just verify empty state
     await waitFor(() => {
@@ -98,7 +100,7 @@ describe('ActivitySuggestions', () => {
   });
 
   it('shows empty state when no suggestions', async () => {
-    (global.fetch as MockedFunction<typeof fetch>).mockResolvedValueOnce({
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
       ok: true,
       json: async () => [],
     } as Response);

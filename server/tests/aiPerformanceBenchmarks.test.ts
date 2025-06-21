@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from '@jest/globals';
 import { curriculumImportService } from '../src/services/curriculumImportService';
 import { SmartMaterialExtractor } from '../src/services/smartMaterialExtractor';
 
@@ -35,11 +35,11 @@ describe('AI Features Performance Benchmarks', () => {
       ],
     };
 
-    vi.mock('openai', () => ({
-      default: vi.fn().mockImplementation(() => ({
+    jest.mock('openai', () => ({
+      default: jest.fn().mockImplementation(() => ({
         chat: {
           completions: {
-            create: vi.fn().mockImplementation(async () => {
+            create: jest.fn().mockImplementation(async () => {
               // Simulate realistic API response time
               await new Promise((resolve) => setTimeout(resolve, 800 + Math.random() * 400));
               return mockOpenAIResponse;
@@ -53,7 +53,7 @@ describe('AI Features Performance Benchmarks', () => {
   });
 
   afterEach(() => {
-    vi.restoreAllMocks();
+    jest.restoreAllMocks();
   });
 
   describe('Curriculum Import Performance', () => {
@@ -287,10 +287,10 @@ describe('AI Features Performance Benchmarks', () => {
       let requestCount = 0;
       const mockOpenAI = await import('openai');
 
-      vi.mocked(mockOpenAI.default).mockImplementation(() => ({
+      jest.mocked(mockOpenAI.default).mockImplementation(() => ({
         chat: {
           completions: {
-            create: vi.fn().mockImplementation(async () => {
+            create: jest.fn().mockImplementation(async () => {
               requestCount++;
               if (requestCount > 5) {
                 // Simulate rate limiting after 5 requests
@@ -326,10 +326,10 @@ describe('AI Features Performance Benchmarks', () => {
       let errorThrown = false;
       const mockOpenAI = await import('openai');
 
-      vi.mocked(mockOpenAI.default).mockImplementation(() => ({
+      jest.mocked(mockOpenAI.default).mockImplementation(() => ({
         chat: {
           completions: {
-            create: vi.fn().mockImplementation(async () => {
+            create: jest.fn().mockImplementation(async () => {
               if (!errorThrown) {
                 errorThrown = true;
                 throw new Error('API temporarily unavailable');
@@ -366,10 +366,10 @@ describe('AI Features Performance Benchmarks', () => {
     it('should handle malformed AI responses gracefully', async () => {
       const mockOpenAI = await import('openai');
 
-      vi.mocked(mockOpenAI.default).mockImplementation(() => ({
+      jest.mocked(mockOpenAI.default).mockImplementation(() => ({
         chat: {
           completions: {
-            create: vi.fn().mockResolvedValue({
+            create: jest.fn().mockResolvedValue({
               choices: [
                 {
                   message: {

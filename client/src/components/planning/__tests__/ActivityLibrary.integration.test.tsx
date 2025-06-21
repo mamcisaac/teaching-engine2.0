@@ -38,10 +38,7 @@ describe.skip('ActivityLibrary Integration Tests', () => {
   it('should load activity templates from real API', async () => {
     const mockOnCreateNew = vi.fn();
 
-    render(
-      <ActivityLibrary showCreateButton={true} onCreateNew={mockOnCreateNew} language="en" />,
-      { wrapper },
-    );
+    render(<ActivityLibrary showCreateButton={true} onCreateNew={mockOnCreateNew} />, { wrapper });
 
     // Should show header immediately
     expect(screen.getByText('Activity Library')).toBeInTheDocument();

@@ -11,80 +11,68 @@ interface AuthenticatedRequest extends Request {
 const router = Router();
 
 // Validation schemas
-const studentCreateSchema = z.object({
-  body: z
-    .object({
-      // New parent communication fields
-      firstName: z.string().min(1).max(100).optional(),
-      lastName: z.string().min(1).max(100).optional(),
-      grade: z.number().int().min(1).max(12).optional(),
-      parentContacts: z
-        .array(
-          z.object({
-            name: z.string().min(1),
-            email: z.string().email(),
-          }),
-        )
-        .optional(),
-      // Legacy field for backward compatibility
-      name: z.string().min(1).max(200).optional(),
-    })
-    .refine(
-      (data) => {
-        // Either use new fields (firstName, lastName, grade) or legacy name field
-        return (data.firstName && data.lastName && typeof data.grade === 'number') || data.name;
-      },
-      {
-        message: 'Either provide firstName, lastName, and grade, or provide name',
-      },
-    ),
-});
-
-const studentUpdateSchema = z.object({
-  body: z.object({
+const studentCreateSchema = z
+  .object({
+    // New parent communication fields
     firstName: z.string().min(1).max(100).optional(),
     lastName: z.string().min(1).max(100).optional(),
     grade: z.number().int().min(1).max(12).optional(),
+    parentContacts: z
+      .array(
+        z.object({
+          name: z.string().min(1),
+          email: z.string().email(),
+        }),
+      )
+      .optional(),
+    // Legacy field for backward compatibility
     name: z.string().min(1).max(200).optional(),
-  }),
+  })
+  .refine(
+    (data) => {
+      // Either use new fields (firstName, lastName, grade) or legacy name field
+      return (data.firstName && data.lastName && typeof data.grade === 'number') || data.name;
+    },
+    {
+      message: 'Either provide firstName, lastName, and grade, or provide name',
+    },
+  );
+
+const studentUpdateSchema = z.object({
+  firstName: z.string().min(1).max(100).optional(),
+  lastName: z.string().min(1).max(100).optional(),
+  grade: z.number().int().min(1).max(12).optional(),
+  name: z.string().min(1).max(200).optional(),
 });
 
 const parentContactSchema = z.object({
-  body: z.object({
-    name: z.string().min(1),
-    email: z.string().email(),
-  }),
+  name: z.string().min(1),
+  email: z.string().email(),
 });
 
 const studentGoalCreateSchema = z.object({
-  body: z.object({
-    text: z.string().min(1).max(500),
-    outcomeId: z.string().optional(),
-    themeId: z.number().int().optional(),
-    status: z.enum(['active', 'completed', 'abandoned']).default('active'),
-  }),
+  text: z.string().min(1).max(500),
+  outcomeId: z.string().optional(),
+  themeId: z.number().int().optional(),
+  status: z.enum(['active', 'completed', 'abandoned']).default('active'),
 });
 
 const studentGoalUpdateSchema = z.object({
-  body: z.object({
-    text: z.string().min(1).max(500).optional(),
-    outcomeId: z.string().optional(),
-    themeId: z.number().int().optional(),
-    status: z.enum(['active', 'completed', 'abandoned']).optional(),
-  }),
+  text: z.string().min(1).max(500).optional(),
+  outcomeId: z.string().optional(),
+  themeId: z.number().int().optional(),
+  status: z.enum(['active', 'completed', 'abandoned']).optional(),
 });
 
 const studentReflectionCreateSchema = z.object({
-  body: z.object({
-    date: z.string().datetime().optional(),
-    text: z.string().max(1000).optional(),
-    content: z.string().max(1000).optional(), // New field for parent communication
-    emoji: z.string().max(10).optional(),
-    voicePath: z.string().max(500).optional(),
-    outcomeId: z.string().optional(),
-    themeId: z.number().int().optional(),
-    activityId: z.number().int().optional(),
-  }),
+  date: z.string().datetime().optional(),
+  text: z.string().max(1000).optional(),
+  content: z.string().max(1000).optional(), // New field for parent communication
+  emoji: z.string().max(10).optional(),
+  voicePath: z.string().max(500).optional(),
+  outcomeId: z.string().optional(),
+  themeId: z.number().int().optional(),
+  activityId: z.number().int().optional(),
 });
 
 // Get all students for the authenticated teacher

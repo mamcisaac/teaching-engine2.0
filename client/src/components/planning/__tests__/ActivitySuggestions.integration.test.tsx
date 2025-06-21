@@ -93,7 +93,7 @@ describe.skip('ActivitySuggestions Integration Tests', () => {
   });
 
   it('should filter suggestions based on real API responses', async () => {
-    render(<ActivitySuggestions outcomeIds={['FR4.1']} showFilters={true} />, { wrapper });
+    render(<ActivitySuggestions outcomeIds={['FR4.1']} />, { wrapper });
 
     // Open filters
     const filterButton = screen.getByText('Filters');
@@ -155,7 +155,7 @@ describe.skip('ActivitySuggestions Integration Tests', () => {
   it('should add activity to plan via real API', async () => {
     const mockOnAddToPlan = vi.fn();
 
-    render(<ActivitySuggestions outcomeIds={['FR4.1']} onAddToPlan={mockOnAddToPlan} />, {
+    render(<ActivitySuggestions outcomeIds={['FR4.1']} onAddToPlanner={mockOnAddToPlan} />, {
       wrapper,
     });
 

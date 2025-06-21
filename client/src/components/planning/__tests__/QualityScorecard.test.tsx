@@ -86,14 +86,14 @@ describe('QualityScorecard', () => {
     render(<QualityScorecard weekStart="2024-01-22" />);
 
     await waitFor(() => {
-      expect(screen.getByText('Show Detailed Analysis')).toBeInTheDocument();
+      expect(screen.getByText(/Show Detailed Analysis/)).toBeInTheDocument();
     });
 
     // Initially hidden
     expect(screen.queryByTestId('radar-chart')).not.toBeInTheDocument();
 
     // Click to show
-    await user.click(screen.getByText('Show Detailed Analysis'));
+    await user.click(screen.getByText(/Show Detailed Analysis/));
     expect(screen.getByTestId('radar-chart')).toBeInTheDocument();
     expect(screen.getByTestId('line-chart')).toBeInTheDocument();
 
@@ -102,7 +102,7 @@ describe('QualityScorecard', () => {
     expect(screen.getByText('75%')).toBeInTheDocument();
 
     // Click to hide
-    await user.click(screen.getByText('Hide Detailed Analysis'));
+    await user.click(screen.getByText(/Hide Detailed Analysis/));
     expect(screen.queryByTestId('radar-chart')).not.toBeInTheDocument();
   });
 
@@ -152,11 +152,11 @@ describe('QualityScorecard', () => {
     render(<QualityScorecard weekStart="2024-01-22" />);
 
     await waitFor(() => {
-      expect(screen.getByText('Show Detailed Analysis')).toBeInTheDocument();
+      expect(screen.getByText(/Show Detailed Analysis/)).toBeInTheDocument();
     });
 
     const user = userEvent.setup();
-    await user.click(screen.getByText('Show Detailed Analysis'));
+    await user.click(screen.getByText(/Show Detailed Analysis/));
 
     await waitFor(() => {
       expect(screen.getByText('Domain Analysis')).toBeInTheDocument();
@@ -172,11 +172,11 @@ describe('QualityScorecard', () => {
     render(<QualityScorecard weekStart="2024-01-22" />);
 
     await waitFor(() => {
-      expect(screen.getByText('Show Detailed Analysis')).toBeInTheDocument();
+      expect(screen.getByText(/Show Detailed Analysis/)).toBeInTheDocument();
     });
 
     const user = userEvent.setup();
-    await user.click(screen.getByText('Show Detailed Analysis'));
+    await user.click(screen.getByText(/Show Detailed Analysis/));
 
     await waitFor(() => {
       expect(screen.getByText('Uncovered Outcomes')).toBeInTheDocument();
@@ -199,11 +199,11 @@ describe('QualityScorecard', () => {
     render(<QualityScorecard weekStart="2024-01-22" />);
 
     await waitFor(() => {
-      expect(screen.getByText('Show Detailed Analysis')).toBeInTheDocument();
+      expect(screen.getByText(/Show Detailed Analysis/)).toBeInTheDocument();
     });
 
     const user = userEvent.setup();
-    await user.click(screen.getByText('Show Detailed Analysis'));
+    await user.click(screen.getByText(/Show Detailed Analysis/));
 
     // Check that metric values are displayed
     expect(screen.getByText('85%')).toBeInTheDocument(); // Assessment Balance

@@ -70,30 +70,106 @@ jest.mock('../src/logger', () => ({
   })),
 }));
 
-// Mock OpenAI
-jest.mock('openai', () => ({
-  default: jest.fn().mockImplementation(() => ({
-    embeddings: {
-      create: jest.fn().mockResolvedValue({
-        data: [
-          {
-            embedding: Array(1536)
-              .fill(0)
-              .map(() => Math.random()),
-          },
-        ],
-        usage: { total_tokens: 100 },
-      }),
-    },
-    chat: {
-      completions: {
+// Mock embeddingService
+jest.mock('../src/services/embeddingService', () => ({
+  embeddingService: {
+    calculateSimilarity: jest.fn(),
+    generateBatchEmbeddings: jest.fn(),
+    findSimilarOutcomes: jest.fn(),
+    generateEmbedding: jest.fn().mockResolvedValue({
+      embedding: Array(1536)
+        .fill(0)
+        .map(() => Math.random()),
+    }),
+  },
+}));
+
+// Mock OpenAI before any imports
+jest.mock('openai', () => {
+  return {
+    __esModule: true,
+    default: jest.fn().mockImplementation(() => ({
+      embeddings: {
         create: jest.fn().mockResolvedValue({
-          choices: [{ message: { content: 'Mocked AI response' } }],
+          data: [
+            {
+              embedding: Array(1536)
+                .fill(0)
+                .map(() => Math.random()),
+              index: 0,
+            },
+          ],
+          usage: {
+            prompt_tokens: 100,
+            total_tokens: 100,
+          },
         }),
       },
-    },
-  })),
-}));
+      chat: {
+        completions: {
+          create: jest.fn().mockResolvedValue({
+            id: 'mock-completion',
+            choices: [
+              {
+                message: {
+                  role: 'assistant',
+                  content: 'Mocked AI response',
+                },
+                finish_reason: 'stop',
+                index: 0,
+              },
+            ],
+            usage: {
+              prompt_tokens: 50,
+              completion_tokens: 100,
+              total_tokens: 150,
+            },
+          }),
+        },
+      },
+    })),
+    OpenAI: jest.fn().mockImplementation(() => ({
+      embeddings: {
+        create: jest.fn().mockResolvedValue({
+          data: [
+            {
+              embedding: Array(1536)
+                .fill(0)
+                .map(() => Math.random()),
+              index: 0,
+            },
+          ],
+          usage: {
+            prompt_tokens: 100,
+            total_tokens: 100,
+          },
+        }),
+      },
+      chat: {
+        completions: {
+          create: jest.fn().mockResolvedValue({
+            id: 'mock-completion',
+            choices: [
+              {
+                message: {
+                  role: 'assistant',
+                  content: 'Mocked AI response',
+                },
+                finish_reason: 'stop',
+                index: 0,
+              },
+            ],
+            usage: {
+              prompt_tokens: 50,
+              completion_tokens: 100,
+              total_tokens: 150,
+            },
+          }),
+        },
+      },
+    })),
+  };
+});
 
 // Mock email service
 jest.mock('../src/services/emailService', () => ({
