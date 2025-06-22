@@ -1,4 +1,25 @@
 import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
+
+// Mock logger before importing BaseService
+jest.mock('../../src/logger', () => ({
+  __esModule: true,
+  default: {
+    debug: jest.fn(),
+    info: jest.fn(),
+    warn: jest.fn(),
+    error: jest.fn(),
+    child: jest.fn(function () {
+      return {
+        debug: jest.fn(),
+        info: jest.fn(),
+        warn: jest.fn(),
+        error: jest.fn(),
+        child: jest.fn(),
+      };
+    }),
+  },
+}));
+
 import BaseService from '../../src/services/base/BaseService';
 import { prisma } from '../../src/prisma';
 
@@ -45,6 +66,19 @@ describe('BaseService', () => {
     mockPrisma = prisma;
     jest.clearAllMocks();
     jest.useFakeTimers();
+
+    // Force inject logger if needed
+    if (!testService['logger']) {
+      testService['logger'] = {
+        debug: jest.fn(),
+        info: jest.fn(),
+        warn: jest.fn(),
+        error: jest.fn(),
+        child: jest.fn(function () {
+          return this;
+        }),
+      };
+    }
   });
 
   afterEach(() => {

@@ -23,7 +23,7 @@ async function waitForServer(url: string, maxRetries = 30): Promise<void> {
       const response = await fetch(`${url}/health`);
       if (response.ok) {
         const data = await response.json();
-        if (data.status === 'healthy') {
+        if (data.status === 'ok' || data.status === 'healthy') {
           console.log('✅ Server is ready!');
           return;
         }
