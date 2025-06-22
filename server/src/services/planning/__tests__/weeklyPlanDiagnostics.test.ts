@@ -2,20 +2,7 @@ import { describe, it, expect, beforeEach, jest } from '@jest/globals';
 import { prisma } from '../../../prisma';
 import { calculateWeeklyPlanDiagnostics, getPlanningQualityTrend } from '../weeklyPlanDiagnostics';
 
-// Mock Prisma
-jest.mock('../../../prisma', () => ({
-  prisma: {
-    lessonPlan: {
-      findFirst: jest.fn(),
-    },
-    outcome: {
-      findMany: jest.fn(),
-    },
-    subject: {
-      findMany: jest.fn(),
-    },
-  },
-}));
+// Prisma is already mocked in setup-all-mocks.ts
 
 describe('weeklyPlanDiagnostics', () => {
   beforeEach(() => {

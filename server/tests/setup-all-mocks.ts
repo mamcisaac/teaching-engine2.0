@@ -74,13 +74,70 @@ jest.mock('@/logger', () => ({
   ...mockLogger,
 }));
 
+// Mock relative import paths that tests might use
+jest.mock('../../src/logger', () => ({
+  __esModule: true,
+  default: mockLogger,
+  ...mockLogger,
+}));
+
+// Also mock from setup file's perspective
 jest.mock('../src/logger', () => ({
   __esModule: true,
   default: mockLogger,
   ...mockLogger,
 }));
 
-// Mock local prisma import
+// Mock local prisma import - use relative path from test files
+jest.mock('../../src/prisma', () => ({
+  prisma: {
+    $connect: jest.fn().mockResolvedValue(undefined),
+    $disconnect: jest.fn().mockResolvedValue(undefined),
+    $transaction: jest.fn().mockImplementation((fn) => fn({})),
+    $queryRaw: jest.fn().mockResolvedValue([{ 1: 1 }]),
+    user: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      create: jest.fn(),
+      update: jest.fn(),
+      delete: jest.fn(),
+    },
+    outcome: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      create: jest.fn(),
+      update: jest.fn(),
+      delete: jest.fn(),
+      count: jest.fn(),
+    },
+    outcomeEmbedding: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn(),
+      update: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
+      count: jest.fn(),
+    },
+    curriculumImport: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      create: jest.fn(),
+      update: jest.fn(),
+      delete: jest.fn(),
+    },
+    outcomeCluster: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      create: jest.fn(),
+      update: jest.fn(),
+      delete: jest.fn(),
+    },
+  },
+}));
+
+// Also mock from setup file's perspective
 jest.mock('../src/prisma', () => ({
   prisma: {
     $connect: jest.fn().mockResolvedValue(undefined),
@@ -251,6 +308,14 @@ jest.mock('@/services/emailService', () => ({
 }));
 
 // Note: curriculumImportService is not mocked here since its tests need the real implementation
+// But we need to mock it for the route test
+jest.mock('../../src/services/curriculumImportService', () => ({
+  CurriculumImportService: jest.fn().mockImplementation(() => ({
+    parsePdf: jest.fn(),
+    importCurriculum: jest.fn(),
+    getImportStatus: jest.fn(),
+  })),
+}));
 
 // Mock clusteringService
 jest.mock('@/services/clusteringService', () => ({

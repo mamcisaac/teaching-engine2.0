@@ -1,25 +1,7 @@
 import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
 import { ImportStatus } from '@teaching-engine/database';
 
-// Mock logger before importing services that use it
-jest.mock('../../src/logger', () => ({
-  __esModule: true,
-  default: {
-    debug: jest.fn(),
-    info: jest.fn(),
-    warn: jest.fn(),
-    error: jest.fn(),
-    child: jest.fn(function () {
-      return {
-        debug: jest.fn(),
-        info: jest.fn(),
-        warn: jest.fn(),
-        error: jest.fn(),
-        child: jest.fn(),
-      };
-    }),
-  },
-}));
+// Logger is already mocked in setup-all-mocks.ts
 
 // Import services - mocks are already set up in setup-all-mocks.ts
 import { CurriculumImportService } from '../../src/services/curriculumImportService';

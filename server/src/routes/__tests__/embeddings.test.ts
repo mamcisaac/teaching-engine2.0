@@ -4,9 +4,7 @@ import express from 'express';
 import embeddingsRouter from '../embeddings';
 import * as embeddingService from '../../services/embeddingService';
 
-// Mock the embedding service
-jest.mock('../../services/embeddingService');
-
+// Services and logger are already mocked in setup-all-mocks.ts
 // Mock authentication middleware
 jest.mock('../../middleware/auth', () => ({
   requireAdminToken: jest.fn((req, res, next) => {
@@ -17,14 +15,6 @@ jest.mock('../../middleware/auth', () => ({
       res.status(403).json({ error: 'Invalid admin token' });
     }
   }),
-}));
-
-// Mock logger
-jest.mock('../../logger', () => ({
-  debug: jest.fn(),
-  info: jest.fn(),
-  warn: jest.fn(),
-  error: jest.fn(),
 }));
 
 // Mock Prisma
