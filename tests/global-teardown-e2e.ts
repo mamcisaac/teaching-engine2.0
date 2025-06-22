@@ -3,21 +3,24 @@
  */
 export default async function globalTeardown() {
   console.log('\n🧹 Starting E2E global teardown...\n');
-  
+
   try {
     // Clean up test data if server is available
     if (global.__TEST_SERVER_URL__ && global.__E2E_TEST_USER__) {
       console.log('🗑️  Cleaning up test data...');
-      
+
       try {
         // Delete test user via API
-        const response = await fetch(`${global.__TEST_SERVER_URL__}/api/test/users/${global.__E2E_TEST_USER__.email}`, {
-          method: 'DELETE',
-          headers: {
-            'Authorization': `Bearer ${global.__E2E_TEST_USER__.token}`,
+        const response = await fetch(
+          `${global.__TEST_SERVER_URL__}/api/test/users/${global.__E2E_TEST_USER__.email}`,
+          {
+            method: 'DELETE',
+            headers: {
+              Authorization: `Bearer ${global.__E2E_TEST_USER__.token}`,
+            },
           },
-        });
-        
+        );
+
         if (response.ok) {
           console.log('✅ Test user cleaned up');
         } else {
@@ -27,19 +30,11 @@ export default async function globalTeardown() {
         console.warn('Error cleaning up test data:', error);
       }
     }
-    
-    // Stop test server
-    if (global.__TEST_SERVER__) {
-      console.log('📴 Stopping test server...');
-      await global.__TEST_SERVER__.stop();
-      console.log('✅ Test server stopped');
-    }
-    
+
     // Clear global references
-    delete global.__TEST_SERVER__;
     delete global.__TEST_SERVER_URL__;
     delete global.__E2E_TEST_USER__;
-    
+
     console.log('\n✅ E2E global teardown complete\n');
   } catch (error) {
     console.error('❌ Error during E2E global teardown:', error);
