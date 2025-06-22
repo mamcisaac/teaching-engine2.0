@@ -27,9 +27,13 @@ async function waitForServer(url: string, maxRetries = 30): Promise<void> {
           console.log('✅ Server is ready!');
           return;
         }
+        console.log(`Unexpected health response: ${JSON.stringify(data)}`);
+      } else {
+        console.log(`Health check failed with status: ${response.status}`);
       }
     } catch (error) {
       // Server not ready yet
+      console.log(`Health check error: ${error}`);
     }
 
     const delay = Math.min(1000 * Math.pow(1.5, i), 5000); // Exponential backoff, max 5s
