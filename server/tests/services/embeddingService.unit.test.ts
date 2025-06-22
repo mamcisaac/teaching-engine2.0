@@ -37,7 +37,7 @@ describe('EmbeddingService Unit Tests', () => {
     // Import OpenAI and configure mock
     const OpenAI = (await import('openai')).default;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    mockOpenAI = new (OpenAI as any)();
+    mockOpenAI = new (OpenAI as any)({ apiKey: 'test-api-key' });
 
     // Set up embeddings mock
     mockOpenAI.embeddings.create.mockResolvedValue({

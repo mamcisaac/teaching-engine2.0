@@ -44,8 +44,8 @@ const mockEmbedding = {
 };
 
 class MockOpenAI {
-  constructor({ apiKey }) {
-    this.apiKey = apiKey;
+  constructor(config = {}) {
+    this.apiKey = config.apiKey || 'test-api-key';
     this.chat = {
       completions: {
         create: jest.fn().mockResolvedValue(mockChatCompletion),

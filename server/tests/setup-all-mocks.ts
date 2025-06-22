@@ -241,7 +241,7 @@ jest.mock('@/services/emailService', () => ({
 }));
 
 // Mock curriculumImportService
-jest.mock('../src/services/curriculumImportService', () => ({
+jest.mock('@/services/curriculumImportService', () => ({
   CurriculumImportService: jest.fn().mockImplementation(() => ({
     startImport: jest.fn(),
     parseCSV: jest.fn(),
@@ -261,7 +261,7 @@ jest.mock('../src/services/curriculumImportService', () => ({
 }));
 
 // Mock clusteringService
-jest.mock('../src/services/clusteringService', () => ({
+jest.mock('@/services/clusteringService', () => ({
   clusteringService: {
     generateClusters: jest.fn(),
   },

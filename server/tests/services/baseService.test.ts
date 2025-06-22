@@ -155,7 +155,7 @@ describe('BaseService', () => {
       const mockOperation = jest.fn().mockResolvedValue('result');
       const mockTx = { query: jest.fn() };
 
-      (mockPrisma.$transaction as jest.Mock).mockImplementation(async (fn) => {
+      mockPrisma.$transaction.mockImplementation(async (fn) => {
         return fn(mockTx);
       });
 
@@ -172,7 +172,7 @@ describe('BaseService', () => {
         .mockRejectedValueOnce(new Error('Transaction failed'))
         .mockResolvedValue('success');
 
-      (mockPrisma.$transaction as jest.Mock)
+      mockPrisma.$transaction
         .mockRejectedValueOnce(new Error('Transaction failed'))
         .mockImplementation(async (fn) => fn({}));
 
@@ -430,7 +430,7 @@ describe('BaseService', () => {
 
   describe('healthCheck', () => {
     it('should return healthy status when database is accessible', async () => {
-      (mockPrisma.$queryRaw as jest.Mock).mockResolvedValue([{ 1: 1 }]);
+      mockPrisma.$queryRaw.mockResolvedValue([{ 1: 1 }]);
 
       const health = await testService.healthCheck();
 
@@ -441,7 +441,7 @@ describe('BaseService', () => {
     });
 
     it('should return unhealthy status when database is not accessible', async () => {
-      (mockPrisma.$queryRaw as jest.Mock).mockRejectedValue(new Error('Connection failed'));
+      mockPrisma.$queryRaw.mockRejectedValue(new Error('Connection failed'));
 
       const health = await testService.healthCheck();
 
