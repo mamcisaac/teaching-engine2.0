@@ -114,7 +114,7 @@ jobs:
         run: |
           pnpm --filter client test:integration
         env:
-          VITE_API_URL: http://localhost:3000
+          VITE_API_URL: http://127.0.0.1:3000
 
       - name: Upload integration test results
         uses: actions/upload-artifact@v4
@@ -182,7 +182,7 @@ jobs:
         run: |
           pnpm --filter client test:contract
         env:
-          VITE_API_URL: http://localhost:3000
+          VITE_API_URL: http://127.0.0.1:3000
 
       - name: Upload contract test results
         uses: actions/upload-artifact@v4
@@ -244,7 +244,7 @@ jobs:
         run: npx playwright test --config=playwright.assessment.config.ts
         env:
           BASE_URL: http://localhost:5173
-          VITE_API_URL: http://localhost:3000
+          VITE_API_URL: http://127.0.0.1:3000
           DATABASE_URL: 'file:./test.db'
           NODE_ENV: test
           OPENAI_API_KEY: 'test-api-key'
