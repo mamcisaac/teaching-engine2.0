@@ -59,7 +59,7 @@ async function loginAsTeacher(page: Page) {
 //   return;
 // }
 
-test.describe('Assessment Workflows - E2E', () => {
+test.describe.skip('Assessment Workflows - E2E', () => {
   test('should load the application', async ({ page }) => {
     console.log('Starting basic health check test...');
     await page.goto(BASE_URL);

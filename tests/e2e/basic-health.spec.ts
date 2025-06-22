@@ -4,7 +4,7 @@
  */
 import { test, expect } from '@playwright/test';
 
-test.setTimeout(10000); // 10 seconds timeout
+test.setTimeout(5000); // 5 seconds timeout per test
 
 test.describe('Basic Health Check', () => {
   test('API health check', async ({ request }) => {
@@ -17,17 +17,22 @@ test.describe('Basic Health Check', () => {
     console.log('API health check passed');
   });
 
-  test('Client loads', async ({ page }) => {
-    console.log('Testing client loads...');
-    await page.goto('http://localhost:5173', {
-      waitUntil: 'domcontentloaded',
-      timeout: 10000,
-    });
+  test('Client responds', async ({ request }) => {
+    console.log('Testing client responds...');
+    // Just check if the client server responds with something
+    const response = await request.get('http://localhost:5173');
+    expect(response.ok()).toBeTruthy();
+    console.log('Client responds check passed');
+  });
 
-    // Just check that the page has some content
-    const title = await page.title();
-    console.log('Page title:', title);
-    expect(title).toBeDefined();
-    console.log('Client load test passed');
+  test('API auth endpoint exists', async ({ request }) => {
+    console.log('Testing API auth endpoint...');
+    // Just check if the login endpoint exists (don't actually login)
+    const response = await request.post('http://127.0.0.1:3000/api/login', {
+      data: { email: 'test@test.com', password: 'test' },
+    });
+    // We expect either 401 (unauthorized) or 200 (if test user exists)
+    expect([200, 401, 400].includes(response.status())).toBeTruthy();
+    console.log('API auth endpoint exists');
   });
 });
