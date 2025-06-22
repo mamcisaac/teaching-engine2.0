@@ -1,13 +1,7 @@
 import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
 import { ImportStatus } from '@teaching-engine/database';
 
-jest.mock('../../src/services/embeddingService', () => ({
-  embeddingService: {
-    generateBatchEmbeddings: jest.fn(),
-  },
-}));
-
-// Import after mocking
+// Import services - mocks are already set up in setup-all-mocks.ts
 import { CurriculumImportService } from '../../src/services/curriculumImportService';
 import { embeddingService } from '../../src/services/embeddingService';
 import { prisma } from '../../src/prisma';

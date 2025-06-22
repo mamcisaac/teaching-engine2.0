@@ -32,7 +32,8 @@ describe('EmbeddingService Unit Tests', () => {
     jest.resetModules();
 
     // Get mocked prisma
-    mockPrisma = (await import('../../src/prisma')).prisma;
+    const prismaModule = await import('../../src/prisma');
+    mockPrisma = prismaModule.prisma;
 
     // Import OpenAI and configure mock
     const OpenAI = (await import('openai')).default;
