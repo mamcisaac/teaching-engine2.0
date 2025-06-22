@@ -1,26 +1,6 @@
 import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
 import { ImportStatus } from '@teaching-engine/database';
 
-// Mock modules before importing
-jest.mock('../../src/prisma', () => ({
-  prisma: {
-    curriculumImport: {
-      create: jest.fn(),
-      update: jest.fn(),
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-    },
-    outcome: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      create: jest.fn(),
-    },
-    outcomeCluster: {
-      create: jest.fn(),
-    },
-  },
-}));
-
 jest.mock('../../src/services/embeddingService', () => ({
   embeddingService: {
     generateBatchEmbeddings: jest.fn(),

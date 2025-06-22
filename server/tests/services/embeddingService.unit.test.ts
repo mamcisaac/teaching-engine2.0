@@ -3,25 +3,6 @@ import { describe, it, expect, jest, beforeEach } from '@jest/globals';
 // Set up environment before any imports
 process.env.OPENAI_API_KEY = 'test-api-key';
 
-// Mock dependencies first
-jest.mock('../../src/prisma', () => ({
-  prisma: {
-    outcomeEmbedding: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      deleteMany: jest.fn(),
-    },
-    outcome: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-    },
-    $transaction: jest.fn(),
-    $queryRaw: jest.fn(),
-  },
-}));
-
 // Mock OpenAI
 jest.mock('openai', () => {
   return {
