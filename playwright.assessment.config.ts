@@ -72,8 +72,7 @@ export default defineConfig({
       timeout: 120000,
     },
     {
-      command:
-        "E2E_TEST=true NODE_OPTIONS='--experimental-specifier-resolution=node' tsx src/index.ts",
+      command: "NODE_OPTIONS='--experimental-specifier-resolution=node' tsx src/test-server.ts",
       port: 3000,
       cwd: './server',
       reuseExistingServer: !process.env.CI,
