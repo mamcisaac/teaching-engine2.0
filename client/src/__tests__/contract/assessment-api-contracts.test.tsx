@@ -115,14 +115,25 @@ const MOCK_TEACHER_REFLECTIONS: TeacherReflection[] = [
 ];
 
 // Helper functions for API calls
+let globalAuthToken: string | null = null;
+
+function setAuthToken(token: string | null) {
+  globalAuthToken = token;
+}
+
 async function fetchAPI(endpoint: string, options: RequestInit = {}) {
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    ...options.headers,
+  };
+
+  if (globalAuthToken) {
+    headers.Authorization = `Bearer ${globalAuthToken}`;
+  }
+
   const response = await fetch(`${API_BASE_URL}/api${endpoint}`, {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer test-token', // Use test auth
-      ...options.headers,
-    },
     ...options,
+    headers,
   });
 
   if (!response.ok) {
@@ -213,8 +224,45 @@ describe('Assessment API Contract Tests', () => {
   beforeAll(async () => {
     // Check if API is available
     try {
-      await fetch(`${API_BASE_URL}/api/test`);
-      apiAvailable = true;
+      const response = await fetch(`${API_BASE_URL}/health`);
+      if (response.ok) {
+        const data = await response.json();
+        apiAvailable = data.status === 'ok';
+
+        if (apiAvailable) {
+          // Try to create test user and get auth token
+          try {
+            // Create test user via test endpoint
+            await fetch(`${API_BASE_URL}/api/test/users`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email: 'contract-test@example.com',
+                password: 'test-password',
+                name: 'Contract Test User',
+                role: 'teacher',
+              }),
+            });
+
+            // Login to get auth token
+            const loginResponse = await fetch(`${API_BASE_URL}/api/login`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email: 'contract-test@example.com',
+                password: 'test-password',
+              }),
+            });
+
+            if (loginResponse.ok) {
+              const { token } = await loginResponse.json();
+              setAuthToken(token);
+            }
+          } catch (error) {
+            console.warn('Could not create test user:', error);
+          }
+        }
+      }
     } catch (error) {
       console.warn('API server not available for contract tests. Running mock validation only.');
       apiAvailable = false;
