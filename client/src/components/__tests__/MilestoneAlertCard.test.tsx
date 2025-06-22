@@ -41,7 +41,7 @@ describe('MilestoneAlertCard', () => {
     expect(screen.getByText('1CO.1')).toBeInTheDocument();
     expect(screen.getByText(/Outcome 1CO.1 has not been introduced/)).toBeInTheDocument();
     // Check for date in a more flexible way since formatting may vary by locale
-    const targetText = screen.getByText((content, element) => {
+    const targetTexts = screen.getAllByText((content, element) => {
       return (
         element?.textContent?.includes('Target:') &&
         (element.textContent.includes('Oct 1') ||
@@ -49,7 +49,7 @@ describe('MilestoneAlertCard', () => {
           element.textContent.includes('October 1'))
       );
     });
-    expect(targetText).toBeInTheDocument();
+    expect(targetTexts.length).toBeGreaterThan(0);
     expect(screen.getByText('❌ Overdue')).toBeInTheDocument();
   });
 
@@ -59,7 +59,7 @@ describe('MilestoneAlertCard', () => {
     expect(screen.getByText('Communication orale')).toBeInTheDocument();
     expect(screen.getByText(/Only 1 Communication orale activities/)).toBeInTheDocument();
     // Check for date in a more flexible way since formatting may vary by locale
-    const targetText = screen.getByText((content, element) => {
+    const targetTexts = screen.getAllByText((content, element) => {
       return (
         element?.textContent?.includes('Target:') &&
         (element.textContent.includes('Nov 1') ||
@@ -67,7 +67,7 @@ describe('MilestoneAlertCard', () => {
           element.textContent.includes('November 1'))
       );
     });
-    expect(targetText).toBeInTheDocument();
+    expect(targetTexts.length).toBeGreaterThan(0);
   });
 
   it('displays correct severity styling', () => {
