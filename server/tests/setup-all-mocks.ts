@@ -57,18 +57,24 @@ jest.mock('@prisma/client', () => ({
 }));
 
 // Mock logger to avoid console spam during tests
-jest.mock('@/logger', () => ({
-  debug: jest.fn(),
-  info: jest.fn(),
-  warn: jest.fn(),
-  error: jest.fn(),
-  child: jest.fn(() => ({
+jest.mock('@/logger', () => {
+  const createMockLogger = () => ({
     debug: jest.fn(),
     info: jest.fn(),
     warn: jest.fn(),
     error: jest.fn(),
-  })),
-}));
+    child: jest.fn(() => createMockLogger()), // Return new logger instance for chaining
+  });
+
+  const mockLogger = createMockLogger();
+
+  // Support both default and named exports
+  return {
+    __esModule: true,
+    default: mockLogger,
+    ...mockLogger,
+  };
+});
 
 // Mock local prisma import
 jest.mock('../src/prisma', () => ({
@@ -240,25 +246,7 @@ jest.mock('@/services/emailService', () => ({
   sendBulkEmails: jest.fn().mockResolvedValue({ sent: [], failed: [] }),
 }));
 
-// Mock curriculumImportService
-jest.mock('@/services/curriculumImportService', () => ({
-  CurriculumImportService: jest.fn().mockImplementation(() => ({
-    startImport: jest.fn(),
-    parseCSV: jest.fn(),
-    processImport: jest.fn(),
-    getImportProgress: jest.fn(),
-    cancelImport: jest.fn(),
-    getImportHistory: jest.fn(),
-  })),
-  curriculumImportService: {
-    startImport: jest.fn(),
-    parseCSV: jest.fn(),
-    processImport: jest.fn(),
-    getImportProgress: jest.fn(),
-    cancelImport: jest.fn(),
-    getImportHistory: jest.fn(),
-  },
-}));
+// Note: curriculumImportService is not mocked here since its tests need the real implementation
 
 // Mock clusteringService
 jest.mock('@/services/clusteringService', () => ({
