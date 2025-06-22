@@ -4,7 +4,7 @@ import { describe, it, expect, jest, beforeEach } from '@jest/globals';
 process.env.OPENAI_API_KEY = 'test-api-key';
 
 // Mock dependencies first
-jest.mock('@/prisma', () => ({
+jest.mock('../../src/prisma', () => ({
   prisma: {
     outcomeEmbedding: {
       findUnique: jest.fn(),
@@ -51,7 +51,7 @@ describe('EmbeddingService Unit Tests', () => {
     jest.resetModules();
 
     // Get mocked prisma
-    mockPrisma = (await import('@/prisma')).prisma;
+    mockPrisma = (await import('../../src/prisma')).prisma;
 
     // Import OpenAI and configure mock
     const OpenAI = (await import('openai')).default;
@@ -65,7 +65,7 @@ describe('EmbeddingService Unit Tests', () => {
     });
 
     // Import embedding service after mocks are set
-    const { EmbeddingService } = await import('@/services/embeddingService');
+    const { EmbeddingService } = await import('../../src/services/embeddingService');
     embeddingService = new EmbeddingService();
   });
 
