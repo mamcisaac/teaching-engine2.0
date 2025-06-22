@@ -9,6 +9,7 @@ console.log('Starting E2E test server...');
 // Set up environment
 process.env.NODE_ENV = 'test';
 process.env.E2E_TEST = 'true';
+process.env.IS_TEST_SERVER = 'true'; // Prevent index.ts from starting
 
 // Ensure we have required environment variables
 if (!process.env.OPENAI_API_KEY) {
@@ -21,11 +22,13 @@ if (!process.env.DATABASE_URL) {
 console.log('Environment configured:', {
   NODE_ENV: process.env.NODE_ENV,
   E2E_TEST: process.env.E2E_TEST,
+  IS_TEST_SERVER: process.env.IS_TEST_SERVER,
   DATABASE_URL: process.env.DATABASE_URL,
   OPENAI_API_KEY: process.env.OPENAI_API_KEY ? 'set' : 'not set',
 });
 
 // Import the app and services
+// This will load index.ts but not start the server because IS_TEST_SERVER is set
 import { app } from './index.js';
 import { initializeServices, shutdownServices } from './services/initializeServices.js';
 import logger from './logger.js';

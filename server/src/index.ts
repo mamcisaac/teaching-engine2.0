@@ -338,9 +338,10 @@ log(`Starting server on port ${PORT}...`);
 export { app };
 
 // Only start the server if this file is run directly
-// Also start if running in test mode for E2E tests
+// Also start if running in test mode for E2E tests (unless IS_TEST_SERVER is set)
 const isDirectRun = import.meta.url === `file://${process.argv[1]}`;
-const isE2ETest = process.env.NODE_ENV === 'test' && process.env.E2E_TEST === 'true';
+const isE2ETest =
+  process.env.NODE_ENV === 'test' && process.env.E2E_TEST === 'true' && !process.env.IS_TEST_SERVER;
 
 if (isDirectRun || isE2ETest) {
   // Initialize services before starting the server
