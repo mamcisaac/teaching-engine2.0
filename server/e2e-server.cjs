@@ -3,6 +3,11 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
+// Write to file to verify script is running
+const fs = require('fs');
+const path = require('path');
+fs.writeFileSync(path.join(__dirname, 'e2e-server.log'), `E2E server started at ${new Date().toISOString()}\n`);
+
 // Flush stdout immediately
 process.stdout.write('E2E server starting - this should appear in logs\n');
 process.stderr.write('E2E server stderr test\n');
