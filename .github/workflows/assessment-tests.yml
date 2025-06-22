@@ -94,6 +94,7 @@ jobs:
         run: |
           cp server/.env.example server/.env.test
           sed -i 's/DATABASE_URL=.*/DATABASE_URL="postgresql:\/\/postgres:postgres@localhost:5432\/teaching_engine_test"/' server/.env.test
+          echo "DATABASE_URL=\"postgresql://postgres:postgres@localhost:5432/teaching_engine_test\"" > packages/database/.env
           pnpm db:migrate
           pnpm db:seed
         env:
@@ -160,6 +161,7 @@ jobs:
         run: |
           cp server/.env.example server/.env.test
           sed -i 's/DATABASE_URL=.*/DATABASE_URL="postgresql:\/\/postgres:postgres@localhost:5432\/teaching_engine_test"/' server/.env.test
+          echo "DATABASE_URL=\"postgresql://postgres:postgres@localhost:5432/teaching_engine_test\"" > packages/database/.env
           pnpm db:migrate
           pnpm db:seed
         env:
@@ -227,6 +229,7 @@ jobs:
         run: |
           cp server/.env.example server/.env.test
           sed -i 's/DATABASE_URL=.*/DATABASE_URL="postgresql:\/\/postgres:postgres@localhost:5432\/teaching_engine_test"/' server/.env.test
+          echo "DATABASE_URL=\"postgresql://postgres:postgres@localhost:5432/teaching_engine_test\"" > packages/database/.env
           pnpm db:migrate
           pnpm db:seed
         env:
