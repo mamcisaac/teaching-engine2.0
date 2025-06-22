@@ -4,10 +4,6 @@ import { ImportStatus } from '@teaching-engine/database';
 import { embeddingService } from '../../src/services/embeddingService';
 import { prisma } from '../../src/prisma';
 
-// Mock prisma before importing anything else
-jest.mock('../../src/prisma');
-jest.mock('../../src/services/embeddingService');
-
 describe('CurriculumImportService', () => {
   let curriculumImportService: CurriculumImportService;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
