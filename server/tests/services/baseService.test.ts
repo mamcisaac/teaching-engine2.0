@@ -105,9 +105,9 @@ describe('BaseService', () => {
         exponentialBackoff: true,
       });
 
-      // Run timers progressively
-      jest.advanceTimersByTime(100); // First retry after 100ms
-      jest.advanceTimersByTime(200); // Second retry after 200ms (exponential)
+      // Advance timers and flush promises
+      await jest.advanceTimersByTimeAsync(100); // First retry after 100ms
+      await jest.advanceTimersByTimeAsync(200); // Second retry after 200ms (exponential)
 
       await resultPromise;
 
@@ -131,7 +131,7 @@ describe('BaseService', () => {
         exponentialBackoff: true,
       });
 
-      jest.runAllTimers();
+      await jest.runAllTimersAsync();
       await resultPromise;
 
       // Even with exponential backoff, delay should not exceed maxDelay
@@ -167,7 +167,7 @@ describe('BaseService', () => {
         .mockImplementation(async (fn) => fn({}));
 
       const resultPromise = testService.testWithTransaction(mockOperation);
-      jest.runAllTimers();
+      await jest.runAllTimersAsync();
 
       const result = await resultPromise;
 
@@ -240,7 +240,7 @@ describe('BaseService', () => {
         );
 
       const resultPromise = testService.testWithParallel(operations, { maxConcurrency: 3 });
-      jest.runAllTimers();
+      await jest.runAllTimersAsync();
 
       await resultPromise;
 

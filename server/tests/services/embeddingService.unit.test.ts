@@ -1,7 +1,9 @@
 import { describe, it, expect, jest, beforeEach } from '@jest/globals';
-import { EmbeddingService } from '@/services/embeddingService';
 
-// Manually mock the dependencies
+// Set up environment before any imports
+process.env.OPENAI_API_KEY = 'test-api-key';
+
+// Mock dependencies first
 jest.mock('@/prisma', () => ({
   prisma: {
     outcomeEmbedding: {
@@ -11,51 +13,59 @@ jest.mock('@/prisma', () => ({
       createMany: jest.fn(),
       deleteMany: jest.fn(),
     },
+    outcome: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+    },
+    $transaction: jest.fn(),
+    $queryRaw: jest.fn(),
   },
 }));
 
-jest.mock('@/services/llmService', () => {
-  const mockOpenAI = {
-    embeddings: {
-      create: jest.fn().mockResolvedValue({
-        data: [{ embedding: Array(1536).fill(0.1) }],
-        usage: { total_tokens: 10 },
-      }),
-    },
-    chat: {
-      completions: {
+// Mock OpenAI
+jest.mock('openai', () => {
+  return {
+    default: jest.fn().mockImplementation(() => ({
+      embeddings: {
         create: jest.fn(),
       },
-    },
+      chat: {
+        completions: {
+          create: jest.fn(),
+        },
+      },
+    })),
   };
-  return { openai: mockOpenAI };
 });
 
 describe('EmbeddingService Unit Tests', () => {
-  let embeddingService: EmbeddingService;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let embeddingService: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let mockPrisma: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let mockOpenAI: any;
 
-  beforeEach(() => {
-    // Clear all mocks
+  beforeEach(async () => {
     jest.clearAllMocks();
+    jest.resetModules();
 
-    // Get the mocked modules
-    const { prisma } = jest.requireMock('@/prisma');
-    const { openai } = jest.requireMock('@/services/llmService');
+    // Get mocked prisma
+    mockPrisma = (await import('@/prisma')).prisma;
 
-    mockPrisma = prisma;
-    mockOpenAI = openai;
+    // Import OpenAI and configure mock
+    const OpenAI = (await import('openai')).default;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    mockOpenAI = new (OpenAI as any)();
 
-    // Reset mock implementations
+    // Set up embeddings mock
     mockOpenAI.embeddings.create.mockResolvedValue({
       data: [{ embedding: Array(1536).fill(0.1) }],
       usage: { total_tokens: 10 },
     });
 
-    // Create service instance
+    // Import embedding service after mocks are set
+    const { EmbeddingService } = await import('@/services/embeddingService');
     embeddingService = new EmbeddingService();
   });
 
@@ -114,12 +124,6 @@ describe('EmbeddingService Unit Tests', () => {
     it('should generate and store a new embedding', async () => {
       // Mock no existing embedding
       mockPrisma.outcomeEmbedding.findUnique.mockResolvedValue(null);
-
-      // Mock OpenAI response
-      mockOpenAI.embeddings.create.mockResolvedValue({
-        data: [{ embedding: mockEmbedding }],
-        usage: { total_tokens: 10 },
-      });
 
       // Mock create
       mockPrisma.outcomeEmbedding.create.mockResolvedValue({
@@ -184,9 +188,39 @@ describe('EmbeddingService Unit Tests', () => {
 
       // Mock all embeddings
       mockPrisma.outcomeEmbedding.findMany.mockResolvedValue([
-        { outcomeId: 'outcome-1', embedding: [0.9, 0.1, 0] },
-        { outcomeId: 'outcome-2', embedding: [0, 1, 0] },
-        { outcomeId: 'outcome-3', embedding: [0.95, 0.05, 0] },
+        {
+          outcomeId: 'outcome-1',
+          embedding: [0.9, 0.1, 0],
+          outcome: {
+            id: 'outcome-1',
+            code: 'CODE1',
+            description: 'Description 1',
+            subject: 'MATH',
+            grade: 1,
+          },
+        },
+        {
+          outcomeId: 'outcome-2',
+          embedding: [0, 1, 0],
+          outcome: {
+            id: 'outcome-2',
+            code: 'CODE2',
+            description: 'Description 2',
+            subject: 'MATH',
+            grade: 1,
+          },
+        },
+        {
+          outcomeId: 'outcome-3',
+          embedding: [0.95, 0.05, 0],
+          outcome: {
+            id: 'outcome-3',
+            code: 'CODE3',
+            description: 'Description 3',
+            subject: 'MATH',
+            grade: 1,
+          },
+        },
       ]);
 
       const results = await embeddingService.findSimilarOutcomes(targetOutcomeId, 0.8, 10);
@@ -215,6 +249,13 @@ describe('EmbeddingService Unit Tests', () => {
         .map((_, i) => ({
           outcomeId: `outcome-${i}`,
           embedding: [0.9 - i * 0.01, 0.1, 0], // Slightly different similarities
+          outcome: {
+            id: `outcome-${i}`,
+            code: `CODE${i}`,
+            description: `Description ${i}`,
+            subject: 'MATH',
+            grade: 1,
+          },
         }));
 
       mockPrisma.outcomeEmbedding.findMany.mockResolvedValue(manyEmbeddings);
@@ -237,12 +278,6 @@ describe('EmbeddingService Unit Tests', () => {
     it('should process new outcomes in batch', async () => {
       // Mock no existing embeddings
       mockPrisma.outcomeEmbedding.findMany.mockResolvedValue([]);
-
-      // Mock OpenAI batch response
-      mockOpenAI.embeddings.create.mockResolvedValue({
-        data: outcomes.map(() => ({ embedding: Array(1536).fill(0.1) })),
-        usage: { total_tokens: 30 },
-      });
 
       // Mock createMany
       mockPrisma.outcomeEmbedding.createMany.mockResolvedValue({ count: 3 });

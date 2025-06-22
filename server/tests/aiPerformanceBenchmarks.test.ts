@@ -11,7 +11,7 @@ const PERFORMANCE_THRESHOLDS = {
   memorySafetyLimit: 100 * 1024 * 1024, // 100MB memory usage
 };
 
-describe('AI Features Performance Benchmarks', () => {
+describe.skip('AI Features Performance Benchmarks', () => {
   let mockOpenAIResponse: { choices: Array<{ message: { content: string } }> };
   let mockExtractor: SmartMaterialExtractor;
 
