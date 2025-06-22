@@ -18,21 +18,24 @@ describe('CurriculumImportService', () => {
     mockPrisma = jest.mocked(prisma);
     mockEmbeddingService = jest.mocked(embeddingService);
 
-    // Set up mock implementations
+    // Set up mock implementations as jest functions
     mockPrisma.curriculumImport = {
       create: jest.fn(),
       update: jest.fn(),
       findUnique: jest.fn(),
       findMany: jest.fn(),
-    };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any;
     mockPrisma.outcome = {
       findUnique: jest.fn(),
       findMany: jest.fn(),
       create: jest.fn(),
-    };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any;
     mockPrisma.outcomeCluster = {
       create: jest.fn(),
-    };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any;
 
     curriculumImportService = new CurriculumImportService();
   });

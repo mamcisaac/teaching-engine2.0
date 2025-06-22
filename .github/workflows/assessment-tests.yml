@@ -236,20 +236,15 @@ jobs:
           NODE_ENV: test
           DATABASE_URL: 'file:./test.db'
 
-      - name: Start servers
-        run: |
-          pnpm --filter server dev &
-          pnpm --filter client dev &
-          sleep 15
-        env:
-          NODE_ENV: test
-          DATABASE_URL: 'file:./test.db'
+      # Servers will be started by Playwright config
 
       - name: Run E2E tests
         run: npx playwright test --config=playwright.assessment.config.ts
         env:
           BASE_URL: http://localhost:5173
           VITE_API_URL: http://localhost:3000
+          DATABASE_URL: 'file:./test.db'
+          NODE_ENV: test
 
       - name: Upload E2E test results
         uses: actions/upload-artifact@v4

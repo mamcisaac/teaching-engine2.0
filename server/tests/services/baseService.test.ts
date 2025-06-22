@@ -224,6 +224,9 @@ describe('BaseService', () => {
     });
 
     it('should respect maxConcurrency', async () => {
+      // Use real timers for this test
+      jest.useRealTimers();
+
       let concurrent = 0;
       let maxConcurrent = 0;
 
@@ -239,12 +242,13 @@ describe('BaseService', () => {
           }),
         );
 
-      const resultPromise = testService.testWithParallel(operations, { maxConcurrency: 3 });
-      await jest.runAllTimersAsync();
-
-      await resultPromise;
+      const result = await testService.testWithParallel(operations, { maxConcurrency: 3 });
 
       expect(maxConcurrent).toBeLessThanOrEqual(3);
+      expect(result.successCount).toBe(10);
+
+      // Restore fake timers
+      jest.useFakeTimers();
     });
   });
 
