@@ -82,7 +82,7 @@ export default defineConfig({
       env: {
         NODE_ENV: 'test',
         E2E_TEST: 'true',
-        DATABASE_URL: 'file:./test-assessment-e2e.db',
+        DATABASE_URL: process.env.DATABASE_URL || 'file:./test.db',
         OPENAI_API_KEY: process.env.OPENAI_API_KEY || 'test-api-key',
         NODE_OPTIONS: '--experimental-specifier-resolution=node',
       },
