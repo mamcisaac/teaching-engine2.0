@@ -72,7 +72,7 @@ export default defineConfig({
       timeout: 120000,
     },
     {
-      command: 'npm run dev',
+      command: 'npm start',
       port: 3000,
       cwd: './server',
       reuseExistingServer: !process.env.CI,
