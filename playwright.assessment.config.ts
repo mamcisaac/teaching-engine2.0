@@ -5,7 +5,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests/e2e',
-  testMatch: '**/assessment-workflows.spec.ts',
+  testMatch: ['**/basic-health.spec.ts', '**/assessment-workflows.spec.ts'],
   fullyParallel: false, // Run assessment tests sequentially for data consistency
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 1,

@@ -241,7 +241,8 @@ jobs:
       # Servers will be started by Playwright config
 
       - name: Run E2E tests
-        run: npx playwright test --config=playwright.assessment.config.ts
+        run: npx playwright test --config=playwright.assessment.config.ts --reporter=list --workers=1
+        timeout-minutes: 5
         env:
           BASE_URL: http://localhost:5173
           VITE_API_URL: http://127.0.0.1:3000
