@@ -108,6 +108,7 @@ jobs:
         env:
           NODE_ENV: test
           DATABASE_URL: 'file:./test.db'
+          OPENAI_API_KEY: 'test-api-key'
 
       - name: Run integration tests
         run: |
@@ -175,6 +176,7 @@ jobs:
         env:
           NODE_ENV: test
           DATABASE_URL: 'file:./test.db'
+          OPENAI_API_KEY: 'test-api-key'
 
       - name: Run contract tests
         run: |
@@ -245,6 +247,7 @@ jobs:
           VITE_API_URL: http://localhost:3000
           DATABASE_URL: 'file:./test.db'
           NODE_ENV: test
+          OPENAI_API_KEY: 'test-api-key'
 
       - name: Upload E2E test results
         uses: actions/upload-artifact@v4
