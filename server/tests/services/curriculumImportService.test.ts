@@ -1,6 +1,34 @@
 import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
-import { CurriculumImportService } from '../../src/services/curriculumImportService';
 import { ImportStatus } from '@teaching-engine/database';
+
+// Mock modules before importing
+jest.mock('../../src/prisma', () => ({
+  prisma: {
+    curriculumImport: {
+      create: jest.fn(),
+      update: jest.fn(),
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+    },
+    outcome: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      create: jest.fn(),
+    },
+    outcomeCluster: {
+      create: jest.fn(),
+    },
+  },
+}));
+
+jest.mock('../../src/services/embeddingService', () => ({
+  embeddingService: {
+    generateBatchEmbeddings: jest.fn(),
+  },
+}));
+
+// Import after mocking
+import { CurriculumImportService } from '../../src/services/curriculumImportService';
 import { embeddingService } from '../../src/services/embeddingService';
 import { prisma } from '../../src/prisma';
 
@@ -15,27 +43,8 @@ describe('CurriculumImportService', () => {
     jest.clearAllMocks();
 
     // Get mocked instances
-    mockPrisma = jest.mocked(prisma);
-    mockEmbeddingService = jest.mocked(embeddingService);
-
-    // Set up mock implementations as jest functions
-    mockPrisma.curriculumImport = {
-      create: jest.fn(),
-      update: jest.fn(),
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any;
-    mockPrisma.outcome = {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      create: jest.fn(),
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any;
-    mockPrisma.outcomeCluster = {
-      create: jest.fn(),
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any;
+    mockPrisma = prisma;
+    mockEmbeddingService = embeddingService;
 
     curriculumImportService = new CurriculumImportService();
   });

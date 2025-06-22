@@ -36,11 +36,11 @@ export async function generateContent(prompt: string, systemMessage?: string): P
       max_tokens: 1000,
     });
 
-    if (chat.usage?.total_tokens) {
+    if (chat?.usage?.total_tokens) {
       logger.info({ tokens: chat.usage.total_tokens }, 'LLM tokens used for content generation');
     }
 
-    return chat.choices[0]?.message?.content?.trim() || 'No content generated';
+    return chat?.choices?.[0]?.message?.content?.trim() || 'No content generated';
   } catch (err) {
     logger.error({ err }, 'LLM content generation failed');
     return 'Failed to generate content. Please try again later.';

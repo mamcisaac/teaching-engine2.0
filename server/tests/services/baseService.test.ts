@@ -66,11 +66,16 @@ describe('BaseService', () => {
         .mockRejectedValueOnce(new Error('Second failure'))
         .mockResolvedValue('success');
 
-      const result = await testService.testWithRetry(mockOperation, {
+      const resultPromise = testService.testWithRetry(mockOperation, {
         maxRetries: 3,
-        initialDelay: 0, // No delay for tests
+        baseDelay: 0, // No delay for tests
         maxDelay: 0,
       });
+
+      // Even with 0 delay, we need to advance timers
+      await jest.runAllTimersAsync();
+
+      const result = await resultPromise;
 
       expect(result).toBe('success');
       expect(mockOperation).toHaveBeenCalledTimes(3);
@@ -79,14 +84,16 @@ describe('BaseService', () => {
     it('should fail after max retries', async () => {
       const mockOperation = jest.fn().mockRejectedValue(new Error('Persistent failure'));
 
-      await expect(
-        testService.testWithRetry(mockOperation, {
-          maxRetries: 2,
-          initialDelay: 0,
-          maxDelay: 0,
-        }),
-      ).rejects.toThrow('Persistent failure');
+      const promise = testService.testWithRetry(mockOperation, {
+        maxRetries: 2,
+        baseDelay: 0,
+        maxDelay: 0,
+      });
 
+      // Advance timers to handle retries
+      await jest.runAllTimersAsync();
+
+      await expect(promise).rejects.toThrow('Persistent failure');
       expect(mockOperation).toHaveBeenCalledTimes(3); // Initial + 2 retries
     });
 
@@ -249,7 +256,7 @@ describe('BaseService', () => {
 
       // Restore fake timers
       jest.useFakeTimers();
-    });
+    }, 10000); // Add explicit timeout
   });
 
   describe('handleError', () => {
