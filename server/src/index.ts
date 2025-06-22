@@ -337,23 +337,12 @@ log(`Starting server on port ${PORT}...`);
 // Export app before starting the server
 export { app };
 
-// Debug logging for E2E tests
-console.log('Server startup check:');
-console.log('- import.meta.url:', import.meta.url);
-console.log('- process.argv[1]:', process.argv[1]);
-console.log('- NODE_ENV:', process.env.NODE_ENV);
-console.log('- E2E_TEST:', process.env.E2E_TEST);
-
 // Only start the server if this file is run directly
 // Also start if running in test mode for E2E tests
 const isDirectRun = import.meta.url === `file://${process.argv[1]}`;
 const isE2ETest = process.env.NODE_ENV === 'test' && process.env.E2E_TEST === 'true';
 
-console.log('- isDirectRun:', isDirectRun);
-console.log('- isE2ETest:', isE2ETest);
-
 if (isDirectRun || isE2ETest) {
-  console.log('Starting server initialization...');
   // Initialize services before starting the server
   initializeServices()
     .then(() => {

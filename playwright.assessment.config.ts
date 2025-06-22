@@ -72,7 +72,7 @@ export default defineConfig({
       timeout: 120000,
     },
     {
-      command: 'npm start',
+      command: "NODE_OPTIONS='--experimental-specifier-resolution=node' node start-e2e-server.js",
       port: 3000,
       cwd: './server',
       reuseExistingServer: !process.env.CI,
