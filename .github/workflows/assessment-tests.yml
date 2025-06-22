@@ -98,6 +98,7 @@ jobs:
           pnpm db:seed
         env:
           NODE_ENV: test
+          DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/teaching_engine_test'
 
       - name: Start API server
         run: |
@@ -163,6 +164,7 @@ jobs:
           pnpm db:seed
         env:
           NODE_ENV: test
+          DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/teaching_engine_test'
 
       - name: Start API server
         run: |
@@ -229,6 +231,7 @@ jobs:
           pnpm db:seed
         env:
           NODE_ENV: test
+          DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/teaching_engine_test'
 
       - name: Start servers
         run: |
