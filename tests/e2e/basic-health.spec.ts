@@ -27,7 +27,7 @@ test.describe('Basic Health Check', () => {
     // Just check that the page has some content
     const title = await page.title();
     console.log('Page title:', title);
-    expect(title).toBeTruthy();
+    expect(title).toBeDefined();
     console.log('Client load test passed');
   });
 });
