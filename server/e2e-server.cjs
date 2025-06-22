@@ -3,49 +3,51 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-console.log('E2E server starting - this should appear in logs');
-console.error('E2E server stderr test');
+// Flush stdout immediately
+process.stdout.write('E2E server starting - this should appear in logs\n');
+process.stderr.write('E2E server stderr test\n');
 
 // Simple server without any imports
 const http = require('http');
 const PORT = 3000;
 
-// First, try to kill any existing process on the port
-const { exec } = require('child_process');
-exec(`lsof -ti:${PORT} | xargs kill -9 2>/dev/null || true`, (err) => {
-  if (err) {
-    console.log('No existing process to kill on port', PORT);
+// Create server immediately
+const server = http.createServer((req, res) => {
+  process.stdout.write(`Request received: ${req.method} ${req.url}\n`);
+
+  if (req.url === '/health') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ status: 'ok' }));
   } else {
-    console.log('Killed existing process on port', PORT);
+    res.writeHead(404);
+    res.end('Not found');
   }
+});
 
-  // Wait a moment for port to be released
-  setTimeout(() => {
-    const server = http.createServer((req, res) => {
-      console.log(`Request received: ${req.method} ${req.url}`);
+// Try to start server with error handling
+server.listen(PORT, '0.0.0.0', () => {
+  process.stdout.write(`Simple E2E server listening on port ${PORT}\n`);
+  // Force flush
+  if (process.stdout.isTTY) {
+    process.stdout.write('');
+  }
+});
 
-      if (req.url === '/health') {
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ status: 'ok' }));
-      } else {
-        res.writeHead(404);
-        res.end('Not found');
-      }
+server.on('error', (err) => {
+  process.stderr.write(`Server error: ${err}\n`);
+  if (err.code === 'EADDRINUSE') {
+    process.stderr.write(`Port ${PORT} is already in use. This might be because:\n`);
+    process.stderr.write('1. Another server instance is running\n');
+    process.stderr.write('2. Playwright started multiple webServer processes\n');
+    process.stderr.write('3. A previous test run did not clean up properly\n');
+    
+    // Try a different port
+    const altPort = PORT + 1;
+    process.stderr.write(`Trying alternative port ${altPort}...\n`);
+    server.listen(altPort, '0.0.0.0', () => {
+      process.stdout.write(`Simple E2E server listening on alternative port ${altPort}\n`);
     });
-
-    server.listen(PORT, '0.0.0.0', () => {
-      console.log(`Simple E2E server listening on port ${PORT}`);
-    });
-
-    server.on('error', (err) => {
-      console.error('Server error:', err);
-      if (err.code === 'EADDRINUSE') {
-        console.error(`Port ${PORT} is already in use. This might be because:`);
-        console.error('1. Another server instance is running');
-        console.error('2. Playwright started multiple webServer processes');
-        console.error('3. A previous test run did not clean up properly');
-      }
-      process.exit(1);
-    });
-  }, 1000);
+  } else {
+    process.exit(1);
+  }
 });
