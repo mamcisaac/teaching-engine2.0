@@ -57,24 +57,28 @@ jest.mock('@prisma/client', () => ({
 }));
 
 // Mock logger to avoid console spam during tests
-jest.mock('@/logger', () => {
-  const createMockLogger = () => ({
-    debug: jest.fn(),
-    info: jest.fn(),
-    warn: jest.fn(),
-    error: jest.fn(),
-    child: jest.fn(() => createMockLogger()), // Return new logger instance for chaining
-  });
-
-  const mockLogger = createMockLogger();
-
-  // Support both default and named exports
-  return {
-    __esModule: true,
-    default: mockLogger,
-    ...mockLogger,
-  };
+const createMockLogger = () => ({
+  debug: jest.fn(),
+  info: jest.fn(),
+  warn: jest.fn(),
+  error: jest.fn(),
+  child: jest.fn(() => createMockLogger()), // Return new logger instance for chaining
 });
+
+const mockLogger = createMockLogger();
+
+// Mock both import paths
+jest.mock('@/logger', () => ({
+  __esModule: true,
+  default: mockLogger,
+  ...mockLogger,
+}));
+
+jest.mock('../src/logger', () => ({
+  __esModule: true,
+  default: mockLogger,
+  ...mockLogger,
+}));
 
 // Mock local prisma import
 jest.mock('../src/prisma', () => ({

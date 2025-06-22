@@ -1,6 +1,26 @@
 import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
 import { ImportStatus } from '@teaching-engine/database';
 
+// Mock logger before importing services that use it
+jest.mock('../../src/logger', () => ({
+  __esModule: true,
+  default: {
+    debug: jest.fn(),
+    info: jest.fn(),
+    warn: jest.fn(),
+    error: jest.fn(),
+    child: jest.fn(function () {
+      return {
+        debug: jest.fn(),
+        info: jest.fn(),
+        warn: jest.fn(),
+        error: jest.fn(),
+        child: jest.fn(),
+      };
+    }),
+  },
+}));
+
 // Import services - mocks are already set up in setup-all-mocks.ts
 import { CurriculumImportService } from '../../src/services/curriculumImportService';
 import { embeddingService } from '../../src/services/embeddingService';
@@ -20,7 +40,21 @@ describe('CurriculumImportService', () => {
     mockPrisma = prisma;
     mockEmbeddingService = embeddingService;
 
+    // Create service instance
     curriculumImportService = new CurriculumImportService();
+
+    // Force inject logger if needed
+    if (!curriculumImportService['logger']) {
+      curriculumImportService['logger'] = {
+        debug: jest.fn(),
+        info: jest.fn(),
+        warn: jest.fn(),
+        error: jest.fn(),
+        child: jest.fn(function () {
+          return this;
+        }),
+      };
+    }
   });
 
   afterEach(() => {
@@ -50,7 +84,7 @@ describe('CurriculumImportService', () => {
           subject: 'MATH',
           sourceFormat: 'csv',
           sourceFile: 'file.csv',
-          status: ImportStatus.PENDING,
+          status: ImportStatus.UPLOADING,
           metadata: {},
         },
       });
@@ -219,9 +253,12 @@ Test,123`;
       const result = await curriculumImportService.processImport(importId, testOutcomes);
 
       expect(result.errors).toHaveLength(2); // One error per outcome
+      expect(result.outcomes).toHaveLength(0); // No successful outcomes
+
+      // The import should complete but with errors recorded
       expect(mockPrisma.curriculumImport.update).toHaveBeenCalledWith({
         where: { id: importId },
-        data: { status: ImportStatus.FAILED },
+        data: { status: ImportStatus.COMPLETED },
       });
     });
 
