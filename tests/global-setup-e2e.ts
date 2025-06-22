@@ -20,7 +20,10 @@ async function waitForServer(url: string, maxRetries = 30): Promise<void> {
 
   for (let i = 0; i < maxRetries; i++) {
     try {
-      const response = await fetch(`${url}/health`);
+      const response = await fetch(`${url}/health`, {
+        headers: { Accept: 'application/json' },
+        signal: AbortSignal.timeout(5000),
+      });
       if (response.ok) {
         const data = await response.json();
         if (data.status === 'ok' || data.status === 'healthy') {
@@ -33,7 +36,11 @@ async function waitForServer(url: string, maxRetries = 30): Promise<void> {
       }
     } catch (error) {
       // Server not ready yet
-      console.log(`Health check error: ${error}`);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      console.log(`Health check error: ${errorMessage}`);
+      if (error instanceof Error && error.cause) {
+        console.log(`Error cause: ${error.cause}`);
+      }
     }
 
     const delay = Math.min(1000 * Math.pow(1.5, i), 5000); // Exponential backoff, max 5s
@@ -118,7 +125,9 @@ export default async function globalSetup() {
   console.log('\n🚀 Starting E2E global setup...\n');
 
   // Use the server URL from environment or default
-  const serverUrl = process.env.VITE_API_URL || 'http://localhost:3000';
+  // In CI, use 127.0.0.1 instead of localhost to avoid IPv6 issues
+  const defaultUrl = process.env.CI ? 'http://127.0.0.1:3000' : 'http://localhost:3000';
+  const serverUrl = process.env.VITE_API_URL || defaultUrl;
 
   try {
     // Store server URL globally
