@@ -6,7 +6,7 @@
 
 import request from 'supertest';
 import express from 'express';
-import { describe, it, expect, beforeAll, beforeEach } from '@jest/globals';
+import { describe, it, expect, beforeAll, beforeEach, jest } from '@jest/globals';
 import analyticsRoutes from '../analytics';
 import { analyticsCache } from '../../services/analytics';
 

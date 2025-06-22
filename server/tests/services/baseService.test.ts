@@ -36,10 +36,13 @@ class TestService extends BaseService {
 
 describe('BaseService', () => {
   let testService: TestService;
-  const mockPrisma = prisma as jest.Mocked<typeof prisma>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let mockPrisma: any;
 
   beforeEach(() => {
     testService = new TestService();
+    // Get the mocked prisma instance
+    mockPrisma = prisma;
     jest.clearAllMocks();
     jest.useFakeTimers();
   });

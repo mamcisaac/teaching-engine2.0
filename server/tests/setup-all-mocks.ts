@@ -73,10 +73,10 @@ jest.mock('@/logger', () => ({
 // Mock local prisma import
 jest.mock('../src/prisma', () => ({
   prisma: {
-    $connect: jest.fn(),
-    $disconnect: jest.fn(),
-    $transaction: jest.fn(),
-    $queryRaw: jest.fn(),
+    $connect: jest.fn().mockResolvedValue(undefined),
+    $disconnect: jest.fn().mockResolvedValue(undefined),
+    $transaction: jest.fn().mockImplementation((fn) => fn({})),
+    $queryRaw: jest.fn().mockResolvedValue([{ 1: 1 }]),
     user: {
       findUnique: jest.fn(),
       findMany: jest.fn(),
@@ -122,14 +122,28 @@ jest.mock('../src/prisma', () => ({
 // Mock embeddingService
 jest.mock('@/services/embeddingService', () => ({
   embeddingService: {
-    calculateSimilarity: jest.fn(),
-    generateBatchEmbeddings: jest.fn(),
-    findSimilarOutcomes: jest.fn(),
+    calculateSimilarity: jest.fn().mockReturnValue(0.85),
+    generateBatchEmbeddings: jest.fn().mockResolvedValue([]),
+    findSimilarOutcomes: jest.fn().mockResolvedValue([]),
     generateEmbedding: jest.fn().mockResolvedValue({
+      outcomeId: 'test-outcome',
       embedding: Array(1536)
         .fill(0)
         .map(() => Math.random()),
+      model: 'text-embedding-3-small',
     }),
+    generateMissingEmbeddings: jest.fn().mockResolvedValue(0),
+    getOrCreateOutcomeEmbedding: jest.fn().mockResolvedValue({
+      outcomeId: 'test-outcome',
+      embedding: Array(1536)
+        .fill(0)
+        .map(() => Math.random()),
+      model: 'text-embedding-3-small',
+    }),
+    searchOutcomesByText: jest.fn().mockResolvedValue([]),
+    isEmbeddingServiceAvailable: jest.fn().mockReturnValue(true),
+    // Add alias for test compatibility
+    cosineSimilarity: jest.fn().mockReturnValue(0.85),
   },
 }));
 

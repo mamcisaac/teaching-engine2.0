@@ -1,5 +1,5 @@
 import { jest } from '@jest/globals';
-import * as embeddingService from '../embeddingService';
+import { embeddingService } from '../embeddingService';
 
 // Mock dependencies
 jest.mock('@teaching-engine/database', () => {
@@ -138,25 +138,25 @@ describe('EmbeddingService', () => {
     });
   });
 
-  describe('cosineSimilarity', () => {
+  describe('calculateSimilarity', () => {
     it('should calculate cosine similarity correctly', () => {
       const vector1 = [1, 0, 0];
       const vector2 = [0, 1, 0];
       const vector3 = [1, 0, 0];
 
       // Orthogonal vectors should have similarity 0
-      expect(embeddingService.cosineSimilarity(vector1, vector2)).toBe(0);
+      expect(embeddingService.calculateSimilarity(vector1, vector2)).toBe(0);
 
       // Identical vectors should have similarity 1
-      expect(embeddingService.cosineSimilarity(vector1, vector3)).toBe(1);
+      expect(embeddingService.calculateSimilarity(vector1, vector3)).toBe(1);
     });
 
     it('should throw error for vectors of different dimensions', () => {
       const vector1 = [1, 0, 0];
       const vector2 = [1, 0];
 
-      expect(() => embeddingService.cosineSimilarity(vector1, vector2)).toThrow(
-        'Embeddings must have the same dimensions',
+      expect(() => embeddingService.calculateSimilarity(vector1, vector2)).toThrow(
+        'Embeddings must have the same length',
       );
     });
 
@@ -164,7 +164,7 @@ describe('EmbeddingService', () => {
       const vector1 = [0, 0, 0];
       const vector2 = [1, 1, 1];
 
-      expect(embeddingService.cosineSimilarity(vector1, vector2)).toBe(0);
+      expect(embeddingService.calculateSimilarity(vector1, vector2)).toBe(0);
     });
   });
 
