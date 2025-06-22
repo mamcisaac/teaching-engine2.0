@@ -1,5 +1,4 @@
 import { chromium } from '@playwright/test';
-import baseSetup from '../playwright.global-setup';
 
 // Type declarations for global variables
 declare global {
@@ -113,9 +112,6 @@ async function createE2ETestUsers(serverUrl: string): Promise<void> {
  */
 export default async function globalSetup() {
   console.log('\n🚀 Starting E2E global setup...\n');
-
-  // Run base Playwright setup first
-  await baseSetup();
 
   // Use the server URL from environment or default
   const serverUrl = process.env.VITE_API_URL || 'http://localhost:3000';
