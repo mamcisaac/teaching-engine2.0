@@ -2,9 +2,18 @@ import { PrismaClient } from '@teaching-engine/database';
 import OpenAI from 'openai';
 
 const prisma = new PrismaClient();
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+
+// Lazy initialization of OpenAI to avoid startup errors
+let openai: OpenAI | null = null;
+
+function getOpenAI(): OpenAI {
+  if (!openai) {
+    openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY || 'test-api-key',
+    });
+  }
+  return openai;
+}
 
 export interface SmartMaterial {
   name: string;
@@ -46,7 +55,7 @@ export class SmartMaterialExtractor {
 
     // First try pattern-based extraction (fast)
     const patternMaterials = this.extractMaterialsPattern(text);
-    
+
     // If OpenAI is available and we have meaningful text, enhance with AI
     if (process.env.OPENAI_API_KEY && text.length > 50) {
       try {
@@ -68,32 +77,43 @@ export class SmartMaterialExtractor {
   private extractMaterialsPattern(text: string): SmartMaterial[] {
     const materials: SmartMaterial[] = [];
     const lines = text.split(/\r?\n/);
-    
+
     const materialKeywords = [
-      'materials?', 'supplies', 'equipment', 'resources', 'tools',
-      'needed', 'required', 'bring', 'prepare', 'setup'
+      'materials?',
+      'supplies',
+      'equipment',
+      'resources',
+      'tools',
+      'needed',
+      'required',
+      'bring',
+      'prepare',
+      'setup',
     ];
-    
+
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i].trim();
-      
+
       // Look for material header lines
       const headerMatch = line.match(
-        new RegExp(`^(?:additional\\s+|extra\\s+)?(?:${materialKeywords.join('|')})(?:\\s+needed|\\s+required)?:?\\s*(.*)`, 'i')
+        new RegExp(
+          `^(?:additional\\s+|extra\\s+)?(?:${materialKeywords.join('|')})(?:\\s+needed|\\s+required)?:?\\s*(.*)`,
+          'i',
+        ),
       );
-      
+
       if (headerMatch) {
         const headerContent = headerMatch[1];
         if (headerContent) {
-          this.parseMaterialItems(headerContent).forEach(item => materials.push(item));
+          this.parseMaterialItems(headerContent).forEach((item) => materials.push(item));
         }
-        
+
         // Look for list items after the header
         for (let j = i + 1; j < lines.length; j++) {
           const nextLine = lines[j].trim();
           if (/^[-*•]\s+/.test(nextLine)) {
             const itemText = nextLine.replace(/^[-*•]\s+/, '');
-            this.parseMaterialItems(itemText).forEach(item => materials.push(item));
+            this.parseMaterialItems(itemText).forEach((item) => materials.push(item));
           } else if (!nextLine) {
             continue; // Skip empty lines
           } else if (!nextLine.startsWith(' ')) {
@@ -102,7 +122,7 @@ export class SmartMaterialExtractor {
         }
       }
     }
-    
+
     return this.deduplicateMaterials(materials);
   }
 
@@ -138,12 +158,13 @@ Example output:
 `;
 
     try {
-      const response = await openai.chat.completions.create({
+      const response = await getOpenAI().chat.completions.create({
         model: 'gpt-4o-mini',
         messages: [
           {
             role: 'system',
-            content: 'You are a helpful assistant that extracts materials from lesson plans. Return only valid JSON.',
+            content:
+              'You are a helpful assistant that extracts materials from lesson plans. Return only valid JSON.',
           },
           {
             role: 'user',
@@ -162,9 +183,9 @@ Example output:
       if (!jsonMatch) return [];
 
       const materials = JSON.parse(jsonMatch[0]) as SmartMaterial[];
-      
+
       // Validate and clean up the results
-      return materials.filter(m => m.name && m.category && m.priority);
+      return materials.filter((m) => m.name && m.category && m.priority);
     } catch (error) {
       console.error('AI material extraction error:', error);
       return [];
@@ -175,10 +196,11 @@ Example output:
    * Parse individual material items from text
    */
   private parseMaterialItems(text: string): SmartMaterial[] {
-    return text.split(/[;,]/)
-      .map(item => item.trim())
+    return text
+      .split(/[;,]/)
+      .map((item) => item.trim())
       .filter(Boolean)
-      .map(item => this.createBasicMaterial(item));
+      .map((item) => this.createBasicMaterial(item));
   }
 
   /**
@@ -186,7 +208,7 @@ Example output:
    */
   private createBasicMaterial(text: string): SmartMaterial {
     const name = text.toLowerCase();
-    
+
     // Simple categorization based on keywords
     let category: SmartMaterial['category'] = 'other';
     if (/paper|pencil|crayon|marker|scissors|glue|tape/i.test(name)) {
@@ -233,17 +255,15 @@ Example output:
    */
   private mergeMaterialLists(pattern: SmartMaterial[], ai: SmartMaterial[]): SmartMaterial[] {
     const merged = [...ai];
-    
+
     // Add pattern items that aren't covered by AI
     for (const patternItem of pattern) {
-      const similar = ai.find(aiItem => 
-        this.areSimilarMaterials(patternItem.name, aiItem.name)
-      );
+      const similar = ai.find((aiItem) => this.areSimilarMaterials(patternItem.name, aiItem.name));
       if (!similar) {
         merged.push(patternItem);
       }
     }
-    
+
     return this.deduplicateMaterials(merged);
   }
 
@@ -253,10 +273,10 @@ Example output:
   private areSimilarMaterials(name1: string, name2: string): boolean {
     const n1 = name1.toLowerCase().trim();
     const n2 = name2.toLowerCase().trim();
-    
+
     if (n1 === n2) return true;
     if (n1.includes(n2) || n2.includes(n1)) return true;
-    
+
     // Check for common synonyms
     const synonyms = [
       ['paper', 'sheets'],
@@ -264,13 +284,13 @@ Example output:
       ['marker', 'markers'],
       ['computer', 'laptop', 'device'],
     ];
-    
+
     for (const group of synonyms) {
-      if (group.some(s => n1.includes(s)) && group.some(s => n2.includes(s))) {
+      if (group.some((s) => n1.includes(s)) && group.some((s) => n2.includes(s))) {
         return true;
       }
     }
-    
+
     return false;
   }
 
@@ -279,7 +299,7 @@ Example output:
    */
   private deduplicateMaterials(materials: SmartMaterial[]): SmartMaterial[] {
     const seen = new Set<string>();
-    return materials.filter(material => {
+    return materials.filter((material) => {
       const key = material.name.toLowerCase().trim();
       if (seen.has(key)) return false;
       seen.add(key);
@@ -299,14 +319,14 @@ Example output:
             activity: {
               include: {
                 milestone: {
-                  include: { subject: true }
+                  include: { subject: true },
                 },
                 resources: true,
-              }
+              },
             },
             slot: true,
-          }
-        }
+          },
+        },
       },
     });
 
@@ -336,25 +356,25 @@ Example output:
     for (let day = 0; day < 5; day++) {
       const daySchedule = scheduleByDay.get(day) || [];
       const dayName = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'][day];
-      
+
       const dayActivities = [];
-      
+
       for (const item of daySchedule) {
         const activity = item.activity;
         const materials: SmartMaterial[] = [];
-        
+
         // Extract from materials text
         if (activity.materialsText) {
           const extracted = await this.extractMaterialsFromText(activity.materialsText);
           materials.push(...extracted);
         }
-        
+
         // Extract from public notes
         if (activity.publicNote) {
           const extracted = await this.extractMaterialsFromText(activity.publicNote);
           materials.push(...extracted);
         }
-        
+
         // Add digital resources
         for (const resource of activity.resources) {
           if (resource.type === 'url') {
@@ -373,15 +393,15 @@ Example output:
             });
           }
         }
-        
+
         const uniqueMaterials = this.deduplicateMaterials(materials);
         allMaterials.push(...uniqueMaterials);
-        
+
         if (uniqueMaterials.length > 0) {
-          const timeSlot = item.slot 
+          const timeSlot = item.slot
             ? `${Math.floor(item.slot.startMin / 60)}:${(item.slot.startMin % 60).toString().padStart(2, '0')}`
             : 'Unscheduled';
-            
+
           dayActivities.push({
             activityId: activity.id,
             title: activity.title,
@@ -390,7 +410,7 @@ Example output:
           });
         }
       }
-      
+
       byDay.push({
         day,
         dayName,
@@ -400,14 +420,14 @@ Example output:
 
     // Deduplicate all materials
     const uniqueMaterials = this.deduplicateMaterials(allMaterials);
-    
+
     // Categorize for preparation
-    const printingNeeded = uniqueMaterials.filter(m => m.category === 'printables');
-    const setupRequired = uniqueMaterials.filter(m => 
-      m.category === 'technology' || m.category === 'equipment'
+    const printingNeeded = uniqueMaterials.filter((m) => m.category === 'printables');
+    const setupRequired = uniqueMaterials.filter(
+      (m) => m.category === 'technology' || m.category === 'equipment',
     );
-    const purchaseNeeded = uniqueMaterials.filter(m => 
-      m.category === 'supplies' && m.priority === 'essential'
+    const purchaseNeeded = uniqueMaterials.filter(
+      (m) => m.category === 'supplies' && m.priority === 'essential',
     );
 
     const totalPrepTime = uniqueMaterials.reduce((total, m) => total + (m.prepTime || 0), 0);
@@ -430,10 +450,10 @@ Example output:
    */
   async autoUpdateMaterialList(weekStart: string): Promise<void> {
     const materialPlan = await this.generateWeeklyMaterialPlan(weekStart);
-    
+
     // Save to existing MaterialList table
-    const materialItems = materialPlan.materials.map(m => m.name);
-    
+    const materialItems = materialPlan.materials.map((m) => m.name);
+
     const existing = await prisma.materialList.findFirst({
       where: { weekStart: new Date(weekStart) },
     });
