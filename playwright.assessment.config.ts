@@ -72,7 +72,7 @@ export default defineConfig({
       timeout: 120000,
     },
     {
-      command: 'node e2e-server.js',
+      command: 'node e2e-server.cjs',
       port: 3000,
       cwd: './server',
       reuseExistingServer: !process.env.CI,
