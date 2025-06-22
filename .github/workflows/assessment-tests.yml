@@ -93,13 +93,13 @@ jobs:
       - name: Setup test database
         run: |
           cp server/.env.example server/.env.test
-          sed -i 's/DATABASE_URL=.*/DATABASE_URL="postgresql:\/\/postgres:postgres@localhost:5432\/teaching_engine_test"/' server/.env.test
-          echo "DATABASE_URL=\"postgresql://postgres:postgres@localhost:5432/teaching_engine_test\"" > packages/database/.env
+          sed -i 's/DATABASE_URL=.*/DATABASE_URL="file:.\/test.db"/' server/.env.test
+          echo "DATABASE_URL=\"file:./test.db\"" > packages/database/.env
           pnpm db:migrate
           pnpm db:seed
         env:
           NODE_ENV: test
-          DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/teaching_engine_test'
+          DATABASE_URL: 'file:./test.db'
 
       - name: Start API server
         run: |
@@ -107,7 +107,7 @@ jobs:
           sleep 10
         env:
           NODE_ENV: test
-          DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/teaching_engine_test'
+          DATABASE_URL: 'file:./test.db'
 
       - name: Run integration tests
         run: |
@@ -160,13 +160,13 @@ jobs:
       - name: Setup test database
         run: |
           cp server/.env.example server/.env.test
-          sed -i 's/DATABASE_URL=.*/DATABASE_URL="postgresql:\/\/postgres:postgres@localhost:5432\/teaching_engine_test"/' server/.env.test
-          echo "DATABASE_URL=\"postgresql://postgres:postgres@localhost:5432/teaching_engine_test\"" > packages/database/.env
+          sed -i 's/DATABASE_URL=.*/DATABASE_URL="file:.\/test.db"/' server/.env.test
+          echo "DATABASE_URL=\"file:./test.db\"" > packages/database/.env
           pnpm db:migrate
           pnpm db:seed
         env:
           NODE_ENV: test
-          DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/teaching_engine_test'
+          DATABASE_URL: 'file:./test.db'
 
       - name: Start API server
         run: |
@@ -174,7 +174,7 @@ jobs:
           sleep 10
         env:
           NODE_ENV: test
-          DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/teaching_engine_test'
+          DATABASE_URL: 'file:./test.db'
 
       - name: Run contract tests
         run: |
@@ -228,13 +228,13 @@ jobs:
       - name: Setup test database
         run: |
           cp server/.env.example server/.env.test
-          sed -i 's/DATABASE_URL=.*/DATABASE_URL="postgresql:\/\/postgres:postgres@localhost:5432\/teaching_engine_test"/' server/.env.test
-          echo "DATABASE_URL=\"postgresql://postgres:postgres@localhost:5432/teaching_engine_test\"" > packages/database/.env
+          sed -i 's/DATABASE_URL=.*/DATABASE_URL="file:.\/test.db"/' server/.env.test
+          echo "DATABASE_URL=\"file:./test.db\"" > packages/database/.env
           pnpm db:migrate
           pnpm db:seed
         env:
           NODE_ENV: test
-          DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/teaching_engine_test'
+          DATABASE_URL: 'file:./test.db'
 
       - name: Start servers
         run: |
