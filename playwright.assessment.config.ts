@@ -72,13 +72,14 @@ export default defineConfig({
       timeout: 120000,
     },
     {
-      command: "NODE_OPTIONS='--experimental-specifier-resolution=node' tsx src/server.ts",
+      command: 'npm run dev',
       port: 3000,
       cwd: './server',
       reuseExistingServer: !process.env.CI,
       timeout: 120000,
       env: {
         NODE_ENV: 'test',
+        E2E_TEST: 'true',
         DATABASE_URL: 'file:./test-assessment-e2e.db',
         OPENAI_API_KEY: process.env.OPENAI_API_KEY || 'test-api-key',
       },
