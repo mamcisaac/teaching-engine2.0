@@ -8,7 +8,7 @@ import request from 'supertest';
 import express from 'express';
 import { describe, it, expect, beforeAll, beforeEach, jest } from '@jest/globals';
 import analyticsRoutes from '../analytics';
-import { analyticsCache } from '../../services/analytics';
+import { analyticsCache } from '../../services/analytics/index.js';
 
 // Mock authentication middleware
 const mockAuthMiddleware = (
