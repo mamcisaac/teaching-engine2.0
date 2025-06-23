@@ -6,9 +6,9 @@
 
 import request from 'supertest';
 import express from 'express';
-import { describe, it, expect, beforeAll, beforeEach } from '@jest/globals';
+import { describe, it, expect, beforeAll, beforeEach, jest } from '@jest/globals';
 import analyticsRoutes from '../analytics';
-import { analyticsCache } from '../../services/analytics';
+import { analyticsCache } from '../../services/analytics/index.js';
 
 // Mock authentication middleware
 const mockAuthMiddleware = (
@@ -266,6 +266,9 @@ describe('Analytics API Routes', () => {
     });
 
     it('should handle export errors gracefully', async () => {
+      // Mock console.error to suppress expected error output
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
       const exportRequest = {
         type: 'invalid-type',
         format: 'invalid-format',
@@ -279,6 +282,9 @@ describe('Analytics API Routes', () => {
 
       expect(response.body).toHaveProperty('error');
       expect(response.body.error).toContain('Failed to export data');
+
+      // Restore console.error
+      consoleErrorSpy.mockRestore();
     });
   });
 

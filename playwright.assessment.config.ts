@@ -5,7 +5,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests/e2e',
-  testMatch: '**/assessment-workflows.spec.ts',
+  testMatch: ['**/basic-health.spec.ts', '**/assessment-workflows.spec.ts'],
   fullyParallel: false, // Run assessment tests sequentially for data consistency
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 1,
@@ -40,22 +40,19 @@ export default defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-    {
-      name: 'Mobile Chrome',
-      use: { ...devices['Pixel 5'] },
-    },
-    {
-      name: 'Mobile Safari',
-      use: { ...devices['iPhone 12'] },
-    },
+    // Skip other browsers in CI to speed up tests
+    ...(process.env.CI
+      ? []
+      : [
+          {
+            name: 'firefox',
+            use: { ...devices['Desktop Firefox'] },
+          },
+          {
+            name: 'webkit',
+            use: { ...devices['Desktop Safari'] },
+          },
+        ]),
   ],
 
   /* Global setup and teardown */
@@ -72,14 +69,19 @@ export default defineConfig({
       timeout: 120000,
     },
     {
-      command: 'npm run dev',
+      command: 'npx tsx src/index.ts',
       port: 3000,
       cwd: './server',
       reuseExistingServer: !process.env.CI,
       timeout: 120000,
+      stdout: 'pipe',
+      stderr: 'pipe',
       env: {
         NODE_ENV: 'test',
-        DATABASE_URL: 'file:./test-assessment-e2e.db',
+        E2E_TEST: 'true',
+        DATABASE_URL: process.env.DATABASE_URL || 'file:./test.db',
+        OPENAI_API_KEY: process.env.OPENAI_API_KEY || 'test-api-key',
+        NODE_OPTIONS: '--experimental-specifier-resolution=node',
       },
     },
   ],

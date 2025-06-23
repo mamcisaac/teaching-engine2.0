@@ -13,7 +13,7 @@ import {
   vocabularyAnalyticsService,
   exportService,
   analyticsCache,
-} from '../services/analytics';
+} from '../services/analytics/index.js';
 
 const router = express.Router();
 

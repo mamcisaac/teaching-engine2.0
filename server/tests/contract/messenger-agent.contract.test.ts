@@ -5,7 +5,7 @@ import { createTestUser, createAuthToken } from '../test-auth-helper';
 
 /**
  * Contract Tests for Messenger Agent
- * 
+ *
  * These tests ensure that:
  * 1. API responses match expected schemas
  * 2. Mock behaviors in unit tests match real API behavior
@@ -21,7 +21,7 @@ describe('Messenger Agent Contract Tests', () => {
   beforeEach(async () => {
     // Get the test-specific Prisma client
     prisma = getTestPrismaClient();
-    
+
     // Create a fresh test user for each test
     testUser = await createTestUser();
     userId = testUser.id;
@@ -40,7 +40,7 @@ describe('Messenger Agent Contract Tests', () => {
       variables: 'string', // JSON string
       userId: 'number',
       createdAt: 'string',
-      updatedAt: 'string'
+      updatedAt: 'string',
     };
 
     const validateSchema = (obj: Record<string, unknown>, schema: Record<string, string>) => {
@@ -65,8 +65,8 @@ describe('Messenger Agent Contract Tests', () => {
           contentFr: 'French content',
           contentEn: 'English content',
           variables: JSON.stringify(['var1']),
-          userId
-        }
+          userId,
+        },
       });
 
       const response = await request(app)
@@ -76,7 +76,7 @@ describe('Messenger Agent Contract Tests', () => {
 
       expect(Array.isArray(response.body)).toBe(true);
       expect(response.body.length).toBeGreaterThan(0);
-      
+
       response.body.forEach((template: Record<string, unknown>) => {
         validateSchema(template, validTemplateSchema);
       });
@@ -88,7 +88,7 @@ describe('Messenger Agent Contract Tests', () => {
         subject: 'New Subject',
         contentFr: 'New French content',
         contentEn: 'New English content',
-        variables: ['var1', 'var2']
+        variables: ['var1', 'var2'],
       };
 
       const response = await request(app)
@@ -110,8 +110,8 @@ describe('Messenger Agent Contract Tests', () => {
           contentFr: 'Update FR',
           contentEn: 'Update EN',
           variables: JSON.stringify([]),
-          userId
-        }
+          userId,
+        },
       });
 
       const updateData = { name: `Test Updated Name ${Date.now()}` };
@@ -128,7 +128,7 @@ describe('Messenger Agent Contract Tests', () => {
 
     it('Error responses match expected schema', async () => {
       const errorSchema = {
-        error: 'string'
+        error: 'string',
       };
 
       // Test 404 error
@@ -160,8 +160,8 @@ describe('Messenger Agent Contract Tests', () => {
           firstName: 'Contract',
           lastName: 'Student',
           grade: 4,
-          userId
-        }
+          userId,
+        },
       });
     });
 
@@ -196,7 +196,7 @@ describe('Messenger Agent Contract Tests', () => {
         .expect(200);
 
       expect(Array.isArray(response.body)).toBe(true);
-      
+
       response.body.forEach((reportType: Record<string, unknown>) => {
         expect(reportType).toHaveProperty('id');
         expect(reportType).toHaveProperty('name');
@@ -207,7 +207,7 @@ describe('Messenger Agent Contract Tests', () => {
 
       const expectedTypes = ['progress', 'narrative', 'term_summary', 'report_card'];
       const actualTypes = response.body.map((t: Record<string, unknown>) => t.id);
-      expectedTypes.forEach(type => {
+      expectedTypes.forEach((type) => {
         expect(actualTypes).toContain(type);
       });
     });
@@ -218,7 +218,7 @@ describe('Messenger Agent Contract Tests', () => {
         reportType: 'progress',
         startDate: '2024-01-01T00:00:00Z',
         endDate: '2024-01-31T23:59:59Z',
-        language: 'en'
+        language: 'en',
       };
 
       const response = await request(app)
@@ -233,14 +233,14 @@ describe('Messenger Agent Contract Tests', () => {
 
     it('All report types return consistent schema', async () => {
       const reportTypes = ['progress', 'narrative', 'term_summary', 'report_card'];
-      
+
       for (const reportType of reportTypes) {
         const reportRequest = {
           studentId: student.id,
           reportType,
           startDate: '2024-01-01T00:00:00Z',
           endDate: '2024-01-31T23:59:59Z',
-          language: 'en'
+          language: 'en',
         };
 
         const response = await request(app)
@@ -258,7 +258,7 @@ describe('Messenger Agent Contract Tests', () => {
         studentId: student.id,
         reportType: 'narrative',
         startDate: '2024-01-01T00:00:00Z',
-        endDate: '2024-01-31T23:59:59Z'
+        endDate: '2024-01-31T23:59:59Z',
       };
 
       // Test English report
@@ -312,17 +312,17 @@ describe('Messenger Agent Contract Tests', () => {
           {
             email: 'test1@example.com',
             name: 'Test Parent 1',
-            studentName: 'Test Student 1'
+            studentName: 'Test Student 1',
           },
           {
             email: 'test2@example.com',
             name: 'Test Parent 2',
-            studentName: 'Test Student 2'
-          }
+            studentName: 'Test Student 2',
+          },
         ],
         subject: 'Contract Test Email',
         htmlContent: '<p>Test content for {studentName}</p>',
-        textContent: 'Test content for {studentName}'
+        textContent: 'Test content for {studentName}',
       };
 
       const response = await request(app)
@@ -363,16 +363,16 @@ describe('Messenger Agent Contract Tests', () => {
           {
             email: 'template.test@example.com',
             name: 'Template Parent',
-            studentName: 'Template Student'
-          }
+            studentName: 'Template Student',
+          },
         ],
         subject: 'Update for {studentName}',
         htmlContent: '<p>Hello {parentName}, here are updates for {studentName}</p>',
         textContent: 'Hello {parentName}, here are updates for {studentName}',
         templateVariables: {
           parentName: 'Template Parent',
-          studentName: 'Template Student'
-        }
+          studentName: 'Template Student',
+        },
       };
 
       const response = await request(app)
@@ -382,7 +382,7 @@ describe('Messenger Agent Contract Tests', () => {
         .expect(200);
 
       validateBulkEmailResponse(response.body);
-      
+
       // Variables should be processed consistently
       const result = response.body.results[0];
       expect(result.email).toBe('template.test@example.com');
@@ -395,12 +395,23 @@ describe('Messenger Agent Contract Tests', () => {
       const studentResponse = await request(app)
         .post('/api/students')
         .set('Authorization', `Bearer ${authToken}`)
+        .set('Content-Type', 'application/json')
         .send({
           firstName: 'Integration',
           lastName: 'Student',
-          grade: 3
-        })
-        .expect(201);
+          grade: 3,
+        });
+
+      // Log the response for debugging
+      if (studentResponse.status !== 201) {
+        console.error(
+          'Student creation failed:',
+          studentResponse.status,
+          JSON.stringify(studentResponse.body, null, 2),
+        );
+      }
+
+      expect(studentResponse.status).toBe(201);
 
       const studentId = studentResponse.body.id;
 
@@ -411,7 +422,7 @@ describe('Messenger Agent Contract Tests', () => {
         .send({
           name: 'Integration Parent',
           email: 'integration.parent@example.com',
-          studentId
+          studentId,
         })
         .expect(201);
 
@@ -423,9 +434,9 @@ describe('Messenger Agent Contract Tests', () => {
 
       expect(studentDetailResponse.body).toHaveProperty('parentContacts');
       expect(Array.isArray(studentDetailResponse.body.parentContacts)).toBe(true);
-      
+
       const parentContact = studentDetailResponse.body.parentContacts.find(
-        (c: Record<string, unknown>) => c.id === contactResponse.body.id
+        (c: Record<string, unknown>) => c.id === contactResponse.body.id,
       );
       expect(parentContact).toBeDefined();
       expect(parentContact.email).toBe('integration.parent@example.com');
@@ -438,8 +449,8 @@ describe('Messenger Agent Contract Tests', () => {
           firstName: 'Data',
           lastName: 'Student',
           grade: 5,
-          userId
-        }
+          userId,
+        },
       });
 
       // Generate report and verify it includes expected data structure
@@ -453,13 +464,13 @@ describe('Messenger Agent Contract Tests', () => {
           endDate: '2024-01-31T23:59:59Z',
           language: 'en',
           includeAssessments: true,
-          includeGoals: true
+          includeGoals: true,
         })
         .expect(200);
 
       const report = reportResponse.body;
       expect(report.studentName).toBe(`${student.firstName} ${student.lastName}`);
-      
+
       // Report should handle empty data gracefully
       expect(Array.isArray(report.sections)).toBe(true);
       expect(typeof report.overallComments).toBe('string');
@@ -471,18 +482,18 @@ describe('Messenger Agent Contract Tests', () => {
       const student = await prisma.student.create({
         data: {
           firstName: 'Email',
-          lastName: 'Student', 
+          lastName: 'Student',
           grade: 2,
-          userId
-        }
+          userId,
+        },
       });
 
       const contact = await prisma.parentContact.create({
         data: {
           name: 'Email Parent',
           email: 'email.parent@example.com',
-          studentId: student.id
-        }
+          studentId: student.id,
+        },
       });
 
       // Send email using contact information
@@ -494,12 +505,12 @@ describe('Messenger Agent Contract Tests', () => {
             {
               email: contact.email,
               name: contact.name,
-              studentName: `${student.firstName} ${student.lastName}`
-            }
+              studentName: `${student.firstName} ${student.lastName}`,
+            },
           ],
           subject: 'Integration Test',
           htmlContent: 'Test integration',
-          textContent: 'Test integration'
+          textContent: 'Test integration',
         })
         .expect(200);
 
@@ -514,20 +525,20 @@ describe('Messenger Agent Contract Tests', () => {
         {
           path: '/api/email-templates/99999',
           method: 'get',
-          expectedStatus: 404
+          expectedStatus: 404,
         },
         {
           path: '/api/reports/generate',
           method: 'post',
           body: { invalid: 'data' },
-          expectedStatus: 400
+          expectedStatus: 400,
         },
         {
           path: '/api/communication/send-bulk',
           method: 'post',
           body: { invalid: 'data' },
-          expectedStatus: 400
-        }
+          expectedStatus: 400,
+        },
       ];
 
       for (const test of errorTests) {
@@ -555,13 +566,11 @@ describe('Messenger Agent Contract Tests', () => {
       const endpoints = [
         { path: '/api/email-templates', method: 'get' },
         { path: '/api/reports/types', method: 'get' },
-        { path: '/api/communication/delivery-status', method: 'get' }
+        { path: '/api/communication/delivery-status', method: 'get' },
       ];
 
       for (const endpoint of endpoints) {
-        const response = await request(app)
-          [endpoint.method](endpoint.path)
-          .expect(401);
+        const response = await request(app)[endpoint.method](endpoint.path).expect(401);
 
         // 401 responses from sendStatus() have empty body
         expect(response.body).toEqual({});
@@ -574,22 +583,21 @@ describe('Messenger Agent Contract Tests', () => {
       const performanceTests = [
         {
           name: 'Get email templates',
-          test: () => request(app)
-            .get('/api/email-templates')
-            .set('Authorization', `Bearer ${authToken}`)
+          test: () =>
+            request(app).get('/api/email-templates').set('Authorization', `Bearer ${authToken}`),
         },
         {
           name: 'Get report types',
-          test: () => request(app)
-            .get('/api/reports/types')
-            .set('Authorization', `Bearer ${authToken}`)
+          test: () =>
+            request(app).get('/api/reports/types').set('Authorization', `Bearer ${authToken}`),
         },
         {
           name: 'Get delivery status',
-          test: () => request(app)
-            .get('/api/communication/delivery-status')
-            .set('Authorization', `Bearer ${authToken}`)
-        }
+          test: () =>
+            request(app)
+              .get('/api/communication/delivery-status')
+              .set('Authorization', `Bearer ${authToken}`),
+        },
       ];
 
       for (const perfTest of performanceTests) {
@@ -604,16 +612,18 @@ describe('Messenger Agent Contract Tests', () => {
 
     it('Bulk operations scale appropriately', async () => {
       const bulkSizes = [1, 5, 10];
-      
+
       for (const size of bulkSizes) {
-        const recipients = Array(size).fill(null).map((_, i) => ({
-          email: `bulk${i}@example.com`,
-          name: `Bulk Parent ${i}`,
-          studentName: `Bulk Student ${i}`
-        }));
+        const recipients = Array(size)
+          .fill(null)
+          .map((_, i) => ({
+            email: `bulk${i}@example.com`,
+            name: `Bulk Parent ${i}`,
+            studentName: `Bulk Student ${i}`,
+          }));
 
         const startTime = Date.now();
-        
+
         const response = await request(app)
           .post('/api/communication/send-bulk')
           .set('Authorization', `Bearer ${authToken}`)
@@ -621,7 +631,7 @@ describe('Messenger Agent Contract Tests', () => {
             recipients,
             subject: 'Bulk Performance Test',
             htmlContent: 'Test content',
-            textContent: 'Test content'
+            textContent: 'Test content',
           })
           .expect(200);
 
@@ -629,7 +639,7 @@ describe('Messenger Agent Contract Tests', () => {
 
         expect(response.body.results).toHaveLength(size);
         expect(response.body.summary.total).toBe(size);
-        
+
         // Performance should scale reasonably (not exponentially)
         expect(duration).toBeLessThan(size * 2000); // Max 2 seconds per recipient
       }

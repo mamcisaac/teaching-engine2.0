@@ -139,18 +139,21 @@ export abstract class BaseService {
 
     // Process operations in batches if max concurrency is set
     const batches = this.createBatches(operations, maxConcurrency);
+    let globalIndex = 0;
 
     for (const batch of batches) {
-      const promises = batch.map(async (operation, index) => {
+      const batchStartIndex = globalIndex;
+      const promises = batch.map(async (operation, batchIndex) => {
+        const operationIndex = batchStartIndex + batchIndex;
         try {
           const result = await operation();
-          results[index] = result;
-          errors[index] = null;
+          results[operationIndex] = result;
+          errors[operationIndex] = null;
           successCount++;
           return result;
         } catch (error) {
-          results[index] = null;
-          errors[index] = error as Error;
+          results[operationIndex] = null;
+          errors[operationIndex] = error as Error;
 
           if (failFast) {
             throw error;
@@ -159,7 +162,7 @@ export abstract class BaseService {
           this.logger.warn(
             {
               error: (error as Error).message,
-              operationIndex: index,
+              operationIndex: operationIndex,
               serviceName: this.serviceName,
             },
             'Parallel operation failed',
@@ -169,11 +172,17 @@ export abstract class BaseService {
         }
       });
 
-      await Promise.all(promises);
-
-      if (failFast && errors.some((e) => e !== null)) {
-        break;
+      if (failFast) {
+        try {
+          await Promise.all(promises);
+        } catch (error) {
+          // When failFast is true, stop processing remaining batches
+          break;
+        }
+      } else {
+        await Promise.all(promises);
       }
+      globalIndex += batch.length;
     }
 
     return { results, errors, successCount };

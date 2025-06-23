@@ -33,8 +33,6 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v4
-        with:
-          version: 8
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -81,8 +79,6 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v4
-        with:
-          version: 8
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -97,11 +93,13 @@ jobs:
       - name: Setup test database
         run: |
           cp server/.env.example server/.env.test
-          sed -i 's/DATABASE_URL=.*/DATABASE_URL="postgresql:\/\/postgres:postgres@localhost:5432\/teaching_engine_test"/' server/.env.test
+          sed -i 's/DATABASE_URL=.*/DATABASE_URL="file:.\/test.db"/' server/.env.test
+          echo "DATABASE_URL=\"file:./test.db\"" > packages/database/.env
           pnpm db:migrate
           pnpm db:seed
         env:
           NODE_ENV: test
+          DATABASE_URL: 'file:./test.db'
 
       - name: Start API server
         run: |
@@ -109,13 +107,14 @@ jobs:
           sleep 10
         env:
           NODE_ENV: test
-          DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/teaching_engine_test'
+          DATABASE_URL: 'file:./test.db'
+          OPENAI_API_KEY: 'test-api-key'
 
       - name: Run integration tests
         run: |
           pnpm --filter client test:integration
         env:
-          VITE_API_URL: http://localhost:3000
+          VITE_API_URL: http://127.0.0.1:3000
 
       - name: Upload integration test results
         uses: actions/upload-artifact@v4
@@ -148,8 +147,6 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v4
-        with:
-          version: 8
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -164,11 +161,13 @@ jobs:
       - name: Setup test database
         run: |
           cp server/.env.example server/.env.test
-          sed -i 's/DATABASE_URL=.*/DATABASE_URL="postgresql:\/\/postgres:postgres@localhost:5432\/teaching_engine_test"/' server/.env.test
+          sed -i 's/DATABASE_URL=.*/DATABASE_URL="file:.\/test.db"/' server/.env.test
+          echo "DATABASE_URL=\"file:./test.db\"" > packages/database/.env
           pnpm db:migrate
           pnpm db:seed
         env:
           NODE_ENV: test
+          DATABASE_URL: 'file:./test.db'
 
       - name: Start API server
         run: |
@@ -176,13 +175,14 @@ jobs:
           sleep 10
         env:
           NODE_ENV: test
-          DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/teaching_engine_test'
+          DATABASE_URL: 'file:./test.db'
+          OPENAI_API_KEY: 'test-api-key'
 
       - name: Run contract tests
         run: |
           pnpm --filter client test:contract
         env:
-          VITE_API_URL: http://localhost:3000
+          VITE_API_URL: http://127.0.0.1:3000
 
       - name: Upload contract test results
         uses: actions/upload-artifact@v4
@@ -213,8 +213,6 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v4
-        with:
-          version: 8
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -232,26 +230,25 @@ jobs:
       - name: Setup test database
         run: |
           cp server/.env.example server/.env.test
-          sed -i 's/DATABASE_URL=.*/DATABASE_URL="postgresql:\/\/postgres:postgres@localhost:5432\/teaching_engine_test"/' server/.env.test
+          sed -i 's/DATABASE_URL=.*/DATABASE_URL="file:.\/test.db"/' server/.env.test
+          echo "DATABASE_URL=\"file:./test.db\"" > packages/database/.env
           pnpm db:migrate
           pnpm db:seed
         env:
           NODE_ENV: test
+          DATABASE_URL: 'file:./test.db'
 
-      - name: Start servers
-        run: |
-          pnpm --filter server dev &
-          pnpm --filter client dev &
-          sleep 15
-        env:
-          NODE_ENV: test
-          DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/teaching_engine_test'
+      # Servers will be started by Playwright config
 
       - name: Run E2E tests
-        run: npx playwright test --config=playwright.assessment.config.ts
+        run: npx playwright test --config=playwright.assessment.config.ts --reporter=list --workers=1
+        timeout-minutes: 5
         env:
           BASE_URL: http://localhost:5173
-          VITE_API_URL: http://localhost:3000
+          VITE_API_URL: http://127.0.0.1:3000
+          DATABASE_URL: 'file:./test.db'
+          NODE_ENV: test
+          OPENAI_API_KEY: 'test-api-key'
 
       - name: Upload E2E test results
         uses: actions/upload-artifact@v4

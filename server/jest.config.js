@@ -7,6 +7,7 @@ export default {
     '^(\\.{1,2}/.*)\\.js$': '$1',
     '^@/(.*)$': '<rootDir>/src/$1',
     '^tests/(.*)$': '<rootDir>/tests/$1',
+    '^openai$': '<rootDir>/src/__mocks__/openai.js',
   },
   moduleDirectories: ['node_modules', 'src'],
   roots: ['<rootDir>/src', '<rootDir>/tests'],

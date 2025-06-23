@@ -18,6 +18,9 @@ process.env.JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '1h';
 // Optional: Set a flag to detect CI environment
 process.env.IS_CI = process.env.CI || 'false';
 
+// Set OpenAI API key for tests (should be mocked)
+process.env.OPENAI_API_KEY = process.env.OPENAI_API_KEY || 'test-api-key';
+
 // Suppress console warnings in tests unless explicitly debugging
 if (!process.env.DEBUG_TESTS) {
   // Create a no-op function to suppress warnings

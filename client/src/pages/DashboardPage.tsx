@@ -1,16 +1,19 @@
+import { useState } from 'react';
 import UnifiedWeekViewComponent from '../components/UnifiedWeekViewComponent';
 import TeacherOnboardingFlow from '../components/TeacherOnboardingFlow';
 import CalendarViewComponent from '../components/CalendarViewComponent';
 import NotificationBell from '../components/NotificationBell';
 import OralRoutineSummary from '../components/OralRoutineSummary';
 import MilestoneAlertCard from '../components/MilestoneAlertCard';
+import EvidenceQuickEntry from '../components/evidence/EvidenceQuickEntry';
 import useMilestoneAlerts from '../hooks/useMilestoneAlerts';
 import { Link } from 'react-router-dom';
-import { TrendingUp, AlertTriangle } from 'lucide-react';
+import { TrendingUp, AlertTriangle, ClipboardCheck, ChevronDown, ChevronUp } from 'lucide-react';
 
 export default function DashboardPage() {
   const { data: alertsData, isLoading: alertsLoading } = useMilestoneAlerts();
-  
+  const [showEvidenceEntry, setShowEvidenceEntry] = useState(false);
+
   // Extract alerts array from response (handle both legacy and new API)
   const alerts = Array.isArray(alertsData) ? alertsData : alertsData?.alerts || [];
 
@@ -22,6 +25,40 @@ export default function DashboardPage() {
     <div className="relative">
       <NotificationBell />
       <TeacherOnboardingFlow />
+
+      {/* Quick Evidence Entry */}
+      <div className="mb-6">
+        <button
+          onClick={() => setShowEvidenceEntry(!showEvidenceEntry)}
+          className="w-full flex items-center justify-between bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg p-4 hover:from-purple-100 hover:to-blue-100 transition-colors"
+        >
+          <div className="flex items-center gap-3">
+            <div className="bg-purple-600 rounded-lg p-2">
+              <ClipboardCheck className="h-5 w-5 text-white" />
+            </div>
+            <div className="text-left">
+              <h3 className="font-semibold text-gray-900">Quick Evidence Entry</h3>
+              <p className="text-sm text-gray-600">Record student observations and assessments</p>
+            </div>
+          </div>
+          {showEvidenceEntry ? (
+            <ChevronUp className="h-5 w-5 text-gray-500" />
+          ) : (
+            <ChevronDown className="h-5 w-5 text-gray-500" />
+          )}
+        </button>
+
+        {showEvidenceEntry && (
+          <div className="mt-4 animate-in slide-in-from-top duration-200">
+            <EvidenceQuickEntry
+              onSuccess={() => {
+                // Optionally close after success
+                setTimeout(() => setShowEvidenceEntry(false), 1000);
+              }}
+            />
+          </div>
+        )}
+      </div>
 
       {/* Milestone Alerts */}
       {!alertsLoading && alerts.length > 0 && (

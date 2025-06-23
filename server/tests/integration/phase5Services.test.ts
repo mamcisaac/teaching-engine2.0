@@ -4,7 +4,7 @@ import { curriculumImportService } from '../../src/services/curriculumImportServ
 import { clusteringService } from '../../src/services/clusteringService';
 import { enhancedPlanningService } from '../../src/services/enhancedPlanningService';
 import { enhancedMaterialService } from '../../src/services/enhancedMaterialService';
-import { notificationService } from '../../src/services/NotificationService';
+import { notificationService } from '../../src/services/notificationService';
 import { cacheService } from '../../src/services/CacheService';
 import { serviceRegistry } from '../../src/services/ServiceRegistry';
 

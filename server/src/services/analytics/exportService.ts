@@ -12,17 +12,8 @@ let createCanvas: any;
 let Chart: any;
 let registerables: any;
 
-try {
-  PDFDocument = require('pdfkit').default || require('pdfkit');
-  Parser = require('json2csv').Parser;
-  const canvas = require('canvas');
-  createCanvas = canvas.createCanvas;
-  const chartjs = require('chart.js');
-  Chart = chartjs.Chart;
-  registerables = chartjs.registerables;
-} catch (error) {
-  console.warn('Some analytics export dependencies not available, using mocks:', error.message);
-
+// Initialize with mocks first
+const initializeMocks = () => {
   // Mock PDFDocument
   PDFDocument = class MockPDFDocument {
     constructor() {}
@@ -97,7 +88,36 @@ try {
     static register() {}
   };
   registerables = [];
-}
+};
+
+// Initialize with mocks immediately
+initializeMocks();
+
+// Try to load real dependencies asynchronously
+const loadOptionalDependencies = async () => {
+  try {
+    // These dependencies might not be available in test/CI environments
+    const pdfkit = await import('pdfkit');
+    PDFDocument = pdfkit.default || pdfkit;
+
+    const json2csv = await import('json2csv');
+    Parser = json2csv.Parser;
+
+    const canvas = await import('canvas');
+    createCanvas = canvas.createCanvas;
+
+    const chartjs = await import('chart.js');
+    Chart = chartjs.Chart;
+    registerables = chartjs.registerables || [];
+
+    // Register Chart.js components after loading
+    if (Chart && registerables) {
+      Chart.register(...registerables);
+    }
+  } catch (error: any) {
+    console.warn('Some analytics export dependencies not available, using mocks:', error.message);
+  }
+};
 import type { HeatmapData, CurriculumSummary, VocabularyGrowthData } from './index';
 
 // Define types for mock services
@@ -152,9 +172,6 @@ interface ThemeAnalyticsSummary {
   };
   crossSubjectConnections: any[];
 }
-
-// Register Chart.js components
-Chart.register(...registerables);
 
 export interface ExportRequest {
   type: 'curriculum-heatmap' | 'domain-radar' | 'theme-analytics' | 'vocabulary-growth';
@@ -908,4 +925,12 @@ class ExportService {
   }
 }
 
-export const exportService = new ExportService();
+// Initialize service after loading dependencies
+const exportService = new ExportService();
+
+// Load optional dependencies on startup
+loadOptionalDependencies().catch((error) => {
+  console.warn('Failed to load optional analytics dependencies:', error);
+});
+
+export { exportService };

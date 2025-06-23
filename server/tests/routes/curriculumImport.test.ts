@@ -12,8 +12,10 @@ jest.mock('../../src/services/clusteringService');
 describe('Curriculum Import Routes', () => {
   let prisma: ReturnType<typeof getTestPrismaClient>;
   let authToken: string;
-  let mockCurriculumImportService: unknown;
-  let mockClusteringService: unknown;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let mockCurriculumImportService: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let mockClusteringService: any;
 
   beforeEach(async () => {
     prisma = getTestPrismaClient();
@@ -31,10 +33,20 @@ describe('Curriculum Import Routes', () => {
     authToken = jwt.sign({ userId: user.id.toString() }, process.env.JWT_SECRET || 'secret');
 
     // Get mocked services
-    const { curriculumImportService } = await import('../../src/services/curriculumImportService');
-    const { clusteringService } = await import('../../src/services/clusteringService');
+    const { curriculumImportService } = jest.requireMock(
+      '../../src/services/curriculumImportService',
+    );
+    const { clusteringService } = jest.requireMock('../../src/services/clusteringService');
     mockCurriculumImportService = curriculumImportService;
     mockClusteringService = clusteringService;
+
+    // Set up default mock implementations
+    mockCurriculumImportService.startImport = jest.fn();
+    mockCurriculumImportService.processImport = jest.fn();
+    mockCurriculumImportService.getImportProgress = jest.fn();
+    mockCurriculumImportService.cancelImport = jest.fn();
+    mockCurriculumImportService.getImportHistory = jest.fn();
+    mockClusteringService.generateClusters = jest.fn();
   });
 
   afterEach(() => {

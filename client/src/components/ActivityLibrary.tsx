@@ -7,7 +7,19 @@ import { Label } from './ui/Label';
 import { Textarea } from './ui/Textarea';
 import { Modal } from './ui/Modal';
 
-export function ActivityLibrary() {
+interface ActivityLibraryProps {
+  showCreateButton?: boolean;
+  onCreateNew?: () => void;
+  defaultView?: 'grid' | 'list';
+  language?: 'en' | 'fr';
+}
+
+export function ActivityLibrary({
+  showCreateButton = true,
+  onCreateNew,
+  defaultView = 'grid',
+  language = 'en',
+}: ActivityLibraryProps = {}) {
   const [filters, setFilters] = useState({
     domain: '',
     subject: '',
@@ -15,9 +27,9 @@ export function ActivityLibrary() {
     search: '',
   });
   const [showCreateModal, setShowCreateModal] = useState(false);
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>(defaultView);
 
-  const { data: templates = [], isLoading } = useActivityTemplates(filters);
+  const { data: templates = [], isLoading, error, refetch } = useActivityTemplates(filters);
   const createTemplate = useCreateActivityTemplate();
 
   const handleFilterChange = (key: string, value: string) => {
@@ -60,10 +72,17 @@ export function ActivityLibrary() {
   if (isLoading) {
     return (
       <div className="max-w-6xl mx-auto p-6">
-        <div className="animate-pulse space-y-4">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="h-32 bg-gray-200 rounded-lg"></div>
-          ))}
+        <div className="text-center">Loading...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="max-w-6xl mx-auto p-6">
+        <div className="text-center">
+          <p className="text-red-600 mb-4">Unable to load activity library. Please try again.</p>
+          <Button onClick={() => refetch()}>Retry</Button>
         </div>
       </div>
     );
@@ -73,7 +92,10 @@ export function ActivityLibrary() {
     <div className="max-w-6xl mx-auto p-6 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">Activity Library</h1>
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Activity Library</h1>
+          <p className="text-gray-600">Browse and manage your activity templates</p>
+        </div>
         <div className="flex items-center gap-2">
           <Button
             variant="outline"
@@ -81,7 +103,11 @@ export function ActivityLibrary() {
           >
             {viewMode === 'grid' ? '📋' : '⊞'} {viewMode === 'grid' ? 'List' : 'Grid'}
           </Button>
-          <Button onClick={() => setShowCreateModal(true)}>➕ New Template</Button>
+          {showCreateButton && (
+            <Button onClick={() => (onCreateNew ? onCreateNew() : setShowCreateModal(true))}>
+              ➕ New Activity
+            </Button>
+          )}
         </div>
       </div>
 
@@ -144,11 +170,21 @@ export function ActivityLibrary() {
         </div>
       </div>
 
+      {/* Activity Count */}
+      {templates.length > 0 && (
+        <div className="text-sm text-gray-600">{templates.length} activities found</div>
+      )}
+
       {/* Templates Grid/List */}
       {templates.length === 0 ? (
         <div className="text-center py-12 bg-white rounded-lg shadow-sm border">
-          <p className="text-gray-500 mb-4">No activity templates found.</p>
-          <Button onClick={() => setShowCreateModal(true)}>Create Your First Template</Button>
+          <p className="text-gray-500 mb-4">No activities found</p>
+          <p className="text-gray-400 mb-4">
+            Get started by creating your first activity template.
+          </p>
+          <Button onClick={() => (onCreateNew ? onCreateNew() : setShowCreateModal(true))}>
+            Create New Activity
+          </Button>
         </div>
       ) : (
         <div
@@ -165,8 +201,15 @@ export function ActivityLibrary() {
             >
               <div className="flex items-start justify-between mb-3">
                 <div className="flex-1">
-                  <h3 className="font-semibold text-gray-900">{template.titleEn}</h3>
-                  <p className="text-sm text-gray-600">{template.titleFr}</p>
+                  <h3 className="font-semibold text-gray-900">
+                    {language === 'en' ? template.titleEn : template.titleFr}
+                  </h3>
+                  {language === 'en' && template.titleFr && (
+                    <p className="text-sm text-gray-600">{template.titleFr}</p>
+                  )}
+                  {language === 'fr' && template.titleEn && (
+                    <p className="text-sm text-gray-600">{template.titleEn}</p>
+                  )}
                 </div>
                 <span
                   className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getDomainColor(template.domain)}`}
@@ -175,7 +218,9 @@ export function ActivityLibrary() {
                 </span>
               </div>
 
-              <p className="text-sm text-gray-700 mb-3 line-clamp-2">{template.descriptionEn}</p>
+              <p className="text-sm text-gray-700 mb-3 line-clamp-2">
+                {language === 'en' ? template.descriptionEn : template.descriptionFr}
+              </p>
 
               <div className="flex flex-wrap gap-2 mb-3">
                 <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
@@ -183,7 +228,7 @@ export function ActivityLibrary() {
                 </span>
                 {template.prepTimeMin && (
                   <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                    ⏱️ {template.prepTimeMin}min
+                    ⏱️ {template.prepTimeMin}m
                   </span>
                 )}
                 {template.subject && (
@@ -197,19 +242,9 @@ export function ActivityLibrary() {
                 <div className="mb-3">
                   <p className="text-xs text-gray-500 mb-1">Linked Outcomes:</p>
                   <div className="flex flex-wrap gap-1">
-                    {template.outcomeIds.slice(0, 3).map((outcomeId, index) => (
-                      <span
-                        key={index}
-                        className="text-xs bg-green-100 text-green-800 px-1 py-0.5 rounded"
-                      >
-                        {outcomeId}
-                      </span>
-                    ))}
-                    {template.outcomeIds.length > 3 && (
-                      <span className="text-xs bg-gray-100 text-gray-600 px-1 py-0.5 rounded">
-                        +{template.outcomeIds.length - 3} more
-                      </span>
-                    )}
+                    <span className="text-xs text-gray-600">
+                      {template.outcomeIds.length} outcomes
+                    </span>
                   </div>
                 </div>
               )}

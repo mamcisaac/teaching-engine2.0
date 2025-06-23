@@ -72,10 +72,10 @@ import aiParentSummaryRoutes from './routes/aiParentSummary';
 import activityTemplateRoutes from './routes/activityTemplate';
 import planningRoutes from './routes/planning';
 import curriculumImportRoutes from './routes/curriculumImport';
-import embeddingRoutes from './routes/embedding';
 import enhancedPlanningRoutes from './routes/enhancedPlanning';
 import enhancedMaterialRoutes from './routes/enhancedMaterial';
 import analyticsRoutes from './routes/analytics';
+import embeddingsRoutes from './routes/embeddings';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
@@ -281,10 +281,10 @@ app.use('/api/ai-parent-summary', authenticateToken, aiParentSummaryRoutes);
 app.use('/api/activity-templates', authenticateToken, activityTemplateRoutes);
 app.use('/api/planning', authenticateToken, planningRoutes);
 app.use('/api/curriculum/import', authenticateToken, curriculumImportRoutes);
+app.use('/api/embeddings', embeddingsRoutes); // Note: Has its own auth middleware for admin routes
 
 // Phase 5 Routes
 app.use('/api/curriculum-import', authenticateToken, curriculumImportRoutes);
-app.use('/api/embeddings', authenticateToken, embeddingRoutes);
 app.use('/api/enhanced-planning', authenticateToken, enhancedPlanningRoutes);
 app.use('/api/enhanced-materials', authenticateToken, enhancedMaterialRoutes);
 
@@ -338,7 +338,12 @@ log(`Starting server on port ${PORT}...`);
 export { app };
 
 // Only start the server if this file is run directly
-if (import.meta.url === `file://${process.argv[1]}`) {
+// Also start if running in test mode for E2E tests (unless IS_TEST_SERVER is set)
+const isDirectRun = import.meta.url === `file://${process.argv[1]}`;
+const isE2ETest =
+  process.env.NODE_ENV === 'test' && process.env.E2E_TEST === 'true' && !process.env.IS_TEST_SERVER;
+
+if (isDirectRun || isE2ETest) {
   // Initialize services before starting the server
   initializeServices()
     .then(() => {

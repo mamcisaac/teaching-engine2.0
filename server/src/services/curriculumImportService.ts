@@ -50,7 +50,7 @@ export class CurriculumImportService extends BaseService {
           subject,
           sourceFormat,
           sourceFile,
-          status: ImportStatus.PENDING,
+          status: ImportStatus.UPLOADING,
           metadata: (metadata || {}) as any,
         },
       });
@@ -148,10 +148,25 @@ export class CurriculumImportService extends BaseService {
   parseCSV(csvContent: string): ImportOutcome[] {
     try {
       const lines = csvContent.split('\n');
-      const headers = lines[0]
-        .toLowerCase()
-        .split(',')
-        .map((h) => h.trim());
+      // Parse header line handling quoted values
+      const headerLine = lines[0].toLowerCase();
+      const headers: string[] = [];
+      let current = '';
+      let inQuotes = false;
+
+      for (let j = 0; j < headerLine.length; j++) {
+        const char = headerLine[j];
+
+        if (char === '"') {
+          inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+          headers.push(current.trim().replace(/^"(.*)"$/, '$1'));
+          current = '';
+        } else {
+          current += char;
+        }
+      }
+      headers.push(current.trim().replace(/^"(.*)"$/, '$1'));
 
       const codeIndex = headers.indexOf('code');
       const descriptionIndex = headers.indexOf('description');
@@ -169,7 +184,26 @@ export class CurriculumImportService extends BaseService {
         const line = lines[i].trim();
         if (!line) continue;
 
-        const columns = line.split(',').map((col) => col.trim().replace(/^"(.*)"$/, '$1'));
+        // Parse CSV line handling quoted values properly
+        const columns: string[] = [];
+        let current = '';
+        let inQuotes = false;
+
+        for (let j = 0; j < line.length; j++) {
+          const char = line[j];
+
+          if (char === '"') {
+            inQuotes = !inQuotes;
+          } else if (char === ',' && !inQuotes) {
+            columns.push(current.trim().replace(/^"(.*)"$/, '$1'));
+            current = '';
+          } else {
+            current += char;
+          }
+        }
+
+        // Don't forget the last column
+        columns.push(current.trim().replace(/^"(.*)"$/, '$1'));
 
         if (columns.length < Math.max(codeIndex, descriptionIndex) + 1) {
           this.logger.warn({ lineNumber: i + 1, line }, 'Skipping invalid CSV line');
