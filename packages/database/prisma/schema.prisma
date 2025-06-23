@@ -435,6 +435,7 @@ model Outcome {
   studentGoals StudentGoal[]
   studentReflections StudentReflection[]
   teacherReflections TeacherReflection[]
+  prompts OutcomePrompt[]
 }
 
 model MilestoneOutcome {
@@ -734,6 +735,12 @@ model StudentReflection {
   outcome     Outcome? @relation(fields: [outcomeId], references: [id])
   themeId     Int?
   theme       ThematicUnit? @relation(fields: [themeId], references: [id])
+  // A3 Enhancement: AI Classification fields
+  suggestedOutcomeIds  String?    // JSON array of suggested outcome IDs
+  selTags              String?    // JSON array of SEL/competency tags
+  classificationConfidence Float? // AI confidence score (0-1)
+  classificationRationale  String? // AI rationale for suggestions
+  classifiedAt         DateTime?  // When classification was performed
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -937,4 +944,20 @@ model OutcomeCluster {
   
   @@index([importId])
   @@index([clusterType])
+}
+
+// A4 Enhancement: Stores pedagogical prompts linked to curriculum outcomes
+model OutcomePrompt {
+  id         Int      @id @default(autoincrement())
+  outcomeId  String
+  outcome    Outcome  @relation(fields: [outcomeId], references: [id], onDelete: Cascade)
+  type       String   // "open_question" | "sentence_stem" | "discussion" | "metacognitive"
+  language   String   // "en" | "fr"
+  text       String   // The actual prompt text
+  isSystem   Boolean  @default(true)  // true for seeded prompts, false for user-generated
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  @@index([outcomeId, language])
+  @@index([type, language])
 }

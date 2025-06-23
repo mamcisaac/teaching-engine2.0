@@ -1924,6 +1924,195 @@ export const useDeleteStudentReflection = () => {
   });
 };
 
+// A3 Enhancement: Reflection Classification API functions
+export interface ClassificationResult {
+  outcomes: Array<{
+    id: string;
+    confidence: number;
+    rationale: string;
+  }>;
+  selTags: string[];
+  studentId: number;
+}
+
+export interface ClassifyReflectionRequest {
+  studentId: number;
+  text: string;
+}
+
+export const useClassifyReflection = () => {
+  return useMutation<ClassificationResult, Error, ClassifyReflectionRequest>({
+    mutationFn: async (data) => (await api.post('/api/reflections/classify', data)).data,
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to classify reflection: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useClassifyAndUpdateReflection = () => {
+  const queryClient = useQueryClient();
+  return useMutation<
+    { reflection: StudentReflection; classification: ClassificationResult },
+    Error,
+    { reflectionId: number }
+  >({
+    mutationFn: async ({ reflectionId }) =>
+      (await api.post(`/api/reflections/classify/${reflectionId}`)).data,
+    onSuccess: (data) => {
+      // Invalidate relevant queries
+      queryClient.invalidateQueries({
+        queryKey: ['students', data.reflection.studentId, 'reflections'],
+      });
+      queryClient.invalidateQueries({ queryKey: ['reflections', 'classification', 'stats'] });
+      toast.success('Reflection classified and updated successfully!');
+    },
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to classify and update reflection: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export interface ClassificationStats {
+  totalClassified: number;
+  averageConfidence: number;
+  topSELTags: Array<{ tag: string; count: number }>;
+  recentClassifications: number;
+}
+
+export const useClassificationStats = () => {
+  return useQuery<ClassificationStats>({
+    queryKey: ['reflections', 'classification', 'stats'],
+    queryFn: async () => (await api.get('/api/reflections/classification/stats')).data,
+  });
+};
+
+// A4 Enhancement: Prompt Generator API functions
+export interface GeneratedPrompt {
+  type: 'open_question' | 'sentence_stem' | 'discussion' | 'metacognitive';
+  text: string;
+  context?: string;
+}
+
+export interface PromptGenerationResult {
+  outcomeId: string;
+  outcome: {
+    code: string;
+    description: string;
+    subject: string;
+    grade: number;
+  };
+  prompts: GeneratedPrompt[];
+  language: string;
+}
+
+export interface PromptGenerationRequest {
+  outcomeId: string;
+  language: 'en' | 'fr';
+  grade?: number;
+  subject?: string;
+}
+
+export const useGeneratePrompts = () => {
+  return useMutation<PromptGenerationResult, Error, PromptGenerationRequest>({
+    mutationFn: async (data) => (await api.post('/api/prompts/generate', data)).data,
+    onError: (error: unknown) => {
+      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
+      toast.error(
+        'Failed to generate prompts: ' +
+          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
+      );
+    },
+  });
+};
+
+export const useOutcomePrompts = (outcomeId: string, language: string = 'en') => {
+  return useQuery<{
+    outcomeId: string;
+    outcome: {
+      id: string;
+      code: string;
+      description: string;
+      subject: string;
+      grade: number;
+    };
+    prompts: Array<{
+      id: number;
+      type: string;
+      text: string;
+      isSystem: boolean;
+      createdAt: string;
+    }>;
+    language: string;
+  }>({
+    queryKey: ['prompts', 'outcome', outcomeId, language],
+    queryFn: async () =>
+      (await api.get(`/api/prompts/outcome/${outcomeId}?language=${language}`)).data,
+    enabled: !!outcomeId,
+  });
+};
+
+export interface PromptStats {
+  totalPrompts: number;
+  promptsByType: Record<string, number>;
+  promptsByLanguage: Record<string, number>;
+  recentlyGenerated: number;
+}
+
+export const usePromptStats = () => {
+  return useQuery<PromptStats>({
+    queryKey: ['prompts', 'stats'],
+    queryFn: async () => (await api.get('/api/prompts/stats')).data,
+  });
+};
+
+export const useSearchPrompts = (filters: {
+  type?: string;
+  language?: string;
+  subject?: string;
+  grade?: number;
+  limit?: number;
+}) => {
+  const queryParams = new URLSearchParams();
+  Object.entries(filters).forEach(([key, value]) => {
+    if (value !== undefined && value !== null) {
+      queryParams.append(key, value.toString());
+    }
+  });
+
+  return useQuery<{
+    prompts: Array<{
+      id: number;
+      outcomeId: string;
+      type: string;
+      text: string;
+      language: string;
+      isSystem: boolean;
+      outcome: {
+        id: string;
+        code: string;
+        description: string;
+        subject: string;
+        grade: number;
+      };
+      createdAt: string;
+    }>;
+    filters: typeof filters;
+    total: number;
+  }>({
+    queryKey: ['prompts', 'search', filters],
+    queryFn: async () => (await api.get(`/api/prompts/search?${queryParams.toString()}`)).data,
+    enabled: Object.values(filters).some((value) => value !== undefined),
+  });
+};
+
 // Parent Summary API functions (these already exist above, need to be accessible)
 export const useGenerateParentSummary = () => {
   return useMutation<ParentSummaryGeneration, Error, GenerateParentSummaryRequest>({
@@ -2064,13 +2253,18 @@ export interface SendEmailResponse {
 
 export const useSendParentMessage = () => {
   const queryClient = useQueryClient();
-  return useMutation<SendEmailResponse, Error, { 
-    id: number; 
-    recipients: BulkEmailRecipient[]; 
-    language?: 'en' | 'fr' 
-  }>({
-    mutationFn: async ({ id, recipients, language = 'en' }) => 
-      (await api.post(`/api/communication/parent-messages/${id}/send`, { recipients, language })).data,
+  return useMutation<
+    SendEmailResponse,
+    Error,
+    {
+      id: number;
+      recipients: BulkEmailRecipient[];
+      language?: 'en' | 'fr';
+    }
+  >({
+    mutationFn: async ({ id, recipients, language = 'en' }) =>
+      (await api.post(`/api/communication/parent-messages/${id}/send`, { recipients, language }))
+        .data,
     onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: ['parent-messages'] });
       toast.success(response.message);
@@ -2087,13 +2281,18 @@ export const useSendParentMessage = () => {
 
 export const useSendParentSummary = () => {
   const queryClient = useQueryClient();
-  return useMutation<SendEmailResponse, Error, { 
-    id: number; 
-    recipients: BulkEmailRecipient[]; 
-    language?: 'en' | 'fr' 
-  }>({
-    mutationFn: async ({ id, recipients, language = 'en' }) => 
-      (await api.post(`/api/communication/parent-summaries/${id}/send`, { recipients, language })).data,
+  return useMutation<
+    SendEmailResponse,
+    Error,
+    {
+      id: number;
+      recipients: BulkEmailRecipient[];
+      language?: 'en' | 'fr';
+    }
+  >({
+    mutationFn: async ({ id, recipients, language = 'en' }) =>
+      (await api.post(`/api/communication/parent-summaries/${id}/send`, { recipients, language }))
+        .data,
     onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: ['parent-summaries'] });
       toast.success(response.message);
@@ -2111,14 +2310,16 @@ export const useSendParentSummary = () => {
 export const useParentMessageDeliveries = (id: number) =>
   useQuery<{ deliveries: EmailDelivery[]; stats: EmailDeliveryStats }>({
     queryKey: ['parent-message-deliveries', id],
-    queryFn: async () => (await api.get(`/api/communication/parent-messages/${id}/deliveries`)).data,
+    queryFn: async () =>
+      (await api.get(`/api/communication/parent-messages/${id}/deliveries`)).data,
     enabled: !!id,
   });
 
 export const useParentSummaryDeliveries = (id: number) =>
   useQuery<{ deliveries: EmailDelivery[]; stats: EmailDeliveryStats }>({
     queryKey: ['parent-summary-deliveries', id],
-    queryFn: async () => (await api.get(`/api/communication/parent-summaries/${id}/deliveries`)).data,
+    queryFn: async () =>
+      (await api.get(`/api/communication/parent-summaries/${id}/deliveries`)).data,
     enabled: !!id,
   });
 
@@ -2131,7 +2332,8 @@ export const useParentContacts = () =>
 export const useStudentParentContacts = (studentId: number) =>
   useQuery<BulkEmailRecipient[]>({
     queryKey: ['student-parent-contacts', studentId],
-    queryFn: async () => (await api.get(`/api/communication/students/${studentId}/parent-contacts`)).data,
+    queryFn: async () =>
+      (await api.get(`/api/communication/students/${studentId}/parent-contacts`)).data,
     enabled: !!studentId,
   });
 
@@ -2163,13 +2365,17 @@ export const useEmailTemplate = (id: number) =>
 
 export const useCreateEmailTemplate = () => {
   const queryClient = useQueryClient();
-  return useMutation<EmailTemplate, Error, {
-    name: string;
-    subject: string;
-    contentFr: string;
-    contentEn: string;
-    variables?: string[];
-  }>({
+  return useMutation<
+    EmailTemplate,
+    Error,
+    {
+      name: string;
+      subject: string;
+      contentFr: string;
+      contentEn: string;
+      variables?: string[];
+    }
+  >({
     mutationFn: async (data) => (await api.post('/api/email-templates', data)).data,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['email-templates'] });
@@ -2187,16 +2393,20 @@ export const useCreateEmailTemplate = () => {
 
 export const useUpdateEmailTemplate = () => {
   const queryClient = useQueryClient();
-  return useMutation<EmailTemplate, Error, {
-    id: number;
-    data: {
-      name?: string;
-      subject?: string;
-      contentFr?: string;
-      contentEn?: string;
-      variables?: string[];
-    };
-  }>({
+  return useMutation<
+    EmailTemplate,
+    Error,
+    {
+      id: number;
+      data: {
+        name?: string;
+        subject?: string;
+        contentFr?: string;
+        contentEn?: string;
+        variables?: string[];
+      };
+    }
+  >({
     mutationFn: async ({ id, data }) => (await api.put(`/api/email-templates/${id}`, data)).data,
     onSuccess: (_, { id }) => {
       queryClient.invalidateQueries({ queryKey: ['email-templates'] });
@@ -2236,7 +2446,7 @@ export const useDeleteEmailTemplate = () => {
 export const useCloneEmailTemplate = () => {
   const queryClient = useQueryClient();
   return useMutation<EmailTemplate, Error, { id: number; name: string }>({
-    mutationFn: async ({ id, name }) => 
+    mutationFn: async ({ id, name }) =>
       (await api.post(`/api/email-templates/${id}/clone`, { name })).data,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['email-templates'] });

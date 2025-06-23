@@ -388,7 +388,7 @@ export class EmbeddingService extends BaseService {
 
   // Private helper methods
 
-  private async generateEmbeddingVector(text: string): Promise<number[] | null> {
+  async generateEmbeddingVector(text: string): Promise<number[] | null> {
     if (!openai) return null;
 
     for (let attempt = 1; attempt <= this.maxRetries; attempt++) {
