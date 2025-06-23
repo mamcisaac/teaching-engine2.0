@@ -34,6 +34,11 @@ const StudentsPage = lazy(() => import('./pages/StudentsPage'));
 const ParentSummariesPage = lazy(() => import('./pages/ParentSummariesPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const AnalyticsPage = lazy(() => import('./pages/AnalyticsPage'));
+const LongRangePlanPage = lazy(() => import('./pages/LongRangePlanPage'));
+const UnitPlansPage = lazy(() => import('./pages/UnitPlansPage'));
+const CurriculumExpectationsPage = lazy(() => import('./pages/CurriculumExpectationsPage'));
+const ETFOLessonPlanPage = lazy(() => import('./pages/ETFOLessonPlanPage'));
+const DaybookPage = lazy(() => import('./pages/DaybookPage'));
 
 // Common suspense fallback
 const SuspenseFallback = () => (
@@ -113,6 +118,54 @@ function AppRoutes() {
             }
           />
           <Route
+            path="long-range"
+            element={
+              <Suspense fallback={<SuspenseFallback />}>
+                <LongRangePlanPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="long-range/:longRangePlanId/units"
+            element={
+              <Suspense fallback={<SuspenseFallback />}>
+                <UnitPlansPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="units/:unitId"
+            element={
+              <Suspense fallback={<SuspenseFallback />}>
+                <UnitPlansPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="units/:unitId/lessons"
+            element={
+              <Suspense fallback={<SuspenseFallback />}>
+                <ETFOLessonPlanPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="lessons"
+            element={
+              <Suspense fallback={<SuspenseFallback />}>
+                <ETFOLessonPlanPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="daybook"
+            element={
+              <Suspense fallback={<SuspenseFallback />}>
+                <DaybookPage />
+              </Suspense>
+            }
+          />
+          <Route
             path="unit/:id"
             element={
               <Suspense fallback={<SuspenseFallback />}>
@@ -183,6 +236,14 @@ function AppRoutes() {
         />
 
         {/* Curriculum outcomes and coverage */}
+        <Route
+          path="/curriculum"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <CurriculumExpectationsPage />
+            </Suspense>
+          }
+        />
         <Route
           path="/outcomes"
           element={

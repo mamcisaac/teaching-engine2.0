@@ -12,7 +12,8 @@
     "db:deploy": "prisma migrate deploy",
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "migrate:etfo": "tsx src/migrations/migrate-to-etfo.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.9.0",

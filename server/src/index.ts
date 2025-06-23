@@ -76,6 +76,11 @@ import enhancedMaterialRoutes from './routes/enhancedMaterial';
 import analyticsRoutes from './routes/analytics';
 import embeddingsRoutes from './routes/embeddings';
 import aiEnhancedRoutes from './routes/aiEnhanced';
+import curriculumExpectationRoutes from './routes/curriculum-expectations';
+import longRangePlanRoutes from './routes/long-range-plans';
+import unitPlanRoutes from './routes/unit-plans';
+import etfoLessonPlanRoutes from './routes/etfo-lesson-plans';
+import daybookEntryRoutes from './routes/daybook-entries';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
@@ -292,6 +297,13 @@ app.use('/api/analytics', authenticateToken, analyticsRoutes);
 
 // Phase 2 AI Enhanced Routes
 app.use('/api/ai', authenticateToken, aiEnhancedRoutes);
+
+// ETFO-aligned Planning Routes
+app.use('/api/curriculum-expectations', authenticateToken, curriculumExpectationRoutes);
+app.use('/api/long-range-plans', authenticateToken, longRangePlanRoutes);
+app.use('/api/unit-plans', authenticateToken, unitPlanRoutes);
+app.use('/api/etfo-lesson-plans', authenticateToken, etfoLessonPlanRoutes);
+app.use('/api/daybook-entries', authenticateToken, daybookEntryRoutes);
 
 // Service health check endpoint (no auth required for monitoring)
 app.get('/api/health/services', async (_req, res) => {

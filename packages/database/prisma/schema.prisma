@@ -286,6 +286,12 @@ model User {
   aiGeneratedPlans AIGeneratedPlan[]
   planningConversations PlanningConversation[]
   activitySeries ActivitySeries[]
+  
+  // ETFO-aligned planning models
+  longRangePlans LongRangePlan[]
+  unitPlans UnitPlan[]
+  etfoLessonPlans ETFOLessonPlan[]
+  daybookEntries DaybookEntry[]
 }
 
 enum ActivityType {
@@ -928,6 +934,7 @@ model CurriculumImport {
   
   clusters          OutcomeCluster[]
   outcomes          Outcome[]        // Outcomes created from this import
+  curriculumExpectations CurriculumExpectation[] @relation("CurriculumExpectationImport")
   
   @@index([userId, status])
   @@index([createdAt])
@@ -1002,4 +1009,299 @@ model SubPlanRecord {
   
   @@index([userId, date])
   @@index([userId, createdAt])
+}
+
+// ==================== ETFO-Aligned Planning Models ====================
+// These models implement the 5-level ETFO planning hierarchy:
+// 1. CurriculumExpectation → 2. LongRangePlan → 3. UnitPlan → 4. LessonPlan → 5. DaybookEntry
+
+// Level 1: Curriculum Expectations (replaces Outcome)
+model CurriculumExpectation {
+  id              String   @id @default(cuid())
+  code            String   @unique // e.g., "A1.2", "B2.3"
+  description     String
+  strand          String   // Major curriculum category
+  substrand       String?  // Subcategory if applicable
+  grade           Int
+  subject         String
+  
+  // Bilingual support
+  descriptionFr   String?
+  strandFr        String?
+  substrandFr     String?
+  
+  // Import tracking
+  importId        String?
+  import          CurriculumImport? @relation("CurriculumExpectationImport", fields: [importId], references: [id])
+  
+  // Relationships to planning levels
+  longRangePlans  LongRangePlanExpectation[]
+  unitPlans       UnitPlanExpectation[]
+  lessonPlans     ETFOLessonPlanExpectation[]
+  daybookEntries  DaybookEntryExpectation[]
+  
+  // AI features
+  embedding       CurriculumExpectationEmbedding?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([subject, grade])
+  @@index([code])
+}
+
+// Vector embeddings for curriculum expectations (for AI clustering)
+model CurriculumExpectationEmbedding {
+  id            String                @id @default(cuid())
+  expectationId String                @unique
+  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
+  embedding     Json                  // Array of float values
+  model         String                // e.g., "text-embedding-3-small"
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime              @updatedAt
+  
+  @@index([expectationId])
+}
+
+// Level 2: Long-Range Plans (yearly/term overview)
+model LongRangePlan {
+  id            String   @id @default(cuid())
+  userId        Int
+  user          User     @relation(fields: [userId], references: [id])
+  
+  title         String
+  academicYear  String   // e.g., "2024-2025"
+  term          String?  // "Full Year", "Term 1", "Term 2", etc.
+  grade         Int
+  subject       String
+  
+  // Planning details
+  description   String?
+  goals         String?  // Overall learning goals for the year/term
+  themes        Json?    // Array of major themes
+  
+  // Bilingual support
+  titleFr       String?
+  descriptionFr String?
+  goalsFr       String?
+  
+  // Relationships
+  expectations  LongRangePlanExpectation[]
+  unitPlans     UnitPlan[]
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@index([userId, academicYear])
+  @@index([userId, subject, grade])
+}
+
+// Junction table for Long-Range Plans and Curriculum Expectations
+model LongRangePlanExpectation {
+  longRangePlan   LongRangePlan         @relation(fields: [longRangePlanId], references: [id])
+  longRangePlanId String
+  expectation     CurriculumExpectation @relation(fields: [expectationId], references: [id])
+  expectationId   String
+  plannedTerm     String?               // Which term this expectation is planned for
+  
+  @@id([longRangePlanId, expectationId])
+}
+
+// Level 3: Unit Plans (replaces Milestone)
+model UnitPlan {
+  id              String   @id @default(cuid())
+  userId          Int
+  user            User     @relation(fields: [userId], references: [id])
+  
+  title           String
+  longRangePlanId String
+  longRangePlan   LongRangePlan @relation(fields: [longRangePlanId], references: [id])
+  
+  // Planning details
+  description     String?
+  bigIdeas        String?  // Key concepts/enduring understandings
+  essentialQuestions Json? // Array of guiding questions
+  
+  // Timeline
+  startDate       DateTime
+  endDate         DateTime
+  estimatedHours  Int?
+  
+  // Bilingual support
+  titleFr         String?
+  descriptionFr   String?
+  bigIdeasFr      String?
+  
+  // Assessment planning
+  assessmentPlan  String?  // How learning will be assessed
+  successCriteria Json?    // Array of success criteria
+  
+  // Relationships
+  expectations    UnitPlanExpectation[]
+  lessonPlans     ETFOLessonPlan[]
+  resources       UnitPlanResource[]
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([userId, startDate])
+  @@index([longRangePlanId])
+}
+
+// Junction table for Unit Plans and Curriculum Expectations
+model UnitPlanExpectation {
+  unitPlan      UnitPlan              @relation(fields: [unitPlanId], references: [id])
+  unitPlanId    String
+  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id])
+  expectationId String
+  
+  @@id([unitPlanId, expectationId])
+}
+
+// Resources linked to unit plans
+model UnitPlanResource {
+  id         String   @id @default(cuid())
+  unitPlanId String
+  unitPlan   UnitPlan @relation(fields: [unitPlanId], references: [id])
+  
+  title      String
+  type       String   // "document", "video", "website", "book", etc.
+  url        String?
+  notes      String?
+  
+  createdAt  DateTime @default(now())
+}
+
+// Level 4: Lesson Plans (ETFO version, replaces Activity)
+model ETFOLessonPlan {
+  id         String   @id @default(cuid())
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
+  
+  title      String
+  unitPlanId String
+  unitPlan   UnitPlan @relation(fields: [unitPlanId], references: [id])
+  
+  // Lesson details
+  date       DateTime
+  duration   Int      // in minutes
+  
+  // Three-part lesson structure (ETFO standard)
+  mindsOn    String?  // Introduction/hook
+  action     String?  // Main learning activities
+  consolidation String? // Closure/assessment
+  
+  // Planning details
+  learningGoals String?
+  materials    Json?    // Array of required materials
+  grouping     String?  // "whole class", "small group", "pairs", "individual"
+  
+  // Bilingual support
+  titleFr      String?
+  mindsOnFr    String?
+  actionFr     String?
+  consolidationFr String?
+  learningGoalsFr String?
+  
+  // Differentiation
+  accommodations Json?  // Array of accommodations
+  modifications  Json?  // Array of modifications
+  extensions     Json?  // Array of extensions
+  
+  // Assessment
+  assessmentType String? // "diagnostic", "formative", "summative"
+  assessmentNotes String?
+  
+  // Substitute teacher friendly
+  isSubFriendly Boolean @default(true)
+  subNotes      String?
+  
+  // Relationships
+  expectations  ETFOLessonPlanExpectation[]
+  daybookEntry  DaybookEntry?
+  resources     ETFOLessonPlanResource[]
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@index([userId, date])
+  @@index([unitPlanId])
+}
+
+// Junction table for Lesson Plans and Curriculum Expectations
+model ETFOLessonPlanExpectation {
+  lessonPlan    ETFOLessonPlan        @relation(fields: [lessonPlanId], references: [id])
+  lessonPlanId  String
+  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id])
+  expectationId String
+  
+  @@id([lessonPlanId, expectationId])
+}
+
+// Resources linked to lesson plans
+model ETFOLessonPlanResource {
+  id           String         @id @default(cuid())
+  lessonPlanId String
+  lessonPlan   ETFOLessonPlan @relation(fields: [lessonPlanId], references: [id])
+  
+  title        String
+  type         String         // "handout", "slide", "video", etc.
+  url          String?
+  content      String?        // For inline content
+  
+  createdAt    DateTime       @default(now())
+}
+
+// Level 5: Daybook Entries (daily reflections and notes)
+model DaybookEntry {
+  id           String         @id @default(cuid())
+  userId       Int
+  user         User           @relation(fields: [userId], references: [id])
+  
+  date         DateTime
+  lessonPlanId String?        @unique
+  lessonPlan   ETFOLessonPlan? @relation(fields: [lessonPlanId], references: [id])
+  
+  // Reflection prompts
+  whatWorked   String?        // What went well?
+  whatDidntWork String?       // What could be improved?
+  nextSteps    String?        // What to do differently next time?
+  
+  // Student observations
+  studentEngagement String?    // Notes on engagement levels
+  studentChallenges String?    // Observed difficulties
+  studentSuccesses  String?    // Notable achievements
+  
+  // General notes
+  notes        String?        // Any other observations
+  privateNotes String?        // Notes not for sharing
+  
+  // Bilingual support
+  whatWorkedFr String?
+  whatDidntWorkFr String?
+  nextStepsFr  String?
+  notesFr      String?
+  
+  // Quick indicators
+  overallRating Int?          // 1-5 scale
+  wouldReuseLesson Boolean?
+  
+  // Relationships
+  expectations DaybookEntryExpectation[]
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@index([userId, date])
+}
+
+// Junction table for Daybook Entries and Curriculum Expectations
+model DaybookEntryExpectation {
+  daybookEntry  DaybookEntry          @relation(fields: [daybookEntryId], references: [id])
+  daybookEntryId String
+  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id])
+  expectationId String
+  coverage      String?               // "introduced", "developing", "consolidated"
+  
+  @@id([daybookEntryId, expectationId])
 }
