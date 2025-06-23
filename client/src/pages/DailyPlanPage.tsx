@@ -7,8 +7,6 @@ import {
   useTimetable,
   useUpdateActivity,
   type TimetableSlot,
-  useAssessmentTemplates,
-  useAssessmentResults,
 } from '../api';
 import type { DailyPlanItem } from '../types';
 import DailyNotesEditor from '../components/DailyNotesEditor';
@@ -16,7 +14,6 @@ import Dialog from '../components/Dialog';
 import OutcomeSelect from '../components/OutcomeSelect';
 import OutcomeTag from '../components/OutcomeTag';
 import DailyOralRoutineWidget from '../components/DailyOralRoutineWidget';
-import AssessmentBuilder from '../components/assessment/AssessmentBuilder';
 import ResourceSelector from '../components/ResourceSelector';
 import type { MediaResource } from '../types';
 import { toast } from 'sonner';
@@ -151,7 +148,6 @@ export default function DailyPlanPage() {
   const [activityMaterials, setActivityMaterials] = useState('');
   const [selectedOutcomes, setSelectedOutcomes] = useState<string[]>([]);
   const [itemNotes, setItemNotes] = useState('');
-  const [showAssessmentBuilder, setShowAssessmentBuilder] = useState(false);
   const [showResourceSelector, setShowResourceSelector] = useState(false);
 
   const { data: plan, refetch } = useDailyPlan(date);
@@ -159,17 +155,6 @@ export default function DailyPlanPage() {
   const generate = useGenerateDailyPlan();
   const update = useUpdateDailyPlan();
   const updateActivity = useUpdateActivity();
-
-  // Assessment data for this date
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { data: assessmentTemplates } = useAssessmentTemplates();
-  const { data: dailyAssessments } = useAssessmentResults({
-    week: date.substring(0, 7) + '-01', // Get assessments for this month (simplified)
-  });
-
-  // Filter assessments for this specific date
-  const todaysAssessments =
-    dailyAssessments?.filter((assessment) => assessment.date.startsWith(date)) || [];
 
   // Format date for display
   const selectedDate = new Date(date + 'T00:00:00');
@@ -322,13 +307,6 @@ export default function DailyPlanPage() {
             >
               {generate.isPending ? 'Generating...' : 'Generate Plan'}
             </button>
-            <button
-              onClick={() => setShowAssessmentBuilder(true)}
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center gap-2"
-            >
-              <span>📝</span>
-              Add Assessment
-            </button>
           </div>
         </div>
       </div>
@@ -337,51 +315,6 @@ export default function DailyPlanPage() {
       <div className="bg-white rounded-lg shadow-sm border p-6">
         <DailyOralRoutineWidget date={date} />
       </div>
-
-      {/* Today's Assessments */}
-      {todaysAssessments.length > 0 && (
-        <div className="bg-blue-50 rounded-lg shadow-sm border border-blue-200 p-6">
-          <h2 className="text-lg font-semibold text-blue-800 mb-4 flex items-center gap-2">
-            📝 Today's Assessments
-          </h2>
-          <div className="grid gap-4 md:grid-cols-2">
-            {todaysAssessments.map((assessment) => (
-              <div
-                key={assessment.id}
-                className="bg-white rounded-lg p-4 border border-blue-200 hover:shadow-md transition-shadow"
-              >
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="font-medium text-blue-900">{assessment.template?.title}</h3>
-                  <span
-                    className={`text-xs px-2 py-1 rounded font-medium ${
-                      assessment.template?.type === 'oral'
-                        ? 'bg-purple-100 text-purple-800'
-                        : assessment.template?.type === 'writing'
-                          ? 'bg-green-100 text-green-800'
-                          : assessment.template?.type === 'reading'
-                            ? 'bg-yellow-100 text-yellow-800'
-                            : 'bg-gray-100 text-gray-800'
-                    }`}
-                  >
-                    {assessment.template?.type}
-                  </span>
-                </div>
-                {assessment.groupScore !== null ? (
-                  <div className="flex items-center gap-2 text-sm">
-                    <span className="text-green-600 font-medium">✅ Completed</span>
-                    <span className="text-gray-600">Score: {assessment.groupScore}%</span>
-                  </div>
-                ) : (
-                  <div className="text-orange-600 text-sm font-medium">⏳ Pending</div>
-                )}
-                {assessment.notes && (
-                  <p className="text-sm text-gray-600 mt-2">{assessment.notes}</p>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
 
       {/* Daily Timeline */}
       {plan ? (
@@ -544,22 +477,6 @@ export default function DailyPlanPage() {
             </div>
           </form>
         </div>
-      </Dialog>
-
-      {/* Assessment Builder Dialog */}
-      <Dialog
-        open={showAssessmentBuilder}
-        onClose={() => setShowAssessmentBuilder(false)}
-        title="Create Assessment Template"
-        maxWidth="3xl"
-      >
-        <AssessmentBuilder
-          onSuccess={() => {
-            setShowAssessmentBuilder(false);
-            // Refresh assessment data if needed
-          }}
-          onCancel={() => setShowAssessmentBuilder(false)}
-        />
       </Dialog>
 
       {/* Resource Selector */}

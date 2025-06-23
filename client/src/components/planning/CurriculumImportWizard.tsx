@@ -29,8 +29,14 @@ interface CurriculumImportWizardProps {
   onSuccess: () => void;
 }
 
-export function CurriculumImportWizard({ isOpen, onClose, onSuccess }: CurriculumImportWizardProps) {
-  const [currentStep, setCurrentStep] = useState<'upload' | 'processing' | 'review' | 'confirmation'>('upload');
+export function CurriculumImportWizard({
+  isOpen,
+  onClose,
+  onSuccess,
+}: CurriculumImportWizardProps) {
+  const [currentStep, setCurrentStep] = useState<
+    'upload' | 'processing' | 'review' | 'confirmation'
+  >('upload');
   const [importId, setImportId] = useState<number | null>(null);
   const [, setImportStatus] = useState<ImportStatus | null>(null);
   const [reviewedData, setReviewedData] = useState<ParsedCurriculum | null>(null);
@@ -52,111 +58,117 @@ export function CurriculumImportWizard({ isOpen, onClose, onSuccess }: Curriculu
     onClose();
   }, [resetWizard, onClose]);
 
-  const handleFileUpload = useCallback(async (file: File) => {
-    if (!file) return;
+  const handleFileUpload = useCallback(
+    async (file: File) => {
+      if (!file) return;
 
-    setIsUploading(true);
-    const formData = new FormData();
-    formData.append('document', file);
+      setIsUploading(true);
+      const formData = new FormData();
+      formData.append('document', file);
 
-    try {
-      const token = localStorage.getItem('token');
-      const response = await fetch('/api/curriculum/import/upload', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error('Upload failed');
-      }
-
-      const result = await response.json();
-      setImportId(result.importId);
-      setCurrentStep('processing');
-      
-      // Start polling for status
-      pollImportStatus(result.importId);
-      
-      toast({
-        title: 'Upload Successful',
-        description: 'Your curriculum document is being processed...',
-      });
-    } catch (error) {
-      console.error('Upload error:', error);
-      toast({
-        title: 'Upload Failed',
-        description: error instanceof Error ? error.message : 'Failed to upload document',
-        variant: 'destructive',
-      });
-    } finally {
-      setIsUploading(false);
-    }
-  }, [toast]);
-
-  const pollImportStatus = useCallback(async (id: number) => {
-    const token = localStorage.getItem('token');
-    const maxAttempts = 30; // 5 minutes with 10 second intervals
-    let attempts = 0;
-
-    const poll = async () => {
       try {
-        const response = await fetch(`/api/curriculum/import/${id}/status`, {
+        const token = localStorage.getItem('token');
+        const response = await fetch('/api/curriculum/import/upload', {
+          method: 'POST',
           headers: {
-            'Authorization': `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
+          body: formData,
         });
 
         if (!response.ok) {
-          throw new Error('Failed to check status');
+          throw new Error('Upload failed');
         }
 
-        const status: ImportStatus = await response.json();
-        setImportStatus(status);
+        const result = await response.json();
+        setImportId(result.importId);
+        setCurrentStep('processing');
 
-        if (status.status === 'READY_FOR_REVIEW') {
-          setReviewedData(status.parsedData || null);
-          setCurrentStep('review');
-          return;
-        }
+        // Start polling for status
+        pollImportStatus(result.importId);
 
-        if (status.status === 'FAILED') {
-          setCurrentStep('upload');
-          toast({
-            title: 'Processing Failed',
-            description: status.errorMessage || 'Failed to process document',
-            variant: 'destructive',
-          });
-          return;
-        }
-
-        // Continue polling if still processing
-        if (status.status === 'PROCESSING' && attempts < maxAttempts) {
-          attempts++;
-          setTimeout(poll, 10000); // Poll every 10 seconds
-        } else if (attempts >= maxAttempts) {
-          toast({
-            title: 'Processing Timeout',
-            description: 'Document processing is taking longer than expected. Please try again.',
-            variant: 'destructive',
-          });
-          setCurrentStep('upload');
-        }
-      } catch (error) {
-        console.error('Status poll error:', error);
         toast({
-          title: 'Status Check Failed',
-          description: 'Failed to check processing status',
+          title: 'Upload Successful',
+          description: 'Your curriculum document is being processed...',
+        });
+      } catch (error) {
+        console.error('Upload error:', error);
+        toast({
+          title: 'Upload Failed',
+          description: error instanceof Error ? error.message : 'Failed to upload document',
           variant: 'destructive',
         });
-        setCurrentStep('upload');
+      } finally {
+        setIsUploading(false);
       }
-    };
+    },
+    [toast],
+  );
 
-    poll();
-  }, [toast]);
+  const pollImportStatus = useCallback(
+    async (id: number) => {
+      const token = localStorage.getItem('token');
+      const maxAttempts = 30; // 5 minutes with 10 second intervals
+      let attempts = 0;
+
+      const poll = async () => {
+        try {
+          const response = await fetch(`/api/curriculum/import/${id}/status`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error('Failed to check status');
+          }
+
+          const status: ImportStatus = await response.json();
+          setImportStatus(status);
+
+          if (status.status === 'READY_FOR_REVIEW') {
+            setReviewedData(status.parsedData || null);
+            setCurrentStep('review');
+            return;
+          }
+
+          if (status.status === 'FAILED') {
+            setCurrentStep('upload');
+            toast({
+              title: 'Processing Failed',
+              description: status.errorMessage || 'Failed to process document',
+              variant: 'destructive',
+            });
+            return;
+          }
+
+          // Continue polling if still processing
+          if (status.status === 'PROCESSING' && attempts < maxAttempts) {
+            attempts++;
+            setTimeout(poll, 10000); // Poll every 10 seconds
+          } else if (attempts >= maxAttempts) {
+            toast({
+              title: 'Processing Timeout',
+              description: 'Document processing is taking longer than expected. Please try again.',
+              variant: 'destructive',
+            });
+            setCurrentStep('upload');
+          }
+        } catch (error) {
+          console.error('Status poll error:', error);
+          toast({
+            title: 'Status Check Failed',
+            description: 'Failed to check processing status',
+            variant: 'destructive',
+          });
+          setCurrentStep('upload');
+        }
+      };
+
+      poll();
+    },
+    [toast],
+  );
 
   const handleConfirmImport = useCallback(async () => {
     if (!importId || !reviewedData) return;
@@ -169,7 +181,7 @@ export function CurriculumImportWizard({ isOpen, onClose, onSuccess }: Curriculu
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ reviewedData }),
       });
@@ -180,7 +192,7 @@ export function CurriculumImportWizard({ isOpen, onClose, onSuccess }: Curriculu
 
       const result = await response.json();
       setCurrentStep('confirmation');
-      
+
       toast({
         title: 'Import Successful',
         description: `Successfully imported ${result.outcomesCount} learning outcomes`,
@@ -202,36 +214,43 @@ export function CurriculumImportWizard({ isOpen, onClose, onSuccess }: Curriculu
     }
   }, [importId, reviewedData, toast, handleClose, onSuccess]);
 
-  const handleOutcomeEdit = useCallback((index: number, field: keyof ParsedOutcome, value: string) => {
-    if (!reviewedData) return;
-    
-    const updatedOutcomes = [...reviewedData.outcomes];
-    updatedOutcomes[index] = { ...updatedOutcomes[index], [field]: value };
-    
-    setReviewedData({
-      ...reviewedData,
-      outcomes: updatedOutcomes,
-    });
-  }, [reviewedData]);
+  const handleOutcomeEdit = useCallback(
+    (index: number, field: keyof ParsedOutcome, value: string) => {
+      if (!reviewedData) return;
 
-  const handleSubjectGradeEdit = useCallback((field: 'subject' | 'grade', value: string | number) => {
-    if (!reviewedData) return;
-    
-    setReviewedData({
-      ...reviewedData,
-      [field]: value,
-    });
-  }, [reviewedData]);
+      const updatedOutcomes = [...reviewedData.outcomes];
+      updatedOutcomes[index] = { ...updatedOutcomes[index], [field]: value };
+
+      setReviewedData({
+        ...reviewedData,
+        outcomes: updatedOutcomes,
+      });
+    },
+    [reviewedData],
+  );
+
+  const handleSubjectGradeEdit = useCallback(
+    (field: 'subject' | 'grade', value: string | number) => {
+      if (!reviewedData) return;
+
+      setReviewedData({
+        ...reviewedData,
+        [field]: value,
+      });
+    },
+    [reviewedData],
+  );
 
   const renderUploadStep = () => (
     <div className="space-y-6">
       <div className="text-center">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Import Curriculum</h2>
         <p className="text-gray-600">
-          Upload your curriculum document (PDF, DOC, DOCX, or TXT) and our AI will extract the learning outcomes for you.
+          Upload your curriculum document (PDF, DOC, DOCX, or TXT) and our AI will extract the
+          learning outcomes for you.
         </p>
       </div>
-      
+
       <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-gray-400 transition-colors">
         <input
           type="file"
@@ -244,18 +263,27 @@ export function CurriculumImportWizard({ isOpen, onClose, onSuccess }: Curriculu
           disabled={isUploading}
           className="hidden"
         />
-        <label
-          htmlFor="curriculum-file"
-          className="cursor-pointer block"
-        >
-          <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
-            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+        <label htmlFor="curriculum-file" className="cursor-pointer block">
+          <svg
+            className="mx-auto h-12 w-12 text-gray-400"
+            stroke="currentColor"
+            fill="none"
+            viewBox="0 0 48 48"
+          >
+            <path
+              d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
-          <h3 className="mt-4 text-lg font-medium text-gray-900">Drop your file here or click to browse</h3>
+          <h3 className="mt-4 text-lg font-medium text-gray-900">
+            Drop your file here or click to browse
+          </h3>
           <p className="mt-2 text-sm text-gray-600">PDF, DOC, DOCX, or TXT (max 10MB)</p>
         </label>
       </div>
-      
+
       {isUploading && (
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
@@ -323,9 +351,15 @@ export function CurriculumImportWizard({ isOpen, onClose, onSuccess }: Curriculu
             <table className="w-full">
               <thead className="bg-gray-50 sticky top-0">
                 <tr>
-                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Code</th>
-                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
-                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Strand</th>
+                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                    Code
+                  </th>
+                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                    Description
+                  </th>
+                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                    Strand
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
@@ -364,10 +398,7 @@ export function CurriculumImportWizard({ isOpen, onClose, onSuccess }: Curriculu
         </div>
 
         <div className="flex justify-between">
-          <Button
-            variant="outline"
-            onClick={() => setCurrentStep('upload')}
-          >
+          <Button variant="outline" onClick={() => setCurrentStep('upload')}>
             Back to Upload
           </Button>
           <Button
@@ -384,14 +415,20 @@ export function CurriculumImportWizard({ isOpen, onClose, onSuccess }: Curriculu
   const renderConfirmationStep = () => (
     <div className="text-center space-y-6">
       <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100">
-        <svg className="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg
+          className="h-8 w-8 text-green-600"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
         </svg>
       </div>
       <div>
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Import Successful!</h2>
         <p className="text-gray-600">
-          Your curriculum has been successfully imported. You can now start creating milestones and activities.
+          Your curriculum has been successfully imported. You can now start creating milestones and
+          activities.
         </p>
       </div>
     </div>
@@ -403,34 +440,43 @@ export function CurriculumImportWizard({ isOpen, onClose, onSuccess }: Curriculu
         <div className="px-6 py-4 border-b border-gray-200">
           <div className="flex items-center justify-between">
             <h1 className="text-xl font-semibold text-gray-900">Curriculum Import Wizard</h1>
-            <button
-              onClick={handleClose}
-              className="text-gray-400 hover:text-gray-600"
-            >
+            <button onClick={handleClose} className="text-gray-400 hover:text-gray-600">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
-          
+
           {/* Progress indicator */}
           <div className="mt-4">
             <div className="flex items-center">
               {(['upload', 'processing', 'review', 'confirmation'] as const).map((step, index) => (
                 <React.Fragment key={step}>
-                  <div className={`flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium ${
-                    currentStep === step || (index < ['upload', 'processing', 'review', 'confirmation'].indexOf(currentStep))
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-200 text-gray-600'
-                  }`}>
+                  <div
+                    className={`flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium ${
+                      currentStep === step ||
+                      index <
+                        ['upload', 'processing', 'review', 'confirmation'].indexOf(currentStep)
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-200 text-gray-600'
+                    }`}
+                  >
                     {index + 1}
                   </div>
                   {index < 3 && (
-                    <div className={`flex-1 h-1 mx-2 ${
-                      index < ['upload', 'processing', 'review', 'confirmation'].indexOf(currentStep)
-                        ? 'bg-blue-600'
-                        : 'bg-gray-200'
-                    }`} />
+                    <div
+                      className={`flex-1 h-1 mx-2 ${
+                        index <
+                        ['upload', 'processing', 'review', 'confirmation'].indexOf(currentStep)
+                          ? 'bg-blue-600'
+                          : 'bg-gray-200'
+                      }`}
+                    />
                   )}
                 </React.Fragment>
               ))}
@@ -454,3 +500,5 @@ export function CurriculumImportWizard({ isOpen, onClose, onSuccess }: Curriculu
     </Dialog>
   );
 }
+
+export default CurriculumImportWizard;

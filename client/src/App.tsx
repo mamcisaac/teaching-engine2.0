@@ -30,12 +30,10 @@ const CoveragePage = lazy(() => import('./pages/CoveragePage'));
 const CurriculumAuditPage = lazy(() => import('./pages/CurriculumAuditPage'));
 const ParentMessagesPage = lazy(() => import('./pages/ParentMessagesPage'));
 const ParentContactsPage = lazy(() => import('./pages/ParentContactsPage'));
-const TimelinePage = lazy(() => import('./pages/TimelinePage'));
 const StudentsPage = lazy(() => import('./pages/StudentsPage'));
 const ParentSummariesPage = lazy(() => import('./pages/ParentSummariesPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const AnalyticsPage = lazy(() => import('./pages/AnalyticsPage'));
-const AssessmentPage = lazy(() => import('./pages/AssessmentPage'));
 
 // Common suspense fallback
 const SuspenseFallback = () => (
@@ -202,14 +200,6 @@ function AppRoutes() {
           }
         />
         <Route
-          path="/timeline"
-          element={
-            <Suspense fallback={<SuspenseFallback />}>
-              <TimelinePage />
-            </Suspense>
-          }
-        />
-        <Route
           path="/curriculum-audit"
           element={
             <Suspense fallback={<SuspenseFallback />}>
@@ -232,14 +222,6 @@ function AppRoutes() {
           element={
             <Suspense fallback={<SuspenseFallback />}>
               <ReflectionsPage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/assessments"
-          element={
-            <Suspense fallback={<SuspenseFallback />}>
-              <AssessmentPage />
             </Suspense>
           }
         />

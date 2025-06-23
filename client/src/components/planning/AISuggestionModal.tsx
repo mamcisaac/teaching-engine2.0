@@ -282,3 +282,4 @@ export function AISuggestionModal({
     </Dialog>
   );
 }
+export default AISuggestionModal;

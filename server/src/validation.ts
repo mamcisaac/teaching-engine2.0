@@ -187,28 +187,6 @@ export const thematicUnitUpdateSchema = baseThematicUnitSchema
     },
   );
 
-export const assessmentTemplateCreateSchema = z.object({
-  title: z.string().min(1).max(200),
-  type: z.enum(['oral', 'reading', 'writing', 'mixed']),
-  description: z.string().max(1000).optional(),
-  outcomeIds: z.array(z.string()).default([]),
-  rubricCriteria: z.string().optional(),
-});
-
-export const assessmentTemplateUpdateSchema = assessmentTemplateCreateSchema.partial();
-
-export const assessmentResultCreateSchema = z.object({
-  templateId: z.number().int().positive(),
-  date: z
-    .string()
-    .datetime()
-    .refine((date) => new Date(date) <= new Date(), {
-      message: 'Assessment date cannot be in the future',
-    }),
-  groupScore: z.number().int().min(0).max(100).optional(),
-  notes: z.string().max(1000).optional(),
-});
-
 export const parentMessageCreateSchema = z.object({
   ...bilingualString('title', true, { max: 200 }),
   timeframe: z.string().min(1).max(100),

@@ -23,7 +23,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  RadialLinearScale
+  RadialLinearScale,
 );
 
 interface QualityMetrics {
@@ -107,9 +107,7 @@ export function QualityScorecard({ weekStart, onSuggestionClick }: QualityScorec
   if (error || !diagnostics) {
     return (
       <div className="bg-white rounded-lg shadow-sm border p-6">
-        <div className="text-red-600">
-          {error || 'Failed to load planning diagnostics'}
-        </div>
+        <div className="text-red-600">{error || 'Failed to load planning diagnostics'}</div>
       </div>
     );
   }
@@ -177,11 +175,13 @@ export function QualityScorecard({ weekStart, onSuggestionClick }: QualityScorec
 
   // Prepare trend line chart data
   const trendData = {
-    labels: trend.map(t => new Date(t.week).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })),
+    labels: trend.map((t) =>
+      new Date(t.week).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+    ),
     datasets: [
       {
         label: 'Quality Score',
-        data: trend.map(t => t.score),
+        data: trend.map((t) => t.score),
         borderColor: 'rgb(59, 130, 246)',
         backgroundColor: 'rgba(59, 130, 246, 0.1)',
         tension: 0.3,
@@ -213,14 +213,12 @@ export function QualityScorecard({ weekStart, onSuggestionClick }: QualityScorec
       {/* Header with Overall Score */}
       <div className="flex justify-between items-start">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900">
-            Weekly Planning Quality
-          </h3>
-          <p className="text-sm text-gray-600 mt-1">
-            Diagnostic analysis of your weekly plan
-          </p>
+          <h3 className="text-lg font-semibold text-gray-900">Weekly Planning Quality</h3>
+          <p className="text-sm text-gray-600 mt-1">Diagnostic analysis of your weekly plan</p>
         </div>
-        <div className={`text-center px-4 py-2 rounded-lg ${getScoreBgColor(metrics.overallScore)}`}>
+        <div
+          className={`text-center px-4 py-2 rounded-lg ${getScoreBgColor(metrics.overallScore)}`}
+        >
           <div className={`text-3xl font-bold ${getScoreColor(metrics.overallScore)}`}>
             {Math.round(metrics.overallScore)}%
           </div>
@@ -344,12 +342,14 @@ export function QualityScorecard({ weekStart, onSuggestionClick }: QualityScorec
             <h4 className="font-medium text-gray-800 mb-2">Domain Analysis</h4>
             {diagnostics.missingDomains.length > 0 && (
               <p className="text-sm text-gray-700 mb-1">
-                <span className="font-medium">Missing:</span> {diagnostics.missingDomains.join(', ')}
+                <span className="font-medium">Missing:</span>{' '}
+                {diagnostics.missingDomains.join(', ')}
               </p>
             )}
             {diagnostics.overusedDomains.length > 0 && (
               <p className="text-sm text-gray-700">
-                <span className="font-medium">Overused:</span> {diagnostics.overusedDomains.join(', ')}
+                <span className="font-medium">Overused:</span>{' '}
+                {diagnostics.overusedDomains.join(', ')}
               </p>
             )}
           </div>
@@ -369,3 +369,4 @@ export function QualityScorecard({ weekStart, onSuggestionClick }: QualityScorec
     </div>
   );
 }
+export default QualityScorecard;

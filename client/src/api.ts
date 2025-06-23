@@ -24,11 +24,6 @@ import type {
   ThematicUnit,
   CognatePair,
   CognateInput,
-  AssessmentTemplate,
-  AssessmentResult,
-  AssessmentInput,
-  AssessmentResultInput,
-  OutcomeAssessmentData,
   MediaResource,
   MediaResourceInput,
   ParentMessage,
@@ -349,13 +344,9 @@ export const generateSubPlan = async (date: string, days: number) => {
 
 // Enhanced sub plan generator with options
 export const generateSubPlanWithOptions = async (options: SubPlanOptions) => {
-  const response = await api.post(
-    `/subplan/generate`,
-    options,
-    {
-      responseType: 'blob',
-    },
-  );
+  const response = await api.post(`/subplan/generate`, options, {
+    responseType: 'blob',
+  });
   return response;
 };
 
@@ -387,32 +378,40 @@ export const deleteClassRoutine = async (id: number) => {
 export interface WeeklyPlanData {
   startDate: string;
   endDate: string;
-  days: any[];
+  days: Array<Record<string, unknown>>;
   weeklyOverview: {
-    subjects: any[];
-    milestones: any[];
-    assessments: any[];
-    specialEvents: any[];
+    subjects: Array<Record<string, unknown>>;
+    milestones: Array<Record<string, unknown>>;
+    assessments: Array<Record<string, unknown>>;
+    specialEvents: Array<Record<string, unknown>>;
   };
-  continuityNotes: any[];
-  emergencyBackupPlans: any[];
+  continuityNotes: Array<Record<string, unknown>>;
+  emergencyBackupPlans: Array<Record<string, unknown>>;
 }
 
 export const extractWeeklyPlan = async (
   startDate: string,
   days: number = 5,
-  options: { includeGoals?: boolean; includeRoutines?: boolean; includePlans?: boolean; anonymize?: boolean; userId?: number } = {}
+  options: {
+    includeGoals?: boolean;
+    includeRoutines?: boolean;
+    includePlans?: boolean;
+    anonymize?: boolean;
+    userId?: number;
+  } = {},
 ): Promise<WeeklyPlanData> => {
   const params = new URLSearchParams({
     startDate,
     days: days.toString(),
     ...(options.includeGoals !== undefined && { includeGoals: options.includeGoals.toString() }),
-    ...(options.includeRoutines !== undefined && { includeRoutines: options.includeRoutines.toString() }),
+    ...(options.includeRoutines !== undefined && {
+      includeRoutines: options.includeRoutines.toString(),
+    }),
     ...(options.includePlans !== undefined && { includePlans: options.includePlans.toString() }),
     ...(options.anonymize !== undefined && { anonymize: options.anonymize.toString() }),
-    ...(options.userId && { userId: options.userId.toString() })
+    ...(options.userId && { userId: options.userId.toString() }),
   });
-  
+
   const response = await api.get(`/subplan/extract/weekly?${params}`);
   return response.data;
 };
@@ -451,7 +450,7 @@ export const extractScenarioTemplates = async (conditions?: ScenarioConditions) 
       if (value) params.append(key, value);
     });
   }
-  
+
   const response = await api.get(`/subplan/extract/scenarios?${params}`);
   return response.data;
 };
@@ -465,12 +464,12 @@ export const autoDetectScenario = async (userId?: number): Promise<EmergencyScen
 export const getScenarioById = async (
   scenarioId: string,
   teacherName?: string,
-  className?: string
+  className?: string,
 ) => {
   const params = new URLSearchParams();
   if (teacherName) params.append('teacherName', teacherName);
   if (className) params.append('className', className);
-  
+
   const response = await api.get(`/subplan/extract/scenarios/${scenarioId}?${params}`);
   return response.data;
 };
@@ -501,12 +500,12 @@ export interface ExtractedContacts {
 
 export const extractSchoolContacts = async (
   userId?: number,
-  format: 'organized' | 'emergency' | 'card' | 'formatted' = 'organized'
+  format: 'organized' | 'emergency' | 'card' | 'formatted' = 'organized',
 ) => {
   const params = new URLSearchParams();
   if (userId) params.append('userId', userId.toString());
   params.append('format', format);
-  
+
   const response = await api.get(`/subplan/extract/contacts?${params}`);
   return response.data;
 };
@@ -552,10 +551,13 @@ export interface ExtractedMaterials {
   };
 }
 
-export const extractDayMaterials = async (date: string, userId?: number): Promise<ExtractedMaterials> => {
+export const extractDayMaterials = async (
+  date: string,
+  userId?: number,
+): Promise<ExtractedMaterials> => {
   const params = new URLSearchParams({ date });
   if (userId) params.append('userId', userId.toString());
-  
+
   const response = await api.get(`/subplan/extract/materials/day?${params}`);
   return response.data;
 };
@@ -563,11 +565,11 @@ export const extractDayMaterials = async (date: string, userId?: number): Promis
 export const extractWeeklyMaterials = async (
   startDate: string,
   days: number = 5,
-  userId?: number
+  userId?: number,
 ): Promise<Array<{ date: string; materials: ExtractedMaterials }>> => {
   const params = new URLSearchParams({ startDate, days: days.toString() });
   if (userId) params.append('userId', userId.toString());
-  
+
   const response = await api.get(`/subplan/extract/materials/weekly?${params}`);
   return response.data;
 };
@@ -1634,112 +1636,6 @@ export const useDeleteParentMessage = () => {
   });
 };
 
-// Assessment Templates API
-export const useAssessmentTemplates = () => {
-  return useQuery<AssessmentTemplate[]>({
-    queryKey: ['assessment-templates'],
-    queryFn: async () => (await api.get('/api/assessments/templates')).data,
-  });
-};
-
-export const useCreateAssessmentTemplate = () => {
-  const queryClient = useQueryClient();
-  return useMutation<AssessmentTemplate, Error, AssessmentInput>({
-    mutationFn: async (data) => (await api.post('/api/assessments/templates', data)).data,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['assessment-templates'] });
-      toast.success('Assessment template created successfully!');
-    },
-    onError: (error: unknown) => {
-      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
-      toast.error(
-        'Failed to create assessment template: ' +
-          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
-      );
-    },
-  });
-};
-
-export const useUpdateAssessmentTemplate = () => {
-  const queryClient = useQueryClient();
-  return useMutation<AssessmentTemplate, Error, { id: number; data: Partial<AssessmentInput> }>({
-    mutationFn: async ({ id, data }) =>
-      (await api.put(`/api/assessments/templates/${id}`, data)).data,
-    onSuccess: (_, { id }) => {
-      queryClient.invalidateQueries({ queryKey: ['assessment-templates'] });
-      queryClient.invalidateQueries({ queryKey: ['assessment-templates', id] });
-      toast.success('Assessment template updated successfully!');
-    },
-    onError: (error: unknown) => {
-      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
-      toast.error(
-        'Failed to update assessment template: ' +
-          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
-      );
-    },
-  });
-};
-
-export const useDeleteAssessmentTemplate = () => {
-  const queryClient = useQueryClient();
-  return useMutation<void, Error, number>({
-    mutationFn: async (id) => (await api.delete(`/api/assessments/templates/${id}`)).data,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['assessment-templates'] });
-      toast.success('Assessment template deleted successfully!');
-    },
-    onError: (error: unknown) => {
-      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
-      toast.error(
-        'Failed to delete assessment template: ' +
-          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
-      );
-    },
-  });
-};
-
-// Assessment Results API
-export const useAssessmentResults = (filters?: { week?: string; templateId?: number }) => {
-  return useQuery<AssessmentResult[]>({
-    queryKey: ['assessment-results', filters],
-    queryFn: async () => {
-      const params = new URLSearchParams();
-      if (filters?.week) params.append('week', filters.week);
-      if (filters?.templateId) params.append('templateId', filters.templateId.toString());
-      return (await api.get(`/api/assessments/results?${params.toString()}`)).data;
-    },
-  });
-};
-
-export const useCreateAssessmentResult = () => {
-  const queryClient = useQueryClient();
-  return useMutation<AssessmentResult, Error, AssessmentResultInput>({
-    mutationFn: async (data) => (await api.post('/api/assessments/results', data)).data,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['assessment-results'] });
-      queryClient.invalidateQueries({ queryKey: ['assessment-templates'] });
-      queryClient.invalidateQueries({ queryKey: ['outcome-coverage'] });
-      toast.success('Assessment result logged successfully!');
-    },
-    onError: (error: unknown) => {
-      const axiosError = error as { response?: { data?: { error?: string } }; message?: string };
-      toast.error(
-        'Failed to log assessment result: ' +
-          (axiosError.response?.data?.error || axiosError.message || 'Unknown error'),
-      );
-    },
-  });
-};
-
-// Assessment by Outcome API
-export const useOutcomeAssessments = (outcomeId: string) => {
-  return useQuery<OutcomeAssessmentData>({
-    queryKey: ['outcome-assessments', outcomeId],
-    queryFn: async () => (await api.get(`/api/assessments/by-outcome/${outcomeId}`)).data,
-    enabled: !!outcomeId,
-  });
-};
-
 // Teacher Reflection hooks
 export const useTeacherReflections = () => {
   return useQuery({
@@ -1935,71 +1831,6 @@ export const useActivitySuggestions = (params: {
       return [];
     },
     enabled: !!params.suggestFor,
-  });
-};
-
-// Timeline types and hooks
-export interface TimelineEvent {
-  id: string;
-  date: string;
-  type: 'activity' | 'assessment' | 'theme' | 'newsletter';
-  label: string;
-  linkedOutcomeIds: string[];
-  subjectId?: number;
-  metadata?: {
-    score?: number;
-    milestoneId?: number;
-    endDate?: string;
-  };
-}
-
-export interface TimelineSummary {
-  totalOutcomes: number;
-  coveredOutcomes: number;
-  coveragePercentage: number;
-  nextMilestone: {
-    id: number;
-    title: string;
-    targetDate: string;
-  } | null;
-}
-
-export interface TimelineFilters {
-  from?: string;
-  to?: string;
-  studentId?: number;
-  subjectId?: number;
-  outcomeId?: string;
-}
-
-export const useTimelineEvents = (filters?: TimelineFilters) => {
-  return useQuery<TimelineEvent[]>({
-    queryKey: ['timeline-events', filters],
-    queryFn: async () => {
-      const params = new URLSearchParams();
-      if (filters?.from) params.append('from', filters.from);
-      if (filters?.to) params.append('to', filters.to);
-      if (filters?.studentId) params.append('studentId', filters.studentId.toString());
-      if (filters?.subjectId) params.append('subjectId', filters.subjectId.toString());
-      if (filters?.outcomeId) params.append('outcomeId', filters.outcomeId);
-      const query = params.toString();
-      return (await api.get(`/api/timeline/events${query ? '?' + query : ''}`)).data;
-    },
-  });
-};
-
-export const useTimelineSummary = (filters?: TimelineFilters) => {
-  return useQuery<TimelineSummary>({
-    queryKey: ['timeline-summary', filters],
-    queryFn: async () => {
-      const params = new URLSearchParams();
-      if (filters?.from) params.append('from', filters.from);
-      if (filters?.to) params.append('to', filters.to);
-      if (filters?.studentId) params.append('studentId', filters.studentId.toString());
-      if (filters?.subjectId) params.append('subjectId', filters.subjectId.toString());
-      const query = params.toString();
-      return (await api.get(`/api/timeline/summary${query ? '?' + query : ''}`)).data;
-    },
   });
 };
 

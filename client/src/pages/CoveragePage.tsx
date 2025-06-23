@@ -1,45 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  useOutcomeCoverage,
-  useThematicUnits,
-  useCognates,
-  useOutcomeAssessments,
-  type OutcomeCoverage,
-} from '../api';
+import { useOutcomeCoverage, useThematicUnits, useCognates, type OutcomeCoverage } from '../api';
 import type { ThematicUnit } from '../types';
 import { useAuth } from '../contexts/AuthContext';
 
 // Component to display assessment data for a specific outcome
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function OutcomeAssessmentCell({ outcomeId }: { outcomeId: string }) {
-  const { data: assessmentData } = useOutcomeAssessments(outcomeId);
-
-  if (!assessmentData || assessmentData.assessmentCount === 0) {
-    return <div className="text-gray-500 text-center text-sm">No assessments</div>;
-  }
-
-  return (
-    <div className="space-y-1">
-      <div className="text-sm font-medium text-blue-900">
-        {assessmentData.assessmentCount} assessment{assessmentData.assessmentCount > 1 ? 's' : ''}
-      </div>
-      {assessmentData.averageScore > 0 && (
-        <div className="text-xs text-gray-600">Avg: {assessmentData.averageScore}%</div>
-      )}
-      {assessmentData.lastAssessmentDate && (
-        <div className="text-xs text-gray-500">
-          Last:{' '}
-          {new Date(assessmentData.lastAssessmentDate).toLocaleDateString('en-US', {
-            month: 'short',
-            day: 'numeric',
-          })}
-        </div>
-      )}
-      {assessmentData.totalResults === 0 && (
-        <div className="text-xs text-orange-600">⏳ Pending results</div>
-      )}
-    </div>
-  );
+  // Assessment feature removed
+  return <div className="text-gray-500 text-center text-sm">-</div>;
 }
 
 export default function CoveragePage(): React.JSX.Element {

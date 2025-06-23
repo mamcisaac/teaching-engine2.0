@@ -58,7 +58,7 @@ const PromptGeneratorPanel: React.FC<PromptGeneratorPanelProps> = ({
     generatePromptsMutation.mutate(
       {
         outcomeId: activeOutcomeId,
-        language,
+        language: language as 'en' | 'fr',
       },
       {
         onSuccess: (result) => {

@@ -377,67 +377,6 @@ export interface CognateInput {
   userId: number;
 }
 
-export interface AssessmentTemplate {
-  id: number;
-  title: string;
-  type: 'oral' | 'reading' | 'writing' | 'mixed';
-  description?: string | null;
-  outcomeIds: string[];
-  rubricCriteria?: string | null;
-  userId: number;
-  createdAt: string;
-  updatedAt: string;
-  results?: AssessmentResult[];
-  lastResult?: AssessmentResult | null;
-  totalResults?: number;
-}
-
-export interface AssessmentResult {
-  id: number;
-  templateId: number;
-  date: string;
-  groupScore?: number | null;
-  notes?: string | null;
-  createdAt: string;
-  updatedAt: string;
-  template?: {
-    title: string;
-    type: string;
-    outcomeIds: string[];
-  };
-}
-
-export interface AssessmentInput {
-  title: string;
-  type: 'oral' | 'reading' | 'writing' | 'mixed';
-  description?: string;
-  outcomeIds: string[];
-  rubricCriteria?: string;
-}
-
-export interface AssessmentResultInput {
-  templateId: number;
-  date: string;
-  groupScore?: number;
-  notes?: string;
-}
-
-export interface OutcomeAssessmentData {
-  outcomeId: string;
-  assessmentCount: number;
-  totalResults: number;
-  averageScore: number;
-  lastAssessmentDate: string | null;
-  assessments: Array<{
-    id: number;
-    title: string;
-    type: string;
-    resultCount: number;
-    averageScore: number;
-    lastResult: AssessmentResult | null;
-  }>;
-}
-
 export interface MediaResource {
   id: number;
   userId: number;
@@ -526,8 +465,6 @@ export interface ReflectionJournalEntry {
   content: string;
   themeId?: number | null;
   theme?: ThematicUnit | null;
-  assessmentId?: number | null;
-  assessment?: (AssessmentResult & { template?: AssessmentTemplate }) | null;
   outcomes?: Array<{
     outcome: Outcome;
   }>;
@@ -561,7 +498,6 @@ export interface Student {
   grade: number;
   userId: number;
   parentContacts: ParentContact[];
-  assessmentResults?: StudentAssessmentResult[];
   artifacts?: StudentArtifact[];
   reflections?: StudentReflection[];
   parentSummaries?: ParentSummary[];
@@ -569,7 +505,6 @@ export interface Student {
   createdAt: string;
   updatedAt: string;
   _count?: {
-    assessmentResults: number;
     artifacts: number;
     reflections: number;
     parentSummaries: number;
@@ -587,7 +522,6 @@ export interface ReflectionInput {
   content: string;
   outcomeIds?: string[];
   themeId?: number;
-  assessmentId?: number;
 }
 
 export interface ReflectionUpdate {
@@ -595,7 +529,6 @@ export interface ReflectionUpdate {
   content?: string;
   outcomeIds?: string[];
   themeId?: number | null;
-  assessmentId?: number | null;
 }
 
 export interface StudentGoal {
@@ -681,23 +614,6 @@ export interface ParentContact {
   name: string;
   email: string;
   studentId: number;
-}
-
-export interface StudentAssessmentResult {
-  id: number;
-  studentId: number;
-  assessmentId: number;
-  score: number | null;
-  notes: string | null;
-  createdAt: string;
-  assessment?: {
-    id: number;
-    date: string;
-    template: {
-      title: string;
-      type: string;
-    };
-  };
 }
 
 export interface StudentArtifact {

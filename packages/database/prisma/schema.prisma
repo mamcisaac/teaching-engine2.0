@@ -271,7 +271,6 @@ model User {
   dailyOralRoutines DailyOralRoutine[]
   thematicUnits ThematicUnit[]
   cognatePairs CognatePair[]
-  assessmentTemplates AssessmentTemplate[]
   mediaResources MediaResource[]
   parentMessages ParentMessage[]
   reflectionJournalEntries ReflectionJournalEntry[]
@@ -580,32 +579,6 @@ model CognateActivity {
   @@id([cognatePairId, activityId])
 }
 
-model AssessmentTemplate {
-  id          Int        @id @default(autoincrement())
-  title       String
-  type        String     // "oral" | "reading" | "writing" | "mixed"
-  description String?
-  outcomeIds  String     @default("[]")
-  rubricCriteria String? // JSON array of criteria with descriptions
-  userId      Int
-  user        User       @relation(fields: [userId], references: [id])
-  results     AssessmentResult[]
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-}
-
-model AssessmentResult {
-  id         Int        @id @default(autoincrement())
-  templateId Int
-  template   AssessmentTemplate @relation(fields: [templateId], references: [id])
-  date       DateTime
-  groupScore Int?       // 0–100
-  notes      String?
-  reflections ReflectionJournalEntry[]
-  studentResults StudentAssessmentResult[]
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
-}
 
 model MediaResource {
   id             Int      @id @default(autoincrement())
@@ -663,8 +636,6 @@ model ReflectionJournalEntry {
   content        String
   themeId        Int?
   theme          ThematicUnit?             @relation(fields: [themeId], references: [id])
-  assessmentId   Int?
-  assessment     AssessmentResult?         @relation(fields: [assessmentId], references: [id])
   outcomes       ReflectionOutcome[]
   createdAt      DateTime                  @default(now())
   updatedAt      DateTime                  @updatedAt
@@ -743,7 +714,6 @@ model Student {
   userId      Int
   user        User   @relation(fields: [userId], references: [id])
   parentContacts ParentContact[]
-  assessmentResults StudentAssessmentResult[]
   artifacts   StudentArtifact[]
   reflections StudentReflection[]
   parentSummaries ParentSummary[]
@@ -812,17 +782,6 @@ model ActivityTemplate {
   updatedAt      DateTime @updatedAt
 }
 
-model StudentAssessmentResult {
-  id          Int        @id @default(autoincrement())
-  studentId   Int
-  student     Student    @relation(fields: [studentId], references: [id])
-  assessmentId Int
-  assessment  AssessmentResult @relation(fields: [assessmentId], references: [id])
-  score       Int?       // 0-100 or null if not scored
-  notes       String?
-  createdAt   DateTime   @default(now())
-  @@unique([studentId, assessmentId])
-}
 
 model StudentArtifact {
   id          Int      @id @default(autoincrement())

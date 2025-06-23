@@ -173,3 +173,4 @@ export function UncoveredOutcomesPanel({
     </div>
   );
 }
+export default UncoveredOutcomesPanel;

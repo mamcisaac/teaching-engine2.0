@@ -11,8 +11,6 @@ import {
   useCalendarEvents,
   usePlannerSuggestions,
   useHolidays,
-  useAssessmentTemplates,
-  useAssessmentResults,
 } from '../api';
 import type {
   CalendarEvent,
@@ -30,7 +28,6 @@ import PlannerNotificationBanner from '../components/PlannerNotificationBanner';
 // import PlannerFilters, { loadPlannerFilters } from '../components/planner/PlannerFilters';
 import { loadPlannerFilters } from '../components/planner/PlannerFilters';
 import CognateSummaryWidget from '../components/CognateSummaryWidget';
-import AssessmentBuilder from '../components/assessment/AssessmentBuilder';
 import { ParentMessageEditor } from '../components/ParentMessageEditor';
 import Dialog from '../components/Dialog';
 import { toast } from 'sonner';
@@ -62,7 +59,6 @@ export default function WeeklyPlannerPage() {
       return {};
     }
   });
-  const [showAssessmentBuilder, setShowAssessmentBuilder] = useState(false);
   const [showNewsletterEditor, setShowNewsletterEditor] = useState(false);
   const [weeklyPrefillData, setWeeklyPrefillData] = useState<{
     activities?: number[];
@@ -119,11 +115,6 @@ export default function WeeklyPlannerPage() {
 
   // Get thematic units active during this week
   const { data: thematicUnits } = useThematicUnits();
-
-  // Get assessment data for this week
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { data: assessmentTemplates } = useAssessmentTemplates();
-  const { data: weeklyAssessments } = useAssessmentResults({ week: weekStart });
 
   // Handle errors gracefully
   if (planError) {
@@ -486,13 +477,6 @@ export default function WeeklyPlannerPage() {
                 pacingStrategy={skipLow ? 'relaxed' : 'strict'}
                 onGenerated={() => refetch()}
               />
-              <button
-                onClick={() => setShowAssessmentBuilder(true)}
-                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center gap-2"
-              >
-                <span>📝</span>
-                Add Assessment
-              </button>
             </div>
           </div>
 
@@ -606,59 +590,6 @@ export default function WeeklyPlannerPage() {
           </div>
         )}
 
-        {/* Weekly Assessments */}
-        {weeklyAssessments && weeklyAssessments.length > 0 && (
-          <div className="bg-blue-50 rounded-lg shadow-sm border border-blue-200 p-4">
-            <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center gap-2">
-              📝 Scheduled Assessments
-            </h3>
-            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-              {weeklyAssessments.map((assessment) => (
-                <div
-                  key={assessment.id}
-                  className="bg-white rounded-lg p-3 border border-blue-200 hover:shadow-md transition-shadow"
-                >
-                  <div className="flex justify-between items-start mb-2">
-                    <h4 className="font-medium text-blue-900 text-sm">
-                      {assessment.template?.title}
-                    </h4>
-                    <span className="text-xs text-blue-600 bg-blue-100 px-2 py-1 rounded">
-                      {new Date(assessment.date).toLocaleDateString('en-US', {
-                        weekday: 'short',
-                        month: 'short',
-                        day: 'numeric',
-                      })}
-                    </span>
-                  </div>
-                  <div className="flex gap-2 text-xs">
-                    <span
-                      className={`px-2 py-1 rounded font-medium ${
-                        assessment.template?.type === 'oral'
-                          ? 'bg-purple-100 text-purple-800'
-                          : assessment.template?.type === 'writing'
-                            ? 'bg-green-100 text-green-800'
-                            : assessment.template?.type === 'reading'
-                              ? 'bg-yellow-100 text-yellow-800'
-                              : 'bg-gray-100 text-gray-800'
-                      }`}
-                    >
-                      {assessment.template?.type}
-                    </span>
-                    {assessment.groupScore !== null && (
-                      <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded">
-                        ✅ {assessment.groupScore}%
-                      </span>
-                    )}
-                  </div>
-                  {assessment.notes && (
-                    <p className="text-xs text-gray-600 mt-2 line-clamp-2">{assessment.notes}</p>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
         <PlannerNotificationBanner />
 
         <DndContext onDragEnd={handleDragEnd}>
@@ -741,9 +672,7 @@ export default function WeeklyPlannerPage() {
                 weekStart={weekStart}
                 onSuggestionClick={(suggestion) => {
                   // Handle suggestion clicks - could open relevant sections or filters
-                  if (suggestion.toLowerCase().includes('assessment')) {
-                    setShowAssessmentBuilder(true);
-                  } else if (suggestion.toLowerCase().includes('outcome')) {
+                  if (suggestion.toLowerCase().includes('outcome')) {
                     setShowUncoveredOutcomes(true);
                   }
                   // Add more handlers as needed
@@ -763,22 +692,6 @@ export default function WeeklyPlannerPage() {
             </div>
           )}
         </DndContext>
-
-        {/* Assessment Builder Dialog */}
-        <Dialog
-          open={showAssessmentBuilder}
-          onClose={() => setShowAssessmentBuilder(false)}
-          title="Create Assessment Template"
-          maxWidth="3xl"
-        >
-          <AssessmentBuilder
-            onSuccess={() => {
-              setShowAssessmentBuilder(false);
-              // Refresh assessment data if needed
-            }}
-            onCancel={() => setShowAssessmentBuilder(false)}
-          />
-        </Dialog>
 
         {/* Newsletter Editor Dialog */}
         <Dialog
