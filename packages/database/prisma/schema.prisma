@@ -282,6 +282,9 @@ model User {
   milestoneAlerts MilestoneAlert[]
   curriculumImports CurriculumImport[]
   emailTemplates EmailTemplate[]
+  aiGeneratedPlans AIGeneratedPlan[]
+  planningConversations PlanningConversation[]
+  activitySeries ActivitySeries[]
 }
 
 enum ActivityType {
@@ -685,8 +688,49 @@ model AISuggestedActivity {
   materials    String    @default("[]") // JSON array of materials
   duration     Int       // in minutes
   theme        String?
+  qualityScore Float?    // AI-generated quality metric (0-1)
+  acceptanceRate Float?  // Percentage of times this activity was accepted
+  seriesId     String?   // Group related activities together
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
+}
+
+model AIGeneratedPlan {
+  id           Int       @id @default(autoincrement())
+  userId       Int
+  user         User      @relation(fields: [userId], references: [id])
+  weekStart    DateTime
+  planData     String    // JSON structure of the generated plan
+  parameters   String    // JSON of generation parameters used
+  qualityScore Float?    // Overall plan quality score
+  accepted     Boolean   @default(false)
+  appliedAt    DateTime? // When the plan was applied to the calendar
+  createdAt    DateTime  @default(now())
+}
+
+model PlanningConversation {
+  id           Int       @id @default(autoincrement())
+  userId       Int
+  user         User      @relation(fields: [userId], references: [id])
+  sessionId    String    // Group messages in sessions
+  role         String    // "user" or "assistant"
+  content      String
+  metadata     String?   // JSON for additional context
+  createdAt    DateTime  @default(now())
+  @@index([userId, sessionId])
+}
+
+model ActivitySeries {
+  id           String    @id @default(cuid())
+  userId       Int
+  user         User      @relation(fields: [userId], references: [id])
+  title        String
+  description  String?
+  theme        String?
+  outcomeIds   String    // JSON array of outcome IDs
+  activityCount Int
+  metadata     String?   // JSON for series configuration
+  createdAt    DateTime  @default(now())
 }
 
 model Student {

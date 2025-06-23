@@ -39,6 +39,9 @@ import { AISuggestionModal } from '../components/planning/AISuggestionModal';
 import { QualityScorecard } from '../components/planning/QualityScorecard';
 import MilestoneAlertCard from '../components/MilestoneAlertCard';
 import useMilestoneAlerts from '../hooks/useMilestoneAlerts';
+import { AIActivityGeneratorPanel } from '../components/ai/AIActivityGeneratorPanel';
+import { AIWeeklyPlanModal } from '../components/ai/AIWeeklyPlanModal';
+import { GPTPlanningAgent } from '../components/ai/GPTPlanningAgent';
 
 export default function WeeklyPlannerPage() {
   const [weekStart, setWeekStart] = useState(() => {
@@ -83,6 +86,9 @@ export default function WeeklyPlannerPage() {
     createdAt: string;
     updatedAt: string;
   } | null>(null);
+  const [showAIPlanner, setShowAIPlanner] = useState(false);
+  const [showPlanningAgent, setShowPlanningAgent] = useState(false);
+  const [selectedOutcomesForAI, setSelectedOutcomesForAI] = useState<string[]>([]);
 
   const {
     data: plan,
@@ -687,7 +693,7 @@ export default function WeeklyPlannerPage() {
 
           {/* Week Resources */}
           {plan && (
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white rounded-lg border p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Week Resources</h3>
                 <div className="space-y-3">
@@ -715,6 +721,18 @@ export default function WeeklyPlannerPage() {
                   >
                     🎯 View Uncovered Outcomes
                   </button>
+                  <button
+                    onClick={() => setShowAIPlanner(true)}
+                    className="w-full flex items-center justify-center px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors"
+                  >
+                    ✨ Generate AI Weekly Plan
+                  </button>
+                  <button
+                    onClick={() => setShowPlanningAgent(true)}
+                    className="w-full flex items-center justify-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors"
+                  >
+                    💬 Open Planning Assistant
+                  </button>
                 </div>
               </div>
 
@@ -729,6 +747,17 @@ export default function WeeklyPlannerPage() {
                     setShowUncoveredOutcomes(true);
                   }
                   // Add more handlers as needed
+                }}
+              />
+
+              {/* AI Activity Generator Panel */}
+              <AIActivityGeneratorPanel
+                selectedOutcomes={selectedOutcomesForAI}
+                onOutcomesChange={setSelectedOutcomesForAI}
+                onActivityDrop={(activity) => {
+                  // Add activity to planner
+                  toast.success(`Added "${activity.title}" to your activity bank`);
+                  // Could automatically add to a specific day or save for later
                 }}
               />
             </div>
@@ -818,6 +847,31 @@ export default function WeeklyPlannerPage() {
             }}
           />
         )}
+
+        {/* AI Weekly Plan Modal */}
+        <AIWeeklyPlanModal
+          isOpen={showAIPlanner}
+          onClose={() => setShowAIPlanner(false)}
+          weekStart={weekStart}
+          onPlanApplied={() => {
+            refetch();
+            setShowAIPlanner(false);
+          }}
+        />
+
+        {/* GPT Planning Agent */}
+        <GPTPlanningAgent
+          isOpen={showPlanningAgent}
+          onClose={() => setShowPlanningAgent(false)}
+          onActivityGenerated={(activities) => {
+            toast.success(`Generated ${activities.length} activities`);
+            // Could automatically add to planner or show in a panel
+          }}
+          onPlanGenerated={() => {
+            toast.success('Weekly plan generated');
+            refetch();
+          }}
+        />
       </div>
     );
   } catch (error) {

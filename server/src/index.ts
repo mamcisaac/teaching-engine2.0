@@ -77,6 +77,7 @@ import enhancedPlanningRoutes from './routes/enhancedPlanning';
 import enhancedMaterialRoutes from './routes/enhancedMaterial';
 import analyticsRoutes from './routes/analytics';
 import embeddingsRoutes from './routes/embeddings';
+import aiEnhancedRoutes from './routes/aiEnhanced';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
@@ -292,6 +293,9 @@ app.use('/api/enhanced-materials', authenticateToken, enhancedMaterialRoutes);
 
 // Analytics Routes
 app.use('/api/analytics', authenticateToken, analyticsRoutes);
+
+// Phase 2 AI Enhanced Routes
+app.use('/api/ai', authenticateToken, aiEnhancedRoutes);
 
 // Service health check endpoint (no auth required for monitoring)
 app.get('/api/health/services', async (_req, res) => {
