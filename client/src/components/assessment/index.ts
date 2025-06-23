@@ -3,6 +3,7 @@ export { default as AssessmentBuilder } from './AssessmentBuilder';
 export { default as LanguageSensitiveAssessmentBuilder } from './LanguageSensitiveAssessmentBuilder';
 export { default as AssessmentResultLogger } from './AssessmentResultLogger';
 export { default as OutcomeReflectionsJournal } from './OutcomeReflectionsJournal';
+export { default as ReflectionClassifier } from './ReflectionClassifier';
 export { default as RubricEditor } from './RubricEditor';
 export { default as ScaleSelector } from './ScaleSelector';
 
