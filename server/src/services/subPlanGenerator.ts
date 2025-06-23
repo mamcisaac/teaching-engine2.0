@@ -22,6 +22,20 @@ export interface SubPlanInput {
     description: string;
     subject: string;
   }>;
+  goals?: Array<{
+    id: number;
+    text: string;
+    status: string;
+    studentName?: string;
+  }>;
+  routines?: Array<{
+    id: number;
+    title: string;
+    description: string;
+    category: string;
+    timeOfDay?: string;
+  }>;
+  fallbackPlan?: string;
 }
 
 /**
@@ -66,6 +80,53 @@ export function generateSubPlanPDF(
     d.text(data.emergencyContacts);
     d.moveDown();
 
+    // Add class routines section if available
+    if (data.routines && data.routines.length > 0) {
+      d.text('Class Routines', { underline: true });
+      
+      // Group routines by category
+      const byCategory: Record<string, typeof data.routines> = {};
+      data.routines.forEach((routine) => {
+        if (!byCategory[routine.category]) {
+          byCategory[routine.category] = [];
+        }
+        byCategory[routine.category].push(routine);
+      });
+
+      // Print routines by category
+      Object.entries(byCategory).forEach(([category, routines]) => {
+        d.font('Helvetica-Bold').text(category.charAt(0).toUpperCase() + category.slice(1));
+        d.font('Helvetica');
+
+        routines.forEach((routine) => {
+          const timeStr = routine.timeOfDay ? ` (${routine.timeOfDay})` : '';
+          d.text(`• ${routine.title}${timeStr}`, {
+            indent: 20,
+            continued: true,
+          });
+          d.text(` - ${routine.description}`, {
+            indent: 30,
+            continued: false,
+          });
+        });
+        d.moveDown(0.5);
+      });
+      d.moveDown();
+    }
+
+    // Add student goals section if available
+    if (data.goals && data.goals.length > 0) {
+      d.text('Current Student Goals', { underline: true });
+      data.goals.forEach((goal) => {
+        const studentStr = goal.studentName ? `${goal.studentName}: ` : '';
+        d.text(`• ${studentStr}${goal.text}`, {
+          indent: 20,
+          continued: false,
+        });
+      });
+      d.moveDown();
+    }
+
     // Add curriculum outcomes section if available
     if (data.curriculumOutcomes && data.curriculumOutcomes.length > 0) {
       d.text('Learning Goals (Curriculum Outcomes)', { underline: true });
@@ -95,6 +156,14 @@ export function generateSubPlanPDF(
         });
         d.moveDown(0.5);
       });
+      d.moveDown();
+    }
+
+    // Add fallback plan section if available
+    if (data.fallbackPlan) {
+      d.text('Emergency Fallback Plan', { underline: true });
+      d.text(data.fallbackPlan);
+      d.moveDown();
     }
 
     if (!doc) {

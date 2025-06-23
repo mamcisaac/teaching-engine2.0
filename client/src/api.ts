@@ -310,16 +310,289 @@ export const fetchSubPlan = async (data: { date: string; reason: string }) => {
   return response.data;
 };
 
+// Sub plan types and interfaces
+export interface SubPlanOptions {
+  date: string;
+  days: number;
+  includeGoals?: boolean;
+  includeRoutines?: boolean;
+  includePlans?: boolean;
+  anonymize?: boolean;
+  saveRecord?: boolean;
+  emailTo?: string;
+  notes?: string;
+  userId?: number;
+}
+
+export interface ClassRoutine {
+  id?: number;
+  userId: number;
+  title: string;
+  description: string;
+  category: string;
+  timeOfDay?: string;
+  priority?: number;
+  isActive?: boolean;
+}
+
 // Sub plan generator for multiple days
 export const generateSubPlan = async (date: string, days: number) => {
   const response = await api.post(
-    `/api/sub-plan/generate?date=${date}&days=${days}`,
+    `/subplan/generate?date=${date}&days=${days}`,
     {},
     {
       responseType: 'blob',
     },
   );
   return response;
+};
+
+// Enhanced sub plan generator with options
+export const generateSubPlanWithOptions = async (options: SubPlanOptions) => {
+  const response = await api.post(
+    `/subplan/generate`,
+    options,
+    {
+      responseType: 'blob',
+    },
+  );
+  return response;
+};
+
+// Get saved sub plan records
+export const getSubPlanRecords = async (userId?: number) => {
+  const response = await api.get('/subplan/records', { params: { userId } });
+  return response.data;
+};
+
+// Class routine management
+export const getClassRoutines = async (userId?: number) => {
+  const response = await api.get('/subplan/routines', { params: { userId } });
+  return response.data;
+};
+
+export const saveClassRoutine = async (routine: ClassRoutine) => {
+  const response = await api.post('/subplan/routines', routine);
+  return response.data;
+};
+
+export const deleteClassRoutine = async (id: number) => {
+  const response = await api.delete(`/subplan/routines/${id}`);
+  return response.data;
+};
+
+// D3 Sub Plan Extractor - New extraction capabilities
+
+// Weekly plan extraction
+export interface WeeklyPlanData {
+  startDate: string;
+  endDate: string;
+  days: any[];
+  weeklyOverview: {
+    subjects: any[];
+    milestones: any[];
+    assessments: any[];
+    specialEvents: any[];
+  };
+  continuityNotes: any[];
+  emergencyBackupPlans: any[];
+}
+
+export const extractWeeklyPlan = async (
+  startDate: string,
+  days: number = 5,
+  options: { includeGoals?: boolean; includeRoutines?: boolean; includePlans?: boolean; anonymize?: boolean; userId?: number } = {}
+): Promise<WeeklyPlanData> => {
+  const params = new URLSearchParams({
+    startDate,
+    days: days.toString(),
+    ...(options.includeGoals !== undefined && { includeGoals: options.includeGoals.toString() }),
+    ...(options.includeRoutines !== undefined && { includeRoutines: options.includeRoutines.toString() }),
+    ...(options.includePlans !== undefined && { includePlans: options.includePlans.toString() }),
+    ...(options.anonymize !== undefined && { anonymize: options.anonymize.toString() }),
+    ...(options.userId && { userId: options.userId.toString() })
+  });
+  
+  const response = await api.get(`/subplan/extract/weekly?${params}`);
+  return response.data;
+};
+
+// Scenario template extraction
+export interface EmergencyScenario {
+  id: string;
+  name: string;
+  description: string;
+  procedures: string[];
+  materials: string[];
+  contacts: Array<{
+    role: string;
+    number: string;
+    when: string;
+  }>;
+  modifications: {
+    schedule: string[];
+    activities: string[];
+    safety: string[];
+  };
+  template: string;
+}
+
+export interface ScenarioConditions {
+  weather?: 'normal' | 'severe' | 'extreme';
+  technology?: 'working' | 'partial' | 'down';
+  staffing?: 'full' | 'short' | 'emergency';
+  building?: 'normal' | 'maintenance' | 'emergency';
+}
+
+export const extractScenarioTemplates = async (conditions?: ScenarioConditions) => {
+  const params = new URLSearchParams();
+  if (conditions) {
+    Object.entries(conditions).forEach(([key, value]) => {
+      if (value) params.append(key, value);
+    });
+  }
+  
+  const response = await api.get(`/subplan/extract/scenarios?${params}`);
+  return response.data;
+};
+
+export const autoDetectScenario = async (userId?: number): Promise<EmergencyScenario> => {
+  const params = userId ? `?userId=${userId}` : '';
+  const response = await api.get(`/subplan/extract/scenarios/auto${params}`);
+  return response.data;
+};
+
+export const getScenarioById = async (
+  scenarioId: string,
+  teacherName?: string,
+  className?: string
+) => {
+  const params = new URLSearchParams();
+  if (teacherName) params.append('teacherName', teacherName);
+  if (className) params.append('className', className);
+  
+  const response = await api.get(`/subplan/extract/scenarios/${scenarioId}?${params}`);
+  return response.data;
+};
+
+// Contact extraction
+export interface ContactInfo {
+  id: string;
+  name: string;
+  role: string;
+  phone: string;
+  extension?: string;
+  email?: string;
+  location?: string;
+  availability: string;
+  priority: 'emergency' | 'urgent' | 'normal' | 'info';
+  category: 'administration' | 'support' | 'medical' | 'safety' | 'technical' | 'transportation';
+}
+
+export interface ExtractedContacts {
+  emergency: ContactInfo[];
+  administration: ContactInfo[];
+  support: ContactInfo[];
+  technical: ContactInfo[];
+  medical: ContactInfo[];
+  transportation: ContactInfo[];
+  custom: ContactInfo[];
+}
+
+export const extractSchoolContacts = async (
+  userId?: number,
+  format: 'organized' | 'emergency' | 'card' | 'formatted' = 'organized'
+) => {
+  const params = new URLSearchParams();
+  if (userId) params.append('userId', userId.toString());
+  params.append('format', format);
+  
+  const response = await api.get(`/subplan/extract/contacts?${params}`);
+  return response.data;
+};
+
+// Material extraction
+export interface MaterialItem {
+  id: string;
+  name: string;
+  category: 'physical' | 'digital' | 'printable' | 'supplies' | 'equipment';
+  quantity?: number;
+  location?: string;
+  preparation?: string;
+  alternatives?: string[];
+  priority: 'essential' | 'recommended' | 'optional';
+  source: 'activity' | 'resource' | 'inferred';
+}
+
+export interface ExtractedMaterials {
+  byTimeSlot: Array<{
+    time: string;
+    activity: string;
+    materials: MaterialItem[];
+    setupTime?: number;
+    notes?: string;
+  }>;
+  byCategory: {
+    physical: MaterialItem[];
+    digital: MaterialItem[];
+    printable: MaterialItem[];
+    supplies: MaterialItem[];
+    equipment: MaterialItem[];
+  };
+  setupInstructions: string[];
+  alternatives: Array<{
+    original: string;
+    backup: string;
+    reason: string;
+  }>;
+  summary: {
+    totalItems: number;
+    prepTime: number;
+    missingItems: string[];
+  };
+}
+
+export const extractDayMaterials = async (date: string, userId?: number): Promise<ExtractedMaterials> => {
+  const params = new URLSearchParams({ date });
+  if (userId) params.append('userId', userId.toString());
+  
+  const response = await api.get(`/subplan/extract/materials/day?${params}`);
+  return response.data;
+};
+
+export const extractWeeklyMaterials = async (
+  startDate: string,
+  days: number = 5,
+  userId?: number
+): Promise<Array<{ date: string; materials: ExtractedMaterials }>> => {
+  const params = new URLSearchParams({ startDate, days: days.toString() });
+  if (userId) params.append('userId', userId.toString());
+  
+  const response = await api.get(`/subplan/extract/materials/weekly?${params}`);
+  return response.data;
+};
+
+// Comprehensive extraction
+export interface ComprehensiveExtractionRequest {
+  startDate?: string;
+  numDays?: number;
+  userId?: number;
+  includeWeeklyOverview?: boolean;
+  includeScenarios?: boolean;
+  includeContacts?: boolean;
+  includeMaterials?: boolean;
+  scenarioConditions?: ScenarioConditions;
+  options?: {
+    includeGoals?: boolean;
+    includeRoutines?: boolean;
+    includePlans?: boolean;
+    anonymize?: boolean;
+  };
+}
+
+export const extractComprehensiveSubPlan = async (request: ComprehensiveExtractionRequest) => {
+  const response = await api.post('/subplan/extract/comprehensive', request);
+  return response.data;
 };
 
 // Newsletter suggestions
