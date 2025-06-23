@@ -60,6 +60,7 @@ import emailTemplateRoutes from './routes/emailTemplates';
 import reportRoutes from './routes/reports';
 import parentContactRoutes from './routes/parentContacts';
 import reflectionRoutes from './routes/reflections';
+import promptRoutes from './routes/prompts';
 import studentRoutes from './routes/student';
 import parentSummaryRoutes from './routes/parentSummary';
 import auditRoutes from './routes/audit';
@@ -76,6 +77,7 @@ import enhancedPlanningRoutes from './routes/enhancedPlanning';
 import enhancedMaterialRoutes from './routes/enhancedMaterial';
 import analyticsRoutes from './routes/analytics';
 import embeddingsRoutes from './routes/embeddings';
+import aiEnhancedRoutes from './routes/aiEnhanced';
 import { scheduleProgressCheck } from './jobs/progressCheck';
 import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
 import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
@@ -270,6 +272,7 @@ app.use('/api/email-templates', authenticateToken, emailTemplateRoutes);
 app.use('/api/reports', authenticateToken, reportRoutes);
 app.use('/api/parent-contacts', authenticateToken, parentContactRoutes);
 app.use('/api/reflections', authenticateToken, reflectionRoutes);
+app.use('/api/prompts', authenticateToken, promptRoutes);
 app.use('/api/timeline', authenticateToken, timelineRoutes);
 app.use('/api/students', authenticateToken, studentRoutes);
 app.use('/api/ai-parent-summary', authenticateToken, parentSummaryRoutes);
@@ -290,6 +293,9 @@ app.use('/api/enhanced-materials', authenticateToken, enhancedMaterialRoutes);
 
 // Analytics Routes
 app.use('/api/analytics', authenticateToken, analyticsRoutes);
+
+// Phase 2 AI Enhanced Routes
+app.use('/api/ai', authenticateToken, aiEnhancedRoutes);
 
 // Service health check endpoint (no auth required for monitoring)
 app.get('/api/health/services', async (_req, res) => {

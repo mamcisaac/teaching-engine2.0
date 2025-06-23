@@ -284,6 +284,9 @@ model User {
   emailTemplates EmailTemplate[]
   classRoutines ClassRoutine[]
   subPlanRecords SubPlanRecord[]
+  aiGeneratedPlans AIGeneratedPlan[]
+  planningConversations PlanningConversation[]
+  activitySeries ActivitySeries[]
 }
 
 enum ActivityType {
@@ -437,6 +440,7 @@ model Outcome {
   studentGoals StudentGoal[]
   studentReflections StudentReflection[]
   teacherReflections TeacherReflection[]
+  prompts OutcomePrompt[]
 }
 
 model MilestoneOutcome {
@@ -686,8 +690,49 @@ model AISuggestedActivity {
   materials    String    @default("[]") // JSON array of materials
   duration     Int       // in minutes
   theme        String?
+  qualityScore Float?    // AI-generated quality metric (0-1)
+  acceptanceRate Float?  // Percentage of times this activity was accepted
+  seriesId     String?   // Group related activities together
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
+}
+
+model AIGeneratedPlan {
+  id           Int       @id @default(autoincrement())
+  userId       Int
+  user         User      @relation(fields: [userId], references: [id])
+  weekStart    DateTime
+  planData     String    // JSON structure of the generated plan
+  parameters   String    // JSON of generation parameters used
+  qualityScore Float?    // Overall plan quality score
+  accepted     Boolean   @default(false)
+  appliedAt    DateTime? // When the plan was applied to the calendar
+  createdAt    DateTime  @default(now())
+}
+
+model PlanningConversation {
+  id           Int       @id @default(autoincrement())
+  userId       Int
+  user         User      @relation(fields: [userId], references: [id])
+  sessionId    String    // Group messages in sessions
+  role         String    // "user" or "assistant"
+  content      String
+  metadata     String?   // JSON for additional context
+  createdAt    DateTime  @default(now())
+  @@index([userId, sessionId])
+}
+
+model ActivitySeries {
+  id           String    @id @default(cuid())
+  userId       Int
+  user         User      @relation(fields: [userId], references: [id])
+  title        String
+  description  String?
+  theme        String?
+  outcomeIds   String    // JSON array of outcome IDs
+  activityCount Int
+  metadata     String?   // JSON for series configuration
+  createdAt    DateTime  @default(now())
 }
 
 model Student {
@@ -736,6 +781,12 @@ model StudentReflection {
   outcome     Outcome? @relation(fields: [outcomeId], references: [id])
   themeId     Int?
   theme       ThematicUnit? @relation(fields: [themeId], references: [id])
+  // A3 Enhancement: AI Classification fields
+  suggestedOutcomeIds  String?    // JSON array of suggested outcome IDs
+  selTags              String?    // JSON array of SEL/competency tags
+  classificationConfidence Float? // AI confidence score (0-1)
+  classificationRationale  String? // AI rationale for suggestions
+  classifiedAt         DateTime?  // When classification was performed
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -941,6 +992,21 @@ model OutcomeCluster {
   @@index([clusterType])
 }
 
+// A4 Enhancement: Stores pedagogical prompts linked to curriculum outcomes
+model OutcomePrompt {
+  id         Int      @id @default(autoincrement())
+  outcomeId  String
+  outcome    Outcome  @relation(fields: [outcomeId], references: [id], onDelete: Cascade)
+  type       String   // "open_question" | "sentence_stem" | "discussion" | "metacognitive"
+  language   String   // "en" | "fr"
+  text       String   // The actual prompt text
+  isSystem   Boolean  @default(true)  // true for seeded prompts, false for user-generated
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  @@index([outcomeId, language])
+  @@index([type, language])
+}
 // Stores classroom routines and procedures for substitute teachers
 model ClassRoutine {
   id          Int      @id @default(autoincrement())
