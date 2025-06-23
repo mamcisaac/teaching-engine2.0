@@ -282,6 +282,8 @@ model User {
   milestoneAlerts MilestoneAlert[]
   curriculumImports CurriculumImport[]
   emailTemplates EmailTemplate[]
+  classRoutines ClassRoutine[]
+  subPlanRecords SubPlanRecord[]
   aiGeneratedPlans AIGeneratedPlan[]
   planningConversations PlanningConversation[]
   activitySeries ActivitySeries[]
@@ -1004,4 +1006,42 @@ model OutcomePrompt {
   
   @@index([outcomeId, language])
   @@index([type, language])
+}
+
+// Stores classroom routines and procedures for substitute teachers
+model ClassRoutine {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
+  title       String
+  description String
+  category    String   // "morning", "transition", "dismissal", "behavior", "emergency", "other"
+  timeOfDay   String?  // Optional time indicator like "9:00 AM" or "After recess"
+  priority    Int      @default(0) // Higher priority routines shown first
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([userId, category])
+  @@index([userId, isActive])
+}
+
+// Tracks generated substitute plans for reuse and history
+model SubPlanRecord {
+  id              Int      @id @default(autoincrement())
+  userId          Int
+  user            User     @relation(fields: [userId], references: [id])
+  date            DateTime
+  daysCount       Int      @default(1) // Number of days included
+  content         Json     // Full generated content
+  includeGoals    Boolean  @default(true)
+  includeRoutines Boolean  @default(true)
+  includePlans    Boolean  @default(true)
+  anonymized      Boolean  @default(false)
+  emailedTo       String?  // Email address if sent
+  notes           String?  // Additional notes from teacher
+  createdAt       DateTime @default(now())
+  
+  @@index([userId, date])
+  @@index([userId, createdAt])
 }

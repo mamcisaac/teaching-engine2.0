@@ -434,6 +434,15 @@ const mockPrismaClientInstance = {
   notification: createModelMock(),
   studentGoal: createModelMock(),
   goalReflection: createModelMock(),
+  assessmentResult: createModelMock(),
+  assessmentTemplate: createModelMock(),
+  calendarEvent: createModelMock(),
+  student: createModelMock(),
+  classRoutine: createModelMock(),
+  teacherPreferences: createModelMock(),
+  dailyPlan: createModelMock(),
+  dailyPlanItem: createModelMock(),
+  resource: createModelMock(),
 };
 
 // Set up the transaction mock to use the client instance
