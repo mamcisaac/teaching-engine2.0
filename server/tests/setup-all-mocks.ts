@@ -56,6 +56,315 @@ jest.mock('@prisma/client', () => ({
   })),
 }));
 
+// Mock @teaching-engine/database to export enums and types
+jest.mock('@teaching-engine/database', () => {
+  // Create the mock prisma client instance
+  const mockPrismaClientInstance = {
+    $connect: jest.fn().mockResolvedValue(undefined),
+    $disconnect: jest.fn().mockResolvedValue(undefined),
+    $transaction: jest.fn(),
+    $queryRaw: jest.fn().mockResolvedValue([{ 1: 1 }]),
+    $queryRawUnsafe: jest.fn().mockResolvedValue([{ 1: 1 }]),
+    $executeRaw: jest.fn().mockResolvedValue(1),
+    $executeRawUnsafe: jest.fn().mockResolvedValue(1),
+    user: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+      upsert: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
+      count: jest.fn(),
+      aggregate: jest.fn(),
+      groupBy: jest.fn(),
+    },
+    outcome: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+      upsert: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
+      count: jest.fn(),
+      aggregate: jest.fn(),
+      groupBy: jest.fn(),
+    },
+    outcomeEmbedding: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+      upsert: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
+      count: jest.fn(),
+      aggregate: jest.fn(),
+      groupBy: jest.fn(),
+    },
+    curriculumImport: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+      upsert: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
+      count: jest.fn(),
+      aggregate: jest.fn(),
+      groupBy: jest.fn(),
+    },
+    outcomeCluster: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+      upsert: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
+      count: jest.fn(),
+      aggregate: jest.fn(),
+      groupBy: jest.fn(),
+    },
+    subject: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+      upsert: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
+      count: jest.fn(),
+      aggregate: jest.fn(),
+      groupBy: jest.fn(),
+    },
+    milestone: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+      upsert: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
+      count: jest.fn(),
+      aggregate: jest.fn(),
+      groupBy: jest.fn(),
+    },
+    activity: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+      upsert: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
+      count: jest.fn(),
+      aggregate: jest.fn(),
+      groupBy: jest.fn(),
+    },
+    activityOutcome: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+      upsert: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
+      count: jest.fn(),
+      aggregate: jest.fn(),
+      groupBy: jest.fn(),
+    },
+    lessonPlan: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+      upsert: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
+      count: jest.fn(),
+      aggregate: jest.fn(),
+      groupBy: jest.fn(),
+    },
+    lessonPlanActivity: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+      upsert: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
+      count: jest.fn(),
+      aggregate: jest.fn(),
+      groupBy: jest.fn(),
+    },
+    aISuggestedActivity: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+      upsert: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
+      count: jest.fn(),
+      aggregate: jest.fn(),
+      groupBy: jest.fn(),
+    },
+    note: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+      upsert: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
+      count: jest.fn(),
+      aggregate: jest.fn(),
+      groupBy: jest.fn(),
+    },
+    evidence: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+      upsert: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
+      count: jest.fn(),
+      aggregate: jest.fn(),
+      groupBy: jest.fn(),
+    },
+    milestone_alert: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+      upsert: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
+      count: jest.fn(),
+      aggregate: jest.fn(),
+      groupBy: jest.fn(),
+    },
+    notification: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+      upsert: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
+      count: jest.fn(),
+      aggregate: jest.fn(),
+      groupBy: jest.fn(),
+    },
+    studentGoal: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+      upsert: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
+      count: jest.fn(),
+      aggregate: jest.fn(),
+      groupBy: jest.fn(),
+    },
+    goalReflection: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+      upsert: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
+      count: jest.fn(),
+      aggregate: jest.fn(),
+      groupBy: jest.fn(),
+    },
+  };
+
+  // Set up the transaction mock to use the client instance
+  mockPrismaClientInstance.$transaction.mockImplementation((fn) => {
+    if (typeof fn === 'function') {
+      return fn(mockPrismaClientInstance);
+    }
+    return Promise.resolve(fn);
+  });
+
+  return {
+    // Export all enums that tests might need
+    ImportStatus: {
+      UPLOADING: 'UPLOADING',
+      PROCESSING: 'PROCESSING',
+      READY_FOR_REVIEW: 'READY_FOR_REVIEW',
+      CONFIRMED: 'CONFIRMED',
+      COMPLETED: 'COMPLETED',
+      FAILED: 'FAILED',
+      CANCELLED: 'CANCELLED',
+    },
+    // Re-export PrismaClient from the mock
+    PrismaClient: jest.fn().mockImplementation(() => mockPrismaClientInstance),
+    // Export the instance directly
+    prisma: mockPrismaClientInstance,
+  };
+});
+
 // Mock logger to avoid console spam during tests
 const createMockLogger = () => ({
   debug: jest.fn(),
@@ -74,116 +383,80 @@ jest.mock('@/logger', () => ({
   ...mockLogger,
 }));
 
-// Mock relative import paths that tests might use
-jest.mock('../../src/logger', () => ({
+// Mock src/logger
+jest.doMock('../src/logger', () => ({
   __esModule: true,
   default: mockLogger,
   ...mockLogger,
 }));
 
-// Also mock from setup file's perspective
-jest.mock('../src/logger', () => ({
-  __esModule: true,
-  default: mockLogger,
-  ...mockLogger,
-}));
+// Helper to create model mocks
+const createModelMock = () => ({
+  findUnique: jest.fn(),
+  findMany: jest.fn(),
+  findFirst: jest.fn(),
+  create: jest.fn(),
+  createMany: jest.fn(),
+  update: jest.fn(),
+  updateMany: jest.fn(),
+  upsert: jest.fn(),
+  delete: jest.fn(),
+  deleteMany: jest.fn(),
+  count: jest.fn(),
+  aggregate: jest.fn(),
+  groupBy: jest.fn(),
+});
 
-// Mock local prisma import - use relative path from test files
-jest.mock('../../src/prisma', () => ({
-  prisma: {
-    $connect: jest.fn().mockResolvedValue(undefined),
-    $disconnect: jest.fn().mockResolvedValue(undefined),
-    $transaction: jest.fn().mockImplementation((fn) => fn({})),
-    $queryRaw: jest.fn().mockResolvedValue([{ 1: 1 }]),
-    user: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      create: jest.fn(),
-      update: jest.fn(),
-      delete: jest.fn(),
-    },
-    outcome: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      create: jest.fn(),
-      update: jest.fn(),
-      delete: jest.fn(),
-      count: jest.fn(),
-    },
-    outcomeEmbedding: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-    },
-    curriculumImport: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      create: jest.fn(),
-      update: jest.fn(),
-      delete: jest.fn(),
-    },
-    outcomeCluster: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      create: jest.fn(),
-      update: jest.fn(),
-      delete: jest.fn(),
-    },
-  },
-}));
+// Create the mock prisma client instance
+const mockPrismaClientInstance = {
+  $connect: jest.fn().mockResolvedValue(undefined),
+  $disconnect: jest.fn().mockResolvedValue(undefined),
+  $transaction: jest.fn(),
+  $queryRaw: jest.fn().mockResolvedValue([{ 1: 1 }]),
+  $queryRawUnsafe: jest.fn().mockResolvedValue([{ 1: 1 }]),
+  $executeRaw: jest.fn().mockResolvedValue(1),
+  $executeRawUnsafe: jest.fn().mockResolvedValue(1),
+  user: createModelMock(),
+  outcome: createModelMock(),
+  outcomeEmbedding: createModelMock(),
+  curriculumImport: createModelMock(),
+  outcomeCluster: createModelMock(),
+  subject: createModelMock(),
+  milestone: createModelMock(),
+  activity: createModelMock(),
+  activityOutcome: createModelMock(),
+  lessonPlan: createModelMock(),
+  lessonPlanActivity: createModelMock(),
+  aISuggestedActivity: createModelMock(),
+  note: createModelMock(),
+  evidence: createModelMock(),
+  milestone_alert: createModelMock(),
+  notification: createModelMock(),
+  studentGoal: createModelMock(),
+  goalReflection: createModelMock(),
+};
 
-// Also mock from setup file's perspective
-jest.mock('../src/prisma', () => ({
-  prisma: {
-    $connect: jest.fn().mockResolvedValue(undefined),
-    $disconnect: jest.fn().mockResolvedValue(undefined),
-    $transaction: jest.fn().mockImplementation((fn) => fn({})),
-    $queryRaw: jest.fn().mockResolvedValue([{ 1: 1 }]),
-    user: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      create: jest.fn(),
-      update: jest.fn(),
-      delete: jest.fn(),
-    },
-    outcome: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      create: jest.fn(),
-      update: jest.fn(),
-      delete: jest.fn(),
-      count: jest.fn(),
-    },
-    outcomeEmbedding: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-    },
-    curriculumImport: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      create: jest.fn(),
-      update: jest.fn(),
-      delete: jest.fn(),
-    },
-    outcomeCluster: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      create: jest.fn(),
-      update: jest.fn(),
-      delete: jest.fn(),
-    },
-  },
+// Set up the transaction mock to use the client instance
+mockPrismaClientInstance.$transaction.mockImplementation((fn) => {
+  if (typeof fn === 'function') {
+    return fn(mockPrismaClientInstance);
+  }
+  return Promise.resolve(fn);
+});
+
+// Store the mock instance globally for tests to access
+const globalForPrisma = globalThis as unknown as {
+  testPrismaClient: typeof mockPrismaClientInstance;
+};
+globalForPrisma.testPrismaClient = mockPrismaClientInstance;
+
+// Mock local prisma import
+jest.doMock('../src/prisma', () => ({
+  // The prisma export is a Proxy that delegates to testPrismaClient
+  prisma: mockPrismaClientInstance,
+  PrismaClient: jest.fn().mockImplementation(() => mockPrismaClientInstance),
+  // Re-export everything else
+  Prisma: {},
 }));
 
 // Mock embeddingService
@@ -308,14 +581,6 @@ jest.mock('@/services/emailService', () => ({
 }));
 
 // Note: curriculumImportService is not mocked here since its tests need the real implementation
-// But we need to mock it for the route test
-jest.mock('../../src/services/curriculumImportService', () => ({
-  CurriculumImportService: jest.fn().mockImplementation(() => ({
-    parsePdf: jest.fn(),
-    importCurriculum: jest.fn(),
-    getImportStatus: jest.fn(),
-  })),
-}));
 
 // Mock clusteringService
 jest.mock('@/services/clusteringService', () => ({

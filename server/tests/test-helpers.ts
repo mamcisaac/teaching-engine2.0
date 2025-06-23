@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals';
 import { getTestServer } from './test-server';
 import type { AuthRequest } from '../src/middleware/auth';
 import type { Response } from 'express';

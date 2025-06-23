@@ -84,9 +84,12 @@ describe('CacheService', () => {
       await cacheService.get('access-test');
 
       // Get the internal entry to check access count
-      const cache = (cacheService as unknown as { cache: Map<string, unknown> }).cache;
+      const cache = (
+        cacheService as unknown as { cache: Map<string, { value: unknown; accessCount: number }> }
+      ).cache;
       const entry = cache.get('access-test');
 
+      expect(entry).toBeDefined();
       expect(entry.accessCount).toBe(3);
     });
   });
