@@ -25,6 +25,11 @@ const longRangePlanCreateSchema = z.object({
   goalsFr: z.string().optional(),
   themes: z.array(z.string()).optional(),
   expectationIds: z.array(z.string()).optional(),
+  // ETFO-aligned fields
+  overarchingQuestions: z.string().optional(),
+  assessmentOverview: z.string().optional(),
+  resourceNeeds: z.string().optional(),
+  professionalGoals: z.string().optional(),
 });
 
 const longRangePlanUpdateSchema = longRangePlanCreateSchema.partial();

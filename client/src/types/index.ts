@@ -79,7 +79,6 @@ export interface DailyPlanItem {
   startMin: number;
   endMin: number;
   slotId?: number | null;
-  // Legacy activity fields removed
   notes?: string | null;
 }
 
@@ -100,7 +99,6 @@ export interface Newsletter {
   updatedAt: string;
 }
 
-// Legacy CompleteActivityResponse interface removed - replaced by ETFO lesson plans
 
 export interface TeacherPreferencesInput {
   teachingStyles: string[];
@@ -312,11 +310,9 @@ export interface StudentReflection {
   voicePath?: string | null;
   // Legacy outcome ID removed
   themeId?: number | null;
-  // Legacy activityId removed - replaced by ETFO lesson plans
   createdAt: string;
   // Legacy outcome removed
   theme?: ThematicUnit | null;
-  // Legacy activity removed - replaced by ETFO lesson plans
   student?: Student;
 }
 

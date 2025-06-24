@@ -11,8 +11,8 @@ Teaching Engine 2.0 has achieved its goal of becoming the comprehensive "digital
 ## ✨ Core Features
 
 ### Foundation Features
-- **Subject-Milestone-Activity Hierarchy**: Organize curriculum into subjects, break down into milestones (units/goals), and populate with specific activities
-- **Progress Tracking**: Automatic calculation of completion percentages at activity, milestone, and subject levels
+- **ETFO 5-Level Planning Hierarchy**: Organize curriculum through Curriculum Expectations → Long-Range Plans → Unit Plans → Lesson Plans → Daybook Entries
+- **Progress Tracking**: Automatic calculation of completion percentages and curriculum coverage analysis
 - **CRUD Operations**: Full create, read, update, delete functionality for all entities
 - **Responsive UI**: Modern React interface with Tailwind CSS and shadcn/ui components
 - **Data Persistence**: SQLite database with Prisma ORM for reliable local storage
@@ -33,8 +33,8 @@ Teaching Engine 2.0 has achieved its goal of becoming the comprehensive "digital
 #### Communication & Reporting
 - **Newsletter Generator**: Content collected from completed activities for parent updates
 - **Parent Communication Center**: Centralized hub for bilingual parent communications
-- **Student Timeline Generator**: Interactive visualization of student learning journeys
-- **Progress Alerts**: Notifications warn when milestones are falling behind
+- **Daybook System**: Daily reflection and progress tracking for continuous improvement
+- **Progress Insights**: Analytics and trend analysis for curriculum coverage and teaching effectiveness
 
 #### Curriculum Intelligence
 - **AI-Powered Curriculum Import**: Parse curriculum documents (PDF/DOC) to extract outcomes
@@ -46,10 +46,8 @@ Teaching Engine 2.0 has achieved its goal of becoming the comprehensive "digital
 ### Special Features
 
 #### Assessment & Evaluation
-- **Language-Sensitive Assessment Builder**: Create French Immersion assessments with bilingual rubric criteria
-  - Pre-defined rubric templates for oral, reading, writing, and mixed assessments
-  - Custom rubric criteria support with JSON format
-  - Fully integrated with existing assessment system
+- **Integrated Assessment Tracking**: Track student progress through daybook entries and lesson plan reflections
+- **Bilingual Support**: Full French-English support for all planning and reflection components
 
 #### Curriculum Analysis
 - **Curriculum Alignment Audit Tool**: Comprehensive curriculum coverage analysis
@@ -151,14 +149,6 @@ Access the application at http://localhost:3000
 
 ## 📚 Feature Documentation
 
-### Assessment Builder
-
-The Language-Sensitive Assessment Builder helps create French Immersion assessments with appropriate rubric criteria:
-
-- Access via Activities page → Create Activity → Assessment type
-- Choose from pre-defined rubric templates or create custom criteria
-- Supports oral, reading, writing, and mixed assessment types
-
 ### Visual Resource Organizer
 
 Manage visual teaching resources:
@@ -177,16 +167,15 @@ Centralized parent communication management:
 - Export newsletters in multiple formats
 - Track communication history
 
-### Student Timeline Generator
+### Daybook System
 
-Visualize student learning journeys with an interactive timeline:
+Track daily teaching experiences and student progress:
 
-- Access via the Timeline page or dashboard quick access
-- View activities, assessments, themes, and newsletters in chronological order
-- Filter by subject, outcome, or theme to focus on specific learning areas
-- Navigate through different time periods (3-month windows)
-- Track outcome coverage statistics and upcoming milestones
-- Color-coded events: blue (activities), purple (assessments), green (themes), yellow (newsletters)
+- Create daily reflection entries linked to lesson plans
+- Track what worked, challenges faced, and next steps
+- Monitor student engagement and progress
+- Generate analytics and trends from reflection data
+- Export insights for professional development
 
 ### AI Activity Generator
 
@@ -229,10 +218,13 @@ Analyze curriculum coverage and identify gaps:
 - `GET /api/outcomes?subject=FRA&grade=1` – Filter outcomes by subject and grade.
 - `GET /api/outcomes?search=keyword` – Search outcomes by code or description.
 
-### Timeline
+### ETFO Planning
 
-- `GET /api/timeline/events` – Get timeline events with optional filtering by date range, subject, outcome, or theme.
-- `GET /api/timeline/summary` – Get timeline summary with outcome coverage statistics and next milestone.
+- `GET /api/curriculum-expectations` – Get curriculum expectations with filtering
+- `GET /api/long-range-plans` – List long-range plans
+- `GET /api/unit-plans` – List unit plans
+- `GET /api/etfo-lesson-plans` – List ETFO lesson plans
+- `GET /api/daybook-entries` – Get daybook entries and analytics
 
 ### AI Suggestions
 
@@ -276,22 +268,21 @@ pnpm exec playwright install
    - Create subjects for your curriculum (Math, Science, Language Arts, etc.)
    - Import provincial curriculum standards or use AI to parse curriculum documents
 
-2. **Add Milestones**: Define major units or learning goals with target completion dates
+2. **Create Long-Range Plans**: Define major curriculum areas and yearly goals
+   - Link curriculum expectations to long-range planning objectives
 
-3. **Create Activities**: 
-   - Populate milestones with specific lessons, assignments, and projects
-   - Use AI Activity Generator for uncovered outcomes
+3. **Develop Unit Plans**: Break down long-range goals into manageable units
+   - Organize expectations thematically or by learning progression
+   - Set unit timelines and assessment strategies
+
+4. **Plan Lessons**: Create specific lesson plans within units
+   - Use AI planning assistance for content generation
    - Link visual resources and materials
 
-4. **Plan Weekly**: 
-   - Use the weekly planner to schedule activities across your timetable
-   - Auto-fill with intelligent suggestions
-   - Review curriculum coverage audit
-
 5. **Track Progress**: 
-   - Mark activities as complete to update progress automatically
-   - View Student Timeline for learning journey visualization
-   - Monitor outcome coverage statistics
+   - Create daybook entries to reflect on lesson effectiveness
+   - Monitor curriculum coverage through analytics
+   - Review trends in teaching and learning
 
 6. **Communicate**: 
    - Generate bilingual parent newsletters from completed activities
@@ -300,10 +291,11 @@ pnpm exec playwright install
 
 ### Key Concepts
 
-- **Subject**: Top-level curriculum area (e.g., Mathematics)
-- **Milestone**: Major learning unit or goal (e.g., "Multiplication Mastery")
-- **Activity**: Specific lesson or task (e.g., "Times tables worksheet")
-- **Progress**: Automatic calculation based on completed vs. total activities
+- **Curriculum Expectations**: Provincial curriculum standards and learning objectives
+- **Long-Range Plans**: Yearly planning documents covering major curriculum areas  
+- **Unit Plans**: Thematic units organizing expectations into logical teaching sequences
+- **Lesson Plans**: Daily lessons with specific activities, materials, and assessments
+- **Daybook Entries**: Daily reflections tracking teaching effectiveness and student progress
 
 ## 🤝 Development Guidelines
 

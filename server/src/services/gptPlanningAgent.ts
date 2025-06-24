@@ -281,7 +281,6 @@ Format response as JSON.`;
       try {
         switch (action.type) {
           case 'generate_activity': {
-            // Legacy function - use ETFO lesson planning and activity discovery instead
             results.push({
               type: 'activities_generated',
               data: { 
@@ -317,7 +316,6 @@ Format response as JSON.`;
           }
 
           case 'show_suggestions': {
-            // Legacy function - use activity discovery instead
             results.push({
               type: 'suggestions_retrieved',
               data: { 

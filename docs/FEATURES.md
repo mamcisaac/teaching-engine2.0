@@ -2,38 +2,38 @@
 
 This document describes the features in Teaching Engine 2.0.
 
-## Student Timeline Generator
+## Daybook Analytics System
 
 ### Overview
 
-The Student Timeline Generator provides a comprehensive visualization of student learning journeys by aggregating events from multiple sources into an interactive timeline interface.
+The Daybook Analytics System provides comprehensive insights into teaching effectiveness and student progress through daily reflection data analysis.
 
 ### Features
 
-- **Week-based Timeline**: Events are organized by week with horizontal scroll navigation
-- **Multi-source Aggregation**: Combines activities, assessments, themes, and newsletters
-- **Interactive Filtering**: Filter by subject, outcome, or theme with real-time updates
-- **Outcome Coverage Tracking**: Displays coverage statistics and next milestone information
-- **Color-coded Events**: Visual distinction between event types
+- **Teaching Trend Analysis**: Track rating patterns and engagement trends over time
+- **Theme Extraction**: Identify common success and challenge patterns from reflection text
+- **Actionable Recommendations**: Generate data-driven suggestions for teaching improvement
+- **Coverage Visualization**: Monitor curriculum expectation coverage with analytics
+- **Progress Insights**: View teaching effectiveness through quantified reflection data
+- **Export Capabilities**: Generate PDF reports for professional development documentation
 
-### Event Types
+### Analytics Types
 
-- **Activities** (Blue): Completed learning activities and lessons
-- **Assessments** (Purple): Assessment results with scores when available
-- **Themes** (Green): Thematic units with duration display
-- **Newsletters** (Yellow): Parent communication messages
+- **Rating Trends**: Track lesson effectiveness ratings over time (improving/declining/stable)
+- **Engagement Analysis**: Sentiment analysis of student engagement observations
+- **Theme Identification**: Extract common keywords from "what worked" and "challenges" reflections
+- **Recommendation Engine**: Generate actionable insights based on reflection patterns
 
 ### Usage
 
-1. Access from the Dashboard quick access card or main navigation
-2. Use the filter panel to focus on specific subjects, outcomes, or themes
-3. Navigate between time periods using the Previous/Next 3 Months buttons
-4. View detailed information including linked outcomes and metadata
+1. Create daybook entries linked to lesson plans
+2. Complete reflection fields (what worked, challenges, next steps)
+3. View analytics through the insights endpoint
+4. Export trends for professional development conversations
 
 ### API Endpoints
 
-- `GET /api/timeline/events` - Retrieve timeline events with filtering
-- `GET /api/timeline/summary` - Get coverage statistics and next milestone
+- `GET /api/daybook-entries/insights/summary` - Get comprehensive analytics and recommendations
 
 ## AI Activity Generator
 
@@ -56,7 +56,7 @@ The AI Activity Generator helps teachers create appropriate activities for curri
 2. View the "Uncovered Outcomes" panel for outcomes needing attention
 3. Click "Generate Activity" for any uncovered outcome
 4. Review and edit the AI-generated suggestion in the modal
-5. Add the refined activity to your weekly plan or milestone
+5. Add the refined activity to your lesson plan or unit plan
 
 ### Generated Content
 

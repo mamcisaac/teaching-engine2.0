@@ -87,9 +87,8 @@ router.get('/', async (req: AuthenticatedRequest, res, next) => {
     const students = await prisma.student.findMany({
       where: { userId: parseInt(userId) },
       include: {
-        parentContacts: true,
-        goals: { include: { outcome: true, theme: true } },
-        reflections: { include: { outcome: true, theme: true, activity: true } },
+        goals: { include: { theme: true } },
+        reflections: { include: { theme: true } },
         _count: {
           select: {
             artifacts: true,
@@ -132,9 +131,8 @@ router.get('/:id', async (req: AuthenticatedRequest, res, next) => {
         userId: parseInt(userId),
       },
       include: {
-        parentContacts: true,
-        goals: { include: { outcome: true, theme: true } },
-        reflections: { include: { outcome: true, theme: true, activity: true } },
+        goals: { include: { theme: true } },
+        reflections: { include: { theme: true } },
         artifacts: {
           orderBy: { createdAt: 'desc' },
           take: 10,
@@ -185,9 +183,6 @@ router.post('/', validate(studentCreateSchema), async (req: AuthenticatedRequest
         lastName,
         grade,
         userId: parseInt(userId),
-        parentContacts: {
-          create: parentContacts || [],
-        },
       };
     } else if (name) {
       // Legacy format - extract first and last name from full name
@@ -200,9 +195,6 @@ router.post('/', validate(studentCreateSchema), async (req: AuthenticatedRequest
         lastName: lastNamePart,
         grade: 1, // Default grade for legacy students
         userId: parseInt(userId),
-        parentContacts: {
-          create: [],
-        },
       };
     } else {
       return res.status(400).json({ error: 'Invalid student data' });
@@ -211,9 +203,8 @@ router.post('/', validate(studentCreateSchema), async (req: AuthenticatedRequest
     const student = await prisma.student.create({
       data: studentData,
       include: {
-        parentContacts: true,
-        goals: { include: { outcome: true, theme: true } },
-        reflections: { include: { outcome: true, theme: true, activity: true } },
+        goals: { include: { theme: true } },
+        reflections: { include: { theme: true } },
       },
     });
 
@@ -269,9 +260,8 @@ router.put('/:id', validate(studentUpdateSchema), async (req: AuthenticatedReque
       where: { id: studentId },
       data: updateData,
       include: {
-        parentContacts: true,
-        goals: { include: { outcome: true, theme: true } },
-        reflections: { include: { outcome: true, theme: true, activity: true } },
+        goals: { include: { theme: true } },
+        reflections: { include: { theme: true } },
       },
     });
 
@@ -311,7 +301,6 @@ router.delete('/:id', async (req: AuthenticatedRequest, res, next) => {
 
     // Delete related data first (cascade delete)
     await prisma.$transaction([
-      prisma.parentContact.deleteMany({ where: { studentId } }),
       prisma.studentArtifact.deleteMany({ where: { studentId } }),
       prisma.studentReflection.deleteMany({ where: { studentId } }),
       prisma.studentGoal.deleteMany({ where: { studentId } }),
@@ -325,77 +314,6 @@ router.delete('/:id', async (req: AuthenticatedRequest, res, next) => {
   }
 });
 
-// Add parent contact to student
-router.post(
-  '/:id/contacts',
-  validate(parentContactSchema),
-  async (req: AuthenticatedRequest, res, next) => {
-    try {
-      const userId = req.user?.userId;
-      const studentId = parseInt(req.params.id);
-
-      if (!userId) {
-        return res.status(401).json({ error: 'Unauthorized' });
-      }
-
-      // Verify the student belongs to this teacher
-      const existingStudent = await prisma.student.findFirst({
-        where: {
-          id: studentId,
-          userId: parseInt(userId),
-        },
-      });
-
-      if (!existingStudent) {
-        return res.status(404).json({ error: 'Student not found' });
-      }
-
-      const contact = await prisma.parentContact.create({
-        data: {
-          ...req.body,
-          studentId,
-        },
-      });
-
-      res.status(201).json(contact);
-    } catch (err) {
-      next(err);
-    }
-  },
-);
-
-// Delete parent contact
-router.delete('/:studentId/contacts/:contactId', async (req: AuthenticatedRequest, res, next) => {
-  try {
-    const userId = req.user?.userId;
-    const studentId = parseInt(req.params.studentId);
-    const contactId = parseInt(req.params.contactId);
-
-    if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
-    }
-
-    // Verify the student belongs to this teacher
-    const existingStudent = await prisma.student.findFirst({
-      where: {
-        id: studentId,
-        userId: parseInt(userId),
-      },
-    });
-
-    if (!existingStudent) {
-      return res.status(404).json({ error: 'Student not found' });
-    }
-
-    await prisma.parentContact.delete({
-      where: { id: contactId },
-    });
-
-    res.status(204).send();
-  } catch (err) {
-    next(err);
-  }
-});
 
 // Student goals routes
 router.get('/:id/goals', async (req: AuthenticatedRequest, res, next) => {
@@ -414,7 +332,7 @@ router.get('/:id/goals', async (req: AuthenticatedRequest, res, next) => {
 
     const goals = await prisma.studentGoal.findMany({
       where: { studentId: Number(req.params.id) },
-      include: { outcome: true, theme: true },
+      include: { theme: true },
       orderBy: { createdAt: 'desc' },
     });
     res.json(goals);
@@ -444,11 +362,10 @@ router.post(
         data: {
           studentId: Number(req.params.id),
           text: req.body.text,
-          outcomeId: req.body.outcomeId || null,
           themeId: req.body.themeId || null,
           status: req.body.status || 'active',
         },
-        include: { outcome: true, theme: true },
+        include: { theme: true },
       });
       res.status(201).json(goal);
     } catch (err) {
@@ -482,10 +399,9 @@ router.patch(
         data: {
           text: req.body.text,
           status: req.body.status,
-          outcomeId: req.body.outcomeId,
           themeId: req.body.themeId,
         },
-        include: { outcome: true, theme: true },
+        include: { theme: true },
       });
       res.json(goal);
     } catch (err) {
@@ -543,7 +459,7 @@ router.get('/:id/reflections', async (req: AuthenticatedRequest, res, next) => {
 
     const reflections = await prisma.studentReflection.findMany({
       where: { studentId: Number(req.params.id) },
-      include: { outcome: true, theme: true, activity: true },
+      include: { theme: true },
       orderBy: { createdAt: 'desc' },
     });
     res.json(reflections);

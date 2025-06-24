@@ -636,6 +636,12 @@ model LongRangePlan {
   goals         String?  // Overall learning goals for the year/term
   themes        Json?    // Array of major themes
   
+  // ETFO-aligned fields
+  overarchingQuestions  String?  // Big questions that will guide the year
+  assessmentOverview    String?  // Overall assessment strategy
+  resourceNeeds         String?  // Materials, technology, resources needed
+  professionalGoals     String?  // Professional development goals
+  
   // Bilingual support
   titleFr       String?
   descriptionFr String?
@@ -691,6 +697,21 @@ model UnitPlan {
   // Assessment planning
   assessmentPlan  String?  // How learning will be assessed
   successCriteria Json?    // Array of success criteria
+  
+  // ETFO-aligned planning fields
+  crossCurricularConnections String?  // Links to other subject areas
+  learningSkills          Json?      // Array of learning skills focus
+  culminatingTask         String?    // Final assessment task description
+  keyVocabulary          Json?      // Array of key terms
+  priorKnowledge         String?    // Prerequisites for the unit
+  parentCommunicationPlan String?   // How to communicate with families
+  fieldTripsAndGuestSpeakers String? // Community connections
+  differentiationStrategies Json?   // Support for diverse learners
+  indigenousPerspectives   String?  // Indigenous knowledge integration
+  environmentalEducation   String?  // Environmental learning connections
+  socialJusticeConnections String?  // Equity and social justice themes
+  technologyIntegration    String?  // Technology use in the unit
+  communityConnections     String?  // Local partnerships and connections
   
   // Relationships
   expectations    UnitPlanExpectation[]

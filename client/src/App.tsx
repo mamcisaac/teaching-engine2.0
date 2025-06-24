@@ -164,7 +164,6 @@ function AppRoutes() {
         <Route path="/subjects" element={<Navigate to="/curriculum" replace />} />
         <Route path="/subjects/:id" element={<Navigate to="/curriculum" replace />} />
 
-        {/* Legacy milestone routes - redirect to curriculum */}
         <Route path="/milestones/:id" element={<Navigate to="/curriculum" replace />} />
 
         {/* Curriculum outcomes and coverage */}

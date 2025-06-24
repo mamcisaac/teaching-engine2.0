@@ -18,6 +18,11 @@ interface LongRangePlan {
   description?: string;
   goals?: string;
   themes?: string[];
+  // ETFO-aligned fields
+  overarchingQuestions?: string;
+  assessmentOverview?: string;
+  resourceNeeds?: string;
+  professionalGoals?: string;
   _count: {
     unitPlans: number;
     expectations: number;
@@ -74,8 +79,7 @@ export default function LongRangePlanPage() {
     overarchingQuestions: '',
     assessmentOverview: '',
     resourceNeeds: '',
-    professionalLearningGoals: '',
-    classroomSetupNotes: '',
+    professionalGoals: '',
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -436,8 +440,8 @@ export default function LongRangePlanPage() {
                 Professional Learning Goals
               </label>
               <textarea
-                value={formData.professionalLearningGoals}
-                onChange={(e) => setFormData({ ...formData, professionalLearningGoals: e.target.value })}
+                value={formData.professionalGoals}
+                onChange={(e) => setFormData({ ...formData, professionalGoals: e.target.value })}
                 rows={2}
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder="Your professional development goals for this year..."

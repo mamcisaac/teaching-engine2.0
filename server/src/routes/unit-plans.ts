@@ -26,6 +26,26 @@ const unitPlanCreateSchema = z.object({
   assessmentPlan: z.string().optional(),
   successCriteria: z.array(z.string()).optional(),
   expectationIds: z.array(z.string()).optional(),
+  
+  // ETFO-aligned planning fields
+  crossCurricularConnections: z.string().optional(),
+  learningSkills: z.array(z.string()).optional(),
+  culminatingTask: z.string().optional(),
+  keyVocabulary: z.array(z.string()).optional(),
+  priorKnowledge: z.string().optional(),
+  parentCommunicationPlan: z.string().optional(),
+  fieldTripsAndGuestSpeakers: z.string().optional(),
+  differentiationStrategies: z.object({
+    forStruggling: z.array(z.string()).optional(),
+    forAdvanced: z.array(z.string()).optional(),
+    forELL: z.array(z.string()).optional(),
+    forIEP: z.array(z.string()).optional(),
+  }).optional(),
+  indigenousPerspectives: z.string().optional(),
+  environmentalEducation: z.string().optional(),
+  socialJusticeConnections: z.string().optional(),
+  technologyIntegration: z.string().optional(),
+  communityConnections: z.string().optional(),
 });
 
 const unitPlanUpdateSchema = unitPlanCreateSchema.partial().omit({ longRangePlanId: true });
@@ -150,7 +170,15 @@ router.post('/', validate(unitPlanCreateSchema), async (req: AuthenticatedReques
       return res.status(401).json({ error: 'Unauthorized' });
     }
     
-    const { expectationIds, essentialQuestions, successCriteria, ...planData } = req.body;
+    const { 
+      expectationIds, 
+      essentialQuestions, 
+      successCriteria, 
+      learningSkills,
+      keyVocabulary,
+      differentiationStrategies,
+      ...planData 
+    } = req.body;
     
     // Verify user owns the long-range plan
     const longRangePlan = await prisma.longRangePlan.findFirst({
@@ -172,6 +200,9 @@ router.post('/', validate(unitPlanCreateSchema), async (req: AuthenticatedReques
         endDate: new Date(planData.endDate),
         essentialQuestions: essentialQuestions || [],
         successCriteria: successCriteria || [],
+        learningSkills: learningSkills || [],
+        keyVocabulary: keyVocabulary || [],
+        differentiationStrategies: differentiationStrategies || null,
       },
       include: {
         longRangePlan: {
@@ -255,7 +286,15 @@ router.put('/:id', validate(unitPlanUpdateSchema), async (req: AuthenticatedRequ
       return res.status(401).json({ error: 'Unauthorized' });
     }
     
-    const { expectationIds, essentialQuestions, successCriteria, ...updateData } = req.body;
+    const { 
+      expectationIds, 
+      essentialQuestions, 
+      successCriteria, 
+      learningSkills,
+      keyVocabulary,
+      differentiationStrategies,
+      ...updateData 
+    } = req.body;
     
     // Verify ownership
     const existing = await prisma.unitPlan.findFirst({
@@ -272,6 +311,9 @@ router.put('/:id', validate(unitPlanUpdateSchema), async (req: AuthenticatedRequ
     if (updateData.endDate) data.endDate = new Date(updateData.endDate);
     if (essentialQuestions !== undefined) data.essentialQuestions = essentialQuestions;
     if (successCriteria !== undefined) data.successCriteria = successCriteria;
+    if (learningSkills !== undefined) data.learningSkills = learningSkills;
+    if (keyVocabulary !== undefined) data.keyVocabulary = keyVocabulary;
+    if (differentiationStrategies !== undefined) data.differentiationStrategies = differentiationStrategies;
     
     // Update the plan
     const unitPlan = await prisma.unitPlan.update({

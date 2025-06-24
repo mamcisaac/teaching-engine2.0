@@ -73,7 +73,7 @@ Teaching Engine 2.0 is designed to be the **ultimate digital teaching assistant*
 - **Success Criteria**: 95% teacher acceptance rate of suggestions
 - **Key Features**:
   - Drag-and-drop calendar interface
-  - Considers milestone deadlines and pacing
+  - Considers unit plan timelines and pacing
   - Respects teacher preferences and style
   - One-click "auto-fill" optimal scheduling
 
@@ -90,7 +90,7 @@ Teaching Engine 2.0 is designed to be the **ultimate digital teaching assistant*
 #### 4.3 Progress Alert System
 
 - **Intention**: Proactive curriculum pacing management
-- **Success Criteria**: Zero missed milestone deadlines
+- **Success Criteria**: Zero missed unit deadlines and curriculum coverage gaps
 - **Key Features**:
   - Daily automated progress checks
   - Smart notifications (email + in-app)
@@ -127,7 +127,7 @@ Teaching Engine 2.0 is designed to be the **ultimate digital teaching assistant*
 - **Success Criteria**: Full grade curriculum imported in <2 minutes
 - **Key Features**:
   - PDF parsing of official PEI curriculum documents
-  - AI clustering of learning outcomes into logical milestones
+  - AI clustering of learning expectations into thematic units
   - Intelligent activity suggestions for each outcome
   - Customizable pacing based on school calendar
 

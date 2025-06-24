@@ -219,7 +219,6 @@ export const useMaterialDetails = (weekStart: string) =>
     queryFn: async () => (await api.get(`/materials/details?weekStart=${weekStart}`)).data,
   });
 
-// Legacy useResourcesByActivity removed - replaced by ETFO lesson plans
 
 export const useDeleteResource = () => {
   const qc = useQueryClient();
@@ -326,7 +325,7 @@ export interface WeeklyPlanData {
   days: Array<Record<string, unknown>>;
   weeklyOverview: {
     subjects: Array<Record<string, unknown>>;
-    milestones: Array<Record<string, unknown>>;
+    unitPlans: Array<Record<string, unknown>>; // Updated for ETFO alignment
     assessments: Array<Record<string, unknown>>;
     specialEvents: Array<Record<string, unknown>>;
   };
@@ -695,7 +694,6 @@ export const useSubject = (id: number) =>
     queryFn: async () => (await api.get(`/api/subjects/${id}`)).data,
   });
 
-// Legacy milestone and activity functions removed - replaced by ETFO planning system
 
 // Legacy API factory removed
 
@@ -752,17 +750,11 @@ export const useDeleteSubject = () => {
   });
 };
 
-// Legacy useCreateMilestone removed
 
-// Legacy useUpdateMilestone removed
 
-// Legacy milestone and activity functions removed - replaced by ETFO planning system
 
-// Legacy useUpdateActivity removed - replaced by ETFO lesson plans
 
-// Legacy useDeleteActivity removed - replaced by ETFO lesson plans
 
-// Legacy useCompleteActivity removed - replaced by ETFO lesson plans
 
 // Legacy useReorderActivities removed - replaced by ETFO lesson plans
 
@@ -806,7 +798,6 @@ export const useUpdateDailyPlan = () => {
       items: Array<{
         startMin: number;
         endMin: number;
-        // Legacy activityId removed - replaced by ETFO lesson plans
         notes?: string | null;
       }>;
     }) => api.put(`/daily-plans/${data.id}`, { items: data.items }),
