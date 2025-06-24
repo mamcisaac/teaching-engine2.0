@@ -102,7 +102,7 @@ export function CurriculumImportWizard({
         setIsUploading(false);
       }
     },
-    [toast],
+    [toast, pollImportStatus],
   );
 
   const pollImportStatus = useCallback(
