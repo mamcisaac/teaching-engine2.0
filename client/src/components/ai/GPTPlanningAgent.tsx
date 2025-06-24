@@ -166,7 +166,7 @@ export function GPTPlanningAgent({
     if (isOpen && !sessionId) {
       startSessionMutation.mutate();
     }
-  }, [isOpen]);
+  }, [isOpen, sessionId, startSessionMutation]);
 
   // Scroll to bottom when messages change
   useEffect(() => {

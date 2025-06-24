@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { api } from '../../api';
 import { Line } from 'react-chartjs-2';
 import {
@@ -60,12 +60,7 @@ export function QualityScorecard({ weekStart, onSuggestionClick }: QualityScorec
   const [error, setError] = useState<string | null>(null);
   const [showDetails, setShowDetails] = useState(false);
 
-  useEffect(() => {
-    fetchDiagnostics();
-    fetchTrend();
-  }, [weekStart]);
-
-  const fetchDiagnostics = async () => {
+  const fetchDiagnostics = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -79,7 +74,12 @@ export function QualityScorecard({ weekStart, onSuggestionClick }: QualityScorec
     } finally {
       setLoading(false);
     }
-  };
+  }, [weekStart]);
+
+  useEffect(() => {
+    fetchDiagnostics();
+    fetchTrend();
+  }, [weekStart, fetchDiagnostics]);
 
   const fetchTrend = async () => {
     try {
