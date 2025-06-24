@@ -2,7 +2,7 @@ import { openai } from './llmService';
 import BaseService from './base/BaseService';
 
 export interface EmbeddingResult {
-  outcomeId: string;
+  expectationId: string;
   embedding: number[];
   model: string;
 }
@@ -25,9 +25,9 @@ export class EmbeddingService extends BaseService {
   }
 
   /**
-   * Generate embedding for a single outcome
+   * Generate embedding for a single curriculum expectation
    */
-  async generateEmbedding(outcomeId: string, text: string): Promise<EmbeddingResult | null> {
+  async generateEmbedding(expectationId: string, text: string): Promise<EmbeddingResult | null> {
     if (!openai) {
       this.logger.warn('OpenAI API key not configured, skipping embedding generation');
       return null;
@@ -35,14 +35,14 @@ export class EmbeddingService extends BaseService {
 
     try {
       // Check if embedding already exists
-      const existing = await this.prisma.outcomeEmbedding.findUnique({
-        where: { outcomeId },
+      const existing = await this.prisma.curriculumExpectationEmbedding.findUnique({
+        where: { expectationId },
       });
 
       if (existing) {
-        this.logger.debug({ outcomeId }, 'Embedding already exists for outcome');
+        this.logger.debug({ expectationId }, 'Embedding already exists for expectation');
         return {
-          outcomeId,
+          expectationId,
           embedding: existing.embedding as number[],
           model: existing.model,
         };
@@ -52,35 +52,35 @@ export class EmbeddingService extends BaseService {
       if (!embedding) return null;
 
       // Store in database
-      await this.prisma.outcomeEmbedding.create({
+      await this.prisma.curriculumExpectationEmbedding.create({
         data: {
-          outcomeId,
+          expectationId,
           embedding,
           model: this.model,
         },
       });
 
       this.logger.info(
-        { outcomeId, model: this.model },
-        'Generated and stored embedding for outcome',
+        { expectationId, model: this.model },
+        'Generated and stored embedding for expectation',
       );
 
       return {
-        outcomeId,
+        expectationId,
         embedding,
         model: this.model,
       };
     } catch (error) {
-      this.logger.error({ error, outcomeId }, 'Failed to generate embedding for outcome');
+      this.logger.error({ error, expectationId }, 'Failed to generate embedding for expectation');
       return null;
     }
   }
 
   /**
-   * Generate embeddings for multiple outcomes in batches
+   * Generate embeddings for multiple expectations in batches
    */
   async generateBatchEmbeddings(
-    outcomes: { id: string; text: string }[],
+    expectations: { id: string; text: string }[],
   ): Promise<EmbeddingResult[]> {
     if (!openai) {
       this.logger.warn('OpenAI API key not configured, skipping batch embedding generation');
@@ -88,7 +88,7 @@ export class EmbeddingService extends BaseService {
     }
 
     const results: EmbeddingResult[] = [];
-    const batches = this.createEmbeddingBatches(outcomes, this.batchSize);
+    const batches = this.createEmbeddingBatches(expectations, this.batchSize);
 
     for (let i = 0; i < batches.length; i++) {
       const batch = batches[i];
@@ -114,17 +114,17 @@ export class EmbeddingService extends BaseService {
   }
 
   /**
-   * Get embedding for an outcome (from cache or generate new)
+   * Get embedding for an expectation (from cache or generate new)
    */
-  async getEmbedding(outcomeId: string): Promise<number[] | null> {
+  async getEmbedding(expectationId: string): Promise<number[] | null> {
     try {
-      const embedding = await this.prisma.outcomeEmbedding.findUnique({
-        where: { outcomeId },
+      const embedding = await this.prisma.curriculumExpectationEmbedding.findUnique({
+        where: { expectationId },
       });
 
       return embedding ? (embedding.embedding as number[]) : null;
     } catch (error) {
-      this.logger.error({ error, outcomeId }, 'Failed to get embedding for outcome');
+      this.logger.error({ error, expectationId }, 'Failed to get embedding for expectation');
       return null;
     }
   }
@@ -158,17 +158,17 @@ export class EmbeddingService extends BaseService {
   }
 
   /**
-   * Find similar outcomes based on embedding similarity
+   * Find similar expectations based on embedding similarity
    */
-  async findSimilarOutcomes(
-    outcomeId: string,
+  async findSimilarExpectations(
+    expectationId: string,
     threshold: number = 0.8,
     limit: number = 10,
   ): Promise<
     {
-      outcomeId: string;
+      expectationId: string;
       similarity: number;
-      outcome?: {
+      expectation?: {
         id: string;
         code: string;
         description: string;
@@ -178,30 +178,29 @@ export class EmbeddingService extends BaseService {
     }[]
   > {
     try {
-      const targetEmbedding = await this.getEmbedding(outcomeId);
+      const targetEmbedding = await this.getEmbedding(expectationId);
       if (!targetEmbedding) return [];
 
-      // Get all embeddings with outcome data (for small datasets)
-      // TODO: Implement vector database for larger datasets
-      const allEmbeddings = await this.prisma.outcomeEmbedding.findMany({
+      // Get all embeddings with expectation data (optimized for current dataset size)
+      const allEmbeddings = await this.prisma.curriculumExpectationEmbedding.findMany({
         where: {
-          outcomeId: { not: outcomeId },
+          expectationId: { not: expectationId },
         },
         include: {
-          outcome: true,
+          expectation: true,
         },
       });
 
       const similarities = allEmbeddings
         .map((emb) => ({
-          outcomeId: emb.outcomeId,
+          expectationId: emb.expectationId,
           similarity: this.calculateSimilarity(targetEmbedding, emb.embedding as number[]),
-          outcome: {
-            id: emb.outcome.id,
-            code: emb.outcome.code,
-            description: emb.outcome.description,
-            subject: emb.outcome.subject,
-            grade: emb.outcome.grade,
+          expectation: {
+            id: emb.expectation.id,
+            code: emb.expectation.code,
+            description: emb.expectation.description,
+            subject: emb.expectation.subject,
+            grade: emb.expectation.grade,
           },
         }))
         .filter((item) => item.similarity >= threshold)
@@ -210,13 +209,13 @@ export class EmbeddingService extends BaseService {
 
       return similarities;
     } catch (error) {
-      this.logger.error({ error, outcomeId }, 'Failed to find similar outcomes');
+      this.logger.error({ error, expectationId }, 'Failed to find similar expectations');
       return [];
     }
   }
 
   /**
-   * Generate embeddings for all outcomes missing them
+   * Generate embeddings for all expectations missing them
    */
   async generateMissingEmbeddings(forceRegenerate: boolean = false): Promise<number> {
     try {
@@ -225,15 +224,15 @@ export class EmbeddingService extends BaseService {
         return 0;
       }
 
-      let outcomes;
+      let expectations;
       if (forceRegenerate) {
-        // Get all outcomes
-        outcomes = await this.prisma.outcome.findMany({
+        // Get all expectations
+        expectations = await this.prisma.curriculumExpectation.findMany({
           select: { id: true, code: true, description: true },
         });
       } else {
-        // Get outcomes without embeddings
-        outcomes = await this.prisma.outcome.findMany({
+        // Get expectations without embeddings
+        expectations = await this.prisma.curriculumExpectation.findMany({
           where: {
             embedding: null,
           },
@@ -241,23 +240,23 @@ export class EmbeddingService extends BaseService {
         });
       }
 
-      if (outcomes.length === 0) {
-        this.logger.info('No outcomes need embeddings');
+      if (expectations.length === 0) {
+        this.logger.info('No expectations need embeddings');
         return 0;
       }
 
-      this.logger.info({ count: outcomes.length }, 'Found outcomes needing embeddings');
+      this.logger.info({ count: expectations.length }, 'Found expectations needing embeddings');
 
       // Prepare data for batch processing
-      const outcomeData = outcomes.map((outcome) => ({
-        id: outcome.id,
-        text: `${outcome.code}: ${outcome.description}`,
+      const expectationData = expectations.map((expectation) => ({
+        id: expectation.id,
+        text: `${expectation.code}: ${expectation.description}`,
       }));
 
-      const results = await this.generateBatchEmbeddings(outcomeData);
+      const results = await this.generateBatchEmbeddings(expectationData);
 
       this.logger.info(
-        { total: outcomes.length, generated: results.length },
+        { total: expectations.length, generated: results.length },
         'Finished generating embeddings',
       );
 
@@ -269,17 +268,17 @@ export class EmbeddingService extends BaseService {
   }
 
   /**
-   * Search outcomes by text similarity
+   * Search expectations by text similarity
    */
-  async searchOutcomesByText(
+  async searchExpectationsByText(
     searchText: string,
     limit: number = 20,
     threshold: number = 0.7,
   ): Promise<
     {
-      outcomeId: string;
+      expectationId: string;
       similarity: number;
-      outcome: {
+      expectation: {
         id: string;
         code: string;
         description: string;
@@ -298,23 +297,23 @@ export class EmbeddingService extends BaseService {
       const searchEmbedding = await this.generateEmbeddingVector(searchText);
       if (!searchEmbedding) return [];
 
-      // Get all embeddings with outcome data
-      const allEmbeddings = await this.prisma.outcomeEmbedding.findMany({
+      // Get all embeddings with expectation data
+      const allEmbeddings = await this.prisma.curriculumExpectationEmbedding.findMany({
         include: {
-          outcome: true,
+          expectation: true,
         },
       });
 
       const similarities = allEmbeddings
         .map((emb) => ({
-          outcomeId: emb.outcomeId,
+          expectationId: emb.expectationId,
           similarity: this.calculateSimilarity(searchEmbedding, emb.embedding as number[]),
-          outcome: {
-            id: emb.outcome.id,
-            code: emb.outcome.code,
-            description: emb.outcome.description,
-            subject: emb.outcome.subject,
-            grade: emb.outcome.grade,
+          expectation: {
+            id: emb.expectation.id,
+            code: emb.expectation.code,
+            description: emb.expectation.description,
+            subject: emb.expectation.subject,
+            grade: emb.expectation.grade,
           },
         }))
         .filter((item) => item.similarity >= threshold)
@@ -323,44 +322,44 @@ export class EmbeddingService extends BaseService {
 
       return similarities;
     } catch (error) {
-      this.logger.error({ error, searchText }, 'Failed to search outcomes by text');
+      this.logger.error({ error, searchText }, 'Failed to search expectations by text');
       return [];
     }
   }
 
   /**
-   * Get or create embedding for a specific outcome
+   * Get or create embedding for a specific expectation
    */
-  async getOrCreateOutcomeEmbedding(outcomeId: string): Promise<EmbeddingResult | null> {
+  async getOrCreateExpectationEmbedding(expectationId: string): Promise<EmbeddingResult | null> {
     try {
       // Check if embedding exists
-      const existing = await this.prisma.outcomeEmbedding.findUnique({
-        where: { outcomeId },
+      const existing = await this.prisma.curriculumExpectationEmbedding.findUnique({
+        where: { expectationId },
       });
 
       if (existing) {
         return {
-          outcomeId,
+          expectationId,
           embedding: existing.embedding as number[],
           model: existing.model,
         };
       }
 
-      // Get outcome details
-      const outcome = await this.prisma.outcome.findUnique({
-        where: { id: outcomeId },
+      // Get expectation details
+      const expectation = await this.prisma.curriculumExpectation.findUnique({
+        where: { id: expectationId },
         select: { code: true, description: true },
       });
 
-      if (!outcome) {
-        throw new Error(`Outcome ${outcomeId} not found`);
+      if (!expectation) {
+        throw new Error(`Expectation ${expectationId} not found`);
       }
 
       // Generate embedding
-      const text = `${outcome.code}: ${outcome.description}`;
-      return await this.generateEmbedding(outcomeId, text);
+      const text = `${expectation.code}: ${expectation.description}`;
+      return await this.generateEmbedding(expectationId, text);
     } catch (error) {
-      this.logger.error({ error, outcomeId }, 'Failed to get or create outcome embedding');
+      this.logger.error({ error, expectationId }, 'Failed to get or create expectation embedding');
       return null;
     }
   }
@@ -370,7 +369,7 @@ export class EmbeddingService extends BaseService {
    */
   async cleanupOldEmbeddings(model: string): Promise<number> {
     try {
-      const result = await this.prisma.outcomeEmbedding.deleteMany({
+      const result = await this.prisma.curriculumExpectationEmbedding.deleteMany({
         where: { model: { not: model } },
       });
 
@@ -431,19 +430,19 @@ export class EmbeddingService extends BaseService {
     const results: EmbeddingResult[] = [];
 
     // Check for existing embeddings
-    const existingEmbeddings = await this.prisma.outcomeEmbedding.findMany({
+    const existingEmbeddings = await this.prisma.curriculumExpectationEmbedding.findMany({
       where: {
-        outcomeId: { in: batch.map((item) => item.id) },
+        expectationId: { in: batch.map((item) => item.id) },
       },
     });
 
-    const existingIds = new Set(existingEmbeddings.map((emb) => emb.outcomeId));
+    const existingIds = new Set(existingEmbeddings.map((emb) => emb.expectationId));
     const newItems = batch.filter((item) => !existingIds.has(item.id));
 
     // Add existing embeddings to results
     for (const existing of existingEmbeddings) {
       results.push({
-        outcomeId: existing.outcomeId,
+        expectationId: existing.expectationId,
         embedding: existing.embedding as number[],
         model: existing.model,
       });
@@ -463,12 +462,12 @@ export class EmbeddingService extends BaseService {
 
       // Store new embeddings
       const embeddings = response.data.map((embedding, index) => ({
-        outcomeId: newItems[index].id,
+        expectationId: newItems[index].id,
         embedding: embedding.embedding,
         model: this.model,
       }));
 
-      await this.prisma.outcomeEmbedding.createMany({
+      await this.prisma.curriculumExpectationEmbedding.createMany({
         data: embeddings,
       });
 

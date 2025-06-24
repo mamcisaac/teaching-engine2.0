@@ -4,8 +4,7 @@ export { default as QualityScorecard } from './QualityScorecard';
 export { default as UncoveredOutcomesPanel } from './UncoveredOutcomesPanel';
 export { default as AISuggestionModal } from './AISuggestionModal';
 
-// A4 Enhancement: Prompt Generator
-export { default as PromptGeneratorPanel } from './PromptGeneratorPanel';
+// Legacy PromptGeneratorPanel removed
 
 // Export types
 export type { GeneratedPrompt, PromptGenerationResult } from '../../api';

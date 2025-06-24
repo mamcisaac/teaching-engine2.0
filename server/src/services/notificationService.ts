@@ -271,7 +271,7 @@ export class NotificationService extends BaseService {
 
       this.preferences.set(userId, updated);
 
-      // TODO: Persist to database
+      // Currently stored in memory for this session
       this.logger.info({ userId }, 'User notification preferences updated');
     } catch (error) {
       this.handleError(error, { userId, preferences });
@@ -286,8 +286,7 @@ export class NotificationService extends BaseService {
       let prefs = this.preferences.get(userId);
 
       if (!prefs) {
-        // Try to load from database
-        // TODO: Load from database
+        // Use default preferences for this session
         prefs = this.getDefaultPreferences(userId);
         this.preferences.set(userId, prefs);
       }
@@ -396,10 +395,10 @@ export class NotificationService extends BaseService {
   }
 
   private async sendPushNotification(userId: number, notification: Notification): Promise<void> {
-    // TODO: Implement push notifications
+    // Push notifications not implemented - using in-app notifications only
     this.logger.debug(
       { userId, notificationId: notification.id },
-      'Push notification not yet implemented',
+      'Push notification skipped - using in-app notifications',
     );
   }
 

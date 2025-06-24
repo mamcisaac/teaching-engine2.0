@@ -2,18 +2,18 @@ import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCurriculumExpectations, useUpdateCurriculumExpectation, useDeleteCurriculumExpectation } from '../hooks/useETFOPlanning';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/Input';
+import { Button } from '@/components/ui/Button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Badge } from '@/components/ui/badge';
+import { Badge } from '@/components/ui/Badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Search, Filter, Download, Upload, Edit2, Trash2, CheckCircle, AlertCircle } from 'lucide-react';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/Dialog';
+import { Label } from '@/components/ui/Label';
+import { Textarea } from '@/components/ui/Textarea';
 import { useToast } from '@/components/ui/use-toast';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Alert, AlertDescription } from '@/components/ui/Alert';
 
 export default function CurriculumExpectationsPage() {
   const navigate = useNavigate();
@@ -28,7 +28,6 @@ export default function CurriculumExpectationsPage() {
   const { data: expectations = [], isLoading, error } = useCurriculumExpectations({
     subject: selectedSubject === 'all' ? undefined : selectedSubject,
     grade: selectedGrade === 'all' ? undefined : selectedGrade,
-    type: selectedType === 'all' ? undefined : selectedType,
     search: searchTerm || undefined,
   });
 
@@ -170,14 +169,14 @@ export default function CurriculumExpectationsPage() {
         <div className="flex items-center gap-2">
           <Button
             variant="ghost"
-            size="icon"
+            size="sm"
             onClick={() => handleEdit(expectation)}
           >
             <Edit2 className="h-4 w-4" />
           </Button>
           <Button
             variant="ghost"
-            size="icon"
+            size="sm"
             onClick={() => handleDelete(expectation.id)}
           >
             <Trash2 className="h-4 w-4" />

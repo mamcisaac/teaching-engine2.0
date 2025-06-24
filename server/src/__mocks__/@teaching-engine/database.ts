@@ -33,7 +33,7 @@ export const PrismaClient = jest.fn().mockImplementation(() => ({
     deleteMany: jest.fn(),
     count: jest.fn(),
   },
-  outcome: {
+  curriculumExpectation: {
     findUnique: jest.fn(),
     findMany: jest.fn(),
     findFirst: jest.fn(),
@@ -44,7 +44,7 @@ export const PrismaClient = jest.fn().mockImplementation(() => ({
     deleteMany: jest.fn(),
     count: jest.fn(),
   },
-  outcomeEmbedding: {
+  expectationEmbedding: {
     findUnique: jest.fn(),
     findMany: jest.fn(),
     findFirst: jest.fn(),

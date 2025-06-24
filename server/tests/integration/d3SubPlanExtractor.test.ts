@@ -118,6 +118,7 @@ describe('D3 Sub Plan Extractor - Integration Tests', () => {
       data: {
         firstName: 'Test',
         lastName: 'Student',
+        grade: 3,
         userId: testUserId
       }
     });

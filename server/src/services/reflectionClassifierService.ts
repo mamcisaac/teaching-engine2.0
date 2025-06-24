@@ -3,7 +3,7 @@ import { EmbeddingService } from './embeddingService';
 import { generateContent } from './llmService';
 
 export interface ClassificationResult {
-  outcomes: Array<{
+  expectations: Array<{
     id: string;
     confidence: number;
     rationale: string;
@@ -14,7 +14,7 @@ export interface ClassificationResult {
 export interface ReflectionClassificationRequest {
   studentId: number;
   text: string;
-  existingOutcomeId?: string; // If already linked to an outcome
+  existingExpectationId?: string; // If already linked to an expectation
 }
 
 export class ReflectionClassifierService extends BaseService {
@@ -56,21 +56,21 @@ export class ReflectionClassifierService extends BaseService {
     try {
       this.logger.info({ studentId: request.studentId }, 'Starting reflection classification');
 
-      // Get outcome suggestions using embedding similarity
-      const outcomeSuggestions = await this.findSimilarOutcomes(request.text);
+      // Get expectation suggestions using embedding similarity
+      const expectationSuggestions = await this.findSimilarExpectations(request.text);
 
       // Extract SEL tags using LLM
       const selTags = await this.extractSELTags(request.text);
 
       const result: ClassificationResult = {
-        outcomes: outcomeSuggestions,
+        expectations: expectationSuggestions,
         selTags,
       };
 
       this.logger.info(
         {
           studentId: request.studentId,
-          outcomeCount: result.outcomes.length,
+          expectationCount: result.expectations.length,
           selTagCount: result.selTags.length,
           duration: Date.now() - startTime,
         },
@@ -88,9 +88,9 @@ export class ReflectionClassifierService extends BaseService {
   }
 
   /**
-   * Find similar curriculum outcomes using embedding similarity
+   * Find similar curriculum expectations using embedding similarity
    */
-  private async findSimilarOutcomes(reflectionText: string): Promise<
+  private async findSimilarExpectations(reflectionText: string): Promise<
     Array<{
       id: string;
       confidence: number;
@@ -107,12 +107,12 @@ export class ReflectionClassifierService extends BaseService {
         return [];
       }
 
-      // Find similar outcomes using cosine similarity
+      // Find similar expectations using cosine similarity
       // Note: In a production system, you'd use a vector database like Pinecone or Qdrant
       // For now, we'll use a simplified approach with the existing embeddings
-      const outcomeEmbeddings = await this.prisma.outcomeEmbedding.findMany({
+      const expectationEmbeddings = await this.prisma.expectationEmbedding.findMany({
         include: {
-          outcome: {
+          expectation: {
             select: {
               id: true,
               code: true,
@@ -125,32 +125,32 @@ export class ReflectionClassifierService extends BaseService {
         take: 50, // Limit for performance
       });
 
-      const similarities = outcomeEmbeddings
-        .map((oe) => {
-          const similarity = this.cosineSimilarity(reflectionEmbedding, oe.embedding as number[]);
+      const similarities = expectationEmbeddings
+        .map((ee) => {
+          const similarity = this.cosineSimilarity(reflectionEmbedding, ee.embedding as number[]);
 
           return {
-            id: oe.outcomeId,
+            id: ee.expectationId,
             similarity,
-            outcome: oe.outcome,
+            expectation: ee.expectation,
           };
         })
         .sort((a, b) => b.similarity - a.similarity);
 
       // Take top 3 with confidence > 0.6
-      const topOutcomes = similarities.filter((s) => s.similarity > 0.6).slice(0, 3);
+      const topExpectations = similarities.filter((s) => s.similarity > 0.6).slice(0, 3);
 
-      // Generate rationales for the top outcomes
+      // Generate rationales for the top expectations
       const results = await Promise.all(
-        topOutcomes.map(async (outcome) => {
-          const rationale = await this.generateOutcomeRationale(
+        topExpectations.map(async (expectation) => {
+          const rationale = await this.generateExpectationRationale(
             reflectionText,
-            outcome.outcome.description,
+            expectation.expectation.description,
           );
 
           return {
-            id: outcome.id,
-            confidence: Math.round(outcome.similarity * 100) / 100,
+            id: expectation.id,
+            confidence: Math.round(expectation.similarity * 100) / 100,
             rationale,
           };
         }),
@@ -158,7 +158,7 @@ export class ReflectionClassifierService extends BaseService {
 
       return results;
     } catch (error) {
-      this.logger.error({ error }, 'Failed to find similar outcomes');
+      this.logger.error({ error }, 'Failed to find similar expectations');
       return [];
     }
   }
@@ -202,25 +202,25 @@ export class ReflectionClassifierService extends BaseService {
   }
 
   /**
-   * Generate a rationale for why an outcome matches a reflection
+   * Generate a rationale for why an expectation matches a reflection
    */
-  private async generateOutcomeRationale(
+  private async generateExpectationRationale(
     reflectionText: string,
-    outcomeDescription: string,
+    expectationDescription: string,
   ): Promise<string> {
     try {
-      const systemMessage = `You are an educational expert. Explain in 1-2 concise sentences why a student reflection demonstrates evidence of a specific curriculum outcome.`;
+      const systemMessage = `You are an educational expert. Explain in 1-2 concise sentences why a student reflection demonstrates evidence of a specific curriculum expectation.`;
 
       const prompt = `Student reflection: "${reflectionText}"
       
-      Curriculum outcome: "${outcomeDescription}"
+      Curriculum expectation: "${expectationDescription}"
       
-      Explain why this reflection provides evidence of the outcome:`;
+      Explain why this reflection provides evidence of the expectation:`;
 
       const rationale = await generateContent(prompt, systemMessage);
       return rationale.length > 200 ? rationale.substring(0, 200) + '...' : rationale;
     } catch (error) {
-      this.logger.error({ error }, 'Failed to generate outcome rationale');
+      this.logger.error({ error }, 'Failed to generate expectation rationale');
       return 'Demonstrates relevant skills and understanding.';
     }
   }
@@ -261,10 +261,10 @@ export class ReflectionClassifierService extends BaseService {
       await this.prisma.studentReflection.update({
         where: { id: reflectionId },
         data: {
-          suggestedOutcomeIds: JSON.stringify(classification.outcomes.map((o) => o.id)),
+          suggestedExpectationIds: JSON.stringify(classification.expectations.map((e) => e.id)),
           selTags: JSON.stringify(classification.selTags),
-          classificationConfidence: classification.outcomes[0]?.confidence || 0,
-          classificationRationale: classification.outcomes[0]?.rationale || '',
+          classificationConfidence: classification.expectations[0]?.confidence || 0,
+          classificationRationale: classification.expectations[0]?.rationale || '',
           classifiedAt: new Date(),
         },
       });

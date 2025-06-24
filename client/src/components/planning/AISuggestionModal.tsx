@@ -17,7 +17,7 @@ import { useToast } from '../ui/use-toast';
 
 interface AISuggestedActivity {
   id: number;
-  outcomeId: string;
+  expectationId: string; // Updated for ETFO alignment
   userId: number;
   title: string;
   descriptionFr: string;

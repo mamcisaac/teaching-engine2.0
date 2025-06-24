@@ -6,6 +6,10 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
 import bcrypt from 'bcryptjs';
 import debug from 'debug';
+import { config } from 'dotenv';
+
+// Load environment variables
+config();
 
 // Create debug logger
 const log = debug('server:main');
@@ -22,71 +26,21 @@ interface AuthenticatedRequest extends Request {
   };
 }
 
-import lessonPlanRoutes from './routes/lessonPlan';
-import milestoneRoutes from './routes/milestone';
-import activityRoutes from './routes/activity';
-import dailyPlanRoutes from './routes/dailyPlan';
-import resourceRoutes from './routes/resource';
-import materialListRoutes from './routes/materialList';
-import notificationRoutes from './routes/notification';
-import newsletterRoutes from './routes/newsletter';
-import newsletterDraftRoutes from './routes/newsletterDraft';
-import newsletterSuggestionRoutes from './routes/newsletterSuggestion';
-import plannerSuggestionRoutes from './routes/plannerSuggestion';
-import timetableRoutes from './routes/timetable';
-import noteRoutes from './routes/note';
-import calendarEventRoutes from './routes/calendarEvent';
-import unavailableBlockRoutes from './routes/unavailableBlock';
-import reportDeadlineRoutes from './routes/reportDeadline';
-import yearPlanRoutes from './routes/yearPlan';
-import shareRoutes from './routes/share';
-import equipmentBookingRoutes from './routes/equipmentBooking';
-import holidayRoutes from './routes/holiday';
-import outcomeRoutes from './routes/outcome';
-import weekRoutes from './routes/week';
-import substituteInfoRoutes from './routes/substituteInfo';
-import backupRoutes from './routes/backupRoutes';
-import subjectRoutes from './routes/subject';
-import subplanRoutes from './routes/subplan';
-import smartGoalRoutes from './routes/smartGoal';
-import oralRoutineRoutes from './routes/oralRoutine';
-import thematicUnitRoutes from './routes/thematicUnit';
-import cognateRoutes from './routes/cognate';
-import mediaResourceRoutes from './routes/mediaResource';
-import parentMessageRoutes from './routes/parentMessage';
-import communicationRoutes from './routes/communication';
-import emailTemplateRoutes from './routes/emailTemplates';
-import reportRoutes from './routes/reports';
-import parentContactRoutes from './routes/parentContacts';
-import reflectionRoutes from './routes/reflections';
-import promptRoutes from './routes/prompts';
+// ETFO-aligned route imports
+import curriculumImportRoutes from './routes/curriculumImport';
 import studentRoutes from './routes/student';
 import parentSummaryRoutes from './routes/parentSummary';
-import auditRoutes from './routes/audit';
-import reflectionsRoutes from './routes/reflections';
-import alertsRoutes from './routes/alerts';
-import testRoutes from './routes/test';
-import { aiSuggestionsRouter } from './routes/aiSuggestions';
-import aiParentSummaryRoutes from './routes/aiParentSummary';
-import activityTemplateRoutes from './routes/activityTemplate';
-import planningRoutes from './routes/planning';
-import curriculumImportRoutes from './routes/curriculumImport';
-import enhancedPlanningRoutes from './routes/enhancedPlanning';
-import enhancedMaterialRoutes from './routes/enhancedMaterial';
-import analyticsRoutes from './routes/analytics';
-import embeddingsRoutes from './routes/embeddings';
-import aiEnhancedRoutes from './routes/aiEnhanced';
 import curriculumExpectationRoutes from './routes/curriculum-expectations';
 import longRangePlanRoutes from './routes/long-range-plans';
 import unitPlanRoutes from './routes/unit-plans';
 import etfoLessonPlanRoutes from './routes/etfo-lesson-plans';
 import daybookEntryRoutes from './routes/daybook-entries';
-import { scheduleProgressCheck } from './jobs/progressCheck';
-import { scheduleUnreadNotificationEmails } from './jobs/unreadNotificationEmail';
-import { scheduleNewsletterTriggers } from './jobs/newsletterTrigger';
-import { scheduleReportDeadlineReminders } from './jobs/reportDeadlineReminder';
-import { scheduleEquipmentBookingReminders } from './jobs/bookingReminder';
-import { scheduleBackups } from './services/backupService';
+import etfoProgressRoutes from './routes/etfo-progress';
+import workflowStateRoutes from './routes/workflow-state';
+import aiPlanningRoutes from './routes/ai-planning';
+import activityDiscoveryRoutes from './routes/activity-discovery';
+import activityCollectionsRoutes from './routes/activity-collections';
+import aiActivityGenerationRoutes from './routes/ai-activity-generation';
 import {
   initializeServices,
   shutdownServices,
@@ -228,75 +182,16 @@ app.get('/api/health', (_req, res) => {
 // Mount test routes (only available in test environment)
 log(`NODE_ENV is: ${process.env.NODE_ENV}`);
 if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
-  log('Mounting test routes...');
-  app.use('/api/test', testRoutes);
+  log('Skipping test routes - disabled in ETFO-aligned implementation');
 } else {
   log('Skipping test routes - not in test or development mode');
 }
 
-// Apply authentication to all other API routes
-log('Mounting API routes...');
-app.use('/api/lesson-plans', authenticateToken, lessonPlanRoutes);
-app.use('/api/milestones', authenticateToken, milestoneRoutes);
-app.use('/api/activities', authenticateToken, activityRoutes);
-app.use('/api/daily-plans', authenticateToken, dailyPlanRoutes);
-app.use('/api/resources', authenticateToken, resourceRoutes);
-app.use('/api/material-lists', authenticateToken, materialListRoutes);
-app.use('/api/notifications', authenticateToken, notificationRoutes);
-app.use('/api/newsletters', authenticateToken, newsletterRoutes);
-app.use('/api/newsletter-draft', authenticateToken, newsletterDraftRoutes);
-app.use('/api/newsletter-suggestions', authenticateToken, newsletterSuggestionRoutes);
-log('Mounting planner suggestions route...');
-app.use('/api/planner/suggestions', authenticateToken, plannerSuggestionRoutes);
-app.use('/api/timetable', authenticateToken, timetableRoutes);
-app.use('/api/notes', authenticateToken, noteRoutes);
-app.use('/api/calendar-events', authenticateToken, calendarEventRoutes);
-app.use('/api/unavailable-blocks', authenticateToken, unavailableBlockRoutes);
-app.use('/api/report-deadlines', authenticateToken, reportDeadlineRoutes);
-app.use('/api/year-plan', authenticateToken, yearPlanRoutes);
-app.use('/api/share', authenticateToken, shareRoutes);
-app.use('/api/equipment-bookings', authenticateToken, equipmentBookingRoutes);
-app.use('/api/holidays', authenticateToken, holidayRoutes);
-app.use('/api/outcomes', authenticateToken, outcomeRoutes);
-app.use('/api/weeks', authenticateToken, weekRoutes);
-app.use('/api/substitute-info', authenticateToken, substituteInfoRoutes);
-app.use('/api/backup', authenticateToken, backupRoutes);
-app.use('/api/subjects', authenticateToken, subjectRoutes);
-app.use('/api/sub-plan', authenticateToken, subplanRoutes);
-app.use('/api/smart-goals', authenticateToken, smartGoalRoutes);
-app.use('/api/oral-routines', authenticateToken, oralRoutineRoutes);
-app.use('/api/thematic-units', authenticateToken, thematicUnitRoutes);
-app.use('/api/cognates', authenticateToken, cognateRoutes);
-app.use('/api/media-resources', authenticateToken, mediaResourceRoutes);
-app.use('/api/parent-messages', authenticateToken, parentMessageRoutes);
-app.use('/api/communication', authenticateToken, communicationRoutes);
-app.use('/api/email-templates', authenticateToken, emailTemplateRoutes);
-app.use('/api/reports', authenticateToken, reportRoutes);
-app.use('/api/parent-contacts', authenticateToken, parentContactRoutes);
-app.use('/api/reflections', authenticateToken, reflectionRoutes);
-app.use('/api/prompts', authenticateToken, promptRoutes);
+// Apply authentication to all API routes
+log('Mounting ETFO-aligned API routes...');
 app.use('/api/students', authenticateToken, studentRoutes);
-app.use('/api/ai-parent-summary', authenticateToken, parentSummaryRoutes);
-app.use('/api/audit', authenticateToken, auditRoutes);
-app.use('/api/reflections', authenticateToken, reflectionsRoutes);
-app.use('/api/alerts', authenticateToken, alertsRoutes);
-app.use('/api/ai-suggestions', authenticateToken, aiSuggestionsRouter);
-app.use('/api/ai-parent-summary', authenticateToken, aiParentSummaryRoutes);
-app.use('/api/activity-templates', authenticateToken, activityTemplateRoutes);
-app.use('/api/planning', authenticateToken, planningRoutes);
-app.use('/api/curriculum/import', authenticateToken, curriculumImportRoutes);
-app.use('/api/embeddings', embeddingsRoutes); // Note: Has its own auth middleware for admin routes
-
-// Phase 5 Routes
+app.use('/api/parent-summary', authenticateToken, parentSummaryRoutes);
 app.use('/api/curriculum-import', authenticateToken, curriculumImportRoutes);
-app.use('/api/enhanced-planning', authenticateToken, enhancedPlanningRoutes);
-app.use('/api/enhanced-materials', authenticateToken, enhancedMaterialRoutes);
-
-// Analytics Routes
-app.use('/api/analytics', authenticateToken, analyticsRoutes);
-
-// Phase 2 AI Enhanced Routes
-app.use('/api/ai', authenticateToken, aiEnhancedRoutes);
 
 // ETFO-aligned Planning Routes
 app.use('/api/curriculum-expectations', authenticateToken, curriculumExpectationRoutes);
@@ -304,6 +199,14 @@ app.use('/api/long-range-plans', authenticateToken, longRangePlanRoutes);
 app.use('/api/unit-plans', authenticateToken, unitPlanRoutes);
 app.use('/api/etfo-lesson-plans', authenticateToken, etfoLessonPlanRoutes);
 app.use('/api/daybook-entries', authenticateToken, daybookEntryRoutes);
+app.use('/api/etfo', authenticateToken, etfoProgressRoutes);
+app.use('/api/workflow', authenticateToken, workflowStateRoutes);
+app.use('/api/ai-planning', authenticateToken, aiPlanningRoutes);
+
+// Activity Discovery Routes
+app.use('/api/activities', authenticateToken, activityDiscoveryRoutes);
+app.use('/api/activity-collections', authenticateToken, activityCollectionsRoutes);
+app.use('/api/ai-activities', authenticateToken, aiActivityGenerationRoutes);
 
 // Service health check endpoint (no auth required for monitoring)
 app.get('/api/health/services', async (_req, res) => {
@@ -365,19 +268,7 @@ if (isDirectRun || isE2ETest) {
         console.log(`Server is running on port ${PORT}`);
         log('Server started successfully');
 
-        // Schedule background jobs
-        log('Scheduling background jobs...');
-        try {
-          scheduleProgressCheck();
-          scheduleUnreadNotificationEmails();
-          scheduleNewsletterTriggers();
-          scheduleReportDeadlineReminders();
-          scheduleEquipmentBookingReminders();
-          scheduleBackups();
-          log('All background jobs scheduled');
-        } catch (err) {
-          error('Error scheduling background jobs:', err);
-        }
+        // Background jobs disabled - ETFO approach uses manual workflow
       });
     })
     .catch((err) => {

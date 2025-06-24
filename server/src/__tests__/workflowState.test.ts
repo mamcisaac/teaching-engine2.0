@@ -1,0 +1,255 @@
+import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
+import { WorkflowStateService, ETFOLevel, ETFO_LEVEL_SEQUENCE } from '../services/workflowStateService';
+import { prisma } from '../prisma';
+
+// Mock dependencies
+jest.mock('../services/base/BaseService');
+
+// Mock Prisma
+jest.mock('../../src/prisma', () => ({
+  prisma: {
+    curriculumExpectation: {
+      count: jest.fn(),
+      findUnique: jest.fn(),
+    },
+    longRangePlan: {
+      count: jest.fn(),
+      findUnique: jest.fn(),
+    },
+    unitPlan: {
+      count: jest.fn(),
+      findUnique: jest.fn(),
+    },
+    eTFOLessonPlan: {
+      count: jest.fn(),
+      findUnique: jest.fn(),
+    },
+    daybookEntry: {
+      count: jest.fn(),
+      findUnique: jest.fn(),
+    },
+  },
+}));
+
+describe('WorkflowStateService', () => {
+  let service: WorkflowStateService;
+  const userId = 1;
+
+  beforeEach(() => {
+    service = new WorkflowStateService();
+    jest.clearAllMocks();
+  });
+
+  describe('getUserWorkflowState', () => {
+    it('should return complete workflow state for user with no progress', async () => {
+      // Mock all counts to return 0
+      (prisma.curriculumExpectation.count as jest.Mock).mockResolvedValue(0);
+      (prisma.longRangePlan.count as jest.Mock).mockResolvedValue(0);
+      (prisma.unitPlan.count as jest.Mock).mockResolvedValue(0);
+      (prisma.eTFOLessonPlan.count as jest.Mock).mockResolvedValue(0);
+      (prisma.daybookEntry.count as jest.Mock).mockResolvedValue(0);
+
+      const state = await service.getUserWorkflowState(userId);
+
+      expect(state.userId).toBe(userId);
+      expect(state.currentLevel).toBe(ETFOLevel.CURRICULUM_EXPECTATIONS);
+      expect(state.completedLevels).toHaveLength(0);
+      expect(state.accessibleLevels).toContain(ETFOLevel.CURRICULUM_EXPECTATIONS);
+      expect(state.blockedLevels).toHaveLength(4); // All other levels blocked
+      expect(state.progress).toHaveLength(5);
+    });
+
+    it('should show correct state when curriculum expectations are complete', async () => {
+      // Mock curriculum expectations as complete
+      (prisma.curriculumExpectation.count as jest.Mock).mockResolvedValue(5);
+      (prisma.longRangePlan.count as jest.Mock).mockResolvedValue(0);
+      (prisma.unitPlan.count as jest.Mock).mockResolvedValue(0);
+      (prisma.eTFOLessonPlan.count as jest.Mock).mockResolvedValue(0);
+      (prisma.daybookEntry.count as jest.Mock).mockResolvedValue(0);
+
+      const state = await service.getUserWorkflowState(userId);
+
+      expect(state.currentLevel).toBe(ETFOLevel.LONG_RANGE_PLANS);
+      expect(state.completedLevels).toContain(ETFOLevel.CURRICULUM_EXPECTATIONS);
+      expect(state.accessibleLevels).toContain(ETFOLevel.LONG_RANGE_PLANS);
+      expect(state.blockedLevels).not.toContain(ETFOLevel.LONG_RANGE_PLANS);
+    });
+
+    it('should calculate progress correctly', async () => {
+      // Mock partial progress
+      (prisma.curriculumExpectation.count as jest.Mock).mockResolvedValue(10);
+      (prisma.longRangePlan.count as jest.Mock)
+        .mockResolvedValueOnce(5) // total
+        .mockResolvedValueOnce(3); // completed
+      (prisma.unitPlan.count as jest.Mock).mockResolvedValue(0);
+      (prisma.eTFOLessonPlan.count as jest.Mock).mockResolvedValue(0);
+      (prisma.daybookEntry.count as jest.Mock).mockResolvedValue(0);
+
+      const state = await service.getUserWorkflowState(userId);
+      const lrpProgress = state.progress.find(p => p.level === ETFOLevel.LONG_RANGE_PLANS);
+
+      expect(lrpProgress?.progressPercentage).toBe(60); // 3/5 * 100
+      expect(lrpProgress?.completedItems).toBe(3);
+      expect(lrpProgress?.totalItems).toBe(5);
+    });
+  });
+
+  describe('canAccessLevel', () => {
+    it('should allow access to curriculum expectations always', async () => {
+      const result = await service.canAccessLevel(userId, ETFOLevel.CURRICULUM_EXPECTATIONS);
+      expect(result.canAccess).toBe(true);
+      expect(result.reason).toBeUndefined();
+    });
+
+    it('should block access to long-range plans if curriculum not complete', async () => {
+      (prisma.curriculumExpectation.count as jest.Mock).mockResolvedValue(0);
+
+      const result = await service.canAccessLevel(userId, ETFOLevel.LONG_RANGE_PLANS);
+      expect(result.canAccess).toBe(false);
+      expect(result.reason).toContain('Curriculum Expectations');
+    });
+
+    it('should allow access to long-range plans if curriculum is complete', async () => {
+      (prisma.curriculumExpectation.count as jest.Mock).mockResolvedValue(5);
+
+      const result = await service.canAccessLevel(userId, ETFOLevel.LONG_RANGE_PLANS);
+      expect(result.canAccess).toBe(true);
+    });
+
+    it('should check all previous levels for later levels', async () => {
+      // Mock first two levels complete
+      (prisma.curriculumExpectation.count as jest.Mock).mockResolvedValue(5);
+      (prisma.longRangePlan.count as jest.Mock)
+        .mockResolvedValueOnce(2) // total
+        .mockResolvedValueOnce(2); // completed
+
+      const result = await service.canAccessLevel(userId, ETFOLevel.UNIT_PLANS);
+      expect(result.canAccess).toBe(true);
+    });
+  });
+
+  describe('validateLevelCompletion', () => {
+    it('should validate curriculum expectation fields', async () => {
+      const expectation = {
+        id: 'exp-1',
+        code: 'M1.1',
+        description: 'Count to 20',
+        strand: 'Number',
+      };
+
+      (prisma.curriculumExpectation.findUnique as jest.Mock).mockResolvedValue(expectation);
+
+      const result = await service.validateLevelCompletion(
+        userId,
+        ETFOLevel.CURRICULUM_EXPECTATIONS,
+        'exp-1'
+      );
+
+      expect(result.isValid).toBe(true);
+      expect(result.missingFields).toHaveLength(0);
+    });
+
+    it('should identify missing required fields', async () => {
+      const expectation = {
+        id: 'exp-1',
+        code: 'M1.1',
+        description: null, // Missing
+        strand: 'Number',
+      };
+
+      (prisma.curriculumExpectation.findUnique as jest.Mock).mockResolvedValue(expectation);
+
+      const result = await service.validateLevelCompletion(
+        userId,
+        ETFOLevel.CURRICULUM_EXPECTATIONS,
+        'exp-1'
+      );
+
+      expect(result.isValid).toBe(false);
+      expect(result.missingFields).toContain('description');
+    });
+
+    it('should validate unit plan with curriculum expectations', async () => {
+      const unitPlan = {
+        id: 'unit-1',
+        title: 'Numbers Unit',
+        bigIdeas: 'Understanding numbers',
+        learningGoals: 'Count and compare',
+        curriculumExpectations: [{ id: 'exp-1' }], // Has expectations
+      };
+
+      (prisma.unitPlan.findUnique as jest.Mock).mockResolvedValue(unitPlan);
+
+      const result = await service.validateLevelCompletion(
+        userId,
+        ETFOLevel.UNIT_PLANS,
+        'unit-1'
+      );
+
+      expect(result.isValid).toBe(true);
+    });
+
+    it('should reject unit plan without curriculum expectations', async () => {
+      const unitPlan = {
+        id: 'unit-1',
+        title: 'Numbers Unit',
+        bigIdeas: 'Understanding numbers',
+        learningGoals: 'Count and compare',
+        curriculumExpectations: [], // No expectations
+      };
+
+      (prisma.unitPlan.findUnique as jest.Mock).mockResolvedValue(unitPlan);
+
+      const result = await service.validateLevelCompletion(
+        userId,
+        ETFOLevel.UNIT_PLANS,
+        'unit-1'
+      );
+
+      expect(result.isValid).toBe(false);
+      expect(result.missingFields).toContain('curriculumExpectations');
+    });
+
+    it('should handle entity not found', async () => {
+      (prisma.curriculumExpectation.findUnique as jest.Mock).mockResolvedValue(null);
+
+      const result = await service.validateLevelCompletion(
+        userId,
+        ETFOLevel.CURRICULUM_EXPECTATIONS,
+        'non-existent'
+      );
+
+      expect(result.isValid).toBe(false);
+      expect(result.missingFields).toContain('entity not found');
+    });
+  });
+
+  describe('Level sequence enforcement', () => {
+    it('should enforce correct level sequence', () => {
+      expect(ETFO_LEVEL_SEQUENCE).toEqual([
+        ETFOLevel.CURRICULUM_EXPECTATIONS,
+        ETFOLevel.LONG_RANGE_PLANS,
+        ETFOLevel.UNIT_PLANS,
+        ETFOLevel.LESSON_PLANS,
+        ETFOLevel.DAYBOOK_ENTRIES,
+      ]);
+    });
+
+    it('should identify blocked levels correctly', async () => {
+      // Only curriculum complete
+      (prisma.curriculumExpectation.count as jest.Mock).mockResolvedValue(5);
+      (prisma.longRangePlan.count as jest.Mock).mockResolvedValue(0);
+      (prisma.unitPlan.count as jest.Mock).mockResolvedValue(0);
+      (prisma.eTFOLessonPlan.count as jest.Mock).mockResolvedValue(0);
+      (prisma.daybookEntry.count as jest.Mock).mockResolvedValue(0);
+
+      const state = await service.getUserWorkflowState(userId);
+
+      expect(state.accessibleLevels).toContain(ETFOLevel.CURRICULUM_EXPECTATIONS);
+      expect(state.accessibleLevels).toContain(ETFOLevel.LONG_RANGE_PLANS);
+      expect(state.blockedLevels).toContain(ETFOLevel.UNIT_PLANS);
+      expect(state.blockedLevels).toContain(ETFOLevel.LESSON_PLANS);
+      expect(state.blockedLevels).toContain(ETFOLevel.DAYBOOK_ENTRIES);
+    });
+  });
+});

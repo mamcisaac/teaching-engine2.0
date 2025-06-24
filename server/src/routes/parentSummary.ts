@@ -63,23 +63,6 @@ router.post('/generate', async (req: AuthenticatedRequest, res, next) => {
       },
       include: {
         parentContacts: true,
-        assessmentResults: {
-          include: {
-            assessment: {
-              include: {
-                template: true,
-              },
-            },
-          },
-          where: {
-            assessment: {
-              date: {
-                gte: new Date(from),
-                lte: new Date(to),
-              },
-            },
-          },
-        },
         artifacts: {
           where: {
             createdAt: {

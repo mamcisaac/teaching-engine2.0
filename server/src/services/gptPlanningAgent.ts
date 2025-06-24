@@ -2,15 +2,13 @@ import { prisma } from '../prisma';
 import { openai } from './llmService';
 import { z } from 'zod';
 import logger from '../logger';
-import { aiActivityGeneratorEnhanced } from './aiActivityGeneratorEnhanced';
-import { aiWeeklyPlanGenerator } from './aiWeeklyPlanGenerator';
 import { v4 as uuidv4 } from 'uuid';
 
 // Schema for agent responses
 const AgentResponseSchema = z.object({
   message: z.string(),
   actions: z.array(z.object({
-    type: z.enum(['generate_activity', 'generate_plan', 'analyze_coverage', 'show_suggestions', 'schedule_activity']),
+    type: z.enum(['generate_activity', 'generate_plan', 'analyze_coverage', 'show_suggestions']),
     parameters: z.record(z.unknown()),
   })).optional(),
   suggestions: z.array(z.string()).optional(),
@@ -234,11 +232,10 @@ Original message: "${intent.message}"
 Generate an appropriate response with any necessary actions.
 
 Actions can be:
-- generate_activity: Create activities for outcomes
-- generate_plan: Create a weekly plan
-- analyze_coverage: Show curriculum coverage analysis
-- show_suggestions: Display activity suggestions
-- schedule_activity: Add activity to calendar
+- generate_activity: Create activities for curriculum expectations (redirects to ETFO planning)
+- generate_plan: Create a weekly plan (redirects to ETFO planning)
+- analyze_coverage: Show curriculum coverage analysis (redirects to curriculum expectations)
+- show_suggestions: Display activity suggestions (redirects to activity discovery)
 
 Format response as JSON.`;
 
@@ -284,73 +281,52 @@ Format response as JSON.`;
       try {
         switch (action.type) {
           case 'generate_activity': {
-            const activities = await aiActivityGeneratorEnhanced.generateActivities({
-              outcomeIds: (action.parameters.outcomeIds as string[]) || [],
-              userId: context.userId,
-              theme: action.parameters.theme as string,
-              complexity: action.parameters.complexity as 'simple' | 'moderate' | 'complex',
-            });
+            // Legacy function - use ETFO lesson planning and activity discovery instead
             results.push({
               type: 'activities_generated',
-              data: activities,
+              data: { 
+                message: 'Activity generation has been moved to the ETFO lesson planning workflow with Activity Discovery feature',
+                redirect: '/planner/lessons'
+              },
             });
             break;
           }
 
           case 'generate_plan': {
-            const plan = await aiWeeklyPlanGenerator.generateWeeklyPlan({
-              userId: context.userId,
-              weekStart: (action.parameters.weekStart as string) || this.getNextMonday(),
-              preferences: action.parameters.preferences as Record<string, unknown>,
-            });
+            // Legacy function - use ETFO planning workflow instead
             results.push({
               type: 'plan_generated',
-              data: plan,
+              data: { 
+                message: 'Plan generation is now handled through the ETFO 5-level planning workflow',
+                redirect: '/planner/dashboard'
+              },
             });
             break;
           }
 
           case 'analyze_coverage': {
-            const analysis = await aiActivityGeneratorEnhanced.analyzeCurriculumGaps(
-              context.userId,
-              action.parameters.subjectId as number
-            );
+            // Legacy function - use curriculum expectations analysis instead
             results.push({
               type: 'coverage_analysis',
-              data: analysis,
+              data: { 
+                message: 'Coverage analysis is now available through curriculum expectations tracking',
+                redirect: '/curriculum'
+              },
             });
             break;
           }
 
           case 'show_suggestions': {
-            const suggestions = await prisma.aISuggestedActivity.findMany({
-              where: {
-                userId: context.userId,
-                ...(action.parameters.outcomeId && { outcomeId: action.parameters.outcomeId as string }),
-                ...(action.parameters.theme && { theme: action.parameters.theme as string }),
-              },
-              include: {
-                outcome: true,
-              },
-              orderBy: {
-                qualityScore: 'desc',
-              },
-              take: 5,
-            });
+            // Legacy function - use activity discovery instead
             results.push({
               type: 'suggestions_retrieved',
-              data: suggestions,
+              data: { 
+                message: 'Activity suggestions are now available through the Activity Discovery feature',
+                redirect: '/activity-library'
+              },
             });
             break;
           }
-
-          case 'schedule_activity':
-            // TODO: Implement activity scheduling
-            results.push({
-              type: 'activity_scheduled',
-              data: { success: false, message: 'Scheduling not yet implemented' },
-            });
-            break;
 
           default:
             logger.warn(`Unknown action type: ${action.type}`);
@@ -394,31 +370,31 @@ Format response as JSON.`;
    * Get quick action suggestions based on current context
    */
   async getQuickActions(userId: number) {
-    // Analyze recent activity to suggest relevant actions
+    // Analyze recent activity to suggest relevant actions using ETFO planning system
 
-    const upcomingMilestones = await prisma.milestone.findMany({
+    const upcomingUnitPlans = await prisma.unitPlan.findMany({
       where: {
         userId,
-        targetDate: {
+        startDate: {
           gte: new Date(),
           lte: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // Next 30 days
         },
       },
       include: {
-        activities: true,
+        lessonPlans: true,
       },
       take: 5,
     });
 
     const suggestions = [];
 
-    // Suggest planning for upcoming milestones with few activities
-    for (const milestone of upcomingMilestones) {
-      if (milestone.activities.length < 3) {
+    // Suggest lesson planning for upcoming unit plans with few lessons
+    for (const unitPlan of upcomingUnitPlans) {
+      if (unitPlan.lessonPlans.length < 3) {
         suggestions.push({
-          label: `Create activities for "${milestone.title}"`,
+          label: `Create lesson plans for "${unitPlan.title}"`,
           action: 'generate_activity',
-          parameters: { milestoneId: milestone.id },
+          parameters: { unitPlanId: unitPlan.id },
         });
       }
     }

@@ -1,6 +1,6 @@
 import { z, ZodSchema } from 'zod';
 import { Request, Response, NextFunction } from 'express';
-import { ALLOWED_TEMPLATES } from './services/newsletterGenerator';
+// import { ALLOWED_TEMPLATES } from './services/newsletterGenerator';
 
 export const subjectSchema = z.object({
   name: z.string().min(1),
@@ -34,7 +34,7 @@ const baseMilestoneSchema = z.object({
   endDate: z.string().datetime().optional(),
   estHours: z.number().int().optional(),
   ...bilingualString('description', false, { max: 10000 }),
-  outcomes: z.array(z.string()).optional(),
+  expectations: z.array(z.string()).optional(),
 });
 
 export const milestoneCreateSchema = baseMilestoneSchema.refine(
@@ -67,8 +67,7 @@ export const activityCreateSchema = z.object({
   ...bilingualString('materialsText', false, { max: 500 }),
   completedAt: z.string().datetime().optional(),
   tags: z.array(z.string()).optional(),
-  outcomes: z.array(z.string()).optional(),
-  cognates: z.array(z.number()).optional(),
+  expectations: z.array(z.string()).optional(),
 });
 
 export const activityUpdateSchema = activityCreateSchema.omit({ milestoneId: true }).partial();
@@ -92,7 +91,7 @@ export const timetableEntrySchema = z.object({
 export const newsletterGenerateSchema = z.object({
   startDate: z.string().datetime(),
   endDate: z.string().datetime(),
-  template: z.enum(ALLOWED_TEMPLATES).optional(),
+  template: z.string().optional(), // Legacy newsletter templates disabled
   includePhotos: z.boolean().optional(),
   useLLM: z.boolean().optional(),
   language: z.enum(['en', 'fr', 'both']).optional(),
@@ -136,13 +135,13 @@ export const smartGoalUpdateSchema = z.object({
 export const oralRoutineTemplateCreateSchema = z.object({
   ...bilingualString('title', true, { max: 200 }),
   ...bilingualString('description', false, { max: 1000 }),
-  outcomes: z.array(z.string()).optional(),
+  expectations: z.array(z.string()).optional(),
 });
 
 export const oralRoutineTemplateUpdateSchema = z.object({
   ...bilingualString('title', false, { max: 200 }),
   ...bilingualString('description', false, { max: 1000 }),
-  outcomes: z.array(z.string()).optional(),
+  expectations: z.array(z.string()).optional(),
 });
 
 export const dailyOralRoutineCreateSchema = z.object({
@@ -164,7 +163,7 @@ const baseThematicUnitSchema = z.object({
   ...bilingualString('description', false, { max: 2000 }),
   startDate: z.string().datetime(),
   endDate: z.string().datetime(),
-  outcomes: z.array(z.string()).optional(),
+  expectations: z.array(z.string()).optional(),
   activities: z.array(z.number().int()).optional(),
 });
 

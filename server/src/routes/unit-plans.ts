@@ -193,12 +193,25 @@ router.post('/', validate(unitPlanCreateSchema), async (req: AuthenticatedReques
     
     // Link curriculum expectations if provided
     if (expectationIds && expectationIds.length > 0) {
+      // Validate expectation IDs exist
+      const validExpectations = await prisma.curriculumExpectation.findMany({
+        where: { id: { in: expectationIds } },
+        select: { id: true },
+      });
+      
+      if (validExpectations.length !== expectationIds.length) {
+        return res.status(400).json({ 
+          error: 'One or more curriculum expectations not found',
+          provided: expectationIds,
+          found: validExpectations.map(e => e.id)
+        });
+      }
+      
       await prisma.unitPlanExpectation.createMany({
         data: expectationIds.map((expectationId: string) => ({
           unitPlanId: unitPlan.id,
           expectationId,
         })),
-        skipDuplicates: true,
       });
       
       // Refetch with expectations
@@ -280,8 +293,7 @@ router.put('/:id', validate(unitPlanUpdateSchema), async (req: AuthenticatedRequ
             unitPlanId: unitPlan.id,
             expectationId,
           })),
-          skipDuplicates: true,
-        });
+          });
       }
     }
     

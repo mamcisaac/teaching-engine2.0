@@ -17,7 +17,23 @@ const mockChatCompletion = {
     {
       message: {
         role: 'assistant',
-        content: 'This is a mock response for testing purposes.',
+        content: JSON.stringify({
+          units: [],
+          title: 'Test Plan',
+          bigIdeas: [],
+          essentialQuestions: [],
+          learningGoals: [],
+          successCriteria: [],
+          assessmentFor: [],
+          assessmentAs: [],
+          assessmentOf: [],
+          crossCurricularLinks: [],
+          timelineEstimateWeeks: 4,
+          weeklyBigIdeas: [],
+          dailyReflectionPrompts: [],
+          substituteNotes: '',
+          weeklyInsights: ''
+        }),
       },
       index: 0,
       finish_reason: 'stop',

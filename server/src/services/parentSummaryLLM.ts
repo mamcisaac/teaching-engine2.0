@@ -1,20 +1,11 @@
 import { generateContent } from './llmService';
 import type {
   Student,
-  StudentAssessmentResult,
   StudentArtifact,
   StudentReflection,
 } from '../prisma';
 
 interface StudentWithData extends Student {
-  assessmentResults: (StudentAssessmentResult & {
-    assessment: {
-      template: {
-        title: string;
-        type: string;
-      };
-    };
-  })[];
   artifacts: StudentArtifact[];
   reflections: StudentReflection[];
 }
@@ -49,13 +40,8 @@ export async function generateParentSummary({
 }: GenerateParentSummaryParams): Promise<ParentSummaryGeneration> {
   const formatDate = (date: Date) => date.toLocaleDateString('en-CA');
 
-  // Prepare assessment data
-  const assessmentSummary = student.assessmentResults.map((result) => ({
-    type: result.assessment.template.type,
-    title: result.assessment.template.title,
-    score: result.score,
-    notes: result.notes,
-  }));
+  // Assessment functionality removed
+  const assessmentSummary: Array<Record<string, unknown>> = [];
 
   // Prepare artifacts data
   const artifactsSummary = student.artifacts.map((artifact) => ({
@@ -81,16 +67,7 @@ STUDENT: ${student.firstName} ${student.lastName} (Grade ${student.grade})
 PERIOD: ${formatDate(fromDate)} to ${formatDate(toDate)}
 
 ASSESSMENT RESULTS:
-${
-  assessmentSummary.length > 0
-    ? assessmentSummary
-        .map(
-          (a) =>
-            `- ${a.title} (${a.type}): ${a.score ? `${a.score}%` : 'Not scored'}${a.notes ? ` - ${a.notes}` : ''}`,
-        )
-        .join('\n')
-    : 'No assessments recorded for this period'
-}
+No assessments recorded for this period
 
 STUDENT ARTIFACTS:
 ${

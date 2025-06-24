@@ -92,7 +92,6 @@ router.get('/', async (req: AuthenticatedRequest, res, next) => {
         reflections: { include: { outcome: true, theme: true, activity: true } },
         _count: {
           select: {
-            assessmentResults: true,
             artifacts: true,
             reflections: true,
             parentSummaries: true,
@@ -136,17 +135,6 @@ router.get('/:id', async (req: AuthenticatedRequest, res, next) => {
         parentContacts: true,
         goals: { include: { outcome: true, theme: true } },
         reflections: { include: { outcome: true, theme: true, activity: true } },
-        assessmentResults: {
-          include: {
-            assessment: {
-              include: {
-                template: true,
-              },
-            },
-          },
-          orderBy: { createdAt: 'desc' },
-          take: 10,
-        },
         artifacts: {
           orderBy: { createdAt: 'desc' },
           take: 10,
@@ -324,7 +312,6 @@ router.delete('/:id', async (req: AuthenticatedRequest, res, next) => {
     // Delete related data first (cascade delete)
     await prisma.$transaction([
       prisma.parentContact.deleteMany({ where: { studentId } }),
-      prisma.studentAssessmentResult.deleteMany({ where: { studentId } }),
       prisma.studentArtifact.deleteMany({ where: { studentId } }),
       prisma.studentReflection.deleteMany({ where: { studentId } }),
       prisma.studentGoal.deleteMany({ where: { studentId } }),
@@ -650,44 +637,14 @@ router.get('/:id/progress', async (req: AuthenticatedRequest, res, next) => {
       return res.status(404).json({ error: 'Student not found' });
     }
 
-    // Get assessment statistics
-    const assessmentStats = await prisma.studentAssessmentResult.aggregate({
-      where: { studentId },
-      _avg: { score: true },
-      _count: true,
-    });
-
-    // Get recent assessments by type
-    const recentAssessments = await prisma.studentAssessmentResult.findMany({
-      where: { studentId },
-      include: {
-        assessment: {
-          include: {
-            template: true,
-          },
-        },
-      },
-      orderBy: { assessment: { date: 'desc' } },
-      take: 5,
-    });
-
-    // Group by assessment type
-    const assessmentsByType = recentAssessments.reduce(
-      (acc, result) => {
-        const type = result.assessment.template.type;
-        if (!acc[type]) acc[type] = [];
-        acc[type].push(result);
-        return acc;
-      },
-      {} as Record<string, typeof recentAssessments>,
-    );
+    // Assessment functionality removed
 
     res.json({
       student,
       progress: {
-        totalAssessments: assessmentStats._count,
-        averageScore: assessmentStats._avg.score,
-        assessmentsByType,
+        totalAssessments: 0,
+        averageScore: null,
+        assessmentsByType: {},
         artifactCount: await prisma.studentArtifact.count({ where: { studentId } }),
         reflectionCount: await prisma.studentReflection.count({ where: { studentId } }),
       },

@@ -2,7 +2,6 @@ import { Router } from 'express';
 import { prisma } from '../prisma';
 import { generateSubPlanPDF, SubPlanInput } from '../services/subPlanGenerator';
 import { generateSubPlan } from '../services/subPlanService';
-import { sendSubPlanEmail } from '../services/subPlanEmailService';
 import { extractWeeklyPlan } from '../services/weeklyPlanExtractor';
 import { extractScenarioTemplates, autoDetectScenario, getScenarioById, generateScenarioContent } from '../services/scenarioTemplateExtractor';
 import { extractSchoolContacts, formatContactsForSubPlan, getEmergencyContactsList, generateEmergencyContactCard } from '../services/contactExtractor';
@@ -123,24 +122,11 @@ router.post('/generate', async (req, res, next) => {
           includeRoutines: options.includeRoutines,
           includePlans: options.includePlans,
           anonymized: options.anonymize,
-          emailedTo: req.body.emailTo,
           notes: req.body.notes
         }
       });
     }
     
-    // Send email if requested
-    if (req.body.emailTo) {
-      const user = await prisma.user.findUnique({ where: { id: options.userId } });
-      await sendSubPlanEmail({
-        ...options,
-        date,
-        days,
-        recipientEmail: req.body.emailTo,
-        teacherName: user?.name || 'Teacher',
-        additionalMessage: req.body.notes
-      });
-    }
     
     res.setHeader('Content-Type', 'application/pdf');
     res.send(pdf);

@@ -3,7 +3,7 @@ import { Button } from '../ui/Button';
 import Dialog from '../Dialog';
 import { useToast } from '../ui/use-toast';
 
-interface ParsedOutcome {
+interface ParsedExpectation {
   code: string;
   description: string;
   strand?: string;
@@ -13,7 +13,7 @@ interface ParsedOutcome {
 interface ParsedCurriculum {
   subject: string;
   grade: number;
-  outcomes: ParsedOutcome[];
+  expectations: ParsedExpectation[]; // Updated for ETFO alignment
 }
 
 interface ImportStatus {
@@ -195,7 +195,7 @@ export function CurriculumImportWizard({
 
       toast({
         title: 'Import Successful',
-        description: `Successfully imported ${result.outcomesCount} learning outcomes`,
+        description: `Successfully imported ${result.expectationsCount} curriculum expectations`,
       });
 
       setTimeout(() => {
@@ -214,16 +214,16 @@ export function CurriculumImportWizard({
     }
   }, [importId, reviewedData, toast, handleClose, onSuccess]);
 
-  const handleOutcomeEdit = useCallback(
-    (index: number, field: keyof ParsedOutcome, value: string) => {
+  const handleExpectationEdit = useCallback(
+    (index: number, field: keyof ParsedExpectation, value: string) => {
       if (!reviewedData) return;
 
-      const updatedOutcomes = [...reviewedData.outcomes];
-      updatedOutcomes[index] = { ...updatedOutcomes[index], [field]: value };
+      const updatedExpectations = [...reviewedData.expectations];
+      updatedExpectations[index] = { ...updatedExpectations[index], [field]: value };
 
       setReviewedData({
         ...reviewedData,
-        outcomes: updatedOutcomes,
+        expectations: updatedExpectations,
       });
     },
     [reviewedData],
@@ -345,7 +345,7 @@ export function CurriculumImportWizard({
 
         <div>
           <h3 className="text-lg font-semibold text-gray-900 mb-3">
-            Learning Outcomes ({reviewedData.outcomes.length})
+            Curriculum Expectations ({reviewedData.expectations.length})
           </h3>
           <div className="max-h-96 overflow-y-auto border border-gray-200 rounded-md">
             <table className="w-full">
@@ -363,20 +363,20 @@ export function CurriculumImportWizard({
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {reviewedData.outcomes.map((outcome, index) => (
+                {reviewedData.expectations.map((expectation, index) => (
                   <tr key={index} className="hover:bg-gray-50">
                     <td className="px-4 py-2">
                       <input
                         type="text"
-                        value={outcome.code}
-                        onChange={(e) => handleOutcomeEdit(index, 'code', e.target.value)}
+                        value={expectation.code}
+                        onChange={(e) => handleExpectationEdit(index, 'code', e.target.value)}
                         className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </td>
                     <td className="px-4 py-2">
                       <textarea
-                        value={outcome.description}
-                        onChange={(e) => handleOutcomeEdit(index, 'description', e.target.value)}
+                        value={expectation.description}
+                        onChange={(e) => handleExpectationEdit(index, 'description', e.target.value)}
                         rows={2}
                         className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
@@ -384,8 +384,8 @@ export function CurriculumImportWizard({
                     <td className="px-4 py-2">
                       <input
                         type="text"
-                        value={outcome.strand || ''}
-                        onChange={(e) => handleOutcomeEdit(index, 'strand', e.target.value)}
+                        value={expectation.strand || ''}
+                        onChange={(e) => handleExpectationEdit(index, 'strand', e.target.value)}
                         className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                         placeholder="Optional"
                       />
@@ -403,9 +403,9 @@ export function CurriculumImportWizard({
           </Button>
           <Button
             onClick={handleConfirmImport}
-            disabled={isConfirming || !reviewedData.subject || !reviewedData.outcomes.length}
+            disabled={isConfirming || !reviewedData.subject || !reviewedData.expectations.length}
           >
-            {isConfirming ? 'Importing...' : `Import ${reviewedData.outcomes.length} Outcomes`}
+            {isConfirming ? 'Importing...' : `Import ${reviewedData.expectations.length} Expectations`}
           </Button>
         </div>
       </div>

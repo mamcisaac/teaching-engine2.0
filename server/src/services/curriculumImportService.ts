@@ -2,14 +2,11 @@
 import { embeddingService } from './embeddingService';
 import BaseService from './base/BaseService';
 import { ImportStatus } from '@teaching-engine/database';
+// Import pdf-parse dynamically to avoid loading test files during module initialization
+let pdf: any;
+import mammoth from 'mammoth';
+import OpenAI from 'openai';
 
-export interface ImportOutcome {
-  code: string;
-  description: string;
-  subject: string;
-  grade: number;
-  domain?: string;
-}
 
 export interface ImportProgress {
   importId: string;
@@ -19,16 +16,90 @@ export interface ImportProgress {
   errors: string[];
 }
 
-export interface ImportResult {
-  importId: string;
-  outcomes: { id: string; code: string }[];
-  clusters: { id: string; name: string; outcomeIds: string[] }[];
-  errors: string[];
-}
 
 export class CurriculumImportService extends BaseService {
+  private openai: OpenAI | null = null;
+  
   constructor() {
     super('CurriculumImportService');
+    // Only initialize OpenAI if we have an API key
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (apiKey) {
+      this.openai = new OpenAI({ apiKey });
+    } else {
+      this.logger.warn('OpenAI API key not found - AI features will be disabled');
+    }
+  }
+
+  /**
+   * Confirm import and create curriculum expectations
+   */
+  async confirmImport(importId: string): Promise<{ created: number }> {
+    try {
+      const importRecord = await this.prisma.curriculumImport.findUnique({
+        where: { id: importId },
+      });
+
+      if (!importRecord) {
+        throw new Error('Import session not found');
+      }
+
+      if (importRecord.status !== ImportStatus.READY_FOR_REVIEW) {
+        throw new Error('Import is not ready for confirmation');
+      }
+
+      // Get parsed subjects from metadata
+      const metadata = importRecord.metadata as any;
+      const subjects = metadata?.parsedSubjects || [];
+      
+      let createdCount = 0;
+
+      // Create curriculum expectations
+      for (const subject of subjects) {
+        for (const expectation of subject.expectations) {
+          try {
+            // Check if expectation already exists
+            const existing = await this.prisma.curriculumExpectation.findUnique({
+              where: { code: expectation.code },
+            });
+
+            if (!existing) {
+              await this.prisma.curriculumExpectation.create({
+                data: {
+                  code: expectation.code,
+                  description: expectation.description,
+                  descriptionFr: expectation.descriptionFr || null,
+                  strand: expectation.strand,
+                  substrand: expectation.substrand || null,
+                  grade: expectation.grade,
+                  subject: expectation.subject,
+                },
+              });
+              createdCount++;
+            }
+          } catch (error) {
+            this.logger.warn(
+              { error, code: expectation.code },
+              'Failed to create expectation, skipping'
+            );
+          }
+        }
+      }
+
+      // Update import status
+      await this.updateImportStatus(importId, ImportStatus.COMPLETED);
+      await this.setCompletionTime(importId);
+
+      this.logger.info(
+        { importId, created: createdCount },
+        'Import confirmed and expectations created'
+      );
+
+      return { created: createdCount };
+    } catch (error) {
+      this.logger.error({ error, importId }, 'Failed to confirm import');
+      throw error;
+    }
   }
 
   /**
@@ -67,85 +138,18 @@ export class CurriculumImportService extends BaseService {
     }
   }
 
-  /**
-   * Process curriculum import from various sources
-   */
-  async processImport(importId: string, outcomes: ImportOutcome[]): Promise<ImportResult> {
-    try {
-      // Update status to processing
-      await this.updateImportStatus(importId, ImportStatus.PROCESSING, outcomes.length);
-
-      const errors: string[] = [];
-      const createdOutcomes: { id: string; code: string }[] = [];
-
-      // Process outcomes in batches
-      const batchSize = 50;
-      for (let i = 0; i < outcomes.length; i += batchSize) {
-        const batch = outcomes.slice(i, i + batchSize);
-
-        try {
-          const batchResults = await this.processBatchOutcomes(importId, batch);
-          createdOutcomes.push(...batchResults.outcomes);
-          errors.push(...batchResults.errors);
-
-          // Update progress
-          await this.updateProgress(importId, i + batch.length);
-        } catch (error) {
-          this.logger.error({ error, importId, batchIndex: i }, 'Failed to process batch');
-          errors.push(`Batch ${Math.floor(i / batchSize) + 1}: ${error}`);
-        }
-      }
-
-      // Generate embeddings for created outcomes
-      this.logger.info(
-        { importId, outcomeCount: createdOutcomes.length },
-        'Generating embeddings for imported outcomes',
-      );
-      const embeddingData = createdOutcomes.map((outcome) => ({
-        id: outcome.id,
-        text: `${outcome.code}: ${outcomes.find((o) => o.code === outcome.code)?.description || ''}`,
-      }));
-
-      await embeddingService.generateBatchEmbeddings(embeddingData);
-
-      // Generate initial clusters
-      const clusters = await this.generateInitialClusters(
-        importId,
-        createdOutcomes.map((o) => o.id),
-      );
-
-      // Mark as completed
-      await this.updateImportStatus(importId, ImportStatus.COMPLETED);
-      await this.setCompletionTime(importId);
-
-      this.logger.info(
-        {
-          importId,
-          outcomesCreated: createdOutcomes.length,
-          clustersGenerated: clusters.length,
-          errorsCount: errors.length,
-        },
-        'Completed curriculum import',
-      );
-
-      return {
-        importId,
-        outcomes: createdOutcomes,
-        clusters,
-        errors,
-      };
-    } catch (error) {
-      this.logger.error({ error, importId }, 'Failed to process curriculum import');
-      await this.updateImportStatus(importId, ImportStatus.FAILED);
-      await this.logErrors(importId, [error.toString()]);
-      throw error;
-    }
-  }
 
   /**
-   * Parse CSV content into outcomes
+   * Parse CSV content into curriculum expectations
    */
-  parseCSV(csvContent: string): ImportOutcome[] {
+  parseCSV(csvContent: string): Array<{
+    code: string;
+    description: string;
+    subject: string;
+    grade: number;
+    strand?: string;
+    substrand?: string;
+  }> {
     try {
       const lines = csvContent.split('\n');
       // Parse header line handling quoted values
@@ -178,7 +182,14 @@ export class CurriculumImportService extends BaseService {
         throw new Error('CSV must contain "code" and "description" columns');
       }
 
-      const outcomes: ImportOutcome[] = [];
+      const expectations: Array<{
+        code: string;
+        description: string;
+        subject: string;
+        grade: number;
+        strand?: string;
+        substrand?: string;
+      }> = [];
 
       for (let i = 1; i < lines.length; i++) {
         const line = lines[i].trim();
@@ -210,18 +221,18 @@ export class CurriculumImportService extends BaseService {
           continue;
         }
 
-        const outcome: ImportOutcome = {
+        const expectation = {
           code: columns[codeIndex],
           description: columns[descriptionIndex],
           subject: subjectIndex >= 0 ? columns[subjectIndex] : 'Unknown',
           grade: gradeIndex >= 0 ? parseInt(columns[gradeIndex]) || 0 : 0,
-          domain: domainIndex >= 0 ? columns[domainIndex] : undefined,
+          strand: domainIndex >= 0 ? columns[domainIndex] : 'General',
         };
 
-        outcomes.push(outcome);
+        expectations.push(expectation);
       }
 
-      return outcomes;
+      return expectations;
     } catch (error) {
       this.logger.error({ error }, 'Failed to parse CSV content');
       throw new Error(`CSV parsing failed: ${error.message}`);
@@ -229,21 +240,78 @@ export class CurriculumImportService extends BaseService {
   }
 
   /**
-   * Extract outcomes from PDF (placeholder for future implementation)
+   * Extract curriculum expectations from PDF using pdf-parse and AI
    */
-  async parsePDF(): Promise<ImportOutcome[]> {
-    // TODO: Implement PDF parsing using pdf-parse or similar library
-    this.logger.warn('PDF parsing not yet implemented');
-    throw new Error('PDF parsing is not yet implemented. Please use CSV format or manual entry.');
+  async parsePDF(fileBuffer: Buffer): Promise<Array<{
+    code: string;
+    description: string;
+    subject: string;
+    grade: number;
+    strand?: string;
+    substrand?: string;
+  }>> {
+    try {
+      this.logger.info('Starting PDF parsing');
+      
+      // Lazy load pdf-parse to avoid initialization issues
+      if (!pdf) {
+        pdf = (await import('pdf-parse')).default;
+      }
+      
+      // Extract text from PDF
+      const pdfData = await pdf(fileBuffer);
+      const text = pdfData.text;
+      
+      if (!text || text.length < 100) {
+        throw new Error('PDF appears to be empty or too short');
+      }
+      
+      this.logger.info(`Extracted ${text.length} characters from PDF`);
+      
+      // Use AI to parse the curriculum text
+      const expectations = await this.parseTextWithAI(text);
+      
+      this.logger.info(`Parsed ${expectations.length} expectations from PDF`);
+      return expectations;
+    } catch (error) {
+      this.logger.error({ error }, 'Failed to parse PDF');
+      throw new Error(`PDF parsing failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
   }
 
   /**
-   * Extract outcomes from DOCX (placeholder for future implementation)
+   * Extract curriculum expectations from DOCX using mammoth and AI
    */
-  async parseDOCX(): Promise<ImportOutcome[]> {
-    // TODO: Implement DOCX parsing using mammoth or similar library
-    this.logger.warn('DOCX parsing not yet implemented');
-    throw new Error('DOCX parsing is not yet implemented. Please use CSV format or manual entry.');
+  async parseDOCX(fileBuffer: Buffer): Promise<Array<{
+    code: string;
+    description: string;
+    subject: string;
+    grade: number;
+    strand?: string;
+    substrand?: string;
+  }>> {
+    try {
+      this.logger.info('Starting DOCX parsing');
+      
+      // Extract text from DOCX
+      const result = await mammoth.extractRawText({ buffer: fileBuffer });
+      const text = result.value;
+      
+      if (!text || text.length < 100) {
+        throw new Error('DOCX appears to be empty or too short');
+      }
+      
+      this.logger.info(`Extracted ${text.length} characters from DOCX`);
+      
+      // Use AI to parse the curriculum text
+      const expectations = await this.parseTextWithAI(text);
+      
+      this.logger.info(`Parsed ${expectations.length} expectations from DOCX`);
+      return expectations;
+    } catch (error) {
+      this.logger.error({ error }, 'Failed to parse DOCX');
+      throw new Error(`DOCX parsing failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
   }
 
   /**
@@ -303,7 +371,7 @@ export class CurriculumImportService extends BaseService {
           },
           _count: {
             select: {
-              outcomes: true,
+              expectations: true,
             },
           },
         },
@@ -318,108 +386,6 @@ export class CurriculumImportService extends BaseService {
 
   // Private helper methods
 
-  private async processBatchOutcomes(
-    importId: string,
-    outcomes: ImportOutcome[],
-  ): Promise<{
-    outcomes: { id: string; code: string }[];
-    errors: string[];
-  }> {
-    const results: { id: string; code: string }[] = [];
-    const errors: string[] = [];
-
-    for (const outcomeData of outcomes) {
-      try {
-        // Check if outcome already exists
-        const existing = await this.prisma.outcome.findUnique({
-          where: { code: outcomeData.code },
-        });
-
-        if (existing) {
-          this.logger.debug({ code: outcomeData.code }, 'Outcome already exists, skipping');
-          results.push({ id: existing.id, code: existing.code });
-          continue;
-        }
-
-        // Create new outcome
-        const outcome = await this.prisma.outcome.create({
-          data: {
-            code: outcomeData.code,
-            description: outcomeData.description,
-            subject: outcomeData.subject,
-            grade: outcomeData.grade,
-            domain: outcomeData.domain,
-            importId,
-          },
-        });
-
-        results.push({ id: outcome.id, code: outcome.code });
-      } catch (error) {
-        const errorMsg = `Failed to create outcome ${outcomeData.code}: ${error.message}`;
-        this.logger.error({ error, outcome: outcomeData }, errorMsg);
-        errors.push(errorMsg);
-      }
-    }
-
-    return { outcomes: results, errors };
-  }
-
-  private async generateInitialClusters(
-    importId: string,
-    outcomeIds: string[],
-  ): Promise<
-    {
-      id: string;
-      name: string;
-      outcomeIds: string[];
-    }[]
-  > {
-    // Simple initial clustering by subject/domain
-    // TODO: Implement proper embedding-based clustering in clusteringService
-    try {
-      const outcomes = await this.prisma.outcome.findMany({
-        where: { id: { in: outcomeIds } },
-        select: { id: true, subject: true, domain: true, grade: true },
-      });
-
-      const subjectGroups = new Map<string, string[]>();
-
-      for (const outcome of outcomes) {
-        const key = `${outcome.subject}-${outcome.domain || 'General'}-Grade${outcome.grade}`;
-        if (!subjectGroups.has(key)) {
-          subjectGroups.set(key, []);
-        }
-        subjectGroups.get(key)!.push(outcome.id);
-      }
-
-      const clusters = [];
-      for (const [clusterName, ids] of subjectGroups.entries()) {
-        if (ids.length > 1) {
-          // Only create clusters with multiple outcomes
-          const cluster = await this.prisma.outcomeCluster.create({
-            data: {
-              importId,
-              clusterName,
-              clusterType: 'subject',
-              outcomeIds: ids,
-              confidence: 0.7, // Initial clustering confidence
-            },
-          });
-
-          clusters.push({
-            id: cluster.id,
-            name: cluster.clusterName,
-            outcomeIds: ids,
-          });
-        }
-      }
-
-      return clusters;
-    } catch (error) {
-      this.logger.error({ error, importId }, 'Failed to generate initial clusters');
-      return [];
-    }
-  }
 
   private async updateImportStatus(
     importId: string,
@@ -456,6 +422,535 @@ export class CurriculumImportService extends BaseService {
       where: { id: importId },
       data: { errorLog: errors },
     });
+  }
+
+  /**
+   * Parse curriculum text using AI to extract expectations
+   */
+  private async parseTextWithAI(text: string): Promise<Array<{
+    code: string;
+    description: string;
+    subject: string;
+    grade: number;
+    strand?: string;
+    substrand?: string;
+  }>> {
+    try {
+      // Split text into chunks if it's too long (GPT-4 has token limits)
+      const chunks = this.chunkText(text, 3000); // ~750 words per chunk
+      const allExpectations: Array<{
+        code: string;
+        description: string;
+        subject: string;
+        grade: number;
+        strand?: string;
+        substrand?: string;
+      }> = [];
+      
+      for (let i = 0; i < chunks.length; i++) {
+        this.logger.info(`Processing chunk ${i + 1} of ${chunks.length}`);
+        
+        const prompt = `You are an expert in curriculum design for elementary education. Extract curriculum expectations from the following text taken from a Grade 1 French Immersion curriculum document.
+
+Please extract and return in JSON format:
+- Subject name
+- Grade level
+- For each expectation:
+  - Code (e.g., "A1.1", "B2.3")
+  - Type ("overall" or "specific")
+  - Description (the full text of the expectation)
+  - Strand (major category like "Oral Communication", "Reading", etc.)
+  - Domain (if applicable)
+
+Return ONLY a JSON object with this structure:
+{
+  "subject": "Subject Name",
+  "grade": 1,
+  "expectations": [
+    {
+      "code": "A1.1",
+      "type": "overall",
+      "description": "Full expectation text",
+      "strand": "Strand Name",
+      "domain": "Domain Name (optional)"
+    }
+  ]
+}
+
+Only include data you are confident about. Do not invent or hallucinate expectations.
+
+Text to parse:
+"""
+${chunks[i]}
+"""`;
+
+        if (!this.openai) {
+          throw new Error('OpenAI API key not configured');
+        }
+        
+        const response = await this.openai.chat.completions.create({
+          model: 'gpt-4',
+          messages: [
+            { role: 'system', content: 'You are an expert curriculum analyst. Extract curriculum expectations accurately.' },
+            { role: 'user', content: prompt }
+          ],
+          temperature: 0.1, // Low temperature for accuracy
+          max_tokens: 2000,
+        });
+
+        const content = response.choices[0]?.message?.content;
+        if (!content) {
+          this.logger.warn(`No content returned for chunk ${i + 1}`);
+          continue;
+        }
+
+        try {
+          const parsed = JSON.parse(content);
+          if (parsed.expectations && Array.isArray(parsed.expectations)) {
+            const expectations = parsed.expectations.map((exp: any) => ({
+              code: exp.code || `AUTO_${i}_${allExpectations.length}`,
+              description: exp.description || '',
+              subject: parsed.subject || 'Unknown',
+              grade: parsed.grade || 1,
+              strand: exp.strand || exp.domain || 'General',
+              substrand: exp.substrand,
+            }));
+            
+            allExpectations.push(...expectations);
+          }
+        } catch (parseError) {
+          this.logger.error({ parseError, chunk: i }, 'Failed to parse AI response');
+        }
+      }
+      
+      return allExpectations;
+    } catch (error) {
+      this.logger.error({ error }, 'Failed to parse text with AI');
+      throw new Error('AI parsing failed');
+    }
+  }
+
+  /**
+   * Split text into manageable chunks for AI processing
+   */
+  private chunkText(text: string, maxCharsPerChunk: number): string[] {
+    const chunks: string[] = [];
+    const paragraphs = text.split(/\n\n+/);
+    let currentChunk = '';
+    
+    for (const paragraph of paragraphs) {
+      if (currentChunk.length + paragraph.length > maxCharsPerChunk && currentChunk.length > 0) {
+        chunks.push(currentChunk.trim());
+        currentChunk = paragraph;
+      } else {
+        currentChunk += (currentChunk ? '\n\n' : '') + paragraph;
+      }
+    }
+    
+    if (currentChunk.trim()) {
+      chunks.push(currentChunk.trim());
+    }
+    
+    return chunks;
+  }
+
+  /**
+   * Determine if an expectation is overall or specific based on code pattern
+   */
+  private determineExpectationType(code: string, description: string): 'overall' | 'specific' {
+    // Common patterns for overall expectations:
+    // - Single letter or number (e.g., "A", "1")
+    // - Ends with .0 (e.g., "A1.0")
+    // - Contains "overall" in description
+    
+    if (code.length === 1) return 'overall';
+    if (code.endsWith('.0')) return 'overall';
+    if (description.toLowerCase().includes('overall')) return 'overall';
+    if (code.match(/^[A-Z]\d*$/)) return 'overall'; // e.g., "A1", "B2"
+    
+    // Everything else is specific
+    return 'specific';
+  }
+
+  /**
+   * Store uploaded file content for parsing
+   */
+  async storeUploadedFile(importId: string, file: Express.Multer.File): Promise<void> {
+    try {
+      // Store file metadata and content
+      await this.prisma.curriculumImport.update({
+        where: { id: importId },
+        data: {
+          sourceFile: file.originalname,
+          metadata: {
+            filename: file.originalname,
+            mimetype: file.mimetype,
+            size: file.size,
+            uploadedAt: new Date().toISOString(),
+          },
+          // Store file content as base64 for now (in production, would use cloud storage)
+          rawText: file.buffer.toString('base64'),
+        },
+      });
+
+      this.logger.info(`File stored for import ${importId}: ${file.originalname}`);
+    } catch (error) {
+      this.logger.error({ error, importId }, 'Failed to store uploaded file');
+      throw error;
+    }
+  }
+
+  /**
+   * Parse uploaded file and extract curriculum expectations
+   */
+  async parseUploadedFile(importId: string, options: { useAI?: boolean } = {}): Promise<{
+    subjects: Array<{
+      name: string;
+      expectations: Array<{
+        code: string;
+        type: 'overall' | 'specific';
+        description: string;
+        strand: string;
+        substrand?: string;
+        subject: string;
+        grade: number;
+      }>;
+    }>;
+    errors?: string[];
+  }> {
+    try {
+      const importRecord = await this.prisma.curriculumImport.findUnique({
+        where: { id: importId },
+      });
+
+      if (!importRecord) {
+        throw new Error('Import session not found');
+      }
+
+      if (!importRecord.rawText) {
+        throw new Error('No file content found for parsing');
+      }
+
+      // Update status to processing
+      await this.updateImportStatus(importId, ImportStatus.PROCESSING);
+
+      // Decode the file content from base64
+      const fileBuffer = Buffer.from(importRecord.rawText, 'base64');
+      
+      // Parse based on file format
+      let expectations: Array<{
+        code: string;
+        description: string;
+        subject: string;
+        grade: number;
+        strand?: string;
+        substrand?: string;
+      }> = [];
+      
+      if (importRecord.sourceFormat === 'pdf') {
+        expectations = await this.parsePDF(fileBuffer);
+      } else if (importRecord.sourceFormat === 'docx') {
+        expectations = await this.parseDOCX(fileBuffer);
+      } else if (importRecord.sourceFormat === 'csv') {
+        // Convert buffer to string for CSV
+        const csvContent = fileBuffer.toString('utf-8');
+        expectations = this.parseCSV(csvContent);
+      } else {
+        throw new Error(`Unsupported file format: ${importRecord.sourceFormat}`);
+      }
+
+      // Group expectations by subject
+      const subjectMap = new Map<string, any>();
+      
+      for (const expectation of expectations) {
+        const subjectName = expectation.subject || 'Unknown';
+        
+        if (!subjectMap.has(subjectName)) {
+          subjectMap.set(subjectName, {
+            name: subjectName,
+            expectations: [],
+          });
+        }
+        
+        const subject = subjectMap.get(subjectName);
+        subject.expectations.push({
+          code: expectation.code,
+          type: this.determineExpectationType(expectation.code, expectation.description),
+          description: expectation.description,
+          strand: expectation.strand || 'General',
+          substrand: expectation.substrand,
+          subject: subjectName,
+          grade: expectation.grade || importRecord.grade,
+        });
+      }
+      
+      const subjects = Array.from(subjectMap.values());
+
+      // Store parsed subjects in metadata for later use
+      await this.prisma.curriculumImport.update({
+        where: { id: importId },
+        data: {
+          metadata: {
+            ...((importRecord.metadata as any) || {}),
+            parsedSubjects: subjects,
+          },
+        },
+      });
+
+      // Update status to ready for review
+      await this.updateImportStatus(importId, ImportStatus.READY_FOR_REVIEW);
+      
+      this.logger.info(`File parsed for import ${importId}: ${subjects.length} subjects`);
+
+      return {
+        subjects: subjects,
+        errors: [],
+      };
+    } catch (error) {
+      this.logger.error({ error, importId }, 'Failed to parse uploaded file');
+      await this.updateImportStatus(importId, ImportStatus.FAILED);
+      throw error;
+    }
+  }
+
+  /**
+   * Load preset curriculum data
+   */
+  async loadPresetCurriculum(userId: number, presetId: string): Promise<{
+    sessionId: string;
+    subjects: Array<{
+      name: string;
+      expectations: Array<{
+        code: string;
+        type: 'overall' | 'specific';
+        description: string;
+        strand: string;
+        substrand?: string;
+        subject: string;
+        grade: number;
+      }>;
+    }>;
+  }> {
+    try {
+      // Create new import session for preset
+      const sessionId = await this.startImport(
+        userId,
+        1, // Default grade for presets
+        'Multi-Subject',
+        'manual',
+        `Preset: ${presetId}`,
+      );
+
+      // Mock preset data based on presetId
+      let subjects: Array<{
+        name: string;
+        expectations: Array<{
+          code: string;
+          type: 'overall' | 'specific';
+          description: string;
+          strand: string;
+          substrand?: string;
+          subject: string;
+          grade: number;
+        }>;
+      }> = [];
+
+      switch (presetId) {
+        case 'pei-grade1-french':
+          subjects = [
+            {
+              name: 'Français Langue Première',
+              expectations: [
+                {
+                  code: 'CO1',
+                  type: 'overall',
+                  description: 'Comprendre des messages oraux en français',
+                  strand: 'Communication orale',
+                  subject: 'Français Langue Première',
+                  grade: 1,
+                },
+                {
+                  code: 'CO1.1',
+                  type: 'specific',
+                  description: 'Suivre des instructions orales simples',
+                  strand: 'Communication orale',
+                  substrand: 'Écoute',
+                  subject: 'Français Langue Première',
+                  grade: 1,
+                },
+              ],
+            },
+            {
+              name: 'Mathématiques',
+              expectations: [
+                {
+                  code: 'N1',
+                  type: 'overall',
+                  description: 'Comprendre les nombres de 0 à 20',
+                  strand: 'Nombre',
+                  subject: 'Mathématiques',
+                  grade: 1,
+                },
+              ],
+            },
+          ];
+          break;
+
+        case 'ontario-grade1-english':
+          subjects = [
+            {
+              name: 'Language',
+              expectations: [
+                {
+                  code: '1.O1',
+                  type: 'overall',
+                  description: 'Listen in order to understand and respond appropriately',
+                  strand: 'Oral Communication',
+                  subject: 'Language',
+                  grade: 1,
+                },
+              ],
+            },
+            {
+              name: 'Mathematics',
+              expectations: [
+                {
+                  code: '1.N1',
+                  type: 'overall',
+                  description: 'Count to 50 and represent numbers to 20',
+                  strand: 'Number Sense and Numeration',
+                  subject: 'Mathematics',
+                  grade: 1,
+                },
+              ],
+            },
+          ];
+          break;
+
+        case 'bc-grade1-core':
+          subjects = [
+            {
+              name: 'English Language Arts',
+              expectations: [
+                {
+                  code: 'ELA1-O1',
+                  type: 'overall',
+                  description: 'Use speaking and listening to interact with others',
+                  strand: 'Oral Language',
+                  subject: 'English Language Arts',
+                  grade: 1,
+                },
+              ],
+            },
+          ];
+          break;
+
+        default:
+          throw new Error(`Unknown preset: ${presetId}`);
+      }
+
+      // Store parsed subjects in metadata for later use
+      await this.prisma.curriculumImport.update({
+        where: { id: sessionId },
+        data: {
+          metadata: {
+            presetId,
+            parsedSubjects: subjects,
+            loadedAt: new Date().toISOString(),
+          },
+        },
+      });
+
+      // Update import status
+      await this.updateImportStatus(sessionId, 'READY_FOR_REVIEW');
+
+      this.logger.info(`Preset curriculum loaded: ${presetId} for user ${userId}`);
+
+      return {
+        sessionId,
+        subjects,
+      };
+    } catch (error) {
+      this.logger.error({ error, presetId, userId }, 'Failed to load preset curriculum');
+      throw error;
+    }
+  }
+
+  /**
+   * Finalize import and create actual curriculum expectations in the ETFO system
+   */
+  async finalizeImport(importId: string, userId: number): Promise<{
+    totalExpectations: number;
+    subjects: string[];
+  }> {
+    try {
+      const importRecord = await this.prisma.curriculumImport.findUnique({
+        where: { id: importId },
+        include: {
+          expectations: true,
+        },
+      });
+
+      if (!importRecord) {
+        throw new Error('Import session not found');
+      }
+
+      // Get the parsed subjects from the import metadata
+      const parsedSubjects = (importRecord.metadata as any)?.parsedSubjects || [];
+      
+      let totalExpectations = 0;
+      const subjects: string[] = [];
+
+      // Create curriculum expectations for each subject
+      for (const subject of parsedSubjects) {
+        subjects.push(subject.name);
+        
+        for (const expectation of subject.expectations) {
+          await this.prisma.curriculumExpectation.create({
+            data: {
+              code: expectation.code,
+              description: expectation.description,
+              strand: expectation.strand,
+              substrand: expectation.substrand,
+              grade: expectation.grade,
+              subject: expectation.subject,
+              importId,
+            },
+          });
+          totalExpectations++;
+        }
+      }
+
+      // Update import status to completed
+      await this.updateImportStatus(importId, 'COMPLETED');
+      await this.setCompletionTime(importId);
+
+      // Store final results in metadata
+      await this.prisma.curriculumImport.update({
+        where: { id: importId },
+        data: {
+          metadata: {
+            ...((importRecord.metadata as any) || {}),
+            finalResults: {
+              totalExpectations,
+              subjects,
+              completedAt: new Date().toISOString(),
+            },
+          },
+        },
+      });
+
+      this.logger.info(`Import finalized: ${importId}, created ${totalExpectations} expectations`);
+
+      return {
+        totalExpectations,
+        subjects,
+      };
+    } catch (error) {
+      this.logger.error({ error, importId }, 'Failed to finalize import');
+      await this.updateImportStatus(importId, 'FAILED');
+      throw error;
+    }
   }
 }
 

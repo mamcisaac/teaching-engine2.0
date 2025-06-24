@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { api } from '../api';
 import Dialog from '../components/Dialog';
 import { Button } from '../components/ui/Button';
+import { useAIPlanningAssistant } from '../hooks/useAIPlanningAssistant';
+import AISuggestionPanel from '../components/planning/AISuggestionPanel';
 
 interface LongRangePlan {
   id: string;
@@ -33,6 +35,10 @@ export default function LongRangePlanPage() {
       ? `${currentYear}-${currentYear + 1}`
       : `${currentYear - 1}-${currentYear}`;
   });
+  const [showAISuggestions, setShowAISuggestions] = useState(false);
+  const [aiGoalSuggestions, setAiGoalSuggestions] = useState<any>(null);
+  
+  const { generateLongRangeGoals, isGenerating } = useAIPlanningAssistant();
 
   // Fetch long-range plans
   const { data: plans = [], isLoading } = useQuery({
@@ -55,7 +61,7 @@ export default function LongRangePlanPage() {
     },
   });
 
-  // Form state
+  // Form state with ETFO-aligned fields
   const [formData, setFormData] = useState({
     title: '',
     subject: '',
@@ -63,6 +69,13 @@ export default function LongRangePlanPage() {
     term: 'Full Year',
     description: '',
     goals: '',
+    themes: [] as string[],
+    // Additional ETFO fields
+    overarchingQuestions: '',
+    assessmentOverview: '',
+    resourceNeeds: '',
+    professionalLearningGoals: '',
+    classroomSetupNotes: '',
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -294,6 +307,140 @@ export default function LongRangePlanPage() {
                 rows={3}
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder="Overall learning goals for the year..."
+              />
+              {formData.subject && formData.grade && (
+                <button
+                  type="button"
+                  onClick={() => setShowAISuggestions(!showAISuggestions)}
+                  className="mt-2 text-sm text-indigo-600 hover:text-indigo-500"
+                >
+                  {showAISuggestions ? 'Hide' : 'Show'} AI Suggestions
+                </button>
+              )}
+            </div>
+            
+            {showAISuggestions && formData.subject && formData.grade && (
+              <AISuggestionPanel
+                title="AI Goal Suggestions"
+                description="Get AI-powered suggestions for your long-range plan goals"
+                suggestions={aiGoalSuggestions}
+                isGenerating={isGenerating}
+                onGenerate={async () => {
+                  const result = await generateLongRangeGoals.mutateAsync({
+                    subject: formData.subject,
+                    grade: formData.grade,
+                    termLength: formData.term === 'Full Year' ? 40 : 20,
+                  });
+                  setAiGoalSuggestions(result);
+                }}
+                onAcceptSuggestion={(suggestion) => {
+                  setFormData({
+                    ...formData,
+                    goals: formData.goals ? `${formData.goals}\n\n${suggestion}` : suggestion,
+                  });
+                }}
+                onAcceptAll={() => {
+                  if (aiGoalSuggestions?.suggestions) {
+                    setFormData({
+                      ...formData,
+                      goals: aiGoalSuggestions.suggestions.join('\n\n'),
+                    });
+                  }
+                }}
+                error={generateLongRangeGoals.error}
+              />
+            )}
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Key Themes (press Enter to add)
+              </label>
+              <input
+                type="text"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const value = e.currentTarget.value.trim();
+                    if (value && !formData.themes.includes(value)) {
+                      setFormData({ ...formData, themes: [...formData.themes, value] });
+                      e.currentTarget.value = '';
+                    }
+                  }
+                }}
+                className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                placeholder="Type a theme and press Enter..."
+              />
+              <div className="mt-2 flex flex-wrap gap-2">
+                {formData.themes.map((theme, index) => (
+                  <span
+                    key={index}
+                    className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-indigo-100 text-indigo-700"
+                  >
+                    {theme}
+                    <button
+                      type="button"
+                      onClick={() => setFormData({
+                        ...formData,
+                        themes: formData.themes.filter((_, i) => i !== index)
+                      })}
+                      className="ml-1 hover:text-indigo-900"
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Overarching Questions
+              </label>
+              <textarea
+                value={formData.overarchingQuestions}
+                onChange={(e) => setFormData({ ...formData, overarchingQuestions: e.target.value })}
+                rows={2}
+                className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                placeholder="Big questions that will guide the year..."
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Assessment Overview
+              </label>
+              <textarea
+                value={formData.assessmentOverview}
+                onChange={(e) => setFormData({ ...formData, assessmentOverview: e.target.value })}
+                rows={2}
+                className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                placeholder="Overall assessment strategy for the year..."
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Resource Needs
+              </label>
+              <textarea
+                value={formData.resourceNeeds}
+                onChange={(e) => setFormData({ ...formData, resourceNeeds: e.target.value })}
+                rows={2}
+                className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                placeholder="Materials, technology, and resources needed..."
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Professional Learning Goals
+              </label>
+              <textarea
+                value={formData.professionalLearningGoals}
+                onChange={(e) => setFormData({ ...formData, professionalLearningGoals: e.target.value })}
+                rows={2}
+                className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                placeholder="Your professional development goals for this year..."
               />
             </div>
             

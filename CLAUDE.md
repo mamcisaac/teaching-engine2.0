@@ -8,20 +8,15 @@ Teaching Engine 2.0 is a comprehensive digital teaching assistant for elementary
 
 ## 📁 Key Documentation
 
-### For AI Agents
+### Core Documentation
 
-- **[docs/agents/README.md](docs/agents/README.md)** - Complete agent documentation hub
 - **[PROJECT_GOALS.md](PROJECT_GOALS.md)** - Core project goals and intentions
-- **[AGENT_DOCUMENTATION_INSTRUCTIONS.md](AGENT_DOCUMENTATION_INSTRUCTIONS.md)** - Documentation standards for agents
+- **[docs/agents/README.md](docs/agents/README.md)** - Main documentation hub
+- **[docs/USER_GUIDE.md](docs/USER_GUIDE.md)** - User documentation
 
-### Implementation Guides
+### Development Status
 
-- **[docs/agents/IMPLEMENTATION_GUIDE.md](docs/agents/IMPLEMENTATION_GUIDE.md)** - Technical implementation guide for phases 4-5
 - **[docs/agents/PHASE_IMPLEMENTATION_CHECKLIST.md](docs/agents/PHASE_IMPLEMENTATION_CHECKLIST.md)** - Comprehensive task checklist
-- **[docs/agents/UI_IMPLEMENTATION_GUIDE.md](docs/agents/UI_IMPLEMENTATION_GUIDE.md)** - Frontend implementation details
-
-### Task Lists
-
 - **[docs/agents/ENHANCEMENT_FEATURES.md](docs/agents/ENHANCEMENT_FEATURES.md)** - Advanced features for post-MVP
 - **[docs/agents/MISSING_FEATURES.md](docs/agents/MISSING_FEATURES.md)** - Critical gaps to address
 
@@ -112,9 +107,9 @@ teaching-engine2.0/
 └── tests/               # E2E tests
 ```
 
-## 📊 Current Status
+## 📊 Features
 
-### Completed (Phases 0-5)
+### Core Functionality
 
 - ✅ Full CRUD API for curriculum management
 - ✅ React UI with comprehensive features
@@ -123,16 +118,15 @@ teaching-engine2.0/
 - ✅ Newsletter generation with LLM
 - ✅ Emergency substitute plans
 - ✅ Progress tracking and alerts
-- ✅ **Phase 5: Curriculum Intelligence** (January 2025)
-  - ✅ AI-powered curriculum import with file parsing
-  - ✅ Intelligent outcome clustering with semantic analysis
-  - ✅ Enhanced planning with thematic grouping
-  - ✅ Bulk material generation with templates
-  - ✅ Service infrastructure with health monitoring
+- ✅ AI-powered curriculum import with file parsing
+- ✅ Intelligent outcome clustering with semantic analysis
+- ✅ Enhanced planning with thematic grouping
+- ✅ Bulk material generation with templates
+- ✅ Service infrastructure with health monitoring
 
-### Future Enhancements
+### Roadmap
 
-- 🔄 Setup wizard for new teachers
+- 🔄 Setup wizard for teachers
 - 🔄 Advanced analytics dashboard
 - 🔄 Mobile application support
 
@@ -142,7 +136,7 @@ teaching-engine2.0/
 
 - TypeScript strict mode (no `any` types)
 - Test-driven development (TDD)
-- 90%+ test coverage for new features
+- 90%+ test coverage for features
 - JSDoc comments for all public functions
 - Conventional commit messages
 
@@ -160,29 +154,36 @@ teaching-engine2.0/
 - Decision logs for architectural choices
 - Agent logs for development progress
 
-## 🤖 For AI Agents
 
-### Before Starting Work
+## 🤖 Claude Code Features
 
-1. Read [PROJECT_GOALS.md](PROJECT_GOALS.md) to understand the mission
-2. Review current status in [docs/agents/PHASE_IMPLEMENTATION_CHECKLIST.md](docs/agents/PHASE_IMPLEMENTATION_CHECKLIST.md)
-3. Choose your work area from available tasks
-4. Update your agent log in `docs/agents/logs/`
+### Memory Management
+This CLAUDE.md file serves as project memory for Claude Code. Best practices:
+- Keep this file updated with current project context
+- Use `@path/to/file` imports for modular organization
+- Document frequently used commands and workflows
+- Review and update regularly to maintain relevance
 
-### During Development
+### Custom Slash Commands
+Use project-specific slash commands for common workflows:
+- `/project:test` - Run comprehensive test suite with coverage
+- `/project:db-reset` - Reset and seed development database  
+- `/project:dev-clean` - Clean start development servers
+- `/project:build-check` - Full build pipeline with quality checks
+- `/project:etfo` - Focus on ETFO lesson planning features
+- `/project:curriculum` - Work with curriculum import/export
 
-1. Follow TDD approach (write tests first)
-2. Document all design decisions
-3. Update relevant documentation files
-4. Coordinate with other agents on shared components
+For complete command reference: @docs/claude/commands.md
 
-### Quality Gates
+### Development Workflows
+Common development patterns and best practices:
+- Feature development workflow with TDD approach
+- Bug fixing process with reproduction steps
+- Database schema change procedures
+- API endpoint creation standards
+- Performance optimization guidelines
 
-- All tests must pass
-- TypeScript compilation without errors
-- Lint checks pass
-- Documentation updated
-- Performance impact measured
+For detailed workflows: @docs/claude/workflows.md
 
 ## 🆘 Common Issues
 
@@ -213,6 +214,41 @@ lsof -ti:5173 | xargs kill -9  # Frontend
 - Ensure Node version matches CI (18 or 20)
 - Check DATABASE_URL points to test database
 - Clear test database between runs
+
+For comprehensive troubleshooting: @docs/claude/troubleshooting.md
+
+## 🤖 For AI Coding Agents
+
+### Project Overview
+Teaching Engine 2.0 is a comprehensive digital teaching assistant. AI agents should focus on:
+
+1. **Bug Fixes**: Address issues reported in GitHub Issues
+2. **Roadmap Features**: See [docs/agents/ROADMAP_FEATURES.md](docs/agents/ROADMAP_FEATURES.md)
+3. **Performance Optimization**: Improve response times and resource usage
+4. **Test Coverage**: Increase coverage for edge cases
+5. **Documentation**: Improve user guides and API documentation
+
+### Before Starting Work
+1. Check GitHub Issues for reported bugs or requested features
+2. Review [docs/agents/ROADMAP_FEATURES.md](docs/agents/ROADMAP_FEATURES.md) for roadmap features
+3. Ensure you understand the existing architecture before making changes
+4. Follow all quality standards and use available slash commands
+
+### Development Best Practices
+- **DO NOT** reimplement existing features
+- **DO NOT** make breaking changes to APIs or database schema
+- **ALWAYS** maintain backward compatibility
+- **ALWAYS** write tests for code (90%+ coverage)
+- **ALWAYS** update documentation when changing functionality
+- **USE** project slash commands for common tasks (see @docs/claude/commands.md)
+- **FOLLOW** established workflows (see @docs/claude/workflows.md)
+
+### Quick Reference
+- Claude Code commands: @docs/claude/commands.md
+- Development workflows: @docs/claude/workflows.md
+- Troubleshooting guide: @docs/claude/troubleshooting.md
+- Roadmap features: [docs/agents/ROADMAP_FEATURES.md](docs/agents/ROADMAP_FEATURES.md)
+- Known issues: [docs/agents/MISSING_FEATURES.md](docs/agents/MISSING_FEATURES.md)
 
 ## 🌟 Success Vision
 

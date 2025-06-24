@@ -138,56 +138,48 @@ async function extractWeeklyOverview(startDate: string, endDate: string, userId:
     }
   });
 
-  // Get milestones for the period
-  const milestones = await prisma.milestone.findMany({
+  // Get unit plans for the period using ETFO framework
+  const unitPlans = await prisma.unitPlan.findMany({
     where: {
+      userId,
       OR: [
         {
-          targetDate: {
+          startDate: {
             gte: weekStart,
             lte: weekEnd
           }
         },
         {
-          activities: {
-            some: {
-              dailyPlanItems: {
-                some: {
-                  dailyPlan: {
-                    date: {
-                      gte: weekStart,
-                      lte: weekEnd
-                    }
-                  }
-                }
-              }
-            }
+          endDate: {
+            gte: weekStart,
+            lte: weekEnd
           }
+        },
+        {
+          AND: [
+            { startDate: { lte: weekStart } },
+            { endDate: { gte: weekEnd } }
+          ]
         }
       ]
     },
     include: {
-      subject: true,
-      activities: {
+      longRangePlan: {
+        select: {
+          subject: true,
+          grade: true
+        }
+      },
+      lessonPlans: {
         include: {
-          dailyPlanItems: true
+          daybookEntry: true
         }
       }
     }
   });
 
-  // Get assessment results for the week
-  const assessments = await prisma.assessmentResult.findMany({
-    where: {
-      date: {
-        gte: weekStart,
-        lte: weekEnd
-      }
-    },
-    include: {
-      template: true
-    }
-  });
+  // Assessment functionality removed
+  const assessments: Array<Record<string, unknown>> = [];
 
   // Get special events
   const specialEvents = await prisma.calendarEvent.findMany({
@@ -270,13 +262,8 @@ async function extractWeeklyOverview(startDate: string, endDate: string, userId:
     };
   });
 
-  // Process assessments
-  const processedAssessments = assessments.map(assessment => ({
-    title: assessment.template.title,
-    date: assessment.date.toISOString().split('T')[0],
-    subject: assessment.template.type || 'General',
-    type: assessment.template.type || 'Assessment'
-  }));
+  // Assessment functionality removed
+  const processedAssessments: Array<{ title: string; date: string; subject: string; type: string; }> = [];
 
   // Process special events
   const processedEvents = specialEvents.map(event => ({

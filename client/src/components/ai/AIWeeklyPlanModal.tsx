@@ -18,7 +18,7 @@ interface PlanActivity {
   activityTitle: string;
   activityDescription: string;
   duration: number;
-  outcomeIds: string[];
+  expectationIds: string[]; // Updated for ETFO alignment
   materials?: string[];
 }
 

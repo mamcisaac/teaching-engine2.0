@@ -15,110 +15,15 @@ model Subject {
   name       String
   nameEn     String?
   nameFr     String?
-  milestones Milestone[]
-  timetableSlots TimetableSlot[]
   userId     Int?
   user       User?     @relation(fields: [userId], references: [id])
   createdAt  DateTime   @default(now())
 }
 
-model Milestone {
-  id         Int       @id @default(autoincrement())
-  title      String
-  titleEn    String?
-  titleFr    String?
-  subjectId  Int
-  subject    Subject   @relation(fields: [subjectId], references: [id])
-  activities Activity[]
-  userId     Int?
-  user       User?     @relation(fields: [userId], references: [id])
-  description String?
-  descriptionEn String?
-  descriptionFr String?
-  targetDate DateTime?
-  startDate  DateTime?
-  endDate    DateTime?
-  estHours   Int?
-  deadline   ReportDeadline? @relation(fields: [deadlineId], references: [id])
-  deadlineId Int?
-  outcomes   MilestoneOutcome[]
-  smartGoals SmartGoal[]
-  alerts     MilestoneAlert[]
-}
 
-model Activity {
-  id          Int       @id @default(autoincrement())
-  title       String
-  titleEn     String?
-  titleFr     String?
-  activityType ActivityType @default(LESSON)
-  milestoneId Int
-  /// Position of the activity within its milestone
-  orderIndex  Int       @default(0)
-  milestone   Milestone  @relation(fields: [milestoneId], references: [id])
-  userId      Int?
-  user        User?      @relation(fields: [userId], references: [id])
-  durationMins Int?
-  privateNote  String?
-  privateNoteEn String?
-  privateNoteFr String?
-  publicNote   String?
-  publicNoteEn String?
-  publicNoteFr String?
-  /// Comma-separated list of needed materials
-  materialsText String?
-  materialsTextEn String?
-  materialsTextFr String?
-  /// Optional list of activity tags (e.g. "HandsOn")
-  tags         Json     @default("[]")
-  /// True if suitable for substitute teachers
-  isSubFriendly Boolean  @default(true)
-  /// Mark as generic fallback activity for the subject
-  isFallback   Boolean   @default(false)
-  completedAt  DateTime?
-  weeklySchedules WeeklySchedule[]
-  resources   Resource[]
-  dailyPlanItems DailyPlanItem[]
-  notes       Note[]
-  outcomes    ActivityOutcome[]
-  thematicUnits ThematicUnitActivity[]
-  cognatePairs CognateActivity[]
-  mediaResources MediaResourceActivity[]
-  parentMessages ParentMessageActivity[]
-  studentReflections StudentReflection[]
-  @@index([milestoneId, orderIndex])
-}
 
-model LessonPlan {
-  id         Int             @id @default(autoincrement())
-  weekStart  DateTime        @unique
-  schedule   WeeklySchedule[]
-  dailyPlans DailyPlan[]
-  createdAt  DateTime        @default(now())
-  updatedAt  DateTime        @updatedAt
-}
 
-model TimetableSlot {
-  id        Int      @id @default(autoincrement())
-  day       Int
-  startMin  Int
-  endMin    Int
-  subjectId Int?
-  subject   Subject? @relation(fields: [subjectId], references: [id])
-  weeklySchedules WeeklySchedule[]
-  dailyPlanItems DailyPlanItem[]
-}
 
-model WeeklySchedule {
-  id          Int        @id @default(autoincrement())
-  day         Int
-  lessonPlanId Int
-  lessonPlan  LessonPlan @relation(fields: [lessonPlanId], references: [id])
-  activityId  Int
-  activity    Activity   @relation(fields: [activityId], references: [id])
-  slotId      Int?
-  slot        TimetableSlot? @relation(fields: [slotId], references: [id])
-}
 
 model TeacherPreferences {
   id             Int    @id @default(autoincrement())
@@ -144,16 +49,6 @@ model SubstituteInfo {
   updatedAt  DateTime @updatedAt
 }
 
-model Resource {
-  id         Int      @id @default(autoincrement())
-  filename   String
-  url        String
-  type       String
-  size       Int
-  activityId Int?
-  activity   Activity? @relation(fields: [activityId], references: [id])
-  createdAt  DateTime @default(now())
-}
 
 model MaterialList {
   id        Int      @id @default(autoincrement())
@@ -197,57 +92,14 @@ model ParentMessage {
   timeframe    String
   contentFr    String
   contentEn    String
-  linkedOutcomes ParentMessageOutcome[]
-  linkedActivities ParentMessageActivity[]
-  emailDeliveries EmailDelivery[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
 
-model DailyPlan {
-  id           Int            @id @default(autoincrement())
-  date         DateTime
-  lessonPlanId Int
-  lessonPlan   LessonPlan     @relation(fields: [lessonPlanId], references: [id])
-  items        DailyPlanItem[]
-  notes        Note[]
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-}
-
-model DailyPlanItem {
-  id          Int          @id @default(autoincrement())
-  startMin    Int
-  endMin      Int
-  slotId      Int?
-  slot        TimetableSlot? @relation(fields: [slotId], references: [id])
-  activityId  Int?
-  activity    Activity?    @relation(fields: [activityId], references: [id])
-  notes       String?
-  dailyPlanId Int
-  dailyPlan   DailyPlan    @relation(fields: [dailyPlanId], references: [id])
-}
-
-model Note {
-  id          Int       @id @default(autoincrement())
-  content     String
-  public      Boolean   @default(false)
-  activityId  Int?
-  activity    Activity? @relation(fields: [activityId], references: [id])
-  dailyPlanId Int?
-  dailyPlan   DailyPlan? @relation(fields: [dailyPlanId], references: [id])
-  createdAt   DateTime  @default(now())
-}
 
 
-model ParentContact {
-  id          Int    @id @default(autoincrement())
-  name        String
-  email       String
-  studentId   Int
-  student     Student @relation(fields: [studentId], references: [id])
-  @@unique([email, studentId])
-}
+
+
 
 model User {
   id       Int      @id @default(autoincrement())
@@ -257,8 +109,6 @@ model User {
   role     String   @default("teacher")
   preferredLanguage String @default("en")
   subjects Subject[]
-  milestones Milestone[]
-  activities Activity[]
   events    CalendarEvent[]
   unavailableBlocks UnavailableBlock[]
   reportDeadlines ReportDeadline[]
@@ -266,7 +116,6 @@ model User {
   shareLinks ShareLink[]
   equipmentBookings EquipmentBooking[]
   substituteInfos SubstituteInfo[]
-  smartGoals SmartGoal[]
   oralRoutineTemplates OralRoutineTemplate[]
   dailyOralRoutines DailyOralRoutine[]
   thematicUnits ThematicUnit[]
@@ -274,30 +123,25 @@ model User {
   mediaResources MediaResource[]
   parentMessages ParentMessage[]
   reflectionJournalEntries ReflectionJournalEntry[]
-  aiSuggestedActivities AISuggestedActivity[]
   students Student[]
-  activityTemplates ActivityTemplate[]
-  teacherReflections TeacherReflection[]
-  milestoneAlerts MilestoneAlert[]
   curriculumImports CurriculumImport[]
-  emailTemplates EmailTemplate[]
   classRoutines ClassRoutine[]
   subPlanRecords SubPlanRecord[]
   aiGeneratedPlans AIGeneratedPlan[]
   planningConversations PlanningConversation[]
-  activitySeries ActivitySeries[]
   
   // ETFO-aligned planning models
   longRangePlans LongRangePlan[]
   unitPlans UnitPlan[]
   etfoLessonPlans ETFOLessonPlan[]
   daybookEntries DaybookEntry[]
+  
+  // Activity Discovery
+  activityImports ActivityImport[]
+  activityRatings ActivityRating[]
+  activityCollections ActivityCollection[]
 }
 
-enum ActivityType {
-  LESSON
-  ASSESSMENT
-}
 
 enum CalendarEventType {
   PD_DAY
@@ -355,7 +199,6 @@ model ReportDeadline {
   name             String
   date             DateTime
   remindDaysBefore Int      @default(14)
-  milestones       Milestone[]
 }
 
 
@@ -417,68 +260,9 @@ model Holiday {
   name String
 }
 
-model Outcome {
-  id          String   @id @default(cuid())
-  subject     String
-  grade       Int
-  code        String   @unique
-  description String
-  domain      String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  
-  // Phase 5: Curriculum Intelligence relationships
-  importId    String?
-  import      CurriculumImport? @relation(fields: [importId], references: [id])
-  embedding   OutcomeEmbedding?
-  
-  milestones  MilestoneOutcome[]
-  activities  ActivityOutcome[]
-  smartGoals  SmartGoal[]
-  oralRoutines OralRoutineOutcome[]
-  thematicUnits ThematicUnitOutcome[]
-  cognatePairs CognateOutcome[]
-  mediaResources MediaResourceOutcome[]
-  parentMessages ParentMessageOutcome[]
-  reflections ReflectionOutcome[]
-  aiSuggestedActivities AISuggestedActivity[]
-  studentGoals StudentGoal[]
-  studentReflections StudentReflection[]
-  teacherReflections TeacherReflection[]
-  prompts OutcomePrompt[]
-}
 
-model MilestoneOutcome {
-  milestone   Milestone @relation(fields: [milestoneId], references: [id])
-  milestoneId Int
-  outcome     Outcome   @relation(fields: [outcomeId], references: [id])
-  outcomeId   String
-  @@id([milestoneId, outcomeId])
-}
 
-model ActivityOutcome {
-  activity    Activity  @relation(fields: [activityId], references: [id])
-  activityId  Int
-  outcome     Outcome   @relation(fields: [outcomeId], references: [id])
-  outcomeId   String
-  @@id([activityId, outcomeId])
-}
 
-model SmartGoal {
-  id            Int        @id @default(autoincrement())
-  outcomeId     String
-  outcome       Outcome    @relation(fields: [outcomeId], references: [id])
-  milestoneId   Int?
-  milestone     Milestone? @relation(fields: [milestoneId], references: [id])
-  description   String
-  targetDate    DateTime
-  targetValue   Int
-  observedValue Int?
-  userId        Int
-  user          User       @relation(fields: [userId], references: [id])
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
-}
 
 model OralRoutineTemplate {
   id            Int                      @id @default(autoincrement())
@@ -490,7 +274,6 @@ model OralRoutineTemplate {
   descriptionFr String?
   userId        Int
   user          User                     @relation(fields: [userId], references: [id])
-  outcomes      OralRoutineOutcome[]
   dailyRoutines DailyOralRoutine[]
   createdAt     DateTime                 @default(now())
   updatedAt     DateTime                 @updatedAt
@@ -510,13 +293,6 @@ model DailyOralRoutine {
   updatedAt     DateTime            @updatedAt
 }
 
-model OralRoutineOutcome {
-  template   OralRoutineTemplate @relation(fields: [templateId], references: [id])
-  templateId Int
-  outcome    Outcome             @relation(fields: [outcomeId], references: [id])
-  outcomeId  String
-  @@id([templateId, outcomeId])
-}
 
 model ThematicUnit {
   id           Int        @id @default(autoincrement())
@@ -530,60 +306,27 @@ model ThematicUnit {
   endDate      DateTime
   userId       Int
   user         User       @relation(fields: [userId], references: [id])
-  outcomes     ThematicUnitOutcome[]
-  activities   ThematicUnitActivity[]
   reflections  ReflectionJournalEntry[]
   studentGoals StudentGoal[]
   studentReflections StudentReflection[]
-  activityTemplates ActivityTemplate[]
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 }
 
-model ThematicUnitOutcome {
-  thematicUnit   ThematicUnit @relation(fields: [thematicUnitId], references: [id])
-  thematicUnitId Int
-  outcome        Outcome      @relation(fields: [outcomeId], references: [id])
-  outcomeId      String
-  @@id([thematicUnitId, outcomeId])
-}
 
-model ThematicUnitActivity {
-  thematicUnit   ThematicUnit @relation(fields: [thematicUnitId], references: [id])
-  thematicUnitId Int
-  activity       Activity     @relation(fields: [activityId], references: [id])
-  activityId     Int
-  @@id([thematicUnitId, activityId])
-}
 
 model CognatePair {
   id               Int                    @id @default(autoincrement())
   wordFr           String
   wordEn           String
   notes            String?
-  linkedOutcomes   CognateOutcome[]
-  linkedActivities CognateActivity[]
   userId           Int
   user             User                   @relation(fields: [userId], references: [id])
   createdAt        DateTime               @default(now())
   @@unique([wordFr, wordEn, userId])
 }
 
-model CognateOutcome {
-  cognatePair   CognatePair @relation(fields: [cognatePairId], references: [id])
-  cognatePairId Int
-  outcome       Outcome     @relation(fields: [outcomeId], references: [id])
-  outcomeId     String
-  @@id([cognatePairId, outcomeId])
-}
 
-model CognateActivity {
-  cognatePair   CognatePair @relation(fields: [cognatePairId], references: [id])
-  cognatePairId Int
-  activity      Activity    @relation(fields: [activityId], references: [id])
-  activityId    Int
-  @@id([cognatePairId, activityId])
-}
 
 
 model MediaResource {
@@ -596,43 +339,13 @@ model MediaResource {
   fileSize       Int?     // file size in bytes
   mimeType       String?  // MIME type for validation
   tags           String   @default("[]") // JSON array of tags
-  linkedOutcomes MediaResourceOutcome[]
-  linkedActivities MediaResourceActivity[]
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }
 
-model MediaResourceOutcome {
-  mediaResource   MediaResource @relation(fields: [mediaResourceId], references: [id])
-  mediaResourceId Int
-  outcome         Outcome       @relation(fields: [outcomeId], references: [id])
-  outcomeId       String
-  @@id([mediaResourceId, outcomeId])
-}
 
-model MediaResourceActivity {
-  mediaResource   MediaResource @relation(fields: [mediaResourceId], references: [id])
-  mediaResourceId Int
-  activity        Activity      @relation(fields: [activityId], references: [id])
-  activityId      Int
-  @@id([mediaResourceId, activityId])
-}
 
-model ParentMessageOutcome {
-  parentMessage   ParentMessage @relation(fields: [parentMessageId], references: [id])
-  parentMessageId Int
-  outcome         Outcome       @relation(fields: [outcomeId], references: [id])
-  outcomeId       String
-  @@id([parentMessageId, outcomeId])
-}
 
-model ParentMessageActivity {
-  parentMessage   ParentMessage @relation(fields: [parentMessageId], references: [id])
-  parentMessageId Int
-  activity        Activity      @relation(fields: [activityId], references: [id])
-  activityId      Int
-  @@id([parentMessageId, activityId])
-}
 
 model ReflectionJournalEntry {
   id             Int                       @id @default(autoincrement())
@@ -642,37 +355,11 @@ model ReflectionJournalEntry {
   content        String
   themeId        Int?
   theme          ThematicUnit?             @relation(fields: [themeId], references: [id])
-  outcomes       ReflectionOutcome[]
   createdAt      DateTime                  @default(now())
   updatedAt      DateTime                  @updatedAt
 }
 
-model ReflectionOutcome {
-  reflection     ReflectionJournalEntry @relation(fields: [reflectionId], references: [id])
-  reflectionId   Int
-  outcome        Outcome                @relation(fields: [outcomeId], references: [id])
-  outcomeId      String
-  @@id([reflectionId, outcomeId])
-}
 
-model AISuggestedActivity {
-  id           Int       @id @default(autoincrement())
-  outcomeId    String
-  outcome      Outcome   @relation(fields: [outcomeId], references: [id])
-  userId       Int
-  user         User      @relation(fields: [userId], references: [id])
-  title        String
-  descriptionFr String
-  descriptionEn String?
-  materials    String    @default("[]") // JSON array of materials
-  duration     Int       // in minutes
-  theme        String?
-  qualityScore Float?    // AI-generated quality metric (0-1)
-  acceptanceRate Float?  // Percentage of times this activity was accepted
-  seriesId     String?   // Group related activities together
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-}
 
 model AIGeneratedPlan {
   id           Int       @id @default(autoincrement())
@@ -699,19 +386,6 @@ model PlanningConversation {
   @@index([userId, sessionId])
 }
 
-model ActivitySeries {
-  id           String    @id @default(cuid())
-  userId       Int
-  user         User      @relation(fields: [userId], references: [id])
-  title        String
-  description  String?
-  theme        String?
-  outcomeIds   String    // JSON array of outcome IDs
-  activityCount Int
-  metadata     String?   // JSON for series configuration
-  createdAt    DateTime  @default(now())
-}
-
 model Student {
   id          Int    @id @default(autoincrement())
   firstName   String
@@ -719,7 +393,6 @@ model Student {
   grade       Int
   userId      Int
   user        User   @relation(fields: [userId], references: [id])
-  parentContacts ParentContact[]
   artifacts   StudentArtifact[]
   reflections StudentReflection[]
   parentSummaries ParentSummary[]
@@ -734,8 +407,6 @@ model StudentGoal {
   studentId  Int
   student    Student   @relation(fields: [studentId], references: [id])
   text       String
-  outcomeId  String?
-  outcome    Outcome?  @relation(fields: [outcomeId], references: [id])
   themeId    Int?      // For thematic unit goals
   theme      ThematicUnit? @relation(fields: [themeId], references: [id])
   createdAt  DateTime  @default(now())
@@ -746,15 +417,11 @@ model StudentReflection {
   id          Int      @id @default(autoincrement())
   studentId   Int
   student     Student  @relation(fields: [studentId], references: [id])
-  activityId  Int?
-  activity    Activity? @relation(fields: [activityId], references: [id])
   content     String?
   text        String?   // Keep both content and text for compatibility
   date        DateTime? // Optional date
   emoji       String?   // e.g. "🙂", "😐", "😕"
   voicePath   String?   // path to optional recording
-  outcomeId   String?
-  outcome     Outcome? @relation(fields: [outcomeId], references: [id])
   themeId     Int?
   theme       ThematicUnit? @relation(fields: [themeId], references: [id])
   // A3 Enhancement: AI Classification fields
@@ -766,28 +433,6 @@ model StudentReflection {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
-
-model ActivityTemplate {
-  id             Int      @id @default(autoincrement())
-  titleFr        String
-  titleEn        String
-  descriptionFr  String
-  descriptionEn  String
-  domain         String   // e.g., "oral", "reading", "writing", "math"
-  subject        String   // e.g., "francais", "english", "math"
-  outcomeIds     String   @default("[]") // JSON array of outcome IDs
-  themeId        Int?
-  theme          ThematicUnit? @relation(fields: [themeId], references: [id])
-  materialsFr    String?
-  materialsEn    String?
-  prepTimeMin    Int?     // preparation time in minutes
-  groupType      String   @default("Whole class") // "Whole class", "Small group", "Individual"
-  createdBy      Int
-  createdByUser  User     @relation(fields: [createdBy], references: [id])
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-}
-
 
 model StudentArtifact {
   id          Int      @id @default(autoincrement())
@@ -810,75 +455,13 @@ model ParentSummary {
   contentFr   String
   contentEn   String
   isDraft     Boolean  @default(true)
-  emailDeliveries EmailDelivery[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
 
-model EmailDelivery {
-  id                Int      @id @default(autoincrement())
-  parentMessageId   Int?
-  parentMessage     ParentMessage? @relation(fields: [parentMessageId], references: [id])
-  parentSummaryId   Int?
-  parentSummary     ParentSummary? @relation(fields: [parentSummaryId], references: [id])
-  recipientEmail    String
-  recipientName     String
-  subject           String
-  content           String
-  language          String   // "en" or "fr"
-  status            String   // "pending", "sent", "delivered", "failed", "bounced"
-  providerId        String?  // SendGrid message ID
-  sentAt            DateTime?
-  deliveredAt       DateTime?
-  failureReason     String?
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-  @@index([parentMessageId])
-  @@index([parentSummaryId])
-  @@index([status])
-}
 
-model EmailTemplate {
-  id          Int      @id @default(autoincrement())
-  name        String   @unique
-  subject     String
-  contentFr   String
-  contentEn   String
-  variables   String   @default("[]") // JSON array of available variables
-  userId      Int
-  user        User     @relation(fields: [userId], references: [id])
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
 
-model TeacherReflection {
-  id          Int      @id @default(autoincrement())
-  content     String
-  outcomeId   String
-  outcome     Outcome  @relation(fields: [outcomeId], references: [id])
-  userId      Int
-  user        User     @relation(fields: [userId], references: [id])
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  @@index([userId, outcomeId])
-}
 
-model MilestoneAlert {
-  id          Int      @id @default(autoincrement())
-  type        String   // "deadline" | "progress" | "coverage"
-  severity    String   // "low" | "medium" | "high" | "critical"
-  title       String
-  description String
-  milestoneId Int
-  milestone   Milestone @relation(fields: [milestoneId], references: [id])
-  userId      Int
-  user        User     @relation(fields: [userId], references: [id])
-  isRead      Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  @@index([userId, isRead])
-  @@index([userId, milestoneId])
-}
 
 // ==================== Phase 5: Curriculum Intelligence Models ====================
 
@@ -893,17 +476,6 @@ enum ImportStatus {
 }
 
 // Stores vector embeddings for curriculum outcomes to enable semantic search and clustering
-model OutcomeEmbedding {
-  id         String   @id @default(cuid())
-  outcomeId  String   @unique
-  outcome    Outcome  @relation(fields: [outcomeId], references: [id], onDelete: Cascade)
-  embedding  Json     // Array of float values from OpenAI embedding API
-  model      String   // e.g., "text-embedding-3-small"
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  
-  @@index([outcomeId])
-}
 
 // Tracks curriculum import sessions from various file formats (PDF, DOCX, CSV)
 model CurriculumImport {
@@ -932,22 +504,21 @@ model CurriculumImport {
   updatedAt         DateTime         @updatedAt
   completedAt       DateTime?
   
-  clusters          OutcomeCluster[]
-  outcomes          Outcome[]        // Outcomes created from this import
+  clusters          ExpectationCluster[]
   curriculumExpectations CurriculumExpectation[] @relation("CurriculumExpectationImport")
   
   @@index([userId, status])
   @@index([createdAt])
 }
 
-// Stores clustered groups of related outcomes for intelligent curriculum organization
-model OutcomeCluster {
+// Stores clustered groups of related expectations for intelligent curriculum organization
+model ExpectationCluster {
   id             String           @id @default(cuid())
   importId       String
   import         CurriculumImport @relation(fields: [importId], references: [id], onDelete: Cascade)
   clusterName    String           // Human-readable cluster name
   clusterType    String           // "theme" | "skill" | "concept"
-  outcomeIds     Json             // Array of outcome IDs in this cluster
+  expectationIds Json             // Array of expectation IDs in this cluster
   centroid       Json?            // Centroid embedding vector for the cluster
   confidence     Float            @default(0.0) // Clustering confidence score (0-1)
   suggestedTheme String?          // AI-suggested theme name
@@ -959,20 +530,6 @@ model OutcomeCluster {
 }
 
 // A4 Enhancement: Stores pedagogical prompts linked to curriculum outcomes
-model OutcomePrompt {
-  id         Int      @id @default(autoincrement())
-  outcomeId  String
-  outcome    Outcome  @relation(fields: [outcomeId], references: [id], onDelete: Cascade)
-  type       String   // "open_question" | "sentence_stem" | "discussion" | "metacognitive"
-  language   String   // "en" | "fr"
-  text       String   // The actual prompt text
-  isSystem   Boolean  @default(true)  // true for seeded prompts, false for user-generated
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  
-  @@index([outcomeId, language])
-  @@index([type, language])
-}
 // Stores classroom routines and procedures for substitute teachers
 model ClassRoutine {
   id          Int      @id @default(autoincrement())
@@ -1003,7 +560,6 @@ model SubPlanRecord {
   includeRoutines Boolean  @default(true)
   includePlans    Boolean  @default(true)
   anonymized      Boolean  @default(false)
-  emailedTo       String?  // Email address if sent
   notes           String?  // Additional notes from teacher
   createdAt       DateTime @default(now())
   
@@ -1220,6 +776,7 @@ model ETFOLessonPlan {
   expectations  ETFOLessonPlanExpectation[]
   daybookEntry  DaybookEntry?
   resources     ETFOLessonPlanResource[]
+  activityImports ActivityImport[]
   
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
@@ -1304,4 +861,139 @@ model DaybookEntryExpectation {
   coverage      String?               // "introduced", "developing", "consolidated"
   
   @@id([daybookEntryId, expectationId])
+}
+
+// ==================== Activity Discovery Models ====================
+// These models support the Activity Search and Discovery feature
+// allowing teachers to find, import, and rate educational activities from multiple sources
+
+model ExternalActivity {
+  id                String   @id @default(cuid())
+  externalId        String   // ID from source platform
+  source            String   // "TPT", "Khan", "OER", etc.
+  url               String
+  title             String
+  description       String?
+  thumbnailUrl      String?
+  
+  // Activity details
+  duration          Int?     // in minutes
+  activityType      String   // "video", "worksheet", "game", "experiment", "handson"
+  gradeMin          Int
+  gradeMax          Int
+  subject           String
+  language          String   @default("en")
+  
+  // Materials and requirements
+  materials         Json     // Array of required materials
+  technology        Json?    // Tech requirements
+  groupSize         String?  // "individual", "pairs", "small group", "whole class"
+  
+  // Quality and ratings
+  sourceRating      Float?   // Rating from source platform
+  sourceReviews     Int?     // Number of reviews on source
+  internalRating    Float?   // Our users' ratings
+  internalReviews   Int?     // Our users' review count
+  
+  // Curriculum alignment
+  curriculumTags    Json     // Array of curriculum codes
+  learningGoals     Json?    // Extracted learning objectives
+  
+  // Metadata
+  isFree            Boolean  @default(true)
+  price             Float?
+  license           String?  // Copyright/usage terms
+  lastVerified      DateTime @default(now())
+  isActive          Boolean  @default(true)
+  
+  // Relations
+  imports           ActivityImport[]
+  ratings           ActivityRating[]
+  collections       ActivityCollectionItem[]
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@unique([source, externalId])
+  @@index([subject, gradeMin, gradeMax])
+  @@index([activityType, language])
+  @@index([isActive, lastVerified])
+}
+
+model ActivityImport {
+  id              String           @id @default(cuid())
+  userId          Int
+  user            User             @relation(fields: [userId], references: [id])
+  activityId      String
+  activity        ExternalActivity @relation(fields: [activityId], references: [id])
+  
+  // Where it was imported to
+  lessonPlanId    String?
+  lessonPlan      ETFOLessonPlan?  @relation(fields: [lessonPlanId], references: [id])
+  lessonSection   String?          // "mindsOn", "action", "consolidation"
+  
+  // Customizations made
+  customizations  Json?            // User's modifications
+  notes           String?          // Teacher's notes
+  
+  // Usage tracking
+  timesUsed       Int              @default(1)
+  lastUsed        DateTime         @default(now())
+  effectiveness   Int?             // 1-5 rating after use
+  
+  createdAt       DateTime         @default(now())
+  
+  @@index([userId, activityId])
+  @@index([lessonPlanId])
+}
+
+model ActivityRating {
+  id          String           @id @default(cuid())
+  userId      Int
+  user        User             @relation(fields: [userId], references: [id])
+  activityId  String
+  activity    ExternalActivity @relation(fields: [activityId], references: [id])
+  
+  rating      Int              // 1-5 stars
+  review      String?
+  wouldRecommend Boolean?
+  
+  // Context of use
+  gradeUsed   Int?
+  subjectUsed String?
+  workedWell  String?          // What worked
+  challenges  String?          // What didn't work
+  
+  createdAt   DateTime         @default(now())
+  
+  @@unique([userId, activityId])
+  @@index([activityId, rating])
+}
+
+model ActivityCollection {
+  id          String     @id @default(cuid())
+  userId      Int
+  user        User       @relation(fields: [userId], references: [id])
+  
+  name        String
+  description String?
+  isPublic    Boolean    @default(false)
+  
+  items       ActivityCollectionItem[]
+  
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  
+  @@index([userId, isPublic])
+}
+
+// Junction table for ActivityCollection and ExternalActivity
+model ActivityCollectionItem {
+  collectionId String
+  collection   ActivityCollection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  activityId   String
+  activity     ExternalActivity   @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  addedAt      DateTime          @default(now())
+  
+  @@id([collectionId, activityId])
 }

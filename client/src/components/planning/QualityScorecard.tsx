@@ -27,7 +27,7 @@ ChartJS.register(
 );
 
 interface QualityMetrics {
-  outcomesCoverage: number;
+  expectationsCoverage: number; // Updated for ETFO alignment
   assessmentBalance: number;
   engagementVariety: number;
   differentiationScore: number;
@@ -143,7 +143,7 @@ export function QualityScorecard({ weekStart, onSuggestionClick }: QualityScorec
       {
         label: 'Current Week',
         data: [
-          metrics.outcomesCoverage,
+          metrics.expectationsCoverage,
           metrics.assessmentBalance,
           metrics.engagementVariety,
           metrics.differentiationScore,
@@ -245,7 +245,7 @@ export function QualityScorecard({ weekStart, onSuggestionClick }: QualityScorec
           {/* Individual Metrics */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { label: 'Outcome Coverage', value: metrics.outcomesCoverage, icon: '🎯' },
+              { label: 'Expectation Coverage', value: metrics.expectationsCoverage, icon: '🎯' },
               { label: 'Assessment Balance', value: metrics.assessmentBalance, icon: '📝' },
               { label: 'Engagement Variety', value: metrics.engagementVariety, icon: '🎨' },
               { label: 'Differentiation', value: metrics.differentiationScore, icon: '🧩' },

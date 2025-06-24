@@ -128,7 +128,7 @@ Ensure the teacher has a clear checklist of all materials needed for the week, a
 
 **\[Frontend]**
 
-- [x] `WeeklyMaterialsChecklistUI`: Show grouped list of needed materials with checkboxes and links to relevant activities
+- [x] `MaterialsChecklistUI`: Show grouped list of needed materials with checkboxes and links to relevant activities
 - [x] `DownloadAllPrintablesButton`: Allows teacher to fetch all printable files for the week in one ZIP
 - `FlagMissingPrintables`: Alert if scheduled activities have missing resources
 
@@ -236,7 +236,7 @@ Make the tool feel like an integrated assistant, not a disconnected set of tools
 
 **\[Frontend]**
 
-- `UnifiedWeekViewComponent`: Combine planner, material checklist, and newsletter generator into one dashboard
+- ~~`UnifiedWeekViewComponent`: (REMOVED - deprecated in favor of ETFO planning system)~~
 - `PostPlanningActionPrompts`: After generating a plan, automatically prompt to generate materials and newsletter
 - `TeacherOnboardingFlow`: Add onboarding/tutorial overlay for new users to guide through workflow
 

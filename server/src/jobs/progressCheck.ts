@@ -1,6 +1,5 @@
 import cron from 'node-cron';
 import { prisma } from '../prisma';
-import { sendEmail } from '../services/emailService';
 
 /**
  * Query milestones that are due within the next week and notify the teacher
@@ -24,7 +23,7 @@ export async function runProgressCheck() {
     if (incomplete > 0) {
       const message = `Milestone "${m.title}" is due soon`;
       await prisma.notification.create({ data: { message } });
-      await sendEmail('teacher@example.com', 'Milestone Alert', message);
+      // Email notifications were removed - only in-app notifications remain
     }
   }
 }

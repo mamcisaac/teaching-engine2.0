@@ -2,13 +2,14 @@ import React, { useState, useRef } from 'react';
 import { format, addDays, startOfWeek, endOfWeek, isToday } from 'date-fns';
 import { useDaybookEntries, useETFOLessonPlans, useCreateDaybookEntry, useUpdateDaybookEntry } from '../hooks/useETFOPlanning';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/Button';
+import { Textarea } from '@/components/ui/Textarea';
+import { Label } from '@/components/ui/Label';
+import { Badge } from '@/components/ui/Badge';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/Dialog';
+import { Alert, AlertDescription } from '@/components/ui/Alert';
 import { Calendar, Clock, BookOpen, FileText, Printer, ChevronLeft, ChevronRight, PenTool, Save, RefreshCw, AlertCircle, CheckCircle } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { useReactToPrint } from 'react-to-print';
@@ -22,18 +23,27 @@ interface DayEntryProps {
 }
 
 function DayEntry({ date, entry, lessons, onSave, isToday: isDayToday }: DayEntryProps) {
-  const [reflection, setReflection] = useState(entry?.endOfDayReflection || '');
-  const [subNotes, setSubNotes] = useState(entry?.substituteNotes || '');
   const [isEditing, setIsEditing] = useState(false);
-  const [localBigIdeas, setLocalBigIdeas] = useState(entry?.bigIdeas || ['']);
+  
+  // Initialize all ETFO-aligned fields
+  const [formData, setFormData] = useState({
+    notes: entry?.notes || '',
+    privateNotes: entry?.privateNotes || '',
+    whatWorked: entry?.whatWorked || '',
+    whatDidntWork: entry?.whatDidntWork || '',
+    nextSteps: entry?.nextSteps || '',
+    studentEngagement: entry?.studentEngagement || '',
+    studentChallenges: entry?.studentChallenges || '',
+    studentSuccesses: entry?.studentSuccesses || '',
+    overallRating: entry?.overallRating || 3,
+    wouldReuseLesson: entry?.wouldReuseLesson ?? true,
+  });
 
   const handleSave = () => {
     onSave({
       date: date.toISOString(),
-      endOfDayReflection: reflection,
-      substituteNotes: subNotes,
-      bigIdeas: localBigIdeas.filter(idea => idea.trim() !== ''),
-      lessonPlanIds: lessons.map(l => l.id),
+      ...formData,
+      lessonPlanId: lessons.length > 0 ? lessons[0].id : undefined,
     });
     setIsEditing(false);
   };
@@ -54,7 +64,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: isDayToday }: DayEntr
           </div>
           <Button
             variant="ghost"
-            size="icon"
+            size="sm"
             onClick={() => setIsEditing(!isEditing)}
           >
             <PenTool className="h-4 w-4" />
@@ -90,81 +100,181 @@ function DayEntry({ date, entry, lessons, onSave, isToday: isDayToday }: DayEntr
                   </div>
                 </div>
                 <div className="flex gap-1">
-                  {lesson.assessmentFor && <Badge variant="secondary" className="text-xs">For</Badge>}
-                  {lesson.assessmentAs && <Badge variant="secondary" className="text-xs">As</Badge>}
-                  {lesson.assessmentOf && <Badge variant="secondary" className="text-xs">Of</Badge>}
+                  {lesson.assessmentType && <Badge variant="secondary" className="text-xs">{lesson.assessmentType}</Badge>}
                 </div>
               </div>
             ))
           )}
         </div>
 
-        {/* Big Ideas for the Day */}
-        {isEditing && (
-          <div className="space-y-2">
-            <Label>Big Ideas for the Day</Label>
-            {localBigIdeas.map((idea, index) => (
-              <div key={index} className="flex gap-2">
-                <Textarea
-                  value={idea}
-                  onChange={(e) => {
-                    const updated = [...localBigIdeas];
-                    updated[index] = e.target.value;
-                    setLocalBigIdeas(updated);
-                  }}
-                  placeholder="Enter a big idea..."
-                  rows={1}
-                />
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => {
-                    const updated = localBigIdeas.filter((_, i) => i !== index);
-                    setLocalBigIdeas(updated.length > 0 ? updated : ['']);
-                  }}
-                >
-                  ×
-                </Button>
+        {/* ETFO Reflection Prompts */}
+        {isEditing ? (
+          <div className="space-y-4">
+            {/* Overall Rating */}
+            <div className="space-y-2">
+              <Label>Overall Day Rating</Label>
+              <div className="flex items-center gap-2">
+                {[1, 2, 3, 4, 5].map((rating) => (
+                  <Button
+                    key={rating}
+                    type="button"
+                    variant={formData.overallRating === rating ? "primary" : "outline"}
+                    size="sm"
+                    onClick={() => setFormData({ ...formData, overallRating: rating })}
+                  >
+                    {rating}
+                  </Button>
+                ))}
+                <span className="text-sm text-muted-foreground ml-2">
+                  {formData.overallRating === 1 && 'Challenging'}
+                  {formData.overallRating === 2 && 'Below Expectations'}
+                  {formData.overallRating === 3 && 'Satisfactory'}
+                  {formData.overallRating === 4 && 'Good'}
+                  {formData.overallRating === 5 && 'Excellent'}
+                </span>
               </div>
-            ))}
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setLocalBigIdeas([...localBigIdeas, ''])}
-              className="w-full"
-            >
-              Add Big Idea
-            </Button>
-          </div>
-        )}
-
-        {/* Reflection */}
-        <div className="space-y-2">
-          <Label>End-of-Day Reflection</Label>
-          {isEditing ? (
-            <Textarea
-              value={reflection}
-              onChange={(e) => setReflection(e.target.value)}
-              placeholder="What went well? What would you change? Any observations..."
-              rows={3}
-            />
-          ) : (
-            <div className="text-sm text-muted-foreground">
-              {reflection || <span className="italic">No reflection yet</span>}
             </div>
-          )}
-        </div>
 
-        {/* Substitute Notes */}
-        {isEditing && (
+            {/* What Worked Well */}
+            <div className="space-y-2">
+              <Label>What Worked Well?</Label>
+              <Textarea
+                value={formData.whatWorked}
+                onChange={(e) => setFormData({ ...formData, whatWorked: e.target.value })}
+                placeholder="Describe successful strategies, activities, or moments..."
+                rows={2}
+              />
+            </div>
+
+            {/* What Didn't Work */}
+            <div className="space-y-2">
+              <Label>What Could Be Improved?</Label>
+              <Textarea
+                value={formData.whatDidntWork}
+                onChange={(e) => setFormData({ ...formData, whatDidntWork: e.target.value })}
+                placeholder="Identify challenges or areas for improvement..."
+                rows={2}
+              />
+            </div>
+
+            {/* Next Steps */}
+            <div className="space-y-2">
+              <Label>Next Steps</Label>
+              <Textarea
+                value={formData.nextSteps}
+                onChange={(e) => setFormData({ ...formData, nextSteps: e.target.value })}
+                placeholder="What will you do differently next time? Follow-up needed?"
+                rows={2}
+              />
+            </div>
+
+            {/* Student Observations */}
+            <div className="space-y-2">
+              <Label className="text-base font-semibold">Student Observations</Label>
+              
+              <div className="space-y-2">
+                <Label className="text-sm">Engagement Level</Label>
+                <Textarea
+                  value={formData.studentEngagement}
+                  onChange={(e) => setFormData({ ...formData, studentEngagement: e.target.value })}
+                  placeholder="How engaged were students? Note participation patterns..."
+                  rows={2}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label className="text-sm">Challenges Observed</Label>
+                <Textarea
+                  value={formData.studentChallenges}
+                  onChange={(e) => setFormData({ ...formData, studentChallenges: e.target.value })}
+                  placeholder="What difficulties did students encounter? Who needs support?"
+                  rows={2}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label className="text-sm">Successes Noted</Label>
+                <Textarea
+                  value={formData.studentSuccesses}
+                  onChange={(e) => setFormData({ ...formData, studentSuccesses: e.target.value })}
+                  placeholder="Notable achievements, breakthroughs, or growth observed..."
+                  rows={2}
+                />
+              </div>
+            </div>
+
+            {/* General Notes */}
+            <div className="space-y-2">
+              <Label>Additional Notes</Label>
+              <Textarea
+                value={formData.notes}
+                onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                placeholder="Any other observations, reminders, or reflections..."
+                rows={2}
+              />
+            </div>
+
+            {/* Would Reuse Lesson */}
+            <div className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="reuseLesson"
+                checked={formData.wouldReuseLesson}
+                onChange={(e) => setFormData({ ...formData, wouldReuseLesson: e.target.checked })}
+                className="rounded"
+              />
+              <Label htmlFor="reuseLesson" className="text-sm font-normal cursor-pointer">
+                I would use this lesson plan again
+              </Label>
+            </div>
+
+            {/* Substitute Notes */}
+            <div className="space-y-2">
+              <Label>Substitute Teacher Notes</Label>
+              <Textarea
+                value={formData.privateNotes}
+                onChange={(e) => setFormData({ ...formData, privateNotes: e.target.value })}
+                placeholder="Important information for a substitute teacher..."
+                rows={2}
+              />
+            </div>
+          </div>
+        ) : (
           <div className="space-y-2">
-            <Label>Substitute Teacher Notes</Label>
-            <Textarea
-              value={subNotes}
-              onChange={(e) => setSubNotes(e.target.value)}
-              placeholder="Important information for a substitute teacher..."
-              rows={2}
-            />
+            {/* Display saved reflections */}
+            {formData.overallRating && (
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-sm font-medium">Day Rating:</span>
+                <Badge variant={formData.overallRating >= 4 ? "default" : "secondary"}>
+                  {formData.overallRating}/5
+                </Badge>
+              </div>
+            )}
+            
+            {formData.whatWorked && (
+              <div>
+                <p className="text-sm font-medium text-green-700">What Worked:</p>
+                <p className="text-sm text-muted-foreground">{formData.whatWorked}</p>
+              </div>
+            )}
+            
+            {formData.whatDidntWork && (
+              <div>
+                <p className="text-sm font-medium text-orange-700">Challenges:</p>
+                <p className="text-sm text-muted-foreground">{formData.whatDidntWork}</p>
+              </div>
+            )}
+            
+            {formData.nextSteps && (
+              <div>
+                <p className="text-sm font-medium text-blue-700">Next Steps:</p>
+                <p className="text-sm text-muted-foreground">{formData.nextSteps}</p>
+              </div>
+            )}
+            
+            {!formData.whatWorked && !formData.whatDidntWork && !formData.nextSteps && (
+              <p className="text-sm text-muted-foreground italic">No reflection yet</p>
+            )}
           </div>
         )}
 
@@ -201,20 +311,20 @@ export default function DaybookPage() {
   const weekEnd = endOfWeek(selectedWeek, { weekStartsOn: 1 });
 
   const { data: entries = [], isLoading: entriesLoading } = useDaybookEntries({
-    startDate: weekStart,
-    endDate: weekEnd,
+    startDate: weekStart.toISOString(),
+    endDate: weekEnd.toISOString(),
   });
 
   const { data: lessons = [], isLoading: lessonsLoading } = useETFOLessonPlans({
-    startDate: weekStart,
-    endDate: weekEnd,
+    startDate: weekStart.toISOString(),
+    endDate: weekEnd.toISOString(),
   });
 
   const createMutation = useCreateDaybookEntry();
   const updateMutation = useUpdateDaybookEntry();
 
   const handlePrint = useReactToPrint({
-    content: () => printRef.current,
+    contentRef: printRef,
     documentTitle: `Daybook - Week of ${format(weekStart, 'MMM d, yyyy')}`,
   });
 
@@ -227,7 +337,7 @@ export default function DaybookPage() {
       if (existingEntry) {
         await updateMutation.mutateAsync({
           id: existingEntry.id,
-          data,
+          ...data,
         });
       } else {
         await createMutation.mutateAsync(data);
@@ -262,11 +372,11 @@ export default function DaybookPage() {
 
   const generateInsights = () => {
     const totalLessons = lessons.length;
-    const totalReflections = entries.filter(e => e.endOfDayReflection).length;
+    const totalReflections = entries.filter(e => e.notes).length;
     const assessmentTypes = {
-      for: lessons.filter(l => l.assessmentFor).length,
-      as: lessons.filter(l => l.assessmentAs).length,
-      of: lessons.filter(l => l.assessmentOf).length,
+      diagnostic: lessons.filter(l => l.assessmentType === 'diagnostic').length,
+      formative: lessons.filter(l => l.assessmentType === 'formative').length,
+      summative: lessons.filter(l => l.assessmentType === 'summative').length,
     };
 
     return {
@@ -302,7 +412,7 @@ export default function DaybookPage() {
             <div className="flex items-center gap-2">
               <Button
                 variant="outline"
-                size="icon"
+                size="sm"
                 onClick={() => setSelectedWeek(addDays(selectedWeek, -7))}
               >
                 <ChevronLeft className="h-4 w-4" />
@@ -315,7 +425,7 @@ export default function DaybookPage() {
               </Button>
               <Button
                 variant="outline"
-                size="icon"
+                size="sm"
                 onClick={() => setSelectedWeek(addDays(selectedWeek, 7))}
               >
                 <ChevronRight className="h-4 w-4" />
@@ -350,9 +460,9 @@ export default function DaybookPage() {
           </CardHeader>
           <CardContent>
             <div className="flex gap-2">
-              <Badge variant="secondary">For: {insights.assessmentTypes.for}</Badge>
-              <Badge variant="secondary">As: {insights.assessmentTypes.as}</Badge>
-              <Badge variant="secondary">Of: {insights.assessmentTypes.of}</Badge>
+              <Badge variant="secondary">D: {insights.assessmentTypes.diagnostic}</Badge>
+              <Badge variant="secondary">F: {insights.assessmentTypes.formative}</Badge>
+              <Badge variant="secondary">S: {insights.assessmentTypes.summative}</Badge>
             </div>
           </CardContent>
         </Card>

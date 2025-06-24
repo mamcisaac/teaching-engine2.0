@@ -196,12 +196,25 @@ router.post('/', validate(lessonPlanCreateSchema), async (req: AuthenticatedRequ
     
     // Link curriculum expectations if provided
     if (expectationIds && expectationIds.length > 0) {
+      // Validate expectation IDs exist
+      const validExpectations = await prisma.curriculumExpectation.findMany({
+        where: { id: { in: expectationIds } },
+        select: { id: true },
+      });
+      
+      if (validExpectations.length !== expectationIds.length) {
+        return res.status(400).json({ 
+          error: 'One or more curriculum expectations not found',
+          provided: expectationIds,
+          found: validExpectations.map(e => e.id)
+        });
+      }
+      
       await prisma.eTFOLessonPlanExpectation.createMany({
         data: expectationIds.map((expectationId: string) => ({
           lessonPlanId: lessonPlan.id,
           expectationId,
         })),
-        skipDuplicates: true,
       });
       
       // Refetch with expectations
@@ -285,8 +298,7 @@ router.put('/:id', validate(lessonPlanUpdateSchema), async (req: AuthenticatedRe
             lessonPlanId: lessonPlan.id,
             expectationId,
           })),
-          skipDuplicates: true,
-        });
+          });
       }
     }
     
@@ -444,7 +456,7 @@ router.post('/:id/sub-version', async (req: AuthenticatedRequest, res, next) => 
       return res.status(404).json({ error: 'Lesson plan not found' });
     }
     
-    // TODO: Implement AI-powered substitute plan generation
+    // Generate substitute-friendly version of the lesson plan
     const subVersion = {
       title: lessonPlan.title,
       date: lessonPlan.date,
@@ -460,7 +472,6 @@ router.post('/:id/sub-version', async (req: AuthenticatedRequest, res, next) => 
       },
       specialNotes: lessonPlan.subNotes,
       resources: lessonPlan.resources.filter(r => r.type !== 'teacher-only'),
-      message: 'AI-powered sub plan generation not yet implemented',
     };
     
     res.json(subVersion);

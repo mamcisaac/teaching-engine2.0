@@ -35,23 +35,11 @@ interface StudentWithRelations {
   firstName: string;
   lastName: string;
   userId: number;
-  assessmentResults: AssessmentResult[];
   artifacts: Artifact[];
   reflections: Reflection[];
   goals: Goal[];
 }
 
-interface AssessmentResult {
-  id: number;
-  score: number | null;
-  notes: string | null;
-  createdAt: Date;
-  assessment: {
-    id: number;
-    notes: string | null;
-    date: Date;
-  };
-}
 
 interface Artifact {
   id: number;
@@ -75,7 +63,6 @@ interface Goal {
 interface SubjectProgress {
   id: number;
   name: string;
-  assessments: AssessmentResult[];
   outcomes: string[];
   averageScore: number;
   [key: string]: unknown;
@@ -86,7 +73,6 @@ interface SubjectReportCard {
   name: string;
   grade: string;
   outcomes: string[];
-  assessments: AssessmentResult[];
 }
 
 export class ReportGeneratorService {
@@ -97,17 +83,6 @@ export class ReportGeneratorService {
         where: { id: request.studentId },
         include: {
           user: true,
-          assessmentResults: {
-            where: {
-              createdAt: {
-                gte: request.startDate,
-                lte: request.endDate,
-              },
-            },
-            include: {
-              assessment: true,
-            },
-          },
           artifacts: {
             where: {
               createdAt: {
@@ -172,13 +147,12 @@ export class ReportGeneratorService {
   ): Promise<GeneratedReport> {
     const sections: ReportSection[] = [];
 
-    // Academic Progress Section
-    if (student.assessmentResults.length > 0) {
-      const assessmentSummary = this.summarizeAssessments(student.assessmentResults);
+    // Assessment functionality removed - focus on artifacts and reflections
+    if (student.artifacts.length > 0 || student.reflections.length > 0) {
       sections.push({
         title: request.language === 'fr' ? 'Progrès académique' : 'Academic Progress',
-        content: await this.generateAcademicProgressNarrative(assessmentSummary, request.language),
-        data: assessmentSummary,
+        content: await this.generateProgressFromArtifacts(student.artifacts, student.reflections, request.language),
+        data: { artifacts: student.artifacts, reflections: student.reflections },
       });
     }
 
@@ -299,7 +273,6 @@ export class ReportGeneratorService {
         data: {
           grade: subject.grade,
           outcomes: subject.outcomes,
-          assessments: subject.assessments,
         },
       });
     }
@@ -321,64 +294,25 @@ export class ReportGeneratorService {
   }
 
   // Helper methods
-  private summarizeAssessments(assessmentResults: AssessmentResult[]): Record<string, unknown> {
-    const summary: Record<string, unknown> = {
-      totalAssessments: assessmentResults.length,
-      bySubject: {},
-      averageScore: 0,
-      strengths: [],
-      improvements: [],
-    };
-
-    // Group by subject (simplified without deep relations)
-    assessmentResults.forEach(result => {
-      const subjectName = 'General'; // Simplified for now
-      if (!summary.bySubject[subjectName]) {
-        summary.bySubject[subjectName] = {
-          count: 0,
-          totalScore: 0,
-          outcomes: new Set(),
-        };
-      }
-      summary.bySubject[subjectName].count++;
-      summary.bySubject[subjectName].totalScore += result.score || 0;
-    });
-
-    // Calculate averages and identify strengths/improvements
-    let totalScore = 0;
-    let totalCount = 0;
-    
-    Object.entries(summary.bySubject as Record<string, unknown>).forEach(([subject, data]) => {
-      const subjectData = data as { count: number; totalScore: number; average?: number; outcomes: Set<string> };
-      subjectData.average = subjectData.totalScore / subjectData.count;
-      const processedData = subjectData as unknown as { outcomes: string[] };
-      processedData.outcomes = Array.from(subjectData.outcomes);
-      
-      totalScore += subjectData.totalScore;
-      totalCount += subjectData.count;
-      
-      if (subjectData.average >= 80) {
-        (summary.strengths as string[]).push(subject);
-      } else if (subjectData.average < 60) {
-        (summary.improvements as string[]).push(subject);
-      }
-    });
-
-    summary.averageScore = totalCount > 0 ? totalScore / totalCount : 0;
-
-    return summary;
-  }
-
-  private async generateAcademicProgressNarrative(
-    assessmentSummary: Record<string, unknown>,
+  private async generateProgressFromArtifacts(
+    artifacts: Artifact[],
+    reflections: Reflection[],
     language: 'en' | 'fr'
   ): Promise<string> {
-    const prompt = language === 'fr'
-      ? `Générez un paragraphe décrivant le progrès académique basé sur ces données d'évaluation: ${JSON.stringify(assessmentSummary)}`
-      : `Generate a paragraph describing academic progress based on this assessment data: ${JSON.stringify(assessmentSummary)}`;
+    const context = {
+      artifactCount: artifacts.length,
+      reflectionCount: reflections.length,
+      recentArtifacts: artifacts.slice(0, 3).map(a => ({ title: a.title, description: a.description })),
+      recentReflections: reflections.slice(0, 3).map(r => ({ content: r.content }))
+    };
 
-    return generateContent(prompt);
+    const prompt = language === 'fr'
+      ? `Décrivez le progrès académique basé sur ${artifacts.length} artefacts et ${reflections.length} réflexions.`
+      : `Describe academic progress based on ${artifacts.length} artifacts and ${reflections.length} reflections.`;
+
+    return generateContent(prompt, JSON.stringify(context));
   }
+
 
   private async generateGoalsNarrative(
     goals: Goal[],
@@ -437,12 +371,6 @@ export class ReportGeneratorService {
 
   private compileLearningJourney(student: StudentWithRelations) {
     return {
-      assessments: student.assessmentResults.map((r) => ({
-        date: r.createdAt,
-        subject: 'General', // Simplified since we don't have subject relation
-        score: r.score,
-        feedback: r.notes,
-      })),
       artifacts: student.artifacts.map((a) => ({
         title: a.title,
         description: a.description,
@@ -465,11 +393,8 @@ export class ReportGeneratorService {
     return subjects.map(subject => ({
       id: subject.id,
       name: subject.name,
-      assessments: student.assessmentResults,
       outcomes: [],
-      averageScore: student.assessmentResults.length > 0 
-        ? student.assessmentResults.reduce((sum: number, a: AssessmentResult) => sum + (a.score || 0), 0) / student.assessmentResults.length
-        : 0,
+      averageScore: 0, // Assessment functionality removed
     }));
   }
 
@@ -520,22 +445,12 @@ export class ReportGeneratorService {
       where: { userId: student.userId },
     });
 
-    return subjects.map(subject => {
-      // Use the assessment results from the student data
-      const subjectAssessments = student.assessmentResults || [];
-      
-      const averageScore = subjectAssessments.length > 0
-        ? subjectAssessments.reduce((sum: number, r: AssessmentResult) => sum + (r.score || 0), 0) / subjectAssessments.length
-        : 0;
-
-      return {
-        id: subject.id,
-        name: subject.name,
-        grade: this.scoreToGrade(averageScore),
-        outcomes: [],
-        assessments: subjectAssessments,
-      };
-    });
+    return subjects.map(subject => ({
+      id: subject.id,
+      name: subject.name,
+      grade: 'N/A', // Assessment functionality removed
+      outcomes: [],
+    }));
   }
 
   private scoreToGrade(score: number): string {
@@ -559,7 +474,6 @@ export class ReportGeneratorService {
       prompt,
       JSON.stringify({
         outcomes: subject.outcomes.length,
-        assessmentCount: subject.assessments.length,
       })
     );
   }

@@ -1,10 +1,10 @@
 import { jest } from '@jest/globals';
 
 export class ClusteringService {
-  clusterOutcomes = jest.fn();
-  reclusterOutcomes = jest.fn();
+  clusterExpectations = jest.fn();
+  reclusterExpectations = jest.fn();
   getClusters = jest.fn();
-  suggestSimilarOutcomes = jest.fn();
+  suggestSimilarExpectations = jest.fn();
   analyzeClusterQuality = jest.fn();
 }
 

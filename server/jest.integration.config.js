@@ -26,7 +26,8 @@ export default {
   globalTeardown: '<rootDir>/tests/global-teardown.ts',
   setupFilesAfterEnv: [
     '<rootDir>/jest.setup.js',
-    '<rootDir>/tests/jest.setup.ts', // Real database setup
+    '<rootDir>/tests/setup-all-mocks.ts', // Load mocks for external APIs
+    '<rootDir>/tests/jest.integration.setup.ts', // Integration test database setup (no reset between tests)
   ],
   testMatch: ['**/tests/integration/**/*.test.ts'],
   testPathIgnorePatterns: [

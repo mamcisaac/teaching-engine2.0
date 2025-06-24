@@ -6,7 +6,7 @@ export interface ClusterResult {
   id: string;
   name: string;
   type: 'theme' | 'skill' | 'concept';
-  outcomeIds: string[];
+  expectationIds: string[];
   confidence: number;
   suggestedTheme?: string;
 }
@@ -31,37 +31,37 @@ export class ClusteringService extends BaseService {
   }
 
   /**
-   * Cluster outcomes for a specific import using embedding-based similarity
+   * Cluster curriculum expectations for a specific import using embedding-based similarity
    */
-  async clusterOutcomes(
+  async clusterExpectations(
     importId: string,
     options: Partial<ClusteringOptions> = {},
   ): Promise<ClusterResult[]> {
     const opts = { ...this.defaultOptions, ...options };
 
     try {
-      // Get all outcomes for this import with their embeddings
-      const outcomes = await this.getOutcomesWithEmbeddings(importId);
+      // Get all expectations for this import with their embeddings
+      const expectations = await this.getExpectationsWithEmbeddings(importId);
 
-      if (outcomes.length < opts.minClusterSize) {
+      if (expectations.length < opts.minClusterSize) {
         this.logger.info(
-          { importId, outcomeCount: outcomes.length },
-          'Not enough outcomes to create meaningful clusters',
+          { importId, expectationCount: expectations.length },
+          'Not enough expectations to create meaningful clusters',
         );
         return [];
       }
 
       this.logger.info(
-        { importId, outcomeCount: outcomes.length, options: opts },
-        'Starting outcome clustering',
+        { importId, expectationCount: expectations.length, options: opts },
+        'Starting expectation clustering',
       );
 
       // Perform hierarchical clustering
-      const clusters = await this.performHierarchicalClustering(outcomes, opts);
+      const clusters = await this.performHierarchicalClustering(expectations, opts);
 
       // Generate AI suggestions for cluster themes if enabled
       if (opts.useAISuggestions) {
-        await this.generateClusterThemes(clusters);
+        await this.generateClusterThemes(clusters, importId);
       }
 
       // Save clusters to database
@@ -69,35 +69,35 @@ export class ClusteringService extends BaseService {
 
       this.logger.info(
         { importId, clusterCount: savedClusters.length },
-        'Completed outcome clustering',
+        'Completed expectation clustering',
       );
 
       return savedClusters;
     } catch (error) {
-      this.logger.error({ error, importId }, 'Failed to cluster outcomes');
+      this.logger.error({ error, importId }, 'Failed to cluster expectations');
       throw new Error(`Clustering failed: ${error.message}`);
     }
   }
 
   /**
-   * Re-cluster outcomes with different parameters
+   * Re-cluster expectations with different parameters
    */
-  async reclusterOutcomes(
+  async reclusterExpectations(
     importId: string,
     options: Partial<ClusteringOptions> = {},
   ): Promise<ClusterResult[]> {
     try {
       // Delete existing clusters for this import
-      await this.prisma.outcomeCluster.deleteMany({
+      await this.prisma.expectationCluster.deleteMany({
         where: { importId },
       });
 
       this.logger.info({ importId }, 'Deleted existing clusters for re-clustering');
 
       // Perform new clustering
-      return await this.clusterOutcomes(importId, options);
+      return await this.clusterExpectations(importId, options);
     } catch (error) {
-      this.logger.error({ error, importId }, 'Failed to re-cluster outcomes');
+      this.logger.error({ error, importId }, 'Failed to re-cluster expectations');
       throw error;
     }
   }
@@ -107,7 +107,7 @@ export class ClusteringService extends BaseService {
    */
   async getClusters(importId: string): Promise<ClusterResult[]> {
     try {
-      const clusters = await this.prisma.outcomeCluster.findMany({
+      const clusters = await this.prisma.expectationCluster.findMany({
         where: { importId },
         orderBy: { confidence: 'desc' },
       });
@@ -116,7 +116,7 @@ export class ClusteringService extends BaseService {
         id: cluster.id,
         name: cluster.clusterName,
         type: cluster.clusterType as 'theme' | 'skill' | 'concept',
-        outcomeIds: cluster.outcomeIds as string[],
+        expectationIds: cluster.expectationIds as string[],
         confidence: cluster.confidence,
         suggestedTheme: cluster.suggestedTheme || undefined,
       }));
@@ -127,28 +127,28 @@ export class ClusteringService extends BaseService {
   }
 
   /**
-   * Suggest similar outcomes based on a given outcome
+   * Suggest similar expectations based on a given expectation
    */
-  async suggestSimilarOutcomes(
-    outcomeId: string,
+  async suggestSimilarExpectations(
+    expectationId: string,
     threshold: number = 0.8,
     limit: number = 10,
   ): Promise<
     {
-      outcomeId: string;
+      expectationId: string;
       code: string;
       description: string;
       similarity: number;
     }[]
   > {
     try {
-      const similarities = await embeddingService.findSimilarOutcomes(outcomeId, threshold, limit);
+      const similarities = await embeddingService.findSimilarExpectations(expectationId, threshold, limit);
 
       if (similarities.length === 0) return [];
 
-      const outcomes = await this.prisma.outcome.findMany({
+      const expectations = await this.prisma.curriculumExpectation.findMany({
         where: {
-          id: { in: similarities.map((s) => s.outcomeId) },
+          id: { in: similarities.map((s) => s.expectationId) },
         },
         select: {
           id: true,
@@ -159,17 +159,17 @@ export class ClusteringService extends BaseService {
 
       return similarities
         .map((sim) => {
-          const outcome = outcomes.find((o) => o.id === sim.outcomeId);
+          const expectation = expectations.find((e) => e.id === sim.expectationId);
           return {
-            outcomeId: sim.outcomeId,
-            code: outcome?.code || 'Unknown',
-            description: outcome?.description || 'Unknown',
+            expectationId: sim.expectationId,
+            code: expectation?.code || 'Unknown',
+            description: expectation?.description || 'Unknown',
             similarity: sim.similarity,
           };
         })
         .filter((item) => item.code !== 'Unknown');
     } catch (error) {
-      this.logger.error({ error, outcomeId }, 'Failed to suggest similar outcomes');
+      this.logger.error({ error, expectationId }, 'Failed to suggest similar expectations');
       return [];
     }
   }
@@ -209,7 +209,7 @@ export class ClusteringService extends BaseService {
         suggestions.push('Many clusters have low confidence - consider reducing max clusters');
       }
 
-      const smallClusters = clusters.filter((c) => c.outcomeIds.length < 3).length;
+      const smallClusters = clusters.filter((c) => c.expectationIds.length < 3).length;
       if (smallClusters > clusters.length * 0.5) {
         suggestions.push('Many small clusters detected - consider increasing minimum cluster size');
       }
@@ -228,7 +228,7 @@ export class ClusteringService extends BaseService {
 
   // Private helper methods
 
-  private async getOutcomesWithEmbeddings(importId: string): Promise<
+  private async getExpectationsWithEmbeddings(importId: string): Promise<
     {
       id: string;
       code: string;
@@ -236,63 +236,63 @@ export class ClusteringService extends BaseService {
       embedding: number[];
     }[]
   > {
-    const outcomes = await this.prisma.outcome.findMany({
+    const expectations = await this.prisma.curriculumExpectation.findMany({
       where: { importId },
       include: {
         embedding: true,
       },
     });
 
-    const outcomesWithEmbeddings = outcomes
-      .filter((outcome) => outcome.embedding)
-      .map((outcome) => ({
-        id: outcome.id,
-        code: outcome.code,
-        description: outcome.description,
-        embedding: outcome.embedding!.embedding as number[],
+    const expectationsWithEmbeddings = expectations
+      .filter((expectation) => expectation.embedding)
+      .map((expectation) => ({
+        id: expectation.id,
+        code: expectation.code,
+        description: expectation.description,
+        embedding: expectation.embedding!.embedding as number[],
       }));
 
     // Generate missing embeddings
-    const missingEmbeddings = outcomes.filter((outcome) => !outcome.embedding);
+    const missingEmbeddings = expectations.filter((expectation) => !expectation.embedding);
     if (missingEmbeddings.length > 0) {
       this.logger.info({ count: missingEmbeddings.length }, 'Generating missing embeddings');
 
-      const embeddingData = missingEmbeddings.map((outcome) => ({
-        id: outcome.id,
-        text: `${outcome.code}: ${outcome.description}`,
+      const embeddingData = missingEmbeddings.map((expectation) => ({
+        id: expectation.id,
+        text: `${expectation.code}: ${expectation.description}`,
       }));
 
       await embeddingService.generateBatchEmbeddings(embeddingData);
 
       // Re-fetch with new embeddings
-      const updatedOutcomes = await this.prisma.outcome.findMany({
-        where: { id: { in: missingEmbeddings.map((o) => o.id) } },
+      const updatedExpectations = await this.prisma.curriculumExpectation.findMany({
+        where: { id: { in: missingEmbeddings.map((e) => e.id) } },
         include: { embedding: true },
       });
 
-      for (const outcome of updatedOutcomes) {
-        if (outcome.embedding) {
-          outcomesWithEmbeddings.push({
-            id: outcome.id,
-            code: outcome.code,
-            description: outcome.description,
-            embedding: outcome.embedding.embedding as number[],
+      for (const expectation of updatedExpectations) {
+        if (expectation.embedding) {
+          expectationsWithEmbeddings.push({
+            id: expectation.id,
+            code: expectation.code,
+            description: expectation.description,
+            embedding: expectation.embedding.embedding as number[],
           });
         }
       }
     }
 
-    return outcomesWithEmbeddings;
+    return expectationsWithEmbeddings;
   }
 
   private async performHierarchicalClustering(
-    outcomes: { id: string; code: string; description: string; embedding: number[] }[],
+    expectations: { id: string; code: string; description: string; embedding: number[] }[],
     options: ClusteringOptions,
   ): Promise<
     {
       name: string;
       type: 'theme' | 'skill' | 'concept';
-      outcomeIds: string[];
+      expectationIds: string[];
       confidence: number;
     }[]
   > {
@@ -300,43 +300,43 @@ export class ClusteringService extends BaseService {
     const clusters: {
       name: string;
       type: 'theme' | 'skill' | 'concept';
-      outcomeIds: string[];
+      expectationIds: string[];
       confidence: number;
     }[] = [];
 
     const used = new Set<string>();
-    const similarities: { [key: string]: { outcomeId: string; similarity: number }[] } = {};
+    const similarities: { [key: string]: { expectationId: string; similarity: number }[] } = {};
 
-    // Calculate similarities for all outcomes
-    for (const outcome of outcomes) {
-      similarities[outcome.id] = [];
-      for (const other of outcomes) {
-        if (outcome.id !== other.id) {
+    // Calculate similarities for all expectations
+    for (const expectation of expectations) {
+      similarities[expectation.id] = [];
+      for (const other of expectations) {
+        if (expectation.id !== other.id) {
           const similarity = embeddingService.calculateSimilarity(
-            outcome.embedding,
+            expectation.embedding,
             other.embedding,
           );
-          similarities[outcome.id].push({ outcomeId: other.id, similarity });
+          similarities[expectation.id].push({ expectationId: other.id, similarity });
         }
       }
-      similarities[outcome.id].sort((a, b) => b.similarity - a.similarity);
+      similarities[expectation.id].sort((a, b) => b.similarity - a.similarity);
     }
 
     // Form clusters greedily
-    for (const outcome of outcomes) {
-      if (used.has(outcome.id) || clusters.length >= options.maxClusters) continue;
+    for (const expectation of expectations) {
+      if (used.has(expectation.id) || clusters.length >= options.maxClusters) continue;
 
-      const cluster = [outcome.id];
-      used.add(outcome.id);
+      const cluster = [expectation.id];
+      used.add(expectation.id);
 
-      // Find similar outcomes to add to this cluster
-      const similarOutcomes = similarities[outcome.id]
-        .filter((sim) => !used.has(sim.outcomeId) && sim.similarity >= options.similarityThreshold)
+      // Find similar expectations to add to this cluster
+      const similarExpectations = similarities[expectation.id]
+        .filter((sim) => !used.has(sim.expectationId) && sim.similarity >= options.similarityThreshold)
         .slice(0, 10); // Limit cluster size
 
-      for (const sim of similarOutcomes) {
-        cluster.push(sim.outcomeId);
-        used.add(sim.outcomeId);
+      for (const sim of similarExpectations) {
+        cluster.push(sim.expectationId);
+        used.add(sim.expectationId);
       }
 
       if (cluster.length >= options.minClusterSize) {
@@ -346,11 +346,11 @@ export class ClusteringService extends BaseService {
 
         for (let i = 0; i < cluster.length; i++) {
           for (let j = i + 1; j < cluster.length; j++) {
-            const outcome1 = outcomes.find((o) => o.id === cluster[i])!;
-            const outcome2 = outcomes.find((o) => o.id === cluster[j])!;
+            const expectation1 = expectations.find((e) => e.id === cluster[i])!;
+            const expectation2 = expectations.find((e) => e.id === cluster[j])!;
             totalSimilarity += embeddingService.calculateSimilarity(
-              outcome1.embedding,
-              outcome2.embedding,
+              expectation1.embedding,
+              expectation2.embedding,
             );
             pairCount++;
           }
@@ -358,15 +358,15 @@ export class ClusteringService extends BaseService {
 
         const confidence = pairCount > 0 ? totalSimilarity / pairCount : 0;
 
-        // Determine cluster type based on outcome patterns
+        // Determine cluster type based on expectation patterns
         const clusterType = this.determineClusterType(
-          cluster.map((id) => outcomes.find((o) => o.id === id)!),
+          cluster.map((id) => expectations.find((e) => e.id === id)!),
         );
 
         clusters.push({
           name: `Cluster ${clusters.length + 1}`,
           type: clusterType,
-          outcomeIds: cluster,
+          expectationIds: cluster,
           confidence,
         });
       }
@@ -376,10 +376,10 @@ export class ClusteringService extends BaseService {
   }
 
   private determineClusterType(
-    outcomes: { code: string; description: string }[],
+    expectations: { code: string; description: string }[],
   ): 'theme' | 'skill' | 'concept' {
-    // Simple heuristic based on outcome descriptions
-    const descriptions = outcomes.map((o) => o.description.toLowerCase()).join(' ');
+    // Simple heuristic based on expectation descriptions
+    const descriptions = expectations.map((e) => e.description.toLowerCase()).join(' ');
 
     if (
       descriptions.includes('skill') ||
@@ -407,6 +407,7 @@ export class ClusteringService extends BaseService {
       outcomeIds: string[];
       confidence: number;
     }[],
+    importId: string,
   ): Promise<void> {
     if (!openai) {
       this.logger.warn('OpenAI not configured, skipping theme generation');
@@ -415,17 +416,17 @@ export class ClusteringService extends BaseService {
 
     for (const cluster of clusters) {
       try {
-        // Get outcome descriptions for this cluster
-        const outcomes = await this.prisma.outcome.findMany({
-          where: { id: { in: cluster.outcomeIds } },
+        // Get expectation descriptions for this cluster
+        const expectations = await this.prisma.curriculumExpectation.findMany({
+          where: { id: { in: cluster.expectationIds } },
           select: { code: true, description: true },
         });
 
-        const outcomeList = outcomes.map((o) => `${o.code}: ${o.description}`).join('\n');
+        const expectationList = expectations.map((e) => `${e.code}: ${e.description}`).join('\n');
 
-        const prompt = `Given these related curriculum outcomes, suggest a concise theme name (2-4 words) that captures their common focus:
+        const prompt = `Given these related curriculum expectations, suggest a concise theme name (2-4 words) that captures their common focus:
 
-${outcomeList}
+${expectationList}
 
 Theme name:`;
 
@@ -442,7 +443,7 @@ Theme name:`;
         }
       } catch (error) {
         this.logger.error(
-          { error, clusterId: cluster.outcomeIds },
+          { error, clusterId: cluster.expectationIds },
           'Failed to generate theme for cluster',
         );
       }
@@ -454,7 +455,7 @@ Theme name:`;
     clusters: {
       name: string;
       type: 'theme' | 'skill' | 'concept';
-      outcomeIds: string[];
+      expectationIds: string[];
       confidence: number;
     }[],
   ): Promise<ClusterResult[]> {
@@ -462,12 +463,12 @@ Theme name:`;
 
     for (const cluster of clusters) {
       try {
-        const saved = await this.prisma.outcomeCluster.create({
+        const saved = await this.prisma.expectationCluster.create({
           data: {
             importId,
             clusterName: cluster.name,
             clusterType: cluster.type,
-            outcomeIds: cluster.outcomeIds,
+            expectationIds: cluster.expectationIds,
             confidence: cluster.confidence,
             suggestedTheme:
               cluster.name !== `Cluster ${clusters.indexOf(cluster) + 1}`
@@ -480,7 +481,7 @@ Theme name:`;
           id: saved.id,
           name: saved.clusterName,
           type: saved.clusterType as 'theme' | 'skill' | 'concept',
-          outcomeIds: saved.outcomeIds as string[],
+          expectationIds: saved.expectationIds as string[],
           confidence: saved.confidence,
           suggestedTheme: saved.suggestedTheme || undefined,
         });

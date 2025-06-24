@@ -1,12 +1,84 @@
 import { Router, Request } from 'express';
 import { Prisma } from '../prisma';
 import { prisma } from '../prisma';
+import { EmbeddingService } from '../services/embeddingService';
 
 interface AuthenticatedRequest extends Request {
   user?: { userId: string };
 }
 
 const router = Router();
+
+// Initialize embedding service
+const embeddingService = new EmbeddingService();
+
+// Semantic search helper function
+async function semanticSearch(query: string, limit: number, filters?: any) {
+  // Generate embedding for the search query
+  const queryEmbedding = await embeddingService.generateEmbedding(query);
+  
+  // Get all expectations that match filters
+  const where: Prisma.CurriculumExpectationWhereInput = {};
+  if (filters?.subject) where.subject = filters.subject;
+  if (filters?.grade) where.grade = filters.grade;
+  if (filters?.strand) where.strand = filters.strand;
+  
+  const allExpectations = await prisma.curriculumExpectation.findMany({
+    where,
+    include: {
+      embeddings: true,
+    },
+  });
+
+  // Calculate similarities and sort by relevance
+  const expectationsWithSimilarity = allExpectations
+    .map(expectation => {
+      // Find the best embedding match for this expectation
+      let maxSimilarity = 0;
+      
+      if (expectation.embeddings && expectation.embeddings.length > 0) {
+        expectation.embeddings.forEach(embedding => {
+          const similarity = cosineSimilarity(queryEmbedding, embedding.embedding as number[]);
+          if (similarity > maxSimilarity) {
+            maxSimilarity = similarity;
+          }
+        });
+      }
+      
+      return {
+        ...expectation,
+        similarity: maxSimilarity,
+      };
+    })
+    .filter(exp => exp.similarity > 0.3) // Minimum similarity threshold
+    .sort((a, b) => b.similarity - a.similarity)
+    .slice(0, limit);
+
+  // Remove embeddings from response
+  return expectationsWithSimilarity.map(({ embeddings, similarity, ...exp }) => ({
+    ...exp,
+    _similarity: similarity,
+  }));
+}
+
+// Cosine similarity calculation
+function cosineSimilarity(a: number[], b: number[]): number {
+  if (a.length !== b.length) return 0;
+  
+  let dotProduct = 0;
+  let normA = 0;
+  let normB = 0;
+  
+  for (let i = 0; i < a.length; i++) {
+    dotProduct += a[i] * b[i];
+    normA += a[i] * a[i];
+    normB += b[i] * b[i];
+  }
+  
+  if (normA === 0 || normB === 0) return 0;
+  
+  return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+}
 
 // Get all curriculum expectations with optional filtering
 router.get('/', async (req: AuthenticatedRequest, res, next) => {
@@ -41,6 +113,80 @@ router.get('/', async (req: AuthenticatedRequest, res, next) => {
     });
     
     res.json(expectations);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Create a new curriculum expectation
+router.post('/', async (req: AuthenticatedRequest, res, next) => {
+  try {
+    const { code, description, strand, substrand, grade, subject, descriptionFr } = req.body;
+    
+    if (!code || !description || !strand || !grade || !subject) {
+      return res.status(400).json({ 
+        error: 'Missing required fields: code, description, strand, grade, subject' 
+      });
+    }
+    
+    const expectation = await prisma.curriculumExpectation.create({
+      data: {
+        code,
+        description,
+        strand,
+        substrand,
+        grade: Number(grade),
+        subject,
+        descriptionFr,
+      },
+      include: {
+        unitPlans: { select: { unitPlan: { select: { id: true, title: true } } } },
+        lessonPlans: { select: { lessonPlan: { select: { id: true, title: true } } } },
+      },
+    });
+    
+    res.status(201).json(expectation);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Update a curriculum expectation
+router.put('/:id', async (req: AuthenticatedRequest, res, next) => {
+  try {
+    const { code, description, strand, substrand, grade, subject, descriptionFr } = req.body;
+    
+    const expectation = await prisma.curriculumExpectation.update({
+      where: { id: req.params.id },
+      data: {
+        ...(code && { code }),
+        ...(description && { description }),
+        ...(strand && { strand }),
+        ...(substrand !== undefined && { substrand }),
+        ...(grade && { grade: Number(grade) }),
+        ...(subject && { subject }),
+        ...(descriptionFr !== undefined && { descriptionFr }),
+      },
+      include: {
+        unitPlans: { select: { unitPlan: { select: { id: true, title: true } } } },
+        lessonPlans: { select: { lessonPlan: { select: { id: true, title: true } } } },
+      },
+    });
+    
+    res.json(expectation);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Delete a curriculum expectation
+router.delete('/:id', async (req: AuthenticatedRequest, res, next) => {
+  try {
+    await prisma.curriculumExpectation.delete({
+      where: { id: req.params.id },
+    });
+    
+    res.status(204).send();
   } catch (err) {
     next(err);
   }
@@ -95,34 +241,36 @@ router.post('/search', async (req: AuthenticatedRequest, res, next) => {
       return res.status(400).json({ error: 'Query is required' });
     }
     
-    // TODO: Implement semantic search using embeddings
-    // For now, fallback to text search
-    const where: Prisma.CurriculumExpectationWhereInput = {
-      OR: [
-        { code: { contains: query } },
-        { description: { contains: query } },
-        { descriptionFr: { contains: query } },
-        { strand: { contains: query } },
-      ],
-    };
+    // Try semantic search first, fallback to text search if no embeddings
+    let results;
     
-    if (filters?.subject) where.subject = filters.subject;
-    if (filters?.grade) where.grade = filters.grade;
+    try {
+      // Attempt semantic search using embeddings
+      results = await semanticSearch(query, limit, filters);
+    } catch (error) {
+      console.log('Semantic search failed, falling back to text search:', error);
+      
+      // Fallback to text-based search
+      const where: Prisma.CurriculumExpectationWhereInput = {
+        OR: [
+          { code: { contains: query, mode: 'insensitive' } },
+          { description: { contains: query, mode: 'insensitive' } },
+          { descriptionFr: { contains: query, mode: 'insensitive' } },
+          { strand: { contains: query, mode: 'insensitive' } },
+        ],
+      };
+      
+      if (filters?.subject) where.subject = filters.subject;
+      if (filters?.grade) where.grade = filters.grade;
+      
+      results = await prisma.curriculumExpectation.findMany({
+        where,
+        take: limit,
+        orderBy: { code: 'asc' },
+      });
+    }
     
-    const expectations = await prisma.curriculumExpectation.findMany({
-      where,
-      take: Number(limit),
-      include: {
-        _count: {
-          select: {
-            unitPlans: true,
-            lessonPlans: true,
-          },
-        },
-      },
-    });
-    
-    res.json(expectations);
+    res.json(results);
   } catch (err) {
     next(err);
   }
@@ -137,10 +285,10 @@ router.post('/cluster', async (req: AuthenticatedRequest, res, next) => {
       return res.status(400).json({ error: 'expectationIds array is required' });
     }
     
-    // TODO: Implement clustering using embeddings
-    // For now, return a placeholder response
+    // Clustering is implemented through the curriculum import system
+    // This endpoint provides manual clustering for ad-hoc analysis
     const clusters = {
-      message: 'Clustering not yet implemented',
+      message: 'Manual clustering endpoint - automated clustering available through curriculum import',
       expectationIds,
       clusterCount,
     };

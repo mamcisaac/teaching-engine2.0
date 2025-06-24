@@ -1,13 +1,10 @@
 import { useState } from 'react';
-import { useUploadResource } from '../api';
+import { useUploadMediaResource } from '../api';
 
-interface Props {
-  activityId?: number;
-}
-
-export default function FileUpload({ activityId }: Props) {
+// Updated for ETFO-aligned media resource uploads
+export default function FileUpload() {
   const [file, setFile] = useState<File | null>(null);
-  const upload = useUploadResource();
+  const upload = useUploadMediaResource();
 
   return (
     <div className="space-y-2">
@@ -19,12 +16,7 @@ export default function FileUpload({ activityId }: Props) {
           if (file) {
             const formData = new FormData();
             formData.append('file', file);
-            formData.append('filename', file.name);
-            formData.append('type', file.type);
-            formData.append('size', file.size.toString());
-            if (activityId) {
-              formData.append('activityId', activityId.toString());
-            }
+            formData.append('title', file.name);
             upload.mutate(formData);
           }
         }}

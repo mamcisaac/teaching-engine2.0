@@ -2,9 +2,6 @@ import { serviceRegistry } from './ServiceRegistry';
 import { embeddingService } from './embeddingService';
 import { curriculumImportService } from './curriculumImportService';
 import { clusteringService } from './clusteringService';
-import { enhancedPlanningService } from './enhancedPlanningService';
-import { enhancedMaterialService } from './enhancedMaterialService';
-import { notificationService } from './notificationService';
 import { cacheService } from './CacheService';
 import logger from '../logger';
 
@@ -46,27 +43,7 @@ export async function initializeServices(): Promise<void> {
       singleton: true,
     });
 
-    serviceRegistry.register({
-      name: 'EnhancedPlanningService',
-      instance: enhancedPlanningService,
-      dependencies: ['EmbeddingService', 'ClusteringService'],
-      singleton: true,
-    });
 
-    serviceRegistry.register({
-      name: 'EnhancedMaterialService',
-      instance: enhancedMaterialService,
-      dependencies: [],
-      singleton: true,
-    });
-
-    serviceRegistry.register({
-      name: 'NotificationService',
-      instance: notificationService,
-      dependencies: [],
-      singleton: true,
-      healthCheckInterval: 15 * 60 * 1000, // 15 minutes
-    });
 
     // Initialize all services in dependency order
     const { initialized, failed } = await serviceRegistry.initializeAll();
@@ -106,7 +83,6 @@ export async function shutdownServices(): Promise<void> {
     await serviceRegistry.shutdown();
 
     // Cleanup any resources specific to services
-    notificationService.destroy();
     cacheService.destroy();
 
     logger.info('All services shut down successfully');

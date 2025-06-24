@@ -1,26 +1,27 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { apiClient } from '../../lib/api';
-interface Outcome {
+interface CurriculumExpectation {
   id: string;
   code: string;
   subject: string;
   grade: number;
   description: string;
-  domain?: string;
+  strand: string; // Updated for ETFO alignment
+  substrand?: string;
   createdAt: string;
   updatedAt: string;
 }
 import { Button } from '../ui/Button';
 
-interface UncoveredOutcome {
-  outcome: Outcome;
+interface UncoveredExpectation {
+  expectation: CurriculumExpectation; // Updated for ETFO alignment
   suggestion: AISuggestedActivity | null;
 }
 
 interface AISuggestedActivity {
   id: number;
-  outcomeId: string;
+  expectationId: string; // Updated for ETFO alignment
   userId: number;
   title: string;
   descriptionFr: string;
@@ -57,7 +58,7 @@ export function UncoveredOutcomesPanel({
       if (endDate) params.append('endDate', endDate.toISOString());
       if (theme) params.append('theme', theme);
 
-      const response = await apiClient.get<UncoveredOutcome[]>(
+      const response = await apiClient.get<UncoveredExpectation[]>(
         `/ai-suggestions/uncovered?${params}`,
       );
       return response.data;
@@ -113,17 +114,17 @@ export function UncoveredOutcomesPanel({
       </div>
 
       <div className="space-y-3">
-        {uncoveredOutcomes.map(({ outcome, suggestion }) => (
-          <div key={outcome.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
+        {uncoveredOutcomes.map(({ expectation, suggestion }) => (
+          <div key={expectation.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
             <div className="flex items-start justify-between">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-sm font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded">
-                    {outcome.code}
+                    {expectation.code}
                   </span>
-                  <span className="text-sm text-gray-500">{outcome.subject}</span>
+                  <span className="text-sm text-gray-500">{expectation.subject}</span>
                 </div>
-                <p className="text-sm text-gray-700">{outcome.description}</p>
+                <p className="text-sm text-gray-700">{expectation.description}</p>
 
                 {suggestion && (
                   <div className="mt-3 p-3 bg-gray-50 rounded-md">
@@ -149,10 +150,10 @@ export function UncoveredOutcomesPanel({
                 {!suggestion && (
                   <Button
                     size="sm"
-                    onClick={() => generateSuggestion.mutate(outcome.id)}
-                    disabled={generatingFor === outcome.id}
+                    onClick={() => generateSuggestion.mutate(expectation.id)}
+                    disabled={generatingFor === expectation.id}
                   >
-                    {generatingFor === outcome.id ? (
+                    {generatingFor === expectation.id ? (
                       <>
                         <span className="inline-block animate-spin mr-2">⏳</span>
                         Generating...

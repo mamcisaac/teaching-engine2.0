@@ -37,7 +37,7 @@ export async function generateParentSummary(
             },
           },
           include: {
-            outcome: true,
+            expectation: true,
             theme: true,
           },
         },
@@ -49,7 +49,7 @@ export async function generateParentSummary(
             },
           },
           include: {
-            outcome: true,
+            expectation: true,
             theme: true,
           },
         },
@@ -70,9 +70,9 @@ export async function generateParentSummary(
         },
       },
       include: {
-        outcomes: {
+        expectations: {
           include: {
-            outcome: true,
+            expectation: true,
           },
         },
         milestone: {
@@ -83,21 +83,8 @@ export async function generateParentSummary(
       },
     });
 
-    // Get assessment results during this period
-    const assessments = await prisma.assessmentResult.findMany({
-      where: {
-        date: {
-          gte: from,
-          lte: to,
-        },
-        template: {
-          userId: userId,
-        },
-      },
-      include: {
-        template: true,
-      },
-    });
+    // Assessment functionality removed
+    const assessments: Array<Record<string, unknown>> = [];
 
     // Generate summary based on collected data
     const summaryData = {
@@ -105,11 +92,11 @@ export async function generateParentSummary(
       period: { from, to },
       focus: focus || [],
       activities: activities.length,
-      outcomes: [...new Set(activities.flatMap((a) => a.outcomes.map((o) => o.outcome.code)))],
+      expectations: [...new Set(activities.flatMap((a) => a.expectations.map((e) => e.expectation.code)))],
       subjects: [...new Set(activities.map((a) => a.milestone.subject?.name || 'General'))],
       goals: student.goals.length,
       reflections: student.reflections.length,
-      assessments: assessments.length,
+      assessments: 0,
     };
 
     // For now, generate basic rule-based summaries

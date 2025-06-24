@@ -48,15 +48,106 @@ router.post('/upload', upload.single('file'), async (req: AuthenticatedRequest, 
       });
     }
 
-    // For now, return not implemented since file parsing methods are placeholders
-    res.status(501).json({
-      error:
-        'File upload parsing not yet implemented. Please use manual entry via POST /:importId/outcomes',
+    // Start import session
+    let sourceFormat: 'pdf' | 'docx' | 'csv' | 'manual' = 'manual';
+    if (req.file.mimetype === 'application/pdf') {
+      sourceFormat = 'pdf';
+    } else if (req.file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+      sourceFormat = 'docx';
+    } else if (req.file.mimetype === 'text/csv') {
+      sourceFormat = 'csv';
+    }
+
+    const importId = await curriculumImportService.startImport(
+      parseInt(req.user.userId),
+      1, // Default grade, can be updated later
+      'General', // Default subject, can be updated later
+      sourceFormat,
+    );
+
+    // Store file content for parsing
+    await curriculumImportService.storeUploadedFile(importId, req.file);
+
+    res.json({
+      sessionId: importId,
+      message: 'File uploaded successfully',
+      filename: req.file.originalname,
     });
   } catch (error) {
     console.error('Upload error:', error);
     res.status(500).json({
       error: error instanceof Error ? error.message : 'Failed to process upload',
+    });
+  }
+});
+
+// POST /api/curriculum/import/parse - Parse uploaded file
+router.post('/parse', async (req: AuthenticatedRequest, res) => {
+  try {
+    const { sessionId, useAiExtraction } = req.body;
+
+    if (!sessionId) {
+      return res.status(400).json({
+        error: 'Session ID is required',
+      });
+    }
+
+    if (!req.user?.userId) {
+      return res.status(401).json({
+        error: 'User not authenticated',
+      });
+    }
+
+    // Parse the uploaded file
+    const parseResult = await curriculumImportService.parseUploadedFile(sessionId, {
+      useAI: useAiExtraction || true,
+    });
+
+    res.json({
+      message: 'File parsed successfully',
+      subjects: parseResult.subjects,
+      errors: parseResult.errors || [],
+    });
+  } catch (error) {
+    console.error('Parse error:', error);
+    res.status(500).json({
+      error: error instanceof Error ? error.message : 'Failed to parse file',
+    });
+  }
+});
+
+// POST /api/curriculum/import/import-preset - Load preset curriculum
+router.post('/import-preset', async (req: AuthenticatedRequest, res) => {
+  try {
+    const { presetId } = req.body;
+
+    if (!presetId) {
+      return res.status(400).json({
+        error: 'Preset ID is required',
+      });
+    }
+
+    if (!req.user?.userId) {
+      return res.status(401).json({
+        error: 'User not authenticated',
+      });
+    }
+
+    // Load preset curriculum
+    const presetResult = await curriculumImportService.loadPresetCurriculum(
+      parseInt(req.user.userId),
+      presetId,
+    );
+
+    res.json({
+      sessionId: presetResult.sessionId,
+      message: 'Preset curriculum loaded successfully',
+      subjects: presetResult.subjects,
+    });
+  } catch (error) {
+    console.error('Preset load error:', error);
+    res.status(500).json({
+      error: error instanceof Error ? error.message : 'Failed to load preset curriculum',
     });
   }
 });
@@ -109,16 +200,19 @@ router.post('/:id/confirm', async (req: AuthenticatedRequest, res) => {
       });
     }
 
-    if (progress.status !== 'COMPLETED') {
+    if (progress.status !== 'READY_FOR_REVIEW') {
       return res.status(400).json({
         error: 'Import is not ready to be confirmed',
       });
     }
 
+    // Confirm the import and create expectations
+    const result = await curriculumImportService.confirmImport(importId);
+
     res.json({
       message: 'Import confirmed successfully',
       importId,
-      totalOutcomes: progress.totalOutcomes,
+      created: result.created,
     });
   } catch (error) {
     console.error('Confirm import error:', error);
@@ -154,26 +248,6 @@ router.get('/history', async (req: AuthenticatedRequest, res) => {
   }
 });
 
-// GET /api/curriculum/import/:id/outcomes - Get outcomes from import
-router.get('/:id/outcomes', async (req: AuthenticatedRequest, res) => {
-  try {
-    if (!req.user?.userId) {
-      return res.status(401).json({
-        error: 'User not authenticated',
-      });
-    }
-
-    // For now, return not implemented since this method doesn't exist in the service
-    res.status(501).json({
-      error: 'Get import outcomes not yet implemented',
-    });
-  } catch (error) {
-    console.error('Get outcomes error:', error);
-    res.status(500).json({
-      error: error instanceof Error ? error.message : 'Failed to get import outcomes',
-    });
-  }
-});
 
 // DELETE /api/curriculum/import/:id - Delete import and associated data
 router.delete('/:id', async (req: AuthenticatedRequest, res) => {
@@ -234,41 +308,6 @@ router.post('/start', async (req: AuthenticatedRequest, res) => {
   }
 });
 
-// Process manual outcome entries
-router.post('/:importId/outcomes', async (req: AuthenticatedRequest, res) => {
-  try {
-    const { importId } = req.params;
-    const { outcomes } = req.body;
-
-    if (!Array.isArray(outcomes) || outcomes.length === 0) {
-      return res.status(400).json({ error: 'Outcomes must be a non-empty array' });
-    }
-
-    // Validate outcome structure
-    for (const outcome of outcomes) {
-      if (
-        !outcome.code ||
-        !outcome.description ||
-        !outcome.subject ||
-        outcome.grade === undefined
-      ) {
-        return res.status(400).json({
-          error: 'Each outcome must have code, description, subject, and grade',
-        });
-      }
-    }
-
-    const result = await curriculumImportService.processImport(importId, outcomes);
-
-    res.json({
-      message: 'Outcomes imported successfully',
-      ...result,
-    });
-  } catch (error) {
-    logger.error({ error }, 'Failed to process manual outcomes');
-    res.status(500).json({ error: 'Failed to process outcomes' });
-  }
-});
 
 // Get import progress
 router.get('/:importId/progress', async (req: AuthenticatedRequest, res) => {
@@ -304,6 +343,48 @@ router.post('/:importId/cancel', async (req: AuthenticatedRequest, res) => {
   }
 });
 
+// POST /api/curriculum/import/:id - Finalize import and create curriculum expectations
+router.post('/:id', async (req: AuthenticatedRequest, res) => {
+  try {
+    const importId = req.params.id;
+
+    if (!req.user?.userId) {
+      return res.status(401).json({
+        error: 'User not authenticated',
+      });
+    }
+
+    // Get the import session
+    const importRecord = await curriculumImportService.getImportProgress(importId);
+
+    if (!importRecord) {
+      return res.status(404).json({
+        error: 'Import session not found',
+      });
+    }
+
+    if (importRecord.status !== 'READY_FOR_REVIEW') {
+      return res.status(400).json({
+        error: 'Import is not ready to be finalized',
+      });
+    }
+
+    // Finalize the import and create curriculum expectations
+    const result = await curriculumImportService.finalizeImport(importId, parseInt(req.user.userId));
+
+    res.json({
+      message: 'Curriculum imported successfully',
+      totalExpectations: result.totalExpectations,
+      subjects: result.subjects,
+    });
+  } catch (error) {
+    console.error('Finalize import error:', error);
+    res.status(500).json({
+      error: error instanceof Error ? error.message : 'Failed to finalize import',
+    });
+  }
+});
+
 // Clustering Routes (Phase 5)
 
 // Trigger clustering for an import
@@ -312,15 +393,15 @@ router.post('/:importId/cluster', async (req: AuthenticatedRequest, res) => {
     const { importId } = req.params;
     const { options = {} } = req.body;
 
-    const clusters = await clusteringService.clusterOutcomes(importId, options);
+    const clusters = await clusteringService.clusterExpectations(importId, options);
 
     res.json({
       message: 'Clustering completed successfully',
       clusters,
     });
   } catch (error) {
-    logger.error({ error }, 'Failed to cluster outcomes');
-    res.status(500).json({ error: 'Failed to cluster outcomes' });
+    logger.error({ error }, 'Failed to cluster expectations');
+    res.status(500).json({ error: 'Failed to cluster expectations' });
   }
 });
 
@@ -330,15 +411,15 @@ router.post('/:importId/recluster', async (req: AuthenticatedRequest, res) => {
     const { importId } = req.params;
     const { options = {} } = req.body;
 
-    const clusters = await clusteringService.reclusterOutcomes(importId, options);
+    const clusters = await clusteringService.reclusterExpectations(importId, options);
 
     res.json({
       message: 'Re-clustering completed successfully',
       clusters,
     });
   } catch (error) {
-    logger.error({ error }, 'Failed to re-cluster outcomes');
-    res.status(500).json({ error: 'Failed to re-cluster outcomes' });
+    logger.error({ error }, 'Failed to re-cluster expectations');
+    res.status(500).json({ error: 'Failed to re-cluster expectations' });
   }
 });
 

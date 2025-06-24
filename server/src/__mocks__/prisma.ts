@@ -17,7 +17,7 @@ export const prisma = {
     delete: jest.fn(),
     deleteMany: jest.fn(),
   },
-  outcome: {
+  curriculumExpectation: {
     findUnique: jest.fn(),
     findMany: jest.fn(),
     create: jest.fn(),
@@ -26,14 +26,14 @@ export const prisma = {
     deleteMany: jest.fn(),
     createMany: jest.fn(),
   },
-  outcomeEmbedding: {
+  expectationEmbedding: {
     findUnique: jest.fn(),
     findMany: jest.fn(),
     create: jest.fn(),
     createMany: jest.fn(),
     deleteMany: jest.fn(),
   },
-  outcomeCluster: {
+  expectationCluster: {
     findUnique: jest.fn(),
     findMany: jest.fn(),
     create: jest.fn(),

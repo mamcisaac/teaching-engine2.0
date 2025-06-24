@@ -10,6 +10,178 @@ interface AuthenticatedRequest extends Request {
 
 const router = Router();
 
+// Analytics helper functions
+function calculateTrends(entries: any[]): { ratingTrend: string; engagementTrend: string } {
+  if (entries.length < 2) {
+    return { ratingTrend: 'insufficient_data', engagementTrend: 'insufficient_data' };
+  }
+
+  // Sort entries by date to analyze trends over time
+  const sortedEntries = entries.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  
+  // Calculate rating trend
+  const ratingsWithValues = sortedEntries.filter(e => e.rating !== null);
+  let ratingTrend = 'stable';
+  
+  if (ratingsWithValues.length >= 3) {
+    const firstHalf = ratingsWithValues.slice(0, Math.ceil(ratingsWithValues.length / 2));
+    const secondHalf = ratingsWithValues.slice(Math.floor(ratingsWithValues.length / 2));
+    
+    const firstAvg = firstHalf.reduce((sum, e) => sum + e.rating, 0) / firstHalf.length;
+    const secondAvg = secondHalf.reduce((sum, e) => sum + e.rating, 0) / secondHalf.length;
+    
+    const diff = secondAvg - firstAvg;
+    if (diff > 0.3) ratingTrend = 'improving';
+    else if (diff < -0.3) ratingTrend = 'declining';
+  }
+
+  // Calculate engagement trend by analyzing studentEngagement text
+  const engagementEntries = sortedEntries.filter(e => e.studentEngagement);
+  let engagementTrend = 'stable';
+  
+  if (engagementEntries.length >= 2) {
+    const recentEntries = engagementEntries.slice(-3); // Last 3 entries
+    const positiveWords = ['engaged', 'active', 'interested', 'excited', 'participated', 'focused'];
+    const negativeWords = ['disengaged', 'distracted', 'bored', 'struggled', 'off-task'];
+    
+    let positiveCount = 0;
+    let negativeCount = 0;
+    
+    recentEntries.forEach(entry => {
+      const text = entry.studentEngagement.toLowerCase();
+      positiveWords.forEach(word => {
+        if (text.includes(word)) positiveCount++;
+      });
+      negativeWords.forEach(word => {
+        if (text.includes(word)) negativeCount++;
+      });
+    });
+    
+    if (positiveCount > negativeCount) engagementTrend = 'improving';
+    else if (negativeCount > positiveCount) engagementTrend = 'declining';
+  }
+
+  return { ratingTrend, engagementTrend };
+}
+
+function extractCommonThemes(entries: any[]): { 
+  successes: string[]; 
+  challenges: string[]; 
+  improvements: string[] 
+} {
+  const successWords = new Map<string, number>();
+  const challengeWords = new Map<string, number>();
+  const improvementWords = new Map<string, number>();
+
+  entries.forEach(entry => {
+    // Extract themes from whatWorked
+    if (entry.whatWorked) {
+      const words = extractKeywords(entry.whatWorked);
+      words.forEach(word => {
+        successWords.set(word, (successWords.get(word) || 0) + 1);
+      });
+    }
+
+    // Extract themes from whatDidntWork and studentChallenges
+    if (entry.whatDidntWork || entry.studentChallenges) {
+      const text = `${entry.whatDidntWork || ''} ${entry.studentChallenges || ''}`;
+      const words = extractKeywords(text);
+      words.forEach(word => {
+        challengeWords.set(word, (challengeWords.get(word) || 0) + 1);
+      });
+    }
+
+    // Extract themes from nextSteps
+    if (entry.nextSteps) {
+      const words = extractKeywords(entry.nextSteps);
+      words.forEach(word => {
+        improvementWords.set(word, (improvementWords.get(word) || 0) + 1);
+      });
+    }
+  });
+
+  // Get top themes (minimum 2 occurrences)
+  const getTopThemes = (wordMap: Map<string, number>) => {
+    return Array.from(wordMap.entries())
+      .filter(([_, count]) => count >= 2)
+      .sort(([_, a], [__, b]) => b - a)
+      .slice(0, 5)
+      .map(([word, count]) => `${word} (${count} mentions)`);
+  };
+
+  return {
+    successes: getTopThemes(successWords),
+    challenges: getTopThemes(challengeWords),
+    improvements: getTopThemes(improvementWords)
+  };
+}
+
+function extractKeywords(text: string): string[] {
+  // Simple keyword extraction - remove common words and extract meaningful terms
+  const commonWords = new Set(['the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'was', 'were', 'is', 'are', 'be', 'been', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could', 'should', 'may', 'might', 'can', 'this', 'that', 'these', 'those']);
+  
+  return text.toLowerCase()
+    .replace(/[^\w\s]/g, ' ')
+    .split(/\s+/)
+    .filter(word => word.length > 3 && !commonWords.has(word))
+    .slice(0, 10); // Limit to prevent noise
+}
+
+function generateRecommendations(entries: any[]): string[] {
+  const recommendations: string[] = [];
+  
+  if (entries.length === 0) {
+    return ['Start documenting your daily teaching experiences to build insights over time.'];
+  }
+
+  // Analyze rating patterns
+  const ratedEntries = entries.filter(e => e.rating !== null);
+  if (ratedEntries.length > 0) {
+    const avgRating = ratedEntries.reduce((sum, e) => sum + e.rating, 0) / ratedEntries.length;
+    const lowRatedEntries = ratedEntries.filter(e => e.rating < 3);
+    
+    if (avgRating < 3.5) {
+      recommendations.push('Consider reviewing lessons with lower ratings to identify improvement patterns.');
+    }
+    
+    if (lowRatedEntries.length > ratedEntries.length * 0.3) {
+      recommendations.push('Focus on documenting what worked well in higher-rated lessons for replication.');
+    }
+  }
+
+  // Check reflection completeness
+  const reflectiveEntries = entries.filter(e => 
+    e.whatWorked || e.whatDidntWork || e.studentEngagement || e.studentChallenges || e.nextSteps
+  );
+  
+  if (reflectiveEntries.length < entries.length * 0.5) {
+    recommendations.push('Increase reflection depth by completing more reflection fields for better insights.');
+  }
+
+  // Analyze reuse patterns
+  const reusedEntries = entries.filter(e => e.wouldUseAgain === true);
+  if (reusedEntries.length > 0) {
+    recommendations.push('Document successful strategies from reusable lessons for your teaching resource bank.');
+  }
+
+  // Time-based recommendations
+  const recentEntries = entries.filter(e => {
+    const entryDate = new Date(e.date);
+    const oneWeekAgo = new Date();
+    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+    return entryDate >= oneWeekAgo;
+  });
+
+  if (recentEntries.length === 0) {
+    recommendations.push('Regular reflection helps identify patterns - try to document lessons weekly.');
+  }
+
+  return recommendations.length > 0 ? recommendations : [
+    'Continue documenting your teaching experiences to build a comprehensive reflection database.',
+    'Focus on noting both successes and challenges to maximize learning opportunities.'
+  ];
+}
+
 // Validation schemas
 const daybookEntryCreateSchema = z.object({
   date: z.string().datetime(),
@@ -213,7 +385,6 @@ router.post('/', validate(daybookEntryCreateSchema), async (req: AuthenticatedRe
           expectationId: ec.expectationId,
           coverage: ec.coverage,
         })),
-        skipDuplicates: true,
       });
       
       // Refetch with expectations
@@ -297,8 +468,7 @@ router.put('/:id', validate(daybookEntryUpdateSchema), async (req: Authenticated
             expectationId: ec.expectationId,
             coverage: ec.coverage,
           })),
-          skipDuplicates: true,
-        });
+          });
       }
     }
     
@@ -434,20 +604,9 @@ router.get('/insights/summary', async (req: AuthenticatedRequest, res, next) => 
           e.whatWorked || e.whatDidntWork || e.studentEngagement || e.studentChallenges
         ).length,
       },
-      trends: {
-        ratingTrend: 'stable', // TODO: Calculate actual trend
-        engagementTrend: 'improving', // TODO: Analyze text for patterns
-      },
-      commonThemes: {
-        successes: ['Student engagement high', 'Group work effective'], // TODO: Extract from text
-        challenges: ['Time management', 'Differentiation needed'], // TODO: Extract from text
-        improvements: ['More hands-on activities', 'Better pacing'], // TODO: Extract from text
-      },
-      recommendations: [
-        'Consider incorporating more group activities based on positive feedback',
-        'Plan for additional time buffers in complex lessons',
-        'Document successful strategies for future reference',
-      ],
+      trends: calculateTrends(entries),
+      commonThemes: extractCommonThemes(entries),
+      recommendations: generateRecommendations(entries),
     };
     
     res.json(insights);

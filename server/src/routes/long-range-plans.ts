@@ -3,6 +3,7 @@ import { Prisma } from '../prisma';
 import { prisma } from '../prisma';
 import { validate } from '../validation';
 import { z } from 'zod';
+import { generateLongRangePlanDraft, generatePlanSuggestions } from '../services/aiDraftService';
 
 interface AuthenticatedRequest extends Request {
   user?: { userId: string };
@@ -120,6 +121,7 @@ router.post('/', validate(longRangePlanCreateSchema), async (req: AuthenticatedR
       return res.status(401).json({ error: 'Unauthorized' });
     }
     
+    
     const { expectationIds, themes, ...planData } = req.body;
     
     const plan = await prisma.longRangePlan.create({
@@ -140,12 +142,25 @@ router.post('/', validate(longRangePlanCreateSchema), async (req: AuthenticatedR
     
     // Link curriculum expectations if provided
     if (expectationIds && expectationIds.length > 0) {
+      // Validate expectation IDs exist
+      const validExpectations = await prisma.curriculumExpectation.findMany({
+        where: { id: { in: expectationIds } },
+        select: { id: true },
+      });
+      
+      if (validExpectations.length !== expectationIds.length) {
+        return res.status(400).json({ 
+          error: 'One or more curriculum expectations not found',
+          provided: expectationIds,
+          found: validExpectations.map(e => e.id)
+        });
+      }
+      
       await prisma.longRangePlanExpectation.createMany({
         data: expectationIds.map((expectationId: string) => ({
           longRangePlanId: plan.id,
           expectationId,
         })),
-        skipDuplicates: true,
       });
       
       // Refetch with expectations
@@ -212,8 +227,7 @@ router.put('/:id', validate(longRangePlanUpdateSchema), async (req: Authenticate
             longRangePlanId: plan.id,
             expectationId,
           })),
-          skipDuplicates: true,
-        });
+          });
       }
     }
     
@@ -280,7 +294,53 @@ router.delete('/:id', async (req: AuthenticatedRequest, res, next) => {
   }
 });
 
-// Generate AI suggestions for themes and expectations
+// Generate AI draft for long-range plan
+router.post('/ai-draft', async (req: AuthenticatedRequest, res, next) => {
+  try {
+    const userId = parseInt(req.user?.userId || '0', 10);
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+    
+    const { expectationIds, subject, grade, academicYear, termStructure } = req.body;
+    
+    if (!expectationIds || !Array.isArray(expectationIds) || expectationIds.length === 0) {
+      return res.status(400).json({ error: 'Expectation IDs are required' });
+    }
+    
+    // Fetch the curriculum expectations
+    const expectations = await prisma.curriculumExpectation.findMany({
+      where: { id: { in: expectationIds } },
+    });
+    
+    if (expectations.length === 0) {
+      return res.status(400).json({ error: 'No valid expectations found' });
+    }
+    
+    const draft = await generateLongRangePlanDraft({
+      expectations: expectations.map(exp => ({
+        code: exp.code,
+        description: exp.description,
+        type: 'specific' as const, // Default to specific since we don't store this
+        strand: exp.strand,
+        substrand: exp.substrand || undefined,
+        subject: exp.subject,
+        grade: exp.grade,
+      })),
+      subject: subject || expectations[0].subject,
+      grade: grade || expectations[0].grade,
+      academicYear: academicYear || '2024-2025',
+      termStructure: termStructure || 'semester',
+    });
+    
+    res.json(draft);
+  } catch (err) {
+    console.error('AI draft generation error:', err);
+    res.status(500).json({ error: 'Failed to generate AI draft' });
+  }
+});
+
+// Generate AI suggestions for existing plan
 router.post('/:id/ai-suggestions', async (req: AuthenticatedRequest, res, next) => {
   try {
     const userId = parseInt(req.user?.userId || '0', 10);
@@ -299,23 +359,21 @@ router.post('/:id/ai-suggestions', async (req: AuthenticatedRequest, res, next) 
       return res.status(404).json({ error: 'Long-range plan not found' });
     }
     
-    // TODO: Implement AI suggestion generation
-    // For now, return placeholder suggestions
-    const suggestions = {
-      themes: [
-        'Community and Belonging',
-        'Environmental Stewardship',
-        'Innovation and Problem Solving',
-        'Cultural Diversity',
-        'Health and Wellness',
-      ],
-      expectations: [],
-      message: 'AI suggestions not yet implemented',
-    };
+    const existingContent = `
+Title: ${plan.title}
+Subject: ${plan.subject}
+Grade: ${plan.grade}
+Goals: ${plan.goals || 'None specified'}
+Themes: ${Array.isArray(plan.themes) ? plan.themes.join(', ') : 'None specified'}
+Expectations: ${plan.expectations.map(e => `${e.expectation.code}: ${e.expectation.description}`).join('\n')}
+    `;
     
-    res.json(suggestions);
+    const suggestions = await generatePlanSuggestions('long-range', existingContent);
+    
+    res.json({ suggestions });
   } catch (err) {
-    next(err);
+    console.error('AI suggestions error:', err);
+    res.status(500).json({ error: 'Failed to generate suggestions' });
   }
 });
 
