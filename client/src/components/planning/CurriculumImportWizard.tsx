@@ -58,53 +58,6 @@ export function CurriculumImportWizard({
     onClose();
   }, [resetWizard, onClose]);
 
-  const handleFileUpload = useCallback(
-    async (file: File) => {
-      if (!file) return;
-
-      setIsUploading(true);
-      const formData = new FormData();
-      formData.append('document', file);
-
-      try {
-        const token = localStorage.getItem('token');
-        const response = await fetch('/api/curriculum/import/upload', {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          body: formData,
-        });
-
-        if (!response.ok) {
-          throw new Error('Upload failed');
-        }
-
-        const result = await response.json();
-        setImportId(result.importId);
-        setCurrentStep('processing');
-
-        // Start polling for status
-        pollImportStatus(result.importId);
-
-        toast({
-          title: 'Upload Successful',
-          description: 'Your curriculum document is being processed...',
-        });
-      } catch (error) {
-        console.error('Upload error:', error);
-        toast({
-          title: 'Upload Failed',
-          description: error instanceof Error ? error.message : 'Failed to upload document',
-          variant: 'destructive',
-        });
-      } finally {
-        setIsUploading(false);
-      }
-    },
-    [toast, pollImportStatus],
-  );
-
   const pollImportStatus = useCallback(
     async (id: number) => {
       const token = localStorage.getItem('token');
@@ -168,6 +121,53 @@ export function CurriculumImportWizard({
       poll();
     },
     [toast],
+  );
+
+  const handleFileUpload = useCallback(
+    async (file: File) => {
+      if (!file) return;
+
+      setIsUploading(true);
+      const formData = new FormData();
+      formData.append('document', file);
+
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch('/api/curriculum/import/upload', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        });
+
+        if (!response.ok) {
+          throw new Error('Upload failed');
+        }
+
+        const result = await response.json();
+        setImportId(result.importId);
+        setCurrentStep('processing');
+
+        // Start polling for status
+        pollImportStatus(result.importId);
+
+        toast({
+          title: 'Upload Successful',
+          description: 'Your curriculum document is being processed...',
+        });
+      } catch (error) {
+        console.error('Upload error:', error);
+        toast({
+          title: 'Upload Failed',
+          description: error instanceof Error ? error.message : 'Failed to upload document',
+          variant: 'destructive',
+        });
+      } finally {
+        setIsUploading(false);
+      }
+    },
+    [toast, pollImportStatus],
   );
 
   const handleConfirmImport = useCallback(async () => {
