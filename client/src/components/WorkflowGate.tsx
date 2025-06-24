@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useWorkflowState, ETFOLevel, ETFO_LEVEL_PATHS } from '../hooks/useWorkflowState';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Alert, AlertDescription, AlertTitle } from './ui/Alert';
+import { Alert, AlertDescription, AlertTitle } from './ui/alert';
 import { Button } from './ui/Button';
 import { LockIcon, AlertCircle, CheckCircle } from 'lucide-react';
 import { useToast } from './ui/use-toast';
