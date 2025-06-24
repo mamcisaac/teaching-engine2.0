@@ -1,16 +1,53 @@
-import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
+import { describe, it, expect, jest, beforeEach } from '@jest/globals';
 import { CurriculumImportService } from '../services/curriculumImportService';
-import { prisma } from '../prisma';
 
-// Mock dependencies
-jest.mock('../prisma');
+// Mock is already setup in setup-all-mocks.ts
 
 describe('CurriculumImportService', () => {
   let service: CurriculumImportService;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let mockPrisma: any;
 
   beforeEach(() => {
     jest.clearAllMocks();
+    
+    // Get mocked mockPrisma from global
+    mockPrisma = (globalThis as any).testPrismaClient;
+    
+    // Ensure mock functions exist
+    if (!mockPrisma || !mockPrisma.curriculumImport) {
+      mockPrisma = {
+        curriculumImport: {
+          create: jest.fn(),
+          update: jest.fn(),
+          findUnique: jest.fn(),
+          findMany: jest.fn(),
+          delete: jest.fn(),
+        },
+        curriculumExpectation: {
+          create: jest.fn(),
+          update: jest.fn(),
+          findUnique: jest.fn(),
+          findMany: jest.fn(),
+          delete: jest.fn(),
+        },
+      };
+      (globalThis as any).testPrismaClient = mockPrisma;
+    }
+    
+    // Create service instance
     service = new CurriculumImportService();
+    
+    // Override the prisma instance with our mock
+    (service as any).prisma = mockPrisma;
+    
+    // Override logger to avoid log output during tests
+    (service as any).logger = {
+      debug: jest.fn(),
+      info: jest.fn(),
+      warn: jest.fn(),
+      error: jest.fn(),
+    };
   });
 
   describe('startImport', () => {
@@ -24,12 +61,12 @@ describe('CurriculumImportService', () => {
         status: 'UPLOADING',
       };
 
-      (prisma.curriculumImport.create as jest.Mock).mockResolvedValue(mockImport);
+      mockPrisma.curriculumImport.create.mockResolvedValue(mockImport);
 
       const result = await service.startImport(1, 1, 'Mathematics', 'csv');
 
       expect(result).toBe('import-123');
-      expect(prisma.curriculumImport.create).toHaveBeenCalledWith({
+      expect(mockPrisma.curriculumImport.create).toHaveBeenCalledWith({
         data: {
           userId: 1,
           grade: 1,
@@ -43,7 +80,7 @@ describe('CurriculumImportService', () => {
     });
 
     it('should handle errors gracefully', async () => {
-      (prisma.curriculumImport.create as jest.Mock).mockRejectedValue(new Error('DB error'));
+      (mockPrisma.curriculumImport.create).mockRejectedValue(new Error('DB error'));
 
       await expect(service.startImport(1, 1, 'Mathematics', 'csv')).rejects.toThrow(
         'Failed to start import session',
@@ -65,7 +102,7 @@ M1.2,"Add numbers",Mathematics,1,Number`;
         description: 'Count to 20',
         subject: 'Mathematics',
         grade: 1,
-        domain: 'Number',
+        strand: 'Number',
       });
     });
 
@@ -82,7 +119,7 @@ M1.2,"Add numbers"`;
         description: 'Count to 20',
         subject: 'Unknown',
         grade: 0,
-        domain: undefined,
+        strand: 'General',
       });
     });
 
@@ -140,15 +177,15 @@ Test,123`;
         },
       };
 
-      (prisma.curriculumImport.findUnique as jest.Mock).mockResolvedValue(mockImport);
-      (prisma.curriculumExpectation.findUnique as jest.Mock).mockResolvedValue(null);
-      (prisma.curriculumExpectation.create as jest.Mock).mockResolvedValue({});
-      (prisma.curriculumImport.update as jest.Mock).mockResolvedValue({});
+      (mockPrisma.curriculumImport.findUnique).mockResolvedValue(mockImport);
+      (mockPrisma.curriculumExpectation.findUnique).mockResolvedValue(null);
+      (mockPrisma.curriculumExpectation.create).mockResolvedValue({});
+      (mockPrisma.curriculumImport.update).mockResolvedValue({});
 
       const result = await service.confirmImport('import-123');
 
       expect(result.created).toBe(1);
-      expect(prisma.curriculumExpectation.create).toHaveBeenCalledWith({
+      expect(mockPrisma.curriculumExpectation.create).toHaveBeenCalledWith({
         data: {
           code: 'M1.1',
           description: 'Count to 20',
@@ -183,18 +220,18 @@ Test,123`;
         },
       };
 
-      (prisma.curriculumImport.findUnique as jest.Mock).mockResolvedValue(mockImport);
-      (prisma.curriculumExpectation.findUnique as jest.Mock).mockResolvedValue({ id: 'existing' });
-      (prisma.curriculumImport.update as jest.Mock).mockResolvedValue({});
+      (mockPrisma.curriculumImport.findUnique).mockResolvedValue(mockImport);
+      (mockPrisma.curriculumExpectation.findUnique).mockResolvedValue({ id: 'existing' });
+      (mockPrisma.curriculumImport.update).mockResolvedValue({});
 
       const result = await service.confirmImport('import-123');
 
       expect(result.created).toBe(0);
-      expect(prisma.curriculumExpectation.create).not.toHaveBeenCalled();
+      expect(mockPrisma.curriculumExpectation.create).not.toHaveBeenCalled();
     });
 
     it('should reject if import not found', async () => {
-      (prisma.curriculumImport.findUnique as jest.Mock).mockResolvedValue(null);
+      (mockPrisma.curriculumImport.findUnique).mockResolvedValue(null);
 
       await expect(service.confirmImport('non-existent')).rejects.toThrow(
         'Import session not found',
@@ -207,7 +244,7 @@ Test,123`;
         status: 'PROCESSING',
       };
 
-      (prisma.curriculumImport.findUnique as jest.Mock).mockResolvedValue(mockImport);
+      (mockPrisma.curriculumImport.findUnique).mockResolvedValue(mockImport);
 
       await expect(service.confirmImport('import-123')).rejects.toThrow(
         'Import is not ready for confirmation',
@@ -225,7 +262,7 @@ Test,123`;
         errorLog: ['Error 1', 'Error 2'],
       };
 
-      (prisma.curriculumImport.findUnique as jest.Mock).mockResolvedValue(mockImport);
+      (mockPrisma.curriculumImport.findUnique).mockResolvedValue(mockImport);
 
       const result = await service.getImportProgress('import-123');
 
@@ -239,7 +276,7 @@ Test,123`;
     });
 
     it('should return null for non-existent import', async () => {
-      (prisma.curriculumImport.findUnique as jest.Mock).mockResolvedValue(null);
+      (mockPrisma.curriculumImport.findUnique).mockResolvedValue(null);
 
       const result = await service.getImportProgress('non-existent');
 
@@ -249,8 +286,8 @@ Test,123`;
 
   describe('loadPresetCurriculum', () => {
     it('should load PEI Grade 1 French preset', async () => {
-      (prisma.curriculumImport.create as jest.Mock).mockResolvedValue({ id: 'import-123' });
-      (prisma.curriculumImport.update as jest.Mock).mockResolvedValue({});
+      (mockPrisma.curriculumImport.create).mockResolvedValue({ id: 'import-123' });
+      (mockPrisma.curriculumImport.update).mockResolvedValue({});
 
       const result = await service.loadPresetCurriculum(1, 'pei-grade1-french');
 
@@ -261,8 +298,8 @@ Test,123`;
     });
 
     it('should load Ontario Grade 1 English preset', async () => {
-      (prisma.curriculumImport.create as jest.Mock).mockResolvedValue({ id: 'import-123' });
-      (prisma.curriculumImport.update as jest.Mock).mockResolvedValue({});
+      (mockPrisma.curriculumImport.create).mockResolvedValue({ id: 'import-123' });
+      (mockPrisma.curriculumImport.update).mockResolvedValue({});
 
       const result = await service.loadPresetCurriculum(1, 'ontario-grade1-english');
 
