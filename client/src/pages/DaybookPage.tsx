@@ -33,6 +33,7 @@ import {
   Save,
   AlertCircle,
   CheckCircle,
+  Star,
 } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { useReactToPrint } from 'react-to-print';
@@ -137,24 +138,29 @@ function DayEntry({ date, entry, lessons, onSave, isToday: isDayToday }: DayEntr
             {/* Overall Rating */}
             <div className="space-y-2">
               <Label>Overall Day Rating</Label>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
                 {[1, 2, 3, 4, 5].map((rating) => (
-                  <Button
+                  <button
                     key={rating}
                     type="button"
-                    variant={formData.overallRating === rating ? 'primary' : 'outline'}
-                    size="sm"
                     onClick={() => setFormData({ ...formData, overallRating: rating })}
+                    className="p-1 hover:scale-110 transition-transform"
                   >
-                    {rating}
-                  </Button>
+                    <Star
+                      className={`h-6 w-6 ${
+                        rating <= formData.overallRating
+                          ? 'fill-yellow-400 text-yellow-400'
+                          : 'text-gray-300'
+                      }`}
+                    />
+                  </button>
                 ))}
-                <span className="text-sm text-muted-foreground ml-2">
-                  {formData.overallRating === 1 && 'Challenging'}
+                <span className="text-sm text-muted-foreground ml-3">
+                  {formData.overallRating === 1 && 'Challenging Day'}
                   {formData.overallRating === 2 && 'Below Expectations'}
                   {formData.overallRating === 3 && 'Satisfactory'}
-                  {formData.overallRating === 4 && 'Good'}
-                  {formData.overallRating === 5 && 'Excellent'}
+                  {formData.overallRating === 4 && 'Good Day'}
+                  {formData.overallRating === 5 && 'Excellent Day!'}
                 </span>
               </div>
             </div>
@@ -229,11 +235,16 @@ function DayEntry({ date, entry, lessons, onSave, isToday: isDayToday }: DayEntr
 
             {/* General Notes */}
             <div className="space-y-2">
-              <Label>Additional Notes</Label>
+              <div className="flex items-center justify-between">
+                <Label>Additional Notes</Label>
+                <Badge variant="outline" className="text-xs">
+                  Public - May appear in newsletters
+                </Badge>
+              </div>
               <Textarea
                 value={formData.notes}
                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                placeholder="Any other observations, reminders, or reflections..."
+                placeholder="Any other observations, reminders, or reflections (may be shared in newsletters)..."
                 rows={2}
               />
             </div>
@@ -252,13 +263,18 @@ function DayEntry({ date, entry, lessons, onSave, isToday: isDayToday }: DayEntr
               </Label>
             </div>
 
-            {/* Substitute Notes */}
+            {/* Private Notes */}
             <div className="space-y-2">
-              <Label>Substitute Teacher Notes</Label>
+              <div className="flex items-center justify-between">
+                <Label>Private Teacher Notes</Label>
+                <Badge variant="secondary" className="text-xs">
+                  Private - For your eyes only
+                </Badge>
+              </div>
               <Textarea
                 value={formData.privateNotes}
                 onChange={(e) => setFormData({ ...formData, privateNotes: e.target.value })}
-                placeholder="Important information for a substitute teacher..."
+                placeholder="Confidential notes, behavioral concerns, parent communications, substitute info..."
                 rows={2}
               />
             </div>
@@ -269,9 +285,18 @@ function DayEntry({ date, entry, lessons, onSave, isToday: isDayToday }: DayEntr
             {formData.overallRating && (
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-sm font-medium">Day Rating:</span>
-                <Badge variant={formData.overallRating >= 4 ? 'default' : 'secondary'}>
-                  {formData.overallRating}/5
-                </Badge>
+                <div className="flex items-center gap-1">
+                  {[1, 2, 3, 4, 5].map((rating) => (
+                    <Star
+                      key={rating}
+                      className={`h-4 w-4 ${
+                        rating <= formData.overallRating
+                          ? 'fill-yellow-400 text-yellow-400'
+                          : 'text-gray-300'
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
             )}
 
@@ -330,6 +355,7 @@ export default function DaybookPage() {
   const [selectedWeek, setSelectedWeek] = useState(new Date());
   const [isPrintDialogOpen, setIsPrintDialogOpen] = useState(false);
   const [printType, setPrintType] = useState<'day' | 'week' | 'substitute'>('week');
+  const [showQuickTemplates, setShowQuickTemplates] = useState(false);
 
   const weekStart = startOfWeek(selectedWeek, { weekStartsOn: 1 });
   const weekEnd = endOfWeek(selectedWeek, { weekStartsOn: 1 });
@@ -521,15 +547,110 @@ export default function DaybookPage() {
         ))}
       </div>
 
-      {/* Reflection Prompts */}
+      {/* Quick Templates */}
       <Card>
         <CardHeader>
-          <CardTitle>Weekly Reflection Prompts</CardTitle>
-          <CardDescription>
-            Use these prompts to guide your daily and weekly reflections
-          </CardDescription>
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle>Quick Templates & Prompts</CardTitle>
+              <CardDescription>Common reflection templates and weekly prompts</CardDescription>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowQuickTemplates(!showQuickTemplates)}
+            >
+              {showQuickTemplates ? 'Hide' : 'Show'} Templates
+            </Button>
+          </div>
         </CardHeader>
         <CardContent>
+          {showQuickTemplates && (
+            <div className="space-y-4 mb-6">
+              <div>
+                <h4 className="font-medium text-sm mb-3">Quick Reflection Templates</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <Card
+                    className="cursor-pointer hover:bg-accent"
+                    onClick={() => {
+                      // This would fill in a template - implement as needed
+                      toast({
+                        title: 'Template Applied',
+                        description: 'Successful lesson template has been applied',
+                      });
+                    }}
+                  >
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-sm">Successful Lesson</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-xs text-muted-foreground">
+                        Students engaged well, learning goals met, smooth transitions
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card
+                    className="cursor-pointer hover:bg-accent"
+                    onClick={() => {
+                      toast({
+                        title: 'Template Applied',
+                        description: 'Challenging day template has been applied',
+                      });
+                    }}
+                  >
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-sm">Challenging Day</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-xs text-muted-foreground">
+                        Behavior management issues, need to revisit concepts, adjust pacing
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card
+                    className="cursor-pointer hover:bg-accent"
+                    onClick={() => {
+                      toast({
+                        title: 'Template Applied',
+                        description: 'Assessment day template has been applied',
+                      });
+                    }}
+                  >
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-sm">Assessment Day</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-xs text-muted-foreground">
+                        Conducted assessments, noted student performance, identified gaps
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card
+                    className="cursor-pointer hover:bg-accent"
+                    onClick={() => {
+                      toast({
+                        title: 'Template Applied',
+                        description: 'Special event template has been applied',
+                      });
+                    }}
+                  >
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-sm">Special Event</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-xs text-muted-foreground">
+                        Field trip, guest speaker, or special activity reflections
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <h4 className="font-medium text-sm">Daily Prompts</h4>

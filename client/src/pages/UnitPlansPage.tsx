@@ -4,6 +4,7 @@ import {
   useLongRangePlan,
   useLongRangePlans,
   useUnitPlans,
+  useUnitPlan,
   useCreateUnitPlan,
   useUpdateUnitPlan,
   UnitPlan,
@@ -17,6 +18,7 @@ import { Input } from '../components/ui/Input';
 import { Textarea } from '../components/ui/Textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Plus, Trash2 } from 'lucide-react';
+import ExpectationSelector from '../components/planning/ExpectationSelector';
 
 // Extended UnitPlan type with all ETFO fields
 interface ExtendedUnitPlan extends UnitPlan {
@@ -41,7 +43,7 @@ interface ExtendedUnitPlan extends UnitPlan {
 }
 
 export default function UnitPlansPage() {
-  const { longRangePlanId } = useParams();
+  const { longRangePlanId, unitId } = useParams();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [editingUnit, setEditingUnit] = useState<string | null>(null);
 
@@ -51,6 +53,7 @@ export default function UnitPlansPage() {
   const { data: unitPlans = [], isLoading } = useUnitPlans(
     longRangePlanId ? { longRangePlanId } : {},
   );
+  const { data: selectedUnit } = useUnitPlan(unitId || '');
 
   // Mutations
   const createUnit = useCreateUnitPlan();
@@ -246,6 +249,296 @@ export default function UnitPlansPage() {
     return (
       <div className="flex items-center justify-center min-h-64">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+      </div>
+    );
+  }
+
+  // Detail view for a specific unit
+  if (unitId && selectedUnit) {
+    const unit = selectedUnit as ExtendedUnitPlan;
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Breadcrumb */}
+        <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+          <Link to="/planner/long-range" className="hover:text-indigo-600">
+            Long-Range Plans
+          </Link>
+          <span>›</span>
+          <Link to="/planner/units" className="hover:text-indigo-600">
+            Unit Plans
+          </Link>
+          <span>›</span>
+          <span className="text-gray-900 font-medium">{unit.title}</span>
+        </div>
+
+        {/* Unit Detail Header */}
+        <div className="bg-white shadow rounded-lg mb-6">
+          <div className="px-6 py-4 border-b">
+            <div className="flex justify-between items-start">
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">{unit.title}</h1>
+                {unit.titleFr && <p className="text-sm text-gray-600 mt-1">{unit.titleFr}</p>}
+                <div className="flex gap-4 mt-2 text-sm text-gray-600">
+                  <span>
+                    {new Date(unit.startDate).toLocaleDateString()} -{' '}
+                    {new Date(unit.endDate).toLocaleDateString()}
+                  </span>
+                  <span>{unit.estimatedHours || 0} hours</span>
+                  <span>{unit._count?.lessonPlans || 0} lessons</span>
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <Link to={`/planner/units/${unitId}/lessons`}>
+                  <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
+                    View Lessons
+                  </Button>
+                </Link>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setEditingUnit(unit.id);
+                    setFormData({
+                      title: unit.title,
+                      description: unit.description || '',
+                      bigIdeas: unit.bigIdeas || '',
+                      essentialQuestions: unit.essentialQuestions || [''],
+                      startDate: unit.startDate.split('T')[0],
+                      endDate: unit.endDate.split('T')[0],
+                      estimatedHours: unit.estimatedHours || 20,
+                      assessmentPlan: unit.assessmentPlan || '',
+                      successCriteria: unit.successCriteria || [''],
+                      expectationIds: unit.expectations?.map((e) => e.expectation.id) || [],
+                      longRangePlanId: unit.longRangePlanId,
+                      // Additional ETFO fields
+                      crossCurricularConnections: unit.crossCurricularConnections || '',
+                      learningSkills: unit.learningSkills || [],
+                      culminatingTask: unit.culminatingTask || '',
+                      keyVocabulary: unit.keyVocabulary || [''],
+                      priorKnowledge: unit.priorKnowledge || '',
+                      parentCommunicationPlan: unit.parentCommunicationPlan || '',
+                      fieldTripsAndGuestSpeakers: unit.fieldTripsAndGuestSpeakers || '',
+                      differentiationStrategies: unit.differentiationStrategies || {
+                        forStruggling: [''],
+                        forAdvanced: [''],
+                        forELL: [''],
+                        forIEP: [''],
+                      },
+                      indigenousPerspectives: unit.indigenousPerspectives || '',
+                      environmentalEducation: unit.environmentalEducation || '',
+                      socialJusticeConnections: unit.socialJusticeConnections || '',
+                      technologyIntegration: unit.technologyIntegration || '',
+                      communityConnections: unit.communityConnections || '',
+                    });
+                    setIsCreateModalOpen(true);
+                  }}
+                >
+                  Edit Unit
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Unit Detail Content */}
+          <div className="p-6 space-y-6">
+            {unit.description && (
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Description</h3>
+                <p className="text-gray-700">{unit.description}</p>
+              </div>
+            )}
+
+            {unit.bigIdeas && (
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Big Ideas</h3>
+                <div
+                  className="prose max-w-none"
+                  dangerouslySetInnerHTML={{ __html: unit.bigIdeas }}
+                />
+              </div>
+            )}
+
+            {unit.essentialQuestions && unit.essentialQuestions.length > 0 && (
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Essential Questions</h3>
+                <ul className="list-disc list-inside space-y-1">
+                  {unit.essentialQuestions.map((question, index) => (
+                    <li key={index} className="text-gray-700">
+                      {question}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {unit.successCriteria && unit.successCriteria.length > 0 && (
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Success Criteria</h3>
+                <ul className="list-disc list-inside space-y-1">
+                  {unit.successCriteria.map((criteria, index) => (
+                    <li key={index} className="text-gray-700">
+                      {criteria}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {unit.assessmentPlan && (
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Assessment Plan</h3>
+                <div
+                  className="prose max-w-none"
+                  dangerouslySetInnerHTML={{ __html: unit.assessmentPlan }}
+                />
+              </div>
+            )}
+
+            {unit.keyVocabulary && unit.keyVocabulary.length > 0 && (
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Key Vocabulary</h3>
+                <div className="flex flex-wrap gap-2">
+                  {unit.keyVocabulary.map((term, index) => (
+                    <span key={index} className="px-3 py-1 bg-gray-100 rounded-full text-sm">
+                      {term}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* ETFO-specific sections */}
+            {unit.crossCurricularConnections && (
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  Cross-Curricular Connections
+                </h3>
+                <p className="text-gray-700">{unit.crossCurricularConnections}</p>
+              </div>
+            )}
+
+            {/* Differentiation Strategies */}
+            {unit.differentiationStrategies && (
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  Differentiation Strategies
+                </h3>
+                <div className="grid gap-4 md:grid-cols-2">
+                  {unit.differentiationStrategies?.forStruggling &&
+                    unit.differentiationStrategies.forStruggling.length > 0 && (
+                      <Card>
+                        <CardHeader>
+                          <CardTitle className="text-sm">For Struggling Learners</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            {unit.differentiationStrategies.forStruggling.map((strategy, index) => (
+                              <li key={index}>{strategy}</li>
+                            ))}
+                          </ul>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                  {unit.differentiationStrategies?.forAdvanced &&
+                    unit.differentiationStrategies.forAdvanced.length > 0 && (
+                      <Card>
+                        <CardHeader>
+                          <CardTitle className="text-sm">For Advanced Learners</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            {unit.differentiationStrategies.forAdvanced.map((strategy, index) => (
+                              <li key={index}>{strategy}</li>
+                            ))}
+                          </ul>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                  {unit.differentiationStrategies?.forELL &&
+                    unit.differentiationStrategies.forELL.length > 0 && (
+                      <Card>
+                        <CardHeader>
+                          <CardTitle className="text-sm">For English Language Learners</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            {unit.differentiationStrategies.forELL.map((strategy, index) => (
+                              <li key={index}>{strategy}</li>
+                            ))}
+                          </ul>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                  {unit.differentiationStrategies?.forIEP &&
+                    unit.differentiationStrategies.forIEP.length > 0 && (
+                      <Card>
+                        <CardHeader>
+                          <CardTitle className="text-sm">For Students with IEPs</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            {unit.differentiationStrategies.forIEP.map((strategy, index) => (
+                              <li key={index}>{strategy}</li>
+                            ))}
+                          </ul>
+                        </CardContent>
+                      </Card>
+                    )}
+                </div>
+              </div>
+            )}
+
+            {/* Curriculum Expectations */}
+            {unit.expectations && unit.expectations.length > 0 && (
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  Curriculum Expectations
+                </h3>
+                <div className="grid gap-2">
+                  {unit.expectations.map(({ expectation }) => (
+                    <div key={expectation.id} className="bg-gray-50 p-3 rounded">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <span className="font-medium text-sm">{expectation.code}</span>
+                          <p className="text-sm text-gray-700 mt-1">{expectation.description}</p>
+                        </div>
+                        <span className="text-xs text-gray-500">{expectation.strand}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Progress Summary */}
+            {unit.progress && (
+              <Card className="bg-indigo-50 border-indigo-200">
+                <CardHeader>
+                  <CardTitle className="text-base">Progress Summary</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium">Completion</span>
+                    <span className="text-2xl font-bold text-indigo-600">
+                      {unit.progress.percentage}%
+                    </span>
+                  </div>
+                  <div className="mt-2 bg-indigo-100 rounded-full h-2">
+                    <div
+                      className="bg-indigo-600 h-2 rounded-full"
+                      style={{ width: `${unit.progress.percentage}%` }}
+                    />
+                  </div>
+                  <p className="text-sm text-gray-600 mt-2">
+                    {unit.progress.completed} of {unit.progress.total} lessons completed
+                  </p>
+                </CardContent>
+              </Card>
+            )}
+          </div>
+        </div>
       </div>
     );
   }
@@ -673,6 +966,17 @@ export default function UnitPlansPage() {
                     placeholder="What should students already know before starting this unit?"
                     rows={3}
                     className="mt-2"
+                  />
+                </div>
+
+                <div>
+                  <ExpectationSelector
+                    selectedIds={formData.expectationIds}
+                    onChange={(ids) => setFormData({ ...formData, expectationIds: ids })}
+                    grade={longRangePlan?.grade}
+                    subject={longRangePlan?.subject}
+                    label="Curriculum Expectations"
+                    placeholder="Select curriculum expectations for this unit..."
                   />
                 </div>
 
