@@ -37,7 +37,6 @@ export async function generateParentSummary(
             },
           },
           include: {
-            expectation: true,
             theme: true,
           },
         },
@@ -49,7 +48,6 @@ export async function generateParentSummary(
             },
           },
           include: {
-            expectation: true,
             theme: true,
           },
         },
@@ -60,31 +58,35 @@ export async function generateParentSummary(
       throw new Error('Student not found');
     }
 
-    // Get activities completed during this period with outcomes
-    const activities = await prisma.activity.findMany({
-      where: {
-        userId: userId,
-        completedAt: {
-          gte: from,
-          lte: to,
-        },
-      },
-      include: {
-        expectations: {
-          include: {
-            expectation: true,
-          },
-        },
-        milestone: {
-          include: {
-            subject: true,
-          },
-        },
-      },
-    });
+    // Get activities completed during this period with outcomes - DISABLED: Legacy activity model
+    const activities: Array<{
+      outcomes?: Array<{
+        outcome: { id: string; code: string; description: string; subject: string };
+      }>;
+    }> = []; // await prisma.activity.findMany({
+    //   where: {
+    //     userId: userId,
+    //     completedAt: {
+    //       gte: from,
+    //       lte: to,
+    //     },
+    //   },
+    //   include: {
+    //     expectations: {
+    //       include: {
+    //         expectation: true,
+    //       },
+    //     },
+    //     milestone: {
+    //       include: {
+    //         subject: true,
+    //       },
+    //     },
+    //   },
+    // });
 
     // Assessment functionality removed
-    const assessments: Array<Record<string, unknown>> = [];
+    const _assessments: Array<Record<string, unknown>> = [];
 
     // Generate summary based on collected data
     const summaryData = {
@@ -92,10 +94,12 @@ export async function generateParentSummary(
       period: { from, to },
       focus: focus || [],
       activities: activities.length,
-      expectations: [...new Set(activities.flatMap((a) => a.expectations.map((e) => e.expectation.code)))],
-      subjects: [...new Set(activities.map((a) => a.milestone.subject?.name || 'General'))],
-      goals: student.goals.length,
-      reflections: student.reflections.length,
+      outcomes: [
+        ...new Set(activities.flatMap((a) => a.outcomes?.map((o) => o.outcome?.code) || [])),
+      ],
+      subjects: [...new Set(activities.map((_a) => 'General'))], // Legacy model reference removed
+      goals: student.goals?.length || 0,
+      reflections: student.reflections?.length || 0,
       assessments: 0,
     };
 

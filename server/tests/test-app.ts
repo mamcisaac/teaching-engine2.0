@@ -26,9 +26,10 @@ export function createTestApp() {
   });
 
   // Import routes that are being tested
-  import('../src/routes/materialList').then((module) => {
-    app.use('/api/material-lists', auth, module.default);
-  });
+  // Route doesn't exist - commenting out
+  // import('../src/routes/materialList').then((module) => {
+  //   app.use('/api/material-lists', auth, module.default);
+  // });
 
   return app;
 }

@@ -3,7 +3,7 @@ import {
   getCoverageSummary,
   type OutcomeCoverage,
   type CoverageStatus,
-} from '../utils/outcomeCoverage';
+} from '../utils/outcomeCoverageSimple.mjs';
 
 describe('getCoverageSummary', () => {
   it('should return zero counts for empty array', () => {

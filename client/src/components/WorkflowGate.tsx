@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
 import { useWorkflowState, ETFOLevel, ETFO_LEVEL_PATHS } from '../hooks/useWorkflowState';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Alert, AlertDescription, AlertTitle } from './ui/Alert';
@@ -13,15 +12,15 @@ interface WorkflowGateProps {
 }
 
 export default function WorkflowGate({ level, children }: WorkflowGateProps) {
-  const { workflowState, isLevelAccessible, getBlockedReason, getLevelProgress, getPreviousLevel } = useWorkflowState();
-  const location = useLocation();
+  const { workflowState, isLevelAccessible, getBlockedReason, getLevelProgress, getPreviousLevel } =
+    useWorkflowState();
   const { toast } = useToast();
   const [isChecking, setIsChecking] = useState(true);
 
   useEffect(() => {
     if (workflowState) {
       setIsChecking(false);
-      
+
       // Show toast if blocked
       if (!isLevelAccessible(level)) {
         const blockedReason = getBlockedReason(level);
@@ -49,7 +48,6 @@ export default function WorkflowGate({ level, children }: WorkflowGateProps) {
 
   // Otherwise, show blocked message
   const blockedReason = getBlockedReason(level);
-  const levelProgress = getLevelProgress(level);
   const previousLevel = getPreviousLevel(level);
   const previousLevelProgress = previousLevel ? getLevelProgress(previousLevel) : null;
 
@@ -61,9 +59,7 @@ export default function WorkflowGate({ level, children }: WorkflowGateProps) {
             <LockIcon className="h-8 w-8 text-muted-foreground" />
             <div>
               <CardTitle>Access Restricted</CardTitle>
-              <CardDescription>
-                This planning level is not yet available
-              </CardDescription>
+              <CardDescription>This planning level is not yet available</CardDescription>
             </div>
           </div>
         </CardHeader>
@@ -72,7 +68,8 @@ export default function WorkflowGate({ level, children }: WorkflowGateProps) {
             <AlertCircle className="h-4 w-4" />
             <AlertTitle>Why is this locked?</AlertTitle>
             <AlertDescription>
-              {blockedReason || 'You must complete the previous planning levels before accessing this one.'}
+              {blockedReason ||
+                'You must complete the previous planning levels before accessing this one.'}
             </AlertDescription>
           </Alert>
 
@@ -83,11 +80,12 @@ export default function WorkflowGate({ level, children }: WorkflowGateProps) {
                 <div className="flex items-center justify-between">
                   <span className="font-medium">{getLevelName(previousLevel)}</span>
                   <span className="text-sm text-muted-foreground">
-                    {previousLevelProgress.completedItems} / {previousLevelProgress.totalItems} completed
+                    {previousLevelProgress.completedItems} / {previousLevelProgress.totalItems}{' '}
+                    completed
                   </span>
                 </div>
                 <div className="w-full bg-secondary rounded-full h-2">
-                  <div 
+                  <div
                     className="bg-primary h-2 rounded-full transition-all duration-300"
                     style={{ width: `${previousLevelProgress.progressPercentage}%` }}
                   />
@@ -120,7 +118,7 @@ export default function WorkflowGate({ level, children }: WorkflowGateProps) {
           <div className="flex gap-3">
             {previousLevel && (
               <Button
-                onClick={() => window.location.href = ETFO_LEVEL_PATHS[previousLevel]}
+                onClick={() => (window.location.href = ETFO_LEVEL_PATHS[previousLevel])}
                 className="flex-1"
               >
                 Go to {getLevelName(previousLevel)}
@@ -128,7 +126,7 @@ export default function WorkflowGate({ level, children }: WorkflowGateProps) {
             )}
             <Button
               variant="outline"
-              onClick={() => window.location.href = '/'}
+              onClick={() => (window.location.href = '/')}
               className="flex-1"
             >
               Back to Dashboard

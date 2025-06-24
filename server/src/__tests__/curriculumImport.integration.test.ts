@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll, afterAll, beforeEach } from '@jest/glo
 import request from 'supertest';
 import { app } from '../index';
 import { prisma } from '../prisma';
-import { getTestAuthToken, testUserData } from '../test-utils/auth';
+import { getTestAuthToken, testUserData } from '../../tests/test-auth-helper';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -56,13 +56,11 @@ describe('Curriculum Import API', () => {
     });
 
     it('should require authentication', async () => {
-      const response = await request(app)
-        .post('/api/curriculum/import/start')
-        .send({
-          grade: 1,
-          subject: 'Mathematics',
-          sourceFormat: 'manual',
-        });
+      const response = await request(app).post('/api/curriculum/import/start').send({
+        grade: 1,
+        subject: 'Mathematics',
+        sourceFormat: 'manual',
+      });
 
       expect(response.status).toBe(401);
     });
@@ -202,14 +200,14 @@ describe('Curriculum Import API', () => {
   describe('CSV Import', () => {
     it('should parse CSV content correctly', async () => {
       const { curriculumImportService } = await import('../services/curriculumImportService');
-      
+
       const csvContent = `code,description,subject,grade,domain
 M1.1,"Count to 20 and represent numbers to 10",Mathematics,1,Number Sense
 M1.2,"Compare and order numbers to 10",Mathematics,1,Number Sense
 L1.1,"Listen to understand and respond appropriately",Language,1,Oral Communication`;
 
       const outcomes = curriculumImportService.parseCSV(csvContent);
-      
+
       expect(outcomes).toHaveLength(3);
       expect(outcomes[0]).toEqual({
         code: 'M1.1',
@@ -222,24 +220,26 @@ L1.1,"Listen to understand and respond appropriately",Language,1,Oral Communicat
 
     it('should handle CSV with quoted values', async () => {
       const { curriculumImportService } = await import('../services/curriculumImportService');
-      
+
       const csvContent = `code,description,subject,grade,domain
 "M1.1","Count to 20, and represent numbers to 10","Mathematics",1,"Number Sense"
 "L1.1","Listen to understand, respond appropriately","Language",1,"Oral Communication"`;
 
       const outcomes = curriculumImportService.parseCSV(csvContent);
-      
+
       expect(outcomes).toHaveLength(2);
       expect(outcomes[0].description).toBe('Count to 20, and represent numbers to 10');
     });
 
     it('should reject CSV without required columns', async () => {
       const { curriculumImportService } = await import('../services/curriculumImportService');
-      
+
       const csvContent = `name,value
 Test,123`;
 
-      expect(() => curriculumImportService.parseCSV(csvContent)).toThrow('CSV must contain "code" and "description" columns');
+      expect(() => curriculumImportService.parseCSV(csvContent)).toThrow(
+        'CSV must contain "code" and "description" columns',
+      );
     });
   });
 
@@ -310,7 +310,7 @@ Test,123`;
         sourceFormat: 'manual' as const,
         status: 'COMPLETED' as const,
       }));
-      
+
       await prisma.curriculumImport.createMany({ data: imports });
 
       const response = await request(app)

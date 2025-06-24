@@ -63,7 +63,7 @@ describe('EmailService', () => {
         content: Buffer.from('test-content'),
       };
 
-      await sendEmail('test@example.com', 'Test Subject', 'Test text', attachment);
+      await sendEmail('test@example.com', 'Test Subject', 'Test text', undefined, attachment);
 
       expect(mockHandler).toHaveBeenCalledWith(
         'test@example.com',
@@ -125,7 +125,7 @@ describe('EmailService', () => {
         content: Buffer.from('test-content'),
       };
 
-      await sendEmail('test@example.com', 'Test Subject', 'Test text', attachment);
+      await sendEmail('test@example.com', 'Test Subject', 'Test text', undefined, attachment);
 
       const expectedBody = JSON.parse(mockFetch.mock.calls[0][1].body);
       expect(expectedBody.attachments).toEqual([
@@ -185,7 +185,7 @@ describe('EmailService', () => {
         content: Buffer.from('test-content'),
       };
 
-      await sendEmail('test@example.com', 'Test Subject', 'Test text', attachment);
+      await sendEmail('test@example.com', 'Test Subject', 'Test text', undefined, attachment);
 
       expect(mockTransporter.sendMail).toHaveBeenCalledWith({
         from: 'sender@example.com',

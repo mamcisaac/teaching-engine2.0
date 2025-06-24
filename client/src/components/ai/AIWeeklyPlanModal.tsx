@@ -45,11 +45,11 @@ interface GeneratedPlan {
   gapsCovered: string[];
 }
 
-export function AIWeeklyPlanModal({ 
-  isOpen, 
-  onClose, 
+export function AIWeeklyPlanModal({
+  isOpen,
+  onClose,
   weekStart,
-  onPlanApplied 
+  onPlanApplied,
 }: AIWeeklyPlanModalProps) {
   const [preferences, setPreferences] = useState({
     preferredComplexity: 'moderate' as 'simple' | 'moderate' | 'complex',
@@ -90,9 +90,17 @@ export function AIWeeklyPlanModal({
       onClose();
     },
     onError: (error: unknown) => {
-      const errorMessage = error instanceof Error && 'response' in error
-        ? (error as any).response?.data?.error || 'Failed to apply plan'
-        : 'Failed to apply plan';
+      interface ApiError extends Error {
+        response?: {
+          data?: {
+            error?: string;
+          };
+        };
+      }
+      const errorMessage =
+        error instanceof Error && 'response' in error
+          ? (error as ApiError).response?.data?.error || 'Failed to apply plan'
+          : 'Failed to apply plan';
       toast.error(errorMessage);
     },
   });
@@ -129,10 +137,8 @@ export function AIWeeklyPlanModal({
             {/* Preferences Form */}
             <div className="space-y-4">
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-3">
-                  Planning Preferences
-                </h3>
-                
+                <h3 className="text-lg font-medium text-gray-900 mb-3">Planning Preferences</h3>
+
                 <div className="space-y-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-700">
@@ -140,10 +146,12 @@ export function AIWeeklyPlanModal({
                     </label>
                     <select
                       value={preferences.preferredComplexity}
-                      onChange={(e) => setPreferences({
-                        ...preferences,
-                        preferredComplexity: e.target.value as any,
-                      })}
+                      onChange={(e) =>
+                        setPreferences({
+                          ...preferences,
+                          preferredComplexity: e.target.value as 'simple' | 'moderate' | 'complex',
+                        })
+                      }
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
                     >
                       <option value="simple">Simple</option>
@@ -157,15 +165,15 @@ export function AIWeeklyPlanModal({
                       <input
                         type="checkbox"
                         checked={preferences.includeAssessments}
-                        onChange={(e) => setPreferences({
-                          ...preferences,
-                          includeAssessments: e.target.checked,
-                        })}
+                        onChange={(e) =>
+                          setPreferences({
+                            ...preferences,
+                            includeAssessments: e.target.checked,
+                          })
+                        }
                         className="mr-2 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                       />
-                      <span className="text-sm text-gray-700">
-                        Include assessment activities
-                      </span>
+                      <span className="text-sm text-gray-700">Include assessment activities</span>
                     </label>
                   </div>
 
@@ -178,10 +186,12 @@ export function AIWeeklyPlanModal({
                       min="0"
                       max="30"
                       value={preferences.bufferTime}
-                      onChange={(e) => setPreferences({
-                        ...preferences,
-                        bufferTime: parseInt(e.target.value),
-                      })}
+                      onChange={(e) =>
+                        setPreferences({
+                          ...preferences,
+                          bufferTime: parseInt(e.target.value),
+                        })
+                      }
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
                     />
                   </div>
@@ -192,12 +202,10 @@ export function AIWeeklyPlanModal({
                 <div className="flex">
                   <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5" />
                   <div className="ml-3">
-                    <h4 className="text-sm font-medium text-blue-800">
-                      AI Planning Assistant
-                    </h4>
+                    <h4 className="text-sm font-medium text-blue-800">AI Planning Assistant</h4>
                     <p className="text-sm text-blue-700 mt-1">
-                      The AI will analyze your curriculum gaps, respect your timetable,
-                      and create a balanced weekly plan optimized for student learning.
+                      The AI will analyze your curriculum gaps, respect your timetable, and create a
+                      balanced weekly plan optimized for student learning.
                     </p>
                   </div>
                 </div>
@@ -226,9 +234,7 @@ export function AIWeeklyPlanModal({
             {/* Generated Plan Preview */}
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-medium text-gray-900">
-                  Generated Plan Preview
-                </h3>
+                <h3 className="text-lg font-medium text-gray-900">Generated Plan Preview</h3>
                 <button
                   onClick={() => setGeneratedPlan(null)}
                   className="text-sm text-purple-600 hover:text-purple-700"
@@ -240,25 +246,33 @@ export function AIWeeklyPlanModal({
               {/* Quality Metrics */}
               <div className="grid grid-cols-4 gap-4 mb-6">
                 <div className="text-center">
-                  <div className={`text-2xl font-bold ${getMetricColor(generatedPlan.plan.qualityMetrics.coverageScore)}`}>
+                  <div
+                    className={`text-2xl font-bold ${getMetricColor(generatedPlan.plan.qualityMetrics.coverageScore)}`}
+                  >
                     {(generatedPlan.plan.qualityMetrics.coverageScore * 100).toFixed(0)}%
                   </div>
                   <div className="text-sm text-gray-600">Coverage</div>
                 </div>
                 <div className="text-center">
-                  <div className={`text-2xl font-bold ${getMetricColor(generatedPlan.plan.qualityMetrics.balanceScore)}`}>
+                  <div
+                    className={`text-2xl font-bold ${getMetricColor(generatedPlan.plan.qualityMetrics.balanceScore)}`}
+                  >
                     {(generatedPlan.plan.qualityMetrics.balanceScore * 100).toFixed(0)}%
                   </div>
                   <div className="text-sm text-gray-600">Balance</div>
                 </div>
                 <div className="text-center">
-                  <div className={`text-2xl font-bold ${getMetricColor(generatedPlan.plan.qualityMetrics.pacingScore)}`}>
+                  <div
+                    className={`text-2xl font-bold ${getMetricColor(generatedPlan.plan.qualityMetrics.pacingScore)}`}
+                  >
                     {(generatedPlan.plan.qualityMetrics.pacingScore * 100).toFixed(0)}%
                   </div>
                   <div className="text-sm text-gray-600">Pacing</div>
                 </div>
                 <div className="text-center">
-                  <div className={`text-2xl font-bold ${getMetricColor(generatedPlan.plan.qualityMetrics.overallScore)}`}>
+                  <div
+                    className={`text-2xl font-bold ${getMetricColor(generatedPlan.plan.qualityMetrics.overallScore)}`}
+                  >
                     {(generatedPlan.plan.qualityMetrics.overallScore * 100).toFixed(0)}%
                   </div>
                   <div className="text-sm text-gray-600">Overall</div>
@@ -284,46 +298,47 @@ export function AIWeeklyPlanModal({
 
               {/* Day Activities */}
               <div className="border border-gray-200 rounded-lg p-4 max-h-96 overflow-y-auto">
-                {!Array.isArray(generatedPlan.plan[selectedDay]) || generatedPlan.plan[selectedDay].length === 0 ? (
+                {!Array.isArray(generatedPlan.plan[selectedDay]) ||
+                generatedPlan.plan[selectedDay].length === 0 ? (
                   <p className="text-gray-500 text-center py-4">
                     No activities scheduled for {selectedDay}
                   </p>
                 ) : (
                   <div className="space-y-3">
-                    {(generatedPlan.plan[selectedDay] as PlanActivity[]).map((activity: PlanActivity, index: number) => (
-                      <div
-                        key={index}
-                        className="border border-gray-200 rounded-lg p-3 hover:bg-gray-50"
-                      >
-                        <div className="flex items-start justify-between mb-2">
-                          <div>
-                            <div className="flex items-center gap-2">
-                              <Clock className="h-4 w-4 text-gray-400" />
-                              <span className="text-sm font-medium text-gray-700">
-                                {formatTime(activity.time)}
-                              </span>
-                              <span className="text-sm text-gray-500">
-                                ({activity.duration} min)
-                              </span>
+                    {(generatedPlan.plan[selectedDay] as PlanActivity[]).map(
+                      (activity: PlanActivity, index: number) => (
+                        <div
+                          key={index}
+                          className="border border-gray-200 rounded-lg p-3 hover:bg-gray-50"
+                        >
+                          <div className="flex items-start justify-between mb-2">
+                            <div>
+                              <div className="flex items-center gap-2">
+                                <Clock className="h-4 w-4 text-gray-400" />
+                                <span className="text-sm font-medium text-gray-700">
+                                  {formatTime(activity.time)}
+                                </span>
+                                <span className="text-sm text-gray-500">
+                                  ({activity.duration} min)
+                                </span>
+                              </div>
+                              <h4 className="font-medium text-gray-900 mt-1">
+                                {activity.activityTitle}
+                              </h4>
                             </div>
-                            <h4 className="font-medium text-gray-900 mt-1">
-                              {activity.activityTitle}
-                            </h4>
+                            <span className="text-xs px-2 py-1 bg-purple-100 text-purple-700 rounded">
+                              {activity.subject}
+                            </span>
                           </div>
-                          <span className="text-xs px-2 py-1 bg-purple-100 text-purple-700 rounded">
-                            {activity.subject}
-                          </span>
+                          <p className="text-sm text-gray-600">{activity.activityDescription}</p>
+                          {activity.materials && activity.materials.length > 0 && (
+                            <p className="text-xs text-gray-500 mt-2">
+                              Materials: {activity.materials.join(', ')}
+                            </p>
+                          )}
                         </div>
-                        <p className="text-sm text-gray-600">
-                          {activity.activityDescription}
-                        </p>
-                        {activity.materials && activity.materials.length > 0 && (
-                          <p className="text-xs text-gray-500 mt-2">
-                            Materials: {activity.materials.join(', ')}
-                          </p>
-                        )}
-                      </div>
-                    ))}
+                      ),
+                    )}
                   </div>
                 )}
               </div>

@@ -1,4 +1,4 @@
-import { prisma } from '../prisma';
+// import { prisma } from '../prisma'; // Currently unused
 
 export interface MaterialItem {
   id: string;
@@ -43,86 +43,39 @@ export interface ExtractedMaterials {
 }
 
 /**
+ * Create an empty material list
+ */
+function createEmptyMaterialList(): ExtractedMaterials {
+  return {
+    byTimeSlot: [],
+    byCategory: {
+      physical: [],
+      digital: [],
+      printable: [],
+      supplies: [],
+      equipment: [],
+    },
+    setupInstructions: [],
+    alternatives: [],
+    summary: {
+      totalItems: 0,
+      prepTime: 0,
+      missingItems: [],
+    },
+  };
+}
+
+/**
  * Extract all materials needed for a day's activities
  */
 export async function extractDayMaterials(
   date: string,
-  userId: number = 1
+  _userId: number = 1,
 ): Promise<ExtractedMaterials> {
-  const dayStart = new Date(date);
-  dayStart.setUTCHours(0, 0, 0, 0);
-
-  // Get the daily plan with all related data
-  const plan = await prisma.dailyPlan.findFirst({
-    where: { date: dayStart },
-    include: {
-      items: {
-        include: {
-          activity: {
-            include: {
-              resources: true,
-              milestone: {
-                include: {
-                  subject: true
-                }
-              }
-            }
-          },
-          slot: true
-        },
-        orderBy: { startMin: 'asc' }
-      }
-    }
-  });
-
-  if (!plan) {
-    return createEmptyMaterialList();
-  }
-
-  const byTimeSlot: TimedMaterialList[] = [];
-  const allMaterials: MaterialItem[] = [];
-
-  // Process each time slot
-  for (const item of plan.items || []) {
-    const timeSlotMaterials = await extractActivityMaterials(
-      item.activity,
-      item.startMin
-    );
-
-    byTimeSlot.push({
-      time: formatTime(item.startMin),
-      activity: item.activity?.title || 'Unknown Activity',
-      materials: timeSlotMaterials.materials,
-      setupTime: timeSlotMaterials.setupTime,
-      notes: timeSlotMaterials.notes
-    });
-
-    allMaterials.push(...timeSlotMaterials.materials);
-  }
-
-  // Organize by category
-  const byCategory = categorizeMaterials(allMaterials);
-
-  // Generate setup instructions
-  const setupInstructions = generateSetupInstructions(byTimeSlot);
-
-  // Create alternatives for common scenarios
-  const alternatives = generateMaterialAlternatives(allMaterials);
-
-  // Calculate summary
-  const summary = {
-    totalItems: removeDuplicateMaterials(allMaterials).length,
-    prepTime: byTimeSlot.reduce((total, slot) => total + (slot.setupTime || 0), 0),
-    missingItems: identifyPotentialMissingItems(allMaterials)
-  };
-
-  return {
-    byTimeSlot,
-    byCategory,
-    setupInstructions,
-    alternatives,
-    summary
-  };
+  // DISABLED: Legacy function that used dailyPlan/Activity models
+  // TODO: Reimplement using ETFO lesson plans and daybook entries
+  console.warn('extractDayMaterials is disabled - legacy models removed');
+  return createEmptyMaterialList();
 }
 
 /**
@@ -131,7 +84,7 @@ export async function extractDayMaterials(
 export async function extractWeeklyMaterials(
   startDate: string,
   numDays: number = 5,
-  userId: number = 1
+  userId: number = 1,
 ): Promise<Array<{ date: string; materials: ExtractedMaterials }>> {
   const weeklyMaterials = [];
   const startDateObj = new Date(startDate);
@@ -144,7 +97,7 @@ export async function extractWeeklyMaterials(
     const dayMaterials = await extractDayMaterials(dateStr, userId);
     weeklyMaterials.push({
       date: dateStr,
-      materials: dayMaterials
+      materials: dayMaterials,
     });
   }
 
@@ -154,9 +107,25 @@ export async function extractWeeklyMaterials(
 /**
  * Extract materials for a specific activity
  */
+// Unused legacy function
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function extractActivityMaterials(
-  activity: any,
-  startMin: number
+  activity: {
+    materials?: string[];
+    title?: string;
+    resources?: Array<{
+      id?: string;
+      type?: string;
+      filename?: string;
+      title?: string;
+      url?: string;
+    }>;
+    publicNote?: string;
+    privateNote?: string;
+    milestone?: { subject?: { name?: string } };
+    materialsText?: string;
+  },
+  _startMin: number,
 ): Promise<{
   materials: MaterialItem[];
   setupTime?: number;
@@ -181,12 +150,12 @@ async function extractActivityMaterials(
 
   // Parse activity description and materials text for material mentions
   const inferredMaterials = parseActivityDescription(
-    activity.title,
+    activity.title || '',
     activity.publicNote || activity.privateNote || '',
-    activity.milestone?.subject?.name
+    activity.milestone?.subject?.name,
   );
   materials.push(...inferredMaterials);
-  
+
   // Parse materials text if available
   if (activity.materialsText) {
     const parsedMaterials = parseMaterialsText(activity.materialsText);
@@ -203,25 +172,31 @@ async function extractActivityMaterials(
   return {
     materials: removeDuplicateMaterials(materials),
     setupTime,
-    notes: generateActivityNotes(activity, materials)
+    notes: generateActivityNotes(activity, materials),
   };
 }
 
 /**
  * Convert a resource to a material item
  */
-function convertResourceToMaterial(resource: any): MaterialItem | null {
+function convertResourceToMaterial(resource: {
+  id?: string;
+  type?: string;
+  filename?: string;
+  title?: string;
+  url?: string;
+}): MaterialItem | null {
   if (!resource) return null;
 
   const category = determineResourceCategory(resource.type, resource.filename);
-  
+
   return {
-    id: `resource-${resource.id}`,
+    id: `resource-${resource.id || Date.now()}`,
     name: resource.filename || 'Unknown Resource',
     category,
     location: resource.url ? 'Digital file' : 'File location unknown',
     priority: 'recommended',
-    source: 'resource'
+    source: 'resource',
   };
 }
 
@@ -231,7 +206,7 @@ function convertResourceToMaterial(resource: any): MaterialItem | null {
 function parseActivityDescription(
   title: string,
   description: string,
-  subject?: string
+  _subject?: string,
 ): MaterialItem[] {
   const text = `${title} ${description}`.toLowerCase();
   const materials: MaterialItem[] = [];
@@ -239,22 +214,62 @@ function parseActivityDescription(
   // Common material patterns
   const materialPatterns = [
     // Physical materials
-    { pattern: /\b(paper|worksheet|handout)s?\b/g, name: 'Paper/Worksheets', category: 'printable' as const },
-    { pattern: /\b(pencil|pen|marker|crayon)s?\b/g, name: 'Writing tools', category: 'supplies' as const },
-    { pattern: /\b(calculator|ruler|compass)s?\b/g, name: 'Math tools', category: 'equipment' as const },
+    {
+      pattern: /\b(paper|worksheet|handout)s?\b/g,
+      name: 'Paper/Worksheets',
+      category: 'printable' as const,
+    },
+    {
+      pattern: /\b(pencil|pen|marker|crayon)s?\b/g,
+      name: 'Writing tools',
+      category: 'supplies' as const,
+    },
+    {
+      pattern: /\b(calculator|ruler|compass)s?\b/g,
+      name: 'Math tools',
+      category: 'equipment' as const,
+    },
     { pattern: /\b(book|textbook|novel)s?\b/g, name: 'Books', category: 'physical' as const },
     { pattern: /\b(scissors|glue|tape)\b/g, name: 'Art supplies', category: 'supplies' as const },
-    { pattern: /\b(computer|tablet|laptop)s?\b/g, name: 'Technology', category: 'equipment' as const },
-    { pattern: /\b(whiteboard|smartboard|projector)\b/g, name: 'Display equipment', category: 'equipment' as const },
-    
+    {
+      pattern: /\b(computer|tablet|laptop)s?\b/g,
+      name: 'Technology',
+      category: 'equipment' as const,
+    },
+    {
+      pattern: /\b(whiteboard|smartboard|projector)\b/g,
+      name: 'Display equipment',
+      category: 'equipment' as const,
+    },
+
     // Digital materials
-    { pattern: /\b(video|movie|presentation|slideshow)\b/g, name: 'Digital media', category: 'digital' as const },
-    { pattern: /\b(website|online|internet)\b/g, name: 'Online resources', category: 'digital' as const },
-    
+    {
+      pattern: /\b(video|movie|presentation|slideshow)\b/g,
+      name: 'Digital media',
+      category: 'digital' as const,
+    },
+    {
+      pattern: /\b(website|online|internet)\b/g,
+      name: 'Online resources',
+      category: 'digital' as const,
+    },
+
     // Subject-specific
-    { pattern: /\b(manipulative|counter|block)s?\b/g, name: 'Math manipulatives', category: 'equipment' as const },
-    { pattern: /\b(microscope|magnet|beaker)s?\b/g, name: 'Science equipment', category: 'equipment' as const },
-    { pattern: /\b(map|globe|chart)s?\b/g, name: 'Reference materials', category: 'physical' as const },
+    {
+      pattern: /\b(manipulative|counter|block)s?\b/g,
+      name: 'Math manipulatives',
+      category: 'equipment' as const,
+    },
+    {
+      pattern: /\b(microscope|magnet|beaker)s?\b/g,
+      name: 'Science equipment',
+      category: 'equipment' as const,
+    },
+    {
+      pattern: /\b(map|globe|chart)s?\b/g,
+      name: 'Reference materials',
+      category: 'physical' as const,
+    },
   ];
 
   materialPatterns.forEach(({ pattern, name, category }) => {
@@ -264,7 +279,7 @@ function parseActivityDescription(
         name,
         category,
         priority: 'recommended',
-        source: 'inferred'
+        source: 'inferred',
       });
     }
   });
@@ -277,10 +292,13 @@ function parseActivityDescription(
  */
 function parseMaterialsText(materialsText: string): MaterialItem[] {
   if (!materialsText) return [];
-  
+
   const materials: MaterialItem[] = [];
-  const items = materialsText.split(',').map(item => item.trim()).filter(item => item.length > 0);
-  
+  const items = materialsText
+    .split(',')
+    .map((item) => item.trim())
+    .filter((item) => item.length > 0);
+
   items.forEach((item, index) => {
     const category = determineMaterialCategory(item);
     materials.push({
@@ -288,11 +306,33 @@ function parseMaterialsText(materialsText: string): MaterialItem[] {
       name: item,
       category,
       priority: 'essential', // Materials explicitly listed are likely essential
-      source: 'activity'
+      source: 'activity',
     });
   });
-  
+
   return materials;
+}
+
+/**
+ * Determine resource category based on type and filename
+ */
+function determineResourceCategory(type?: string, filename?: string): MaterialItem['category'] {
+  const combined = `${type || ''} ${filename || ''}`.toLowerCase();
+
+  if (combined.includes('pdf') || combined.includes('worksheet') || combined.includes('handout')) {
+    return 'printable';
+  }
+  if (combined.includes('video') || combined.includes('online') || combined.includes('website')) {
+    return 'digital';
+  }
+  if (combined.includes('book') || combined.includes('card')) {
+    return 'physical';
+  }
+  if (combined.includes('equipment') || combined.includes('tool')) {
+    return 'equipment';
+  }
+
+  return 'supplies';
 }
 
 /**
@@ -300,20 +340,33 @@ function parseMaterialsText(materialsText: string): MaterialItem[] {
  */
 function determineMaterialCategory(name: string): MaterialItem['category'] {
   const nameLower = name.toLowerCase();
-  
-  if (nameLower.includes('worksheet') || nameLower.includes('handout') || nameLower.includes('paper')) {
+
+  if (
+    nameLower.includes('worksheet') ||
+    nameLower.includes('handout') ||
+    nameLower.includes('paper')
+  ) {
     return 'printable';
   }
-  if (nameLower.includes('computer') || nameLower.includes('tablet') || nameLower.includes('online') || nameLower.includes('digital')) {
+  if (
+    nameLower.includes('computer') ||
+    nameLower.includes('tablet') ||
+    nameLower.includes('online') ||
+    nameLower.includes('digital')
+  ) {
     return 'digital';
   }
   if (nameLower.includes('book') || nameLower.includes('card') || nameLower.includes('poster')) {
     return 'physical';
   }
-  if (nameLower.includes('calculator') || nameLower.includes('projector') || nameLower.includes('equipment')) {
+  if (
+    nameLower.includes('calculator') ||
+    nameLower.includes('projector') ||
+    nameLower.includes('equipment')
+  ) {
     return 'equipment';
   }
-  
+
   // Default to supplies for things like pencils, markers, etc.
   return 'supplies';
 }
@@ -328,15 +381,15 @@ function getSubjectBasicMaterials(subject?: string): MaterialItem[] {
       name: 'Pencils/Pens',
       category: 'supplies',
       priority: 'essential',
-      source: 'inferred'
+      source: 'inferred',
     },
     {
       id: 'basic-paper',
       name: 'Paper',
       category: 'supplies',
       priority: 'essential',
-      source: 'inferred'
-    }
+      source: 'inferred',
+    },
   ];
 
   if (!subject) return basicMaterials;
@@ -350,52 +403,46 @@ function getSubjectBasicMaterials(subject?: string): MaterialItem[] {
         name: 'Math manipulatives',
         category: 'equipment',
         priority: 'recommended',
-        source: 'inferred'
+        source: 'inferred',
       },
       {
         id: 'math-calculator',
         name: 'Calculator',
         category: 'equipment',
         priority: 'optional',
-        source: 'inferred'
-      }
+        source: 'inferred',
+      },
     );
   }
 
   if (subjectLower.includes('science')) {
-    basicMaterials.push(
-      {
-        id: 'science-notebook',
-        name: 'Science notebook',
-        category: 'supplies',
-        priority: 'recommended',
-        source: 'inferred'
-      }
-    );
+    basicMaterials.push({
+      id: 'science-notebook',
+      name: 'Science notebook',
+      category: 'supplies',
+      priority: 'recommended',
+      source: 'inferred',
+    });
   }
 
   if (subjectLower.includes('art')) {
-    basicMaterials.push(
-      {
-        id: 'art-supplies',
-        name: 'Art supplies (crayons, markers)',
-        category: 'supplies',
-        priority: 'essential',
-        source: 'inferred'
-      }
-    );
+    basicMaterials.push({
+      id: 'art-supplies',
+      name: 'Art supplies (crayons, markers)',
+      category: 'supplies',
+      priority: 'essential',
+      source: 'inferred',
+    });
   }
 
   if (subjectLower.includes('language') || subjectLower.includes('english')) {
-    basicMaterials.push(
-      {
-        id: 'reading-books',
-        name: 'Reading books',
-        category: 'physical',
-        priority: 'recommended',
-        source: 'inferred'
-      }
-    );
+    basicMaterials.push({
+      id: 'reading-books',
+      name: 'Reading books',
+      category: 'physical',
+      priority: 'recommended',
+      source: 'inferred',
+    });
   }
 
   return basicMaterials;
@@ -404,13 +451,14 @@ function getSubjectBasicMaterials(subject?: string): MaterialItem[] {
 /**
  * Categorize materials by type
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function categorizeMaterials(materials: MaterialItem[]) {
   return {
-    physical: materials.filter(m => m.category === 'physical'),
-    digital: materials.filter(m => m.category === 'digital'),
-    printable: materials.filter(m => m.category === 'printable'),
-    supplies: materials.filter(m => m.category === 'supplies'),
-    equipment: materials.filter(m => m.category === 'equipment')
+    physical: materials.filter((m) => m.category === 'physical'),
+    digital: materials.filter((m) => m.category === 'digital'),
+    printable: materials.filter((m) => m.category === 'printable'),
+    supplies: materials.filter((m) => m.category === 'supplies'),
+    equipment: materials.filter((m) => m.category === 'equipment'),
   };
 }
 
@@ -419,7 +467,7 @@ function categorizeMaterials(materials: MaterialItem[]) {
  */
 function removeDuplicateMaterials(materials: MaterialItem[]): MaterialItem[] {
   const seen = new Set<string>();
-  return materials.filter(material => {
+  return materials.filter((material) => {
     const key = material.name.toLowerCase().replace(/[^a-z0-9]/g, '');
     if (seen.has(key)) {
       return false;
@@ -432,13 +480,14 @@ function removeDuplicateMaterials(materials: MaterialItem[]): MaterialItem[] {
 /**
  * Generate setup instructions for the day
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function generateSetupInstructions(timeSlots: TimedMaterialList[]): string[] {
   const instructions: string[] = [];
 
   // Morning setup
   const morningMaterials = timeSlots
-    .filter(slot => parseInt(slot.time.split(':')[0]) < 10)
-    .flatMap(slot => slot.materials);
+    .filter((slot) => parseInt(slot.time.split(':')[0]) < 10)
+    .flatMap((slot) => slot.materials);
 
   if (morningMaterials.length > 0) {
     instructions.push('Morning Setup:');
@@ -448,13 +497,13 @@ function generateSetupInstructions(timeSlots: TimedMaterialList[]): string[] {
   }
 
   // Special equipment setup
-  const equipment = timeSlots.flatMap(slot => 
-    slot.materials.filter(m => m.category === 'equipment')
+  const equipment = timeSlots.flatMap((slot) =>
+    slot.materials.filter((m) => m.category === 'equipment'),
   );
 
   if (equipment.length > 0) {
     instructions.push('Equipment Setup:');
-    equipment.forEach(item => {
+    equipment.forEach((item) => {
       instructions.push(`- Test ${item.name} before students arrive`);
     });
   }
@@ -465,7 +514,7 @@ function generateSetupInstructions(timeSlots: TimedMaterialList[]): string[] {
       const nextSlot = timeSlots[index + 1];
       if (nextSlot) {
         instructions.push(
-          `Before ${slot.time}: Allow ${slot.setupTime} minutes to prepare materials for "${slot.activity}"`
+          `Before ${slot.time}: Allow ${slot.setupTime} minutes to prepare materials for "${slot.activity}"`,
         );
       }
     }
@@ -477,16 +526,17 @@ function generateSetupInstructions(timeSlots: TimedMaterialList[]): string[] {
 /**
  * Generate alternative materials for common scenarios
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function generateMaterialAlternatives(materials: MaterialItem[]) {
   const alternatives = [];
 
   // Technology alternatives
-  const techItems = materials.filter(m => m.category === 'digital' || m.category === 'equipment');
+  const techItems = materials.filter((m) => m.category === 'digital' || m.category === 'equipment');
   if (techItems.length > 0) {
     alternatives.push({
       original: 'Digital/Technology materials',
       backup: 'Paper-based worksheets and hands-on activities',
-      reason: 'Technology failure or unavailability'
+      reason: 'Technology failure or unavailability',
     });
   }
 
@@ -495,15 +545,19 @@ function generateMaterialAlternatives(materials: MaterialItem[]) {
     { original: 'Smartboard', backup: 'Whiteboard and markers', reason: 'Technology issues' },
     { original: 'Computers', backup: 'Worksheets and group work', reason: 'No computer access' },
     { original: 'Art supplies', backup: 'Basic drawing materials', reason: 'Missing art supplies' },
-    { original: 'Science equipment', backup: 'Demonstration or video', reason: 'Safety or missing equipment' },
-    { original: 'Books', backup: 'Shared reading or audio books', reason: 'Insufficient copies' }
+    {
+      original: 'Science equipment',
+      backup: 'Demonstration or video',
+      reason: 'Safety or missing equipment',
+    },
+    { original: 'Books', backup: 'Shared reading or audio books', reason: 'Insufficient copies' },
   ];
 
-  materials.forEach(material => {
-    const alt = specificAlts.find(a => 
-      material.name.toLowerCase().includes(a.original.toLowerCase())
+  materials.forEach((material) => {
+    const alt = specificAlts.find((a) =>
+      material.name.toLowerCase().includes(a.original.toLowerCase()),
     );
-    if (alt && !alternatives.some(existing => existing.original === alt.original)) {
+    if (alt && !alternatives.some((existing) => existing.original === alt.original)) {
       alternatives.push(alt);
     }
   });
@@ -517,7 +571,7 @@ function generateMaterialAlternatives(materials: MaterialItem[]) {
 function estimateSetupTime(materials: MaterialItem[]): number {
   let time = 0;
 
-  materials.forEach(material => {
+  materials.forEach((material) => {
     switch (material.category) {
       case 'equipment':
         time += 3; // 3 minutes per equipment item
@@ -539,14 +593,33 @@ function estimateSetupTime(materials: MaterialItem[]): number {
 /**
  * Generate activity-specific notes
  */
-function generateActivityNotes(activity: any, materials: MaterialItem[]): string | undefined {
+function generateActivityNotes(
+  activity: {
+    materials?: string[];
+    title?: string;
+    resources?: Array<{
+      id?: string;
+      type?: string;
+      filename?: string;
+      title?: string;
+      url?: string;
+    }>;
+    publicNote?: string;
+    privateNote?: string;
+    milestone?: { subject?: { name?: string } };
+    materialsText?: string;
+    type?: string;
+    duration?: number;
+  },
+  materials: MaterialItem[],
+): string | undefined {
   const notes = [];
 
-  if (materials.some(m => m.category === 'equipment')) {
+  if (materials.some((m) => m.category === 'equipment')) {
     notes.push('Test all equipment before activity begins');
   }
 
-  if (materials.some(m => m.category === 'digital')) {
+  if (materials.some((m) => m.category === 'digital')) {
     notes.push('Have backup plan ready in case of technology issues');
   }
 
@@ -560,12 +633,13 @@ function generateActivityNotes(activity: any, materials: MaterialItem[]): string
 /**
  * Identify potentially missing items that should be checked
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function identifyPotentialMissingItems(materials: MaterialItem[]): string[] {
   const missing = [];
 
   const essentialCategories = ['supplies', 'equipment'];
-  essentialCategories.forEach(category => {
-    const categoryItems = materials.filter(m => m.category === category);
+  essentialCategories.forEach((category) => {
+    const categoryItems = materials.filter((m) => m.category === category);
     if (categoryItems.length === 0) {
       missing.push(`No ${category} identified - check if any are needed`);
     }
@@ -575,58 +649,11 @@ function identifyPotentialMissingItems(materials: MaterialItem[]): string[] {
 }
 
 /**
- * Determine resource category from file type and name
- */
-function determineResourceCategory(
-  type?: string, 
-  filename?: string
-): MaterialItem['category'] {
-  const typeStr = (type || '').toLowerCase();
-  const nameStr = (filename || '').toLowerCase();
-  
-  if (typeStr.includes('video') || typeStr.includes('audio') || nameStr.includes('.mp4') || nameStr.includes('.mp3')) {
-    return 'digital';
-  }
-  
-  if (typeStr.includes('pdf') || typeStr.includes('document') || nameStr.includes('.pdf') || nameStr.includes('.doc')) {
-    return 'printable';
-  }
-  
-  if (typeStr.includes('image') || nameStr.includes('.jpg') || nameStr.includes('.png')) {
-    return 'digital';
-  }
-  
-  return 'digital';
-}
-
-/**
  * Format time from minutes to HH:MM
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function formatTime(minutes: number): string {
   const hours = Math.floor(minutes / 60);
   const mins = minutes % 60;
   return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
-}
-
-/**
- * Create empty material list structure
- */
-function createEmptyMaterialList(): ExtractedMaterials {
-  return {
-    byTimeSlot: [],
-    byCategory: {
-      physical: [],
-      digital: [],
-      printable: [],
-      supplies: [],
-      equipment: []
-    },
-    setupInstructions: ['No activities found for this date'],
-    alternatives: [],
-    summary: {
-      totalItems: 0,
-      prepTime: 0,
-      missingItems: []
-    }
-  };
 }

@@ -5,53 +5,34 @@ import { prisma } from '../prisma';
 // Mock OpenAI
 jest.mock('openai');
 
-// Mock Prisma
-jest.mock('../prisma', () => ({
-  prisma: {
-    curriculumExpectation: {
-      findMany: jest.fn(),
-    },
-  },
-}));
+// Mock Prisma - already mocked in setup-all-mocks.ts
 
 describe('AIPlanningAssistantService', () => {
   let service: AIPlanningAssistantService;
-  let mockOpenAI: any;
 
   beforeEach(() => {
     jest.clearAllMocks();
-    
-    // Mock OpenAI instance
-    mockOpenAI = {
-      chat: {
-        completions: {
-          create: jest.fn(),
-        },
-      },
-    };
-
-    // Mock environment variable
-    process.env.OPENAI_API_KEY = 'test-api-key';
-    
     service = new AIPlanningAssistantService();
-    (service as any).openai = mockOpenAI;
   });
 
   describe('generateLongRangeGoals', () => {
     it('should generate SMART goals for long-range planning', async () => {
       const mockResponse = {
-        choices: [{
-          message: {
-            content: JSON.stringify({
-              suggestions: [
-                'By the end of Term 1, 80% of students will demonstrate proficiency in counting to 100',
-                'Students will develop problem-solving strategies for addition and subtraction within 20',
-                'All students will show growth in mathematical communication and reasoning skills',
-              ],
-              rationale: 'These goals align with Grade 1 mathematics curriculum and are measurable',
-            }),
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                suggestions: [
+                  'By the end of Term 1, 80% of students will demonstrate proficiency in counting to 100',
+                  'Students will develop problem-solving strategies for addition and subtraction within 20',
+                  'All students will show growth in mathematical communication and reasoning skills',
+                ],
+                rationale:
+                  'These goals align with Grade 1 mathematics curriculum and are measurable',
+              }),
+            },
           },
-        }],
+        ],
       };
 
       mockOpenAI.chat.completions.create.mockResolvedValue(mockResponse);
@@ -92,18 +73,21 @@ describe('AIPlanningAssistantService', () => {
   describe('generateUnitBigIdeas', () => {
     it('should generate conceptual big ideas for units', async () => {
       const mockResponse = {
-        choices: [{
-          message: {
-            content: JSON.stringify({
-              suggestions: [
-                'Numbers are all around us and help us understand our world',
-                'We can use different strategies to solve number problems',
-                'Patterns help us predict and understand relationships',
-              ],
-              rationale: 'These big ideas connect multiple expectations and promote deep understanding',
-            }),
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                suggestions: [
+                  'Numbers are all around us and help us understand our world',
+                  'We can use different strategies to solve number problems',
+                  'Patterns help us predict and understand relationships',
+                ],
+                rationale:
+                  'These big ideas connect multiple expectations and promote deep understanding',
+              }),
+            },
           },
-        }],
+        ],
       };
 
       mockOpenAI.chat.completions.create.mockResolvedValue(mockResponse);
@@ -112,10 +96,7 @@ describe('AIPlanningAssistantService', () => {
         unitTitle: 'Exploring Numbers',
         subject: 'Mathematics',
         grade: 1,
-        curriculumExpectations: [
-          'M1.1: Count to 100',
-          'M1.2: Compare numbers to 20',
-        ],
+        curriculumExpectations: ['M1.1: Count to 100', 'M1.2: Compare numbers to 20'],
         duration: 4,
       });
 
@@ -128,19 +109,21 @@ describe('AIPlanningAssistantService', () => {
   describe('generateLessonActivities', () => {
     it('should generate engaging activities for lessons', async () => {
       const mockResponse = {
-        choices: [{
-          message: {
-            content: JSON.stringify({
-              suggestions: [
-                'Activity 1: Number Hunt Game - Students find and count objects (10 minutes)',
-                'Activity 2: Partner Counting Practice with manipulatives (15 minutes)',
-                'Activity 3: Number Line Hopscotch - Physical counting activity (10 minutes)',
-                'Activity 4: Exit Card - Draw and label a number collection (5 minutes)',
-              ],
-              rationale: 'Activities progress from engagement to practice to assessment',
-            }),
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                suggestions: [
+                  'Activity 1: Number Hunt Game - Students find and count objects (10 minutes)',
+                  'Activity 2: Partner Counting Practice with manipulatives (15 minutes)',
+                  'Activity 3: Number Line Hopscotch - Physical counting activity (10 minutes)',
+                  'Activity 4: Exit Card - Draw and label a number collection (5 minutes)',
+                ],
+                rationale: 'Activities progress from engagement to practice to assessment',
+              }),
+            },
           },
-        }],
+        ],
       };
 
       mockOpenAI.chat.completions.create.mockResolvedValue(mockResponse);
@@ -162,19 +145,21 @@ describe('AIPlanningAssistantService', () => {
   describe('generateMaterialsList', () => {
     it('should generate appropriate materials list', async () => {
       const mockResponse = {
-        choices: [{
-          message: {
-            content: JSON.stringify({
-              suggestions: [
-                'Counting bears (30 sets of 20)',
-                'Number cards 1-20 (15 sets)',
-                'Ten frames (15 laminated)',
-                'Whiteboards and markers (1 per student)',
-              ],
-              rationale: 'Materials support hands-on learning for 30 students',
-            }),
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                suggestions: [
+                  'Counting bears (30 sets of 20)',
+                  'Number cards 1-20 (15 sets)',
+                  'Ten frames (15 laminated)',
+                  'Whiteboards and markers (1 per student)',
+                ],
+                rationale: 'Materials support hands-on learning for 30 students',
+              }),
+            },
           },
-        }],
+        ],
       };
 
       mockOpenAI.chat.completions.create.mockResolvedValue(mockResponse);
@@ -210,22 +195,24 @@ describe('AIPlanningAssistantService', () => {
       (prisma.curriculumExpectation.findMany as jest.Mock).mockResolvedValue(mockExpectations);
 
       const mockResponse = {
-        choices: [{
-          message: {
-            content: JSON.stringify([
-              'Counting Collections: Students count various objects and record totals',
-              'Number Building: Use base-10 blocks to build and represent numbers',
-              'Skip Counting Songs: Musical activities for counting by 10s',
-            ]),
+        choices: [
+          {
+            message: {
+              content: JSON.stringify([
+                'Counting Collections: Students count various objects and record totals',
+                'Number Building: Use base-10 blocks to build and represent numbers',
+                'Skip Counting Songs: Musical activities for counting by 10s',
+              ]),
+            },
           },
-        }],
+        ],
       };
 
       mockOpenAI.chat.completions.create.mockResolvedValue(mockResponse);
 
       const result = await service.getCurriculumAlignedSuggestions(
         ['exp-1', 'exp-2'],
-        'activities'
+        'activities',
       );
 
       expect(result).toHaveLength(3);
@@ -244,19 +231,22 @@ describe('AIPlanningAssistantService', () => {
   describe('generateReflectionPrompts', () => {
     it('should generate thoughtful reflection prompts', async () => {
       const mockResponse = {
-        choices: [{
-          message: {
-            content: JSON.stringify({
-              suggestions: [
-                'How did students demonstrate understanding of counting strategies today?',
-                'Which students need additional support with number recognition?',
-                'What modifications could improve the manipulatives activity?',
-                'How effectively did the exit cards capture student learning?',
-              ],
-              rationale: 'Prompts focus on student learning, differentiation, and instructional improvement',
-            }),
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                suggestions: [
+                  'How did students demonstrate understanding of counting strategies today?',
+                  'Which students need additional support with number recognition?',
+                  'What modifications could improve the manipulatives activity?',
+                  'How effectively did the exit cards capture student learning?',
+                ],
+                rationale:
+                  'Prompts focus on student learning, differentiation, and instructional improvement',
+              }),
+            },
           },
-        }],
+        ],
       };
 
       mockOpenAI.chat.completions.create.mockResolvedValue(mockResponse);

@@ -13,18 +13,9 @@ const router = Router();
 // Validation schemas
 const studentCreateSchema = z
   .object({
-    // New parent communication fields
     firstName: z.string().min(1).max(100).optional(),
     lastName: z.string().min(1).max(100).optional(),
     grade: z.number().int().min(1).max(12).optional(),
-    parentContacts: z
-      .array(
-        z.object({
-          name: z.string().min(1),
-          email: z.string().email(),
-        }),
-      )
-      .optional(),
     // Legacy field for backward compatibility
     name: z.string().min(1).max(200).optional(),
   })
@@ -45,21 +36,14 @@ const studentUpdateSchema = z.object({
   name: z.string().min(1).max(200).optional(),
 });
 
-const parentContactSchema = z.object({
-  name: z.string().min(1),
-  email: z.string().email(),
-});
-
 const studentGoalCreateSchema = z.object({
   text: z.string().min(1).max(500),
-  outcomeId: z.string().optional(),
   themeId: z.number().int().optional(),
   status: z.enum(['active', 'completed', 'abandoned']).default('active'),
 });
 
 const studentGoalUpdateSchema = z.object({
   text: z.string().min(1).max(500).optional(),
-  outcomeId: z.string().optional(),
   themeId: z.number().int().optional(),
   status: z.enum(['active', 'completed', 'abandoned']).optional(),
 });
@@ -67,12 +51,10 @@ const studentGoalUpdateSchema = z.object({
 const studentReflectionCreateSchema = z.object({
   date: z.string().datetime().optional(),
   text: z.string().max(1000).optional(),
-  content: z.string().max(1000).optional(), // New field for parent communication
+  content: z.string().max(1000).optional(),
   emoji: z.string().max(10).optional(),
   voicePath: z.string().max(500).optional(),
-  outcomeId: z.string().optional(),
   themeId: z.number().int().optional(),
-  activityId: z.number().int().optional(),
 });
 
 // Get all students for the authenticated teacher
@@ -172,7 +154,7 @@ router.post('/', validate(studentCreateSchema), async (req: AuthenticatedRequest
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    const { firstName, lastName, grade, parentContacts, name } = req.body;
+    const { firstName, lastName, grade, name } = req.body;
 
     // Handle both new and legacy formats
     let studentData;
@@ -313,7 +295,6 @@ router.delete('/:id', async (req: AuthenticatedRequest, res, next) => {
     next(err);
   }
 });
-
 
 // Student goals routes
 router.get('/:id/goals', async (req: AuthenticatedRequest, res, next) => {
@@ -489,12 +470,10 @@ router.post(
         data: {
           studentId: Number(req.params.id),
           content: req.body.content || req.body.text || null,
-          createdAt: req.body.date ? new Date(req.body.date) : new Date(),
-          activityId: req.body.activityId || null,
-          outcomeId: req.body.outcomeId || null,
+          date: req.body.date ? new Date(req.body.date) : new Date(),
           themeId: req.body.themeId || null,
         },
-        include: { outcome: true, theme: true, activity: true },
+        include: { theme: true },
       });
       res.status(201).json(reflection);
     } catch (err) {

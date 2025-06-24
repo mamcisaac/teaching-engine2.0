@@ -1,6 +1,6 @@
 import { app } from '../../src/index';
-import { getTestPrismaClient } from './jest.setup';
-import { authRequest } from './test-auth-helper';
+import { getTestPrismaClient } from '../jest.setup';
+import { authRequest } from '../test-auth-helper';
 import { sendReportDeadlineReminders } from '../../src/jobs/reportDeadlineReminder';
 
 const auth = authRequest(app);

@@ -3,8 +3,22 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Progress } from '@/components/ui/Progress';
 import { Badge } from '@/components/ui/Badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { CheckCircle2, Circle, AlertCircle, TrendingUp, Calendar, Clock, Target, Users } from 'lucide-react';
-import { useLongRangePlans, useUnitPlans, useETFOLessonPlans, useDaybookEntries } from '../hooks/useETFOPlanning';
+import {
+  CheckCircle2,
+  Circle,
+  AlertCircle,
+  TrendingUp,
+  Calendar,
+  Clock,
+  Target,
+  Users,
+} from 'lucide-react';
+import {
+  useLongRangePlans,
+  useUnitPlans,
+  useETFOLessonPlans,
+  useDaybookEntries,
+} from '../hooks/useETFOPlanning';
 import { useETFOProgress } from '../hooks/useETFOProgress';
 
 interface PlanningLevel {
@@ -31,38 +45,47 @@ export default function ETFOPlanningCoverage() {
       name: 'Long-Range Plans',
       icon: <Calendar className="h-5 w-5" />,
       total: 8, // Assuming 8 subjects for elementary
-      completed: longRangePlans.filter(p => p.goals && (p.themes?.length || 0) > 0).length,
-      inProgress: longRangePlans.filter(p => p.goals && !(p.themes?.length || 0)).length,
+      completed: longRangePlans.filter((p) => p.goals && (p.themes?.length || 0) > 0).length,
+      inProgress: longRangePlans.filter((p) => p.goals && !(p.themes?.length || 0)).length,
       notStarted: 8 - longRangePlans.length,
-      description: 'Year-long curriculum organization by subject'
+      description: 'Year-long curriculum organization by subject',
     },
     {
       name: 'Unit Plans',
       icon: <Target className="h-5 w-5" />,
       total: longRangePlans.reduce((sum, lrp) => sum + (lrp._count?.unitPlans || 0) + 5, 0), // Expected units
-      completed: unitPlans.filter(u => u.bigIdeas && u.assessmentPlan && (u.successCriteria?.length || 0) > 0).length,
-      inProgress: unitPlans.filter(u => u.bigIdeas && (!u.assessmentPlan || !(u.successCriteria?.length || 0))).length,
-      notStarted: unitPlans.filter(u => !u.bigIdeas).length,
-      description: '3-6 week thematic units with big ideas and assessments'
+      completed: unitPlans.filter(
+        (u) => u.bigIdeas && u.assessmentPlan && (u.successCriteria?.length || 0) > 0,
+      ).length,
+      inProgress: unitPlans.filter(
+        (u) => u.bigIdeas && (!u.assessmentPlan || !(u.successCriteria?.length || 0)),
+      ).length,
+      notStarted: unitPlans.filter((u) => !u.bigIdeas).length,
+      description: '3-6 week thematic units with big ideas and assessments',
     },
     {
       name: 'Lesson Plans',
       icon: <Clock className="h-5 w-5" />,
       total: unitPlans.reduce((sum, unit) => sum + (unit.estimatedHours || 20), 0), // Estimated lessons needed
-      completed: lessonPlans.filter(l => l.mindsOn && l.action && l.consolidation).length,
-      inProgress: lessonPlans.filter(l => (l.mindsOn || l.action || l.consolidation) && !(l.mindsOn && l.action && l.consolidation)).length,
-      notStarted: lessonPlans.filter(l => !l.mindsOn && !l.action && !l.consolidation).length,
-      description: 'Daily lessons with three-part structure'
+      completed: lessonPlans.filter((l) => l.mindsOn && l.action && l.consolidation).length,
+      inProgress: lessonPlans.filter(
+        (l) =>
+          (l.mindsOn || l.action || l.consolidation) && !(l.mindsOn && l.action && l.consolidation),
+      ).length,
+      notStarted: lessonPlans.filter((l) => !l.mindsOn && !l.action && !l.consolidation).length,
+      description: 'Daily lessons with three-part structure',
     },
     {
       name: 'Daybook Reflections',
       icon: <Users className="h-5 w-5" />,
       total: lessonPlans.length, // One reflection per lesson
-      completed: daybookEntries.filter(d => d.whatWorked && d.nextSteps).length,
-      inProgress: daybookEntries.filter(d => (d.whatWorked || d.nextSteps) && !(d.whatWorked && d.nextSteps)).length,
+      completed: daybookEntries.filter((d) => d.whatWorked && d.nextSteps).length,
+      inProgress: daybookEntries.filter(
+        (d) => (d.whatWorked || d.nextSteps) && !(d.whatWorked && d.nextSteps),
+      ).length,
       notStarted: lessonPlans.length - daybookEntries.length,
-      description: 'Daily reflections and student observations'
-    }
+      description: 'Daily reflections and student observations',
+    },
   ];
 
   const calculatePercentage = (completed: number, total: number) => {
@@ -73,12 +96,6 @@ export default function ETFOPlanningCoverage() {
     if (percentage >= 80) return 'text-green-600';
     if (percentage >= 50) return 'text-yellow-600';
     return 'text-red-600';
-  };
-
-  const getProgressColor = (percentage: number) => {
-    if (percentage >= 80) return 'bg-green-600';
-    if (percentage >= 50) return 'bg-yellow-600';
-    return 'bg-red-600';
   };
 
   // Calculate overall progress
@@ -139,7 +156,11 @@ export default function ETFOPlanningCoverage() {
                     {level.icon}
                     <CardTitle className="text-lg">{level.name}</CardTitle>
                   </div>
-                  <Badge variant={percentage >= 80 ? "default" : percentage >= 50 ? "secondary" : "destructive"}>
+                  <Badge
+                    variant={
+                      percentage >= 80 ? 'default' : percentage >= 50 ? 'secondary' : 'destructive'
+                    }
+                  >
                     {percentage}%
                   </Badge>
                 </div>
@@ -188,24 +209,31 @@ export default function ETFOPlanningCoverage() {
             <TabsContent value="subject" className="space-y-4">
               {/* Group plans by subject */}
               {Object.entries(
-                longRangePlans.reduce((acc, plan) => {
-                  if (!acc[plan.subject]) {
-                    acc[plan.subject] = [];
-                  }
-                  acc[plan.subject].push(plan);
-                  return acc;
-                }, {} as Record<string, typeof longRangePlans>)
+                longRangePlans.reduce(
+                  (acc, plan) => {
+                    if (!acc[plan.subject]) {
+                      acc[plan.subject] = [];
+                    }
+                    acc[plan.subject].push(plan);
+                    return acc;
+                  },
+                  {} as Record<string, typeof longRangePlans>,
+                ),
               ).map(([subject, plans]) => (
                 <div key={subject} className="space-y-2">
                   <h4 className="font-medium">{subject}</h4>
                   <div className="grid gap-2">
                     {plans.map((plan) => {
-                      const planUnits = unitPlans.filter(u => u.longRangePlanId === plan.id);
-                      const unitPercentage = plan._count?.unitPlans ? 
-                        calculatePercentage(planUnits.length, plan._count.unitPlans) : 0;
-                      
+                      const planUnits = unitPlans.filter((u) => u.longRangePlanId === plan.id);
+                      const unitPercentage = plan._count?.unitPlans
+                        ? calculatePercentage(planUnits.length, plan._count.unitPlans)
+                        : 0;
+
                       return (
-                        <div key={plan.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div
+                          key={plan.id}
+                          className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                        >
                           <div>
                             <span className="font-medium">Grade {plan.grade}</span>
                             <span className="text-sm text-gray-600 ml-2">{plan.title}</span>
@@ -213,7 +241,9 @@ export default function ETFOPlanningCoverage() {
                           <div className="flex items-center gap-4">
                             <div className="text-sm">
                               <span className="text-gray-600">Units: </span>
-                              <span className="font-medium">{planUnits.length}/{plan._count?.unitPlans || '?'}</span>
+                              <span className="font-medium">
+                                {planUnits.length}/{plan._count?.unitPlans || '?'}
+                              </span>
                             </div>
                             <Progress value={unitPercentage} className="w-24 h-2" />
                           </div>
@@ -229,7 +259,9 @@ export default function ETFOPlanningCoverage() {
               <div className="text-center text-gray-600">
                 <Calendar className="h-12 w-12 mx-auto mb-2 text-gray-400" />
                 <p>Timeline visualization showing planning progress over the school year</p>
-                <p className="text-sm mt-2">This feature helps track which units are planned for each month</p>
+                <p className="text-sm mt-2">
+                  This feature helps track which units are planned for each month
+                </p>
               </div>
             </TabsContent>
 
@@ -239,44 +271,54 @@ export default function ETFOPlanningCoverage() {
                   <AlertCircle className="h-5 w-5 text-yellow-600" />
                   Planning Gaps Identified
                 </h4>
-                
+
                 {/* Show units without lesson plans */}
-                {unitPlans.filter(unit => {
-                  const unitLessons = lessonPlans.filter(l => l.unitPlanId === unit.id);
-                  return unitLessons.length === 0;
-                }).map(unit => (
-                  <div key={unit.id} className="p-3 bg-yellow-50 rounded-lg">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <span className="font-medium">{unit.title}</span>
-                        <span className="text-sm text-gray-600 ml-2">No lesson plans created</span>
+                {unitPlans
+                  .filter((unit) => {
+                    const unitLessons = lessonPlans.filter((l) => l.unitPlanId === unit.id);
+                    return unitLessons.length === 0;
+                  })
+                  .map((unit) => (
+                    <div key={unit.id} className="p-3 bg-yellow-50 rounded-lg">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <span className="font-medium">{unit.title}</span>
+                          <span className="text-sm text-gray-600 ml-2">
+                            No lesson plans created
+                          </span>
+                        </div>
+                        <Badge variant="outline" className="bg-yellow-100">
+                          Needs Attention
+                        </Badge>
                       </div>
-                      <Badge variant="outline" className="bg-yellow-100">
-                        Needs Attention
-                      </Badge>
                     </div>
-                  </div>
-                ))}
+                  ))}
 
                 {/* Show lessons without reflections */}
-                {lessonPlans.filter(lesson => {
-                  const hasReflection = daybookEntries.some(d => 
-                    new Date(d.date).toDateString() === new Date(lesson.date).toDateString()
-                  );
-                  return !hasReflection;
-                }).slice(0, 5).map(lesson => (
-                  <div key={lesson.id} className="p-3 bg-orange-50 rounded-lg">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <span className="font-medium">{lesson.title}</span>
-                        <span className="text-sm text-gray-600 ml-2">Missing daybook reflection</span>
+                {lessonPlans
+                  .filter((lesson) => {
+                    const hasReflection = daybookEntries.some(
+                      (d) =>
+                        new Date(d.date).toDateString() === new Date(lesson.date).toDateString(),
+                    );
+                    return !hasReflection;
+                  })
+                  .slice(0, 5)
+                  .map((lesson) => (
+                    <div key={lesson.id} className="p-3 bg-orange-50 rounded-lg">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <span className="font-medium">{lesson.title}</span>
+                          <span className="text-sm text-gray-600 ml-2">
+                            Missing daybook reflection
+                          </span>
+                        </div>
+                        <Badge variant="outline" className="bg-orange-100">
+                          No Reflection
+                        </Badge>
                       </div>
-                      <Badge variant="outline" className="bg-orange-100">
-                        No Reflection
-                      </Badge>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </TabsContent>
           </Tabs>
@@ -301,9 +343,7 @@ export default function ETFOPlanningCoverage() {
                 <div className="text-sm text-gray-600">Weekly Planning Time</div>
               </div>
               <div className="text-center p-4 bg-green-50 rounded-lg">
-                <div className="text-2xl font-bold text-green-600">
-                  {overallPercentage}%
-                </div>
+                <div className="text-2xl font-bold text-green-600">{overallPercentage}%</div>
                 <div className="text-sm text-gray-600">On-Time Completion</div>
               </div>
               <div className="text-center p-4 bg-purple-50 rounded-lg">

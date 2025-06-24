@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll, afterAll } from '@jest/globals';
 import { embeddingService } from '../../src/services/embeddingService';
 import { curriculumImportService } from '../../src/services/curriculumImportService';
 import { clusteringService } from '../../src/services/clusteringService';
-import { enhancedPlanningService } from '../../src/services/enhancedPlanningService';
+// import { enhancedPlanningService } from '../../src/services/enhancedPlanningService'; - Service does not exist
 import { enhancedMaterialService } from '../../src/services/enhancedMaterialService';
 import { notificationService } from '../../src/services/notificationService';
 import { cacheService } from '../../src/services/CacheService';

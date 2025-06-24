@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { api } from '../api';
 import Dialog from '../components/Dialog';
 import { Button } from '../components/ui/Button';
-import { useAIPlanningAssistant } from '../hooks/useAIPlanningAssistant';
+import { useAIPlanningAssistant, AISuggestion } from '../hooks/useAIPlanningAssistant';
 import AISuggestionPanel from '../components/planning/AISuggestionPanel';
 
 interface LongRangePlan {
@@ -36,13 +36,13 @@ export default function LongRangePlanPage() {
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth();
     // If after June, show next academic year, else current
-    return currentMonth >= 6 
+    return currentMonth >= 6
       ? `${currentYear}-${currentYear + 1}`
       : `${currentYear - 1}-${currentYear}`;
   });
   const [showAISuggestions, setShowAISuggestions] = useState(false);
-  const [aiGoalSuggestions, setAiGoalSuggestions] = useState<any>(null);
-  
+  const [aiGoalSuggestions, setAiGoalSuggestions] = useState<AISuggestion | null>(null);
+
   const { generateLongRangeGoals, isGenerating } = useAIPlanningAssistant();
 
   // Fetch long-range plans
@@ -120,7 +120,7 @@ export default function LongRangePlanPage() {
             onChange={(e) => setSelectedYear(e.target.value)}
             className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
           >
-            {[0, 1, 2].map(offset => {
+            {[0, 1, 2].map((offset) => {
               const year = new Date().getFullYear() - 1 + offset;
               return (
                 <option key={year} value={`${year}-${year + 1}`}>
@@ -130,7 +130,7 @@ export default function LongRangePlanPage() {
             })}
           </select>
         </div>
-        
+
         <Button
           onClick={() => setIsCreateModalOpen(true)}
           className="bg-indigo-600 hover:bg-indigo-700 text-white"
@@ -142,8 +142,18 @@ export default function LongRangePlanPage() {
       {/* Plans Grid */}
       {plans.length === 0 ? (
         <div className="text-center py-12 bg-white rounded-lg border-2 border-dashed border-gray-300">
-          <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          <svg
+            className="mx-auto h-12 w-12 text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+            />
           </svg>
           <h3 className="mt-4 text-lg font-medium text-gray-900">No plans yet</h3>
           <p className="mt-2 text-sm text-gray-600">
@@ -178,23 +188,31 @@ export default function LongRangePlanPage() {
                     {plan.term || 'Full Year'}
                   </span>
                 </div>
-                
+
                 {plan.description && (
-                  <p className="text-sm text-gray-600 mb-4 line-clamp-2">
-                    {plan.description}
-                  </p>
+                  <p className="text-sm text-gray-600 mb-4 line-clamp-2">{plan.description}</p>
                 )}
-                
+
                 <div className="flex justify-between items-center text-sm">
                   <div className="flex gap-4 text-gray-500">
                     <span>{plan._count.unitPlans} units</span>
                     <span>{plan._count.expectations} expectations</span>
                   </div>
-                  <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <svg
+                    className="h-5 w-5 text-gray-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
                   </svg>
                 </div>
-                
+
                 {plan.themes && plan.themes.length > 0 && (
                   <div className="mt-4 flex flex-wrap gap-2">
                     {plan.themes.slice(0, 3).map((theme, index) => (
@@ -206,9 +224,7 @@ export default function LongRangePlanPage() {
                       </span>
                     ))}
                     {plan.themes.length > 3 && (
-                      <span className="text-xs text-gray-500">
-                        +{plan.themes.length - 3} more
-                      </span>
+                      <span className="text-xs text-gray-500">+{plan.themes.length - 3} more</span>
                     )}
                   </div>
                 )}
@@ -222,12 +238,10 @@ export default function LongRangePlanPage() {
       <Dialog open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen}>
         <div className="p-6 max-w-lg">
           <h3 className="text-lg font-semibold mb-4">Create Long-Range Plan</h3>
-          
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Plan Title *
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Plan Title *</label>
               <input
                 type="text"
                 required
@@ -237,12 +251,10 @@ export default function LongRangePlanPage() {
                 placeholder="e.g., Grade 3 Mathematics Year Plan"
               />
             </div>
-            
+
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Subject *
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Subject *</label>
                 <input
                   type="text"
                   required
@@ -252,11 +264,9 @@ export default function LongRangePlanPage() {
                   placeholder="e.g., Mathematics"
                 />
               </div>
-              
+
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Grade *
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Grade *</label>
                 <select
                   value={formData.grade}
                   onChange={(e) => setFormData({ ...formData, grade: Number(e.target.value) })}
@@ -270,11 +280,9 @@ export default function LongRangePlanPage() {
                 </select>
               </div>
             </div>
-            
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Term
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Term</label>
               <select
                 value={formData.term}
                 onChange={(e) => setFormData({ ...formData, term: e.target.value })}
@@ -287,11 +295,9 @@ export default function LongRangePlanPage() {
                 <option value="Semester 2">Semester 2</option>
               </select>
             </div>
-            
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Description
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
               <textarea
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -300,11 +306,9 @@ export default function LongRangePlanPage() {
                 placeholder="Brief overview of the year plan..."
               />
             </div>
-            
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Learning Goals
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Learning Goals</label>
               <textarea
                 value={formData.goals}
                 onChange={(e) => setFormData({ ...formData, goals: e.target.value })}
@@ -322,7 +326,7 @@ export default function LongRangePlanPage() {
                 </button>
               )}
             </div>
-            
+
             {showAISuggestions && formData.subject && formData.grade && (
               <AISuggestionPanel
                 title="AI Goal Suggestions"
@@ -354,7 +358,7 @@ export default function LongRangePlanPage() {
                 error={generateLongRangeGoals.error}
               />
             )}
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Key Themes (press Enter to add)
@@ -383,10 +387,12 @@ export default function LongRangePlanPage() {
                     {theme}
                     <button
                       type="button"
-                      onClick={() => setFormData({
-                        ...formData,
-                        themes: formData.themes.filter((_, i) => i !== index)
-                      })}
+                      onClick={() =>
+                        setFormData({
+                          ...formData,
+                          themes: formData.themes.filter((_, i) => i !== index),
+                        })
+                      }
                       className="ml-1 hover:text-indigo-900"
                     >
                       ×
@@ -395,7 +401,7 @@ export default function LongRangePlanPage() {
                 ))}
               </div>
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Overarching Questions
@@ -408,7 +414,7 @@ export default function LongRangePlanPage() {
                 placeholder="Big questions that will guide the year..."
               />
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Assessment Overview
@@ -421,11 +427,9 @@ export default function LongRangePlanPage() {
                 placeholder="Overall assessment strategy for the year..."
               />
             </div>
-            
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Resource Needs
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Resource Needs</label>
               <textarea
                 value={formData.resourceNeeds}
                 onChange={(e) => setFormData({ ...formData, resourceNeeds: e.target.value })}
@@ -434,7 +438,7 @@ export default function LongRangePlanPage() {
                 placeholder="Materials, technology, and resources needed..."
               />
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Professional Learning Goals
@@ -447,13 +451,9 @@ export default function LongRangePlanPage() {
                 placeholder="Your professional development goals for this year..."
               />
             </div>
-            
+
             <div className="flex justify-end gap-3 pt-4">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setIsCreateModalOpen(false)}
-              >
+              <Button type="button" variant="outline" onClick={() => setIsCreateModalOpen(false)}>
                 Cancel
               </Button>
               <Button

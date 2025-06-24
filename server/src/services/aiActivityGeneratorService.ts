@@ -1,16 +1,15 @@
 import { ExternalActivity } from '@teaching-engine/database';
 import { prisma } from '../prisma';
 import { AnthropicService } from './anthropicService';
-import { SearchParams } from './activityDiscoveryService';
 
 interface GenerateActivityParams {
   searchResults?: ExternalActivity[];
   lessonContext?: {
-    title: string;
-    grade: number;
-    subject: string;
-    learningGoals: string[];
-    duration: number;
+    title?: string;
+    grade?: number;
+    subject?: string;
+    learningGoals?: string[];
+    duration?: number;
     section?: 'mindsOn' | 'action' | 'consolidation';
   };
   specificRequirements?: {
@@ -52,13 +51,12 @@ export class AIActivityGeneratorService {
    */
   async generateActivity(params: GenerateActivityParams): Promise<GeneratedActivity> {
     const prompt = this.buildGenerationPrompt(params);
-    
+
     try {
       const response = await this.anthropic.generateCompletion({
         prompt,
         systemPrompt: this.getSystemPrompt(),
-        maxTokens: 2000,
-        temperature: 0.8
+        temperature: 0.8,
       });
 
       return this.parseGeneratedActivity(response);
@@ -72,23 +70,23 @@ export class AIActivityGeneratorService {
    * Generate multiple activity variations
    */
   async generateActivityVariations(
-    params: GenerateActivityParams, 
-    count: number = 3
+    params: GenerateActivityParams,
+    count: number = 3,
   ): Promise<GeneratedActivity[]> {
     const variations: GeneratedActivity[] = [];
-    
+
     for (let i = 0; i < count; i++) {
       const activity = await this.generateActivity({
         ...params,
         specificRequirements: {
           ...params.specificRequirements,
           // Add variation hints
-          activityType: i === 0 ? 'handson' : i === 1 ? 'game' : 'collaborative'
-        }
+          activityType: i === 0 ? 'handson' : i === 1 ? 'game' : 'collaborative',
+        },
       });
       variations.push(activity);
     }
-    
+
     return variations;
   }
 
@@ -103,16 +101,15 @@ export class AIActivityGeneratorService {
       adaptForGrade?: number;
       translateTo?: string;
       alignToCurriculum?: string[];
-    }
+    },
   ): Promise<Partial<GeneratedActivity>> {
     const prompt = this.buildEnhancementPrompt(activity, enhancements);
-    
+
     try {
       const response = await this.anthropic.generateCompletion({
         prompt,
         systemPrompt: this.getSystemPrompt(),
-        maxTokens: 1500,
-        temperature: 0.7
+        temperature: 0.7,
       });
 
       return this.parseEnhancement(response);
@@ -124,17 +121,17 @@ export class AIActivityGeneratorService {
 
   private buildGenerationPrompt(params: GenerateActivityParams): string {
     let prompt = 'Generate an engaging educational activity with the following requirements:\n\n';
-    
+
     if (params.lessonContext) {
       prompt += `Lesson Context:
-- Title: ${params.lessonContext.title}
-- Grade: ${params.lessonContext.grade}
-- Subject: ${params.lessonContext.subject}
-- Learning Goals: ${params.lessonContext.learningGoals.join(', ')}
-- Duration: ${params.lessonContext.duration} minutes
+- Title: ${params.lessonContext.title || 'Activity'}
+- Grade: ${params.lessonContext.grade || 1}
+- Subject: ${params.lessonContext.subject || 'General'}
+- Learning Goals: ${params.lessonContext.learningGoals?.join(', ') || 'To be determined'}
+- Duration: ${params.lessonContext.duration || 30} minutes
 - Section: ${params.lessonContext.section || 'main activity'}\n\n`;
     }
-    
+
     if (params.specificRequirements) {
       prompt += `Specific Requirements:
 - Activity Type: ${params.specificRequirements.activityType || 'any'}
@@ -143,12 +140,15 @@ export class AIActivityGeneratorService {
 - Language: ${params.specificRequirements.language || 'fr'}
 - Curriculum Expectations: ${params.specificRequirements.curriculumExpectations?.join(', ') || 'Ontario curriculum'}\n\n`;
     }
-    
+
     if (params.searchResults && params.searchResults.length > 0) {
       prompt += `Consider these similar activities for inspiration:
-${params.searchResults.slice(0, 3).map(a => `- ${a.title}: ${a.description}`).join('\n')}\n\n`;
+${params.searchResults
+  .slice(0, 3)
+  .map((a) => `- ${a.title}: ${a.description}`)
+  .join('\n')}\n\n`;
     }
-    
+
     prompt += `Please provide a complete activity plan in JSON format with the following structure:
 {
   "title": "Activity title in French",
@@ -167,13 +167,19 @@ ${params.searchResults.slice(0, 3).map(a => `- ${a.title}: ${a.description}`).jo
   "safetyConsiderations": ["if applicable"],
   "technologyRequirements": ["if applicable"]
 }`;
-    
+
     return prompt;
   }
 
   private buildEnhancementPrompt(
     activity: ExternalActivity,
-    enhancements: any
+    enhancements: {
+      addDifferentiation?: boolean;
+      addAssessment?: boolean;
+      adaptForGrade?: number;
+      translateTo?: string;
+      alignToCurriculum?: string[];
+    },
   ): string {
     let prompt = `Enhance the following activity:\n
 Title: ${activity.title}
@@ -181,31 +187,31 @@ Description: ${activity.description}
 Grade: ${activity.gradeMin}-${activity.gradeMax}
 Subject: ${activity.subject}
 Duration: ${activity.duration} minutes\n\n`;
-    
+
     prompt += 'Please provide the following enhancements:\n';
-    
+
     if (enhancements.addDifferentiation) {
       prompt += '- Differentiation strategies for diverse learners\n';
     }
-    
+
     if (enhancements.addAssessment) {
       prompt += '- Assessment strategies and success criteria\n';
     }
-    
+
     if (enhancements.adaptForGrade) {
       prompt += `- Adaptations for grade ${enhancements.adaptForGrade}\n`;
     }
-    
+
     if (enhancements.translateTo) {
       prompt += `- Translation to ${enhancements.translateTo}\n`;
     }
-    
+
     if (enhancements.alignToCurriculum) {
       prompt += `- Alignment with curriculum expectations: ${enhancements.alignToCurriculum.join(', ')}\n`;
     }
-    
+
     prompt += '\nProvide the enhancements in JSON format.';
-    
+
     return prompt;
   }
 
@@ -232,14 +238,14 @@ Always respond with valid JSON that matches the requested format exactly.`;
       if (!jsonMatch) {
         throw new Error('No JSON found in response');
       }
-      
+
       const parsed = JSON.parse(jsonMatch[0]);
-      
+
       // Validate required fields
       if (!parsed.title || !parsed.description || !parsed.detailedInstructions) {
         throw new Error('Missing required fields in generated activity');
       }
-      
+
       return {
         title: parsed.title,
         description: parsed.description,
@@ -252,10 +258,10 @@ Always respond with valid JSON that matches the requested format exactly.`;
         assessmentSuggestions: parsed.assessmentSuggestions || [],
         differentiation: {
           support: parsed.differentiation?.support || [],
-          extension: parsed.differentiation?.extension || []
+          extension: parsed.differentiation?.extension || [],
         },
         safetyConsiderations: parsed.safetyConsiderations,
-        technologyRequirements: parsed.technologyRequirements
+        technologyRequirements: parsed.technologyRequirements,
       };
     } catch (error) {
       console.error('Error parsing generated activity:', error);
@@ -269,7 +275,7 @@ Always respond with valid JSON that matches the requested format exactly.`;
       if (!jsonMatch) {
         throw new Error('No JSON found in response');
       }
-      
+
       return JSON.parse(jsonMatch[0]);
     } catch (error) {
       console.error('Error parsing enhancement:', error);
@@ -282,11 +288,11 @@ Always respond with valid JSON that matches the requested format exactly.`;
    */
   async saveGeneratedActivity(
     activity: GeneratedActivity,
-    userId: number,
+    _userId: number,
     metadata?: {
       lessonPlanId?: string;
       basedOnActivities?: string[];
-    }
+    },
   ): Promise<ExternalActivity> {
     const externalActivity = await prisma.externalActivity.create({
       data: {
@@ -304,32 +310,46 @@ Always respond with valid JSON that matches the requested format exactly.`;
         materials: activity.materials,
         groupSize: activity.groupSize,
         learningGoals: activity.learningGoals,
-        metadata: {
-          detailedInstructions: activity.detailedInstructions,
-          assessmentSuggestions: activity.assessmentSuggestions,
-          differentiation: activity.differentiation,
-          safetyConsiderations: activity.safetyConsiderations,
-          technologyRequirements: activity.technologyRequirements,
-          generatedBy: userId,
-          generatedAt: new Date(),
-          basedOnActivities: metadata?.basedOnActivities
-        },
+        // TODO: Store additional metadata separately
+        // metadata: {
+        //   detailedInstructions: activity.detailedInstructions,
+        //   assessmentSuggestions: activity.assessmentSuggestions,
+        //   differentiation: activity.differentiation,
+        //   safetyConsiderations: activity.safetyConsiderations,
+        //   technologyRequirements: activity.technologyRequirements,
+        //   generatedBy: userId,
+        //   generatedAt: new Date(),
+        //   basedOnActivities: metadata?.basedOnActivities
+        // },
+        curriculumTags: [], // TODO: Add curriculum alignment
         isFree: true,
-        isActive: true
-      }
+        isActive: true,
+      },
     });
 
     // Auto-import for the user who generated it
     if (metadata?.lessonPlanId) {
       await prisma.activityImport.create({
         data: {
-          userId,
+          userId: _userId,
           activityId: externalActivity.id,
-          lessonPlanId: parseInt(metadata.lessonPlanId)
-        }
+          lessonPlanId: metadata.lessonPlanId,
+        },
       });
     }
 
     return externalActivity;
+  }
+
+  /**
+   * Get uncovered curriculum outcomes for planning
+   */
+  async getUncoveredOutcomes(_params: {
+    userId: number;
+    theme?: string;
+    limit?: number;
+  }): Promise<{ code: string; description: string; strand: string }[]> {
+    // Stub implementation
+    return [];
   }
 }

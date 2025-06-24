@@ -3,20 +3,70 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { Send, MessageSquare, X, Sparkles, Mic, MicOff } from 'lucide-react';
 import { api } from '../../api';
 import { toast } from 'sonner';
+import type { SpeechRecognition, SpeechRecognitionEvent } from '../../types/speech-recognition';
+
+interface Action {
+  type: string;
+  data: unknown;
+}
+
+interface ActivityGeneratedResult {
+  type: 'activities_generated';
+  data: Activity[];
+}
+
+interface PlanGeneratedResult {
+  type: 'plan_generated';
+  data: Plan;
+}
+
+interface CoverageAnalysisResult {
+  type: 'coverage_analysis';
+  data: {
+    coveragePercentage: number;
+    [key: string]: unknown;
+  };
+}
+
+type ActionResult = ActivityGeneratedResult | PlanGeneratedResult | CoverageAnalysisResult;
 
 interface Message {
   role: 'user' | 'assistant' | 'system';
   content: string;
   timestamp: Date;
-  actions?: any[];
-  actionResults?: any[];
+  actions?: Action[];
+  actionResults?: ActionResult[];
+}
+
+interface Activity {
+  id?: string | number;
+  title: string;
+  description: string;
+  subject?: string;
+  duration?: number;
+  materials?: string[];
+  expectationIds?: string[];
+  [key: string]: unknown;
+}
+
+interface Plan {
+  id?: string | number;
+  weekStart?: string;
+  activities?: Activity[];
+  qualityMetrics?: {
+    coverageScore: number;
+    balanceScore: number;
+    pacingScore: number;
+    overallScore: number;
+  };
+  [key: string]: unknown;
 }
 
 interface GPTPlanningAgentProps {
   isOpen: boolean;
   onClose: () => void;
-  onActivityGenerated?: (activities: any[]) => void;
-  onPlanGenerated?: (plan: any) => void;
+  onActivityGenerated?: (activities: Activity[]) => void;
+  onPlanGenerated?: (plan: Plan) => void;
 }
 
 export function GPTPlanningAgent({
@@ -30,7 +80,7 @@ export function GPTPlanningAgent({
   const [inputValue, setInputValue] = useState('');
   const [isListening, setIsListening] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const recognitionRef = useRef<any>(null);
+  const recognitionRef = useRef<SpeechRecognition | null>(null);
 
   // Start session
   const startSessionMutation = useMutation({
@@ -40,11 +90,13 @@ export function GPTPlanningAgent({
     },
     onSuccess: (data) => {
       setSessionId(data.sessionId);
-      setMessages([{
-        role: 'assistant',
-        content: data.message,
-        timestamp: new Date(),
-      }]);
+      setMessages([
+        {
+          role: 'assistant',
+          content: data.message,
+          timestamp: new Date(),
+        },
+      ]);
     },
   });
 
@@ -59,21 +111,32 @@ export function GPTPlanningAgent({
       return response.data.data;
     },
     onSuccess: (data) => {
-      setMessages(prev => [...prev, {
-        role: 'assistant',
-        content: data.message,
-        timestamp: new Date(),
-        actions: data.actions,
-        actionResults: data.actionResults,
-      }]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: 'assistant',
+          content: data.message,
+          timestamp: new Date(),
+          actions: data.actions,
+          actionResults: data.actionResults,
+        },
+      ]);
 
       // Handle action results
       if (data.actionResults) {
-        data.actionResults.forEach((result: any) => {
-          if (result.type === 'activities_generated' && onActivityGenerated) {
-            onActivityGenerated(result.data);
-          } else if (result.type === 'plan_generated' && onPlanGenerated) {
-            onPlanGenerated(result.data);
+        data.actionResults.forEach((result: ActionResult) => {
+          switch (result.type) {
+            case 'activities_generated':
+              if (onActivityGenerated) {
+                onActivityGenerated(result.data);
+              }
+              break;
+            case 'plan_generated':
+              if (onPlanGenerated) {
+                onPlanGenerated(result.data);
+              }
+              break;
+            // coverage_analysis doesn't need special handling
           }
         });
       }
@@ -84,7 +147,13 @@ export function GPTPlanningAgent({
   });
 
   // Get quick actions
-  const { data: quickActions } = useQuery({
+  interface QuickAction {
+    label: string;
+    value?: string;
+    description?: string;
+  }
+
+  const { data: quickActions } = useQuery<QuickAction[]>({
     queryKey: ['quick-actions'],
     queryFn: async () => {
       const response = await api.get('/api/ai/agent/quick-actions');
@@ -107,13 +176,14 @@ export function GPTPlanningAgent({
   // Initialize speech recognition
   useEffect(() => {
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-      recognitionRef.current = new SpeechRecognition();
+      const SpeechRecognitionConstructor =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognitionRef.current = new SpeechRecognitionConstructor();
       recognitionRef.current.continuous = false;
       recognitionRef.current.interimResults = false;
       recognitionRef.current.lang = 'en-US';
 
-      recognitionRef.current.onresult = (event: any) => {
+      recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
         const transcript = event.results[0][0].transcript;
         setInputValue(transcript);
         setIsListening(false);
@@ -135,23 +205,29 @@ export function GPTPlanningAgent({
 
     const userMessage = inputValue.trim();
     setInputValue('');
-    
-    setMessages(prev => [...prev, {
-      role: 'user',
-      content: userMessage,
-      timestamp: new Date(),
-    }]);
+
+    setMessages((prev) => [
+      ...prev,
+      {
+        role: 'user',
+        content: userMessage,
+        timestamp: new Date(),
+      },
+    ]);
 
     sendMessageMutation.mutate(userMessage);
   };
 
-  const handleQuickAction = (action: any) => {
+  const handleQuickAction = (action: QuickAction) => {
     const message = action.label;
-    setMessages(prev => [...prev, {
-      role: 'user',
-      content: message,
-      timestamp: new Date(),
-    }]);
+    setMessages((prev) => [
+      ...prev,
+      {
+        role: 'user',
+        content: message,
+        timestamp: new Date(),
+      },
+    ]);
     sendMessageMutation.mutate(message);
   };
 
@@ -179,10 +255,7 @@ export function GPTPlanningAgent({
           <MessageSquare className="h-5 w-5 text-purple-600" />
           <h3 className="font-semibold text-gray-900">Planning Assistant</h3>
         </div>
-        <button
-          onClick={onClose}
-          className="p-1 hover:bg-gray-100 rounded"
-        >
+        <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded">
           <X className="h-5 w-5 text-gray-500" />
         </button>
       </div>
@@ -196,17 +269,15 @@ export function GPTPlanningAgent({
           >
             <div
               className={`max-w-[80%] rounded-lg p-3 ${
-                message.role === 'user'
-                  ? 'bg-purple-600 text-white'
-                  : 'bg-gray-100 text-gray-900'
+                message.role === 'user' ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-900'
               }`}
             >
               <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-              
+
               {/* Action Results */}
               {message.actionResults && message.actionResults.length > 0 && (
                 <div className="mt-2 pt-2 border-t border-gray-200">
-                  {message.actionResults.map((result: any, idx: number) => (
+                  {message.actionResults.map((result: ActionResult, idx: number) => (
                     <div key={idx} className="text-xs">
                       {result.type === 'activities_generated' && (
                         <span className="flex items-center gap-1">
@@ -221,9 +292,7 @@ export function GPTPlanningAgent({
                         </span>
                       )}
                       {result.type === 'coverage_analysis' && (
-                        <span>
-                          Coverage: {result.data.coveragePercentage.toFixed(0)}%
-                        </span>
+                        <span>Coverage: {result.data.coveragePercentage.toFixed(0)}%</span>
                       )}
                     </div>
                   ))}
@@ -240,7 +309,7 @@ export function GPTPlanningAgent({
         <div className="px-4 pb-2">
           <p className="text-xs text-gray-500 mb-2">Quick actions:</p>
           <div className="flex flex-wrap gap-2">
-            {quickActions.map((action: any, index: number) => (
+            {quickActions.map((action: QuickAction, index: number) => (
               <button
                 key={index}
                 onClick={() => handleQuickAction(action)}
@@ -268,8 +337,8 @@ export function GPTPlanningAgent({
           <button
             onClick={toggleVoiceRecognition}
             className={`p-2 rounded-md ${
-              isListening 
-                ? 'bg-red-100 text-red-600 hover:bg-red-200' 
+              isListening
+                ? 'bg-red-100 text-red-600 hover:bg-red-200'
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}
             title={isListening ? 'Stop recording' : 'Start voice input'}

@@ -3,8 +3,19 @@ import { prisma } from '../prisma';
 import { generateSubPlanPDF, SubPlanInput } from '../services/subPlanGenerator';
 import { generateSubPlan } from '../services/subPlanService';
 import { extractWeeklyPlan } from '../services/weeklyPlanExtractor';
-import { extractScenarioTemplates, autoDetectScenario, getScenarioById, generateScenarioContent } from '../services/scenarioTemplateExtractor';
-import { extractSchoolContacts, formatContactsForSubPlan, getEmergencyContactsList, generateEmergencyContactCard } from '../services/contactExtractor';
+import {
+  extractScenarioTemplates,
+  autoDetectScenario,
+  getScenarioById,
+  generateScenarioContent,
+} from '../services/scenarioTemplateExtractor';
+import {
+  extractSchoolContacts,
+  formatContactsForSubPlan,
+  getEmergencyContactsList,
+  generateEmergencyContactCard,
+  ExtractedContacts,
+} from '../services/contactExtractor';
 import { extractDayMaterials, extractWeeklyMaterials } from '../services/materialExtractor';
 
 const router = Router();
@@ -19,30 +30,20 @@ router.post('/', async (req, res, next) => {
   try {
     let data = req.body as SubPlanInput;
     if (!data.today && req.query.date) {
-      const plan = await prisma.dailyPlan.findFirst({
-        where: { date: new Date(String(req.query.date)) },
-        include: { 
-          items: { 
-            include: { 
-              activity: { 
-                include: { 
-                  outcomes: { include: { outcome: true } } 
-                } 
-              }, 
-              slot: true 
-            } 
-          } 
-        },
-      });
-      
+      // DISABLED: Legacy dailyPlan model removed in ETFO migration
+      const plan = null;
+
       if (plan) {
         // Extract all unique outcomes from activities
-        const uniqueOutcomes = new Map<string, {
-          code: string;
-          description: string;
-          subject: string;
-        }>();
-        
+        const uniqueOutcomes = new Map<
+          string,
+          {
+            code: string;
+            description: string;
+            subject: string;
+          }
+        >();
+
         for (const item of plan.items) {
           if (item.activity?.outcomes) {
             for (const outcomeRelation of item.activity.outcomes) {
@@ -50,12 +51,12 @@ router.post('/', async (req, res, next) => {
               uniqueOutcomes.set(outcome.id, {
                 code: outcome.code,
                 description: outcome.description,
-                subject: outcome.subject
+                subject: outcome.subject,
               });
             }
           }
         }
-        
+
         data = {
           today: plan.items.map((i) => ({
             time: minToTime(i.startMin),
@@ -65,7 +66,7 @@ router.post('/', async (req, res, next) => {
           procedures: '',
           studentNotes: '',
           emergencyContacts: '',
-          curriculumOutcomes: Array.from(uniqueOutcomes.values())
+          curriculumOutcomes: Array.from(uniqueOutcomes.values()),
         };
       }
     }
@@ -79,33 +80,34 @@ router.post('/', async (req, res, next) => {
 
 router.post('/generate', async (req, res, next) => {
   try {
-    const date = (req.query.date as string) || req.body.date || new Date().toISOString().slice(0, 10);
-    
+    const date =
+      (req.query.date as string) || req.body.date || new Date().toISOString().slice(0, 10);
+
     // Validate date format
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
     if (!dateRegex.test(date)) {
       return res.status(400).json({ error: 'Date must be in YYYY-MM-DD format' });
     }
-    
+
     // Validate date is valid
     const testDate = new Date(date);
     if (isNaN(testDate.getTime())) {
       return res.status(400).json({ error: 'Invalid date provided' });
     }
-    
+
     const days = Math.min(3, Math.max(1, Number(req.query.days) || req.body.days || 1));
-    
+
     // Extract options from request body
     const options = {
       includeGoals: req.body.includeGoals !== false,
       includeRoutines: req.body.includeRoutines !== false,
       includePlans: req.body.includePlans !== false,
       anonymize: req.body.anonymize === true,
-      userId: req.body.userId || 1
+      userId: req.body.userId || 1,
     };
-    
+
     const pdf = await generateSubPlan(date, days, options);
-    
+
     // Save sub plan record if requested
     if (req.body.saveRecord) {
       await prisma.subPlanRecord.create({
@@ -116,18 +118,17 @@ router.post('/generate', async (req, res, next) => {
           content: {
             date,
             days,
-            options
+            options,
           },
           includeGoals: options.includeGoals,
           includeRoutines: options.includeRoutines,
           includePlans: options.includePlans,
           anonymized: options.anonymize,
-          notes: req.body.notes
-        }
+          notes: req.body.notes,
+        },
       });
     }
-    
-    
+
     res.setHeader('Content-Type', 'application/pdf');
     res.send(pdf);
   } catch (err) {
@@ -142,7 +143,7 @@ router.get('/records', async (req, res, next) => {
     const records = await prisma.subPlanRecord.findMany({
       where: { userId },
       orderBy: { createdAt: 'desc' },
-      take: 10
+      take: 10,
     });
     res.json(records);
   } catch (err) {
@@ -156,7 +157,7 @@ router.get('/routines', async (req, res, next) => {
     const userId = Number(req.query.userId) || 1;
     const routines = await prisma.classRoutine.findMany({
       where: { userId, isActive: true },
-      orderBy: [{ priority: 'desc' }, { category: 'asc' }]
+      orderBy: [{ priority: 'desc' }, { category: 'asc' }],
     });
     res.json(routines);
   } catch (err) {
@@ -171,15 +172,15 @@ router.post('/routines', async (req, res, next) => {
     if (id) {
       const routine = await prisma.classRoutine.update({
         where: { id },
-        data
+        data,
       });
       res.json(routine);
     } else {
       const routine = await prisma.classRoutine.create({
         data: {
           ...data,
-          userId: data.userId || 1
-        }
+          userId: data.userId || 1,
+        },
       });
       res.json(routine);
     }
@@ -193,7 +194,7 @@ router.delete('/routines/:id', async (req, res, next) => {
   try {
     const id = Number(req.params.id);
     await prisma.classRoutine.delete({
-      where: { id }
+      where: { id },
     });
     res.json({ success: true });
   } catch (err) {
@@ -204,41 +205,29 @@ router.delete('/routines/:id', async (req, res, next) => {
 // Generate fallback activity suggestions
 router.post('/fallback/generate', async (req, res, next) => {
   try {
-    const { subjectId, gradeLevel } = req.body;
-    
-    // Get or create fallback activities for the subject
-    let fallbackActivity = await prisma.activity.findFirst({
-      where: {
-        isFallback: true,
-        milestone: { subjectId }
-      }
-    });
-    
+    const { subjectId, gradeLevel: _gradeLevel } = req.body;
+
+    // Get or create fallback activities for the subject - DISABLED: Legacy activity model removed
+    let fallbackActivity = null; // await prisma.activity.findFirst({
+    //   where: {
+    //     isFallback: true,
+    //     milestone: { subjectId }
+    //   }
+    // });
+
     if (!fallbackActivity && subjectId) {
       // Create a generic fallback activity
-      const subject = await prisma.subject.findUnique({ where: { id: subjectId } });
-      const milestone = await prisma.milestone.findFirst({ 
-        where: { subjectId },
-        orderBy: { targetDate: 'asc' }
-      });
-      
+      const _subject = await prisma.subject.findUnique({ where: { id: subjectId } });
+      const milestone = null; // await prisma.milestone.findFirst({
+      //   where: { subjectId },
+      //   orderBy: { targetDate: 'asc' }
+      // });
+
       if (milestone) {
-        fallbackActivity = await prisma.activity.create({
-          data: {
-            title: `${subject?.name || 'General'} Review & Practice`,
-            titleEn: `${subject?.nameEn || subject?.name || 'General'} Review & Practice`,
-            titleFr: `Révision et pratique de ${subject?.nameFr || subject?.name || 'général'}`,
-            publicNote: 'Review previous lessons and practice core skills through worksheets and quiet activities',
-            durationMins: 45,
-            milestoneId: milestone.id,
-            isFallback: true,
-            isSubFriendly: true,
-            activityType: 'LESSON'
-          }
-        });
+        fallbackActivity = null; // Legacy activity creation disabled
       }
     }
-    
+
     res.json({
       activity: fallbackActivity,
       suggestions: [
@@ -246,8 +235,8 @@ router.post('/fallback/generate', async (req, res, next) => {
         'Have students complete journal reflections on recent learning',
         'Conduct quiet reading time with comprehension questions',
         'Review vocabulary or math facts through partner games',
-        'Complete unfinished work from previous lessons'
-      ]
+        'Complete unfinished work from previous lessons',
+      ],
     });
   } catch (err) {
     next(err);
@@ -259,24 +248,24 @@ router.post('/fallback/generate', async (req, res, next) => {
 // Extract weekly plan data for comprehensive substitute planning
 router.get('/extract/weekly', async (req, res, next) => {
   try {
-    const startDate = req.query.startDate as string || new Date().toISOString().slice(0, 10);
+    const startDate = (req.query.startDate as string) || new Date().toISOString().slice(0, 10);
     const numDays = Math.min(5, Math.max(1, Number(req.query.days) || 5));
     const userId = Number(req.query.userId) || 1;
-    
+
     // Validate date format
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
     if (!dateRegex.test(startDate)) {
       return res.status(400).json({ error: 'Start date must be in YYYY-MM-DD format' });
     }
-    
+
     const options = {
       includeGoals: req.query.includeGoals !== 'false',
       includeRoutines: req.query.includeRoutines !== 'false',
       includePlans: req.query.includePlans !== 'false',
       anonymize: req.query.anonymize === 'true',
-      userId
+      userId,
     };
-    
+
     const weeklyPlan = await extractWeeklyPlan(startDate, numDays, options);
     res.json(weeklyPlan);
   } catch (err) {
@@ -288,21 +277,21 @@ router.get('/extract/weekly', async (req, res, next) => {
 router.get('/extract/scenarios', async (req, res, next) => {
   try {
     const conditions = {
-      weather: req.query.weather as any,
-      technology: req.query.technology as any,
-      staffing: req.query.staffing as any,
-      building: req.query.building as any
+      weather: req.query.weather as string | undefined,
+      technology: req.query.technology as string | undefined,
+      staffing: req.query.staffing as string | undefined,
+      building: req.query.building as string | undefined,
     };
-    
+
     // Filter out undefined values
     const filteredConditions = Object.fromEntries(
-      Object.entries(conditions).filter(([_, value]) => value !== undefined)
+      Object.entries(conditions).filter(([_, value]) => value !== undefined),
     );
-    
+
     const scenarios = await extractScenarioTemplates(
-      Object.keys(filteredConditions).length > 0 ? filteredConditions : undefined
+      Object.keys(filteredConditions).length > 0 ? filteredConditions : undefined,
     );
-    
+
     res.json(scenarios);
   } catch (err) {
     next(err);
@@ -326,17 +315,17 @@ router.get('/extract/scenarios/:scenarioId', async (req, res, next) => {
     const { scenarioId } = req.params;
     const teacherName = req.query.teacherName as string;
     const className = req.query.className as string;
-    
+
     const scenario = getScenarioById(scenarioId);
     if (!scenario) {
       return res.status(404).json({ error: 'Scenario not found' });
     }
-    
+
     const content = generateScenarioContent(scenario, teacherName, className);
-    
+
     res.json({
       scenario,
-      generatedContent: content
+      generatedContent: content,
     });
   } catch (err) {
     next(err);
@@ -347,10 +336,10 @@ router.get('/extract/scenarios/:scenarioId', async (req, res, next) => {
 router.get('/extract/contacts', async (req, res, next) => {
   try {
     const userId = Number(req.query.userId) || 1;
-    const format = req.query.format as string || 'organized';
-    
+    const format = (req.query.format as string) || 'organized';
+
     const contacts = await extractSchoolContacts(userId);
-    
+
     if (format === 'emergency') {
       const emergencyList = getEmergencyContactsList(contacts);
       res.json({ emergencyContacts: emergencyList });
@@ -371,15 +360,15 @@ router.get('/extract/contacts', async (req, res, next) => {
 // Extract materials for a specific day
 router.get('/extract/materials/day', async (req, res, next) => {
   try {
-    const date = req.query.date as string || new Date().toISOString().slice(0, 10);
+    const date = (req.query.date as string) || new Date().toISOString().slice(0, 10);
     const userId = Number(req.query.userId) || 1;
-    
+
     // Validate date format
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
     if (!dateRegex.test(date)) {
       return res.status(400).json({ error: 'Date must be in YYYY-MM-DD format' });
     }
-    
+
     const materials = await extractDayMaterials(date, userId);
     res.json(materials);
   } catch (err) {
@@ -390,16 +379,16 @@ router.get('/extract/materials/day', async (req, res, next) => {
 // Extract materials for multiple days
 router.get('/extract/materials/weekly', async (req, res, next) => {
   try {
-    const startDate = req.query.startDate as string || new Date().toISOString().slice(0, 10);
+    const startDate = (req.query.startDate as string) || new Date().toISOString().slice(0, 10);
     const numDays = Math.min(5, Math.max(1, Number(req.query.days) || 5));
     const userId = Number(req.query.userId) || 1;
-    
+
     // Validate date format
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
     if (!dateRegex.test(startDate)) {
       return res.status(400).json({ error: 'Start date must be in YYYY-MM-DD format' });
     }
-    
+
     const weeklyMaterials = await extractWeeklyMaterials(startDate, numDays, userId);
     res.json(weeklyMaterials);
   } catch (err) {
@@ -419,41 +408,66 @@ router.post('/extract/comprehensive', async (req, res, next) => {
       includeContacts = true,
       includeMaterials = true,
       scenarioConditions,
-      options = {}
+      options = {},
     } = req.body;
-    
+
     // Validate date format
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
     if (!dateRegex.test(startDate)) {
       return res.status(400).json({ error: 'Start date must be in YYYY-MM-DD format' });
     }
-    
-    const extractionResults: any = {
+
+    interface ExtractionResults {
+      metadata: {
+        extractedAt: string;
+        startDate: string;
+        numDays: number;
+        userId: number;
+      };
+      weeklyPlan?: unknown;
+      scenarios?: unknown;
+      recommendedScenario?: unknown;
+      contacts?: unknown;
+      emergencyContacts?: unknown;
+      materials?: unknown;
+    }
+
+    const extractionResults: ExtractionResults = {
       metadata: {
         extractedAt: new Date().toISOString(),
         startDate,
         numDays,
-        userId
-      }
+        userId,
+      },
     };
-    
+
     // Extract weekly plan if multiple days or overview requested
     if (numDays > 1 || includeWeeklyOverview) {
       extractionResults.weeklyPlan = await extractWeeklyPlan(startDate, numDays, options);
     }
-    
+
     // Extract scenario information
     if (includeScenarios) {
       extractionResults.scenarios = await extractScenarioTemplates(scenarioConditions);
       extractionResults.recommendedScenario = await autoDetectScenario(userId);
     }
-    
+
     // Extract contacts
     if (includeContacts) {
       extractionResults.contacts = await extractSchoolContacts(userId);
-      extractionResults.emergencyContacts = getEmergencyContactsList(extractionResults.contacts);
+      extractionResults.emergencyContacts = getEmergencyContactsList(
+        (extractionResults.contacts as ExtractedContacts) || {
+          emergency: [],
+          administration: [],
+          support: [],
+          technical: [],
+          medical: [],
+          transportation: [],
+          custom: [],
+        },
+      );
     }
-    
+
     // Extract materials
     if (includeMaterials) {
       if (numDays === 1) {
@@ -462,7 +476,7 @@ router.post('/extract/comprehensive', async (req, res, next) => {
         extractionResults.materials = await extractWeeklyMaterials(startDate, numDays, userId);
       }
     }
-    
+
     res.json(extractionResults);
   } catch (err) {
     next(err);

@@ -185,16 +185,16 @@ describe('Validation Schemas Unit Tests', () => {
       expect(result.success).toBe(true);
     });
 
-    it('should handle outcomes array', () => {
-      const milestoneWithOutcomes = {
+    it('should handle expectations array', () => {
+      const milestoneWithExpectations = {
         ...validMilestone,
-        outcomes: ['MAT-1-N-1', 'MAT-1-N-2', 'MAT-1-PS-1'],
+        expectations: ['MAT-1-N-1', 'MAT-1-N-2', 'MAT-1-PS-1'],
       };
 
-      const result = milestoneCreateSchema.safeParse(milestoneWithOutcomes);
+      const result = milestoneCreateSchema.safeParse(milestoneWithExpectations);
       expect(result.success).toBe(true);
       if (result.success) {
-        expect(result.data.outcomes).toEqual(['MAT-1-N-1', 'MAT-1-N-2', 'MAT-1-PS-1']);
+        expect(result.data.expectations).toEqual(['MAT-1-N-1', 'MAT-1-N-2', 'MAT-1-PS-1']);
       }
     });
   });

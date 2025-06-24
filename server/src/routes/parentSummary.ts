@@ -38,7 +38,7 @@ const saveSummarySchema = z.object({
 });
 
 // Generate a new parent summary using AI
-router.post('/generate', async (req: AuthenticatedRequest, res, next) => {
+router.post('/generate', async (req: AuthenticatedRequest, res, _next) => {
   try {
     const userId = req.user?.userId;
     if (!userId) {
@@ -62,7 +62,7 @@ router.post('/generate', async (req: AuthenticatedRequest, res, next) => {
         userId: parseInt(userId),
       },
       include: {
-        parentContacts: true,
+        // parentContacts: true, // DISABLED: Legacy model removed
         artifacts: {
           where: {
             createdAt: {
@@ -88,7 +88,7 @@ router.post('/generate', async (req: AuthenticatedRequest, res, next) => {
 
     // Generate the summary using AI
     const summaryData = await generateParentSummary({
-      student,
+      student: student,
       fromDate: new Date(from),
       toDate: new Date(to),
       focusAreas: focus,
@@ -97,12 +97,12 @@ router.post('/generate', async (req: AuthenticatedRequest, res, next) => {
     res.json(summaryData);
   } catch (err) {
     console.error('Error generating parent summary:', err);
-    next(err);
+    _next(err);
   }
 });
 
 // Regenerate an existing summary with variations
-router.post('/regenerate', async (req: AuthenticatedRequest, res, next) => {
+router.post('/regenerate', async (req: AuthenticatedRequest, res, _next) => {
   try {
     const userId = req.user?.userId;
     if (!userId) {
@@ -145,12 +145,12 @@ router.post('/regenerate', async (req: AuthenticatedRequest, res, next) => {
     res.json(summaryData);
   } catch (err) {
     console.error('Error regenerating parent summary:', err);
-    next(err);
+    _next(err);
   }
 });
 
 // Save a summary to the database
-router.post('/save', async (req: AuthenticatedRequest, res, next) => {
+router.post('/save', async (req: AuthenticatedRequest, res, _next) => {
   try {
     const userId = req.user?.userId;
     if (!userId) {
@@ -195,12 +195,12 @@ router.post('/save', async (req: AuthenticatedRequest, res, next) => {
     res.status(201).json(summary);
   } catch (err) {
     console.error('Error saving parent summary:', err);
-    next(err);
+    _next(err);
   }
 });
 
 // Get all summaries for a specific student
-router.get('/student/:studentId', async (req: AuthenticatedRequest, res, next) => {
+router.get('/student/:studentId', async (req: AuthenticatedRequest, res, _next) => {
   try {
     const userId = req.user?.userId;
     if (!userId) {
@@ -228,12 +228,12 @@ router.get('/student/:studentId', async (req: AuthenticatedRequest, res, next) =
 
     res.json(summaries);
   } catch (err) {
-    next(err);
+    _next(err);
   }
 });
 
 // Update a summary
-router.put('/:id', async (req: AuthenticatedRequest, res, next) => {
+router.put('/:id', async (req: AuthenticatedRequest, res, _next) => {
   try {
     const userId = req.user?.userId;
     if (!userId) {
@@ -263,12 +263,12 @@ router.put('/:id', async (req: AuthenticatedRequest, res, next) => {
 
     res.json(summary);
   } catch (err) {
-    next(err);
+    _next(err);
   }
 });
 
 // Delete a summary
-router.delete('/:id', async (req: AuthenticatedRequest, res, next) => {
+router.delete('/:id', async (req: AuthenticatedRequest, res, _next) => {
   try {
     const userId = req.user?.userId;
     if (!userId) {
@@ -297,7 +297,7 @@ router.delete('/:id', async (req: AuthenticatedRequest, res, next) => {
 
     res.status(204).send();
   } catch (err) {
-    next(err);
+    _next(err);
   }
 });
 

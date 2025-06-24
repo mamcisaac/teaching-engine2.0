@@ -22,58 +22,63 @@ export class TPTWebConnector extends BaseConnector {
   private readonly baseUrl = 'https://www.teacherspayteachers.com';
 
   constructor() {
-    super();
-    this.sourceName = 'TeachersPayTeachers';
+    super('TeachersPayTeachers');
     this.webFetch = new WebFetch();
   }
 
-  async search(params: SearchParams): Promise<ExternalActivity[]> {
-    const activities: ExternalActivity[] = [];
-    
+  async search(
+    params: SearchParams,
+  ): Promise<Omit<ExternalActivity, 'id' | 'createdAt' | 'updatedAt'>[]> {
+    const activities: Omit<ExternalActivity, 'id' | 'createdAt' | 'updatedAt'>[] = [];
+
     try {
       // Build search URL with filters
       const searchUrl = this.buildSearchUrl(params);
       const html = await this.webFetch.fetch(searchUrl);
       const $ = cheerio.load(html);
-      
+
       // Parse search results
       const results = this.parseSearchResults($);
-      
+
       // Convert to ExternalActivity format, focusing on free resources
       for (const result of results) {
         // Skip paid resources if we want only free ones
         if (result.price !== 'FREE' && result.price !== '$0.00') {
           continue;
         }
-        
-        activities.push(this.transformToExternalActivity({
-          externalId: this.extractIdFromUrl(result.url),
-          source: this.sourceName,
-          url: result.url,
-          title: result.title,
-          description: result.description || `${result.gradeRange || ''} ${result.subjects?.join(', ') || ''}`.trim(),
-          thumbnailUrl: result.thumbnailUrl,
-          activityType: this.inferActivityTypeFromTitle(result.title),
-          gradeMin: this.extractGradeMin(result.gradeRange || '', params.gradeLevel),
-          gradeMax: this.extractGradeMax(result.gradeRange || '', params.gradeLevel),
-          subject: params.subject || this.mapTPTSubject(result.subjects?.[0]),
-          language: params.language || 'en',
-          materials: [],
-          duration: this.estimateDuration(result.title),
-          groupSize: 'flexible',
-          pedagogicalApproach: ['differentiated-instruction'],
-          curriculumAlignments: [],
-          createdBy: result.author || 'TPT Educator',
-          license: 'TPT Terms of Use',
-          resourceUrls: [result.url],
-          metadata: {
-            rating: result.rating,
-            reviewCount: result.reviewCount,
-            isFree: true
-          }
-        }));
+
+        activities.push(
+          this.transformToExternalActivity({
+            externalId: this.extractIdFromUrl(result.url),
+            source: this.sourceName,
+            url: result.url,
+            title: result.title,
+            description:
+              result.description ||
+              `${result.gradeRange || ''} ${result.subjects?.join(', ') || ''}`.trim(),
+            thumbnailUrl: result.thumbnailUrl,
+            activityType: this.inferActivityTypeFromTitle(result.title),
+            gradeMin: this.extractGradeMin(result.gradeRange || '', params.gradeLevel),
+            gradeMax: this.extractGradeMax(result.gradeRange || '', params.gradeLevel),
+            subject: params.subject || this.mapTPTSubject(result.subjects?.[0]),
+            language: params.language || 'en',
+            materials: [],
+            duration: this.estimateDuration(result.title),
+            groupSize: 'flexible',
+            pedagogicalApproach: ['differentiated-instruction'],
+            curriculumAlignments: [],
+            createdBy: result.author || 'TPT Educator',
+            license: 'TPT Terms of Use',
+            resourceUrls: [result.url],
+            metadata: {
+              rating: result.rating,
+              reviewCount: result.reviewCount,
+              isFree: true,
+            },
+          }),
+        );
       }
-      
+
       // Limit results
       return activities.slice(0, params.limit || 20);
     } catch (error) {
@@ -82,32 +87,36 @@ export class TPTWebConnector extends BaseConnector {
     }
   }
 
-  async getActivityDetails(externalId: string): Promise<ExternalActivity | null> {
+  async getActivityDetails(
+    externalId: string,
+  ): Promise<Omit<ExternalActivity, 'id' | 'createdAt' | 'updatedAt'> | null> {
     try {
       const url = `${this.baseUrl}/Product/${externalId}`;
       const html = await this.webFetch.fetch(url);
       const $ = cheerio.load(html);
-      
+
       // Extract detailed information
       const title = $('h1').first().text().trim();
-      const description = $('.product-description').text().trim() || 
-                         $('meta[property="og:description"]').attr('content') || '';
-      
+      const description =
+        $('.product-description').text().trim() ||
+        $('meta[property="og:description"]').attr('content') ||
+        '';
+
       const gradeText = $('.grade-range').text() || '';
       const subjectTags: string[] = [];
       $('.subject-tag').each((i, elem) => {
         subjectTags.push($(elem).text().trim());
       });
-      
+
       const thumbnailUrl = $('meta[property="og:image"]').attr('content');
       const author = $('.store-name').text().trim();
       const price = $('.price-tag').text().trim();
-      
+
       // Only process free resources
       if (!price.includes('FREE') && price !== '$0.00') {
         return null;
       }
-      
+
       // Look for materials and instructions
       const materials: string[] = [];
       const instructionSections = $('.product-details, .included-materials');
@@ -117,7 +126,7 @@ export class TPTWebConnector extends BaseConnector {
           materials.push(text);
         }
       });
-      
+
       return this.transformToExternalActivity({
         externalId,
         source: this.sourceName,
@@ -137,7 +146,7 @@ export class TPTWebConnector extends BaseConnector {
         curriculumAlignments: [],
         createdBy: author,
         license: 'TPT Terms of Use - Free Resource',
-        resourceUrls: [url]
+        resourceUrls: [url],
       });
     } catch (error) {
       console.error('Error fetching TPT activity details:', error);
@@ -147,65 +156,65 @@ export class TPTWebConnector extends BaseConnector {
 
   private buildSearchUrl(params: SearchParams): string {
     const queryParams = new URLSearchParams();
-    
+
     // Add search query
     if (params.query) {
       queryParams.append('q', params.query);
     }
-    
+
     // Add grade filter
     if (params.gradeLevel) {
       queryParams.append('grade', params.gradeLevel.toString());
     }
-    
+
     // Add subject filter
     if (params.subject) {
       queryParams.append('subject', this.mapToTPTSubject(params.subject));
     }
-    
+
     // Filter for free resources only
     queryParams.append('price', 'free');
-    
+
     // Add language filter if French
     if (params.language === 'fr') {
       queryParams.append('q', queryParams.get('q') + ' french français');
     }
-    
+
     return `${this.baseUrl}/Browse/Search:${queryParams.toString()}`;
   }
 
   private parseSearchResults($: cheerio.CheerioAPI): TPTSearchResult[] {
     const results: TPTSearchResult[] = [];
-    
+
     // Parse product cards
     $('.product-card, .resource-card, .search-result-item').each((i, elem) => {
       const $elem = $(elem);
-      
+
       const title = $elem.find('.product-title, .resource-title, h3').first().text().trim();
       const url = $elem.find('a').first().attr('href');
       const price = $elem.find('.price, .resource-price').text().trim();
       const author = $elem.find('.author-name, .store-name').text().trim();
       const thumbnailUrl = $elem.find('img').first().attr('src');
-      
+
       // Extract rating
       const ratingText = $elem.find('.rating').text();
       const ratingMatch = ratingText.match(/(\d+\.?\d*)/);
       const rating = ratingMatch ? parseFloat(ratingMatch[1]) : undefined;
-      
+
       // Extract review count
       const reviewText = $elem.find('.review-count').text();
       const reviewMatch = reviewText.match(/\((\d+)\)/);
       const reviewCount = reviewMatch ? parseInt(reviewMatch[1]) : undefined;
-      
+
       // Extract grade range
       const gradeRange = $elem.find('.grade-range, .grades').text().trim();
-      
+
       // Extract subjects
       const subjects: string[] = [];
       $elem.find('.subject-tag, .subject').each((j, subElem) => {
         subjects.push($(subElem).text().trim());
       });
-      
+
       if (title && url) {
         results.push({
           title,
@@ -216,40 +225,52 @@ export class TPTWebConnector extends BaseConnector {
           author,
           thumbnailUrl,
           gradeRange,
-          subjects
+          subjects,
         });
       }
     });
-    
+
     return results;
   }
 
   private extractIdFromUrl(url: string): string {
     // Extract product ID from URL patterns like /Product/Activity-Name-123456
-    const match = url.match(/Product\/[^\/]+-(\d+)/);
+    const match = url.match(/Product\/[^/]+-(\d+)/);
     if (match) {
       return match[1];
     }
-    
+
     // Fallback: use last segment
-    const segments = url.split('/').filter(s => s.length > 0);
+    const segments = url.split('/').filter((s) => s.length > 0);
     return segments[segments.length - 1];
   }
 
   private inferActivityTypeFromTitle(title: string): string {
     const titleLower = title.toLowerCase();
-    
+
     if (titleLower.includes('worksheet') || titleLower.includes('printable')) {
       return 'worksheet';
     } else if (titleLower.includes('lesson plan') || titleLower.includes('unit plan')) {
       return 'lesson_plan';
-    } else if (titleLower.includes('game') || titleLower.includes('bingo') || titleLower.includes('puzzle')) {
+    } else if (
+      titleLower.includes('game') ||
+      titleLower.includes('bingo') ||
+      titleLower.includes('puzzle')
+    ) {
       return 'game';
-    } else if (titleLower.includes('experiment') || titleLower.includes('lab') || titleLower.includes('science')) {
+    } else if (
+      titleLower.includes('experiment') ||
+      titleLower.includes('lab') ||
+      titleLower.includes('science')
+    ) {
       return 'experiment';
     } else if (titleLower.includes('project') || titleLower.includes('research')) {
       return 'project';
-    } else if (titleLower.includes('assessment') || titleLower.includes('test') || titleLower.includes('quiz')) {
+    } else if (
+      titleLower.includes('assessment') ||
+      titleLower.includes('test') ||
+      titleLower.includes('quiz')
+    ) {
       return 'assessment';
     } else if (titleLower.includes('center') || titleLower.includes('station')) {
       return 'center_activity';
@@ -262,7 +283,7 @@ export class TPTWebConnector extends BaseConnector {
     } else if (titleLower.includes('math') || titleLower.includes('number')) {
       return 'math_activity';
     }
-    
+
     return 'handson';
   }
 
@@ -291,7 +312,7 @@ export class TPTWebConnector extends BaseConnector {
 
   private estimateDuration(title: string): number {
     const titleLower = title.toLowerCase();
-    
+
     if (titleLower.includes('quick') || titleLower.includes('5 minute')) {
       return 5;
     } else if (titleLower.includes('15 minute') || titleLower.includes('warm up')) {
@@ -305,46 +326,46 @@ export class TPTWebConnector extends BaseConnector {
     } else if (titleLower.includes('center') || titleLower.includes('station')) {
       return 20;
     }
-    
+
     return 30; // Default duration
   }
 
   private mapTPTSubject(tptSubject?: string): string {
     if (!tptSubject) return 'General';
-    
+
     const subjectMap: { [key: string]: string } = {
       'English Language Arts': 'English',
-      'ELA': 'English',
-      'Math': 'Mathematics',
-      'Science': 'Science',
+      ELA: 'English',
+      Math: 'Mathematics',
+      Science: 'Science',
       'Social Studies': 'Social Studies',
-      'French': 'French',
-      'Spanish': 'French', // Map to French for our French immersion context
-      'Art': 'Arts',
-      'Music': 'Arts',
+      French: 'French',
+      Spanish: 'French', // Map to French for our French immersion context
+      Art: 'Arts',
+      Music: 'Arts',
       'Physical Education': 'Physical Education',
-      'PE': 'Physical Education',
-      'Health': 'Health',
+      PE: 'Physical Education',
+      Health: 'Health',
       'Character Education': 'Social Emotional Learning',
-      'SEL': 'Social Emotional Learning'
+      SEL: 'Social Emotional Learning',
     };
-    
+
     return subjectMap[tptSubject] || tptSubject;
   }
 
   private mapToTPTSubject(subject: string): string {
     const reverseMap: { [key: string]: string } = {
-      'Mathematics': 'Math',
-      'English': 'English Language Arts',
-      'Science': 'Science',
+      Mathematics: 'Math',
+      English: 'English Language Arts',
+      Science: 'Science',
       'Social Studies': 'Social Studies',
-      'French': 'French',
-      'Arts': 'Art',
+      French: 'French',
+      Arts: 'Art',
       'Physical Education': 'Physical Education',
-      'Health': 'Health',
-      'Social Emotional Learning': 'Character Education'
+      Health: 'Health',
+      'Social Emotional Learning': 'Character Education',
     };
-    
+
     return reverseMap[subject] || subject;
   }
 }

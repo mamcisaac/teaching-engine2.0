@@ -1,15 +1,40 @@
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCurriculumExpectations, useUpdateCurriculumExpectation, useDeleteCurriculumExpectation } from '../hooks/useETFOPlanning';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import {
+  useCurriculumExpectations,
+  useUpdateCurriculumExpectation,
+  useDeleteCurriculumExpectation,
+  CurriculumExpectation,
+} from '../hooks/useETFOPlanning';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Badge } from '@/components/ui/Badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Search, Filter, Download, Upload, Edit2, Trash2, CheckCircle, AlertCircle } from 'lucide-react';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/Dialog';
+import { Search, Upload, Edit2, Trash2, CheckCircle, AlertCircle } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/Dialog';
 import { Label } from '@/components/ui/Label';
 import { Textarea } from '@/components/ui/Textarea';
 import { useToast } from '@/components/ui/use-toast';
@@ -22,10 +47,14 @@ export default function CurriculumExpectationsPage() {
   const [selectedSubject, setSelectedSubject] = useState<string>('all');
   const [selectedGrade, setSelectedGrade] = useState<number | 'all'>('all');
   const [selectedType, setSelectedType] = useState<'all' | 'overall' | 'specific'>('all');
-  const [editingExpectation, setEditingExpectation] = useState<any>(null);
+  const [editingExpectation, setEditingExpectation] = useState<CurriculumExpectation | null>(null);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
-  const { data: expectations = [], isLoading, error } = useCurriculumExpectations({
+  const {
+    data: expectations = [],
+    isLoading,
+    error,
+  } = useCurriculumExpectations({
     subject: selectedSubject === 'all' ? undefined : selectedSubject,
     grade: selectedGrade === 'all' ? undefined : selectedGrade,
     search: searchTerm || undefined,
@@ -38,8 +67,8 @@ export default function CurriculumExpectationsPage() {
   const { subjects, grades } = useMemo(() => {
     const subjectSet = new Set<string>();
     const gradeSet = new Set<number>();
-    
-    expectations.forEach(exp => {
+
+    expectations.forEach((exp) => {
       subjectSet.add(exp.subject);
       gradeSet.add(exp.grade);
     });
@@ -53,8 +82,8 @@ export default function CurriculumExpectationsPage() {
   // Group expectations by subject
   const groupedExpectations = useMemo(() => {
     const grouped: Record<string, typeof expectations> = {};
-    
-    expectations.forEach(exp => {
+
+    expectations.forEach((exp) => {
       if (!grouped[exp.subject]) {
         grouped[exp.subject] = [];
       }
@@ -64,7 +93,7 @@ export default function CurriculumExpectationsPage() {
     return grouped;
   }, [expectations]);
 
-  const handleEdit = (expectation: any) => {
+  const handleEdit = (expectation: CurriculumExpectation) => {
     setEditingExpectation({
       ...expectation,
       descriptionFr: expectation.descriptionFr || '',
@@ -103,7 +132,11 @@ export default function CurriculumExpectationsPage() {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this expectation? This will remove it from all linked plans.')) {
+    if (
+      !confirm(
+        'Are you sure you want to delete this expectation? This will remove it from all linked plans.',
+      )
+    ) {
       return;
     }
 
@@ -126,7 +159,7 @@ export default function CurriculumExpectationsPage() {
     navigate('/curriculum-import');
   };
 
-  const ExpectationRow = ({ expectation }: { expectation: any }) => (
+  const ExpectationRow = ({ expectation }: { expectation: CurriculumExpectation }) => (
     <TableRow>
       <TableCell className="font-mono text-sm">{expectation.code}</TableCell>
       <TableCell>
@@ -167,18 +200,10 @@ export default function CurriculumExpectationsPage() {
       </TableCell>
       <TableCell>
         <div className="flex items-center gap-2">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => handleEdit(expectation)}
-          >
+          <Button variant="ghost" size="sm" onClick={() => handleEdit(expectation)}>
             <Edit2 className="h-4 w-4" />
           </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => handleDelete(expectation.id)}
-          >
+          <Button variant="ghost" size="sm" onClick={() => handleDelete(expectation.id)}>
             <Trash2 className="h-4 w-4" />
           </Button>
         </div>
@@ -239,7 +264,7 @@ export default function CurriculumExpectationsPage() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All subjects</SelectItem>
-                {subjects.map(subject => (
+                {subjects.map((subject) => (
                   <SelectItem key={subject} value={subject}>
                     {subject}
                   </SelectItem>
@@ -247,13 +272,16 @@ export default function CurriculumExpectationsPage() {
               </SelectContent>
             </Select>
 
-            <Select value={String(selectedGrade)} onValueChange={(value) => setSelectedGrade(value === 'all' ? 'all' : Number(value))}>
+            <Select
+              value={String(selectedGrade)}
+              onValueChange={(value) => setSelectedGrade(value === 'all' ? 'all' : Number(value))}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="All grades" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All grades</SelectItem>
-                {grades.map(grade => (
+                {grades.map((grade) => (
                   <SelectItem key={grade} value={String(grade)}>
                     Grade {grade}
                   </SelectItem>
@@ -261,7 +289,10 @@ export default function CurriculumExpectationsPage() {
               </SelectContent>
             </Select>
 
-            <Select value={selectedType} onValueChange={(value: any) => setSelectedType(value)}>
+            <Select
+              value={selectedType}
+              onValueChange={(value) => setSelectedType(value as 'all' | 'overall' | 'specific')}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="All types" />
               </SelectTrigger>
@@ -277,14 +308,14 @@ export default function CurriculumExpectationsPage() {
 
       <Tabs defaultValue={subjects[0] || 'all'} className="space-y-4">
         <TabsList className="grid w-full grid-cols-auto">
-          {subjects.map(subject => (
+          {subjects.map((subject) => (
             <TabsTrigger key={subject} value={subject}>
               {subject}
             </TabsTrigger>
           ))}
         </TabsList>
 
-        {subjects.map(subject => (
+        {subjects.map((subject) => (
           <TabsContent key={subject} value={subject} className="space-y-4">
             <Card>
               <CardHeader>
@@ -321,7 +352,7 @@ export default function CurriculumExpectationsPage() {
                         </TableCell>
                       </TableRow>
                     ) : (
-                      groupedExpectations[subject]?.map(expectation => (
+                      groupedExpectations[subject]?.map((expectation) => (
                         <ExpectationRow key={expectation.id} expectation={expectation} />
                       ))
                     )}
@@ -358,10 +389,12 @@ export default function CurriculumExpectationsPage() {
                 <Label>Description (English)</Label>
                 <Textarea
                   value={editingExpectation.description}
-                  onChange={(e) => setEditingExpectation({
-                    ...editingExpectation,
-                    description: e.target.value,
-                  })}
+                  onChange={(e) =>
+                    setEditingExpectation({
+                      ...editingExpectation,
+                      description: e.target.value,
+                    })
+                  }
                   rows={3}
                 />
               </div>
@@ -370,10 +403,12 @@ export default function CurriculumExpectationsPage() {
                 <Label>Description (French)</Label>
                 <Textarea
                   value={editingExpectation.descriptionFr || ''}
-                  onChange={(e) => setEditingExpectation({
-                    ...editingExpectation,
-                    descriptionFr: e.target.value,
-                  })}
+                  onChange={(e) =>
+                    setEditingExpectation({
+                      ...editingExpectation,
+                      descriptionFr: e.target.value,
+                    })
+                  }
                   rows={3}
                   placeholder="Optional French translation"
                 />
@@ -384,20 +419,24 @@ export default function CurriculumExpectationsPage() {
                   <Label>Strand</Label>
                   <Input
                     value={editingExpectation.strand}
-                    onChange={(e) => setEditingExpectation({
-                      ...editingExpectation,
-                      strand: e.target.value,
-                    })}
+                    onChange={(e) =>
+                      setEditingExpectation({
+                        ...editingExpectation,
+                        strand: e.target.value,
+                      })
+                    }
                   />
                 </div>
                 <div>
                   <Label>Substrand (Optional)</Label>
                   <Input
                     value={editingExpectation.substrand || ''}
-                    onChange={(e) => setEditingExpectation({
-                      ...editingExpectation,
-                      substrand: e.target.value,
-                    })}
+                    onChange={(e) =>
+                      setEditingExpectation({
+                        ...editingExpectation,
+                        substrand: e.target.value,
+                      })
+                    }
                   />
                 </div>
               </div>
@@ -407,9 +446,7 @@ export default function CurriculumExpectationsPage() {
             <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
               Cancel
             </Button>
-            <Button onClick={handleSaveEdit}>
-              Save Changes
-            </Button>
+            <Button onClick={handleSaveEdit}>Save Changes</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

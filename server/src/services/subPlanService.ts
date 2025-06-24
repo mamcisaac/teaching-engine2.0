@@ -49,7 +49,10 @@ export interface SubPlanOptions {
   userId?: number;
 }
 
-export async function buildSubPlanData(date: string, options: SubPlanOptions = {}): Promise<SubPlanData> {
+export async function buildSubPlanData(
+  date: string,
+  options: SubPlanOptions = {},
+): Promise<SubPlanData> {
   const dayStart = new Date(date);
   dayStart.setUTCHours(0, 0, 0, 0);
   const dayEnd = new Date(dayStart);
@@ -60,71 +63,45 @@ export async function buildSubPlanData(date: string, options: SubPlanOptions = {
     includeRoutines = true,
     includePlans = true,
     anonymize = false,
-    userId = 1
+    userId = 1,
   } = options;
 
   const [plan, events, blocks, prefs, routines, studentGoals] = await Promise.all([
-    includePlans ? prisma.dailyPlan.findFirst({
-      where: { date: dayStart },
-      include: {
-        items: {
-          include: {
-            activity: {
-              include: {
-                milestone: { select: { subjectId: true } },
-                outcomes: { include: { outcome: true } },
-              },
-            },
-            slot: true,
-          },
-        },
-      },
-    }) : null,
+    // DISABLED: Legacy dailyPlan model removed in ETFO migration
+    includePlans ? Promise.resolve(null) : Promise.resolve(null), // Legacy dailyPlan query disabled
     prisma.calendarEvent.findMany({
       where: { start: { lte: dayEnd }, end: { gte: dayStart } },
     }),
     prisma.unavailableBlock.findMany({ where: { date: dayStart } }),
     prisma.teacherPreferences.findFirst({ where: { id: 1 } }),
-    includeRoutines ? prisma.classRoutine.findMany({
-      where: { userId, isActive: true },
-      orderBy: [{ priority: 'desc' }, { category: 'asc' }],
-    }) : [],
-    includeGoals ? prisma.studentGoal.findMany({
-      where: { 
-        status: 'active',
-        student: { userId }
-      },
-      include: {
-        student: true,
-        outcome: true
-      },
-      take: 10 // Limit to most relevant goals
-    }) : [],
+    includeRoutines
+      ? prisma.classRoutine.findMany({
+          where: { userId, isActive: true },
+          orderBy: [{ priority: 'desc' }, { category: 'asc' }],
+        })
+      : [],
+    includeGoals
+      ? prisma.studentGoal.findMany({
+          where: {
+            status: 'active',
+            student: { userId },
+          },
+          include: {
+            student: true,
+            theme: true, // Changed from outcome to theme (ETFO alignment)
+          },
+          take: 10, // Limit to most relevant goals
+        })
+      : [],
   ]);
 
   const schedule: ScheduleEntry[] = [];
   if (plan) {
     for (const item of plan.items) {
-      const subjectId = item.slot?.subjectId ?? item.activity?.milestone.subjectId;
-      let act = item.activity;
-      if (act?.id && !act.isSubFriendly && subjectId) {
-        act = await prisma.activity.findFirst({
-          where: { isFallback: true, milestone: { subjectId } },
-          include: {
-            milestone: { select: { subjectId: true } },
-            outcomes: { include: { outcome: true } },
-          },
-        });
-      }
-      if (!act && subjectId) {
-        act = await prisma.activity.findFirst({
-          where: { isFallback: true, milestone: { subjectId } },
-          include: {
-            milestone: { select: { subjectId: true } },
-            outcomes: { include: { outcome: true } },
-          },
-        });
-      }
+      const _subjectId = item.slot?.subjectId ?? item.activity?.milestone.subjectId;
+      // DISABLED: Legacy activity model removed in ETFO migration
+      // const act = null; // Legacy activity queries disabled
+      const act = null;
       schedule.push({ time: minToTime(item.startMin), activity: act?.title ?? '' });
     }
   }
@@ -174,24 +151,24 @@ export async function buildSubPlanData(date: string, options: SubPlanOptions = {
   }
 
   // Format goals with optional anonymization
-  const formattedGoals = studentGoals.map(goal => ({
+  const formattedGoals = studentGoals.map((goal) => ({
     id: goal.id,
     text: goal.text,
     status: goal.status,
-    studentName: anonymize ? undefined : `${goal.student.firstName} ${goal.student.lastName}`
+    studentName: anonymize ? undefined : `${goal.student.firstName} ${goal.student.lastName}`,
   }));
 
   // Format routines
-  const formattedRoutines = routines.map(routine => ({
+  const formattedRoutines = routines.map((routine) => ({
     id: routine.id,
     title: routine.title,
     description: routine.description,
     category: routine.category,
-    timeOfDay: routine.timeOfDay || undefined
+    timeOfDay: routine.timeOfDay || undefined,
   }));
 
   // Generate fallback plan
-  const fallbackPlan = prefs?.subPlanProcedures 
+  const fallbackPlan = prefs?.subPlanProcedures
     ? `Emergency Fallback: ${prefs.subPlanProcedures}\n\nIf technology fails or activities cannot be completed, use print materials from the substitute folder and engage students in quiet reading or journaling activities.`
     : 'If technology fails or activities cannot be completed, use print materials from the substitute folder and engage students in quiet reading or journaling activities.';
 
@@ -204,22 +181,26 @@ export async function buildSubPlanData(date: string, options: SubPlanOptions = {
     outcomes: includePlans ? Array.from(uniqueOutcomes.values()) : undefined,
     goals: includeGoals ? formattedGoals : undefined,
     routines: includeRoutines ? formattedRoutines : undefined,
-    fallbackPlan
+    fallbackPlan,
   };
 }
 
-export async function generateSubPlan(date: string, days = 1, options: SubPlanOptions = {}): Promise<Buffer> {
+export async function generateSubPlan(
+  date: string,
+  days = 1,
+  options: SubPlanOptions = {},
+): Promise<Buffer> {
   const doc = new PDFDocument();
   const chunks: Buffer[] = [];
   doc.on('data', (c) => chunks.push(c));
   const info = await prisma.substituteInfo.findFirst({ where: { id: 1 } });
-  
+
   for (let i = 0; i < days; i++) {
     if (i > 0) doc.addPage();
     const d = new Date(date);
     d.setUTCDate(d.getUTCDate() + i);
     const data = await buildSubPlanData(d.toISOString().slice(0, 10), options);
-    
+
     await generateSubPlanPDF(
       {
         today: data.schedule.map((s) => ({ time: s.time, activity: s.activity ?? s.note ?? '' })),

@@ -15,11 +15,22 @@ export interface WeeklyPlanData {
         description: string;
       }>;
     }>;
-    milestones: Array<{
+    unitPlans: Array<{
+      id: string;
       title: string;
-      targetDate: string;
-      progress: number;
-      subject: string;
+      startDate: Date;
+      endDate: Date;
+      subject?: string;
+      longRangePlan: {
+        subject: string;
+        grade: number;
+      };
+      lessonPlans: Array<{
+        id: string;
+        title: string;
+        duration: number;
+        daybookEntry: unknown;
+      }>;
     }>;
     assessments: Array<{
       title: string;
@@ -53,19 +64,19 @@ export interface WeeklyPlanData {
 export async function extractWeeklyPlan(
   startDate: string,
   numDays: number = 5,
-  options: SubPlanOptions = {}
+  options: SubPlanOptions = {},
 ): Promise<WeeklyPlanData> {
   const { userId = 1 } = options;
-  
+
   // Generate data for each day
   const days: SubPlanData[] = [];
   const startDateObj = new Date(startDate);
-  
+
   for (let i = 0; i < numDays; i++) {
     const currentDate = new Date(startDateObj);
     currentDate.setUTCDate(startDateObj.getUTCDate() + i);
     const dateStr = currentDate.toISOString().split('T')[0];
-    
+
     const dayData = await buildSubPlanData(dateStr, options);
     days.push(dayData);
   }
@@ -77,10 +88,10 @@ export async function extractWeeklyPlan(
 
   // Extract weekly overview data
   const weeklyOverview = await extractWeeklyOverview(startDate, endDate, userId);
-  
+
   // Generate continuity notes
   const continuityNotes = generateContinuityNotes(days);
-  
+
   // Create emergency backup plans
   const emergencyBackupPlans = await generateEmergencyBackupPlans();
 
@@ -90,53 +101,80 @@ export async function extractWeeklyPlan(
     days,
     weeklyOverview,
     continuityNotes,
-    emergencyBackupPlans
+    emergencyBackupPlans,
   };
 }
 
 /**
  * Extract weekly overview with subjects, milestones, and assessments
  */
-async function extractWeeklyOverview(startDate: string, endDate: string, userId: number) {
+async function extractWeeklyOverview(
+  startDate: string,
+  endDate: string,
+  userId: number,
+): Promise<{
+  subjects: Array<{
+    name: string;
+    totalHours: number;
+    keyTopics: string[];
+    outcomes: Array<{
+      code: string;
+      description: string;
+    }>;
+  }>;
+  unitPlans: Array<{
+    id: string;
+    title: string;
+    startDate: Date;
+    endDate: Date;
+    subject?: string;
+    longRangePlan: {
+      subject: string;
+      grade: number;
+    };
+    lessonPlans: Array<{
+      id: string;
+      title: string;
+      duration: number;
+      daybookEntry: unknown;
+    }>;
+  }>;
+  assessments: Array<{
+    title: string;
+    date: string;
+    subject: string;
+    type: string;
+  }>;
+  specialEvents: Array<{
+    title: string;
+    date: string;
+    time?: string;
+    impact: string;
+  }>;
+}> {
   const weekStart = new Date(startDate);
   weekStart.setUTCHours(0, 0, 0, 0);
   const weekEnd = new Date(endDate);
   weekEnd.setUTCHours(23, 59, 59, 999);
 
   // Get all daily plans for the week
-  const weeklyPlans = await prisma.dailyPlan.findMany({
-    where: {
-      date: {
-        gte: weekStart,
-        lte: weekEnd
-      }
-    },
-    include: {
-      items: {
-        include: {
-          activity: {
-            include: {
-              milestone: {
-                include: {
-                  subject: true
-                }
-              },
-              outcomes: {
-                include: {
-                  outcome: true
-                }
-              }
-            }
-          },
-          slot: {
-            include: {
-              subject: true
-            }
-          }
-        }
-      }
-    }
-  });
+  // DISABLED: Legacy dailyPlan model removed in ETFO migration
+  const weeklyPlans: Array<{
+    items: Array<{
+      slot?: { subject?: { name: string } };
+      activity?: {
+        title?: string;
+        milestone?: { subject?: { name: string } };
+        outcomes?: Array<{
+          outcome: {
+            id: string;
+            code: string;
+            description: string;
+          };
+        }>;
+      };
+    }>;
+  }> = []; // Legacy dailyPlan query disabled
 
   // Get unit plans for the period using ETFO framework
   const unitPlans = await prisma.unitPlan.findMany({
@@ -146,60 +184,60 @@ async function extractWeeklyOverview(startDate: string, endDate: string, userId:
         {
           startDate: {
             gte: weekStart,
-            lte: weekEnd
-          }
+            lte: weekEnd,
+          },
         },
         {
           endDate: {
             gte: weekStart,
-            lte: weekEnd
-          }
+            lte: weekEnd,
+          },
         },
         {
-          AND: [
-            { startDate: { lte: weekStart } },
-            { endDate: { gte: weekEnd } }
-          ]
-        }
-      ]
+          AND: [{ startDate: { lte: weekStart } }, { endDate: { gte: weekEnd } }],
+        },
+      ],
     },
     include: {
       longRangePlan: {
         select: {
           subject: true,
-          grade: true
-        }
+          grade: true,
+        },
       },
       lessonPlans: {
         include: {
-          daybookEntry: true
-        }
-      }
-    }
+          daybookEntry: true,
+        },
+      },
+    },
   });
 
   // Assessment functionality removed
-  const assessments: Array<Record<string, unknown>> = [];
+  // const assessments: Array<Record<string, unknown>> = [];
 
   // Get special events
   const specialEvents = await prisma.calendarEvent.findMany({
     where: {
       start: {
-        gte: weekStart
+        gte: weekStart,
       },
       end: {
-        lte: weekEnd
-      }
-    }
+        lte: weekEnd,
+      },
+    },
   });
 
   // Process subjects and calculate hours
-  const subjectMap = new Map<string, {
-    name: string;
-    totalHours: number;
-    keyTopics: Set<string>;
-    outcomes: Map<string, { code: string; description: string }>;
-  }>();
+  const subjectMap = new Map<
+    string,
+    {
+      name: string;
+      totalHours: number;
+      keyTopics: Set<string>;
+      outcomes: Map<string, { code: string; description: string }>;
+    }
+  >();
 
   for (const plan of weeklyPlans) {
     for (const item of plan.items) {
@@ -211,27 +249,27 @@ async function extractWeeklyOverview(startDate: string, endDate: string, userId:
           name: subject.name,
           totalHours: 0,
           keyTopics: new Set(),
-          outcomes: new Map()
+          outcomes: new Map(),
         });
       }
 
       const subjectData = subjectMap.get(subject.name)!;
-      
+
       // Add duration (assuming 15-minute slots, could be made configurable)
       subjectData.totalHours += 0.25;
-      
+
       // Add activity topics
       if (item.activity?.title) {
         subjectData.keyTopics.add(item.activity.title);
       }
-      
+
       // Add outcomes
       if (item.activity?.outcomes) {
         for (const outcomeRel of item.activity.outcomes) {
           const outcome = outcomeRel.outcome;
           subjectData.outcomes.set(outcome.id, {
             code: outcome.code,
-            description: outcome.description
+            description: outcome.description,
           });
         }
       }
@@ -239,45 +277,37 @@ async function extractWeeklyOverview(startDate: string, endDate: string, userId:
   }
 
   // Convert to final format
-  const subjects = Array.from(subjectMap.values()).map(s => ({
+  const subjects = Array.from(subjectMap.values()).map((s) => ({
     name: s.name,
     totalHours: Math.round(s.totalHours * 4) / 4, // Round to nearest quarter hour
     keyTopics: Array.from(s.keyTopics).slice(0, 5), // Limit to top 5
-    outcomes: Array.from(s.outcomes.values())
+    outcomes: Array.from(s.outcomes.values()),
   }));
 
-  // Process milestones
-  const processedMilestones = milestones.map(milestone => {
-    const totalActivities = milestone.activities.length;
-    const completedActivities = milestone.activities.filter(a => 
-      a.completedAt !== null
-    ).length;
-    const progress = totalActivities > 0 ? (completedActivities / totalActivities) * 100 : 0;
-
-    return {
-      title: milestone.title,
-      targetDate: milestone.targetDate ? milestone.targetDate.toISOString().split('T')[0] : '',
-      progress: Math.round(progress),
-      subject: milestone.subject.name
-    };
-  });
+  // Process milestones - DISABLED: Legacy milestone model removed in ETFO migration
+  // const processedMilestones: any[] = []; // Legacy milestone processing disabled
 
   // Assessment functionality removed
-  const processedAssessments: Array<{ title: string; date: string; subject: string; type: string; }> = [];
+  const processedAssessments: Array<{
+    title: string;
+    date: string;
+    subject: string;
+    type: string;
+  }> = [];
 
   // Process special events
-  const processedEvents = specialEvents.map(event => ({
+  const processedEvents = specialEvents.map((event) => ({
     title: event.title,
     date: event.start.toISOString().split('T')[0],
     time: event.allDay ? undefined : event.start.toISOString().split('T')[1].slice(0, 5),
-    impact: determineEventImpact(event.title, event.allDay)
+    impact: determineEventImpact(event.title, event.allDay),
   }));
 
   return {
     subjects,
-    milestones: processedMilestones,
+    unitPlans, // Changed from milestones to unitPlans (ETFO alignment)
     assessments: processedAssessments,
-    specialEvents: processedEvents
+    specialEvents: processedEvents,
   };
 }
 
@@ -295,7 +325,7 @@ function generateContinuityNotes(days: SubPlanData[]): Array<{
   for (let i = 0; i < days.length; i++) {
     const currentDay = days[i];
     const previousDay = i > 0 ? days[i - 1] : undefined;
-    
+
     const connections: string[] = [];
     const preparations: string[] = [];
 
@@ -303,36 +333,36 @@ function generateContinuityNotes(days: SubPlanData[]): Array<{
       // Find subject connections
       const currentSubjects = extractSubjectsFromSchedule(currentDay.schedule);
       const previousSubjects = extractSubjectsFromSchedule(previousDay.schedule);
-      
-      const commonSubjects = currentSubjects.filter(s => 
-        previousSubjects.some(ps => ps.subject === s.subject)
+
+      const commonSubjects = currentSubjects.filter((s) =>
+        previousSubjects.some((ps) => ps.subject === s.subject),
       );
 
       for (const subject of commonSubjects) {
-        const prevActivity = previousSubjects.find(ps => ps.subject === subject.subject);
+        const prevActivity = previousSubjects.find((ps) => ps.subject === subject.subject);
         if (prevActivity && subject.activity !== prevActivity.activity) {
           connections.push(
-            `${subject.subject}: Continue from "${prevActivity.activity}" to "${subject.activity}"`
+            `${subject.subject}: Continue from "${prevActivity.activity}" to "${subject.activity}"`,
           );
         }
       }
 
       // Check for materials/setup needed
       const currentActivities = currentDay.schedule
-        .filter(s => s.activity)
-        .map(s => s.activity!);
-      
-      if (currentActivities.some(a => a.toLowerCase().includes('project'))) {
+        .filter((s) => s.activity)
+        .map((s) => s.activity!);
+
+      if (currentActivities.some((a) => a.toLowerCase().includes('project'))) {
         preparations.push('Ensure project materials from previous day are available');
       }
-      
-      if (currentActivities.some(a => a.toLowerCase().includes('presentation'))) {
+
+      if (currentActivities.some((a) => a.toLowerCase().includes('presentation'))) {
         preparations.push('Set up presentation equipment and student work displays');
       }
     }
 
     // Add general preparations for the day
-    const dayActivities = currentDay.schedule.filter(s => s.activity);
+    const dayActivities = currentDay.schedule.filter((s) => s.activity);
     if (dayActivities.length > 0) {
       preparations.push('Review daily schedule and prepare transition materials');
     }
@@ -341,7 +371,7 @@ function generateContinuityNotes(days: SubPlanData[]): Array<{
       day: currentDay.date,
       previousDay: previousDay?.date,
       connections,
-      preparations
+      preparations,
     });
   }
 
@@ -351,37 +381,23 @@ function generateContinuityNotes(days: SubPlanData[]): Array<{
 /**
  * Generate emergency backup plans by subject
  */
-async function generateEmergencyBackupPlans() {
-  const subjects = await prisma.subject.findMany({
-    include: {
-      milestones: {
-        include: {
-          activities: {
-            where: {
-              isFallback: true
-            },
-            take: 3
-          }
-        }
-      }
-    }
-  });
+async function generateEmergencyBackupPlans(): Promise<
+  Array<{
+    subject: string;
+    activities: string[];
+    materials: string[];
+  }>
+> {
+  const subjects = await prisma.subject.findMany({});
 
-  return subjects.map(subject => {
-    // Collect all fallback activities from all milestones
+  return subjects.map((subject) => {
+    // DISABLED: Legacy milestone/activity models removed in ETFO migration
     const fallbackActivities: Array<{ title: string }> = [];
-    subject.milestones.forEach(milestone => {
-      milestone.activities.forEach(activity => {
-        if (activity.isFallback) {
-          fallbackActivities.push(activity);
-        }
-      });
-    });
-    
+
     return {
       subject: subject.name,
-      activities: fallbackActivities.slice(0, 3).map(a => a.title),
-      materials: generateSubjectMaterials(subject.name)
+      activities: fallbackActivities.slice(0, 3).map((a) => a.title),
+      materials: generateSubjectMaterials(subject.name),
     };
   });
 }
@@ -389,13 +405,15 @@ async function generateEmergencyBackupPlans() {
 /**
  * Extract subjects from schedule entries
  */
-function extractSubjectsFromSchedule(schedule: Array<{ time: string; activity?: string; note?: string }>) {
+function extractSubjectsFromSchedule(
+  schedule: Array<{ time: string; activity?: string; note?: string }>,
+) {
   return schedule
-    .filter(entry => entry.activity && !entry.note)
-    .map(entry => ({
+    .filter((entry) => entry.activity && !entry.note)
+    .map((entry) => ({
       time: entry.time,
       activity: entry.activity!,
-      subject: inferSubjectFromActivity(entry.activity!)
+      subject: inferSubjectFromActivity(entry.activity!),
     }));
 }
 
@@ -404,7 +422,7 @@ function extractSubjectsFromSchedule(schedule: Array<{ time: string; activity?: 
  */
 function inferSubjectFromActivity(activity: string): string {
   const lower = activity.toLowerCase();
-  
+
   if (lower.includes('math') || lower.includes('number') || lower.includes('calculation')) {
     return 'Mathematics';
   }
@@ -423,7 +441,7 @@ function inferSubjectFromActivity(activity: string): string {
   if (lower.includes('pe') || lower.includes('physical') || lower.includes('sport')) {
     return 'Physical Education';
   }
-  
+
   return 'General';
 }
 
@@ -432,7 +450,7 @@ function inferSubjectFromActivity(activity: string): string {
  */
 function determineEventImpact(title: string, allDay: boolean): string {
   const lower = title.toLowerCase();
-  
+
   if (allDay) {
     if (lower.includes('holiday') || lower.includes('break')) {
       return 'No classes - school closed';
@@ -444,7 +462,7 @@ function determineEventImpact(title: string, allDay: boolean): string {
       return 'Modified schedule for all-school assembly';
     }
   }
-  
+
   if (lower.includes('fire drill')) {
     return 'Brief interruption - practice emergency procedures';
   }
@@ -454,7 +472,7 @@ function determineEventImpact(title: string, allDay: boolean): string {
   if (lower.includes('visit') || lower.includes('guest')) {
     return 'Special visitor - may affect regular activities';
   }
-  
+
   return 'May affect regular schedule - check with office';
 }
 
@@ -462,11 +480,7 @@ function determineEventImpact(title: string, allDay: boolean): string {
  * Generate common materials list by subject
  */
 function generateSubjectMaterials(subject: string): string[] {
-  const commonMaterials = [
-    'Whiteboard markers',
-    'Paper and pencils',
-    'Timer for activities'
-  ];
+  const commonMaterials = ['Whiteboard markers', 'Paper and pencils', 'Timer for activities'];
 
   switch (subject.toLowerCase()) {
     case 'mathematics':

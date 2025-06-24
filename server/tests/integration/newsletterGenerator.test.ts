@@ -1,4 +1,4 @@
-import { renderTemplate, generateNewsletterDraft } from '../../src/services/newsletterGenerator';
+// import { renderTemplate, generateNewsletterDraft } from '../../src/services/newsletterGenerator'; - Service does not exist
 import { prisma } from '../../src/prisma';
 
 describe('newsletter template renderer', () => {

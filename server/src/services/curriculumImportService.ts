@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { embeddingService } from './embeddingService';
+// import { embeddingService } from './embeddingService'; // Currently unused
 import BaseService from './base/BaseService';
 import { ImportStatus } from '@teaching-engine/database';
 // Import pdf-parse dynamically to avoid loading test files during module initialization
 let pdf: any;
 import mammoth from 'mammoth';
 import OpenAI from 'openai';
-
 
 export interface ImportProgress {
   importId: string;
@@ -16,10 +15,9 @@ export interface ImportProgress {
   errors: string[];
 }
 
-
 export class CurriculumImportService extends BaseService {
   private openai: OpenAI | null = null;
-  
+
   constructor() {
     super('CurriculumImportService');
     // Only initialize OpenAI if we have an API key
@@ -51,7 +49,7 @@ export class CurriculumImportService extends BaseService {
       // Get parsed subjects from metadata
       const metadata = importRecord.metadata as any;
       const subjects = metadata?.parsedSubjects || [];
-      
+
       let createdCount = 0;
 
       // Create curriculum expectations
@@ -80,7 +78,7 @@ export class CurriculumImportService extends BaseService {
           } catch (error) {
             this.logger.warn(
               { error, code: expectation.code },
-              'Failed to create expectation, skipping'
+              'Failed to create expectation, skipping',
             );
           }
         }
@@ -92,7 +90,7 @@ export class CurriculumImportService extends BaseService {
 
       this.logger.info(
         { importId, created: createdCount },
-        'Import confirmed and expectations created'
+        'Import confirmed and expectations created',
       );
 
       return { created: createdCount };
@@ -137,7 +135,6 @@ export class CurriculumImportService extends BaseService {
       throw new Error('Failed to start import session');
     }
   }
-
 
   /**
    * Parse CSV content into curriculum expectations
@@ -242,75 +239,83 @@ export class CurriculumImportService extends BaseService {
   /**
    * Extract curriculum expectations from PDF using pdf-parse and AI
    */
-  async parsePDF(fileBuffer: Buffer): Promise<Array<{
-    code: string;
-    description: string;
-    subject: string;
-    grade: number;
-    strand?: string;
-    substrand?: string;
-  }>> {
+  async parsePDF(fileBuffer: Buffer): Promise<
+    Array<{
+      code: string;
+      description: string;
+      subject: string;
+      grade: number;
+      strand?: string;
+      substrand?: string;
+    }>
+  > {
     try {
       this.logger.info('Starting PDF parsing');
-      
+
       // Lazy load pdf-parse to avoid initialization issues
       if (!pdf) {
         pdf = (await import('pdf-parse')).default;
       }
-      
+
       // Extract text from PDF
       const pdfData = await pdf(fileBuffer);
       const text = pdfData.text;
-      
+
       if (!text || text.length < 100) {
         throw new Error('PDF appears to be empty or too short');
       }
-      
+
       this.logger.info(`Extracted ${text.length} characters from PDF`);
-      
+
       // Use AI to parse the curriculum text
       const expectations = await this.parseTextWithAI(text);
-      
+
       this.logger.info(`Parsed ${expectations.length} expectations from PDF`);
       return expectations;
     } catch (error) {
       this.logger.error({ error }, 'Failed to parse PDF');
-      throw new Error(`PDF parsing failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(
+        `PDF parsing failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      );
     }
   }
 
   /**
    * Extract curriculum expectations from DOCX using mammoth and AI
    */
-  async parseDOCX(fileBuffer: Buffer): Promise<Array<{
-    code: string;
-    description: string;
-    subject: string;
-    grade: number;
-    strand?: string;
-    substrand?: string;
-  }>> {
+  async parseDOCX(fileBuffer: Buffer): Promise<
+    Array<{
+      code: string;
+      description: string;
+      subject: string;
+      grade: number;
+      strand?: string;
+      substrand?: string;
+    }>
+  > {
     try {
       this.logger.info('Starting DOCX parsing');
-      
+
       // Extract text from DOCX
       const result = await mammoth.extractRawText({ buffer: fileBuffer });
       const text = result.value;
-      
+
       if (!text || text.length < 100) {
         throw new Error('DOCX appears to be empty or too short');
       }
-      
+
       this.logger.info(`Extracted ${text.length} characters from DOCX`);
-      
+
       // Use AI to parse the curriculum text
       const expectations = await this.parseTextWithAI(text);
-      
+
       this.logger.info(`Parsed ${expectations.length} expectations from DOCX`);
       return expectations;
     } catch (error) {
       this.logger.error({ error }, 'Failed to parse DOCX');
-      throw new Error(`DOCX parsing failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(
+        `DOCX parsing failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      );
     }
   }
 
@@ -371,7 +376,7 @@ export class CurriculumImportService extends BaseService {
           },
           _count: {
             select: {
-              expectations: true,
+              curriculumExpectations: true,
             },
           },
         },
@@ -385,7 +390,6 @@ export class CurriculumImportService extends BaseService {
   }
 
   // Private helper methods
-
 
   private async updateImportStatus(
     importId: string,
@@ -427,14 +431,16 @@ export class CurriculumImportService extends BaseService {
   /**
    * Parse curriculum text using AI to extract expectations
    */
-  private async parseTextWithAI(text: string): Promise<Array<{
-    code: string;
-    description: string;
-    subject: string;
-    grade: number;
-    strand?: string;
-    substrand?: string;
-  }>> {
+  private async parseTextWithAI(text: string): Promise<
+    Array<{
+      code: string;
+      description: string;
+      subject: string;
+      grade: number;
+      strand?: string;
+      substrand?: string;
+    }>
+  > {
     try {
       // Split text into chunks if it's too long (GPT-4 has token limits)
       const chunks = this.chunkText(text, 3000); // ~750 words per chunk
@@ -446,10 +452,10 @@ export class CurriculumImportService extends BaseService {
         strand?: string;
         substrand?: string;
       }> = [];
-      
+
       for (let i = 0; i < chunks.length; i++) {
         this.logger.info(`Processing chunk ${i + 1} of ${chunks.length}`);
-        
+
         const prompt = `You are an expert in curriculum design for elementary education. Extract curriculum expectations from the following text taken from a Grade 1 French Immersion curriculum document.
 
 Please extract and return in JSON format:
@@ -487,12 +493,16 @@ ${chunks[i]}
         if (!this.openai) {
           throw new Error('OpenAI API key not configured');
         }
-        
+
         const response = await this.openai.chat.completions.create({
           model: 'gpt-4',
           messages: [
-            { role: 'system', content: 'You are an expert curriculum analyst. Extract curriculum expectations accurately.' },
-            { role: 'user', content: prompt }
+            {
+              role: 'system',
+              content:
+                'You are an expert curriculum analyst. Extract curriculum expectations accurately.',
+            },
+            { role: 'user', content: prompt },
           ],
           temperature: 0.1, // Low temperature for accuracy
           max_tokens: 2000,
@@ -515,14 +525,14 @@ ${chunks[i]}
               strand: exp.strand || exp.domain || 'General',
               substrand: exp.substrand,
             }));
-            
+
             allExpectations.push(...expectations);
           }
         } catch (parseError) {
           this.logger.error({ parseError, chunk: i }, 'Failed to parse AI response');
         }
       }
-      
+
       return allExpectations;
     } catch (error) {
       this.logger.error({ error }, 'Failed to parse text with AI');
@@ -537,7 +547,7 @@ ${chunks[i]}
     const chunks: string[] = [];
     const paragraphs = text.split(/\n\n+/);
     let currentChunk = '';
-    
+
     for (const paragraph of paragraphs) {
       if (currentChunk.length + paragraph.length > maxCharsPerChunk && currentChunk.length > 0) {
         chunks.push(currentChunk.trim());
@@ -546,11 +556,11 @@ ${chunks[i]}
         currentChunk += (currentChunk ? '\n\n' : '') + paragraph;
       }
     }
-    
+
     if (currentChunk.trim()) {
       chunks.push(currentChunk.trim());
     }
-    
+
     return chunks;
   }
 
@@ -562,12 +572,12 @@ ${chunks[i]}
     // - Single letter or number (e.g., "A", "1")
     // - Ends with .0 (e.g., "A1.0")
     // - Contains "overall" in description
-    
+
     if (code.length === 1) return 'overall';
     if (code.endsWith('.0')) return 'overall';
     if (description.toLowerCase().includes('overall')) return 'overall';
     if (code.match(/^[A-Z]\d*$/)) return 'overall'; // e.g., "A1", "B2"
-    
+
     // Everything else is specific
     return 'specific';
   }
@@ -603,7 +613,10 @@ ${chunks[i]}
   /**
    * Parse uploaded file and extract curriculum expectations
    */
-  async parseUploadedFile(importId: string, options: { useAI?: boolean } = {}): Promise<{
+  async parseUploadedFile(
+    importId: string,
+    _options: { useAI?: boolean } = {},
+  ): Promise<{
     subjects: Array<{
       name: string;
       expectations: Array<{
@@ -636,7 +649,7 @@ ${chunks[i]}
 
       // Decode the file content from base64
       const fileBuffer = Buffer.from(importRecord.rawText, 'base64');
-      
+
       // Parse based on file format
       let expectations: Array<{
         code: string;
@@ -646,7 +659,7 @@ ${chunks[i]}
         strand?: string;
         substrand?: string;
       }> = [];
-      
+
       if (importRecord.sourceFormat === 'pdf') {
         expectations = await this.parsePDF(fileBuffer);
       } else if (importRecord.sourceFormat === 'docx') {
@@ -661,17 +674,17 @@ ${chunks[i]}
 
       // Group expectations by subject
       const subjectMap = new Map<string, any>();
-      
+
       for (const expectation of expectations) {
         const subjectName = expectation.subject || 'Unknown';
-        
+
         if (!subjectMap.has(subjectName)) {
           subjectMap.set(subjectName, {
             name: subjectName,
             expectations: [],
           });
         }
-        
+
         const subject = subjectMap.get(subjectName);
         subject.expectations.push({
           code: expectation.code,
@@ -683,7 +696,7 @@ ${chunks[i]}
           grade: expectation.grade || importRecord.grade,
         });
       }
-      
+
       const subjects = Array.from(subjectMap.values());
 
       // Store parsed subjects in metadata for later use
@@ -699,7 +712,7 @@ ${chunks[i]}
 
       // Update status to ready for review
       await this.updateImportStatus(importId, ImportStatus.READY_FOR_REVIEW);
-      
+
       this.logger.info(`File parsed for import ${importId}: ${subjects.length} subjects`);
 
       return {
@@ -716,7 +729,10 @@ ${chunks[i]}
   /**
    * Load preset curriculum data
    */
-  async loadPresetCurriculum(userId: number, presetId: string): Promise<{
+  async loadPresetCurriculum(
+    userId: number,
+    presetId: string,
+  ): Promise<{
     sessionId: string;
     subjects: Array<{
       name: string;
@@ -879,7 +895,10 @@ ${chunks[i]}
   /**
    * Finalize import and create actual curriculum expectations in the ETFO system
    */
-  async finalizeImport(importId: string, userId: number): Promise<{
+  async finalizeImport(
+    importId: string,
+    _userId: number,
+  ): Promise<{
     totalExpectations: number;
     subjects: string[];
   }> {
@@ -887,7 +906,7 @@ ${chunks[i]}
       const importRecord = await this.prisma.curriculumImport.findUnique({
         where: { id: importId },
         include: {
-          expectations: true,
+          curriculumExpectations: true,
         },
       });
 
@@ -897,14 +916,14 @@ ${chunks[i]}
 
       // Get the parsed subjects from the import metadata
       const parsedSubjects = (importRecord.metadata as any)?.parsedSubjects || [];
-      
+
       let totalExpectations = 0;
       const subjects: string[] = [];
 
       // Create curriculum expectations for each subject
       for (const subject of parsedSubjects) {
         subjects.push(subject.name);
-        
+
         for (const expectation of subject.expectations) {
           await this.prisma.curriculumExpectation.create({
             data: {

@@ -1,5 +1,3 @@
-import { prisma } from '../prisma';
-
 export interface EmergencyScenario {
   id: string;
   name: string;
@@ -28,14 +26,12 @@ export interface ScenarioDetectionResult {
 /**
  * Extract appropriate emergency scenario templates based on conditions
  */
-export async function extractScenarioTemplates(
-  conditions?: {
-    weather?: 'normal' | 'severe' | 'extreme';
-    technology?: 'working' | 'partial' | 'down';
-    staffing?: 'full' | 'short' | 'emergency';
-    building?: 'normal' | 'maintenance' | 'emergency';
-  }
-): Promise<ScenarioDetectionResult> {
+export async function extractScenarioTemplates(conditions?: {
+  weather?: 'normal' | 'severe' | 'extreme';
+  technology?: 'working' | 'partial' | 'down';
+  staffing?: 'full' | 'short' | 'emergency';
+  building?: 'normal' | 'maintenance' | 'emergency';
+}): Promise<ScenarioDetectionResult> {
   const allScenarios = getAllScenarios();
   const triggers: string[] = [];
   let recommendedScenario: EmergencyScenario | undefined;
@@ -44,38 +40,38 @@ export async function extractScenarioTemplates(
   if (conditions) {
     if (conditions.weather === 'severe' || conditions.weather === 'extreme') {
       triggers.push('severe_weather');
-      recommendedScenario = allScenarios.find(s => s.id === 'severe_weather');
+      recommendedScenario = allScenarios.find((s) => s.id === 'severe_weather');
     }
-    
+
     if (conditions.technology === 'down') {
       triggers.push('technology_failure');
       if (!recommendedScenario) {
-        recommendedScenario = allScenarios.find(s => s.id === 'technology_failure');
+        recommendedScenario = allScenarios.find((s) => s.id === 'technology_failure');
       }
     }
-    
+
     if (conditions.building === 'emergency') {
       triggers.push('lockdown');
-      recommendedScenario = allScenarios.find(s => s.id === 'lockdown'); // Override others
+      recommendedScenario = allScenarios.find((s) => s.id === 'lockdown'); // Override others
     }
-    
+
     if (conditions.staffing === 'emergency') {
       triggers.push('staff_shortage');
       if (!recommendedScenario) {
-        recommendedScenario = allScenarios.find(s => s.id === 'staff_shortage');
+        recommendedScenario = allScenarios.find((s) => s.id === 'staff_shortage');
       }
     }
   }
 
   // If no specific conditions, provide general scenario
   if (!recommendedScenario) {
-    recommendedScenario = allScenarios.find(s => s.id === 'general_emergency');
+    recommendedScenario = allScenarios.find((s) => s.id === 'general_emergency');
   }
 
   return {
     scenarios: allScenarios,
     triggers,
-    recommendedScenario
+    recommendedScenario,
   };
 }
 
@@ -83,7 +79,7 @@ export async function extractScenarioTemplates(
  * Get specific scenario by ID
  */
 export function getScenarioById(scenarioId: string): EmergencyScenario | undefined {
-  return getAllScenarios().find(s => s.id === scenarioId);
+  return getAllScenarios().find((s) => s.id === scenarioId);
 }
 
 /**
@@ -92,7 +88,7 @@ export function getScenarioById(scenarioId: string): EmergencyScenario | undefin
 export function generateScenarioContent(
   scenario: EmergencyScenario,
   teacherName?: string,
-  className?: string
+  className?: string,
 ): string {
   const template = scenario.template
     .replace('{{TEACHER_NAME}}', teacherName || '[Teacher Name]')
@@ -106,33 +102,27 @@ export function generateScenarioContent(
 /**
  * Check current conditions and auto-select scenario
  */
-export async function autoDetectScenario(userId: number = 1): Promise<EmergencyScenario> {
+export async function autoDetectScenario(_userId: number = 1): Promise<EmergencyScenario> {
   // In a real implementation, this might check:
   // - Weather APIs
   // - System status
   // - School announcements
   // - Staff availability
-  
+
   // For now, we'll use a simple heuristic based on time and recent patterns
   const currentHour = new Date().getHours();
   const isWeekend = [0, 6].includes(new Date().getDay());
-  
+
   // Check if there are any system issues (mock detection)
-  const recentPlans = await prisma.dailyPlan.findMany({
-    where: {
-      date: {
-        gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) // Last 7 days
-      }
-    },
-    take: 5
-  });
+  // DISABLED: Legacy dailyPlan model removed in ETFO migration
+  const recentPlans: Array<unknown> = []; // Legacy dailyPlan query disabled
 
   // Simple heuristics for scenario detection
   if (currentHour < 6 || currentHour > 20 || isWeekend) {
     // Off-hours emergency
     return getScenarioById('general_emergency')!;
   }
-  
+
   if (recentPlans.length === 0) {
     // No recent planning data - might be start of year or system issues
     return getScenarioById('staff_shortage')!;
@@ -157,37 +147,45 @@ function getAllScenarios(): EmergencyScenario[] {
         'Follow regular classroom routines as much as possible',
         'Take attendance at the beginning of each class period',
         'Maintain normal break and lunch schedules',
-        'Report any issues to the office immediately'
+        'Report any issues to the office immediately',
       ],
       materials: [
         'Emergency sub folder (in top desk drawer)',
         'Class lists with emergency contacts',
         'Daily schedule and room routines',
         'Generic activity worksheets',
-        'Books for silent reading time'
+        'Books for silent reading time',
       ],
       contacts: [
         { role: 'Principal', number: 'Ext. 100', when: 'For any emergencies or major issues' },
-        { role: 'Office', number: 'Ext. 101', when: 'For attendance, late students, or general questions' },
+        {
+          role: 'Office',
+          number: 'Ext. 101',
+          when: 'For attendance, late students, or general questions',
+        },
         { role: 'Vice Principal', number: 'Ext. 102', when: 'For discipline issues' },
-        { role: 'School Nurse', number: 'Ext. 105', when: 'For health emergencies or student illness' }
+        {
+          role: 'School Nurse',
+          number: 'Ext. 105',
+          when: 'For health emergencies or student illness',
+        },
       ],
       modifications: {
         schedule: [
           'Follow posted schedule as closely as possible',
           'Allow extra time for transitions between activities',
-          'Be flexible with timing if students need more help'
+          'Be flexible with timing if students need more help',
         ],
         activities: [
           'Use pre-planned backup activities if technology fails',
           'Focus on review and reinforcement rather than new concepts',
-          'Allow for more independent work time'
+          'Allow for more independent work time',
         ],
         safety: [
           'Keep classroom door locked during class',
           'Know location of emergency exits',
-          'Familiarize yourself with evacuation procedures'
-        ]
+          'Familiarize yourself with evacuation procedures',
+        ],
       },
       template: `EMERGENCY SUBSTITUTE PLAN - {{CLASS_NAME}}
 Date: {{DATE}}
@@ -216,9 +214,9 @@ If planned activities cannot be completed:
 - Math review worksheets (in green folder)
 - Journal writing prompts (posted on wall)
 
-Thank you for covering this class. Please leave detailed notes about the day.`
+Thank you for covering this class. Please leave detailed notes about the day.`,
     },
-    
+
     {
       id: 'technology_failure',
       name: 'Technology Failure Plan',
@@ -229,7 +227,7 @@ Thank you for covering this class. Please leave detailed notes about the day.`
         'Switch to paper-based alternatives for all activities',
         'Use analog teaching tools (whiteboard, printed materials)',
         'Inform students of technology issues and adjust expectations',
-        'Focus on activities that don\'t require technology'
+        "Focus on activities that don't require technology",
       ],
       materials: [
         'Printed worksheets and activities (in blue folder)',
@@ -237,30 +235,34 @@ Thank you for covering this class. Please leave detailed notes about the day.`
         'Physical manipulatives and teaching aids',
         'Books and reading materials',
         'Paper and pencils for all students',
-        'Analog timer or watch'
+        'Analog timer or watch',
       ],
       contacts: [
         { role: 'IT Support', number: 'Ext. 150', when: 'To report technology issues' },
         { role: 'Office', number: 'Ext. 101', when: 'To inform of technology problems' },
-        { role: 'Principal', number: 'Ext. 100', when: 'If technology failure affects safety or major activities' }
+        {
+          role: 'Principal',
+          number: 'Ext. 100',
+          when: 'If technology failure affects safety or major activities',
+        },
       ],
       modifications: {
         schedule: [
           'Allow extra time for distributing materials',
           'Simplify transitions that normally use technology',
-          'Extend activities that work well without technology'
+          'Extend activities that work well without technology',
         ],
         activities: [
           'Replace digital activities with hands-on alternatives',
           'Use printed versions of all worksheets',
           'Focus on discussion-based learning',
-          'Increase physical movement and group work'
+          'Increase physical movement and group work',
         ],
         safety: [
           'Ensure emergency communication methods still work',
           'Have backup plans for dismissal procedures',
-          'Keep manual attendance records'
-        ]
+          'Keep manual attendance records',
+        ],
       },
       template: `TECHNOLOGY FAILURE SUBSTITUTE PLAN - {{CLASS_NAME}}
 Date: {{DATE}}
@@ -288,7 +290,7 @@ MATERIALS LOCATION:
 - Supply cabinet: Paper, pencils, manipulatives
 - Bookshelf: Reading materials
 
-Remember: Focus on engagement over technology!`
+Remember: Focus on engagement over technology!`,
     },
 
     {
@@ -300,8 +302,8 @@ Remember: Focus on engagement over technology!`
         'Keep students calm and informed appropriately for their age',
         'Be prepared for modified dismissal procedures',
         'Keep students away from windows during severe weather',
-        'Follow school\'s severe weather protocols',
-        'Have indoor activities ready if outdoor time is cancelled'
+        "Follow school's severe weather protocols",
+        'Have indoor activities ready if outdoor time is cancelled',
       ],
       materials: [
         'Weather-appropriate indoor activities',
@@ -309,33 +311,37 @@ Remember: Focus on engagement over technology!`
         'Extra snacks in case of delayed dismissal',
         'Battery-powered radio for updates',
         'Flashlights (in emergency kit)',
-        'First aid kit (check location)'
+        'First aid kit (check location)',
       ],
       contacts: [
         { role: 'Office', number: 'Ext. 101', when: 'For weather updates and dismissal changes' },
         { role: 'Principal', number: 'Ext. 100', when: 'For emergency decisions' },
-        { role: 'District Office', number: '555-0123', when: 'For district-wide weather decisions' },
-        { role: 'Transportation', number: '555-0124', when: 'For bus schedule changes' }
+        {
+          role: 'District Office',
+          number: '555-0123',
+          when: 'For district-wide weather decisions',
+        },
+        { role: 'Transportation', number: '555-0124', when: 'For bus schedule changes' },
       ],
       modifications: {
         schedule: [
           'Cancel any outdoor activities or field trips',
           'Be prepared for early dismissal or extended day',
           'Keep flexible schedule based on weather updates',
-          'Plan for possible indoor recess/PE'
+          'Plan for possible indoor recess/PE',
         ],
         activities: [
           'Focus on calming, indoor activities',
           'Have extra movies or quiet games ready',
           'Prepare extended activities in case of long day',
-          'Include weather education if appropriate'
+          'Include weather education if appropriate',
         ],
         safety: [
           'Know location of severe weather shelter area',
           'Keep emergency supplies accessible',
           'Monitor school communications constantly',
-          'Stay calm to keep students calm'
-        ]
+          'Stay calm to keep students calm',
+        ],
       },
       template: `SEVERE WEATHER SUBSTITUTE PLAN - {{CLASS_NAME}}
 Date: {{DATE}}
@@ -360,7 +366,7 @@ WEATHER-SAFE ACTIVITIES:
 - Movies if extended day needed
 
 IMPORTANT: Stay calm, keep students informed age-appropriately.
-Check office every hour for updates.`
+Check office every hour for updates.`,
     },
 
     {
@@ -373,7 +379,7 @@ Check office every hour for updates.`
         'Keep students quiet and away from windows/doors',
         'Do not open door for anyone except identified school officials',
         'Take attendance silently',
-        'Wait for all-clear from administration'
+        'Wait for all-clear from administration',
       ],
       materials: [
         'Emergency contact list',
@@ -381,32 +387,40 @@ Check office every hour for updates.`
         'Water bottles (if available)',
         'Quiet activities (books, paper)',
         'Charged phone/communication device',
-        'Emergency procedures card'
+        'Emergency procedures card',
       ],
       contacts: [
-        { role: '911', number: '911', when: 'Only if immediate danger and no school contact available' },
-        { role: 'Principal', number: 'Ext. 100', when: 'Follow their lead - do not call unless emergency' },
-        { role: 'Office', number: 'Ext. 101', when: 'Only if specifically instructed' }
+        {
+          role: '911',
+          number: '911',
+          when: 'Only if immediate danger and no school contact available',
+        },
+        {
+          role: 'Principal',
+          number: 'Ext. 100',
+          when: 'Follow their lead - do not call unless emergency',
+        },
+        { role: 'Office', number: 'Ext. 101', when: 'Only if specifically instructed' },
       ],
       modifications: {
         schedule: [
           'All normal schedules are suspended',
           'Remain in secure location until all-clear',
           'No movement between rooms',
-          'Cancel all outside activities'
+          'Cancel all outside activities',
         ],
         activities: [
           'Silent activities only',
           'No technology that makes noise',
           'Comfort and calm students quietly',
-          'Reading or quiet drawing'
+          'Reading or quiet drawing',
         ],
         safety: [
           'Door locked, lights off',
           'Students away from windows/doors',
           'Maintain silence',
-          'Follow official instructions only'
-        ]
+          'Follow official instructions only',
+        ],
       },
       template: `🔒 LOCKDOWN PROCEDURES - {{CLASS_NAME}}
 Date: {{DATE}}
@@ -431,7 +445,7 @@ KEEP STUDENTS CALM:
 - Provide comfort quietly
 - Use silent activities
 
-Wait for administration's all-clear before resuming normal activities.`
+Wait for administration's all-clear before resuming normal activities.`,
     },
 
     {
@@ -444,7 +458,7 @@ Wait for administration's all-clear before resuming normal activities.`
         'Focus on simple, manageable activities',
         'Use peer helpers and responsible students',
         'Communicate frequently with remaining staff',
-        'Prioritize safety and basic routines'
+        'Prioritize safety and basic routines',
       ],
       materials: [
         'Large group activity supplies',
@@ -452,32 +466,36 @@ Wait for administration's all-clear before resuming normal activities.`
         'Simple worksheets for various grade levels',
         'Movies or educational videos',
         'Books for independent reading',
-        'Art supplies for quiet activities'
+        'Art supplies for quiet activities',
       ],
       contacts: [
         { role: 'Principal', number: 'Ext. 100', when: 'For grouping decisions and support' },
         { role: 'Vice Principal', number: 'Ext. 102', when: 'For assistance with large groups' },
-        { role: 'Office', number: 'Ext. 101', when: 'For student location and parent communication' }
+        {
+          role: 'Office',
+          number: 'Ext. 101',
+          when: 'For student location and parent communication',
+        },
       ],
       modifications: {
         schedule: [
           'Simplified schedule with longer activity blocks',
           'Combined classes for some activities',
           'Extra supervision during transitions',
-          'Modified lunch and break schedules'
+          'Modified lunch and break schedules',
         ],
         activities: [
           'Simple, independent activities',
           'Large group games and activities',
           'Extended movie/video time if needed',
-          'Cross-grade buddy reading'
+          'Cross-grade buddy reading',
         ],
         safety: [
           'Maintain higher supervision ratios',
           'Use buddy system for bathroom breaks',
           'Keep accurate headcounts',
-          'Have emergency evacuation plan for larger groups'
-        ]
+          'Have emergency evacuation plan for larger groups',
+        ],
       },
       template: `STAFF SHORTAGE SUBSTITUTE PLAN
 Date: {{DATE}}
@@ -505,7 +523,7 @@ SAFETY REMINDERS:
 - Frequent headcounts
 - Office support available
 
-Stay flexible and prioritize safety!`
-    }
+Stay flexible and prioritize safety!`,
+    },
   ];
 }

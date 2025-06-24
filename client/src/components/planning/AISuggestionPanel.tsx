@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
 import { Alert, AlertDescription } from '../ui/Alert';
-import { Sparkles, RefreshCw, Copy, Check, X } from 'lucide-react';
+import { Sparkles, RefreshCw, Copy, Check } from 'lucide-react';
 import { useToast } from '../ui/use-toast';
 import { AISuggestion } from '@/hooks/useAIPlanningAssistant';
 
@@ -72,9 +72,7 @@ export default function AISuggestionPanel({
               <Sparkles className="h-5 w-5 text-purple-500" />
               {title}
             </CardTitle>
-            {description && (
-              <CardDescription>{description}</CardDescription>
-            )}
+            {description && <CardDescription>{description}</CardDescription>}
           </div>
           <Button
             onClick={onGenerate}
@@ -100,20 +98,16 @@ export default function AISuggestionPanel({
       <CardContent>
         {error && (
           <Alert variant="destructive" className="mb-4">
-            <AlertDescription>
-              Failed to generate suggestions. Please try again.
-            </AlertDescription>
+            <AlertDescription>Failed to generate suggestions. Please try again.</AlertDescription>
           </Alert>
         )}
 
         {suggestions && suggestions.suggestions.length > 0 && (
           <div className="space-y-3">
             {suggestions.rationale && (
-              <p className="text-sm text-muted-foreground italic">
-                {suggestions.rationale}
-              </p>
+              <p className="text-sm text-muted-foreground italic">{suggestions.rationale}</p>
             )}
-            
+
             <div className="space-y-2">
               {suggestions.suggestions.map((suggestion, index) => (
                 <div
@@ -161,12 +155,7 @@ export default function AISuggestionPanel({
             </div>
 
             {onAcceptAll && acceptedIndices.size < suggestions.suggestions.length && (
-              <Button
-                onClick={handleAcceptAll}
-                variant="outline"
-                size="sm"
-                className="w-full"
-              >
+              <Button onClick={handleAcceptAll} variant="outline" size="sm" className="w-full">
                 Accept All Suggestions
               </Button>
             )}

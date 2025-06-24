@@ -7,7 +7,7 @@ export interface PlanningContext {
   subject?: string;
   grade?: number;
   curriculumExpectations?: string[];
-  previousContent?: Record<string, any>;
+  previousContent?: Record<string, unknown>;
 }
 
 export interface AISuggestion {
@@ -68,7 +68,7 @@ Return ONLY a JSON object with this structure:
         model: 'gpt-4',
         messages: [
           { role: 'system', content: 'You are an expert elementary education curriculum planner.' },
-          { role: 'user', content: prompt }
+          { role: 'user', content: prompt },
         ],
         temperature: 0.7,
         max_tokens: 1000,
@@ -132,8 +132,11 @@ Return ONLY a JSON object with this structure:
       const response = await this.openai.chat.completions.create({
         model: 'gpt-4',
         messages: [
-          { role: 'system', content: 'You are an expert in Understanding by Design and elementary education.' },
-          { role: 'user', content: prompt }
+          {
+            role: 'system',
+            content: 'You are an expert in Understanding by Design and elementary education.',
+          },
+          { role: 'user', content: prompt },
         ],
         temperature: 0.7,
         max_tokens: 1000,
@@ -199,8 +202,11 @@ Return ONLY a JSON object with this structure:
       const response = await this.openai.chat.completions.create({
         model: 'gpt-4',
         messages: [
-          { role: 'system', content: 'You are an experienced elementary teacher skilled in lesson planning.' },
-          { role: 'user', content: prompt }
+          {
+            role: 'system',
+            content: 'You are an experienced elementary teacher skilled in lesson planning.',
+          },
+          { role: 'user', content: prompt },
         ],
         temperature: 0.8,
         max_tokens: 1200,
@@ -260,8 +266,11 @@ Return ONLY a JSON object with this structure:
       const response = await this.openai.chat.completions.create({
         model: 'gpt-4',
         messages: [
-          { role: 'system', content: 'You are a practical elementary teacher who knows classroom management.' },
-          { role: 'user', content: prompt }
+          {
+            role: 'system',
+            content: 'You are a practical elementary teacher who knows classroom management.',
+          },
+          { role: 'user', content: prompt },
         ],
         temperature: 0.6,
         max_tokens: 800,
@@ -325,8 +334,11 @@ Return ONLY a JSON object with this structure:
       const response = await this.openai.chat.completions.create({
         model: 'gpt-4',
         messages: [
-          { role: 'system', content: 'You are an expert in educational assessment and elementary teaching.' },
-          { role: 'user', content: prompt }
+          {
+            role: 'system',
+            content: 'You are an expert in educational assessment and elementary teaching.',
+          },
+          { role: 'user', content: prompt },
         ],
         temperature: 0.7,
         max_tokens: 1000,
@@ -392,7 +404,7 @@ Return ONLY a JSON object with this structure:
         model: 'gpt-4',
         messages: [
           { role: 'system', content: 'You are a reflective practitioner in elementary education.' },
-          { role: 'user', content: prompt }
+          { role: 'user', content: prompt },
         ],
         temperature: 0.7,
         max_tokens: 800,
@@ -420,7 +432,7 @@ Return ONLY a JSON object with this structure:
    */
   async getCurriculumAlignedSuggestions(
     expectationIds: string[],
-    suggestionType: 'activities' | 'assessments' | 'resources'
+    suggestionType: 'activities' | 'assessments' | 'resources',
   ): Promise<string[]> {
     if (!this.openai || expectationIds.length === 0) {
       return [];
@@ -436,8 +448,8 @@ Return ONLY a JSON object with this structure:
         return [];
       }
 
-      const expectationTexts = expectations.map(e => `${e.code}: ${e.description}`);
-      
+      const expectationTexts = expectations.map((e) => `${e.code}: ${e.description}`);
+
       const typePrompts = {
         activities: 'learning activities that directly address',
         assessments: 'assessment strategies to evaluate student achievement of',
@@ -457,7 +469,7 @@ Return ONLY a JSON array of strings:
         model: 'gpt-4',
         messages: [
           { role: 'system', content: 'You are an elementary curriculum expert.' },
-          { role: 'user', content: prompt }
+          { role: 'user', content: prompt },
         ],
         temperature: 0.7,
         max_tokens: 600,

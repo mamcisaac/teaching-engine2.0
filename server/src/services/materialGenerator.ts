@@ -1,12 +1,4 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import archiver from 'archiver';
 import { prisma } from '../prisma';
-
-const __filename_materialGen = fileURLToPath(import.meta.url);
-const __dirname_materialGen = path.dirname(__filename_materialGen);
-const uploadDir = path.join(__dirname_materialGen, '../../uploads');
 
 export function extractMaterials(note: string): string[] {
   const items = new Set<string>();
@@ -51,28 +43,11 @@ export function extractMaterials(note: string): string[] {
  * Generate a list of materials needed for the given week by scanning
  * activity notes for lines beginning with "Materials:".
  */
-export async function generateMaterialList(weekStart: string): Promise<string[]> {
-  const plan = await prisma.lessonPlan.findFirst({
-    where: { weekStart: new Date(weekStart) },
-    include: {
-      schedule: { include: { activity: true } },
-    },
-  });
-  if (!plan) return [];
-
-  const items = new Set<string>();
-  for (const entry of plan.schedule) {
-    extractMaterials(entry.activity.publicNote ?? '').forEach((m) => items.add(m));
-    if (entry.activity.materialsText) {
-      entry.activity.materialsText
-        .split(',')
-        .map((s) => s.trim())
-        .filter(Boolean)
-        .forEach((m) => items.add(m));
-    }
-  }
-
-  return Array.from(items);
+export async function generateMaterialList(_weekStart: string): Promise<string[]> {
+  // DISABLED: Legacy function that used lessonPlan/Activity models
+  // TODO: Reimplement using ETFO lesson plans and daybook entries
+  console.warn('generateMaterialList is disabled - legacy models removed');
+  return [];
 }
 
 /**
@@ -102,55 +77,16 @@ export interface ActivityMaterials {
   materials: string[];
 }
 
-export async function generateMaterialDetails(weekStart: string): Promise<ActivityMaterials[]> {
-  const plan = await prisma.lessonPlan.findFirst({
-    where: { weekStart: new Date(weekStart) },
-    include: { schedule: { include: { activity: true } } },
-  });
-  if (!plan) return [];
-  const details: ActivityMaterials[] = [];
-  for (const entry of plan.schedule) {
-    const materials = [
-      ...extractMaterials(entry.activity.publicNote ?? ''),
-      ...(entry.activity.materialsText
-        ? entry.activity.materialsText
-            .split(',')
-            .map((s) => s.trim())
-            .filter(Boolean)
-        : []),
-    ];
-    const unique = Array.from(new Set(materials));
-    if (unique.length) {
-      details.push({
-        day: entry.day,
-        activityId: entry.activityId,
-        title: entry.activity.title,
-        materials: unique,
-      });
-    }
-  }
-  return details;
+export async function generateMaterialDetails(_weekStart: string): Promise<ActivityMaterials[]> {
+  // DISABLED: Legacy function that used lessonPlan/Activity models
+  // TODO: Reimplement using ETFO lesson plans and daybook entries
+  console.warn('generateMaterialDetails is disabled - legacy models removed');
+  return [];
 }
 
-export async function zipWeeklyPrintables(weekStart: string): Promise<Buffer> {
-  const plan = await prisma.lessonPlan.findFirst({
-    where: { weekStart: new Date(weekStart) },
-    include: { schedule: { include: { activity: { include: { resources: true } } } } },
-  });
-  if (!plan) return Buffer.alloc(0);
-  const archive = archiver('zip');
-  const chunks: Buffer[] = [];
-  archive.on('data', (c: Buffer) => chunks.push(c));
-  for (const entry of plan.schedule) {
-    for (const res of entry.activity.resources) {
-      if (res.url.startsWith('/uploads/')) {
-        const filePath = path.join(uploadDir, path.basename(res.url));
-        if (fs.existsSync(filePath)) {
-          archive.file(filePath, { name: res.filename });
-        }
-      }
-    }
-  }
-  await archive.finalize();
-  return Buffer.concat(chunks);
+export async function zipWeeklyPrintables(_weekStart: string): Promise<Buffer> {
+  // DISABLED: Legacy function that used lessonPlan/Activity models
+  // TODO: Reimplement using ETFO lesson plans and resources
+  console.warn('zipWeeklyPrintables is disabled - legacy models removed');
+  return Buffer.alloc(0);
 }

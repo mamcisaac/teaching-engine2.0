@@ -1,8 +1,8 @@
 import { jest, describe, it, beforeEach, expect } from '@jest/globals';
 import { extractWeeklyPlan } from '../../src/services/weeklyPlanExtractor';
-import { prisma } from '../../src/prisma';
 
-const mockPrisma = prisma as jest.Mocked<typeof prisma>;
+// Get the mocked prisma from global
+const mockPrisma = jest.mocked((global as any).testPrismaClient);
 
 describe('WeeklyPlanExtractor', () => {
   beforeEach(() => {
@@ -16,7 +16,7 @@ describe('WeeklyPlanExtractor', () => {
         id: 1,
         name: 'Mathematics',
         nameEn: 'Mathematics',
-        nameFr: 'Mathématiques'
+        nameFr: 'Mathématiques',
       };
 
       const mockMilestone = {
@@ -24,14 +24,14 @@ describe('WeeklyPlanExtractor', () => {
         title: 'Number Operations',
         targetDate: new Date('2024-01-31'),
         subject: mockSubject,
-        activities: []
+        activities: [],
       };
 
       const mockActivity = {
         id: 1,
         title: 'Addition Practice',
         milestone: { subject: mockSubject },
-        outcomes: []
+        outcomes: [],
       };
 
       const mockDailyPlan = {
@@ -42,9 +42,9 @@ describe('WeeklyPlanExtractor', () => {
             id: 1,
             startMin: 540, // 9:00 AM
             activity: mockActivity,
-            slot: { subject: mockSubject }
-          }
-        ]
+            slot: { subject: mockSubject },
+          },
+        ],
       };
 
       // Setup mocks
@@ -69,7 +69,7 @@ describe('WeeklyPlanExtractor', () => {
     it('should generate continuity notes between days', async () => {
       // Setup mock data for consecutive days with related activities
       const mockSubject = { id: 1, name: 'Mathematics' };
-      
+
       const mockPlans = [
         {
           id: 1,
@@ -78,10 +78,14 @@ describe('WeeklyPlanExtractor', () => {
             {
               id: 1,
               startMin: 540,
-              activity: { id: 1, title: 'Introduction to Fractions', milestone: { subject: mockSubject } },
-              slot: { subject: mockSubject }
-            }
-          ]
+              activity: {
+                id: 1,
+                title: 'Introduction to Fractions',
+                milestone: { subject: mockSubject },
+              },
+              slot: { subject: mockSubject },
+            },
+          ],
         },
         {
           id: 2,
@@ -90,11 +94,15 @@ describe('WeeklyPlanExtractor', () => {
             {
               id: 2,
               startMin: 540,
-              activity: { id: 2, title: 'Fraction Operations', milestone: { subject: mockSubject } },
-              slot: { subject: mockSubject }
-            }
-          ]
-        }
+              activity: {
+                id: 2,
+                title: 'Fraction Operations',
+                milestone: { subject: mockSubject },
+              },
+              slot: { subject: mockSubject },
+            },
+          ],
+        },
       ];
 
       mockPrisma.dailyPlan.findMany.mockResolvedValue(mockPlans);
@@ -106,7 +114,7 @@ describe('WeeklyPlanExtractor', () => {
       const result = await extractWeeklyPlan('2024-01-15', 2, { userId: 1 });
 
       expect(result.continuityNotes).toHaveLength(2);
-      
+
       const day2Notes = result.continuityNotes[1];
       expect(day2Notes.connections.length).toBeGreaterThan(0);
       expect(day2Notes.connections[0]).toContain('Mathematics');
@@ -121,16 +129,14 @@ describe('WeeklyPlanExtractor', () => {
           name: 'Mathematics',
           activities: [
             { id: 1, title: 'Math Review Worksheets', isFallback: true },
-            { id: 2, title: 'Number Games', isFallback: true }
-          ]
+            { id: 2, title: 'Number Games', isFallback: true },
+          ],
         },
         {
           id: 2,
           name: 'Language Arts',
-          activities: [
-            { id: 3, title: 'Silent Reading', isFallback: true }
-          ]
-        }
+          activities: [{ id: 3, title: 'Silent Reading', isFallback: true }],
+        },
       ];
 
       mockPrisma.dailyPlan.findMany.mockResolvedValue([]);
@@ -142,14 +148,14 @@ describe('WeeklyPlanExtractor', () => {
       const result = await extractWeeklyPlan('2024-01-15', 1, { userId: 1 });
 
       expect(result.emergencyBackupPlans).toHaveLength(2);
-      
-      const mathPlan = result.emergencyBackupPlans.find(p => p.subject === 'Mathematics');
+
+      const mathPlan = result.emergencyBackupPlans.find((p) => p.subject === 'Mathematics');
       expect(mathPlan).toBeDefined();
       expect(mathPlan?.activities).toContain('Math Review Worksheets');
       expect(mathPlan?.activities).toContain('Number Games');
       expect(mathPlan?.materials).toContain('Math manipulatives');
-      
-      const langPlan = result.emergencyBackupPlans.find(p => p.subject === 'Language Arts');
+
+      const langPlan = result.emergencyBackupPlans.find((p) => p.subject === 'Language Arts');
       expect(langPlan).toBeDefined();
       expect(langPlan?.activities).toContain('Silent Reading');
       expect(langPlan?.materials).toContain('Reading books');
@@ -157,7 +163,7 @@ describe('WeeklyPlanExtractor', () => {
 
     it('should calculate subject hours and topics correctly', async () => {
       const mockSubject = { id: 1, name: 'Mathematics' };
-      
+
       const mockDailyPlan = {
         id: 1,
         date: new Date('2024-01-15'),
@@ -165,22 +171,37 @@ describe('WeeklyPlanExtractor', () => {
           {
             id: 1,
             startMin: 540, // 9:00 AM - assuming 15-minute slots
-            activity: { id: 1, title: 'Addition', milestone: { subject: mockSubject }, outcomes: [] },
-            slot: { subject: mockSubject }
+            activity: {
+              id: 1,
+              title: 'Addition',
+              milestone: { subject: mockSubject },
+              outcomes: [],
+            },
+            slot: { subject: mockSubject },
           },
           {
             id: 2,
             startMin: 555, // 9:15 AM
-            activity: { id: 2, title: 'Subtraction', milestone: { subject: mockSubject }, outcomes: [] },
-            slot: { subject: mockSubject }
+            activity: {
+              id: 2,
+              title: 'Subtraction',
+              milestone: { subject: mockSubject },
+              outcomes: [],
+            },
+            slot: { subject: mockSubject },
           },
           {
             id: 3,
             startMin: 570, // 9:30 AM
-            activity: { id: 3, title: 'Word Problems', milestone: { subject: mockSubject }, outcomes: [] },
-            slot: { subject: mockSubject }
-          }
-        ]
+            activity: {
+              id: 3,
+              title: 'Word Problems',
+              milestone: { subject: mockSubject },
+              outcomes: [],
+            },
+            slot: { subject: mockSubject },
+          },
+        ],
       };
 
       mockPrisma.dailyPlan.findMany.mockResolvedValue([mockDailyPlan]);
@@ -191,7 +212,7 @@ describe('WeeklyPlanExtractor', () => {
 
       const result = await extractWeeklyPlan('2024-01-15', 1, { userId: 1 });
 
-      const mathSubject = result.weeklyOverview.subjects.find(s => s.name === 'Mathematics');
+      const mathSubject = result.weeklyOverview.subjects.find((s) => s.name === 'Mathematics');
       expect(mathSubject).toBeDefined();
       expect(mathSubject?.totalHours).toBe(0.75); // 3 slots × 0.25 hours each
       expect(mathSubject?.keyTopics).toContain('Addition');
@@ -220,7 +241,7 @@ describe('WeeklyPlanExtractor', () => {
       const mockDailyPlan = {
         id: 1,
         date: new Date('2024-01-15'),
-        items: []
+        items: [],
       };
 
       mockPrisma.dailyPlan.findMany.mockResolvedValue([mockDailyPlan]);
@@ -234,7 +255,7 @@ describe('WeeklyPlanExtractor', () => {
         userId: 1,
         includeGoals: false,
         includeRoutines: false,
-        includePlans: false
+        includePlans: false,
       });
 
       expect(result.days[0].goals).toBeUndefined();

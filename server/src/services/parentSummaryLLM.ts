@@ -1,9 +1,5 @@
 import { generateContent } from './llmService';
-import type {
-  Student,
-  StudentArtifact,
-  StudentReflection,
-} from '../prisma';
+import type { Student, StudentArtifact, StudentReflection } from '../prisma';
 
 interface StudentWithData extends Student {
   artifacts: StudentArtifact[];
@@ -41,7 +37,7 @@ export async function generateParentSummary({
   const formatDate = (date: Date) => date.toLocaleDateString('en-CA');
 
   // Assessment functionality removed
-  const assessmentSummary: Array<Record<string, unknown>> = [];
+  // const assessmentSummary: Array<Record<string, unknown>> = [];
 
   // Prepare artifacts data
   const artifactsSummary = student.artifacts.map((artifact) => ({

@@ -13,6 +13,12 @@ export interface CurriculumExpectation {
   descriptionFr?: string;
   strandFr?: string;
   substrandFr?: string;
+  type?: 'overall' | 'specific';
+  coverage?: {
+    percentage: number;
+    lessonCount?: number;
+    unitCount?: number;
+  };
 }
 
 export interface LongRangePlan {
@@ -52,6 +58,27 @@ export interface UnitPlan {
   estimatedHours?: number;
   assessmentPlan?: string;
   successCriteria?: string[];
+
+  // ETFO-aligned planning fields
+  crossCurricularConnections?: string;
+  learningSkills?: string[];
+  culminatingTask?: string;
+  keyVocabulary?: string[];
+  priorKnowledge?: string;
+  parentCommunicationPlan?: string;
+  fieldTripsAndGuestSpeakers?: string;
+  differentiationStrategies?: {
+    forStruggling?: string[];
+    forAdvanced?: string[];
+    forELL?: string[];
+    forIEP?: string[];
+  };
+  indigenousPerspectives?: string;
+  environmentalEducation?: string;
+  socialJusticeConnections?: string;
+  technologyIntegration?: string;
+  communityConnections?: string;
+
   expectations?: { expectation: CurriculumExpectation }[];
   lessonPlans?: ETFOLessonPlan[];
   resources?: UnitPlanResource[];
@@ -164,7 +191,7 @@ export function useCurriculumExpectations(filters?: {
       if (filters?.grade) params.append('grade', filters.grade.toString());
       if (filters?.strand) params.append('strand', filters.strand);
       if (filters?.search) params.append('search', filters.search);
-      
+
       const response = await api.get(`/api/curriculum-expectations?${params}`);
       return response.data as CurriculumExpectation[];
     },
@@ -184,7 +211,7 @@ export function useCurriculumExpectation(id: string) {
 
 export function useUpdateCurriculumExpectation() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationFn: async ({ id, data }: { id: string; data: Partial<CurriculumExpectation> }) => {
       const response = await api.put(`/api/curriculum-expectations/${id}`, data);
@@ -198,7 +225,7 @@ export function useUpdateCurriculumExpectation() {
 
 export function useDeleteCurriculumExpectation() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationFn: async (id: string) => {
       const response = await api.delete(`/api/curriculum-expectations/${id}`);
@@ -223,7 +250,7 @@ export function useLongRangePlans(filters?: {
       if (filters?.academicYear) params.append('academicYear', filters.academicYear);
       if (filters?.subject) params.append('subject', filters.subject);
       if (filters?.grade) params.append('grade', filters.grade.toString());
-      
+
       const response = await api.get(`/api/long-range-plans?${params}`);
       return response.data as LongRangePlan[];
     },
@@ -243,7 +270,7 @@ export function useLongRangePlan(id: string) {
 
 export function useCreateLongRangePlan() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationFn: async (data: Partial<LongRangePlan> & { expectationIds?: string[] }) => {
       const response = await api.post('/api/long-range-plans', data);
@@ -257,9 +284,12 @@ export function useCreateLongRangePlan() {
 
 export function useUpdateLongRangePlan() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
-    mutationFn: async ({ id, ...data }: Partial<LongRangePlan> & { id: string; expectationIds?: string[] }) => {
+    mutationFn: async ({
+      id,
+      ...data
+    }: Partial<LongRangePlan> & { id: string; expectationIds?: string[] }) => {
       const response = await api.put(`/api/long-range-plans/${id}`, data);
       return response.data;
     },
@@ -283,7 +313,7 @@ export function useUnitPlans(filters?: {
       if (filters?.longRangePlanId) params.append('longRangePlanId', filters.longRangePlanId);
       if (filters?.startDate) params.append('startDate', filters.startDate);
       if (filters?.endDate) params.append('endDate', filters.endDate);
-      
+
       const response = await api.get(`/api/unit-plans?${params}`);
       return response.data as UnitPlan[];
     },
@@ -303,7 +333,7 @@ export function useUnitPlan(id: string) {
 
 export function useCreateUnitPlan() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationFn: async (data: Partial<UnitPlan> & { expectationIds?: string[] }) => {
       const response = await api.post('/api/unit-plans', data);
@@ -318,9 +348,12 @@ export function useCreateUnitPlan() {
 
 export function useUpdateUnitPlan() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
-    mutationFn: async ({ id, ...data }: Partial<UnitPlan> & { id: string; expectationIds?: string[] }) => {
+    mutationFn: async ({
+      id,
+      ...data
+    }: Partial<UnitPlan> & { id: string; expectationIds?: string[] }) => {
       const response = await api.put(`/api/unit-plans/${id}`, data);
       return response.data;
     },
@@ -345,8 +378,9 @@ export function useETFOLessonPlans(filters?: {
       if (filters?.unitPlanId) params.append('unitPlanId', filters.unitPlanId);
       if (filters?.startDate) params.append('startDate', filters.startDate);
       if (filters?.endDate) params.append('endDate', filters.endDate);
-      if (filters?.isSubFriendly !== undefined) params.append('isSubFriendly', filters.isSubFriendly.toString());
-      
+      if (filters?.isSubFriendly !== undefined)
+        params.append('isSubFriendly', filters.isSubFriendly.toString());
+
       const response = await api.get(`/api/etfo-lesson-plans?${params}`);
       return response.data as ETFOLessonPlan[];
     },
@@ -366,7 +400,7 @@ export function useETFOLessonPlan(id: string) {
 
 export function useCreateETFOLessonPlan() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationFn: async (data: Partial<ETFOLessonPlan> & { expectationIds?: string[] }) => {
       const response = await api.post('/api/etfo-lesson-plans', data);
@@ -381,9 +415,15 @@ export function useCreateETFOLessonPlan() {
 
 export function useUpdateETFOLessonPlan() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
-    mutationFn: async ({ id, data }: { id: string; data: Partial<ETFOLessonPlan> & { expectationIds?: string[] } }) => {
+    mutationFn: async ({
+      id,
+      data,
+    }: {
+      id: string;
+      data: Partial<ETFOLessonPlan> & { expectationIds?: string[] };
+    }) => {
       const response = await api.put(`/api/etfo-lesson-plans/${id}`, data);
       return response.data;
     },
@@ -396,7 +436,7 @@ export function useUpdateETFOLessonPlan() {
 
 export function useDeleteETFOLessonPlan() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationFn: async (id: string) => {
       const response = await api.delete(`/api/etfo-lesson-plans/${id}`);
@@ -421,9 +461,10 @@ export function useDaybookEntries(filters?: {
       const params = new URLSearchParams();
       if (filters?.startDate) params.append('startDate', filters.startDate);
       if (filters?.endDate) params.append('endDate', filters.endDate);
-      if (filters?.hasLessonPlan !== undefined) params.append('hasLessonPlan', filters.hasLessonPlan.toString());
+      if (filters?.hasLessonPlan !== undefined)
+        params.append('hasLessonPlan', filters.hasLessonPlan.toString());
       if (filters?.rating) params.append('rating', filters.rating.toString());
-      
+
       const response = await api.get(`/api/daybook-entries?${params}`);
       return response.data as DaybookEntry[];
     },
@@ -443,11 +484,13 @@ export function useDaybookEntry(id: string) {
 
 export function useCreateDaybookEntry() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
-    mutationFn: async (data: Partial<DaybookEntry> & {
-      expectationCoverage?: { expectationId: string; coverage: string }[];
-    }) => {
+    mutationFn: async (
+      data: Partial<DaybookEntry> & {
+        expectationCoverage?: { expectationId: string; coverage: string }[];
+      },
+    ) => {
       const response = await api.post('/api/daybook-entries', data);
       return response.data;
     },
@@ -462,9 +505,12 @@ export function useCreateDaybookEntry() {
 
 export function useUpdateDaybookEntry() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
-    mutationFn: async ({ id, ...data }: Partial<DaybookEntry> & {
+    mutationFn: async ({
+      id,
+      ...data
+    }: Partial<DaybookEntry> & {
       id: string;
       expectationCoverage?: { expectationId: string; coverage: string }[];
     }) => {

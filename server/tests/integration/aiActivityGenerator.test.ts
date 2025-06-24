@@ -1,7 +1,7 @@
 import { describe, beforeAll, afterAll, beforeEach, it, expect, jest } from '@jest/globals';
-import { getTestPrismaClient } from './jest.setup';
+import { getTestPrismaClient } from '../jest.setup';
 import { AIActivityGeneratorService } from '../../src/services/aiActivityGenerator';
-import { generateTestEmail } from './helpers/emailTestHelper';
+import { generateTestEmail } from '../helpers/emailTestHelper';
 
 // Mock the OpenAI service
 jest.mock('../src/services/llmService', () => {

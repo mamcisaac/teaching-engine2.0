@@ -1,11 +1,4 @@
-import { prisma } from '../prisma';
-import type {
-  Activity,
-  TimetableSlot,
-  CalendarEvent,
-  UnavailableBlock,
-  Holiday,
-} from '@teaching-engine/database';
+import type { CalendarEvent, UnavailableBlock, Holiday } from '@teaching-engine/database';
 
 export interface ScheduleItem {
   day: number;
@@ -29,7 +22,13 @@ export interface GenerateScheduleOptions {
 }
 
 export function filterAvailableBlocksByCalendar(
-  slots: TimetableSlot[],
+  slots: Array<{
+    id: number;
+    day: number;
+    startMin: number;
+    endMin: number;
+    subjectId: number | null;
+  }>,
   events: CalendarEvent[],
   unavailable: UnavailableBlock[] = [],
   holidays: Holiday[] = [],
@@ -100,154 +99,22 @@ export function scheduleBufferBlockPerDay(
 }
 
 /**
- * Generate a simple weekly schedule by rotating through subjects.
- * Activities are grouped by subject and assigned sequentially to
- * the five days of the week.
+ * DISABLED: Legacy function that used Activity/Milestone models
+ * TODO: Reimplement using ETFO lesson plans
  */
 export async function generateWeeklySchedule(
-  opts: GenerateScheduleOptions,
+  _opts: GenerateScheduleOptions,
 ): Promise<ScheduleItem[]> {
-  try {
-    // Starting schedule generation
-
-    // Get all active activities with their milestone and subject info
-    const activities = await prisma.activity.findMany({
-      where: { completedAt: null },
-      include: {
-        milestone: {
-          select: {
-            id: true,
-            subjectId: true,
-            subject: { select: { name: true } },
-          },
-        },
-      },
-      orderBy: { id: 'asc' },
-    });
-
-    // Found activities to schedule
-
-    if (activities.length === 0) {
-      console.warn('No activities available to schedule');
-      return [];
-    }
-
-    const urgencyMap = opts.milestonePriorities;
-    // Calculated milestone urgencies
-
-    // Group activities by subject
-    const bySubject: Record<number, Activity[]> = {};
-    for (const act of activities) {
-      const subjectId = act.milestone?.subjectId;
-      if (subjectId === undefined) {
-        console.warn(`Activity ${act.id} (${act.title}) has no subject`);
-        continue;
-      }
-      if (!bySubject[subjectId]) bySubject[subjectId] = [];
-      bySubject[subjectId].push(act);
-    }
-
-    // Sort activities within each subject by priority
-    for (const list of Object.values(bySubject)) {
-      list.sort((a, b) => {
-        const ua = urgencyMap.get(a.milestoneId) ?? 0;
-        const ub = urgencyMap.get(b.milestoneId) ?? 0;
-        if (ub !== ua) return ub - ua; // Higher urgency first
-        return a.id - b.id; // Fallback to ID for stable sort
-      });
-      // Processing subject activities
-    }
-
-    // Sort blocks by day and time
-    const blocks = [...opts.availableBlocks].sort(
-      (a, b) => a.day - b.day || a.startMin - b.startMin,
-    );
-
-    if (blocks.length === 0) {
-      console.warn('No available time blocks for scheduling');
-      return [];
-    }
-
-    const totalDays = new Set(blocks.map((b) => b.day)).size;
-    let remainingSlots = blocks.length;
-    if (opts.preserveBuffer) {
-      remainingSlots -= totalDays; // Reserve one slot per day for buffer
-      // Reserving slots for buffer
-    }
-
-    const schedule: ScheduleItem[] = [];
-    let remaining = remainingSlots;
-
-    // Assign activities to time slots
-    for (const block of blocks) {
-      if (opts.pacingStrategy === 'relaxed' && remaining <= 0) {
-        // Reached slot limit in relaxed mode
-        break;
-      }
-
-      const subjectId = block.subjectId;
-      if (!subjectId) {
-        // Skipping block with no subject
-        continue;
-      }
-
-      const availableActivities = bySubject[subjectId] || [];
-      if (availableActivities.length === 0) {
-        // No activities available for subject
-        continue;
-      }
-
-      // Take the next activity for this subject
-      const nextActivity = availableActivities.shift()!;
-
-      // Scheduling activity in block
-
-      schedule.push({
-        day: block.day,
-        slotId: block.slotId,
-        activityId: nextActivity.id,
-      });
-
-      if (opts.pacingStrategy === 'relaxed') {
-        remaining--;
-      }
-    }
-
-    const finalSchedule = scheduleBufferBlockPerDay(schedule, blocks, opts.preserveBuffer);
-    // Generated schedule complete
-
-    return finalSchedule;
-  } catch (error) {
-    console.error('Error generating weekly schedule:', error);
-    throw new Error(
-      `Failed to generate schedule: ${error instanceof Error ? error.message : 'Unknown error'}`,
-    );
-  }
+  // Legacy function disabled during migration to ETFO planning
+  console.warn('generateWeeklySchedule is disabled - legacy Activity/Milestone models removed');
+  return [];
 }
 
 export async function generateSuggestions(
-  options: { filters?: Record<string, boolean> } = {},
-): Promise<Activity[]> {
-  const acts = await prisma.activity.findMany({
-    where: { completedAt: null },
-    include: {
-      milestone: {
-        include: {
-          subject: true,
-        },
-      },
-    },
-  });
-  const filters = options.filters ?? {};
-
-  return acts.filter((a) => {
-    const tags: string[] = Array.isArray(a.tags) ? (a.tags as unknown as string[]) : [];
-
-    for (const [tag, include] of Object.entries(filters)) {
-      if (include === false && tags.includes(tag)) {
-        return false;
-      }
-    }
-    return true;
-  });
+  _options: { filters?: Record<string, boolean> } = {},
+): Promise<Array<unknown>> {
+  // Activity[] - disabled for legacy cleanup
+  // Legacy function disabled during migration to ETFO planning
+  console.warn('generateSuggestions is disabled - legacy Activity/Milestone models removed');
+  return [];
 }

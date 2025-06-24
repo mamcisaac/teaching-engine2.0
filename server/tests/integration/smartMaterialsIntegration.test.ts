@@ -1,12 +1,12 @@
 import { describe, it, expect, beforeEach, afterEach, jest } from '@jest/globals';
 import request from 'supertest';
-import { testApp } from './test-app';
+import { testApp } from '../test-app';
 import { prisma } from '../../src/prisma';
-import { createTestUser, getAuthToken } from './test-auth-helper';
+import { createTestUser, getAuthToken } from '../test-auth-helper';
 import { SmartMaterialExtractor } from '../../src/services/smartMaterialExtractor';
 
 // Mock the Prisma client
-jest.mock('../src/prisma');
+jest.mock('../../src/prisma');
 
 // Mock OpenAI
 jest.mock('openai', () => ({

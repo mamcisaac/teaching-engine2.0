@@ -1,5 +1,5 @@
-import { getTestPrismaClient } from './jest.setup';
-import { getAllTestOutcomes, validateOutcomeData } from './test-data/curriculum-test-data';
+import { getTestPrismaClient } from '../jest.setup';
+import { getAllTestOutcomes, validateOutcomeData } from '../test-data/curriculum-test-data';
 
 describe('Curriculum Import', () => {
   // Get test-specific prisma client

@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from '@jest/globals';
-import { getTestPrismaClient, getCurrentTestId } from './jest.setup';
-import { createTestUtils } from './test-utils';
+import { getTestPrismaClient, getCurrentTestId } from '../jest.setup';
+import { createTestUtils } from '../test-utils';
 import { factories } from './factories/index';
 
 describe('Database Transaction Isolation', () => {

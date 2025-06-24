@@ -1,5 +1,5 @@
 import { describe, it, expect } from '@jest/globals';
-import { getCoverageSummary } from '../utils/outcomeCoverage';
+import { getCoverageSummary } from '../utils/outcomeCoverageSimple.mjs';
 
 describe('Coverage Utilities', () => {
   describe('getCoverageSummary', () => {

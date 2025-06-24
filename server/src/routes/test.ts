@@ -144,21 +144,21 @@ router.post('/reset', async (req, res) => {
 
     // Delete all data in reverse order of dependencies
     await prisma.$transaction([
-      // Activities and related data
-      prisma.activityOutcome.deleteMany(),
-      prisma.activity.deleteMany(),
+      // Activities and related data - DISABLED: Legacy models removed in ETFO migration
+      // prisma.activityOutcome.deleteMany(),
+      // prisma.activity.deleteMany(),
 
-      // Milestones
-      prisma.milestone.deleteMany(),
+      // Milestones - DISABLED: Legacy model removed in ETFO migration
+      // prisma.milestone.deleteMany(),
 
       // Subjects
       prisma.subject.deleteMany(),
 
       // Other entities
-      prisma.note.deleteMany(),
+      // prisma.note.deleteMany(), // DISABLED: Legacy model removed in ETFO migration
       prisma.calendarEvent.deleteMany(),
       prisma.holiday.deleteMany(),
-      prisma.timetableSlot.deleteMany(),
+      // prisma.timetableSlot.deleteMany(), // DISABLED: Legacy model removed in ETFO migration
       prisma.unavailableBlock.deleteMany(),
       prisma.notification.deleteMany(),
 
@@ -206,71 +206,19 @@ router.post('/seed', async (req, res) => {
       },
     });
 
-    // Create test milestones
-    const milestone1 = await prisma.milestone.create({
-      data: {
-        title: 'Unit 1: Introduction',
-        subjectId: mathSubject.id,
-        startDate: new Date(),
-        endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
-        userId: testUser.id,
-      },
-    });
+    // Create test milestones - DISABLED: Legacy milestone model removed in ETFO migration
+    const _milestone1 = null;
 
-    const milestone2 = await prisma.milestone.create({
-      data: {
-        title: 'Lab Experiments',
-        subjectId: scienceSubject.id,
-        startDate: new Date(),
-        endDate: new Date(Date.now() + 45 * 24 * 60 * 60 * 1000), // 45 days from now
-        userId: testUser.id,
-      },
-    });
+    const _milestone2 = null;
 
-    // Create test activities
-    await prisma.activity.createMany({
-      data: [
-        {
-          title: 'Introduction to Numbers',
-          milestoneId: milestone1.id,
-          orderIndex: 0,
-          activityType: 'LESSON',
-          durationMins: 45,
-          userId: testUser.id,
-        },
-        {
-          title: 'Number Practice',
-          milestoneId: milestone1.id,
-          orderIndex: 1,
-          activityType: 'LESSON',
-          durationMins: 30,
-          userId: testUser.id,
-        },
-        {
-          title: 'Safety Rules',
-          milestoneId: milestone2.id,
-          orderIndex: 0,
-          activityType: 'LESSON',
-          durationMins: 60,
-          userId: testUser.id,
-        },
-        {
-          title: 'First Experiment',
-          milestoneId: milestone2.id,
-          orderIndex: 1,
-          activityType: 'ASSESSMENT',
-          durationMins: 90,
-          userId: testUser.id,
-        },
-      ],
-    });
+    // Create test activities - DISABLED: Legacy activity model removed in ETFO migration
 
     res.status(200).json({
       message: 'Test data seeded successfully',
       data: {
         user: testUser.id,
         subjects: [mathSubject.id, scienceSubject.id],
-        milestones: [milestone1.id, milestone2.id],
+        milestones: [], // Legacy milestones removed
       },
     });
   } catch (error) {

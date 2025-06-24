@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, afterEach } from '@jest/globals';
 import request from 'supertest';
-import { app } from '../src';
-import { getTestPrismaClient } from './jest.setup';
-import { getAuthToken } from './test-auth-helper';
+import { app } from '../../src';
+import { getTestPrismaClient } from '../jest.setup';
+import { getAuthToken } from '../test-auth-helper';
 
 describe('AI Suggestions API', () => {
   let authToken: string;

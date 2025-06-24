@@ -1,12 +1,16 @@
 import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
-import { WorkflowStateService, ETFOLevel, ETFO_LEVEL_SEQUENCE } from '../services/workflowStateService';
+import {
+  WorkflowStateService,
+  ETFOLevel,
+  ETFO_LEVEL_SEQUENCE,
+} from '../services/workflowStateService';
 import { prisma } from '../prisma';
 
 // Mock dependencies
 jest.mock('../services/base/BaseService');
 
 // Mock Prisma
-jest.mock('../../src/prisma', () => ({
+jest.mock('../prisma', () => ({
   prisma: {
     curriculumExpectation: {
       count: jest.fn(),
@@ -86,7 +90,7 @@ describe('WorkflowStateService', () => {
       (prisma.daybookEntry.count as jest.Mock).mockResolvedValue(0);
 
       const state = await service.getUserWorkflowState(userId);
-      const lrpProgress = state.progress.find(p => p.level === ETFOLevel.LONG_RANGE_PLANS);
+      const lrpProgress = state.progress.find((p) => p.level === ETFOLevel.LONG_RANGE_PLANS);
 
       expect(lrpProgress?.progressPercentage).toBe(60); // 3/5 * 100
       expect(lrpProgress?.completedItems).toBe(3);
@@ -142,7 +146,7 @@ describe('WorkflowStateService', () => {
       const result = await service.validateLevelCompletion(
         userId,
         ETFOLevel.CURRICULUM_EXPECTATIONS,
-        'exp-1'
+        'exp-1',
       );
 
       expect(result.isValid).toBe(true);
@@ -162,7 +166,7 @@ describe('WorkflowStateService', () => {
       const result = await service.validateLevelCompletion(
         userId,
         ETFOLevel.CURRICULUM_EXPECTATIONS,
-        'exp-1'
+        'exp-1',
       );
 
       expect(result.isValid).toBe(false);
@@ -174,17 +178,12 @@ describe('WorkflowStateService', () => {
         id: 'unit-1',
         title: 'Numbers Unit',
         bigIdeas: 'Understanding numbers',
-        learningGoals: 'Count and compare',
-        curriculumExpectations: [{ id: 'exp-1' }], // Has expectations
+        expectations: [{ id: 'exp-1' }], // Has expectations
       };
 
       (prisma.unitPlan.findUnique as jest.Mock).mockResolvedValue(unitPlan);
 
-      const result = await service.validateLevelCompletion(
-        userId,
-        ETFOLevel.UNIT_PLANS,
-        'unit-1'
-      );
+      const result = await service.validateLevelCompletion(userId, ETFOLevel.UNIT_PLANS, 'unit-1');
 
       expect(result.isValid).toBe(true);
     });
@@ -194,20 +193,15 @@ describe('WorkflowStateService', () => {
         id: 'unit-1',
         title: 'Numbers Unit',
         bigIdeas: 'Understanding numbers',
-        learningGoals: 'Count and compare',
-        curriculumExpectations: [], // No expectations
+        expectations: [], // No expectations
       };
 
       (prisma.unitPlan.findUnique as jest.Mock).mockResolvedValue(unitPlan);
 
-      const result = await service.validateLevelCompletion(
-        userId,
-        ETFOLevel.UNIT_PLANS,
-        'unit-1'
-      );
+      const result = await service.validateLevelCompletion(userId, ETFOLevel.UNIT_PLANS, 'unit-1');
 
       expect(result.isValid).toBe(false);
-      expect(result.missingFields).toContain('curriculumExpectations');
+      expect(result.missingFields).toContain('expectations');
     });
 
     it('should handle entity not found', async () => {
@@ -216,7 +210,7 @@ describe('WorkflowStateService', () => {
       const result = await service.validateLevelCompletion(
         userId,
         ETFOLevel.CURRICULUM_EXPECTATIONS,
-        'non-existent'
+        'non-existent',
       );
 
       expect(result.isValid).toBe(false);

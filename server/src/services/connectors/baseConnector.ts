@@ -18,14 +18,18 @@ export abstract class BaseConnector {
    * @param params Search parameters including query, filters, etc.
    * @returns Array of activities matching the search criteria
    */
-  abstract search(params: SearchParams): Promise<ExternalActivity[]>;
+  abstract search(
+    params: SearchParams,
+  ): Promise<Omit<ExternalActivity, 'id' | 'createdAt' | 'updatedAt'>[]>;
 
   /**
    * Get detailed information about a specific activity
    * @param externalId The ID of the activity in the external system
    * @returns Detailed activity information or null if not found
    */
-  abstract getActivityDetails(externalId: string): Promise<ExternalActivity | null>;
+  abstract getActivityDetails(
+    externalId: string,
+  ): Promise<Omit<ExternalActivity, 'id' | 'createdAt' | 'updatedAt'> | null>;
 
   /**
    * Check if an activity is still available at the source
@@ -42,8 +46,8 @@ export abstract class BaseConnector {
    * This is a helper method that connectors can override
    */
   protected transformToExternalActivity(
-    sourceData: any,
-    defaults: Partial<ExternalActivity> = {}
+    sourceData: unknown,
+    defaults: Partial<ExternalActivity> = {},
   ): Omit<ExternalActivity, 'id' | 'createdAt' | 'updatedAt'> {
     return {
       source: this.sourceName,
@@ -72,7 +76,7 @@ export abstract class BaseConnector {
       license: null,
       lastVerified: new Date(),
       isActive: true,
-      ...defaults
+      ...defaults,
     };
   }
 
@@ -113,7 +117,7 @@ export abstract class BaseConnector {
    */
   protected parseGradeRange(gradeStr: string): { min: number; max: number } {
     const defaultRange = { min: 1, max: 1 };
-    
+
     if (!gradeStr) return defaultRange;
 
     // Handle "K" for kindergarten
@@ -123,14 +127,14 @@ export abstract class BaseConnector {
     const numbers = normalized.match(/\d+/g);
     if (!numbers || numbers.length === 0) return defaultRange;
 
-    const grades = numbers.map(n => parseInt(n));
-    
+    const grades = numbers.map((n) => parseInt(n));
+
     if (grades.length === 1) {
       return { min: grades[0], max: grades[0] };
     } else {
-      return { 
-        min: Math.min(...grades), 
-        max: Math.max(...grades) 
+      return {
+        min: Math.min(...grades),
+        max: Math.max(...grades),
       };
     }
   }
@@ -140,25 +144,25 @@ export abstract class BaseConnector {
    */
   protected normalizeSubject(subject: string): string {
     const subjectMap: Record<string, string> = {
-      'mathematics': 'math',
-      'maths': 'math',
-      'french': 'francais',
+      mathematics: 'math',
+      maths: 'math',
+      french: 'francais',
       'french immersion': 'francais',
-      'english': 'english',
+      english: 'english',
       'language arts': 'english',
-      'ela': 'english',
-      'science': 'science',
+      ela: 'english',
+      science: 'science',
       'social studies': 'social-studies',
-      'history': 'social-studies',
-      'geography': 'social-studies',
+      history: 'social-studies',
+      geography: 'social-studies',
       'phys ed': 'physical-education',
       'physical education': 'physical-education',
-      'pe': 'physical-education',
-      'art': 'arts',
-      'arts': 'arts',
-      'music': 'arts',
-      'drama': 'arts',
-      'health': 'health'
+      pe: 'physical-education',
+      art: 'arts',
+      arts: 'arts',
+      music: 'arts',
+      drama: 'arts',
+      health: 'health',
     };
 
     const normalized = subject.toLowerCase().trim();
@@ -174,14 +178,15 @@ export abstract class BaseConnector {
     format?: string;
     mediaType?: string;
   }): string {
-    const combined = `${data.title || ''} ${data.description || ''} ${data.format || ''} ${data.mediaType || ''}`.toLowerCase();
+    const combined =
+      `${data.title || ''} ${data.description || ''} ${data.format || ''} ${data.mediaType || ''}`.toLowerCase();
 
     if (combined.includes('video')) return 'video';
     if (combined.includes('worksheet') || combined.includes('printable')) return 'worksheet';
     if (combined.includes('game') || combined.includes('interactive')) return 'game';
     if (combined.includes('experiment') || combined.includes('lab')) return 'experiment';
     if (combined.includes('hands-on') || combined.includes('manipulative')) return 'handson';
-    
+
     return 'worksheet'; // default
   }
 
@@ -196,7 +201,7 @@ export abstract class BaseConnector {
       /materials?\s*needed\s*:?\s*([^.]+)/i,
       /you\s*will\s*need\s*:?\s*([^.]+)/i,
       /supplies\s*:?\s*([^.]+)/i,
-      /required\s*materials?\s*:?\s*([^.]+)/i
+      /required\s*materials?\s*:?\s*([^.]+)/i,
     ];
 
     for (const pattern of materialPatterns) {
@@ -205,22 +210,37 @@ export abstract class BaseConnector {
         // Split by common delimiters and clean up
         const items = match[1]
           .split(/[,;]/)
-          .map(item => item.trim())
-          .filter(item => item.length > 0 && item.length < 50);
-        
+          .map((item) => item.trim())
+          .filter((item) => item.length > 0 && item.length < 50);
+
         materials.push(...items);
       }
     }
 
     // Also look for specific material mentions
     const specificMaterials = [
-      'pencil', 'paper', 'scissors', 'glue', 'markers', 'crayons',
-      'dice', 'cards', 'counters', 'calculator', 'ruler', 'computer',
-      'tablet', 'whiteboard', 'manipulatives'
+      'pencil',
+      'paper',
+      'scissors',
+      'glue',
+      'markers',
+      'crayons',
+      'dice',
+      'cards',
+      'counters',
+      'calculator',
+      'ruler',
+      'computer',
+      'tablet',
+      'whiteboard',
+      'manipulatives',
     ];
 
     for (const material of specificMaterials) {
-      if (text.toLowerCase().includes(material) && !materials.some(m => m.toLowerCase().includes(material))) {
+      if (
+        text.toLowerCase().includes(material) &&
+        !materials.some((m) => m.toLowerCase().includes(material))
+      ) {
         materials.push(material);
       }
     }

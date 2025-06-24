@@ -1,30 +1,53 @@
 import React, { useState, useRef } from 'react';
 import { format, addDays, startOfWeek, endOfWeek, isToday } from 'date-fns';
-import { useDaybookEntries, useETFOLessonPlans, useCreateDaybookEntry, useUpdateDaybookEntry } from '../hooks/useETFOPlanning';
+import {
+  useDaybookEntries,
+  useETFOLessonPlans,
+  useCreateDaybookEntry,
+  useUpdateDaybookEntry,
+  DaybookEntry,
+  ETFOLessonPlan,
+} from '../hooks/useETFOPlanning';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/Button';
 import { Textarea } from '@/components/ui/Textarea';
 import { Label } from '@/components/ui/Label';
 import { Badge } from '@/components/ui/Badge';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/Dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/Dialog';
 import { Alert, AlertDescription } from '@/components/ui/Alert';
-import { Calendar, Clock, BookOpen, FileText, Printer, ChevronLeft, ChevronRight, PenTool, Save, RefreshCw, AlertCircle, CheckCircle } from 'lucide-react';
+import {
+  Clock,
+  BookOpen,
+  Printer,
+  ChevronLeft,
+  ChevronRight,
+  PenTool,
+  Save,
+  AlertCircle,
+  CheckCircle,
+} from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { useReactToPrint } from 'react-to-print';
 
 interface DayEntryProps {
   date: Date;
-  entry?: any;
-  lessons: any[];
-  onSave: (data: any) => void;
+  entry?: DaybookEntry;
+  lessons: ETFOLessonPlan[];
+  onSave: (data: Partial<DaybookEntry>) => void;
   isToday: boolean;
 }
 
 function DayEntry({ date, entry, lessons, onSave, isToday: isDayToday }: DayEntryProps) {
   const [isEditing, setIsEditing] = useState(false);
-  
+
   // Initialize all ETFO-aligned fields
   const [formData, setFormData] = useState({
     notes: entry?.notes || '',
@@ -55,18 +78,14 @@ function DayEntry({ date, entry, lessons, onSave, isToday: isDayToday }: DayEntr
       <CardHeader>
         <div className="flex items-center justify-between">
           <div>
-            <CardTitle className="text-lg">
-              {format(date, 'EEEE, MMMM d')}
-            </CardTitle>
+            <CardTitle className="text-lg">{format(date, 'EEEE, MMMM d')}</CardTitle>
             {isDayToday && (
-              <Badge variant="default" className="mt-1">Today</Badge>
+              <Badge variant="default" className="mt-1">
+                Today
+              </Badge>
             )}
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setIsEditing(!isEditing)}
-          >
+          <Button variant="ghost" size="sm" onClick={() => setIsEditing(!isEditing)}>
             <PenTool className="h-4 w-4" />
           </Button>
         </div>
@@ -78,12 +97,13 @@ function DayEntry({ date, entry, lessons, onSave, isToday: isDayToday }: DayEntr
             Scheduled Lessons ({lessons.length})
           </div>
           {lessons.length === 0 ? (
-            <div className="text-sm text-muted-foreground italic">
-              No lessons scheduled
-            </div>
+            <div className="text-sm text-muted-foreground italic">No lessons scheduled</div>
           ) : (
             lessons.map((lesson) => (
-              <div key={lesson.id} className="flex items-start justify-between p-2 bg-muted rounded-md">
+              <div
+                key={lesson.id}
+                className="flex items-start justify-between p-2 bg-muted rounded-md"
+              >
                 <div className="space-y-1">
                   <div className="font-medium text-sm">{lesson.title}</div>
                   <div className="text-xs text-muted-foreground flex items-center gap-4">
@@ -100,7 +120,11 @@ function DayEntry({ date, entry, lessons, onSave, isToday: isDayToday }: DayEntr
                   </div>
                 </div>
                 <div className="flex gap-1">
-                  {lesson.assessmentType && <Badge variant="secondary" className="text-xs">{lesson.assessmentType}</Badge>}
+                  {lesson.assessmentType && (
+                    <Badge variant="secondary" className="text-xs">
+                      {lesson.assessmentType}
+                    </Badge>
+                  )}
                 </div>
               </div>
             ))
@@ -118,7 +142,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: isDayToday }: DayEntr
                   <Button
                     key={rating}
                     type="button"
-                    variant={formData.overallRating === rating ? "primary" : "outline"}
+                    variant={formData.overallRating === rating ? 'primary' : 'outline'}
                     size="sm"
                     onClick={() => setFormData({ ...formData, overallRating: rating })}
                   >
@@ -171,7 +195,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: isDayToday }: DayEntr
             {/* Student Observations */}
             <div className="space-y-2">
               <Label className="text-base font-semibold">Student Observations</Label>
-              
+
               <div className="space-y-2">
                 <Label className="text-sm">Engagement Level</Label>
                 <Textarea
@@ -245,33 +269,33 @@ function DayEntry({ date, entry, lessons, onSave, isToday: isDayToday }: DayEntr
             {formData.overallRating && (
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-sm font-medium">Day Rating:</span>
-                <Badge variant={formData.overallRating >= 4 ? "default" : "secondary"}>
+                <Badge variant={formData.overallRating >= 4 ? 'default' : 'secondary'}>
                   {formData.overallRating}/5
                 </Badge>
               </div>
             )}
-            
+
             {formData.whatWorked && (
               <div>
                 <p className="text-sm font-medium text-green-700">What Worked:</p>
                 <p className="text-sm text-muted-foreground">{formData.whatWorked}</p>
               </div>
             )}
-            
+
             {formData.whatDidntWork && (
               <div>
                 <p className="text-sm font-medium text-orange-700">Challenges:</p>
                 <p className="text-sm text-muted-foreground">{formData.whatDidntWork}</p>
               </div>
             )}
-            
+
             {formData.nextSteps && (
               <div>
                 <p className="text-sm font-medium text-blue-700">Next Steps:</p>
                 <p className="text-sm text-muted-foreground">{formData.nextSteps}</p>
               </div>
             )}
-            
+
             {!formData.whatWorked && !formData.whatDidntWork && !formData.nextSteps && (
               <p className="text-sm text-muted-foreground italic">No reflection yet</p>
             )}
@@ -310,12 +334,12 @@ export default function DaybookPage() {
   const weekStart = startOfWeek(selectedWeek, { weekStartsOn: 1 });
   const weekEnd = endOfWeek(selectedWeek, { weekStartsOn: 1 });
 
-  const { data: entries = [], isLoading: entriesLoading } = useDaybookEntries({
+  const { data: entries = [] } = useDaybookEntries({
     startDate: weekStart.toISOString(),
     endDate: weekEnd.toISOString(),
   });
 
-  const { data: lessons = [], isLoading: lessonsLoading } = useETFOLessonPlans({
+  const { data: lessons = [] } = useETFOLessonPlans({
     startDate: weekStart.toISOString(),
     endDate: weekEnd.toISOString(),
   });
@@ -328,10 +352,10 @@ export default function DaybookPage() {
     documentTitle: `Daybook - Week of ${format(weekStart, 'MMM d, yyyy')}`,
   });
 
-  const handleSaveEntry = async (date: Date, data: any) => {
+  const handleSaveEntry = async (date: Date, data: Partial<DaybookEntry>) => {
     try {
-      const existingEntry = entries.find(e => 
-        format(new Date(e.date), 'yyyy-MM-dd') === format(date, 'yyyy-MM-dd')
+      const existingEntry = entries.find(
+        (e) => format(new Date(e.date), 'yyyy-MM-dd') === format(date, 'yyyy-MM-dd'),
       );
 
       if (existingEntry) {
@@ -357,14 +381,14 @@ export default function DaybookPage() {
   };
 
   const getDayEntry = (date: Date) => {
-    return entries.find(e => 
-      format(new Date(e.date), 'yyyy-MM-dd') === format(date, 'yyyy-MM-dd')
+    return entries.find(
+      (e) => format(new Date(e.date), 'yyyy-MM-dd') === format(date, 'yyyy-MM-dd'),
     );
   };
 
   const getDayLessons = (date: Date) => {
-    return lessons.filter(lesson => 
-      format(new Date(lesson.date), 'yyyy-MM-dd') === format(date, 'yyyy-MM-dd')
+    return lessons.filter(
+      (lesson) => format(new Date(lesson.date), 'yyyy-MM-dd') === format(date, 'yyyy-MM-dd'),
     );
   };
 
@@ -372,11 +396,11 @@ export default function DaybookPage() {
 
   const generateInsights = () => {
     const totalLessons = lessons.length;
-    const totalReflections = entries.filter(e => e.notes).length;
+    const totalReflections = entries.filter((e) => e.notes).length;
     const assessmentTypes = {
-      diagnostic: lessons.filter(l => l.assessmentType === 'diagnostic').length,
-      formative: lessons.filter(l => l.assessmentType === 'formative').length,
-      summative: lessons.filter(l => l.assessmentType === 'summative').length,
+      diagnostic: lessons.filter((l) => l.assessmentType === 'diagnostic').length,
+      formative: lessons.filter((l) => l.assessmentType === 'formative').length,
+      summative: lessons.filter((l) => l.assessmentType === 'summative').length,
     };
 
     return {
@@ -417,10 +441,7 @@ export default function DaybookPage() {
               >
                 <ChevronLeft className="h-4 w-4" />
               </Button>
-              <Button
-                variant="outline"
-                onClick={() => setSelectedWeek(new Date())}
-              >
+              <Button variant="outline" onClick={() => setSelectedWeek(new Date())}>
                 This Week
               </Button>
               <Button
@@ -538,11 +559,14 @@ export default function DaybookPage() {
           <DialogHeader>
             <DialogTitle>Print Daybook</DialogTitle>
             <DialogDescription>
-              Choose what you'd like to print from your daybook
+              Choose what you&apos;d like to print from your daybook
             </DialogDescription>
           </DialogHeader>
-          
-          <Tabs value={printType} onValueChange={(value: any) => setPrintType(value)}>
+
+          <Tabs
+            value={printType}
+            onValueChange={(value) => setPrintType(value as 'day' | 'week' | 'substitute')}
+          >
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="day">Today</TabsTrigger>
               <TabsTrigger value="week">This Week</TabsTrigger>
@@ -553,7 +577,7 @@ export default function DaybookPage() {
               <Alert>
                 <AlertCircle className="h-4 w-4" />
                 <AlertDescription>
-                  Print today's daybook entry with lessons and reflections
+                  Print today&apos;s daybook entry with lessons and reflections
                 </AlertDescription>
               </Alert>
             </TabsContent>
@@ -561,9 +585,7 @@ export default function DaybookPage() {
             <TabsContent value="week" className="space-y-4">
               <Alert>
                 <AlertCircle className="h-4 w-4" />
-                <AlertDescription>
-                  Print the entire week's daybook entries
-                </AlertDescription>
+                <AlertDescription>Print the entire week&apos;s daybook entries</AlertDescription>
               </Alert>
             </TabsContent>
 
@@ -581,10 +603,12 @@ export default function DaybookPage() {
             <Button variant="outline" onClick={() => setIsPrintDialogOpen(false)}>
               Cancel
             </Button>
-            <Button onClick={() => {
-              handlePrint();
-              setIsPrintDialogOpen(false);
-            }}>
+            <Button
+              onClick={() => {
+                handlePrint();
+                setIsPrintDialogOpen(false);
+              }}
+            >
               Print
             </Button>
           </DialogFooter>

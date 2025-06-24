@@ -110,7 +110,7 @@ export class ReflectionClassifierService extends BaseService {
       // Find similar expectations using cosine similarity
       // Note: In a production system, you'd use a vector database like Pinecone or Qdrant
       // For now, we'll use a simplified approach with the existing embeddings
-      const expectationEmbeddings = await this.prisma.expectationEmbedding.findMany({
+      const expectationEmbeddings = await this.prisma.curriculumExpectationEmbedding.findMany({
         include: {
           expectation: {
             select: {
@@ -261,7 +261,7 @@ export class ReflectionClassifierService extends BaseService {
       await this.prisma.studentReflection.update({
         where: { id: reflectionId },
         data: {
-          suggestedExpectationIds: JSON.stringify(classification.expectations.map((e) => e.id)),
+          suggestedOutcomeIds: JSON.stringify(classification.expectations.map((e) => e.id)),
           selTags: JSON.stringify(classification.selTags),
           classificationConfidence: classification.expectations[0]?.confidence || 0,
           classificationRationale: classification.expectations[0]?.rationale || '',

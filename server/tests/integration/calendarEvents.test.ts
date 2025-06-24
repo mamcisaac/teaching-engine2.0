@@ -1,6 +1,6 @@
 import { app } from '../../src/index';
-import { authRequest } from './test-auth-helper';
-import { getTestPrismaClient } from './jest.setup';
+import { authRequest } from '../test-auth-helper';
+import { getTestPrismaClient } from '../jest.setup';
 import { setupAuthenticatedTest } from './test-setup-helpers';
 
 describe('calendar events', () => {

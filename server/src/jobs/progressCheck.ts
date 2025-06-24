@@ -2,26 +2,25 @@ import cron from 'node-cron';
 import { prisma } from '../prisma';
 
 /**
- * Query milestones that are due within the next week and notify the teacher
- * about any milestones that still have incomplete activities.
+ * Query unit plans that are due within the next week and notify the teacher
+ * about any plans that need attention.
  *
- * A notification record is created for each milestone found and an email is
- * sent to the configured recipient.
+ * A notification record is created for each unit plan found.
  */
 export async function runProgressCheck() {
   const today = new Date();
   const soon = new Date();
   soon.setDate(today.getDate() + 7);
-  const milestones = await prisma.milestone.findMany({
+  const unitPlans = await prisma.unitPlan.findMany({
     where: {
-      targetDate: { not: null, lte: soon },
+      endDate: { lte: soon },
     },
-    include: { activities: true, subject: true },
+    include: { lessonPlans: true, user: true },
   });
-  for (const m of milestones) {
-    const incomplete = m.activities.filter((a) => !a.completedAt).length;
-    if (incomplete > 0) {
-      const message = `Milestone "${m.title}" is due soon`;
+  for (const plan of unitPlans) {
+    const incompleteLessons = plan.lessonPlans.filter((l) => l.date > today).length;
+    if (incompleteLessons > 0) {
+      const message = `Unit Plan "${plan.title}" is ending soon with ${incompleteLessons} upcoming lessons`;
       await prisma.notification.create({ data: { message } });
       // Email notifications were removed - only in-app notifications remain
     }

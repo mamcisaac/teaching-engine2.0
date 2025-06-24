@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll } from '@jest/globals';
 import request from 'supertest';
 import jwt from 'jsonwebtoken';
 import { app } from '../../src/index';
-import { getTestPrismaClient } from './jest.setup';
+import { getTestPrismaClient } from '../jest.setup';
 
 describe('Server Integration Tests', () => {
   beforeAll(async () => {

@@ -13,29 +13,44 @@ const searchSchema = z.object({
   subject: z.string().optional(),
   durationMin: z.coerce.number().int().positive().optional(),
   durationMax: z.coerce.number().int().positive().optional(),
-  materials: z.string().optional().transform(val => val ? val.split(',') : undefined),
+  materials: z
+    .string()
+    .optional()
+    .transform((val) => (val ? val.split(',') : undefined)),
   requireAllMaterials: z.coerce.boolean().optional(),
-  activityType: z.string().optional().transform(val => val ? val.split(',') : undefined),
+  activityType: z
+    .string()
+    .optional()
+    .transform((val) => (val ? val.split(',') : undefined)),
   language: z.enum(['en', 'fr']).optional(),
-  curriculumAlignment: z.string().optional().transform(val => val ? val.split(',') : undefined),
-  sources: z.string().optional().transform(val => val ? val.split(',') : undefined),
+  curriculumAlignment: z
+    .string()
+    .optional()
+    .transform((val) => (val ? val.split(',') : undefined)),
+  sources: z
+    .string()
+    .optional()
+    .transform((val) => (val ? val.split(',') : undefined)),
   onlyFree: z.coerce.boolean().optional(),
   limit: z.coerce.number().int().min(1).max(100).optional().default(20),
-  offset: z.coerce.number().int().min(0).optional().default(0)
+  offset: z.coerce.number().int().min(0).optional().default(0),
 });
 
 router.get('/search', authMiddleware, async (req, res) => {
   try {
     const params = searchSchema.parse(req.query);
-    
+
     const searchParams = {
       query: params.query || '',
       grade: params.grade,
       subject: params.subject,
-      duration: (params.durationMin || params.durationMax) ? {
-        min: params.durationMin,
-        max: params.durationMax
-      } : undefined,
+      duration:
+        params.durationMin || params.durationMax
+          ? {
+              min: params.durationMin,
+              max: params.durationMax,
+            }
+          : undefined,
       materials: params.materials,
       requireAllMaterials: params.requireAllMaterials,
       activityType: params.activityType,
@@ -44,20 +59,20 @@ router.get('/search', authMiddleware, async (req, res) => {
       sources: params.sources,
       onlyFree: params.onlyFree,
       limit: params.limit,
-      offset: params.offset
+      offset: params.offset,
     };
 
-    const results = await activityService.search(searchParams, req.user!.id);
-    
+    const results = await activityService.search(searchParams, Number(req.user!.userId));
+
     res.json({
       success: true,
-      data: results
+      data: results,
     });
   } catch (error) {
     console.error('Activity search error:', error);
     res.status(400).json({
       success: false,
-      error: error instanceof z.ZodError ? error.errors : 'Failed to search activities'
+      error: error instanceof z.ZodError ? error.errors : 'Failed to search activities',
     });
   }
 });
@@ -66,25 +81,25 @@ router.get('/search', authMiddleware, async (req, res) => {
 router.get('/:source/:externalId', authMiddleware, async (req, res) => {
   try {
     const { source, externalId } = req.params;
-    
+
     const activity = await activityService.getActivity(source, externalId);
-    
+
     if (!activity) {
       return res.status(404).json({
         success: false,
-        error: 'Activity not found'
+        error: 'Activity not found',
       });
     }
-    
+
     res.json({
       success: true,
-      data: activity
+      data: activity,
     });
   } catch (error) {
     console.error('Get activity error:', error);
     res.status(500).json({
       success: false,
-      error: 'Failed to get activity details'
+      error: 'Failed to get activity details',
     });
   }
 });
@@ -95,27 +110,27 @@ const importSchema = z.object({
   lessonPlanId: z.string().optional(),
   lessonSection: z.enum(['mindsOn', 'action', 'consolidation']).optional(),
   customizations: z.record(z.any()).optional(),
-  notes: z.string().optional()
+  notes: z.string().optional(),
 });
 
 router.post('/import', authMiddleware, async (req, res) => {
   try {
     const params = importSchema.parse(req.body);
-    
+
     const activityImport = await activityService.importActivity(
-      params,
-      req.user!.id
+      params as Parameters<typeof activityService.importActivity>[0],
+      Number(req.user!.userId),
     );
-    
+
     res.json({
       success: true,
-      data: activityImport
+      data: activityImport,
     });
   } catch (error) {
     console.error('Import activity error:', error);
     res.status(400).json({
       success: false,
-      error: error instanceof z.ZodError ? error.errors : 'Failed to import activity'
+      error: error instanceof z.ZodError ? error.errors : 'Failed to import activity',
     });
   }
 });
@@ -128,14 +143,14 @@ const ratingSchema = z.object({
   subjectUsed: z.string().optional(),
   workedWell: z.string().optional(),
   challenges: z.string().optional(),
-  wouldRecommend: z.boolean().optional()
+  wouldRecommend: z.boolean().optional(),
 });
 
 router.post('/:activityId/rate', authMiddleware, async (req, res) => {
   try {
     const { activityId } = req.params;
     const params = ratingSchema.parse(req.body);
-    
+
     const rating = await activityService.rateActivity(
       activityId,
       params.rating,
@@ -145,20 +160,20 @@ router.post('/:activityId/rate', authMiddleware, async (req, res) => {
         subjectUsed: params.subjectUsed,
         workedWell: params.workedWell,
         challenges: params.challenges,
-        wouldRecommend: params.wouldRecommend
+        wouldRecommend: params.wouldRecommend,
       },
-      req.user!.id
+      Number(req.user!.userId),
     );
-    
+
     res.json({
       success: true,
-      data: rating
+      data: rating,
     });
   } catch (error) {
     console.error('Rate activity error:', error);
     res.status(400).json({
       success: false,
-      error: error instanceof z.ZodError ? error.errors : 'Failed to rate activity'
+      error: error instanceof z.ZodError ? error.errors : 'Failed to rate activity',
     });
   }
 });
@@ -168,40 +183,40 @@ router.get('/:activityId/reviews', authMiddleware, async (req, res) => {
   try {
     const { activityId } = req.params;
     const { limit = 10, offset = 0 } = req.query;
-    
+
     const { prisma } = await import('../prisma');
-    
+
     const reviews = await prisma.activityRating.findMany({
       where: { activityId },
       include: {
         user: {
           select: {
             id: true,
-            name: true
-          }
-        }
+            name: true,
+          },
+        },
       },
       orderBy: { createdAt: 'desc' },
       take: Number(limit),
-      skip: Number(offset)
+      skip: Number(offset),
     });
-    
+
     const totalCount = await prisma.activityRating.count({
-      where: { activityId }
+      where: { activityId },
     });
-    
+
     res.json({
       success: true,
       data: {
         reviews,
-        totalCount
-      }
+        totalCount,
+      },
     });
   } catch (error) {
     console.error('Get reviews error:', error);
     res.status(500).json({
       success: false,
-      error: 'Failed to get activity reviews'
+      error: 'Failed to get activity reviews',
     });
   }
 });
@@ -211,22 +226,22 @@ router.get('/recommendations/:lessonPlanId', authMiddleware, async (req, res) =>
   try {
     const { lessonPlanId } = req.params;
     const { limit = 5 } = req.query;
-    
+
     const recommendations = await activityService.getRecommendedActivities(
       lessonPlanId,
-      req.user!.id,
-      Number(limit)
+      Number(req.user!.userId),
+      Number(limit),
     );
-    
+
     res.json({
       success: true,
-      data: recommendations
+      data: recommendations,
     });
   } catch (error) {
     console.error('Get recommendations error:', error);
     res.status(500).json({
       success: false,
-      error: 'Failed to get activity recommendations'
+      error: 'Failed to get activity recommendations',
     });
   }
 });
@@ -236,40 +251,40 @@ router.get('/imported', authMiddleware, async (req, res) => {
   try {
     const { limit = 20, offset = 0 } = req.query;
     const { prisma } = await import('../prisma');
-    
+
     const imports = await prisma.activityImport.findMany({
-      where: { userId: req.user!.id },
+      where: { userId: Number(req.user!.userId) },
       include: {
         activity: true,
         lessonPlan: {
           select: {
             id: true,
             title: true,
-            date: true
-          }
-        }
+            date: true,
+          },
+        },
       },
       orderBy: { lastUsed: 'desc' },
       take: Number(limit),
-      skip: Number(offset)
+      skip: Number(offset),
     });
-    
+
     const totalCount = await prisma.activityImport.count({
-      where: { userId: req.user!.id }
+      where: { userId: Number(req.user!.userId) },
     });
-    
+
     res.json({
       success: true,
       data: {
         imports,
-        totalCount
-      }
+        totalCount,
+      },
     });
   } catch (error) {
     console.error('Get imported activities error:', error);
     res.status(500).json({
       success: false,
-      error: 'Failed to get imported activities'
+      error: 'Failed to get imported activities',
     });
   }
 });

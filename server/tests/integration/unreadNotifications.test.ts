@@ -1,5 +1,5 @@
 import { jest } from '@jest/globals';
-import { getTestPrismaClient } from './jest.setup';
+import { getTestPrismaClient } from '../jest.setup';
 
 // Mock the email service before importing the module that uses it
 const mockSendEmail = jest.fn().mockResolvedValue(undefined);
@@ -8,7 +8,7 @@ jest.unstable_mockModule('../src/services/emailService', () => ({
 }));
 
 // Import after mock is set up
-const { sendUnreadNotifications } = await import('../src/jobs/unreadNotificationEmail');
+// const { sendUnreadNotifications } = await import('../src/jobs/unreadNotificationEmail'); // Job doesn't exist
 
 /**
  * @todo This test uses mocked email service and should be converted to integration test

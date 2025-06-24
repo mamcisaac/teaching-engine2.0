@@ -7,10 +7,19 @@ import { v4 as uuidv4 } from 'uuid';
 // Schema for agent responses
 const AgentResponseSchema = z.object({
   message: z.string(),
-  actions: z.array(z.object({
-    type: z.enum(['generate_activity', 'generate_plan', 'analyze_coverage', 'show_suggestions']),
-    parameters: z.record(z.unknown()),
-  })).optional(),
+  actions: z
+    .array(
+      z.object({
+        type: z.enum([
+          'generate_activity',
+          'generate_plan',
+          'analyze_coverage',
+          'show_suggestions',
+        ]),
+        parameters: z.record(z.unknown()),
+      }),
+    )
+    .optional(),
   suggestions: z.array(z.string()).optional(),
   data: z.record(z.unknown()).optional(),
 });
@@ -31,7 +40,7 @@ export class GPTPlanningAgentService {
    */
   async startSession(userId: number): Promise<string> {
     const sessionId = uuidv4();
-    
+
     this.conversationContexts.set(sessionId, {
       sessionId,
       userId,
@@ -59,7 +68,17 @@ export class GPTPlanningAgentService {
   /**
    * Process a user message and generate response with actions
    */
-  async processMessage(sessionId: string, message: string): Promise<any> {
+  async processMessage(
+    sessionId: string,
+    message: string,
+  ): Promise<{
+    message: string;
+    actions?: Array<{ type: string; payload?: Record<string, unknown> }>;
+    actionResults?: unknown[];
+    suggestions?: string[];
+    data?: Record<string, unknown>;
+    error?: boolean;
+  }> {
     const context = this.conversationContexts.get(sessionId);
     if (!context) {
       throw new Error('Invalid session');
@@ -84,12 +103,18 @@ export class GPTPlanningAgentService {
 
       // Analyze user intent
       const intent = await this.analyzeIntent(message, context);
-      
+
       // Generate response based on intent
       const response = await this.generateResponse(intent, context);
 
       // Execute any actions
-      const actionResults = await this.executeActions(response.actions || [], context);
+      const actionResults = await this.executeActions(
+        response.actions?.map((a) => ({
+          type: a.type || '',
+          payload: a.parameters,
+        })) || [],
+        context,
+      );
 
       // Save assistant response
       await prisma.planningConversation.create({
@@ -107,21 +132,24 @@ export class GPTPlanningAgentService {
 
       // Update context
       context.recentMessages.push({ role: 'assistant', content: response.message });
-      context.metadata!.messageCount = (context.metadata!.messageCount as number || 0) + 1;
+      context.metadata!.messageCount = ((context.metadata!.messageCount as number) || 0) + 1;
 
       return {
         message: response.message,
-        actions: response.actions,
+        actions: response.actions?.map((a) => ({
+          type: a.type || '',
+          payload: a.parameters,
+        })),
         actionResults,
         suggestions: response.suggestions,
         data: response.data,
       };
-
     } catch (error) {
       logger.error('Error processing planning message:', error);
-      
-      const errorMessage = "I apologize, but I encountered an error. Could you please rephrase your request?";
-      
+
+      const errorMessage =
+        'I apologize, but I encountered an error. Could you please rephrase your request?';
+
       await prisma.planningConversation.create({
         data: {
           userId: context.userId,
@@ -161,7 +189,10 @@ Consider the conversation context when determining intent.`;
 "${message}"
 
 Recent conversation:
-${context.recentMessages.slice(-3).map(m => `${m.role}: ${m.content}`).join('\n')}
+${context.recentMessages
+  .slice(-3)
+  .map((m) => `${m.role}: ${m.content}`)
+  .join('\n')}
 
 Determine:
 1. Primary intent
@@ -181,13 +212,12 @@ Determine:
       });
 
       const analysis = completion.choices[0]?.message?.content || '';
-      
+
       return {
         rawAnalysis: analysis,
         message: message.toLowerCase(),
         context,
       };
-
     } catch (error) {
       logger.error('Error analyzing intent:', error);
       return {
@@ -201,7 +231,10 @@ Determine:
   /**
    * Generate appropriate response based on intent
    */
-  private async generateResponse(intent: any, context: ConversationContext) {
+  private async generateResponse(
+    intent: { rawAnalysis: string; message: string; context: ConversationContext },
+    _context: ConversationContext,
+  ) {
     const systemPrompt = `You are a helpful AI planning assistant for a Grade 1 French Immersion teacher.
 
 Your capabilities:
@@ -258,15 +291,18 @@ Format response as JSON.`;
 
       const parsed = JSON.parse(responseContent);
       return AgentResponseSchema.parse(parsed);
-
     } catch (error) {
       logger.error('Error generating response:', error);
-      
+
       // Fallback response
       return {
         message: this.generateFallbackResponse(intent.message),
         actions: [],
-        suggestions: ['Try asking about specific subjects or outcomes', 'Request a weekly plan', 'Ask for activity suggestions'],
+        suggestions: [
+          'Try asking about specific subjects or outcomes',
+          'Request a weekly plan',
+          'Ask for activity suggestions',
+        ],
       };
     }
   }
@@ -274,7 +310,10 @@ Format response as JSON.`;
   /**
    * Execute actions requested by the agent
    */
-  private async executeActions(actions: any[], context: ConversationContext) {
+  private async executeActions(
+    actions: Array<{ type: string; payload?: Record<string, unknown> }>,
+    _context: ConversationContext,
+  ) {
     const results = [];
 
     for (const action of actions) {
@@ -283,9 +322,10 @@ Format response as JSON.`;
           case 'generate_activity': {
             results.push({
               type: 'activities_generated',
-              data: { 
-                message: 'Activity generation has been moved to the ETFO lesson planning workflow with Activity Discovery feature',
-                redirect: '/planner/lessons'
+              data: {
+                message:
+                  'Activity generation has been moved to the ETFO lesson planning workflow with Activity Discovery feature',
+                redirect: '/planner/lessons',
               },
             });
             break;
@@ -295,9 +335,10 @@ Format response as JSON.`;
             // Legacy function - use ETFO planning workflow instead
             results.push({
               type: 'plan_generated',
-              data: { 
-                message: 'Plan generation is now handled through the ETFO 5-level planning workflow',
-                redirect: '/planner/dashboard'
+              data: {
+                message:
+                  'Plan generation is now handled through the ETFO 5-level planning workflow',
+                redirect: '/planner/dashboard',
               },
             });
             break;
@@ -307,9 +348,10 @@ Format response as JSON.`;
             // Legacy function - use curriculum expectations analysis instead
             results.push({
               type: 'coverage_analysis',
-              data: { 
-                message: 'Coverage analysis is now available through curriculum expectations tracking',
-                redirect: '/curriculum'
+              data: {
+                message:
+                  'Coverage analysis is now available through curriculum expectations tracking',
+                redirect: '/curriculum',
               },
             });
             break;
@@ -318,9 +360,10 @@ Format response as JSON.`;
           case 'show_suggestions': {
             results.push({
               type: 'suggestions_retrieved',
-              data: { 
-                message: 'Activity suggestions are now available through the Activity Discovery feature',
-                redirect: '/activity-library'
+              data: {
+                message:
+                  'Activity suggestions are now available through the Activity Discovery feature',
+                redirect: '/activity-library',
               },
             });
             break;
@@ -356,7 +399,7 @@ Format response as JSON.`;
       },
     });
 
-    return messages.map(msg => ({
+    return messages.map((msg) => ({
       role: msg.role,
       content: msg.content,
       timestamp: msg.createdAt,
@@ -399,9 +442,10 @@ Format response as JSON.`;
 
     // Suggest weekly planning if it's near the weekend
     const dayOfWeek = new Date().getDay();
-    if (dayOfWeek >= 4) { // Thursday or later
+    if (dayOfWeek >= 4) {
+      // Thursday or later
       suggestions.push({
-        label: 'Generate next week\'s plan',
+        label: "Generate next week's plan",
         action: 'generate_plan',
         parameters: { weekStart: this.getNextMonday() },
       });
@@ -423,11 +467,11 @@ Format response as JSON.`;
     const lowerMessage = message.toLowerCase();
 
     if (lowerMessage.includes('activity') || lowerMessage.includes('activité')) {
-      return "I can help you generate activities! Which subject or learning outcome would you like to focus on?";
+      return 'I can help you generate activities! Which subject or learning outcome would you like to focus on?';
     } else if (lowerMessage.includes('plan') || lowerMessage.includes('week')) {
-      return "I can create a weekly plan for you. Would you like me to generate one for next week?";
+      return 'I can create a weekly plan for you. Would you like me to generate one for next week?';
     } else if (lowerMessage.includes('coverage') || lowerMessage.includes('curriculum')) {
-      return "I can analyze your curriculum coverage. Would you like an overall analysis or focus on a specific subject?";
+      return 'I can analyze your curriculum coverage. Would you like an overall analysis or focus on a specific subject?';
     } else if (lowerMessage.includes('help') || lowerMessage.includes('aide')) {
       return "I'm here to help with:\n• Generating curriculum-aligned activities\n• Creating weekly lesson plans\n• Analyzing curriculum coverage\n• Providing teaching suggestions\n\nWhat would you like to work on?";
     } else {
@@ -438,7 +482,7 @@ Format response as JSON.`;
   private getNextMonday(): string {
     const today = new Date();
     const dayOfWeek = today.getDay();
-    const daysUntilMonday = dayOfWeek === 0 ? 1 : (8 - dayOfWeek);
+    const daysUntilMonday = dayOfWeek === 0 ? 1 : 8 - dayOfWeek;
     const nextMonday = new Date(today);
     nextMonday.setDate(today.getDate() + daysUntilMonday);
     return nextMonday.toISOString().split('T')[0];
@@ -449,7 +493,7 @@ Format response as JSON.`;
    */
   async cleanupSessions() {
     const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
-    
+
     // Remove old sessions from memory
     for (const [sessionId, context] of this.conversationContexts.entries()) {
       if (context.metadata?.startTime && context.metadata.startTime < oneDayAgo) {

@@ -311,138 +311,29 @@ Example output:
    * Generate comprehensive weekly material plan
    */
   async generateWeeklyMaterialPlan(weekStart: string): Promise<WeeklyMaterialPlan> {
-    const plan = await prisma.lessonPlan.findFirst({
-      where: { weekStart: new Date(weekStart) },
-      include: {
-        schedule: {
-          include: {
-            activity: {
-              include: {
-                milestone: {
-                  include: { subject: true },
-                },
-                resources: true,
-              },
-            },
-            slot: true,
-          },
-        },
-      },
-    });
+    // DISABLED: Legacy lessonPlan model removed in ETFO migration
+    // const plan = null; // Legacy lessonPlan query disabled
 
-    if (!plan) {
-      return {
-        weekStart,
-        totalPrepTime: 0,
-        materials: [],
-        preparation: { printingNeeded: [], setupRequired: [], purchaseNeeded: [] },
-        byDay: [],
-      };
-    }
-
-    const allMaterials: SmartMaterial[] = [];
-    const byDay: WeeklyMaterialPlan['byDay'] = [];
-
-    // Group schedule by day
-    const scheduleByDay = new Map<number, typeof plan.schedule>();
-    for (const item of plan.schedule) {
-      if (!scheduleByDay.has(item.day)) {
-        scheduleByDay.set(item.day, []);
-      }
-      scheduleByDay.get(item.day)!.push(item);
-    }
-
-    // Process each day
-    for (let day = 0; day < 5; day++) {
-      const daySchedule = scheduleByDay.get(day) || [];
-      const dayName = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'][day];
-
-      const dayActivities = [];
-
-      for (const item of daySchedule) {
-        const activity = item.activity;
-        const materials: SmartMaterial[] = [];
-
-        // Extract from materials text
-        if (activity.materialsText) {
-          const extracted = await this.extractMaterialsFromText(activity.materialsText);
-          materials.push(...extracted);
-        }
-
-        // Extract from public notes
-        if (activity.publicNote) {
-          const extracted = await this.extractMaterialsFromText(activity.publicNote);
-          materials.push(...extracted);
-        }
-
-        // Add digital resources
-        for (const resource of activity.resources) {
-          if (resource.type === 'url') {
-            materials.push({
-              name: `Digital: ${resource.filename}`,
-              category: 'technology',
-              priority: 'helpful',
-              prepTime: 1,
-            });
-          } else {
-            materials.push({
-              name: `File: ${resource.filename}`,
-              category: 'printables',
-              priority: 'helpful',
-              prepTime: 3,
-            });
-          }
-        }
-
-        const uniqueMaterials = this.deduplicateMaterials(materials);
-        allMaterials.push(...uniqueMaterials);
-
-        if (uniqueMaterials.length > 0) {
-          const timeSlot = item.slot
-            ? `${Math.floor(item.slot.startMin / 60)}:${(item.slot.startMin % 60).toString().padStart(2, '0')}`
-            : 'Unscheduled';
-
-          dayActivities.push({
-            activityId: activity.id,
-            title: activity.title,
-            timeSlot,
-            materials: uniqueMaterials,
-          });
-        }
-      }
-
-      byDay.push({
-        day,
-        dayName,
-        activities: dayActivities,
-      });
-    }
-
-    // Deduplicate all materials
-    const uniqueMaterials = this.deduplicateMaterials(allMaterials);
-
-    // Categorize for preparation
-    const printingNeeded = uniqueMaterials.filter((m) => m.category === 'printables');
-    const setupRequired = uniqueMaterials.filter(
-      (m) => m.category === 'technology' || m.category === 'equipment',
-    );
-    const purchaseNeeded = uniqueMaterials.filter(
-      (m) => m.category === 'supplies' && m.priority === 'essential',
-    );
-
-    const totalPrepTime = uniqueMaterials.reduce((total, m) => total + (m.prepTime || 0), 0);
-
+    // Return empty plan for now
     return {
       weekStart,
-      totalPrepTime,
-      materials: uniqueMaterials,
+      totalPrepTime: 0,
+      materials: [],
       preparation: {
-        printingNeeded,
-        setupRequired,
-        purchaseNeeded,
+        printingNeeded: [],
+        setupRequired: [],
+        purchaseNeeded: [],
       },
-      byDay,
+      byDay: [],
     };
+  }
+
+  /**
+   * Placeholder for orphaned code removal
+   */
+  private async _legacyCodeRemoved() {
+    // This method contains orphaned code from legacy implementation
+    return;
   }
 
   /**

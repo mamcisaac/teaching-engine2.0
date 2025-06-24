@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { describe, beforeEach, it, expect } from '@jest/globals';
 import { app } from '../../src/index';
-import { getTestPrismaClient } from './jest.setup';
+import { getTestPrismaClient } from '../jest.setup';
 import bcrypt from 'bcryptjs';
 
 // Test user credentials

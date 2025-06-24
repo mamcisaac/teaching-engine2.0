@@ -1,8 +1,8 @@
 import { describe, beforeAll, afterAll, beforeEach, it, expect, jest } from '@jest/globals';
-import { authRequest } from './test-auth-helper';
-import { getTestPrismaClient } from './jest.setup';
-import { getTestEmailService, resetTestEmailService } from './helpers/testEmailService';
-import { generateTestEmail, expectEmailContent } from './helpers/emailTestHelper';
+import { authRequest } from '../test-auth-helper';
+import { getTestPrismaClient } from '../jest.setup';
+import { getTestEmailService, resetTestEmailService } from '../helpers/testEmailService';
+import { generateTestEmail, expectEmailContent } from '../helpers/emailTestHelper';
 import { randomBytes } from 'crypto';
 import bcrypt from 'bcryptjs';
 import { app } from '../../src/index';

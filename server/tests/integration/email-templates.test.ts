@@ -1,9 +1,9 @@
 import { describe, beforeAll, afterAll, beforeEach, it, expect } from '@jest/globals';
-import { authRequest } from './test-auth-helper';
-import { getTestPrismaClient } from './jest.setup';
-import { getTestEmailService, resetTestEmailService } from './helpers/testEmailService';
-import { generateTestEmail, expectEmailContent } from './helpers/emailTestHelper';
-import { renderTemplate, NewsletterTemplate } from '../../src/services/newsletterGenerator';
+import { authRequest } from '../test-auth-helper';
+import { getTestPrismaClient } from '../jest.setup';
+import { getTestEmailService, resetTestEmailService } from '../helpers/testEmailService';
+import { generateTestEmail, expectEmailContent } from '../helpers/emailTestHelper';
+// import { renderTemplate, NewsletterTemplate } from '../../src/services/newsletterGenerator'; - Service does not exist
 import { randomBytes } from 'crypto';
 import bcrypt from 'bcryptjs';
 import { app } from '../../src/index';

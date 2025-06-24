@@ -3,42 +3,14 @@ import { CurriculumImportService } from '../services/curriculumImportService';
 import { prisma } from '../prisma';
 
 // Mock dependencies
-jest.mock('../prisma', () => ({
-  prisma: {
-    curriculumImport: {
-      create: jest.fn(),
-      findUnique: jest.fn(),
-      update: jest.fn(),
-      findMany: jest.fn(),
-    },
-    curriculumExpectation: {
-      create: jest.fn(),
-      findUnique: jest.fn(),
-      count: jest.fn(),
-    },
-    outcome: {
-      create: jest.fn(),
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-    },
-    outcomeCluster: {
-      create: jest.fn(),
-    },
-  },
-}));
-
-jest.mock('../services/embeddingService', () => ({
-  embeddingService: {
-    generateBatchEmbeddings: jest.fn().mockResolvedValue([]),
-  },
-}));
+jest.mock('../prisma');
 
 describe('CurriculumImportService', () => {
   let service: CurriculumImportService;
 
   beforeEach(() => {
-    service = new CurriculumImportService();
     jest.clearAllMocks();
+    service = new CurriculumImportService();
   });
 
   describe('startImport', () => {
@@ -73,7 +45,9 @@ describe('CurriculumImportService', () => {
     it('should handle errors gracefully', async () => {
       (prisma.curriculumImport.create as jest.Mock).mockRejectedValue(new Error('DB error'));
 
-      await expect(service.startImport(1, 1, 'Mathematics', 'csv')).rejects.toThrow('Failed to start import session');
+      await expect(service.startImport(1, 1, 'Mathematics', 'csv')).rejects.toThrow(
+        'Failed to start import session',
+      );
     });
   });
 
@@ -137,7 +111,9 @@ M1.2,"Add numbers",Mathematics,1
       const csvContent = `name,value
 Test,123`;
 
-      expect(() => service.parseCSV(csvContent)).toThrow('CSV must contain "code" and "description" columns');
+      expect(() => service.parseCSV(csvContent)).toThrow(
+        'CSV must contain "code" and "description" columns',
+      );
     });
   });
 
@@ -220,7 +196,9 @@ Test,123`;
     it('should reject if import not found', async () => {
       (prisma.curriculumImport.findUnique as jest.Mock).mockResolvedValue(null);
 
-      await expect(service.confirmImport('non-existent')).rejects.toThrow('Import session not found');
+      await expect(service.confirmImport('non-existent')).rejects.toThrow(
+        'Import session not found',
+      );
     });
 
     it('should reject if import not ready', async () => {
@@ -231,7 +209,9 @@ Test,123`;
 
       (prisma.curriculumImport.findUnique as jest.Mock).mockResolvedValue(mockImport);
 
-      await expect(service.confirmImport('import-123')).rejects.toThrow('Import is not ready for confirmation');
+      await expect(service.confirmImport('import-123')).rejects.toThrow(
+        'Import is not ready for confirmation',
+      );
     });
   });
 
@@ -292,7 +272,9 @@ Test,123`;
     });
 
     it('should throw error for unknown preset', async () => {
-      await expect(service.loadPresetCurriculum(1, 'unknown-preset')).rejects.toThrow('Unknown preset: unknown-preset');
+      await expect(service.loadPresetCurriculum(1, 'unknown-preset')).rejects.toThrow(
+        'Unknown preset: unknown-preset',
+      );
     });
   });
 
@@ -300,19 +282,19 @@ Test,123`;
     it('should split text into manageable chunks', () => {
       // Access private method through reflection
       const chunkText = (service as any).chunkText.bind(service);
-      
+
       const longText = Array(10).fill('This is a paragraph.').join('\n\n');
       const chunks = chunkText(longText, 50);
 
       expect(chunks.length).toBeGreaterThan(1);
-      chunks.forEach(chunk => {
+      chunks.forEach((chunk) => {
         expect(chunk.length).toBeLessThanOrEqual(50);
       });
     });
 
     it('should preserve paragraph boundaries', () => {
       const chunkText = (service as any).chunkText.bind(service);
-      
+
       const text = 'Paragraph 1.\n\nParagraph 2.\n\nParagraph 3.';
       const chunks = chunkText(text, 20);
 

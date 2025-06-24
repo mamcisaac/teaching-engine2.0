@@ -1,41 +1,45 @@
 import { prisma } from '../prisma';
 
-export interface MilestoneProgress {
-  id: number;
+export interface UnitPlanProgress {
+  id: string;
   title: string;
   completionRate: number;
-  targetDate?: Date | null;
+  endDate?: Date | null;
 }
 
-export async function getMilestoneProgress(): Promise<MilestoneProgress[]> {
-  const milestones = await prisma.milestone.findMany({ include: { activities: true } });
-  return milestones.map((m) => {
-    const total = m.activities.length;
-    const completed = m.activities.reduce((sum, a) => sum + (a.completedAt ? 1 : 0), 0);
+export async function getUnitPlanProgress(): Promise<UnitPlanProgress[]> {
+  const unitPlans = await prisma.unitPlan.findMany({ include: { lessonPlans: true } });
+  return unitPlans.map((plan) => {
+    const total = plan.lessonPlans.length;
+    const today = new Date();
+    const completed = plan.lessonPlans.reduce(
+      (sum, lesson) => sum + (lesson.date <= today ? 1 : 0),
+      0,
+    );
     return {
-      id: m.id,
-      title: m.title,
+      id: plan.id,
+      title: plan.title,
       completionRate: total === 0 ? 0 : completed / total,
-      targetDate: m.targetDate,
+      endDate: plan.endDate,
     };
   });
 }
 
-export interface MilestoneUrgency extends MilestoneProgress {
+export interface UnitPlanUrgency extends UnitPlanProgress {
   urgency: number;
 }
 
 /**
- * Calculate milestone urgency based on remaining time and completion rate.
- * Higher values indicate milestones that need attention sooner.
+ * Calculate unit plan urgency based on remaining time and completion rate.
+ * Higher values indicate unit plans that need attention sooner.
  */
-export async function getMilestoneUrgency(): Promise<MilestoneUrgency[]> {
-  const progress = await getMilestoneProgress();
+export async function getUnitPlanUrgency(): Promise<UnitPlanUrgency[]> {
+  const progress = await getUnitPlanProgress();
   const today = new Date();
   return progress
     .map((p) => {
-      const daysLeft = p.targetDate
-        ? Math.max(1, Math.ceil((p.targetDate.getTime() - today.getTime()) / 86400000))
+      const daysLeft = p.endDate
+        ? Math.max(1, Math.ceil((p.endDate.getTime() - today.getTime()) / 86400000))
         : 30;
       const urgency = (1 - p.completionRate) / daysLeft;
       return { ...p, urgency };

@@ -1,5 +1,5 @@
 import BaseService from './base/BaseService';
-import * as emailService from './emailService';
+import { emailService } from './emailService';
 
 export interface Notification {
   id: string;
@@ -383,7 +383,7 @@ export class NotificationService extends BaseService {
       const subject = `[Teaching Engine] ${notification.title}`;
       const html = this.formatEmailNotification(notification, user.name);
 
-      await emailService.sendEmail(user.email, subject, notification.message, html);
+      await emailService.sendEmail(user.email, subject, html);
 
       this.logger.debug({ userId, notificationId: notification.id }, 'Email notification sent');
     } catch (error) {

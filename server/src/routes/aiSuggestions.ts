@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { z } from 'zod';
-import { prisma } from '../prisma';
+// import { prisma } from '../prisma'; // Unused import commented out
 import { aiActivityGenerator } from '../services/aiActivityGenerator';
 import { authMiddleware, AuthRequest } from '../middleware/auth';
 
@@ -60,11 +60,11 @@ router.get('/uncovered', authMiddleware, async (req: AuthRequest, res) => {
     const params = getUncoveredSchema.parse(req.query);
     const userId = parseInt(req.user!.userId, 10);
 
-    const uncoveredOutcomes = await aiActivityGenerator.getUncoveredOutcomes(
+    const uncoveredOutcomes = await aiActivityGenerator.getUncoveredOutcomes({
       userId,
-      params.theme,
-      params.limit,
-    );
+      theme: params.theme,
+      limit: params.limit,
+    });
 
     // Format suggestions with parsed materials
     const formatted = uncoveredOutcomes.map((item) => ({
@@ -112,12 +112,16 @@ router.post('/convert-to-activity', authMiddleware, async (req: AuthRequest, res
     const params = convertToActivitySchema.parse(req.body);
     const userId = parseInt(req.user!.userId, 10);
 
-    const activity = await aiActivityGenerator.convertToActivity(params.suggestionId, userId, {
-      milestoneId: params.milestoneId,
-      title: params.title,
-      durationMins: params.durationMins,
-      publicNote: params.publicNote,
-    });
+    const activity = await aiActivityGenerator.convertToActivity(
+      params.suggestionId.toString(),
+      userId,
+      {
+        milestoneId: params.milestoneId,
+        title: params.title,
+        durationMins: params.durationMins,
+        publicNote: params.publicNote,
+      },
+    );
 
     res.json(activity);
   } catch (error) {
@@ -140,10 +144,11 @@ router.get('/suggestions/:id', authMiddleware, async (req: AuthRequest, res) => 
       return res.status(400).json({ error: 'Invalid suggestion ID' });
     }
 
-    const suggestion = await prisma.aISuggestedActivity.findUnique({
-      where: { id },
-      include: { outcome: true },
-    });
+    // DISABLED: Legacy aISuggestedActivity model removed in ETFO migration
+    const suggestion = null; // await prisma.aISuggestedActivity.findUnique({
+    //   where: { id },
+    //   include: { outcome: true },
+    // });
 
     if (!suggestion) {
       return res.status(404).json({ error: 'Suggestion not found' });
@@ -178,22 +183,23 @@ router.delete('/suggestions/:id', authMiddleware, async (req: AuthRequest, res) 
       return res.status(400).json({ error: 'Invalid suggestion ID' });
     }
 
+    // DISABLED: Legacy aISuggestedActivity model removed in ETFO migration
     // Check if suggestion exists and user owns it
-    const suggestion = await prisma.aISuggestedActivity.findUnique({
-      where: { id },
-    });
+    const suggestion = null; // await prisma.aISuggestedActivity.findUnique({
+    //   where: { id },
+    // });
 
     if (!suggestion) {
       return res.status(404).json({ error: 'Suggestion not found' });
     }
 
-    if (suggestion.userId !== parseInt(req.user!.userId, 10)) {
-      return res.status(403).json({ error: 'Access denied' });
-    }
+    // if (suggestion.userId !== parseInt(req.user!.userId, 10)) {
+    //   return res.status(403).json({ error: 'Access denied' });
+    // }
 
-    await prisma.aISuggestedActivity.delete({
-      where: { id },
-    });
+    // await prisma.aISuggestedActivity.delete({
+    //   where: { id },
+    // });
 
     res.json({ message: 'Suggestion deleted successfully' });
   } catch (error) {

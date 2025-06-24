@@ -30,9 +30,9 @@ import type {
   GenerateParentSummaryRequest,
   SaveParentSummaryRequest,
   TeacherReflectionInput,
+  CognatePair,
+  CognateInput,
 } from './types';
-
-
 
 // Define missing types that are used but not exported from types
 
@@ -120,7 +120,18 @@ export const useFilteredNotes = (filters: {
   dateFrom?: string;
   dateTo?: string;
 }) =>
-  useQuery<any[]>({
+  useQuery<
+    Array<{
+      id: number;
+      userId: number;
+      date: string;
+      subjectId?: number | null;
+      type: string;
+      content: string;
+      createdAt: string;
+      updatedAt: string;
+    }>
+  >({
     queryKey: ['notes', filters],
     queryFn: async () => (await api.get('/api/notes', { params: filters })).data,
   });
@@ -162,7 +173,8 @@ export const useCreateNewsletter = () => {
 export const useAddNote = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: any) => api.post('/api/notes', data),
+    mutationFn: (data: { date: string; subjectId?: number; type: string; content: string }) =>
+      api.post('/api/notes', data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['notes'] });
       toast.success('Note added');
@@ -207,7 +219,18 @@ export const useYearPlan = (teacherId: number, year: number) =>
 
 // Notes hooks
 export const useNotes = () =>
-  useQuery<any[]>({
+  useQuery<
+    Array<{
+      id: number;
+      userId: number;
+      date: string;
+      subjectId?: number | null;
+      type: string;
+      content: string;
+      createdAt: string;
+      updatedAt: string;
+    }>
+  >({
     queryKey: ['notes'],
     queryFn: async () => (await api.get('/api/notes')).data,
   });
@@ -218,7 +241,6 @@ export const useMaterialDetails = (weekStart: string) =>
     queryKey: ['material-details', weekStart],
     queryFn: async () => (await api.get(`/materials/details?weekStart=${weekStart}`)).data,
   });
-
 
 export const useDeleteResource = () => {
   const qc = useQueryClient();
@@ -322,15 +344,46 @@ export const deleteClassRoutine = async (id: number) => {
 export interface WeeklyPlanData {
   startDate: string;
   endDate: string;
-  days: Array<Record<string, unknown>>;
+  days: Array<{
+    date: string;
+    dayPlans: Array<{
+      time: string;
+      activity: string;
+      subject?: string;
+      notes?: string;
+    }>;
+  }>;
   weeklyOverview: {
-    subjects: Array<Record<string, unknown>>;
-    unitPlans: Array<Record<string, unknown>>; // Updated for ETFO alignment
-    assessments: Array<Record<string, unknown>>;
-    specialEvents: Array<Record<string, unknown>>;
+    subjects: Array<{
+      id: number;
+      name: string;
+      hoursAllocated: number;
+    }>;
+    unitPlans: Array<{
+      id: string;
+      title: string;
+      expectations: string[];
+    }>; // Updated for ETFO alignment
+    assessments: Array<{
+      date: string;
+      type: string;
+      subject: string;
+      description: string;
+    }>;
+    specialEvents: Array<{
+      date: string;
+      title: string;
+      description: string;
+    }>;
   };
-  continuityNotes: Array<Record<string, unknown>>;
-  emergencyBackupPlans: Array<Record<string, unknown>>;
+  continuityNotes: Array<{
+    category: string;
+    note: string;
+  }>;
+  emergencyBackupPlans: Array<{
+    scenario: string;
+    plan: string;
+  }>;
 }
 
 export const extractWeeklyPlan = async (
@@ -563,10 +616,20 @@ export const useGenerateNewsletter = () => {
   });
 };
 
-export const useany = (weekStart: string) => {
+export const useLessonPlan = (weekStart: string) => {
   // Query client is available if needed for future use
 
-  return useQuery<any>({
+  return useQuery<{
+    id: string;
+    weekStart: string;
+    activities: Array<{
+      id: number;
+      title: string;
+      description: string;
+      duration: number;
+      subjectId: number;
+    }>;
+  }>({
     queryKey: ['lesson-plan', weekStart],
     queryFn: async () => {
       try {
@@ -616,12 +679,32 @@ export const useCalendarEvents = (start: string, end: string) =>
   });
 
 export const usePlannerSuggestions = (weekStart: string, filters?: Record<string, boolean>) =>
-  useQuery<any[]>({
+  useQuery<
+    Array<{
+      id: number;
+      title: string;
+      description: string;
+      duration: number;
+      activityId?: number;
+      subjectId?: number;
+      date?: string;
+    }>
+  >({
     queryKey: ['planner-suggestions', weekStart, filters],
     queryFn: async () => {
       try {
         const url = `/api/planner/suggestions?weekStart=${weekStart}`;
-        const response = await api.get<any[]>(url);
+        const response = await api.get<
+          Array<{
+            id: number;
+            title: string;
+            description: string;
+            duration: number;
+            activityId?: number;
+            subjectId?: number;
+            date?: string;
+          }>
+        >(url);
         let suggestions = response.data;
 
         // Apply client-side filtering based on activity tags
@@ -694,7 +777,6 @@ export const useSubject = (id: number) =>
     queryFn: async () => (await api.get(`/api/subjects/${id}`)).data,
   });
 
-
 // Legacy API factory removed
 
 // Subject API functions
@@ -730,7 +812,7 @@ export const useCreateSubject = () => {
 export const useUpdateSubject = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ id, data }: { id: number; data: Partial<Subject> }) => 
+    mutationFn: ({ id, data }: { id: number; data: Partial<Subject> }) =>
       subjectApi.update(id, data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['subjects'] });
@@ -749,12 +831,6 @@ export const useDeleteSubject = () => {
     },
   });
 };
-
-
-
-
-
-
 
 // Legacy useReorderActivities removed - replaced by ETFO lesson plans
 
@@ -815,7 +891,20 @@ export const useGeneratePlan = () => {
       weekStart: string;
       preserveBuffer: boolean;
       pacingStrategy: 'strict' | 'relaxed';
-    }) => (await api.post<any>('/api/lesson-plans/generate', data)).data,
+    }) =>
+      (
+        await api.post<{
+          id: string;
+          weekStart: string;
+          activities: Array<{
+            id: number;
+            title: string;
+            description: string;
+            duration: number;
+            subjectId: number;
+          }>;
+        }>('/api/lesson-plans/generate', data)
+      ).data,
     onSuccess: (_, { weekStart }) => {
       qc.invalidateQueries({ queryKey: ['weekly-plan', weekStart] });
       qc.invalidateQueries({ queryKey: ['subjects'] });
@@ -845,7 +934,19 @@ export const useCurriculumExpectations = (filters?: {
   grade?: string | number;
   search?: string;
 }) => {
-  return useQuery<any[]>({
+  return useQuery<
+    Array<{
+      id: string;
+      code: string;
+      description: string;
+      strand: string;
+      substrand?: string;
+      subject: string;
+      grade: number;
+      createdAt: string;
+      updatedAt: string;
+    }>
+  >({
     queryKey: ['curriculum-expectations', filters],
     queryFn: async () => {
       try {
@@ -860,7 +961,7 @@ export const useCurriculumExpectations = (filters?: {
   });
 };
 
-// Type for curriculum expectation coverage data  
+// Type for curriculum expectation coverage data
 export interface ExpectationCoverage {
   expectationId: string; // Updated for ETFO alignment
   code: string;
@@ -881,12 +982,14 @@ export const useExpectationCoverage = (filters?: {
   subject?: string;
   grade?: string | number;
   strand?: string;
-}): any => {
+}) => {
   return useQuery<ExpectationCoverage[]>({
     queryKey: ['expectation-coverage', filters],
     queryFn: async () => {
       try {
-        const response = await api.get('/api/curriculum-expectations/coverage', { params: filters });
+        const response = await api.get('/api/curriculum-expectations/coverage', {
+          params: filters,
+        });
         return response.data;
       } catch (error) {
         console.error('Error fetching expectation coverage:', error);
@@ -947,12 +1050,25 @@ export const useSaveSubstituteInfo = () => {
 };
 
 // SMART Goals API
-export const useSmartGoals = (filters?: {
+interface SmartGoal {
+  id: number;
+  goal: string;
+  specific: string;
+  measurable: string;
+  achievable: string;
+  relevant: string;
+  timeBound: string;
+  targetDate: string;
+  progress: number;
+  status: 'active' | 'completed' | 'paused';
   outcomeId?: string;
-  milestoneId?: number;
-  userId?: number;
-}) =>
-  useQuery<any[]>({
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export const useSmartGoals = (filters?: { outcomeId?: string; userId?: number }) =>
+  useQuery<SmartGoal[]>({
     queryKey: ['smart-goals', filters],
     queryFn: async () => (await api.get('/api/smart-goals', { params: filters })).data,
   });
@@ -960,7 +1076,7 @@ export const useSmartGoals = (filters?: {
 export const useCreateSmartGoal = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: Partial<any>) => api.post('/api/smart-goals', data),
+    mutationFn: (data: Partial<SmartGoal>) => api.post('/api/smart-goals', data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['smart-goals'] });
       toast.success('SMART goal created');
@@ -978,7 +1094,7 @@ export const useCreateSmartGoal = () => {
 export const useUpdateSmartGoal = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ id, data }: { id: number; data: Partial<any> }) =>
+    mutationFn: ({ id, data }: { id: number; data: Partial<SmartGoal> }) =>
       api.put(`/api/smart-goals/${id}`, data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['smart-goals'] });
@@ -1280,13 +1396,13 @@ export const useDeleteThematicUnit = () => {
 
 // Cognate Pair hooks
 export const useCognates = (userId?: number) =>
-  useQuery<any[]>({
+  useQuery<CognatePair[]>({
     queryKey: ['cognates', userId],
     queryFn: async () => (await api.get('/api/cognates', { params: { userId } })).data,
   });
 
 export const useCognate = (id: number) =>
-  useQuery<any>({
+  useQuery<CognatePair>({
     queryKey: ['cognates', id],
     queryFn: async () => (await api.get(`/api/cognates/${id}`)).data,
     enabled: !!id,
@@ -1294,7 +1410,7 @@ export const useCognate = (id: number) =>
 
 export const useCreateCognate = () => {
   const queryClient = useQueryClient();
-  return useMutation<any, Error, any>({
+  return useMutation<CognatePair, Error, CognateInput>({
     mutationFn: async (data) => (await api.post('/api/cognates', data)).data,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['cognates'] });
@@ -1313,11 +1429,11 @@ export const useCreateCognate = () => {
 export const useUpdateCognate = () => {
   const queryClient = useQueryClient();
   return useMutation<
-    any,
+    CognatePair,
     Error,
     {
       id: number;
-      data: Partial<any>;
+      data: Partial<CognateInput>;
     }
   >({
     mutationFn: async ({ id, data }) => (await api.put(`/api/cognates/${id}`, data)).data,
@@ -1570,7 +1686,6 @@ export const useDeleteMediaResource = () => {
     },
   });
 };
-
 
 // Student API hooks
 export const useStudents = () => {
@@ -2059,5 +2174,3 @@ export const useDeleteParentSummary = () => {
     },
   });
 };
-
-

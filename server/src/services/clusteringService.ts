@@ -142,7 +142,11 @@ export class ClusteringService extends BaseService {
     }[]
   > {
     try {
-      const similarities = await embeddingService.findSimilarExpectations(expectationId, threshold, limit);
+      const similarities = await embeddingService.findSimilarExpectations(
+        expectationId,
+        threshold,
+        limit,
+      );
 
       if (similarities.length === 0) return [];
 
@@ -331,7 +335,9 @@ export class ClusteringService extends BaseService {
 
       // Find similar expectations to add to this cluster
       const similarExpectations = similarities[expectation.id]
-        .filter((sim) => !used.has(sim.expectationId) && sim.similarity >= options.similarityThreshold)
+        .filter(
+          (sim) => !used.has(sim.expectationId) && sim.similarity >= options.similarityThreshold,
+        )
         .slice(0, 10); // Limit cluster size
 
       for (const sim of similarExpectations) {
@@ -404,10 +410,10 @@ export class ClusteringService extends BaseService {
     clusters: {
       name: string;
       type: 'theme' | 'skill' | 'concept';
-      outcomeIds: string[];
+      expectationIds: string[];
       confidence: number;
     }[],
-    importId: string,
+    _importId: string,
   ): Promise<void> {
     if (!openai) {
       this.logger.warn('OpenAI not configured, skipping theme generation');

@@ -3,7 +3,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import unzipper from 'unzipper';
-import { authRequest } from './test-auth-helper';
+import { authRequest } from '../test-auth-helper';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

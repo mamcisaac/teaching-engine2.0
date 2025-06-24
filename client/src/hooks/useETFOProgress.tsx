@@ -55,7 +55,7 @@ export function useETFOProgress() {
    */
   const isLevelComplete = (level: string): boolean => {
     if (!progressData) return false;
-    
+
     switch (level) {
       case 'curriculum':
         return progressData.curriculumExpectations.imported > 0;
@@ -77,7 +77,7 @@ export function useETFOProgress() {
    */
   const isLevelAccessible = (level: string): boolean => {
     if (!progressData) return false;
-    
+
     switch (level) {
       case 'curriculum':
         return true; // Always accessible
@@ -99,23 +99,28 @@ export function useETFOProgress() {
    */
   const getLevelProgress = (level: string): number => {
     if (!progressData) return 0;
-    
+
     switch (level) {
-      case 'curriculum':
+      case 'curriculum': {
         const { total: expTotal, imported } = progressData.curriculumExpectations;
         return expTotal > 0 ? (imported / expTotal) * 100 : 0;
-      case 'long-range':
+      }
+      case 'long-range': {
         const { total: lrpTotal, completed: lrpCompleted } = progressData.longRangePlans;
         return lrpTotal > 0 ? (lrpCompleted / lrpTotal) * 100 : 0;
-      case 'units':
+      }
+      case 'units': {
         const { total: unitTotal, completed: unitCompleted } = progressData.unitPlans;
         return unitTotal > 0 ? (unitCompleted / unitTotal) * 100 : 0;
-      case 'lessons':
+      }
+      case 'lessons': {
         const { total: lessonTotal, completed: lessonCompleted } = progressData.lessonPlans;
         return lessonTotal > 0 ? (lessonCompleted / lessonTotal) * 100 : 0;
-      case 'daybook':
+      }
+      case 'daybook': {
         const { total: daybookTotal, completed: daybookCompleted } = progressData.daybookEntries;
         return daybookTotal > 0 ? (daybookCompleted / daybookTotal) * 100 : 0;
+      }
       default:
         return 0;
     }
@@ -132,7 +137,12 @@ export function useETFOProgress() {
         path: '/curriculum',
         icon: (
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+            />
           </svg>
         ),
         isComplete: isLevelComplete('curriculum'),
@@ -146,7 +156,12 @@ export function useETFOProgress() {
         path: '/planner/long-range',
         icon: (
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"
+            />
           </svg>
         ),
         isComplete: isLevelComplete('long-range'),
@@ -160,7 +175,12 @@ export function useETFOProgress() {
         path: '/planner/units',
         icon: (
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+            />
           </svg>
         ),
         isComplete: isLevelComplete('units'),
@@ -174,7 +194,12 @@ export function useETFOProgress() {
         path: '/planner/lessons',
         icon: (
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+            />
           </svg>
         ),
         isComplete: isLevelComplete('lessons'),
@@ -188,7 +213,12 @@ export function useETFOProgress() {
         path: '/planner/daybook',
         icon: (
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            />
           </svg>
         ),
         isComplete: isLevelComplete('daybook'),

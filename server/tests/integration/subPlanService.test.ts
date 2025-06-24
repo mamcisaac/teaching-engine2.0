@@ -1,5 +1,5 @@
 import { generateSubPlan, buildSubPlanData } from '../../src/services/subPlanService';
-import { getTestPrismaClient } from './jest.setup';
+import { getTestPrismaClient } from '../jest.setup';
 
 describe('sub plan service', () => {
   let prisma: ReturnType<typeof getTestPrismaClient>;

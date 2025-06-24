@@ -376,7 +376,9 @@ export function CurriculumImportWizard({
                     <td className="px-4 py-2">
                       <textarea
                         value={expectation.description}
-                        onChange={(e) => handleExpectationEdit(index, 'description', e.target.value)}
+                        onChange={(e) =>
+                          handleExpectationEdit(index, 'description', e.target.value)
+                        }
                         rows={2}
                         className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
@@ -405,7 +407,9 @@ export function CurriculumImportWizard({
             onClick={handleConfirmImport}
             disabled={isConfirming || !reviewedData.subject || !reviewedData.expectations.length}
           >
-            {isConfirming ? 'Importing...' : `Import ${reviewedData.expectations.length} Expectations`}
+            {isConfirming
+              ? 'Importing...'
+              : `Import ${reviewedData.expectations.length} Expectations`}
           </Button>
         </div>
       </div>
@@ -427,8 +431,8 @@ export function CurriculumImportWizard({
       <div>
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Import Successful!</h2>
         <p className="text-gray-600">
-          Your curriculum has been successfully imported. You can now start creating milestones and
-          activities.
+          Your curriculum has been successfully imported. You can now start creating long-range
+          plans and unit plans.
         </p>
       </div>
     </div>

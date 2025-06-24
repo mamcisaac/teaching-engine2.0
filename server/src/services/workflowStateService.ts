@@ -102,10 +102,13 @@ export class WorkflowStateService extends BaseService {
   /**
    * Check if a user can access a specific level
    */
-  async canAccessLevel(userId: number, level: ETFOLevel): Promise<{ canAccess: boolean; reason?: string }> {
+  async canAccessLevel(
+    userId: number,
+    level: ETFOLevel,
+  ): Promise<{ canAccess: boolean; reason?: string }> {
     try {
       const levelIndex = ETFO_LEVEL_SEQUENCE.indexOf(level);
-      
+
       // First level is always accessible
       if (levelIndex === 0) {
         return { canAccess: true };
@@ -115,7 +118,7 @@ export class WorkflowStateService extends BaseService {
       for (let i = 0; i < levelIndex; i++) {
         const previousLevel = ETFO_LEVEL_SEQUENCE[i];
         const isComplete = await this.isLevelComplete(userId, previousLevel);
-        
+
         if (!isComplete) {
           return {
             canAccess: false,
@@ -167,9 +170,9 @@ export class WorkflowStateService extends BaseService {
 
   private async calculateCurriculumProgress(userId: number): Promise<LevelProgress> {
     const total = await prisma.curriculumExpectation.count({
-      where: { 
-        import: { userId }
-      }
+      where: {
+        import: { userId },
+      },
     });
 
     return {
@@ -185,10 +188,10 @@ export class WorkflowStateService extends BaseService {
   private async calculateLongRangeProgress(userId: number): Promise<LevelProgress> {
     const total = await prisma.longRangePlan.count({ where: { userId } });
     const completed = await prisma.longRangePlan.count({
-      where: { 
+      where: {
         userId,
-        goals: { not: null }
-      }
+        goals: { not: null },
+      },
     });
 
     const isAccessible = await this.isLevelComplete(userId, ETFOLevel.CURRICULUM_EXPECTATIONS);
@@ -207,13 +210,13 @@ export class WorkflowStateService extends BaseService {
   private async calculateUnitProgress(userId: number): Promise<LevelProgress> {
     const total = await prisma.unitPlan.count({ where: { userId } });
     const completed = await prisma.unitPlan.count({
-      where: { 
+      where: {
         userId,
         bigIdeas: { not: null },
         expectations: {
-          some: {}
-        }
-      }
+          some: {},
+        },
+      },
     });
 
     const isAccessible = await this.isLevelComplete(userId, ETFOLevel.LONG_RANGE_PLANS);
@@ -232,11 +235,11 @@ export class WorkflowStateService extends BaseService {
   private async calculateLessonProgress(userId: number): Promise<LevelProgress> {
     const total = await prisma.eTFOLessonPlan.count({ where: { userId } });
     const completed = await prisma.eTFOLessonPlan.count({
-      where: { 
+      where: {
         userId,
         learningGoals: { not: null },
-        materials: { not: null }
-      }
+        materials: { not: null },
+      },
     });
 
     const isAccessible = await this.isLevelComplete(userId, ETFOLevel.UNIT_PLANS);
@@ -255,10 +258,10 @@ export class WorkflowStateService extends BaseService {
   private async calculateDaybookProgress(userId: number): Promise<LevelProgress> {
     const total = await prisma.daybookEntry.count({ where: { userId } });
     const completed = await prisma.daybookEntry.count({
-      where: { 
+      where: {
         userId,
-        whatWorked: { not: null }
-      }
+        whatWorked: { not: null },
+      },
     });
 
     const isAccessible = await this.isLevelComplete(userId, ETFOLevel.LESSON_PLANS);
@@ -280,18 +283,16 @@ export class WorkflowStateService extends BaseService {
   }
 
   private getCompletedLevels(progress: LevelProgress[]): ETFOLevel[] {
-    return progress
-      .filter(p => p.isComplete)
-      .map(p => p.level);
+    return progress.filter((p) => p.isComplete).map((p) => p.level);
   }
 
   private getCurrentLevel(progress: LevelProgress[]): ETFOLevel {
     // Find the first incomplete but accessible level
-    const current = progress.find(p => !p.isComplete && p.isAccessible);
+    const current = progress.find((p) => !p.isComplete && p.isAccessible);
     if (current) return current.level;
 
     // If all accessible levels are complete, return the last completed level
-    const lastCompleted = progress.filter(p => p.isComplete).pop();
+    const lastCompleted = progress.filter((p) => p.isComplete).pop();
     if (lastCompleted) return lastCompleted.level;
 
     // Default to first level
@@ -299,83 +300,88 @@ export class WorkflowStateService extends BaseService {
   }
 
   private getAccessibleLevels(progress: LevelProgress[]): ETFOLevel[] {
-    return progress
-      .filter(p => p.isAccessible)
-      .map(p => p.level);
+    return progress.filter((p) => p.isAccessible).map((p) => p.level);
   }
 
   private getBlockedLevels(progress: LevelProgress[]): ETFOLevel[] {
-    return progress
-      .filter(p => !p.isAccessible)
-      .map(p => p.level);
+    return progress.filter((p) => !p.isAccessible).map((p) => p.level);
   }
 
   /**
    * Validate that a level has all required fields completed
    */
-  async validateLevelCompletion(userId: number, level: ETFOLevel, entityId: string): Promise<{ isValid: boolean; missingFields: string[] }> {
-    const metadata = ETFO_LEVEL_METADATA[level];
+  async validateLevelCompletion(
+    userId: number,
+    level: ETFOLevel,
+    entityId: string,
+  ): Promise<{ isValid: boolean; missingFields: string[] }> {
+    const _metadata = ETFO_LEVEL_METADATA[level];
     const missingFields: string[] = [];
 
     try {
       switch (level) {
-        case ETFOLevel.CURRICULUM_EXPECTATIONS:
+        case ETFOLevel.CURRICULUM_EXPECTATIONS: {
           const expectation = await prisma.curriculumExpectation.findUnique({
-            where: { id: entityId }
+            where: { id: entityId },
           });
           if (!expectation) return { isValid: false, missingFields: ['entity not found'] };
-          
+
           if (!expectation.code) missingFields.push('code');
           if (!expectation.description) missingFields.push('description');
           if (!expectation.strand) missingFields.push('strand');
           break;
+        }
 
-        case ETFOLevel.LONG_RANGE_PLANS:
+        case ETFOLevel.LONG_RANGE_PLANS: {
           const lrp = await prisma.longRangePlan.findUnique({
-            where: { id: entityId }
+            where: { id: entityId },
           });
           if (!lrp) return { isValid: false, missingFields: ['entity not found'] };
-          
+
           if (!lrp.title) missingFields.push('title');
           // Long-range plans don't have specific start/end dates, they span the academic year
           if (!lrp.goals) missingFields.push('goals');
           break;
+        }
 
-        case ETFOLevel.UNIT_PLANS:
+        case ETFOLevel.UNIT_PLANS: {
           const unit = await prisma.unitPlan.findUnique({
             where: { id: entityId },
-            include: { expectations: true }
+            include: { expectations: true },
           });
           if (!unit) return { isValid: false, missingFields: ['entity not found'] };
-          
+
           if (!unit.title) missingFields.push('title');
           if (!unit.bigIdeas) missingFields.push('bigIdeas');
           // learningGoals is not a field on UnitPlan, it's on ETFOLessonPlan
           if (unit.expectations.length === 0) missingFields.push('expectations');
           break;
+        }
 
-        case ETFOLevel.LESSON_PLANS:
+        case ETFOLevel.LESSON_PLANS: {
           const lesson = await prisma.eTFOLessonPlan.findUnique({
-            where: { id: entityId }
+            where: { id: entityId },
           });
           if (!lesson) return { isValid: false, missingFields: ['entity not found'] };
-          
+
           if (!lesson.title) missingFields.push('title');
           if (!lesson.learningGoals) missingFields.push('learningGoals');
           if (!lesson.materials) missingFields.push('materials');
           // activities is not a field on ETFOLessonPlan
           break;
+        }
 
-        case ETFOLevel.DAYBOOK_ENTRIES:
+        case ETFOLevel.DAYBOOK_ENTRIES: {
           const daybook = await prisma.daybookEntry.findUnique({
-            where: { id: entityId }
+            where: { id: entityId },
           });
           if (!daybook) return { isValid: false, missingFields: ['entity not found'] };
-          
+
           if (!daybook.date) missingFields.push('date');
           // activities is not a field on DaybookEntry
           if (!daybook.whatWorked && !daybook.whatDidntWork) missingFields.push('reflections');
           break;
+        }
       }
 
       return {

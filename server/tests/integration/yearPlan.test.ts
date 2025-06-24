@@ -1,6 +1,6 @@
 import { app } from '../../src/index';
-import { authRequest } from './test-auth-helper';
-import { getTestPrismaClient } from './jest.setup';
+import { authRequest } from '../test-auth-helper';
+import { getTestPrismaClient } from '../jest.setup';
 
 describe('year plan routes', () => {
   let prisma: ReturnType<typeof getTestPrismaClient>;

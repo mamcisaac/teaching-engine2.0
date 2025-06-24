@@ -1,5 +1,5 @@
 import { app } from '../../src/index';
-import { authRequest } from './test-auth-helper';
+import { authRequest } from '../test-auth-helper';
 
 const auth = authRequest(app);
 

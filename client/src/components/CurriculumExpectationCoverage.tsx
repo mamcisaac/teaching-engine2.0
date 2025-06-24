@@ -3,9 +3,25 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Progress } from '@/components/ui/Progress';
 import { Badge } from '@/components/ui/Badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from 'recharts';
-import { BookOpen, Target, TrendingUp, AlertTriangle } from 'lucide-react';
-import { useCurriculumExpectations, useUnitPlans, useETFOLessonPlans } from '../hooks/useETFOPlanning';
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Tooltip,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Legend,
+} from 'recharts';
+import { Target, AlertTriangle } from 'lucide-react';
+import {
+  useCurriculumExpectations,
+  useUnitPlans,
+  useETFOLessonPlans,
+} from '../hooks/useETFOPlanning';
 
 interface StrandCoverage {
   strand: string;
@@ -34,17 +50,17 @@ export default function CurriculumExpectationCoverage() {
   const coverageMetrics = useMemo(() => {
     // Get all expectation IDs that are covered in units or lessons
     const coveredExpectationIds = new Set<string>();
-    
+
     // From unit plans
-    unitPlans.forEach(unit => {
-      unit.expectations?.forEach(exp => {
+    unitPlans.forEach((unit) => {
+      unit.expectations?.forEach((exp) => {
         coveredExpectationIds.add(exp.expectation.id);
       });
     });
-    
+
     // From lesson plans
-    lessonPlans.forEach(lesson => {
-      lesson.expectations?.forEach(exp => {
+    lessonPlans.forEach((lesson) => {
+      lesson.expectations?.forEach((exp) => {
         coveredExpectationIds.add(exp.expectation.id);
       });
     });
@@ -54,7 +70,7 @@ export default function CurriculumExpectationCoverage() {
     const byStrand: Record<string, typeof expectations> = {};
     const byGrade: Record<number, Record<string, typeof expectations>> = {};
 
-    expectations.forEach(exp => {
+    expectations.forEach((exp) => {
       // By subject
       if (!bySubject[exp.subject]) {
         bySubject[exp.subject] = [];
@@ -80,51 +96,56 @@ export default function CurriculumExpectationCoverage() {
 
     // Calculate coverage by subject
     const subjectCoverage = Object.entries(bySubject).map(([subject, exps]) => {
-      const covered = exps.filter(exp => coveredExpectationIds.has(exp.id)).length;
+      const covered = exps.filter((exp) => coveredExpectationIds.has(exp.id)).length;
       return {
         subject,
         total: exps.length,
         covered,
-        percentage: Math.round((covered / exps.length) * 100)
+        percentage: Math.round((covered / exps.length) * 100),
       };
     });
 
     // Calculate coverage by strand
     const strandCoverage: StrandCoverage[] = Object.entries(byStrand).map(([strand, exps]) => {
-      const covered = exps.filter(exp => coveredExpectationIds.has(exp.id)).length;
+      const covered = exps.filter((exp) => coveredExpectationIds.has(exp.id)).length;
       return {
         strand,
         total: exps.length,
         covered,
-        percentage: Math.round((covered / exps.length) * 100)
+        percentage: Math.round((covered / exps.length) * 100),
       };
     });
 
     // Calculate coverage by grade
-    const gradeCoverage: GradeCoverage[] = Object.entries(byGrade).map(([grade, subjects]) => {
-      const subjectData = Object.entries(subjects).map(([subject, exps]) => {
-        const covered = exps.filter(exp => coveredExpectationIds.has(exp.id)).length;
-        return {
-          subject,
-          total: exps.length,
-          covered,
-          percentage: Math.round((covered / exps.length) * 100)
-        };
-      });
+    const gradeCoverage: GradeCoverage[] = Object.entries(byGrade)
+      .map(([grade, subjects]) => {
+        const subjectData = Object.entries(subjects).map(([subject, exps]) => {
+          const covered = exps.filter((exp) => coveredExpectationIds.has(exp.id)).length;
+          return {
+            subject,
+            total: exps.length,
+            covered,
+            percentage: Math.round((covered / exps.length) * 100),
+          };
+        });
 
-      return {
-        grade: Number(grade),
-        subjects: subjectData
-      };
-    }).sort((a, b) => a.grade - b.grade);
+        return {
+          grade: Number(grade),
+          subjects: subjectData,
+        };
+      })
+      .sort((a, b) => a.grade - b.grade);
 
     // Overall metrics
     const totalExpectations = expectations.length;
-    const coveredExpectations = expectations.filter(exp => coveredExpectationIds.has(exp.id)).length;
-    const overallPercentage = totalExpectations > 0 ? Math.round((coveredExpectations / totalExpectations) * 100) : 0;
+    const coveredExpectations = expectations.filter((exp) =>
+      coveredExpectationIds.has(exp.id),
+    ).length;
+    const overallPercentage =
+      totalExpectations > 0 ? Math.round((coveredExpectations / totalExpectations) * 100) : 0;
 
     // Find gaps (uncovered expectations grouped by priority)
-    const uncoveredExpectations = expectations.filter(exp => !coveredExpectationIds.has(exp.id));
+    const uncoveredExpectations = expectations.filter((exp) => !coveredExpectationIds.has(exp.id));
     // For now, treat all gaps as regular priority since we don't have type classification
     const highPriorityGaps: typeof expectations = [];
     const regularGaps = uncoveredExpectations;
@@ -133,20 +154,29 @@ export default function CurriculumExpectationCoverage() {
       overall: {
         total: totalExpectations,
         covered: coveredExpectations,
-        percentage: overallPercentage
+        percentage: overallPercentage,
       },
       bySubject: subjectCoverage,
       byStrand: strandCoverage,
       byGrade: gradeCoverage,
       gaps: {
         highPriority: highPriorityGaps,
-        regular: regularGaps
-      }
+        regular: regularGaps,
+      },
     };
   }, [expectations, unitPlans, lessonPlans]);
 
   // Colors for charts
-  const COLORS = ['#4f46e5', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#3b82f6', '#06b6d4', '#ec4899'];
+  const COLORS = [
+    '#4f46e5',
+    '#10b981',
+    '#f59e0b',
+    '#ef4444',
+    '#8b5cf6',
+    '#3b82f6',
+    '#06b6d4',
+    '#ec4899',
+  ];
 
   const getStatusColor = (percentage: number) => {
     if (percentage >= 80) return 'text-green-600';
@@ -179,7 +209,9 @@ export default function CurriculumExpectationCoverage() {
               <div className="text-sm text-gray-600">Remaining</div>
             </div>
             <div className="text-center">
-              <div className={`text-4xl font-bold ${getStatusColor(coverageMetrics.overall.percentage)}`}>
+              <div
+                className={`text-4xl font-bold ${getStatusColor(coverageMetrics.overall.percentage)}`}
+              >
                 {coverageMetrics.overall.percentage}%
               </div>
               <div className="text-sm text-gray-600">Overall Coverage</div>
@@ -206,7 +238,7 @@ export default function CurriculumExpectationCoverage() {
             <CardContent>
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-4">
-                  {coverageMetrics.bySubject.map(subject => (
+                  {coverageMetrics.bySubject.map((subject) => (
                     <div key={subject.subject} className="space-y-2">
                       <div className="flex justify-between items-center">
                         <span className="font-medium">{subject.subject}</span>
@@ -260,12 +292,7 @@ export default function CurriculumExpectationCoverage() {
                     margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
                   >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis 
-                      dataKey="strand" 
-                      angle={-45}
-                      textAnchor="end"
-                      height={100}
-                    />
+                    <XAxis dataKey="strand" angle={-45} textAnchor="end" height={100} />
                     <YAxis />
                     <Tooltip />
                     <Legend />
@@ -285,15 +312,23 @@ export default function CurriculumExpectationCoverage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
-                {coverageMetrics.byGrade.map(grade => (
+                {coverageMetrics.byGrade.map((grade) => (
                   <div key={grade.grade} className="space-y-3">
                     <h4 className="text-lg font-semibold">Grade {grade.grade}</h4>
                     <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-                      {grade.subjects.map(subject => (
+                      {grade.subjects.map((subject) => (
                         <div key={subject.subject} className="p-3 bg-gray-50 rounded-lg">
                           <div className="flex justify-between items-center mb-2">
                             <span className="font-medium text-sm">{subject.subject}</span>
-                            <Badge variant={subject.percentage >= 80 ? "default" : subject.percentage >= 60 ? "secondary" : "destructive"}>
+                            <Badge
+                              variant={
+                                subject.percentage >= 80
+                                  ? 'default'
+                                  : subject.percentage >= 60
+                                    ? 'secondary'
+                                    : 'destructive'
+                              }
+                            >
                               {subject.percentage}%
                             </Badge>
                           </div>
@@ -331,16 +366,14 @@ export default function CurriculumExpectationCoverage() {
                       High Priority Expectations ({coverageMetrics.gaps.highPriority.length})
                     </h4>
                     <div className="space-y-2">
-                      {coverageMetrics.gaps.highPriority.slice(0, 5).map(exp => (
+                      {coverageMetrics.gaps.highPriority.slice(0, 5).map((exp) => (
                         <div key={exp.id} className="p-3 bg-red-50 rounded-lg">
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
                               <div className="font-medium text-sm">
                                 {exp.code} - {exp.subject} Grade {exp.grade}
                               </div>
-                              <div className="text-sm text-gray-600 mt-1">
-                                {exp.description}
-                              </div>
+                              <div className="text-sm text-gray-600 mt-1">{exp.description}</div>
                             </div>
                             <Badge variant="destructive" className="ml-2">
                               Regular
@@ -364,16 +397,14 @@ export default function CurriculumExpectationCoverage() {
                       Regular Expectations ({coverageMetrics.gaps.regular.length})
                     </h4>
                     <div className="space-y-2">
-                      {coverageMetrics.gaps.regular.slice(0, 5).map(exp => (
+                      {coverageMetrics.gaps.regular.slice(0, 5).map((exp) => (
                         <div key={exp.id} className="p-3 bg-yellow-50 rounded-lg">
                           <div className="flex items-start">
                             <div className="flex-1">
                               <div className="font-medium text-sm">
                                 {exp.code} - {exp.subject} Grade {exp.grade}
                               </div>
-                              <div className="text-sm text-gray-600 mt-1">
-                                {exp.description}
-                              </div>
+                              <div className="text-sm text-gray-600 mt-1">{exp.description}</div>
                             </div>
                           </div>
                         </div>
@@ -388,13 +419,16 @@ export default function CurriculumExpectationCoverage() {
                 )}
 
                 {/* No Gaps Message */}
-                {coverageMetrics.gaps.highPriority.length === 0 && coverageMetrics.gaps.regular.length === 0 && (
-                  <div className="text-center py-8">
-                    <Target className="h-12 w-12 text-green-600 mx-auto mb-3" />
-                    <p className="text-lg font-medium text-green-600">Excellent Coverage!</p>
-                    <p className="text-gray-600">All curriculum expectations are covered in your planning.</p>
-                  </div>
-                )}
+                {coverageMetrics.gaps.highPriority.length === 0 &&
+                  coverageMetrics.gaps.regular.length === 0 && (
+                    <div className="text-center py-8">
+                      <Target className="h-12 w-12 text-green-600 mx-auto mb-3" />
+                      <p className="text-lg font-medium text-green-600">Excellent Coverage!</p>
+                      <p className="text-gray-600">
+                        All curriculum expectations are covered in your planning.
+                      </p>
+                    </div>
+                  )}
               </div>
             </CardContent>
           </Card>
