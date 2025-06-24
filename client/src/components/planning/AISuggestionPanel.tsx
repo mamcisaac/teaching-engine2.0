@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
-import { Alert, AlertDescription } from '../ui/Alert';
+import { Alert, AlertDescription } from '../ui/alert';
 import { Sparkles, RefreshCw, Copy, Check } from 'lucide-react';
 import { useToast } from '../ui/use-toast';
 import { AISuggestion } from '@/hooks/useAIPlanningAssistant';

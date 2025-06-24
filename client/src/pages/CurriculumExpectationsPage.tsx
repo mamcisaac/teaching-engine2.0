@@ -38,7 +38,7 @@ import {
 import { Label } from '@/components/ui/Label';
 import { Textarea } from '@/components/ui/Textarea';
 import { useToast } from '@/components/ui/use-toast';
-import { Alert, AlertDescription } from '@/components/ui/Alert';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 
 export default function CurriculumExpectationsPage() {
   const navigate = useNavigate();
