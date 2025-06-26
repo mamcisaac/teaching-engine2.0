@@ -2,7 +2,7 @@
 // Provides common offline functionality for all planning stores
 
 import { StateCreator } from 'zustand';
-import { offlineStorage, OfflineChange } from '../services/offlineStorage';
+import { offlineStorage } from '../services/offlineStorage';
 import { isOnline } from '../utils/serviceWorkerRegistration';
 
 export interface OfflineState {
@@ -134,10 +134,10 @@ async function syncWithServer<T extends Record<string, unknown>>(
         );
         
         // Save resolved data
-        await config.saveToServer(resolvedData);
+        await config.saveToServer(resolvedData as T);
       } else {
         // No conflicts, save local changes
-        await config.saveToServer(state);
+        await config.saveToServer(state as T);
       }
 
       // Mark changes as synced
@@ -192,7 +192,7 @@ async function detectConflicts(
   serverData: Record<string, unknown>,
   changes: ChangeRecord[]
 ): Promise<ConflictData[]> {
-  const conflicts = [];
+  const conflicts: ConflictData[] = [];
   
   // Simple conflict detection based on timestamps
   const localTimestamp = localData.lastModified || localData.updatedAt;
@@ -256,7 +256,7 @@ async function resolveConflicts(
         localData,
         serverData,
         'planning-data',
-(merged.id as string) || 'unknown'
+        (merged.id || 'unknown') as string
       );
       
       return merged;

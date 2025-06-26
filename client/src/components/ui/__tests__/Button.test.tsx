@@ -4,6 +4,7 @@
  * states, accessibility, and interaction behaviors.
  */
 
+import React from 'react';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
@@ -323,7 +324,7 @@ describe('Button', () => {
     });
 
     it('should allow ref-based operations', () => {
-      const ref = { current: null };
+      const ref = React.createRef<HTMLButtonElement>();
       render(<Button ref={ref}>Ref Operations</Button>);
       
       expect(ref.current).not.toBeNull();

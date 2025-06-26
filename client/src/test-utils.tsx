@@ -53,7 +53,7 @@ export const createMockUser = (overrides: Partial<User & { token?: string }> = {
   ...overrides,
 });
 
-export const createMockLessonPlan = (overrides: Partial<any> = {}) => ({
+export const createMockLessonPlan = (overrides: Record<string, unknown> = {}) => ({
   id: 'lesson-123',
   title: 'Test Lesson Plan',
   subject: 'Mathematics',
@@ -78,9 +78,10 @@ export const createMockLessonPlan = (overrides: Partial<any> = {}) => ({
   ...overrides,
 });
 
-export const createMockUnitPlan = (overrides: Partial<any> = {}) => ({
+export const createMockUnitPlan = (overrides: Record<string, unknown> = {}) => ({
   id: 'unit-123',
   title: 'Test Unit Plan',
+  longRangePlanId: 'lrp-123',
   subject: 'Mathematics',
   gradeLevel: 'Grade 3',
   duration: '2 weeks',
@@ -95,7 +96,7 @@ export const createMockUnitPlan = (overrides: Partial<any> = {}) => ({
   ...overrides,
 });
 
-export const createMockCurriculumExpectation = (overrides: Partial<any> = {}) => ({
+export const createMockCurriculumExpectation = (overrides: Record<string, unknown> = {}) => ({
   id: 'expectation-123',
   code: 'B1.1',
   description: 'demonstrate an understanding of addition and subtraction',

@@ -87,7 +87,7 @@ const sanitizeAIInput = (input: unknown): unknown => {
 };
 
 // Additional validation for educational content
-const _validateEducationalInput = (input: string, fieldName: string): string => {
+const _validateEducationalInput = (input: unknown, fieldName: string): string => {
   if (!input || typeof input !== 'string') {
     throw new Error(`Invalid ${fieldName}: must be a non-empty string`);
   }
@@ -106,7 +106,7 @@ const _validateEducationalInput = (input: string, fieldName: string): string => 
     }
   }
   
-  return sanitizeAIInput(input);
+  return sanitizeAIInput(input) as string;
 };
 
 const router = Router();
@@ -164,7 +164,12 @@ router.get('/status', async (req: AuthenticatedRequest, res) => {
  */
 router.post('/long-range/goals', aiRateLimit, async (req: AuthenticatedRequest, res) => {
   try {
-    const sanitizedBody = sanitizeAIInput(req.body);
+    const sanitizedBody = sanitizeAIInput(req.body) as {
+      subject?: string;
+      grade?: string | number;
+      termLength?: string | number;
+      focusAreas?: string[];
+    };
     const { subject, grade, termLength, focusAreas } = sanitizedBody;
 
     if (!subject || !grade || !termLength) {
@@ -174,10 +179,10 @@ router.post('/long-range/goals', aiRateLimit, async (req: AuthenticatedRequest, 
     }
 
     const suggestions = await aiPlanningAssistant.generateLongRangeGoals({
-      subject,
+      subject: subject!,
       grade: Number(grade),
       termLength: Number(termLength),
-      focusAreas,
+      focusAreas: focusAreas as string[],
     });
 
     res.json(suggestions);
@@ -193,7 +198,13 @@ router.post('/long-range/goals', aiRateLimit, async (req: AuthenticatedRequest, 
  */
 router.post('/unit/big-ideas', aiRateLimit, async (req: AuthenticatedRequest, res) => {
   try {
-    const sanitizedBody = sanitizeAIInput(req.body);
+    const sanitizedBody = sanitizeAIInput(req.body) as {
+      unitTitle?: string;
+      subject?: string;
+      grade?: string | number;
+      curriculumExpectations?: string[];
+      duration?: string | number;
+    };
     const { unitTitle, subject, grade, curriculumExpectations, duration } = sanitizedBody;
 
     if (!unitTitle || !subject || !grade || !curriculumExpectations || !duration) {
@@ -223,7 +234,14 @@ router.post('/unit/big-ideas', aiRateLimit, async (req: AuthenticatedRequest, re
  */
 router.post('/lesson/activities', aiRateLimit, async (req: AuthenticatedRequest, res) => {
   try {
-    const sanitizedBody = sanitizeAIInput(req.body);
+    const sanitizedBody = sanitizeAIInput(req.body) as {
+      lessonTitle?: string;
+      learningGoals?: string[];
+      subject?: string;
+      grade?: string | number;
+      duration?: string | number;
+      materials?: string[];
+    };
     const { lessonTitle, learningGoals, subject, grade, duration, materials } = sanitizedBody;
 
     if (!lessonTitle || !learningGoals || !subject || !grade || !duration) {
@@ -254,7 +272,12 @@ router.post('/lesson/activities', aiRateLimit, async (req: AuthenticatedRequest,
  */
 router.post('/lesson/materials', aiRateLimit, async (req: AuthenticatedRequest, res) => {
   try {
-    const sanitizedBody = sanitizeAIInput(req.body);
+    const sanitizedBody = sanitizeAIInput(req.body) as {
+      activities?: string[];
+      subject?: string;
+      grade?: string | number;
+      classSize?: string | number;
+    };
     const { activities, subject, grade, classSize } = sanitizedBody;
 
     if (!activities || !subject || !grade) {
@@ -283,7 +306,12 @@ router.post('/lesson/materials', aiRateLimit, async (req: AuthenticatedRequest, 
  */
 router.post('/lesson/assessments', aiRateLimit, async (req: AuthenticatedRequest, res) => {
   try {
-    const sanitizedBody = sanitizeAIInput(req.body);
+    const sanitizedBody = sanitizeAIInput(req.body) as {
+      learningGoals?: string[];
+      activities?: string[];
+      subject?: string;
+      grade?: string | number;
+    };
     const { learningGoals, activities, subject, grade } = sanitizedBody;
 
     if (!learningGoals || !activities || !subject || !grade) {
@@ -312,7 +340,13 @@ router.post('/lesson/assessments', aiRateLimit, async (req: AuthenticatedRequest
  */
 router.post('/daybook/reflections', aiRateLimit, async (req: AuthenticatedRequest, res) => {
   try {
-    const sanitizedBody = sanitizeAIInput(req.body);
+    const sanitizedBody = sanitizeAIInput(req.body) as {
+      date?: string;
+      activities?: string[];
+      subject?: string;
+      grade?: string | number;
+      previousReflections?: string[];
+    };
     const { date, activities, subject, grade, previousReflections } = sanitizedBody;
 
     if (!date || !activities || !subject || !grade) {
@@ -342,7 +376,10 @@ router.post('/daybook/reflections', aiRateLimit, async (req: AuthenticatedReques
  */
 router.post('/curriculum-aligned', aiRateLimit, async (req: AuthenticatedRequest, res) => {
   try {
-    const sanitizedBody = sanitizeAIInput(req.body);
+    const sanitizedBody = sanitizeAIInput(req.body) as {
+      expectationIds?: string[];
+      suggestionType?: string;
+    };
     const { expectationIds, suggestionType } = sanitizedBody;
 
     if (!expectationIds || !suggestionType) {

@@ -14,8 +14,8 @@ import { useUnitPlanForm } from '../hooks/useUnitPlanForm';
 // import { UnitPlanService } from '../services/unitPlanService';
 import { useTemplates, useApplyTemplate } from '../hooks/useTemplates';
 import { PlanTemplate, isUnitPlanTemplate } from '../types/template';
-import { PlanningErrorBoundary, FormErrorBoundary } from '../components/ErrorBoundaries';
-import { LoadingSpinner, UnitPlanSkeleton, EmptyState } from '../components/LoadingStates';
+import { PlanningErrorBoundary, _FormErrorBoundary } from '../components/ErrorBoundaries';
+import { LoadingSpinner, _UnitPlanSkeleton, EmptyState } from '../components/LoadingStates';
 import { UnitPlanCard } from '../components/unitPlans/UnitPlanCard';
 import { UnitPlanOverviewTab } from '../components/unitPlans/UnitPlanOverviewTab';
 import { UnitPlanPlanningTab } from '../components/unitPlans/UnitPlanPlanningTab';
@@ -160,22 +160,30 @@ export default function UnitPlansPage() {
       case 'essentialQuestions':
         updateField('essentialQuestions', content);
         break;
-      case 'activities':
+      case 'activities': {
         // Add to description or a specific activities field if available
         const currentDesc = formData.description;
         const activitiesText = '\n\nSuggested Activities:\n' + content.map(a => `• ${a}`).join('\n');
         updateField('description', currentDesc + activitiesText);
         break;
-      case 'vocabulary':
+      }
+      case 'vocabulary': {
         const existingVocab = formData.keyVocabulary.filter(v => v.trim());
         updateField('keyVocabulary', [...existingVocab, ...content]);
         break;
+      }
       default:
         // Unhandled suggestion type
     }
   };
 
-  const handleAIUnitGenerated = (unitPlan: any) => {
+  const handleAIUnitGenerated = (unitPlan: {
+    title?: string;
+    description?: string;
+    bigIdeas?: string[];
+    learningGoals?: string[];
+    vocabulary?: string[];
+  }) => {
     updateField('title', unitPlan.title || formData.title);
     updateField('description', unitPlan.description || formData.description);
     updateField('bigIdeas', unitPlan.bigIdeas?.join('\n\n') || formData.bigIdeas);
@@ -185,7 +193,17 @@ export default function UnitPlansPage() {
 
   const handleEditUnit = (unit: UnitPlan) => {
     setEditingUnit(unit.id);
-    loadUnitPlan(unit);
+    // Convert UnitPlan to the form data structure
+    const formDataUnit = {
+      ...unit,
+      differentiationStrategies: {
+        forStruggling: unit.differentiationStrategies?.forStruggling || [],
+        forAdvanced: unit.differentiationStrategies?.forAdvanced || [],
+        forELL: unit.differentiationStrategies?.forELL || [],
+        forIEP: unit.differentiationStrategies?.forIEP || [],
+      }
+    };
+    loadUnitPlan(formDataUnit as ExtendedUnitPlan);
     setIsCreateModalOpen(true);
   };
 
@@ -204,12 +222,23 @@ export default function UnitPlansPage() {
         updateField('assessmentPlan', templateContent.assessmentPlan || '');
         updateField('successCriteria', templateContent.successCriteria || []);
         updateField('crossCurricularConnections', templateContent.crossCurricularConnections || '');
-        updateField('differentiationStrategies', templateContent.differentiationStrategies || {
-          forStruggling: [],
-          forAdvanced: [],
-          forELL: [],
-          forIEP: [],
-        });
+        // Handle differentiationStrategies which might have different structure in template
+        const diffStrategies = templateContent.differentiationStrategies;
+        if (diffStrategies && typeof diffStrategies === 'object') {
+          updateField('differentiationStrategies', {
+            forStruggling: Array.isArray(diffStrategies.forStruggling) ? diffStrategies.forStruggling : [],
+            forAdvanced: Array.isArray(diffStrategies.forAdvanced) ? diffStrategies.forAdvanced : [],
+            forELL: Array.isArray(diffStrategies.forELL) ? diffStrategies.forELL : [],
+            forIEP: Array.isArray(diffStrategies.forIEP) ? diffStrategies.forIEP : [],
+          });
+        } else {
+          updateField('differentiationStrategies', {
+            forStruggling: [],
+            forAdvanced: [],
+            forELL: [],
+            forIEP: [],
+          });
+        }
         updateField('culminatingTask', templateContent.culminatingTask || '');
         updateField('priorKnowledge', templateContent.priorKnowledge || '');
         updateField('parentCommunicationPlan', templateContent.parentCommunicationPlan || '');
@@ -1120,7 +1149,7 @@ export default function UnitPlansPage() {
                       </div>
                       <div className="flex items-center justify-between text-xs text-gray-500">
                         <span>Used {template.usageCount || 0} times</span>
-                        <span>By {template.createdBy?.name || 'Anonymous'}</span>
+                        <span>By {template.createdByUser?.name || 'Anonymous'}</span>
                       </div>
                     </CardContent>
                   </Card>

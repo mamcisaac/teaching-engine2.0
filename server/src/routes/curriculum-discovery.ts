@@ -412,7 +412,7 @@ router.post('/batch', authMiddleware, async (req, res) => {
           documentId,
           success: result.success,
           data: result.success ? result : undefined,
-          error: result.success ? undefined : result.error,
+          error: result.success ? undefined : (result.error as string),
         });
       } catch (error) {
         results.push({

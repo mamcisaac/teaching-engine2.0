@@ -249,9 +249,9 @@ export class TemplateService {
         tags,
         keywords,
         isPublic,
-        content,
-        unitStructure: unitStructure || null,
-        lessonStructure: lessonStructure || null,
+        content: content as Prisma.JsonValue,
+        unitStructure: unitStructure as Prisma.JsonValue || null,
+        lessonStructure: lessonStructure as Prisma.JsonValue || null,
       },
       include: {
         createdByUser: {
@@ -302,6 +302,9 @@ export class TemplateService {
         ...updateData,
         gradeMin,
         gradeMax,
+        content: updateData.content ? updateData.content as Prisma.JsonValue : undefined,
+        unitStructure: updateData.unitStructure ? updateData.unitStructure as Prisma.JsonValue : undefined,
+        lessonStructure: updateData.lessonStructure ? updateData.lessonStructure as Prisma.JsonValue : undefined,
       },
       include: {
         createdByUser: {
@@ -381,11 +384,11 @@ export class TemplateService {
         createdByUserId: userId,
         isSystem: false,
         isPublic,
-        content: original.content,
+        content: original.content as Prisma.JsonValue,
         estimatedWeeks: original.estimatedWeeks,
-        unitStructure: original.unitStructure,
+        unitStructure: original.unitStructure as Prisma.JsonValue,
         estimatedMinutes: original.estimatedMinutes,
-        lessonStructure: original.lessonStructure,
+        lessonStructure: original.lessonStructure as Prisma.JsonValue,
       },
       include: {
         createdByUser: {
@@ -446,8 +449,8 @@ export class TemplateService {
         title: template.title,
         type: template.type,
         content: appliedContent,
-        unitStructure: template.unitStructure,
-        lessonStructure: template.lessonStructure,
+        unitStructure: template.unitStructure as Record<string, unknown> || undefined,
+        lessonStructure: template.lessonStructure as Record<string, unknown> || undefined,
         estimatedWeeks: template.estimatedWeeks,
         estimatedMinutes: template.estimatedMinutes,
       },
@@ -910,7 +913,12 @@ export class TemplateService {
 
         if (!existing) {
           const created = await prisma.planTemplate.create({
-            data: templateData,
+            data: {
+              ...templateData,
+              content: templateData.content as Prisma.JsonValue,
+              unitStructure: templateData.unitStructure as Prisma.JsonValue || null,
+              lessonStructure: templateData.lessonStructure as Prisma.JsonValue || null,
+            },
           });
           createdTemplates.push(created);
         }

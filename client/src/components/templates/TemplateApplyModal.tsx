@@ -154,7 +154,7 @@ export default function TemplateApplyModal({
                   <SelectValue placeholder="Select a long-range plan" />
                 </SelectTrigger>
                 <SelectContent>
-                  {longRangePlans.map((plan: unknown) => (
+                  {longRangePlans.map((plan: { id: string; title: string; subject: string; grade: string }) => (
                     <SelectItem key={plan.id} value={plan.id}>
                       {plan.title} - {plan.subject} (Grade {plan.grade})
                     </SelectItem>
@@ -178,7 +178,7 @@ export default function TemplateApplyModal({
                   <SelectValue placeholder="Select a unit plan" />
                 </SelectTrigger>
                 <SelectContent>
-                  {unitPlans.map((unit: unknown) => (
+                  {unitPlans.map((unit: { id: string; title: string }) => (
                     <SelectItem key={unit.id} value={unit.id}>
                       {unit.title}
                     </SelectItem>

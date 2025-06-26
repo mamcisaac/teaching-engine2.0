@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { startOfWeek, endOfWeek } from 'date-fns';
+import { Calendar, Plus, FileText, Edit, Trash2, Users } from 'lucide-react';
 
 import NewsletterRecipientSelector from '../components/StudentSelector';
 import DateRangeSelector from '../components/DateRangeSelector';
@@ -19,7 +20,6 @@ import {
 import { 
   NewsletterDraft, 
   NewsletterTone, 
-  NewsletterSection,
   NewsletterGenerationParams 
 } from '../types/newsletter';
 import { cn } from '../lib/utils';

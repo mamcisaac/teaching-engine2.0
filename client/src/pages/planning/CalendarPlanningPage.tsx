@@ -4,7 +4,7 @@ import moment from 'moment';
 import { format, startOfMonth, endOfMonth } from 'date-fns';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Plus, Filter, Download } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Plus, Filter } from 'lucide-react';
 import { api } from '../../api';
 import { useAuth } from '../../contexts/AuthContext';
 import { Button } from '../../components/ui/Button';
@@ -53,7 +53,7 @@ const SUBJECT_COLORS: Record<string, string> = {
 };
 
 export default function CalendarPlanningPage() {
-  const { user } = useAuth();
+  const { user: _user } = useAuth();
   const queryClient = useQueryClient();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [view, setView] = useState<View>('month');
@@ -152,10 +152,10 @@ export default function CalendarPlanningPage() {
           end: new Date(lesson.date),
           type: 'lesson',
           metadata: {
-            subject: lesson.subject || 'general',
+            subject: (lesson as ETFOLessonPlan).subject || 'general',
             unitId: lesson.unitPlanId,
             lessonId: lesson.id,
-            color: SUBJECT_COLORS[lesson.subject?.toLowerCase() || 'default'] || SUBJECT_COLORS.default,
+            color: SUBJECT_COLORS[(lesson as ETFOLessonPlan).subject?.toLowerCase() || 'default'] || SUBJECT_COLORS.default,
             isEditable: true,
           },
           originalData: lesson,
@@ -205,7 +205,7 @@ export default function CalendarPlanningPage() {
       if (filters.eventTypes.length > 0) {
         if (!filters.eventTypes.includes(event.type)) return false;
       }
-      if (!filters.showWeekends) {
+      if (!filters.showWeekends && event.start) {
         const day = event.start.getDay();
         if (day === 0 || day === 6) return false;
       }
@@ -258,7 +258,7 @@ export default function CalendarPlanningPage() {
 
   // Custom toolbar component
   const CustomToolbar = useCallback(
-    ({ date, onNavigate }: any) => {
+    ({ date, onNavigate }: { date: Date; onNavigate: (date: Date) => void }) => {
       const goToBack = () => {
         const newDate = new Date(date);
         if (view === 'month') {
@@ -368,8 +368,8 @@ export default function CalendarPlanningPage() {
       {showFilters && (
         <CalendarFilters
           filters={filters}
-          onFiltersChange={setFilters}
-          availableSubjects={[...new Set(lessons.map((l: ETFOLessonPlan) => l.subject).filter(Boolean))]}
+          onFiltersChange={(newFilters: CalendarFilter) => setFilters(newFilters)}
+          availableSubjects={[...new Set(lessons.map((l: ETFOLessonPlan) => (l as { subject?: string }).subject).filter(Boolean))].map(s => String(s))}
         />
       )}
 
@@ -382,10 +382,8 @@ export default function CalendarPlanningPage() {
           style={{ height: window.innerWidth < 768 ? 500 : 700 }}
           onSelectEvent={handleSelectEvent}
           onSelectSlot={handleSelectSlot}
-          onEventDrop={handleEventDrop}
           eventPropGetter={eventStyleGetter}
           selectable
-          resizable={window.innerWidth >= 768}
           view={view}
           onView={setView}
           date={currentDate}
@@ -394,7 +392,6 @@ export default function CalendarPlanningPage() {
             toolbar: CustomToolbar,
           }}
           views={['month', 'week', 'agenda']}
-          draggableAccessor={(event) => (window.innerWidth >= 768 && event.metadata?.isEditable) || false}
           defaultView={window.innerWidth < 768 ? 'agenda' : 'month'}
         />
       </div>

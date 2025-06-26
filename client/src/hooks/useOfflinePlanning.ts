@@ -1,14 +1,14 @@
 // Hook for using offline-capable planning stores
 // Example of how to integrate offline functionality into components
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useUnitPlanStore } from '../stores/unitPlanStore';
 import { useLessonPlanStore } from '../stores/lessonPlanStore';
 import { useDaybookStore } from '../stores/daybookStore';
 import { useWeeklyPlannerStore } from '../stores/weeklyPlannerStore';
 import { offlineStorage } from '../services/offlineStorage';
 import { lazyLoader } from '../services/lazyLoader';
-import { batchedApi, createDebouncedRequest } from '../services/requestBatcher';
+import { batchedApi } from '../services/requestBatcher';
 
 // Combined offline planning hook
 export function useOfflinePlanning() {
@@ -17,7 +17,7 @@ export function useOfflinePlanning() {
   const daybookStore = useDaybookStore();
   const weeklyPlannerStore = useWeeklyPlannerStore();
 
-  const [conflicts, setConflicts] = useState<any[]>([]);
+  const [conflicts, setConflicts] = useState<Array<{ id: string; [key: string]: unknown }>>([]);
 
   // Check for conflicts on mount
   useEffect(() => {
@@ -71,13 +71,17 @@ export function useOfflinePlanning() {
   };
 
   // Get combined sync status
-  const getSyncStatus = () => {
-    const statuses = [
+  const getSyncStatus = (): 'error' | 'syncing' | 'idle' => {
+    const statuses: ('error' | 'syncing' | 'idle')[] = [
       unitPlanStore.syncStatus,
       lessonPlanStore.syncStatus,
-      daybookStore.syncStatus,
-      weeklyPlannerStore.syncStatus === 'syncing' ? 'syncing' : 'idle'
+      daybookStore.syncStatus
     ];
+
+    // Check weeklyPlannerStore separately since it doesn't have syncStatus
+    if (weeklyPlannerStore.isSaving) {
+      statuses.push('syncing');
+    }
 
     if (statuses.includes('error')) return 'error';
     if (statuses.includes('syncing')) return 'syncing';
@@ -138,15 +142,25 @@ export function useUnitPlanWithOffline(unitPlanId?: string) {
     loadPlan();
   }, [unitPlanId, unitPlanStore]);
 
-  // Create debounced update function
-  const debouncedUpdate = createDebouncedRequest(
-    async (updates: unknown) => {
-      if (unitPlanStore.currentPlan) {
-        await unitPlanStore.updateUnitPlan(unitPlanStore.currentPlan.id, updates);
-      }
-    },
-    1000 // 1 second debounce
-  );
+  // Create debounced update function with proper typing
+  const debouncedUpdate = React.useMemo(() => {
+    let timeout: NodeJS.Timeout | null = null;
+    
+    const debounced = (updates: unknown) => {
+      if (timeout) clearTimeout(timeout);
+      
+      return new Promise<void>((resolve) => {
+        timeout = setTimeout(async () => {
+          if (unitPlanStore.currentPlan) {
+            await unitPlanStore.updateUnitPlan(unitPlanStore.currentPlan.id, updates as Record<string, unknown>);
+          }
+          resolve();
+        }, 1000);
+      });
+    };
+    
+    return debounced;
+  }, [unitPlanStore]);
 
   return {
     unitPlan: unitPlanStore.currentPlan,
@@ -170,7 +184,7 @@ export function useBatchedRequests() {
       // Use batched API for multiple requests
       const promises = urls.map(url => batchedApi.get(url));
       const results = await Promise.all(promises);
-      return results;
+      return results.map((r: { data: unknown }) => r.data);
     } catch (error) {
       console.error('Batch request failed:', error);
       throw error;

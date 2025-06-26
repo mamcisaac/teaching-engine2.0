@@ -56,9 +56,9 @@ export async function createTestApp(prisma?: PrismaClient): Promise<Express> {
     app.use((req, res, next) => {
       // Mock authentication for testing
       if (req.headers.authorization === 'Bearer valid.jwt.token') {
-        (req as express.Request & { user?: { id: string; email: string; role: string } }).user = { id: '123', email: 'test@example.com', role: 'USER' };
+        (req as express.Request & { user?: { userId: string } }).user = { userId: '123' };
       } else if (req.headers.authorization === 'Bearer admin.token') {
-        (req as express.Request & { user?: { id: string; email: string; role: string } }).user = { id: '456', email: 'admin@example.com', role: 'ADMIN' };
+        (req as express.Request & { user?: { userId: string } }).user = { userId: '456' };
       }
       next();
     });

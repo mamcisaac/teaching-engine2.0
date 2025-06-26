@@ -34,7 +34,7 @@ interface StudentWithRelations {
   id: number;
   firstName: string;
   lastName: string;
-  userId: number;
+  user: { id: number };
   artifacts: Artifact[];
   reflections: Reflection[];
   goals: Goal[];
@@ -533,10 +533,10 @@ export class ReportGeneratorService {
     };
   }
 
-  private async getSubjectProgress(student: StudentWithRelations): Promise<SubjectProgress[]> {
+  private async getSubjectProgress(student: StudentWithRelations & { user: { id: number } }): Promise<SubjectProgress[]> {
     // Simplified subject progress without deep relations
     const subjects = await prisma.subject.findMany({
-      where: { userId: student.userId },
+      where: { userId: student.user.id },
     });
 
     return subjects.map(subject => ({
@@ -589,9 +589,9 @@ export class ReportGeneratorService {
     return recommendations.split('\n').filter(r => r.trim().length > 0).slice(0, 5);
   }
 
-  private async compileReportCardData(student: StudentWithRelations): Promise<SubjectReportCard[]> {
+  private async compileReportCardData(student: StudentWithRelations & { user: { id: number } }): Promise<SubjectReportCard[]> {
     const subjects = await prisma.subject.findMany({
-      where: { userId: student.userId },
+      where: { userId: student.user.id },
     });
 
     return subjects.map(subject => ({
@@ -650,10 +650,8 @@ export class ReportGeneratorService {
   // Curriculum and Planning Report Methods
   async generateCurriculumCoverageReport(userId: number): Promise<CurriculumCoverageReport> {
     try {
-      // Get all curriculum expectations for the user's grade/subject
-      const expectations = await prisma.curriculumExpectation.findMany({
-        where: { userId },
-      });
+      // Get all curriculum expectations - we'll filter by covered/uncovered later
+      const expectations = await prisma.curriculumExpectation.findMany();
 
       // Get all plans with expectations
       const longRangePlans = await prisma.longRangePlan.findMany({
@@ -757,7 +755,7 @@ export class ReportGeneratorService {
       });
 
       // Calculate completion rates
-      const calculateCompletionRate = (plans: any[], isComplete: (plan: any) => boolean) => {
+      const calculateCompletionRate = <T>(plans: T[], isComplete: (plan: T) => boolean) => {
         const total = plans.length;
         const completed = plans.filter(isComplete).length;
         const completionRate = total > 0 ? Math.round((completed / total) * 100) : 0;
@@ -822,7 +820,7 @@ export class ReportGeneratorService {
           action: lesson.action || undefined,
           consolidation: lesson.consolidation || undefined,
           learningGoals: lesson.learningGoals || undefined,
-          materials: lesson.materials || undefined,
+          materials: Array.isArray(lesson.materials) ? lesson.materials as string[] : undefined,
           isSubFriendly: lesson.isSubFriendly,
         },
         hierarchy: {
@@ -891,7 +889,7 @@ export class ReportGeneratorService {
           duration: lesson.duration,
           date: lesson.date,
         },
-        materials: lesson.materials || [],
+        materials: Array.isArray(lesson.materials) ? lesson.materials as string[] : [],
         activities: {
           opening: lesson.mindsOn || '',
           main: lesson.action || '',

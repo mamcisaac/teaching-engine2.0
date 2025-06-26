@@ -194,7 +194,7 @@ export default function CalendarEventDetails({
               <span>{format(event.start, 'EEEE, MMMM d, yyyy')}</span>
             </div>
 
-            {!(event.originalData?.allDay as boolean) && event.start.getTime() !== event.end.getTime() && (
+            {!event.originalData?.allDay && event.start.getTime() !== event.end.getTime() && (
               <div className="flex items-center gap-2 text-gray-600">
                 <Clock className="h-4 w-4" />
                 <span>
@@ -210,12 +210,12 @@ export default function CalendarEventDetails({
               </div>
             )}
 
-            {event.originalData?.description && (
+            {event.originalData?.description ? (
               <div className="mt-4">
                 <h4 className="font-medium text-gray-700 mb-1">Description</h4>
-                <p className="text-gray-600 text-sm">{String(event.originalData.description)}</p>
+                <p className="text-gray-600 text-sm">{String(event.originalData?.description || '')}</p>
               </div>
-            )}
+            ) : null}
           </div>
 
           {/* Actions */}

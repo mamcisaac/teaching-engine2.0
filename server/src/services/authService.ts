@@ -38,7 +38,7 @@ export async function generateAuthToken(
   }
 
   const payload = { userId };
-  return jwt.sign(payload, secret, { expiresIn: expiresIn as any });
+  return jwt.sign(payload, secret, { expiresIn });
 }
 
 /**
@@ -72,13 +72,13 @@ export async function validatePassword(password: string): Promise<boolean> {
 /**
  * Verify JWT token
  */
-export async function verifyToken(token: string): Promise<any> {
+export async function verifyToken(token: string): Promise<{ userId: string }> {
   const secret = process.env.JWT_SECRET;
   if (!secret) {
     throw new Error('JWT_SECRET environment variable is required');
   }
 
-  return jwt.verify(token, secret);
+  return jwt.verify(token, secret) as { userId: string };
 }
 
 /**
@@ -125,7 +125,7 @@ export async function authenticate(
  * Check user permissions
  */
 export async function checkPermissions(
-  user: unknown,
+  user: { role?: string; permissions?: string[] },
   requiredPermission: string
 ): Promise<boolean> {
   // Admin has all permissions
@@ -145,6 +145,6 @@ export async function checkPermissions(
     ADMIN: ['read', 'write', 'delete', 'admin.access'],
   };
 
-  const userPermissions = rolePermissions[user.role] || [];
+  const userPermissions = rolePermissions[user.role || ''] || [];
   return userPermissions.includes(requiredPermission);
 }

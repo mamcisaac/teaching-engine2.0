@@ -282,17 +282,56 @@ export default function ETFOLessonPlanPage() {
     }
   };
 
-  const handleAILessonGenerated = (lessonPlan: unknown) => {
-    setFormData({
-      ...formData,
-      title: lessonPlan.title || formData.title,
-      learningGoals: lessonPlan.learningGoals?.join('\n') || formData.learningGoals,
-      mindsOn: lessonPlan.structure?.mindsOn?.activities?.join('\n\n') || formData.mindsOn,
-      action: lessonPlan.structure?.handsOn?.activities?.join('\n\n') || formData.action,
-      consolidation: lessonPlan.structure?.mindsOnReflection?.activities?.join('\n\n') || formData.consolidation,
-      materials: lessonPlan.materials || formData.materials,
-      duration: lessonPlan.duration || formData.duration,
-    });
+  const handleAILessonGenerated = (lessonPlan: { 
+    title?: string;
+    learningGoals?: string[];
+    structure?: {
+      mindsOn?: { activities?: string[] };
+      handsOn?: { activities?: string[] };
+      mindsOnReflection?: { activities?: string[] };
+    };
+    materials?: string[];
+    duration?: number;
+    mindsOn?: { activities: string[]; duration: number; materials: string[] };
+    handsOn?: { activities: string[]; duration: number; materials: string[] };
+    mindsOnReflection?: { activities: string[]; duration: number; materials: string[] };
+  }) => {
+    // Handle both the old interface and the new ThreePartStructure interface
+    if ('mindsOn' in lessonPlan && 'handsOn' in lessonPlan && 'mindsOnReflection' in lessonPlan) {
+      // ThreePartStructure format
+      const structure = lessonPlan as {
+        mindsOn: { activities: string[]; duration: number; materials: string[] };
+        handsOn: { activities: string[]; duration: number; materials: string[] };
+        mindsOnReflection: { activities: string[]; duration: number; materials: string[] };
+      };
+      
+      setFormData({
+        ...formData,
+        mindsOn: structure.mindsOn.activities.join('\n\n'),
+        action: structure.handsOn.activities.join('\n\n'),
+        consolidation: structure.mindsOnReflection.activities.join('\n\n'),
+        materials: [
+          ...new Set([
+            ...structure.mindsOn.materials,
+            ...structure.handsOn.materials,
+            ...structure.mindsOnReflection.materials
+          ])
+        ],
+        duration: structure.mindsOn.duration + structure.handsOn.duration + structure.mindsOnReflection.duration,
+      });
+    } else {
+      // Legacy format
+      setFormData({
+        ...formData,
+        title: lessonPlan.title || formData.title,
+        learningGoals: lessonPlan.learningGoals?.join('\n') || formData.learningGoals,
+        mindsOn: lessonPlan.structure?.mindsOn?.activities?.join('\n\n') || formData.mindsOn,
+        action: lessonPlan.structure?.handsOn?.activities?.join('\n\n') || formData.action,
+        consolidation: lessonPlan.structure?.mindsOnReflection?.activities?.join('\n\n') || formData.consolidation,
+        materials: lessonPlan.materials || formData.materials,
+        duration: lessonPlan.duration || formData.duration,
+      });
+    }
   };
 
   const handleApplyTemplate = async (template: PlanTemplate) => {
@@ -389,7 +428,7 @@ export default function ETFOLessonPlanPage() {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => printHTML(generateLessonPlanHTML(selectedLesson as any, unitPlan), `${selectedLesson.title}-lesson-plan`)}
+                  onClick={() => printHTML(generateLessonPlanHTML(selectedLesson, unitPlan), `${selectedLesson.title}-lesson-plan`)}
                   className="flex items-center gap-2"
                 >
                   <Printer className="h-4 w-4" />
@@ -398,7 +437,7 @@ export default function ETFOLessonPlanPage() {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => downloadHTML(generateLessonPlanHTML(selectedLesson as any, unitPlan), `${selectedLesson.title}-lesson-plan`)}
+                  onClick={() => downloadHTML(generateLessonPlanHTML(selectedLesson, unitPlan), `${selectedLesson.title}-lesson-plan`)}
                   className="flex items-center gap-2"
                 >
                   <Download className="h-4 w-4" />
@@ -1431,7 +1470,7 @@ Assessment Strategies:
                       </div>
                       <div className="flex items-center justify-between text-xs text-gray-500">
                         <span>Used {template.usageCount || 0} times</span>
-                        <span>By {template.createdBy?.name || 'Anonymous'}</span>
+                        <span>By {(template as { createdBy?: { name?: string } }).createdBy?.name || 'Anonymous'}</span>
                       </div>
                     </CardContent>
                   </Card>

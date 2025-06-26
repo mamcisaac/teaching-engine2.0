@@ -503,7 +503,7 @@ export function useHelpContent() {
   return {
     content: filteredContent,
     availableFilters,
-    isLoading,
+    isLoading: _isLoading,
     totalCount: mockHelpContent.length,
     filteredCount: filteredContent.length
   };

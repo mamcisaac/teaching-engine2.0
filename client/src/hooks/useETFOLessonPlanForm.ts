@@ -166,7 +166,30 @@ export function useETFOLessonPlanForm({
   }, []);
 
   // Load lesson plan data into form
-  const loadLessonPlan = useCallback((lesson: unknown) => {
+  const loadLessonPlan = useCallback((lesson: {
+    title: string;
+    titleFr?: string;
+    date: string;
+    duration: number;
+    mindsOn?: string;
+    mindsOnFr?: string;
+    action?: string;
+    actionFr?: string;
+    consolidation?: string;
+    consolidationFr?: string;
+    learningGoals?: string;
+    learningGoalsFr?: string;
+    materials?: string[];
+    grouping?: string;
+    accommodations?: string[];
+    modifications?: string[];
+    extensions?: string[];
+    assessmentType?: 'diagnostic' | 'formative' | 'summative';
+    assessmentNotes?: string;
+    isSubFriendly: boolean;
+    subNotes?: string;
+    expectations?: Array<{ expectation: { id: string } }>;
+  }) => {
     setFormData({
       title: lesson.title,
       titleFr: lesson.titleFr || '',
@@ -189,7 +212,7 @@ export function useETFOLessonPlanForm({
       assessmentNotes: lesson.assessmentNotes || '',
       isSubFriendly: lesson.isSubFriendly,
       subNotes: lesson.subNotes || '',
-      expectationIds: lesson.expectations?.map((e: unknown) => e.expectation.id) || [],
+      expectationIds: lesson.expectations?.map((e) => e.expectation.id) || [],
     });
   }, []);
 
@@ -217,7 +240,17 @@ export function useETFOLessonPlanForm({
     }
   }, []);
 
-  const applyAILessonPlan = useCallback((lessonPlan: unknown) => {
+  const applyAILessonPlan = useCallback((lessonPlan: {
+    title?: string;
+    learningGoals?: string[];
+    structure?: {
+      mindsOn?: { activities?: string[] };
+      handsOn?: { activities?: string[] };
+      mindsOnReflection?: { activities?: string[] };
+    };
+    materials?: string[];
+    duration?: number;
+  }) => {
     setFormData(prev => ({
       ...prev,
       title: lessonPlan.title || prev.title,

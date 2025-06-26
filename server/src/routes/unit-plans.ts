@@ -411,10 +411,10 @@ router.post('/:id/resources', async (req: AuthenticatedRequest, res, _next) => {
     const resource = await prisma.unitPlanResource.create({
       data: {
         unitPlanId: req.params.id,
-        title,
-        type,
-        url,
-        notes,
+        title: String(title),
+        type: String(type),
+        url: url ? String(url) : null,
+        notes: notes ? String(notes) : null,
       },
     });
 
@@ -567,7 +567,7 @@ router.post('/duplicate', async (req: AuthenticatedRequest, res, _next) => {
               data: lessonRes.map(({ id: _id, lessonPlanId: _lessonPlanId, createdAt: _createdAt, ...resource }) => ({
                 ...resource,
                 lessonPlanId: newLesson.id,
-              })),
+              })) as Prisma.ETFOLessonPlanResourceCreateManyInput[],
             });
           }
         }

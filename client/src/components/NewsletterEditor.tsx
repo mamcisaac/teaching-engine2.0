@@ -50,7 +50,7 @@ export default function NewsletterEditor({
     }
   }, [localDraft, unsavedChanges, onSave]);
 
-  const updateSection = (sectionId: string, field: 'content' | 'contentFr', value: string) => {
+  const updateSection = (sectionId: string, field: 'content' | 'contentFr' | 'title' | 'titleFr', value: string) => {
     const updatedSections = localDraft.sections.map(section =>
       section.id === sectionId
         ? { ...section, [field]: value }

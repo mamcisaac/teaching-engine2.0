@@ -77,7 +77,7 @@ export default function BilingualPlanView({
             type="button"
             variant={language === 'en' ? 'primary' : 'outline'}
             size="sm"
-            onClick={() => setShowEnglish(true) && setShowFrench(false)}
+            onClick={() => { setShowEnglish(true); setShowFrench(false); }}
             className="flex items-center gap-2"
           >
             <span>🇨🇦</span> English
@@ -86,7 +86,7 @@ export default function BilingualPlanView({
             type="button"
             variant={language === 'fr' ? 'primary' : 'outline'}
             size="sm"
-            onClick={() => setShowFrench(true) && setShowEnglish(false)}
+            onClick={() => { setShowFrench(true); setShowEnglish(false); }}
             className="flex items-center gap-2"
           >
             <span>🇫🇷</span> Français

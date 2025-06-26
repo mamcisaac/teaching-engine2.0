@@ -227,7 +227,37 @@ export function useUnitPlanForm({
   }, [longRangePlanId]);
 
   // Load unit plan data into form
-  const loadUnitPlan = useCallback((unit: unknown) => {
+  const loadUnitPlan = useCallback((unit: {
+    title: string;
+    description?: string;
+    bigIdeas?: string;
+    essentialQuestions?: string[];
+    startDate: string;
+    endDate: string;
+    estimatedHours?: number;
+    assessmentPlan?: string;
+    successCriteria?: string[];
+    expectations?: Array<{ expectation: { id: string } }>;
+    longRangePlanId: string;
+    crossCurricularConnections?: string;
+    learningSkills?: string[];
+    culminatingTask?: string;
+    keyVocabulary?: string[];
+    priorKnowledge?: string;
+    parentCommunicationPlan?: string;
+    fieldTripsAndGuestSpeakers?: string;
+    differentiationStrategies?: {
+      forStruggling: string[];
+      forAdvanced: string[];
+      forELL: string[];
+      forIEP: string[];
+    };
+    indigenousPerspectives?: string;
+    environmentalEducation?: string;
+    socialJusticeConnections?: string;
+    technologyIntegration?: string;
+    communityConnections?: string;
+  }) => {
     setFormData({
       title: unit.title,
       description: unit.description || '',
@@ -238,7 +268,7 @@ export function useUnitPlanForm({
       estimatedHours: unit.estimatedHours || 20,
       assessmentPlan: unit.assessmentPlan || '',
       successCriteria: unit.successCriteria || [''],
-      expectationIds: unit.expectations?.map((e: unknown) => e.expectation.id) || [],
+      expectationIds: unit.expectations?.map((e) => e.expectation.id) || [],
       longRangePlanId: unit.longRangePlanId,
       crossCurricularConnections: unit.crossCurricularConnections || '',
       learningSkills: unit.learningSkills || [],

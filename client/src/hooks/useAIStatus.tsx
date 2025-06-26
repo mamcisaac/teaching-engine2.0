@@ -73,20 +73,21 @@ export function useAIStatus(): AIStatusHookReturn {
         };
       } catch (error: unknown) {
         // Handle different types of errors
-        if (error.response?.status === 503) {
+        const axiosError = error as { response?: { status?: number } };
+        if (axiosError.response?.status === 503) {
           return {
             ...DEFAULT_AI_STATUS,
             error: 'AI service is temporarily unavailable',
             serviceHealth: 'unavailable' as const,
           };
-        } else if (error.response?.status === 401) {
+        } else if (axiosError.response?.status === 401) {
           return {
             ...DEFAULT_AI_STATUS,
             error: 'API key not configured or invalid',
             hasApiKey: false,
             apiKeyConfigured: false,
           };
-        } else if (error.response?.status === 429) {
+        } else if (axiosError.response?.status === 429) {
           return {
             ...DEFAULT_AI_STATUS,
             error: 'Rate limit exceeded',
@@ -104,7 +105,8 @@ export function useAIStatus(): AIStatusHookReturn {
     },
     retry: (failureCount, error: unknown) => {
       // Don't retry on auth errors or client errors
-      if (error?.response?.status < 500) {
+      const axiosError = error as { response?: { status?: number } };
+      if (axiosError?.response?.status < 500) {
         return false;
       }
       return failureCount < 3;

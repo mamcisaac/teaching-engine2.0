@@ -5,6 +5,17 @@ export interface Subject {
   name: string;
 }
 
+// Re-export ETFO planning types from hooks
+export type { 
+  ETFOLessonPlan, 
+  UnitPlan, 
+  LongRangePlan, 
+  CurriculumExpectation,
+  DaybookEntry,
+  ETFOLessonPlanResource,
+  UnitPlanResource
+} from '../hooks/useETFOPlanning';
+
 
 
 export interface OralRoutineTemplate {

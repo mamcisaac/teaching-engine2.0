@@ -1,4 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
+import { ParsedQs } from 'qs';
+import { ParamsDictionary } from 'express-serve-static-core';
 import DOMPurify from 'isomorphic-dompurify';
 
 /**
@@ -13,12 +15,12 @@ export function sanitizeInput(req: Request, res: Response, next: NextFunction) {
 
     // Sanitize query parameters
     if (req.query && typeof req.query === 'object') {
-      req.query = sanitizeObject(req.query);
+      req.query = sanitizeObject(req.query) as ParsedQs;
     }
 
     // Sanitize params
     if (req.params && typeof req.params === 'object') {
-      req.params = sanitizeObject(req.params);
+      req.params = sanitizeObject(req.params) as ParamsDictionary;
     }
 
     next();

@@ -55,6 +55,10 @@ export function DuplicatePlanModal({
         'lesson': '/api/etfo-lesson-plans/duplicate',
       }[selectedType];
 
+      if (!endpoint) {
+        throw new Error('Invalid plan type selected');
+      }
+
       return api.post(endpoint, {
         sourceId: selectedPlanId,
         title: newTitle,

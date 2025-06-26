@@ -220,11 +220,11 @@ export default function HelpPage() {
   };
 
   const renderSectionContent = (sectionId: string) => {
-    const _content = mockHelpContent[sectionId] || 'Content not available.';
+    const sectionContent = mockHelpContent[sectionId] || 'Content not available.';
     
     return (
       <div className="prose prose-lg max-w-none">
-        <div dangerouslySetInnerHTML={{ __html: content.replace(/\n/g, '<br/>') }} />
+        <div dangerouslySetInnerHTML={{ __html: sectionContent.replace(/\n/g, '<br/>') }} />
       </div>
     );
   };

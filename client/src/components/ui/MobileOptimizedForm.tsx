@@ -211,7 +211,7 @@ export function FormPreview({ data, onEdit, className }: FormPreviewProps) {
                       {showAll ? value : `${value.substring(0, 100)}...`}
                     </div>
                   ) : (
-                    <p>{value}</p>
+                    <p>{String(value)}</p>
                   )}
                 </div>
               </div>

@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { offlineStorage } from './offlineStorage';
-import { api } from '../lib/api';
+import { api } from '../api';
 
 interface LoadOptions {
   cache?: boolean;
@@ -130,7 +130,7 @@ class LazyLoader {
       };
 
       // Load chunks with priority queue
-      const chunkPromises = [];
+      const chunkPromises: Promise<unknown>[] = [];
       for (let i = 0; i < totalChunks; i++) {
         const chunkPromise = this.loadChunk(documentId, i, totalChunks);
         chunkPromises.push(chunkPromise);
@@ -186,7 +186,7 @@ class LazyLoader {
 
   // Assemble chunks into complete document
   private assembleDocument(doc: ChunkedDocument): unknown {
-    const chunks = [];
+    const chunks: unknown[] = [];
     for (let i = 0; i < doc.totalChunks; i++) {
       const chunk = doc.chunks.get(i);
       if (!chunk) {
@@ -202,7 +202,7 @@ class LazyLoader {
       return chunks.join('');
     } else {
       // Binary data
-      return new Blob(chunks);
+      return new Blob(chunks as BlobPart[]);
     }
   }
 
@@ -310,25 +310,25 @@ export function useLazyDocument(documentId: string | null, options?: LoadOptions
     return () => {
       cancelled = true;
     };
-  }, [documentId, options]);
+  }, [documentId, options]); // Include options in dependencies
 
   return { document, loading, error, progress };
 }
 
 // React component for lazy loaded content
-interface LazyDocumentProps {
+interface LazyDocumentProps<T = unknown> {
   documentId: string;
-  render: (document: unknown) => React.ReactNode;
+  render: (document: T) => React.ReactNode;
   placeholder?: React.ReactNode;
   onError?: (error: Error) => void;
 }
 
-export function LazyDocument({ 
+export function LazyDocument<T = unknown>({ 
   documentId, 
   render, 
   placeholder,
   onError 
-}: LazyDocumentProps) {
+}: LazyDocumentProps<T>) {
   const elementRef = React.useRef<HTMLDivElement>(null);
   const { document, loading, error } = useLazyDocument(documentId);
 
@@ -355,7 +355,7 @@ export function LazyDocument({
     <div ref={elementRef}>
       {loading && (placeholder || <div>Loading...</div>)}
       {error && <div>Error loading document: {error.message}</div>}
-      {document && render(document)}
+      {document !== null && document !== undefined && <>{render(document as T)}</>}
     </div>
   );
 }

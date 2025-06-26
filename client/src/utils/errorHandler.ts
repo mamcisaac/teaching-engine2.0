@@ -5,14 +5,14 @@ interface ApiError {
   error: string;
   message?: string;
   code?: string;
-  details?: any;
+  details?: unknown;
 }
 
 export class ClientError extends Error {
   code: string;
-  details?: any;
+  details?: unknown;
 
-  constructor(message: string, code: string, details?: any) {
+  constructor(message: string, code: string, details?: unknown) {
     super(message);
     this.code = code;
     this.details = details;
@@ -49,7 +49,7 @@ export function handleApiError(error: unknown, customMessage?: string): void {
       case 400:
         if (apiError?.details && Array.isArray(apiError.details)) {
           // Show validation errors
-          apiError.details.forEach((detail: any) => {
+          apiError.details.forEach((detail: { field: string; message: string }) => {
             toast.error(`${detail.field}: ${detail.message}`);
           });
         } else {

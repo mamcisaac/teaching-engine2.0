@@ -13,7 +13,7 @@ export interface PrivacyOptions {
 /**
  * Masks sensitive student information based on privacy settings
  */
-export function maskStudentData(student: Record<string, unknown>, options: PrivacyOptions = {}): Record<string, unknown> {
+export function maskStudentData(student: Record<string, unknown>, options: PrivacyOptions = {}): Record<string, unknown> | null {
   const {
     showFullName = true,
     showGrade = true,
@@ -28,7 +28,7 @@ export function maskStudentData(student: Record<string, unknown>, options: Priva
 
   // Mask name if needed
   if (!showFullName && !isOwner) {
-    if (student.firstName && student.lastName) {
+    if (typeof student.firstName === 'string' && typeof student.lastName === 'string') {
       masked.firstName = student.firstName.charAt(0) + '***';
       masked.lastName = student.lastName.charAt(0) + '***';
       masked.name = `${masked.firstName} ${masked.lastName}`;
@@ -43,13 +43,17 @@ export function maskStudentData(student: Record<string, unknown>, options: Priva
   // Remove reflections if not allowed
   if (!showReflections && !isOwner) {
     delete masked.reflections;
-    delete masked._count?.reflections;
+    if (masked._count && typeof masked._count === 'object') {
+      delete (masked._count as Record<string, unknown>).reflections;
+    }
   }
 
   // Remove goals if not allowed
   if (!showGoals && !isOwner) {
     delete masked.goals;
-    delete masked._count?.goals;
+    if (masked._count && typeof masked._count === 'object') {
+      delete (masked._count as Record<string, unknown>).goals;
+    }
   }
 
   // Always remove system fields
@@ -67,9 +71,9 @@ export function getStudentIdentifier(student: Record<string, unknown>): string {
   if (!student) return 'unknown';
   
   // Use initials + partial ID for privacy
-  const firstInitial = student.firstName?.charAt(0)?.toUpperCase() || 'X';
-  const lastInitial = student.lastName?.charAt(0)?.toUpperCase() || 'X';
-  const idSuffix = student.id?.toString()?.slice(-4) || '0000';
+  const firstInitial = typeof student.firstName === 'string' ? student.firstName.charAt(0).toUpperCase() : 'X';
+  const lastInitial = typeof student.lastName === 'string' ? student.lastName.charAt(0).toUpperCase() : 'X';
+  const idSuffix = student.id ? String(student.id).slice(-4) : '0000';
   
   return `${firstInitial}${lastInitial}-${idSuffix}`;
 }
@@ -102,9 +106,9 @@ export function sanitizeStudentDataForExport(students: Record<string, unknown>[]
     studentId: getStudentIdentifier(student),
     grade: student.grade,
     // Aggregate data only
-    totalGoals: student._count?.goals || 0,
-    totalReflections: student._count?.reflections || 0,
-    totalArtifacts: student._count?.artifacts || 0,
+    totalGoals: (student._count && typeof student._count === 'object' && (student._count as Record<string, unknown>).goals) || 0,
+    totalReflections: (student._count && typeof student._count === 'object' && (student._count as Record<string, unknown>).reflections) || 0,
+    totalArtifacts: (student._count && typeof student._count === 'object' && (student._count as Record<string, unknown>).artifacts) || 0,
     // No personally identifiable information
   }));
 }

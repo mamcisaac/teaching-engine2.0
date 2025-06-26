@@ -15,8 +15,7 @@ import {
   CheckCircle2,
   Wand2,
 } from 'lucide-react';
-import { UnitPlanFormData } from './UnitPlanForm';
-import { LessonPlanFormData } from './LessonPlanForm';
+// Removed unused imports - UnitPlanFormData and LessonPlanFormData
 
 interface TemplateConfig {
   id: string;
@@ -96,8 +95,8 @@ export default function FormTemplates({
     includeFields: [] as string[],
   });
 
-  const generateBasicUnitTemplate = (quantity: number = 1): UnitPlanFormData[] => {
-    return Array.from({ length: quantity }, (_, index) => ({
+  const generateBasicUnitTemplate = (quantity: number = 1): Record<string, unknown>[] => {
+    return Array.from({ length: quantity }, (_, index): Record<string, unknown> => ({
       title: `${customConfig.prefix}Unit ${index + 1}`,
       description: '',
       bigIdeas: '',
@@ -130,8 +129,8 @@ export default function FormTemplates({
     }));
   };
 
-  const generateBasicLessonTemplate = (quantity: number = 1): LessonPlanFormData[] => {
-    return Array.from({ length: quantity }, (_, index) => ({
+  const generateBasicLessonTemplate = (quantity: number = 1): Record<string, unknown>[] => {
+    return Array.from({ length: quantity }, (_, index): Record<string, unknown> => ({
       title: `${customConfig.prefix}Lesson ${index + 1}`,
       titleFr: '',
       unitPlanId: '',
@@ -158,8 +157,8 @@ export default function FormTemplates({
     }));
   };
 
-  const generateSubFriendlyLessonTemplate = (quantity: number = 1): LessonPlanFormData[] => {
-    return Array.from({ length: quantity }, (_, index) => ({
+  const generateSubFriendlyLessonTemplate = (quantity: number = 1): Record<string, unknown>[] => {
+    return Array.from({ length: quantity }, (_, index): Record<string, unknown> => ({
       title: `${customConfig.prefix}Sub Plan ${index + 1}`,
       titleFr: '',
       unitPlanId: '',
@@ -246,7 +245,7 @@ export default function FormTemplates({
     
     URL.revokeObjectURL(url);
 
-    onTemplateDownload(selectedTemplate.id, templateData);
+    onTemplateDownload(selectedTemplate.id, { data: templateData });
   };
 
   const getDifficultyColor = (difficulty: string) => {

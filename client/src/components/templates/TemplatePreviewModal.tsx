@@ -97,7 +97,7 @@ export default function TemplatePreviewModal({
                       ))}
                     </div>
                   ) : (
-                    <p className="text-gray-700">{content}</p>
+                    <p className="text-gray-700">{typeof content === 'string' ? content : JSON.stringify(content)}</p>
                   )}
                 </div>
               )}
@@ -157,10 +157,10 @@ export default function TemplatePreviewModal({
                           <span className="capitalize">{assessmentType}</span>
                         </div>
                       )}
-                      <p className="text-gray-700">{content}</p>
+                      <p className="text-gray-700">{typeof content === 'string' ? content : JSON.stringify(content)}</p>
                     </div>
                   ) : (
-                    <p className="text-gray-700">{content}</p>
+                    <p className="text-gray-700">{typeof content === 'string' ? content : JSON.stringify(content)}</p>
                   )}
                 </div>
               )}

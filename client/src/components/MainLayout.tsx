@@ -303,7 +303,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                 )}
                 <NavLink
                   to={isAccessible ? level.path : '#'}
-                  data-testid={level.id === 'long-range-plans' ? 'long-range-nav' : undefined}
+                  data-testid={level.id === 2 ? 'long-range-nav' : undefined}
                   className={({ isActive }) => {
                     const baseClasses = `flex items-center py-2 px-4 ${!isSidebarOpen && 'justify-center'}`;
 
@@ -334,7 +334,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                     <div className="flex-1">
                       <div className="font-medium">{level.name}</div>
                       <div className="text-xs text-indigo-300 mt-1">{level.description}</div>
-                      {progress > 0 && (
+                      {progress > 0 && progress < 100 && (
                         <div className="w-full bg-indigo-800 rounded-full h-1 mt-2">
                           <div
                             className="bg-indigo-400 h-1 rounded-full transition-all duration-300"

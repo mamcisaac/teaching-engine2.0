@@ -69,7 +69,7 @@ export function PlanningWorkflowIndicator({
           const StepWrapper = canNavigate(level) ? Link : 'div';
           const wrapperProps = canNavigate(level) 
             ? { to: ETFO_LEVEL_PATHS[level.level] } 
-            : {};
+            : {} as Record<string, never>;
 
           return (
             <div key={level.level} className="relative">
