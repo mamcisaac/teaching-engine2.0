@@ -404,7 +404,6 @@ export default function CalendarPlanningPage() {
       <div className="bg-white rounded-lg shadow-lg p-2 sm:p-4 md:p-6">
         <Calendar
           localizer={localizer}
-          // @ts-expect-error - Calendar event type mismatch
           events={events}
           startAccessor="start"
           endAccessor="end"
