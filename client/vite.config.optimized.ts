@@ -1,5 +1,5 @@
 // Optimized Vite configuration for Teaching Engine 2.0
-import { defineConfig, splitVendorChunkPlugin } from 'vite';
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 // import { visualizer } from 'rollup-plugin-visualizer';
@@ -56,8 +56,7 @@ export default defineConfig(({ mode }) => {
         } : undefined
       }),
       
-      // Split vendor chunks intelligently
-      splitVendorChunkPlugin(),
+      // Vendor chunk splitting is now handled in build.rollupOptions.output.manualChunks
       
       // Compress assets in production
       // isProd && compression({
@@ -117,22 +116,7 @@ export default defineConfig(({ mode }) => {
     
     build: {
       target: 'es2020',
-      minify: isProd ? 'terser' : false,
-      
-      terserOptions: isProd ? {
-        compress: {
-          drop_console: true,
-          drop_debugger: true,
-          pure_funcs: ['console.log', 'console.info'],
-          passes: 2,
-        },
-        mangle: {
-          safari10: true,
-        },
-        format: {
-          comments: false,
-        },
-      } : undefined,
+      minify: isProd ? 'esbuild' : false,
       
       // Source maps only in development
       sourcemap: isDev,

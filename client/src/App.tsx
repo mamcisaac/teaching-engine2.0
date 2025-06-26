@@ -1,5 +1,5 @@
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, lazy } from 'react';
 import { useAuth } from './contexts/AuthContext';
 import { NotificationProvider } from './contexts/NotificationContext';
 import { AuthProvider } from './contexts/AuthContext';
@@ -35,28 +35,7 @@ const SuspenseFallback = () => (
 );
 
 function AppRoutes() {
-  const { isAuthenticated, checkAuth } = useAuth();
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Check if user is authenticated on initial load
-  useEffect(() => {
-    const verifyAuth = async () => {
-      try {
-        if (isAuthenticated) {
-          // Verify authentication status with the server
-          await checkAuth();
-        }
-      } catch (error) {
-        console.error('Auth check failed:', error);
-      } finally {
-        // Always set loading to false after checking auth
-        setIsLoading(false);
-      }
-    };
-
-    // Run auth verification
-    verifyAuth();
-  }, [isAuthenticated, checkAuth]);
+  const { isLoading } = useAuth();
 
   if (isLoading) {
     return <SuspenseFallback />;
@@ -65,7 +44,7 @@ function AppRoutes() {
   return (
     <Routes>
       {/* Public routes */}
-      <Route path="/login" element={isAuthenticated ? <Navigate to="/" replace /> : <LoginPage />} />
+      <Route path="/login" element={<LoginPage />} />
 
       {/* Protected routes with MainLayout */}
       <Route

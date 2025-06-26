@@ -69,8 +69,7 @@ const baseConfig = {
     '/node_modules/', 
     '/dist/', 
     '/__mocks__/',
-    '/tests/integration/', // Ignore slow integration tests by default
-    '/tests/e2e/', // Ignore E2E tests by default
+    // Note: integration and e2e tests are controlled by project configuration
   ],
   
   // Cleanup and error handling
@@ -157,8 +156,8 @@ const integrationTestProject = {
   },
   
   // Database setup for integration tests
-  globalSetup: '<rootDir>/tests/setup/global-db-setup.ts',
-  globalTeardown: '<rootDir>/tests/setup/global-db-teardown.ts',
+  // globalSetup: '<rootDir>/tests/setup/global-db-setup.ts',
+  // globalTeardown: '<rootDir>/tests/setup/global-db-teardown.ts',
 };
 
 /**

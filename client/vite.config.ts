@@ -10,6 +10,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  define: {
+    'process.env': {}
+  },
   envPrefix: 'VITE_',
   server: {
     port: 5173,

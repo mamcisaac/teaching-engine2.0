@@ -13,6 +13,7 @@ interface AuthContextValue {
   login: (user: User) => void;
   logout: () => void;
   isAuthenticated: boolean;
+  isLoading: boolean;
   checkAuth: () => Promise<void>;
   getToken: () => string | null;
   setToken: (token: string) => void;
@@ -23,6 +24,7 @@ const AuthContext = createContext<AuthContextValue>({
   login: () => {},
   logout: () => {},
   isAuthenticated: false,
+  isLoading: true,
   checkAuth: async () => {},
   getToken: () => null,
   setToken: () => {},
@@ -31,6 +33,7 @@ const AuthContext = createContext<AuthContextValue>({
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // Token management functions
   const getToken = (): string | null => {
@@ -83,19 +86,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           signal: abortController.signal,
         });
 
-        if (!abortController.signal.aborted && response.ok) {
-          const userData = await response.json();
-          setUser(userData);
-          setIsAuthenticated(true);
-        } else {
-          setUser(null);
-          setIsAuthenticated(false);
+        if (!abortController.signal.aborted) {
+          if (response.ok) {
+            const userData = await response.json();
+            setUser(userData);
+            setIsAuthenticated(true);
+          } else {
+            setUser(null);
+            setIsAuthenticated(false);
+          }
+          setIsLoading(false);
         }
       } catch (error) {
         if (!abortController.signal.aborted) {
           console.error('Auth check failed:', error);
           setUser(null);
           setIsAuthenticated(false);
+          setIsLoading(false);
         }
       }
     };
@@ -130,7 +137,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, login, logout, isAuthenticated, checkAuth, getToken, setToken }}
+      value={{ user, login, logout, isAuthenticated, isLoading, checkAuth, getToken, setToken }}
     >
       {children}
     </AuthContext.Provider>
