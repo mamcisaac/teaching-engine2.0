@@ -292,6 +292,48 @@ jest.mock('@teaching-engine/database', () => {
       deleteMany: jest.fn().mockResolvedValue({ count: 0 }),
       count: jest.fn().mockResolvedValue(0),
     },
+    
+    // Curriculum Import model
+    curriculumImport: {
+      findUnique: jest.fn(),
+      findMany: jest.fn().mockResolvedValue([]),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn().mockResolvedValue({ count: 0 }),
+      update: jest.fn(),
+      updateMany: jest.fn().mockResolvedValue({ count: 0 }),
+      delete: jest.fn(),
+      deleteMany: jest.fn().mockResolvedValue({ count: 0 }),
+      count: jest.fn().mockResolvedValue(0),
+    },
+    
+    // Newsletter model
+    newsletter: {
+      findUnique: jest.fn(),
+      findMany: jest.fn().mockResolvedValue([]),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn().mockResolvedValue({ count: 0 }),
+      update: jest.fn(),
+      updateMany: jest.fn().mockResolvedValue({ count: 0 }),
+      delete: jest.fn(),
+      deleteMany: jest.fn().mockResolvedValue({ count: 0 }),
+      count: jest.fn().mockResolvedValue(0),
+    },
+    
+    // Parent Contact model
+    parentContact: {
+      findUnique: jest.fn(),
+      findMany: jest.fn().mockResolvedValue([]),
+      findFirst: jest.fn(),
+      create: jest.fn(),
+      createMany: jest.fn().mockResolvedValue({ count: 0 }),
+      update: jest.fn(),
+      updateMany: jest.fn().mockResolvedValue({ count: 0 }),
+      delete: jest.fn(),
+      deleteMany: jest.fn().mockResolvedValue({ count: 0 }),
+      count: jest.fn().mockResolvedValue(0),
+    },
   };
 
   // PrismaClient constructor

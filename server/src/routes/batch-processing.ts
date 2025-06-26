@@ -1,6 +1,6 @@
 import { Router, Request } from 'express';
 import { z } from 'zod';
-import { validate } from '../validation';
+import { validate, cuidSchema } from '../validation';
 import { batchProcessingService } from '../services/batchProcessingService';
 
 interface AuthenticatedRequest extends Request {
@@ -12,7 +12,7 @@ const router = Router();
 // Validation schemas for batch operations
 const unitPlanBatchSchema = z.object({
   title: z.string().min(1).max(255),
-  longRangePlanId: z.string().uuid(),
+  longRangePlanId: cuidSchema(),
   description: z.string().max(2000).optional(),
   bigIdeas: z.string().max(2000).optional(),
   essentialQuestions: z.array(z.string().max(500)).max(20).optional(),
@@ -21,7 +21,7 @@ const unitPlanBatchSchema = z.object({
   estimatedHours: z.number().int().positive().max(1000).optional(),
   assessmentPlan: z.string().max(2000).optional(),
   successCriteria: z.array(z.string().max(500)).max(20).optional(),
-  expectationIds: z.array(z.string().uuid()).max(50).min(1),
+  expectationIds: z.array(cuidSchema()).max(50).min(1),
   crossCurricularConnections: z.string().max(1000).optional(),
   learningSkills: z.array(z.string().max(100)).max(10).optional(),
   culminatingTask: z.string().max(1000).optional(),
@@ -44,7 +44,7 @@ const unitPlanBatchSchema = z.object({
 
 const lessonPlanBatchSchema = z.object({
   title: z.string().min(1).max(255),
-  unitPlanId: z.string().uuid(),
+  unitPlanId: cuidSchema(),
   date: z.string().datetime(),
   duration: z.number().int().min(5).max(480),
   mindsOn: z.string().max(2000).optional(),
@@ -60,7 +60,7 @@ const lessonPlanBatchSchema = z.object({
   assessmentNotes: z.string().max(1000).optional(),
   isSubFriendly: z.boolean().default(false),
   subNotes: z.string().max(500).optional(),
-  expectationIds: z.array(z.string().uuid()).max(20).optional(),
+  expectationIds: z.array(cuidSchema()).max(20).optional(),
 });
 
 const batchOperationSchema = z.object({

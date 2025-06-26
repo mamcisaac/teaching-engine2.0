@@ -1,12 +1,12 @@
 import { Router } from 'express';
 import { z } from 'zod';
-import { PrismaClient, CalendarEventType, CalendarEventSource, Prisma } from '@teaching-engine/database';
+import { CalendarEventType, CalendarEventSource, Prisma } from '@teaching-engine/database';
 import { requireAuth } from '../middleware/auth';
 import { validateRequest } from '../middleware/validateRequest';
 import { startOfDay, endOfDay, parseISO } from 'date-fns';
+import { prisma } from '../prisma';
 
 const router = Router();
-const prisma = new PrismaClient();
 
 // Validation schemas
 const calendarEventSchema = z.object({
@@ -16,7 +16,7 @@ const calendarEventSchema = z.object({
   end: z.string().datetime(),
   allDay: z.boolean().default(false),
   eventType: z.enum(['PD_DAY', 'ASSEMBLY', 'TRIP', 'HOLIDAY', 'CUSTOM']),
-  source: z.enum(['MANUAL', 'ICAL_FEED', 'SYSTEM']).default('MANUAL'),
+  source: z.enum(['MANUAL', 'ICAL_FEED']).default('MANUAL'),
 });
 
 const querySchema = z.object({

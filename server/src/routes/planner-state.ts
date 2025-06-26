@@ -2,6 +2,7 @@ import express from 'express';
 import { prisma } from '../prisma';
 import { z } from 'zod';
 import rateLimit from 'express-rate-limit';
+import { cuidSchema } from '../validation';
 import DOMPurify from 'isomorphic-dompurify';
 
 const router = express.Router();
@@ -52,7 +53,7 @@ const WorkingHoursSchema = z.object({
 
 // Secure schema for draft changes to prevent injection
 const DraftChangesSchema = z.object({
-  planId: z.string().uuid().optional(),
+  planId: cuidSchema().optional(),
   title: z.string().max(200).optional(),
   content: z.string().max(10000).optional(),
   timestamp: z.number().positive().optional(),

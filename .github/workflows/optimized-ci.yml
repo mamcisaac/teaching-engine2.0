@@ -115,7 +115,7 @@ jobs:
           pnpm-version: ${{ env.PNPM_VERSION }}
 
       - name: Run integration tests
-        run: TEST_TYPE=integration pnpm --filter server test -- --testNamePattern="server-health|auth|simple|d3" --maxWorkers=1 --no-coverage
+        run: TEST_TYPE=integration pnpm --filter server test -- --testNamePattern="server-health|auth|simple|d3|etfo-planning" --maxWorkers=1 --no-coverage
         env:
           DATABASE_URL: file:./test-integration.db
           NODE_OPTIONS: '--max-old-space-size=4096'

@@ -227,6 +227,9 @@ export const studentReflectionCreateSchema = z.object({
   unitPlanId: z.string().optional(),
 });
 
+// CUID validation helper - matches Prisma @default(cuid()) format
+export const cuidSchema = () => z.string().regex(/^c[0-9a-z]{24}$/, 'Invalid ID format');
+
 export function validate(schema: ZodSchema) {
   return (req: Request, res: Response, next: NextFunction) => {
     // For now, always validate req.body directly

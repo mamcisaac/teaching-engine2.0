@@ -1,7 +1,7 @@
 import { Router, Request } from 'express';
 import { Prisma } from '../prisma';
 import { prisma } from '../prisma';
-import { validate } from '../validation';
+import { validate, cuidSchema } from '../validation';
 import { z } from 'zod';
 
 interface AuthenticatedRequest extends Request {
@@ -14,7 +14,7 @@ const router = Router();
 const unitPlanCreateSchema = z.object({
   title: z.string().min(1).max(255).regex(/^[^<>]*$/, 'Title cannot contain HTML tags'),
   titleFr: z.string().max(255).regex(/^[^<>]*$/, 'French title cannot contain HTML tags').optional(),
-  longRangePlanId: z.string().uuid('Invalid long range plan ID format'),
+  longRangePlanId: cuidSchema(),
   description: z.string().max(2000).optional(),
   descriptionFr: z.string().max(2000).optional(),
   bigIdeas: z.string().max(2000).optional(),
@@ -25,7 +25,7 @@ const unitPlanCreateSchema = z.object({
   estimatedHours: z.number().int().positive().max(1000).optional(),
   assessmentPlan: z.string().max(2000).optional(),
   successCriteria: z.array(z.string().max(500)).max(20).optional(),
-  expectationIds: z.array(z.string().uuid()).max(50).min(1, 'At least one curriculum expectation must be selected'),
+  expectationIds: z.array(cuidSchema()).max(50).min(1, 'At least one curriculum expectation must be selected'),
 
   // ETFO-aligned planning fields with validation
   crossCurricularConnections: z.string().max(1000).optional(),

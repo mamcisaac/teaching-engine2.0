@@ -25,8 +25,10 @@ process.env.NODE_ENV = 'test';
 process.env.JWT_SECRET = 'integration-test-secret';
 process.env.OPENAI_API_KEY = 'test-api-key';
 
-// Use test database
-const testDbPath = path.join(process.cwd(), 'tests', 'test-integration.db');
+// Use unique test database per worker and session to avoid conflicts
+const workerId = process.env.JEST_WORKER_ID || '1';
+const sessionId = Date.now();
+const testDbPath = path.join(process.cwd(), 'tests', `test-integration-${workerId}-${sessionId}.db`);
 process.env.DATABASE_URL = `file:${testDbPath}`;
 
 // Configure Jest for integration tests
@@ -70,13 +72,28 @@ async function setupTestDatabase() {
     const dbDir = path.dirname(testDbPath);
     await fs.mkdir(dbDir, { recursive: true });
 
-    // Push Prisma schema to database
+    // Push Prisma schema to database with retry logic
     const { execSync } = await import('child_process');
-    execSync('npx prisma db push --force-reset', {
-      env: { ...process.env, DATABASE_URL: process.env.DATABASE_URL },
-      cwd: path.resolve(__dirname, '../../../packages/database'),
-      stdio: 'inherit', // Show output for debugging
-    });
+    
+    let retries = 3;
+    while (retries > 0) {
+      try {
+        execSync('npx prisma db push --force-reset', {
+          env: { ...process.env, DATABASE_URL: process.env.DATABASE_URL },
+          cwd: path.resolve(__dirname, '../../../packages/database'),
+          stdio: 'pipe', // Capture output instead of showing it
+        });
+        break; // Success, exit retry loop
+      } catch (error) {
+        retries--;
+        if (retries === 0) {
+          console.error('Failed to setup test database after retries:', error);
+          throw error;
+        }
+        // Wait a bit before retrying to avoid conflicts
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+    }
   } catch (error) {
     console.error('Failed to setup test database:', error);
     throw error;
@@ -121,10 +138,11 @@ beforeAll(async () => {
   await setupTestDatabase();
 });
 
-// Clean database before each test for isolation
-beforeEach(async () => {
+// Optional database cleanup - tests can call this manually if needed
+// Note: Removed global beforeEach cleanup to prevent conflicts with test data setup
+export async function cleanTestDatabaseForTest() {
   await cleanTestDatabase();
-});
+}
 
 // Global teardown - run once after all tests
 afterAll(async () => {
@@ -137,7 +155,7 @@ afterAll(async () => {
     await fs.unlink(testDbPath);
     await fs.unlink(`${testDbPath}-journal`);
   } catch {
-    // Ignore errors
+    // Ignore errors - file might not exist
   }
 });
 
