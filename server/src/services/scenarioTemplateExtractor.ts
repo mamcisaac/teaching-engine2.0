@@ -55,7 +55,7 @@ export async function extractScenarioTemplates(conditions?: {
       recommendedScenario = allScenarios.find((s) => s.id === 'lockdown'); // Override others
     }
 
-    if (conditions.staffing === 'emergency') {
+    if (conditions.staffing === 'emergency' || conditions.staffing === 'short') {
       triggers.push('staff_shortage');
       if (!recommendedScenario) {
         recommendedScenario = allScenarios.find((s) => s.id === 'staff_shortage');
@@ -157,6 +157,7 @@ function getAllScenarios(): EmergencyScenario[] {
         'Books for silent reading time',
       ],
       contacts: [
+        { role: 'Emergency Services', number: '911', when: 'For life-threatening emergencies only' },
         { role: 'Principal', number: 'Ext. 100', when: 'For any emergencies or major issues' },
         {
           role: 'Office',
@@ -238,6 +239,7 @@ Thank you for covering this class. Please leave detailed notes about the day.`,
         'Analog timer or watch',
       ],
       contacts: [
+        { role: 'Emergency Services', number: '911', when: 'For life-threatening emergencies only' },
         { role: 'IT Support', number: 'Ext. 150', when: 'To report technology issues' },
         { role: 'Office', number: 'Ext. 101', when: 'To inform of technology problems' },
         {
@@ -314,6 +316,7 @@ Remember: Focus on engagement over technology!`,
         'First aid kit (check location)',
       ],
       contacts: [
+        { role: 'Emergency Services', number: '911', when: 'For life-threatening emergencies only' },
         { role: 'Office', number: 'Ext. 101', when: 'For weather updates and dismissal changes' },
         { role: 'Principal', number: 'Ext. 100', when: 'For emergency decisions' },
         {
@@ -469,6 +472,7 @@ Wait for administration's all-clear before resuming normal activities.`,
         'Art supplies for quiet activities',
       ],
       contacts: [
+        { role: 'Emergency Services', number: '911', when: 'For life-threatening emergencies only' },
         { role: 'Principal', number: 'Ext. 100', when: 'For grouping decisions and support' },
         { role: 'Vice Principal', number: 'Ext. 102', when: 'For assistance with large groups' },
         {

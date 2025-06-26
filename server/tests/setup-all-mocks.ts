@@ -1,11 +1,12 @@
 // Global mock setup for all tests
 // This file runs before any tests and sets up all required mocks
 import { jest } from '@jest/globals';
+import { randomBytes } from 'crypto';
 
 // Set up environment variables
 process.env.NODE_ENV = 'test';
 process.env.DATABASE_URL = 'file:./test.db';
-process.env.JWT_SECRET = 'test-secret';
+process.env.JWT_SECRET = randomBytes(32).toString('hex');
 process.env.OPENAI_API_KEY = 'test-api-key';
 
 // Mock Prisma Client
@@ -464,6 +465,25 @@ const mockPrismaClientInstance = {
   unitPlan: createModelMock(),
   eTFOLessonPlan: createModelMock(),
   daybookEntry: createModelMock(),
+  // Additional models that tests might need
+  unavailableBlock: createModelMock(),
+  timetableSlot: createModelMock(),
+  holiday: createModelMock(),
+  calendarEvent: createModelMock(),
+  weeklyPlan: createModelMock(),
+  plannerState: createModelMock(),
+  template: createModelMock(),
+  newsletter: createModelMock(),
+  schoolYear: createModelMock(),
+  academicYear: createModelMock(),
+  grade: createModelMock(),
+  classLevel: createModelMock(),
+  curriculum: createModelMock(),
+  subjectArea: createModelMock(),
+  learningExpectation: createModelMock(),
+  assessmentCriteria: createModelMock(),
+  rubric: createModelMock(),
+  recentPlanAccess: createModelMock(),
 };
 
 // Set up the transaction mock to use the client instance

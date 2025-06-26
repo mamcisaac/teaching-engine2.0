@@ -139,8 +139,8 @@ export async function exportVocabularyGrowth(
  * Show export success notification
  */
 export function showExportSuccess(type: ExportType, format: ExportFormat): void {
-  // This could integrate with a toast notification system
-  console.log(`Successfully exported ${type} as ${format}`);
+  // TODO: Integrate with toast notification system
+  // Successfully exported ${type} as ${format}
 }
 
 /**

@@ -1,21 +1,9 @@
 import cron from 'node-cron';
-import { prisma } from '../prisma';
 
 export async function sendReportDeadlineReminders() {
-  const today = new Date();
-  const deadlines = await prisma.reportDeadline.findMany();
-  for (const dl of deadlines) {
-    const reminderDate = new Date(dl.date);
-    reminderDate.setDate(reminderDate.getDate() - dl.remindDaysBefore);
-    if (today.toISOString().slice(0, 10) === reminderDate.toISOString().slice(0, 10)) {
-      await prisma.notification.create({
-        data: {
-          type: 'ASSESSMENT_REMINDER',
-          message: `Schedule and grade assessments for "${dl.name}" due ${dl.date.toISOString().slice(0, 10)}.`,
-        },
-      });
-    }
-  }
+  // DISABLED: ReportDeadline and Notification models have been archived
+  // TODO: Implement using CalendarEvent with type REPORT_DEADLINE and ParentMessage for notifications
+  console.warn('sendReportDeadlineReminders is disabled - legacy models archived');
 }
 
 export function scheduleReportDeadlineReminders() {

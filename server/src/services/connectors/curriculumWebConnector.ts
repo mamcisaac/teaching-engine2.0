@@ -1,7 +1,6 @@
 import { BaseConnector } from './baseConnector';
 import { SearchParams } from '../activityDiscoveryService';
 import { ExternalActivity } from '@teaching-engine/database';
-import { WebFetch } from '../../utils/webFetch';
 import * as cheerio from 'cheerio';
 
 interface CurriculumSite {
@@ -21,7 +20,6 @@ interface CurriculumActivity {
 }
 
 export class CurriculumWebConnector extends BaseConnector {
-  private webFetch: WebFetch;
   private sites: CurriculumSite[] = [
     {
       name: 'PEI Curriculum',
@@ -94,19 +92,29 @@ export class CurriculumWebConnector extends BaseConnector {
 
   constructor() {
     super('CurriculumWeb');
-    this.webFetch = new WebFetch();
   }
 
   async search(
     params: SearchParams,
   ): Promise<Omit<ExternalActivity, 'id' | 'createdAt' | 'updatedAt'>[]> {
-    const activities: Omit<ExternalActivity, 'id' | 'createdAt' | 'updatedAt'>[] = [];
-
     // Search each curriculum site
     const searchPromises = this.sites.map(async (site) => {
+      const siteActivities: Omit<ExternalActivity, 'id' | 'createdAt' | 'updatedAt'>[] = [];
+      
       try {
         const searchUrl = site.searchUrl(params.query, params.gradeLevel);
-        const html = await this.webFetch.fetch(searchUrl);
+        const html = await this.fetchWithRetryAndTimeout(searchUrl, {
+          headers: {
+            'User-Agent': 'Teaching Engine 2.0 Educational Resource Bot (+https://teaching-engine.ca/bot)',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.9,fr;q=0.8',
+          },
+        }, 3, 30000, 2000); // 3 retries, 30s timeout, 2s base delay
+        
+        if (!html) {
+          console.error(`Failed to fetch from ${site.name}`);
+          return siteActivities;
+        }
         const $ = cheerio.load(html);
         const siteResults = site.parseResults(html, $);
 
@@ -115,7 +123,7 @@ export class CurriculumWebConnector extends BaseConnector {
           // Fetch additional details from the activity page
           const activityDetails = await this.fetchActivityDetails(result.url);
 
-          activities.push(
+          siteActivities.push(
             this.transformToExternalActivity({
               externalId: this.generateIdFromUrl(result.url),
               source: this.sourceName,
@@ -141,11 +149,12 @@ export class CurriculumWebConnector extends BaseConnector {
       } catch (error) {
         console.error(`Error searching ${site.name}:`, error);
       }
+      
+      return siteActivities;
     });
 
-    await Promise.all(searchPromises);
-
-    return activities;
+    const allResults = await Promise.all(searchPromises);
+    return allResults.flat();
   }
 
   async getActivityDetails(
@@ -197,7 +206,17 @@ export class CurriculumWebConnector extends BaseConnector {
     author?: string;
   } | null> {
     try {
-      const html = await this.webFetch.fetch(url);
+      const html = await this.fetchWithRetryAndTimeout(url, {
+        headers: {
+          'User-Agent': 'Teaching Engine 2.0 Educational Resource Bot (+https://teaching-engine.ca/bot)',
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          'Accept-Language': 'en-US,en;q=0.9,fr;q=0.8',
+        },
+      }, 3, 30000, 1000); // 3 retries, 30s timeout, 1s base delay
+      
+      if (!html) {
+        return null;
+      }
       const $ = cheerio.load(html);
 
       // Extract common patterns from curriculum pages

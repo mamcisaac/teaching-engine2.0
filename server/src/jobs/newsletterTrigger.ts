@@ -1,5 +1,4 @@
 import cron from 'node-cron';
-import { prisma } from '../prisma';
 
 export interface TermMidpoint {
   term: string;
@@ -13,16 +12,12 @@ export const TERM_MIDPOINTS: TermMidpoint[] = [
 ];
 
 export async function checkNewsletterTriggers(midpoints: TermMidpoint[] = TERM_MIDPOINTS) {
+  // DISABLED: Notification model has been archived
+  // TODO: Implement using ParentMessage for newsletter notifications
   const todayStr = new Date().toISOString().slice(0, 10);
   for (const mp of midpoints) {
     if (mp.date.toISOString().slice(0, 10) === todayStr) {
-      await prisma.notification.create({
-        data: {
-          message: `Time to send a newsletter for ${mp.term}!`,
-          type: 'NEWSLETTER_SUGGESTION',
-          dueDate: new Date(mp.date.getTime() + 2 * 86400000),
-        },
-      });
+      console.warn(`Newsletter trigger for ${mp.term} - Notification model archived`);
     }
   }
 }

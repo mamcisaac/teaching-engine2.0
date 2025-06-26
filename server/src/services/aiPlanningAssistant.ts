@@ -487,6 +487,52 @@ Return ONLY a JSON array of strings:
       return [];
     }
   }
+
+  /**
+   * Check AI service health and availability
+   */
+  async getServiceHealth(): Promise<{
+    healthy: boolean;
+    apiKey: boolean;
+    lastCheck: string;
+    error?: string;
+  }> {
+    try {
+      const hasApiKey = !!this.openai;
+      
+      if (!hasApiKey) {
+        return {
+          healthy: false,
+          apiKey: false,
+          lastCheck: new Date().toISOString(),
+          error: 'OpenAI API key not configured'
+        };
+      }
+
+      // Test a minimal OpenAI request to verify service health
+      const testResponse = await this.openai!.chat.completions.create({
+        model: 'gpt-3.5-turbo',
+        messages: [{ role: 'user', content: 'Test' }],
+        max_tokens: 5
+      });
+
+      const healthy = !!testResponse.choices[0]?.message?.content;
+
+      return {
+        healthy,
+        apiKey: hasApiKey,
+        lastCheck: new Date().toISOString()
+      };
+    } catch (error) {
+      this.logger.error({ error }, 'AI service health check failed');
+      return {
+        healthy: false,
+        apiKey: !!this.openai,
+        lastCheck: new Date().toISOString(),
+        error: error instanceof Error ? error.message : 'Unknown error'
+      };
+    }
+  }
 }
 
 export const aiPlanningAssistant = new AIPlanningAssistantService();

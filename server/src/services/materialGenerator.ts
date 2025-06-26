@@ -1,4 +1,4 @@
-import { prisma } from '../prisma';
+// import { prisma } from '../prisma'; // Unused import
 
 export function extractMaterials(note: string): string[] {
   const items = new Set<string>();
@@ -55,19 +55,10 @@ export async function generateMaterialList(_weekStart: string): Promise<string[]
  */
 export async function updateMaterialList(weekStart: string): Promise<void> {
   const items = await generateMaterialList(weekStart);
-  const existing = await prisma.materialList.findFirst({
-    where: { weekStart: new Date(weekStart) },
-  });
-  if (existing) {
-    await prisma.materialList.update({
-      where: { id: existing.id },
-      data: { items: JSON.stringify(items) },
-    });
-  } else {
-    await prisma.materialList.create({
-      data: { weekStart: new Date(weekStart), items: JSON.stringify(items) },
-    });
-  }
+  
+  // DISABLED: MaterialList model has been archived
+  // TODO: Implement using ETFO UnitPlanResource and ETFOLessonPlanResource models
+  console.warn(`updateMaterialList is disabled - MaterialList model archived. Items for ${weekStart}:`, items);
 }
 
 export interface ActivityMaterials {

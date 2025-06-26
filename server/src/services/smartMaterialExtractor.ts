@@ -1,7 +1,7 @@
-import { PrismaClient } from '@teaching-engine/database';
+// import { PrismaClient } from '@teaching-engine/database'; // Unused import
 import OpenAI from 'openai';
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient(); // Unused
 
 // Lazy initialization of OpenAI to avoid startup errors
 let openai: OpenAI | null = null;
@@ -342,26 +342,10 @@ Example output:
   async autoUpdateMaterialList(weekStart: string): Promise<void> {
     const materialPlan = await this.generateWeeklyMaterialPlan(weekStart);
 
-    // Save to existing MaterialList table
+    // DISABLED: MaterialList model has been archived
+    // TODO: Implement using ETFO UnitPlanResource and ETFOLessonPlanResource models
     const materialItems = materialPlan.materials.map((m) => m.name);
-
-    const existing = await prisma.materialList.findFirst({
-      where: { weekStart: new Date(weekStart) },
-    });
-
-    if (existing) {
-      await prisma.materialList.update({
-        where: { id: existing.id },
-        data: { items: JSON.stringify(materialItems) },
-      });
-    } else {
-      await prisma.materialList.create({
-        data: {
-          weekStart: new Date(weekStart),
-          items: JSON.stringify(materialItems),
-        },
-      });
-    }
+    console.warn(`autoUpdateMaterialList is disabled - MaterialList model archived. Items for ${weekStart}:`, materialItems);
   }
 }
 

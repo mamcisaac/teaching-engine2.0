@@ -496,4 +496,123 @@ router.post('/:id/sub-version', async (req: AuthenticatedRequest, res, _next) =>
   }
 });
 
+// Reschedule a lesson plan
+router.put('/:id/reschedule', async (req: AuthenticatedRequest, res, _next) => {
+  try {
+    const userId = parseInt(req.user?.userId || '0', 10);
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const { newDate } = req.body;
+    if (!newDate) {
+      return res.status(400).json({ error: 'New date is required' });
+    }
+
+    // Validate the lesson exists and belongs to the user
+    const lessonPlan = await prisma.eTFOLessonPlan.findFirst({
+      where: { id: req.params.id, userId },
+    });
+
+    if (!lessonPlan) {
+      return res.status(404).json({ error: 'Lesson plan not found' });
+    }
+
+    // Update the lesson date
+    const updatedLesson = await prisma.eTFOLessonPlan.update({
+      where: { id: req.params.id },
+      data: { date: new Date(newDate) },
+      include: {
+        unitPlan: {
+          select: {
+            id: true,
+            title: true,
+            longRangePlan: {
+              select: {
+                subject: true,
+                grade: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    res.json(updatedLesson);
+  } catch (err) {
+    _next(err);
+  }
+});
+
+// Duplicate a lesson plan
+router.post('/duplicate', async (req: AuthenticatedRequest, res, _next) => {
+  try {
+    const userId = parseInt(req.user?.userId || '0', 10);
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const { sourceId, title, notes } = req.body;
+
+    if (!sourceId || !title) {
+      return res.status(400).json({ error: 'Source ID and title are required' });
+    }
+
+    // Fetch the source lesson plan with all relations
+    const sourceLesson = await prisma.eTFOLessonPlan.findFirst({
+      where: { id: sourceId, userId },
+      include: {
+        expectations: true,
+        resources: true,
+      },
+    });
+
+    if (!sourceLesson) {
+      return res.status(404).json({ error: 'Source lesson plan not found' });
+    }
+
+    // Create the duplicate in a transaction
+    const result = await prisma.$transaction(async (tx) => {
+      // Create the duplicate lesson plan
+      const { id: _id, userId: _userId, createdAt: _createdAt, updatedAt: _updatedAt, expectations, resources, ...lessonData } = sourceLesson;
+      
+      const newLesson = await tx.eTFOLessonPlan.create({
+        data: {
+          ...lessonData,
+          userId,
+          title,
+          date: new Date(), // Set to today by default
+          subNotes: notes || `Duplicated from "${sourceLesson.title}"`,
+        },
+      });
+
+      // Copy expectations
+      if (expectations.length > 0) {
+        await tx.eTFOLessonPlanExpectation.createMany({
+          data: expectations.map(exp => ({
+            lessonPlanId: newLesson.id,
+            expectationId: exp.expectationId,
+          })),
+        });
+      }
+
+      // Copy resources
+      if (resources.length > 0) {
+        await tx.eTFOLessonPlanResource.createMany({
+          data: resources.map(({ id: _id, lessonPlanId: _lessonPlanId, createdAt: _createdAt, ...resource }) => ({
+            ...resource,
+            lessonPlanId: newLesson.id,
+          })),
+        });
+      }
+
+      return newLesson;
+    });
+
+    res.status(201).json(result);
+  } catch (err) {
+    _next(err);
+  }
+});
+
 export default router;

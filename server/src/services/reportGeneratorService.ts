@@ -75,6 +75,155 @@ interface SubjectReportCard {
   outcomes: string[];
 }
 
+// Type definitions for curriculum and planning reports
+export interface CurriculumCoverageReport {
+  totalExpectations: number;
+  coveredExpectations: number;
+  coveragePercentage: number;
+  uncoveredExpectations: Array<{
+    id: string;
+    code: string;
+    description: string;
+    strand: string;
+  }>;
+  coverageByStrand: Record<string, {
+    total: number;
+    covered: number;
+    percentage: number;
+  }>;
+}
+
+export interface PlanningProgressReport {
+  longRangePlans: {
+    total: number;
+    completed: number;
+    completionRate: number;
+  };
+  unitPlans: {
+    total: number;
+    completed: number;
+    completionRate: number;
+  };
+  lessonPlans: {
+    total: number;
+    completed: number;
+    completionRate: number;
+  };
+  daybookEntries: {
+    total: number;
+    completed: number;
+    completionRate: number;
+  };
+}
+
+export interface LessonPlanReport {
+  lesson: {
+    id: string;
+    title: string;
+    date: Date;
+    duration: number;
+    mindsOn?: string;
+    action?: string;
+    consolidation?: string;
+    learningGoals?: string;
+    materials?: string[];
+    isSubFriendly: boolean;
+  };
+  hierarchy: {
+    longRangePlan: {
+      id: string;
+      title: string;
+      subject?: string;
+      grade?: number;
+    };
+    unitPlan: {
+      id: string;
+      title: string;
+    };
+  };
+  curriculumAlignment: Array<{
+    id: string;
+    code: string;
+    description: string;
+    strand: string;
+  }>;
+  reflection?: {
+    whatWorked?: string;
+    overallRating?: number;
+    wouldReuseLesson?: boolean;
+  };
+  resources: Array<{
+    id: string;
+    title: string;
+    type: string;
+    url?: string;
+  }>;
+}
+
+export interface SubstitutePlanReport {
+  title: string;
+  basicInfo: {
+    subject: string;
+    grade: number;
+    duration: number;
+    date: Date;
+  };
+  materials: string[];
+  activities: {
+    opening: string;
+    main: string;
+    closing: string;
+  };
+  specialNotes?: string;
+  resources: Array<{
+    id: string;
+    title: string;
+    type: string;
+    content?: string;
+  }>;
+}
+
+export interface UnitOverviewReport {
+  unit: {
+    id: string;
+    title: string;
+    description?: string;
+    bigIdeas?: string;
+    startDate: Date;
+    endDate: Date;
+    estimatedHours: number;
+  };
+  hierarchy: {
+    longRangePlan: {
+      id: string;
+      title: string;
+      subject?: string;
+      grade?: number;
+    };
+  };
+  curriculumAlignment: Array<{
+    id: string;
+    code: string;
+    description: string;
+    strand: string;
+  }>;
+  lessonSummary: {
+    totalLessons: number;
+    totalDuration: number;
+    lessons: Array<{
+      id: string;
+      title: string;
+      date: Date;
+      duration: number;
+    }>;
+  };
+  resources: Array<{
+    id: string;
+    title: string;
+    type: string;
+  }>;
+}
+
 export class ReportGeneratorService {
   async generateReport(request: ReportGenerationRequest): Promise<GeneratedReport> {
     try {
@@ -496,6 +645,338 @@ export class ReportGeneratorService {
       prompt,
       JSON.stringify(reportCardData.map(s => ({ subject: s.name, grade: s.grade })))
     );
+  }
+
+  // Curriculum and Planning Report Methods
+  async generateCurriculumCoverageReport(userId: number): Promise<CurriculumCoverageReport> {
+    try {
+      // Get all curriculum expectations for the user's grade/subject
+      const expectations = await prisma.curriculumExpectation.findMany({
+        where: { userId },
+      });
+
+      // Get all plans with expectations
+      const longRangePlans = await prisma.longRangePlan.findMany({
+        where: { userId },
+        include: { expectations: true },
+      });
+
+      const unitPlans = await prisma.unitPlan.findMany({
+        where: { userId },
+        include: { expectations: true },
+      });
+
+      const lessonPlans = await prisma.eTFOLessonPlan.findMany({
+        where: { userId },
+        include: { expectations: true },
+      });
+
+      // Collect all covered expectation IDs
+      const coveredExpectationIds = new Set<string>();
+      
+      longRangePlans.forEach(plan => {
+        plan.expectations.forEach(exp => coveredExpectationIds.add(exp.expectationId));
+      });
+      
+      unitPlans.forEach(plan => {
+        plan.expectations.forEach(exp => coveredExpectationIds.add(exp.expectationId));
+      });
+      
+      lessonPlans.forEach(plan => {
+        plan.expectations.forEach(exp => coveredExpectationIds.add(exp.expectationId));
+      });
+
+      // Calculate coverage
+      const totalExpectations = expectations.length;
+      const coveredExpectations = coveredExpectationIds.size;
+      const coveragePercentage = totalExpectations > 0 
+        ? Math.round((coveredExpectations / totalExpectations) * 100) 
+        : 0;
+
+      // Find uncovered expectations
+      const uncoveredExpectations = expectations
+        .filter(exp => !coveredExpectationIds.has(exp.id))
+        .map(exp => ({
+          id: exp.id,
+          code: exp.code,
+          description: exp.description,
+          strand: exp.strand,
+        }));
+
+      // Calculate coverage by strand
+      const coverageByStrand: Record<string, { total: number; covered: number; percentage: number }> = {};
+      
+      expectations.forEach(exp => {
+        if (!coverageByStrand[exp.strand]) {
+          coverageByStrand[exp.strand] = { total: 0, covered: 0, percentage: 0 };
+        }
+        coverageByStrand[exp.strand].total++;
+        if (coveredExpectationIds.has(exp.id)) {
+          coverageByStrand[exp.strand].covered++;
+        }
+      });
+
+      // Calculate percentages for each strand
+      Object.keys(coverageByStrand).forEach(strand => {
+        const strandData = coverageByStrand[strand];
+        strandData.percentage = strandData.total > 0
+          ? Math.round((strandData.covered / strandData.total) * 100)
+          : 0;
+      });
+
+      return {
+        totalExpectations,
+        coveredExpectations,
+        coveragePercentage,
+        uncoveredExpectations,
+        coverageByStrand,
+      };
+    } catch (error) {
+      logger.error('Failed to generate curriculum coverage report:', error);
+      throw error;
+    }
+  }
+
+  async generatePlanningProgressReport(userId: number): Promise<PlanningProgressReport> {
+    try {
+      // Get all planning data for the user
+      const longRangePlans = await prisma.longRangePlan.findMany({
+        where: { userId },
+      });
+
+      const unitPlans = await prisma.unitPlan.findMany({
+        where: { userId },
+      });
+
+      const lessonPlans = await prisma.eTFOLessonPlan.findMany({
+        where: { userId },
+      });
+
+      const daybookEntries = await prisma.daybookEntry.findMany({
+        where: { userId },
+      });
+
+      // Calculate completion rates
+      const calculateCompletionRate = (plans: any[], isComplete: (plan: any) => boolean) => {
+        const total = plans.length;
+        const completed = plans.filter(isComplete).length;
+        const completionRate = total > 0 ? Math.round((completed / total) * 100) : 0;
+        return { total, completed, completionRate };
+      };
+
+      return {
+        longRangePlans: calculateCompletionRate(
+          longRangePlans,
+          plan => plan.goals !== null && plan.goals !== ''
+        ),
+        unitPlans: calculateCompletionRate(
+          unitPlans,
+          plan => plan.bigIdeas !== null && plan.bigIdeas !== ''
+        ),
+        lessonPlans: calculateCompletionRate(
+          lessonPlans,
+          plan => plan.learningGoals !== null && plan.learningGoals !== ''
+        ),
+        daybookEntries: calculateCompletionRate(
+          daybookEntries,
+          entry => entry.whatWorked !== null && entry.whatWorked !== ''
+        ),
+      };
+    } catch (error) {
+      logger.error('Failed to generate planning progress report:', error);
+      throw error;
+    }
+  }
+
+  async generateLessonPlanReport(lessonId: string): Promise<LessonPlanReport> {
+    try {
+      const lesson = await prisma.eTFOLessonPlan.findUnique({
+        where: { id: lessonId },
+        include: {
+          unitPlan: {
+            include: {
+              longRangePlan: true,
+            },
+          },
+          expectations: {
+            include: {
+              expectation: true,
+            },
+          },
+          daybookEntry: true,
+          resources: true,
+        },
+      });
+
+      if (!lesson) {
+        throw new Error('Lesson plan not found');
+      }
+
+      return {
+        lesson: {
+          id: lesson.id,
+          title: lesson.title,
+          date: lesson.date,
+          duration: lesson.duration,
+          mindsOn: lesson.mindsOn || undefined,
+          action: lesson.action || undefined,
+          consolidation: lesson.consolidation || undefined,
+          learningGoals: lesson.learningGoals || undefined,
+          materials: lesson.materials || undefined,
+          isSubFriendly: lesson.isSubFriendly,
+        },
+        hierarchy: {
+          longRangePlan: {
+            id: lesson.unitPlan.longRangePlan.id,
+            title: lesson.unitPlan.longRangePlan.title,
+            subject: lesson.unitPlan.longRangePlan.subject || undefined,
+            grade: lesson.unitPlan.longRangePlan.grade || undefined,
+          },
+          unitPlan: {
+            id: lesson.unitPlan.id,
+            title: lesson.unitPlan.title,
+          },
+        },
+        curriculumAlignment: lesson.expectations.map(exp => ({
+          id: exp.expectation.id,
+          code: exp.expectation.code,
+          description: exp.expectation.description,
+          strand: exp.expectation.strand,
+        })),
+        reflection: lesson.daybookEntry ? {
+          whatWorked: lesson.daybookEntry.whatWorked || undefined,
+          overallRating: lesson.daybookEntry.overallRating || undefined,
+          wouldReuseLesson: lesson.daybookEntry.wouldReuseLesson || undefined,
+        } : undefined,
+        resources: lesson.resources.map(resource => ({
+          id: resource.id,
+          title: resource.title,
+          type: resource.type,
+          url: resource.url || undefined,
+        })),
+      };
+    } catch (error) {
+      logger.error('Failed to generate lesson plan report:', error);
+      throw error;
+    }
+  }
+
+  async generateSubstitutePlanReport(lessonId: string): Promise<SubstitutePlanReport> {
+    try {
+      const lesson = await prisma.eTFOLessonPlan.findUnique({
+        where: { id: lessonId },
+        include: {
+          unitPlan: {
+            include: {
+              longRangePlan: true,
+            },
+          },
+          resources: true,
+        },
+      });
+
+      if (!lesson) {
+        throw new Error('Lesson plan not found');
+      }
+
+      if (!lesson.isSubFriendly) {
+        throw new Error('Lesson plan is not marked as substitute-friendly');
+      }
+
+      return {
+        title: lesson.title,
+        basicInfo: {
+          subject: lesson.unitPlan.longRangePlan.subject || 'Not specified',
+          grade: lesson.unitPlan.longRangePlan.grade || 0,
+          duration: lesson.duration,
+          date: lesson.date,
+        },
+        materials: lesson.materials || [],
+        activities: {
+          opening: lesson.mindsOn || '',
+          main: lesson.action || '',
+          closing: lesson.consolidation || '',
+        },
+        specialNotes: lesson.subNotes || undefined,
+        resources: lesson.resources.map(resource => ({
+          id: resource.id,
+          title: resource.title,
+          type: resource.type,
+          content: resource.content || undefined,
+        })),
+      };
+    } catch (error) {
+      logger.error('Failed to generate substitute plan report:', error);
+      throw error;
+    }
+  }
+
+  async generateUnitOverviewReport(unitId: string): Promise<UnitOverviewReport> {
+    try {
+      const unit = await prisma.unitPlan.findUnique({
+        where: { id: unitId },
+        include: {
+          longRangePlan: true,
+          expectations: {
+            include: {
+              expectation: true,
+            },
+          },
+          lessonPlans: true,
+          resources: true,
+        },
+      });
+
+      if (!unit) {
+        throw new Error('Unit plan not found');
+      }
+
+      const totalDuration = unit.lessonPlans.reduce((sum, lesson) => sum + lesson.duration, 0);
+
+      return {
+        unit: {
+          id: unit.id,
+          title: unit.title,
+          description: unit.description || undefined,
+          bigIdeas: unit.bigIdeas || undefined,
+          startDate: unit.startDate,
+          endDate: unit.endDate,
+          estimatedHours: unit.estimatedHours,
+        },
+        hierarchy: {
+          longRangePlan: {
+            id: unit.longRangePlan.id,
+            title: unit.longRangePlan.title,
+            subject: unit.longRangePlan.subject || undefined,
+            grade: unit.longRangePlan.grade || undefined,
+          },
+        },
+        curriculumAlignment: unit.expectations.map(exp => ({
+          id: exp.expectation.id,
+          code: exp.expectation.code,
+          description: exp.expectation.description,
+          strand: exp.expectation.strand,
+        })),
+        lessonSummary: {
+          totalLessons: unit.lessonPlans.length,
+          totalDuration,
+          lessons: unit.lessonPlans.map(lesson => ({
+            id: lesson.id,
+            title: lesson.title,
+            date: lesson.date,
+            duration: lesson.duration,
+          })),
+        },
+        resources: unit.resources.map(resource => ({
+          id: resource.id,
+          title: resource.title,
+          type: resource.type,
+        })),
+      };
+    } catch (error) {
+      logger.error('Failed to generate unit overview report:', error);
+      throw error;
+    }
   }
 }
 

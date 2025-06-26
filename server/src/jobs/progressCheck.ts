@@ -21,8 +21,9 @@ export async function runProgressCheck() {
     const incompleteLessons = plan.lessonPlans.filter((l) => l.date > today).length;
     if (incompleteLessons > 0) {
       const message = `Unit Plan "${plan.title}" is ending soon with ${incompleteLessons} upcoming lessons`;
-      await prisma.notification.create({ data: { message } });
-      // Email notifications were removed - only in-app notifications remain
+      // DISABLED: Notification model has been archived
+      // TODO: Implement using ParentMessage or DaybookEntry for progress notifications
+      console.warn(`Progress check notification: ${message}`);
     }
   }
 }

@@ -3,6 +3,7 @@ import { Prisma } from '../prisma';
 import { prisma } from '../prisma';
 import { validate } from '../validation';
 import { z } from 'zod';
+import { auditLoggers } from '../middleware/auditLog';
 
 interface AuthenticatedRequest extends Request {
   user?: { userId: string };
@@ -38,13 +39,15 @@ const studentUpdateSchema = z.object({
 
 const studentGoalCreateSchema = z.object({
   text: z.string().min(1).max(500),
-  themeId: z.number().int().optional(),
+  // themeId removed - ThematicUnit model archived
+  unitPlanId: z.number().int().optional(),
   status: z.enum(['active', 'completed', 'abandoned']).default('active'),
 });
 
 const studentGoalUpdateSchema = z.object({
   text: z.string().min(1).max(500).optional(),
-  themeId: z.number().int().optional(),
+  // themeId removed - ThematicUnit model archived
+  unitPlanId: z.number().int().optional(),
   status: z.enum(['active', 'completed', 'abandoned']).optional(),
 });
 
@@ -54,11 +57,12 @@ const studentReflectionCreateSchema = z.object({
   content: z.string().max(1000).optional(),
   emoji: z.string().max(10).optional(),
   voicePath: z.string().max(500).optional(),
-  themeId: z.number().int().optional(),
+  // themeId removed - ThematicUnit model archived
+  unitPlanId: z.number().int().optional(),
 });
 
 // Get all students for the authenticated teacher
-router.get('/', async (req: AuthenticatedRequest, res, next) => {
+router.get('/', auditLoggers.studentView, async (req: AuthenticatedRequest, res, next) => {
   try {
     const userId = req.user?.userId;
 
@@ -69,8 +73,8 @@ router.get('/', async (req: AuthenticatedRequest, res, next) => {
     const students = await prisma.student.findMany({
       where: { userId: parseInt(userId) },
       include: {
-        goals: { include: { theme: true } },
-        reflections: { include: { theme: true } },
+        goals: true,
+        reflections: true,
         _count: {
           select: {
             artifacts: true,
@@ -82,13 +86,16 @@ router.get('/', async (req: AuthenticatedRequest, res, next) => {
       orderBy: [{ grade: 'asc' }, { lastName: 'asc' }, { firstName: 'asc' }],
     });
 
-    // Add backward compatibility for name field
+    // Add backward compatibility for name field and mask sensitive data
     const studentsWithLegacy = students.map((student) => ({
       ...student,
       name:
         student.firstName && student.lastName
           ? `${student.firstName} ${student.lastName}`
-          : `${student.firstName} ${student.lastName}` || 'Unnamed Student',
+          : 'Unnamed Student',
+      // Remove any accidentally included sensitive fields
+      createdAt: undefined,
+      updatedAt: undefined,
     }));
 
     res.json(studentsWithLegacy);
@@ -98,7 +105,7 @@ router.get('/', async (req: AuthenticatedRequest, res, next) => {
 });
 
 // Get a specific student
-router.get('/:id', async (req: AuthenticatedRequest, res, next) => {
+router.get('/:id', auditLoggers.studentView, async (req: AuthenticatedRequest, res, next) => {
   try {
     const userId = req.user?.userId;
     const studentId = parseInt(req.params.id);
@@ -113,8 +120,8 @@ router.get('/:id', async (req: AuthenticatedRequest, res, next) => {
         userId: parseInt(userId),
       },
       include: {
-        goals: { include: { theme: true } },
-        reflections: { include: { theme: true } },
+        goals: true,
+        reflections: true,
         artifacts: {
           orderBy: { createdAt: 'desc' },
           take: 10,
@@ -130,13 +137,16 @@ router.get('/:id', async (req: AuthenticatedRequest, res, next) => {
       return res.status(404).json({ error: 'Student not found' });
     }
 
-    // Add backward compatibility for name field
+    // Add backward compatibility for name field and mask sensitive data
     const studentWithLegacy = {
       ...student,
       name:
         student.firstName && student.lastName
           ? `${student.firstName} ${student.lastName}`
-          : `${student.firstName} ${student.lastName}` || 'Unnamed Student',
+          : 'Unnamed Student',
+      // Remove any accidentally included sensitive fields
+      createdAt: undefined,
+      updatedAt: undefined,
     };
 
     res.json(studentWithLegacy);
@@ -146,7 +156,7 @@ router.get('/:id', async (req: AuthenticatedRequest, res, next) => {
 });
 
 // Create a new student
-router.post('/', validate(studentCreateSchema), async (req: AuthenticatedRequest, res, next) => {
+router.post('/', validate(studentCreateSchema), auditLoggers.studentCreate, async (req: AuthenticatedRequest, res, next) => {
   try {
     const userId = req.user?.userId;
 
@@ -185,8 +195,8 @@ router.post('/', validate(studentCreateSchema), async (req: AuthenticatedRequest
     const student = await prisma.student.create({
       data: studentData,
       include: {
-        goals: { include: { theme: true } },
-        reflections: { include: { theme: true } },
+        goals: true,
+        reflections: true,
       },
     });
 
@@ -203,7 +213,7 @@ router.post('/', validate(studentCreateSchema), async (req: AuthenticatedRequest
 });
 
 // Update a student
-router.put('/:id', validate(studentUpdateSchema), async (req: AuthenticatedRequest, res, next) => {
+router.put('/:id', validate(studentUpdateSchema), auditLoggers.studentUpdate, async (req: AuthenticatedRequest, res, next) => {
   try {
     const userId = req.user?.userId;
     const studentId = parseInt(req.params.id);
@@ -242,8 +252,8 @@ router.put('/:id', validate(studentUpdateSchema), async (req: AuthenticatedReque
       where: { id: studentId },
       data: updateData,
       include: {
-        goals: { include: { theme: true } },
-        reflections: { include: { theme: true } },
+        goals: true,
+        reflections: true,
       },
     });
 
@@ -260,7 +270,7 @@ router.put('/:id', validate(studentUpdateSchema), async (req: AuthenticatedReque
 });
 
 // Delete a student
-router.delete('/:id', async (req: AuthenticatedRequest, res, next) => {
+router.delete('/:id', auditLoggers.studentDelete, async (req: AuthenticatedRequest, res, next) => {
   try {
     const userId = req.user?.userId;
     const studentId = parseInt(req.params.id);
@@ -281,14 +291,20 @@ router.delete('/:id', async (req: AuthenticatedRequest, res, next) => {
       return res.status(404).json({ error: 'Student not found' });
     }
 
-    // Delete related data first (cascade delete)
-    await prisma.$transaction([
-      prisma.studentArtifact.deleteMany({ where: { studentId } }),
-      prisma.studentReflection.deleteMany({ where: { studentId } }),
-      prisma.studentGoal.deleteMany({ where: { studentId } }),
-      prisma.parentSummary.deleteMany({ where: { studentId } }),
-      prisma.student.delete({ where: { id: studentId } }),
-    ]);
+    // Delete related data in a transaction for data integrity
+    await prisma.$transaction(async (tx) => {
+      // Delete in dependency order
+      await tx.studentArtifact.deleteMany({ where: { studentId } });
+      await tx.studentReflection.deleteMany({ where: { studentId } });
+      await tx.studentGoal.deleteMany({ where: { studentId } });
+      await tx.parentSummary.deleteMany({ where: { studentId } });
+      
+      // Finally delete the student
+      await tx.student.delete({ where: { id: studentId } });
+    }, {
+      // Set a timeout for the transaction
+      timeout: 10000, // 10 seconds
+    });
 
     res.status(204).send();
   } catch (err) {
@@ -313,7 +329,7 @@ router.get('/:id/goals', async (req: AuthenticatedRequest, res, next) => {
 
     const goals = await prisma.studentGoal.findMany({
       where: { studentId: Number(req.params.id) },
-      include: { theme: true },
+      // theme removed - ThematicUnit model archived
       orderBy: { createdAt: 'desc' },
     });
     res.json(goals);
@@ -343,10 +359,10 @@ router.post(
         data: {
           studentId: Number(req.params.id),
           text: req.body.text,
-          themeId: req.body.themeId || null,
+          unitPlanId: req.body.unitPlanId || null,
           status: req.body.status || 'active',
         },
-        include: { theme: true },
+        // theme removed - ThematicUnit model archived
       });
       res.status(201).json(goal);
     } catch (err) {
@@ -380,9 +396,9 @@ router.patch(
         data: {
           text: req.body.text,
           status: req.body.status,
-          themeId: req.body.themeId,
+          unitPlanId: req.body.unitPlanId,
         },
-        include: { theme: true },
+        // theme removed - ThematicUnit model archived
       });
       res.json(goal);
     } catch (err) {
@@ -440,7 +456,7 @@ router.get('/:id/reflections', async (req: AuthenticatedRequest, res, next) => {
 
     const reflections = await prisma.studentReflection.findMany({
       where: { studentId: Number(req.params.id) },
-      include: { theme: true },
+      // theme removed - ThematicUnit model archived
       orderBy: { createdAt: 'desc' },
     });
     res.json(reflections);
@@ -471,9 +487,9 @@ router.post(
           studentId: Number(req.params.id),
           content: req.body.content || req.body.text || null,
           date: req.body.date ? new Date(req.body.date) : new Date(),
-          themeId: req.body.themeId || null,
+          unitPlanId: req.body.unitPlanId || null,
         },
-        include: { theme: true },
+        // theme removed - ThematicUnit model archived
       });
       res.status(201).json(reflection);
     } catch (err) {
@@ -512,7 +528,7 @@ router.delete('/:id/reflections/:reflectionId', async (req: AuthenticatedRequest
 });
 
 // Get student progress summary
-router.get('/:id/progress', async (req: AuthenticatedRequest, res, next) => {
+router.get('/:id/progress', auditLoggers.studentView, async (req: AuthenticatedRequest, res, next) => {
   try {
     const userId = req.user?.userId;
     const studentId = parseInt(req.params.id);

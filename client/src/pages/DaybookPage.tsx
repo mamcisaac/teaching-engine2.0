@@ -37,6 +37,7 @@ import {
 } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { useReactToPrint } from 'react-to-print';
+import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
 
 interface DayEntryProps {
   date: Date;
@@ -46,7 +47,7 @@ interface DayEntryProps {
   isToday: boolean;
 }
 
-function DayEntry({ date, entry, lessons, onSave, isToday: isDayToday }: DayEntryProps) {
+function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEntryProps) {
   const [isEditing, setIsEditing] = useState(false);
 
   // Initialize all ETFO-aligned fields
@@ -75,12 +76,12 @@ function DayEntry({ date, entry, lessons, onSave, isToday: isDayToday }: DayEntr
   const totalDuration = lessons.reduce((sum, lesson) => sum + (lesson.duration || 0), 0);
 
   return (
-    <Card className={`${isDayToday ? 'ring-2 ring-primary' : ''}`}>
+    <Card className={`${_isDayToday ? 'ring-2 ring-primary' : ''}`}>
       <CardHeader>
         <div className="flex items-center justify-between">
           <div>
             <CardTitle className="text-lg">{format(date, 'EEEE, MMMM d')}</CardTitle>
-            {isDayToday && (
+            {_isDayToday && (
               <Badge variant="default" className="mt-1">
                 Today
               </Badge>
@@ -448,10 +449,26 @@ export default function DaybookPage() {
             Daily planning, reflections, and substitute-ready documentation
           </p>
         </div>
-        <Button onClick={() => setIsPrintDialogOpen(true)} className="gap-2">
-          <Printer className="h-4 w-4" />
-          Print
-        </Button>
+        <div className="flex items-center gap-3">
+          <BlankTemplateQuickActions 
+            templateType="daybook"
+            schoolInfo={{
+              teacherName: '',
+              grade: '',
+            }}
+          />
+          <BlankTemplateQuickActions 
+            templateType="weekly"
+            schoolInfo={{
+              teacherName: '',
+              grade: '',
+            }}
+          />
+          <Button onClick={() => setIsPrintDialogOpen(true)} className="gap-2">
+            <Printer className="h-4 w-4" />
+            Print
+          </Button>
+        </div>
       </div>
 
       {/* Week Navigation */}
@@ -623,7 +640,7 @@ export default function DaybookPage() {
                     </CardHeader>
                     <CardContent>
                       <p className="text-xs text-muted-foreground">
-                        Conducted assessments, noted student performance, identified gaps
+                        Planned assessment strategies, noted teaching observations, identified areas to revisit
                       </p>
                     </CardContent>
                   </Card>

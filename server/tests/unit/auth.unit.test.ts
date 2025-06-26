@@ -1,7 +1,10 @@
 import { describe, it, expect, beforeEach, jest } from '@jest/globals';
 import jwt from 'jsonwebtoken';
+import { createRequire } from 'module';
 import { Response } from 'express';
 import { authMiddleware, type AuthRequest } from '../../src/middleware/auth';
+
+const require = createRequire(import.meta.url);
 
 describe('Auth Middleware Unit Tests', () => {
   let req: Partial<AuthRequest>;
@@ -42,7 +45,7 @@ describe('Auth Middleware Unit Tests', () => {
     });
 
     it('should extract token from Bearer authorization header', () => {
-      const secret = 'test-secret';
+      const secret = process.env.JWT_SECRET || require('crypto').randomBytes(32).toString('hex');
       const userId = '123';
       const token = jwt.sign({ userId }, secret);
 
@@ -62,9 +65,9 @@ describe('Auth Middleware Unit Tests', () => {
       process.env.JWT_SECRET = originalEnv;
     });
 
-    it('should use default secret when JWT_SECRET is not set', () => {
+    it('should return 500 when JWT_SECRET is not set', () => {
       const userId = '456';
-      const token = jwt.sign({ userId }, 'secret'); // Default secret
+      const token = jwt.sign({ userId }, 'secret'); // Any secret
 
       req.headers!.authorization = `Bearer ${token}`;
 
@@ -74,8 +77,9 @@ describe('Auth Middleware Unit Tests', () => {
 
       authMiddleware(req as AuthRequest, res as Response, next);
 
-      expect(req.user?.userId).toBe('456');
-      expect(next).toHaveBeenCalled();
+      expect(res.status).toHaveBeenCalledWith(500);
+      expect(res.json).toHaveBeenCalledWith({ error: 'Server configuration error' });
+      expect(next).not.toHaveBeenCalled();
 
       // Restore environment
       process.env.JWT_SECRET = originalEnv;
@@ -93,7 +97,7 @@ describe('Auth Middleware Unit Tests', () => {
     });
 
     it('should return 401 for expired token', () => {
-      const secret = 'test-secret';
+      const secret = process.env.JWT_SECRET || require('crypto').randomBytes(32).toString('hex');
       const userId = '789';
       const expiredToken = jwt.sign({ userId, exp: Math.floor(Date.now() / 1000) - 3600 }, secret); // Expired 1 hour ago
 
@@ -130,7 +134,7 @@ describe('Auth Middleware Unit Tests', () => {
     });
 
     it('should handle Bearer token without Bearer prefix', () => {
-      const secret = 'test-secret';
+      const secret = process.env.JWT_SECRET || require('crypto').randomBytes(32).toString('hex');
       const userId = '202';
       const token = jwt.sign({ userId }, secret);
 
@@ -148,7 +152,7 @@ describe('Auth Middleware Unit Tests', () => {
     });
 
     it('should parse string userId to integer', () => {
-      const secret = 'test-secret';
+      const secret = process.env.JWT_SECRET || require('crypto').randomBytes(32).toString('hex');
       const userId = '999';
       const token = jwt.sign({ userId }, secret);
 
@@ -166,7 +170,7 @@ describe('Auth Middleware Unit Tests', () => {
     });
 
     it('should handle token with additional claims', () => {
-      const secret = 'test-secret';
+      const secret = process.env.JWT_SECRET || require('crypto').randomBytes(32).toString('hex');
       const payload = {
         userId: '555',
         role: 'teacher',
@@ -211,7 +215,7 @@ describe('Auth Middleware Unit Tests', () => {
     });
 
     it('should handle token with invalid userId format', () => {
-      const secret = 'test-secret';
+      const secret = process.env.JWT_SECRET || require('crypto').randomBytes(32).toString('hex');
       const token = jwt.sign({ userId: 'not-a-number' }, secret);
 
       req.headers!.authorization = `Bearer ${token}`;
@@ -229,7 +233,7 @@ describe('Auth Middleware Unit Tests', () => {
     });
 
     it('should handle token without userId claim', () => {
-      const secret = 'test-secret';
+      const secret = process.env.JWT_SECRET || require('crypto').randomBytes(32).toString('hex');
       const token = jwt.sign({ role: 'teacher', email: 'test@example.com' }, secret);
 
       req.headers!.authorization = `Bearer ${token}`;
@@ -246,7 +250,7 @@ describe('Auth Middleware Unit Tests', () => {
     });
 
     it('should preserve other request properties', () => {
-      const secret = 'test-secret';
+      const secret = process.env.JWT_SECRET || require('crypto').randomBytes(32).toString('hex');
       const userId = '123';
       const token = jwt.sign({ userId }, secret);
 

@@ -1,0 +1,477 @@
+59cc548a2a48079e9e3cdd07450e6b5c
+/**
+ * Extract appropriate emergency scenario templates based on conditions
+ */
+export async function extractScenarioTemplates(conditions) {
+    const allScenarios = getAllScenarios();
+    const triggers = [];
+    let recommendedScenario;
+    // Analyze conditions and determine triggers
+    if (conditions) {
+        if (conditions.weather === 'severe' || conditions.weather === 'extreme') {
+            triggers.push('severe_weather');
+            recommendedScenario = allScenarios.find((s) => s.id === 'severe_weather');
+        }
+        if (conditions.technology === 'down') {
+            triggers.push('technology_failure');
+            if (!recommendedScenario) {
+                recommendedScenario = allScenarios.find((s) => s.id === 'technology_failure');
+            }
+        }
+        if (conditions.building === 'emergency') {
+            triggers.push('lockdown');
+            recommendedScenario = allScenarios.find((s) => s.id === 'lockdown'); // Override others
+        }
+        if (conditions.staffing === 'emergency') {
+            triggers.push('staff_shortage');
+            if (!recommendedScenario) {
+                recommendedScenario = allScenarios.find((s) => s.id === 'staff_shortage');
+            }
+        }
+    }
+    // If no specific conditions, provide general scenario
+    if (!recommendedScenario) {
+        recommendedScenario = allScenarios.find((s) => s.id === 'general_emergency');
+    }
+    return {
+        scenarios: allScenarios,
+        triggers,
+        recommendedScenario,
+    };
+}
+/**
+ * Get specific scenario by ID
+ */
+export function getScenarioById(scenarioId) {
+    return getAllScenarios().find((s) => s.id === scenarioId);
+}
+/**
+ * Generate scenario-specific substitute plan content
+ */
+export function generateScenarioContent(scenario, teacherName, className) {
+    const template = scenario.template
+        .replace('{{TEACHER_NAME}}', teacherName || '[Teacher Name]')
+        .replace('{{CLASS_NAME}}', className || '[Class Name]')
+        .replace('{{DATE}}', new Date().toLocaleDateString())
+        .replace('{{TIME}}', new Date().toLocaleTimeString());
+    return template;
+}
+/**
+ * Check current conditions and auto-select scenario
+ */
+export async function autoDetectScenario(_userId = 1) {
+    // In a real implementation, this might check:
+    // - Weather APIs
+    // - System status
+    // - School announcements
+    // - Staff availability
+    // For now, we'll use a simple heuristic based on time and recent patterns
+    const currentHour = new Date().getHours();
+    const isWeekend = [0, 6].includes(new Date().getDay());
+    // Check if there are any system issues (mock detection)
+    // DISABLED: Legacy dailyPlan model removed in ETFO migration
+    const recentPlans = []; // Legacy dailyPlan query disabled
+    // Simple heuristics for scenario detection
+    if (currentHour < 6 || currentHour > 20 || isWeekend) {
+        // Off-hours emergency
+        return getScenarioById('general_emergency');
+    }
+    if (recentPlans.length === 0) {
+        // No recent planning data - might be start of year or system issues
+        return getScenarioById('staff_shortage');
+    }
+    // Default to general scenario
+    return getScenarioById('general_emergency');
+}
+/**
+ * Get all available emergency scenarios
+ */
+function getAllScenarios() {
+    return [
+        {
+            id: 'general_emergency',
+            name: 'General Emergency Plan',
+            description: 'Standard emergency substitute plan for unexpected absences',
+            procedures: [
+                'Contact office immediately upon arrival',
+                'Review daily schedule posted on desk',
+                'Follow regular classroom routines as much as possible',
+                'Take attendance at the beginning of each class period',
+                'Maintain normal break and lunch schedules',
+                'Report any issues to the office immediately',
+            ],
+            materials: [
+                'Emergency sub folder (in top desk drawer)',
+                'Class lists with emergency contacts',
+                'Daily schedule and room routines',
+                'Generic activity worksheets',
+                'Books for silent reading time',
+            ],
+            contacts: [
+                { role: 'Principal', number: 'Ext. 100', when: 'For any emergencies or major issues' },
+                {
+                    role: 'Office',
+                    number: 'Ext. 101',
+                    when: 'For attendance, late students, or general questions',
+                },
+                { role: 'Vice Principal', number: 'Ext. 102', when: 'For discipline issues' },
+                {
+                    role: 'School Nurse',
+                    number: 'Ext. 105',
+                    when: 'For health emergencies or student illness',
+                },
+            ],
+            modifications: {
+                schedule: [
+                    'Follow posted schedule as closely as possible',
+                    'Allow extra time for transitions between activities',
+                    'Be flexible with timing if students need more help',
+                ],
+                activities: [
+                    'Use pre-planned backup activities if technology fails',
+                    'Focus on review and reinforcement rather than new concepts',
+                    'Allow for more independent work time',
+                ],
+                safety: [
+                    'Keep classroom door locked during class',
+                    'Know location of emergency exits',
+                    'Familiarize yourself with evacuation procedures',
+                ],
+            },
+            template: `EMERGENCY SUBSTITUTE PLAN - {{CLASS_NAME}}
+Date: {{DATE}}
+Teacher: {{TEACHER_NAME}}
+Substitute: _______________
+
+IMPORTANT: Please read this entire plan before students arrive.
+
+DAILY SCHEDULE:
+[Specific schedule will be inserted here]
+
+EMERGENCY CONTACTS:
+- Principal: Ext. 100
+- Office: Ext. 101
+- Vice Principal: Ext. 102
+
+CLASSROOM PROCEDURES:
+1. Students enter quietly and begin morning routine
+2. Take attendance using class list in red folder
+3. Follow posted schedule as closely as possible
+4. For any issues, call the office immediately
+
+BACKUP ACTIVITIES:
+If planned activities cannot be completed:
+- Silent reading from classroom library
+- Math review worksheets (in green folder)
+- Journal writing prompts (posted on wall)
+
+Thank you for covering this class. Please leave detailed notes about the day.`,
+        },
+        {
+            id: 'technology_failure',
+            name: 'Technology Failure Plan',
+            description: 'Plan for when computers, internet, or smart boards are not working',
+            procedures: [
+                'Do not attempt to fix technical equipment',
+                'Report technology issues to IT support immediately',
+                'Switch to paper-based alternatives for all activities',
+                'Use analog teaching tools (whiteboard, printed materials)',
+                'Inform students of technology issues and adjust expectations',
+                "Focus on activities that don't require technology",
+            ],
+            materials: [
+                'Printed worksheets and activities (in blue folder)',
+                'Whiteboard markers and erasers',
+                'Physical manipulatives and teaching aids',
+                'Books and reading materials',
+                'Paper and pencils for all students',
+                'Analog timer or watch',
+            ],
+            contacts: [
+                { role: 'IT Support', number: 'Ext. 150', when: 'To report technology issues' },
+                { role: 'Office', number: 'Ext. 101', when: 'To inform of technology problems' },
+                {
+                    role: 'Principal',
+                    number: 'Ext. 100',
+                    when: 'If technology failure affects safety or major activities',
+                },
+            ],
+            modifications: {
+                schedule: [
+                    'Allow extra time for distributing materials',
+                    'Simplify transitions that normally use technology',
+                    'Extend activities that work well without technology',
+                ],
+                activities: [
+                    'Replace digital activities with hands-on alternatives',
+                    'Use printed versions of all worksheets',
+                    'Focus on discussion-based learning',
+                    'Increase physical movement and group work',
+                ],
+                safety: [
+                    'Ensure emergency communication methods still work',
+                    'Have backup plans for dismissal procedures',
+                    'Keep manual attendance records',
+                ],
+            },
+            template: `TECHNOLOGY FAILURE SUBSTITUTE PLAN - {{CLASS_NAME}}
+Date: {{DATE}}
+Teacher: {{TEACHER_NAME}}
+
+⚠️ TECHNOLOGY ALERT: Systems may not be working normally
+
+IMPORTANT NOTES:
+- Do NOT attempt to fix any technology
+- Use only paper-based materials and activities
+- Report any tech issues to IT Support (Ext. 150)
+
+NO-TECH DAILY SCHEDULE:
+[Modified schedule with analog alternatives]
+
+BACKUP ACTIVITIES (No Technology Required):
+- Reading from physical books
+- Hand-written assignments
+- Group discussions and presentations
+- Physical math manipulatives
+- Art projects with paper/pencils
+
+MATERIALS LOCATION:
+- Blue folder: Printed worksheets
+- Supply cabinet: Paper, pencils, manipulatives
+- Bookshelf: Reading materials
+
+Remember: Focus on engagement over technology!`,
+        },
+        {
+            id: 'severe_weather',
+            name: 'Severe Weather Plan',
+            description: 'Plan for severe weather conditions affecting normal operations',
+            procedures: [
+                'Monitor weather announcements throughout the day',
+                'Keep students calm and informed appropriately for their age',
+                'Be prepared for modified dismissal procedures',
+                'Keep students away from windows during severe weather',
+                "Follow school's severe weather protocols",
+                'Have indoor activities ready if outdoor time is cancelled',
+            ],
+            materials: [
+                'Weather-appropriate indoor activities',
+                'Comfort items (books, quiet games)',
+                'Extra snacks in case of delayed dismissal',
+                'Battery-powered radio for updates',
+                'Flashlights (in emergency kit)',
+                'First aid kit (check location)',
+            ],
+            contacts: [
+                { role: 'Office', number: 'Ext. 101', when: 'For weather updates and dismissal changes' },
+                { role: 'Principal', number: 'Ext. 100', when: 'For emergency decisions' },
+                {
+                    role: 'District Office',
+                    number: '555-0123',
+                    when: 'For district-wide weather decisions',
+                },
+                { role: 'Transportation', number: '555-0124', when: 'For bus schedule changes' },
+            ],
+            modifications: {
+                schedule: [
+                    'Cancel any outdoor activities or field trips',
+                    'Be prepared for early dismissal or extended day',
+                    'Keep flexible schedule based on weather updates',
+                    'Plan for possible indoor recess/PE',
+                ],
+                activities: [
+                    'Focus on calming, indoor activities',
+                    'Have extra movies or quiet games ready',
+                    'Prepare extended activities in case of long day',
+                    'Include weather education if appropriate',
+                ],
+                safety: [
+                    'Know location of severe weather shelter area',
+                    'Keep emergency supplies accessible',
+                    'Monitor school communications constantly',
+                    'Stay calm to keep students calm',
+                ],
+            },
+            template: `SEVERE WEATHER SUBSTITUTE PLAN - {{CLASS_NAME}}
+Date: {{DATE}}
+Teacher: {{TEACHER_NAME}}
+
+🌪️ WEATHER ALERT: Severe weather conditions expected
+
+SAFETY FIRST:
+- Keep students away from windows
+- Monitor school announcements
+- Be prepared for modified dismissal
+- Weather shelter area: [Location]
+
+INDOOR SCHEDULE:
+[Modified schedule with indoor alternatives]
+
+WEATHER-SAFE ACTIVITIES:
+- Indoor games and movement
+- Weather science discussions
+- Quiet reading time
+- Art projects
+- Movies if extended day needed
+
+IMPORTANT: Stay calm, keep students informed age-appropriately.
+Check office every hour for updates.`,
+        },
+        {
+            id: 'lockdown',
+            name: 'Lockdown/Security Plan',
+            description: 'Plan for security situations requiring lockdown procedures',
+            procedures: [
+                'Follow school lockdown procedures immediately',
+                'Lock classroom door and turn off lights',
+                'Keep students quiet and away from windows/doors',
+                'Do not open door for anyone except identified school officials',
+                'Take attendance silently',
+                'Wait for all-clear from administration',
+            ],
+            materials: [
+                'Emergency contact list',
+                'First aid kit',
+                'Water bottles (if available)',
+                'Quiet activities (books, paper)',
+                'Charged phone/communication device',
+                'Emergency procedures card',
+            ],
+            contacts: [
+                {
+                    role: '911',
+                    number: '911',
+                    when: 'Only if immediate danger and no school contact available',
+                },
+                {
+                    role: 'Principal',
+                    number: 'Ext. 100',
+                    when: 'Follow their lead - do not call unless emergency',
+                },
+                { role: 'Office', number: 'Ext. 101', when: 'Only if specifically instructed' },
+            ],
+            modifications: {
+                schedule: [
+                    'All normal schedules are suspended',
+                    'Remain in secure location until all-clear',
+                    'No movement between rooms',
+                    'Cancel all outside activities',
+                ],
+                activities: [
+                    'Silent activities only',
+                    'No technology that makes noise',
+                    'Comfort and calm students quietly',
+                    'Reading or quiet drawing',
+                ],
+                safety: [
+                    'Door locked, lights off',
+                    'Students away from windows/doors',
+                    'Maintain silence',
+                    'Follow official instructions only',
+                ],
+            },
+            template: `🔒 LOCKDOWN PROCEDURES - {{CLASS_NAME}}
+Date: {{DATE}}
+
+THIS IS A LOCKDOWN SITUATION
+
+IMMEDIATE ACTIONS:
+1. Lock door, turn off lights
+2. Move students away from windows/doors
+3. Keep everyone quiet
+4. Take silent attendance
+5. Wait for official all-clear
+
+DO NOT:
+- Open door for anyone
+- Use phones unless emergency
+- Make noise
+- Leave secure area
+
+KEEP STUDENTS CALM:
+- Speak in whispers only
+- Provide comfort quietly
+- Use silent activities
+
+Wait for administration's all-clear before resuming normal activities.`,
+        },
+        {
+            id: 'staff_shortage',
+            name: 'Staff Shortage Plan',
+            description: 'Plan for when multiple staff are absent or unavailable',
+            procedures: [
+                'Check with office for class combinations or room changes',
+                'Be prepared to supervise larger groups',
+                'Focus on simple, manageable activities',
+                'Use peer helpers and responsible students',
+                'Communicate frequently with remaining staff',
+                'Prioritize safety and basic routines',
+            ],
+            materials: [
+                'Large group activity supplies',
+                'Extra seating arrangements',
+                'Simple worksheets for various grade levels',
+                'Movies or educational videos',
+                'Books for independent reading',
+                'Art supplies for quiet activities',
+            ],
+            contacts: [
+                { role: 'Principal', number: 'Ext. 100', when: 'For grouping decisions and support' },
+                { role: 'Vice Principal', number: 'Ext. 102', when: 'For assistance with large groups' },
+                {
+                    role: 'Office',
+                    number: 'Ext. 101',
+                    when: 'For student location and parent communication',
+                },
+            ],
+            modifications: {
+                schedule: [
+                    'Simplified schedule with longer activity blocks',
+                    'Combined classes for some activities',
+                    'Extra supervision during transitions',
+                    'Modified lunch and break schedules',
+                ],
+                activities: [
+                    'Simple, independent activities',
+                    'Large group games and activities',
+                    'Extended movie/video time if needed',
+                    'Cross-grade buddy reading',
+                ],
+                safety: [
+                    'Maintain higher supervision ratios',
+                    'Use buddy system for bathroom breaks',
+                    'Keep accurate headcounts',
+                    'Have emergency evacuation plan for larger groups',
+                ],
+            },
+            template: `STAFF SHORTAGE SUBSTITUTE PLAN
+Date: {{DATE}}
+Classes Combined: _______________
+
+⚠️ MULTIPLE STAFF ABSENT - LARGE GROUP MANAGEMENT
+
+STUDENT COUNT: ________
+ADDITIONAL CLASSES: _______________
+
+SIMPLIFIED SCHEDULE:
+- Focus on basic routines
+- Longer activity periods
+- Extra supervision for transitions
+
+LARGE GROUP ACTIVITIES:
+- Movies/educational videos
+- Group reading time
+- Simple art projects
+- Indoor games
+
+SAFETY REMINDERS:
+- Higher supervision needed
+- Buddy system for movements
+- Frequent headcounts
+- Office support available
+
+Stay flexible and prioritize safety!`,
+        },
+    ];
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL1VzZXJzL21pY2hhZWxtY2lzYWFjL0dpdEh1Yi90ZWFjaGluZy1lbmdpbmUyLjAvc2VydmVyL3NyYy9zZXJ2aWNlcy9zY2VuYXJpb1RlbXBsYXRlRXh0cmFjdG9yLnRzIiwibWFwcGluZ3MiOiJBQXlCQTs7R0FFRztBQUNILE1BQU0sQ0FBQyxLQUFLLFVBQVUsd0JBQXdCLENBQUMsVUFLOUM7SUFDQyxNQUFNLFlBQVksR0FBRyxlQUFlLEVBQUUsQ0FBQztJQUN2QyxNQUFNLFFBQVEsR0FBYSxFQUFFLENBQUM7SUFDOUIsSUFBSSxtQkFBa0QsQ0FBQztJQUV2RCw0Q0FBNEM7SUFDNUMsSUFBSSxVQUFVLEVBQUUsQ0FBQztRQUNmLElBQUksVUFBVSxDQUFDLE9BQU8sS0FBSyxRQUFRLElBQUksVUFBVSxDQUFDLE9BQU8sS0FBSyxTQUFTLEVBQUUsQ0FBQztZQUN4RSxRQUFRLENBQUMsSUFBSSxDQUFDLGdCQUFnQixDQUFDLENBQUM7WUFDaEMsbUJBQW1CLEdBQUcsWUFBWSxDQUFDLElBQUksQ0FBQyxDQUFDLENBQUMsRUFBRSxFQUFFLENBQUMsQ0FBQyxDQUFDLEVBQUUsS0FBSyxnQkFBZ0IsQ0FBQyxDQUFDO1FBQzVFLENBQUM7UUFFRCxJQUFJLFVBQVUsQ0FBQyxVQUFVLEtBQUssTUFBTSxFQUFFLENBQUM7WUFDckMsUUFBUSxDQUFDLElBQUksQ0FBQyxvQkFBb0IsQ0FBQyxDQUFDO1lBQ3BDLElBQUksQ0FBQyxtQkFBbUIsRUFBRSxDQUFDO2dCQUN6QixtQkFBbUIsR0FBRyxZQUFZLENBQUMsSUFBSSxDQUFDLENBQUMsQ0FBQyxFQUFFLEVBQUUsQ0FBQyxDQUFDLENBQUMsRUFBRSxLQUFLLG9CQUFvQixDQUFDLENBQUM7WUFDaEYsQ0FBQztRQUNILENBQUM7UUFFRCxJQUFJLFVBQVUsQ0FBQyxRQUFRLEtBQUssV0FBVyxFQUFFLENBQUM7WUFDeEMsUUFBUSxDQUFDLElBQUksQ0FBQyxVQUFVLENBQUMsQ0FBQztZQUMxQixtQkFBbUIsR0FBRyxZQUFZLENBQUMsSUFBSSxDQUFDLENB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RTtnQkFDVCwrQkFBK0I7Z0JBQy9CLDRCQUE0QjtnQkFDNUIsNENBQTRDO2dCQUM1Qyw4QkFBOEI7Z0JBQzlCLCtCQUErQjtnQkFDL0IsbUNBQW1DO2FBQ3BDO1lBQ0QsUUFBUSxFQUFFO2dCQUNSLEVBQUUsSUFBSSxFQUFFLFdBQVcsRUFBRSxNQUFNLEVBQUUsVUFBVSxFQUFFLElBQUksRUFBRSxvQ0FBb0MsRUFBRTtnQkFDckYsRUFBRSxJQUFJLEVBQUUsZ0JBQWdCLEVBQUUsTUFBTSxFQUFFLFVBQVUsRUFBRSxJQUFJLEVBQUUsa0NBQWtDLEVBQUU7Z0JBQ3hGO29CQUNFLElBQUksRUFBRSxRQUFRO29CQUNkLE1BQU0sRUFBRSxVQUFVO29CQUNsQixJQUFJLEVBQUUsK0NBQStDO2lCQUN0RDthQUNGO1lBQ0QsYUFBYSxFQUFFO2dCQUNiLFFBQVEsRUFBRTtvQkFDUixpREFBaUQ7b0JBQ2pELHNDQUFzQztvQkFDdEMsc0NBQXNDO29CQUN0QyxvQ0FBb0M7aUJBQ3JDO2dCQUNELFVBQVUsRUFBRTtvQkFDVixnQ0FBZ0M7b0JBQ2hDLGtDQUFrQztvQkFDbEMscUNBQXFDO29CQUNyQywyQkFBMkI7aUJBQzVCO2dCQUNELE1BQU0sRUFBRTtvQkFDTixvQ0FBb0M7b0JBQ3BDLHNDQUFzQztvQkFDdEMsMEJBQTBCO29CQUMxQixrREFBa0Q7aUJBQ25EO2FBQ0Y7WUFDRCxRQUFRLEVBQUU7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O3FDQTBCcUI7U0FDaEM7S0FDRixDQUFDO0FBQ0osQ0FBQyIsIm5hbWVzIjpbXSwic291cmNlcyI6WyIvVXNlcnMvbWljaGFlbG1jaXNhYWMvR2l0SHViL3RlYWNoaW5nLWVuZ2luZTIuMC9zZXJ2ZXIvc3JjL3NlcnZpY2VzL3NjZW5hcmlvVGVtcGxhdGVFeHRyYWN0b3IudHMiXSwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGludGVyZmFjZSBFbWVyZ2VuY3lTY2VuYXJpbyB7XG4gIGlkOiBzdHJpbmc7XG4gIG5hbWU6IHN0cmluZztcbiAgZGVzY3JpcHRpb246IHN0cmluZztcbiAgcHJvY2VkdXJlczogc3RyaW5nW107XG4gIG1hdGVyaWFsczogc3RyaW5nW107XG4gIGNvbnRhY3RzOiBBcnJheTx7XG4gICAgcm9sZTogc3RyaW5nO1xuICAgIG51bWJlcjogc3RyaW5nO1xuICAgIHdoZW46IHN0cmluZztcbiAgfT47XG4gIG1vZGlmaWNhdGlvbnM6IHtcbiAgICBzY2hlZHVsZTogc3RyaW5nW107XG4gICAgYWN0aXZpdGllczogc3RyaW5nW107XG4gICAgc2FmZXR5OiBzdHJpbmdbXTtcbiAgfTtcbiAgdGVtcGxhdGU6IHN0cmluZztcbn1cblxuZXhwb3J0IGludGVyZmFjZSBTY2VuYXJpb0RldGVjdGlvblJlc3VsdCB7XG4gIHNjZW5hcmlvczogRW1lcmdlbmN5U2NlbmFyaW9bXTtcbiAgdHJpZ2dlcnM6IHN0cmluZ1tdO1xuICByZWNvbW1lbmRlZFNjZW5hcmlvPzogRW1lcmdlbmN5U2NlbmFyaW87XG59XG5cbi8qKlxuICogRXh0cmFjdCBhcHByb3ByaWF0ZSBlbWVyZ2VuY3kgc2NlbmFyaW8gdGVtcGxhdGVzIGJhc2VkIG9uIGNvbmRpdGlvbnNcbiAqL1xuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIGV4dHJhY3RTY2VuYXJpb1RlbXBsYXRlcyhjb25kaXRpb25zPzoge1xuICB3ZWF0aGVyPzogJ25vcm1hbCcgfCAnc2V2ZXJlJyB8ICdleHRyZW1lJztcbiAgdGVjaG5vbG9neT86ICd3b3JraW5nJyB8ICdwYXJ0aWFsJyB8ICdkb3duJztcbiAgc3RhZmZpbmc/OiAnZnVsbCcgfCAnc2hvcnQnIHwgJ2VtZXJnZW5jeSc7XG4gIGJ1aWxkaW5nPzogJ25vcm1hbCcgfCAnbWFpbnRlbmFuY2UnIHwgJ2VtZXJnZW5jeSc7XG59KTogUHJvbWlzZTxTY2VuYXJpb0RldGVjdGlvblJlc3VsdD4ge1xuICBjb25zdCBhbGxTY2VuYXJpb3MgPSBnZXRBbGxTY2VuYXJpb3MoKTtcbiAgY29uc3QgdHJpZ2dlcnM6IHN0cmluZ1tdID0gW107XG4gIGxldCByZWNvbW1lbmRlZFNjZW5hcmlvOiBFbWVyZ2VuY3lTY2VuYXJpbyB8IHVuZGVmaW5lZDtcblxuICAvLyBBbmFseXplIGNvbmRpdGlvbnMgYW5kIGRldGVybWluZSB0cmlnZ2Vyc1xuICBpZiAoY29uZGl0aW9ucykge1xuICAgIGlmIChjb25kaXRpb25zLndlYXRoZXIgPT09ICdzZXZlcmUnIHx8IGNvbmRpdGlvbnMud2VhdGhlciA9PT0gJ2V4dHJlbWUnKSB7XG4gICAgICB0cmlnZ2Vycy5wdXNoKCdzZXZlcmVfd2VhdGhlcicpO1xuICAgICAgcmVjb21tZW5kZWRTY2VuYXJpbyA9IGFsbFNjZW5hcmlvcy5maW5kKChzKSA9PiBzLmlkID09PSAnc2V2ZXJlX3dlYXRoZXInKTtcbiAgICB9XG5cbiAgICBpZiAoY29uZGl0aW9ucy50ZWNobm9sb2d5ID09PSAnZG93bicpIHtcbiAgICAgIHRyaWdnZXJzLnB1c2goJ3RlY2hub2xvZ3lfZmFpbHVyZScpO1xuICAgICAgaWYgKCFyZWNvbW1lbmRlZFNjZW5hcmlvKSB7XG4gICAgICAgIHJlY29tbWVuZGVkU2NlbmFyaW8gPSBhbGxTY2VuYXJpb3MuZmluZCgocykgPT4gcy5pZCA9PT0gJ3RlY2hub2xvZ3lfZmFpbHVyZScpO1xuICAgICAgfVxuICAgIH1cblxuICAgIGlmIChjb25kaXRpb25zLmJ1aWxkaW5nID09PSAnZW1lcmdlbmN5Jykge1xuICAgICAgdHJpZ2dlcnMucHVzaCgnbG9ja2Rvd24nKTtcbiAgICAgIHJlY29tbWVuZGVkU2NlbmFyaW8gPSBhbGxTY2VuYXJpb3MuZmluZCgocykgPT4gcy5pZCA9PT0gJ2xvY2tkb3duJyk7IC8vIE92ZXJyaWRlIG90aGVyc1xuICAgIH1cblxuICAgIGlmIChjb25kaXRpb25zLnN0YWZmaW5nID09PSAnZW1lcmdlbmN5Jykge1xuICAgICAgdHJpZ2dlcnMucHVzaCgnc3RhZmZfc2hvcnRhZ2UnKTtcbiAgICAgIGlmICghcmVjb21tZW5kZWRTY2VuYXJpbykge1xuICAgICAgICByZWNvbW1lbmRlZFNjZW5hcmlvID0gYWxsU2NlbmFyaW9zLmZpbmQoKHMpID0+IHMuaWQgPT09ICdzdGFmZl9zaG9ydGFnZScpO1xuICAgICAgfVxuICAgIH1cbiAgfVxuXG4gIC8vIElmIG5vIHNwZWNpZmljIGNvbmRpdGlvbnMsIHByb3ZpZGUgZ2VuZXJhbCBzY2VuYXJpb1xuICBpZiAoIXJlY29tbWVuZGVkU2NlbmFyaW8pIHtcbiAgICByZWNvbW1lbmRlZFNjZW5hcmlvID0gYWxsU2NlbmFyaW9zLmZpbmQoKHMpID0+IHMuaWQgPT09ICdnZW5lcmFsX2VtZXJnZW5jeScpO1xuICB9XG5cbiAgcmV0dXJuIHtcbiAgICBzY2VuYXJpb3M6IGFsbFNjZW5hcmlvcyxcbiAgICB0cmlnZ2VycyxcbiAgICByZWNvbW1lbmRlZFNjZW5hcmlvLFxuICB9O1xufVxuXG4vKipcbiAqIEdldCBzcGVjaWZpYyBzY2VuYXJpbyBieSBJRFxuICovXG5leHBvcnQgZnVuY3Rpb24gZ2V0U2NlbmFyaW9CeUlkKHNjZW5hcmlvSWQ6IHN0cmluZyk6IEVtZXJnZW5jeVNjZW5hcmlvIHwgdW5kZWZpbmVkIHtcbiAgcmV0dXJuIGdldEFsbFNjZW5hcmlvcygpLmZpbmQoKHMpID0+IHMuaWQgPT09IHNjZW5hcmlvSWQpO1xufVxuXG4vKipcbiAqIEdlbmVyYXRlIHNjZW5hcmlvLXNwZWNpZmljIHN1YnN0aXR1dGUgcGxhbiBjb250ZW50XG4gKi9cbmV4cG9ydCBmdW5jdGlvbiBnZW5lcmF0ZVNjZW5hcmlvQ29udGVudChcbiAgc2NlbmFyaW86IEVtZXJnZW5jeVNjZW5hcmlvLFxuICB0ZWFjaGVyTmFtZT86IHN0cmluZyxcbiAgY2xhc3NOYW1lPzogc3RyaW5nLFxuKTogc3RyaW5nIHtcbiAgY29uc3QgdGVtcGxhdGUgPSBzY2VuYXJpby50ZW1wbGF0ZVxuICAgIC5yZXBsYWNlKCd7e1RFQUNIRVJfTkFNRX19JywgdGVhY2hlck5hbWUgfHwgJ1tUZWFjaGVyIE5hbWVdJylcbiAgICAucmVwbGFjZSgne3tDTEFTU19OQU1FfX0nLCBjbGFzc05hbWUgfHwgJ1tDbGFzcyBOYW1lXScpXG4gICAgLnJlcGxhY2UoJ3t7REFURX19JywgbmV3IERhdGUoKS50b0xvY2FsZURhdGVTdHJpbmcoKSlcbiAgICAucmVwbGFjZSgne3tUSU1FfX0nLCBuZXcgRGF0ZSgpLnRvTG9jYWxlVGltZVN0cmluZygpKTtcblxuICByZXR1cm4gdGVtcGxhdGU7XG59XG5cbi8qKlxuICogQ2hlY2sgY3VycmVudCBjb25kaXRpb25zIGFuZCBhdXRvLXNlbGVjdCBzY2VuYXJpb1xuICovXG5leHBvcnQgYXN5bmMgZnVuY3Rpb24gYXV0b0RldGVjdFNjZW5hcmlvKF91c2VySWQ6IG51bWJlciA9IDEpOiBQcm9taXNlPEVtZXJnZW5jeVNjZW5hcmlvPiB7XG4gIC8vIEluIGEgcmVhbCBpbXBsZW1lbnRhdGlvbiwgdGhpcyBtaWdodCBjaGVjazpcbiAgLy8gLSBXZWF0aGVyIEFQSXNcbiAgLy8gLSBTeXN0ZW0gc3RhdHVzXG4gIC8vIC0gU2Nob29sIGFubm91bmNlbWVudHNcbiAgLy8gLSBTdGFmZiBhdmFpbGFiaWxpdHlcblxuICAvLyBGb3Igbm93LCB3ZSdsbCB1c2UgYSBzaW1wbGUgaGV1cmlzdGljIGJhc2VkIG9uIHRpbWUgYW5kIHJlY2VudCBwYXR0ZXJuc1xuICBjb25zdCBjdXJyZW50SG91ciA9IG5ldyBEYXRlKCkuZ2V0SG91cnMoKTtcbiAgY29uc3QgaXNXZWVrZW5kID0gWzAsIDZdLmluY2x1ZGVzKG5ldyBEYXRlKCkuZ2V0RGF5KCkpO1xuXG4gIC8vIENoZWNrIGlmIHRoZXJlIGFyZSBhbnkgc3lzdGVtIGlzc3VlcyAobW9jayBkZXRlY3Rpb24pXG4gIC8vIERJU0FCTEVEOiBMZWdhY3kgZGFpbHlQbGFuIG1vZGVsIHJlbW92ZWQgaW4gRVRGTyBtaWdyYXRpb25cbiAgY29uc3QgcmVjZW50UGxhbnM6IEFycmF5PHVua25vd24+ID0gW107IC8vIExlZ2FjeSBkYWlseVBsYW4gcXVlcnkgZGlzYWJsZWRcblxuICAvLyBTaW1wbGUgaGV1cmlzdGljcyBmb3Igc2NlbmFyaW8gZGV0ZWN0aW9uXG4gIGlmIChjdXJyZW50SG91ciA8IDYgfHwgY3VycmVudEhvdXIgPiAyMCB8fCBpc1dlZWtlbmQpIHtcbiAgICAvLyBPZmYtaG91cnMgZW1lcmdlbmN5XG4gICAgcmV0dXJuIGdldFNjZW5hcmlvQnlJZCgnZ2VuZXJhbF9lbWVyZ2VuY3knKSE7XG4gIH1cblxuICBpZiAocmVjZW50UGxhbnMubGVuZ3RoID09PSAwKSB7XG4gICAgLy8gTm8gcmVjZW50IHBsYW5uaW5nIGRhdGEgLSBtaWdodCBiZSBzdGFydCBvZiB5ZWFyIG9yIHN5c3RlbSBpc3N1ZXNcbiAgICByZXR1cm4gZ2V0U2NlbmFyaW9CeUlkKCdzdGFmZl9zaG9ydGFnZScpITtcbiAgfVxuXG4gIC8vIERlZmF1bHQgdG8gZ2VuZXJhbCBzY2VuYXJpb1xuICByZXR1cm4gZ2V0U2NlbmFyaW9CeUlkKCdnZW5lcmFsX2VtZXJnZW5jeScpITtcbn1cblxuLyoqXG4gKiBHZXQgYWxsIGF2YWlsYWJsZSBlbWVyZ2VuY3kgc2NlbmFyaW9zXG4gKi9cbmZ1bmN0aW9uIGdldEFsbFNjZW5hcmlvcygpOiBFbWVyZ2VuY3lTY2VuYXJpb1tdIHtcbiAgcmV0dXJuIFtcbiAgICB7XG4gICAgICBpZDogJ2dlbmVyYWxfZW1lcmdlbmN5JyxcbiAgICAgIG5hbWU6ICdHZW5lcmFsIEVtZXJnZW5jeSBQbGFuJyxcbiAgICAgIGRlc2NyaXB0aW9uOiAnU3RhbmRhcmQgZW1lcmdlbmN5IHN1YnN0aXR1dGUgcGxhbiBmb3IgdW5leHBlY3RlZCBhYnNlbmNlcycsXG4gICAgICBwcm9jZWR1cmVzOiBbXG4gICAgICAgICdDb250YWN0IG9mZmljZSBpbW1lZGlhdGVseSB1cG9uIGFycml2YWwnLFxuICAgICAgICAnUmV2aWV3IGRhaWx5IHNjaGVkdWxlIHBvc3RlZCBvbiBkZXNrJyxcbiAgICAgICAgJ0ZvbGxvdyByZWd1bGFyIGNsYXNzcm9vbSByb3V0aW5lcyBhcyBtdWNoIGFzIHBvc3NpYmxlJyxcbiAgICAgICAgJ1Rha2UgYXR0ZW5kYW5jZSBhdCB0aGUgYmVnaW5uaW5nIG9mIGVhY2ggY2xhc3MgcGVyaW9kJyxcbiAgICAgICAgJ01haW50YWluIG5vcm1hbCBicmVhayBhbmQgbHVuY2ggc2NoZWR1bGVzJyxcbiAgICAgICAgJ1JlcG9ydCBhbnkgaXNzdWVzIHRvIHRoZSBvZmZpY2UgaW1tZWRpYXRlbHknLFxuICAgICAgXSxcbiAgICAgIG1hdGVyaWFsczogW1xuICAgICAgICAnRW1lcmdlbmN5IHN1YiBmb2xkZXIgKGluIHRvcCBkZXNrIGRyYXdlciknLFxuICAgICAgICAnQ2xhc3MgbGlzdHMgd2l0aCBlbWVyZ2VuY3kgY29udGFjdHMnLFxuICAgICAgICAnRGFpbHkgc2NoZWR1bGUgYW5kIHJvb20gcm91dGluZXMnLFxuICAgICAgICAnR2VuZXJpYyBhY3Rpdml0eSB3b3Jrc2hlZXRzJyxcbiAgICAgICAgJ0Jvb2tzIGZvciBzaWxlbnQgcmVhZGluZyB0aW1lJyxcbiAgICAgIF0sXG4gICAgICBjb250YWN0czogW1xuICAgICAgICB7IHJvbGU6ICdQcmluY2lwYWwnLCBudW1iZXI6ICdFeHQuIDEwMCcsIHdoZW46ICdGb3IgYW55IGVtZXJnZW5jaWVzIG9yIG1ham9yIGlzc3VlcycgfSxcbiAgICAgICAge1xuICAgICAgICAgIHJvbGU6ICdPZmZpY2UnLFxuICAgICAgICAgIG51bWJlcjogJ0V4dC4gMTAxJyxcbiAgICAgICAgICB3aGVuOiAnRm9yIGF0dGVuZGFuY2UsIGxhdGUgc3R1ZGVudHMsIG9yIGdlbmVyYWwgcXVlc3Rpb25zJyxcbiAgICAgICAgfSxcbiAgICAgICAgeyByb2xlOiAnVmljZSBQcmluY2lwYWwnLCBudW1iZXI6ICdFeHQuIDEwMicsIHdoZW46ICdGb3IgZGlzY2lwbGluZSBpc3N1ZXMnIH0sXG4gICAgICAgIHtcbiAgICAgICAgICByb2xlOiAnU2Nob29sIE51cnNlJyxcbiAgICAgICAgICBudW1iZXI6ICdFeHQuIDEwNScsXG4gICAgICAgICAgd2hlbjogJ0ZvciBoZWFsdGggZW1lcmdlbmNpZXMgb3Igc3R1ZGVudCBpbGxuZXNzJyxcbiAgICAgICAgfSxcbiAgICAgIF0sXG4gICAgICBtb2RpZmljYXRpb25zOiB7XG4gICAgICAgIHNjaGVkdWxlOiBbXG4gICAgICAgICAgJ0ZvbGxvdyBwb3N0ZWQgc2NoZWR1bGUgYXMgY2xvc2VseSBhcyBwb3NzaWJsZScsXG4gICAgICAgICAgJ0FsbG93IGV4dHJhIHRpbWUgZm9yIHRyYW5zaXRpb25zIGJldHdlZW4gYWN0aXZpdGllcycsXG4gICAgICAgICAgJ0JlIGZsZXhpYmxlIHdpdGggdGltaW5nIGlmIHN0dWRlbnRzIG5lZWQgbW9yZSBoZWxwJyxcbiAgICAgICAgXSxcbiAgICAgICAgYWN0aXZpdGllczogW1xuICAgICAgICAgICdVc2UgcHJlLXBsYW5uZWQgYmFja3VwIGFjdGl2aXRpZXMgaWYgdGVjaG5vbG9neSBmYWlscycsXG4gICAgICAgICAgJ0ZvY3VzIG9uIHJldmlldyBhbmQgcmVpbmZvcmNlbWVudCByYXRoZXIgdGhhbiBuZXcgY29uY2VwdHMnLFxuICAgICAgICAgICdBbGxvdyBmb3IgbW9yZSBpbmRlcGVuZGVudCB3b3JrIHRpbWUnLFxuICAgICAgICBdLFxuICAgICAgICBzYWZldHk6IFtcbiAgICAgICAgICAnS2VlcCBjbGFzc3Jvb20gZG9vciBsb2NrZWQgZHVyaW5nIGNsYXNzJyxcbiAgICAgICAgICAnS25vdyBsb2NhdGlvbiBvZiBlbWVyZ2VuY3kgZXhpdHMnLFxuICAgICAgICAgICdGYW1pbGlhcml6ZSB5b3Vyc2VsZiB3aXRoIGV2YWN1YXRpb24gcHJvY2VkdXJlcycsXG4gICAgICAgIF0sXG4gICAgICB9LFxuICAgICAgdGVtcGxhdGU6IGBFTUVSR0VOQ1kgU1VCU1RJVFVURSBQTEFOIC0ge3tDTEFTU19OQU1FfX1cbkRhdGU6IHt7REFURX19XG5UZWFjaGVyOiB7e1RFQUNIRVJfTkFNRX19XG5TdWJzdGl0dXRlOiBfX19fX19fX19fX19fX19cblxuSU1QT1JUQU5UOiBQbGVhc2UgcmVhZCB0aGlzIGVudGlyZSBwbGFuIGJlZm9yZSBzdHVkZW50cyBhcnJpdmUuXG5cbkRBSUxZIFNDSEVEVUxFOlxuW1NwZWNpZmljIHNjaGVkdWxlIHdpbGwgYmUgaW5zZXJ0ZWQgaGVyZV1cblxuRU1FUkdFTkNZIENPTlRBQ1RTOlxuLSBQcmluY2lwYWw6IEV4dC4gMTAwXG4tIE9mZmljZTogRXh0LiAxMDFcbi0gVmljZSBQcmluY2lwYWw6IEV4dC4gMTAyXG5cbkNMQVNTUk9PTSBQUk9DRURVUkVTOlxuMS4gU3R1ZGVudHMgZW50ZXIgcXVpZXRseSBhbmQgYmVnaW4gbW9ybmluZyByb3V0aW5lXG4yLiBUYWtlIGF0dGVuZGFuY2UgdXNpbmcgY2xhc3MgbGlzdCBpbiByZWQgZm9sZGVyXG4zLiBGb2xsb3cgcG9zdGVkIHNjaGVkdWxlIGFzIGNsb3NlbHkgYXMgcG9zc2libGVcbjQuIEZvciBhbnkgaXNzdWVzLCBjYWxsIHRoZSBvZmZpY2UgaW1tZWRpYXRlbHlcblxuQkFDS1VQIEFDVElWSVRJRVM6XG5JZiBwbGFubmVkIGFjdGl2aXRpZXMgY2Fubm90IGJlIGNvbXBsZXRlZDpcbi0gU2lsZW50IHJlYWRpbmcgZnJvbSBjbGFzc3Jvb20gbGlicmFyeVxuLSBNYXRoIHJldmlldyB3b3Jrc2hlZXRzIChpbiBncmVlbiBmb2xkZXIpXG4tIEpvdXJuYWwgd3JpdGluZyBwcm9tcHRzIChwb3N0ZWQgb24gd2FsbClcblxuVGhhbmsgeW91IGZvciBjb3ZlcmluZyB0aGlzIGNsYXNzLiBQbGVhc2UgbGVhdmUgZGV0YWlsZWQgbm90ZXMgYWJvdXQgdGhlIGRheS5gLFxuICAgIH0sXG5cbiAgICB7XG4gICAgICBpZDogJ3RlY2hub2xvZ3lfZmFpbHVyZScsXG4gICAgICBuYW1lOiAnVGVjaG5vbG9neSBGYWlsdXJlIFBsYW4nLFxuICAgICAgZGVzY3JpcHRpb246ICdQbGFuIGZvciB3aGVuIGNvbXB1dGVycywgaW50ZXJuZXQsIG9yIHNtYXJ0IGJvYXJkcyBhcmUgbm90IHdvcmtpbmcnLFxuICAgICAgcHJvY2VkdXJlczogW1xuICAgICAgICAnRG8gbm90IGF0dGVtcHQgdG8gZml4IHRlY2huaWNhbCBlcXVpcG1lbnQnLFxuICAgICAgICAnUmVwb3J0IHRlY2hub2xvZ3kgaXNzdWVzIHRvIElUIHN1cHBvcnQgaW1tZWRpYXRlbHknLFxuICAgICAgICAnU3dpdGNoIHRvIHBhcGVyLWJhc2VkIGFsdGVybmF0aXZlcyBmb3IgYWxsIGFjdGl2aXRpZXMnLFxuICAgICAgICAnVXNlIGFuYWxvZyB0ZWFjaGluZyB0b29scyAod2hpdGVib2FyZCwgcHJpbnRlZCBtYXRlcmlhbHMpJyxcbiAgICAgICAgJ0luZm9ybSBzdHVkZW50cyBvZiB0ZWNobm9sb2d5IGlzc3VlcyBhbmQgYWRqdXN0IGV4cGVjdGF0aW9ucycsXG4gICAgICAgIFwiRm9jdXMgb24gYWN0aXZpdGllcyB0aGF0IGRvbid0IHJlcXVpcmUgdGVjaG5vbG9neVwiLFxuICAgICAgXSxcbiAgICAgIG1hdGVyaWFsczogW1xuICAgICAgICAnUHJpbnRlZCB3b3Jrc2hlZXRzIGFuZCBhY3Rpdml0aWVzIChpbiBibHVlIGZvbGRlciknLFxuICAgICAgICAnV2hpdGVib2FyZCBtYXJrZXJzIGFuZCBlcmFzZXJzJyxcbiAgICAgICAgJ1BoeXNpY2FsIG1hbmlwdWxhdGl2ZXMgYW5kIHRlYWNoaW5nIGFpZHMnLFxuICAgICAgICAnQm9va3MgYW5kIHJlYWRpbmcgbWF0ZXJpYWxzJyxcbiAgICAgICAgJ1BhcGVyIGFuZCBwZW5jaWxzIGZvciBhbGwgc3R1ZGVudHMnLFxuICAgICAgICAnQW5hbG9nIHRpbWVyIG9yIHdhdGNoJyxcbiAgICAgIF0sXG4gICAgICBjb250YWN0czogW1xuICAgICAgICB7IHJvbGU6ICdJVCBTdXBwb3J0JywgbnVtYmVyOiAnRXh0LiAxNTAnLCB3aGVuOiAnVG8gcmVwb3J0IHRlY2hub2xvZ3kgaXNzdWVzJyB9LFxuICAgICAgICB7IHJvbGU6ICdPZmZpY2UnLCBudW1iZXI6ICdFeHQuIDEwMScsIHdoZW46ICdUbyBpbmZvcm0gb2YgdGVjaG5vbG9neSBwcm9ibGVtcycgfSxcbiAgICAgICAge1xuICAgICAgICAgIHJvbGU6ICdQcmluY2lwYWwnLFxuICAgICAgICAgIG51bWJlcjogJ0V4dC4gMTAwJyxcbiAgICAgICAgICB3aGVuOiAnSWYgdGVjaG5vbG9neSBmYWlsdXJlIGFmZmVjdHMgc2FmZXR5IG9yIG1ham9yIGFjdGl2aXRpZXMnLFxuICAgICAgICB9LFxuICAgICAgXSxcbiAgICAgIG1vZGlmaWNhdGlvbnM6IHtcbiAgICAgICAgc2NoZWR1bGU6IFtcbiAgICAgICAgICAnQWxsb3cgZXh0cmEgdGltZSBmb3IgZGlzdHJpYnV0aW5nIG1hdGVyaWFscycsXG4gICAgICAgICAgJ1NpbXBsaWZ5IHRyYW5zaXRpb25zIHRoYXQgbm9ybWFsbHkgdXNlIHRlY2hub2xvZ3knLFxuICAgICAgICAgICdFeHRlbmQgYWN0aXZpdGllcyB0aGF0IHdvcmsgd2VsbCB3aXRob3V0IHRlY2hub2xvZ3knLFxuICAgICAgICBdLFxuICAgICAgICBhY3Rpdml0aWVzOiBbXG4gICAgICAgICAgJ1JlcGxhY2UgZGlnaXRhbCBhY3Rpdml0aWVzIHdpdGggaGFuZHMtb24gYWx0ZXJuYXRpdmVzJyxcbiAgICAgICAgICAnVXNlIHByaW50ZWQgdmVyc2lvbnMgb2YgYWxsIHdvcmtzaGVldHMnLFxuICAgICAgICAgICdGb2N1cyBvbiBkaXNjdXNzaW9uLWJhc2VkIGxlYXJuaW5nJyxcbiAgICAgICAgICAnSW5jcmVhc2UgcGh5c2ljYWwgbW92ZW1lbnQgYW5kIGdyb3VwIHdvcmsnLFxuICAgICAgICBdLFxuICAgICAgICBzYWZldHk6IFtcbiAgICAgICAgICAnRW5zdXJlIGVtZXJnZW5jeSBjb21tdW5pY2F0aW9uIG1ldGhvZHMgc3RpbGwgd29yaycsXG4gICAgICAgICAgJ0hhdmUgYmFja3VwIHBsYW5zIGZvciBkaXNtaXNzYWwgcHJvY2VkdXJlcycsXG4gICAgICAgICAgJ0tlZXAgbWFudWFsIGF0dGVuZGFuY2UgcmVjb3JkcycsXG4gICAgICAgIF0sXG4gICAgICB9LFxuICAgICAgdGVtcGxhdGU6IGBURUNITk9MT0dZIEZBSUxVUkUgU1VCU1RJVFVURSBQTEFOIC0ge3tDTEFTU19OQU1FfX1cbkRhdGU6IHt7REFURX19XG5UZWFjaGVyOiB7e1RFQUNIRVJfTkFNRX19XG5cbuKaoO+4jyBURUNITk9MT0dZIEFMRVJUOiBTeXN0ZW1zIG1heSBub3QgYmUgd29ya2luZyBub3JtYWxseVxuXG5JTVBPUlRBTlQgTk9URVM6XG4tIERvIE5PVCBhdHRlbXB0IHRvIGZpeCBhbnkgdGVjaG5vbG9neVxuLSBVc2Ugb25seSBwYXBlci1iYXNlZCBtYXRlcmlhbHMgYW5kIGFjdGl2aXRpZXNcbi0gUmVwb3J0IGFueSB0ZWNoIGlzc3VlcyB0byBJVCBTdXBwb3J0IChFeHQuIDE1MClcblxuTk8tVEVDSCBEQUlMWSBTQ0hFRFVMRTpcbltNb2RpZmllZCBzY2hlZHVsZSB3aXRoIGFuYWxvZyBhbHRlcm5hdGl2ZXNdXG5cbkJBQ0tVUCBBQ1RJVklUSUVTIChObyBUZWNobm9sb2d5IFJlcXVpcmVkKTpcbi0gUmVhZGluZyBmcm9tIHBoeXNpY2FsIGJvb2tzXG4tIEhhbmQtd3JpdHRlbiBhc3NpZ25tZW50c1xuLSBHcm91cCBkaXNjdXNzaW9ucyBhbmQgcHJlc2VudGF0aW9uc1xuLSBQaHlzaWNhbCBtYXRoIG1hbmlwdWxhdGl2ZXNcbi0gQXJ0IHByb2plY3RzIHdpdGggcGFwZXIvcGVuY2lsc1xuXG5NQVRFUklBTFMgTE9DQVRJT046XG4tIEJsdWUgZm9sZGVyOiBQcmludGVkIHdvcmtzaGVldHNcbi0gU3VwcGx5IGNhYmluZXQ6IFBhcGVyLCBwZW5jaWxzLCBtYW5pcHVsYXRpdmVzXG4tIEJvb2tzaGVsZjogUmVhZGluZyBtYXRlcmlhbHNcblxuUmVtZW1iZXI6IEZvY3VzIG9uIGVuZ2FnZW1lbnQgb3ZlciB0ZWNobm9sb2d5IWAsXG4gICAgfSxcblxuICAgIHtcbiAgICAgIGlkOiAnc2V2ZXJlX3dlYXRoZXInLFxuICAgICAgbmFtZTogJ1NldmVyZSBXZWF0aGVyIFBsYW4nLFxuICAgICAgZGVzY3JpcHRpb246ICdQbGFuIGZvciBzZXZlcmUgd2VhdGhlciBjb25kaXRpb25zIGFmZmVjdGluZyBub3JtYWwgb3BlcmF0aW9ucycsXG4gICAgICBwcm9jZWR1cmVzOiBbXG4gICAgICAgICdNb25pdG9yIHdlYXRoZXIgYW5ub3VuY2VtZW50cyB0aHJvdWdob3V0IHRoZSBkYXknLFxuICAgICAgICAnS2VlcCBzdHVkZW50cyBjYWxtIGFuZCBpbmZvcm1lZCBhcHByb3ByaWF0ZWx5IGZvciB0aGVpciBhZ2UnLFxuICAgICAgICAnQmUgcHJlcGFyZWQgZm9yIG1vZGlmaWVkIGRpc21pc3NhbCBwcm9jZWR1cmVzJyxcbiAgICAgICAgJ0tlZXAgc3R1ZGVudHMgYXdheSBmcm9tIHdpbmRvd3MgZHVyaW5nIHNldmVyZSB3ZWF0aGVyJyxcbiAgICAgICAgXCJGb2xsb3cgc2Nob29sJ3Mgc2V2ZXJlIHdlYXRoZXIgcHJvdG9jb2xzXCIsXG4gICAgICAgICdIYXZlIGluZG9vciBhY3Rpdml0aWVzIHJlYWR5IGlmIG91dGRvb3IgdGltZSBpcyBjYW5jZWxsZWQnLFxuICAgICAgXSxcbiAgICAgIG1hdGVyaWFsczogW1xuICAgICAgICAnV2VhdGhlci1hcHByb3ByaWF0ZSBpbmRvb3IgYWN0aXZpdGllcycsXG4gICAgICAgICdDb21mb3J0IGl0ZW1zIChib29rcywgcXVpZXQgZ2FtZXMpJyxcbiAgICAgICAgJ0V4dHJhIHNuYWNrcyBpbiBjYXNlIG9mIGRlbGF5ZWQgZGlzbWlzc2FsJyxcbiAgICAgICAgJ0JhdHRlcnktcG93ZXJlZCByYWRpbyBmb3IgdXBkYXRlcycsXG4gICAgICAgICdGbGFzaGxpZ2h0cyAoaW4gZW1lcmdlbmN5IGtpdCknLFxuICAgICAgICAnRmlyc3QgYWlkIGtpdCAoY2hlY2sgbG9jYXRpb24pJyxcbiAgICAgIF0sXG4gICAgICBjb250YWN0czogW1xuICAgICAgICB7IHJvbGU6ICdPZmZpY2UnLCBudW1iZXI6ICdFeHQuIDEwMScsIHdoZW46ICdGb3Igd2VhdGhlciB1cGRhdGVzIGFuZCBkaXNtaXNzYWwgY2hhbmdlcycgfSxcbiAgICAgICAgeyByb2xlOiAnUHJpbmNpcGFsJywgbnVtYmVyOiAnRXh0LiAxMDAnLCB3aGVuOiAnRm9yIGVtZXJnZW5jeSBkZWNpc2lvbnMnIH0sXG4gICAgICAgIHtcbiAgICAgICAgICByb2xlOiAnRGlzdHJpY3QgT2ZmaWNlJyxcbiAgICAgICAgICBudW1iZXI6ICc1NTUtMDEyMycsXG4gICAgICAgICAgd2hlbjogJ0ZvciBkaXN0cmljdC13aWRlIHdlYXRoZXIgZGVjaXNpb25zJyxcbiAgICAgICAgfSxcbiAgICAgICAgeyByb2xlOiAnVHJhbnNwb3J0YXRpb24nLCBudW1iZXI6ICc1NTUtMDEyNCcsIHdoZW46ICdGb3IgYnVzIHNjaGVkdWxlIGNoYW5nZXMnIH0sXG4gICAgICBdLFxuICAgICAgbW9kaWZpY2F0aW9uczoge1xuICAgICAgICBzY2hlZHVsZTogW1xuICAgICAgICAgICdDYW5jZWwgYW55IG91dGRvb3IgYWN0aXZpdGllcyBvciBmaWVsZCB0cmlwcycsXG4gICAgICAgICAgJ0JlIHByZXBhcmVkIGZvciBlYXJseSBkaXNtaXNzYWwgb3IgZXh0ZW5kZWQgZGF5JyxcbiAgICAgICAgICAnS2VlcCBmbGV4aWJsZSBzY2hlZHVsZSBiYXNlZCBvbiB3ZWF0aGVyIHVwZGF0ZXMnLFxuICAgICAgICAgICdQbGFuIGZvciBwb3NzaWJsZSBpbmRvb3IgcmVjZXNzL1BFJyxcbiAgICAgICAgXSxcbiAgICAgICAgYWN0aXZpdGllczogW1xuICAgICAgICAgICdGb2N1cyBvbiBjYWxtaW5nLCBpbmRvb3IgYWN0aXZpdGllcycsXG4gICAgICAgICAgJ0hhdmUgZXh0cmEgbW92aWVzIG9yIHF1aWV0IGdhbWVzIHJlYWR5JyxcbiAgICAgICAgICAnUHJlcGFyZSBleHRlbmRlZCBhY3Rpdml0aWVzIGluIGNhc2Ugb2YgbG9uZyBkYXknLFxuICAgICAgICAgICdJbmNsdWRlIHdlYXRoZXIgZWR1Y2F0aW9uIGlmIGFwcHJvcHJpYXRlJyxcbiAgICAgICAgXSxcbiAgICAgICAgc2FmZXR5OiBbXG4gICAgICAgICAgJ0tub3cgbG9jYXRpb24gb2Ygc2V2ZXJlIHdlYXRoZXIgc2hlbHRlciBhcmVhJyxcbiAgICAgICAgICAnS2VlcCBlbWVyZ2VuY3kgc3VwcGxpZXMgYWNjZXNzaWJsZScsXG4gICAgICAgICAgJ01vbml0b3Igc2Nob29sIGNvbW11bmljYXRpb25zIGNvbnN0YW50bHknLFxuICAgICAgICAgICdTdGF5IGNhbG0gdG8ga2VlcCBzdHVkZW50cyBjYWxtJyxcbiAgICAgICAgXSxcbiAgICAgIH0sXG4gICAgICB0ZW1wbGF0ZTogYFNFVkVSRSBXRUFUSEVSIFNVQlNUSVRVVEUgUExBTiAtIHt7Q0xBU1NfTkFNRX19XG5EYXRlOiB7e0RBVEV9fVxuVGVhY2hlcjoge3tURUFDSEVSX05BTUV9fVxuXG7wn4yq77iPIFdFQVRIRVIgQUxFUlQ6IFNldmVyZSB3ZWF0aGVyIGNvbmRpdGlvbnMgZXhwZWN0ZWRcblxuU0FGRVRZIEZJUlNUOlxuLSBLZWVwIHN0dWRlbnRzIGF3YXkgZnJvbSB3aW5kb3dzXG4tIE1vbml0b3Igc2Nob29sIGFubm91bmNlbWVudHNcbi0gQmUgcHJlcGFyZWQgZm9yIG1vZGlmaWVkIGRpc21pc3NhbFxuLSBXZWF0aGVyIHNoZWx0ZXIgYXJlYTogW0xvY2F0aW9uXVxuXG5JTkRPT1IgU0NIRURVTEU6XG5bTW9kaWZpZWQgc2NoZWR1bGUgd2l0aCBpbmRvb3IgYWx0ZXJuYXRpdmVzXVxuXG5XRUFUSEVSLVNBRkUgQUNUSVZJVElFUzpcbi0gSW5kb29yIGdhbWVzIGFuZCBtb3ZlbWVudFxuLSBXZWF0aGVyIHNjaWVuY2UgZGlzY3Vzc2lvbnNcbi0gUXVpZXQgcmVhZGluZyB0aW1lXG4tIEFydCBwcm9qZWN0c1xuLSBNb3ZpZXMgaWYgZXh0ZW5kZWQgZGF5IG5lZWRlZFxuXG5JTVBPUlRBTlQ6IFN0YXkgY2FsbSwga2VlcCBzdHVkZW50cyBpbmZvcm1lZCBhZ2UtYXBwcm9wcmlhdGVseS5cbkNoZWNrIG9mZmljZSBldmVyeSBob3VyIGZvciB1cGRhdGVzLmAsXG4gICAgfSxcblxuICAgIHtcbiAgICAgIGlkOiAnbG9ja2Rvd24nLFxuICAgICAgbmFtZTogJ0xvY2tkb3duL1NlY3VyaXR5IFBsYW4nLFxuICAgICAgZGVzY3JpcHRpb246ICdQbGFuIGZvciBzZWN1cml0eSBzaXR1YXRpb25zIHJlcXVpcmluZyBsb2NrZG93biBwcm9jZWR1cmVzJyxcbiAgICAgIHByb2NlZHVyZXM6IFtcbiAgICAgICAgJ0ZvbGxvdyBzY2hvb2wgbG9ja2Rvd24gcHJvY2VkdXJlcyBpbW1lZGlhdGVseScsXG4gICAgICAgICdMb2NrIGNsYXNzcm9vbSBkb29yIGFuZCB0dXJuIG9mZiBsaWdodHMnLFxuICAgICAgICAnS2VlcCBzdHVkZW50cyBxdWlldCBhbmQgYXdheSBmcm9tIHdpbmRvd3MvZG9vcnMnLFxuICAgICAgICAnRG8gbm90IG9wZW4gZG9vciBmb3IgYW55b25lIGV4Y2VwdCBpZGVudGlmaWVkIHNjaG9vbCBvZmZpY2lhbHMnLFxuICAgICAgICAnVGFrZSBhdHRlbmRhbmNlIHNpbGVudGx5JyxcbiAgICAgICAgJ1dhaXQgZm9yIGFsbC1jbGVhciBmcm9tIGFkbWluaXN0cmF0aW9uJyxcbiAgICAgIF0sXG4gICAgICBtYXRlcmlhbHM6IFtcbiAgICAgICAgJ0VtZXJnZW5jeSBjb250YWN0IGxpc3QnLFxuICAgICAgICAnRmlyc3QgYWlkIGtpdCcsXG4gICAgICAgICdXYXRlciBib3R0bGVzIChpZiBhdmFpbGFibGUpJyxcbiAgICAgICAgJ1F1aWV0IGFjdGl2aXRpZXMgKGJvb2tzLCBwYXBlciknLFxuICAgICAgICAnQ2hhcmdlZCBwaG9uZS9jb21tdW5pY2F0aW9uIGRldmljZScsXG4gICAgICAgICdFbWVyZ2VuY3kgcHJvY2VkdXJlcyBjYXJkJyxcbiAgICAgIF0sXG4gICAgICBjb250YWN0czogW1xuICAgICAgICB7XG4gICAgICAgICAgcm9sZTogJzkxMScsXG4gICAgICAgICAgbnVtYmVyOiAnOTExJyxcbiAgICAgICAgICB3aGVuOiAnT25seSBpZiBpbW1lZGlhdGUgZGFuZ2VyIGFuZCBubyBzY2hvb2wgY29udGFjdCBhdmFpbGFibGUnLFxuICAgICAgICB9LFxuICAgICAgICB7XG4gICAgICAgICAgcm9sZTogJ1ByaW5jaXBhbCcsXG4gICAgICAgICAgbnVtYmVyOiAnRXh0LiAxMDAnLFxuICAgICAgICAgIHdoZW46ICdGb2xsb3cgdGhlaXIgbGVhZCAtIGRvIG5vdCBjYWxsIHVubGVzcyBlbWVyZ2VuY3knLFxuICAgICAgICB9LFxuICAgICAgICB7IHJvbGU6ICdPZmZpY2UnLCBudW1iZXI6ICdFeHQuIDEwMScsIHdoZW46ICdPbmx5IGlmIHNwZWNpZmljYWxseSBpbnN0cnVjdGVkJyB9LFxuICAgICAgXSxcbiAgICAgIG1vZGlmaWNhdGlvbnM6IHtcbiAgICAgICAgc2NoZWR1bGU6IFtcbiAgICAgICAgICAnQWxsIG5vcm1hbCBzY2hlZHVsZXMgYXJlIHN1c3BlbmRlZCcsXG4gICAgICAgICAgJ1JlbWFpbiBpbiBzZWN1cmUgbG9jYXRpb24gdW50aWwgYWxsLWNsZWFyJyxcbiAgICAgICAgICAnTm8gbW92ZW1lbnQgYmV0d2VlbiByb29tcycsXG4gICAgICAgICAgJ0NhbmNlbCBhbGwgb3V0c2lkZSBhY3Rpdml0aWVzJyxcbiAgICAgICAgXSxcbiAgICAgICAgYWN0aXZpdGllczogW1xuICAgICAgICAgICdTaWxlbnQgYWN0aXZpdGllcyBvbmx5JyxcbiAgICAgICAgICAnTm8gdGVjaG5vbG9neSB0aGF0IG1ha2VzIG5vaXNlJyxcbiAgICAgICAgICAnQ29tZm9ydCBhbmQgY2FsbSBzdHVkZW50cyBxdWlldGx5JyxcbiAgICAgICAgICAnUmVhZGluZyBvciBxdWlldCBkcmF3aW5nJyxcbiAgICAgICAgXSxcbiAgICAgICAgc2FmZXR5OiBbXG4gICAgICAgICAgJ0Rvb3IgbG9ja2VkLCBsaWdodHMgb2ZmJyxcbiAgICAgICAgICAnU3R1ZGVudHMgYXdheSBmcm9tIHdpbmRvd3MvZG9vcnMnLFxuICAgICAgICAgICdNYWludGFpbiBzaWxlbmNlJyxcbiAgICAgICAgICAnRm9sbG93IG9mZmljaWFsIGluc3RydWN0aW9ucyBvbmx5JyxcbiAgICAgICAgXSxcbiAgICAgIH0sXG4gICAgICB0ZW1wbGF0ZTogYPCflJIgTE9DS0RPV04gUFJPQ0VEVVJFUyAtIHt7Q0xBU1NfTkFNRX19XG5EYXRlOiB7e0RBVEV9fVxuXG5USElTIElTIEEgTE9DS0RPV04gU0lUVUFUSU9OXG5cbklNTUVESUFURSBBQ1RJT05TOlxuMS4gTG9jayBkb29yLCB0dXJuIG9mZiBsaWdodHNcbjIuIE1vdmUgc3R1ZGVudHMgYXdheSBmcm9tIHdpbmRvd3MvZG9vcnNcbjMuIEtlZXAgZXZlcnlvbmUgcXVpZXRcbjQuIFRha2Ugc2lsZW50IGF0dGVuZGFuY2VcbjUuIFdhaXQgZm9yIG9mZmljaWFsIGFsbC1jbGVhclxuXG5ETyBOT1Q6XG4tIE9wZW4gZG9vciBmb3IgYW55b25lXG4tIFVzZSBwaG9uZXMgdW5sZXNzIGVtZXJnZW5jeVxuLSBNYWtlIG5vaXNlXG4tIExlYXZlIHNlY3VyZSBhcmVhXG5cbktFRVAgU1RVREVOVFMgQ0FMTTpcbi0gU3BlYWsgaW4gd2hpc3BlcnMgb25seVxuLSBQcm92aWRlIGNvbWZvcnQgcXVpZXRseVxuLSBVc2Ugc2lsZW50IGFjdGl2aXRpZXNcblxuV2FpdCBmb3IgYWRtaW5pc3RyYXRpb24ncyBhbGwtY2xlYXIgYmVmb3JlIHJlc3VtaW5nIG5vcm1hbCBhY3Rpdml0aWVzLmAsXG4gICAgfSxcblxuICAgIHtcbiAgICAgIGlkOiAnc3RhZmZfc2hvcnRhZ2UnLFxuICAgICAgbmFtZTogJ1N0YWZmIFNob3J0YWdlIFBsYW4nLFxuICAgICAgZGVzY3JpcHRpb246ICdQbGFuIGZvciB3aGVuIG11bHRpcGxlIHN0YWZmIGFyZSBhYnNlbnQgb3IgdW5hdmFpbGFibGUnLFxuICAgICAgcHJvY2VkdXJlczogW1xuICAgICAgICAnQ2hlY2sgd2l0aCBvZmZpY2UgZm9yIGNsYXNzIGNvbWJpbmF0aW9ucyBvciByb29tIGNoYW5nZXMnLFxuICAgICAgICAnQmUgcHJlcGFyZWQgdG8gc3VwZXJ2aXNlIGxhcmdlciBncm91cHMnLFxuICAgICAgICAnRm9jdXMgb24gc2ltcGxlLCBtYW5hZ2VhYmxlIGFjdGl2aXRpZXMnLFxuICAgICAgICAnVXNlIHBlZXIgaGVscGVycyBhbmQgcmVzcG9uc2libGUgc3R1ZGVudHMnLFxuICAgICAgICAnQ29tbXVuaWNhdGUgZnJlcXVlbnRseSB3aXRoIHJlbWFpbmluZyBzdGFmZicsXG4gICAgICAgICdQcmlvcml0aXplIHNhZmV0eSBhbmQgYmFzaWMgcm91dGluZXMnLFxuICAgICAgXSxcbiAgICAgIG1hdGVyaWFsczogW1xuICAgICAgICAnTGFyZ2UgZ3JvdXAgYWN0aXZpdHkgc3VwcGxpZXMnLFxuICAgICAgICAnRXh0cmEgc2VhdGluZyBhcnJhbmdlbWVudHMnLFxuICAgICAgICAnU2ltcGxlIHdvcmtzaGVldHMgZm9yIHZhcmlvdXMgZ3JhZGUgbGV2ZWxzJyxcbiAgICAgICAgJ01vdmllcyBvciBlZHVjYXRpb25hbCB2aWRlb3MnLFxuICAgICAgICAnQm9va3MgZm9yIGluZGVwZW5kZW50IHJlYWRpbmcnLFxuICAgICAgICAnQXJ0IHN1cHBsaWVzIGZvciBxdWlldCBhY3Rpdml0aWVzJyxcbiAgICAgIF0sXG4gICAgICBjb250YWN0czogW1xuICAgICAgICB7IHJvbGU6ICdQcmluY2lwYWwnLCBudW1iZXI6ICdFeHQuIDEwMCcsIHdoZW46ICdGb3IgZ3JvdXBpbmcgZGVjaXNpb25zIGFuZCBzdXBwb3J0JyB9LFxuICAgICAgICB7IHJvbGU6ICdWaWNlIFByaW5jaXBhbCcsIG51bWJlcjogJ0V4dC4gMTAyJywgd2hlbjogJ0ZvciBhc3Npc3RhbmNlIHdpdGggbGFyZ2UgZ3JvdXBzJyB9LFxuICAgICAgICB7XG4gICAgICAgICAgcm9sZTogJ09mZmljZScsXG4gICAgICAgICAgbnVtYmVyOiAnRXh0LiAxMDEnLFxuICAgICAgICAgIHdoZW46ICdGb3Igc3R1ZGVudCBsb2NhdGlvbiBhbmQgcGFyZW50IGNvbW11bmljYXRpb24nLFxuICAgICAgICB9LFxuICAgICAgXSxcbiAgICAgIG1vZGlmaWNhdGlvbnM6IHtcbiAgICAgICAgc2NoZWR1bGU6IFtcbiAgICAgICAgICAnU2ltcGxpZmllZCBzY2hlZHVsZSB3aXRoIGxvbmdlciBhY3Rpdml0eSBibG9ja3MnLFxuICAgICAgICAgICdDb21iaW5lZCBjbGFzc2VzIGZvciBzb21lIGFjdGl2aXRpZXMnLFxuICAgICAgICAgICdFeHRyYSBzdXBlcnZpc2lvbiBkdXJpbmcgdHJhbnNpdGlvbnMnLFxuICAgICAgICAgICdNb2RpZmllZCBsdW5jaCBhbmQgYnJlYWsgc2NoZWR1bGVzJyxcbiAgICAgICAgXSxcbiAgICAgICAgYWN0aXZpdGllczogW1xuICAgICAgICAgICdTaW1wbGUsIGluZGVwZW5kZW50IGFjdGl2aXRpZXMnLFxuICAgICAgICAgICdMYXJnZSBncm91cCBnYW1lcyBhbmQgYWN0aXZpdGllcycsXG4gICAgICAgICAgJ0V4dGVuZGVkIG1vdmllL3ZpZGVvIHRpbWUgaWYgbmVlZGVkJyxcbiAgICAgICAgICAnQ3Jvc3MtZ3JhZGUgYnVkZHkgcmVhZGluZycsXG4gICAgICAgIF0sXG4gICAgICAgIHNhZmV0eTogW1xuICAgICAgICAgICdNYWludGFpbiBoaWdoZXIgc3VwZXJ2aXNpb24gcmF0aW9zJyxcbiAgICAgICAgICAnVXNlIGJ1ZGR5IHN5c3RlbSBmb3IgYmF0aHJvb20gYnJlYWtzJyxcbiAgICAgICAgICAnS2VlcCBhY2N1cmF0ZSBoZWFkY291bnRzJyxcbiAgICAgICAgICAnSGF2ZSBlbWVyZ2VuY3kgZXZhY3VhdGlvbiBwbGFuIGZvciBsYXJnZXIgZ3JvdXBzJyxcbiAgICAgICAgXSxcbiAgICAgIH0sXG4gICAgICB0ZW1wbGF0ZTogYFNUQUZGIFNIT1JUQUdFIFNVQlNUSVRVVEUgUExBTlxuRGF0ZToge3tEQVRFfX1cbkNsYXNzZXMgQ29tYmluZWQ6IF9fX19fX19fX19fX19fX1xuXG7imqDvuI8gTVVMVElQTEUgU1RBRkYgQUJTRU5UIC0gTEFSR0UgR1JPVVAgTUFOQUdFTUVOVFxuXG5TVFVERU5UIENPVU5UOiBfX19fX19fX1xuQURESVRJT05BTCBDTEFTU0VTOiBfX19fX19fX19fX19fX19cblxuU0lNUExJRklFRCBTQ0hFRFVMRTpcbi0gRm9jdXMgb24gYmFzaWMgcm91dGluZXNcbi0gTG9uZ2VyIGFjdGl2aXR5IHBlcmlvZHNcbi0gRXh0cmEgc3VwZXJ2aXNpb24gZm9yIHRyYW5zaXRpb25zXG5cbkxBUkdFIEdST1VQIEFDVElWSVRJRVM6XG4tIE1vdmllcy9lZHVjYXRpb25hbCB2aWRlb3Ncbi0gR3JvdXAgcmVhZGluZyB0aW1lXG4tIFNpbXBsZSBhcnQgcHJvamVjdHNcbi0gSW5kb29yIGdhbWVzXG5cblNBRkVUWSBSRU1JTkRFUlM6XG4tIEhpZ2hlciBzdXBlcnZpc2lvbiBuZWVkZWRcbi0gQnVkZHkgc3lzdGVtIGZvciBtb3ZlbWVudHNcbi0gRnJlcXVlbnQgaGVhZGNvdW50c1xuLSBPZmZpY2Ugc3VwcG9ydCBhdmFpbGFibGVcblxuU3RheSBmbGV4aWJsZSBhbmQgcHJpb3JpdGl6ZSBzYWZldHkhYCxcbiAgICB9LFxuICBdO1xufVxuIl0sInZlcnNpb24iOjN9

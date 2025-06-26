@@ -1,6 +1,6 @@
 import { describe, it, expect } from '@jest/globals';
 import { filterAvailableBlocksByCalendar } from '../../src/services/planningEngine';
-import type { TimetableSlot, CalendarEvent, Holiday } from '@teaching-engine/database';
+import type { TimetableSlot, CalendarEvent } from '@teaching-engine/database';
 
 describe('PlanningEngine Unit Tests', () => {
   describe('filterAvailableBlocksByCalendar', () => {
@@ -33,10 +33,19 @@ describe('PlanningEngine Unit Tests', () => {
       updatedAt: new Date(),
     });
 
-    const createHoliday = (date: string): Holiday => ({
+    const createHoliday = (date: string): CalendarEvent => ({
       id: 1,
-      date: new Date(date),
-      name: 'Test Holiday',
+      title: 'Test Holiday',
+      description: null,
+      start: new Date(date),
+      end: new Date(date),
+      allDay: true,
+      eventType: 'HOLIDAY',
+      source: 'MANUAL',
+      teacherId: 1,
+      schoolId: null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
 
     it('should filter out slots without subjectId', () => {
@@ -61,7 +70,7 @@ describe('PlanningEngine Unit Tests', () => {
       ];
 
       // Holiday on Wednesday (day 2 in converted system)
-      const holidays: Holiday[] = [
+      const holidays: CalendarEvent[] = [
         createHoliday('2024-01-03'), // Wednesday, converts to day 2
       ];
 
@@ -151,7 +160,7 @@ describe('PlanningEngine Unit Tests', () => {
         createCalendarEvent('2024-01-04T10:00:00.000Z', '2024-01-04T11:00:00.000Z', false), // Thursday event conflicts with day 3 slot
       ];
 
-      const holidays: Holiday[] = [
+      const holidays: CalendarEvent[] = [
         createHoliday('2024-01-03'), // Wednesday holiday conflicts with day 2 slot
       ];
 

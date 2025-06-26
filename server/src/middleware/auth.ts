@@ -12,16 +12,30 @@ export function authMiddleware(req: AuthRequest, res: Response, next: NextFuncti
   if (!header) return res.status(401).json({ error: 'Unauthorized' });
   const token = header.replace('Bearer ', '');
   try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { userId: string };
+    const secret = process.env.JWT_SECRET;
+    if (!secret) {
+      throw new Error('JWT_SECRET environment variable is required');
+    }
+    const payload = jwt.verify(token, secret) as { userId: string };
     req.user = { userId: payload.userId };
     next();
-  } catch {
+  } catch (error) {
+    if (error instanceof Error && error.message === 'JWT_SECRET environment variable is required') {
+      console.error('CRITICAL: JWT_SECRET not configured');
+      return res.status(500).json({ error: 'Server configuration error' });
+    }
     res.status(401).json({ error: 'Unauthorized' });
   }
 }
 
 // Export as 'auth' for consistency with service
 export const auth = authMiddleware;
+
+// Export as requireAuth for consistency with routes
+export const requireAuth = authMiddleware;
+
+// Export as authenticate for batch routes
+export const authenticate = authMiddleware;
 
 export function requireAdminToken(req: Request, res: Response, next: NextFunction) {
   const token = req.headers.authorization?.replace('Bearer ', '');

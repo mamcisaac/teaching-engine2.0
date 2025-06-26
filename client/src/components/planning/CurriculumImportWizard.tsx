@@ -198,10 +198,13 @@ export function CurriculumImportWizard({
         description: `Successfully imported ${result.expectationsCount} curriculum expectations`,
       });
 
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         handleClose();
         onSuccess();
       }, 2000);
+      
+      // Store timeout ID for cleanup
+      return () => clearTimeout(timeoutId);
     } catch (error) {
       console.error('Confirm import error:', error);
       toast({

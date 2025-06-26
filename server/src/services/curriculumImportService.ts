@@ -435,28 +435,39 @@ export class CurriculumImportService extends BaseService {
     Array<{
       code: string;
       description: string;
+      descriptionFr?: string;
       subject: string;
       grade: number;
       strand?: string;
+      strandFr?: string;
       substrand?: string;
+      substrandFr?: string;
     }>
   > {
     try {
+      // Detect if document is in French or bilingual
+      const isFrench = this.detectLanguage(text);
+      const isBilingual = this.detectBilingual(text);
+      
       // Split text into chunks if it's too long (GPT-4 has token limits)
       const chunks = this.chunkText(text, 3000); // ~750 words per chunk
       const allExpectations: Array<{
         code: string;
         description: string;
+        descriptionFr?: string;
         subject: string;
         grade: number;
         strand?: string;
+        strandFr?: string;
         substrand?: string;
+        substrandFr?: string;
       }> = [];
 
       for (let i = 0; i < chunks.length; i++) {
         this.logger.info(`Processing chunk ${i + 1} of ${chunks.length}`);
 
-        const prompt = `You are an expert in curriculum design for elementary education. Extract curriculum expectations from the following text taken from a Grade 1 French Immersion curriculum document.
+        const languageInfo = isFrench ? 'French' : isBilingual ? 'bilingual (English and French)' : 'English';
+        const prompt = `You are an expert in curriculum design for elementary education. Extract curriculum expectations from the following ${languageInfo} text.
 
 Please extract and return in JSON format:
 - Subject name
@@ -520,10 +531,13 @@ ${chunks[i]}
             const expectations = parsed.expectations.map((exp: any) => ({
               code: exp.code || `AUTO_${i}_${allExpectations.length}`,
               description: exp.description || '',
+              descriptionFr: exp.descriptionFr,
               subject: parsed.subject || 'Unknown',
               grade: parsed.grade || 1,
               strand: exp.strand || exp.domain || 'General',
+              strandFr: exp.strandFr,
               substrand: exp.substrand,
+              substrandFr: exp.substrandFr,
             }));
 
             allExpectations.push(...expectations);
@@ -538,6 +552,38 @@ ${chunks[i]}
       this.logger.error({ error }, 'Failed to parse text with AI');
       throw new Error('AI parsing failed');
     }
+  }
+
+  /**
+   * Detect if text is primarily in French
+   */
+  private detectLanguage(text: string): boolean {
+    const frenchIndicators = [
+      'attentes', 'domaine', 'année', 'élève', 'apprentissage',
+      'français', 'mathématiques', 'sciences', 'études sociales',
+      'contenus d\'apprentissage', 'pistes de réflexion'
+    ];
+    
+    const textLower = text.toLowerCase();
+    const frenchCount = frenchIndicators.filter(indicator => 
+      textLower.includes(indicator)
+    ).length;
+    
+    return frenchCount >= 3;
+  }
+  
+  /**
+   * Detect if text contains both English and French
+   */
+  private detectBilingual(text: string): boolean {
+    const englishIndicators = ['expectations', 'strand', 'grade', 'student', 'learning'];
+    const frenchIndicators = ['attentes', 'domaine', 'année', 'élève', 'apprentissage'];
+    
+    const textLower = text.toLowerCase();
+    const hasEnglish = englishIndicators.some(indicator => textLower.includes(indicator));
+    const hasFrench = frenchIndicators.some(indicator => textLower.includes(indicator));
+    
+    return hasEnglish && hasFrench;
   }
 
   /**

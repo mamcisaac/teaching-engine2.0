@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
   useLongRangePlan,
@@ -9,16 +9,34 @@ import {
   useUpdateUnitPlan,
   UnitPlan,
 } from '../hooks/useETFOPlanning';
+import { useCurriculumExpectations } from '../api';
+import { useUnitPlanForm } from '../hooks/useUnitPlanForm';
+// import { UnitPlanService } from '../services/unitPlanService';
+import { useTemplates, useApplyTemplate } from '../hooks/useTemplates';
+import { PlanTemplate, isUnitPlanTemplate } from '../types/template';
+import { PlanningErrorBoundary, FormErrorBoundary } from '../components/ErrorBoundaries';
+import { LoadingSpinner, UnitPlanSkeleton, EmptyState } from '../components/LoadingStates';
+import { UnitPlanCard } from '../components/unitPlans/UnitPlanCard';
+import { UnitPlanOverviewTab } from '../components/unitPlans/UnitPlanOverviewTab';
+import { UnitPlanPlanningTab } from '../components/unitPlans/UnitPlanPlanningTab';
 import Dialog from '../components/Dialog';
 import { Button } from '../components/ui/Button';
-import RichTextEditor from '../components/RichTextEditor';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Label } from '../components/ui/Label';
 import { Input } from '../components/ui/Input';
 import { Textarea } from '../components/ui/Textarea';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { Plus, Trash2 } from 'lucide-react';
-import ExpectationSelector from '../components/planning/ExpectationSelector';
+import { Plus, Sparkles, Printer, Download, Save, RefreshCw, Trash2, BookTemplate } from 'lucide-react';
+// Lazy load AI components for better performance
+const AIUnitPlanPanel = lazy(() => import('../components/ai/AIUnitPlanPanel').then(m => ({ default: m.AIUnitPlanPanel })));
+const WithAIErrorBoundary = lazy(() => import('../components/ai/AIErrorBoundary').then(m => ({ default: m.WithAIErrorBoundary })));
+import { AutoSaveIndicator } from '../components/ui/AutoSaveIndicator';
+import { MobileOptimizedForm } from '../components/ui/MobileOptimizedForm';
+import { generateUnitPlanHTML, printHTML, downloadHTML } from '../utils/printUtils';
+import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
+import { SafeHtmlRenderer } from '../utils/sanitization';
+import RichTextEditor from '../components/RichTextEditor';
+import { PlanAccessTracker } from '../components/planning/PlanAccessTracker';
 
 // Extended UnitPlan type with all ETFO fields
 interface ExtendedUnitPlan extends UnitPlan {
@@ -46,6 +64,8 @@ export default function UnitPlansPage() {
   const { longRangePlanId, unitId } = useParams();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [editingUnit, setEditingUnit] = useState<string | null>(null);
+  const [isTemplateModalOpen, setIsTemplateModalOpen] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState<PlanTemplate | null>(null);
 
   // Fetch data
   const { data: longRangePlan } = useLongRangePlan(longRangePlanId || '');
@@ -55,201 +75,177 @@ export default function UnitPlansPage() {
   );
   const { data: selectedUnit } = useUnitPlan(unitId || '');
 
+  // Curriculum expectations for AI assistance
+  const { data: curriculumExpectations = [] } = useCurriculumExpectations({
+    grade: longRangePlan?.grade,
+    subject: longRangePlan?.subject,
+  });
+
   // Mutations
   const createUnit = useCreateUnitPlan();
   const updateUnit = useUpdateUnitPlan();
-
-  // Form state with all ETFO-aligned fields
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    bigIdeas: '',
-    essentialQuestions: [''],
-    startDate: '',
-    endDate: '',
-    estimatedHours: 20,
-    assessmentPlan: '',
-    successCriteria: [''],
-    expectationIds: [] as string[],
-    longRangePlanId: longRangePlanId || '',
-    // Additional ETFO fields
-    crossCurricularConnections: '',
-    learningSkills: [] as string[],
-    culminatingTask: '',
-    keyVocabulary: [''],
-    priorKnowledge: '',
-    parentCommunicationPlan: '',
-    fieldTripsAndGuestSpeakers: '',
-    differentiationStrategies: {
-      forStruggling: [''],
-      forAdvanced: [''],
-      forELL: [''],
-      forIEP: [''],
-    },
-    indigenousPerspectives: '',
-    environmentalEducation: '',
-    socialJusticeConnections: '',
-    technologyIntegration: '',
-    communityConnections: '',
+  
+  // Template-related hooks
+  const { data: unitTemplatesResult } = useTemplates({
+    type: 'UNIT_PLAN',
+    subject: longRangePlan?.subject,
+    gradeMin: longRangePlan?.grade,
+    gradeMax: longRangePlan?.grade,
+    limit: 20,
   });
+  const applyTemplate = useApplyTemplate();
+  
+  const unitTemplates = unitTemplatesResult?.templates || [];
+
+  // Form management with custom hook
+  const {
+    formData,
+    updateField,
+    addArrayItem,
+    updateArrayItem,
+    removeArrayItem,
+    updateDifferentiationStrategy,
+    addDifferentiationStrategy,
+    removeDifferentiationStrategy,
+    validateForm,
+    getCleanFormData,
+    resetForm,
+    loadUnitPlan,
+    lastSaved,
+    isSaving,
+    hasUnsavedChanges,
+    saveNow,
+  } = useUnitPlanForm({
+    longRangePlanId,
+    editingId: editingUnit,
+    onSave: async (data) => {
+      if (editingUnit) {
+        await updateUnit.mutateAsync({ id: editingUnit, ...data });
+      }
+    },
+  });
+
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    const { isValid, errors } = validateForm();
+    if (!isValid) {
+      console.error('Form validation errors:', errors);
+      return;
+    }
 
-    // Clean up array fields
-    const cleanedDifferentiation = {
-      forStruggling: formData.differentiationStrategies.forStruggling.filter((s) => s.trim()),
-      forAdvanced: formData.differentiationStrategies.forAdvanced.filter((s) => s.trim()),
-      forELL: formData.differentiationStrategies.forELL.filter((s) => s.trim()),
-      forIEP: formData.differentiationStrategies.forIEP.filter((s) => s.trim()),
-    };
-
-    // Only include longRangePlanId if we have one and it's provided in form data
-    const data = {
-      ...formData,
-      ...(formData.longRangePlanId && { longRangePlanId: formData.longRangePlanId }),
-      essentialQuestions: formData.essentialQuestions.filter((q) => q.trim()),
-      successCriteria: formData.successCriteria.filter((c) => c.trim()),
-      keyVocabulary: formData.keyVocabulary.filter((v) => v.trim()),
-      differentiationStrategies: cleanedDifferentiation,
-    };
+    const cleanData = getCleanFormData();
 
     if (editingUnit) {
-      await updateUnit.mutateAsync({ id: editingUnit, ...data });
+      await updateUnit.mutateAsync({ id: editingUnit, ...cleanData });
       setEditingUnit(null);
     } else {
-      await createUnit.mutateAsync(data);
+      await createUnit.mutateAsync(cleanData);
     }
 
     setIsCreateModalOpen(false);
     resetForm();
   };
 
-  const resetForm = () => {
-    setFormData({
-      title: '',
-      description: '',
-      bigIdeas: '',
-      essentialQuestions: [''],
-      startDate: '',
-      endDate: '',
-      estimatedHours: 20,
-      assessmentPlan: '',
-      successCriteria: [''],
-      expectationIds: [],
-      longRangePlanId: longRangePlanId || '',
-      // Additional ETFO fields
-      crossCurricularConnections: '',
-      learningSkills: [],
-      culminatingTask: '',
-      keyVocabulary: [''],
-      priorKnowledge: '',
-      parentCommunicationPlan: '',
-      fieldTripsAndGuestSpeakers: '',
-      differentiationStrategies: {
-        forStruggling: [''],
-        forAdvanced: [''],
-        forELL: [''],
-        forIEP: [''],
-      },
-      indigenousPerspectives: '',
-      environmentalEducation: '',
-      socialJusticeConnections: '',
-      technologyIntegration: '',
-      communityConnections: '',
-    });
+
+
+  // AI suggestion handlers
+  const handleAISuggestionAccepted = (type: string, content: string[]) => {
+    switch (type) {
+      case 'bigIdeas':
+        updateField('bigIdeas', content.join('\n\n'));
+        break;
+      case 'essentialQuestions':
+        updateField('essentialQuestions', content);
+        break;
+      case 'activities':
+        // Add to description or a specific activities field if available
+        const currentDesc = formData.description;
+        const activitiesText = '\n\nSuggested Activities:\n' + content.map(a => `• ${a}`).join('\n');
+        updateField('description', currentDesc + activitiesText);
+        break;
+      case 'vocabulary':
+        const existingVocab = formData.keyVocabulary.filter(v => v.trim());
+        updateField('keyVocabulary', [...existingVocab, ...content]);
+        break;
+      default:
+        // Unhandled suggestion type
+    }
   };
 
-  const addEssentialQuestion = () => {
-    setFormData({
-      ...formData,
-      essentialQuestions: [...formData.essentialQuestions, ''],
-    });
+  const handleAIUnitGenerated = (unitPlan: any) => {
+    updateField('title', unitPlan.title || formData.title);
+    updateField('description', unitPlan.description || formData.description);
+    updateField('bigIdeas', unitPlan.bigIdeas?.join('\n\n') || formData.bigIdeas);
+    updateField('essentialQuestions', unitPlan.learningGoals || formData.essentialQuestions);
+    updateField('keyVocabulary', unitPlan.vocabulary || formData.keyVocabulary);
   };
 
-  const updateEssentialQuestion = (index: number, value: string) => {
-    const updated = [...formData.essentialQuestions];
-    updated[index] = value;
-    setFormData({ ...formData, essentialQuestions: updated });
+  const handleEditUnit = (unit: UnitPlan) => {
+    setEditingUnit(unit.id);
+    loadUnitPlan(unit);
+    setIsCreateModalOpen(true);
   };
 
-  const removeEssentialQuestion = (index: number) => {
-    setFormData({
-      ...formData,
-      essentialQuestions: formData.essentialQuestions.filter((_, i) => i !== index),
-    });
-  };
-
-  const addSuccessCriteria = () => {
-    setFormData({
-      ...formData,
-      successCriteria: [...formData.successCriteria, ''],
-    });
-  };
-
-  const updateSuccessCriteria = (index: number, value: string) => {
-    const updated = [...formData.successCriteria];
-    updated[index] = value;
-    setFormData({ ...formData, successCriteria: updated });
-  };
-
-  const removeSuccessCriteria = (index: number) => {
-    setFormData({
-      ...formData,
-      successCriteria: formData.successCriteria.filter((_, i) => i !== index),
-    });
-  };
-
-  const addKeyVocabulary = () => {
-    setFormData({
-      ...formData,
-      keyVocabulary: [...formData.keyVocabulary, ''],
-    });
-  };
-
-  const updateKeyVocabulary = (index: number, value: string) => {
-    const updated = [...formData.keyVocabulary];
-    updated[index] = value;
-    setFormData({ ...formData, keyVocabulary: updated });
-  };
-
-  const removeKeyVocabulary = (index: number) => {
-    setFormData({
-      ...formData,
-      keyVocabulary: formData.keyVocabulary.filter((_, i) => i !== index),
-    });
-  };
-
-  const updateDifferentiationStrategy = (
-    type: keyof typeof formData.differentiationStrategies,
-    index: number,
-    value: string,
-  ) => {
-    const updated = { ...formData.differentiationStrategies };
-    updated[type][index] = value;
-    setFormData({ ...formData, differentiationStrategies: updated });
-  };
-
-  const addDifferentiationStrategy = (type: keyof typeof formData.differentiationStrategies) => {
-    const updated = { ...formData.differentiationStrategies };
-    updated[type] = [...updated[type], ''];
-    setFormData({ ...formData, differentiationStrategies: updated });
-  };
-
-  const removeDifferentiationStrategy = (
-    type: keyof typeof formData.differentiationStrategies,
-    index: number,
-  ) => {
-    const updated = { ...formData.differentiationStrategies };
-    updated[type] = updated[type].filter((_, i) => i !== index);
-    setFormData({ ...formData, differentiationStrategies: updated });
+  const handleApplyTemplate = async (template: PlanTemplate) => {
+    try {
+      const applied = await applyTemplate.mutateAsync({ id: template.id });
+      
+      if (isUnitPlanTemplate(template) && applied.appliedContent) {
+        // Pre-populate form with template data
+        const templateContent = applied.appliedContent;
+        updateField('title', templateContent.title || '');
+        updateField('description', templateContent.overview || templateContent.description || '');
+        updateField('bigIdeas', templateContent.bigIdeas || '');
+        updateField('essentialQuestions', templateContent.essentialQuestions || []);
+        updateField('keyVocabulary', templateContent.keyVocabulary || []);
+        updateField('assessmentPlan', templateContent.assessmentPlan || '');
+        updateField('successCriteria', templateContent.successCriteria || []);
+        updateField('crossCurricularConnections', templateContent.crossCurricularConnections || '');
+        updateField('differentiationStrategies', templateContent.differentiationStrategies || {
+          forStruggling: [],
+          forAdvanced: [],
+          forELL: [],
+          forIEP: [],
+        });
+        updateField('culminatingTask', templateContent.culminatingTask || '');
+        updateField('priorKnowledge', templateContent.priorKnowledge || '');
+        updateField('parentCommunicationPlan', templateContent.parentCommunicationPlan || '');
+        updateField('fieldTripsAndGuestSpeakers', templateContent.fieldTripsAndGuestSpeakers || '');
+        updateField('indigenousPerspectives', templateContent.indigenousPerspectives || '');
+        updateField('environmentalEducation', templateContent.environmentalEducation || '');
+        updateField('socialJusticeConnections', templateContent.socialJusticeConnections || '');
+        updateField('technologyIntegration', templateContent.technologyIntegration || '');
+        updateField('communityConnections', templateContent.communityConnections || '');
+        
+        // Set estimated duration if available
+        if (template.estimatedWeeks) {
+          const startDate = new Date();
+          const endDate = new Date();
+          endDate.setDate(startDate.getDate() + (template.estimatedWeeks * 7));
+          updateField('startDate', startDate.toISOString().split('T')[0]);
+          updateField('endDate', endDate.toISOString().split('T')[0]);
+          updateField('estimatedHours', template.estimatedWeeks * 5); // Assume 5 hours per week
+        }
+      }
+      
+      setIsTemplateModalOpen(false);
+      setSelectedTemplate(null);
+      setIsCreateModalOpen(true);
+    } catch (error) {
+      console.error('Failed to apply template:', error);
+    }
   };
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
-      </div>
+      <PlanningErrorBoundary>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <LoadingSpinner size="lg" message="Loading unit plans..." />
+        </div>
+      </PlanningErrorBoundary>
     );
   }
 
@@ -257,7 +253,8 @@ export default function UnitPlansPage() {
   if (unitId && selectedUnit) {
     const unit = selectedUnit as ExtendedUnitPlan;
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <PlanAccessTracker planType="unit">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
           <Link to="/planner/long-range" className="hover:text-indigo-600">
@@ -288,6 +285,24 @@ export default function UnitPlansPage() {
                 </div>
               </div>
               <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => printHTML(generateUnitPlanHTML(unit as any), `${unit.title}-unit-plan`)}
+                  className="flex items-center gap-2"
+                >
+                  <Printer className="h-4 w-4" />
+                  Print
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => downloadHTML(generateUnitPlanHTML(unit as any), `${unit.title}-unit-plan`)}
+                  className="flex items-center gap-2"
+                >
+                  <Download className="h-4 w-4" />
+                  Export
+                </Button>
                 <Link to={`/planner/units/${unitId}/lessons`}>
                   <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
                     View Lessons
@@ -295,42 +310,7 @@ export default function UnitPlansPage() {
                 </Link>
                 <Button
                   variant="outline"
-                  onClick={() => {
-                    setEditingUnit(unit.id);
-                    setFormData({
-                      title: unit.title,
-                      description: unit.description || '',
-                      bigIdeas: unit.bigIdeas || '',
-                      essentialQuestions: unit.essentialQuestions || [''],
-                      startDate: unit.startDate.split('T')[0],
-                      endDate: unit.endDate.split('T')[0],
-                      estimatedHours: unit.estimatedHours || 20,
-                      assessmentPlan: unit.assessmentPlan || '',
-                      successCriteria: unit.successCriteria || [''],
-                      expectationIds: unit.expectations?.map((e) => e.expectation.id) || [],
-                      longRangePlanId: unit.longRangePlanId,
-                      // Additional ETFO fields
-                      crossCurricularConnections: unit.crossCurricularConnections || '',
-                      learningSkills: unit.learningSkills || [],
-                      culminatingTask: unit.culminatingTask || '',
-                      keyVocabulary: unit.keyVocabulary || [''],
-                      priorKnowledge: unit.priorKnowledge || '',
-                      parentCommunicationPlan: unit.parentCommunicationPlan || '',
-                      fieldTripsAndGuestSpeakers: unit.fieldTripsAndGuestSpeakers || '',
-                      differentiationStrategies: unit.differentiationStrategies || {
-                        forStruggling: [''],
-                        forAdvanced: [''],
-                        forELL: [''],
-                        forIEP: [''],
-                      },
-                      indigenousPerspectives: unit.indigenousPerspectives || '',
-                      environmentalEducation: unit.environmentalEducation || '',
-                      socialJusticeConnections: unit.socialJusticeConnections || '',
-                      technologyIntegration: unit.technologyIntegration || '',
-                      communityConnections: unit.communityConnections || '',
-                    });
-                    setIsCreateModalOpen(true);
-                  }}
+                  onClick={() => handleEditUnit(unit)}
                 >
                   Edit Unit
                 </Button>
@@ -350,9 +330,9 @@ export default function UnitPlansPage() {
             {unit.bigIdeas && (
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Big Ideas</h3>
-                <div
+                <SafeHtmlRenderer 
+                  html={unit.bigIdeas}
                   className="prose max-w-none"
-                  dangerouslySetInnerHTML={{ __html: unit.bigIdeas }}
                 />
               </div>
             )}
@@ -386,9 +366,9 @@ export default function UnitPlansPage() {
             {unit.assessmentPlan && (
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Assessment Plan</h3>
-                <div
+                <SafeHtmlRenderer 
+                  html={unit.assessmentPlan}
                   className="prose max-w-none"
-                  dangerouslySetInnerHTML={{ __html: unit.assessmentPlan }}
                 />
               </div>
             )}
@@ -540,6 +520,7 @@ export default function UnitPlansPage() {
           </div>
         </div>
       </div>
+      </PlanAccessTracker>
     );
   }
 
@@ -587,406 +568,173 @@ export default function UnitPlansPage() {
             )}
           </div>
 
-          <Button
-            onClick={() => setIsCreateModalOpen(true)}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white"
-          >
-            Create Unit Plan
-          </Button>
-        </div>
-      </div>
-
-      {/* Unit Plans Grid */}
-      {unitPlans.length === 0 ? (
-        <div className="text-center py-12 bg-white rounded-lg border-2 border-dashed border-gray-300">
-          <svg
-            className="mx-auto h-12 w-12 text-gray-400"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+          <div className="flex items-center gap-3">
+            <BlankTemplateQuickActions 
+              templateType="unit"
+              schoolInfo={{
+                grade: longRangePlan ? `Grade ${longRangePlan.grade}` : '',
+                subject: longRangePlan?.subject || '',
+                academicYear: longRangePlan?.academicYear || '',
+              }}
             />
-          </svg>
-          <h3 className="mt-4 text-lg font-medium text-gray-900">No unit plans yet</h3>
-          <p className="mt-2 text-sm text-gray-600">
-            Start by creating your first unit plan for this long-range plan
-          </p>
-          <div className="mt-6">
+            <Button
+              variant="outline"
+              onClick={() => setIsTemplateModalOpen(true)}
+              className="flex items-center gap-2"
+            >
+              <BookTemplate className="h-4 w-4" />
+              Create from Template
+            </Button>
             <Button
               onClick={() => setIsCreateModalOpen(true)}
               className="bg-indigo-600 hover:bg-indigo-700 text-white"
             >
+              <Plus className="h-4 w-4 mr-2" />
               Create Unit Plan
             </Button>
           </div>
         </div>
-      ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {unitPlans.map((unit) => (
-            <div
-              key={unit.id}
-              className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow border border-gray-200"
-            >
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-lg font-semibold text-gray-900">{unit.title}</h3>
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
-                    {unit.estimatedHours || 0} hours
-                  </span>
-                </div>
+      </div>
 
-                {unit.bigIdeas && (
-                  <div className="mb-4">
-                    <h4 className="text-sm font-medium text-gray-700 mb-1">Big Ideas</h4>
-                    <p className="text-sm text-gray-600 line-clamp-2">{unit.bigIdeas}</p>
-                  </div>
-                )}
-
-                <div className="text-sm text-gray-500 mb-4">
-                  {new Date(unit.startDate).toLocaleDateString()} -{' '}
-                  {new Date(unit.endDate).toLocaleDateString()}
-                </div>
-
-                <div className="flex justify-between items-center">
-                  <div className="flex gap-4 text-sm text-gray-500">
-                    <span>{unit._count?.lessonPlans || 0} lessons</span>
-                    <span>{unit._count?.expectations || 0} expectations</span>
-                  </div>
-
-                  {unit.progress && (
-                    <div className="text-right">
-                      <div className="text-sm font-medium text-gray-900">
-                        {unit.progress.percentage}%
-                      </div>
-                      <div className="text-xs text-gray-500">complete</div>
-                    </div>
-                  )}
-                </div>
-
-                <div className="mt-4 flex gap-2">
-                  <Link
-                    to={`/planner/units/${unit.id}`}
-                    className="flex-1 text-center px-3 py-2 text-sm font-medium text-indigo-600 bg-indigo-50 rounded-md hover:bg-indigo-100"
-                  >
-                    View Details
-                  </Link>
-                  <button
-                    onClick={() => {
-                      setEditingUnit(unit.id);
-                      setFormData({
-                        title: unit.title,
-                        description: unit.description || '',
-                        bigIdeas: unit.bigIdeas || '',
-                        essentialQuestions: unit.essentialQuestions || [''],
-                        startDate: unit.startDate.split('T')[0],
-                        endDate: unit.endDate.split('T')[0],
-                        estimatedHours: unit.estimatedHours || 20,
-                        assessmentPlan: unit.assessmentPlan || '',
-                        successCriteria: unit.successCriteria || [''],
-                        expectationIds: unit.expectations?.map((e) => e.expectation.id) || [],
-                        longRangePlanId: unit.longRangePlanId,
-                        // Additional ETFO fields
-                        crossCurricularConnections:
-                          (unit as ExtendedUnitPlan).crossCurricularConnections || '',
-                        learningSkills: (unit as ExtendedUnitPlan).learningSkills || [],
-                        culminatingTask: (unit as ExtendedUnitPlan).culminatingTask || '',
-                        keyVocabulary: (unit as ExtendedUnitPlan).keyVocabulary || [''],
-                        priorKnowledge: (unit as ExtendedUnitPlan).priorKnowledge || '',
-                        parentCommunicationPlan:
-                          (unit as ExtendedUnitPlan).parentCommunicationPlan || '',
-                        fieldTripsAndGuestSpeakers:
-                          (unit as ExtendedUnitPlan).fieldTripsAndGuestSpeakers || '',
-                        differentiationStrategies: (unit as ExtendedUnitPlan)
-                          .differentiationStrategies || {
-                          forStruggling: [''],
-                          forAdvanced: [''],
-                          forELL: [''],
-                          forIEP: [''],
-                        },
-                        indigenousPerspectives:
-                          (unit as ExtendedUnitPlan).indigenousPerspectives || '',
-                        environmentalEducation:
-                          (unit as ExtendedUnitPlan).environmentalEducation || '',
-                        socialJusticeConnections:
-                          (unit as ExtendedUnitPlan).socialJusticeConnections || '',
-                        technologyIntegration:
-                          (unit as ExtendedUnitPlan).technologyIntegration || '',
-                        communityConnections: (unit as ExtendedUnitPlan).communityConnections || '',
-                      });
-                      setIsCreateModalOpen(true);
-                    }}
-                    className="px-3 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
-                  >
-                    Edit
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+      {/* Unit Plans Grid */}
+      <PlanningErrorBoundary>
+        {unitPlans.length === 0 ? (
+          <EmptyState
+            icon={
+              <svg
+                className="mx-auto h-12 w-12 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                />
+              </svg>
+            }
+            title="No unit plans yet"
+            description="Start by creating your first unit plan for this long-range plan"
+            action={
+              <Button
+                onClick={() => setIsCreateModalOpen(true)}
+                className="bg-indigo-600 hover:bg-indigo-700 text-white"
+              >
+                Create Unit Plan
+              </Button>
+            }
+          />
+        ) : (
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {unitPlans.map((unit) => (
+              <UnitPlanCard
+                key={unit.id}
+                unit={unit}
+                onEdit={handleEditUnit}
+              />
+            ))}
+          </div>
+        )}
+      </PlanningErrorBoundary>
 
       {/* Create/Edit Unit Modal */}
       <Dialog open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen}>
         <div className="p-6 max-w-5xl max-h-[90vh] overflow-y-auto">
-          <h3 className="text-lg font-semibold mb-4">
-            {editingUnit ? 'Edit Unit Plan' : 'Create Unit Plan'}
-          </h3>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold">
+              {editingUnit ? 'Edit Unit Plan' : 'Create Unit Plan'}
+            </h3>
+            {editingUnit && (
+              <div className="flex items-center gap-2">
+                <AutoSaveIndicator
+                  lastSaved={lastSaved}
+                  isSaving={isSaving}
+                  hasUnsavedChanges={hasUnsavedChanges}
+                  onManualSave={saveNow}
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={saveNow}
+                  disabled={isSaving || !hasUnsavedChanges}
+                  className="flex items-center gap-2"
+                >
+                  {isSaving ? (
+                    <RefreshCw className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Save className="h-4 w-4" />
+                  )}
+                  Save
+                </Button>
+              </div>
+            )}
+          </div>
 
-          <form onSubmit={handleSubmit}>
-            <Tabs defaultValue="overview" className="space-y-4">
-              <TabsList className="grid w-full grid-cols-5">
-                <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="planning">Planning</TabsTrigger>
-                <TabsTrigger value="assessment">Assessment</TabsTrigger>
-                <TabsTrigger value="differentiation">Differentiation</TabsTrigger>
-                <TabsTrigger value="connections">Connections</TabsTrigger>
-              </TabsList>
+          <MobileOptimizedForm>
+            <form onSubmit={handleSubmit}>
+              <Tabs defaultValue="overview" className="space-y-4">
+                <TabsList className="grid w-full grid-cols-2 sm:grid-cols-6">
+                  <TabsTrigger value="overview">Overview</TabsTrigger>
+                  <TabsTrigger value="ai-assistant" className="gap-2">
+                    <Sparkles className="h-4 w-4" />
+                    AI Assistant
+                  </TabsTrigger>
+                  <TabsTrigger value="planning">Planning</TabsTrigger>
+                  <TabsTrigger value="assessment">Assessment</TabsTrigger>
+                  <TabsTrigger value="differentiation">Differentiation</TabsTrigger>
+                  <TabsTrigger value="connections">Connections</TabsTrigger>
+                </TabsList>
 
               <TabsContent value="overview" className="space-y-6 mt-4">
-                {/* Basic Information */}
-                <div>
-                  <h4 className="text-md font-medium text-gray-900 mb-3">Basic Information</h4>
-                  <div className="space-y-4">
-                    {!longRangePlanId && (
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Long-Range Plan *
-                        </label>
-                        <select
-                          required
-                          value={formData.longRangePlanId}
-                          onChange={(e) =>
-                            setFormData({ ...formData, longRangePlanId: e.target.value })
-                          }
-                          className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                        >
-                          <option value="">Select a long-range plan...</option>
-                          {allLongRangePlans.map((plan) => (
-                            <option key={plan.id} value={plan.id}>
-                              {plan.title} - {plan.subject} Grade {plan.grade}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    )}
+                <UnitPlanOverviewTab
+                  formData={formData}
+                  updateField={updateField}
+                  longRangePlanId={longRangePlanId}
+                  allLongRangePlans={allLongRangePlans}
+                />
+              </TabsContent>
 
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Unit Title *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.title}
-                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                        className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                        placeholder="e.g., Living Things in Our Environment"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Description
-                      </label>
-                      <textarea
-                        value={formData.description}
-                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                        rows={3}
-                        className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                        placeholder="Brief overview of the unit..."
-                      />
-                    </div>
-
-                    <div className="grid grid-cols-3 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Start Date *
-                        </label>
-                        <input
-                          type="date"
-                          required
-                          value={formData.startDate}
-                          onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
-                          className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          End Date *
-                        </label>
-                        <input
-                          type="date"
-                          required
-                          value={formData.endDate}
-                          onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
-                          className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Estimated Hours
-                        </label>
-                        <input
-                          type="number"
-                          value={formData.estimatedHours}
-                          onChange={(e) =>
-                            setFormData({ ...formData, estimatedHours: Number(e.target.value) })
-                          }
-                          className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                          min="1"
-                        />
-                      </div>
-                    </div>
+              <TabsContent value="ai-assistant" className="space-y-6 mt-4">
+                <Suspense fallback={
+                  <div className="flex items-center justify-center p-8">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                    <span className="ml-2 text-gray-600">Loading AI Assistant...</span>
                   </div>
-                </div>
+                }>
+                  <WithAIErrorBoundary>
+                    <AIUnitPlanPanel
+                      unitTitle={formData.title}
+                      subject={longRangePlan?.subject || ''}
+                      grade={longRangePlan?.grade || 1}
+                      duration={2} // Default 2 weeks
+                      curriculumExpectations={curriculumExpectations
+                        .filter(exp => formData.expectationIds.includes(exp.id))
+                        .map(exp => ({
+                          id: exp.id,
+                          code: exp.code,
+                          description: exp.description,
+                          strand: exp.strand,
+                        }))}
+                      onSuggestionAccepted={handleAISuggestionAccepted}
+                      onUnitGenerated={handleAIUnitGenerated}
+                      className="w-full"
+                    />
+                  </WithAIErrorBoundary>
+                </Suspense>
               </TabsContent>
 
               <TabsContent value="planning" className="space-y-6 mt-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Big Ideas</label>
-                  <RichTextEditor
-                    value={formData.bigIdeas}
-                    onChange={(value) => setFormData({ ...formData, bigIdeas: value })}
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Essential Questions
-                  </label>
-                  <div className="space-y-2">
-                    {formData.essentialQuestions.map((question, index) => (
-                      <div key={index} className="flex gap-2">
-                        <input
-                          type="text"
-                          value={question}
-                          onChange={(e) => updateEssentialQuestion(index, e.target.value)}
-                          className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                          placeholder="Enter an essential question..."
-                        />
-                        <button
-                          type="button"
-                          onClick={() => removeEssentialQuestion(index)}
-                          className="px-3 py-2 text-sm text-red-600 hover:text-red-700"
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    ))}
-                    <button
-                      type="button"
-                      onClick={addEssentialQuestion}
-                      className="text-sm text-indigo-600 hover:text-indigo-700"
-                    >
-                      + Add Essential Question
-                    </button>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Success Criteria
-                  </label>
-                  <div className="space-y-2">
-                    {formData.successCriteria.map((criteria, index) => (
-                      <div key={index} className="flex gap-2">
-                        <input
-                          type="text"
-                          value={criteria}
-                          onChange={(e) => updateSuccessCriteria(index, e.target.value)}
-                          className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                          placeholder="Students will be able to..."
-                        />
-                        <button
-                          type="button"
-                          onClick={() => removeSuccessCriteria(index)}
-                          className="px-3 py-2 text-sm text-red-600 hover:text-red-700"
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    ))}
-                    <button
-                      type="button"
-                      onClick={addSuccessCriteria}
-                      className="text-sm text-indigo-600 hover:text-indigo-700"
-                    >
-                      + Add Success Criteria
-                    </button>
-                  </div>
-                </div>
-
-                <div>
-                  <Label>Key Vocabulary & Terminology</Label>
-                  <div className="space-y-2 mt-2">
-                    {formData.keyVocabulary.map((term, index) => (
-                      <div key={index} className="flex gap-2">
-                        <Input
-                          type="text"
-                          value={term}
-                          onChange={(e) => updateKeyVocabulary(index, e.target.value)}
-                          placeholder="Important term or concept..."
-                        />
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => removeKeyVocabulary(index)}
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    ))}
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={addKeyVocabulary}
-                      className="w-full"
-                    >
-                      <Plus className="h-4 w-4 mr-2" />
-                      Add Term
-                    </Button>
-                  </div>
-                </div>
-
-                <div>
-                  <Label>Prior Knowledge Requirements</Label>
-                  <Textarea
-                    value={formData.priorKnowledge}
-                    onChange={(e) => setFormData({ ...formData, priorKnowledge: e.target.value })}
-                    placeholder="What should students already know before starting this unit?"
-                    rows={3}
-                    className="mt-2"
-                  />
-                </div>
-
-                <div>
-                  <ExpectationSelector
-                    selectedIds={formData.expectationIds}
-                    onChange={(ids) => setFormData({ ...formData, expectationIds: ids })}
-                    grade={longRangePlan?.grade}
-                    subject={longRangePlan?.subject}
-                    label="Curriculum Expectations"
-                    placeholder="Select curriculum expectations for this unit..."
-                  />
-                </div>
-
-                <div>
-                  <Label>Culminating Task Description</Label>
-                  <RichTextEditor
-                    value={formData.culminatingTask}
-                    onChange={(value) => setFormData({ ...formData, culminatingTask: value })}
-                  />
-                </div>
+                <UnitPlanPlanningTab
+                  formData={formData}
+                  updateField={updateField}
+                  addArrayItem={addArrayItem}
+                  updateArrayItem={updateArrayItem}
+                  removeArrayItem={removeArrayItem}
+                  longRangePlan={longRangePlan}
+                />
               </TabsContent>
 
               <TabsContent value="assessment" className="space-y-6 mt-4">
@@ -994,7 +742,7 @@ export default function UnitPlansPage() {
                   <Label>Assessment Plan</Label>
                   <RichTextEditor
                     value={formData.assessmentPlan}
-                    onChange={(value) => setFormData({ ...formData, assessmentPlan: value })}
+                    onChange={(value) => updateField('assessmentPlan', value)}
                   />
                 </div>
 
@@ -1015,15 +763,9 @@ export default function UnitPlansPage() {
                           checked={formData.learningSkills.includes(skill)}
                           onChange={(e) => {
                             if (e.target.checked) {
-                              setFormData({
-                                ...formData,
-                                learningSkills: [...formData.learningSkills, skill],
-                              });
+                              updateField('learningSkills', [...formData.learningSkills, skill]);
                             } else {
-                              setFormData({
-                                ...formData,
-                                learningSkills: formData.learningSkills.filter((s) => s !== skill),
-                              });
+                              updateField('learningSkills', formData.learningSkills.filter((s) => s !== skill));
                             }
                           }}
                           className="rounded"
@@ -1189,7 +931,7 @@ export default function UnitPlansPage() {
                   <Textarea
                     value={formData.crossCurricularConnections}
                     onChange={(e) =>
-                      setFormData({ ...formData, crossCurricularConnections: e.target.value })
+                      updateField('crossCurricularConnections', e.target.value)
                     }
                     placeholder="How does this unit connect to other subject areas?"
                     rows={3}
@@ -1202,7 +944,7 @@ export default function UnitPlansPage() {
                   <Textarea
                     value={formData.indigenousPerspectives}
                     onChange={(e) =>
-                      setFormData({ ...formData, indigenousPerspectives: e.target.value })
+                      updateField('indigenousPerspectives', e.target.value)
                     }
                     placeholder="How will you incorporate Indigenous knowledge and perspectives?"
                     rows={3}
@@ -1215,7 +957,7 @@ export default function UnitPlansPage() {
                   <Textarea
                     value={formData.environmentalEducation}
                     onChange={(e) =>
-                      setFormData({ ...formData, environmentalEducation: e.target.value })
+                      updateField('environmentalEducation', e.target.value)
                     }
                     placeholder="Environmental learning opportunities in this unit..."
                     rows={3}
@@ -1228,7 +970,7 @@ export default function UnitPlansPage() {
                   <Textarea
                     value={formData.socialJusticeConnections}
                     onChange={(e) =>
-                      setFormData({ ...formData, socialJusticeConnections: e.target.value })
+                      updateField('socialJusticeConnections', e.target.value)
                     }
                     placeholder="Equity and social justice themes..."
                     rows={3}
@@ -1241,7 +983,7 @@ export default function UnitPlansPage() {
                   <Textarea
                     value={formData.technologyIntegration}
                     onChange={(e) =>
-                      setFormData({ ...formData, technologyIntegration: e.target.value })
+                      updateField('technologyIntegration', e.target.value)
                     }
                     placeholder="How will technology enhance learning in this unit?"
                     rows={3}
@@ -1254,7 +996,7 @@ export default function UnitPlansPage() {
                   <Textarea
                     value={formData.communityConnections}
                     onChange={(e) =>
-                      setFormData({ ...formData, communityConnections: e.target.value })
+                      updateField('communityConnections', e.target.value)
                     }
                     placeholder="Local partnerships, field trips, guest speakers..."
                     rows={3}
@@ -1267,7 +1009,7 @@ export default function UnitPlansPage() {
                   <Textarea
                     value={formData.parentCommunicationPlan}
                     onChange={(e) =>
-                      setFormData({ ...formData, parentCommunicationPlan: e.target.value })
+                      updateField('parentCommunicationPlan', e.target.value)
                     }
                     placeholder="How will you communicate unit goals and progress to families?"
                     rows={3}
@@ -1291,17 +1033,122 @@ export default function UnitPlansPage() {
               </Button>
               <Button
                 type="submit"
-                disabled={createUnit.isPending || updateUnit.isPending}
+                disabled={createUnit.isPending || updateUnit.isPending || isSaving}
                 className="bg-indigo-600 hover:bg-indigo-700 text-white"
               >
-                {createUnit.isPending || updateUnit.isPending
+                {(createUnit.isPending || updateUnit.isPending || isSaving)
                   ? 'Saving...'
                   : editingUnit
                     ? 'Update Unit Plan'
                     : 'Create Unit Plan'}
               </Button>
             </div>
-          </form>
+            </form>
+          </MobileOptimizedForm>
+        </div>
+      </Dialog>
+
+      {/* Template Selection Modal */}
+      <Dialog open={isTemplateModalOpen} onOpenChange={setIsTemplateModalOpen}>
+        <div className="p-6 max-w-4xl max-h-[90vh] overflow-y-auto">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold">Choose a Unit Plan Template</h3>
+          </div>
+
+          {unitTemplates.length === 0 ? (
+            <div className="text-center py-8">
+              <div className="mx-auto h-12 w-12 text-gray-400 mb-4">
+                <BookTemplate className="h-full w-full" />
+              </div>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">No templates available</h3>
+              <p className="text-gray-600">
+                {longRangePlan
+                  ? `No unit plan templates found for Grade ${longRangePlan.grade} ${longRangePlan.subject}.`
+                  : 'No unit plan templates available at this time.'}
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <p className="text-gray-600">
+                Select a template to get started with your unit plan. Templates provide pre-structured content that you can customize.
+              </p>
+              <div className="grid gap-4 md:grid-cols-2">
+                {unitTemplates.map((template) => (
+                  <Card
+                    key={template.id}
+                    className={`cursor-pointer border-2 transition-colors ${
+                      selectedTemplate?.id === template.id
+                        ? 'border-indigo-500 bg-indigo-50'
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                    onClick={() => setSelectedTemplate(template)}
+                  >
+                    <CardHeader>
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <CardTitle className="text-base">{template.title}</CardTitle>
+                          <CardDescription className="mt-1">
+                            {template.category} • Grade {template.gradeMin}
+                            {template.gradeMax && template.gradeMax !== template.gradeMin && `-${template.gradeMax}`}
+                            {template.estimatedWeeks && ` • ${template.estimatedWeeks} weeks`}
+                          </CardDescription>
+                        </div>
+                        <div className="flex items-center gap-1 text-yellow-500">
+                          <span className="text-sm">{template.averageRating?.toFixed(1) || '—'}</span>
+                          <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-gray-700 mb-3">{template.description}</p>
+                      <div className="flex flex-wrap gap-1 mb-3">
+                        {template.tags?.slice(0, 3).map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                        {template.tags && template.tags.length > 3 && (
+                          <span className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full">
+                            +{template.tags.length - 3} more
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center justify-between text-xs text-gray-500">
+                        <span>Used {template.usageCount || 0} times</span>
+                        <span>By {template.createdBy?.name || 'Anonymous'}</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="flex justify-end gap-3 pt-6 mt-6 border-t">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => {
+                setIsTemplateModalOpen(false);
+                setSelectedTemplate(null);
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              disabled={!selectedTemplate || applyTemplate.isPending}
+              onClick={() => selectedTemplate && handleApplyTemplate(selectedTemplate)}
+              className="bg-indigo-600 hover:bg-indigo-700 text-white"
+            >
+              {applyTemplate.isPending ? 'Loading...' : 'Use This Template'}
+            </Button>
+          </div>
         </div>
       </Dialog>
     </div>

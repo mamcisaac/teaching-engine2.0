@@ -6,6 +6,7 @@ import Dialog from '../components/Dialog';
 import { Button } from '../components/ui/Button';
 import { useAIPlanningAssistant, AISuggestion } from '../hooks/useAIPlanningAssistant';
 import AISuggestionPanel from '../components/planning/AISuggestionPanel';
+import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
 
 interface LongRangePlan {
   id: string;
@@ -131,12 +132,20 @@ export default function LongRangePlanPage() {
           </select>
         </div>
 
-        <Button
-          onClick={() => setIsCreateModalOpen(true)}
-          className="bg-indigo-600 hover:bg-indigo-700 text-white"
-        >
-          Create New Plan
-        </Button>
+        <div className="flex items-center gap-3">
+          <BlankTemplateQuickActions 
+            templateType="long-range"
+            schoolInfo={{
+              academicYear: selectedYear,
+            }}
+          />
+          <Button
+            onClick={() => setIsCreateModalOpen(true)}
+            className="bg-indigo-600 hover:bg-indigo-700 text-white"
+          >
+            Create New Plan
+          </Button>
+        </div>
       </div>
 
       {/* Plans Grid */}

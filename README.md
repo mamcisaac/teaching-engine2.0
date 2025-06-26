@@ -236,19 +236,50 @@ Analyze curriculum coverage and identify gaps:
 
 ## 🧪 Testing
 
+We've simplified testing from 20+ commands down to **8 intuitive commands**:
+
 ```bash
-# Set up test environment
-cp server/.env.test.example server/.env.test
+# Smart test detection - runs the right tests automatically
+pnpm test
 
-# Unit tests
-pnpm run test
+# Watch mode for TDD
+pnpm test:watch
 
-# E2E tests
-pnpm run test:e2e
+# Generate coverage report
+pnpm test:coverage
 
-# All tests with coverage
-pnpm run test:all
+# Debug tests interactively
+pnpm test:debug
+
+# Quick smoke test (5 second timeout)
+pnpm test:quick
+
+# Fix common test issues
+pnpm test:fix
+
+# Run all tests for CI
+pnpm test:ci
+
+# Show help
+pnpm test:help
 ```
+
+### Smart Test Detection
+
+The default `pnpm test` command automatically:
+- Detects which files have changed
+- Runs only the relevant tests  
+- Provides enhanced error messages with solutions
+- Uses optimal parallelization for speed
+
+### VSCode Integration
+
+Full debugging support with included launch configurations:
+- Debug current test file with F5
+- Set breakpoints in tests
+- Step through test execution
+
+See [docs/TESTING-GUIDE.md](docs/TESTING-GUIDE.md) for complete testing documentation.
 
 Unit tests cover the iCal import logic and integration tests ensure the
 `/api/report-deadlines` CRUD endpoints behave correctly.

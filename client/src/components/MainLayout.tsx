@@ -1,9 +1,11 @@
-import { ReactNode, useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useETFOProgress } from '../hooks/useETFOProgress';
 import NotificationBell from './NotificationBell';
 import LanguageSwitcher from './LanguageSwitcher';
+import TeacherOnboardingFlow from './TeacherOnboardingFlow';
+import { TutorialManager } from './help/TutorialManager';
 
 // Navigation item interface
 interface NavItem {
@@ -17,10 +19,29 @@ interface MainLayoutProps {
 }
 
 export default function MainLayout({ children }: MainLayoutProps) {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  // Mobile-first responsive sidebar state
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Default closed on mobile
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const { logout } = useAuth();
   const location = useLocation();
   const { getETFOLevels } = useETFOProgress();
+
+  // Handle responsive sidebar behavior
+  React.useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      // On desktop, keep sidebar open by default; on mobile, keep closed
+      if (!mobile && !isSidebarOpen) {
+        setIsSidebarOpen(true);
+      } else if (mobile && isSidebarOpen) {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isSidebarOpen]);
 
   // Get ETFO planning levels
   const etfoLevels = getETFOLevels();
@@ -47,10 +68,9 @@ export default function MainLayout({ children }: MainLayoutProps) {
         </svg>
       ),
     },
-    // Legacy navigation items removed - functionality available through ETFO workflow
     {
-      path: '/students',
-      label: 'Students',
+      path: '/planner/calendar',
+      label: 'Calendar View',
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -63,14 +83,14 @@ export default function MainLayout({ children }: MainLayoutProps) {
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={2}
-            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
+            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
           />
         </svg>
       ),
     },
     {
-      path: '/parent-summaries',
-      label: 'Parent Summaries',
+      path: '/templates',
+      label: 'Plan Templates',
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +103,48 @@ export default function MainLayout({ children }: MainLayoutProps) {
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={2}
-            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+            d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+          />
+        </svg>
+      ),
+    },
+    // Legacy navigation items removed - functionality available through ETFO workflow
+    {
+      path: '/newsletters',
+      label: 'Parent Newsletters',
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+          />
+        </svg>
+      ),
+    },
+    {
+      path: '/help',
+      label: 'Help & Documentation',
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
       ),
@@ -123,7 +184,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={2}
-            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+            d="M10.325 4.317c.426-1.756 2.924-1.756 3.50 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
           />
           <path
             strokeLinecap="round"
@@ -145,16 +206,34 @@ export default function MainLayout({ children }: MainLayoutProps) {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      <div
-        className={`bg-indigo-800 text-white transition-all duration-300 ease-in-out ${
-          isSidebarOpen ? 'w-64' : 'w-20'
-        } fixed h-full z-10`}
-      >
+    <TutorialManager>
+      <div className="flex h-screen bg-gray-100">
+        {/* Mobile backdrop */}
+        {isMobile && isSidebarOpen && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden"
+            onClick={() => setIsSidebarOpen(false)}
+          />
+        )}
+
+        {/* Sidebar */}
+        <div
+          className={`bg-indigo-800 text-white transition-all duration-300 ease-in-out ${
+            isMobile 
+              ? `fixed h-full z-30 ${isSidebarOpen ? 'w-64' : '-translate-x-full w-64'}`
+              : `fixed h-full z-10 ${isSidebarOpen ? 'w-64' : 'w-16'}`
+          }`}
+          data-testid="main-sidebar"
+        >
         <div className="flex items-center justify-between p-4 border-b border-indigo-700">
-          <h1 className={`font-bold text-xl ${!isSidebarOpen && 'hidden'}`}>Teacher Planner</h1>
-          <button onClick={toggleSidebar} className="text-white focus:outline-none">
+          <h1 className={`font-bold text-xl ${(!isSidebarOpen && !isMobile) && 'hidden'}`}>
+            {isMobile ? 'Teaching Engine' : 'Teacher Planner'}
+          </h1>
+          <button 
+            onClick={toggleSidebar} 
+            className="text-white focus:outline-none p-1 rounded-lg hover:bg-indigo-700 transition-colors"
+            aria-label={isSidebarOpen ? 'Close sidebar' : 'Open sidebar'}
+          >
             {isSidebarOpen ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -224,6 +303,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                 )}
                 <NavLink
                   to={isAccessible ? level.path : '#'}
+                  data-testid={level.id === 'long-range-plans' ? 'long-range-nav' : undefined}
                   className={({ isActive }) => {
                     const baseClasses = `flex items-center py-2 px-4 ${!isSidebarOpen && 'justify-center'}`;
 
@@ -315,11 +395,27 @@ export default function MainLayout({ children }: MainLayoutProps) {
 
       {/* Main content */}
       <div
-        className={`flex-1 transition-all duration-300 ease-in-out ${isSidebarOpen ? 'ml-64' : 'ml-20'}`}
+        className={`flex-1 transition-all duration-300 ease-in-out ${
+          isMobile 
+            ? 'ml-0' 
+            : isSidebarOpen ? 'ml-64' : 'ml-16'
+        }`}
       >
         {/* Top navigation bar */}
         <div className="bg-white shadow-sm p-4 flex justify-between items-center">
-          <div className="text-xl font-semibold">
+          {/* Mobile menu button */}
+          {isMobile && (
+            <button
+              onClick={toggleSidebar}
+              className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+              aria-label="Open menu"
+            >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          )}
+          <div className="text-lg md:text-xl font-semibold flex-1 text-center md:text-left">
             {/* Current page title based on route */}
             {(() => {
               // Check ETFO levels first
@@ -343,18 +439,26 @@ export default function MainLayout({ children }: MainLayoutProps) {
               return 'Teaching Engine 2.0';
             })()}
           </div>
-          <div className="flex items-center space-x-4">
-            <LanguageSwitcher />
+          <div className="flex items-center space-x-2 md:space-x-4">
+            <div className="hidden sm:block">
+              <LanguageSwitcher />
+            </div>
             <NotificationBell />
             <div className="h-8 w-8 rounded-full bg-indigo-500 flex items-center justify-center text-white">
-              <span className="font-semibold">TP</span>
+              <span className="font-semibold text-sm">TP</span>
             </div>
           </div>
         </div>
 
         {/* Main content area */}
-        <div className="p-6 h-[calc(100vh-64px)] overflow-y-auto">{children}</div>
+        <div className="p-3 md:p-6 h-[calc(100vh-64px)] overflow-y-auto">
+          <div className="max-w-full">{children}</div>
+        </div>
       </div>
-    </div>
+
+        {/* Onboarding Flow */}
+        <TeacherOnboardingFlow />
+      </div>
+    </TutorialManager>
   );
 }

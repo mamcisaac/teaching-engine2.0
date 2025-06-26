@@ -93,7 +93,7 @@ interface TestUser {
 // Default test user
 export const DEFAULT_TEST_USER: TestUser = {
   email: 'teacher@example.com',
-  password: 'password123',
+  password: 'Password123!', // Meets security requirements
   name: 'Test Teacher',
   role: 'teacher',
 };
@@ -113,7 +113,7 @@ export async function createTestUser(
 
   const user: TestUser = {
     email: `e2e-${role}-${timestamp}-${random}@example.com`,
-    password: `e2epass-${timestamp}`,
+    password: customData?.password || `E2ePass@${timestamp}`, // Meets security requirements
     name: `E2E ${role} ${timestamp}`,
     role,
     ...customData,
@@ -122,9 +122,13 @@ export async function createTestUser(
   const api = getApiContext();
 
   try {
-    // Create user via test endpoint
-    const createResponse = await api.post('/api/test/users', {
-      data: user,
+    // Create user via register endpoint
+    const createResponse = await api.post('/api/register', {
+      data: {
+        email: user.email,
+        password: user.password,
+        name: user.name,
+      },
     });
 
     if (!createResponse.ok()) {

@@ -9,7 +9,7 @@
 process.env.NODE_ENV = 'test';
 
 // Import testing library matchers for Vitest
-import { expect } from 'vitest';
+import { expect, vi, beforeEach } from 'vitest';
 import * as matchers from '@testing-library/jest-dom/matchers';
 
 // Extend Vitest's expect with jest-dom matchers
@@ -150,6 +150,75 @@ Object.defineProperty(global, 'ResizeObserver', {
   value: MockResizeObserver,
 });
 
+// Mock global fetch for API calls in tests
+global.fetch = vi.fn((url, options) => {
+  // Convert relative URLs to absolute URLs for testing
+  const absoluteUrl = typeof url === 'string' && url.startsWith('/') 
+    ? `http://localhost:3000${url}` 
+    : url;
+  
+  // Default mock responses for common endpoints
+  if (absoluteUrl === 'http://localhost:3000/api/auth/me') {
+    return Promise.resolve({
+      ok: false,
+      status: 401,
+      json: async () => ({ error: 'Not authenticated' }),
+    } as Response);
+  }
+  
+  // Generic mock response
+  return Promise.resolve({
+    ok: true,
+    status: 200,
+    json: async () => ({}),
+  } as Response);
+});
+
+// Mock the api module
+vi.mock('./api', () => ({
+  api: {
+    post: vi.fn().mockResolvedValue({ data: {} }),
+    get: vi.fn().mockResolvedValue({ data: {} }),
+    put: vi.fn().mockResolvedValue({ data: {} }),
+    delete: vi.fn().mockResolvedValue({ data: {} }),
+  },
+}));
+
+// AuthContext is mocked per test file when needed
+
+// Setup localStorage mock
+const localStorageMock = (() => {
+  let store: Record<string, string> = {};
+  return {
+    getItem: vi.fn((key: string) => store[key] || null),
+    setItem: vi.fn((key: string, value: string) => {
+      store[key] = value;
+    }),
+    removeItem: vi.fn((key: string) => {
+      delete store[key];
+    }),
+    clear: vi.fn(() => {
+      store = {};
+    }),
+    get length() {
+      return Object.keys(store).length;
+    },
+    key: vi.fn((index: number) => Object.keys(store)[index] || null),
+  };
+})();
+
+Object.defineProperty(window, 'localStorage', {
+  value: localStorageMock,
+  writable: true,
+});
+
+// Reset mocks before each test
+beforeEach(() => {
+  localStorageMock.clear();
+  vi.clearAllMocks();
+  vi.clearAllTimers();
+});
+
 // Suppress specific console errors and warnings in tests
 const originalError = console.error;
 const originalWarn = console.warn;
@@ -163,7 +232,8 @@ console.error = (...args: unknown[]) => {
       args[0].includes(
         'When testing, code that causes React state updates should be wrapped into act',
       ) ||
-      args[0].includes('Consider using the "jsdom" test environment'))
+      args[0].includes('Consider using the "jsdom" test environment') ||
+      args[0].includes('React Router Future Flag Warning'))
   ) {
     return;
   }
@@ -175,7 +245,8 @@ console.warn = (...args: unknown[]) => {
     typeof args[0] === 'string' &&
     (args[0].includes('Warning: An update to') ||
       args[0].includes('inside a test was not wrapped in act') ||
-      args[0].includes('not wrapped in act('))
+      args[0].includes('not wrapped in act(') ||
+      args[0].includes('React Router Future Flag Warning'))
   ) {
     return;
   }

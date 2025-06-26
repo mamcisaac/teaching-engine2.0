@@ -92,15 +92,37 @@ router.get('/', async (req: AuthenticatedRequest, res, _next) => {
 
     const where: Prisma.CurriculumExpectationWhereInput = {};
 
-    if (subject) where.subject = String(subject);
-    if (grade) where.grade = Number(grade);
-    if (strand) where.strand = String(strand);
-    if (search) {
-      where.OR = [
-        { code: { contains: String(search) } },
-        { description: { contains: String(search) } },
-        { descriptionFr: { contains: String(search) } },
-      ];
+    // Validate and sanitize input parameters
+    if (subject && typeof subject === 'string') {
+      const sanitizedSubject = String(subject).trim().slice(0, 100);
+      if (sanitizedSubject) where.subject = sanitizedSubject;
+    }
+    
+    if (grade) {
+      const gradeNumber = Number(grade);
+      if (!isNaN(gradeNumber) && gradeNumber >= 1 && gradeNumber <= 12) {
+        where.grade = gradeNumber;
+      }
+    }
+    
+    if (strand && typeof strand === 'string') {
+      const sanitizedStrand = String(strand).trim().slice(0, 100);
+      if (sanitizedStrand) where.strand = sanitizedStrand;
+    }
+    if (search && typeof search === 'string') {
+      const sanitizedSearch = String(search).trim().slice(0, 200);
+      if (sanitizedSearch) {
+        // Database-specific case-insensitive search
+        const mode = process.env.DATABASE_URL?.includes('postgresql') 
+          ? { mode: 'insensitive' as const } 
+          : {};
+        
+        where.OR = [
+          { code: { contains: sanitizedSearch, ...mode } },
+          { description: { contains: sanitizedSearch, ...mode } },
+          { descriptionFr: { contains: sanitizedSearch, ...mode } },
+        ];
+      }
     }
 
     const expectations = await prisma.curriculumExpectation.findMany({
@@ -128,16 +150,46 @@ router.post('/', async (req: AuthenticatedRequest, res, _next) => {
         error: 'Missing required fields: code, description, strand, grade, subject',
       });
     }
+    
+    // Validate types and lengths
+    if (typeof code !== 'string' || code.length > 50 || code.length < 1) {
+      return res.status(400).json({ error: 'Invalid code: must be a string between 1-50 characters' });
+    }
+    
+    if (typeof description !== 'string' || description.length > 1000 || description.length < 1) {
+      return res.status(400).json({ error: 'Invalid description: must be a string between 1-1000 characters' });
+    }
+    
+    if (typeof strand !== 'string' || strand.length > 100 || strand.length < 1) {
+      return res.status(400).json({ error: 'Invalid strand: must be a string between 1-100 characters' });
+    }
+    
+    if (typeof subject !== 'string' || subject.length > 100 || subject.length < 1) {
+      return res.status(400).json({ error: 'Invalid subject: must be a string between 1-100 characters' });
+    }
+    
+    const gradeNumber = Number(grade);
+    if (isNaN(gradeNumber) || gradeNumber < 1 || gradeNumber > 12) {
+      return res.status(400).json({ error: 'Invalid grade: must be a number between 1-12' });
+    }
+    
+    if (substrand && (typeof substrand !== 'string' || substrand.length > 100)) {
+      return res.status(400).json({ error: 'Invalid substrand: must be a string with max 100 characters' });
+    }
+    
+    if (descriptionFr && (typeof descriptionFr !== 'string' || descriptionFr.length > 1000)) {
+      return res.status(400).json({ error: 'Invalid descriptionFr: must be a string with max 1000 characters' });
+    }
 
     const expectation = await prisma.curriculumExpectation.create({
       data: {
-        code,
-        description,
-        strand,
-        substrand,
-        grade: Number(grade),
-        subject,
-        descriptionFr,
+        code: code.trim(),
+        description: description.trim(),
+        strand: strand.trim(),
+        substrand: substrand?.trim() || null,
+        grade: gradeNumber,
+        subject: subject.trim(),
+        descriptionFr: descriptionFr?.trim() || null,
       },
       include: {
         unitPlans: { select: { unitPlan: { select: { id: true, title: true } } } },
@@ -154,18 +206,57 @@ router.post('/', async (req: AuthenticatedRequest, res, _next) => {
 // Update a curriculum expectation
 router.put('/:id', async (req: AuthenticatedRequest, res, _next) => {
   try {
+    // Validate UUID format
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(req.params.id)) {
+      return res.status(400).json({ error: 'Invalid expectation ID format' });
+    }
+    
     const { code, description, strand, substrand, grade, subject, descriptionFr } = req.body;
+    
+    // Validate input types and lengths
+    if (code && (typeof code !== 'string' || code.length > 50 || code.length < 1)) {
+      return res.status(400).json({ error: 'Invalid code: must be a string between 1-50 characters' });
+    }
+    
+    if (description && (typeof description !== 'string' || description.length > 1000 || description.length < 1)) {
+      return res.status(400).json({ error: 'Invalid description: must be a string between 1-1000 characters' });
+    }
+    
+    if (strand && (typeof strand !== 'string' || strand.length > 100 || strand.length < 1)) {
+      return res.status(400).json({ error: 'Invalid strand: must be a string between 1-100 characters' });
+    }
+    
+    if (subject && (typeof subject !== 'string' || subject.length > 100 || subject.length < 1)) {
+      return res.status(400).json({ error: 'Invalid subject: must be a string between 1-100 characters' });
+    }
+    
+    let gradeNumber: number | undefined;
+    if (grade !== undefined) {
+      gradeNumber = Number(grade);
+      if (isNaN(gradeNumber) || gradeNumber < 1 || gradeNumber > 12) {
+        return res.status(400).json({ error: 'Invalid grade: must be a number between 1-12' });
+      }
+    }
+    
+    if (substrand !== undefined && substrand !== null && (typeof substrand !== 'string' || substrand.length > 100)) {
+      return res.status(400).json({ error: 'Invalid substrand: must be a string with max 100 characters' });
+    }
+    
+    if (descriptionFr !== undefined && descriptionFr !== null && (typeof descriptionFr !== 'string' || descriptionFr.length > 1000)) {
+      return res.status(400).json({ error: 'Invalid descriptionFr: must be a string with max 1000 characters' });
+    }
 
     const expectation = await prisma.curriculumExpectation.update({
       where: { id: req.params.id },
       data: {
-        ...(code && { code }),
-        ...(description && { description }),
-        ...(strand && { strand }),
-        ...(substrand !== undefined && { substrand }),
-        ...(grade && { grade: Number(grade) }),
-        ...(subject && { subject }),
-        ...(descriptionFr !== undefined && { descriptionFr }),
+        ...(code && { code: code.trim() }),
+        ...(description && { description: description.trim() }),
+        ...(strand && { strand: strand.trim() }),
+        ...(substrand !== undefined && { substrand: substrand?.trim() || null }),
+        ...(gradeNumber !== undefined && { grade: gradeNumber }),
+        ...(subject && { subject: subject.trim() }),
+        ...(descriptionFr !== undefined && { descriptionFr: descriptionFr?.trim() || null }),
       },
       include: {
         unitPlans: { select: { unitPlan: { select: { id: true, title: true } } } },
@@ -182,6 +273,12 @@ router.put('/:id', async (req: AuthenticatedRequest, res, _next) => {
 // Delete a curriculum expectation
 router.delete('/:id', async (req: AuthenticatedRequest, res, _next) => {
   try {
+    // Validate UUID format
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(req.params.id)) {
+      return res.status(400).json({ error: 'Invalid expectation ID format' });
+    }
+    
     await prisma.curriculumExpectation.delete({
       where: { id: req.params.id },
     });
@@ -195,6 +292,12 @@ router.delete('/:id', async (req: AuthenticatedRequest, res, _next) => {
 // Get a single curriculum expectation
 router.get('/:id', async (req: AuthenticatedRequest, res, _next) => {
   try {
+    // Validate UUID format
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(req.params.id)) {
+      return res.status(400).json({ error: 'Invalid expectation ID format' });
+    }
+    
     const expectation = await prisma.curriculumExpectation.findUnique({
       where: { id: req.params.id },
       include: {
@@ -250,18 +353,30 @@ router.post('/search', async (req: AuthenticatedRequest, res, _next) => {
     } catch (error) {
       console.log('Semantic search failed, falling back to text search:', error);
 
-      // Fallback to text-based search
+      // Fallback to text-based search with proper case-insensitive handling
+      const mode = process.env.DATABASE_URL?.includes('postgresql') 
+        ? { mode: 'insensitive' as const } 
+        : {};
+        
       const where: Prisma.CurriculumExpectationWhereInput = {
         OR: [
-          { code: { contains: query } },
-          { description: { contains: query } },
-          { descriptionFr: { contains: query } },
-          { strand: { contains: query } },
+          { code: { contains: query, ...mode } },
+          { description: { contains: query, ...mode } },
+          { descriptionFr: { contains: query, ...mode } },
+          { strand: { contains: query, ...mode } },
         ],
       };
 
-      if (filters?.subject) where.subject = filters.subject;
-      if (filters?.grade) where.grade = filters.grade;
+      if (filters?.subject && typeof filters.subject === 'string') {
+        const sanitizedSubject = filters.subject.trim().slice(0, 100);
+        if (sanitizedSubject) where.subject = sanitizedSubject;
+      }
+      if (filters?.grade) {
+        const gradeNumber = Number(filters.grade);
+        if (!isNaN(gradeNumber) && gradeNumber >= 1 && gradeNumber <= 12) {
+          where.grade = gradeNumber;
+        }
+      }
 
       results = await prisma.curriculumExpectation.findMany({
         where,

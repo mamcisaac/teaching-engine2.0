@@ -51,16 +51,9 @@ export class GPTPlanningAgentService {
       },
     });
 
-    // Save initial session
-    await prisma.planningConversation.create({
-      data: {
-        userId,
-        sessionId,
-        role: 'system',
-        content: 'Planning assistant session started',
-        metadata: JSON.stringify({ event: 'session_start' }),
-      },
-    });
+    // TODO: Implement persistent conversation logging
+    // Consider using DaybookEntry or dedicated conversation log table
+    logger.info(`Planning session started for user ${userId}, session ${sessionId}`);
 
     return sessionId;
   }
@@ -85,15 +78,8 @@ export class GPTPlanningAgentService {
     }
 
     try {
-      // Save user message
-      await prisma.planningConversation.create({
-        data: {
-          userId: context.userId,
-          sessionId,
-          role: 'user',
-          content: message,
-        },
-      });
+      // TODO: Implement persistent message logging for conversation history
+      logger.info(`User message in session ${sessionId}: ${message.substring(0, 100)}...`);
 
       // Add to context
       context.recentMessages.push({ role: 'user', content: message });
@@ -116,19 +102,8 @@ export class GPTPlanningAgentService {
         context,
       );
 
-      // Save assistant response
-      await prisma.planningConversation.create({
-        data: {
-          userId: context.userId,
-          sessionId,
-          role: 'assistant',
-          content: response.message,
-          metadata: JSON.stringify({
-            actions: response.actions,
-            actionResults,
-          }),
-        },
-      });
+      // TODO: Implement persistent response logging for conversation history
+      logger.info(`Assistant response in session ${sessionId}: ${response.message.substring(0, 100)}...`);
 
       // Update context
       context.recentMessages.push({ role: 'assistant', content: response.message });
@@ -150,15 +125,8 @@ export class GPTPlanningAgentService {
       const errorMessage =
         'I apologize, but I encountered an error. Could you please rephrase your request?';
 
-      await prisma.planningConversation.create({
-        data: {
-          userId: context.userId,
-          sessionId,
-          role: 'assistant',
-          content: errorMessage,
-          metadata: JSON.stringify({ error: true }),
-        },
-      });
+      // TODO: Implement persistent error logging for troubleshooting
+      logger.error(`Error response in session ${sessionId}: ${errorMessage}`);
 
       return {
         message: errorMessage,
@@ -332,7 +300,7 @@ Format response as JSON.`;
           }
 
           case 'generate_plan': {
-            // Legacy function - use ETFO planning workflow instead
+            // TODO: Integrate with ETFO planning workflow API
             results.push({
               type: 'plan_generated',
               data: {
@@ -345,7 +313,7 @@ Format response as JSON.`;
           }
 
           case 'analyze_coverage': {
-            // Legacy function - use curriculum expectations analysis instead
+            // TODO: Integrate with curriculum expectations analysis API
             results.push({
               type: 'coverage_analysis',
               data: {
@@ -389,21 +357,16 @@ Format response as JSON.`;
    * Get conversation history for a session
    */
   async getConversationHistory(sessionId: string, userId: number) {
-    const messages = await prisma.planningConversation.findMany({
-      where: {
-        sessionId,
-        userId,
-      },
-      orderBy: {
-        createdAt: 'asc',
-      },
-    });
+    const context = this.conversationContexts.get(sessionId);
+    if (!context || context.userId !== userId) {
+      return [];
+    }
 
-    return messages.map((msg) => ({
+    return context.recentMessages.map((msg, index) => ({
       role: msg.role,
       content: msg.content,
-      timestamp: msg.createdAt,
-      metadata: msg.metadata ? JSON.parse(msg.metadata) : null,
+      timestamp: new Date(Date.now() - (context.recentMessages.length - index) * 1000), // Approximate timestamps
+      metadata: null,
     }));
   }
 
@@ -501,7 +464,7 @@ Format response as JSON.`;
       }
     }
 
-    // Note: Database records are kept for history
+    // TODO: Implement database cleanup for old conversation records
   }
 }
 

@@ -1,6 +1,7 @@
 import OpenAI from 'openai';
 import { z } from 'zod';
 import { config } from 'dotenv';
+import { aiPromptTemplateService, PromptContext, CurriculumExpectation } from './aiPromptTemplateService';
 
 // Load environment variables
 config();
@@ -66,16 +67,8 @@ const DaybookDraftSchema = z.object({
   weeklyInsights: z.string(),
 });
 
-// Types
-export interface CurriculumExpectation {
-  code: string;
-  description: string;
-  type: 'overall' | 'specific';
-  strand: string;
-  substrand?: string;
-  subject: string;
-  grade: number;
-}
+// Re-export types from prompt template service for compatibility
+export type { CurriculumExpectation, PromptContext } from './aiPromptTemplateService';
 
 export interface LongRangePlanDraftInput {
   expectations: CurriculumExpectation[];
@@ -117,37 +110,6 @@ export interface DaybookDraftInput {
 // AI Draft Generation Functions
 
 export async function generateLongRangePlanDraft(input: LongRangePlanDraftInput) {
-  const prompt = `
-You are an expert curriculum planner for Grade ${input.grade} ${input.subject}. Create a long-range plan for the ${input.academicYear} academic year using a ${input.termStructure} structure.
-
-Based on the following curriculum expectations, design 4-6 instructional units that:
-- Cover all provided expectations
-- Follow logical sequence and build on each other
-- Are appropriately distributed across the year
-- Include meaningful big ideas for each unit
-
-Curriculum Expectations:
-${input.expectations.map(exp => `${exp.code} (${exp.type}): ${exp.description}`).join('\n')}
-
-Return a JSON object with the following structure:
-{
-  "units": [
-    {
-      "title": "Unit Name",
-      "term": "Fall|Winter|Spring|Term 1|Term 2|Term 3",
-      "expectedDurationWeeks": 4,
-      "bigIdeas": ["Big idea 1", "Big idea 2"],
-      "linkedExpectations": [
-        {"code": "S1.1", "type": "specific"},
-        {"code": "O1", "type": "overall"}
-      ]
-    }
-  ]
-}
-
-Ensure all expectations are covered across units and the sequence makes pedagogical sense.
-  `;
-
   const client = getOpenAIClient();
   if (!client) {
     console.warn('OpenAI API key not configured - returning empty draft');
@@ -157,61 +119,46 @@ Ensure all expectations are covered across units and the sequence makes pedagogi
   }
 
   try {
-    const response = await openai.chat.completions.create({
+    // Use the new prompt template service
+    const promptContext: PromptContext = {
+      grade: input.grade,
+      subject: input.subject,
+      academicYear: input.academicYear,
+      term: input.termStructure
+    };
+
+    const { prompt, systemPrompt, temperature } = aiPromptTemplateService.generateLongRangePlanPrompt(
+      promptContext,
+      input.expectations
+    );
+
+    const response = await client.chat.completions.create({
       model: 'gpt-4',
       messages: [
-        { role: 'system', content: 'You are an expert elementary school curriculum planner following the ETFO Planning for Student Learning framework.' },
+        { role: 'system', content: systemPrompt },
         { role: 'user', content: prompt }
       ],
-      temperature: 0.3,
+      temperature,
     });
 
     const content = response.choices[0]?.message?.content;
     if (!content) throw new Error('No response from OpenAI');
 
     const parsed = JSON.parse(content);
-    return LongRangePlanDraftSchema.parse(parsed);
+    const result = LongRangePlanDraftSchema.parse(parsed);
+    
+    // Record successful usage
+    aiPromptTemplateService.recordPromptUsage('lrp-v2.0', true);
+    
+    return result;
   } catch (error) {
     console.error('Error generating long-range plan draft:', error);
+    aiPromptTemplateService.recordPromptUsage('lrp-v2.0', false, error instanceof Error ? error.message : 'Unknown error');
     throw new Error('Failed to generate long-range plan draft');
   }
 }
 
 export async function generateUnitPlanDraft(input: UnitPlanDraftInput) {
-  const prompt = `
-You are creating a detailed unit plan for Grade ${input.grade} ${input.subject}, specifically for the unit "${input.unitTitle}".
-
-This unit should address the following curriculum expectations:
-${input.expectations.map(exp => `${exp.code} (${exp.type}): ${exp.description}`).join('\n')}
-
-${input.longRangePlanContext ? `Context from long-range plan: ${input.longRangePlanContext}` : ''}
-
-Create a comprehensive unit plan following the ETFO framework with:
-- Clear big ideas that connect to the expectations
-- Essential questions that drive inquiry
-- Specific learning goals for students
-- Success criteria students can understand
-- Assessment strategies for For/As/Of learning
-- Cross-curricular connections where appropriate
-- Realistic timeline estimate
-
-Return a JSON object with this structure:
-{
-  "title": "Unit Title",
-  "bigIdeas": ["Big idea 1", "Big idea 2"],
-  "essentialQuestions": ["Question 1", "Question 2"],
-  "learningGoals": ["Goal 1", "Goal 2"],
-  "successCriteria": ["Criteria 1", "Criteria 2"],
-  "assessmentFor": ["Diagnostic strategy 1"],
-  "assessmentAs": ["Formative strategy 1"],
-  "assessmentOf": ["Summative strategy 1"],
-  "crossCurricularLinks": ["Connection 1"],
-  "timelineEstimateWeeks": 3
-}
-
-Focus on Grade ${input.grade} appropriate language and activities.
-  `;
-
   const client = getOpenAIClient();
   if (!client) {
     console.warn('OpenAI API key not configured - returning empty draft');
@@ -230,60 +177,47 @@ Focus on Grade ${input.grade} appropriate language and activities.
   }
 
   try {
-    const response = await openai.chat.completions.create({
+    // Use the new prompt template service
+    const promptContext: PromptContext = {
+      grade: input.grade,
+      subject: input.subject
+    };
+
+    const { prompt, systemPrompt, temperature } = aiPromptTemplateService.generateUnitPlanPrompt(
+      promptContext,
+      input.unitTitle,
+      input.expectations,
+      3, // default 3 weeks
+      input.longRangePlanContext
+    );
+
+    const response = await client.chat.completions.create({
       model: 'gpt-4',
       messages: [
-        { role: 'system', content: 'You are an expert elementary school teacher and curriculum designer following ETFO best practices.' },
+        { role: 'system', content: systemPrompt },
         { role: 'user', content: prompt }
       ],
-      temperature: 0.3,
+      temperature,
     });
 
     const content = response.choices[0]?.message?.content;
     if (!content) throw new Error('No response from OpenAI');
 
     const parsed = JSON.parse(content);
-    return UnitPlanDraftSchema.parse(parsed);
+    const result = UnitPlanDraftSchema.parse(parsed);
+    
+    // Record successful usage
+    aiPromptTemplateService.recordPromptUsage('up-v2.0', true);
+    
+    return result;
   } catch (error) {
     console.error('Error generating unit plan draft:', error);
+    aiPromptTemplateService.recordPromptUsage('up-v2.0', false, error instanceof Error ? error.message : 'Unknown error');
     throw new Error('Failed to generate unit plan draft');
   }
 }
 
 export async function generateLessonPlanDraft(input: LessonPlanDraftInput) {
-  const prompt = `
-Create a detailed lesson plan for Grade ${input.grade} ${input.subject} as part of the unit "${input.unitTitle}".
-
-This ${input.duration}-minute lesson should address:
-${input.expectations.map(exp => `${exp.code}: ${exp.description}`).join('\n')}
-
-${input.unitContext ? `Unit context: ${input.unitContext}` : ''}
-${input.lessonNumber ? `This is lesson ${input.lessonNumber} in the unit.` : ''}
-
-Use the ETFO three-part lesson structure:
-- Minds On (engage students, activate prior knowledge)
-- Action (main learning activities, student exploration)
-- Consolidation (reflect on learning, make connections)
-
-Return a JSON object with this structure:
-{
-  "title": "Lesson Title",
-  "learningGoals": ["Goal 1", "Goal 2"],
-  "successCriteria": ["I can...", "I can..."],
-  "mindsOnDescription": "Opening activity description",
-  "mindsOnDuration": 10,
-  "actionDescription": "Main activity description",
-  "actionDuration": 25,
-  "consolidationDescription": "Closing activity description", 
-  "consolidationDuration": 10,
-  "resources": ["Resource 1", "Resource 2"],
-  "accommodations": "Specific accommodations for diverse learners",
-  "assessmentStrategy": "How learning will be assessed"
-}
-
-Ensure activities are age-appropriate and engaging for Grade ${input.grade} students.
-  `;
-
   const client = getOpenAIClient();
   if (!client) {
     console.warn('OpenAI API key not configured - returning empty draft');
@@ -292,37 +226,55 @@ Ensure activities are age-appropriate and engaging for Grade ${input.grade} stud
       learningGoals: [],
       successCriteria: [],
       mindsOnDescription: '',
-      mindsOnMaterials: [],
-      mindsOnTimeMinutes: 0,
+      mindsOnDuration: 0,
       actionDescription: '',
-      actionMaterials: [],
-      actionTimeMinutes: 0,
+      actionDuration: 0,
       consolidationDescription: '',
-      consolidationMaterials: [],
-      consolidationTimeMinutes: 0,
-      accommodations: [],
-      extensions: [],
-      assessmentStrategies: []
+      consolidationDuration: 0,
+      resources: [],
+      accommodations: '',
+      assessmentStrategy: ''
     };
   }
 
   try {
-    const response = await openai.chat.completions.create({
+    // Use the new prompt template service
+    const promptContext: PromptContext = {
+      grade: input.grade,
+      subject: input.subject
+    };
+
+    const { prompt, systemPrompt, temperature } = aiPromptTemplateService.generateLessonPlanPrompt(
+      promptContext,
+      input.unitTitle,
+      input.expectations,
+      input.duration,
+      input.unitContext,
+      input.lessonNumber
+    );
+
+    const response = await client.chat.completions.create({
       model: 'gpt-4',
       messages: [
-        { role: 'system', content: 'You are an experienced elementary school teacher creating engaging, age-appropriate lessons following ETFO guidelines.' },
+        { role: 'system', content: systemPrompt },
         { role: 'user', content: prompt }
       ],
-      temperature: 0.4,
+      temperature,
     });
 
     const content = response.choices[0]?.message?.content;
     if (!content) throw new Error('No response from OpenAI');
 
     const parsed = JSON.parse(content);
-    return LessonPlanDraftSchema.parse(parsed);
+    const result = LessonPlanDraftSchema.parse(parsed);
+    
+    // Record successful usage
+    aiPromptTemplateService.recordPromptUsage('lp-v2.0', true);
+    
+    return result;
   } catch (error) {
     console.error('Error generating lesson plan draft:', error);
+    aiPromptTemplateService.recordPromptUsage('lp-v2.0', false, error instanceof Error ? error.message : 'Unknown error');
     throw new Error('Failed to generate lesson plan draft');
   }
 }

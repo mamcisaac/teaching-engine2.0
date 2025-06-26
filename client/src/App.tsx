@@ -1,24 +1,31 @@
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import { useAuth } from './contexts/AuthContext';
-import { api } from './api';
 import { NotificationProvider } from './contexts/NotificationContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { LanguageProvider } from './contexts/LanguageContext';
+import { HelpProvider } from './contexts/HelpContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import MainLayout from './components/MainLayout';
-import ErrorBoundary from './components/ErrorBoundary';
+import { GlobalErrorBoundary } from './components/ErrorBoundaries';
 import WorkflowGate from './components/WorkflowGate';
 import { ETFOLevel } from './hooks/useWorkflowState';
+import { OfflineNotification } from './components/OfflineNotification';
 
 // Lazy load pages - ETFO-aligned pages only
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const LongRangePlanPage = lazy(() => import('./pages/LongRangePlanPage'));
 const UnitPlansPage = lazy(() => import('./pages/UnitPlansPage'));
+const ETFOLessonPlanPage = lazy(() => import('./pages/ETFOLessonPlanPage'));
+const QuickLessonPage = lazy(() => import('./pages/QuickLessonPage'));
 const CurriculumExpectationsPage = lazy(() => import('./pages/CurriculumExpectationsPage'));
 const CurriculumImportPage = lazy(() => import('./pages/CurriculumImportPage'));
 const DaybookPage = lazy(() => import('./pages/DaybookPage'));
 const PlanningDashboard = lazy(() => import('./pages/PlanningDashboard'));
+const ParentNewsletterPage = lazy(() => import('./pages/ParentNewsletterPage'));
+const HelpPage = lazy(() => import('./pages/HelpPage'));
+const TemplatesPage = lazy(() => import('./pages/TemplatesPage'));
+const CalendarPlanningPage = lazy(() => import('./pages/planning/CalendarPlanningPage'));
 
 // Common suspense fallback
 const SuspenseFallback = () => (
@@ -28,16 +35,16 @@ const SuspenseFallback = () => (
 );
 
 function AppRoutes() {
-  const { token } = useAuth();
+  const { isAuthenticated, checkAuth } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
 
   // Check if user is authenticated on initial load
   useEffect(() => {
-    const checkAuth = async () => {
+    const verifyAuth = async () => {
       try {
-        if (token) {
-          // Only validate token with the server if we have one
-          await api.get('/api/auth/me');
+        if (isAuthenticated) {
+          // Verify authentication status with the server
+          await checkAuth();
         }
       } catch (error) {
         console.error('Auth check failed:', error);
@@ -47,14 +54,9 @@ function AppRoutes() {
       }
     };
 
-    // Only run auth check if we have a token
-    if (token) {
-      checkAuth();
-    } else {
-      // If no token, we're not authenticated
-      setIsLoading(false);
-    }
-  }, [token]);
+    // Run auth verification
+    verifyAuth();
+  }, [isAuthenticated, checkAuth]);
 
   if (isLoading) {
     return <SuspenseFallback />;
@@ -63,7 +65,7 @@ function AppRoutes() {
   return (
     <Routes>
       {/* Public routes */}
-      <Route path="/login" element={token ? <Navigate to="/" replace /> : <LoginPage />} />
+      <Route path="/login" element={isAuthenticated ? <Navigate to="/" replace /> : <LoginPage />} />
 
       {/* Protected routes with MainLayout */}
       <Route
@@ -126,11 +128,31 @@ function AppRoutes() {
           />
           <Route
             path="units/:unitId/lessons"
-            element={<Navigate to="/planner/dashboard" replace />}
+            element={
+              <Suspense fallback={<SuspenseFallback />}>
+                <WorkflowGate level={ETFOLevel.LESSON_PLANS}>
+                  <ETFOLessonPlanPage />
+                </WorkflowGate>
+              </Suspense>
+            }
           />
           <Route
-            path="lessons"
-            element={<Navigate to="/planner/dashboard" replace />}
+            path="lessons/:lessonId"
+            element={
+              <Suspense fallback={<SuspenseFallback />}>
+                <WorkflowGate level={ETFOLevel.LESSON_PLANS}>
+                  <ETFOLessonPlanPage />
+                </WorkflowGate>
+              </Suspense>
+            }
+          />
+          <Route
+            path="quick-lesson"
+            element={
+              <Suspense fallback={<SuspenseFallback />}>
+                <QuickLessonPage />
+              </Suspense>
+            }
           />
           <Route
             path="daybook"
@@ -147,6 +169,14 @@ function AppRoutes() {
             element={
               <Suspense fallback={<SuspenseFallback />}>
                 <PlanningDashboard />
+              </Suspense>
+            }
+          />
+          <Route
+            path="calendar"
+            element={
+              <Suspense fallback={<SuspenseFallback />}>
+                <CalendarPlanningPage />
               </Suspense>
             }
           />
@@ -194,9 +224,62 @@ function AppRoutes() {
         <Route path="/timetable" element={<Navigate to="/planner/dashboard" replace />} />
         <Route path="/activity-library" element={<Navigate to="/planner/dashboard" replace />} />
 
-        {/* Legacy newsletters - redirect to dashboard */}
-        <Route path="/newsletters/new" element={<Navigate to="/" replace />} />
-        <Route path="/newsletters/draft" element={<Navigate to="/" replace />} />
+        {/* Parent Newsletters */}
+        <Route
+          path="/newsletters"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <ParentNewsletterPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/newsletters/:id"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <ParentNewsletterPage />
+            </Suspense>
+          }
+        />
+        {/* Legacy newsletter routes - redirect to new newsletters */}
+        <Route path="/newsletters/new" element={<Navigate to="/newsletters" replace />} />
+        <Route path="/newsletters/draft" element={<Navigate to="/newsletters" replace />} />
+
+        {/* Templates */}
+        <Route
+          path="/templates"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <TemplatesPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/templates/:templateId"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <TemplatesPage />
+            </Suspense>
+          }
+        />
+
+        {/* Help & Documentation */}
+        <Route
+          path="/help"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <HelpPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/help/:section"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <HelpPage />
+            </Suspense>
+          }
+        />
 
         {/* Legacy parent communications - redirect to students */}
         <Route path="/parent-messages" element={<Navigate to="/students" replace />} />
@@ -226,14 +309,17 @@ function AppRoutes() {
 
 export default function App() {
   return (
-    <ErrorBoundary>
+    <GlobalErrorBoundary>
       <AuthProvider>
         <LanguageProvider>
           <NotificationProvider>
-            <AppRoutes />
+            <HelpProvider>
+              <AppRoutes />
+              <OfflineNotification />
+            </HelpProvider>
           </NotificationProvider>
         </LanguageProvider>
       </AuthProvider>
-    </ErrorBoundary>
+    </GlobalErrorBoundary>
   );
 }

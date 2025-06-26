@@ -23,8 +23,8 @@ export default function LoginPage() {
     try {
       const response = await api.post('/api/login', { email, password });
 
-      if (response.data.token && response.data.user) {
-        login(response.data.token, response.data.user);
+      if (response.data.user) {
+        login(response.data.user);
         navigate('/');
       } else {
         throw new Error('Invalid response from server');

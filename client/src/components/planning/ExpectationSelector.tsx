@@ -18,6 +18,9 @@ interface ExpectationSelectorProps {
   label?: string;
   placeholder?: string;
   className?: string;
+  error?: string;
+  required?: boolean;
+  disabled?: boolean;
 }
 
 interface GroupedExpectations {
@@ -35,6 +38,9 @@ export default function ExpectationSelector({
   label = 'Curriculum Expectations',
   placeholder = 'Select curriculum expectations...',
   className,
+  error,
+  required = false,
+  disabled = false,
 }: ExpectationSelectorProps) {
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -125,7 +131,11 @@ export default function ExpectationSelector({
 
   return (
     <div className={className}>
-      {label && <Label className="mb-2">{label}</Label>}
+      {label && (
+        <Label className={cn("mb-2", required && "after:content-['*'] after:ml-1 after:text-red-500")}>
+          {label}
+        </Label>
+      )}
 
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
@@ -133,7 +143,12 @@ export default function ExpectationSelector({
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="w-full justify-between"
+            disabled={disabled}
+            className={cn(
+              "w-full justify-between",
+              error && "border-red-500 focus:ring-red-500 focus:border-red-500",
+              className
+            )}
           >
             <span className="truncate">
               {selectedIds.length > 0
@@ -297,6 +312,11 @@ export default function ExpectationSelector({
             </div>
           ))}
         </div>
+      )}
+
+      {/* Error display */}
+      {error && (
+        <p className="mt-1 text-sm text-red-600">{error}</p>
       )}
     </div>
   );

@@ -25,64 +25,21 @@ model Subject {
 
 
 
-model TeacherPreferences {
-  id             Int    @id @default(autoincrement())
-  teachingStyles String
-  pacePreference String
-  prepTime       Int
-  /**
-   * JSON object storing contact info for sub plans
-   * e.g. { "principal": "Name", "office": "555-1234" }
-   */
-  subPlanContacts Json?
-  /// Special procedures or notes for substitute teachers
-  subPlanProcedures String?
-}
+// TeacherPreferences model archived - see schema.archive.prisma
+// Functionality moved to User.preferredLanguage and ClassRoutine models
 
-model SubstituteInfo {
-  id         Int      @id @default(autoincrement())
-  teacherId  Int
-  teacher    User     @relation(fields: [teacherId], references: [id])
-  procedures String?
-  allergies  String?
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-}
+// SubstituteInfo model archived - see schema.archive.prisma
+// Functionality moved to ClassRoutine model with category-based organization
 
 
-model MaterialList {
-  id        Int      @id @default(autoincrement())
-  weekStart DateTime
-  items     String
-  prepared  Boolean  @default(false)
-}
+// MaterialList model archived - see schema.archive.prisma
+// Functionality moved to UnitPlanResource and ETFOLessonPlanResource models
 
-model Notification {
-  id        Int      @id @default(autoincrement())
-  message   String
-  type      String?
-  dueDate   DateTime?
-  read      Boolean  @default(false)
-  createdAt DateTime @default(now())
-}
+// Notification model archived - see schema.archive.prisma
+// Functionality integrated into ETFO planning workflow notifications
 
-model Newsletter {
-  id        Int      @id @default(autoincrement())
-  title     String
-  titleEn   String?
-  titleFr   String?
-  content   String
-  contentEn String?
-  contentFr String?
-  rawDraft  String?
-  rawDraftEn String?
-  rawDraftFr String?
-  polishedDraft String?
-  polishedDraftEn String?
-  polishedDraftFr String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
+// Newsletter model archived - see schema.archive.prisma
+// Functionality replaced by ParentMessage model
 
 model ParentMessage {
   id           Int      @id @default(autoincrement())
@@ -111,24 +68,15 @@ model User {
   subjects Subject[]
   events    CalendarEvent[]
   unavailableBlocks UnavailableBlock[]
-  reportDeadlines ReportDeadline[]
-  yearPlanEntries YearPlanEntry[]
-  shareLinks ShareLink[]
-  equipmentBookings EquipmentBooking[]
-  substituteInfos SubstituteInfo[]
-  oralRoutineTemplates OralRoutineTemplate[]
-  dailyOralRoutines DailyOralRoutine[]
-  thematicUnits ThematicUnit[]
-  cognatePairs CognatePair[]
-  mediaResources MediaResource[]
+  // Archived relations - see schema.archive.prisma:
+  // reportDeadlines, yearPlanEntries, shareLinks, equipmentBookings, substituteInfos
+  // oralRoutineTemplates, dailyOralRoutines, thematicUnits, cognatePairs, mediaResources
+  // reflectionJournalEntries, aiGeneratedPlans, planningConversations
   parentMessages ParentMessage[]
-  reflectionJournalEntries ReflectionJournalEntry[]
   students Student[]
   curriculumImports CurriculumImport[]
   classRoutines ClassRoutine[]
   subPlanRecords SubPlanRecord[]
-  aiGeneratedPlans AIGeneratedPlan[]
-  planningConversations PlanningConversation[]
   
   // ETFO-aligned planning models
   longRangePlans LongRangePlan[]
@@ -136,10 +84,22 @@ model User {
   etfoLessonPlans ETFOLessonPlan[]
   daybookEntries DaybookEntry[]
   
+  // Newsletters
+  newsletters Newsletter[]
+  
   // Activity Discovery
   activityImports ActivityImport[]
   activityRatings ActivityRating[]
   activityCollections ActivityCollection[]
+  
+  // Weekly Planner State
+  weeklyPlannerState WeeklyPlannerState?
+  
+  // Template System
+  createdTemplates PlanTemplate[]
+  
+  // Recent Plan Access
+  recentPlanAccess RecentPlanAccess[]
 }
 
 
@@ -192,199 +152,55 @@ model UnavailableBlock {
   updatedAt         DateTime            @updatedAt
 }
 
-model ReportDeadline {
-  id               Int      @id @default(autoincrement())
-  teacherId        Int
-  teacher          User     @relation(fields: [teacherId], references: [id])
-  name             String
-  date             DateTime
-  remindDaysBefore Int      @default(14)
-}
+// ReportDeadline model archived - see schema.archive.prisma
+// Functionality moved to CalendarEvent with type CUSTOM for deadlines
 
 
-enum YearPlanEntryType {
-  UNIT
-  ASSESSMENT
-  EVENT
-}
+// YearPlanEntry model and YearPlanEntryType enum archived - see schema.archive.prisma
+// Functionality replaced by LongRangePlan and UnitPlan models
 
-model YearPlanEntry {
-  id        Int              @id @default(autoincrement())
-  teacherId Int
-  teacher   User             @relation(fields: [teacherId], references: [id])
-  entryType YearPlanEntryType
-  title     String
-  start     DateTime
-  end       DateTime
-  colorCode String?
-  createdAt DateTime         @default(now())
-  updatedAt DateTime         @updatedAt
-}
+// ShareLink model and ShareLinkType enum archived - see schema.archive.prisma
+// Functionality simplified - sharing now handled differently
 
-enum ShareLinkType {
-  YEAR_PLAN
-}
+// EquipmentBooking model and EquipmentBookingStatus enum archived - see schema.archive.prisma
+// Functionality moved to external resource management systems
 
-model ShareLink {
-  id        Int           @id @default(autoincrement())
-  token     String        @unique
-  type      ShareLinkType
-  teacherId Int
-  teacher   User          @relation(fields: [teacherId], references: [id])
-  year      Int
-  expiresAt DateTime
-  createdAt DateTime      @default(now())
-}
-
-enum EquipmentBookingStatus {
-  REQUESTED
-  CONFIRMED
-  CANCELLED
-}
-
-model EquipmentBooking {
-  id            Int                    @id @default(autoincrement())
-  teacherId     Int
-  teacher       User                   @relation(fields: [teacherId], references: [id])
-  resourceName  String
-  neededBy      DateTime
-  leadTimeDays  Int                    @default(14)
-  status        EquipmentBookingStatus @default(REQUESTED)
-  createdAt     DateTime               @default(now())
-  updatedAt     DateTime               @updatedAt
-}
-
-model Holiday {
-  id   Int      @id @default(autoincrement())
-  date DateTime
-  name String
-}
+// Holiday model archived - see schema.archive.prisma
+// Functionality moved to CalendarEvent with type HOLIDAY
 
 
 
 
 
-model OralRoutineTemplate {
-  id            Int                      @id @default(autoincrement())
-  title         String
-  titleEn       String?
-  titleFr       String?
-  description   String?
-  descriptionEn String?
-  descriptionFr String?
-  userId        Int
-  user          User                     @relation(fields: [userId], references: [id])
-  dailyRoutines DailyOralRoutine[]
-  createdAt     DateTime                 @default(now())
-  updatedAt     DateTime                 @updatedAt
-}
-
-model DailyOralRoutine {
-  id            Int                 @id @default(autoincrement())
-  date          DateTime
-  templateId    Int
-  template      OralRoutineTemplate @relation(fields: [templateId], references: [id])
-  completed     Boolean             @default(false)
-  notes         String?
-  participation Int?
-  userId        Int
-  user          User                @relation(fields: [userId], references: [id])
-  createdAt     DateTime            @default(now())
-  updatedAt     DateTime            @updatedAt
-}
+// OralRoutineTemplate and DailyOralRoutine models archived - see schema.archive.prisma
+// Functionality integrated into ETFOLessonPlan and DaybookEntry models
 
 
-model ThematicUnit {
-  id           Int        @id @default(autoincrement())
-  title        String
-  titleEn      String?
-  titleFr      String?
-  description  String?
-  descriptionEn String?
-  descriptionFr String?
-  startDate    DateTime
-  endDate      DateTime
-  userId       Int
-  user         User       @relation(fields: [userId], references: [id])
-  reflections  ReflectionJournalEntry[]
-  studentGoals StudentGoal[]
-  studentReflections StudentReflection[]
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-}
+// ThematicUnit model archived - see schema.archive.prisma
+// Functionality replaced by UnitPlan model with ETFO alignment
 
 
 
-model CognatePair {
-  id               Int                    @id @default(autoincrement())
-  wordFr           String
-  wordEn           String
-  notes            String?
-  userId           Int
-  user             User                   @relation(fields: [userId], references: [id])
-  createdAt        DateTime               @default(now())
-  @@unique([wordFr, wordEn, userId])
-}
+// CognatePair model archived - see schema.archive.prisma
+// Functionality moved to external vocabulary management systems
 
 
 
 
-model MediaResource {
-  id             Int      @id @default(autoincrement())
-  userId         Int
-  user           User     @relation(fields: [userId], references: [id])
-  title          String
-  filePath       String
-  fileType       String   // "image", "pdf", "video", "audio"
-  fileSize       Int?     // file size in bytes
-  mimeType       String?  // MIME type for validation
-  tags           String   @default("[]") // JSON array of tags
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-}
+// MediaResource model archived - see schema.archive.prisma
+// Functionality moved to cloud storage with references in lesson plan resources
 
 
 
 
 
-model ReflectionJournalEntry {
-  id             Int                       @id @default(autoincrement())
-  userId         Int
-  user           User                      @relation(fields: [userId], references: [id])
-  date           DateTime
-  content        String
-  themeId        Int?
-  theme          ThematicUnit?             @relation(fields: [themeId], references: [id])
-  createdAt      DateTime                  @default(now())
-  updatedAt      DateTime                  @updatedAt
-}
+// ReflectionJournalEntry model archived - see schema.archive.prisma
+// Functionality integrated into DaybookEntry for comprehensive daily reflections
 
 
 
-model AIGeneratedPlan {
-  id           Int       @id @default(autoincrement())
-  userId       Int
-  user         User      @relation(fields: [userId], references: [id])
-  weekStart    DateTime
-  planData     String    // JSON structure of the generated plan
-  parameters   String    // JSON of generation parameters used
-  qualityScore Float?    // Overall plan quality score
-  accepted     Boolean   @default(false)
-  appliedAt    DateTime? // When the plan was applied to the calendar
-  createdAt    DateTime  @default(now())
-}
-
-model PlanningConversation {
-  id           Int       @id @default(autoincrement())
-  userId       Int
-  user         User      @relation(fields: [userId], references: [id])
-  sessionId    String    // Group messages in sessions
-  role         String    // "user" or "assistant"
-  content      String
-  metadata     String?   // JSON for additional context
-  createdAt    DateTime  @default(now())
-  @@index([userId, sessionId])
-}
+// AIGeneratedPlan and PlanningConversation models archived - see schema.archive.prisma
+// Functionality replaced by ETFO-aligned planning workflow with integrated AI assistance
 
 model Student {
   id          Int    @id @default(autoincrement())
@@ -407,8 +223,8 @@ model StudentGoal {
   studentId  Int
   student    Student   @relation(fields: [studentId], references: [id])
   text       String
-  themeId    Int?      // For thematic unit goals
-  theme      ThematicUnit? @relation(fields: [themeId], references: [id])
+  // themeId removed - ThematicUnit archived, use unitPlanId for unit-specific goals
+  unitPlanId String?   // Optional link to UnitPlan for unit-specific goals
   createdAt  DateTime  @default(now())
   status     String    @default("active") // "active" | "completed" | "abandoned"
 }
@@ -422,8 +238,8 @@ model StudentReflection {
   date        DateTime? // Optional date
   emoji       String?   // e.g. "🙂", "😐", "😕"
   voicePath   String?   // path to optional recording
-  themeId     Int?
-  theme       ThematicUnit? @relation(fields: [themeId], references: [id])
+  // themeId removed - ThematicUnit archived, use unitPlanId for unit-specific reflections
+  unitPlanId  String?   // Optional link to UnitPlan for unit-specific reflections
   // A3 Enhancement: AI Classification fields
   suggestedOutcomeIds  String?    // JSON array of suggested outcome IDs
   selTags              String?    // JSON array of SEL/competency tags
@@ -462,6 +278,32 @@ model ParentSummary {
 
 
 
+
+// Newsletter model for multi-student parent communication
+model Newsletter {
+  id          String    @id @default(cuid())
+  userId      Int
+  user        User      @relation(fields: [userId], references: [id])
+  
+  title       String
+  titleFr     String
+  
+  studentIds  Json      // Array of student IDs
+  dateFrom    DateTime
+  dateTo      DateTime
+  
+  tone        String    // "friendly" | "formal" | "informative"
+  sections    Json      // Array of newsletter sections
+  
+  isDraft     Boolean   @default(true)
+  sentAt      DateTime?
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  @@index([userId])
+  @@index([isDraft])
+}
 
 // ==================== Phase 5: Curriculum Intelligence Models ====================
 
@@ -660,9 +502,9 @@ model LongRangePlan {
 
 // Junction table for Long-Range Plans and Curriculum Expectations
 model LongRangePlanExpectation {
-  longRangePlan   LongRangePlan         @relation(fields: [longRangePlanId], references: [id])
+  longRangePlan   LongRangePlan         @relation(fields: [longRangePlanId], references: [id], onDelete: Cascade)
   longRangePlanId String
-  expectation     CurriculumExpectation @relation(fields: [expectationId], references: [id])
+  expectation     CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
   expectationId   String
   plannedTerm     String?               // Which term this expectation is planned for
   
@@ -727,9 +569,9 @@ model UnitPlan {
 
 // Junction table for Unit Plans and Curriculum Expectations
 model UnitPlanExpectation {
-  unitPlan      UnitPlan              @relation(fields: [unitPlanId], references: [id])
+  unitPlan      UnitPlan              @relation(fields: [unitPlanId], references: [id], onDelete: Cascade)
   unitPlanId    String
-  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id])
+  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
   expectationId String
   
   @@id([unitPlanId, expectationId])
@@ -758,6 +600,11 @@ model ETFOLessonPlan {
   title      String
   unitPlanId String
   unitPlan   UnitPlan @relation(fields: [unitPlanId], references: [id])
+  
+  // Denormalized fields for performance and filtering
+  grade      Int?     // Denormalized from LongRangePlan
+  subject    String?  // Denormalized from LongRangePlan
+  language   String?  // Teaching language (e.g., "en", "fr")
   
   // Lesson details
   date       DateTime
@@ -804,13 +651,15 @@ model ETFOLessonPlan {
   
   @@index([userId, date])
   @@index([unitPlanId])
+  @@index([grade, subject])
+  @@index([language])
 }
 
 // Junction table for Lesson Plans and Curriculum Expectations
 model ETFOLessonPlanExpectation {
-  lessonPlan    ETFOLessonPlan        @relation(fields: [lessonPlanId], references: [id])
+  lessonPlan    ETFOLessonPlan        @relation(fields: [lessonPlanId], references: [id], onDelete: Cascade)
   lessonPlanId  String
-  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id])
+  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
   expectationId String
   
   @@id([lessonPlanId, expectationId])
@@ -875,9 +724,9 @@ model DaybookEntry {
 
 // Junction table for Daybook Entries and Curriculum Expectations
 model DaybookEntryExpectation {
-  daybookEntry  DaybookEntry          @relation(fields: [daybookEntryId], references: [id])
+  daybookEntry  DaybookEntry          @relation(fields: [daybookEntryId], references: [id], onDelete: Cascade)
   daybookEntryId String
-  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id])
+  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
   expectationId String
   coverage      String?               // "introduced", "developing", "consolidated"
   
@@ -1017,4 +866,178 @@ model ActivityCollectionItem {
   addedAt      DateTime          @default(now())
   
   @@id([collectionId, activityId])
+}
+
+// ==================== Weekly Planner State Model ====================
+// Stores user preferences and state for the weekly planner interface
+
+model WeeklyPlannerState {
+  id                 String   @id @default(cuid())
+  userId             Int      @unique
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // View preferences
+  defaultView        String   @default("week") // "week" | "month" | "agenda"
+  timeSlotDuration   Int      @default(30) // minutes (15, 30, 60)
+  showWeekends       Boolean  @default(false)
+  startOfWeek        Int      @default(1) // 0=Sunday, 1=Monday
+  workingHours       String   @default("{\"start\":\"08:00\",\"end\":\"16:00\"}")
+  
+  // UI preferences  
+  sidebarExpanded    Boolean  @default(true)
+  showMiniCalendar   Boolean  @default(true)
+  showResourcePanel  Boolean  @default(true)
+  compactMode        Boolean  @default(false)
+  theme              String   @default("light") // "light" | "dark" | "system"
+  
+  // Planning preferences
+  autoSave           Boolean  @default(true)
+  autoSaveInterval   Int      @default(30) // seconds
+  showUncoveredOutcomes Boolean @default(true)
+  defaultLessonDuration Int   @default(60) // minutes
+  
+  // Current state
+  currentWeekStart   DateTime @default(now())
+  lastActiveView     String?  // For restoring user's position
+  draftChanges       String?  // Unsaved changes as JSON string
+  
+  // Advanced features
+  undoHistory        String   @default("[]") // Array of undo states as JSON string
+  redoHistory        String   @default("[]") // Array of redo states as JSON string
+  maxHistorySize     Int      @default(50)
+  
+  // Offline support
+  lastSyncedAt       DateTime @default(now())
+  hasOfflineChanges  Boolean  @default(false)
+  offlineData        String?  // IndexedDB sync data as JSON string
+  
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  
+  @@index([userId])
+  @@index([userId, lastSyncedAt])
+  @@index([userId, hasOfflineChanges])
+  @@index([currentWeekStart])
+}
+
+// ==================== Template System Models ====================
+// Support for unit and lesson plan templates to reduce teacher workload
+
+enum TemplateType {
+  UNIT_PLAN
+  LESSON_PLAN
+}
+
+enum TemplateCategory {
+  BY_SUBJECT
+  BY_GRADE
+  BY_THEME
+  BY_SEASON
+  BY_SKILL
+  CUSTOM
+}
+
+model PlanTemplate {
+  id              String           @id @default(cuid())
+  
+  // Template identification
+  title           String
+  titleFr         String?
+  description     String?
+  descriptionFr   String?
+  type            TemplateType
+  category        TemplateCategory
+  
+  // Template metadata
+  subject         String?          // Optional subject filter
+  gradeMin        Int?             // Minimum grade level
+  gradeMax        Int?             // Maximum grade level
+  tags            Json             // Array of tags for searchability
+  keywords        Json             // Array of keywords for search
+  
+  // Template ownership
+  isSystem        Boolean          @default(false) // System-provided templates
+  createdByUserId Int?
+  createdByUser   User?            @relation(fields: [createdByUserId], references: [id])
+  isPublic        Boolean          @default(false) // Can other teachers use this?
+  
+  // Template content (JSON structure based on type)
+  content         Json             // Full template content
+  
+  // Unit Plan specific fields (when type = UNIT_PLAN)
+  estimatedWeeks  Int?             // Typical duration in weeks
+  unitStructure   Json?            // Predefined lesson sequence structure
+  
+  // Lesson Plan specific fields (when type = LESSON_PLAN)
+  estimatedMinutes Int?            // Typical duration in minutes
+  lessonStructure Json?            // Three-part lesson structure template
+  
+  // Usage tracking
+  usageCount      Int              @default(0)
+  lastUsedAt      DateTime?
+  
+  // Ratings and feedback
+  ratings         TemplateRating[]
+  averageRating   Float?           @default(0)
+  
+  // Template variations
+  variations      TemplateVariation[]
+  
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  
+  @@index([type, category])
+  @@index([subject, gradeMin, gradeMax])
+  @@index([isSystem, isPublic])
+  @@index([createdByUserId])
+  @@index([usageCount])
+}
+
+model TemplateRating {
+  id          String       @id @default(cuid())
+  templateId  String
+  template    PlanTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  userId      Int
+  rating      Int          // 1-5 stars
+  comment     String?
+  createdAt   DateTime     @default(now())
+  
+  @@unique([templateId, userId])
+  @@index([templateId, rating])
+}
+
+// Variations allow templates to have different versions (e.g., simplified, enriched, differentiated)
+model TemplateVariation {
+  id              String       @id @default(cuid())
+  templateId      String
+  template        PlanTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  
+  name            String       // e.g., "Simplified Version", "Extended Version"
+  nameFr          String?
+  description     String?
+  modificationNotes String?     // What's different in this variation
+  content         Json         // Modified template content
+  
+  createdAt       DateTime     @default(now())
+  
+  @@index([templateId])
+}
+
+// Recent Plan Access tracking
+model RecentPlanAccess {
+  id              String   @id @default(cuid())
+  userId          Int
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  planType        String   // 'long-range', 'unit', 'lesson', 'daybook'
+  planId          String   // ID of the specific plan
+  lastAccessed    DateTime @default(now())
+  accessCount     Int      @default(1)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@unique([userId, planType, planId])
+  @@index([userId, lastAccessed])
+  @@index([planType, planId])
 }

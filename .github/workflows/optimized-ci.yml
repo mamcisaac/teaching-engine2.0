@@ -1,0 +1,258 @@
+name: Optimized CI Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+# Cancel in-progress runs for the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '20'
+  PNPM_VERSION: '10.11.1'
+
+jobs:
+  # Quick checks that can fail fast
+  quick-checks:
+    name: Quick Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # For better caching
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --prefer-offline
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Type check
+        run: pnpm typecheck
+
+  # Unit tests - run in parallel
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    needs: quick-checks
+    strategy:
+      matrix:
+        shard: [1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-env
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          pnpm-version: ${{ env.PNPM_VERSION }}
+
+      - name: Cache test results
+        uses: actions/cache@v3
+        with:
+          path: |
+            server/tests/temp/.smart-cache
+            server/.jest-cache
+          key: ${{ runner.os }}-test-cache-${{ matrix.shard }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-test-cache-${{ matrix.shard }}-
+
+      - name: Run unit tests (shard ${{ matrix.shard }}/4)
+        run: |
+          pnpm --filter server test:unit -- --shard=${{ matrix.shard }}/4 --coverage
+        env:
+          NODE_OPTIONS: '--max-old-space-size=4096'
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-unit-${{ matrix.shard }}
+          path: server/coverage/
+          retention-days: 1
+
+  # Integration tests
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    needs: quick-checks
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-env
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          pnpm-version: ${{ env.PNPM_VERSION }}
+
+      - name: Run integration tests
+        run: pnpm --filter server test:integration
+        env:
+          DATABASE_URL: file:./test-integration.db
+          NODE_OPTIONS: '--max-old-space-size=4096'
+        timeout-minutes: 10
+
+  # Build job with caching
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: quick-checks
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-env
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          pnpm-version: ${{ env.PNPM_VERSION }}
+
+      - name: Cache build outputs
+        uses: actions/cache@v3
+        with:
+          path: |
+            .build-cache
+            client/.vite-cache
+            client/dist
+            server/dist
+            packages/*/dist
+          key: ${{ runner.os }}-build-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+
+      - name: Build packages
+        run: |
+          node scripts/build-monitor.js &
+          MONITOR_PID=$!
+          pnpm build
+          kill $MONITOR_PID || true
+        env:
+          NODE_OPTIONS: '--max-old-space-size=4096'
+          ANALYZE: false
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: |
+            client/dist
+            server/dist
+            .build-reports/*.json
+          retention-days: 7
+
+      - name: Check bundle size
+        run: |
+          MAX_SIZE_MB=5
+          ACTUAL_SIZE=$(du -sm client/dist | cut -f1)
+          if [ $ACTUAL_SIZE -gt $((MAX_SIZE_MB * 1024)) ]; then
+            echo "Bundle size ($ACTUAL_SIZE KB) exceeds limit ($MAX_SIZE_MB MB)"
+            exit 1
+          fi
+
+  # E2E tests - only on main branch or when labeled
+  e2e-tests:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || contains(github.event.pull_request.labels.*.name, 'run-e2e')
+    needs: [unit-tests, build]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-env
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          pnpm-version: ${{ env.PNPM_VERSION }}
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Run E2E tests
+        run: pnpm test:e2e:ci
+        env:
+          DATABASE_URL: file:./test-e2e.db
+          CI: true
+
+      - name: Upload E2E test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: e2e-results
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
+
+  # Merge coverage reports
+  coverage:
+    name: Coverage Report
+    runs-on: ubuntu-latest
+    needs: [unit-tests, integration-tests]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all coverage artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: coverage-parts
+
+      - name: Merge coverage reports
+        run: |
+          mkdir -p coverage
+          find coverage-parts -name 'lcov.info' -exec cat {} \; > coverage/lcov.info
+
+      - name: Upload to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage/lcov.info
+          fail_ci_if_error: false
+
+  # Final status check
+  ci-status:
+    name: CI Status
+    runs-on: ubuntu-latest
+    needs: [unit-tests, integration-tests, build]
+    if: always()
+    steps:
+      - name: Check status
+        run: |
+          if [[ "${{ needs.unit-tests.result }}" != "success" ]] || 
+             [[ "${{ needs.integration-tests.result }}" != "success" ]] || 
+             [[ "${{ needs.build.result }}" != "success" ]]; then
+            echo "CI failed"
+            exit 1
+          fi
+          echo "CI passed!"

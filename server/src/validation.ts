@@ -204,14 +204,16 @@ export const studentCreateSchema = z.object({
 export const studentGoalCreateSchema = z.object({
   text: z.string().min(1).max(500),
   outcomeId: z.string().optional(),
-  themeId: z.number().int().optional(),
+  // themeId removed - ThematicUnit model archived
+  unitPlanId: z.string().optional(),
   status: z.enum(['active', 'completed', 'abandoned']).default('active'),
 });
 
 export const studentGoalUpdateSchema = z.object({
   text: z.string().min(1).max(500).optional(),
   outcomeId: z.string().optional(),
-  themeId: z.number().int().optional(),
+  // themeId removed - ThematicUnit model archived
+  unitPlanId: z.string().optional(),
   status: z.enum(['active', 'completed', 'abandoned']).optional(),
 });
 
@@ -221,7 +223,8 @@ export const studentReflectionCreateSchema = z.object({
   emoji: z.string().max(10).optional(),
   voicePath: z.string().max(500).optional(),
   outcomeId: z.string().optional(),
-  themeId: z.number().int().optional(),
+  // themeId removed - ThematicUnit model archived
+  unitPlanId: z.string().optional(),
 });
 
 export function validate(schema: ZodSchema) {

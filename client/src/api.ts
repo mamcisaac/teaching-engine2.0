@@ -59,13 +59,11 @@ export const api = axios.create({
   },
 });
 
-// Add request interceptor to add auth token to requests
+// Add request interceptor for consistent configuration
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
+    // Ensure credentials are included for cookie-based auth
+    config.withCredentials = true;
     return config;
   },
   (error) => {
@@ -78,9 +76,7 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Clear auth data and redirect to login
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
+      // Redirect to login on authentication failure
       window.location.href = '/login';
     }
     return Promise.reject(error);
@@ -709,12 +705,7 @@ export const usePlannerSuggestions = (weekStart: string, filters?: Record<string
 
         // Apply client-side filtering based on activity tags
         if (filters && Object.keys(filters).length > 0) {
-          console.log(
-            'Applying filters:',
-            filters,
-            'to suggestions:',
-            suggestions.map((s) => s.title),
-          );
+          // Apply client-side filtering
           suggestions = suggestions.filter((suggestion) => {
             // If no filters are enabled, show all
             const enabledFilters = Object.entries(filters)
@@ -746,13 +737,8 @@ export const usePlannerSuggestions = (weekStart: string, filters?: Record<string
                   return false;
               }
             });
-            console.log(`Suggestion "${suggestion.title}" matches filters:`, matches);
             return matches;
           });
-          console.log(
-            'Filtered suggestions:',
-            suggestions.map((s) => s.title),
-          );
         }
 
         return suggestions;

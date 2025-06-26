@@ -1,0 +1,37 @@
+{
+  "timestamp": "2025-06-25T14:54:51.811Z",
+  "totalTests": 36,
+  "successfulTests": 36,
+  "newSnapshots": 36,
+  "changedSnapshots": 0,
+  "qualityStats": {
+    "averageContentScore": 89.16666666666666,
+    "averageStructureScore": 89.16666666666666
+  },
+  "details": [
+    {
+      "testType": "long-range-plans",
+      "results": 9,
+      "successful": 9,
+      "failed": 0
+    },
+    {
+      "testType": "unit-plans",
+      "results": 9,
+      "successful": 9,
+      "failed": 0
+    },
+    {
+      "testType": "lesson-plans",
+      "results": 9,
+      "successful": 9,
+      "failed": 0
+    },
+    {
+      "testType": "daybook",
+      "results": 9,
+      "successful": 9,
+      "failed": 0
+    }
+  ]
+}

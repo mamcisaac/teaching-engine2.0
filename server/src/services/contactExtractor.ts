@@ -1,4 +1,3 @@
-import { prisma } from '../prisma';
 
 export interface ContactInfo {
   id: string;
@@ -27,16 +26,12 @@ export interface ExtractedContacts {
  * Extract and organize all relevant contact information for substitute teachers
  */
 export async function extractSchoolContacts(userId: number = 1): Promise<ExtractedContacts> {
-  // Get teacher preferences and any custom contacts
-  const teacherPrefs = await prisma.teacherPreferences.findFirst({
-    where: { id: userId },
-  });
-
   // Get school information if available
   const schoolInfo = await getSchoolInformation();
 
-  // Get custom contacts from teacher preferences
-  const customContacts = extractCustomContacts(teacherPrefs?.subPlanContacts);
+  // Get custom contacts from class routines (emergency contacts)
+  // TODO: Implement custom contact storage in ClassRoutine or User model
+  const customContacts: ContactInfo[] = [];
 
   // Combine default school contacts with custom ones
   const allContacts = [...getDefaultSchoolContacts(), ...schoolInfo.contacts, ...customContacts];
@@ -155,28 +150,13 @@ export async function updateTeacherContacts(
   userId: number,
   contacts: Array<{ name: string; role: string; phone: string; notes?: string }>,
 ): Promise<void> {
-  const formattedContacts = contacts.reduce(
-    (acc, contact) => {
-      acc[contact.role] =
-        `${contact.name} - ${contact.phone}${contact.notes ? ` (${contact.notes})` : ''}`;
-      return acc;
-    },
-    {} as Record<string, string>,
-  );
-
-  await prisma.teacherPreferences.upsert({
-    where: { id: userId },
-    create: {
-      id: userId,
-      teachingStyles: '',
-      pacePreference: '',
-      prepTime: 30, // Default 30 minutes prep time
-      subPlanContacts: formattedContacts,
-    },
-    update: {
-      subPlanContacts: formattedContacts,
-    },
-  });
+  // TODO: Implement custom contact storage
+  // Options:
+  // 1. Store in User model as JSON field
+  // 2. Store in ClassRoutine with category 'EMERGENCY_CONTACT'
+  // 3. Create a new ContactInfo model
+  
+  console.warn('updateTeacherContacts is disabled - teacherPreferences model archived');
 }
 
 /**

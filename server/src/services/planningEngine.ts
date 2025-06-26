@@ -1,4 +1,4 @@
-import type { CalendarEvent, UnavailableBlock, Holiday } from '@teaching-engine/database';
+import type { CalendarEvent, UnavailableBlock } from '@teaching-engine/database';
 
 export interface ScheduleItem {
   day: number;
@@ -31,12 +31,14 @@ export function filterAvailableBlocksByCalendar(
   }>,
   events: CalendarEvent[],
   unavailable: UnavailableBlock[] = [],
-  holidays: Holiday[] = [],
+  holidays: CalendarEvent[] = [], // Now using CalendarEvent with type 'HOLIDAY'
 ): DailyBlock[] {
   return slots
     .filter((s) => s.subjectId)
     .filter((slot) => {
-      return !holidays.some((h) => (new Date(h.date).getUTCDay() + 6) % 7 === slot.day);
+      // Filter out holidays (CalendarEvents with type 'HOLIDAY' and allDay true)
+      const holidayEvents = holidays.filter(h => h.eventType === 'HOLIDAY' && h.allDay);
+      return !holidayEvents.some((h) => (new Date(h.start).getUTCDay() + 6) % 7 === slot.day);
     })
     .filter((slot) => {
       const dayEvents = events.filter((e) => (new Date(e.start).getUTCDay() + 6) % 7 === slot.day);
@@ -99,22 +101,35 @@ export function scheduleBufferBlockPerDay(
 }
 
 /**
- * DISABLED: Legacy function that used Activity/Milestone models
  * TODO: Reimplement using ETFO lesson plans
+ * Generate a weekly schedule using ETFO lesson plans and unit plans
+ * @param opts Schedule generation options
+ * @returns Array of scheduled items mapped to ETFO lesson plans
  */
 export async function generateWeeklySchedule(
   _opts: GenerateScheduleOptions,
 ): Promise<ScheduleItem[]> {
-  // Legacy function disabled during migration to ETFO planning
-  console.warn('generateWeeklySchedule is disabled - legacy Activity/Milestone models removed');
+  // TODO: Implement scheduling logic using:
+  // - ETFOLessonPlan model for individual lessons
+  // - UnitPlan model for unit-level scheduling
+  // - DayPlan model for daily organization
+  console.warn('generateWeeklySchedule pending reimplementation with ETFO planning models');
   return [];
 }
 
+/**
+ * TODO: Reimplement using ETFO lesson plans and Activity Discovery
+ * Generate activity suggestions based on curriculum alignment
+ * @param options Filter options for suggestions
+ * @returns Array of suggested activities from Activity Discovery service
+ */
 export async function generateSuggestions(
   _options: { filters?: Record<string, boolean> } = {},
 ): Promise<Array<unknown>> {
-  // Activity[] - disabled for legacy cleanup
-  // Legacy function disabled during migration to ETFO planning
-  console.warn('generateSuggestions is disabled - legacy Activity/Milestone models removed');
+  // TODO: Implement suggestion logic using:
+  // - Activity Discovery service for external activities
+  // - ExternalActivity model for activity suggestions
+  // - CurriculumExpectation model for alignment
+  console.warn('generateSuggestions pending reimplementation with Activity Discovery service');
   return [];
 }

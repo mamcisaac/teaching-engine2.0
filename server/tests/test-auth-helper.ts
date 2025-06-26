@@ -95,6 +95,9 @@ export async function createTestUser(email?: string) {
  * Create an auth token for a user ID
  */
 export function createAuthToken(userId: number): string {
-  const secret = process.env.JWT_SECRET || 'test-secret';
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error('JWT_SECRET environment variable is required for testing');
+  }
   return jwt.sign({ userId: userId.toString() }, secret, { expiresIn: '24h' });
 }

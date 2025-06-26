@@ -1,0 +1,100 @@
+/* Calendar Planning Page Custom Styles */
+
+/* Override react-big-calendar styles */
+.rbc-calendar {
+  font-family: inherit;
+}
+
+.rbc-header {
+  padding: 10px;
+  font-weight: 600;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.rbc-month-view {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.rbc-day-bg {
+  background-color: #ffffff;
+}
+
+.rbc-day-bg.rbc-off-range-bg {
+  background-color: #f9fafb;
+}
+
+.rbc-today {
+  background-color: #eff6ff;
+}
+
+.rbc-event {
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.rbc-event-content {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rbc-toolbar {
+  display: none; /* We use our custom toolbar */
+}
+
+.rbc-month-row {
+  min-height: 100px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .rbc-month-view {
+    font-size: 0.875rem;
+  }
+  
+  .rbc-event {
+    font-size: 0.625rem;
+    padding: 1px 3px;
+  }
+  
+  .rbc-month-row {
+    min-height: 80px;
+  }
+  
+  .rbc-header {
+    padding: 8px 4px;
+    font-size: 0.75rem;
+  }
+  
+  .rbc-date-cell {
+    text-align: center;
+    padding: 2px;
+  }
+  
+  /* Agenda view is better for mobile */
+  .rbc-agenda-view {
+    font-size: 0.875rem;
+  }
+  
+  .rbc-agenda-event-cell {
+    white-space: normal;
+  }
+  
+  /* Calendar toolbar adjustments */
+  .calendar-toolbar-mobile {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .calendar-toolbar-mobile > div {
+    width: 100%;
+  }
+  
+  .calendar-toolbar-mobile .view-buttons {
+    justify-content: center;
+  }
+}

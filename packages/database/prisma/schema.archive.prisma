@@ -1,0 +1,359 @@
+// =============================================================================
+// ARCHIVED PRISMA SCHEMA - LEGACY MODELS
+// =============================================================================
+// This file contains models that have been archived during the ETFO alignment
+// transition. These models are no longer actively used in the Teaching Engine 2.0
+// system but are preserved here for historical reference and potential data 
+// migration needs.
+//
+// Archive Date: 2025-01-24
+// Context: Phase 5 cleanup - transitioning to ETFO-aligned planning models
+// =============================================================================
+
+// ==================== LEGACY PLANNING MODELS ====================
+// These models were replaced by the ETFO 5-level planning hierarchy
+
+model PlanningConversation {
+  id           Int       @id @default(autoincrement())
+  userId       Int
+  user         User      @relation(fields: [userId], references: [id])
+  sessionId    String    // Group messages in sessions
+  role         String    // "user" or "assistant"
+  content      String
+  metadata     String?   // JSON for additional context
+  createdAt    DateTime  @default(now())
+  @@index([userId, sessionId])
+  
+  // ARCHIVED REASON: Legacy AI planning conversation system
+  // REPLACED BY: ETFO-aligned planning workflow with integrated AI assistance
+  // MIGRATION PATH: Export conversation history for users who want to retain it
+}
+
+model AIGeneratedPlan {
+  id           Int       @id @default(autoincrement())
+  userId       Int
+  user         User      @relation(fields: [userId], references: [id])
+  weekStart    DateTime
+  planData     String    // JSON structure of the generated plan
+  parameters   String    // JSON of generation parameters used
+  qualityScore Float?    // Overall plan quality score
+  accepted     Boolean   @default(false)
+  appliedAt    DateTime? // When the plan was applied to the calendar
+  createdAt    DateTime  @default(now())
+  
+  // ARCHIVED REASON: Legacy AI-generated weekly planning system
+  // REPLACED BY: ETFO UnitPlan and ETFOLessonPlan models with AI integration
+  // MIGRATION PATH: Convert existing plans to ETFO lesson plans where applicable
+}
+
+// ==================== LEGACY ORGANIZATION MODELS ====================
+// These models were used for non-ETFO organization systems
+
+model TeacherPreferences {
+  id             Int    @id @default(autoincrement())
+  teachingStyles String
+  pacePreference String
+  prepTime       Int
+  subPlanContacts Json?
+  subPlanProcedures String?
+  
+  // ARCHIVED REASON: Simplified preferences system, sub-plan features moved to dedicated models
+  // REPLACED BY: User.preferredLanguage and dedicated SubstituteInfo/ClassRoutine models
+  // MIGRATION PATH: Migrate sub-plan data to new models, teaching preferences to user profile
+}
+
+model MaterialList {
+  id        Int      @id @default(autoincrement())
+  weekStart DateTime
+  items     String
+  prepared  Boolean  @default(false)
+  
+  // ARCHIVED REASON: Legacy weekly material planning
+  // REPLACED BY: Resource management in UnitPlanResource and ETFOLessonPlanResource
+  // MIGRATION PATH: Convert to new resource models linked to specific plans
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  message   String
+  type      String?
+  dueDate   DateTime?
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  
+  // ARCHIVED REASON: Generic notification system without user association
+  // REPLACED BY: Integrated notifications within ETFO planning workflow
+  // MIGRATION PATH: Convert to user-specific notifications or remove if obsolete
+}
+
+model Newsletter {
+  id        Int      @id @default(autoincrement())
+  title     String
+  titleEn   String?
+  titleFr   String?
+  content   String
+  contentEn String?
+  contentFr String?
+  rawDraft  String?
+  rawDraftEn String?
+  rawDraftFr String?
+  polishedDraft String?
+  polishedDraftEn String?
+  polishedDraftFr String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // ARCHIVED REASON: Newsletter feature superseded by ParentMessage system
+  // REPLACED BY: ParentMessage model with improved parent communication
+  // MIGRATION PATH: Convert existing newsletters to parent messages
+}
+
+// ==================== LEGACY CALENDAR MODELS ====================
+// Calendar system was simplified for ETFO alignment
+
+model ReportDeadline {
+  id               Int      @id @default(autoincrement())
+  teacherId        Int
+  teacher          User     @relation(fields: [teacherId], references: [id])
+  name             String
+  date             DateTime
+  remindDaysBefore Int      @default(14)
+  
+  // ARCHIVED REASON: Specific deadline tracking replaced by general calendar events
+  // REPLACED BY: CalendarEvent with type CUSTOM for deadlines
+  // MIGRATION PATH: Convert to CalendarEvent entries
+}
+
+enum YearPlanEntryType {
+  UNIT
+  ASSESSMENT
+  EVENT
+}
+
+model YearPlanEntry {
+  id        Int              @id @default(autoincrement())
+  teacherId Int
+  teacher   User             @relation(fields: [teacherId], references: [id])
+  entryType YearPlanEntryType
+  title     String
+  start     DateTime
+  end       DateTime
+  colorCode String?
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+  
+  // ARCHIVED REASON: Year planning replaced by ETFO LongRangePlan system
+  // REPLACED BY: LongRangePlan and UnitPlan models
+  // MIGRATION PATH: Convert UNIT entries to UnitPlan, others to CalendarEvent
+}
+
+enum ShareLinkType {
+  YEAR_PLAN
+}
+
+model ShareLink {
+  id        Int           @id @default(autoincrement())
+  token     String        @unique
+  type      ShareLinkType
+  teacherId Int
+  teacher   User          @relation(fields: [teacherId], references: [id])
+  year      Int
+  expiresAt DateTime
+  createdAt DateTime      @default(now())
+  
+  // ARCHIVED REASON: Sharing simplified, no longer need complex share link system
+  // REPLACED BY: Direct sharing features in ETFO planning models
+  // MIGRATION PATH: Remove, sharing now handled differently
+}
+
+enum EquipmentBookingStatus {
+  REQUESTED
+  CONFIRMED
+  CANCELLED
+}
+
+model EquipmentBooking {
+  id            Int                    @id @default(autoincrement())
+  teacherId     Int
+  teacher       User                   @relation(fields: [teacherId], references: [id])
+  resourceName  String
+  neededBy      DateTime
+  leadTimeDays  Int                    @default(14)
+  status        EquipmentBookingStatus @default(REQUESTED)
+  createdAt     DateTime               @default(now())
+  updatedAt     DateTime               @updatedAt
+  
+  // ARCHIVED REASON: Equipment booking moved to external resource management
+  // REPLACED BY: External booking systems, resource notes in lesson plans
+  // MIGRATION PATH: Export booking data, integrate with external systems
+}
+
+model Holiday {
+  id   Int      @id @default(autoincrement())
+  date DateTime
+  name String
+  
+  // ARCHIVED REASON: Holiday management moved to calendar events
+  // REPLACED BY: CalendarEvent with type HOLIDAY
+  // MIGRATION PATH: Convert to CalendarEvent entries
+}
+
+// ==================== LEGACY DAILY ROUTINES ====================
+// Oral routine system was simplified
+
+model OralRoutineTemplate {
+  id            Int                      @id @default(autoincrement())
+  title         String
+  titleEn       String?
+  titleFr       String?
+  description   String?
+  descriptionEn String?
+  descriptionFr String?
+  userId        Int
+  user          User                     @relation(fields: [userId], references: [id])
+  dailyRoutines DailyOralRoutine[]
+  createdAt     DateTime                 @default(now())
+  updatedAt     DateTime                 @updatedAt
+  
+  // ARCHIVED REASON: Oral routines integrated into daily lesson planning
+  // REPLACED BY: Activities within ETFOLessonPlan models
+  // MIGRATION PATH: Convert templates to lesson plan templates or activities
+}
+
+model DailyOralRoutine {
+  id            Int                 @id @default(autoincrement())
+  date          DateTime
+  templateId    Int
+  template      OralRoutineTemplate @relation(fields: [templateId], references: [id])
+  completed     Boolean             @default(false)
+  notes         String?
+  participation Int?
+  userId        Int
+  user          User                @relation(fields: [userId], references: [id])
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+  
+  // ARCHIVED REASON: Daily routines now part of lesson planning workflow
+  // REPLACED BY: DaybookEntry for daily reflections and tracking
+  // MIGRATION PATH: Convert to daybook entries or lesson plan notes
+}
+
+// ==================== LEGACY THEMATIC ORGANIZATION ====================
+// Thematic units replaced by ETFO unit planning
+
+model ThematicUnit {
+  id           Int        @id @default(autoincrement())
+  title        String
+  titleEn      String?
+  titleFr      String?
+  description  String?
+  descriptionEn String?
+  descriptionFr String?
+  startDate    DateTime
+  endDate      DateTime
+  userId       Int
+  user         User       @relation(fields: [userId], references: [id])
+  reflections  ReflectionJournalEntry[]
+  studentGoals StudentGoal[]
+  studentReflections StudentReflection[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  
+  // ARCHIVED REASON: Thematic organization replaced by ETFO UnitPlan system
+  // REPLACED BY: UnitPlan model with more comprehensive planning features
+  // MIGRATION PATH: Convert to UnitPlan entries with proper ETFO alignment
+}
+
+// ==================== LEGACY LANGUAGE TOOLS ====================
+// Language tools moved to dedicated systems
+
+model CognatePair {
+  id               Int                    @id @default(autoincrement())
+  wordFr           String
+  wordEn           String
+  notes            String?
+  userId           Int
+  user             User                   @relation(fields: [userId], references: [id])
+  createdAt        DateTime               @default(now())
+  @@unique([wordFr, wordEn, userId])
+  
+  // ARCHIVED REASON: Language tools moved to external vocabulary management
+  // REPLACED BY: External language learning tools, vocabulary in lesson plans
+  // MIGRATION PATH: Export vocabulary lists, integrate with external tools
+}
+
+// ==================== LEGACY MEDIA MANAGEMENT ====================
+// Media management simplified
+
+model MediaResource {
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  user           User     @relation(fields: [userId], references: [id])
+  title          String
+  filePath       String
+  fileType       String   // "image", "pdf", "video", "audio"
+  fileSize       Int?     // file size in bytes
+  mimeType       String?  // MIME type for validation
+  tags           String   @default("[]") // JSON array of tags
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  
+  // ARCHIVED REASON: Media management moved to cloud storage solutions
+  // REPLACED BY: External file storage, references in lesson plan resources
+  // MIGRATION PATH: Migrate files to cloud storage, update resource references
+}
+
+// ==================== LEGACY REFLECTION SYSTEM ====================
+// Reflection journaling replaced by daybook entries
+
+model ReflectionJournalEntry {
+  id             Int                       @id @default(autoincrement())
+  userId         Int
+  user           User                      @relation(fields: [userId], references: [id])
+  date           DateTime
+  content        String
+  themeId        Int?
+  theme          ThematicUnit?             @relation(fields: [themeId], references: [id])
+  createdAt      DateTime                  @default(now())
+  updatedAt      DateTime                  @updatedAt
+  
+  // ARCHIVED REASON: Reflection system integrated into daily planning workflow
+  // REPLACED BY: DaybookEntry for comprehensive daily reflections
+  // MIGRATION PATH: Convert to DaybookEntry records with proper lesson links
+}
+
+// ==================== LEGACY SUBSTITUTE TEACHER MODELS ====================
+// Substitute planning was reorganized
+
+model SubstituteInfo {
+  id         Int      @id @default(autoincrement())
+  teacherId  Int
+  teacher    User     @relation(fields: [teacherId], references: [id])
+  procedures String?
+  allergies  String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  // ARCHIVED REASON: Substitute info consolidated into ClassRoutine system
+  // REPLACED BY: ClassRoutine model with category-based organization
+  // MIGRATION PATH: Convert procedures to ClassRoutine entries, allergies to general notes
+}
+
+// =============================================================================
+// MIGRATION NOTES
+// =============================================================================
+//
+// This archive represents the state before Phase 5 cleanup. The following
+// general migration principles were applied:
+//
+// 1. PLANNING MODELS: Legacy weekly/activity planning → ETFO 5-level hierarchy
+// 2. ORGANIZATION: Fragmented systems → Integrated ETFO workflows  
+// 3. COMMUNICATION: Multiple systems → Unified ParentMessage system
+// 4. RESOURCES: File-based → Cloud-based with references
+// 5. REFLECTION: Separate journaling → Integrated daybook system
+// 6. CALENDAR: Multiple event types → Unified CalendarEvent system
+//
+// For data recovery or migration questions, reference the migration scripts
+// in the database/migrations/archive/ directory.
+//
+// =============================================================================

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import {
   useUnitPlan,
@@ -8,6 +8,8 @@ import {
   useUpdateETFOLessonPlan,
   useDeleteETFOLessonPlan,
 } from '../hooks/useETFOPlanning';
+import { useTemplates, useApplyTemplate } from '../hooks/useTemplates';
+import { PlanTemplate, isLessonPlanTemplate } from '../types/template';
 import Dialog from '../components/Dialog';
 import { Button } from '../components/ui/Button';
 import RichTextEditor from '../components/RichTextEditor';
@@ -16,7 +18,7 @@ import { Label } from '../components/ui/Label';
 import { Input } from '../components/ui/Input';
 import { Textarea } from '../components/ui/Textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { Plus, Trash2, Clock, Calendar, BookOpen, CheckCircle } from 'lucide-react';
+import { Plus, Trash2, Clock, Calendar, BookOpen, CheckCircle, Sparkles, Printer, Download, Save, RefreshCw, BookTemplate } from 'lucide-react';
 import { format } from 'date-fns';
 import { Checkbox } from '../components/ui/Checkbox';
 import { Badge } from '../components/ui/Badge';
@@ -31,6 +33,17 @@ import {
   AlertDialogTitle,
 } from '../components/ui/alert-dialog';
 import ExpectationSelector from '../components/planning/ExpectationSelector';
+import { InfoTooltip } from '../components/ui/Tooltip';
+
+// Lazy load AI components for better performance
+const AILessonPlanPanel = lazy(() => import('../components/ai/AILessonPlanPanel').then(m => ({ default: m.AILessonPlanPanel })));
+const WithAIErrorBoundary = lazy(() => import('../components/ai/AIErrorBoundary').then(m => ({ default: m.WithAIErrorBoundary })));
+import { useAutoSave, useUnsavedChangesWarning } from '../hooks/useAutoSave';
+import { AutoSaveIndicator } from '../components/ui/AutoSaveIndicator';
+import { MobileOptimizedForm, CollapsibleSection } from '../components/ui/MobileOptimizedForm';
+import { generateLessonPlanHTML, printHTML, downloadHTML } from '../utils/printUtils';
+import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
+import { SafeHtmlRenderer } from '../utils/sanitization';
 
 export default function ETFOLessonPlanPage() {
   const { unitId, lessonId } = useParams();
@@ -38,6 +51,8 @@ export default function ETFOLessonPlanPage() {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [editingLesson, setEditingLesson] = useState<string | null>(null);
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
+  const [isTemplateModalOpen, setIsTemplateModalOpen] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState<PlanTemplate | null>(null);
 
   // Fetch data
   const { data: unitPlan } = useUnitPlan(unitId || '');
@@ -50,6 +65,18 @@ export default function ETFOLessonPlanPage() {
   const createLesson = useCreateETFOLessonPlan();
   const updateLesson = useUpdateETFOLessonPlan();
   const deleteLesson = useDeleteETFOLessonPlan();
+
+  // Template-related hooks
+  const { data: lessonTemplatesResult } = useTemplates({
+    type: 'LESSON_PLAN',
+    subject: unitPlan?.longRangePlan?.subject,
+    gradeMin: unitPlan?.longRangePlan?.grade,
+    gradeMax: unitPlan?.longRangePlan?.grade,
+    limit: 20,
+  });
+  const applyTemplate = useApplyTemplate();
+  
+  const lessonTemplates = lessonTemplatesResult?.templates || [];
 
   // Form state
   const [formData, setFormData] = useState({
@@ -76,6 +103,33 @@ export default function ETFOLessonPlanPage() {
     subNotes: '',
     expectationIds: [] as string[],
   });
+
+  // Auto-save functionality for existing lessons
+  const autoSaveData = editingLesson ? {
+    ...formData,
+    expectationIds: formData.expectationIds
+  } : null;
+  
+  const { lastSaved, isSaving, hasUnsavedChanges, saveNow } = useAutoSave({
+    data: autoSaveData,
+    saveFn: async (data) => {
+      if (editingLesson && data) {
+        const cleanedData = {
+          ...data,
+          unitPlanId: unitId || '',
+          materials: data.materials?.filter((m: string) => m.trim()) || [],
+          accommodations: data.accommodations?.filter((a: string) => a.trim()) || [],
+          modifications: data.modifications?.filter((m: string) => m.trim()) || [],
+          extensions: data.extensions?.filter((e: string) => e.trim()) || [],
+        };
+        await updateLesson.mutateAsync({ id: editingLesson, data: cleanedData });
+      }
+    },
+    enabled: !!editingLesson && !!autoSaveData,
+    delay: 30000, // 30 seconds
+  });
+  
+  useUnsavedChangesWarning(hasUnsavedChanges);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -203,6 +257,84 @@ export default function ETFOLessonPlanPage() {
     });
   };
 
+  // AI suggestion handlers
+  const handleAISuggestionAccepted = (type: string, content: string[]) => {
+    switch (type) {
+      case 'mindson':
+        setFormData({ ...formData, mindsOn: content.join('\n\n') });
+        break;
+      case 'handson':
+        setFormData({ ...formData, action: content.join('\n\n') });
+        break;
+      case 'mindson_reflection':
+        setFormData({ ...formData, consolidation: content.join('\n\n') });
+        break;
+      case 'materials': {
+        const existingMaterials = formData.materials.filter(m => m.trim());
+        setFormData({ ...formData, materials: [...existingMaterials, ...content] });
+        break;
+      }
+      case 'assessments':
+        setFormData({ ...formData, assessmentNotes: content.join('\n\n') });
+        break;
+      default:
+        // Unhandled suggestion type
+    }
+  };
+
+  const handleAILessonGenerated = (lessonPlan: unknown) => {
+    setFormData({
+      ...formData,
+      title: lessonPlan.title || formData.title,
+      learningGoals: lessonPlan.learningGoals?.join('\n') || formData.learningGoals,
+      mindsOn: lessonPlan.structure?.mindsOn?.activities?.join('\n\n') || formData.mindsOn,
+      action: lessonPlan.structure?.handsOn?.activities?.join('\n\n') || formData.action,
+      consolidation: lessonPlan.structure?.mindsOnReflection?.activities?.join('\n\n') || formData.consolidation,
+      materials: lessonPlan.materials || formData.materials,
+      duration: lessonPlan.duration || formData.duration,
+    });
+  };
+
+  const handleApplyTemplate = async (template: PlanTemplate) => {
+    try {
+      const applied = await applyTemplate.mutateAsync({ id: template.id });
+      
+      if (isLessonPlanTemplate(template) && applied.appliedContent) {
+        // Pre-populate form with template data
+        const templateContent = applied.appliedContent;
+        setFormData({
+          ...formData,
+          title: templateContent.title || '',
+          titleFr: templateContent.titleFr || '',
+          duration: templateContent.duration || 60,
+          learningGoals: templateContent.learningGoals || '',
+          learningGoalsFr: templateContent.learningGoalsFr || '',
+          mindsOn: templateContent.mindsOnDescription || '',
+          mindsOnFr: templateContent.mindsOnDescriptionFr || '',
+          action: templateContent.actionDescription || '',
+          actionFr: templateContent.actionDescriptionFr || '',
+          consolidation: templateContent.consolidationDescription || '',
+          consolidationFr: templateContent.consolidationDescriptionFr || '',
+          materials: templateContent.materials || [''],
+          grouping: templateContent.grouping || 'whole',
+          accommodations: templateContent.accommodations || [''],
+          modifications: templateContent.modifications || [''],
+          extensions: templateContent.extensions || [''],
+          assessmentType: templateContent.assessmentType || 'formative',
+          assessmentNotes: templateContent.assessmentNotes || '',
+          isSubFriendly: templateContent.isSubFriendly || false,
+          subNotes: templateContent.subNotes || '',
+        });
+      }
+      
+      setIsTemplateModalOpen(false);
+      setSelectedTemplate(null);
+      setIsCreateModalOpen(true);
+    } catch (error) {
+      console.error('Failed to apply template:', error);
+    }
+  };
+
   // If we're in detail mode (lessonId provided), show the detail view
   if (lessonId && selectedLesson) {
     return (
@@ -254,6 +386,24 @@ export default function ETFOLessonPlanPage() {
                 </div>
               </div>
               <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => printHTML(generateLessonPlanHTML(selectedLesson as any, unitPlan), `${selectedLesson.title}-lesson-plan`)}
+                  className="flex items-center gap-2"
+                >
+                  <Printer className="h-4 w-4" />
+                  Print
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => downloadHTML(generateLessonPlanHTML(selectedLesson as any, unitPlan), `${selectedLesson.title}-lesson-plan`)}
+                  className="flex items-center gap-2"
+                >
+                  <Download className="h-4 w-4" />
+                  Export
+                </Button>
                 <Button
                   variant="outline"
                   onClick={() => {
@@ -310,9 +460,9 @@ export default function ETFOLessonPlanPage() {
             {selectedLesson.learningGoals && (
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Learning Goals</h3>
-                <div
+                <SafeHtmlRenderer 
+                  html={selectedLesson.learningGoals}
                   className="prose max-w-none"
-                  dangerouslySetInnerHTML={{ __html: selectedLesson.learningGoals }}
                 />
               </div>
             )}
@@ -325,9 +475,9 @@ export default function ETFOLessonPlanPage() {
                 </CardHeader>
                 <CardContent>
                   {selectedLesson.mindsOn ? (
-                    <div
+                    <SafeHtmlRenderer 
+                      html={selectedLesson.mindsOn}
                       className="prose max-w-none text-sm"
-                      dangerouslySetInnerHTML={{ __html: selectedLesson.mindsOn }}
                     />
                   ) : (
                     <p className="text-sm text-gray-500">No content provided</p>
@@ -342,9 +492,9 @@ export default function ETFOLessonPlanPage() {
                 </CardHeader>
                 <CardContent>
                   {selectedLesson.action ? (
-                    <div
+                    <SafeHtmlRenderer 
+                      html={selectedLesson.action}
                       className="prose max-w-none text-sm"
-                      dangerouslySetInnerHTML={{ __html: selectedLesson.action }}
                     />
                   ) : (
                     <p className="text-sm text-gray-500">No content provided</p>
@@ -359,9 +509,9 @@ export default function ETFOLessonPlanPage() {
                 </CardHeader>
                 <CardContent>
                   {selectedLesson.consolidation ? (
-                    <div
+                    <SafeHtmlRenderer 
+                      html={selectedLesson.consolidation}
                       className="prose max-w-none text-sm"
-                      dangerouslySetInnerHTML={{ __html: selectedLesson.consolidation }}
                     />
                   ) : (
                     <p className="text-sm text-gray-500">No content provided</p>
@@ -516,12 +666,30 @@ export default function ETFOLessonPlanPage() {
             )}
           </div>
 
-          <Button
-            onClick={() => setIsCreateModalOpen(true)}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white"
-          >
-            Create Lesson Plan
-          </Button>
+          <div className="flex items-center gap-3">
+            <BlankTemplateQuickActions 
+              templateType="lesson"
+              schoolInfo={{
+                grade: unitPlan?.longRangePlan ? `Grade ${unitPlan.longRangePlan.grade}` : '',
+                subject: unitPlan?.longRangePlan?.subject || '',
+                academicYear: unitPlan?.longRangePlan?.academicYear || '',
+              }}
+            />
+            <Button
+              variant="outline"
+              onClick={() => setIsTemplateModalOpen(true)}
+              className="flex items-center gap-2"
+            >
+              <BookTemplate className="h-4 w-4" />
+              Create from Template
+            </Button>
+            <Button
+              onClick={() => setIsCreateModalOpen(true)}
+              className="bg-indigo-600 hover:bg-indigo-700 text-white"
+            >
+              Create Lesson Plan
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -547,26 +715,26 @@ export default function ETFOLessonPlanPage() {
           </div>
         </div>
       ) : (
-        <div className="bg-white shadow rounded-lg overflow-hidden">
+        <div className="bg-white shadow rounded-lg overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Date
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Title
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="hidden sm:table-cell px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Duration
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="hidden md:table-cell px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Assessment
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="hidden lg:table-cell px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 sm:px-6 py-2 sm:py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -574,45 +742,46 @@ export default function ETFOLessonPlanPage() {
             <tbody className="bg-white divide-y divide-gray-200">
               {lessonPlans.map((lesson) => (
                 <tr key={lesson.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {format(new Date(lesson.date), 'MMM d, yyyy')}
+                  <td className="px-3 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-900">
+                    <span className="block sm:hidden">{format(new Date(lesson.date), 'MMM d')}</span>
+                    <span className="hidden sm:block">{format(new Date(lesson.date), 'MMM d, yyyy')}</span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 sm:px-6 py-2 sm:py-4">
                     <Link
                       to={`/planner/lessons/${lesson.id}`}
-                      className="text-sm font-medium text-indigo-600 hover:text-indigo-900"
+                      className="text-xs sm:text-sm font-medium text-indigo-600 hover:text-indigo-900 block"
                     >
                       {lesson.title}
                     </Link>
                     {lesson.isSubFriendly && (
-                      <Badge variant="secondary" className="ml-2 text-xs">
-                        Sub-Friendly
+                      <Badge variant="secondary" className="mt-1 text-xs">
+                        Sub
                       </Badge>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="hidden sm:table-cell px-3 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-900">
                     {lesson.duration} min
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="hidden md:table-cell px-3 sm:px-6 py-2 sm:py-4 whitespace-nowrap">
                     {lesson.assessmentType && (
                       <Badge variant="outline" className="text-xs">
                         {lesson.assessmentType}
                       </Badge>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="hidden lg:table-cell px-3 sm:px-6 py-2 sm:py-4 whitespace-nowrap">
                     {lesson.daybookEntry ? (
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                        <CheckCircle className="h-3 w-3 mr-1" />
-                        Taught
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <CheckCircle className="h-3 w-3 mr-0.5" />
+                        <span className="hidden xl:inline">Taught</span>
                       </span>
                     ) : (
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                        Planned
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                        <span className="hidden xl:inline">Planned</span>
                       </span>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <td className="px-3 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-right text-xs sm:text-sm font-medium">
                     <div className="flex justify-end gap-2">
                       <Button
                         variant="ghost"
@@ -667,51 +836,86 @@ export default function ETFOLessonPlanPage() {
 
       {/* Create/Edit Lesson Modal */}
       <Dialog open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen}>
-        <div className="p-6 max-w-5xl max-h-[90vh] overflow-y-auto">
-          <h3 className="text-lg font-semibold mb-4">
-            {editingLesson ? 'Edit Lesson Plan' : 'Create Lesson Plan'}
-          </h3>
+        <div className="p-3 sm:p-6 w-full max-w-full sm:max-w-5xl max-h-[90vh] overflow-y-auto">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold">
+              {editingLesson ? 'Edit Lesson Plan' : 'Create Lesson Plan'}
+            </h3>
+            {editingLesson && (
+              <div className="flex items-center gap-2">
+                <AutoSaveIndicator
+                  lastSaved={lastSaved}
+                  isSaving={isSaving}
+                  hasUnsavedChanges={hasUnsavedChanges}
+                  onManualSave={saveNow}
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={saveNow}
+                  disabled={isSaving || !hasUnsavedChanges}
+                  className="flex items-center gap-2"
+                >
+                  {isSaving ? (
+                    <RefreshCw className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Save className="h-4 w-4" />
+                  )}
+                  Save
+                </Button>
+              </div>
+            )}
+          </div>
 
-          <form onSubmit={handleSubmit}>
-            <Tabs defaultValue="overview" className="space-y-4">
-              <TabsList className="grid w-full grid-cols-5">
-                <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="three-part">Three-Part Lesson</TabsTrigger>
-                <TabsTrigger value="materials">Materials</TabsTrigger>
-                <TabsTrigger value="differentiation">Differentiation</TabsTrigger>
-                <TabsTrigger value="assessment">Assessment</TabsTrigger>
-              </TabsList>
+          <MobileOptimizedForm>
+            <form onSubmit={handleSubmit}>
+              <Tabs defaultValue="overview" className="space-y-4">
+                <TabsList className="grid w-full grid-cols-2 sm:grid-cols-6">
+                  <TabsTrigger value="overview">Overview</TabsTrigger>
+                  <TabsTrigger value="ai-assistant" className="gap-2">
+                    <Sparkles className="h-4 w-4" />
+                    AI Assistant
+                  </TabsTrigger>
+                  <TabsTrigger value="three-part">Three-Part Lesson</TabsTrigger>
+                  <TabsTrigger value="materials">Materials</TabsTrigger>
+                  <TabsTrigger value="differentiation">Differentiation</TabsTrigger>
+                  <TabsTrigger value="assessment">Assessment</TabsTrigger>
+                </TabsList>
 
               <TabsContent value="overview" className="space-y-4 mt-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <Label>Lesson Title *</Label>
-                    <Input
-                      required
-                      value={formData.title}
-                      onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                      placeholder="e.g., Introduction to Ecosystems"
-                    />
+                <CollapsibleSection title="Basic Information" required defaultExpanded>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label>Lesson Title *</Label>
+                      <Input
+                        required
+                        value={formData.title}
+                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                        placeholder="e.g., Introduction to Ecosystems"
+                      />
+                    </div>
+                    <div>
+                      <Label>Title (French)</Label>
+                      <Input
+                        value={formData.titleFr}
+                        onChange={(e) => setFormData({ ...formData, titleFr: e.target.value })}
+                        placeholder="e.g., Introduction aux écosystèmes"
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <Label>Title (French)</Label>
-                    <Input
-                      value={formData.titleFr}
-                      onChange={(e) => setFormData({ ...formData, titleFr: e.target.value })}
-                      placeholder="e.g., Introduction aux écosystèmes"
-                    />
-                  </div>
-                </div>
+                </CollapsibleSection>
 
-                <div className="grid grid-cols-3 gap-4">
-                  <div>
-                    <Label>Date *</Label>
-                    <Input
-                      type="date"
-                      required
-                      value={formData.date}
-                      onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                    />
+                <CollapsibleSection title="Scheduling & Duration" defaultExpanded>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                      <Label>Date *</Label>
+                      <Input
+                        type="date"
+                        required
+                        value={formData.date}
+                        onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                      />
                   </div>
                   <div>
                     <Label>Duration (minutes) *</Label>
@@ -739,11 +943,13 @@ export default function ETFOLessonPlanPage() {
                       <option value="individual">Individual</option>
                       <option value="mixed">Mixed Groupings</option>
                     </select>
+                    </div>
                   </div>
-                </div>
+                </CollapsibleSection>
 
-                <div>
-                  <Label>Learning Goals</Label>
+                <CollapsibleSection title="Learning Goals" defaultExpanded>
+                  <div>
+                    <Label>Learning Goals</Label>
                   <RichTextEditor
                     value={formData.learningGoals}
                     onChange={(value) => setFormData({ ...formData, learningGoals: value })}
@@ -756,43 +962,81 @@ export default function ETFOLessonPlanPage() {
                     value={formData.learningGoalsFr}
                     onChange={(value) => setFormData({ ...formData, learningGoalsFr: value })}
                   />
-                </div>
+                  </div>
+                </CollapsibleSection>
 
-                <div className="flex items-center space-x-2">
-                  <Checkbox
-                    id="subFriendly"
-                    checked={formData.isSubFriendly}
-                    onCheckedChange={(checked) =>
-                      setFormData({ ...formData, isSubFriendly: checked as boolean })
-                    }
-                  />
-                  <Label htmlFor="subFriendly" className="font-normal">
-                    This lesson is substitute teacher friendly
-                  </Label>
-                </div>
+                <CollapsibleSection title="Special Considerations" defaultExpanded={false}>
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id="subFriendly"
+                        checked={formData.isSubFriendly}
+                        onCheckedChange={(checked) =>
+                          setFormData({ ...formData, isSubFriendly: checked as boolean })
+                        }
+                      />
+                      <Label htmlFor="subFriendly" className="font-normal">
+                        This lesson is substitute teacher friendly
+                      </Label>
+                    </div>
 
-                {formData.isSubFriendly && (
+                    {formData.isSubFriendly && (
+                      <div>
+                        <Label>Substitute Teacher Notes</Label>
+                        <Textarea
+                          value={formData.subNotes}
+                          onChange={(e) => setFormData({ ...formData, subNotes: e.target.value })}
+                          placeholder="Special instructions for substitute teachers..."
+                          rows={3}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </CollapsibleSection>
+
+                <CollapsibleSection title="Curriculum Expectations" defaultExpanded>
                   <div>
-                    <Label>Substitute Teacher Notes</Label>
-                    <Textarea
-                      value={formData.subNotes}
-                      onChange={(e) => setFormData({ ...formData, subNotes: e.target.value })}
-                      placeholder="Special instructions for substitute teachers..."
-                      rows={3}
+                    <ExpectationSelector
+                      selectedIds={formData.expectationIds}
+                      onChange={(ids) => setFormData({ ...formData, expectationIds: ids })}
+                      grade={unitPlan?.longRangePlan?.grade}
+                      subject={unitPlan?.longRangePlan?.subject}
+                      label="Curriculum Expectations"
+                      placeholder="Select curriculum expectations for this lesson..."
                     />
                   </div>
-                )}
+                </CollapsibleSection>
+              </TabsContent>
 
-                <div>
-                  <ExpectationSelector
-                    selectedIds={formData.expectationIds}
-                    onChange={(ids) => setFormData({ ...formData, expectationIds: ids })}
-                    grade={unitPlan?.longRangePlan?.grade}
-                    subject={unitPlan?.longRangePlan?.subject}
-                    label="Curriculum Expectations"
-                    placeholder="Select curriculum expectations for this lesson..."
-                  />
-                </div>
+              <TabsContent value="ai-assistant" className="space-y-6 mt-4">
+                <Suspense fallback={
+                  <div className="flex items-center justify-center p-8">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                    <span className="ml-2 text-gray-600">Loading AI Assistant...</span>
+                  </div>
+                }>
+                  <WithAIErrorBoundary>
+                    <AILessonPlanPanel
+                      lessonTitle={formData.title}
+                      subject={unitPlan?.longRangePlan?.subject || ''}
+                      grade={unitPlan?.longRangePlan?.grade || 1}
+                      duration={formData.duration}
+                      learningGoals={formData.learningGoals ? [formData.learningGoals] : []}
+                      unitContext={unitPlan ? {
+                        title: unitPlan.title,
+                        bigIdeas: unitPlan.bigIdeas ? [unitPlan.bigIdeas] : [],
+                        expectations: unitPlan.expectations?.map(exp => ({
+                          id: exp.expectation.id,
+                          code: exp.expectation.code,
+                          description: exp.expectation.description,
+                        })) || [],
+                      } : undefined}
+                      onSuggestionAccepted={handleAISuggestionAccepted}
+                      onLessonGenerated={handleAILessonGenerated}
+                      className="w-full"
+                    />
+                  </WithAIErrorBoundary>
+                </Suspense>
               </TabsContent>
 
               <TabsContent value="three-part" className="space-y-6 mt-4">
@@ -1019,7 +1263,10 @@ export default function ETFOLessonPlanPage() {
 
               <TabsContent value="assessment" className="space-y-4 mt-4">
                 <div>
-                  <Label>Assessment Type</Label>
+                  <div className="flex items-center">
+                    <Label>Assessment Type</Label>
+                    <InfoTooltip content="Choose the primary purpose of assessment for this lesson. You can use multiple types throughout the lesson." />
+                  </div>
                   <select
                     value={formData.assessmentType}
                     onChange={(e) =>
@@ -1030,20 +1277,55 @@ export default function ETFOLessonPlanPage() {
                     }
                     className="w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                   >
-                    <option value="diagnostic">Diagnostic (Assessment FOR Learning)</option>
-                    <option value="formative">Formative (Assessment AS Learning)</option>
-                    <option value="summative">Summative (Assessment OF Learning)</option>
+                    <option value="diagnostic">Diagnostic - Assessment FOR Learning (Before/Beginning)</option>
+                    <option value="formative">Formative - Assessment AS Learning (During)</option>
+                    <option value="summative">Summative - Assessment OF Learning (After/End)</option>
                   </select>
+                  <div className="mt-2 text-sm text-gray-600">
+                    {formData.assessmentType === 'diagnostic' && (
+                      <p className="bg-blue-50 p-3 rounded-md border border-blue-200">
+                        <strong>Diagnostic Assessment:</strong> Used at the beginning to determine what students already know and identify learning needs. 
+                        <br /><strong>Examples:</strong> KWL charts, pre-tests, class discussions, entrance tickets, thumbs up/down checks
+                      </p>
+                    )}
+                    {formData.assessmentType === 'formative' && (
+                      <p className="bg-green-50 p-3 rounded-md border border-green-200">
+                        <strong>Formative Assessment:</strong> Ongoing assessment during learning to provide feedback and adjust teaching. Students actively assess their own learning.
+                        <br /><strong>Examples:</strong> Exit tickets, peer feedback, self-reflection journals, mini-whiteboards, think-pair-share, observation checklists
+                      </p>
+                    )}
+                    {formData.assessmentType === 'summative' && (
+                      <p className="bg-purple-50 p-3 rounded-md border border-purple-200">
+                        <strong>Summative Assessment:</strong> Used at the end to evaluate student achievement of learning goals and assign grades.
+                        <br /><strong>Examples:</strong> Unit tests, final projects, presentations, portfolios, performance tasks, end-of-term assignments
+                      </p>
+                    )}
+                  </div>
                 </div>
 
                 <div>
-                  <Label>Assessment Notes</Label>
+                  <div className="flex items-center">
+                    <Label>Success Criteria</Label>
+                    <InfoTooltip content="Clear, specific statements that describe what success looks like. Written in student-friendly language starting with 'I can...'" />
+                  </div>
                   <Textarea
                     value={formData.assessmentNotes}
                     onChange={(e) => setFormData({ ...formData, assessmentNotes: e.target.value })}
-                    placeholder="Describe assessment strategies, success criteria, and evaluation methods..."
-                    rows={4}
+                    placeholder="Success Criteria (I can statements):
+• I can identify the main idea of a text
+• I can use evidence from the text to support my answer
+• I can work cooperatively with my group
+
+Assessment Strategies:
+• Observation during group work
+• Exit ticket with key question
+• Self-assessment checklist"
+                    rows={6}
+                    className="mt-1"
                   />
+                  <p className="mt-1 text-xs text-gray-500">
+                    Include both success criteria and the specific assessment strategies you&apos;ll use to gather evidence of learning.
+                  </p>
                 </div>
               </TabsContent>
             </Tabs>
@@ -1062,17 +1344,122 @@ export default function ETFOLessonPlanPage() {
               </Button>
               <Button
                 type="submit"
-                disabled={createLesson.isPending || updateLesson.isPending}
+                disabled={createLesson.isPending || updateLesson.isPending || isSaving}
                 className="bg-indigo-600 hover:bg-indigo-700 text-white"
               >
-                {createLesson.isPending || updateLesson.isPending
+                {(createLesson.isPending || updateLesson.isPending || isSaving)
                   ? 'Saving...'
                   : editingLesson
                     ? 'Update Lesson Plan'
                     : 'Create Lesson Plan'}
               </Button>
             </div>
-          </form>
+            </form>
+          </MobileOptimizedForm>
+        </div>
+      </Dialog>
+
+      {/* Template Selection Modal */}
+      <Dialog open={isTemplateModalOpen} onOpenChange={setIsTemplateModalOpen}>
+        <div className="p-6 max-w-4xl max-h-[90vh] overflow-y-auto">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold">Choose a Lesson Plan Template</h3>
+          </div>
+
+          {lessonTemplates.length === 0 ? (
+            <div className="text-center py-8">
+              <div className="mx-auto h-12 w-12 text-gray-400 mb-4">
+                <BookTemplate className="h-full w-full" />
+              </div>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">No templates available</h3>
+              <p className="text-gray-600">
+                {unitPlan?.longRangePlan
+                  ? `No lesson plan templates found for Grade ${unitPlan.longRangePlan.grade} ${unitPlan.longRangePlan.subject}.`
+                  : 'No lesson plan templates available at this time.'}
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <p className="text-gray-600">
+                Select a template to get started with your lesson plan. Templates provide pre-structured content that you can customize.
+              </p>
+              <div className="grid gap-4 md:grid-cols-2">
+                {lessonTemplates.map((template) => (
+                  <Card
+                    key={template.id}
+                    className={`cursor-pointer border-2 transition-colors ${
+                      selectedTemplate?.id === template.id
+                        ? 'border-indigo-500 bg-indigo-50'
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                    onClick={() => setSelectedTemplate(template)}
+                  >
+                    <CardHeader>
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <CardTitle className="text-base">{template.title}</CardTitle>
+                          <CardDescription className="mt-1">
+                            {template.category} • Grade {template.gradeMin}
+                            {template.gradeMax && template.gradeMax !== template.gradeMin && `-${template.gradeMax}`}
+                            {template.estimatedMinutes && ` • ${template.estimatedMinutes} minutes`}
+                          </CardDescription>
+                        </div>
+                        <div className="flex items-center gap-1 text-yellow-500">
+                          <span className="text-sm">{template.averageRating?.toFixed(1) || '—'}</span>
+                          <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-gray-700 mb-3">{template.description}</p>
+                      <div className="flex flex-wrap gap-1 mb-3">
+                        {template.tags?.slice(0, 3).map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                        {template.tags && template.tags.length > 3 && (
+                          <span className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full">
+                            +{template.tags.length - 3} more
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center justify-between text-xs text-gray-500">
+                        <span>Used {template.usageCount || 0} times</span>
+                        <span>By {template.createdBy?.name || 'Anonymous'}</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="flex justify-end gap-3 pt-6 mt-6 border-t">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => {
+                setIsTemplateModalOpen(false);
+                setSelectedTemplate(null);
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              disabled={!selectedTemplate || applyTemplate.isPending}
+              onClick={() => selectedTemplate && handleApplyTemplate(selectedTemplate)}
+              className="bg-indigo-600 hover:bg-indigo-700 text-white"
+            >
+              {applyTemplate.isPending ? 'Loading...' : 'Use This Template'}
+            </Button>
+          </div>
         </div>
       </Dialog>
 

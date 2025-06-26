@@ -19,7 +19,7 @@ export default async function globalSetup() {
         response = await page.request.post('http://localhost:3000/api/login', {
           data: {
             email: 'teacher@example.com',
-            password: 'password123',
+            password: 'Password123!', // Meets security requirements
           },
         });
         break; // Success, exit retry loop
@@ -59,7 +59,7 @@ export default async function globalSetup() {
       // Store the test user globally for use in tests
       (global as unknown as { __E2E_TEST_USER__: unknown }).__E2E_TEST_USER__ = {
         email: 'teacher@example.com',
-        password: 'password123',
+        password: 'Password123!', // Meets security requirements
         token: loginData.token,
         user: loginData.user,
       };

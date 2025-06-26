@@ -14,6 +14,11 @@ export class CurriculumImportService {
   getImportStatus = jest.fn();
   getImportDetails = jest.fn();
   deleteImport = jest.fn();
+  storeUploadedFile = jest.fn();
+  parseUploadedFile = jest.fn();
+  loadPresetCurriculum = jest.fn();
+  confirmImport = jest.fn();
+  finalizeImport = jest.fn();
 }
 
 export const curriculumImportService = new CurriculumImportService();

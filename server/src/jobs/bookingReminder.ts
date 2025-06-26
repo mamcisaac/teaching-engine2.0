@@ -1,31 +1,12 @@
 import cron from 'node-cron';
-import { prisma } from '../prisma';
 
 /**
  * Send notifications to remind teachers about upcoming equipment bookings.
  */
 export async function sendEquipmentBookingReminders() {
-  const today = new Date().toISOString().slice(0, 10);
-  const bookings = await prisma.equipmentBooking.findMany({
-    where: { status: { not: 'CANCELLED' } },
-  });
-  for (const b of bookings) {
-    const needed = new Date(b.neededBy);
-    const lead = b.leadTimeDays;
-    const reminderDates = [
-      new Date(needed.getTime() - lead * 86400000),
-      new Date(needed.getTime() - Math.floor(lead / 2) * 86400000),
-      new Date(needed.getTime() - 86400000),
-    ];
-    if (reminderDates.some((d) => d.toISOString().slice(0, 10) === today)) {
-      await prisma.notification.create({
-        data: {
-          type: 'BOOKING_REMINDER',
-          message: `Prepare booking for ${b.resourceName} needed on ${b.neededBy.toISOString().slice(0, 10)}.`,
-        },
-      });
-    }
-  }
+  // DISABLED: EquipmentBooking and Notification models have been archived
+  // TODO: Implement using CalendarEvent with type EQUIPMENT_BOOKING and ParentMessage for notifications
+  console.warn('sendEquipmentBookingReminders is disabled - legacy models archived');
 }
 
 /**

@@ -83,12 +83,12 @@ export class OERConnector extends BaseConnector {
 
       const url = `${this.baseUrl}/search?${searchParams.toString()}`;
 
-      const response = await fetch(url, {
+      const response = await this.fetchWithTimeout(url, {
         headers: {
           Authorization: `Bearer ${this.apiKey}`,
           Accept: 'application/json',
         },
-      });
+      }, 30000); // 30 second timeout
 
       if (!response.ok) {
         throw new Error(`OER API error: ${response.statusText}`);
@@ -116,12 +116,12 @@ export class OERConnector extends BaseConnector {
     try {
       const url = `${this.baseUrl}/resources/${externalId}`;
 
-      const response = await fetch(url, {
+      const response = await this.fetchWithTimeout(url, {
         headers: {
           Authorization: `Bearer ${this.apiKey}`,
           Accept: 'application/json',
         },
-      });
+      }, 30000); // 30 second timeout
 
       if (!response.ok) return null;
 
@@ -170,7 +170,7 @@ export class OERConnector extends BaseConnector {
     const subject = this.extractSubjectFromOER(resource.subjects || []);
 
     return this.transformToExternalActivity(
-      {},
+      {} as ExternalActivity,
       {
         externalId: String(resource.id),
         url: resource.url || `https://www.oercommons.org/courses/${resource.id}`,

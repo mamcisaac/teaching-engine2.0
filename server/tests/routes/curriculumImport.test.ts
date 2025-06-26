@@ -30,7 +30,11 @@ describe('Curriculum Import Routes', () => {
       },
     });
 
-    authToken = jwt.sign({ userId: user.id.toString() }, process.env.JWT_SECRET || 'secret');
+    const jwtSecret = process.env.JWT_SECRET;
+    if (!jwtSecret) {
+      throw new Error('JWT_SECRET environment variable is required for testing');
+    }
+    authToken = jwt.sign({ userId: user.id.toString() }, jwtSecret);
 
     // Get mocked services
     const { curriculumImportService } = jest.requireMock(

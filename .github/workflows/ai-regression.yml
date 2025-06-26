@@ -1,0 +1,368 @@
+name: AI Regression Testing
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'server/src/services/ai*.ts'
+      - 'server/src/routes/ai-*.ts'
+      - 'server/tests/ai-snapshots/**'
+      - '.github/workflows/ai-regression.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'server/src/services/ai*.ts'
+      - 'server/src/routes/ai-*.ts'
+      - 'server/tests/ai-snapshots/**'
+  schedule:
+    # Run AI regression tests daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      update_snapshots:
+        description: 'Update snapshots if changes detected'
+        required: false
+        default: 'false'
+        type: boolean
+      test_with_real_api:
+        description: 'Use real OpenAI API (requires API key)'
+        required: false
+        default: 'false'
+        type: boolean
+
+env:
+  NODE_VERSION: '18'
+  PNPM_VERSION: '8'
+
+jobs:
+  ai-snapshot-testing:
+    name: AI Snapshot Regression Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: teaching_engine_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    strategy:
+      matrix:
+        test-suite:
+          - long-range-plans
+          - unit-plans
+          - lesson-plans
+          - daybook
+          - content-validation
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Setup test environment
+        working-directory: ./server
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/teaching_engine_test
+          NODE_ENV: test
+          AI_TESTING_MODE: snapshot
+          AI_TESTING_CACHE: true
+        run: |
+          # Generate Prisma client
+          pnpm --filter @teaching-engine/database db:generate
+          
+          # Run database migrations
+          pnpm --filter @teaching-engine/database db:push
+          
+          # Validate test environment
+          pnpm test:validate
+
+      - name: Configure AI testing mode
+        working-directory: ./server
+        env:
+          OPENAI_TEST_API_KEY: ${{ secrets.OPENAI_TEST_API_KEY }}
+        run: |
+          if [ "${{ github.event.inputs.test_with_real_api }}" = "true" ] && [ -n "$OPENAI_TEST_API_KEY" ]; then
+            echo "AI_TESTING_MODE=live" >> $GITHUB_ENV
+            echo "🔴 Using real OpenAI API for testing"
+          else
+            echo "AI_TESTING_MODE=snapshot" >> $GITHUB_ENV
+            echo "🟡 Using mock responses for testing"
+          fi
+
+      - name: Run AI snapshot tests
+        working-directory: ./server
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/teaching_engine_test
+          NODE_ENV: test
+          OPENAI_TEST_API_KEY: ${{ secrets.OPENAI_TEST_API_KEY }}
+        run: |
+          # Run specific test suite
+          case "${{ matrix.test-suite }}" in
+            "long-range-plans")
+              pnpm test tests/ai-snapshots/long-range-plans.snapshot.test.ts
+              ;;
+            "unit-plans")
+              pnpm test tests/ai-snapshots/unit-plans.snapshot.test.ts
+              ;;
+            "lesson-plans")
+              pnpm test tests/ai-snapshots/lesson-plans.snapshot.test.ts
+              ;;
+            "daybook")
+              pnpm test tests/ai-snapshots/daybook.snapshot.test.ts
+              ;;
+            "content-validation")
+              pnpm test tests/ai-snapshots/content-validation.test.ts
+              ;;
+          esac
+
+      - name: Check for snapshot changes
+        id: snapshot-changes
+        working-directory: ./server
+        run: |
+          if git diff --exit-code tests/ai-snapshots/snapshots/ > /dev/null 2>&1; then
+            echo "changes=false" >> $GITHUB_OUTPUT
+            echo "📸 No snapshot changes detected"
+          else
+            echo "changes=true" >> $GITHUB_OUTPUT
+            echo "📸 Snapshot changes detected"
+            git diff --name-only tests/ai-snapshots/snapshots/
+          fi
+
+      - name: Generate test report
+        working-directory: ./server
+        run: |
+          # Generate summary report
+          node -e "
+            const fs = require('fs');
+            const path = require('path');
+            
+            const summaryPath = 'tests/ai-snapshots/snapshots/ai-snapshot-summary.json';
+            if (fs.existsSync(summaryPath)) {
+              const summary = JSON.parse(fs.readFileSync(summaryPath, 'utf-8'));
+              
+              console.log('## AI Snapshot Test Results');
+              console.log('| Metric | Value |');
+              console.log('|--------|-------|');
+              console.log(\`| Total Tests | \${summary.totalTests} |\`);
+              console.log(\`| Successful | \${summary.successfulTests} |\`);
+              console.log(\`| Failed | \${summary.totalTests - summary.successfulTests} |\`);
+              console.log(\`| New Snapshots | \${summary.newSnapshots} |\`);
+              console.log(\`| Changed Snapshots | \${summary.changedSnapshots} |\`);
+              console.log(\`| Average Quality Score | \${summary.qualityStats.averageContentScore.toFixed(1)} |\`);
+              
+              if (summary.changedSnapshots > 0) {
+                console.log('');
+                console.log('⚠️ **Snapshot changes detected!** Review changes before merging.');
+              }
+            }
+          " > ai-test-report.md
+
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ai-test-results-${{ matrix.test-suite }}
+          path: |
+            server/tests/ai-snapshots/snapshots/
+            server/ai-test-report.md
+          retention-days: 30
+
+      - name: Comment on PR with results
+        if: github.event_name == 'pull_request' && steps.snapshot-changes.outputs.changes == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            
+            let reportContent = '## 📸 AI Snapshot Test Results\n\n';
+            
+            try {
+              const reportPath = 'server/ai-test-report.md';
+              if (fs.existsSync(reportPath)) {
+                reportContent += fs.readFileSync(reportPath, 'utf-8');
+              }
+            } catch (error) {
+              reportContent += 'Could not read test report.';
+            }
+            
+            reportContent += '\n\n### ⚠️ Snapshot Changes Detected\n';
+            reportContent += 'The following snapshot files have changed:\n\n';
+            
+            const { execSync } = require('child_process');
+            try {
+              const changedFiles = execSync('cd server && git diff --name-only tests/ai-snapshots/snapshots/', { encoding: 'utf-8' });
+              reportContent += '```\n' + changedFiles + '```\n';
+            } catch (error) {
+              reportContent += 'Could not list changed files.\n';
+            }
+            
+            reportContent += '\n**Action Required:**\n';
+            reportContent += '1. Review the snapshot changes to ensure they are expected\n';
+            reportContent += '2. If changes are valid, they will be automatically included in the merge\n';
+            reportContent += '3. If changes are unexpected, investigate potential AI output drift\n';
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: reportContent
+            });
+
+      - name: Update snapshots (if requested)
+        if: github.event.inputs.update_snapshots == 'true' && steps.snapshot-changes.outputs.changes == 'true'
+        working-directory: ./server
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add tests/ai-snapshots/snapshots/
+          git commit -m "chore: update AI snapshots [skip ci]"
+          git push
+
+      - name: Fail on snapshot changes (CI)
+        if: github.event_name == 'push' && steps.snapshot-changes.outputs.changes == 'true'
+        run: |
+          echo "❌ Snapshot changes detected in CI. This indicates potential AI output drift."
+          echo "Please review the changes and update snapshots if they are expected."
+          exit 1
+
+  quality-analysis:
+    name: AI Quality Analysis
+    runs-on: ubuntu-latest
+    needs: ai-snapshot-testing
+    if: always()
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download test artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: ai-test-results-*
+          path: ./test-results
+          merge-multiple: true
+
+      - name: Analyze test quality trends
+        run: |
+          node -e "
+            const fs = require('fs');
+            const path = require('path');
+            
+            // Collect all test results
+            const results = [];
+            const resultsDir = './test-results';
+            
+            if (fs.existsSync(resultsDir)) {
+              const summaryPath = path.join(resultsDir, 'ai-snapshot-summary.json');
+              if (fs.existsSync(summaryPath)) {
+                const summary = JSON.parse(fs.readFileSync(summaryPath, 'utf-8'));
+                
+                console.log('# AI Quality Analysis Report');
+                console.log('');
+                console.log('## Test Execution Summary');
+                console.log(\`- Tests Run: \${summary.totalTests}\`);
+                console.log(\`- Success Rate: \${((summary.successfulTests / summary.totalTests) * 100).toFixed(1)}%\`);
+                console.log(\`- Average Content Quality: \${summary.qualityStats.averageContentScore.toFixed(1)}/100\`);
+                console.log('');
+                
+                // Quality thresholds
+                const contentThreshold = 75;
+                const successThreshold = 95;
+                
+                if (summary.qualityStats.averageContentScore < contentThreshold) {
+                  console.log(\`⚠️ **Quality Alert**: Content quality (\${summary.qualityStats.averageContentScore.toFixed(1)}) below threshold (\${contentThreshold})\`);
+                }
+                
+                const successRate = (summary.successfulTests / summary.totalTests) * 100;
+                if (successRate < successThreshold) {
+                  console.log(\`⚠️ **Reliability Alert**: Success rate (\${successRate.toFixed(1)}%) below threshold (\${successThreshold}%)\`);
+                }
+                
+                // Test type breakdown
+                console.log('## Test Type Results');
+                for (const detail of summary.details) {
+                  const typeSuccessRate = (detail.successful / detail.results) * 100;
+                  console.log(\`- \${detail.testType}: \${detail.successful}/\${detail.results} (\${typeSuccessRate.toFixed(1)}%)\`);
+                }
+              }
+            }
+          " > quality-analysis.md
+
+      - name: Upload quality analysis
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-quality-analysis
+          path: quality-analysis.md
+
+  notify-on-failure:
+    name: Notify on Test Failure
+    runs-on: ubuntu-latest
+    needs: [ai-snapshot-testing, quality-analysis]
+    if: failure() && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+    
+    steps:
+      - name: Send notification
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = '🚨 AI Regression Tests Failed';
+            const body = `
+            AI regression testing has failed on the \`${context.ref}\` branch.
+            
+            **Workflow:** ${context.workflow}
+            **Run ID:** ${context.runId}
+            **Triggered by:** ${context.eventName}
+            
+            Please investigate the following:
+            1. Check for AI model output changes
+            2. Review snapshot differences
+            3. Validate content quality metrics
+            4. Ensure all tests are passing
+            
+            [View workflow run](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})
+            `;
+            
+            // Create an issue for investigation
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: title,
+              body: body,
+              labels: ['bug', 'ai-testing', 'regression']
+            });
+
+  cleanup:
+    name: Cleanup Test Artifacts
+    runs-on: ubuntu-latest
+    needs: [ai-snapshot-testing, quality-analysis]
+    if: always()
+    
+    steps:
+      - name: Clean up temporary files
+        run: |
+          echo "🧹 Test cleanup completed"
+          # Add any cleanup commands here if needed

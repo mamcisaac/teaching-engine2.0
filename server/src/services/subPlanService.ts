@@ -73,7 +73,7 @@ export async function buildSubPlanData(
       where: { start: { lte: dayEnd }, end: { gte: dayStart } },
     }),
     prisma.unavailableBlock.findMany({ where: { date: dayStart } }),
-    prisma.teacherPreferences.findFirst({ where: { id: 1 } }),
+    null, // teacherPreferences archived - preferences now in User and ClassRoutine
     includeRoutines
       ? prisma.classRoutine.findMany({
           where: { userId, isActive: true },
@@ -88,7 +88,6 @@ export async function buildSubPlanData(
           },
           include: {
             student: true,
-            theme: true, // Changed from outcome to theme (ETFO alignment)
           },
           take: 10, // Limit to most relevant goals
         })
@@ -193,7 +192,8 @@ export async function generateSubPlan(
   const doc = new PDFDocument();
   const chunks: Buffer[] = [];
   doc.on('data', (c) => chunks.push(c));
-  const info = await prisma.substituteInfo.findFirst({ where: { id: 1 } });
+  // SubstituteInfo model archived - substitute information now managed in User and ClassRoutine models
+  const _info = null;
 
   for (let i = 0; i < days; i++) {
     if (i > 0) doc.addPage();
@@ -205,9 +205,9 @@ export async function generateSubPlan(
       {
         today: data.schedule.map((s) => ({ time: s.time, activity: s.activity ?? s.note ?? '' })),
         upcoming: [],
-        procedures: info?.procedures || data.procedures || '',
+        procedures: data.procedures || '',
         studentNotes:
-          pullOutsText(data.pullOuts) + (info?.allergies ? `\nAllergies: ${info.allergies}` : ''),
+          pullOutsText(data.pullOuts), // Allergies now managed in Student model
         emergencyContacts: formatContacts(data.contacts),
         curriculumOutcomes: data.outcomes,
         goals: data.goals,

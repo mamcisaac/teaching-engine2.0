@@ -1,19 +1,171 @@
-import { Router, Request } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import { aiPlanningAssistant } from '../services/aiPlanningAssistant';
 
 interface AuthenticatedRequest extends Request {
   user?: { userId: string };
 }
 
+// Rate limiting for AI requests
+const aiRequestTracking = new Map<string, { count: number; lastReset: number }>();
+const AI_RATE_LIMIT = 10; // requests per hour
+const AI_RATE_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
+
+// Cleanup old rate limit entries every 5 minutes to prevent memory leaks
+setInterval(() => {
+  const now = Date.now();
+  for (const [userId, tracking] of aiRequestTracking.entries()) {
+    if (now - tracking.lastReset > AI_RATE_WINDOW * 2) { // Remove entries older than 2 hours
+      aiRequestTracking.delete(userId);
+    }
+  }
+}, 5 * 60 * 1000); // Clean up every 5 minutes
+
+const aiRateLimit = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+  const userId = req.user?.userId;
+  if (!userId) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  const now = Date.now();
+  const userTracking = aiRequestTracking.get(userId) || { count: 0, lastReset: now };
+
+  // Reset count if window has expired
+  if (now - userTracking.lastReset > AI_RATE_WINDOW) {
+    userTracking.count = 0;
+    userTracking.lastReset = now;
+  }
+
+  // Check rate limit
+  if (userTracking.count >= AI_RATE_LIMIT) {
+    const resetTime = userTracking.lastReset + AI_RATE_WINDOW;
+    const waitTime = Math.ceil((resetTime - now) / 1000 / 60); // minutes
+    return res.status(429).json({ 
+      error: 'AI request limit exceeded',
+      retryAfter: waitTime,
+      limit: AI_RATE_LIMIT,
+      window: 'hour'
+    });
+  }
+
+  // Increment count
+  userTracking.count++;
+  aiRequestTracking.set(userId, userTracking);
+  next();
+};
+
+// Enhanced input sanitization to prevent prompt injection and security issues
+const sanitizeAIInput = (input: unknown): unknown => {
+  if (typeof input === 'string') {
+    // Remove potentially dangerous characters and prevent prompt injection
+    return input
+      .trim()
+      .slice(0, 2000) // Limit input length
+      .replace(/[<>'"&]/g, '') // Remove HTML/script characters
+      .replace(/(\n\s*){3,}/g, '\n\n') // Limit excessive newlines
+      .replace(/ignore\s+(previous|all)\s+(instructions?|prompts?)/gi, '') // Remove prompt injection attempts
+      .replace(/system\s*:\s*/gi, '') // Remove system prompt attempts
+      .replace(/assistant\s*:\s*/gi, '') // Remove assistant prompt attempts
+      .replace(/human\s*:\s*/gi, '') // Remove human prompt attempts
+      .replace(/\[INST\]/gi, '') // Remove instruction markers
+      .replace(/\[\/INST\]/gi, '') // Remove instruction markers
+      .replace(/<<SYS>>/gi, '') // Remove system markers
+      .replace(/<\/SYS>>/gi, '') // Remove system markers
+      .replace(/###\s*(SYSTEM|ASSISTANT|HUMAN)/gi, '') // Remove role markers
+      .replace(/^\s*(SYSTEM|ASSISTANT|HUMAN)\s*:/gi, ''); // Remove role prefixes
+  }
+  if (Array.isArray(input)) {
+    return input.map(sanitizeAIInput).slice(0, 50); // Limit array size
+  }
+  if (typeof input === 'object' && input !== null) {
+    const sanitized: Record<string, unknown> = {};
+    Object.keys(input).slice(0, 20).forEach(key => { // Limit object keys
+      sanitized[key] = sanitizeAIInput(input[key]);
+    });
+    return sanitized;
+  }
+  return input;
+};
+
+// Additional validation for educational content
+const _validateEducationalInput = (input: string, fieldName: string): string => {
+  if (!input || typeof input !== 'string') {
+    throw new Error(`Invalid ${fieldName}: must be a non-empty string`);
+  }
+  
+  // Check for obvious non-educational content
+  const suspiciousPatterns = [
+    /crypto|bitcoin|investment|trading/gi,
+    /hack|exploit|vulnerability|attack/gi,
+    /password|token|api.key|secret/gi,
+    /download|install|execute|script/gi,
+  ];
+  
+  for (const pattern of suspiciousPatterns) {
+    if (pattern.test(input)) {
+      throw new Error(`Invalid ${fieldName}: contains inappropriate content`);
+    }
+  }
+  
+  return sanitizeAIInput(input);
+};
+
 const router = Router();
+
+/**
+ * GET /api/ai-planning/status
+ * Check AI service availability and user quota status
+ */
+router.get('/status', async (req: AuthenticatedRequest, res) => {
+  try {
+    const userId = req.user?.userId;
+    
+    // Check OpenAI API key availability
+    const hasApiKey = !!process.env.OPENAI_API_KEY;
+    
+    // Get service health
+    const serviceHealth = await aiPlanningAssistant.getServiceHealth();
+    
+    // Calculate user quota (basic implementation)
+    const userQuota = {
+      dailyRequests: 50, // Default quota
+      requestsUsed: 0,   // TODO: Implement actual tracking
+      resetTime: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString()
+    };
+    
+    const status = {
+      available: hasApiKey && serviceHealth.healthy,
+      features: {
+        longRangeGoals: hasApiKey,
+        unitBigIdeas: hasApiKey,
+        lessonActivities: hasApiKey,
+        materialsList: hasApiKey,
+        assessmentStrategies: hasApiKey,
+        reflectionPrompts: hasApiKey,
+        curriculumAligned: hasApiKey
+      },
+      quota: userQuota,
+      health: serviceHealth,
+      userId: userId
+    };
+    
+    res.json(status);
+  } catch (error) {
+    console.error('Error checking AI status:', error);
+    res.status(500).json({ 
+      available: false,
+      error: 'Failed to check AI service status' 
+    });
+  }
+});
 
 /**
  * POST /api/ai-planning/long-range/goals
  * Generate AI suggestions for long-range plan goals
  */
-router.post('/long-range/goals', async (req: AuthenticatedRequest, res) => {
+router.post('/long-range/goals', aiRateLimit, async (req: AuthenticatedRequest, res) => {
   try {
-    const { subject, grade, termLength, focusAreas } = req.body;
+    const sanitizedBody = sanitizeAIInput(req.body);
+    const { subject, grade, termLength, focusAreas } = sanitizedBody;
 
     if (!subject || !grade || !termLength) {
       return res.status(400).json({ 
@@ -39,9 +191,10 @@ router.post('/long-range/goals', async (req: AuthenticatedRequest, res) => {
  * POST /api/ai-planning/unit/big-ideas
  * Generate AI suggestions for unit plan big ideas
  */
-router.post('/unit/big-ideas', async (req: AuthenticatedRequest, res) => {
+router.post('/unit/big-ideas', aiRateLimit, async (req: AuthenticatedRequest, res) => {
   try {
-    const { unitTitle, subject, grade, curriculumExpectations, duration } = req.body;
+    const sanitizedBody = sanitizeAIInput(req.body);
+    const { unitTitle, subject, grade, curriculumExpectations, duration } = sanitizedBody;
 
     if (!unitTitle || !subject || !grade || !curriculumExpectations || !duration) {
       return res.status(400).json({ 
@@ -68,9 +221,10 @@ router.post('/unit/big-ideas', async (req: AuthenticatedRequest, res) => {
  * POST /api/ai-planning/lesson/activities
  * Generate AI suggestions for lesson activities
  */
-router.post('/lesson/activities', async (req: AuthenticatedRequest, res) => {
+router.post('/lesson/activities', aiRateLimit, async (req: AuthenticatedRequest, res) => {
   try {
-    const { lessonTitle, learningGoals, subject, grade, duration, materials } = req.body;
+    const sanitizedBody = sanitizeAIInput(req.body);
+    const { lessonTitle, learningGoals, subject, grade, duration, materials } = sanitizedBody;
 
     if (!lessonTitle || !learningGoals || !subject || !grade || !duration) {
       return res.status(400).json({ 
@@ -98,9 +252,10 @@ router.post('/lesson/activities', async (req: AuthenticatedRequest, res) => {
  * POST /api/ai-planning/lesson/materials
  * Generate AI suggestions for materials list
  */
-router.post('/lesson/materials', async (req: AuthenticatedRequest, res) => {
+router.post('/lesson/materials', aiRateLimit, async (req: AuthenticatedRequest, res) => {
   try {
-    const { activities, subject, grade, classSize } = req.body;
+    const sanitizedBody = sanitizeAIInput(req.body);
+    const { activities, subject, grade, classSize } = sanitizedBody;
 
     if (!activities || !subject || !grade) {
       return res.status(400).json({ 
@@ -126,9 +281,10 @@ router.post('/lesson/materials', async (req: AuthenticatedRequest, res) => {
  * POST /api/ai-planning/lesson/assessments
  * Generate AI suggestions for assessment strategies
  */
-router.post('/lesson/assessments', async (req: AuthenticatedRequest, res) => {
+router.post('/lesson/assessments', aiRateLimit, async (req: AuthenticatedRequest, res) => {
   try {
-    const { learningGoals, activities, subject, grade } = req.body;
+    const sanitizedBody = sanitizeAIInput(req.body);
+    const { learningGoals, activities, subject, grade } = sanitizedBody;
 
     if (!learningGoals || !activities || !subject || !grade) {
       return res.status(400).json({ 
@@ -154,9 +310,10 @@ router.post('/lesson/assessments', async (req: AuthenticatedRequest, res) => {
  * POST /api/ai-planning/daybook/reflections
  * Generate AI suggestions for daybook reflection prompts
  */
-router.post('/daybook/reflections', async (req: AuthenticatedRequest, res) => {
+router.post('/daybook/reflections', aiRateLimit, async (req: AuthenticatedRequest, res) => {
   try {
-    const { date, activities, subject, grade, previousReflections } = req.body;
+    const sanitizedBody = sanitizeAIInput(req.body);
+    const { date, activities, subject, grade, previousReflections } = sanitizedBody;
 
     if (!date || !activities || !subject || !grade) {
       return res.status(400).json({ 
@@ -183,9 +340,10 @@ router.post('/daybook/reflections', async (req: AuthenticatedRequest, res) => {
  * POST /api/ai-planning/curriculum-aligned
  * Get curriculum-aligned suggestions
  */
-router.post('/curriculum-aligned', async (req: AuthenticatedRequest, res) => {
+router.post('/curriculum-aligned', aiRateLimit, async (req: AuthenticatedRequest, res) => {
   try {
-    const { expectationIds, suggestionType } = req.body;
+    const sanitizedBody = sanitizeAIInput(req.body);
+    const { expectationIds, suggestionType } = sanitizedBody;
 
     if (!expectationIds || !suggestionType) {
       return res.status(400).json({ 

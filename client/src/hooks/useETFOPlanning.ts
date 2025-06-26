@@ -1,5 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '../api';
+import { handleApiError } from '../utils/errorHandler';
+import { toast } from 'sonner';
 
 // Types
 export interface CurriculumExpectation {
@@ -219,6 +221,10 @@ export function useUpdateCurriculumExpectation() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
+      toast.success('Curriculum expectation updated successfully');
+    },
+    onError: (error) => {
+      handleApiError(error, 'Failed to update curriculum expectation');
     },
   });
 }
@@ -233,6 +239,10 @@ export function useDeleteCurriculumExpectation() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
+      toast.success('Curriculum expectation deleted successfully');
+    },
+    onError: (error) => {
+      handleApiError(error, 'Failed to delete curriculum expectation');
     },
   });
 }
@@ -300,6 +310,21 @@ export function useUpdateLongRangePlan() {
   });
 }
 
+export function useDeleteLongRangePlan() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const response = await api.delete(`/api/long-range-plans/${id}`);
+      return response.data;
+    },
+    onSuccess: (_, id) => {
+      queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
+      queryClient.invalidateQueries({ queryKey: ['long-range-plans', id] });
+    },
+  });
+}
+
 // Unit Plans Hooks
 export function useUnitPlans(filters?: {
   longRangePlanId?: string;
@@ -360,6 +385,25 @@ export function useUpdateUnitPlan() {
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
       queryClient.invalidateQueries({ queryKey: ['unit-plans', data.id] });
+    },
+  });
+}
+
+export function useDeleteUnitPlan() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const response = await api.delete(`/api/unit-plans/${id}`);
+      return response.data;
+    },
+    onSuccess: (_, id) => {
+      queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
+      queryClient.invalidateQueries({ queryKey: ['unit-plans', id] });
+      toast.success('Unit plan deleted successfully');
+    },
+    onError: (error) => {
+      handleApiError(error, 'Failed to delete unit plan');
     },
   });
 }

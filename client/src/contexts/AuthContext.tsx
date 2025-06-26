@@ -5,65 +5,142 @@ interface User {
   email: string;
   name: string;
   role: string;
+  token?: string; // JWT token for API authentication
 }
 
 interface AuthContextValue {
-  token: string | null;
   user: User | null;
-  login: (token: string, user: User) => void;
+  login: (user: User) => void;
   logout: () => void;
   isAuthenticated: boolean;
+  checkAuth: () => Promise<void>;
+  getToken: () => string | null;
+  setToken: (token: string) => void;
 }
 
 const AuthContext = createContext<AuthContextValue>({
-  token: null,
   user: null,
   login: () => {},
   logout: () => {},
   isAuthenticated: false,
+  checkAuth: async () => {},
+  getToken: () => null,
+  setToken: () => {},
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [token, setToken] = useState<string | null>(() => localStorage.getItem('token'));
-  const [user, setUser] = useState<User | null>(() => {
-    const userData = localStorage.getItem('user');
-    return userData ? JSON.parse(userData) : null;
-  });
+  const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    // This effect runs on mount and when token changes
-    if (token) {
-      // The Authorization header is now handled by the axios interceptor
-      localStorage.setItem('token', token);
-      setIsAuthenticated(true);
+  // Token management functions
+  const getToken = (): string | null => {
+    return user?.token || localStorage.getItem('auth_token');
+  };
 
-      // Store user data in localStorage if not already there
-      if (user) {
-        localStorage.setItem('user', JSON.stringify(user));
-      }
-    } else {
-      // Clear auth data
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      setIsAuthenticated(false);
+  const setToken = (token: string): void => {
+    localStorage.setItem('auth_token', token);
+    if (user) {
+      setUser({ ...user, token });
     }
-  }, [token, user]);
+  };
 
-  const login = (newToken: string, userData: User) => {
-    setToken(newToken);
+  const clearToken = (): void => {
+    localStorage.removeItem('auth_token');
+    if (user) {
+      const { token: _token, ...userWithoutToken } = user;
+      setUser(userWithoutToken as User);
+    }
+  };
+
+  const checkAuth = async () => {
+    try {
+      const response = await fetch('/api/auth/me', {
+        credentials: 'include', // Include cookies
+      });
+      
+      if (response.ok) {
+        const userData = await response.json();
+        setUser(userData);
+        setIsAuthenticated(true);
+      } else {
+        setUser(null);
+        setIsAuthenticated(false);
+      }
+    } catch (error) {
+      console.error('Auth check failed:', error);
+      setUser(null);
+      setIsAuthenticated(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  useEffect(() => {
+    const abortController = new AbortController();
+    
+    const checkAuthWithAbort = async () => {
+      try {
+        const response = await fetch('/api/auth/me', {
+          credentials: 'include',
+          signal: abortController.signal,
+        });
+        
+        if (!abortController.signal.aborted && response.ok) {
+          const userData = await response.json();
+          setUser(userData);
+          setIsAuthenticated(true);
+        } else {
+          setUser(null);
+          setIsAuthenticated(false);
+        }
+      } catch (error) {
+        if (!abortController.signal.aborted) {
+          console.error('Auth check failed:', error);
+          setUser(null);
+          setIsAuthenticated(false);
+        }
+      } finally {
+        if (!abortController.signal.aborted) {
+          setLoading(false);
+        }
+      }
+    };
+    
+    checkAuthWithAbort();
+    
+    // Cleanup function to abort the request
+    return () => {
+      abortController.abort();
+    };
+  }, []);
+
+  const login = (userData: User) => {
     setUser(userData);
-    // User data will be saved to localStorage by the effect
-    localStorage.setItem('user', JSON.stringify(userData));
+    setIsAuthenticated(true);
   };
 
-  const logout = () => {
-    setToken(null);
+  const logout = async () => {
+    try {
+      await fetch('/api/logout', {
+        method: 'POST',
+        credentials: 'include',
+      });
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+    
+    clearToken();
     setUser(null);
+    setIsAuthenticated(false);
   };
 
+  if (loading) {
+    return <div>Loading...</div>; // Or a proper loading component
+  }
+  
   return (
-    <AuthContext.Provider value={{ token, user, login, logout, isAuthenticated }}>
+    <AuthContext.Provider value={{ user, login, logout, isAuthenticated, checkAuth, getToken, setToken }}>
       {children}
     </AuthContext.Provider>
   );

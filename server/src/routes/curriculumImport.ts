@@ -13,22 +13,36 @@ interface AuthenticatedRequest extends express.Request {
 
 const router = express.Router();
 
-// Configure multer for file uploads
+// Configure multer for file uploads with enhanced security
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: {
     fileSize: 10 * 1024 * 1024, // 10MB limit
+    files: 1, // Only allow 1 file per request
+    fields: 10, // Limit number of fields
   },
   fileFilter: (req, file, cb) => {
+    // Sanitize filename
+    const sanitizedFilename = file.originalname.replace(/[^a-zA-Z0-9.-]/g, '_');
+    if (sanitizedFilename !== file.originalname) {
+      file.originalname = sanitizedFilename;
+    }
+    
+    // Check file extension as well as MIME type
+    const allowedExtensions = ['.csv', '.pdf', '.docx'];
+    const fileExtension = file.originalname.toLowerCase().substring(file.originalname.lastIndexOf('.'));
+    
     const allowedTypes = [
       'text/csv',
       'application/pdf',
       'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/octet-stream', // Some browsers send this for DOCX
     ];
-    if (allowedTypes.includes(file.mimetype)) {
+    
+    if (allowedTypes.includes(file.mimetype) && allowedExtensions.includes(fileExtension)) {
       cb(null, true);
     } else {
-      cb(new Error('Invalid file type. Only CSV, PDF, and DOCX files are allowed.'));
+      cb(new Error(`Invalid file type. Only CSV, PDF, and DOCX files are allowed. Received: ${file.mimetype} with extension ${fileExtension}`));
     }
   },
 });
@@ -45,6 +59,20 @@ router.post('/upload', upload.single('file'), async (req: AuthenticatedRequest, 
     if (!req.user?.userId) {
       return res.status(401).json({
         error: 'User not authenticated',
+      });
+    }
+    
+    // Additional file validation
+    if (req.file.size === 0) {
+      return res.status(400).json({
+        error: 'File is empty',
+      });
+    }
+    
+    // Validate file buffer is not null
+    if (!req.file.buffer || req.file.buffer.length === 0) {
+      return res.status(400).json({
+        error: 'Invalid file content',
       });
     }
 

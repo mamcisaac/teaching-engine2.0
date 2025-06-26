@@ -247,4 +247,91 @@ export abstract class BaseConnector {
 
     return Array.from(new Set(materials)); // Remove duplicates
   }
+
+  /**
+   * Fetch with timeout support using AbortController
+   * @param url The URL to fetch from
+   * @param options Fetch options including headers
+   * @param timeoutMs Timeout in milliseconds (default 30 seconds)
+   * @returns Promise that resolves to Response or rejects on timeout/error
+   */
+  protected async fetchWithTimeout(
+    url: string,
+    options: RequestInit = {},
+    timeoutMs: number = 30000
+  ): Promise<Response> {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+    try {
+      const response = await fetch(url, {
+        ...options,
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+      return response;
+    } catch (error) {
+      clearTimeout(timeoutId);
+      if (error.name === 'AbortError') {
+        throw new Error(`Request timeout after ${timeoutMs}ms: ${url}`);
+      }
+      throw error;
+    }
+  }
+
+  /**
+   * Fetch with retry and timeout support
+   * @param url The URL to fetch from
+   * @param options Fetch options including headers
+   * @param maxRetries Maximum number of retry attempts (default 3)
+   * @param timeoutMs Timeout per request in milliseconds (default 30 seconds)
+   * @param retryDelay Base delay between retries in milliseconds (default 1000)
+   * @returns Promise that resolves to string response body or null on failure
+   */
+  protected async fetchWithRetryAndTimeout(
+    url: string,
+    options: RequestInit = {},
+    maxRetries: number = 3,
+    timeoutMs: number = 30000,
+    retryDelay: number = 1000
+  ): Promise<string | null> {
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+        const response = await this.fetchWithTimeout(url, options, timeoutMs);
+
+        if (response.ok) {
+          return await response.text();
+        } else if (response.status === 429) {
+          // Rate limited, wait longer
+          const backoffDelay = retryDelay * attempt * 2;
+          console.log(`Rate limited. Waiting ${backoffDelay}ms before retry...`);
+          await this.delay(backoffDelay);
+          continue;
+        } else {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+      } catch (error) {
+        console.error(`Attempt ${attempt}/${maxRetries} failed for ${url}:`, error);
+        
+        if (attempt < maxRetries) {
+          const backoffDelay = retryDelay * attempt;
+          console.log(`Retrying in ${backoffDelay}ms...`);
+          await this.delay(backoffDelay);
+        } else {
+          console.error(`All ${maxRetries} attempts failed for ${url}`);
+          return null;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  /**
+   * Helper method to delay execution
+   * @param ms Milliseconds to delay
+   */
+  protected delay(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 }
