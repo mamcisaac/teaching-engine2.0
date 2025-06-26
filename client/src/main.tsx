@@ -3,10 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'sonner';
-import { toast } from 'sonner';
 import App from './App';
 import './index.css';
-import * as serviceWorkerRegistration from './utils/serviceWorkerRegistration';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -68,7 +66,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 // Unregister any existing service workers
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.getRegistrations().then(function(registrations) {
-    for(let registration of registrations) {
+    for(const registration of registrations) {
       registration.unregister();
     }
   });
