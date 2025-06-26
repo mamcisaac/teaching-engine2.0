@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { Prisma } from '@prisma/client';
+import type { Prisma } from '@teaching-engine/database';
 import logger from '../logger';
 import { ZodError } from 'zod';
 
@@ -22,14 +22,16 @@ export class AppError extends Error {
     this.statusCode = statusCode;
     this.code = code;
     this.isOperational = isOperational;
-    
+
     Error.captureStackTrace(this, this.constructor);
   }
 }
 
-export const asyncHandler = (fn: (req: Request, res: Response, next: NextFunction) => Promise<unknown>) => (req: Request, res: Response, next: NextFunction) => {
-  Promise.resolve(fn(req, res, next)).catch(next);
-};
+export const asyncHandler =
+  (fn: (req: Request, res: Response, next: NextFunction) => Promise<unknown>) =>
+  (req: Request, res: Response, next: NextFunction) => {
+    Promise.resolve(fn(req, res, next)).catch(next);
+  };
 
 export function errorHandler(err: Error, req: Request, res: Response, _next: NextFunction) {
   let statusCode = 500;
@@ -40,23 +42,32 @@ export function errorHandler(err: Error, req: Request, res: Response, _next: Nex
   };
 
   // Log the error
-  logger.error({
-    err,
-    method: req.method,
-    path: req.path,
-    query: req.query,
-    ip: req.ip,
-    userId: (req as Request & { user?: { userId?: string } }).user?.userId,
-  }, 'Request error');
+  logger.error(
+    {
+      err,
+      method: req.method,
+      path: req.path,
+      query: req.query,
+      ip: req.ip,
+      userId: (req as Request & { user?: { userId?: string } }).user?.userId,
+    },
+    'Request error',
+  );
 
   // Handle known error types
   if (err instanceof AppError) {
     statusCode = err.statusCode;
     response.error = err.message;
     response.code = err.code;
-  } else if (err instanceof Prisma.PrismaClientKnownRequestError) {
+  } else if (
+    err &&
+    typeof err === 'object' &&
+    'code' in err &&
+    err.constructor.name === 'PrismaClientKnownRequestError'
+  ) {
     // Handle Prisma errors
-    switch (err.code) {
+    const prismaError = err as Prisma.PrismaClientKnownRequestError;
+    switch (prismaError.code) {
       case 'P2002':
         statusCode = 409;
         response.error = 'Duplicate entry';
@@ -85,14 +96,18 @@ export function errorHandler(err: Error, req: Request, res: Response, _next: Nex
         statusCode = 400;
         response.error = 'Database operation failed';
         response.message = err.message;
-        response.code = `PRISMA_${err.code}`;
+        response.code = `PRISMA_${prismaError.code}`;
     }
-  } else if (err instanceof Prisma.PrismaClientValidationError) {
+  } else if (
+    err &&
+    typeof err === 'object' &&
+    err.constructor.name === 'PrismaClientValidationError'
+  ) {
     statusCode = 400;
     response.error = 'Validation error';
     response.message = 'Invalid data provided';
     response.code = 'VALIDATION_ERROR';
-    
+
     // Extract useful validation info if possible
     const validationMatch = err.message.match(/Argument (\w+): (.+)/);
     if (validationMatch) {
@@ -106,7 +121,7 @@ export function errorHandler(err: Error, req: Request, res: Response, _next: Nex
     statusCode = 400;
     response.error = 'Validation error';
     response.code = 'VALIDATION_ERROR';
-    response.details = err.errors.map(e => ({
+    response.details = err.errors.map((e) => ({
       field: e.path.join('.'),
       message: e.message,
     }));
@@ -130,10 +145,9 @@ export function errorHandler(err: Error, req: Request, res: Response, _next: Nex
     response.code = 'CORS_ERROR';
   } else {
     // Generic error handling
-    response.error = process.env.NODE_ENV === 'production' 
-      ? 'An unexpected error occurred' 
-      : err.message;
-    
+    response.error =
+      process.env.NODE_ENV === 'production' ? 'An unexpected error occurred' : err.message;
+
     // Don't leak stack traces in production
     if (process.env.NODE_ENV !== 'production') {
       response.details = {
