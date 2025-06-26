@@ -1,4 +1,4 @@
-import { PrismaClient } from '../packages/database/src/generated/client';
+import { PrismaClient } from '@teaching-engine/database';
 import path from 'path';
 import bcrypt from 'bcryptjs';
 import dotenv from 'dotenv';
