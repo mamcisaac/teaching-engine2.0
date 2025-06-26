@@ -35,7 +35,7 @@ const SuspenseFallback = () => (
 );
 
 function AppRoutes() {
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isLoading } = useAuth();
 
   if (isLoading) {
     return <SuspenseFallback />;

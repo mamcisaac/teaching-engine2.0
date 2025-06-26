@@ -176,3 +176,8 @@ playwright-report/
 # Build artifacts
 1_build*.txt
 **/.DS_Store
+
+# Test files
+direct-test.js
+start-and-login.js
+test-login-simple.js

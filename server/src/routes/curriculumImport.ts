@@ -48,6 +48,7 @@ const upload = multer({
 });
 
 // POST /api/curriculum/import/upload - Upload and parse curriculum file (Planner agent style)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 router.post('/upload', upload.single('file') as any, async (req: AuthenticatedRequest, res) => {
   try {
     if (!req.file) {

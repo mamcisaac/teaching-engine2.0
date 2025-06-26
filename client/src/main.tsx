@@ -38,29 +38,38 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   </React.StrictMode>,
 );
 
-// Register service worker
-serviceWorkerRegistration.register({
-  onSuccess: (registration) => {
-    console.log('Service Worker registered successfully:', registration);
-  },
-  onUpdate: (registration) => {
-    toast.info('New version available! Refresh to update.', {
-      action: {
-        label: 'Refresh',
-        onClick: () => {
-          if (registration.waiting) {
-            registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-            window.location.reload();
-          }
-        },
-      },
-      duration: Infinity,
-    });
-  },
-  onOffline: () => {
-    toast.warning('You are offline. Changes will sync when you reconnect.');
-  },
-  onOnline: () => {
-    toast.success('Back online! Syncing your changes...');
-  },
-});
+// Register service worker - TEMPORARILY DISABLED FOR DEBUGGING
+// serviceWorkerRegistration.register({
+//   onSuccess: (registration) => {
+//     console.log('Service Worker registered successfully:', registration);
+//   },
+//   onUpdate: (registration) => {
+//     toast.info('New version available! Refresh to update.', {
+//       action: {
+//         label: 'Refresh',
+//         onClick: () => {
+//           if (registration.waiting) {
+//             registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+//             window.location.reload();
+//           }
+//         },
+//       },
+//       duration: Infinity,
+//     });
+//   },
+//   onOffline: () => {
+//     toast.warning('You are offline. Changes will sync when you reconnect.');
+//   },
+//   onOnline: () => {
+//     toast.success('Back online! Syncing your changes...');
+//   },
+// });
+
+// Unregister any existing service workers
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(function(registrations) {
+    for(let registration of registrations) {
+      registration.unregister();
+    }
+  });
+}
