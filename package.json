@@ -23,6 +23,7 @@
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:debug": "playwright test --debug",
     "test:e2e:ci": "playwright test --reporter=github",
+    "test:e2e:smoke": "playwright test tests/e2e/smoke-simple.spec.ts",
     "lint": "eslint --config .eslintrc.json \"**/*.{ts,tsx,js,jsx}\"",
     "typecheck": "pnpm --filter client run typecheck && pnpm --filter server run typecheck",
     "prepare": "husky install",
