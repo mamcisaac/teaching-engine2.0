@@ -1,5 +1,11 @@
 // Service Worker Registration and Management
 
+interface ServiceWorkerRegistrationWithSync extends ServiceWorkerRegistration {
+  sync?: {
+    register(tag: string): Promise<void>;
+  };
+}
+
 export interface ServiceWorkerConfig {
   onSuccess?: (registration: ServiceWorkerRegistration) => void;
   onUpdate?: (registration: ServiceWorkerRegistration) => void;
@@ -9,19 +15,14 @@ export interface ServiceWorkerConfig {
 
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
-  window.location.hostname === '[::1]' ||
-  window.location.hostname.match(
-    /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-  )
+    window.location.hostname === '[::1]' ||
+    window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/),
 );
 
 export function register(config?: ServiceWorkerConfig) {
   if ('serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
-    const publicUrl = new URL(
-      process.env.PUBLIC_URL || '',
-      window.location.href
-    );
+    const publicUrl = new URL(process.env.PUBLIC_URL || '', window.location.href);
     if (publicUrl.origin !== window.location.origin) {
       // Our service worker won't work if PUBLIC_URL is on a different origin
       return;
@@ -36,9 +37,7 @@ export function register(config?: ServiceWorkerConfig) {
 
         // Add some additional logging to localhost
         navigator.serviceWorker.ready.then(() => {
-          console.log(
-            'This web app is being served cache-first by a service worker.'
-          );
+          console.log('This web app is being served cache-first by a service worker.');
         });
       } else {
         // Is not localhost. Just register service worker
@@ -50,11 +49,11 @@ export function register(config?: ServiceWorkerConfig) {
     window.addEventListener('online', () => {
       console.log('Back online');
       config?.onOnline?.();
-      
+
       // Trigger background sync
       navigator.serviceWorker.ready.then((registration) => {
         if ('sync' in registration) {
-          (registration as any).sync.register('sync-planning-data');
+          (registration as ServiceWorkerRegistrationWithSync).sync?.register('sync-planning-data');
         }
       });
     });
@@ -81,9 +80,7 @@ function registerValidSW(swUrl: string, config?: ServiceWorkerConfig) {
               // At this point, the updated precached content has been fetched,
               // but the previous service worker will still serve the older
               // content until all client tabs are closed.
-              console.log(
-                'New content is available and will be used when all tabs are closed.'
-              );
+              console.log('New content is available and will be used when all tabs are closed.');
 
               // Execute callback
               if (config && config.onUpdate) {
@@ -110,7 +107,7 @@ function registerValidSW(swUrl: string, config?: ServiceWorkerConfig) {
 function checkValidServiceWorker(swUrl: string, config?: ServiceWorkerConfig) {
   // Check if the service worker can be found. If it can't reload the page.
   fetch(swUrl, {
-    headers: { 'Service-Worker': 'script' }
+    headers: { 'Service-Worker': 'script' },
   })
     .then((response) => {
       // Ensure service worker exists, and that we really are getting a JS file.
@@ -131,9 +128,7 @@ function checkValidServiceWorker(swUrl: string, config?: ServiceWorkerConfig) {
       }
     })
     .catch(() => {
-      console.log(
-        'No internet connection found. App is running in offline mode.'
-      );
+      console.log('No internet connection found. App is running in offline mode.');
     });
 }
 
@@ -159,7 +154,7 @@ export async function requestBackgroundSync(tag: string): Promise<boolean> {
   if ('serviceWorker' in navigator && 'sync' in ServiceWorkerRegistration.prototype) {
     try {
       const registration = await navigator.serviceWorker.ready;
-      await (registration as any).sync.register(tag);
+      await (registration as ServiceWorkerRegistrationWithSync).sync?.register(tag);
       return true;
     } catch (error) {
       console.error('Background sync registration failed:', error);
@@ -175,7 +170,7 @@ export async function cacheUrls(urls: string[]): Promise<void> {
     const registration = await navigator.serviceWorker.ready;
     registration.active?.postMessage({
       type: 'CACHE_CURRICULUM',
-      urls
+      urls,
     });
   }
 }

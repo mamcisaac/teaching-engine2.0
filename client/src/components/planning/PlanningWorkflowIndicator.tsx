@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ETFOLevel, ETFO_LEVEL_PATHS, LevelProgress } from '../../hooks/useWorkflowState';
-import { CheckCircle2, Circle, Lock, ArrowRight } from 'lucide-react';
+import { CheckCircle2, Circle, Lock } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Badge } from '../ui/Badge';
 
 interface PlanningWorkflowIndicatorProps {
   progress: LevelProgress[];
@@ -10,7 +11,7 @@ interface PlanningWorkflowIndicatorProps {
   className?: string;
 }
 
-const LEVEL_DISPLAY_NAMES: Record<ETFOLevel, string> = {
+const _LEVEL_DISPLAY_NAMES: Record<ETFOLevel, string> = {
   [ETFOLevel.CURRICULUM_EXPECTATIONS]: 'Curriculum',
   [ETFOLevel.LONG_RANGE_PLANS]: 'Long-Range',
   [ETFOLevel.UNIT_PLANS]: 'Unit Plans',
@@ -18,7 +19,7 @@ const LEVEL_DISPLAY_NAMES: Record<ETFOLevel, string> = {
   [ETFOLevel.DAYBOOK_ENTRIES]: 'Daybook',
 };
 
-const LEVEL_DESCRIPTIONS: Record<ETFOLevel, string> = {
+const _LEVEL_DESCRIPTIONS: Record<ETFOLevel, string> = {
   [ETFOLevel.CURRICULUM_EXPECTATIONS]: 'Import and organize curriculum expectations',
   [ETFOLevel.LONG_RANGE_PLANS]: 'Create yearly overview with themes and timing',
   [ETFOLevel.UNIT_PLANS]: 'Design detailed unit plans with activities',
@@ -66,66 +67,76 @@ export function PlanningWorkflowIndicator({
       <div className="space-y-3">
         {progress.map((level, index) => {
           const isLast = index === progress.length - 1;
-          const StepWrapper = canNavigate(level) ? Link : 'div';
-          const wrapperProps = canNavigate(level) 
-            ? { to: ETFO_LEVEL_PATHS[level.level] } 
-            : {} as Record<string, never>;
+          const stepContent = (
+            <>
+              <div className="flex-shrink-0 mt-0.5">
+                {getStepIcon(level)}
+              </div>
+              
+              <div className="flex-1 min-w-0">
+                <h4 className="font-medium text-gray-900">{level.title}</h4>
+                <p className="text-sm text-gray-600">{level.description}</p>
+                
+                {level.requiredFields && level.requiredFields.length > 0 && (
+                  <div className="mt-2">
+                    <p className="text-xs text-gray-500 mb-1">Required:</p>
+                    <div className="flex flex-wrap gap-1">
+                      {level.requiredFields.map((field) => (
+                        <Badge 
+                          key={field} 
+                          variant="outline" 
+                          size="sm"
+                          className="text-xs"
+                        >
+                          {field}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+              
+              <div className="flex-shrink-0">
+                {level.isComplete ? (
+                  <Badge variant="default" className="bg-green-600">
+                    Complete
+                  </Badge>
+                ) : level.isAccessible ? (
+                  <Badge variant="outline">
+                    Available
+                  </Badge>
+                ) : (
+                  <Badge variant="secondary">
+                    Locked
+                  </Badge>
+                )}
+              </div>
+            </>
+          );
 
           return (
             <div key={level.level} className="relative">
-              <StepWrapper
-                {...wrapperProps}
-                className={cn(
-                  'flex items-start gap-4 p-4 rounded-lg border-2 transition-all',
-                  getStepStyles(level),
-                  canNavigate(level) && 'cursor-pointer'
-                )}
-              >
-                <div className="flex-shrink-0 mt-0.5">
-                  {getStepIcon(level)}
-                </div>
-                
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between">
-                    <h4 className="font-medium text-gray-900">
-                      {LEVEL_DISPLAY_NAMES[level.level]}
-                    </h4>
-                    {level.progressPercentage > 0 && (
-                      <span className="text-sm text-gray-600">
-                        {level.progressPercentage}%
-                      </span>
-                    )}
-                  </div>
-                  
-                  <p className="text-sm text-gray-600 mt-1">
-                    {LEVEL_DESCRIPTIONS[level.level]}
-                  </p>
-                  
-                  {level.totalItems > 0 && (
-                    <div className="mt-2">
-                      <div className="flex items-center justify-between text-xs text-gray-500 mb-1">
-                        <span>{level.completedItems} of {level.totalItems} completed</span>
-                      </div>
-                      <div className="bg-gray-200 rounded-full h-1.5">
-                        <div
-                          className="bg-indigo-600 h-1.5 rounded-full transition-all"
-                          style={{ width: `${level.progressPercentage}%` }}
-                        />
-                      </div>
-                    </div>
+              {canNavigate(level) ? (
+                <Link
+                  to={ETFO_LEVEL_PATHS[level.level] as string}
+                  className={cn(
+                    'flex items-start gap-4 p-4 rounded-lg border-2 transition-all',
+                    getStepStyles(level),
+                    'cursor-pointer'
                   )}
-                  
-                  {level.blockedReason && (
-                    <p className="text-xs text-red-600 mt-2">
-                      {level.blockedReason}
-                    </p>
+                >
+                  {stepContent}
+                </Link>
+              ) : (
+                <div
+                  className={cn(
+                    'flex items-start gap-4 p-4 rounded-lg border-2 transition-all',
+                    getStepStyles(level)
                   )}
+                >
+                  {stepContent}
                 </div>
-
-                {canNavigate(level) && (
-                  <ArrowRight className="h-4 w-4 text-gray-400 flex-shrink-0 mt-1" />
-                )}
-              </StepWrapper>
+              )}
               
               {!isLast && (
                 <div className="absolute left-7 top-full h-3 w-0.5 bg-gray-300 -translate-x-1/2" />

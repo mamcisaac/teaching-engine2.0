@@ -1,12 +1,6 @@
 import { X, Filter } from 'lucide-react';
 import { Button } from '../ui/Button';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '../ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import type { TemplateSearchOptions, TemplateCategory } from '../../types/template';
 import { TEMPLATE_CATEGORIES, TEMPLATE_TYPES } from '../../types/template';
 
@@ -42,8 +36,13 @@ export default function TemplateFilters({
     });
   };
 
-  const hasActiveFilters = filters.type || filters.category || filters.subject || 
-    filters.gradeMin || filters.gradeMax || filters.search || 
+  const hasActiveFilters =
+    filters.type ||
+    filters.category ||
+    filters.subject ||
+    filters.gradeMin ||
+    filters.gradeMax ||
+    filters.search ||
     (filters.tags && filters.tags.length > 0);
 
   return (
@@ -80,9 +79,7 @@ export default function TemplateFilters({
 
         {/* Template Type */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Type
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
           <Select
             value={filters.type || 'all'}
             onValueChange={(value) => updateFilter('type', value === 'all' ? undefined : value)}
@@ -103,12 +100,12 @@ export default function TemplateFilters({
 
         {/* Category */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Category
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
           <Select
             value={filters.category || 'all'}
-            onValueChange={(value) => updateFilter('category', value === 'all' ? undefined : value as TemplateCategory)}
+            onValueChange={(value) =>
+              updateFilter('category', value === 'all' ? undefined : (value as TemplateCategory))
+            }
           >
             <SelectTrigger>
               <SelectValue />
@@ -126,9 +123,7 @@ export default function TemplateFilters({
 
         {/* Subject */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Subject
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
           <Select
             value={filters.subject || 'all'}
             onValueChange={(value) => updateFilter('subject', value === 'all' ? undefined : value)}
@@ -149,13 +144,13 @@ export default function TemplateFilters({
 
         {/* Grade Range */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Grade Level
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Grade Level</label>
           <div className="flex gap-2 items-center">
             <Select
               value={filters.gradeMin?.toString() || 'all'}
-              onValueChange={(value) => updateFilter('gradeMin', value === 'all' ? undefined : parseInt(value))}
+              onValueChange={(value) =>
+                updateFilter('gradeMin', value === 'all' ? undefined : parseInt(value))
+              }
             >
               <SelectTrigger className="flex-1">
                 <SelectValue />
@@ -172,7 +167,9 @@ export default function TemplateFilters({
             <span className="text-gray-500">to</span>
             <Select
               value={filters.gradeMax?.toString() || 'all'}
-              onValueChange={(value) => updateFilter('gradeMax', value === 'all' ? undefined : parseInt(value))}
+              onValueChange={(value) =>
+                updateFilter('gradeMax', value === 'all' ? undefined : parseInt(value))
+              }
             >
               <SelectTrigger className="flex-1">
                 <SelectValue />
@@ -193,12 +190,15 @@ export default function TemplateFilters({
       {/* Sort Options */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 border-t">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Sort By
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Sort By</label>
           <Select
             value={filters.sortBy || 'usageCount'}
-            onValueChange={(value) => updateFilter('sortBy', value as any)}
+            onValueChange={(value) =>
+              updateFilter(
+                'sortBy',
+                value as 'title' | 'usageCount' | 'averageRating' | 'createdAt' | 'lastUsedAt',
+              )
+            }
           >
             <SelectTrigger>
               <SelectValue />
@@ -214,9 +214,7 @@ export default function TemplateFilters({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Order
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Order</label>
           <Select
             value={filters.sortOrder || 'desc'}
             onValueChange={(value) => updateFilter('sortOrder', value as 'asc' | 'desc')}

@@ -6,7 +6,7 @@ import { useUnitPlanStore } from '../stores/unitPlanStore';
 import { useLessonPlanStore } from '../stores/lessonPlanStore';
 import { useDaybookStore } from '../stores/daybookStore';
 import { useWeeklyPlannerStore } from '../stores/weeklyPlannerStore';
-import { offlineStorage } from '../services/offlineStorage';
+import { offlineStorage, StoredData } from '../services/offlineStorage';
 import { lazyLoader } from '../services/lazyLoader';
 import { batchedApi } from '../services/requestBatcher';
 
@@ -59,7 +59,7 @@ export function useOfflinePlanning() {
     resolution: 'local' | 'remote' | 'merge', 
     mergedData?: unknown
   ) => {
-    await offlineStorage.resolveConflict(conflictId, resolution, mergedData);
+    await offlineStorage.resolveConflict(conflictId, resolution, mergedData as StoredData | undefined);
     setConflicts(conflicts.filter(c => c.id !== conflictId));
   };
 
@@ -184,7 +184,7 @@ export function useBatchedRequests() {
       // Use batched API for multiple requests
       const promises = urls.map(url => batchedApi.get(url));
       const results = await Promise.all(promises);
-      return results.map((r: { data: unknown }) => r.data);
+      return results.map((r: unknown) => (r as { data: unknown }).data);
     } catch (error) {
       console.error('Batch request failed:', error);
       throw error;

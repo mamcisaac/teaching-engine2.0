@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHelp } from '../contexts/HelpContext';
-import { HELP_SECTIONS, HELP_CATEGORIES, HelpSection } from '../types/help';
+import { HELP_SECTIONS, HelpSection } from '../types/help';
 import { HelpButton, HelpSearch } from '../components/help';
 import { useHelpContent } from '../hooks/useHelp';
 import { Button } from '../components/ui/Button';
@@ -28,7 +28,7 @@ const mockHelpContent: Record<string, string> = {
     - **Curriculum Integration**: Automatic alignment with Ontario curriculum expectations
     - **Resource Generation**: Bulk creation of teaching materials and planning templates
   `,
-  'planning': `
+  planning: `
     # Planning Workflows
 
     Master the ETFO-aligned planning process that forms the backbone of Teaching Engine 2.0.
@@ -121,7 +121,7 @@ const mockHelpContent: Record<string, string> = {
     - Best practices from Ontario educators
     - Research-based teaching strategies
   `,
-  'advanced': `
+  advanced: `
     # Advanced Features
 
     Power user tips and customization options for experienced users.
@@ -145,12 +145,12 @@ const mockHelpContent: Record<string, string> = {
     - Share plans with colleagues
     - Create team templates
     - Collaborate on unit development
-  `
+  `,
 };
 
 export default function HelpPage() {
   const { state, setCurrentSection, markHelpPageViewed } = useHelp();
-  const { content, filteredCount, totalCount } = useHelpContent();
+  const { filteredCount, totalCount } = useHelpContent();
   const [selectedSection, setSelectedSection] = useState<string | null>(null);
   const [filteredSections, setFilteredSections] = useState<HelpSection[]>(HELP_SECTIONS);
 
@@ -160,9 +160,10 @@ export default function HelpPage() {
 
   useEffect(() => {
     if (state.searchQuery) {
-      const filtered = HELP_SECTIONS.filter(section =>
-        section.title.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
-        section.description.toLowerCase().includes(state.searchQuery.toLowerCase())
+      const filtered = HELP_SECTIONS.filter(
+        (section) =>
+          section.title.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
+          section.description.toLowerCase().includes(state.searchQuery.toLowerCase()),
       );
       setFilteredSections(filtered);
     } else {
@@ -177,43 +178,73 @@ export default function HelpPage() {
   };
 
   const getSectionIcon = (sectionId: string) => {
-    const iconClasses = "h-8 w-8";
-    
+    const iconClasses = 'h-8 w-8';
+
     switch (sectionId) {
       case 'getting-started':
         return (
           <svg className={iconClasses} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M13 10V3L4 14h7v7l9-11h-7z"
+            />
           </svg>
         );
       case 'planning':
         return (
           <svg className={iconClasses} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v11a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5H7a2 2 0 00-2 2v11a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+            />
           </svg>
         );
       case 'ai-features':
         return (
           <svg className={iconClasses} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+            />
           </svg>
         );
       case 'etfo-specific':
         return (
           <svg className={iconClasses} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+            />
           </svg>
         );
       case 'advanced':
         return (
           <svg className={iconClasses} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+            />
           </svg>
         );
       default:
         return (
           <svg className={iconClasses} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
           </svg>
         );
     }
@@ -221,7 +252,7 @@ export default function HelpPage() {
 
   const renderSectionContent = (sectionId: string) => {
     const sectionContent = mockHelpContent[sectionId] || 'Content not available.';
-    
+
     return (
       <div className="prose prose-lg max-w-none">
         <div dangerouslySetInnerHTML={{ __html: sectionContent.replace(/\n/g, '<br/>') }} />
@@ -244,7 +275,9 @@ export default function HelpPage() {
             <HelpButton
               variant="floating"
               content="Get help anywhere in the app"
-              onClick={() => {/* Handle global help */}}
+              onClick={() => {
+                /* Handle global help */
+              }}
             />
           </div>
 
@@ -272,7 +305,7 @@ export default function HelpPage() {
           <div className="w-80 flex-shrink-0">
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Help Topics</h2>
-              
+
               <nav className="space-y-2">
                 {filteredSections.map((section) => (
                   <button
@@ -283,7 +316,7 @@ export default function HelpPage() {
                       'flex items-start space-x-3',
                       selectedSection === section.id
                         ? 'bg-blue-50 text-blue-700 border border-blue-200'
-                        : 'hover:bg-gray-50 text-gray-700'
+                        : 'hover:bg-gray-50 text-gray-700',
                     )}
                   >
                     <div className="flex-shrink-0 mt-1 text-gray-400">
@@ -294,9 +327,7 @@ export default function HelpPage() {
                       <div className="text-sm text-gray-500 mt-1">{section.description}</div>
                       <div className="flex items-center mt-2 space-x-4 text-xs text-gray-400">
                         <span className="capitalize">{section.level}</span>
-                        {section.estimatedTime && (
-                          <span>{section.estimatedTime} min read</span>
-                        )}
+                        {section.estimatedTime && <span>{section.estimatedTime} min read</span>}
                       </div>
                     </div>
                   </button>
@@ -326,13 +357,15 @@ export default function HelpPage() {
             {selectedSection ? (
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
                 {renderSectionContent(selectedSection)}
-                
+
                 {/* Feedback section */}
                 <div className="mt-12 pt-8 border-t border-gray-200">
                   <div className="flex items-center justify-between">
                     <div>
                       <h3 className="text-lg font-medium text-gray-900">Was this helpful?</h3>
-                      <p className="text-sm text-gray-600 mt-1">Let us know how we can improve this page.</p>
+                      <p className="text-sm text-gray-600 mt-1">
+                        Let us know how we can improve this page.
+                      </p>
                     </div>
                     <div className="flex space-x-2">
                       <Button variant="outline" size="sm">
@@ -350,7 +383,12 @@ export default function HelpPage() {
                 <div className="text-center">
                   <div className="mx-auto h-24 w-24 text-gray-400 mb-4">
                     <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1}
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                      />
                     </svg>
                   </div>
                   <h3 className="text-lg font-medium text-gray-900 mb-2">
@@ -359,7 +397,7 @@ export default function HelpPage() {
                   <p className="text-gray-600 mb-6">
                     Select a topic from the sidebar to get started, or search for specific help.
                   </p>
-                  
+
                   {/* Popular topics */}
                   <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
                     {HELP_SECTIONS.slice(0, 4).map((section) => (
@@ -368,9 +406,7 @@ export default function HelpPage() {
                         onClick={() => handleSectionSelect(section.id)}
                         className="p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors"
                       >
-                        <div className="text-gray-400 mb-2">
-                          {getSectionIcon(section.id)}
-                        </div>
+                        <div className="text-gray-400 mb-2">{getSectionIcon(section.id)}</div>
                         <div className="font-medium text-gray-900">{section.title}</div>
                       </button>
                     ))}

@@ -108,10 +108,10 @@ if (!Element.prototype.hasPointerCapture) {
   Element.prototype.hasPointerCapture = () => false;
 }
 if (!Element.prototype.setPointerCapture) {
-  Element.prototype.setPointerCapture = () => {};
+  Element.prototype.setPointerCapture = (_pointerId: number) => {};
 }
 if (!Element.prototype.releasePointerCapture) {
-  Element.prototype.releasePointerCapture = () => {};
+  Element.prototype.releasePointerCapture = (_pointerId: number) => {};
 }
 
 // Mock IntersectionObserver for lazy loading components
@@ -151,12 +151,11 @@ Object.defineProperty(global, 'ResizeObserver', {
 });
 
 // Mock global fetch for API calls in tests
-global.fetch = vi.fn((url, options) => {
+global.fetch = vi.fn((url, _options) => {
   // Convert relative URLs to absolute URLs for testing
-  const absoluteUrl = typeof url === 'string' && url.startsWith('/') 
-    ? `http://localhost:3000${url}` 
-    : url;
-  
+  const absoluteUrl =
+    typeof url === 'string' && url.startsWith('/') ? `http://localhost:3000${url}` : url;
+
   // Default mock responses for common endpoints
   if (absoluteUrl === 'http://localhost:3000/api/auth/me') {
     return Promise.resolve({
@@ -165,7 +164,7 @@ global.fetch = vi.fn((url, options) => {
       json: async () => ({ error: 'Not authenticated' }),
     } as Response);
   }
-  
+
   // Generic mock response
   return Promise.resolve({
     ok: true,

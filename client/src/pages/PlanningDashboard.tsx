@@ -5,21 +5,21 @@ import CurriculumExpectationCoverage from '../components/CurriculumExpectationCo
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/Button';
 import { Link } from 'react-router-dom';
-import { 
-  FileText, 
-  Target, 
-  TrendingUp, 
-  Calendar, 
-  Plus, 
-  Settings, 
-  Undo, 
-  Redo, 
-  Save, 
-  Cloud, 
+import {
+  FileText,
+  Target,
+  TrendingUp,
+  Calendar,
+  Plus,
+  Settings,
+  Undo,
+  Redo,
+  Save,
+  Cloud,
   CloudOff,
   RotateCcw,
   HelpCircle,
-  Wand2
+  Wand2,
 } from 'lucide-react';
 import { useWorkflowState, ETFOLevel } from '../hooks/useWorkflowState';
 import { useWeeklyPlannerStore } from '../stores/weeklyPlannerStore';
@@ -36,15 +36,19 @@ import { useRecentPlans } from '../hooks/useRecentPlans';
 export default function PlanningDashboard() {
   const { workflowState } = useWorkflowState();
   const { startTutorial, setCurrentSection } = useHelp();
-  const workflowProgress = workflowState?.progress ? 
-    Math.round(workflowState.progress.reduce((acc, p) => acc + p.progressPercentage, 0) / workflowState.progress.length) : 0;
-  
+  const workflowProgress = workflowState?.progress
+    ? Math.round(
+        workflowState.progress.reduce((acc, p) => acc + p.progressPercentage, 0) /
+          workflowState.progress.length,
+      )
+    : 0;
+
   // New state for wizard and modals
   const [showWizard, setShowWizard] = useState(false);
   const [showDuplicateModal, setShowDuplicateModal] = useState(false);
-  
+
   // Recent plans data
-  const { data: recentPlans = [], isLoading: recentPlansLoading } = useRecentPlans({ limit: 5 });
+  const { data: recentPlans = [], isLoading: _recentPlansLoading } = useRecentPlans({ limit: 5 });
 
   // Weekly planner state management
   const {
@@ -53,14 +57,14 @@ export default function PlanningDashboard() {
     hasOfflineChanges,
     undoHistory,
     redoHistory,
-    autoSave,
-    theme,
+    _autoSave,
+    _theme,
     undo,
     redo,
     saveToServer,
     syncWithServer,
     resetToDefaults,
-    saveToHistory
+    saveToHistory,
   } = useWeeklyPlannerStore();
 
   const [showSettings, setShowSettings] = useState(false);
@@ -102,7 +106,11 @@ export default function PlanningDashboard() {
   };
 
   const handleReset = async () => {
-    if (window.confirm('Are you sure you want to reset all planner preferences to defaults? This cannot be undone.')) {
+    if (
+      window.confirm(
+        'Are you sure you want to reset all planner preferences to defaults? This cannot be undone.',
+      )
+    ) {
       saveToHistory('Reset to defaults');
       resetToDefaults();
       await saveToServer();
@@ -116,11 +124,11 @@ export default function PlanningDashboard() {
         <div>
           <div className="flex items-center gap-3">
             <h1 className="text-3xl font-bold">Planning Dashboard</h1>
-            <HelpTooltip 
+            <HelpTooltip
               content="Your central hub for tracking ETFO planning progress, managing curriculum coverage, and accessing quick actions for all planning levels."
               position="bottom"
             >
-              <HelpButton 
+              <HelpButton
                 size="sm"
                 content="Get help with the Planning Dashboard"
                 onClick={() => setCurrentSection('planning')}
@@ -131,7 +139,7 @@ export default function PlanningDashboard() {
             <p className="text-muted-foreground">
               Track your ETFO planning progress and curriculum coverage
             </p>
-            <AutoSaveIndicator 
+            <AutoSaveIndicator
               isSaving={isSaving}
               hasUnsavedChanges={hasOfflineChanges}
               lastSaved={lastSaved}
@@ -139,7 +147,7 @@ export default function PlanningDashboard() {
             />
           </div>
         </div>
-        
+
         <div className="flex gap-3">
           {/* State Management Controls */}
           <div className="flex gap-2 mr-4 border-r pr-4">
@@ -175,7 +183,7 @@ export default function PlanningDashboard() {
               size="sm"
               onClick={handleSync}
               disabled={isLoading || isSaving}
-              title={hasOfflineChanges ? "Sync offline changes" : "Refresh from server"}
+              title={hasOfflineChanges ? 'Sync offline changes' : 'Refresh from server'}
             >
               {hasOfflineChanges ? <CloudOff className="h-4 w-4" /> : <Cloud className="h-4 w-4" />}
             </Button>
@@ -187,18 +195,13 @@ export default function PlanningDashboard() {
             >
               <Settings className="h-4 w-4" />
             </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleReset}
-              title="Reset to defaults"
-            >
+            <Button variant="outline" size="sm" onClick={handleReset} title="Reset to defaults">
               <RotateCcw className="h-4 w-4" />
             </Button>
           </div>
 
           {/* Navigation Controls */}
-          <HelpTooltip 
+          <HelpTooltip
             content="Start with Long-Range Plans to create your yearly overview. This becomes the foundation for all other planning levels."
             position="bottom"
           >
@@ -210,7 +213,7 @@ export default function PlanningDashboard() {
             </Link>
           </HelpTooltip>
           <div className="flex gap-2">
-            <HelpTooltip 
+            <HelpTooltip
               content="Create detailed unit plans from your long-range themes. Unit plans break down yearly goals into manageable learning experiences."
               position="bottom"
             >
@@ -221,12 +224,12 @@ export default function PlanningDashboard() {
                 </Button>
               </Link>
             </HelpTooltip>
-            <HelpTooltip 
+            <HelpTooltip
               content="Start an interactive tutorial to learn the ETFO planning workflow step by step."
               position="bottom"
             >
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 size="sm"
                 onClick={() => startTutorial('getting-started-tour')}
                 className="gap-2"
@@ -246,8 +249,9 @@ export default function PlanningDashboard() {
           <div>
             <h3 className="text-blue-900 font-medium">📚 Curriculum Planning Tool</h3>
             <p className="text-blue-800 text-sm mt-1">
-              Teaching Engine 2.0 helps you plan and organize your curriculum delivery. 
-              For student assessment tracking, grades, and report cards, please use your school board&apos;s designated systems.
+              Teaching Engine 2.0 helps you plan and organize your curriculum delivery. For student
+              assessment tracking, grades, and report cards, please use your school board&apos;s
+              designated systems.
             </p>
           </div>
         </div>
@@ -272,29 +276,26 @@ export default function PlanningDashboard() {
       <div className="grid gap-6 lg:grid-cols-3">
         {/* Workflow Indicator - Left Column */}
         <div className="lg:col-span-1">
-          <PlanningWorkflowIndicator 
+          <PlanningWorkflowIndicator
             progress={workflowState?.progress || []}
             currentLevel={workflowState?.currentLevel || ETFOLevel.CURRICULUM_EXPECTATIONS}
             className="h-full"
           />
         </div>
-        
+
         {/* Middle Column - Quick Actions and Recent Plans */}
         <div className="lg:col-span-2 space-y-6">
           {/* Quick Actions */}
-          <QuickActions 
+          <QuickActions
             onDuplicatePlan={(type) => {
               if (type === 'select') {
                 setShowDuplicateModal(true);
               }
             }}
           />
-          
+
           {/* Recent Plans */}
-          <RecentPlans 
-            plans={recentPlans}
-            isLoading={recentPlansLoading}
-          />
+          <RecentPlans plans={recentPlans} isLoading={recentPlansLoading} />
         </div>
       </div>
 
@@ -373,9 +374,7 @@ export default function PlanningDashboard() {
       <Card>
         <CardHeader>
           <CardTitle>Planning Resources</CardTitle>
-          <CardDescription>
-            Quick links to help you complete your planning
-          </CardDescription>
+          <CardDescription>Quick links to help you complete your planning</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-4 md:grid-cols-3">
@@ -453,12 +452,12 @@ function PlannerSettingsPanel({ onClose }: PlannerSettingsPanelProps) {
     showMiniCalendar,
     showResourcePanel,
     compactMode,
-    theme,
+    theme: _theme,
     autoSave,
     autoSaveInterval,
     showUncoveredOutcomes,
     defaultLessonDuration,
-    maxHistorySize,
+    maxHistorySize: _maxHistorySize,
     setDefaultView,
     setTimeSlotDuration,
     setShowWeekends,
@@ -474,7 +473,7 @@ function PlannerSettingsPanel({ onClose }: PlannerSettingsPanelProps) {
     setShowUncoveredOutcomes,
     setDefaultLessonDuration,
     saveToHistory,
-    saveToServer
+    saveToServer,
   } = useWeeklyPlannerStore();
 
   const handleSave = async () => {
@@ -491,9 +490,9 @@ function PlannerSettingsPanel({ onClose }: PlannerSettingsPanelProps) {
         <div className="grid gap-4 md:grid-cols-2">
           <div>
             <label className="block text-sm font-medium mb-2">Default View</label>
-            <select 
-              value={defaultView} 
-              onChange={(e) => setDefaultView(e.target.value as any)}
+            <select
+              value={defaultView}
+              onChange={(e) => setDefaultView(e.target.value as 'week' | 'month' | 'agenda')}
               className="w-full p-2 border rounded-md"
             >
               <option value="week">Week View</option>
@@ -501,12 +500,12 @@ function PlannerSettingsPanel({ onClose }: PlannerSettingsPanelProps) {
               <option value="agenda">Agenda View</option>
             </select>
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium mb-2">Time Slot Duration</label>
-            <select 
-              value={timeSlotDuration} 
-              onChange={(e) => setTimeSlotDuration(Number(e.target.value) as any)}
+            <select
+              value={timeSlotDuration}
+              onChange={(e) => setTimeSlotDuration(Number(e.target.value) as 15 | 30 | 60)}
               className="w-full p-2 border rounded-md"
             >
               <option value={15}>15 minutes</option>
@@ -523,14 +522,16 @@ function PlannerSettingsPanel({ onClose }: PlannerSettingsPanelProps) {
               onChange={(e) => setShowWeekends(e.target.checked)}
               className="rounded"
             />
-            <label htmlFor="showWeekends" className="text-sm font-medium">Show Weekends</label>
+            <label htmlFor="showWeekends" className="text-sm font-medium">
+              Show Weekends
+            </label>
           </div>
 
           <div>
             <label className="block text-sm font-medium mb-2">Start of Week</label>
-            <select 
-              value={startOfWeek} 
-              onChange={(e) => setStartOfWeek(Number(e.target.value) as any)}
+            <select
+              value={startOfWeek}
+              onChange={(e) => setStartOfWeek(Number(e.target.value) as 0 | 1)}
               className="w-full p-2 border rounded-md"
             >
               <option value={0}>Sunday</option>
@@ -572,7 +573,9 @@ function PlannerSettingsPanel({ onClose }: PlannerSettingsPanelProps) {
               onChange={(e) => setSidebarExpanded(e.target.checked)}
               className="rounded"
             />
-            <label htmlFor="sidebarExpanded" className="text-sm font-medium">Expanded Sidebar</label>
+            <label htmlFor="sidebarExpanded" className="text-sm font-medium">
+              Expanded Sidebar
+            </label>
           </div>
 
           <div className="flex items-center space-x-2">
@@ -583,7 +586,9 @@ function PlannerSettingsPanel({ onClose }: PlannerSettingsPanelProps) {
               onChange={(e) => setShowMiniCalendar(e.target.checked)}
               className="rounded"
             />
-            <label htmlFor="showMiniCalendar" className="text-sm font-medium">Show Mini Calendar</label>
+            <label htmlFor="showMiniCalendar" className="text-sm font-medium">
+              Show Mini Calendar
+            </label>
           </div>
 
           <div className="flex items-center space-x-2">
@@ -594,7 +599,9 @@ function PlannerSettingsPanel({ onClose }: PlannerSettingsPanelProps) {
               onChange={(e) => setShowResourcePanel(e.target.checked)}
               className="rounded"
             />
-            <label htmlFor="showResourcePanel" className="text-sm font-medium">Show Resource Panel</label>
+            <label htmlFor="showResourcePanel" className="text-sm font-medium">
+              Show Resource Panel
+            </label>
           </div>
 
           <div className="flex items-center space-x-2">
@@ -605,14 +612,16 @@ function PlannerSettingsPanel({ onClose }: PlannerSettingsPanelProps) {
               onChange={(e) => setCompactMode(e.target.checked)}
               className="rounded"
             />
-            <label htmlFor="compactMode" className="text-sm font-medium">Compact Mode</label>
+            <label htmlFor="compactMode" className="text-sm font-medium">
+              Compact Mode
+            </label>
           </div>
 
           <div>
             <label className="block text-sm font-medium mb-2">Theme</label>
-            <select 
-              value={theme} 
-              onChange={(e) => setTheme(e.target.value as any)}
+            <select
+              value={_theme}
+              onChange={(e) => setTheme(e.target.value as 'light' | 'dark' | 'system')}
               className="w-full p-2 border rounded-md"
             >
               <option value="light">Light</option>
@@ -635,7 +644,9 @@ function PlannerSettingsPanel({ onClose }: PlannerSettingsPanelProps) {
               onChange={(e) => setAutoSave(e.target.checked)}
               className="rounded"
             />
-            <label htmlFor="autoSave" className="text-sm font-medium">Auto-save</label>
+            <label htmlFor="autoSave" className="text-sm font-medium">
+              Auto-save
+            </label>
           </div>
 
           <div>
@@ -658,11 +669,15 @@ function PlannerSettingsPanel({ onClose }: PlannerSettingsPanelProps) {
               onChange={(e) => setShowUncoveredOutcomes(e.target.checked)}
               className="rounded"
             />
-            <label htmlFor="showUncoveredOutcomes" className="text-sm font-medium">Show Uncovered Outcomes</label>
+            <label htmlFor="showUncoveredOutcomes" className="text-sm font-medium">
+              Show Uncovered Outcomes
+            </label>
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">Default Lesson Duration (minutes)</label>
+            <label className="block text-sm font-medium mb-2">
+              Default Lesson Duration (minutes)
+            </label>
             <input
               type="number"
               min="15"
@@ -681,9 +696,7 @@ function PlannerSettingsPanel({ onClose }: PlannerSettingsPanelProps) {
         <Button variant="outline" onClick={onClose}>
           Cancel
         </Button>
-        <Button onClick={handleSave}>
-          Save Preferences
-        </Button>
+        <Button onClick={handleSave}>Save Preferences</Button>
       </div>
     </div>
   );

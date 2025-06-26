@@ -21,11 +21,9 @@ export default function FormsDataAgentPage() {
 
   // Batch creation handlers
   const handleBatchUnitCreate = async (units: UnitPlanFormData[]) => {
-    const results = await Promise.allSettled(
-      units.map(unit => createUnit.mutateAsync(unit))
-    );
-    
-    const failures = results.filter(r => r.status === 'rejected');
+    const results = await Promise.allSettled(units.map((unit) => createUnit.mutateAsync(unit)));
+
+    const failures = results.filter((r) => r.status === 'rejected');
     if (failures.length > 0) {
       console.error('Some unit creations failed:', failures);
       throw new Error(`${failures.length} unit(s) failed to create`);
@@ -34,10 +32,10 @@ export default function FormsDataAgentPage() {
 
   const handleBatchLessonCreate = async (lessons: LessonPlanFormData[]) => {
     const results = await Promise.allSettled(
-      lessons.map(lesson => createLesson.mutateAsync(lesson))
+      lessons.map((lesson) => createLesson.mutateAsync(lesson)),
     );
-    
-    const failures = results.filter(r => r.status === 'rejected');
+
+    const failures = results.filter((r) => r.status === 'rejected');
     if (failures.length > 0) {
       console.error('Some lesson creations failed:', failures);
       throw new Error(`${failures.length} lesson(s) failed to create`);
@@ -48,22 +46,22 @@ export default function FormsDataAgentPage() {
   const handleTemplateExport = (type: 'unit' | 'lesson', template: unknown) => {
     const filename = `${type}-plan-template.json`;
     const data = JSON.stringify([template], null, 2);
-    
+
     const blob = new Blob([data], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
-    
+
     const link = document.createElement('a');
     link.href = url;
     link.download = filename;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
+
     URL.revokeObjectURL(url);
   };
 
   // Data import handler
-  const handleDataImport = (type: 'unit' | 'lesson', data: unknown[]) => {
+  const handleDataImport = (_type: 'unit' | 'lesson', _data: unknown[]) => {
     // This would typically trigger batch processing
     // TODO: Implement actual data import functionality
   };

@@ -2,8 +2,8 @@
 import { defineConfig, splitVendorChunkPlugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import { visualizer } from 'rollup-plugin-visualizer';
-import compression from 'vite-plugin-compression';
+// import { visualizer } from 'rollup-plugin-visualizer';
+// import compression from 'vite-plugin-compression';
 
 // Custom chunk splitting strategy
 function manualChunks(id: string) {
@@ -60,25 +60,25 @@ export default defineConfig(({ mode }) => {
       splitVendorChunkPlugin(),
       
       // Compress assets in production
-      isProd && compression({
-        algorithm: 'gzip',
-        ext: '.gz',
-        threshold: 10240, // Only compress files > 10KB
-      }),
+      // isProd && compression({
+      //   algorithm: 'gzip',
+      //   ext: '.gz',
+      //   threshold: 10240, // Only compress files > 10KB
+      // }),
       
-      isProd && compression({
-        algorithm: 'brotliCompress',
-        ext: '.br',
-        threshold: 10240,
-      }),
+      // isProd && compression({
+      //   algorithm: 'brotliCompress',
+      //   ext: '.br',
+      //   threshold: 10240,
+      // }),
       
       // Bundle analyzer for production builds
-      isProd && process.env.ANALYZE && visualizer({
-        open: true,
-        filename: 'dist/bundle-analysis.html',
-        gzipSize: true,
-        brotliSize: true,
-      })
+      // isProd && process.env.ANALYZE && visualizer({
+      //   open: true,
+      //   filename: 'dist/bundle-analysis.html',
+      //   gzipSize: true,
+      //   brotliSize: true,
+      // })
     ].filter(Boolean),
     
     resolve: {
@@ -143,7 +143,7 @@ export default defineConfig(({ mode }) => {
           manualChunks,
           // Asset naming for better caching
           assetFileNames: (assetInfo) => {
-            const info = assetInfo.name.split('.');
+            const info = (assetInfo.name || 'asset').split('.');
             let extType = info[info.length - 1];
             if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
               extType = 'img';

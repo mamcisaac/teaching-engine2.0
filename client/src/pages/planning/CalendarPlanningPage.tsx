@@ -32,7 +32,13 @@ interface CalendarViewEvent extends Event {
   originalData?: CalendarEvent | ETFOLessonPlan | UnitPlan;
 }
 
-type CalendarEventType = 'lesson' | 'unit-boundary' | 'holiday' | 'pd-day' | 'assessment' | 'school-event';
+type CalendarEventType =
+  | 'lesson'
+  | 'unit-boundary'
+  | 'holiday'
+  | 'pd-day'
+  | 'assessment'
+  | 'school-event';
 
 interface CalendarFilter {
   subjects: string[];
@@ -69,7 +75,11 @@ export default function CalendarPlanningPage() {
 
   // Fetch calendar events
   const { data: calendarEvents = [] } = useQuery({
-    queryKey: ['calendar-events', format(startOfMonth(currentDate), 'yyyy-MM-dd'), format(endOfMonth(currentDate), 'yyyy-MM-dd')],
+    queryKey: [
+      'calendar-events',
+      format(startOfMonth(currentDate), 'yyyy-MM-dd'),
+      format(endOfMonth(currentDate), 'yyyy-MM-dd'),
+    ],
     queryFn: async () => {
       const response = await api.get('/api/calendar-events', {
         params: {
@@ -135,7 +145,8 @@ export default function CalendarPlanningPage() {
         end: new Date(event.end),
         type: eventType,
         metadata: {
-          color: eventType === 'holiday' ? '#DC2626' : eventType === 'pd-day' ? '#7C3AED' : '#6B7280',
+          color:
+            eventType === 'holiday' ? '#DC2626' : eventType === 'pd-day' ? '#7C3AED' : '#6B7280',
           isEditable: event.source === 'MANUAL',
         },
         originalData: event,
@@ -155,7 +166,9 @@ export default function CalendarPlanningPage() {
             subject: (lesson as ETFOLessonPlan).subject || 'general',
             unitId: lesson.unitPlanId,
             lessonId: lesson.id,
-            color: SUBJECT_COLORS[(lesson as ETFOLessonPlan).subject?.toLowerCase() || 'default'] || SUBJECT_COLORS.default,
+            color:
+              SUBJECT_COLORS[(lesson as ETFOLessonPlan).subject?.toLowerCase() || 'default'] ||
+              SUBJECT_COLORS.default,
             isEditable: true,
           },
           originalData: lesson,
@@ -239,7 +252,7 @@ export default function CalendarPlanningPage() {
   }, []);
 
   // Handle event drop (drag and drop)
-  const handleEventDrop = useCallback(
+  const _handleEventDrop = useCallback(
     ({ event, start }: { event: CalendarViewEvent; start: Date }) => {
       if (event.type === 'lesson' && event.metadata?.lessonId) {
         updateLessonMutation.mutate({
@@ -248,7 +261,7 @@ export default function CalendarPlanningPage() {
         });
       }
     },
-    [updateLessonMutation]
+    [updateLessonMutation],
   );
 
   // Navigate calendar
@@ -299,7 +312,9 @@ export default function CalendarPlanningPage() {
             <Button onClick={goToNext} variant="outline" size="sm">
               <ChevronRight className="h-4 w-4" />
             </Button>
-            <h2 className="text-lg md:text-xl font-semibold ml-2 md:ml-4">{format(date, 'MMMM yyyy')}</h2>
+            <h2 className="text-lg md:text-xl font-semibold ml-2 md:ml-4">
+              {format(date, 'MMMM yyyy')}
+            </h2>
           </div>
           <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2 w-full md:w-auto">
             <div className="flex gap-2">
@@ -307,12 +322,18 @@ export default function CalendarPlanningPage() {
                 onClick={() => setShowFilters(!showFilters)}
                 variant="outline"
                 size="sm"
-                className={showFilters ? 'bg-gray-100 flex-1 md:flex-initial' : 'flex-1 md:flex-initial'}
+                className={
+                  showFilters ? 'bg-gray-100 flex-1 md:flex-initial' : 'flex-1 md:flex-initial'
+                }
               >
                 <Filter className="h-4 w-4 mr-2" />
                 <span className="hidden sm:inline">Filters</span>
               </Button>
-              <Button onClick={() => setShowEventModal(true)} size="sm" className="flex-1 md:flex-initial">
+              <Button
+                onClick={() => setShowEventModal(true)}
+                size="sm"
+                className="flex-1 md:flex-initial"
+              >
                 <Plus className="h-4 w-4 mr-2" />
                 <span className="hidden sm:inline">Add Event</span>
               </Button>
@@ -350,7 +371,7 @@ export default function CalendarPlanningPage() {
         </div>
       );
     },
-    [view, showFilters]
+    [view, showFilters],
   );
 
   return (
@@ -369,7 +390,13 @@ export default function CalendarPlanningPage() {
         <CalendarFilters
           filters={filters}
           onFiltersChange={(newFilters: CalendarFilter) => setFilters(newFilters)}
-          availableSubjects={[...new Set(lessons.map((l: ETFOLessonPlan) => (l as { subject?: string }).subject).filter(Boolean))].map(s => String(s))}
+          availableSubjects={[
+            ...new Set(
+              lessons
+                .map((l: ETFOLessonPlan) => (l as { subject?: string }).subject)
+                .filter(Boolean),
+            ),
+          ].map((s) => String(s))}
         />
       )}
 

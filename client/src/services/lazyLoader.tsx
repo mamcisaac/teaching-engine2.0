@@ -2,7 +2,7 @@
 // Provides efficient loading of curriculum documents with caching
 
 import React from 'react';
-import { offlineStorage } from './offlineStorage';
+import { offlineStorage, StoredData } from './offlineStorage';
 import { api } from '../api';
 
 interface LoadOptions {
@@ -92,7 +92,7 @@ class LazyLoader {
       
       // Cache if requested
       if (cache) {
-        await offlineStorage.cacheData(`document-${documentId}`, document, cacheTime);
+        await offlineStorage.cacheData(`document-${documentId}`, document as StoredData, cacheTime);
       }
       
       return document;

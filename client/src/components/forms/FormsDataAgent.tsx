@@ -39,7 +39,10 @@ interface FormsDataAgentProps {
   unitPlans?: UnitPlan[];
   onBatchUnitCreate?: (units: UnitPlanFormData[]) => Promise<void>;
   onBatchLessonCreate?: (lessons: LessonPlanFormData[]) => Promise<void>;
-  onTemplateExport?: (type: 'unit' | 'lesson', template: UnitPlanFormData | LessonPlanFormData) => void;
+  onTemplateExport?: (
+    type: 'unit' | 'lesson',
+    template: UnitPlanFormData | LessonPlanFormData,
+  ) => void;
   onDataImport?: (type: 'unit' | 'lesson', data: (UnitPlanFormData | LessonPlanFormData)[]) => void;
 }
 
@@ -57,7 +60,10 @@ export default function FormsDataAgent({
   const [_selectedTemplate, _setSelectedTemplate] = useState<'unit' | 'lesson' | null>(null);
 
   // Batch operations management
-  const addBatchOperation = (type: 'unit' | 'lesson', data: UnitPlanFormData | LessonPlanFormData) => {
+  const addBatchOperation = (
+    type: 'unit' | 'lesson',
+    data: UnitPlanFormData | LessonPlanFormData,
+  ) => {
     const operation: BatchOperation = {
       id: `${type}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       type,
@@ -66,11 +72,11 @@ export default function FormsDataAgent({
       progress: 0,
     };
 
-    setBatchOperations(prev => [...prev, operation]);
+    setBatchOperations((prev) => [...prev, operation]);
   };
 
   const removeBatchOperation = (id: string) => {
-    setBatchOperations(prev => prev.filter(op => op.id !== id));
+    setBatchOperations((prev) => prev.filter((op) => op.id !== id));
   };
 
   const clearAllOperations = () => {
@@ -102,7 +108,7 @@ export default function FormsDataAgent({
 
     try {
       // Validate all operations first
-      const validatedOps = batchOperations.map(op => ({
+      const validatedOps = batchOperations.map((op) => ({
         ...op,
         errors: validateBatchOperation(op),
         status: 'processing' as const,
@@ -111,55 +117,53 @@ export default function FormsDataAgent({
       setBatchOperations(validatedOps);
 
       // Separate units and lessons
-      const unitOps = validatedOps.filter(op => op.type === 'unit' && op.errors?.length === 0);
-      const lessonOps = validatedOps.filter(op => op.type === 'lesson' && op.errors?.length === 0);
+      const unitOps = validatedOps.filter((op) => op.type === 'unit' && op.errors?.length === 0);
+      const lessonOps = validatedOps.filter(
+        (op) => op.type === 'lesson' && op.errors?.length === 0,
+      );
 
       // Process units in batch
       if (unitOps.length > 0 && onBatchUnitCreate) {
-        const unitData = unitOps.map(op => op.data as UnitPlanFormData);
+        const unitData = unitOps.map((op) => op.data as UnitPlanFormData);
         await onBatchUnitCreate(unitData);
 
         // Mark units as completed
-        setBatchOperations(prev =>
-          prev.map(op =>
-            unitOps.some(validOp => validOp.id === op.id)
+        setBatchOperations((prev) =>
+          prev.map((op) =>
+            unitOps.some((validOp) => validOp.id === op.id)
               ? { ...op, status: 'completed', progress: 100 }
-              : op
-          )
+              : op,
+          ),
         );
       }
 
       // Process lessons in batch
       if (lessonOps.length > 0 && onBatchLessonCreate) {
-        const lessonData = lessonOps.map(op => op.data as LessonPlanFormData);
+        const lessonData = lessonOps.map((op) => op.data as LessonPlanFormData);
         await onBatchLessonCreate(lessonData);
 
         // Mark lessons as completed
-        setBatchOperations(prev =>
-          prev.map(op =>
-            lessonOps.some(validOp => validOp.id === op.id)
+        setBatchOperations((prev) =>
+          prev.map((op) =>
+            lessonOps.some((validOp) => validOp.id === op.id)
               ? { ...op, status: 'completed', progress: 100 }
-              : op
-          )
+              : op,
+          ),
         );
       }
 
       // Mark operations with errors
-      setBatchOperations(prev =>
-        prev.map(op =>
-          op.errors && op.errors.length > 0
-            ? { ...op, status: 'error' }
-            : op
-        )
+      setBatchOperations((prev) =>
+        prev.map((op) => (op.errors && op.errors.length > 0 ? { ...op, status: 'error' } : op)),
       );
     } catch (error) {
       console.error('Batch processing error:', error);
-      setBatchOperations(prev =>
-        prev.map(op => ({
+      setBatchOperations((prev) =>
+        prev.map((op) => ({
           ...op,
           status: 'error',
           errors: ['Processing failed: ' + (error as Error).message],
-        }))
+        })),
       );
     } finally {
       setIsProcessing(false);
@@ -168,61 +172,64 @@ export default function FormsDataAgent({
 
   // Template generation
   const generateTemplate = (type: 'unit' | 'lesson') => {
-    const template = type === 'unit' ? {
-      title: '',
-      description: '',
-      bigIdeas: '',
-      essentialQuestions: [''],
-      startDate: '',
-      endDate: '',
-      estimatedHours: 20,
-      assessmentPlan: '',
-      successCriteria: [''],
-      expectationIds: [],
-      longRangePlanId: '',
-      crossCurricularConnections: '',
-      learningSkills: [],
-      culminatingTask: '',
-      keyVocabulary: [''],
-      priorKnowledge: '',
-      parentCommunicationPlan: '',
-      fieldTripsAndGuestSpeakers: '',
-      differentiationStrategies: {
-        forStruggling: [''],
-        forAdvanced: [''],
-        forELL: [''],
-        forIEP: [''],
-      },
-      indigenousPerspectives: '',
-      environmentalEducation: '',
-      socialJusticeConnections: '',
-      technologyIntegration: '',
-      communityConnections: '',
-    } as UnitPlanFormData : {
-      title: '',
-      titleFr: '',
-      unitPlanId: '',
-      date: '',
-      duration: 60,
-      mindsOn: '',
-      mindsOnFr: '',
-      action: '',
-      actionFr: '',
-      consolidation: '',
-      consolidationFr: '',
-      learningGoals: '',
-      learningGoalsFr: '',
-      materials: [''],
-      grouping: 'whole class',
-      accommodations: [''],
-      modifications: [''],
-      extensions: [''],
-      assessmentType: 'formative' as const,
-      assessmentNotes: '',
-      isSubFriendly: true,
-      subNotes: '',
-      expectationIds: [],
-    } as LessonPlanFormData;
+    const template =
+      type === 'unit'
+        ? ({
+            title: '',
+            description: '',
+            bigIdeas: '',
+            essentialQuestions: [''],
+            startDate: '',
+            endDate: '',
+            estimatedHours: 20,
+            assessmentPlan: '',
+            successCriteria: [''],
+            expectationIds: [],
+            longRangePlanId: '',
+            crossCurricularConnections: '',
+            learningSkills: [],
+            culminatingTask: '',
+            keyVocabulary: [''],
+            priorKnowledge: '',
+            parentCommunicationPlan: '',
+            fieldTripsAndGuestSpeakers: '',
+            differentiationStrategies: {
+              forStruggling: [''],
+              forAdvanced: [''],
+              forELL: [''],
+              forIEP: [''],
+            },
+            indigenousPerspectives: '',
+            environmentalEducation: '',
+            socialJusticeConnections: '',
+            technologyIntegration: '',
+            communityConnections: '',
+          } as UnitPlanFormData)
+        : ({
+            title: '',
+            titleFr: '',
+            unitPlanId: '',
+            date: '',
+            duration: 60,
+            mindsOn: '',
+            mindsOnFr: '',
+            action: '',
+            actionFr: '',
+            consolidation: '',
+            consolidationFr: '',
+            learningGoals: '',
+            learningGoalsFr: '',
+            materials: [''],
+            grouping: 'whole class',
+            accommodations: [''],
+            modifications: [''],
+            extensions: [''],
+            assessmentType: 'formative' as const,
+            assessmentNotes: '',
+            isSubFriendly: true,
+            subNotes: '',
+            expectationIds: [],
+          } as LessonPlanFormData);
 
     onTemplateExport?.(type, template);
   };
@@ -246,9 +253,9 @@ export default function FormsDataAgent({
     }
   };
 
-  const completedOperations = batchOperations.filter(op => op.status === 'completed').length;
-  const errorOperations = batchOperations.filter(op => op.status === 'error').length;
-  const processingOperations = batchOperations.filter(op => op.status === 'processing').length;
+  const completedOperations = batchOperations.filter((op) => op.status === 'completed').length;
+  const errorOperations = batchOperations.filter((op) => op.status === 'error').length;
+  const processingOperations = batchOperations.filter((op) => op.status === 'processing').length;
   const totalOperations = batchOperations.length;
 
   return (
@@ -260,7 +267,13 @@ export default function FormsDataAgent({
         </p>
       </div>
 
-      <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as any)} className="space-y-6">
+      <Tabs
+        value={activeTab}
+        onValueChange={(value) =>
+          setActiveTab(value as 'batch' | 'templates' | 'import' | 'wizard')
+        }
+        className="space-y-6"
+      >
         <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="batch" className="flex items-center gap-2">
             <ListPlus className="h-4 w-4" />
@@ -301,7 +314,7 @@ export default function FormsDataAgent({
                       {completedOperations} / {totalOperations} completed
                     </span>
                   </div>
-                  <Progress 
+                  <Progress
                     value={(completedOperations / totalOperations) * 100}
                     className="mb-2"
                   />
@@ -352,9 +365,7 @@ export default function FormsDataAgent({
                           {operation.type}
                         </Badge>
                         <div>
-                          <p className="font-medium">
-                            {operation.data.title || 'Untitled'}
-                          </p>
+                          <p className="font-medium">{operation.data.title || 'Untitled'}</p>
                           {operation.errors && operation.errors.length > 0 && (
                             <p className="text-sm text-red-600">
                               {operation.errors.length} validation error(s)
@@ -368,8 +379,8 @@ export default function FormsDataAgent({
                             operation.status === 'completed'
                               ? 'default'
                               : operation.status === 'error'
-                              ? 'destructive'
-                              : 'secondary'
+                                ? 'destructive'
+                                : 'secondary'
                           }
                         >
                           {operation.status}
@@ -523,19 +534,15 @@ export default function FormsDataAgent({
           <Card>
             <CardHeader>
               <CardTitle>Curriculum Setup Wizard</CardTitle>
-              <CardDescription>
-                Guided setup for comprehensive curriculum planning
-              </CardDescription>
+              <CardDescription>Guided setup for comprehensive curriculum planning</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="text-center py-8">
                 <Wand2 className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
-                  Setup Wizard Coming Soon
-                </h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">Setup Wizard Coming Soon</h3>
                 <p className="text-gray-600 mb-4">
-                  The curriculum setup wizard will guide you through creating a complete
-                  year-long planning structure with automated workflows.
+                  The curriculum setup wizard will guide you through creating a complete year-long
+                  planning structure with automated workflows.
                 </p>
                 <Button disabled variant="outline">
                   Launch Wizard

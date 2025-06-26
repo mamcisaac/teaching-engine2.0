@@ -17,8 +17,17 @@ import {
 } from '@/services/authService';
 
 // Mock dependencies
-jest.mock('bcryptjs');
-jest.mock('jsonwebtoken');
+const mockBcrypt = {
+  hash: jest.fn(),
+  compare: jest.fn(),
+};
+const mockJwt = {
+  sign: jest.fn(),
+  verify: jest.fn(),
+};
+
+jest.mock('bcryptjs', () => mockBcrypt);
+jest.mock('jsonwebtoken', () => mockJwt);
 jest.mock('@teaching-engine/database');
 
 describe('Authentication Service - Critical Path Testing', () => {
@@ -35,12 +44,12 @@ describe('Authentication Service - Critical Path Testing', () => {
       const userId = '123';
       const mockToken = 'mock.jwt.token';
       
-      (jwt.sign as jest.Mock).mockReturnValue(mockToken);
+      mockJwt.sign.mockReturnValue(mockToken);
       
       const token = await generateAuthToken(userId);
       
-      expect(jwt.sign).toHaveBeenCalledWith(
-        { userId, iat: expect.any(Number) },
+      expect(mockJwt.sign).toHaveBeenCalledWith(
+        { userId },
         'test-secret-key',
         { expiresIn: '7d' }
       );
@@ -58,7 +67,7 @@ describe('Authentication Service - Critical Path Testing', () => {
       const userId = '123';
       const customExpiry = '1h';
       
-      (jwt.sign as jest.Mock).mockReturnValue('mock.token');
+      mockJwt.sign.mockReturnValue('mock.token');
       
       await generateAuthToken(userId, customExpiry);
       
@@ -70,7 +79,7 @@ describe('Authentication Service - Critical Path Testing', () => {
     });
     
     test('handles token generation failures gracefully', async () => {
-      (jwt.sign as jest.Mock).mockImplementation(() => {
+      mockJwt.sign.mockImplementation(() => {
         throw new Error('Token generation failed');
       });
       
@@ -84,7 +93,7 @@ describe('Authentication Service - Critical Path Testing', () => {
       const plaintext = 'TestPassword123!';
       const hashedPassword = '$2a$10$mockedHashValue';
       
-      (bcrypt.hash as jest.Mock).mockResolvedValue(hashedPassword);
+      mockBcrypt.hash.mockResolvedValue(hashedPassword);
       
       const result = await hashPassword(plaintext);
       
@@ -128,12 +137,12 @@ describe('Authentication Service - Critical Path Testing', () => {
       const plaintext = 'TestPassword123!';
       const hash = '$2a$10$hashedValue';
       
-      (bcrypt.compare as jest.Mock).mockResolvedValue(true);
+      mockBcrypt.compare.mockResolvedValue(true);
       
-      const isValid = await bcrypt.compare(plaintext, hash);
+      const isValid = await mockBcrypt.compare(plaintext, hash);
       
       expect(isValid).toBe(true);
-      expect(bcrypt.compare).toHaveBeenCalledWith(plaintext, hash);
+      expect(mockBcrypt.compare).toHaveBeenCalledWith(plaintext, hash);
     });
   });
 
@@ -200,8 +209,8 @@ describe('Authentication Service - Critical Path Testing', () => {
       };
       
       mockPrisma.user.findUnique = jest.fn().mockResolvedValue(mockUser);
-      (bcrypt.compare as jest.Mock).mockResolvedValue(true);
-      (jwt.sign as jest.Mock).mockReturnValue('mock.token');
+      mockBcrypt.compare.mockResolvedValue(true);
+      mockJwt.sign.mockReturnValue('mock.token');
       
       const result = await authenticate(email, password, mockPrisma);
       
@@ -235,7 +244,7 @@ describe('Authentication Service - Critical Path Testing', () => {
       };
       
       mockPrisma.user.findUnique = jest.fn().mockResolvedValue(mockUser);
-      (bcrypt.compare as jest.Mock).mockResolvedValue(false);
+      mockBcrypt.compare.mockResolvedValue(false);
       
       await expect(authenticate('test@example.com', 'wrongpassword', mockPrisma))
         .rejects.toThrow('Invalid credentials');
@@ -315,7 +324,7 @@ describe('Authentication Service - Critical Path Testing', () => {
         ipAddress: '192.168.1.1',
       };
       
-      (jwt.sign as jest.Mock).mockReturnValue('session.token');
+      mockJwt.sign.mockReturnValue('session.token');
       
       const token = await createSessionToken(sessionData);
       

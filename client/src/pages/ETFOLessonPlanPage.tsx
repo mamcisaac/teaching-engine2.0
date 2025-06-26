@@ -9,7 +9,7 @@ import {
   useDeleteETFOLessonPlan,
 } from '../hooks/useETFOPlanning';
 import { useTemplates, useApplyTemplate } from '../hooks/useTemplates';
-import { PlanTemplate, isLessonPlanTemplate } from '../types/template';
+import { PlanTemplate, isLessonPlanTemplate, LessonPlanContent } from '../types/template';
 import Dialog from '../components/Dialog';
 import { Button } from '../components/ui/Button';
 import RichTextEditor from '../components/RichTextEditor';
@@ -340,29 +340,29 @@ export default function ETFOLessonPlanPage() {
       
       if (isLessonPlanTemplate(template) && applied.appliedContent) {
         // Pre-populate form with template data
-        const templateContent = applied.appliedContent;
+        const templateContent = applied.appliedContent as LessonPlanContent;
         setFormData({
           ...formData,
-          title: templateContent.title || '',
-          titleFr: templateContent.titleFr || '',
+          title: (templateContent as any).title || '',
+          titleFr: (templateContent as any).titleFr || '',
           duration: templateContent.duration || 60,
-          learningGoals: templateContent.learningGoals || '',
-          learningGoalsFr: templateContent.learningGoalsFr || '',
-          mindsOn: templateContent.mindsOnDescription || '',
-          mindsOnFr: templateContent.mindsOnDescriptionFr || '',
-          action: templateContent.actionDescription || '',
-          actionFr: templateContent.actionDescriptionFr || '',
-          consolidation: templateContent.consolidationDescription || '',
-          consolidationFr: templateContent.consolidationDescriptionFr || '',
+          learningGoals: (templateContent as any).learningGoals || '',
+          learningGoalsFr: (templateContent as any).learningGoalsFr || '',
+          mindsOn: templateContent.mindsOn || '',
+          mindsOnFr: (templateContent as any).mindsOnFr || '',
+          action: templateContent.action || '',
+          actionFr: (templateContent as any).actionFr || '',
+          consolidation: templateContent.consolidation || '',
+          consolidationFr: (templateContent as any).consolidationFr || '',
           materials: templateContent.materials || [''],
           grouping: templateContent.grouping || 'whole',
           accommodations: templateContent.accommodations || [''],
           modifications: templateContent.modifications || [''],
           extensions: templateContent.extensions || [''],
-          assessmentType: templateContent.assessmentType || 'formative',
+          assessmentType: (templateContent.assessmentType as any) || 'formative',
           assessmentNotes: templateContent.assessmentNotes || '',
-          isSubFriendly: templateContent.isSubFriendly || false,
-          subNotes: templateContent.subNotes || '',
+          isSubFriendly: (templateContent as any).isSubFriendly || false,
+          subNotes: (templateContent as any).subNotes || '',
         });
       }
       
@@ -428,7 +428,10 @@ export default function ETFOLessonPlanPage() {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => printHTML(generateLessonPlanHTML(selectedLesson, unitPlan), `${selectedLesson.title}-lesson-plan`)}
+                  onClick={() => printHTML(generateLessonPlanHTML({
+                    ...selectedLesson,
+                    date: new Date(selectedLesson.date)
+                  }, unitPlan), `${selectedLesson.title}-lesson-plan`)}
                   className="flex items-center gap-2"
                 >
                   <Printer className="h-4 w-4" />
@@ -437,7 +440,10 @@ export default function ETFOLessonPlanPage() {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => downloadHTML(generateLessonPlanHTML(selectedLesson, unitPlan), `${selectedLesson.title}-lesson-plan`)}
+                  onClick={() => downloadHTML(generateLessonPlanHTML({
+                    ...selectedLesson,
+                    date: new Date(selectedLesson.date)
+                  }, unitPlan), `${selectedLesson.title}-lesson-plan`)}
                   className="flex items-center gap-2"
                 >
                   <Download className="h-4 w-4" />

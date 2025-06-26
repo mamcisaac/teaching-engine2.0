@@ -22,6 +22,13 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*", "vite.config.ts", "tests/**/*.ts", "tests/**/*.tsx", "vitest.d.ts"],
+  "include": [
+    "src/**/*",
+    "vite.config.ts",
+    "vite.config.optimized.ts",
+    "tests/**/*.ts",
+    "tests/**/*.tsx",
+    "vitest.d.ts"
+  ],
   "exclude": ["node_modules"]
 }

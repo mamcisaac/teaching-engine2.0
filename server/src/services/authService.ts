@@ -4,7 +4,7 @@
  */
 
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 import { PrismaClient } from '@teaching-engine/database';
 import logger from '@/logger';
 
@@ -38,7 +38,7 @@ export async function generateAuthToken(
   }
 
   const payload = { userId };
-  return jwt.sign(payload, secret, { expiresIn });
+  return jwt.sign(payload, secret, { expiresIn: expiresIn });
 }
 
 /**

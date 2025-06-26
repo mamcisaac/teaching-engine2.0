@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useHelp } from '../../contexts/HelpContext';
 import { useTutorials } from '../../hooks/useHelp';
 import { TutorialOverlay } from './TutorialOverlay';
@@ -13,7 +13,7 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
   const { state, startTutorial, nextTutorialStep, completeTutorial } = useHelp();
   const { getTutorial, getTutorialProgress } = useTutorials();
   const [showTutorialMenu, setShowTutorialMenu] = useState(false);
-  
+
   // Get currently active tutorial
   const activeTutorialId = Object.keys(state.tutorialProgress)[0];
   const activeTutorial = activeTutorialId ? getTutorial(activeTutorialId) : null;
@@ -22,16 +22,16 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
   const progress = activeTutorialId ? getTutorialProgress(activeTutorialId) : 0;
 
   // Handle tutorial completion
-  const handleCompleteTutorial = () => {
+  const handleCompleteTutorial = useCallback(() => {
     if (activeTutorialId) {
       completeTutorial(activeTutorialId);
-      
+
       // Show completion message
       if (activeTutorial?.completionMessage) {
         alert(activeTutorial.completionMessage); // In production, use a proper notification system
       }
     }
-  };
+  }, [activeTutorialId, completeTutorial, activeTutorial?.completionMessage]);
 
   // Handle skipping tutorial
   const handleSkipTutorial = () => {
@@ -41,7 +41,7 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
   };
 
   // Handle next step
-  const handleNextStep = () => {
+  const handleNextStep = useCallback(() => {
     if (activeTutorialId) {
       if (currentStepIndex >= (activeTutorial?.steps.length || 0) - 1) {
         handleCompleteTutorial();
@@ -49,7 +49,13 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
         nextTutorialStep(activeTutorialId);
       }
     }
-  };
+  }, [
+    activeTutorialId,
+    currentStepIndex,
+    activeTutorial?.steps.length,
+    nextTutorialStep,
+    handleCompleteTutorial,
+  ]);
 
   // Handle previous step
   const handlePreviousStep = () => {
@@ -92,7 +98,7 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
               {availableTutorials.map((tutorial) => {
                 const isCompleted = completedTutorials.includes(tutorial.id);
                 const isActive = activeTutorialId === tutorial.id;
-                
+
                 return (
                   <div
                     key={tutorial.id}
@@ -173,7 +179,8 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
                 <p>Great job! You&apos;ve completed {completedTutorials.length} tutorial(s).</p>
                 {completedTutorials.length >= availableTutorials.length && (
                   <p className="mt-2 text-green-600 font-medium">
-                    🎉 You&apos;ve completed all available tutorials! You&apos;re a Teaching Engine 2.0 expert.
+                    🎉 You&apos;ve completed all available tutorials! You&apos;re a Teaching Engine
+                    2.0 expert.
                   </p>
                 )}
               </div>
@@ -187,7 +194,7 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
   return (
     <>
       {children}
-      
+
       {/* Tutorial Overlay */}
       <TutorialOverlay
         isActive={!!activeTutorial}

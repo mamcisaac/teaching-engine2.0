@@ -5,7 +5,7 @@ import { persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 import { api } from '../api';
 import { createOfflineSlice, createAutoSave, OfflineState, BaseActions } from './basePlanningStore';
-import { offlineStorage } from '../services/offlineStorage';
+import { offlineStorage, StoredData } from '../services/offlineStorage';
 
 export interface UnitPlan {
   id: string;
@@ -17,7 +17,13 @@ export interface UnitPlan {
   expectations: string[];
   resources: string[];
   assessments: string[];
-  lessons: any[];
+  lessons: Array<{
+    id: string;
+    title: string;
+    date: string;
+    duration: number;
+    isSubFriendly?: boolean;
+  }>;
   createdAt: string;
   updatedAt: string;
 }
@@ -28,7 +34,7 @@ export interface UnitPlanState extends OfflineState, Record<string, unknown> {
   isLoading: boolean;
   isSaving: boolean;
   error: string | null;
-  
+
   // Actions
   loadUnitPlans: () => Promise<void>;
   loadUnitPlan: (id: string) => Promise<void>;
@@ -52,10 +58,10 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
           },
           saveToServer: async (data) => {
             // Save all modified plans
-            const modifiedPlans = data.unitPlans.filter(plan => 
-              plan.updatedAt > (data.lastSyncedAt?.toISOString() || '')
+            const modifiedPlans = data.unitPlans.filter(
+              (plan) => plan.updatedAt > (data.lastSyncedAt?.toISOString() || ''),
             );
-            
+
             for (const plan of modifiedPlans) {
               if (plan.id.startsWith('temp-')) {
                 // Create new plan
@@ -67,7 +73,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             }
           },
           getCacheKey: () => 'unit-plans-cache',
-          mergingStrategy: 'merge'
+          mergingStrategy: 'merge',
         });
 
         return {
@@ -79,7 +85,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
           error: null,
 
           // Offline state and actions
-          ...offlineSlice(set, get, undefined as any),
+          ...offlineSlice(set, get, undefined),
 
           // Actions
           loadUnitPlans: async () => {
@@ -93,7 +99,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
               if (get().isOnline) {
                 const response = await api.get('/api/unit-plans');
                 const plans = response.data;
-                
+
                 set((state) => {
                   state.unitPlans = plans;
                   state.isLoading = false;
@@ -105,7 +111,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
               } else {
                 // Load from cache if offline
                 const cachedPlans = await offlineStorage.getCachedData<UnitPlan[]>('unit-plans');
-                
+
                 if (cachedPlans) {
                   set((state) => {
                     state.unitPlans = cachedPlans;
@@ -117,10 +123,10 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
               }
             } catch (error) {
               console.error('Failed to load unit plans:', error);
-              
+
               // Try to load from cache as fallback
               const cachedPlans = await offlineStorage.getCachedData<UnitPlan[]>('unit-plans');
-              
+
               set((state) => {
                 state.unitPlans = cachedPlans || [];
                 state.error = error instanceof Error ? error.message : 'Failed to load plans';
@@ -139,7 +145,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
               if (get().isOnline) {
                 const response = await api.get(`/api/unit-plans/${id}`);
                 const plan = response.data;
-                
+
                 set((state) => {
                   state.currentPlan = plan;
                   state.isLoading = false;
@@ -150,7 +156,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
               } else {
                 // Load from cache if offline
                 const cachedPlan = await offlineStorage.getCachedData<UnitPlan>(`unit-plan-${id}`);
-                
+
                 if (cachedPlan) {
                   set((state) => {
                     state.currentPlan = cachedPlan;
@@ -158,7 +164,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
                   });
                 } else {
                   // Try to find in the list
-                  const plan = get().unitPlans.find(p => p.id === id);
+                  const plan = get().unitPlans.find((p) => p.id === id);
                   if (plan) {
                     set((state) => {
                       state.currentPlan = plan;
@@ -196,7 +202,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
               if (get().isOnline) {
                 const response = await api.post('/api/unit-plans', planData);
                 const createdPlan = response.data;
-                
+
                 set((state) => {
                   state.unitPlans.push(createdPlan);
                   state.currentPlan = createdPlan;
@@ -217,7 +223,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
                 await offlineStorage.saveOfflineChange({
                   type: 'CREATE',
                   entity: 'unit-plan',
-                  data: newPlan
+                  data: newPlan as unknown as StoredData,
                 });
 
                 return newPlan;
@@ -241,14 +247,14 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             try {
               const updatedPlan = {
                 ...updates,
-                updatedAt: new Date().toISOString()
+                updatedAt: new Date().toISOString(),
               };
 
               if (get().isOnline) {
                 await api.put(`/api/unit-plans/${id}`, updatedPlan);
-                
+
                 set((state) => {
-                  const index = state.unitPlans.findIndex(p => p.id === id);
+                  const index = state.unitPlans.findIndex((p) => p.id === id);
                   if (index !== -1) {
                     state.unitPlans[index] = { ...state.unitPlans[index], ...updatedPlan };
                   }
@@ -260,7 +266,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
               } else {
                 // Update offline
                 set((state) => {
-                  const index = state.unitPlans.findIndex(p => p.id === id);
+                  const index = state.unitPlans.findIndex((p) => p.id === id);
                   if (index !== -1) {
                     state.unitPlans[index] = { ...state.unitPlans[index], ...updatedPlan };
                   }
@@ -276,7 +282,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
                   type: 'UPDATE',
                   entity: 'unit-plan',
                   entityId: id,
-                  data: updatedPlan
+                  data: updatedPlan,
                 });
               }
             } catch (error) {
@@ -298,9 +304,9 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             try {
               if (get().isOnline) {
                 await api.delete(`/api/unit-plans/${id}`);
-                
+
                 set((state) => {
-                  state.unitPlans = state.unitPlans.filter(p => p.id !== id);
+                  state.unitPlans = state.unitPlans.filter((p) => p.id !== id);
                   if (state.currentPlan?.id === id) {
                     state.currentPlan = null;
                   }
@@ -309,7 +315,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
               } else {
                 // Delete offline
                 set((state) => {
-                  state.unitPlans = state.unitPlans.filter(p => p.id !== id);
+                  state.unitPlans = state.unitPlans.filter((p) => p.id !== id);
                   if (state.currentPlan?.id === id) {
                     state.currentPlan = null;
                   }
@@ -322,7 +328,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
                   type: 'DELETE',
                   entity: 'unit-plan',
                   entityId: id,
-                  data: { id }
+                  data: { id },
                 });
               }
             } catch (error) {
@@ -335,13 +341,15 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             }
           },
 
-          setCurrentPlan: (plan: UnitPlan | null) => set((state) => {
-            state.currentPlan = plan;
-          }),
+          setCurrentPlan: (plan: UnitPlan | null) =>
+            set((state) => {
+              state.currentPlan = plan;
+            }),
 
-          clearError: () => set((state) => {
-            state.error = null;
-          }),
+          clearError: () =>
+            set((state) => {
+              state.error = null;
+            }),
         };
       }),
       {
@@ -350,11 +358,11 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
           unitPlans: state.unitPlans,
           currentPlan: state.currentPlan,
           hasOfflineChanges: state.hasOfflineChanges,
-          lastSyncedAt: state.lastSyncedAt
-        })
-      }
-    )
-  )
+          lastSyncedAt: state.lastSyncedAt,
+        }),
+      },
+    ),
+  ),
 );
 
 // Set up auto-save
@@ -367,7 +375,7 @@ const autoSave = createAutoSave(
       await state.loadUnitPlans();
     }
   },
-  30000 // 30 seconds
+  30000, // 30 seconds
 );
 
 // Subscribe to changes
@@ -377,12 +385,12 @@ useUnitPlanStore.subscribe(
     if (hasChanges) {
       autoSave();
     }
-  }
+  },
 );
 
 // Listen for online/offline events
 if (typeof window !== 'undefined') {
-  window.addEventListener('online-status-change', (event: any) => {
+  window.addEventListener('online-status-change', ((event: CustomEvent<{ isOnline: boolean }>) => {
     useUnitPlanStore.getState().setOnlineStatus(event.detail.isOnline);
-  });
+  }) as EventListener);
 }

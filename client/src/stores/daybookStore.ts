@@ -5,7 +5,7 @@ import { persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 import { api } from '../api';
 import { createOfflineSlice, createAutoSave, OfflineState, BaseActions } from './basePlanningStore';
-import { offlineStorage } from '../services/offlineStorage';
+import { offlineStorage, StoredData } from '../services/offlineStorage';
 
 export interface DaybookEntry {
   id: string;
@@ -34,7 +34,7 @@ export interface DaybookState extends OfflineState, Record<string, unknown> {
   isLoading: boolean;
   isSaving: boolean;
   error: string | null;
-  
+
   // Actions
   loadEntries: (startDate: string, endDate: string) => Promise<void>;
   loadEntry: (date: string) => Promise<void>;
@@ -59,10 +59,10 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
           },
           saveToServer: async (data) => {
             // Save all modified entries
-            const modifiedEntries = data.entries.filter(entry => 
-              entry.updatedAt > (data.lastSyncedAt?.toISOString() || '')
+            const modifiedEntries = data.entries.filter(
+              (entry) => entry.updatedAt > (data.lastSyncedAt?.toISOString() || ''),
             );
-            
+
             for (const entry of modifiedEntries) {
               if (entry.id.startsWith('temp-')) {
                 // Create new entry
@@ -74,7 +74,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             }
           },
           getCacheKey: () => 'daybook-cache',
-          mergingStrategy: 'merge'
+          mergingStrategy: 'merge',
         });
 
         return {
@@ -87,7 +87,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
           error: null,
 
           // Offline state and actions
-          ...offlineSlice(set, get, undefined as any),
+          ...offlineSlice(set, get, undefined),
 
           // Actions
           loadEntries: async (startDate: string, endDate: string) => {
@@ -101,7 +101,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                 const params = new URLSearchParams({ startDate, endDate });
                 const response = await api.get(`/api/daybook?${params.toString()}`);
                 const entries = response.data;
-                
+
                 set((state) => {
                   state.entries = entries;
                   state.isLoading = false;
@@ -115,7 +115,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                 // Load from cache if offline
                 const cacheKey = `daybook-${startDate}-${endDate}`;
                 const cachedEntries = await offlineStorage.getCachedData<DaybookEntry[]>(cacheKey);
-                
+
                 if (cachedEntries) {
                   set((state) => {
                     state.entries = cachedEntries;
@@ -123,11 +123,12 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                   });
                 } else {
                   // Try to load any cached data
-                  const allEntries = await offlineStorage.getCachedData<DaybookEntry[]>('daybook-cache');
+                  const allEntries =
+                    await offlineStorage.getCachedData<DaybookEntry[]>('daybook-cache');
                   if (allEntries) {
                     // Filter by date range
-                    const filtered = allEntries.filter(entry => 
-                      entry.date >= startDate && entry.date <= endDate
+                    const filtered = allEntries.filter(
+                      (entry) => entry.date >= startDate && entry.date <= endDate,
                     );
                     set((state) => {
                       state.entries = filtered;
@@ -143,10 +144,11 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
               }
             } catch (error) {
               console.error('Failed to load daybook entries:', error);
-              
+
               // Try to load from cache as fallback
-              const cachedEntries = await offlineStorage.getCachedData<DaybookEntry[]>('daybook-cache');
-              
+              const cachedEntries =
+                await offlineStorage.getCachedData<DaybookEntry[]>('daybook-cache');
+
               set((state) => {
                 state.entries = cachedEntries || [];
                 state.error = error instanceof Error ? error.message : 'Failed to load entries';
@@ -163,8 +165,8 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
 
             try {
               // First check local entries
-              const localEntry = get().entries.find(e => e.date === date);
-              
+              const localEntry = get().entries.find((e) => e.date === date);
+
               if (localEntry) {
                 set((state) => {
                   state.currentEntry = localEntry;
@@ -176,10 +178,10 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
               if (get().isOnline) {
                 const response = await api.get(`/api/daybook/date/${date}`);
                 const entry = response.data;
-                
+
                 set((state) => {
                   state.currentEntry = entry;
-                  if (entry && !state.entries.find(e => e.id === entry.id)) {
+                  if (entry && !state.entries.find((e) => e.id === entry.id)) {
                     state.entries.push(entry);
                   }
                   state.isLoading = false;
@@ -191,8 +193,10 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                 }
               } else {
                 // Load from cache if offline
-                const cachedEntry = await offlineStorage.getCachedData<DaybookEntry>(`daybook-entry-${date}`);
-                
+                const cachedEntry = await offlineStorage.getCachedData<DaybookEntry>(
+                  `daybook-entry-${date}`,
+                );
+
                 set((state) => {
                   state.currentEntry = cachedEntry;
                   state.isLoading = false;
@@ -225,10 +229,12 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
               if (get().isOnline) {
                 const response = await api.post('/api/daybook', entryData);
                 const createdEntry = response.data;
-                
+
                 set((state) => {
                   // Replace or add entry
-                  const existingIndex = state.entries.findIndex(e => e.date === createdEntry.date);
+                  const existingIndex = state.entries.findIndex(
+                    (e) => e.date === createdEntry.date,
+                  );
                   if (existingIndex !== -1) {
                     state.entries[existingIndex] = createdEntry;
                   } else {
@@ -243,7 +249,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                 // Save offline
                 set((state) => {
                   // Replace or add entry
-                  const existingIndex = state.entries.findIndex(e => e.date === newEntry.date);
+                  const existingIndex = state.entries.findIndex((e) => e.date === newEntry.date);
                   if (existingIndex !== -1) {
                     state.entries[existingIndex] = newEntry;
                   } else {
@@ -258,7 +264,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                 await offlineStorage.saveOfflineChange({
                   type: 'CREATE',
                   entity: 'daybook',
-                  data: newEntry
+                  data: newEntry as unknown as StoredData,
                 });
 
                 return newEntry;
@@ -282,14 +288,14 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             try {
               const updatedEntry = {
                 ...updates,
-                updatedAt: new Date().toISOString()
+                updatedAt: new Date().toISOString(),
               };
 
               if (get().isOnline) {
                 await api.put(`/api/daybook/${id}`, updatedEntry);
-                
+
                 set((state) => {
-                  const index = state.entries.findIndex(e => e.id === id);
+                  const index = state.entries.findIndex((e) => e.id === id);
                   if (index !== -1) {
                     state.entries[index] = { ...state.entries[index], ...updatedEntry };
                   }
@@ -301,7 +307,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
               } else {
                 // Update offline
                 set((state) => {
-                  const index = state.entries.findIndex(e => e.id === id);
+                  const index = state.entries.findIndex((e) => e.id === id);
                   if (index !== -1) {
                     state.entries[index] = { ...state.entries[index], ...updatedEntry };
                   }
@@ -317,7 +323,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                   type: 'UPDATE',
                   entity: 'daybook',
                   entityId: id,
-                  data: updatedEntry
+                  data: updatedEntry,
                 });
               }
             } catch (error) {
@@ -339,9 +345,9 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             try {
               if (get().isOnline) {
                 await api.delete(`/api/daybook/${id}`);
-                
+
                 set((state) => {
-                  state.entries = state.entries.filter(e => e.id !== id);
+                  state.entries = state.entries.filter((e) => e.id !== id);
                   if (state.currentEntry?.id === id) {
                     state.currentEntry = null;
                   }
@@ -350,7 +356,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
               } else {
                 // Delete offline
                 set((state) => {
-                  state.entries = state.entries.filter(e => e.id !== id);
+                  state.entries = state.entries.filter((e) => e.id !== id);
                   if (state.currentEntry?.id === id) {
                     state.currentEntry = null;
                   }
@@ -363,7 +369,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                   type: 'DELETE',
                   entity: 'daybook',
                   entityId: id,
-                  data: { id }
+                  data: { id },
                 });
               }
             } catch (error) {
@@ -376,17 +382,20 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             }
           },
 
-          setSelectedDate: (date: string) => set((state) => {
-            state.selectedDate = date;
-          }),
+          setSelectedDate: (date: string) =>
+            set((state) => {
+              state.selectedDate = date;
+            }),
 
-          setCurrentEntry: (entry: DaybookEntry | null) => set((state) => {
-            state.currentEntry = entry;
-          }),
+          setCurrentEntry: (entry: DaybookEntry | null) =>
+            set((state) => {
+              state.currentEntry = entry;
+            }),
 
-          clearError: () => set((state) => {
-            state.error = null;
-          }),
+          clearError: () =>
+            set((state) => {
+              state.error = null;
+            }),
         };
       }),
       {
@@ -396,11 +405,11 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
           currentEntry: state.currentEntry,
           selectedDate: state.selectedDate,
           hasOfflineChanges: state.hasOfflineChanges,
-          lastSyncedAt: state.lastSyncedAt
-        })
-      }
-    )
-  )
+          lastSyncedAt: state.lastSyncedAt,
+        }),
+      },
+    ),
+  ),
 );
 
 // Set up auto-save
@@ -410,13 +419,13 @@ const autoSave = createAutoSave(
     const state = useDaybookStore.getState();
     if (state.hasOfflineChanges && state.isOnline) {
       // Get date range for current entries
-      const dates = state.entries.map(e => e.date).sort();
+      const dates = state.entries.map((e) => e.date).sort();
       if (dates.length > 0) {
         await state.loadEntries(dates[0], dates[dates.length - 1]);
       }
     }
   },
-  15000 // 15 seconds (more frequent for daybook)
+  15000, // 15 seconds (more frequent for daybook)
 );
 
 // Subscribe to changes
@@ -426,12 +435,12 @@ useDaybookStore.subscribe(
     if (hasChanges) {
       autoSave();
     }
-  }
+  },
 );
 
 // Listen for online/offline events
 if (typeof window !== 'undefined') {
-  window.addEventListener('online-status-change', (event: any) => {
+  window.addEventListener('online-status-change', ((event: CustomEvent<{ isOnline: boolean }>) => {
     useDaybookStore.getState().setOnlineStatus(event.detail.isOnline);
-  });
+  }) as EventListener);
 }

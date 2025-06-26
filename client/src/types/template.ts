@@ -1,8 +1,8 @@
 export type TemplateType = 'UNIT_PLAN' | 'LESSON_PLAN';
 
-export type TemplateCategory = 
+export type TemplateCategory =
   | 'BY_SUBJECT'
-  | 'BY_GRADE' 
+  | 'BY_GRADE'
   | 'BY_THEME'
   | 'BY_SEASON'
   | 'BY_SKILL'
@@ -28,7 +28,7 @@ export interface TemplateVariation {
   nameFr?: string;
   description?: string;
   modificationNotes?: string;
-  content: any;
+  content: UnitPlanContent | LessonPlanContent;
   createdAt: string;
 }
 
@@ -42,7 +42,13 @@ export interface UnitPlanContent {
     description: string;
     timing?: string;
   }>;
-  activities?: any[];
+  activities?: Array<{
+    name: string;
+    description?: string;
+    duration?: number;
+    materials?: string[];
+    grouping?: string;
+  }>;
   successCriteria?: string[];
   keyVocabulary?: string[];
   crossCurricularConnections?: string;
@@ -129,7 +135,7 @@ export interface PlanTemplate {
   averageRating?: number;
   createdAt: string;
   updatedAt: string;
-  
+
   // Relations
   createdByUser?: TemplateAuthor;
   ratings?: TemplateRating[];
@@ -192,13 +198,13 @@ export interface AppliedTemplateData {
     id: string;
     title: string;
     type: string;
-    content: any;
+    content: UnitPlanContent | LessonPlanContent;
     unitStructure?: UnitStructure;
     lessonStructure?: LessonStructure;
     estimatedWeeks?: number;
     estimatedMinutes?: number;
   };
-  appliedContent: any;
+  appliedContent: UnitPlanContent | LessonPlanContent;
 }
 
 export interface TemplateFilterOptions {
@@ -229,64 +235,82 @@ export interface TemplateFormData {
 }
 
 // Type guards
-export function isUnitPlanTemplate(template: PlanTemplate): template is PlanTemplate & { content: UnitPlanContent } {
+export function isUnitPlanTemplate(
+  template: PlanTemplate,
+): template is PlanTemplate & { content: UnitPlanContent } {
   return template.type === 'UNIT_PLAN';
 }
 
-export function isLessonPlanTemplate(template: PlanTemplate): template is PlanTemplate & { content: LessonPlanContent } {
+export function isLessonPlanTemplate(
+  template: PlanTemplate,
+): template is PlanTemplate & { content: LessonPlanContent } {
   return template.type === 'LESSON_PLAN';
 }
 
-export function isUnitPlanContent(content: any): content is UnitPlanContent {
-  return content && typeof content === 'object' && 
-    (content.overview !== undefined || content.bigIdeas !== undefined || content.learningGoals !== undefined);
+export function isUnitPlanContent(content: unknown): content is UnitPlanContent {
+  return (
+    content != null &&
+    typeof content === 'object' &&
+    ((content as Record<string, unknown>).overview !== undefined ||
+      (content as Record<string, unknown>).bigIdeas !== undefined ||
+      (content as Record<string, unknown>).learningGoals !== undefined)
+  );
 }
 
-export function isLessonPlanContent(content: any): content is LessonPlanContent {
-  return content && typeof content === 'object' && 
-    (content.objectives !== undefined || content.mindsOn !== undefined || content.action !== undefined);
+export function isLessonPlanContent(content: unknown): content is LessonPlanContent {
+  return (
+    content != null &&
+    typeof content === 'object' &&
+    ((content as Record<string, unknown>).objectives !== undefined ||
+      (content as Record<string, unknown>).mindsOn !== undefined ||
+      (content as Record<string, unknown>).action !== undefined)
+  );
 }
 
 // Template categories for display
-export const TEMPLATE_CATEGORIES: Record<TemplateCategory, { label: string; description: string }> = {
-  BY_SUBJECT: {
-    label: 'By Subject',
-    description: 'Organized by curriculum subject area'
-  },
-  BY_GRADE: {
-    label: 'By Grade',
-    description: 'Organized by grade level'
-  },
-  BY_THEME: {
-    label: 'By Theme',
-    description: 'Organized around thematic topics'
-  },
-  BY_SEASON: {
-    label: 'By Season',
-    description: 'Organized by time of year or seasons'
-  },
-  BY_SKILL: {
-    label: 'By Skill',
-    description: 'Focused on specific skills development'
-  },
-  CUSTOM: {
-    label: 'Custom',
-    description: 'User-created custom templates'
-  }
-};
+export const TEMPLATE_CATEGORIES: Record<TemplateCategory, { label: string; description: string }> =
+  {
+    BY_SUBJECT: {
+      label: 'By Subject',
+      description: 'Organized by curriculum subject area',
+    },
+    BY_GRADE: {
+      label: 'By Grade',
+      description: 'Organized by grade level',
+    },
+    BY_THEME: {
+      label: 'By Theme',
+      description: 'Organized around thematic topics',
+    },
+    BY_SEASON: {
+      label: 'By Season',
+      description: 'Organized by time of year or seasons',
+    },
+    BY_SKILL: {
+      label: 'By Skill',
+      description: 'Focused on specific skills development',
+    },
+    CUSTOM: {
+      label: 'Custom',
+      description: 'User-created custom templates',
+    },
+  };
 
 // Template types for display
-export const TEMPLATE_TYPES: Record<TemplateType, { label: string; description: string; icon: string }> = {
+export const TEMPLATE_TYPES: Record<
+  TemplateType,
+  { label: string; description: string; icon: string }
+> = {
   UNIT_PLAN: {
     label: 'Unit Plan',
     description: 'Multi-week unit planning template',
-    icon: '📚'
+    icon: '📚',
   },
   LESSON_PLAN: {
     label: 'Lesson Plan',
     description: 'Single lesson planning template',
-    icon: '📝'
-  }
+    icon: '📝',
+  },
 };
 
 // All types and functions are exported individually

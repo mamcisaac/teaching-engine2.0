@@ -2,6 +2,9 @@ import { describe, test, expect, beforeEach, jest } from '@jest/globals';
 import { ReportGeneratorService } from '../../src/services/reportGeneratorService';
 import { prisma } from '../../src/prisma';
 
+// Cast prisma to mocked version
+const mockPrisma = prisma as any;
+
 // Create a new instance for testing
 const reportGeneratorService = new ReportGeneratorService();
 
@@ -61,10 +64,10 @@ describe('Report Generator Service', () => {
         },
       ];
 
-      prisma.curriculumExpectation.findMany.mockResolvedValue(mockExpectations);
-      prisma.longRangePlan.findMany.mockResolvedValue(mockLongRangePlans);
-      prisma.unitPlan.findMany.mockResolvedValue(mockUnitPlans);
-      prisma.eTFOLessonPlan.findMany.mockResolvedValue(mockLessonPlans);
+      mockPrisma.curriculumExpectation.findMany.mockResolvedValue(mockExpectations);
+      mockPrisma.longRangePlan.findMany.mockResolvedValue(mockLongRangePlans);
+      mockPrisma.unitPlan.findMany.mockResolvedValue(mockUnitPlans);
+      mockPrisma.eTFOLessonPlan.findMany.mockResolvedValue(mockLessonPlans);
 
       const report = await reportGeneratorService.generateCurriculumCoverageReport(userId);
 
@@ -83,10 +86,10 @@ describe('Report Generator Service', () => {
 
     test('should handle no expectations', async () => {
       const userId = 1;
-      prisma.curriculumExpectation.findMany.mockResolvedValue([]);
-      prisma.longRangePlan.findMany.mockResolvedValue([]);
-      prisma.unitPlan.findMany.mockResolvedValue([]);
-      prisma.eTFOLessonPlan.findMany.mockResolvedValue([]);
+      mockPrisma.curriculumExpectation.findMany.mockResolvedValue([]);
+      mockPrisma.longRangePlan.findMany.mockResolvedValue([]);
+      mockPrisma.unitPlan.findMany.mockResolvedValue([]);
+      mockPrisma.eTFOLessonPlan.findMany.mockResolvedValue([]);
 
       const report = await reportGeneratorService.generateCurriculumCoverageReport(userId);
 
@@ -146,10 +149,10 @@ describe('Report Generator Service', () => {
         },
       ];
 
-      (prisma.longRangePlan.findMany).mockResolvedValue(mockLongRangePlans);
-      (prisma.unitPlan.findMany).mockResolvedValue(mockUnitPlans);
-      (prisma.eTFOLessonPlan.findMany).mockResolvedValue(mockLessonPlans);
-      (prisma.daybookEntry.findMany).mockResolvedValue(mockDaybookEntries);
+      (mockPrisma.longRangePlan.findMany).mockResolvedValue(mockLongRangePlans);
+      (mockPrisma.unitPlan.findMany).mockResolvedValue(mockUnitPlans);
+      (mockPrisma.eTFOLessonPlan.findMany).mockResolvedValue(mockLessonPlans);
+      (mockPrisma.daybookEntry.findMany).mockResolvedValue(mockDaybookEntries);
 
       const report = await reportGeneratorService.generatePlanningProgressReport(userId);
 
@@ -222,7 +225,7 @@ describe('Report Generator Service', () => {
         ],
       };
 
-      (prisma.eTFOLessonPlan.findUnique).mockResolvedValue(mockLesson);
+      (mockPrisma.eTFOLessonPlan.findUnique).mockResolvedValue(mockLesson);
 
       const report = await reportGeneratorService.generateLessonPlanReport(lessonId);
 
@@ -240,7 +243,7 @@ describe('Report Generator Service', () => {
 
     test('should handle lesson not found', async () => {
       const lessonId = 'nonexistent';
-      (prisma.eTFOLessonPlan.findUnique).mockResolvedValue(null);
+      (mockPrisma.eTFOLessonPlan.findUnique).mockResolvedValue(null);
 
       await expect(
         reportGeneratorService.generateLessonPlanReport(lessonId)
@@ -279,7 +282,7 @@ describe('Report Generator Service', () => {
         ],
       };
 
-      (prisma.eTFOLessonPlan.findUnique).mockResolvedValue(mockLesson);
+      (mockPrisma.eTFOLessonPlan.findUnique).mockResolvedValue(mockLesson);
 
       const report = await reportGeneratorService.generateSubstitutePlanReport(lessonId);
 
@@ -310,7 +313,7 @@ describe('Report Generator Service', () => {
         },
       };
 
-      (prisma.eTFOLessonPlan.findUnique).mockResolvedValue(mockLesson);
+      (mockPrisma.eTFOLessonPlan.findUnique).mockResolvedValue(mockLesson);
 
       await expect(
         reportGeneratorService.generateSubstitutePlanReport(lessonId)
@@ -368,7 +371,7 @@ describe('Report Generator Service', () => {
         ],
       };
 
-      (prisma.unitPlan.findUnique).mockResolvedValue(mockUnit);
+      (mockPrisma.unitPlan.findUnique).mockResolvedValue(mockUnit);
 
       const report = await reportGeneratorService.generateUnitOverviewReport(unitId);
 
@@ -387,7 +390,7 @@ describe('Report Generator Service', () => {
   describe('error handling', () => {
     test('should handle database errors gracefully', async () => {
       const userId = 1;
-      (prisma.curriculumExpectation.findMany).mockRejectedValue(
+      (mockPrisma.curriculumExpectation.findMany).mockRejectedValue(
         new Error('Database connection failed')
       );
 
@@ -398,10 +401,10 @@ describe('Report Generator Service', () => {
 
     test('should handle invalid user IDs', async () => {
       const userId = -1;
-      prisma.curriculumExpectation.findMany.mockResolvedValue([]);
-      prisma.longRangePlan.findMany.mockResolvedValue([]);
-      prisma.unitPlan.findMany.mockResolvedValue([]);
-      prisma.eTFOLessonPlan.findMany.mockResolvedValue([]);
+      mockPrisma.curriculumExpectation.findMany.mockResolvedValue([]);
+      mockPrisma.longRangePlan.findMany.mockResolvedValue([]);
+      mockPrisma.unitPlan.findMany.mockResolvedValue([]);
+      mockPrisma.eTFOLessonPlan.findMany.mockResolvedValue([]);
 
       const report = await reportGeneratorService.generateCurriculumCoverageReport(userId);
 

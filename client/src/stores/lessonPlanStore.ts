@@ -5,7 +5,7 @@ import { persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 import { api } from '../api';
 import { createOfflineSlice, createAutoSave, OfflineState, BaseActions } from './basePlanningStore';
-import { offlineStorage } from '../services/offlineStorage';
+import { offlineStorage, StoredData } from '../services/offlineStorage';
 
 export interface LessonPlan {
   id: string;
@@ -34,7 +34,7 @@ export interface LessonPlanState extends OfflineState, Record<string, unknown> {
   isLoading: boolean;
   isSaving: boolean;
   error: string | null;
-  
+
   // Actions
   loadLessonPlans: (startDate?: string, endDate?: string) => Promise<void>;
   loadLessonPlan: (id: string) => Promise<void>;
@@ -59,10 +59,10 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
           },
           saveToServer: async (data) => {
             // Save all modified lesson plans
-            const modifiedPlans = data.lessonPlans.filter(plan => 
-              plan.updatedAt > (data.lastSyncedAt?.toISOString() || '')
+            const modifiedPlans = data.lessonPlans.filter(
+              (plan) => plan.updatedAt > (data.lastSyncedAt?.toISOString() || ''),
             );
-            
+
             for (const plan of modifiedPlans) {
               if (plan.id.startsWith('temp-')) {
                 // Create new plan
@@ -74,7 +74,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
             }
           },
           getCacheKey: () => 'lesson-plans-cache',
-          mergingStrategy: 'merge'
+          mergingStrategy: 'merge',
         });
 
         return {
@@ -86,7 +86,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
           error: null,
 
           // Offline state and actions
-          ...offlineSlice(set, get, undefined as any),
+          ...offlineSlice(set, get, undefined),
 
           // Actions
           loadLessonPlans: async (startDate?: string, endDate?: string) => {
@@ -102,10 +102,10 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
                 if (startDate) params.append('startDate', startDate);
                 if (endDate) params.append('endDate', endDate);
                 if (params.toString()) url += `?${params.toString()}`;
-                
+
                 const response = await api.get(url);
                 const plans = response.data;
-                
+
                 set((state) => {
                   state.lessonPlans = plans;
                   state.isLoading = false;
@@ -119,7 +119,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
                 // Load from cache if offline
                 const cacheKey = `lesson-plans-${startDate || 'all'}-${endDate || 'all'}`;
                 const cachedPlans = await offlineStorage.getCachedData<LessonPlan[]>(cacheKey);
-                
+
                 if (cachedPlans) {
                   set((state) => {
                     state.lessonPlans = cachedPlans;
@@ -127,7 +127,8 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
                   });
                 } else {
                   // Try generic cache
-                  const allPlans = await offlineStorage.getCachedData<LessonPlan[]>('lesson-plans-all-all');
+                  const allPlans =
+                    await offlineStorage.getCachedData<LessonPlan[]>('lesson-plans-all-all');
                   set((state) => {
                     state.lessonPlans = allPlans || [];
                     state.isLoading = false;
@@ -136,10 +137,11 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
               }
             } catch (error) {
               console.error('Failed to load lesson plans:', error);
-              
+
               // Try to load from cache as fallback
-              const cachedPlans = await offlineStorage.getCachedData<LessonPlan[]>('lesson-plans-all-all');
-              
+              const cachedPlans =
+                await offlineStorage.getCachedData<LessonPlan[]>('lesson-plans-all-all');
+
               set((state) => {
                 state.lessonPlans = cachedPlans || [];
                 state.error = error instanceof Error ? error.message : 'Failed to load plans';
@@ -158,7 +160,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
               if (get().isOnline) {
                 const response = await api.get(`/api/etfo-lesson-plans/${id}`);
                 const lesson = response.data;
-                
+
                 set((state) => {
                   state.currentLesson = lesson;
                   state.isLoading = false;
@@ -168,8 +170,10 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
                 await offlineStorage.cacheData(`lesson-plan-${id}`, lesson, 60);
               } else {
                 // Load from cache if offline
-                const cachedLesson = await offlineStorage.getCachedData<LessonPlan>(`lesson-plan-${id}`);
-                
+                const cachedLesson = await offlineStorage.getCachedData<LessonPlan>(
+                  `lesson-plan-${id}`,
+                );
+
                 if (cachedLesson) {
                   set((state) => {
                     state.currentLesson = cachedLesson;
@@ -177,7 +181,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
                   });
                 } else {
                   // Try to find in the list
-                  const lesson = get().lessonPlans.find(p => p.id === id);
+                  const lesson = get().lessonPlans.find((p) => p.id === id);
                   if (lesson) {
                     set((state) => {
                       state.currentLesson = lesson;
@@ -215,7 +219,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
               if (get().isOnline) {
                 const response = await api.post('/api/etfo-lesson-plans', planData);
                 const createdLesson = response.data;
-                
+
                 set((state) => {
                   state.lessonPlans.push(createdLesson);
                   state.currentLesson = createdLesson;
@@ -236,7 +240,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
                 await offlineStorage.saveOfflineChange({
                   type: 'CREATE',
                   entity: 'lesson-plan',
-                  data: newLesson
+                  data: newLesson as unknown as StoredData,
                 });
 
                 return newLesson;
@@ -260,14 +264,14 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
             try {
               const updatedLesson = {
                 ...updates,
-                updatedAt: new Date().toISOString()
+                updatedAt: new Date().toISOString(),
               };
 
               if (get().isOnline) {
                 await api.put(`/api/etfo-lesson-plans/${id}`, updatedLesson);
-                
+
                 set((state) => {
-                  const index = state.lessonPlans.findIndex(p => p.id === id);
+                  const index = state.lessonPlans.findIndex((p) => p.id === id);
                   if (index !== -1) {
                     state.lessonPlans[index] = { ...state.lessonPlans[index], ...updatedLesson };
                   }
@@ -279,7 +283,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
               } else {
                 // Update offline
                 set((state) => {
-                  const index = state.lessonPlans.findIndex(p => p.id === id);
+                  const index = state.lessonPlans.findIndex((p) => p.id === id);
                   if (index !== -1) {
                     state.lessonPlans[index] = { ...state.lessonPlans[index], ...updatedLesson };
                   }
@@ -295,7 +299,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
                   type: 'UPDATE',
                   entity: 'lesson-plan',
                   entityId: id,
-                  data: updatedLesson
+                  data: updatedLesson,
                 });
               }
             } catch (error) {
@@ -317,9 +321,9 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
             try {
               if (get().isOnline) {
                 await api.delete(`/api/etfo-lesson-plans/${id}`);
-                
+
                 set((state) => {
-                  state.lessonPlans = state.lessonPlans.filter(p => p.id !== id);
+                  state.lessonPlans = state.lessonPlans.filter((p) => p.id !== id);
                   if (state.currentLesson?.id === id) {
                     state.currentLesson = null;
                   }
@@ -328,7 +332,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
               } else {
                 // Delete offline
                 set((state) => {
-                  state.lessonPlans = state.lessonPlans.filter(p => p.id !== id);
+                  state.lessonPlans = state.lessonPlans.filter((p) => p.id !== id);
                   if (state.currentLesson?.id === id) {
                     state.currentLesson = null;
                   }
@@ -341,7 +345,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
                   type: 'DELETE',
                   entity: 'lesson-plan',
                   entityId: id,
-                  data: { id }
+                  data: { id },
                 });
               }
             } catch (error) {
@@ -355,7 +359,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
           },
 
           duplicateLessonPlan: async (id: string, newDate: string) => {
-            const originalLesson = get().lessonPlans.find(p => p.id === id);
+            const originalLesson = get().lessonPlans.find((p) => p.id === id);
             if (!originalLesson) {
               throw new Error('Lesson not found');
             }
@@ -370,13 +374,15 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
             return get().createLessonPlan(duplicatedData);
           },
 
-          setCurrentLesson: (lesson: LessonPlan | null) => set((state) => {
-            state.currentLesson = lesson;
-          }),
+          setCurrentLesson: (lesson: LessonPlan | null) =>
+            set((state) => {
+              state.currentLesson = lesson;
+            }),
 
-          clearError: () => set((state) => {
-            state.error = null;
-          }),
+          clearError: () =>
+            set((state) => {
+              state.error = null;
+            }),
         };
       }),
       {
@@ -385,11 +391,11 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
           lessonPlans: state.lessonPlans,
           currentLesson: state.currentLesson,
           hasOfflineChanges: state.hasOfflineChanges,
-          lastSyncedAt: state.lastSyncedAt
-        })
-      }
-    )
-  )
+          lastSyncedAt: state.lastSyncedAt,
+        }),
+      },
+    ),
+  ),
 );
 
 // Set up auto-save
@@ -402,7 +408,7 @@ const autoSave = createAutoSave(
       await state.loadLessonPlans();
     }
   },
-  30000 // 30 seconds
+  30000, // 30 seconds
 );
 
 // Subscribe to changes
@@ -412,12 +418,12 @@ useLessonPlanStore.subscribe(
     if (hasChanges) {
       autoSave();
     }
-  }
+  },
 );
 
 // Listen for online/offline events
 if (typeof window !== 'undefined') {
-  window.addEventListener('online-status-change', (event: any) => {
+  window.addEventListener('online-status-change', ((event: CustomEvent<{ isOnline: boolean }>) => {
     useLessonPlanStore.getState().setOnlineStatus(event.detail.isOnline);
-  });
+  }) as EventListener);
 }

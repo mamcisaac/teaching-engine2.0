@@ -38,7 +38,7 @@ export function validateUnitPlan(data: UnitPlanFormData): ValidationResult {
   if (data.startDate && data.endDate) {
     const startDate = new Date(data.startDate);
     const endDate = new Date(data.endDate);
-    
+
     if (startDate >= endDate) {
       errors.endDate = 'End date must be after start date';
     }
@@ -81,12 +81,12 @@ export function validateUnitPlan(data: UnitPlanFormData): ValidationResult {
   }
 
   // Array validation - ensure at least one meaningful entry
-  const hasEssentialQuestions = data.essentialQuestions?.some(q => q.trim().length > 0);
+  const hasEssentialQuestions = data.essentialQuestions?.some((q) => q.trim().length > 0);
   if (!hasEssentialQuestions) {
     errors.essentialQuestions = 'At least one essential question is required';
   }
 
-  const hasSuccessCriteria = data.successCriteria?.some(c => c.trim().length > 0);
+  const hasSuccessCriteria = data.successCriteria?.some((c) => c.trim().length > 0);
   if (!hasSuccessCriteria) {
     errors.successCriteria = 'At least one success criteria is required';
   }
@@ -137,7 +137,8 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
     errors.duration = 'Duration must be greater than 0 minutes';
   }
 
-  if (data.duration && data.duration > 480) { // 8 hours
+  if (data.duration && data.duration > 480) {
+    // 8 hours
     errors.duration = 'Duration cannot exceed 480 minutes (8 hours)';
   }
 
@@ -152,7 +153,8 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
   const hasConsolidation = data.consolidation?.trim();
 
   if (!hasMindsOn && !hasAction && !hasConsolidation) {
-    errors.lessonStructure = 'At least one lesson component (Minds On, Action, or Consolidation) must have content';
+    errors.lessonStructure =
+      'At least one lesson component (Minds On, Action, or Consolidation) must have content';
   }
 
   // Content length validation
@@ -165,7 +167,7 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
   }
 
   // Materials validation - at least one meaningful material
-  const hasMaterials = data.materials?.some(m => m.trim().length > 0);
+  const hasMaterials = data.materials?.some((m) => m.trim().length > 0);
   if (!hasMaterials) {
     errors.materials = 'At least one material or resource is required';
   }
@@ -181,7 +183,7 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
  */
 export function validateExpectationSelection(
   expectationIds: string[],
-  context: 'unit' | 'lesson' = 'unit'
+  context: 'unit' | 'lesson' = 'unit',
 ): ValidationResult {
   const errors: Record<string, string> = {};
 
@@ -204,41 +206,47 @@ export function validateExpectationSelection(
  */
 export function validateField(
   fieldName: string,
-  value: any,
-  context: 'unit' | 'lesson'
+  value: unknown,
+  context: 'unit' | 'lesson',
 ): string | null {
   switch (fieldName) {
     case 'title':
-      if (!value?.trim()) return 'Title is required';
+      if (typeof value !== 'string' || !value.trim()) return 'Title is required';
       if (value.length > 200) return 'Title must be 200 characters or less';
       return null;
 
     case 'startDate':
     case 'endDate':
-    case 'date':
+    case 'date': {
       if (!value) return 'Date is required';
-      const date = new Date(value);
+      const date = new Date(value as string | number | Date);
       if (isNaN(date.getTime())) return 'Invalid date format';
       return null;
+    }
 
-    case 'estimatedHours':
-      if (!value || value <= 0) return 'Must be greater than 0';
-      if (value > 500) return 'Seems unreasonably high (max 500)';
+    case 'estimatedHours': {
+      const numValue = typeof value === 'number' ? value : Number(value);
+      if (!numValue || numValue <= 0) return 'Must be greater than 0';
+      if (numValue > 500) return 'Seems unreasonably high (max 500)';
       return null;
+    }
 
-    case 'duration':
-      if (!value || value <= 0) return 'Duration must be greater than 0';
-      if (value > 480) return 'Cannot exceed 480 minutes (8 hours)';
+    case 'duration': {
+      const numValue = typeof value === 'number' ? value : Number(value);
+      if (!numValue || numValue <= 0) return 'Duration must be greater than 0';
+      if (numValue > 480) return 'Cannot exceed 480 minutes (8 hours)';
       return null;
+    }
 
-    case 'expectationIds':
-      if (!value || value.length === 0) {
+    case 'expectationIds': {
+      if (!Array.isArray(value) || value.length === 0) {
         return `At least one curriculum expectation must be selected for this ${context}`;
       }
       if (value.length > 20) {
         return `Too many expectations selected. Consider limiting to 20 or fewer for a ${context}`;
       }
       return null;
+    }
 
     default:
       return null;
@@ -257,7 +265,7 @@ export function validateEmail(email: string): boolean {
  * Validates phone numbers (North American format)
  */
 export function validatePhoneNumber(phone: string): boolean {
-  const phoneRegex = /^[\+]?[1]?[\s\-\.]?[\(]?[0-9]{3}[\)]?[\s\-\.]?[0-9]{3}[\s\-\.]?[0-9]{4}$/;
+  const phoneRegex = /^[+]?[1]?[\s\-.]?[(]?[0-9]{3}[)]?[\s\-.]?[0-9]{3}[\s\-.]?[0-9]{4}$/;
   return phoneRegex.test(phone.replace(/\s/g, ''));
 }
 
@@ -278,7 +286,7 @@ export function sanitizeHTML(html: string): string {
 export function validateFile(
   file: File,
   allowedTypes: string[] = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'],
-  maxSizeBytes: number = 10 * 1024 * 1024 // 10MB default
+  maxSizeBytes: number = 10 * 1024 * 1024, // 10MB default
 ): ValidationResult {
   const errors: Record<string, string> = {};
 

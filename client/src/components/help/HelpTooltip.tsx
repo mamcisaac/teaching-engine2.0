@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { HelpTooltipProps } from '../../types/help';
 import { clsx } from 'clsx';
@@ -9,7 +9,7 @@ export const HelpTooltip: React.FC<HelpTooltipProps> = ({
   trigger = 'hover',
   delay = 200,
   maxWidth = 300,
-  children
+  children,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
@@ -18,7 +18,7 @@ export const HelpTooltip: React.FC<HelpTooltipProps> = ({
   const timeoutRef = useRef<NodeJS.Timeout>();
 
   // Calculate tooltip position
-  const calculatePosition = () => {
+  const calculatePosition = useCallback(() => {
     if (!triggerRef.current || !tooltipRef.current) return;
 
     const triggerRect = triggerRef.current.getBoundingClientRect();
@@ -59,7 +59,7 @@ export const HelpTooltip: React.FC<HelpTooltipProps> = ({
     }
 
     setTooltipPosition({ top, left });
-  };
+  }, [position]);
 
   const showTooltip = () => {
     if (timeoutRef.current) {
@@ -94,18 +94,20 @@ export const HelpTooltip: React.FC<HelpTooltipProps> = ({
   // Clone the child element and add event handlers
   const triggerElement = React.cloneElement(children, {
     ref: triggerRef,
-    ...(trigger === 'hover' ? {
-      onMouseEnter: showTooltip,
-      onMouseLeave: hideTooltip,
-    } : {
-      onClick: () => {
-        if (isVisible) {
-          hideTooltip();
-        } else {
-          showTooltip();
+    ...(trigger === 'hover'
+      ? {
+          onMouseEnter: showTooltip,
+          onMouseLeave: hideTooltip,
         }
-      }
-    })
+      : {
+          onClick: () => {
+            if (isVisible) {
+              hideTooltip();
+            } else {
+              showTooltip();
+            }
+          },
+        }),
   });
 
   const getArrowClasses = () => {
@@ -127,25 +129,26 @@ export const HelpTooltip: React.FC<HelpTooltipProps> = ({
   return (
     <>
       {triggerElement}
-      {isVisible && createPortal(
-        <div
-          ref={tooltipRef}
-          className={clsx(
-            'fixed z-50 px-3 py-2 text-sm text-white bg-gray-900 rounded-lg shadow-lg',
-            'transition-opacity duration-200'
-          )}
-          style={{
-            top: tooltipPosition.top,
-            left: tooltipPosition.left,
-            maxWidth: maxWidth,
-          }}
-          role="tooltip"
-        >
-          {content}
-          <div className={getArrowClasses()} />
-        </div>,
-        document.body
-      )}
+      {isVisible &&
+        createPortal(
+          <div
+            ref={tooltipRef}
+            className={clsx(
+              'fixed z-50 px-3 py-2 text-sm text-white bg-gray-900 rounded-lg shadow-lg',
+              'transition-opacity duration-200',
+            )}
+            style={{
+              top: tooltipPosition.top,
+              left: tooltipPosition.left,
+              maxWidth: maxWidth,
+            }}
+            role="tooltip"
+          >
+            {content}
+            <div className={getArrowClasses()} />
+          </div>,
+          document.body,
+        )}
     </>
   );
 };

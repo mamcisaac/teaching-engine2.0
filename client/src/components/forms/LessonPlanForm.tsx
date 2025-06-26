@@ -61,7 +61,7 @@ export default function LessonPlanForm({
   initialData,
   unitPlan,
   allUnitPlans = [],
-  unitExpectations = [],
+  unitExpectations: _unitExpectations = [],
   onSubmit,
   onCancel,
   isSubmitting = false,
@@ -103,7 +103,7 @@ export default function LessonPlanForm({
   // Update form data when initialData changes
   useEffect(() => {
     if (initialData) {
-      setFormData(prev => ({ ...prev, ...initialData }));
+      setFormData((prev) => ({ ...prev, ...initialData }));
     }
   }, [initialData]);
 
@@ -210,7 +210,8 @@ export default function LessonPlanForm({
 
     // Validate that at least one of the three lesson parts has content
     if (!formData.mindsOn?.trim() && !formData.action?.trim() && !formData.consolidation?.trim()) {
-      newErrors.lessonStructure = 'At least one lesson component (Minds On, Action, or Consolidation) must have content';
+      newErrors.lessonStructure =
+        'At least one lesson component (Minds On, Action, or Consolidation) must have content';
     }
 
     setErrors(newErrors);
@@ -219,15 +220,15 @@ export default function LessonPlanForm({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (validateForm()) {
       // Clean up empty array entries before submitting
       const cleanedData = {
         ...formData,
-        materials: formData.materials.filter(m => m.trim() !== ''),
-        accommodations: formData.accommodations.filter(a => a.trim() !== ''),
-        modifications: formData.modifications.filter(m => m.trim() !== ''),
-        extensions: formData.extensions.filter(e => e.trim() !== ''),
+        materials: formData.materials.filter((m) => m.trim() !== ''),
+        accommodations: formData.accommodations.filter((a) => a.trim() !== ''),
+        modifications: formData.modifications.filter((m) => m.trim() !== ''),
+        extensions: formData.extensions.filter((_e) => _e.trim() !== ''),
       };
 
       onSubmit(cleanedData);
@@ -257,9 +258,7 @@ export default function LessonPlanForm({
                   <select
                     required
                     value={formData.unitPlanId}
-                    onChange={(e) =>
-                      setFormData({ ...formData, unitPlanId: e.target.value })
-                    }
+                    onChange={(e) => setFormData({ ...formData, unitPlanId: e.target.value })}
                     className={`w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${
                       errors.unitPlanId ? 'border-red-500' : ''
                     }`}
@@ -288,9 +287,7 @@ export default function LessonPlanForm({
                   placeholderFr="Entrez le titre de la leçon..."
                   required={true}
                 />
-                {errors.title && (
-                  <p className="mt-1 text-sm text-red-600">{errors.title}</p>
-                )}
+                {errors.title && <p className="mt-1 text-sm text-red-600">{errors.title}</p>}
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -304,9 +301,7 @@ export default function LessonPlanForm({
                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                     className={errors.date ? 'border-red-500' : ''}
                   />
-                  {errors.date && (
-                    <p className="mt-1 text-sm text-red-600">{errors.date}</p>
-                  )}
+                  {errors.date && <p className="mt-1 text-sm text-red-600">{errors.date}</p>}
                 </div>
                 <div>
                   <Label htmlFor="duration">Duration (minutes) *</Label>
@@ -589,33 +584,46 @@ export default function LessonPlanForm({
             <select
               id="assessmentType"
               value={formData.assessmentType || ''}
-              onChange={(e) => setFormData({ 
-                ...formData, 
-                assessmentType: e.target.value as 'diagnostic' | 'formative' | 'summative' 
-              })}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  assessmentType: e.target.value as 'diagnostic' | 'formative' | 'summative',
+                })
+              }
               className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 mt-2"
             >
-              <option value="diagnostic">Diagnostic - Assessment FOR Learning (Before/Beginning)</option>
+              <option value="diagnostic">
+                Diagnostic - Assessment FOR Learning (Before/Beginning)
+              </option>
               <option value="formative">Formative - Assessment AS Learning (During)</option>
               <option value="summative">Summative - Assessment OF Learning (After/End)</option>
             </select>
             <div className="mt-2 text-sm text-gray-600">
               {formData.assessmentType === 'diagnostic' && (
                 <p className="bg-blue-50 p-3 rounded-md border border-blue-200">
-                  <strong>Diagnostic Assessment:</strong> Used at the beginning to determine what students already know and identify learning needs. 
-                  <br /><strong>Examples:</strong> KWL charts, pre-tests, class discussions, entrance tickets, thumbs up/down checks
+                  <strong>Diagnostic Assessment:</strong> Used at the beginning to determine what
+                  students already know and identify learning needs.
+                  <br />
+                  <strong>Examples:</strong> KWL charts, pre-tests, class discussions, entrance
+                  tickets, thumbs up/down checks
                 </p>
               )}
               {formData.assessmentType === 'formative' && (
                 <p className="bg-green-50 p-3 rounded-md border border-green-200">
-                  <strong>Formative Assessment:</strong> Ongoing assessment during learning to provide feedback and adjust teaching. Students actively assess their own learning.
-                  <br /><strong>Examples:</strong> Exit tickets, peer feedback, self-reflection journals, mini-whiteboards, think-pair-share, observation checklists
+                  <strong>Formative Assessment:</strong> Ongoing assessment during learning to
+                  provide feedback and adjust teaching. Students actively assess their own learning.
+                  <br />
+                  <strong>Examples:</strong> Exit tickets, peer feedback, self-reflection journals,
+                  mini-whiteboards, think-pair-share, observation checklists
                 </p>
               )}
               {formData.assessmentType === 'summative' && (
                 <p className="bg-purple-50 p-3 rounded-md border border-purple-200">
-                  <strong>Summative Assessment:</strong> Used at the end to evaluate student achievement of learning goals and assign grades.
-                  <br /><strong>Examples:</strong> Unit tests, final projects, presentations, portfolios, performance tasks, end-of-term assignments
+                  <strong>Summative Assessment:</strong> Used at the end to evaluate student
+                  achievement of learning goals and assign grades.
+                  <br />
+                  <strong>Examples:</strong> Unit tests, final projects, presentations, portfolios,
+                  performance tasks, end-of-term assignments
                 </p>
               )}
             </div>
@@ -655,7 +663,8 @@ Stratégies d'évaluation:
               className="mt-2"
             />
             <p className="mt-1 text-xs text-gray-500">
-              Include both success criteria and the specific assessment strategies you&apos;ll use to gather evidence of learning.
+              Include both success criteria and the specific assessment strategies you&apos;ll use
+              to gather evidence of learning.
             </p>
           </div>
 

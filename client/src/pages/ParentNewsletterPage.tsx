@@ -7,27 +7,23 @@ import { Calendar, Plus, FileText, Edit, Trash2, Users } from 'lucide-react';
 import NewsletterRecipientSelector from '../components/StudentSelector';
 import DateRangeSelector from '../components/DateRangeSelector';
 import NewsletterEditor from '../components/NewsletterEditor';
-import { 
-  useStudents, 
-  useGenerateNewsletter, 
+import {
+  useStudents,
+  useGenerateNewsletter,
   useSaveNewsletterDraft,
   useNewsletterDrafts,
   useNewsletter,
   useSendNewsletter,
   useDeleteNewsletter,
-  useRegenerateNewsletter 
+  useRegenerateNewsletter,
 } from '../hooks/useNewsletterData';
-import { 
-  NewsletterDraft, 
-  NewsletterTone, 
-  NewsletterGenerationParams 
-} from '../types/newsletter';
+import { NewsletterDraft, NewsletterTone, NewsletterGenerationParams } from '../types/newsletter';
 import { cn } from '../lib/utils';
 
 export default function ParentNewsletterPage() {
   const { id: newsletterId } = useParams<{ id?: string }>();
   const navigate = useNavigate();
-  
+
   // State for new newsletter creation
   const [showNewNewsletterForm, setShowNewNewsletterForm] = useState(!newsletterId);
   const [selectedStudentIds, setSelectedStudentIds] = useState<number[]>([]);
@@ -36,21 +32,21 @@ export default function ParentNewsletterPage() {
   const [tone, setTone] = useState<NewsletterTone>('friendly');
   const [focusAreas, setFocusAreas] = useState<string[]>([]);
   const [newFocusArea, setNewFocusArea] = useState('');
-  
+
   // Advanced options
   const [includeArtifacts, setIncludeArtifacts] = useState(true);
   const [includeReflections, setIncludeReflections] = useState(true);
   const [includeLearningGoals, setIncludeLearningGoals] = useState(true);
   const [includeUpcomingEvents, setIncludeUpcomingEvents] = useState(false);
-  
+
   // Current newsletter state
   const [currentDraft, setCurrentDraft] = useState<NewsletterDraft | null>(null);
 
   // Hooks
   const { data: students = [], isLoading: studentsLoading } = useStudents();
   const { data: drafts = [], isLoading: draftsLoading } = useNewsletterDrafts();
-  const { data: newsletter, isLoading: newsletterLoading } = useNewsletter(newsletterId);
-  
+  const { data: newsletter, isLoading: _newsletterLoading } = useNewsletter(newsletterId);
+
   const generateNewsletter = useGenerateNewsletter();
   const regenerateNewsletter = useRegenerateNewsletter();
   const saveNewsletter = useSaveNewsletterDraft();
@@ -78,7 +74,7 @@ export default function ParentNewsletterPage() {
   };
 
   const removeFocusArea = (area: string) => {
-    setFocusAreas(focusAreas.filter(a => a !== area));
+    setFocusAreas(focusAreas.filter((a) => a !== area));
   };
 
   const handleGenerateNewsletter = async () => {
@@ -101,7 +97,7 @@ export default function ParentNewsletterPage() {
 
     try {
       const generated = await generateNewsletter.mutateAsync(params);
-      
+
       // Create a new draft with generated content
       const newDraft: NewsletterDraft = {
         title: `Parent Newsletter - ${startDate.toLocaleDateString()}`,
@@ -125,7 +121,7 @@ export default function ParentNewsletterPage() {
     try {
       const saved = await saveNewsletter.mutateAsync(draft);
       setCurrentDraft(saved);
-      
+
       // Update URL if this is a new newsletter
       if (!newsletterId && saved.id) {
         navigate(`/newsletters/${saved.id}`, { replace: true });
@@ -189,9 +185,12 @@ export default function ParentNewsletterPage() {
       <div className="max-w-4xl mx-auto p-6">
         <div className="mb-8">
           <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4 mb-6">
-            <h2 className="text-lg font-semibold text-indigo-900 mb-2">📝 Newsletter Planning Tool</h2>
+            <h2 className="text-lg font-semibold text-indigo-900 mb-2">
+              📝 Newsletter Planning Tool
+            </h2>
             <p className="text-indigo-800">
-              This tool helps you plan and draft newsletter content. Use your school&apos;s communication system (email, app, or platform) for actual distribution to parents.
+              This tool helps you plan and draft newsletter content. Use your school&apos;s
+              communication system (email, app, or platform) for actual distribution to parents.
             </p>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Plan Parent Newsletter</h1>
@@ -232,22 +231,22 @@ export default function ParentNewsletterPage() {
           {/* Newsletter Settings */}
           <div className="bg-white p-6 rounded-lg border border-gray-200">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Newsletter Settings</h2>
-            
+
             {/* Tone Selection */}
             <div className="mb-6">
               <label className="block text-sm font-medium text-gray-700 mb-3">
                 Tone of Communication
               </label>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                {toneOptions.map(option => (
+                {toneOptions.map((option) => (
                   <button
                     key={option.value}
                     onClick={() => setTone(option.value)}
                     className={cn(
-                      "p-4 text-left border rounded-lg transition-colors",
+                      'p-4 text-left border rounded-lg transition-colors',
                       tone === option.value
-                        ? "border-blue-500 bg-blue-50 text-blue-900"
-                        : "border-gray-300 hover:border-gray-400"
+                        ? 'border-blue-500 bg-blue-50 text-blue-900'
+                        : 'border-gray-300 hover:border-gray-400',
                     )}
                   >
                     <div className="font-medium">{option.label}</div>
@@ -280,7 +279,7 @@ export default function ParentNewsletterPage() {
               </div>
               {focusAreas.length > 0 && (
                 <div className="flex flex-wrap gap-2">
-                  {focusAreas.map(area => (
+                  {focusAreas.map((area) => (
                     <span
                       key={area}
                       className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
@@ -420,7 +419,9 @@ export default function ParentNewsletterPage() {
           <div className="col-span-full text-center py-12">
             <FileText className="w-12 h-12 text-gray-400 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">No newsletters yet</h3>
-            <p className="text-gray-500 mb-4">Create your first parent newsletter to get started.</p>
+            <p className="text-gray-500 mb-4">
+              Create your first parent newsletter to get started.
+            </p>
             <button
               onClick={() => setShowNewNewsletterForm(true)}
               className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
@@ -430,12 +431,13 @@ export default function ParentNewsletterPage() {
             </button>
           </div>
         ) : (
-          drafts.map(draft => (
-            <div key={draft.id} className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+          drafts.map((draft) => (
+            <div
+              key={draft.id}
+              className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow"
+            >
               <div className="flex justify-between items-start mb-4">
-                <h3 className="text-lg font-semibold text-gray-900 line-clamp-2">
-                  {draft.title}
-                </h3>
+                <h3 className="text-lg font-semibold text-gray-900 line-clamp-2">{draft.title}</h3>
                 <div className="flex gap-1">
                   <button
                     onClick={() => navigate(`/newsletters/${draft.id}`)}
@@ -453,7 +455,7 @@ export default function ParentNewsletterPage() {
                   </button>
                 </div>
               </div>
-              
+
               <div className="space-y-2 text-sm text-gray-600">
                 <div className="flex items-center gap-2">
                   <Users className="w-4 h-4" />
@@ -466,20 +468,20 @@ export default function ParentNewsletterPage() {
                   </span>
                 </div>
                 <div>
-                  <span className={cn(
-                    "inline-block px-2 py-1 rounded-full text-xs font-medium",
-                    draft.isDraft 
-                      ? "bg-yellow-100 text-yellow-800" 
-                      : "bg-green-100 text-green-800"
-                  )}>
+                  <span
+                    className={cn(
+                      'inline-block px-2 py-1 rounded-full text-xs font-medium',
+                      draft.isDraft
+                        ? 'bg-yellow-100 text-yellow-800'
+                        : 'bg-green-100 text-green-800',
+                    )}
+                  >
                     {draft.isDraft ? 'Draft' : 'Sent'}
                   </span>
-                  <span className="ml-2 text-xs text-gray-500">
-                    {draft.tone} tone
-                  </span>
+                  <span className="ml-2 text-xs text-gray-500">{draft.tone} tone</span>
                 </div>
               </div>
-              
+
               <div className="mt-4 pt-4 border-t border-gray-200">
                 <button
                   onClick={() => navigate(`/newsletters/${draft.id}`)}

@@ -3,6 +3,9 @@
 
 import { nanoid } from 'nanoid';
 
+// Generic data type for stored entities
+export type StoredData = Record<string, unknown>;
+
 const DB_NAME = 'TeachingEngineOfflineDB';
 const DB_VERSION = 1;
 
@@ -11,7 +14,7 @@ export interface OfflineChange {
   type: 'CREATE' | 'UPDATE' | 'DELETE';
   entity: 'unit-plan' | 'lesson-plan' | 'daybook' | 'planner-state';
   entityId?: string;
-  data: any;
+  data: StoredData;
   timestamp: number;
   synced: boolean;
   conflictResolution?: 'local' | 'remote' | 'merge';
@@ -19,7 +22,7 @@ export interface OfflineChange {
 
 export interface CachedData {
   key: string;
-  data: any;
+  data: StoredData;
   timestamp: number;
   expiresAt?: number;
 }
@@ -80,19 +83,21 @@ class OfflineStorageService {
   }
 
   // Save offline change
-  async saveOfflineChange(change: Omit<OfflineChange, 'id' | 'timestamp' | 'synced'>): Promise<string> {
+  async saveOfflineChange(
+    change: Omit<OfflineChange, 'id' | 'timestamp' | 'synced'>,
+  ): Promise<string> {
     await this.ensureInitialized();
-    
+
     const fullChange: OfflineChange = {
       ...change,
       id: nanoid(),
       timestamp: Date.now(),
-      synced: false
+      synced: false,
     };
 
     const transaction = this.db!.transaction(['changes'], 'readwrite');
     const store = transaction.objectStore('changes');
-    
+
     return new Promise((resolve, reject) => {
       const request = store.add(fullChange);
       request.onsuccess = () => resolve(fullChange.id);
@@ -124,7 +129,7 @@ class OfflineStorageService {
 
     return new Promise((resolve, reject) => {
       const getRequest = store.get(changeId);
-      
+
       getRequest.onsuccess = () => {
         const change = getRequest.result;
         if (change) {
@@ -136,20 +141,20 @@ class OfflineStorageService {
           resolve();
         }
       };
-      
+
       getRequest.onerror = () => reject(getRequest.error);
     });
   }
 
   // Cache data with optional expiration
-  async cacheData(key: string, data: any, ttlMinutes?: number): Promise<void> {
+  async cacheData(key: string, data: StoredData, ttlMinutes?: number): Promise<void> {
     await this.ensureInitialized();
 
     const cachedData: CachedData = {
       key,
       data,
       timestamp: Date.now(),
-      expiresAt: ttlMinutes ? Date.now() + (ttlMinutes * 60 * 1000) : undefined
+      expiresAt: ttlMinutes ? Date.now() + ttlMinutes * 60 * 1000 : undefined,
     };
 
     const transaction = this.db!.transaction(['cache'], 'readwrite');
@@ -163,7 +168,7 @@ class OfflineStorageService {
   }
 
   // Get cached data
-  async getCachedData<T = any>(key: string): Promise<T | null> {
+  async getCachedData<T = StoredData>(key: string): Promise<T | null> {
     await this.ensureInitialized();
 
     const transaction = this.db!.transaction(['cache'], 'readonly');
@@ -171,7 +176,7 @@ class OfflineStorageService {
 
     return new Promise((resolve, reject) => {
       const request = store.get(key);
-      
+
       request.onsuccess = () => {
         const result = request.result;
         if (!result) {
@@ -189,7 +194,7 @@ class OfflineStorageService {
 
         resolve(result.data);
       };
-      
+
       request.onerror = () => reject(request.error);
     });
   }
@@ -230,13 +235,18 @@ class OfflineStorageService {
           resolve();
         }
       };
-      
+
       request.onerror = () => reject(request.error);
     });
   }
 
   // Save conflict for resolution
-  async saveConflict(localData: any, remoteData: any, entity: string, entityId: string): Promise<string> {
+  async saveConflict(
+    localData: StoredData,
+    remoteData: StoredData,
+    entity: string,
+    entityId: string,
+  ): Promise<string> {
     await this.ensureInitialized();
 
     const conflict = {
@@ -246,7 +256,7 @@ class OfflineStorageService {
       localData,
       remoteData,
       timestamp: Date.now(),
-      resolved: false
+      resolved: false,
     };
 
     const transaction = this.db!.transaction(['conflicts'], 'readwrite');
@@ -260,7 +270,17 @@ class OfflineStorageService {
   }
 
   // Get unresolved conflicts
-  async getUnresolvedConflicts(): Promise<any[]> {
+  async getUnresolvedConflicts(): Promise<
+    Array<{
+      id: string;
+      entity: string;
+      entityId: string;
+      localData: StoredData;
+      remoteData: StoredData;
+      timestamp: number;
+      resolved: boolean;
+    }>
+  > {
     await this.ensureInitialized();
 
     const transaction = this.db!.transaction(['conflicts'], 'readonly');
@@ -275,7 +295,11 @@ class OfflineStorageService {
   }
 
   // Resolve conflict
-  async resolveConflict(conflictId: string, resolution: 'local' | 'remote' | 'merge', mergedData?: any): Promise<void> {
+  async resolveConflict(
+    conflictId: string,
+    resolution: 'local' | 'remote' | 'merge',
+    mergedData?: StoredData,
+  ): Promise<void> {
     await this.ensureInitialized();
 
     const transaction = this.db!.transaction(['conflicts'], 'readwrite');
@@ -283,17 +307,20 @@ class OfflineStorageService {
 
     return new Promise((resolve, reject) => {
       const getRequest = store.get(conflictId);
-      
+
       getRequest.onsuccess = () => {
         const conflict = getRequest.result;
         if (conflict) {
           conflict.resolved = true;
           conflict.resolution = resolution;
-          conflict.resolvedData = resolution === 'merge' ? mergedData : 
-                                 resolution === 'local' ? conflict.localData : 
-                                 conflict.remoteData;
+          conflict.resolvedData =
+            resolution === 'merge'
+              ? mergedData
+              : resolution === 'local'
+                ? conflict.localData
+                : conflict.remoteData;
           conflict.resolvedAt = Date.now();
-          
+
           const putRequest = store.put(conflict);
           putRequest.onsuccess = () => resolve();
           putRequest.onerror = () => reject(putRequest.error);
@@ -301,7 +328,7 @@ class OfflineStorageService {
           resolve();
         }
       };
-      
+
       getRequest.onerror = () => reject(getRequest.error);
     });
   }
@@ -311,12 +338,12 @@ class OfflineStorageService {
     await this.ensureInitialized();
 
     const transaction = this.db!.transaction(['changes', 'cache', 'conflicts'], 'readwrite');
-    
+
     return new Promise((resolve, reject) => {
       transaction.objectStore('changes').clear();
       transaction.objectStore('cache').clear();
       transaction.objectStore('conflicts').clear();
-      
+
       transaction.oncomplete = () => resolve();
       transaction.onerror = () => reject(transaction.error);
     });

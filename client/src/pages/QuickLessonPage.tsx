@@ -14,7 +14,7 @@ export default function QuickLessonPage() {
 
   const handleSubmit = async (data: LessonPlanFormData) => {
     setIsSubmitting(true);
-    
+
     try {
       // Create standalone lesson without unit requirement
       const lessonData = {
@@ -23,8 +23,10 @@ export default function QuickLessonPage() {
         isStandalone: true,
       };
 
-      await createLesson.mutateAsync(lessonData as any);
-      
+      await createLesson.mutateAsync(
+        lessonData as LessonPlanFormData & { unitPlanId: null; isStandalone: true },
+      );
+
       toast.success('Quick lesson created successfully!');
       navigate('/planner/etfo-lessons');
     } catch (error) {
@@ -39,11 +41,7 @@ export default function QuickLessonPage() {
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header */}
       <div className="mb-8">
-        <Button
-          variant="ghost"
-          onClick={() => navigate('/planner')}
-          className="mb-4 gap-2"
-        >
+        <Button variant="ghost" onClick={() => navigate('/planner')} className="mb-4 gap-2">
           <ArrowLeft className="h-4 w-4" />
           Back to Dashboard
         </Button>
@@ -54,7 +52,9 @@ export default function QuickLessonPage() {
           </div>
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Quick Lesson Planner</h1>
-            <p className="text-gray-600">Create a standalone lesson plan without requiring a unit plan</p>
+            <p className="text-gray-600">
+              Create a standalone lesson plan without requiring a unit plan
+            </p>
           </div>
         </div>
 
@@ -65,7 +65,7 @@ export default function QuickLessonPage() {
             <div>
               <h3 className="text-blue-900 font-medium">Quick Lesson Mode</h3>
               <p className="text-blue-800 text-sm mt-1">
-                Perfect for emergency planning, substitute teacher lessons, or one-off activities. 
+                Perfect for emergency planning, substitute teacher lessons, or one-off activities.
                 You can optionally link this lesson to a unit plan later.
               </p>
             </div>
@@ -85,7 +85,7 @@ export default function QuickLessonPage() {
             </CardDescription>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader className="pb-3">
             <CardTitle className="text-base">🎯 ETFO Aligned</CardTitle>
@@ -96,15 +96,13 @@ export default function QuickLessonPage() {
             </CardDescription>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader className="pb-3">
             <CardTitle className="text-base">🔗 Link Later</CardTitle>
           </CardHeader>
           <CardContent>
-            <CardDescription>
-              Optionally connect to unit plans when you create them
-            </CardDescription>
+            <CardDescription>Optionally connect to unit plans when you create them</CardDescription>
           </CardContent>
         </Card>
       </div>

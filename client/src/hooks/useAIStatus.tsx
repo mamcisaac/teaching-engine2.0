@@ -106,7 +106,7 @@ export function useAIStatus(): AIStatusHookReturn {
     retry: (failureCount, error: unknown) => {
       // Don't retry on auth errors or client errors
       const axiosError = error as { response?: { status?: number } };
-      if (axiosError?.response?.status < 500) {
+      if (axiosError?.response?.status && axiosError.response.status < 500) {
         return false;
       }
       return failureCount < 3;

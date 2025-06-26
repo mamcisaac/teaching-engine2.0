@@ -1,4 +1,3 @@
-
 export interface ContactInfo {
   id: string;
   name: string;
@@ -25,7 +24,7 @@ export interface ExtractedContacts {
 /**
  * Extract and organize all relevant contact information for substitute teachers
  */
-export async function extractSchoolContacts(userId: number = 1): Promise<ExtractedContacts> {
+export async function extractSchoolContacts(_userId: number = 1): Promise<ExtractedContacts> {
   // Get school information if available
   const schoolInfo = await getSchoolInformation();
 
@@ -147,15 +146,15 @@ export function getEmergencyContactsList(contacts: ExtractedContacts): string {
  * Update teacher's custom contacts
  */
 export async function updateTeacherContacts(
-  userId: number,
-  contacts: Array<{ name: string; role: string; phone: string; notes?: string }>,
+  _userId: number,
+  _contacts: Array<{ name: string; role: string; phone: string; notes?: string }>,
 ): Promise<void> {
   // TODO: Implement custom contact storage
   // Options:
   // 1. Store in User model as JSON field
   // 2. Store in ClassRoutine with category 'EMERGENCY_CONTACT'
   // 3. Create a new ContactInfo model
-  
+
   console.warn('updateTeacherContacts is disabled - teacherPreferences model archived');
 }
 
@@ -180,7 +179,7 @@ async function getSchoolInformation(): Promise<{ contacts: ContactInfo[] }> {
 /**
  * Extract custom contacts from teacher preferences
  */
-function extractCustomContacts(subPlanContacts: unknown): ContactInfo[] {
+function _extractCustomContacts(subPlanContacts: unknown): ContactInfo[] {
   if (!subPlanContacts || typeof subPlanContacts !== 'object') {
     return [];
   }
@@ -214,7 +213,7 @@ function parseContactString(role: string, info: string): ContactInfo | null {
 
   // Extract name (text before the phone number)
   const namePart = info
-    .substring(0, phoneMatch.index)
+    .substring(0, phoneMatch.index || 0)
     .replace(/[-\s]+$/, '')
     .trim();
   const name = namePart || role;

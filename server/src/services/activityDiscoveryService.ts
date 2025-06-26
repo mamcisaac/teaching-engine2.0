@@ -1,5 +1,5 @@
 import BaseService from './base/BaseService';
-import { ExternalActivity } from '@teaching-engine/database';
+import { ExternalActivity, Prisma } from '@teaching-engine/database';
 import { BaseConnector } from './connectors/baseConnector';
 import { OERConnector } from './connectors/oerConnector';
 import { CurriculumWebConnector } from './connectors/curriculumWebConnector';
@@ -63,13 +63,13 @@ export class ActivityDiscoveryService extends BaseService {
     try {
       // Add OER Commons connector
       this.connectors.set('oer', new OERConnector());
-      
+
       // Add Curriculum Web connector (government resources)
       this.connectors.set('curriculum', new CurriculumWebConnector());
-      
+
       // Add Educational Websites connector (Khan Academy, ReadWorks, etc.)
       this.connectors.set('education', new EducationWebConnector());
-      
+
       this.logger.info(`Initialized ${this.connectors.size} activity discovery connectors`);
     } catch (error) {
       this.logger.error({ error }, 'Failed to initialize connectors');
@@ -81,13 +81,13 @@ export class ActivityDiscoveryService extends BaseService {
    */
   async search(params: SearchParams, userId: number): Promise<ActivitySearchResult> {
     const startTime = Date.now();
-    
+
     try {
       this.logger.info({ params, userId }, 'Starting activity search');
 
       // Check cache first
       const cacheKey = this.generateCacheKey('search', params);
-      const cached = this.getFromCache(cacheKey);
+      const cached = this.getFromCache<ActivitySearchResult>(cacheKey);
       if (cached) {
         this.logger.debug('Returning cached search results');
         return cached;
@@ -95,10 +95,10 @@ export class ActivityDiscoveryService extends BaseService {
 
       // Normalize and validate parameters
       const normalizedParams = this.normalizeSearchParams(params);
-      
+
       // Determine which sources to search
-      const sourcesToSearch = normalizedParams.sources 
-        ? normalizedParams.sources.filter(s => this.connectors.has(s))
+      const sourcesToSearch = normalizedParams.sources
+        ? normalizedParams.sources.filter((s) => this.connectors.has(s))
         : Array.from(this.connectors.keys());
 
       // Search each connector in parallel
@@ -122,7 +122,7 @@ export class ActivityDiscoveryService extends BaseService {
 
       // Apply additional filtering and ranking
       const filteredResults = this.filterAndRankResults(flatResults, normalizedParams);
-      
+
       // Apply pagination
       const paginatedResults = this.applyPagination(filteredResults, normalizedParams);
 
@@ -138,12 +138,15 @@ export class ActivityDiscoveryService extends BaseService {
       // Cache the result
       this.setCache(cacheKey, result);
 
-      this.logger.info({
-        resultsCount: paginatedResults.length,
-        totalFound: filteredResults.length,
-        executionTime: result.executionTime,
-        sources: sourcesToSearch,
-      }, 'Activity search completed');
+      this.logger.info(
+        {
+          resultsCount: paginatedResults.length,
+          totalFound: filteredResults.length,
+          executionTime: result.executionTime,
+          sources: sourcesToSearch,
+        },
+        'Activity search completed',
+      );
 
       return result;
     } catch (error) {
@@ -158,7 +161,7 @@ export class ActivityDiscoveryService extends BaseService {
   async getActivity(source: string, externalId: string): Promise<ExternalActivity | null> {
     try {
       const cacheKey = this.generateCacheKey('activity', { source, externalId });
-      const cached = this.getFromCache(cacheKey);
+      const cached = this.getFromCache<ExternalActivity>(cacheKey);
       if (cached) {
         return cached;
       }
@@ -209,14 +212,14 @@ export class ActivityDiscoveryService extends BaseService {
       notes?: string;
     },
     userId: number,
-  ): Promise<any> {
+  ): Promise<Record<string, unknown>> {
     try {
       const { prisma } = await import('../prisma');
 
       // Ensure the activity exists in our database
       const [source, ...externalIdParts] = params.activityId.split('-');
       const externalId = externalIdParts.join('-');
-      
+
       // Get activity details to store in our database if needed
       const activityDetails = await this.getActivity(source, externalId);
       if (!activityDetails) {
@@ -246,7 +249,7 @@ export class ActivityDiscoveryService extends BaseService {
           activityId: externalActivity.id,
           lessonPlanId: params.lessonPlanId || null,
           lessonSection: params.lessonSection || null,
-          customizations: params.customizations || null,
+          customizations: (params.customizations || null) as Prisma.InputJsonValue,
           notes: params.notes || null,
         },
         include: {
@@ -263,7 +266,7 @@ export class ActivityDiscoveryService extends BaseService {
 
       this.logger.info(
         { userId, activityId: params.activityId, lessonPlanId: params.lessonPlanId },
-        'Activity imported successfully'
+        'Activity imported successfully',
       );
 
       return activityImport;
@@ -288,7 +291,7 @@ export class ActivityDiscoveryService extends BaseService {
       wouldRecommend?: boolean;
     },
     userId: number,
-  ): Promise<any> {
+  ): Promise<Record<string, unknown>> {
     try {
       const { prisma } = await import('../prisma');
 
@@ -334,10 +337,7 @@ export class ActivityDiscoveryService extends BaseService {
         },
       });
 
-      this.logger.info(
-        { userId, activityId, rating },
-        'Activity rated successfully'
-      );
+      this.logger.info({ userId, activityId, rating }, 'Activity rated successfully');
 
       return activityRating;
     } catch (error) {
@@ -349,7 +349,7 @@ export class ActivityDiscoveryService extends BaseService {
   /**
    * Get user's activity collections
    */
-  async getUserCollections(userId: number): Promise<any[]> {
+  async getUserCollections(userId: number): Promise<Record<string, unknown>[]> {
     try {
       const { prisma } = await import('../prisma');
 
@@ -378,7 +378,7 @@ export class ActivityDiscoveryService extends BaseService {
   async createCollection(
     data: { name: string; description?: string; isPublic?: boolean },
     userId: number,
-  ): Promise<any> {
+  ): Promise<Record<string, unknown>> {
     try {
       const { prisma } = await import('../prisma');
 
@@ -394,10 +394,7 @@ export class ActivityDiscoveryService extends BaseService {
         },
       });
 
-      this.logger.info(
-        { userId, collectionName: data.name },
-        'Activity collection created'
-      );
+      this.logger.info({ userId, collectionName: data.name }, 'Activity collection created');
 
       return collection;
     } catch (error) {
@@ -409,7 +406,11 @@ export class ActivityDiscoveryService extends BaseService {
   /**
    * Add activity to collection
    */
-  async addToCollection(collectionId: string, activityId: string, userId: number): Promise<any> {
+  async addToCollection(
+    collectionId: string,
+    activityId: string,
+    userId: number,
+  ): Promise<Record<string, unknown>> {
     try {
       const { prisma } = await import('../prisma');
 
@@ -447,7 +448,11 @@ export class ActivityDiscoveryService extends BaseService {
   /**
    * Remove activity from collection
    */
-  async removeFromCollection(collectionId: string, activityId: string, userId: number): Promise<any> {
+  async removeFromCollection(
+    collectionId: string,
+    activityId: string,
+    userId: number,
+  ): Promise<Record<string, unknown>> {
     try {
       const { prisma } = await import('../prisma');
 
@@ -479,7 +484,10 @@ export class ActivityDiscoveryService extends BaseService {
         activityId,
       };
     } catch (error) {
-      this.logger.error({ error, collectionId, activityId, userId }, 'Failed to remove from collection');
+      this.logger.error(
+        { error, collectionId, activityId, userId },
+        'Failed to remove from collection',
+      );
       throw error;
     }
   }
@@ -490,7 +498,7 @@ export class ActivityDiscoveryService extends BaseService {
   async getRecommendedActivities(
     lessonPlanId: string,
     userId: number,
-    limit: number = 5
+    limit: number = 5,
   ): Promise<ActivityRecommendations> {
     try {
       const { prisma } = await import('../prisma');
@@ -563,14 +571,14 @@ export class ActivityDiscoveryService extends BaseService {
 
   private filterAndRankResults(
     results: ExternalActivity[],
-    params: SearchParams
+    params: SearchParams,
   ): ExternalActivity[] {
     let filtered = results;
 
     // Filter by grade if specified
     if (params.grade) {
       filtered = filtered.filter(
-        (activity) => activity.gradeMin <= params.grade! && activity.gradeMax >= params.grade!
+        (activity) => activity.gradeMin <= params.grade! && activity.gradeMax >= params.grade!,
       );
     }
 
@@ -582,21 +590,27 @@ export class ActivityDiscoveryService extends BaseService {
     // Filter by activity type if specified
     if (params.activityType && params.activityType.length > 0) {
       filtered = filtered.filter((activity) =>
-        params.activityType!.includes(activity.activityType)
+        params.activityType!.includes(activity.activityType),
       );
     }
 
     // Filter by materials if specified
     if (params.materials && params.materials.length > 0) {
       filtered = filtered.filter((activity) => {
-        const activityMaterials = Array.isArray(activity.materials) ? activity.materials as string[] : [];
+        const activityMaterials = Array.isArray(activity.materials)
+          ? (activity.materials as string[])
+          : [];
         if (params.requireAllMaterials) {
           return params.materials!.every((material) =>
-            activityMaterials.some((am) => typeof am === 'string' && am.toLowerCase().includes(material.toLowerCase()))
+            activityMaterials.some(
+              (am) => typeof am === 'string' && am.toLowerCase().includes(material.toLowerCase()),
+            ),
           );
         } else {
           return params.materials!.some((material) =>
-            activityMaterials.some((am) => typeof am === 'string' && am.toLowerCase().includes(material.toLowerCase()))
+            activityMaterials.some(
+              (am) => typeof am === 'string' && am.toLowerCase().includes(material.toLowerCase()),
+            ),
           );
         }
       });
@@ -607,7 +621,7 @@ export class ActivityDiscoveryService extends BaseService {
       // Prioritize activities with ratings
       if (a.sourceRating && !b.sourceRating) return -1;
       if (!a.sourceRating && b.sourceRating) return 1;
-      
+
       // Sort by rating if both have ratings
       if (a.sourceRating && b.sourceRating) {
         return b.sourceRating - a.sourceRating;
@@ -626,14 +640,14 @@ export class ActivityDiscoveryService extends BaseService {
     return results.slice(offset, offset + limit);
   }
 
-  private generateCacheKey(type: string, params: Record<string, unknown>): string {
+  private generateCacheKey(type: string, params: Record<string, unknown> | SearchParams): string {
     return `${type}:${JSON.stringify(params)}`;
   }
 
-  private getFromCache(key: string): unknown {
+  private getFromCache<T = unknown>(key: string): T | null {
     const cached = this.cache.get(key);
     if (cached && cached.expiry > Date.now()) {
-      return cached.data;
+      return cached.data as T;
     }
     this.cache.delete(key);
     return null;
