@@ -21,44 +21,44 @@ describe('ETFO Planning Integration Tests', () => {
     const hashedPassword = await bcrypt.hash('testpassword123', 10);
     const timestamp = Date.now();
     testEmail = `etfo-test-${timestamp}@example.com`;
-    
+
     // Clean up any existing user with this email first
     await prisma.user.deleteMany({
-      where: { email: testEmail }
+      where: { email: testEmail },
     });
-    
+
     const user = await prisma.user.create({
       data: {
         email: testEmail,
         password: hashedPassword,
         name: 'ETFO Tester',
         role: 'teacher',
+        preferredLanguage: 'en',
       },
     });
-    
+
     userId = user.id;
-    
+
     // Ensure the transaction is committed
     await prisma.$disconnect();
     await prisma.$connect();
 
-    const loginResponse = await request(app)
-      .post('/api/login')
-      .send({
-        email: testEmail,
-        password: 'testpassword123',
-      });
+    const loginResponse = await request(app).post('/api/login').send({
+      email: testEmail,
+      password: 'testpassword123',
+    });
 
     if (loginResponse.status !== 200) {
-      throw new Error(`Login failed: ${loginResponse.status} ${JSON.stringify(loginResponse.body)}`);
+      throw new Error(
+        `Login failed: ${loginResponse.status} ${JSON.stringify(loginResponse.body)}`,
+      );
     }
 
     authToken = loginResponse.body.token;
-    
+
     if (!authToken) {
       throw new Error('No auth token received from login');
     }
-    
   });
 
   afterAll(async () => {
@@ -70,7 +70,7 @@ describe('ETFO Planning Integration Tests', () => {
           where: { daybookEntry: { userId } },
         });
         await prisma.daybookEntry.deleteMany({ where: { userId } });
-        
+
         await prisma.eTFOLessonPlanExpectation.deleteMany({
           where: { lessonPlan: { userId } },
         });
@@ -78,7 +78,7 @@ describe('ETFO Planning Integration Tests', () => {
           where: { lessonPlan: { userId } },
         });
         await prisma.eTFOLessonPlan.deleteMany({ where: { userId } });
-        
+
         await prisma.unitPlanExpectation.deleteMany({
           where: { unitPlan: { userId } },
         });
@@ -86,18 +86,18 @@ describe('ETFO Planning Integration Tests', () => {
           where: { unitPlan: { userId } },
         });
         await prisma.unitPlan.deleteMany({ where: { userId } });
-        
+
         await prisma.longRangePlanExpectation.deleteMany({
           where: { longRangePlan: { userId } },
         });
         await prisma.longRangePlan.deleteMany({ where: { userId } });
-        
+
         // Delete curriculum expectations created by this user's imports
         await prisma.curriculumExpectation.deleteMany({
           where: { import: { userId } },
         });
         await prisma.curriculumImport.deleteMany({ where: { userId } });
-        
+
         await prisma.user.delete({ where: { id: userId } });
       } catch (error) {
         console.warn('Failed to delete test data:', error);
@@ -109,13 +109,13 @@ describe('ETFO Planning Integration Tests', () => {
   beforeEach(async () => {
     // Clean up any existing test data for this user only
     if (!userId) return;
-    
+
     // Delete in reverse order of dependencies to avoid foreign key violations
     await prisma.daybookEntryExpectation.deleteMany({
       where: { daybookEntry: { userId } },
     });
     await prisma.daybookEntry.deleteMany({ where: { userId } });
-    
+
     await prisma.eTFOLessonPlanExpectation.deleteMany({
       where: { lessonPlan: { userId } },
     });
@@ -123,7 +123,7 @@ describe('ETFO Planning Integration Tests', () => {
       where: { lessonPlan: { userId } },
     });
     await prisma.eTFOLessonPlan.deleteMany({ where: { userId } });
-    
+
     await prisma.unitPlanExpectation.deleteMany({
       where: { unitPlan: { userId } },
     });
@@ -131,17 +131,17 @@ describe('ETFO Planning Integration Tests', () => {
       where: { unitPlan: { userId } },
     });
     await prisma.unitPlan.deleteMany({ where: { userId } });
-    
+
     await prisma.longRangePlanExpectation.deleteMany({
       where: { longRangePlan: { userId } },
     });
     await prisma.longRangePlan.deleteMany({ where: { userId } });
-    
+
     // Delete curriculum expectations created by this user's imports
     await prisma.curriculumExpectation.deleteMany({
-      where: { 
-        import: { userId } 
-      }
+      where: {
+        import: { userId },
+      },
     });
   });
 
@@ -200,11 +200,13 @@ describe('ETFO Planning Integration Tests', () => {
           grade: 1,
           subject: 'Mathematics',
         });
-      
+
       if (expectationResponse.status !== 201) {
-        throw new Error(`Failed to create test expectation: ${expectationResponse.status} ${JSON.stringify(expectationResponse.body)}`);
+        throw new Error(
+          `Failed to create test expectation: ${expectationResponse.status} ${JSON.stringify(expectationResponse.body)}`,
+        );
       }
-      
+
       testCurriculumExpectationId = expectationResponse.body.id;
     });
 
@@ -241,7 +243,7 @@ describe('ETFO Planning Integration Tests', () => {
           grade: 1,
           subject: 'Mathematics',
         });
-      
+
       expect(createResponse.status).toBe(201);
 
       const response = await request(app)
@@ -462,7 +464,7 @@ describe('ETFO Planning Integration Tests', () => {
       // Since we don't have OpenAI API key in test environment,
       // we expect this to fail gracefully
       expect([200, 500]).toContain(response.status);
-      
+
       if (response.status === 200) {
         expect(response.body).toHaveProperty('units');
         expect(Array.isArray(response.body.units)).toBe(true);

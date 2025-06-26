@@ -18,7 +18,7 @@ describe('Equipment Booking API', () => {
 
     // Create a teacher for the equipment bookings
     const teacher = await prisma.user.create({
-      data: { email: `eb${Date.now()}@e.com`, password: 'x', name: 'EB' },
+      data: { email: `eb${Date.now()}@e.com`, password: 'x', name: 'EB', preferredLanguage: 'en' },
     });
     teacherId = teacher.id;
   });

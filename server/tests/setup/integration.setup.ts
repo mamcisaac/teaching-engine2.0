@@ -1,6 +1,6 @@
 /**
  * Integration Test Setup
- * 
+ *
  * Configures the test environment for integration tests
  * with real database connections and minimal mocking.
  */
@@ -59,82 +59,18 @@ export function getTestPrismaClient(): PrismaClient {
  */
 async function setupTestDatabase() {
   const prisma = getTestPrismaClient();
-  
+
   try {
     // Ensure database directory exists
     const dbDir = path.dirname(testDbPath);
     await fs.mkdir(dbDir, { recursive: true });
-    
-    // Run migrations
-    await prisma.$executeRawUnsafe(`
-      CREATE TABLE IF NOT EXISTS "User" (
-        "id" TEXT NOT NULL PRIMARY KEY,
-        "email" TEXT NOT NULL UNIQUE,
-        "password" TEXT NOT NULL,
-        "name" TEXT NOT NULL,
-        "role" TEXT NOT NULL DEFAULT 'TEACHER',
-        "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        "updatedAt" DATETIME NOT NULL
-      );
-    `);
-    
-    await prisma.$executeRawUnsafe(`
-      CREATE TABLE IF NOT EXISTS "Student" (
-        "id" TEXT NOT NULL PRIMARY KEY,
-        "name" TEXT NOT NULL,
-        "gradeLevel" TEXT NOT NULL,
-        "userId" TEXT NOT NULL,
-        "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        "updatedAt" DATETIME NOT NULL,
-        FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE
-      );
-    `);
-    
-    await prisma.$executeRawUnsafe(`
-      CREATE TABLE IF NOT EXISTS "LessonPlan" (
-        "id" TEXT NOT NULL PRIMARY KEY,
-        "title" TEXT NOT NULL,
-        "subject" TEXT NOT NULL,
-        "gradeLevel" TEXT NOT NULL,
-        "duration" INTEGER NOT NULL,
-        "date" DATETIME NOT NULL,
-        "content" TEXT,
-        "userId" TEXT NOT NULL,
-        "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        "updatedAt" DATETIME NOT NULL,
-        FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE
-      );
-    `);
-    
-    await prisma.$executeRawUnsafe(`
-      CREATE TABLE IF NOT EXISTS "CurriculumExpectation" (
-        "id" TEXT NOT NULL PRIMARY KEY,
-        "code" TEXT NOT NULL UNIQUE,
-        "description" TEXT NOT NULL,
-        "subject" TEXT NOT NULL,
-        "gradeLevel" TEXT NOT NULL,
-        "strand" TEXT NOT NULL,
-        "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        "updatedAt" DATETIME NOT NULL
-      );
-    `);
-    
-    await prisma.$executeRawUnsafe(`
-      CREATE TABLE IF NOT EXISTS "UnitPlan" (
-        "id" TEXT NOT NULL PRIMARY KEY,
-        "title" TEXT NOT NULL,
-        "subject" TEXT NOT NULL,
-        "gradeLevel" TEXT NOT NULL,
-        "startDate" DATETIME NOT NULL,
-        "endDate" DATETIME NOT NULL,
-        "description" TEXT,
-        "userId" TEXT NOT NULL,
-        "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        "updatedAt" DATETIME NOT NULL,
-        FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE
-      );
-    `);
-    
+
+    // Push Prisma schema to database
+    const { execSync } = await import('child_process');
+    execSync('npx prisma db push --force-reset', {
+      env: { ...process.env, DATABASE_URL: process.env.DATABASE_URL },
+      cwd: path.resolve(__dirname, '../../../packages/database'),
+    });
   } catch (error) {
     console.error('Failed to setup test database:', error);
     throw error;
@@ -146,14 +82,29 @@ async function setupTestDatabase() {
  */
 async function cleanTestDatabase() {
   const prisma = getTestPrismaClient();
-  
+
   try {
-    // Clean all tables in reverse dependency order
-    await prisma.$executeRawUnsafe('DELETE FROM "LessonPlan"');
-    await prisma.$executeRawUnsafe('DELETE FROM "UnitPlan"');
-    await prisma.$executeRawUnsafe('DELETE FROM "Student"');
-    await prisma.$executeRawUnsafe('DELETE FROM "CurriculumExpectation"');
-    await prisma.$executeRawUnsafe('DELETE FROM "User"');
+    // Use Prisma's deleteMany for proper cleanup
+    const tables = [
+      'etfoLessonPlanActivity',
+      'etfoLessonPlan',
+      'etfoUnitPlan',
+      'daybook',
+      'unitPlan',
+      'lessonPlan',
+      'student',
+      'curriculumExpectation',
+      'longRangePlan',
+      'user',
+    ];
+
+    for (const table of tables) {
+      try {
+        await (prisma as any)[table].deleteMany();
+      } catch {
+        // Table might not exist or have dependencies
+      }
+    }
   } catch (error) {
     console.error('Failed to clean test database:', error);
   }
@@ -174,7 +125,7 @@ afterAll(async () => {
   if (prismaClient) {
     await prismaClient.$disconnect();
   }
-  
+
   // Remove test database file
   try {
     await fs.unlink(testDbPath);
@@ -194,14 +145,14 @@ global.integrationTestHelpers = {
     const { app } = await import('../../src/app');
     return app;
   },
-  
+
   /**
    * Seed basic test data
    */
   seedTestData: async () => {
     const prisma = getTestPrismaClient();
     const bcrypt = await import('bcryptjs');
-    
+
     // Create test user
     const user = await prisma.user.create({
       data: {
@@ -210,9 +161,10 @@ global.integrationTestHelpers = {
         password: await bcrypt.hash('password123', 10),
         name: 'Test Teacher',
         role: 'TEACHER',
+        preferredLanguage: 'en',
       },
     });
-    
+
     // Create test students
     const students = await Promise.all([
       prisma.student.create({
@@ -232,7 +184,7 @@ global.integrationTestHelpers = {
         },
       }),
     ]);
-    
+
     // Create test curriculum expectations
     const expectations = await Promise.all([
       prisma.curriculumExpectation.create({
@@ -256,15 +208,15 @@ global.integrationTestHelpers = {
         },
       }),
     ]);
-    
+
     return { user, students, expectations };
   },
-  
+
   /**
    * Wait for async operations
    */
   waitForAsync: async (ms: number = 100) => {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
   },
 };
 

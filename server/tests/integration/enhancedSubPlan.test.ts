@@ -19,15 +19,16 @@ describe('Enhanced Sub Plan API', () => {
 
   beforeEach(async () => {
     await testDb.reset();
-    
+
     // Create test user
     testUser = await prisma.user.create({
       data: {
         email: 'teacher@school.com',
         password: 'password',
         name: 'Test Teacher',
-        role: 'teacher'
-      }
+        role: 'teacher',
+        preferredLanguage: 'en',
+      },
     });
 
     // Create test class routines
@@ -40,7 +41,7 @@ describe('Enhanced Sub Plan API', () => {
           category: 'morning',
           timeOfDay: '9:00 AM',
           priority: 10,
-          isActive: true
+          isActive: true,
         },
         {
           userId: testUser.id,
@@ -48,7 +49,7 @@ describe('Enhanced Sub Plan API', () => {
           description: 'Students line up by door 3 after recess',
           category: 'transition',
           priority: 5,
-          isActive: true
+          isActive: true,
         },
         {
           userId: testUser.id,
@@ -56,9 +57,9 @@ describe('Enhanced Sub Plan API', () => {
           description: 'Exit through west door, meet at flag pole',
           category: 'emergency',
           priority: 15,
-          isActive: true
-        }
-      ]
+          isActive: true,
+        },
+      ],
     });
 
     // Create test students with goals
@@ -67,8 +68,8 @@ describe('Enhanced Sub Plan API', () => {
         userId: testUser.id,
         firstName: 'Emma',
         lastName: 'Johnson',
-        grade: 2
-      }
+        grade: 2,
+      },
     });
 
     const student2 = await prisma.student.create({
@@ -76,8 +77,8 @@ describe('Enhanced Sub Plan API', () => {
         userId: testUser.id,
         firstName: 'Liam',
         lastName: 'Smith',
-        grade: 2
-      }
+        grade: 2,
+      },
     });
 
     // Create test goals
@@ -86,14 +87,14 @@ describe('Enhanced Sub Plan API', () => {
         {
           studentId: student1.id,
           text: 'Identify character feelings in stories',
-          status: 'active'
+          status: 'active',
         },
         {
           studentId: student2.id,
           text: 'Use doubles strategies for addition',
-          status: 'active'
-        }
-      ]
+          status: 'active',
+        },
+      ],
     });
   });
 
@@ -106,7 +107,7 @@ describe('Enhanced Sub Plan API', () => {
         includeRoutines: true,
         includePlans: true,
         anonymize: false,
-        userId: testUser.id
+        userId: testUser.id,
       };
 
       const response = await request(app)
@@ -127,7 +128,7 @@ describe('Enhanced Sub Plan API', () => {
         includeRoutines: true,
         includePlans: true,
         anonymize: true,
-        userId: testUser.id
+        userId: testUser.id,
       };
 
       const response = await request(app)
@@ -150,7 +151,7 @@ describe('Enhanced Sub Plan API', () => {
         saveRecord: true,
         emailTo: 'substitute@school.com',
         notes: 'Watch for peanut allergies',
-        userId: testUser.id
+        userId: testUser.id,
       };
 
       await request(app)
@@ -160,7 +161,7 @@ describe('Enhanced Sub Plan API', () => {
         .expect(200);
 
       const record = await prisma.subPlanRecord.findFirst({
-        where: { userId: testUser.id }
+        where: { userId: testUser.id },
       });
 
       expect(record).toBeDefined();
@@ -187,7 +188,7 @@ describe('Enhanced Sub Plan API', () => {
         title: 'Quiet Signal',
         description: 'Raise hand for quiet, students copy',
         category: 'behavior',
-        priority: 8
+        priority: 8,
       };
 
       const response = await request(app)
@@ -202,7 +203,7 @@ describe('Enhanced Sub Plan API', () => {
 
     it('should update existing routine', async () => {
       const routine = await prisma.classRoutine.findFirst({
-        where: { title: 'Morning Circle' }
+        where: { title: 'Morning Circle' },
       });
 
       const updateData = {
@@ -210,7 +211,7 @@ describe('Enhanced Sub Plan API', () => {
         title: 'Morning Meeting',
         description: 'Updated morning routine',
         category: 'morning',
-        priority: 12
+        priority: 12,
       };
 
       const response = await request(app)
@@ -225,7 +226,7 @@ describe('Enhanced Sub Plan API', () => {
 
     it('should delete routine', async () => {
       const routine = await prisma.classRoutine.findFirst({
-        where: { title: 'Line Up Procedure' }
+        where: { title: 'Line Up Procedure' },
       });
 
       await request(app)
@@ -234,7 +235,7 @@ describe('Enhanced Sub Plan API', () => {
         .expect(200);
 
       const deleted = await prisma.classRoutine.findUnique({
-        where: { id: routine!.id }
+        where: { id: routine!.id },
       });
 
       expect(deleted).toBeNull();
@@ -254,7 +255,7 @@ describe('Enhanced Sub Plan API', () => {
             includeGoals: true,
             includeRoutines: true,
             includePlans: true,
-            anonymized: false
+            anonymized: false,
           },
           {
             userId: testUser.id,
@@ -264,9 +265,9 @@ describe('Enhanced Sub Plan API', () => {
             includeGoals: false,
             includeRoutines: true,
             includePlans: true,
-            anonymized: true
-          }
-        ]
+            anonymized: true,
+          },
+        ],
       });
 
       const response = await request(app)

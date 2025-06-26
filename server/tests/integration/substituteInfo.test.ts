@@ -12,7 +12,7 @@ describe('substitute info API', () => {
     await prisma.substituteInfo.deleteMany();
     await prisma.user.deleteMany();
     await prisma.user.create({
-      data: { id: 1, email: 't@e.com', password: 'x', name: 'T' },
+      data: { id: 1, email: 't@e.com', password: 'x', name: 'T', preferredLanguage: 'en' },
     });
   });
 

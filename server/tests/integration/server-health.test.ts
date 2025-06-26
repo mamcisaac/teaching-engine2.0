@@ -12,11 +12,11 @@ describe('Server Health Check', () => {
 
   it('should respond to API health check endpoint', async () => {
     const response = await request(app).get('/api/health');
-    
+
     expect(response.status).toBe(200);
-    expect(response.body).toMatchObject({ 
+    expect(response.body).toMatchObject({
       status: 'ok',
-      healthy: true
+      healthy: true,
     });
     // The response includes additional performance details
     expect(response.body.details).toBeDefined();
@@ -24,14 +24,14 @@ describe('Server Health Check', () => {
 
   it('should handle 404 for non-existent endpoints', async () => {
     const response = await request(app).get('/api/non-existent-endpoint');
-    
+
     // API routes require authentication, so unmatched routes return 401
     expect(response.status).toBe(401);
   });
 
   it('should require authentication for protected endpoints', async () => {
     const response = await request(app).get('/api/activities');
-    
+
     expect(response.status).toBe(401);
     // The response body might be empty or have error message
     expect(response.body).toBeDefined();
@@ -45,24 +45,25 @@ describe('Server Health Check', () => {
         email: 'test@example.com',
         name: 'Test User',
         password: 'dummy',
-        role: 'teacher'
-      }
+        role: 'teacher',
+        preferredLanguage: 'en',
+      },
     });
-    
+
     const token = jwt.sign(
-      { 
-        userId: user.id, 
+      {
+        userId: user.id,
         email: user.email,
-        iat: Math.floor(Date.now() / 1000)
-      }, 
+        iat: Math.floor(Date.now() / 1000),
+      },
       process.env.JWT_SECRET || 'test-secret',
-      { algorithm: 'HS256' }
+      { algorithm: 'HS256' },
     );
-    
+
     const response = await request(app)
       .get('/api/students')
       .set('Authorization', `Bearer ${token}`);
-    
+
     expect(response.status).toBe(200);
     expect(Array.isArray(response.body)).toBe(true);
   });

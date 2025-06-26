@@ -24,6 +24,7 @@ describe('report deadlines', () => {
         password: 'hashed_password',
         name: 'Test Teacher',
         role: 'teacher',
+        preferredLanguage: 'en',
       },
     });
 
@@ -51,6 +52,7 @@ describe('report deadlines', () => {
         password: 'hashed_password',
         name: 'Reminder Teacher',
         role: 'teacher',
+        preferredLanguage: 'en',
       },
     });
 

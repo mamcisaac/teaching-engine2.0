@@ -61,6 +61,7 @@ describe('Email Service Integration Tests', () => {
         password: hashedPassword,
         name: testUser.name,
         role: testUser.role,
+        preferredLanguage: 'en',
       },
     });
 
@@ -103,6 +104,7 @@ describe('Email Service Integration Tests', () => {
           password: hashedPassword,
           name: testUser.name,
           role: testUser.role,
+          preferredLanguage: 'en',
         },
       });
     }
