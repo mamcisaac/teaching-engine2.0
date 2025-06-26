@@ -42,7 +42,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate Prisma Client
-        run: pnpm db:generate
+        run: pnpm --filter @teaching-engine/database db:generate
 
       - name: Lint code
         run: pnpm run lint
@@ -80,7 +80,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate Prisma Client
-        run: pnpm db:generate
+        run: pnpm --filter @teaching-engine/database db:generate
 
       - name: Run unit tests with coverage
         env:
@@ -111,7 +111,7 @@ jobs:
     needs: quality
     strategy:
       matrix:
-        test-suite: 
+        test-suite:
           - etfo-lesson-plans-simple
           - etfo-workflow
           - curriculumImportService
@@ -135,12 +135,12 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate Prisma Client
-        run: pnpm db:generate
+        run: pnpm --filter @teaching-engine/database db:generate
 
       - name: Setup test database
         run: |
-          pnpm db:deploy
-          pnpm db:seed
+          pnpm --filter @teaching-engine/database db:deploy
+          pnpm --filter @teaching-engine/database db:seed
 
       - name: Run integration tests for ${{ matrix.test-suite }}
         env:
@@ -188,15 +188,15 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate Prisma Client
-        run: pnpm db:generate
+        run: pnpm --filter @teaching-engine/database db:generate
 
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps ${{ matrix.browser }}
 
       - name: Setup test environment
         run: |
-          pnpm db:deploy
-          pnpm db:seed
+          pnpm --filter @teaching-engine/database db:deploy
+          pnpm --filter @teaching-engine/database db:seed
           pnpm --filter client build
 
       - name: Start application servers
@@ -269,12 +269,12 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate Prisma Client
-        run: pnpm db:generate
+        run: pnpm --filter @teaching-engine/database db:generate
 
       - name: Setup test environment
         run: |
-          pnpm db:deploy
-          pnpm db:seed
+          pnpm --filter @teaching-engine/database db:deploy
+          pnpm --filter @teaching-engine/database db:seed
 
       - name: Run ETFO planning performance tests
         env:
@@ -287,12 +287,12 @@ jobs:
         run: |
           # Install k6 for load testing
           curl https://github.com/grafana/k6/releases/download/v0.46.0/k6-v0.46.0-linux-amd64.tar.gz -L | tar xvz --strip-components 1
-          
+
           # Create basic load test script
           cat > load-test.js << 'EOF'
           import http from 'k6/http';
           import { check } from 'k6';
-          
+
           export const options = {
             stages: [
               { duration: '30s', target: 10 },
@@ -300,7 +300,7 @@ jobs:
               { duration: '30s', target: 0 },
             ],
           };
-          
+
           export default function() {
             const res = http.get('http://localhost:3000/api/health');
             check(res, {
@@ -309,19 +309,19 @@ jobs:
             });
           }
           EOF
-          
+
           # Start server for load testing
           cd server
           nohup pnpm start > ../backend-load.log 2>&1 &
           BACKEND_PID=$!
           cd ..
-          
+
           # Wait for server
           timeout 60 bash -c 'until curl -s http://localhost:3000/api/health; do sleep 2; done'
-          
+
           # Run load test
           ./k6 run load-test.js
-          
+
           # Stop server
           kill $BACKEND_PID || true
 
@@ -401,23 +401,23 @@ jobs:
         run: |
           cat > test-summary.md << 'EOF'
           # Teaching Engine 2.0 - Test Report Summary
-          
+
           ## Test Coverage Overview
-          
+
           This report summarizes the test execution results for the ETFO-aligned teaching planning system.
-          
+
           ### Test Phases Completed:
           - ✅ Unit Tests (Services and utilities)
           - ✅ Integration Tests (ETFO planning workflow)
           - ✅ End-to-End Tests (Complete teacher workflows)
-          
+
           ### ETFO Planning Test Coverage:
           1. **Curriculum Import Workflow**: Complete file upload, parsing, and confirmation flow
           2. **Long-Range Planning**: Year-long curriculum planning with expectation linking
           3. **Unit Planning**: Detailed unit creation with big ideas and essential questions
           4. **Lesson Planning**: Three-part ETFO lesson structure with differentiation
           5. **Daily Reflections**: Daybook entries with lesson evaluation and next steps
-          
+
           ### Key Features Tested:
           - ✅ AI-assisted lesson planning
           - ✅ Curriculum expectation tracking and coverage
@@ -426,12 +426,12 @@ jobs:
           - ✅ Auto-save functionality
           - ✅ Bilingual content support
           - ✅ Error handling and validation
-          
+
           ### Performance Benchmarks:
           - Planning workflow completion: < 30 seconds for complete hierarchy
           - Data retrieval: < 5 seconds for lesson lists
           - Auto-save: < 2 seconds for incremental changes
-          
+
           Generated on: $(date)
           Commit: ${{ github.sha }}
           EOF
@@ -450,7 +450,7 @@ jobs:
           script: |
             const fs = require('fs');
             const testSummary = fs.readFileSync('test-summary.md', 'utf8');
-            
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -483,7 +483,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate Prisma Client
-        run: pnpm db:generate
+        run: pnpm --filter @teaching-engine/database db:generate
 
       - name: Build for production
         run: |
@@ -495,9 +495,9 @@ jobs:
           # Check that all necessary files are built
           ls -la server/dist/
           ls -la client/dist/
-          
+
           # Verify database migrations are ready
-          pnpm db:validate
+          pnpm --filter @teaching-engine/database db:validate
 
       - name: Create deployment artifact
         run: |
