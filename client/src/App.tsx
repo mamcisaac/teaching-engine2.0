@@ -44,7 +44,7 @@ function AppRoutes() {
   return (
     <Routes>
       {/* Public routes */}
-      <Route path="/login" element={<LoginPage />} />
+      <Route path="/login" element={!isAuthenticated ? <LoginPage /> : <Navigate to="/planner/dashboard" replace />} />
 
       {/* Protected routes with MainLayout */}
       <Route
