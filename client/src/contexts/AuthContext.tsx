@@ -78,6 +78,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const abortController = new AbortController();
+    let timeoutId: NodeJS.Timeout;
 
     const checkAuthWithAbort = async () => {
       try {
@@ -107,11 +108,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     };
 
+    // Ensure loading state is set to false after 2 seconds max
+    timeoutId = setTimeout(() => {
+      if (!abortController.signal.aborted) {
+        setIsLoading(false);
+      }
+    }, 2000);
+
     checkAuthWithAbort();
 
     // Cleanup function to abort the request
     return () => {
       abortController.abort();
+      clearTimeout(timeoutId);
     };
   }, []);
 
