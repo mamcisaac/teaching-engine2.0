@@ -31,7 +31,6 @@ const AuthContext = createContext<AuthContextValue>({
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(true);
 
   // Token management functions
   const getToken = (): string | null => {
@@ -58,7 +57,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const response = await fetch('/api/auth/me', {
         credentials: 'include', // Include cookies
       });
-      
+
       if (response.ok) {
         const userData = await response.json();
         setUser(userData);
@@ -71,21 +70,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       console.error('Auth check failed:', error);
       setUser(null);
       setIsAuthenticated(false);
-    } finally {
-      setLoading(false);
     }
   };
-  
+
   useEffect(() => {
     const abortController = new AbortController();
-    
+
     const checkAuthWithAbort = async () => {
       try {
         const response = await fetch('/api/auth/me', {
           credentials: 'include',
           signal: abortController.signal,
         });
-        
+
         if (!abortController.signal.aborted && response.ok) {
           const userData = await response.json();
           setUser(userData);
@@ -100,15 +97,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setUser(null);
           setIsAuthenticated(false);
         }
-      } finally {
-        if (!abortController.signal.aborted) {
-          setLoading(false);
-        }
       }
     };
-    
+
     checkAuthWithAbort();
-    
+
     // Cleanup function to abort the request
     return () => {
       abortController.abort();
@@ -129,18 +122,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } catch (error) {
       console.error('Logout failed:', error);
     }
-    
+
     clearToken();
     setUser(null);
     setIsAuthenticated(false);
   };
 
-  if (loading) {
-    return <div>Loading...</div>; // Or a proper loading component
-  }
-  
   return (
-    <AuthContext.Provider value={{ user, login, logout, isAuthenticated, checkAuth, getToken, setToken }}>
+    <AuthContext.Provider
+      value={{ user, login, logout, isAuthenticated, checkAuth, getToken, setToken }}
+    >
       {children}
     </AuthContext.Provider>
   );
