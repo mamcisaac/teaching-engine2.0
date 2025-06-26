@@ -16,10 +16,8 @@ describe('Server Health Check', () => {
     expect(response.status).toBe(200);
     expect(response.body).toMatchObject({
       status: 'ok',
-      healthy: true,
     });
-    // The response includes additional performance details
-    expect(response.body.details).toBeDefined();
+    // The response is simple status only for basic health check
   });
 
   it('should handle 404 for non-existent endpoints', async () => {
@@ -42,7 +40,7 @@ describe('Server Health Check', () => {
     const prisma = getTestPrismaClient();
     const user = await prisma.user.create({
       data: {
-        email: 'test@example.com',
+        email: `test-${Date.now()}@example.com`,
         name: 'Test User',
         password: 'dummy',
         role: 'teacher',

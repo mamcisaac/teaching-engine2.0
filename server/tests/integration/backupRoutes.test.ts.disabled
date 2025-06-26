@@ -1,12 +1,9 @@
+import { describe, it, expect, beforeAll, afterAll } from '@jest/globals';
 import { app } from '../../src/index';
 import fs from 'fs/promises';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import unzipper from 'unzipper';
 import { authRequest } from '../test-auth-helper';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const binaryParser = (
   res: NodeJS.ReadableStream,
@@ -21,7 +18,7 @@ const auth = authRequest(app);
 
 describe('backup route', () => {
   const dbPath = path.resolve('test-route.sqlite');
-  const uploads = path.join(__dirname, '../src/uploads');
+  const uploads = path.join(process.cwd(), 'server/tests/integration/uploads');
 
   beforeAll(async () => {
     await auth.setup();

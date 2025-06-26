@@ -1,14 +1,11 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { describe, it, expect, beforeAll, afterAll } from '@jest/globals';
 import { createBackup, restoreBackup } from '../../src/services/backupService';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 describe('backup service', () => {
   const dbPath = path.resolve('test-backup.sqlite');
-  const uploads = path.join(__dirname, '../src/uploads');
+  const uploads = path.join(process.cwd(), 'server/tests/integration/uploads');
 
   beforeAll(async () => {
     process.env.DATABASE_URL = `file:${dbPath}`;

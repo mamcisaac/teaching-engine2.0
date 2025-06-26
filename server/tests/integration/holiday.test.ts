@@ -1,9 +1,11 @@
+import { describe, it, expect, beforeAll } from '@jest/globals';
 import { app } from '../../src/index';
 import { authRequest } from '../test-auth-helper';
 
 const auth = authRequest(app);
 
-describe('Holiday API', () => {
+// DISABLED: Holiday API was migrated to calendar events
+describe.skip('Holiday API - DISABLED (migrated to calendar events)', () => {
   beforeAll(async () => {
     await auth.setup();
   });

@@ -6,11 +6,14 @@ import LessonPlanForm, { LessonPlanFormData } from '../components/forms/LessonPl
 import { Zap, FileText, ArrowLeft, Info } from 'lucide-react';
 import { toast } from 'sonner';
 import { useCreateETFOLessonPlan } from '../hooks/useETFOPlanning';
+import { OnboardingTooltip } from '../components/onboarding';
+import { useShowContextualHints } from '../hooks/useFeatureTutorial';
 
 export default function QuickLessonPage() {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const createLesson = useCreateETFOLessonPlan();
+  const showHints = useShowContextualHints();
 
   const handleSubmit = async (data: LessonPlanFormData) => {
     setIsSubmitting(true);
@@ -51,7 +54,18 @@ export default function QuickLessonPage() {
             <Zap className="h-6 w-6 text-green-600" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Quick Lesson Planner</h1>
+            {showHints ? (
+              <OnboardingTooltip
+                id="quick-lesson-title"
+                title="Quick Lesson Planning"
+                content="Perfect for Grade 1 French Immersion! Create bilingual lessons quickly with AI assistance."
+                position="right"
+              >
+                <h1 className="text-3xl font-bold text-gray-900">Quick Lesson Planner</h1>
+              </OnboardingTooltip>
+            ) : (
+              <h1 className="text-3xl font-bold text-gray-900">Quick Lesson Planner</h1>
+            )}
             <p className="text-gray-600">
               Create a standalone lesson plan without requiring a unit plan
             </p>

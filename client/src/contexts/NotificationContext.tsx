@@ -23,3 +23,4 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
 }
 
 export const useNotificationContext = () => useContext(NotificationContext);
+export const useNotification = useNotificationContext;

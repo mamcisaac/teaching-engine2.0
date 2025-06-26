@@ -5,12 +5,16 @@ import { NotificationProvider } from './contexts/NotificationContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { HelpProvider } from './contexts/HelpContext';
+import { OnboardingProvider } from './contexts/OnboardingContext';
+import { KeyboardShortcutsProvider } from './contexts/KeyboardShortcutsContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import MainLayout from './components/MainLayout';
 import { GlobalErrorBoundary } from './components/ErrorBoundaries';
 import WorkflowGate from './components/WorkflowGate';
 import { ETFOLevel } from './hooks/useWorkflowState';
 import { OfflineNotification } from './components/OfflineNotification';
+import { OnboardingFlow, WelcomeModal } from './components/onboarding';
+import { GlobalKeyboardShortcuts } from './components/GlobalKeyboardShortcuts';
 
 // Lazy load pages - ETFO-aligned pages only
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -26,6 +30,7 @@ const ParentNewsletterPage = lazy(() => import('./pages/ParentNewsletterPage'));
 const HelpPage = lazy(() => import('./pages/HelpPage'));
 const TemplatesPage = lazy(() => import('./pages/TemplatesPage'));
 const CalendarPlanningPage = lazy(() => import('./pages/planning/CalendarPlanningPage'));
+const TeamsPage = lazy(() => import('./pages/TeamsPage'));
 
 // Common suspense fallback
 const SuspenseFallback = () => (
@@ -242,6 +247,24 @@ function AppRoutes() {
           }
         />
 
+        {/* Teams and Collaboration */}
+        <Route
+          path="/teams"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <TeamsPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/teams/:teamId"
+          element={
+            <Suspense fallback={<SuspenseFallback />}>
+              <TeamsPage />
+            </Suspense>
+          }
+        />
+
         {/* Help & Documentation */}
         <Route
           path="/help"
@@ -293,8 +316,15 @@ export default function App() {
         <LanguageProvider>
           <NotificationProvider>
             <HelpProvider>
-              <AppRoutes />
-              <OfflineNotification />
+              <OnboardingProvider>
+                <KeyboardShortcutsProvider>
+                  <AppRoutes />
+                  <GlobalKeyboardShortcuts />
+                  <OfflineNotification />
+                  <WelcomeModal />
+                  <OnboardingFlow />
+                </KeyboardShortcutsProvider>
+              </OnboardingProvider>
             </HelpProvider>
           </NotificationProvider>
         </LanguageProvider>

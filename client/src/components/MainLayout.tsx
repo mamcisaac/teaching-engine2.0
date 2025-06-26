@@ -1,11 +1,14 @@
 import React, { ReactNode, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useETFOProgress } from '../hooks/useETFOProgress';
+import { useFeatureTutorial } from '../hooks/useFeatureTutorial';
+import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
 import NotificationBell from './NotificationBell';
 import LanguageSwitcher from './LanguageSwitcher';
 import TeacherOnboardingFlow from './TeacherOnboardingFlow';
 import { TutorialManager } from './help/TutorialManager';
+import { formatShortcut } from '../contexts/KeyboardShortcutsContext';
 
 // Navigation item interface
 interface NavItem {
@@ -24,7 +27,45 @@ export default function MainLayout({ children }: MainLayoutProps) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const { logout } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   const { getETFOLevels } = useETFOProgress();
+  
+  // Enable feature tutorials
+  useFeatureTutorial();
+
+  // Keyboard shortcut to toggle sidebar (Ctrl/Cmd + B)
+  useKeyboardShortcut(
+    () => setIsSidebarOpen(prev => !prev),
+    { 
+      key: 'b', 
+      ctrl: true, 
+      cmd: true, 
+      description: 'Toggle sidebar', 
+      category: 'navigation' 
+    }
+  );
+
+  // Quick navigation with number keys (1-5 for ETFO levels)
+  const etfoLevels = getETFOLevels();
+  etfoLevels.forEach((level, index) => {
+    if (index < 9) { // Limit to 1-9 keys
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useKeyboardShortcut(
+        () => {
+          if (level.isAccessible) {
+            navigate(level.path);
+          }
+        },
+        { 
+          key: String(index + 1), 
+          alt: true, 
+          description: `Go to ${level.name}`, 
+          category: 'navigation',
+          enabled: level.isAccessible
+        }
+      );
+    }
+  });
 
   // Handle responsive sidebar behavior
   React.useEffect(() => {
@@ -42,9 +83,6 @@ export default function MainLayout({ children }: MainLayoutProps) {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [isSidebarOpen]);
-
-  // Get ETFO planning levels
-  const etfoLevels = getETFOLevels();
 
   // Secondary navigation items
   const secondaryNavItems: NavItem[] = [
@@ -165,6 +203,26 @@ export default function MainLayout({ children }: MainLayoutProps) {
             strokeLinejoin="round"
             strokeWidth={2}
             d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+          />
+        </svg>
+      ),
+    },
+    {
+      path: '/teams',
+      label: 'Teams',
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
           />
         </svg>
       ),

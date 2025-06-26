@@ -8,13 +8,14 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const { login, isAuthenticated, isLoading: isAuthLoading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     // Only redirect if we're done checking auth and the user is authenticated
     if (!isAuthLoading && isAuthenticated) {
-      navigate('/', { replace: true });
+      navigate('/planner/dashboard', { replace: true });
     }
   }, [isAuthenticated, isAuthLoading, navigate]);
 
@@ -25,14 +26,21 @@ export default function LoginPage() {
     if (isLoading) return;
 
     setError('');
+    setIsSuccess(false);
     setIsLoading(true);
 
     try {
       const response = await api.post('/api/login', { email, password });
 
       if (response.data.user) {
+        // Update auth context with user data
         login(response.data.user);
-        navigate('/');
+        
+        // Show success message briefly before redirect
+        setIsSuccess(true);
+        
+        // Navigate to the planning dashboard after successful login
+        navigate('/planner/dashboard', { replace: true });
       } else {
         throw new Error('Invalid response from server');
       }
@@ -79,6 +87,29 @@ export default function LoginPage() {
               </div>
               <div className="ml-3">
                 <p className="text-sm text-red-700">{error}</p>
+              </div>
+            </div>
+          </div>
+        )}
+        {isSuccess && (
+          <div className="bg-green-50 border-l-4 border-green-400 p-4">
+            <div className="flex">
+              <div className="flex-shrink-0">
+                <svg
+                  className="h-5 w-5 text-green-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.236 4.53L7.53 10.53a.75.75 0 00-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+              <div className="ml-3">
+                <p className="text-sm text-green-700">Login successful! Redirecting to dashboard...</p>
               </div>
             </div>
           </div>
@@ -133,13 +164,31 @@ export default function LoginPage() {
               <button
                 type="submit"
                 className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white ${
-                  isLoading
-                    ? 'bg-indigo-400'
+                  isLoading || isSuccess
+                    ? isSuccess
+                      ? 'bg-green-500'
+                      : 'bg-indigo-400'
                     : 'bg-indigo-600 hover:bg-indigo-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                 } focus:outline-none`}
-                disabled={isLoading}
+                disabled={isLoading || isSuccess}
               >
-                {isLoading ? (
+                {isSuccess ? (
+                  <>
+                    <svg
+                      className="-ml-1 mr-3 h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.236 4.53L7.53 10.53a.75.75 0 00-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Success!
+                  </>
+                ) : isLoading ? (
                   <>
                     <svg
                       className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"

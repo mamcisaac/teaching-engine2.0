@@ -6,14 +6,26 @@
 import { jest } from '@jest/globals';
 
 // Helper to create a mock model with all CRUD operations
-const createMockModel = (modelName: string) => {
+const createMockModel = (modelName: string, options: { useStringIds?: boolean } = {}) => {
   const mockData = new Map<string, any>();
   let idCounter = 1;
+  
+  // Models that use CUID format
+  const cuidModels = ['curriculumImport', 'eTFOLessonPlan', 'longRangePlan', 'unitPlan', 'daybookEntry', 'curriculumExpectation'];
+  const shouldUseStringIds = options.useStringIds || cuidModels.includes(modelName);
+
+  const generateId = () => {
+    if (shouldUseStringIds) {
+      // Generate a CUID-like string
+      return `c${Math.random().toString(36).substr(2, 24)}`;
+    }
+    return idCounter++;
+  };
 
   return {
     findUnique: jest.fn(({ where }) => {
       const key = Object.values(where)[0];
-      return Promise.resolve(mockData.get(key) || null);
+      return Promise.resolve(mockData.get(String(key)) || null);
     }),
     
     findMany: jest.fn(() => {
@@ -26,24 +38,24 @@ const createMockModel = (modelName: string) => {
     }),
     
     create: jest.fn(({ data }) => {
-      const id = data.id || idCounter++;
+      const id = data.id || generateId();
       const record = { id, ...data, createdAt: new Date(), updatedAt: new Date() };
-      mockData.set(id.toString(), record);
+      mockData.set(String(id), record);
       return Promise.resolve(record);
     }),
     
     createMany: jest.fn(({ data }) => {
       const created = data.map((item: any) => {
-        const id = item.id || idCounter++;
+        const id = item.id || generateId();
         const record = { id, ...item, createdAt: new Date(), updatedAt: new Date() };
-        mockData.set(id.toString(), record);
+        mockData.set(String(id), record);
         return record;
       });
       return Promise.resolve({ count: created.length });
     }),
     
     update: jest.fn(({ where, data }) => {
-      const key = Object.values(where)[0];
+      const key = String(Object.values(where)[0]);
       const existing = mockData.get(key);
       if (!existing) throw new Error('Record not found');
       const updated = { ...existing, ...data, updatedAt: new Date() };
@@ -56,7 +68,7 @@ const createMockModel = (modelName: string) => {
     }),
     
     delete: jest.fn(({ where }) => {
-      const key = Object.values(where)[0];
+      const key = String(Object.values(where)[0]);
       const record = mockData.get(key);
       if (!record) throw new Error('Record not found');
       mockData.delete(key);

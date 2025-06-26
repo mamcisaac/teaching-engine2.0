@@ -32,25 +32,44 @@ describe('Server Integration Tests', () => {
 
   describe('Authentication', () => {
     it('should reject requests without authentication', async () => {
-      const response = await request(app).get('/api/activities');
+      const response = await request(app).get('/api/students');
 
       expect(response.status).toBe(401);
     });
 
     it('should accept requests with valid JWT', async () => {
-      const token = jwt.sign({ userId: '1' }, process.env.JWT_SECRET || 'test-secret');
+      // Create a test user first
+      const prisma = getTestPrismaClient();
+      const testUser = await prisma.user.create({
+        data: {
+          email: 'test@example.com',
+          password: 'hashedpassword',
+          name: 'Test User',
+          role: 'teacher',
+          preferredLanguage: 'en',
+        },
+      });
+
+      const token = jwt.sign({ 
+        userId: String(testUser.id), 
+        email: testUser.email,
+        iat: Math.floor(Date.now() / 1000)
+      }, process.env.JWT_SECRET || 'test-secret');
 
       const response = await request(app)
-        .get('/api/subjects')
+        .get('/api/students')
         .set('Authorization', `Bearer ${token}`);
 
       expect(response.status).toBe(200);
       expect(Array.isArray(response.body)).toBe(true);
+      
+      // Cleanup
+      await prisma.user.delete({ where: { id: testUser.id } });
     });
 
     it('should reject requests with invalid JWT', async () => {
       const response = await request(app)
-        .get('/api/subjects')
+        .get('/api/students')
         .set('Authorization', 'Bearer invalid-token');
 
       expect(response.status).toBe(403);
@@ -58,11 +77,45 @@ describe('Server Integration Tests', () => {
   });
 
   describe('404 Handling', () => {
-    it('should return 404 for non-existent API endpoints', async () => {
+    it('should require authentication for non-existent API endpoints', async () => {
+      // Since all /api/* routes require authentication, non-existent ones should return 401
       const response = await request(app).get('/api/non-existent');
 
+      expect(response.status).toBe(401);
+      expect(response.body).toEqual({ error: 'Authentication required' });
+    });
+    
+    it('should return 404 for authenticated requests to non-existent API endpoints', async () => {
+      // Create a test user for authentication
+      const prisma = getTestPrismaClient();
+      const testUser = await prisma.user.create({
+        data: {
+          email: 'test404@example.com',
+          password: 'hashedpassword',
+          name: 'Test User 404',
+          role: 'teacher',
+          preferredLanguage: 'en',
+        },
+      });
+
+      const token = jwt.sign({ 
+        userId: String(testUser.id), 
+        email: testUser.email,
+        iat: Math.floor(Date.now() / 1000)
+      }, process.env.JWT_SECRET || 'test-secret');
+
+      const response = await request(app)
+        .get('/api/non-existent')
+        .set('Authorization', `Bearer ${token}`);
+
       expect(response.status).toBe(404);
-      expect(response.body).toEqual({ error: 'Not Found' });
+      expect(response.body).toMatchObject({ 
+        error: 'Not Found',
+        code: 'ROUTE_NOT_FOUND'
+      });
+      
+      // Cleanup
+      await prisma.user.delete({ where: { id: testUser.id } });
     });
   });
 

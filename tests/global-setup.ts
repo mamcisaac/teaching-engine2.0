@@ -18,8 +18,8 @@ export default async function globalSetup() {
       try {
         response = await page.request.post('http://localhost:3000/api/login', {
           data: {
-            email: 'teacher@example.com',
-            password: 'Password123!', // Meets security requirements
+            email: 'teacher@test.com',
+            password: 'password123', // Match seed data
           },
         });
         break; // Success, exit retry loop

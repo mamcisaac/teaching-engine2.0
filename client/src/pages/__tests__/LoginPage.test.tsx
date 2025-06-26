@@ -145,7 +145,7 @@ describe('LoginPage', () => {
 
       await waitFor(() => {
         expect(mockAuthContext.login).toHaveBeenCalledWith(mockUser);
-        expect(mockNavigate).toHaveBeenCalledWith('/');
+        expect(mockNavigate).toHaveBeenCalledWith('/planner/dashboard', { replace: true });
       });
     });
 

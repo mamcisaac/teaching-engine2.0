@@ -1,14 +1,13 @@
+import { describe, it, expect, beforeAll, beforeEach } from '@jest/globals';
 import { app } from '../../src/index';
 import { authRequest } from '../test-auth-helper';
-import { getTestPrismaClient } from '../jest.setup';
-import { setupAuthenticatedTest } from './test-setup-helpers';
+import { prisma } from '../../src/prisma';
+import { setupAuthenticatedTest } from '../test-setup-helpers';
 
 describe('calendar events', () => {
   const auth = authRequest(app);
-  let prisma: ReturnType<typeof getTestPrismaClient>;
-
   beforeAll(async () => {
-    prisma = getTestPrismaClient();
+    // prisma is imported directly
   });
 
   beforeEach(async () => {

@@ -1,703 +1,360 @@
 import React, { useEffect, useState } from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import ETFOPlanningCoverage from '../components/ETFOPlanningCoverage';
-import CurriculumExpectationCoverage from '../components/CurriculumExpectationCoverage';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/Button';
 import { Link } from 'react-router-dom';
 import {
-  FileText,
-  Target,
-  TrendingUp,
+  BookOpen,
   Calendar,
   Plus,
-  Settings,
-  Undo,
-  Redo,
-  Save,
-  Cloud,
-  CloudOff,
-  RotateCcw,
+  Sparkles,
   HelpCircle,
-  Wand2,
+  MessageSquare,
+  ChevronRight,
+  Star,
+  Clock,
+  Users,
 } from 'lucide-react';
-import { useWorkflowState, ETFOLevel } from '../hooks/useWorkflowState';
-import { useWeeklyPlannerStore } from '../stores/weeklyPlannerStore';
-import { AutoSaveIndicator } from '@/components/ui/AutoSaveIndicator';
-import { HelpButton, HelpTooltip } from '../components/help';
-import { useHelp } from '../contexts/HelpContext';
-import { PlanningWorkflowIndicator } from '../components/planning/PlanningWorkflowIndicator';
-import { PlanningWizard } from '../components/planning/PlanningWizard';
-import { RecentPlans } from '../components/planning/RecentPlans';
-import { QuickActions } from '../components/planning/QuickActions';
-import { DuplicatePlanModal } from '../components/planning/DuplicatePlanModal';
 import { useRecentPlans } from '../hooks/useRecentPlans';
+import { useHelp } from '../contexts/HelpContext';
+import { useOnboarding } from '../contexts/OnboardingContext';
+import { OnboardingTooltip } from '../components/onboarding';
+import { type RecentPlan } from '../components/planning/RecentPlans';
 
 export default function PlanningDashboard() {
-  const { workflowState } = useWorkflowState();
-  const { startTutorial, setCurrentSection } = useHelp();
-  const workflowProgress = workflowState?.progress
-    ? Math.round(
-        workflowState.progress.reduce((acc, p) => acc + p.progressPercentage, 0) /
-          workflowState.progress.length,
-      )
-    : 0;
+  const { startTutorial } = useHelp();
+  const { resetOnboarding } = useOnboarding();
+  const { data: recentPlans = [], isLoading: recentPlansLoading } = useRecentPlans({ limit: 3 });
+  const [showGetStarted, setShowGetStarted] = useState(true);
 
-  // New state for wizard and modals
-  const [showWizard, setShowWizard] = useState(false);
-  const [showDuplicateModal, setShowDuplicateModal] = useState(false);
+  // Simplified primary actions for Grade 1 French Immersion teachers
+  const primaryActions = [
+    {
+      id: 'start-planning',
+      title: 'Commencer la planification',
+      subtitle: 'Start Planning',
+      description: 'Create your first lesson plan for Grade 1 French Immersion',
+      icon: <Plus className="h-6 w-6" />,
+      color: 'bg-blue-500 hover:bg-blue-600',
+      path: '/planner/quick-lesson',
+      isPrimary: true,
+    },
+    {
+      id: 'weekly-view',
+      title: 'Vue hebdomadaire',
+      subtitle: 'Weekly View',
+      description: 'See your week at a glance and plan ahead',
+      icon: <Calendar className="h-6 w-6" />,
+      color: 'bg-green-500 hover:bg-green-600',
+      path: '/planner/calendar',
+    },
+    {
+      id: 'ai-help',
+      title: 'Aide intelligente',
+      subtitle: 'Smart Help',
+      description: 'Get French Immersion lesson suggestions',
+      icon: <Sparkles className="h-6 w-6" />,
+      color: 'bg-purple-500 hover:bg-purple-600',
+      path: '/planner/quick-lesson',
+    },
+  ];
 
-  // Recent plans data
-  const { data: recentPlans = [], isLoading: _recentPlansLoading } = useRecentPlans({ limit: 5 });
-
-  // Weekly planner state management
-  const {
-    isLoading,
-    isSaving,
-    hasOfflineChanges,
-    undoHistory,
-    redoHistory,
-    autoSave: _autoSave,
-    theme: _theme,
-    undo,
-    redo,
-    saveToServer,
-    syncWithServer,
-    resetToDefaults,
-    saveToHistory,
-  } = useWeeklyPlannerStore();
-
-  const [showSettings, setShowSettings] = useState(false);
-  const [lastSaved, setLastSaved] = useState<Date | null>(null);
-
-  // Handle auto-save indicator
-  useEffect(() => {
-    if (!isSaving && !hasOfflineChanges) {
-      setLastSaved(new Date());
-    }
-  }, [isSaving, hasOfflineChanges]);
-
-  // Keyboard shortcuts for undo/redo
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
-        e.preventDefault();
-        undo();
-      } else if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
-        e.preventDefault();
-        redo();
-      } else if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-        e.preventDefault();
-        saveToServer();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [undo, redo, saveToServer]);
-
-  const handleManualSave = async () => {
-    saveToHistory('Manual save');
-    await saveToServer();
-  };
-
-  const handleSync = async () => {
-    await syncWithServer();
-  };
-
-  const handleReset = async () => {
-    if (
-      window.confirm(
-        'Are you sure you want to reset all planner preferences to defaults? This cannot be undone.',
-      )
-    ) {
-      saveToHistory('Reset to defaults');
-      resetToDefaults();
-      await saveToServer();
-    }
-  };
+  // Quick access resources specific to French Immersion
+  const resources = [
+    {
+      title: 'Communication aux parents',
+      subtitle: 'Parent Newsletter',
+      description: 'Generate weekly updates in French and English',
+      icon: <MessageSquare className="h-5 w-5" />,
+      path: '/planner/newsletter',
+    },
+    {
+      title: 'Modèles de leçons',
+      subtitle: 'Lesson Templates',
+      description: 'French Immersion lesson templates',
+      icon: <BookOpen className="h-5 w-5" />,
+      path: '/templates',
+    },
+  ];
 
   return (
-    <div className="container mx-auto py-8 space-y-6">
-      {/* Header with State Management Controls */}
-      <div className="flex items-center justify-between">
-        <div>
-          <div className="flex items-center gap-3">
-            <h1 className="text-3xl font-bold">Planning Dashboard</h1>
-            <HelpTooltip
-              content="Your central hub for tracking ETFO planning progress, managing curriculum coverage, and accessing quick actions for all planning levels."
-              position="bottom"
+    <div className="container mx-auto py-8 space-y-8 max-w-6xl">
+      {/* Welcome Header */}
+      <div className="text-center space-y-4">
+        <div className="flex items-center justify-center gap-3">
+          <h1 className="text-4xl font-bold text-gray-900">
+            Bienvenue dans Teaching Engine
+          </h1>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => startTutorial('getting-started-tour')}
+              className="gap-2 text-blue-600 hover:text-blue-700"
             >
-              <HelpButton
-                size="sm"
-                content="Get help with the Planning Dashboard"
-                onClick={() => setCurrentSection('planning')}
-              />
-            </HelpTooltip>
-          </div>
-          <div className="flex items-center gap-4 mt-2">
-            <p className="text-muted-foreground">
-              Track your ETFO planning progress and curriculum coverage
-            </p>
-            <AutoSaveIndicator
-              isSaving={isSaving}
-              hasUnsavedChanges={hasOfflineChanges}
-              lastSaved={lastSaved}
-              onManualSave={handleManualSave}
-            />
+              <HelpCircle className="h-4 w-4" />
+              Aide
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => resetOnboarding()}
+              className="text-gray-500 hover:text-gray-700"
+            >
+              Restart Tour
+            </Button>
           </div>
         </div>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          Your planning assistant for Grade 1 French Immersion • Votre assistant de planification pour la 1ère année d'immersion française
+        </p>
+      </div>
 
-        <div className="flex gap-3">
-          {/* State Management Controls */}
-          <div className="flex gap-2 mr-4 border-r pr-4">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={undo}
-              disabled={undoHistory.length === 0}
-              title="Undo (Ctrl+Z)"
-            >
-              <Undo className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={redo}
-              disabled={redoHistory.length === 0}
-              title="Redo (Ctrl+Y)"
-            >
-              <Redo className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleManualSave}
-              disabled={isSaving}
-              title="Save (Ctrl+S)"
-            >
-              <Save className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleSync}
-              disabled={isLoading || isSaving}
-              title={hasOfflineChanges ? 'Sync offline changes' : 'Refresh from server'}
-            >
-              {hasOfflineChanges ? <CloudOff className="h-4 w-4" /> : <Cloud className="h-4 w-4" />}
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setShowSettings(!showSettings)}
-              title="Planner Settings"
-            >
-              <Settings className="h-4 w-4" />
-            </Button>
-            <Button variant="outline" size="sm" onClick={handleReset} title="Reset to defaults">
-              <RotateCcw className="h-4 w-4" />
-            </Button>
-          </div>
-
-          {/* Navigation Controls */}
-          <HelpTooltip
-            content="Start with Long-Range Plans to create your yearly overview. This becomes the foundation for all other planning levels."
-            position="bottom"
-          >
-            <Link to="/planner/long-range">
-              <Button variant="outline" className="gap-2">
-                <Calendar className="h-4 w-4" />
-                Long-Range Plans
-              </Button>
-            </Link>
-          </HelpTooltip>
-          <div className="flex gap-2">
-            <HelpTooltip
-              content="Create detailed unit plans from your long-range themes. Unit plans break down yearly goals into manageable learning experiences."
-              position="bottom"
-            >
-              <Link to="/planner/units">
-                <Button className="gap-2 bg-indigo-600 hover:bg-indigo-700 text-white">
-                  <Plus className="h-4 w-4" />
-                  Create Unit Plan
-                </Button>
-              </Link>
-            </HelpTooltip>
-            <HelpTooltip
-              content="Start an interactive tutorial to learn the ETFO planning workflow step by step."
-              position="bottom"
-            >
+      {/* Getting Started Card */}
+      {showGetStarted && (
+        <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
+          <CardHeader className="pb-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-blue-100 rounded-full">
+                  <Star className="h-5 w-5 text-blue-600" />
+                </div>
+                <div>
+                  <CardTitle className="text-blue-900">Getting Started</CardTitle>
+                  <CardDescription className="text-blue-700">
+                    New to Teaching Engine? Start here for a quick 5-minute setup
+                  </CardDescription>
+                </div>
+              </div>
               <Button
-                variant="outline"
+                variant="ghost"
                 size="sm"
+                onClick={() => setShowGetStarted(false)}
+                className="text-blue-600 hover:text-blue-700"
+              >
+                ×
+              </Button>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button
                 onClick={() => startTutorial('getting-started-tour')}
-                className="gap-2"
+                className="bg-blue-600 hover:bg-blue-700 text-white gap-2"
               >
                 <HelpCircle className="h-4 w-4" />
-                Start Tutorial
+                Take the Tour (5 min)
               </Button>
-            </HelpTooltip>
-          </div>
+              <Link to="/planner/quick-lesson">
+                <Button
+                  variant="outline"
+                  className="border-blue-300 text-blue-700 hover:bg-blue-50"
+                >
+                  <Plus className="h-4 w-4 mr-2" />
+                  Create First Lesson
+                </Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Primary Actions */}
+      <div className="space-y-6">
+        <h2 className="text-2xl font-semibold text-gray-900">
+          Quick Actions • Actions rapides
+        </h2>
+        
+        <div className="grid gap-6 md:grid-cols-3">
+          {primaryActions.map((action) => {
+            const actionCard = (
+              <Link key={action.id} to={action.path} id={action.id}>
+                <Card className={`h-full transition-all duration-200 hover:scale-105 hover:shadow-lg border-2 ${
+                  action.isPrimary ? 'border-blue-200 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+                }`}>
+                  <CardContent className="p-6">
+                    <div className="flex flex-col items-center text-center space-y-4">
+                      <div className={`p-4 rounded-full text-white ${action.color}`}>
+                        {action.icon}
+                      </div>
+                      <div className="space-y-2">
+                        <h3 className="text-lg font-semibold text-gray-900">
+                          {action.title}
+                        </h3>
+                        <p className="text-sm text-gray-500 font-medium">
+                          {action.subtitle}
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          {action.description}
+                        </p>
+                      </div>
+                      <ChevronRight className="h-5 w-5 text-gray-400" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            );
+
+            // Add tooltips for key actions
+            if (action.id === 'start-planning') {
+              return (
+                <OnboardingTooltip
+                  key={action.id}
+                  id="start-planning-tooltip"
+                  title="Your First Lesson"
+                  content="This is where the magic begins! Click here to create your first French Immersion lesson plan with AI assistance."
+                  position="bottom"
+                  actionText="Start planning"
+                  onAction={() => window.location.href = action.path}
+                >
+                  {actionCard}
+                </OnboardingTooltip>
+              );
+            } else if (action.id === 'ai-help') {
+              return (
+                <OnboardingTooltip
+                  key={action.id}
+                  id="ai-help-tooltip"
+                  title="AI Teaching Assistant"
+                  content="Your bilingual AI helper understands Ontario curriculum and can suggest activities in French and English."
+                  position="bottom"
+                >
+                  {actionCard}
+                </OnboardingTooltip>
+              );
+            }
+            
+            return actionCard;
+          })}
         </div>
       </div>
 
-      {/* Planning-Only Disclaimer */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-        <div className="flex gap-3">
-          <FileText className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
-          <div>
-            <h3 className="text-blue-900 font-medium">📚 Curriculum Planning Tool</h3>
-            <p className="text-blue-800 text-sm mt-1">
-              Teaching Engine 2.0 helps you plan and organize your curriculum delivery. For student
-              assessment tracking, grades, and report cards, please use your school board&apos;s
-              designated systems.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Settings Panel */}
-      {showSettings && (
+      {/* Recent Plans & Quick Resources */}
+      <div className="grid gap-8 lg:grid-cols-2">
+        {/* Recent Plans */}
         <Card>
           <CardHeader>
-            <CardTitle>Planner Preferences</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <Clock className="h-5 w-5" />
+              Recent Plans
+            </CardTitle>
             <CardDescription>
-              Customize your planning interface and workflow settings
+              Your latest lesson plans and activities
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <PlannerSettingsPanel onClose={() => setShowSettings(false)} />
+            {recentPlansLoading ? (
+              <div className="space-y-3">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="h-12 bg-gray-100 rounded-md animate-pulse" />
+                ))}
+              </div>
+            ) : recentPlans.length > 0 ? (
+              <div className="space-y-3">
+                {recentPlans.map((plan) => (
+                  <div
+                    key={plan.id}
+                    className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    <div>
+                      <h4 className="font-medium text-gray-900">{plan.title}</h4>
+                      <p className="text-sm text-gray-500">
+                        {new Date(plan.lastAccessed).toLocaleDateString()}
+                      </p>
+                    </div>
+                    <ChevronRight className="h-4 w-4 text-gray-400" />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8 text-gray-500">
+                <BookOpen className="h-12 w-12 mx-auto mb-3 text-gray-300" />
+                <p>No plans yet. Create your first lesson to get started!</p>
+                <Link to="/planner/quick-lesson">
+                  <Button
+                    variant="outline"
+                    className="mt-3"
+                  >
+                    Create First Plan
+                  </Button>
+                </Link>
+              </div>
+            )}
           </CardContent>
         </Card>
-      )}
 
-      {/* New Planning Workflow Section */}
-      <div className="grid gap-6 lg:grid-cols-3">
-        {/* Workflow Indicator - Left Column */}
-        <div className="lg:col-span-1">
-          <PlanningWorkflowIndicator
-            progress={workflowState?.progress || []}
-            currentLevel={workflowState?.currentLevel || ETFOLevel.CURRICULUM_EXPECTATIONS}
-            className="h-full"
-          />
-        </div>
+        {/* Quick Resources */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Users className="h-5 w-5" />
+              French Immersion Resources
+            </CardTitle>
+            <CardDescription>
+              Tools designed for Grade 1 French Immersion teachers
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {resources.map((resource) => (
+                <Link
+                  key={resource.path}
+                  to={resource.path}
+                  className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-gray-100 rounded-lg">
+                      {resource.icon}
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-gray-900">{resource.title}</h4>
+                      <p className="text-sm text-gray-500">{resource.subtitle}</p>
+                      <p className="text-xs text-gray-400">{resource.description}</p>
+                    </div>
+                  </div>
+                  <ChevronRight className="h-4 w-4 text-gray-400" />
+                </Link>
+              ))}
 
-        {/* Middle Column - Quick Actions and Recent Plans */}
-        <div className="lg:col-span-2 space-y-6">
-          {/* Quick Actions */}
-          <QuickActions
-            onDuplicatePlan={(type) => {
-              if (type === 'select') {
-                setShowDuplicateModal(true);
-              }
-            }}
-          />
-
-          {/* Recent Plans */}
-          <RecentPlans plans={recentPlans} isLoading={_recentPlansLoading} />
-        </div>
+              {/* Quick Setup Tip */}
+              <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                <div className="flex gap-3">
+                  <div className="p-1 bg-yellow-100 rounded-full">
+                    <Sparkles className="h-4 w-4 text-yellow-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-yellow-900">Pro Tip</h4>
+                    <p className="text-sm text-yellow-800 mt-1">
+                      Start with a quick lesson plan to see how Teaching Engine adapts to French Immersion needs. The AI understands both languages!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
-      {/* Quick Stats */}
-      <div className="grid gap-4 md:grid-cols-4">
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <FileText className="h-4 w-4" />
-              Workflow Progress
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{workflowProgress}%</div>
-            <p className="text-xs text-muted-foreground">ETFO workflow completion</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Target className="h-4 w-4" />
-              Active Plans
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">12</div>
-            <p className="text-xs text-muted-foreground">Across all levels</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <TrendingUp className="h-4 w-4" />
-              This Week
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">8</div>
-            <p className="text-xs text-muted-foreground">Lessons planned</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Calendar className="h-4 w-4" />
-              Next Deadline
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">3d</div>
-            <p className="text-xs text-muted-foreground">Unit 4 completion</p>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Main Coverage Tabs */}
-      <Tabs defaultValue="etfo" className="space-y-4">
-        <TabsList className="grid w-full grid-cols-2 max-w-md">
-          <TabsTrigger value="etfo">ETFO Planning Coverage</TabsTrigger>
-          <TabsTrigger value="curriculum">Curriculum Coverage</TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="etfo" className="space-y-4">
-          <ETFOPlanningCoverage />
-        </TabsContent>
-
-        <TabsContent value="curriculum" className="space-y-4">
-          <CurriculumExpectationCoverage />
-        </TabsContent>
-      </Tabs>
-
-      {/* Helpful Resources */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Planning Resources</CardTitle>
-          <CardDescription>Quick links to help you complete your planning</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4 md:grid-cols-3">
-            <Link to="/curriculum/import" className="block">
-              <div className="p-4 border rounded-lg hover:bg-gray-50 transition-colors">
-                <h4 className="font-medium mb-1">Import Curriculum</h4>
-                <p className="text-sm text-gray-600">
-                  Upload PDF or DOCX files to extract curriculum expectations
-                </p>
-              </div>
-            </Link>
-            <Link to="/planner/daybook" className="block">
-              <div className="p-4 border rounded-lg hover:bg-gray-50 transition-colors">
-                <h4 className="font-medium mb-1">Daily Reflections</h4>
-                <p className="text-sm text-gray-600">
-                  Record daily observations and lesson reflections
-                </p>
-              </div>
-            </Link>
-            <Link to="/planner/etfo-lessons" className="block">
-              <div className="p-4 border rounded-lg hover:bg-gray-50 transition-colors">
-                <h4 className="font-medium mb-1">Lesson Templates</h4>
-                <p className="text-sm text-gray-600">
-                  Use ETFO-aligned templates for three-part lessons
-                </p>
-              </div>
-            </Link>
+      {/* Teaching Philosophy */}
+      <Card className="bg-gradient-to-r from-green-50 to-emerald-50 border-green-200">
+        <CardContent className="p-6">
+          <div className="text-center space-y-3">
+            <div className="flex items-center justify-center gap-2">
+              <BookOpen className="h-6 w-6 text-green-600" />
+              <h3 className="text-lg font-semibold text-green-900">
+                Made for Prince Edward Island Educators
+              </h3>
+            </div>
+            <p className="text-green-800 max-w-3xl mx-auto">
+              Teaching Engine 2.0 is designed specifically for PEI curriculum requirements and French Immersion pedagogy. 
+              Focus on teaching while we handle the planning complexity.
+            </p>
+            <p className="text-sm text-green-700 italic">
+              "Teaching is about inspiring minds, not managing paperwork."
+            </p>
           </div>
         </CardContent>
       </Card>
-
-      {/* Wizard Button - Floating Action Button */}
-      <div className="fixed bottom-6 right-6">
-        <Button
-          onClick={() => setShowWizard(true)}
-          className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg hover:shadow-xl transition-all gap-2"
-          size="lg"
-        >
-          <Wand2 className="h-5 w-5" />
-          Planning Wizard
-        </Button>
-      </div>
-
-      {/* Planning Wizard Modal */}
-      {showWizard && (
-        <PlanningWizard
-          currentLevel={workflowState?.currentLevel}
-          completedLevels={workflowState?.completedLevels}
-          onClose={() => setShowWizard(false)}
-        />
-      )}
-
-      {/* Duplicate Plan Modal */}
-      <DuplicatePlanModal
-        isOpen={showDuplicateModal}
-        onClose={() => setShowDuplicateModal(false)}
-      />
     </div>
   );
 }
 
-// Planner Settings Panel Component
-interface PlannerSettingsPanelProps {
-  onClose: () => void;
-}
-
-function PlannerSettingsPanel({ onClose }: PlannerSettingsPanelProps) {
-  const {
-    defaultView,
-    timeSlotDuration,
-    showWeekends,
-    startOfWeek,
-    workingHours,
-    sidebarExpanded,
-    showMiniCalendar,
-    showResourcePanel,
-    compactMode,
-    theme: _theme,
-    autoSave,
-    autoSaveInterval,
-    showUncoveredOutcomes,
-    defaultLessonDuration,
-    maxHistorySize: _maxHistorySize,
-    setDefaultView,
-    setTimeSlotDuration,
-    setShowWeekends,
-    setStartOfWeek,
-    setWorkingHours,
-    setSidebarExpanded,
-    setShowMiniCalendar,
-    setShowResourcePanel,
-    setCompactMode,
-    setTheme,
-    setAutoSave,
-    setAutoSaveInterval,
-    setShowUncoveredOutcomes,
-    setDefaultLessonDuration,
-    saveToHistory,
-    saveToServer,
-  } = useWeeklyPlannerStore();
-
-  const handleSave = async () => {
-    saveToHistory('Updated planner settings');
-    await saveToServer();
-    onClose();
-  };
-
-  return (
-    <div className="space-y-6">
-      {/* View Preferences */}
-      <div>
-        <h3 className="text-lg font-medium mb-4">View Preferences</h3>
-        <div className="grid gap-4 md:grid-cols-2">
-          <div>
-            <label className="block text-sm font-medium mb-2">Default View</label>
-            <select
-              value={defaultView}
-              onChange={(e) => setDefaultView(e.target.value as 'week' | 'month' | 'agenda')}
-              className="w-full p-2 border rounded-md"
-            >
-              <option value="week">Week View</option>
-              <option value="month">Month View</option>
-              <option value="agenda">Agenda View</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">Time Slot Duration</label>
-            <select
-              value={timeSlotDuration}
-              onChange={(e) => setTimeSlotDuration(Number(e.target.value) as 15 | 30 | 60)}
-              className="w-full p-2 border rounded-md"
-            >
-              <option value={15}>15 minutes</option>
-              <option value={30}>30 minutes</option>
-              <option value={60}>60 minutes</option>
-            </select>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              id="showWeekends"
-              checked={showWeekends}
-              onChange={(e) => setShowWeekends(e.target.checked)}
-              className="rounded"
-            />
-            <label htmlFor="showWeekends" className="text-sm font-medium">
-              Show Weekends
-            </label>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">Start of Week</label>
-            <select
-              value={startOfWeek}
-              onChange={(e) => setStartOfWeek(Number(e.target.value) as 0 | 1)}
-              className="w-full p-2 border rounded-md"
-            >
-              <option value={0}>Sunday</option>
-              <option value={1}>Monday</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">Working Hours Start</label>
-            <input
-              type="time"
-              value={workingHours.start}
-              onChange={(e) => setWorkingHours({ ...workingHours, start: e.target.value })}
-              className="w-full p-2 border rounded-md"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">Working Hours End</label>
-            <input
-              type="time"
-              value={workingHours.end}
-              onChange={(e) => setWorkingHours({ ...workingHours, end: e.target.value })}
-              className="w-full p-2 border rounded-md"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* UI Preferences */}
-      <div>
-        <h3 className="text-lg font-medium mb-4">Interface Preferences</h3>
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              id="sidebarExpanded"
-              checked={sidebarExpanded}
-              onChange={(e) => setSidebarExpanded(e.target.checked)}
-              className="rounded"
-            />
-            <label htmlFor="sidebarExpanded" className="text-sm font-medium">
-              Expanded Sidebar
-            </label>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              id="showMiniCalendar"
-              checked={showMiniCalendar}
-              onChange={(e) => setShowMiniCalendar(e.target.checked)}
-              className="rounded"
-            />
-            <label htmlFor="showMiniCalendar" className="text-sm font-medium">
-              Show Mini Calendar
-            </label>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              id="showResourcePanel"
-              checked={showResourcePanel}
-              onChange={(e) => setShowResourcePanel(e.target.checked)}
-              className="rounded"
-            />
-            <label htmlFor="showResourcePanel" className="text-sm font-medium">
-              Show Resource Panel
-            </label>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              id="compactMode"
-              checked={compactMode}
-              onChange={(e) => setCompactMode(e.target.checked)}
-              className="rounded"
-            />
-            <label htmlFor="compactMode" className="text-sm font-medium">
-              Compact Mode
-            </label>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">Theme</label>
-            <select
-              value={_theme}
-              onChange={(e) => setTheme(e.target.value as 'light' | 'dark' | 'system')}
-              className="w-full p-2 border rounded-md"
-            >
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
-              <option value="system">System</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      {/* Planning Preferences */}
-      <div>
-        <h3 className="text-lg font-medium mb-4">Planning Preferences</h3>
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              id="autoSave"
-              checked={autoSave}
-              onChange={(e) => setAutoSave(e.target.checked)}
-              className="rounded"
-            />
-            <label htmlFor="autoSave" className="text-sm font-medium">
-              Auto-save
-            </label>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">Auto-save Interval (seconds)</label>
-            <input
-              type="number"
-              min="5"
-              max="300"
-              value={autoSaveInterval}
-              onChange={(e) => setAutoSaveInterval(Number(e.target.value))}
-              className="w-full p-2 border rounded-md"
-            />
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              id="showUncoveredOutcomes"
-              checked={showUncoveredOutcomes}
-              onChange={(e) => setShowUncoveredOutcomes(e.target.checked)}
-              className="rounded"
-            />
-            <label htmlFor="showUncoveredOutcomes" className="text-sm font-medium">
-              Show Uncovered Outcomes
-            </label>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">
-              Default Lesson Duration (minutes)
-            </label>
-            <input
-              type="number"
-              min="15"
-              max="240"
-              step="15"
-              value={defaultLessonDuration}
-              onChange={(e) => setDefaultLessonDuration(Number(e.target.value))}
-              className="w-full p-2 border rounded-md"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Action Buttons */}
-      <div className="flex justify-end space-x-4 pt-4 border-t">
-        <Button variant="outline" onClick={onClose}>
-          Cancel
-        </Button>
-        <Button onClick={handleSave}>Save Preferences</Button>
-      </div>
-    </div>
-  );
-}

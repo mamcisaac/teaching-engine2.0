@@ -49,7 +49,7 @@ describe('CurriculumImportService', () => {
   describe('startImport', () => {
     it('should create a new import session', async () => {
       const mockImport = {
-        id: 'import-123',
+        id: 'c' + Math.random().toString(36).substr(2, 24), // Generate CUID-like ID
         userId: 1,
         grade: 5,
         subject: 'MATH',
@@ -68,7 +68,7 @@ describe('CurriculumImportService', () => {
 
       const importId = await curriculumImportService.startImport(1, 5, 'MATH', 'csv', 'file.csv');
 
-      expect(importId).toBe('import-123');
+      expect(importId).toBe(mockImport.id);
       expect(mockPrisma.curriculumImport.create).toHaveBeenCalledWith({
         data: {
           userId: 1,
@@ -159,7 +159,7 @@ Test,123`;
   });
 
   describe.skip('processImport', () => {
-    const importId = 'import-123';
+    const importId = 'c' + Math.random().toString(36).substr(2, 24); // Generate CUID-like ID
     const testOutcomes = [
       { code: 'M1.1', description: 'Count to 100', subject: 'MATH', grade: 1, domain: 'Number' },
       {
@@ -176,10 +176,10 @@ Test,123`;
       mockPrisma.curriculumImport.update.mockResolvedValue({});
 
       // Mock embedding service
-      ensureMockFunction(mockEmbeddingService, 'generateBatchEmbeddings').mockResolvedValue([]);
+      mockEmbeddingService.generateBatchEmbeddings = jest.fn().mockResolvedValue([]);
 
       // Mock cluster creation
-      ensureMockFunction(mockPrisma, 'outcomeCluster.create').mockResolvedValue({
+      mockPrisma.outcomeCluster.create.mockResolvedValue({
         id: 'cluster-1',
         clusterName: 'MATH-Number-Grade1',
         outcomeIds: ['outcome-1', 'outcome-2'],
@@ -188,15 +188,15 @@ Test,123`;
 
     it('should process outcomes successfully', async () => {
       // Mock no existing outcomes
-      ensureMockFunction(mockPrisma, 'outcome.findUnique').mockResolvedValue(null);
+      mockPrisma.outcome.findUnique.mockResolvedValue(null);
 
       // Mock outcome creation
-      ensureMockFunction(mockPrisma, 'outcome.create')
+      mockPrisma.outcome.create
         .mockResolvedValueOnce({ id: 'outcome-1', code: 'M1.1' })
         .mockResolvedValueOnce({ id: 'outcome-2', code: 'M1.2' });
 
       // Mock outcomes for clustering
-      ensureMockFunction(mockPrisma, 'outcome.findMany').mockResolvedValue([
+      mockPrisma.outcome.findMany.mockResolvedValue([
         { id: 'outcome-1', code: 'M1.1', subject: 'MATH', domain: 'Number', grade: 1 },
         { id: 'outcome-2', code: 'M1.2', subject: 'MATH', domain: 'Number', grade: 1 },
       ]);
@@ -225,11 +225,11 @@ Test,123`;
 
     it('should skip existing outcomes', async () => {
       // Mock first outcome exists, second doesn't
-      ensureMockFunction(mockPrisma, 'outcome.findUnique')
+      mockPrisma.outcome.findUnique
         .mockResolvedValueOnce({ id: 'existing-1', code: 'M1.1' })
         .mockResolvedValueOnce(null);
 
-      ensureMockFunction(mockPrisma, 'outcome.create').mockResolvedValue({
+      mockPrisma.outcome.create.mockResolvedValue({
         id: 'outcome-2',
         code: 'M1.2',
       });
@@ -241,7 +241,7 @@ Test,123`;
     });
 
     it('should handle errors during processing', async () => {
-      ensureMockFunction(mockPrisma, 'outcome.findUnique').mockRejectedValue(
+      mockPrisma.outcome.findUnique.mockRejectedValue(
         new Error('Database error'),
       );
 
@@ -269,8 +269,8 @@ Test,123`;
           domain: 'Number',
         }));
 
-      ensureMockFunction(mockPrisma, 'outcome.findUnique').mockResolvedValue(null);
-      ensureMockFunction(mockPrisma, 'outcome.create').mockImplementation(
+      mockPrisma.outcome.findUnique.mockResolvedValue(null);
+      mockPrisma.outcome.create.mockImplementation(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (args: { data: { code: string } }) =>
           Promise.resolve({ id: `outcome-${args.data.code}`, code: args.data.code }),
@@ -289,8 +289,9 @@ Test,123`;
 
   describe('getImportProgress', () => {
     it('should return import progress', async () => {
+      const importId = 'c' + Math.random().toString(36).substr(2, 24);
       const mockImport = {
-        id: 'import-123',
+        id: importId,
         status: ImportStatus.PROCESSING,
         totalOutcomes: 100,
         processedOutcomes: 50,
@@ -299,10 +300,10 @@ Test,123`;
 
       mockPrisma.curriculumImport.findUnique.mockResolvedValue(mockImport);
 
-      const progress = await curriculumImportService.getImportProgress('import-123');
+      const progress = await curriculumImportService.getImportProgress(importId);
 
       expect(progress).toEqual({
-        importId: 'import-123',
+        importId: importId,
         status: ImportStatus.PROCESSING,
         totalOutcomes: 100,
         processedOutcomes: 50,
@@ -321,13 +322,14 @@ Test,123`;
 
   describe('cancelImport', () => {
     it('should cancel import successfully', async () => {
+      const importId = 'c' + Math.random().toString(36).substr(2, 24);
       mockPrisma.curriculumImport.update.mockResolvedValue({});
 
-      const success = await curriculumImportService.cancelImport('import-123');
+      const success = await curriculumImportService.cancelImport(importId);
 
       expect(success).toBe(true);
       expect(mockPrisma.curriculumImport.update).toHaveBeenCalledWith({
-        where: { id: 'import-123' },
+        where: { id: importId },
         data: { status: ImportStatus.CANCELLED },
       });
     });
@@ -347,16 +349,34 @@ Test,123`;
     it('should return import history for user', async () => {
       const mockImports = [
         {
-          id: 'import-1',
+          id: 'c' + Math.random().toString(36).substr(2, 24),
+          userId: 1,
           createdAt: new Date('2024-01-01'),
+          updatedAt: new Date('2024-01-01'),
           status: ImportStatus.COMPLETED,
+          grade: 5,
+          subject: 'MATH',
+          sourceFormat: 'csv',
+          metadata: {},
+          totalOutcomes: 10,
+          processedOutcomes: 10,
+          errorLog: [],
           clusters: [{ id: 'cluster-1', clusterName: 'Test', clusterType: 'theme' }],
           _count: { curriculumExpectations: 10 },
         },
         {
-          id: 'import-2',
+          id: 'c' + Math.random().toString(36).substr(2, 24),
+          userId: 1,
           createdAt: new Date('2024-01-02'),
+          updatedAt: new Date('2024-01-02'),
           status: ImportStatus.FAILED,
+          grade: 5,
+          subject: 'MATH',
+          sourceFormat: 'csv',
+          metadata: {},
+          totalOutcomes: 0,
+          processedOutcomes: 0,
+          errorLog: ['Error occurred'],
           clusters: [],
           _count: { curriculumExpectations: 0 },
         },
@@ -367,6 +387,9 @@ Test,123`;
       const history = await curriculumImportService.getImportHistory(1, 10);
 
       expect(history).toHaveLength(2);
+      expect(history[0]).toHaveProperty('id');
+      expect(history[0]).toHaveProperty('clusters');
+      expect(history[0]).toHaveProperty('_count');
       expect(mockPrisma.curriculumImport.findMany).toHaveBeenCalledWith({
         where: { userId: 1 },
         orderBy: { createdAt: 'desc' },
@@ -399,7 +422,8 @@ Test,123`;
 
   describe('Edge Cases', () => {
     it.skip('should handle empty outcome array', async () => {
-      const result = await curriculumImportService.processImport('import-123', []);
+      const importId = 'c' + Math.random().toString(36).substr(2, 24);
+      const result = await curriculumImportService.processImport(importId, []);
 
       expect(result.outcomes).toHaveLength(0);
       expect(result.clusters).toHaveLength(0);

@@ -50,7 +50,11 @@ import templateRoutes from './routes/templates';
 import calendarEventRoutes from './routes/calendar-events';
 import recentPlansRoutes from './routes/recent-plans';
 import batchApiRoutes from './routes/batch';
+import subPlanRoutes from './routes/sub-plan';
 import { authRoutes } from './routes/auth';
+import { teamRoutes } from './routes/teams';
+import { sharingRoutes } from './routes/sharing';
+import { commentRoutes } from './routes/comments';
 import {
   initializeServices,
   shutdownServices,
@@ -147,6 +151,14 @@ app.get('/health', (_req, res) => {
 });
 
 app.get('/api/health', (_req, res) => {
+  const healthStatus = performanceMonitor.getHealthStatus();
+  res.status(healthStatus.healthy ? 200 : 503).json({
+    status: healthStatus.healthy ? 'ok' : 'degraded',
+  });
+});
+
+// Detailed health endpoint for debugging  
+app.get('/api/health/detailed', (_req, res) => {
   const healthStatus = performanceMonitor.getHealthStatus();
   res.status(healthStatus.healthy ? 200 : 503).json({
     status: healthStatus.healthy ? 'ok' : 'degraded',
@@ -426,8 +438,16 @@ app.use('/api/ai-activities', authenticateToken, rateLimiters.ai, aiActivityGene
 // Batch Processing Routes
 app.use('/api/batch-processing', authenticateToken, rateLimiters.write, batchProcessingRoutes);
 
+// Sub-plan Routes
+app.use('/api/sub-plan', authenticateToken, rateLimiters.write, subPlanRoutes);
+
 // Batch API Routes (for request batching)
 app.use('/api', authenticateToken, rateLimiters.api, batchApiRoutes);
+
+// Collaboration Routes
+app.use('/api/teams', authenticateToken, rateLimiters.api, teamRoutes(prisma));
+app.use('/api/sharing', authenticateToken, rateLimiters.api, sharingRoutes(prisma));
+app.use('/api/comments', authenticateToken, rateLimiters.api, commentRoutes(prisma));
 
 // Service health check endpoint (no auth required for monitoring)
 app.get('/api/health/services', async (_req, res) => {

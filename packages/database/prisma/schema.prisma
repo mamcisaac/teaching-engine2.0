@@ -99,6 +99,17 @@ model User {
   
   // Recent Plan Access
   recentPlanAccess RecentPlanAccess[]
+  
+  // Collaboration
+  ownedTeams Team[] @relation("TeamOwner")
+  teamMemberships TeamMember[]
+  sharedPlans SharedPlan[] @relation("PlanSharer")
+  receivedPlans SharedPlan[] @relation("PlanReceiver")
+  planComments PlanComment[]
+  sentInvitations TeamInvitation[] @relation("InvitationSender")
+  receivedInvitations TeamInvitation[] @relation("InvitationReceiver")
+  resourceContributions ResourceLibraryItem[] @relation("ResourceContributor")
+  resourceBookmarks ResourceBookmark[]
 }
 
 
@@ -1039,4 +1050,447 @@ model RecentPlanAccess {
   @@unique([userId, planType, planId])
   @@index([userId, lastAccessed])
   @@index([planType, planId])
+}
+
+// ==================== Collaboration Models ====================
+// These models support team collaboration, plan sharing, and resource libraries
+
+// Teams for grade-level or subject-specific collaboration
+model Team {
+  id              String   @id @default(cuid())
+  name            String
+  description     String?
+  
+  // Team identification
+  grade           Int?     // Optional grade level focus
+  subject         String?  // Optional subject focus
+  schoolName      String?  // School affiliation
+  schoolBoard     String?  // School board/district
+  
+  // Team settings
+  isPublic        Boolean  @default(false) // Can anyone request to join?
+  requiresApproval Boolean @default(true)  // Do join requests need approval?
+  allowGuests     Boolean  @default(false) // Can non-members view shared content?
+  
+  // Team ownership
+  ownerId         Int
+  owner           User     @relation("TeamOwner", fields: [ownerId], references: [id])
+  
+  // Team customization
+  teamCode        String   @unique @default(cuid()) // For easy sharing/joining
+  avatarUrl       String?
+  coverImageUrl   String?
+  
+  // Relationships
+  members         TeamMember[]
+  invitations     TeamInvitation[]
+  sharedCalendars TeamCalendar[]
+  sharedResources TeamResource[]
+  discussions     TeamDiscussion[]
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([ownerId])
+  @@index([isPublic])
+  @@index([teamCode])
+  @@index([grade, subject])
+}
+
+// Team membership with roles
+model TeamMember {
+  id          String   @id @default(cuid())
+  teamId      String
+  team        Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
+  
+  role        TeamRole @default(MEMBER)
+  joinedAt    DateTime @default(now())
+  
+  // Member preferences
+  emailNotifications Boolean @default(true)
+  
+  @@unique([teamId, userId])
+  @@index([userId])
+  @@index([teamId, role])
+}
+
+enum TeamRole {
+  OWNER
+  ADMIN
+  MEMBER
+  VIEWER
+}
+
+// Team invitations
+model TeamInvitation {
+  id              String   @id @default(cuid())
+  teamId          String
+  team            Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  
+  // Invitation details
+  email           String
+  invitedById     Int
+  invitedBy       User     @relation("InvitationSender", fields: [invitedById], references: [id])
+  invitedUserId   Int?     // Null if user doesn't exist yet
+  invitedUser     User?    @relation("InvitationReceiver", fields: [invitedUserId], references: [id])
+  
+  message         String?
+  role            TeamRole @default(MEMBER)
+  
+  // Invitation status
+  status          InvitationStatus @default(PENDING)
+  expiresAt       DateTime
+  respondedAt     DateTime?
+  
+  createdAt       DateTime @default(now())
+  
+  @@unique([teamId, email])
+  @@index([email, status])
+  @@index([invitedUserId, status])
+}
+
+enum InvitationStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+  EXPIRED
+}
+
+// Shared plans between users
+model SharedPlan {
+  id              String   @id @default(cuid())
+  
+  // What is being shared
+  planType        String   // 'long-range', 'unit', 'lesson', 'daybook'
+  planId          String   // ID of the specific plan
+  
+  // Sharing details
+  sharedById      Int
+  sharedBy        User     @relation("PlanSharer", fields: [sharedById], references: [id])
+  sharedWithId    Int?     // Null for public links
+  sharedWith      User?    @relation("PlanReceiver", fields: [sharedWithId], references: [id])
+  teamId          String?  // If shared with a team
+  
+  // Permissions
+  canEdit         Boolean  @default(false)
+  canCopy         Boolean  @default(true)
+  canComment      Boolean  @default(true)
+  canReshare      Boolean  @default(false)
+  
+  // Sharing link
+  shareCode       String   @unique @default(cuid())
+  isPublicLink    Boolean  @default(false)
+  linkExpiresAt   DateTime?
+  
+  // Usage tracking
+  viewCount       Int      @default(0)
+  copyCount       Int      @default(0)
+  lastViewedAt    DateTime?
+  
+  // Metadata
+  message         String?  // Optional message from sharer
+  sharedAt        DateTime @default(now())
+  
+  @@index([sharedById])
+  @@index([sharedWithId])
+  @@index([teamId])
+  @@index([shareCode])
+  @@index([planType, planId])
+}
+
+// Comments and feedback on plans
+model PlanComment {
+  id              String   @id @default(cuid())
+  
+  // What is being commented on
+  planType        String   // 'long-range', 'unit', 'lesson', 'daybook'
+  planId          String   // ID of the specific plan
+  
+  // Comment details
+  userId          Int
+  user            User     @relation(fields: [userId], references: [id])
+  content         String
+  
+  // Threading
+  parentId        String?
+  parent          PlanComment? @relation("CommentReplies", fields: [parentId], references: [id])
+  replies         PlanComment[] @relation("CommentReplies")
+  
+  // Comment metadata
+  isResolved      Boolean  @default(false)
+  isPinned        Boolean  @default(false)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([planType, planId])
+  @@index([userId])
+  @@index([parentId])
+}
+
+// Team shared calendar for coordinated planning
+model TeamCalendar {
+  id              String   @id @default(cuid())
+  teamId          String
+  team            Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  
+  title           String
+  description     String?
+  
+  // Calendar settings
+  isDefault       Boolean  @default(false) // Team's main calendar
+  color           String   @default("#3B82F6") // Hex color
+  
+  // Calendar events
+  events          TeamCalendarEvent[]
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([teamId])
+}
+
+// Events in team calendars
+model TeamCalendarEvent {
+  id              String   @id @default(cuid())
+  calendarId      String
+  calendar        TeamCalendar @relation(fields: [calendarId], references: [id], onDelete: Cascade)
+  
+  title           String
+  description     String?
+  
+  // Event timing
+  startDate       DateTime
+  endDate         DateTime
+  allDay          Boolean  @default(false)
+  
+  // Event type
+  eventType       String   // 'meeting', 'deadline', 'field-trip', 'assessment', 'planning'
+  
+  // Event details
+  location        String?
+  attachments     Json?    // Array of file references
+  
+  // Creator
+  createdByUserId Int
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([calendarId])
+  @@index([startDate, endDate])
+}
+
+// Shared resources within teams
+model TeamResource {
+  id              String   @id @default(cuid())
+  teamId          String
+  team            Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  
+  title           String
+  description     String?
+  
+  // Resource type and content
+  resourceType    String   // 'document', 'template', 'link', 'file'
+  url             String?
+  content         String?  // For inline content
+  fileSize        Int?
+  mimeType        String?
+  
+  // Organization
+  category        String?  // User-defined categories
+  tags            Json     // Array of tags
+  
+  // Contributor
+  contributedById Int
+  
+  // Usage tracking
+  downloadCount   Int      @default(0)
+  viewCount       Int      @default(0)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([teamId])
+  @@index([contributedById])
+  @@index([category])
+}
+
+// Team discussions/forums
+model TeamDiscussion {
+  id              String   @id @default(cuid())
+  teamId          String
+  team            Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  
+  title           String
+  content         String
+  
+  // Discussion metadata
+  category        String?  // 'general', 'planning', 'resources', 'help'
+  isPinned        Boolean  @default(false)
+  isLocked        Boolean  @default(false) // No new replies
+  
+  // Author
+  authorId        Int
+  
+  // Engagement metrics
+  viewCount       Int      @default(0)
+  replyCount      Int      @default(0)
+  lastReplyAt     DateTime?
+  
+  // Replies
+  replies         DiscussionReply[]
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([teamId, isPinned])
+  @@index([teamId, category])
+  @@index([authorId])
+}
+
+// Replies to team discussions
+model DiscussionReply {
+  id              String   @id @default(cuid())
+  discussionId    String
+  discussion      TeamDiscussion @relation(fields: [discussionId], references: [id], onDelete: Cascade)
+  
+  content         String
+  authorId        Int
+  
+  // Reply metadata
+  isAnswer        Boolean  @default(false) // Marked as best answer
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([discussionId])
+  @@index([authorId])
+}
+
+// School-wide resource library
+model ResourceLibraryItem {
+  id              String   @id @default(cuid())
+  
+  // Resource identification
+  title           String
+  titleFr         String?
+  description     String?
+  descriptionFr   String?
+  
+  // Resource details
+  resourceType    String   // 'lesson', 'worksheet', 'assessment', 'template', 'media'
+  fileUrl         String?
+  thumbnailUrl    String?
+  content         String?  // For inline content
+  
+  // Categorization
+  subject         String
+  gradeMin        Int
+  gradeMax        Int
+  language        String   @default("en")
+  
+  // French Immersion specific
+  isFrenchImmersion Boolean @default(false)
+  frenchLevel     String?  // 'core', 'extended', 'immersion'
+  
+  // Organization
+  categories      Json     // Array of categories
+  tags            Json     // Array of searchable tags
+  curriculumCodes Json     // Array of curriculum expectation codes
+  
+  // Contributor
+  contributorId   Int
+  contributor     User     @relation("ResourceContributor", fields: [contributorId], references: [id])
+  schoolName      String?
+  schoolBoard     String?
+  
+  // Quality and ratings
+  ratings         ResourceRating[]
+  averageRating   Float?   @default(0)
+  
+  // Usage tracking
+  viewCount       Int      @default(0)
+  downloadCount   Int      @default(0)
+  bookmarkCount   Int      @default(0)
+  
+  // Moderation
+  isApproved      Boolean  @default(false)
+  approvedAt      DateTime?
+  approvedBy      Int?
+  
+  // Versioning
+  version         Int      @default(1)
+  previousVersionId String?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([subject, gradeMin, gradeMax])
+  @@index([resourceType, language])
+  @@index([isApproved])
+  @@index([contributorId])
+  @@index([isFrenchImmersion, frenchLevel])
+}
+
+// Ratings for library resources
+model ResourceRating {
+  id              String   @id @default(cuid())
+  resourceId      String
+  resource        ResourceLibraryItem @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  userId          Int
+  
+  rating          Int      // 1-5 stars
+  review          String?
+  
+  // Context of use
+  gradeUsed       Int?
+  effectiveness   String?  // How well it worked
+  
+  createdAt       DateTime @default(now())
+  
+  @@unique([resourceId, userId])
+  @@index([resourceId, rating])
+}
+
+// User bookmarks for library resources
+model ResourceBookmark {
+  id              String   @id @default(cuid())
+  userId          Int
+  user            User     @relation(fields: [userId], references: [id])
+  resourceId      String
+  
+  notes           String?  // Personal notes
+  tags            Json?    // Personal organization tags
+  
+  createdAt       DateTime @default(now())
+  
+  @@unique([userId, resourceId])
+  @@index([userId])
+}
+
+// Plan version history for collaboration
+model PlanVersion {
+  id              String   @id @default(cuid())
+  
+  // What plan this is a version of
+  planType        String   // 'long-range', 'unit', 'lesson', 'daybook'
+  planId          String   // ID of the specific plan
+  
+  // Version details
+  versionNumber   Int
+  content         Json     // Full plan content at this version
+  
+  // Change tracking
+  changedBy       Int
+  changeNotes     String?
+  changeType      String   // 'create', 'update', 'revert'
+  
+  createdAt       DateTime @default(now())
+  
+  @@unique([planType, planId, versionNumber])
+  @@index([planType, planId])
+  @@index([changedBy])
 }

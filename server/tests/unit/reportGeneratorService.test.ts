@@ -82,6 +82,7 @@ describe('Report Generator Service', () => {
           subject: 'Mathematics',
           grade: 1,
           userId,
+          expectations: [], // Include expectations array
         },
       ];
 
@@ -91,6 +92,7 @@ describe('Report Generator Service', () => {
           title: 'Numbers Unit',
           longRangePlanId: 'lrp1',
           userId,
+          expectations: [], // Include expectations array
         },
       ];
 
@@ -100,7 +102,7 @@ describe('Report Generator Service', () => {
           title: 'Counting Lesson',
           unitPlanId: 'unit1',
           userId,
-          expectations: [{ expectationId: 'exp1' }],
+          expectations: [{ expectationId: 'exp1' }], // This already has the correct structure
         },
       ];
 
@@ -296,6 +298,8 @@ describe('Report Generator Service', () => {
         description: 'Learning about numbers',
         startDate: '2024-01-01',
         endDate: '2024-01-31',
+        estimatedHours: 10,
+        bigIdeas: 'Understanding numbers',
         lessonPlans: [
           {
             id: 'lesson1',
@@ -320,9 +324,11 @@ describe('Report Generator Service', () => {
               id: 'exp1',
               code: 'A1.1',
               description: 'Count to 10',
+              strand: 'Number Sense',
             },
           },
         ],
+        resources: [], // Add resources field
       };
 
       mockPrisma.unitPlan.findUnique.mockResolvedValue(mockUnit);
@@ -331,8 +337,8 @@ describe('Report Generator Service', () => {
 
       expect(report).toBeDefined();
       expect(report.unit.title).toBe('Numbers Unit');
-      expect(report.totalLessons).toBe(2);
-      expect(report.totalDuration).toBe(105);
+      expect(report.lessonSummary.totalLessons).toBe(2);
+      expect(report.lessonSummary.totalDuration).toBe(105);
     });
   });
 
@@ -340,6 +346,8 @@ describe('Report Generator Service', () => {
     test('should handle database errors gracefully', async () => {
       const userId = 1;
       
+      // Clear the mock to ensure our rejection takes effect
+      mockPrisma.curriculumExpectation.findMany.mockClear();
       mockPrisma.curriculumExpectation.findMany.mockRejectedValue(
         new Error('Database connection failed')
       );

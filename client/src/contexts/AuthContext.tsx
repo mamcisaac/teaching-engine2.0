@@ -124,6 +124,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = (userData: User) => {
     setUser(userData);
     setIsAuthenticated(true);
+    setIsLoading(false); // Ensure loading is stopped after successful login
   };
 
   const logout = async () => {

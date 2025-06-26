@@ -1,35 +1,62 @@
-import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll } from '@jest/globals';
 import request from 'supertest';
 import { app } from '../../src/index';
 import { prisma } from '../../src/prisma';
-import { TestDatabaseManager } from '../test-database-manager';
 
+// Sub plan routes have been implemented
 describe('Enhanced Sub Plan API', () => {
-  let testDb: TestDatabaseManager;
-  let testUser: any;
+  let authToken: string;
+  let testUserId: number;
 
   beforeAll(async () => {
-    testDb = new TestDatabaseManager();
-    await testDb.setup();
-  });
+    // Create test user for authentication
+    const bcrypt = (await import('bcryptjs')).default;
+    const hashedPassword = await bcrypt.hash('testpassword123', 10);
+    const timestamp = Date.now();
+    const testEmail = `subplan-test-${timestamp}@example.com`;
 
-  afterAll(async () => {
-    await testDb.teardown();
-  });
-
-  beforeEach(async () => {
-    await testDb.reset();
-
-    // Create test user
-    testUser = await prisma.user.create({
+    const user = await prisma.user.create({
       data: {
-        email: 'teacher@school.com',
-        password: 'password',
-        name: 'Test Teacher',
+        email: testEmail,
+        password: hashedPassword,
+        name: 'Sub Plan Tester',
         role: 'teacher',
         preferredLanguage: 'en',
       },
     });
+
+    testUserId = user.id;
+
+    // Disconnect and reconnect to ensure transaction is committed
+    await prisma.$disconnect();
+    await prisma.$connect();
+
+    // Login to get proper auth token
+    const loginResponse = await request(app).post('/api/login').send({
+      email: testEmail,
+      password: 'testpassword123',
+    });
+
+    if (loginResponse.status !== 200) {
+      throw new Error(
+        `Login failed: ${loginResponse.status} ${JSON.stringify(loginResponse.body)}`,
+      );
+    }
+
+    authToken = loginResponse.body.token;
+
+    if (!authToken) {
+      throw new Error('No auth token received from login');
+    }
+  });
+
+  afterAll(async () => {
+    // No explicit cleanup needed - global setup handles it
+  });
+
+  const createTestData = async () => {
+    // Use the existing test user created in beforeAll
+    const testUser = { id: testUserId };
 
     // Create test class routines
     await prisma.classRoutine.createMany({
@@ -96,10 +123,14 @@ describe('Enhanced Sub Plan API', () => {
         },
       ],
     });
-  });
+
+    return testUser;
+  };
 
   describe('POST /api/sub-plan/generate', () => {
     it('should generate sub plan with all features included', async () => {
+      const testUser = await createTestData();
+      
       const options = {
         date: '2025-04-12',
         days: 1,
@@ -112,7 +143,7 @@ describe('Enhanced Sub Plan API', () => {
 
       const response = await request(app)
         .post('/api/sub-plan/generate')
-        .set('Authorization', `Bearer ${global.testToken}`)
+        .set('Authorization', `Bearer ${authToken}`)
         .send(options)
         .expect(200);
 
@@ -121,6 +152,8 @@ describe('Enhanced Sub Plan API', () => {
     });
 
     it('should generate anonymized sub plan', async () => {
+      const testUser = await createTestData();
+      
       const options = {
         date: '2025-04-12',
         days: 1,
@@ -133,7 +166,7 @@ describe('Enhanced Sub Plan API', () => {
 
       const response = await request(app)
         .post('/api/sub-plan/generate')
-        .set('Authorization', `Bearer ${global.testToken}`)
+        .set('Authorization', `Bearer ${authToken}`)
         .send(options)
         .expect(200);
 
@@ -141,6 +174,8 @@ describe('Enhanced Sub Plan API', () => {
     });
 
     it('should save sub plan record when requested', async () => {
+      const testUser = await createTestData();
+      
       const options = {
         date: '2025-04-12',
         days: 1,
@@ -156,7 +191,7 @@ describe('Enhanced Sub Plan API', () => {
 
       await request(app)
         .post('/api/sub-plan/generate')
-        .set('Authorization', `Bearer ${global.testToken}`)
+        .set('Authorization', `Bearer ${authToken}`)
         .send(options)
         .expect(200);
 
@@ -165,16 +200,18 @@ describe('Enhanced Sub Plan API', () => {
       });
 
       expect(record).toBeDefined();
-      expect(record?.emailedTo).toBe('substitute@school.com');
+      expect((record?.content as any)?.emailedTo).toBe('substitute@school.com');
       expect(record?.notes).toBe('Watch for peanut allergies');
     });
   });
 
   describe('Class Routine Management', () => {
     it('should get all routines for user', async () => {
+      const testUser = await createTestData();
+      
       const response = await request(app)
         .get('/api/sub-plan/routines')
-        .set('Authorization', `Bearer ${global.testToken}`)
+        .set('Authorization', `Bearer ${authToken}`)
         .query({ userId: testUser.id })
         .expect(200);
 
@@ -183,6 +220,8 @@ describe('Enhanced Sub Plan API', () => {
     });
 
     it('should create new routine', async () => {
+      const testUser = await createTestData();
+      
       const newRoutine = {
         userId: testUser.id,
         title: 'Quiet Signal',
@@ -193,7 +232,7 @@ describe('Enhanced Sub Plan API', () => {
 
       const response = await request(app)
         .post('/api/sub-plan/routines')
-        .set('Authorization', `Bearer ${global.testToken}`)
+        .set('Authorization', `Bearer ${authToken}`)
         .send(newRoutine)
         .expect(200);
 
@@ -202,8 +241,10 @@ describe('Enhanced Sub Plan API', () => {
     });
 
     it('should update existing routine', async () => {
+      const testUser = await createTestData();
+      
       const routine = await prisma.classRoutine.findFirst({
-        where: { title: 'Morning Circle' },
+        where: { title: 'Morning Circle', userId: testUser.id },
       });
 
       const updateData = {
@@ -216,7 +257,7 @@ describe('Enhanced Sub Plan API', () => {
 
       const response = await request(app)
         .post('/api/sub-plan/routines')
-        .set('Authorization', `Bearer ${global.testToken}`)
+        .set('Authorization', `Bearer ${authToken}`)
         .send(updateData)
         .expect(200);
 
@@ -225,13 +266,15 @@ describe('Enhanced Sub Plan API', () => {
     });
 
     it('should delete routine', async () => {
+      const testUser = await createTestData();
+      
       const routine = await prisma.classRoutine.findFirst({
-        where: { title: 'Line Up Procedure' },
+        where: { title: 'Line Up Procedure', userId: testUser.id },
       });
 
       await request(app)
         .delete(`/api/sub-plan/routines/${routine!.id}`)
-        .set('Authorization', `Bearer ${global.testToken}`)
+        .set('Authorization', `Bearer ${authToken}`)
         .expect(200);
 
       const deleted = await prisma.classRoutine.findUnique({
@@ -244,6 +287,8 @@ describe('Enhanced Sub Plan API', () => {
 
   describe('Sub Plan Records', () => {
     it('should retrieve saved sub plan records', async () => {
+      const testUser = await createTestData();
+      
       // Create some test records
       await prisma.subPlanRecord.createMany({
         data: [
@@ -272,7 +317,7 @@ describe('Enhanced Sub Plan API', () => {
 
       const response = await request(app)
         .get('/api/sub-plan/records')
-        .set('Authorization', `Bearer ${global.testToken}`)
+        .set('Authorization', `Bearer ${authToken}`)
         .query({ userId: testUser.id })
         .expect(200);
 

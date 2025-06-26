@@ -8,6 +8,48 @@ import { clsx } from 'clsx';
 
 // Mock help content - in a real app, this would come from markdown files
 const mockHelpContent: Record<string, string> = {
+  'keyboard-shortcuts': `
+    # Keyboard Shortcuts
+
+    Teaching Engine 2.0 includes comprehensive keyboard shortcuts to help tech-savvy teachers work more efficiently.
+
+    ## Quick Reference
+    Press **?** or **F1** at any time to view all available keyboard shortcuts.
+
+    ## Global Shortcuts
+    - **Ctrl/Cmd + N**: Create new lesson plan
+    - **Ctrl/Cmd + S**: Save current work
+    - **Ctrl/Cmd + F**: Search/Find
+    - **Ctrl/Cmd + H**: Show keyboard shortcuts help
+    - **Escape**: Close modals and overlays
+
+    ## Navigation Shortcuts
+    - **Alt + D**: Go to Dashboard
+    - **Alt + P**: Go to Planning
+    - **Alt + C**: Go to Curriculum
+    - **Alt + H**: Go to Help
+    - **Alt + 1-5**: Quick jump to ETFO planning levels
+    - **Alt + ←**: Go back
+    - **Alt + →**: Go forward
+    - **Ctrl/Cmd + B**: Toggle sidebar
+
+    ## Planning Shortcuts
+    - **Ctrl/Cmd + Enter**: Save and continue
+    - **Ctrl/Cmd + D**: Duplicate current item
+    - **Ctrl/Cmd + Delete**: Delete current item
+    - **Ctrl/Cmd + P**: Print lesson plan
+    - **Ctrl/Cmd + I**: Toggle AI Assistant
+
+    ## Editing Shortcuts
+    - **Ctrl/Cmd + Z**: Undo
+    - **Ctrl/Cmd + Y**: Redo (or Ctrl/Cmd + Shift + Z)
+    - **Tab**: Navigate to next field
+    - **Shift + Tab**: Navigate to previous field
+
+    ## Customization
+    You can customize keyboard shortcuts in Settings → Keyboard Shortcuts. 
+    All shortcuts can be remapped to suit your preferences.
+  `,
   'getting-started': `
     # Getting Started with Teaching Engine 2.0
 
