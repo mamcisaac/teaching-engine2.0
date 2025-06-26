@@ -89,7 +89,7 @@ jobs:
 
       - name: Run unit tests (shard ${{ matrix.shard }}/4)
         run: |
-          pnpm --filter server test:unit -- --shard=${{ matrix.shard }}/4 --coverage --passWithNoTests
+          pnpm --filter server test:unit
         env:
           NODE_OPTIONS: '--max-old-space-size=4096'
 
@@ -115,7 +115,7 @@ jobs:
           pnpm-version: ${{ env.PNPM_VERSION }}
 
       - name: Run integration tests
-        run: pnpm --filter server test:integration -- --passWithNoTests
+        run: pnpm --filter server test:integration
         env:
           DATABASE_URL: file:./test-integration.db
           NODE_OPTIONS: '--max-old-space-size=4096'

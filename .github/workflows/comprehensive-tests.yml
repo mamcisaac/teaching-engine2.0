@@ -86,7 +86,7 @@ jobs:
         env:
           OPENAI_API_KEY: test-api-key
         run: |
-          pnpm --filter server test:unit --coverage --coverageReporters=text-lcov --coverageReporters=json --coverageReporters=html -- --passWithNoTests
+          pnpm --filter server test:unit --coverage --coverageReporters=text-lcov --coverageReporters=json --coverageReporters=html
 
       - name: Upload unit test coverage to Codecov
         uses: codecov/codecov-action@v4
