@@ -78,7 +78,10 @@ jobs:
           pnpm-version: ${{ env.PNPM_VERSION }}
 
       - name: Generate Prisma Client
-        run: pnpm --filter @teaching-engine/database db:generate
+        run: |
+          cd packages/database
+          npx prisma generate
+          cd ../..
 
       - name: Cache test results
         uses: actions/cache@v3
@@ -118,7 +121,10 @@ jobs:
           pnpm-version: ${{ env.PNPM_VERSION }}
 
       - name: Generate Prisma Client
-        run: pnpm --filter @teaching-engine/database db:generate
+        run: |
+          cd packages/database
+          npx prisma generate
+          cd ../..
 
       - name: Run integration tests
         run: pnpm --filter server test:integration
