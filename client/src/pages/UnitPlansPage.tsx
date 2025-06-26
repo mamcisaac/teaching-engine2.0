@@ -224,12 +224,15 @@ export default function UnitPlansPage() {
       if (isUnitPlanTemplate(template) && applied.appliedContent) {
         // Pre-populate form with template data
         const templateContent = applied.appliedContent as UnitPlanContent;
-        updateField('title', (templateContent as any).title || '');
-        updateField('description', templateContent.overview || (templateContent as any).description || '');
+        updateField('title', '');
+        updateField('description', templateContent.overview || '');
         updateField('bigIdeas', templateContent.bigIdeas || '');
-        updateField('essentialQuestions', (templateContent as any).essentialQuestions || []);
-        updateField('keyVocabulary', (templateContent as any).keyVocabulary || []);
-        updateField('assessmentPlan', (templateContent as any).assessments || '');
+        updateField('essentialQuestions', templateContent.essentialQuestions || []);
+        updateField('keyVocabulary', templateContent.keyVocabulary || []);
+        updateField(
+          'assessmentPlan',
+          templateContent.assessments ? JSON.stringify(templateContent.assessments) : '',
+        );
         updateField('successCriteria', templateContent.successCriteria || []);
         updateField('crossCurricularConnections', templateContent.crossCurricularConnections || '');
         // Handle differentiationStrategies which might have different structure in template
@@ -331,11 +334,16 @@ export default function UnitPlansPage() {
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => printHTML(generateUnitPlanHTML({
-                      ...unit,
-                      startDate: new Date(unit.startDate),
-                      endDate: new Date(unit.endDate)
-                    }), `${unit.title}-unit-plan`)}
+                    onClick={() =>
+                      printHTML(
+                        generateUnitPlanHTML({
+                          ...unit,
+                          startDate: new Date(unit.startDate),
+                          endDate: new Date(unit.endDate),
+                        }),
+                        `${unit.title}-unit-plan`,
+                      )
+                    }
                     className="flex items-center gap-2"
                   >
                     <Printer className="h-4 w-4" />
@@ -345,11 +353,14 @@ export default function UnitPlansPage() {
                     variant="outline"
                     size="sm"
                     onClick={() =>
-                      downloadHTML(generateUnitPlanHTML({
-                        ...unit,
-                        startDate: new Date(unit.startDate),
-                        endDate: new Date(unit.endDate)
-                      }), `${unit.title}-unit-plan`)
+                      downloadHTML(
+                        generateUnitPlanHTML({
+                          ...unit,
+                          startDate: new Date(unit.startDate),
+                          endDate: new Date(unit.endDate),
+                        }),
+                        `${unit.title}-unit-plan`,
+                      )
                     }
                     className="flex items-center gap-2"
                   >

@@ -18,7 +18,20 @@ import { Label } from '../components/ui/Label';
 import { Input } from '../components/ui/Input';
 import { Textarea } from '../components/ui/Textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { Plus, Trash2, Clock, Calendar, BookOpen, CheckCircle, Sparkles, Printer, Download, Save, RefreshCw, BookTemplate } from 'lucide-react';
+import {
+  Plus,
+  Trash2,
+  Clock,
+  Calendar,
+  BookOpen,
+  CheckCircle,
+  Sparkles,
+  Printer,
+  Download,
+  Save,
+  RefreshCw,
+  BookTemplate,
+} from 'lucide-react';
 import { format } from 'date-fns';
 import { Checkbox } from '../components/ui/Checkbox';
 import { Badge } from '../components/ui/Badge';
@@ -36,8 +49,12 @@ import ExpectationSelector from '../components/planning/ExpectationSelector';
 import { InfoTooltip } from '../components/ui/Tooltip';
 
 // Lazy load AI components for better performance
-const AILessonPlanPanel = lazy(() => import('../components/ai/AILessonPlanPanel').then(m => ({ default: m.AILessonPlanPanel })));
-const WithAIErrorBoundary = lazy(() => import('../components/ai/AIErrorBoundary').then(m => ({ default: m.WithAIErrorBoundary })));
+const AILessonPlanPanel = lazy(() =>
+  import('../components/ai/AILessonPlanPanel').then((m) => ({ default: m.AILessonPlanPanel })),
+);
+const WithAIErrorBoundary = lazy(() =>
+  import('../components/ai/AIErrorBoundary').then((m) => ({ default: m.WithAIErrorBoundary })),
+);
 import { useAutoSave, useUnsavedChangesWarning } from '../hooks/useAutoSave';
 import { AutoSaveIndicator } from '../components/ui/AutoSaveIndicator';
 import { MobileOptimizedForm, CollapsibleSection } from '../components/ui/MobileOptimizedForm';
@@ -75,7 +92,7 @@ export default function ETFOLessonPlanPage() {
     limit: 20,
   });
   const applyTemplate = useApplyTemplate();
-  
+
   const lessonTemplates = lessonTemplatesResult?.templates || [];
 
   // Form state
@@ -105,11 +122,13 @@ export default function ETFOLessonPlanPage() {
   });
 
   // Auto-save functionality for existing lessons
-  const autoSaveData = editingLesson ? {
-    ...formData,
-    expectationIds: formData.expectationIds
-  } : null;
-  
+  const autoSaveData = editingLesson
+    ? {
+        ...formData,
+        expectationIds: formData.expectationIds,
+      }
+    : null;
+
   const { lastSaved, isSaving, hasUnsavedChanges, saveNow } = useAutoSave({
     data: autoSaveData,
     saveFn: async (data) => {
@@ -128,7 +147,7 @@ export default function ETFOLessonPlanPage() {
     enabled: !!editingLesson && !!autoSaveData,
     delay: 30000, // 30 seconds
   });
-  
+
   useUnsavedChangesWarning(hasUnsavedChanges);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -270,7 +289,7 @@ export default function ETFOLessonPlanPage() {
         setFormData({ ...formData, consolidation: content.join('\n\n') });
         break;
       case 'materials': {
-        const existingMaterials = formData.materials.filter(m => m.trim());
+        const existingMaterials = formData.materials.filter((m) => m.trim());
         setFormData({ ...formData, materials: [...existingMaterials, ...content] });
         break;
       }
@@ -278,11 +297,11 @@ export default function ETFOLessonPlanPage() {
         setFormData({ ...formData, assessmentNotes: content.join('\n\n') });
         break;
       default:
-        // Unhandled suggestion type
+      // Unhandled suggestion type
     }
   };
 
-  const handleAILessonGenerated = (lessonPlan: { 
+  const handleAILessonGenerated = (lessonPlan: {
     title?: string;
     learningGoals?: string[];
     structure?: {
@@ -304,7 +323,7 @@ export default function ETFOLessonPlanPage() {
         handsOn: { activities: string[]; duration: number; materials: string[] };
         mindsOnReflection: { activities: string[]; duration: number; materials: string[] };
       };
-      
+
       setFormData({
         ...formData,
         mindsOn: structure.mindsOn.activities.join('\n\n'),
@@ -314,10 +333,13 @@ export default function ETFOLessonPlanPage() {
           ...new Set([
             ...structure.mindsOn.materials,
             ...structure.handsOn.materials,
-            ...structure.mindsOnReflection.materials
-          ])
+            ...structure.mindsOnReflection.materials,
+          ]),
         ],
-        duration: structure.mindsOn.duration + structure.handsOn.duration + structure.mindsOnReflection.duration,
+        duration:
+          structure.mindsOn.duration +
+          structure.handsOn.duration +
+          structure.mindsOnReflection.duration,
       });
     } else {
       // Legacy format
@@ -327,7 +349,9 @@ export default function ETFOLessonPlanPage() {
         learningGoals: lessonPlan.learningGoals?.join('\n') || formData.learningGoals,
         mindsOn: lessonPlan.structure?.mindsOn?.activities?.join('\n\n') || formData.mindsOn,
         action: lessonPlan.structure?.handsOn?.activities?.join('\n\n') || formData.action,
-        consolidation: lessonPlan.structure?.mindsOnReflection?.activities?.join('\n\n') || formData.consolidation,
+        consolidation:
+          lessonPlan.structure?.mindsOnReflection?.activities?.join('\n\n') ||
+          formData.consolidation,
         materials: lessonPlan.materials || formData.materials,
         duration: lessonPlan.duration || formData.duration,
       });
@@ -337,35 +361,37 @@ export default function ETFOLessonPlanPage() {
   const handleApplyTemplate = async (template: PlanTemplate) => {
     try {
       const applied = await applyTemplate.mutateAsync({ id: template.id });
-      
+
       if (isLessonPlanTemplate(template) && applied.appliedContent) {
         // Pre-populate form with template data
         const templateContent = applied.appliedContent as LessonPlanContent;
         setFormData({
           ...formData,
-          title: (templateContent as any).title || '',
-          titleFr: (templateContent as any).titleFr || '',
+          title: '',
+          titleFr: '',
           duration: templateContent.duration || 60,
-          learningGoals: (templateContent as any).learningGoals || '',
-          learningGoalsFr: (templateContent as any).learningGoalsFr || '',
+          learningGoals: '',
+          learningGoalsFr: '',
           mindsOn: templateContent.mindsOn || '',
-          mindsOnFr: (templateContent as any).mindsOnFr || '',
+          mindsOnFr: '',
           action: templateContent.action || '',
-          actionFr: (templateContent as any).actionFr || '',
+          actionFr: '',
           consolidation: templateContent.consolidation || '',
-          consolidationFr: (templateContent as any).consolidationFr || '',
+          consolidationFr: '',
           materials: templateContent.materials || [''],
           grouping: templateContent.grouping || 'whole',
           accommodations: templateContent.accommodations || [''],
           modifications: templateContent.modifications || [''],
           extensions: templateContent.extensions || [''],
-          assessmentType: (templateContent.assessmentType as any) || 'formative',
+          assessmentType:
+            (templateContent.assessmentType as 'diagnostic' | 'formative' | 'summative') ||
+            'formative',
           assessmentNotes: templateContent.assessmentNotes || '',
-          isSubFriendly: (templateContent as any).isSubFriendly || false,
-          subNotes: (templateContent as any).subNotes || '',
+          isSubFriendly: false,
+          subNotes: '',
         });
       }
-      
+
       setIsTemplateModalOpen(false);
       setSelectedTemplate(null);
       setIsCreateModalOpen(true);
@@ -428,10 +454,18 @@ export default function ETFOLessonPlanPage() {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => printHTML(generateLessonPlanHTML({
-                    ...selectedLesson,
-                    date: new Date(selectedLesson.date)
-                  }, unitPlan), `${selectedLesson.title}-lesson-plan`)}
+                  onClick={() =>
+                    printHTML(
+                      generateLessonPlanHTML(
+                        {
+                          ...selectedLesson,
+                          date: new Date(selectedLesson.date),
+                        },
+                        unitPlan,
+                      ),
+                      `${selectedLesson.title}-lesson-plan`,
+                    )
+                  }
                   className="flex items-center gap-2"
                 >
                   <Printer className="h-4 w-4" />
@@ -440,10 +474,18 @@ export default function ETFOLessonPlanPage() {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => downloadHTML(generateLessonPlanHTML({
-                    ...selectedLesson,
-                    date: new Date(selectedLesson.date)
-                  }, unitPlan), `${selectedLesson.title}-lesson-plan`)}
+                  onClick={() =>
+                    downloadHTML(
+                      generateLessonPlanHTML(
+                        {
+                          ...selectedLesson,
+                          date: new Date(selectedLesson.date),
+                        },
+                        unitPlan,
+                      ),
+                      `${selectedLesson.title}-lesson-plan`,
+                    )
+                  }
                   className="flex items-center gap-2"
                 >
                   <Download className="h-4 w-4" />
@@ -505,7 +547,7 @@ export default function ETFOLessonPlanPage() {
             {selectedLesson.learningGoals && (
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Learning Goals</h3>
-                <SafeHtmlRenderer 
+                <SafeHtmlRenderer
                   html={selectedLesson.learningGoals}
                   className="prose max-w-none"
                 />
@@ -520,7 +562,7 @@ export default function ETFOLessonPlanPage() {
                 </CardHeader>
                 <CardContent>
                   {selectedLesson.mindsOn ? (
-                    <SafeHtmlRenderer 
+                    <SafeHtmlRenderer
                       html={selectedLesson.mindsOn}
                       className="prose max-w-none text-sm"
                     />
@@ -537,7 +579,7 @@ export default function ETFOLessonPlanPage() {
                 </CardHeader>
                 <CardContent>
                   {selectedLesson.action ? (
-                    <SafeHtmlRenderer 
+                    <SafeHtmlRenderer
                       html={selectedLesson.action}
                       className="prose max-w-none text-sm"
                     />
@@ -554,7 +596,7 @@ export default function ETFOLessonPlanPage() {
                 </CardHeader>
                 <CardContent>
                   {selectedLesson.consolidation ? (
-                    <SafeHtmlRenderer 
+                    <SafeHtmlRenderer
                       html={selectedLesson.consolidation}
                       className="prose max-w-none text-sm"
                     />
@@ -712,7 +754,7 @@ export default function ETFOLessonPlanPage() {
           </div>
 
           <div className="flex items-center gap-3">
-            <BlankTemplateQuickActions 
+            <BlankTemplateQuickActions
               templateType="lesson"
               schoolInfo={{
                 grade: unitPlan?.longRangePlan ? `Grade ${unitPlan.longRangePlan.grade}` : '',
@@ -788,8 +830,12 @@ export default function ETFOLessonPlanPage() {
               {lessonPlans.map((lesson) => (
                 <tr key={lesson.id} className="hover:bg-gray-50">
                   <td className="px-3 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-900">
-                    <span className="block sm:hidden">{format(new Date(lesson.date), 'MMM d')}</span>
-                    <span className="hidden sm:block">{format(new Date(lesson.date), 'MMM d, yyyy')}</span>
+                    <span className="block sm:hidden">
+                      {format(new Date(lesson.date), 'MMM d')}
+                    </span>
+                    <span className="hidden sm:block">
+                      {format(new Date(lesson.date), 'MMM d, yyyy')}
+                    </span>
                   </td>
                   <td className="px-3 sm:px-6 py-2 sm:py-4">
                     <Link
@@ -928,435 +974,461 @@ export default function ETFOLessonPlanPage() {
                   <TabsTrigger value="assessment">Assessment</TabsTrigger>
                 </TabsList>
 
-              <TabsContent value="overview" className="space-y-4 mt-4">
-                <CollapsibleSection title="Basic Information" required defaultExpanded>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <Label>Lesson Title *</Label>
-                      <Input
-                        required
-                        value={formData.title}
-                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                        placeholder="e.g., Introduction to Ecosystems"
-                      />
-                    </div>
-                    <div>
-                      <Label>Title (French)</Label>
-                      <Input
-                        value={formData.titleFr}
-                        onChange={(e) => setFormData({ ...formData, titleFr: e.target.value })}
-                        placeholder="e.g., Introduction aux écosystèmes"
-                      />
-                    </div>
-                  </div>
-                </CollapsibleSection>
-
-                <CollapsibleSection title="Scheduling & Duration" defaultExpanded>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                      <Label>Date *</Label>
-                      <Input
-                        type="date"
-                        required
-                        value={formData.date}
-                        onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                      />
-                  </div>
-                  <div>
-                    <Label>Duration (minutes) *</Label>
-                    <Input
-                      type="number"
-                      required
-                      min="15"
-                      max="300"
-                      value={formData.duration}
-                      onChange={(e) =>
-                        setFormData({ ...formData, duration: Number(e.target.value) })
-                      }
-                    />
-                  </div>
-                  <div>
-                    <Label>Grouping</Label>
-                    <select
-                      value={formData.grouping}
-                      onChange={(e) => setFormData({ ...formData, grouping: e.target.value })}
-                      className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                    >
-                      <option value="whole">Whole Class</option>
-                      <option value="small">Small Groups</option>
-                      <option value="pairs">Pairs</option>
-                      <option value="individual">Individual</option>
-                      <option value="mixed">Mixed Groupings</option>
-                    </select>
-                    </div>
-                  </div>
-                </CollapsibleSection>
-
-                <CollapsibleSection title="Learning Goals" defaultExpanded>
-                  <div>
-                    <Label>Learning Goals</Label>
-                  <RichTextEditor
-                    value={formData.learningGoals}
-                    onChange={(value) => setFormData({ ...formData, learningGoals: value })}
-                  />
-                </div>
-
-                <div>
-                  <Label>Learning Goals (French)</Label>
-                  <RichTextEditor
-                    value={formData.learningGoalsFr}
-                    onChange={(value) => setFormData({ ...formData, learningGoalsFr: value })}
-                  />
-                  </div>
-                </CollapsibleSection>
-
-                <CollapsibleSection title="Special Considerations" defaultExpanded={false}>
-                  <div className="space-y-4">
-                    <div className="flex items-center space-x-2">
-                      <Checkbox
-                        id="subFriendly"
-                        checked={formData.isSubFriendly}
-                        onCheckedChange={(checked) =>
-                          setFormData({ ...formData, isSubFriendly: checked as boolean })
-                        }
-                      />
-                      <Label htmlFor="subFriendly" className="font-normal">
-                        This lesson is substitute teacher friendly
-                      </Label>
-                    </div>
-
-                    {formData.isSubFriendly && (
+                <TabsContent value="overview" className="space-y-4 mt-4">
+                  <CollapsibleSection title="Basic Information" required defaultExpanded>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <Label>Substitute Teacher Notes</Label>
-                        <Textarea
-                          value={formData.subNotes}
-                          onChange={(e) => setFormData({ ...formData, subNotes: e.target.value })}
-                          placeholder="Special instructions for substitute teachers..."
-                          rows={3}
-                        />
-                      </div>
-                    )}
-                  </div>
-                </CollapsibleSection>
-
-                <CollapsibleSection title="Curriculum Expectations" defaultExpanded>
-                  <div>
-                    <ExpectationSelector
-                      selectedIds={formData.expectationIds}
-                      onChange={(ids) => setFormData({ ...formData, expectationIds: ids })}
-                      grade={unitPlan?.longRangePlan?.grade}
-                      subject={unitPlan?.longRangePlan?.subject}
-                      label="Curriculum Expectations"
-                      placeholder="Select curriculum expectations for this lesson..."
-                    />
-                  </div>
-                </CollapsibleSection>
-              </TabsContent>
-
-              <TabsContent value="ai-assistant" className="space-y-6 mt-4">
-                <Suspense fallback={
-                  <div className="flex items-center justify-center p-8">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                    <span className="ml-2 text-gray-600">Loading AI Assistant...</span>
-                  </div>
-                }>
-                  <WithAIErrorBoundary>
-                    <AILessonPlanPanel
-                      lessonTitle={formData.title}
-                      subject={unitPlan?.longRangePlan?.subject || ''}
-                      grade={unitPlan?.longRangePlan?.grade || 1}
-                      duration={formData.duration}
-                      learningGoals={formData.learningGoals ? [formData.learningGoals] : []}
-                      unitContext={unitPlan ? {
-                        title: unitPlan.title,
-                        bigIdeas: unitPlan.bigIdeas ? [unitPlan.bigIdeas] : [],
-                        expectations: unitPlan.expectations?.map(exp => ({
-                          id: exp.expectation.id,
-                          code: exp.expectation.code,
-                          description: exp.expectation.description,
-                        })) || [],
-                      } : undefined}
-                      onSuggestionAccepted={handleAISuggestionAccepted}
-                      onLessonGenerated={handleAILessonGenerated}
-                      className="w-full"
-                    />
-                  </WithAIErrorBoundary>
-                </Suspense>
-              </TabsContent>
-
-              <TabsContent value="three-part" className="space-y-6 mt-4">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Minds On</CardTitle>
-                    <CardDescription>
-                      Hook and activate prior knowledge (typically 10-15% of lesson time)
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div>
-                      <Label>Activities (English)</Label>
-                      <RichTextEditor
-                        value={formData.mindsOn}
-                        onChange={(value) => setFormData({ ...formData, mindsOn: value })}
-                      />
-                    </div>
-                    <div>
-                      <Label>Activities (French)</Label>
-                      <RichTextEditor
-                        value={formData.mindsOnFr}
-                        onChange={(value) => setFormData({ ...formData, mindsOnFr: value })}
-                      />
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Action</CardTitle>
-                    <CardDescription>
-                      Main learning activities and exploration (typically 60-70% of lesson time)
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div>
-                      <Label>Activities (English)</Label>
-                      <RichTextEditor
-                        value={formData.action}
-                        onChange={(value) => setFormData({ ...formData, action: value })}
-                      />
-                    </div>
-                    <div>
-                      <Label>Activities (French)</Label>
-                      <RichTextEditor
-                        value={formData.actionFr}
-                        onChange={(value) => setFormData({ ...formData, actionFr: value })}
-                      />
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Consolidation</CardTitle>
-                    <CardDescription>
-                      Summarize, reflect, and assess understanding (typically 20% of lesson time)
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div>
-                      <Label>Activities (English)</Label>
-                      <RichTextEditor
-                        value={formData.consolidation}
-                        onChange={(value) => setFormData({ ...formData, consolidation: value })}
-                      />
-                    </div>
-                    <div>
-                      <Label>Activities (French)</Label>
-                      <RichTextEditor
-                        value={formData.consolidationFr}
-                        onChange={(value) => setFormData({ ...formData, consolidationFr: value })}
-                      />
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="materials" className="space-y-4 mt-4">
-                <div>
-                  <Label>Materials and Resources</Label>
-                  <div className="space-y-2 mt-2">
-                    {formData.materials.map((material, index) => (
-                      <div key={index} className="flex gap-2">
+                        <Label>Lesson Title *</Label>
                         <Input
-                          value={material}
-                          onChange={(e) => updateMaterial(index, e.target.value)}
-                          placeholder="e.g., Chart paper, markers, science textbook p.45-48"
+                          required
+                          value={formData.title}
+                          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                          placeholder="e.g., Introduction to Ecosystems"
                         />
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => removeMaterial(index)}
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
                       </div>
-                    ))}
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={addMaterial}
-                      className="w-full"
-                    >
-                      <Plus className="h-4 w-4 mr-2" />
-                      Add Material
-                    </Button>
-                  </div>
-                </div>
-              </TabsContent>
-
-              <TabsContent value="differentiation" className="space-y-6 mt-4">
-                <div>
-                  <Label>Accommodations</Label>
-                  <p className="text-sm text-gray-600 mb-2">
-                    Supports for students to access the curriculum
-                  </p>
-                  <div className="space-y-2">
-                    {formData.accommodations.map((accommodation, index) => (
-                      <div key={index} className="flex gap-2">
+                      <div>
+                        <Label>Title (French)</Label>
                         <Input
-                          value={accommodation}
-                          onChange={(e) => updateAccommodation(index, e.target.value)}
-                          placeholder="e.g., Provide visual aids, allow extra time"
+                          value={formData.titleFr}
+                          onChange={(e) => setFormData({ ...formData, titleFr: e.target.value })}
+                          placeholder="e.g., Introduction aux écosystèmes"
                         />
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => removeAccommodation(index)}
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
                       </div>
-                    ))}
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={addAccommodation}
-                      className="w-full"
-                    >
-                      <Plus className="h-4 w-4 mr-2" />
-                      Add Accommodation
-                    </Button>
-                  </div>
-                </div>
+                    </div>
+                  </CollapsibleSection>
 
-                <div>
-                  <Label>Modifications</Label>
-                  <p className="text-sm text-gray-600 mb-2">
-                    Changes to curriculum expectations for individual students
-                  </p>
-                  <div className="space-y-2">
-                    {formData.modifications.map((modification, index) => (
-                      <div key={index} className="flex gap-2">
+                  <CollapsibleSection title="Scheduling & Duration" defaultExpanded>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                        <Label>Date *</Label>
                         <Input
-                          value={modification}
-                          onChange={(e) => updateModification(index, e.target.value)}
-                          placeholder="e.g., Simplified text, reduced number of questions"
+                          type="date"
+                          required
+                          value={formData.date}
+                          onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                         />
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => removeModification(index)}
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
                       </div>
-                    ))}
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={addModification}
-                      className="w-full"
-                    >
-                      <Plus className="h-4 w-4 mr-2" />
-                      Add Modification
-                    </Button>
-                  </div>
-                </div>
-
-                <div>
-                  <Label>Extensions</Label>
-                  <p className="text-sm text-gray-600 mb-2">
-                    Enrichment activities for students who finish early
-                  </p>
-                  <div className="space-y-2">
-                    {formData.extensions.map((extension, index) => (
-                      <div key={index} className="flex gap-2">
+                      <div>
+                        <Label>Duration (minutes) *</Label>
                         <Input
-                          value={extension}
-                          onChange={(e) => updateExtension(index, e.target.value)}
-                          placeholder="e.g., Research project, advanced problems"
+                          type="number"
+                          required
+                          min="15"
+                          max="300"
+                          value={formData.duration}
+                          onChange={(e) =>
+                            setFormData({ ...formData, duration: Number(e.target.value) })
+                          }
                         />
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => removeExtension(index)}
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
                       </div>
-                    ))}
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={addExtension}
-                      className="w-full"
-                    >
-                      <Plus className="h-4 w-4 mr-2" />
-                      Add Extension
-                    </Button>
-                  </div>
-                </div>
-              </TabsContent>
+                      <div>
+                        <Label>Grouping</Label>
+                        <select
+                          value={formData.grouping}
+                          onChange={(e) => setFormData({ ...formData, grouping: e.target.value })}
+                          className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                        >
+                          <option value="whole">Whole Class</option>
+                          <option value="small">Small Groups</option>
+                          <option value="pairs">Pairs</option>
+                          <option value="individual">Individual</option>
+                          <option value="mixed">Mixed Groupings</option>
+                        </select>
+                      </div>
+                    </div>
+                  </CollapsibleSection>
 
-              <TabsContent value="assessment" className="space-y-4 mt-4">
-                <div>
-                  <div className="flex items-center">
-                    <Label>Assessment Type</Label>
-                    <InfoTooltip content="Choose the primary purpose of assessment for this lesson. You can use multiple types throughout the lesson." />
-                  </div>
-                  <select
-                    value={formData.assessmentType}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        assessmentType: e.target.value as 'diagnostic' | 'formative' | 'summative',
-                      })
+                  <CollapsibleSection title="Learning Goals" defaultExpanded>
+                    <div>
+                      <Label>Learning Goals</Label>
+                      <RichTextEditor
+                        value={formData.learningGoals}
+                        onChange={(value) => setFormData({ ...formData, learningGoals: value })}
+                      />
+                    </div>
+
+                    <div>
+                      <Label>Learning Goals (French)</Label>
+                      <RichTextEditor
+                        value={formData.learningGoalsFr}
+                        onChange={(value) => setFormData({ ...formData, learningGoalsFr: value })}
+                      />
+                    </div>
+                  </CollapsibleSection>
+
+                  <CollapsibleSection title="Special Considerations" defaultExpanded={false}>
+                    <div className="space-y-4">
+                      <div className="flex items-center space-x-2">
+                        <Checkbox
+                          id="subFriendly"
+                          checked={formData.isSubFriendly}
+                          onCheckedChange={(checked) =>
+                            setFormData({ ...formData, isSubFriendly: checked as boolean })
+                          }
+                        />
+                        <Label htmlFor="subFriendly" className="font-normal">
+                          This lesson is substitute teacher friendly
+                        </Label>
+                      </div>
+
+                      {formData.isSubFriendly && (
+                        <div>
+                          <Label>Substitute Teacher Notes</Label>
+                          <Textarea
+                            value={formData.subNotes}
+                            onChange={(e) => setFormData({ ...formData, subNotes: e.target.value })}
+                            placeholder="Special instructions for substitute teachers..."
+                            rows={3}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </CollapsibleSection>
+
+                  <CollapsibleSection title="Curriculum Expectations" defaultExpanded>
+                    <div>
+                      <ExpectationSelector
+                        selectedIds={formData.expectationIds}
+                        onChange={(ids) => setFormData({ ...formData, expectationIds: ids })}
+                        grade={unitPlan?.longRangePlan?.grade}
+                        subject={unitPlan?.longRangePlan?.subject}
+                        label="Curriculum Expectations"
+                        placeholder="Select curriculum expectations for this lesson..."
+                      />
+                    </div>
+                  </CollapsibleSection>
+                </TabsContent>
+
+                <TabsContent value="ai-assistant" className="space-y-6 mt-4">
+                  <Suspense
+                    fallback={
+                      <div className="flex items-center justify-center p-8">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                        <span className="ml-2 text-gray-600">Loading AI Assistant...</span>
+                      </div>
                     }
-                    className="w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                   >
-                    <option value="diagnostic">Diagnostic - Assessment FOR Learning (Before/Beginning)</option>
-                    <option value="formative">Formative - Assessment AS Learning (During)</option>
-                    <option value="summative">Summative - Assessment OF Learning (After/End)</option>
-                  </select>
-                  <div className="mt-2 text-sm text-gray-600">
-                    {formData.assessmentType === 'diagnostic' && (
-                      <p className="bg-blue-50 p-3 rounded-md border border-blue-200">
-                        <strong>Diagnostic Assessment:</strong> Used at the beginning to determine what students already know and identify learning needs. 
-                        <br /><strong>Examples:</strong> KWL charts, pre-tests, class discussions, entrance tickets, thumbs up/down checks
-                      </p>
-                    )}
-                    {formData.assessmentType === 'formative' && (
-                      <p className="bg-green-50 p-3 rounded-md border border-green-200">
-                        <strong>Formative Assessment:</strong> Ongoing assessment during learning to provide feedback and adjust teaching. Students actively assess their own learning.
-                        <br /><strong>Examples:</strong> Exit tickets, peer feedback, self-reflection journals, mini-whiteboards, think-pair-share, observation checklists
-                      </p>
-                    )}
-                    {formData.assessmentType === 'summative' && (
-                      <p className="bg-purple-50 p-3 rounded-md border border-purple-200">
-                        <strong>Summative Assessment:</strong> Used at the end to evaluate student achievement of learning goals and assign grades.
-                        <br /><strong>Examples:</strong> Unit tests, final projects, presentations, portfolios, performance tasks, end-of-term assignments
-                      </p>
-                    )}
-                  </div>
-                </div>
+                    <WithAIErrorBoundary>
+                      <AILessonPlanPanel
+                        lessonTitle={formData.title}
+                        subject={unitPlan?.longRangePlan?.subject || ''}
+                        grade={unitPlan?.longRangePlan?.grade || 1}
+                        duration={formData.duration}
+                        learningGoals={formData.learningGoals ? [formData.learningGoals] : []}
+                        unitContext={
+                          unitPlan
+                            ? {
+                                title: unitPlan.title,
+                                bigIdeas: unitPlan.bigIdeas ? [unitPlan.bigIdeas] : [],
+                                expectations:
+                                  unitPlan.expectations?.map((exp) => ({
+                                    id: exp.expectation.id,
+                                    code: exp.expectation.code,
+                                    description: exp.expectation.description,
+                                  })) || [],
+                              }
+                            : undefined
+                        }
+                        onSuggestionAccepted={handleAISuggestionAccepted}
+                        onLessonGenerated={handleAILessonGenerated}
+                        className="w-full"
+                      />
+                    </WithAIErrorBoundary>
+                  </Suspense>
+                </TabsContent>
 
-                <div>
-                  <div className="flex items-center">
-                    <Label>Success Criteria</Label>
-                    <InfoTooltip content="Clear, specific statements that describe what success looks like. Written in student-friendly language starting with 'I can...'" />
+                <TabsContent value="three-part" className="space-y-6 mt-4">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Minds On</CardTitle>
+                      <CardDescription>
+                        Hook and activate prior knowledge (typically 10-15% of lesson time)
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div>
+                        <Label>Activities (English)</Label>
+                        <RichTextEditor
+                          value={formData.mindsOn}
+                          onChange={(value) => setFormData({ ...formData, mindsOn: value })}
+                        />
+                      </div>
+                      <div>
+                        <Label>Activities (French)</Label>
+                        <RichTextEditor
+                          value={formData.mindsOnFr}
+                          onChange={(value) => setFormData({ ...formData, mindsOnFr: value })}
+                        />
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Action</CardTitle>
+                      <CardDescription>
+                        Main learning activities and exploration (typically 60-70% of lesson time)
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div>
+                        <Label>Activities (English)</Label>
+                        <RichTextEditor
+                          value={formData.action}
+                          onChange={(value) => setFormData({ ...formData, action: value })}
+                        />
+                      </div>
+                      <div>
+                        <Label>Activities (French)</Label>
+                        <RichTextEditor
+                          value={formData.actionFr}
+                          onChange={(value) => setFormData({ ...formData, actionFr: value })}
+                        />
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Consolidation</CardTitle>
+                      <CardDescription>
+                        Summarize, reflect, and assess understanding (typically 20% of lesson time)
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div>
+                        <Label>Activities (English)</Label>
+                        <RichTextEditor
+                          value={formData.consolidation}
+                          onChange={(value) => setFormData({ ...formData, consolidation: value })}
+                        />
+                      </div>
+                      <div>
+                        <Label>Activities (French)</Label>
+                        <RichTextEditor
+                          value={formData.consolidationFr}
+                          onChange={(value) => setFormData({ ...formData, consolidationFr: value })}
+                        />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+
+                <TabsContent value="materials" className="space-y-4 mt-4">
+                  <div>
+                    <Label>Materials and Resources</Label>
+                    <div className="space-y-2 mt-2">
+                      {formData.materials.map((material, index) => (
+                        <div key={index} className="flex gap-2">
+                          <Input
+                            value={material}
+                            onChange={(e) => updateMaterial(index, e.target.value)}
+                            placeholder="e.g., Chart paper, markers, science textbook p.45-48"
+                          />
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => removeMaterial(index)}
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      ))}
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={addMaterial}
+                        className="w-full"
+                      >
+                        <Plus className="h-4 w-4 mr-2" />
+                        Add Material
+                      </Button>
+                    </div>
                   </div>
-                  <Textarea
-                    value={formData.assessmentNotes}
-                    onChange={(e) => setFormData({ ...formData, assessmentNotes: e.target.value })}
-                    placeholder="Success Criteria (I can statements):
+                </TabsContent>
+
+                <TabsContent value="differentiation" className="space-y-6 mt-4">
+                  <div>
+                    <Label>Accommodations</Label>
+                    <p className="text-sm text-gray-600 mb-2">
+                      Supports for students to access the curriculum
+                    </p>
+                    <div className="space-y-2">
+                      {formData.accommodations.map((accommodation, index) => (
+                        <div key={index} className="flex gap-2">
+                          <Input
+                            value={accommodation}
+                            onChange={(e) => updateAccommodation(index, e.target.value)}
+                            placeholder="e.g., Provide visual aids, allow extra time"
+                          />
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => removeAccommodation(index)}
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      ))}
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={addAccommodation}
+                        className="w-full"
+                      >
+                        <Plus className="h-4 w-4 mr-2" />
+                        Add Accommodation
+                      </Button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <Label>Modifications</Label>
+                    <p className="text-sm text-gray-600 mb-2">
+                      Changes to curriculum expectations for individual students
+                    </p>
+                    <div className="space-y-2">
+                      {formData.modifications.map((modification, index) => (
+                        <div key={index} className="flex gap-2">
+                          <Input
+                            value={modification}
+                            onChange={(e) => updateModification(index, e.target.value)}
+                            placeholder="e.g., Simplified text, reduced number of questions"
+                          />
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => removeModification(index)}
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      ))}
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={addModification}
+                        className="w-full"
+                      >
+                        <Plus className="h-4 w-4 mr-2" />
+                        Add Modification
+                      </Button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <Label>Extensions</Label>
+                    <p className="text-sm text-gray-600 mb-2">
+                      Enrichment activities for students who finish early
+                    </p>
+                    <div className="space-y-2">
+                      {formData.extensions.map((extension, index) => (
+                        <div key={index} className="flex gap-2">
+                          <Input
+                            value={extension}
+                            onChange={(e) => updateExtension(index, e.target.value)}
+                            placeholder="e.g., Research project, advanced problems"
+                          />
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => removeExtension(index)}
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      ))}
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={addExtension}
+                        className="w-full"
+                      >
+                        <Plus className="h-4 w-4 mr-2" />
+                        Add Extension
+                      </Button>
+                    </div>
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="assessment" className="space-y-4 mt-4">
+                  <div>
+                    <div className="flex items-center">
+                      <Label>Assessment Type</Label>
+                      <InfoTooltip content="Choose the primary purpose of assessment for this lesson. You can use multiple types throughout the lesson." />
+                    </div>
+                    <select
+                      value={formData.assessmentType}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          assessmentType: e.target.value as
+                            | 'diagnostic'
+                            | 'formative'
+                            | 'summative',
+                        })
+                      }
+                      className="w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                    >
+                      <option value="diagnostic">
+                        Diagnostic - Assessment FOR Learning (Before/Beginning)
+                      </option>
+                      <option value="formative">Formative - Assessment AS Learning (During)</option>
+                      <option value="summative">
+                        Summative - Assessment OF Learning (After/End)
+                      </option>
+                    </select>
+                    <div className="mt-2 text-sm text-gray-600">
+                      {formData.assessmentType === 'diagnostic' && (
+                        <p className="bg-blue-50 p-3 rounded-md border border-blue-200">
+                          <strong>Diagnostic Assessment:</strong> Used at the beginning to determine
+                          what students already know and identify learning needs.
+                          <br />
+                          <strong>Examples:</strong> KWL charts, pre-tests, class discussions,
+                          entrance tickets, thumbs up/down checks
+                        </p>
+                      )}
+                      {formData.assessmentType === 'formative' && (
+                        <p className="bg-green-50 p-3 rounded-md border border-green-200">
+                          <strong>Formative Assessment:</strong> Ongoing assessment during learning
+                          to provide feedback and adjust teaching. Students actively assess their
+                          own learning.
+                          <br />
+                          <strong>Examples:</strong> Exit tickets, peer feedback, self-reflection
+                          journals, mini-whiteboards, think-pair-share, observation checklists
+                        </p>
+                      )}
+                      {formData.assessmentType === 'summative' && (
+                        <p className="bg-purple-50 p-3 rounded-md border border-purple-200">
+                          <strong>Summative Assessment:</strong> Used at the end to evaluate student
+                          achievement of learning goals and assign grades.
+                          <br />
+                          <strong>Examples:</strong> Unit tests, final projects, presentations,
+                          portfolios, performance tasks, end-of-term assignments
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center">
+                      <Label>Success Criteria</Label>
+                      <InfoTooltip content="Clear, specific statements that describe what success looks like. Written in student-friendly language starting with 'I can...'" />
+                    </div>
+                    <Textarea
+                      value={formData.assessmentNotes}
+                      onChange={(e) =>
+                        setFormData({ ...formData, assessmentNotes: e.target.value })
+                      }
+                      placeholder="Success Criteria (I can statements):
 • I can identify the main idea of a text
 • I can use evidence from the text to support my answer
 • I can work cooperatively with my group
@@ -1365,40 +1437,41 @@ Assessment Strategies:
 • Observation during group work
 • Exit ticket with key question
 • Self-assessment checklist"
-                    rows={6}
-                    className="mt-1"
-                  />
-                  <p className="mt-1 text-xs text-gray-500">
-                    Include both success criteria and the specific assessment strategies you&apos;ll use to gather evidence of learning.
-                  </p>
-                </div>
-              </TabsContent>
-            </Tabs>
+                      rows={6}
+                      className="mt-1"
+                    />
+                    <p className="mt-1 text-xs text-gray-500">
+                      Include both success criteria and the specific assessment strategies
+                      you&apos;ll use to gather evidence of learning.
+                    </p>
+                  </div>
+                </TabsContent>
+              </Tabs>
 
-            <div className="flex justify-end gap-3 pt-6 mt-6 border-t">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => {
-                  setIsCreateModalOpen(false);
-                  setEditingLesson(null);
-                  resetForm();
-                }}
-              >
-                Cancel
-              </Button>
-              <Button
-                type="submit"
-                disabled={createLesson.isPending || updateLesson.isPending || isSaving}
-                className="bg-indigo-600 hover:bg-indigo-700 text-white"
-              >
-                {(createLesson.isPending || updateLesson.isPending || isSaving)
-                  ? 'Saving...'
-                  : editingLesson
-                    ? 'Update Lesson Plan'
-                    : 'Create Lesson Plan'}
-              </Button>
-            </div>
+              <div className="flex justify-end gap-3 pt-6 mt-6 border-t">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {
+                    setIsCreateModalOpen(false);
+                    setEditingLesson(null);
+                    resetForm();
+                  }}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  disabled={createLesson.isPending || updateLesson.isPending || isSaving}
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white"
+                >
+                  {createLesson.isPending || updateLesson.isPending || isSaving
+                    ? 'Saving...'
+                    : editingLesson
+                      ? 'Update Lesson Plan'
+                      : 'Create Lesson Plan'}
+                </Button>
+              </div>
             </form>
           </MobileOptimizedForm>
         </div>
@@ -1426,7 +1499,8 @@ Assessment Strategies:
           ) : (
             <div className="space-y-4">
               <p className="text-gray-600">
-                Select a template to get started with your lesson plan. Templates provide pre-structured content that you can customize.
+                Select a template to get started with your lesson plan. Templates provide
+                pre-structured content that you can customize.
               </p>
               <div className="grid gap-4 md:grid-cols-2">
                 {lessonTemplates.map((template) => (
@@ -1445,12 +1519,16 @@ Assessment Strategies:
                           <CardTitle className="text-base">{template.title}</CardTitle>
                           <CardDescription className="mt-1">
                             {template.category} • Grade {template.gradeMin}
-                            {template.gradeMax && template.gradeMax !== template.gradeMin && `-${template.gradeMax}`}
+                            {template.gradeMax &&
+                              template.gradeMax !== template.gradeMin &&
+                              `-${template.gradeMax}`}
                             {template.estimatedMinutes && ` • ${template.estimatedMinutes} minutes`}
                           </CardDescription>
                         </div>
                         <div className="flex items-center gap-1 text-yellow-500">
-                          <span className="text-sm">{template.averageRating?.toFixed(1) || '—'}</span>
+                          <span className="text-sm">
+                            {template.averageRating?.toFixed(1) || '—'}
+                          </span>
                           <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
                             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                           </svg>
@@ -1476,7 +1554,11 @@ Assessment Strategies:
                       </div>
                       <div className="flex items-center justify-between text-xs text-gray-500">
                         <span>Used {template.usageCount || 0} times</span>
-                        <span>By {(template as { createdBy?: { name?: string } }).createdBy?.name || 'Anonymous'}</span>
+                        <span>
+                          By{' '}
+                          {(template as { createdBy?: { name?: string } }).createdBy?.name ||
+                            'Anonymous'}
+                        </span>
                       </div>
                     </CardContent>
                   </Card>

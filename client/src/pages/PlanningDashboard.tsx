@@ -57,8 +57,8 @@ export default function PlanningDashboard() {
     hasOfflineChanges,
     undoHistory,
     redoHistory,
-    _autoSave,
-    _theme,
+    autoSave: _autoSave,
+    theme: _theme,
     undo,
     redo,
     saveToServer,
@@ -295,7 +295,7 @@ export default function PlanningDashboard() {
           />
 
           {/* Recent Plans */}
-          <RecentPlans plans={recentPlans} isLoading={recentPlansLoading} />
+          <RecentPlans plans={recentPlans} isLoading={_recentPlansLoading} />
         </div>
       </div>
 

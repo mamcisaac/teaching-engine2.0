@@ -67,14 +67,14 @@ async function seedTestData() {
 
   try {
     // Create test user (same as dev for E2E tests)
-    const hashedPassword = await bcrypt.hash('password123', 12);
+    const hashedPassword = await bcrypt.hash('Password123!', 12);
 
     await prisma.$executeRaw`
       INSERT INTO "User" (email, password, name, role)
       VALUES ('teacher@example.com', ${hashedPassword}, 'Test Teacher', 'teacher');
     `;
 
-    console.log('✅ Created test user: teacher@example.com (password: password123)');
+    console.log('✅ Created test user: teacher@example.com (password: Password123!)');
 
     // Create test subjects
     await prisma.$executeRaw`
@@ -104,7 +104,7 @@ async function seedDevData() {
     console.log('📋 Ensuring database schema is up to date...');
 
     // Create development/test user for e2e tests
-    const hashedPassword = await bcrypt.hash('password123', 12);
+    const hashedPassword = await bcrypt.hash('Password123!', 12);
 
     const user = await prisma.user.create({
       data: {
@@ -115,7 +115,7 @@ async function seedDevData() {
       },
     });
 
-    console.log('✅ Created development user: teacher@example.com (password: password123)');
+    console.log('✅ Created development user: teacher@example.com (password: Password123!)');
 
     // Create test subjects
     const subjects = [

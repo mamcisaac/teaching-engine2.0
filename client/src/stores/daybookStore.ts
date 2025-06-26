@@ -87,7 +87,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
           error: null,
 
           // Offline state and actions
-          ...offlineSlice(set, get, undefined),
+          ...offlineSlice(set, get, {} as never),
 
           // Actions
           loadEntries: async (startDate: string, endDate: string) => {

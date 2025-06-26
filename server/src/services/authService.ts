@@ -4,7 +4,7 @@
  */
 
 import bcrypt from 'bcryptjs';
-import * as jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import { PrismaClient } from '@teaching-engine/database';
 import logger from '@/logger';
 
@@ -30,7 +30,7 @@ export interface AuthResult {
  */
 export async function generateAuthToken(
   userId: string,
-  expiresIn: string = TOKEN_EXPIRY
+  expiresIn: string = TOKEN_EXPIRY,
 ): Promise<string> {
   const secret = process.env.JWT_SECRET;
   if (!secret) {
@@ -38,7 +38,7 @@ export async function generateAuthToken(
   }
 
   const payload = { userId };
-  return jwt.sign(payload, secret, { expiresIn: expiresIn });
+  return jwt.sign(payload, secret as jwt.Secret, { expiresIn } as jwt.SignOptions);
 }
 
 /**
@@ -87,7 +87,7 @@ export async function verifyToken(token: string): Promise<{ userId: string }> {
 export async function authenticate(
   email: string,
   password: string,
-  prisma: PrismaClient
+  prisma: PrismaClient,
 ): Promise<AuthResult> {
   // Find user by email
   const user = await prisma.user.findUnique({
@@ -111,11 +111,11 @@ export async function authenticate(
 
   // Return user without password
   const { password: _, ...userWithoutPassword } = user;
-  
+
   return {
     user: {
       ...userWithoutPassword,
-      id: userWithoutPassword.id.toString()
+      id: userWithoutPassword.id.toString(),
     } as AuthUser,
     token,
   };
@@ -126,7 +126,7 @@ export async function authenticate(
  */
 export async function checkPermissions(
   user: { role?: string; permissions?: string[] },
-  requiredPermission: string
+  requiredPermission: string,
 ): Promise<boolean> {
   // Admin has all permissions
   if (user.role === 'ADMIN') {

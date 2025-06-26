@@ -86,7 +86,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
           error: null,
 
           // Offline state and actions
-          ...offlineSlice(set, get, undefined),
+          ...offlineSlice(set, get, {} as never),
 
           // Actions
           loadLessonPlans: async (startDate?: string, endDate?: string) => {

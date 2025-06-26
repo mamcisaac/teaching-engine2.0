@@ -18,6 +18,9 @@ export interface LevelProgress {
   completedItems: number;
   totalItems: number;
   blockedReason?: string;
+  title: string;
+  description: string;
+  requiredFields?: string[];
 }
 
 export enum ETFOLevel {
@@ -39,7 +42,11 @@ export const ETFO_LEVEL_PATHS = {
 export function useWorkflowState() {
   const queryClient = useQueryClient();
 
-  const { data: workflowState, isLoading, error } = useQuery<WorkflowState>({
+  const {
+    data: workflowState,
+    isLoading,
+    error,
+  } = useQuery<WorkflowState>({
     queryKey: ['workflow-state'],
     queryFn: async () => {
       const response = await api.get('/api/workflow/state');
@@ -48,7 +55,9 @@ export function useWorkflowState() {
     staleTime: 30000, // Cache for 30 seconds
   });
 
-  const checkLevelAccess = async (level: ETFOLevel): Promise<{ canAccess: boolean; reason?: string }> => {
+  const checkLevelAccess = async (
+    level: ETFOLevel,
+  ): Promise<{ canAccess: boolean; reason?: string }> => {
     try {
       const response = await api.get(`/api/workflow/access/${level}`);
       return response.data;
@@ -58,7 +67,10 @@ export function useWorkflowState() {
     }
   };
 
-  const validateLevel = async (level: ETFOLevel, entityId: string): Promise<{ isValid: boolean; missingFields: string[] }> => {
+  const validateLevel = async (
+    level: ETFOLevel,
+    entityId: string,
+  ): Promise<{ isValid: boolean; missingFields: string[] }> => {
     try {
       const response = await api.post('/api/workflow/validate', {
         level,
@@ -77,7 +89,7 @@ export function useWorkflowState() {
   };
 
   const getLevelProgress = (level: ETFOLevel): LevelProgress | undefined => {
-    return workflowState?.progress.find(p => p.level === level);
+    return workflowState?.progress.find((p) => p.level === level);
   };
 
   const isLevelComplete = (level: ETFOLevel): boolean => {
@@ -95,9 +107,9 @@ export function useWorkflowState() {
 
   const getNextLevel = (): ETFOLevel | null => {
     if (!workflowState) return null;
-    
+
     // Find the first incomplete but accessible level
-    const nextLevel = workflowState.progress.find(p => !p.isComplete && p.isAccessible);
+    const nextLevel = workflowState.progress.find((p) => !p.isComplete && p.isAccessible);
     return nextLevel?.level || null;
   };
 

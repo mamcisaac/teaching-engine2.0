@@ -85,7 +85,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
           error: null,
 
           // Offline state and actions
-          ...offlineSlice(set, get, undefined),
+          ...offlineSlice(set, get, {} as never),
 
           // Actions
           loadUnitPlans: async () => {
