@@ -33,7 +33,7 @@ import {
   BookTemplate,
 } from 'lucide-react';
 import { format } from 'date-fns';
-import { Checkbox } from '../components/ui/Checkbox';
+import { Checkbox } from '../components/ui/checkbox';
 import { Badge } from '../components/ui/Badge';
 import {
   AlertDialog,
