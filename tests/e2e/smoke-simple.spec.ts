@@ -18,8 +18,18 @@ test.describe('Simple Smoke Tests', () => {
     await page.screenshot({ path: 'test-results/smoke-main-page.png' });
   });
 
-  test('API health endpoint works', async ({ request }) => {
-    const response = await request.get(`${API_BASE}/api/health`);
+  test('API health endpoint works', async ({ page }) => {
+    // Debug API_BASE
+    console.log(`Testing API health at: ${API_BASE}/api/health`);
+
+    // Use page.request for explicit API calls
+    const response = await page.request.get(`${API_BASE}/api/health`);
+
+    if (!response.ok()) {
+      const text = await response.text();
+      console.log(`Health check failed: ${response.status()} - ${text}`);
+    }
+
     expect(response.ok()).toBeTruthy();
 
     const data = await response.json();
