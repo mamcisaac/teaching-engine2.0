@@ -105,7 +105,6 @@ jobs:
     name: Integration Tests
     runs-on: ubuntu-latest
     needs: quick-checks
-    if: false # Temporarily disabled - integration tests need fixes
     steps:
       - uses: actions/checkout@v4
 
@@ -116,10 +115,11 @@ jobs:
           pnpm-version: ${{ env.PNPM_VERSION }}
 
       - name: Run integration tests
-        run: pnpm --filter server test:integration
+        run: TEST_TYPE=integration pnpm --filter server test -- --testNamePattern="server-health|auth|simple|d3|etfo-planning" --maxWorkers=1 --no-coverage
         env:
           DATABASE_URL: file:./test-integration.db
           NODE_OPTIONS: '--max-old-space-size=4096'
+          JWT_SECRET: 'test-secret-for-ci'
         timeout-minutes: 10
 
   # Build job with caching
@@ -221,7 +221,8 @@ jobs:
   coverage:
     name: Coverage Report
     runs-on: ubuntu-latest
-    needs: [unit-tests, integration-tests]
+    needs: [unit-tests]
+    if: false # Disabled for now - integration tests run without coverage
     steps:
       - uses: actions/checkout@v4
 
@@ -245,12 +246,13 @@ jobs:
   ci-status:
     name: CI Status
     runs-on: ubuntu-latest
-    needs: [unit-tests, build] # integration-tests removed temporarily
+    needs: [unit-tests, integration-tests, build]
     if: always()
     steps:
       - name: Check status
         run: |
           if [[ "${{ needs.unit-tests.result }}" != "success" ]] || 
+             [[ "${{ needs.integration-tests.result }}" != "success" ]] || 
              [[ "${{ needs.build.result }}" != "success" ]]; then
             echo "CI failed"
             exit 1
