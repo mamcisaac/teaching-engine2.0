@@ -1,8 +1,8 @@
 // Re-export all Prisma Client types and functions
-export * from './generated/client';
+export * from '@prisma/client';
 
 // Import for singleton
-import { PrismaClient } from './generated/client';
+import { PrismaClient } from '@prisma/client';
 
 // Create singleton instance for development
 const globalForPrisma = globalThis as unknown as {
