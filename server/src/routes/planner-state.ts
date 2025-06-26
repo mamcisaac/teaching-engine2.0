@@ -166,7 +166,7 @@ router.get('/state', async (req: AuthenticatedRequest, res) => {
 });
 
 // PUT /api/planner/state - Update user's planner state
-router.put('/state', stateRateLimit, csrfProtection, async (req: AuthenticatedRequest, res) => {
+router.put('/state', stateRateLimit as any, csrfProtection, async (req: AuthenticatedRequest, res) => {
   try {
     if (!req.user?.userId) {
       return res.status(401).json({ error: 'Unauthorized' });
@@ -367,7 +367,7 @@ router.get('/week/:weekStart/state', async (req: AuthenticatedRequest, res) => {
 });
 
 // POST /api/planner/state/reset - Reset planner state to defaults
-router.post('/state/reset', stateRateLimit, csrfProtection, async (req: AuthenticatedRequest, res) => {
+router.post('/state/reset', stateRateLimit as any, csrfProtection, async (req: AuthenticatedRequest, res) => {
   try {
     if (!req.user?.userId) {
       return res.status(401).json({ error: 'Unauthorized' });

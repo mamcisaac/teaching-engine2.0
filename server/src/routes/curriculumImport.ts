@@ -48,7 +48,7 @@ const upload = multer({
 });
 
 // POST /api/curriculum/import/upload - Upload and parse curriculum file (Planner agent style)
-router.post('/upload', upload.single('file'), async (req: AuthenticatedRequest, res) => {
+router.post('/upload', upload.single('file') as any, async (req: AuthenticatedRequest, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({
