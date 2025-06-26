@@ -135,6 +135,7 @@ jobs:
           JWT_EXPIRES_IN: 1h
           NODE_ENV: test
           CI: true
+          API_BASE: http://localhost:3000
         run: |
           echo "Running E2E smoke tests first..."
           pnpm run test:e2e:smoke --reporter=list --workers=1
@@ -147,6 +148,7 @@ jobs:
           JWT_EXPIRES_IN: 1h
           NODE_ENV: test
           CI: true
+          API_BASE: http://localhost:3000
         run: |
           echo "Running essential E2E test suite for CI..."
           pnpm run test:e2e:ci --reporter=list || (
