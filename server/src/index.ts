@@ -71,27 +71,30 @@ const app = express();
 log('Configuring security headers...');
 app.use((req, res, next) => {
   // Content Security Policy
-  res.setHeader('Content-Security-Policy', [
-    "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval'", // Allow inline scripts for dev
-    "style-src 'self' 'unsafe-inline'", // Allow inline styles for CSS-in-JS
-    "img-src 'self' data: https:",
-    "font-src 'self' data:",
-    "connect-src 'self'",
-    "frame-src 'none'",
-    "object-src 'none'",
-    "base-uri 'self'",
-    "form-action 'self'",
-    "upgrade-insecure-requests"
-  ].join('; '));
-  
+  res.setHeader(
+    'Content-Security-Policy',
+    [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval'", // Allow inline scripts for dev
+      "style-src 'self' 'unsafe-inline'", // Allow inline styles for CSS-in-JS
+      "img-src 'self' data: https:",
+      "font-src 'self' data:",
+      "connect-src 'self'",
+      "frame-src 'none'",
+      "object-src 'none'",
+      "base-uri 'self'",
+      "form-action 'self'",
+      'upgrade-insecure-requests',
+    ].join('; '),
+  );
+
   // Additional security headers
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('X-XSS-Protection', '1; mode=block');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   res.setHeader('Permissions-Policy', 'geolocation=(), microphone=(), camera=()');
-  
+
   next();
 });
 
@@ -105,9 +108,9 @@ const corsOptions: cors.CorsOptions = {
       'http://localhost:5173',
       'http://localhost:3000',
       'http://127.0.0.1:5173',
-      'http://127.0.0.1:3000'
+      'http://127.0.0.1:3000',
     ];
-    
+
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -147,7 +150,7 @@ app.get('/api/health', (_req, res) => {
   const healthStatus = performanceMonitor.getHealthStatus();
   res.status(healthStatus.healthy ? 200 : 503).json({
     status: healthStatus.healthy ? 'ok' : 'degraded',
-    ...healthStatus
+    ...healthStatus,
   });
 });
 
@@ -161,11 +164,11 @@ app.get('/api/metrics', (req, res) => {
 
   const summary = performanceMonitor.getPerformanceSummary();
   const slowestEndpoints = performanceMonitor.getSlowestEndpoints();
-  
+
   res.json({
     summary,
     slowestEndpoints,
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 });
 
@@ -173,7 +176,7 @@ app.get('/api/metrics', (req, res) => {
 const authenticateToken = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   // First try to get token from httpOnly cookie
   let token = req.cookies?.authToken;
-  
+
   // Fallback to Authorization header for backward compatibility
   if (!token) {
     const authHeader = req.headers['authorization'];
@@ -181,11 +184,12 @@ const authenticateToken = (req: AuthenticatedRequest, res: Response, next: NextF
       token = authHeader.split(' ')[1];
     }
   }
-  
+
   if (!token) {
     return res.status(401).json({ error: 'Authentication required' });
   }
-  if (!token || token.length > 1000) { // Prevent extremely long tokens
+  if (!token || token.length > 1000) {
+    // Prevent extremely long tokens
     return res.status(401).json({ error: 'Invalid token format' });
   }
 
@@ -199,18 +203,18 @@ const authenticateToken = (req: AuthenticatedRequest, res: Response, next: NextF
       algorithms: ['HS256'], // Explicitly specify allowed algorithms
       maxAge: '7d', // Maximum token age
     }) as JwtPayload;
-    
+
     if (!decoded?.userId || !decoded?.email || !decoded?.iat) {
       return res.status(403).json({ error: 'Invalid token payload' });
     }
-    
+
     // Check token age (extra protection)
     const now = Math.floor(Date.now() / 1000);
     const maxAge = 7 * 24 * 60 * 60; // 7 days in seconds
     if (now - decoded.iat > maxAge) {
       return res.status(403).json({ error: 'Token expired' });
     }
-    
+
     req.user = { userId: String(decoded.userId) };
     next();
   } catch (err) {
@@ -232,7 +236,12 @@ app.post('/api/login', rateLimiters.auth, async (req, res) => {
   try {
     const { email, password: passwordInput } = req.body as { email: string; password: string };
     // Input validation and sanitization
-    if (!email || !passwordInput || typeof email !== 'string' || typeof passwordInput !== 'string') {
+    if (
+      !email ||
+      !passwordInput ||
+      typeof email !== 'string' ||
+      typeof passwordInput !== 'string'
+    ) {
       return res.status(400).json({ error: 'Email and password are required' });
     }
 
@@ -266,22 +275,22 @@ app.post('/api/login', rateLimiters.auth, async (req, res) => {
     }
 
     const token = jwt.sign(
-      { 
+      {
         userId: user.id.toString(),
         email: user.email,
-        iat: Math.floor(Date.now() / 1000)
-      }, 
-      secret, 
+        iat: Math.floor(Date.now() / 1000),
+      },
+      secret,
       {
         expiresIn: process.env.JWT_EXPIRES_IN || '7d',
         algorithm: 'HS256',
-      } as jwt.SignOptions
+      } as jwt.SignOptions,
     );
 
     // Return user data without password
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...userData } = user;
-    
+
     // Set JWT in httpOnly cookie for security
     const isProduction = process.env.NODE_ENV === 'production';
     const cookieOptions = {
@@ -291,11 +300,12 @@ app.post('/api/login', rateLimiters.auth, async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       path: '/',
     };
-    
+
     res.cookie('authToken', token, cookieOptions);
-    
+
     const response = {
       user: userData,
+      token: token, // Include token in response for E2E tests
     };
 
     res.json(response);
@@ -338,10 +348,7 @@ app.post('/api/logout', (_req, res) => {
   res.json({ message: 'Logged out successfully' });
 });
 
-// Health check should remain public
-app.get('/api/health', (_req, res) => {
-  res.json({ status: 'ok' });
-});
+// Removed duplicate health endpoint - using the one with performance monitoring above
 
 // Mount test routes (only available in test environment)
 log(`NODE_ENV is: ${process.env.NODE_ENV}`);
@@ -361,11 +368,21 @@ app.use('/api/students', authenticateToken, rateLimiters.api, studentRoutes);
 app.use('/api/parent-summary', authenticateToken, rateLimiters.write, parentSummaryRoutes);
 app.use('/api/newsletters', authenticateToken, rateLimiters.write, newsletterRoutes);
 app.use('/api/curriculum-import', authenticateToken, rateLimiters.upload, curriculumImportRoutes);
-app.use('/api/curriculum-discovery', authenticateToken, rateLimiters.read, curriculumDiscoveryRoutes);
+app.use(
+  '/api/curriculum-discovery',
+  authenticateToken,
+  rateLimiters.read,
+  curriculumDiscoveryRoutes,
+);
 app.use('/api/discovery-scheduler', authenticateToken, rateLimiters.api, discoverySchedulerRoutes);
 
 // ETFO-aligned Planning Routes
-app.use('/api/curriculum-expectations', authenticateToken, rateLimiters.read, curriculumExpectationRoutes);
+app.use(
+  '/api/curriculum-expectations',
+  authenticateToken,
+  rateLimiters.read,
+  curriculumExpectationRoutes,
+);
 app.use('/api/long-range-plans', authenticateToken, rateLimiters.write, longRangePlanRoutes);
 app.use('/api/unit-plans', authenticateToken, rateLimiters.write, unitPlanRoutes);
 app.use('/api/etfo-lesson-plans', authenticateToken, rateLimiters.write, etfoLessonPlanRoutes);
@@ -398,7 +415,12 @@ app.use('/api/planner', authenticateToken, plannerStateRoutes);
 
 // Activity Discovery Routes
 app.use('/api/activities', authenticateToken, rateLimiters.read, activityDiscoveryRoutes);
-app.use('/api/activity-collections', authenticateToken, rateLimiters.write, activityCollectionsRoutes);
+app.use(
+  '/api/activity-collections',
+  authenticateToken,
+  rateLimiters.write,
+  activityCollectionsRoutes,
+);
 app.use('/api/ai-activities', authenticateToken, rateLimiters.ai, aiActivityGenerationRoutes);
 
 // Batch Processing Routes
@@ -463,7 +485,7 @@ if (isDirectRun || isE2ETest || isDevelopment) {
 
         // Background jobs disabled - ETFO approach uses manual workflow
       });
-      
+
       server.on('error', (err) => {
         console.error('Server error:', err);
       });
