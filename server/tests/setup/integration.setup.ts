@@ -10,6 +10,11 @@ import { PrismaClient } from '@prisma/client';
 import { TextEncoder, TextDecoder } from 'util';
 import fs from 'fs/promises';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+// ES module compatibility
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Polyfill for Node.js environment
 global.TextEncoder = TextEncoder;
@@ -70,6 +75,7 @@ async function setupTestDatabase() {
     execSync('npx prisma db push --force-reset', {
       env: { ...process.env, DATABASE_URL: process.env.DATABASE_URL },
       cwd: path.resolve(__dirname, '../../../packages/database'),
+      stdio: 'inherit', // Show output for debugging
     });
   } catch (error) {
     console.error('Failed to setup test database:', error);
