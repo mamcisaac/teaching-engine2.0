@@ -16,7 +16,7 @@ export const Switch: React.FC<SwitchProps> = ({
   disabled = false,
   size = 'md',
   className,
-  label
+  label,
 }) => {
   const handleChange = () => {
     if (!disabled) {
@@ -31,21 +31,20 @@ export const Switch: React.FC<SwitchProps> = ({
       'bg-gray-200': !checked && !disabled,
       'bg-gray-300 cursor-not-allowed opacity-50': disabled,
       'h-6 w-11': size === 'md',
-      'h-5 w-9': size === 'sm'
+      'h-5 w-9': size === 'sm',
     },
-    className
+    className,
   );
 
   const knobClasses = clsx(
     'pointer-events-none inline-block transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',
     {
       'translate-x-5': checked && size === 'md',
-      'translate-x-0': !checked && size === 'md',
+      'translate-x-0': !checked,
       'translate-x-4': checked && size === 'sm',
-      'translate-x-0': !checked && size === 'sm',
       'h-5 w-5': size === 'md',
-      'h-4 w-4': size === 'sm'
-    }
+      'h-4 w-4': size === 'sm',
+    },
   );
 
   return (
@@ -61,10 +60,12 @@ export const Switch: React.FC<SwitchProps> = ({
         <span className={knobClasses} />
       </button>
       {label && (
-        <span className={clsx('ml-3 text-sm', {
-          'text-gray-900': !disabled,
-          'text-gray-500': disabled
-        })}>
+        <span
+          className={clsx('ml-3 text-sm', {
+            'text-gray-900': !disabled,
+            'text-gray-500': disabled,
+          })}
+        >
           {label}
         </span>
       )}

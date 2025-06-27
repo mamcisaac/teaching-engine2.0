@@ -13,7 +13,7 @@ import { GlobalErrorBoundary } from './components/ErrorBoundaries';
 import WorkflowGate from './components/WorkflowGate';
 import { ETFOLevel } from './hooks/useWorkflowState';
 import { OfflineNotification } from './components/OfflineNotification';
-import { OnboardingFlow, WelcomeModal } from './components/onboarding';
+// import { OnboardingFlow, WelcomeModal } from './components/onboarding'; // Removed - using TeacherOnboardingFlow in MainLayout
 import { GlobalKeyboardShortcuts } from './components/GlobalKeyboardShortcuts';
 
 // Lazy load pages - ETFO-aligned pages only
@@ -200,7 +200,10 @@ function AppRoutes() {
         {/* Legacy outcomes and coverage - redirect to curriculum expectations */}
         <Route path="/outcomes" element={<Navigate to="/curriculum" replace />} />
         <Route path="/coverage" element={<Navigate to="/curriculum" replace />} />
-        <Route path="/curriculum-audit" element={<Navigate to="/curriculum/expectations" replace />} />
+        <Route
+          path="/curriculum-audit"
+          element={<Navigate to="/curriculum/expectations" replace />}
+        />
 
         {/* Legacy resources - redirect to ETFO planning */}
         <Route path="/notes" element={<Navigate to="/planner/dashboard" replace />} />
@@ -291,7 +294,10 @@ function AppRoutes() {
         <Route path="/students" element={<Navigate to="/planner/dashboard" replace />} />
         {/* Legacy parent summaries - redirect to students */}
         <Route path="/parent-summaries" element={<Navigate to="/students" replace />} />
-        <Route path="/curriculum-audit" element={<Navigate to="/curriculum/expectations" replace />} />
+        <Route
+          path="/curriculum-audit"
+          element={<Navigate to="/curriculum/expectations" replace />}
+        />
 
         {/* Legacy analytics - redirect to dashboard */}
         <Route path="/analytics" element={<Navigate to="/" replace />} />
@@ -321,8 +327,6 @@ export default function App() {
                   <AppRoutes />
                   <GlobalKeyboardShortcuts />
                   <OfflineNotification />
-                  <WelcomeModal />
-                  <OnboardingFlow />
                 </KeyboardShortcutsProvider>
               </OnboardingProvider>
             </HelpProvider>

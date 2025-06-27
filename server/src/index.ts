@@ -249,7 +249,7 @@ app.post('/api/login', rateLimiters.auth, async (req, res) => {
     const cookieOptions = {
       httpOnly: true,
       secure: isProduction, // Use secure flag in production
-      sameSite: 'strict' as const,
+      sameSite: isProduction ? ('strict' as const) : ('lax' as const), // Use 'lax' in development for cross-port requests
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       path: '/',
     };
@@ -292,10 +292,11 @@ app.get('/api/auth/check', authenticate, (req: Request, res: Response) => {
 
 // Logout endpoint to clear httpOnly cookie
 app.post('/api/logout', (_req, res) => {
+  const isProduction = process.env.NODE_ENV === 'production';
   res.clearCookie('authToken', {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'strict',
+    secure: isProduction,
+    sameSite: isProduction ? ('strict' as const) : ('lax' as const),
     path: '/',
   });
   res.json({ message: 'Logged out successfully' });

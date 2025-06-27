@@ -13,7 +13,7 @@ export interface ButtonWithShortcutProps extends ButtonProps {
 
 /**
  * Enhanced Button component that supports keyboard shortcuts
- * 
+ *
  * @example
  * <ButtonWithShortcut
  *   shortcut={{ key: 's', ctrl: true }}
@@ -35,7 +35,7 @@ export const ButtonWithShortcut = React.forwardRef<HTMLButtonElement, ButtonWith
       disabled,
       ...props
     },
-    ref
+    ref,
   ) => {
     // Register keyboard shortcut if provided
     if (shortcut && shortcut.key) {
@@ -47,7 +47,7 @@ export const ButtonWithShortcut = React.forwardRef<HTMLButtonElement, ButtonWith
             if (onShortcutTrigger) {
               onShortcutTrigger();
             } else if (onClick) {
-              onClick(e as any);
+              onClick(e as React.MouseEvent<HTMLButtonElement>);
             }
           }
         },
@@ -55,32 +55,22 @@ export const ButtonWithShortcut = React.forwardRef<HTMLButtonElement, ButtonWith
           ...shortcut,
           description: shortcutDescription || shortcut.description || 'Button action',
           category: shortcut.category || 'other',
-          enabled: !disabled
-        } as any
+          enabled: !disabled,
+        },
       );
     }
 
     return (
-      <Button
-        ref={ref}
-        onClick={onClick}
-        disabled={disabled}
-        {...props}
-      >
+      <Button ref={ref} onClick={onClick} disabled={disabled} {...props}>
         <span className="flex items-center gap-2">
           {children}
           {shortcut && showShortcutHint && (
-            <ShortcutHint 
-              shortcut={shortcut} 
-              position="inline" 
-              size="xs"
-              className="ml-1"
-            />
+            <ShortcutHint shortcut={shortcut} position="inline" size="xs" className="ml-1" />
           )}
         </span>
       </Button>
     );
-  }
+  },
 );
 
 ButtonWithShortcut.displayName = 'ButtonWithShortcut';

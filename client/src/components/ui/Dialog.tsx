@@ -2,7 +2,42 @@ import React from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { clsx } from 'clsx';
 
-const Dialog = RadixDialog.Root;
+// Wrapper component for consistent API
+interface DialogProps {
+  isOpen?: boolean;
+  open?: boolean;
+  onClose?: () => void;
+  onOpenChange?: (open: boolean) => void;
+  children: React.ReactNode;
+  className?: string;
+}
+
+const DialogWrapper: React.FC<DialogProps> = ({
+  isOpen,
+  open,
+  onClose,
+  onOpenChange,
+  children,
+  className: _className,
+}) => {
+  const isOpenValue = isOpen ?? open ?? false;
+  const handleOpenChange = (newOpen: boolean) => {
+    if (!newOpen && onClose) {
+      onClose();
+    }
+    if (onOpenChange) {
+      onOpenChange(newOpen);
+    }
+  };
+
+  return (
+    <RadixDialog.Root open={isOpenValue} onOpenChange={handleOpenChange}>
+      {children}
+    </RadixDialog.Root>
+  );
+};
+
+const Dialog = DialogWrapper;
 
 const DialogTrigger = RadixDialog.Trigger;
 

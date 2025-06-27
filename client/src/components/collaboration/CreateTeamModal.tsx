@@ -71,10 +71,11 @@ export function CreateTeamModal({ isOpen, onClose }: CreateTeamModalProps) {
       onClose();
       resetForm();
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
+      const message = error instanceof Error ? error.message : 'Please try again later';
       toast({
         title: 'Failed to create team',
-        description: error.response?.data?.error || 'Please try again later',
+        description: message,
         variant: 'destructive',
       });
     },
@@ -91,7 +92,7 @@ export function CreateTeamModal({ isOpen, onClose }: CreateTeamModalProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.name.trim()) {
       toast({
         title: 'Team name required',
@@ -112,11 +113,7 @@ export function CreateTeamModal({ isOpen, onClose }: CreateTeamModalProps) {
       <form onSubmit={handleSubmit}>
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-semibold">Create New Team</h2>
-          <button
-            type="button"
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600"
-          >
+          <button type="button" onClick={onClose} className="text-gray-400 hover:text-gray-600">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -152,9 +149,8 @@ export function CreateTeamModal({ isOpen, onClose }: CreateTeamModalProps) {
           <div>
             <Label htmlFor="grade">Grade Level</Label>
             <Select
-              id="grade"
               value={formData.grade?.toString() || ''}
-              onValueChange={(value) => 
+              onValueChange={(value) =>
                 setFormData({ ...formData, grade: value ? Number(value) : undefined })
               }
             >
@@ -170,11 +166,8 @@ export function CreateTeamModal({ isOpen, onClose }: CreateTeamModalProps) {
           <div>
             <Label htmlFor="subject">Subject Focus</Label>
             <Select
-              id="subject"
               value={formData.subject || ''}
-              onValueChange={(value) => 
-                setFormData({ ...formData, subject: value || undefined })
-              }
+              onValueChange={(value) => setFormData({ ...formData, subject: value || undefined })}
             >
               <option value="">All Subjects</option>
               {SUBJECTS.map((subject) => (
@@ -214,7 +207,7 @@ export function CreateTeamModal({ isOpen, onClose }: CreateTeamModalProps) {
         {/* Privacy Settings */}
         <div className="border rounded-lg p-4 mb-6">
           <h3 className="font-medium mb-3">Privacy Settings</h3>
-          
+
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -226,7 +219,7 @@ export function CreateTeamModal({ isOpen, onClose }: CreateTeamModalProps) {
                 <div>
                   <span className="text-sm font-medium">Public Team</span>
                   <p className="text-xs text-gray-500">
-                    {formData.isPublic 
+                    {formData.isPublic
                       ? 'Anyone can discover and request to join'
                       : 'Only invited members can join'}
                   </p>
@@ -234,9 +227,7 @@ export function CreateTeamModal({ isOpen, onClose }: CreateTeamModalProps) {
               </div>
               <Switch
                 checked={formData.isPublic}
-                onCheckedChange={(checked) => 
-                  setFormData({ ...formData, isPublic: checked })
-                }
+                onChange={(checked) => setFormData({ ...formData, isPublic: checked })}
               />
             </div>
 
@@ -244,15 +235,11 @@ export function CreateTeamModal({ isOpen, onClose }: CreateTeamModalProps) {
               <div className="flex items-center justify-between pl-6">
                 <div>
                   <span className="text-sm font-medium">Require Approval</span>
-                  <p className="text-xs text-gray-500">
-                    Admin approval needed for new members
-                  </p>
+                  <p className="text-xs text-gray-500">Admin approval needed for new members</p>
                 </div>
                 <Switch
                   checked={formData.requiresApproval}
-                  onCheckedChange={(checked) => 
-                    setFormData({ ...formData, requiresApproval: checked })
-                  }
+                  onChange={(checked) => setFormData({ ...formData, requiresApproval: checked })}
                 />
               </div>
             )}
@@ -261,19 +248,10 @@ export function CreateTeamModal({ isOpen, onClose }: CreateTeamModalProps) {
 
         {/* Actions */}
         <div className="flex gap-3">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={onClose}
-            className="flex-1"
-          >
+          <Button type="button" variant="outline" onClick={onClose} className="flex-1">
             Cancel
           </Button>
-          <Button
-            type="submit"
-            disabled={createTeamMutation.isPending}
-            className="flex-1"
-          >
+          <Button type="submit" disabled={createTeamMutation.isPending} className="flex-1">
             {createTeamMutation.isPending ? (
               'Creating...'
             ) : (

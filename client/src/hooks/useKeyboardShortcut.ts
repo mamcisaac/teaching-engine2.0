@@ -1,5 +1,8 @@
 import { useEffect } from 'react';
-import { useKeyboardShortcuts, KeyboardShortcut } from '../contexts/KeyboardShortcutsContext';
+import {
+  useKeyboardShortcuts as useKeyboardShortcutsContext,
+  KeyboardShortcut,
+} from '../contexts/KeyboardShortcutsContext';
 
 export interface UseKeyboardShortcutOptions {
   key: string;
@@ -16,7 +19,7 @@ export interface UseKeyboardShortcutOptions {
 
 /**
  * Hook to register a keyboard shortcut that automatically unregisters on unmount
- * 
+ *
  * @example
  * useKeyboardShortcut({
  *   key: 's',
@@ -28,13 +31,13 @@ export interface UseKeyboardShortcutOptions {
 export const useKeyboardShortcut = (
   handler: (event: KeyboardEvent) => void,
   options: UseKeyboardShortcutOptions,
-  deps: React.DependencyList = []
+  deps: React.DependencyList = [],
 ) => {
-  const { registerShortcut, unregisterShortcut } = useKeyboardShortcuts();
-  
+  const { registerShortcut, unregisterShortcut } = useKeyboardShortcutsContext();
+
   useEffect(() => {
     const id = `${options.category || 'other'}-${options.key}-${Date.now()}`;
-    
+
     const shortcut: KeyboardShortcut = {
       id,
       key: options.key,
@@ -51,11 +54,11 @@ export const useKeyboardShortcut = (
         handler(event);
       },
       enabled: options.enabled !== false,
-      visible: options.visible !== false
+      visible: options.visible !== false,
     };
-    
+
     registerShortcut(shortcut);
-    
+
     return () => {
       unregisterShortcut(id);
     };
@@ -72,21 +75,31 @@ export const useKeyboardShortcut = (
     options.enabled,
     options.visible,
     options.preventDefault,
-    ...deps
+    ...deps,
   ]);
 };
 
 /**
  * Hook to register multiple keyboard shortcuts at once
+ * NOTE: This violates Rules of Hooks - use individual useKeyboardShortcut calls instead
+ * @deprecated Use individual useKeyboardShortcut calls
  */
-export const useKeyboardShortcuts = (
+export const useMultipleKeyboardShortcuts = (
   shortcuts: Array<{
     handler: (event: KeyboardEvent) => void;
     options: UseKeyboardShortcutOptions;
-  }>,
-  deps: React.DependencyList = []
+  }> = [],
+  deps: React.DependencyList = [],
 ) => {
-  shortcuts.forEach(({ handler, options }) => {
+  // This implementation violates Rules of Hooks because the number of hooks
+  // called can change between renders. Don't use this.
+  console.warn(
+    'useMultipleKeyboardShortcuts is deprecated. Use individual useKeyboardShortcut calls instead.',
+  );
+
+  // Always call hooks, but with empty array if shortcuts is null/undefined
+  const safeShortcuts = shortcuts || [];
+  safeShortcuts.forEach(({ handler, options }) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useKeyboardShortcut(handler, options, deps);
   });

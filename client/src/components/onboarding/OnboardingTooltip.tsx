@@ -16,7 +16,7 @@ interface OnboardingTooltipProps {
 }
 
 export function OnboardingTooltip({
-  id,
+  _id,
   title,
   content,
   children,
@@ -24,7 +24,7 @@ export function OnboardingTooltip({
   showOnce = true,
   delay = 1000,
   actionText,
-  onAction
+  onAction,
 }: OnboardingTooltipProps) {
   const { state } = useOnboarding();
   const [isVisible, setIsVisible] = useState(false);
@@ -43,7 +43,7 @@ export function OnboardingTooltip({
 
   const handleMouseEnter = () => {
     if (hasBeenShown && showOnce) return;
-    
+
     setTimeout(() => {
       setIsVisible(true);
       setHasBeenShown(true);
@@ -61,7 +61,7 @@ export function OnboardingTooltip({
 
   const getTooltipStyles = () => {
     const base = 'absolute z-50 bg-white rounded-lg shadow-xl border border-gray-200 p-4 w-72';
-    
+
     switch (position) {
       case 'top':
         return `${base} bottom-full left-1/2 transform -translate-x-1/2 mb-2`;
@@ -78,7 +78,7 @@ export function OnboardingTooltip({
 
   const getArrowStyles = () => {
     const base = 'absolute w-3 h-3 bg-white border border-gray-200 transform rotate-45';
-    
+
     switch (position) {
       case 'top':
         return `${base} -bottom-1.5 left-1/2 -translate-x-1/2 border-t-0 border-l-0`;
@@ -98,9 +98,9 @@ export function OnboardingTooltip({
       {cloneElement(children, {
         onMouseEnter: handleMouseEnter,
         onMouseLeave: handleMouseLeave,
-        className: `${children.props.className || ''} ${isVisible ? 'z-40' : ''}`
+        className: `${children.props.className || ''} ${isVisible ? 'z-40' : ''}`,
       })}
-      
+
       <AnimatePresence>
         {isVisible && (
           <motion.div
@@ -114,7 +114,7 @@ export function OnboardingTooltip({
           >
             {/* Arrow */}
             <div className={getArrowStyles()} />
-            
+
             {/* Close button */}
             <button
               onClick={handleDismiss}
@@ -123,7 +123,7 @@ export function OnboardingTooltip({
             >
               <X className="h-4 w-4" />
             </button>
-            
+
             {/* Content */}
             <div className="pr-6">
               <div className="flex items-start gap-3 mb-2">
@@ -131,15 +131,11 @@ export function OnboardingTooltip({
                   <HelpCircle className="h-4 w-4 text-blue-600" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-gray-900 text-sm mb-1">
-                    {title}
-                  </h4>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    {content}
-                  </p>
+                  <h4 className="font-medium text-gray-900 text-sm mb-1">{title}</h4>
+                  <p className="text-sm text-gray-600 leading-relaxed">{content}</p>
                 </div>
               </div>
-              
+
               {actionText && onAction && (
                 <button
                   onClick={() => {

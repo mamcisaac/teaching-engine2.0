@@ -8,7 +8,7 @@ import NotificationBell from './NotificationBell';
 import LanguageSwitcher from './LanguageSwitcher';
 import TeacherOnboardingFlow from './TeacherOnboardingFlow';
 import { TutorialManager } from './help/TutorialManager';
-import { formatShortcut } from '../contexts/KeyboardShortcutsContext';
+// import { formatShortcut } from '../contexts/KeyboardShortcutsContext';
 
 // Navigation item interface
 interface NavItem {
@@ -29,26 +29,24 @@ export default function MainLayout({ children }: MainLayoutProps) {
   const location = useLocation();
   const navigate = useNavigate();
   const { getETFOLevels } = useETFOProgress();
-  
+
   // Enable feature tutorials
   useFeatureTutorial();
 
   // Keyboard shortcut to toggle sidebar (Ctrl/Cmd + B)
-  useKeyboardShortcut(
-    () => setIsSidebarOpen(prev => !prev),
-    { 
-      key: 'b', 
-      ctrl: true, 
-      cmd: true, 
-      description: 'Toggle sidebar', 
-      category: 'navigation' 
-    }
-  );
+  useKeyboardShortcut(() => setIsSidebarOpen((prev) => !prev), {
+    key: 'b',
+    ctrl: true,
+    cmd: true,
+    description: 'Toggle sidebar',
+    category: 'navigation',
+  });
 
   // Quick navigation with number keys (1-5 for ETFO levels)
   const etfoLevels = getETFOLevels();
   etfoLevels.forEach((level, index) => {
-    if (index < 9) { // Limit to 1-9 keys
+    if (index < 9) {
+      // Limit to 1-9 keys
       // eslint-disable-next-line react-hooks/rules-of-hooks
       useKeyboardShortcut(
         () => {
@@ -56,13 +54,13 @@ export default function MainLayout({ children }: MainLayoutProps) {
             navigate(level.path);
           }
         },
-        { 
-          key: String(index + 1), 
-          alt: true, 
-          description: `Go to ${level.name}`, 
+        {
+          key: String(index + 1),
+          alt: true,
+          description: `Go to ${level.name}`,
           category: 'navigation',
-          enabled: level.isAccessible
-        }
+          enabled: level.isAccessible,
+        },
       );
     }
   });
@@ -277,242 +275,245 @@ export default function MainLayout({ children }: MainLayoutProps) {
         {/* Sidebar */}
         <div
           className={`bg-indigo-800 text-white transition-all duration-300 ease-in-out ${
-            isMobile 
+            isMobile
               ? `fixed h-full z-30 ${isSidebarOpen ? 'w-64' : '-translate-x-full w-64'}`
               : `fixed h-full z-10 ${isSidebarOpen ? 'w-64' : 'w-16'}`
           }`}
           data-testid="main-sidebar"
         >
-        <div className="flex items-center justify-between p-4 border-b border-indigo-700">
-          <h1 className={`font-bold text-xl ${(!isSidebarOpen && !isMobile) && 'hidden'}`}>
-            {isMobile ? 'Teaching Engine' : 'Teacher Planner'}
-          </h1>
-          <button 
-            onClick={toggleSidebar} 
-            className="text-white focus:outline-none p-1 rounded-lg hover:bg-indigo-700 transition-colors"
-            aria-label={isSidebarOpen ? 'Close sidebar' : 'Open sidebar'}
-          >
-            {isSidebarOpen ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 5l7 7-7 7M5 5l7 7-7 7"
-                />
-              </svg>
-            )}
-          </button>
-        </div>
-
-        {/* Main navigation - ETFO Planning Levels */}
-        <div className="py-4">
-          <div className="px-4 py-2 text-xs uppercase text-indigo-300 font-semibold">
-            {isSidebarOpen ? 'ETFO Planning Workflow' : ''}
-          </div>
-          {etfoLevels.map((level, index) => {
-            const isAccessible = level.isAccessible;
-            const isComplete = level.isComplete;
-            const progress = level.progress;
-
-            return (
-              <div key={level.id} className="relative">
-                {isSidebarOpen && (
-                  <div className="px-4 py-1 text-xs text-indigo-300 flex items-center justify-between">
-                    <span>Step {index + 1}</span>
-                    <div className="flex items-center space-x-2">
-                      {isComplete && (
-                        <svg
-                          className="h-3 w-3 text-green-400"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      )}
-                      <span>{Math.round(progress)}%</span>
-                    </div>
-                  </div>
-                )}
-                <NavLink
-                  to={isAccessible ? level.path : '#'}
-                  data-testid={level.id === 2 ? 'long-range-nav' : undefined}
-                  className={({ isActive }) => {
-                    const baseClasses = `flex items-center py-2 px-4 ${!isSidebarOpen && 'justify-center'}`;
-
-                    if (!isAccessible) {
-                      return `${baseClasses} text-indigo-400 cursor-not-allowed opacity-50`;
-                    }
-
-                    if (isActive) {
-                      return `${baseClasses} bg-indigo-900 text-white`;
-                    }
-
-                    return `${baseClasses} text-indigo-100 hover:bg-indigo-700`;
-                  }}
-                  onClick={(e) => {
-                    if (!isAccessible) {
-                      e.preventDefault();
-                      // Could add a toast notification here
-                    }
-                  }}
-                >
-                  <span className="mr-3 relative">
-                    {level.icon}
-                    {isComplete && isSidebarOpen && (
-                      <div className="absolute -top-1 -right-1 h-2 w-2 bg-green-400 rounded-full"></div>
-                    )}
-                  </span>
-                  {isSidebarOpen && (
-                    <div className="flex-1">
-                      <div className="font-medium">{level.name}</div>
-                      <div className="text-xs text-indigo-300 mt-1">{level.description}</div>
-                      {progress > 0 && progress < 100 && (
-                        <div className="w-full bg-indigo-800 rounded-full h-1 mt-2">
-                          <div
-                            className="bg-indigo-400 h-1 rounded-full transition-all duration-300"
-                            style={{ width: `${progress}%` }}
-                          ></div>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </NavLink>
-              </div>
-            );
-          })}
-
-          <div className="mt-6 px-4 py-2 text-xs uppercase text-indigo-300 font-semibold">
-            {isSidebarOpen ? 'Resources' : ''}
-          </div>
-          {secondaryNavItems.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              className={({ isActive }) =>
-                `flex items-center py-2 px-4 ${
-                  isActive ? 'bg-indigo-900 text-white' : 'text-indigo-100 hover:bg-indigo-700'
-                } ${!isSidebarOpen && 'justify-center'}`
-              }
-            >
-              <span className="mr-3">{item.icon}</span>
-              {isSidebarOpen && <span>{item.label}</span>}
-            </NavLink>
-          ))}
-        </div>
-
-        {/* Logout button at bottom */}
-        <div className="absolute bottom-0 w-full border-t border-indigo-700 p-4">
-          <button
-            onClick={handleLogout}
-            className="flex items-center text-indigo-100 hover:text-white w-full"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 mr-3"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-              />
-            </svg>
-            {isSidebarOpen && <span>Logout</span>}
-          </button>
-        </div>
-      </div>
-
-      {/* Main content */}
-      <div
-        className={`flex-1 transition-all duration-300 ease-in-out ${
-          isMobile 
-            ? 'ml-0' 
-            : isSidebarOpen ? 'ml-64' : 'ml-16'
-        }`}
-      >
-        {/* Top navigation bar */}
-        <div className="bg-white shadow-sm p-4 flex justify-between items-center">
-          {/* Mobile menu button */}
-          {isMobile && (
+          <div className="flex items-center justify-between p-4 border-b border-indigo-700">
+            <h1 className={`font-bold text-xl ${!isSidebarOpen && !isMobile && 'hidden'}`}>
+              {isMobile ? 'Teaching Engine' : 'Teacher Planner'}
+            </h1>
             <button
               onClick={toggleSidebar}
-              className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
-              aria-label="Open menu"
+              className="text-white focus:outline-none p-1 rounded-lg hover:bg-indigo-700 transition-colors"
+              aria-label={isSidebarOpen ? 'Close sidebar' : 'Open sidebar'}
             >
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+              {isSidebarOpen ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                  />
+                </svg>
+              )}
             </button>
-          )}
-          <div className="text-lg md:text-xl font-semibold flex-1 text-center md:text-left">
-            {/* Current page title based on route */}
-            {(() => {
-              // Check ETFO levels first
-              const etfoMatch = etfoLevels.find((level) =>
-                location.pathname.startsWith(level.path),
-              );
-              if (etfoMatch) return etfoMatch.name;
-
-              // Check for exact analytics match
-              if (location.pathname === '/analytics') {
-                return 'Analytics';
-              }
-
-              // Check secondary nav items
-              const secondaryMatch = secondaryNavItems.find((item) =>
-                location.pathname.startsWith(item.path),
-              );
-              if (secondaryMatch) return secondaryMatch.label;
-
-              // Default
-              return 'Teaching Engine 2.0';
-            })()}
           </div>
-          <div className="flex items-center space-x-2 md:space-x-4">
-            <div className="hidden sm:block">
-              <LanguageSwitcher />
+
+          {/* Main navigation - ETFO Planning Levels */}
+          <div className="py-4">
+            <div className="px-4 py-2 text-xs uppercase text-indigo-300 font-semibold">
+              {isSidebarOpen ? 'ETFO Planning Workflow' : ''}
             </div>
-            <NotificationBell />
-            <div className="h-8 w-8 rounded-full bg-indigo-500 flex items-center justify-center text-white">
-              <span className="font-semibold text-sm">TP</span>
+            {etfoLevels.map((level, index) => {
+              const isAccessible = level.isAccessible;
+              const isComplete = level.isComplete;
+              const progress = level.progress;
+
+              return (
+                <div key={level.id} className="relative">
+                  {isSidebarOpen && (
+                    <div className="px-4 py-1 text-xs text-indigo-300 flex items-center justify-between">
+                      <span>Step {index + 1}</span>
+                      <div className="flex items-center space-x-2">
+                        {isComplete && (
+                          <svg
+                            className="h-3 w-3 text-green-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        )}
+                        <span>{Math.round(progress)}%</span>
+                      </div>
+                    </div>
+                  )}
+                  <NavLink
+                    to={isAccessible ? level.path : '#'}
+                    data-testid={level.id === 2 ? 'long-range-nav' : undefined}
+                    className={({ isActive }) => {
+                      const baseClasses = `flex items-center py-2 px-4 ${!isSidebarOpen && 'justify-center'}`;
+
+                      if (!isAccessible) {
+                        return `${baseClasses} text-indigo-400 cursor-not-allowed opacity-50`;
+                      }
+
+                      if (isActive) {
+                        return `${baseClasses} bg-indigo-900 text-white`;
+                      }
+
+                      return `${baseClasses} text-indigo-100 hover:bg-indigo-700`;
+                    }}
+                    onClick={(e) => {
+                      if (!isAccessible) {
+                        e.preventDefault();
+                        // Could add a toast notification here
+                      }
+                    }}
+                  >
+                    <span className="mr-3 relative">
+                      {level.icon}
+                      {isComplete && isSidebarOpen && (
+                        <div className="absolute -top-1 -right-1 h-2 w-2 bg-green-400 rounded-full"></div>
+                      )}
+                    </span>
+                    {isSidebarOpen && (
+                      <div className="flex-1">
+                        <div className="font-medium">{level.name}</div>
+                        <div className="text-xs text-indigo-300 mt-1">{level.description}</div>
+                        {progress > 0 && progress < 100 && (
+                          <div className="w-full bg-indigo-800 rounded-full h-1 mt-2">
+                            <div
+                              className="bg-indigo-400 h-1 rounded-full transition-all duration-300"
+                              style={{ width: `${progress}%` }}
+                            ></div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </NavLink>
+                </div>
+              );
+            })}
+
+            <div className="mt-6 px-4 py-2 text-xs uppercase text-indigo-300 font-semibold">
+              {isSidebarOpen ? 'Resources' : ''}
             </div>
+            {secondaryNavItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={({ isActive }) =>
+                  `flex items-center py-2 px-4 ${
+                    isActive ? 'bg-indigo-900 text-white' : 'text-indigo-100 hover:bg-indigo-700'
+                  } ${!isSidebarOpen && 'justify-center'}`
+                }
+              >
+                <span className="mr-3">{item.icon}</span>
+                {isSidebarOpen && <span>{item.label}</span>}
+              </NavLink>
+            ))}
+          </div>
+
+          {/* Logout button at bottom */}
+          <div className="absolute bottom-0 w-full border-t border-indigo-700 p-4">
+            <button
+              onClick={handleLogout}
+              className="flex items-center text-indigo-100 hover:text-white w-full"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 mr-3"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                />
+              </svg>
+              {isSidebarOpen && <span>Logout</span>}
+            </button>
           </div>
         </div>
 
-        {/* Main content area */}
-        <div className="p-3 md:p-6 h-[calc(100vh-64px)] overflow-y-auto">
-          <div className="max-w-full">{children}</div>
+        {/* Main content */}
+        <div
+          className={`flex-1 transition-all duration-300 ease-in-out ${
+            isMobile ? 'ml-0' : isSidebarOpen ? 'ml-64' : 'ml-16'
+          }`}
+        >
+          {/* Top navigation bar */}
+          <div className="bg-white shadow-sm p-4 flex justify-between items-center">
+            {/* Mobile menu button */}
+            {isMobile && (
+              <button
+                onClick={toggleSidebar}
+                className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+                aria-label="Open menu"
+              >
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </button>
+            )}
+            <div className="text-lg md:text-xl font-semibold flex-1 text-center md:text-left">
+              {/* Current page title based on route */}
+              {(() => {
+                // Check ETFO levels first
+                const etfoMatch = etfoLevels.find((level) =>
+                  location.pathname.startsWith(level.path),
+                );
+                if (etfoMatch) return etfoMatch.name;
+
+                // Check for exact analytics match
+                if (location.pathname === '/analytics') {
+                  return 'Analytics';
+                }
+
+                // Check secondary nav items
+                const secondaryMatch = secondaryNavItems.find((item) =>
+                  location.pathname.startsWith(item.path),
+                );
+                if (secondaryMatch) return secondaryMatch.label;
+
+                // Default
+                return 'Teaching Engine 2.0';
+              })()}
+            </div>
+            <div className="flex items-center space-x-2 md:space-x-4">
+              <div className="hidden sm:block">
+                <LanguageSwitcher />
+              </div>
+              <NotificationBell />
+              <div className="h-8 w-8 rounded-full bg-indigo-500 flex items-center justify-center text-white">
+                <span className="font-semibold text-sm">TP</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Main content area */}
+          <div className="p-3 md:p-6 h-[calc(100vh-64px)] overflow-y-auto">
+            <div className="max-w-full">{children}</div>
+          </div>
         </div>
-      </div>
 
         {/* Onboarding Flow */}
         <TeacherOnboardingFlow />

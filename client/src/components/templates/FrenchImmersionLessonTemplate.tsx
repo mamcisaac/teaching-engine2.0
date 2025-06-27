@@ -1,12 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '../ui/Button';
-import { Card } from '../ui/Card';
-import BilingualTextInput from '../BilingualTextInput';
-import { 
-  FrenchImmersionLessonContent, 
+import { Card } from '../ui/card';
+// import BilingualTextInput from '../BilingualTextInput';
+import {
+  FrenchImmersionLessonContent,
   BilingualVocabulary,
-  BilingualActivity 
+  BilingualActivity,
 } from '../../types/frenchImmersion';
 import { BookOpen, Globe, Users, MessageSquare, Target, FileText } from 'lucide-react';
 
@@ -25,9 +25,15 @@ export default function FrenchImmersionLessonTemplate({
   initialData,
   onSave,
   onCancel,
-  metadata
+  metadata,
 }: FrenchImmersionLessonTemplateProps) {
-  const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm<FrenchImmersionLessonContent>({
+  const {
+    register,
+    handleSubmit,
+    _watch,
+    _setValue,
+    formState: { _errors },
+  } = useForm<FrenchImmersionLessonContent>({
     defaultValues: initialData || {
       objectivesEn: [''],
       objectivesFr: [''],
@@ -37,22 +43,22 @@ export default function FrenchImmersionLessonTemplate({
         targetVocabulary: [],
         sentenceStructures: [''],
         grammarPoints: [''],
-        pronunciationFocus: ['']
+        pronunciationFocus: [''],
       },
       culturalConnections: {
         francophoneCulture: [''],
         canadianContent: [''],
-        globalPerspectives: ['']
-      }
-    }
+        globalPerspectives: [''],
+      },
+    },
   });
 
   const [vocabulary, setVocabulary] = React.useState<BilingualVocabulary[]>(
-    initialData?.languageFocus?.targetVocabulary || []
+    initialData?.languageFocus?.targetVocabulary || [],
   );
 
   const [homeActivities, setHomeActivities] = React.useState<BilingualActivity[]>(
-    initialData?.parentCommunication?.homeActivities || []
+    initialData?.parentCommunication?.homeActivities || [],
   );
 
   const addVocabulary = () => {
@@ -70,14 +76,17 @@ export default function FrenchImmersionLessonTemplate({
   };
 
   const addHomeActivity = () => {
-    setHomeActivities([...homeActivities, {
-      titleEn: '',
-      titleFr: '',
-      instructions: '',
-      instructionsFr: '',
-      materials: [],
-      duration: ''
-    }]);
+    setHomeActivities([
+      ...homeActivities,
+      {
+        titleEn: '',
+        titleFr: '',
+        instructions: '',
+        instructionsFr: '',
+        materials: [],
+        duration: '',
+      },
+    ]);
   };
 
   const onSubmit = (data: FrenchImmersionLessonContent) => {
@@ -85,12 +94,12 @@ export default function FrenchImmersionLessonTemplate({
       ...data,
       languageFocus: {
         ...data.languageFocus,
-        targetVocabulary: vocabulary
+        targetVocabulary: vocabulary,
       },
       parentCommunication: {
         ...data.parentCommunication,
-        homeActivities
-      }
+        homeActivities,
+      },
     };
     onSave(fullData);
   };
@@ -101,9 +110,13 @@ export default function FrenchImmersionLessonTemplate({
       <Card className="bg-gradient-to-r from-blue-50 to-red-50 p-6">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">Grade 1 French Immersion Lesson Plan</h2>
+            <h2 className="text-2xl font-bold text-gray-900">
+              Grade 1 French Immersion Lesson Plan
+            </h2>
             <p className="text-gray-600 mt-1">
-              {metadata?.theme ? `Theme: ${metadata.theme}` : 'Structured bilingual learning template'}
+              {metadata?.theme
+                ? `Theme: ${metadata.theme}`
+                : 'Structured bilingual learning template'}
             </p>
           </div>
           <div className="flex gap-2">
@@ -119,7 +132,7 @@ export default function FrenchImmersionLessonTemplate({
           <Target className="h-5 w-5 text-blue-600" />
           <h3 className="text-lg font-semibold">Bilingual Learning Objectives</h3>
         </div>
-        
+
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -132,7 +145,7 @@ export default function FrenchImmersionLessonTemplate({
               placeholder="Students will be able to..."
             />
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Objectifs en français
@@ -148,8 +161,11 @@ export default function FrenchImmersionLessonTemplate({
 
         <div className="mt-4 p-3 bg-yellow-50 rounded-lg">
           <p className="text-sm text-yellow-800">
-            <strong>Tip for {metadata?.grade === 1 ? 'Grade 1' : 'Primary'} French Immersion:</strong> 
-            Keep objectives simple and achievable. Focus on oral communication and basic vocabulary acquisition.
+            <strong>
+              Tip for {metadata?.grade === 1 ? 'Grade 1' : 'Primary'} French Immersion:
+            </strong>
+            Keep objectives simple and achievable. Focus on oral communication and basic vocabulary
+            acquisition.
           </p>
         </div>
       </Card>
@@ -206,7 +222,7 @@ export default function FrenchImmersionLessonTemplate({
               </div>
             </div>
           ))}
-          
+
           <Button type="button" variant="outline" onClick={addVocabulary}>
             + Add Vocabulary Word
           </Button>
@@ -224,7 +240,7 @@ export default function FrenchImmersionLessonTemplate({
               placeholder="Je vois un/une... / C'est..."
             />
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Grammar Focus (if applicable)
@@ -339,9 +355,7 @@ export default function FrenchImmersionLessonTemplate({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Canadian Content
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Canadian Content</label>
             <textarea
               {...register('culturalConnections.canadianContent.0')}
               className="w-full p-3 border rounded-lg"
@@ -418,9 +432,7 @@ export default function FrenchImmersionLessonTemplate({
         </div>
 
         <div className="mt-4">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Assessment Notes
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Assessment Notes</label>
           <textarea
             {...register('assessmentNotes')}
             className="w-full p-3 border rounded-lg"
@@ -494,7 +506,7 @@ export default function FrenchImmersionLessonTemplate({
                 </div>
               </div>
             ))}
-            
+
             <Button type="button" variant="outline" size="sm" onClick={addHomeActivity}>
               + Add Home Activity
             </Button>

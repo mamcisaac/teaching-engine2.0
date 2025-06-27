@@ -37,6 +37,18 @@ export function authRoutes(prisma: PrismaClient): Router {
 
       try {
         const result = await authenticate(email, password, prisma);
+
+        // Set JWT in httpOnly cookie for security
+        const isProduction = process.env.NODE_ENV === 'production';
+        const cookieOptions = {
+          httpOnly: true,
+          secure: isProduction,
+          sameSite: isProduction ? ('strict' as const) : ('lax' as const),
+          maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+          path: '/',
+        };
+
+        res.cookie('authToken', result.token, cookieOptions);
         res.json(result);
       } catch (error) {
         logger.warn(`Failed login attempt for email: ${email}`, { error });
@@ -82,6 +94,17 @@ export function authRoutes(prisma: PrismaClient): Router {
       // Return user without password
       const { password: _, ...userWithoutPassword } = user;
 
+      // Set JWT in httpOnly cookie for security
+      const isProduction = process.env.NODE_ENV === 'production';
+      const cookieOptions = {
+        httpOnly: true,
+        secure: isProduction,
+        sameSite: isProduction ? ('strict' as const) : ('lax' as const),
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+        path: '/',
+      };
+
+      res.cookie('authToken', token, cookieOptions);
       res.status(201).json({
         user: userWithoutPassword,
         token,

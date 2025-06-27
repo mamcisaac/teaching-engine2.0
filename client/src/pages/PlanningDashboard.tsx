@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/Button';
 import { Link } from 'react-router-dom';
@@ -18,7 +18,6 @@ import { useRecentPlans } from '../hooks/useRecentPlans';
 import { useHelp } from '../contexts/HelpContext';
 import { useOnboarding } from '../contexts/OnboardingContext';
 import { OnboardingTooltip } from '../components/onboarding';
-import { type RecentPlan } from '../components/planning/RecentPlans';
 
 export default function PlanningDashboard() {
   const { startTutorial } = useHelp();
@@ -81,9 +80,7 @@ export default function PlanningDashboard() {
       {/* Welcome Header */}
       <div className="text-center space-y-4">
         <div className="flex items-center justify-center gap-3">
-          <h1 className="text-4xl font-bold text-gray-900">
-            Bienvenue dans Teaching Engine
-          </h1>
+          <h1 className="text-4xl font-bold text-gray-900">Bienvenue dans Teaching Engine</h1>
           <div className="flex items-center gap-2">
             <Button
               variant="ghost"
@@ -105,7 +102,8 @@ export default function PlanningDashboard() {
           </div>
         </div>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Your planning assistant for Grade 1 French Immersion • Votre assistant de planification pour la 1ère année d'immersion française
+          Your planning assistant for Grade 1 French Immersion • Votre assistant de planification
+          pour la 1ère année d&apos;immersion française
         </p>
       </div>
 
@@ -160,32 +158,28 @@ export default function PlanningDashboard() {
 
       {/* Primary Actions */}
       <div className="space-y-6">
-        <h2 className="text-2xl font-semibold text-gray-900">
-          Quick Actions • Actions rapides
-        </h2>
-        
+        <h2 className="text-2xl font-semibold text-gray-900">Quick Actions • Actions rapides</h2>
+
         <div className="grid gap-6 md:grid-cols-3">
           {primaryActions.map((action) => {
             const actionCard = (
               <Link key={action.id} to={action.path} id={action.id}>
-                <Card className={`h-full transition-all duration-200 hover:scale-105 hover:shadow-lg border-2 ${
-                  action.isPrimary ? 'border-blue-200 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
-                }`}>
+                <Card
+                  className={`h-full transition-all duration-200 hover:scale-105 hover:shadow-lg border-2 ${
+                    action.isPrimary
+                      ? 'border-blue-200 bg-blue-50'
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
                   <CardContent className="p-6">
                     <div className="flex flex-col items-center text-center space-y-4">
                       <div className={`p-4 rounded-full text-white ${action.color}`}>
                         {action.icon}
                       </div>
                       <div className="space-y-2">
-                        <h3 className="text-lg font-semibold text-gray-900">
-                          {action.title}
-                        </h3>
-                        <p className="text-sm text-gray-500 font-medium">
-                          {action.subtitle}
-                        </p>
-                        <p className="text-sm text-gray-600">
-                          {action.description}
-                        </p>
+                        <h3 className="text-lg font-semibold text-gray-900">{action.title}</h3>
+                        <p className="text-sm text-gray-500 font-medium">{action.subtitle}</p>
+                        <p className="text-sm text-gray-600">{action.description}</p>
                       </div>
                       <ChevronRight className="h-5 w-5 text-gray-400" />
                     </div>
@@ -204,7 +198,7 @@ export default function PlanningDashboard() {
                   content="This is where the magic begins! Click here to create your first French Immersion lesson plan with AI assistance."
                   position="bottom"
                   actionText="Start planning"
-                  onAction={() => window.location.href = action.path}
+                  onAction={() => (window.location.href = action.path)}
                 >
                   {actionCard}
                 </OnboardingTooltip>
@@ -222,7 +216,7 @@ export default function PlanningDashboard() {
                 </OnboardingTooltip>
               );
             }
-            
+
             return actionCard;
           })}
         </div>
@@ -237,9 +231,7 @@ export default function PlanningDashboard() {
               <Clock className="h-5 w-5" />
               Recent Plans
             </CardTitle>
-            <CardDescription>
-              Your latest lesson plans and activities
-            </CardDescription>
+            <CardDescription>Your latest lesson plans and activities</CardDescription>
           </CardHeader>
           <CardContent>
             {recentPlansLoading ? (
@@ -270,10 +262,7 @@ export default function PlanningDashboard() {
                 <BookOpen className="h-12 w-12 mx-auto mb-3 text-gray-300" />
                 <p>No plans yet. Create your first lesson to get started!</p>
                 <Link to="/planner/quick-lesson">
-                  <Button
-                    variant="outline"
-                    className="mt-3"
-                  >
+                  <Button variant="outline" className="mt-3">
                     Create First Plan
                   </Button>
                 </Link>
@@ -289,9 +278,7 @@ export default function PlanningDashboard() {
               <Users className="h-5 w-5" />
               French Immersion Resources
             </CardTitle>
-            <CardDescription>
-              Tools designed for Grade 1 French Immersion teachers
-            </CardDescription>
+            <CardDescription>Tools designed for Grade 1 French Immersion teachers</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
@@ -302,9 +289,7 @@ export default function PlanningDashboard() {
                   className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-gray-100 rounded-lg">
-                      {resource.icon}
-                    </div>
+                    <div className="p-2 bg-gray-100 rounded-lg">{resource.icon}</div>
                     <div>
                       <h4 className="font-medium text-gray-900">{resource.title}</h4>
                       <p className="text-sm text-gray-500">{resource.subtitle}</p>
@@ -324,7 +309,8 @@ export default function PlanningDashboard() {
                   <div>
                     <h4 className="font-medium text-yellow-900">Pro Tip</h4>
                     <p className="text-sm text-yellow-800 mt-1">
-                      Start with a quick lesson plan to see how Teaching Engine adapts to French Immersion needs. The AI understands both languages!
+                      Start with a quick lesson plan to see how Teaching Engine adapts to French
+                      Immersion needs. The AI understands both languages!
                     </p>
                   </div>
                 </div>
@@ -345,11 +331,11 @@ export default function PlanningDashboard() {
               </h3>
             </div>
             <p className="text-green-800 max-w-3xl mx-auto">
-              Teaching Engine 2.0 is designed specifically for PEI curriculum requirements and French Immersion pedagogy. 
-              Focus on teaching while we handle the planning complexity.
+              Teaching Engine 2.0 is designed specifically for PEI curriculum requirements and
+              French Immersion pedagogy. Focus on teaching while we handle the planning complexity.
             </p>
             <p className="text-sm text-green-700 italic">
-              "Teaching is about inspiring minds, not managing paperwork."
+              &ldquo;Teaching is about inspiring minds, not managing paperwork.&rdquo;
             </p>
           </div>
         </CardContent>
@@ -357,4 +343,3 @@ export default function PlanningDashboard() {
     </div>
   );
 }
-

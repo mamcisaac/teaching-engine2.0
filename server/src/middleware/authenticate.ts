@@ -14,6 +14,16 @@ export function authenticate(req: Request, res: Response, next: NextFunction): v
     // First try to get token from httpOnly cookie
     let token = req.cookies?.authToken;
 
+    // Debug logging (temporary)
+    if (process.env.NODE_ENV === 'development') {
+      logger.debug('Auth Debug:', {
+        hasCookies: !!req.cookies,
+        hasAuthToken: !!req.cookies?.authToken,
+        authHeader: req.headers['authorization'] ? 'present' : 'missing',
+        url: req.url,
+      });
+    }
+
     // Fallback to Authorization header for backward compatibility
     if (!token) {
       const authHeader = req.headers['authorization'];

@@ -57,10 +57,12 @@ export function SharedPlansView() {
   // Fetch shared plans
   const { data: sharedPlans = [], isLoading } = useQuery<SharedPlan[]>({
     queryKey: ['shared-plans', activeTab],
-    queryFn: () => 
-      api.get('/api/sharing/plans', {
-        params: { direction: activeTab }
-      }).then(res => res.data),
+    queryFn: () =>
+      api
+        .get('/api/sharing/plans', {
+          params: { direction: activeTab },
+        })
+        .then((res) => res.data),
   });
 
   // Copy plan mutation
@@ -76,10 +78,11 @@ export function SharedPlansView() {
       });
       queryClient.invalidateQueries({ queryKey: ['shared-plans'] });
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
+      const message = error instanceof Error ? error.message : 'Failed to copy the plan';
       toast({
         title: 'Copy failed',
-        description: error.response?.data?.error || 'Failed to copy the plan',
+        description: message,
         variant: 'destructive',
       });
     },
@@ -158,7 +161,7 @@ export function SharedPlansView() {
               <Share2 className="w-12 h-12 text-gray-400 mx-auto mb-4" />
               <h3 className="text-lg font-semibold mb-2">No shared plans yet</h3>
               <p className="text-gray-600">
-                When colleagues share plans with you, they'll appear here.
+                When colleagues share plans with you, they&apos;ll appear here.
               </p>
             </Card>
           ) : (
@@ -167,23 +170,15 @@ export function SharedPlansView() {
                 <Card key={plan.id} className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-start gap-3">
-                      <div className="p-2 bg-blue-50 rounded-lg">
-                        {getPlanIcon(plan.planType)}
-                      </div>
+                      <div className="p-2 bg-blue-50 rounded-lg">{getPlanIcon(plan.planType)}</div>
                       <div>
                         <h3 className="font-semibold text-lg">
                           {plan.planDetails?.title || 'Untitled Plan'}
                         </h3>
                         <div className="flex items-center gap-4 text-sm text-gray-600 mt-1">
-                          <Badge variant="outline">
-                            {getPlanTypeName(plan.planType)}
-                          </Badge>
-                          {plan.planDetails?.grade && (
-                            <span>Grade {plan.planDetails.grade}</span>
-                          )}
-                          {plan.planDetails?.subject && (
-                            <span>{plan.planDetails.subject}</span>
-                          )}
+                          <Badge variant="outline">{getPlanTypeName(plan.planType)}</Badge>
+                          {plan.planDetails?.grade && <span>Grade {plan.planDetails.grade}</span>}
+                          {plan.planDetails?.subject && <span>{plan.planDetails.subject}</span>}
                         </div>
                       </div>
                     </div>
@@ -207,11 +202,7 @@ export function SharedPlansView() {
                           <Download className="w-4 h-4" />
                         </Button>
                       )}
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => viewPlan(plan)}
-                      >
+                      <Button variant="outline" size="sm" onClick={() => viewPlan(plan)}>
                         <Eye className="w-4 h-4 mr-2" />
                         View
                       </Button>
@@ -226,7 +217,8 @@ export function SharedPlansView() {
 
                   <div className="flex items-center justify-between text-sm text-gray-500">
                     <span>
-                      Shared by {plan.sharedBy.name} • {formatDistanceToNow(new Date(plan.sharedAt))} ago
+                      Shared by {plan.sharedBy.name} •{' '}
+                      {formatDistanceToNow(new Date(plan.sharedAt))} ago
                     </span>
                     <div className="flex gap-4">
                       <span>{plan.viewCount} views</span>
@@ -263,9 +255,7 @@ export function SharedPlansView() {
             <Card className="p-8 text-center">
               <Share2 className="w-12 h-12 text-gray-400 mx-auto mb-4" />
               <h3 className="text-lg font-semibold mb-2">No shared plans</h3>
-              <p className="text-gray-600">
-                Plans you share with colleagues will appear here.
-              </p>
+              <p className="text-gray-600">Plans you share with colleagues will appear here.</p>
             </Card>
           ) : (
             <div className="space-y-4">
@@ -273,37 +263,25 @@ export function SharedPlansView() {
                 <Card key={plan.id} className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-start gap-3">
-                      <div className="p-2 bg-green-50 rounded-lg">
-                        {getPlanIcon(plan.planType)}
-                      </div>
+                      <div className="p-2 bg-green-50 rounded-lg">{getPlanIcon(plan.planType)}</div>
                       <div>
                         <h3 className="font-semibold text-lg">
                           {plan.planDetails?.title || 'Untitled Plan'}
                         </h3>
                         <div className="flex items-center gap-4 text-sm text-gray-600 mt-1">
-                          <Badge variant="outline">
-                            {getPlanTypeName(plan.planType)}
-                          </Badge>
-                          {plan.sharedWith && (
-                            <span>Shared with {plan.sharedWith.name}</span>
-                          )}
+                          <Badge variant="outline">{getPlanTypeName(plan.planType)}</Badge>
+                          {plan.sharedWith && <span>Shared with {plan.sharedWith.name}</span>}
                         </div>
                       </div>
                     </div>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => viewPlan(plan)}
-                    >
+                    <Button variant="outline" size="sm" onClick={() => viewPlan(plan)}>
                       <Eye className="w-4 h-4 mr-2" />
                       View
                     </Button>
                   </div>
 
                   <div className="flex items-center justify-between text-sm text-gray-500">
-                    <span>
-                      Shared {formatDistanceToNow(new Date(plan.sharedAt))} ago
-                    </span>
+                    <span>Shared {formatDistanceToNow(new Date(plan.sharedAt))} ago</span>
                     <div className="flex gap-4">
                       <span>{plan.viewCount} views</span>
                       {plan.copyCount > 0 && <span>{plan.copyCount} copies</span>}

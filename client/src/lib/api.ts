@@ -6,10 +6,12 @@ export const apiClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true, // Include cookies in requests
 });
 
-// Add auth token to requests
+// Add auth token to requests (for backward compatibility during transition)
 apiClient.interceptors.request.use((config) => {
+  // Still support Bearer token for E2E tests that might use it
   const token = localStorage.getItem('token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;

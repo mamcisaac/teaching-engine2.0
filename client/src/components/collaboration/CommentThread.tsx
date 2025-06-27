@@ -47,19 +47,23 @@ export function CommentThread({ planType, planId, canResolve = false }: CommentT
   // Fetch comments
   const { data: comments = [], isLoading } = useQuery<Comment[]>({
     queryKey: ['comments', planType, planId],
-    queryFn: () => 
-      api.get('/api/comments', {
-        params: { planType, planId }
-      }).then(res => res.data),
+    queryFn: () =>
+      api
+        .get('/api/comments', {
+          params: { planType, planId },
+        })
+        .then((res) => res.data),
   });
 
   // Fetch comment stats
   const { data: stats } = useQuery({
     queryKey: ['comment-stats', planType, planId],
-    queryFn: () => 
-      api.get('/api/comments/stats', {
-        params: { planType, planId }
-      }).then(res => res.data),
+    queryFn: () =>
+      api
+        .get('/api/comments/stats', {
+          params: { planType, planId },
+        })
+        .then((res) => res.data),
   });
 
   // Create comment mutation
@@ -83,10 +87,11 @@ export function CommentThread({ planType, planId, canResolve = false }: CommentT
         description: 'Your comment has been posted.',
       });
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
+      const message = error instanceof Error ? error.message : 'Please try again';
       toast({
         title: 'Failed to add comment',
-        description: error.response?.data?.error || 'Please try again',
+        description: message,
         variant: 'destructive',
       });
     },
@@ -94,12 +99,12 @@ export function CommentThread({ planType, planId, canResolve = false }: CommentT
 
   // Update comment mutation
   const updateCommentMutation = useMutation({
-    mutationFn: async ({ 
-      commentId, 
-      updates 
-    }: { 
-      commentId: string; 
-      updates: { isResolved?: boolean; isPinned?: boolean } 
+    mutationFn: async ({
+      commentId,
+      updates,
+    }: {
+      commentId: string;
+      updates: { isResolved?: boolean; isPinned?: boolean };
     }) => {
       const response = await api.patch(`/api/comments/${commentId}`, updates);
       return response.data;
@@ -136,10 +141,7 @@ export function CommentThread({ planType, planId, canResolve = false }: CommentT
   };
 
   const renderComment = (comment: Comment, isReply = false) => (
-    <div
-      key={comment.id}
-      className={`${isReply ? 'ml-12 mt-3' : 'mb-4'}`}
-    >
+    <div key={comment.id} className={`${isReply ? 'ml-12 mt-3' : 'mb-4'}`}>
       <Card className={`p-4 ${comment.isResolved ? 'bg-green-50 border-green-200' : ''}`}>
         <div className="flex items-start justify-between mb-2">
           <div className="flex items-center gap-2">
@@ -160,33 +162,39 @@ export function CommentThread({ planType, planId, canResolve = false }: CommentT
               </Badge>
             )}
           </div>
-          
+
           <div className="flex items-center gap-1">
             {canResolve && !isReply && (
               <>
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => updateCommentMutation.mutate({
-                    commentId: comment.id,
-                    updates: { isPinned: !comment.isPinned }
-                  })}
+                  onClick={() =>
+                    updateCommentMutation.mutate({
+                      commentId: comment.id,
+                      updates: { isPinned: !comment.isPinned },
+                    })
+                  }
                 >
                   <Pin className={`w-4 h-4 ${comment.isPinned ? 'fill-current' : ''}`} />
                 </Button>
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => updateCommentMutation.mutate({
-                    commentId: comment.id,
-                    updates: { isResolved: !comment.isResolved }
-                  })}
+                  onClick={() =>
+                    updateCommentMutation.mutate({
+                      commentId: comment.id,
+                      updates: { isResolved: !comment.isResolved },
+                    })
+                  }
                 >
-                  <CheckCircle className={`w-4 h-4 ${comment.isResolved ? 'text-green-600' : ''}`} />
+                  <CheckCircle
+                    className={`w-4 h-4 ${comment.isResolved ? 'text-green-600' : ''}`}
+                  />
                 </Button>
               </>
             )}
-            {comment.user.id === user?.id && comment.replies.length === 0 && (
+            {comment.user.id === Number(user?.id) && comment.replies.length === 0 && (
               <Button
                 variant="ghost"
                 size="sm"
@@ -307,9 +315,7 @@ export function CommentThread({ planType, planId, canResolve = false }: CommentT
           <p>No comments yet. Be the first to share feedback!</p>
         </Card>
       ) : (
-        <div>
-          {comments.map((comment) => renderComment(comment))}
-        </div>
+        <div>{comments.map((comment) => renderComment(comment))}</div>
       )}
     </div>
   );

@@ -1,9 +1,16 @@
 import React from 'react';
-import { Card } from '../ui/Card';
+import { Card } from '../ui/card';
 import { Button } from '../ui/Button';
-import { 
-  BookOpen, Calendar, Users, Target, Lightbulb, 
-  ChevronRight, Filter, Search, Star, Clock
+import {
+  BookOpen,
+  Calendar,
+  Users,
+  Target,
+  Lightbulb,
+  ChevronRight,
+  Search,
+  Star,
+  Clock,
 } from 'lucide-react';
 import { getAllGrade1FITemplates } from '../../data/templates/french-immersion/grade1-templates';
 import { PlanTemplate } from '../../types/template';
@@ -33,7 +40,7 @@ const TEACHER_PERSONAS: TeacherPersona[] = [
     description: 'Loves cultural integration and creative activities',
     preferences: ['Cultural connections', 'Art integration', 'Music and movement'],
     icon: <Lightbulb className="h-5 w-5" />,
-    color: 'purple'
+    color: 'purple',
   },
   {
     id: 'sophie',
@@ -41,7 +48,7 @@ const TEACHER_PERSONAS: TeacherPersona[] = [
     description: 'Wants efficient, well-structured templates',
     preferences: ['Clear objectives', 'Assessment tools', 'Time-saving features'],
     icon: <Target className="h-5 w-5" />,
-    color: 'blue'
+    color: 'blue',
   },
   {
     id: 'marie-claire',
@@ -49,14 +56,14 @@ const TEACHER_PERSONAS: TeacherPersona[] = [
     description: 'Needs guided support and clear instructions',
     preferences: ['Step-by-step guidance', 'Example activities', 'Parent communication'],
     icon: <Users className="h-5 w-5" />,
-    color: 'green'
-  }
+    color: 'green',
+  },
 ];
 
 export default function FrenchImmersionTemplateSelector({
   onTemplateSelect,
   grade = 1,
-  filterByType
+  filterByType,
 }: FrenchImmersionTemplateSelectorProps) {
   const [selectedPersona, setSelectedPersona] = React.useState<PersonaType | null>(null);
   const [searchTerm, setSearchTerm] = React.useState('');
@@ -64,53 +71,60 @@ export default function FrenchImmersionTemplateSelector({
   const [showOnlyFavorites, setShowOnlyFavorites] = React.useState(false);
 
   const { lessonTemplates, unitTemplates } = getAllGrade1FITemplates();
-  
+
   // Combine all templates
   let allTemplates = [...lessonTemplates, ...unitTemplates];
-  
+
   // Apply type filter if provided
   if (filterByType) {
-    allTemplates = allTemplates.filter(t => t.type === filterByType);
+    allTemplates = allTemplates.filter((t) => t.type === filterByType);
   }
 
   // Apply search filter
   if (searchTerm) {
-    allTemplates = allTemplates.filter(t => 
-      t.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      t.titleFr?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      t.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+    allTemplates = allTemplates.filter(
+      (t) =>
+        t.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        t.titleFr?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        t.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase())),
     );
   }
 
   // Apply time of year filter
   if (selectedTimeOfYear) {
-    allTemplates = allTemplates.filter(t => 
-      (t as any).fiMetadata?.timeOfYear === selectedTimeOfYear
+    allTemplates = allTemplates.filter(
+      (t) =>
+        (t as PlanTemplate & { fiMetadata?: FrenchImmersionTemplateMetadata }).fiMetadata
+          ?.timeOfYear === selectedTimeOfYear,
     );
   }
 
   // Apply persona recommendations
-  const getPersonaRecommendations = (template: any): boolean => {
+  const getPersonaRecommendations = (template: LessonTemplate): boolean => {
     if (!selectedPersona) return true;
-    
-    const persona = TEACHER_PERSONAS.find(p => p.id === selectedPersona);
+
+    const persona = TEACHER_PERSONAS.find((p) => p.id === selectedPersona);
     if (!persona) return true;
 
     // Check if template matches persona preferences
     if (selectedPersona === 'jean-luc') {
-      return template.content.culturalConnections || 
-             template.tags.includes('art-integration') ||
-             template.tags.includes('cultural');
+      return (
+        template.content.culturalConnections ||
+        template.tags.includes('art-integration') ||
+        template.tags.includes('cultural')
+      );
     } else if (selectedPersona === 'sophie') {
-      return template.content.assessments || 
-             template.content.assessmentNotes ||
-             template.lessonStructure;
+      return (
+        template.content.assessments || template.content.assessmentNotes || template.lessonStructure
+      );
     } else if (selectedPersona === 'marie-claire') {
-      return template.content.parentCommunication || 
-             template.description?.includes('structured') ||
-             template.tags.includes('guided');
+      return (
+        template.content.parentCommunication ||
+        template.description?.includes('structured') ||
+        template.tags.includes('guided')
+      );
     }
-    
+
     return true;
   };
 
@@ -122,9 +136,7 @@ export default function FrenchImmersionTemplateSelector({
       <Card className="bg-gradient-to-r from-blue-50 via-white to-red-50 p-6">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">
-              French Immersion Template Library
-            </h2>
+            <h2 className="text-2xl font-bold text-gray-900">French Immersion Template Library</h2>
             <p className="text-gray-600 mt-1">
               Grade {grade} - Structured templates for PEI curriculum
             </p>
@@ -144,9 +156,7 @@ export default function FrenchImmersionTemplateSelector({
           {TEACHER_PERSONAS.map((persona) => (
             <button
               key={persona.id}
-              onClick={() => setSelectedPersona(
-                selectedPersona === persona.id ? null : persona.id
-              )}
+              onClick={() => setSelectedPersona(selectedPersona === persona.id ? null : persona.id)}
               className={`p-4 rounded-lg border-2 transition-all text-left ${
                 selectedPersona === persona.id
                   ? `border-${persona.color}-500 bg-${persona.color}-50`
@@ -154,14 +164,10 @@ export default function FrenchImmersionTemplateSelector({
               }`}
             >
               <div className="flex items-start gap-3">
-                <div className={`text-${persona.color}-600`}>
-                  {persona.icon}
-                </div>
+                <div className={`text-${persona.color}-600`}>{persona.icon}</div>
                 <div>
                   <h4 className="font-medium">{persona.name}</h4>
-                  <p className="text-sm text-gray-600 mt-1">
-                    {persona.description}
-                  </p>
+                  <p className="text-sm text-gray-600 mt-1">{persona.description}</p>
                   <div className="mt-2 space-y-1">
                     {persona.preferences.map((pref, idx) => (
                       <div key={idx} className="text-xs text-gray-500">
@@ -191,7 +197,7 @@ export default function FrenchImmersionTemplateSelector({
               />
             </div>
           </div>
-          
+
           <select
             value={selectedTimeOfYear}
             onChange={(e) => setSelectedTimeOfYear(e.target.value)}
@@ -232,7 +238,8 @@ export default function FrenchImmersionTemplateSelector({
             <div className="p-3 bg-white rounded-lg">
               <h4 className="font-medium text-sm mb-1">Start with Family Unit</h4>
               <p className="text-xs text-gray-600">
-                "Ma famille" is perfect for September - familiar topic with basic vocabulary
+                &ldquo;Ma famille&rdquo; is perfect for September - familiar topic with basic
+                vocabulary
               </p>
             </div>
             <div className="p-3 bg-white rounded-lg">
@@ -260,8 +267,10 @@ export default function FrenchImmersionTemplateSelector({
       {/* Template Grid */}
       <div className="grid md:grid-cols-2 gap-4">
         {filteredTemplates.map((template) => {
-          const fiMetadata = (template as any).fiMetadata as FrenchImmersionTemplateMetadata;
-          
+          const fiMetadata = (
+            template as PlanTemplate & { fiMetadata?: FrenchImmersionTemplateMetadata }
+          ).fiMetadata;
+
           return (
             <Card key={template.id} className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="p-4">
@@ -292,16 +301,11 @@ export default function FrenchImmersionTemplateSelector({
                   </button>
                 </div>
 
-                <p className="text-sm text-gray-700 mb-3 line-clamp-2">
-                  {template.description}
-                </p>
+                <p className="text-sm text-gray-700 mb-3 line-clamp-2">{template.description}</p>
 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {template.tags.slice(0, 4).map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded"
-                    >
+                    <span key={tag} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
                       {tag}
                     </span>
                   ))}
@@ -311,10 +315,9 @@ export default function FrenchImmersionTemplateSelector({
                 <div className="flex items-center gap-4 text-xs text-gray-500 mb-4">
                   <div className="flex items-center gap-1">
                     <Clock className="h-3 w-3" />
-                    {template.type === 'LESSON_PLAN' 
+                    {template.type === 'LESSON_PLAN'
                       ? `${template.estimatedMinutes} min`
-                      : `${template.estimatedWeeks} weeks`
-                    }
+                      : `${template.estimatedWeeks} weeks`}
                   </div>
                   {fiMetadata?.frenchProficiencyLevel && (
                     <div className="flex items-center gap-1">
@@ -362,22 +365,22 @@ export default function FrenchImmersionTemplateSelector({
           <div>
             <h4 className="font-medium mb-1">For Jean-Luc Types:</h4>
             <p className="text-gray-700">
-              Add your own cultural activities! These templates are starting points - 
-              make them come alive with music, art, and movement.
+              Add your own cultural activities! These templates are starting points - make them come
+              alive with music, art, and movement.
             </p>
           </div>
           <div>
             <h4 className="font-medium mb-1">For Sophie Types:</h4>
             <p className="text-gray-700">
-              All templates include assessment rubrics and time estimates. 
-              Track progress efficiently with built-in observation tools.
+              All templates include assessment rubrics and time estimates. Track progress
+              efficiently with built-in observation tools.
             </p>
           </div>
           <div>
             <h4 className="font-medium mb-1">For Marie-Claire Types:</h4>
             <p className="text-gray-700">
-              Start with one lesson at a time. Each template has clear steps 
-              and example phrases. You've got this!
+              Start with one lesson at a time. Each template has clear steps and example phrases.
+              You&apos;ve got this!
             </p>
           </div>
         </div>

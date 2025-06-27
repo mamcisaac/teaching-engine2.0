@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useOnboarding, TUTORIAL_FLOWS } from '../contexts/OnboardingContext';
+import { useOnboarding } from '../contexts/OnboardingContext';
 import { useLocation } from 'react-router-dom';
 
 /**
@@ -22,14 +22,14 @@ export function useFeatureTutorial() {
     };
 
     const tutorialId = routeTutorials[location.pathname];
-    
+
     // Start tutorial if available and not already completed
     if (tutorialId && !state.completedFlows.includes(tutorialId)) {
       // Small delay to let the page render first
       const timer = setTimeout(() => {
         startOnboarding(tutorialId);
       }, 500);
-      
+
       return () => clearTimeout(timer);
     }
   }, [location.pathname, state, startOnboarding]);
@@ -40,14 +40,16 @@ export function useFeatureTutorial() {
  */
 export function useShowContextualHints() {
   const { state } = useOnboarding();
-  
+
   // Show hints if:
   // - User is first time user
   // - Main onboarding is complete
   // - No active tutorial
   // - User hasn't skipped onboarding
-  return state.isFirstTimeUser && 
-         state.completedFlows.includes('main-onboarding') && 
-         !state.currentFlow && 
-         !state.skippedOnboarding;
+  return (
+    state.isFirstTimeUser &&
+    state.completedFlows.includes('main-onboarding') &&
+    !state.currentFlow &&
+    !state.skippedOnboarding
+  );
 }

@@ -1,7 +1,10 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { KeyboardShortcutsProvider, useKeyboardShortcuts } from '../contexts/KeyboardShortcutsContext';
+import {
+  KeyboardShortcutsProvider,
+  useKeyboardShortcuts,
+} from '../contexts/KeyboardShortcutsContext';
 import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
 import { KeyboardShortcutsHelp } from '../components/KeyboardShortcutsHelp';
 import { ShortcutHint } from '../components/ui/ShortcutHint';
@@ -11,15 +14,20 @@ const TestComponent: React.FC = () => {
   const [count, setCount] = React.useState(0);
   const [saved, setSaved] = React.useState(false);
 
-  useKeyboardShortcut(
-    () => setCount(c => c + 1),
-    { key: 'i', ctrl: true, description: 'Increment counter', category: 'global' }
-  );
+  useKeyboardShortcut(() => setCount((c) => c + 1), {
+    key: 'i',
+    ctrl: true,
+    description: 'Increment counter',
+    category: 'global',
+  });
 
-  useKeyboardShortcut(
-    () => setSaved(true),
-    { key: 's', ctrl: true, cmd: true, description: 'Save', category: 'global' }
-  );
+  useKeyboardShortcut(() => setSaved(true), {
+    key: 's',
+    ctrl: true,
+    cmd: true,
+    description: 'Save',
+    category: 'global',
+  });
 
   return (
     <div>
@@ -33,7 +41,7 @@ const TestComponent: React.FC = () => {
 // Test component for preferences
 const PreferencesTestComponent: React.FC = () => {
   const { preferences, updatePreferences } = useKeyboardShortcuts();
-  
+
   return (
     <div>
       <div data-testid="enabled">{preferences.enabled ? 'Enabled' : 'Disabled'}</div>
@@ -54,7 +62,7 @@ describe('KeyboardShortcuts', () => {
       render(
         <KeyboardShortcutsProvider>
           <TestComponent />
-        </KeyboardShortcutsProvider>
+        </KeyboardShortcutsProvider>,
       );
 
       expect(screen.getByTestId('count')).toHaveTextContent('Count: 0');
@@ -64,7 +72,7 @@ describe('KeyboardShortcuts', () => {
       render(
         <KeyboardShortcutsProvider>
           <TestComponent />
-        </KeyboardShortcutsProvider>
+        </KeyboardShortcutsProvider>,
       );
 
       // Trigger Ctrl+I
@@ -79,7 +87,7 @@ describe('KeyboardShortcuts', () => {
       render(
         <KeyboardShortcutsProvider>
           <TestComponent />
-        </KeyboardShortcutsProvider>
+        </KeyboardShortcutsProvider>,
       );
 
       const input = screen.getByTestId('text-input');
@@ -92,21 +100,22 @@ describe('KeyboardShortcuts', () => {
     });
 
     it('allows Escape key in input fields', async () => {
-      const handleEscape = jest.fn();
-      
+      const handleEscape = vi.fn();
+
       const EscapeTestComponent = () => {
-        useKeyboardShortcut(
-          handleEscape,
-          { key: 'Escape', description: 'Close', category: 'global' }
-        );
-        
+        useKeyboardShortcut(handleEscape, {
+          key: 'Escape',
+          description: 'Close',
+          category: 'global',
+        });
+
         return <input type="text" data-testid="input" />;
       };
 
       render(
         <KeyboardShortcutsProvider>
           <EscapeTestComponent />
-        </KeyboardShortcutsProvider>
+        </KeyboardShortcutsProvider>,
       );
 
       const input = screen.getByTestId('input');
@@ -123,7 +132,7 @@ describe('KeyboardShortcuts', () => {
       render(
         <KeyboardShortcutsProvider>
           <PreferencesTestComponent />
-        </KeyboardShortcutsProvider>
+        </KeyboardShortcutsProvider>,
       );
 
       expect(screen.getByTestId('enabled')).toHaveTextContent('Enabled');
@@ -146,7 +155,7 @@ describe('KeyboardShortcuts', () => {
         <KeyboardShortcutsProvider>
           <PreferencesTestComponent />
           <TestComponent />
-        </KeyboardShortcutsProvider>
+        </KeyboardShortcutsProvider>,
       );
 
       // Disable shortcuts
@@ -168,7 +177,7 @@ describe('KeyboardShortcuts', () => {
       render(
         <KeyboardShortcutsProvider>
           <ShortcutHint shortcut={{ key: 's', ctrl: true }} />
-        </KeyboardShortcutsProvider>
+        </KeyboardShortcutsProvider>,
       );
 
       expect(screen.getByText(/Ctrl\+S/i)).toBeInTheDocument();
@@ -179,7 +188,7 @@ describe('KeyboardShortcuts', () => {
         <KeyboardShortcutsProvider>
           <PreferencesTestComponent />
           <ShortcutHint shortcut={{ key: 's', ctrl: true }} />
-        </KeyboardShortcutsProvider>
+        </KeyboardShortcutsProvider>,
       );
 
       // Toggle hints off
@@ -195,7 +204,7 @@ describe('KeyboardShortcuts', () => {
         <KeyboardShortcutsProvider>
           <PreferencesTestComponent />
           <ShortcutHint shortcut={{ key: 's', ctrl: true }} showAlways={true} />
-        </KeyboardShortcutsProvider>
+        </KeyboardShortcutsProvider>,
       );
 
       // Toggle hints off
@@ -214,24 +223,28 @@ describe('KeyboardShortcuts', () => {
     it('displays help modal with all shortcuts', () => {
       const TestWithHelp = () => {
         const [isOpen, setIsOpen] = React.useState(true);
-        
-        useKeyboardShortcut(
-          () => {},
-          { key: 'n', ctrl: true, description: 'New file', category: 'global' }
-        );
-        
-        useKeyboardShortcut(
-          () => {},
-          { key: 'd', alt: true, description: 'Dashboard', category: 'navigation' }
-        );
-        
+
+        useKeyboardShortcut(() => {}, {
+          key: 'n',
+          ctrl: true,
+          description: 'New file',
+          category: 'global',
+        });
+
+        useKeyboardShortcut(() => {}, {
+          key: 'd',
+          alt: true,
+          description: 'Dashboard',
+          category: 'navigation',
+        });
+
         return <KeyboardShortcutsHelp isOpen={isOpen} onClose={() => setIsOpen(false)} />;
       };
 
       render(
         <KeyboardShortcutsProvider>
           <TestWithHelp />
-        </KeyboardShortcutsProvider>
+        </KeyboardShortcutsProvider>,
       );
 
       expect(screen.getByText('Keyboard Shortcuts')).toBeInTheDocument();
@@ -242,24 +255,28 @@ describe('KeyboardShortcuts', () => {
     it('groups shortcuts by category', () => {
       const TestWithHelp = () => {
         const [isOpen, setIsOpen] = React.useState(true);
-        
-        useKeyboardShortcut(
-          () => {},
-          { key: 'n', ctrl: true, description: 'New file', category: 'global' }
-        );
-        
-        useKeyboardShortcut(
-          () => {},
-          { key: 'd', alt: true, description: 'Dashboard', category: 'navigation' }
-        );
-        
+
+        useKeyboardShortcut(() => {}, {
+          key: 'n',
+          ctrl: true,
+          description: 'New file',
+          category: 'global',
+        });
+
+        useKeyboardShortcut(() => {}, {
+          key: 'd',
+          alt: true,
+          description: 'Dashboard',
+          category: 'navigation',
+        });
+
         return <KeyboardShortcutsHelp isOpen={isOpen} onClose={() => setIsOpen(false)} />;
       };
 
       render(
         <KeyboardShortcutsProvider>
           <TestWithHelp />
-        </KeyboardShortcutsProvider>
+        </KeyboardShortcutsProvider>,
       );
 
       expect(screen.getByText('Global')).toBeInTheDocument();
@@ -274,13 +291,13 @@ describe('KeyboardShortcuts', () => {
       Object.defineProperty(navigator, 'platform', {
         value: 'MacIntel',
         writable: true,
-        configurable: true
+        configurable: true,
       });
 
       render(
         <KeyboardShortcutsProvider>
           <ShortcutHint shortcut={{ key: 's', cmd: true }} />
-        </KeyboardShortcutsProvider>
+        </KeyboardShortcutsProvider>,
       );
 
       expect(screen.getByText(/⌘S/)).toBeInTheDocument();
@@ -289,7 +306,7 @@ describe('KeyboardShortcuts', () => {
       Object.defineProperty(navigator, 'platform', {
         value: originalPlatform,
         writable: true,
-        configurable: true
+        configurable: true,
       });
     });
 
@@ -299,13 +316,13 @@ describe('KeyboardShortcuts', () => {
       Object.defineProperty(navigator, 'platform', {
         value: 'Win32',
         writable: true,
-        configurable: true
+        configurable: true,
       });
 
       render(
         <KeyboardShortcutsProvider>
           <ShortcutHint shortcut={{ key: 's', ctrl: true }} />
-        </KeyboardShortcutsProvider>
+        </KeyboardShortcutsProvider>,
       );
 
       expect(screen.getByText(/Ctrl\+S/)).toBeInTheDocument();
@@ -314,7 +331,7 @@ describe('KeyboardShortcuts', () => {
       Object.defineProperty(navigator, 'platform', {
         value: originalPlatform,
         writable: true,
-        configurable: true
+        configurable: true,
       });
     });
   });

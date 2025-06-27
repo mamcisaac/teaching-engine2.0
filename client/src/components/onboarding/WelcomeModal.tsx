@@ -15,18 +15,18 @@ export function WelcomeModal() {
     {
       icon: <Clock className="h-5 w-5" />,
       title: 'Save 3+ hours per week',
-      description: 'Automated lesson planning and report generation'
+      description: 'Automated lesson planning and report generation',
     },
     {
       icon: <Target className="h-5 w-5" />,
       title: 'ETFO-aligned planning',
-      description: 'Built specifically for Ontario teachers'
+      description: 'Built specifically for Ontario teachers',
     },
     {
       icon: <Heart className="h-5 w-5" />,
       title: 'French Immersion ready',
-      description: 'Bilingual templates and resources for Grade 1'
-    }
+      description: 'Bilingual templates and resources for Grade 1',
+    },
   ];
 
   return (
@@ -51,9 +51,7 @@ export function WelcomeModal() {
             <div className="inline-flex items-center justify-center p-3 bg-white/20 rounded-full mb-4">
               <Sparkles className="h-8 w-8" />
             </div>
-            <h1 className="text-3xl font-bold mb-2">
-              Welcome to Teaching Engine 2.0
-            </h1>
+            <h1 className="text-3xl font-bold mb-2">Welcome to Teaching Engine 2.0</h1>
             <p className="text-lg text-blue-100">
               Your intelligent planning assistant for Grade 1 French Immersion
             </p>
@@ -70,11 +68,11 @@ export function WelcomeModal() {
             className="mb-8 text-center"
           >
             <h2 className="text-xl font-semibold text-gray-900 mb-2">
-              Bonjour! Let's get you started
+              Bonjour! Let&apos;s get you started
             </h2>
             <p className="text-gray-600">
-              Teaching Engine adapts to your Grade 1 French Immersion classroom, 
-              saving you hours while ensuring comprehensive curriculum coverage.
+              Teaching Engine adapts to your Grade 1 French Immersion classroom, saving you hours
+              while ensuring comprehensive curriculum coverage.
             </p>
           </motion.div>
 
@@ -86,20 +84,13 @@ export function WelcomeModal() {
             className="grid gap-4 mb-8"
           >
             {features.map((feature, index) => (
-              <div
-                key={index}
-                className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg"
-              >
+              <div key={index} className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
                 <div className="p-2 bg-blue-100 rounded-lg text-blue-600 flex-shrink-0">
                   {feature.icon}
                 </div>
                 <div>
-                  <h3 className="font-medium text-gray-900 mb-1">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm text-gray-600">
-                    {feature.description}
-                  </p>
+                  <h3 className="font-medium text-gray-900 mb-1">{feature.title}</h3>
+                  <p className="text-sm text-gray-600">{feature.description}</p>
                 </div>
               </div>
             ))}
@@ -120,13 +111,8 @@ export function WelcomeModal() {
               Take the 5-minute tour
               <ChevronRight className="h-4 w-4" />
             </Button>
-            <Button
-              onClick={skipOnboarding}
-              variant="outline"
-              size="lg"
-              className="flex-1"
-            >
-              I'll explore on my own
+            <Button onClick={skipOnboarding} variant="outline" size="lg" className="flex-1">
+              I&apos;ll explore on my own
             </Button>
           </motion.div>
 

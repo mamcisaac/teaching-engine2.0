@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from '../ui/Card';
+import { Card } from '../ui/card';
 import { Button } from '../ui/Button';
 import { MapPin, Book, Target, FileText, CheckCircle } from 'lucide-react';
 import { PEICurriculumAlignment, PEILearningOutcome } from '../../types/frenchImmersion';
@@ -25,13 +25,13 @@ const PEI_GRADE1_OUTCOMES: Record<string, PEICurriculumAlignment> = {
         indicators: [
           'Follows simple classroom instructions in French',
           'Responds to basic questions with gestures or single words',
-          'Demonstrates understanding through actions'
+          'Demonstrates understanding through actions',
         ],
         frenchLanguageSupport: [
           'Use visual aids and gestures',
           'Repeat key vocabulary',
-          'Provide wait time for processing'
-        ]
+          'Provide wait time for processing',
+        ],
       },
       {
         code: 'FLA-OC-1.2',
@@ -40,13 +40,13 @@ const PEI_GRADE1_OUTCOMES: Record<string, PEICurriculumAlignment> = {
         indicators: [
           'Uses learned phrases for daily routines',
           'Attempts to express simple ideas',
-          'Participates in songs and chants'
+          'Participates in songs and chants',
         ],
         frenchLanguageSupport: [
           'Model correct pronunciation',
           'Create safe speaking opportunities',
-          'Use repetitive language structures'
-        ]
+          'Use repetitive language structures',
+        ],
       },
       {
         code: 'FLA-OC-1.3',
@@ -55,15 +55,15 @@ const PEI_GRADE1_OUTCOMES: Record<string, PEICurriculumAlignment> = {
         indicators: [
           'Recognizes and uses theme-related vocabulary',
           'Makes connections between French and English words',
-          'Shows growing vocabulary through play'
+          'Shows growing vocabulary through play',
         ],
         frenchLanguageSupport: [
           'Use cognates to build confidence',
           'Create word walls with visuals',
-          'Practice through games and songs'
-        ]
-      }
-    ]
+          'Practice through games and songs',
+        ],
+      },
+    ],
   },
   'Reading and Viewing': {
     grade: 1,
@@ -77,13 +77,13 @@ const PEI_GRADE1_OUTCOMES: Record<string, PEICurriculumAlignment> = {
         indicators: [
           'Shows interest in French books',
           'Recognizes some French letters and sounds',
-          'Understands that print carries meaning'
+          'Understands that print carries meaning',
         ],
         frenchLanguageSupport: [
           'Read aloud daily in French',
           'Use predictable pattern books',
-          'Connect sounds to letters explicitly'
-        ]
+          'Connect sounds to letters explicitly',
+        ],
       },
       {
         code: 'FLA-RV-1.2',
@@ -92,15 +92,15 @@ const PEI_GRADE1_OUTCOMES: Record<string, PEICurriculumAlignment> = {
         indicators: [
           'Recognizes high-frequency French words',
           'Uses picture cues to support understanding',
-          'Attempts to sound out simple words'
+          'Attempts to sound out simple words',
         ],
         frenchLanguageSupport: [
           'Focus on phonemic awareness',
           'Use word families',
-          'Provide decodable texts'
-        ]
-      }
-    ]
+          'Provide decodable texts',
+        ],
+      },
+    ],
   },
   'Writing and Representing': {
     grade: 1,
@@ -114,17 +114,17 @@ const PEI_GRADE1_OUTCOMES: Record<string, PEICurriculumAlignment> = {
         indicators: [
           'Labels drawings with French words',
           'Attempts to write simple French words',
-          'Uses inventive spelling in French'
+          'Uses inventive spelling in French',
         ],
         frenchLanguageSupport: [
           'Accept developmental spelling',
           'Provide French word banks',
-          'Model writing process'
-        ]
-      }
-    ]
+          'Model writing process',
+        ],
+      },
+    ],
   },
-  'Mathematics': {
+  Mathematics: {
     grade: 1,
     subject: 'Mathematics',
     strand: 'Number Sense',
@@ -132,19 +132,19 @@ const PEI_GRADE1_OUTCOMES: Record<string, PEICurriculumAlignment> = {
       {
         code: 'MATH-NS-1.1',
         descriptionEn: 'Count to 20 in French and English',
-        descriptionFr: 'Compter jusqu\'à 20 en français et en anglais',
+        descriptionFr: "Compter jusqu'à 20 en français et en anglais",
         indicators: [
           'Counts objects in French',
           'Recognizes French number words',
-          'Uses numbers in daily routines'
+          'Uses numbers in daily routines',
         ],
         frenchLanguageSupport: [
           'Use counting songs and rhymes',
           'Practice with manipulatives',
-          'Integrate into calendar time'
-        ]
-      }
-    ]
+          'Integrate into calendar time',
+        ],
+      },
+    ],
   },
   'Social Studies': {
     grade: 1,
@@ -154,49 +154,52 @@ const PEI_GRADE1_OUTCOMES: Record<string, PEICurriculumAlignment> = {
       {
         code: 'SS-PC-1.1',
         descriptionEn: 'Explore Francophone communities in PEI and Canada',
-        descriptionFr: 'Explorer les communautés francophones de l\'Î.-P.-É. et du Canada',
+        descriptionFr: "Explorer les communautés francophones de l'Î.-P.-É. et du Canada",
         indicators: [
           'Identifies French-speaking communities',
           'Recognizes French cultural symbols',
-          'Shows respect for linguistic diversity'
+          'Shows respect for linguistic diversity',
         ],
         frenchLanguageSupport: [
           'Use maps and visuals',
           'Invite Francophone guests',
-          'Celebrate French culture'
-        ]
-      }
-    ]
-  }
+          'Celebrate French culture',
+        ],
+      },
+    ],
+  },
 };
 
 export default function PEICurriculumConnector({
   grade,
   subject,
   onOutcomeSelect,
-  selectedOutcomes = []
+  selectedOutcomes = [],
 }: PEICurriculumConnectorProps) {
   const [expandedStrand, setExpandedStrand] = React.useState<string | null>(null);
   const [searchTerm, setSearchTerm] = React.useState('');
-  
+
   // Get relevant outcomes based on subject filter
   const getRelevantOutcomes = () => {
     if (subject === 'All' || !subject) {
       return PEI_GRADE1_OUTCOMES;
     }
-    
-    return Object.entries(PEI_GRADE1_OUTCOMES).reduce((acc, [key, value]) => {
-      if (value.subject.toLowerCase().includes(subject.toLowerCase())) {
-        acc[key] = value;
-      }
-      return acc;
-    }, {} as Record<string, PEICurriculumAlignment>);
+
+    return Object.entries(PEI_GRADE1_OUTCOMES).reduce(
+      (acc, [key, value]) => {
+        if (value.subject.toLowerCase().includes(subject.toLowerCase())) {
+          acc[key] = value;
+        }
+        return acc;
+      },
+      {} as Record<string, PEICurriculumAlignment>,
+    );
   };
 
   const relevantOutcomes = getRelevantOutcomes();
 
   const isOutcomeSelected = (outcome: PEILearningOutcome) => {
-    return selectedOutcomes.some(o => o.code === outcome.code);
+    return selectedOutcomes.some((o) => o.code === outcome.code);
   };
 
   const toggleOutcome = (outcome: PEILearningOutcome) => {
@@ -215,9 +218,7 @@ export default function PEICurriculumConnector({
               <MapPin className="h-6 w-6" />
               PEI Curriculum Integration
             </h2>
-            <p className="text-gray-600 mt-1">
-              Grade {grade} French Immersion Learning Outcomes
-            </p>
+            <p className="text-gray-600 mt-1">Grade {grade} French Immersion Learning Outcomes</p>
           </div>
           <div className="text-4xl">🦞</div>
         </div>
@@ -244,27 +245,19 @@ export default function PEICurriculumConnector({
         <Card key={strandName} className="overflow-hidden">
           <div
             className="p-4 bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors"
-            onClick={() => setExpandedStrand(
-              expandedStrand === strandName ? null : strandName
-            )}
+            onClick={() => setExpandedStrand(expandedStrand === strandName ? null : strandName)}
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Book className="h-5 w-5 text-blue-600" />
                 <div>
                   <h3 className="font-semibold">{alignment.subject}</h3>
-                  {alignment.strand && (
-                    <p className="text-sm text-gray-600">{alignment.strand}</p>
-                  )}
+                  {alignment.strand && <p className="text-sm text-gray-600">{alignment.strand}</p>}
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-500">
-                  {alignment.outcomes.length} outcomes
-                </span>
-                <span className="text-gray-400">
-                  {expandedStrand === strandName ? '▼' : '▶'}
-                </span>
+                <span className="text-sm text-gray-500">{alignment.outcomes.length} outcomes</span>
+                <span className="text-gray-400">{expandedStrand === strandName ? '▼' : '▶'}</span>
               </div>
             </div>
           </div>
@@ -290,11 +283,9 @@ export default function PEICurriculumConnector({
                           <CheckCircle className="h-5 w-5 text-blue-600" />
                         )}
                       </div>
-                      
+
                       <h4 className="font-medium mb-1">{outcome.descriptionEn}</h4>
-                      <p className="text-sm text-gray-600 italic mb-3">
-                        {outcome.descriptionFr}
-                      </p>
+                      <p className="text-sm text-gray-600 italic mb-3">{outcome.descriptionFr}</p>
 
                       {outcome.indicators && outcome.indicators.length > 0 && (
                         <div className="mb-3">
@@ -384,22 +375,22 @@ export default function PEICurriculumConnector({
           <div className="p-3 bg-green-50 rounded-lg">
             <strong className="text-green-900">Formative Assessment:</strong>
             <p className="text-green-800 mt-1">
-              Daily observation of oral language use, participation in French activities, 
-              and willingness to take risks with the language.
+              Daily observation of oral language use, participation in French activities, and
+              willingness to take risks with the language.
             </p>
           </div>
           <div className="p-3 bg-blue-50 rounded-lg">
             <strong className="text-blue-900">Summative Assessment:</strong>
             <p className="text-blue-800 mt-1">
-              Portfolio-based assessment showcasing language growth through recordings, 
-              writing samples, and project work.
+              Portfolio-based assessment showcasing language growth through recordings, writing
+              samples, and project work.
             </p>
           </div>
           <div className="p-3 bg-purple-50 rounded-lg">
             <strong className="text-purple-900">Communication with Parents:</strong>
             <p className="text-purple-800 mt-1">
-              Regular updates in both languages about curriculum expectations and 
-              home support strategies for French language development.
+              Regular updates in both languages about curriculum expectations and home support
+              strategies for French language development.
             </p>
           </div>
         </div>

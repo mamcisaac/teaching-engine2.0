@@ -13,11 +13,11 @@ import { Switch } from '@/components/ui/Switch';
 import { Textarea } from '@/components/ui/Textarea';
 import { useToast } from '@/components/ui/use-toast';
 import { Select } from '@/components/ui/select';
-import { Badge } from '@/components/ui/Badge';
+// import { Badge } from '@/components/ui/Badge';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { api } from '@/lib/api';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { exportToPDF, exportToWord, printPlan } from '@/utils/exportUtils';
+// import { exportToPDF, exportToWord, printPlan } from '@/utils/exportUtils';
 
 interface SharePlanModalProps {
   isOpen: boolean;
@@ -65,13 +65,17 @@ export function SharePlanModal({
   // Fetch user's teams
   const { data: teams = [] } = useQuery<Team[]>({
     queryKey: ['teams'],
-    queryFn: () => api.get('/api/teams').then(res => res.data),
+    queryFn: () => api.get('/api/teams').then((res) => res.data),
     enabled: isOpen,
   });
 
   // Share plan mutation
   const sharePlanMutation = useMutation({
-    mutationFn: async (shareData: any) => {
+    mutationFn: async (shareData: {
+      team?: string;
+      link?: boolean;
+      permissions: SharePermissions;
+    }) => {
       const response = await api.post('/api/sharing/plans', shareData);
       return response.data;
     },
@@ -82,7 +86,7 @@ export function SharePlanModal({
         navigator.clipboard.writeText(shareUrl);
         setLinkCopied(true);
         setTimeout(() => setLinkCopied(false), 2000);
-        
+
         toast({
           title: 'Share link created!',
           description: 'The link has been copied to your clipboard.',
@@ -90,17 +94,19 @@ export function SharePlanModal({
       } else {
         toast({
           title: 'Plan shared successfully!',
-          description: shareMethod === 'email' 
-            ? `The plan has been shared with ${email}`
-            : 'The plan has been shared with your team.',
+          description:
+            shareMethod === 'email'
+              ? `The plan has been shared with ${email}`
+              : 'The plan has been shared with your team.',
         });
         onClose();
       }
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
+      const message = error instanceof Error ? error.message : 'Failed to share the plan';
       toast({
         title: 'Sharing failed',
-        description: error.response?.data?.error || 'Failed to share the plan',
+        description: message,
         variant: 'destructive',
       });
     },
@@ -149,17 +155,10 @@ export function SharePlanModal({
   };
 
   return (
-    <Dialog
-      isOpen={isOpen}
-      onClose={onClose}
-      className="max-w-lg"
-    >
+    <Dialog isOpen={isOpen} onClose={onClose} className="max-w-lg">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-semibold">{planTitle}</h2>
-        <button
-          onClick={onClose}
-          className="text-gray-400 hover:text-gray-600"
-        >
+        <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
           <X className="w-5 h-5" />
         </button>
       </div>
@@ -173,198 +172,189 @@ export function SharePlanModal({
         <TabsContent value="share">
           {/* Share Method Selection */}
           <div className="mb-6">
-        <Label className="mb-2">Share via</Label>
-        <div className="grid grid-cols-3 gap-2">
-          <button
-            onClick={() => setShareMethod('email')}
-            className={`p-3 rounded-lg border-2 transition-colors ${
-              shareMethod === 'email'
-                ? 'border-blue-500 bg-blue-50'
-                : 'border-gray-200 hover:border-gray-300'
-            }`}
-          >
-            <Mail className="w-5 h-5 mx-auto mb-1" />
-            <span className="text-sm">Email</span>
-          </button>
-          <button
-            onClick={() => setShareMethod('team')}
-            className={`p-3 rounded-lg border-2 transition-colors ${
-              shareMethod === 'team'
-                ? 'border-blue-500 bg-blue-50'
-                : 'border-gray-200 hover:border-gray-300'
-            }`}
-          >
-            <Users className="w-5 h-5 mx-auto mb-1" />
-            <span className="text-sm">Team</span>
-          </button>
-          <button
-            onClick={() => setShareMethod('link')}
-            className={`p-3 rounded-lg border-2 transition-colors ${
-              shareMethod === 'link'
-                ? 'border-blue-500 bg-blue-50'
-                : 'border-gray-200 hover:border-gray-300'
-            }`}
-          >
-            <Link className="w-5 h-5 mx-auto mb-1" />
-            <span className="text-sm">Link</span>
-          </button>
-        </div>
-      </div>
+            <Label className="mb-2">Share via</Label>
+            <div className="grid grid-cols-3 gap-2">
+              <button
+                onClick={() => setShareMethod('email')}
+                className={`p-3 rounded-lg border-2 transition-colors ${
+                  shareMethod === 'email'
+                    ? 'border-blue-500 bg-blue-50'
+                    : 'border-gray-200 hover:border-gray-300'
+                }`}
+              >
+                <Mail className="w-5 h-5 mx-auto mb-1" />
+                <span className="text-sm">Email</span>
+              </button>
+              <button
+                onClick={() => setShareMethod('team')}
+                className={`p-3 rounded-lg border-2 transition-colors ${
+                  shareMethod === 'team'
+                    ? 'border-blue-500 bg-blue-50'
+                    : 'border-gray-200 hover:border-gray-300'
+                }`}
+              >
+                <Users className="w-5 h-5 mx-auto mb-1" />
+                <span className="text-sm">Team</span>
+              </button>
+              <button
+                onClick={() => setShareMethod('link')}
+                className={`p-3 rounded-lg border-2 transition-colors ${
+                  shareMethod === 'link'
+                    ? 'border-blue-500 bg-blue-50'
+                    : 'border-gray-200 hover:border-gray-300'
+                }`}
+              >
+                <Link className="w-5 h-5 mx-auto mb-1" />
+                <span className="text-sm">Link</span>
+              </button>
+            </div>
+          </div>
 
-      {/* Share Method Specific Fields */}
-      {shareMethod === 'email' && (
-        <div className="mb-4">
-          <Label htmlFor="email">Email address</Label>
-          <Input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="colleague@school.edu"
-            className="mt-1"
-          />
-        </div>
-      )}
-
-      {shareMethod === 'team' && (
-        <div className="mb-4">
-          <Label htmlFor="team">Select team</Label>
-          <Select
-            value={selectedTeamId}
-            onValueChange={setSelectedTeamId}
-          >
-            <option value="">Choose a team...</option>
-            {teams.map((team) => (
-              <option key={team.id} value={team.id}>
-                {team.name} ({team._count.members} members)
-              </option>
-            ))}
-          </Select>
-          {teams.length === 0 && (
-            <p className="text-sm text-gray-500 mt-2">
-              You're not part of any teams yet.{' '}
-              <a href="/teams" className="text-blue-600 hover:underline">
-                Create or join a team
-              </a>
-            </p>
+          {/* Share Method Specific Fields */}
+          {shareMethod === 'email' && (
+            <div className="mb-4">
+              <Label htmlFor="email">Email address</Label>
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="colleague@school.edu"
+                className="mt-1"
+              />
+            </div>
           )}
-        </div>
-      )}
 
-      {shareMethod === 'link' && (
-        <div className="mb-4">
-          <Label htmlFor="expiry">Link expires in</Label>
-          <Select
-            id="expiry"
-            value={linkExpiry.toString()}
-            onValueChange={(value) => setLinkExpiry(parseInt(value))}
-          >
-            <option value="1">1 day</option>
-            <option value="7">7 days</option>
-            <option value="30">30 days</option>
-            <option value="90">90 days</option>
-            <option value="365">1 year</option>
-          </Select>
-        </div>
-      )}
+          {shareMethod === 'team' && (
+            <div className="mb-4">
+              <Label htmlFor="team">Select team</Label>
+              <Select value={selectedTeamId} onValueChange={setSelectedTeamId}>
+                <option value="">Choose a team...</option>
+                {teams.map((team) => (
+                  <option key={team.id} value={team.id}>
+                    {team.name} ({team._count.members} members)
+                  </option>
+                ))}
+              </Select>
+              {teams.length === 0 && (
+                <p className="text-sm text-gray-500 mt-2">
+                  You&apos;re not part of any teams yet.{' '}
+                  <a href="/teams" className="text-blue-600 hover:underline">
+                    Create or join a team
+                  </a>
+                </p>
+              )}
+            </div>
+          )}
 
-      {/* Optional Message */}
-      <div className="mb-4">
-        <Label htmlFor="message">Add a message (optional)</Label>
-        <Textarea
-          id="message"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Hey! I thought you might find this lesson plan useful for your French Immersion class..."
-          rows={3}
-          className="mt-1"
-        />
-      </div>
+          {shareMethod === 'link' && (
+            <div className="mb-4">
+              <Label htmlFor="expiry">Link expires in</Label>
+              <Select
+                value={linkExpiry.toString()}
+                onValueChange={(value) => setLinkExpiry(parseInt(value))}
+              >
+                <option value="1">1 day</option>
+                <option value="7">7 days</option>
+                <option value="30">30 days</option>
+                <option value="90">90 days</option>
+                <option value="365">1 year</option>
+              </Select>
+            </div>
+          )}
 
-      {/* Permissions */}
-      <div className="mb-6">
-        <Label className="mb-3">Permissions</Label>
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <span className="text-sm">Can make a copy</span>
-            <Switch
-              checked={shareSettings.canCopy}
-              onCheckedChange={(checked) =>
-                setShareSettings({ ...shareSettings, canCopy: checked })
-              }
+          {/* Optional Message */}
+          <div className="mb-4">
+            <Label htmlFor="message">Add a message (optional)</Label>
+            <Textarea
+              id="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Hey! I thought you might find this lesson plan useful for your French Immersion class..."
+              rows={3}
+              className="mt-1"
             />
           </div>
-          <div className="flex items-center justify-between">
-            <span className="text-sm">Can comment</span>
-            <Switch
-              checked={shareSettings.canComment}
-              onCheckedChange={(checked) =>
-                setShareSettings({ ...shareSettings, canComment: checked })
-              }
-            />
-          </div>
-          {shareMethod !== 'link' && (
-            <>
+
+          {/* Permissions */}
+          <div className="mb-6">
+            <Label className="mb-3">Permissions</Label>
+            <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-sm">Can edit</span>
+                <span className="text-sm">Can make a copy</span>
                 <Switch
-                  checked={shareSettings.canEdit}
-                  onCheckedChange={(checked) =>
-                    setShareSettings({ ...shareSettings, canEdit: checked })
-                  }
+                  checked={shareSettings.canCopy}
+                  onChange={(checked) => setShareSettings({ ...shareSettings, canCopy: checked })}
                 />
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm">Can reshare</span>
+                <span className="text-sm">Can comment</span>
                 <Switch
-                  checked={shareSettings.canReshare}
-                  onCheckedChange={(checked) =>
-                    setShareSettings({ ...shareSettings, canReshare: checked })
+                  checked={shareSettings.canComment}
+                  onChange={(checked) =>
+                    setShareSettings({ ...shareSettings, canComment: checked })
                   }
                 />
               </div>
-            </>
-          )}
-        </div>
-      </div>
-
-      {/* Actions */}
-      <div className="flex gap-3">
-        <Button variant="outline" onClick={onClose} className="flex-1">
-          Cancel
-        </Button>
-        <Button
-          onClick={handleShare}
-          disabled={sharePlanMutation.isPending}
-          className="flex-1"
-        >
-          {sharePlanMutation.isPending ? (
-            'Sharing...'
-          ) : shareMethod === 'link' ? (
-            <>
-              {linkCopied ? (
+              {shareMethod !== 'link' && (
                 <>
-                  <Check className="w-4 h-4 mr-2" />
-                  Copied!
-                </>
-              ) : (
-                <>
-                  <Copy className="w-4 h-4 mr-2" />
-                  Create Link
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm">Can edit</span>
+                    <Switch
+                      checked={shareSettings.canEdit}
+                      onChange={(checked) =>
+                        setShareSettings({ ...shareSettings, canEdit: checked })
+                      }
+                    />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm">Can reshare</span>
+                    <Switch
+                      checked={shareSettings.canReshare}
+                      onChange={(checked) =>
+                        setShareSettings({ ...shareSettings, canReshare: checked })
+                      }
+                    />
+                  </div>
                 </>
               )}
-            </>
-          ) : (
-            'Share'
-          )}
-        </Button>
-      </div>
+            </div>
+          </div>
+
+          {/* Actions */}
+          <div className="flex gap-3">
+            <Button variant="outline" onClick={onClose} className="flex-1">
+              Cancel
+            </Button>
+            <Button onClick={handleShare} disabled={sharePlanMutation.isPending} className="flex-1">
+              {sharePlanMutation.isPending ? (
+                'Sharing...'
+              ) : shareMethod === 'link' ? (
+                <>
+                  {linkCopied ? (
+                    <>
+                      <Check className="w-4 h-4 mr-2" />
+                      Copied!
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-4 h-4 mr-2" />
+                      Create Link
+                    </>
+                  )}
+                </>
+              ) : (
+                'Share'
+              )}
+            </Button>
+          </div>
         </TabsContent>
 
         <TabsContent value="export">
           <div className="space-y-4">
             <p className="text-sm text-gray-600 mb-4">
-              Export your lesson plan in various formats for printing or sharing outside the platform.
+              Export your lesson plan in various formats for printing or sharing outside the
+              platform.
             </p>
 
             <div className="grid gap-3">

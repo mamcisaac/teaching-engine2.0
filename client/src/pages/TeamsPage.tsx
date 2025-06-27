@@ -8,11 +8,7 @@ import { Users, Share2, MessageSquare, Calendar } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/Button';
-import {
-  TeamList,
-  CreateTeamModal,
-  SharedPlansView,
-} from '@/components/collaboration';
+import { TeamList, CreateTeamModal, SharedPlansView } from '@/components/collaboration';
 import { useNavigate } from 'react-router-dom';
 
 export function TeamsPage() {
@@ -25,7 +21,8 @@ export function TeamsPage() {
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Collaboration Hub</h1>
         <p className="text-gray-600">
-          Work together with your teaching team to share plans, coordinate curriculum, and improve student outcomes.
+          Work together with your teaching team to share plans, coordinate curriculum, and improve
+          student outcomes.
         </p>
       </div>
 
@@ -85,10 +82,9 @@ export function TeamsPage() {
       </Tabs>
 
       {/* Modals */}
-      <CreateTeamModal
-        isOpen={isCreateTeamOpen}
-        onClose={() => setIsCreateTeamOpen(false)}
-      />
+      <CreateTeamModal isOpen={isCreateTeamOpen} onClose={() => setIsCreateTeamOpen(false)} />
     </div>
   );
 }
+
+export default TeamsPage;
