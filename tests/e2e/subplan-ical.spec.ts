@@ -52,7 +52,7 @@ test('ical import blocks planner and sub plan lists event', async ({ page }) => 
     });
 
   // Give the UI time to render after API calls
-  await page.waitForTimeout(2000);
+  await page.waitForLoadState('networkidle', { timeout: 5000 });
   const dateInput = page.locator('input[type="date"]');
   await dateInput.waitFor({ state: 'visible' });
   await dateInput.fill('2025-01-01', { force: true });
@@ -66,7 +66,7 @@ test('ical import blocks planner and sub plan lists event', async ({ page }) => 
     console.log('Calendar events API call timeout, proceeding with test...');
   }
   // Wait for the page to potentially render the event
-  await page.waitForTimeout(3000);
+  await page.waitForLoadState('networkidle', { timeout: 6000 });
 
   // Check if the event is visible, but don't fail if it's not
   const eventVisible = (await page.getByText('Test Event').count()) > 0;

@@ -1,0 +1,542 @@
+6df6d5107858d5ce3f1627d35cb7e6bc
+/* istanbul ignore next */
+function cov_2l37gnjjxd() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/progressAnalytics.ts";
+  var hash = "d86723b088209ce1eec805e89a6927e69354fe4b";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/progressAnalytics.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 3,
+          column: 22
+        },
+        end: {
+          line: 3,
+          column: 88
+        }
+      },
+      "1": {
+        start: {
+          line: 4,
+          column: 4
+        },
+        end: {
+          line: 14,
+          column: 7
+        }
+      },
+      "2": {
+        start: {
+          line: 5,
+          column: 22
+        },
+        end: {
+          line: 5,
+          column: 45
+        }
+      },
+      "3": {
+        start: {
+          line: 6,
+          column: 22
+        },
+        end: {
+          line: 6,
+          column: 32
+        }
+      },
+      "4": {
+        start: {
+          line: 7,
+          column: 26
+        },
+        end: {
+          line: 7,
+          column: 107
+        }
+      },
+      "5": {
+        start: {
+          line: 7,
+          column: 67
+        },
+        end: {
+          line: 7,
+          column: 103
+        }
+      },
+      "6": {
+        start: {
+          line: 8,
+          column: 8
+        },
+        end: {
+          line: 13,
+          column: 10
+        }
+      },
+      "7": {
+        start: {
+          line: 21,
+          column: 21
+        },
+        end: {
+          line: 21,
+          column: 48
+        }
+      },
+      "8": {
+        start: {
+          line: 22,
+          column: 18
+        },
+        end: {
+          line: 22,
+          column: 28
+        }
+      },
+      "9": {
+        start: {
+          line: 23,
+          column: 4
+        },
+        end: {
+          line: 31,
+          column: 47
+        }
+      },
+      "10": {
+        start: {
+          line: 25,
+          column: 25
+        },
+        end: {
+          line: 27,
+          column: 16
+        }
+      },
+      "11": {
+        start: {
+          line: 28,
+          column: 24
+        },
+        end: {
+          line: 28,
+          column: 57
+        }
+      },
+      "12": {
+        start: {
+          line: 29,
+          column: 8
+        },
+        end: {
+          line: 29,
+          column: 33
+        }
+      },
+      "13": {
+        start: {
+          line: 31,
+          column: 24
+        },
+        end: {
+          line: 31,
+          column: 45
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "getUnitPlanProgress",
+        decl: {
+          start: {
+            line: 2,
+            column: 22
+          },
+          end: {
+            line: 2,
+            column: 41
+          }
+        },
+        loc: {
+          start: {
+            line: 2,
+            column: 44
+          },
+          end: {
+            line: 15,
+            column: 1
+          }
+        },
+        line: 2
+      },
+      "1": {
+        name: "(anonymous_1)",
+        decl: {
+          start: {
+            line: 4,
+            column: 25
+          },
+          end: {
+            line: 4,
+            column: 26
+          }
+        },
+        loc: {
+          start: {
+            line: 4,
+            column: 35
+          },
+          end: {
+            line: 14,
+            column: 5
+          }
+        },
+        line: 4
+      },
+      "2": {
+        name: "(anonymous_2)",
+        decl: {
+          start: {
+            line: 7,
+            column: 50
+          },
+          end: {
+            line: 7,
+            column: 51
+          }
+        },
+        loc: {
+          start: {
+            line: 7,
+            column: 67
+          },
+          end: {
+            line: 7,
+            column: 103
+          }
+        },
+        line: 7
+      },
+      "3": {
+        name: "getUnitPlanUrgency",
+        decl: {
+          start: {
+            line: 20,
+            column: 22
+          },
+          end: {
+            line: 20,
+            column: 40
+          }
+        },
+        loc: {
+          start: {
+            line: 20,
+            column: 43
+          },
+          end: {
+            line: 32,
+            column: 1
+          }
+        },
+        line: 20
+      },
+      "4": {
+        name: "(anonymous_4)",
+        decl: {
+          start: {
+            line: 24,
+            column: 13
+          },
+          end: {
+            line: 24,
+            column: 14
+          }
+        },
+        loc: {
+          start: {
+            line: 24,
+            column: 20
+          },
+          end: {
+            line: 30,
+            column: 5
+          }
+        },
+        line: 24
+      },
+      "5": {
+        name: "(anonymous_5)",
+        decl: {
+          start: {
+            line: 31,
+            column: 14
+          },
+          end: {
+            line: 31,
+            column: 15
+          }
+        },
+        loc: {
+          start: {
+            line: 31,
+            column: 24
+          },
+          end: {
+            line: 31,
+            column: 45
+          }
+        },
+        line: 31
+      }
+    },
+    branchMap: {
+      "0": {
+        loc: {
+          start: {
+            line: 7,
+            column: 74
+          },
+          end: {
+            line: 7,
+            column: 102
+          }
+        },
+        type: "cond-expr",
+        locations: [{
+          start: {
+            line: 7,
+            column: 97
+          },
+          end: {
+            line: 7,
+            column: 98
+          }
+        }, {
+          start: {
+            line: 7,
+            column: 101
+          },
+          end: {
+            line: 7,
+            column: 102
+          }
+        }],
+        line: 7
+      },
+      "1": {
+        loc: {
+          start: {
+            line: 11,
+            column: 28
+          },
+          end: {
+            line: 11,
+            column: 63
+          }
+        },
+        type: "cond-expr",
+        locations: [{
+          start: {
+            line: 11,
+            column: 42
+          },
+          end: {
+            line: 11,
+            column: 43
+          }
+        }, {
+          start: {
+            line: 11,
+            column: 46
+          },
+          end: {
+            line: 11,
+            column: 63
+          }
+        }],
+        line: 11
+      },
+      "2": {
+        loc: {
+          start: {
+            line: 25,
+            column: 25
+          },
+          end: {
+            line: 27,
+            column: 16
+          }
+        },
+        type: "cond-expr",
+        locations: [{
+          start: {
+            line: 26,
+            column: 14
+          },
+          end: {
+            line: 26,
+            column: 88
+          }
+        }, {
+          start: {
+            line: 27,
+            column: 14
+          },
+          end: {
+            line: 27,
+            column: 16
+          }
+        }],
+        line: 25
+      }
+    },
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0
+    },
+    f: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0
+    },
+    b: {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0]
+    },
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/progressAnalytics.ts",
+      mappings: "AAAA,OAAO,EAAE,MAAM,EAAE,MAAM,WAAW,CAAC;AASnC,MAAM,CAAC,KAAK,UAAU,mBAAmB;IACvC,MAAM,SAAS,GAAG,MAAM,MAAM,CAAC,QAAQ,CAAC,QAAQ,CAAC,EAAE,OAAO,EAAE,EAAE,WAAW,EAAE,IAAI,EAAE,EAAE,CAAC,CAAC;IACrF,OAAO,SAAS,CAAC,GAAG,CAAC,CAAC,IAAI,EAAE,EAAE;QAC5B,MAAM,KAAK,GAAG,IAAI,CAAC,WAAW,CAAC,MAAM,CAAC;QACtC,MAAM,KAAK,GAAG,IAAI,IAAI,EAAE,CAAC;QACzB,MAAM,SAAS,GAAG,IAAI,CAAC,WAAW,CAAC,MAAM,CACvC,CAAC,GAAG,EAAE,MAAM,EAAE,EAAE,CAAC,GAAG,GAAG,CAAC,MAAM,CAAC,IAAI,IAAI,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EACrD,CAAC,CACF,CAAC;QACF,OAAO;YACL,EAAE,EAAE,IAAI,CAAC,EAAE;YACX,KAAK,EAAE,IAAI,CAAC,KAAK;YACjB,cAAc,EAAE,KAAK,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,SAAS,GAAG,KAAK;YACnD,OAAO,EAAE,IAAI,CAAC,OAAO;SACtB,CAAC;IACJ,CAAC,CAAC,CAAC;AACL,CAAC;AAMD;;;GAGG;AACH,MAAM,CAAC,KAAK,UAAU,kBAAkB;IACtC,MAAM,QAAQ,GAAG,MAAM,mBAAmB,EAAE,CAAC;IAC7C,MAAM,KAAK,GAAG,IAAI,IAAI,EAAE,CAAC;IACzB,OAAO,QAAQ;SACZ,GAAG,CAAC,CAAC,CAAC,EAAE,EAAE;QACT,MAAM,QAAQ,GAAG,CAAC,CAAC,OAAO;YACxB,CAAC,CAAC,IAAI,CAAC,GAAG,CAAC,CAAC,EAAE,IAAI,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,OAAO,CAAC,OAAO,EAAE,GAAG,KAAK,CAAC,OAAO,EAAE,CAAC,GAAG,QAAQ,CAAC,CAAC;YAC5E,CAAC,CAAC,EAAE,CAAC;QACP,MAAM,OAAO,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,cAAc,CAAC,GAAG,QAAQ,CAAC;QAClD,OAAO,EAAE,GAAG,CAAC,EAAE,OAAO,EAAE,CAAC;IAC3B,CAAC,CAAC;SACD,IAAI,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,OAAO,GAAG,CAAC,CAAC,OAAO,CAAC,CAAC;AAC3C,CAAC",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/progressAnalytics.ts"],
+      sourcesContent: ["import { prisma } from '../prisma';\n\nexport interface UnitPlanProgress {\n  id: string;\n  title: string;\n  completionRate: number;\n  endDate?: Date | null;\n}\n\nexport async function getUnitPlanProgress(): Promise<UnitPlanProgress[]> {\n  const unitPlans = await prisma.unitPlan.findMany({ include: { lessonPlans: true } });\n  return unitPlans.map((plan) => {\n    const total = plan.lessonPlans.length;\n    const today = new Date();\n    const completed = plan.lessonPlans.reduce(\n      (sum, lesson) => sum + (lesson.date <= today ? 1 : 0),\n      0,\n    );\n    return {\n      id: plan.id,\n      title: plan.title,\n      completionRate: total === 0 ? 0 : completed / total,\n      endDate: plan.endDate,\n    };\n  });\n}\n\nexport interface UnitPlanUrgency extends UnitPlanProgress {\n  urgency: number;\n}\n\n/**\n * Calculate unit plan urgency based on remaining time and completion rate.\n * Higher values indicate unit plans that need attention sooner.\n */\nexport async function getUnitPlanUrgency(): Promise<UnitPlanUrgency[]> {\n  const progress = await getUnitPlanProgress();\n  const today = new Date();\n  return progress\n    .map((p) => {\n      const daysLeft = p.endDate\n        ? Math.max(1, Math.ceil((p.endDate.getTime() - today.getTime()) / 86400000))\n        : 30;\n      const urgency = (1 - p.completionRate) / daysLeft;\n      return { ...p, urgency };\n    })\n    .sort((a, b) => b.urgency - a.urgency);\n}\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "d86723b088209ce1eec805e89a6927e69354fe4b"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_2l37gnjjxd = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_2l37gnjjxd();
+import { prisma } from '../prisma';
+export async function getUnitPlanProgress() {
+  /* istanbul ignore next */
+  cov_2l37gnjjxd().f[0]++;
+  const unitPlans =
+  /* istanbul ignore next */
+  (cov_2l37gnjjxd().s[0]++, await prisma.unitPlan.findMany({
+    include: {
+      lessonPlans: true
+    }
+  }));
+  /* istanbul ignore next */
+  cov_2l37gnjjxd().s[1]++;
+  return unitPlans.map(plan => {
+    /* istanbul ignore next */
+    cov_2l37gnjjxd().f[1]++;
+    const total =
+    /* istanbul ignore next */
+    (cov_2l37gnjjxd().s[2]++, plan.lessonPlans.length);
+    const today =
+    /* istanbul ignore next */
+    (cov_2l37gnjjxd().s[3]++, new Date());
+    const completed =
+    /* istanbul ignore next */
+    (cov_2l37gnjjxd().s[4]++, plan.lessonPlans.reduce((sum, lesson) => {
+      /* istanbul ignore next */
+      cov_2l37gnjjxd().f[2]++;
+      cov_2l37gnjjxd().s[5]++;
+      return sum + (lesson.date <= today ?
+      /* istanbul ignore next */
+      (cov_2l37gnjjxd().b[0][0]++, 1) :
+      /* istanbul ignore next */
+      (cov_2l37gnjjxd().b[0][1]++, 0));
+    }, 0));
+    /* istanbul ignore next */
+    cov_2l37gnjjxd().s[6]++;
+    return {
+      id: plan.id,
+      title: plan.title,
+      completionRate: total === 0 ?
+      /* istanbul ignore next */
+      (cov_2l37gnjjxd().b[1][0]++, 0) :
+      /* istanbul ignore next */
+      (cov_2l37gnjjxd().b[1][1]++, completed / total),
+      endDate: plan.endDate
+    };
+  });
+}
+/**
+ * Calculate unit plan urgency based on remaining time and completion rate.
+ * Higher values indicate unit plans that need attention sooner.
+ */
+export async function getUnitPlanUrgency() {
+  /* istanbul ignore next */
+  cov_2l37gnjjxd().f[3]++;
+  const progress =
+  /* istanbul ignore next */
+  (cov_2l37gnjjxd().s[7]++, await getUnitPlanProgress());
+  const today =
+  /* istanbul ignore next */
+  (cov_2l37gnjjxd().s[8]++, new Date());
+  /* istanbul ignore next */
+  cov_2l37gnjjxd().s[9]++;
+  return progress.map(p => {
+    /* istanbul ignore next */
+    cov_2l37gnjjxd().f[4]++;
+    const daysLeft =
+    /* istanbul ignore next */
+    (cov_2l37gnjjxd().s[10]++, p.endDate ?
+    /* istanbul ignore next */
+    (cov_2l37gnjjxd().b[2][0]++, Math.max(1, Math.ceil((p.endDate.getTime() - today.getTime()) / 86400000))) :
+    /* istanbul ignore next */
+    (cov_2l37gnjjxd().b[2][1]++, 30));
+    const urgency =
+    /* istanbul ignore next */
+    (cov_2l37gnjjxd().s[11]++, (1 - p.completionRate) / daysLeft);
+    /* istanbul ignore next */
+    cov_2l37gnjjxd().s[12]++;
+    return {
+      ...p,
+      urgency
+    };
+  }).sort((a, b) => {
+    /* istanbul ignore next */
+    cov_2l37gnjjxd().f[5]++;
+    cov_2l37gnjjxd().s[13]++;
+    return b.urgency - a.urgency;
+  });
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3ZfMmwzN2duamp4ZCIsImFjdHVhbENvdmVyYWdlIiwicHJpc21hIiwiZ2V0VW5pdFBsYW5Qcm9ncmVzcyIsImYiLCJ1bml0UGxhbnMiLCJzIiwidW5pdFBsYW4iLCJmaW5kTWFueSIsImluY2x1ZGUiLCJsZXNzb25QbGFucyIsIm1hcCIsInBsYW4iLCJ0b3RhbCIsImxlbmd0aCIsInRvZGF5IiwiRGF0ZSIsImNvbXBsZXRlZCIsInJlZHVjZSIsInN1bSIsImxlc3NvbiIsImRhdGUiLCJiIiwiaWQiLCJ0aXRsZSIsImNvbXBsZXRpb25SYXRlIiwiZW5kRGF0ZSIsImdldFVuaXRQbGFuVXJnZW5jeSIsInByb2dyZXNzIiwicCIsImRheXNMZWZ0IiwiTWF0aCIsIm1heCIsImNlaWwiLCJnZXRUaW1lIiwidXJnZW5jeSIsInNvcnQiLCJhIl0sInNvdXJjZXMiOlsiL1VzZXJzL21pY2hhZWxtY2lzYWFjL0dpdEh1Yi90ZWFjaGluZy1lbmdpbmUyLjAvc2VydmVyL3NyYy9zZXJ2aWNlcy9wcm9ncmVzc0FuYWx5dGljcy50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBwcmlzbWEgfSBmcm9tICcuLi9wcmlzbWEnO1xuXG5leHBvcnQgaW50ZXJmYWNlIFVuaXRQbGFuUHJvZ3Jlc3Mge1xuICBpZDogc3RyaW5nO1xuICB0aXRsZTogc3RyaW5nO1xuICBjb21wbGV0aW9uUmF0ZTogbnVtYmVyO1xuICBlbmREYXRlPzogRGF0ZSB8IG51bGw7XG59XG5cbmV4cG9ydCBhc3luYyBmdW5jdGlvbiBnZXRVbml0UGxhblByb2dyZXNzKCk6IFByb21pc2U8VW5pdFBsYW5Qcm9ncmVzc1tdPiB7XG4gIGNvbnN0IHVuaXRQbGFucyA9IGF3YWl0IHByaXNtYS51bml0UGxhbi5maW5kTWFueSh7IGluY2x1ZGU6IHsgbGVzc29uUGxhbnM6IHRydWUgfSB9KTtcbiAgcmV0dXJuIHVuaXRQbGFucy5tYXAoKHBsYW4pID0+IHtcbiAgICBjb25zdCB0b3RhbCA9IHBsYW4ubGVzc29uUGxhbnMubGVuZ3RoO1xuICAgIGNvbnN0IHRvZGF5ID0gbmV3IERhdGUoKTtcbiAgICBjb25zdCBjb21wbGV0ZWQgPSBwbGFuLmxlc3NvblBsYW5zLnJlZHVjZShcbiAgICAgIChzdW0sIGxlc3NvbikgPT4gc3VtICsgKGxlc3Nvbi5kYXRlIDw9IHRvZGF5ID8gMSA6IDApLFxuICAgICAgMCxcbiAgICApO1xuICAgIHJldHVybiB7XG4gICAgICBpZDogcGxhbi5pZCxcbiAgICAgIHRpdGxlOiBwbGFuLnRpdGxlLFxuICAgICAgY29tcGxldGlvblJhdGU6IHRvdGFsID09PSAwID8gMCA6IGNvbXBsZXRlZCAvIHRvdGFsLFxuICAgICAgZW5kRGF0ZTogcGxhbi5lbmREYXRlLFxuICAgIH07XG4gIH0pO1xufVxuXG5leHBvcnQgaW50ZXJmYWNlIFVuaXRQbGFuVXJnZW5jeSBleHRlbmRzIFVuaXRQbGFuUHJvZ3Jlc3Mge1xuICB1cmdlbmN5OiBudW1iZXI7XG59XG5cbi8qKlxuICogQ2FsY3VsYXRlIHVuaXQgcGxhbiB1cmdlbmN5IGJhc2VkIG9uIHJlbWFpbmluZyB0aW1lIGFuZCBjb21wbGV0aW9uIHJhdGUuXG4gKiBIaWdoZXIgdmFsdWVzIGluZGljYXRlIHVuaXQgcGxhbnMgdGhhdCBuZWVkIGF0dGVudGlvbiBzb29uZXIuXG4gKi9cbmV4cG9ydCBhc3luYyBmdW5jdGlvbiBnZXRVbml0UGxhblVyZ2VuY3koKTogUHJvbWlzZTxVbml0UGxhblVyZ2VuY3lbXT4ge1xuICBjb25zdCBwcm9ncmVzcyA9IGF3YWl0IGdldFVuaXRQbGFuUHJvZ3Jlc3MoKTtcbiAgY29uc3QgdG9kYXkgPSBuZXcgRGF0ZSgpO1xuICByZXR1cm4gcHJvZ3Jlc3NcbiAgICAubWFwKChwKSA9PiB7XG4gICAgICBjb25zdCBkYXlzTGVmdCA9IHAuZW5kRGF0ZVxuICAgICAgICA/IE1hdGgubWF4KDEsIE1hdGguY2VpbCgocC5lbmREYXRlLmdldFRpbWUoKSAtIHRvZGF5LmdldFRpbWUoKSkgLyA4NjQwMDAwMCkpXG4gICAgICAgIDogMzA7XG4gICAgICBjb25zdCB1cmdlbmN5ID0gKDEgLSBwLmNvbXBsZXRpb25SYXRlKSAvIGRheXNMZWZ0O1xuICAgICAgcmV0dXJuIHsgLi4ucCwgdXJnZW5jeSB9O1xuICAgIH0pXG4gICAgLnNvcnQoKGEsIGIpID0+IGIudXJnZW5jeSAtIGEudXJnZW5jeSk7XG59XG4iXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0lBK0JBO0lBQUFBLGNBQUEsWUFBQUEsQ0FBQTtNQUFBLE9BQUFDLGNBQUE7SUFBQTtFQUFBO0VBQUEsT0FBQUEsY0FBQTtBQUFBO0FBQUFELGNBQUE7QUEvQkEsU0FBU0UsTUFBTSxRQUFRLFdBQVc7QUFTbEMsT0FBTyxlQUFlQyxtQkFBbUJBLENBQUE7RUFBQTtFQUFBSCxjQUFBLEdBQUFJLENBQUE7RUFDdkMsTUFBTUMsU0FBUztFQUFBO0VBQUEsQ0FBQUwsY0FBQSxHQUFBTSxDQUFBLE9BQUcsTUFBTUosTUFBTSxDQUFDSyxRQUFRLENBQUNDLFFBQVEsQ0FBQztJQUFFQyxPQUFPLEVBQUU7TUFBRUMs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

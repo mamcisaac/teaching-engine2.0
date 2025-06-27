@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 interface LanguageContextType {
   language: string;
   setLanguage: (lang: string) => void;
-  t: (key: string, fallback?: string) => string;
+  t: (key: string, fallback?: string, substitutions?: string[]) => string;
   getLocalizedField: (obj: Record<string, unknown>, field: string) => string;
 }
 
@@ -22,7 +22,7 @@ const translations: Record<string, Record<string, string>> = {
     students: 'Students',
     resources: 'Resources',
     help: 'Help',
-    
+
     // Planning Levels
     long_range_plan: 'Long-Range Plan',
     long_range_plans: 'Long-Range Plans',
@@ -33,7 +33,7 @@ const translations: Record<string, Record<string, string>> = {
     daily_plan: 'Daily Plan',
     daybook: 'Daybook',
     daybook_entry: 'Daybook Entry',
-    
+
     // Common Actions
     save: 'Save',
     cancel: 'Cancel',
@@ -53,7 +53,7 @@ const translations: Record<string, Record<string, string>> = {
     share: 'Share',
     duplicate: 'Duplicate',
     archive: 'Archive',
-    
+
     // Form Fields
     title: 'Title',
     description: 'Description',
@@ -65,7 +65,7 @@ const translations: Record<string, Record<string, string>> = {
     subject: 'Subject',
     language: 'Language',
     notes: 'Notes',
-    
+
     // Unit Plan Fields
     big_ideas: 'Big Ideas',
     essential_questions: 'Essential Questions',
@@ -89,7 +89,7 @@ const translations: Record<string, Record<string, string>> = {
     community_connections: 'Community Connections',
     parent_communication: 'Parent Communication Plan',
     field_trips: 'Field Trips & Guest Speakers',
-    
+
     // Lesson Plan Fields
     minds_on: 'Minds On',
     action: 'Action',
@@ -103,7 +103,7 @@ const translations: Record<string, Record<string, string>> = {
     assessment_notes: 'Assessment Notes',
     sub_friendly: 'Substitute Teacher Friendly',
     sub_notes: 'Substitute Teacher Notes',
-    
+
     // Daybook Fields
     what_worked: 'What Worked Well?',
     what_didnt_work: 'What Could Be Improved?',
@@ -113,7 +113,7 @@ const translations: Record<string, Record<string, string>> = {
     student_successes: 'Student Successes',
     overall_rating: 'Overall Rating',
     would_reuse: 'Would Reuse This Lesson',
-    
+
     // Curriculum
     curriculum_expectations: 'Curriculum Expectations',
     expectation: 'Expectation',
@@ -123,7 +123,7 @@ const translations: Record<string, Record<string, string>> = {
     code: 'Code',
     overall_expectation: 'Overall Expectation',
     specific_expectation: 'Specific Expectation',
-    
+
     // Languages
     english: 'English',
     french: 'French',
@@ -132,7 +132,7 @@ const translations: Record<string, Record<string, string>> = {
     teaching_language: 'Teaching Language',
     french_immersion: 'French Immersion',
     core_french: 'Core French',
-    
+
     // Time
     minutes: 'minutes',
     hours: 'hours',
@@ -141,7 +141,7 @@ const translations: Record<string, Record<string, string>> = {
     term: 'Term',
     year: 'Year',
     academic_year: 'Academic Year',
-    
+
     // Messages
     loading: 'Loading...',
     saving: 'Saving...',
@@ -151,7 +151,7 @@ const translations: Record<string, Record<string, string>> = {
     required_field: 'This field is required',
     confirm_delete: 'Are you sure you want to delete this?',
     unsaved_changes: 'You have unsaved changes. Are you sure you want to leave?',
-    
+
     // Planning specific
     add_expectation: 'Add Expectation',
     remove_expectation: 'Remove Expectation',
@@ -160,7 +160,7 @@ const translations: Record<string, Record<string, string>> = {
     uncovered_expectations: 'Uncovered Expectations',
     ai_suggestions: 'AI Suggestions',
     generate_with_ai: 'Generate with AI',
-    
+
     // Templates
     template: 'Template',
     templates: 'Templates',
@@ -168,6 +168,32 @@ const translations: Record<string, Record<string, string>> = {
     edit_template: 'Edit Template',
     use_template: 'Use Template',
     template_library: 'Template Library',
+
+    // Onboarding
+    welcome_title: 'Welcome to Teaching Engine 2.0',
+    welcome_description:
+      'Your comprehensive digital teaching assistant designed to reduce workload by 60%',
+    get_started: 'Get Started',
+    skip_tour: 'Skip Tour',
+    step_x_of_y: 'Step {0} of {1}',
+    percent_complete: '{0}% complete',
+    built_for_teachers: 'Built for Elementary Teachers',
+    built_for_teachers_desc:
+      'Teaching Engine 2.0 follows the ETFO planning workflow to help you create comprehensive, curriculum-aligned lesson plans with AI assistance.',
+    etfo_workflow_title: 'Understanding the ETFO Planning Workflow',
+    etfo_workflow_description: 'Learn the 5-level structured approach to lesson planning',
+    continue: 'Continue',
+    sample_data_title: 'Set Up Sample Data',
+    sample_data_description: 'Let us create some sample curriculum and plans to help you explore',
+    create_sample_data: 'Create Sample Data',
+    navigation_title: 'Navigate Your Teaching Dashboard',
+    navigation_description: 'Learn how to use the sidebar and access key features',
+    features_title: 'Key Features & AI Assistance',
+    features_description:
+      'Discover the powerful features that will transform your teaching workflow',
+    start_teaching: 'Start Teaching!',
+    customize_experience: 'Customize Your Experience',
+    customize_experience_desc: 'Set your preferences to personalize Teaching Engine 2.0',
   },
   fr: {
     // Navigation
@@ -178,7 +204,7 @@ const translations: Record<string, Record<string, string>> = {
     students: 'Élèves',
     resources: 'Ressources',
     help: 'Aide',
-    
+
     // Planning Levels
     long_range_plan: 'Plan à long terme',
     long_range_plans: 'Plans à long terme',
@@ -189,7 +215,7 @@ const translations: Record<string, Record<string, string>> = {
     daily_plan: 'Plan quotidien',
     daybook: 'Journal de classe',
     daybook_entry: 'Entrée du journal',
-    
+
     // Common Actions
     save: 'Enregistrer',
     cancel: 'Annuler',
@@ -209,7 +235,7 @@ const translations: Record<string, Record<string, string>> = {
     share: 'Partager',
     duplicate: 'Dupliquer',
     archive: 'Archiver',
-    
+
     // Form Fields
     title: 'Titre',
     description: 'Description',
@@ -221,7 +247,7 @@ const translations: Record<string, Record<string, string>> = {
     subject: 'Matière',
     language: 'Langue',
     notes: 'Notes',
-    
+
     // Unit Plan Fields
     big_ideas: 'Grandes idées',
     essential_questions: 'Questions essentielles',
@@ -245,7 +271,7 @@ const translations: Record<string, Record<string, string>> = {
     community_connections: 'Liens avec la communauté',
     parent_communication: 'Plan de communication avec les parents',
     field_trips: 'Sorties éducatives et conférenciers',
-    
+
     // Lesson Plan Fields
     minds_on: 'Mise en situation',
     action: 'Action',
@@ -259,7 +285,7 @@ const translations: Record<string, Record<string, string>> = {
     assessment_notes: "Notes d'évaluation",
     sub_friendly: 'Adapté pour suppléant',
     sub_notes: 'Notes pour le suppléant',
-    
+
     // Daybook Fields
     what_worked: "Qu'est-ce qui a bien fonctionné?",
     what_didnt_work: "Qu'est-ce qui pourrait être amélioré?",
@@ -269,7 +295,7 @@ const translations: Record<string, Record<string, string>> = {
     student_successes: 'Réussites des élèves',
     overall_rating: 'Évaluation globale',
     would_reuse: 'Je réutiliserais cette leçon',
-    
+
     // Curriculum
     curriculum_expectations: 'Attentes du programme',
     expectation: 'Attente',
@@ -279,7 +305,7 @@ const translations: Record<string, Record<string, string>> = {
     code: 'Code',
     overall_expectation: 'Attente générale',
     specific_expectation: 'Attente spécifique',
-    
+
     // Languages
     english: 'Anglais',
     french: 'Français',
@@ -288,7 +314,7 @@ const translations: Record<string, Record<string, string>> = {
     teaching_language: "Langue d'enseignement",
     french_immersion: 'Immersion française',
     core_french: 'Français de base',
-    
+
     // Time
     minutes: 'minutes',
     hours: 'heures',
@@ -297,7 +323,7 @@ const translations: Record<string, Record<string, string>> = {
     term: 'Étape',
     year: 'Année',
     academic_year: 'Année scolaire',
-    
+
     // Messages
     loading: 'Chargement...',
     saving: 'Enregistrement...',
@@ -306,8 +332,9 @@ const translations: Record<string, Record<string, string>> = {
     no_data: 'Aucune donnée disponible',
     required_field: 'Ce champ est obligatoire',
     confirm_delete: 'Êtes-vous sûr de vouloir supprimer ceci?',
-    unsaved_changes: 'Vous avez des modifications non enregistrées. Êtes-vous sûr de vouloir quitter?',
-    
+    unsaved_changes:
+      'Vous avez des modifications non enregistrées. Êtes-vous sûr de vouloir quitter?',
+
     // Planning specific
     add_expectation: 'Ajouter une attente',
     remove_expectation: 'Retirer une attente',
@@ -316,7 +343,7 @@ const translations: Record<string, Record<string, string>> = {
     uncovered_expectations: 'Attentes non couvertes',
     ai_suggestions: 'Suggestions IA',
     generate_with_ai: 'Générer avec IA',
-    
+
     // Templates
     template: 'Modèle',
     templates: 'Modèles',
@@ -324,6 +351,35 @@ const translations: Record<string, Record<string, string>> = {
     edit_template: 'Modifier le modèle',
     use_template: 'Utiliser le modèle',
     template_library: 'Bibliothèque de modèles',
+
+    // Onboarding
+    welcome_title: 'Bienvenue dans Teaching Engine 2.0',
+    welcome_description:
+      "Votre assistant numérique d'enseignement conçu pour réduire la charge de travail de 60%",
+    get_started: 'Commencer',
+    skip_tour: 'Ignorer la visite',
+    step_x_of_y: 'Étape {0} de {1}',
+    percent_complete: '{0}% terminé',
+    built_for_teachers: 'Conçu pour les enseignants du primaire',
+    built_for_teachers_desc:
+      'Teaching Engine 2.0 suit le processus de planification ETFO pour vous aider à créer des plans de leçons complets et alignés sur le programme.',
+    etfo_workflow_title: 'Comprendre le processus de planification ETFO',
+    etfo_workflow_description:
+      "Apprenez l'approche structurée en 5 niveaux de planification de leçons",
+    continue: 'Continuer',
+    sample_data_title: "Configurer des données d'exemple",
+    sample_data_description:
+      'Laissez-nous créer des exemples de programme et de plans pour vous aider à explorer',
+    create_sample_data: "Créer des données d'exemple",
+    navigation_title: "Naviguer dans votre tableau de bord d'enseignement",
+    navigation_description:
+      'Apprenez à utiliser la barre latérale et à accéder aux fonctionnalités clés',
+    features_title: 'Fonctionnalités clés et assistance IA',
+    features_description:
+      "Découvrez les fonctionnalités puissantes qui transformeront votre flux de travail d'enseignement",
+    start_teaching: 'Commencer à enseigner!',
+    customize_experience: 'Personnalisez votre expérience',
+    customize_experience_desc: 'Définissez vos préférences pour personnaliser Teaching Engine 2.0',
   },
 };
 
@@ -348,9 +404,17 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     // TODO: Update user preference in backend
   };
 
-  const t = (key: string, fallback?: string): string => {
-    const translation = translations[language]?.[key];
-    return translation || fallback || key;
+  const t = (key: string, fallback?: string, substitutions?: string[]): string => {
+    let translation = translations[language]?.[key] || fallback || key;
+
+    // Handle string interpolation for placeholders like {0}, {1}, etc.
+    if (substitutions) {
+      substitutions.forEach((sub, index) => {
+        translation = translation.replace(`{${index}}`, sub);
+      });
+    }
+
+    return translation;
   };
 
   // Helper function to get localized field from an object

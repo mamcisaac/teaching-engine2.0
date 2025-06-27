@@ -15,7 +15,7 @@ export async function login(page: Page): Promise<string> {
 
   // Perform login
   const response = await page.request.post(`${API_BASE}/api/login`, {
-    data: { email: 'teacher@example.com', password: 'password123' },
+    data: { email: 'teacher@example.com', password: 'Password123!' },
   });
 
   if (!response.ok()) {
@@ -50,7 +50,7 @@ export async function login(page: Page): Promise<string> {
 
   // Additional wait for CI stability
   if (process.env.CI) {
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('domcontentloaded', { timeout: 3000 });
   }
 
   // Verify authentication state
@@ -113,7 +113,7 @@ async function waitForServices(page: Page, maxRetries = 60): Promise<void> {
       }
     }
 
-    await page.waitForTimeout(1000);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
   }
 
   throw new Error(
@@ -322,10 +322,10 @@ export class ActivityPageObject {
     );
 
     // Wait for hover state
-    await this.page.waitForTimeout(300);
+    await new Promise((resolve) => setTimeout(resolve, 300));
 
     await this.page.mouse.down();
-    await this.page.waitForTimeout(200);
+    await new Promise((resolve) => setTimeout(resolve, 200));
 
     // Move to target position
     await this.page.mouse.move(
@@ -334,7 +334,7 @@ export class ActivityPageObject {
       { steps: 10 },
     );
 
-    await this.page.waitForTimeout(200);
+    await new Promise((resolve) => setTimeout(resolve, 200));
     await this.page.mouse.up();
 
     // Wait for reorder API call to complete
@@ -405,13 +405,17 @@ export class TestDataFactory {
     const today = new Date();
 
     // Convert string dates to Date objects if needed
-    const startDate = options.startDate ? 
-      (typeof options.startDate === 'string' ? new Date(options.startDate) : options.startDate) :
-      new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
-      
-    const endDate = options.endDate ?
-      (typeof options.endDate === 'string' ? new Date(options.endDate) : options.endDate) :
-      new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000);
+    const startDate = options.startDate
+      ? typeof options.startDate === 'string'
+        ? new Date(options.startDate)
+        : options.startDate
+      : new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+
+    const endDate = options.endDate
+      ? typeof options.endDate === 'string'
+        ? new Date(options.endDate)
+        : options.endDate
+      : new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000);
 
     const milestoneData = {
       title: options.title || `Test Milestone ${timestamp}`,

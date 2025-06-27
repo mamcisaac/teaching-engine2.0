@@ -1,0 +1,353 @@
+baaeabf8f90033fbfbc7bfe7f2935283
+/* istanbul ignore next */
+function cov_26lyq7q2wd() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/jobs/progressCheck.ts";
+  var hash = "acfc4fdf0b2939bbcb4cbcae83fc8ac21107ba4b";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/jobs/progressCheck.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 10,
+          column: 18
+        },
+        end: {
+          line: 10,
+          column: 28
+        }
+      },
+      "1": {
+        start: {
+          line: 11,
+          column: 17
+        },
+        end: {
+          line: 11,
+          column: 27
+        }
+      },
+      "2": {
+        start: {
+          line: 12,
+          column: 4
+        },
+        end: {
+          line: 12,
+          column: 38
+        }
+      },
+      "3": {
+        start: {
+          line: 13,
+          column: 22
+        },
+        end: {
+          line: 18,
+          column: 6
+        }
+      },
+      "4": {
+        start: {
+          line: 19,
+          column: 4
+        },
+        end: {
+          line: 27,
+          column: 5
+        }
+      },
+      "5": {
+        start: {
+          line: 20,
+          column: 34
+        },
+        end: {
+          line: 20,
+          column: 87
+        }
+      },
+      "6": {
+        start: {
+          line: 20,
+          column: 65
+        },
+        end: {
+          line: 20,
+          column: 79
+        }
+      },
+      "7": {
+        start: {
+          line: 21,
+          column: 8
+        },
+        end: {
+          line: 26,
+          column: 9
+        }
+      },
+      "8": {
+        start: {
+          line: 22,
+          column: 28
+        },
+        end: {
+          line: 22,
+          column: 113
+        }
+      },
+      "9": {
+        start: {
+          line: 25,
+          column: 12
+        },
+        end: {
+          line: 25,
+          column: 68
+        }
+      },
+      "10": {
+        start: {
+          line: 36,
+          column: 4
+        },
+        end: {
+          line: 36,
+          column: 49
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "runProgressCheck",
+        decl: {
+          start: {
+            line: 9,
+            column: 22
+          },
+          end: {
+            line: 9,
+            column: 38
+          }
+        },
+        loc: {
+          start: {
+            line: 9,
+            column: 41
+          },
+          end: {
+            line: 28,
+            column: 1
+          }
+        },
+        line: 9
+      },
+      "1": {
+        name: "(anonymous_1)",
+        decl: {
+          start: {
+            line: 20,
+            column: 58
+          },
+          end: {
+            line: 20,
+            column: 59
+          }
+        },
+        loc: {
+          start: {
+            line: 20,
+            column: 65
+          },
+          end: {
+            line: 20,
+            column: 79
+          }
+        },
+        line: 20
+      },
+      "2": {
+        name: "scheduleProgressCheck",
+        decl: {
+          start: {
+            line: 35,
+            column: 16
+          },
+          end: {
+            line: 35,
+            column: 37
+          }
+        },
+        loc: {
+          start: {
+            line: 35,
+            column: 40
+          },
+          end: {
+            line: 37,
+            column: 1
+          }
+        },
+        line: 35
+      }
+    },
+    branchMap: {
+      "0": {
+        loc: {
+          start: {
+            line: 21,
+            column: 8
+          },
+          end: {
+            line: 26,
+            column: 9
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 21,
+            column: 8
+          },
+          end: {
+            line: 26,
+            column: 9
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 21
+      }
+    },
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0
+    },
+    f: {
+      "0": 0,
+      "1": 0,
+      "2": 0
+    },
+    b: {
+      "0": [0, 0]
+    },
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/jobs/progressCheck.ts",
+      mappings: "AAAA,OAAO,IAAI,MAAM,WAAW,CAAC;AAC7B,OAAO,EAAE,MAAM,EAAE,MAAM,WAAW,CAAC;AAEnC;;;;;GAKG;AACH,MAAM,CAAC,KAAK,UAAU,gBAAgB;IACpC,MAAM,KAAK,GAAG,IAAI,IAAI,EAAE,CAAC;IACzB,MAAM,IAAI,GAAG,IAAI,IAAI,EAAE,CAAC;IACxB,IAAI,CAAC,OAAO,CAAC,KAAK,CAAC,OAAO,EAAE,GAAG,CAAC,CAAC,CAAC;IAClC,MAAM,SAAS,GAAG,MAAM,MAAM,CAAC,QAAQ,CAAC,QAAQ,CAAC;QAC/C,KAAK,EAAE;YACL,OAAO,EAAE,EAAE,GAAG,EAAE,IAAI,EAAE;SACvB;QACD,OAAO,EAAE,EAAE,WAAW,EAAE,IAAI,EAAE,IAAI,EAAE,IAAI,EAAE;KAC3C,CAAC,CAAC;IACH,KAAK,MAAM,IAAI,IAAI,SAAS,EAAE,CAAC;QAC7B,MAAM,iBAAiB,GAAG,IAAI,CAAC,WAAW,CAAC,MAAM,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,IAAI,GAAG,KAAK,CAAC,CAAC,MAAM,CAAC;QAChF,IAAI,iBAAiB,GAAG,CAAC,EAAE,CAAC;YAC1B,MAAM,OAAO,GAAG,cAAc,IAAI,CAAC,KAAK,yBAAyB,iBAAiB,mBAAmB,CAAC;YACtG,iDAAiD;YACjD,iFAAiF;YACjF,OAAO,CAAC,IAAI,CAAC,gCAAgC,OAAO,EAAE,CAAC,CAAC;QAC1D,CAAC;IACH,CAAC;AACH,CAAC;AAED;;;;;GAKG;AACH,MAAM,UAAU,qBAAqB;IACnC,IAAI,CAAC,QAAQ,CAAC,WAAW,EAAE,gBAAgB,CAAC,CAAC;AAC/C,CAAC",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/jobs/progressCheck.ts"],
+      sourcesContent: ["import cron from 'node-cron';\nimport { prisma } from '../prisma';\n\n/**\n * Query unit plans that are due within the next week and notify the teacher\n * about any plans that need attention.\n *\n * A notification record is created for each unit plan found.\n */\nexport async function runProgressCheck() {\n  const today = new Date();\n  const soon = new Date();\n  soon.setDate(today.getDate() + 7);\n  const unitPlans = await prisma.unitPlan.findMany({\n    where: {\n      endDate: { lte: soon },\n    },\n    include: { lessonPlans: true, user: true },\n  });\n  for (const plan of unitPlans) {\n    const incompleteLessons = plan.lessonPlans.filter((l) => l.date > today).length;\n    if (incompleteLessons > 0) {\n      const message = `Unit Plan \"${plan.title}\" is ending soon with ${incompleteLessons} upcoming lessons`;\n      // DISABLED: Notification model has been archived\n      // TODO: Implement using ParentMessage or DaybookEntry for progress notifications\n      console.warn(`Progress check notification: ${message}`);\n    }\n  }\n}\n\n/**\n * Schedule the progress check to run every day at 6 AM server time.\n *\n * This sets up a cron job using `node-cron` so the periodic check continues\n * to run without manual intervention.\n */\nexport function scheduleProgressCheck() {\n  cron.schedule('0 6 * * *', runProgressCheck);\n}\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "acfc4fdf0b2939bbcb4cbcae83fc8ac21107ba4b"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_26lyq7q2wd = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_26lyq7q2wd();
+import cron from 'node-cron';
+import { prisma } from '../prisma';
+/**
+ * Query unit plans that are due within the next week and notify the teacher
+ * about any plans that need attention.
+ *
+ * A notification record is created for each unit plan found.
+ */
+export async function runProgressCheck() {
+  /* istanbul ignore next */
+  cov_26lyq7q2wd().f[0]++;
+  const today =
+  /* istanbul ignore next */
+  (cov_26lyq7q2wd().s[0]++, new Date());
+  const soon =
+  /* istanbul ignore next */
+  (cov_26lyq7q2wd().s[1]++, new Date());
+  /* istanbul ignore next */
+  cov_26lyq7q2wd().s[2]++;
+  soon.setDate(today.getDate() + 7);
+  const unitPlans =
+  /* istanbul ignore next */
+  (cov_26lyq7q2wd().s[3]++, await prisma.unitPlan.findMany({
+    where: {
+      endDate: {
+        lte: soon
+      }
+    },
+    include: {
+      lessonPlans: true,
+      user: true
+    }
+  }));
+  /* istanbul ignore next */
+  cov_26lyq7q2wd().s[4]++;
+  for (const plan of unitPlans) {
+    const incompleteLessons =
+    /* istanbul ignore next */
+    (cov_26lyq7q2wd().s[5]++, plan.lessonPlans.filter(l => {
+      /* istanbul ignore next */
+      cov_26lyq7q2wd().f[1]++;
+      cov_26lyq7q2wd().s[6]++;
+      return l.date > today;
+    }).length);
+    /* istanbul ignore next */
+    cov_26lyq7q2wd().s[7]++;
+    if (incompleteLessons > 0) {
+      /* istanbul ignore next */
+      cov_26lyq7q2wd().b[0][0]++;
+      const message =
+      /* istanbul ignore next */
+      (cov_26lyq7q2wd().s[8]++, `Unit Plan "${plan.title}" is ending soon with ${incompleteLessons} upcoming lessons`);
+      // DISABLED: Notification model has been archived
+      // TODO: Implement using ParentMessage or DaybookEntry for progress notifications
+      /* istanbul ignore next */
+      cov_26lyq7q2wd().s[9]++;
+      console.warn(`Progress check notification: ${message}`);
+    } else
+    /* istanbul ignore next */
+    {
+      cov_26lyq7q2wd().b[0][1]++;
+    }
+  }
+}
+/**
+ * Schedule the progress check to run every day at 6 AM server time.
+ *
+ * This sets up a cron job using `node-cron` so the periodic check continues
+ * to run without manual intervention.
+ */
+export function scheduleProgressCheck() {
+  /* istanbul ignore next */
+  cov_26lyq7q2wd().f[2]++;
+  cov_26lyq7q2wd().s[10]++;
+  cron.schedule('0 6 * * *', runProgressCheck);
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3ZfMjZseXE3cTJ3ZCIsImFjdHVhbENvdmVyYWdlIiwiY3JvbiIsInByaXNtYSIsInJ1blByb2dyZXNzQ2hlY2siLCJmIiwidG9kYXkiLCJzIiwiRGF0ZSIsInNvb24iLCJzZXREYXRlIiwiZ2V0RGF0ZSIsInVuaXRQbGFucyIsInVuaXRQbGFuIiwiZmluZE1hbnkiLCJ3aGVyZSIsImVuZERhdGUiLCJsdGUiLCJpbmNsdWRlIiwibGVzc29uUGxhbnMiLCJ1c2VyIiwicGxhbiIsImluY29tcGxldGVMZXNzb25zIiwiZmlsdGVyIiwibCIsImRhdGUiLCJsZW5ndGgiLCJiIiwibWVzc2FnZSIsInRpdGxlIiwiY29uc29sZSIsIndhcm4iLCJzY2hlZHVsZVByb2dyZXNzQ2hlY2siLCJzY2hlZHVsZSJdLCJzb3VyY2VzIjpbIi9Vc2Vycy9taWNoYWVsbWNpc2FhYy9HaXRIdWIvdGVhY2hpbmctZW5naW5lMi4wL3NlcnZlci9zcmMvam9icy9wcm9ncmVzc0NoZWNrLnRzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBjcm9uIGZyb20gJ25vZGUtY3Jvbic7XG5pbXBvcnQgeyBwcmlzbWEgfSBmcm9tICcuLi9wcmlzbWEnO1xuXG4vKipcbiAqIFF1ZXJ5IHVuaXQgcGxhbnMgdGhhdCBhcmUgZHVlIHdpdGhpbiB0aGUgbmV4dCB3ZWVrIGFuZCBub3RpZnkgdGhlIHRlYWNoZXJcbiAqIGFib3V0IGFueSBwbGFucyB0aGF0IG5lZWQgYXR0ZW50aW9uLlxuICpcbiAqIEEgbm90aWZpY2F0aW9uIHJlY29yZCBpcyBjcmVhdGVkIGZvciBlYWNoIHVuaXQgcGxhbiBmb3VuZC5cbiAqL1xuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIHJ1blByb2dyZXNzQ2hlY2soKSB7XG4gIGNvbnN0IHRvZGF5ID0gbmV3IERhdGUoKTtcbiAgY29uc3Qgc29vbiA9IG5ldyBEYXRlKCk7XG4gIHNvb24uc2V0RGF0ZSh0b2RheS5nZXREYXRlKCkgKyA3KTtcbiAgY29uc3QgdW5pdFBsYW5zID0gYXdhaXQgcHJpc21hLnVuaXRQbGFuLmZpbmRNYW55KHtcbiAgICB3aGVyZToge1xuICAgICAgZW5kRGF0ZTogeyBsdGU6IHNvb24gfSxcbiAgICB9LFxuICAgIGluY2x1ZGU6IHsgbGVzc29uUGxhbnM6IHRydWUsIHVzZXI6IHRydWUgfSxcbiAgfSk7XG4gIGZvciAoY29uc3QgcGxhbiBvZiB1bml0UGxhbnMpIHtcbiAgICBjb25zdCBpbmNvbXBsZXRlTGVzc29ucyA9IHBsYW4ubGVzc29uUGxhbnMuZmlsdGVyKChsKSA9PiBsLmRhdGUgPiB0b2RheSkubGVuZ3RoO1xuICAgIGlmIChpbmNvbXBsZXRlTGVzc29ucyA+IDApIHtcbiAgICAgIGNvbnN0IG1lc3NhZ2UgPSBgVW5pdCBQbGFuIFwiJHtwbGFuLnRpdGxlfVwiIGlzIGVuZGluZyBzb29uIHdpdGggJHtpbmNvbXBsZXRlTGVzc29uc30gdXBjb21pbmcgbGVzc29uc2A7XG4gICAgICAvLyBESVNBQkxFRDogTm90aWZpY2F0aW9uIG1vZGVsIGhhcyBiZWVuIGFyY2hpdmVkXG4gICAgICAvLyBUT0RPOiBJbXBsZW1lbnQgdXNpbmcgUGFyZW50TWVzc2FnZSBvciBEYXlib29rRW50cnkgZm9yIHByb2dyZXNzIG5vdGlmaWNhdGlvbnNcbiAgICAgIGNvbnNvbGUud2FybihgUHJvZ3Jlc3MgY2hlY2sgbm90aWZpY2F0aW9uOiAke21lc3NhZ2V9YCk7XG4gICAgfVxuICB9XG59XG5cbi8qKlxuICogU2NoZWR1bGUgdGhlIHByb2dyZXNzIGNoZWNrIHRvIHJ1biBldmVyeSBkYXkgYXQgNiBBTSBzZXJ2ZXIgdGltZS5cbiAqXG4gKiBUaGlzIHNldHMgdXAgYSBjcm9uIGpvYiB1c2luZyBgbm9kZS1jcm9uYCBzbyB0aGUgcGVyaW9kaWMgY2hlY2sgY29udGludWVzXG4gKiB0byBydW4gd2l0aG91dCBtYW51YWwgaW50ZXJ2ZW50aW9uLlxuICovXG5leHBvcnQgZnVuY3Rpb24gc2NoZWR1bGVQcm9ncmVzc0NoZWNrKCkge1xuICBjcm9uLnNjaGVkdWxlKCcw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

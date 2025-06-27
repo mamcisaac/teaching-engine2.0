@@ -1,0 +1,489 @@
+78c239c52be0069a70647349e7e28ebc
+/* istanbul ignore next */
+function cov_15rbv938jl() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/routes/etfo-progress.ts";
+  var hash = "0e457becd7bb6fe2965dd08d18da8a2177ac2976";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/routes/etfo-progress.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 3,
+          column: 15
+        },
+        end: {
+          line: 3,
+          column: 23
+        }
+      },
+      "1": {
+        start: {
+          line: 8,
+          column: 0
+        },
+        end: {
+          line: 94,
+          column: 3
+        }
+      },
+      "2": {
+        start: {
+          line: 9,
+          column: 4
+        },
+        end: {
+          line: 93,
+          column: 5
+        }
+      },
+      "3": {
+        start: {
+          line: 10,
+          column: 8
+        },
+        end: {
+          line: 12,
+          column: 9
+        }
+      },
+      "4": {
+        start: {
+          line: 11,
+          column: 12
+        },
+        end: {
+          line: 11,
+          column: 77
+        }
+      },
+      "5": {
+        start: {
+          line: 13,
+          column: 23
+        },
+        end: {
+          line: 13,
+          column: 34
+        }
+      },
+      "6": {
+        start: {
+          line: 15,
+          column: 34
+        },
+        end: {
+          line: 19,
+          column: 10
+        }
+      },
+      "7": {
+        start: {
+          line: 20,
+          column: 37
+        },
+        end: {
+          line: 20,
+          column: 54
+        }
+      },
+      "8": {
+        start: {
+          line: 22,
+          column: 36
+        },
+        end: {
+          line: 24,
+          column: 10
+        }
+      },
+      "9": {
+        start: {
+          line: 25,
+          column: 40
+        },
+        end: {
+          line: 31,
+          column: 10
+        }
+      },
+      "10": {
+        start: {
+          line: 33,
+          column: 31
+        },
+        end: {
+          line: 35,
+          column: 10
+        }
+      },
+      "11": {
+        start: {
+          line: 36,
+          column: 35
+        },
+        end: {
+          line: 42,
+          column: 10
+        }
+      },
+      "12": {
+        start: {
+          line: 44,
+          column: 33
+        },
+        end: {
+          line: 46,
+          column: 10
+        }
+      },
+      "13": {
+        start: {
+          line: 47,
+          column: 37
+        },
+        end: {
+          line: 53,
+          column: 10
+        }
+      },
+      "14": {
+        start: {
+          line: 55,
+          column: 36
+        },
+        end: {
+          line: 57,
+          column: 10
+        }
+      },
+      "15": {
+        start: {
+          line: 58,
+          column: 40
+        },
+        end: {
+          line: 64,
+          column: 10
+        }
+      },
+      "16": {
+        start: {
+          line: 65,
+          column: 29
+        },
+        end: {
+          line: 87,
+          column: 9
+        }
+      },
+      "17": {
+        start: {
+          line: 88,
+          column: 8
+        },
+        end: {
+          line: 88,
+          column: 31
+        }
+      },
+      "18": {
+        start: {
+          line: 91,
+          column: 8
+        },
+        end: {
+          line: 91,
+          column: 62
+        }
+      },
+      "19": {
+        start: {
+          line: 92,
+          column: 8
+        },
+        end: {
+          line: 92,
+          column: 73
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "(anonymous_0)",
+        decl: {
+          start: {
+            line: 8,
+            column: 24
+          },
+          end: {
+            line: 8,
+            column: 25
+          }
+        },
+        loc: {
+          start: {
+            line: 8,
+            column: 44
+          },
+          end: {
+            line: 94,
+            column: 1
+          }
+        },
+        line: 8
+      }
+    },
+    branchMap: {
+      "0": {
+        loc: {
+          start: {
+            line: 10,
+            column: 8
+          },
+          end: {
+            line: 12,
+            column: 9
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 10,
+            column: 8
+          },
+          end: {
+            line: 12,
+            column: 9
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 10
+      }
+    },
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 0,
+      "16": 0,
+      "17": 0,
+      "18": 0,
+      "19": 0
+    },
+    f: {
+      "0": 0
+    },
+    b: {
+      "0": [0, 0]
+    },
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/routes/etfo-progress.ts",
+      mappings: "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",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/routes/etfo-progress.ts"],
+      sourcesContent: ["import { Router, Request } from 'express';\nimport { prisma } from '../prisma';\n\nconst router = Router();\n\n/**\n * GET /api/etfo/progress\n * Get ETFO planning progress across all 5 levels\n */\nrouter.get('/progress', async (req: Request, res) => {\n  try {\n    if (!req.user?.id) {\n      return res.status(401).json({ error: 'User not authenticated' });\n    }\n\n    const userId = req.user.id;\n\n    // Get curriculum expectations progress\n    const totalExpectations = await prisma.curriculumExpectation.count({\n      where: {\n        import: { userId },\n      },\n    });\n\n    const importedExpectations = totalExpectations; // All expectations are imported by definition\n\n    // Get long-range plans progress\n    const totalLongRangePlans = await prisma.longRangePlan.count({\n      where: { userId },\n    });\n\n    const completedLongRangePlans = await prisma.longRangePlan.count({\n      where: {\n        userId,\n        // Consider completed if they have goals\n        goals: { not: null },\n      },\n    });\n\n    // Get unit plans progress\n    const totalUnitPlans = await prisma.unitPlan.count({\n      where: { userId },\n    });\n\n    const completedUnitPlans = await prisma.unitPlan.count({\n      where: {\n        userId,\n        // Consider completed if they have big ideas\n        bigIdeas: { not: null },\n      },\n    });\n\n    // Get lesson plans progress\n    const totalLessonPlans = await prisma.eTFOLessonPlan.count({\n      where: { userId },\n    });\n\n    const completedLessonPlans = await prisma.eTFOLessonPlan.count({\n      where: {\n        userId,\n        // Consider completed if they have learning goals\n        learningGoals: { not: null },\n      },\n    });\n\n    // Get daybook entries progress\n    const totalDaybookEntries = await prisma.daybookEntry.count({\n      where: { userId },\n    });\n\n    const completedDaybookEntries = await prisma.daybookEntry.count({\n      where: {\n        userId,\n        // Consider completed if they have reflections\n        whatWorked: { not: null },\n      },\n    });\n\n    const progressData = {\n      curriculumExpectations: {\n        total: Math.max(totalExpectations, 1), // Ensure at least 1 to avoid division by zero\n        imported: importedExpectations,\n        covered: importedExpectations, // For now, imported = covered\n      },\n      longRangePlans: {\n        total: totalLongRangePlans,\n        completed: completedLongRangePlans,\n      },\n      unitPlans: {\n        total: totalUnitPlans,\n        completed: completedUnitPlans,\n      },\n      lessonPlans: {\n        total: totalLessonPlans,\n        completed: completedLessonPlans,\n      },\n      daybookEntries: {\n        total: totalDaybookEntries,\n        completed: completedDaybookEntries,\n      },\n    };\n\n    res.json(progressData);\n  } catch (error) {\n    console.error('Error fetching ETFO progress:', error);\n    res.status(500).json({ error: 'Failed to fetch ETFO progress' });\n  }\n});\n\nexport default router;\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "0e457becd7bb6fe2965dd08d18da8a2177ac2976"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_15rbv938jl = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_15rbv938jl();
+import { Router } from 'express';
+import { prisma } from '../prisma';
+const router =
+/* istanbul ignore next */
+(cov_15rbv938jl().s[0]++, Router());
+/**
+ * GET /api/etfo/progress
+ * Get ETFO planning progress across all 5 levels
+ */
+/* istanbul ignore next */
+cov_15rbv938jl().s[1]++;
+router.get('/progress', async (req, res) => {
+  /* istanbul ignore next */
+  cov_15rbv938jl().f[0]++;
+  cov_15rbv938jl().s[2]++;
+  try {
+    /* istanbul ignore next */
+    cov_15rbv938jl().s[3]++;
+    if (!req.user?.id) {
+      /* istanbul ignore next */
+      cov_15rbv938jl().b[0][0]++;
+      cov_15rbv938jl().s[4]++;
+      return res.status(401).json({
+        error: 'User not authenticated'
+      });
+    } else
+    /* istanbul ignore next */
+    {
+      cov_15rbv938jl().b[0][1]++;
+    }
+    const userId =
+    /* istanbul ignore next */
+    (cov_15rbv938jl().s[5]++, req.user.id);
+    // Get curriculum expectations progress
+    const totalExpectations =
+    /* istanbul ignore next */
+    (cov_15rbv938jl().s[6]++, await prisma.curriculumExpectation.count({
+      where: {
+        import: {
+          userId
+        }
+      }
+    }));
+    const importedExpectations =
+    /* istanbul ignore next */
+    (cov_15rbv938jl().s[7]++, totalExpectations); // All expectations are imported by definition
+    // Get long-range plans progress
+    const totalLongRangePlans =
+    /* istanbul ignore next */
+    (cov_15rbv938jl().s[8]++, await prisma.longRangePlan.count({
+      where: {
+        userId
+      }
+    }));
+    const completedLongRangePlans =
+    /* istanbul ignore next */
+    (cov_15rbv938jl().s[9]++, await prisma.longRangePlan.count({
+      where: {
+        userId,
+        // Consider completed if they have goals
+        goals: {
+          not: null
+        }
+      }
+    }));
+    // Get unit plans progress
+    const totalUnitPlans =
+    /* istanbul ignore next */
+    (cov_15rbv938jl().s[10]++, await prisma.unitPlan.count({
+      where: {
+        userId
+      }
+    }));
+    const completedUnitPlans =
+    /* istanbul ignore next */
+    (cov_15rbv938jl().s[11]++, await prisma.unitPlan.count({
+      where: {
+        userId,
+        // Consider completed if they have big ideas
+        bigIdeas: {
+          not: null
+        }
+      }
+    }));
+    // Get lesson plans progress
+    const totalLessonPlans =
+    /* istanbul ignore next */
+    (cov_15rbv938jl().s[12]++, await prisma.eTFOLessonPlan.count({
+      where: {
+        userId
+      }
+    }));
+    const completedLessonPlans =
+    /* istanbul ignore next */
+    (cov_15rbv938jl().s[13]++, await prisma.eTFOLessonPlan.count({
+      where: {
+        userId,
+        // Consider completed if they have learning goals
+        learningGoals: {
+          not: null
+        }
+      }
+    }));
+    // Get daybook entries progress
+    const totalDaybookEntries =
+    /* istanbul ignore next */
+    (cov_15rbv938jl().s[14]++, await prisma.daybookEntry.count({
+      where: {
+        userId
+      }
+    }));
+    const completedDaybookEntries =
+    /* istanbul ignore next */
+    (cov_15rbv938jl().s[15]++, await prisma.daybookEntry.count({
+      where: {
+        userId,
+        // Consider completed if they have reflections
+        whatWorked: {
+          not: null
+        }
+      }
+    }));
+    const progressData =
+    /* istanbul ignore next */
+    (cov_15rbv938jl().s[16]++, {
+      curriculumExpectations: {
+        total: Math.max(totalExpectations, 1),
+        // Ensure at least 1 to avoid division by zero
+        imported: importedExpectations,
+        covered: importedExpectations // For now, imported = covered
+      },
+      longRangePlans: {
+        total: totalLongRangePlans,
+        completed: completedLongRangePlans
+      },
+      unitPlans: {
+        total: totalUnitPlans,
+        completed: completedUnitPlans
+      },
+      lessonPlans: {
+        total: totalLessonPlans,
+        completed: completedLessonPlans
+      },
+      daybookEntries: {
+        total: totalDaybookEntries,
+        completed: completedDaybookEntries
+      }
+    });
+    /* istanbul ignore next */
+    cov_15rbv938jl().s[17]++;
+    res.json(progressData);
+  } catch (error) {
+    /* istanbul ignore next */
+    cov_15rbv938jl().s[18]++;
+    console.error('Error fetching ETFO progress:', error);
+    /* istanbul ignore next */
+    cov_15rbv938jl().s[19]++;
+    res.status(500).json({
+      error: 'Failed to fetch ETFO progress'
+    });
+  }
+});
+export default router;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3ZfMTVyYnY5MzhqbCIsImFjdHVhbENvdmVyYWdlIiwiUm91dGVyIiwicHJpc21hIiwicm91dGVyIiwicyIsImdldCIsInJlcSIsInJlcyIsImYiLCJ1c2VyIiwiaWQiLCJiIiwic3RhdHVzIiwianNvbiIsImVycm9yIiwidXNlcklkIiwidG90YWxFeHBlY3RhdGlvbnMiLCJjdXJyaWN1bHVtRXhwZWN0YXRpb24iLCJjb3VudCIsIndoZXJlIiwiaW1wb3J0IiwiaW1wb3J0ZWRFeHBlY3RhdGlvbnMiLCJ0b3RhbExvbmdSYW5nZVBsYW5zIiwibG9uZ1JhbmdlUGxhbiIsImNvbXBsZXRlZExvbmdSYW5nZVBsYW5zIiwiZ29hbHMiLCJub3QiLCJ0b3RhbFVuaXRQbGFucyIsInVuaXRQbGFuIiwiY29tcGxldGVkVW5pdFBsYW5zIiwiYmlnSWRlYXMiLCJ0b3RhbExlc3NvblBsYW5zIiwiZVRGT0xlc3NvblBsYW4iLCJjb21wbGV0ZWRMZXNzb25QbGFucyIsImxlYXJuaW5nR29hbHMiLCJ0b3RhbERheWJvb2tFbnRyaWVzIiwiZGF5Ym9va0VudHJ5IiwiY29tcGxldGVkRGF5Ym9va0VudHJpZXMiLCJ3aGF0V29ya2VkIiwicHJvZ3Jlc3NEYXRhIiwiY3VycmljdWx1bUV4cGVjdGF0aW9ucyIsInRvdGFsIiwiTWF0aCIsIm1heCIsImltcG9ydGVkIiwiY292ZXJlZCIsImxvbmdSYW5nZVBsYW5zIiwiY29tcGxldGVkIiwidW5pdFBsYW5zIiwibGVzc29uUGxhbnMiLCJkYXlib29rRW50cmllcyIsImNvbnNvbGUiXSwic291cmNlcyI6WyIvVXNlcnMvbWljaGFlbG1jaXNhYWMvR2l0SHViL3RlYWNoaW5nLWVuZ2luZTIuMC9zZXJ2ZXIvc3JjL3JvdXRlcy9ldGZvLXByb2dyZXNzLnRzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IFJvdXRlciwgUmVxdWVzdCB9IGZyb20gJ2V4cHJlc3MnO1xuaW1wb3J0IHsgcHJpc21hIH0gZnJvbSAnLi4vcHJpc21hJztcblxuY29uc3Qgcm91dGVyID0gUm91dGVyKCk7XG5cbi8qKlxuICogR0VUIC9hcGkvZXRmby9wcm9ncmVzc1xuICogR2V0IEVURk8gcGxhbm5pbmcgcHJvZ3Jlc3MgYWNyb3NzIGFsbCA1IGxldmVsc1xuICovXG5yb3V0ZXIuZ2V0KCcvcHJvZ3Jlc3MnLCBhc3luYyAocmVxOiBSZXF1ZXN0LCByZXMpID0+IHtcbiAgdHJ5IHtcbiAgICBpZiAoIXJlcS51c2VyPy5pZCkge1xuICAgICAgcmV0dXJuIHJlcy5zdGF0dXMoNDAxKS5qc29uKHsgZXJyb3I6ICdVc2VyIG5vdCBhdXRoZW50aWNhdGVkJyB9KTtcbiAgICB9XG5cbiAgICBjb25zdCB1c2VySWQgPSByZXEudXNlci5pZDtcblxuICAgIC8vIEdldCBjdXJyaWN1bHVtIGV4cGVjdGF0aW9ucyBwcm9ncmVzc1xuICAgIGNvbnN0IHRvdGFsRXhwZWN0YXRpb25zID0gYXdhaXQgcHJpc21hLmN1cnJpY3VsdW1FeHBlY3RhdGlvbi5jb3VudCh7XG4gICAgICB3aGVyZToge1xuICAgICAgICBpbXBvcnQ6IHsgdXNlcklkIH0sXG4gICAgICB9LFxuICAgIH0pO1xuXG4gICAgY29uc3QgaW1wb3J0ZWRFeHBlY3RhdGlvbnMgPSB0b3RhbEV4cGVjdGF0aW9uczsgLy8gQWxsIGV4cGVjdGF0aW9ucyBhcmUgaW1wb3J0ZWQgYnkgZGVmaW5pdGlvblxuXG4gICAgLy8gR2V0IGxvbmctcmFuZ2UgcGxhbnMgcHJvZ3Jlc3NcbiAgICBjb25zdCB0b3RhbExvbmdSYW5nZVBsYW5zID0gYXdhaXQgcHJpc21hLmxvbmdSYW5nZVBsYW4uY291bnQoe1xuICAgICAgd2hlcmU6IHsgdXNlcklkIH0sXG4gICAgfSk7XG5cbiAgICBjb25zdCBjb21wbGV0ZWRMb25nUmFuZ2VQbGFucyA9IGF3YWl0IHByaXNtYS5sb25nUmFuZ2VQbGFuLmNvdW50KHtcbiAgICAgIHdoZXJlOiB7XG4gICAgICAgIHVzZXJJZCxcbiAgICAgICAgLy8gQ29uc2lkZXIgY29tcGxldGVkIGlmIHRoZXkgaGF2ZSBnb2Fsc1xuICAgICAgICBnb2FsczogeyBub3Q6IG51bGwgfSxcbiAgICAgIH0sXG4gICAgfSk7XG5cbiAgICAvLyBHZXQgdW5pdCBwbGFucyBwcm9ncmVzc1xuICAgIGNvbnN0IHRvdGFsVW5pdFBsYW5zID0gYXdhaXQgcHJpc21hLnVuaXRQbGFuLmNvdW50KHtcbiAgICAgIHdoZXJlOiB7IHVzZXJJZCB9LFxuICAgIH0pO1xuXG4gICAgY29uc3QgY29tcGxldGVkVW5pdFBsYW5zID0gYXdhaXQgcHJpc21hLnVuaXRQbGFuLmNvdW50KHtcbiAgICAgIHdoZXJlOiB7XG4gICAgICAgIHVzZXJJZCxcbiAgICAgICAgLy8gQ29uc2lkZXIgY29tcGxldGVkIGlmIHRoZXkgaGF2ZSBiaWcgaWRlYXNcbiAgICAgICAgYmlnSWRlYXM6IHsgbm90OiBudWxsIH0sXG4gICAgICB9LFxuICAgIH0pO1xuXG4gICAgLy8gR2V0IGxlc3NvbiBwbGFucyBwcm9ncmVzc1xuICAgIGNvbnN0IHRvdGFsTGVzc29uUGxhbnMgPSBhd2FpdCBwcmlzbWEuZVRGT0xlc3NvblBsYW4uY291bnQoe1xuICAgICAgd2hlcmU6IHsgdXNlcklkIH0sXG4gICAgfSk7XG5cbiAgICBjb25zdCBjb21wbGV0ZWRMZXNzb25QbGFucyA9IGF3YWl0IHByaXNtYS5lVEZPTGVzc29uUGxhbi5jb3VudCh7XG4gICAgICB3aGVyZToge1xuICAgICAgICB1c2VySWQsXG4gICAgICAgIC8vIENvbnNpZGVyIGNvbXBsZXRlZCBpZiB0aGV5IGhhdmUgbGVhcm5pbmcgZ29hbHNcbiAgICAgICAgbGVhcm5pbmdHb2FsczogeyBub3Q6IG51bGwgfSxcbiAgICAgIH0sXG4gICAgfSk7XG5cbiAgICAvLyBHZXQgZGF5Ym9vayBlbnRyaWVzIHByb2dyZXNzXG4gICAgY29uc3QgdG90YWxEYXlib29rRW50cmllcyA9IGF3YWl0IHByaXNtYS5kYXlib29rRW50cnkuY291bnQoe1xuICAgICAgd2hlcmU6IHsgdXNlcklkIH0sXG4gICAgfSk7XG5cbiAgICBjb25zdCBjb21wbGV0ZWREYXlib29rRW50cmllcyA9IGF3YWl0IHByaXNtYS5kYXlib29rRW50cnkuY291bnQoe1xuICAgICAgd2hlcmU6IHtcbiAgICAgICAgdXNlcklkLFxuICAgICAgICAvLyBDb25zaWRlciBjb21wbGV0ZWQgaWYgdGhleSBoYXZlIHJlZmxlY3Rpb25zXG4gICAgICAgIHdoYXRXb3JrZWQ6IHsgbm90OiBudWxsIH0sXG4gICAgICB9LFxuICAgIH0pO1xuXG4gICAgY29uc3QgcHJvZ3Jlc3NEYXRhID0ge1xuICAgICAgY3VycmljdWx1bUV4cGVjdGF0aW9uczoge1xuICAgICAgICB0b3RhbDogTWF0aC5tYXgodG90YWxFeHBlY3RhdGlvbnMsIDEpLCAvLyBFbnN1cmUgYXQgbGVhc3QgMSB0byBhdm9pZCBkaXZpc2lvbiBieSB6ZXJvXG4gICAgICAgIGltcG9ydGVkOiBpbXBvcnRlZEV4cGVjdGF0aW9ucyxcbiAgICAgICAgY292ZXJlZDogaW1wb3J0ZWRFeHBlY3RhdGlvbnMsIC8vIEZvciBub3csIGltcG9ydGVkID0gY292ZXJlZFxuICAgICAgfSxcbiAgICAgIGxvbmdSYW5nZVBsYW5zOiB7XG4gICAgICAgIHRvdGFsOiB0b3RhbExvbmdSYW5nZVBsYW5zLFxuICAgICAgICBjb21wbGV0ZWQ6IGNvbXBsZXRlZExvbmdSYW5nZVBsYW5zLFxuICAgICAgfSxcbiAgICAgIHVuaXRQbGFuczoge1xuICAgICAgICB0b3RhbDogdG90YWxVbml0UGxhbnMsXG4gICAgICAgIGNvbXBsZXRlZDogY29tcGxldGVkVW5pdFBsYW5zLFxuICAgICAgfSxcbiAgICAgIGxlc3NvblBsYW5zOiB7XG4gICAgICAgIHRvdGFsOiB0b3RhbExlc3NvblBsYW5zLFxuICAgICAgICBjb21wbGV0ZWQ6IGNvbXBsZXRlZExlc3NvblBsYW5zLFxuICAgICAgfSxcbiAgICAgIGRheWJvb2tFbnRyaWVzOiB7XG4gICAgICAgIHRvdGFsOiB0b3RhbERheWJvb2tFbnRyaWVzLFxuICAgICAgICBjb21wbGV0ZWQ6IGNvbXBsZXRlZERheWJvb2tFbnRyaWVzLFxuICAgICAgfSxcbiAgICB9O1xuXG4gICAgcmVzLmpzb24ocHJvZ3Jlc3NEYXRhKTtcbiAgfSBjYXRjaCAoZXJyb3IpIHtcbiAgICBjb25zb2xlLmVycm9yKCdFcnJvciBmZXRjaGluZyBFVEZPIHByb2dyZXNzOicsIGVycm9yKTtcbiAgICByZXMuc3RhdHVzKDUwMCkuanNvbih7IGVycm9yOiAnRmFpbGVkIHRvIGZldGNoIEVURk8gcHJvZ3Jlc3MnIH0pO1xuICB9XG59KTtcblxuZXhwb3J0IGRlZmF1bHQgcm91dGVyO1xuIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0lBbUJNO0lBQUFBLGNBQUEsWUFBQUEsQ0FBQTtNQUFBLE9BQUFDLGNBQUE7SUFBQTtFQUFBO0VBQUEsT0FBQUEsY0FBQTtBQUFBO0FBQUFELGNBQUE7QUFuQk4sU0FBU0UsTUFBTSxRQUFpQixTQUFTO0FBQ3pDLFNBQVNDLE1BQU0sUUFBUSxXQUFXO0FBRWxDLE1BQU1DLE1BQU07QUFBQTtBQUFBLENBQUFKLGNBQUEsR0FBQUssQ0FBQSxPQUFHSCxNQUFNLEVBQUU7QUFFdkI7Ozs7QUFBQTtBQUFBRixjQUFBLEdBQUFLLENBQUE7QUFJQUQsTUFBTSxDQUFDRSxHQUFHLENBQUMsV0FBVyxFQUFFLE9BQU9DLEdBQVksRUFBRUMsR0FBRyxLQUFJO0VBQUE7RUFBQVIsY0FBQSxHQUFBUyxDQUFBO0VBQUFULGNBQUEsR0FBQUssQ0FBQTtFQUNsRCxJQUFJO0lBQUE7SUFBQUwsY0FBQSxHQUFBSyxDQUFBO0lBQ0YsSUFBSSxDQUFDRSxHQUFHLENBQUNHLElBQUksRUFBRUMsRUFBRSxFQUFFO01BQUE7TUFBQVgsY0FBQSxHQUFBWSxDQUFBO01BQUFaLGNBQUEsR0FBQUssQ0FBQTtNQUNqQixPQUFPRyxHQUFHLENBQUNLLE1BQU0sQ0FBQyxHQUFHLENBQUMsQ0FBQ0MsSUFBSSxDQUFDO1FBQUVDLEtBQUssRUFBRTtNQUF3QixDQUFFLENBQUM7SUFDbEUsQ0FBQztJQUFBO0lBQUE7TUFBQWYsY0FBQSxHQUFBWSxDQUFBO0lBQUE7SUFFRCxNQUFNSSxNQUFNO0lBQUE7SUFBQSxDQUFBaEIsY0FBQSxHQUFBSyxDQUFBLE9BQUdFLEdBQUcsQ0FBQ0csSUFBSSxDQUFDQyxFQUFFO0lBRTFCO0lBQ0EsTUFBTU0saUJBQWlCO0lBQUE7SUFBQSxDQUFBakIsY0FBQSxHQUFBSyxDQUFBLE9BQUcsTUFBTUYsTUFBTSxDQUFDZSxxQkFBcUIsQ0FBQ0MsS0FBSyxDQUFDO01BQ2pFQyxLQUFLLEVBQUU7UUFDTEMsTUFBTSxFQUFFO1VBQUVMO1FBQU07O0tBRW5CLENBQUM7SUFFRixNQUFNTSxvQkFBb0I7SUFBQTtJQUFBLENBQUF0QixjQUFBLEdBQUFLLENBQUEsT0FBR1ksaUJBQWlCLEVBQUMsQ0FBQztJQUVoRDtJQUNBLE1BQU1NLG1CQUFtQjtJQUFBO0lBQUEsQ0FBQXZCLGNBQUEsR0FBQUssQ0FBQSxPQUFHLE1BQU1GLE1BQU0sQ0FBQ3FCLGFBQWEsQ0FBQ0wsS0FBSyxDQUFDO01BQzNEQyxLQUFLLEVBQUU7UUFBRUo7TUFBTTtLQUNoQixDQUFDO0lBRUYsTUFBTVMsdUJBQXVCO0lBQUE7SUFBQSxDQUFBekIsY0FBQSxHQUFBSyxDQUFBLE9BQUcsTUFBTUYsTUFBTSxDQUFDcUIsYUFBYSxDQUFDTCxLQUFLLENBQUM7TUFDL0RDLEtBQUssRUFBRTtRQUNMSixNQUFNO1FBQ047UUFDQVUsS0FBSyxFQUFFO1VBQUVDLEdBQUcsRUFBRTtRQUFJOztLQUVyQixDQUFDO0lBRUY7SUFDQSxNQUFNQyxjQUFjO0lBQUE7SUFBQSxDQUFBNUIsY0FBQSxHQUFBSyxDQUFBLFFBQUcsTUFBTUYsTUFBTSxDQUFDMEIsUUFBUSxDQUFDVixLQUFLLENBQUM7TUFDakRDLEtBQUssRUFBRTtRQUFFSjtNQUFNO0tBQ2hCLENBQUM7SUFFRixNQUFNYyxrQkFBa0I7SUFBQTtJQUFBLENBQUE5QixjQUFBLEdBQUFLLENBQUEsUUFBRyxNQUFNRixNQUFNLENBQUMwQixRQUFRLENBQUNWLEtBQUssQ0FBQztNQUNyREMsS0FBSyxFQUFFO1FBQ0xKLE1BQU07UUFDTjtRQUNBZSxRQUFRLEVBQUU7VUFBRUosR0FBRyxFQUFFO1FBQUk7O0tBRXhCLENBQUM7SUFFRjtJQUNBLE1BQU1LLGdCQUFnQjtJQUFBO0lBQUEsQ0FBQWhDLGNBQUEsR0FBQUssQ0FBQSxRQUFHLE1BQU1GLE1BQU0sQ0FBQzhCLGNBQWMsQ0FBQ2QsS0FBSyxDQUFDO01BQ3pEQyxLQUFLLEVBQUU7UUFBRUo7TUFBTTtLQUNoQixDQUFDO0lBRUYsTUFBTWtCLG9CQUFvQjtJQUFBO0lBQUEsQ0FBQWxDLGNBQUEsR0FBQUssQ0FBQSxRQUFHLE1BQU1GLE1BQU0sQ0FBQzhCLGNBQWMsQ0FBQ2QsS0FBSyxDQUFDO01BQzdEQyxLQUFLLEVBQUU7UUFDTEosTUFBTTtRQUNOO1FBQ0FtQixhQUFhLEVBQUU7VUFBRVIsR0FBRyxFQUFFO1FBQUk7O0tBRTdCLENBQUM7SUFFRjtJQUNBLE1BQU1TLG1CQUFtQjtJQUFBO0lBQUEsQ0FBQXBDLGNBQUEsR0FBQUssQ0FBQSxRQUFHLE1BQU1GLE1BQU0sQ0FBQ2tDLFlBQVksQ0FBQ2xCLEtBQUssQ0FBQztNQUMxREMsS0FBSyxFQUFFO1FBQUVKO01BQU07S0FDaEIsQ0FBQztJQUVGLE1BQU1zQix1QkFBdUI7SUFBQTtJQUFBLENBQUF0QyxjQUFBLEdBQUFLLENBQUEsUUFBRyxNQUFNRixNQUFNLENBQUNrQyxZQUFZLENBQUNsQixLQUFLLENBQUM7TUFDOURDLEtBQUssRUFBRTtRQUNMSixNQUFNO1FBQ047UUFDQXVCLFVBQVUsRUFBRTtVQUFFWixHQUFHLEVBQUU7UUFBSTs7S0FFMUIsQ0FBQztJQUVGLE1BQU1hLFlBQVk7SUFBQTtJQUFBLENBQUF4QyxjQUFBLEdBQUFLLENBQUEsUUFBRztNQUNuQm9DLHNCQUFzQixFQUFFO1FBQ3RCQyxLQUFLLEVBQUVDLElBQUksQ0FBQ0MsR0FBRyxDQUFDM0IsaUJBQWlCLEVBQUUsQ0FBQyxDQUFDO1FBQUU7UUFDdkM0QixRQUFRLEVBQUV2QixvQkFBb0I7UUFDOUJ3QixPQUFPLEVBQUV4QixvQkFBb0IsQ0FBRTtPQUNoQztNQUNEeUIsY0FBYyxFQUFFO1FBQ2RMLEtBQUssRUFBRW5CLG1CQUFtQjtRQUMxQnlCLFNBQVMsRUFBRXZCO09BQ1o7TUFDRHdCLFNBQVMsRUFBRTtRQUNUUCxLQUFLLEVBQUVkLGNBQWM7UUFDckJvQixTQUFTLEVBQUVsQjtPQUNaO01BQ0RvQixXQUFXLEVBQUU7UUFDWFIsS0FBSyxFQUFFVixnQkFBZ0I7UUFDdkJnQixTQUFTLEVBQUVkO09BQ1o7TUFDRGlCLGNBQWMsRUFBRTtRQUNkVCxLQUFLLEVBQUVOLG1CQUFtQjtRQUMxQlksU0FBUyxFQUFFVjs7S0FFZDtJQUFDO0lBQUF0QyxjQUFBLEdBQUFLLENBQUE7SUFFRkcsR0FBRyxDQUFDTSxJQUFJLENBQUMwQixZQUFZLENBQUM7RUFDeEIsQ0FBQyxDQUFDLE9BQU96QixLQUFLLEVBQUU7SUFBQTtJQUFBZixjQUFBLEdBQUFLLENBQUE7SUFDZCtDLE9BQU8sQ0FBQ3JDLEtBQUssQ0FBQywrQkFBK0IsRUFBRUEsS0FBSyxDQUFDO0lBQUM7SUFBQWYsY0FBQSxHQUFBSyxDQUFBO0lBQ3RERyxHQUFHLENBQUNLLE1BQU0sQ0FBQyxHQUFHLENBQUMsQ0FBQ0MsSUFBSSxDQUFDO01BQUVDLEtBQUssRUFBRTtJQUErQixDQUFFLENBQUM7RUFDbEU7QUFDRixDQUFDLENBQUM7QUFFRixlQUFlWCxNQUFNIiwiaWdub3JlTGlzdCI6W119

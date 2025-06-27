@@ -645,6 +645,7 @@ export default function UnitPlansPage() {
             <Button
               onClick={() => setIsCreateModalOpen(true)}
               className="bg-indigo-600 hover:bg-indigo-700 text-white"
+              data-testid="create-unit-plan-button"
             >
               <Plus className="h-4 w-4 mr-2" />
               Create Unit Plan
@@ -678,6 +679,7 @@ export default function UnitPlansPage() {
               <Button
                 onClick={() => setIsCreateModalOpen(true)}
                 className="bg-indigo-600 hover:bg-indigo-700 text-white"
+                data-testid="create-unit-plan-empty-state-button"
               >
                 Create Unit Plan
               </Button>

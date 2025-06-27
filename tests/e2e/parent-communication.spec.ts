@@ -46,20 +46,26 @@ test.describe('Parent Communication Center', () => {
 
     // Switch to English and fill
     await page.click('button:has-text("🇬🇧 English")');
-    await page.waitForTimeout(200); // Wait for tab switch
+    await page.waitForLoadState('domcontentloaded'); // Wait for tab switch
     const englishEditor = page.locator('div[role="textbox"][contenteditable="true"]').first();
     await englishEditor.click();
     await englishEditor.fill(newsletterData.contentEn);
 
-    // Save using keyboard shortcut or find submit button in view
-    await page.keyboard.press('Tab'); // Tab to move focus
-    await page.keyboard.press('Tab'); // Tab again to possibly reach submit
-    await page.keyboard.press('Enter'); // Submit form
-
-    // Alternative: Try clicking the button if visible
+    // Save using submit button - try multiple approaches
     const submitButton = page.locator('button[type="submit"]:has-text("Create Newsletter")');
-    if (await submitButton.isVisible({ timeout: 1000 })) {
+    const createButton = page.locator('button:has-text("Create Newsletter")');
+    const saveButton = page.locator('button:has-text("Save")');
+
+    // Try to find and click the submit button
+    if (await submitButton.isVisible({ timeout: 2000 })) {
       await submitButton.click();
+    } else if (await createButton.isVisible({ timeout: 2000 })) {
+      await createButton.click();
+    } else if (await saveButton.isVisible({ timeout: 2000 })) {
+      await saveButton.click();
+    } else {
+      // Fallback: try pressing Enter on the form
+      await page.locator('form').press('Enter');
     }
 
     // Wait for dialog to close
@@ -102,20 +108,25 @@ test.describe('Parent Communication Center', () => {
 
     // Switch to English and fill
     await page.click('button:has-text("🇬🇧 English")');
-    await page.waitForTimeout(200);
+    await page.waitForLoadState('domcontentloaded');
     const englishEditor = page.locator('div[role="textbox"][contenteditable="true"]').first();
     await englishEditor.click();
     await englishEditor.fill(messageData.contentEn);
 
-    // Submit using same method as working test
-    await page.keyboard.press('Tab');
-    await page.keyboard.press('Tab');
-    await page.keyboard.press('Enter');
-
-    // Alternative: Try clicking if visible
+    // Submit using button click approach
     const submitButton = page.locator('button[type="submit"]:has-text("Create Newsletter")');
-    if (await submitButton.isVisible({ timeout: 1000 })) {
+    const createButton = page.locator('button:has-text("Create Newsletter")');
+    const saveButton = page.locator('button:has-text("Save")');
+
+    if (await submitButton.isVisible({ timeout: 2000 })) {
       await submitButton.click();
+    } else if (await createButton.isVisible({ timeout: 2000 })) {
+      await createButton.click();
+    } else if (await saveButton.isVisible({ timeout: 2000 })) {
+      await saveButton.click();
+    } else {
+      // Fallback: try pressing Enter on the form
+      await page.locator('form').press('Enter');
     }
 
     // Wait for dialog to close
@@ -133,7 +144,7 @@ test.describe('Parent Communication Center', () => {
 
       if (await viewButton.isVisible({ timeout: 1000 })) {
         await viewButton.click();
-        await page.waitForTimeout(1000);
+        await page.waitForLoadState('domcontentloaded', { timeout: 2000 });
 
         // Check if preview dialog opened
         const previewVisible = await Promise.race([
@@ -179,15 +190,22 @@ test.describe('Parent Communication Center', () => {
 
     // Fill English content
     await page.click('button:has-text("🇬🇧 English")');
-    await page.waitForTimeout(200);
+    await page.waitForLoadState('domcontentloaded');
     const englishEditor = page.locator('div[role="textbox"][contenteditable="true"]').first();
     await englishEditor.click();
     await englishEditor.fill(messageData.contentEn);
 
-    // Submit
-    await page.keyboard.press('Tab');
-    await page.keyboard.press('Tab');
-    await page.keyboard.press('Enter');
+    // Submit using button click approach
+    const submitButton = page.locator('button[type="submit"]:has-text("Create Newsletter")');
+    const createButton = page.locator('button:has-text("Create Newsletter")');
+
+    if (await submitButton.isVisible({ timeout: 2000 })) {
+      await submitButton.click();
+    } else if (await createButton.isVisible({ timeout: 2000 })) {
+      await createButton.click();
+    } else {
+      await page.locator('form').press('Enter');
+    }
 
     // Wait for dialog to close
     await page.waitForFunction(() => !document.querySelector('[role="dialog"]'), { timeout: 5000 });
@@ -206,7 +224,7 @@ test.describe('Parent Communication Center', () => {
         await viewButton.click();
 
         // Wait for preview to open
-        await page.waitForTimeout(1000);
+        await page.waitForLoadState('domcontentloaded', { timeout: 2000 });
 
         // Check for any export/action buttons (be flexible about which ones exist)
         const hasExportFeatures = await Promise.race([

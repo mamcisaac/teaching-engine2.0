@@ -12,3 +12,25 @@
 **/*.db-journal
 # Ignore Jest cache
 **/.jest-cache/**
+# Ignore log files
+**/*.log
+**/logs/**
+# Ignore test files
+**/test-integration-*.db
+**/test-*.db
+# Ignore build artifacts
+**/build/**
+**/.next/**
+# Ignore IDE files
+**/.vscode/**
+**/.idea/**
+# Ignore temporary files
+**/tmp/**
+**/temp/**
+# Ignore process files
+**/*.pid
+# Ignore backup files
+**/backups/**
+**/*.backup
+# Ignore uploads
+**/uploads/**

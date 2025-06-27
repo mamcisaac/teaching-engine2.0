@@ -1,0 +1,39 @@
+# Teaching Engine 2.0 Development Configuration
+# This file contains environment variables and settings for development
+
+# Development server configuration
+export DEV_SERVER_PORT=3000
+export DEV_CLIENT_PORT=5173
+export DEV_DEBUG_PORT=9229
+
+# Node.js optimization for development
+export NODE_OPTIONS="--experimental-specifier-resolution=node --max-old-space-size=4096"
+
+# Enable detailed logging in development
+export DEBUG="server:*"
+export LOG_LEVEL="debug"
+
+# TSX watch configuration
+export TSX_WATCH_IGNORE=".watchignore"
+export TSX_CLEAR_SCREEN="false"
+
+# Development environment
+export NODE_ENV="development"
+export FORCE_COLOR="1"
+
+# Performance monitoring
+export MONITOR_PERFORMANCE="true"
+
+# File watching optimization
+export CHOKIDAR_USEPOLLING="false"
+export CHOKIDAR_INTERVAL="1000"
+
+# Development shortcuts
+alias dev-start="pnpm dev"
+alias dev-stop="pnpm dev:clean"
+alias dev-logs="tail -f *.log"
+alias dev-ports="lsof -i :3000,5173,5555,9229"
+
+echo "📚 Teaching Engine 2.0 development environment loaded"
+echo "🚀 Use 'pnpm dev' to start all services"
+echo "🧹 Use 'pnpm dev:clean' to cleanup processes"

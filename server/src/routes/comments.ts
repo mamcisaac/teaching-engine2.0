@@ -6,9 +6,9 @@
 import { Router } from 'express';
 import { PrismaClient } from '@teaching-engine/database';
 import { z } from 'zod';
-import { authenticate } from '@/middleware/authenticate';
-import { asyncHandler } from '@/middleware/errorHandler';
-import logger from '@/logger';
+import { authenticate } from '../middleware/authenticate';
+import { asyncHandler } from '../middleware/errorHandler';
+import logger from '../logger';
 
 // Validation schemas
 const createCommentSchema = z.object({

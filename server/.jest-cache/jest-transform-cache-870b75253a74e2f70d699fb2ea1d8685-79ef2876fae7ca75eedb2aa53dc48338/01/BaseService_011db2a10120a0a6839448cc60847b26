@@ -1,0 +1,3194 @@
+fbf06a00e9d681af200f8b8dc5a9bc28
+/* istanbul ignore next */
+function cov_lwwiu19dt() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/base/BaseService.ts";
+  var hash = "bae3d5544ab823ab1140b9a223a1d3b9c1bdd728";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/base/BaseService.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 9,
+          column: 8
+        },
+        end: {
+          line: 9,
+          column: 29
+        }
+      },
+      "1": {
+        start: {
+          line: 10,
+          column: 8
+        },
+        end: {
+          line: 10,
+          column: 64
+        }
+      },
+      "2": {
+        start: {
+          line: 11,
+          column: 8
+        },
+        end: {
+          line: 11,
+          column: 66
+        }
+      },
+      "3": {
+        start: {
+          line: 12,
+          column: 8
+        },
+        end: {
+          line: 17,
+          column: 10
+        }
+      },
+      "4": {
+        start: {
+          line: 23,
+          column: 21
+        },
+        end: {
+          line: 29,
+          column: 9
+        }
+      },
+      "5": {
+        start: {
+          line: 30,
+          column: 26
+        },
+        end: {
+          line: 30,
+          column: 36
+        }
+      },
+      "6": {
+        start: {
+          line: 32,
+          column: 8
+        },
+        end: {
+          line: 58,
+          column: 9
+        }
+      },
+      "7": {
+        start: {
+          line: 32,
+          column: 27
+        },
+        end: {
+          line: 32,
+          column: 28
+        }
+      },
+      "8": {
+        start: {
+          line: 33,
+          column: 12
+        },
+        end: {
+          line: 57,
+          column: 13
+        }
+      },
+      "9": {
+        start: {
+          line: 34,
+          column: 31
+        },
+        end: {
+          line: 34,
+          column: 48
+        }
+      },
+      "10": {
+        start: {
+          line: 36,
+          column: 16
+        },
+        end: {
+          line: 36,
+          column: 66
+        }
+      },
+      "11": {
+        start: {
+          line: 37,
+          column: 16
+        },
+        end: {
+          line: 39,
+          column: 17
+        }
+      },
+      "12": {
+        start: {
+          line: 38,
+          column: 20
+        },
+        end: {
+          line: 38,
+          column: 116
+        }
+      },
+      "13": {
+        start: {
+          line: 40,
+          column: 16
+        },
+        end: {
+          line: 40,
+          column: 30
+        }
+      },
+      "14": {
+        start: {
+          line: 43,
+          column: 16
+        },
+        end: {
+          line: 43,
+          column: 34
+        }
+      },
+      "15": {
+        start: {
+          line: 44,
+          column: 16
+        },
+        end: {
+          line: 56,
+          column: 17
+        }
+      },
+      "16": {
+        start: {
+          line: 45,
+          column: 34
+        },
+        end: {
+          line: 47,
+          column: 40
+        }
+      },
+      "17": {
+        start: {
+          line: 48,
+          column: 20
+        },
+        end: {
+          line: 54,
+          column: 53
+        }
+      },
+      "18": {
+        start: {
+          line: 55,
+          column: 20
+        },
+        end: {
+          line: 55,
+          column: 44
+        }
+      },
+      "19": {
+        start: {
+          line: 60,
+          column: 8
+        },
+        end: {
+          line: 60,
+          column: 57
+        }
+      },
+      "20": {
+        start: {
+          line: 61,
+          column: 8
+        },
+        end: {
+          line: 65,
+          column: 40
+        }
+      },
+      "21": {
+        start: {
+          line: 66,
+          column: 8
+        },
+        end: {
+          line: 66,
+          column: 24
+        }
+      },
+      "22": {
+        start: {
+          line: 72,
+          column: 8
+        },
+        end: {
+          line: 74,
+          column: 11
+        }
+      },
+      "23": {
+        start: {
+          line: 73,
+          column: 12
+        },
+        end: {
+          line: 73,
+          column: 61
+        }
+      },
+      "24": {
+        start: {
+          line: 80,
+          column: 58
+        },
+        end: {
+          line: 80,
+          column: 65
+        }
+      },
+      "25": {
+        start: {
+          line: 81,
+          column: 24
+        },
+        end: {
+          line: 81,
+          column: 26
+        }
+      },
+      "26": {
+        start: {
+          line: 82,
+          column: 23
+        },
+        end: {
+          line: 82,
+          column: 25
+        }
+      },
+      "27": {
+        start: {
+          line: 83,
+          column: 27
+        },
+        end: {
+          line: 83,
+          column: 28
+        }
+      },
+      "28": {
+        start: {
+          line: 85,
+          column: 24
+        },
+        end: {
+          line: 85,
+          column: 70
+        }
+      },
+      "29": {
+        start: {
+          line: 86,
+          column: 26
+        },
+        end: {
+          line: 86,
+          column: 27
+        }
+      },
+      "30": {
+        start: {
+          line: 87,
+          column: 8
+        },
+        end: {
+          line: 125,
+          column: 9
+        }
+      },
+      "31": {
+        start: {
+          line: 88,
+          column: 36
+        },
+        end: {
+          line: 88,
+          column: 47
+        }
+      },
+      "32": {
+        start: {
+          line: 89,
+          column: 29
+        },
+        end: {
+          line: 111,
+          column: 14
+        }
+      },
+      "33": {
+        start: {
+          line: 90,
+          column: 39
+        },
+        end: {
+          line: 90,
+          column: 67
+        }
+      },
+      "34": {
+        start: {
+          line: 91,
+          column: 16
+        },
+        end: {
+          line: 110,
+          column: 17
+        }
+      },
+      "35": {
+        start: {
+          line: 92,
+          column: 35
+        },
+        end: {
+          line: 92,
+          column: 52
+        }
+      },
+      "36": {
+        start: {
+          line: 93,
+          column: 20
+        },
+        end: {
+          line: 93,
+          column: 53
+        }
+      },
+      "37": {
+        start: {
+          line: 94,
+          column: 20
+        },
+        end: {
+          line: 94,
+          column: 50
+        }
+      },
+      "38": {
+        start: {
+          line: 95,
+          column: 20
+        },
+        end: {
+          line: 95,
+          column: 35
+        }
+      },
+      "39": {
+        start: {
+          line: 96,
+          column: 20
+        },
+        end: {
+          line: 96,
+          column: 34
+        }
+      },
+      "40": {
+        start: {
+          line: 99,
+          column: 20
+        },
+        end: {
+          line: 99,
+          column: 51
+        }
+      },
+      "41": {
+        start: {
+          line: 100,
+          column: 20
+        },
+        end: {
+          line: 100,
+          column: 51
+        }
+      },
+      "42": {
+        start: {
+          line: 101,
+          column: 20
+        },
+        end: {
+          line: 103,
+          column: 21
+        }
+      },
+      "43": {
+        start: {
+          line: 102,
+          column: 24
+        },
+        end: {
+          line: 102,
+          column: 36
+        }
+      },
+      "44": {
+        start: {
+          line: 104,
+          column: 20
+        },
+        end: {
+          line: 108,
+          column: 52
+        }
+      },
+      "45": {
+        start: {
+          line: 109,
+          column: 20
+        },
+        end: {
+          line: 109,
+          column: 32
+        }
+      },
+      "46": {
+        start: {
+          line: 112,
+          column: 12
+        },
+        end: {
+          line: 123,
+          column: 13
+        }
+      },
+      "47": {
+        start: {
+          line: 113,
+          column: 16
+        },
+        end: {
+          line: 119,
+          column: 17
+        }
+      },
+      "48": {
+        start: {
+          line: 114,
+          column: 20
+        },
+        end: {
+          line: 114,
+          column: 48
+        }
+      },
+      "49": {
+        start: {
+          line: 118,
+          column: 20
+        },
+        end: {
+          line: 118,
+          column: 26
+        }
+      },
+      "50": {
+        start: {
+          line: 122,
+          column: 16
+        },
+        end: {
+          line: 122,
+          column: 44
+        }
+      },
+      "51": {
+        start: {
+          line: 124,
+          column: 12
+        },
+        end: {
+          line: 124,
+          column: 40
+        }
+      },
+      "52": {
+        start: {
+          line: 126,
+          column: 8
+        },
+        end: {
+          line: 126,
+          column: 49
+        }
+      },
+      "53": {
+        start: {
+          line: 132,
+          column: 29
+        },
+        end: {
+          line: 132,
+          column: 85
+        }
+      },
+      "54": {
+        start: {
+          line: 133,
+          column: 27
+        },
+        end: {
+          line: 133,
+          column: 75
+        }
+      },
+      "55": {
+        start: {
+          line: 134,
+          column: 8
+        },
+        end: {
+          line: 139,
+          column: 39
+        }
+      },
+      "56": {
+        start: {
+          line: 141,
+          column: 8
+        },
+        end: {
+          line: 144,
+          column: 9
+        }
+      },
+      "57": {
+        start: {
+          line: 142,
+          column: 12
+        },
+        end: {
+          line: 142,
+          column: 68
+        }
+      },
+      "58": {
+        start: {
+          line: 143,
+          column: 12
+        },
+        end: {
+          line: 143,
+          column: 24
+        }
+      },
+      "59": {
+        start: {
+          line: 145,
+          column: 8
+        },
+        end: {
+          line: 145,
+          column: 64
+        }
+      },
+      "60": {
+        start: {
+          line: 151,
+          column: 24
+        },
+        end: {
+          line: 151,
+          column: 121
+        }
+      },
+      "61": {
+        start: {
+          line: 151,
+          column: 49
+        },
+        end: {
+          line: 151,
+          column: 120
+        }
+      },
+      "62": {
+        start: {
+          line: 152,
+          column: 8
+        },
+        end: {
+          line: 154,
+          column: 9
+        }
+      },
+      "63": {
+        start: {
+          line: 153,
+          column: 12
+        },
+        end: {
+          line: 153,
+          column: 82
+        }
+      },
+      "64": {
+        start: {
+          line: 160,
+          column: 26
+        },
+        end: {
+          line: 160,
+          column: 38
+        }
+      },
+      "65": {
+        start: {
+          line: 161,
+          column: 8
+        },
+        end: {
+          line: 198,
+          column: 9
+        }
+      },
+      "66": {
+        start: {
+          line: 162,
+          column: 26
+        },
+        end: {
+          line: 162,
+          column: 40
+        }
+      },
+      "67": {
+        start: {
+          line: 163,
+          column: 12
+        },
+        end: {
+          line: 164,
+          column: 25
+        }
+      },
+      "68": {
+        start: {
+          line: 164,
+          column: 16
+        },
+        end: {
+          line: 164,
+          column: 25
+        }
+      },
+      "69": {
+        start: {
+          line: 165,
+          column: 12
+        },
+        end: {
+          line: 197,
+          column: 13
+        }
+      },
+      "70": {
+        start: {
+          line: 167,
+          column: 20
+        },
+        end: {
+          line: 169,
+          column: 21
+        }
+      },
+      "71": {
+        start: {
+          line: 168,
+          column: 24
+        },
+        end: {
+          line: 168,
+          column: 55
+        }
+      },
+      "72": {
+        start: {
+          line: 171,
+          column: 20
+        },
+        end: {
+          line: 171,
+          column: 73
+        }
+      },
+      "73": {
+        start: {
+          line: 172,
+          column: 20
+        },
+        end: {
+          line: 172,
+          column: 26
+        }
+      },
+      "74": {
+        start: {
+          line: 174,
+          column: 20
+        },
+        end: {
+          line: 180,
+          column: 21
+        }
+      },
+      "75": {
+        start: {
+          line: 175,
+          column: 39
+        },
+        end: {
+          line: 175,
+          column: 52
+        }
+      },
+      "76": {
+        start: {
+          line: 176,
+          column: 24
+        },
+        end: {
+          line: 178,
+          column: 25
+        }
+      },
+      "77": {
+        start: {
+          line: 177,
+          column: 28
+        },
+        end: {
+          line: 177,
+          column: 89
+        }
+      },
+      "78": {
+        start: {
+          line: 179,
+          column: 24
+        },
+        end: {
+          line: 179,
+          column: 48
+        }
+      },
+      "79": {
+        start: {
+          line: 181,
+          column: 20
+        },
+        end: {
+          line: 181,
+          column: 26
+        }
+      },
+      "80": {
+        start: {
+          line: 183,
+          column: 20
+        },
+        end: {
+          line: 185,
+          column: 21
+        }
+      },
+      "81": {
+        start: {
+          line: 184,
+          column: 24
+        },
+        end: {
+          line: 184,
+          column: 56
+        }
+      },
+      "82": {
+        start: {
+          line: 186,
+          column: 20
+        },
+        end: {
+          line: 186,
+          column: 26
+        }
+      },
+      "83": {
+        start: {
+          line: 188,
+          column: 20
+        },
+        end: {
+          line: 190,
+          column: 21
+        }
+      },
+      "84": {
+        start: {
+          line: 189,
+          column: 24
+        },
+        end: {
+          line: 189,
+          column: 91
+        }
+      },
+      "85": {
+        start: {
+          line: 191,
+          column: 20
+        },
+        end: {
+          line: 191,
+          column: 26
+        }
+      },
+      "86": {
+        start: {
+          line: 193,
+          column: 20
+        },
+        end: {
+          line: 195,
+          column: 21
+        }
+      },
+      "87": {
+        start: {
+          line: 194,
+          column: 24
+        },
+        end: {
+          line: 194,
+          column: 90
+        }
+      },
+      "88": {
+        start: {
+          line: 196,
+          column: 20
+        },
+        end: {
+          line: 196,
+          column: 26
+        }
+      },
+      "89": {
+        start: {
+          line: 199,
+          column: 8
+        },
+        end: {
+          line: 199,
+          column: 25
+        }
+      },
+      "90": {
+        start: {
+          line: 205,
+          column: 8
+        },
+        end: {
+          line: 205,
+          column: 35
+        }
+      },
+      "91": {
+        start: {
+          line: 211,
+          column: 8
+        },
+        end: {
+          line: 216,
+          column: 10
+        }
+      },
+      "92": {
+        start: {
+          line: 222,
+          column: 8
+        },
+        end: {
+          line: 244,
+          column: 9
+        }
+      },
+      "93": {
+        start: {
+          line: 224,
+          column: 12
+        },
+        end: {
+          line: 224,
+          column: 51
+        }
+      },
+      "94": {
+        start: {
+          line: 225,
+          column: 12
+        },
+        end: {
+          line: 232,
+          column: 14
+        }
+      },
+      "95": {
+        start: {
+          line: 235,
+          column: 12
+        },
+        end: {
+          line: 235,
+          column: 64
+        }
+      },
+      "96": {
+        start: {
+          line: 236,
+          column: 12
+        },
+        end: {
+          line: 243,
+          column: 14
+        }
+      },
+      "97": {
+        start: {
+          line: 248,
+          column: 8
+        },
+        end: {
+          line: 248,
+          column: 38
+        }
+      },
+      "98": {
+        start: {
+          line: 249,
+          column: 8
+        },
+        end: {
+          line: 249,
+          column: 48
+        }
+      },
+      "99": {
+        start: {
+          line: 250,
+          column: 8
+        },
+        end: {
+          line: 252,
+          column: 9
+        }
+      },
+      "100": {
+        start: {
+          line: 251,
+          column: 12
+        },
+        end: {
+          line: 251,
+          column: 38
+        }
+      },
+      "101": {
+        start: {
+          line: 254,
+          column: 26
+        },
+        end: {
+          line: 254,
+          column: 94
+        }
+      },
+      "102": {
+        start: {
+          line: 255,
+          column: 8
+        },
+        end: {
+          line: 255,
+          column: 100
+        }
+      },
+      "103": {
+        start: {
+          line: 258,
+          column: 8
+        },
+        end: {
+          line: 258,
+          column: 65
+        }
+      },
+      "104": {
+        start: {
+          line: 258,
+          column: 40
+        },
+        end: {
+          line: 258,
+          column: 63
+        }
+      },
+      "105": {
+        start: {
+          line: 261,
+          column: 24
+        },
+        end: {
+          line: 261,
+          column: 26
+        }
+      },
+      "106": {
+        start: {
+          line: 262,
+          column: 8
+        },
+        end: {
+          line: 264,
+          column: 9
+        }
+      },
+      "107": {
+        start: {
+          line: 262,
+          column: 21
+        },
+        end: {
+          line: 262,
+          column: 22
+        }
+      },
+      "108": {
+        start: {
+          line: 263,
+          column: 12
+        },
+        end: {
+          line: 263,
+          column: 56
+        }
+      },
+      "109": {
+        start: {
+          line: 265,
+          column: 8
+        },
+        end: {
+          line: 265,
+          column: 23
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "(anonymous_0)",
+        decl: {
+          start: {
+            line: 8,
+            column: 4
+          },
+          end: {
+            line: 8,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 8,
+            column: 29
+          },
+          end: {
+            line: 18,
+            column: 5
+          }
+        },
+        line: 8
+      },
+      "1": {
+        name: "(anonymous_1)",
+        decl: {
+          start: {
+            line: 22,
+            column: 4
+          },
+          end: {
+            line: 22,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 22,
+            column: 45
+          },
+          end: {
+            line: 67,
+            column: 5
+          }
+        },
+        line: 22
+      },
+      "2": {
+        name: "(anonymous_2)",
+        decl: {
+          start: {
+            line: 71,
+            column: 4
+          },
+          end: {
+            line: 71,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 71,
+            column: 37
+          },
+          end: {
+            line: 75,
+            column: 5
+          }
+        },
+        line: 71
+      },
+      "3": {
+        name: "(anonymous_3)",
+        decl: {
+          start: {
+            line: 72,
+            column: 36
+          },
+          end: {
+            line: 72,
+            column: 37
+          }
+        },
+        loc: {
+          start: {
+            line: 72,
+            column: 48
+          },
+          end: {
+            line: 74,
+            column: 9
+          }
+        },
+        line: 72
+      },
+      "4": {
+        name: "(anonymous_4)",
+        decl: {
+          start: {
+            line: 79,
+            column: 4
+          },
+          end: {
+            line: 79,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 79,
+            column: 49
+          },
+          end: {
+            line: 127,
+            column: 5
+          }
+        },
+        line: 79
+      },
+      "5": {
+        name: "(anonymous_5)",
+        decl: {
+          start: {
+            line: 89,
+            column: 39
+          },
+          end: {
+            line: 89,
+            column: 40
+          }
+        },
+        loc: {
+          start: {
+            line: 89,
+            column: 72
+          },
+          end: {
+            line: 111,
+            column: 13
+          }
+        },
+        line: 89
+      },
+      "6": {
+        name: "(anonymous_6)",
+        decl: {
+          start: {
+            line: 131,
+            column: 4
+          },
+          end: {
+            line: 131,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 131,
+            column: 32
+          },
+          end: {
+            line: 146,
+            column: 5
+          }
+        },
+        line: 131
+      },
+      "7": {
+        name: "(anonymous_7)",
+        decl: {
+          start: {
+            line: 150,
+            column: 4
+          },
+          end: {
+            line: 150,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 150,
+            column: 39
+          },
+          end: {
+            line: 155,
+            column: 5
+          }
+        },
+        line: 150
+      },
+      "8": {
+        name: "(anonymous_8)",
+        decl: {
+          start: {
+            line: 151,
+            column: 40
+          },
+          end: {
+            line: 151,
+            column: 41
+          }
+        },
+        loc: {
+          start: {
+            line: 151,
+            column: 49
+          },
+          end: {
+            line: 151,
+            column: 120
+          }
+        },
+        line: 151
+      },
+      "9": {
+        name: "(anonymous_9)",
+        decl: {
+          start: {
+            line: 159,
+            column: 4
+          },
+          end: {
+            line: 159,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 159,
+            column: 33
+          },
+          end: {
+            line: 200,
+            column: 5
+          }
+        },
+        line: 159
+      },
+      "10": {
+        name: "(anonymous_10)",
+        decl: {
+          start: {
+            line: 204,
+            column: 4
+          },
+          end: {
+            line: 204,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 204,
+            column: 17
+          },
+          end: {
+            line: 206,
+            column: 5
+          }
+        },
+        line: 204
+      },
+      "11": {
+        name: "(anonymous_11)",
+        decl: {
+          start: {
+            line: 210,
+            column: 4
+          },
+          end: {
+            line: 210,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 210,
+            column: 19
+          },
+          end: {
+            line: 217,
+            column: 5
+          }
+        },
+        line: 210
+      },
+      "12": {
+        name: "(anonymous_12)",
+        decl: {
+          start: {
+            line: 221,
+            column: 4
+          },
+          end: {
+            line: 221,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 221,
+            column: 24
+          },
+          end: {
+            line: 245,
+            column: 5
+          }
+        },
+        line: 221
+      },
+      "13": {
+        name: "(anonymous_13)",
+        decl: {
+          start: {
+            line: 247,
+            column: 4
+          },
+          end: {
+            line: 247,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 247,
+            column: 41
+          },
+          end: {
+            line: 256,
+            column: 5
+          }
+        },
+        line: 247
+      },
+      "14": {
+        name: "(anonymous_14)",
+        decl: {
+          start: {
+            line: 257,
+            column: 4
+          },
+          end: {
+            line: 257,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 257,
+            column: 14
+          },
+          end: {
+            line: 259,
+            column: 5
+          }
+        },
+        line: 257
+      },
+      "15": {
+        name: "(anonymous_15)",
+        decl: {
+          start: {
+            line: 258,
+            column: 27
+          },
+          end: {
+            line: 258,
+            column: 28
+          }
+        },
+        loc: {
+          start: {
+            line: 258,
+            column: 40
+          },
+          end: {
+            line: 258,
+            column: 63
+          }
+        },
+        line: 258
+      },
+      "16": {
+        name: "(anonymous_16)",
+        decl: {
+          start: {
+            line: 260,
+            column: 4
+          },
+          end: {
+            line: 260,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 260,
+            column: 36
+          },
+          end: {
+            line: 266,
+            column: 5
+          }
+        },
+        line: 260
+      }
+    },
+    branchMap: {
+      "0": {
+        loc: {
+          start: {
+            line: 10,
+            column: 27
+          },
+          end: {
+            line: 10,
+            column: 63
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 10,
+            column: 27
+          },
+          end: {
+            line: 10,
+            column: 38
+          }
+        }, {
+          start: {
+            line: 10,
+            column: 42
+          },
+          end: {
+            line: 10,
+            column: 63
+          }
+        }],
+        line: 10
+      },
+      "1": {
+        loc: {
+          start: {
+            line: 22,
+            column: 31
+          },
+          end: {
+            line: 22,
+            column: 43
+          }
+        },
+        type: "default-arg",
+        locations: [{
+          start: {
+            line: 22,
+            column: 41
+          },
+          end: {
+            line: 22,
+            column: 43
+          }
+        }],
+        line: 22
+      },
+      "2": {
+        loc: {
+          start: {
+            line: 37,
+            column: 16
+          },
+          end: {
+            line: 39,
+            column: 17
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 37,
+            column: 16
+          },
+          end: {
+            line: 39,
+            column: 17
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 37
+      },
+      "3": {
+        loc: {
+          start: {
+            line: 44,
+            column: 16
+          },
+          end: {
+            line: 56,
+            column: 17
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 44,
+            column: 16
+          },
+          end: {
+            line: 56,
+            column: 17
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 44
+      },
+      "4": {
+        loc: {
+          start: {
+            line: 45,
+            column: 34
+          },
+          end: {
+            line: 47,
+            column: 40
+          }
+        },
+        type: "cond-expr",
+        locations: [{
+          start: {
+            line: 46,
+            column: 26
+          },
+          end: {
+            line: 46,
+            column: 92
+          }
+        }, {
+          start: {
+            line: 47,
+            column: 26
+          },
+          end: {
+            line: 47,
+            column: 40
+          }
+        }],
+        line: 45
+      },
+      "5": {
+        loc: {
+          start: {
+            line: 79,
+            column: 35
+          },
+          end: {
+            line: 79,
+            column: 47
+          }
+        },
+        type: "default-arg",
+        locations: [{
+          start: {
+            line: 79,
+            column: 45
+          },
+          end: {
+            line: 79,
+            column: 47
+          }
+        }],
+        line: 79
+      },
+      "6": {
+        loc: {
+          start: {
+            line: 80,
+            column: 16
+          },
+          end: {
+            line: 80,
+            column: 32
+          }
+        },
+        type: "default-arg",
+        locations: [{
+          start: {
+            line: 80,
+            column: 27
+          },
+          end: {
+            line: 80,
+            column: 32
+          }
+        }],
+        line: 80
+      },
+      "7": {
+        loc: {
+          start: {
+            line: 80,
+            column: 34
+          },
+          end: {
+            line: 80,
+            column: 53
+          }
+        },
+        type: "default-arg",
+        locations: [{
+          start: {
+            line: 80,
+            column: 51
+          },
+          end: {
+            line: 80,
+            column: 53
+          }
+        }],
+        line: 80
+      },
+      "8": {
+        loc: {
+          start: {
+            line: 101,
+            column: 20
+          },
+          end: {
+            line: 103,
+            column: 21
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 101,
+            column: 20
+          },
+          end: {
+            line: 103,
+            column: 21
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 101
+      },
+      "9": {
+        loc: {
+          start: {
+            line: 112,
+            column: 12
+          },
+          end: {
+            line: 123,
+            column: 13
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 112,
+            column: 12
+          },
+          end: {
+            line: 123,
+            column: 13
+          }
+        }, {
+          start: {
+            line: 121,
+            column: 17
+          },
+          end: {
+            line: 123,
+            column: 13
+          }
+        }],
+        line: 112
+      },
+      "10": {
+        loc: {
+          start: {
+            line: 132,
+            column: 29
+          },
+          end: {
+            line: 132,
+            column: 85
+          }
+        },
+        type: "cond-expr",
+        locations: [{
+          start: {
+            line: 132,
+            column: 54
+          },
+          end: {
+            line: 132,
+            column: 67
+          }
+        }, {
+          start: {
+            line: 132,
+            column: 70
+          },
+          end: {
+            line: 132,
+            column: 85
+          }
+        }],
+        line: 132
+      },
+      "11": {
+        loc: {
+          start: {
+            line: 133,
+            column: 27
+          },
+          end: {
+            line: 133,
+            column: 75
+          }
+        },
+        type: "cond-expr",
+        locations: [{
+          start: {
+            line: 133,
+            column: 52
+          },
+          end: {
+            line: 133,
+            column: 63
+          }
+        }, {
+          start: {
+            line: 133,
+            column: 66
+          },
+          end: {
+            line: 133,
+            column: 75
+          }
+        }],
+        line: 133
+      },
+      "12": {
+        loc: {
+          start: {
+            line: 141,
+            column: 8
+          },
+          end: {
+            line: 144,
+            column: 9
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 141,
+            column: 8
+          },
+          end: {
+            line: 144,
+            column: 9
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 141
+      },
+      "13": {
+        loc: {
+          start: {
+            line: 151,
+            column: 49
+          },
+          end: {
+            line: 151,
+            column: 120
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 151,
+            column: 49
+          },
+          end: {
+            line: 151,
+            column: 74
+          }
+        }, {
+          start: {
+            line: 151,
+            column: 78
+          },
+          end: {
+            line: 151,
+            column: 98
+          }
+        }, {
+          start: {
+            line: 151,
+            column: 102
+          },
+          end: {
+            line: 151,
+            column: 120
+          }
+        }],
+        line: 151
+      },
+      "14": {
+        loc: {
+          start: {
+            line: 152,
+            column: 8
+          },
+          end: {
+            line: 154,
+            column: 9
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 152,
+            column: 8
+          },
+          end: {
+            line: 154,
+            column: 9
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 152
+      },
+      "15": {
+        loc: {
+          start: {
+            line: 163,
+            column: 12
+          },
+          end: {
+            line: 164,
+            column: 25
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 163,
+            column: 12
+          },
+          end: {
+            line: 164,
+            column: 25
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 163
+      },
+      "16": {
+        loc: {
+          start: {
+            line: 163,
+            column: 16
+          },
+          end: {
+            line: 163,
+            column: 53
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 163,
+            column: 16
+          },
+          end: {
+            line: 163,
+            column: 35
+          }
+        }, {
+          start: {
+            line: 163,
+            column: 39
+          },
+          end: {
+            line: 163,
+            column: 53
+          }
+        }],
+        line: 163
+      },
+      "17": {
+        loc: {
+          start: {
+            line: 165,
+            column: 12
+          },
+          end: {
+            line: 197,
+            column: 13
+          }
+        },
+        type: "switch",
+        locations: [{
+          start: {
+            line: 166,
+            column: 16
+          },
+          end: {
+            line: 172,
+            column: 26
+          }
+        }, {
+          start: {
+            line: 173,
+            column: 16
+          },
+          end: {
+            line: 181,
+            column: 26
+          }
+        }, {
+          start: {
+            line: 182,
+            column: 16
+          },
+          end: {
+            line: 186,
+            column: 26
+          }
+        }, {
+          start: {
+            line: 187,
+            column: 16
+          },
+          end: {
+            line: 191,
+            column: 26
+          }
+        }, {
+          start: {
+            line: 192,
+            column: 16
+          },
+          end: {
+            line: 196,
+            column: 26
+          }
+        }],
+        line: 165
+      },
+      "18": {
+        loc: {
+          start: {
+            line: 167,
+            column: 20
+          },
+          end: {
+            line: 169,
+            column: 21
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 167,
+            column: 20
+          },
+          end: {
+            line: 169,
+            column: 21
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 167
+      },
+      "19": {
+        loc: {
+          start: {
+            line: 174,
+            column: 20
+          },
+          end: {
+            line: 180,
+            column: 21
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 174,
+            column: 20
+          },
+          end: {
+            line: 180,
+            column: 21
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 174
+      },
+      "20": {
+        loc: {
+          start: {
+            line: 176,
+            column: 24
+          },
+          end: {
+            line: 178,
+            column: 25
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 176,
+            column: 24
+          },
+          end: {
+            line: 178,
+            column: 25
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 176
+      },
+      "21": {
+        loc: {
+          start: {
+            line: 183,
+            column: 20
+          },
+          end: {
+            line: 185,
+            column: 21
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 183,
+            column: 20
+          },
+          end: {
+            line: 185,
+            column: 21
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 183
+      },
+      "22": {
+        loc: {
+          start: {
+            line: 188,
+            column: 20
+          },
+          end: {
+            line: 190,
+            column: 21
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 188,
+            column: 20
+          },
+          end: {
+            line: 190,
+            column: 21
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 188
+      },
+      "23": {
+        loc: {
+          start: {
+            line: 188,
+            column: 24
+          },
+          end: {
+            line: 188,
+            column: 73
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 188,
+            column: 24
+          },
+          end: {
+            line: 188,
+            column: 49
+          }
+        }, {
+          start: {
+            line: 188,
+            column: 53
+          },
+          end: {
+            line: 188,
+            column: 73
+          }
+        }],
+        line: 188
+      },
+      "24": {
+        loc: {
+          start: {
+            line: 193,
+            column: 20
+          },
+          end: {
+            line: 195,
+            column: 21
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 193,
+            column: 20
+          },
+          end: {
+            line: 195,
+            column: 21
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 193
+      },
+      "25": {
+        loc: {
+          start: {
+            line: 250,
+            column: 8
+          },
+          end: {
+            line: 252,
+            column: 9
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 250,
+            column: 8
+          },
+          end: {
+            line: 252,
+            column: 9
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 250
+      }
+    },
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 0,
+      "16": 0,
+      "17": 0,
+      "18": 0,
+      "19": 0,
+      "20": 0,
+      "21": 0,
+      "22": 0,
+      "23": 0,
+      "24": 0,
+      "25": 0,
+      "26": 0,
+      "27": 0,
+      "28": 0,
+      "29": 0,
+      "30": 0,
+      "31": 0,
+      "32": 0,
+      "33": 0,
+      "34": 0,
+      "35": 0,
+      "36": 0,
+      "37": 0,
+      "38": 0,
+      "39": 0,
+      "40": 0,
+      "41": 0,
+      "42": 0,
+      "43": 0,
+      "44": 0,
+      "45": 0,
+      "46": 0,
+      "47": 0,
+      "48": 0,
+      "49": 0,
+      "50": 0,
+      "51": 0,
+      "52": 0,
+      "53": 0,
+      "54": 0,
+      "55": 0,
+      "56": 0,
+      "57": 0,
+      "58": 0,
+      "59": 0,
+      "60": 0,
+      "61": 0,
+      "62": 0,
+      "63": 0,
+      "64": 0,
+      "65": 0,
+      "66": 0,
+      "67": 0,
+      "68": 0,
+      "69": 0,
+      "70": 0,
+      "71": 0,
+      "72": 0,
+      "73": 0,
+      "74": 0,
+      "75": 0,
+      "76": 0,
+      "77": 0,
+      "78": 0,
+      "79": 0,
+      "80": 0,
+      "81": 0,
+      "82": 0,
+      "83": 0,
+      "84": 0,
+      "85": 0,
+      "86": 0,
+      "87": 0,
+      "88": 0,
+      "89": 0,
+      "90": 0,
+      "91": 0,
+      "92": 0,
+      "93": 0,
+      "94": 0,
+      "95": 0,
+      "96": 0,
+      "97": 0,
+      "98": 0,
+      "99": 0,
+      "100": 0,
+      "101": 0,
+      "102": 0,
+      "103": 0,
+      "104": 0,
+      "105": 0,
+      "106": 0,
+      "107": 0,
+      "108": 0,
+      "109": 0
+    },
+    f: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 0,
+      "16": 0
+    },
+    b: {
+      "0": [0, 0],
+      "1": [0],
+      "2": [0, 0],
+      "3": [0, 0],
+      "4": [0, 0],
+      "5": [0],
+      "6": [0],
+      "7": [0],
+      "8": [0, 0],
+      "9": [0, 0],
+      "10": [0, 0],
+      "11": [0, 0],
+      "12": [0, 0],
+      "13": [0, 0, 0],
+      "14": [0, 0],
+      "15": [0, 0],
+      "16": [0, 0],
+      "17": [0, 0, 0, 0, 0],
+      "18": [0, 0],
+      "19": [0, 0],
+      "20": [0, 0],
+      "21": [0, 0],
+      "22": [0, 0],
+      "23": [0, 0],
+      "24": [0, 0],
+      "25": [0, 0]
+    },
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/base/BaseService.ts",
+      mappings: "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",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/base/BaseService.ts"],
+      sourcesContent: ["import { PrismaClient, Prisma } from '@teaching-engine/database';\nimport { prisma } from '../../prisma';\nimport logger from '../../logger';\nimport type { Logger } from 'pino';\n\nexport interface ServiceMetrics {\n  operationCount: number;\n  errorCount: number;\n  averageResponseTime: number;\n  lastOperation: Date;\n}\n\nexport interface RetryOptions {\n  maxRetries: number;\n  baseDelay: number;\n  maxDelay: number;\n  exponentialBackoff: boolean;\n}\n\nexport abstract class BaseService {\n  protected readonly prisma: PrismaClient;\n  protected readonly logger: Logger;\n  protected readonly serviceName: string;\n  private metrics: ServiceMetrics;\n\n  constructor(serviceName?: string) {\n    this.prisma = prisma;\n    this.serviceName = serviceName || this.constructor.name;\n    this.logger = logger.child({ service: this.serviceName });\n    this.metrics = {\n      operationCount: 0,\n      errorCount: 0,\n      averageResponseTime: 0,\n      lastOperation: new Date(),\n    };\n  }\n\n  /**\n   * Execute a function with retry logic and metrics tracking\n   */\n  protected async withRetry<T>(\n    operation: () => Promise<T>,\n    options: Partial<RetryOptions> = {},\n  ): Promise<T> {\n    const opts: RetryOptions = {\n      maxRetries: 3,\n      baseDelay: 1000,\n      maxDelay: 10000,\n      exponentialBackoff: true,\n      ...options,\n    };\n\n    const startTime = Date.now();\n    let lastError: unknown;\n\n    for (let attempt = 1; attempt <= opts.maxRetries + 1; attempt++) {\n      try {\n        const result = await operation();\n\n        // Update metrics on success\n        this.updateMetrics(Date.now() - startTime, false);\n\n        if (attempt > 1) {\n          this.logger.info(\n            { attempt, serviceName: this.serviceName },\n            'Operation succeeded after retry',\n          );\n        }\n\n        return result;\n      } catch (error) {\n        lastError = error;\n\n        if (attempt <= opts.maxRetries) {\n          const delay = opts.exponentialBackoff\n            ? Math.min(opts.baseDelay * Math.pow(2, attempt - 1), opts.maxDelay)\n            : opts.baseDelay;\n\n          this.logger.warn(\n            {\n              error: error.message,\n              attempt,\n              maxRetries: opts.maxRetries,\n              nextRetryIn: delay,\n              serviceName: this.serviceName,\n            },\n            'Operation failed, retrying',\n          );\n\n          await this.sleep(delay);\n        }\n      }\n    }\n\n    // Update metrics on final failure\n    this.updateMetrics(Date.now() - startTime, true);\n\n    this.logger.error(\n      {\n        error: lastError,\n        attempts: opts.maxRetries + 1,\n        serviceName: this.serviceName,\n      },\n      'All retry attempts failed',\n    );\n\n    throw lastError;\n  }\n\n  /**\n   * Execute a function within a database transaction\n   */\n  protected async withTransaction<T>(\n    operation: (tx: Prisma.TransactionClient) => Promise<T>,\n  ): Promise<T> {\n    return await this.withRetry(async () => {\n      return await this.prisma.$transaction(operation);\n    });\n  }\n\n  /**\n   * Execute multiple operations in parallel with error handling\n   */\n  protected async withParallel<T>(\n    operations: (() => Promise<T>)[],\n    options: {\n      failFast?: boolean;\n      maxConcurrency?: number;\n    } = {},\n  ): Promise<{\n    results: (T | null)[];\n    errors: (Error | null)[];\n    successCount: number;\n  }> {\n    const { failFast = false, maxConcurrency = 10 } = options;\n    const results: (T | null)[] = [];\n    const errors: (Error | null)[] = [];\n    let successCount = 0;\n\n    // Process operations in batches if max concurrency is set\n    const batches = this.createBatches(operations, maxConcurrency);\n    let globalIndex = 0;\n\n    for (const batch of batches) {\n      const batchStartIndex = globalIndex;\n      const promises = batch.map(async (operation, batchIndex) => {\n        const operationIndex = batchStartIndex + batchIndex;\n        try {\n          const result = await operation();\n          results[operationIndex] = result;\n          errors[operationIndex] = null;\n          successCount++;\n          return result;\n        } catch (error) {\n          results[operationIndex] = null;\n          errors[operationIndex] = error as Error;\n\n          if (failFast) {\n            throw error;\n          }\n\n          this.logger.warn(\n            {\n              error: (error as Error).message,\n              operationIndex: operationIndex,\n              serviceName: this.serviceName,\n            },\n            'Parallel operation failed',\n          );\n\n          return null;\n        }\n      });\n\n      if (failFast) {\n        try {\n          await Promise.all(promises);\n        } catch (error) {\n          // When failFast is true, stop processing remaining batches\n          break;\n        }\n      } else {\n        await Promise.all(promises);\n      }\n      globalIndex += batch.length;\n    }\n\n    return { results, errors, successCount };\n  }\n\n  /**\n   * Standardized error handling\n   */\n  protected handleError(error: unknown, context?: Record<string, unknown>): never {\n    const errorMessage = error instanceof Error ? error.message : 'Unknown error';\n    const errorStack = error instanceof Error ? error.stack : undefined;\n\n    this.logger.error(\n      {\n        error: errorMessage,\n        stack: errorStack,\n        context,\n        serviceName: this.serviceName,\n      },\n      'Service operation failed',\n    );\n\n    // Re-throw with service context\n    if (error instanceof Error) {\n      error.message = `${this.serviceName}: ${error.message}`;\n      throw error;\n    }\n\n    throw new Error(`${this.serviceName}: ${errorMessage}`);\n  }\n\n  /**\n   * Validate required parameters\n   */\n  protected validateRequired(params: Record<string, unknown>, required: string[]): void {\n    const missing = required.filter(\n      (key) => params[key] === undefined || params[key] === null || params[key] === '',\n    );\n\n    if (missing.length > 0) {\n      throw new Error(`Missing required parameters: ${missing.join(', ')}`);\n    }\n  }\n\n  /**\n   * Sanitize and validate input data\n   */\n  protected sanitizeInput<T extends Record<string, unknown>>(\n    input: T,\n    schema: Record<keyof T, 'string' | 'number' | 'boolean' | 'object' | 'array'>,\n  ): T {\n    const sanitized = { ...input };\n\n    for (const [key, expectedType] of Object.entries(schema)) {\n      const value = sanitized[key as keyof T];\n\n      if (value === undefined || value === null) continue;\n\n      switch (expectedType) {\n        case 'string':\n          if (typeof value !== 'string') {\n            (sanitized as Record<string, unknown>)[key] = String(value);\n          }\n          // Trim whitespace and limit length\n          (sanitized as Record<string, unknown>)[key] = String(value).trim().slice(0, 1000);\n          break;\n\n        case 'number':\n          if (typeof value !== 'number') {\n            const parsed = Number(value);\n            if (isNaN(parsed)) {\n              throw new Error(`Invalid number value for ${key}: ${value}`);\n            }\n            (sanitized as Record<string, unknown>)[key] = parsed;\n          }\n          break;\n\n        case 'boolean':\n          if (typeof value !== 'boolean') {\n            (sanitized as Record<string, unknown>)[key] = Boolean(value);\n          }\n          break;\n\n        case 'object':\n          if (typeof value !== 'object' || Array.isArray(value)) {\n            throw new Error(`Expected object for ${key}, got ${typeof value}`);\n          }\n          break;\n\n        case 'array':\n          if (!Array.isArray(value)) {\n            throw new Error(`Expected array for ${key}, got ${typeof value}`);\n          }\n          break;\n      }\n    }\n\n    return sanitized;\n  }\n\n  /**\n   * Get service performance metrics\n   */\n  getMetrics(): ServiceMetrics {\n    return { ...this.metrics };\n  }\n\n  /**\n   * Reset service metrics\n   */\n  resetMetrics(): void {\n    this.metrics = {\n      operationCount: 0,\n      errorCount: 0,\n      averageResponseTime: 0,\n      lastOperation: new Date(),\n    };\n  }\n\n  /**\n   * Check service health\n   */\n  async healthCheck(): Promise<{\n    healthy: boolean;\n    details: {\n      database: boolean;\n      metrics: ServiceMetrics;\n      uptime: number;\n    };\n  }> {\n    try {\n      // Test database connection\n      await this.prisma.$queryRaw`SELECT 1`;\n\n      return {\n        healthy: true,\n        details: {\n          database: true,\n          metrics: this.getMetrics(),\n          uptime: Date.now() - this.metrics.lastOperation.getTime(),\n        },\n      };\n    } catch (error) {\n      this.logger.error({ error }, 'Health check failed');\n\n      return {\n        healthy: false,\n        details: {\n          database: false,\n          metrics: this.getMetrics(),\n          uptime: Date.now() - this.metrics.lastOperation.getTime(),\n        },\n      };\n    }\n  }\n\n  // Private helper methods\n\n  private updateMetrics(responseTime: number, isError: boolean): void {\n    this.metrics.operationCount++;\n    this.metrics.lastOperation = new Date();\n\n    if (isError) {\n      this.metrics.errorCount++;\n    }\n\n    // Update rolling average response time\n    const totalTime = this.metrics.averageResponseTime * (this.metrics.operationCount - 1);\n    this.metrics.averageResponseTime = (totalTime + responseTime) / this.metrics.operationCount;\n  }\n\n  private sleep(ms: number): Promise<void> {\n    return new Promise((resolve) => setTimeout(resolve, ms));\n  }\n\n  private createBatches<T>(items: T[], batchSize: number): T[][] {\n    const batches: T[][] = [];\n    for (let i = 0; i < items.length; i += batchSize) {\n      batches.push(items.slice(i, i + batchSize));\n    }\n    return batches;\n  }\n}\n\nexport default BaseService;\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "bae3d5544ab823ab1140b9a223a1d3b9c1bdd728"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_lwwiu19dt = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_lwwiu19dt();
+import { prisma } from '../../prisma';
+import logger from '../../logger';
+export class BaseService {
+  prisma;
+  logger;
+  serviceName;
+  metrics;
+  constructor(serviceName) {
+    /* istanbul ignore next */
+    cov_lwwiu19dt().f[0]++;
+    cov_lwwiu19dt().s[0]++;
+    this.prisma = prisma;
+    /* istanbul ignore next */
+    cov_lwwiu19dt().s[1]++;
+    this.serviceName =
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().b[0][0]++, serviceName) ||
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().b[0][1]++, this.constructor.name);
+    /* istanbul ignore next */
+    cov_lwwiu19dt().s[2]++;
+    this.logger = logger.child({
+      service: this.serviceName
+    });
+    /* istanbul ignore next */
+    cov_lwwiu19dt().s[3]++;
+    this.metrics = {
+      operationCount: 0,
+      errorCount: 0,
+      averageResponseTime: 0,
+      lastOperation: new Date()
+    };
+  }
+  /**
+   * Execute a function with retry logic and metrics tracking
+   */
+  async withRetry(operation, options =
+  /* istanbul ignore next */
+  (cov_lwwiu19dt().b[1][0]++, {})) {
+    /* istanbul ignore next */
+    cov_lwwiu19dt().f[1]++;
+    const opts =
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().s[4]++, {
+      maxRetries: 3,
+      baseDelay: 1000,
+      maxDelay: 10000,
+      exponentialBackoff: true,
+      ...options
+    });
+    const startTime =
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().s[5]++, Date.now());
+    let lastError;
+    /* istanbul ignore next */
+    cov_lwwiu19dt().s[6]++;
+    for (let attempt =
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().s[7]++, 1); attempt <= opts.maxRetries + 1; attempt++) {
+      /* istanbul ignore next */
+      cov_lwwiu19dt().s[8]++;
+      try {
+        const result =
+        /* istanbul ignore next */
+        (cov_lwwiu19dt().s[9]++, await operation());
+        // Update metrics on success
+        /* istanbul ignore next */
+        cov_lwwiu19dt().s[10]++;
+        this.updateMetrics(Date.now() - startTime, false);
+        /* istanbul ignore next */
+        cov_lwwiu19dt().s[11]++;
+        if (attempt > 1) {
+          /* istanbul ignore next */
+          cov_lwwiu19dt().b[2][0]++;
+          cov_lwwiu19dt().s[12]++;
+          this.logger.info({
+            attempt,
+            serviceName: this.serviceName
+          }, 'Operation succeeded after retry');
+        } else
+        /* istanbul ignore next */
+        {
+          cov_lwwiu19dt().b[2][1]++;
+        }
+        cov_lwwiu19dt().s[13]++;
+        return result;
+      } catch (error) {
+        /* istanbul ignore next */
+        cov_lwwiu19dt().s[14]++;
+        lastError = error;
+        /* istanbul ignore next */
+        cov_lwwiu19dt().s[15]++;
+        if (attempt <= opts.maxRetries) {
+          /* istanbul ignore next */
+          cov_lwwiu19dt().b[3][0]++;
+          const delay =
+          /* istanbul ignore next */
+          (cov_lwwiu19dt().s[16]++, opts.exponentialBackoff ?
+          /* istanbul ignore next */
+          (cov_lwwiu19dt().b[4][0]++, Math.min(opts.baseDelay * Math.pow(2, attempt - 1), opts.maxDelay)) :
+          /* istanbul ignore next */
+          (cov_lwwiu19dt().b[4][1]++, opts.baseDelay));
+          /* istanbul ignore next */
+          cov_lwwiu19dt().s[17]++;
+          this.logger.warn({
+            error: error.message,
+            attempt,
+            maxRetries: opts.maxRetries,
+            nextRetryIn: delay,
+            serviceName: this.serviceName
+          }, 'Operation failed, retrying');
+          /* istanbul ignore next */
+          cov_lwwiu19dt().s[18]++;
+          await this.sleep(delay);
+        } else
+        /* istanbul ignore next */
+        {
+          cov_lwwiu19dt().b[3][1]++;
+        }
+      }
+    }
+    // Update metrics on final failure
+    /* istanbul ignore next */
+    cov_lwwiu19dt().s[19]++;
+    this.updateMetrics(Date.now() - startTime, true);
+    /* istanbul ignore next */
+    cov_lwwiu19dt().s[20]++;
+    this.logger.error({
+      error: lastError,
+      attempts: opts.maxRetries + 1,
+      serviceName: this.serviceName
+    }, 'All retry attempts failed');
+    /* istanbul ignore next */
+    cov_lwwiu19dt().s[21]++;
+    throw lastError;
+  }
+  /**
+   * Execute a function within a database transaction
+   */
+  async withTransaction(operation) {
+    /* istanbul ignore next */
+    cov_lwwiu19dt().f[2]++;
+    cov_lwwiu19dt().s[22]++;
+    return await this.withRetry(async () => {
+      /* istanbul ignore next */
+      cov_lwwiu19dt().f[3]++;
+      cov_lwwiu19dt().s[23]++;
+      return await this.prisma.$transaction(operation);
+    });
+  }
+  /**
+   * Execute multiple operations in parallel with error handling
+   */
+  async withParallel(operations, options =
+  /* istanbul ignore next */
+  (cov_lwwiu19dt().b[5][0]++, {})) {
+    /* istanbul ignore next */
+    cov_lwwiu19dt().f[4]++;
+    const {
+      failFast =
+      /* istanbul ignore next */
+      (cov_lwwiu19dt().b[6][0]++, false),
+      maxConcurrency =
+      /* istanbul ignore next */
+      (cov_lwwiu19dt().b[7][0]++, 10)
+    } =
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().s[24]++, options);
+    const results =
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().s[25]++, []);
+    const errors =
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().s[26]++, []);
+    let successCount =
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().s[27]++, 0);
+    // Process operations in batches if max concurrency is set
+    const batches =
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().s[28]++, this.createBatches(operations, maxConcurrency));
+    let globalIndex =
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().s[29]++, 0);
+    /* istanbul ignore next */
+    cov_lwwiu19dt().s[30]++;
+    for (const batch of batches) {
+      const batchStartIndex =
+      /* istanbul ignore next */
+      (cov_lwwiu19dt().s[31]++, globalIndex);
+      const promises =
+      /* istanbul ignore next */
+      (cov_lwwiu19dt().s[32]++, batch.map(async (operation, batchIndex) => {
+        /* istanbul ignore next */
+        cov_lwwiu19dt().f[5]++;
+        const operationIndex =
+        /* istanbul ignore next */
+        (cov_lwwiu19dt().s[33]++, batchStartIndex + batchIndex);
+        /* istanbul ignore next */
+        cov_lwwiu19dt().s[34]++;
+        try {
+          const result =
+          /* istanbul ignore next */
+          (cov_lwwiu19dt().s[35]++, await operation());
+          /* istanbul ignore next */
+          cov_lwwiu19dt().s[36]++;
+          results[operationIndex] = result;
+          /* istanbul ignore next */
+          cov_lwwiu19dt().s[37]++;
+          errors[operationIndex] = null;
+          /* istanbul ignore next */
+          cov_lwwiu19dt().s[38]++;
+          successCount++;
+          /* istanbul ignore next */
+          cov_lwwiu19dt().s[39]++;
+          return result;
+        } catch (error) {
+          /* istanbul ignore next */
+          cov_lwwiu19dt().s[40]++;
+          results[operationIndex] = null;
+          /* istanbul ignore next */
+          cov_lwwiu19dt().s[41]++;
+          errors[operationIndex] = error;
+          /* istanbul ignore next */
+          cov_lwwiu19dt().s[42]++;
+          if (failFast) {
+            /* istanbul ignore next */
+            cov_lwwiu19dt().b[8][0]++;
+            cov_lwwiu19dt().s[43]++;
+            throw error;
+          } else
+          /* istanbul ignore next */
+          {
+            cov_lwwiu19dt().b[8][1]++;
+          }
+          cov_lwwiu19dt().s[44]++;
+          this.logger.warn({
+            error: error.message,
+            operationIndex: operationIndex,
+            serviceName: this.serviceName
+          }, 'Parallel operation failed');
+          /* istanbul ignore next */
+          cov_lwwiu19dt().s[45]++;
+          return null;
+        }
+      }));
+      /* istanbul ignore next */
+      cov_lwwiu19dt().s[46]++;
+      if (failFast) {
+        /* istanbul ignore next */
+        cov_lwwiu19dt().b[9][0]++;
+        cov_lwwiu19dt().s[47]++;
+        try {
+          /* istanbul ignore next */
+          cov_lwwiu19dt().s[48]++;
+          await Promise.all(promises);
+        } catch (error) {
+          /* istanbul ignore next */
+          cov_lwwiu19dt().s[49]++;
+          // When failFast is true, stop processing remaining batches
+          break;
+        }
+      } else {
+        /* istanbul ignore next */
+        cov_lwwiu19dt().b[9][1]++;
+        cov_lwwiu19dt().s[50]++;
+        await Promise.all(promises);
+      }
+      /* istanbul ignore next */
+      cov_lwwiu19dt().s[51]++;
+      globalIndex += batch.length;
+    }
+    /* istanbul ignore next */
+    cov_lwwiu19dt().s[52]++;
+    return {
+      results,
+      errors,
+      successCount
+    };
+  }
+  /**
+   * Standardized error handling
+   */
+  handleError(error, context) {
+    /* istanbul ignore next */
+    cov_lwwiu19dt().f[6]++;
+    const errorMessage =
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().s[53]++, error instanceof Error ?
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().b[10][0]++, error.message) :
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().b[10][1]++, 'Unknown error'));
+    const errorStack =
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().s[54]++, error instanceof Error ?
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().b[11][0]++, error.stack) :
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().b[11][1]++, undefined));
+    /* istanbul ignore next */
+    cov_lwwiu19dt().s[55]++;
+    this.logger.error({
+      error: errorMessage,
+      stack: errorStack,
+      context,
+      serviceName: this.serviceName
+    }, 'Service operation failed');
+    // Re-throw with service context
+    /* istanbul ignore next */
+    cov_lwwiu19dt().s[56]++;
+    if (error instanceof Error) {
+      /* istanbul ignore next */
+      cov_lwwiu19dt().b[12][0]++;
+      cov_lwwiu19dt().s[57]++;
+      error.message = `${this.serviceName}: ${error.message}`;
+      /* istanbul ignore next */
+      cov_lwwiu19dt().s[58]++;
+      throw error;
+    } else
+    /* istanbul ignore next */
+    {
+      cov_lwwiu19dt().b[12][1]++;
+    }
+    cov_lwwiu19dt().s[59]++;
+    throw new Error(`${this.serviceName}: ${errorMessage}`);
+  }
+  /**
+   * Validate required parameters
+   */
+  validateRequired(params, required) {
+    /* istanbul ignore next */
+    cov_lwwiu19dt().f[7]++;
+    const missing =
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().s[60]++, required.filter(key => {
+      /* istanbul ignore next */
+      cov_lwwiu19dt().f[8]++;
+      cov_lwwiu19dt().s[61]++;
+      return /* istanbul ignore next */(cov_lwwiu19dt().b[13][0]++, params[key] === undefined) ||
+      /* istanbul ignore next */
+      (cov_lwwiu19dt().b[13][1]++, params[key] === null) ||
+      /* istanbul ignore next */
+      (cov_lwwiu19dt().b[13][2]++, params[key] === '');
+    }));
+    /* istanbul ignore next */
+    cov_lwwiu19dt().s[62]++;
+    if (missing.length > 0) {
+      /* istanbul ignore next */
+      cov_lwwiu19dt().b[14][0]++;
+      cov_lwwiu19dt().s[63]++;
+      throw new Error(`Missing required parameters: ${missing.join(', ')}`);
+    } else
+    /* istanbul ignore next */
+    {
+      cov_lwwiu19dt().b[14][1]++;
+    }
+  }
+  /**
+   * Sanitize and validate input data
+   */
+  sanitizeInput(input, schema) {
+    /* istanbul ignore next */
+    cov_lwwiu19dt().f[9]++;
+    const sanitized =
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().s[64]++, {
+      ...input
+    });
+    /* istanbul ignore next */
+    cov_lwwiu19dt().s[65]++;
+    for (const [key, expectedType] of Object.entries(schema)) {
+      const value =
+      /* istanbul ignore next */
+      (cov_lwwiu19dt().s[66]++, sanitized[key]);
+      /* istanbul ignore next */
+      cov_lwwiu19dt().s[67]++;
+      if (
+      /* istanbul ignore next */
+      (cov_lwwiu19dt().b[16][0]++, value === undefined) ||
+      /* istanbul ignore next */
+      (cov_lwwiu19dt().b[16][1]++, value === null)) {
+        /* istanbul ignore next */
+        cov_lwwiu19dt().b[15][0]++;
+        cov_lwwiu19dt().s[68]++;
+        continue;
+      } else
+      /* istanbul ignore next */
+      {
+        cov_lwwiu19dt().b[15][1]++;
+      }
+      cov_lwwiu19dt().s[69]++;
+      switch (expectedType) {
+        case 'string':
+          /* istanbul ignore next */
+          cov_lwwiu19dt().b[17][0]++;
+          cov_lwwiu19dt().s[70]++;
+          if (typeof value !== 'string') {
+            /* istanbul ignore next */
+            cov_lwwiu19dt().b[18][0]++;
+            cov_lwwiu19dt().s[71]++;
+            sanitized[key] = String(value);
+          } else
+          /* istanbul ignore next */
+          {
+            cov_lwwiu19dt().b[18][1]++;
+          }
+          // Trim whitespace and limit length
+          cov_lwwiu19dt().s[72]++;
+          sanitized[key] = String(value).trim().slice(0, 1000);
+          /* istanbul ignore next */
+          cov_lwwiu19dt().s[73]++;
+          break;
+        case 'number':
+          /* istanbul ignore next */
+          cov_lwwiu19dt().b[17][1]++;
+          cov_lwwiu19dt().s[74]++;
+          if (typeof value !== 'number') {
+            /* istanbul ignore next */
+            cov_lwwiu19dt().b[19][0]++;
+            const parsed =
+            /* istanbul ignore next */
+            (cov_lwwiu19dt().s[75]++, Number(value));
+            /* istanbul ignore next */
+            cov_lwwiu19dt().s[76]++;
+            if (isNaN(parsed)) {
+              /* istanbul ignore next */
+              cov_lwwiu19dt().b[20][0]++;
+              cov_lwwiu19dt().s[77]++;
+              throw new Error(`Invalid number value for ${key}: ${value}`);
+            } else
+            /* istanbul ignore next */
+            {
+              cov_lwwiu19dt().b[20][1]++;
+            }
+            cov_lwwiu19dt().s[78]++;
+            sanitized[key] = parsed;
+          } else
+          /* istanbul ignore next */
+          {
+            cov_lwwiu19dt().b[19][1]++;
+          }
+          cov_lwwiu19dt().s[79]++;
+          break;
+        case 'boolean':
+          /* istanbul ignore next */
+          cov_lwwiu19dt().b[17][2]++;
+          cov_lwwiu19dt().s[80]++;
+          if (typeof value !== 'boolean') {
+            /* istanbul ignore next */
+            cov_lwwiu19dt().b[21][0]++;
+            cov_lwwiu19dt().s[81]++;
+            sanitized[key] = Boolean(value);
+          } else
+          /* istanbul ignore next */
+          {
+            cov_lwwiu19dt().b[21][1]++;
+          }
+          cov_lwwiu19dt().s[82]++;
+          break;
+        case 'object':
+          /* istanbul ignore next */
+          cov_lwwiu19dt().b[17][3]++;
+          cov_lwwiu19dt().s[83]++;
+          if (
+          /* istanbul ignore next */
+          (cov_lwwiu19dt().b[23][0]++, typeof value !== 'object') ||
+          /* istanbul ignore next */
+          (cov_lwwiu19dt().b[23][1]++, Array.isArray(value))) {
+            /* istanbul ignore next */
+            cov_lwwiu19dt().b[22][0]++;
+            cov_lwwiu19dt().s[84]++;
+            throw new Error(`Expected object for ${key}, got ${typeof value}`);
+          } else
+          /* istanbul ignore next */
+          {
+            cov_lwwiu19dt().b[22][1]++;
+          }
+          cov_lwwiu19dt().s[85]++;
+          break;
+        case 'array':
+          /* istanbul ignore next */
+          cov_lwwiu19dt().b[17][4]++;
+          cov_lwwiu19dt().s[86]++;
+          if (!Array.isArray(value)) {
+            /* istanbul ignore next */
+            cov_lwwiu19dt().b[24][0]++;
+            cov_lwwiu19dt().s[87]++;
+            throw new Error(`Expected array for ${key}, got ${typeof value}`);
+          } else
+          /* istanbul ignore next */
+          {
+            cov_lwwiu19dt().b[24][1]++;
+          }
+          cov_lwwiu19dt().s[88]++;
+          break;
+      }
+    }
+    /* istanbul ignore next */
+    cov_lwwiu19dt().s[89]++;
+    return sanitized;
+  }
+  /**
+   * Get service performance metrics
+   */
+  getMetrics() {
+    /* istanbul ignore next */
+    cov_lwwiu19dt().f[10]++;
+    cov_lwwiu19dt().s[90]++;
+    return {
+      ...this.metrics
+    };
+  }
+  /**
+   * Reset service metrics
+   */
+  resetMetrics() {
+    /* istanbul ignore next */
+    cov_lwwiu19dt().f[11]++;
+    cov_lwwiu19dt().s[91]++;
+    this.metrics = {
+      operationCount: 0,
+      errorCount: 0,
+      averageResponseTime: 0,
+      lastOperation: new Date()
+    };
+  }
+  /**
+   * Check service health
+   */
+  async healthCheck() {
+    /* istanbul ignore next */
+    cov_lwwiu19dt().f[12]++;
+    cov_lwwiu19dt().s[92]++;
+    try {
+      /* istanbul ignore next */
+      cov_lwwiu19dt().s[93]++;
+      // Test database connection
+      await this.prisma.$queryRaw`SELECT 1`;
+      /* istanbul ignore next */
+      cov_lwwiu19dt().s[94]++;
+      return {
+        healthy: true,
+        details: {
+          database: true,
+          metrics: this.getMetrics(),
+          uptime: Date.now() - this.metrics.lastOperation.getTime()
+        }
+      };
+    } catch (error) {
+      /* istanbul ignore next */
+      cov_lwwiu19dt().s[95]++;
+      this.logger.error({
+        error
+      }, 'Health check failed');
+      /* istanbul ignore next */
+      cov_lwwiu19dt().s[96]++;
+      return {
+        healthy: false,
+        details: {
+          database: false,
+          metrics: this.getMetrics(),
+          uptime: Date.now() - this.metrics.lastOperation.getTime()
+        }
+      };
+    }
+  }
+  // Private helper methods
+  updateMetrics(responseTime, isError) {
+    /* istanbul ignore next */
+    cov_lwwiu19dt().f[13]++;
+    cov_lwwiu19dt().s[97]++;
+    this.metrics.operationCount++;
+    /* istanbul ignore next */
+    cov_lwwiu19dt().s[98]++;
+    this.metrics.lastOperation = new Date();
+    /* istanbul ignore next */
+    cov_lwwiu19dt().s[99]++;
+    if (isError) {
+      /* istanbul ignore next */
+      cov_lwwiu19dt().b[25][0]++;
+      cov_lwwiu19dt().s[100]++;
+      this.metrics.errorCount++;
+    } else
+    /* istanbul ignore next */
+    {
+      cov_lwwiu19dt().b[25][1]++;
+    }
+    // Update rolling average response time
+    const totalTime =
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().s[101]++, this.metrics.averageResponseTime * (this.metrics.operationCount - 1));
+    /* istanbul ignore next */
+    cov_lwwiu19dt().s[102]++;
+    this.metrics.averageResponseTime = (totalTime + responseTime) / this.metrics.operationCount;
+  }
+  sleep(ms) {
+    /* istanbul ignore next */
+    cov_lwwiu19dt().f[14]++;
+    cov_lwwiu19dt().s[103]++;
+    return new Promise(resolve => {
+      /* istanbul ignore next */
+      cov_lwwiu19dt().f[15]++;
+      cov_lwwiu19dt().s[104]++;
+      return setTimeout(resolve, ms);
+    });
+  }
+  createBatches(items, batchSize) {
+    /* istanbul ignore next */
+    cov_lwwiu19dt().f[16]++;
+    const batches =
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().s[105]++, []);
+    /* istanbul ignore next */
+    cov_lwwiu19dt().s[106]++;
+    for (let i =
+    /* istanbul ignore next */
+    (cov_lwwiu19dt().s[107]++, 0); i < items.length; i += batchSize) {
+      /* istanbul ignore next */
+      cov_lwwiu19dt().s[108]++;
+      batches.push(items.slice(i, i + batchSize));
+    }
+    /* istanbul ignore next */
+    cov_lwwiu19dt().s[109]++;
+    return batches;
+  }
+}
+export default BaseService;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3ZfbHd3aXUxOWR0IiwiYWN0dWFsQ292ZXJhZ2UiLCJwcmlzbWEiLCJsb2dnZXIiLCJCYXNlU2VydmljZSIsInNlcnZpY2VOYW1lIiwibWV0cmljcyIsImNvbnN0cnVjdG9yIiwiZiIsInMiLCJiIiwibmFtZSIsImNoaWxkIiwic2VydmljZSIsIm9wZXJhdGlvbkNvdW50IiwiZXJyb3JDb3VudCIsImF2ZXJhZ2VSZXNwb25zZVRpbWUiLCJsYXN0T3BlcmF0aW9uIiwiRGF0ZSIsIndpdGhSZXRyeSIsIm9wZXJhdGlvbiIsIm9wdGlvbnMiLCJvcHRzIiwibWF4UmV0cmllcyIsImJhc2VEZWxheSIsIm1heERlbGF5IiwiZXhwb25lbnRpYWxCYWNrb2ZmIiwic3RhcnRUaW1lIiwibm93IiwibGFzdEVycm9yIiwiYXR0ZW1wdCIsInJlc3VsdCIsInVwZGF0ZU1ldHJpY3MiLCJpbmZvIiwiZXJyb3IiLCJkZWxheSIsIk1hdGgiLCJtaW4iLCJwb3ciLCJ3YXJuIiwibWVzc2FnZSIsIm5leHRSZXRyeUluIiwic2xlZXAiLCJhdHRlbXB0cyIsIndpdGhUcmFuc2FjdGlvbiIsIiR0cmFuc2FjdGlvbiIsIndpdGhQYXJhbGxlbCIsIm9wZXJhdGlvbnMiLCJmYWlsRmFzdCIsIm1heENvbmN1cnJlbmN5IiwicmVzdWx0cyIsImVycm9ycyIsInN1Y2Nlc3NDb3VudCIsImJhdGNoZXMiLCJjcmVhdGVCYXRjaGVzIiwiZ2xvYmFsSW5kZXgiLCJiYXRjaCIsImJhdGNoU3RhcnRJbmRleCIsInByb21pc2VzIiwibWFwIiwiYmF0Y2hJbmRleCIsIm9wZXJhdGlvbkluZGV4IiwiUHJvbWlzZSIsImFsbCIsImxlbmd0aCIsImhhbmRsZUVycm9yIiwiY29udGV4dCIsImVycm9yTWVzc2FnZSIsIkVycm9yIiwiZXJyb3JTdGFjayIsInN0YWNrIiwidW5kZWZpbmVkIiwidmFsaWRhdGVSZXF1aXJlZCIsInBhcmFtcyIsInJlcXVpcmVkIiwibWlzc2luZyIsImZpbHRlciIsImtleSIsImpvaW4iLCJzYW5pdGl6ZUlucHV0IiwiaW5wdXQiLCJzY2hlbWEiLCJzYW5pdGl6ZWQiLCJleHBlY3RlZFR5cGUiLCJPYmplY3QiLCJlbnRyaWVzIiwidmFsdWUiLCJTdHJpbmciLCJ0cmltIiwic2xpY2UiLCJwYXJzZWQiLCJOdW1iZXIiLCJpc05hTiIsIkJvb2xlYW4iLCJBcnJheSIsImlzQXJyYXkiLCJnZXRNZXRyaWNzIiwicmVzZXRNZXRyaWNzIiwiaGVhbHRoQ2hlY2siLCIkcXVlcnlSYXciLCJoZWFsdGh5IiwiZGV0YWlscyIsImRhdGFiYXNlIiwidXB0aW1lIiwiZ2V0VGltZSIsInJlc3BvbnNlVGltZSIsImlzRXJyb3IiLCJ0b3RhbFRpbWUiLCJtcyIsInJlc29sdmUiLCJzZXRUaW1lb3V0IiwiaXRlbXMiLCJiYXRjaFNpemUiLCJpIiwicHVzaCJdLCJzb3VyY2VzIjpbIi9Vc2Vycy9taWNoYWVsbWNpc2FhYy9HaXRIdWIvdGVhY2hpbmctZW5naW5lMi4wL3NlcnZlci9zcmMvc2VydmljZXMvYmFzZS9CYXNlU2VydmljZS50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBQcmlzbWFDbGllbnQsIFByaXNtYSB9IGZyb20gJ0B0ZWFjaGluZy1lbmdpbmUvZGF0YWJhc2UnO1xuaW1wb3J0IHsgcHJpc21hIH0gZnJvbSAnLi4vLi4vcHJpc21hJztcbmltcG9ydCBsb2dnZXIgZnJvbSAnLi4vLi4vbG9nZ2VyJztcbmltcG9ydCB0eXBlIHsgTG9nZ2VyIH0gZnJvbSAncGlubyc7XG5cbmV4cG9ydCBpbnRlcmZhY2UgU2VydmljZU1ldHJpY3Mge1xuICBvcGVyYXRpb25Db3VudDogbnVtYmVyO1xuICBlcnJvckNvdW50OiBudW1iZXI7XG4gIGF2ZXJhZ2VSZXNwb25zZVRpbWU6IG51bWJlcjtcbiAgbGFzdE9wZXJhdGlvbjogRGF0ZTtcbn1cblxuZXhwb3J0IGludGVyZmFjZSBSZXRyeU9wdGlvbnMge1xuICBtYXhSZXRyaWVzOiBudW1iZXI7XG4gIGJhc2VEZWxheTogbnVtYmVyO1xuICBtYXhEZWxheTogbnVtYmVyO1xuICBleHBvbmVudGlhbEJhY2tvZmY6IGJvb2xlYW47XG59XG5cbmV4cG9ydCBhYnN0cmFjdCBjbGFzcyBCYXNlU2VydmljZSB7XG4gIHByb3RlY3RlZCByZWFkb25seSBwcmlzbWE6IFByaXNtYUNsaWVudDtcbiAgcHJvdGVjdGVkIHJlYWRvbmx5IGxvZ2dlcjogTG9nZ2VyO1xuICBwcm90ZWN0ZWQgcmVhZG9ubHkgc2VydmljZU5hbWU6IHN0cmluZztcbiAgcHJpdmF0ZSBtZXRyaWNzOiBTZXJ2aWNlTWV0cmljcztcblxuICBjb25zdHJ1Y3RvcihzZXJ2aWNlTmFtZT86IHN0cmluZykge1xuICAgIHRoaXMucHJpc21hID0gcHJpc21hO1xuICAgIHRoaXMuc2VydmljZU5hbWUgPSBzZXJ2aWNlTmFtZSB8fCB0aGlzLmNvbnN0cnVjdG9yLm5hbWU7XG4gICAgdGhpcy5sb2dnZXIgPSBsb2dnZXIuY2hpbGQoeyBzZXJ2aWNlOiB0aGlzLnNlcnZpY2VOYW1lIH0pO1xuICAgIHRoaXMubWV0cmljcyA9IHtcbiAgICAgIG9wZXJhdGlvbkNvdW50OiAwLFxuICAgICAgZXJyb3JDb3VudDogMCxcbiAgICAgIGF2ZXJhZ2VSZXNwb25zZVRpbWU6IDAsXG4gICAgICBsYXN0T3BlcmF0aW9uOiBuZXcgRGF0ZSgpLFxuICAgIH07XG4gIH1cblxuICAvKipcbiAgICogRXhlY3V0ZSBhIGZ1bmN0aW9uIHdpdGggcmV0cnkgbG9naWMgYW5kIG1ldHJpY3MgdHJhY2tpbmdcbiAgICovXG4gIHByb3RlY3RlZCBhc3luYyB3aXRoUmV0cnk8VD4oXG4gICAgb3BlcmF0aW9uOiAoKSA9PiBQcm9taXNlPFQ+LFxuICAgIG9wdGlvbnM6IFBhcnRpYWw8UmV0cnlPcHRpb25zPiA9IHt9LFxuICApOiBQcm9taXNlPFQ+IHtcbiAgICBjb25zdCBvcHRzOiBSZXRyeU9wdGlvbnMgPSB7XG4gICAgICBtYXhSZXRyaWVzOiAzLFxuICAgICAgYmFzZURlbGF5OiAxMDAwLFxuICAgICAgbWF4RGVsYXk6IDEwMDAwLFxuICAgICAgZXhwb25lbnRpYWxCYWNrb2ZmOiB0cnVlLFxuICAgICAgLi4ub3B0aW9ucyxcbiAgICB9O1xuXG4gICAgY29uc3Qgc3RhcnRUaW1lID0gRGF0ZS5ub3coKTtcbiAgICBsZXQgbGFzdEVycm9yOiB1bmtub3duO1xuXG4gICAgZm9yIChsZXQgYXR0ZW1wdCA9IDE7IGF0dGVtcHQgPD0gb3B0cy5tYXhSZXRyaWVzICsgMTsgYXR0ZW1wdCsrKSB7XG4gICAgICB0cnkge1xuICAgICAgICBjb25zdCByZXN1bHQgPSBhd2FpdCBvcGVyYXRpb24oKTtcblxuICAgICAgICAvLyBVcGRhdGUgbWV0cmljcyBvbiBzdWNjZXNzXG4gICAgICAgIHRoaXMudXBkYXRlTWV0cmljcyhEYXRlLm5vdygpIC0gc3RhcnRUaW1lLCBmYWxzZSk7XG5cbiAgICAgICAgaWYgKGF0dGVtcHQgPiAxKSB7XG4gICAgICAgICAgdGhpcy5sb2dnZXIuaW5mbyhcbiAgICAgICAgICAgIHsgYXR0ZW1wdCwgc2VydmljZU5hbWU6IHRoaXMuc2VydmljZU5hbWUgfSxcbiAgICAgICAgICAgICdPcGVyYXRpb24gc3VjY2VlZGVkIGFmdGVyIHJldHJ5JyxcbiAgICAgICAgICApO1xuICAgICAgICB9XG5cbiAgICAgICAgcmV0dXJuIHJlc3VsdDtcbiAgICAgIH0gY2F0Y2ggKGVycm9yKSB7XG4gICAgICAgIGxhc3RFcnJvciA9IGVycm9yO1xuXG4gICAgICAgIGlmIChhdHRlbXB0IDw9IG9wdHMubWF4UmV0cmllcykge1xuICAgICAgICAgIGNvbnN0IGRlbGF5ID0gb3B0cy5leHBvbmVudGlhbEJhY2tvZmZcbiAgICAgICAgICAgID8gTWF0aC5taW4ob3B0cy5iYXNlRGVsYXkgKiBNYXRoLnBvdygyLCBhdHRlbXB0IC0gMSksIG9wdHMubWF4RGVsYXkpXG4gICAgICAgICAgICA6IG9wdHMuYmFzZURlbGF5O1xuXG4gICAgICAgICAgdGhpcy5sb2dnZXIud2FybihcbiAgICAgICAgICAgIHtcbiAgICAgICAgICAgICAgZXJyb3I6IGVycm9yLm1lc3NhZ2UsXG4gICAgICAgICAgICAgIGF0dGVtcHQsXG4gICAgICAgICAgICAgIG1heFJldHJpZXM6IG9wdHMubWF4UmV0cmllcyxcbiAgICAgICAgICAgICAgbmV4dFJldHJ5SW46IGRlbGF5LFxuICAgICAgICAgICAgICBzZXJ2aWNlTmFtZTogdGhpcy5zZXJ2aWNlTmFtZSxcbiAgICAgICAgICAgIH0sXG4gICAgICAgICAgICAnT3BlcmF0aW9uIGZhaWxlZCwgcmV0cnlpbmcnLFxuICAgICAgICAgICk7XG5cbiAgICAgICAgICBhd2FpdCB0aGlzLnNsZWVwKGRlbGF5KTtcbiAgICAgICAgfVxuICAgICAgfVxuICAgIH1cblxuICAgIC8vIFVwZGF0ZSBtZXRyaWNzIG9uIGZpbmFsIGZhaWx1cmVcbiAgICB0aGlzLnVwZGF0ZU1ldHJpY3MoRGF0ZS5ub3coKSAtIHN0YXJ0VGltZSwgdHJ1ZSk7XG5cbiAgICB0aGlzLmxvZ2dlci5lcnJvcihcbiAgICAgIHtcbiAgICAgICAgZXJyb3I6IGxhc3RFcnJvcixcbiAgICAgICAgYXR0ZW1wdHM6IG9wdHMubWF4UmV0cmllcyArIDEsXG4gICAgICAgIHNlcnZpY2VOYW1lOiB0aGlzLnNlcnZpY2VOYW1lLFxuICAgICAgfSxcbiAgICAgICdBbGwgcmV0cnkgYXR0ZW1wdHMgZmFpbGVkJyxcbiAgICApO1xuXG4gICAgdGhyb3cgbGFzdEVycm9yO1xuICB9XG5cbiAgLyoqXG4gICAqIEV4ZWN1dGUgYSBmdW5jdGlvbiB3aXRoaW4gYSBkYXRhYmFzZSB0cmFuc2FjdGlvblxuICAgKi9cbiAgcHJvdGVjdGVkIGFzeW5jIHdpdGhUcmFuc2FjdGlvbjxUPihcbiAgICBvcGVyYXRpb246ICh0eDogUHJpc21hLlRyYW5zYWN0aW9uQ2xpZW50KSA9PiBQcm9taXNlPFQ+LFxuICApOiBQcm9taXNlPFQ+IHtcbiAgICByZXR1cm4gYXdhaXQgdGhpcy53aXRoUmV0cnkoYXN5bmMgKCkgPT4ge1xuICAgICAgcmV0dXJuIGF3YWl0IHRoaXMucHJpc21hLiR0cmFuc2FjdGlvbihvcGVyYXRpb24pO1xuICAgIH0pO1xuICB9XG5cbiAgLyoqXG4gICAqIEV4ZWN1dGUgbXVsdGlwbGUgb3BlcmF0aW9ucyBpbiBwYXJhbGxlbCB3aXRoIGVycm9yIGhhbmRsaW5nXG4gICAqL1xuICBwcm90ZWN0ZWQgYXN5bmMgd2l0aFBhcmFsbGVsPFQ+KFxuICAgIG9wZXJhdGlvbnM6ICgoKSA9PiBQcm9taXNlPFQ+KVtdLFxuICAgIG9wdGlvbnM6IHtcbiAgICAgIGZhaWxGYXN0PzogYm9vbGVhbjtcbiAgICAgIG1heENvbmN1cnJlbmN5PzogbnVtYmVyO1xuICAgIH0gPSB7fSxcbiAgKTogUHJvbWlzZTx7XG4gICAgcmVzdWx0czogKFQgfCBudWxsKVtdO1xuICAgIGVycm9yczogKEVycm9yIHwgbnVsbClbXTtcbiAgICBzdWNjZXNzQ291bnQ6IG51bWJlcjtcbiAgfT4ge1xuICAgIGNvbnN0IHsgZmFpbEZhc3QgPSBmYWxzZSwgbWF4Q29uY3VycmVuY3kgPSAxMCB9ID0gb3B0aW9ucztcbiAgICBjb25zdCByZXN1bHRzOiAoVCB8IG51bGwpW10gPSBbXTtcbiAgICBjb25zdCBlcnJvcnM6IChFcnJvciB8IG51bGwpW10gPSBbXTtcbiAgICBsZXQgc3VjY2Vzc0NvdW50ID0gMDtcblxuICAgIC8vIFByb2Nlc3Mgb3BlcmF0aW9ucyBpbiBiYXRjaGVzIGlmIG1heCBjb25jdXJyZW5jeSBpcyBzZXRcbiAgICBjb25zdCBiYXRjaGVzID0gdGhpcy5jcmVhdGVCYXRjaGVzKG9wZXJhdGlvbnMsIG1heENvbmN1cnJlbmN5KTtcbiAgICBsZXQgZ2xvYmFsSW5kZXggPSAwO1xuXG4gICAgZm9yIChjb25zdCBiYXRjaCBvZiBiYXRjaGVzKSB7XG4gICAgICBjb25zdCBiYXRjaFN0YXJ0SW5kZXggPSBnbG9iYWxJbmRleDtcbiAgICAgIGNvbnN0IHByb21pc2VzID0gYmF0Y2gubWFwKGFzeW5jIChvcGVyYXRpb24sIGJhdGNoSW5kZXgpID0+IHtcbiAgICAgICAgY29uc3Qgb3BlcmF0aW9uSW5kZXggPSBiYXRjaFN0YXJ0SW5kZXggKyBiYXRjaEluZGV4O1xuICAgICAgICB0cnkge1xuICAgICAgICAgIGNvbnN0IHJlc3VsdCA9IGF3YWl0IG9wZXJhdGlvbigpO1xuICAgICAgICAgIHJlc3VsdHNbb3BlcmF0aW9uSW5kZXhdID0gcmVzdWx0O1xuICAgICAgICAgIGVycm9yc1tvcGVyYXRpb25JbmRleF0gPSBudWxsO1xuICAgICAgICAgIHN1Y2Nlc3NDb3VudCsrO1xuICAgICAgICAgIHJldHVybiByZXN1bHQ7XG4gICAgICAgIH0gY2F0Y2ggKGVycm9yKSB7XG4gICAgICAgICAgcmVzdWx0c1tvcGVyYXRpb25JbmRleF0gPSBudWxsO1xuICAgICAgICAgIGVycm9yc1tvcGVyYXRpb25JbmRleF0gPSBlcnJvciBhcyBFcnJvcjtcblxuICAgICAgICAgIGlmIChmYWlsRmFzdCkge1xuICAgICAgICAgICAgdGhyb3cgZXJyb3I7XG4gICAgICAgICAgfVxuXG4gICAgICAgICAgdGhpcy5sb2dnZXIud2FybihcbiAgICAgICAgICAgIHtcbiAgICAgICAgICAgICAgZXJyb3I6IChlcnJvciBhcyBFcnJvcikubWVzc2FnZSxcbiAgICAgICAgICAgICAgb3BlcmF0aW9uSW5kZXg6IG9wZXJhdGlvbkluZGV4LFxuICAgICAgICAgICAgICBzZXJ2aWNlTmFtZTogdGhpcy5zZXJ2aWNlTmFtZSxcbiAgICAgICAgICAgIH0sXG4gICAgICAgICAgICAnUGFyYWxsZWwgb3BlcmF0aW9uIGZhaWxlZCcsXG4gICAgICAgICAgKTtcblxuICAgICAgICAgIHJldHVybiBudWxsO1xuICAgICAgICB9XG4gICAgICB9KTtcblxuICAgICAgaWYgKGZhaWxGYXN0KSB7XG4gICAgICAgIHRyeSB7XG4gICAgICAgICAgYXdhaXQgUHJvbWlzZS5hbGwocHJvbWlzZXMpO1xuICAgICAgICB9IGNhdGNoIChlcnJvcikge1xuICAgICAgICAgIC8vIFdoZW4gZmFpbEZhc3QgaXMgdHJ1ZSwgc3RvcCBwcm9jZXNzaW5nIHJlbWFpbmluZyBiYXRjaGVzXG4gICAgICAgICAgYnJlYWs7XG4gICAgICAgIH1cbiAgICAgIH0gZWxzZSB7XG4gICAgICAgIGF3YWl0IFByb21pc2UuYWxsKHByb21pc2VzKTtcbiAgICAgIH1cbiAgICAgIGdsb2JhbEluZGV4ICs9IGJhdGNoLmxlbmd0aDtcbiAgICB9XG5cbiAgICByZXR1cm4geyByZXN1bHRzLCBlcnJvcnMsIHN1Y2Nlc3NDb3VudCB9O1xuICB9XG5cbiAgLyoqXG4gICAqIFN0YW5kYXJkaXplZCBlcnJvciBoYW5kbGluZ1xuICAgKi9cbiAgcHJvdGVjdGVkIGhhbmRsZUVycm9yKGVycm9yOiB1bmtub3duLCBjb250ZXh0PzogUmVjb3JkPHN0cmluZywgdW5rbm93bj4pOiBuZXZlciB7XG4gICAgY29uc3QgZXJyb3JNZXNzYWdlID0gZXJyb3IgaW5zdGFuY2VvZiBFcnJvciA/IGVycm9yLm1lc3NhZ2UgOiAnVW5rbm93biBlcnJvcic7XG4gICAgY29uc3QgZXJyb3JTdGFjayA9IGVycm9yIGluc3RhbmNlb2YgRXJyb3IgPyBlcnJvci5zdGFjayA6IHVuZGVmaW5lZDtcblxuICAgIHRoaXMubG9nZ2VyLmVycm9yKFxuICAgICAge1xuICAgICAgICBlcnJvcjogZXJyb3JNZXNzYWdlLFxuICAgICAgICBzdGFjazogZXJyb3JTdGFjayxcbiAgICAgICAgY29udGV4dCxcbiAgICAgICAgc2VydmljZU5hbWU6IHRoaXMuc2VydmljZU5hbWUsXG4gICAgICB9LFxuICAgICAgJ1NlcnZpY2Ugb3BlcmF0aW9uIGZhaWxlZCcsXG4gICAgKTtcblxuICAgIC8vIFJlLXRocm93IHdpdGggc2VydmljZSBjb250ZXh0XG4gICAgaWYgKGVycm9yIGluc3RhbmNlb2YgRXJyb3IpIHtcbiAgICAgIGVycm9yLm1lc3NhZ2UgPSBgJHt0aGlzLnNlcnZpY2VOYW1lfTogJHtlcnJvci5tZXNzYWdlfWA7XG4gICAgICB0aHJvdyBlcnJvcjtcbiAgICB9XG5cbiAgICB0aHJvdyBuZXcgRXJyb3IoYCR7dGhpcy5zZXJ2aWNlTmFtZX06ICR7ZXJyb3JNZXNzYWdlfWApO1xuICB9XG5cbiAgLyoqXG4gICAqIFZhbGlkYXRlIHJlcXVpcmVkIHBhcmFtZXRlcnNcbiAgICovXG4gIHByb3RlY3RlZCB2YWxpZGF0ZVJlcXVpcmVkKHBhcmFtczogUmVjb3JkPHN0cmluZywgdW5rbm93bj4sIHJlcXVpcmVkOiBzdHJpbmdbXSk6IHZvaWQge1xuICAgIGNvbnN0IG1pc3NpbmcgPSByZXF1aXJlZC5maWx0ZXIoXG4gICAgICAoa2V5KSA9PiBwYXJhbXNba2V5XSA9PT0gdW5kZWZpbmVkIHx8IHBhcmFtc1trZXldID09PSBudWxsIHx8IHBhcmFtc1trZXldID09PSAnJyxcbiAgICApO1xuXG4gICAgaWYgKG1pc3NpbmcubGVuZ3RoID4gMCkge1xuICAgICAgdGhyb3cgbmV3IEVycm9yKGBNaXNzaW5nIHJlcXVpcmVkIHBhcmFtZXRlcnM6ICR7bWlzc2luZy5qb2luKCcsICcpfWApO1xuICAgIH1cbiAgfVxuXG4gIC8qKlxuICAgKiBTYW5pdGl6ZSBhbmQgdmFsaWRhdGUgaW5wdXQgZGF0YVxuICAgKi9cbiAgcHJvdGVjdGVkIHNhbml0aXplSW5wdXQ8VCBleHRlbmRzIFJlY29yZDxzdHJpbmcsIHVua25vd24+PihcbiAgICBpbnB1dDogVCxcbiAgICBzY2hlbWE6IFJlY29yZDxrZXlvZiBULCAnc3RyaW5nJyB8ICdudW1iZXInIHwgJ2Jvb2xlYW4nIHwgJ29iamVjdCcgfCAnYXJyYXknPixcbiAgKTogVCB7XG4gICAgY29uc3Qgc2FuaXRpemVkID0geyAuLi5pbnB1dCB9O1xuXG4gICAgZm9yIChjb25zdCBba2V5LCBleHBlY3RlZFR5cGVdIG9mIE9iamVjdC5lbnRyaWVzKHNjaGVtYSkpIHtcbiAgICAgIGNvbnN0IHZhbHVlID0gc2FuaXRpemVkW2tleSBhcyBrZXlvZiBUXTtcblxuICAgICAgaWYgKHZhbHVlID09PSB1bmRlZmluZWQgfHwgdmFsdWUgPT09IG51bGwpIGNvbnRpbnVlO1xuXG4gICAgICBzd2l0Y2ggKGV4cGVjdGVkVHlwZSkge1xuICAgICAgICBjYXNlICdzdHJpbmcnOlxuICAgICAgICAgIGlmICh0eXBlb2YgdmFsdWUgIT09ICdzdHJpbmcnKSB7XG4gICAgICAgICAgICAoc2FuaXRpemVkIGFzIFJlY29yZDxzdHJpbmcsIHVua25vd24+KVtrZXldID0gU3RyaW5nKHZhbHVlKTtcbiAgICAgICAgICB9XG4gICAgICAgICAgLy8gVHJpbSB3aGl0ZXNwYWNlIGFuZCBsaW1pdCBsZW5ndGhcbiAgICAgICAgICAoc2FuaXRpemVkIGFzIFJlY29yZDxzdHJpbmcsIHVua25vd24+KVtrZXldID0gU3RyaW5nKHZhbHVlKS50cmltKCkuc2xpY2UoMCwgMTAwMCk7XG4gICAgICAgICAgYnJlYWs7XG5cbiAgICAgICAgY2FzZSAnbnVtYmVyJzpcbiAgICAgICAgICBpZiAodHlwZW9mIHZhbHVlICE9PSAnbnVtYmVyJykge1xuICAgICAgICAgICAgY29uc3QgcGFyc2VkID0gTnVtYmVyKHZhbHVlKTtcbiAgICAgICAgICAgIGlmIChpc05hTihwYXJzZWQpKSB7XG4gICAgICAgICAgICAgIHRocm93IG5ldyBFcnJvcihgSW52YWxpZCBudW1iZXIgdmFsdWUgZm9yICR7a2V5fTogJHt2YWx1ZX1gKTtcbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIChzYW5pdGl6ZWQgYXMgUmVjb3JkPHN0cmluZywgdW5rbm93bj4pW2tleV0gPSBwYXJzZWQ7XG4gICAgICAgICAgfVxuICAgICAgICAgIGJyZWFrO1xuXG4gICAgICAgIGNhc2UgJ2Jvb2xlYW4nOlxuICAgICAgICAgIGlmICh0eXBlb2YgdmFsdWUgIT09ICdib29sZWFuJykge1xuICAgICAgICAgICAgKHNhbml0aXplZCBhcyBSZWNvcmQ8c3RyaW5nLCB1bmtub3duPilba2V5XSA9IEJvb2xlYW4odmFsdWUpO1xuICAgICAgICAgIH1cbiAgICAgICAgICBicmVhaztcblxuICAgICAgICBjYXNlICdvYmplY3QnOlxuICAgICAgICAgIGlmICh0eXBlb2YgdmFsdWUgIT09ICdvYmplY3QnIHx8IEFycmF5LmlzQXJyYXkodmFsdWUpKSB7XG4gICAgICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYEV4cGVjdGVkIG9iamVjdCBmb3IgJHtrZXl9LCBnb3QgJHt0eXBlb2YgdmFsdWV9YCk7XG4gICAgICAgICAgfVxuICAgICAgICAgIGJyZWFrO1xuXG4gICAgICAgIGNhc2UgJ2FycmF5JzpcbiAgICAgICAgICBpZiAoIUFycmF5LmlzQXJyYXkodmFsdWUpKSB7XG4gICAgICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYEV4cGVjdGVkIGFycmF5IGZvciAke2tleX0sIGdvdCAke3R5cGVvZiB2YWx1ZX1gKTtcbiAgICAgICAgICB9XG4gICAgICAgICAgYnJlYWs7XG4gICAgICB9XG4gICAgfVxuXG4gICAgcmV0dXJuIHNhbml0aXplZDtcbiAgfVxuXG4gIC8qKlxuICAgKiBHZXQgc2VydmljZSBwZXJmb3JtYW5jZSBtZXRyaWNzXG4gICAqL1xuICBnZXRNZXRyaWNzKCk6IFNlcnZpY2VNZXRyaWNzIHtcbiAgICByZXR1cm4geyAuLi50aGlzLm1ldHJpY3MgfTtcbiAgfVxuXG4gIC8qKlxuICAgKiBSZXNldCBzZXJ2aWNlIG1ldHJpY3NcbiAgICovXG4gIHJlc2V0TWV0cmljcygpOiB2b2lkIHtcbiAgICB0aGlzLm1ldHJpY3MgPSB7XG4gICAgICBvcGVyYXRpb25Db3VudDogMCxcbiAgICAgIGVycm9yQ291bnQ6IDAsXG4gICAgICBhdmVyYWdlUmVzcG9uc2VUaW1lOiAwLFxuICAgICAgbGFzdE9wZXJhdGlvbjogbmV3IERhdGUoKSxcbiAgICB9O1xuICB9XG5cbiAgLyoqXG4gICAqIENoZWNrIHNlcnZpY2UgaGVhbHRoXG4gICAqL1xuICBhc3luYyBoZWFsdGhDaGVjaygpOiBQcm9taXNlPHtcbiAgICBoZWFsdGh5OiBib29sZWFuO1xuICAgIGRldGFpbHM6IHtcbiAgICAgIGRhdGFiYXNlOiBib29sZWFuO1xuICAgICAgbWV0cmljczogU2VydmljZU1ldHJpY3M7XG4gICAgICB1cHRpbWU6IG51bWJlcjtcbiAgICB9O1xuICB9PiB7XG4gICAgdHJ5IHtcbiAgICAgIC8vIFRlc3QgZGF0YWJhc2UgY29ubmVjdGlvblxuICAgICAgYXdhaXQgdGhpcy5wcmlzbWEuJHF1ZXJ5UmF3YFNFTEVDVCAxYDtcblxuICAgICAgcmV0dXJuIHtcbiAgICAgICAgaGVhbHRoeTogdHJ1ZSxcbiAgICAgICAgZGV0YWlsczoge1xuICAgICAgICAgIGRhdGFiYXNlOiB0cnVlLFxuICAgICAgICAgIG1ldHJpY3M6IHRoaXMuZ2V0TWV0cmljcygpLFxuICAgICAgICAgIHVwdGltZTogRGF0ZS5ub3coKSAtIHRoaXMubWV0cmljcy5sYXN0T3BlcmF0aW9uLmdldFRpbWUoKSxcbiAgICAgICAgfSxcbiAgICAgIH07XG4gICAgfSBjYXRjaCAoZXJyb3IpIHtcbiAgICAgIHRoaXMubG9nZ2VyLmVycm9yKHsgZXJyb3IgfSwgJ0hlYWx0aCBjaGVjayBmYWlsZWQnKTtcblxuICAgICAgcmV0dXJuIHtcbiAgICAgICAgaGVhbHRoeTogZmFsc2UsXG4gICAgICAgIGRldGFpbHM6IHtcbiAgICAgICAgICBkYXRhYmFzZTogZmFsc2UsXG4gICAgICAgICAgbWV0cmljczogdGhpcy5nZXRNZXRyaWNzKCksXG4gICAgICAgICAgdXB0aW1lOiBEYXRlLm5vdygpIC0gdGhpcy5tZXRyaWNzLmxhc3RPcGVyYXRpb24uZ2V0VGltZSgpLFxuICAgICAgICB9LFxuICAgICAgfTtcbiAgICB9XG4gIH1cblxuICAvLyBQcml2YXRlIGhlbHBlciBtZXRob2RzXG5cbiAgcHJpdmF0ZSB1cGRhdGVNZXRyaWNzKHJlc3BvbnNlVGltZTogbnVtYmVyLCBpc0Vycm9yOiBib29sZWFuKTogdm9pZCB7XG4gICAgdGhpcy5tZXRyaWNzLm9wZXJhdGlvbkNvdW50Kys7XG4gICAgdGhpcy5tZXRyaWNzLmxhc3RPcGVyYXRpb24gPSBuZXcgRGF0ZSgpO1xuXG4gICAgaWYgKGlzRXJyb3IpIHtcbiAgICAgIHRoaXMubWV0cmljcy5lcnJvckNvdW50Kys7XG4gICAgfVxuXG4gICAgLy8gVXBkYXRlIHJvbGxpbmcgYXZlcmFnZSByZXNwb25zZSB0aW1lXG4gICAgY29uc3QgdG90YWxUaW1lID0gdGhpcy5tZXRyaWNzLmF2ZXJhZ2VSZXNwb25zZVRpbWUgKiAodGhpcy5tZXRyaWNzLm9wZXJhdGlvbkNvdW50IC0gMSk7XG4gICAgdGhpcy5tZXRyaWNzLmF2ZXJhZ2VSZXNwb25zZVRpbWUgPSAodG90YWxUaW1lICsgcmVzcG9uc2VUaW1lKSAvIHRoaXMubWV0cmljcy5vcGVyYXRpb25Db3VudDtcbiAgfVxuXG4gIHByaXZhdGUgc2xlZXAobXM6IG51bWJlcik6IFByb21pc2U8dm9pZD4ge1xuICAgIHJldHVybiBuZXcgUHJvbWlzZSgocmVzb2x2ZSkgPT4gc2V0VGltZW91dChyZXNvbHZlLCBtcykpO1xuICB9XG5cbiAgcHJpdmF0ZSBjcmVhdGVCYXRjaGVzPFQ+KGl0ZW1zOiBUW10sIGJhdGNoU2l6ZTogbnVtYmVyKTogVFtdW10ge1xuICAgIGNvbnN0IGJhdGNoZXM6IFRbXVtdID0gW107XG4gICAgZm9yIChsZXQgaSA9IDA7IGkgPCBpdGVtcy5sZW5ndGg7IGkgKz0gYmF0Y2hTaXplKSB7XG4gICAgICBiYXRjaGVzLnB1c2goaXRlbXMuc2xpY2UoaSwgaSArIGJhdGNoU2l6ZSkpO1xuICAgIH1cbiAgICByZXR1cm4gYmF0Y2hlcztcbiAgfVxufVxuXG5leHBvcnQgZGVmYXVsdCBCYXNlU2VydmljZTtcbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0lBaUNNO0lBQUFBLGFBQUEsWUFBQUEsQ0FBQTtNQUFBLE9BQUFDLGNBQUE7SUFBQTtFQUFBO0VBQUEsT0FBQUEsY0FBQTtBQUFBO0FBQUFELGFBQUE7QUFoQ04sU0FBU0UsTUFBTSxRQUFRLGNBQWM7QUFDckMsT0FBT0MsTUFBTSxNQUFNLGNBQWM7QUFpQmpDLE9BQU0sTUFBZ0JDLFdBQVc7RUFDWkYsTUFBTTtFQUNOQyxNQUFNO0VBQ05FLFdBQVc7RUFDdEJDLE9BQU87RUFFZkMsWUFBWUYsV0FBb0I7SUFBQTtJQUFBTCxhQUFBLEdBQUFRLENBQUE7SUFBQVIsYUFBQSxHQUFBUyxDQUFBO0lBQzlCLElBQUksQ0FBQ1AsTUFBTSxHQUFHQSxNQUFNO0lBQUM7SUFBQUYsYUFBQSxHQUFBUyxDQUFBO0lBQ3JCLElBQUksQ0FBQ0osV0FBVztJQUFHO0lBQUEsQ0FBQUwsYUFBQSxHQUFBVSxDQUFBLFVBQUFMLFdBQVc7SUFBQTtJQUFBLENBQUFMLGFBQUEsR0FBQVUsQ0FBQSxVQUFJLElBQUksQ0FBQ0gsV0FBVyxDQUFDSSxJQUFJO0lBQUM7SUFBQVgsYUFBQSxHQUFBUyxDQUFBO0lBQ3hELElBQUksQ0FBQ04sTUFBTSxHQUFHQSxNQUFNLENBQUNTLEtBQUssQ0FBQztNQUFFQyxPQUFPLEVBQUUsSUFBSSxDQUFDUjtJQUFXLENBQUUsQ0FBQztJQUFDO0lBQUFMLGFBQUEsR0FBQVMsQ0FBQTtJQUMxRCxJQUFJLENBQUNILE9BQU8sR0FBRztNQUNiUSxjQUFjLEVBQUUsQ0FBQztNQUNqQkMsVUFBVSxFQUFFLENBQUM7TUFDYkMsbUJBQW1CLEVBQUUsQ0FBQztNQUN0QkMsYUFBYSxFQUFFLElBQUlDLElBQUk7S0FDeEI7RUFDSDtFQUVBOzs7RUFHVSxNQUFNQyxTQUFTQSxDQUN2QkMsU0FBMkIsRUFDM0JDLE9BQUE7RUFBQTtFQUFBLENBQUFyQixhQUFBLEdBQUFVLENBQUEsVUFBaUMsRUFBRTtJQUFBO0lBQUFWLGFBQUEsR0FBQVEsQ0FBQTtJQUVuQyxNQUFNYyxJQUFJO0lBQUE7SUFBQSxDQUFBdEIsYUFBQSxHQUFBUyxDQUFBLE9BQWlCO01BQ3pCYyxVQUFVLEVBQUUsQ0FBQztNQUNiQyxTQUFTLEVBQUUsSUFBSTtNQUNmQyxRQUFRLEVBQUUsS0FBSztNQUNmQyxrQkFBa0IsRUFBRSxJQUFJO01BQ3hCLEdBQUdMO0tBQ0o7SUFFRCxNQUFNTSxTQUFTO0lBQUE7SUFBQSxDQUFBM0IsYUFBQSxHQUFBUyxDQUFBLE9BQUdTLElBQUksQ0FBQ1UsR0FBRyxFQUFFO0lBQzVCLElBQUlDLFNBQWtCO0lBQUM7SUFBQTdCLGFBQUEsR0FBQVMsQ0FBQTtJQUV2QixLQUFLLElBQUlxQixPQUFPO0lBQUE7SUFBQSxDQUFBOUIsYUFBQSxHQUFBUyxDQUFBLE9BQUcsQ0FBQyxHQUFFcUIsT0FBTyxJQUFJUixJQUFJLENBQUNDLFVBQVUsR0FBRyxDQUFDLEVBQUVPLE9BQU8sRUFBRSxFQUFFO01BQUE7TUFBQTlCLGFBQUEsR0FBQVMsQ0FBQTtNQUMvRCxJQUFJO1FBQ0YsTUFBTXNCLE1BQU07UUFBQTtRQUFBLENBQUEvQixhQUFBLEdBQUFTLENBQUEsT0FBRyxNQUFNVyxTQUFTLEVBQUU7UUFFaEM7UUFBQTtRQUFBcEIsYUFBQSxHQUFBUyxDQUFBO1FBQ0EsSUFBSSxDQUFDdUIsYUFBYSxDQUFDZCxJQUFJLENBQUNVLEdBQUcsRUFBRSxHQUFHRCxTQUFTLEVBQUUsS0FBSyxDQUFDO1FBQUM7UUFBQTNCLGFBQUEsR0FBQVMsQ0FBQTtRQUVsRCxJQUFJcUIsT0FBTyxHQUFHLENBQUMsRUFBRTtVQUFBO1VBQUE5QixhQUFBLEdBQUFVLENBQUE7VUFBQVYsYUFBQSxHQUFBUyxDQUFBO1VBQ2YsSUFBSSxDQUFDTixNQUFNLENBQUM4QixJQUFJLENBQ2Q7WUFBRUgsT0FBTztZQUFFekIsV0FBVyxFQUFFLElBQUksQ0FBQ0E7VUFBVyxDQUFFLEVBQzFDLGlDQUFpQyxDQUNsQztRQUNILENBQUM7UUFBQTtRQUFBO1VBQUFMLGFBQUEsR0FBQVUsQ0FBQTtRQUFBO1FBQUFWLGFBQUEsR0FBQVMsQ0FBQTtRQUVELE9BQU9zQixNQUFNO01BQ2YsQ0FBQyxDQUFDLE9BQU9HLEtBQUssRUFBRTtRQUFBO1FBQUFsQyxhQUFBLEdBQUFTLENBQUE7UUFDZG9CLFNBQVMsR0FBR0ssS0FBSztRQUFDO1FBQUFsQyxhQUFBLEdBQUFTLENBQUE7UUFFbEIsSUFBSXFCLE9BQU8sSUFBSVIsSUFBSSxDQUFDQyxVQUFVLEVBQUU7VUFBQTtVQUFBdkIsYUFBQSxHQUFBVSxDQUFBO1VBQzlCLE1BQU15QixLQUFLO1VBQUE7VUFBQSxDQUFBbkMsYUFBQSxHQUFBUyxDQUFBLFFBQUdhLElBQUksQ0FBQ0ksa0JBQWtCO1VBQUE7VUFBQSxDQUFBMUIsYUFBQSxHQUFBVSxDQUFBLFVBQ2pDMEIsSUFBSSxDQUFDQyxHQUFHLENBQUNmLElBQUksQ0FBQ0UsU0FBUyxHQUFHWSxJQUFJLENBQUNFLEdBQUcsQ0FBQyxDQUFDLEVBQUVSLE9BQU8sR0FBRyxDQUFDLENBQUMsRUFBRVIsSUFBSSxDQUFDRyxRQUFRLENBQUM7VUFBQTtVQUFBLENBQUF6QixhQUFBLEdBQUFVLENBQUEsVUFDbEVZLElBQUksQ0FBQ0UsU0FBUztVQUFDO1VBQUF4QixhQUFBLEdBQUFTLENBQUE7VUFFbkIsSUFBSSxDQUFDTixNQUFNLENBQUNvQyxJQUFJLENBQ2Q7WUFDRUwsS0FBSyxFQUFFQSxLQUFLLENBQUNNLE9BQU87WUFDcEJWLE9BQU87WUFDUFAsVUFBVSxFQUFFRCxJQUFJLENBQUNDLFVBQVU7WUFDM0JrQixXQUFXLEVBQUVOLEtBQUs7WUFDbEI5QixXQUFXLEVBQUUsSUFBSSxDQUFDQTtXQUNuQixFQUNELDRCQUE0QixDQUM3QjtVQUFDO1VBQUFMLGFBQUEsR0FBQVMsQ0FBQTtVQUVGLE1BQU0sSUFBSSxDQUFDaUMsS0FBSyxDQUFDUCxLQUFLLENBQUM7UUFDekIsQ0FBQztRQUFBO1FBQUE7VUFBQW5DLGFBQUEsR0FBQVUsQ0FBQTtRQUFBO01BQ0g7SUFDRjtJQUVBO0lBQUE7SUFBQVYsYUFBQSxHQUFBUyxDQUFBO0lBQ0EsSUFBSSxDQUFDdUIsYUFBYSxDQUFDZCxJQUFJLENBQUNVLEdBQUcsRUFBRSxHQUFHRCxTQUFTLEVBQUUsSUFBSSxDQUFDO0lBQUM7SUFBQTNCLGFBQUEsR0FBQVMsQ0FBQTtJQUVqRCxJQUFJLENBQUNOLE1BQU0sQ0FBQytCLEtBQUssQ0FDZjtNQUNFQSxLQUFLLEVBQUVMLFNBQVM7TUFDaEJjLFFBQVEsRUFBRXJCLElBQUksQ0FBQ0MsVUFBVSxHQUFHLENBQUM7TUFDN0JsQixXQUFXLEVBQUUsSUFBSSxDQUFDQTtLQUNuQixFQUNELDJCQUEyQixDQUM1QjtJQUFDO0lBQUFMLGFBQUEsR0FBQVMsQ0FBQTtJQUVGLE1BQU1vQixTQUFTO0VBQ2pCO0VBRUE7OztFQUdVLE1BQU1lLGVBQWVBLENBQzdCeEIsU0FBdUQ7SUFBQTtJQUFBcEIsYUFBQSxHQUFBUSxDQUFBO0lBQUFSLGFBQUEsR0FBQVMsQ0FBQTtJQUV2RCxPQUFPLE1BQU0sSUFBSSxDQUFDVSxTQUFTLENBQUMsWUFBVztNQUFBO01BQUFuQixhQUFBLEdBQUFRLENBQUE7TUFBQVIsYUFBQSxHQUFBUyxDQUFBO01BQ3JDLE9BQU8sTUFBTSxJQUFJLENBQUNQLE1BQU0sQ0FBQzJDLFlBQVksQ0FBQ3pCLFNBQVMsQ0FBQztJQUNsRCxDQUFDLENBQUM7RUFDSjtFQUVBOzs7RUFHVSxNQUFNMEIsWUFBWUEsQ0FDMUJDLFVBQWdDLEVBQ2hDMUIsT0FBQTtFQUFBO0VBQUEsQ0FBQXJCLGFBQUEsR0FBQVUsQ0FBQSxVQUdJLEVBQUU7SUFBQTtJQUFBVixhQUFBLEdBQUFRLENBQUE7SUFNTixNQUFNO01BQUV3QyxRQUFRO01BQUE7TUFBQSxDQUFBaEQsYUFBQSxHQUFBVSxDQUFBLFVBQUcsS0FBSztNQUFFdUMsY0FBYztNQUFBO01BQUEsQ0FBQWpELGFBQUEsR0FBQVUsQ0FBQSxVQUFHLEVBQUU7SUFBQSxDQUFFO0lBQUE7SUFBQSxDQUFBVixhQUFBLEdBQUFTLENBQUEsUUFBR1ksT0FBTztJQUN6RCxNQUFNNkIsT0FBTztJQUFBO0lBQUEsQ0FBQWxELGFBQUEsR0FBQVMsQ0FBQSxRQUFpQixFQUFFO0lBQ2hDLE1BQU0wQyxNQUFNO0lBQUE7SUFBQSxDQUFBbkQsYUFBQSxHQUFBUyxDQUFBLFFBQXFCLEVBQUU7SUFDbkMsSUFBSTJDLFlBQVk7SUFBQTtJQUFBLENBQUFwRCxhQUFBLEdBQUFTLENBQUEsUUFBRyxDQUFDO0lBRXBCO0lBQ0EsTUFBTTRDLE9BQU87SUFBQTtJQUFBLENBQUFyRCxhQUFBLEdBQUFTLENBQUEsUUFBRyxJQUFJLENBQUM2QyxhQUFhLENBQUNQLFVBQVUsRUFBRUUsY0FBYyxDQUFDO0lBQzlELElBQUlNLFdBQVc7SUFBQTtJQUFBLENBQUF2RCxhQUFBLEdBQUFTLENBQUEsUUFBRyxDQUFDO0lBQUM7SUFBQVQsYUFBQSxHQUFBUyxDQUFBO0lBRXBCLEtBQUssTUFBTStDLEtBQUssSUFBSUgsT0FBTyxFQUFFO01BQzNCLE1BQU1JLGVBQWU7TUFBQTtNQUFBLENBQUF6RCxhQUFBLEdBQUFTLENBQUEsUUFBRzhDLFdBQVc7TUFDbkMsTUFBTUcsUUFBUTtNQUFBO01BQUEsQ0FBQTFELGFBQUEsR0FBQVMsQ0FBQSxRQUFHK0MsS0FBSyxDQUFDRyxHQUFHLENBQUMsT0FBT3ZDLFNBQVMsRUFBRXdDLFVBQVUsS0FBSTtRQUFBO1FBQUE1RCxhQUFBLEdBQUFRLENBQUE7UUFDekQsTUFBTXFELGNBQWM7UUFBQTtRQUFBLENBQUE3RCxhQUFBLEdBQUFTLENBQUEsUUFBR2dELGVBQWUsR0FBR0csVUFBVTtRQUFDO1FBQUE1RCxhQUFBLEdBQUFTLENBQUE7UUFDcEQsSUFBSTtVQUNGLE1BQU1zQixNQUFNO1VBQUE7VUFBQSxDQUFBL0IsYUFBQSxHQUFBUyxDQUFBLFFBQUcsTUFBTVcsU0FBUyxFQUFFO1VBQUM7VUFBQXBCLGFBQUEsR0FBQVMsQ0FBQTtVQUNqQ3lDLE9BQU8sQ0FBQ1csY0FBYyxDQUFDLEdBQUc5QixNQUFNO1VBQUM7VUFBQS9CLGFBQUEsR0FBQVMsQ0FBQTtVQUNqQzBDLE1BQU0sQ0FBQ1UsY0FBYyxDQUFDLEdBQUcsSUFBSTtVQUFDO1VBQUE3RCxhQUFBLEdBQUFTLENBQUE7VUFDOUIyQyxZQUFZLEVBQUU7VUFBQztVQUFBcEQsYUFBQSxHQUFBUyxDQUFBO1VBQ2YsT0FBT3NCLE1BQU07UUFDZixDQUFDLENBQUMsT0FBT0csS0FBSyxFQUFFO1VBQUE7VUFBQWxDLGFBQUEsR0FBQVMsQ0FBQTtVQUNkeUMsT0FBTyxDQUFDVyxjQUFjLENBQUMsR0FBRyxJQUFJO1VBQUM7VUFBQTdELGFBQUEsR0FBQVMsQ0FBQTtVQUMvQjBDLE1BQU0sQ0FBQ1UsY0FBYyxDQUFDLEdBQUczQixLQUFjO1VBQUM7VUFBQWxDLGFBQUEsR0FBQVMsQ0FBQTtVQUV4QyxJQUFJdUMsUUFBUSxFQUFFO1lBQUE7WUFBQWhELGFBQUEsR0FBQVUsQ0FBQTtZQUFBVixhQUFBLEdBQUFTLENBQUE7WUFDWixNQUFNeUIsS0FBSztVQUNiLENBQUM7VUFBQTtVQUFBO1lBQUFsQyxhQUFBLEdBQUFVLENBQUE7VUFBQTtVQUFBVixhQUFBLEdBQUFTLENBQUE7VUFFRCxJQUFJLENBQUNOLE1BQU0sQ0FBQ29DLElBQUksQ0FDZDtZQUNFTCxLQUFLLEVBQUdBLEtBQWUsQ0FBQ00sT0FBTztZQUMvQnFCLGNBQWMsRUFBRUEsY0FBYztZQUM5QnhELFdBQVcsRUFBRSxJQUFJLENBQUNBO1dBQ25CLEVBQ0QsMkJBQTJCLENBQzVCO1VBQUM7VUFBQUwsYUFBQSxHQUFBUyxDQUFBO1VBRUYsT0FBTyxJQUFJO1FBQ2I7TUFDRixDQUFDLENBQUM7TUFBQztNQUFBVCxhQUFBLEdBQUFTLENBQUE7TUFFSCxJQUFJdUMsUUFBUSxFQUFFO1FBQUE7UUFBQWhELGFBQUEsR0FBQVUsQ0FBQTtRQUFBVixhQUFBLEdBQUFTLENBQUE7UUFDWixJQUFJO1VBQUE7VUFBQVQsYUFBQSxHQUFBUyxDQUFBO1VBQ0YsTUFBTXFELE9BQU8sQ0FBQ0MsR0FBRyxDQUFDTCxRQUFRLENBQUM7UUFDN0IsQ0FBQyxDQUFDLE9BQU94QixLQUFLLEVBQUU7VUFBQTtVQUFBbEMsYUFBQSxHQUFBUyxDQUFBO1VBQ2Q7VUFDQTtRQUNGO01BQ0YsQ0FBQyxNQUFNO1FBQUE7UUFBQVQsYUFBQSxHQUFBVSxDQUFBO1FBQUFWLGFBQUEsR0FBQVMsQ0FBQTtRQUNMLE1BQU1xRCxPQUFPLENBQUNDLEdBQUcsQ0FBQ0wsUUFBUSxDQUFDO01BQzdCO01BQUM7TUFBQTFELGFBQUEsR0FBQVMsQ0FBQTtNQUNEOEMsV0FBVyxJQUFJQyxLQUFLLENBQUNRLE1BQU07SUFDN0I7SUFBQztJQUFBaEUsYUFBQSxHQUFBUyxDQUFBO0lBRUQsT0FBTztNQUFFeUMsT0FBTztNQUFFQyxNQUFNO01BQUVDO0lBQVksQ0FBRTtFQUMxQztFQUVBOzs7RUFHVWEsV0FBV0EsQ0FBQy9CLEtBQWMsRUFBRWdDLE9BQWlDO0lBQUE7SUFBQWxFLGFBQUEsR0FBQVEsQ0FBQTtJQUNyRSxNQUFNMkQsWUFBWTtJQUFBO0lBQUEsQ0FBQW5FLGFBQUEsR0FBQVMsQ0FBQSxRQUFHeUIsS0FBSyxZQUFZa0MsS0FBSztJQUFBO0lBQUEsQ0FBQXBFLGFBQUEsR0FBQVUsQ0FBQSxXQUFHd0IsS0FBSyxDQUFDTSxPQUFPO0lBQUE7SUFBQSxDQUFBeEMsYUFBQSxHQUFBVSxDQUFBLFdBQUcsZUFBZTtJQUM3RSxNQUFNMkQsVUFBVTtJQUFBO0lBQUEsQ0FBQXJFLGFBQUEsR0FBQVMsQ0FBQSxRQUFHeUIsS0FBSyxZQUFZa0MsS0FBSztJQUFBO0lBQUEsQ0FBQXBFLGFBQUEsR0FBQVUsQ0FBQSxXQUFHd0IsS0FBSyxDQUFDb0MsS0FBSztJQUFBO0lBQUEsQ0FBQXRFLGFBQUEsR0FBQVUsQ0FBQSxXQUFHNkQsU0FBUztJQUFDO0lBQUF2RSxhQUFBLEdBQUFTLENBQUE7SUFFcEUsSUFBSSxDQUFDTixNQUFNLENBQUMrQixLQUFLLENBQ2Y7TUFDRUEsS0FBSyxFQUFFaUMsWUFBWTtNQUNuQkcsS0FBSyxFQUFFRCxVQUFVO01BQ2pCSCxPQUFPO01BQ1A3RCxXQUFXLEVBQUUsSUFBSSxDQUFDQTtLQUNuQixFQUNELDBCQUEwQixDQUMzQjtJQUVEO0lBQUE7SUFBQUwsYUFBQSxHQUFBUyxDQUFBO0lBQ0EsSUFBSXlCLEtBQUssWUFBWWtDLEtBQUssRUFBRTtNQUFBO01BQUFwRSxhQUFBLEdBQUFVLENBQUE7TUFBQVYsYUFBQSxHQUFBUyxDQUFBO01BQzFCeUIsS0FBSyxDQUFDTSxPQUFPLEdBQUcsR0FBRyxJQUFJLENBQUNuQyxXQUFXLEtBQUs2QixLQUFLLENBQUNNLE9BQU8sRUFBRTtNQUFDO01BQUF4QyxhQUFBLEdBQUFTLENBQUE7TUFDeEQsTUFBTXlCLEtBQUs7SUFDYixDQUFDO0lBQUE7SUFBQTtNQUFBbEMsYUFBQSxHQUFBVSxDQUFBO0lBQUE7SUFBQVYsYUFBQSxHQUFBUyxDQUFBO0lBRUQsTUFBTSxJQUFJMkQsS0FBSyxDQUFDLEdBQUcsSUFBSSxDQUFDL0QsV0FBVyxLQUFLOEQsWUFBWSxFQUFFLENBQUM7RUFDekQ7RUFFQTs7O0VBR1VLLGdCQUFnQkEsQ0FBQ0MsTUFBK0IsRUFBRUMsUUFBa0I7SUFBQTtJQUFBMUUsYUFBQSxHQUFBUSxDQUFBO0lBQzVFLE1BQU1tRSxPQUFPO0lBQUE7SUFBQSxDQUFBM0UsYUFBQSxHQUFBUyxDQUFBLFFBQUdpRSxRQUFRLENBQUNFLE1BQU0sQ0FDNUJDLEdBQUcsSUFBSztNQUFBO01BQUE3RSxhQUFBLEdBQUFRLENBQUE7TUFBQVIsYUFBQSxHQUFBUyxDQUFBO01BQUEsa0NBQUFULGFBQUEsR0FBQVUsQ0FBQSxXQUFBK0QsTUFBTSxDQUFDSSxHQUFHLENBQUMsS0FBS04sU0FBUztNQUFBO01BQUEsQ0FBQXZFLGFBQUEsR0FBQVUsQ0FBQSxXQUFJK0QsTUFBTSxDQUFDSSxHQUFHLENBQUMsS0FBSyxJQUFJO01BQUE7TUFBQSxDQUFBN0UsYUFBQSxHQUFBVSxDQUFBLFdBQUkrRCxNQUFNLENBQUNJLEdBQUcsQ0FBQyxLQUFLLEVBQUU7SUFBRixDQUFFLENBQ2pGO0lBQUM7SUFBQTdFLGFBQUEsR0FBQVMsQ0FBQTtJQUVGLElBQUlrRSxPQUFPLENBQUNYLE1BQU0sR0FBRyxDQUFDLEVBQUU7TUFBQTtNQUFBaEUsYUFBQSxHQUFBVSxDQUFBO01BQUFWLGFBQUEsR0FBQVMsQ0FBQTtNQUN0QixNQUFNLElBQUkyRCxLQUFLLENBQUMsZ0NBQWdDTyxPQUFPLENBQUNHLElBQUksQ0FBQyxJQUFJLENBQUMsRUFBRSxDQUFDO0lBQ3ZFLENBQUM7SUFBQTtJQUFBO01BQUE5RSxhQUFBLEdBQUFVLENBQUE7SUFBQTtFQUNIO0VBRUE7OztFQUdVcUUsYUFBYUEsQ0FDckJDLEtBQVEsRUFDUkMsTUFBNkU7SUFBQTtJQUFBakYsYUFBQSxHQUFBUSxDQUFBO0lBRTdFLE1BQU0wRSxTQUFTO0lBQUE7SUFBQSxDQUFBbEYsYUFBQSxHQUFBUyxDQUFBLFFBQUc7TUFBRSxHQUFHdUU7SUFBSyxDQUFFO0lBQUM7SUFBQWhGLGFBQUEsR0FBQVMsQ0FBQTtJQUUvQixLQUFLLE1BQU0sQ0FBQ29FLEdBQUcsRUFBRU0sWUFBWSxDQUFDLElBQUlDLE1BQU0sQ0FBQ0MsT0FBTyxDQUFDSixNQUFNLENBQUMsRUFBRTtNQUN4RCxNQUFNSyxLQUFLO01BQUE7TUFBQSxDQUFBdEYsYUFBQSxHQUFBUyxDQUFBLFFBQUd5RSxTQUFTLENBQUNMLEdBQWMsQ0FBQztNQUFDO01BQUE3RSxhQUFBLEdBQUFTLENBQUE7TUFFeEM7TUFBSTtNQUFBLENBQUFULGFBQUEsR0FBQVUsQ0FBQSxXQUFBNEUsS0FBSyxLQUFLZixTQUFTO01BQUE7TUFBQSxDQUFBdkUsYUFBQSxHQUFBVSxDQUFBLFdBQUk0RSxLQUFLLEtBQUssSUFBSSxHQUFFO1FBQUE7UUFBQXRGLGFBQUEsR0FBQVUsQ0FBQTtRQUFBVixhQUFBLEdBQUFTLENBQUE7UUFBQTtNQUFBLENBQVM7TUFBQTtNQUFBO1FBQUFULGFBQUEsR0FBQVUsQ0FBQTtNQUFBO01BQUFWLGFBQUEsR0FBQVMsQ0FBQTtNQUVwRCxRQUFRMEUsWUFBWTtRQUNsQixLQUFLLFFBQVE7VUFBQTtVQUFBbkYsYUFBQSxHQUFBVSxDQUFBO1VBQUFWLGFBQUEsR0FBQVMsQ0FBQTtVQUNYLElBQUksT0FBTzZFLEtBQUssS0FBSyxRQUFRLEVBQUU7WUFBQTtZQUFBdEYsYUFBQSxHQUFBVSxDQUFBO1lBQUFWLGFBQUEsR0FBQVMsQ0FBQTtZQUM1QnlFLFNBQXFDLENBQUNMLEdBQUcsQ0FBQyxHQUFHVSxNQUFNLENBQUNELEtBQUssQ0FBQztVQUM3RCxDQUFDO1VBQUE7VUFBQTtZQUFBdEYsYUFBQSxHQUFBVSxDQUFBO1VBQUE7VUFDRDtVQUFBVixhQUFBLEdBQUFTLENBQUE7VUFDQ3lFLFNBQXFDLENBQUNMLEdBQUcsQ0FBQyxHQUFHVSxNQUFNLENBQUNELEtBQUssQ0FBQyxDQUFDRSxJQUFJLEVBQUUsQ0FBQ0MsS0FBSyxDQUFDLENBQUMsRUFBRSxJQUFJLENBQUM7VUFBQztVQUFBekYsYUFBQSxHQUFBUyxDQUFBO1VBQ2xGO1FBRUYsS0FBSyxRQUFRO1VBQUE7VUFBQVQsYUFBQSxHQUFBVSxDQUFBO1VBQUFWLGFBQUEsR0FBQVMsQ0FBQTtVQUNYLElBQUksT0FBTzZFLEtBQUssS0FBSyxRQUFRLEVBQUU7WUFBQTtZQUFBdEYsYUFBQSxHQUFBVSxDQUFBO1lBQzdCLE1BQU1nRixNQUFNO1lBQUE7WUFBQSxDQUFBMUYsYUFBQSxHQUFBUyxDQUFBLFFBQUdrRixNQUFNLENBQUNMLEtBQUssQ0FBQztZQUFDO1lBQUF0RixhQUFBLEdBQUFTLENBQUE7WUFDN0IsSUFBSW1GLEtBQUssQ0FBQ0YsTUFBTSxDQUFDLEVBQUU7Y0FBQTtjQUFBMUYsYUFBQSxHQUFBVSxDQUFBO2NBQUFWLGFBQUEsR0FBQVMsQ0FBQTtjQUNqQixNQUFNLElBQUkyRCxLQUFLLENBQUMsNEJBQTRCUyxHQUFHLEtBQUtTLEtBQUssRUFBRSxDQUFDO1lBQzlELENBQUM7WUFBQTtZQUFBO2NBQUF0RixhQUFBLEdBQUFVLENBQUE7WUFBQTtZQUFBVixhQUFBLEdBQUFTLENBQUE7WUFDQXlFLFNBQXFDLENBQUNMLEdBQUcsQ0FBQyxHQUFHYSxNQUFNO1VBQ3RELENBQUM7VUFBQTtVQUFBO1lBQUExRixhQUFBLEdBQUFVLENBQUE7VUFBQTtVQUFBVixhQUFBLEdBQUFTLENBQUE7VUFDRDtRQUVGLEtBQUssU0FBUztVQUFBO1VBQUFULGFBQUEsR0FBQVUsQ0FBQTtVQUFBVixhQUFBLEdBQUFTLENBQUE7VUFDWixJQUFJLE9BQU82RSxLQUFLLEtBQUssU0FBUyxFQUFFO1lBQUE7WUFBQXRGLGFBQUEsR0FBQVUsQ0FBQTtZQUFBVixhQUFBLEdBQUFTLENBQUE7WUFDN0J5RSxTQUFxQyxDQUFDTCxHQUFHLENBQUMsR0FBR2dCLE9BQU8sQ0FBQ1AsS0FBSyxDQUFDO1VBQzlELENBQUM7VUFBQTtVQUFBO1lBQUF0RixhQUFBLEdBQUFVLENBQUE7VUFBQTtVQUFBVixhQUFBLEdBQUFTLENBQUE7VUFDRDtRQUVGLEtBQUssUUFBUTtVQUFBO1VBQUFULGFBQUEsR0FBQVUsQ0FBQTtVQUFBVixhQUFBLEdBQUFTLENBQUE7VUFDWDtVQUFJO1VBQUEsQ0FBQVQsYUFBQSxHQUFBVSxDQUFBLGtCQUFPNEUsS0FBSyxLQUFLLFFBQVE7VUFBQTtVQUFBLENBQUF0RixhQUFBLEdBQUFVLENBQUEsV0FBSW9GLEtBQUssQ0FBQ0MsT0FBTyxDQUFDVCxLQUFLLENBQUMsR0FBRTtZQUFBO1lBQUF0RixhQUFBLEdBQUFVLENBQUE7WUFBQVYsYUFBQSxHQUFBUyxDQUFBO1lBQ3JELE1BQU0sSUFBSTJELEtBQUssQ0FBQyx1QkFBdUJTLEdBQUcsU0FBUyxPQUFPUyxLQUFLLEVBQUUsQ0FBQztVQUNwRSxDQUFDO1VBQUE7VUFBQTtZQUFBdEYsYUFBQSxHQUFBVSxDQUFBO1VBQUE7VUFBQVYsYUFBQSxHQUFBUyxDQUFBO1VBQ0Q7UUFFRixLQUFLLE9BQU87VUFBQTtVQUFBVCxhQUFBLEdBQUFVLENBQUE7VUFBQVYsYUFBQSxHQUFBUyxDQUFBO1VBQ1YsSUFBSSxDQUFDcUYsS0FBSyxDQUFDQyxPQUFPLENBQUNULEtBQUssQ0FBQyxFQUFFO1lBQUE7WUFBQXRGLGFBQUEsR0FBQVUsQ0FBQTtZQUFBVixhQUFBLEdBQUFTLENBQUE7WUFDekIsTUFBTSxJQUFJMkQsS0FBSyxDQUFDLHNCQUFzQlMsR0FBRyxTQUFTLE9BQU9TLEtBQUssRUFBRSxDQUFDO1VBQ25FLENBQUM7VUFBQTtVQUFBO1lBQUF0RixhQUFBLEdBQUFVLENBQUE7VUFBQTtVQUFBVixhQUFBLEdBQUFTLENBQUE7VUFDRDtNQUNKO0lBQ0Y7SUFBQztJQUFBVCxhQUFBLEdBQUFTLENBQUE7SUFFRCxPQUFPeUUsU0FBUztFQUNsQjtFQUVBOzs7RUFHQWMsVUFBVUEsQ0FBQTtJQUFBO0lBQUFoRyxhQUFBLEdBQUFRLENBQUE7SUFBQVIsYUFBQSxHQUFBUyxDQUFBO0lBQ1IsT0FBTztNQUFFLEdBQUcsSUFBSSxDQUFDSDtJQUFPLENBQUU7RUFDNUI7RUFFQTs7O0VBR0EyRixZQUFZQSxDQUFBO0lBQUE7SUFBQWpHLGFBQUEsR0FBQVEsQ0FBQTtJQUFBUixhQUFBLEdBQUFTLENBQUE7SUFDVixJQUFJLENBQUNILE9BQU8sR0FBRztNQUNiUSxjQUFjLEVBQUUsQ0FBQztNQUNqQkMsVUFBVSxFQUFFLENBQUM7TUFDYkMsbUJBQW1CLEVBQUUsQ0FBQztNQUN0QkMsYUFBYSxFQUFFLElBQUlDLElBQUk7S0FDeEI7RUFDSDtFQUVBOzs7RUFHQSxNQUFNZ0YsV0FBV0EsQ0FBQTtJQUFBO0lBQUFsRyxhQUFBLEdBQUFRLENBQUE7SUFBQVIsYUFBQSxHQUFBUyxDQUFBO0lBUWYsSUFBSTtNQUFBO01BQUFULGFBQUEsR0FBQVMsQ0FBQTtNQUNGO01BQ0EsTUFBTSxJQUFJLENBQUNQLE1BQU0sQ0FBQ2lHLFNBQVMsVUFBVTtNQUFDO01BQUFuRyxhQUFBLEdBQUFTLENBQUE7TUFFdEMsT0FBTztRQUNMMkYsT0FBTyxFQUFFLElBQUk7UUFDYkMsT0FBTyxFQUFFO1VBQ1BDLFFBQVEsRUFBRSxJQUFJO1VBQ2RoRyxPQUFPLEVBQUUsSUFBSSxDQUFDMEYsVUFBVSxFQUFFO1VBQzFCTyxNQUFNLEVBQUVyRixJQUFJLENBQUNVLEdBQUcsRUFBRSxHQUFHLElBQUksQ0FBQ3RCLE9BQU8sQ0FBQ1csYUFBYSxDQUFDdUYsT0FBTzs7T0FFMUQ7SUFDSCxDQUFDLENBQUMsT0FBT3RFLEtBQUssRUFBRTtNQUFBO01BQUFsQyxhQUFBLEdBQUFTLENBQUE7TUFDZCxJQUFJLENBQUNOLE1BQU0sQ0FBQytCLEtBQUssQ0FBQztRQUFFQTtNQUFLLENBQUUsRUFBRSxxQkFBcUIsQ0FBQztNQUFDO01BQUFsQyxhQUFBLEdBQUFTLENBQUE7TUFFcEQsT0FBTztRQUNMMkYsT0FBTyxFQUFFLEtBQUs7UUFDZEMsT0FBTyxFQUFFO1VBQ1BDLFFBQVEsRUFBRSxLQUFLO1VBQ2ZoRyxPQUFPLEVBQUUsSUFBSSxDQUFDMEYsVUFBVSxFQUFFO1VBQzFCTyxNQUFNLEVBQUVyRixJQUFJLENBQUNVLEdBQUcsRUFBRSxHQUFHLElBQUksQ0FBQ3RCLE9BQU8sQ0FBQ1csYUFBYSxDQUFDdUYsT0FBTzs7T0FFMUQ7SUFDSDtFQUNGO0VBRUE7RUFFUXhFLGFBQWFBLENBQUN5RSxZQUFvQixFQUFFQyxPQUFnQjtJQUFBO0lBQUExRyxhQUFBLEdBQUFRLENBQUE7SUFBQVIsYUFBQSxHQUFBUyxDQUFBO0lBQzFELElBQUksQ0FBQ0gsT0FBTyxDQUFDUSxjQUFjLEVBQUU7SUFBQztJQUFBZCxhQUFBLEdBQUFTLENBQUE7SUFDOUIsSUFBSSxDQUFDSCxPQUFPLENBQUNXLGFBQWEsR0FBRyxJQUFJQyxJQUFJLEVBQUU7SUFBQztJQUFBbEIsYUFBQSxHQUFBUyxDQUFBO0lBRXhDLElBQUlpRyxPQUFPLEVBQUU7TUFBQTtNQUFBMUcsYUFBQSxHQUFBVSxDQUFBO01BQUFWLGFBQUEsR0FBQVMsQ0FBQTtNQUNYLElBQUksQ0FBQ0gsT0FBTyxDQUFDUyxVQUFVLEVBQUU7SUFDM0IsQ0FBQztJQUFBO0lBQUE7TUFBQWYsYUFBQSxHQUFBVSxDQUFBO0lBQUE7SUFFRDtJQUNBLE1BQU1pRyxTQUFTO0lBQUE7SUFBQSxDQUFBM0csYUFBQSxHQUFBUyxDQUFBLFNBQUcsSUFBSSxDQUFDSCxPQUFPLENBQUNVLG1CQUFtQixJQUFJLElBQUksQ0FBQ1YsT0FBTyxDQUFDUSxjQUFjLEdBQUcsQ0FBQyxDQUFDO0lBQUM7SUFBQWQsYUFBQSxHQUFBUyxDQUFBO0lBQ3ZGLElBQUksQ0FBQ0gsT0FBTyxDQUFDVSxtQkFBbUIsR0FBRyxDQUFDMkYsU0FBUyxHQUFHRixZQUFZLElBQUksSUFBSSxDQUFDbkcsT0FBTyxDQUFDUSxjQUFjO0VBQzdGO0VBRVE0QixLQUFLQSxDQUFDa0UsRUFBVTtJQUFBO0lBQUE1RyxhQUFBLEdBQUFRLENBQUE7SUFBQVIsYUFBQSxHQUFBUyxDQUFBO0lBQ3RCLE9BQU8sSUFBSXFELE9BQU8sQ0FBRStDLE9BQU8sSUFBSztNQUFBO01BQUE3RyxhQUFBLEdBQUFRLENBQUE7TUFBQVIsYUFBQSxHQUFBUyxDQUFBO01BQUEsT0FBQXFHLFVBQVUsQ0FBQ0QsT0FBTyxFQUFFRCxFQUFFLENBQUM7SUFBRCxDQUFDLENBQUM7RUFDMUQ7RUFFUXRELGFBQWFBLENBQUl5RCxLQUFVLEVBQUVDLFNBQWlCO0lBQUE7SUFBQWhILGFBQUEsR0FBQVEsQ0FBQTtJQUNwRCxNQUFNNkMsT0FBTztJQUFBO0lBQUEsQ0FBQXJELGFBQUEsR0FBQVMsQ0FBQSxTQUFVLEVBQUU7SUFBQztJQUFBVCxhQUFBLEdBQUFTLENBQUE7SUFDMUIsS0FBSyxJQUFJd0csQ0FBQztJQUFBO0lBQUEsQ0FBQWpILGFBQUEsR0FBQVMsQ0FBQSxTQUFHLENBQUMsR0FBRXdHLENBQUMsR0FBR0YsS0FBSyxDQUFDL0MsTUFBTSxFQUFFaUQsQ0FBQyxJQUFJRCxTQUFTLEVBQUU7TUFBQTtNQUFBaEgsYUFBQSxHQUFBUyxDQUFBO01BQ2hENEMsT0FBTyxDQUFDNkQsSUFBSSxDQUFDSCxLQUFLLENBQUN0QixLQUFLLENBQUN3QixDQUFDLEVBQUVBLENBQUMsR0FBR0QsU0FBUyxDQUFDLENBQUM7SUFDN0M7SUFBQztJQUFBaEgsYUFBQSxHQUFBUyxDQUFBO0lBQ0QsT0FBTzRDLE9BQU87RUFDaEI7O0FBR0YsZUFBZWpELFdBQVciLCJpZ25vcmVMaXN0IjpbXX0=

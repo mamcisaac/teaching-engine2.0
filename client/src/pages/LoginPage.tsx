@@ -1,16 +1,26 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { api } from '../api';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [localError, setLocalError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const { login, isAuthenticated, isLoading: isAuthLoading } = useAuth();
+  const {
+    login,
+    isAuthenticated,
+    isLoading: isAuthLoading,
+    error: authError,
+    clearError,
+  } = useAuth();
   const navigate = useNavigate();
+
+  // Clear any auth errors when component mounts
+  useEffect(() => {
+    clearError();
+  }, [clearError]);
 
   useEffect(() => {
     // Only redirect if we're done checking auth and the user is authenticated
@@ -25,36 +35,26 @@ export default function LoginPage() {
     // Prevent multiple submissions
     if (isLoading) return;
 
-    setError('');
-    setIsSuccess(false);
+    setLocalError('');
     setIsLoading(true);
+    clearError(); // Clear any previous auth errors
 
     try {
-      const response = await api.post('/api/login', { email, password });
+      await login(email, password);
 
-      if (response.data.user) {
-        // Update auth context with user data
-        login(response.data.user);
-        
-        // Show success message briefly before redirect
-        setIsSuccess(true);
-        
-        // Navigate to the planning dashboard after successful login
+      // Show success message briefly before redirect
+      setIsSuccess(true);
+
+      // Navigate to the planning dashboard after successful login
+      setTimeout(() => {
         navigate('/planner/dashboard', { replace: true });
-      } else {
-        throw new Error('Invalid response from server');
-      }
+      }, 1000);
     } catch (err: unknown) {
-      let errorMessage = 'Login failed';
-      if (err && typeof err === 'object') {
-        const errorObj = err as { response?: { data?: { error?: string } }; message?: string };
-        errorMessage = errorObj.response?.data?.error || errorObj.message || errorMessage;
-      }
+      // The AuthContext already handles the error, but we can show additional local feedback
       console.error('Login error:', err);
-      setError(errorMessage);
 
-      // Keep the error visible for longer
-      setTimeout(() => setError(''), 5000);
+      // Don't set local error since AuthContext already handles it
+      // The authError will be displayed instead
     } finally {
       setIsLoading(false);
     }
@@ -68,7 +68,7 @@ export default function LoginPage() {
             Sign in to your account
           </h2>
         </div>
-        {error && (
+        {(authError || localError) && (
           <div className="bg-red-50 border-l-4 border-red-400 p-4">
             <div className="flex">
               <div className="flex-shrink-0">
@@ -86,7 +86,7 @@ export default function LoginPage() {
                 </svg>
               </div>
               <div className="ml-3">
-                <p className="text-sm text-red-700">{error}</p>
+                <p className="text-sm text-red-700">{authError || localError}</p>
               </div>
             </div>
           </div>
@@ -109,7 +109,9 @@ export default function LoginPage() {
                 </svg>
               </div>
               <div className="ml-3">
-                <p className="text-sm text-green-700">Login successful! Redirecting to dashboard...</p>
+                <p className="text-sm text-green-700">
+                  Login successful! Redirecting to dashboard...
+                </p>
               </div>
             </div>
           </div>
@@ -156,8 +158,6 @@ export default function LoginPage() {
               />
             </div>
           </div>
-
-          {error && <div className="text-red-600 text-sm text-center">{error}</div>}
 
           <div>
             <div>

@@ -1,7 +1,6 @@
 import { chromium } from '@playwright/test';
 
 export default async function globalSetup() {
-
   // For now, let's manually create the auth state by making a login API call
   // This bypasses the problematic UI login that's having issues with 401 errors
   const browser = await chromium.launch();
@@ -18,8 +17,8 @@ export default async function globalSetup() {
       try {
         response = await page.request.post('http://localhost:3000/api/login', {
           data: {
-            email: 'teacher@test.com',
-            password: 'password123', // Match seed data
+            email: 'teacher@example.com',
+            password: 'Password123!', // Match seed data
           },
         });
         break; // Success, exit retry loop
@@ -50,7 +49,7 @@ export default async function globalSetup() {
       if (!process.env.CI) {
         // Navigate to the app - localStorage will be set automatically
         await page.goto('http://localhost:5173/');
-        await page.waitForTimeout(1000); // Give time for any redirects to settle
+        await page.waitForLoadState('domcontentloaded', { timeout: 3000 }); // Give time for any redirects to settle
       }
 
       // Save the authentication state including localStorage
@@ -59,7 +58,7 @@ export default async function globalSetup() {
       // Store the test user globally for use in tests
       (global as unknown as { __E2E_TEST_USER__: unknown }).__E2E_TEST_USER__ = {
         email: 'teacher@example.com',
-        password: 'Password123!', // Meets security requirements
+        password: 'Password123!', // Match seed data
         token: loginData.token,
         user: loginData.user,
       };

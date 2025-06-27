@@ -7,9 +7,9 @@ import { Router, Request } from 'express';
 import { PrismaClient } from '@teaching-engine/database';
 import { z } from 'zod';
 import bcrypt from 'bcryptjs';
-import { asyncHandler } from '@/middleware/errorHandler';
+import { asyncHandler } from '../middleware/errorHandler';
 // Authentication middleware available if needed
-import { validatePassword, hashPassword } from '@/services/authService';
+import { validatePassword, hashPassword } from '../services/authService';
 
 // Use global Express Request type with user: { id: number; email: string }
 

@@ -9,7 +9,12 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "pnpm db:generate && concurrently -k --success first \"pnpm --filter server run dev\" \"pnpm --filter client run dev\"",
+    "dev": "node scripts/dev-server.js",
+    "dev:legacy": "pnpm db:generate && concurrently -k --success first \"pnpm --filter server run dev\" \"pnpm --filter client run dev\"",
+    "dev:clean": "node scripts/cleanup-dev.js",
+    "dev:logs": "tail -f *.log",
+    "dev:ports": "lsof -i :3000,5173,5555,9229",
+    "dev:reset": "pnpm dev:clean && pnpm db:push --force-reset && pnpm db:seed",
     "build": "pnpm db:generate && pnpm -r build",
     "test": "node scripts/smart-test-runner-enhanced.js",
     "test:watch": "node scripts/smart-test-runner-enhanced.js watch",

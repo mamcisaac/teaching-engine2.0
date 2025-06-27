@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import { Server } from 'http';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -427,6 +428,32 @@ log(`Starting server on port ${PORT}...`);
 // Export app before starting the server
 export { app };
 
+// Graceful shutdown handler
+async function gracefulShutdown(signal: string, server?: Server) {
+  log(`${signal} received, shutting down gracefully...`);
+
+  try {
+    // Stop accepting new connections
+    if (server) {
+      server.close(() => {
+        log('HTTP server closed');
+      });
+    }
+
+    // Shutdown services
+    await shutdownServices();
+
+    // Close database connections
+    await prisma.$disconnect();
+
+    log('Graceful shutdown completed');
+    process.exit(0);
+  } catch (err) {
+    error('Error during graceful shutdown:', err);
+    process.exit(1);
+  }
+}
+
 // Only start the server if this file is run directly
 // Also start if running in test mode for E2E tests (unless IS_TEST_SERVER is set)
 const isDirectRun = import.meta.url === `file://${process.argv[1]}`;
@@ -437,10 +464,12 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 
 if (isDirectRun || isE2ETest || isDevelopment) {
   console.log('Starting server because:', { isDirectRun, isE2ETest, isDevelopment });
+  let server;
+
   // Initialize services before starting the server
   initializeServices()
     .then(() => {
-      const server = app.listen(PORT, '0.0.0.0', () => {
+      server = app.listen(PORT, '0.0.0.0', () => {
         console.log(`Server is running on port ${PORT}`);
         console.log('Server address:', server.address());
         log('Server started successfully');
@@ -451,6 +480,10 @@ if (isDirectRun || isE2ETest || isDevelopment) {
       server.on('error', (err) => {
         console.error('Server error:', err);
       });
+
+      // Handle keep-alive timeouts
+      server.keepAliveTimeout = 65000;
+      server.headersTimeout = 66000;
     })
     .catch((err) => {
       error('Failed to initialize services:', err);
@@ -458,16 +491,18 @@ if (isDirectRun || isE2ETest || isDevelopment) {
     });
 
   // Graceful shutdown
-  process.on('SIGTERM', async () => {
-    log('SIGTERM received, shutting down gracefully...');
-    await shutdownServices();
-    process.exit(0);
+  process.on('SIGTERM', () => gracefulShutdown('SIGTERM', server));
+  process.on('SIGINT', () => gracefulShutdown('SIGINT', server));
+
+  // Handle uncaught exceptions
+  process.on('uncaughtException', (err) => {
+    error('Uncaught Exception:', err);
+    gracefulShutdown('UNCAUGHT_EXCEPTION', server);
   });
 
-  process.on('SIGINT', async () => {
-    log('SIGINT received, shutting down gracefully...');
-    await shutdownServices();
-    process.exit(0);
+  process.on('unhandledRejection', (reason, promise) => {
+    error('Unhandled Rejection at:', promise, 'reason:', reason);
+    gracefulShutdown('UNHANDLED_REJECTION', server);
   });
 }
 // test

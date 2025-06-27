@@ -12,7 +12,7 @@
     "db:deploy": "prisma migrate deploy",
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
-    "postinstall": "prisma generate",
+    "postinstall": "node -e \"if (!process.env.SKIP_PRISMA_GENERATE && !process.env.npm_lifecycle_event?.includes('dev')) { require('child_process').execSync('prisma generate', {stdio: 'inherit'}); }\"",
     "migrate:etfo": "tsx src/migrations/migrate-to-etfo.ts"
   },
   "dependencies": {

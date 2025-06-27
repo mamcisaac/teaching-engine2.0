@@ -6,7 +6,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { PrismaClient } from '@teaching-engine/database';
-import logger from '@/logger';
+import logger from '../logger';
 
 const SALT_ROUNDS = 10;
 const TOKEN_EXPIRY = '7d';

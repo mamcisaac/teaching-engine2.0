@@ -6,10 +6,10 @@
 import express, { Express } from 'express';
 import cors from 'cors';
 import { PrismaClient } from '@teaching-engine/database';
-import { errorHandler } from '@/middleware/errorHandler';
-import { rateLimiters } from '@/middleware/rateLimiter';
-import { authRoutes } from '@/routes/auth';
-import { userRoutes } from '@/routes/user';
+import { errorHandler } from './middleware/errorHandler';
+import { rateLimiters } from './middleware/rateLimiter';
+import { authRoutes } from './routes/auth';
+import { userRoutes } from './routes/user';
 
 export function createApp(prisma: PrismaClient): Express {
   const app = express();

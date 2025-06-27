@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { authService } from '../services/authService';
 
 // Create axios instance with base configuration
 const api = axios.create({
@@ -9,11 +10,26 @@ const api = axios.create({
 
 // Add request interceptor to include auth token
 api.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+  async (config) => {
+    // Add authorization header if we have a token
+    const authHeaders = authService.getAuthHeaders();
+    if (authHeaders.Authorization) {
+      config.headers.Authorization = authHeaders.Authorization;
     }
+
+    // Also support legacy token for backward compatibility
+    const legacyToken = localStorage.getItem('token');
+    if (legacyToken && !authHeaders.Authorization) {
+      config.headers.Authorization = `Bearer ${legacyToken}`;
+    }
+
+    // Try to ensure we have a valid token before making the request
+    try {
+      await authService.ensureValidToken();
+    } catch (error) {
+      console.warn('Token refresh failed before request:', error);
+    }
+
     return config;
   },
   (error) => {
@@ -21,16 +37,30 @@ api.interceptors.request.use(
   },
 );
 
-// Add response interceptor for error handling
+// Add response interceptor for error handling with automatic retry
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
-    if (error.response?.status === 401) {
-      // Clear auth data and redirect to login
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      window.location.href = '/login';
+  async (error) => {
+    const originalRequest = error.config;
+
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      // Try to handle the auth error with the auth service
+      const shouldRetry = await authService.handleAuthError(error.response);
+
+      if (shouldRetry) {
+        // Update the authorization header with the new token
+        const authHeaders = authService.getAuthHeaders();
+        if (authHeaders.Authorization) {
+          originalRequest.headers.Authorization = authHeaders.Authorization;
+        }
+
+        // Retry the original request
+        return api(originalRequest);
+      }
     }
+
     return Promise.reject(error);
   },
 );

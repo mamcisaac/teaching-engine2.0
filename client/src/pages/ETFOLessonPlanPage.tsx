@@ -785,6 +785,7 @@ export default function ETFOLessonPlanPage() {
             <Button
               onClick={() => setIsCreateModalOpen(true)}
               className="bg-indigo-600 hover:bg-indigo-700 text-white"
+              data-testid="create-lesson-plan-button"
             >
               Create Lesson Plan
             </Button>
@@ -808,6 +809,7 @@ export default function ETFOLessonPlanPage() {
             <Button
               onClick={() => setIsCreateModalOpen(true)}
               className="bg-indigo-600 hover:bg-indigo-700 text-white"
+              data-testid="create-lesson-plan-empty-state-button"
             >
               Create Lesson Plan
             </Button>

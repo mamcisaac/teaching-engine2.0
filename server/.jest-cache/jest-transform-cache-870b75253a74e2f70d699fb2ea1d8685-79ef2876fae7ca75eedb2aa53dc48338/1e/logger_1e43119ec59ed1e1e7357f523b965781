@@ -1,0 +1,59 @@
+ad11f3cd94bd01410fbe05e1c269cde6
+/* istanbul ignore next */
+function cov_ycn7urxko() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/logger.ts";
+  var hash = "5c600fb23f1f8ccca814c101e0609ada1115e5ca";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/logger.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 2,
+          column: 15
+        },
+        end: {
+          line: 2,
+          column: 21
+        }
+      }
+    },
+    fnMap: {},
+    branchMap: {},
+    s: {
+      "0": 0
+    },
+    f: {},
+    b: {},
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/logger.ts",
+      mappings: "AAAA,OAAO,IAAI,MAAM,MAAM,CAAC;AAExB,MAAM,MAAM,GAAG,IAAI,EAAE,CAAC;AAEtB,eAAe,MAAM,CAAC",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/logger.ts"],
+      sourcesContent: ["import pino from 'pino';\n\nconst logger = pino();\n\nexport default logger;\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "5c600fb23f1f8ccca814c101e0609ada1115e5ca"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_ycn7urxko = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_ycn7urxko();
+import pino from 'pino';
+const logger =
+/* istanbul ignore next */
+(cov_ycn7urxko().s[0]++, pino());
+export default logger;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJwaW5vIiwibG9nZ2VyIiwiY292X3ljbjd1cnhrbyIsInMiXSwic291cmNlcyI6WyIvVXNlcnMvbWljaGFlbG1jaXNhYWMvR2l0SHViL3RlYWNoaW5nLWVuZ2luZTIuMC9zZXJ2ZXIvc3JjL2xvZ2dlci50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgcGlubyBmcm9tICdwaW5vJztcblxuY29uc3QgbG9nZ2VyID0gcGlubygpO1xuXG5leHBvcnQgZGVmYXVsdCBsb2dnZXI7XG4iXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSxPQUFPQSxJQUFJLE1BQU0sTUFBTTtBQUV2QixNQUFNQyxNQUFNO0FBQUE7QUFBQSxDQUFBQyxhQUFBLEdBQUFDLENBQUEsT0FBR0gsSUFBSSxFQUFFO0FBRXJCLGVBQWVDLE1BQU0iLCJpZ25vcmVMaXN0IjpbXX0=

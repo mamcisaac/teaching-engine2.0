@@ -51,12 +51,12 @@ class PlanningWorkflowPage {
 
   async performUndo() {
     await this.page.click('[title="Undo (Ctrl+Z)"]');
-    await this.page.waitForTimeout(500);
+    await this.page.waitForLoadState('domcontentloaded', { timeout: 2000 });
   }
 
   async performRedo() {
     await this.page.click('[title="Redo (Ctrl+Y)"]');
-    await this.page.waitForTimeout(500);
+    await this.page.waitForLoadState('domcontentloaded', { timeout: 2000 });
   }
 
   async manualSave() {
@@ -104,7 +104,7 @@ class PlanningWorkflowPage {
   async validateProgressTracking() {
     const progressCards = await this.page.locator('[data-testid="progress-card"]').count();
     expect(progressCards).toBeGreaterThan(0);
-    
+
     const workflowProgress = await this.page.textContent('[data-testid="workflow-progress"]');
     expect(workflowProgress).toMatch(/\d+%/);
   }
@@ -112,7 +112,7 @@ class PlanningWorkflowPage {
   async validateCurriculumCoverage() {
     await this.page.click('text=Curriculum Coverage');
     await this.page.waitForSelector('[data-testid="curriculum-coverage-chart"]');
-    
+
     const coveragePercentage = await this.page.textContent('[data-testid="coverage-percentage"]');
     expect(coveragePercentage).toMatch(/\d+%/);
   }
@@ -121,7 +121,7 @@ class PlanningWorkflowPage {
     const currentView = await this.page.getAttribute('[data-testid="current-view"]', 'data-view');
     await this.page.reload();
     await this.page.waitForLoadState('networkidle');
-    
+
     const restoredView = await this.page.getAttribute('[data-testid="current-view"]', 'data-view');
     expect(restoredView).toBe(currentView);
   }
@@ -143,7 +143,9 @@ test.describe('Planning Workflow QA Suite', () => {
   });
 
   test.describe('Complete Planning Workflow', () => {
-    test('should complete end-to-end planning workflow from dashboard to daybook', async ({ page }) => {
+    test('should complete end-to-end planning workflow from dashboard to daybook', async ({
+      page,
+    }) => {
       await test.step('Navigate to planning dashboard', async () => {
         await planningPage.navigateToPlanningDashboard();
         await expect(page.locator('h1')).toHaveText('Planning Dashboard');
@@ -169,7 +171,9 @@ test.describe('Planning Workflow QA Suite', () => {
 
       await test.step('Add daybook reflection', async () => {
         await planningPage.navigateToDaybook();
-        await planningPage.addDaybookReflection('Students engaged well with counting manipulatives');
+        await planningPage.addDaybookReflection(
+          'Students engaged well with counting manipulatives',
+        );
         await expect(page.locator('[data-testid="success-message"]')).toBeVisible();
       });
 
@@ -185,25 +189,25 @@ test.describe('Planning Workflow QA Suite', () => {
       await test.step('Configure planner preferences', async () => {
         await planningPage.navigateToPlanningDashboard();
         await planningPage.openPlannerSettings();
-        
+
         // Change default view
         await page.selectOption('[data-testid="default-view"]', 'month');
         await page.check('[data-testid="show-weekends"]');
         await page.selectOption('[data-testid="theme"]', 'dark');
-        
+
         await planningPage.saveSettings();
       });
 
       await test.step('Verify state persistence after reload', async () => {
         await page.reload();
         await page.waitForLoadState('networkidle');
-        
+
         await planningPage.openPlannerSettings();
-        
+
         const defaultView = await page.inputValue('[data-testid="default-view"]');
         const showWeekends = await page.isChecked('[data-testid="show-weekends"]');
         const theme = await page.inputValue('[data-testid="theme"]');
-        
+
         expect(defaultView).toBe('month');
         expect(showWeekends).toBe(true);
         expect(theme).toBe('dark');
@@ -213,9 +217,9 @@ test.describe('Planning Workflow QA Suite', () => {
         await context.clearCookies();
         await loginAsTestUser(page);
         await planningPage.navigateToPlanningDashboard();
-        
+
         await planningPage.openPlannerSettings();
-        
+
         const defaultView = await page.inputValue('[data-testid="default-view"]');
         expect(defaultView).toBe('month');
       });
@@ -223,14 +227,14 @@ test.describe('Planning Workflow QA Suite', () => {
 
     test('should handle undo/redo operations', async ({ page }) => {
       await planningPage.navigateToPlanningDashboard();
-      
+
       await test.step('Perform actions and undo', async () => {
         await planningPage.openPlannerSettings();
         await page.selectOption('[data-testid="default-view"]', 'agenda');
         await planningPage.saveSettings();
-        
+
         await planningPage.performUndo();
-        
+
         await planningPage.openPlannerSettings();
         const defaultView = await page.inputValue('[data-testid="default-view"]');
         expect(defaultView).toBe('week'); // Should be back to default
@@ -238,7 +242,7 @@ test.describe('Planning Workflow QA Suite', () => {
 
       await test.step('Perform redo operation', async () => {
         await planningPage.performRedo();
-        
+
         await planningPage.openPlannerSettings();
         const defaultView = await page.inputValue('[data-testid="default-view"]');
         expect(defaultView).toBe('agenda'); // Should be restored
@@ -247,7 +251,7 @@ test.describe('Planning Workflow QA Suite', () => {
 
     test('should handle auto-save functionality', async ({ page }) => {
       await planningPage.navigateToPlanningDashboard();
-      
+
       await test.step('Configure auto-save', async () => {
         await planningPage.openPlannerSettings();
         await page.check('[data-testid="auto-save"]');
@@ -258,13 +262,15 @@ test.describe('Planning Workflow QA Suite', () => {
       await test.step('Make changes and verify auto-save', async () => {
         await planningPage.openPlannerSettings();
         await page.selectOption('[data-testid="time-slot-duration"]', '60');
-        
+
         // Wait for auto-save
         await expect(page.locator('[data-testid="auto-save-indicator"]')).toBeVisible();
-        await page.waitForTimeout(6000); // Wait for auto-save interval
-        
+        await page.waitForLoadState('networkidle', { timeout: 8000 }); // Wait for auto-save to complete
+
         // Verify auto-save completed
-        await expect(page.locator('[data-testid="auto-save-indicator"][data-status="saved"]')).toBeVisible();
+        await expect(
+          page.locator('[data-testid="auto-save-indicator"][data-status="saved"]'),
+        ).toBeVisible();
       });
     });
   });
@@ -272,7 +278,7 @@ test.describe('Planning Workflow QA Suite', () => {
   test.describe('Curriculum Coverage & Tracking', () => {
     test('should track curriculum expectation coverage', async ({ page }) => {
       await planningPage.navigateToPlanningDashboard();
-      
+
       await test.step('Validate initial coverage state', async () => {
         await planningPage.validateCurriculumCoverage();
       });
@@ -281,7 +287,7 @@ test.describe('Planning Workflow QA Suite', () => {
         // Create plans with curriculum expectations
         await planningPage.navigateToLongRangePlans();
         await planningPage.createLongRangePlan('Coverage Test Plan');
-        
+
         // Return to dashboard and check updated coverage
         await planningPage.navigateToPlanningDashboard();
         await planningPage.validateCurriculumCoverage();
@@ -290,10 +296,10 @@ test.describe('Planning Workflow QA Suite', () => {
 
     test('should identify uncovered curriculum expectations', async ({ page }) => {
       await planningPage.navigateToPlanningDashboard();
-      
+
       await page.click('text=Curriculum Coverage');
       await expect(page.locator('[data-testid="uncovered-expectations"]')).toBeVisible();
-      
+
       const uncoveredCount = await page.textContent('[data-testid="uncovered-count"]');
       expect(uncoveredCount).toMatch(/\d+/);
     });
@@ -302,14 +308,14 @@ test.describe('Planning Workflow QA Suite', () => {
   test.describe('Error Handling & Recovery', () => {
     test('should handle network failures gracefully', async ({ page, context }) => {
       await planningPage.navigateToPlanningDashboard();
-      
+
       await test.step('Simulate network failure', async () => {
         await context.setOffline(true);
-        
+
         await planningPage.openPlannerSettings();
         await page.selectOption('[data-testid="default-view"]', 'month');
         await planningPage.saveSettings();
-        
+
         // Should show offline indicator
         await expect(page.locator('[data-testid="offline-indicator"]')).toBeVisible();
       });
@@ -317,7 +323,7 @@ test.describe('Planning Workflow QA Suite', () => {
       await test.step('Restore network and sync', async () => {
         await context.setOffline(false);
         await page.click('[title="Sync offline changes"]');
-        
+
         // Should sync successfully
         await expect(page.locator('[data-testid="sync-success"]')).toBeVisible();
       });
@@ -325,18 +331,18 @@ test.describe('Planning Workflow QA Suite', () => {
 
     test('should recover from server errors', async ({ page }) => {
       await planningPage.navigateToPlanningDashboard();
-      
+
       // Mock server error
-      await page.route('**/api/planner/state', route => {
+      await page.route('**/api/planner/state', (route) => {
         route.fulfill({ status: 500, body: 'Server Error' });
       });
 
       await planningPage.openPlannerSettings();
       await planningPage.saveSettings();
-      
+
       // Should show error message
       await expect(page.locator('[data-testid="error-message"]')).toBeVisible();
-      
+
       // Should allow retry
       await page.click('[data-testid="retry-button"]');
     });
@@ -371,21 +377,21 @@ test.describe('Planning Workflow QA Suite', () => {
 
     test('should support daily teacher workflow', async ({ page }) => {
       await planningPage.navigateToPlanningDashboard();
-      
+
       await test.step('Check daily schedule', async () => {
         await expect(page.locator('[data-testid="todays-lessons"]')).toBeVisible();
       });
 
       await test.step('Access quick actions', async () => {
         await expect(page.locator('[data-testid="quick-actions"]')).toBeVisible();
-        
+
         const quickActions = [
           'Create Lesson Plan',
           'Add Reflection',
           'View Progress',
-          'Generate Report'
+          'Generate Report',
         ];
-        
+
         for (const action of quickActions) {
           await expect(page.locator(`text=${action}`)).toBeVisible();
         }
@@ -396,7 +402,7 @@ test.describe('Planning Workflow QA Suite', () => {
           { name: 'Long-Range Plans', route: '/planner/long-range' },
           { name: 'Unit Plans', route: '/planner/units' },
           { name: 'Lesson Plans', route: '/planner/etfo-lessons' },
-          { name: 'Daily Reflections', route: '/planner/daybook' }
+          { name: 'Daily Reflections', route: '/planner/daybook' },
         ];
 
         for (const level of planningLevels) {
@@ -414,7 +420,7 @@ test.describe('Planning Workflow QA Suite', () => {
         const startTime = Date.now();
         await planningPage.navigateToPlanningDashboard();
         const loadTime = Date.now() - startTime;
-        
+
         expect(loadTime).toBeLessThan(3000); // 3 second load time
       });
 
@@ -423,22 +429,22 @@ test.describe('Planning Workflow QA Suite', () => {
         await planningPage.openPlannerSettings();
         await planningPage.saveSettings();
         const operationTime = Date.now() - startTime;
-        
+
         expect(operationTime).toBeLessThan(1000); // 1 second for state operations
       });
     });
 
     test('should be accessible to screen readers', async ({ page }) => {
       await planningPage.navigateToPlanningDashboard();
-      
+
       // Check for proper ARIA labels and roles
       const dashboardHeading = page.locator('h1');
       await expect(dashboardHeading).toHaveAttribute('role', 'heading');
-      
+
       const navigationButtons = page.locator('button[aria-label]');
       const buttonCount = await navigationButtons.count();
       expect(buttonCount).toBeGreaterThan(0);
-      
+
       // Check for keyboard navigation
       await page.keyboard.press('Tab');
       const focusedElement = await page.evaluate(() => document.activeElement?.tagName);
@@ -448,21 +454,27 @@ test.describe('Planning Workflow QA Suite', () => {
 });
 
 test.describe('Cross-Browser Compatibility', () => {
-  ['chromium', 'firefox', 'webkit'].forEach(browserName => {
-    test(`should work correctly in ${browserName}`, async ({ page, browserName: currentBrowser }) => {
-      test.skip(currentBrowser !== browserName, `Skipping ${browserName} test in ${currentBrowser}`);
-      
+  ['chromium', 'firefox', 'webkit'].forEach((browserName) => {
+    test(`should work correctly in ${browserName}`, async ({
+      page,
+      browserName: currentBrowser,
+    }) => {
+      test.skip(
+        currentBrowser !== browserName,
+        `Skipping ${browserName} test in ${currentBrowser}`,
+      );
+
       const planningPage = new PlanningWorkflowPage(page);
       await loginAsTestUser(page);
-      
+
       await planningPage.navigateToPlanningDashboard();
       await expect(page.locator('h1')).toHaveText('Planning Dashboard');
-      
+
       // Test core functionality
       await planningPage.openPlannerSettings();
       await page.selectOption('[data-testid="default-view"]', 'month');
       await planningPage.saveSettings();
-      
+
       // Verify state persistence
       await page.reload();
       await planningPage.openPlannerSettings();
@@ -475,19 +487,19 @@ test.describe('Cross-Browser Compatibility', () => {
 test.describe('Mobile Responsiveness', () => {
   test('should work on mobile devices', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 }); // iPhone SE size
-    
+
     const planningPage = new PlanningWorkflowPage(page);
     await loginAsTestUser(page);
-    
+
     await planningPage.navigateToPlanningDashboard();
-    
+
     // Check mobile navigation
     await expect(page.locator('[data-testid="mobile-menu"]')).toBeVisible();
-    
+
     // Test touch interactions
     await page.click('[data-testid="mobile-menu"]');
     await expect(page.locator('[data-testid="mobile-nav"]')).toBeVisible();
-    
+
     // Test swipe gestures (if supported)
     await page.touchscreen.tap(200, 300);
     await page.touchscreen.tap(100, 300);

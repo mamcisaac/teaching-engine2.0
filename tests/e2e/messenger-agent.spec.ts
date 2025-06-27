@@ -17,18 +17,18 @@ test.describe('Messenger Agent E2E Tests', () => {
       // Navigate to email templates page (if it exists, otherwise check settings/communication)
       const possiblePaths = [
         '/email-templates',
-        '/communication/templates', 
+        '/communication/templates',
         '/settings/email-templates',
         '/communication',
-        '/settings'
+        '/settings',
       ];
 
       let templatePageFound = false;
       for (const path of possiblePaths) {
         try {
           await page.goto(path);
-          await page.waitForTimeout(1000);
-          
+          await page.waitForLoadState('domcontentloaded', { timeout: 3000 });
+
           // Check if we can find email template related elements
           const hasTemplateElements = await Promise.race([
             page.locator('text=Email Template').isVisible({ timeout: 2000 }),
@@ -50,7 +50,7 @@ test.describe('Messenger Agent E2E Tests', () => {
       if (!templatePageFound) {
         // If no dedicated template page, test via API calls through browser
         await page.goto('/');
-        
+
         // Test creating template via browser console API call
         const createResult = await page.evaluate(async () => {
           try {
@@ -58,15 +58,15 @@ test.describe('Messenger Agent E2E Tests', () => {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`
+                Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
               },
               body: JSON.stringify({
                 name: 'E2E Test Template',
                 subject: 'Test Subject - {studentName}',
                 contentFr: 'Contenu français pour {studentName}',
                 contentEn: 'English content for {studentName}',
-                variables: ['studentName', 'parentName']
-              })
+                variables: ['studentName', 'parentName'],
+              }),
             });
             return { status: response.status, ok: response.ok };
           } catch (error) {
@@ -83,34 +83,45 @@ test.describe('Messenger Agent E2E Tests', () => {
         name: `E2E Test Template ${Date.now()}`,
         subject: 'Weekly Update - {studentName}',
         contentFr: 'Bonjour {parentName}, voici les nouvelles de {studentName} cette semaine.',
-        contentEn: 'Hello {parentName}, here are this week\'s updates for {studentName}.'
+        contentEn: "Hello {parentName}, here are this week's updates for {studentName}.",
       };
 
       // Look for create template button
-      const createButton = page.locator('button:has-text("Create Template"), button:has-text("New Template"), button:has-text("Add Template")');
+      const createButton = page.locator(
+        'button:has-text("Create Template"), button:has-text("New Template"), button:has-text("Add Template")',
+      );
       if (await createButton.isVisible({ timeout: 2000 })) {
         await createButton.click();
 
         // Fill template form
         await page.fill('input[placeholder*="name"], input[name*="name"]', templateData.name);
-        await page.fill('input[placeholder*="subject"], input[name*="subject"]', templateData.subject);
-        
+        await page.fill(
+          'input[placeholder*="subject"], input[name*="subject"]',
+          templateData.subject,
+        );
+
         // Try to find content fields
-        const frenchField = page.locator('textarea[placeholder*="french"], textarea[name*="french"], textarea[name*="contentFr"]');
+        const frenchField = page.locator(
+          'textarea[placeholder*="french"], textarea[name*="french"], textarea[name*="contentFr"]',
+        );
         if (await frenchField.isVisible({ timeout: 1000 })) {
           await frenchField.fill(templateData.contentFr);
         }
 
-        const englishField = page.locator('textarea[placeholder*="english"], textarea[name*="english"], textarea[name*="contentEn"]');
+        const englishField = page.locator(
+          'textarea[placeholder*="english"], textarea[name*="english"], textarea[name*="contentEn"]',
+        );
         if (await englishField.isVisible({ timeout: 1000 })) {
           await englishField.fill(templateData.contentEn);
         }
 
         // Submit form
-        const submitButton = page.locator('button[type="submit"], button:has-text("Save"), button:has-text("Create")');
+        const submitButton = page.locator(
+          'button[type="submit"], button:has-text("Save"), button:has-text("Create")',
+        );
         if (await submitButton.isVisible({ timeout: 1000 })) {
           await submitButton.click();
-          
+
           // Wait for template to appear in list
           await expect(page.locator(`text="${templateData.name}"`)).toBeVisible({ timeout: 5000 });
         }
@@ -123,20 +134,20 @@ test.describe('Messenger Agent E2E Tests', () => {
     test('should validate template form fields', async ({ page }) => {
       // Test form validation through API if no UI exists
       await page.goto('/');
-      
+
       const validationResult = await page.evaluate(async () => {
         try {
           const response = await fetch('/api/email-templates', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`
+              Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
             },
             body: JSON.stringify({
               // Missing required fields
               name: '',
-              subject: ''
-            })
+              subject: '',
+            }),
           });
           return { status: response.status, ok: response.ok };
         } catch (error) {
@@ -156,15 +167,15 @@ test.describe('Messenger Agent E2E Tests', () => {
         '/communication/reports',
         '/students',
         '/student-reports',
-        '/communication'
+        '/communication',
       ];
 
       let reportsPageFound = false;
       for (const path of possiblePaths) {
         try {
           await page.goto(path);
-          await page.waitForTimeout(1000);
-          
+          await page.waitForLoadState('domcontentloaded', { timeout: 3000 });
+
           const hasReportElements = await Promise.race([
             page.locator('text=Report').isVisible({ timeout: 2000 }),
             page.locator('text=Generate').isVisible({ timeout: 2000 }),
@@ -184,17 +195,17 @@ test.describe('Messenger Agent E2E Tests', () => {
       if (!reportsPageFound) {
         // Test report generation via API
         await page.goto('/');
-        
+
         const reportResult = await page.evaluate(async () => {
           try {
             // First get students
             const studentsResponse = await fetch('/api/students', {
               headers: {
-                'Authorization': `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`
-              }
+                Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
+              },
             });
             const students = await studentsResponse.json();
-            
+
             if (students.length === 0) {
               return { error: 'No students found' };
             }
@@ -204,7 +215,7 @@ test.describe('Messenger Agent E2E Tests', () => {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`
+                Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
               },
               body: JSON.stringify({
                 studentId: students[0].id,
@@ -213,16 +224,16 @@ test.describe('Messenger Agent E2E Tests', () => {
                 endDate: '2024-01-31T23:59:59Z',
                 language: 'en',
                 includeAssessments: true,
-                includeGoals: true
-              })
+                includeGoals: true,
+              }),
             });
 
             const report = await reportResponse.json();
-            return { 
-              status: reportResponse.status, 
+            return {
+              status: reportResponse.status,
               hasStudentName: !!report.studentName,
               hasSections: Array.isArray(report.sections),
-              hasComments: !!report.overallComments
+              hasComments: !!report.overallComments,
             };
           } catch (error) {
             return { error: error.message };
@@ -236,13 +247,13 @@ test.describe('Messenger Agent E2E Tests', () => {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`
+                Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
               },
               body: JSON.stringify({
                 firstName: 'Test',
                 lastName: 'Student',
-                grade: 5
-              })
+                grade: 5,
+              }),
             });
           });
 
@@ -251,8 +262,8 @@ test.describe('Messenger Agent E2E Tests', () => {
             try {
               const studentsResponse = await fetch('/api/students', {
                 headers: {
-                  'Authorization': `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`
-                }
+                  Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
+                },
               });
               const students = await studentsResponse.json();
 
@@ -260,22 +271,22 @@ test.describe('Messenger Agent E2E Tests', () => {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`
+                  Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
                 },
                 body: JSON.stringify({
                   studentId: students[0].id,
                   reportType: 'progress',
                   startDate: '2024-01-01T00:00:00Z',
                   endDate: '2024-01-31T23:59:59Z',
-                  language: 'en'
-                })
+                  language: 'en',
+                }),
               });
 
               const report = await reportResponse.json();
-              return { 
-                status: reportResponse.status, 
+              return {
+                status: reportResponse.status,
                 hasStudentName: !!report.studentName,
-                hasSections: Array.isArray(report.sections)
+                hasSections: Array.isArray(report.sections),
               };
             } catch (error) {
               return { error: error.message };
@@ -293,12 +304,16 @@ test.describe('Messenger Agent E2E Tests', () => {
       }
 
       // If reports page found, test the UI
-      const generateButton = page.locator('button:has-text("Generate"), button:has-text("Create Report")');
+      const generateButton = page.locator(
+        'button:has-text("Generate"), button:has-text("Create Report")',
+      );
       if (await generateButton.isVisible({ timeout: 2000 })) {
         await generateButton.click();
-        
+
         // Look for report type selection
-        const progressOption = page.locator('text=Progress, option[value="progress"], input[value="progress"]');
+        const progressOption = page.locator(
+          'text=Progress, option[value="progress"], input[value="progress"]',
+        );
         if (await progressOption.isVisible({ timeout: 2000 })) {
           await progressOption.click();
         }
@@ -307,10 +322,10 @@ test.describe('Messenger Agent E2E Tests', () => {
         const submitButton = page.locator('button:has-text("Generate"), button[type="submit"]');
         if (await submitButton.isVisible({ timeout: 1000 })) {
           await submitButton.click();
-          
+
           // Wait for report to be generated
-          await page.waitForTimeout(3000);
-          
+          await page.waitForLoadState('networkidle', { timeout: 6000 });
+
           // Check for report content
           const hasReportContent = await Promise.race([
             page.locator('text=Student Name').isVisible({ timeout: 5000 }),
@@ -326,17 +341,17 @@ test.describe('Messenger Agent E2E Tests', () => {
 
     test('should support different report languages', async ({ page }) => {
       await page.goto('/');
-      
+
       // Test French report generation
       const frenchReportResult = await page.evaluate(async () => {
         try {
           const studentsResponse = await fetch('/api/students', {
             headers: {
-              'Authorization': `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`
-            }
+              Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
+            },
           });
           const students = await studentsResponse.json();
-          
+
           if (students.length === 0) {
             return { error: 'No students found' };
           }
@@ -345,21 +360,21 @@ test.describe('Messenger Agent E2E Tests', () => {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`
+              Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
             },
             body: JSON.stringify({
               studentId: students[0].id,
               reportType: 'narrative',
               startDate: '2024-01-01T00:00:00Z',
               endDate: '2024-01-31T23:59:59Z',
-              language: 'fr'
-            })
+              language: 'fr',
+            }),
           });
 
           const report = await reportResponse.json();
-          return { 
-            status: reportResponse.status, 
-            isFrench: report.sections?.[0]?.title?.includes('narratif')
+          return {
+            status: reportResponse.status,
+            isFrench: report.sections?.[0]?.title?.includes('narratif'),
           };
         } catch (error) {
           return { error: error.message };
@@ -380,15 +395,15 @@ test.describe('Messenger Agent E2E Tests', () => {
         '/contacts',
         '/students',
         '/communication/contacts',
-        '/settings/contacts'
+        '/settings/contacts',
       ];
 
       let contactsPageFound = false;
       for (const path of possiblePaths) {
         try {
           await page.goto(path);
-          await page.waitForTimeout(1000);
-          
+          await page.waitForLoadState('domcontentloaded', { timeout: 3000 });
+
           const hasContactElements = await Promise.race([
             page.locator('text=Parent Contact').isVisible({ timeout: 2000 }),
             page.locator('text=Contact').isVisible({ timeout: 2000 }),
@@ -408,7 +423,7 @@ test.describe('Messenger Agent E2E Tests', () => {
       if (!contactsPageFound) {
         // Test contacts via API
         await page.goto('/');
-        
+
         // Create a test student first
         const studentResult = await page.evaluate(async () => {
           try {
@@ -416,13 +431,13 @@ test.describe('Messenger Agent E2E Tests', () => {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`
+                Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
               },
               body: JSON.stringify({
                 firstName: 'Contact',
                 lastName: 'Test',
-                grade: 3
-              })
+                grade: 3,
+              }),
             });
             const student = await response.json();
             return { status: response.status, studentId: student.id };
@@ -439,13 +454,13 @@ test.describe('Messenger Agent E2E Tests', () => {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`
+                  Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
                 },
                 body: JSON.stringify({
                   name: 'Test Parent',
                   email: 'test.parent@example.com',
-                  studentId: studentId
-                })
+                  studentId: studentId,
+                }),
               });
               return { status: response.status, ok: response.ok };
             } catch (error) {
@@ -460,30 +475,39 @@ test.describe('Messenger Agent E2E Tests', () => {
       }
 
       // If contacts page found, test the UI
-      const addButton = page.locator('button:has-text("Add Contact"), button:has-text("Add Parent")');
+      const addButton = page.locator(
+        'button:has-text("Add Contact"), button:has-text("Add Parent")',
+      );
       if (await addButton.isVisible({ timeout: 2000 })) {
         await addButton.click();
 
         const contactData = {
           name: 'E2E Test Parent',
-          email: 'e2e.parent@example.com'
+          email: 'e2e.parent@example.com',
         };
 
         // Fill contact form
         await page.fill('input[placeholder*="name"], input[name*="name"]', contactData.name);
-        await page.fill('input[placeholder*="email"], input[name*="email"], input[type="email"]', contactData.email);
+        await page.fill(
+          'input[placeholder*="email"], input[name*="email"], input[type="email"]',
+          contactData.email,
+        );
 
         // Select student if dropdown exists
-        const studentSelect = page.locator('select[name*="student"], select[placeholder*="student"]');
+        const studentSelect = page.locator(
+          'select[name*="student"], select[placeholder*="student"]',
+        );
         if (await studentSelect.isVisible({ timeout: 1000 })) {
           await studentSelect.selectOption({ index: 1 }); // Select first student
         }
 
         // Submit form
-        const submitButton = page.locator('button[type="submit"], button:has-text("Save"), button:has-text("Add")');
+        const submitButton = page.locator(
+          'button[type="submit"], button:has-text("Save"), button:has-text("Add")',
+        );
         if (await submitButton.isVisible({ timeout: 1000 })) {
           await submitButton.click();
-          
+
           // Wait for contact to appear
           await expect(page.locator(`text="${contactData.name}"`)).toBeVisible({ timeout: 5000 });
         }
@@ -494,7 +518,7 @@ test.describe('Messenger Agent E2E Tests', () => {
   test.describe('Email Distribution', () => {
     test('should send bulk emails to parents', async ({ page }) => {
       await page.goto('/');
-      
+
       // Test bulk email sending via API
       const emailResult = await page.evaluate(async () => {
         try {
@@ -502,30 +526,30 @@ test.describe('Messenger Agent E2E Tests', () => {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`
+              Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
             },
             body: JSON.stringify({
               recipients: [
                 {
                   email: 'test.parent@example.com',
                   name: 'Test Parent',
-                  studentName: 'Test Student'
-                }
+                  studentName: 'Test Student',
+                },
               ],
               subject: 'E2E Test Newsletter',
               htmlContent: '<h1>Test Newsletter</h1><p>This is a test email for {studentName}</p>',
               textContent: 'Test Newsletter\n\nThis is a test email for {studentName}',
               templateVariables: {
-                studentName: 'Test Student'
-              }
-            })
+                studentName: 'Test Student',
+              },
+            }),
           });
 
           const result = await response.json();
-          return { 
-            status: response.status, 
+          return {
+            status: response.status,
             hasResults: Array.isArray(result.results),
-            hasSummary: !!result.summary
+            hasSummary: !!result.summary,
           };
         } catch (error) {
           return { error: error.message };
@@ -539,20 +563,20 @@ test.describe('Messenger Agent E2E Tests', () => {
 
     test('should track email delivery status', async ({ page }) => {
       await page.goto('/');
-      
+
       const statusResult = await page.evaluate(async () => {
         try {
           const response = await fetch('/api/communication/delivery-status', {
             headers: {
-              'Authorization': `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`
-            }
+              Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
+            },
           });
 
           const result = await response.json();
-          return { 
-            status: response.status, 
+          return {
+            status: response.status,
             hasRecent: Array.isArray(result.recent),
-            hasSummary: !!result.summary
+            hasSummary: !!result.summary,
           };
         } catch (error) {
           return { error: error.message };
@@ -571,11 +595,13 @@ test.describe('Messenger Agent E2E Tests', () => {
       await waitForElement(page, 'text=Weekly Planner');
 
       // Look for "Share with Parents" functionality
-      const shareButton = page.locator('button:has-text("Share"), button:has-text("Parent"), button:has-text("Newsletter")');
-      
+      const shareButton = page.locator(
+        'button:has-text("Share"), button:has-text("Parent"), button:has-text("Newsletter")',
+      );
+
       if (await shareButton.isVisible({ timeout: 3000 })) {
         await shareButton.click();
-        
+
         // Check if it opens email/communication dialog
         const hasEmailDialog = await Promise.race([
           page.locator('text=Email').isVisible({ timeout: 2000 }),
@@ -593,7 +619,7 @@ test.describe('Messenger Agent E2E Tests', () => {
 
     test('should integrate with student management for contact info', async ({ page }) => {
       await page.goto('/students');
-      
+
       // Look for student list or management
       await waitForElement(page, 'text=Students', { timeout: 5000 });
 
@@ -603,7 +629,7 @@ test.describe('Messenger Agent E2E Tests', () => {
 
       if (await firstStudent.isVisible({ timeout: 2000 })) {
         await firstStudent.click();
-        
+
         // Look for parent contact information
         const hasContactInfo = await Promise.race([
           page.locator('text=Parent').isVisible({ timeout: 2000 }),
@@ -621,7 +647,7 @@ test.describe('Messenger Agent E2E Tests', () => {
   test.describe('Error Handling and Edge Cases', () => {
     test('should handle network failures gracefully', async ({ page }) => {
       await page.goto('/');
-      
+
       // Test API error handling by sending invalid data
       const errorResult = await page.evaluate(async () => {
         try {
@@ -629,13 +655,13 @@ test.describe('Messenger Agent E2E Tests', () => {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`
+              Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
             },
             body: JSON.stringify({
               // Invalid data to trigger error
               name: '',
-              subject: ''
-            })
+              subject: '',
+            }),
           });
 
           return { status: response.status, handled: response.status >= 400 };
@@ -649,25 +675,25 @@ test.describe('Messenger Agent E2E Tests', () => {
 
     test('should validate email addresses properly', async ({ page }) => {
       await page.goto('/');
-      
+
       const validationResult = await page.evaluate(async () => {
         try {
           const response = await fetch('/api/communication/send-bulk', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`
+              Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
             },
             body: JSON.stringify({
               recipients: [
                 {
                   email: 'invalid-email-format',
-                  name: 'Test Parent'
-                }
+                  name: 'Test Parent',
+                },
               ],
               subject: 'Test',
-              htmlContent: 'Test'
-            })
+              htmlContent: 'Test',
+            }),
           });
 
           return { status: response.status, isError: response.status >= 400 };
@@ -681,39 +707,41 @@ test.describe('Messenger Agent E2E Tests', () => {
 
     test('should handle large email lists efficiently', async ({ page }) => {
       await page.goto('/');
-      
+
       // Test with larger recipient list
       const bulkResult = await page.evaluate(async () => {
         try {
-          const recipients = Array(10).fill(null).map((_, i) => ({
-            email: `test${i}@example.com`,
-            name: `Test Parent ${i}`,
-            studentName: `Test Student ${i}`
-          }));
+          const recipients = Array(10)
+            .fill(null)
+            .map((_, i) => ({
+              email: `test${i}@example.com`,
+              name: `Test Parent ${i}`,
+              studentName: `Test Student ${i}`,
+            }));
 
           const startTime = Date.now();
-          
+
           const response = await fetch('/api/communication/send-bulk', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`
+              Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
             },
             body: JSON.stringify({
               recipients,
               subject: 'Bulk Test',
               htmlContent: 'Test content',
-              textContent: 'Test content'
-            })
+              textContent: 'Test content',
+            }),
           });
 
           const duration = Date.now() - startTime;
           const result = await response.json();
 
-          return { 
-            status: response.status, 
+          return {
+            status: response.status,
             duration,
-            recipientCount: result.results?.length || 0
+            recipientCount: result.results?.length || 0,
           };
         } catch (error) {
           return { error: error.message };
@@ -732,28 +760,28 @@ test.describe('Messenger Agent E2E Tests', () => {
     test('should be accessible to screen readers', async ({ page }) => {
       // Test basic accessibility of communication features
       await page.goto('/');
-      
+
       // Check for proper ARIA labels and semantic HTML
       const accessibilityCheck = await page.evaluate(() => {
         const buttons = document.querySelectorAll('button');
         const inputs = document.querySelectorAll('input');
         // const forms = document.querySelectorAll('form');
-        
+
         let hasAriaLabels = false;
         let hasProperLabels = false;
-        
-        buttons.forEach(button => {
+
+        buttons.forEach((button) => {
           if (button.getAttribute('aria-label') || button.textContent?.trim()) {
             hasAriaLabels = true;
           }
         });
-        
-        inputs.forEach(input => {
+
+        inputs.forEach((input) => {
           if (input.getAttribute('aria-label') || input.getAttribute('placeholder')) {
             hasProperLabels = true;
           }
         });
-        
+
         return { hasAriaLabels, hasProperLabels, buttonCount: buttons.length };
       });
 
@@ -763,34 +791,32 @@ test.describe('Messenger Agent E2E Tests', () => {
 
     test('should provide user feedback for long operations', async ({ page }) => {
       await page.goto('/');
-      
+
       // Test that bulk email operations show loading states
       const feedbackResult = await page.evaluate(async () => {
         try {
           // Make a request that might take some time
           const startTime = Date.now();
-          
+
           const response = await fetch('/api/communication/send-bulk', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`
+              Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
             },
             body: JSON.stringify({
-              recipients: [
-                { email: 'test@example.com', name: 'Test Parent' }
-              ],
+              recipients: [{ email: 'test@example.com', name: 'Test Parent' }],
               subject: 'Feedback Test',
-              htmlContent: 'Test content'
-            })
+              htmlContent: 'Test content',
+            }),
           });
 
           const duration = Date.now() - startTime;
-          
-          return { 
-            status: response.status, 
+
+          return {
+            status: response.status,
             duration,
-            providedFeedback: duration > 100 // If it took time, feedback was likely provided
+            providedFeedback: duration > 100, // If it took time, feedback was likely provided
           };
         } catch (error) {
           return { error: error.message };

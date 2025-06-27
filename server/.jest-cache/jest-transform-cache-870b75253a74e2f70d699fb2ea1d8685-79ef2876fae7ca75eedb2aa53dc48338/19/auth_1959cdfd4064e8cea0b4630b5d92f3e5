@@ -1,0 +1,42 @@
+b231fef5db4363189461bcd67f1a6e11
+// Auth types are now defined in Express namespace extension (types/express.d.ts)
+/* istanbul ignore next */
+function cov_vt96xtmos() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/types/auth.ts";
+  var hash = "c8fa2694114b2343f5387fa2a212ec33b5f9c11f";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/types/auth.ts",
+    statementMap: {},
+    fnMap: {},
+    branchMap: {},
+    s: {},
+    f: {},
+    b: {},
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/types/auth.ts",
+      mappings: "AAAA,iFAAiF",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/types/auth.ts"],
+      sourcesContent: ["// Auth types are now defined in Express namespace extension (types/express.d.ts)\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "c8fa2694114b2343f5387fa2a212ec33b5f9c11f"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_vt96xtmos = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_vt96xtmos();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3ZfdnQ5Nnh0bW9zIiwicGF0aCIsImhhc2giLCJnbG9iYWwiLCJGdW5jdGlvbiIsImdjdiIsImNvdmVyYWdlRGF0YSIsInN0YXRlbWVudE1hcCIsImZuTWFwIiwiYnJhbmNoTWFwIiwicyIsImYiLCJiIiwiaW5wdXRTb3VyY2VNYXAiLCJmaWxlIiwibWFwcGluZ3MiLCJuYW1lcyIsInNvdXJjZXMiLCJzb3VyY2VzQ29udGVudCIsInZlcnNpb24iLCJfY292ZXJhZ2VTY2hlbWEiLCJjb3ZlcmFnZSIsImFjdHVhbENvdmVyYWdlIl0sInNvdXJjZXMiOlsiL1VzZXJzL21pY2hhZWxtY2lzYWFjL0dpdEh1Yi90ZWFjaGluZy1lbmdpbmUyLjAvc2VydmVyL3NyYy90eXBlcy9hdXRoLnRzIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIEF1dGggdHlwZXMgYXJlIG5vdyBkZWZpbmVkIGluIEV4cHJlc3MgbmFtZXNwYWNlIGV4dGVuc2lvbiAodHlwZXMvZXhwcmVzcy5kLnRzKVxuIl0sIm1hcHBpbmdzIjoiQUFBQTtBQUFBO0FBQUEsU0FBQUEsY0FBQTtFQUFBLElBQUFDLElBQUE7RUFBQSxJQUFBQyxJQUFBO0VBQUEsSUFBQUMsTUFBQSxPQUFBQyxRQUFBO0VBQUEsSUFBQUMsR0FBQTtFQUFBLElBQUFDLFlBQUE7SUFBQUwsSUFBQTtJQUFBTSxZQUFBO0lBQUFDLEtBQUE7SUFBQUMsU0FBQTtJQUFBQyxDQUFBO0lBQUFDLENBQUE7SUFBQUMsQ0FBQTtJQUFBQyxjQUFBO01BQUFDLElBQUE7TUFBQUMsUUFBQTtNQUFBQyxLQUFBO01BQUFDLE9BQUE7TUFBQUMsY0FBQTtNQUFBQyxPQUFBO0lBQUE7SUFBQUMsZUFBQTtJQUFBbEIsSUFBQTtFQUFBO0VBQUEsSUFBQW1CLFFBQUEsR0FBQWxCLE1BQUEsQ0FBQUUsR0FBQSxNQUFBRixNQUFBLENBQUFFLEdBQUE7RUFBQSxLQUFBZ0IsUUFBQSxDQUFBcEIsSUFBQSxLQUFBb0IsUUFBQSxDQUFBcEIsSUFBQSxFQUFBQyxJQUFBLEtBQUFBLElBQUE7SUFBQW1CLFFBQUEsQ0FBQXBCLElBQUEsSUFBQUssWUFBQTtFQUFBO0VBQUEsSUFBQWdCLGNBQUEsR0FBQUQsUUFBQSxDQUFBcEIsSUFBQTtFQUFBIiwiaWdub3JlTGlzdCI6W119

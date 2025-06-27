@@ -1,0 +1,325 @@
+{
+  "url": "http://localhost:5173/planner/dashboard",
+  "title": "Curriculum Planner",
+  "buttons": [
+    {
+      "index": 0,
+      "text": "",
+      "type": "submit",
+      "className": "text-white focus:outline-none p-1 rounded-lg hover:bg-indigo-700 transition-colors",
+      "id": "",
+      "disabled": false,
+      "visible": true,
+      "selector": ".text-white"
+    },
+    {
+      "index": 1,
+      "text": "Logout",
+      "type": "submit",
+      "className": "flex items-center text-indigo-100 hover:text-white w-full",
+      "id": "",
+      "disabled": false,
+      "visible": true,
+      "selector": ".flex"
+    },
+    {
+      "index": 2,
+      "text": "🇨🇦English",
+      "type": "submit",
+      "className": "flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors",
+      "id": "",
+      "disabled": false,
+      "visible": true,
+      "selector": ".flex"
+    },
+    {
+      "index": 3,
+      "text": "Aide",
+      "type": "submit",
+      "className": "inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-500 px-3 py-1.5 text-sm gap-2 text-blue-600 hover:text-blue-700",
+      "id": "",
+      "disabled": false,
+      "visible": true,
+      "selector": ".inline-flex"
+    },
+    {
+      "index": 4,
+      "text": "Restart Tour",
+      "type": "submit",
+      "className": "inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-500 px-3 py-1.5 text-sm text-gray-500 hover:text-gray-700",
+      "id": "",
+      "disabled": false,
+      "visible": true,
+      "selector": ".inline-flex"
+    },
+    {
+      "index": 5,
+      "text": "×",
+      "type": "submit",
+      "className": "inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-500 px-3 py-1.5 text-sm text-blue-600 hover:text-blue-700",
+      "id": "",
+      "disabled": false,
+      "visible": true,
+      "selector": ".inline-flex"
+    },
+    {
+      "index": 6,
+      "text": "Take the Tour (5 min)",
+      "type": "submit",
+      "className": "inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 px-4 py-2 text-base bg-blue-600 hover:bg-blue-700 text-white gap-2",
+      "id": "",
+      "disabled": false,
+      "visible": true,
+      "selector": ".inline-flex"
+    },
+    {
+      "index": 7,
+      "text": "Create First Lesson",
+      "type": "submit",
+      "className": "inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-blue-500 px-4 py-2 text-base border-blue-300 text-blue-700 hover:bg-blue-50",
+      "id": "",
+      "disabled": false,
+      "visible": true,
+      "selector": ".inline-flex"
+    },
+    {
+      "index": 8,
+      "text": "Skip Tour",
+      "type": "submit",
+      "className": "inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-blue-500 px-3 py-1.5 text-sm text-gray-500 hover:text-gray-700",
+      "id": "",
+      "disabled": false,
+      "visible": true,
+      "selector": ".inline-flex"
+    },
+    {
+      "index": 9,
+      "text": "",
+      "type": "submit",
+      "className": "w-3 h-3 rounded-full transition-colors bg-indigo-600",
+      "id": "",
+      "disabled": false,
+      "visible": true,
+      "selector": ".w-3"
+    },
+    {
+      "index": 10,
+      "text": "",
+      "type": "submit",
+      "className": "w-3 h-3 rounded-full transition-colors bg-gray-300",
+      "id": "",
+      "disabled": false,
+      "visible": true,
+      "selector": ".w-3"
+    },
+    {
+      "index": 11,
+      "text": "",
+      "type": "submit",
+      "className": "w-3 h-3 rounded-full transition-colors bg-gray-300",
+      "id": "",
+      "disabled": false,
+      "visible": true,
+      "selector": ".w-3"
+    },
+    {
+      "index": 12,
+      "text": "",
+      "type": "submit",
+      "className": "w-3 h-3 rounded-full transition-colors bg-gray-300",
+      "id": "",
+      "disabled": false,
+      "visible": true,
+      "selector": ".w-3"
+    },
+    {
+      "index": 13,
+      "text": "",
+      "type": "submit",
+      "className": "w-3 h-3 rounded-full transition-colors bg-gray-300",
+      "id": "",
+      "disabled": false,
+      "visible": true,
+      "selector": ".w-3"
+    },
+    {
+      "index": 14,
+      "text": "",
+      "type": "submit",
+      "className": "w-3 h-3 rounded-full transition-colors bg-gray-300",
+      "id": "",
+      "disabled": false,
+      "visible": true,
+      "selector": ".w-3"
+    },
+    {
+      "index": 15,
+      "text": "Previous",
+      "type": "submit",
+      "className": "inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-blue-500 px-4 py-2 text-base",
+      "id": "",
+      "disabled": true,
+      "visible": true,
+      "selector": ".inline-flex"
+    },
+    {
+      "index": 16,
+      "text": "Get Started",
+      "type": "submit",
+      "className": "inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 px-4 py-2 text-base min-w-[120px]",
+      "id": "",
+      "disabled": false,
+      "visible": true,
+      "selector": ".inline-flex"
+    },
+    {
+      "index": 17,
+      "text": "",
+      "type": "submit",
+      "className": "fixed bottom-20 right-6 bg-green-600 text-white rounded-full p-3 shadow-lg hover:bg-green-700 transition-colors z-40",
+      "id": "",
+      "disabled": false,
+      "visible": false,
+      "selector": ".fixed"
+    }
+  ],
+  "links": [
+    {
+      "index": 0,
+      "text": "Curriculum ExpectationsImport and organize curriculum standards",
+      "href": "http://localhost:5173/curriculum",
+      "className": "flex items-center py-2 px-4 false text-indigo-100 hover:bg-indigo-700",
+      "id": ""
+    },
+    {
+      "index": 1,
+      "text": "Long-Range PlansCreate year/term overview with major units",
+      "href": "http://localhost:5173/planner/dashboard",
+      "className": "flex items-center py-2 px-4 false text-indigo-400 cursor-not-allowed opacity-50",
+      "id": ""
+    },
+    {
+      "index": 2,
+      "text": "Unit PlansDevelop detailed instructional units",
+      "href": "http://localhost:5173/planner/units",
+      "className": "flex items-center py-2 px-4 false text-indigo-100 hover:bg-indigo-700",
+      "id": ""
+    },
+    {
+      "index": 3,
+      "text": "Lesson PlansPlan individual teaching sessions",
+      "href": "http://localhost:5173/planner/lessons",
+      "className": "flex items-center py-2 px-4 false text-indigo-100 hover:bg-indigo-700",
+      "id": ""
+    },
+    {
+      "index": 4,
+      "text": "DaybookMaintain daily planning records",
+      "href": "http://localhost:5173/planner/daybook",
+      "className": "flex items-center py-2 px-4 false text-indigo-100 hover:bg-indigo-700",
+      "id": ""
+    },
+    {
+      "index": 5,
+      "text": "Planning Dashboard",
+      "href": "http://localhost:5173/planner/dashboard",
+      "className": "flex items-center py-2 px-4 bg-indigo-900 text-white false",
+      "id": ""
+    },
+    {
+      "index": 6,
+      "text": "Calendar View",
+      "href": "http://localhost:5173/planner/calendar",
+      "className": "flex items-center py-2 px-4 text-indigo-100 hover:bg-indigo-700 false",
+      "id": ""
+    },
+    {
+      "index": 7,
+      "text": "Plan Templates",
+      "href": "http://localhost:5173/templates",
+      "className": "flex items-center py-2 px-4 text-indigo-100 hover:bg-indigo-700 false",
+      "id": ""
+    },
+    {
+      "index": 8,
+      "text": "Parent Newsletters",
+      "href": "http://localhost:5173/newsletters",
+      "className": "flex items-center py-2 px-4 text-indigo-100 hover:bg-indigo-700 false",
+      "id": ""
+    },
+    {
+      "index": 9,
+      "text": "Help & Documentation",
+      "href": "http://localhost:5173/help",
+      "className": "flex items-center py-2 px-4 text-indigo-100 hover:bg-indigo-700 false",
+      "id": ""
+    },
+    {
+      "index": 10,
+      "text": "Analytics",
+      "href": "http://localhost:5173/analytics",
+      "className": "flex items-center py-2 px-4 text-indigo-100 hover:bg-indigo-700 false",
+      "id": ""
+    },
+    {
+      "index": 11,
+      "text": "Teams",
+      "href": "http://localhost:5173/teams",
+      "className": "flex items-center py-2 px-4 text-indigo-100 hover:bg-indigo-700 false",
+      "id": ""
+    },
+    {
+      "index": 12,
+      "text": "Settings",
+      "href": "http://localhost:5173/settings",
+      "className": "flex items-center py-2 px-4 text-indigo-100 hover:bg-indigo-700 false",
+      "id": ""
+    },
+    {
+      "index": 13,
+      "text": "Create First Lesson",
+      "href": "http://localhost:5173/planner/quick-lesson",
+      "className": "",
+      "id": ""
+    },
+    {
+      "index": 14,
+      "text": "Commencer la planificationStart PlanningCreate your first lesson plan for Grade 1 French Immersion",
+      "href": "http://localhost:5173/planner/quick-lesson",
+      "className": "",
+      "id": "start-planning"
+    },
+    {
+      "index": 15,
+      "text": "Vue hebdomadaireWeekly ViewSee your week at a glance and plan ahead",
+      "href": "http://localhost:5173/planner/calendar",
+      "className": "",
+      "id": "weekly-view"
+    },
+    {
+      "index": 16,
+      "text": "Aide intelligenteSmart HelpGet French Immersion lesson suggestions",
+      "href": "http://localhost:5173/planner/quick-lesson",
+      "className": "",
+      "id": "ai-help"
+    },
+    {
+      "index": 17,
+      "text": "Communication aux parentsParent NewsletterGenerate weekly updates in French and English",
+      "href": "http://localhost:5173/planner/newsletter",
+      "className": "flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors",
+      "id": ""
+    },
+    {
+      "index": 18,
+      "text": "Modèles de leçonsLesson TemplatesFrench Immersion lesson templates",
+      "href": "http://localhost:5173/templates",
+      "className": "flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors",
+      "id": ""
+    }
+  ],
+  "forms": [],
+  "inputs": [],
+  "textContent": "\n    Teacher PlannerETFO Planning WorkflowStep 10%Curriculum ExpectationsImport and organize curriculum standardsStep 2100%Long-Range PlansCreate year/term overview with major unitsStep 3100%Unit PlansDevelop detailed instructional unitsStep 4100%Lesson PlansPlan individual teaching sessionsStep 5100%DaybookMaintain daily planning recordsResourcesPlanning DashboardCalendar ViewPlan TemplatesParent NewslettersHelp & DocumentationAnalyticsTeamsSettingsLogoutPlanning Dashboard🇨🇦EnglishTPBienvenue",
+  "hasContent": true
+}

@@ -11,9 +11,9 @@ import {
   generateAuthToken,
   hashPassword,
   validatePassword,
-} from '@/services/authService';
-import { asyncHandler } from '@/middleware/errorHandler';
-import logger from '@/logger';
+} from '../services/authService';
+import { asyncHandler } from '../middleware/errorHandler';
+import logger from '../logger';
 
 const loginSchema = z.object({
   email: z.string().email(),

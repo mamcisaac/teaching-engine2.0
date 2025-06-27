@@ -88,7 +88,7 @@ export async function login(page: Page) {
       const loginResponse = await api.post('/api/login', {
         data: {
           email: 'teacher@example.com',
-          password: 'password123',
+          password: 'Password123!',
         },
       });
 
@@ -125,14 +125,23 @@ export async function login(page: Page) {
       await page.goto('http://localhost:5173/login', { waitUntil: 'networkidle' });
 
       console.log('Waiting for login form...');
-      await page.waitForSelector('#email-address', {
+      await page.waitForSelector('input[name="email"], input[type="email"], #email-address', {
         state: 'visible',
         timeout: 10000,
       });
 
       console.log('Filling login form...');
-      await page.fill('#email-address', 'teacher@example.com');
-      await page.fill('#password', 'password123');
+      // Try multiple selectors for email field
+      const emailField = page
+        .locator('input[name="email"], input[type="email"], #email-address')
+        .first();
+      await emailField.fill('teacher@example.com');
+
+      // Try multiple selectors for password field
+      const passwordField = page
+        .locator('input[name="password"], input[type="password"], #password')
+        .first();
+      await passwordField.fill('Password123!');
 
       console.log('Submitting login form...');
       await page.screenshot({ path: 'test-results/before-login.png', fullPage: true });

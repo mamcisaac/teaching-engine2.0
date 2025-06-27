@@ -26,7 +26,7 @@ test('debug planner component errors', async ({ page }) => {
   await page.waitForLoadState('load');
 
   // Give React time to hydrate and render
-  await page.waitForTimeout(2000);
+  await page.waitForLoadState('networkidle', { timeout: 5000 });
 
   // Wait for planner components to load
   try {
@@ -37,7 +37,7 @@ test('debug planner component errors', async ({ page }) => {
   }
 
   // Wait a bit more for any errors to surface
-  await page.waitForTimeout(2000);
+  await page.waitForLoadState('networkidle', { timeout: 5000 });
 
   // Check if we can find the error boundary
   const errorBoundary = page.locator('text=Something went wrong');

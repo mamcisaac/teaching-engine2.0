@@ -402,9 +402,10 @@ export default function ParentNewsletterPage() {
         <button
           onClick={() => setShowNewNewsletterForm(true)}
           className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          data-testid="create-newsletter-button"
         >
           <Plus className="w-5 h-5" />
-          New Newsletter
+          Create Newsletter
         </button>
       </div>
 
@@ -425,6 +426,7 @@ export default function ParentNewsletterPage() {
             <button
               onClick={() => setShowNewNewsletterForm(true)}
               className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              data-testid="create-newsletter-empty-state-button"
             >
               <Plus className="w-4 h-4" />
               Create Newsletter

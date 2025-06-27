@@ -1,0 +1,212 @@
+b6e6bf1aa422c0beceb75669154cd84d
+/* istanbul ignore next */
+function cov_21ihxoh5kb() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/anthropicService.ts";
+  var hash = "01709327f3ed9f508f9725912b0d23b8299af44b";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/anthropicService.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 6,
+          column: 8
+        },
+        end: {
+          line: 12,
+          column: 10
+        }
+      },
+      "1": {
+        start: {
+          line: 16,
+          column: 8
+        },
+        end: {
+          line: 16,
+          column: 41
+        }
+      },
+      "2": {
+        start: {
+          line: 20,
+          column: 8
+        },
+        end: {
+          line: 20,
+          column: 52
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "(anonymous_0)",
+        decl: {
+          start: {
+            line: 3,
+            column: 4
+          },
+          end: {
+            line: 3,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 3,
+            column: 18
+          },
+          end: {
+            line: 3,
+            column: 21
+          }
+        },
+        line: 3
+      },
+      "1": {
+        name: "(anonymous_1)",
+        decl: {
+          start: {
+            line: 4,
+            column: 4
+          },
+          end: {
+            line: 4,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 4,
+            column: 36
+          },
+          end: {
+            line: 13,
+            column: 5
+          }
+        },
+        line: 4
+      },
+      "2": {
+        name: "(anonymous_2)",
+        decl: {
+          start: {
+            line: 14,
+            column: 4
+          },
+          end: {
+            line: 14,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 14,
+            column: 36
+          },
+          end: {
+            line: 17,
+            column: 5
+          }
+        },
+        line: 14
+      },
+      "3": {
+        name: "(anonymous_3)",
+        decl: {
+          start: {
+            line: 18,
+            column: 4
+          },
+          end: {
+            line: 18,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 18,
+            column: 38
+          },
+          end: {
+            line: 21,
+            column: 5
+          }
+        },
+        line: 18
+      }
+    },
+    branchMap: {},
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0
+    },
+    f: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0
+    },
+    b: {},
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/anthropicService.ts",
+      mappings: "AAAA,kDAAkD;AAClD,MAAM,OAAO,gBAAgB;IAC3B,gBAAe,CAAC;IAEhB,KAAK,CAAC,gBAAgB,CAAC,OAAgB;QAOrC,sBAAsB;QACtB,OAAO;YACL,KAAK,EAAE,oBAAoB;YAC3B,WAAW,EAAE,+BAA+B;YAC5C,QAAQ,EAAE,EAAE;YACZ,SAAS,EAAE,EAAE;YACb,aAAa,EAAE,EAAE;SAClB,CAAC;IACJ,CAAC;IAED,KAAK,CAAC,gBAAgB,CAAC,OAAe;QACpC,sBAAsB;QACtB,OAAO,yBAAyB,CAAC;IACnC,CAAC;IAED,KAAK,CAAC,kBAAkB,CAAC,OAIxB;QACC,sBAAsB;QACtB,OAAO,oCAAoC,CAAC;IAC9C,CAAC;CACF",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/anthropicService.ts"],
+      sourcesContent: ["// Stub for AnthropicService to fix missing import\nexport class AnthropicService {\n  constructor() {}\n\n  async generateActivity(_params: unknown): Promise<{\n    title: string;\n    description: string;\n    duration: number;\n    materials: string[];\n    learningGoals: string[];\n  }> {\n    // Stub implementation\n    return {\n      title: 'Generated Activity',\n      description: 'This is a stub implementation',\n      duration: 30,\n      materials: [],\n      learningGoals: [],\n    };\n  }\n\n  async generateResponse(_prompt: string): Promise<string> {\n    // Stub implementation\n    return 'This is a stub response';\n  }\n\n  async generateCompletion(_params: {\n    prompt: string;\n    systemPrompt?: string;\n    temperature?: number;\n  }): Promise<string> {\n    // Stub implementation\n    return 'This is a stub completion response';\n  }\n}\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "01709327f3ed9f508f9725912b0d23b8299af44b"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_21ihxoh5kb = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_21ihxoh5kb();
+// Stub for AnthropicService to fix missing import
+export class AnthropicService {
+  constructor() {
+    /* istanbul ignore next */
+    cov_21ihxoh5kb().f[0]++;
+  }
+  async generateActivity(_params) {
+    /* istanbul ignore next */
+    cov_21ihxoh5kb().f[1]++;
+    cov_21ihxoh5kb().s[0]++;
+    // Stub implementation
+    return {
+      title: 'Generated Activity',
+      description: 'This is a stub implementation',
+      duration: 30,
+      materials: [],
+      learningGoals: []
+    };
+  }
+  async generateResponse(_prompt) {
+    /* istanbul ignore next */
+    cov_21ihxoh5kb().f[2]++;
+    cov_21ihxoh5kb().s[1]++;
+    // Stub implementation
+    return 'This is a stub response';
+  }
+  async generateCompletion(_params) {
+    /* istanbul ignore next */
+    cov_21ihxoh5kb().f[3]++;
+    cov_21ihxoh5kb().s[2]++;
+    // Stub implementation
+    return 'This is a stub completion response';
+  }
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3ZfMjFpaHhvaDVrYiIsImFjdHVhbENvdmVyYWdlIiwiQW50aHJvcGljU2VydmljZSIsImNvbnN0cnVjdG9yIiwiZiIsImdlbmVyYXRlQWN0aXZpdHkiLCJfcGFyYW1zIiwicyIsInRpdGxlIiwiZGVzY3JpcHRpb24iLCJkdXJhdGlvbiIsIm1hdGVyaWFscyIsImxlYXJuaW5nR29hbHMiLCJnZW5lcmF0ZVJlc3BvbnNlIiwiX3Byb21wdCIsImdlbmVyYXRlQ29tcGxldGlvbiJdLCJzb3VyY2VzIjpbIi9Vc2Vycy9taWNoYWVsbWNpc2FhYy9HaXRIdWIvdGVhY2hpbmctZW5naW5lMi4wL3NlcnZlci9zcmMvc2VydmljZXMvYW50aHJvcGljU2VydmljZS50cyJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBTdHViIGZvciBBbnRocm9waWNTZXJ2aWNlIHRvIGZpeCBtaXNzaW5nIGltcG9ydFxuZXhwb3J0IGNsYXNzIEFudGhyb3BpY1NlcnZpY2Uge1xuICBjb25zdHJ1Y3RvcigpIHt9XG5cbiAgYXN5bmMgZ2VuZXJhdGVBY3Rpdml0eShfcGFyYW1zOiB1bmtub3duKTogUHJvbWlzZTx7XG4gICAgdGl0bGU6IHN0cmluZztcbiAgICBkZXNjcmlwdGlvbjogc3RyaW5nO1xuICAgIGR1cmF0aW9uOiBudW1iZXI7XG4gICAgbWF0ZXJpYWxzOiBzdHJpbmdbXTtcbiAgICBsZWFybmluZ0dvYWxzOiBzdHJpbmdbXTtcbiAgfT4ge1xuICAgIC8vIFN0dWIgaW1wbGVtZW50YXRpb25cbiAgICByZXR1cm4ge1xuICAgICAgdGl0bGU6ICdHZW5lcmF0ZWQgQWN0aXZpdHknLFxuICAgICAgZGVzY3JpcHRpb246ICdUaGlzIGlzIGEgc3R1YiBpbXBsZW1lbnRhdGlvbicsXG4gICAgICBkdXJhdGlvbjogMzAsXG4gICAgICBtYXRlcmlhbHM6IFtdLFxuICAgICAgbGVhcm5pbmdHb2FsczogW10sXG4gICAgfTtcbiAgfVxuXG4gIGFzeW5jIGdlbmVyYXRlUmVzcG9uc2UoX3Byb21wdDogc3RyaW5nKTogUHJvbWlzZTxzdHJpbmc+IHtcbiAgICAvLyBTdHViIGltcGxlbWVudGF0aW9uXG4gICAgcmV0dXJuICdUaGlzIGlzIGEgc3R1YiByZXNwb25zZSc7XG4gIH1cblxuICBhc3luYyBnZW5lcmF0ZUNvbXBsZXRpb24oX3BhcmFtczoge1xuICAgIHByb21wdDogc3RyaW5nO1xuICAgIHN5c3RlbVByb21wdD86IHN0cmluZztcbiAgICB0ZW1wZXJhdHVyZT86IG51bWJlcjtcbiAgfSk6IFByb21pc2U8c3RyaW5nPiB7XG4gICAgLy8gU3R1YiBpbXBsZW1lbnRhdGlvblxuICAgIHJldHVybiAnVGhpcyBpcyBhIHN0dWIgY29tcGxldGlvbiByZXNwb25zZSc7XG4gIH1cbn1cbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0lBdUJJO0lBQUFBLGNBQUEsWUFBQUEsQ0FBQTtNQUFBLE9BQUFDLGNBQUE7SUFBQTtFQUFBO0VBQUEsT0FBQUEsY0FBQTtBQUFBO0FBQUFELGNBQUE7QUF2Qko7QUFDQSxPQUFNLE1BQU9FLGdCQUFnQjtFQUMzQkMsWUFBQTtJQUFBO0lBQUFILGNBQUEsR0FBQUksQ0FBQTtFQUFlO0VBRWYsTUFBTUMsZ0JBQWdCQSxDQUFDQyxPQUFnQjtJQUFBO0lBQUFOLGNBQUEsR0FBQUksQ0FBQTtJQUFBSixjQUFBLEdBQUFPLENBQUE7SUFPckM7SUFDQSxPQUFPO01BQ0xDLEtBQUssRUFBRSxvQkFBb0I7TUFDM0JDLFdBQVcsRUFBRSwrQkFBK0I7TUFDNUNDLFFBQVEsRUFBRSxFQUFFO01BQ1pDLFNBQVMsRUFBRSxFQUFFO01BQ2JDLGFBQWEsRUFBRTtLQUNoQjtFQUNIO0VBRUEsTUFBTUMsZ0JBQWdCQSxDQUFDQyxPQUFlO0lBQUE7SUFBQWQsY0FBQSxHQUFBSSxDQUFBO0lBQUFKLGNBQUEsR0FBQU8sQ0FBQTtJQUNwQztJQUNBLE9BQU8seUJBQXlCO0VBQ2xDO0VBRUEsTUFBTVEsa0JBQWtCQSxDQUFDVCxPQUl4QjtJQUFBO0lBQUFOLGNBQUEsR0FBQUksQ0FBQTtJQUFBSixjQUFBLEdBQUFPLENBQUE7SUFDQztJQUNBLE9BQU8sb0NBQW9DO0VBQzdDIiwiaWdub3JlTGlzdCI6W119

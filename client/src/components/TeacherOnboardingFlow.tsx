@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/Button';
-// import { Card } from './ui/card'; // Unused import
 import { Progress } from './ui/Progress';
-// import { Badge } from './ui/Badge'; // Unused import
 import { api } from '../api';
+import { useLanguage } from '../contexts/LanguageContext';
+import LanguageSwitcher from './LanguageSwitcher';
 import PreferenceWizard from './onboarding/PreferenceWizard';
 
 interface OnboardingStep {
@@ -23,19 +23,29 @@ interface TeacherOnboardingFlowProps {
 }
 
 export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps) {
+  const { t } = useLanguage();
+  const navigate = useNavigate();
+
+  // Initialize state with more stable logic to prevent flashing
   const [visible, setVisible] = useState(() => {
-    const onboarded = localStorage.getItem('onboarded');
-    const completedSteps = localStorage.getItem('onboarding-completed-steps');
-    return onboarded !== 'true' || !completedSteps;
+    try {
+      const onboarded = localStorage.getItem('onboarded');
+      return onboarded !== 'true';
+    } catch {
+      return true;
+    }
   });
 
   const [currentStep, setCurrentStep] = useState(0);
   const [completedSteps, setCompletedSteps] = useState<string[]>(() => {
-    const saved = localStorage.getItem('onboarding-completed-steps');
-    return saved ? JSON.parse(saved) : [];
+    try {
+      const saved = localStorage.getItem('onboarding-completed-steps');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
   });
   const [isCreatingSampleData, setIsCreatingSampleData] = useState(false);
-  const navigate = useNavigate();
 
   // Define completeOnboarding first
   const completeOnboarding = () => {
@@ -44,26 +54,32 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
     onComplete?.();
   };
 
-  // Save completed steps to localStorage
+  // Save completed steps to localStorage with debouncing to prevent flashing
   useEffect(() => {
-    localStorage.setItem('onboarding-completed-steps', JSON.stringify(completedSteps));
+    if (completedSteps.length > 0) {
+      try {
+        localStorage.setItem('onboarding-completed-steps', JSON.stringify(completedSteps));
+      } catch (error) {
+        console.warn('Failed to save onboarding progress:', error);
+      }
+    }
   }, [completedSteps]);
 
   // Handle escape key to close wizard
   useEffect(() => {
+    if (!visible) return;
+
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && visible) {
+      if (event.key === 'Escape') {
         completeOnboarding();
       }
     };
 
-    if (visible) {
-      document.addEventListener('keydown', handleEscape);
-      return () => {
-        document.removeEventListener('keydown', handleEscape);
-      };
-    }
-  }, [visible]);
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [visible, completeOnboarding]);
 
   const markStepCompleted = (stepId: string) => {
     if (!completedSteps.includes(stepId)) {
@@ -128,12 +144,28 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
     setCurrentStep(stepIndex);
   };
 
+  const nextStep = () => {
+    const nextStepIndex = currentStep + 1;
+    if (nextStepIndex < steps.length) {
+      setCurrentStep(nextStepIndex);
+    }
+  };
+
+  const previousStep = () => {
+    const prevStepIndex = currentStep - 1;
+    if (prevStepIndex >= 0) {
+      setCurrentStep(prevStepIndex);
+    }
+  };
+
   const steps: OnboardingStep[] = [
     {
       id: 'welcome',
-      title: 'Welcome to Teaching Engine 2.0',
-      description:
+      title: t('welcome_title', 'Welcome to Teaching Engine 2.0'),
+      description: t(
+        'welcome_description',
         'Your comprehensive digital teaching assistant designed to reduce workload by 60%',
+      ),
       content: (
         <div className="space-y-6">
           <div className="text-center">
@@ -152,10 +184,14 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Built for Elementary Teachers</h3>
+            <h3 className="text-xl font-semibold mb-2">
+              {t('built_for_teachers', 'Built for Elementary Teachers')}
+            </h3>
             <p className="text-gray-600 mb-6">
-              Teaching Engine 2.0 follows the ETFO planning workflow to help you create
-              comprehensive, curriculum-aligned lesson plans with AI assistance.
+              {t(
+                'built_for_teachers_desc',
+                'Teaching Engine 2.0 follows the ETFO planning workflow to help you create comprehensive, curriculum-aligned lesson plans with AI assistance.',
+              )}
             </p>
           </div>
 
@@ -225,17 +261,20 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
         </div>
       ),
       action: {
-        label: 'Get Started',
+        label: t('get_started', 'Get Started'),
         onClick: () => {
           markStepCompleted('welcome');
-          setCurrentStep(1);
+          nextStep();
         },
       },
     },
     {
       id: 'etfo-workflow',
-      title: 'Understanding the ETFO Planning Workflow',
-      description: 'Learn the 5-level structured approach to lesson planning',
+      title: t('etfo_workflow_title', 'Understanding the ETFO Planning Workflow'),
+      description: t(
+        'etfo_workflow_description',
+        'Learn the 5-level structured approach to lesson planning',
+      ),
       content: (
         <div className="space-y-6">
           <p className="text-gray-600 mb-6">
@@ -299,17 +338,20 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
         </div>
       ),
       action: {
-        label: 'Continue',
+        label: t('continue', 'Continue'),
         onClick: () => {
           markStepCompleted('etfo-workflow');
-          setCurrentStep(2);
+          nextStep();
         },
       },
     },
     {
       id: 'sample-data',
-      title: 'Set Up Sample Data',
-      description: 'Let us create some sample curriculum and plans to help you explore',
+      title: t('sample_data_title', 'Set Up Sample Data'),
+      description: t(
+        'sample_data_description',
+        'Let us create some sample curriculum and plans to help you explore',
+      ),
       content: (
         <div className="space-y-6">
           <div className="text-center">
@@ -400,10 +442,12 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
         </div>
       ),
       action: {
-        label: completedSteps.includes('sample-data') ? 'Continue' : 'Create Sample Data',
+        label: completedSteps.includes('sample-data')
+          ? t('continue', 'Continue')
+          : t('create_sample_data', 'Create Sample Data'),
         onClick: () => {
           if (completedSteps.includes('sample-data')) {
-            setCurrentStep(3);
+            nextStep();
           } else {
             createSampleData();
           }
@@ -412,8 +456,11 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
     },
     {
       id: 'navigation',
-      title: 'Navigate Your Teaching Dashboard',
-      description: 'Learn how to use the sidebar and access key features',
+      title: t('navigation_title', 'Navigate Your Teaching Dashboard'),
+      description: t(
+        'navigation_description',
+        'Learn how to use the sidebar and access key features',
+      ),
       content: (
         <div className="space-y-6">
           <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-6 border border-indigo-200">
@@ -517,34 +564,40 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
         </div>
       ),
       action: {
-        label: 'Continue',
+        label: t('continue', 'Continue'),
         onClick: () => {
           markStepCompleted('navigation');
-          setCurrentStep(4);
+          nextStep();
         },
       },
     },
     {
       id: 'preferences',
-      title: 'Customize Your Experience',
-      description: 'Set your preferences to personalize Teaching Engine 2.0',
+      title: t('customize_experience', 'Customize Your Experience'),
+      description: t(
+        'customize_experience_desc',
+        'Set your preferences to personalize Teaching Engine 2.0',
+      ),
       content: (
         <PreferenceWizard
           onComplete={() => {
             markStepCompleted('preferences');
-            setCurrentStep(5);
+            nextStep();
           }}
           onSkip={() => {
             markStepCompleted('preferences');
-            setCurrentStep(5);
+            nextStep();
           }}
         />
       ),
     },
     {
       id: 'features',
-      title: 'Key Features & AI Assistance',
-      description: 'Discover the powerful features that will transform your teaching workflow',
+      title: t('features_title', 'Key Features & AI Assistance'),
+      description: t(
+        'features_description',
+        'Discover the powerful features that will transform your teaching workflow',
+      ),
       content: (
         <div className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -668,7 +721,7 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
         </div>
       ),
       action: {
-        label: 'Start Teaching!',
+        label: t('start_teaching', 'Start Teaching!'),
         onClick: () => {
           markStepCompleted('features');
           completeOnboarding();
@@ -689,27 +742,35 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
         {/* Header */}
         <div className="border-b border-gray-200 p-6">
           <div className="flex items-center justify-between mb-4">
-            <div>
+            <div className="flex-1">
               <h2 className="text-2xl font-bold text-gray-900">{currentStepData.title}</h2>
               <p className="text-gray-600 mt-1">{currentStepData.description}</p>
             </div>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={completeOnboarding}
-              className="text-gray-500 hover:text-gray-700"
-            >
-              Skip Tour
-            </Button>
+            <div className="flex items-center space-x-3">
+              <LanguageSwitcher />
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={completeOnboarding}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                {t('skip_tour', 'Skip Tour')}
+              </Button>
+            </div>
           </div>
 
           {/* Progress bar */}
           <div className="space-y-2">
             <div className="flex justify-between text-sm text-gray-500">
               <span>
-                Step {currentStep + 1} of {steps.length}
+                {t('step_x_of_y', 'Step {0} of {1}', [
+                  (currentStep + 1).toString(),
+                  steps.length.toString(),
+                ])}
               </span>
-              <span>{Math.round(progress)}% complete</span>
+              <span>
+                {t('percent_complete', '{0}% complete', [Math.round(progress).toString()])}
+              </span>
             </div>
             <Progress value={progress} className="h-2" />
           </div>
@@ -738,16 +799,12 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
 
         {/* Actions */}
         <div className="border-t border-gray-200 p-6 flex justify-between items-center">
-          <Button
-            variant="outline"
-            onClick={() => setCurrentStep(Math.max(0, currentStep - 1))}
-            disabled={currentStep === 0}
-          >
-            Previous
+          <Button variant="outline" onClick={previousStep} disabled={currentStep === 0}>
+            {t('previous', 'Previous')}
           </Button>
 
           <div className="flex items-center space-x-3">
-            {currentStepData.action && (
+            {currentStepData.action ? (
               <Button
                 onClick={currentStepData.action.onClick}
                 disabled={isCreatingSampleData}
@@ -756,12 +813,18 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
                 {isCreatingSampleData ? (
                   <div className="flex items-center space-x-2">
                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    <span>Creating...</span>
+                    <span>{t('loading', 'Loading...')}</span>
                   </div>
                 ) : (
                   currentStepData.action.label
                 )}
               </Button>
+            ) : (
+              currentStep < steps.length - 1 && (
+                <Button onClick={nextStep} className="min-w-[120px]">
+                  {t('next', 'Next')}
+                </Button>
+              )
             )}
           </div>
         </div>

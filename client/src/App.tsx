@@ -10,6 +10,7 @@ import { KeyboardShortcutsProvider } from './contexts/KeyboardShortcutsContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import MainLayout from './components/MainLayout';
 import { GlobalErrorBoundary } from './components/ErrorBoundaries';
+import { AppAuthErrorBoundary } from './components/AuthErrorBoundary';
 import WorkflowGate from './components/WorkflowGate';
 import { ETFOLevel } from './hooks/useWorkflowState';
 import { OfflineNotification } from './components/OfflineNotification';
@@ -319,19 +320,21 @@ export default function App() {
   return (
     <GlobalErrorBoundary>
       <AuthProvider>
-        <LanguageProvider>
-          <NotificationProvider>
-            <HelpProvider>
-              <OnboardingProvider>
-                <KeyboardShortcutsProvider>
-                  <AppRoutes />
-                  <GlobalKeyboardShortcuts />
-                  <OfflineNotification />
-                </KeyboardShortcutsProvider>
-              </OnboardingProvider>
-            </HelpProvider>
-          </NotificationProvider>
-        </LanguageProvider>
+        <AppAuthErrorBoundary>
+          <LanguageProvider>
+            <NotificationProvider>
+              <HelpProvider>
+                <OnboardingProvider>
+                  <KeyboardShortcutsProvider>
+                    <AppRoutes />
+                    <GlobalKeyboardShortcuts />
+                    <OfflineNotification />
+                  </KeyboardShortcutsProvider>
+                </OnboardingProvider>
+              </HelpProvider>
+            </NotificationProvider>
+          </LanguageProvider>
+        </AppAuthErrorBoundary>
       </AuthProvider>
     </GlobalErrorBoundary>
   );

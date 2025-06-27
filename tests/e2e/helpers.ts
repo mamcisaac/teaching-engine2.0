@@ -26,7 +26,7 @@ export async function login(page: Page): Promise<string> {
   }
 
   const res = await page.request.post(`${API_BASE}/api/login`, {
-    data: { email: 'teacher@example.com', password: 'password123' },
+    data: { email: 'teacher@example.com', password: 'Password123!' },
   });
 
   if (!res.ok()) {
@@ -63,7 +63,7 @@ export async function login(page: Page): Promise<string> {
   await page.waitForLoadState('load');
 
   // Give React time to hydrate and initialize
-  await page.waitForTimeout(2000);
+  await page.waitForLoadState('networkidle', { timeout: 5000 });
 
   // Verify token is set in localStorage
   const storedToken = await page.evaluate(() => localStorage.getItem('token'));
@@ -72,7 +72,7 @@ export async function login(page: Page): Promise<string> {
   }
 
   // Wait for any potential redirects or authentication checks
-  await page.waitForTimeout(1000);
+  await page.waitForLoadState('domcontentloaded', { timeout: 5000 });
 
   return token;
 }

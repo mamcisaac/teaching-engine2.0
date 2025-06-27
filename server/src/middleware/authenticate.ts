@@ -5,7 +5,7 @@
 
 import { Request, Response, NextFunction } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import logger from '@/logger';
+import logger from '../logger';
 
 // Express Request type is extended in types/express.d.ts
 

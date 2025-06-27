@@ -55,7 +55,7 @@ import {
 export default function TemplatesPage() {
   const { templateId } = useParams();
   const navigate = useNavigate();
-  
+
   // State management
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState<TemplateType | 'all'>('all');
@@ -64,16 +64,18 @@ export default function TemplatesPage() {
   const [selectedGrade, setSelectedGrade] = useState<number | 'all'>('all');
   const [showFilters, setShowFilters] = useState(false);
   const [view, setView] = useState<'all' | 'system' | 'public' | 'mine'>('all');
-  const [sortBy, setSortBy] = useState<'title' | 'usageCount' | 'averageRating' | 'createdAt'>('createdAt');
+  const [sortBy, setSortBy] = useState<'title' | 'usageCount' | 'averageRating' | 'createdAt'>(
+    'createdAt',
+  );
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
-  
+
   // Modals
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<PlanTemplate | null>(null);
   // const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  
+
   // Form state for creating/editing templates
   const [formData, setFormData] = useState<Partial<TemplateCreateData>>({
     title: '',
@@ -150,7 +152,7 @@ export default function TemplatesPage() {
 
   const handleDeleteTemplate = async () => {
     if (!selectedTemplate) return;
-    
+
     try {
       await deleteTemplate.mutateAsync(selectedTemplate.id);
       setIsDeleteModalOpen(false);
@@ -166,17 +168,17 @@ export default function TemplatesPage() {
   const handleApplyTemplate = async (template: PlanTemplate) => {
     try {
       const applied = await applyTemplate.mutateAsync({ id: template.id });
-      
+
       // Navigate to appropriate planning page based on template type
       if (template.type === 'UNIT_PLAN') {
         // Pass template data to unit plan creation
-        navigate('/planner/units', { 
-          state: { templateData: applied.appliedContent } 
+        navigate('/planner/units', {
+          state: { templateData: applied.appliedContent },
         });
       } else {
         // Pass template data to lesson plan creation
-        navigate('/planner/lessons', { 
-          state: { templateData: applied.appliedContent } 
+        navigate('/planner/lessons', {
+          state: { templateData: applied.appliedContent },
         });
       }
     } catch (error) {
@@ -204,15 +206,15 @@ export default function TemplatesPage() {
               <CardDescription className="text-sm">
                 {template.type === 'UNIT_PLAN' ? 'Unit Plan' : 'Lesson Plan'}
                 {template.subject && ` • ${template.subject}`}
-                {template.gradeMin === template.gradeMax 
+                {template.gradeMin === template.gradeMax
                   ? ` • Grade ${template.gradeMin}`
                   : template.gradeMin && template.gradeMax
-                  ? ` • Grades ${template.gradeMin}-${template.gradeMax}`
-                  : ''}
+                    ? ` • Grades ${template.gradeMin}-${template.gradeMax}`
+                    : ''}
               </CardDescription>
             </div>
           </div>
-          
+
           <div className="flex items-center gap-1">
             {template.isSystem && (
               <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
@@ -227,12 +229,10 @@ export default function TemplatesPage() {
           </div>
         </div>
       </CardHeader>
-      
+
       <CardContent>
-        <p className="text-sm text-gray-600 mb-4 line-clamp-3">
-          {template.description}
-        </p>
-        
+        <p className="text-sm text-gray-600 mb-4 line-clamp-3">{template.description}</p>
+
         <div className="flex flex-wrap gap-1 mb-4">
           {template.tags.slice(0, 3).map((tag) => (
             <span key={tag} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
@@ -245,7 +245,7 @@ export default function TemplatesPage() {
             </span>
           )}
         </div>
-        
+
         <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
           <div className="flex items-center gap-4">
             {template.averageRating && (
@@ -259,7 +259,7 @@ export default function TemplatesPage() {
               <span>{template.usageCount}</span>
             </div>
           </div>
-          
+
           {template.estimatedWeeks && (
             <div className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
@@ -273,7 +273,7 @@ export default function TemplatesPage() {
             </div>
           )}
         </div>
-        
+
         <div className="flex gap-2">
           <Button
             size="sm"
@@ -286,7 +286,7 @@ export default function TemplatesPage() {
             <Eye className="h-4 w-4 mr-1" />
             Preview
           </Button>
-          
+
           <Button
             size="sm"
             variant="outline"
@@ -296,15 +296,11 @@ export default function TemplatesPage() {
             <Plus className="h-4 w-4 mr-1" />
             Use
           </Button>
-          
-          <Button
-            size="sm"
-            variant="ghost"
-            onClick={() => handleDuplicateTemplate(template)}
-          >
+
+          <Button size="sm" variant="ghost" onClick={() => handleDuplicateTemplate(template)}>
             <Copy className="h-4 w-4" />
           </Button>
-          
+
           {template.createdByUserId && !template.isSystem && (
             <Button
               size="sm"
@@ -353,6 +349,7 @@ export default function TemplatesPage() {
           <Button
             onClick={() => setIsCreateModalOpen(true)}
             className="bg-indigo-600 hover:bg-indigo-700 text-white"
+            data-testid="create-template-button"
           >
             <Plus className="h-4 w-4 mr-2" />
             Create Template
@@ -372,7 +369,7 @@ export default function TemplatesPage() {
               className="pl-10"
             />
           </div>
-          
+
           <Button
             variant="outline"
             onClick={() => setShowFilters(!showFilters)}
@@ -380,7 +377,11 @@ export default function TemplatesPage() {
           >
             <Filter className="h-4 w-4" />
             Filters
-            {showFilters ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
+            {showFilters ? (
+              <ChevronDown className="h-4 w-4" />
+            ) : (
+              <ChevronRight className="h-4 w-4" />
+            )}
           </Button>
         </div>
 
@@ -392,7 +393,9 @@ export default function TemplatesPage() {
                   <Label>View</Label>
                   <select
                     value={view}
-                    onChange={(e) => setView(e.target.value as 'all' | 'system' | 'public' | 'mine')}
+                    onChange={(e) =>
+                      setView(e.target.value as 'all' | 'system' | 'public' | 'mine')
+                    }
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
                   >
                     <option value="all">All Templates</option>
@@ -419,12 +422,16 @@ export default function TemplatesPage() {
                   <Label>Category</Label>
                   <select
                     value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value as TemplateCategory | 'all')}
+                    onChange={(e) =>
+                      setSelectedCategory(e.target.value as TemplateCategory | 'all')
+                    }
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
                   >
                     <option value="all">All Categories</option>
                     {Object.entries(TEMPLATE_CATEGORIES).map(([key, { label }]) => (
-                      <option key={key} value={key}>{label}</option>
+                      <option key={key} value={key}>
+                        {label}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -438,7 +445,9 @@ export default function TemplatesPage() {
                   >
                     <option value="all">All Subjects</option>
                     {filterOptions?.subjects.map((subject) => (
-                      <option key={subject} value={subject}>{subject}</option>
+                      <option key={subject} value={subject}>
+                        {subject}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -447,12 +456,16 @@ export default function TemplatesPage() {
                   <Label>Grade</Label>
                   <select
                     value={selectedGrade}
-                    onChange={(e) => setSelectedGrade(e.target.value === 'all' ? 'all' : parseInt(e.target.value))}
+                    onChange={(e) =>
+                      setSelectedGrade(e.target.value === 'all' ? 'all' : parseInt(e.target.value))
+                    }
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
                   >
                     <option value="all">All Grades</option>
                     {filterOptions?.grades.map((grade) => (
-                      <option key={grade} value={grade}>Grade {grade}</option>
+                      <option key={grade} value={grade}>
+                        Grade {grade}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -461,7 +474,11 @@ export default function TemplatesPage() {
                   <Label>Sort By</Label>
                   <select
                     value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value as 'title' | 'usageCount' | 'averageRating' | 'createdAt')}
+                    onChange={(e) =>
+                      setSortBy(
+                        e.target.value as 'title' | 'usageCount' | 'averageRating' | 'createdAt',
+                      )
+                    }
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
                   >
                     <option value="createdAt">Created Date</option>
@@ -501,10 +518,15 @@ export default function TemplatesPage() {
             <BookOpen className="mx-auto h-12 w-12 text-gray-400 mb-4" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">No templates found</h3>
             <p className="text-gray-500 mb-4">
-              {searchTerm ? 'Try adjusting your search or filters' : 'Get started by creating your first template'}
+              {searchTerm
+                ? 'Try adjusting your search or filters'
+                : 'Get started by creating your first template'}
             </p>
             {!searchTerm && (
-              <Button onClick={() => setIsCreateModalOpen(true)}>
+              <Button
+                onClick={() => setIsCreateModalOpen(true)}
+                data-testid="create-template-empty-state-button"
+              >
                 Create Template
               </Button>
             )}
@@ -522,7 +544,7 @@ export default function TemplatesPage() {
       <Dialog open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen}>
         <div className="p-6 max-w-2xl max-h-[90vh] overflow-y-auto">
           <h3 className="text-lg font-semibold mb-4">Create New Template</h3>
-          
+
           <form onSubmit={handleCreateTemplate} className="space-y-4">
             <div>
               <Label>Title</Label>
@@ -549,7 +571,9 @@ export default function TemplatesPage() {
                 <Label>Type</Label>
                 <select
                   value={formData.type}
-                  onChange={(e) => setFormData({ ...formData, type: e.target.value as TemplateType })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, type: e.target.value as TemplateType })
+                  }
                   className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
                   required
                 >
@@ -562,12 +586,16 @@ export default function TemplatesPage() {
                 <Label>Category</Label>
                 <select
                   value={formData.category}
-                  onChange={(e) => setFormData({ ...formData, category: e.target.value as TemplateCategory })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, category: e.target.value as TemplateCategory })
+                  }
                   className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
                   required
                 >
                   {Object.entries(TEMPLATE_CATEGORIES).map(([key, { label }]) => (
-                    <option key={key} value={key}>{label}</option>
+                    <option key={key} value={key}>
+                      {label}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -590,7 +618,12 @@ export default function TemplatesPage() {
                   min="1"
                   max="12"
                   value={formData.gradeMin || ''}
-                  onChange={(e) => setFormData({ ...formData, gradeMin: e.target.value ? parseInt(e.target.value) : undefined })}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      gradeMin: e.target.value ? parseInt(e.target.value) : undefined,
+                    })
+                  }
                 />
               </div>
 
@@ -601,7 +634,12 @@ export default function TemplatesPage() {
                   min="1"
                   max="12"
                   value={formData.gradeMax || ''}
-                  onChange={(e) => setFormData({ ...formData, gradeMax: e.target.value ? parseInt(e.target.value) : undefined })}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      gradeMax: e.target.value ? parseInt(e.target.value) : undefined,
+                    })
+                  }
                 />
               </div>
             </div>
@@ -614,15 +652,13 @@ export default function TemplatesPage() {
                 onChange={(e) => setFormData({ ...formData, isPublic: e.target.checked })}
                 className="rounded"
               />
-              <Label htmlFor="isPublic">Make this template public (other teachers can use it)</Label>
+              <Label htmlFor="isPublic">
+                Make this template public (other teachers can use it)
+              </Label>
             </div>
 
             <div className="flex justify-end gap-3 pt-4">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setIsCreateModalOpen(false)}
-              >
+              <Button type="button" variant="outline" onClick={() => setIsCreateModalOpen(false)}>
                 Cancel
               </Button>
               <Button
@@ -647,7 +683,7 @@ export default function TemplatesPage() {
                   <h3 className="text-xl font-semibold">{selectedTemplate.title}</h3>
                   <p className="text-gray-600 mt-1">{selectedTemplate.description}</p>
                 </div>
-                
+
                 <div className="flex gap-2">
                   <Button
                     onClick={() => handleApplyTemplate(selectedTemplate)}
@@ -699,7 +735,7 @@ export default function TemplatesPage() {
                 {isUnitPlanTemplate(selectedTemplate) && (
                   <div className="space-y-4">
                     <h4 className="font-semibold">Unit Plan Content</h4>
-                    
+
                     {selectedTemplate.content.overview && (
                       <div>
                         <h5 className="font-medium mb-2">Overview</h5>
@@ -714,55 +750,67 @@ export default function TemplatesPage() {
                       </div>
                     )}
 
-                    {selectedTemplate.content.learningGoals && selectedTemplate.content.learningGoals.length > 0 && (
-                      <div>
-                        <h5 className="font-medium mb-2">Learning Goals</h5>
-                        <ul className="list-disc list-inside space-y-1">
-                          {selectedTemplate.content.learningGoals.map((goal, index) => (
-                            <li key={index} className="text-gray-700">{goal}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+                    {selectedTemplate.content.learningGoals &&
+                      selectedTemplate.content.learningGoals.length > 0 && (
+                        <div>
+                          <h5 className="font-medium mb-2">Learning Goals</h5>
+                          <ul className="list-disc list-inside space-y-1">
+                            {selectedTemplate.content.learningGoals.map((goal, index) => (
+                              <li key={index} className="text-gray-700">
+                                {goal}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
 
-                    {selectedTemplate.content.essentialQuestions && selectedTemplate.content.essentialQuestions.length > 0 && (
-                      <div>
-                        <h5 className="font-medium mb-2">Essential Questions</h5>
-                        <ul className="list-disc list-inside space-y-1">
-                          {selectedTemplate.content.essentialQuestions.map((question, index) => (
-                            <li key={index} className="text-gray-700">{question}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+                    {selectedTemplate.content.essentialQuestions &&
+                      selectedTemplate.content.essentialQuestions.length > 0 && (
+                        <div>
+                          <h5 className="font-medium mb-2">Essential Questions</h5>
+                          <ul className="list-disc list-inside space-y-1">
+                            {selectedTemplate.content.essentialQuestions.map((question, index) => (
+                              <li key={index} className="text-gray-700">
+                                {question}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                   </div>
                 )}
 
                 {isLessonPlanTemplate(selectedTemplate) && (
                   <div className="space-y-4">
                     <h4 className="font-semibold">Lesson Plan Content</h4>
-                    
-                    {selectedTemplate.content.objectives && selectedTemplate.content.objectives.length > 0 && (
-                      <div>
-                        <h5 className="font-medium mb-2">Learning Objectives</h5>
-                        <ul className="list-disc list-inside space-y-1">
-                          {selectedTemplate.content.objectives.map((objective, index) => (
-                            <li key={index} className="text-gray-700">{objective}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
 
-                    {selectedTemplate.content.materials && selectedTemplate.content.materials.length > 0 && (
-                      <div>
-                        <h5 className="font-medium mb-2">Materials</h5>
-                        <ul className="list-disc list-inside space-y-1">
-                          {selectedTemplate.content.materials.map((material, index) => (
-                            <li key={index} className="text-gray-700">{material}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+                    {selectedTemplate.content.objectives &&
+                      selectedTemplate.content.objectives.length > 0 && (
+                        <div>
+                          <h5 className="font-medium mb-2">Learning Objectives</h5>
+                          <ul className="list-disc list-inside space-y-1">
+                            {selectedTemplate.content.objectives.map((objective, index) => (
+                              <li key={index} className="text-gray-700">
+                                {objective}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                    {selectedTemplate.content.materials &&
+                      selectedTemplate.content.materials.length > 0 && (
+                        <div>
+                          <h5 className="font-medium mb-2">Materials</h5>
+                          <ul className="list-disc list-inside space-y-1">
+                            {selectedTemplate.content.materials.map((material, index) => (
+                              <li key={index} className="text-gray-700">
+                                {material}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
 
                     <div className="grid gap-4">
                       {selectedTemplate.content.mindsOn && (
@@ -795,7 +843,10 @@ export default function TemplatesPage() {
                     <h5 className="font-medium mb-2">Tags</h5>
                     <div className="flex flex-wrap gap-2">
                       {selectedTemplate.tags.map((tag) => (
-                        <span key={tag} className="px-2 py-1 bg-gray-100 text-gray-700 text-sm rounded">
+                        <span
+                          key={tag}
+                          className="px-2 py-1 bg-gray-100 text-gray-700 text-sm rounded"
+                        >
                           {tag}
                         </span>
                       ))}
@@ -813,14 +864,12 @@ export default function TemplatesPage() {
         <div className="p-6">
           <h3 className="text-lg font-semibold mb-4">Delete Template</h3>
           <p className="text-gray-600 mb-6">
-            Are you sure you want to delete &quot;{selectedTemplate?.title}&quot;? This action cannot be undone.
+            Are you sure you want to delete &quot;{selectedTemplate?.title}&quot;? This action
+            cannot be undone.
           </p>
-          
+
           <div className="flex justify-end gap-3">
-            <Button
-              variant="outline"
-              onClick={() => setIsDeleteModalOpen(false)}
-            >
+            <Button variant="outline" onClick={() => setIsDeleteModalOpen(false)}>
               Cancel
             </Button>
             <Button

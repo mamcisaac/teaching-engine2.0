@@ -35,7 +35,7 @@ test('debug login page', async ({ page }) => {
   await page.waitForLoadState('load');
 
   // Give React time to hydrate
-  await page.waitForTimeout(2000);
+  await page.waitForLoadState('networkidle', { timeout: 5000 });
 
   // Log the page title and URL
   try {

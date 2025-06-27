@@ -1,0 +1,53 @@
+8dc6d1841a31f4d31bf7f1a7b7f3a1d1
+/* istanbul ignore next */
+function cov_hpg01jvs3() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/index.ts";
+  var hash = "65b29aa0f4738341363e564ba1c38d15c0050989";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/index.ts",
+    statementMap: {},
+    fnMap: {},
+    branchMap: {},
+    s: {},
+    f: {},
+    b: {},
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/index.ts",
+      mappings: "AAAA,gBAAgB;AAChB,OAAO,EAAE,gBAAgB,EAAE,MAAM,oBAAoB,CAAC;AACtD,OAAO,EAAE,uBAAuB,EAAE,MAAM,2BAA2B,CAAC;AACpE,OAAO,EAAE,iBAAiB,EAAE,MAAM,qBAAqB,CAAC;AACxD,OAAO,EAAE,YAAY,EAAE,MAAM,gBAAgB,CAAC;AAE9C,yBAAyB;AACzB,OAAO,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AACpD,OAAO,EAAE,OAAO,IAAI,WAAW,EAAE,MAAM,oBAAoB,CAAC;AAE5D,oBAAoB;AACpB,OAAO,EAAE,MAAM,EAAE,MAAM,cAAc,CAAC;AACtC,OAAO,EAAE,gBAAgB,EAAE,MAAM,qBAAqB,CAAC;AACvD,OAAO,EAAE,sBAAsB,EAAE,MAAM,kBAAkB,CAAC",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/index.ts"],
+      sourcesContent: ["// Core services\nexport { embeddingService } from './embeddingService';\nexport { curriculumImportService } from './curriculumImportService';\nexport { clusteringService } from './clusteringService';\nexport { cacheService } from './CacheService';\n\n// Service infrastructure\nexport { serviceRegistry } from './ServiceRegistry';\nexport { default as BaseService } from './base/BaseService';\n\n// Existing services\nexport { openai } from './llmService';\nexport { extractMaterials } from './materialGenerator';\nexport { generateWeeklySchedule } from './planningEngine';\n\n// Service types\nexport type { EmbeddingResult } from './embeddingService';\nexport type { ImportProgress } from './curriculumImportService';\nexport type { ClusterResult, ClusteringOptions } from './clusteringService';\nexport type { CacheEntry, CacheOptions, CacheStats } from './CacheService';\nexport type { ServiceMetrics, RetryOptions } from './base/BaseService';\nexport type { ServiceHealth, ServiceRegistration } from './ServiceRegistry';\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "65b29aa0f4738341363e564ba1c38d15c0050989"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_hpg01jvs3 = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_hpg01jvs3();
+// Core services
+export { embeddingService } from './embeddingService';
+export { curriculumImportService } from './curriculumImportService';
+export { clusteringService } from './clusteringService';
+export { cacheService } from './CacheService';
+// Service infrastructure
+export { serviceRegistry } from './ServiceRegistry';
+export { default as BaseService } from './base/BaseService';
+// Existing services
+export { openai } from './llmService';
+export { extractMaterials } from './materialGenerator';
+export { generateWeeklySchedule } from './planningEngine';
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJlbWJlZGRpbmdTZXJ2aWNlIiwiY3VycmljdWx1bUltcG9ydFNlcnZpY2UiLCJjbHVzdGVyaW5nU2VydmljZSIsImNhY2hlU2VydmljZSIsInNlcnZpY2VSZWdpc3RyeSIsImRlZmF1bHQiLCJCYXNlU2VydmljZSIsIm9wZW5haSIsImV4dHJhY3RNYXRlcmlhbHMiLCJnZW5lcmF0ZVdlZWtseVNjaGVkdWxlIl0sInNvdXJjZXMiOlsiL1VzZXJzL21pY2hhZWxtY2lzYWFjL0dpdEh1Yi90ZWFjaGluZy1lbmdpbmUyLjAvc2VydmVyL3NyYy9zZXJ2aWNlcy9pbmRleC50cyJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBDb3JlIHNlcnZpY2VzXG5leHBvcnQgeyBlbWJlZGRpbmdTZXJ2aWNlIH0gZnJvbSAnLi9lbWJlZGRpbmdTZXJ2aWNlJztcbmV4cG9ydCB7IGN1cnJpY3VsdW1JbXBvcnRTZXJ2aWNlIH0gZnJvbSAnLi9jdXJyaWN1bHVtSW1wb3J0U2VydmljZSc7XG5leHBvcnQgeyBjbHVzdGVyaW5nU2VydmljZSB9IGZyb20gJy4vY2x1c3RlcmluZ1NlcnZpY2UnO1xuZXhwb3J0IHsgY2FjaGVTZXJ2aWNlIH0gZnJvbSAnLi9DYWNoZVNlcnZpY2UnO1xuXG4vLyBTZXJ2aWNlIGluZnJhc3RydWN0dXJlXG5leHBvcnQgeyBzZXJ2aWNlUmVnaXN0cnkgfSBmcm9tICcuL1NlcnZpY2VSZWdpc3RyeSc7XG5leHBvcnQgeyBkZWZhdWx0IGFzIEJhc2VTZXJ2aWNlIH0gZnJvbSAnLi9iYXNlL0Jhc2VTZXJ2aWNlJztcblxuLy8gRXhpc3Rpbmcgc2VydmljZXNcbmV4cG9ydCB7IG9wZW5haSB9IGZyb20gJy4vbGxtU2VydmljZSc7XG5leHBvcnQgeyBleHRyYWN0TWF0ZXJpYWxzIH0gZnJvbSAnLi9tYXRlcmlhbEdlbmVyYXRvcic7XG5leHBvcnQgeyBnZW5lcmF0ZVdlZWtseVNjaGVkdWxlIH0gZnJvbSAnLi9wbGFubmluZ0VuZ2luZSc7XG5cbi8vIFNlcnZpY2UgdHlwZXNcbmV4cG9ydCB0eXBlIHsgRW1iZWRkaW5nUmVzdWx0IH0gZnJvbSAnLi9lbWJlZGRpbmdTZXJ2aWNlJztcbmV4cG9ydCB0eXBlIHsgSW1wb3J0UHJvZ3Jlc3MgfSBmcm9tICcuL2N1cnJpY3VsdW1JbXBvcnRTZXJ2aWNlJztcbmV4cG9ydCB0eXBlIHsgQ2x1c3RlclJlc3VsdCwgQ2x1c3RlcmluZ09wdGlvbnMgfSBmcm9tICcuL2NsdXN0ZXJpbmdTZXJ2aWNlJztcbmV4cG9ydCB0eXBlIHsgQ2FjaGVFbnRyeSwgQ2FjaGVPcHRpb25zLCBDYWNoZVN0YXRzIH0gZnJvbSAnLi9DYWNoZVNlcnZpY2UnO1xuZXhwb3J0IHR5cGUgeyBTZXJ2aWNlTWV0cmljcywgUmV0cnlPcHRpb25zIH0gZnJvbSAnLi9iYXNlL0Jhc2VTZXJ2aWNlJztcbmV4cG9ydCB0eXBlIHsgU2VydmljZUhlYWx0aCwgU2VydmljZVJlZ2lzdHJhdGlvbiB9IGZyb20gJy4vU2VydmljZVJlZ2lzdHJ5JztcbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUE7QUFDQSxTQUFTQSxnQkFBZ0IsUUFBUSxvQkFBb0I7QUFDckQsU0FBU0MsdUJBQXVCLFFBQVEsMkJBQTJCO0FBQ25FLFNBQVNDLGlCQUFpQixRQUFRLHFCQUFxQjtBQUN2RCxTQUFTQyxZQUFZLFFBQVEsZ0JBQWdCO0FBRTdDO0FBQ0EsU0FBU0MsZUFBZSxRQUFRLG1CQUFtQjtBQUNuRCxTQUFTQyxPQUFPLElBQUlDLFdBQVcsUUFBUSxvQkFBb0I7QUFFM0Q7QUFDQSxTQUFTQyxNQUFNLFFBQVEsY0FBYztBQUNyQyxTQUFTQyxnQkFBZ0IsUUFBUSxxQkFBcUI7QUFDdEQsU0FBU0Msc0JBQXNCLFFBQVEsa0JBQWtCIiwiaWdub3JlTGlzdCI6W119

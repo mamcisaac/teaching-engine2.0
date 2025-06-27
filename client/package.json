@@ -6,7 +6,7 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --config vite.config.optimized.ts",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",

@@ -19,3 +19,5 @@ client/src/components/planning/__tests__/ActivityEditor.test.tsx
 client/src/components/planning/__tests__/ActivityLibrary.contract.test.tsx
 client/src/components/planning/__tests__/ActivitySuggestions.contract.test.tsx
 client/src/types/jest-axe.d.ts
+# Test script files
+pei-teacher-workflow-test.js

@@ -54,7 +54,7 @@ test('planner skips holiday dates', async ({ page }) => {
 
   // Wait for the planner to load
   await page.waitForSelector('h1:has-text("Weekly Planner")', { timeout: 15000 });
-  await page.waitForTimeout(2000); // Give time for content to load
+  await page.waitForLoadState('networkidle', { timeout: 5000 }); // Give time for content to load
 
   // Log all network requests to debug
   page.on('response', (response) => {
@@ -73,7 +73,7 @@ test('planner skips holiday dates', async ({ page }) => {
     });
 
   // Give the UI time to render after API calls
-  await page.waitForTimeout(2000);
+  await page.waitForLoadState('networkidle', { timeout: 5000 });
   await page.fill('input[type="date"]', '2025-12-22');
   await page.click('text=Auto Fill');
 

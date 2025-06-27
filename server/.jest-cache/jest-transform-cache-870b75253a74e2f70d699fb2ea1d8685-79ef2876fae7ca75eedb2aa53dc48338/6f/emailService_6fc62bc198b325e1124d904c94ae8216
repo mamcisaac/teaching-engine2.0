@@ -1,0 +1,387 @@
+816f2465698bedabcad829f76d4c1f59
+/* istanbul ignore next */
+function cov_2lnm8t6zot() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/emailService.ts";
+  var hash = "4c8d237e3a2ae84f56e29d7cf3680ce0ebc41f43";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/emailService.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 1,
+          column: 25
+        },
+        end: {
+          line: 1,
+          column: 29
+        }
+      },
+      "1": {
+        start: {
+          line: 3,
+          column: 4
+        },
+        end: {
+          line: 3,
+          column: 33
+        }
+      },
+      "2": {
+        start: {
+          line: 6,
+          column: 4
+        },
+        end: {
+          line: 6,
+          column: 30
+        }
+      },
+      "3": {
+        start: {
+          line: 9,
+          column: 4
+        },
+        end: {
+          line: 11,
+          column: 5
+        }
+      },
+      "4": {
+        start: {
+          line: 10,
+          column: 8
+        },
+        end: {
+          line: 10,
+          column: 71
+        }
+      },
+      "5": {
+        start: {
+          line: 13,
+          column: 4
+        },
+        end: {
+          line: 13,
+          column: 82
+        }
+      },
+      "6": {
+        start: {
+          line: 19,
+          column: 8
+        },
+        end: {
+          line: 19,
+          column: 87
+        }
+      },
+      "7": {
+        start: {
+          line: 23,
+          column: 8
+        },
+        end: {
+          line: 23,
+          column: 93
+        }
+      },
+      "8": {
+        start: {
+          line: 27,
+          column: 28
+        },
+        end: {
+          line: 27,
+          column: 46
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "setEmailHandler",
+        decl: {
+          start: {
+            line: 2,
+            column: 16
+          },
+          end: {
+            line: 2,
+            column: 31
+          }
+        },
+        loc: {
+          start: {
+            line: 2,
+            column: 41
+          },
+          end: {
+            line: 4,
+            column: 1
+          }
+        },
+        line: 2
+      },
+      "1": {
+        name: "clearEmailHandler",
+        decl: {
+          start: {
+            line: 5,
+            column: 16
+          },
+          end: {
+            line: 5,
+            column: 33
+          }
+        },
+        loc: {
+          start: {
+            line: 5,
+            column: 36
+          },
+          end: {
+            line: 7,
+            column: 1
+          }
+        },
+        line: 5
+      },
+      "2": {
+        name: "sendEmail",
+        decl: {
+          start: {
+            line: 8,
+            column: 22
+          },
+          end: {
+            line: 8,
+            column: 31
+          }
+        },
+        loc: {
+          start: {
+            line: 8,
+            column: 69
+          },
+          end: {
+            line: 14,
+            column: 1
+          }
+        },
+        line: 8
+      },
+      "3": {
+        name: "(anonymous_3)",
+        decl: {
+          start: {
+            line: 16,
+            column: 4
+          },
+          end: {
+            line: 16,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 16,
+            column: 18
+          },
+          end: {
+            line: 16,
+            column: 21
+          }
+        },
+        line: 16
+      },
+      "4": {
+        name: "(anonymous_4)",
+        decl: {
+          start: {
+            line: 17,
+            column: 4
+          },
+          end: {
+            line: 17,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 17,
+            column: 41
+          },
+          end: {
+            line: 20,
+            column: 5
+          }
+        },
+        line: 17
+      },
+      "5": {
+        name: "(anonymous_5)",
+        decl: {
+          start: {
+            line: 21,
+            column: 4
+          },
+          end: {
+            line: 21,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 21,
+            column: 54
+          },
+          end: {
+            line: 24,
+            column: 5
+          }
+        },
+        line: 21
+      }
+    },
+    branchMap: {
+      "0": {
+        loc: {
+          start: {
+            line: 9,
+            column: 4
+          },
+          end: {
+            line: 11,
+            column: 5
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 9,
+            column: 4
+          },
+          end: {
+            line: 11,
+            column: 5
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 9
+      }
+    },
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0
+    },
+    f: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0
+    },
+    b: {
+      "0": [0, 0]
+    },
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/emailService.ts",
+      mappings: "AAMA,IAAI,kBAAkB,GAQX,IAAI,CAAC;AAEhB,MAAM,UAAU,eAAe,CAC7B,OAMkB;IAElB,kBAAkB,GAAG,OAAO,CAAC;AAC/B,CAAC;AAED,MAAM,UAAU,iBAAiB;IAC/B,kBAAkB,GAAG,IAAI,CAAC;AAC5B,CAAC;AAED,MAAM,CAAC,KAAK,UAAU,SAAS,CAC7B,EAAU,EACV,OAAe,EACf,IAAY,EACZ,IAAa,EACb,UAA4B;IAE5B,IAAI,kBAAkB,EAAE,CAAC;QACvB,OAAO,kBAAkB,CAAC,EAAE,EAAE,OAAO,EAAE,IAAI,EAAE,IAAI,EAAE,UAAU,CAAC,CAAC;IACjE,CAAC;IAED,sBAAsB;IACtB,OAAO,CAAC,GAAG,CAAC,mCAAmC,EAAE,kBAAkB,OAAO,EAAE,CAAC,CAAC;AAChF,CAAC;AAED,MAAM,OAAO,YAAY;IACvB,gBAAe,CAAC;IAEhB,KAAK,CAAC,SAAS,CAAC,EAAU,EAAE,QAAgB,EAAE,KAAa;QACzD,sBAAsB;QACtB,OAAO,CAAC,GAAG,CAAC,mCAAmC,EAAE,kBAAkB,QAAQ,EAAE,CAAC,CAAC;IACjF,CAAC;IAED,KAAK,CAAC,cAAc,CAAC,UAAoB,EAAE,QAAgB,EAAE,KAAa;QACxE,sBAAsB;QACtB,OAAO,CAAC,GAAG,CAAC,yCAAyC,UAAU,CAAC,MAAM,aAAa,CAAC,CAAC;IACvF,CAAC;CACF;AAED,4BAA4B;AAC5B,MAAM,CAAC,MAAM,YAAY,GAAG,IAAI,YAAY,EAAE,CAAC",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/emailService.ts"],
+      sourcesContent: ["// Stub for EmailService to fix missing import\nexport interface EmailAttachment {\n  filename: string;\n  content: Buffer;\n}\n\nlet customEmailHandler:\n  | ((\n      to: string,\n      subject: string,\n      text: string,\n      html?: string,\n      attachment?: EmailAttachment,\n    ) => Promise<void>)\n  | null = null;\n\nexport function setEmailHandler(\n  handler: (\n    to: string,\n    subject: string,\n    text: string,\n    html?: string,\n    attachment?: EmailAttachment,\n  ) => Promise<void>,\n) {\n  customEmailHandler = handler;\n}\n\nexport function clearEmailHandler() {\n  customEmailHandler = null;\n}\n\nexport async function sendEmail(\n  to: string,\n  subject: string,\n  text: string,\n  html?: string,\n  attachment?: EmailAttachment,\n): Promise<void> {\n  if (customEmailHandler) {\n    return customEmailHandler(to, subject, text, html, attachment);\n  }\n\n  // Stub implementation\n  console.log(`Email stub: Would send email to ${to} with subject: ${subject}`);\n}\n\nexport class EmailService {\n  constructor() {}\n\n  async sendEmail(to: string, _subject: string, _body: string): Promise<void> {\n    // Stub implementation\n    console.log(`Email stub: Would send email to ${to} with subject: ${_subject}`);\n  }\n\n  async sendBulkEmails(recipients: string[], _subject: string, _body: string): Promise<void> {\n    // Stub implementation\n    console.log(`Email stub: Would send bulk emails to ${recipients.length} recipients`);\n  }\n}\n\n// Export singleton instance\nexport const emailService = new EmailService();\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "4c8d237e3a2ae84f56e29d7cf3680ce0ebc41f43"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_2lnm8t6zot = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_2lnm8t6zot();
+let customEmailHandler =
+/* istanbul ignore next */
+(cov_2lnm8t6zot().s[0]++, null);
+export function setEmailHandler(handler) {
+  /* istanbul ignore next */
+  cov_2lnm8t6zot().f[0]++;
+  cov_2lnm8t6zot().s[1]++;
+  customEmailHandler = handler;
+}
+export function clearEmailHandler() {
+  /* istanbul ignore next */
+  cov_2lnm8t6zot().f[1]++;
+  cov_2lnm8t6zot().s[2]++;
+  customEmailHandler = null;
+}
+export async function sendEmail(to, subject, text, html, attachment) {
+  /* istanbul ignore next */
+  cov_2lnm8t6zot().f[2]++;
+  cov_2lnm8t6zot().s[3]++;
+  if (customEmailHandler) {
+    /* istanbul ignore next */
+    cov_2lnm8t6zot().b[0][0]++;
+    cov_2lnm8t6zot().s[4]++;
+    return customEmailHandler(to, subject, text, html, attachment);
+  } else
+  /* istanbul ignore next */
+  {
+    cov_2lnm8t6zot().b[0][1]++;
+  }
+  // Stub implementation
+  cov_2lnm8t6zot().s[5]++;
+  console.log(`Email stub: Would send email to ${to} with subject: ${subject}`);
+}
+export class EmailService {
+  constructor() {
+    /* istanbul ignore next */
+    cov_2lnm8t6zot().f[3]++;
+  }
+  async sendEmail(to, _subject, _body) {
+    /* istanbul ignore next */
+    cov_2lnm8t6zot().f[4]++;
+    cov_2lnm8t6zot().s[6]++;
+    // Stub implementation
+    console.log(`Email stub: Would send email to ${to} with subject: ${_subject}`);
+  }
+  async sendBulkEmails(recipients, _subject, _body) {
+    /* istanbul ignore next */
+    cov_2lnm8t6zot().f[5]++;
+    cov_2lnm8t6zot().s[7]++;
+    // Stub implementation
+    console.log(`Email stub: Would send bulk emails to ${recipients.length} recipients`);
+  }
+}
+// Export singleton instance
+export const emailService =
+/* istanbul ignore next */
+(cov_2lnm8t6zot().s[8]++, new EmailService());
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3ZfMmxubTh0NnpvdCIsImFjdHVhbENvdmVyYWdlIiwiY3VzdG9tRW1haWxIYW5kbGVyIiwicyIsInNldEVtYWlsSGFuZGxlciIsImhhbmRsZXIiLCJmIiwiY2xlYXJFbWFpbEhhbmRsZXIiLCJzZW5kRW1haWwiLCJ0byIsInN1YmplY3QiLCJ0ZXh0IiwiaHRtbCIsImF0dGFjaG1lbnQiLCJiIiwiY29uc29sZSIsImxvZyIsIkVtYWlsU2VydmljZSIsImNvbnN0cnVjdG9yIiwiX3N1YmplY3QiLCJfYm9keSIsInNlbmRCdWxrRW1haWxzIiwicmVjaXBpZW50cyIsImxlbmd0aCIsImVtYWlsU2VydmljZSJdLCJzb3VyY2VzIjpbIi9Vc2Vycy9taWNoYWVsbWNpc2FhYy9HaXRIdWIvdGVhY2hpbmctZW5naW5lMi4wL3NlcnZlci9zcmMvc2VydmljZXMvZW1haWxTZXJ2aWNlLnRzIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIFN0dWIgZm9yIEVtYWlsU2VydmljZSB0byBmaXggbWlzc2luZyBpbXBvcnRcbmV4cG9ydCBpbnRlcmZhY2UgRW1haWxBdHRhY2htZW50IHtcbiAgZmlsZW5hbWU6IHN0cmluZztcbiAgY29udGVudDogQnVmZmVyO1xufVxuXG5sZXQgY3VzdG9tRW1haWxIYW5kbGVyOlxuICB8ICgoXG4gICAgICB0bzogc3RyaW5nLFxuICAgICAgc3ViamVjdDogc3RyaW5nLFxuICAgICAgdGV4dDogc3RyaW5nLFxuICAgICAgaHRtbD86IHN0cmluZyxcbiAgICAgIGF0dGFjaG1lbnQ/OiBFbWFpbEF0dGFjaG1lbnQsXG4gICAgKSA9PiBQcm9taXNlPHZvaWQ+KVxuICB8IG51bGwgPSBudWxsO1xuXG5leHBvcnQgZnVuY3Rpb24gc2V0RW1haWxIYW5kbGVyKFxuICBoYW5kbGVyOiAoXG4gICAgdG86IHN0cmluZyxcbiAgICBzdWJqZWN0OiBzdHJpbmcsXG4gICAgdGV4dDogc3RyaW5nLFxuICAgIGh0bWw/OiBzdHJpbmcsXG4gICAgYXR0YWNobWVudD86IEVtYWlsQXR0YWNobWVudCxcbiAgKSA9PiBQcm9taXNlPHZvaWQ+LFxuKSB7XG4gIGN1c3RvbUVtYWlsSGFuZGxlciA9IGhhbmRsZXI7XG59XG5cbmV4cG9ydCBmdW5jdGlvbiBjbGVhckVtYWlsSGFuZGxlcigpIHtcbiAgY3VzdG9tRW1haWxIYW5kbGVyID0gbnVsbDtcbn1cblxuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIHNlbmRFbWFpbChcbiAgdG86IHN0cmluZyxcbiAgc3ViamVjdDogc3RyaW5nLFxuICB0ZXh0OiBzdHJpbmcsXG4gIGh0bWw/OiBzdHJpbmcsXG4gIGF0dGFjaG1lbnQ/OiBFbWFpbEF0dGFjaG1lbnQsXG4pOiBQcm9taXNlPHZvaWQ+IHtcbiAgaWYgKGN1c3RvbUVtYWlsSGFuZGxlcikge1xuICAgIHJldHVybiBjdXN0b21FbWFpbEhhbmRsZXIodG8sIHN1YmplY3QsIHRleHQsIGh0bWwsIGF0dGFjaG1lbnQpO1xuICB9XG5cbiAgLy8gU3R1YiBpbXBsZW1lbnRhdGlvblxuICBjb25zb2xlLmxvZyhgRW1haWwgc3R1YjogV291bGQgc2VuZCBlbWFpbCB0byAke3RvfSB3aXRoIHN1YmplY3Q6ICR7c3ViamVjdH1gKTtcbn1cblxuZXhwb3J0IGNsYXNzIEVtYWlsU2VydmljZSB7XG4gIGNvbnN0cnVjdG9yKCkge31cblxuICBhc3luYyBzZW5kRW1haWwodG86IHN0cmluZywgX3N1YmplY3Q6IHN0cmluZywgX2JvZHk6IHN0cmluZyk6IFByb21pc2U8dm9pZD4ge1xuICAgIC8vIFN0dWIgaW1wbGVtZW50YXRpb25cbiAgICBjb25zb2xlLmxvZyhgRW1haWwgc3R1YjogV291bGQgc2VuZCBlbWFpbCB0byAke3RvfSB3aXRoIHN1YmplY3Q6ICR7X3N1YmplY3R9YCk7XG4gIH1cblxuICBhc3luYyBzZW5kQnVsa0VtYWlscyhyZWNpcGllbnRzOiBzdHJpbmdbXSwgX3N1YmplY3Q6IHN0cmluZywgX2JvZHk6IHN0cmluZyk6IFByb21pc2U8dm9pZD4ge1xuICAgIC8vIFN0dWIgaW1wbGVtZW50YXRpb25cbiAgICBjb25zb2xlLmxvZyhgRW1haWwgc3R1YjogV291bGQgc2VuZCBidWxrIGVtYWlscyB0byAke3JlY2lwaWVudHMubGVuZ3RofSByZWNpcGllbnRzYCk7XG4gIH1cbn1cblxuLy8gRXhwb3J0IHNpbmdsZXRvbiBpbnN0YW5jZVxuZXhwb3J0IGNvbnN0IGVtYWlsU2VydmljZSA9IG5ldyBFbWFpbFNlcnZpY2UoKTtcbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7SUFnREU7SUFBQUEsY0FBQSxZQUFBQSxDQUFBO01BQUEsT0FBQUMsY0FBQTtJQUFBO0VBQUE7RUFBQSxPQUFBQSxjQUFBO0FBQUE7QUFBQUQsY0FBQTtBQTFDRixJQUFJRSxrQkFBa0I7QUFBQTtBQUFBLENBQUFGLGNBQUEsR0FBQUcsQ0FBQSxPQVFYLElBQUk7QUFFZixPQUFNLFNBQVVDLGVBQWVBLENBQzdCQyxPQU1rQjtFQUFBO0VBQUFMLGNBQUEsR0FBQU0sQ0FBQTtFQUFBTixjQUFBLEdBQUFHLENBQUE7RUFFbEJELGtCQUFrQixHQUFHRyxPQUFPO0FBQzlCO0FBRUEsT0FBTSxTQUFVRSxpQkFBaUJBLENBQUE7RUFBQTtFQUFBUCxjQUFBLEdBQUFNLENBQUE7RUFBQU4sY0FBQSxHQUFBRyxDQUFBO0VBQy9CRCxrQkFBa0IsR0FBRyxJQUFJO0FBQzNCO0FBRUEsT0FBTyxlQUFlTSxTQUFTQSxDQUM3QkMsRUFBVSxFQUNWQyxPQUFlLEVBQ2ZDLElBQVksRUFDWkMsSUFBYSxFQUNiQyxVQUE0QjtFQUFBO0VBQUFiLGNBQUEsR0FBQU0sQ0FBQTtFQUFBTixjQUFBLEdBQUFHLENBQUE7RUFFNUIsSUFBSUQsa0JBQWtCLEVBQUU7SUFBQTtJQUFBRixjQUFBLEdBQUFjLENBQUE7SUFBQWQsY0FBQSxHQUFBRyxDQUFBO0lBQ3RCLE9BQU9ELGtCQUFrQixDQUFDTyxFQUFFLEVBQUVDLE9BQU8sRUFBRUMsSUFBSSxFQUFFQyxJQUFJLEVBQUVDLFVBQVUsQ0FBQztFQUNoRSxDQUFDO0VBQUE7RUFBQTtJQUFBYixjQUFBLEdBQUFjLENBQUE7RUFBQTtFQUVEO0VBQUFkLGNBQUEsR0FBQUcsQ0FBQTtFQUNBWSxPQUFPLENBQUNDLEdBQUcsQ0FBQyxtQ0FBbUNQLEVBQUUsa0JBQWtCQyxPQUFPLEVBQUUsQ0FBQztBQUMvRTtBQUVBLE9BQU0sTUFBT08sWUFBWTtFQUN2QkMsWUFBQTtJQUFBO0lBQUFsQixjQUFBLEdBQUFNLENBQUE7RUFBZTtFQUVmLE1BQU1FLFNBQVNBLENBQUNDLEVBQVUsRUFBRVUsUUFBZ0IsRUFBRUMsS0FBYTtJQUFBO0lBQUFwQixjQUFBLEdBQUFNLENBQUE7SUFBQU4sY0FBQSxHQUFBRyxDQUFBO0lBQ3pEO0lBQ0FZLE9BQU8sQ0FBQ0MsR0FBRyxDQUFDLG1DQUFtQ1AsRUFBRSxrQkFBa0JVLFFBQVEsRUFBRSxDQUFDO0VBQ2hGO0VBRUEsTUFBTUUsY0FBY0EsQ0FBQ0MsVUFBb0IsRUFBRUgsUUFBZ0IsRUFBRUMsS0FBYTtJQUFBO0lBQUFwQixjQUFBLEdBQUFNLENBQUE7SUFBQU4sY0FBQSxHQUFBRyxDQUFBO0lBQ3hFO0lBQ0FZLE9BQU8sQ0FBQ0MsR0FBRyxDQUFDLHlDQUF5Q00sVUFBVSxDQUFDQyxNQUFNLGFBQWEsQ0FBQztFQUN0Rjs7QUFHRjtBQUNBLE9BQU8sTUFBTUMsWUFBWTtBQUFBO0FBQUEsQ0FBQXhCLGNBQUEsR0FBQUcsQ0FBQSxPQUFHLElBQUljLFlBQVksRUFBRSIsImlnbm9yZUxpc3QiOltdfQ==

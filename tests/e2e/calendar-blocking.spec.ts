@@ -44,7 +44,7 @@ test('planner blocks times from calendar events', async ({ page }) => {
   // Set the week to the Monday we created the event for
   const weekStartFormatted = monday.toISOString().split('T')[0];
   await page.fill('input[type="date"][data-testid="week-start-input"]', weekStartFormatted);
-  await page.waitForTimeout(2000); // Give time for content to load
+  await page.waitForLoadState('networkidle', { timeout: 5000 }); // Give time for content to load
 
   // Wait for the page to stabilize
   await page.waitForLoadState('networkidle');
@@ -54,7 +54,7 @@ test('planner blocks times from calendar events', async ({ page }) => {
   await page.waitForSelector('.bg-yellow-100', { timeout: 15000 });
 
   // Give extra time for rendering
-  await page.waitForTimeout(1000);
+  await page.waitForLoadState('domcontentloaded', { timeout: 3000 });
 
   // The calendar event should be visible
   const assemblyEvent = page.locator('.bg-yellow-100:has-text("Assembly")').first();

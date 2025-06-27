@@ -133,7 +133,7 @@ export default function LongRangePlanPage() {
         </div>
 
         <div className="flex items-center gap-3">
-          <BlankTemplateQuickActions 
+          <BlankTemplateQuickActions
             templateType="long-range"
             schoolInfo={{
               academicYear: selectedYear,
@@ -142,8 +142,9 @@ export default function LongRangePlanPage() {
           <Button
             onClick={() => setIsCreateModalOpen(true)}
             className="bg-indigo-600 hover:bg-indigo-700 text-white"
+            data-testid="create-long-range-plan-button"
           >
-            Create New Plan
+            Create Long Range Plan
           </Button>
         </div>
       </div>
@@ -172,8 +173,9 @@ export default function LongRangePlanPage() {
             <Button
               onClick={() => setIsCreateModalOpen(true)}
               className="bg-indigo-600 hover:bg-indigo-700 text-white"
+              data-testid="create-long-range-plan-empty-state-button"
             >
-              Create Long-Range Plan
+              Create Long Range Plan
             </Button>
           </div>
         </div>

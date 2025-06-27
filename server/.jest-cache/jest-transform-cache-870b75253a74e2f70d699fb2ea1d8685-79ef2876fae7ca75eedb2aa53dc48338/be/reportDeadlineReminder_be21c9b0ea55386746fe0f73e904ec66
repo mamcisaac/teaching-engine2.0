@@ -1,0 +1,132 @@
+1d242813a2a717eac61a84108ecfe75a
+/* istanbul ignore next */
+function cov_108d6y2tlv() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/jobs/reportDeadlineReminder.ts";
+  var hash = "7cda6046e2f631fca071453e52028aea5f5a31ba";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/jobs/reportDeadlineReminder.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 5,
+          column: 4
+        },
+        end: {
+          line: 5,
+          column: 85
+        }
+      },
+      "1": {
+        start: {
+          line: 8,
+          column: 4
+        },
+        end: {
+          line: 8,
+          column: 60
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "sendReportDeadlineReminders",
+        decl: {
+          start: {
+            line: 2,
+            column: 22
+          },
+          end: {
+            line: 2,
+            column: 49
+          }
+        },
+        loc: {
+          start: {
+            line: 2,
+            column: 52
+          },
+          end: {
+            line: 6,
+            column: 1
+          }
+        },
+        line: 2
+      },
+      "1": {
+        name: "scheduleReportDeadlineReminders",
+        decl: {
+          start: {
+            line: 7,
+            column: 16
+          },
+          end: {
+            line: 7,
+            column: 47
+          }
+        },
+        loc: {
+          start: {
+            line: 7,
+            column: 50
+          },
+          end: {
+            line: 9,
+            column: 1
+          }
+        },
+        line: 7
+      }
+    },
+    branchMap: {},
+    s: {
+      "0": 0,
+      "1": 0
+    },
+    f: {
+      "0": 0,
+      "1": 0
+    },
+    b: {},
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/jobs/reportDeadlineReminder.ts",
+      mappings: "AAAA,OAAO,IAAI,MAAM,WAAW,CAAC;AAE7B,MAAM,CAAC,KAAK,UAAU,2BAA2B;IAC/C,sEAAsE;IACtE,oGAAoG;IACpG,OAAO,CAAC,IAAI,CAAC,kEAAkE,CAAC,CAAC;AACnF,CAAC;AAED,MAAM,UAAU,+BAA+B;IAC7C,IAAI,CAAC,QAAQ,CAAC,WAAW,EAAE,2BAA2B,CAAC,CAAC;AAC1D,CAAC",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/jobs/reportDeadlineReminder.ts"],
+      sourcesContent: ["import cron from 'node-cron';\n\nexport async function sendReportDeadlineReminders() {\n  // DISABLED: ReportDeadline and Notification models have been archived\n  // TODO: Implement using CalendarEvent with type REPORT_DEADLINE and ParentMessage for notifications\n  console.warn('sendReportDeadlineReminders is disabled - legacy models archived');\n}\n\nexport function scheduleReportDeadlineReminders() {\n  cron.schedule('0 2 * * *', sendReportDeadlineReminders);\n}\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "7cda6046e2f631fca071453e52028aea5f5a31ba"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_108d6y2tlv = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_108d6y2tlv();
+import cron from 'node-cron';
+export async function sendReportDeadlineReminders() {
+  /* istanbul ignore next */
+  cov_108d6y2tlv().f[0]++;
+  cov_108d6y2tlv().s[0]++;
+  // DISABLED: ReportDeadline and Notification models have been archived
+  // TODO: Implement using CalendarEvent with type REPORT_DEADLINE and ParentMessage for notifications
+  console.warn('sendReportDeadlineReminders is disabled - legacy models archived');
+}
+export function scheduleReportDeadlineReminders() {
+  /* istanbul ignore next */
+  cov_108d6y2tlv().f[1]++;
+  cov_108d6y2tlv().s[1]++;
+  cron.schedule('0 2 * * *', sendReportDeadlineReminders);
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjcm9uIiwic2VuZFJlcG9ydERlYWRsaW5lUmVtaW5kZXJzIiwiY292XzEwOGQ2eTJ0bHYiLCJmIiwicyIsImNvbnNvbGUiLCJ3YXJuIiwic2NoZWR1bGVSZXBvcnREZWFkbGluZVJlbWluZGVycyIsInNjaGVkdWxlIl0sInNvdXJjZXMiOlsiL1VzZXJzL21pY2hhZWxtY2lzYWFjL0dpdEh1Yi90ZWFjaGluZy1lbmdpbmUyLjAvc2VydmVyL3NyYy9qb2JzL3JlcG9ydERlYWRsaW5lUmVtaW5kZXIudHMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGNyb24gZnJvbSAnbm9kZS1jcm9uJztcblxuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIHNlbmRSZXBvcnREZWFkbGluZVJlbWluZGVycygpIHtcbiAgLy8gRElTQUJMRUQ6IFJlcG9ydERlYWRsaW5lIGFuZCBOb3RpZmljYXRpb24gbW9kZWxzIGhhdmUgYmVlbiBhcmNoaXZlZFxuICAvLyBUT0RPOiBJbXBsZW1lbnQgdXNpbmcgQ2FsZW5kYXJFdmVudCB3aXRoIHR5cGUgUkVQT1JUX0RFQURMSU5FIGFuZCBQYXJlbnRNZXNzYWdlIGZvciBub3RpZmljYXRpb25zXG4gIGNvbnNvbGUud2Fybignc2VuZFJlcG9ydERlYWRsaW5lUmVtaW5kZXJzIGlzIGRpc2FibGVkIC0gbGVnYWN5IG1vZGVscyBhcmNoaXZlZCcpO1xufVxuXG5leHBvcnQgZnVuY3Rpb24gc2NoZWR1bGVSZXBvcnREZWFkbGluZVJlbWluZGVycygpIHtcbiAgY3Jvbi5zY2hlZHVsZSgnMCAyICogKiAqJywgc2VuZFJlcG9ydERlYWRsaW5lUmVtaW5kZXJzKTtcbn1cbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLE9BQU9BLElBQUksTUFBTSxXQUFXO0FBRTVCLE9BQU8sZUFBZUMsMkJBQTJCQSxDQUFBO0VBQUE7RUFBQUMsY0FBQSxHQUFBQyxDQUFBO0VBQUFELGNBQUEsR0FBQUUsQ0FBQTtFQUMvQztFQUNBO0VBQ0FDLE9BQU8sQ0FBQ0MsSUFBSSxDQUFDLGtFQUFrRSxDQUFDO0FBQ2xGO0FBRUEsT0FBTSxTQUFVQywrQkFBK0JBLENBQUE7RUFBQTtFQUFBTCxjQUFBLEdBQUFDLENBQUE7RUFBQUQsY0FBQSxHQUFBRSxDQUFBO0VBQzdDSixJQUFJLENBQUNRLFFBQVEsQ0FBQyxXQUFXLEVBQUVQLDJCQUEyQixDQUFDO0FBQ3pEIiwiaWdub3JlTGlzdCI6W119

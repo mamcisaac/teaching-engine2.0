@@ -40,7 +40,7 @@ export function TeamList({ onCreateTeam }: TeamListProps) {
   // Fetch user's teams
   const { data: teams = [], isLoading } = useQuery<Team[]>({
     queryKey: ['teams'],
-    queryFn: () => api.get('/api/teams').then(res => res.data),
+    queryFn: () => api.get('/api/teams').then((res) => res.data),
   });
 
   if (isLoading) {
@@ -62,10 +62,11 @@ export function TeamList({ onCreateTeam }: TeamListProps) {
         <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
         <h3 className="text-lg font-semibold mb-2">No teams yet</h3>
         <p className="text-gray-600 mb-4 max-w-md mx-auto">
-          Join or create a team to collaborate with other teachers, share lesson plans, and coordinate curriculum.
+          Join or create a team to collaborate with other teachers, share lesson plans, and
+          coordinate curriculum.
         </p>
         <div className="flex gap-3 justify-center">
-          <Button onClick={onCreateTeam}>
+          <Button onClick={onCreateTeam} data-testid="create-team-button">
             <Plus className="w-4 h-4 mr-2" />
             Create Team
           </Button>
@@ -82,9 +83,9 @@ export function TeamList({ onCreateTeam }: TeamListProps) {
     <div className="space-y-4">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold">My Teams</h2>
-        <Button onClick={onCreateTeam} size="sm">
+        <Button onClick={onCreateTeam} size="sm" data-testid="new-team-button">
           <Plus className="w-4 h-4 mr-2" />
-          New Team
+          Create Team
         </Button>
       </div>
 
@@ -129,15 +130,11 @@ export function TeamList({ onCreateTeam }: TeamListProps) {
           </div>
 
           {team.description && (
-            <p className="text-gray-600 text-sm mb-3 line-clamp-2">
-              {team.description}
-            </p>
+            <p className="text-gray-600 text-sm mb-3 line-clamp-2">{team.description}</p>
           )}
 
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-500">
-              Created by {team.owner.name}
-            </span>
+            <span className="text-gray-500">Created by {team.owner.name}</span>
             <button
               className="text-blue-600 hover:text-blue-700 flex items-center gap-1"
               onClick={(e) => {
