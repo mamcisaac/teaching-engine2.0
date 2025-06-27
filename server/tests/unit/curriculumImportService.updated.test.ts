@@ -1,0 +1,367 @@
+import { describe, it, expect, jest, beforeEach } from '@jest/globals';
+import { CurriculumImportService } from '../../src/services/curriculumImportService';
+import { ImportStatus } from '@teaching-engine/database';
+
+// Mock is already setup in setup-all-mocks.ts
+
+describe('CurriculumImportService Updated Tests', () => {
+  let service: CurriculumImportService;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let mockPrisma: any;
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+
+    // Get mocked mockPrisma from global
+    mockPrisma = (globalThis as any).testPrismaClient;
+
+    // Ensure mock functions exist
+    if (!mockPrisma || !mockPrisma.curriculumImport) {
+      mockPrisma = {
+        curriculumImport: {
+          create: jest.fn(),
+          update: jest.fn(),
+          findUnique: jest.fn(),
+          findMany: jest.fn(),
+          delete: jest.fn(),
+        },
+        curriculumExpectation: {
+          create: jest.fn(),
+          update: jest.fn(),
+          findUnique: jest.fn(),
+          findMany: jest.fn(),
+          delete: jest.fn(),
+        },
+      };
+      (globalThis as any).testPrismaClient = mockPrisma;
+    }
+
+    // Create service instance
+    service = new CurriculumImportService();
+
+    // Override the prisma instance with our mock
+    (service as any).prisma = mockPrisma;
+
+    // Override logger to avoid log output during tests
+    (service as any).logger = {
+      debug: jest.fn(),
+      info: jest.fn(),
+      warn: jest.fn(),
+      error: jest.fn(),
+    };
+  });
+
+  describe('startImport', () => {
+    it('should create a new import session', async () => {
+      const mockImport = {
+        id: 'import-123',
+        userId: 1,
+        grade: 1,
+        subject: 'Mathematics',
+        sourceFormat: 'csv',
+        status: ImportStatus.UPLOADING,
+      };
+
+      mockPrisma.curriculumImport.create.mockResolvedValue(mockImport);
+
+      const result = await service.startImport(1, 1, 'Mathematics', 'csv');
+
+      expect(result).toBe('import-123');
+      expect(mockPrisma.curriculumImport.create).toHaveBeenCalledWith({
+        data: {
+          userId: 1,
+          grade: 1,
+          subject: 'Mathematics',
+          sourceFormat: 'csv',
+          sourceFile: undefined,
+          status: ImportStatus.UPLOADING,
+          metadata: {},
+        },
+      });
+    });
+
+    it('should handle errors gracefully', async () => {
+      mockPrisma.curriculumImport.create.mockRejectedValue(new Error('DB error'));
+
+      await expect(service.startImport(1, 1, 'Mathematics', 'csv')).rejects.toThrow(
+        'Failed to start import session',
+      );
+    });
+  });
+
+  describe('parseCSV', () => {
+    it('should parse valid CSV content', () => {
+      const csvContent = `code,description,subject,grade,domain
+M1.1,"Count to 20",Mathematics,1,Number
+M1.2,"Add numbers",Mathematics,1,Number`;
+
+      const result = service.parseCSV(csvContent);
+
+      expect(result).toHaveLength(2);
+      expect(result[0]).toEqual({
+        code: 'M1.1',
+        description: 'Count to 20',
+        subject: 'Mathematics',
+        grade: 1,
+        strand: 'Number',
+      });
+    });
+
+    it('should handle CSV with missing optional columns', () => {
+      const csvContent = `code,description
+M1.1,"Count to 20"
+M1.2,"Add numbers"`;
+
+      const result = service.parseCSV(csvContent);
+
+      expect(result).toHaveLength(2);
+      expect(result[0]).toEqual({
+        code: 'M1.1',
+        description: 'Count to 20',
+        subject: 'Unknown',
+        grade: 0,
+        strand: 'General',
+      });
+    });
+
+    it('should skip empty lines', () => {
+      const csvContent = `code,description,subject,grade
+M1.1,"Count to 20",Mathematics,1
+
+M1.2,"Add numbers",Mathematics,1
+`;
+
+      const result = service.parseCSV(csvContent);
+
+      expect(result).toHaveLength(2);
+    });
+
+    it('should handle quoted values with commas', () => {
+      const csvContent = `code,description,subject,grade
+"M1.1","Count to 20, then to 30",Mathematics,1`;
+
+      const result = service.parseCSV(csvContent);
+
+      expect(result[0].description).toBe('Count to 20, then to 30');
+    });
+
+    it('should throw error for missing required columns', () => {
+      const csvContent = `name,value
+Test,123`;
+
+      expect(() => service.parseCSV(csvContent)).toThrow(
+        'CSV must contain "code" and "description" columns',
+      );
+    });
+  });
+
+  describe('confirmImport', () => {
+    it('should create curriculum expectations from parsed data', async () => {
+      const mockImport = {
+        id: 'import-123',
+        status: ImportStatus.READY_FOR_REVIEW,
+        metadata: {
+          parsedSubjects: [
+            {
+              name: 'Mathematics',
+              expectations: [
+                {
+                  code: 'M1.1',
+                  description: 'Count to 20',
+                  strand: 'Number',
+                  grade: 1,
+                  subject: 'Mathematics',
+                },
+              ],
+            },
+          ],
+        },
+      };
+
+      mockPrisma.curriculumImport.findUnique.mockResolvedValue(mockImport);
+      mockPrisma.curriculumExpectation.findUnique.mockResolvedValue(null);
+      mockPrisma.curriculumExpectation.create.mockResolvedValue({});
+      mockPrisma.curriculumImport.update.mockResolvedValue({});
+
+      const result = await service.confirmImport('import-123');
+
+      expect(result.created).toBe(1);
+      expect(mockPrisma.curriculumExpectation.create).toHaveBeenCalledWith({
+        data: {
+          code: 'M1.1',
+          description: 'Count to 20',
+          descriptionFr: null,
+          strand: 'Number',
+          substrand: null,
+          grade: 1,
+          subject: 'Mathematics',
+        },
+      });
+    });
+
+    it('should skip existing expectations', async () => {
+      const mockImport = {
+        id: 'import-123',
+        status: ImportStatus.READY_FOR_REVIEW,
+        metadata: {
+          parsedSubjects: [
+            {
+              name: 'Mathematics',
+              expectations: [
+                {
+                  code: 'M1.1',
+                  description: 'Count to 20',
+                  strand: 'Number',
+                  grade: 1,
+                  subject: 'Mathematics',
+                },
+              ],
+            },
+          ],
+        },
+      };
+
+      mockPrisma.curriculumImport.findUnique.mockResolvedValue(mockImport);
+      mockPrisma.curriculumExpectation.findUnique.mockResolvedValue({ id: 'existing' });
+      mockPrisma.curriculumImport.update.mockResolvedValue({});
+
+      const result = await service.confirmImport('import-123');
+
+      expect(result.created).toBe(0);
+      expect(mockPrisma.curriculumExpectation.create).not.toHaveBeenCalled();
+    });
+
+    it('should reject if import not found', async () => {
+      mockPrisma.curriculumImport.findUnique.mockResolvedValue(null);
+
+      await expect(service.confirmImport('non-existent')).rejects.toThrow(
+        'Import session not found',
+      );
+    });
+
+    it('should reject if import not ready', async () => {
+      const mockImport = {
+        id: 'import-123',
+        status: ImportStatus.PROCESSING,
+      };
+
+      mockPrisma.curriculumImport.findUnique.mockResolvedValue(mockImport);
+
+      await expect(service.confirmImport('import-123')).rejects.toThrow(
+        'Import is not ready for confirmation',
+      );
+    });
+  });
+
+  describe('getImportProgress', () => {
+    it('should return progress information', async () => {
+      const mockImport = {
+        id: 'import-123',
+        status: ImportStatus.PROCESSING,
+        totalOutcomes: 100,
+        processedOutcomes: 50,
+        errorLog: ['Error 1', 'Error 2'],
+      };
+
+      mockPrisma.curriculumImport.findUnique.mockResolvedValue(mockImport);
+
+      const result = await service.getImportProgress('import-123');
+
+      expect(result).toEqual({
+        importId: 'import-123',
+        status: ImportStatus.PROCESSING,
+        totalOutcomes: 100,
+        processedOutcomes: 50,
+        errors: ['Error 1', 'Error 2'],
+      });
+    });
+
+    it('should return null for non-existent import', async () => {
+      mockPrisma.curriculumImport.findUnique.mockResolvedValue(null);
+
+      const result = await service.getImportProgress('non-existent');
+
+      expect(result).toBeNull();
+    });
+  });
+
+  describe('loadPresetCurriculum', () => {
+    it('should load PEI Grade 1 French preset', async () => {
+      mockPrisma.curriculumImport.create.mockResolvedValue({ id: 'import-123' });
+      mockPrisma.curriculumImport.update.mockResolvedValue({});
+
+      const result = await service.loadPresetCurriculum(1, 'pei-grade1-french');
+
+      expect(result.sessionId).toBe('import-123');
+      expect(result.subjects).toHaveLength(2);
+      expect(result.subjects[0].name).toBe('Français Langue Première');
+      expect(result.subjects[0].expectations).toHaveLength(2);
+    });
+
+    it('should load Ontario Grade 1 English preset', async () => {
+      mockPrisma.curriculumImport.create.mockResolvedValue({ id: 'import-123' });
+      mockPrisma.curriculumImport.update.mockResolvedValue({});
+
+      const result = await service.loadPresetCurriculum(1, 'ontario-grade1-english');
+
+      expect(result.subjects).toHaveLength(2);
+      expect(result.subjects[0].name).toBe('Language');
+      expect(result.subjects[1].name).toBe('Mathematics');
+    });
+
+    it('should throw error for unknown preset', async () => {
+      // Mock the startImport call since it happens before the preset check
+      mockPrisma.curriculumImport.create.mockResolvedValue({ id: 'import-123' });
+
+      await expect(service.loadPresetCurriculum(1, 'unknown-preset')).rejects.toThrow(
+        'Unknown preset: unknown-preset',
+      );
+    });
+  });
+
+  describe('Text Chunking', () => {
+    it('should split text into manageable chunks', () => {
+      // Access private method through reflection
+      const chunkText = (service as any).chunkText.bind(service);
+
+      const longText = Array(10).fill('This is a paragraph.').join('\n\n');
+      const chunks = chunkText(longText, 50);
+
+      expect(chunks.length).toBeGreaterThan(1);
+      chunks.forEach((chunk) => {
+        expect(chunk.length).toBeLessThanOrEqual(50);
+      });
+    });
+
+    it('should preserve paragraph boundaries', () => {
+      const chunkText = (service as any).chunkText.bind(service);
+
+      const text = 'Paragraph 1.\n\nParagraph 2.\n\nParagraph 3.';
+      const chunks = chunkText(text, 20);
+
+      expect(chunks).toHaveLength(3);
+      expect(chunks[0]).toBe('Paragraph 1.');
+      expect(chunks[1]).toBe('Paragraph 2.');
+      expect(chunks[2]).toBe('Paragraph 3.');
+    });
+  });
+
+  describe('Expectation Type Detection', () => {
+    it('should identify overall expectations', () => {
+      const determineType = (service as any).determineExpectationType.bind(service);
+
+      expect(determineType('A', 'Overall expectation')).toBe('overall');
+      expect(determineType('A1.0', 'Some description')).toBe('overall');
+      expect(determineType('B2', 'Some description')).toBe('overall');
+      expect(determineType('1', 'Some description')).toBe('overall');
+    });
+
+    it('should identify specific expectations', () => {
+      const determineType = (service as any).determineExpectationType.bind(service);
+
+      expect(determineType('A1.1', 'Specific expectation')).toBe('specific');
+      expect(determineType('B2.3', 'Some description')).toBe('specific');
+      expect(determineType('1.2.3', 'Some description')).toBe('specific');
+    });
+  });
+});
