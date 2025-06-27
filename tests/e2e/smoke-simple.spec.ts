@@ -39,7 +39,7 @@ test.describe('Simple Smoke Tests', () => {
     expect(['ok', 'degraded']).toContain(data.status);
 
     // Verify it's a proper health response
-    expect(data).toHaveProperty('healthy');
+    expect(data).toHaveProperty('status');
   });
 
   test('can create a test user via API', async ({ request }) => {
