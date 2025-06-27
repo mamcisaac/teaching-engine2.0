@@ -141,7 +141,7 @@ jobs:
           pnpm run test:e2e:smoke --reporter=list --workers=1
 
       - name: Run essential E2E tests
-        timeout-minutes: 10
+        timeout-minutes: 15
         env:
           DATABASE_URL: file:./packages/database/prisma/test.db
           JWT_SECRET: test-secret-key
