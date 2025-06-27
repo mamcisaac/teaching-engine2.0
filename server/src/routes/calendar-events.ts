@@ -29,11 +29,11 @@ const querySchema = z.object({
 router.get('/', requireAuth, validateRequest({ query: querySchema }), async (req, res) => {
   try {
     const { start, end, eventType } = req.query as z.infer<typeof querySchema>;
-    const userId = req.user!.userId;
+    const userId = req.user!.id;
 
     const where: Prisma.CalendarEventWhereInput = {
       OR: [
-        { teacherId: parseInt(userId) },
+        { teacherId: userId },
         { teacherId: null }, // School-wide events
       ],
     };
@@ -66,7 +66,7 @@ router.get('/', requireAuth, validateRequest({ query: querySchema }), async (req
 router.post('/', requireAuth, validateRequest({ body: calendarEventSchema }), async (req, res) => {
   try {
     const data = req.body as z.infer<typeof calendarEventSchema>;
-    const userId = req.user!.userId;
+    const userId = req.user!.id;
 
     const event = await prisma.calendarEvent.create({
       data: {
@@ -77,7 +77,7 @@ router.post('/', requireAuth, validateRequest({ body: calendarEventSchema }), as
         allDay: data.allDay,
         eventType: data.eventType,
         source: data.source,
-        teacherId: parseInt(userId),
+        teacherId: userId,
       },
     });
 
@@ -92,14 +92,14 @@ router.post('/', requireAuth, validateRequest({ body: calendarEventSchema }), as
 router.patch('/:id', requireAuth, async (req, res) => {
   try {
     const { id } = req.params;
-    const userId = req.user!.userId;
+    const userId = req.user!.id;
     const updates = req.body;
 
     // Check ownership
     const event = await prisma.calendarEvent.findFirst({
       where: {
         id: parseInt(id),
-        teacherId: parseInt(userId),
+        teacherId: userId,
       },
     });
 
@@ -127,13 +127,13 @@ router.patch('/:id', requireAuth, async (req, res) => {
 router.delete('/:id', requireAuth, async (req, res) => {
   try {
     const { id } = req.params;
-    const userId = req.user!.userId;
+    const userId = req.user!.id;
 
     // Check ownership
     const event = await prisma.calendarEvent.findFirst({
       where: {
         id: parseInt(id),
-        teacherId: parseInt(userId),
+        teacherId: userId,
       },
     });
 
@@ -175,7 +175,7 @@ router.post('/import-holidays', requireAuth, async (req, res) => {
 
     for (const holiday of holidays) {
       const date = new Date(year, holiday.month - 1, holiday.day);
-      
+
       const existing = await prisma.calendarEvent.findFirst({
         where: {
           title: holiday.title,

@@ -136,7 +136,7 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
 
       // Add user ID if authenticated
       if (req.user) {
-        data.userId = req.user.userId;
+        data.userId = req.user.id;
       }
 
       // Run before create hook
@@ -177,7 +177,7 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
       }
 
       // Check ownership if user ID exists
-      if (req.user && existing.userId && existing.userId !== parseInt(req.user.userId)) {
+      if (req.user && existing.userId && existing.userId !== req.user.id) {
         return res.status(403).json({ message: 'Unauthorized' });
       }
 
@@ -219,7 +219,7 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
       }
 
       // Check ownership if user ID exists
-      if (req.user && existing.userId && existing.userId !== parseInt(req.user.userId)) {
+      if (req.user && existing.userId && existing.userId !== req.user.id) {
         return res.status(403).json({ message: 'Unauthorized' });
       }
 

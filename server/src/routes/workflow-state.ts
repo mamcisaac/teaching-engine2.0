@@ -1,23 +1,19 @@
 import { Router, Request } from 'express';
 import { workflowStateService, ETFOLevel } from '../services/workflowStateService';
 
-interface AuthenticatedRequest extends Request {
-  user?: { userId: string };
-}
-
 const router = Router();
 
 /**
  * GET /api/workflow/state
  * Get the current workflow state for the authenticated user
  */
-router.get('/state', async (req: AuthenticatedRequest, res) => {
+router.get('/state', async (req: Request, res) => {
   try {
-    if (!req.user?.userId) {
+    if (!req.user?.id) {
       return res.status(401).json({ error: 'User not authenticated' });
     }
 
-    const userId = parseInt(req.user.userId);
+    const userId = req.user.id;
     const workflowState = await workflowStateService.getUserWorkflowState(userId);
 
     res.json(workflowState);
@@ -31,13 +27,13 @@ router.get('/state', async (req: AuthenticatedRequest, res) => {
  * GET /api/workflow/access/:level
  * Check if user can access a specific level
  */
-router.get('/access/:level', async (req: AuthenticatedRequest, res) => {
+router.get('/access/:level', async (req: Request, res) => {
   try {
-    if (!req.user?.userId) {
+    if (!req.user?.id) {
       return res.status(401).json({ error: 'User not authenticated' });
     }
 
-    const userId = parseInt(req.user.userId);
+    const userId = req.user.id;
     const level = req.params.level.toUpperCase() as ETFOLevel;
 
     if (!Object.values(ETFOLevel).includes(level)) {
@@ -56,9 +52,9 @@ router.get('/access/:level', async (req: AuthenticatedRequest, res) => {
  * POST /api/workflow/validate
  * Validate that an entity has all required fields for its level
  */
-router.post('/validate', async (req: AuthenticatedRequest, res) => {
+router.post('/validate', async (req: Request, res) => {
   try {
-    if (!req.user?.userId) {
+    if (!req.user?.id) {
       return res.status(401).json({ error: 'User not authenticated' });
     }
 
@@ -73,8 +69,12 @@ router.post('/validate', async (req: AuthenticatedRequest, res) => {
       return res.status(400).json({ error: 'Invalid level' });
     }
 
-    const userId = parseInt(req.user.userId);
-    const validation = await workflowStateService.validateLevelCompletion(userId, levelEnum, entityId);
+    const userId = req.user.id;
+    const validation = await workflowStateService.validateLevelCompletion(
+      userId,
+      levelEnum,
+      entityId,
+    );
 
     res.json(validation);
   } catch (error) {
@@ -87,10 +87,12 @@ router.post('/validate', async (req: AuthenticatedRequest, res) => {
  * GET /api/workflow/metadata
  * Get metadata for all workflow levels
  */
-router.get('/metadata', async (req: AuthenticatedRequest, res) => {
+router.get('/metadata', async (req: Request, res) => {
   try {
-    const { ETFO_LEVEL_METADATA, ETFO_LEVEL_SEQUENCE } = await import('../services/workflowStateService');
-    
+    const { ETFO_LEVEL_METADATA, ETFO_LEVEL_SEQUENCE } = await import(
+      '../services/workflowStateService'
+    );
+
     res.json({
       levels: ETFO_LEVEL_METADATA,
       sequence: ETFO_LEVEL_SEQUENCE,

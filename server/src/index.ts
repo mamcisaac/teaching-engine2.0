@@ -1,12 +1,13 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import jwt, { JwtPayload } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
 import bcrypt from 'bcryptjs';
 import debug from 'debug';
 import { config } from 'dotenv';
+import { authenticate } from './middleware/authenticate';
 
 // Load environment variables
 config();
@@ -19,12 +20,7 @@ const error = debug('server:error');
 const __filename_index = fileURLToPath(import.meta.url);
 const __dirname_index = path.dirname(__filename_index);
 
-// Extend the Express Request type to include the user property
-interface AuthenticatedRequest extends Request {
-  user?: {
-    userId: string;
-  };
-}
+// Use global Express Request type with user: { id: number; email: string }
 
 // ETFO-aligned route imports
 import curriculumImportRoutes from './routes/curriculumImport';
@@ -157,7 +153,7 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
-// Detailed health endpoint for debugging  
+// Detailed health endpoint for debugging
 app.get('/api/health/detailed', (_req, res) => {
   const healthStatus = performanceMonitor.getHealthStatus();
   res.status(healthStatus.healthy ? 200 : 503).json({
@@ -184,62 +180,7 @@ app.get('/api/metrics', (req, res) => {
   });
 });
 
-// Middleware to verify JWT token with enhanced security
-const authenticateToken = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
-  // First try to get token from httpOnly cookie
-  let token = req.cookies?.authToken;
-
-  // Fallback to Authorization header for backward compatibility
-  if (!token) {
-    const authHeader = req.headers['authorization'];
-    if (authHeader && authHeader.startsWith('Bearer ')) {
-      token = authHeader.split(' ')[1];
-    }
-  }
-
-  if (!token) {
-    return res.status(401).json({ error: 'Authentication required' });
-  }
-  if (!token || token.length > 1000) {
-    // Prevent extremely long tokens
-    return res.status(401).json({ error: 'Invalid token format' });
-  }
-
-  try {
-    const secret = process.env.JWT_SECRET;
-    if (!secret) {
-      logger.error('CRITICAL: JWT_SECRET environment variable not configured');
-      return res.status(500).json({ error: 'Server configuration error' });
-    }
-    const decoded = jwt.verify(token, secret, {
-      algorithms: ['HS256'], // Explicitly specify allowed algorithms
-      maxAge: '7d', // Maximum token age
-    }) as JwtPayload;
-
-    if (!decoded?.userId || !decoded?.email || !decoded?.iat) {
-      return res.status(403).json({ error: 'Invalid token payload' });
-    }
-
-    // Check token age (extra protection)
-    const now = Math.floor(Date.now() / 1000);
-    const maxAge = 7 * 24 * 60 * 60; // 7 days in seconds
-    if (now - decoded.iat > maxAge) {
-      return res.status(403).json({ error: 'Token expired' });
-    }
-
-    req.user = { userId: String(decoded.userId) };
-    next();
-  } catch (err) {
-    if (err instanceof jwt.TokenExpiredError) {
-      return res.status(403).json({ error: 'Token expired' });
-    } else if (err instanceof jwt.JsonWebTokenError) {
-      return res.status(403).json({ error: 'Invalid token' });
-    } else {
-      logger.error('JWT verification error:', err);
-      return res.status(403).json({ error: 'Token verification failed' });
-    }
-  }
-};
+// Use imported authenticate middleware from @/middleware/authenticate
 
 // Login rate limiting is now handled by the rateLimiters.auth middleware
 
@@ -328,13 +269,13 @@ app.post('/api/login', rateLimiters.auth, async (req, res) => {
 });
 
 // Auth check endpoint
-app.get('/api/auth/me', authenticateToken, async (req: AuthenticatedRequest, res: Response) => {
+app.get('/api/auth/me', authenticate, async (req: Request, res: Response) => {
   try {
-    if (!req.user?.userId) {
+    if (!req.user?.id) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
     const user = await prisma.user.findUnique({
-      where: { id: Number(req.user.userId) },
+      where: { id: req.user.id },
       select: { id: true, email: true, name: true, role: true },
     });
     if (!user) return res.status(404).json({ error: 'User not found' });
@@ -345,8 +286,8 @@ app.get('/api/auth/me', authenticateToken, async (req: AuthenticatedRequest, res
   }
 });
 
-app.get('/api/auth/check', authenticateToken, (req: AuthenticatedRequest, res: Response) => {
-  res.json({ userId: req.user?.userId });
+app.get('/api/auth/check', authenticate, (req: Request, res: Response) => {
+  res.json({ userId: req.user?.id });
 });
 
 // Logout endpoint to clear httpOnly cookie
@@ -376,78 +317,68 @@ app.use('/api', authRoutes(prisma));
 
 // Apply authentication and rate limiting to all API routes
 log('Mounting ETFO-aligned API routes...');
-app.use('/api/students', authenticateToken, rateLimiters.api, studentRoutes);
-app.use('/api/parent-summary', authenticateToken, rateLimiters.write, parentSummaryRoutes);
-app.use('/api/newsletters', authenticateToken, rateLimiters.write, newsletterRoutes);
-app.use('/api/curriculum-import', authenticateToken, rateLimiters.upload, curriculumImportRoutes);
-app.use(
-  '/api/curriculum-discovery',
-  authenticateToken,
-  rateLimiters.read,
-  curriculumDiscoveryRoutes,
-);
-app.use('/api/discovery-scheduler', authenticateToken, rateLimiters.api, discoverySchedulerRoutes);
+app.use('/api/students', authenticate, rateLimiters.api, studentRoutes);
+app.use('/api/parent-summary', authenticate, rateLimiters.write, parentSummaryRoutes);
+app.use('/api/newsletters', authenticate, rateLimiters.write, newsletterRoutes);
+app.use('/api/curriculum-import', authenticate, rateLimiters.upload, curriculumImportRoutes);
+app.use('/api/curriculum-discovery', authenticate, rateLimiters.read, curriculumDiscoveryRoutes);
+app.use('/api/discovery-scheduler', authenticate, rateLimiters.api, discoverySchedulerRoutes);
 
 // ETFO-aligned Planning Routes
 app.use(
   '/api/curriculum-expectations',
-  authenticateToken,
+  authenticate,
   rateLimiters.read,
   curriculumExpectationRoutes,
 );
-app.use('/api/long-range-plans', authenticateToken, rateLimiters.write, longRangePlanRoutes);
-app.use('/api/unit-plans', authenticateToken, rateLimiters.write, unitPlanRoutes);
-app.use('/api/etfo-lesson-plans', authenticateToken, rateLimiters.write, etfoLessonPlanRoutes);
-app.use('/api/daybook-entries', authenticateToken, rateLimiters.write, daybookEntryRoutes);
-app.use('/api/etfo', authenticateToken, rateLimiters.read, etfoProgressRoutes);
+app.use('/api/long-range-plans', authenticate, rateLimiters.write, longRangePlanRoutes);
+app.use('/api/unit-plans', authenticate, rateLimiters.write, unitPlanRoutes);
+app.use('/api/etfo-lesson-plans', authenticate, rateLimiters.write, etfoLessonPlanRoutes);
+app.use('/api/daybook-entries', authenticate, rateLimiters.write, daybookEntryRoutes);
+app.use('/api/etfo', authenticate, rateLimiters.read, etfoProgressRoutes);
 
 // State Management Routes
-app.use('/api/planner', authenticateToken, rateLimiters.api, plannerStateRoutes);
-app.use('/api/workflow', authenticateToken, rateLimiters.api, workflowStateRoutes);
-app.use('/api/ai-planning', authenticateToken, rateLimiters.ai, aiPlanningRoutes);
+app.use('/api/planner', authenticate, rateLimiters.api, plannerStateRoutes);
+app.use('/api/workflow', authenticate, rateLimiters.api, workflowStateRoutes);
+app.use('/api/ai-planning', authenticate, rateLimiters.ai, aiPlanningRoutes);
 
 // Template System Routes
-app.use('/api/templates', authenticateToken, rateLimiters.api, templateRoutes);
+app.use('/api/templates', authenticate, rateLimiters.api, templateRoutes);
 
 // Calendar Routes
-app.use('/api/calendar-events', authenticateToken, rateLimiters.api, calendarEventRoutes);
+app.use('/api/calendar-events', authenticate, rateLimiters.api, calendarEventRoutes);
 
 // Recent Plans Routes
-app.use('/api/recent-plans', authenticateToken, rateLimiters.api, recentPlansRoutes);
+app.use('/api/recent-plans', authenticate, rateLimiters.api, recentPlansRoutes);
 
 // AI status endpoint (maps to ai-planning/status for backward compatibility)
-app.get('/api/ai/status', authenticateToken, async (req, res) => {
+app.get('/api/ai/status', authenticate, async (req, res) => {
   // Forward to ai-planning routes handler
   req.url = '/status';
   aiPlanningRoutes(req, res, () => {});
 });
 
 // Planner State Routes
-app.use('/api/planner', authenticateToken, plannerStateRoutes);
+app.use('/api/planner', authenticate, plannerStateRoutes);
 
 // Activity Discovery Routes
-app.use('/api/activities', authenticateToken, rateLimiters.read, activityDiscoveryRoutes);
-app.use(
-  '/api/activity-collections',
-  authenticateToken,
-  rateLimiters.write,
-  activityCollectionsRoutes,
-);
-app.use('/api/ai-activities', authenticateToken, rateLimiters.ai, aiActivityGenerationRoutes);
+app.use('/api/activities', authenticate, rateLimiters.read, activityDiscoveryRoutes);
+app.use('/api/activity-collections', authenticate, rateLimiters.write, activityCollectionsRoutes);
+app.use('/api/ai-activities', authenticate, rateLimiters.ai, aiActivityGenerationRoutes);
 
 // Batch Processing Routes
-app.use('/api/batch-processing', authenticateToken, rateLimiters.write, batchProcessingRoutes);
+app.use('/api/batch-processing', authenticate, rateLimiters.write, batchProcessingRoutes);
 
 // Sub-plan Routes
-app.use('/api/sub-plan', authenticateToken, rateLimiters.write, subPlanRoutes);
+app.use('/api/sub-plan', authenticate, rateLimiters.write, subPlanRoutes);
 
 // Batch API Routes (for request batching)
-app.use('/api', authenticateToken, rateLimiters.api, batchApiRoutes);
+app.use('/api', authenticate, rateLimiters.api, batchApiRoutes);
 
 // Collaboration Routes
-app.use('/api/teams', authenticateToken, rateLimiters.api, teamRoutes(prisma));
-app.use('/api/sharing', authenticateToken, rateLimiters.api, sharingRoutes(prisma));
-app.use('/api/comments', authenticateToken, rateLimiters.api, commentRoutes(prisma));
+app.use('/api/teams', authenticate, rateLimiters.api, teamRoutes(prisma));
+app.use('/api/sharing', authenticate, rateLimiters.api, sharingRoutes(prisma));
+app.use('/api/comments', authenticate, rateLimiters.api, commentRoutes(prisma));
 
 // Service health check endpoint (no auth required for monitoring)
 app.get('/api/health/services', async (_req, res) => {

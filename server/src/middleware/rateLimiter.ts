@@ -41,100 +41,103 @@ export function createRateLimiter(options: RateLimitOptions) {
   return (req: Request, res: Response, next: NextFunction) => {
     const key = keyGenerator(req);
     const now = Date.now();
-    
+
     // Get or create entry
     let entry = requestCounts.get(key);
     if (!entry || entry.resetTime < now) {
       entry = { count: 0, resetTime: now + windowMs };
       requestCounts.set(key, entry);
     }
-    
+
     // Check if limit exceeded
     if (entry.count >= max) {
       const retryAfter = Math.ceil((entry.resetTime - now) / 1000);
-      
-      logger.warn({
-        key,
-        endpoint: req.path,
-        method: req.method,
-        count: entry.count,
-        max,
-      }, 'Rate limit exceeded');
-      
+
+      logger.warn(
+        {
+          key,
+          endpoint: req.path,
+          method: req.method,
+          count: entry.count,
+          max,
+        },
+        'Rate limit exceeded',
+      );
+
       res.setHeader('Retry-After', retryAfter.toString());
       res.setHeader('X-RateLimit-Limit', max.toString());
       res.setHeader('X-RateLimit-Remaining', '0');
       res.setHeader('X-RateLimit-Reset', new Date(entry.resetTime).toISOString());
-      
+
       return res.status(429).json({
         error: message,
         retryAfter,
       });
     }
-    
+
     // Increment counter
     entry.count++;
-    
+
     // Set headers
     res.setHeader('X-RateLimit-Limit', max.toString());
     res.setHeader('X-RateLimit-Remaining', Math.max(0, max - entry.count).toString());
     res.setHeader('X-RateLimit-Reset', new Date(entry.resetTime).toISOString());
-    
+
     // Handle response to optionally skip counting
     if (skipSuccessfulRequests || skipFailedRequests) {
       const originalSend = res.send;
-      res.send = function(data) {
-        const shouldSkip = 
+      res.send = function (data) {
+        const shouldSkip =
           (skipSuccessfulRequests && res.statusCode < 400) ||
           (skipFailedRequests && res.statusCode >= 400);
-        
+
         if (shouldSkip && entry) {
           entry.count = Math.max(0, entry.count - 1);
         }
-        
+
         return originalSend.call(this, data);
       };
     }
-    
+
     next();
   };
 }
 
 // Pre-configured rate limiters for different use cases
 export const rateLimiters = {
-  // Strict limit for authentication endpoints
+  // Strict limit for authentication endpoints (relaxed in test mode)
   auth: createRateLimiter({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 5, // 5 requests per window
+    max: process.env.NODE_ENV === 'test' ? 100 : 5, // Allow more requests in test mode
     message: 'Too many authentication attempts. Please try again later.',
     skipSuccessfulRequests: true, // Only count failed attempts
   }),
-  
+
   // Standard API rate limit
   api: createRateLimiter({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100, // 100 requests per window
   }),
-  
+
   // Relaxed limit for read operations
   read: createRateLimiter({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 200, // 200 requests per window
   }),
-  
+
   // Strict limit for write operations
   write: createRateLimiter({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 50, // 50 requests per window
   }),
-  
+
   // Very strict limit for AI operations
   ai: createRateLimiter({
     windowMs: 60 * 60 * 1000, // 1 hour
     max: 20, // 20 requests per hour
     message: 'AI generation limit exceeded. Please try again later.',
   }),
-  
+
   // File upload limit
   upload: createRateLimiter({
     windowMs: 60 * 60 * 1000, // 1 hour

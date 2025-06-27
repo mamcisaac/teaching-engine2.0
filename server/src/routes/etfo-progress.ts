@@ -1,107 +1,103 @@
 import { Router, Request } from 'express';
 import { prisma } from '../prisma';
 
-interface AuthenticatedRequest extends Request {
-  user?: { userId: string };
-}
-
 const router = Router();
 
 /**
  * GET /api/etfo/progress
  * Get ETFO planning progress across all 5 levels
  */
-router.get('/progress', async (req: AuthenticatedRequest, res) => {
+router.get('/progress', async (req: Request, res) => {
   try {
-    if (!req.user?.userId) {
+    if (!req.user?.id) {
       return res.status(401).json({ error: 'User not authenticated' });
     }
-    
-    const userId = parseInt(req.user.userId);
+
+    const userId = req.user.id;
 
     // Get curriculum expectations progress
     const totalExpectations = await prisma.curriculumExpectation.count({
-      where: { 
-        import: { userId }
-      }
+      where: {
+        import: { userId },
+      },
     });
-    
+
     const importedExpectations = totalExpectations; // All expectations are imported by definition
 
-    // Get long-range plans progress  
+    // Get long-range plans progress
     const totalLongRangePlans = await prisma.longRangePlan.count({
-      where: { userId }
+      where: { userId },
     });
-    
+
     const completedLongRangePlans = await prisma.longRangePlan.count({
-      where: { 
+      where: {
         userId,
         // Consider completed if they have goals
-        goals: { not: null }
-      }
+        goals: { not: null },
+      },
     });
 
     // Get unit plans progress
     const totalUnitPlans = await prisma.unitPlan.count({
-      where: { userId }
+      where: { userId },
     });
-    
+
     const completedUnitPlans = await prisma.unitPlan.count({
-      where: { 
+      where: {
         userId,
         // Consider completed if they have big ideas
-        bigIdeas: { not: null }
-      }
+        bigIdeas: { not: null },
+      },
     });
 
     // Get lesson plans progress
     const totalLessonPlans = await prisma.eTFOLessonPlan.count({
-      where: { userId }
+      where: { userId },
     });
-    
+
     const completedLessonPlans = await prisma.eTFOLessonPlan.count({
-      where: { 
+      where: {
         userId,
         // Consider completed if they have learning goals
-        learningGoals: { not: null }
-      }
+        learningGoals: { not: null },
+      },
     });
 
     // Get daybook entries progress
     const totalDaybookEntries = await prisma.daybookEntry.count({
-      where: { userId }
+      where: { userId },
     });
-    
+
     const completedDaybookEntries = await prisma.daybookEntry.count({
-      where: { 
+      where: {
         userId,
         // Consider completed if they have reflections
-        whatWorked: { not: null }
-      }
+        whatWorked: { not: null },
+      },
     });
 
     const progressData = {
       curriculumExpectations: {
         total: Math.max(totalExpectations, 1), // Ensure at least 1 to avoid division by zero
         imported: importedExpectations,
-        covered: importedExpectations // For now, imported = covered
+        covered: importedExpectations, // For now, imported = covered
       },
       longRangePlans: {
         total: totalLongRangePlans,
-        completed: completedLongRangePlans
+        completed: completedLongRangePlans,
       },
       unitPlans: {
         total: totalUnitPlans,
-        completed: completedUnitPlans
+        completed: completedUnitPlans,
       },
       lessonPlans: {
         total: totalLessonPlans,
-        completed: completedLessonPlans
+        completed: completedLessonPlans,
       },
       daybookEntries: {
         total: totalDaybookEntries,
-        completed: completedDaybookEntries
-      }
+        completed: completedDaybookEntries,
+      },
     };
 
     res.json(progressData);

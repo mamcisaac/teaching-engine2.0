@@ -26,8 +26,8 @@ const ProcessDocumentSchema = z.object({
  */
 router.post('/discover', authMiddleware, async (req, res) => {
   try {
-    const userId = Number(req.user!.userId);
-    
+    const userId = Number(req.user!.id);
+
     res.json({
       success: true,
       message: 'Discovery process started',
@@ -63,7 +63,7 @@ router.post('/discover', authMiddleware, async (req, res) => {
 router.get('/documents', authMiddleware, async (req, res) => {
   try {
     const filterResult = DiscoveryFilterSchema.safeParse(req.query);
-    
+
     if (!filterResult.success) {
       return res.status(400).json({
         success: false,
@@ -119,9 +119,11 @@ router.get('/stats', authMiddleware, async (req, res) => {
  */
 router.post('/download', authMiddleware, async (req, res) => {
   try {
-    const { documentId } = z.object({
-      documentId: z.string().min(1),
-    }).parse(req.body);
+    const { documentId } = z
+      .object({
+        documentId: z.string().min(1),
+      })
+      .parse(req.body);
 
     const result = await curriculumDiscoveryService.downloadDocument(documentId);
 
@@ -157,7 +159,7 @@ router.post('/download', authMiddleware, async (req, res) => {
 router.post('/process', authMiddleware, async (req, res) => {
   try {
     const parseResult = ProcessDocumentSchema.parse(req.body);
-    const userId = parseResult.userId || Number(req.user!.userId);
+    const userId = parseResult.userId || Number(req.user!.id);
     const { documentId } = parseResult;
 
     const result = await curriculumDiscoveryService.processDocument(documentId, userId);
@@ -193,11 +195,13 @@ router.post('/process', authMiddleware, async (req, res) => {
  */
 router.post('/download-and-process', authMiddleware, async (req, res) => {
   try {
-    const { documentId } = z.object({
-      documentId: z.string().min(1),
-    }).parse(req.body);
+    const { documentId } = z
+      .object({
+        documentId: z.string().min(1),
+      })
+      .parse(req.body);
 
-    const userId = Number(req.user!.userId);
+    const userId = Number(req.user!.id);
 
     // Step 1: Download document
     const downloadResult = await curriculumDiscoveryService.downloadDocument(documentId);
@@ -243,9 +247,11 @@ router.post('/download-and-process', authMiddleware, async (req, res) => {
  */
 router.post('/verify', authMiddleware, async (req, res) => {
   try {
-    const { documentId } = z.object({
-      documentId: z.string().min(1),
-    }).parse(req.body);
+    const { documentId } = z
+      .object({
+        documentId: z.string().min(1),
+      })
+      .parse(req.body);
 
     const isAvailable = await curriculumDiscoveryService.verifyDocument(documentId);
 
@@ -273,7 +279,7 @@ router.post('/verify', authMiddleware, async (req, res) => {
 router.delete('/documents/:documentId', authMiddleware, async (req, res) => {
   try {
     const { documentId } = req.params;
-    
+
     if (!documentId) {
       return res.status(400).json({
         success: false,
@@ -347,7 +353,7 @@ router.get('/sources', authMiddleware, async (req, res) => {
       data: {
         sources,
         totalSources: sources.length,
-        activeSources: sources.filter(s => s.isActive).length,
+        activeSources: sources.filter((s) => s.isActive).length,
       },
     });
   } catch (error) {
@@ -365,12 +371,14 @@ router.get('/sources', authMiddleware, async (req, res) => {
  */
 router.post('/batch', authMiddleware, async (req, res) => {
   try {
-    const { operation, documentIds } = z.object({
-      operation: z.enum(['download', 'process', 'download-and-process', 'verify']),
-      documentIds: z.array(z.string().min(1)).min(1).max(10), // Limit batch size
-    }).parse(req.body);
+    const { operation, documentIds } = z
+      .object({
+        operation: z.enum(['download', 'process', 'download-and-process', 'verify']),
+        documentIds: z.array(z.string().min(1)).min(1).max(10), // Limit batch size
+      })
+      .parse(req.body);
 
-    const userId = Number(req.user!.userId);
+    const userId = Number(req.user!.id);
     const results: Array<{
       documentId: string;
       success: boolean;
@@ -423,10 +431,10 @@ router.post('/batch', authMiddleware, async (req, res) => {
       }
 
       // Add delay between batch operations to avoid overwhelming sources
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
     }
 
-    const successCount = results.filter(r => r.success).length;
+    const successCount = results.filter((r) => r.success).length;
     const failureCount = results.length - successCount;
 
     res.json({

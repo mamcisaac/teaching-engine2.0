@@ -1,22 +1,18 @@
 import { Router, Request } from 'express';
 import { prisma } from '../prisma';
 
-interface AuthenticatedRequest extends Request {
-  user?: { userId: string };
-}
-
 const router = Router();
 
 // Track plan access
-router.post('/track', async (req: AuthenticatedRequest, res, _next) => {
+router.post('/track', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
     const { planType, planId } = req.body;
-    
+
     if (!planType || !planId) {
       return res.status(400).json({ error: 'Plan type and ID are required' });
     }
@@ -51,9 +47,9 @@ router.post('/track', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Get recent plans for user
-router.get('/', async (req: AuthenticatedRequest, res, _next) => {
+router.get('/', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -191,7 +187,8 @@ router.get('/', async (req: AuthenticatedRequest, res, _next) => {
         return {
           id: plan.id,
           type: access.planType,
-          title: 'title' in plan ? plan.title : `Daybook - ${new Date(plan.date).toLocaleDateString()}`,
+          title:
+            'title' in plan ? plan.title : `Daybook - ${new Date(plan.date).toLocaleDateString()}`,
           subject: parentInfo?.longRangePlan?.subject || parentInfo?.subject,
           grade: parentInfo?.longRangePlan?.grade || parentInfo?.grade,
           lastAccessed: access.lastAccessed,
@@ -199,7 +196,7 @@ router.get('/', async (req: AuthenticatedRequest, res, _next) => {
           status,
           parentTitle: parentInfo?.title,
         };
-      })
+      }),
     );
 
     // Filter out null values (deleted plans)
@@ -213,9 +210,9 @@ router.get('/', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Clear recent plans history
-router.delete('/clear', async (req: AuthenticatedRequest, res, _next) => {
+router.delete('/clear', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }

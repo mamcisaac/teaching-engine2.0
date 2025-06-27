@@ -62,7 +62,7 @@ router.get('/search', authMiddleware, async (req, res) => {
       offset: params.offset,
     };
 
-    const results = await activityService.search(searchParams, Number(req.user!.userId));
+    const results = await activityService.search(searchParams, Number(req.user!.id));
 
     res.json({
       success: true,
@@ -119,7 +119,7 @@ router.post('/import', authMiddleware, async (req, res) => {
 
     const activityImport = await activityService.importActivity(
       params as Parameters<typeof activityService.importActivity>[0],
-      Number(req.user!.userId),
+      Number(req.user!.id),
     );
 
     res.json({
@@ -162,7 +162,7 @@ router.post('/:activityId/rate', authMiddleware, async (req, res) => {
         challenges: params.challenges,
         wouldRecommend: params.wouldRecommend,
       },
-      Number(req.user!.userId),
+      Number(req.user!.id),
     );
 
     res.json({
@@ -229,7 +229,7 @@ router.get('/recommendations/:lessonPlanId', authMiddleware, async (req, res) =>
 
     const recommendations = await activityService.getRecommendedActivities(
       lessonPlanId,
-      Number(req.user!.userId),
+      Number(req.user!.id),
       Number(limit),
     );
 
@@ -253,7 +253,7 @@ router.get('/imported', authMiddleware, async (req, res) => {
     const { prisma } = await import('../prisma');
 
     const imports = await prisma.activityImport.findMany({
-      where: { userId: Number(req.user!.userId) },
+      where: { userId: Number(req.user!.id) },
       include: {
         activity: true,
         lessonPlan: {
@@ -270,7 +270,7 @@ router.get('/imported', authMiddleware, async (req, res) => {
     });
 
     const totalCount = await prisma.activityImport.count({
-      where: { userId: Number(req.user!.userId) },
+      where: { userId: Number(req.user!.id) },
     });
 
     res.json({

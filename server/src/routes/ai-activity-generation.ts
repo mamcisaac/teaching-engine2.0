@@ -90,7 +90,7 @@ router.post('/generate', authMiddleware, async (req: Request, res: Response) => 
         limit: 5,
       };
 
-      const results = await activityService.search(searchParams, Number(req.user!.userId));
+      const results = await activityService.search(searchParams, Number(req.user!.id));
       searchResults = results;
     }
 
@@ -134,7 +134,7 @@ router.post('/generate-variations', authMiddleware, async (req: Request, res: Re
         limit: 10,
       };
 
-      const results = await activityService.search(searchParams, Number(req.user!.userId));
+      const results = await activityService.search(searchParams, Number(req.user!.id));
       searchResults = results;
     }
 
@@ -226,7 +226,7 @@ router.post('/save', authMiddleware, async (req: Request, res: Response) => {
     // Save the generated activity
     const savedActivity = await aiGenerator.saveGeneratedActivity(
       activityWithDefaults,
-      Number(req.user!.userId),
+      Number(req.user!.id),
       params.metadata,
     );
 

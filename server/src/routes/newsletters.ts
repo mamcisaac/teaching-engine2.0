@@ -3,10 +3,6 @@ import { prisma } from '../prisma';
 import { z } from 'zod';
 import { generateNewsletterContent } from '../services/newsletterService';
 
-interface AuthenticatedRequest extends Request {
-  user?: { userId: string };
-}
-
 const router = Router();
 
 // Validation schemas
@@ -29,28 +25,32 @@ const saveNewsletterSchema = z.object({
   dateFrom: z.string().datetime(),
   dateTo: z.string().datetime(),
   tone: z.enum(['friendly', 'formal', 'informative']),
-  sections: z.array(z.object({
-    id: z.string(),
-    title: z.string(),
-    titleFr: z.string(),
-    content: z.string(),
-    contentFr: z.string(),
-    isEditable: z.boolean().default(true),
-    order: z.number().int(),
-  })),
+  sections: z.array(
+    z.object({
+      id: z.string(),
+      title: z.string(),
+      titleFr: z.string(),
+      content: z.string(),
+      contentFr: z.string(),
+      isEditable: z.boolean().default(true),
+      order: z.number().int(),
+    }),
+  ),
   isDraft: z.boolean().default(true),
 });
 
 const regenerateNewsletterSchema = z.object({
-  sections: z.array(z.object({
-    id: z.string(),
-    title: z.string(),
-    titleFr: z.string(),
-    content: z.string(),
-    contentFr: z.string(),
-    isEditable: z.boolean(),
-    order: z.number().int(),
-  })),
+  sections: z.array(
+    z.object({
+      id: z.string(),
+      title: z.string(),
+      titleFr: z.string(),
+      content: z.string(),
+      contentFr: z.string(),
+      isEditable: z.boolean(),
+      order: z.number().int(),
+    }),
+  ),
   studentIds: z.array(z.number().int().positive()),
   from: z.string().datetime(),
   to: z.string().datetime(),
@@ -58,9 +58,9 @@ const regenerateNewsletterSchema = z.object({
 });
 
 // Generate newsletter content with AI
-router.post('/generate-newsletter', async (req: AuthenticatedRequest, res, next) => {
+router.post('/generate-newsletter', async (req: Request, res, next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -73,13 +73,23 @@ router.post('/generate-newsletter', async (req: AuthenticatedRequest, res, next)
       });
     }
 
-    const { studentIds, from, to, tone, focusAreas, includeArtifacts, includeReflections, includeLearningGoals, includeUpcomingEvents } = validation.data;
+    const {
+      studentIds,
+      from,
+      to,
+      tone,
+      focusAreas,
+      includeArtifacts,
+      includeReflections,
+      includeLearningGoals,
+      includeUpcomingEvents,
+    } = validation.data;
 
     // Verify all students belong to this teacher
     const students = await prisma.student.findMany({
       where: {
         id: { in: studentIds },
-        userId: parseInt(userId),
+        userId: userId,
       },
       include: {
         artifacts: {
@@ -108,7 +118,7 @@ router.post('/generate-newsletter', async (req: AuthenticatedRequest, res, next)
     // Get daybook entries for the period
     const daybookEntries = await prisma.daybookEntry.findMany({
       where: {
-        userId: parseInt(userId),
+        userId: userId,
         date: {
           gte: new Date(from),
           lte: new Date(to),
@@ -148,9 +158,9 @@ router.post('/generate-newsletter', async (req: AuthenticatedRequest, res, next)
 });
 
 // Regenerate newsletter with variations
-router.post('/regenerate-newsletter', async (req: AuthenticatedRequest, res, next) => {
+router.post('/regenerate-newsletter', async (req: Request, res, next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -169,7 +179,7 @@ router.post('/regenerate-newsletter', async (req: AuthenticatedRequest, res, nex
     const students = await prisma.student.findMany({
       where: {
         id: { in: studentIds },
-        userId: parseInt(userId),
+        userId: userId,
       },
     });
 
@@ -180,7 +190,7 @@ router.post('/regenerate-newsletter', async (req: AuthenticatedRequest, res, nex
     // For regeneration, we'll create variations of existing content
     // This is a simplified version - you might want to enhance this
     const regeneratedContent = {
-      sections: sections.map(section => ({
+      sections: sections.map((section) => ({
         ...section,
         // Add variation logic here
         content: section.content + ' (Regenerated)',
@@ -196,9 +206,9 @@ router.post('/regenerate-newsletter', async (req: AuthenticatedRequest, res, nex
 });
 
 // Get all newsletters
-router.get('/', async (req: AuthenticatedRequest, res, next) => {
+router.get('/', async (req: Request, res, next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -207,7 +217,7 @@ router.get('/', async (req: AuthenticatedRequest, res, next) => {
 
     const newsletters = await prisma.newsletter.findMany({
       where: {
-        userId: parseInt(userId),
+        userId: userId,
         ...(isDraft !== undefined && { isDraft }),
       },
       orderBy: { createdAt: 'desc' },
@@ -220,9 +230,9 @@ router.get('/', async (req: AuthenticatedRequest, res, next) => {
 });
 
 // Get a specific newsletter
-router.get('/:id', async (req: AuthenticatedRequest, res, next) => {
+router.get('/:id', async (req: Request, res, next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -230,7 +240,7 @@ router.get('/:id', async (req: AuthenticatedRequest, res, next) => {
     const newsletter = await prisma.newsletter.findFirst({
       where: {
         id: req.params.id,
-        userId: parseInt(userId),
+        userId: userId,
       },
     });
 
@@ -245,9 +255,9 @@ router.get('/:id', async (req: AuthenticatedRequest, res, next) => {
 });
 
 // Save newsletter
-router.post('/', async (req: AuthenticatedRequest, res, next) => {
+router.post('/', async (req: Request, res, next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -265,7 +275,7 @@ router.post('/', async (req: AuthenticatedRequest, res, next) => {
     // Create newsletter
     const newsletter = await prisma.newsletter.create({
       data: {
-        userId: parseInt(userId),
+        userId: userId,
         title: newsletterData.title,
         titleFr: newsletterData.titleFr,
         studentIds: newsletterData.studentIds,
@@ -285,9 +295,9 @@ router.post('/', async (req: AuthenticatedRequest, res, next) => {
 });
 
 // Update newsletter
-router.put('/:id', async (req: AuthenticatedRequest, res, next) => {
+router.put('/:id', async (req: Request, res, next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -306,7 +316,7 @@ router.put('/:id', async (req: AuthenticatedRequest, res, next) => {
     const existing = await prisma.newsletter.findFirst({
       where: {
         id: req.params.id,
-        userId: parseInt(userId),
+        userId: userId,
       },
     });
 
@@ -337,9 +347,9 @@ router.put('/:id', async (req: AuthenticatedRequest, res, next) => {
 });
 
 // Send newsletter
-router.post('/:id/send', async (req: AuthenticatedRequest, res, next) => {
+router.post('/:id/send', async (req: Request, res, next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -347,7 +357,7 @@ router.post('/:id/send', async (req: AuthenticatedRequest, res, next) => {
     const newsletter = await prisma.newsletter.findFirst({
       where: {
         id: req.params.id,
-        userId: parseInt(userId),
+        userId: userId,
       },
     });
 
@@ -379,9 +389,9 @@ router.post('/:id/send', async (req: AuthenticatedRequest, res, next) => {
 });
 
 // Delete newsletter
-router.delete('/:id', async (req: AuthenticatedRequest, res, next) => {
+router.delete('/:id', async (req: Request, res, next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -389,7 +399,7 @@ router.delete('/:id', async (req: AuthenticatedRequest, res, next) => {
     const newsletter = await prisma.newsletter.findFirst({
       where: {
         id: req.params.id,
-        userId: parseInt(userId),
+        userId: userId,
       },
     });
 

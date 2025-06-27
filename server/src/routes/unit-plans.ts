@@ -4,16 +4,20 @@ import { prisma } from '../prisma';
 import { validate, cuidSchema } from '../validation';
 import { z } from 'zod';
 
-interface AuthenticatedRequest extends Request {
-  user?: { userId: string };
-}
-
 const router = Router();
 
 // Enhanced validation schemas with security measures
 const unitPlanCreateSchema = z.object({
-  title: z.string().min(1).max(255).regex(/^[^<>]*$/, 'Title cannot contain HTML tags'),
-  titleFr: z.string().max(255).regex(/^[^<>]*$/, 'French title cannot contain HTML tags').optional(),
+  title: z
+    .string()
+    .min(1)
+    .max(255)
+    .regex(/^[^<>]*$/, 'Title cannot contain HTML tags'),
+  titleFr: z
+    .string()
+    .max(255)
+    .regex(/^[^<>]*$/, 'French title cannot contain HTML tags')
+    .optional(),
   longRangePlanId: cuidSchema(),
   description: z.string().max(2000).optional(),
   descriptionFr: z.string().max(2000).optional(),
@@ -25,7 +29,10 @@ const unitPlanCreateSchema = z.object({
   estimatedHours: z.number().int().positive().max(1000).optional(),
   assessmentPlan: z.string().max(2000).optional(),
   successCriteria: z.array(z.string().max(500)).max(20).optional(),
-  expectationIds: z.array(cuidSchema()).max(50).min(1, 'At least one curriculum expectation must be selected'),
+  expectationIds: z
+    .array(cuidSchema())
+    .max(50)
+    .min(1, 'At least one curriculum expectation must be selected'),
 
   // ETFO-aligned planning fields with validation
   crossCurricularConnections: z.string().max(1000).optional(),
@@ -53,9 +60,9 @@ const unitPlanCreateSchema = z.object({
 const unitPlanUpdateSchema = unitPlanCreateSchema.partial().omit({ longRangePlanId: true });
 
 // Get all unit plans for the authenticated user
-router.get('/', async (req: AuthenticatedRequest, res, _next) => {
+router.get('/', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -99,9 +106,9 @@ router.get('/', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Get a single unit plan
-router.get('/:id', async (req: AuthenticatedRequest, res, _next) => {
+router.get('/:id', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -165,9 +172,9 @@ router.get('/:id', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Create a new unit plan
-router.post('/', validate(unitPlanCreateSchema), async (req: AuthenticatedRequest, res, _next) => {
+router.post('/', validate(unitPlanCreateSchema), async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -260,99 +267,95 @@ router.post('/', validate(unitPlanCreateSchema), async (req: AuthenticatedReques
 });
 
 // Update a unit plan
-router.put(
-  '/:id',
-  validate(unitPlanUpdateSchema),
-  async (req: AuthenticatedRequest, res, _next) => {
-    try {
-      const userId = parseInt(req.user?.userId || '0', 10);
-      if (!userId) {
-        return res.status(401).json({ error: 'Unauthorized' });
-      }
-
-      const {
-        expectationIds,
-        essentialQuestions,
-        successCriteria,
-        learningSkills,
-        keyVocabulary,
-        differentiationStrategies,
-        ...updateData
-      } = req.body;
-
-      // Verify ownership
-      const existing = await prisma.unitPlan.findFirst({
-        where: { id: req.params.id, userId },
-      });
-
-      if (!existing) {
-        return res.status(404).json({ error: 'Unit plan not found' });
-      }
-
-      // Prepare update data
-      const data: Prisma.UnitPlanUpdateInput = { ...updateData };
-      if (updateData.startDate) data.startDate = new Date(updateData.startDate);
-      if (updateData.endDate) data.endDate = new Date(updateData.endDate);
-      if (essentialQuestions !== undefined) data.essentialQuestions = essentialQuestions;
-      if (successCriteria !== undefined) data.successCriteria = successCriteria;
-      if (learningSkills !== undefined) data.learningSkills = learningSkills;
-      if (keyVocabulary !== undefined) data.keyVocabulary = keyVocabulary;
-      if (differentiationStrategies !== undefined)
-        data.differentiationStrategies = differentiationStrategies;
-
-      // Update the plan
-      const unitPlan = await prisma.unitPlan.update({
-        where: { id: req.params.id },
-        data,
-      });
-
-      // Update expectations if provided
-      if (expectationIds !== undefined) {
-        // Remove existing expectations
-        await prisma.unitPlanExpectation.deleteMany({
-          where: { unitPlanId: unitPlan.id },
-        });
-
-        // Add new expectations
-        if (expectationIds.length > 0) {
-          await prisma.unitPlanExpectation.createMany({
-            data: expectationIds.map((expectationId: string) => ({
-              unitPlanId: unitPlan.id,
-              expectationId,
-            })),
-          });
-        }
-      }
-
-      // Refetch with updated relationships
-      const updatedPlan = await prisma.unitPlan.findUnique({
-        where: { id: unitPlan.id },
-        include: {
-          longRangePlan: true,
-          expectations: {
-            include: { expectation: true },
-          },
-          lessonPlans: {
-            orderBy: { date: 'asc' },
-            include: {
-              _count: { select: { expectations: true } },
-            },
-          },
-          resources: true,
-        },
-      });
-
-      res.json(updatedPlan);
-    } catch (err) {
-      _next(err);
+router.put('/:id', validate(unitPlanUpdateSchema), async (req: Request, res, _next) => {
+  try {
+    const userId = req.user?.id || 0;
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
     }
-  },
-);
+
+    const {
+      expectationIds,
+      essentialQuestions,
+      successCriteria,
+      learningSkills,
+      keyVocabulary,
+      differentiationStrategies,
+      ...updateData
+    } = req.body;
+
+    // Verify ownership
+    const existing = await prisma.unitPlan.findFirst({
+      where: { id: req.params.id, userId },
+    });
+
+    if (!existing) {
+      return res.status(404).json({ error: 'Unit plan not found' });
+    }
+
+    // Prepare update data
+    const data: Prisma.UnitPlanUpdateInput = { ...updateData };
+    if (updateData.startDate) data.startDate = new Date(updateData.startDate);
+    if (updateData.endDate) data.endDate = new Date(updateData.endDate);
+    if (essentialQuestions !== undefined) data.essentialQuestions = essentialQuestions;
+    if (successCriteria !== undefined) data.successCriteria = successCriteria;
+    if (learningSkills !== undefined) data.learningSkills = learningSkills;
+    if (keyVocabulary !== undefined) data.keyVocabulary = keyVocabulary;
+    if (differentiationStrategies !== undefined)
+      data.differentiationStrategies = differentiationStrategies;
+
+    // Update the plan
+    const unitPlan = await prisma.unitPlan.update({
+      where: { id: req.params.id },
+      data,
+    });
+
+    // Update expectations if provided
+    if (expectationIds !== undefined) {
+      // Remove existing expectations
+      await prisma.unitPlanExpectation.deleteMany({
+        where: { unitPlanId: unitPlan.id },
+      });
+
+      // Add new expectations
+      if (expectationIds.length > 0) {
+        await prisma.unitPlanExpectation.createMany({
+          data: expectationIds.map((expectationId: string) => ({
+            unitPlanId: unitPlan.id,
+            expectationId,
+          })),
+        });
+      }
+    }
+
+    // Refetch with updated relationships
+    const updatedPlan = await prisma.unitPlan.findUnique({
+      where: { id: unitPlan.id },
+      include: {
+        longRangePlan: true,
+        expectations: {
+          include: { expectation: true },
+        },
+        lessonPlans: {
+          orderBy: { date: 'asc' },
+          include: {
+            _count: { select: { expectations: true } },
+          },
+        },
+        resources: true,
+      },
+    });
+
+    res.json(updatedPlan);
+  } catch (err) {
+    _next(err);
+  }
+});
 
 // Delete a unit plan
-router.delete('/:id', async (req: AuthenticatedRequest, res, _next) => {
+router.delete('/:id', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -386,9 +389,9 @@ router.delete('/:id', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Add a resource to unit plan
-router.post('/:id/resources', async (req: AuthenticatedRequest, res, _next) => {
+router.post('/:id/resources', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -425,9 +428,9 @@ router.post('/:id/resources', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Delete a resource
-router.delete('/:id/resources/:resourceId', async (req: AuthenticatedRequest, res, _next) => {
+router.delete('/:id/resources/:resourceId', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -458,9 +461,9 @@ router.delete('/:id/resources/:resourceId', async (req: AuthenticatedRequest, re
 });
 
 // Duplicate a unit plan
-router.post('/duplicate', async (req: AuthenticatedRequest, res, _next) => {
+router.post('/duplicate', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -477,12 +480,14 @@ router.post('/duplicate', async (req: AuthenticatedRequest, res, _next) => {
       include: {
         expectations: true,
         resources: true,
-        lessonPlans: includeSubItems ? {
-          include: {
-            expectations: true,
-            resources: true,
-          },
-        } : false,
+        lessonPlans: includeSubItems
+          ? {
+              include: {
+                expectations: true,
+                resources: true,
+              },
+            }
+          : false,
       },
     });
 
@@ -498,8 +503,17 @@ router.post('/duplicate', async (req: AuthenticatedRequest, res, _next) => {
       const newEndDate = new Date(newStartDate.getTime() + originalDuration);
 
       // Create the duplicate unit plan
-      const { id: _, userId: __, createdAt: _createdAt, updatedAt: _updatedAt, lessonPlans, expectations, resources, ...unitData } = sourceUnit;
-      
+      const {
+        id: _,
+        userId: __,
+        createdAt: _createdAt,
+        updatedAt: _updatedAt,
+        lessonPlans,
+        expectations,
+        resources,
+        ...unitData
+      } = sourceUnit;
+
       const newUnit = await tx.unitPlan.create({
         data: {
           ...unitData,
@@ -513,7 +527,7 @@ router.post('/duplicate', async (req: AuthenticatedRequest, res, _next) => {
       // Copy expectations
       if (expectations.length > 0) {
         await tx.unitPlanExpectation.createMany({
-          data: expectations.map(exp => ({
+          data: expectations.map((exp) => ({
             unitPlanId: newUnit.id,
             expectationId: exp.expectationId,
           })),
@@ -523,20 +537,40 @@ router.post('/duplicate', async (req: AuthenticatedRequest, res, _next) => {
       // Copy resources
       if (resources.length > 0) {
         await tx.unitPlanResource.createMany({
-          data: resources.map(({ id: _id, unitPlanId: _unitPlanId, createdAt: _createdAt, ...resource }) => ({
-            ...resource,
-            unitPlanId: newUnit.id,
-          })),
+          data: resources.map(
+            ({ id: _id, unitPlanId: _unitPlanId, createdAt: _createdAt, ...resource }) => ({
+              ...resource,
+              unitPlanId: newUnit.id,
+            }),
+          ),
         });
       }
 
       // Copy lesson plans if requested
       if (includeSubItems && lessonPlans && lessonPlans.length > 0) {
         for (const lesson of lessonPlans) {
-          const { id: _, unitPlanId: __, userId: ___, createdAt: _createdAt, updatedAt: _updatedAt, ...lessonData } = lesson;
-          const lessonExp = (lesson as { expectations?: Array<{ expectationId: string }> }).expectations || [];
-          const lessonRes = (lesson as { resources?: Array<{ id: string; lessonPlanId: string; createdAt: Date; [key: string]: unknown }> }).resources || [];
-          
+          const {
+            id: _,
+            unitPlanId: __,
+            userId: ___,
+            createdAt: _createdAt,
+            updatedAt: _updatedAt,
+            ...lessonData
+          } = lesson;
+          const lessonExp =
+            (lesson as { expectations?: Array<{ expectationId: string }> }).expectations || [];
+          const lessonRes =
+            (
+              lesson as {
+                resources?: Array<{
+                  id: string;
+                  lessonPlanId: string;
+                  createdAt: Date;
+                  [key: string]: unknown;
+                }>;
+              }
+            ).resources || [];
+
           // Calculate new lesson date based on relative position
           const originalOffset = lesson.date.getTime() - sourceUnit.startDate.getTime();
           const newLessonDate = new Date(newStartDate.getTime() + originalOffset);
@@ -554,7 +588,7 @@ router.post('/duplicate', async (req: AuthenticatedRequest, res, _next) => {
           // Copy lesson expectations
           if (lessonExp.length > 0) {
             await tx.eTFOLessonPlanExpectation.createMany({
-              data: lessonExp.map(exp => ({
+              data: lessonExp.map((exp) => ({
                 lessonPlanId: newLesson.id,
                 expectationId: exp.expectationId,
               })),
@@ -564,10 +598,12 @@ router.post('/duplicate', async (req: AuthenticatedRequest, res, _next) => {
           // Copy lesson resources
           if (lessonRes.length > 0) {
             await tx.eTFOLessonPlanResource.createMany({
-              data: lessonRes.map(({ id: _id, lessonPlanId: _lessonPlanId, createdAt: _createdAt, ...resource }) => ({
-                ...resource,
-                lessonPlanId: newLesson.id,
-              })) as Prisma.ETFOLessonPlanResourceCreateManyInput[],
+              data: lessonRes.map(
+                ({ id: _id, lessonPlanId: _lessonPlanId, createdAt: _createdAt, ...resource }) => ({
+                  ...resource,
+                  lessonPlanId: newLesson.id,
+                }),
+              ) as Prisma.ETFOLessonPlanResourceCreateManyInput[],
             });
           }
         }

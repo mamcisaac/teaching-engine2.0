@@ -1,12 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import logger from '../logger';
 
-interface AuthenticatedRequest extends Request {
-  user?: {
-    userId: string;
-  };
-}
-
 interface AuditLogOptions {
   action: string;
   resourceType: 'student' | 'parent_summary' | 'lesson_plan' | 'unit_plan' | 'curriculum' | 'user';
@@ -16,13 +10,13 @@ interface AuditLogOptions {
 }
 
 export function createAuditLog(options: AuditLogOptions) {
-  return async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+  return async (req: Request, res: Response, next: NextFunction) => {
     const startTime = Date.now();
     const auditEntry = {
       action: options.action,
       resourceType: options.resourceType,
       resourceId: req.params.id || req.params.studentId || null,
-      userId: req.user?.userId ? parseInt(req.user.userId) : null,
+      userId: req.user?.id || null,
       ipAddress: req.ip || req.connection.remoteAddress || 'unknown',
       userAgent: req.headers['user-agent'] || 'unknown',
       method: req.method,
@@ -35,13 +29,13 @@ export function createAuditLog(options: AuditLogOptions) {
 
     // Log response when it's sent
     const originalSend = res.send;
-    res.send = function(data) {
+    res.send = function (data) {
       auditEntry.responseStatus = res.statusCode;
       auditEntry.duration = Date.now() - startTime;
 
       // Log to database asynchronously
       if (options.sensitiveData || auditEntry.responseStatus < 400) {
-        logAuditEntry(auditEntry).catch(error => {
+        logAuditEntry(auditEntry).catch((error) => {
           logger.error({ error, auditEntry }, 'Failed to create audit log entry');
         });
       }
@@ -97,34 +91,34 @@ export const auditLoggers = {
     resourceType: 'student',
     sensitiveData: true,
   }),
-  
+
   studentCreate: createAuditLog({
     action: 'CREATE_STUDENT',
     resourceType: 'student',
     sensitiveData: true,
     includeRequestBody: true,
   }),
-  
+
   studentUpdate: createAuditLog({
     action: 'UPDATE_STUDENT',
     resourceType: 'student',
     sensitiveData: true,
     includeRequestBody: true,
   }),
-  
+
   studentDelete: createAuditLog({
     action: 'DELETE_STUDENT',
     resourceType: 'student',
     sensitiveData: true,
   }),
-  
+
   // Parent communication
   parentSummaryView: createAuditLog({
     action: 'VIEW_PARENT_SUMMARY',
     resourceType: 'parent_summary',
     sensitiveData: true,
   }),
-  
+
   parentSummaryCreate: createAuditLog({
     action: 'CREATE_PARENT_SUMMARY',
     resourceType: 'parent_summary',

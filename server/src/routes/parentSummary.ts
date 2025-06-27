@@ -3,10 +3,6 @@ import { prisma } from '../prisma';
 import { generateParentSummary, regenerateParentSummary } from '../services/parentSummaryLLM';
 import { z } from 'zod';
 
-interface AuthenticatedRequest extends Request {
-  user?: { userId: string };
-}
-
 const router = Router();
 
 // Validation schemas
@@ -38,9 +34,9 @@ const saveSummarySchema = z.object({
 });
 
 // Generate a new parent summary using AI
-router.post('/generate', async (req: AuthenticatedRequest, res, _next) => {
+router.post('/generate', async (req: Request, res, _next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -59,7 +55,7 @@ router.post('/generate', async (req: AuthenticatedRequest, res, _next) => {
     const student = await prisma.student.findFirst({
       where: {
         id: studentId,
-        userId: parseInt(userId),
+        userId: userId,
       },
       include: {
         // parentContacts: true, // DISABLED: Legacy model removed
@@ -102,9 +98,9 @@ router.post('/generate', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Regenerate an existing summary with variations
-router.post('/regenerate', async (req: AuthenticatedRequest, res, _next) => {
+router.post('/regenerate', async (req: Request, res, _next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -123,7 +119,7 @@ router.post('/regenerate', async (req: AuthenticatedRequest, res, _next) => {
     const student = await prisma.student.findFirst({
       where: {
         id: studentId,
-        userId: parseInt(userId),
+        userId: userId,
       },
     });
 
@@ -150,9 +146,9 @@ router.post('/regenerate', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Save a summary to the database
-router.post('/save', async (req: AuthenticatedRequest, res, _next) => {
+router.post('/save', async (req: Request, res, _next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -171,7 +167,7 @@ router.post('/save', async (req: AuthenticatedRequest, res, _next) => {
     const student = await prisma.student.findFirst({
       where: {
         id: studentId,
-        userId: parseInt(userId),
+        userId: userId,
       },
     });
 
@@ -200,9 +196,9 @@ router.post('/save', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Get all summaries for a specific student
-router.get('/student/:studentId', async (req: AuthenticatedRequest, res, _next) => {
+router.get('/student/:studentId', async (req: Request, res, _next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -213,7 +209,7 @@ router.get('/student/:studentId', async (req: AuthenticatedRequest, res, _next) 
     const student = await prisma.student.findFirst({
       where: {
         id: studentId,
-        userId: parseInt(userId),
+        userId: userId,
       },
     });
 
@@ -233,9 +229,9 @@ router.get('/student/:studentId', async (req: AuthenticatedRequest, res, _next) 
 });
 
 // Update a summary
-router.put('/:id', async (req: AuthenticatedRequest, res, _next) => {
+router.put('/:id', async (req: Request, res, _next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -247,7 +243,7 @@ router.put('/:id', async (req: AuthenticatedRequest, res, _next) => {
       where: {
         id: summaryId,
         student: {
-          userId: parseInt(userId),
+          userId: userId,
         },
       },
     });
@@ -268,9 +264,9 @@ router.put('/:id', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Delete a summary
-router.delete('/:id', async (req: AuthenticatedRequest, res, _next) => {
+router.delete('/:id', async (req: Request, res, _next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -282,7 +278,7 @@ router.delete('/:id', async (req: AuthenticatedRequest, res, _next) => {
       where: {
         id: summaryId,
         student: {
-          userId: parseInt(userId),
+          userId: userId,
         },
       },
     });

@@ -4,16 +4,20 @@ import { prisma } from '../prisma';
 import { validate } from '../validation';
 import { z } from 'zod';
 
-interface AuthenticatedRequest extends Request {
-  user?: { userId: string };
-}
-
 const router = Router();
 
 // Validation schemas
 const templateCreateSchema = z.object({
-  title: z.string().min(1).max(255).regex(/^[^<>]*$/, 'Title cannot contain HTML tags'),
-  titleFr: z.string().max(255).regex(/^[^<>]*$/, 'French title cannot contain HTML tags').optional(),
+  title: z
+    .string()
+    .min(1)
+    .max(255)
+    .regex(/^[^<>]*$/, 'Title cannot contain HTML tags'),
+  titleFr: z
+    .string()
+    .max(255)
+    .regex(/^[^<>]*$/, 'French title cannot contain HTML tags')
+    .optional(),
   description: z.string().max(2000).optional(),
   descriptionFr: z.string().max(2000).optional(),
   type: z.enum(['UNIT_PLAN', 'LESSON_PLAN']),
@@ -37,12 +41,14 @@ const templateCreateSchema = z.object({
     successCriteria: z.array(z.string()).optional(),
     keyVocabulary: z.array(z.string()).optional(),
     crossCurricularConnections: z.string().optional(),
-    differentiationStrategies: z.object({
-      forStruggling: z.array(z.string()).optional(),
-      forAdvanced: z.array(z.string()).optional(),
-      forELL: z.array(z.string()).optional(),
-      forIEP: z.array(z.string()).optional(),
-    }).optional(),
+    differentiationStrategies: z
+      .object({
+        forStruggling: z.array(z.string()).optional(),
+        forAdvanced: z.array(z.string()).optional(),
+        forELL: z.array(z.string()).optional(),
+        forIEP: z.array(z.string()).optional(),
+      })
+      .optional(),
     // Lesson Plan fields
     objectives: z.array(z.string()).optional(),
     materials: z.array(z.string()).optional(),
@@ -56,36 +62,54 @@ const templateCreateSchema = z.object({
     assessmentType: z.string().optional(),
     assessmentNotes: z.string().optional(),
   }),
-  unitStructure: z.object({
-    phases: z.array(z.object({
-      name: z.string(),
-      description: z.string().optional(),
-      estimatedDays: z.number().optional(),
-      learningGoals: z.array(z.string()).optional(),
-    })).optional(),
-    resources: z.array(z.object({
-      title: z.string(),
-      type: z.string(),
-      url: z.string().optional(),
-      notes: z.string().optional(),
-    })).optional(),
-  }).optional(),
-  lessonStructure: z.object({
-    duration: z.number().optional(),
-    sections: z.array(z.object({
-      name: z.string(),
-      description: z.string(),
-      timeAllocation: z.number().optional(),
-      activities: z.array(z.string()).optional(),
-    })).optional(),
-  }).optional(),
+  unitStructure: z
+    .object({
+      phases: z
+        .array(
+          z.object({
+            name: z.string(),
+            description: z.string().optional(),
+            estimatedDays: z.number().optional(),
+            learningGoals: z.array(z.string()).optional(),
+          }),
+        )
+        .optional(),
+      resources: z
+        .array(
+          z.object({
+            title: z.string(),
+            type: z.string(),
+            url: z.string().optional(),
+            notes: z.string().optional(),
+          }),
+        )
+        .optional(),
+    })
+    .optional(),
+  lessonStructure: z
+    .object({
+      duration: z.number().optional(),
+      sections: z
+        .array(
+          z.object({
+            name: z.string(),
+            description: z.string(),
+            timeAllocation: z.number().optional(),
+            activities: z.array(z.string()).optional(),
+          }),
+        )
+        .optional(),
+    })
+    .optional(),
 });
 
 const templateUpdateSchema = templateCreateSchema.partial();
 
 const templateSearchSchema = z.object({
   type: z.enum(['UNIT_PLAN', 'LESSON_PLAN']).optional(),
-  category: z.enum(['BY_SUBJECT', 'BY_GRADE', 'BY_THEME', 'BY_SEASON', 'BY_SKILL', 'CUSTOM']).optional(),
+  category: z
+    .enum(['BY_SUBJECT', 'BY_GRADE', 'BY_THEME', 'BY_SEASON', 'BY_SKILL', 'CUSTOM'])
+    .optional(),
   subject: z.string().optional(),
   gradeMin: z.number().int().min(1).max(12).optional(),
   gradeMax: z.number().int().min(1).max(12).optional(),
@@ -101,16 +125,18 @@ const templateSearchSchema = z.object({
 });
 
 // Get all templates with filtering and search
-router.get('/', async (req: AuthenticatedRequest, res, _next) => {
+router.get('/', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
     const queryValidation = templateSearchSchema.safeParse(req.query);
     if (!queryValidation.success) {
-      return res.status(400).json({ error: 'Invalid query parameters', details: queryValidation.error });
+      return res
+        .status(400)
+        .json({ error: 'Invalid query parameters', details: queryValidation.error });
     }
 
     const {
@@ -146,18 +172,12 @@ router.get('/', async (req: AuthenticatedRequest, res, _next) => {
       where.AND = [];
       if (gradeMin !== undefined) {
         where.AND.push({
-          OR: [
-            { gradeMin: { lte: gradeMin } },
-            { gradeMin: null },
-          ],
+          OR: [{ gradeMin: { lte: gradeMin } }, { gradeMin: null }],
         });
       }
       if (gradeMax !== undefined) {
         where.AND.push({
-          OR: [
-            { gradeMax: { gte: gradeMax } },
-            { gradeMax: null },
-          ],
+          OR: [{ gradeMax: { gte: gradeMax } }, { gradeMax: null }],
         });
       }
     }
@@ -167,10 +187,10 @@ router.get('/', async (req: AuthenticatedRequest, res, _next) => {
 
     // Text search with database-specific case handling
     if (search) {
-      const mode = process.env.DATABASE_URL?.includes('postgresql') 
-        ? { mode: 'insensitive' as const } 
+      const mode = process.env.DATABASE_URL?.includes('postgresql')
+        ? { mode: 'insensitive' as const }
         : {};
-        
+
       where.OR = [
         { title: { contains: search, ...mode } },
         { description: { contains: search, ...mode } },
@@ -183,7 +203,7 @@ router.get('/', async (req: AuthenticatedRequest, res, _next) => {
     if (tags && tags.length > 0) {
       where.tags = {
         path: [],
-        array_contains: tags
+        array_contains: tags,
       } as Prisma.JsonFilter; // Type assertion for JSON array operations
     }
 
@@ -233,9 +253,9 @@ router.get('/', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Get a single template
-router.get('/:id', async (req: AuthenticatedRequest, res, _next) => {
+router.get('/:id', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -243,11 +263,7 @@ router.get('/:id', async (req: AuthenticatedRequest, res, _next) => {
     const template = await prisma.planTemplate.findFirst({
       where: {
         id: req.params.id,
-        OR: [
-          { isSystem: true },
-          { isPublic: true },
-          { createdByUserId: userId },
-        ],
+        OR: [{ isSystem: true }, { isPublic: true }, { createdByUserId: userId }],
       },
       include: {
         createdByUser: {
@@ -289,9 +305,9 @@ router.get('/:id', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Create a new template
-router.post('/', validate(templateCreateSchema), async (req: AuthenticatedRequest, res, _next) => {
+router.post('/', validate(templateCreateSchema), async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -307,7 +323,11 @@ router.post('/', validate(templateCreateSchema), async (req: AuthenticatedReques
     } = req.body;
 
     // Validate grade range
-    if (templateData.gradeMin && templateData.gradeMax && templateData.gradeMin > templateData.gradeMax) {
+    if (
+      templateData.gradeMin &&
+      templateData.gradeMax &&
+      templateData.gradeMin > templateData.gradeMax
+    ) {
       return res.status(400).json({ error: 'Minimum grade cannot be greater than maximum grade' });
     }
 
@@ -345,9 +365,9 @@ router.post('/', validate(templateCreateSchema), async (req: AuthenticatedReques
 });
 
 // Update a template
-router.put('/:id', validate(templateUpdateSchema), async (req: AuthenticatedRequest, res, _next) => {
+router.put('/:id', validate(templateUpdateSchema), async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -402,9 +422,9 @@ router.put('/:id', validate(templateUpdateSchema), async (req: AuthenticatedRequ
 });
 
 // Delete a template
-router.delete('/:id', async (req: AuthenticatedRequest, res, _next) => {
+router.delete('/:id', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -433,9 +453,9 @@ router.delete('/:id', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Duplicate a template
-router.post('/:id/duplicate', async (req: AuthenticatedRequest, res, _next) => {
+router.post('/:id/duplicate', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -445,11 +465,7 @@ router.post('/:id/duplicate', async (req: AuthenticatedRequest, res, _next) => {
     const original = await prisma.planTemplate.findFirst({
       where: {
         id: req.params.id,
-        OR: [
-          { isSystem: true },
-          { isPublic: true },
-          { createdByUserId: userId },
-        ],
+        OR: [{ isSystem: true }, { isPublic: true }, { createdByUserId: userId }],
       },
     });
 
@@ -502,9 +518,9 @@ router.post('/:id/duplicate', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Apply template to create a new plan
-router.post('/:id/apply', async (req: AuthenticatedRequest, res, _next) => {
+router.post('/:id/apply', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -514,11 +530,7 @@ router.post('/:id/apply', async (req: AuthenticatedRequest, res, _next) => {
     const template = await prisma.planTemplate.findFirst({
       where: {
         id: req.params.id,
-        OR: [
-          { isSystem: true },
-          { isPublic: true },
-          { createdByUserId: userId },
-        ],
+        OR: [{ isSystem: true }, { isPublic: true }, { createdByUserId: userId }],
       },
     });
 
@@ -560,9 +572,9 @@ router.post('/:id/apply', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Rate a template
-router.post('/:id/rate', async (req: AuthenticatedRequest, res, _next) => {
+router.post('/:id/rate', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -577,11 +589,7 @@ router.post('/:id/rate', async (req: AuthenticatedRequest, res, _next) => {
     const template = await prisma.planTemplate.findFirst({
       where: {
         id: req.params.id,
-        OR: [
-          { isSystem: true },
-          { isPublic: true },
-          { createdByUserId: userId },
-        ],
+        OR: [{ isSystem: true }, { isPublic: true }, { createdByUserId: userId }],
       },
     });
 
@@ -615,9 +623,8 @@ router.post('/:id/rate', async (req: AuthenticatedRequest, res, _next) => {
       select: { rating: true },
     });
 
-    const averageRating = ratings.length > 0 
-      ? ratings.reduce((sum, r) => sum + r.rating, 0) / ratings.length 
-      : 0;
+    const averageRating =
+      ratings.length > 0 ? ratings.reduce((sum, r) => sum + r.rating, 0) / ratings.length : 0;
 
     await prisma.planTemplate.update({
       where: { id: req.params.id },
@@ -631,9 +638,9 @@ router.post('/:id/rate', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Get categories and subjects for filtering
-router.get('/metadata/options', async (req: AuthenticatedRequest, res, _next) => {
+router.get('/metadata/options', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -641,11 +648,7 @@ router.get('/metadata/options', async (req: AuthenticatedRequest, res, _next) =>
     const [subjects, grades, categories, tags] = await Promise.all([
       prisma.planTemplate.findMany({
         where: {
-          OR: [
-            { isSystem: true },
-            { isPublic: true },
-            { createdByUserId: userId },
-          ],
+          OR: [{ isSystem: true }, { isPublic: true }, { createdByUserId: userId }],
           subject: { not: null },
         },
         select: { subject: true },
@@ -655,17 +658,10 @@ router.get('/metadata/options', async (req: AuthenticatedRequest, res, _next) =>
         where: {
           AND: [
             {
-              OR: [
-                { isSystem: true },
-                { isPublic: true },
-                { createdByUserId: userId },
-              ],
+              OR: [{ isSystem: true }, { isPublic: true }, { createdByUserId: userId }],
             },
             {
-              OR: [
-                { gradeMin: { not: null } },
-                { gradeMax: { not: null } },
-              ],
+              OR: [{ gradeMin: { not: null } }, { gradeMax: { not: null } }],
             },
           ],
         },
@@ -677,19 +673,15 @@ router.get('/metadata/options', async (req: AuthenticatedRequest, res, _next) =>
       }),
       prisma.planTemplate.findMany({
         where: {
-          OR: [
-            { isSystem: true },
-            { isPublic: true },
-            { createdByUserId: userId },
-          ],
+          OR: [{ isSystem: true }, { isPublic: true }, { createdByUserId: userId }],
         },
         select: { tags: true },
       }),
     ]);
 
     const uniqueSubjects = subjects
-      .map(t => t.subject)
-      .filter(s => s !== null)
+      .map((t) => t.subject)
+      .filter((s) => s !== null)
       .sort();
 
     const gradeRange = grades.reduce(
@@ -698,18 +690,21 @@ router.get('/metadata/options', async (req: AuthenticatedRequest, res, _next) =>
         if (template.gradeMax) range.max = Math.max(range.max, template.gradeMax);
         return range;
       },
-      { min: 12, max: 1 }
+      { min: 12, max: 1 },
     );
 
     const allTags = tags
-      .flatMap(t => Array.isArray(t.tags) ? t.tags : [])
+      .flatMap((t) => (Array.isArray(t.tags) ? t.tags : []))
       .filter((tag, index, array) => array.indexOf(tag) === index)
       .sort();
 
     res.json({
       subjects: uniqueSubjects,
-      grades: Array.from({ length: gradeRange.max - gradeRange.min + 1 }, (_, i) => gradeRange.min + i),
-      categories: categories.map(c => c.category),
+      grades: Array.from(
+        { length: gradeRange.max - gradeRange.min + 1 },
+        (_, i) => gradeRange.min + i,
+      ),
+      categories: categories.map((c) => c.category),
       tags: allTags,
     });
   } catch (err) {

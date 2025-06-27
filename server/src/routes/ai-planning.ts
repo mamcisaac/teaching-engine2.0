@@ -1,33 +1,34 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { aiPlanningAssistant } from '../services/aiPlanningAssistant';
 
-interface AuthenticatedRequest extends Request {
-  user?: { userId: string };
-}
-
 // Rate limiting for AI requests
 const aiRequestTracking = new Map<string, { count: number; lastReset: number }>();
 const AI_RATE_LIMIT = 10; // requests per hour
 const AI_RATE_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
 
 // Cleanup old rate limit entries every 5 minutes to prevent memory leaks
-setInterval(() => {
-  const now = Date.now();
-  for (const [userId, tracking] of aiRequestTracking.entries()) {
-    if (now - tracking.lastReset > AI_RATE_WINDOW * 2) { // Remove entries older than 2 hours
-      aiRequestTracking.delete(userId);
+setInterval(
+  () => {
+    const now = Date.now();
+    for (const [userId, tracking] of aiRequestTracking.entries()) {
+      if (now - tracking.lastReset > AI_RATE_WINDOW * 2) {
+        // Remove entries older than 2 hours
+        aiRequestTracking.delete(userId);
+      }
     }
-  }
-}, 5 * 60 * 1000); // Clean up every 5 minutes
+  },
+  5 * 60 * 1000,
+); // Clean up every 5 minutes
 
-const aiRateLimit = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
-  const userId = req.user?.userId;
+const aiRateLimit = (req: Request, res: Response, next: NextFunction) => {
+  const userId = req.user?.id;
   if (!userId) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
   const now = Date.now();
-  const userTracking = aiRequestTracking.get(userId) || { count: 0, lastReset: now };
+  const userIdStr = userId.toString();
+  const userTracking = aiRequestTracking.get(userIdStr) || { count: 0, lastReset: now };
 
   // Reset count if window has expired
   if (now - userTracking.lastReset > AI_RATE_WINDOW) {
@@ -39,17 +40,17 @@ const aiRateLimit = (req: AuthenticatedRequest, res: Response, next: NextFunctio
   if (userTracking.count >= AI_RATE_LIMIT) {
     const resetTime = userTracking.lastReset + AI_RATE_WINDOW;
     const waitTime = Math.ceil((resetTime - now) / 1000 / 60); // minutes
-    return res.status(429).json({ 
+    return res.status(429).json({
       error: 'AI request limit exceeded',
       retryAfter: waitTime,
       limit: AI_RATE_LIMIT,
-      window: 'hour'
+      window: 'hour',
     });
   }
 
   // Increment count
   userTracking.count++;
-  aiRequestTracking.set(userId, userTracking);
+  aiRequestTracking.set(userIdStr, userTracking);
   next();
 };
 
@@ -78,9 +79,12 @@ const sanitizeAIInput = (input: unknown): unknown => {
   }
   if (typeof input === 'object' && input !== null) {
     const sanitized: Record<string, unknown> = {};
-    Object.keys(input).slice(0, 20).forEach(key => { // Limit object keys
-      sanitized[key] = sanitizeAIInput(input[key]);
-    });
+    Object.keys(input)
+      .slice(0, 20)
+      .forEach((key) => {
+        // Limit object keys
+        sanitized[key] = sanitizeAIInput(input[key]);
+      });
     return sanitized;
   }
   return input;
@@ -91,7 +95,7 @@ const _validateEducationalInput = (input: unknown, fieldName: string): string =>
   if (!input || typeof input !== 'string') {
     throw new Error(`Invalid ${fieldName}: must be a non-empty string`);
   }
-  
+
   // Check for obvious non-educational content
   const suspiciousPatterns = [
     /crypto|bitcoin|investment|trading/gi,
@@ -99,13 +103,13 @@ const _validateEducationalInput = (input: unknown, fieldName: string): string =>
     /password|token|api.key|secret/gi,
     /download|install|execute|script/gi,
   ];
-  
+
   for (const pattern of suspiciousPatterns) {
     if (pattern.test(input)) {
       throw new Error(`Invalid ${fieldName}: contains inappropriate content`);
     }
   }
-  
+
   return sanitizeAIInput(input) as string;
 };
 
@@ -115,23 +119,23 @@ const router = Router();
  * GET /api/ai-planning/status
  * Check AI service availability and user quota status
  */
-router.get('/status', async (req: AuthenticatedRequest, res) => {
+router.get('/status', async (req: Request, res) => {
   try {
-    const userId = req.user?.userId;
-    
+    const userId = req.user?.id;
+
     // Check OpenAI API key availability
     const hasApiKey = !!process.env.OPENAI_API_KEY;
-    
+
     // Get service health
     const serviceHealth = await aiPlanningAssistant.getServiceHealth();
-    
+
     // Calculate user quota (basic implementation)
     const userQuota = {
       dailyRequests: 50, // Default quota
-      requestsUsed: 0,   // TODO: Implement actual tracking
-      resetTime: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString()
+      requestsUsed: 0, // TODO: Implement actual tracking
+      resetTime: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
     };
-    
+
     const status = {
       available: hasApiKey && serviceHealth.healthy,
       features: {
@@ -141,19 +145,19 @@ router.get('/status', async (req: AuthenticatedRequest, res) => {
         materialsList: hasApiKey,
         assessmentStrategies: hasApiKey,
         reflectionPrompts: hasApiKey,
-        curriculumAligned: hasApiKey
+        curriculumAligned: hasApiKey,
       },
       quota: userQuota,
       health: serviceHealth,
-      userId: userId
+      userId: userId,
     };
-    
+
     res.json(status);
   } catch (error) {
     console.error('Error checking AI status:', error);
-    res.status(500).json({ 
+    res.status(500).json({
       available: false,
-      error: 'Failed to check AI service status' 
+      error: 'Failed to check AI service status',
     });
   }
 });
@@ -162,7 +166,7 @@ router.get('/status', async (req: AuthenticatedRequest, res) => {
  * POST /api/ai-planning/long-range/goals
  * Generate AI suggestions for long-range plan goals
  */
-router.post('/long-range/goals', aiRateLimit, async (req: AuthenticatedRequest, res) => {
+router.post('/long-range/goals', aiRateLimit, async (req: Request, res) => {
   try {
     const sanitizedBody = sanitizeAIInput(req.body) as {
       subject?: string;
@@ -173,8 +177,8 @@ router.post('/long-range/goals', aiRateLimit, async (req: AuthenticatedRequest, 
     const { subject, grade, termLength, focusAreas } = sanitizedBody;
 
     if (!subject || !grade || !termLength) {
-      return res.status(400).json({ 
-        error: 'Missing required fields: subject, grade, termLength' 
+      return res.status(400).json({
+        error: 'Missing required fields: subject, grade, termLength',
       });
     }
 
@@ -196,7 +200,7 @@ router.post('/long-range/goals', aiRateLimit, async (req: AuthenticatedRequest, 
  * POST /api/ai-planning/unit/big-ideas
  * Generate AI suggestions for unit plan big ideas
  */
-router.post('/unit/big-ideas', aiRateLimit, async (req: AuthenticatedRequest, res) => {
+router.post('/unit/big-ideas', aiRateLimit, async (req: Request, res) => {
   try {
     const sanitizedBody = sanitizeAIInput(req.body) as {
       unitTitle?: string;
@@ -208,8 +212,9 @@ router.post('/unit/big-ideas', aiRateLimit, async (req: AuthenticatedRequest, re
     const { unitTitle, subject, grade, curriculumExpectations, duration } = sanitizedBody;
 
     if (!unitTitle || !subject || !grade || !curriculumExpectations || !duration) {
-      return res.status(400).json({ 
-        error: 'Missing required fields: unitTitle, subject, grade, curriculumExpectations, duration' 
+      return res.status(400).json({
+        error:
+          'Missing required fields: unitTitle, subject, grade, curriculumExpectations, duration',
       });
     }
 
@@ -232,7 +237,7 @@ router.post('/unit/big-ideas', aiRateLimit, async (req: AuthenticatedRequest, re
  * POST /api/ai-planning/lesson/activities
  * Generate AI suggestions for lesson activities
  */
-router.post('/lesson/activities', aiRateLimit, async (req: AuthenticatedRequest, res) => {
+router.post('/lesson/activities', aiRateLimit, async (req: Request, res) => {
   try {
     const sanitizedBody = sanitizeAIInput(req.body) as {
       lessonTitle?: string;
@@ -245,8 +250,8 @@ router.post('/lesson/activities', aiRateLimit, async (req: AuthenticatedRequest,
     const { lessonTitle, learningGoals, subject, grade, duration, materials } = sanitizedBody;
 
     if (!lessonTitle || !learningGoals || !subject || !grade || !duration) {
-      return res.status(400).json({ 
-        error: 'Missing required fields: lessonTitle, learningGoals, subject, grade, duration' 
+      return res.status(400).json({
+        error: 'Missing required fields: lessonTitle, learningGoals, subject, grade, duration',
       });
     }
 
@@ -270,7 +275,7 @@ router.post('/lesson/activities', aiRateLimit, async (req: AuthenticatedRequest,
  * POST /api/ai-planning/lesson/materials
  * Generate AI suggestions for materials list
  */
-router.post('/lesson/materials', aiRateLimit, async (req: AuthenticatedRequest, res) => {
+router.post('/lesson/materials', aiRateLimit, async (req: Request, res) => {
   try {
     const sanitizedBody = sanitizeAIInput(req.body) as {
       activities?: string[];
@@ -281,8 +286,8 @@ router.post('/lesson/materials', aiRateLimit, async (req: AuthenticatedRequest, 
     const { activities, subject, grade, classSize } = sanitizedBody;
 
     if (!activities || !subject || !grade) {
-      return res.status(400).json({ 
-        error: 'Missing required fields: activities, subject, grade' 
+      return res.status(400).json({
+        error: 'Missing required fields: activities, subject, grade',
       });
     }
 
@@ -304,7 +309,7 @@ router.post('/lesson/materials', aiRateLimit, async (req: AuthenticatedRequest, 
  * POST /api/ai-planning/lesson/assessments
  * Generate AI suggestions for assessment strategies
  */
-router.post('/lesson/assessments', aiRateLimit, async (req: AuthenticatedRequest, res) => {
+router.post('/lesson/assessments', aiRateLimit, async (req: Request, res) => {
   try {
     const sanitizedBody = sanitizeAIInput(req.body) as {
       learningGoals?: string[];
@@ -315,8 +320,8 @@ router.post('/lesson/assessments', aiRateLimit, async (req: AuthenticatedRequest
     const { learningGoals, activities, subject, grade } = sanitizedBody;
 
     if (!learningGoals || !activities || !subject || !grade) {
-      return res.status(400).json({ 
-        error: 'Missing required fields: learningGoals, activities, subject, grade' 
+      return res.status(400).json({
+        error: 'Missing required fields: learningGoals, activities, subject, grade',
       });
     }
 
@@ -338,7 +343,7 @@ router.post('/lesson/assessments', aiRateLimit, async (req: AuthenticatedRequest
  * POST /api/ai-planning/daybook/reflections
  * Generate AI suggestions for daybook reflection prompts
  */
-router.post('/daybook/reflections', aiRateLimit, async (req: AuthenticatedRequest, res) => {
+router.post('/daybook/reflections', aiRateLimit, async (req: Request, res) => {
   try {
     const sanitizedBody = sanitizeAIInput(req.body) as {
       date?: string;
@@ -350,8 +355,8 @@ router.post('/daybook/reflections', aiRateLimit, async (req: AuthenticatedReques
     const { date, activities, subject, grade, previousReflections } = sanitizedBody;
 
     if (!date || !activities || !subject || !grade) {
-      return res.status(400).json({ 
-        error: 'Missing required fields: date, activities, subject, grade' 
+      return res.status(400).json({
+        error: 'Missing required fields: date, activities, subject, grade',
       });
     }
 
@@ -374,7 +379,7 @@ router.post('/daybook/reflections', aiRateLimit, async (req: AuthenticatedReques
  * POST /api/ai-planning/curriculum-aligned
  * Get curriculum-aligned suggestions
  */
-router.post('/curriculum-aligned', aiRateLimit, async (req: AuthenticatedRequest, res) => {
+router.post('/curriculum-aligned', aiRateLimit, async (req: Request, res) => {
   try {
     const sanitizedBody = sanitizeAIInput(req.body) as {
       expectationIds?: string[];
@@ -383,20 +388,20 @@ router.post('/curriculum-aligned', aiRateLimit, async (req: AuthenticatedRequest
     const { expectationIds, suggestionType } = sanitizedBody;
 
     if (!expectationIds || !suggestionType) {
-      return res.status(400).json({ 
-        error: 'Missing required fields: expectationIds, suggestionType' 
+      return res.status(400).json({
+        error: 'Missing required fields: expectationIds, suggestionType',
       });
     }
 
     if (!['activities', 'assessments', 'resources'].includes(suggestionType)) {
-      return res.status(400).json({ 
-        error: 'Invalid suggestionType. Must be: activities, assessments, or resources' 
+      return res.status(400).json({
+        error: 'Invalid suggestionType. Must be: activities, assessments, or resources',
       });
     }
 
     const suggestions = await aiPlanningAssistant.getCurriculumAlignedSuggestions(
       expectationIds,
-      suggestionType as 'activities' | 'assessments' | 'resources'
+      suggestionType as 'activities' | 'assessments' | 'resources',
     );
 
     res.json({ suggestions });

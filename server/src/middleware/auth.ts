@@ -3,7 +3,8 @@ import jwt from 'jsonwebtoken';
 
 export interface AuthRequest extends Request {
   user?: {
-    userId: string;
+    id: number;
+    email: string;
   };
 }
 
@@ -16,8 +17,8 @@ export function authMiddleware(req: AuthRequest, res: Response, next: NextFuncti
     if (!secret) {
       throw new Error('JWT_SECRET environment variable is required');
     }
-    const payload = jwt.verify(token, secret) as { userId: string };
-    req.user = { userId: payload.userId };
+    const payload = jwt.verify(token, secret) as { userId: string; email: string };
+    req.user = { id: Number(payload.userId), email: payload.email };
     next();
   } catch (error) {
     if (error instanceof Error && error.message === 'JWT_SECRET environment variable is required') {
@@ -39,7 +40,7 @@ export const authenticate = authMiddleware;
 
 export function requireAdminToken(req: Request, res: Response, next: NextFunction) {
   const token = req.headers.authorization?.replace('Bearer ', '');
-  
+
   if (!token) {
     return res.status(401).json({ error: 'Admin token required' });
   }

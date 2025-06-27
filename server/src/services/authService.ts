@@ -30,6 +30,7 @@ export interface AuthResult {
  */
 export async function generateAuthToken(
   userId: string,
+  email: string,
   expiresIn: string = TOKEN_EXPIRY,
 ): Promise<string> {
   const secret = process.env.JWT_SECRET;
@@ -37,7 +38,7 @@ export async function generateAuthToken(
     throw new Error('JWT_SECRET environment variable is required');
   }
 
-  const payload = { userId };
+  const payload = { userId, email };
   return jwt.sign(payload, secret as jwt.Secret, { expiresIn } as jwt.SignOptions);
 }
 
@@ -72,13 +73,13 @@ export async function validatePassword(password: string): Promise<boolean> {
 /**
  * Verify JWT token
  */
-export async function verifyToken(token: string): Promise<{ userId: string }> {
+export async function verifyToken(token: string): Promise<{ userId: string; email: string }> {
   const secret = process.env.JWT_SECRET;
   if (!secret) {
     throw new Error('JWT_SECRET environment variable is required');
   }
 
-  return jwt.verify(token, secret) as { userId: string };
+  return jwt.verify(token, secret) as { userId: string; email: string };
 }
 
 /**
@@ -107,7 +108,7 @@ export async function authenticate(
   }
 
   // Generate token
-  const token = await generateAuthToken(user.id.toString());
+  const token = await generateAuthToken(user.id.toString(), user.email);
 
   // Return user without password
   const { password: _, ...userWithoutPassword } = user;

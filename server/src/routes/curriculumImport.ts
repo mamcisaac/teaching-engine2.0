@@ -1,14 +1,16 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import multer from 'multer';
 import { curriculumImportService } from '../services/curriculumImportService';
 import { clusteringService } from '../services/clusteringService';
 import logger from '../logger';
 
-// Get auth from the extended request
-interface AuthenticatedRequest extends express.Request {
+// Extend Request type for authentication and file uploads
+interface AuthenticatedRequest extends Request {
   user?: {
-    userId: string;
+    id: number;
+    email: string;
   };
+  file?: Express.Multer.File;
 }
 
 const router = express.Router();
@@ -27,29 +29,34 @@ const upload = multer({
     if (sanitizedFilename !== file.originalname) {
       file.originalname = sanitizedFilename;
     }
-    
+
     // Check file extension as well as MIME type
     const allowedExtensions = ['.csv', '.pdf', '.docx'];
-    const fileExtension = file.originalname.toLowerCase().substring(file.originalname.lastIndexOf('.'));
-    
+    const fileExtension = file.originalname
+      .toLowerCase()
+      .substring(file.originalname.lastIndexOf('.'));
+
     const allowedTypes = [
       'text/csv',
       'application/pdf',
       'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
       'application/octet-stream', // Some browsers send this for DOCX
     ];
-    
+
     if (allowedTypes.includes(file.mimetype) && allowedExtensions.includes(fileExtension)) {
       cb(null, true);
     } else {
-      cb(new Error(`Invalid file type. Only CSV, PDF, and DOCX files are allowed. Received: ${file.mimetype} with extension ${fileExtension}`));
+      cb(
+        new Error(
+          `Invalid file type. Only CSV, PDF, and DOCX files are allowed. Received: ${file.mimetype} with extension ${fileExtension}`,
+        ),
+      );
     }
   },
 });
 
 // POST /api/curriculum/import/upload - Upload and parse curriculum file (Planner agent style)
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-router.post('/upload', upload.single('file') as any, async (req: AuthenticatedRequest, res) => {
+router.post('/upload', upload.single('file'), async (req: AuthenticatedRequest, res: Response) => {
   try {
     if (!req.file) {
       return res.status(400).json({
@@ -57,19 +64,19 @@ router.post('/upload', upload.single('file') as any, async (req: AuthenticatedRe
       });
     }
 
-    if (!req.user?.userId) {
+    if (!req.user?.id) {
       return res.status(401).json({
         error: 'User not authenticated',
       });
     }
-    
+
     // Additional file validation
     if (req.file.size === 0) {
       return res.status(400).json({
         error: 'File is empty',
       });
     }
-    
+
     // Validate file buffer is not null
     if (!req.file.buffer || req.file.buffer.length === 0) {
       return res.status(400).json({
@@ -81,14 +88,17 @@ router.post('/upload', upload.single('file') as any, async (req: AuthenticatedRe
     let sourceFormat: 'pdf' | 'docx' | 'csv' | 'manual' = 'manual';
     if (req.file.mimetype === 'application/pdf') {
       sourceFormat = 'pdf';
-    } else if (req.file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+    } else if (
+      req.file.mimetype ===
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    ) {
       sourceFormat = 'docx';
     } else if (req.file.mimetype === 'text/csv') {
       sourceFormat = 'csv';
     }
 
     const importId = await curriculumImportService.startImport(
-      parseInt(req.user.userId),
+      req.user.id,
       1, // Default grade, can be updated later
       'General', // Default subject, can be updated later
       sourceFormat,
@@ -111,7 +121,7 @@ router.post('/upload', upload.single('file') as any, async (req: AuthenticatedRe
 });
 
 // POST /api/curriculum/import/parse - Parse uploaded file
-router.post('/parse', async (req: AuthenticatedRequest, res) => {
+router.post('/parse', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { sessionId, useAiExtraction } = req.body;
 
@@ -121,7 +131,7 @@ router.post('/parse', async (req: AuthenticatedRequest, res) => {
       });
     }
 
-    if (!req.user?.userId) {
+    if (!req.user?.id) {
       return res.status(401).json({
         error: 'User not authenticated',
       });
@@ -146,7 +156,7 @@ router.post('/parse', async (req: AuthenticatedRequest, res) => {
 });
 
 // POST /api/curriculum/import/import-preset - Load preset curriculum
-router.post('/import-preset', async (req: AuthenticatedRequest, res) => {
+router.post('/import-preset', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { presetId } = req.body;
 
@@ -156,17 +166,14 @@ router.post('/import-preset', async (req: AuthenticatedRequest, res) => {
       });
     }
 
-    if (!req.user?.userId) {
+    if (!req.user?.id) {
       return res.status(401).json({
         error: 'User not authenticated',
       });
     }
 
     // Load preset curriculum
-    const presetResult = await curriculumImportService.loadPresetCurriculum(
-      parseInt(req.user.userId),
-      presetId,
-    );
+    const presetResult = await curriculumImportService.loadPresetCurriculum(req.user.id, presetId);
 
     res.json({
       sessionId: presetResult.sessionId,
@@ -182,11 +189,11 @@ router.post('/import-preset', async (req: AuthenticatedRequest, res) => {
 });
 
 // GET /api/curriculum/import/:id/status - Check import status
-router.get('/:id/status', async (req: AuthenticatedRequest, res) => {
+router.get('/:id/status', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const importId = req.params.id;
 
-    if (!req.user?.userId) {
+    if (!req.user?.id) {
       return res.status(401).json({
         error: 'User not authenticated',
       });
@@ -210,11 +217,11 @@ router.get('/:id/status', async (req: AuthenticatedRequest, res) => {
 });
 
 // POST /api/curriculum/import/:id/confirm - Confirm and finalize import
-router.post('/:id/confirm', async (req: AuthenticatedRequest, res) => {
+router.post('/:id/confirm', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const importId = req.params.id;
 
-    if (!req.user?.userId) {
+    if (!req.user?.id) {
       return res.status(401).json({
         error: 'User not authenticated',
       });
@@ -252,9 +259,9 @@ router.post('/:id/confirm', async (req: AuthenticatedRequest, res) => {
 });
 
 // GET /api/curriculum/import/history - Get user's import history
-router.get('/history', async (req: AuthenticatedRequest, res) => {
+router.get('/history', async (req: AuthenticatedRequest, res: Response) => {
   try {
-    if (!req.user?.userId) {
+    if (!req.user?.id) {
       return res.status(401).json({
         error: 'User not authenticated',
       });
@@ -263,10 +270,7 @@ router.get('/history', async (req: AuthenticatedRequest, res) => {
     const limit = parseInt(req.query.limit as string) || 10;
     // Note: offset is not supported by the service method yet
 
-    const history = await curriculumImportService.getImportHistory(
-      parseInt(req.user.userId),
-      limit,
-    );
+    const history = await curriculumImportService.getImportHistory(req.user.id, limit);
 
     res.json(history);
   } catch (error) {
@@ -277,13 +281,12 @@ router.get('/history', async (req: AuthenticatedRequest, res) => {
   }
 });
 
-
 // DELETE /api/curriculum/import/:id - Delete import and associated data
-router.delete('/:id', async (req: AuthenticatedRequest, res) => {
+router.delete('/:id', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const importId = req.params.id;
 
-    if (!req.user?.userId) {
+    if (!req.user?.id) {
       return res.status(401).json({
         error: 'User not authenticated',
       });
@@ -309,7 +312,7 @@ router.delete('/:id', async (req: AuthenticatedRequest, res) => {
 // Phase 5 Routes - Additional clustering functionality
 
 // Start a new curriculum import session
-router.post('/start', async (req: AuthenticatedRequest, res) => {
+router.post('/start', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { grade, subject, sourceFormat } = req.body;
 
@@ -319,12 +322,12 @@ router.post('/start', async (req: AuthenticatedRequest, res) => {
         .json({ error: 'Missing required fields: grade, subject, sourceFormat' });
     }
 
-    if (!req.user?.userId) {
+    if (!req.user?.id) {
       return res.status(401).json({ error: 'User not authenticated' });
     }
 
     const importId = await curriculumImportService.startImport(
-      parseInt(req.user.userId),
+      req.user.id,
       grade,
       subject,
       sourceFormat,
@@ -337,9 +340,8 @@ router.post('/start', async (req: AuthenticatedRequest, res) => {
   }
 });
 
-
 // Get import progress
-router.get('/:importId/progress', async (req: AuthenticatedRequest, res) => {
+router.get('/:importId/progress', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { importId } = req.params;
     const progress = await curriculumImportService.getImportProgress(importId);
@@ -356,7 +358,7 @@ router.get('/:importId/progress', async (req: AuthenticatedRequest, res) => {
 });
 
 // Cancel an import session
-router.post('/:importId/cancel', async (req: AuthenticatedRequest, res) => {
+router.post('/:importId/cancel', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { importId } = req.params;
     const success = await curriculumImportService.cancelImport(importId);
@@ -373,11 +375,11 @@ router.post('/:importId/cancel', async (req: AuthenticatedRequest, res) => {
 });
 
 // POST /api/curriculum/import/:id - Finalize import and create curriculum expectations
-router.post('/:id', async (req: AuthenticatedRequest, res) => {
+router.post('/:id', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const importId = req.params.id;
 
-    if (!req.user?.userId) {
+    if (!req.user?.id) {
       return res.status(401).json({
         error: 'User not authenticated',
       });
@@ -399,7 +401,7 @@ router.post('/:id', async (req: AuthenticatedRequest, res) => {
     }
 
     // Finalize the import and create curriculum expectations
-    const result = await curriculumImportService.finalizeImport(importId, parseInt(req.user.userId));
+    const result = await curriculumImportService.finalizeImport(importId, req.user.id);
 
     res.json({
       message: 'Curriculum imported successfully',
@@ -417,7 +419,7 @@ router.post('/:id', async (req: AuthenticatedRequest, res) => {
 // Clustering Routes (Phase 5)
 
 // Trigger clustering for an import
-router.post('/:importId/cluster', async (req: AuthenticatedRequest, res) => {
+router.post('/:importId/cluster', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { importId } = req.params;
     const { options = {} } = req.body;
@@ -435,7 +437,7 @@ router.post('/:importId/cluster', async (req: AuthenticatedRequest, res) => {
 });
 
 // Re-cluster with different parameters
-router.post('/:importId/recluster', async (req: AuthenticatedRequest, res) => {
+router.post('/:importId/recluster', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { importId } = req.params;
     const { options = {} } = req.body;
@@ -453,7 +455,7 @@ router.post('/:importId/recluster', async (req: AuthenticatedRequest, res) => {
 });
 
 // Get clusters for an import
-router.get('/:importId/clusters', async (req: AuthenticatedRequest, res) => {
+router.get('/:importId/clusters', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { importId } = req.params;
     const clusters = await clusteringService.getClusters(importId);
@@ -466,7 +468,7 @@ router.get('/:importId/clusters', async (req: AuthenticatedRequest, res) => {
 });
 
 // Analyze cluster quality
-router.get('/:importId/clusters/quality', async (req: AuthenticatedRequest, res) => {
+router.get('/:importId/clusters/quality', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { importId } = req.params;
     const analysis = await clusteringService.analyzeClusterQuality(importId);

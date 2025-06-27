@@ -3,10 +3,6 @@ import { Prisma } from '../prisma';
 import { prisma } from '../prisma';
 import { EmbeddingService } from '../services/embeddingService';
 
-interface AuthenticatedRequest extends Request {
-  user?: { userId: string };
-}
-
 const router = Router();
 
 // Initialize embedding service
@@ -86,7 +82,7 @@ function cosineSimilarity(a: number[], b: number[]): number {
 }
 
 // Get all curriculum expectations with optional filtering
-router.get('/', async (req: AuthenticatedRequest, res, _next) => {
+router.get('/', async (req: Request, res, _next) => {
   try {
     const { subject, grade, strand, search } = req.query;
 
@@ -97,14 +93,14 @@ router.get('/', async (req: AuthenticatedRequest, res, _next) => {
       const sanitizedSubject = String(subject).trim().slice(0, 100);
       if (sanitizedSubject) where.subject = sanitizedSubject;
     }
-    
+
     if (grade) {
       const gradeNumber = Number(grade);
       if (!isNaN(gradeNumber) && gradeNumber >= 1 && gradeNumber <= 12) {
         where.grade = gradeNumber;
       }
     }
-    
+
     if (strand && typeof strand === 'string') {
       const sanitizedStrand = String(strand).trim().slice(0, 100);
       if (sanitizedStrand) where.strand = sanitizedStrand;
@@ -113,10 +109,10 @@ router.get('/', async (req: AuthenticatedRequest, res, _next) => {
       const sanitizedSearch = String(search).trim().slice(0, 200);
       if (sanitizedSearch) {
         // Database-specific case-insensitive search
-        const mode = process.env.DATABASE_URL?.includes('postgresql') 
-          ? { mode: 'insensitive' as const } 
+        const mode = process.env.DATABASE_URL?.includes('postgresql')
+          ? { mode: 'insensitive' as const }
           : {};
-        
+
         where.OR = [
           { code: { contains: sanitizedSearch, ...mode } },
           { description: { contains: sanitizedSearch, ...mode } },
@@ -141,7 +137,7 @@ router.get('/', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Create a new curriculum expectation
-router.post('/', async (req: AuthenticatedRequest, res, _next) => {
+router.post('/', async (req: Request, res, _next) => {
   try {
     const { code, description, strand, substrand, grade, subject, descriptionFr } = req.body;
 
@@ -150,35 +146,47 @@ router.post('/', async (req: AuthenticatedRequest, res, _next) => {
         error: 'Missing required fields: code, description, strand, grade, subject',
       });
     }
-    
+
     // Validate types and lengths
     if (typeof code !== 'string' || code.length > 50 || code.length < 1) {
-      return res.status(400).json({ error: 'Invalid code: must be a string between 1-50 characters' });
+      return res
+        .status(400)
+        .json({ error: 'Invalid code: must be a string between 1-50 characters' });
     }
-    
+
     if (typeof description !== 'string' || description.length > 1000 || description.length < 1) {
-      return res.status(400).json({ error: 'Invalid description: must be a string between 1-1000 characters' });
+      return res
+        .status(400)
+        .json({ error: 'Invalid description: must be a string between 1-1000 characters' });
     }
-    
+
     if (typeof strand !== 'string' || strand.length > 100 || strand.length < 1) {
-      return res.status(400).json({ error: 'Invalid strand: must be a string between 1-100 characters' });
+      return res
+        .status(400)
+        .json({ error: 'Invalid strand: must be a string between 1-100 characters' });
     }
-    
+
     if (typeof subject !== 'string' || subject.length > 100 || subject.length < 1) {
-      return res.status(400).json({ error: 'Invalid subject: must be a string between 1-100 characters' });
+      return res
+        .status(400)
+        .json({ error: 'Invalid subject: must be a string between 1-100 characters' });
     }
-    
+
     const gradeNumber = Number(grade);
     if (isNaN(gradeNumber) || gradeNumber < 1 || gradeNumber > 12) {
       return res.status(400).json({ error: 'Invalid grade: must be a number between 1-12' });
     }
-    
+
     if (substrand && (typeof substrand !== 'string' || substrand.length > 100)) {
-      return res.status(400).json({ error: 'Invalid substrand: must be a string with max 100 characters' });
+      return res
+        .status(400)
+        .json({ error: 'Invalid substrand: must be a string with max 100 characters' });
     }
-    
+
     if (descriptionFr && (typeof descriptionFr !== 'string' || descriptionFr.length > 1000)) {
-      return res.status(400).json({ error: 'Invalid descriptionFr: must be a string with max 1000 characters' });
+      return res
+        .status(400)
+        .json({ error: 'Invalid descriptionFr: must be a string with max 1000 characters' });
     }
 
     const expectation = await prisma.curriculumExpectation.create({
@@ -204,33 +212,44 @@ router.post('/', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Update a curriculum expectation
-router.put('/:id', async (req: AuthenticatedRequest, res, _next) => {
+router.put('/:id', async (req: Request, res, _next) => {
   try {
     // Validate UUID format
     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     if (!uuidRegex.test(req.params.id)) {
       return res.status(400).json({ error: 'Invalid expectation ID format' });
     }
-    
+
     const { code, description, strand, substrand, grade, subject, descriptionFr } = req.body;
-    
+
     // Validate input types and lengths
     if (code && (typeof code !== 'string' || code.length > 50 || code.length < 1)) {
-      return res.status(400).json({ error: 'Invalid code: must be a string between 1-50 characters' });
+      return res
+        .status(400)
+        .json({ error: 'Invalid code: must be a string between 1-50 characters' });
     }
-    
-    if (description && (typeof description !== 'string' || description.length > 1000 || description.length < 1)) {
-      return res.status(400).json({ error: 'Invalid description: must be a string between 1-1000 characters' });
+
+    if (
+      description &&
+      (typeof description !== 'string' || description.length > 1000 || description.length < 1)
+    ) {
+      return res
+        .status(400)
+        .json({ error: 'Invalid description: must be a string between 1-1000 characters' });
     }
-    
+
     if (strand && (typeof strand !== 'string' || strand.length > 100 || strand.length < 1)) {
-      return res.status(400).json({ error: 'Invalid strand: must be a string between 1-100 characters' });
+      return res
+        .status(400)
+        .json({ error: 'Invalid strand: must be a string between 1-100 characters' });
     }
-    
+
     if (subject && (typeof subject !== 'string' || subject.length > 100 || subject.length < 1)) {
-      return res.status(400).json({ error: 'Invalid subject: must be a string between 1-100 characters' });
+      return res
+        .status(400)
+        .json({ error: 'Invalid subject: must be a string between 1-100 characters' });
     }
-    
+
     let gradeNumber: number | undefined;
     if (grade !== undefined) {
       gradeNumber = Number(grade);
@@ -238,13 +257,25 @@ router.put('/:id', async (req: AuthenticatedRequest, res, _next) => {
         return res.status(400).json({ error: 'Invalid grade: must be a number between 1-12' });
       }
     }
-    
-    if (substrand !== undefined && substrand !== null && (typeof substrand !== 'string' || substrand.length > 100)) {
-      return res.status(400).json({ error: 'Invalid substrand: must be a string with max 100 characters' });
+
+    if (
+      substrand !== undefined &&
+      substrand !== null &&
+      (typeof substrand !== 'string' || substrand.length > 100)
+    ) {
+      return res
+        .status(400)
+        .json({ error: 'Invalid substrand: must be a string with max 100 characters' });
     }
-    
-    if (descriptionFr !== undefined && descriptionFr !== null && (typeof descriptionFr !== 'string' || descriptionFr.length > 1000)) {
-      return res.status(400).json({ error: 'Invalid descriptionFr: must be a string with max 1000 characters' });
+
+    if (
+      descriptionFr !== undefined &&
+      descriptionFr !== null &&
+      (typeof descriptionFr !== 'string' || descriptionFr.length > 1000)
+    ) {
+      return res
+        .status(400)
+        .json({ error: 'Invalid descriptionFr: must be a string with max 1000 characters' });
     }
 
     const expectation = await prisma.curriculumExpectation.update({
@@ -271,14 +302,14 @@ router.put('/:id', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Delete a curriculum expectation
-router.delete('/:id', async (req: AuthenticatedRequest, res, _next) => {
+router.delete('/:id', async (req: Request, res, _next) => {
   try {
     // Validate UUID format
     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     if (!uuidRegex.test(req.params.id)) {
       return res.status(400).json({ error: 'Invalid expectation ID format' });
     }
-    
+
     await prisma.curriculumExpectation.delete({
       where: { id: req.params.id },
     });
@@ -290,14 +321,14 @@ router.delete('/:id', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Get a single curriculum expectation
-router.get('/:id', async (req: AuthenticatedRequest, res, _next) => {
+router.get('/:id', async (req: Request, res, _next) => {
   try {
     // Validate UUID format
     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     if (!uuidRegex.test(req.params.id)) {
       return res.status(400).json({ error: 'Invalid expectation ID format' });
     }
-    
+
     const expectation = await prisma.curriculumExpectation.findUnique({
       where: { id: req.params.id },
       include: {
@@ -336,7 +367,7 @@ router.get('/:id', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Search curriculum expectations with semantic similarity (AI-powered)
-router.post('/search', async (req: AuthenticatedRequest, res, _next) => {
+router.post('/search', async (req: Request, res, _next) => {
   try {
     const { query, limit = 10, filters } = req.body;
 
@@ -354,10 +385,10 @@ router.post('/search', async (req: AuthenticatedRequest, res, _next) => {
       console.log('Semantic search failed, falling back to text search:', error);
 
       // Fallback to text-based search with proper case-insensitive handling
-      const mode = process.env.DATABASE_URL?.includes('postgresql') 
-        ? { mode: 'insensitive' as const } 
+      const mode = process.env.DATABASE_URL?.includes('postgresql')
+        ? { mode: 'insensitive' as const }
         : {};
-        
+
       const where: Prisma.CurriculumExpectationWhereInput = {
         OR: [
           { code: { contains: query, ...mode } },
@@ -392,7 +423,7 @@ router.post('/search', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Cluster curriculum expectations by similarity (AI-powered)
-router.post('/cluster', async (req: AuthenticatedRequest, res, _next) => {
+router.post('/cluster', async (req: Request, res, _next) => {
   try {
     const { expectationIds, clusterCount = 5 } = req.body;
 
@@ -416,9 +447,9 @@ router.post('/cluster', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Get curriculum coverage report
-router.get('/coverage/report', async (req: AuthenticatedRequest, res, _next) => {
+router.get('/coverage/report', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }

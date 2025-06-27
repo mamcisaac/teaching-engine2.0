@@ -1,12 +1,10 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
-import { validate, cuidSchema } from '../validation';
+import { validate } from '../validation';
 import { generateSubPlan } from '../services/subPlanService';
 import { prisma } from '../prisma';
 
-interface AuthenticatedRequest extends Request {
-  user?: { userId: string };
-}
+// Use global Express Request type with user: { id: number; email: string }
 
 const router = Router();
 
@@ -28,63 +26,77 @@ const subPlanGenerateSchema = z.object({
  * Generate substitute plan PDF
  * POST /api/sub-plan/generate
  */
-router.post('/generate', validate(subPlanGenerateSchema), async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
-  try {
-    const userId = parseInt(req.user?.userId || '0', 10);
-    if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
+router.post(
+  '/generate',
+  validate(subPlanGenerateSchema),
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const userId = req.user?.id || 0;
+      if (!userId) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
+
+      const {
+        date,
+        days,
+        includeGoals,
+        includeRoutines,
+        includePlans,
+        anonymize,
+        saveRecord,
+        emailTo,
+        notes,
+      } = req.body;
+
+      // Use the authenticated user's ID if userId not provided in request
+      const targetUserId = req.body.userId || userId;
+
+      const options = {
+        includeGoals,
+        includeRoutines,
+        includePlans,
+        anonymize,
+        userId: targetUserId,
+      };
+
+      const pdfBuffer = await generateSubPlan(date, days, options);
+
+      // Save record if requested
+      if (saveRecord) {
+        await prisma.subPlanRecord.create({
+          data: {
+            userId: targetUserId,
+            date: new Date(date),
+            daysCount: days,
+            content: { emailedTo: emailTo, options: JSON.stringify(options) },
+            includeGoals,
+            includeRoutines,
+            includePlans,
+            anonymized: anonymize,
+            notes: notes,
+          },
+        });
+      }
+
+      // Set PDF headers
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="sub-plan-${date}.pdf"`);
+      res.setHeader('Content-Length', pdfBuffer.length);
+
+      res.send(pdfBuffer);
+    } catch (error) {
+      next(error);
     }
-
-    const { date, days, includeGoals, includeRoutines, includePlans, anonymize, saveRecord, emailTo, notes } = req.body;
-
-    // Use the authenticated user's ID if userId not provided in request
-    const targetUserId = req.body.userId || userId;
-
-    const options = {
-      includeGoals,
-      includeRoutines,
-      includePlans,
-      anonymize,
-      userId: targetUserId,
-    };
-
-    const pdfBuffer = await generateSubPlan(date, days, options);
-
-    // Save record if requested
-    if (saveRecord) {
-      await prisma.subPlanRecord.create({
-        data: {
-          userId: targetUserId,
-          date: new Date(date),
-          daysCount: days,
-          content: { emailedTo: emailTo, options: JSON.stringify(options) },
-          includeGoals,
-          includeRoutines,
-          includePlans,
-          anonymized: anonymize,
-          notes: notes,
-        },
-      });
-    }
-
-    // Set PDF headers
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename="sub-plan-${date}.pdf"`);
-    res.setHeader('Content-Length', pdfBuffer.length);
-
-    res.send(pdfBuffer);
-  } catch (error) {
-    next(error);
-  }
-});
+  },
+);
 
 /**
  * Get class routines for user
  * GET /api/sub-plan/routines
  */
-router.get('/routines', async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+router.get('/routines', async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -106,9 +118,9 @@ router.get('/routines', async (req: AuthenticatedRequest, res: Response, next: N
  * Create or update class routine
  * POST /api/sub-plan/routines
  */
-router.post('/routines', async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+router.post('/routines', async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -153,9 +165,9 @@ router.post('/routines', async (req: AuthenticatedRequest, res: Response, next: 
  * Delete class routine
  * DELETE /api/sub-plan/routines/:id
  */
-router.delete('/routines/:id', async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+router.delete('/routines/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -176,9 +188,9 @@ router.delete('/routines/:id', async (req: AuthenticatedRequest, res: Response, 
  * Get sub plan records
  * GET /api/sub-plan/records
  */
-router.get('/records', async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+router.get('/records', async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -187,7 +199,7 @@ router.get('/records', async (req: AuthenticatedRequest, res: Response, next: Ne
 
     const records = await prisma.subPlanRecord.findMany({
       where: { userId: targetUserId },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { date: 'desc' },
     });
 
     res.json(records);

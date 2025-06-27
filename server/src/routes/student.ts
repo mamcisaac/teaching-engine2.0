@@ -5,10 +5,6 @@ import { validate } from '../validation';
 import { z } from 'zod';
 import { auditLoggers } from '../middleware/auditLog';
 
-interface AuthenticatedRequest extends Request {
-  user?: { userId: string };
-}
-
 const router = Router();
 
 // Validation schemas
@@ -62,16 +58,16 @@ const studentReflectionCreateSchema = z.object({
 });
 
 // Get all students for the authenticated teacher
-router.get('/', auditLoggers.studentView, async (req: AuthenticatedRequest, res, next) => {
+router.get('/', auditLoggers.studentView, async (req: Request, res, next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
 
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
     const students = await prisma.student.findMany({
-      where: { userId: parseInt(userId) },
+      where: { userId: userId },
       include: {
         goals: true,
         reflections: true,
@@ -105,9 +101,9 @@ router.get('/', auditLoggers.studentView, async (req: AuthenticatedRequest, res,
 });
 
 // Get a specific student
-router.get('/:id', auditLoggers.studentView, async (req: AuthenticatedRequest, res, next) => {
+router.get('/:id', auditLoggers.studentView, async (req: Request, res, next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     const studentId = parseInt(req.params.id);
 
     if (!userId) {
@@ -117,7 +113,7 @@ router.get('/:id', auditLoggers.studentView, async (req: AuthenticatedRequest, r
     const student = await prisma.student.findFirst({
       where: {
         id: studentId,
-        userId: parseInt(userId),
+        userId: userId,
       },
       include: {
         goals: true,
@@ -156,123 +152,133 @@ router.get('/:id', auditLoggers.studentView, async (req: AuthenticatedRequest, r
 });
 
 // Create a new student
-router.post('/', validate(studentCreateSchema), auditLoggers.studentCreate, async (req: AuthenticatedRequest, res, next) => {
-  try {
-    const userId = req.user?.userId;
+router.post(
+  '/',
+  validate(studentCreateSchema),
+  auditLoggers.studentCreate,
+  async (req: Request, res, next) => {
+    try {
+      const userId = req.user?.id;
 
-    if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
-    }
+      if (!userId) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
 
-    const { firstName, lastName, grade, name } = req.body;
+      const { firstName, lastName, grade, name } = req.body;
 
-    // Handle both new and legacy formats
-    let studentData;
-    if (firstName && lastName && grade !== undefined) {
-      // New parent communication format
-      studentData = {
-        firstName,
-        lastName,
-        grade,
-        userId: parseInt(userId),
+      // Handle both new and legacy formats
+      let studentData;
+      if (firstName && lastName && grade !== undefined) {
+        // New parent communication format
+        studentData = {
+          firstName,
+          lastName,
+          grade,
+          userId: userId,
+        };
+      } else if (name) {
+        // Legacy format - extract first and last name from full name
+        const nameParts = name.trim().split(' ');
+        const firstNamePart = nameParts[0] || 'Unknown';
+        const lastNamePart = nameParts.slice(1).join(' ') || 'Student';
+
+        studentData = {
+          firstName: firstNamePart,
+          lastName: lastNamePart,
+          grade: 1, // Default grade for legacy students
+          userId: userId,
+        };
+      } else {
+        return res.status(400).json({ error: 'Invalid student data' });
+      }
+
+      const student = await prisma.student.create({
+        data: studentData,
+        include: {
+          goals: true,
+          reflections: true,
+        },
+      });
+
+      // Add backward compatibility for name field
+      const studentWithLegacy = {
+        ...student,
+        name: `${student.firstName} ${student.lastName}`,
       };
-    } else if (name) {
-      // Legacy format - extract first and last name from full name
-      const nameParts = name.trim().split(' ');
-      const firstNamePart = nameParts[0] || 'Unknown';
-      const lastNamePart = nameParts.slice(1).join(' ') || 'Student';
 
-      studentData = {
-        firstName: firstNamePart,
-        lastName: lastNamePart,
-        grade: 1, // Default grade for legacy students
-        userId: parseInt(userId),
-      };
-    } else {
-      return res.status(400).json({ error: 'Invalid student data' });
+      res.status(201).json(studentWithLegacy);
+    } catch (err) {
+      next(err);
     }
-
-    const student = await prisma.student.create({
-      data: studentData,
-      include: {
-        goals: true,
-        reflections: true,
-      },
-    });
-
-    // Add backward compatibility for name field
-    const studentWithLegacy = {
-      ...student,
-      name: `${student.firstName} ${student.lastName}`,
-    };
-
-    res.status(201).json(studentWithLegacy);
-  } catch (err) {
-    next(err);
-  }
-});
+  },
+);
 
 // Update a student
-router.put('/:id', validate(studentUpdateSchema), auditLoggers.studentUpdate, async (req: AuthenticatedRequest, res, next) => {
-  try {
-    const userId = req.user?.userId;
-    const studentId = parseInt(req.params.id);
+router.put(
+  '/:id',
+  validate(studentUpdateSchema),
+  auditLoggers.studentUpdate,
+  async (req: Request, res, next) => {
+    try {
+      const userId = req.user?.id;
+      const studentId = parseInt(req.params.id);
 
-    if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      if (!userId) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
+
+      // Verify the student belongs to this teacher
+      const existingStudent = await prisma.student.findFirst({
+        where: {
+          id: studentId,
+          userId: userId,
+        },
+      });
+
+      if (!existingStudent) {
+        return res.status(404).json({ error: 'Student not found' });
+      }
+
+      const { firstName, lastName, grade, name } = req.body;
+
+      const updateData: Record<string, unknown> = {};
+      if (firstName !== undefined) updateData.firstName = firstName;
+      if (lastName !== undefined) updateData.lastName = lastName;
+      if (grade !== undefined) updateData.grade = grade;
+
+      // Handle legacy name field
+      if (name !== undefined) {
+        const nameParts = name.trim().split(' ');
+        updateData.firstName = nameParts[0] || 'Unknown';
+        updateData.lastName = nameParts.slice(1).join(' ') || 'Student';
+      }
+
+      const student = await prisma.student.update({
+        where: { id: studentId },
+        data: updateData,
+        include: {
+          goals: true,
+          reflections: true,
+        },
+      });
+
+      // Add backward compatibility for name field
+      const studentWithLegacy = {
+        ...student,
+        name: `${student.firstName} ${student.lastName}`,
+      };
+
+      res.json(studentWithLegacy);
+    } catch (err) {
+      next(err);
     }
-
-    // Verify the student belongs to this teacher
-    const existingStudent = await prisma.student.findFirst({
-      where: {
-        id: studentId,
-        userId: parseInt(userId),
-      },
-    });
-
-    if (!existingStudent) {
-      return res.status(404).json({ error: 'Student not found' });
-    }
-
-    const { firstName, lastName, grade, name } = req.body;
-
-    const updateData: Record<string, unknown> = {};
-    if (firstName !== undefined) updateData.firstName = firstName;
-    if (lastName !== undefined) updateData.lastName = lastName;
-    if (grade !== undefined) updateData.grade = grade;
-
-    // Handle legacy name field
-    if (name !== undefined) {
-      const nameParts = name.trim().split(' ');
-      updateData.firstName = nameParts[0] || 'Unknown';
-      updateData.lastName = nameParts.slice(1).join(' ') || 'Student';
-    }
-
-    const student = await prisma.student.update({
-      where: { id: studentId },
-      data: updateData,
-      include: {
-        goals: true,
-        reflections: true,
-      },
-    });
-
-    // Add backward compatibility for name field
-    const studentWithLegacy = {
-      ...student,
-      name: `${student.firstName} ${student.lastName}`,
-    };
-
-    res.json(studentWithLegacy);
-  } catch (err) {
-    next(err);
-  }
-});
+  },
+);
 
 // Delete a student
-router.delete('/:id', auditLoggers.studentDelete, async (req: AuthenticatedRequest, res, next) => {
+router.delete('/:id', auditLoggers.studentDelete, async (req: Request, res, next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     const studentId = parseInt(req.params.id);
 
     if (!userId) {
@@ -283,7 +289,7 @@ router.delete('/:id', auditLoggers.studentDelete, async (req: AuthenticatedReque
     const existingStudent = await prisma.student.findFirst({
       where: {
         id: studentId,
-        userId: parseInt(userId),
+        userId: userId,
       },
     });
 
@@ -292,19 +298,22 @@ router.delete('/:id', auditLoggers.studentDelete, async (req: AuthenticatedReque
     }
 
     // Delete related data in a transaction for data integrity
-    await prisma.$transaction(async (tx) => {
-      // Delete in dependency order
-      await tx.studentArtifact.deleteMany({ where: { studentId } });
-      await tx.studentReflection.deleteMany({ where: { studentId } });
-      await tx.studentGoal.deleteMany({ where: { studentId } });
-      await tx.parentSummary.deleteMany({ where: { studentId } });
-      
-      // Finally delete the student
-      await tx.student.delete({ where: { id: studentId } });
-    }, {
-      // Set a timeout for the transaction
-      timeout: 10000, // 10 seconds
-    });
+    await prisma.$transaction(
+      async (tx) => {
+        // Delete in dependency order
+        await tx.studentArtifact.deleteMany({ where: { studentId } });
+        await tx.studentReflection.deleteMany({ where: { studentId } });
+        await tx.studentGoal.deleteMany({ where: { studentId } });
+        await tx.parentSummary.deleteMany({ where: { studentId } });
+
+        // Finally delete the student
+        await tx.student.delete({ where: { id: studentId } });
+      },
+      {
+        // Set a timeout for the transaction
+        timeout: 10000, // 10 seconds
+      },
+    );
 
     res.status(204).send();
   } catch (err) {
@@ -313,9 +322,9 @@ router.delete('/:id', auditLoggers.studentDelete, async (req: AuthenticatedReque
 });
 
 // Student goals routes
-router.get('/:id/goals', async (req: AuthenticatedRequest, res, next) => {
+router.get('/:id/goals', async (req: Request, res, next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -338,45 +347,41 @@ router.get('/:id/goals', async (req: AuthenticatedRequest, res, next) => {
   }
 });
 
-router.post(
-  '/:id/goals',
-  validate(studentGoalCreateSchema),
-  async (req: AuthenticatedRequest, res, next) => {
-    try {
-      const userId = parseInt(req.user?.userId || '0', 10);
-      if (!userId) {
-        return res.status(401).json({ error: 'Unauthorized' });
-      }
-      const student = await prisma.student.findFirst({
-        where: {
-          id: Number(req.params.id),
-          userId,
-        },
-      });
-      if (!student) return res.status(404).json({ error: 'Student not found' });
-
-      const goal = await prisma.studentGoal.create({
-        data: {
-          studentId: Number(req.params.id),
-          text: req.body.text,
-          unitPlanId: req.body.unitPlanId || null,
-          status: req.body.status || 'active',
-        },
-        // theme removed - ThematicUnit model archived
-      });
-      res.status(201).json(goal);
-    } catch (err) {
-      next(err);
+router.post('/:id/goals', validate(studentGoalCreateSchema), async (req: Request, res, next) => {
+  try {
+    const userId = req.user?.id || 0;
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
     }
-  },
-);
+    const student = await prisma.student.findFirst({
+      where: {
+        id: Number(req.params.id),
+        userId,
+      },
+    });
+    if (!student) return res.status(404).json({ error: 'Student not found' });
+
+    const goal = await prisma.studentGoal.create({
+      data: {
+        studentId: Number(req.params.id),
+        text: req.body.text,
+        unitPlanId: req.body.unitPlanId || null,
+        status: req.body.status || 'active',
+      },
+      // theme removed - ThematicUnit model archived
+    });
+    res.status(201).json(goal);
+  } catch (err) {
+    next(err);
+  }
+});
 
 router.patch(
   '/:id/goals/:goalId',
   validate(studentGoalUpdateSchema),
-  async (req: AuthenticatedRequest, res, next) => {
+  async (req: Request, res, next) => {
     try {
-      const userId = parseInt(req.user?.userId || '0', 10);
+      const userId = req.user?.id || 0;
       if (!userId) {
         return res.status(401).json({ error: 'Unauthorized' });
       }
@@ -410,9 +415,9 @@ router.patch(
   },
 );
 
-router.delete('/:id/goals/:goalId', async (req: AuthenticatedRequest, res, next) => {
+router.delete('/:id/goals/:goalId', async (req: Request, res, next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -440,9 +445,9 @@ router.delete('/:id/goals/:goalId', async (req: AuthenticatedRequest, res, next)
 });
 
 // Student reflections routes
-router.get('/:id/reflections', async (req: AuthenticatedRequest, res, next) => {
+router.get('/:id/reflections', async (req: Request, res, next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -468,9 +473,9 @@ router.get('/:id/reflections', async (req: AuthenticatedRequest, res, next) => {
 router.post(
   '/:id/reflections',
   validate(studentReflectionCreateSchema),
-  async (req: AuthenticatedRequest, res, next) => {
+  async (req: Request, res, next) => {
     try {
-      const userId = parseInt(req.user?.userId || '0', 10);
+      const userId = req.user?.id || 0;
       if (!userId) {
         return res.status(401).json({ error: 'Unauthorized' });
       }
@@ -498,9 +503,9 @@ router.post(
   },
 );
 
-router.delete('/:id/reflections/:reflectionId', async (req: AuthenticatedRequest, res, next) => {
+router.delete('/:id/reflections/:reflectionId', async (req: Request, res, next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -528,9 +533,9 @@ router.delete('/:id/reflections/:reflectionId', async (req: AuthenticatedRequest
 });
 
 // Get student progress summary
-router.get('/:id/progress', auditLoggers.studentView, async (req: AuthenticatedRequest, res, next) => {
+router.get('/:id/progress', auditLoggers.studentView, async (req: Request, res, next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     const studentId = parseInt(req.params.id);
 
     if (!userId) {
@@ -540,7 +545,7 @@ router.get('/:id/progress', auditLoggers.studentView, async (req: AuthenticatedR
     const student = await prisma.student.findFirst({
       where: {
         id: studentId,
-        userId: parseInt(userId),
+        userId: userId,
       },
     });
 

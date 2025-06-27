@@ -4,10 +4,6 @@ import { prisma } from '../prisma';
 import { validate } from '../validation';
 import { z } from 'zod';
 
-interface AuthenticatedRequest extends Request {
-  user?: { userId: string };
-}
-
 const router = Router();
 
 interface DaybookEntryForAnalytics {
@@ -292,9 +288,9 @@ const daybookEntryCreateSchema = z.object({
 const daybookEntryUpdateSchema = daybookEntryCreateSchema.partial();
 
 // Get all daybook entries for the authenticated user
-router.get('/', async (req: AuthenticatedRequest, res, _next) => {
+router.get('/', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -352,9 +348,9 @@ router.get('/', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Get a single daybook entry
-router.get('/:id', async (req: AuthenticatedRequest, res, _next) => {
+router.get('/:id', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -397,47 +393,82 @@ router.get('/:id', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Create a new daybook entry
-router.post(
-  '/',
-  validate(daybookEntryCreateSchema),
-  async (req: AuthenticatedRequest, res, _next) => {
-    try {
-      const userId = parseInt(req.user?.userId || '0', 10);
-      if (!userId) {
-        return res.status(401).json({ error: 'Unauthorized' });
-      }
+router.post('/', validate(daybookEntryCreateSchema), async (req: Request, res, _next) => {
+  try {
+    const userId = req.user?.id || 0;
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
 
-      const { expectationCoverage, ...entryData } = req.body;
+    const { expectationCoverage, ...entryData } = req.body;
 
-      // If linking to a lesson plan, verify ownership and no existing entry
-      if (entryData.lessonPlanId) {
-        const lessonPlan = await prisma.eTFOLessonPlan.findFirst({
-          where: {
-            id: entryData.lessonPlanId,
-            userId,
-          },
-          include: {
-            daybookEntry: true,
-          },
-        });
-
-        if (!lessonPlan) {
-          return res.status(404).json({ error: 'Lesson plan not found' });
-        }
-
-        if (lessonPlan.daybookEntry) {
-          return res.status(400).json({
-            error: 'Lesson plan already has a daybook entry',
-          });
-        }
-      }
-
-      const entry = await prisma.daybookEntry.create({
-        data: {
-          ...entryData,
+    // If linking to a lesson plan, verify ownership and no existing entry
+    if (entryData.lessonPlanId) {
+      const lessonPlan = await prisma.eTFOLessonPlan.findFirst({
+        where: {
+          id: entryData.lessonPlanId,
           userId,
-          date: new Date(entryData.date),
         },
+        include: {
+          daybookEntry: true,
+        },
+      });
+
+      if (!lessonPlan) {
+        return res.status(404).json({ error: 'Lesson plan not found' });
+      }
+
+      if (lessonPlan.daybookEntry) {
+        return res.status(400).json({
+          error: 'Lesson plan already has a daybook entry',
+        });
+      }
+    }
+
+    const entry = await prisma.daybookEntry.create({
+      data: {
+        ...entryData,
+        userId,
+        date: new Date(entryData.date),
+      },
+      include: {
+        lessonPlan: {
+          select: {
+            id: true,
+            title: true,
+            unitPlan: {
+              select: {
+                id: true,
+                title: true,
+                longRangePlan: {
+                  select: {
+                    subject: true,
+                    grade: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+        _count: {
+          select: { expectations: true },
+        },
+      },
+    });
+
+    // Add expectation coverage if provided
+    if (expectationCoverage && expectationCoverage.length > 0) {
+      await prisma.daybookEntryExpectation.createMany({
+        data: expectationCoverage.map((ec: { expectationId: string; coverage: string }) => ({
+          daybookEntryId: entry.id,
+          expectationId: ec.expectationId,
+          coverage: ec.coverage,
+        })),
+      });
+
+      // Refetch with expectations
+      const updatedEntry = await prisma.daybookEntry.findUnique({
+        where: { id: entry.id },
         include: {
           lessonPlan: {
             select: {
@@ -457,14 +488,59 @@ router.post(
               },
             },
           },
-          _count: {
-            select: { expectations: true },
+          expectations: {
+            include: { expectation: true },
           },
         },
       });
 
-      // Add expectation coverage if provided
-      if (expectationCoverage && expectationCoverage.length > 0) {
+      return res.status(201).json(updatedEntry);
+    }
+
+    res.status(201).json(entry);
+  } catch (err) {
+    _next(err);
+  }
+});
+
+// Update a daybook entry
+router.put('/:id', validate(daybookEntryUpdateSchema), async (req: Request, res, _next) => {
+  try {
+    const userId = req.user?.id || 0;
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const { expectationCoverage, ...updateData } = req.body;
+
+    // Verify ownership
+    const existing = await prisma.daybookEntry.findFirst({
+      where: { id: req.params.id, userId },
+    });
+
+    if (!existing) {
+      return res.status(404).json({ error: 'Daybook entry not found' });
+    }
+
+    // Prepare update data
+    const data: Prisma.DaybookEntryUpdateInput = { ...updateData };
+    if (updateData.date) data.date = new Date(updateData.date);
+
+    // Update the entry
+    const entry = await prisma.daybookEntry.update({
+      where: { id: req.params.id },
+      data,
+    });
+
+    // Update expectation coverage if provided
+    if (expectationCoverage !== undefined) {
+      // Remove existing coverage
+      await prisma.daybookEntryExpectation.deleteMany({
+        where: { daybookEntryId: entry.id },
+      });
+
+      // Add new coverage
+      if (expectationCoverage.length > 0) {
         await prisma.daybookEntryExpectation.createMany({
           data: expectationCoverage.map((ec: { expectationId: string; coverage: string }) => ({
             daybookEntryId: entry.id,
@@ -472,126 +548,38 @@ router.post(
             coverage: ec.coverage,
           })),
         });
-
-        // Refetch with expectations
-        const updatedEntry = await prisma.daybookEntry.findUnique({
-          where: { id: entry.id },
-          include: {
-            lessonPlan: {
-              select: {
-                id: true,
-                title: true,
-                unitPlan: {
-                  select: {
-                    id: true,
-                    title: true,
-                    longRangePlan: {
-                      select: {
-                        subject: true,
-                        grade: true,
-                      },
-                    },
-                  },
-                },
-              },
-            },
-            expectations: {
-              include: { expectation: true },
-            },
-          },
-        });
-
-        return res.status(201).json(updatedEntry);
       }
-
-      res.status(201).json(entry);
-    } catch (err) {
-      _next(err);
     }
-  },
-);
 
-// Update a daybook entry
-router.put(
-  '/:id',
-  validate(daybookEntryUpdateSchema),
-  async (req: AuthenticatedRequest, res, _next) => {
-    try {
-      const userId = parseInt(req.user?.userId || '0', 10);
-      if (!userId) {
-        return res.status(401).json({ error: 'Unauthorized' });
-      }
-
-      const { expectationCoverage, ...updateData } = req.body;
-
-      // Verify ownership
-      const existing = await prisma.daybookEntry.findFirst({
-        where: { id: req.params.id, userId },
-      });
-
-      if (!existing) {
-        return res.status(404).json({ error: 'Daybook entry not found' });
-      }
-
-      // Prepare update data
-      const data: Prisma.DaybookEntryUpdateInput = { ...updateData };
-      if (updateData.date) data.date = new Date(updateData.date);
-
-      // Update the entry
-      const entry = await prisma.daybookEntry.update({
-        where: { id: req.params.id },
-        data,
-      });
-
-      // Update expectation coverage if provided
-      if (expectationCoverage !== undefined) {
-        // Remove existing coverage
-        await prisma.daybookEntryExpectation.deleteMany({
-          where: { daybookEntryId: entry.id },
-        });
-
-        // Add new coverage
-        if (expectationCoverage.length > 0) {
-          await prisma.daybookEntryExpectation.createMany({
-            data: expectationCoverage.map((ec: { expectationId: string; coverage: string }) => ({
-              daybookEntryId: entry.id,
-              expectationId: ec.expectationId,
-              coverage: ec.coverage,
-            })),
-          });
-        }
-      }
-
-      // Refetch with updated relationships
-      const updatedEntry = await prisma.daybookEntry.findUnique({
-        where: { id: entry.id },
-        include: {
-          lessonPlan: {
-            include: {
-              unitPlan: {
-                include: {
-                  longRangePlan: true,
-                },
+    // Refetch with updated relationships
+    const updatedEntry = await prisma.daybookEntry.findUnique({
+      where: { id: entry.id },
+      include: {
+        lessonPlan: {
+          include: {
+            unitPlan: {
+              include: {
+                longRangePlan: true,
               },
             },
-          },
-          expectations: {
-            include: { expectation: true },
           },
         },
-      });
+        expectations: {
+          include: { expectation: true },
+        },
+      },
+    });
 
-      res.json(updatedEntry);
-    } catch (err) {
-      _next(err);
-    }
-  },
-);
+    res.json(updatedEntry);
+  } catch (err) {
+    _next(err);
+  }
+});
 
 // Delete a daybook entry
-router.delete('/:id', async (req: AuthenticatedRequest, res, _next) => {
+router.delete('/:id', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -616,9 +604,9 @@ router.delete('/:id', async (req: AuthenticatedRequest, res, _next) => {
 });
 
 // Get daybook insights and patterns
-router.get('/insights/summary', async (req: AuthenticatedRequest, res, _next) => {
+router.get('/insights/summary', async (req: Request, res, _next) => {
   try {
-    const userId = parseInt(req.user?.userId || '0', 10);
+    const userId = req.user?.id || 0;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }

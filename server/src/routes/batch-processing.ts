@@ -3,10 +3,6 @@ import { z } from 'zod';
 import { validate, cuidSchema } from '../validation';
 import { batchProcessingService } from '../services/batchProcessingService';
 
-interface AuthenticatedRequest extends Request {
-  user?: { userId: string };
-}
-
 const router = Router();
 
 // Validation schemas for batch operations
@@ -29,12 +25,14 @@ const unitPlanBatchSchema = z.object({
   priorKnowledge: z.string().max(1000).optional(),
   parentCommunicationPlan: z.string().max(1000).optional(),
   fieldTripsAndGuestSpeakers: z.string().max(1000).optional(),
-  differentiationStrategies: z.object({
-    forStruggling: z.array(z.string().max(200)).max(10).optional(),
-    forAdvanced: z.array(z.string().max(200)).max(10).optional(),
-    forELL: z.array(z.string().max(200)).max(10).optional(),
-    forIEP: z.array(z.string().max(200)).max(10).optional(),
-  }).optional(),
+  differentiationStrategies: z
+    .object({
+      forStruggling: z.array(z.string().max(200)).max(10).optional(),
+      forAdvanced: z.array(z.string().max(200)).max(10).optional(),
+      forELL: z.array(z.string().max(200)).max(10).optional(),
+      forIEP: z.array(z.string().max(200)).max(10).optional(),
+    })
+    .optional(),
   indigenousPerspectives: z.string().max(1000).optional(),
   environmentalEducation: z.string().max(1000).optional(),
   socialJusticeConnections: z.string().max(1000).optional(),
@@ -64,23 +62,27 @@ const lessonPlanBatchSchema = z.object({
 });
 
 const batchOperationSchema = z.object({
-  operations: z.array(
-    z.object({
-      type: z.enum(['unit', 'lesson', 'expectation', 'resource']),
-      data: z.unknown(), // Will be validated based on type
+  operations: z
+    .array(
+      z.object({
+        type: z.enum(['unit', 'lesson', 'expectation', 'resource']),
+        data: z.unknown(), // Will be validated based on type
+      }),
+    )
+    .max(100, 'Maximum 100 operations per batch'),
+  options: z
+    .object({
+      batchSize: z.number().int().min(1).max(20).default(10),
+      maxRetries: z.number().int().min(0).max(5).default(3),
+      retryDelay: z.number().int().min(100).max(10000).default(1000),
     })
-  ).max(100, 'Maximum 100 operations per batch'),
-  options: z.object({
-    batchSize: z.number().int().min(1).max(20).default(10),
-    maxRetries: z.number().int().min(0).max(5).default(3),
-    retryDelay: z.number().int().min(100).max(10000).default(1000),
-  }).optional(),
+    .optional(),
 });
 
 // Add operations to batch queue
-router.post('/operations', validate(batchOperationSchema), async (req: AuthenticatedRequest, res, next) => {
+router.post('/operations', validate(batchOperationSchema), async (req: Request, res, next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -91,7 +93,7 @@ router.post('/operations', validate(batchOperationSchema), async (req: Authentic
     const validatedOperations = [];
     for (const operation of operations) {
       let validatedData;
-      
+
       switch (operation.type) {
         case 'unit': {
           const unitResult = unitPlanBatchSchema.safeParse(operation.data);
@@ -104,7 +106,7 @@ router.post('/operations', validate(batchOperationSchema), async (req: Authentic
           validatedData = unitResult.data;
           break;
         }
-          
+
         case 'lesson': {
           const lessonResult = lessonPlanBatchSchema.safeParse(operation.data);
           if (!lessonResult.success) {
@@ -116,7 +118,7 @@ router.post('/operations', validate(batchOperationSchema), async (req: Authentic
           validatedData = lessonResult.data;
           break;
         }
-          
+
         default:
           return res.status(400).json({
             error: `Unsupported operation type: ${operation.type}`,
@@ -131,13 +133,13 @@ router.post('/operations', validate(batchOperationSchema), async (req: Authentic
 
     // Validate the batch before adding to queue
     const validation = await batchProcessingService.validateBatch(
-      validatedOperations.map(op => ({
+      validatedOperations.map((op) => ({
         ...op,
         id: '',
         status: 'pending' as const,
         createdAt: new Date(),
         updatedAt: new Date(),
-      }))
+      })),
     );
 
     if (!validation.valid) {
@@ -149,7 +151,10 @@ router.post('/operations', validate(batchOperationSchema), async (req: Authentic
     }
 
     // Add operations to queue
-    const operationIds = await batchProcessingService.addOperations(validatedOperations, userId);
+    const operationIds = await batchProcessingService.addOperations(
+      validatedOperations,
+      userId.toString(),
+    );
 
     res.status(201).json({
       message: 'Operations added to batch queue',
@@ -163,9 +168,9 @@ router.post('/operations', validate(batchOperationSchema), async (req: Authentic
 });
 
 // Process batch operations
-router.post('/process', async (req: AuthenticatedRequest, res, next) => {
+router.post('/process', async (req: Request, res, next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -185,7 +190,7 @@ router.post('/process', async (req: AuthenticatedRequest, res, next) => {
       return res.status(400).json({ error: 'Retry delay must be between 100 and 10000 ms' });
     }
 
-    const result = await batchProcessingService.processBatch(userId, {
+    const result = await batchProcessingService.processBatch(userId.toString(), {
       batchSize,
       maxRetries,
       retryDelay,
@@ -206,19 +211,19 @@ router.post('/process', async (req: AuthenticatedRequest, res, next) => {
 });
 
 // Get batch processing status
-router.get('/status', async (req: AuthenticatedRequest, res, next) => {
+router.get('/status', async (req: Request, res, next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    const status = batchProcessingService.getBatchStatus(userId);
+    const status = batchProcessingService.getBatchStatus(userId.toString());
 
     res.json({
       isProcessing: status.isProcessing,
       queueLength: status.queueLength,
-      operations: status.operations.map(op => ({
+      operations: status.operations.map((op) => ({
         id: op.id,
         type: op.type,
         status: op.status,
@@ -235,14 +240,14 @@ router.get('/status', async (req: AuthenticatedRequest, res, next) => {
 });
 
 // Clear completed operations
-router.delete('/completed', async (req: AuthenticatedRequest, res, next) => {
+router.delete('/completed', async (req: Request, res, next) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    batchProcessingService.clearCompletedOperations(userId);
+    batchProcessingService.clearCompletedOperations(userId.toString());
 
     res.json({ message: 'Completed operations cleared from queue' });
   } catch (error) {
@@ -251,10 +256,10 @@ router.delete('/completed', async (req: AuthenticatedRequest, res, next) => {
 });
 
 // Health check for batch processing service
-router.get('/health', async (req: AuthenticatedRequest, res, next) => {
+router.get('/health', async (req: Request, res, next) => {
   try {
     const health = await batchProcessingService.healthCheck();
-    
+
     res.status(health.healthy ? 200 : 503).json(health);
   } catch (error) {
     next(error);
