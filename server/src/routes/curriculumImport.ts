@@ -58,7 +58,7 @@ const upload = multer({
 // POST /api/curriculum/import/upload - Upload and parse curriculum file (Planner agent style)
 router.post(
   '/upload',
-  upload.single('file') as express.RequestHandler,
+  upload.single('file') as unknown as express.RequestHandler,
   async (req: AuthenticatedRequest, res: Response) => {
     try {
       if (!req.file) {

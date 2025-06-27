@@ -103,12 +103,22 @@ export function createRateLimiter(options: RateLimitOptions) {
   };
 }
 
+// Function to clear rate limit for a specific key (useful for development/testing)
+export function clearRateLimit(key: string) {
+  requestCounts.delete(key);
+}
+
+// Function to clear all rate limits (useful for testing)
+export function clearAllRateLimits() {
+  requestCounts.clear();
+}
+
 // Pre-configured rate limiters for different use cases
 export const rateLimiters = {
   // Strict limit for authentication endpoints (relaxed in test mode)
   auth: createRateLimiter({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: process.env.NODE_ENV === 'test' ? 100 : 5, // Allow more requests in test mode
+    max: process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development' ? 100 : 5, // Allow more requests in test/dev mode
     message: 'Too many authentication attempts. Please try again later.',
     skipSuccessfulRequests: true, // Only count failed attempts
   }),
