@@ -6,7 +6,7 @@ import { createBackup, restoreBackup } from '../../src/services/backupService';
 describe('backup service', () => {
   const dbPath = path.resolve('test-backup.sqlite');
   // Use the same uploads path that the service uses: src/uploads
-  const uploads = path.join(process.cwd(), 'server/src/uploads');
+  const uploads = path.join(process.cwd(), 'src/uploads');
 
   beforeAll(async () => {
     process.env.DATABASE_URL = `file:${dbPath}`;
