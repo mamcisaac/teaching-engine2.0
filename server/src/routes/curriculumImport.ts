@@ -56,69 +56,73 @@ const upload = multer({
 });
 
 // POST /api/curriculum/import/upload - Upload and parse curriculum file (Planner agent style)
-router.post('/upload', upload.single('file'), async (req: AuthenticatedRequest, res: Response) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({
-        error: 'No file uploaded',
+router.post(
+  '/upload',
+  upload.single('file') as express.RequestHandler,
+  async (req: AuthenticatedRequest, res: Response) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({
+          error: 'No file uploaded',
+        });
+      }
+
+      if (!req.user?.id) {
+        return res.status(401).json({
+          error: 'User not authenticated',
+        });
+      }
+
+      // Additional file validation
+      if (req.file.size === 0) {
+        return res.status(400).json({
+          error: 'File is empty',
+        });
+      }
+
+      // Validate file buffer is not null
+      if (!req.file.buffer || req.file.buffer.length === 0) {
+        return res.status(400).json({
+          error: 'Invalid file content',
+        });
+      }
+
+      // Start import session
+      let sourceFormat: 'pdf' | 'docx' | 'csv' | 'manual' = 'manual';
+      if (req.file.mimetype === 'application/pdf') {
+        sourceFormat = 'pdf';
+      } else if (
+        req.file.mimetype ===
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      ) {
+        sourceFormat = 'docx';
+      } else if (req.file.mimetype === 'text/csv') {
+        sourceFormat = 'csv';
+      }
+
+      const importId = await curriculumImportService.startImport(
+        req.user.id,
+        1, // Default grade, can be updated later
+        'General', // Default subject, can be updated later
+        sourceFormat,
+      );
+
+      // Store file content for parsing
+      await curriculumImportService.storeUploadedFile(importId, req.file);
+
+      res.json({
+        sessionId: importId,
+        message: 'File uploaded successfully',
+        filename: req.file.originalname,
+      });
+    } catch (error) {
+      console.error('Upload error:', error);
+      res.status(500).json({
+        error: error instanceof Error ? error.message : 'Failed to process upload',
       });
     }
-
-    if (!req.user?.id) {
-      return res.status(401).json({
-        error: 'User not authenticated',
-      });
-    }
-
-    // Additional file validation
-    if (req.file.size === 0) {
-      return res.status(400).json({
-        error: 'File is empty',
-      });
-    }
-
-    // Validate file buffer is not null
-    if (!req.file.buffer || req.file.buffer.length === 0) {
-      return res.status(400).json({
-        error: 'Invalid file content',
-      });
-    }
-
-    // Start import session
-    let sourceFormat: 'pdf' | 'docx' | 'csv' | 'manual' = 'manual';
-    if (req.file.mimetype === 'application/pdf') {
-      sourceFormat = 'pdf';
-    } else if (
-      req.file.mimetype ===
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-    ) {
-      sourceFormat = 'docx';
-    } else if (req.file.mimetype === 'text/csv') {
-      sourceFormat = 'csv';
-    }
-
-    const importId = await curriculumImportService.startImport(
-      req.user.id,
-      1, // Default grade, can be updated later
-      'General', // Default subject, can be updated later
-      sourceFormat,
-    );
-
-    // Store file content for parsing
-    await curriculumImportService.storeUploadedFile(importId, req.file);
-
-    res.json({
-      sessionId: importId,
-      message: 'File uploaded successfully',
-      filename: req.file.originalname,
-    });
-  } catch (error) {
-    console.error('Upload error:', error);
-    res.status(500).json({
-      error: error instanceof Error ? error.message : 'Failed to process upload',
-    });
-  }
-});
+  },
+);
 
 // POST /api/curriculum/import/parse - Parse uploaded file
 router.post('/parse', async (req: AuthenticatedRequest, res: Response) => {

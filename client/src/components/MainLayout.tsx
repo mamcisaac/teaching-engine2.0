@@ -23,7 +23,7 @@ interface MainLayoutProps {
 
 export default function MainLayout({ children }: MainLayoutProps) {
   // Mobile-first responsive sidebar state
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Default closed on mobile
+  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768); // Open by default on desktop
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const { logout } = useAuth();
   const location = useLocation();
@@ -77,6 +77,9 @@ export default function MainLayout({ children }: MainLayoutProps) {
         setIsSidebarOpen(false);
       }
     };
+
+    // Run once on mount to ensure correct initial state
+    handleResize();
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
