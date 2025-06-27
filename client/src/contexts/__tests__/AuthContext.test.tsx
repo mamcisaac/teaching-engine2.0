@@ -7,457 +7,259 @@
 import { renderHook, waitFor, act } from '@testing-library/react';
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { AuthProvider, useAuth } from '../AuthContext';
-import { setupTest, mockLocalStorage, createMockUser } from '../../test-utils';
 
-// Mock fetch globally
-const mockFetch = vi.fn();
-global.fetch = mockFetch;
+// Mock the authentication service
+vi.mock('../services/authService', () => ({
+  default: {
+    login: vi.fn(),
+    logout: vi.fn(),
+    getStoredToken: vi.fn(),
+    validateUser: vi.fn(),
+    refreshToken: vi.fn(),
+    isTokenValid: vi.fn(),
+  },
+}));
+
+const mockAuthService = {
+  login: vi.fn(),
+  logout: vi.fn(),
+  getStoredToken: vi.fn(),
+  validateUser: vi.fn(),
+  refreshToken: vi.fn(),
+  isTokenValid: vi.fn(),
+};
+
+// Test utilities
+const createMockUser = (overrides = {}) => ({
+  id: 1,
+  firstName: 'Test',
+  lastName: 'User',
+  email: 'test@example.com',
+  ...overrides,
+});
 
 describe('AuthContext', () => {
   beforeEach(() => {
-    setupTest();
-    mockFetch.mockClear();
+    vi.clearAllMocks();
+    // Default mocks
+    mockAuthService.getStoredToken.mockReturnValue(null);
+    mockAuthService.isTokenValid.mockReturnValue(false);
+    mockAuthService.validateUser.mockResolvedValue(null);
   });
 
   afterEach(() => {
-    vi.clearAllMocks();
+    vi.clearAllTimers();
   });
 
-  describe('Initial State', () => {
-    it('should initialize with null user and false authentication', async () => {
-      mockFetch.mockResolvedValueOnce({
-        ok: false,
-        status: 401,
-      });
-
-      const { result } = renderHook(() => useAuth(), {
-        wrapper: AuthProvider,
-      });
-
-      await waitFor(() => {
-        expect(result.current.user).toBeNull();
-        expect(result.current.isAuthenticated).toBe(false);
-      });
+  it('should provide authentication context', () => {
+    const { result } = renderHook(() => useAuth(), {
+      wrapper: AuthProvider,
     });
 
-    it('should check authentication on mount', async () => {
-      const mockUser = createMockUser();
-      mockFetch.mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockUser,
-      });
+    expect(result.current).toHaveProperty('user');
+    expect(result.current).toHaveProperty('isAuthenticated');
+    expect(result.current).toHaveProperty('login');
+    expect(result.current).toHaveProperty('logout');
+    expect(result.current).toHaveProperty('loading');
+  });
 
-      const { result } = renderHook(() => useAuth(), {
-        wrapper: AuthProvider,
-      });
+  it('should initialize with no authenticated user', async () => {
+    const { result } = renderHook(() => useAuth(), {
+      wrapper: AuthProvider,
+    });
 
-      await waitFor(() => {
-        expect(result.current.user).toEqual(mockUser);
-        expect(result.current.isAuthenticated).toBe(true);
-      });
-
-      expect(mockFetch).toHaveBeenCalledWith('/api/auth/me', {
-        credentials: 'include',
-        signal: expect.any(AbortSignal),
-      });
+    await waitFor(() => {
+      expect(result.current.isAuthenticated).toBe(false);
+      expect(result.current.user).toBeNull();
+      expect(result.current.isLoading).toBe(false);
     });
   });
 
-  describe('Login Functionality', () => {
-    it('should set user and authentication state on login', async () => {
-      mockFetch.mockResolvedValueOnce({
-        ok: false,
-        status: 401,
-      });
+  it('should handle successful login', async () => {
+    const mockUser = createMockUser();
+    mockAuthService.login.mockResolvedValue({
+      user: mockUser,
+      token: 'test-token',
+    });
 
-      const { result } = renderHook(() => useAuth(), {
-        wrapper: AuthProvider,
-      });
+    const { result } = renderHook(() => useAuth(), {
+      wrapper: AuthProvider,
+    });
 
-      await waitFor(() => {
-        expect(result.current.isAuthenticated).toBe(false);
-      });
+    await act(async () => {
+      await result.current.login('test@example.com', 'password');
+    });
 
-      const mockUser = createMockUser();
+    expect(result.current.user).toEqual(mockUser);
+    expect(result.current.isAuthenticated).toBe(true);
+  });
 
-      act(() => {
-        result.current.login(mockUser);
-      });
+  it('should handle login failure', async () => {
+    mockAuthService.login.mockRejectedValue(new Error('Invalid credentials'));
 
+    const { result } = renderHook(() => useAuth(), {
+      wrapper: AuthProvider,
+    });
+
+    await act(async () => {
+      try {
+        await result.current.login('test@example.com', 'wrong-password');
+      } catch (error) {
+        expect(error).toBeInstanceOf(Error);
+      }
+    });
+
+    expect(result.current.user).toBeNull();
+    expect(result.current.isAuthenticated).toBe(false);
+  });
+
+  it('should handle logout', async () => {
+    const mockUser = createMockUser();
+    mockAuthService.login.mockResolvedValue({
+      user: mockUser,
+      token: 'test-token',
+    });
+
+    const { result } = renderHook(() => useAuth(), {
+      wrapper: AuthProvider,
+    });
+
+    // Login first
+    await act(async () => {
+      await result.current.login('test@example.com', 'password');
+    });
+
+    expect(result.current.isAuthenticated).toBe(true);
+
+    // Then logout
+    await act(async () => {
+      await result.current.logout();
+    });
+
+    expect(result.current.user).toBeNull();
+    expect(result.current.isAuthenticated).toBe(false);
+  });
+
+  it('should restore user from stored token on mount', async () => {
+    const mockUser = createMockUser();
+    mockAuthService.getStoredToken.mockReturnValue('stored-token');
+    mockAuthService.isTokenValid.mockReturnValue(true);
+    mockAuthService.validateUser.mockResolvedValue(mockUser);
+
+    const { result } = renderHook(() => useAuth(), {
+      wrapper: AuthProvider,
+    });
+
+    await waitFor(() => {
       expect(result.current.user).toEqual(mockUser);
+      expect(result.current.isAuthenticated).toBe(true);
+      expect(result.current.isLoading).toBe(false);
+    });
+  });
+
+  it('should handle token validation failure on mount', async () => {
+    mockAuthService.getStoredToken.mockReturnValue('invalid-token');
+    mockAuthService.isTokenValid.mockReturnValue(false);
+
+    const { result } = renderHook(() => useAuth(), {
+      wrapper: AuthProvider,
+    });
+
+    await waitFor(() => {
+      expect(result.current.user).toBeNull();
+      expect(result.current.isAuthenticated).toBe(false);
+      expect(result.current.isLoading).toBe(false);
+    });
+  });
+
+  it('should handle user validation failure', async () => {
+    mockAuthService.getStoredToken.mockReturnValue('valid-token');
+    mockAuthService.isTokenValid.mockReturnValue(true);
+    mockAuthService.validateUser.mockRejectedValue(new Error('Validation failed'));
+
+    const { result } = renderHook(() => useAuth(), {
+      wrapper: AuthProvider,
+    });
+
+    await waitFor(() => {
+      expect(result.current.user).toBeNull();
+      expect(result.current.isAuthenticated).toBe(false);
+      expect(result.current.isLoading).toBe(false);
+    });
+  });
+
+  it('should refresh token automatically', async () => {
+    vi.useFakeTimers();
+
+    const mockUser = createMockUser();
+    mockAuthService.getStoredToken.mockReturnValue('token');
+    mockAuthService.isTokenValid.mockReturnValue(true);
+    mockAuthService.validateUser.mockResolvedValue(mockUser);
+    mockAuthService.refreshToken.mockResolvedValue('new-token');
+
+    const { result } = renderHook(() => useAuth(), {
+      wrapper: AuthProvider,
+    });
+
+    await waitFor(() => {
       expect(result.current.isAuthenticated).toBe(true);
     });
 
-    it('should handle login with token', async () => {
-      mockFetch.mockResolvedValueOnce({
-        ok: false,
-        status: 401,
-      });
-
-      const { result } = renderHook(() => useAuth(), {
-        wrapper: AuthProvider,
-      });
-
-      await waitFor(() => {
-        expect(result.current.isAuthenticated).toBe(false);
-      });
-
-      const mockUser = createMockUser({ token: 'test-token' });
-
-      act(() => {
-        result.current.login(mockUser);
-      });
-
-      expect(result.current.user).toEqual(mockUser);
-      expect(result.current.getToken()).toBe('test-token');
+    // Fast-forward time to trigger token refresh
+    act(() => {
+      vi.advanceTimersByTime(60000); // 1 minute
     });
+
+    await waitFor(() => {
+      expect(mockAuthService.refreshToken).toHaveBeenCalled();
+    });
+
+    vi.useRealTimers();
   });
 
-  describe('Logout Functionality', () => {
-    it('should clear user state and make logout API call', async () => {
-      const mockUser = createMockUser();
-      mockFetch
-        .mockResolvedValueOnce({
-          ok: true,
-          json: async () => mockUser,
-        })
-        .mockResolvedValueOnce({
-          ok: true,
-        });
+  it('should handle network errors gracefully', async () => {
+    mockAuthService.login.mockRejectedValue(new Error('Network error'));
 
-      const { result } = renderHook(() => useAuth(), {
-        wrapper: AuthProvider,
-      });
-
-      await waitFor(() => {
-        expect(result.current.isAuthenticated).toBe(true);
-      });
-
-      await act(async () => {
-        await result.current.logout();
-      });
-
-      expect(result.current.user).toBeNull();
-      expect(result.current.isAuthenticated).toBe(false);
-      expect(mockFetch).toHaveBeenCalledWith('/api/logout', {
-        method: 'POST',
-        credentials: 'include',
-      });
+    const { result } = renderHook(() => useAuth(), {
+      wrapper: AuthProvider,
     });
 
-    it('should handle logout API failure gracefully', async () => {
-      const mockUser = createMockUser();
-      mockFetch
-        .mockResolvedValueOnce({
-          ok: true,
-          json: async () => mockUser,
-        })
-        .mockRejectedValueOnce(new Error('Network error'));
-
-      const { result } = renderHook(() => useAuth(), {
-        wrapper: AuthProvider,
-      });
-
-      await waitFor(() => {
-        expect(result.current.isAuthenticated).toBe(true);
-      });
-
-      // Mock console.error to avoid noise in tests
-      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-
-      await act(async () => {
-        await result.current.logout();
-      });
-
-      expect(result.current.user).toBeNull();
-      expect(result.current.isAuthenticated).toBe(false);
-      expect(consoleSpy).toHaveBeenCalledWith('Logout failed:', expect.any(Error));
-
-      consoleSpy.mockRestore();
+    await act(async () => {
+      try {
+        await result.current.login('test@example.com', 'password');
+      } catch (error) {
+        expect((error as Error).message).toBe('Network error');
+      }
     });
+
+    expect(result.current.user).toBeNull();
+    expect(result.current.isAuthenticated).toBe(false);
   });
 
-  describe('Token Management', () => {
-    it('should get token from user object', async () => {
-      mockFetch.mockResolvedValueOnce({
-        ok: false,
-        status: 401,
-      });
-
-      const { result } = renderHook(() => useAuth(), {
-        wrapper: AuthProvider,
-      });
-
-      await waitFor(() => {
-        expect(result.current.isAuthenticated).toBe(false);
-      });
-
-      const mockUser = createMockUser({ token: 'user-token' });
-
-      act(() => {
-        result.current.login(mockUser);
-      });
-
-      expect(result.current.getToken()).toBe('user-token');
+  it('should handle concurrent login attempts', async () => {
+    const mockUser = createMockUser();
+    mockAuthService.login.mockResolvedValue({
+      user: mockUser,
+      token: 'test-token',
     });
 
-    it('should get token from localStorage if user token not available', async () => {
-      const mockStorage = mockLocalStorage();
-      Object.defineProperty(window, 'localStorage', {
-        value: mockStorage,
-      });
-
-      mockStorage.setItem('auth_token', 'stored-token');
-
-      mockFetch.mockResolvedValueOnce({
-        ok: false,
-        status: 401,
-      });
-
-      const { result } = renderHook(() => useAuth(), {
-        wrapper: AuthProvider,
-      });
-
-      await waitFor(() => {
-        expect(result.current.isAuthenticated).toBe(false);
-      });
-
-      expect(result.current.getToken()).toBe('stored-token');
+    const { result } = renderHook(() => useAuth(), {
+      wrapper: AuthProvider,
     });
 
-    it('should set token in localStorage and update user', async () => {
-      const mockStorage = mockLocalStorage();
-      Object.defineProperty(window, 'localStorage', {
-        value: mockStorage,
-      });
+    // Trigger multiple concurrent login attempts
+    const promises = [
+      result.current.login('test@example.com', 'password'),
+      result.current.login('test@example.com', 'password'),
+      result.current.login('test@example.com', 'password'),
+    ];
 
-      mockFetch.mockResolvedValueOnce({
-        ok: false,
-        status: 401,
-      });
-
-      const { result } = renderHook(() => useAuth(), {
-        wrapper: AuthProvider,
-      });
-
-      await waitFor(() => {
-        expect(result.current.isAuthenticated).toBe(false);
-      });
-
-      const mockUser = createMockUser();
-
-      act(() => {
-        result.current.login(mockUser);
-      });
-
-      act(() => {
-        result.current.setToken('new-token');
-      });
-
-      expect(mockStorage.setItem).toHaveBeenCalledWith('auth_token', 'new-token');
-      expect(result.current.user?.token).toBe('new-token');
-    });
-  });
-
-  describe('Authentication Check', () => {
-    it('should check authentication and update state', async () => {
-      const mockUser = createMockUser();
-      mockFetch
-        .mockResolvedValueOnce({
-          ok: false,
-          status: 401,
-        })
-        .mockResolvedValueOnce({
-          ok: true,
-          json: async () => mockUser,
-        });
-
-      const { result } = renderHook(() => useAuth(), {
-        wrapper: AuthProvider,
-      });
-
-      await waitFor(() => {
-        expect(result.current.isAuthenticated).toBe(false);
-      });
-
-      await act(async () => {
-        await result.current.checkAuth();
-      });
-
-      expect(result.current.user).toEqual(mockUser);
-      expect(result.current.isAuthenticated).toBe(true);
+    await act(async () => {
+      await Promise.allSettled(promises);
     });
 
-    it('should handle authentication check failure', async () => {
-      mockFetch
-        .mockResolvedValueOnce({
-          ok: true,
-          json: async () => createMockUser(),
-        })
-        .mockResolvedValueOnce({
-          ok: false,
-          status: 401,
-        });
-
-      const { result } = renderHook(() => useAuth(), {
-        wrapper: AuthProvider,
-      });
-
-      await waitFor(() => {
-        expect(result.current.isAuthenticated).toBe(true);
-      });
-
-      await act(async () => {
-        await result.current.checkAuth();
-      });
-
-      expect(result.current.user).toBeNull();
-      expect(result.current.isAuthenticated).toBe(false);
-    });
-
-    it('should handle network errors during authentication check', async () => {
-      mockFetch
-        .mockResolvedValueOnce({
-          ok: false,
-          status: 401,
-        })
-        .mockRejectedValueOnce(new Error('Network error'));
-
-      const { result } = renderHook(() => useAuth(), {
-        wrapper: AuthProvider,
-      });
-
-      await waitFor(() => {
-        expect(result.current.isAuthenticated).toBe(false);
-      });
-
-      // Mock console.error to avoid noise in tests
-      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-
-      await act(async () => {
-        await result.current.checkAuth();
-      });
-
-      expect(result.current.user).toBeNull();
-      expect(result.current.isAuthenticated).toBe(false);
-      expect(consoleSpy).toHaveBeenCalledWith('Auth check failed:', expect.any(Error));
-
-      consoleSpy.mockRestore();
-    });
-  });
-
-  describe('Loading State', () => {
-    it('should handle delayed authentication check', async () => {
-      // Mock a delayed response
-      const mockUser = createMockUser();
-      
-      mockFetch.mockImplementationOnce(
-        () => new Promise(resolve => 
-          setTimeout(() => resolve({
-            ok: true,
-            json: async () => mockUser,
-          }), 50)
-        )
-      );
-
-      const { result } = renderHook(() => useAuth(), {
-        wrapper: ({ children }: { children: React.ReactNode }) => (
-          <AuthProvider>{children}</AuthProvider>
-        ),
-      });
-
-      // Wait for the auth check to complete
-      await waitFor(() => {
-        expect(result.current.user).toEqual(mockUser);
-        expect(result.current.isAuthenticated).toBe(true);
-      });
-    });
-  });
-
-  describe('Cleanup and Abort Handling', () => {
-    it('should abort fetch request when component unmounts', async () => {
-      let resolvePromise: (value: any) => void;
-      const mockPromise = new Promise(resolve => {
-        resolvePromise = resolve;
-      });
-
-      mockFetch.mockReturnValueOnce(mockPromise);
-
-      const { unmount } = renderHook(() => useAuth(), {
-        wrapper: AuthProvider,
-      });
-
-      // Unmount immediately to trigger abort
-      unmount();
-
-      // Resolve the promise after unmount
-      act(() => {
-        resolvePromise!({
-          ok: true,
-          json: async () => createMockUser(),
-        });
-      });
-
-      // Wait a bit to ensure the abort signal was processed
-      await act(async () => {
-        await new Promise(resolve => setTimeout(resolve, 10));
-      });
-
-      // The test passes if no errors are thrown
-      expect(true).toBe(true);
-    });
-  });
-
-  describe('Edge Cases', () => {
-    it('should handle user without token correctly', async () => {
-      mockFetch.mockResolvedValueOnce({
-        ok: false,
-        status: 401,
-      });
-
-      const { result } = renderHook(() => useAuth(), {
-        wrapper: AuthProvider,
-      });
-
-      await waitFor(() => {
-        expect(result.current.isAuthenticated).toBe(false);
-      });
-
-      const { token, ...userWithoutToken } = createMockUser();
-
-      act(() => {
-        result.current.login(userWithoutToken);
-      });
-
-      expect(result.current.user).toEqual(userWithoutToken);
-      expect(result.current.getToken()).toBe(null);
-    });
-
-    it('should handle setToken when no user is logged in', async () => {
-      const mockStorage = mockLocalStorage();
-      Object.defineProperty(window, 'localStorage', {
-        value: mockStorage,
-      });
-
-      mockFetch.mockResolvedValueOnce({
-        ok: false,
-        status: 401,
-      });
-
-      const { result } = renderHook(() => useAuth(), {
-        wrapper: AuthProvider,
-      });
-
-      await waitFor(() => {
-        expect(result.current.isAuthenticated).toBe(false);
-      });
-
-      act(() => {
-        result.current.setToken('new-token');
-      });
-
-      expect(mockStorage.setItem).toHaveBeenCalledWith('auth_token', 'new-token');
-      expect(result.current.user).toBeNull();
-    });
+    // Should only have one successful login
+    expect(mockAuthService.login).toHaveBeenCalledTimes(1);
+    expect(result.current.isAuthenticated).toBe(true);
   });
 });
