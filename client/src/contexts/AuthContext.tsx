@@ -87,7 +87,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           errorMessage = err.response.data.error;
         } else if (err?.response?.status === 401) {
           errorMessage = 'Invalid email or password';
-        } else if (err?.response?.status >= 500) {
+        } else if (err?.response?.status && err.response.status >= 500) {
           errorMessage = 'Server error. Please try again later.';
         } else if (err?.message) {
           errorMessage = err.message;
@@ -151,7 +151,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setIsLoading(false);
         updateAuthState(null);
       }
-    }, AUTH_CHECK_TIMEOUT);
+    }, 5000); // 5 second timeout
 
     const performInitialAuthCheck = async () => {
       try {
