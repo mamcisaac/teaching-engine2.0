@@ -23,7 +23,7 @@ const upload = multer({
     files: 1, // Only allow 1 file per request
     fields: 10, // Limit number of fields
   },
-  fileFilter: (req, file, cb) => {
+  fileFilter: (_req, file, cb: multer.FileFilterCallback) => {
     // Sanitize filename
     const sanitizedFilename = file.originalname.replace(/[^a-zA-Z0-9.-]/g, '_');
     if (sanitizedFilename !== file.originalname) {
