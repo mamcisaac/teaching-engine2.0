@@ -2,14 +2,14 @@ name: AI Regression Testing
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
     paths:
       - 'server/src/services/ai*.ts'
       - 'server/src/routes/ai-*.ts'
       - 'server/tests/ai-snapshots/**'
       - '.github/workflows/ai-regression.yml'
   pull_request:
-    branches: [ main, develop ]
+    branches: [main, develop]
     paths:
       - 'server/src/services/ai*.ts'
       - 'server/src/routes/ai-*.ts'
@@ -32,14 +32,14 @@ on:
 
 env:
   NODE_VERSION: '18'
-  PNPM_VERSION: '8'
+  PNPM_VERSION: '10.11.1'
 
 jobs:
   ai-snapshot-testing:
     name: AI Snapshot Regression Tests
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    
+
     services:
       postgres:
         image: postgres:15
@@ -93,10 +93,10 @@ jobs:
         run: |
           # Generate Prisma client
           pnpm --filter @teaching-engine/database db:generate
-          
+
           # Run database migrations
           pnpm --filter @teaching-engine/database db:push
-          
+
           # Validate test environment
           pnpm test:validate
 
@@ -197,9 +197,9 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            
+
             let reportContent = '## 📸 AI Snapshot Test Results\n\n';
-            
+
             try {
               const reportPath = 'server/ai-test-report.md';
               if (fs.existsSync(reportPath)) {
@@ -208,10 +208,10 @@ jobs:
             } catch (error) {
               reportContent += 'Could not read test report.';
             }
-            
+
             reportContent += '\n\n### ⚠️ Snapshot Changes Detected\n';
             reportContent += 'The following snapshot files have changed:\n\n';
-            
+
             const { execSync } = require('child_process');
             try {
               const changedFiles = execSync('cd server && git diff --name-only tests/ai-snapshots/snapshots/', { encoding: 'utf-8' });
@@ -219,12 +219,12 @@ jobs:
             } catch (error) {
               reportContent += 'Could not list changed files.\n';
             }
-            
+
             reportContent += '\n**Action Required:**\n';
             reportContent += '1. Review the snapshot changes to ensure they are expected\n';
             reportContent += '2. If changes are valid, they will be automatically included in the merge\n';
             reportContent += '3. If changes are unexpected, investigate potential AI output drift\n';
-            
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -254,7 +254,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: ai-snapshot-testing
     if: always()
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -323,7 +323,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ai-snapshot-testing, quality-analysis]
     if: failure() && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
-    
+
     steps:
       - name: Send notification
         uses: actions/github-script@v7
@@ -332,20 +332,20 @@ jobs:
             const title = '🚨 AI Regression Tests Failed';
             const body = `
             AI regression testing has failed on the \`${context.ref}\` branch.
-            
+
             **Workflow:** ${context.workflow}
             **Run ID:** ${context.runId}
             **Triggered by:** ${context.eventName}
-            
+
             Please investigate the following:
             1. Check for AI model output changes
             2. Review snapshot differences
             3. Validate content quality metrics
             4. Ensure all tests are passing
-            
+
             [View workflow run](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})
             `;
-            
+
             // Create an issue for investigation
             await github.rest.issues.create({
               owner: context.repo.owner,
@@ -360,7 +360,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ai-snapshot-testing, quality-analysis]
     if: always()
-    
+
     steps:
       - name: Clean up temporary files
         run: |
