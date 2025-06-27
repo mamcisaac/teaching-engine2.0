@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
+import { authService } from './services/authService';
 import type {
   Newsletter,
   Subject,
@@ -61,9 +62,25 @@ export const api = axios.create({
 
 // Add request interceptor for consistent configuration
 api.interceptors.request.use(
-  (config) => {
+  async (config) => {
     // Ensure credentials are included for cookie-based auth
     config.withCredentials = true;
+
+    // Add authorization header if we have a token
+    const authHeaders = authService.getAuthHeaders();
+    if (authHeaders.Authorization) {
+      config.headers.Authorization = authHeaders.Authorization;
+    }
+
+    // Try to ensure we have a valid token before making the request
+    try {
+      await authService.ensureValidToken();
+    } catch (error) {
+      // If token refresh fails, continue with request anyway
+      // The response interceptor will handle 401 errors
+      console.warn('Token refresh failed before request:', error);
+    }
+
     return config;
   },
   (error) => {
@@ -74,13 +91,27 @@ api.interceptors.request.use(
 // Add response interceptor for error handling
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
-    if (error.response?.status === 401) {
-      // Only redirect to login if we're not already on the login page
-      if (!window.location.pathname.includes('/login')) {
-        window.location.href = '/login';
+  async (error) => {
+    const originalRequest = error.config;
+
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      // Try to handle the auth error with the auth service
+      const shouldRetry = await authService.handleAuthError(error.response);
+
+      if (shouldRetry) {
+        // Update the authorization header with the new token
+        const authHeaders = authService.getAuthHeaders();
+        if (authHeaders.Authorization) {
+          originalRequest.headers.Authorization = authHeaders.Authorization;
+        }
+
+        // Retry the original request
+        return api(originalRequest);
       }
     }
+
     return Promise.reject(error);
   },
 );
@@ -192,10 +223,17 @@ export const useAddCalendarEvent = () => {
 };
 
 // Notification hooks
-export const useNotifications = () =>
+export const useNotifications = (options?: {
+  enabled?: boolean;
+  retry?: (failureCount: number, error: unknown) => boolean;
+  retryDelay?: (attemptIndex: number) => number;
+}) =>
   useQuery<Notification[]>({
     queryKey: ['notifications'],
     queryFn: async () => (await api.get('/api/notifications')).data,
+    enabled: options?.enabled ?? true,
+    retry: options?.retry ?? 3,
+    retryDelay: options?.retryDelay,
   });
 
 export const useMarkNotificationRead = () => {
