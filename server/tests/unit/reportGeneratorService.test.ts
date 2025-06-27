@@ -1,54 +1,51 @@
 import { describe, test, expect, beforeEach, jest } from '@jest/globals';
 
-// Mock the entire prisma module before importing
-jest.mock('../../src/prisma', () => ({
-  prisma: {
-    curriculumExpectation: {
-      findMany: jest.fn(),
-      findUnique: jest.fn(),
-    },
-    longRangePlan: {
-      findMany: jest.fn(),
-      findUnique: jest.fn(),
-    },
-    unitPlan: {
-      findMany: jest.fn(),
-      findUnique: jest.fn(),
-    },
-    eTFOLessonPlan: {
-      findMany: jest.fn(),
-      findUnique: jest.fn(),
-    },
-    daybookEntry: {
-      findMany: jest.fn(),
-    },
-  },
-}));
-
 import { ReportGeneratorService } from '../../src/services/reportGeneratorService';
-import { prisma } from '../../src/prisma';
 
-// Cast prisma to mocked version
-const mockPrisma = prisma as any;
+// Create a mock prisma client for this test
+const mockPrismaClient = {
+  curriculumExpectation: {
+    findMany: jest.fn(),
+    findUnique: jest.fn(),
+  },
+  longRangePlan: {
+    findMany: jest.fn(),
+    findUnique: jest.fn(),
+  },
+  unitPlan: {
+    findMany: jest.fn(),
+    findUnique: jest.fn(),
+  },
+  eTFOLessonPlan: {
+    findMany: jest.fn(),
+    findUnique: jest.fn(),
+  },
+  daybookEntry: {
+    findMany: jest.fn(),
+  },
+};
 
 // Create a new instance for testing
-const reportGeneratorService = new ReportGeneratorService();
+let reportGeneratorService: ReportGeneratorService;
 
 describe('Report Generator Service', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    
+
+    // Create service instance with mock prisma
+    reportGeneratorService = new ReportGeneratorService(mockPrismaClient as any);
+
     // Reset all mocks to return empty arrays by default
-    mockPrisma.curriculumExpectation.findMany.mockResolvedValue([]);
-    mockPrisma.longRangePlan.findMany.mockResolvedValue([]);
-    mockPrisma.unitPlan.findMany.mockResolvedValue([]);
-    mockPrisma.eTFOLessonPlan.findMany.mockResolvedValue([]);
-    mockPrisma.daybookEntry.findMany.mockResolvedValue([]);
-    
-    mockPrisma.curriculumExpectation.findUnique.mockResolvedValue(null);
-    mockPrisma.longRangePlan.findUnique.mockResolvedValue(null);
-    mockPrisma.unitPlan.findUnique.mockResolvedValue(null);
-    mockPrisma.eTFOLessonPlan.findUnique.mockResolvedValue(null);
+    mockPrismaClient.curriculumExpectation.findMany.mockResolvedValue([]);
+    mockPrismaClient.longRangePlan.findMany.mockResolvedValue([]);
+    mockPrismaClient.unitPlan.findMany.mockResolvedValue([]);
+    mockPrismaClient.eTFOLessonPlan.findMany.mockResolvedValue([]);
+    mockPrismaClient.daybookEntry.findMany.mockResolvedValue([]);
+
+    mockPrismaClient.curriculumExpectation.findUnique.mockResolvedValue(null);
+    mockPrismaClient.longRangePlan.findUnique.mockResolvedValue(null);
+    mockPrismaClient.unitPlan.findUnique.mockResolvedValue(null);
+    mockPrismaClient.eTFOLessonPlan.findUnique.mockResolvedValue(null);
   });
 
   describe('generateCurriculumCoverageReport', () => {
@@ -106,10 +103,10 @@ describe('Report Generator Service', () => {
         },
       ];
 
-      mockPrisma.curriculumExpectation.findMany.mockResolvedValue(mockExpectations);
-      mockPrisma.longRangePlan.findMany.mockResolvedValue(mockLongRangePlans);
-      mockPrisma.unitPlan.findMany.mockResolvedValue(mockUnitPlans);
-      mockPrisma.eTFOLessonPlan.findMany.mockResolvedValue(mockLessonPlans);
+      mockPrismaClient.curriculumExpectation.findMany.mockResolvedValue(mockExpectations);
+      mockPrismaClient.longRangePlan.findMany.mockResolvedValue(mockLongRangePlans);
+      mockPrismaClient.unitPlan.findMany.mockResolvedValue(mockUnitPlans);
+      mockPrismaClient.eTFOLessonPlan.findMany.mockResolvedValue(mockLessonPlans);
 
       const report = await reportGeneratorService.generateCurriculumCoverageReport(userId);
 
@@ -132,7 +129,7 @@ describe('Report Generator Service', () => {
           subject: 'Mathematics',
           grade: 1,
           userId,
-          isCompleted: true,
+          goals: 'Learn numbers',
         },
         {
           id: 'lrp2',
@@ -140,7 +137,7 @@ describe('Report Generator Service', () => {
           subject: 'Science',
           grade: 1,
           userId,
-          isCompleted: false,
+          goals: null,
         },
       ];
 
@@ -150,14 +147,14 @@ describe('Report Generator Service', () => {
           title: 'Numbers Unit',
           longRangePlanId: 'lrp1',
           userId,
-          isCompleted: true,
+          bigIdeas: 'Numbers are important',
         },
         {
           id: 'unit2',
           title: 'Plants Unit',
           longRangePlanId: 'lrp2',
           userId,
-          isCompleted: false,
+          bigIdeas: null,
         },
       ];
 
@@ -179,10 +176,10 @@ describe('Report Generator Service', () => {
         },
       ];
 
-      mockPrisma.longRangePlan.findMany.mockResolvedValue(mockLongRangePlans);
-      mockPrisma.unitPlan.findMany.mockResolvedValue(mockUnitPlans);
-      mockPrisma.eTFOLessonPlan.findMany.mockResolvedValue(mockLessonPlans);
-      mockPrisma.daybookEntry.findMany.mockResolvedValue(mockDaybookEntries);
+      mockPrismaClient.longRangePlan.findMany.mockResolvedValue(mockLongRangePlans);
+      mockPrismaClient.unitPlan.findMany.mockResolvedValue(mockUnitPlans);
+      mockPrismaClient.eTFOLessonPlan.findMany.mockResolvedValue(mockLessonPlans);
+      mockPrismaClient.daybookEntry.findMany.mockResolvedValue(mockDaybookEntries);
 
       const report = await reportGeneratorService.generatePlanningProgressReport(userId);
 
@@ -224,16 +221,17 @@ describe('Report Generator Service', () => {
             },
           },
         ],
+        resources: [],
       };
 
-      mockPrisma.eTFOLessonPlan.findUnique.mockResolvedValue(mockLesson);
+      mockPrismaClient.eTFOLessonPlan.findUnique.mockResolvedValue(mockLesson);
 
       const report = await reportGeneratorService.generateLessonPlanReport(lessonId);
 
       expect(report).toBeDefined();
       expect(report.lesson.title).toBe('Counting Lesson');
       expect(report.lesson.duration).toBe(60);
-      expect(report.expectations).toHaveLength(1);
+      expect(report.curriculumAlignment).toHaveLength(1);
     });
   });
 
@@ -262,15 +260,16 @@ describe('Report Generator Service', () => {
             grade: 1,
           },
         },
+        resources: [],
       };
 
-      mockPrisma.eTFOLessonPlan.findUnique.mockResolvedValue(mockLesson);
+      mockPrismaClient.eTFOLessonPlan.findUnique.mockResolvedValue(mockLesson);
 
       const report = await reportGeneratorService.generateSubstitutePlanReport(lessonId);
 
       expect(report).toBeDefined();
-      expect(report.lesson.title).toBe('Counting Lesson');
-      expect(report.substituteNotes).toBe('All materials in cabinet');
+      expect(report.title).toBe('Counting Lesson');
+      expect(report.specialNotes).toBe('All materials in cabinet');
     });
 
     test('should handle non-sub-friendly lesson', async () => {
@@ -279,13 +278,14 @@ describe('Report Generator Service', () => {
         id: lessonId,
         title: 'Complex Lesson',
         isSubFriendly: false,
+        resources: [],
       };
 
-      mockPrisma.eTFOLessonPlan.findUnique.mockResolvedValue(mockLesson);
+      mockPrismaClient.eTFOLessonPlan.findUnique.mockResolvedValue(mockLesson);
 
-      await expect(
-        reportGeneratorService.generateSubstitutePlanReport(lessonId)
-      ).rejects.toThrow('Lesson plan is not marked as substitute-friendly');
+      await expect(reportGeneratorService.generateSubstitutePlanReport(lessonId)).rejects.toThrow(
+        'Lesson plan is not marked as substitute-friendly',
+      );
     });
   });
 
@@ -331,7 +331,7 @@ describe('Report Generator Service', () => {
         resources: [], // Add resources field
       };
 
-      mockPrisma.unitPlan.findUnique.mockResolvedValue(mockUnit);
+      mockPrismaClient.unitPlan.findUnique.mockResolvedValue(mockUnit);
 
       const report = await reportGeneratorService.generateUnitOverviewReport(unitId);
 
@@ -345,36 +345,36 @@ describe('Report Generator Service', () => {
   describe('error handling', () => {
     test('should handle database errors gracefully', async () => {
       const userId = 1;
-      
+
       // Clear the mock to ensure our rejection takes effect
-      mockPrisma.curriculumExpectation.findMany.mockClear();
-      mockPrisma.curriculumExpectation.findMany.mockRejectedValue(
-        new Error('Database connection failed')
+      mockPrismaClient.curriculumExpectation.findMany.mockClear();
+      mockPrismaClient.curriculumExpectation.findMany.mockRejectedValue(
+        new Error('Database connection failed'),
       );
 
-      await expect(
-        reportGeneratorService.generateCurriculumCoverageReport(userId)
-      ).rejects.toThrow('Database connection failed');
+      await expect(reportGeneratorService.generateCurriculumCoverageReport(userId)).rejects.toThrow(
+        'Database connection failed',
+      );
     });
 
     test('should handle missing lesson plan', async () => {
       const lessonId = 'nonexistent';
-      
-      mockPrisma.eTFOLessonPlan.findUnique.mockResolvedValue(null);
 
-      await expect(
-        reportGeneratorService.generateLessonPlanReport(lessonId)
-      ).rejects.toThrow('Lesson plan not found');
+      mockPrismaClient.eTFOLessonPlan.findUnique.mockResolvedValue(null);
+
+      await expect(reportGeneratorService.generateLessonPlanReport(lessonId)).rejects.toThrow(
+        'Lesson plan not found',
+      );
     });
 
     test('should handle missing unit plan', async () => {
       const unitId = 'nonexistent';
-      
-      mockPrisma.unitPlan.findUnique.mockResolvedValue(null);
 
-      await expect(
-        reportGeneratorService.generateUnitOverviewReport(unitId)
-      ).rejects.toThrow('Unit plan not found');
+      mockPrismaClient.unitPlan.findUnique.mockResolvedValue(null);
+
+      await expect(reportGeneratorService.generateUnitOverviewReport(unitId)).rejects.toThrow(
+        'Unit plan not found',
+      );
     });
   });
 });

@@ -40,7 +40,6 @@ interface StudentWithRelations {
   goals: Goal[];
 }
 
-
 interface Artifact {
   id: number;
   title: string;
@@ -86,11 +85,14 @@ export interface CurriculumCoverageReport {
     description: string;
     strand: string;
   }>;
-  coverageByStrand: Record<string, {
-    total: number;
-    covered: number;
-    percentage: number;
-  }>;
+  coverageByStrand: Record<
+    string,
+    {
+      total: number;
+      covered: number;
+      percentage: number;
+    }
+  >;
 }
 
 export interface PlanningProgressReport {
@@ -225,10 +227,16 @@ export interface UnitOverviewReport {
 }
 
 export class ReportGeneratorService {
+  private prisma: typeof prisma;
+
+  constructor(prismaClient?: typeof prisma) {
+    this.prisma = prismaClient || prisma;
+  }
+
   async generateReport(request: ReportGenerationRequest): Promise<GeneratedReport> {
     try {
       // Fetch student data
-      const student = await prisma.student.findUnique({
+      const student = await this.prisma.student.findUnique({
         where: { id: request.studentId },
         include: {
           user: true,
@@ -250,10 +258,7 @@ export class ReportGeneratorService {
           },
           goals: {
             where: {
-              OR: [
-                { status: 'active' },
-                { status: 'completed' },
-              ],
+              OR: [{ status: 'active' }, { status: 'completed' }],
             },
           },
         },
@@ -265,7 +270,7 @@ export class ReportGeneratorService {
 
       // Generate report based on type
       let report: GeneratedReport;
-      
+
       switch (request.reportType) {
         case 'progress':
           report = await this.generateProgressReport(student, request);
@@ -292,7 +297,7 @@ export class ReportGeneratorService {
 
   private async generateProgressReport(
     student: StudentWithRelations,
-    request: ReportGenerationRequest
+    request: ReportGenerationRequest,
   ): Promise<GeneratedReport> {
     const sections: ReportSection[] = [];
 
@@ -300,7 +305,11 @@ export class ReportGeneratorService {
     if (student.artifacts.length > 0 || student.reflections.length > 0) {
       sections.push({
         title: request.language === 'fr' ? 'Progrès académique' : 'Academic Progress',
-        content: await this.generateProgressFromArtifacts(student.artifacts, student.reflections, request.language),
+        content: await this.generateProgressFromArtifacts(
+          student.artifacts,
+          student.reflections,
+          request.language,
+        ),
         data: { artifacts: student.artifacts, reflections: student.reflections },
       });
     }
@@ -315,11 +324,7 @@ export class ReportGeneratorService {
     }
 
     // Overall Comments
-    const overallComments = await this.generateOverallComments(
-      student,
-      sections,
-      request.language
-    );
+    const overallComments = await this.generateOverallComments(student, sections, request.language);
 
     // Next Steps
     const nextSteps = await this.generateNextSteps(student, sections, request.language);
@@ -335,25 +340,28 @@ export class ReportGeneratorService {
 
   private async generateNarrativeReport(
     student: StudentWithRelations,
-    request: ReportGenerationRequest
+    request: ReportGenerationRequest,
   ): Promise<GeneratedReport> {
     // Gather comprehensive data
     const learningJourney = this.compileLearningJourney(student);
-    
+
     // Generate narrative using LLM
-    const prompt = request.language === 'fr' 
-      ? `Générez un rapport narratif détaillé pour ${student.firstName} ${student.lastName}, couvrant la période du ${request.startDate.toLocaleDateString()} au ${request.endDate.toLocaleDateString()}. Incluez les réalisations, les défis et les domaines de croissance.`
-      : `Generate a detailed narrative report for ${student.firstName} ${student.lastName}, covering the period from ${request.startDate.toLocaleDateString()} to ${request.endDate.toLocaleDateString()}. Include achievements, challenges, and areas of growth.`;
+    const prompt =
+      request.language === 'fr'
+        ? `Générez un rapport narratif détaillé pour ${student.firstName} ${student.lastName}, couvrant la période du ${request.startDate.toLocaleDateString()} au ${request.endDate.toLocaleDateString()}. Incluez les réalisations, les défis et les domaines de croissance.`
+        : `Generate a detailed narrative report for ${student.firstName} ${student.lastName}, covering the period from ${request.startDate.toLocaleDateString()} to ${request.endDate.toLocaleDateString()}. Include achievements, challenges, and areas of growth.`;
 
     const narrative = await generateContent(prompt, JSON.stringify(learningJourney));
 
     return {
       studentName: `${student.firstName} ${student.lastName}`,
       period: `${request.startDate.toLocaleDateString()} - ${request.endDate.toLocaleDateString()}`,
-      sections: [{
-        title: request.language === 'fr' ? 'Rapport narratif' : 'Narrative Report',
-        content: narrative,
-      }],
+      sections: [
+        {
+          title: request.language === 'fr' ? 'Rapport narratif' : 'Narrative Report',
+          content: narrative,
+        },
+      ],
       overallComments: '',
       nextSteps: [],
     };
@@ -361,13 +369,13 @@ export class ReportGeneratorService {
 
   private async generateTermSummary(
     student: StudentWithRelations,
-    request: ReportGenerationRequest
+    request: ReportGenerationRequest,
   ): Promise<GeneratedReport> {
     const sections: ReportSection[] = [];
 
     // Get subject-specific progress
     const subjectProgress = await this.getSubjectProgress(student);
-    
+
     for (const subject of subjectProgress) {
       sections.push({
         title: subject.name,
@@ -380,14 +388,14 @@ export class ReportGeneratorService {
     const overallComments = await this.generateTermOverview(
       student,
       subjectProgress,
-      request.language
+      request.language,
     );
 
     // Recommendations for next term
     const nextSteps = await this.generateTermRecommendations(
       student,
       subjectProgress,
-      request.language
+      request.language,
     );
 
     return {
@@ -401,7 +409,7 @@ export class ReportGeneratorService {
 
   private async generateReportCard(
     student: StudentWithRelations,
-    request: ReportGenerationRequest
+    request: ReportGenerationRequest,
   ): Promise<GeneratedReport> {
     const sections: ReportSection[] = [];
 
@@ -410,11 +418,7 @@ export class ReportGeneratorService {
 
     for (const subject of reportCardData) {
       // Generate teacher comments for each subject
-      const comments = await this.generateSubjectComments(
-        subject,
-        student,
-        request.language
-      );
+      const comments = await this.generateSubjectComments(subject, student, request.language);
 
       sections.push({
         title: subject.name,
@@ -430,7 +434,7 @@ export class ReportGeneratorService {
     const overallComments = await this.generateReportCardComments(
       student,
       reportCardData,
-      request.language
+      request.language,
     );
 
     return {
@@ -446,38 +450,38 @@ export class ReportGeneratorService {
   private async generateProgressFromArtifacts(
     artifacts: Artifact[],
     reflections: Reflection[],
-    language: 'en' | 'fr'
+    language: 'en' | 'fr',
   ): Promise<string> {
     const context = {
       artifactCount: artifacts.length,
       reflectionCount: reflections.length,
-      recentArtifacts: artifacts.slice(0, 3).map(a => ({ title: a.title, description: a.description })),
-      recentReflections: reflections.slice(0, 3).map(r => ({ content: r.content }))
+      recentArtifacts: artifacts
+        .slice(0, 3)
+        .map((a) => ({ title: a.title, description: a.description })),
+      recentReflections: reflections.slice(0, 3).map((r) => ({ content: r.content })),
     };
 
-    const prompt = language === 'fr'
-      ? `Décrivez le progrès académique basé sur ${artifacts.length} artefacts et ${reflections.length} réflexions.`
-      : `Describe academic progress based on ${artifacts.length} artifacts and ${reflections.length} reflections.`;
+    const prompt =
+      language === 'fr'
+        ? `Décrivez le progrès académique basé sur ${artifacts.length} artefacts et ${reflections.length} réflexions.`
+        : `Describe academic progress based on ${artifacts.length} artifacts and ${reflections.length} reflections.`;
 
     return generateContent(prompt, JSON.stringify(context));
   }
 
-
-  private async generateGoalsNarrative(
-    goals: Goal[],
-    language: 'en' | 'fr'
-  ): Promise<string> {
-    const activeGoals = goals.filter(g => g.status === 'active');
-    const completedGoals = goals.filter(g => g.status === 'completed');
+  private async generateGoalsNarrative(goals: Goal[], language: 'en' | 'fr'): Promise<string> {
+    const activeGoals = goals.filter((g) => g.status === 'active');
+    const completedGoals = goals.filter((g) => g.status === 'completed');
 
     const context = {
-      active: activeGoals.map(g => ({ text: g.text })),
-      completed: completedGoals.map(g => ({ text: g.text })),
+      active: activeGoals.map((g) => ({ text: g.text })),
+      completed: completedGoals.map((g) => ({ text: g.text })),
     };
 
-    const prompt = language === 'fr'
-      ? `Décrivez le progrès vers les objectifs de l'élève: ${JSON.stringify(context)}`
-      : `Describe the student's progress toward their goals: ${JSON.stringify(context)}`;
+    const prompt =
+      language === 'fr'
+        ? `Décrivez le progrès vers les objectifs de l'élève: ${JSON.stringify(context)}`
+        : `Describe the student's progress toward their goals: ${JSON.stringify(context)}`;
 
     return generateContent(prompt);
   }
@@ -485,17 +489,18 @@ export class ReportGeneratorService {
   private async generateOverallComments(
     student: StudentWithRelations,
     sections: ReportSection[],
-    language: 'en' | 'fr'
+    language: 'en' | 'fr',
   ): Promise<string> {
     const context = {
       studentName: `${student.firstName} ${student.lastName}`,
       sectionsCount: sections.length,
-      sectionTitles: sections.map(s => s.title),
+      sectionTitles: sections.map((s) => s.title),
     };
 
-    const prompt = language === 'fr'
-      ? `Générez des commentaires généraux positifs et encourageants pour ${context.studentName} basés sur leur rapport de progrès.`
-      : `Generate positive and encouraging overall comments for ${context.studentName} based on their progress report.`;
+    const prompt =
+      language === 'fr'
+        ? `Générez des commentaires généraux positifs et encourageants pour ${context.studentName} basés sur leur rapport de progrès.`
+        : `Generate positive and encouraging overall comments for ${context.studentName} based on their progress report.`;
 
     return generateContent(prompt, JSON.stringify(context));
   }
@@ -503,19 +508,25 @@ export class ReportGeneratorService {
   private async generateNextSteps(
     student: StudentWithRelations,
     sections: ReportSection[],
-    language: 'en' | 'fr'
+    language: 'en' | 'fr',
   ): Promise<string[]> {
-    const prompt = language === 'fr'
-      ? `Suggérez 3-5 prochaines étapes spécifiques pour ${student.firstName} pour continuer leur progrès.`
-      : `Suggest 3-5 specific next steps for ${student.firstName} to continue their progress.`;
+    const prompt =
+      language === 'fr'
+        ? `Suggérez 3-5 prochaines étapes spécifiques pour ${student.firstName} pour continuer leur progrès.`
+        : `Suggest 3-5 specific next steps for ${student.firstName} to continue their progress.`;
 
     const suggestions = await generateContent(
-      prompt, 
-      JSON.stringify(sections.map(s => ({ title: s.title, summary: s.content.substring(0, 100) })))
+      prompt,
+      JSON.stringify(
+        sections.map((s) => ({ title: s.title, summary: s.content.substring(0, 100) })),
+      ),
     );
 
     // Parse the suggestions into an array
-    return suggestions.split('\n').filter(s => s.trim().length > 0).slice(0, 5);
+    return suggestions
+      .split('\n')
+      .filter((s) => s.trim().length > 0)
+      .slice(0, 5);
   }
 
   private compileLearningJourney(student: StudentWithRelations) {
@@ -533,13 +544,15 @@ export class ReportGeneratorService {
     };
   }
 
-  private async getSubjectProgress(student: StudentWithRelations & { user: { id: number } }): Promise<SubjectProgress[]> {
+  private async getSubjectProgress(
+    student: StudentWithRelations & { user: { id: number } },
+  ): Promise<SubjectProgress[]> {
     // Simplified subject progress without deep relations
-    const subjects = await prisma.subject.findMany({
+    const subjects = await this.prisma.subject.findMany({
       where: { userId: student.user.id },
     });
 
-    return subjects.map(subject => ({
+    return subjects.map((subject) => ({
       id: subject.id,
       name: subject.name,
       outcomes: [],
@@ -547,10 +560,14 @@ export class ReportGeneratorService {
     }));
   }
 
-  private async generateSubjectSummary(subject: SubjectProgress, language: 'en' | 'fr'): Promise<string> {
-    const prompt = language === 'fr'
-      ? `Résumez la performance de l'élève en ${subject.name} avec une note moyenne de ${subject.averageScore.toFixed(1)}% et couvrant ${subject.outcomes.length} résultats d'apprentissage.`
-      : `Summarize the student's performance in ${subject.name} with an average score of ${subject.averageScore.toFixed(1)}% and covering ${subject.outcomes.length} learning outcomes.`;
+  private async generateSubjectSummary(
+    subject: SubjectProgress,
+    language: 'en' | 'fr',
+  ): Promise<string> {
+    const prompt =
+      language === 'fr'
+        ? `Résumez la performance de l'élève en ${subject.name} avec une note moyenne de ${subject.averageScore.toFixed(1)}% et couvrant ${subject.outcomes.length} résultats d'apprentissage.`
+        : `Summarize the student's performance in ${subject.name} with an average score of ${subject.averageScore.toFixed(1)}% and covering ${subject.outcomes.length} learning outcomes.`;
 
     return generateContent(prompt);
   }
@@ -558,43 +575,51 @@ export class ReportGeneratorService {
   private async generateTermOverview(
     student: StudentWithRelations,
     subjectProgress: SubjectProgress[],
-    language: 'en' | 'fr'
+    language: 'en' | 'fr',
   ): Promise<string> {
-    const overallAverage = subjectProgress.reduce((sum, s) => sum + s.averageScore, 0) / subjectProgress.length;
-    
-    const prompt = language === 'fr'
-      ? `Générez un aperçu du trimestre pour ${student.firstName} avec une moyenne générale de ${overallAverage.toFixed(1)}% à travers ${subjectProgress.length} matières.`
-      : `Generate a term overview for ${student.firstName} with an overall average of ${overallAverage.toFixed(1)}% across ${subjectProgress.length} subjects.`;
+    const overallAverage =
+      subjectProgress.reduce((sum, s) => sum + s.averageScore, 0) / subjectProgress.length;
+
+    const prompt =
+      language === 'fr'
+        ? `Générez un aperçu du trimestre pour ${student.firstName} avec une moyenne générale de ${overallAverage.toFixed(1)}% à travers ${subjectProgress.length} matières.`
+        : `Generate a term overview for ${student.firstName} with an overall average of ${overallAverage.toFixed(1)}% across ${subjectProgress.length} subjects.`;
 
     return generateContent(
       prompt,
-      JSON.stringify(subjectProgress.map(s => ({ name: s.name, average: s.averageScore })))
+      JSON.stringify(subjectProgress.map((s) => ({ name: s.name, average: s.averageScore }))),
     );
   }
 
   private async generateTermRecommendations(
     student: StudentWithRelations,
     subjectProgress: SubjectProgress[],
-    language: 'en' | 'fr'
+    language: 'en' | 'fr',
   ): Promise<string[]> {
-    const weakSubjects = subjectProgress.filter(s => s.averageScore < 70);
-    const strongSubjects = subjectProgress.filter(s => s.averageScore >= 85);
+    const weakSubjects = subjectProgress.filter((s) => s.averageScore < 70);
+    const strongSubjects = subjectProgress.filter((s) => s.averageScore >= 85);
 
-    const prompt = language === 'fr'
-      ? `Suggérez 3-5 recommandations pour le prochain trimestre basées sur les forces (${strongSubjects.map(s => s.name).join(', ')}) et les domaines à améliorer (${weakSubjects.map(s => s.name).join(', ')}).`
-      : `Suggest 3-5 recommendations for the next term based on strengths (${strongSubjects.map(s => s.name).join(', ')}) and areas for improvement (${weakSubjects.map(s => s.name).join(', ')}).`;
+    const prompt =
+      language === 'fr'
+        ? `Suggérez 3-5 recommandations pour le prochain trimestre basées sur les forces (${strongSubjects.map((s) => s.name).join(', ')}) et les domaines à améliorer (${weakSubjects.map((s) => s.name).join(', ')}).`
+        : `Suggest 3-5 recommendations for the next term based on strengths (${strongSubjects.map((s) => s.name).join(', ')}) and areas for improvement (${weakSubjects.map((s) => s.name).join(', ')}).`;
 
     const recommendations = await generateContent(prompt);
 
-    return recommendations.split('\n').filter(r => r.trim().length > 0).slice(0, 5);
+    return recommendations
+      .split('\n')
+      .filter((r) => r.trim().length > 0)
+      .slice(0, 5);
   }
 
-  private async compileReportCardData(student: StudentWithRelations & { user: { id: number } }): Promise<SubjectReportCard[]> {
-    const subjects = await prisma.subject.findMany({
+  private async compileReportCardData(
+    student: StudentWithRelations & { user: { id: number } },
+  ): Promise<SubjectReportCard[]> {
+    const subjects = await this.prisma.subject.findMany({
       where: { userId: student.user.id },
     });
 
-    return subjects.map(subject => ({
+    return subjects.map((subject) => ({
       id: subject.id,
       name: subject.name,
       grade: 'N/A', // Assessment functionality removed
@@ -613,37 +638,40 @@ export class ReportGeneratorService {
   private async generateSubjectComments(
     subject: SubjectReportCard,
     student: StudentWithRelations,
-    language: 'en' | 'fr'
+    language: 'en' | 'fr',
   ): Promise<string> {
-    const prompt = language === 'fr'
-      ? `Générez des commentaires d'enseignant pour ${student.firstName} en ${subject.name} avec une note de ${subject.grade}. Soyez spécifique et encourageant.`
-      : `Generate teacher comments for ${student.firstName} in ${subject.name} with a grade of ${subject.grade}. Be specific and encouraging.`;
+    const prompt =
+      language === 'fr'
+        ? `Générez des commentaires d'enseignant pour ${student.firstName} en ${subject.name} avec une note de ${subject.grade}. Soyez spécifique et encourageant.`
+        : `Generate teacher comments for ${student.firstName} in ${subject.name} with a grade of ${subject.grade}. Be specific and encouraging.`;
 
     return generateContent(
       prompt,
       JSON.stringify({
         outcomes: subject.outcomes.length,
-      })
+      }),
     );
   }
 
   private async generateReportCardComments(
     student: StudentWithRelations,
     reportCardData: SubjectReportCard[],
-    language: 'en' | 'fr'
+    language: 'en' | 'fr',
   ): Promise<string> {
-    const overallGrade = reportCardData.reduce((sum, s) => {
-      const gradeValue = { A: 4, B: 3, C: 2, D: 1, F: 0 }[s.grade] || 0;
-      return sum + gradeValue;
-    }, 0) / reportCardData.length;
+    const overallGrade =
+      reportCardData.reduce((sum, s) => {
+        const gradeValue = { A: 4, B: 3, C: 2, D: 1, F: 0 }[s.grade] || 0;
+        return sum + gradeValue;
+      }, 0) / reportCardData.length;
 
-    const prompt = language === 'fr'
-      ? `Générez des commentaires généraux de bulletin pour ${student.firstName} ${student.lastName} avec une performance globale de ${overallGrade.toFixed(1)}/4.0.`
-      : `Generate overall report card comments for ${student.firstName} ${student.lastName} with an overall performance of ${overallGrade.toFixed(1)}/4.0.`;
+    const prompt =
+      language === 'fr'
+        ? `Générez des commentaires généraux de bulletin pour ${student.firstName} ${student.lastName} avec une performance globale de ${overallGrade.toFixed(1)}/4.0.`
+        : `Generate overall report card comments for ${student.firstName} ${student.lastName} with an overall performance of ${overallGrade.toFixed(1)}/4.0.`;
 
     return generateContent(
       prompt,
-      JSON.stringify(reportCardData.map(s => ({ subject: s.name, grade: s.grade })))
+      JSON.stringify(reportCardData.map((s) => ({ subject: s.name, grade: s.grade }))),
     );
   }
 
@@ -651,50 +679,49 @@ export class ReportGeneratorService {
   async generateCurriculumCoverageReport(userId: number): Promise<CurriculumCoverageReport> {
     try {
       // Get all curriculum expectations - we'll filter by covered/uncovered later
-      const expectations = await prisma.curriculumExpectation.findMany();
+      const expectations = await this.prisma.curriculumExpectation.findMany();
 
       // Get all plans with expectations
-      const longRangePlans = await prisma.longRangePlan.findMany({
+      const longRangePlans = await this.prisma.longRangePlan.findMany({
         where: { userId },
         include: { expectations: true },
       });
 
-      const unitPlans = await prisma.unitPlan.findMany({
+      const unitPlans = await this.prisma.unitPlan.findMany({
         where: { userId },
         include: { expectations: true },
       });
 
-      const lessonPlans = await prisma.eTFOLessonPlan.findMany({
+      const lessonPlans = await this.prisma.eTFOLessonPlan.findMany({
         where: { userId },
         include: { expectations: true },
       });
 
       // Collect all covered expectation IDs
       const coveredExpectationIds = new Set<string>();
-      
-      longRangePlans.forEach(plan => {
-        plan.expectations.forEach(exp => coveredExpectationIds.add(exp.expectationId));
+
+      longRangePlans.forEach((plan) => {
+        plan.expectations.forEach((exp) => coveredExpectationIds.add(exp.expectationId));
       });
-      
-      unitPlans.forEach(plan => {
-        plan.expectations.forEach(exp => coveredExpectationIds.add(exp.expectationId));
+
+      unitPlans.forEach((plan) => {
+        plan.expectations.forEach((exp) => coveredExpectationIds.add(exp.expectationId));
       });
-      
-      lessonPlans.forEach(plan => {
-        plan.expectations.forEach(exp => coveredExpectationIds.add(exp.expectationId));
+
+      lessonPlans.forEach((plan) => {
+        plan.expectations.forEach((exp) => coveredExpectationIds.add(exp.expectationId));
       });
 
       // Calculate coverage
       const totalExpectations = expectations.length;
       const coveredExpectations = coveredExpectationIds.size;
-      const coveragePercentage = totalExpectations > 0 
-        ? Math.round((coveredExpectations / totalExpectations) * 100) 
-        : 0;
+      const coveragePercentage =
+        totalExpectations > 0 ? Math.round((coveredExpectations / totalExpectations) * 100) : 0;
 
       // Find uncovered expectations
       const uncoveredExpectations = expectations
-        .filter(exp => !coveredExpectationIds.has(exp.id))
-        .map(exp => ({
+        .filter((exp) => !coveredExpectationIds.has(exp.id))
+        .map((exp) => ({
           id: exp.id,
           code: exp.code,
           description: exp.description,
@@ -702,9 +729,12 @@ export class ReportGeneratorService {
         }));
 
       // Calculate coverage by strand
-      const coverageByStrand: Record<string, { total: number; covered: number; percentage: number }> = {};
-      
-      expectations.forEach(exp => {
+      const coverageByStrand: Record<
+        string,
+        { total: number; covered: number; percentage: number }
+      > = {};
+
+      expectations.forEach((exp) => {
         if (!coverageByStrand[exp.strand]) {
           coverageByStrand[exp.strand] = { total: 0, covered: 0, percentage: 0 };
         }
@@ -715,11 +745,10 @@ export class ReportGeneratorService {
       });
 
       // Calculate percentages for each strand
-      Object.keys(coverageByStrand).forEach(strand => {
+      Object.keys(coverageByStrand).forEach((strand) => {
         const strandData = coverageByStrand[strand];
-        strandData.percentage = strandData.total > 0
-          ? Math.round((strandData.covered / strandData.total) * 100)
-          : 0;
+        strandData.percentage =
+          strandData.total > 0 ? Math.round((strandData.covered / strandData.total) * 100) : 0;
       });
 
       return {
@@ -738,19 +767,19 @@ export class ReportGeneratorService {
   async generatePlanningProgressReport(userId: number): Promise<PlanningProgressReport> {
     try {
       // Get all planning data for the user
-      const longRangePlans = await prisma.longRangePlan.findMany({
+      const longRangePlans = await this.prisma.longRangePlan.findMany({
         where: { userId },
       });
 
-      const unitPlans = await prisma.unitPlan.findMany({
+      const unitPlans = await this.prisma.unitPlan.findMany({
         where: { userId },
       });
 
-      const lessonPlans = await prisma.eTFOLessonPlan.findMany({
+      const lessonPlans = await this.prisma.eTFOLessonPlan.findMany({
         where: { userId },
       });
 
-      const daybookEntries = await prisma.daybookEntry.findMany({
+      const daybookEntries = await this.prisma.daybookEntry.findMany({
         where: { userId },
       });
 
@@ -765,19 +794,19 @@ export class ReportGeneratorService {
       return {
         longRangePlans: calculateCompletionRate(
           longRangePlans,
-          plan => plan.goals !== null && plan.goals !== ''
+          (plan) => plan.goals !== null && plan.goals !== '',
         ),
         unitPlans: calculateCompletionRate(
           unitPlans,
-          plan => plan.bigIdeas !== null && plan.bigIdeas !== ''
+          (plan) => plan.bigIdeas !== null && plan.bigIdeas !== '',
         ),
         lessonPlans: calculateCompletionRate(
           lessonPlans,
-          plan => plan.learningGoals !== null && plan.learningGoals !== ''
+          (plan) => plan.learningGoals !== null && plan.learningGoals !== '',
         ),
         daybookEntries: calculateCompletionRate(
           daybookEntries,
-          entry => entry.whatWorked !== null && entry.whatWorked !== ''
+          (entry) => entry.whatWorked !== null && entry.whatWorked !== '',
         ),
       };
     } catch (error) {
@@ -788,7 +817,7 @@ export class ReportGeneratorService {
 
   async generateLessonPlanReport(lessonId: string): Promise<LessonPlanReport> {
     try {
-      const lesson = await prisma.eTFOLessonPlan.findUnique({
+      const lesson = await this.prisma.eTFOLessonPlan.findUnique({
         where: { id: lessonId },
         include: {
           unitPlan: {
@@ -820,7 +849,7 @@ export class ReportGeneratorService {
           action: lesson.action || undefined,
           consolidation: lesson.consolidation || undefined,
           learningGoals: lesson.learningGoals || undefined,
-          materials: Array.isArray(lesson.materials) ? lesson.materials as string[] : undefined,
+          materials: Array.isArray(lesson.materials) ? (lesson.materials as string[]) : undefined,
           isSubFriendly: lesson.isSubFriendly,
         },
         hierarchy: {
@@ -835,18 +864,20 @@ export class ReportGeneratorService {
             title: lesson.unitPlan.title,
           },
         },
-        curriculumAlignment: lesson.expectations.map(exp => ({
+        curriculumAlignment: lesson.expectations.map((exp) => ({
           id: exp.expectation.id,
           code: exp.expectation.code,
           description: exp.expectation.description,
           strand: exp.expectation.strand,
         })),
-        reflection: lesson.daybookEntry ? {
-          whatWorked: lesson.daybookEntry.whatWorked || undefined,
-          overallRating: lesson.daybookEntry.overallRating || undefined,
-          wouldReuseLesson: lesson.daybookEntry.wouldReuseLesson || undefined,
-        } : undefined,
-        resources: lesson.resources.map(resource => ({
+        reflection: lesson.daybookEntry
+          ? {
+              whatWorked: lesson.daybookEntry.whatWorked || undefined,
+              overallRating: lesson.daybookEntry.overallRating || undefined,
+              wouldReuseLesson: lesson.daybookEntry.wouldReuseLesson || undefined,
+            }
+          : undefined,
+        resources: lesson.resources.map((resource) => ({
           id: resource.id,
           title: resource.title,
           type: resource.type,
@@ -861,7 +892,7 @@ export class ReportGeneratorService {
 
   async generateSubstitutePlanReport(lessonId: string): Promise<SubstitutePlanReport> {
     try {
-      const lesson = await prisma.eTFOLessonPlan.findUnique({
+      const lesson = await this.prisma.eTFOLessonPlan.findUnique({
         where: { id: lessonId },
         include: {
           unitPlan: {
@@ -889,14 +920,14 @@ export class ReportGeneratorService {
           duration: lesson.duration,
           date: lesson.date,
         },
-        materials: Array.isArray(lesson.materials) ? lesson.materials as string[] : [],
+        materials: Array.isArray(lesson.materials) ? (lesson.materials as string[]) : [],
         activities: {
           opening: lesson.mindsOn || '',
           main: lesson.action || '',
           closing: lesson.consolidation || '',
         },
         specialNotes: lesson.subNotes || undefined,
-        resources: lesson.resources.map(resource => ({
+        resources: lesson.resources.map((resource) => ({
           id: resource.id,
           title: resource.title,
           type: resource.type,
@@ -911,7 +942,7 @@ export class ReportGeneratorService {
 
   async generateUnitOverviewReport(unitId: string): Promise<UnitOverviewReport> {
     try {
-      const unit = await prisma.unitPlan.findUnique({
+      const unit = await this.prisma.unitPlan.findUnique({
         where: { id: unitId },
         include: {
           longRangePlan: true,
@@ -949,7 +980,7 @@ export class ReportGeneratorService {
             grade: unit.longRangePlan.grade || undefined,
           },
         },
-        curriculumAlignment: unit.expectations.map(exp => ({
+        curriculumAlignment: unit.expectations.map((exp) => ({
           id: exp.expectation.id,
           code: exp.expectation.code,
           description: exp.expectation.description,
@@ -958,14 +989,14 @@ export class ReportGeneratorService {
         lessonSummary: {
           totalLessons: unit.lessonPlans.length,
           totalDuration,
-          lessons: unit.lessonPlans.map(lesson => ({
+          lessons: unit.lessonPlans.map((lesson) => ({
             id: lesson.id,
             title: lesson.title,
             date: lesson.date,
             duration: lesson.duration,
           })),
         },
-        resources: unit.resources.map(resource => ({
+        resources: unit.resources.map((resource) => ({
           id: resource.id,
           title: resource.title,
           type: resource.type,

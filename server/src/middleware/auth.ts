@@ -3,8 +3,8 @@ import jwt from 'jsonwebtoken';
 
 export interface AuthRequest extends Request {
   user?: {
-    id: number;
-    email: string;
+    userId: string;
+    email?: string;
   };
 }
 
@@ -17,8 +17,8 @@ export function authMiddleware(req: AuthRequest, res: Response, next: NextFuncti
     if (!secret) {
       throw new Error('JWT_SECRET environment variable is required');
     }
-    const payload = jwt.verify(token, secret) as { userId: string; email: string };
-    req.user = { id: Number(payload.userId), email: payload.email };
+    const payload = jwt.verify(token, secret) as { userId: string; email?: string };
+    req.user = { userId: payload.userId, email: payload.email };
     next();
   } catch (error) {
     if (error instanceof Error && error.message === 'JWT_SECRET environment variable is required') {
