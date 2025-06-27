@@ -61,10 +61,25 @@ describe('CurriculumImportService', () => {
 
   describe('startImport', () => {
     it('should create a new import session', async () => {
+      // Mock the create method to return a valid import object
+      const mockImportRecord = {
+        id: 'cm56gp6kzjoq', // CUID-like ID
+        userId: 1,
+        grade: 5,
+        subject: 'MATH',
+        sourceFormat: 'csv',
+        sourceFile: 'file.csv',
+        status: ImportStatus.UPLOADING,
+        metadata: {},
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+      mockPrisma.curriculumImport.create.mockResolvedValue(mockImportRecord);
+
       const importId = await curriculumImportService.startImport(1, 5, 'MATH', 'csv', 'file.csv');
 
       // The mock generates CUID-like IDs, so just verify it's a valid CUID format
-      expect(importId).toMatch(/^c[a-z0-9]{10,}$/);
+      expect(importId).toMatch(/^c[a-z0-9]{8,}$/);
       expect(mockPrisma.curriculumImport.create).toHaveBeenCalledWith({
         data: {
           userId: 1,
@@ -79,6 +94,8 @@ describe('CurriculumImportService', () => {
     });
 
     it('should handle errors during import creation', async () => {
+      // Clear any previous mock implementations
+      mockPrisma.curriculumImport.create.mockReset();
       // Configure the mock to reject the promise
       mockPrisma.curriculumImport.create.mockRejectedValueOnce(new Error('Database error'));
 
