@@ -1,5 +1,6 @@
 import BaseService from './base/BaseService';
 import { emailService } from './emailService';
+import { prisma } from '../prisma';
 
 export interface Notification {
   id: string;
@@ -364,7 +365,7 @@ export class NotificationService extends BaseService {
   private async sendEmailNotification(userId: number, notification: Notification): Promise<void> {
     try {
       // Get user email
-      const user = await this.prisma.user.findUnique({
+      const user = await prisma.user.findUnique({
         where: { id: userId },
         select: { email: true, name: true },
       });

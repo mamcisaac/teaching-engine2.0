@@ -1,8 +1,1 @@
-import { Request } from 'express';
-
-export interface AuthenticatedRequest extends Request {
-  user?: {
-    id: number;
-    email: string;
-  };
-}
+// Auth types are now defined in Express namespace extension (types/express.d.ts)

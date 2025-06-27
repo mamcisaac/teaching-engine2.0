@@ -71,6 +71,7 @@ export function authenticate(req: Request, res: Response, next: NextFunction): v
     // Attach user information to request
     req.user = {
       id: Number(decoded.userId),
+      userId: decoded.userId,
       email: decoded.email,
     };
 

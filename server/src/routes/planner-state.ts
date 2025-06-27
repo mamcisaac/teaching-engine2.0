@@ -111,15 +111,10 @@ const WeeklyPlannerStateSchema = z
   })
   .strict();
 
-interface AuthenticatedRequest extends express.Request {
-  user?: {
-    id: number;
-    email: string;
-  };
-}
+// Use global Express.Request type extended with user property
 
 // GET /api/planner/state - Get user's planner state
-router.get('/state', async (req: AuthenticatedRequest, res: express.Response) => {
+router.get('/state', async (req: express.Request, res: express.Response) => {
   try {
     if (!req.user?.id) {
       return res.status(401).json({ error: 'Unauthorized' });
@@ -183,7 +178,7 @@ router.put(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   stateRateLimit as any,
   csrfProtection,
-  async (req: AuthenticatedRequest, res: Response) => {
+  async (req: express.Request, res: Response) => {
     try {
       if (!req.user?.id) {
         return res.status(401).json({ error: 'Unauthorized' });
@@ -281,7 +276,7 @@ router.put(
 );
 
 // GET /api/planner/week/:weekStart/state - Get state for specific week
-router.get('/week/:weekStart/state', async (req: AuthenticatedRequest, res: Response) => {
+router.get('/week/:weekStart/state', async (req: express.Request, res: Response) => {
   try {
     if (!req.user?.id) {
       return res.status(401).json({ error: 'Unauthorized' });
@@ -401,7 +396,7 @@ router.post(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   stateRateLimit as any,
   csrfProtection,
-  async (req: AuthenticatedRequest, res: Response) => {
+  async (req: express.Request, res: Response) => {
     try {
       if (!req.user?.id) {
         return res.status(401).json({ error: 'Unauthorized' });

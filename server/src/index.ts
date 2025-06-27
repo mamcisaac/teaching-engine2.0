@@ -51,6 +51,8 @@ import { authRoutes } from './routes/auth';
 import { teamRoutes } from './routes/teams';
 import { sharingRoutes } from './routes/sharing';
 import { commentRoutes } from './routes/comments';
+import { userRoutes } from './routes/user';
+import notificationRoutes from './routes/notifications';
 import {
   initializeServices,
   shutdownServices,
@@ -315,6 +317,14 @@ if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
 // Mount auth routes (no authentication required)
 log('Mounting auth routes...');
 app.use('/api', authRoutes(prisma));
+
+// Mount user routes (authenticated)
+log('Mounting user routes...');
+app.use('/api/user', authenticate, rateLimiters.api, userRoutes(prisma));
+
+// Mount notification routes (authenticated)
+log('Mounting notification routes...');
+app.use('/api/notifications', authenticate, rateLimiters.api, notificationRoutes);
 
 // Apply authentication and rate limiting to all API routes
 log('Mounting ETFO-aligned API routes...');

@@ -4,14 +4,7 @@ import { curriculumImportService } from '../services/curriculumImportService';
 import { clusteringService } from '../services/clusteringService';
 import logger from '../logger';
 
-// Extend Request type for authentication and file uploads
-interface AuthenticatedRequest extends Request {
-  user?: {
-    id: number;
-    email: string;
-  };
-  file?: Express.Multer.File;
-}
+// Use global Express.Request type extended with user property
 
 const router = express.Router();
 
@@ -59,7 +52,7 @@ const upload = multer({
 router.post(
   '/upload',
   upload.single('file') as unknown as express.RequestHandler,
-  async (req: AuthenticatedRequest, res: Response) => {
+  async (req: Request, res: Response) => {
     try {
       if (!req.file) {
         return res.status(400).json({
@@ -125,7 +118,7 @@ router.post(
 );
 
 // POST /api/curriculum/import/parse - Parse uploaded file
-router.post('/parse', async (req: AuthenticatedRequest, res: Response) => {
+router.post('/parse', async (req: Request, res: Response) => {
   try {
     const { sessionId, useAiExtraction } = req.body;
 
@@ -160,7 +153,7 @@ router.post('/parse', async (req: AuthenticatedRequest, res: Response) => {
 });
 
 // POST /api/curriculum/import/import-preset - Load preset curriculum
-router.post('/import-preset', async (req: AuthenticatedRequest, res: Response) => {
+router.post('/import-preset', async (req: Request, res: Response) => {
   try {
     const { presetId } = req.body;
 
@@ -193,7 +186,7 @@ router.post('/import-preset', async (req: AuthenticatedRequest, res: Response) =
 });
 
 // GET /api/curriculum/import/:id/status - Check import status
-router.get('/:id/status', async (req: AuthenticatedRequest, res: Response) => {
+router.get('/:id/status', async (req: Request, res: Response) => {
   try {
     const importId = req.params.id;
 
@@ -221,7 +214,7 @@ router.get('/:id/status', async (req: AuthenticatedRequest, res: Response) => {
 });
 
 // POST /api/curriculum/import/:id/confirm - Confirm and finalize import
-router.post('/:id/confirm', async (req: AuthenticatedRequest, res: Response) => {
+router.post('/:id/confirm', async (req: Request, res: Response) => {
   try {
     const importId = req.params.id;
 
@@ -263,7 +256,7 @@ router.post('/:id/confirm', async (req: AuthenticatedRequest, res: Response) => 
 });
 
 // GET /api/curriculum/import/history - Get user's import history
-router.get('/history', async (req: AuthenticatedRequest, res: Response) => {
+router.get('/history', async (req: Request, res: Response) => {
   try {
     if (!req.user?.id) {
       return res.status(401).json({
@@ -286,7 +279,7 @@ router.get('/history', async (req: AuthenticatedRequest, res: Response) => {
 });
 
 // DELETE /api/curriculum/import/:id - Delete import and associated data
-router.delete('/:id', async (req: AuthenticatedRequest, res: Response) => {
+router.delete('/:id', async (req: Request, res: Response) => {
   try {
     const importId = req.params.id;
 
@@ -316,7 +309,7 @@ router.delete('/:id', async (req: AuthenticatedRequest, res: Response) => {
 // Phase 5 Routes - Additional clustering functionality
 
 // Start a new curriculum import session
-router.post('/start', async (req: AuthenticatedRequest, res: Response) => {
+router.post('/start', async (req: Request, res: Response) => {
   try {
     const { grade, subject, sourceFormat } = req.body;
 
@@ -345,7 +338,7 @@ router.post('/start', async (req: AuthenticatedRequest, res: Response) => {
 });
 
 // Get import progress
-router.get('/:importId/progress', async (req: AuthenticatedRequest, res: Response) => {
+router.get('/:importId/progress', async (req: Request, res: Response) => {
   try {
     const { importId } = req.params;
     const progress = await curriculumImportService.getImportProgress(importId);
@@ -362,7 +355,7 @@ router.get('/:importId/progress', async (req: AuthenticatedRequest, res: Respons
 });
 
 // Cancel an import session
-router.post('/:importId/cancel', async (req: AuthenticatedRequest, res: Response) => {
+router.post('/:importId/cancel', async (req: Request, res: Response) => {
   try {
     const { importId } = req.params;
     const success = await curriculumImportService.cancelImport(importId);
@@ -379,7 +372,7 @@ router.post('/:importId/cancel', async (req: AuthenticatedRequest, res: Response
 });
 
 // POST /api/curriculum/import/:id - Finalize import and create curriculum expectations
-router.post('/:id', async (req: AuthenticatedRequest, res: Response) => {
+router.post('/:id', async (req: Request, res: Response) => {
   try {
     const importId = req.params.id;
 
@@ -423,7 +416,7 @@ router.post('/:id', async (req: AuthenticatedRequest, res: Response) => {
 // Clustering Routes (Phase 5)
 
 // Trigger clustering for an import
-router.post('/:importId/cluster', async (req: AuthenticatedRequest, res: Response) => {
+router.post('/:importId/cluster', async (req: Request, res: Response) => {
   try {
     const { importId } = req.params;
     const { options = {} } = req.body;
@@ -441,7 +434,7 @@ router.post('/:importId/cluster', async (req: AuthenticatedRequest, res: Respons
 });
 
 // Re-cluster with different parameters
-router.post('/:importId/recluster', async (req: AuthenticatedRequest, res: Response) => {
+router.post('/:importId/recluster', async (req: Request, res: Response) => {
   try {
     const { importId } = req.params;
     const { options = {} } = req.body;
@@ -459,7 +452,7 @@ router.post('/:importId/recluster', async (req: AuthenticatedRequest, res: Respo
 });
 
 // Get clusters for an import
-router.get('/:importId/clusters', async (req: AuthenticatedRequest, res: Response) => {
+router.get('/:importId/clusters', async (req: Request, res: Response) => {
   try {
     const { importId } = req.params;
     const clusters = await clusteringService.getClusters(importId);
@@ -472,7 +465,7 @@ router.get('/:importId/clusters', async (req: AuthenticatedRequest, res: Respons
 });
 
 // Analyze cluster quality
-router.get('/:importId/clusters/quality', async (req: AuthenticatedRequest, res: Response) => {
+router.get('/:importId/clusters/quality', async (req: Request, res: Response) => {
   try {
     const { importId } = req.params;
     const analysis = await clusteringService.analyzeClusterQuality(importId);

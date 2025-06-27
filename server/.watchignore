@@ -2,8 +2,13 @@
 ../packages/database/src/generated/**
 ../packages/database/src/generated/client/**
 **/node_modules/**
+**/.pnpm/**
+**/.prisma/**
+**/prisma/client/**
 **/.git/**
 **/dist/**
 **/coverage/**
 **/*.db
 **/*.db-journal
+# Ignore Jest cache
+**/.jest-cache/**

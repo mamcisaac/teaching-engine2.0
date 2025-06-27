@@ -418,4 +418,85 @@ router.delete('/:id', async (req: Request, res, next) => {
   }
 });
 
+// Get newsletter suggestions
+router.get('/suggestions', async (req: Request, res, next) => {
+  try {
+    const userId = req.user?.id;
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    // Get recent students for the user
+    const recentStudents = await prisma.student.findMany({
+      where: { userId: userId },
+      take: 10,
+      orderBy: { updatedAt: 'desc' },
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        grade: true,
+      },
+    });
+
+    // Get recent daybook entries for content suggestions
+    const recentEntries = await prisma.daybookEntry.findMany({
+      where: {
+        userId: userId,
+        date: {
+          gte: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000), // Last 30 days
+        },
+      },
+      take: 5,
+      orderBy: { date: 'desc' },
+      include: {
+        expectations: {
+          include: {
+            expectation: true,
+          },
+        },
+      },
+    });
+
+    // Generate date range suggestions
+    const today = new Date();
+    const lastWeek = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+    const lastMonth = new Date(today.getTime() - 30 * 24 * 60 * 60 * 1000);
+
+    const suggestions = {
+      students: recentStudents,
+      dateRanges: [
+        {
+          label: 'Last Week',
+          from: lastWeek.toISOString(),
+          to: today.toISOString(),
+        },
+        {
+          label: 'Last Month',
+          from: lastMonth.toISOString(),
+          to: today.toISOString(),
+        },
+      ],
+      toneOptions: ['friendly', 'formal', 'informative'],
+      focusAreas: [
+        'Mathematics',
+        'Language Arts',
+        'Science',
+        'Social Studies',
+        'Arts',
+        'Physical Education',
+        'French',
+      ],
+      recentTopics: recentEntries
+        .flatMap((entry) => entry.expectations.map((exp) => exp.expectation.description))
+        .slice(0, 10),
+    };
+
+    res.json(suggestions);
+  } catch (err) {
+    console.error('Error getting newsletter suggestions:', err);
+    next(err);
+  }
+});
+
 export default router;

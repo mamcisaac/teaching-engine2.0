@@ -1,14 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-export interface AuthRequest extends Request {
-  user?: {
-    userId: string;
-    email?: string;
-  };
-}
-
-export function authMiddleware(req: AuthRequest, res: Response, next: NextFunction) {
+export function authMiddleware(req: Request, res: Response, next: NextFunction) {
   const header = req.headers.authorization;
   if (!header) return res.status(401).json({ error: 'Unauthorized' });
   const token = header.replace('Bearer ', '');
@@ -18,7 +11,11 @@ export function authMiddleware(req: AuthRequest, res: Response, next: NextFuncti
       throw new Error('JWT_SECRET environment variable is required');
     }
     const payload = jwt.verify(token, secret) as { userId: string; email?: string };
-    req.user = { userId: payload.userId, email: payload.email };
+    req.user = {
+      id: parseInt(payload.userId),
+      userId: payload.userId,
+      email: payload.email || 'unknown@example.com',
+    };
     next();
   } catch (error) {
     if (error instanceof Error && error.message === 'JWT_SECRET environment variable is required') {

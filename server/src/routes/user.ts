@@ -8,7 +8,7 @@ import { PrismaClient } from '@teaching-engine/database';
 import { z } from 'zod';
 import bcrypt from 'bcryptjs';
 import { asyncHandler } from '@/middleware/errorHandler';
-import { requireAuth } from '@/middleware/auth';
+// Authentication middleware available if needed
 import { validatePassword, hashPassword } from '@/services/authService';
 
 // Use global Express Request type with user: { id: number; email: string }
@@ -24,7 +24,6 @@ export function userRoutes(prisma: PrismaClient): Router {
   // Get user profile
   router.get(
     '/profile',
-    requireAuth,
     asyncHandler(async (req, res) => {
       const userId = req.user!.id;
 
@@ -49,7 +48,6 @@ export function userRoutes(prisma: PrismaClient): Router {
   // Update password
   router.put(
     '/password',
-    requireAuth,
     asyncHandler(async (req, res) => {
       const userId = req.user!.id;
       const { currentPassword, newPassword } = updatePasswordSchema.parse(req.body);
@@ -88,7 +86,6 @@ export function userRoutes(prisma: PrismaClient): Router {
   // Create user (admin only)
   router.post(
     '/create',
-    requireAuth,
     asyncHandler(async (req, res) => {
       const userRole = (req as Request & { user?: { role?: string } }).user?.role;
 
