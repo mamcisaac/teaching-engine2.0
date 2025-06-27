@@ -11,6 +11,9 @@ describe('calendar events', () => {
   });
 
   beforeEach(async () => {
+    // Clean up calendar events before each test to prevent contamination
+    await prisma.calendarEvent.deleteMany({});
+
     // Setup auth for each test to handle database resets
     await setupAuthenticatedTest(prisma, auth);
   });
@@ -25,32 +28,32 @@ describe('calendar events', () => {
     });
     expect(res.status).toBe(201);
 
-    const list = await auth.get('/api/calendar-events?from=2025-01-01&to=2025-01-03');
+    const list = await auth.get('/api/calendar-events?start=2025-01-01&end=2025-01-03');
     expect(list.status).toBe(200);
     expect(list.body.length).toBe(1);
     expect(list.body[0].title).toBe('PD Day');
   });
 
   it('handles date range queries', async () => {
-    // Create events in different date ranges
+    // Create events in different date ranges with distinct dates
     await auth.post('/api/calendar-events').send({
       title: 'Event 1',
-      start: '2025-01-05T00:00:00.000Z',
-      end: '2025-01-05T23:59:59.000Z',
+      start: '2025-03-05T00:00:00.000Z',
+      end: '2025-03-05T23:59:59.000Z',
       allDay: true,
       eventType: 'HOLIDAY',
     });
 
     await auth.post('/api/calendar-events').send({
       title: 'Event 2',
-      start: '2025-01-15T00:00:00.000Z',
-      end: '2025-01-15T23:59:59.000Z',
+      start: '2025-03-15T00:00:00.000Z',
+      end: '2025-03-15T23:59:59.000Z',
       allDay: true,
       eventType: 'HOLIDAY',
     });
 
-    // Query for specific date range
-    const list = await auth.get('/api/calendar-events?from=2025-01-10&to=2025-01-20');
+    // Query for specific date range that should only include Event 2
+    const list = await auth.get('/api/calendar-events?start=2025-03-10&end=2025-03-20');
     expect(list.status).toBe(200);
     expect(list.body.length).toBe(1);
     expect(list.body[0].title).toBe('Event 2');
@@ -69,7 +72,7 @@ describe('calendar events', () => {
     const eventId = createRes.body.id;
 
     // Update the event
-    const updateRes = await auth.put(`/api/calendar-events/${eventId}`).send({
+    const updateRes = await auth.patch(`/api/calendar-events/${eventId}`).send({
       title: 'Updated Title',
       eventType: 'PD_DAY',
     });
@@ -95,7 +98,7 @@ describe('calendar events', () => {
     expect(deleteRes.status).toBe(204);
 
     // Verify it's deleted
-    const list = await auth.get('/api/calendar-events?from=2025-03-01&to=2025-03-01');
+    const list = await auth.get('/api/calendar-events?start=2025-03-01&end=2025-03-01');
     expect(list.status).toBe(200);
     expect(list.body.length).toBe(0);
   });
@@ -103,7 +106,7 @@ describe('calendar events', () => {
   describe('Edge Cases', () => {
     it('should handle empty data scenarios gracefully', async () => {
       // Query with no events
-      const list = await auth.get('/api/calendar-events?from=2030-01-01&to=2030-12-31');
+      const list = await auth.get('/api/calendar-events?start=2030-01-01&end=2030-12-31');
       expect(list.status).toBe(200);
       expect(list.body).toEqual([]);
     });

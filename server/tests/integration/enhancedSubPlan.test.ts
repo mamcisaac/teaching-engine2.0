@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll, afterAll } from '@jest/globals';
+import { describe, it, expect, beforeAll, afterAll, beforeEach } from '@jest/globals';
 import request from 'supertest';
 import { app } from '../../src/index';
 import { prisma } from '../../src/prisma';
@@ -48,6 +48,32 @@ describe('Enhanced Sub Plan API', () => {
     if (!authToken) {
       throw new Error('No auth token received from login');
     }
+  });
+
+  beforeEach(async () => {
+    // Clean up test data before each test to prevent contamination
+    await prisma.studentGoal.deleteMany({
+      where: {
+        student: {
+          userId: testUserId,
+        },
+      },
+    });
+    await prisma.student.deleteMany({
+      where: {
+        userId: testUserId,
+      },
+    });
+    await prisma.classRoutine.deleteMany({
+      where: {
+        userId: testUserId,
+      },
+    });
+    await prisma.subPlanRecord.deleteMany({
+      where: {
+        userId: testUserId,
+      },
+    });
   });
 
   afterAll(async () => {
@@ -130,7 +156,7 @@ describe('Enhanced Sub Plan API', () => {
   describe('POST /api/sub-plan/generate', () => {
     it('should generate sub plan with all features included', async () => {
       const testUser = await createTestData();
-      
+
       const options = {
         date: '2025-04-12',
         days: 1,
@@ -153,7 +179,7 @@ describe('Enhanced Sub Plan API', () => {
 
     it('should generate anonymized sub plan', async () => {
       const testUser = await createTestData();
-      
+
       const options = {
         date: '2025-04-12',
         days: 1,
@@ -175,7 +201,7 @@ describe('Enhanced Sub Plan API', () => {
 
     it('should save sub plan record when requested', async () => {
       const testUser = await createTestData();
-      
+
       const options = {
         date: '2025-04-12',
         days: 1,
@@ -208,7 +234,7 @@ describe('Enhanced Sub Plan API', () => {
   describe('Class Routine Management', () => {
     it('should get all routines for user', async () => {
       const testUser = await createTestData();
-      
+
       const response = await request(app)
         .get('/api/sub-plan/routines')
         .set('Authorization', `Bearer ${authToken}`)
@@ -221,7 +247,7 @@ describe('Enhanced Sub Plan API', () => {
 
     it('should create new routine', async () => {
       const testUser = await createTestData();
-      
+
       const newRoutine = {
         userId: testUser.id,
         title: 'Quiet Signal',
@@ -242,7 +268,7 @@ describe('Enhanced Sub Plan API', () => {
 
     it('should update existing routine', async () => {
       const testUser = await createTestData();
-      
+
       const routine = await prisma.classRoutine.findFirst({
         where: { title: 'Morning Circle', userId: testUser.id },
       });
@@ -267,7 +293,7 @@ describe('Enhanced Sub Plan API', () => {
 
     it('should delete routine', async () => {
       const testUser = await createTestData();
-      
+
       const routine = await prisma.classRoutine.findFirst({
         where: { title: 'Line Up Procedure', userId: testUser.id },
       });
@@ -288,7 +314,7 @@ describe('Enhanced Sub Plan API', () => {
   describe('Sub Plan Records', () => {
     it('should retrieve saved sub plan records', async () => {
       const testUser = await createTestData();
-      
+
       // Create some test records
       await prisma.subPlanRecord.createMany({
         data: [
@@ -322,7 +348,10 @@ describe('Enhanced Sub Plan API', () => {
         .expect(200);
 
       expect(response.body).toHaveLength(2);
-      expect(response.body[0].date).toContain('2025-04-10'); // Most recent first
+      // Records should be sorted by date, most recent first
+      const firstRecordDate = new Date(response.body[0].date);
+      const secondRecordDate = new Date(response.body[1].date);
+      expect(firstRecordDate.getTime()).toBeGreaterThan(secondRecordDate.getTime());
     });
   });
 });

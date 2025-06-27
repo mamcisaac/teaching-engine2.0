@@ -87,7 +87,7 @@ describe('Email Service Integration Tests', () => {
 
   const clearEmailsAndPrepareTest = async () => {
     await testEmailService.clearEmails();
-    
+
     // Ensure user exists
     const currentUser = await prisma.user.findUnique({ where: { id: user.id } });
     if (!currentUser) {
@@ -103,9 +103,13 @@ describe('Email Service Integration Tests', () => {
         },
       });
     }
-    
+
     return user;
   };
+
+  beforeEach(async () => {
+    await clearEmailsAndPrepareTest();
+  });
 
   describe('Newsletter Email Tests', () => {
     it.skip('sends newsletter with PDF attachment to parent contacts - DISABLED (ParentContact model removed)', async () => {
@@ -119,10 +123,7 @@ describe('Email Service Integration Tests', () => {
       });
 
       // Create parent emails for testing (using test email addresses)
-      const parentEmails = [
-        generateTestEmail(),
-        generateTestEmail(),
-      ];
+      const parentEmails = [generateTestEmail(), generateTestEmail()];
 
       // Create newsletter
       const newsletter = await prisma.newsletter.create({
@@ -137,7 +138,8 @@ describe('Email Service Integration Tests', () => {
           sections: [
             {
               type: 'content',
-              content: '<h1>Weekly Newsletter</h1><p>This is a test newsletter with important updates.</p>',
+              content:
+                '<h1>Weekly Newsletter</h1><p>This is a test newsletter with important updates.</p>',
             },
           ],
         },

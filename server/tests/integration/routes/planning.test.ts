@@ -9,12 +9,12 @@ const mockGetPlanningQualityTrend = jest.fn();
 // Mock dependencies before imports
 // Mock removed - service doesn't exist
 
-jest.mock('../../../src/middleware/auth', () => ({
-  requireAuth: (req: Request, res: Response, next: NextFunction) => {
-    req.user = { userId: '1' };
-    next();
-  },
-}));
+// jest.mock('../../../src/middleware/auth', () => ({
+//   requireAuth: (req: Request, res: Response, next: NextFunction) => {
+//     req.user = { userId: '1' };
+//     next();
+//   },
+// }));
 
 // Import after mocking
 // Planning route doesn't exist - commenting out

@@ -1,11 +1,11 @@
 import { jest } from '@jest/globals';
 import { getTestPrismaClient } from '../jest.setup';
 
-// Mock the email service before importing the module that uses it
+// Mock the email service before importing the module that uses it - service doesn't exist but test is skipped
 const mockSendEmail = jest.fn().mockResolvedValue(undefined);
-jest.unstable_mockModule('../src/services/emailService', () => ({
-  sendEmail: mockSendEmail,
-}));
+// jest.unstable_mockModule('../src/services/emailService', () => ({
+//   sendEmail: mockSendEmail,
+// }));
 
 // Import after mock is set up
 // NOTE: This function doesn't exist yet - test is disabled

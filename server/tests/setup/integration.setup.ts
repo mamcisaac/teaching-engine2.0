@@ -28,7 +28,11 @@ process.env.OPENAI_API_KEY = 'test-api-key';
 // Use unique test database per worker and session to avoid conflicts
 const workerId = process.env.JEST_WORKER_ID || '1';
 const sessionId = Date.now();
-const testDbPath = path.join(process.cwd(), 'tests', `test-integration-${workerId}-${sessionId}.db`);
+const testDbPath = path.join(
+  process.cwd(),
+  'tests',
+  `test-integration-${workerId}-${sessionId}.db`,
+);
 process.env.DATABASE_URL = `file:${testDbPath}`;
 
 // Configure Jest for integration tests
@@ -74,7 +78,7 @@ async function setupTestDatabase() {
 
     // Push Prisma schema to database with retry logic
     const { execSync } = await import('child_process');
-    
+
     let retries = 3;
     while (retries > 0) {
       try {
@@ -91,7 +95,7 @@ async function setupTestDatabase() {
           throw error;
         }
         // Wait a bit before retrying to avoid conflicts
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
       }
     }
   } catch (error) {
@@ -109,6 +113,7 @@ async function cleanTestDatabase() {
   try {
     // Use Prisma's deleteMany for proper cleanup
     const tables = [
+      'calendarEvent',
       'etfoLessonPlanActivity',
       'etfoLessonPlan',
       'etfoUnitPlan',

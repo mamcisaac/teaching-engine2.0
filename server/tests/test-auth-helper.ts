@@ -7,11 +7,15 @@ import { getTestPrismaClient } from './jest.setup.js';
 /**
  * Helper to create a test user and get authentication token
  */
-export async function getAuthToken(app: Application, email?: string): Promise<{ token: string; userId: number }> {
+export async function getAuthToken(
+  app: Application,
+  email?: string,
+): Promise<{ token: string; userId: number }> {
   const prisma = getTestPrismaClient();
 
   // Generate unique email if not provided
-  const userEmail = email || `test-${Date.now()}-${Math.random().toString(36).substring(7)}@example.com`;
+  const userEmail =
+    email || `test-${Date.now()}-${Math.random().toString(36).substring(7)}@example.com`;
 
   // Create a test user with hashed password
   const hashedPassword = await bcrypt.hash('testpassword', 10);
@@ -76,10 +80,11 @@ export function authRequest(app: Application) {
  */
 export async function createTestUser(email?: string) {
   const prisma = getTestPrismaClient();
-  
+
   // Generate unique email if not provided
-  const userEmail = email || `test-${Date.now()}-${Math.random().toString(36).substring(7)}@example.com`;
-  
+  const userEmail =
+    email || `test-${Date.now()}-${Math.random().toString(36).substring(7)}@example.com`;
+
   const hashedPassword = await bcrypt.hash('testpassword', 10);
   return await prisma.user.create({
     data: {
@@ -94,10 +99,10 @@ export async function createTestUser(email?: string) {
 /**
  * Create an auth token for a user ID
  */
-export function createAuthToken(userId: number): string {
+export function createAuthToken(userId: number, email: string): string {
   const secret = process.env.JWT_SECRET;
   if (!secret) {
     throw new Error('JWT_SECRET environment variable is required for testing');
   }
-  return jwt.sign({ userId: userId.toString() }, secret, { expiresIn: '24h' });
+  return jwt.sign({ userId: userId.toString(), email }, secret, { expiresIn: '24h' });
 }

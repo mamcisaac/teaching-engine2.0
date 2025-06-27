@@ -9,6 +9,8 @@ export default {
     '^tests/(.*)$': '<rootDir>/tests/$1',
     // Don't mock for integration tests
     '^openai$': '<rootDir>/src/__mocks__/openai.js', // Still mock external APIs
+    // Ensure @teaching-engine/database is properly resolved
+    '^@teaching-engine/database$': '@teaching-engine/database',
   },
   moduleDirectories: ['node_modules', 'src'],
   roots: ['<rootDir>/tests/integration'],
@@ -38,7 +40,9 @@ export default {
     '/tests/e2e/',
   ],
   moduleFileExtensions: ['ts', 'js', 'json', 'node'],
-  transformIgnorePatterns: ['node_modules/(?!(.*\\.mjs|@prisma/client)/)'],
+  transformIgnorePatterns: [
+    'node_modules/(?!(.*\\.mjs|@prisma/client|@teaching-engine/database)/)',
+  ],
   maxWorkers: 1, // Run integration tests sequentially
   testTimeout: 30000, // Longer timeout for integration tests
   forceExit: true,
