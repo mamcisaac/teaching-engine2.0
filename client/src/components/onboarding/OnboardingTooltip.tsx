@@ -16,7 +16,7 @@ interface OnboardingTooltipProps {
 }
 
 export function OnboardingTooltip({
-  _id,
+  id: _id,
   title,
   content,
   children,

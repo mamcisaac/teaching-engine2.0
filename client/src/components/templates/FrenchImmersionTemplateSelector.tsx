@@ -100,7 +100,7 @@ export default function FrenchImmersionTemplateSelector({
   }
 
   // Apply persona recommendations
-  const getPersonaRecommendations = (template: LessonTemplate): boolean => {
+  const getPersonaRecommendations = (template: PlanTemplate): boolean => {
     if (!selectedPersona) return true;
 
     const persona = TEACHER_PERSONAS.find((p) => p.id === selectedPersona);
@@ -109,17 +109,19 @@ export default function FrenchImmersionTemplateSelector({
     // Check if template matches persona preferences
     if (selectedPersona === 'jean-luc') {
       return (
-        template.content.culturalConnections ||
+        ('culturalConnections' in template.content && !!template.content.culturalConnections) ||
         template.tags.includes('art-integration') ||
         template.tags.includes('cultural')
       );
     } else if (selectedPersona === 'sophie') {
       return (
-        template.content.assessments || template.content.assessmentNotes || template.lessonStructure
+        ('assessments' in template.content && !!template.content.assessments) ||
+        ('assessmentNotes' in template.content && !!template.content.assessmentNotes) ||
+        ('lessonStructure' in template && !!template.lessonStructure)
       );
     } else if (selectedPersona === 'marie-claire') {
       return (
-        template.content.parentCommunication ||
+        ('parentCommunication' in template.content && !!template.content.parentCommunication) ||
         template.description?.includes('structured') ||
         template.tags.includes('guided')
       );

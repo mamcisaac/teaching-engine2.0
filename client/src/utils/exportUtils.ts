@@ -8,8 +8,10 @@ import jsPDF from 'jspdf';
 
 // Type definitions - using minimal types to avoid complex imports
 interface CurriculumExpectation {
-  code: string;
-  description: string;
+  expectation: {
+    code: string;
+    description: string;
+  };
 }
 
 interface LessonPlan {
@@ -118,7 +120,7 @@ export function generatePrintableHTML(
       <h1>${plan.title}</h1>
       
       <div class="metadata">
-        ${plan.date ? `<div><strong>Date:</strong> ${new Date(plan.date).toLocaleDateString()}</div>` : ''}
+        ${plan.date ? `<div><strong>Date:</strong> ${new Date(plan.date as string | Date).toLocaleDateString()}</div>` : ''}
         ${plan.duration ? `<div><strong>Duration:</strong> ${plan.duration} minutes</div>` : ''}
         ${plan.grade ? `<div><strong>Grade:</strong> ${plan.grade}</div>` : ''}
         ${plan.subject ? `<div><strong>Subject:</strong> ${plan.subject}</div>` : ''}
@@ -169,12 +171,12 @@ export function generatePrintableHTML(
       }
 
       ${
-        plan.materials && plan.materials.length > 0
+        plan.materials && Array.isArray(plan.materials) && plan.materials.length > 0
           ? `
         <div class="section">
           <div class="section-title">Materials</div>
           <ul class="materials">
-            ${plan.materials.map((m: string) => `<li>${m}</li>`).join('')}
+            ${(plan.materials as string[]).map((m: string) => `<li>${m}</li>`).join('')}
           </ul>
         </div>
       `
@@ -193,13 +195,13 @@ export function generatePrintableHTML(
       }
 
       ${
-        plan.expectations && plan.expectations.length > 0
+        plan.expectations && Array.isArray(plan.expectations) && plan.expectations.length > 0
           ? `
         <div class="section">
           <div class="section-title">Curriculum Expectations</div>
-          ${plan.expectations
+          ${(plan.expectations as CurriculumExpectation[])
             .map(
-              (exp: CurriculumExpectation) => `
+              (exp) => `
             <div class="expectations">
               <strong>${exp.expectation.code}:</strong> ${exp.expectation.description}
             </div>

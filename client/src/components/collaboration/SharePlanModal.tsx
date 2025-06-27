@@ -74,7 +74,8 @@ export function SharePlanModal({
     mutationFn: async (shareData: {
       team?: string;
       link?: boolean;
-      permissions: SharePermissions;
+      permissions: ShareSettings;
+      shareWith?: unknown;
     }) => {
       const response = await api.post('/api/sharing/plans', shareData);
       return response.data;

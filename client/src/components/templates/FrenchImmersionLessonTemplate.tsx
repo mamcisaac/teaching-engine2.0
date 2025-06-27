@@ -27,13 +27,7 @@ export default function FrenchImmersionLessonTemplate({
   onCancel,
   metadata,
 }: FrenchImmersionLessonTemplateProps) {
-  const {
-    register,
-    handleSubmit,
-    _watch,
-    _setValue,
-    formState: { _errors },
-  } = useForm<FrenchImmersionLessonContent>({
+  const { register, handleSubmit } = useForm<FrenchImmersionLessonContent>({
     defaultValues: initialData || {
       objectivesEn: [''],
       objectivesFr: [''],

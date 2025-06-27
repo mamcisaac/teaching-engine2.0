@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import { useOnboarding } from '../../contexts/OnboardingContext';
 import { Button } from '../ui/Button';
-import { Progress } from '../ui/progress';
+import { Progress } from '../ui/Progress';
 
 interface HighlightPosition {
   top: number;
@@ -23,7 +23,7 @@ export function OnboardingFlow() {
     skipOnboarding,
     canGoBack,
     canGoForward,
-    state
+    state,
   } = useOnboarding();
 
   const [highlightPosition, setHighlightPosition] = useState<HighlightPosition | null>(null);
@@ -38,7 +38,9 @@ export function OnboardingFlow() {
     }
 
     const updatePosition = () => {
-      const element = document.querySelector(currentStep.targetElement);
+      const element = currentStep.targetElement
+        ? document.querySelector(currentStep.targetElement)
+        : null;
       if (!element) {
         setHighlightPosition(null);
         return;
@@ -46,12 +48,12 @@ export function OnboardingFlow() {
 
       const rect = element.getBoundingClientRect();
       const padding = currentStep.highlightPadding || 8;
-      
+
       setHighlightPosition({
         top: rect.top - padding + window.scrollY,
         left: rect.left - padding + window.scrollX,
         width: rect.width + padding * 2,
-        height: rect.height + padding * 2
+        height: rect.height + padding * 2,
       });
 
       // Calculate tooltip position
@@ -85,18 +87,21 @@ export function OnboardingFlow() {
 
       // Keep tooltip within viewport
       const viewportPadding = 20;
-      left = Math.max(viewportPadding, Math.min(left, window.innerWidth - tooltipWidth - viewportPadding));
+      left = Math.max(
+        viewportPadding,
+        Math.min(left, window.innerWidth - tooltipWidth - viewportPadding),
+      );
       top = Math.max(viewportPadding + window.scrollY, top);
 
       setTooltipPosition({ top, left });
     };
 
     updatePosition();
-    
+
     // Update on scroll or resize
     window.addEventListener('scroll', updatePosition);
     window.addEventListener('resize', updatePosition);
-    
+
     return () => {
       window.removeEventListener('scroll', updatePosition);
       window.removeEventListener('resize', updatePosition);
@@ -152,7 +157,7 @@ export function OnboardingFlow() {
                 height: highlightPosition.height,
                 boxShadow: '0 0 0 9999px rgba(0, 0, 0, 0.5)',
                 borderRadius: '8px',
-                pointerEvents: 'none'
+                pointerEvents: 'none',
               }}
             />
           )}
@@ -167,11 +172,15 @@ export function OnboardingFlow() {
           className={`absolute bg-white rounded-lg shadow-2xl p-6 max-w-md ${
             isCenter ? 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2' : ''
           }`}
-          style={isCenter ? {} : {
-            top: tooltipPosition.top,
-            left: tooltipPosition.left,
-            width: '400px'
-          }}
+          style={
+            isCenter
+              ? {}
+              : {
+                  top: tooltipPosition.top,
+                  left: tooltipPosition.left,
+                  width: '400px',
+                }
+          }
         >
           {/* Close button */}
           {currentStep.showSkip && (
@@ -206,12 +215,8 @@ export function OnboardingFlow() {
                 <Sparkles className="h-5 w-5 text-blue-600" />
               </div>
               <div className="flex-1">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {currentStep.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {currentStep.description}
-                </p>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{currentStep.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{currentStep.description}</p>
               </div>
             </div>
 
@@ -231,12 +236,7 @@ export function OnboardingFlow() {
             <div className="flex items-center justify-between pt-2">
               <div className="flex items-center gap-2">
                 {canGoBack && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={previousStep}
-                    className="gap-1"
-                  >
+                  <Button variant="ghost" size="sm" onClick={previousStep} className="gap-1">
                     <ChevronLeft className="h-4 w-4" />
                     Previous
                   </Button>
@@ -252,7 +252,7 @@ export function OnboardingFlow() {
                   </Button>
                 )}
               </div>
-              
+
               {!currentStep.requiresAction && (
                 <Button
                   onClick={nextStep}
@@ -268,19 +268,18 @@ export function OnboardingFlow() {
         </motion.div>
 
         {/* Completion message */}
-        {state.currentFlow?.completionMessage && state.currentStepIndex === state.currentFlow.steps.length - 1 && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-green-50 border border-green-200 rounded-lg p-4 shadow-lg"
-          >
-            <p className="text-green-800 font-medium">
-              {state.currentFlow.completionMessage}
-            </p>
-          </motion.div>
-        )}
+        {state.currentFlow?.completionMessage &&
+          state.currentStepIndex === state.currentFlow.steps.length - 1 && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-green-50 border border-green-200 rounded-lg p-4 shadow-lg"
+            >
+              <p className="text-green-800 font-medium">{state.currentFlow.completionMessage}</p>
+            </motion.div>
+          )}
       </div>
     </AnimatePresence>,
-    document.body
+    document.body,
   );
 }
