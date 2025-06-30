@@ -1,344 +1,963 @@
-import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
 import { AIPlanningAssistantService } from '../../src/services/aiPlanningAssistant';
+import OpenAI from 'openai';
+import { prisma } from '../../src/prisma';
+import logger from '../../src/logger';
+
+// Mock dependencies
+jest.mock('openai');
+jest.mock('../../src/prisma', () => ({
+  prisma: {
+    curriculumExpectation: {
+      findMany: jest.fn(),
+    },
+  },
+}));
+jest.mock('../../src/logger');
 
 describe('AIPlanningAssistantService', () => {
   let service: AIPlanningAssistantService;
+  const mockOpenAI = OpenAI as jest.MockedClass<typeof OpenAI>;
+  const mockLogger = logger as jest.Mocked<typeof logger>;
+  let mockCreate: jest.Mock;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     jest.clearAllMocks();
-    
-    // Set environment variable first
-    process.env.OPENAI_API_KEY = 'test-api-key';
-
-    service = new AIPlanningAssistantService();
-  });
-
-  afterEach(() => {
+    // Reset environment variable
     delete process.env.OPENAI_API_KEY;
-    jest.restoreAllMocks();
+    mockCreate = jest.fn();
   });
 
-  describe('constructor', () => {
-    it('should initialize with OpenAI when API key is present', () => {
-      expect(service).toBeDefined();
-      // Since we're using mocked OpenAI, we just verify the service exists
+  describe('initialization', () => {
+    it('should initialize without OpenAI API key', () => {
+      service = new AIPlanningAssistantService();
+      expect(mockLogger.warn).toHaveBeenCalledWith(
+        'OpenAI API key not found - AI planning assistance will be disabled',
+      );
     });
 
-    it('should handle missing API key gracefully', () => {
-      delete process.env.OPENAI_API_KEY;
-      
-      // Create service without API key
-      const serviceWithoutKey = new AIPlanningAssistantService();
-      expect(serviceWithoutKey).toBeDefined();
+    it('should initialize with OpenAI API key', () => {
+      process.env.OPENAI_API_KEY = 'test-api-key';
+      service = new AIPlanningAssistantService();
+      expect(mockOpenAI).toHaveBeenCalledWith({ apiKey: 'test-api-key' });
     });
   });
 
   describe('generateLongRangeGoals', () => {
-    const mockContext = {
-      subject: 'Mathematics',
-      grade: 4,
-      termLength: 12,
-      focusAreas: ['Problem Solving', 'Number Sense'],
-    };
+    beforeEach(() => {
+      process.env.OPENAI_API_KEY = 'test-api-key';
 
-    it('should return goals structure when API key is available', async () => {
-      const result = await service.generateLongRangeGoals(mockContext);
+      mockOpenAI.mockImplementation(
+        () =>
+          ({
+            chat: {
+              completions: { create: mockCreate },
+            },
+          }) as any,
+      );
 
-      expect(result).toHaveProperty('type', 'goals');
-      expect(result).toHaveProperty('suggestions');
-      expect(Array.isArray(result.suggestions)).toBe(true);
+      service = new AIPlanningAssistantService();
     });
 
-    it('should handle missing optional parameters', async () => {
-      const contextWithoutFocus = {
-        subject: 'Science',
-        grade: 3,
-        termLength: 10,
+    it('should generate long-range goals successfully', async () => {
+      const mockResponse = {
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                suggestions: [
+                  'Students will improve reading comprehension by 2 levels',
+                  'Students will master multiplication facts 0-10',
+                  'Students will write 3-paragraph essays independently',
+                ],
+                rationale: 'These goals align with Grade 3 standards',
+              }),
+            },
+          },
+        ],
       };
 
-      const result = await service.generateLongRangeGoals(contextWithoutFocus);
+      mockCreate.mockResolvedValue(mockResponse);
 
-      expect(result).toHaveProperty('type', 'goals');
-      expect(result).toHaveProperty('suggestions');
+      const result = await service.generateLongRangeGoals({
+        subject: 'Mathematics',
+        grade: 3,
+        termLength: 10,
+        focusAreas: ['Number Sense', 'Problem Solving'],
+      });
+
+      expect(result).toEqual({
+        type: 'goals',
+        suggestions: [
+          'Students will improve reading comprehension by 2 levels',
+          'Students will master multiplication facts 0-10',
+          'Students will write 3-paragraph essays independently',
+        ],
+        rationale: 'These goals align with Grade 3 standards',
+      });
+
+      // Verify prompt includes context
+      const callArgs = mockCreate.mock.calls[0][0];
+      expect(callArgs.model).toBe('gpt-4');
+      expect(callArgs.messages[1].content).toContain('Grade 3 Mathematics');
+      expect(callArgs.messages[1].content).toContain('10 weeks');
+      expect(callArgs.messages[1].content).toContain('Number Sense, Problem Solving');
+    });
+
+    it('should handle missing focus areas', async () => {
+      const mockResponse = {
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                suggestions: ['Goal 1', 'Goal 2'],
+                rationale: 'General goals',
+              }),
+            },
+          },
+        ],
+      };
+
+      mockCreate.mockResolvedValue(mockResponse);
+
+      const result = await service.generateLongRangeGoals({
+        subject: 'Science',
+        grade: 5,
+        termLength: 12,
+      });
+
+      expect(result.type).toBe('goals');
+      expect(result.suggestions).toHaveLength(2);
+
+      // Verify prompt doesn't include focus areas
+      const callArgs = mockCreate.mock.calls[0][0];
+      expect(callArgs.messages[1].content).not.toContain('Focus areas:');
+    });
+
+    it('should handle API errors gracefully', async () => {
+      const error = new Error('API rate limit exceeded');
+      mockCreate.mockRejectedValue(error);
+
+      const result = await service.generateLongRangeGoals({
+        subject: 'Math',
+        grade: 4,
+        termLength: 10,
+      });
+
+      expect(result).toEqual({
+        type: 'goals',
+        suggestions: [],
+      });
+      expect(mockLogger.error).toHaveBeenCalledWith(
+        { error },
+        'Failed to generate long-range goals',
+      );
+    });
+
+    it('should handle invalid JSON response', async () => {
+      const mockResponse = {
+        choices: [
+          {
+            message: {
+              content: 'Invalid JSON content',
+            },
+          },
+        ],
+      };
+
+      mockCreate.mockResolvedValue(mockResponse);
+
+      const result = await service.generateLongRangeGoals({
+        subject: 'Math',
+        grade: 2,
+        termLength: 8,
+      });
+
+      expect(result).toEqual({
+        type: 'goals',
+        suggestions: [],
+      });
+    });
+
+    it('should handle missing API key', async () => {
+      delete process.env.OPENAI_API_KEY;
+      service = new AIPlanningAssistantService();
+
+      const result = await service.generateLongRangeGoals({
+        subject: 'Math',
+        grade: 3,
+        termLength: 10,
+      });
+
+      expect(result).toEqual({
+        type: 'goals',
+        suggestions: [],
+      });
+    });
+
+    it('should handle empty response content', async () => {
+      const mockResponse = {
+        choices: [
+          {
+            message: {
+              content: null,
+            },
+          },
+        ],
+      };
+
+      mockCreate.mockResolvedValue(mockResponse);
+
+      const result = await service.generateLongRangeGoals({
+        subject: 'Math',
+        grade: 3,
+        termLength: 10,
+      });
+
+      expect(result).toEqual({
+        type: 'goals',
+        suggestions: [],
+      });
     });
   });
 
   describe('generateUnitBigIdeas', () => {
-    const mockContext = {
-      unitTitle: 'Fractions and Decimals',
-      subject: 'Mathematics',
-      grade: 5,
-      curriculumExpectations: [
-        'Represent fractions using models',
-        'Compare and order fractions',
-        'Convert between fractions and decimals',
-      ],
-      duration: 3,
-    };
+    beforeEach(() => {
+      process.env.OPENAI_API_KEY = 'test-api-key';
 
-    it('should return big ideas structure', async () => {
-      const result = await service.generateUnitBigIdeas(mockContext);
+      mockOpenAI.mockImplementation(
+        () =>
+          ({
+            chat: {
+              completions: { create: mockCreate },
+            },
+          }) as any,
+      );
 
-      expect(result).toHaveProperty('type', 'bigIdeas');
-      expect(result).toHaveProperty('suggestions');
-      expect(Array.isArray(result.suggestions)).toBe(true);
+      service = new AIPlanningAssistantService();
+    });
+
+    it('should generate unit big ideas successfully', async () => {
+      const mockResponse = {
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                suggestions: [
+                  'Patterns help us make predictions',
+                  'Numbers can be represented in multiple ways',
+                  'Mathematical relationships exist in nature',
+                ],
+                rationale: 'These big ideas connect the curriculum expectations',
+              }),
+            },
+          },
+        ],
+      };
+
+      mockCreate.mockResolvedValue(mockResponse);
+
+      const result = await service.generateUnitBigIdeas({
+        unitTitle: 'Patterns and Algebra',
+        subject: 'Mathematics',
+        grade: 4,
+        curriculumExpectations: [
+          'Identify and describe patterns',
+          'Create and extend patterns',
+          'Use patterns to solve problems',
+        ],
+        duration: 3,
+      });
+
+      expect(result).toEqual({
+        type: 'bigIdeas',
+        suggestions: [
+          'Patterns help us make predictions',
+          'Numbers can be represented in multiple ways',
+          'Mathematical relationships exist in nature',
+        ],
+        rationale: 'These big ideas connect the curriculum expectations',
+      });
+
+      // Verify prompt includes all context
+      const callArgs = mockCreate.mock.calls[0][0];
+      expect(callArgs.messages[1].content).toContain('Patterns and Algebra');
+      expect(callArgs.messages[1].content).toContain('Grade 4 Mathematics');
+      expect(callArgs.messages[1].content).toContain('3 weeks');
+      expect(callArgs.messages[1].content).toContain('Identify and describe patterns');
+    });
+
+    it('should handle empty curriculum expectations', async () => {
+      const mockResponse = {
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                suggestions: ['Big idea 1'],
+                rationale: 'General big idea',
+              }),
+            },
+          },
+        ],
+      };
+
+      mockCreate.mockResolvedValue(mockResponse);
+
+      const result = await service.generateUnitBigIdeas({
+        unitTitle: 'Science Unit',
+        subject: 'Science',
+        grade: 2,
+        curriculumExpectations: [],
+        duration: 2,
+      });
+
+      expect(result.type).toBe('bigIdeas');
+      expect(result.suggestions).toHaveLength(1);
     });
   });
 
   describe('generateLessonActivities', () => {
-    const mockContext = {
-      lessonTitle: 'Introduction to Multiplication',
-      learningGoals: [
-        'Understand multiplication as repeated addition',
-        'Use arrays to represent multiplication',
-      ],
-      subject: 'Mathematics',
-      grade: 3,
-      duration: 60,
-      materials: ['Base-10 blocks', 'Grid paper'],
-    };
+    beforeEach(() => {
+      process.env.OPENAI_API_KEY = 'test-api-key';
 
-    it('should return activities structure', async () => {
-      const result = await service.generateLessonActivities(mockContext);
+      mockOpenAI.mockImplementation(
+        () =>
+          ({
+            chat: {
+              completions: { create: mockCreate },
+            },
+          }) as any,
+      );
 
-      expect(result).toHaveProperty('type', 'activities');
-      expect(result).toHaveProperty('suggestions');
-      expect(Array.isArray(result.suggestions)).toBe(true);
+      service = new AIPlanningAssistantService();
     });
 
-    it('should handle missing materials', async () => {
-      const contextWithoutMaterials = { ...mockContext };
-      delete contextWithoutMaterials.materials;
+    it('should generate lesson activities with materials', async () => {
+      const mockResponse = {
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                suggestions: [
+                  'Activity 1: Number Talk warm-up (5 minutes)',
+                  'Activity 2: Hands-on manipulative exploration (15 minutes)',
+                  'Activity 3: Partner problem solving (10 minutes)',
+                  'Activity 4: Exit ticket reflection (5 minutes)',
+                ],
+                rationale: 'Progressive sequence from activation to consolidation',
+              }),
+            },
+          },
+        ],
+      };
 
-      const result = await service.generateLessonActivities(contextWithoutMaterials);
+      mockCreate.mockResolvedValue(mockResponse);
 
-      expect(result).toHaveProperty('type', 'activities');
-      expect(result).toHaveProperty('suggestions');
+      const result = await service.generateLessonActivities({
+        lessonTitle: 'Introduction to Fractions',
+        learningGoals: ['Understand fractions as parts of a whole', 'Compare simple fractions'],
+        subject: 'Mathematics',
+        grade: 3,
+        duration: 40,
+        materials: ['fraction strips', 'pattern blocks'],
+      });
+
+      expect(result.type).toBe('activities');
+      expect(result.suggestions).toHaveLength(4);
+      expect(result.suggestions[0]).toContain('5 minutes');
+
+      // Verify materials are included in prompt
+      const callArgs = mockCreate.mock.calls[0][0];
+      expect(callArgs.messages[1].content).toContain('fraction strips, pattern blocks');
+      expect(callArgs.temperature).toBe(0.8); // Higher temperature for creativity
+    });
+
+    it('should generate activities without materials', async () => {
+      const mockResponse = {
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                suggestions: ['Activity 1', 'Activity 2'],
+                rationale: 'Simple activities',
+              }),
+            },
+          },
+        ],
+      };
+
+      mockCreate.mockResolvedValue(mockResponse);
+
+      const result = await service.generateLessonActivities({
+        lessonTitle: 'Poetry Writing',
+        learningGoals: ['Write simple poems'],
+        subject: 'Language Arts',
+        grade: 2,
+        duration: 30,
+      });
+
+      expect(result.type).toBe('activities');
+
+      // Verify materials not in prompt
+      const callArgs = mockCreate.mock.calls[0][0];
+      expect(callArgs.messages[1].content).not.toContain('Available materials:');
     });
   });
 
   describe('generateMaterialsList', () => {
-    const mockContext = {
-      activities: [
-        'Students work in pairs with base-10 blocks',
-        'Groups create posters showing arrays',
-        'Individual practice on worksheets',
-      ],
-      subject: 'Mathematics',
-      grade: 3,
-      classSize: 24,
-    };
+    beforeEach(() => {
+      process.env.OPENAI_API_KEY = 'test-api-key';
 
-    it('should return materials structure', async () => {
-      const result = await service.generateMaterialsList(mockContext);
+      mockOpenAI.mockImplementation(
+        () =>
+          ({
+            chat: {
+              completions: { create: mockCreate },
+            },
+          }) as any,
+      );
 
-      expect(result).toHaveProperty('type', 'materials');
-      expect(result).toHaveProperty('suggestions');
-      expect(Array.isArray(result.suggestions)).toBe(true);
+      service = new AIPlanningAssistantService();
+    });
+
+    it('should generate materials list for activities', async () => {
+      const mockResponse = {
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                suggestions: [
+                  'Chart paper (2 sheets)',
+                  'Markers (1 set per group of 4)',
+                  'Base-10 blocks (1 set per pair)',
+                  'Student whiteboards (1 per student)',
+                  'Dry erase markers (1 per student)',
+                ],
+                rationale: 'Materials support hands-on learning and collaboration',
+              }),
+            },
+          },
+        ],
+      };
+
+      mockCreate.mockResolvedValue(mockResponse);
+
+      const result = await service.generateMaterialsList({
+        activities: [
+          'Group brainstorming on chart paper',
+          'Hands-on place value with base-10 blocks',
+          'Individual practice on whiteboards',
+        ],
+        subject: 'Mathematics',
+        grade: 2,
+        classSize: 24,
+      });
+
+      expect(result.type).toBe('materials');
+      expect(result.suggestions).toHaveLength(5);
+      expect(result.suggestions[0]).toContain('2 sheets');
+      expect(result.suggestions[1]).toContain('per group of 4');
+
+      // Verify class size is considered
+      const callArgs = mockCreate.mock.calls[0][0];
+      expect(callArgs.messages[1].content).toContain('24 students');
+      expect(callArgs.temperature).toBe(0.6); // Lower temperature for practical suggestions
     });
   });
 
   describe('generateAssessmentStrategies', () => {
-    const mockContext = {
-      learningGoals: [
-        'Students will identify 2D shapes',
-        'Students will describe shape properties',
-      ],
-      activities: [
-        'Shape hunt around the classroom',
-        'Sort shapes by properties',
-        'Create shape artwork',
-      ],
-      subject: 'Mathematics',
-      grade: 2,
-    };
+    beforeEach(() => {
+      process.env.OPENAI_API_KEY = 'test-api-key';
 
-    it('should return assessment structure', async () => {
-      const result = await service.generateAssessmentStrategies(mockContext);
+      mockOpenAI.mockImplementation(
+        () =>
+          ({
+            chat: {
+              completions: { create: mockCreate },
+            },
+          }) as any,
+      );
 
-      expect(result).toHaveProperty('type', 'assessments');
-      expect(result).toHaveProperty('suggestions');
-      expect(Array.isArray(result.suggestions)).toBe(true);
+      service = new AIPlanningAssistantService();
+    });
+
+    it('should generate varied assessment strategies', async () => {
+      const mockResponse = {
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                suggestions: [
+                  'Exit ticket: Students draw and label a fraction',
+                  'Observation checklist for group work focusing on collaboration',
+                  'Student self-assessment using thumbs up/down for understanding',
+                  'Quick oral check-in with struggling students',
+                ],
+                rationale: 'Mix of formative assessments to gauge understanding',
+              }),
+            },
+          },
+        ],
+      };
+
+      mockCreate.mockResolvedValue(mockResponse);
+
+      const result = await service.generateAssessmentStrategies({
+        learningGoals: ['Understand fractions', 'Work collaboratively'],
+        activities: ['Group work with manipulatives', 'Individual practice'],
+        subject: 'Mathematics',
+        grade: 3,
+      });
+
+      expect(result.type).toBe('assessments');
+      expect(result.suggestions).toHaveLength(4);
+      expect(result.suggestions[0]).toContain('Exit ticket');
+      expect(result.suggestions[1]).toContain('Observation');
+      expect(result.suggestions[2]).toContain('self-assessment');
     });
   });
 
   describe('generateReflectionPrompts', () => {
-    const mockContext = {
-      date: new Date('2024-01-15'),
-      activities: [
-        'Introduced fractions with pizza models',
-        'Students created fraction strips',
-        'Played fraction comparison game',
-      ],
-      subject: 'Mathematics',
-      grade: 4,
-      previousReflections: [
-        'Students struggled with equivalent fractions',
-        'Visual models helped understanding',
-      ],
-    };
+    beforeEach(() => {
+      process.env.OPENAI_API_KEY = 'test-api-key';
 
-    it('should return reflection prompts structure', async () => {
-      const result = await service.generateReflectionPrompts(mockContext);
+      mockOpenAI.mockImplementation(
+        () =>
+          ({
+            chat: {
+              completions: { create: mockCreate },
+            },
+          }) as any,
+      );
 
-      expect(result).toHaveProperty('type', 'reflections');
-      expect(result).toHaveProperty('suggestions');
-      expect(Array.isArray(result.suggestions)).toBe(true);
+      service = new AIPlanningAssistantService();
     });
 
-    it('should handle missing previous reflections', async () => {
-      const contextWithoutPrevious = { ...mockContext };
-      delete contextWithoutPrevious.previousReflections;
+    it('should generate reflection prompts with previous reflections context', async () => {
+      const mockResponse = {
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                suggestions: [
+                  'How did students demonstrate understanding of fractions today?',
+                  'What adjustments could improve the manipulative activity?',
+                  'Which students need additional support with comparing fractions?',
+                  'How effective was the exit ticket in assessing learning?',
+                ],
+                rationale: 'Prompts focus on student learning and instructional effectiveness',
+              }),
+            },
+          },
+        ],
+      };
 
-      const result = await service.generateReflectionPrompts(contextWithoutPrevious);
+      mockCreate.mockResolvedValue(mockResponse);
 
-      expect(result).toHaveProperty('type', 'reflections');
-      expect(result).toHaveProperty('suggestions');
+      const result = await service.generateReflectionPrompts({
+        date: new Date('2024-01-15'),
+        activities: ['Fraction introduction', 'Manipulative exploration', 'Exit ticket'],
+        subject: 'Mathematics',
+        grade: 3,
+        previousReflections: [
+          'Students struggled with equivalent fractions',
+          'Need more visual representations',
+        ],
+      });
+
+      expect(result.type).toBe('reflections');
+      expect(result.suggestions).toHaveLength(4);
+
+      // Verify previous reflections are included
+      const callArgs = mockCreate.mock.calls[0][0];
+      expect(callArgs.messages[1].content).toContain(
+        'Students struggled with equivalent fractions',
+      );
+    });
+
+    it('should generate prompts without previous reflections', async () => {
+      const mockResponse = {
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                suggestions: ['Reflection 1', 'Reflection 2'],
+                rationale: 'General reflections',
+              }),
+            },
+          },
+        ],
+      };
+
+      mockCreate.mockResolvedValue(mockResponse);
+
+      const result = await service.generateReflectionPrompts({
+        date: new Date(),
+        activities: ['Activity 1'],
+        subject: 'Science',
+        grade: 4,
+      });
+
+      expect(result.type).toBe('reflections');
+
+      // Verify no previous reflections in prompt
+      const callArgs = mockCreate.mock.calls[0][0];
+      expect(callArgs.messages[1].content).not.toContain('Recent reflection themes:');
     });
   });
 
   describe('getCurriculumAlignedSuggestions', () => {
+    beforeEach(() => {
+      process.env.OPENAI_API_KEY = 'test-api-key';
+
+      mockOpenAI.mockImplementation(
+        () =>
+          ({
+            chat: {
+              completions: { create: mockCreate },
+            },
+          }) as any,
+      );
+
+      service = new AIPlanningAssistantService();
+    });
+
+    it('should generate curriculum-aligned activities', async () => {
+      const mockExpectations = [
+        {
+          id: 'exp1',
+          code: 'MA3.NS.1',
+          description: 'Represent and compare whole numbers up to 1000',
+        },
+        {
+          id: 'exp2',
+          code: 'MA3.NS.2',
+          description: 'Add and subtract three-digit numbers',
+        },
+      ];
+
+      (prisma.curriculumExpectation.findMany as jest.Mock).mockResolvedValue(mockExpectations);
+
+      const mockResponse = {
+        choices: [
+          {
+            message: {
+              content: JSON.stringify([
+                'Number line hopscotch to compare three-digit numbers',
+                'Base-10 block trading game for place value',
+                'Mental math relay race for addition strategies',
+              ]),
+            },
+          },
+        ],
+      };
+
+      mockCreate.mockResolvedValue(mockResponse);
+
+      const result = await service.getCurriculumAlignedSuggestions(['exp1', 'exp2'], 'activities');
+
+      expect(result).toEqual([
+        'Number line hopscotch to compare three-digit numbers',
+        'Base-10 block trading game for place value',
+        'Mental math relay race for addition strategies',
+      ]);
+
+      // Verify database query
+      expect(prisma.curriculumExpectation.findMany).toHaveBeenCalledWith({
+        where: { id: { in: ['exp1', 'exp2'] } },
+      });
+
+      // Verify prompt includes expectation details
+      const callArgs = mockCreate.mock.calls[0][0];
+      expect(callArgs.messages[1].content).toContain('MA3.NS.1');
+      expect(callArgs.messages[1].content).toContain('MA3.NS.2');
+    });
+
+    it('should generate assessments when requested', async () => {
+      const mockExpectations = [
+        {
+          id: 'exp1',
+          code: 'SC4.1',
+          description: 'Identify properties of matter',
+        },
+      ];
+
+      (prisma.curriculumExpectation.findMany as jest.Mock).mockResolvedValue(mockExpectations);
+
+      const mockResponse = {
+        choices: [
+          {
+            message: {
+              content: JSON.stringify([
+                'Lab report on material properties',
+                'Exit ticket sorting materials by state',
+              ]),
+            },
+          },
+        ],
+      };
+
+      mockCreate.mockResolvedValue(mockResponse);
+
+      const result = await service.getCurriculumAlignedSuggestions(['exp1'], 'assessments');
+
+      expect(result).toHaveLength(2);
+      expect(result[0]).toContain('Lab report');
+
+      // Verify correct prompt for assessments
+      const callArgs = mockCreate.mock.calls[0][0];
+      expect(callArgs.messages[1].content).toContain('assessment strategies');
+    });
+
+    it('should generate resources when requested', async () => {
+      const mockExpectations = [
+        {
+          id: 'exp1',
+          code: 'LA2.R.1',
+          description: 'Read grade-appropriate texts',
+        },
+      ];
+
+      (prisma.curriculumExpectation.findMany as jest.Mock).mockResolvedValue(mockExpectations);
+
+      const mockResponse = {
+        choices: [
+          {
+            message: {
+              content: JSON.stringify([
+                'Leveled reading library books',
+                'Online reading comprehension games',
+              ]),
+            },
+          },
+        ],
+      };
+
+      mockCreate.mockResolvedValue(mockResponse);
+
+      const result = await service.getCurriculumAlignedSuggestions(['exp1'], 'resources');
+
+      expect(result).toHaveLength(2);
+      expect(result[0]).toContain('reading library');
+    });
+
     it('should handle empty expectation IDs', async () => {
       const result = await service.getCurriculumAlignedSuggestions([], 'activities');
       expect(result).toEqual([]);
+      expect(prisma.curriculumExpectation.findMany).not.toHaveBeenCalled();
     });
 
-    it('should return suggestions array', async () => {
-      const expectationIds = ['exp-1', 'exp-2'];
+    it('should handle no expectations found', async () => {
+      (prisma.curriculumExpectation.findMany as jest.Mock).mockResolvedValue([]);
+
+      const result = await service.getCurriculumAlignedSuggestions(['exp1'], 'activities');
+      expect(result).toEqual([]);
+      expect(mockCreate).not.toHaveBeenCalled();
+    });
+
+    it('should handle invalid JSON response', async () => {
       const mockExpectations = [
-        { id: 'exp-1', code: 'MA4.1', description: 'Understand place value' },
-        { id: 'exp-2', code: 'MA4.2', description: 'Compare and order numbers' },
+        {
+          id: 'exp1',
+          code: 'MA1.1',
+          description: 'Count to 100',
+        },
       ];
 
-      const prismaModule = await import('../../src/prisma');
-      const mockPrisma = prismaModule.prisma as any;
-      mockPrisma.curriculumExpectation.findMany.mockResolvedValueOnce(mockExpectations);
+      (prisma.curriculumExpectation.findMany as jest.Mock).mockResolvedValue(mockExpectations);
 
-      const result = await service.getCurriculumAlignedSuggestions(expectationIds, 'activities');
+      const mockResponse = {
+        choices: [
+          {
+            message: {
+              content: 'Not valid JSON',
+            },
+          },
+        ],
+      };
 
-      expect(Array.isArray(result)).toBe(true);
+      mockCreate.mockResolvedValue(mockResponse);
+
+      const result = await service.getCurriculumAlignedSuggestions(['exp1'], 'activities');
+      expect(result).toEqual([]);
     });
 
-    it('should handle database errors', async () => {
-      const prismaModule = await import('../../src/prisma');
-      const mockPrisma = prismaModule.prisma as any;
-      mockPrisma.curriculumExpectation.findMany.mockRejectedValueOnce(new Error('DB Error'));
+    it('should handle non-array JSON response', async () => {
+      const mockExpectations = [
+        {
+          id: 'exp1',
+          code: 'MA1.1',
+          description: 'Count to 100',
+        },
+      ];
 
-      const result = await service.getCurriculumAlignedSuggestions(['exp-1'], 'assessments');
+      (prisma.curriculumExpectation.findMany as jest.Mock).mockResolvedValue(mockExpectations);
+
+      const mockResponse = {
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({ suggestion: 'Not an array' }),
+            },
+          },
+        ],
+      };
+
+      mockCreate.mockResolvedValue(mockResponse);
+
+      const result = await service.getCurriculumAlignedSuggestions(['exp1'], 'activities');
       expect(result).toEqual([]);
     });
   });
 
   describe('getServiceHealth', () => {
-    it('should return health status', async () => {
-      const result = await service.getServiceHealth();
-
-      expect(result).toHaveProperty('healthy');
-      expect(result).toHaveProperty('apiKey');
-      expect(result).toHaveProperty('lastCheck');
-      expect(typeof result.healthy).toBe('boolean');
-      expect(typeof result.apiKey).toBe('boolean');
-      expect(typeof result.lastCheck).toBe('string');
+    beforeEach(() => {
+      jest.clearAllMocks();
     });
 
-    it('should handle service without API key', async () => {
+    it('should report unhealthy when API key is missing', async () => {
       delete process.env.OPENAI_API_KEY;
-      const serviceWithoutAPI = new AIPlanningAssistantService();
+      service = new AIPlanningAssistantService();
 
-      const result = await serviceWithoutAPI.getServiceHealth();
+      const health = await service.getServiceHealth();
 
-      expect(result).toMatchObject({
+      expect(health).toEqual({
         healthy: false,
         apiKey: false,
         lastCheck: expect.any(String),
         error: 'OpenAI API key not configured',
       });
     });
-  });
 
-  describe('Prompt generation', () => {
-    it('should handle various contexts', async () => {
-      const contexts = [
-        {
-          subject: 'Science',
-          grade: 3,
-          termLength: 10,
-          focusAreas: ['Life Systems', 'Matter'],
-        },
-        {
-          subject: 'Art',
-          grade: 1,
-          termLength: 8,
-        },
-        {
-          subject: 'French',
-          grade: 6,
-          termLength: 15,
-          focusAreas: ['Speaking', 'Reading'],
-        },
-      ];
+    it('should report healthy when API test succeeds', async () => {
+      process.env.OPENAI_API_KEY = 'test-api-key';
 
-      for (const context of contexts) {
-        const result = await service.generateLongRangeGoals(context);
-        expect(result).toHaveProperty('type', 'goals');
-        expect(result).toHaveProperty('suggestions');
-      }
-    });
-  });
-
-  describe('Rate limiting behavior', () => {
-    it('should handle concurrent requests', async () => {
-      const context = {
-        subject: 'Music',
-        grade: 1,
-        termLength: 12,
+      const mockResponse = {
+        choices: [
+          {
+            message: {
+              content: 'Test response',
+            },
+          },
+        ],
       };
 
-      const promises = Array(5).fill(null).map(() => 
-        service.generateLongRangeGoals(context)
+      mockCreate.mockResolvedValue(mockResponse);
+
+      mockOpenAI.mockImplementation(
+        () =>
+          ({
+            chat: {
+              completions: { create: mockCreate },
+            },
+          }) as any,
       );
 
-      const results = await Promise.all(promises);
+      service = new AIPlanningAssistantService();
 
-      expect(results).toHaveLength(5);
-      results.forEach(result => {
-        expect(result).toHaveProperty('type', 'goals');
+      const health = await service.getServiceHealth();
+
+      expect(health).toEqual({
+        healthy: true,
+        apiKey: true,
+        lastCheck: expect.any(String),
+      });
+
+      // Verify minimal test request
+      expect(mockCreate).toHaveBeenCalledWith({
+        model: 'gpt-3.5-turbo',
+        messages: [{ role: 'user', content: 'Test' }],
+        max_tokens: 5,
       });
     });
-  });
 
-  describe('Integration patterns', () => {
-    it('should work with complete planning workflow', async () => {
-      // Long-range goals
-      const longRangeContext = {
-        subject: 'Mathematics',
-        grade: 4,
-        termLength: 12,
-      };
-      const goals = await service.generateLongRangeGoals(longRangeContext);
-      expect(goals.type).toBe('goals');
+    it('should report unhealthy when API test fails', async () => {
+      process.env.OPENAI_API_KEY = 'test-api-key';
 
-      // Unit big ideas
-      const unitContext = {
-        unitTitle: 'Number Sense',
-        subject: 'Mathematics',
-        grade: 4,
-        curriculumExpectations: ['Count numbers', 'Compare quantities'],
-        duration: 4,
-      };
-      const bigIdeas = await service.generateUnitBigIdeas(unitContext);
-      expect(bigIdeas.type).toBe('bigIdeas');
+      const error = new Error('API connection failed');
+      mockCreate.mockRejectedValue(error);
 
-      // Lesson activities
-      const lessonContext = {
-        lessonTitle: 'Comparing Numbers',
-        learningGoals: ['Compare two-digit numbers'],
-        subject: 'Mathematics',
-        grade: 4,
-        duration: 45,
+      mockOpenAI.mockImplementation(
+        () =>
+          ({
+            chat: {
+              completions: { create: mockCreate },
+            },
+          }) as any,
+      );
+
+      service = new AIPlanningAssistantService();
+
+      const health = await service.getServiceHealth();
+
+      expect(health).toEqual({
+        healthy: false,
+        apiKey: true,
+        lastCheck: expect.any(String),
+        error: 'API connection failed',
+      });
+
+      expect(mockLogger.error).toHaveBeenCalledWith({ error }, 'AI service health check failed');
+    });
+
+    it('should handle non-Error exceptions in health check', async () => {
+      process.env.OPENAI_API_KEY = 'test-api-key';
+
+      mockCreate.mockRejectedValue('String error');
+
+      mockOpenAI.mockImplementation(
+        () =>
+          ({
+            chat: {
+              completions: { create: mockCreate },
+            },
+          }) as any,
+      );
+
+      service = new AIPlanningAssistantService();
+
+      const health = await service.getServiceHealth();
+
+      expect(health).toEqual({
+        healthy: false,
+        apiKey: true,
+        lastCheck: expect.any(String),
+        error: 'Unknown error',
+      });
+    });
+
+    it('should report unhealthy when API returns empty content', async () => {
+      process.env.OPENAI_API_KEY = 'test-api-key';
+
+      const mockResponse = {
+        choices: [
+          {
+            message: {
+              content: null,
+            },
+          },
+        ],
       };
-      const activities = await service.generateLessonActivities(lessonContext);
-      expect(activities.type).toBe('activities');
+
+      mockCreate.mockResolvedValue(mockResponse);
+
+      mockOpenAI.mockImplementation(
+        () =>
+          ({
+            chat: {
+              completions: { create: mockCreate },
+            },
+          }) as any,
+      );
+
+      service = new AIPlanningAssistantService();
+
+      const health = await service.getServiceHealth();
+
+      expect(health).toEqual({
+        healthy: false,
+        apiKey: true,
+        lastCheck: expect.any(String),
+      });
     });
   });
 });

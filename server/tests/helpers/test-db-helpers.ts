@@ -12,7 +12,7 @@ import { PrismaClient } from '@teaching-engine/database';
 export async function cleanAllTables(prisma: PrismaClient): Promise<void> {
   try {
     // Clean in dependency order (most dependent first)
-    
+
     // Clean many-to-many junction tables first
     await prisma.$transaction([
       // Planning junction tables
@@ -22,7 +22,7 @@ export async function cleanAllTables(prisma: PrismaClient): Promise<void> {
       prisma.unitPlanExpectation.deleteMany({}),
       prisma.unitPlanResource.deleteMany({}),
       prisma.longRangePlanExpectation.deleteMany({}),
-      
+
       // Team and sharing junction tables
       prisma.teamMember.deleteMany({}),
       prisma.teamInvitation.deleteMany({}),
@@ -34,7 +34,7 @@ export async function cleanAllTables(prisma: PrismaClient): Promise<void> {
       prisma.resourceRating.deleteMany({}),
       prisma.resourceBookmark.deleteMany({}),
       prisma.templateRating.deleteMany({}),
-      
+
       // Activity junction tables
       prisma.activityCollectionItem.deleteMany({}),
       prisma.activityRating.deleteMany({}),
@@ -47,25 +47,25 @@ export async function cleanAllTables(prisma: PrismaClient): Promise<void> {
       prisma.eTFOLessonPlan.deleteMany({}),
       prisma.unitPlan.deleteMany({}),
       prisma.longRangePlan.deleteMany({}),
-      
+
       // Student data
       prisma.studentGoal.deleteMany({}),
       prisma.studentReflection.deleteMany({}),
       prisma.studentArtifact.deleteMany({}),
       prisma.parentSummary.deleteMany({}),
       prisma.student.deleteMany({}),
-      
+
       // Resources and activities
       prisma.externalActivity.deleteMany({}),
       prisma.activityImport.deleteMany({}),
       prisma.activityCollection.deleteMany({}),
       prisma.resourceLibraryItem.deleteMany({}),
-      
+
       // Team entities
       prisma.teamDiscussion.deleteMany({}),
       prisma.teamCalendar.deleteMany({}),
       prisma.team.deleteMany({}),
-      
+
       // Templates and versions
       prisma.templateVariation.deleteMany({}),
       prisma.planTemplate.deleteMany({}),
@@ -80,7 +80,7 @@ export async function cleanAllTables(prisma: PrismaClient): Promise<void> {
       prisma.curriculumExpectation.deleteMany({}),
       prisma.expectationCluster.deleteMany({}),
       prisma.curriculumImport.deleteMany({}),
-      
+
       // User data
       prisma.calendarEvent.deleteMany({}),
       prisma.unavailableBlock.deleteMany({}),
@@ -89,7 +89,7 @@ export async function cleanAllTables(prisma: PrismaClient): Promise<void> {
       prisma.parentMessage.deleteMany({}),
       prisma.newsletter.deleteMany({}),
       prisma.weeklyPlannerState.deleteMany({}),
-      
+
       // Base entities
       prisma.subject.deleteMany({}),
       prisma.user.deleteMany({}),
@@ -115,11 +115,35 @@ export interface TestUserData {
 
 export async function createTestUser(
   prisma: PrismaClient,
-  userData: TestUserData
+  userDataOrEmail?: TestUserData | string,
 ): Promise<any> {
   const bcrypt = await import('bcryptjs');
+
+  // Handle different input types
+  let userData: TestUserData;
+  if (typeof userDataOrEmail === 'string') {
+    userData = {
+      email: userDataOrEmail,
+      password: 'test123',
+      name: 'Test User',
+      role: 'teacher',
+      preferredLanguage: 'en',
+    };
+  } else if (userDataOrEmail) {
+    userData = userDataOrEmail;
+  } else {
+    // Default test user
+    userData = {
+      email: generateTestEmail(),
+      password: 'test123',
+      name: 'Test User',
+      role: 'teacher',
+      preferredLanguage: 'en',
+    };
+  }
+
   const hashedPassword = await bcrypt.hash(userData.password, 10);
-  
+
   return prisma.user.create({
     data: {
       email: userData.email,
@@ -148,10 +172,20 @@ export interface TestExpectationData {
 
 export async function createTestExpectation(
   prisma: PrismaClient,
-  expectationData: TestExpectationData
+  expectationData?: TestExpectationData,
 ): Promise<any> {
+  const defaultData: TestExpectationData = {
+    code: `TEST-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+    description: 'Test expectation description',
+    descriptionFr: "Description de l'attente de test",
+    strand: 'Number Sense and Numeration',
+    strandFr: 'Sens du nombre et numération',
+    grade: 5,
+    subject: 'Mathematics',
+  };
+
   return prisma.curriculumExpectation.create({
-    data: expectationData,
+    data: { ...defaultData, ...expectationData },
   });
 }
 
@@ -181,24 +215,58 @@ export interface TestPlanningData {
 
 export async function createTestPlanningHierarchy(
   prisma: PrismaClient,
-  data: TestPlanningData
+  userIdOrData: number | TestPlanningData,
+  expectationIds?: string[],
 ): Promise<{
-  longRangePlan?: any;
-  unitPlan?: any;
+  longRangePlan: any;
+  unitPlan: any;
   lessonPlan?: any;
 }> {
+  // Handle different parameter patterns
+  let data: TestPlanningData;
+  if (typeof userIdOrData === 'number') {
+    // Called with (prisma, userId, expectationIds)
+    data = {
+      userId: userIdOrData,
+      expectationId: expectationIds?.[0] || '',
+      longRangePlan: {
+        title: 'Test Long Range Plan',
+        academicYear: '2024-2025',
+        grade: 5,
+        subject: 'Mathematics',
+      },
+      unitPlan: {
+        title: 'Test Unit Plan',
+        startDate: new Date('2024-09-01'),
+        endDate: new Date('2024-09-30'),
+      },
+      lessonPlan: {
+        title: 'Test Lesson Plan',
+        date: new Date('2024-09-15'),
+        duration: 60,
+      },
+    };
+  } else {
+    // Called with TestPlanningData object
+    data = userIdOrData;
+  }
   const result: any = {};
 
-  // Create long-range plan if requested
-  if (data.longRangePlan) {
-    result.longRangePlan = await prisma.longRangePlan.create({
-      data: {
-        userId: data.userId,
-        ...data.longRangePlan,
-      },
-    });
+  // Create long-range plan (always create since return type requires it)
+  result.longRangePlan = await prisma.longRangePlan.create({
+    data: {
+      userId: data.userId,
+      ...(data.longRangePlan || {
+        title: 'Test Long Range Plan',
+        academicYear: '2024-2025',
+        grade: 5,
+        subject: 'Mathematics',
+      }),
+    },
+  });
 
-    // Link expectation
+  // Link expectation if provided
+  if (data.expectationId) {
     await prisma.longRangePlanExpectation.create({
       data: {
         longRangePlanId: result.longRangePlan.id,
@@ -207,17 +275,21 @@ export async function createTestPlanningHierarchy(
     });
   }
 
-  // Create unit plan if requested
-  if (data.unitPlan && result.longRangePlan) {
-    result.unitPlan = await prisma.unitPlan.create({
-      data: {
-        userId: data.userId,
-        longRangePlanId: result.longRangePlan.id,
-        ...data.unitPlan,
-      },
-    });
+  // Create unit plan (always create since return type requires it)
+  result.unitPlan = await prisma.unitPlan.create({
+    data: {
+      userId: data.userId,
+      longRangePlanId: result.longRangePlan.id,
+      ...(data.unitPlan || {
+        title: 'Test Unit Plan',
+        startDate: new Date('2024-09-01'),
+        endDate: new Date('2024-09-30'),
+      }),
+    },
+  });
 
-    // Link expectation
+  // Link expectation if provided
+  if (data.expectationId) {
     await prisma.unitPlanExpectation.create({
       data: {
         unitPlanId: result.unitPlan.id,
@@ -263,7 +335,7 @@ export function generateTestEmail(prefix: string = 'test'): string {
 export async function waitForDatabase(
   prisma: PrismaClient,
   maxAttempts: number = 10,
-  delayMs: number = 100
+  delayMs: number = 100,
 ): Promise<boolean> {
   for (let i = 0; i < maxAttempts; i++) {
     try {
@@ -271,7 +343,7 @@ export async function waitForDatabase(
       return true;
     } catch (error) {
       if (i < maxAttempts - 1) {
-        await new Promise(resolve => setTimeout(resolve, delayMs));
+        await new Promise((resolve) => setTimeout(resolve, delayMs));
       }
     }
   }
@@ -283,7 +355,7 @@ export async function waitForDatabase(
  */
 export async function withTransaction<T>(
   prisma: PrismaClient,
-  fn: (tx: PrismaClient) => Promise<T>
+  fn: (tx: PrismaClient) => Promise<T>,
 ): Promise<T> {
   return prisma.$transaction(async (tx) => {
     return fn(tx as PrismaClient);

@@ -1,249 +1,515 @@
-import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
+import { describe, it, expect, jest, beforeEach } from '@jest/globals';
+import { generateContent, generateBilingualContent } from '../../src/services/llmService';
+import OpenAI from 'openai';
+import logger from '../../src/logger';
 
-describe('llmService', () => {
+// Mock dependencies
+jest.mock('openai');
+jest.mock('../../src/logger');
+
+describe('LLMService', () => {
+  const mockOpenAI = OpenAI as jest.MockedClass<typeof OpenAI>;
+  const mockLogger = logger as jest.Mocked<typeof logger>;
+
   beforeEach(() => {
     jest.clearAllMocks();
-  });
-
-  afterEach(() => {
-    jest.restoreAllMocks();
+    // Reset environment variable
+    delete process.env.OPENAI_API_KEY;
   });
 
   describe('generateContent', () => {
-    it('should generate content using mocked OpenAI response', async () => {
-      const prompt = 'Generate a lesson plan for fractions';
+    describe('when OpenAI API key is not configured', () => {
+      it('should return placeholder content and log warning', async () => {
+        const result = await generateContent('Test prompt');
 
-      // Import service after mocks are set up
-      const { generateContent } = await import('../../src/services/llmService');
-      const result = await generateContent(prompt);
-
-      // The mocked OpenAI should return the default mocked response
-      expect(result).toBeDefined();
-      expect(typeof result).toBe('string');
+        expect(result).toBe(
+          'AI content generation is not available. Please configure OPENAI_API_KEY environment variable.',
+        );
+        expect(mockLogger.warn).toHaveBeenCalledWith(
+          'OpenAI API key not configured, returning placeholder content',
+        );
+      });
     });
 
-    it('should generate content with system message', async () => {
-      const prompt = 'Create an activity';
-      const systemMessage = 'You are an expert elementary teacher';
+    describe('when OpenAI API key is configured', () => {
+      let mockCreate: jest.Mock;
+      let mockChatCompletions: any;
 
-      const { generateContent } = await import('../../src/services/llmService');
-      const result = await generateContent(prompt, systemMessage);
+      beforeEach(() => {
+        process.env.OPENAI_API_KEY = 'test-api-key';
 
-      expect(result).toBeDefined();
-      expect(typeof result).toBe('string');
-    });
+        mockCreate = jest.fn();
+        mockChatCompletions = {
+          create: mockCreate,
+        };
 
-    it('should handle empty prompts', async () => {
-      const { generateContent } = await import('../../src/services/llmService');
-      const result = await generateContent('');
+        // Mock OpenAI instance
+        mockOpenAI.mockImplementation(
+          () =>
+            ({
+              chat: {
+                completions: mockChatCompletions,
+              },
+            }) as any,
+        );
 
-      expect(result).toBeDefined();
-      expect(typeof result).toBe('string');
-    });
+        // Re-import to trigger initialization with API key
+        jest.resetModules();
+      });
 
-    it('should handle very long prompts', async () => {
-      const longPrompt = 'A'.repeat(10000);
+      it('should generate content with user prompt only', async () => {
+        const mockResponse = {
+          choices: [
+            {
+              message: {
+                content: '  Generated content  ',
+              },
+            },
+          ],
+          usage: {
+            total_tokens: 150,
+          },
+        };
 
-      const { generateContent } = await import('../../src/services/llmService');
-      const result = await generateContent(longPrompt);
+        mockCreate.mockResolvedValue(mockResponse);
 
-      expect(result).toBeDefined();
-      expect(typeof result).toBe('string');
-    });
+        const { generateContent: genContent } = await import('../../src/services/llmService');
+        const result = await genContent('Test prompt');
 
-    it('should handle special characters in content', async () => {
-      const prompt = 'Generate with special chars émojis 🎉';
+        expect(result).toBe('Generated content');
+        expect(mockCreate).toHaveBeenCalledWith({
+          model: 'gpt-3.5-turbo',
+          messages: [
+            {
+              role: 'user',
+              content: 'Test prompt',
+            },
+          ],
+          temperature: 0.7,
+          max_tokens: 1000,
+        });
+      });
 
-      const { generateContent } = await import('../../src/services/llmService');
-      const result = await generateContent(prompt);
+      it('should generate content with system message', async () => {
+        const mockResponse = {
+          choices: [
+            {
+              message: {
+                content: 'Generated with system context',
+              },
+            },
+          ],
+        };
 
-      expect(result).toBeDefined();
-      expect(typeof result).toBe('string');
+        mockCreate.mockResolvedValue(mockResponse);
+
+        const { generateContent: genContent } = await import('../../src/services/llmService');
+        const result = await genContent('User prompt', 'System message');
+
+        expect(result).toBe('Generated with system context');
+        expect(mockCreate).toHaveBeenCalledWith({
+          model: 'gpt-3.5-turbo',
+          messages: [
+            {
+              role: 'system',
+              content: 'System message',
+            },
+            {
+              role: 'user',
+              content: 'User prompt',
+            },
+          ],
+          temperature: 0.7,
+          max_tokens: 1000,
+        });
+      });
+
+      it('should log token usage when available', async () => {
+        const mockResponse = {
+          choices: [
+            {
+              message: {
+                content: 'Content',
+              },
+            },
+          ],
+          usage: {
+            total_tokens: 250,
+          },
+        };
+
+        mockCreate.mockResolvedValue(mockResponse);
+
+        const { generateContent: genContent } = await import('../../src/services/llmService');
+        await genContent('Prompt');
+
+        expect(mockLogger.info).toHaveBeenCalledWith(
+          { tokens: 250 },
+          'LLM tokens used for content generation',
+        );
+      });
+
+      it('should handle missing content gracefully', async () => {
+        const mockResponse = {
+          choices: [
+            {
+              message: {
+                content: null,
+              },
+            },
+          ],
+        };
+
+        mockCreate.mockResolvedValue(mockResponse);
+
+        const { generateContent: genContent } = await import('../../src/services/llmService');
+        const result = await genContent('Prompt');
+
+        expect(result).toBe('No content generated');
+      });
+
+      it('should handle API errors gracefully', async () => {
+        const error = new Error('API rate limit exceeded');
+        mockCreate.mockRejectedValue(error);
+
+        const { generateContent: genContent } = await import('../../src/services/llmService');
+        const result = await genContent('Prompt');
+
+        expect(result).toBe('Failed to generate content. Please try again later.');
+        expect(mockLogger.error).toHaveBeenCalledWith(
+          { err: error },
+          'LLM content generation failed',
+        );
+      });
+
+      it('should handle network timeouts', async () => {
+        const error = new Error('Request timeout');
+        error.name = 'TimeoutError';
+        mockCreate.mockRejectedValue(error);
+
+        const { generateContent: genContent } = await import('../../src/services/llmService');
+        const result = await genContent('Prompt');
+
+        expect(result).toBe('Failed to generate content. Please try again later.');
+      });
+
+      it('should handle invalid API responses', async () => {
+        mockCreate.mockResolvedValue({});
+
+        const { generateContent: genContent } = await import('../../src/services/llmService');
+        const result = await genContent('Prompt');
+
+        expect(result).toBe('No content generated');
+      });
     });
   });
 
   describe('generateBilingualContent', () => {
-    it('should generate bilingual content successfully', async () => {
-      const prompt = 'Create a welcome message';
+    describe('when OpenAI API key is not configured', () => {
+      it('should return placeholder content in both languages', async () => {
+        const result = await generateBilingualContent('Test prompt');
 
-      const { generateBilingualContent } = await import('../../src/services/llmService');
-      const result = await generateBilingualContent(prompt);
+        const expectedContent =
+          'AI content generation is not available. Please configure OPENAI_API_KEY environment variable.';
 
-      expect(result).toBeDefined();
-      expect(result).toHaveProperty('french');
-      expect(result).toHaveProperty('english');
-      expect(typeof result.french).toBe('string');
-      expect(typeof result.english).toBe('string');
+        expect(result).toEqual({
+          french: expectedContent,
+          english: expectedContent,
+        });
+      });
     });
 
-    it('should handle bilingual content with system message', async () => {
-      const prompt = 'Create instructions';
-      const systemMessage = 'You are a teacher assistant';
+    describe('when OpenAI API key is configured', () => {
+      let mockCreate: jest.Mock;
 
-      const { generateBilingualContent } = await import('../../src/services/llmService');
-      const result = await generateBilingualContent(prompt, systemMessage);
+      beforeEach(() => {
+        process.env.OPENAI_API_KEY = 'test-api-key';
 
-      expect(result).toBeDefined();
-      expect(result).toHaveProperty('french');
-      expect(result).toHaveProperty('english');
-    });
+        mockCreate = jest.fn();
+        const mockChatCompletions = {
+          create: mockCreate,
+        };
 
-    it('should handle empty prompts in bilingual mode', async () => {
-      const { generateBilingualContent } = await import('../../src/services/llmService');
-      const result = await generateBilingualContent('');
+        mockOpenAI.mockImplementation(
+          () =>
+            ({
+              chat: {
+                completions: mockChatCompletions,
+              },
+            }) as any,
+        );
 
-      expect(result).toBeDefined();
-      expect(result).toHaveProperty('french');
-      expect(result).toHaveProperty('english');
-    });
+        jest.resetModules();
+      });
 
-    it('should handle special characters in bilingual content', async () => {
-      const specialPrompt = 'Test with émojis 🎉 and spéçiål çhäracters';
+      it('should generate and parse bilingual content correctly', async () => {
+        const mockResponse = {
+          choices: [
+            {
+              message: {
+                content: `
+FRENCH:
+Contenu en français
 
-      const { generateBilingualContent } = await import('../../src/services/llmService');
-      const result = await generateBilingualContent(specialPrompt);
+ENGLISH:
+Content in English
+                `,
+              },
+            },
+          ],
+        };
 
-      expect(result).toBeDefined();
-      expect(result).toHaveProperty('french');
-      expect(result).toHaveProperty('english');
-    });
+        mockCreate.mockResolvedValue(mockResponse);
 
-    it('should handle properly formatted bilingual response', async () => {
-      // Test the bilingual parsing logic by passing a mock response through the parser
-      const { generateBilingualContent } = await import('../../src/services/llmService');
-      const result = await generateBilingualContent('Test prompt');
+        const { generateBilingualContent: genBilingual } = await import(
+          '../../src/services/llmService'
+        );
+        const result = await genBilingual('Test prompt', 'System context');
 
-      // Since we're using mocked services, just verify structure
-      expect(result.french).toBeDefined();
-      expect(result.english).toBeDefined();
-      expect(typeof result.french).toBe('string');
-      expect(typeof result.english).toBe('string');
+        expect(result).toEqual({
+          french: 'Contenu en français',
+          english: 'Content in English',
+        });
+
+        // Verify the system message includes bilingual instructions
+        const callArgs = mockCreate.mock.calls[0][0];
+        expect(callArgs.messages[0].content).toContain(
+          'Please respond with content in both French and English',
+        );
+        expect(callArgs.messages[0].content).toContain('System context');
+      });
+
+      it('should handle case-insensitive language markers', async () => {
+        const mockResponse = {
+          choices: [
+            {
+              message: {
+                content: `
+french:
+Le contenu
+
+English:
+The content
+                `,
+              },
+            },
+          ],
+        };
+
+        mockCreate.mockResolvedValue(mockResponse);
+
+        const { generateBilingualContent: genBilingual } = await import(
+          '../../src/services/llmService'
+        );
+        const result = await genBilingual('Test prompt');
+
+        expect(result).toEqual({
+          french: 'Le contenu',
+          english: 'The content',
+        });
+      });
+
+      it('should handle missing language sections', async () => {
+        const mockResponse = {
+          choices: [
+            {
+              message: {
+                content: 'Content without language markers',
+              },
+            },
+          ],
+        };
+
+        mockCreate.mockResolvedValue(mockResponse);
+
+        const { generateBilingualContent: genBilingual } = await import(
+          '../../src/services/llmService'
+        );
+        const result = await genBilingual('Test prompt');
+
+        expect(result).toEqual({
+          french: 'Content without language markers',
+          english: 'Content without language markers',
+        });
+      });
+
+      it('should handle only French section present', async () => {
+        const mockResponse = {
+          choices: [
+            {
+              message: {
+                content: `
+FRENCH:
+Seulement en français
+                `,
+              },
+            },
+          ],
+        };
+
+        mockCreate.mockResolvedValue(mockResponse);
+
+        const { generateBilingualContent: genBilingual } = await import(
+          '../../src/services/llmService'
+        );
+        const result = await genBilingual('Test prompt');
+
+        expect(result).toEqual({
+          french: 'Seulement en français',
+          english: 'FRENCH:\nSeulement en français',
+        });
+      });
+
+      it('should handle API errors gracefully', async () => {
+        const error = new Error('API error');
+        mockCreate.mockRejectedValue(error);
+
+        const { generateBilingualContent: genBilingual } = await import(
+          '../../src/services/llmService'
+        );
+        const result = await genBilingual('Test prompt');
+
+        const expectedContent = 'Failed to generate content. Please try again later.';
+        expect(result).toEqual({
+          french: expectedContent,
+          english: expectedContent,
+        });
+      });
     });
   });
 
-  describe('Rate limiting and concurrency', () => {
-    it('should handle concurrent requests', async () => {
-      const prompts = ['Prompt 1', 'Prompt 2', 'Prompt 3'];
+  describe('Token limit handling', () => {
+    beforeEach(() => {
+      process.env.OPENAI_API_KEY = 'test-api-key';
+      jest.resetModules();
+    });
 
-      const { generateContent } = await import('../../src/services/llmService');
-      const results = await Promise.all(
-        prompts.map(prompt => generateContent(prompt))
+    it('should respect max_tokens parameter', async () => {
+      const mockCreate = jest.fn().mockResolvedValue({
+        choices: [{ message: { content: 'Short' } }],
+      });
+
+      mockOpenAI.mockImplementation(
+        () =>
+          ({
+            chat: {
+              completions: { create: mockCreate },
+            },
+          }) as any,
       );
 
-      expect(results).toHaveLength(3);
-      results.forEach(result => {
-        expect(result).toBeDefined();
-        expect(typeof result).toBe('string');
-      });
+      const { generateContent } = await import('../../src/services/llmService');
+      await generateContent('Long prompt requiring many tokens');
+
+      expect(mockCreate).toHaveBeenCalledWith(
+        expect.objectContaining({
+          max_tokens: 1000,
+        }),
+      );
     });
 
-    it('should handle mixed content and bilingual requests', async () => {
-      const { generateContent, generateBilingualContent } = await import('../../src/services/llmService');
-      
-      const results = await Promise.all([
-        generateContent('Content prompt'),
-        generateBilingualContent('Bilingual prompt'),
-        generateContent('Another content prompt'),
-      ]);
+    it('should handle token limit exceeded errors', async () => {
+      const error = new Error('Token limit exceeded');
+      const mockCreate = jest.fn().mockRejectedValue(error);
 
-      expect(results).toHaveLength(3);
-      expect(typeof results[0]).toBe('string');
-      expect(results[1]).toHaveProperty('french');
-      expect(results[1]).toHaveProperty('english');
-      expect(typeof results[2]).toBe('string');
+      mockOpenAI.mockImplementation(
+        () =>
+          ({
+            chat: {
+              completions: { create: mockCreate },
+            },
+          }) as any,
+      );
+
+      const { generateContent } = await import('../../src/services/llmService');
+      const result = await generateContent('Very long prompt');
+
+      expect(result).toBe('Failed to generate content. Please try again later.');
+      expect(mockLogger.error).toHaveBeenCalledWith(
+        { err: error },
+        'LLM content generation failed',
+      );
     });
   });
 
-  describe('Integration patterns', () => {
-    it('should work with typical workflow', async () => {
-      const { generateContent, generateBilingualContent } = await import('../../src/services/llmService');
-      
-      // Step 1: Generate activity content
-      const activityContent = await generateContent('Create a math activity for grade 3');
-      expect(activityContent).toBeDefined();
-
-      // Step 2: Generate bilingual instructions
-      const instructions = await generateBilingualContent('Create instructions for this activity');
-      expect(instructions.french).toBeDefined();
-      expect(instructions.english).toBeDefined();
-
-      // Step 3: Generate assessment
-      const assessment = await generateContent('Create assessment questions');
-      expect(assessment).toBeDefined();
+  describe('Prompt validation', () => {
+    beforeEach(() => {
+      process.env.OPENAI_API_KEY = 'test-api-key';
+      jest.resetModules();
     });
 
-    it('should support chained operations', async () => {
-      const { generateContent } = await import('../../src/services/llmService');
-      
-      const outline = await generateContent('Create a lesson plan outline');
-      expect(outline).toBeDefined();
-
-      const detailedPlan = await generateContent(`Expand on this outline: ${outline}`);
-      expect(detailedPlan).toBeDefined();
-    });
-  });
-
-  describe('Error resilience', () => {
-    it('should handle rapid successive calls', async () => {
-      const { generateContent } = await import('../../src/services/llmService');
-      
-      const startTime = Date.now();
-      const callCount = 10;
-
-      const promises = [];
-      for (let i = 0; i < callCount; i++) {
-        promises.push(generateContent(`Rapid call ${i}`));
-      }
-
-      const results = await Promise.all(promises);
-      const endTime = Date.now();
-
-      expect(results).toHaveLength(callCount);
-      results.forEach(result => {
-        expect(result).toBeDefined();
-        expect(typeof result).toBe('string');
+    it('should handle empty prompts', async () => {
+      const mockCreate = jest.fn().mockResolvedValue({
+        choices: [{ message: { content: 'Response' } }],
       });
 
-      // Should complete within reasonable time
-      expect(endTime - startTime).toBeLessThan(5000); // 5 seconds
-    });
+      mockOpenAI.mockImplementation(
+        () =>
+          ({
+            chat: {
+              completions: { create: mockCreate },
+            },
+          }) as any,
+      );
 
-    it('should handle various input types gracefully', async () => {
       const { generateContent } = await import('../../src/services/llmService');
-      
-      const testCases = [
-        '',
-        'Normal prompt',
-        '   Prompt with spaces   ',
-        'Prompt\nwith\nnewlines',
-        '🎉 Prompt with emojis 🎉',
-        'A'.repeat(1000),
-      ];
+      await generateContent('');
 
-      for (const testCase of testCases) {
-        const result = await generateContent(testCase);
-        expect(result).toBeDefined();
-        expect(typeof result).toBe('string');
-      }
-    });
-  });
-
-  describe('OpenAI service integration', () => {
-    it('should utilize mocked OpenAI service', async () => {
-      // Verify that the OpenAI service is available and mocked
-      const { openai } = await import('../../src/services/llmService');
-      
-      // In test environment, openai should be available due to mocking
-      expect(openai).toBeDefined();
+      expect(mockCreate).toHaveBeenCalledWith(
+        expect.objectContaining({
+          messages: [{ role: 'user', content: '' }],
+        }),
+      );
     });
 
-    it('should handle response parsing correctly', async () => {
+    it('should handle very long prompts', async () => {
+      const longPrompt = 'a'.repeat(10000);
+      const mockCreate = jest.fn().mockResolvedValue({
+        choices: [{ message: { content: 'Response' } }],
+      });
+
+      mockOpenAI.mockImplementation(
+        () =>
+          ({
+            chat: {
+              completions: { create: mockCreate },
+            },
+          }) as any,
+      );
+
       const { generateContent } = await import('../../src/services/llmService');
-      const result = await generateContent('Test response parsing');
+      await generateContent(longPrompt);
 
-      // Should return a valid string response
-      expect(typeof result).toBe('string');
-      expect(result.length).toBeGreaterThan(0);
+      expect(mockCreate).toHaveBeenCalledWith(
+        expect.objectContaining({
+          messages: [{ role: 'user', content: longPrompt }],
+        }),
+      );
+    });
+
+    it('should handle special characters in prompts', async () => {
+      const specialPrompt = 'Test with "quotes" and \'apostrophes\' and \n newlines';
+      const mockCreate = jest.fn().mockResolvedValue({
+        choices: [{ message: { content: 'Response' } }],
+      });
+
+      mockOpenAI.mockImplementation(
+        () =>
+          ({
+            chat: {
+              completions: { create: mockCreate },
+            },
+          }) as any,
+      );
+
+      const { generateContent } = await import('../../src/services/llmService');
+      await generateContent(specialPrompt);
+
+      expect(mockCreate).toHaveBeenCalledWith(
+        expect.objectContaining({
+          messages: [{ role: 'user', content: specialPrompt }],
+        }),
+      );
     });
   });
 });

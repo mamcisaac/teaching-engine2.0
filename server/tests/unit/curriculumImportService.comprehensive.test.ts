@@ -53,17 +53,17 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    
+
     // Set up environment
     process.env.OPENAI_API_KEY = 'test-api-key';
-    
+
     // Create service instance
     service = new CurriculumImportService();
-    
+
     // Create mock prisma client
     mockPrismaClient = createMockPrismaClient();
     (service as any).prisma = mockPrismaClient;
-    
+
     // Mock OpenAI
     mockOpenAI = {
       chat: {
@@ -106,7 +106,7 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
               {
                 code: 'M1.1',
                 description: 'Count to 100',
-                descriptionFr: 'Compter jusqu\'à 100',
+                descriptionFr: "Compter jusqu'à 100",
                 strand: 'Number',
                 substrand: 'Counting',
                 grade: 1,
@@ -167,7 +167,9 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
         status: ImportStatus.PROCESSING,
       });
 
-      await expect(service.confirmImport(mockImportId)).rejects.toThrow('Import is not ready for confirmation');
+      await expect(service.confirmImport(mockImportId)).rejects.toThrow(
+        'Import is not ready for confirmation',
+      );
     });
 
     it('should handle creation errors gracefully', async () => {
@@ -206,30 +208,32 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
       `;
 
       mockPdfParse.mockResolvedValue({ text: mockPdfContent });
-      
+
       mockOpenAI.chat.completions.create.mockResolvedValue({
-        choices: [{
-          message: {
-            content: JSON.stringify({
-              subject: 'Mathematics',
-              grade: 1,
-              expectations: [
-                {
-                  code: 'A1',
-                  type: 'overall',
-                  description: 'Students will count to 100',
-                  strand: 'Number',
-                },
-                {
-                  code: 'A1.1',
-                  type: 'specific',
-                  description: 'Count forward by 1s',
-                  strand: 'Number',
-                },
-              ],
-            }),
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                subject: 'Mathematics',
+                grade: 1,
+                expectations: [
+                  {
+                    code: 'A1',
+                    type: 'overall',
+                    description: 'Students will count to 100',
+                    strand: 'Number',
+                  },
+                  {
+                    code: 'A1.1',
+                    type: 'specific',
+                    description: 'Count forward by 1s',
+                    strand: 'Number',
+                  },
+                ],
+              }),
+            },
           },
-        }],
+        ],
       } as any);
 
       const buffer = Buffer.from('fake pdf content');
@@ -238,18 +242,20 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
       expect(result).toHaveLength(2);
       expect(result[0].code).toBe('A1');
       expect(result[1].code).toBe('A1.1');
-      expect(pdf).toHaveBeenCalledWith(buffer);
+      expect(mockPdfParse).toHaveBeenCalledWith(buffer);
     });
 
     it('should handle empty PDF', async () => {
-      pdf.mockResolvedValue({ text: '' });
+      mockPdfParse.mockResolvedValue({ text: '' });
 
       const buffer = Buffer.from('');
-      await expect(service.parsePDF(buffer)).rejects.toThrow('PDF appears to be empty or too short');
+      await expect(service.parsePDF(buffer)).rejects.toThrow(
+        'PDF appears to be empty or too short',
+      );
     });
 
     it('should handle PDF parsing errors', async () => {
-      pdf.mockRejectedValue(new Error('Invalid PDF'));
+      mockPdfParse.mockRejectedValue(new Error('Invalid PDF'));
 
       const buffer = Buffer.from('invalid');
       await expect(service.parsePDF(buffer)).rejects.toThrow('PDF parsing failed: Invalid PDF');
@@ -258,22 +264,26 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
     it('should handle large PDFs by chunking', async () => {
       // Create a very long text (>3000 chars)
       const longText = 'Mathematics Curriculum\n\n' + 'A'.repeat(4000);
-      pdf.mockResolvedValue({ text: longText });
+      mockPdfParse.mockResolvedValue({ text: longText });
 
       mockOpenAI.chat.completions.create.mockResolvedValue({
-        choices: [{
-          message: {
-            content: JSON.stringify({
-              subject: 'Mathematics',
-              grade: 1,
-              expectations: [{
-                code: 'A1',
-                description: 'Test expectation',
-                strand: 'Number',
-              }],
-            }),
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                subject: 'Mathematics',
+                grade: 1,
+                expectations: [
+                  {
+                    code: 'A1',
+                    description: 'Test expectation',
+                    strand: 'Number',
+                  },
+                ],
+              }),
+            },
           },
-        }],
+        ],
       } as any);
 
       const buffer = Buffer.from('fake pdf');
@@ -286,10 +296,12 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
   });
 
   describe('parseDOCX', () => {
-    let mammoth: any;
+    const mockMammoth = {
+      extractRawText: jest.fn(),
+    };
 
-    beforeEach(async () => {
-      mammoth = (await import('mammoth')).default;
+    beforeEach(() => {
+      jest.doMock('mammoth', () => mockMammoth);
     });
 
     it('should parse DOCX content successfully', async () => {
@@ -302,30 +314,32 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
       `;
 
       mammoth.extractRawText.mockResolvedValue({ value: mockDocxContent });
-      
+
       mockOpenAI.chat.completions.create.mockResolvedValue({
-        choices: [{
-          message: {
-            content: JSON.stringify({
-              subject: 'English Language Arts',
-              grade: 3,
-              expectations: [
-                {
-                  code: 'R1',
-                  type: 'overall',
-                  description: 'Read and understand various texts',
-                  strand: 'Reading',
-                },
-                {
-                  code: 'R1.1',
-                  type: 'specific',
-                  description: 'Use phonics to decode words',
-                  strand: 'Reading',
-                },
-              ],
-            }),
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                subject: 'English Language Arts',
+                grade: 3,
+                expectations: [
+                  {
+                    code: 'R1',
+                    type: 'overall',
+                    description: 'Read and understand various texts',
+                    strand: 'Reading',
+                  },
+                  {
+                    code: 'R1.1',
+                    type: 'specific',
+                    description: 'Use phonics to decode words',
+                    strand: 'Reading',
+                  },
+                ],
+              }),
+            },
           },
-        }],
+        ],
       } as any);
 
       const buffer = Buffer.from('fake docx content');
@@ -340,7 +354,9 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
       mammoth.extractRawText.mockResolvedValue({ value: '' });
 
       const buffer = Buffer.from('');
-      await expect(service.parseDOCX(buffer)).rejects.toThrow('DOCX appears to be empty or too short');
+      await expect(service.parseDOCX(buffer)).rejects.toThrow(
+        'DOCX appears to be empty or too short',
+      );
     });
 
     it('should handle DOCX parsing errors', async () => {
@@ -362,19 +378,23 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
       `;
 
       mockOpenAI.chat.completions.create.mockResolvedValue({
-        choices: [{
-          message: {
-            content: JSON.stringify({
-              subject: 'Mathématiques',
-              grade: 1,
-              expectations: [{
-                code: 'N1',
-                description: "L'élève doit compter jusqu'à 100",
-                strand: 'Numération',
-              }],
-            }),
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                subject: 'Mathématiques',
+                grade: 1,
+                expectations: [
+                  {
+                    code: 'N1',
+                    description: "L'élève doit compter jusqu'à 100",
+                    strand: 'Numération',
+                  },
+                ],
+              }),
+            },
           },
-        }],
+        ],
       } as any);
 
       const result = await (service as any).parseTextWithAI(frenchText);
@@ -400,21 +420,25 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
       `;
 
       mockOpenAI.chat.completions.create.mockResolvedValue({
-        choices: [{
-          message: {
-            content: JSON.stringify({
-              subject: 'Mathematics',
-              grade: 2,
-              expectations: [{
-                code: 'N1',
-                description: 'Student will count',
-                descriptionFr: "L'élève doit compter",
-                strand: 'Number',
-                strandFr: 'Nombre',
-              }],
-            }),
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                subject: 'Mathematics',
+                grade: 2,
+                expectations: [
+                  {
+                    code: 'N1',
+                    description: 'Student will count',
+                    descriptionFr: "L'élève doit compter",
+                    strand: 'Number',
+                    strandFr: 'Nombre',
+                  },
+                ],
+              }),
+            },
           },
-        }],
+        ],
       } as any);
 
       const result = await (service as any).parseTextWithAI(bilingualText);
@@ -434,16 +458,20 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
     it('should handle missing OpenAI configuration', async () => {
       (service as any).openai = null;
 
-      await expect((service as any).parseTextWithAI('test')).rejects.toThrow('OpenAI API key not configured');
+      await expect((service as any).parseTextWithAI('test')).rejects.toThrow(
+        'OpenAI API key not configured',
+      );
     });
 
     it('should handle invalid JSON response from AI', async () => {
       mockOpenAI.chat.completions.create.mockResolvedValue({
-        choices: [{
-          message: {
-            content: 'Invalid JSON response',
+        choices: [
+          {
+            message: {
+              content: 'Invalid JSON response',
+            },
           },
-        }],
+        ],
       } as any);
 
       const result = await (service as any).parseTextWithAI('test text');
@@ -453,11 +481,13 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
 
     it('should handle empty AI response', async () => {
       mockOpenAI.chat.completions.create.mockResolvedValue({
-        choices: [{
-          message: {
-            content: null,
+        choices: [
+          {
+            message: {
+              content: null,
+            },
           },
-        }],
+        ],
       } as any);
 
       const result = await (service as any).parseTextWithAI('test text');
@@ -502,7 +532,9 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
 
       mockPrismaClient.curriculumImport.update.mockRejectedValue(new Error('Storage error'));
 
-      await expect(service.storeUploadedFile('import-123', mockFile)).rejects.toThrow('Storage error');
+      await expect(service.storeUploadedFile('import-123', mockFile)).rejects.toThrow(
+        'Storage error',
+      );
     });
   });
 
@@ -525,19 +557,23 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
       pdf.mockResolvedValue({ text: 'Mathematics Grade 3' });
 
       mockOpenAI.chat.completions.create.mockResolvedValue({
-        choices: [{
-          message: {
-            content: JSON.stringify({
-              subject: 'Mathematics',
-              grade: 3,
-              expectations: [{
-                code: 'M3.1',
-                description: 'Test expectation',
-                strand: 'Number',
-              }],
-            }),
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                subject: 'Mathematics',
+                grade: 3,
+                expectations: [
+                  {
+                    code: 'M3.1',
+                    description: 'Test expectation',
+                    strand: 'Number',
+                  },
+                ],
+              }),
+            },
           },
-        }],
+        ],
       } as any);
 
       const result = await service.parseUploadedFile(mockImportId);
@@ -571,19 +607,23 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
       mammoth.extractRawText.mockResolvedValue({ value: 'English Grade 2' });
 
       mockOpenAI.chat.completions.create.mockResolvedValue({
-        choices: [{
-          message: {
-            content: JSON.stringify({
-              subject: 'English',
-              grade: 2,
-              expectations: [{
-                code: 'E2.1',
-                description: 'Reading comprehension',
-                strand: 'Reading',
-              }],
-            }),
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                subject: 'English',
+                grade: 2,
+                expectations: [
+                  {
+                    code: 'E2.1',
+                    description: 'Reading comprehension',
+                    strand: 'Reading',
+                  },
+                ],
+              }),
+            },
           },
-        }],
+        ],
       } as any);
 
       const result = await service.parseUploadedFile(mockImportId);
@@ -615,7 +655,9 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
     it('should handle import not found', async () => {
       mockPrismaClient.curriculumImport.findUnique.mockResolvedValue(null);
 
-      await expect(service.parseUploadedFile(mockImportId)).rejects.toThrow('Import session not found');
+      await expect(service.parseUploadedFile(mockImportId)).rejects.toThrow(
+        'Import session not found',
+      );
     });
 
     it('should handle missing file content', async () => {
@@ -624,7 +666,9 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
         rawText: null,
       });
 
-      await expect(service.parseUploadedFile(mockImportId)).rejects.toThrow('No file content found for parsing');
+      await expect(service.parseUploadedFile(mockImportId)).rejects.toThrow(
+        'No file content found for parsing',
+      );
     });
 
     it('should handle unsupported file format', async () => {
@@ -634,7 +678,9 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
         rawText: 'test',
       });
 
-      await expect(service.parseUploadedFile(mockImportId)).rejects.toThrow('Unsupported file format: txt');
+      await expect(service.parseUploadedFile(mockImportId)).rejects.toThrow(
+        'Unsupported file format: txt',
+      );
     });
 
     it('should update status to FAILED on error', async () => {
@@ -705,7 +751,9 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
     it('should handle unknown preset', async () => {
       mockPrismaClient.curriculumImport.create.mockResolvedValue({ id: 'import-000' } as any);
 
-      await expect(service.loadPresetCurriculum(userId, 'unknown-preset')).rejects.toThrow('Unknown preset: unknown-preset');
+      await expect(service.loadPresetCurriculum(userId, 'unknown-preset')).rejects.toThrow(
+        'Unknown preset: unknown-preset',
+      );
     });
 
     it('should store preset metadata', async () => {
@@ -780,7 +828,9 @@ describe('CurriculumImportService - Comprehensive Tests', () => {
     it('should handle import not found', async () => {
       mockPrismaClient.curriculumImport.findUnique.mockResolvedValue(null);
 
-      await expect(service.finalizeImport(mockImportId, userId)).rejects.toThrow('Import session not found');
+      await expect(service.finalizeImport(mockImportId, userId)).rejects.toThrow(
+        'Import session not found',
+      );
     });
 
     it('should handle empty parsed subjects', async () => {
@@ -884,13 +934,15 @@ M1.2,Test with Chinese 中文,Math,1,Number`;
 
     it('should handle batch processing for large imports', async () => {
       // Simulate importing 1000 expectations
-      const expectations = Array(1000).fill(null).map((_, i) => ({
-        code: `M${i}.1`,
-        description: `Description ${i}`,
-        subject: 'Math',
-        grade: 1,
-        strand: 'Number',
-      }));
+      const expectations = Array(1000)
+        .fill(null)
+        .map((_, i) => ({
+          code: `M${i}.1`,
+          description: `Description ${i}`,
+          subject: 'Math',
+          grade: 1,
+          strand: 'Number',
+        }));
 
       const mockImport = {
         id: 'batch-import',
@@ -914,8 +966,10 @@ M1.2,Test with Chinese 中文,Math,1,Number`;
   describe('Error Recovery and Logging', () => {
     it('should log errors with appropriate context', async () => {
       const loggerSpy = jest.spyOn((service as any).logger, 'error');
-      
-      mockPrismaClient.curriculumImport.create.mockRejectedValue(new Error('Database connection failed'));
+
+      mockPrismaClient.curriculumImport.create.mockRejectedValue(
+        new Error('Database connection failed'),
+      );
 
       await expect(service.startImport(1, 3, 'Math', 'csv')).rejects.toThrow();
 
@@ -934,14 +988,28 @@ M1.2,Test with Chinese 中文,Math,1,Number`;
       const mockImport = {
         id: 'partial-import',
         metadata: {
-          parsedSubjects: [{
-            name: 'Math',
-            expectations: [
-              { code: 'M1.1', description: 'Valid', grade: 1, subject: 'Math', strand: 'Number' },
-              { code: '', description: 'Invalid - no code', grade: 1, subject: 'Math', strand: 'Number' },
-              { code: 'M1.3', description: 'Valid again', grade: 1, subject: 'Math', strand: 'Number' },
-            ],
-          }],
+          parsedSubjects: [
+            {
+              name: 'Math',
+              expectations: [
+                { code: 'M1.1', description: 'Valid', grade: 1, subject: 'Math', strand: 'Number' },
+                {
+                  code: '',
+                  description: 'Invalid - no code',
+                  grade: 1,
+                  subject: 'Math',
+                  strand: 'Number',
+                },
+                {
+                  code: 'M1.3',
+                  description: 'Valid again',
+                  grade: 1,
+                  subject: 'Math',
+                  strand: 'Number',
+                },
+              ],
+            },
+          ],
         },
       };
 
@@ -962,10 +1030,14 @@ M1.2,Test with Chinese 中文,Math,1,Number`;
   describe('Data Validation', () => {
     it('should validate CSV column requirements', () => {
       const invalidCsv1 = 'name,value\ntest,123';
-      expect(() => service.parseCSV(invalidCsv1)).toThrow('CSV must contain "code" and "description" columns');
+      expect(() => service.parseCSV(invalidCsv1)).toThrow(
+        'CSV must contain "code" and "description" columns',
+      );
 
       const invalidCsv2 = 'code,name\nM1,Test';
-      expect(() => service.parseCSV(invalidCsv2)).toThrow('CSV must contain "code" and "description" columns');
+      expect(() => service.parseCSV(invalidCsv2)).toThrow(
+        'CSV must contain "code" and "description" columns',
+      );
 
       const validCsv = 'code,description\nM1,Test';
       expect(() => service.parseCSV(validCsv)).not.toThrow();
@@ -979,7 +1051,7 @@ M1.3,Test 3,Math,-1,Number
 M1.4,Test 4,Math,13,Number`;
 
       const result = service.parseCSV(csv);
-      
+
       expect(result[0].grade).toBe(0); // Invalid -> 0
       expect(result[1].grade).toBe(3); // 3.5 -> 3
       expect(result[2].grade).toBe(0); // -1 -> 0
@@ -992,7 +1064,7 @@ M1.4,Test 4,Math,13,Number`;
 M1.2,,Math,1,Number`;
 
       const result = service.parseCSV(csv);
-      
+
       expect(result).toHaveLength(2);
       expect(result[0].code).toBe('');
       expect(result[1].description).toBe('');
@@ -1002,22 +1074,32 @@ M1.2,,Math,1,Number`;
   describe('Integration with Real File Formats', () => {
     it('should detect expectation types correctly', () => {
       const service = new CurriculumImportService();
-      
+
       // Test various code patterns
       expect((service as any).determineExpectationType('A', 'Overall expectation')).toBe('overall');
-      expect((service as any).determineExpectationType('A1.0', 'Overall for strand')).toBe('overall');
-      expect((service as any).determineExpectationType('A1', 'Overall expectation text')).toBe('overall');
-      expect((service as any).determineExpectationType('A1.1', 'Specific expectation')).toBe('specific');
-      expect((service as any).determineExpectationType('3.N.1.2', 'Specific expectation')).toBe('specific');
-      expect((service as any).determineExpectationType('B2.3a', 'Contains overall in description')).toBe('specific');
+      expect((service as any).determineExpectationType('A1.0', 'Overall for strand')).toBe(
+        'overall',
+      );
+      expect((service as any).determineExpectationType('A1', 'Overall expectation text')).toBe(
+        'overall',
+      );
+      expect((service as any).determineExpectationType('A1.1', 'Specific expectation')).toBe(
+        'specific',
+      );
+      expect((service as any).determineExpectationType('3.N.1.2', 'Specific expectation')).toBe(
+        'specific',
+      );
+      expect(
+        (service as any).determineExpectationType('B2.3a', 'Contains overall in description'),
+      ).toBe('specific');
     });
 
     it('should chunk text appropriately', () => {
       const service = new CurriculumImportService();
       const text = 'Paragraph 1\n\nParagraph 2\n\nParagraph 3';
-      
+
       const chunks = (service as any).chunkText(text, 20);
-      
+
       expect(chunks).toHaveLength(3);
       expect(chunks[0]).toBe('Paragraph 1');
       expect(chunks[1]).toBe('Paragraph 2');
@@ -1028,9 +1110,9 @@ M1.2,,Math,1,Number`;
       const service = new CurriculumImportService();
       const longParagraph = 'A'.repeat(100);
       const text = `${longParagraph}\n\nShort paragraph`;
-      
+
       const chunks = (service as any).chunkText(text, 50);
-      
+
       expect(chunks).toHaveLength(2);
       expect(chunks[0]).toBe(longParagraph);
       expect(chunks[1]).toBe('Short paragraph');
@@ -1044,7 +1126,7 @@ M1.1,"Unclosed quote,Math,1,Number
 M1.2,Normal line,Math,1,Number`;
 
       const result = service.parseCSV(malformedCsv);
-      
+
       // Should still parse what it can
       expect(result.length).toBeGreaterThan(0);
     });
@@ -1052,9 +1134,9 @@ M1.2,Normal line,Math,1,Number`;
     it('should handle BOM in CSV files', () => {
       // UTF-8 BOM
       const csvWithBom = '\ufeffcode,description,subject,grade,domain\nM1.1,Test,Math,1,Number';
-      
+
       const result = service.parseCSV(csvWithBom);
-      
+
       expect(result).toHaveLength(1);
       expect(result[0].code).toBe('M1.1');
     });
@@ -1063,11 +1145,11 @@ M1.2,Normal line,Math,1,Number`;
       const csvWindows = 'code,description\r\nM1.1,Test 1\r\nM1.2,Test 2';
       const csvUnix = 'code,description\nM1.1,Test 1\nM1.2,Test 2';
       const csvMac = 'code,description\rM1.1,Test 1\rM1.2,Test 2';
-      
+
       const resultWindows = service.parseCSV(csvWindows);
       const resultUnix = service.parseCSV(csvUnix);
       const resultMac = service.parseCSV(csvMac);
-      
+
       expect(resultWindows).toHaveLength(2);
       expect(resultUnix).toHaveLength(2);
       expect(resultMac.length).toBeGreaterThanOrEqual(1); // Mac might parse differently

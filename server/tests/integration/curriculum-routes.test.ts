@@ -1,10 +1,24 @@
 import request from 'supertest';
 import { describe, beforeAll, beforeEach, afterEach, it, expect } from '@jest/globals';
 import { app } from '../../src/index';
-import { getIntegrationTestPrismaClient, cleanIntegrationTestData } from '../integration-test-setup';
-import { createTestUser, createTestExpectation, createTestPlanningHierarchy, cleanAllTables } from '../helpers/test-db-helpers';
+import {
+  getIntegrationTestPrismaClient,
+  cleanIntegrationTestData,
+} from '../integration-test-setup';
+import {
+  createTestUser,
+  createTestExpectation,
+  createTestPlanningHierarchy,
+  cleanAllTables,
+} from '../helpers/test-db-helpers';
 import jwt from 'jsonwebtoken';
-import type { PrismaClient, User, CurriculumExpectation, LongRangePlan, UnitPlan } from '@teaching-engine/database';
+import type {
+  PrismaClient,
+  User,
+  CurriculumExpectation,
+  LongRangePlan,
+  UnitPlan,
+} from '@teaching-engine/database';
 
 describe('Curriculum Routes', () => {
   let prisma: PrismaClient;
@@ -29,11 +43,15 @@ describe('Curriculum Routes', () => {
 
     // Create auth token
     const secret = process.env.JWT_SECRET || 'test-secret-key';
-    authToken = jwt.sign({ 
-      userId: String(userId), 
-      email: testUser.email,
-      iat: Math.floor(Date.now() / 1000)
-    }, secret, { expiresIn: '1h' });
+    authToken = jwt.sign(
+      {
+        userId: String(userId),
+        email: testUser.email,
+        iat: Math.floor(Date.now() / 1000),
+      },
+      secret,
+      { expiresIn: '1h' },
+    );
 
     // Create test curriculum expectation using helper
     testExpectation = await createTestExpectation(prisma);
@@ -170,15 +188,8 @@ describe('Curriculum Routes', () => {
     });
 
     it('should not return plans from other users', async () => {
-      // Create another user and their plan
-      const otherUser = await prisma.user.create({
-        data: {
-          email: 'other@example.com',
-          password: 'hashed',
-          name: 'Other User',
-          role: 'teacher',
-        },
-      });
+      // Create another user and their plan using helper
+      const otherUser = await createTestUser(prisma, 'other@example.com');
 
       const otherPlan = await prisma.longRangePlan.create({
         data: {
@@ -309,14 +320,7 @@ describe('Curriculum Routes', () => {
     });
 
     it('should not update other users plans', async () => {
-      const otherUser = await prisma.user.create({
-        data: {
-          email: 'other2@example.com',
-          password: 'hashed',
-          name: 'Other User 2',
-          role: 'teacher',
-        },
-      });
+      const otherUser = await createTestUser(prisma, 'other2@example.com');
 
       const otherPlan = await prisma.longRangePlan.create({
         data: {
@@ -550,7 +554,7 @@ describe('Curriculum Routes', () => {
         .send({ longRangePlanId: otherLongRangePlan.id });
 
       expect(res.status).toBe(200);
-      
+
       // Verify longRangePlanId didn't change
       const unit = await prisma.unitPlan.findUnique({
         where: { id: testUnitPlan.id },

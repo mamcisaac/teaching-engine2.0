@@ -5,8 +5,8 @@
 
 import { transformSync } from '@swc/core';
 import { createHash } from 'crypto';
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
-import { join, dirname } from 'path';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, unlinkSync } from 'fs';
+import { join } from 'path';
 
 const CACHE_DIR = join(process.cwd(), '.jest-swc-cache');
 
@@ -32,15 +32,15 @@ export function process(src, filename) {
   if (!filename.endsWith('.ts') && !filename.endsWith('.tsx')) {
     return src;
   }
-  
+
   // Check cache
   const cacheKey = getCacheKey(filename, src);
   const cachePath = getCachePath(cacheKey);
-  
+
   if (existsSync(cachePath)) {
     return readFileSync(cachePath, 'utf8');
   }
-  
+
   try {
     // Transform with SWC for speed
     const result = transformSync(src, {
@@ -67,10 +67,10 @@ export function process(src, filename) {
       sourceMaps: false, // Disable for speed
       minify: false,
     });
-    
+
     // Cache the result
     writeFileSync(cachePath, result.code);
-    
+
     return result.code;
   } catch (error) {
     console.error(`Transform error in ${filename}:`, error.message);
@@ -78,7 +78,7 @@ export function process(src, filename) {
   }
 }
 
-export function getCacheKeyForFileContent(sourceText, sourcePath, options) {
+export function getCacheKeyForFileContent(sourceText, sourcePath, _options) {
   return getCacheKey(sourcePath, sourceText);
 }
 
@@ -87,7 +87,7 @@ if (process.argv[2] === 'clean') {
   console.log('Cleaning SWC cache...');
   if (existsSync(CACHE_DIR)) {
     const files = readdirSync(CACHE_DIR);
-    files.forEach(file => unlinkSync(join(CACHE_DIR, file)));
+    files.forEach((file) => unlinkSync(join(CACHE_DIR, file)));
     console.log(`Removed ${files.length} cached files`);
   }
 }
