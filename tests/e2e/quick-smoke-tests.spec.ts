@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { login, TestDataFactory } from './improved-helpers';
+import { login, TestDataFactory } from './helpers/unified-auth';
 
 test.describe('Quick Smoke Tests', () => {
   test.beforeEach(async ({ page }) => {
@@ -40,7 +40,7 @@ test.describe('Quick Smoke Tests', () => {
       } catch (error) {
         if (i === 2) throw error;
         console.log(`Retry ${i + 1}: Creating subject failed, retrying...`);
-        await page.waitForTimeout(1000);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
       }
     }
 

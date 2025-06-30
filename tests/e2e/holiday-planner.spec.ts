@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { login, API_BASE } from './helpers';
+import { login, API_BASE } from './helpers/unified-auth';
 
 // Ensure planner skips holidays when auto-filling
 

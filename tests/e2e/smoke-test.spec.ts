@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { loginAsTestUser, DEFAULT_TEST_USER, initApiContext } from './helpers/auth-updated';
+import { loginAsTestUser, DEFAULT_TEST_USER, initApiContext } from './helpers/unified-auth';
 
 // Initialize API context before all tests
 test.beforeAll(async ({ playwright }) => {

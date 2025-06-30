@@ -1,0 +1,318 @@
+# Artillery.io Performance Testing Configuration for Teaching Engine 2.0
+# Comprehensive load testing for educator workflows
+
+config:
+  target: 'http://localhost:3000'
+  phases:
+    # Warm-up phase
+    - duration: 60
+      arrivalRate: 5
+      name: 'Warm-up'
+
+    # Morning rush simulation (7-9 AM)
+    - duration: 300
+      arrivalRate: 10
+      name: 'Morning Rush - Steady Load'
+
+    # Peak planning time (4-7 PM)
+    - duration: 600
+      arrivalRate: 15
+      name: 'Evening Planning - Peak Load'
+
+    # Stress test
+    - duration: 120
+      arrivalRate: 25
+      name: 'Stress Test'
+
+  payload:
+    # Load test user credentials
+    path: './test-data/users.csv'
+    fields:
+      - 'username'
+      - 'password'
+      - 'userId'
+      - 'grade'
+      - 'subject'
+
+  variables:
+    apiUrl: 'http://localhost:3000/api'
+    # Performance SLA targets (milliseconds)
+    slaResponseTime: 2000
+    slaApiResponseTime: 300
+    slaDbQueryTime: 100
+
+  plugins:
+    # Performance metrics collection
+    metrics-by-endpoint:
+      useOnlyRequestNames: true
+
+    # Custom educational workflow metrics
+    expectations:
+      - http.response_time.p95 < {{ slaResponseTime }}
+      - http.response_time.p99 < {{ slaResponseTime * 1.5 }}
+      - http.codes.200 > 95
+      - http.codes.4xx < 5
+      - http.codes.5xx < 1
+
+  http:
+    timeout: 30
+    pool: 50
+
+  processor: './processors/education-workflows.js'
+
+scenarios:
+  # Critical Path 1: Teacher Login and Dashboard Access
+  - name: 'teacher_login_workflow'
+    weight: 25
+    flow:
+      - post:
+          url: '/api/auth/login'
+          json:
+            username: '{{ username }}'
+            password: '{{ password }}'
+          capture:
+            - json: '$.token'
+              as: 'authToken'
+            - json: '$.user.id'
+              as: 'teacherId'
+          think: 2
+
+      - get:
+          url: '/api/dashboard'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          think: 3
+
+      - get:
+          url: '/api/planner/recent'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          think: 1
+
+  # Critical Path 2: Weekly Lesson Planning
+  - name: 'weekly_lesson_planning'
+    weight: 20
+    flow:
+      - function: 'authenticateTeacher'
+
+      - get:
+          url: '/api/curriculum-expectations'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          qs:
+            grade: '{{ grade }}'
+            subject: '{{ subject }}'
+          think: 5
+
+      - post:
+          url: '/api/etfo-lesson-plans'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          json:
+            title: 'Math Lesson - {{ $randomString() }}'
+            subject: '{{ subject }}'
+            grade: '{{ grade }}'
+            duration: 60
+            learningGoals: ['Students will understand addition']
+            successCriteria: ['I can add single digit numbers']
+            mindsOnDescription: 'Number talk warm-up'
+            mindsOnDuration: 10
+            actionDescription: 'Guided practice with manipulatives'
+            actionDuration: 40
+            consolidationDescription: 'Exit ticket reflection'
+            consolidationDuration: 10
+          capture:
+            - json: '$.id'
+              as: 'lessonId'
+          think: 15
+
+      - put:
+          url: '/api/etfo-lesson-plans/{{ lessonId }}'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          json:
+            accommodations: 'Extended time for assessments'
+            resources: ['Manipulatives', 'Whiteboard', 'Exit tickets']
+          think: 5
+
+  # Critical Path 3: Curriculum Expectation Browsing
+  - name: 'curriculum_browsing'
+    weight: 15
+    flow:
+      - function: 'authenticateTeacher'
+
+      - get:
+          url: '/api/curriculum-expectations'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          qs:
+            page: 1
+            limit: 20
+            grade: '{{ grade }}'
+          think: 3
+
+      - get:
+          url: '/api/curriculum-expectations/search'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          qs:
+            query: 'mathematics'
+            grade: '{{ grade }}'
+          think: 2
+
+      - get:
+          url: '/api/curriculum-expectations/coverage'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          qs:
+            grade: '{{ grade }}'
+            subject: '{{ subject }}'
+          think: 4
+
+  # Critical Path 4: Student Management
+  - name: 'student_management'
+    weight: 10
+    flow:
+      - function: 'authenticateTeacher'
+
+      - get:
+          url: '/api/students'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          think: 2
+
+      - post:
+          url: '/api/students'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          json:
+            firstName: '{{ $randomFirstName() }}'
+            lastName: '{{ $randomLastName() }}'
+            grade: '{{ grade }}'
+            accommodations: []
+          capture:
+            - json: '$.id'
+              as: 'studentId'
+          think: 8
+
+      - get:
+          url: '/api/students/{{ studentId }}/progress'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          think: 3
+
+  # Critical Path 5: Newsletter Generation
+  - name: 'newsletter_generation'
+    weight: 10
+    flow:
+      - function: 'authenticateTeacher'
+
+      - get:
+          url: '/api/newsletters/templates'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          think: 2
+
+      - post:
+          url: '/api/newsletters/generate'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          json:
+            weekStartDate: '{{ $randomDateThisWeek() }}'
+            includeUpcomingEvents: true
+            includeLearningGoals: true
+            tone: 'friendly'
+          think: 20
+
+      - get:
+          url: '/api/newsletters/{{ $randomUuid() }}/preview'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          think: 3
+
+  # Critical Path 6: AI-Powered Content Generation
+  - name: 'ai_content_generation'
+    weight: 8
+    flow:
+      - function: 'authenticateTeacher'
+
+      - post:
+          url: '/api/ai-planning/lesson-suggestions'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          json:
+            subject: '{{ subject }}'
+            grade: '{{ grade }}'
+            topic: "{{ $randomFromList(['fractions', 'geometry', 'measurement', 'algebra']) }}"
+            duration: 60
+          think: 25
+
+      - post:
+          url: '/api/ai-planning/assessment-suggestions'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          json:
+            learningGoals:
+              [
+                "Students will understand {{ $randomFromList(['addition', 'subtraction', 'multiplication']) }}",
+              ]
+            assessmentType: 'formative'
+          think: 15
+
+  # Critical Path 7: Substitute Plan Creation
+  - name: 'substitute_plan_creation'
+    weight: 7
+    flow:
+      - function: 'authenticateTeacher'
+
+      - post:
+          url: '/api/sub-plans'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          json:
+            date: '{{ $randomDateNextWeek() }}'
+            lessonIds: ['{{ $randomUuid() }}']
+            emergencyContacts: []
+            classroomManagement: 'Standard procedures apply'
+            specialInstructions: 'No major assessments today'
+          think: 12
+
+      - get:
+          url: '/api/sub-plans/templates'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          think: 2
+
+  # Critical Path 8: Calendar and Planning Integration
+  - name: 'calendar_planning'
+    weight: 5
+    flow:
+      - function: 'authenticateTeacher'
+
+      - get:
+          url: '/api/calendar-events'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          qs:
+            startDate: '{{ $thisWeekStart() }}'
+            endDate: '{{ $thisWeekEnd() }}'
+          think: 3
+
+      - post:
+          url: '/api/calendar-events'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          json:
+            title: "{{ $randomFromList(['Assembly', 'Field Trip', 'PD Day', 'Parent Conference']) }}"
+            startTime: '{{ $randomTimeThisWeek() }}'
+            duration: 60
+            type: 'school_event'
+          think: 5
+
+      - get:
+          url: '/api/planner/conflicts'
+          headers:
+            Authorization: 'Bearer {{ authToken }}'
+          qs:
+            date: '{{ $randomDateThisWeek() }}'
+          think: 2

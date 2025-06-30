@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { login } from './helpers';
+import { login } from './helpers/unified-auth';
 
 test('debug planner component errors', async ({ page }) => {
   // Capture all console messages

@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { login, API_BASE } from './helpers';
+import { login, API_BASE } from './helpers/unified-auth';
 
 /**
  * Test that verifies the planner correctly blocks times based on calendar events.

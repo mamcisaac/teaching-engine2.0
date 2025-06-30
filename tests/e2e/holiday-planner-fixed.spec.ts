@@ -5,7 +5,7 @@ import {
   TestDataFactory,
   retry,
   capturePageState,
-} from './improved-helpers';
+} from './helpers/unified-auth';
 
 test.describe('Holiday Planner', () => {
   test('planner skips holiday dates', async ({ page }) => {

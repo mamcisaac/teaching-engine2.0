@@ -103,7 +103,7 @@ export async function navigateWithRetry(
     } catch (error) {
       lastError = error;
       if (i < maxRetries - 1) {
-        await page.waitForTimeout(2000);
+        await new Promise((resolve) => setTimeout(resolve, 2000));
       }
     }
   }

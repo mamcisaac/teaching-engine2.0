@@ -7,7 +7,7 @@ import {
   verifyAuthenticated,
   logout,
   cleanupTestUsers,
-} from './helpers/auth-updated';
+} from './helpers/unified-auth';
 
 // Initialize API context before all tests
 test.beforeAll(async ({ playwright }) => {

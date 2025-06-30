@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { login, API_BASE } from './helpers';
+import { login, API_BASE } from './helpers/unified-auth';
 
 test('filters notes by subject and type', async ({ page }) => {
   const ts = Date.now();

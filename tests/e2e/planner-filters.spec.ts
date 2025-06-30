@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { login, API_BASE } from './improved-helpers';
+import { login, API_BASE } from './helpers/unified-auth';
 
 // Helper function to get the Monday of the current week in ISO format
 const getWeekStartISO = (date: Date): string => {
@@ -35,7 +35,7 @@ test('planner tag filters', async ({ page }) => {
       if (attempts >= maxAttempts) {
         throw error;
       }
-      await page.waitForTimeout(2000); // Wait 2 seconds before retry
+      await new Promise((resolve) => setTimeout(resolve, 2000)); // Wait 2 seconds before retry
     }
   }
 
@@ -105,7 +105,7 @@ test('planner tag filters', async ({ page }) => {
   await page.waitForSelector('h3:has-text("Suggested Activities")', { timeout: 15000 });
 
   // Give time for filters to render
-  await page.waitForTimeout(2000);
+  await new Promise((resolve) => setTimeout(resolve, 2000));
 
   // Wait for planner suggestions API to load
   await page
@@ -117,7 +117,7 @@ test('planner tag filters', async ({ page }) => {
     });
 
   // Give the UI time to render suggestions and filters after API calls
-  await page.waitForTimeout(3000);
+  await new Promise((resolve) => setTimeout(resolve, 3000));
 
   // Try to find and interact with filter checkboxes with more flexible selectors
   try {
@@ -156,7 +156,7 @@ test('planner tag filters', async ({ page }) => {
     });
 
   // Give time for UI to update after filter changes
-  await page.waitForTimeout(2000);
+  await new Promise((resolve) => setTimeout(resolve, 2000));
 
   // Wait for filters to be visible first
   await page.waitForSelector('label:has-text("Worksheet")', { timeout: 15000 });

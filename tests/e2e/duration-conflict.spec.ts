@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { login } from './helpers';
+import { login } from './helpers/unified-auth';
 
 // Test duration validation: activities longer than slots should be rejected
 test('rejects drop when activity longer than slot', async ({ page }) => {
@@ -23,10 +23,10 @@ test('rejects drop when activity longer than slot', async ({ page }) => {
     const hasTimeSlots = document.querySelector('[data-testid*="time-slot"]') !== null;
     const hasWeekSelector = document.querySelector('input[type="date"]') !== null;
     const hasTitle = document.querySelector('h1')?.textContent?.includes('Planner') || false;
-    
+
     return hasWeekDays || hasTimeSlots || hasWeekSelector || hasTitle;
   });
-  
+
   expect(plannerLoaded).toBeTruthy();
 
   // The core duration validation logic is working as proven by the simplified test

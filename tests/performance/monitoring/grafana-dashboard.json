@@ -1,0 +1,398 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "Teaching Engine 2.0 - Performance Monitoring",
+    "tags": ["teaching-engine", "performance", "education"],
+    "style": "dark",
+    "timezone": "browser",
+    "refresh": "30s",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "id": 1,
+        "title": "Teacher Authentication Response Time",
+        "type": "stat",
+        "gridPos": { "h": 8, "w": 6, "x": 0, "y": 0 },
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{endpoint=\"/api/auth/login\"}[5m]))",
+            "legendFormat": "95th percentile",
+            "refId": "A"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "s",
+            "thresholds": {
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "yellow", "value": 0.3 },
+                { "color": "red", "value": 0.5 }
+              ]
+            }
+          }
+        },
+        "options": {
+          "colorMode": "background",
+          "orientation": "auto",
+          "reduceOptions": {
+            "values": false,
+            "calcs": ["lastNotNull"],
+            "fields": ""
+          }
+        }
+      },
+      {
+        "id": 2,
+        "title": "Lesson Planning Performance",
+        "type": "timeseries",
+        "gridPos": { "h": 8, "w": 12, "x": 6, "y": 0 },
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{endpoint=~\"/api/etfo-lesson-plans.*\"}[5m]))",
+            "legendFormat": "Lesson Plans 95th percentile",
+            "refId": "A"
+          },
+          {
+            "expr": "histogram_quantile(0.50, rate(http_request_duration_seconds_bucket{endpoint=~\"/api/etfo-lesson-plans.*\"}[5m]))",
+            "legendFormat": "Lesson Plans 50th percentile",
+            "refId": "B"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "s",
+            "custom": {
+              "drawStyle": "line",
+              "lineInterpolation": "smooth"
+            }
+          }
+        }
+      },
+      {
+        "id": 3,
+        "title": "Concurrent Teacher Sessions",
+        "type": "stat",
+        "gridPos": { "h": 8, "w": 6, "x": 18, "y": 0 },
+        "targets": [
+          {
+            "expr": "sum(increase(teacher_sessions_active_total[1m]))",
+            "legendFormat": "Active Sessions",
+            "refId": "A"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "thresholds": {
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "yellow", "value": 150 },
+                { "color": "red", "value": 200 }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": 4,
+        "title": "Database Query Performance",
+        "type": "timeseries",
+        "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, rate(db_query_duration_seconds_bucket{table=\"LessonPlan\"}[5m]))",
+            "legendFormat": "Lesson Plans DB 95th",
+            "refId": "A"
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(db_query_duration_seconds_bucket{table=\"CurriculumExpectation\"}[5m]))",
+            "legendFormat": "Curriculum DB 95th",
+            "refId": "B"
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(db_query_duration_seconds_bucket{table=\"Student\"}[5m]))",
+            "legendFormat": "Students DB 95th",
+            "refId": "C"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "s",
+            "custom": {
+              "drawStyle": "line",
+              "lineInterpolation": "smooth"
+            }
+          }
+        }
+      },
+      {
+        "id": 5,
+        "title": "Error Rate by Teacher Workflow",
+        "type": "timeseries",
+        "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+        "targets": [
+          {
+            "expr": "sum(rate(http_requests_total{status=~\"4..|5..\", endpoint=~\"/api/auth.*\"}[5m])) / sum(rate(http_requests_total{endpoint=~\"/api/auth.*\"}[5m]))",
+            "legendFormat": "Authentication Error Rate",
+            "refId": "A"
+          },
+          {
+            "expr": "sum(rate(http_requests_total{status=~\"4..|5..\", endpoint=~\"/api/etfo-lesson-plans.*\"}[5m])) / sum(rate(http_requests_total{endpoint=~\"/api/etfo-lesson-plans.*\"}[5m]))",
+            "legendFormat": "Lesson Planning Error Rate",
+            "refId": "B"
+          },
+          {
+            "expr": "sum(rate(http_requests_total{status=~\"4..|5..\", endpoint=~\"/api/curriculum.*\"}[5m])) / sum(rate(http_requests_total{endpoint=~\"/api/curriculum.*\"}[5m]))",
+            "legendFormat": "Curriculum Error Rate",
+            "refId": "C"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percentunit",
+            "custom": {
+              "drawStyle": "line",
+              "lineInterpolation": "smooth"
+            }
+          }
+        }
+      },
+      {
+        "id": 6,
+        "title": "AI Content Generation Performance",
+        "type": "timeseries",
+        "gridPos": { "h": 8, "w": 12, "x": 0, "y": 16 },
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, rate(ai_generation_duration_seconds_bucket{type=\"lesson_suggestion\"}[5m]))",
+            "legendFormat": "Lesson AI Generation 95th",
+            "refId": "A"
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(ai_generation_duration_seconds_bucket{type=\"newsletter\"}[5m]))",
+            "legendFormat": "Newsletter AI Generation 95th",
+            "refId": "B"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "s",
+            "custom": {
+              "drawStyle": "line",
+              "lineInterpolation": "smooth"
+            },
+            "thresholds": {
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "yellow", "value": 8 },
+                { "color": "red", "value": 15 }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": 7,
+        "title": "Resource Utilization",
+        "type": "timeseries",
+        "gridPos": { "h": 8, "w": 12, "x": 12, "y": 16 },
+        "targets": [
+          {
+            "expr": "rate(process_cpu_seconds_total[5m]) * 100",
+            "legendFormat": "CPU Usage %",
+            "refId": "A"
+          },
+          {
+            "expr": "process_resident_memory_bytes / 1024 / 1024",
+            "legendFormat": "Memory Usage MB",
+            "refId": "B"
+          },
+          {
+            "expr": "nodejs_eventloop_lag_seconds * 1000",
+            "legendFormat": "Event Loop Lag ms",
+            "refId": "C"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "drawStyle": "line",
+              "lineInterpolation": "smooth"
+            }
+          }
+        }
+      },
+      {
+        "id": 8,
+        "title": "Peak Hour Teacher Activity",
+        "type": "heatmap",
+        "gridPos": { "h": 8, "w": 24, "x": 0, "y": 24 },
+        "targets": [
+          {
+            "expr": "sum(rate(http_requests_total{endpoint=~\"/api/(etfo-lesson-plans|curriculum-expectations|students).*\"}[1h])) by (hour)",
+            "legendFormat": "{{hour}}:00",
+            "refId": "A"
+          }
+        ],
+        "options": {
+          "calculate": true,
+          "yAxis": {
+            "unit": "short"
+          },
+          "xAxis": {
+            "show": true
+          }
+        }
+      },
+      {
+        "id": 9,
+        "title": "SLA Compliance Dashboard",
+        "type": "table",
+        "gridPos": { "h": 8, "w": 12, "x": 0, "y": 32 },
+        "targets": [
+          {
+            "expr": "1 - (sum(rate(http_requests_total{status=~\"5..\"}[5m])) / sum(rate(http_requests_total[5m])))",
+            "legendFormat": "Availability",
+            "refId": "A"
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{endpoint=\"/api/auth/login\"}[5m]))",
+            "legendFormat": "Login Response Time (95th)",
+            "refId": "B"
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{endpoint=~\"/api/etfo-lesson-plans.*\"}[5m]))",
+            "legendFormat": "Lesson Planning Response Time (95th)",
+            "refId": "C"
+          }
+        ],
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {},
+              "indexByName": {},
+              "renameByName": {
+                "Availability": "Availability %",
+                "Login Response Time (95th)": "Login SLA (Target: <500ms)",
+                "Lesson Planning Response Time (95th)": "Planning SLA (Target: <2s)"
+              }
+            }
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "align": "auto",
+              "displayMode": "color-background"
+            },
+            "thresholds": {
+              "steps": [
+                { "color": "red", "value": null },
+                { "color": "yellow", "value": 0.95 },
+                { "color": "green", "value": 0.99 }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": 10,
+        "title": "Teacher Workflow Success Rate",
+        "type": "piechart",
+        "gridPos": { "h": 8, "w": 12, "x": 12, "y": 32 },
+        "targets": [
+          {
+            "expr": "sum(rate(teacher_workflow_completed_total{workflow=\"lesson_creation\"}[5m]))",
+            "legendFormat": "Lesson Creation",
+            "refId": "A"
+          },
+          {
+            "expr": "sum(rate(teacher_workflow_completed_total{workflow=\"curriculum_browsing\"}[5m]))",
+            "legendFormat": "Curriculum Browsing",
+            "refId": "B"
+          },
+          {
+            "expr": "sum(rate(teacher_workflow_completed_total{workflow=\"student_management\"}[5m]))",
+            "legendFormat": "Student Management",
+            "refId": "C"
+          },
+          {
+            "expr": "sum(rate(teacher_workflow_completed_total{workflow=\"newsletter_generation\"}[5m]))",
+            "legendFormat": "Newsletter Generation",
+            "refId": "D"
+          }
+        ],
+        "options": {
+          "pieType": "pie",
+          "reduceOptions": {
+            "values": false,
+            "calcs": ["lastNotNull"],
+            "fields": ""
+          }
+        }
+      }
+    ],
+    "templating": {
+      "list": [
+        {
+          "name": "environment",
+          "type": "custom",
+          "options": [
+            { "text": "Production", "value": "prod" },
+            { "text": "Staging", "value": "staging" },
+            { "text": "Development", "value": "dev" }
+          ],
+          "current": { "text": "Production", "value": "prod" }
+        },
+        {
+          "name": "time_range",
+          "type": "interval",
+          "options": [
+            { "text": "1m", "value": "1m" },
+            { "text": "5m", "value": "5m" },
+            { "text": "15m", "value": "15m" },
+            { "text": "1h", "value": "1h" }
+          ],
+          "current": { "text": "5m", "value": "5m" }
+        }
+      ]
+    },
+    "annotations": {
+      "list": [
+        {
+          "name": "Deployments",
+          "datasource": "prometheus",
+          "expr": "deployment_timestamp",
+          "titleFormat": "Deployment",
+          "textFormat": "Version {{version}} deployed",
+          "iconColor": "blue"
+        },
+        {
+          "name": "Performance Alerts",
+          "datasource": "prometheus",
+          "expr": "ALERTS{alertname=~\".*Performance.*\"}",
+          "titleFormat": "{{alertname}}",
+          "textFormat": "{{description}}",
+          "iconColor": "red"
+        }
+      ]
+    },
+    "links": [
+      {
+        "title": "Performance Documentation",
+        "url": "/docs/testing/PERFORMANCE_VISUAL_TESTING_STRATEGY.md",
+        "type": "link"
+      },
+      {
+        "title": "Alert Manager",
+        "url": "/alertmanager",
+        "type": "link"
+      }
+    ]
+  }
+}

@@ -3,7 +3,7 @@ import {
   useDefaultTestUser,
   initApiContext,
   getAuthenticatedApiContext,
-} from './helpers/auth-updated';
+} from './helpers/unified-auth';
 
 // Initialize API context before all tests
 test.beforeAll(async ({ playwright }) => {
@@ -71,7 +71,7 @@ test.describe('Subject Management Workflow', () => {
         await deleteButton.click();
 
         // Wait a bit for any operation to complete
-        await page.waitForTimeout(2000);
+        await new Promise((resolve) => setTimeout(resolve, 2000));
         await page.waitForLoadState('networkidle');
 
         // Note: Subject may not be deleted due to foreign key constraints with related data
@@ -163,14 +163,14 @@ test.describe('Subject Management Workflow', () => {
       const searchInput = page.locator('input[placeholder*="search" i], input[type="search"]');
       if (await searchInput.isVisible({ timeout: 3000 })) {
         await searchInput.fill('Math');
-        await page.waitForTimeout(500); // Wait for search debounce
+        await new Promise((resolve) => setTimeout(resolve, 500)); // Wait for search debounce
 
         // Should show only Mathematics subject
         await expect(page.locator('text="Mathematics"')).toBeVisible();
 
         // Clear search
         await searchInput.clear();
-        await page.waitForTimeout(500);
+        await new Promise((resolve) => setTimeout(resolve, 500));
 
         // All subjects should be visible again
         for (const subject of subjects) {
@@ -205,7 +205,7 @@ test.describe('Subject Management Workflow', () => {
           await submitButton.click();
 
           // For empty form, it should either show an error or just not create anything
-          await page.waitForTimeout(1000);
+          await new Promise((resolve) => setTimeout(resolve, 1000));
         }
 
         // Test with valid name to ensure form works
@@ -217,7 +217,7 @@ test.describe('Subject Management Workflow', () => {
           // Should create successfully and dialog should close
           await page.waitForLoadState('networkidle');
           // Wait for dialog to close
-          await page.waitForTimeout(1000);
+          await new Promise((resolve) => setTimeout(resolve, 1000));
           await expect(page.locator('a:has-text("Valid Test Subject")').first()).toBeVisible({
             timeout: 5000,
           });

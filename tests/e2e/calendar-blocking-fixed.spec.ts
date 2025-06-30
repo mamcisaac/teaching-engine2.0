@@ -6,7 +6,7 @@ import {
   retry,
   waitForResponse,
   capturePageState,
-} from './improved-helpers';
+} from './helpers/unified-auth';
 
 test.describe('Calendar Blocking', () => {
   test('planner blocks times from calendar events', async ({ page }) => {

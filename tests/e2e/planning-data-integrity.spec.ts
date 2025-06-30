@@ -17,7 +17,7 @@ class DataIntegrityValidator {
     // Validate foreign key relationships
     const response = await this.page.request.get('/api/health/database-integrity');
     expect(response.status()).toBe(200);
-    
+
     const data = await response.json();
     expect(data.foreignKeyViolations).toBe(0);
     expect(data.orphanedRecords).toBe(0);
@@ -32,22 +32,32 @@ class DataIntegrityValidator {
     }
 
     if (testData.unitPlanId && testData.lessonPlanId) {
-      const lessonPlan = await this.page.request.get(`/api/etfo-lesson-plans/${testData.lessonPlanId}`);
+      const lessonPlan = await this.page.request.get(
+        `/api/etfo-lesson-plans/${testData.lessonPlanId}`,
+      );
       const lessonData = await lessonPlan.json();
       expect(lessonData.unitPlanId).toBe(testData.unitPlanId);
     }
 
     if (testData.lessonPlanId && testData.daybookEntryId) {
-      const daybookEntry = await this.page.request.get(`/api/daybook-entries/${testData.daybookEntryId}`);
+      const daybookEntry = await this.page.request.get(
+        `/api/daybook-entries/${testData.daybookEntryId}`,
+      );
       const daybookData = await daybookEntry.json();
       expect(daybookData.lessonPlanId).toBe(testData.lessonPlanId);
     }
   }
 
-  async validateExpectationLinking(expectationId: string, planId: string, planType: 'long-range' | 'unit' | 'lesson' | 'daybook') {
-    const response = await this.page.request.get(`/api/curriculum-expectations/${expectationId}/linked-plans`);
+  async validateExpectationLinking(
+    expectationId: string,
+    planId: string,
+    planType: 'long-range' | 'unit' | 'lesson' | 'daybook',
+  ) {
+    const response = await this.page.request.get(
+      `/api/curriculum-expectations/${expectationId}/linked-plans`,
+    );
     const linkData = await response.json();
-    
+
     const linkedPlans = linkData[`${planType}Plans`] || [];
     const isLinked = linkedPlans.some((plan: any) => plan.id === planId);
     expect(isLinked).toBe(true);
@@ -57,15 +67,17 @@ class DataIntegrityValidator {
     if (testData.unitPlanId) {
       const unitResponse = await this.page.request.get(`/api/unit-plans/${testData.unitPlanId}`);
       const unitData = await unitResponse.json();
-      
+
       if (testData.lessonPlanId) {
-        const lessonResponse = await this.page.request.get(`/api/etfo-lesson-plans/${testData.lessonPlanId}`);
+        const lessonResponse = await this.page.request.get(
+          `/api/etfo-lesson-plans/${testData.lessonPlanId}`,
+        );
         const lessonData = await lessonResponse.json();
-        
+
         const unitStart = new Date(unitData.startDate);
         const unitEnd = new Date(unitData.endDate);
         const lessonDate = new Date(lessonData.date);
-        
+
         expect(lessonDate >= unitStart && lessonDate <= unitEnd).toBe(true);
       }
     }
@@ -75,17 +87,17 @@ class DataIntegrityValidator {
     // Simulate concurrent modifications to test for race conditions
     const promises = [
       this.page.request.put(`/api/${planType}-plans/${planId}`, {
-        data: { title: 'Concurrent Update 1' }
+        data: { title: 'Concurrent Update 1' },
       }),
       this.page.request.put(`/api/${planType}-plans/${planId}`, {
-        data: { title: 'Concurrent Update 2' }
-      })
+        data: { title: 'Concurrent Update 2' },
+      }),
     ];
 
     const results = await Promise.allSettled(promises);
-    
+
     // At least one should succeed
-    const successes = results.filter(r => r.status === 'fulfilled');
+    const successes = results.filter((r) => r.status === 'fulfilled');
     expect(successes.length).toBeGreaterThan(0);
   }
 
@@ -93,7 +105,7 @@ class DataIntegrityValidator {
     if (testData.longRangePlanId) {
       // Delete long-range plan and verify cascade
       await this.page.request.delete(`/api/long-range-plans/${testData.longRangePlanId}`);
-      
+
       // Check that related unit plans are handled correctly
       if (testData.unitPlanId) {
         const response = await this.page.request.get(`/api/unit-plans/${testData.unitPlanId}`);
@@ -109,11 +121,11 @@ class DataCorruptionSimulator {
   async simulateNetworkInterruption(operation: () => Promise<any>) {
     // Start operation
     const operationPromise = operation();
-    
+
     // Simulate network interruption after short delay
     setTimeout(async () => {
       await this.page.setOffline(true);
-      await this.page.waitForTimeout(1000);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       await this.page.setOffline(false);
     }, 500);
 
@@ -127,7 +139,7 @@ class DataCorruptionSimulator {
         title: '', // Invalid empty title
         startDate: 'invalid-date', // Invalid date format
         // Missing required fields
-      }
+      },
     });
 
     expect(response.status()).toBe(400); // Should reject invalid data
@@ -135,11 +147,13 @@ class DataCorruptionSimulator {
 
   async simulateDuplicateOperations(operation: () => Promise<any>) {
     // Send duplicate requests rapidly
-    const promises = Array(5).fill(null).map(() => operation());
+    const promises = Array(5)
+      .fill(null)
+      .map(() => operation());
     const results = await Promise.allSettled(promises);
-    
+
     // Should handle duplicates gracefully
-    const successes = results.filter(r => r.status === 'fulfilled');
+    const successes = results.filter((r) => r.status === 'fulfilled');
     expect(successes.length).toBeGreaterThan(0);
     expect(successes.length).toBeLessThanOrEqual(1); // Should prevent true duplicates
   }
@@ -154,7 +168,7 @@ test.describe('Planning Data Integrity Tests', () => {
     validator = new DataIntegrityValidator(page);
     corruptionSim = new DataCorruptionSimulator(page);
     await loginAsTestUser(page);
-    
+
     // Create test user if not exists
     const userResponse = await page.request.get('/api/auth/me');
     const userData = await userResponse.json();
@@ -176,8 +190,8 @@ test.describe('Planning Data Integrity Tests', () => {
             title: 'Integrity Test Long Range Plan',
             academicYear: '2024-2025',
             grade: 1,
-            subject: 'Mathematics'
-          }
+            subject: 'Mathematics',
+          },
         });
         const lrData = await lrResponse.json();
         testData.longRangePlanId = lrData.id;
@@ -188,8 +202,8 @@ test.describe('Planning Data Integrity Tests', () => {
             title: 'Integrity Test Unit Plan',
             longRangePlanId: testData.longRangePlanId,
             startDate: '2024-02-01',
-            endDate: '2024-02-28'
-          }
+            endDate: '2024-02-28',
+          },
         });
         const unitData = await unitResponse.json();
         testData.unitPlanId = unitData.id;
@@ -200,8 +214,8 @@ test.describe('Planning Data Integrity Tests', () => {
             title: 'Integrity Test Lesson',
             unitPlanId: testData.unitPlanId,
             date: '2024-02-15',
-            duration: 60
-          }
+            duration: 60,
+          },
         });
         const lessonData = await lessonResponse.json();
         testData.lessonPlanId = lessonData.id;
@@ -223,8 +237,8 @@ test.describe('Planning Data Integrity Tests', () => {
           title: 'Orphan Test Plan',
           academicYear: '2024-2025',
           grade: 1,
-          subject: 'Mathematics'
-        }
+          subject: 'Mathematics',
+        },
       });
       const lrData = await lrResponse.json();
       testData.longRangePlanId = lrData.id;
@@ -234,15 +248,17 @@ test.describe('Planning Data Integrity Tests', () => {
           title: 'Orphan Test Unit',
           longRangePlanId: testData.longRangePlanId,
           startDate: '2024-02-01',
-          endDate: '2024-02-28'
-        }
+          endDate: '2024-02-28',
+        },
       });
       const unitData = await unitResponse.json();
       testData.unitPlanId = unitData.id;
 
       // Try to delete parent while child exists
-      const deleteResponse = await page.request.delete(`/api/long-range-plans/${testData.longRangePlanId}`);
-      
+      const deleteResponse = await page.request.delete(
+        `/api/long-range-plans/${testData.longRangePlanId}`,
+      );
+
       // Should either cascade delete or prevent deletion
       if (deleteResponse.status() === 200) {
         // If cascade delete allowed, verify child is also deleted
@@ -264,8 +280,8 @@ test.describe('Planning Data Integrity Tests', () => {
             description: 'Test expectation for integrity',
             strand: 'Test Strand',
             grade: 1,
-            subject: 'Mathematics'
-          }
+            subject: 'Mathematics',
+          },
         });
         const expectationData = await expectationResponse.json();
         testData.curriculumExpectationIds = [expectationData.id];
@@ -278,8 +294,8 @@ test.describe('Planning Data Integrity Tests', () => {
             title: 'Expectation Test Unit',
             startDate: '2024-02-01',
             endDate: '2024-02-28',
-            expectationIds: testData.curriculumExpectationIds
-          }
+            expectationIds: testData.curriculumExpectationIds,
+          },
         });
         const unitData = await unitResponse.json();
         testData.unitPlanId = unitData.id;
@@ -292,12 +308,16 @@ test.describe('Planning Data Integrity Tests', () => {
 
       await test.step('Test expectation deletion constraints', async () => {
         const expectationId = testData.curriculumExpectationIds![0];
-        const deleteResponse = await page.request.delete(`/api/curriculum-expectations/${expectationId}`);
-        
+        const deleteResponse = await page.request.delete(
+          `/api/curriculum-expectations/${expectationId}`,
+        );
+
         // Should either cascade or prevent deletion
         if (deleteResponse.status() === 409) {
           // Deletion prevented - verify expectation still exists
-          const expectationResponse = await page.request.get(`/api/curriculum-expectations/${expectationId}`);
+          const expectationResponse = await page.request.get(
+            `/api/curriculum-expectations/${expectationId}`,
+          );
           expect(expectationResponse.status()).toBe(200);
         }
       });
@@ -313,8 +333,8 @@ test.describe('Planning Data Integrity Tests', () => {
             description: `Coverage test expectation ${i}`,
             strand: 'Coverage',
             grade: 1,
-            subject: 'Mathematics'
-          }
+            subject: 'Mathematics',
+          },
         });
         const data = await response.json();
         expectations.push(data.id);
@@ -326,14 +346,14 @@ test.describe('Planning Data Integrity Tests', () => {
           title: 'Coverage Test Unit',
           startDate: '2024-02-01',
           endDate: '2024-02-28',
-          expectationIds: expectations.slice(0, 2) // Cover only first 2
-        }
+          expectationIds: expectations.slice(0, 2), // Cover only first 2
+        },
       });
 
       // Check coverage calculation
       const coverageResponse = await page.request.get('/api/curriculum-expectations/coverage');
       const coverageData = await coverageResponse.json();
-      
+
       expect(coverageData.totalExpectations).toBeGreaterThanOrEqual(3);
       expect(coverageData.coveredExpectations).toBeGreaterThanOrEqual(2);
       expect(coverageData.coveragePercentage).toBeGreaterThan(0);
@@ -347,8 +367,8 @@ test.describe('Planning Data Integrity Tests', () => {
           data: {
             title: 'Date Constraint Test',
             startDate: '2024-02-01',
-            endDate: '2024-02-28'
-          }
+            endDate: '2024-02-28',
+          },
         });
         const unitData = await unitResponse.json();
         testData.unitPlanId = unitData.id;
@@ -360,8 +380,8 @@ test.describe('Planning Data Integrity Tests', () => {
             title: 'Invalid Date Lesson',
             unitPlanId: testData.unitPlanId,
             date: '2024-03-15', // Outside unit date range
-            duration: 60
-          }
+            duration: 60,
+          },
         });
 
         // Should either reject or allow with warning
@@ -377,10 +397,10 @@ test.describe('Planning Data Integrity Tests', () => {
             title: 'Valid Date Lesson',
             unitPlanId: testData.unitPlanId,
             date: '2024-02-15',
-            duration: 60
-          }
+            duration: 60,
+          },
         });
-        
+
         expect(lessonResponse.status()).toBe(201);
         const lessonData = await lessonResponse.json();
         testData.lessonPlanId = lessonData.id;
@@ -397,8 +417,8 @@ test.describe('Planning Data Integrity Tests', () => {
         data: {
           title: 'Timezone Test Unit',
           startDate: '2024-02-01T00:00:00.000Z',
-          endDate: '2024-02-28T23:59:59.999Z'
-        }
+          endDate: '2024-02-28T23:59:59.999Z',
+        },
       });
 
       const unitData = await unitResponse.json();
@@ -414,8 +434,8 @@ test.describe('Planning Data Integrity Tests', () => {
           data: {
             title: 'Concurrent Test Unit',
             startDate: '2024-02-01',
-            endDate: '2024-02-28'
-          }
+            endDate: '2024-02-28',
+          },
         });
         const unitData = await unitResponse.json();
         testData.unitPlanId = unitData.id;
@@ -432,8 +452,8 @@ test.describe('Planning Data Integrity Tests', () => {
           data: {
             title: 'Duplicate Test Unit',
             startDate: '2024-02-01',
-            endDate: '2024-02-28'
-          }
+            endDate: '2024-02-28',
+          },
         });
       };
 
@@ -446,27 +466,27 @@ test.describe('Planning Data Integrity Tests', () => {
       const invalidDataTests = [
         {
           name: 'Empty title',
-          data: { title: '', startDate: '2024-02-01', endDate: '2024-02-28' }
+          data: { title: '', startDate: '2024-02-01', endDate: '2024-02-28' },
         },
         {
           name: 'Invalid date format',
-          data: { title: 'Test', startDate: 'invalid-date', endDate: '2024-02-28' }
+          data: { title: 'Test', startDate: 'invalid-date', endDate: '2024-02-28' },
         },
         {
           name: 'End date before start date',
-          data: { title: 'Test', startDate: '2024-02-28', endDate: '2024-02-01' }
+          data: { title: 'Test', startDate: '2024-02-28', endDate: '2024-02-01' },
         },
         {
           name: 'Missing required fields',
-          data: { title: 'Test' } // Missing dates
-        }
+          data: { title: 'Test' }, // Missing dates
+        },
       ];
 
       for (const testCase of invalidDataTests) {
         const response = await page.request.post('/api/unit-plans', {
-          data: testCase.data
+          data: testCase.data,
         });
-        
+
         expect(response.status()).toBe(400);
         const errorData = await response.json();
         expect(errorData.error).toBeDefined();
@@ -479,8 +499,8 @@ test.describe('Planning Data Integrity Tests', () => {
           data: {
             title: 'Network Test Unit',
             startDate: '2024-02-01',
-            endDate: '2024-02-28'
-          }
+            endDate: '2024-02-28',
+          },
         });
       };
 
@@ -499,11 +519,11 @@ test.describe('Planning Data Integrity Tests', () => {
         title: 'Transformation Test Unit',
         description: 'Original description with special chars: àáâãäå',
         startDate: '2024-02-01',
-        endDate: '2024-02-28'
+        endDate: '2024-02-28',
       };
 
       const createResponse = await page.request.post('/api/unit-plans', {
-        data: originalData
+        data: originalData,
       });
 
       const createdData = await createResponse.json();
@@ -512,10 +532,10 @@ test.describe('Planning Data Integrity Tests', () => {
       // Verify data integrity after round trip
       expect(createdData.title).toBe(originalData.title);
       expect(createdData.description).toBe(originalData.description);
-      
+
       const retrieveResponse = await page.request.get(`/api/unit-plans/${testData.unitPlanId}`);
       const retrievedData = await retrieveResponse.json();
-      
+
       expect(retrievedData.title).toBe(originalData.title);
       expect(retrievedData.description).toBe(originalData.description);
     });
@@ -530,8 +550,8 @@ test.describe('Planning Data Integrity Tests', () => {
             title: 'Cascade Test Long Range',
             academicYear: '2024-2025',
             grade: 1,
-            subject: 'Mathematics'
-          }
+            subject: 'Mathematics',
+          },
         });
         const lrData = await lrResponse.json();
         testData.longRangePlanId = lrData.id;
@@ -541,8 +561,8 @@ test.describe('Planning Data Integrity Tests', () => {
             title: 'Cascade Test Unit',
             longRangePlanId: testData.longRangePlanId,
             startDate: '2024-02-01',
-            endDate: '2024-02-28'
-          }
+            endDate: '2024-02-28',
+          },
         });
         const unitData = await unitResponse.json();
         testData.unitPlanId = unitData.id;
@@ -552,8 +572,8 @@ test.describe('Planning Data Integrity Tests', () => {
             title: 'Cascade Test Lesson',
             unitPlanId: testData.unitPlanId,
             date: '2024-02-15',
-            duration: 60
-          }
+            duration: 60,
+          },
         });
         const lessonData = await lessonResponse.json();
         testData.lessonPlanId = lessonData.id;
@@ -571,19 +591,19 @@ test.describe('Planning Data Integrity Tests', () => {
           title: 'Temporary Unit for Cleanup Test',
           startDate: '2024-02-01',
           endDate: '2024-02-28',
-          isDraft: true
-        }
+          isDraft: true,
+        },
       });
 
       const tempData = await tempResponse.json();
-      
+
       // Simulate cleanup operation
       const cleanupResponse = await page.request.post('/api/maintenance/cleanup-drafts', {
-        data: { olderThan: '1970-01-01' } // Clean everything
+        data: { olderThan: '1970-01-01' }, // Clean everything
       });
 
       expect(cleanupResponse.status()).toBe(200);
-      
+
       // Verify temporary data is cleaned up
       const checkResponse = await page.request.get(`/api/unit-plans/${tempData.id}`);
       if (tempData.isDraft) {
@@ -599,11 +619,11 @@ test.describe('Planning Data Integrity Tests', () => {
         defaultView: 'month',
         showWeekends: true,
         autoSave: true,
-        autoSaveInterval: 30
+        autoSaveInterval: 30,
       };
 
       const saveResponse = await page.request.put('/api/planner/state', {
-        data: stateData
+        data: stateData,
       });
 
       expect(saveResponse.status()).toBe(200);
@@ -623,11 +643,11 @@ test.describe('Planning Data Integrity Tests', () => {
       const corruptedData = {
         defaultView: 'invalid-view',
         timeSlotDuration: -1,
-        autoSaveInterval: 'not-a-number'
+        autoSaveInterval: 'not-a-number',
       };
 
       const response = await page.request.put('/api/planner/state', {
-        data: corruptedData
+        data: corruptedData,
       });
 
       expect(response.status()).toBe(400); // Should reject invalid data
@@ -645,7 +665,7 @@ test.describe('Utility Functions', () => {
     // Test database health check endpoint
     const healthResponse = await page.request.get('/api/health/database');
     expect(healthResponse.status()).toBe(200);
-    
+
     const healthData = await healthResponse.json();
     expect(healthData.connected).toBe(true);
     expect(healthData.migrations).toBeDefined();
@@ -655,7 +675,7 @@ test.describe('Utility Functions', () => {
     // Test data consistency check
     const consistencyResponse = await page.request.get('/api/maintenance/consistency-check');
     expect(consistencyResponse.status()).toBe(200);
-    
+
     const report = await consistencyResponse.json();
     expect(report.orphanedRecords).toBeDefined();
     expect(report.inconsistentDates).toBeDefined();

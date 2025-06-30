@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { login, API_BASE } from './helpers';
+import { login, API_BASE } from './helpers/unified-auth';
 import http from 'http';
 import fs from 'fs';
 import path from 'path';

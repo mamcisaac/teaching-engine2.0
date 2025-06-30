@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
-import { login as reliableLogin } from './helpers';
-import { initApiContext } from './helpers/auth-updated';
+import { login as reliableLogin } from './helpers/unified-auth';
+import { initApiContext } from './helpers/unified-auth';
 
 // Initialize API context before all tests
 test.beforeAll(async ({ playwright }) => {
