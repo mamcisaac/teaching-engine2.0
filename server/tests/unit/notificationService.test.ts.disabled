@@ -1,0 +1,756 @@
+import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
+import { NotificationService } from '../../src/services/notificationService';
+
+// Mock dependencies
+const mockEmailService = {
+  sendEmail: jest.fn(),
+};
+
+jest.mock('../../src/services/emailService', () => ({
+  emailService: mockEmailService,
+}));
+
+const mockPrisma = {
+  user: {
+    findUnique: jest.fn(),
+  },
+};
+
+jest.mock('../../src/prisma', () => ({
+  prisma: mockPrisma,
+}));
+
+describe('NotificationService', () => {
+  let service: NotificationService;
+
+  beforeEach(() => {
+    // Reset mocks
+    jest.clearAllMocks();
+    
+    service = new NotificationService();
+    
+    // Mock user data
+    mockPrisma.user.findUnique.mockResolvedValue({
+      id: 123,
+      email: 'test@example.com',
+      name: 'Test User',
+    });
+  });
+
+  afterEach(() => {
+    // Clean up the service
+    service.destroy();
+  });
+
+  describe('sendNotification', () => {
+    it('should send notification successfully', async () => {
+      const notification = {
+        type: 'info' as const,
+        title: 'Test Notification',
+        message: 'This is a test notification',
+        priority: 'medium' as const,
+        channels: ['in_app' as const],
+      };
+
+      const notificationId = await service.sendNotification(123, notification);
+
+      expect(notificationId).toMatch(/^notif_/);
+      
+      // Check that notification was stored
+      const userNotifications = await service.getUserNotifications(123);
+      expect(userNotifications.notifications).toHaveLength(1);
+      expect(userNotifications.notifications[0].title).toBe('Test Notification');
+    });
+
+    it('should send email notification when enabled', async () => {
+      const notification = {
+        type: 'warning' as const,
+        title: 'Important Warning',
+        message: 'This requires your attention',
+        priority: 'high' as const,
+        channels: ['in_app' as const, 'email' as const],
+      };
+
+      mockEmailService.sendEmail.mockResolvedValue(undefined);
+
+      const notificationId = await service.sendNotification(123, notification);
+
+      expect(notificationId).toBeDefined();
+      expect(mockEmailService.sendEmail).toHaveBeenCalledWith(
+        'test@example.com',
+        '[Teaching Engine] Important Warning',
+        expect.stringContaining('Important Warning')
+      );
+    });
+
+    it('should skip email during quiet hours', async () => {
+      // Mock current time to be during quiet hours (11 PM)
+      const mockDate = new Date();
+      mockDate.setHours(23, 0, 0, 0);
+      jest.spyOn(global.Date, 'now').mockReturnValue(mockDate.getTime());
+      jest.spyOn(global, 'Date').mockImplementation(() => mockDate);
+
+      const notification = {
+        type: 'info' as const,
+        title: 'Night Notification',
+        message: 'This should not send email during quiet hours',
+        priority: 'low' as const,
+        channels: ['in_app' as const, 'email' as const],
+      };
+
+      await service.sendNotification(123, notification);
+
+      expect(mockEmailService.sendEmail).not.toHaveBeenCalled();
+    });
+
+    it('should handle missing user email gracefully', async () => {
+      mockPrisma.user.findUnique.mockResolvedValue({
+        id: 123,
+        email: null,
+        name: 'Test User',
+      });
+
+      const notification = {
+        type: 'info' as const,
+        title: 'Test Notification',
+        message: 'This should work without email',
+        priority: 'medium' as const,
+        channels: ['in_app' as const, 'email' as const],
+      };
+
+      const notificationId = await service.sendNotification(123, notification);
+
+      expect(notificationId).toBeDefined();
+      expect(mockEmailService.sendEmail).not.toHaveBeenCalled();
+    });
+
+    it('should handle email service failures gracefully', async () => {
+      mockEmailService.sendEmail.mockRejectedValue(new Error('Email service failed'));
+
+      const notification = {
+        type: 'error' as const,
+        title: 'Error Notification',
+        message: 'Something went wrong',
+        priority: 'urgent' as const,
+        channels: ['in_app' as const, 'email' as const],
+      };
+
+      const notificationId = await service.sendNotification(123, notification);
+
+      expect(notificationId).toBeDefined();
+      // Should still create in-app notification even if email fails
+      const userNotifications = await service.getUserNotifications(123);
+      expect(userNotifications.notifications).toHaveLength(1);
+    });
+
+    it('should respect user preferences for email notifications', async () => {
+      // Disable email notifications
+      await service.updatePreferences(123, { emailEnabled: false });
+
+      const notification = {
+        type: 'info' as const,
+        title: 'Test Notification',
+        message: 'This should not send email',
+        priority: 'medium' as const,
+        channels: ['in_app' as const, 'email' as const],
+      };
+
+      await service.sendNotification(123, notification);
+
+      expect(mockEmailService.sendEmail).not.toHaveBeenCalled();
+    });
+
+    it('should validate required fields', async () => {
+      const invalidNotification = {
+        type: 'info' as const,
+        title: '',
+        message: 'Missing title',
+        priority: 'medium' as const,
+        channels: ['in_app' as const],
+      };
+
+      await expect(service.sendNotification(123, invalidNotification)).rejects.toThrow();
+    });
+
+    it('should handle notifications with expiration', async () => {
+      const expiration = new Date(Date.now() + 60000); // 1 minute from now
+      const notification = {
+        type: 'info' as const,
+        title: 'Expiring Notification',
+        message: 'This will expire soon',
+        priority: 'low' as const,
+        channels: ['in_app' as const],
+        expiresAt: expiration,
+      };
+
+      const notificationId = await service.sendNotification(123, notification);
+
+      const userNotifications = await service.getUserNotifications(123);
+      expect(userNotifications.notifications[0].expiresAt).toEqual(expiration);
+    });
+  });
+
+  describe('sendTemplatedNotification', () => {
+    it('should send notification using template', async () => {
+      const variables = {
+        milestoneName: 'Unit 1 Assessment',
+        dueDate: '2024-02-15',
+        daysLeft: '3',
+      };
+
+      const notificationId = await service.sendTemplatedNotification(
+        123,
+        'milestone_deadline',
+        variables
+      );
+
+      expect(notificationId).toBeDefined();
+
+      const userNotifications = await service.getUserNotifications(123);
+      const notification = userNotifications.notifications[0];
+      
+      expect(notification.title).toBe('Milestone Deadline Approaching');
+      expect(notification.message).toContain('Unit 1 Assessment');
+      expect(notification.message).toContain('2024-02-15');
+      expect(notification.message).toContain('3 days');
+    });
+
+    it('should handle non-existent templates', async () => {
+      await expect(
+        service.sendTemplatedNotification(123, 'non_existent_template', {})
+      ).rejects.toThrow('Template non_existent_template not found');
+    });
+
+    it('should replace multiple variables in template', async () => {
+      const variables = {
+        activityName: 'Addition Practice',
+      };
+
+      const notificationId = await service.sendTemplatedNotification(
+        123,
+        'activity_completed',
+        variables
+      );
+
+      const userNotifications = await service.getUserNotifications(123);
+      const notification = userNotifications.notifications[0];
+      
+      expect(notification.message).toContain('Addition Practice');
+    });
+
+    it('should use template default channels', async () => {
+      const variables = {
+        milestoneName: 'Test Milestone',
+        dueDate: '2024-02-15',
+        daysLeft: '5',
+      };
+
+      mockEmailService.sendEmail.mockResolvedValue(undefined);
+
+      await service.sendTemplatedNotification(123, 'milestone_deadline', variables);
+
+      // milestone_deadline template has ['in_app', 'email'] as default channels
+      expect(mockEmailService.sendEmail).toHaveBeenCalled();
+    });
+
+    it('should override template channels with options', async () => {
+      const variables = {
+        milestoneName: 'Test Milestone',
+        dueDate: '2024-02-15',
+        daysLeft: '5',
+      };
+
+      await service.sendTemplatedNotification(
+        123,
+        'milestone_deadline',
+        variables,
+        { channels: ['in_app'] } // Override to only in-app
+      );
+
+      expect(mockEmailService.sendEmail).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('getUserNotifications', () => {
+    beforeEach(async () => {
+      // Add some test notifications
+      await service.sendNotification(123, {
+        type: 'info',
+        title: 'Notification 1',
+        message: 'First notification',
+        priority: 'low',
+        channels: ['in_app'],
+      });
+
+      await service.sendNotification(123, {
+        type: 'warning',
+        title: 'Notification 2',
+        message: 'Second notification',
+        priority: 'high',
+        channels: ['in_app'],
+      });
+    });
+
+    it('should get user notifications with pagination', async () => {
+      const result = await service.getUserNotifications(123, { limit: 1 });
+
+      expect(result.notifications).toHaveLength(1);
+      expect(result.total).toBe(2);
+      expect(result.unreadCount).toBe(2);
+    });
+
+    it('should return notifications in reverse chronological order', async () => {
+      const result = await service.getUserNotifications(123);
+
+      expect(result.notifications).toHaveLength(2);
+      expect(result.notifications[0].title).toBe('Notification 2'); // Most recent first
+      expect(result.notifications[1].title).toBe('Notification 1');
+    });
+
+    it('should filter unread notifications only', async () => {
+      // Mark one notification as read
+      const allNotifications = await service.getUserNotifications(123);
+      await service.markAsRead(allNotifications.notifications[0].id, 123);
+
+      const unreadResult = await service.getUserNotifications(123, { unreadOnly: true });
+
+      expect(unreadResult.notifications).toHaveLength(1);
+      expect(unreadResult.unreadCount).toBe(1);
+    });
+
+    it('should handle offset pagination', async () => {
+      const result = await service.getUserNotifications(123, { offset: 1, limit: 1 });
+
+      expect(result.notifications).toHaveLength(1);
+      expect(result.notifications[0].title).toBe('Notification 1');
+    });
+  });
+
+  describe('markAsRead and markAllAsRead', () => {
+    let notificationId: string;
+
+    beforeEach(async () => {
+      notificationId = await service.sendNotification(123, {
+        type: 'info',
+        title: 'Test Notification',
+        message: 'Mark me as read',
+        priority: 'medium',
+        channels: ['in_app'],
+      });
+    });
+
+    it('should mark single notification as read', async () => {
+      const success = await service.markAsRead(notificationId, 123);
+
+      expect(success).toBe(true);
+
+      const result = await service.getUserNotifications(123);
+      expect(result.unreadCount).toBe(0);
+    });
+
+    it('should reject marking notification for wrong user', async () => {
+      const success = await service.markAsRead(notificationId, 456);
+
+      expect(success).toBe(false);
+    });
+
+    it('should handle non-existent notifications', async () => {
+      const success = await service.markAsRead('non-existent', 123);
+
+      expect(success).toBe(false);
+    });
+
+    it('should mark all notifications as read', async () => {
+      // Add another notification
+      await service.sendNotification(123, {
+        type: 'warning',
+        title: 'Another Notification',
+        message: 'Also mark me as read',
+        priority: 'high',
+        channels: ['in_app'],
+      });
+
+      const markedCount = await service.markAllAsRead(123);
+
+      expect(markedCount).toBe(2);
+
+      const result = await service.getUserNotifications(123);
+      expect(result.unreadCount).toBe(0);
+    });
+  });
+
+  describe('deleteNotification', () => {
+    let notificationId: string;
+
+    beforeEach(async () => {
+      notificationId = await service.sendNotification(123, {
+        type: 'info',
+        title: 'Delete Me',
+        message: 'This notification will be deleted',
+        priority: 'low',
+        channels: ['in_app'],
+      });
+    });
+
+    it('should delete notification', async () => {
+      const success = await service.deleteNotification(notificationId, 123);
+
+      expect(success).toBe(true);
+
+      const result = await service.getUserNotifications(123);
+      expect(result.notifications).toHaveLength(0);
+    });
+
+    it('should reject deleting notification for wrong user', async () => {
+      const success = await service.deleteNotification(notificationId, 456);
+
+      expect(success).toBe(false);
+    });
+
+    it('should handle non-existent notifications', async () => {
+      const success = await service.deleteNotification('non-existent', 123);
+
+      expect(success).toBe(false);
+    });
+  });
+
+  describe('updatePreferences and getUserPreferences', () => {
+    it('should update user notification preferences', async () => {
+      const newPreferences = {
+        emailEnabled: false,
+        pushEnabled: true,
+        quietHours: {
+          start: '22:30',
+          end: '07:30',
+        },
+      };
+
+      await service.updatePreferences(123, newPreferences);
+
+      const preferences = await service.getUserPreferences(123);
+      expect(preferences.emailEnabled).toBe(false);
+      expect(preferences.pushEnabled).toBe(true);
+      expect(preferences.quietHours.start).toBe('22:30');
+      expect(preferences.quietHours.end).toBe('07:30');
+    });
+
+    it('should return default preferences for new users', async () => {
+      const preferences = await service.getUserPreferences(456);
+
+      expect(preferences).toHaveProperty('emailEnabled');
+      expect(preferences).toHaveProperty('pushEnabled');
+      expect(preferences).toHaveProperty('quietHours');
+      expect(preferences).toHaveProperty('categories');
+      expect(preferences.emailEnabled).toBe(true); // Default
+      expect(preferences.pushEnabled).toBe(false); // Default
+    });
+
+    it('should merge partial preference updates', async () => {
+      // First, set some preferences
+      await service.updatePreferences(123, { emailEnabled: false });
+
+      // Then update only pushEnabled
+      await service.updatePreferences(123, { pushEnabled: true });
+
+      const preferences = await service.getUserPreferences(123);
+      expect(preferences.emailEnabled).toBe(false); // Should remain false
+      expect(preferences.pushEnabled).toBe(true); // Should be updated
+    });
+  });
+
+  describe('template management', () => {
+    it('should create custom notification template', () => {
+      const template = {
+        id: 'custom_template',
+        name: 'Custom Template',
+        type: 'success' as const,
+        title: 'Custom Success',
+        messageTemplate: 'Operation {{operation}} completed successfully for {{user}}',
+        defaultChannels: ['in_app' as const],
+        variables: ['operation', 'user'],
+      };
+
+      service.createTemplate(template);
+
+      const templates = service.getTemplates();
+      const customTemplate = templates.find(t => t.id === 'custom_template');
+      
+      expect(customTemplate).toBeDefined();
+      expect(customTemplate?.name).toBe('Custom Template');
+    });
+
+    it('should get all available templates', () => {
+      const templates = service.getTemplates();
+
+      expect(templates).toBeInstanceOf(Array);
+      expect(templates.length).toBeGreaterThan(0);
+      
+      // Should include default templates
+      const milestoneTemplate = templates.find(t => t.id === 'milestone_deadline');
+      expect(milestoneTemplate).toBeDefined();
+    });
+  });
+
+  describe('sendBulkNotification', () => {
+    it('should send notification to multiple users', async () => {
+      const userIds = [123, 456, 789];
+      const notification = {
+        type: 'info' as const,
+        title: 'Bulk Notification',
+        message: 'This is sent to multiple users',
+        priority: 'medium' as const,
+        channels: ['in_app' as const],
+      };
+
+      // Mock additional users
+      mockPrisma.user.findUnique
+        .mockResolvedValueOnce({
+          id: 123,
+          email: 'user1@example.com',
+          name: 'User 1',
+        })
+        .mockResolvedValueOnce({
+          id: 456,
+          email: 'user2@example.com',
+          name: 'User 2',
+        })
+        .mockResolvedValueOnce({
+          id: 789,
+          email: 'user3@example.com',
+          name: 'User 3',
+        });
+
+      const result = await service.sendBulkNotification(userIds, notification);
+
+      expect(result.sent).toHaveLength(3);
+      expect(result.failed).toHaveLength(0);
+    });
+
+    it('should handle partial failures in bulk send', async () => {
+      const userIds = [123, 456];
+      const notification = {
+        type: 'info' as const,
+        title: 'Bulk Notification',
+        message: 'This will partially fail',
+        priority: 'medium' as const,
+        channels: ['in_app' as const],
+      };
+
+      // Mock one successful and one failed user lookup
+      mockPrisma.user.findUnique
+        .mockResolvedValueOnce({
+          id: 123,
+          email: 'user1@example.com',
+          name: 'User 1',
+        })
+        .mockRejectedValueOnce(new Error('User not found'));
+
+      const result = await service.sendBulkNotification(userIds, notification);
+
+      expect(result.sent).toHaveLength(1);
+      expect(result.failed).toHaveLength(1);
+      expect(result.failed[0].userId).toBe(456);
+    });
+  });
+
+  describe('quiet hours functionality', () => {
+    it('should detect quiet hours correctly for same-day periods', () => {
+      // Mock time to 22:30 (within 22:00-23:59 quiet hours)
+      const mockDate = new Date();
+      mockDate.setHours(22, 30, 0, 0);
+      jest.spyOn(global.Date, 'now').mockReturnValue(mockDate.getTime());
+      jest.spyOn(global, 'Date').mockImplementation(() => mockDate);
+
+      const service = new NotificationService();
+      const isQuiet = service['isInQuietHours']({ start: '22:00', end: '23:59' });
+
+      expect(isQuiet).toBe(true);
+    });
+
+    it('should detect quiet hours correctly for cross-midnight periods', () => {
+      // Mock time to 01:30 (within 22:00-07:00 quiet hours)
+      const mockDate = new Date();
+      mockDate.setHours(1, 30, 0, 0);
+      jest.spyOn(global.Date, 'now').mockReturnValue(mockDate.getTime());
+      jest.spyOn(global, 'Date').mockImplementation(() => mockDate);
+
+      const service = new NotificationService();
+      const isQuiet = service['isInQuietHours']({ start: '22:00', end: '07:00' });
+
+      expect(isQuiet).toBe(true);
+    });
+
+    it('should detect non-quiet hours correctly', () => {
+      // Mock time to 14:30 (outside quiet hours)
+      const mockDate = new Date();
+      mockDate.setHours(14, 30, 0, 0);
+      jest.spyOn(global.Date, 'now').mockReturnValue(mockDate.getTime());
+      jest.spyOn(global, 'Date').mockImplementation(() => mockDate);
+
+      const service = new NotificationService();
+      const isQuiet = service['isInQuietHours']({ start: '22:00', end: '07:00' });
+
+      expect(isQuiet).toBe(false);
+    });
+  });
+
+  describe('email formatting', () => {
+    it('should format email notifications correctly', () => {
+      const notification = {
+        id: 'test-notif',
+        userId: 123,
+        type: 'warning' as const,
+        title: 'Test Warning',
+        message: 'This is a test warning message\nWith multiple lines',
+        priority: 'high' as const,
+        channels: ['email' as const],
+        createdAt: new Date('2024-01-15T10:30:00Z'),
+      };
+
+      const html = service['formatEmailNotification'](notification, 'John Doe');
+
+      expect(html).toContain('Test Warning');
+      expect(html).toContain('John Doe');
+      expect(html).toContain('This is a test warning message<br>With multiple lines');
+      expect(html).toContain('HIGH');
+      expect(html).toContain('#fd7e14'); // High priority color
+    });
+
+    it('should use correct colors for different priorities', () => {
+      const priorities = [
+        { priority: 'low' as const, color: '#28a745' },
+        { priority: 'medium' as const, color: '#ffc107' },
+        { priority: 'high' as const, color: '#fd7e14' },
+        { priority: 'urgent' as const, color: '#dc3545' },
+      ];
+
+      priorities.forEach(({ priority, color }) => {
+        const notification = {
+          id: 'test-notif',
+          userId: 123,
+          type: 'info' as const,
+          title: 'Test',
+          message: 'Test message',
+          priority,
+          channels: ['email' as const],
+          createdAt: new Date(),
+        };
+
+        const html = service['formatEmailNotification'](notification, 'Test User');
+        expect(html).toContain(color);
+      });
+    });
+  });
+
+  describe('notification cleanup', () => {
+    it('should clean up expired notifications', async () => {
+      jest.useFakeTimers();
+
+      // Create a service with short cleanup interval for testing
+      const testService = new NotificationService();
+
+      // Add notifications with different expiration times
+      const pastDate = new Date(Date.now() - 60000); // 1 minute ago
+      const futureDate = new Date(Date.now() + 60000); // 1 minute from now
+
+      await testService.sendNotification(123, {
+        type: 'info',
+        title: 'Expired Notification',
+        message: 'This should be cleaned up',
+        priority: 'low',
+        channels: ['in_app'],
+        expiresAt: pastDate,
+      });
+
+      await testService.sendNotification(123, {
+        type: 'info',
+        title: 'Valid Notification',
+        message: 'This should remain',
+        priority: 'low',
+        channels: ['in_app'],
+        expiresAt: futureDate,
+      });
+
+      // Trigger cleanup by advancing time
+      jest.advanceTimersByTime(60 * 60 * 1000); // 1 hour
+
+      const result = await testService.getUserNotifications(123);
+      expect(result.notifications).toHaveLength(1);
+      expect(result.notifications[0].title).toBe('Valid Notification');
+
+      testService.destroy();
+      jest.useRealTimers();
+    });
+  });
+
+  describe('error handling', () => {
+    it('should handle database errors gracefully', async () => {
+      mockPrisma.user.findUnique.mockRejectedValue(new Error('Database error'));
+
+      const notification = {
+        type: 'info' as const,
+        title: 'Test Notification',
+        message: 'This should handle database errors',
+        priority: 'medium' as const,
+        channels: ['in_app' as const, 'email' as const],
+      };
+
+      const notificationId = await service.sendNotification(123, notification);
+
+      expect(notificationId).toBeDefined();
+      // Should still create in-app notification even if email lookup fails
+      const userNotifications = await service.getUserNotifications(123);
+      expect(userNotifications.notifications).toHaveLength(1);
+    });
+
+    it('should handle invalid notification data', async () => {
+      const invalidNotification = {
+        type: 'invalid_type' as any,
+        title: 'Test',
+        message: 'Test message',
+        priority: 'medium' as const,
+        channels: ['in_app' as const],
+      };
+
+      // Should handle validation errors gracefully
+      await expect(service.sendNotification(123, invalidNotification)).rejects.toThrow();
+    });
+  });
+
+  describe('performance and memory', () => {
+    it('should handle large numbers of notifications', async () => {
+      const startTime = Date.now();
+
+      // Send 100 notifications
+      const promises = Array.from({ length: 100 }, (_, i) =>
+        service.sendNotification(123, {
+          type: 'info',
+          title: `Notification ${i + 1}`,
+          message: `Message ${i + 1}`,
+          priority: 'low',
+          channels: ['in_app'],
+        })
+      );
+
+      await Promise.all(promises);
+
+      const endTime = Date.now();
+      const duration = endTime - startTime;
+
+      // Should complete in reasonable time
+      expect(duration).toBeLessThan(5000); // 5 seconds max
+
+      const result = await service.getUserNotifications(123);
+      expect(result.notifications).toHaveLength(100);
+    });
+
+    it('should limit notification storage to prevent memory leaks', async () => {
+      // This test would be more meaningful with actual memory limits implemented
+      // For now, we just verify that notifications can be retrieved
+      const result = await service.getUserNotifications(123);
+      expect(result).toHaveProperty('notifications');
+      expect(result).toHaveProperty('total');
+      expect(result).toHaveProperty('unreadCount');
+    });
+  });
+});

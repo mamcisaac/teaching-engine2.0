@@ -9,7 +9,12 @@ process.env.NODE_ENV = 'test';
 // Set DATABASE_URL with a consistent default for both local and CI
 // In CI, this can be overridden by the workflow file if needed
 // Use a relative path that works from the server directory
-process.env.DATABASE_URL = process.env.DATABASE_URL || 'file:../packages/database/prisma/test.db';
+const testType = process.env.TEST_TYPE;
+if (testType === 'integration') {
+  process.env.DATABASE_URL = process.env.DATABASE_URL || 'file:../packages/database/prisma/test-integration.db';
+} else {
+  process.env.DATABASE_URL = process.env.DATABASE_URL || 'file:../packages/database/prisma/test.db';
+}
 
 // Set other required environment variables for tests
 process.env.JWT_SECRET = process.env.JWT_SECRET || 'test-secret-key';

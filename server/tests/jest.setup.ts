@@ -2,6 +2,7 @@ import { beforeEach, afterEach, beforeAll, afterAll } from '@jest/globals';
 import { testDb } from './setup-test-db';
 import { randomBytes } from 'crypto';
 import { PrismaClient } from '@teaching-engine/database';
+import { resetRateLimiterState } from '../src/middleware/rateLimiter';
 
 // Store current test context
 let currentTestId: string | null = null;
@@ -42,6 +43,9 @@ beforeEach(async () => {
   currentTestId = randomBytes(8).toString('hex');
 
   try {
+    // Reset rate limiter state for each test
+    resetRateLimiterState();
+
     // Start a real transaction for this test
     currentTransactionClient = await testDb.startTransaction(currentTestId);
 

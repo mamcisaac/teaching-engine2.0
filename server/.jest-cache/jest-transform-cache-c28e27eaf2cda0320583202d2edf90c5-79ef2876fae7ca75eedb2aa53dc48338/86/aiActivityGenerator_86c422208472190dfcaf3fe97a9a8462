@@ -1,0 +1,311 @@
+587757281b316f8ef834d387a169b056
+/* istanbul ignore next */
+function cov_1v8gjag1nx() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/aiActivityGenerator.ts";
+  var hash = "0bd40b906527f70ba7dd93d3e8d5d5e5b281ca09";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/aiActivityGenerator.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 6,
+          column: 8
+        },
+        end: {
+          line: 15,
+          column: 10
+        }
+      },
+      "1": {
+        start: {
+          line: 19,
+          column: 8
+        },
+        end: {
+          line: 19,
+          column: 18
+        }
+      },
+      "2": {
+        start: {
+          line: 23,
+          column: 8
+        },
+        end: {
+          line: 26,
+          column: 10
+        }
+      },
+      "3": {
+        start: {
+          line: 30,
+          column: 35
+        },
+        end: {
+          line: 30,
+          column: 60
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "(anonymous_0)",
+        decl: {
+          start: {
+            line: 3,
+            column: 4
+          },
+          end: {
+            line: 3,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 3,
+            column: 18
+          },
+          end: {
+            line: 3,
+            column: 21
+          }
+        },
+        line: 3
+      },
+      "1": {
+        name: "(anonymous_1)",
+        decl: {
+          start: {
+            line: 4,
+            column: 4
+          },
+          end: {
+            line: 4,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 4,
+            column: 35
+          },
+          end: {
+            line: 16,
+            column: 5
+          }
+        },
+        line: 4
+      },
+      "2": {
+        name: "(anonymous_2)",
+        decl: {
+          start: {
+            line: 17,
+            column: 4
+          },
+          end: {
+            line: 17,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 17,
+            column: 40
+          },
+          end: {
+            line: 20,
+            column: 5
+          }
+        },
+        line: 17
+      },
+      "3": {
+        name: "(anonymous_3)",
+        decl: {
+          start: {
+            line: 21,
+            column: 4
+          },
+          end: {
+            line: 21,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 21,
+            column: 60
+          },
+          end: {
+            line: 27,
+            column: 5
+          }
+        },
+        line: 21
+      }
+    },
+    branchMap: {
+      "0": {
+        loc: {
+          start: {
+            line: 13,
+            column: 21
+          },
+          end: {
+            line: 13,
+            column: 48
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 13,
+            column: 21
+          },
+          end: {
+            line: 13,
+            column: 35
+          }
+        }, {
+          start: {
+            line: 13,
+            column: 39
+          },
+          end: {
+            line: 13,
+            column: 48
+          }
+        }],
+        line: 13
+      },
+      "1": {
+        loc: {
+          start: {
+            line: 14,
+            column: 19
+          },
+          end: {
+            line: 14,
+            column: 36
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 14,
+            column: 19
+          },
+          end: {
+            line: 14,
+            column: 31
+          }
+        }, {
+          start: {
+            line: 14,
+            column: 35
+          },
+          end: {
+            line: 14,
+            column: 36
+          }
+        }],
+        line: 14
+      }
+    },
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0
+    },
+    f: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0
+    },
+    b: {
+      "0": [0, 0],
+      "1": [0, 0]
+    },
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/aiActivityGenerator.ts",
+      mappings: "AAAA,qDAAqD;AACrD,MAAM,OAAO,mBAAmB;IAC9B,gBAAe,CAAC;IAEhB,KAAK,CAAC,gBAAgB,CAAC,MAQtB;QAUC,sBAAsB;QACtB,OAAO;YACL,EAAE,EAAE,YAAY,GAAG,IAAI,CAAC,GAAG,EAAE;YAC7B,KAAK,EAAE,oBAAoB;YAC3B,WAAW,EAAE,+BAA+B;YAC5C,QAAQ,EAAE,EAAE;YACZ,SAAS,EAAE,EAAE;YACb,aAAa,EAAE,EAAE;YACjB,OAAO,EAAE,MAAM,CAAC,OAAO,IAAI,SAAS;YACpC,KAAK,EAAE,MAAM,CAAC,KAAK,IAAI,CAAC;SACzB,CAAC;IACJ,CAAC;IAED,KAAK,CAAC,oBAAoB,CAAC,OAA2D;QAepF,+DAA+D;QAC/D,OAAO,EAAE,CAAC;IACZ,CAAC;IAED,KAAK,CAAC,iBAAiB,CACrB,YAAoB,EACpB,OAAe,EACf,OAAgC;QAEhC,sBAAsB;QACtB,OAAO;YACL,EAAE,EAAE,YAAY;YAChB,OAAO,EAAE,IAAI;SACd,CAAC;IACJ,CAAC;CACF;AAED,4BAA4B;AAC5B,MAAM,CAAC,MAAM,mBAAmB,GAAG,IAAI,mBAAmB,EAAE,CAAC",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/aiActivityGenerator.ts"],
+      sourcesContent: ["// Stub for AIActivityGenerator to fix missing import\nexport class AIActivityGenerator {\n  constructor() {}\n\n  async generateActivity(params: {\n    outcomeId?: string;\n    userId?: number;\n    subject?: string;\n    grade?: number;\n    theme?: string;\n    duration?: number;\n    languageLevel?: string;\n  }): Promise<{\n    id: string;\n    title: string;\n    description: string;\n    duration: number;\n    materials: string[] | string;\n    learningGoals: string[];\n    subject: string;\n    grade: number;\n  }> {\n    // Stub implementation\n    return {\n      id: 'generated-' + Date.now(),\n      title: 'Generated Activity',\n      description: 'This is a stub implementation',\n      duration: 30,\n      materials: [],\n      learningGoals: [],\n      subject: params.subject || 'General',\n      grade: params.grade || 1,\n    };\n  }\n\n  async getUncoveredOutcomes(_params: { userId: number; theme?: string; limit?: number }): Promise<\n    Array<{\n      outcome: { id: string; expectationCode: string; expectation: string; strand: string };\n      suggestion?: {\n        id: string;\n        title: string;\n        description: string;\n        duration: number;\n        materials: string[] | string;\n        learningGoals: string[];\n        subject: string;\n        grade: number;\n      } | null;\n    }>\n  > {\n    // Stub implementation - returning format expected by the route\n    return [];\n  }\n\n  async convertToActivity(\n    suggestionId: string,\n    _userId: number,\n    _params: Record<string, unknown>,\n  ): Promise<{ id: string; success: boolean }> {\n    // Stub implementation\n    return {\n      id: suggestionId,\n      success: true,\n    };\n  }\n}\n\n// Export singleton instance\nexport const aiActivityGenerator = new AIActivityGenerator();\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "0bd40b906527f70ba7dd93d3e8d5d5e5b281ca09"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_1v8gjag1nx = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_1v8gjag1nx();
+// Stub for AIActivityGenerator to fix missing import
+export class AIActivityGenerator {
+  constructor() {
+    /* istanbul ignore next */
+    cov_1v8gjag1nx().f[0]++;
+  }
+  async generateActivity(params) {
+    /* istanbul ignore next */
+    cov_1v8gjag1nx().f[1]++;
+    cov_1v8gjag1nx().s[0]++;
+    // Stub implementation
+    return {
+      id: 'generated-' + Date.now(),
+      title: 'Generated Activity',
+      description: 'This is a stub implementation',
+      duration: 30,
+      materials: [],
+      learningGoals: [],
+      subject:
+      /* istanbul ignore next */
+      (cov_1v8gjag1nx().b[0][0]++, params.subject) ||
+      /* istanbul ignore next */
+      (cov_1v8gjag1nx().b[0][1]++, 'General'),
+      grade:
+      /* istanbul ignore next */
+      (cov_1v8gjag1nx().b[1][0]++, params.grade) ||
+      /* istanbul ignore next */
+      (cov_1v8gjag1nx().b[1][1]++, 1)
+    };
+  }
+  async getUncoveredOutcomes(_params) {
+    /* istanbul ignore next */
+    cov_1v8gjag1nx().f[2]++;
+    cov_1v8gjag1nx().s[1]++;
+    // Stub implementation - returning format expected by the route
+    return [];
+  }
+  async convertToActivity(suggestionId, _userId, _params) {
+    /* istanbul ignore next */
+    cov_1v8gjag1nx().f[3]++;
+    cov_1v8gjag1nx().s[2]++;
+    // Stub implementation
+    return {
+      id: suggestionId,
+      success: true
+    };
+  }
+}
+// Export singleton instance
+export const aiActivityGenerator =
+/* istanbul ignore next */
+(cov_1v8gjag1nx().s[3]++, new AIActivityGenerator());
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3ZfMXY4Z2phZzFueCIsImFjdHVhbENvdmVyYWdlIiwiQUlBY3Rpdml0eUdlbmVyYXRvciIsImNvbnN0cnVjdG9yIiwiZiIsImdlbmVyYXRlQWN0aXZpdHkiLCJwYXJhbXMiLCJzIiwiaWQiLCJEYXRlIiwibm93IiwidGl0bGUiLCJkZXNjcmlwdGlvbiIsImR1cmF0aW9uIiwibWF0ZXJpYWxzIiwibGVhcm5pbmdHb2FscyIsInN1YmplY3QiLCJiIiwiZ3JhZGUiLCJnZXRVbmNvdmVyZWRPdXRjb21lcyIsIl9wYXJhbXMiLCJjb252ZXJ0VG9BY3Rpdml0eSIsInN1Z2dlc3Rpb25JZCIsIl91c2VySWQiLCJzdWNjZXNzIiwiYWlBY3Rpdml0eUdlbmVyYXRvciJdLCJzb3VyY2VzIjpbIi9Vc2Vycy9taWNoYWVsbWNpc2FhYy9HaXRIdWIvdGVhY2hpbmctZW5naW5lMi4wL3NlcnZlci9zcmMvc2VydmljZXMvYWlBY3Rpdml0eUdlbmVyYXRvci50cyJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBTdHViIGZvciBBSUFjdGl2aXR5R2VuZXJhdG9yIHRvIGZpeCBtaXNzaW5nIGltcG9ydFxuZXhwb3J0IGNsYXNzIEFJQWN0aXZpdHlHZW5lcmF0b3Ige1xuICBjb25zdHJ1Y3RvcigpIHt9XG5cbiAgYXN5bmMgZ2VuZXJhdGVBY3Rpdml0eShwYXJhbXM6IHtcbiAgICBvdXRjb21lSWQ/OiBzdHJpbmc7XG4gICAgdXNlcklkPzogbnVtYmVyO1xuICAgIHN1YmplY3Q/OiBzdHJpbmc7XG4gICAgZ3JhZGU/OiBudW1iZXI7XG4gICAgdGhlbWU/OiBzdHJpbmc7XG4gICAgZHVyYXRpb24/OiBudW1iZXI7XG4gICAgbGFuZ3VhZ2VMZXZlbD86IHN0cmluZztcbiAgfSk6IFByb21pc2U8e1xuICAgIGlkOiBzdHJpbmc7XG4gICAgdGl0bGU6IHN0cmluZztcbiAgICBkZXNjcmlwdGlvbjogc3RyaW5nO1xuICAgIGR1cmF0aW9uOiBudW1iZXI7XG4gICAgbWF0ZXJpYWxzOiBzdHJpbmdbXSB8IHN0cmluZztcbiAgICBsZWFybmluZ0dvYWxzOiBzdHJpbmdbXTtcbiAgICBzdWJqZWN0OiBzdHJpbmc7XG4gICAgZ3JhZGU6IG51bWJlcjtcbiAgfT4ge1xuICAgIC8vIFN0dWIgaW1wbGVtZW50YXRpb25cbiAgICByZXR1cm4ge1xuICAgICAgaWQ6ICdnZW5lcmF0ZWQtJyArIERhdGUubm93KCksXG4gICAgICB0aXRsZTogJ0dlbmVyYXRlZCBBY3Rpdml0eScsXG4gICAgICBkZXNjcmlwdGlvbjogJ1RoaXMgaXMgYSBzdHViIGltcGxlbWVudGF0aW9uJyxcbiAgICAgIGR1cmF0aW9uOiAzMCxcbiAgICAgIG1hdGVyaWFsczogW10sXG4gICAgICBsZWFybmluZ0dvYWxzOiBbXSxcbiAgICAgIHN1YmplY3Q6IHBhcmFtcy5zdWJqZWN0IHx8ICdHZW5lcmFsJyxcbiAgICAgIGdyYWRlOiBwYXJhbXMuZ3JhZGUgfHwgMSxcbiAgICB9O1xuICB9XG5cbiAgYXN5bmMgZ2V0VW5jb3ZlcmVkT3V0Y29tZXMoX3BhcmFtczogeyB1c2VySWQ6IG51bWJlcjsgdGhlbWU/OiBzdHJpbmc7IGxpbWl0PzogbnVtYmVyIH0pOiBQcm9taXNlPFxuICAgIEFycmF5PHtcbiAgICAgIG91dGNvbWU6IHsgaWQ6IHN0cmluZzsgZXhwZWN0YXRpb25Db2RlOiBzdHJpbmc7IGV4cGVjdGF0aW9uOiBzdHJpbmc7IHN0cmFuZDogc3RyaW5nIH07XG4gICAgICBzdWdnZXN0aW9uPzoge1xuICAgICAgICBpZDogc3RyaW5nO1xuICAgICAgICB0aXRsZTogc3RyaW5nO1xuICAgICAgICBkZXNjcmlwdGlvbjogc3RyaW5nO1xuICAgICAgICBkdXJhdGlvbjogbnVtYmVyO1xuICAgICAgICBtYXRlcmlhbHM6IHN0cmluZ1tdIHwgc3RyaW5nO1xuICAgICAgICBsZWFybmluZ0dvYWxzOiBzdHJpbmdbXTtcbiAgICAgICAgc3ViamVjdDogc3RyaW5nO1xuICAgICAgICBncmFkZTogbnVtYmVyO1xuICAgICAgfSB8IG51bGw7XG4gICAgfT5cbiAgPiB7XG4gICAgLy8gU3R1YiBpbXBsZW1lbnRhdGlvbiAtIHJldHVybmluZyBmb3JtYXQgZXhwZWN0ZWQgYnkgdGhlIHJvdXRlXG4gICAgcmV0dXJuIFtdO1xuICB9XG5cbiAgYXN5bmMgY29udmVydFRvQWN0aXZpdHkoXG4gICAgc3VnZ2VzdGlvbklkOiBzdHJpbmcsXG4gICAgX3VzZXJJZDogbnVtYmVyLFxuICAgIF9wYXJhbXM6IFJlY29yZDxzdHJpbmcsIHVua25vd24+LFxuICApOiBQcm9taXNlPHsgaWQ6IHN0cmluZzsgc3VjY2VzczogYm9vbGVhbiB9PiB7XG4gICAgLy8gU3R1YiBpbXBsZW1lbnRhdGlvblxuICAgIHJldHVybiB7XG4gICAgICBpZDogc3VnZ2VzdGlvbklkLFxuICAgICAgc3VjY2VzczogdHJ1ZSxcbiAgICB9O1xuICB9XG59XG5cbi8vIEV4cG9ydCBzaW5nbGV0b24gaW5zdGFuY2VcbmV4cG9ydCBjb25zdCBhaUFjdGl2aXR5R2VuZXJhdG9yID0gbmV3IEFJQWN0aXZpdHlHZW5lcmF0b3IoKTtcbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0lBaUNHO0lBQUFBLGNBQUEsWUFBQUEsQ0FBQTtNQUFBLE9BQUFDLGNBQUE7SUFBQTtFQUFBO0VBQUEsT0FBQUEsY0FBQTtBQUFBO0FBQUFELGNBQUE7QUFqQ0g7QUFDQSxPQUFNLE1BQU9FLG1CQUFtQjtFQUM5QkMsWUFBQTtJQUFBO0lBQUFILGNBQUEsR0FBQUksQ0FBQTtFQUFlO0VBRWYsTUFBTUMsZ0JBQWdCQSxDQUFDQyxNQVF0QjtJQUFBO0lBQUFOLGNBQUEsR0FBQUksQ0FBQTtJQUFBSixjQUFBLEdBQUFPLENBQUE7SUFVQztJQUNBLE9BQU87TUFDTEMsRUFBRSxFQUFFLFlBQVksR0FBR0MsSUFBSSxDQUFDQyxHQUFHLEVBQUU7TUFDN0JDLEtBQUssRUFBRSxvQkFBb0I7TUFDM0JDLFdBQVcsRUFBRSwrQkFBK0I7TUFDNUNDLFFBQVEsRUFBRSxFQUFFO01BQ1pDLFNBQVMsRUFBRSxFQUFFO01BQ2JDLGFBQWEsRUFBRSxFQUFFO01BQ2pCQyxPQUFPO01BQUU7TUFBQSxDQUFBaEIsY0FBQSxHQUFBaUIsQ0FBQSxVQUFBWCxNQUFNLENBQUNVLE9BQU87TUFBQTtNQUFBLENBQUFoQixjQUFBLEdBQUFpQixDQUFBLFVBQUksU0FBUztNQUNwQ0MsS0FBSztNQUFFO01BQUEsQ0FBQWxCLGNBQUEsR0FBQWlCLENBQUEsVUFBQVgsTUFBTSxDQUFDWSxLQUFLO01BQUE7TUFBQSxDQUFBbEIsY0FBQSxHQUFBaUIsQ0FBQSxVQUFJLENBQUM7S0FDekI7RUFDSDtFQUVBLE1BQU1FLG9CQUFvQkEsQ0FBQ0MsT0FBMkQ7SUFBQTtJQUFBcEIsY0FBQSxHQUFBSSxDQUFBO0lBQUFKLGNBQUEsR0FBQU8sQ0FBQTtJQWVwRjtJQUNBLE9BQU8sRUFBRTtFQUNYO0VBRUEsTUFBTWMsaUJBQWlCQSxDQUNyQkMsWUFBb0IsRUFDcEJDLE9BQWUsRUFDZkgsT0FBZ0M7SUFBQTtJQUFBcEIsY0FBQSxHQUFBSSxDQUFBO0lBQUFKLGNBQUEsR0FBQU8sQ0FBQTtJQUVoQztJQUNBLE9BQU87TUFDTEMsRUFBRSxFQUFFYyxZQUFZO01BQ2hCRSxPQUFPLEVBQUU7S0FDVjtFQUNIOztBQUdGO0FBQ0EsT0FBTyxNQUFNQyxtQkFBbUI7QUFBQTtBQUFBLENBQUF6QixjQUFBLEdBQUFPLENBQUEsT0FBRyxJQUFJTCxtQkFBbUIsRUFBRSIsImlnbm9yZUxpc3QiOltdfQ==

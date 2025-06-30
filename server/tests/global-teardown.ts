@@ -1,63 +1,32 @@
-import fs from 'fs';
-import path from 'path';
-
 /**
- * Global teardown that runs once after all test suites
- * This ensures proper cleanup of test resources
+ * Global teardown for all tests
+ * Runs once after all test suites complete
  */
+
+import { existsSync, rmSync } from 'fs';
+
 export default async function globalTeardown() {
-  console.log('🧹 Starting global test teardown...');
-  
-  const testTempDir = path.join(process.cwd(), 'tests', 'temp');
-  
-  // Final cleanup of test databases
-  if (fs.existsSync(testTempDir)) {
-    try {
-      // Wait a bit to ensure all database connections are closed
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      const files = fs.readdirSync(testTempDir);
-      let cleanedCount = 0;
-      
-      for (const file of files) {
-        if (file.startsWith('test_') && file.endsWith('.db')) {
-          const filePath = path.join(testTempDir, file);
-          try {
-            fs.unlinkSync(filePath);
-            // Also remove WAL and SHM files
-            const walPath = `${filePath}-wal`;
-            const shmPath = `${filePath}-shm`;
-            if (fs.existsSync(walPath)) fs.unlinkSync(walPath);
-            if (fs.existsSync(shmPath)) fs.unlinkSync(shmPath);
-            cleanedCount++;
-          } catch (error) {
-            console.warn(`Failed to delete test database: ${file}`, error);
-          }
-        }
-      }
-      
-      if (cleanedCount > 0) {
-        console.log(`✅ Cleaned up ${cleanedCount} test database(s)`);
-      }
-      
-      // Try to remove the temp directory if it's empty
-      try {
-        const remainingFiles = fs.readdirSync(testTempDir);
-        if (remainingFiles.length === 0) {
-          fs.rmdirSync(testTempDir);
-        }
-      } catch (error) {
-        // Directory might not be empty or accessible, that's okay
-      }
-    } catch (error) {
-      console.warn('Error during test database cleanup:', error);
+  // Clean up test database if using SQLite
+  const dbUrl = process.env.DATABASE_URL || 'file:../packages/database/prisma/test.db';
+  if (dbUrl.startsWith('file:') && process.env.KEEP_TEST_DB !== 'true') {
+    const dbPath = dbUrl.replace('file:', '');
+    
+    // Remove test database files
+    if (existsSync(dbPath)) {
+      rmSync(dbPath, { force: true });
+    }
+    if (existsSync(dbPath + '-journal')) {
+      rmSync(dbPath + '-journal', { force: true });
+    }
+    if (existsSync(dbPath + '-wal')) {
+      rmSync(dbPath + '-wal', { force: true });
     }
   }
   
-  // Reset any modified environment variables
-  if (process.env.NODE_ENV === 'test') {
-    delete process.env.NODE_ENV;
+  // Clear any temporary test files
+  if (existsSync('./.test-tmp')) {
+    rmSync('./.test-tmp', { recursive: true, force: true });
   }
   
-  console.log('✅ Global test teardown complete');
+  console.log('🧹 Global test teardown completed');
 }

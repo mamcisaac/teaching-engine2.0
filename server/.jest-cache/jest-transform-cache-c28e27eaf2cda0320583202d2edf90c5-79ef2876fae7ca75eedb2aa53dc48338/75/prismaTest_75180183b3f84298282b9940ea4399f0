@@ -1,0 +1,185 @@
+e710215fddbf43f4c335fadf3b4f12ba
+/* istanbul ignore next */
+function cov_qjd6q9fv9() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/__tests__/prismaTest.ts";
+  var hash = "42bfb3d82022000c8c034b8a61a7eae7bf4fe113";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/__tests__/prismaTest.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 2,
+          column: 0
+        },
+        end: {
+          line: 10,
+          column: 3
+        }
+      },
+      "1": {
+        start: {
+          line: 3,
+          column: 4
+        },
+        end: {
+          line: 9,
+          column: 7
+        }
+      },
+      "2": {
+        start: {
+          line: 4,
+          column: 8
+        },
+        end: {
+          line: 4,
+          column: 49
+        }
+      },
+      "3": {
+        start: {
+          line: 6,
+          column: 23
+        },
+        end: {
+          line: 6,
+          column: 64
+        }
+      },
+      "4": {
+        start: {
+          line: 7,
+          column: 8
+        },
+        end: {
+          line: 7,
+          column: 52
+        }
+      },
+      "5": {
+        start: {
+          line: 8,
+          column: 8
+        },
+        end: {
+          line: 8,
+          column: 37
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "(anonymous_0)",
+        decl: {
+          start: {
+            line: 2,
+            column: 26
+          },
+          end: {
+            line: 2,
+            column: 27
+          }
+        },
+        loc: {
+          start: {
+            line: 2,
+            column: 32
+          },
+          end: {
+            line: 10,
+            column: 1
+          }
+        },
+        line: 2
+      },
+      "1": {
+        name: "(anonymous_1)",
+        decl: {
+          start: {
+            line: 3,
+            column: 52
+          },
+          end: {
+            line: 3,
+            column: 53
+          }
+        },
+        loc: {
+          start: {
+            line: 3,
+            column: 64
+          },
+          end: {
+            line: 9,
+            column: 5
+          }
+        },
+        line: 3
+      }
+    },
+    branchMap: {},
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0
+    },
+    f: {
+      "0": 0,
+      "1": 0
+    },
+    b: {},
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/__tests__/prismaTest.ts",
+      mappings: "AAAA,OAAO,EAAE,MAAM,EAAE,MAAM,WAAW,CAAC;AAEnC,QAAQ,CAAC,eAAe,EAAE,GAAG,EAAE;IAC7B,EAAE,CAAC,2CAA2C,EAAE,KAAK,IAAI,EAAE;QACzD,OAAO,CAAC,GAAG,CAAC,2BAA2B,CAAC,CAAC;QAEzC,qBAAqB;QACrB,MAAM,MAAM,GAAG,MAAM,MAAM,CAAC,SAAS,CAAA,kBAAkB,CAAC;QACxD,OAAO,CAAC,GAAG,CAAC,sBAAsB,EAAE,MAAM,CAAC,CAAC;QAE5C,MAAM,CAAC,MAAM,CAAC,CAAC,WAAW,EAAE,CAAC;IAC/B,CAAC,CAAC,CAAC;AACL,CAAC,CAAC,CAAC",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/__tests__/prismaTest.ts"],
+      sourcesContent: ["import { prisma } from '../prisma';\n\ndescribe('Prisma Client', () => {\n  it('should be able to connect to the database', async () => {\n    console.log('Testing Prisma connection');\n\n    // Try a simple query\n    const result = await prisma.$queryRaw`SELECT 1 as test`;\n    console.log('Prisma query result:', result);\n\n    expect(result).toBeDefined();\n  });\n});\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "42bfb3d82022000c8c034b8a61a7eae7bf4fe113"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_qjd6q9fv9 = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_qjd6q9fv9();
+import { prisma } from '../prisma';
+/* istanbul ignore next */
+cov_qjd6q9fv9().s[0]++;
+describe('Prisma Client', () => {
+  /* istanbul ignore next */
+  cov_qjd6q9fv9().f[0]++;
+  cov_qjd6q9fv9().s[1]++;
+  it('should be able to connect to the database', async () => {
+    /* istanbul ignore next */
+    cov_qjd6q9fv9().f[1]++;
+    cov_qjd6q9fv9().s[2]++;
+    console.log('Testing Prisma connection');
+    // Try a simple query
+    const result =
+    /* istanbul ignore next */
+    (cov_qjd6q9fv9().s[3]++, await prisma.$queryRaw`SELECT 1 as test`);
+    /* istanbul ignore next */
+    cov_qjd6q9fv9().s[4]++;
+    console.log('Prisma query result:', result);
+    /* istanbul ignore next */
+    cov_qjd6q9fv9().s[5]++;
+    expect(result).toBeDefined();
+  });
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJwcmlzbWEiLCJjb3ZfcWpkNnE5ZnY5IiwicyIsImRlc2NyaWJlIiwiZiIsIml0IiwiY29uc29sZSIsImxvZyIsInJlc3VsdCIsIiRxdWVyeVJhdyIsImV4cGVjdCIsInRvQmVEZWZpbmVkIl0sInNvdXJjZXMiOlsiL1VzZXJzL21pY2hhZWxtY2lzYWFjL0dpdEh1Yi90ZWFjaGluZy1lbmdpbmUyLjAvc2VydmVyL3NyYy9fX3Rlc3RzX18vcHJpc21hVGVzdC50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBwcmlzbWEgfSBmcm9tICcuLi9wcmlzbWEnO1xuXG5kZXNjcmliZSgnUHJpc21hIENsaWVudCcsICgpID0+IHtcbiAgaXQoJ3Nob3VsZCBiZSBhYmxlIHRvIGNvbm5lY3QgdG8gdGhlIGRhdGFiYXNlJywgYXN5bmMgKCkgPT4ge1xuICAgIGNvbnNvbGUubG9nKCdUZXN0aW5nIFByaXNtYSBjb25uZWN0aW9uJyk7XG5cbiAgICAvLyBUcnkgYSBzaW1wbGUgcXVlcnlcbiAgICBjb25zdCByZXN1bHQgPSBhd2FpdCBwcmlzbWEuJHF1ZXJ5UmF3YFNFTEVDVCAxIGFzIHRlc3RgO1xuICAgIGNvbnNvbGUubG9nKCdQcmlzbWEgcXVlcnkgcmVzdWx0OicsIHJlc3VsdCk7XG5cbiAgICBleHBlY3QocmVzdWx0KS50b0JlRGVmaW5lZCgpO1xuICB9KTtcbn0pO1xuIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSxTQUFTQSxNQUFNLFFBQVEsV0FBVztBQUFDO0FBQUFDLGFBQUEsR0FBQUMsQ0FBQTtBQUVuQ0MsUUFBUSxDQUFDLGVBQWUsRUFBRSxNQUFLO0VBQUE7RUFBQUYsYUFBQSxHQUFBRyxDQUFBO0VBQUFILGFBQUEsR0FBQUMsQ0FBQTtFQUM3QkcsRUFBRSxDQUFDLDJDQUEyQyxFQUFFLFlBQVc7SUFBQTtJQUFBSixhQUFBLEdBQUFHLENBQUE7SUFBQUgsYUFBQSxHQUFBQyxDQUFBO0lBQ3pESSxPQUFPLENBQUNDLEdBQUcsQ0FBQywyQkFBMkIsQ0FBQztJQUV4QztJQUNBLE1BQU1DLE1BQU07SUFBQTtJQUFBLENBQUFQLGFBQUEsR0FBQUMsQ0FBQSxPQUFHLE1BQU1GLE1BQU0sQ0FBQ1MsU0FBUyxrQkFBa0I7SUFBQztJQUFBUixhQUFBLEdBQUFDLENBQUE7SUFDeERJLE9BQU8sQ0FBQ0MsR0FBRyxDQUFDLHNCQUFzQixFQUFFQyxNQUFNLENBQUM7SUFBQztJQUFBUCxhQUFBLEdBQUFDLENBQUE7SUFFNUNRLE1BQU0sQ0FBQ0YsTUFBTSxDQUFDLENBQUNHLFdBQVcsRUFBRTtFQUM5QixDQUFDLENBQUM7QUFDSixDQUFDLENBQUMiLCJpZ25vcmVMaXN0IjpbXX0=

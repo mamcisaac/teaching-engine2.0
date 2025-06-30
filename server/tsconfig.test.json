@@ -1,9 +1,32 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "rootDir": ".",
-    "isolatedModules": true
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "types": ["node", "jest", "@jest/globals"],
+    "lib": ["es2022"],
+    "module": "ESNext",
+    "target": "ES2022",
+    "strict": false,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@teaching-engine/database": ["tests/mocks/database.mock.ts"],
+      "tests/*": ["tests/*"]
+    }
   },
-  "include": ["src", "tests", "jest.setup.js", "jest.setup.ts"],
-  "exclude": ["dist"]
+  "include": [
+    "src/**/*",
+    "tests/**/*",
+    "jest.setup.js",
+    "jest.config.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

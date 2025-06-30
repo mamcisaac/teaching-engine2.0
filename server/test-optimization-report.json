@@ -1,0 +1,87 @@
+{
+  "timestamp": "2025-06-30T01:59:10.335Z",
+  "baseline": 42,
+  "target": 15,
+  "cpuCores": 12,
+  "results": [
+    {
+      "name": "Parallel Execution (Auto Workers)",
+      "command": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --config jest.config.js --testPathPattern=\"tests/unit\" --maxWorkers=auto",
+      "duration": 0.008855379,
+      "success": false,
+      "error": "Command failed: NODE_OPTIONS=\"--experimental-vm-modules\" jest --config jest.config.js --testPathPattern=\"tests/unit\" --maxWorkers=auto",
+      "improvement": 41.991144621,
+      "percentImprovement": 99.9789157642857,
+      "achievedTarget": true
+    },
+    {
+      "name": "Baseline (Original Config)",
+      "command": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --config jest.config.js --testPathPattern=\"tests/unit\" --maxWorkers=2",
+      "duration": 0.011410634999999999,
+      "success": false,
+      "error": "Command failed: NODE_OPTIONS=\"--experimental-vm-modules\" jest --config jest.config.js --testPathPattern=\"tests/unit\" --maxWorkers=2",
+      "improvement": 41.988589365,
+      "percentImprovement": 99.97283182142857,
+      "achievedTarget": true
+    },
+    {
+      "name": "Turbo Mode",
+      "command": "pnpm test:turbo",
+      "duration": 3.64479649,
+      "success": false,
+      "error": "Command failed: pnpm test:turbo",
+      "improvement": 38.35520351,
+      "percentImprovement": 91.32191311904762,
+      "achievedTarget": true
+    },
+    {
+      "name": "Performance Config",
+      "command": "pnpm test:perf",
+      "duration": 3.678584498,
+      "success": false,
+      "error": "Command failed: pnpm test:perf",
+      "improvement": 38.321415502,
+      "percentImprovement": 91.24146548095237,
+      "achievedTarget": true
+    },
+    {
+      "name": "Fast Tests Only",
+      "command": "pnpm test:fast-only",
+      "duration": 11.166418327999999,
+      "success": false,
+      "error": "Command failed: pnpm test:fast-only",
+      "improvement": 30.833581672,
+      "percentImprovement": 73.41328969523809,
+      "achievedTarget": true
+    },
+    {
+      "name": "Sharded (4 shards)",
+      "command": "pnpm test:shard 4",
+      "duration": 19.776874234,
+      "success": false,
+      "error": "Command failed: pnpm test:shard 4",
+      "improvement": 22.223125766,
+      "percentImprovement": 52.912204204761906,
+      "achievedTarget": false
+    },
+    {
+      "name": "Sharded (8 shards)",
+      "command": "pnpm test:shard 8",
+      "duration": 28.741014804000002,
+      "success": false,
+      "error": "Command failed: pnpm test:shard 8",
+      "improvement": 13.258985195999998,
+      "percentImprovement": 31.569012371428567,
+      "achievedTarget": false
+    }
+  ],
+  "bestStrategy": {
+    "name": "Parallel Execution (Auto Workers)",
+    "command": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --config jest.config.js --testPathPattern=\"tests/unit\" --maxWorkers=auto",
+    "duration": 0.008855379,
+    "success": false,
+    "error": "Command failed: NODE_OPTIONS=\"--experimental-vm-modules\" jest --config jest.config.js --testPathPattern=\"tests/unit\" --maxWorkers=auto",
+    "improvement": 41.991144621,
+    "percentImprovement": 99.9789157642857
+  }
+}

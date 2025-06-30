@@ -1,0 +1,92 @@
+[
+  {
+    "id": "morning-routine",
+    "title": "Morning Entry Routine",
+    "description": "Students enter quietly, hang up belongings, complete morning work on desk",
+    "category": "morning",
+    "timeOfDay": "8:30 AM",
+    "priority": 1,
+    "isActive": true
+  },
+  {
+    "id": "attendance",
+    "title": "Attendance and Announcements",
+    "description": "Take attendance using class list, read daily announcements, review schedule",
+    "category": "morning",
+    "timeOfDay": "8:45 AM", 
+    "priority": 2,
+    "isActive": true
+  },
+  {
+    "id": "transition-bathroom",
+    "title": "Bathroom Transition",
+    "description": "Students line up quietly by the door, walk in single file, return to seats when done",
+    "category": "transition",
+    "timeOfDay": null,
+    "priority": 1,
+    "isActive": true
+  },
+  {
+    "id": "recess-dismissal",
+    "title": "Recess Dismissal",
+    "description": "Students clean up materials, line up by door, dismissed row by row to playground",
+    "category": "transition",
+    "timeOfDay": "10:15 AM",
+    "priority": 2,
+    "isActive": true
+  },
+  {
+    "id": "lunch-cleanup",
+    "title": "Pre-Lunch Cleanup",
+    "description": "Put away all materials, clean desk surface, stack chairs if needed",
+    "category": "dismissal",
+    "timeOfDay": "11:45 AM",
+    "priority": 1,
+    "isActive": true
+  },
+  {
+    "id": "end-of-day",
+    "title": "End of Day Dismissal",
+    "description": "Pack up belongings, check homework agenda, line up for bus/pickup",
+    "category": "dismissal",
+    "timeOfDay": "3:15 PM",
+    "priority": 3,
+    "isActive": true
+  },
+  {
+    "id": "behavior-attention",
+    "title": "Getting Attention Signal",
+    "description": "Teacher raises hand, students raise hand and stop talking within 5 seconds",
+    "category": "behavior",
+    "timeOfDay": null,
+    "priority": 1,
+    "isActive": true
+  },
+  {
+    "id": "behavior-noise-level",
+    "title": "Noise Level Management",
+    "description": "Use hand signals for voice levels: 0=silent, 1=whisper, 2=table talk, 3=presentation voice",
+    "category": "behavior",
+    "timeOfDay": null,
+    "priority": 2,
+    "isActive": true
+  },
+  {
+    "id": "emergency-fire",
+    "title": "Fire Drill Procedure",
+    "description": "Stop work immediately, stand up, line up at door, follow teacher to designated exit and meeting area",
+    "category": "emergency",
+    "timeOfDay": null,
+    "priority": 1,
+    "isActive": true
+  },
+  {
+    "id": "emergency-lockdown",
+    "title": "Lockdown Procedure",
+    "description": "Move away from windows and doors, sit quietly on floor, teacher locks door and turns off lights",
+    "category": "emergency",
+    "timeOfDay": null,
+    "priority": 1,
+    "isActive": true
+  }
+]

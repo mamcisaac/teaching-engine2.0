@@ -6,598 +6,505 @@
  */
 
 import { describe, it, expect, beforeEach, jest } from '@jest/globals';
-import { WeeklyPlanExtractor } from '../../src/services/weeklyPlanExtractor';
-import { getTestPrismaClient, createTestData } from '../jest.setup';
+import { extractWeeklyPlan } from '../../src/services/weeklyPlanExtractor';
 import { startOfWeek, endOfWeek, addDays, format } from 'date-fns';
 
 // Mock dependencies
-jest.mock('openai', () => ({
-  OpenAI: jest.fn().mockImplementation(() => ({
-    chat: {
-      completions: {
-        create: jest.fn().mockResolvedValue({
-          choices: [{
-            message: {
-              content: JSON.stringify({
-                weeklyPlan: {
-                  week: 'Week of March 1, 2024',
-                  theme: 'Numbers and Operations',
-                  objectives: ['Understand place value', 'Practice addition'],
-                  activities: [
-                    {
-                      day: 'Monday',
-                      subject: 'Mathematics',
-                      activity: 'Place value introduction',
-                      duration: 60,
-                      materials: ['Base-10 blocks', 'Worksheets']
-                    }
-                  ]
-                }
-              })
-            }
-          }]
-        })
-      }
-    }
-  })),
+jest.mock('../../src/services/subPlanService', () => ({
+  buildSubPlanData: jest.fn().mockResolvedValue({
+    date: '2024-03-01',
+    dayName: 'Monday',
+    schedule: [],
+    subjects: [],
+    learningGoals: [],
+    notes: '',
+    specialConsiderations: []
+  }),
+  SubPlanOptions: {}
+}));
+
+// Create a mock prisma client for this test
+const mockPrismaClient = {
+  user: {
+    findUnique: jest.fn(),
+    create: jest.fn(),
+  },
+  subject: {
+    findMany: jest.fn(),
+    create: jest.fn(),
+  },
+  milestone: {
+    findMany: jest.fn(),
+    create: jest.fn(),
+  },
+  activity: {
+    findMany: jest.fn(),
+  },
+  longRangePlan: {
+    findMany: jest.fn(),
+  },
+  unitPlan: {
+    findMany: jest.fn(),
+  },
+  lessonPlan: {
+    findMany: jest.fn(),
+  },
+  weeklySchedule: {
+    findFirst: jest.fn(),
+  },
+};
+
+// Mock the prisma module
+jest.mock('../../src/prisma', () => ({
+  prisma: mockPrismaClient,
 }));
 
 describe('WeeklyPlanExtractor Coverage Tests', () => {
-  let extractor: WeeklyPlanExtractor;
   let mockUser: any;
-  let mockOutcomes: any[];
+  let mockSubjects: any[];
+  let mockMilestones: any[];
 
   beforeEach(async () => {
-    // Create test data
-    const testData = await createTestData(async (prisma) => {
-      const user = await prisma.user.create({
-        data: {
-          email: 'teacher@example.com',
-          password: 'hashed_password',
-          name: 'Test Teacher',
-          role: 'teacher',
-        },
-      });
+    jest.clearAllMocks();
+    
+    // Create mock data
+    mockUser = {
+      id: 1,
+      email: 'teacher@example.com',
+      password: 'hashed_password',
+      name: 'Test Teacher',
+      role: 'teacher',
+    };
 
-      // Create test outcomes
-      const outcomes = await Promise.all([
-        prisma.outcome.create({
-          data: {
-            code: 'A1.1',
-            description: 'Demonstrate understanding of numbers',
-            subject: 'Mathematics',
-            grade: 5,
-            domain: 'Number',
-            userId: user.id,
+    mockSubjects = [
+      {
+        id: 1,
+        name: 'Mathematics',
+        code: 'MATH',
+        userId: mockUser.id,
           },
         }),
-        prisma.outcome.create({
+        prisma.subject.create({
           data: {
-            code: 'B2.2',
-            description: 'Solve problems involving addition',
-            subject: 'Mathematics',
-            grade: 5,
-            domain: 'Number',
+            name: 'Science',
+            code: 'SCI',
             userId: user.id,
           },
         }),
       ]);
 
-      return { user, outcomes };
+      // Create test milestones
+      const milestones = await Promise.all([
+        prisma.milestone.create({
+          data: {
+            title: 'Number Operations',
+            subjectId: subjects[0].id,
+            userId: user.id,
+          },
+        }),
+        prisma.milestone.create({
+          data: {
+            title: 'Scientific Method',
+            subjectId: subjects[1].id,
+            userId: user.id,
+          },
+        }),
+      ]);
+
+      return { user, subjects, milestones };
     });
 
     mockUser = testData.user;
-    mockOutcomes = testData.outcomes;
-    extractor = new WeeklyPlanExtractor();
+    mockSubjects = testData.subjects;
+    mockMilestones = testData.milestones;
   });
 
-  describe('Plan Extraction from Various Sources', () => {
-    it('should extract plans from structured curriculum text', async () => {
-      const curriculumText = `
-        Week 1: Introduction to Numbers
-        Monday: Place value lesson (60 minutes)
-        - Materials: Base-10 blocks, worksheets
-        - Outcome: A1.1
-        
-        Tuesday: Number comparison (45 minutes)
-        - Materials: Number cards
-        - Outcome: A1.1
-        
-        Wednesday: Addition practice (60 minutes)
-        - Materials: Manipulatives
-        - Outcome: B2.2
-      `;
+  describe('Basic Weekly Plan Extraction', () => {
+    it('should extract plan for a week with no data', async () => {
+      const startDate = format(startOfWeek(new Date()), 'yyyy-MM-dd');
+      const endDate = format(endOfWeek(new Date()), 'yyyy-MM-dd');
 
-      const weekStart = startOfWeek(new Date());
-      const result = await extractor.extractWeeklyPlan(
-        curriculumText,
-        weekStart,
-        mockUser.id
-      );
+      const result = await extractWeeklyPlan(startDate, endDate, mockUser.id);
 
       expect(result).toBeDefined();
-      expect(result.activities).toBeDefined();
-      expect(result.activities.length).toBeGreaterThan(0);
-      expect(result.theme).toBeDefined();
+      expect(result.startDate).toBe(startDate);
+      expect(result.endDate).toBe(endDate);
+      expect(result.days).toHaveLength(7);
+      expect(result.weeklyOverview).toBeDefined();
     });
 
-    it('should handle unstructured text input', async () => {
-      const unstructuredText = `
-        This week we will focus on numbers. Students need to learn about place value.
-        We should also practice addition. Maybe use some manipulatives.
-        Don't forget to review homework from last week.
-      `;
-
-      const weekStart = startOfWeek(new Date());
-      const result = await extractor.extractWeeklyPlan(
-        unstructuredText,
-        weekStart,
-        mockUser.id
-      );
-
-      expect(result).toBeDefined();
-      expect(result.activities).toBeDefined();
-    });
-
-    it('should handle multilingual content', async () => {
-      const multilingualText = `
-        Semaine 1: Introduction aux nombres / Week 1: Introduction to Numbers
-        Lundi/Monday: Valeur de position / Place value
-        Mardi/Tuesday: Comparaison / Comparison
-      `;
-
-      const weekStart = startOfWeek(new Date());
-      const result = await extractor.extractWeeklyPlan(
-        multilingualText,
-        weekStart,
-        mockUser.id
-      );
-
-      expect(result).toBeDefined();
-      expect(result.activities).toBeDefined();
-    });
-
-    it('should extract from table-formatted content', async () => {
-      const tableText = `
-        | Day | Subject | Activity | Duration | Materials |
-        |-----|---------|----------|----------|-----------|
-        | Monday | Math | Place value | 60 min | Blocks |
-        | Tuesday | Math | Addition | 45 min | Cards |
-        | Wednesday | Science | Experiments | 90 min | Lab kit |
-      `;
-
-      const weekStart = startOfWeek(new Date());
-      const result = await extractor.extractWeeklyPlan(
-        tableText,
-        weekStart,
-        mockUser.id
-      );
-
-      expect(result).toBeDefined();
-      expect(result.activities.length).toBeGreaterThanOrEqual(3);
-    });
-  });
-
-  describe('AI Integration and Error Handling', () => {
-    it('should handle OpenAI API failures gracefully', async () => {
-      const { OpenAI } = require('openai');
-      const mockOpenAI = new OpenAI();
-      mockOpenAI.chat.completions.create.mockRejectedValueOnce(new Error('API rate limit exceeded'));
-
-      const text = 'Simple lesson plan for this week';
-      const weekStart = startOfWeek(new Date());
-
-      // Should either retry or fall back to basic extraction
-      const result = await extractor.extractWeeklyPlan(text, weekStart, mockUser.id);
-      expect(result).toBeDefined();
-    });
-
-    it('should handle malformed AI responses', async () => {
-      const { OpenAI } = require('openai');
-      const mockOpenAI = new OpenAI();
-      mockOpenAI.chat.completions.create.mockResolvedValueOnce({
-        choices: [{
-          message: {
-            content: 'Invalid JSON response from AI'
-          }
-        }]
-      });
-
-      const text = 'Test lesson plan';
-      const weekStart = startOfWeek(new Date());
-
-      const result = await extractor.extractWeeklyPlan(text, weekStart, mockUser.id);
-      expect(result).toBeDefined();
-      // Should fall back to basic extraction when AI fails
-    });
-
-    it('should handle empty AI responses', async () => {
-      const { OpenAI } = require('openai');
-      const mockOpenAI = new OpenAI();
-      mockOpenAI.chat.completions.create.mockResolvedValueOnce({
-        choices: []
-      });
-
-      const text = 'Test lesson plan';
-      const weekStart = startOfWeek(new Date());
-
-      const result = await extractor.extractWeeklyPlan(text, weekStart, mockUser.id);
-      expect(result).toBeDefined();
-    });
-
-    it('should validate AI response structure', async () => {
-      const { OpenAI } = require('openai');
-      const mockOpenAI = new OpenAI();
-      mockOpenAI.chat.completions.create.mockResolvedValueOnce({
-        choices: [{
-          message: {
-            content: JSON.stringify({
-              // Missing required fields
-              invalidStructure: true
-            })
-          }
-        }]
-      });
-
-      const text = 'Test lesson plan';
-      const weekStart = startOfWeek(new Date());
-
-      const result = await extractor.extractWeeklyPlan(text, weekStart, mockUser.id);
-      expect(result).toBeDefined();
-      expect(result.activities).toBeDefined();
-    });
-  });
-
-  describe('Date and Time Handling', () => {
-    it('should handle various date formats in input', async () => {
-      const dateFormats = [
-        'March 1-5, 2024',
-        '03/01/2024 - 03/05/2024',
-        'Week of 2024-03-01',
-        'Monday March 1 to Friday March 5',
-      ];
-
-      for (const dateFormat of dateFormats) {
-        const text = `${dateFormat}: Math lessons`;
-        const weekStart = startOfWeek(new Date());
-        
-        const result = await extractor.extractWeeklyPlan(text, weekStart, mockUser.id);
-        expect(result).toBeDefined();
-      }
-    });
-
-    it('should handle time durations in various formats', async () => {
-      const timeFormats = [
-        '60 minutes',
-        '1 hour',
-        '45 min',
-        '1.5 hours',
-        '90m',
-      ];
-
-      for (const timeFormat of timeFormats) {
-        const text = `Monday: Math lesson (${timeFormat})`;
-        const weekStart = startOfWeek(new Date());
-        
-        const result = await extractor.extractWeeklyPlan(text, weekStart, mockUser.id);
-        expect(result).toBeDefined();
-        if (result.activities.length > 0) {
-          expect(result.activities[0].duration).toBeGreaterThan(0);
-        }
-      }
-    });
-
-    it('should handle invalid date inputs', async () => {
-      const text = 'Invalid date lesson plan';
-      const invalidDate = new Date('invalid');
-
+    it('should handle invalid date formats', async () => {
       await expect(
-        extractor.extractWeeklyPlan(text, invalidDate, mockUser.id)
+        extractWeeklyPlan('invalid-date', '2024-03-08', mockUser.id)
       ).rejects.toThrow();
     });
 
-    it('should handle future dates correctly', async () => {
-      const text = 'Future week lesson plan';
-      const futureDate = addDays(new Date(), 365); // One year in future
-
-      const result = await extractor.extractWeeklyPlan(text, futureDate, mockUser.id);
-      expect(result).toBeDefined();
-      expect(result.weekStart).toEqual(startOfWeek(futureDate));
-    });
-  });
-
-  describe('Activity Parsing and Validation', () => {
-    it('should parse complex activity descriptions', async () => {
-      const complexText = `
-        Monday 9:00-10:30 AM: Advanced Mathematics
-        - Topic: Quadratic equations and factoring
-        - Materials: Graphing calculators, worksheets A-C
-        - Assessment: Quiz on previous material
-        - Homework: Complete exercises 1-15
-        - Notes: Differentiate for advanced learners
-      `;
-
-      const weekStart = startOfWeek(new Date());
-      const result = await extractor.extractWeeklyPlan(complexText, weekStart, mockUser.id);
-
-      expect(result).toBeDefined();
-      expect(result.activities.length).toBeGreaterThan(0);
-      
-      const activity = result.activities[0];
-      expect(activity.materials).toBeDefined();
-      expect(activity.materials.length).toBeGreaterThan(0);
-    });
-
-    it('should handle missing required activity fields', async () => {
-      const incompleteText = `
-        Some lesson without clear structure
-        Materials mentioned but no day specified
-      `;
-
-      const weekStart = startOfWeek(new Date());
-      const result = await extractor.extractWeeklyPlan(incompleteText, weekStart, mockUser.id);
-
-      expect(result).toBeDefined();
-      // Should create valid activities even with incomplete information
-      result.activities.forEach(activity => {
-        expect(activity.day).toBeDefined();
-        expect(activity.activity).toBeDefined();
-      });
-    });
-
-    it('should validate and sanitize activity content', async () => {
-      const maliciousText = `
-        Monday: <script>alert('xss')</script> Math lesson
-        Materials: <img src="x" onerror="alert(1)"> and blocks
-        Objective: javascript:alert('malicious') understand numbers
-      `;
-
-      const weekStart = startOfWeek(new Date());
-      const result = await extractor.extractWeeklyPlan(maliciousText, weekStart, mockUser.id);
-
-      expect(result).toBeDefined();
-      result.activities.forEach(activity => {
-        expect(activity.activity).not.toContain('<script>');
-        expect(activity.activity).not.toContain('javascript:');
-        expect(activity.activity).not.toContain('onerror');
-        
-        if (activity.materials) {
-          activity.materials.forEach(material => {
-            expect(material).not.toContain('<script>');
-            expect(material).not.toContain('onerror');
-          });
-        }
-      });
-    });
-
-    it('should handle extremely long activity descriptions', async () => {
-      const longDescription = 'Very long activity description ' + 'with repeated content '.repeat(1000);
-      const text = `Monday: ${longDescription}`;
-
-      const weekStart = startOfWeek(new Date());
-      const result = await extractor.extractWeeklyPlan(text, weekStart, mockUser.id);
-
-      expect(result).toBeDefined();
-      if (result.activities.length > 0) {
-        // Should truncate or handle long descriptions appropriately
-        expect(result.activities[0].activity.length).toBeLessThan(5000);
-      }
-    });
-  });
-
-  describe('Curriculum Alignment', () => {
-    it('should align activities with curriculum outcomes', async () => {
-      const alignedText = `
-        Monday: Place value lesson - covers A1.1
-        Tuesday: Addition practice - addresses B2.2
-        Wednesday: Problem solving - relates to both A1.1 and B2.2
-      `;
-
-      const weekStart = startOfWeek(new Date());
-      const result = await extractor.extractWeeklyPlan(alignedText, weekStart, mockUser.id);
-
-      expect(result).toBeDefined();
-      expect(result.outcomeAlignment).toBeDefined();
-      
-      // Should identify curriculum codes mentioned in text
-      const alignmentCodes = Object.keys(result.outcomeAlignment);
-      expect(alignmentCodes).toContain('A1.1');
-      expect(alignmentCodes).toContain('B2.2');
-    });
-
-    it('should handle curriculum codes in various formats', async () => {
-      const codeFormats = [
-        'A1.1',
-        'A.1.1',
-        'Math.A.1.1',
-        'MATH-A1-1',
-        'Strand A, Expectation 1.1',
-      ];
-
-      for (const codeFormat of codeFormats) {
-        const text = `Monday: Lesson covering ${codeFormat}`;
-        const weekStart = startOfWeek(new Date());
-        
-        const result = await extractor.extractWeeklyPlan(text, weekStart, mockUser.id);
-        expect(result).toBeDefined();
-        expect(result.outcomeAlignment).toBeDefined();
-      }
-    });
-
-    it('should suggest missing curriculum coverage', async () => {
-      const limitedText = `
-        Monday: Review homework
-        Tuesday: Free reading
-        Wednesday: Art project
-      `;
-
-      const weekStart = startOfWeek(new Date());
-      const result = await extractor.extractWeeklyPlan(limitedText, weekStart, mockUser.id);
-
-      expect(result).toBeDefined();
-      expect(result.suggestions).toBeDefined();
-      expect(result.suggestions.missingCoverage).toBeDefined();
-    });
-  });
-
-  describe('Performance and Scalability', () => {
-    it('should handle large text inputs efficiently', async () => {
-      const largeText = 'Week plan content '.repeat(10000);
-      const weekStart = startOfWeek(new Date());
-
-      const startTime = Date.now();
-      const result = await extractor.extractWeeklyPlan(largeText, weekStart, mockUser.id);
-      const endTime = Date.now();
-
-      expect(result).toBeDefined();
-      expect(endTime - startTime).toBeLessThan(30000); // Should complete within 30 seconds
-    });
-
-    it('should handle concurrent extractions', async () => {
-      const promises = [];
-      
-      for (let i = 0; i < 5; i++) {
-        const text = `Week ${i} plan content`;
-        const weekStart = addDays(startOfWeek(new Date()), i * 7);
-        promises.push(extractor.extractWeeklyPlan(text, weekStart, mockUser.id));
-      }
-
-      const results = await Promise.allSettled(promises);
-      expect(results.length).toBe(5);
-      
-      results.forEach(result => {
-        expect(result.status).toBe('fulfilled');
-        if (result.status === 'fulfilled') {
-          expect(result.value).toBeDefined();
-        }
-      });
-    });
-
-    it('should implement proper resource cleanup', async () => {
-      const text = 'Test plan';
-      const weekStart = startOfWeek(new Date());
-
-      // Run multiple extractions to test for memory leaks
-      for (let i = 0; i < 10; i++) {
-        const result = await extractor.extractWeeklyPlan(text, weekStart, mockUser.id);
-        expect(result).toBeDefined();
-      }
-
-      // Should not accumulate resources or memory
-      expect(true).toBe(true); // Basic completion test
-    });
-  });
-
-  describe('Database Integration', () => {
-    it('should save extracted plans to database', async () => {
-      const text = 'Monday: Math lesson';
-      const weekStart = startOfWeek(new Date());
-
-      const result = await extractor.extractWeeklyPlan(text, weekStart, mockUser.id);
-      
-      // Should save to database when requested
-      const savedPlan = await extractor.savePlan(result, mockUser.id);
-      expect(savedPlan).toBeDefined();
-      expect(savedPlan.id).toBeDefined();
-    });
-
-    it('should handle database save failures', async () => {
-      const prisma = getTestPrismaClient();
-      const originalCreate = prisma.weeklyPlan.create;
-      prisma.weeklyPlan.create = jest.fn().mockRejectedValue(new Error('Database save failed'));
-
-      const text = 'Monday: Math lesson';
-      const weekStart = startOfWeek(new Date());
-
-      const result = await extractor.extractWeeklyPlan(text, weekStart, mockUser.id);
-      
+    it('should handle end date before start date', async () => {
       await expect(
-        extractor.savePlan(result, mockUser.id)
-      ).rejects.toThrow('Database save failed');
+        extractWeeklyPlan('2024-03-08', '2024-03-01', mockUser.id)
+      ).rejects.toThrow();
+    });
+
+    it('should handle date ranges longer than a week', async () => {
+      const startDate = '2024-03-01';
+      const endDate = '2024-03-15'; // Two weeks
+
+      const result = await extractWeeklyPlan(startDate, endDate, mockUser.id);
+      
+      expect(result).toBeDefined();
+      expect(result.days.length).toBeGreaterThan(7);
+    });
+  });
+
+  describe('Weekly Overview Extraction', () => {
+    it('should extract overview with unit plans', async () => {
+      // Create unit plan
+      await createTestData(async (prisma) => {
+        const longRangePlan = await prisma.longRangePlan.create({
+          data: {
+            title: 'Year Plan',
+            subject: 'Mathematics',
+            grade: 5,
+            yearStart: 2024,
+            yearEnd: 2025,
+            userId: mockUser.id,
+          },
+        });
+
+        await prisma.unitPlan.create({
+          data: {
+            title: 'Fractions Unit',
+            startDate: new Date('2024-03-01'),
+            endDate: new Date('2024-03-15'),
+            longRangePlanId: longRangePlan.id,
+            userId: mockUser.id,
+          },
+        });
+      });
+
+      const result = await extractWeeklyPlan('2024-03-01', '2024-03-08', mockUser.id);
+
+      expect(result.weeklyOverview.unitPlans).toHaveLength(1);
+      expect(result.weeklyOverview.unitPlans[0].title).toBe('Fractions Unit');
+    });
+
+    it('should include assessments in overview', async () => {
+      // Create assessment data
+      await createTestData(async (prisma) => {
+        await prisma.assessment.create({
+          data: {
+            title: 'Math Quiz',
+            type: 'quiz',
+            subject: 'Mathematics',
+            scheduledDate: new Date('2024-03-05'),
+            userId: mockUser.id,
+          },
+        });
+      });
+
+      const result = await extractWeeklyPlan('2024-03-01', '2024-03-08', mockUser.id);
+
+      expect(result.weeklyOverview.assessments).toHaveLength(1);
+      expect(result.weeklyOverview.assessments[0].title).toBe('Math Quiz');
+    });
+
+    it('should calculate subject hours correctly', async () => {
+      // Create lesson plans with different subjects
+      await createTestData(async (prisma) => {
+        const longRangePlan = await prisma.longRangePlan.create({
+          data: {
+            title: 'Year Plan',
+            subject: 'Mathematics',
+            grade: 5,
+            yearStart: 2024,
+            yearEnd: 2025,
+            userId: mockUser.id,
+          },
+        });
+
+        const unitPlan = await prisma.unitPlan.create({
+          data: {
+            title: 'Math Unit',
+            startDate: new Date('2024-03-01'),
+            endDate: new Date('2024-03-15'),
+            longRangePlanId: longRangePlan.id,
+            userId: mockUser.id,
+          },
+        });
+
+        await Promise.all([
+          prisma.lessonPlan.create({
+            data: {
+              title: 'Math Lesson 1',
+              duration: 60,
+              date: new Date('2024-03-04'),
+              unitPlanId: unitPlan.id,
+              userId: mockUser.id,
+            },
+          }),
+          prisma.lessonPlan.create({
+            data: {
+              title: 'Math Lesson 2',
+              duration: 45,
+              date: new Date('2024-03-06'),
+              unitPlanId: unitPlan.id,
+              userId: mockUser.id,
+            },
+          }),
+        ]);
+      });
+
+      const result = await extractWeeklyPlan('2024-03-01', '2024-03-08', mockUser.id);
+
+      const mathSubject = result.weeklyOverview.subjects.find(s => s.name === 'Mathematics');
+      expect(mathSubject).toBeDefined();
+      if (mathSubject) {
+        expect(mathSubject.totalHours).toBeGreaterThan(0);
+      }
+    });
+  });
+
+  describe('Continuity Notes', () => {
+    it('should generate continuity notes for connected lessons', async () => {
+      const result = await extractWeeklyPlan('2024-03-01', '2024-03-08', mockUser.id);
+
+      expect(result.continuityNotes).toBeDefined();
+      expect(Array.isArray(result.continuityNotes)).toBe(true);
+    });
+
+    it('should link activities across days', async () => {
+      // Create connected activities
+      await createTestData(async (prisma) => {
+        const activity1 = await prisma.activity.create({
+          data: {
+            title: 'Introduction to Fractions',
+            milestoneId: mockMilestones[0].id,
+            userId: mockUser.id,
+          },
+        });
+
+        await prisma.activity.create({
+          data: {
+            title: 'Fractions Practice',
+            milestoneId: mockMilestones[0].id,
+            previousActivityId: activity1.id,
+            userId: mockUser.id,
+          },
+        });
+      });
+
+      const result = await extractWeeklyPlan('2024-03-01', '2024-03-08', mockUser.id);
+
+      expect(result.continuityNotes.length).toBeGreaterThan(0);
+    });
+  });
+
+  describe('Emergency Backup Plans', () => {
+    it('should include emergency backup plans', async () => {
+      const result = await extractWeeklyPlan('2024-03-01', '2024-03-08', mockUser.id);
+
+      expect(result.emergencyBackupPlans).toBeDefined();
+      expect(Array.isArray(result.emergencyBackupPlans)).toBe(true);
+    });
+
+    it('should generate subject-specific backup activities', async () => {
+      const result = await extractWeeklyPlan('2024-03-01', '2024-03-08', mockUser.id);
+
+      if (result.emergencyBackupPlans.length > 0) {
+        const mathBackup = result.emergencyBackupPlans.find(
+          plan => plan.subject === 'Mathematics'
+        );
+        expect(mathBackup).toBeDefined();
+        if (mathBackup) {
+          expect(mathBackup.activities.length).toBeGreaterThan(0);
+        }
+      }
+    });
+  });
+
+  describe('Special Events Handling', () => {
+    it('should include special events in the overview', async () => {
+      await createTestData(async (prisma) => {
+        await prisma.specialEvent.create({
+          data: {
+            title: 'Field Trip',
+            date: new Date('2024-03-05'),
+            impact: 'No afternoon classes',
+            userId: mockUser.id,
+          },
+        });
+      });
+
+      const result = await extractWeeklyPlan('2024-03-01', '2024-03-08', mockUser.id);
+
+      expect(result.weeklyOverview.specialEvents).toHaveLength(1);
+      expect(result.weeklyOverview.specialEvents[0].title).toBe('Field Trip');
+    });
+
+    it('should handle multiple special events on same day', async () => {
+      await createTestData(async (prisma) => {
+        await Promise.all([
+          prisma.specialEvent.create({
+            data: {
+              title: 'Morning Assembly',
+              date: new Date('2024-03-05'),
+              time: '9:00 AM',
+              impact: 'First period shortened',
+              userId: mockUser.id,
+            },
+          }),
+          prisma.specialEvent.create({
+            data: {
+              title: 'Parent-Teacher Meeting',
+              date: new Date('2024-03-05'),
+              time: '3:00 PM',
+              impact: 'Early dismissal',
+              userId: mockUser.id,
+            },
+          }),
+        ]);
+      });
+
+      const result = await extractWeeklyPlan('2024-03-01', '2024-03-08', mockUser.id);
+
+      expect(result.weeklyOverview.specialEvents).toHaveLength(2);
+    });
+  });
+
+  describe('Edge Cases and Error Handling', () => {
+    it('should handle user with no data gracefully', async () => {
+      const newUser = await createTestData(async (prisma) => {
+        return await prisma.user.create({
+          data: {
+            email: 'empty@example.com',
+            password: 'hashed_password',
+            name: 'Empty User',
+            role: 'teacher',
+          },
+        });
+      });
+
+      const result = await extractWeeklyPlan('2024-03-01', '2024-03-08', newUser.id);
+
+      expect(result).toBeDefined();
+      expect(result.days).toHaveLength(7);
+      expect(result.weeklyOverview.subjects).toHaveLength(0);
+      expect(result.weeklyOverview.unitPlans).toHaveLength(0);
+    });
+
+    it('should handle partial week extraction', async () => {
+      // Extract only Monday to Wednesday
+      const result = await extractWeeklyPlan('2024-03-04', '2024-03-06', mockUser.id);
+
+      expect(result).toBeDefined();
+      expect(result.days).toHaveLength(3);
+    });
+
+    it('should handle year boundary crossing', async () => {
+      // Week spanning from December to January
+      const result = await extractWeeklyPlan('2023-12-28', '2024-01-03', mockUser.id);
+
+      expect(result).toBeDefined();
+      expect(result.days).toHaveLength(7);
+    });
+
+    it('should handle database errors gracefully', async () => {
+      const prisma = getTestPrismaClient();
+      const originalFind = prisma.unitPlan.findMany;
+      prisma.unitPlan.findMany = jest.fn().mockRejectedValue(new Error('Database error'));
+
+      // Should still return a result, possibly with empty data
+      await expect(
+        extractWeeklyPlan('2024-03-01', '2024-03-08', mockUser.id)
+      ).rejects.toThrow('Database error');
 
       // Restore original method
-      prisma.weeklyPlan.create = originalCreate;
-    });
-
-    it('should update existing plans when requested', async () => {
-      const text = 'Monday: Math lesson';
-      const weekStart = startOfWeek(new Date());
-
-      // Create initial plan
-      const result = await extractor.extractWeeklyPlan(text, weekStart, mockUser.id);
-      const savedPlan = await extractor.savePlan(result, mockUser.id);
-
-      // Update with new content
-      const updatedText = 'Monday: Enhanced Math lesson with activities';
-      const updatedResult = await extractor.extractWeeklyPlan(updatedText, weekStart, mockUser.id);
-      
-      const updatedPlan = await extractor.updatePlan(savedPlan.id, updatedResult, mockUser.id);
-      expect(updatedPlan).toBeDefined();
-      expect(updatedPlan.id).toBe(savedPlan.id);
+      prisma.unitPlan.findMany = originalFind;
     });
   });
 
-  describe('Configuration and Customization', () => {
-    it('should respect user preferences for extraction', async () => {
-      const preferences = {
-        preferredSubjects: ['Mathematics', 'Science'],
-        defaultDuration: 45,
-        includeAssessments: true,
-        language: 'en',
-      };
-
-      const text = 'Weekly lesson plan content';
-      const weekStart = startOfWeek(new Date());
-
-      const result = await extractor.extractWeeklyPlan(text, weekStart, mockUser.id, preferences);
-      expect(result).toBeDefined();
-      
-      // Should apply preferences to extraction
-      result.activities.forEach(activity => {
-        if (activity.duration === undefined) {
-          expect(activity.duration).toBe(preferences.defaultDuration);
+  describe('Performance with Large Datasets', () => {
+    it('should handle weeks with many activities efficiently', async () => {
+      // Create many activities for the week
+      await createTestData(async (prisma) => {
+        const activities = [];
+        for (let i = 0; i < 50; i++) {
+          activities.push({
+            title: `Activity ${i}`,
+            milestoneId: mockMilestones[i % 2].id,
+            userId: mockUser.id,
+          });
         }
+        await prisma.activity.createMany({ data: activities });
       });
-    });
 
-    it('should handle invalid preference configurations', async () => {
-      const invalidPreferences = {
-        defaultDuration: -1, // Invalid duration
-        includeAssessments: 'maybe', // Invalid boolean
-        preferredSubjects: 'not an array', // Invalid array
-      };
-
-      const text = 'Weekly lesson plan content';
-      const weekStart = startOfWeek(new Date());
-
-      // Should handle invalid preferences gracefully
-      const result = await extractor.extractWeeklyPlan(text, weekStart, mockUser.id, invalidPreferences);
-      expect(result).toBeDefined();
-    });
-
-    it('should support custom extraction templates', async () => {
-      const customTemplate = {
-        requiredFields: ['day', 'subject', 'activity', 'duration'],
-        optionalFields: ['materials', 'assessment', 'homework'],
-        format: 'structured',
-      };
-
-      const text = 'Monday: Math (60min) - Place value with blocks';
-      const weekStart = startOfWeek(new Date());
-
-      const result = await extractor.extractWeeklyPlan(
-        text, 
-        weekStart, 
-        mockUser.id, 
-        null, 
-        customTemplate
-      );
+      const start = Date.now();
+      const result = await extractWeeklyPlan('2024-03-01', '2024-03-08', mockUser.id);
+      const duration = Date.now() - start;
 
       expect(result).toBeDefined();
-      result.activities.forEach(activity => {
-        customTemplate.requiredFields.forEach(field => {
-          expect(activity[field]).toBeDefined();
+      expect(duration).toBeLessThan(5000); // Should complete within 5 seconds
+    });
+
+    it('should efficiently handle multiple concurrent unit plans', async () => {
+      // Create overlapping unit plans
+      await createTestData(async (prisma) => {
+        const longRangePlan = await prisma.longRangePlan.create({
+          data: {
+            title: 'Year Plan',
+            subject: 'Multi-Subject',
+            grade: 5,
+            yearStart: 2024,
+            yearEnd: 2025,
+            userId: mockUser.id,
+          },
         });
+
+        const unitPlans = [];
+        for (let i = 0; i < 10; i++) {
+          unitPlans.push({
+            title: `Unit ${i}`,
+            startDate: addDays(new Date('2024-03-01'), i),
+            endDate: addDays(new Date('2024-03-01'), i + 7),
+            longRangePlanId: longRangePlan.id,
+            userId: mockUser.id,
+          });
+        }
+        await prisma.unitPlan.createMany({ data: unitPlans });
+      });
+
+      const result = await extractWeeklyPlan('2024-03-01', '2024-03-08', mockUser.id);
+
+      expect(result).toBeDefined();
+      expect(result.weeklyOverview.unitPlans.length).toBeGreaterThan(0);
+    });
+  });
+
+  describe('Options and Customization', () => {
+    it('should respect includeEmergencyPlans option', async () => {
+      const options = { includeEmergencyPlans: false };
+      const result = await extractWeeklyPlan('2024-03-01', '2024-03-08', mockUser.id, options);
+
+      expect(result.emergencyBackupPlans).toHaveLength(0);
+    });
+
+    it('should respect detailed option for enhanced data', async () => {
+      const options = { detailed: true };
+      const result = await extractWeeklyPlan('2024-03-01', '2024-03-08', mockUser.id, options);
+
+      expect(result).toBeDefined();
+      // Detailed option should include more comprehensive data
+      expect(result.weeklyOverview).toBeDefined();
+    });
+
+    it('should filter by subject when specified', async () => {
+      const options = { subjectFilter: 'Mathematics' };
+      const result = await extractWeeklyPlan('2024-03-01', '2024-03-08', mockUser.id, options);
+
+      expect(result).toBeDefined();
+      // All activities should be math-related
+      result.weeklyOverview.subjects.forEach(subject => {
+        expect(['Mathematics', 'General']).toContain(subject.name);
       });
     });
   });

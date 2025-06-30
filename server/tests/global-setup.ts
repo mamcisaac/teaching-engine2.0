@@ -1,75 +1,38 @@
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
-
 /**
- * Global setup that runs once before all test suites
- * This ensures the test environment is properly configured
+ * Global setup for all tests
+ * Runs once before all test suites
  */
+
+import { config } from 'dotenv';
+import { existsSync, mkdirSync } from 'fs';
+import { dirname } from 'path';
+
 export default async function globalSetup() {
-  console.log('🔧 Setting up test environment...');
-
-  // Ensure test directory exists
-  const testTempDir = path.join(process.cwd(), 'tests', 'temp');
-  if (!fs.existsSync(testTempDir)) {
-    fs.mkdirSync(testTempDir, { recursive: true });
-  }
-
-  // Clean up any leftover test databases from previous runs
-  console.log('🧹 Cleaning up old test databases...');
-  try {
-    const files = fs.readdirSync(testTempDir);
-    for (const file of files) {
-      if (file.startsWith('test_') && file.endsWith('.db')) {
-        const filePath = path.join(testTempDir, file);
-        try {
-          fs.unlinkSync(filePath);
-          // Also remove WAL and SHM files
-          const walPath = `${filePath}-wal`;
-          const shmPath = `${filePath}-shm`;
-          if (fs.existsSync(walPath)) fs.unlinkSync(walPath);
-          if (fs.existsSync(shmPath)) fs.unlinkSync(shmPath);
-        } catch (error) {
-          console.warn(`Failed to delete old test database: ${file}`, error);
-        }
-      }
+  // Load environment variables
+  config({ path: '.env.test' });
+  config({ path: '.env' }); // Fallback to main env file
+  
+  // Ensure test database directory exists
+  const dbUrl = process.env.DATABASE_URL || 'file:../packages/database/prisma/test.db';
+  if (dbUrl.startsWith('file:')) {
+    const dbPath = dbUrl.replace('file:', '');
+    const dbDir = dirname(dbPath);
+    if (!existsSync(dbDir)) {
+      mkdirSync(dbDir, { recursive: true });
     }
-  } catch (error) {
-    console.warn('Failed to clean up old test databases:', error);
   }
-
-  // Ensure Prisma client is generated
-  console.log('📦 Generating Prisma client...');
-  try {
-    // Run from the monorepo root
-    execSync('pnpm --filter @teaching-engine/database db:generate', {
-      stdio: 'inherit',
-      timeout: 60000, // 1 minute timeout
-      cwd: path.resolve(__dirname, '../..'), // Go to monorepo root
-    });
-  } catch (error) {
-    console.error('Failed to generate Prisma client:', error);
-    throw error;
-  }
-
-  // Set test environment variables
+  
+  // Set global test environment variables
   process.env.NODE_ENV = 'test';
-  // Use absolute path to ensure consistency across environments
-  const dbPath = path.resolve(__dirname, '../../packages/database/prisma/test.db');
-  process.env.DATABASE_URL = process.env.DATABASE_URL || `file:${dbPath}`;
   process.env.JWT_SECRET = process.env.JWT_SECRET || 'test-secret-key';
-  process.env.JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '1h';
-
-  // Suppress console warnings in tests unless debugging
-  if (!process.env.DEBUG_TESTS) {
-    global.console.warn = () => {};
-  }
-
-  console.log('✅ Test environment setup complete');
-
-  // Return a teardown function
-  return async () => {
-    // This runs after all tests are complete
-    console.log('🔧 Tearing down test environment...');
-  };
+  process.env.OPENAI_API_KEY = process.env.OPENAI_API_KEY || 'test-api-key';
+  
+  // Disable external service calls in tests
+  process.env.DISABLE_EXTERNAL_CALLS = 'true';
+  
+  // Performance optimization flags
+  process.env.SKIP_DB_SEED = 'true'; // Skip seeding in unit tests
+  process.env.USE_MOCK_SERVICES = 'true'; // Use mocked services
+  
+  console.log('🚀 Global test setup completed');
 }

@@ -1,0 +1,28 @@
+71c6a22a0ab5aadb2eafde0387ea1160
+import bcrypt from 'bcryptjs';
+/**
+ * Creates a test user for authentication in tests.
+ * This should be called in beforeEach to ensure the user exists after database resets.
+ */
+export async function createTestUser(prisma) {
+    const hashedPassword = await bcrypt.hash('testpassword', 10);
+    return await prisma.user.upsert({
+        where: { email: 'test@example.com' },
+        update: {},
+        create: {
+            email: 'test@example.com',
+            password: hashedPassword,
+            name: 'Test User',
+            role: 'teacher',
+        },
+    });
+}
+/**
+ * Standard beforeEach setup for tests that need authentication.
+ * Creates a test user and sets up auth.
+ */
+export async function setupAuthenticatedTest(prisma, auth) {
+    await createTestUser(prisma);
+    await auth.setup();
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL1VzZXJzL21pY2hhZWxtY2lzYWFjL0dpdEh1Yi90ZWFjaGluZy1lbmdpbmUyLjAvc2VydmVyL3Rlc3RzL3Rlc3Qtc2V0dXAtaGVscGVycy50cyIsIm1hcHBpbmdzIjoiQUFBQSxPQUFPLE1BQU0sTUFBTSxVQUFVLENBQUM7QUFHOUI7OztHQUdHO0FBQ0gsTUFBTSxDQUFDLEtBQUssVUFBVSxjQUFjLENBQUMsTUFBb0I7SUFDdkQsTUFBTSxjQUFjLEdBQUcsTUFBTSxNQUFNLENBQUMsSUFBSSxDQUFDLGNBQWMsRUFBRSxFQUFFLENBQUMsQ0FBQztJQUM3RCxPQUFPLE1BQU0sTUFBTSxDQUFDLElBQUksQ0FBQyxNQUFNLENBQUM7UUFDOUIsS0FBSyxFQUFFLEVBQUUsS0FBSyxFQUFFLGtCQUFrQixFQUFFO1FBQ3BDLE1BQU0sRUFBRSxFQUFFO1FBQ1YsTUFBTSxFQUFFO1lBQ04sS0FBSyxFQUFFLGtCQUFrQjtZQUN6QixRQUFRLEVBQUUsY0FBYztZQUN4QixJQUFJLEVBQUUsV0FBVztZQUNqQixJQUFJLEVBQUUsU0FBUztTQUNoQjtLQUNGLENBQUMsQ0FBQztBQUNMLENBQUM7QUFFRDs7O0dBR0c7QUFDSCxNQUFNLENBQUMsS0FBSyxVQUFVLHNCQUFzQixDQUMxQyxNQUFvQixFQUNwQixJQUFvQztJQUVwQyxNQUFNLGNBQWMsQ0FBQyxNQUFNLENBQUMsQ0FBQztJQUM3QixNQUFNLElBQUksQ0FBQyxLQUFLLEVBQUUsQ0FBQztBQUNyQixDQUFDIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbIi9Vc2Vycy9taWNoYWVsbWNpc2FhYy9HaXRIdWIvdGVhY2hpbmctZW5naW5lMi4wL3NlcnZlci90ZXN0cy90ZXN0LXNldHVwLWhlbHBlcnMudHMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGJjcnlwdCBmcm9tICdiY3J5cHRqcyc7XG5pbXBvcnQgeyBQcmlzbWFDbGllbnQgfSBmcm9tICdAdGVhY2hpbmctZW5naW5lL2RhdGFiYXNlJztcblxuLyoqXG4gKiBDcmVhdGVzIGEgdGVzdCB1c2VyIGZvciBhdXRoZW50aWNhdGlvbiBpbiB0ZXN0cy5cbiAqIFRoaXMgc2hvdWxkIGJlIGNhbGxlZCBpbiBiZWZvcmVFYWNoIHRvIGVuc3VyZSB0aGUgdXNlciBleGlzdHMgYWZ0ZXIgZGF0YWJhc2UgcmVzZXRzLlxuICovXG5leHBvcnQgYXN5bmMgZnVuY3Rpb24gY3JlYXRlVGVzdFVzZXIocHJpc21hOiBQcmlzbWFDbGllbnQpIHtcbiAgY29uc3QgaGFzaGVkUGFzc3dvcmQgPSBhd2FpdCBiY3J5cHQuaGFzaCgndGVzdHBhc3N3b3JkJywgMTApO1xuICByZXR1cm4gYXdhaXQgcHJpc21hLnVzZXIudXBzZXJ0KHtcbiAgICB3aGVyZTogeyBlbWFpbDogJ3Rlc3RAZXhhbXBsZS5jb20nIH0sXG4gICAgdXBkYXRlOiB7fSxcbiAgICBjcmVhdGU6IHtcbiAgICAgIGVtYWlsOiAndGVzdEBleGFtcGxlLmNvbScsXG4gICAgICBwYXNzd29yZDogaGFzaGVkUGFzc3dvcmQsXG4gICAgICBuYW1lOiAnVGVzdCBVc2VyJyxcbiAgICAgIHJvbGU6ICd0ZWFjaGVyJyxcbiAgICB9LFxuICB9KTtcbn1cblxuLyoqXG4gKiBTdGFuZGFyZCBiZWZvcmVFYWNoIHNldHVwIGZvciB0ZXN0cyB0aGF0IG5lZWQgYXV0aGVudGljYXRpb24uXG4gKiBDcmVhdGVzIGEgdGVzdCB1c2VyIGFuZCBzZXRzIHVwIGF1dGguXG4gKi9cbmV4cG9ydCBhc3luYyBmdW5jdGlvbiBzZXR1cEF1dGhlbnRpY2F0ZWRUZXN0KFxuICBwcmlzbWE6IFByaXNtYUNsaWVudCxcbiAgYXV0aDogeyBzZXR1cDogKCkgPT4gUHJvbWlzZTx2b2lkPiB9LFxuKSB7XG4gIGF3YWl0IGNyZWF0ZVRlc3RVc2VyKHByaXNtYSk7XG4gIGF3YWl0IGF1dGguc2V0dXAoKTtcbn1cbiJdLCJ2ZXJzaW9uIjozfQ==

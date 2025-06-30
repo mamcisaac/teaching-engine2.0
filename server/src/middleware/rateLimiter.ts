@@ -23,6 +23,11 @@ setInterval(() => {
   }
 }, 60000); // Clean up every minute
 
+// Function to reset rate limiter state (for testing)
+export function resetRateLimiterState() {
+  requestCounts.clear();
+}
+
 export function createRateLimiter(options: RateLimitOptions) {
   const {
     windowMs,

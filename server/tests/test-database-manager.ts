@@ -1,6 +1,7 @@
 import { PrismaClient } from '@teaching-engine/database';
 import { execSync } from 'child_process';
 import { resolve } from 'path';
+import { mkdirSync, existsSync } from 'fs';
 
 interface TransactionClient {
   client: PrismaClient;
@@ -31,13 +32,18 @@ class TestDatabaseManager {
     // Initialize the database schema
     const databasePath = resolve(process.cwd(), '..', 'packages', 'database');
     try {
-      execSync('npx prisma db push --force-reset --skip-generate', {
-        stdio: 'inherit',
+      const result = execSync('npx prisma db push --force-reset --skip-generate', {
+        stdio: 'pipe',
         cwd: databasePath,
         env: { ...process.env, DATABASE_URL: databaseUrl },
+        encoding: 'utf8',
       });
-    } catch (error) {
-      console.error(`Failed to create test database for worker ${workerId}:`, error);
+      console.log(`Database setup for worker ${workerId}:`, result);
+    } catch (error: any) {
+      console.error(`Failed to create test database for worker ${workerId}:`);
+      console.error('Stdout:', error.stdout);
+      console.error('Stderr:', error.stderr);
+      console.error('Error:', error);
       throw error;
     }
   }
@@ -186,6 +192,13 @@ class TestDatabaseManager {
   private getDatabaseUrl(workerId: string): string {
     // Use a unique database file for each worker to avoid conflicts
     const dbPath = resolve(process.cwd(), 'tests', `test-${workerId}.db`);
+    
+    // Ensure the tests directory exists
+    const testsDir = resolve(process.cwd(), 'tests');
+    if (!existsSync(testsDir)) {
+      mkdirSync(testsDir, { recursive: true });
+    }
+    
     return `file:${dbPath}`;
   }
 }

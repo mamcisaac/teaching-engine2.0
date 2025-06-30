@@ -145,6 +145,11 @@ export class PrismaClient {
   unitPlan = createMockModel('unitPlan');
   eTFOLessonPlan = createMockModel('eTFOLessonPlan');
   daybookEntry = createMockModel('daybookEntry');
+  // Ensure all frequently used models are present
+  equipmentBooking = createMockModel('equipmentBooking');
+  reportDeadline = createMockModel('reportDeadline');
+  holiday = createMockModel('holiday');
+  unavailableBlock = createMockModel('unavailableBlock');
 
   // Test helper to reset all mock data
   _resetAllMocks = () => {
@@ -158,6 +163,34 @@ export class PrismaClient {
 
 // Create singleton instance
 export const prisma = new PrismaClient();
+
+// Export additional models that might be needed
+export class ExtendedPrismaClient extends PrismaClient {
+  // Add any additional models that are referenced in tests
+  curriculumExpectation = createMockModel('curriculumExpectation');
+  curriculumExpectationEmbedding = createMockModel('curriculumExpectationEmbedding');
+  planTemplate = createMockModel('planTemplate');
+  unavailableBlock = createMockModel('unavailableBlock');
+  timetableSlot = createMockModel('timetableSlot');
+  holiday = createMockModel('holiday');
+  weeklyPlan = createMockModel('weeklyPlan');
+  plannerState = createMockModel('plannerState');
+  template = createMockModel('template');
+  newsletter = createMockModel('newsletter');
+  schoolYear = createMockModel('schoolYear');
+  academicYear = createMockModel('academicYear');
+  grade = createMockModel('grade');
+  classLevel = createMockModel('classLevel');
+  curriculum = createMockModel('curriculum');
+  subjectArea = createMockModel('subjectArea');
+  learningExpectation = createMockModel('learningExpectation');
+  assessmentCriteria = createMockModel('assessmentCriteria');
+  rubric = createMockModel('rubric');
+  recentPlanAccess = createMockModel('recentPlanAccess');
+}
+
+// Re-export with extended functionality
+export const extendedPrisma = new ExtendedPrismaClient();
 
 // Export enums and types
 export const ImportStatus = {
@@ -179,4 +212,10 @@ export const Prisma = {
     }
   },
   PrismaClientValidationError: class PrismaClientValidationError extends Error {},
+  PrismaClientInitializationError: class PrismaClientInitializationError extends Error {},
+  PrismaClientRustPanicError: class PrismaClientRustPanicError extends Error {},
+  PrismaClientUnknownRequestError: class PrismaClientUnknownRequestError extends Error {},
 };
+
+// Default export for compatibility
+export default prisma;

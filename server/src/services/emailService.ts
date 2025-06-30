@@ -1,9 +1,13 @@
-// Stub for EmailService to fix missing import
+import nodemailer from 'nodemailer';
+import type { Transporter } from 'nodemailer';
+import logger from '../logger';
+
 export interface EmailAttachment {
   filename: string;
   content: Buffer;
 }
 
+// Custom email handler for testing
 let customEmailHandler:
   | ((
       to: string,
@@ -13,6 +17,26 @@ let customEmailHandler:
       attachment?: EmailAttachment,
     ) => Promise<void>)
   | null = null;
+
+// SMTP transporter instance
+let transporter: Transporter | null = null;
+
+// Initialize SMTP transporter if configured
+if (process.env.SMTP_HOST) {
+  const transporterConfig: any = {
+    host: process.env.SMTP_HOST,
+    port: parseInt(process.env.SMTP_PORT || '587'),
+  };
+
+  if (process.env.SMTP_USER && process.env.SMTP_PASS) {
+    transporterConfig.auth = {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    };
+  }
+
+  transporter = nodemailer.createTransport(transporterConfig);
+}
 
 export function setEmailHandler(
   handler: (
@@ -37,25 +61,120 @@ export async function sendEmail(
   html?: string,
   attachment?: EmailAttachment,
 ): Promise<void> {
+  // Use custom handler if set (for testing)
   if (customEmailHandler) {
     return customEmailHandler(to, subject, text, html, attachment);
   }
 
-  // Stub implementation
-  console.log(`Email stub: Would send email to ${to} with subject: ${subject}`);
+  const from = process.env.EMAIL_FROM || 'no-reply@example.com';
+
+  // SendGrid implementation
+  if (process.env.SENDGRID_API_KEY) {
+    try {
+      const body: any = {
+        personalizations: [{ to: [{ email: to }] }],
+        from: { email: from },
+        subject,
+        content: [{ type: 'text/plain', value: text }],
+      };
+
+      if (html) {
+        body.content.push({ type: 'text/html', value: html });
+      }
+
+      if (attachment) {
+        body.attachments = [
+          {
+            content: attachment.content.toString('base64'),
+            filename: attachment.filename,
+            type: 'application/pdf',
+            disposition: 'attachment',
+          },
+        ];
+      }
+
+      const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${process.env.SENDGRID_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+
+      if (!response.ok) {
+        throw new Error(`SendGrid API error: ${response.status}`);
+      }
+
+      logger.info(`Email sent via SendGrid to ${to}`);
+      return;
+    } catch (error) {
+      logger.error('SendGrid email error:', error);
+      throw error;
+    }
+  }
+
+  // SMTP implementation
+  if (transporter) {
+    try {
+      const mailOptions: any = {
+        from,
+        to,
+        subject,
+        text,
+      };
+
+      if (html) {
+        mailOptions.html = html;
+      }
+
+      if (attachment) {
+        mailOptions.attachments = [attachment];
+      }
+
+      await transporter.sendMail(mailOptions);
+      logger.info(`Email sent via SMTP to ${to}`);
+      return;
+    } catch (error) {
+      logger.error('SMTP email error:', error);
+      throw error;
+    }
+  }
+
+  // Fallback: just log the email
+  logger.info(`Email service not configured. Would send email to ${to}`);
+  logger.info(`Subject: ${subject}`);
+  logger.info(`Text: ${text}`);
+  if (html) {
+    logger.info(`HTML content provided`);
+  }
+  if (attachment) {
+    logger.info(`Attachment: ${attachment.filename}`);
+  }
 }
 
 export class EmailService {
-  constructor() {}
-
-  async sendEmail(to: string, _subject: string, _body: string): Promise<void> {
-    // Stub implementation
-    console.log(`Email stub: Would send email to ${to} with subject: ${_subject}`);
+  async sendEmail(to: string, subject: string, body: string, html?: string): Promise<void> {
+    await sendEmail(to, subject, body, html);
   }
 
-  async sendBulkEmails(recipients: string[], _subject: string, _body: string): Promise<void> {
-    // Stub implementation
-    console.log(`Email stub: Would send bulk emails to ${recipients.length} recipients`);
+  async sendBulkEmails(
+    recipients: string[],
+    subject: string,
+    body: string,
+    html?: string,
+  ): Promise<void> {
+    // Send emails in parallel with rate limiting
+    const batchSize = 10;
+    for (let i = 0; i < recipients.length; i += batchSize) {
+      const batch = recipients.slice(i, i + batchSize);
+      await Promise.all(batch.map((to) => sendEmail(to, subject, body, html)));
+      
+      // Small delay between batches to avoid rate limits
+      if (i + batchSize < recipients.length) {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+      }
+    }
   }
 }
 

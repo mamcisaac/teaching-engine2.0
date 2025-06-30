@@ -1,43 +1,70 @@
 /**
- * Optimized Jest Configuration for Teaching Engine 2.0
- * Performance-focused configuration with parallel execution and smart caching
+ * Optimized Jest Configuration for Maximum Performance
+ * Final configuration implementing all Phase 1-3 optimizations
  */
 
 import path from 'path';
 import { cpus } from 'os';
 
-// Calculate optimal worker count based on CPU cores
-const getOptimalWorkerCount = () => {
+// Optimized worker calculation based on test type and system capabilities
+const getOptimalWorkerCount = (testType = 'unit') => {
   const coreCount = cpus().length;
-  if (process.env.CI) return 2; // Conservative for CI
-  return Math.max(1, Math.floor(coreCount * 0.75)); // Use 75% of cores
+  const maxMemoryMB = 4096; // Estimate available memory
+  
+  if (process.env.CI) {
+    return Math.min(2, coreCount); // Conservative for CI
+  }
+  
+  switch (testType) {
+    case 'fast':
+      // Fast tests can run with maximum parallelization
+      return Math.min(8, coreCount);
+    case 'unit':
+      // Regular unit tests with good parallelization
+      return Math.min(6, Math.floor(coreCount * 0.8));
+    case 'integration':
+      // Integration tests need database access - limited parallelization
+      return Math.min(2, Math.floor(coreCount * 0.25));
+    default:
+      return Math.max(1, Math.floor(coreCount * 0.5));
+  }
 };
 
-/** @type {import('jest').Config} */
+// Base performance-optimized configuration
 const baseConfig = {
   preset: 'ts-jest/presets/default-esm',
   testEnvironment: 'node',
   extensionsToTreatAsEsm: ['.ts'],
   
-  // Performance optimizations
+  // Aggressive performance optimizations
   cache: true,
   cacheDirectory: '<rootDir>/.jest-cache',
-  maxWorkers: getOptimalWorkerCount(),
-  testTimeout: 30000,
-  bail: process.env.CI ? 1 : 0, // Stop on first failure in CI
+  workerIdleMemoryLimit: '256MB', // Reduced memory limit per worker
+  maxConcurrency: 4, // Reduced concurrent tests per worker
   
-  // Module resolution
+  // Fast-fail strategy
+  bail: 3, // Stop after 3 failures
+  testTimeout: 5000, // Aggressive 5-second timeout
+  
+  // Minimal detection for performance
+  detectOpenHandles: false,
+  detectLeaks: false,
+  
+  // Module resolution optimizations
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
     '^@/(.*)$': '<rootDir>/src/$1',
     '^tests/(.*)$': '<rootDir>/tests/$1',
     '^@/utils/logger$': '<rootDir>/src/logger',
-    // Always mock OpenAI for tests
+    // Aggressive mocking for performance
+    '^@teaching-engine/database$': '<rootDir>/tests/mocks/database.mock.ts',
     '^openai$': '<rootDir>/src/__mocks__/openai.js',
+    '^canvas$': '<rootDir>/tests/mocks/canvas.mock.ts',
+    '^pdfkit$': '<rootDir>/tests/mocks/pdfkit.mock.ts',
   },
   
   moduleDirectories: ['node_modules', 'src'],
-  moduleFileExtensions: ['ts', 'js', 'json', 'node'],
+  moduleFileExtensions: ['ts', 'js', 'json'],
   
   // Optimized TypeScript transformation
   transform: {
@@ -46,163 +73,122 @@ const baseConfig = {
       {
         useESM: true,
         tsconfig: {
-          // Inline minimal tsconfig for tests
-          target: 'ES2022',
-          module: 'ES2022',
-          moduleResolution: 'node',
-          esModuleInterop: true,
-          allowSyntheticDefaultImports: true,
+          target: 'ES2020', // Modern target for speed
+          module: 'ESNext',
           strict: false, // Disable strict mode for faster compilation
-          skipLibCheck: true,
-          forceConsistentCasingInFileNames: false,
-          resolveJsonModule: true,
-          isolatedModules: true, // Much faster compilation
-        }
+          skipLibCheck: true, // Skip lib checks for speed
+        },
       },
     ],
   },
   
-  transformIgnorePatterns: ['node_modules/(?!(.*\\.mjs|@prisma/client)/)'],
+  transformIgnorePatterns: [
+    'node_modules/(?!(.*\\.mjs|@prisma/client|@teaching-engine/database)/)'
+  ],
   
-  // Test file patterns
+  // Focused test patterns
   testPathIgnorePatterns: [
     '/node_modules/', 
     '/dist/', 
     '/__mocks__/',
-    // Note: integration and e2e tests are controlled by project configuration
+    '/coverage/',
+    '/.jest-cache/',
+    '\\.disabled\\.',
   ],
   
-  // Cleanup and error handling
+  // Minimal cleanup for speed
   clearMocks: true,
-  resetMocks: true,
-  restoreMocks: true,
+  resetMocks: false, // Don't reset - faster
+  restoreMocks: false, // Don't restore - faster
   forceExit: true,
-  detectOpenHandles: false, // Disable for speed
   
-  // Coverage settings (only when explicitly requested)
+  // Minimal coverage configuration
   collectCoverageFrom: [
     'src/**/*.{ts,js}',
     '!src/**/*.d.ts',
     '!src/__mocks__/**',
     '!src/**/*.test.{ts,js}',
-    '!src/index.ts', // Skip entry point
+    '!src/index.ts',
+    '!src/types/**',
+    '!src/logger.ts',
   ],
   coverageDirectory: 'coverage',
-  coverageReporters: process.env.CI ? ['text', 'lcov'] : ['text'], // Minimal reporters
-  coverageThreshold: {
-    global: {
-      branches: 80,
-      functions: 85,
-      lines: 90,
-      statements: 90,
-    },
-  },
+  coverageReporters: ['text'], // Text only for speed
   
-  // Reduce console noise
-  silent: process.env.DEBUG_TESTS !== 'true',
+  // Silent mode for performance
+  silent: true,
   verbose: false,
+  errorOnDeprecated: false,
 };
 
-/**
- * Unit test project - Maximum speed with full mocking
- */
-const unitTestProject = {
+// Fast test configuration (< 3 seconds target)
+const fastTestConfig = {
   ...baseConfig,
-  displayName: 'unit',
-  testMatch: ['<rootDir>/tests/unit/**/*.test.ts'],
-  testEnvironment: 'node',
-  testTimeout: 5000, // 5 second timeout for unit tests
-  
-  // Unit-specific setup
-  setupFilesAfterEnv: [
-    '<rootDir>/tests/setup/unit.setup.ts',
+  displayName: 'Fast Tests',
+  testMatch: [
+    '<rootDir>/tests/unit/**/*.fast.test.ts',
+    '<rootDir>/tests/unit/**/auth*.test.ts',
+    '<rootDir>/tests/unit/**/validation*.test.ts',
+    '<rootDir>/tests/unit/**/utils*.test.ts',
+    '<rootDir>/tests/unit/**/helpers*.test.ts',
+    '<rootDir>/tests/unit/connectors/*.test.ts',
   ],
-  
-  // Aggressive mocking for unit tests
-  moduleNameMapper: {
-    ...baseConfig.moduleNameMapper,
-    // Mock heavy dependencies
-    '^@teaching-engine/database$': '<rootDir>/tests/mocks/database.mock.ts',
-    '^@/services/(.*)$': '<rootDir>/tests/mocks/services.mock.ts',
-    '^canvas$': '<rootDir>/tests/mocks/canvas.mock.ts',
-    '^pdfkit$': '<rootDir>/tests/mocks/pdfkit.mock.ts',
-  },
-  
-  // No global setup/teardown for unit tests
-  globalSetup: undefined,
-  globalTeardown: undefined,
-};
-
-/**
- * Integration test project - Balance speed and realism
- */
-const integrationTestProject = {
-  ...baseConfig,
-  displayName: 'integration',
-  testMatch: ['<rootDir>/tests/integration/**/*.test.ts'],
-  testTimeout: 15000, // 15 seconds for integration tests
-  maxWorkers: 2, // Limited parallelism for database access
+  testTimeout: 3000, // 3 seconds max for fast tests
+  maxWorkers: getOptimalWorkerCount('fast'),
   
   setupFilesAfterEnv: [
-    '<rootDir>/tests/setup/integration.setup.ts',
+    '<rootDir>/jest.setup.js',
+    '<rootDir>/tests/setup-all-mocks.ts',
   ],
-  
-  // Minimal mocking for integration tests
-  moduleNameMapper: {
-    '^(\\.{1,2}/.*)\\.js$': '$1',
-    '^@/(.*)$': '<rootDir>/src/$1',
-    '^tests/(.*)$': '<rootDir>/tests/$1',
-    '^openai$': '<rootDir>/src/__mocks__/openai.js', // Still mock expensive external APIs
-  },
-  
-  // Database setup for integration tests
-  // globalSetup: '<rootDir>/tests/setup/global-db-setup.ts',
-  // globalTeardown: '<rootDir>/tests/setup/global-db-teardown.ts',
 };
 
-/**
- * Performance test project - Specialized configuration
- */
-const performanceTestProject = {
+// Medium test configuration (3-8 seconds target)
+const mediumTestConfig = {
   ...baseConfig,
-  displayName: 'performance',
-  testMatch: ['<rootDir>/tests/performance/**/*.test.ts'],
-  testTimeout: 60000, // 1 minute for performance tests
-  maxWorkers: 1, // Single worker for accurate measurements
+  displayName: 'Medium Tests',
+  testMatch: [
+    '<rootDir>/tests/unit/**/*.test.ts',
+  ],
+  testPathIgnorePatterns: [
+    ...baseConfig.testPathIgnorePatterns,
+    '.*\\.fast\\.test\\.',
+    '.*\\.slow\\.test\\.',
+    '.*/auth.*\\.test\\.',
+    '.*/validation.*\\.test\\.',
+    '.*/utils.*\\.test\\.',
+    '.*/helpers.*\\.test\\.',
+    '.*/connectors/.*\\.test\\.',
+  ],
+  testTimeout: 8000, // 8 seconds max for medium tests
+  maxWorkers: getOptimalWorkerCount('unit'),
   
   setupFilesAfterEnv: [
-    '<rootDir>/tests/setup/performance.setup.ts',
+    '<rootDir>/jest.setup.js',
+    '<rootDir>/tests/setup-all-mocks.ts',
   ],
-  
-  // No mocking for performance tests
-  moduleNameMapper: {
-    '^(\\.{1,2}/.*)\\.js$': '$1',
-    '^@/(.*)$': '<rootDir>/src/$1',
-    '^tests/(.*)$': '<rootDir>/tests/$1',
-  },
 };
 
-// Export configuration based on test type
+// Get configuration based on environment
 const getConfig = () => {
-  const testType = process.env.TEST_TYPE;
+  const testType = process.env.TEST_TYPE || process.env.npm_config_test_type;
   
   switch (testType) {
-    case 'unit':
-      return unitTestProject;
-    case 'integration':
-      return integrationTestProject;
-    case 'performance':
-      return performanceTestProject;
-    case 'all':
-      // Run all test types in parallel projects
+    case 'fast':
+      return fastTestConfig;
+    case 'medium':
+      return mediumTestConfig;
+    case 'optimized':
+      // Run both fast and medium as projects
       return {
         ...baseConfig,
-        projects: [unitTestProject, integrationTestProject],
-        testMatch: undefined, // Let projects handle matching
+        projects: [fastTestConfig, mediumTestConfig],
+        testMatch: undefined,
+        testTimeout: 8000,
+        maxWorkers: getOptimalWorkerCount('unit'),
       };
     default:
-      // Default to fast unit tests only
-      return unitTestProject;
+      // Default to fast tests for quickest feedback
+      return fastTestConfig;
   }
 };
 

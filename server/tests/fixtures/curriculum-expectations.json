@@ -1,0 +1,98 @@
+[
+  {
+    "id": "math-grade3-1",
+    "code": "3.N1.1",
+    "description": "Count to 1000, including counting by 2s, 5s, 10s, 25s, and 100s",
+    "descriptionFr": "Compter jusqu'à 1000, y compris compter par 2, 5, 10, 25 et 100",
+    "strand": "Number Sense and Numeration",
+    "strandFr": "Sens du nombre et numération",
+    "substrand": "Quantity Relationships",
+    "substrandFr": "Relations quantitatives",
+    "grade": 3,
+    "subject": "Mathematics"
+  },
+  {
+    "id": "math-grade3-2",
+    "code": "3.N1.2",
+    "description": "Represent, compare, and order numbers to 1000 using a variety of tools",
+    "descriptionFr": "Représenter, comparer et ordonner les nombres jusqu'à 1000 en utilisant une variété d'outils",
+    "strand": "Number Sense and Numeration",
+    "strandFr": "Sens du nombre et numération",
+    "substrand": "Quantity Relationships",
+    "substrandFr": "Relations quantitatives",
+    "grade": 3,
+    "subject": "Mathematics"
+  },
+  {
+    "id": "english-grade3-1",
+    "code": "3.R1.1",
+    "description": "Use phonics to decode unfamiliar words when reading texts",
+    "descriptionFr": "Utiliser la phonétique pour décoder des mots non familiers lors de la lecture de textes",
+    "strand": "Reading",
+    "strandFr": "Lecture",
+    "substrand": "Foundational Skills",
+    "substrandFr": "Compétences de base",
+    "grade": 3,
+    "subject": "English Language Arts"
+  },
+  {
+    "id": "english-grade3-2",
+    "code": "3.R1.2",
+    "description": "Read and demonstrate understanding of a variety of texts",
+    "descriptionFr": "Lire et démontrer la compréhension d'une variété de textes",
+    "strand": "Reading",
+    "strandFr": "Lecture",
+    "substrand": "Reading Comprehension",
+    "substrandFr": "Compréhension de lecture",
+    "grade": 3,
+    "subject": "English Language Arts"
+  },
+  {
+    "id": "french-grade3-1",
+    "code": "3.CO1.1",
+    "description": "Démontrer sa compréhension de courts textes oraux",
+    "descriptionFr": "Démontrer sa compréhension de courts textes oraux",
+    "strand": "Communication orale",
+    "strandFr": "Communication orale",
+    "substrand": "Écoute",
+    "substrandFr": "Écoute",
+    "grade": 3,
+    "subject": "French"
+  },
+  {
+    "id": "science-grade3-1",
+    "code": "3.S1.1",
+    "description": "Assess ways in which the use of living things affects the environment",
+    "descriptionFr": "Évaluer les façons dont l'utilisation des êtres vivants affecte l'environnement",
+    "strand": "Life Systems",
+    "strandFr": "Systèmes vivants",
+    "substrand": "Understanding Life Systems",
+    "substrandFr": "Compréhension des systèmes vivants",
+    "grade": 3,
+    "subject": "Science"
+  },
+  {
+    "id": "math-grade4-1",
+    "code": "4.N1.1",
+    "description": "Represent, compare, and order numbers to 10,000",
+    "descriptionFr": "Représenter, comparer et ordonner les nombres jusqu'à 10 000",
+    "strand": "Number Sense and Numeration",
+    "strandFr": "Sens du nombre et numération",
+    "substrand": "Quantity Relationships",
+    "substrandFr": "Relations quantitatives",
+    "grade": 4,
+    "subject": "Mathematics"
+  },
+  {
+    "id": "math-grade5-1",
+    "code": "5.N1.1",
+    "description": "Represent, compare, and order numbers to 100,000",
+    "descriptionFr": "Représenter, comparer et ordonner les nombres jusqu'à 100 000",
+    "strand": "Number Sense and Numeration",
+    "strandFr": "Sens du nombre et numération",
+    "substrand": "Quantity Relationships",
+    "substrandFr": "Relations quantitatives",
+    "grade": 5,
+    "subject": "Mathematics"
+  }
+]

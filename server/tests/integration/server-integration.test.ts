@@ -26,7 +26,7 @@ describe('Server Integration Tests', () => {
 
       expect(response.status).toBe(200);
       expect(response.text).toContain('<!DOCTYPE html>');
-      expect(response.text).toContain('Curriculum Planner');
+      expect(response.text).toContain('Teaching Engine 2.0');
     });
   });
 
@@ -129,7 +129,11 @@ describe('Server Integration Tests', () => {
 
   describe('Error Handling', () => {
     it('should handle malformed JSON', async () => {
-      const token = jwt.sign({ userId: '1' }, process.env.JWT_SECRET || 'test-secret');
+      const token = jwt.sign({ 
+        userId: '1', 
+        email: 'test@example.com',
+        iat: Math.floor(Date.now() / 1000)
+      }, process.env.JWT_SECRET || 'test-secret');
 
       const response = await request(app)
         .post('/api/subjects')

@@ -1,0 +1,309 @@
+ad888eb178f3be37f9a62c2d35d09fd8
+/* istanbul ignore next */
+function cov_23rfy7unmc() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/jobs/newsletterTrigger.ts";
+  var hash = "8730c66a34b5b17dcd18c046d9f878d4e31fbc88";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/jobs/newsletterTrigger.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 2,
+          column: 30
+        },
+        end: {
+          line: 6,
+          column: 1
+        }
+      },
+      "1": {
+        start: {
+          line: 10,
+          column: 21
+        },
+        end: {
+          line: 10,
+          column: 58
+        }
+      },
+      "2": {
+        start: {
+          line: 11,
+          column: 4
+        },
+        end: {
+          line: 15,
+          column: 5
+        }
+      },
+      "3": {
+        start: {
+          line: 12,
+          column: 8
+        },
+        end: {
+          line: 14,
+          column: 9
+        }
+      },
+      "4": {
+        start: {
+          line: 13,
+          column: 12
+        },
+        end: {
+          line: 13,
+          column: 92
+        }
+      },
+      "5": {
+        start: {
+          line: 18,
+          column: 4
+        },
+        end: {
+          line: 18,
+          column: 64
+        }
+      },
+      "6": {
+        start: {
+          line: 18,
+          column: 37
+        },
+        end: {
+          line: 18,
+          column: 62
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "checkNewsletterTriggers",
+        decl: {
+          start: {
+            line: 7,
+            column: 22
+          },
+          end: {
+            line: 7,
+            column: 45
+          }
+        },
+        loc: {
+          start: {
+            line: 7,
+            column: 74
+          },
+          end: {
+            line: 16,
+            column: 1
+          }
+        },
+        line: 7
+      },
+      "1": {
+        name: "scheduleNewsletterTriggers",
+        decl: {
+          start: {
+            line: 17,
+            column: 16
+          },
+          end: {
+            line: 17,
+            column: 42
+          }
+        },
+        loc: {
+          start: {
+            line: 17,
+            column: 45
+          },
+          end: {
+            line: 19,
+            column: 1
+          }
+        },
+        line: 17
+      },
+      "2": {
+        name: "(anonymous_2)",
+        decl: {
+          start: {
+            line: 18,
+            column: 31
+          },
+          end: {
+            line: 18,
+            column: 32
+          }
+        },
+        loc: {
+          start: {
+            line: 18,
+            column: 37
+          },
+          end: {
+            line: 18,
+            column: 62
+          }
+        },
+        line: 18
+      }
+    },
+    branchMap: {
+      "0": {
+        loc: {
+          start: {
+            line: 7,
+            column: 46
+          },
+          end: {
+            line: 7,
+            column: 72
+          }
+        },
+        type: "default-arg",
+        locations: [{
+          start: {
+            line: 7,
+            column: 58
+          },
+          end: {
+            line: 7,
+            column: 72
+          }
+        }],
+        line: 7
+      },
+      "1": {
+        loc: {
+          start: {
+            line: 12,
+            column: 8
+          },
+          end: {
+            line: 14,
+            column: 9
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 12,
+            column: 8
+          },
+          end: {
+            line: 14,
+            column: 9
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 12
+      }
+    },
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0
+    },
+    f: {
+      "0": 0,
+      "1": 0,
+      "2": 0
+    },
+    b: {
+      "0": [0],
+      "1": [0, 0]
+    },
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/jobs/newsletterTrigger.ts",
+      mappings: "AAAA,OAAO,IAAI,MAAM,WAAW,CAAC;AAO7B,MAAM,CAAC,MAAM,cAAc,GAAmB;IAC5C,EAAE,IAAI,EAAE,QAAQ,EAAE,IAAI,EAAE,IAAI,IAAI,CAAC,YAAY,CAAC,EAAE;IAChD,EAAE,IAAI,EAAE,QAAQ,EAAE,IAAI,EAAE,IAAI,IAAI,CAAC,YAAY,CAAC,EAAE;IAChD,EAAE,IAAI,EAAE,QAAQ,EAAE,IAAI,EAAE,IAAI,IAAI,CAAC,YAAY,CAAC,EAAE;CACjD,CAAC;AAEF,MAAM,CAAC,KAAK,UAAU,uBAAuB,CAAC,YAA4B,cAAc;IACtF,iDAAiD;IACjD,mEAAmE;IACnE,MAAM,QAAQ,GAAG,IAAI,IAAI,EAAE,CAAC,WAAW,EAAE,CAAC,KAAK,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC;IACvD,KAAK,MAAM,EAAE,IAAI,SAAS,EAAE,CAAC;QAC3B,IAAI,EAAE,CAAC,IAAI,CAAC,WAAW,EAAE,CAAC,KAAK,CAAC,CAAC,EAAE,EAAE,CAAC,KAAK,QAAQ,EAAE,CAAC;YACpD,OAAO,CAAC,IAAI,CAAC,0BAA0B,EAAE,CAAC,IAAI,gCAAgC,CAAC,CAAC;QAClF,CAAC;IACH,CAAC;AACH,CAAC;AAED,MAAM,UAAU,0BAA0B;IACxC,IAAI,CAAC,QAAQ,CAAC,WAAW,EAAE,GAAG,EAAE,CAAC,uBAAuB,EAAE,CAAC,CAAC;AAC9D,CAAC",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/jobs/newsletterTrigger.ts"],
+      sourcesContent: ["import cron from 'node-cron';\n\nexport interface TermMidpoint {\n  term: string;\n  date: Date;\n}\n\nexport const TERM_MIDPOINTS: TermMidpoint[] = [\n  { term: 'Term 1', date: new Date('2025-10-15') },\n  { term: 'Term 2', date: new Date('2025-02-14') },\n  { term: 'Term 3', date: new Date('2025-05-05') },\n];\n\nexport async function checkNewsletterTriggers(midpoints: TermMidpoint[] = TERM_MIDPOINTS) {\n  // DISABLED: Notification model has been archived\n  // TODO: Implement using ParentMessage for newsletter notifications\n  const todayStr = new Date().toISOString().slice(0, 10);\n  for (const mp of midpoints) {\n    if (mp.date.toISOString().slice(0, 10) === todayStr) {\n      console.warn(`Newsletter trigger for ${mp.term} - Notification model archived`);\n    }\n  }\n}\n\nexport function scheduleNewsletterTriggers() {\n  cron.schedule('0 7 * * *', () => checkNewsletterTriggers());\n}\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "8730c66a34b5b17dcd18c046d9f878d4e31fbc88"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_23rfy7unmc = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_23rfy7unmc();
+import cron from 'node-cron';
+export const TERM_MIDPOINTS =
+/* istanbul ignore next */
+(cov_23rfy7unmc().s[0]++, [{
+  term: 'Term 1',
+  date: new Date('2025-10-15')
+}, {
+  term: 'Term 2',
+  date: new Date('2025-02-14')
+}, {
+  term: 'Term 3',
+  date: new Date('2025-05-05')
+}]);
+export async function checkNewsletterTriggers(midpoints =
+/* istanbul ignore next */
+(cov_23rfy7unmc().b[0][0]++, TERM_MIDPOINTS)) {
+  /* istanbul ignore next */
+  cov_23rfy7unmc().f[0]++;
+  // DISABLED: Notification model has been archived
+  // TODO: Implement using ParentMessage for newsletter notifications
+  const todayStr =
+  /* istanbul ignore next */
+  (cov_23rfy7unmc().s[1]++, new Date().toISOString().slice(0, 10));
+  /* istanbul ignore next */
+  cov_23rfy7unmc().s[2]++;
+  for (const mp of midpoints) {
+    /* istanbul ignore next */
+    cov_23rfy7unmc().s[3]++;
+    if (mp.date.toISOString().slice(0, 10) === todayStr) {
+      /* istanbul ignore next */
+      cov_23rfy7unmc().b[1][0]++;
+      cov_23rfy7unmc().s[4]++;
+      console.warn(`Newsletter trigger for ${mp.term} - Notification model archived`);
+    } else
+    /* istanbul ignore next */
+    {
+      cov_23rfy7unmc().b[1][1]++;
+    }
+  }
+}
+export function scheduleNewsletterTriggers() {
+  /* istanbul ignore next */
+  cov_23rfy7unmc().f[1]++;
+  cov_23rfy7unmc().s[5]++;
+  cron.schedule('0 7 * * *', () => {
+    /* istanbul ignore next */
+    cov_23rfy7unmc().f[2]++;
+    cov_23rfy7unmc().s[6]++;
+    return checkNewsletterTriggers();
+  });
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3ZfMjNyZnk3dW5tYyIsImFjdHVhbENvdmVyYWdlIiwiY3JvbiIsIlRFUk1fTUlEUE9JTlRTIiwicyIsInRlcm0iLCJkYXRlIiwiRGF0ZSIsImNoZWNrTmV3c2xldHRlclRyaWdnZXJzIiwibWlkcG9pbnRzIiwiYiIsImYiLCJ0b2RheVN0ciIsInRvSVNPU3RyaW5nIiwic2xpY2UiLCJtcCIsImNvbnNvbGUiLCJ3YXJuIiwic2NoZWR1bGVOZXdzbGV0dGVyVHJpZ2dlcnMiLCJzY2hlZHVsZSJdLCJzb3VyY2VzIjpbIi9Vc2Vycy9taWNoYWVsbWNpc2FhYy9HaXRIdWIvdGVhY2hpbmctZW5naW5lMi4wL3NlcnZlci9zcmMvam9icy9uZXdzbGV0dGVyVHJpZ2dlci50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgY3JvbiBmcm9tICdub2RlLWNyb24nO1xuXG5leHBvcnQgaW50ZXJmYWNlIFRlcm1NaWRwb2ludCB7XG4gIHRlcm06IHN0cmluZztcbiAgZGF0ZTogRGF0ZTtcbn1cblxuZXhwb3J0IGNvbnN0IFRFUk1fTUlEUE9JTlRTOiBUZXJtTWlkcG9pbnRbXSA9IFtcbiAgeyB0ZXJtOiAnVGVybSAxJywgZGF0ZTogbmV3IERhdGUoJzIwMjUtMTAtMTUnKSB9LFxuICB7IHRlcm06ICdUZXJtIDInLCBkYXRlOiBuZXcgRGF0ZSgnMjAyNS0wMi0xNCcpIH0sXG4gIHsgdGVybTogJ1Rlcm0gMycsIGRhdGU6IG5ldyBEYXRlKCcyMDI1LTA1LTA1JykgfSxcbl07XG5cbmV4cG9ydCBhc3luYyBmdW5jdGlvbiBjaGVja05ld3NsZXR0ZXJUcmlnZ2VycyhtaWRwb2ludHM6IFRlcm1NaWRwb2ludFtdID0gVEVSTV9NSURQT0lOVFMpIHtcbiAgLy8gRElTQUJMRUQ6IE5vdGlmaWNhdGlvbiBtb2RlbCBoYXMgYmVlbiBhcmNoaXZlZFxuICAvLyBUT0RPOiBJbXBsZW1lbnQgdXNpbmcgUGFyZW50TWVzc2FnZSBmb3IgbmV3c2xldHRlciBub3RpZmljYXRpb25zXG4gIGNvbnN0IHRvZGF5U3RyID0gbmV3IERhdGUoKS50b0lTT1N0cmluZygpLnNsaWNlKDAsIDEwKTtcbiAgZm9yIChjb25zdCBtcCBvZiBtaWRwb2ludHMpIHtcbiAgICBpZiAobXAuZGF0ZS50b0lTT1N0cmluZygpLnNsaWNlKDAsIDEwKSA9PT0gdG9kYXlTdHIpIHtcbiAgICAgIGNvbnNvbGUud2FybihgTmV3c2xldHRlciB0cmlnZ2VyIGZvciAke21wLnRlcm19IC0gTm90aWZpY2F0aW9uIG1vZGVsIGFyY2hpdmVkYCk7XG4gICAgfVxuICB9XG59XG5cbmV4cG9ydCBmdW5jdGlvbiBzY2hlZHVsZU5ld3NsZXR0ZXJUcmlnZ2VycygpIHtcbiAgY3Jvbi5zY2hlZHVsZSgnMCA3ICogKiAqJywgKCkgPT4gY2hlY2tOZXdzbGV0dGVyVHJpZ2dlcnMoKSk7XG59XG4iXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0lBc0JDO0lBQUFBLGNBQUEsWUFBQUEsQ0FBQTtNQUFBLE9BQUFDLGNBQUE7SUFBQTtFQUFBO0VBQUEsT0FBQUEsY0FBQTtBQUFBO0FBQUFELGNBQUE7QUF0QkQsT0FBT0UsSUFBSSxNQUFNLFdBQVc7QUFPNUIsT0FBTyxNQUFNQyxjQUFjO0FBQUE7QUFBQSxDQUFBSCxjQUFBLEdBQUFJLENBQUEsT0FBbUIsQ0FDNUM7RUFBRUMsSUFBSSxFQUFFLFFBQVE7RUFBRUMsSUFBSSxFQUFFLElBQUlDLElBQUksQ0FBQyxZQUFZO0FBQUMsQ0FBRSxFQUNoRDtFQUFFRixJQUFJLEVBQUUsUUFBUTtFQUFFQyxJQUFJLEVBQUUsSUFBSUMsSUFBSSxDQUFDLFlBQVk7QUFBQyxDQUFFLEVBQ2hEO0VBQUVGLElBQUksRUFBRSxRQUFRO0VBQUVDLElBQUksRUFBRSxJQUFJQyxJQUFJLENBQUMsWUFBWTtBQUFDLENBQUUsQ0FDakQ7QUFFRCxPQUFPLGVBQWVDLHVCQUF1QkEsQ0FBQ0MsU0FBQTtBQUFBO0FBQUEsQ0FBQVQsY0FBQSxHQUFBVSxDQUFBLFVBQTRCUCxjQUFjO0VBQUE7RUFBQUgsY0FBQSxHQUFBVyxDQUFBO0VBQ3RGO0VBQ0E7RUFDQSxNQUFNQyxRQUFRO0VBQUE7RUFBQSxDQUFBWixjQUFBLEdBQUFJLENBQUEsT0FBRyxJQUFJRyxJQUFJLEVBQUUsQ0FBQ00sV0FBVyxFQUFFLENBQUNDLEtBQUssQ0FBQyxDQUFDLEVBQUUsRUFBRSxDQUFDO0VBQUM7RUFBQWQsY0FBQSxHQUFBSSxDQUFBO0VBQ3ZELEtBQUssTUFBTVcsRUFBRSxJQUFJTixTQUFTLEVBQUU7SUFBQTtJQUFBVCxjQUFBLEdBQUFJLENBQUE7SUFDMUIsSUFBSVcsRUFBRSxDQUFDVCxJQUFJLENBQUNPLFdBQVcsRUFBRSxDQUFDQyxLQUFLLENBQUMsQ0FBQyxFQUFFLEVBQUUsQ0FBQyxLQUFLRixRQUFRLEVBQUU7TUFBQTtNQUFBWixjQUFBLEdBQUFVLENBQUE7TUFBQVYsY0FBQSxHQUFBSSxDQUFBO01BQ25EWSxPQUFPLENBQUNDLElBQUksQ0FBQywwQkFBMEJGLEVBQUUsQ0FBQ1YsSUFBSSxnQ0FBZ0MsQ0FBQztJQUNqRixDQUFDO0lBQUE7SUFBQTtNQUFBTCxjQUFBLEdBQUFVLENBQUE7SUFBQTtFQUNIO0FBQ0Y7QUFFQSxPQUFNLFNBQVVRLDBCQUEwQkEsQ0FBQTtFQUFBO0VBQUFsQixjQUFBLEdBQUFXLENBQUE7RUFBQVgsY0FBQSxHQUFBSSxDQUFBO0VBQ3hDRixJQUFJLENBQUNpQixRQUFRLENBQUMsV0FBVyxFQUFFLE1BQU07SUFBQTtJQUFBbkIsY0FBQSxHQUFBVyxDQUFBO0lBQUFYLGNBQUEsR0FBQUksQ0FBQTtJQUFBLE9BQUFJLHVCQUF1QixFQUFFO0VBQUYsQ0FBRSxDQUFDO0FBQzdEIiwiaWdub3JlTGlzdCI6W119

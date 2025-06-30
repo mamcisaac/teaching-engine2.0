@@ -106,3 +106,36 @@ export function createAuthToken(userId: number, email: string): string {
   }
   return jwt.sign({ userId: userId.toString(), email }, secret, { expiresIn: '24h' });
 }
+
+/**
+ * Alias for getAuthToken to match expected import name
+ */
+export const getTestAuthToken = async () => {
+  const prisma = getTestPrismaClient();
+  
+  // Create a test user with hashed password
+  const hashedPassword = await bcrypt.hash('testpassword', 10);
+  const user = await prisma.user.create({
+    data: {
+      email: `test-${Date.now()}-${Math.random().toString(36).substring(7)}@example.com`,
+      name: 'Test User',
+      password: hashedPassword,
+      role: 'teacher',
+    },
+  });
+
+  // Create token directly without HTTP request
+  const token = createAuthToken(user.id, user.email);
+
+  return { token, userId: user.id };
+};
+
+/**
+ * Test user data for consistency
+ */
+export const testUserData = {
+  email: 'test@example.com',
+  password: 'testpassword',
+  name: 'Test User',
+  role: 'teacher',
+};

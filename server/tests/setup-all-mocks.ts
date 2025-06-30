@@ -1,4 +1,4 @@
-// Global mock setup for all tests
+// Global mock setup for all tests - Optimized for performance
 // This file runs before any tests and sets up all required mocks
 import { jest } from '@jest/globals';
 import { randomBytes } from 'crypto';
@@ -6,510 +6,95 @@ import { randomBytes } from 'crypto';
 // Set up environment variables
 process.env.NODE_ENV = 'test';
 process.env.DATABASE_URL = 'file:./test.db';
-process.env.JWT_SECRET = randomBytes(32).toString('hex');
+process.env.JWT_SECRET = process.env.JWT_SECRET || randomBytes(32).toString('hex'); // Reuse existing if available
 process.env.OPENAI_API_KEY = 'test-api-key';
 
-// Mock Prisma Client
-jest.mock('@prisma/client', () => ({
-  PrismaClient: jest.fn().mockImplementation(() => ({
-    $connect: jest.fn(),
-    $disconnect: jest.fn(),
-    $transaction: jest.fn(),
-    // Add all the models that need mocking
-    user: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      create: jest.fn(),
-      update: jest.fn(),
-      delete: jest.fn(),
-    },
-    outcome: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      create: jest.fn(),
-      update: jest.fn(),
-      delete: jest.fn(),
-      count: jest.fn(),
-    },
-    outcomeEmbedding: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-    },
-    curriculumImport: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      create: jest.fn(),
-      update: jest.fn(),
-      delete: jest.fn(),
-    },
-    outcomeCluster: {
-      findMany: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      deleteMany: jest.fn(),
-    },
-  })),
+// Mock UUID before any other imports
+jest.mock('uuid', () => ({
+  v4: jest.fn(() => 'default-uuid-' + Math.random().toString(36).substr(2, 9)),
+  v1: jest.fn(() => 'v1-uuid'),
+  v3: jest.fn(() => 'v3-uuid'),
+  v5: jest.fn(() => 'v5-uuid'),
+  parse: jest.fn(),
+  stringify: jest.fn(),
+  validate: jest.fn(() => true),
+  version: jest.fn(() => 4),
+  NIL: '00000000-0000-0000-0000-000000000000',
 }));
 
-// Mock @teaching-engine/database to export enums and types
-jest.mock('@teaching-engine/database', () => {
-  // Create the mock prisma client instance
-  const mockPrismaClientInstance = {
-    $connect: jest.fn().mockResolvedValue(undefined),
-    $disconnect: jest.fn().mockResolvedValue(undefined),
-    $transaction: jest.fn(),
-    $queryRaw: jest.fn().mockResolvedValue([{ 1: 1 }]),
-    $queryRawUnsafe: jest.fn().mockResolvedValue([{ 1: 1 }]),
-    $executeRaw: jest.fn().mockResolvedValue(1),
-    $executeRawUnsafe: jest.fn().mockResolvedValue(1),
-    user: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      findFirst: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      updateMany: jest.fn(),
-      upsert: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-      aggregate: jest.fn(),
-      groupBy: jest.fn(),
-    },
-    outcome: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      findFirst: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      updateMany: jest.fn(),
-      upsert: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-      aggregate: jest.fn(),
-      groupBy: jest.fn(),
-    },
-    outcomeEmbedding: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      findFirst: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      updateMany: jest.fn(),
-      upsert: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-      aggregate: jest.fn(),
-      groupBy: jest.fn(),
-    },
-    curriculumExpectationEmbedding: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      findFirst: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      updateMany: jest.fn(),
-      upsert: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-      aggregate: jest.fn(),
-      groupBy: jest.fn(),
-    },
-    curriculumImport: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      findFirst: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      updateMany: jest.fn(),
-      upsert: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-      aggregate: jest.fn(),
-      groupBy: jest.fn(),
-    },
-    outcomeCluster: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      findFirst: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      updateMany: jest.fn(),
-      upsert: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-      aggregate: jest.fn(),
-      groupBy: jest.fn(),
-    },
-    subject: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      findFirst: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      updateMany: jest.fn(),
-      upsert: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-      aggregate: jest.fn(),
-      groupBy: jest.fn(),
-    },
-    milestone: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      findFirst: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      updateMany: jest.fn(),
-      upsert: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-      aggregate: jest.fn(),
-      groupBy: jest.fn(),
-    },
-    activity: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      findFirst: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      updateMany: jest.fn(),
-      upsert: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-      aggregate: jest.fn(),
-      groupBy: jest.fn(),
-    },
-    activityOutcome: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      findFirst: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      updateMany: jest.fn(),
-      upsert: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-      aggregate: jest.fn(),
-      groupBy: jest.fn(),
-    },
-    lessonPlan: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      findFirst: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      updateMany: jest.fn(),
-      upsert: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-      aggregate: jest.fn(),
-      groupBy: jest.fn(),
-    },
-    lessonPlanActivity: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      findFirst: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      updateMany: jest.fn(),
-      upsert: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-      aggregate: jest.fn(),
-      groupBy: jest.fn(),
-    },
-    aISuggestedActivity: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      findFirst: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      updateMany: jest.fn(),
-      upsert: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-      aggregate: jest.fn(),
-      groupBy: jest.fn(),
-    },
-    note: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      findFirst: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      updateMany: jest.fn(),
-      upsert: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-      aggregate: jest.fn(),
-      groupBy: jest.fn(),
-    },
-    evidence: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      findFirst: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      updateMany: jest.fn(),
-      upsert: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-      aggregate: jest.fn(),
-      groupBy: jest.fn(),
-    },
-    milestone_alert: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      findFirst: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      updateMany: jest.fn(),
-      upsert: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-      aggregate: jest.fn(),
-      groupBy: jest.fn(),
-    },
-    notification: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      findFirst: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      updateMany: jest.fn(),
-      upsert: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-      aggregate: jest.fn(),
-      groupBy: jest.fn(),
-    },
-    studentGoal: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      findFirst: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      updateMany: jest.fn(),
-      upsert: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-      aggregate: jest.fn(),
-      groupBy: jest.fn(),
-    },
-    goalReflection: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      findFirst: jest.fn(),
-      create: jest.fn(),
-      createMany: jest.fn(),
-      update: jest.fn(),
-      updateMany: jest.fn(),
-      upsert: jest.fn(),
-      delete: jest.fn(),
-      deleteMany: jest.fn(),
-      count: jest.fn(),
-      aggregate: jest.fn(),
-      groupBy: jest.fn(),
-    },
-  };
+// Lazy loading for database mock - only import when needed
+let databaseMockLoaded = false;
+const loadDatabaseMock = async () => {
+  if (!databaseMockLoaded) {
+    await import('./mocks/database.mock.ts');
+    databaseMockLoaded = true;
+  }
+};
 
-  // Set up the transaction mock to use the client instance
-  mockPrismaClientInstance.$transaction.mockImplementation((fn) => {
-    if (typeof fn === 'function') {
-      return fn(mockPrismaClientInstance);
-    }
-    return Promise.resolve(fn);
-  });
-
+// Mock @teaching-engine/database with lazy loading
+jest.mock('@teaching-engine/database', async () => {
+  // Only load database mock when actually needed
+  const { prisma, PrismaClient, ImportStatus, Prisma } = await import('./mocks/database.mock.ts');
+  
   return {
-    // Export all enums that tests might need
-    ImportStatus: {
-      UPLOADING: 'UPLOADING',
-      PROCESSING: 'PROCESSING',
-      READY_FOR_REVIEW: 'READY_FOR_REVIEW',
-      CONFIRMED: 'CONFIRMED',
-      COMPLETED: 'COMPLETED',
-      FAILED: 'FAILED',
-      CANCELLED: 'CANCELLED',
-    },
-    // Re-export PrismaClient from the mock
-    PrismaClient: jest.fn().mockImplementation(() => mockPrismaClientInstance),
-    // Export the instance directly
-    prisma: mockPrismaClientInstance,
+    prisma,
+    PrismaClient,
+    ImportStatus,
+    Prisma,
   };
 });
 
-// Mock logger to avoid console spam during tests
-const createMockLogger = () => ({
-  debug: jest.fn(),
-  info: jest.fn(),
-  warn: jest.fn(),
-  error: jest.fn(),
-  child: jest.fn(() => createMockLogger()), // Return new logger instance for chaining
-});
+// Optimized logger mock - reuse instances to reduce memory
+let mockLogger: any;
+const createMockLogger = () => {
+  if (!mockLogger) {
+    mockLogger = {
+      debug: jest.fn(),
+      info: jest.fn(),
+      warn: jest.fn(),
+      error: jest.fn(),
+      child: jest.fn(() => mockLogger), // Reuse same instance for better performance
+    };
+  }
+  return mockLogger;
+};
 
-const mockLogger = createMockLogger();
+const logger = createMockLogger();
 
-// Mock both import paths
+// Mock both import paths with shared logger instance
 jest.mock('@/logger', () => ({
   __esModule: true,
-  default: mockLogger,
-  ...mockLogger,
+  default: logger,
+  ...logger,
 }));
 
 // Mock src/logger
 jest.doMock('../src/logger', () => ({
   __esModule: true,
-  default: mockLogger,
-  ...mockLogger,
+  default: logger,
+  ...logger,
 }));
 
-// Helper to create model mocks
-const createModelMock = () => ({
-  findUnique: jest.fn(),
-  findMany: jest.fn(),
-  findFirst: jest.fn(),
-  create: jest.fn(),
-  createMany: jest.fn(),
-  update: jest.fn(),
-  updateMany: jest.fn(),
-  upsert: jest.fn(),
-  delete: jest.fn(),
-  deleteMany: jest.fn(),
-  count: jest.fn(),
-  aggregate: jest.fn(),
-  groupBy: jest.fn(),
+// Mock local prisma import using the consolidated database mock with lazy loading
+jest.doMock('../src/prisma', async () => {
+  await loadDatabaseMock();
+  const { prisma, PrismaClient, Prisma } = await import('./mocks/database.mock.ts');
+  return {
+    prisma,
+    PrismaClient,
+    Prisma,
+  };
 });
 
-// Create the mock prisma client instance
-const mockPrismaClientInstance = {
-  $connect: jest.fn().mockResolvedValue(undefined),
-  $disconnect: jest.fn().mockResolvedValue(undefined),
-  $transaction: jest.fn(),
-  $queryRaw: jest.fn().mockResolvedValue([{ 1: 1 }]),
-  $queryRawUnsafe: jest.fn().mockResolvedValue([{ 1: 1 }]),
-  $executeRaw: jest.fn().mockResolvedValue(1),
-  $executeRawUnsafe: jest.fn().mockResolvedValue(1),
-  user: createModelMock(),
-  outcome: createModelMock(),
-  outcomeEmbedding: createModelMock(),
-  curriculumImport: createModelMock(),
-  outcomeCluster: createModelMock(),
-  subject: createModelMock(),
-  milestone: createModelMock(),
-  activity: createModelMock(),
-  activityOutcome: createModelMock(),
-  lessonPlan: createModelMock(),
-  lessonPlanActivity: createModelMock(),
-  aISuggestedActivity: createModelMock(),
-  note: createModelMock(),
-  evidence: createModelMock(),
-  milestone_alert: createModelMock(),
-  notification: createModelMock(),
-  studentGoal: createModelMock(),
-  goalReflection: createModelMock(),
-  assessmentResult: createModelMock(),
-  assessmentTemplate: createModelMock(),
-  calendarEvent: createModelMock(),
-  student: createModelMock(),
-  classRoutine: createModelMock(),
-  teacherPreferences: createModelMock(),
-  dailyPlan: createModelMock(),
-  dailyPlanItem: createModelMock(),
-  resource: createModelMock(),
-  curriculumExpectation: createModelMock(),
-  curriculumExpectationEmbedding: createModelMock(),
-  longRangePlan: createModelMock(),
-  unitPlan: createModelMock(),
-  eTFOLessonPlan: createModelMock(),
-  daybookEntry: createModelMock(),
-  // Additional models that tests might need
-  unavailableBlock: createModelMock(),
-  timetableSlot: createModelMock(),
-  holiday: createModelMock(),
-  calendarEvent: createModelMock(),
-  weeklyPlan: createModelMock(),
-  plannerState: createModelMock(),
-  template: createModelMock(),
-  newsletter: createModelMock(),
-  schoolYear: createModelMock(),
-  academicYear: createModelMock(),
-  grade: createModelMock(),
-  classLevel: createModelMock(),
-  curriculum: createModelMock(),
-  subjectArea: createModelMock(),
-  learningExpectation: createModelMock(),
-  assessmentCriteria: createModelMock(),
-  rubric: createModelMock(),
-  recentPlanAccess: createModelMock(),
-};
-
-// Set up the transaction mock to use the client instance
-mockPrismaClientInstance.$transaction.mockImplementation((fn) => {
-  if (typeof fn === 'function') {
-    return fn(mockPrismaClientInstance);
+// Optimized embeddingService mock - lazy generate embeddings
+const generateMockEmbedding = () => {
+  // Use consistent mock embedding to reduce memory usage
+  if (!global.__mockEmbedding) {
+    global.__mockEmbedding = Array(1536).fill(0).map(() => Math.random());
   }
-  return Promise.resolve(fn);
-});
-
-// Store the mock instance globally for tests to access
-const globalForPrisma = globalThis as unknown as {
-  testPrismaClient: typeof mockPrismaClientInstance;
+  return global.__mockEmbedding;
 };
-globalForPrisma.testPrismaClient = mockPrismaClientInstance;
 
-// Mock local prisma import
-jest.doMock('../src/prisma', () => ({
-  // The prisma export is a Proxy that delegates to testPrismaClient
-  prisma: mockPrismaClientInstance,
-  PrismaClient: jest.fn().mockImplementation(() => mockPrismaClientInstance),
-  // Re-export everything else
-  Prisma: {},
-}));
-
-// Mock embeddingService
 jest.mock('@/services/embeddingService', () => ({
   embeddingService: {
     calculateSimilarity: jest.fn().mockReturnValue(0.85),
@@ -517,17 +102,13 @@ jest.mock('@/services/embeddingService', () => ({
     findSimilarOutcomes: jest.fn().mockResolvedValue([]),
     generateEmbedding: jest.fn().mockResolvedValue({
       outcomeId: 'test-outcome',
-      embedding: Array(1536)
-        .fill(0)
-        .map(() => Math.random()),
+      embedding: generateMockEmbedding(),
       model: 'text-embedding-3-small',
     }),
     generateMissingEmbeddings: jest.fn().mockResolvedValue(0),
     getOrCreateOutcomeEmbedding: jest.fn().mockResolvedValue({
       outcomeId: 'test-outcome',
-      embedding: Array(1536)
-        .fill(0)
-        .map(() => Math.random()),
+      embedding: generateMockEmbedding(),
       model: 'text-embedding-3-small',
     }),
     searchOutcomesByText: jest.fn().mockResolvedValue([]),
@@ -537,151 +118,85 @@ jest.mock('@/services/embeddingService', () => ({
   },
 }));
 
-// Mock OpenAI before any imports
-jest.mock('openai', () => {
-  return {
-    __esModule: true,
-    default: jest.fn().mockImplementation(() => ({
-      embeddings: {
-        create: jest.fn().mockResolvedValue({
-          data: [
-            {
-              embedding: Array(1536)
-                .fill(0)
-                .map(() => Math.random()),
-              index: 0,
-            },
-          ],
-          usage: {
-            prompt_tokens: 100,
-            total_tokens: 100,
-          },
-        }),
-      },
-      chat: {
-        completions: {
-          create: jest.fn().mockResolvedValue({
-            id: 'mock-completion',
-            choices: [
-              {
-                message: {
-                  role: 'assistant',
-                  content: 'Mocked AI response',
-                },
-                finish_reason: 'stop',
-                index: 0,
-              },
-            ],
-            usage: {
-              prompt_tokens: 50,
-              completion_tokens: 100,
-              total_tokens: 150,
-            },
-          }),
-        },
-      },
-    })),
-    OpenAI: jest.fn().mockImplementation(() => ({
-      embeddings: {
-        create: jest.fn().mockResolvedValue({
-          data: [
-            {
-              embedding: Array(1536)
-                .fill(0)
-                .map(() => Math.random()),
-              index: 0,
-            },
-          ],
-          usage: {
-            prompt_tokens: 100,
-            total_tokens: 100,
-          },
-        }),
-      },
-      chat: {
-        completions: {
-          create: jest.fn().mockResolvedValue({
-            id: 'mock-completion',
-            choices: [
-              {
-                message: {
-                  role: 'assistant',
-                  content: 'Mocked AI response',
-                },
-                finish_reason: 'stop',
-                index: 0,
-              },
-            ],
-            usage: {
-              prompt_tokens: 50,
-              completion_tokens: 100,
-              total_tokens: 150,
-            },
-          }),
-        },
-      },
-    })),
-  };
-});
+// Optimized OpenAI mock - reuse mock responses
+const mockEmbeddingResponse = {
+  data: [
+    {
+      embedding: generateMockEmbedding(),
+      index: 0,
+    },
+  ],
+  usage: {
+    prompt_tokens: 100,
+    total_tokens: 100,
+  },
+};
 
-// Mock email service
-jest.mock('@/services/emailService', () => ({
-  sendEmail: jest.fn().mockResolvedValue(true),
-  sendBulkEmails: jest.fn().mockResolvedValue({ sent: [], failed: [] }),
+const mockChatResponse = {
+  id: 'mock-completion',
+  choices: [
+    {
+      message: {
+        role: 'assistant' as const,
+        content: 'Mocked AI response',
+      },
+      finish_reason: 'stop' as const,
+      index: 0,
+    },
+  ],
+  usage: {
+    prompt_tokens: 50,
+    completion_tokens: 100,
+    total_tokens: 150,
+  },
+};
+
+const mockOpenAIInstance = {
+  embeddings: {
+    create: jest.fn().mockResolvedValue(mockEmbeddingResponse),
+  },
+  chat: {
+    completions: {
+      create: jest.fn().mockResolvedValue(mockChatResponse),
+    },
+  },
+};
+
+// Mock OpenAI before any imports
+jest.mock('openai', () => ({
+  __esModule: true,
+  default: jest.fn().mockImplementation(() => mockOpenAIInstance),
+  OpenAI: jest.fn().mockImplementation(() => mockOpenAIInstance),
 }));
+
+// Conditional mocking - only mock services that are actually used
+if (process.env.MOCK_EMAIL_SERVICE !== 'false') {
+  jest.mock('@/services/emailService', () => ({
+    sendEmail: jest.fn().mockResolvedValue(true),
+    sendBulkEmails: jest.fn().mockResolvedValue({ sent: [], failed: [] }),
+  }));
+}
 
 // Note: curriculumImportService is not mocked here since its tests need the real implementation
 
 // Mock clusteringService
 jest.mock('@/services/clusteringService', () => ({
   clusteringService: {
-    generateClusters: jest.fn(),
+    generateClusters: jest.fn().mockResolvedValue([]),
   },
 }));
 
-// Mock llmService
+// Clear mock call history between test suites to prevent memory leaks
+beforeEach(() => {
+  if (global.__mockEmbedding) {
+    jest.clearAllMocks();
+  }
+});
+
+// Mock llmService with shared responses
 jest.mock('@/services/llmService', () => ({
-  openai: {
-    chat: {
-      completions: {
-        create: jest.fn().mockResolvedValue({
-          id: 'mock-completion',
-          choices: [
-            {
-              message: {
-                role: 'assistant',
-                content: 'Mocked AI response',
-              },
-              finish_reason: 'stop',
-              index: 0,
-            },
-          ],
-          usage: {
-            prompt_tokens: 50,
-            completion_tokens: 100,
-            total_tokens: 150,
-          },
-        }),
-      },
-    },
-    embeddings: {
-      create: jest.fn().mockResolvedValue({
-        data: [
-          {
-            embedding: Array(1536)
-              .fill(0)
-              .map(() => Math.random()),
-            index: 0,
-          },
-        ],
-        usage: {
-          prompt_tokens: 100,
-          total_tokens: 100,
-        },
-      }),
-    },
-  },
-  generateContent: jest.fn().mockResolvedValue('This is a mock response for testing purposes.'),
+  openai: mockOpenAIInstance,
+  generateContent: jest.fn().mockResolvedValue('Mock content for testing.'),
   generateBilingualContent: jest.fn().mockResolvedValue({
     english: 'Mock English content',
     french: 'Mock French content',

@@ -15,7 +15,7 @@ tests/
 │   └── setup-*-mocks.ts      # Test type specific setups
 ├── unit/                     # Unit tests (fast, isolated)
 ├── integration/              # Integration tests (real DB, mocked external APIs)
-├── e2e/                      # End-to-end tests (minimal mocking)
+├── ai-snapshots/             # AI output regression tests
 ├── performance/              # Performance tests
 └── temp/                     # Temporary files and caches
 ```
@@ -36,12 +36,12 @@ tests/
 - **External APIs**: Mocked
 - **Parallelization**: Sequential (database isolation)
 
-### E2E Tests (`tests/e2e/`)
-- **Purpose**: Test full user workflows
+### AI Snapshot Tests (`tests/ai-snapshots/`)
+- **Purpose**: Test AI output regression and validation
 - **Speed**: Slow (30-60 seconds per test)
 - **Database**: Real database
-- **External APIs**: Minimal mocking (only expensive operations)
-- **Parallelization**: Sequential
+- **External APIs**: Mocked by default, can use real APIs with `USE_REAL_OPENAI=true`
+- **Parallelization**: Sequential for consistent snapshots
 
 ### Performance Tests (`tests/performance/`)
 - **Purpose**: Measure and benchmark performance
@@ -53,14 +53,20 @@ tests/
 ## Configuration
 
 ### Unified Jest Configuration
-All test types use `jest.config.unified.js` with environment-specific settings:
+All test types use `jest.config.js` with environment-specific settings:
 
 ```bash
 # Run specific test type
-TEST_TYPE=unit pnpm test
-TEST_TYPE=integration pnpm test
-TEST_TYPE=e2e pnpm test
-TEST_TYPE=performance pnpm test
+pnpm test:unit
+pnpm test:integration
+pnpm test:ai-snapshots
+pnpm test:performance
+
+# Or use environment variable
+TEST_TYPE=unit jest
+TEST_TYPE=integration jest
+TEST_TYPE=ai-snapshots jest
+TEST_TYPE=performance jest
 ```
 
 ### Environment Variables
@@ -79,12 +85,14 @@ pnpm test:unit
 # Run integration tests
 pnpm test:integration
 
+# Run AI snapshot tests
+pnpm test:ai-snapshots
+
 # Run all tests
 pnpm test:all
 
-# Smart test runner (with caching)
-pnpm test:smart unit
-pnpm test:changed
+# Comprehensive test runner with reporting
+pnpm test:comprehensive
 ```
 
 ### Smart Test Runner

@@ -390,26 +390,30 @@ export class CacheService extends BaseService {
   private async evictLeastUsed(): Promise<void> {
     if (this.cache.size === 0) return;
 
-    // Find the least recently used entry
-    let lruKey: string | null = null;
-    let oldestAccess = Date.now();
+    // Calculate how many entries to evict (evict 10% when at capacity)
+    const entriesToEvict = Math.max(1, Math.floor(this.maxSize * 0.1));
+    const evictedKeys: string[] = [];
 
-    for (const [key, entry] of this.cache.entries()) {
-      if (entry.lastAccessed < oldestAccess) {
-        oldestAccess = entry.lastAccessed;
-        lruKey = key;
-      }
+    // Get all entries sorted by last access time
+    const sortedEntries = Array.from(this.cache.entries())
+      .sort(([, a], [, b]) => a.lastAccessed - b.lastAccessed);
+
+    // Evict the least recently used entries
+    for (let i = 0; i < entriesToEvict && i < sortedEntries.length; i++) {
+      const [key] = sortedEntries[i];
+      this.cache.delete(key);
+      evictedKeys.push(key);
     }
 
-    if (lruKey) {
-      this.cache.delete(lruKey);
+    if (evictedKeys.length > 0) {
       this.logger.info(
         {
-          evictedKey: lruKey,
+          evictedKeys,
+          evictedCount: evictedKeys.length,
           cacheSize: this.cache.size,
-          oldestAccess,
+          maxSize: this.maxSize,
         },
-        'Evicted LRU cache entry',
+        'Evicted LRU cache entries',
       );
     }
   }

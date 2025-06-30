@@ -1,0 +1,1075 @@
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
+import { TemplateService, TemplateSearchOptions, TemplateCreateData } from '../../src/services/templateService';
+import { prisma } from '../../src/prisma';
+
+// Mock Prisma
+jest.mock('../../src/prisma', () => ({
+  prisma: {
+    planTemplate: {
+      findMany: jest.fn(),
+      count: jest.fn(),
+      findFirst: jest.fn(),
+      findUnique: jest.fn(),
+      create: jest.fn(),
+      update: jest.fn(),
+      delete: jest.fn(),
+      upsert: jest.fn(),
+    },
+    templateRating: {
+      upsert: jest.fn(),
+      findMany: jest.fn(),
+    },
+  },
+}));
+
+const mockPrisma = prisma as jest.Mocked<typeof prisma>;
+
+describe('TemplateService', () => {
+  const mockUserId = 1;
+  const mockTemplateId = 'template-123';
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  describe('searchTemplates', () => {
+    const mockTemplates = [
+      {
+        id: 'template-1',
+        title: 'Math Unit Plan',
+        type: 'UNIT_PLAN',
+        category: 'BY_SUBJECT',
+        subject: 'Mathematics',
+        gradeMin: 1,
+        gradeMax: 3,
+        isSystem: true,
+        isPublic: true,
+        createdByUserId: 1,
+        createdByUser: { id: 1, name: 'System' },
+        _count: { ratings: 5, variations: 2 },
+      },
+    ];
+
+    beforeEach(() => {
+      mockPrisma.planTemplate.findMany.mockResolvedValue(mockTemplates);
+      mockPrisma.planTemplate.count.mockResolvedValue(1);
+    });
+
+    it('should search templates with default options', async () => {
+      const result = await TemplateService.searchTemplates(mockUserId, {});
+
+      expect(result.templates).toEqual(mockTemplates);
+      expect(result.pagination.total).toBe(1);
+      expect(result.pagination.limit).toBe(20);
+      expect(result.pagination.offset).toBe(0);
+      expect(result.pagination.hasMore).toBe(false);
+    });
+
+    it('should apply type filter', async () => {
+      const options: TemplateSearchOptions = { type: 'UNIT_PLAN' };
+      await TemplateService.searchTemplates(mockUserId, options);
+
+      expect(mockPrisma.planTemplate.findMany).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: expect.objectContaining({
+            type: 'UNIT_PLAN',
+          }),
+        })
+      );
+    });
+
+    it('should apply category filter', async () => {
+      const options: TemplateSearchOptions = { category: 'BY_SUBJECT' };
+      await TemplateService.searchTemplates(mockUserId, options);
+
+      expect(mockPrisma.planTemplate.findMany).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: expect.objectContaining({
+            category: 'BY_SUBJECT',
+          }),
+        })
+      );
+    });
+
+    it('should apply subject filter', async () => {
+      const options: TemplateSearchOptions = { subject: 'Mathematics' };
+      await TemplateService.searchTemplates(mockUserId, options);
+
+      expect(mockPrisma.planTemplate.findMany).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: expect.objectContaining({
+            subject: 'Mathematics',
+          }),
+        })
+      );
+    });
+
+    it('should apply grade range filters', async () => {
+      const options: TemplateSearchOptions = { gradeMin: 2, gradeMax: 4 };
+      await TemplateService.searchTemplates(mockUserId, options);
+
+      const call = mockPrisma.planTemplate.findMany.mock.calls[0][0];
+      expect(call.where.AND).toBeDefined();
+      expect(call.where.AND).toHaveLength(2);
+    });
+
+    it('should apply text search filters', async () => {
+      const options: TemplateSearchOptions = { search: 'math' };
+      await TemplateService.searchTemplates(mockUserId, options);
+
+      const call = mockPrisma.planTemplate.findMany.mock.calls[0][0];
+      expect(call.where.OR).toBeDefined();
+      expect(call.where.OR).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ title: expect.objectContaining({ contains: 'math' }) }),
+          expect.objectContaining({ description: expect.objectContaining({ contains: 'math' }) }),
+          expect.objectContaining({ titleFr: expect.objectContaining({ contains: 'math' }) }),
+          expect.objectContaining({ descriptionFr: expect.objectContaining({ contains: 'math' }) }),
+        ])
+      );
+    });
+
+    it('should apply tag filters', async () => {
+      const options: TemplateSearchOptions = { tags: ['primary', 'hands-on'] };
+      await TemplateService.searchTemplates(mockUserId, options);
+
+      const call = mockPrisma.planTemplate.findMany.mock.calls[0][0];
+      expect(call.where.tags).toBeDefined();
+    });
+
+    it('should apply pagination correctly', async () => {
+      const options: TemplateSearchOptions = { limit: 10, offset: 20 };
+      await TemplateService.searchTemplates(mockUserId, options);
+
+      expect(mockPrisma.planTemplate.findMany).toHaveBeenCalledWith(
+        expect.objectContaining({
+          take: 10,
+          skip: 20,
+        })
+      );
+    });
+
+    it('should apply sorting options', async () => {
+      const options: TemplateSearchOptions = { sortBy: 'title', sortOrder: 'asc' };
+      await TemplateService.searchTemplates(mockUserId, options);
+
+      expect(mockPrisma.planTemplate.findMany).toHaveBeenCalledWith(
+        expect.objectContaining({
+          orderBy: { title: 'asc' },
+        })
+      );
+    });
+
+    it('should calculate hasMore correctly when there are more results', async () => {
+      mockPrisma.planTemplate.count.mockResolvedValue(50);
+      const options: TemplateSearchOptions = { limit: 20, offset: 0 };
+      
+      const result = await TemplateService.searchTemplates(mockUserId, options);
+      
+      expect(result.pagination.hasMore).toBe(true);
+    });
+
+    it('should include user visibility logic in where clause', async () => {
+      await TemplateService.searchTemplates(mockUserId, {});
+
+      const call = mockPrisma.planTemplate.findMany.mock.calls[0][0];
+      expect(call.where.OR).toEqual(
+        expect.arrayContaining([
+          { isSystem: true },
+          { isPublic: true },
+          { createdByUserId: mockUserId },
+        ])
+      );
+    });
+  });
+
+  describe('getTemplateById', () => {
+    const mockTemplate = {
+      id: mockTemplateId,
+      title: 'Test Template',
+      createdByUser: { id: 1, name: 'Test User' },
+      ratings: [],
+      variations: [],
+      _count: { ratings: 0 },
+    };
+
+    it('should retrieve template by ID', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(mockTemplate);
+
+      const result = await TemplateService.getTemplateById(mockUserId, mockTemplateId);
+
+      expect(result).toEqual(mockTemplate);
+      expect(mockPrisma.planTemplate.findFirst).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: {
+            id: mockTemplateId,
+            OR: [
+              { isSystem: true },
+              { isPublic: true },
+              { createdByUserId: mockUserId },
+            ],
+          },
+        })
+      );
+    });
+
+    it('should return null when template not found', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(null);
+
+      const result = await TemplateService.getTemplateById(mockUserId, 'non-existent');
+
+      expect(result).toBeNull();
+    });
+
+    it('should include ratings and variations in the response', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(mockTemplate);
+
+      await TemplateService.getTemplateById(mockUserId, mockTemplateId);
+
+      expect(mockPrisma.planTemplate.findFirst).toHaveBeenCalledWith(
+        expect.objectContaining({
+          include: expect.objectContaining({
+            ratings: expect.objectContaining({ take: 5 }),
+            variations: true,
+            _count: expect.objectContaining({ select: { ratings: true } }),
+          }),
+        })
+      );
+    });
+  });
+
+  describe('createTemplate', () => {
+    const mockCreateData: TemplateCreateData = {
+      title: 'New Template',
+      description: 'Test description',
+      type: 'UNIT_PLAN',
+      category: 'BY_SUBJECT',
+      subject: 'Science',
+      gradeMin: 2,
+      gradeMax: 4,
+      content: { test: 'content' },
+      tags: ['test', 'science'],
+      keywords: ['experiment', 'lab'],
+      isPublic: true,
+    };
+
+    const mockCreatedTemplate = {
+      id: 'new-template-id',
+      ...mockCreateData,
+      createdByUserId: mockUserId,
+      createdByUser: { id: mockUserId, name: 'Test User' },
+      _count: { ratings: 0, variations: 0 },
+    };
+
+    it('should create a new template successfully', async () => {
+      mockPrisma.planTemplate.create.mockResolvedValue(mockCreatedTemplate);
+
+      const result = await TemplateService.createTemplate(mockUserId, mockCreateData);
+
+      expect(result).toEqual(mockCreatedTemplate);
+      expect(mockPrisma.planTemplate.create).toHaveBeenCalledWith(
+        expect.objectContaining({
+          data: expect.objectContaining({
+            title: mockCreateData.title,
+            createdByUserId: mockUserId,
+            content: mockCreateData.content,
+            tags: mockCreateData.tags,
+            keywords: mockCreateData.keywords,
+            isPublic: true,
+          }),
+        })
+      );
+    });
+
+    it('should validate grade range on creation', async () => {
+      const invalidData = { ...mockCreateData, gradeMin: 5, gradeMax: 3 };
+
+      await expect(TemplateService.createTemplate(mockUserId, invalidData))
+        .rejects.toThrow('Minimum grade cannot be greater than maximum grade');
+    });
+
+    it('should use default values for optional fields', async () => {
+      const minimalData: TemplateCreateData = {
+        title: 'Minimal Template',
+        type: 'LESSON_PLAN',
+        category: 'BY_SKILL',
+        content: { minimal: true },
+      };
+
+      mockPrisma.planTemplate.create.mockResolvedValue({ 
+        ...minimalData, 
+        id: 'minimal-id',
+        createdByUserId: mockUserId,
+        tags: [],
+        keywords: [], 
+        isPublic: false,
+      });
+
+      await TemplateService.createTemplate(mockUserId, minimalData);
+
+      expect(mockPrisma.planTemplate.create).toHaveBeenCalledWith(
+        expect.objectContaining({
+          data: expect.objectContaining({
+            tags: [],
+            keywords: [],
+            isPublic: false,
+          }),
+        })
+      );
+    });
+  });
+
+  describe('updateTemplate', () => {
+    const mockExistingTemplate = {
+      id: mockTemplateId,
+      title: 'Existing Template',
+      createdByUserId: mockUserId,
+      isSystem: false,
+    };
+
+    const mockUpdateData = {
+      title: 'Updated Template',
+      description: 'Updated description',
+      gradeMin: 3,
+      gradeMax: 5,
+    };
+
+    const mockUpdatedTemplate = {
+      ...mockExistingTemplate,
+      ...mockUpdateData,
+      createdByUser: { id: mockUserId, name: 'Test User' },
+      variations: [],
+      _count: { ratings: 0 },
+    };
+
+    it('should update an existing template successfully', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(mockExistingTemplate);
+      mockPrisma.planTemplate.update.mockResolvedValue(mockUpdatedTemplate);
+
+      const result = await TemplateService.updateTemplate(mockUserId, mockTemplateId, mockUpdateData);
+
+      expect(result).toEqual(mockUpdatedTemplate);
+      expect(mockPrisma.planTemplate.update).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: { id: mockTemplateId },
+          data: expect.objectContaining(mockUpdateData),
+        })
+      );
+    });
+
+    it('should throw error when template not found', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(null);
+
+      await expect(TemplateService.updateTemplate(mockUserId, mockTemplateId, mockUpdateData))
+        .rejects.toThrow('Template not found or not editable');
+    });
+
+    it('should throw error when trying to update system template', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue({
+        ...mockExistingTemplate,
+        isSystem: true,
+      });
+
+      await expect(TemplateService.updateTemplate(mockUserId, mockTemplateId, mockUpdateData))
+        .rejects.toThrow('Template not found or not editable');
+    });
+
+    it('should validate grade range on update', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(mockExistingTemplate);
+      
+      const invalidUpdate = { gradeMin: 6, gradeMax: 4 };
+
+      await expect(TemplateService.updateTemplate(mockUserId, mockTemplateId, invalidUpdate))
+        .rejects.toThrow('Minimum grade cannot be greater than maximum grade');
+    });
+
+    it('should verify ownership before updating', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(null);
+
+      await expect(TemplateService.updateTemplate(mockUserId, mockTemplateId, mockUpdateData))
+        .rejects.toThrow('Template not found or not editable');
+
+      expect(mockPrisma.planTemplate.findFirst).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: {
+            id: mockTemplateId,
+            createdByUserId: mockUserId,
+            isSystem: false,
+          },
+        })
+      );
+    });
+  });
+
+  describe('deleteTemplate', () => {
+    const mockExistingTemplate = {
+      id: mockTemplateId,
+      createdByUserId: mockUserId,
+      isSystem: false,
+    };
+
+    it('should delete a template successfully', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(mockExistingTemplate);
+      mockPrisma.planTemplate.delete.mockResolvedValue(mockExistingTemplate);
+
+      const result = await TemplateService.deleteTemplate(mockUserId, mockTemplateId);
+
+      expect(result).toBe(true);
+      expect(mockPrisma.planTemplate.delete).toHaveBeenCalledWith({
+        where: { id: mockTemplateId },
+      });
+    });
+
+    it('should throw error when template not found', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(null);
+
+      await expect(TemplateService.deleteTemplate(mockUserId, mockTemplateId))
+        .rejects.toThrow('Template not found or not deletable');
+    });
+
+    it('should throw error when trying to delete system template', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue({
+        ...mockExistingTemplate,
+        isSystem: true,
+      });
+
+      await expect(TemplateService.deleteTemplate(mockUserId, mockTemplateId))
+        .rejects.toThrow('Template not found or not deletable');
+    });
+
+    it('should verify ownership before deleting', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(mockExistingTemplate);
+      mockPrisma.planTemplate.delete.mockResolvedValue(mockExistingTemplate);
+
+      await TemplateService.deleteTemplate(mockUserId, mockTemplateId);
+
+      expect(mockPrisma.planTemplate.findFirst).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: {
+            id: mockTemplateId,
+            createdByUserId: mockUserId,
+            isSystem: false,
+          },
+        })
+      );
+    });
+  });
+
+  describe('duplicateTemplate', () => {
+    const mockOriginalTemplate = {
+      id: 'original-id',
+      title: 'Original Template',
+      titleFr: 'Template Original',
+      description: 'Original description',
+      descriptionFr: 'Description originale',
+      type: 'UNIT_PLAN',
+      category: 'BY_SUBJECT',
+      subject: 'Mathematics',
+      gradeMin: 1,
+      gradeMax: 3,
+      tags: ['original', 'test'],
+      keywords: ['math', 'test'],
+      content: { original: true },
+      estimatedWeeks: 2,
+      unitStructure: { structure: 'original' },
+      estimatedMinutes: null,
+      lessonStructure: null,
+    };
+
+    const mockDuplicatedTemplate = {
+      ...mockOriginalTemplate,
+      id: 'duplicated-id',
+      title: 'Original Template (Copy)',
+      titleFr: 'Template Original (Copie)',
+      createdByUserId: mockUserId,
+      isSystem: false,
+      isPublic: false,
+      createdByUser: { id: mockUserId, name: 'Test User' },
+      _count: { ratings: 0, variations: 0 },
+    };
+
+    it('should duplicate a template successfully', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(mockOriginalTemplate);
+      mockPrisma.planTemplate.create.mockResolvedValue(mockDuplicatedTemplate);
+
+      const result = await TemplateService.duplicateTemplate(mockUserId, 'original-id');
+
+      expect(result).toEqual(mockDuplicatedTemplate);
+      expect(mockPrisma.planTemplate.create).toHaveBeenCalledWith(
+        expect.objectContaining({
+          data: expect.objectContaining({
+            title: 'Original Template (Copy)',
+            titleFr: 'Template Original (Copie)',
+            createdByUserId: mockUserId,
+            isSystem: false,
+            isPublic: false,
+          }),
+        })
+      );
+    });
+
+    it('should use custom title when provided', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(mockOriginalTemplate);
+      mockPrisma.planTemplate.create.mockResolvedValue({
+        ...mockDuplicatedTemplate,
+        title: 'Custom Title',
+      });
+
+      await TemplateService.duplicateTemplate(mockUserId, 'original-id', 'Custom Title');
+
+      expect(mockPrisma.planTemplate.create).toHaveBeenCalledWith(
+        expect.objectContaining({
+          data: expect.objectContaining({
+            title: 'Custom Title',
+          }),
+        })
+      );
+    });
+
+    it('should respect isPublic parameter', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(mockOriginalTemplate);
+      mockPrisma.planTemplate.create.mockResolvedValue({
+        ...mockDuplicatedTemplate,
+        isPublic: true,
+      });
+
+      await TemplateService.duplicateTemplate(mockUserId, 'original-id', undefined, true);
+
+      expect(mockPrisma.planTemplate.create).toHaveBeenCalledWith(
+        expect.objectContaining({
+          data: expect.objectContaining({
+            isPublic: true,
+          }),
+        })
+      );
+    });
+
+    it('should throw error when original template not found', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(null);
+
+      await expect(TemplateService.duplicateTemplate(mockUserId, 'non-existent'))
+        .rejects.toThrow('Template not found');
+    });
+
+    it('should check visibility permissions for original template', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(mockOriginalTemplate);
+      mockPrisma.planTemplate.create.mockResolvedValue(mockDuplicatedTemplate);
+
+      await TemplateService.duplicateTemplate(mockUserId, 'original-id');
+
+      expect(mockPrisma.planTemplate.findFirst).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: {
+            id: 'original-id',
+            OR: [
+              { isSystem: true },
+              { isPublic: true },
+              { createdByUserId: mockUserId },
+            ],
+          },
+        })
+      );
+    });
+  });
+
+  describe('applyTemplate', () => {
+    const mockTemplate = {
+      id: mockTemplateId,
+      title: 'Test Template',
+      type: 'UNIT_PLAN',
+      content: { baseContent: true, items: ['item1', 'item2'] },
+      unitStructure: { phases: 3 },
+      lessonStructure: null,
+      estimatedWeeks: 2,
+      estimatedMinutes: null,
+    };
+
+    it('should apply template with default customizations', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(mockTemplate);
+      mockPrisma.planTemplate.update.mockResolvedValue(mockTemplate);
+
+      const result = await TemplateService.applyTemplate(mockUserId, mockTemplateId);
+
+      expect(result.template.id).toBe(mockTemplateId);
+      expect(result.template.title).toBe('Test Template');
+      expect(result.appliedContent).toEqual(mockTemplate.content);
+      expect(mockPrisma.planTemplate.update).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: { id: mockTemplateId },
+          data: {
+            usageCount: { increment: 1 },
+            lastUsedAt: expect.any(Date),
+          },
+        })
+      );
+    });
+
+    it('should merge template content with customizations', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(mockTemplate);
+      mockPrisma.planTemplate.update.mockResolvedValue(mockTemplate);
+
+      const customizations = { 
+        customField: 'custom value',
+        items: ['custom1', 'custom2'],
+      };
+
+      const result = await TemplateService.applyTemplate(mockUserId, mockTemplateId, customizations);
+
+      expect(result.appliedContent).toEqual({
+        baseContent: true,
+        items: ['custom1', 'custom2'], // Should override template items
+        customField: 'custom value',
+      });
+    });
+
+    it('should throw error when template not accessible', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(null);
+
+      await expect(TemplateService.applyTemplate(mockUserId, 'non-existent'))
+        .rejects.toThrow('Template not found');
+    });
+
+    it('should check visibility permissions', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(mockTemplate);
+      mockPrisma.planTemplate.update.mockResolvedValue(mockTemplate);
+
+      await TemplateService.applyTemplate(mockUserId, mockTemplateId);
+
+      expect(mockPrisma.planTemplate.findFirst).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: {
+            id: mockTemplateId,
+            OR: [
+              { isSystem: true },
+              { isPublic: true },
+              { createdByUserId: mockUserId },
+            ],
+          },
+        })
+      );
+    });
+
+    it('should include structure data in response', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(mockTemplate);
+      mockPrisma.planTemplate.update.mockResolvedValue(mockTemplate);
+
+      const result = await TemplateService.applyTemplate(mockUserId, mockTemplateId);
+
+      expect(result.template.unitStructure).toEqual({ phases: 3 });
+      expect(result.template.lessonStructure).toBeUndefined();
+      expect(result.template.estimatedWeeks).toBe(2);
+      expect(result.template.estimatedMinutes).toBeUndefined();
+    });
+  });
+
+  describe('rateTemplate', () => {
+    const mockTemplate = {
+      id: mockTemplateId,
+      title: 'Test Template',
+    };
+
+    const mockRating = {
+      id: 'rating-id',
+      templateId: mockTemplateId,
+      userId: mockUserId,
+      rating: 4,
+      comment: 'Great template!',
+    };
+
+    const mockRatings = [
+      { rating: 5 },
+      { rating: 4 },
+      { rating: 3 },
+    ];
+
+    it('should create a new rating successfully', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(mockTemplate);
+      mockPrisma.templateRating.upsert.mockResolvedValue(mockRating);
+      mockPrisma.templateRating.findMany.mockResolvedValue(mockRatings);
+      mockPrisma.planTemplate.update.mockResolvedValue(mockTemplate);
+
+      const result = await TemplateService.rateTemplate(mockUserId, mockTemplateId, 4, 'Great template!');
+
+      expect(result).toEqual(mockRating);
+      expect(mockPrisma.templateRating.upsert).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: {
+            templateId_userId: {
+              templateId: mockTemplateId,
+              userId: mockUserId,
+            },
+          },
+          create: {
+            templateId: mockTemplateId,
+            userId: mockUserId,
+            rating: 4,
+            comment: 'Great template!',
+          },
+          update: {
+            rating: 4,
+            comment: 'Great template!',
+          },
+        })
+      );
+    });
+
+    it('should update average rating correctly', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(mockTemplate);
+      mockPrisma.templateRating.upsert.mockResolvedValue(mockRating);
+      mockPrisma.templateRating.findMany.mockResolvedValue(mockRatings);
+      mockPrisma.planTemplate.update.mockResolvedValue(mockTemplate);
+
+      await TemplateService.rateTemplate(mockUserId, mockTemplateId, 4);
+
+      const expectedAverage = (5 + 4 + 3) / 3; // 4.0
+      expect(mockPrisma.planTemplate.update).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: { id: mockTemplateId },
+          data: { averageRating: expectedAverage },
+        })
+      );
+    });
+
+    it('should validate rating range', async () => {
+      await expect(TemplateService.rateTemplate(mockUserId, mockTemplateId, 0))
+        .rejects.toThrow('Rating must be between 1 and 5');
+
+      await expect(TemplateService.rateTemplate(mockUserId, mockTemplateId, 6))
+        .rejects.toThrow('Rating must be between 1 and 5');
+    });
+
+    it('should throw error when template not accessible', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(null);
+
+      await expect(TemplateService.rateTemplate(mockUserId, 'non-existent', 5))
+        .rejects.toThrow('Template not found');
+    });
+
+    it('should handle ratings without comments', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(mockTemplate);
+      mockPrisma.templateRating.upsert.mockResolvedValue({ ...mockRating, comment: null });
+      mockPrisma.templateRating.findMany.mockResolvedValue(mockRatings);
+      mockPrisma.planTemplate.update.mockResolvedValue(mockTemplate);
+
+      await TemplateService.rateTemplate(mockUserId, mockTemplateId, 5);
+
+      expect(mockPrisma.templateRating.upsert).toHaveBeenCalledWith(
+        expect.objectContaining({
+          create: expect.objectContaining({
+            comment: undefined,
+          }),
+          update: expect.objectContaining({
+            comment: undefined,
+          }),
+        })
+      );
+    });
+  });
+
+  describe('getFilterOptions', () => {
+    const mockSubjects = [
+      { subject: 'Mathematics' },
+      { subject: 'Science' },
+      { subject: 'Language Arts' },
+    ];
+
+    const mockGrades = [
+      { gradeMin: 1, gradeMax: 3 },
+      { gradeMin: 4, gradeMax: 6 },
+      { gradeMin: null, gradeMax: 8 },
+    ];
+
+    const mockCategories = [
+      { category: 'BY_SUBJECT' },
+      { category: 'BY_GRADE' },
+      { category: 'BY_THEME' },
+    ];
+
+    const mockTags = [
+      { tags: ['primary', 'hands-on'] },
+      { tags: ['intermediate', 'group-work'] },
+      { tags: null },
+    ];
+
+    beforeEach(() => {
+      // Mock four separate findMany calls
+      mockPrisma.planTemplate.findMany
+        .mockResolvedValueOnce(mockSubjects)  // subjects query
+        .mockResolvedValueOnce(mockGrades)    // grades query
+        .mockResolvedValueOnce(mockCategories) // categories query
+        .mockResolvedValueOnce(mockTags);     // tags query
+    });
+
+    it('should return filter options', async () => {
+      const result = await TemplateService.getFilterOptions(mockUserId);
+
+      expect(result.subjects).toEqual(['Language Arts', 'Mathematics', 'Science']);
+      expect(result.categories).toEqual(['BY_SUBJECT', 'BY_GRADE', 'BY_THEME']);
+      expect(result.grades).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+      expect(result.tags).toEqual(['group-work', 'hands-on', 'intermediate', 'primary']);
+    });
+
+    it('should filter out null subjects', async () => {
+      const subjectsWithNull = [...mockSubjects, { subject: null }];
+      mockPrisma.planTemplate.findMany
+        .mockResolvedValueOnce(subjectsWithNull)
+        .mockResolvedValueOnce(mockGrades)
+        .mockResolvedValueOnce(mockCategories)
+        .mockResolvedValueOnce(mockTags);
+
+      const result = await TemplateService.getFilterOptions(mockUserId);
+
+      expect(result.subjects).toEqual(['Language Arts', 'Mathematics', 'Science']);
+    });
+
+    it('should handle empty tags arrays', async () => {
+      const tagsWithEmpty = [
+        { tags: ['valid-tag'] },
+        { tags: [] },
+        { tags: null },
+      ];
+      mockPrisma.planTemplate.findMany
+        .mockResolvedValueOnce(mockSubjects)
+        .mockResolvedValueOnce(mockGrades)
+        .mockResolvedValueOnce(mockCategories)
+        .mockResolvedValueOnce(tagsWithEmpty);
+
+      const result = await TemplateService.getFilterOptions(mockUserId);
+
+      expect(result.tags).toEqual(['valid-tag']);
+    });
+
+    it('should calculate grade range correctly', async () => {
+      const gradesEdgeCase = [
+        { gradeMin: 12, gradeMax: 12 }, // Edge case: single grade
+        { gradeMin: 1, gradeMax: null },
+        { gradeMin: null, gradeMax: 8 },
+      ];
+      mockPrisma.planTemplate.findMany
+        .mockResolvedValueOnce(mockSubjects)
+        .mockResolvedValueOnce(gradesEdgeCase)
+        .mockResolvedValueOnce(mockCategories)
+        .mockResolvedValueOnce(mockTags);
+
+      const result = await TemplateService.getFilterOptions(mockUserId);
+
+      expect(result.grades).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+    });
+
+    it('should apply visibility filters to all queries', async () => {
+      await TemplateService.getFilterOptions(mockUserId);
+
+      // Check that visibility filter is applied to subjects and tags queries
+      const calls = mockPrisma.planTemplate.findMany.mock.calls;
+      
+      // Subjects call (first call)
+      expect(calls[0][0].where.OR).toEqual([
+        { isSystem: true },
+        { isPublic: true },
+        { createdByUserId: mockUserId },
+      ]);
+
+      // Tags call (fourth call)
+      expect(calls[3][0].where.OR).toEqual([
+        { isSystem: true },
+        { isPublic: true },
+        { createdByUserId: mockUserId },
+      ]);
+    });
+  });
+
+  describe('createStarterTemplates', () => {
+    const mockCreatedTemplate = {
+      id: 'starter-template-id',
+      title: 'Grade 1 Math - Number Sense Unit',
+      isSystem: true,
+    };
+
+    it('should create starter templates when they do not exist', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(null); // Template doesn't exist
+      mockPrisma.planTemplate.create.mockResolvedValue(mockCreatedTemplate);
+
+      const result = await TemplateService.createStarterTemplates();
+
+      expect(result).toHaveLength(5); // Should create 5 templates
+      expect(mockPrisma.planTemplate.create).toHaveBeenCalledTimes(5);
+    });
+
+    it('should skip creating templates that already exist', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(mockCreatedTemplate); // Template exists
+      
+      const result = await TemplateService.createStarterTemplates();
+
+      expect(result).toHaveLength(0); // Should not create any templates
+      expect(mockPrisma.planTemplate.create).not.toHaveBeenCalled();
+    });
+
+    it('should handle creation errors gracefully', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(null);
+      mockPrisma.planTemplate.create.mockRejectedValue(new Error('Creation failed'));
+
+      // Mock console.error to avoid noise in test output
+      const consoleSpy = jest.spyOn(console, 'error').mockImplementation();
+
+      const result = await TemplateService.createStarterTemplates();
+
+      expect(result).toHaveLength(0); // Should return empty array on errors
+      expect(consoleSpy).toHaveBeenCalledTimes(5); // Should log all 5 errors
+
+      consoleSpy.mockRestore();
+    });
+
+    it('should create templates with correct structure', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(null);
+      mockPrisma.planTemplate.create.mockResolvedValue(mockCreatedTemplate);
+
+      await TemplateService.createStarterTemplates();
+
+      const createCall = mockPrisma.planTemplate.create.mock.calls[0][0];
+      expect(createCall.data).toMatchObject({
+        title: expect.any(String),
+        type: expect.stringMatching(/^(UNIT_PLAN|LESSON_PLAN)$/),
+        category: expect.stringMatching(/^(BY_SUBJECT|BY_GRADE|BY_THEME|BY_SEASON|BY_SKILL|CUSTOM)$/),
+        isSystem: true,
+        isPublic: true,
+        content: expect.any(Object),
+        tags: expect.any(Array),
+        keywords: expect.any(Array),
+      });
+    });
+  });
+
+  describe('Error Handling', () => {
+    it('should handle database errors in searchTemplates', async () => {
+      mockPrisma.planTemplate.findMany.mockRejectedValue(new Error('Database error'));
+
+      await expect(TemplateService.searchTemplates(mockUserId, {}))
+        .rejects.toThrow('Database error');
+    });
+
+    it('should handle database errors in getTemplateById', async () => {
+      mockPrisma.planTemplate.findFirst.mockRejectedValue(new Error('Database error'));
+
+      await expect(TemplateService.getTemplateById(mockUserId, mockTemplateId))
+        .rejects.toThrow('Database error');
+    });
+
+    it('should handle database errors in createTemplate', async () => {
+      const mockCreateData: TemplateCreateData = {
+        title: 'Test Template',
+        type: 'UNIT_PLAN',
+        category: 'BY_SUBJECT',
+        content: {},
+      };
+
+      mockPrisma.planTemplate.create.mockRejectedValue(new Error('Database error'));
+
+      await expect(TemplateService.createTemplate(mockUserId, mockCreateData))
+        .rejects.toThrow('Database error');
+    });
+
+    it('should handle concurrent rating updates', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue({ id: mockTemplateId });
+      mockPrisma.templateRating.upsert.mockRejectedValue(new Error('Concurrent update'));
+
+      await expect(TemplateService.rateTemplate(mockUserId, mockTemplateId, 5))
+        .rejects.toThrow('Concurrent update');
+    });
+  });
+
+  describe('Edge Cases', () => {
+    it('should handle PostgreSQL case-insensitive search', async () => {
+      // Mock PostgreSQL environment
+      const originalEnv = process.env.DATABASE_URL;
+      process.env.DATABASE_URL = 'postgresql://localhost/test';
+
+      mockPrisma.planTemplate.findMany.mockResolvedValue([]);
+      mockPrisma.planTemplate.count.mockResolvedValue(0);
+
+      const options: TemplateSearchOptions = { search: 'Test' };
+      await TemplateService.searchTemplates(mockUserId, options);
+
+      const call = mockPrisma.planTemplate.findMany.mock.calls[0][0];
+      expect(call.where.OR[0].title.mode).toBe('insensitive');
+
+      // Restore environment
+      process.env.DATABASE_URL = originalEnv;
+    });
+
+    it('should handle SQLite case-sensitive search', async () => {
+      // Mock SQLite environment
+      const originalEnv = process.env.DATABASE_URL;
+      process.env.DATABASE_URL = 'file:./test.db';
+
+      mockPrisma.planTemplate.findMany.mockResolvedValue([]);
+      mockPrisma.planTemplate.count.mockResolvedValue(0);
+
+      const options: TemplateSearchOptions = { search: 'Test' };
+      await TemplateService.searchTemplates(mockUserId, options);
+
+      const call = mockPrisma.planTemplate.findMany.mock.calls[0][0];
+      expect(call.where.OR[0].title.mode).toBeUndefined();
+
+      // Restore environment
+      process.env.DATABASE_URL = originalEnv;
+    });
+
+    it('should handle empty rating arrays when calculating average', async () => {
+      mockPrisma.planTemplate.findFirst.mockResolvedValue({ id: mockTemplateId });
+      mockPrisma.templateRating.upsert.mockResolvedValue({ 
+        id: 'rating-id',
+        templateId: mockTemplateId,
+        userId: mockUserId,
+        rating: 5,
+      });
+      mockPrisma.templateRating.findMany.mockResolvedValue([]); // No existing ratings
+      mockPrisma.planTemplate.update.mockResolvedValue({ id: mockTemplateId });
+
+      await TemplateService.rateTemplate(mockUserId, mockTemplateId, 5);
+
+      expect(mockPrisma.planTemplate.update).toHaveBeenCalledWith(
+        expect.objectContaining({
+          data: { averageRating: 0 }, // Should default to 0 for empty array
+        })
+      );
+    });
+
+    it('should handle templates with null French translations', async () => {
+      const templateWithoutFrench = {
+        id: 'template-id',
+        title: 'English Title',
+        titleFr: null,
+        description: 'English Description',
+        descriptionFr: null,
+        type: 'UNIT_PLAN',
+        category: 'BY_SUBJECT',
+        content: {},
+        tags: [],
+        keywords: [],
+        unitStructure: null,
+        lessonStructure: null,
+      };
+
+      mockPrisma.planTemplate.findFirst.mockResolvedValue(templateWithoutFrench);
+      mockPrisma.planTemplate.create.mockResolvedValue({
+        ...templateWithoutFrench,
+        id: 'duplicated-id',
+        title: 'English Title (Copy)',
+        titleFr: null, // Should remain null
+        createdByUserId: mockUserId,
+        isSystem: false,
+        isPublic: false,
+      });
+
+      await TemplateService.duplicateTemplate(mockUserId, 'template-id');
+
+      expect(mockPrisma.planTemplate.create).toHaveBeenCalledWith(
+        expect.objectContaining({
+          data: expect.objectContaining({
+            titleFr: null,
+          }),
+        })
+      );
+    });
+  });
+});

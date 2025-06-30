@@ -1,0 +1,52 @@
+[
+  {
+    "id": "pd-day-1",
+    "title": "Professional Development Day",
+    "description": "ETFO training on new curriculum expectations",
+    "start": "2024-03-15T09:00:00.000Z",
+    "end": "2024-03-15T15:30:00.000Z",
+    "allDay": false,
+    "eventType": "PD_DAY",
+    "source": "MANUAL"
+  },
+  {
+    "id": "assembly-1",
+    "title": "Spring Assembly",
+    "description": "School-wide spring celebration assembly",
+    "start": "2024-04-02T10:00:00.000Z",
+    "end": "2024-04-02T11:00:00.000Z",
+    "allDay": false,
+    "eventType": "ASSEMBLY",
+    "source": "MANUAL"
+  },
+  {
+    "id": "field-trip-1",
+    "title": "Science Centre Field Trip",
+    "description": "Grade 3 field trip to Ontario Science Centre",
+    "start": "2024-04-10T09:00:00.000Z",
+    "end": "2024-04-10T15:00:00.000Z",
+    "allDay": false,
+    "eventType": "TRIP",
+    "source": "MANUAL"
+  },
+  {
+    "id": "holiday-1",
+    "title": "March Break",
+    "description": "Spring break - no classes",
+    "start": "2024-03-11T00:00:00.000Z",
+    "end": "2024-03-15T23:59:59.000Z",
+    "allDay": true,
+    "eventType": "HOLIDAY",
+    "source": "SYSTEM"
+  },
+  {
+    "id": "custom-1",
+    "title": "Parent Teacher Interviews",
+    "description": "Evening parent-teacher interview sessions",
+    "start": "2024-04-16T18:00:00.000Z",
+    "end": "2024-04-16T21:00:00.000Z",
+    "allDay": false,
+    "eventType": "CUSTOM",
+    "source": "MANUAL"
+  }
+]

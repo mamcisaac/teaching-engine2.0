@@ -1,0 +1,138 @@
+97de9c909b82f982032847a6958e0421
+/* istanbul ignore next */
+function cov_19605z9980() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/jobs/bookingReminder.ts";
+  var hash = "5a444137507ba224dc0546e5f57579fbcfb4318d";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/jobs/bookingReminder.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 8,
+          column: 4
+        },
+        end: {
+          line: 8,
+          column: 87
+        }
+      },
+      "1": {
+        start: {
+          line: 14,
+          column: 4
+        },
+        end: {
+          line: 14,
+          column: 62
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "sendEquipmentBookingReminders",
+        decl: {
+          start: {
+            line: 5,
+            column: 22
+          },
+          end: {
+            line: 5,
+            column: 51
+          }
+        },
+        loc: {
+          start: {
+            line: 5,
+            column: 54
+          },
+          end: {
+            line: 9,
+            column: 1
+          }
+        },
+        line: 5
+      },
+      "1": {
+        name: "scheduleEquipmentBookingReminders",
+        decl: {
+          start: {
+            line: 13,
+            column: 16
+          },
+          end: {
+            line: 13,
+            column: 49
+          }
+        },
+        loc: {
+          start: {
+            line: 13,
+            column: 52
+          },
+          end: {
+            line: 15,
+            column: 1
+          }
+        },
+        line: 13
+      }
+    },
+    branchMap: {},
+    s: {
+      "0": 0,
+      "1": 0
+    },
+    f: {
+      "0": 0,
+      "1": 0
+    },
+    b: {},
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/jobs/bookingReminder.ts",
+      mappings: "AAAA,OAAO,IAAI,MAAM,WAAW,CAAC;AAE7B;;GAEG;AACH,MAAM,CAAC,KAAK,UAAU,6BAA6B;IACjD,wEAAwE;IACxE,sGAAsG;IACtG,OAAO,CAAC,IAAI,CAAC,oEAAoE,CAAC,CAAC;AACrF,CAAC;AAED;;GAEG;AACH,MAAM,UAAU,iCAAiC;IAC/C,IAAI,CAAC,QAAQ,CAAC,WAAW,EAAE,6BAA6B,CAAC,CAAC;AAC5D,CAAC",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/jobs/bookingReminder.ts"],
+      sourcesContent: ["import cron from 'node-cron';\n\n/**\n * Send notifications to remind teachers about upcoming equipment bookings.\n */\nexport async function sendEquipmentBookingReminders() {\n  // DISABLED: EquipmentBooking and Notification models have been archived\n  // TODO: Implement using CalendarEvent with type EQUIPMENT_BOOKING and ParentMessage for notifications\n  console.warn('sendEquipmentBookingReminders is disabled - legacy models archived');\n}\n\n/**\n * Schedule the booking reminder job to run daily at 8 AM.\n */\nexport function scheduleEquipmentBookingReminders() {\n  cron.schedule('0 8 * * *', sendEquipmentBookingReminders);\n}\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "5a444137507ba224dc0546e5f57579fbcfb4318d"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_19605z9980 = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_19605z9980();
+import cron from 'node-cron';
+/**
+ * Send notifications to remind teachers about upcoming equipment bookings.
+ */
+export async function sendEquipmentBookingReminders() {
+  /* istanbul ignore next */
+  cov_19605z9980().f[0]++;
+  cov_19605z9980().s[0]++;
+  // DISABLED: EquipmentBooking and Notification models have been archived
+  // TODO: Implement using CalendarEvent with type EQUIPMENT_BOOKING and ParentMessage for notifications
+  console.warn('sendEquipmentBookingReminders is disabled - legacy models archived');
+}
+/**
+ * Schedule the booking reminder job to run daily at 8 AM.
+ */
+export function scheduleEquipmentBookingReminders() {
+  /* istanbul ignore next */
+  cov_19605z9980().f[1]++;
+  cov_19605z9980().s[1]++;
+  cron.schedule('0 8 * * *', sendEquipmentBookingReminders);
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjcm9uIiwic2VuZEVxdWlwbWVudEJvb2tpbmdSZW1pbmRlcnMiLCJjb3ZfMTk2MDV6OTk4MCIsImYiLCJzIiwiY29uc29sZSIsIndhcm4iLCJzY2hlZHVsZUVxdWlwbWVudEJvb2tpbmdSZW1pbmRlcnMiLCJzY2hlZHVsZSJdLCJzb3VyY2VzIjpbIi9Vc2Vycy9taWNoYWVsbWNpc2FhYy9HaXRIdWIvdGVhY2hpbmctZW5naW5lMi4wL3NlcnZlci9zcmMvam9icy9ib29raW5nUmVtaW5kZXIudHMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGNyb24gZnJvbSAnbm9kZS1jcm9uJztcblxuLyoqXG4gKiBTZW5kIG5vdGlmaWNhdGlvbnMgdG8gcmVtaW5kIHRlYWNoZXJzIGFib3V0IHVwY29taW5nIGVxdWlwbWVudCBib29raW5ncy5cbiAqL1xuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIHNlbmRFcXVpcG1lbnRCb29raW5nUmVtaW5kZXJzKCkge1xuICAvLyBESVNBQkxFRDogRXF1aXBtZW50Qm9va2luZyBhbmQgTm90aWZpY2F0aW9uIG1vZGVscyBoYXZlIGJlZW4gYXJjaGl2ZWRcbiAgLy8gVE9ETzogSW1wbGVtZW50IHVzaW5nIENhbGVuZGFyRXZlbnQgd2l0aCB0eXBlIEVRVUlQTUVOVF9CT09LSU5HIGFuZCBQYXJlbnRNZXNzYWdlIGZvciBub3RpZmljYXRpb25zXG4gIGNvbnNvbGUud2Fybignc2VuZEVxdWlwbWVudEJvb2tpbmdSZW1pbmRlcnMgaXMgZGlzYWJsZWQgLSBsZWdhY3kgbW9kZWxzIGFyY2hpdmVkJyk7XG59XG5cbi8qKlxuICogU2NoZWR1bGUgdGhlIGJvb2tpbmcgcmVtaW5kZXIgam9iIHRvIHJ1biBkYWlseSBhdCA4IEFNLlxuICovXG5leHBvcnQgZnVuY3Rpb24gc2NoZWR1bGVFcXVpcG1lbnRCb29raW5nUmVtaW5kZXJzKCkge1xuICBjcm9uLnNjaGVkdWxlKCcwIDggKiAqIConLCBzZW5kRXF1aXBtZW50Qm9va2luZ1JlbWluZGVycyk7XG59XG4iXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSxPQUFPQSxJQUFJLE1BQU0sV0FBVztBQUU1Qjs7O0FBR0EsT0FBTyxlQUFlQyw2QkFBNkJBLENBQUE7RUFBQTtFQUFBQyxjQUFBLEdBQUFDLENBQUE7RUFBQUQsY0FBQSxHQUFBRSxDQUFBO0VBQ2pEO0VBQ0E7RUFDQUMsT0FBTyxDQUFDQyxJQUFJLENBQUMsb0VBQW9FLENBQUM7QUFDcEY7QUFFQTs7O0FBR0EsT0FBTSxTQUFVQyxpQ0FBaUNBLENBQUE7RUFBQTtFQUFBTCxjQUFBLEdBQUFDLENBQUE7RUFBQUQsY0FBQSxHQUFBRSxDQUFBO0VBQy9DSixJQUFJLENBQUNRLFFBQVEsQ0FBQyxXQUFXLEVBQUVQLDZCQUE2QixDQUFDO0FBQzNEIiwiaWdub3JlTGlzdCI6W119

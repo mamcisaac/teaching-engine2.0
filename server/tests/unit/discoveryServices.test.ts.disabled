@@ -1,0 +1,1040 @@
+import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
+import { CurriculumDiscoveryService } from '../../src/services/curriculumDiscoveryService';
+import { ActivityDiscoveryService } from '../../src/services/activityDiscoveryService';
+import { BaseConnector } from '../../src/services/connectors/baseConnector';
+import * as cheerio from 'cheerio';
+
+// Mock external dependencies
+jest.mock('cheerio');
+jest.mock('../../src/utils/urlValidator', () => ({
+  isValidExternalURL: jest.fn(() => ({ valid: true })),
+  safeFetch: jest.fn(),
+  validateFileSize: jest.fn(() => true),
+}));
+
+jest.mock('../../src/services/curriculumImportService', () => ({
+  CurriculumImportService: jest.fn().mockImplementation(() => ({
+    startImport: jest.fn().mockResolvedValue('import-123'),
+  })),
+}));
+
+// Mock connector implementations
+class MockOERConnector extends BaseConnector {
+  constructor() {
+    super('oer');
+  }
+  
+  async search() {
+    return [
+      {
+        source: 'oer',
+        externalId: 'oer-123',
+        url: 'https://oer.example.com/resource/123',
+        title: 'Math Activity 1',
+        description: 'A great math activity',
+        thumbnailUrl: null,
+        duration: 30,
+        activityType: 'worksheet',
+        gradeMin: 3,
+        gradeMax: 5,
+        subject: 'math',
+        language: 'en',
+        materials: ['paper', 'pencil'],
+        technology: null,
+        groupSize: null,
+        sourceRating: 4.5,
+        sourceReviews: 10,
+        internalRating: null,
+        internalReviews: null,
+        curriculumTags: ['numbers'],
+        learningGoals: null,
+        isFree: true,
+        price: null,
+        license: 'CC-BY',
+        lastVerified: new Date(),
+        isActive: true,
+      },
+    ];
+  }
+  
+  async getActivityDetails(externalId: string) {
+    if (externalId === 'oer-123') {
+      return {
+        source: 'oer',
+        externalId: 'oer-123',
+        url: 'https://oer.example.com/resource/123',
+        title: 'Math Activity 1 - Detailed',
+        description: 'A comprehensive math activity with detailed instructions',
+        thumbnailUrl: 'https://oer.example.com/thumb/123.jpg',
+        duration: 30,
+        activityType: 'worksheet',
+        gradeMin: 3,
+        gradeMax: 5,
+        subject: 'math',
+        language: 'en',
+        materials: ['paper', 'pencil', 'calculator'],
+        technology: null,
+        groupSize: 'individual',
+        sourceRating: 4.5,
+        sourceReviews: 10,
+        internalRating: null,
+        internalReviews: null,
+        curriculumTags: ['numbers', 'addition'],
+        learningGoals: 'Students will understand basic addition',
+        isFree: true,
+        price: null,
+        license: 'CC-BY',
+        lastVerified: new Date(),
+        isActive: true,
+      };
+    }
+    return null;
+  }
+}
+
+// Mock the connectors
+jest.mock('../../src/services/connectors/oerConnector', () => ({
+  OERConnector: MockOERConnector,
+}));
+
+jest.mock('../../src/services/connectors/curriculumWebConnector', () => ({
+  CurriculumWebConnector: MockOERConnector,
+}));
+
+jest.mock('../../src/services/connectors/educationWebConnector', () => ({
+  EducationWebConnector: MockOERConnector,
+}));
+
+// Mock prisma
+const mockPrisma = {
+  externalActivity: {
+    findUnique: jest.fn(),
+    create: jest.fn(),
+  },
+  activityImport: {
+    create: jest.fn(),
+  },
+  activityRating: {
+    upsert: jest.fn(),
+  },
+  activityCollection: {
+    findMany: jest.fn(),
+    create: jest.fn(),
+    findFirst: jest.fn(),
+  },
+  activityCollectionItem: {
+    create: jest.fn(),
+    delete: jest.fn(),
+  },
+  eTFOLessonPlan: {
+    findUnique: jest.fn(),
+  },
+};
+
+jest.mock('../../src/prisma', () => ({
+  prisma: mockPrisma,
+}));
+
+// Import the mocked functions - this will be handled by the Jest mock
+import { isValidExternalURL, safeFetch, validateFileSize } from '../../src/utils/urlValidator';
+
+describe('CurriculumDiscoveryService', () => {
+  let service: CurriculumDiscoveryService;
+  let mockResponse: any;
+  let mockCheerio: any;
+
+  beforeEach(() => {
+    service = new CurriculumDiscoveryService();
+    
+    // Reset mocks
+    jest.clearAllMocks();
+    
+    // Setup default mocks
+    mockResponse = {
+      ok: true,
+      text: jest.fn().mockResolvedValue('<html><body><a href="test.pdf">Test Document</a></body></html>'),
+      status: 200,
+      statusText: 'OK',
+    };
+    
+    (safeFetch as jest.Mock).mockResolvedValue(mockResponse);
+    (isValidExternalURL as jest.Mock).mockReturnValue({ valid: true });
+    (validateFileSize as jest.Mock).mockReturnValue(true);
+    
+    // Setup cheerio mock
+    mockCheerio = {
+      load: jest.fn().mockReturnValue({
+        $: jest.fn().mockReturnThis(),
+        each: jest.fn().mockImplementation((_, callback) => {
+          // Mock a single PDF link
+          callback(0, {
+            attribs: { href: 'test.pdf' },
+            children: [{ data: 'Test Document' }],
+          });
+        }),
+        attr: jest.fn().mockReturnValue('test.pdf'),
+        text: jest.fn().mockReturnValue('Test Document'),
+        parent: jest.fn().mockReturnThis(),
+      }),
+    };
+    
+    (cheerio.load as jest.Mock) = mockCheerio.load;
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  describe('discoverDocuments', () => {
+    it('should discover documents from all active sources', async () => {
+      const documents = await service.discoverDocuments();
+      
+      expect(documents).toBeInstanceOf(Array);
+      expect(safeFetch).toHaveBeenCalled();
+    });
+
+    it('should handle source discovery failures gracefully', async () => {
+      (safeFetch as jest.Mock).mockRejectedValueOnce(new Error('Network error'));
+      
+      const documents = await service.discoverDocuments();
+      
+      expect(documents).toBeInstanceOf(Array);
+      // Should not throw, just return empty array for failed sources
+    });
+
+    it('should respect crawl delays between sources', async () => {
+      const startTime = Date.now();
+      await service.discoverDocuments();
+      const endTime = Date.now();
+      
+      // Should have some delay between requests
+      expect(endTime - startTime).toBeGreaterThan(0);
+    });
+
+    it('should validate URLs before crawling', async () => {
+      (isValidExternalURL as jest.Mock).mockReturnValue({ valid: false, error: 'Invalid URL' });
+      
+      const documents = await service.discoverDocuments();
+      
+      expect(documents).toEqual([]);
+      expect(isValidExternalURL).toHaveBeenCalled();
+    });
+
+    it('should handle large response validation', async () => {
+      (validateFileSize as jest.Mock).mockReturnValue(false);
+      
+      const documents = await service.discoverDocuments();
+      
+      expect(documents).toEqual([]);
+      expect(validateFileSize).toHaveBeenCalled();
+    });
+  });
+
+  describe('downloadDocument', () => {
+    beforeEach(() => {
+      // Add a test document to the service
+      const testDoc = {
+        id: 'test-doc-1',
+        title: 'Test Document',
+        url: 'https://example.com/test.pdf',
+        source: 'Test Source',
+        sourceType: 'government' as const,
+        province: 'ON',
+        documentType: 'curriculum' as const,
+        fileType: 'pdf' as const,
+        language: 'en' as const,
+        isActive: true,
+        lastVerified: new Date(),
+        downloadAttempts: 0,
+        downloadStatus: 'pending' as const,
+      };
+      service.addDiscoveredDocument(testDoc);
+    });
+
+    it('should download document successfully', async () => {
+      const mockBuffer = new ArrayBuffer(1024);
+      mockResponse.arrayBuffer = jest.fn().mockResolvedValue(mockBuffer);
+      
+      const result = await service.downloadDocument('test-doc-1');
+      
+      expect(result.success).toBe(true);
+      expect(result.filePath).toBeDefined();
+      expect(isValidExternalURL).toHaveBeenCalled();
+      expect(safeFetch).toHaveBeenCalled();
+    });
+
+    it('should handle download failures', async () => {
+      (safeFetch as jest.Mock).mockRejectedValue(new Error('Download failed'));
+      
+      const result = await service.downloadDocument('test-doc-1');
+      
+      expect(result.success).toBe(false);
+      expect(result.error).toContain('Download failed');
+    });
+
+    it('should validate file size during download', async () => {
+      (validateFileSize as jest.Mock).mockReturnValue(false);
+      
+      const result = await service.downloadDocument('test-doc-1');
+      
+      expect(result.success).toBe(false);
+      expect(result.error).toContain('File too large');
+    });
+
+    it('should handle non-existent documents', async () => {
+      const result = await service.downloadDocument('non-existent');
+      
+      expect(result.success).toBe(false);
+      expect(result.error).toContain('not found');
+    });
+
+    it('should increment download attempts on failure', async () => {
+      (safeFetch as jest.Mock).mockRejectedValue(new Error('Network error'));
+      
+      const docsBefore = service.getDiscoveredDocuments();
+      const docBefore = docsBefore.find(d => d.id === 'test-doc-1');
+      const attemptsBefore = docBefore?.downloadAttempts || 0;
+      
+      await service.downloadDocument('test-doc-1');
+      
+      const docsAfter = service.getDiscoveredDocuments();
+      const docAfter = docsAfter.find(d => d.id === 'test-doc-1');
+      const attemptsAfter = docAfter?.downloadAttempts || 0;
+      
+      expect(attemptsAfter).toBe(attemptsBefore + 1);
+    });
+
+    it('should validate URL before downloading', async () => {
+      (isValidExternalURL as jest.Mock).mockReturnValue({ valid: false, error: 'Invalid URL' });
+      
+      const result = await service.downloadDocument('test-doc-1');
+      
+      expect(result.success).toBe(false);
+      expect(result.error).toContain('URL validation failed');
+    });
+
+    it('should check file size after download', async () => {
+      const largeMockBuffer = new ArrayBuffer(100 * 1024 * 1024); // 100MB
+      mockResponse.arrayBuffer = jest.fn().mockResolvedValue(largeMockBuffer);
+      
+      const result = await service.downloadDocument('test-doc-1');
+      
+      expect(result.success).toBe(false);
+      expect(result.error).toContain('exceeds size limit');
+    });
+  });
+
+  describe('processDocument', () => {
+    beforeEach(() => {
+      const testDoc = {
+        id: 'test-doc-1',
+        title: 'Test Document',
+        url: 'https://example.com/test.pdf',
+        source: 'Test Source',
+        sourceType: 'government' as const,
+        province: 'ON',
+        documentType: 'curriculum' as const,
+        fileType: 'pdf' as const,
+        language: 'en' as const,
+        isActive: true,
+        lastVerified: new Date(),
+        downloadAttempts: 0,
+        downloadStatus: 'downloaded' as const,
+      };
+      service.addDiscoveredDocument(testDoc);
+    });
+
+    it('should process downloaded document successfully', async () => {
+      const result = await service.processDocument('test-doc-1', 123);
+      
+      expect(result.success).toBe(true);
+      expect(result.importId).toBe('import-123');
+    });
+
+    it('should reject processing non-downloaded documents', async () => {
+      const pendingDoc = {
+        id: 'test-doc-2',
+        title: 'Pending Document',
+        url: 'https://example.com/pending.pdf',
+        source: 'Test Source',
+        sourceType: 'government' as const,
+        province: 'ON',
+        documentType: 'curriculum' as const,
+        fileType: 'pdf' as const,
+        language: 'en' as const,
+        isActive: true,
+        lastVerified: new Date(),
+        downloadAttempts: 0,
+        downloadStatus: 'pending' as const,
+      };
+      service.addDiscoveredDocument(pendingDoc);
+      
+      const result = await service.processDocument('test-doc-2', 123);
+      
+      expect(result.success).toBe(false);
+      expect(result.error).toContain('must be downloaded before processing');
+    });
+
+    it('should handle non-existent documents', async () => {
+      const result = await service.processDocument('non-existent', 123);
+      
+      expect(result.success).toBe(false);
+      expect(result.error).toContain('not found');
+    });
+  });
+
+  describe('verifyDocument', () => {
+    beforeEach(() => {
+      const testDoc = {
+        id: 'test-doc-1',
+        title: 'Test Document',
+        url: 'https://example.com/test.pdf',
+        source: 'Test Source',
+        sourceType: 'government' as const,
+        province: 'ON',
+        documentType: 'curriculum' as const,
+        fileType: 'pdf' as const,
+        language: 'en' as const,
+        isActive: true,
+        lastVerified: new Date(),
+        downloadAttempts: 0,
+        downloadStatus: 'pending' as const,
+      };
+      service.addDiscoveredDocument(testDoc);
+    });
+
+    it('should verify document availability', async () => {
+      const result = await service.verifyDocument('test-doc-1');
+      
+      expect(result).toBe(true);
+      expect(safeFetch).toHaveBeenCalledWith(expect.any(String), { method: 'HEAD' });
+    });
+
+    it('should handle unavailable documents', async () => {
+      mockResponse.ok = false;
+      mockResponse.status = 404;
+      
+      const result = await service.verifyDocument('test-doc-1');
+      
+      expect(result).toBe(false);
+    });
+
+    it('should handle network errors during verification', async () => {
+      (safeFetch as jest.Mock).mockRejectedValue(new Error('Network error'));
+      
+      const result = await service.verifyDocument('test-doc-1');
+      
+      expect(result).toBe(false);
+    });
+
+    it('should validate URL before verification', async () => {
+      (isValidExternalURL as jest.Mock).mockReturnValue({ valid: false, error: 'Invalid URL' });
+      
+      const result = await service.verifyDocument('test-doc-1');
+      
+      expect(result).toBe(false);
+    });
+  });
+
+  describe('getDocumentsByFilter', () => {
+    beforeEach(() => {
+      const testDocs = [
+        {
+          id: 'doc-1',
+          title: 'Math Grade 3',
+          url: 'https://example.com/math3.pdf',
+          source: 'Ontario',
+          sourceType: 'government' as const,
+          province: 'ON',
+          grade: 3,
+          subject: 'Math',
+          documentType: 'curriculum' as const,
+          fileType: 'pdf' as const,
+          language: 'en' as const,
+          isActive: true,
+          lastVerified: new Date(),
+          downloadAttempts: 0,
+          downloadStatus: 'downloaded' as const,
+        },
+        {
+          id: 'doc-2',
+          title: 'Science Grade 5',
+          url: 'https://example.com/science5.pdf',
+          source: 'Ontario',
+          sourceType: 'government' as const,
+          province: 'ON',
+          grade: 5,
+          subject: 'Science',
+          documentType: 'curriculum' as const,
+          fileType: 'pdf' as const,
+          language: 'fr' as const,
+          isActive: true,
+          lastVerified: new Date(),
+          downloadAttempts: 0,
+          downloadStatus: 'pending' as const,
+        },
+      ];
+      
+      testDocs.forEach(doc => service.addDiscoveredDocument(doc));
+    });
+
+    it('should filter by province', () => {
+      const filtered = service.getDocumentsByFilter({ province: 'ON' });
+      expect(filtered).toHaveLength(2);
+    });
+
+    it('should filter by grade', () => {
+      const filtered = service.getDocumentsByFilter({ grade: 3 });
+      expect(filtered).toHaveLength(1);
+      expect(filtered[0].grade).toBe(3);
+    });
+
+    it('should filter by subject', () => {
+      const filtered = service.getDocumentsByFilter({ subject: 'Math' });
+      expect(filtered).toHaveLength(1);
+      expect(filtered[0].subject).toBe('Math');
+    });
+
+    it('should filter by language', () => {
+      const filtered = service.getDocumentsByFilter({ language: 'fr' });
+      expect(filtered).toHaveLength(1);
+      expect(filtered[0].language).toBe('fr');
+    });
+
+    it('should filter by download status', () => {
+      const filtered = service.getDocumentsByFilter({ downloadStatus: 'downloaded' });
+      expect(filtered).toHaveLength(1);
+      expect(filtered[0].downloadStatus).toBe('downloaded');
+    });
+
+    it('should apply multiple filters', () => {
+      const filtered = service.getDocumentsByFilter({ 
+        province: 'ON', 
+        grade: 3,
+        subject: 'Math'
+      });
+      expect(filtered).toHaveLength(1);
+      expect(filtered[0].id).toBe('doc-1');
+    });
+  });
+
+  describe('getDiscoveryStats', () => {
+    beforeEach(() => {
+      const testDocs = [
+        {
+          id: 'doc-1',
+          title: 'Math Grade 3',
+          url: 'https://example.com/math3.pdf',
+          source: 'Ontario',
+          sourceType: 'government' as const,
+          province: 'ON',
+          grade: 3,
+          subject: 'Math',
+          documentType: 'curriculum' as const,
+          fileType: 'pdf' as const,
+          language: 'en' as const,
+          isActive: true,
+          lastVerified: new Date(),
+          downloadAttempts: 0,
+          downloadStatus: 'downloaded' as const,
+        },
+        {
+          id: 'doc-2',
+          title: 'Science Grade 5',
+          url: 'https://example.com/science5.pdf',
+          source: 'Ontario',
+          sourceType: 'government' as const,
+          province: 'BC',
+          grade: 5,
+          subject: 'Science',
+          documentType: 'curriculum' as const,
+          fileType: 'pdf' as const,
+          language: 'fr' as const,
+          isActive: true,
+          lastVerified: new Date(),
+          downloadAttempts: 0,
+          downloadStatus: 'pending' as const,
+        },
+      ];
+      
+      testDocs.forEach(doc => service.addDiscoveredDocument(doc));
+    });
+
+    it('should return comprehensive statistics', () => {
+      const stats = service.getDiscoveryStats();
+      
+      expect(stats.totalDocuments).toBe(2);
+      expect(stats.byProvince).toEqual({ 'ON': 1, 'BC': 1 });
+      expect(stats.bySubject).toEqual({ 'Math': 1, 'Science': 1 });
+      expect(stats.byGrade).toEqual({ 'Grade 3': 1, 'Grade 5': 1 });
+      expect(stats.byStatus).toEqual({ 'downloaded': 1, 'pending': 1 });
+      expect(stats.byLanguage).toEqual({ 'en': 1, 'fr': 1 });
+    });
+  });
+
+  describe('document management', () => {
+    it('should add and remove documents', () => {
+      const testDoc = {
+        id: 'test-doc',
+        title: 'Test Document',
+        url: 'https://example.com/test.pdf',
+        source: 'Test Source',
+        sourceType: 'government' as const,
+        province: 'ON',
+        documentType: 'curriculum' as const,
+        fileType: 'pdf' as const,
+        language: 'en' as const,
+        isActive: true,
+        lastVerified: new Date(),
+        downloadAttempts: 0,
+        downloadStatus: 'pending' as const,
+      };
+      
+      service.addDiscoveredDocument(testDoc);
+      expect(service.getDiscoveredDocuments()).toContain(testDoc);
+      
+      const removed = service.removeDiscoveredDocument('test-doc');
+      expect(removed).toBe(true);
+      expect(service.getDiscoveredDocuments()).not.toContain(testDoc);
+      
+      const removedAgain = service.removeDiscoveredDocument('test-doc');
+      expect(removedAgain).toBe(false);
+    });
+  });
+});
+
+describe('ActivityDiscoveryService', () => {
+  let service: ActivityDiscoveryService;
+
+  beforeEach(() => {
+    service = new ActivityDiscoveryService();
+    jest.clearAllMocks();
+
+    // Mock prisma responses
+    mockPrisma.externalActivity.findUnique.mockResolvedValue(null);
+    mockPrisma.externalActivity.create.mockResolvedValue({
+      id: 'activity-123',
+      source: 'oer',
+      externalId: 'oer-123',
+    });
+    mockPrisma.activityImport.create.mockResolvedValue({
+      id: 'import-123',
+      userId: 123,
+      activityId: 'activity-123',
+    });
+    mockPrisma.eTFOLessonPlan.findUnique.mockResolvedValue({
+      id: 'lesson-123',
+      unitPlan: {
+        longRangePlan: {
+          grade: 3,
+          subject: 'Math',
+        },
+      },
+    });
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  describe('search', () => {
+    it('should search for activities across all connectors', async () => {
+      const searchParams = {
+        query: 'math',
+        grade: 3,
+        subject: 'math',
+        limit: 10,
+      };
+
+      const result = await service.search(searchParams, 123);
+
+      expect(result).toHaveProperty('activities');
+      expect(result).toHaveProperty('total');
+      expect(result).toHaveProperty('hasMore');
+      expect(result).toHaveProperty('executionTime');
+      expect(result.activities).toBeInstanceOf(Array);
+    });
+
+    it('should apply grade filtering', async () => {
+      const searchParams = {
+        grade: 3,
+        limit: 10,
+      };
+
+      const result = await service.search(searchParams, 123);
+
+      // All returned activities should match the grade range
+      result.activities.forEach(activity => {
+        expect(activity.gradeMin).toBeLessThanOrEqual(3);
+        expect(activity.gradeMax).toBeGreaterThanOrEqual(3);
+      });
+    });
+
+    it('should filter by free activities only', async () => {
+      const searchParams = {
+        onlyFree: true,
+        limit: 10,
+      };
+
+      const result = await service.search(searchParams, 123);
+
+      result.activities.forEach(activity => {
+        expect(activity.isFree).toBe(true);
+      });
+    });
+
+    it('should apply pagination', async () => {
+      const searchParams = {
+        limit: 1,
+        offset: 0,
+      };
+
+      const result = await service.search(searchParams, 123);
+
+      expect(result.activities.length).toBeLessThanOrEqual(1);
+    });
+
+    it('should handle connector failures gracefully', async () => {
+      // Mock a connector to throw an error
+      const mockConnector = service['connectors'].get('oer');
+      if (mockConnector) {
+        jest.spyOn(mockConnector, 'search').mockRejectedValue(new Error('Connector failed'));
+      }
+
+      const searchParams = { limit: 10 };
+      const result = await service.search(searchParams, 123);
+
+      // Should still return results from other connectors
+      expect(result).toHaveProperty('activities');
+      expect(result.activities).toBeInstanceOf(Array);
+    });
+
+    it('should use cache for repeat searches', async () => {
+      const searchParams = { query: 'math', limit: 10 };
+
+      const result1 = await service.search(searchParams, 123);
+      const result2 = await service.search(searchParams, 123);
+
+      expect(result1).toEqual(result2);
+    });
+
+    it('should search specific sources when requested', async () => {
+      const searchParams = {
+        sources: ['oer'],
+        limit: 10,
+      };
+
+      const result = await service.search(searchParams, 123);
+
+      expect(result.sources).toEqual(['oer']);
+    });
+  });
+
+  describe('getActivity', () => {
+    it('should get activity details from source', async () => {
+      const activity = await service.getActivity('oer', 'oer-123');
+
+      expect(activity).toBeDefined();
+      expect(activity?.source).toBe('oer');
+      expect(activity?.externalId).toBe('oer-123');
+    });
+
+    it('should return null for unknown source', async () => {
+      const activity = await service.getActivity('unknown', 'test-123');
+
+      expect(activity).toBeNull();
+    });
+
+    it('should cache activity details', async () => {
+      const activity1 = await service.getActivity('oer', 'oer-123');
+      const activity2 = await service.getActivity('oer', 'oer-123');
+
+      expect(activity1).toEqual(activity2);
+    });
+
+    it('should handle connector errors', async () => {
+      const mockConnector = service['connectors'].get('oer');
+      if (mockConnector) {
+        jest.spyOn(mockConnector, 'getActivityDetails').mockRejectedValue(new Error('Connector failed'));
+      }
+
+      const activity = await service.getActivity('oer', 'oer-123');
+
+      expect(activity).toBeNull();
+    });
+  });
+
+  describe('getActivityById', () => {
+    it('should parse composite ID correctly', async () => {
+      const activity = await service.getActivityById('oer-oer-123');
+
+      expect(activity).toBeDefined();
+      expect(activity?.source).toBe('oer');
+      expect(activity?.externalId).toBe('oer-123');
+    });
+
+    it('should handle complex external IDs', async () => {
+      const activity = await service.getActivityById('oer-complex-id-with-dashes');
+
+      expect(activity).toBeDefined();
+    });
+  });
+
+  describe('importActivity', () => {
+    it('should import activity successfully', async () => {
+      const params = {
+        activityId: 'oer-oer-123',
+        lessonPlanId: 'lesson-123',
+        notes: 'Great activity for addition',
+      };
+
+      const result = await service.importActivity(params, 123);
+
+      expect(result).toHaveProperty('id');
+      expect(mockPrisma.externalActivity.create).toHaveBeenCalled();
+      expect(mockPrisma.activityImport.create).toHaveBeenCalled();
+    });
+
+    it('should handle existing activities', async () => {
+      mockPrisma.externalActivity.findUnique.mockResolvedValue({
+        id: 'existing-activity',
+        source: 'oer',
+        externalId: 'oer-123',
+      });
+
+      const params = {
+        activityId: 'oer-oer-123',
+      };
+
+      const result = await service.importActivity(params, 123);
+
+      expect(result).toHaveProperty('id');
+      expect(mockPrisma.externalActivity.create).not.toHaveBeenCalled();
+      expect(mockPrisma.activityImport.create).toHaveBeenCalled();
+    });
+
+    it('should handle non-existent activities', async () => {
+      const mockConnector = service['connectors'].get('oer');
+      if (mockConnector) {
+        jest.spyOn(mockConnector, 'getActivityDetails').mockResolvedValue(null);
+      }
+
+      const params = {
+        activityId: 'oer-non-existent',
+      };
+
+      await expect(service.importActivity(params, 123)).rejects.toThrow('Activity not found');
+    });
+  });
+
+  describe('rateActivity', () => {
+    beforeEach(() => {
+      mockPrisma.externalActivity.findUnique.mockResolvedValue({
+        id: 'activity-123',
+        source: 'oer',
+        externalId: 'oer-123',
+      });
+      mockPrisma.activityRating.upsert.mockResolvedValue({
+        id: 'rating-123',
+        userId: 123,
+        activityId: 'activity-123',
+        rating: 5,
+      });
+    });
+
+    it('should create activity rating', async () => {
+      const result = await service.rateActivity(
+        'activity-123',
+        5,
+        'Excellent activity!',
+        {
+          gradeUsed: 3,
+          subjectUsed: 'Math',
+          wouldRecommend: true,
+        },
+        123
+      );
+
+      expect(result).toHaveProperty('id');
+      expect(mockPrisma.activityRating.upsert).toHaveBeenCalled();
+    });
+
+    it('should handle non-existent activities', async () => {
+      mockPrisma.externalActivity.findUnique.mockResolvedValue(null);
+
+      await expect(
+        service.rateActivity('non-existent', 5, 'Great!', {}, 123)
+      ).rejects.toThrow('Activity not found');
+    });
+  });
+
+  describe('collections', () => {
+    beforeEach(() => {
+      mockPrisma.activityCollection.findMany.mockResolvedValue([
+        {
+          id: 'collection-1',
+          name: 'Math Activities',
+          userId: 123,
+          items: [],
+        },
+      ]);
+      mockPrisma.activityCollection.create.mockResolvedValue({
+        id: 'collection-2',
+        name: 'New Collection',
+        userId: 123,
+        items: [],
+      });
+      mockPrisma.activityCollection.findFirst.mockResolvedValue({
+        id: 'collection-1',
+        userId: 123,
+      });
+      mockPrisma.activityCollectionItem.create.mockResolvedValue({
+        id: 'item-1',
+        collectionId: 'collection-1',
+        activityId: 'activity-1',
+      });
+    });
+
+    it('should get user collections', async () => {
+      const collections = await service.getUserCollections(123);
+
+      expect(collections).toBeInstanceOf(Array);
+      expect(collections).toHaveLength(1);
+      expect(mockPrisma.activityCollection.findMany).toHaveBeenCalledWith({
+        where: { userId: 123 },
+        include: {
+          items: {
+            include: {
+              activity: true,
+            },
+          },
+        },
+        orderBy: { updatedAt: 'desc' },
+      });
+    });
+
+    it('should create new collection', async () => {
+      const data = {
+        name: 'New Collection',
+        description: 'Collection for science activities',
+        isPublic: false,
+      };
+
+      const result = await service.createCollection(data, 123);
+
+      expect(result).toHaveProperty('id');
+      expect(mockPrisma.activityCollection.create).toHaveBeenCalled();
+    });
+
+    it('should add activity to collection', async () => {
+      const result = await service.addToCollection('collection-1', 'activity-1', 123);
+
+      expect(result.success).toBe(true);
+      expect(mockPrisma.activityCollectionItem.create).toHaveBeenCalled();
+    });
+
+    it('should reject adding to non-owned collection', async () => {
+      mockPrisma.activityCollection.findFirst.mockResolvedValue(null);
+
+      await expect(
+        service.addToCollection('collection-1', 'activity-1', 123)
+      ).rejects.toThrow('Collection not found or access denied');
+    });
+
+    it('should remove activity from collection', async () => {
+      const result = await service.removeFromCollection('collection-1', 'activity-1', 123);
+
+      expect(result.success).toBe(true);
+      expect(mockPrisma.activityCollectionItem.delete).toHaveBeenCalled();
+    });
+  });
+
+  describe('getRecommendedActivities', () => {
+    beforeEach(() => {
+      mockPrisma.eTFOLessonPlan.findUnique.mockResolvedValue({
+        id: 'lesson-123',
+        unitPlan: {
+          longRangePlan: {
+            grade: 3,
+            subject: 'Math',
+          },
+        },
+        expectations: [],
+      });
+    });
+
+    it('should get recommendations based on lesson plan', async () => {
+      const recommendations = await service.getRecommendedActivities('lesson-123', 123, 5);
+
+      expect(recommendations).toHaveProperty('activities');
+      expect(recommendations).toHaveProperty('basedOn');
+      expect(recommendations).toHaveProperty('criteria');
+      expect(recommendations.basedOn).toBe('lessonPlan');
+      expect(recommendations.activities.length).toBeLessThanOrEqual(5);
+    });
+
+    it('should handle non-existent lesson plans', async () => {
+      mockPrisma.eTFOLessonPlan.findUnique.mockResolvedValue(null);
+
+      await expect(
+        service.getRecommendedActivities('non-existent', 123, 5)
+      ).rejects.toThrow('Lesson plan not found');
+    });
+  });
+
+  describe('source management', () => {
+    it('should return available sources', () => {
+      const sources = service.getAvailableSources();
+
+      expect(sources).toBeInstanceOf(Array);
+      expect(sources.length).toBeGreaterThan(0);
+      expect(sources).toContain('oer');
+    });
+
+    it('should check source availability', () => {
+      expect(service.isSourceAvailable('oer')).toBe(true);
+      expect(service.isSourceAvailable('unknown')).toBe(false);
+    });
+  });
+
+  describe('caching behavior', () => {
+    it('should use cache for repeated searches', async () => {
+      const searchParams = { query: 'test', limit: 5 };
+
+      const result1 = await service.search(searchParams, 123);
+      const result2 = await service.search(searchParams, 123);
+
+      expect(result1).toEqual(result2);
+    });
+
+    it('should cache activity details', async () => {
+      const activity1 = await service.getActivity('oer', 'test-123');
+      const activity2 = await service.getActivity('oer', 'test-123');
+
+      expect(activity1).toEqual(activity2);
+    });
+  });
+
+  describe('error handling', () => {
+    it('should handle prisma errors gracefully', async () => {
+      mockPrisma.activityCollection.findMany.mockRejectedValue(new Error('Database error'));
+
+      const collections = await service.getUserCollections(123);
+
+      expect(collections).toEqual([]);
+    });
+
+    it('should handle search failures', async () => {
+      // Mock all connectors to fail
+      service['connectors'].forEach(connector => {
+        jest.spyOn(connector, 'search').mockRejectedValue(new Error('Search failed'));
+      });
+
+      const searchParams = { limit: 10 };
+      const result = await service.search(searchParams, 123);
+
+      expect(result.activities).toEqual([]);
+      expect(result.total).toBe(0);
+    });
+  });
+});

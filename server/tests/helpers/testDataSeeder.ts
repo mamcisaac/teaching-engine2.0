@@ -7,12 +7,11 @@
 import { PrismaClient } from '@teaching-engine/database';
 import bcrypt from 'bcryptjs';
 
-import { User, Student, ParentContact, EmailTemplate, Subject } from '@teaching-engine/database';
+import { User, Student, EmailTemplate, Subject } from '@teaching-engine/database';
 
 export interface TestDataSeed {
   users: User[];
   students: Student[];
-  parentContacts: ParentContact[];
   emailTemplates: EmailTemplate[];
   assessmentResults: unknown[];
   subjects: Subject[];
@@ -34,7 +33,7 @@ export class TestDataSeeder {
     const students = await this.createTestStudents(users[0].id);
     
     // Create parent contacts
-    const parentContacts = await this.createTestParentContacts(students);
+    // ParentContact model removed - skipping parent contact creation
     
     // Create email templates
     const emailTemplates = await this.createTestEmailTemplates(users[0].id);
@@ -45,7 +44,7 @@ export class TestDataSeeder {
     return {
       users,
       students,
-      parentContacts,
+      // parentContacts removed
       emailTemplates,
       assessmentResults,
       subjects
@@ -187,60 +186,7 @@ export class TestDataSeeder {
     return students;
   }
 
-  private async createTestParentContacts(students: Student[]) {
-    const contacts = [];
-
-    // Emma's parents
-    const emmaParent1 = await this.prisma.parentContact.create({
-      data: {
-        name: 'Sarah Johnson',
-        email: 'sarah.johnson@email.com',
-        studentId: students[0].id
-      }
-    });
-    contacts.push(emmaParent1);
-
-    const emmaParent2 = await this.prisma.parentContact.create({
-      data: {
-        name: 'Mike Johnson',
-        email: 'mike.johnson@email.com',
-        studentId: students[0].id
-      }
-    });
-    contacts.push(emmaParent2);
-
-    // Liam's parents
-    const liamParent = await this.prisma.parentContact.create({
-      data: {
-        name: 'Li Chen',
-        email: 'li.chen@email.com',
-        studentId: students[1].id
-      }
-    });
-    contacts.push(liamParent);
-
-    // Sophia's guardian
-    const sophiaGuardian = await this.prisma.parentContact.create({
-      data: {
-        name: 'Maria Williams',
-        email: 'maria.williams@email.com',
-        studentId: students[2].id
-      }
-    });
-    contacts.push(sophiaGuardian);
-
-    // Gabriel's parents (French immersion)
-    const gabrielParent = await this.prisma.parentContact.create({
-      data: {
-        name: 'Claire Dubois',
-        email: 'claire.dubois@email.com',
-        studentId: students[3].id
-      }
-    });
-    contacts.push(gabrielParent);
-
-    return contacts;
-  }
+  // createTestParentContacts method removed - ParentContact model no longer exists
 
   private async createTestEmailTemplates(userId: number) {
     const templates = [];
@@ -389,17 +335,16 @@ Best regards,
    */
   async createBulkEmailTestData(userId: number) {
     const students = await this.prisma.student.findMany({
-      where: { userId },
-      include: { parentContacts: true }
+      where: { userId }
     });
 
-    const recipients = students.flatMap(student => 
-      student.parentContacts.map(contact => ({
-        email: contact.email,
-        name: contact.name,
-        studentName: `${student.firstName} ${student.lastName}`,
-        studentId: student.id
-      }))
+    // ParentContact model removed - creating mock recipients
+    const recipients = students.map(student => ({
+      email: `parent.${student.firstName.toLowerCase()}@email.com`,
+      name: `${student.firstName}'s Parent`,
+      studentName: `${student.firstName} ${student.lastName}`,
+      studentId: student.id
+    })
     );
 
     return recipients;
