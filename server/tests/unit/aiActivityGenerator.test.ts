@@ -1,10 +1,15 @@
 import { AIActivityGenerator } from '../../src/services/aiActivityGenerator';
+import { MockRegistry } from '../mocks/registry';
 
 describe('AIActivityGenerator', () => {
   let generator: AIActivityGenerator;
 
   beforeEach(() => {
     generator = new AIActivityGenerator();
+
+    // Setup centralized mocks
+    const mockOpenAIInstance = MockRegistry.openai.create();
+    (OpenAI as jest.MockedClass<typeof OpenAI>).mockImplementation(() => mockOpenAIInstance as any);
   });
 
   describe('constructor', () => {

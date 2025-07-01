@@ -1,83 +1,47 @@
-import { describe, it, expect, jest, beforeEach } from '@jest/globals';
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
 import {
   WorkflowStateService,
   ETFOLevel,
   ETFO_LEVEL_SEQUENCE,
+  ETFO_LEVEL_METADATA,
 } from '../../src/services/workflowStateService';
 
-// Mocks are already set up in setup-all-mocks.ts
+// Create a mock prisma client with all the methods we need
+const mockPrisma = {
+  curriculumExpectation: {
+    count: jest.fn(),
+    findUnique: jest.fn(),
+  },
+  longRangePlan: {
+    count: jest.fn(),
+    findUnique: jest.fn(),
+  },
+  unitPlan: {
+    count: jest.fn(),
+    findUnique: jest.fn(),
+  },
+  eTFOLessonPlan: {
+    count: jest.fn(),
+    findUnique: jest.fn(),
+  },
+  daybookEntry: {
+    count: jest.fn(),
+    findUnique: jest.fn(),
+  },
+};
+
+// Mock the entire prisma module
+jest.mock('../../src/prisma', () => ({
+  prisma: mockPrisma,
+}));
 
 describe('WorkflowStateService', () => {
   let service: WorkflowStateService;
   const userId = 1;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let mockPrisma: any;
 
   beforeEach(() => {
     jest.clearAllMocks();
-
-    // Get mocked prisma from global
-    mockPrisma = (globalThis as any).testPrismaClient;
-
-    // Ensure mock functions exist for workflow service
-    if (!mockPrisma || !mockPrisma.curriculumExpectation) {
-      mockPrisma = {
-        curriculumExpectation: {
-          count: jest.fn(),
-          findUnique: jest.fn(),
-          findMany: jest.fn(),
-          create: jest.fn(),
-          update: jest.fn(),
-          delete: jest.fn(),
-        },
-        longRangePlan: {
-          count: jest.fn(),
-          findUnique: jest.fn(),
-          findMany: jest.fn(),
-          create: jest.fn(),
-          update: jest.fn(),
-          delete: jest.fn(),
-        },
-        unitPlan: {
-          count: jest.fn(),
-          findUnique: jest.fn(),
-          findMany: jest.fn(),
-          create: jest.fn(),
-          update: jest.fn(),
-          delete: jest.fn(),
-        },
-        eTFOLessonPlan: {
-          count: jest.fn(),
-          findUnique: jest.fn(),
-          findMany: jest.fn(),
-          create: jest.fn(),
-          update: jest.fn(),
-          delete: jest.fn(),
-        },
-        daybookEntry: {
-          count: jest.fn(),
-          findUnique: jest.fn(),
-          findMany: jest.fn(),
-          create: jest.fn(),
-          update: jest.fn(),
-          delete: jest.fn(),
-        },
-      };
-      (globalThis as any).testPrismaClient = mockPrisma;
-    }
-
     service = new WorkflowStateService();
-
-    // Override the prisma instance with our mock
-    (service as any).prisma = mockPrisma;
-
-    // Override logger to avoid log output during tests
-    (service as any).logger = {
-      debug: jest.fn(),
-      info: jest.fn(),
-      warn: jest.fn(),
-      error: jest.fn(),
-    };
   });
 
   describe('getUserWorkflowState', () => {
@@ -102,10 +66,13 @@ describe('WorkflowStateService', () => {
     it('should show correct state when curriculum expectations are complete', async () => {
       // Mock curriculum expectations as complete
       mockPrisma.curriculumExpectation.count.mockResolvedValue(5);
-      mockPrisma.longRangePlan.count.mockResolvedValue(0);
-      mockPrisma.unitPlan.count.mockResolvedValue(0);
-      mockPrisma.eTFOLessonPlan.count.mockResolvedValue(0);
-      mockPrisma.daybookEntry.count.mockResolvedValue(0);
+      // Mock long range plan counts (each level queries twice - total and completed)
+      mockPrisma.longRangePlan.count
+        .mockResolvedValueOnce(0) // total
+        .mockResolvedValueOnce(0); // completed
+      mockPrisma.unitPlan.count.mockResolvedValueOnce(0).mockResolvedValueOnce(0);
+      mockPrisma.eTFOLessonPlan.count.mockResolvedValueOnce(0).mockResolvedValueOnce(0);
+      mockPrisma.daybookEntry.count.mockResolvedValueOnce(0).mockResolvedValueOnce(0);
 
       const state = await service.getUserWorkflowState(userId);
 
@@ -116,14 +83,19 @@ describe('WorkflowStateService', () => {
     });
 
     it('should calculate progress correctly', async () => {
-      // Mock partial progress
+      // Mock curriculum expectations as complete
       mockPrisma.curriculumExpectation.count.mockResolvedValue(10);
+
+      // Mock long range plan counts
       mockPrisma.longRangePlan.count
         .mockResolvedValueOnce(5) // total
+        .mockResolvedValueOnce(3) // completed (with goals)
+        .mockResolvedValueOnce(5) // total (for isLevelComplete check)
         .mockResolvedValueOnce(3); // completed
-      mockPrisma.unitPlan.count.mockResolvedValue(0);
-      mockPrisma.eTFOLessonPlan.count.mockResolvedValue(0);
-      mockPrisma.daybookEntry.count.mockResolvedValue(0);
+
+      mockPrisma.unitPlan.count.mockResolvedValueOnce(0).mockResolvedValueOnce(0);
+      mockPrisma.eTFOLessonPlan.count.mockResolvedValueOnce(0).mockResolvedValueOnce(0);
+      mockPrisma.daybookEntry.count.mockResolvedValueOnce(0).mockResolvedValueOnce(0);
 
       const state = await service.getUserWorkflowState(userId);
       const lrpProgress = state.progress.find((p) => p.level === ETFOLevel.LONG_RANGE_PLANS);
@@ -151,17 +123,21 @@ describe('WorkflowStateService', () => {
 
     it('should allow access to long-range plans if curriculum is complete', async () => {
       mockPrisma.curriculumExpectation.count.mockResolvedValue(5);
+      mockPrisma.longRangePlan.count.mockResolvedValueOnce(0).mockResolvedValueOnce(0);
 
       const result = await service.canAccessLevel(userId, ETFOLevel.LONG_RANGE_PLANS);
       expect(result.canAccess).toBe(true);
     });
 
     it('should check all previous levels for later levels', async () => {
-      // Mock first two levels complete
+      // Mock all previous levels as complete
       mockPrisma.curriculumExpectation.count.mockResolvedValue(5);
       mockPrisma.longRangePlan.count
         .mockResolvedValueOnce(2) // total
-        .mockResolvedValueOnce(2); // completed
+        .mockResolvedValueOnce(2) // completed (all have goals)
+        .mockResolvedValueOnce(2) // second check
+        .mockResolvedValueOnce(2);
+      mockPrisma.unitPlan.count.mockResolvedValueOnce(0).mockResolvedValueOnce(0);
 
       const result = await service.canAccessLevel(userId, ETFOLevel.UNIT_PLANS);
       expect(result.canAccess).toBe(true);
@@ -214,7 +190,7 @@ describe('WorkflowStateService', () => {
         id: 'unit-1',
         title: 'Numbers Unit',
         bigIdeas: 'Understanding numbers',
-        expectations: [{ id: 'exp-1' }], // Has expectations
+        curriculumExpectations: [{ id: 'exp-1' }], // Has expectations
       };
 
       mockPrisma.unitPlan.findUnique.mockResolvedValue(unitPlan);
@@ -229,7 +205,7 @@ describe('WorkflowStateService', () => {
         id: 'unit-1',
         title: 'Numbers Unit',
         bigIdeas: 'Understanding numbers',
-        expectations: [], // No expectations
+        curriculumExpectations: [], // No expectations
       };
 
       mockPrisma.unitPlan.findUnique.mockResolvedValue(unitPlan);
@@ -237,7 +213,7 @@ describe('WorkflowStateService', () => {
       const result = await service.validateLevelCompletion(userId, ETFOLevel.UNIT_PLANS, 'unit-1');
 
       expect(result.isValid).toBe(false);
-      expect(result.missingFields).toContain('expectations');
+      expect(result.missingFields).toContain('curriculumExpectations');
     });
 
     it('should handle entity not found', async () => {
@@ -268,10 +244,10 @@ describe('WorkflowStateService', () => {
     it('should identify blocked levels correctly', async () => {
       // Only curriculum complete
       mockPrisma.curriculumExpectation.count.mockResolvedValue(5);
-      mockPrisma.longRangePlan.count.mockResolvedValue(0);
-      mockPrisma.unitPlan.count.mockResolvedValue(0);
-      mockPrisma.eTFOLessonPlan.count.mockResolvedValue(0);
-      mockPrisma.daybookEntry.count.mockResolvedValue(0);
+      mockPrisma.longRangePlan.count.mockResolvedValueOnce(0).mockResolvedValueOnce(0);
+      mockPrisma.unitPlan.count.mockResolvedValueOnce(0).mockResolvedValueOnce(0);
+      mockPrisma.eTFOLessonPlan.count.mockResolvedValueOnce(0).mockResolvedValueOnce(0);
+      mockPrisma.daybookEntry.count.mockResolvedValueOnce(0).mockResolvedValueOnce(0);
 
       const state = await service.getUserWorkflowState(userId);
 
@@ -280,6 +256,18 @@ describe('WorkflowStateService', () => {
       expect(state.blockedLevels).toContain(ETFOLevel.UNIT_PLANS);
       expect(state.blockedLevels).toContain(ETFOLevel.LESSON_PLANS);
       expect(state.blockedLevels).toContain(ETFOLevel.DAYBOOK_ENTRIES);
+    });
+
+    it('should provide correct metadata for levels', () => {
+      expect(ETFO_LEVEL_METADATA[ETFOLevel.CURRICULUM_EXPECTATIONS]).toMatchObject({
+        name: 'Curriculum Expectations',
+        requiredFields: ['code', 'description', 'strand'],
+      });
+
+      expect(ETFO_LEVEL_METADATA[ETFOLevel.UNIT_PLANS]).toMatchObject({
+        name: 'Unit Plans',
+        requiredFields: ['title', 'bigIdeas', 'learningGoals', 'curriculumExpectations'],
+      });
     });
   });
 });

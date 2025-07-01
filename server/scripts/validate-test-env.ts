@@ -33,14 +33,14 @@ class TestEnvironmentValidator {
     this.printResults();
 
     // Return overall status
-    const failures = this.results.filter(r => r.status === 'fail');
+    const failures = this.results.filter((r) => r.status === 'fail');
     return failures.length === 0;
   }
 
   private async validateNodeVersion(): Promise<void> {
     const nodeVersion = process.version;
     const majorVersion = parseInt(nodeVersion.split('.')[0].substring(1));
-    
+
     if (majorVersion >= 18) {
       this.addResult('Node.js Version', 'pass', `${nodeVersion} (>= 18.0.0)`);
     } else {
@@ -52,11 +52,11 @@ class TestEnvironmentValidator {
     try {
       // Check if node_modules exists
       await fs.access(path.join(process.cwd(), 'node_modules'));
-      
+
       // Check critical dependencies
       const deps = ['jest', '@prisma/client', 'supertest', 'bcryptjs'];
       const missing: string[] = [];
-      
+
       for (const dep of deps) {
         try {
           require.resolve(dep);
@@ -64,7 +64,7 @@ class TestEnvironmentValidator {
           missing.push(dep);
         }
       }
-      
+
       if (missing.length === 0) {
         this.addResult('Dependencies', 'pass', 'All critical dependencies installed');
       } else {
@@ -78,25 +78,21 @@ class TestEnvironmentValidator {
   private async validateEnvironmentVariables(): Promise<void> {
     const required = ['DATABASE_URL', 'JWT_SECRET'];
     const optional = ['JWT_EXPIRES_IN', 'SMTP_HOST', 'EMAIL_FROM'];
-    
-    const missing = required.filter(v => !process.env[v]);
-    const missingOptional = optional.filter(v => !process.env[v]);
-    
+
+    const missing = required.filter((v) => !process.env[v]);
+    const missingOptional = optional.filter((v) => !process.env[v]);
+
     if (missing.length === 0) {
       this.addResult('Environment Variables', 'pass', 'All required variables set');
       if (missingOptional.length > 0) {
         this.addResult(
           'Optional Variables',
           'warn',
-          `Missing optional: ${missingOptional.join(', ')}`
+          `Missing optional: ${missingOptional.join(', ')}`,
         );
       }
     } else {
-      this.addResult(
-        'Environment Variables',
-        'fail',
-        `Missing required: ${missing.join(', ')}`
-      );
+      this.addResult('Environment Variables', 'fail', `Missing required: ${missing.join(', ')}`);
     }
   }
 
@@ -104,17 +100,17 @@ class TestEnvironmentValidator {
     try {
       // Test connection
       await prisma.$connect();
-      
+
       // Check if schema is applied
       const tables = await prisma.$queryRaw<Array<{ name: string }>>`
         SELECT name FROM sqlite_master 
         WHERE type='table' AND name NOT LIKE 'sqlite_%'
       `;
-      
+
       const expectedTables = ['User', 'Subject', 'Outcome', 'Milestone', 'Activity'];
-      const existingTables = tables.map(t => t.name);
-      const missingTables = expectedTables.filter(t => !existingTables.includes(t));
-      
+      const existingTables = tables.map((t) => t.name);
+      const missingTables = expectedTables.filter((t) => !existingTables.includes(t));
+
       if (missingTables.length === 0) {
         this.addResult('Database Schema', 'pass', `${tables.length} tables found`);
       } else {
@@ -122,28 +118,28 @@ class TestEnvironmentValidator {
           'Database Schema',
           'fail',
           `Missing tables: ${missingTables.join(', ')}`,
-          'Run: pnpm db:push or pnpm db:migrate'
+          'Run: pnpm db:push or pnpm db:migrate',
         );
       }
-      
+
       // Check database settings
       const journalMode = await prisma.$queryRaw<Array<{ journal_mode: string }>>`
         PRAGMA journal_mode
       `;
-      
+
       if (journalMode[0]?.journal_mode === 'wal') {
         this.addResult('Database Optimization', 'pass', 'WAL mode enabled');
       } else {
         this.addResult('Database Optimization', 'warn', 'WAL mode not enabled');
       }
-      
+
       await prisma.$disconnect();
     } catch (error) {
       this.addResult(
         'Database Connection',
         'fail',
         `Connection failed: ${error}`,
-        'Check DATABASE_URL and database availability'
+        'Check DATABASE_URL and database availability',
       );
     }
   }
@@ -155,19 +151,19 @@ class TestEnvironmentValidator {
         subjects: await prisma.subject.count(),
         outcomes: await prisma.outcome.count(),
       };
-      
+
       if (counts.users > 0 && counts.subjects > 0 && counts.outcomes > 0) {
         this.addResult(
           'Test Data',
           'pass',
-          `Found: ${counts.users} users, ${counts.subjects} subjects, ${counts.outcomes} outcomes`
+          `Found: ${counts.users} users, ${counts.subjects} subjects, ${counts.outcomes} outcomes`,
         );
       } else {
         this.addResult(
           'Test Data',
           'warn',
           'No test data found',
-          'Run: pnpm test:setup to seed test data'
+          'Run: pnpm test:setup to seed test data',
         );
       }
     } catch (error) {
@@ -177,12 +173,8 @@ class TestEnvironmentValidator {
 
   private async validateFileSystem(): Promise<void> {
     // Check required directories
-    const dirs = [
-      'tests',
-      'src',
-      '../packages/database/prisma',
-    ];
-    
+    const dirs = ['tests', 'src', '../packages/database/prisma'];
+
     const missing: string[] = [];
     for (const dir of dirs) {
       try {
@@ -191,22 +183,18 @@ class TestEnvironmentValidator {
         missing.push(dir);
       }
     }
-    
+
     if (missing.length === 0) {
       this.addResult('File System', 'pass', 'All required directories exist');
     } else {
-      this.addResult(
-        'File System',
-        'fail',
-        `Missing directories: ${missing.join(', ')}`
-      );
+      this.addResult('File System', 'fail', `Missing directories: ${missing.join(', ')}`);
     }
-    
+
     // Check disk space
     try {
       const stats = await fs.statfs(process.cwd());
       const freeGB = (stats.bavail * stats.bsize) / (1024 * 1024 * 1024);
-      
+
       if (freeGB > 2) {
         this.addResult('Disk Space', 'pass', `${freeGB.toFixed(2)}GB free`);
       } else if (freeGB > 1) {
@@ -223,26 +211,22 @@ class TestEnvironmentValidator {
     const memUsage = process.memoryUsage();
     const totalMB = (memUsage.rss / 1024 / 1024).toFixed(0);
     const heapMB = (memUsage.heapUsed / 1024 / 1024).toFixed(0);
-    
-    this.addResult(
-      'Memory Usage',
-      'pass',
-      `Total: ${totalMB}MB, Heap: ${heapMB}MB`
-    );
-    
+
+    this.addResult('Memory Usage', 'pass', `Total: ${totalMB}MB, Heap: ${heapMB}MB`);
+
     // Check system memory
     try {
       const output = execSync('free -m 2>/dev/null || vm_stat 2>/dev/null', {
         encoding: 'utf8',
       });
-      
+
       // Parse available memory (simplified)
       const lines = output.split('\n');
       let availableMB = 0;
-      
+
       if (output.includes('Mem:')) {
         // Linux
-        const memLine = lines.find(l => l.includes('Mem:'));
+        const memLine = lines.find((l) => l.includes('Mem:'));
         if (memLine) {
           const parts = memLine.split(/\s+/);
           availableMB = parseInt(parts[6] || '0');
@@ -252,7 +236,7 @@ class TestEnvironmentValidator {
         const freePages = parseInt(output.match(/Pages free:\s+(\d+)/)?.[1] || '0');
         availableMB = (freePages * 4096) / 1024 / 1024;
       }
-      
+
       if (availableMB > 1000) {
         this.addResult('System Memory', 'pass', `~${Math.round(availableMB / 1024)}GB available`);
       } else if (availableMB > 500) {
@@ -268,72 +252,73 @@ class TestEnvironmentValidator {
   private async validateParallelExecution(): Promise<void> {
     const workers = process.env.JEST_WORKER_ID ? 1 : os.cpus().length;
     const maxWorkers = process.env.CI ? 2 : Math.floor(workers / 2);
-    
+
     this.addResult(
       'Parallel Execution',
       'pass',
-      `${workers} CPU cores available, Jest will use ${maxWorkers} workers`
+      `${workers} CPU cores available, Jest will use ${maxWorkers} workers`,
     );
-    
+
     // Check for potential conflicts
     if (process.env.CI) {
-      this.addResult(
-        'CI Environment',
-        'pass',
-        'Running in CI mode with limited parallelism'
-      );
+      this.addResult('CI Environment', 'pass', 'Running in CI mode with limited parallelism');
     }
   }
 
-  private addResult(name: string, status: ValidationResult['status'], message: string, details?: string): void {
+  private addResult(
+    name: string,
+    status: ValidationResult['status'],
+    message: string,
+    details?: string,
+  ): void {
     this.results.push({ name, status, message, details });
   }
 
   private printResults(): void {
     console.log('\n📊 Validation Results:\n');
-    
+
     const grouped = {
-      pass: this.results.filter(r => r.status === 'pass'),
-      warn: this.results.filter(r => r.status === 'warn'),
-      fail: this.results.filter(r => r.status === 'fail'),
+      pass: this.results.filter((r) => r.status === 'pass'),
+      warn: this.results.filter((r) => r.status === 'warn'),
+      fail: this.results.filter((r) => r.status === 'fail'),
     };
-    
+
     // Print passes
     if (grouped.pass.length > 0) {
       console.log('✅ Passed:');
-      grouped.pass.forEach(r => {
+      grouped.pass.forEach((r) => {
         console.log(`  • ${r.name}: ${r.message}`);
       });
     }
-    
+
     // Print warnings
     if (grouped.warn.length > 0) {
       console.log('\n⚠️  Warnings:');
-      grouped.warn.forEach(r => {
+      grouped.warn.forEach((r) => {
         console.log(`  • ${r.name}: ${r.message}`);
         if (r.details) {
           console.log(`    → ${r.details}`);
         }
       });
     }
-    
+
     // Print failures
     if (grouped.fail.length > 0) {
       console.log('\n❌ Failed:');
-      grouped.fail.forEach(r => {
+      grouped.fail.forEach((r) => {
         console.log(`  • ${r.name}: ${r.message}`);
         if (r.details) {
           console.log(`    → ${r.details}`);
         }
       });
     }
-    
+
     // Summary
     console.log('\n📈 Summary:');
     console.log(`  • Passed: ${grouped.pass.length}`);
     console.log(`  • Warnings: ${grouped.warn.length}`);
     console.log(`  • Failed: ${grouped.fail.length}`);
-    
+
     if (grouped.fail.length === 0) {
       console.log('\n✅ Test environment is ready!');
     } else {
@@ -343,11 +328,12 @@ class TestEnvironmentValidator {
 }
 
 // Run validation if called directly
-if (require.main === module) {
+// Use import.meta.url for ES module compatibility
+if (import.meta.url === `file://${process.argv[1]}`) {
   new TestEnvironmentValidator()
     .validate()
-    .then(success => process.exit(success ? 0 : 1))
-    .catch(error => {
+    .then((success) => process.exit(success ? 0 : 1))
+    .catch((error) => {
       console.error('Validation error:', error);
       process.exit(1);
     });

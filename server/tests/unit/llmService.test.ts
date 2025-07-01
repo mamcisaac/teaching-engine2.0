@@ -1,4 +1,5 @@
 import { describe, it, expect, jest, beforeEach } from '@jest/globals';
+import { MockRegistry } from '../mocks/registry';
 import { generateContent, generateBilingualContent } from '../../src/services/llmService';
 import OpenAI from 'openai';
 import logger from '../../src/logger';
@@ -15,6 +16,10 @@ describe('LLMService', () => {
     jest.clearAllMocks();
     // Reset environment variable
     delete process.env.OPENAI_API_KEY;
+
+    // Setup centralized mocks
+    const mockOpenAIInstance = MockRegistry.openai.create();
+    (OpenAI as jest.MockedClass<typeof OpenAI>).mockImplementation(() => mockOpenAIInstance as any);
   });
 
   describe('generateContent', () => {
@@ -42,6 +47,12 @@ describe('LLMService', () => {
         mockChatCompletions = {
           create: mockCreate,
         };
+
+        // Setup centralized mocks
+        const mockOpenAIInstance = MockRegistry.openai.create();
+        (OpenAI as jest.MockedClass<typeof OpenAI>).mockImplementation(
+          () => mockOpenAIInstance as any,
+        );
 
         // Mock OpenAI instance
         mockOpenAI.mockImplementation(
@@ -71,7 +82,9 @@ describe('LLMService', () => {
           },
         };
 
-        mockCreate.mockResolvedValue(mockResponse);
+        mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+          MockRegistry.openai.chat(mockResponse),
+        );
 
         const { generateContent: genContent } = await import('../../src/services/llmService');
         const result = await genContent('Test prompt');
@@ -101,7 +114,9 @@ describe('LLMService', () => {
           ],
         };
 
-        mockCreate.mockResolvedValue(mockResponse);
+        mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+          MockRegistry.openai.chat(mockResponse),
+        );
 
         const { generateContent: genContent } = await import('../../src/services/llmService');
         const result = await genContent('User prompt', 'System message');
@@ -138,7 +153,9 @@ describe('LLMService', () => {
           },
         };
 
-        mockCreate.mockResolvedValue(mockResponse);
+        mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+          MockRegistry.openai.chat(mockResponse),
+        );
 
         const { generateContent: genContent } = await import('../../src/services/llmService');
         await genContent('Prompt');
@@ -160,7 +177,9 @@ describe('LLMService', () => {
           ],
         };
 
-        mockCreate.mockResolvedValue(mockResponse);
+        mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+          MockRegistry.openai.chat(mockResponse),
+        );
 
         const { generateContent: genContent } = await import('../../src/services/llmService');
         const result = await genContent('Prompt');
@@ -194,7 +213,7 @@ describe('LLMService', () => {
       });
 
       it('should handle invalid API responses', async () => {
-        mockCreate.mockResolvedValue({});
+        mockOpenAIInstance.chat.completions.create.mockResolvedValue(MockRegistry.openai.chat({}));
 
         const { generateContent: genContent } = await import('../../src/services/llmService');
         const result = await genContent('Prompt');
@@ -230,6 +249,12 @@ describe('LLMService', () => {
           create: mockCreate,
         };
 
+        // Setup centralized mocks
+        const mockOpenAIInstance = MockRegistry.openai.create();
+        (OpenAI as jest.MockedClass<typeof OpenAI>).mockImplementation(
+          () => mockOpenAIInstance as any,
+        );
+
         mockOpenAI.mockImplementation(
           () =>
             ({
@@ -259,7 +284,9 @@ Content in English
           ],
         };
 
-        mockCreate.mockResolvedValue(mockResponse);
+        mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+          MockRegistry.openai.chat(mockResponse),
+        );
 
         const { generateBilingualContent: genBilingual } = await import(
           '../../src/services/llmService'
@@ -296,7 +323,9 @@ The content
           ],
         };
 
-        mockCreate.mockResolvedValue(mockResponse);
+        mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+          MockRegistry.openai.chat(mockResponse),
+        );
 
         const { generateBilingualContent: genBilingual } = await import(
           '../../src/services/llmService'
@@ -320,7 +349,9 @@ The content
           ],
         };
 
-        mockCreate.mockResolvedValue(mockResponse);
+        mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+          MockRegistry.openai.chat(mockResponse),
+        );
 
         const { generateBilingualContent: genBilingual } = await import(
           '../../src/services/llmService'
@@ -347,7 +378,9 @@ Seulement en français
           ],
         };
 
-        mockCreate.mockResolvedValue(mockResponse);
+        mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+          MockRegistry.openai.chat(mockResponse),
+        );
 
         const { generateBilingualContent: genBilingual } = await import(
           '../../src/services/llmService'
@@ -382,6 +415,12 @@ Seulement en français
     beforeEach(() => {
       process.env.OPENAI_API_KEY = 'test-api-key';
       jest.resetModules();
+
+      // Setup centralized mocks
+      const mockOpenAIInstance = MockRegistry.openai.create();
+      (OpenAI as jest.MockedClass<typeof OpenAI>).mockImplementation(
+        () => mockOpenAIInstance as any,
+      );
     });
 
     it('should respect max_tokens parameter', async () => {
@@ -436,6 +475,12 @@ Seulement en français
     beforeEach(() => {
       process.env.OPENAI_API_KEY = 'test-api-key';
       jest.resetModules();
+
+      // Setup centralized mocks
+      const mockOpenAIInstance = MockRegistry.openai.create();
+      (OpenAI as jest.MockedClass<typeof OpenAI>).mockImplementation(
+        () => mockOpenAIInstance as any,
+      );
     });
 
     it('should handle empty prompts', async () => {

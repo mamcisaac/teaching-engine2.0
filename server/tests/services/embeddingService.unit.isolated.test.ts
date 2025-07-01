@@ -1,4 +1,5 @@
 import { describe, it, expect, jest, beforeEach } from '@jest/globals';
+import { MockRegistry } from '../mocks/registry';
 import { EmbeddingService } from '../../src/services/embeddingService';
 import { prisma } from '../../src/prisma';
 
@@ -14,6 +15,10 @@ describe('EmbeddingService Unit Tests', () => {
 
     // Create service instance
     embeddingService = new EmbeddingService();
+
+    // Setup centralized mocks
+    const mockOpenAIInstance = MockRegistry.openai.create();
+    (OpenAI as jest.MockedClass<typeof OpenAI>).mockImplementation(() => mockOpenAIInstance as any);
   });
 
   describe('calculateSimilarity', () => {
@@ -73,10 +78,12 @@ describe('EmbeddingService Unit Tests', () => {
       mockPrisma.outcomeEmbedding.findUnique.mockResolvedValue(null);
 
       // Mock OpenAI response
-      mockOpenAI.embeddings.create.mockResolvedValue({
-        data: [{ embedding: mockEmbedding }],
-        usage: { total_tokens: 10 },
-      });
+      mockOpenAIInstance.embeddings.create.mockResolvedValue(
+        MockRegistry.openai.embedding({
+          data: [{ embedding: mockEmbedding }],
+          usage: { total_tokens: 10 },
+        }),
+      );
 
       // Mock create
       mockPrisma.outcomeEmbedding.create.mockResolvedValue({
@@ -196,10 +203,12 @@ describe('EmbeddingService Unit Tests', () => {
       mockPrisma.outcomeEmbedding.findMany.mockResolvedValue([]);
 
       // Mock OpenAI batch response
-      mockOpenAI.embeddings.create.mockResolvedValue({
-        data: outcomes.map(() => ({ embedding: Array(1536).fill(0.1) })),
-        usage: { total_tokens: 30 },
-      });
+      mockOpenAIInstance.embeddings.create.mockResolvedValue(
+        MockRegistry.openai.embedding({
+          data: outcomes.map(() => ({ embedding: Array(1536).fill(0.1) })),
+          usage: { total_tokens: 30 },
+        }),
+      );
 
       // Mock createMany
       mockPrisma.outcomeEmbedding.createMany.mockResolvedValue({ count: 3 });
@@ -225,10 +234,12 @@ describe('EmbeddingService Unit Tests', () => {
       ]);
 
       // Mock OpenAI response for remaining outcomes
-      mockOpenAI.embeddings.create.mockResolvedValue({
-        data: [{ embedding: Array(1536).fill(0.2) }, { embedding: Array(1536).fill(0.3) }],
-        usage: { total_tokens: 20 },
-      });
+      mockOpenAIInstance.embeddings.create.mockResolvedValue(
+        MockRegistry.openai.embedding({
+          data: [{ embedding: Array(1536).fill(0.2) }, { embedding: Array(1536).fill(0.3) }],
+          usage: { total_tokens: 20 },
+        }),
+      );
 
       mockPrisma.outcomeEmbedding.createMany.mockResolvedValue({ count: 2 });
 
@@ -252,10 +263,12 @@ describe('EmbeddingService Unit Tests', () => {
         }));
 
       mockPrisma.outcomeEmbedding.findMany.mockResolvedValue([]);
-      mockOpenAI.embeddings.create.mockResolvedValue({
-        data: Array(100).fill({ embedding: Array(1536).fill(0.1) }),
-        usage: { total_tokens: 1000 },
-      });
+      mockOpenAIInstance.embeddings.create.mockResolvedValue(
+        MockRegistry.openai.embedding({
+          data: Array(100).fill({ embedding: Array(1536).fill(0.1) }),
+          usage: { total_tokens: 1000 },
+        }),
+      );
       mockPrisma.outcomeEmbedding.createMany.mockResolvedValue({ count: 100 });
 
       await embeddingService.generateBatchEmbeddings(manyOutcomes);

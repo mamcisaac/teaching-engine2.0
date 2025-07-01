@@ -13,31 +13,37 @@ class TestConnector extends BaseConnector {
 
   async search(params: SearchParams) {
     return [
-      this.transformToExternalActivity({
-        externalId: 'test-1',
-        title: 'Test Activity',
-        description: 'A test activity',
-      }, {
-        externalId: 'test-1',
-        url: 'https://test.com/activity/1',
-        title: 'Test Activity',
-        description: 'A test activity',
-      }),
+      this.transformToExternalActivity(
+        {
+          externalId: 'test-1',
+          title: 'Test Activity',
+          description: 'A test activity',
+        },
+        {
+          externalId: 'test-1',
+          url: 'https://test.com/activity/1',
+          title: 'Test Activity',
+          description: 'A test activity',
+        },
+      ),
     ];
   }
 
   async getActivityDetails(externalId: string) {
     if (externalId === 'test-1') {
-      return this.transformToExternalActivity({
-        externalId: 'test-1',
-        title: 'Test Activity Detailed',
-        description: 'A detailed test activity',
-      }, {
-        externalId: 'test-1',
-        url: 'https://test.com/activity/1',
-        title: 'Test Activity Detailed',
-        description: 'A detailed test activity',
-      });
+      return this.transformToExternalActivity(
+        {
+          externalId: 'test-1',
+          title: 'Test Activity Detailed',
+          description: 'A detailed test activity',
+        },
+        {
+          externalId: 'test-1',
+          url: 'https://test.com/activity/1',
+          title: 'Test Activity Detailed',
+          description: 'A detailed test activity',
+        },
+      );
     }
     return null;
   }
@@ -49,6 +55,16 @@ describe('BaseConnector', () => {
   beforeEach(() => {
     connector = new TestConnector();
     jest.clearAllMocks();
+
+    // Setup fetch mock
+    (global.fetch as jest.Mock).mockImplementation(() =>
+      Promise.resolve({
+        ok: true,
+        status: 200,
+        json: async () => ({ success: true }),
+        text: async () => 'OK',
+      }),
+    );
   });
 
   afterEach(() => {
@@ -63,7 +79,7 @@ describe('BaseConnector', () => {
     it('should be able to create multiple instances', () => {
       const connector1 = new TestConnector();
       const connector2 = new TestConnector();
-      
+
       expect(connector1).not.toBe(connector2);
       expect(connector1.sourceName).toBe('test');
       expect(connector2.sourceName).toBe('test');
@@ -142,12 +158,12 @@ describe('BaseConnector', () => {
       (global.fetch as jest.Mock).mockImplementation(() => new Promise(() => {})); // Never resolves
 
       const promise = connector['fetchWithTimeout']('https://example.com', {}, 1000);
-      
+
       // Fast-forward time to trigger timeout
       setTimeout(() => {
         jest.advanceTimersByTime(1000);
       }, 0);
-      
+
       await expect(promise).rejects.toThrow('Request timeout');
     }, 2000);
 
@@ -172,16 +188,16 @@ describe('BaseConnector', () => {
 
     it('should delay for specified milliseconds', async () => {
       const promise = connector['delay'](1000);
-      
+
       expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1000);
-      
+
       jest.advanceTimersByTime(1000);
       await expect(promise).resolves.toBeUndefined();
     });
 
     it('should resolve immediately for zero delay', async () => {
       const promise = connector['delay'](0);
-      
+
       jest.advanceTimersByTime(0);
       await expect(promise).resolves.toBeUndefined();
     });
@@ -190,7 +206,7 @@ describe('BaseConnector', () => {
   describe('search method', () => {
     it('should implement search method', async () => {
       const results = await connector.search({ query: 'test', grade: 1 });
-      
+
       expect(results).toHaveLength(1);
       expect(results[0]).toEqual({
         externalId: 'test-1',
@@ -211,12 +227,12 @@ describe('BaseConnector', () => {
   describe('getActivityDetails method', () => {
     it('should get activity details by external ID', async () => {
       const result = await connector.getActivityDetails('test-1');
-      
+
       expect(result).toEqual({
         externalId: 'test-1',
         source: 'test',
         title: 'Test Activity Detailed',
-        description: 'A detailed test activity', 
+        description: 'A detailed test activity',
         url: 'https://test.com/activity/1',
         rawData: {
           externalId: 'test-1',

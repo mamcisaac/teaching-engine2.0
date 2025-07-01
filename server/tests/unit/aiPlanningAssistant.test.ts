@@ -5,26 +5,30 @@ import logger from '../../src/logger';
 
 // Mock dependencies
 jest.mock('openai');
-jest.mock('../../src/prisma', () => ({
-  prisma: {
-    curriculumExpectation: {
-      findMany: jest.fn(),
-    },
-  },
-}));
+jest.mock('../../src/prisma');
 jest.mock('../../src/logger');
 
 describe('AIPlanningAssistantService', () => {
   let service: AIPlanningAssistantService;
   const mockOpenAI = OpenAI as jest.MockedClass<typeof OpenAI>;
   const mockLogger = logger as jest.Mocked<typeof logger>;
-  let mockCreate: jest.Mock;
+  const mockPrisma = prisma as jest.Mocked<typeof prisma>;
+  let mockOpenAIInstance: any;
 
   beforeEach(() => {
     jest.clearAllMocks();
     // Reset environment variable
     delete process.env.OPENAI_API_KEY;
-    mockCreate = jest.fn();
+
+    // Setup mock OpenAI instance
+    mockOpenAIInstance = {
+      chat: {
+        completions: {
+          create: jest.fn(),
+        },
+      },
+    };
+    mockOpenAI.mockImplementation(() => mockOpenAIInstance as any);
   });
 
   describe('initialization', () => {
@@ -45,38 +49,29 @@ describe('AIPlanningAssistantService', () => {
   describe('generateLongRangeGoals', () => {
     beforeEach(() => {
       process.env.OPENAI_API_KEY = 'test-api-key';
-
-      mockOpenAI.mockImplementation(
-        () =>
-          ({
-            chat: {
-              completions: { create: mockCreate },
-            },
-          }) as any,
-      );
-
       service = new AIPlanningAssistantService();
+
+      // Setup centralized mocks
+      const mockOpenAIInstance = MockRegistry.openai.create();
+      (OpenAI as jest.MockedClass<typeof OpenAI>).mockImplementation(
+        () => mockOpenAIInstance as any,
+      );
     });
 
     it('should generate long-range goals successfully', async () => {
-      const mockResponse = {
-        choices: [
-          {
-            message: {
-              content: JSON.stringify({
-                suggestions: [
-                  'Students will improve reading comprehension by 2 levels',
-                  'Students will master multiplication facts 0-10',
-                  'Students will write 3-paragraph essays independently',
-                ],
-                rationale: 'These goals align with Grade 3 standards',
-              }),
-            },
-          },
+      const mockResponse = JSON.stringify({
+        suggestions: [
+          'Students will improve reading comprehension by 2 levels',
+          'Students will master multiplication facts 0-10',
+          'Students will write 3-paragraph essays independently',
         ],
-      };
+        rationale: 'These goals align with Grade 3 standards',
+      });
 
-      mockCreate.mockResolvedValue(mockResponse);
+      // Configure mock to return our response
+      mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+        MockRegistry.openai.chat(mockResponse),
+      );
 
       const result = await service.generateLongRangeGoals({
         subject: 'Mathematics',
@@ -117,7 +112,9 @@ describe('AIPlanningAssistantService', () => {
         ],
       };
 
-      mockCreate.mockResolvedValue(mockResponse);
+      mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+        MockRegistry.openai.chat(mockResponse),
+      );
 
       const result = await service.generateLongRangeGoals({
         subject: 'Science',
@@ -164,7 +161,9 @@ describe('AIPlanningAssistantService', () => {
         ],
       };
 
-      mockCreate.mockResolvedValue(mockResponse);
+      mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+        MockRegistry.openai.chat(mockResponse),
+      );
 
       const result = await service.generateLongRangeGoals({
         subject: 'Math',
@@ -205,7 +204,9 @@ describe('AIPlanningAssistantService', () => {
         ],
       };
 
-      mockCreate.mockResolvedValue(mockResponse);
+      mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+        MockRegistry.openai.chat(mockResponse),
+      );
 
       const result = await service.generateLongRangeGoals({
         subject: 'Math',
@@ -254,7 +255,9 @@ describe('AIPlanningAssistantService', () => {
         ],
       };
 
-      mockCreate.mockResolvedValue(mockResponse);
+      mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+        MockRegistry.openai.chat(mockResponse),
+      );
 
       const result = await service.generateUnitBigIdeas({
         unitTitle: 'Patterns and Algebra',
@@ -300,7 +303,9 @@ describe('AIPlanningAssistantService', () => {
         ],
       };
 
-      mockCreate.mockResolvedValue(mockResponse);
+      mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+        MockRegistry.openai.chat(mockResponse),
+      );
 
       const result = await service.generateUnitBigIdeas({
         unitTitle: 'Science Unit',
@@ -350,7 +355,9 @@ describe('AIPlanningAssistantService', () => {
         ],
       };
 
-      mockCreate.mockResolvedValue(mockResponse);
+      mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+        MockRegistry.openai.chat(mockResponse),
+      );
 
       const result = await service.generateLessonActivities({
         lessonTitle: 'Introduction to Fractions',
@@ -385,7 +392,9 @@ describe('AIPlanningAssistantService', () => {
         ],
       };
 
-      mockCreate.mockResolvedValue(mockResponse);
+      mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+        MockRegistry.openai.chat(mockResponse),
+      );
 
       const result = await service.generateLessonActivities({
         lessonTitle: 'Poetry Writing',
@@ -439,7 +448,9 @@ describe('AIPlanningAssistantService', () => {
         ],
       };
 
-      mockCreate.mockResolvedValue(mockResponse);
+      mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+        MockRegistry.openai.chat(mockResponse),
+      );
 
       const result = await service.generateMaterialsList({
         activities: [
@@ -499,7 +510,9 @@ describe('AIPlanningAssistantService', () => {
         ],
       };
 
-      mockCreate.mockResolvedValue(mockResponse);
+      mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+        MockRegistry.openai.chat(mockResponse),
+      );
 
       const result = await service.generateAssessmentStrategies({
         learningGoals: ['Understand fractions', 'Work collaboratively'],
@@ -551,7 +564,9 @@ describe('AIPlanningAssistantService', () => {
         ],
       };
 
-      mockCreate.mockResolvedValue(mockResponse);
+      mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+        MockRegistry.openai.chat(mockResponse),
+      );
 
       const result = await service.generateReflectionPrompts({
         date: new Date('2024-01-15'),
@@ -588,7 +603,9 @@ describe('AIPlanningAssistantService', () => {
         ],
       };
 
-      mockCreate.mockResolvedValue(mockResponse);
+      mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+        MockRegistry.openai.chat(mockResponse),
+      );
 
       const result = await service.generateReflectionPrompts({
         date: new Date(),
@@ -651,7 +668,9 @@ describe('AIPlanningAssistantService', () => {
         ],
       };
 
-      mockCreate.mockResolvedValue(mockResponse);
+      mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+        MockRegistry.openai.chat(mockResponse),
+      );
 
       const result = await service.getCurriculumAlignedSuggestions(['exp1', 'exp2'], 'activities');
 
@@ -696,7 +715,9 @@ describe('AIPlanningAssistantService', () => {
         ],
       };
 
-      mockCreate.mockResolvedValue(mockResponse);
+      mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+        MockRegistry.openai.chat(mockResponse),
+      );
 
       const result = await service.getCurriculumAlignedSuggestions(['exp1'], 'assessments');
 
@@ -732,7 +753,9 @@ describe('AIPlanningAssistantService', () => {
         ],
       };
 
-      mockCreate.mockResolvedValue(mockResponse);
+      mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+        MockRegistry.openai.chat(mockResponse),
+      );
 
       const result = await service.getCurriculumAlignedSuggestions(['exp1'], 'resources');
 
@@ -775,7 +798,9 @@ describe('AIPlanningAssistantService', () => {
         ],
       };
 
-      mockCreate.mockResolvedValue(mockResponse);
+      mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+        MockRegistry.openai.chat(mockResponse),
+      );
 
       const result = await service.getCurriculumAlignedSuggestions(['exp1'], 'activities');
       expect(result).toEqual([]);
@@ -802,7 +827,9 @@ describe('AIPlanningAssistantService', () => {
         ],
       };
 
-      mockCreate.mockResolvedValue(mockResponse);
+      mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+        MockRegistry.openai.chat(mockResponse),
+      );
 
       const result = await service.getCurriculumAlignedSuggestions(['exp1'], 'activities');
       expect(result).toEqual([]);
@@ -812,6 +839,12 @@ describe('AIPlanningAssistantService', () => {
   describe('getServiceHealth', () => {
     beforeEach(() => {
       jest.clearAllMocks();
+
+      // Setup centralized mocks
+      const mockOpenAIInstance = MockRegistry.openai.create();
+      (OpenAI as jest.MockedClass<typeof OpenAI>).mockImplementation(
+        () => mockOpenAIInstance as any,
+      );
     });
 
     it('should report unhealthy when API key is missing', async () => {
@@ -841,7 +874,9 @@ describe('AIPlanningAssistantService', () => {
         ],
       };
 
-      mockCreate.mockResolvedValue(mockResponse);
+      mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+        MockRegistry.openai.chat(mockResponse),
+      );
 
       mockOpenAI.mockImplementation(
         () =>
@@ -938,7 +973,9 @@ describe('AIPlanningAssistantService', () => {
         ],
       };
 
-      mockCreate.mockResolvedValue(mockResponse);
+      mockOpenAIInstance.chat.completions.create.mockResolvedValue(
+        MockRegistry.openai.chat(mockResponse),
+      );
 
       mockOpenAI.mockImplementation(
         () =>

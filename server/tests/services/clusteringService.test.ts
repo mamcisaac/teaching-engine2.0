@@ -1,4 +1,5 @@
 import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
+import { MockRegistry } from '../mocks/registry';
 import { ClusteringService } from '../../src/services/clusteringService';
 import { embeddingService } from '../../src/services/embeddingService';
 import { openai } from '../../src/services/llmService';
@@ -19,6 +20,10 @@ describe.skip('ClusteringService', () => {
     mockPrisma = prisma as jest.Mocked<typeof prisma>;
 
     clusteringService = new ClusteringService();
+
+    // Setup centralized mocks
+    const mockOpenAIInstance = MockRegistry.openai.create();
+    (OpenAI as jest.MockedClass<typeof OpenAI>).mockImplementation(() => mockOpenAIInstance as any);
   });
 
   afterEach(() => {

@@ -6,52 +6,65 @@ global.fetch = jest.fn();
 
 describe('OERConnector', () => {
   let connector: OERConnector;
+  const originalEnv = process.env;
 
   beforeEach(() => {
+    // Set up test environment with API key
+    process.env = { ...originalEnv, OER_API_KEY: 'test-api-key' };
     connector = new OERConnector();
     jest.clearAllMocks();
   });
 
   afterEach(() => {
     jest.restoreAllMocks();
+    process.env = originalEnv;
   });
 
   describe('initialization', () => {
     it('should initialize with correct source name', () => {
-      expect(connector['sourceName']).toBe('OER');
+      expect(connector['sourceName']).toBe('oer');
     });
   });
 
   describe('search functionality', () => {
     it('should implement search method', async () => {
       const mockApiResponse = {
+        ok: true,
         json: jest.fn().mockResolvedValue({
-          data: [
+          meta: {
+            pagination: {
+              count: 1,
+              page: 1,
+              per_page: 20,
+            },
+          },
+          results: [
             {
-              id: 'oer-1',
+              id: 1,
               title: 'Open Educational Resource',
-              description: 'A free educational resource',
+              abstract: 'A free educational resource',
               url: 'https://oer.org/resource/1',
-              subject: 'mathematics',
-              grade: '3'
-            }
-          ]
-        })
+              subjects: ['mathematics'],
+              grade_levels: ['grade_3'],
+              material_types: ['worksheet'],
+            },
+          ],
+        }),
       };
-      
+
       (global.fetch as jest.Mock).mockResolvedValue(mockApiResponse);
-      
+
       const results = await connector.search({ query: 'math', grade: 3 });
-      
+
       expect(results).toHaveLength(1);
-      expect(results[0].source).toBe('OER');
+      expect(results[0].source).toBe('oer');
     });
 
     it('should handle API errors gracefully', async () => {
       (global.fetch as jest.Mock).mockRejectedValue(new Error('Network error'));
-      
+
       const results = await connector.search({ query: 'test', grade: 1 });
-      
+
       expect(results).toEqual([]);
     });
   });
@@ -59,31 +72,37 @@ describe('OERConnector', () => {
   describe('getActivityDetails', () => {
     it('should fetch activity details', async () => {
       const mockDetailResponse = {
+        ok: true,
         json: jest.fn().mockResolvedValue({
-          id: 'oer-detail-1',
+          id: 123,
           title: 'Detailed OER Resource',
-          description: 'A comprehensive educational resource',
-          content: 'Full resource content...',
+          abstract: 'A comprehensive educational resource',
+          description: 'Full resource content...',
           license: 'CC BY-SA',
-          author: 'OER Author'
-        })
+          authors: ['OER Author'],
+          url: 'https://oer.org/resource/123',
+          subjects: ['science'],
+          grade_levels: ['grade_4', 'grade_5'],
+          material_types: ['interactive'],
+        }),
       };
-      
+
       (global.fetch as jest.Mock).mockResolvedValue(mockDetailResponse);
-      
+
       const result = await connector.getActivityDetails('oer-detail-1');
-      
+
       expect(result).toBeTruthy();
-      expect(result?.source).toBe('OER');
+      expect(result?.source).toBe('oer');
     });
 
     it('should return null for non-existent resources', async () => {
       (global.fetch as jest.Mock).mockResolvedValue({
-        json: jest.fn().mockResolvedValue(null)
+        ok: false,
+        statusText: 'Not Found',
       });
-      
+
       const result = await connector.getActivityDetails('non-existent');
-      
+
       expect(result).toBeNull();
     });
   });

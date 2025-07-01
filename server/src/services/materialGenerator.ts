@@ -6,7 +6,7 @@ export function extractMaterials(note: string): string[] {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
     const header = line.match(
-      /^(?:additional\s+|extra\s+)?(?:materials?|supplies)(?:\s+needed)?:?\s*(.*)/i,
+      /^(?:additional\s+|extra\s+|optional\s+)?(?:materials?|supplies)(?:\s+needed|\s+for\s+cleanup)?:?\s*(.*)/i,
     );
     if (header) {
       const rest = header[1];
@@ -55,10 +55,13 @@ export async function generateMaterialList(_weekStart: string): Promise<string[]
  */
 export async function updateMaterialList(weekStart: string): Promise<void> {
   const items = await generateMaterialList(weekStart);
-  
+
   // DISABLED: MaterialList model has been archived
   // TODO: Implement using ETFO UnitPlanResource and ETFOLessonPlanResource models
-  console.warn(`updateMaterialList is disabled - MaterialList model archived. Items for ${weekStart}:`, items);
+  console.warn(
+    `updateMaterialList is disabled - MaterialList model archived. Items for ${weekStart}:`,
+    items,
+  );
 }
 
 export interface ActivityMaterials {

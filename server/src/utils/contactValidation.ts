@@ -185,9 +185,9 @@ export function validateEmail(email: string): EmailValidationResult {
     };
   }
 
-  // Basic email regex (RFC 5322 compliant)
+  // Basic email regex with limited international character support
   const emailRegex =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9À-ÿ](?:[a-zA-Z0-9À-ÿ-]{0,61}[a-zA-Z0-9À-ÿ])?(?:\.[a-zA-Z0-9À-ÿ](?:[a-zA-Z0-9À-ÿ-]{0,61}[a-zA-Z0-9À-ÿ])?)*$/;
 
   if (!emailRegex.test(trimmed)) {
     return {
@@ -256,7 +256,7 @@ export function validateContact(contact: {
  * Parses contact string in various formats
  */
 export function parseContactString(contactString: string): ContactValidationResult {
-  if (!contactString || typeof contactString !== 'string') {
+  if (!contactString || typeof contactString !== 'string' || contactString.trim() === '') {
     return {
       isValid: false,
       errors: ['Contact string is required'],
@@ -266,7 +266,13 @@ export function parseContactString(contactString: string): ContactValidationResu
   const trimmed = contactString.trim();
 
   // Try to extract name, phone, and email
-  const phoneMatch = trimmed.match(/(\+?[\d\-.\s()]{7,}(?:\s*(?:ext\.?|extension)\s*\d+)?)/);
+  // Handle emergency numbers (911, 999, 112) and regular phones separately
+  const emergencyMatch = trimmed.match(/\b(911|999|112)\b/);
+  // More comprehensive phone regex that includes the surrounding parentheses or separators
+  const regularPhoneMatch = trimmed.match(
+    /(\(?\+?(?:\d[\d\-.\s()]*){6,}(?:\s*(?:ext\.?|extension|x)\s*\d+)?)\)?(?:\s|$)/,
+  );
+  const phoneMatch = emergencyMatch || regularPhoneMatch;
   const emailMatch = trimmed.match(/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/);
 
   let name = trimmed;
@@ -284,7 +290,7 @@ export function parseContactString(contactString: string): ContactValidationResu
   }
 
   // Clean up name (remove extra separators and common delimiters)
-  name = name.replace(/^[-\s,:]+|[-\s,:]+$/g, '').trim();
+  name = name.replace(/^[-\s,:;|/]+|[-\s,:;|/]+$/g, '').trim();
 
   return validateContact({ name, phone, email });
 }
