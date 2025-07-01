@@ -7,6 +7,37 @@ export interface EmailAttachment {
   content: Buffer;
 }
 
+interface SMTPConfig {
+  host: string;
+  port: number;
+  auth?: {
+    user: string;
+    pass: string;
+  };
+}
+
+interface SendGridEmailBody {
+  personalizations: [{ to: [{ email: string }] }];
+  from: { email: string };
+  subject: string;
+  content: Array<{ type: string; value: string }>;
+  attachments?: Array<{
+    content: string;
+    filename: string;
+    type: string;
+    disposition: string;
+  }>;
+}
+
+interface SMTPMailOptions {
+  from: string;
+  to: string;
+  subject: string;
+  text: string;
+  html?: string;
+  attachments?: EmailAttachment[];
+}
+
 // Custom email handler for testing
 let customEmailHandler:
   | ((
@@ -23,7 +54,7 @@ let transporter: Transporter | null = null;
 
 // Initialize SMTP transporter if configured
 if (process.env.SMTP_HOST) {
-  const transporterConfig: any = {
+  const transporterConfig: SMTPConfig = {
     host: process.env.SMTP_HOST,
     port: parseInt(process.env.SMTP_PORT || '587'),
   };
@@ -71,7 +102,7 @@ export async function sendEmail(
   // SendGrid implementation
   if (process.env.SENDGRID_API_KEY) {
     try {
-      const body: any = {
+      const body: SendGridEmailBody = {
         personalizations: [{ to: [{ email: to }] }],
         from: { email: from },
         subject,
@@ -117,7 +148,7 @@ export async function sendEmail(
   // SMTP implementation
   if (transporter) {
     try {
-      const mailOptions: any = {
+      const mailOptions: SMTPMailOptions = {
         from,
         to,
         subject,
@@ -169,7 +200,7 @@ export class EmailService {
     for (let i = 0; i < recipients.length; i += batchSize) {
       const batch = recipients.slice(i, i + batchSize);
       await Promise.all(batch.map((to) => sendEmail(to, subject, body, html)));
-      
+
       // Small delay between batches to avoid rate limits
       if (i + batchSize < recipients.length) {
         await new Promise((resolve) => setTimeout(resolve, 1000));

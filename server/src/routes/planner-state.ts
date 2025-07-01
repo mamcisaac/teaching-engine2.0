@@ -14,7 +14,7 @@ const stateRateLimit = rateLimit({
   message: { error: 'Too many state update requests, please try again later' },
   standardHeaders: true,
   legacyHeaders: false,
-  skip: (req) => process.env.NODE_ENV === 'test', // Skip rate limiting in test mode
+  skip: (_req) => process.env.NODE_ENV === 'test', // Skip rate limiting in test mode
 });
 
 // Sanitize text content to prevent XSS
