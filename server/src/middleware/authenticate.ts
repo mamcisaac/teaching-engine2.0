@@ -41,21 +41,29 @@ export function generateToken(user: {
     permissions: user.permissions || [],
   };
 
-  return jwt.sign(payload, JWT_SECRET, {
-    expiresIn: JWT_EXPIRES_IN,
-    issuer: 'teaching-engine',
-    audience: 'teaching-engine-users',
-  });
+  return jwt.sign(
+    payload,
+    JWT_SECRET as string,
+    {
+      expiresIn: JWT_EXPIRES_IN,
+      issuer: 'teaching-engine',
+      audience: 'teaching-engine-users',
+    } as jwt.SignOptions,
+  );
 }
 
 /**
  * Generate refresh token
  */
 export function generateRefreshToken(userId: number): string {
-  return jwt.sign({ userId: userId.toString(), type: 'refresh' }, JWT_SECRET, {
-    expiresIn: JWT_REFRESH_EXPIRES_IN,
-    issuer: 'teaching-engine',
-  });
+  return jwt.sign(
+    { userId: userId.toString(), type: 'refresh' },
+    JWT_SECRET as string,
+    {
+      expiresIn: JWT_REFRESH_EXPIRES_IN,
+      issuer: 'teaching-engine',
+    } as jwt.SignOptions,
+  );
 }
 
 /**
@@ -425,7 +433,6 @@ export async function refreshToken(req: Request, res: Response): Promise<void> {
         id: true,
         email: true,
         role: true,
-        organizationId: true,
       },
     });
 
@@ -442,7 +449,6 @@ export async function refreshToken(req: Request, res: Response): Promise<void> {
       id: user.id,
       email: user.email,
       role: user.role,
-      organizationId: user.organizationId || undefined,
     });
 
     const newRefreshToken = generateRefreshToken(user.id);
@@ -454,7 +460,6 @@ export async function refreshToken(req: Request, res: Response): Promise<void> {
         id: user.id,
         email: user.email,
         role: user.role,
-        organizationId: user.organizationId,
       },
     });
   } catch (error) {

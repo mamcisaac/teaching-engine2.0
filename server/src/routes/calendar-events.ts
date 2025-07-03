@@ -26,9 +26,17 @@ const querySchema = z.object({
 });
 
 // Get calendar events for a date range
-router.get('/', validateRequest({ query: querySchema }), async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const { start, end, eventType } = req.query as z.infer<typeof querySchema>;
+    // Validate query parameters
+    const queryValidation = querySchema.safeParse(req.query);
+    if (!queryValidation.success) {
+      return res.status(400).json({
+        error: 'Invalid query parameters',
+        details: queryValidation.error.errors,
+      });
+    }
+    const { start, end, eventType } = queryValidation.data;
     const userId = req.user!.id;
 
     const where: Prisma.CalendarEventWhereInput = {
@@ -63,7 +71,7 @@ router.get('/', validateRequest({ query: querySchema }), async (req, res) => {
 });
 
 // Create a new calendar event
-router.post('/', validateRequest({ body: calendarEventSchema }), async (req, res) => {
+router.post('/', validateRequest(calendarEventSchema), async (req, res) => {
   try {
     const data = req.body as z.infer<typeof calendarEventSchema>;
     const userId = req.user!.id;

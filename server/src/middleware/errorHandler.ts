@@ -262,16 +262,31 @@ function handleSpecificErrors(
     return new ValidationError(`Invalid ${err.path}: ${err.value}`);
   }
 
-  if (err.code === 11000) {
+  if (
+    (typeof err.code === 'string' && err.code === '11000') ||
+    (typeof err.code === 'number' && err.code === 11000)
+  ) {
     const field = Object.keys(err.keyValue || {})[0];
     return new ConflictError(`Duplicate field value: ${field}`);
   }
 
   if (err.name === 'ValidationError') {
-    const errors = Object.values(
-      (err as { errors: Record<string, { message: string }> }).errors || {},
-    ).map((e: { message: string }) => e.message);
-    return new ValidationError(`Validation failed: ${errors.join(', ')}`);
+    const errorWithValidation = err as unknown as { errors?: Record<string, { message: string }> };
+    if (errorWithValidation.errors) {
+      const errors = Object.values(errorWithValidation.errors).map(
+        (e: { message: string }) => e.message,
+      );
+      return new ValidationError(`Validation failed: ${errors.join(', ')}`);
+    }
+  }
+
+  // Convert to AppError if not already one
+  if (!(err instanceof AppError)) {
+    return new AppError(
+      err.message || 'Internal server error',
+      (err as { statusCode?: number }).statusCode || 500,
+      (err as { code?: string }).code || 'INTERNAL_ERROR',
+    );
   }
 
   return err;

@@ -69,7 +69,7 @@ export async function validateApiKey(
 
     // Try to use cache for performance (optional enhancement)
     try {
-      const _cache = CacheService.getInstance();
+      const _cache = new CacheService();
       // Could cache validated keys here for performance
     } catch (cacheError) {
       // Cache is optional, continue without it

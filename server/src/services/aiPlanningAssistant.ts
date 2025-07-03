@@ -1,4 +1,4 @@
-import BaseService from './base/BaseService';
+import BaseService, { ServiceDependencies } from './base/BaseService';
 import OpenAI from 'openai';
 import { prisma } from '../prisma';
 

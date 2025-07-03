@@ -3,14 +3,12 @@ import type { Request, Response, NextFunction } from 'express';
 
 // Mock modules before importing
 jest.unstable_mockModule('../../src/services/CacheService.js', () => ({
-  CacheService: {
-    getInstance: jest.fn(() => ({
-      get: jest.fn(),
-      set: jest.fn(),
-      delete: jest.fn(),
-      clear: jest.fn(),
-    })),
-  },
+  CacheService: jest.fn(() => ({
+    get: jest.fn(),
+    set: jest.fn(),
+    delete: jest.fn(),
+    clear: jest.fn(),
+  })),
 }));
 
 jest.unstable_mockModule('../../src/logger.js', () => ({
@@ -300,13 +298,11 @@ describe('API Key Validation Middleware', () => {
         clear: jest.fn(),
       };
 
-      (CacheService.getInstance as jest.Mock).mockReturnValue(mockCache);
-
       // Act
       await validateApiKey(mockReq as Request, mockRes as Response, mockNext);
 
       // Assert
-      expect(CacheService.getInstance).toHaveBeenCalled();
+      expect(CacheService).toHaveBeenCalled();
       expect(mockNext).toHaveBeenCalled();
     });
 
@@ -317,7 +313,7 @@ describe('API Key Validation Middleware', () => {
       mockReq.headers = { 'x-api-key': 'test-secret-key-12345' };
 
       // Make CacheService throw an error
-      (CacheService.getInstance as jest.Mock).mockImplementation(() => {
+      (CacheService as jest.Mock).mockImplementation(() => {
         throw new Error('Cache initialization failed');
       });
 

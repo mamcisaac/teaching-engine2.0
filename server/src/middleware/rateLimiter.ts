@@ -180,7 +180,7 @@ export function createUserBasedRateLimiter(
     },
     keyGenerator: (req: Request) => {
       // Use user ID if authenticated, otherwise use IP
-      return req.user?.id || req.ip || 'unknown';
+      return req.user?.id?.toString() || req.ip || 'unknown';
     },
     standardHeaders: true,
     legacyHeaders: false,

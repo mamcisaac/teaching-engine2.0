@@ -60,14 +60,14 @@ export async function createTestApp(prisma?: PrismaClient): Promise<Express> {
       if (req.headers.authorization === 'Bearer valid.jwt.token') {
         req.user = {
           id: 123,
-          userId: '123',
           email: 'test@example.com',
+          role: 'teacher',
         };
       } else if (req.headers.authorization === 'Bearer admin.token') {
         req.user = {
           id: 456,
-          userId: '456',
           email: 'admin@example.com',
+          role: 'admin',
         };
       }
       next();

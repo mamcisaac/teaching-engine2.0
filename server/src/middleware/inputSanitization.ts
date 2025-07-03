@@ -1,5 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import createDOMPurify from 'isomorphic-dompurify';
+import { ParsedQs } from 'qs';
+import { ParamsDictionary } from 'express-serve-static-core';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const createDOMPurify = require('isomorphic-dompurify');
 import { JSDOM } from 'jsdom';
 import logger from '../logger.js';
 
@@ -213,12 +216,12 @@ export function strictSanitization(req: Request, res: Response, next: NextFuncti
         );
       }
 
-      req.query = sanitizeObject(req.query, strictConfig);
+      req.query = sanitizeObject(req.query, strictConfig) as ParsedQs;
     }
 
     // Sanitize URL parameters
     if (req.params && typeof req.params === 'object') {
-      req.params = sanitizeObject(req.params, strictConfig);
+      req.params = sanitizeObject(req.params, strictConfig) as ParamsDictionary;
     }
 
     next();
@@ -241,11 +244,11 @@ export function moderateSanitization(req: Request, res: Response, next: NextFunc
     }
 
     if (req.query && typeof req.query === 'object') {
-      req.query = sanitizeObject(req.query, moderateConfig);
+      req.query = sanitizeObject(req.query, moderateConfig) as ParsedQs;
     }
 
     if (req.params && typeof req.params === 'object') {
-      req.params = sanitizeObject(req.params, moderateConfig);
+      req.params = sanitizeObject(req.params, moderateConfig) as ParamsDictionary;
     }
 
     next();
@@ -268,11 +271,11 @@ export function lenientSanitization(req: Request, res: Response, next: NextFunct
     }
 
     if (req.query && typeof req.query === 'object') {
-      req.query = sanitizeObject(req.query, lenientConfig);
+      req.query = sanitizeObject(req.query, lenientConfig) as ParsedQs;
     }
 
     if (req.params && typeof req.params === 'object') {
-      req.params = sanitizeObject(req.params, lenientConfig);
+      req.params = sanitizeObject(req.params, lenientConfig) as ParamsDictionary;
     }
 
     next();

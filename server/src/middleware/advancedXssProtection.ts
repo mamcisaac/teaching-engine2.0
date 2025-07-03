@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import createDOMPurify from 'isomorphic-dompurify';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const createDOMPurify = require('isomorphic-dompurify');
 import { JSDOM } from 'jsdom';
 import logger from '../logger.js';
 

@@ -85,13 +85,7 @@ function createAuthRouter(prisma = defaultPrisma) {
   router.get('/me', authenticate, async (req, res) => {
     try {
       // Always verify user exists in database
-      const userId = parseInt(req.user!.id, 10);
-      if (isNaN(userId)) {
-        return res.status(401).json({
-          error: 'Unauthorized',
-          message: 'Invalid user ID',
-        });
-      }
+      const userId = req.user!.id;
 
       const user = await prisma.user.findUnique({
         where: { id: userId },

@@ -100,12 +100,12 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
 
     // Generate tokens - ensure consistent ID type
     const accessToken = generateToken({
-      id: user.id.toString(),
+      id: user.id,
       email: user.email,
       role: user.role,
     });
 
-    const refreshToken = generateRefreshToken(user.id.toString());
+    const refreshToken = generateRefreshToken(user.id);
 
     // Set refresh token as HTTP-only cookie with secure options
     res.cookie('refreshToken', refreshToken, {
@@ -335,12 +335,12 @@ export async function register(req: Request, res: Response, next: NextFunction):
       );
 
       accessToken = generateToken({
-        id: user.id.toString(),
+        id: user.id,
         email: user.email,
         role: user.role,
       });
 
-      refreshToken = generateRefreshToken(user.id.toString());
+      refreshToken = generateRefreshToken(user.id);
 
       logger.info(
         { userId: user.id, hasTokens: !!accessToken && !!refreshToken },

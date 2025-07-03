@@ -271,9 +271,9 @@ function sanitizeObject(obj: Record<string, unknown>): void {
         );
 
         // Remove event handlers
-        obj[key] = obj[key].replace(/on\w+\s*=\s*["'][^"']*["']/gi, '');
+        obj[key] = (obj[key] as string).replace(/on\w+\s*=\s*["'][^"']*["']/gi, '');
       } else if (typeof obj[key] === 'object' && obj[key] !== null) {
-        sanitizeObject(obj[key]);
+        sanitizeObject(obj[key] as Record<string, unknown>);
       }
     }
   }
@@ -289,7 +289,7 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction) 
   }
 
   const token = req.headers['x-csrf-token'] || req.body?._csrf;
-  const sessionToken = req.session?.csrfToken;
+  const sessionToken = (req as { session?: { csrfToken?: string } }).session?.csrfToken;
 
   if (!token || !sessionToken || token !== sessionToken) {
     return res.status(403).json({
