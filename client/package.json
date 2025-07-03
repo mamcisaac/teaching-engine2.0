@@ -10,6 +10,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
+    "test:quick": "vitest run --reporter=dot --bail=1",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage",
     "test:unit": "vitest run --config vitest.config.ts",

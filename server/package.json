@@ -22,6 +22,7 @@
     "test:comprehensive": "node scripts/run-all-tests.js",
     "test:benchmark": "node scripts/benchmark-optimizations.js",
     "test:monitor": "MONITOR_TEST_PERFORMANCE=true pnpm test:unit",
+    "test:quick": "NODE_OPTIONS='--experimental-vm-modules --max-old-space-size=2048' TEST_TYPE=unit jest --passWithNoTests --maxWorkers=4 --testTimeout=5000 --bail --detectOpenHandles",
     "test:fast": "NODE_OPTIONS='--experimental-vm-modules --max-old-space-size=2048' TEST_TYPE=unit jest --passWithNoTests --maxWorkers=4 --testTimeout=5000 --bail=3 --detectOpenHandles",
     "test:fast-only": "NODE_OPTIONS='--experimental-vm-modules --max-old-space-size=1024' TEST_TYPE=unit jest --testPathPattern='.*\\.(fast\\.test|auth|validation|utils|helpers)\\.' --maxWorkers=6 --testTimeout=3000 --detectOpenHandles",
     "test:medium": "NODE_OPTIONS='--experimental-vm-modules --max-old-space-size=2048' TEST_TYPE=unit jest --testPathIgnorePatterns='.*\\.(fast\\.test|slow\\.test)\\.' --maxWorkers=2 --testTimeout=8000 --detectOpenHandles",

@@ -78,6 +78,10 @@ When running `/changes`, verify:
 
 **CRITICAL: This project enforces STRICT TDD - no exceptions**
 
+### 🚨 TDD Enforcement Hook Active
+
+The `tdd_enforcement_checklist.md` hook is automatically triggered before ANY Edit or Write operations to ensure TDD compliance. You MUST confirm you have written failing tests before implementing any code.
+
 ### 🔴 RED-GREEN-REFACTOR Cycle
 
 - Write tests FIRST - Before implementing any feature

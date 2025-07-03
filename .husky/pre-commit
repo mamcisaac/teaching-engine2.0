@@ -1,4 +1,16 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+# Run tests before commit
+echo "Running tests before commit..."
+pnpm test:quick
+
+# Check if tests passed
+if [ $? -ne 0 ]; then
+  echo "❌ Tests failed! Please fix failing tests before committing."
+  exit 1
+fi
+
+# Run linting
+echo "Running lint-staged..."
 npx lint-staged

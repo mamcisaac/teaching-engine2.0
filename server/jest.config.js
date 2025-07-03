@@ -120,10 +120,10 @@ const baseConfig = {
   coverageReporters: process.env.CI ? ['text', 'lcov', 'json'] : ['text', 'html'],
   coverageThreshold: {
     global: {
-      branches: 50, // Current: 51.01%, Target: 80%
-      functions: 55, // Current: 56.24%, Target: 85%
-      lines: 60, // Current: 62.82%, Target: 90%
-      statements: 60, // Current: 62.47%, Target: 90%
+      branches: 85, // Target: 85%
+      functions: 85, // Target: 85%
+      lines: 90, // Target: 90%
+      statements: 90, // Target: 90%
     },
   },
 
