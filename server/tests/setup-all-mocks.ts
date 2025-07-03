@@ -208,12 +208,7 @@ jest.doMock('../src/services/llmService', () => ({
 
 // Note: curriculumImportService is not mocked here since its tests need the real implementation
 
-// Mock clusteringService
-jest.mock('@/services/clusteringService', () => ({
-  clusteringService: {
-    generateClusters: jest.fn().mockResolvedValue([]),
-  },
-}));
+// clusteringService removed - over-engineered for single-teacher use
 
 // Clear mock call history between test suites to prevent memory leaks
 beforeEach(() => {

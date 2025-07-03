@@ -57,7 +57,25 @@ const unitPlanCreateSchema = z.object({
   communityConnections: z.string().max(1000).optional(),
 });
 
-const unitPlanUpdateSchema = unitPlanCreateSchema.partial().omit({ longRangePlanId: true });
+const unitPlanUpdateSchema = unitPlanCreateSchema.partial().omit({ longRangePlanId: true }).extend({
+  // Allow null values for optional fields
+  description: z.string().max(2000).nullable().optional(),
+  descriptionFr: z.string().max(2000).nullable().optional(),
+  bigIdeas: z.string().max(2000).nullable().optional(),
+  bigIdeasFr: z.string().max(2000).nullable().optional(),
+  assessmentPlan: z.string().max(2000).nullable().optional(),
+  differentiationStrategies: z
+    .object({
+      forStruggling: z.array(z.string().max(200)).max(10).optional(),
+      forAdvanced: z.array(z.string().max(200)).max(10).optional(),
+      forELL: z.array(z.string().max(200)).max(10).optional(),
+      forIEP: z.array(z.string().max(200)).max(10).optional(),
+    })
+    .nullable()
+    .optional(),
+  // Override expectationIds to allow empty array on updates
+  expectationIds: z.array(cuidSchema()).max(50).optional(),
+});
 
 // Get all unit plans for the authenticated user
 router.get('/', async (req: Request, res, _next) => {

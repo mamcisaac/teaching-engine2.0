@@ -24,8 +24,8 @@ declare global {
 
 // Default rate limiter for general API endpoints
 export const defaultRateLimiter: RateLimitRequestHandler = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
+  windowMs: process.env.NODE_ENV === 'test' ? 1000 : 15 * 60 * 1000, // 1 second for tests, 15 minutes for production
+  max: process.env.NODE_ENV === 'test' ? 1000 : 100, // Higher limit for tests
   message: 'Too many requests from this IP, please try again later.',
   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
@@ -83,8 +83,8 @@ export const authRateLimiter: RateLimitRequestHandler = rateLimit({
 
 // Moderate rate limiter for resource creation endpoints
 export const createResourceRateLimiter: RateLimitRequestHandler = rateLimit({
-  windowMs: 60 * 60 * 1000, // 1 hour
-  max: 30, // Limit each IP to 30 resource creation requests per hour
+  windowMs: process.env.NODE_ENV === 'test' ? 1000 : 60 * 60 * 1000, // 1 second for tests, 1 hour for production
+  max: process.env.NODE_ENV === 'test' ? 1000 : 30, // Higher limit for tests
   message: 'Too many resources created from this IP, please try again later.',
   standardHeaders: true,
   legacyHeaders: false,

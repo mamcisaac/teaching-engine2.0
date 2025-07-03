@@ -1,10 +1,13 @@
 // Core services
 export { curriculumImportService } from './curriculumImportService';
 
+// Key Teacher Features
+export { NewsletterService } from './newsletterService';
+export { SubstitutePlanService } from './substitutePlanService';
+
 // AI services
 // AIParentSummaryService removed - not aligned with single-teacher focus
 export { AIPlanningAssistantService } from './aiPlanningAssistant';
-export { AIActivityGenerator, aiActivityGenerator } from './aiActivityGenerator';
 export { AIActivityGeneratorService } from './aiActivityGeneratorService';
 export { aiPromptTemplateService } from './aiPromptTemplateService';
 export {

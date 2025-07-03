@@ -2,38 +2,31 @@
 
 This document describes the features in Teaching Engine 2.0.
 
-## Daybook Analytics System
+## Daybook System
 
 ### Overview
 
-The Daybook Analytics System provides comprehensive insights into teaching effectiveness and student progress through daily reflection data analysis.
+The Daybook System provides simple daily reflection tracking for teaching effectiveness.
 
 ### Features
 
-- **Teaching Trend Analysis**: Track rating patterns and engagement trends over time
-- **Theme Extraction**: Identify common success and challenge patterns from reflection text
-- **Actionable Recommendations**: Generate data-driven suggestions for teaching improvement
-- **Coverage Visualization**: Monitor curriculum expectation coverage with analytics
-- **Progress Insights**: View teaching effectiveness through quantified reflection data
-- **Export Capabilities**: Generate PDF reports for professional development documentation
-
-### Analytics Types
-
-- **Rating Trends**: Track lesson effectiveness ratings over time (improving/declining/stable)
-- **Engagement Analysis**: Sentiment analysis of student engagement observations
-- **Theme Identification**: Extract common keywords from "what worked" and "challenges" reflections
-- **Recommendation Engine**: Generate actionable insights based on reflection patterns
+- **Daily Reflections**: Record what worked, what didn't, and next steps
+- **Rating System**: Simple 1-5 rating for lesson effectiveness
+- **Bilingual Support**: Reflection fields available in English and French
+- **Curriculum Tracking**: Link reflections to specific lesson plans
 
 ### Usage
 
 1. Create daybook entries linked to lesson plans
 2. Complete reflection fields (what worked, challenges, next steps)
-3. View analytics through the insights endpoint
-4. Export trends for professional development conversations
+3. Use for personal teaching improvement and substitute preparation
 
 ### API Endpoints
 
-- `GET /api/daybook-entries/insights/summary` - Get comprehensive analytics and recommendations
+- `GET /api/daybook-entries` - List daybook entries
+- `POST /api/daybook-entries` - Create new entry
+- `PUT /api/daybook-entries/:id` - Update entry
+- `DELETE /api/daybook-entries/:id` - Remove entry
 
 ## AI Activity Generator
 

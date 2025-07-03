@@ -7,7 +7,7 @@ import express, { Express } from 'express';
 import cors from 'cors';
 import { PrismaClient } from '@teaching-engine/database';
 import { errorHandler } from './middleware/errorHandler';
-import { authRoutes } from './routes/auth';
+import authEndpoints from './routes/authEndpoints';
 import { userRoutes } from './routes/user';
 
 export function createApp(prisma: PrismaClient): Express {
@@ -31,7 +31,7 @@ export function createApp(prisma: PrismaClient): Express {
   });
 
   // Routes
-  app.use('/api/auth', authRoutes(prisma));
+  app.use('/api/auth', authEndpoints);
   app.use('/api/user', userRoutes(prisma));
 
   // 404 handler

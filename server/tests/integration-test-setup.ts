@@ -187,8 +187,14 @@ export async function cleanIntegrationTestData(): Promise<void> {
     if (integrationTestClient.daybookEntry) {
       await integrationTestClient.daybookEntry.deleteMany({});
     }
+    if (integrationTestClient.eTFOLessonPlanResource) {
+      await integrationTestClient.eTFOLessonPlanResource.deleteMany({});
+    }
     if (integrationTestClient.eTFOLessonPlan) {
       await integrationTestClient.eTFOLessonPlan.deleteMany({});
+    }
+    if (integrationTestClient.unitPlanResource) {
+      await integrationTestClient.unitPlanResource.deleteMany({});
     }
     if (integrationTestClient.unitPlan) {
       await integrationTestClient.unitPlan.deleteMany({});

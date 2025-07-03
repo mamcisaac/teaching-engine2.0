@@ -34,10 +34,7 @@ export const llmService = {
   }),
 };
 
-export const clusteringService = {
-  generateClusters: jest.fn().mockResolvedValue([]),
-  clusterOutcomes: jest.fn().mockResolvedValue([]),
-};
+// clusteringService removed - over-engineered for single-teacher use
 
 export const materialGenerator = {
   generateMaterial: jest.fn().mockResolvedValue('Mocked material'),

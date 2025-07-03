@@ -2,6 +2,9 @@ import { Router, Request, Response } from 'express';
 import { z } from 'zod';
 import { authMiddleware } from '../middleware/auth';
 import { AIActivityGeneratorService } from '../services/aiActivityGeneratorService';
+import debug from 'debug';
+
+const log = debug('server:ai-activity:error');
 // ActivityDiscoveryService removed - over-engineered for single-teacher use
 
 const router = Router();
@@ -93,7 +96,7 @@ router.post('/generate', authMiddleware, async (req: Request, res: Response) => 
       data: generatedActivity,
     });
   } catch (error) {
-    console.error('Error generating activity:', error);
+    log('Error generating activity:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to generate activity',
@@ -131,7 +134,7 @@ router.post('/generate-variations', authMiddleware, async (req: Request, res: Re
       },
     });
   } catch (error) {
-    console.error('Error generating activity variations:', error);
+    log('Error generating activity variations:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to generate activity variations',

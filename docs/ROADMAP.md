@@ -70,15 +70,12 @@ Teaching Engine 2.0 is the **ultimate digital teaching assistant** for individua
 - **Newsletter Generator** - Automated content collection from completed activities
 - **Parent Communication Center** - Centralized bilingual communication hub
 - **Daybook System** - Daily reflection and progress tracking
-- **Progress Insights** - Analytics and trend analysis for curriculum effectiveness
 
 ### Curriculum Intelligence (✅ Complete)
 
 - **AI-Powered Curriculum Import** - Parse PDF/DOC curriculum documents
-- **Intelligent Outcome Clustering** - Semantic analysis for related objectives
 - **Enhanced Planning** - Thematic grouping and cross-curricular connections
 - **Bulk Material Generation** - Templates for rapid content creation
-- **Service Infrastructure** - Health monitoring and performance optimization
 
 ### Assessment & Evaluation (✅ Complete)
 

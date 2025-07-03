@@ -1,5 +1,6 @@
 import request from 'supertest';
 import { app } from '../../../src/index';
+import { prisma } from '../../../src/prisma';
 
 export interface TestData {
   expectationId?: string;
@@ -13,22 +14,18 @@ export class ETFOTestHelpers {
   constructor(private authToken: string) {}
 
   async createExpectation(codePrefix: string = 'TEST') {
-    const response = await request(app)
-      .post('/api/curriculum-expectations')
-      .set('Authorization', `Bearer ${this.authToken}`)
-      .send({
+    // Create curriculum expectation directly in database since no POST endpoint exists
+    const expectation = await prisma.curriculumExpectation.create({
+      data: {
         code: `${codePrefix}.1.1.${Date.now()}`,
         description: `${codePrefix} expectation`,
         strand: 'Test Strand',
         grade: 1,
         subject: 'Mathematics',
-      });
+      },
+    });
 
-    if (response.status !== 201) {
-      throw new Error(`Failed to create expectation: ${response.status} ${JSON.stringify(response.body)}`);
-    }
-
-    return response.body.id;
+    return expectation.id;
   }
 
   async createLongRangePlan(title: string, expectationIds: string[] = []) {

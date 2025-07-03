@@ -63,15 +63,7 @@ jest.doMock('../src/logger', () => ({
 
 // Logger is already mocked above
 
-// Mock email service
-jest.doMock('../src/services/emailService', () => ({
-  __esModule: true,
-  emailService: {
-    sendEmail: jest.fn().mockResolvedValue({ id: 'mock-email-id' }),
-    sendBulkEmails: jest.fn().mockResolvedValue([{ id: 'mock-email-id' }]),
-    validateEmail: jest.fn().mockReturnValue(true),
-  },
-}));
+// Email service removed - app only creates newsletter drafts, doesn't send emails
 
 // Mock llmService (OpenAI)
 jest.doMock('../src/services/llmService', () => ({

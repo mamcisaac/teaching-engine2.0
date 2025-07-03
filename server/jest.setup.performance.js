@@ -224,10 +224,7 @@ jest.mock('@/services/embeddingService', () => ({
   },
 }));
 
-jest.mock('@/services/emailService', () => ({
-  sendEmail: jest.fn().mockResolvedValue(true),
-  sendBulkEmails: jest.fn().mockResolvedValue({ sent: [], failed: [] }),
-}));
+// Email service removed - app only creates newsletter drafts, doesn't send emails
 
 jest.mock('@/services/clusteringService', () => ({
   clusteringService: {

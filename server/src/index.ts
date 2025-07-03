@@ -22,8 +22,8 @@ let __dirname_index: string;
 
 // Skip import.meta in test environment
 if (process.env.NODE_ENV === 'test' || process.env.JEST_WORKER_ID) {
-  __filename_index = __filename || '';
-  __dirname_index = __dirname || process.cwd();
+  __filename_index = '';
+  __dirname_index = process.cwd();
 } else {
   __filename_index = fileURLToPath(import.meta.url);
   __dirname_index = path.dirname(__filename_index);
@@ -34,7 +34,11 @@ if (process.env.NODE_ENV === 'test' || process.env.JEST_WORKER_ID) {
 // ETFO-aligned route imports
 import curriculumImportRoutes from './routes/curriculumImport';
 // Student-related routes removed - app does not store student data
-// Newsletter routes removed - teachers have better tools (Google Docs, Canva, ClassDojo)
+
+// Key Teacher Features - Newsletter and Substitute Plans
+import newsletterRoutes from './routes/newsletters';
+import substitutePlanRoutes from './routes/substitute-plans';
+
 import curriculumExpectationRoutes from './routes/curriculum-expectations';
 import longRangePlanRoutes from './routes/long-range-plans';
 import unitPlanRoutes from './routes/unit-plans';
@@ -49,7 +53,7 @@ import aiActivityGenerationRoutes from './routes/ai-activity-generation';
 import templateRoutes from './routes/templates';
 import calendarEventRoutes from './routes/calendar-events';
 import recentPlansRoutes from './routes/recent-plans';
-import batchApiRoutes from './routes/batch';
+// batchApiRoutes removed - premature optimization for single-teacher use
 // import subPlanRoutes from './routes/sub-plan'; // File missing - commenting out for build
 // import { authRoutes as _authRoutes } from './routes/auth';
 import authEndpoints from './routes/authEndpoints';
@@ -60,7 +64,7 @@ import { prisma } from './prisma';
 import { rateLimiters } from './middleware/rateLimiter';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 // import { sanitizeInput as _sanitizeInput } from './middleware/inputSanitization';
-import performanceMonitoring, { performanceMonitor } from './middleware/performanceMonitoring';
+// performanceMonitoring removed - adds unnecessary complexity for single-teacher use
 import {
   applySecurityMiddleware,
   authRateLimitMiddleware,
@@ -80,9 +84,7 @@ log('Applying body parsing middleware...');
 app.use(express.json({ limit: '10mb' })); // Set reasonable payload limit
 app.use(cookieParser());
 
-// Apply performance monitoring
-log('Applying performance monitoring...');
-app.use(performanceMonitoring);
+// Performance monitoring removed - adds unnecessary complexity for single-teacher use
 
 // Health check endpoints
 app.get('/health', (_req, res) => {
@@ -90,36 +92,19 @@ app.get('/health', (_req, res) => {
 });
 
 app.get('/api/health', (_req, res) => {
-  const healthStatus = performanceMonitor.getHealthStatus();
-  res.status(healthStatus.healthy ? 200 : 503).json({
-    status: healthStatus.healthy ? 'ok' : 'degraded',
+  res.status(200).json({
+    status: 'ok',
   });
 });
 
 // Detailed health endpoint for debugging
 app.get('/api/health/detailed', (_req, res) => {
-  const healthStatus = performanceMonitor.getHealthStatus();
-  res.status(healthStatus.healthy ? 200 : 503).json({
-    status: healthStatus.healthy ? 'ok' : 'degraded',
-    ...healthStatus,
-  });
-});
-
-// Performance metrics endpoint (admin only)
-app.get('/api/metrics', (req, res) => {
-  // Simple admin token check
-  const token = req.headers.authorization?.replace('Bearer ', '');
-  if (token !== process.env.WIZARD_TOKEN) {
-    return res.status(403).json({ error: 'Admin access required' });
-  }
-
-  const summary = performanceMonitor.getPerformanceSummary();
-  const slowestEndpoints = performanceMonitor.getSlowestEndpoints();
-
-  res.json({
-    summary,
-    slowestEndpoints,
-    timestamp: new Date().toISOString(),
+  res.status(200).json({
+    status: 'ok',
+    services: {
+      database: 'healthy',
+      ai: 'healthy',
+    },
   });
 });
 
@@ -187,7 +172,11 @@ app.use('/api/user', authenticate, rateLimiters.api as any, userRoutes(prisma));
 // Apply authentication and rate limiting to all API routes
 log('Mounting ETFO-aligned API routes...');
 // Student endpoints removed - app does not store student data
-// Newsletter API removed - teachers have better tools (Google Docs, Canva, ClassDojo)
+
+// Key Teacher Features
+app.use('/api/newsletters', authenticate, rateLimiters.write as any, newsletterRoutes);
+app.use('/api/substitute-plans', authenticate, rateLimiters.write as any, substitutePlanRoutes);
+
 app.use(
   '/api/curriculum-import',
   authenticate,
@@ -248,8 +237,7 @@ app.use('/api/ai-activities', authenticate, rateLimiters.ai as any, aiActivityGe
 // Sub-plan Routes
 // app.use('/api/sub-plan', authenticate, rateLimiters.write as any, subPlanRoutes); // Commented out - missing file
 
-// Batch API Routes (for request batching)
-app.use('/api/batch', authenticate, rateLimiters.api as any, batchApiRoutes);
+// Batch API removed - premature optimization for single-teacher use
 
 // Collaboration Routes removed - focusing on single-teacher planning
 

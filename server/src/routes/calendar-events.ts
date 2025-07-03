@@ -160,63 +160,6 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// Import holidays from a standard calendar
-router.post('/import-holidays', async (req, res) => {
-  try {
-    const { year = new Date().getFullYear() } = req.body;
-
-    // Common Ontario school holidays
-    const holidays = [
-      { title: 'Labour Day', month: 9, day: 1 },
-      { title: 'Thanksgiving', month: 10, day: 2 }, // 2nd Monday
-      { title: 'Winter Break Start', month: 12, day: 23 },
-      { title: 'Winter Break End', month: 1, day: 2 },
-      { title: 'Family Day', month: 2, day: 3 }, // 3rd Monday
-      { title: 'March Break Start', month: 3, day: 2 }, // 2nd week
-      { title: 'March Break End', month: 3, day: 3 },
-      { title: 'Good Friday', month: 4, day: 1 }, // Varies
-      { title: 'Easter Monday', month: 4, day: 2 }, // Varies
-      { title: 'Victoria Day', month: 5, day: 3 }, // Monday before May 25
-    ];
-
-    const createdEvents = [];
-
-    for (const holiday of holidays) {
-      const date = new Date(year, holiday.month - 1, holiday.day);
-
-      const existing = await prisma.calendarEvent.findFirst({
-        where: {
-          title: holiday.title,
-          start: {
-            gte: startOfDay(date),
-            lte: endOfDay(date),
-          },
-        },
-      });
-
-      if (!existing) {
-        const event = await prisma.calendarEvent.create({
-          data: {
-            title: holiday.title,
-            start: startOfDay(date),
-            end: endOfDay(date),
-            allDay: true,
-            eventType: CalendarEventType.HOLIDAY,
-            source: CalendarEventSource.SYSTEM,
-          },
-        });
-        createdEvents.push(event);
-      }
-    }
-
-    res.json({
-      message: `Imported ${createdEvents.length} holidays`,
-      events: createdEvents,
-    });
-  } catch (error) {
-    console.error('Error importing holidays:', error);
-    res.status(500).json({ error: 'Failed to import holidays' });
-  }
-});
+// Holiday import removed - teachers can add holidays manually as needed
 
 export default router;

@@ -74,15 +74,16 @@ model User {
   classroomAnnouncements ClassroomAnnouncement[]
   curriculumImports CurriculumImport[]
   classRoutines ClassRoutine[]
-  // SubPlanRecord removed - teachers prefer editable document templates
+  
+  // Key Teacher Features
+  newsletters Newsletter[]
+  substitutePlans SubstitutePlan[]
   
   // ETFO-aligned planning models
   longRangePlans LongRangePlan[]
   unitPlans UnitPlan[]
   etfoLessonPlans ETFOLessonPlan[]
   daybookEntries DaybookEntry[]
-  
-  // Newsletter model removed - teachers have better tools (Google Docs, Canva, ClassDojo)
   
   // Activity Discovery
   activityImports ActivityImport[]
@@ -925,4 +926,86 @@ model RecentPlanAccess {
   @@unique([userId, planType, planId])
   @@index([userId, lastAccessed])
   @@index([planType, planId])
+}
+
+// ==================== Key Teacher Features ====================
+// Core features requested by teachers for parent communication and substitute planning
+
+// Newsletter System - AI-powered parent communication with bilingual support
+model Newsletter {
+  id              String   @id @default(cuid())
+  userId          Int
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Core newsletter data
+  title           String
+  titleFr         String?
+  dateFrom        DateTime
+  dateTo          DateTime
+  tone            String   // 'friendly' | 'formal' | 'informative'
+  templateType    String   // 'weekly' | 'monthly' | 'special'
+  
+  // Newsletter content (structured JSON with NewsletterSection objects)
+  sections        Json     // Array of { id, title, titleFr, content, contentFr, isEditable, order }
+  metadata        Json?    // Generation metadata, AI model used, context
+  
+  // Status and lifecycle
+  isDraft         Boolean  @default(true)
+  sentAt          DateTime?
+  
+  // Generation context
+  focusAreas      Json?    // Array of focus areas
+  includeUpcomingEvents Boolean @default(true)
+  lessonPlansUsed Json?    // IDs of lesson plans referenced
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([userId, isDraft])
+  @@index([userId, sentAt])
+  @@index([dateFrom, dateTo])
+}
+
+// Substitute Plan System - Comprehensive substitute teacher planning
+model SubstitutePlan {
+  id              String   @id @default(cuid())
+  userId          Int
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Plan identification
+  title           String
+  dateFor         DateTime // Date this plan is intended for
+  grade           Int?
+  subject         String?
+  
+  // Generated content (structured JSON objects)
+  schedule        Json     // Daily schedule with times: [{ time, activity, notes }]
+  classroomRoutines Json   // Morning, transition, dismissal routines
+  emergencyInfo   Json     // Emergency procedures, contacts, evacuation plans
+  lessonPlans     Json     // Simplified lesson instructions with materials
+  behaviorPlan    Json     // Behavior management strategies and procedures
+  studentNotes    Json     // General class notes (no individual student data)
+  materialsList   Json     // Required materials and their locations
+  importantInfo   Json?    // Special procedures, allergies, medication notes
+  
+  // Context and generation
+  sourceUnitPlanId     String?  // Unit plan this was generated from
+  sourceLessonPlanIds  Json?    // Lesson plan IDs used for generation
+  generationContext    Json?    // AI generation context and settings
+  
+  // Administrative details
+  teacherContact   Json?    // How to reach the regular teacher
+  adminContact     Json?    // School administration contact
+  
+  // Status and usage
+  isActive        Boolean  @default(true)
+  lastUsed        DateTime?
+  useCount        Int      @default(0)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([userId, dateFor])
+  @@index([userId, isActive])
+  @@index([grade, subject])
 }

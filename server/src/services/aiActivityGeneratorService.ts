@@ -1,6 +1,9 @@
 import { ExternalActivity } from '@teaching-engine/database';
 import { prisma } from '../prisma';
-import { AnthropicService } from './anthropicService';
+import { openai } from './llmService';
+import debug from 'debug';
+
+const log = debug('server:ai-activity:error');
 
 interface GenerateActivityParams {
   searchResults?: ExternalActivity[];
@@ -40,10 +43,8 @@ interface GeneratedActivity {
 }
 
 export class AIActivityGeneratorService {
-  private anthropic: AnthropicService;
-
   constructor() {
-    this.anthropic = new AnthropicService();
+    // Simplified service for single-teacher use
   }
 
   /**
@@ -53,16 +54,31 @@ export class AIActivityGeneratorService {
     const prompt = this.buildGenerationPrompt(params);
 
     try {
-      const response = await this.anthropic.generateCompletion({
-        prompt,
-        systemPrompt: this.getSystemPrompt(),
+      if (!openai) {
+        // Fallback to template-based generation for single-teacher use
+        return this.generateTemplateActivity(params);
+      }
+
+      const response = await openai.chat.completions.create({
+        model: 'gpt-4',
+        messages: [
+          { role: 'system', content: this.getSystemPrompt() },
+          { role: 'user', content: prompt }
+        ],
         temperature: 0.8,
+        max_tokens: 2000,
       });
 
-      return this.parseGeneratedActivity(response);
+      const content = response.choices[0]?.message?.content;
+      if (!content) {
+        throw new Error('No content generated');
+      }
+
+      return this.parseGeneratedActivity(content);
     } catch (error) {
-      console.error('Error generating activity:', error);
-      throw new Error('Failed to generate activity');
+      log('Error generating activity:', error);
+      // Fallback to template generation
+      return this.generateTemplateActivity(params);
     }
   }
 
@@ -106,16 +122,30 @@ export class AIActivityGeneratorService {
     const prompt = this.buildEnhancementPrompt(activity, enhancements);
 
     try {
-      const response = await this.anthropic.generateCompletion({
-        prompt,
-        systemPrompt: this.getSystemPrompt(),
+      if (!openai) {
+        // Fallback for single-teacher use
+        return this.generateTemplateEnhancement(activity, enhancements);
+      }
+
+      const response = await openai.chat.completions.create({
+        model: 'gpt-4',
+        messages: [
+          { role: 'system', content: this.getSystemPrompt() },
+          { role: 'user', content: prompt }
+        ],
         temperature: 0.7,
+        max_tokens: 1500,
       });
 
-      return this.parseEnhancement(response);
+      const content = response.choices[0]?.message?.content;
+      if (!content) {
+        throw new Error('No content generated');
+      }
+
+      return this.parseEnhancement(content);
     } catch (error) {
-      console.error('Error enhancing activity:', error);
-      throw new Error('Failed to enhance activity');
+      log('Error enhancing activity:', error);
+      return this.generateTemplateEnhancement(activity, enhancements);
     }
   }
 
@@ -264,7 +294,7 @@ Always respond with valid JSON that matches the requested format exactly.`;
         technologyRequirements: parsed.technologyRequirements,
       };
     } catch (error) {
-      console.error('Error parsing generated activity:', error);
+      log('Error parsing generated activity:', error);
       throw new Error('Failed to parse generated activity');
     }
   }
@@ -351,5 +381,72 @@ Always respond with valid JSON that matches the requested format exactly.`;
   }): Promise<{ code: string; description: string; strand: string }[]> {
     // Stub implementation
     return [];
+  }
+
+  /**
+   * Fallback template-based activity generation for single-teacher use
+   */
+  private generateTemplateActivity(params: GenerateActivityParams): GeneratedActivity {
+    const context = params.lessonContext;
+    const requirements = params.specificRequirements;
+    
+    return {
+      title: `${context?.subject || 'Learning'} Activity - ${context?.title || 'Exploration'}`,
+      description: `An engaging ${context?.subject || 'learning'} activity designed for Grade ${context?.grade || 1} students.`,
+      detailedInstructions: [
+        'Introduce the activity and learning goals to students',
+        'Provide necessary materials and set up workspace',
+        'Guide students through the main activity',
+        'Facilitate discussion and reflection',
+        'Assess understanding and provide feedback'
+      ],
+      duration: context?.duration || 30,
+      activityType: requirements?.activityType || 'hands-on',
+      materials: requirements?.materials || ['paper', 'pencils', 'whiteboard'],
+      groupSize: requirements?.groupSize || 'individual or small groups',
+      learningGoals: context?.learningGoals || ['Students will explore new concepts'],
+      assessmentSuggestions: [
+        'Observe student participation and engagement',
+        'Ask questions to check understanding',
+        'Review completed work for accuracy'
+      ],
+      differentiation: {
+        support: ['Provide visual aids', 'Offer one-on-one assistance', 'Break tasks into smaller steps'],
+        extension: ['Provide additional challenges', 'Encourage peer teaching', 'Offer independent research opportunities']
+      },
+      safetyConsiderations: ['Ensure proper use of materials', 'Maintain safe classroom environment'],
+      technologyRequirements: []
+    };
+  }
+
+  /**
+   * Fallback template-based enhancement for single-teacher use
+   */
+  private generateTemplateEnhancement(
+    activity: ExternalActivity, 
+    enhancements: { addDifferentiation?: boolean; addAssessment?: boolean; adaptForGrade?: number; translateTo?: string; alignToCurriculum?: string[]; }
+  ): Partial<GeneratedActivity> {
+    const enhancement: Partial<GeneratedActivity> = {};
+
+    if (enhancements.addDifferentiation) {
+      enhancement.differentiation = {
+        support: ['Provide visual supports', 'Use peer partners', 'Break into smaller steps'],
+        extension: ['Add complexity', 'Encourage leadership roles', 'Provide enrichment activities']
+      };
+    }
+
+    if (enhancements.addAssessment) {
+      enhancement.assessmentSuggestions = [
+        'Use observation checklist',
+        'Conduct exit ticket assessment',
+        'Review student work samples'
+      ];
+    }
+
+    if (enhancements.adaptForGrade) {
+      enhancement.description = `${activity.description} - Adapted for Grade ${enhancements.adaptForGrade}`;
+    }
+
+    return enhancement;
   }
 }

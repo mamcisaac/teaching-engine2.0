@@ -10,10 +10,10 @@ interface DaybookEntryForAnalytics {
   date: Date | string;
   rating?: number | null;
   overallRating?: number | null;
-  studentEngagement?: string | null;
+  classEngagement?: string | null;
   whatWorked?: string | null;
   whatDidntWork?: string | null;
-  studentChallenges?: string | null;
+  commonChallenges?: string | null;
   nextSteps?: string | null;
   wouldReuseLesson?: boolean | null;
   lessonPlan?: {
@@ -58,8 +58,8 @@ function calculateTrends(entries: DaybookEntryForAnalytics[]): {
     else if (diff < -0.3) ratingTrend = 'declining';
   }
 
-  // Calculate engagement trend by analyzing studentEngagement text
-  const engagementEntries = sortedEntries.filter((e) => e.studentEngagement);
+  // Calculate engagement trend by analyzing classEngagement text
+  const engagementEntries = sortedEntries.filter((e) => e.classEngagement);
   let engagementTrend = 'stable';
 
   if (engagementEntries.length >= 2) {
@@ -71,7 +71,7 @@ function calculateTrends(entries: DaybookEntryForAnalytics[]): {
     let negativeCount = 0;
 
     recentEntries.forEach((entry) => {
-      const text = entry.studentEngagement.toLowerCase();
+      const text = entry.classEngagement.toLowerCase();
       positiveWords.forEach((word) => {
         if (text.includes(word)) positiveCount++;
       });
@@ -105,9 +105,9 @@ function extractCommonThemes(entries: DaybookEntryForAnalytics[]): {
       });
     }
 
-    // Extract themes from whatDidntWork and studentChallenges
-    if (entry.whatDidntWork || entry.studentChallenges) {
-      const text = `${entry.whatDidntWork || ''} ${entry.studentChallenges || ''}`;
+    // Extract themes from whatDidntWork and commonChallenges
+    if (entry.whatDidntWork || entry.commonChallenges) {
+      const text = `${entry.whatDidntWork || ''} ${entry.commonChallenges || ''}`;
       const words = extractKeywords(text);
       words.forEach((word) => {
         challengeWords.set(word, (challengeWords.get(word) || 0) + 1);
@@ -218,7 +218,7 @@ function generateRecommendations(entries: DaybookEntryForAnalytics[]): string[] 
   // Check reflection completeness
   const reflectiveEntries = entries.filter(
     (e) =>
-      e.whatWorked || e.whatDidntWork || e.studentEngagement || e.studentChallenges || e.nextSteps,
+      e.whatWorked || e.whatDidntWork || e.classEngagement || e.commonChallenges || e.nextSteps,
   );
 
   if (reflectiveEntries.length < entries.length * 0.5) {
@@ -267,9 +267,9 @@ const daybookEntryCreateSchema = z.object({
   whatDidntWorkFr: z.string().optional(),
   nextSteps: z.string().optional(),
   nextStepsFr: z.string().optional(),
-  studentEngagement: z.string().optional(),
-  studentChallenges: z.string().optional(),
-  studentSuccesses: z.string().optional(),
+  classEngagement: z.string().optional(),
+  commonChallenges: z.string().optional(),
+  notableAchievements: z.string().optional(),
   notes: z.string().optional(),
   notesFr: z.string().optional(),
   privateNotes: z.string().optional(),

@@ -181,3 +181,9 @@ playwright-report/
 direct-test.js
 start-and-login.js
 test-login-simple.js
+
+# Vite cache
+client/.vite-cache/
+
+# Jest cache
+server/.jest-cache/
