@@ -535,8 +535,7 @@ export class TemplateService {
             {
               OR: [
                 { isSystem: true },
-                { isPublic: true },
-                { createdByUserId: userId },
+                { createdByUserId: userId }, // Removed isPublic - single-teacher use
               ],
             },
             {

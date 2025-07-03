@@ -40,11 +40,7 @@ jest.mock('@/services/embeddingService', () => ({
   embeddingService: mockEmbeddingService,
 }));
 
-// Mock email service (external service)
-jest.mock('@/services/emailService', () => ({
-  sendEmail: jest.fn().mockResolvedValue(true),
-  sendBulkEmails: jest.fn().mockResolvedValue({ sent: [], failed: [] }),
-}));
+// Email service removed - app only creates newsletter drafts, doesn't send emails
 
 // Mock LLM service (external service)
 jest.mock('@/services/llmService', () => ({

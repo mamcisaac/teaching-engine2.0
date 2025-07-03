@@ -1,6 +1,6 @@
-import BaseService, { ServiceDependencies } from './base/BaseService';
 import OpenAI from 'openai';
 import { prisma } from '../prisma';
+import logger from '../logger';
 
 export interface PlanningContext {
   level: 'long-range' | 'unit' | 'lesson' | 'daybook';
@@ -16,16 +16,15 @@ export interface AISuggestion {
   rationale?: string;
 }
 
-export class AIPlanningAssistantService extends BaseService {
+export class AIPlanningAssistantService {
   private openai: OpenAI | null = null;
 
-  constructor(dependencies?: ServiceDependencies) {
-    super('AIPlanningAssistantService', dependencies);
+  constructor() {
     const apiKey = process.env.OPENAI_API_KEY;
     if (apiKey) {
       this.openai = new OpenAI({ apiKey });
     } else {
-      this.logger.warn('OpenAI API key not found - AI planning assistance will be disabled');
+      logger.warn('OpenAI API key not found - AI planning assistance will be disabled');
     }
   }
 
@@ -86,7 +85,7 @@ Return ONLY a JSON object with this structure:
         rationale: parsed.rationale,
       };
     } catch (error) {
-      this.logger.error({ error }, 'Failed to generate long-range goals');
+      logger.error({ error }, 'Failed to generate long-range goals');
       return { type: 'goals', suggestions: [] };
     }
   }
@@ -154,7 +153,7 @@ Return ONLY a JSON object with this structure:
         rationale: parsed.rationale,
       };
     } catch (error) {
-      this.logger.error({ error }, 'Failed to generate unit big ideas');
+      logger.error({ error }, 'Failed to generate unit big ideas');
       return { type: 'bigIdeas', suggestions: [] };
     }
   }
@@ -224,7 +223,7 @@ Return ONLY a JSON object with this structure:
         rationale: parsed.rationale,
       };
     } catch (error) {
-      this.logger.error({ error }, 'Failed to generate lesson activities');
+      logger.error({ error }, 'Failed to generate lesson activities');
       return { type: 'activities', suggestions: [] };
     }
   }
@@ -288,7 +287,7 @@ Return ONLY a JSON object with this structure:
         rationale: parsed.rationale,
       };
     } catch (error) {
-      this.logger.error({ error }, 'Failed to generate materials list');
+      logger.error({ error }, 'Failed to generate materials list');
       return { type: 'materials', suggestions: [] };
     }
   }
@@ -356,7 +355,7 @@ Return ONLY a JSON object with this structure:
         rationale: parsed.rationale,
       };
     } catch (error) {
-      this.logger.error({ error }, 'Failed to generate assessment strategies');
+      logger.error({ error }, 'Failed to generate assessment strategies');
       return { type: 'assessments', suggestions: [] };
     }
   }
@@ -422,7 +421,7 @@ Return ONLY a JSON object with this structure:
         rationale: parsed.rationale,
       };
     } catch (error) {
-      this.logger.error({ error }, 'Failed to generate reflection prompts');
+      logger.error({ error }, 'Failed to generate reflection prompts');
       return { type: 'reflections', suggestions: [] };
     }
   }
@@ -483,7 +482,7 @@ Return ONLY a JSON array of strings:
       const suggestions = JSON.parse(content);
       return Array.isArray(suggestions) ? suggestions : [];
     } catch (error) {
-      this.logger.error({ error }, 'Failed to get curriculum-aligned suggestions');
+      logger.error({ error }, 'Failed to get curriculum-aligned suggestions');
       return [];
     }
   }
@@ -524,7 +523,7 @@ Return ONLY a JSON array of strings:
         lastCheck: new Date().toISOString(),
       };
     } catch (error) {
-      this.logger.error({ error }, 'AI service health check failed');
+      logger.error({ error }, 'AI service health check failed');
       return {
         healthy: false,
         apiKey: !!this.openai,

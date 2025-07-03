@@ -32,17 +32,17 @@ const generateActivitySchema = z.object({
   useSearchResults: z.boolean().default(true),
 });
 
-// Schema for activity enhancement request
-const enhanceActivitySchema = z.object({
-  activityId: z.string(),
-  enhancements: z.object({
-    addDifferentiation: z.boolean().optional(),
-    addAssessment: z.boolean().optional(),
-    adaptForGrade: z.number().min(1).max(8).optional(),
-    translateTo: z.string().optional(),
-    alignToCurriculum: z.array(z.string()).optional(),
-  }),
-});
+// Schema for activity enhancement request (unused - reserved for future enhancement features)
+// const enhanceActivitySchema = z.object({
+//   activityId: z.string(),
+//   enhancements: z.object({
+//     addDifferentiation: z.boolean().optional(),
+//     addAssessment: z.boolean().optional(),
+//     adaptForGrade: z.number().min(1).max(8).optional(),
+//     translateTo: z.string().optional(),
+//     alignToCurriculum: z.array(z.string()).optional(),
+//   }),
+// });
 
 // Schema for saving generated activity
 const saveActivitySchema = z.object({
@@ -77,7 +77,7 @@ const saveActivitySchema = z.object({
 router.post('/generate', authMiddleware, async (req: Request, res: Response) => {
   try {
     const params = generateActivitySchema.parse(req.body);
-    let searchResults = undefined;
+    const searchResults = undefined;
 
     // Activity search removed - generating activities directly from lesson context
 
@@ -109,7 +109,7 @@ router.post('/generate-variations', authMiddleware, async (req: Request, res: Re
     const params = generateActivitySchema.parse(req.body);
     const count = Math.min(req.body.count || 3, 5); // Max 5 variations
 
-    let searchResults = undefined;
+    const searchResults = undefined;
 
     // Activity search removed - generating variations directly from lesson context
 

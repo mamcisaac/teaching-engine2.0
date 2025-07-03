@@ -12,7 +12,7 @@ router.get('/', authMiddleware, async (req, res) => {
 
     const where = includePublic
       ? {
-          OR: [{ userId: req.user!.id }, { isPublic: true }],
+          userId: req.user!.id // Single-teacher use - only show user's own collections,
         }
       : { userId: req.user!.id };
 
@@ -53,7 +53,7 @@ router.get('/:collectionId', authMiddleware, async (req, res) => {
     const collection = await prisma.activityCollection.findFirst({
       where: {
         id: collectionId,
-        OR: [{ userId: req.user!.id }, { isPublic: true }],
+        userId: req.user!.id // Single-teacher use - only show user's own collections,
       },
       include: {
         items: {
@@ -95,7 +95,7 @@ router.get('/:collectionId', authMiddleware, async (req, res) => {
 const createCollectionSchema = z.object({
   name: z.string().min(1).max(100),
   description: z.string().optional(),
-  isPublic: z.boolean().optional().default(false),
+  // isPublic field removed - single-teacher use only
 });
 
 router.post('/', authMiddleware, async (req, res) => {
@@ -106,7 +106,7 @@ router.post('/', authMiddleware, async (req, res) => {
       data: {
         name: data.name,
         description: data.description,
-        isPublic: data.isPublic || false,
+        // isPublic removed - single-teacher use only
         userId: req.user!.id,
       },
     });
@@ -128,7 +128,7 @@ router.post('/', authMiddleware, async (req, res) => {
 const updateCollectionSchema = z.object({
   name: z.string().min(1).max(100).optional(),
   description: z.string().optional(),
-  isPublic: z.boolean().optional(),
+  // isPublic field removed - single-teacher use only
 });
 
 router.put('/:collectionId', authMiddleware, async (req, res) => {
@@ -324,7 +324,7 @@ router.get('/trending/public', authMiddleware, async (req, res) => {
     const { limit = 10 } = req.query;
 
     const collections = await prisma.activityCollection.findMany({
-      where: { isPublic: true },
+      where: { userId: req.user!.id }, // Single-teacher use - only user's collections
       include: {
         _count: {
           select: { items: true },

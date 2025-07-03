@@ -18,10 +18,7 @@ const createServiceMock = (serviceName: string) => {
 };
 
 // Export common service mocks
-export const emailService = {
-  sendEmail: jest.fn().mockResolvedValue({ success: true }),
-  sendBulkEmails: jest.fn().mockResolvedValue({ sent: [], failed: [] }),
-};
+// Email service removed - app only creates newsletter drafts, doesn't send emails
 
 export const embeddingService = {
   generateEmbedding: jest.fn().mockResolvedValue([0.1, 0.2, 0.3]),

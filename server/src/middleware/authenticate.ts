@@ -407,7 +407,7 @@ export async function optionalAuthenticate(
 
     const decoded = await verifyToken(token);
 
-    if (decoded) {
+    if (decoded && !('error' in decoded)) {
       req.user = {
         id: parseInt(decoded.userId, 10),
         email: decoded.email,

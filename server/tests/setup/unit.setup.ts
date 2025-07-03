@@ -363,13 +363,7 @@ jest.mock('@teaching-engine/database', () => {
   };
 });
 
-// Mock email service
-jest.mock('../../src/services/emailService', () => ({
-  EmailService: jest.fn().mockImplementation(() => ({
-    sendEmail: jest.fn().mockResolvedValue(true),
-    sendBulkEmails: jest.fn().mockResolvedValue({ sent: 0, failed: 0 }),
-  })),
-}));
+// Email service removed - app only creates newsletter drafts, doesn't send emails
 
 // Mock file system operations for tests
 jest.mock('fs/promises', () => ({

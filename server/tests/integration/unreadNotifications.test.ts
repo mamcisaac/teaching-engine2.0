@@ -1,11 +1,7 @@
 import { jest } from '@jest/globals';
 import { getTestPrismaClient } from '../jest.setup';
 
-// Mock the email service before importing the module that uses it - service doesn't exist but test is skipped
-const mockSendEmail = jest.fn().mockResolvedValue(undefined);
-// jest.unstable_mockModule('../src/services/emailService', () => ({
-//   sendEmail: mockSendEmail,
-// }));
+// Email service removed - app only creates newsletter drafts, doesn't send emails
 
 // Import after mock is set up
 // NOTE: This function doesn't exist yet - test is disabled
@@ -38,11 +34,6 @@ describe.skip('Unread Notifications - DISABLED (function not implemented)', () =
     });
 
     await sendUnreadNotifications();
-    expect(mockSendEmail).toHaveBeenCalled();
-    expect(mockSendEmail).toHaveBeenCalledWith(
-      'teacher@example.com',
-      'Unread Notification',
-      'Old note',
-    );
+    // Email service removed - app only creates newsletter drafts, doesn't send emails
   });
 });

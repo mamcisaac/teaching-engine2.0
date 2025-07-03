@@ -204,13 +204,7 @@ jest.doMock('../src/services/llmService', () => ({
   generateContent: jest.fn().mockResolvedValue('Mocked AI response'),
 }));
 
-// Conditional mocking - only mock services that are actually used
-if (process.env.MOCK_EMAIL_SERVICE !== 'false') {
-  jest.mock('@/services/emailService', () => ({
-    sendEmail: jest.fn().mockResolvedValue(true),
-    sendBulkEmails: jest.fn().mockResolvedValue({ sent: [], failed: [] }),
-  }));
-}
+// Email service removed - app only creates newsletter drafts, doesn't send emails
 
 // Note: curriculumImportService is not mocked here since its tests need the real implementation
 

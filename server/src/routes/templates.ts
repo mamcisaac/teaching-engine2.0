@@ -27,7 +27,7 @@ const templateCreateSchema = z.object({
   gradeMax: z.number().int().min(1).max(12).optional(),
   tags: z.array(z.string().max(50)).max(20).optional(),
   keywords: z.array(z.string().max(50)).max(20).optional(),
-  isPublic: z.boolean().optional(),
+  // isPublic field removed - single-teacher use only,
   estimatedWeeks: z.number().int().positive().max(52).optional(),
   estimatedMinutes: z.number().int().positive().max(480).optional(),
   content: z.object({
@@ -114,7 +114,7 @@ const templateSearchSchema = z.object({
   gradeMin: z.number().int().min(1).max(12).optional(),
   gradeMax: z.number().int().min(1).max(12).optional(),
   isSystem: z.boolean().optional(),
-  isPublic: z.boolean().optional(),
+  // isPublic field removed - single-teacher use only,
   createdByUserId: z.number().int().optional(),
   search: z.string().optional(),
   tags: z.array(z.string()).optional(),
@@ -146,7 +146,7 @@ router.get('/', async (req: Request, res, _next) => {
       gradeMin,
       gradeMax,
       isSystem,
-      isPublic,
+      // isPublic removed - single-teacher use only
       createdByUserId,
       search,
       tags,
@@ -159,7 +159,7 @@ router.get('/', async (req: Request, res, _next) => {
     const where: Prisma.PlanTemplateWhereInput = {
       OR: [
         { isSystem: true }, // System templates visible to all
-        { isPublic: true }, // Public templates visible to all
+        // isPublic removed - single-teacher use only
         { createdByUserId: userId }, // User's own templates
       ],
     };
@@ -182,7 +182,7 @@ router.get('/', async (req: Request, res, _next) => {
       }
     }
     if (isSystem !== undefined) where.isSystem = isSystem;
-    if (isPublic !== undefined) where.isPublic = isPublic;
+    // isPublic filter removed - single-teacher use only
     if (createdByUserId !== undefined) where.createdByUserId = createdByUserId;
 
     // Text search with database-specific case handling
@@ -263,7 +263,7 @@ router.get('/:id', async (req: Request, res, _next) => {
     const template = await prisma.planTemplate.findFirst({
       where: {
         id: req.params.id,
-        OR: [{ isSystem: true }, { isPublic: true }, { createdByUserId: userId }],
+        OR: [{ isSystem: true }, { createdByUserId: userId }] // Removed isPublic - single-teacher use,
       },
       include: {
         createdByUser: {
@@ -315,7 +315,7 @@ router.post('/', validate(templateCreateSchema), async (req: Request, res, _next
     const {
       tags = [],
       keywords = [],
-      isPublic = false,
+      // isPublic removed - single-teacher use only
       content,
       unitStructure,
       lessonStructure,
@@ -337,7 +337,7 @@ router.post('/', validate(templateCreateSchema), async (req: Request, res, _next
         createdByUserId: userId,
         tags,
         keywords,
-        isPublic,
+        // isPublic removed - single-teacher use only
         content,
         unitStructure: unitStructure || null,
         lessonStructure: lessonStructure || null,
@@ -460,12 +460,12 @@ router.post('/:id/duplicate', async (req: Request, res, _next) => {
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    const { title, isPublic = false } = req.body;
+    const { title } = req.body; // isPublic removed - single-teacher use only
 
     const original = await prisma.planTemplate.findFirst({
       where: {
         id: req.params.id,
-        OR: [{ isSystem: true }, { isPublic: true }, { createdByUserId: userId }],
+        OR: [{ isSystem: true }, { createdByUserId: userId }] // Removed isPublic - single-teacher use,
       },
     });
 
@@ -488,7 +488,7 @@ router.post('/:id/duplicate', async (req: Request, res, _next) => {
         keywords: original.keywords,
         createdByUserId: userId,
         isSystem: false,
-        isPublic,
+        // isPublic removed - single-teacher use only
         content: original.content,
         estimatedWeeks: original.estimatedWeeks,
         unitStructure: original.unitStructure,
@@ -530,7 +530,7 @@ router.post('/:id/apply', async (req: Request, res, _next) => {
     const template = await prisma.planTemplate.findFirst({
       where: {
         id: req.params.id,
-        OR: [{ isSystem: true }, { isPublic: true }, { createdByUserId: userId }],
+        OR: [{ isSystem: true }, { createdByUserId: userId }] // Removed isPublic - single-teacher use,
       },
     });
 
@@ -589,7 +589,7 @@ router.post('/:id/rate', async (req: Request, res, _next) => {
     const template = await prisma.planTemplate.findFirst({
       where: {
         id: req.params.id,
-        OR: [{ isSystem: true }, { isPublic: true }, { createdByUserId: userId }],
+        OR: [{ isSystem: true }, { createdByUserId: userId }] // Removed isPublic - single-teacher use,
       },
     });
 
@@ -648,7 +648,7 @@ router.get('/metadata/options', async (req: Request, res, _next) => {
     const [subjects, grades, categories, tags] = await Promise.all([
       prisma.planTemplate.findMany({
         where: {
-          OR: [{ isSystem: true }, { isPublic: true }, { createdByUserId: userId }],
+          OR: [{ isSystem: true }, { createdByUserId: userId }], // Removed isPublic - single-teacher use
           subject: { not: null },
         },
         select: { subject: true },
@@ -658,7 +658,7 @@ router.get('/metadata/options', async (req: Request, res, _next) => {
         where: {
           AND: [
             {
-              OR: [{ isSystem: true }, { isPublic: true }, { createdByUserId: userId }],
+              OR: [{ isSystem: true }, { createdByUserId: userId }] // Removed isPublic - single-teacher use,
             },
             {
               OR: [{ gradeMin: { not: null } }, { gradeMax: { not: null } }],
@@ -673,7 +673,7 @@ router.get('/metadata/options', async (req: Request, res, _next) => {
       }),
       prisma.planTemplate.findMany({
         where: {
-          OR: [{ isSystem: true }, { isPublic: true }, { createdByUserId: userId }],
+          OR: [{ isSystem: true }, { createdByUserId: userId }] // Removed isPublic - single-teacher use,
         },
         select: { tags: true },
       }),

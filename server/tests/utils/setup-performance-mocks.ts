@@ -20,19 +20,7 @@ jest.mock('openai', () => ({
   OpenAI: jest.fn().mockImplementation(() => mockOpenAI),
 }));
 
-// Mock email service for performance tests
-jest.mock('@/services/emailService', () => ({
-  sendEmail: jest.fn().mockImplementation(async () => {
-    // Simulate some processing time but keep it consistent
-    await new Promise(resolve => setTimeout(resolve, 10));
-    return true;
-  }),
-  sendBulkEmails: jest.fn().mockImplementation(async (emails) => {
-    // Simulate bulk processing time
-    await new Promise(resolve => setTimeout(resolve, emails.length * 2));
-    return { sent: emails, failed: [] };
-  }),
-}));
+// Email service removed - app only creates newsletter drafts, doesn't send emails
 
 // For performance tests, we want to measure real database operations
 // so we don't mock the database layer

@@ -125,14 +125,7 @@ export const createMockCurriculumImportService = () => ({
   isAvailable: jest.fn().mockReturnValue(true),
 });
 
-// Mock Email Service
-export const createMockEmailService = () => ({
-  sendEmail: jest.fn().mockResolvedValue({ success: true, messageId: 'mock-message-id' }),
-  sendBulkEmail: jest.fn().mockResolvedValue({ success: true, successCount: 0, failCount: 0 }),
-  validateEmailAddress: jest.fn().mockReturnValue(true),
-  isAvailable: jest.fn().mockReturnValue(false), // Disabled in tests
-  getUsageStats: jest.fn().mockReturnValue({ sent: 0, failed: 0 }),
-});
+// Email service removed - app only creates newsletter drafts, doesn't send emails
 
 // Mock File Service
 export const createMockFileService = () => ({
@@ -159,7 +152,6 @@ export const createComprehensiveServiceMocks = () => {
     aiPlanningAssistantService: createMockAIPlanningAssistantService(),
     newsletterService: createMockNewsletterService(),
     curriculumImportService: createMockCurriculumImportService(),
-    emailService: createMockEmailService(),
     fileService: createMockFileService(),
   };
 
@@ -183,13 +175,6 @@ export const validateServiceMocks = () => {
       check: () => {
         // This will be mocked by globalMocks.ts
         return true;
-      },
-    },
-    {
-      name: 'Email Service',
-      check: () => {
-        const mockEmail = createMockEmailService();
-        return typeof mockEmail.sendEmail === 'function';
       },
     },
     {
@@ -236,7 +221,6 @@ export {
   createMockAIPlanningAssistantService,
   createMockNewsletterService,
   createMockCurriculumImportService,
-  createMockEmailService,
   createMockFileService,
 };
 

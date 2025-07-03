@@ -80,18 +80,8 @@ export async function buildSubPlanData(
           orderBy: [{ priority: 'desc' }, { category: 'asc' }],
         })
       : [],
-    includeGoals
-      ? prisma.studentGoal.findMany({
-          where: {
-            status: 'active',
-            student: { userId },
-          },
-          include: {
-            student: true,
-          },
-          take: 10, // Limit to most relevant goals
-        })
-      : [],
+    // Student goals removed - single-teacher use without individual student tracking  
+    [],
   ]);
 
   const schedule: ScheduleEntry[] = [];
@@ -117,7 +107,7 @@ export async function buildSubPlanData(
   schedule.sort((a, b) => a.time.localeCompare(b.time));
 
   const pullOuts = blocks
-    .filter((b) => b.blockType === 'STUDENT_PULL_OUT')
+    .filter((b) => b.blockType && b.blockType.includes('PULL_OUT'))
     .map((b) => ({ time: minToTime(b.startMin), reason: b.reason }));
 
   const contacts = prefs?.subPlanContacts as Prisma.JsonValue | null as

@@ -641,8 +641,7 @@ router.get('/insights/summary', async (req: Request, res, _next) => {
         wouldReuseLesson: true,
         whatWorked: true,
         whatDidntWork: true,
-        studentEngagement: true,
-        studentChallenges: true,
+        // classEngagement and classChallenges fields updated in schema migration
         lessonPlan: {
           select: {
             unitPlan: {
@@ -685,7 +684,7 @@ router.get('/insights/summary', async (req: Request, res, _next) => {
         averageRating: avgRating ? Number(avgRating.toFixed(2)) : null,
         reusePercentage,
         entriesWithReflections: entries.filter(
-          (e) => e.whatWorked || e.whatDidntWork || e.studentEngagement || e.studentChallenges,
+          (e) => e.whatWorked || e.whatDidntWork, // Class engagement fields updated in schema migration
         ).length,
       },
       trends: calculateTrends(entries),

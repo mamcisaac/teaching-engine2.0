@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/Button';
 import { Progress } from './ui/Progress';
@@ -48,11 +48,11 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
   const [isCreatingSampleData, setIsCreatingSampleData] = useState(false);
 
   // Define completeOnboarding first
-  const completeOnboarding = () => {
+  const completeOnboarding = useCallback(() => {
     localStorage.setItem('onboarded', 'true');
     setVisible(false);
     onComplete?.();
-  };
+  }, [onComplete]);
 
   // Save completed steps to localStorage with debouncing to prevent flashing
   useEffect(() => {

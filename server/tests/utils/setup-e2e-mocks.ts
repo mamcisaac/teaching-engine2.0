@@ -20,17 +20,7 @@ jest.mock('openai', () => ({
   OpenAI: jest.fn().mockImplementation(() => mockOpenAI),
 }));
 
-// Mock email service to prevent sending real emails
-jest.mock('@/services/emailService', () => ({
-  sendEmail: jest.fn().mockImplementation(async (to, subject, body) => {
-    console.log(`[E2E Mock] Email would be sent to ${to}: ${subject}`);
-    return true;
-  }),
-  sendBulkEmails: jest.fn().mockImplementation(async (emails) => {
-    console.log(`[E2E Mock] Bulk emails would be sent to ${emails.length} recipients`);
-    return { sent: emails, failed: [] };
-  }),
-}));
+// Email service removed - app only creates newsletter drafts, doesn't send emails
 
 // Use real implementations for everything else:
 // - Database operations

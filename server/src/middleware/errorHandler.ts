@@ -304,22 +304,26 @@ export function errorHandler(err: Error, req: Request, res: Response, _next: Nex
     if (err instanceof AuthenticationError || 
         (err.message && (err.message.includes('Invalid email or password') || 
                         err.message.includes('Invalid credentials')))) {
-      return res.status(401).json({ error: 'Invalid credentials' });
+      res.status(401).json({ error: 'Invalid credentials' });
+      return;
     }
     
     // Handle ConflictError for duplicate email
     if (err instanceof ConflictError || 
         (err.message && err.message.toLowerCase().includes('email already'))) {
-      return res.status(409).json({ error: 'Email already exists' });
+      res.status(409).json({ error: 'Email already exists' });
+      return;
     }
     
     // Handle specific ValidationErrors
     if (err instanceof ValidationError) {
       if (err.message === 'Email and password are required') {
-        return res.status(400).json({ error: 'Email and password are required' });
+        res.status(400).json({ error: 'Email and password are required' });
+        return;
       }
       if (err.message === 'Invalid email format') {
-        return res.status(400).json({ error: 'Invalid email format' });
+        res.status(400).json({ error: 'Invalid email format' });
+        return;
       }
     }
   }

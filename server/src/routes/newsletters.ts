@@ -1,7 +1,7 @@
 import { Router, Request } from 'express';
 import { prisma } from '../prisma';
 import { z } from 'zod';
-import { generateNewsletterContent } from '../services/newsletterService';
+import { generateNewsletterContent, type NewsletterSection, type NewsletterTone } from '../services/newsletterService';
 
 const router = Router();
 
@@ -168,11 +168,11 @@ router.post('/:id/regenerate', async (req: Request, res) => {
       userId,
       dateFrom: newsletter.dateFrom,
       dateTo: newsletter.dateTo,
-      tone: tone || newsletter.tone,
+      tone: (tone as NewsletterTone) || (newsletter.tone as NewsletterTone),
       focusAreas: [],
       includeUpcomingEvents: true,
       templateType: templateType || 'weekly',
-      existingSections: sections.filter((s) => !s.isEditable),
+      existingSections: sections.filter((s) => !s.isEditable) as NewsletterSection[],
     });
 
     res.json(regeneratedContent);

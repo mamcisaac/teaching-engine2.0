@@ -3,6 +3,21 @@
 
 export type NewsletterTone = 'friendly' | 'formal' | 'informative';
 
+// Legacy types for backward compatibility
+export interface Student {
+  id: number;
+  name: string;
+  parentEmail?: string;
+}
+
+export interface ParentSummary {
+  id: string;
+  studentId: number;
+  content: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export interface NewsletterSection {
   id: string;
   title: string;
@@ -21,6 +36,11 @@ export interface NewsletterGenerationParams {
   focusAreas?: string[];
   includeUpcomingEvents?: boolean;
   templateType?: 'weekly' | 'monthly' | 'special';
+  // Legacy fields for backward compatibility
+  studentIds?: number[];
+  includeArtifacts?: boolean;
+  includeReflections?: boolean;
+  includeLearningGoals?: boolean;
 }
 
 export interface NewsletterDraft {
@@ -35,6 +55,8 @@ export interface NewsletterDraft {
   isDraft: boolean;
   createdAt?: Date;
   updatedAt?: Date;
+  // Legacy field for backward compatibility
+  studentIds?: number[];
 }
 
 export interface GeneratedNewsletter {

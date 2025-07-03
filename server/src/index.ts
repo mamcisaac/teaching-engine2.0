@@ -316,10 +316,8 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 
 if (isDirectRun || isE2ETest || isDevelopment) {
   console.log('Starting server because:', { isDirectRun, isE2ETest, isDevelopment });
-  let server;
-
   // Start server directly - service initialization removed for simplicity
-  server = app.listen(PORT, '0.0.0.0', () => {
+  const server = app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server is running on port ${PORT}`);
     console.log('Server address:', server.address());
     log('Server started successfully');

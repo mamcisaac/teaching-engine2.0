@@ -55,7 +55,8 @@ const resetPasswordSchema = z.object({
 // Middleware to validate auth inputs with test-compatible error messages
 function validateAuthInputs(isRegister = false) {
   return (req: Request, res: Response, next: NextFunction) => {
-    let { email, password } = req.body;
+    let { email } = req.body;
+    const { password } = req.body;
 
     // Check for missing or non-string email/password
     if (!email || !password || typeof email !== 'string' || typeof password !== 'string') {

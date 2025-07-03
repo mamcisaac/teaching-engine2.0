@@ -1,4 +1,4 @@
-import { DaybookEntry, CalendarEvent } from '@teaching-engine/database';
+import { CalendarEvent } from '@teaching-engine/database';
 import { prisma } from '../prisma';
 import OpenAI from 'openai';
 
@@ -63,13 +63,13 @@ export async function generateNewsletterContent({
   if (includeUpcomingEvents) {
     upcomingEvents = await prisma.calendarEvent.findMany({
       where: {
-        userId,
-        date: {
+        teacherId: userId, // Fixed field name
+        start: {
           gte: dateTo,
           lte: new Date(dateTo.getTime() + 14 * 24 * 60 * 60 * 1000), // Next 2 weeks
         },
       },
-      orderBy: { date: 'asc' },
+      orderBy: { start: 'asc' },
       take: 5,
     });
   }
@@ -78,8 +78,8 @@ export async function generateNewsletterContent({
   const learningActivities = daybookEntries.map(entry => ({
     date: entry.date,
     subject: entry.lessonPlan?.subject || 'General',
-    topics: entry.lessonPlan?.learningGoals || [],
-    activities: entry.actualActivities || entry.lessonPlan?.activities || 'Regular classroom activities',
+    topics: (Array.isArray(entry.lessonPlan?.learningGoals) ? entry.lessonPlan.learningGoals : []) || [],
+    activities: 'Regular classroom activities', // activities field simplified for single-teacher use
   }));
 
   const toneDescriptions = {
@@ -108,7 +108,7 @@ ${learningActivities.map(a => `- ${a.date.toLocaleDateString()}: ${a.subject} - 
 
 ${includeUpcomingEvents && upcomingEvents.length > 0 ? `
 Upcoming events:
-${upcomingEvents.map(e => `- ${e.date.toLocaleDateString()}: ${e.title}`).join('\n')}
+${upcomingEvents.map(e => `- ${e.start.toLocaleDateString()}: ${e.title}`).join('\n')}
 ` : ''}
 
 Generate newsletter sections with the following structure:
@@ -201,8 +201,9 @@ export async function getSuggestedFocusAreas(userId: number): Promise<string[]> 
     if (entry.lessonPlan?.subject) {
       subjects.add(entry.lessonPlan.subject);
     }
-    if (entry.lessonPlan?.learningGoals) {
-      entry.lessonPlan.learningGoals.forEach(goal => {
+    const learningGoals = entry.lessonPlan?.learningGoals;
+    if (Array.isArray(learningGoals)) {
+      learningGoals.forEach(goal => {
         // Extract key skills from learning goals
         const skillKeywords = ['reading', 'writing', 'math', 'science', 'social', 'art', 'music', 'physical'];
         skillKeywords.forEach(keyword => {

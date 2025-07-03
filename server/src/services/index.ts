@@ -18,8 +18,7 @@ export {
 
 // Existing services
 export { openai } from './llmService';
-export { extractMaterials } from './materialGenerator';
-export { generateWeeklySchedule } from './planningEngine';
+// materialGenerator and planningEngine removed - over-engineered for single-teacher use
 
 // Service types
 export type { ImportProgress } from './curriculumImportService';

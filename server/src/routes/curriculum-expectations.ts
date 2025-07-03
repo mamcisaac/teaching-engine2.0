@@ -10,30 +10,32 @@ async function textSearch(
   limit: number,
   filters?: { subject?: string; grade?: number; strand?: string },
 ) {
-  const where: Prisma.CurriculumExpectationWhereInput = {
-    AND: []
-  };
+  const whereConditions: Prisma.CurriculumExpectationWhereInput[] = [];
 
   // Add text search
   if (query) {
     const searchTerms = query.toLowerCase().split(' ').filter(term => term.length > 0);
-    where.AND!.push({
+    whereConditions.push({
       OR: [
-        { description: { contains: query, mode: 'insensitive' as const } },
-        { code: { contains: query, mode: 'insensitive' as const } },
-        { strand: { contains: query, mode: 'insensitive' as const } },
-        { substrand: { contains: query, mode: 'insensitive' as const } },
+        { description: { contains: query } },
+        { code: { contains: query } },
+        { strand: { contains: query } },
+        { substrand: { contains: query } },
         ...searchTerms.map(term => ({
-          description: { contains: term, mode: 'insensitive' as const }
+          description: { contains: term }
         }))
       ]
     });
   }
 
   // Add filters
-  if (filters?.subject) where.AND!.push({ subject: filters.subject });
-  if (filters?.grade) where.AND!.push({ grade: filters.grade });
-  if (filters?.strand) where.AND!.push({ strand: filters.strand });
+  if (filters?.subject) whereConditions.push({ subject: filters.subject });
+  if (filters?.grade) whereConditions.push({ grade: filters.grade });
+  if (filters?.strand) whereConditions.push({ strand: filters.strand });
+
+  const where: Prisma.CurriculumExpectationWhereInput = {
+    AND: whereConditions
+  };
 
   const expectations = await prisma.curriculumExpectation.findMany({
     where,
