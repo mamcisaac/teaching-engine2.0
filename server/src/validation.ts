@@ -1,6 +1,5 @@
 import { z, ZodSchema } from 'zod';
 import { Request, Response, NextFunction } from 'express';
-// import { ALLOWED_TEMPLATES } from './services/newsletterGenerator';
 
 export const subjectSchema = z.object({
   name: z.string().min(1),

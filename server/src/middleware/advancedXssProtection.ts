@@ -1,11 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import createDOMPurify from 'isomorphic-dompurify';
-import { JSDOM } from 'jsdom';
+import DOMPurify from 'isomorphic-dompurify';
 import logger from '../logger.js';
-
-// Initialize DOMPurify with jsdom for server-side usage
-const window = new JSDOM('').window;
-const DOMPurify = createDOMPurify(window as unknown as Window);
 
 /**
  * Advanced XSS Protection Middleware
@@ -476,16 +471,18 @@ export function sanitizeHtmlAdvanced(
 
     // Sanitize with DOMPurify
     const sanitized = DOMPurify.sanitize(normalized, config);
+    // Convert TrustedHTML to string
+    const sanitizedString = sanitized.toString();
 
     // Log XSS attempts
-    if (isXssAttempt && sanitized !== normalized) {
+    if (isXssAttempt && sanitizedString !== normalized) {
       logger.warn(
         {
           xssAttempt: true,
           originalLength: html.length,
-          sanitizedLength: sanitized.length,
+          sanitizedLength: sanitizedString.length,
           sanitizedFrom: normalized.substring(0, 100),
-          sanitizedTo: sanitized.substring(0, 100),
+          sanitizedTo: sanitizedString.substring(0, 100),
           context,
         },
         'XSS attempt detected and sanitized',
@@ -495,7 +492,7 @@ export function sanitizeHtmlAdvanced(
     // Clean up hooks to prevent memory leaks
     DOMPurify.removeAllHooks();
 
-    return sanitized;
+    return sanitizedString;
   } catch (error) {
     logger.error({ error, html: html.substring(0, 100) }, 'HTML sanitization error');
     return ''; // Return empty string if sanitization fails

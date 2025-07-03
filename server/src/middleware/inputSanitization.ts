@@ -1,13 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { ParsedQs } from 'qs';
 import { ParamsDictionary } from 'express-serve-static-core';
-import createDOMPurify from 'isomorphic-dompurify';
-import { JSDOM } from 'jsdom';
+import DOMPurify from 'isomorphic-dompurify';
 import logger from '../logger.js';
-
-// Initialize DOMPurify with jsdom for server-side usage
-const window = new JSDOM('').window;
-const DOMPurify = createDOMPurify(window as unknown);
 
 /**
  * Input sanitization middleware
@@ -95,7 +90,7 @@ function sanitizeObject(obj: unknown, config: Record<string, unknown> = strictCo
       let sanitized = removeDangerousPatterns(obj);
 
       // Then apply DOMPurify for HTML sanitization
-      sanitized = DOMPurify.sanitize(sanitized, config);
+      sanitized = DOMPurify.sanitize(sanitized, config).toString();
 
       // Additional XSS prevention for edge cases
       sanitized = sanitized.replace(/javascript\s*:/gi, '');

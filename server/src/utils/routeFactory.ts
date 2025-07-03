@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
 import { authMiddleware } from '../middleware/auth';
+import logger from '../logger.js';
 
 // Base interface for models that might have userId
 interface BaseModel {
@@ -103,7 +104,7 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
         totalPages: Math.ceil(total / Number(limit)),
       });
     } catch (error) {
-      console.error(`Error fetching ${modelName}s:`, error);
+      logger.error({ error, modelName }, `Error fetching ${modelName}s`);
       res.status(500).json({ message: `Failed to fetch ${modelName}s` });
     }
   });
@@ -124,7 +125,7 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
 
       res.json(transformResponse(item));
     } catch (error) {
-      console.error(`Error fetching ${modelName}:`, error);
+      logger.error({ error, modelName, id: req.params.id }, `Error fetching ${modelName}`);
       res.status(500).json({ message: `Failed to fetch ${modelName}` });
     }
   });
@@ -159,7 +160,7 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
       if (error instanceof z.ZodError) {
         return res.status(400).json({ message: 'Invalid data', errors: error.errors });
       }
-      console.error(`Error creating ${modelName}:`, error);
+      logger.error({ error, modelName }, `Error creating ${modelName}`);
       res.status(500).json({ message: `Failed to create ${modelName}` });
     }
   });
@@ -202,7 +203,7 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
       if (error instanceof z.ZodError) {
         return res.status(400).json({ message: 'Invalid data', errors: error.errors });
       }
-      console.error(`Error updating ${modelName}:`, error);
+      logger.error({ error, modelName, id: req.params.id }, `Error updating ${modelName}`);
       res.status(500).json({ message: `Failed to update ${modelName}` });
     }
   });
@@ -237,7 +238,7 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
 
       res.status(204).send();
     } catch (error) {
-      console.error(`Error deleting ${modelName}:`, error);
+      logger.error({ error, modelName, id: req.params.id }, `Error deleting ${modelName}`);
       res.status(500).json({ message: `Failed to delete ${modelName}` });
     }
   });

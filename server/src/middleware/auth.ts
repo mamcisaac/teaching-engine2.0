@@ -117,15 +117,6 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
       domain: process.env.COOKIE_DOMAIN, // Optional: set domain for subdomain sharing
     });
 
-    // Also set authToken cookie for backward compatibility with tests
-    res.cookie('authToken', accessToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 24 * 60 * 60 * 1000, // 24 hours (shorter than refresh token)
-      path: '/',
-      domain: process.env.COOKIE_DOMAIN,
-    });
 
     // Log successful login
     logger.info(
@@ -145,8 +136,6 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
         role: user.role,
       },
       accessToken,
-      refreshToken, // Include refreshToken in response for tests
-      token: accessToken, // Include token field for backward compatibility with tests
     });
   } catch (error) {
     next(error);

@@ -76,14 +76,9 @@ function extractToken(req: Request): string | null {
     return authHeader.substring(7);
   }
 
-  // Check cookies (both 'token' and 'authToken' for compatibility)
-  if (req.cookies) {
-    if (req.cookies.token) {
-      return req.cookies.token;
-    }
-    if (req.cookies.authToken) {
-      return req.cookies.authToken;
-    }
+  // Check cookies
+  if (req.cookies?.token) {
+    return req.cookies.token;
   }
 
   // Check query parameter (for download links)
@@ -99,17 +94,35 @@ function extractToken(req: Request): string | null {
  */
 async function verifyToken(token: string): Promise<TokenPayload | null> {
   try {
+    // Debug logging for test environment
+    if (process.env.NODE_ENV === 'test') {
+      logger.debug({
+        tokenStart: token.substring(0, 20) + '...',
+        jwtSecret: JWT_SECRET ? 'present' : 'missing',
+        jwtSecretLength: JWT_SECRET?.length
+      }, 'Verifying token');
+    }
+
     const decoded = jwt.verify(token, JWT_SECRET, {
       issuer: 'teaching-engine',
       audience: 'teaching-engine-users',
     }) as TokenPayload;
+
+    // Debug logging for test environment
+    if (process.env.NODE_ENV === 'test') {
+      logger.debug({
+        decoded,
+        hasUserId: !!decoded.userId,
+        hasEmail: !!decoded.email
+      }, 'Token decoded successfully');
+    }
 
     return decoded;
   } catch (error) {
     if (error instanceof jwt.TokenExpiredError) {
       logger.debug('Token expired');
     } else if (error instanceof jwt.JsonWebTokenError) {
-      logger.debug('Invalid token');
+      logger.debug({ error: error.message }, 'Invalid token');
     } else {
       logger.error({ error }, 'Token verification error');
     }
@@ -124,6 +137,16 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
   try {
     const token = extractToken(req);
 
+    // Debug logging for test environment
+    if (process.env.NODE_ENV === 'test') {
+      logger.debug({
+        path: req.path,
+        hasToken: !!token,
+        authHeader: req.headers.authorization,
+        tokenLength: token?.length
+      }, 'Authenticate middleware called');
+    }
+
     if (!token) {
       res.status(401).json({
         error: 'Unauthorized',
@@ -135,6 +158,9 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
     const decoded = await verifyToken(token);
 
     if (!decoded) {
+      if (process.env.NODE_ENV === 'test') {
+        logger.debug({ token: token.substring(0, 20) + '...' }, 'Token verification failed');
+      }
       res.status(401).json({
         error: 'Unauthorized',
         message: 'Authentication required',
@@ -207,15 +233,30 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
       });
 
       if (!user) {
-        logger.debug(
-          {
-            userId,
-            decodedUserId: decoded.userId,
-            decodedEmail: decoded.email,
-            isAuthMeEndpoint,
-          },
-          'User not found in database during authentication',
-        );
+        // In test mode, also check if any users exist
+        if (process.env.NODE_ENV === 'test') {
+          const userCount = await prisma.user.count();
+          logger.debug(
+            {
+              userId,
+              decodedUserId: decoded.userId,
+              decodedEmail: decoded.email,
+              isAuthMeEndpoint,
+              totalUsersInDb: userCount,
+            },
+            'User not found in database during authentication',
+          );
+        } else {
+          logger.debug(
+            {
+              userId,
+              decodedUserId: decoded.userId,
+              decodedEmail: decoded.email,
+              isAuthMeEndpoint,
+            },
+            'User not found in database during authentication',
+          );
+        }
 
         res.status(401).json({
           error: 'Unauthorized',

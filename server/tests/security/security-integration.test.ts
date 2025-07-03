@@ -1,9 +1,10 @@
 import { describe, it, expect, beforeAll, afterAll, beforeEach } from '@jest/globals';
 import request from 'supertest';
 import bcrypt from 'bcryptjs';
-import { app } from '../../src/index';
-import { prisma } from '../../src/prisma';
 import { resetRateLimiterState } from '../../src/middleware/rateLimiter';
+
+let app: any;
+let prisma: any;
 
 describe('Security Integration Tests', () => {
   beforeAll(async () => {
@@ -11,10 +12,19 @@ describe('Security Integration Tests', () => {
     process.env.NODE_ENV = 'test';
     process.env.JWT_SECRET = 'test-secret-key';
     process.env.ALLOWED_ORIGINS = 'http://localhost:5173,http://localhost:3000';
+    
+    // Import app and prisma dynamically
+    const appModule = await import('../../src/index');
+    app = appModule.app;
+    
+    const prismaModule = await import('../../src/prisma');
+    prisma = prismaModule.prisma;
   });
 
   afterAll(async () => {
-    await prisma.$disconnect();
+    if (prisma) {
+      await prisma.$disconnect();
+    }
   });
 
   beforeEach(async () => {
@@ -22,9 +32,11 @@ describe('Security Integration Tests', () => {
     resetRateLimiterState();
     
     // Clean up test data before each test
-    await prisma.user.deleteMany({
-      where: { email: { contains: 'securitytest' } },
-    });
+    if (prisma) {
+      await prisma.user.deleteMany({
+        where: { email: { contains: 'securitytest' } },
+      });
+    }
   });
 
   describe('End-to-End Security Flow', () => {

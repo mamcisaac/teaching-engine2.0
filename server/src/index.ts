@@ -59,7 +59,7 @@ import {
   shutdownServices,
   getServiceHealth,
 } from './services/initializeServices';
-// import _logger from './logger';
+import logger from './logger.js';
 import { prisma } from './prisma';
 import { rateLimiters } from './middleware/rateLimiter';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
@@ -348,7 +348,7 @@ if (isDirectRun || isE2ETest || isDevelopment) {
       });
 
       server.on('error', (err) => {
-        console.error('Server error:', err);
+        logger.error({ error: err }, 'Server error');
       });
 
       // Handle keep-alive timeouts

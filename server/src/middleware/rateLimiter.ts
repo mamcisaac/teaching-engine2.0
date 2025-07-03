@@ -53,8 +53,8 @@ export const defaultRateLimiter: RateLimitRequestHandler = rateLimit({
 
 // Strict rate limiter for authentication endpoints
 export const authRateLimiter: RateLimitRequestHandler = rateLimit({
-  windowMs: process.env.NODE_ENV === 'test' ? 5000 : 15 * 60 * 1000, // 5 seconds for tests, 15 minutes for production
-  max: process.env.NODE_ENV === 'test' ? 20 : 5, // Higher limit for tests, same limit for production
+  windowMs: process.env.NODE_ENV === 'test' ? 1000 : 15 * 60 * 1000, // 1 second for tests, 15 minutes for production
+  max: process.env.NODE_ENV === 'test' ? 100 : 5, // Much higher limit for tests, same limit for production
   message: 'Too many authentication attempts from this IP, please try again later.',
   standardHeaders: true,
   legacyHeaders: false,
@@ -70,9 +70,9 @@ export const authRateLimiter: RateLimitRequestHandler = rateLimit({
     );
 
     res.status(429).json({
-      error: 'Too Many Authentication Attempts',
-      message: 'Please wait before trying again.',
-      retryAfter: req.rateLimit?.resetTime,
+      error: 'Too Many Requests',
+      message: 'Too many authentication attempts. Please try again later.',
+      retryAfter: Math.ceil((req.rateLimit?.resetTime?.getTime() || Date.now()) - Date.now()) / 1000,
     });
   }) as any,
   skip: ((req: Request) => {
@@ -206,10 +206,37 @@ export const rateLimiters = {
 export const generalRateLimiter = defaultRateLimiter;
 export const resourceCreationRateLimiter = createResourceRateLimiter;
 
+// Store rate limiter instances for testing
+const rateLimiterInstances = [
+  defaultRateLimiter,
+  authRateLimiter,
+  createResourceRateLimiter,
+  readRateLimiter,
+  uploadRateLimiter,
+  aiRateLimiter
+];
+
 // Reset rate limiter state for testing
 export function resetRateLimiterState(): void {
-  // Rate limiters use memory store by default, which doesn't expose a reset method
-  // For testing, we rely on the windowMs to expire naturally or use mock time
-  // In production, you might want to use Redis store which has better control
-  logger.debug('Rate limiter state reset requested');
+  if (process.env.NODE_ENV === 'test') {
+    // In test environment, we can reset the memory store
+    rateLimiterInstances.forEach(limiter => {
+      try {
+        // Access the store and reset it if possible
+        const store = (limiter as any).store;
+        if (store && typeof store.resetAll === 'function') {
+          store.resetAll();
+        } else if (store && typeof store.resetKey === 'function') {
+          // Reset all keys we can think of - IP addresses
+          ['127.0.0.1', '::1', '::ffff:127.0.0.1'].forEach(ip => {
+            store.resetKey(ip);
+          });
+        }
+      } catch (error) {
+        // Ignore errors, rate limiter might not support reset
+        logger.debug({ error }, 'Could not reset rate limiter store');
+      }
+    });
+    logger.debug('Rate limiter state reset attempted');
+  }
 }

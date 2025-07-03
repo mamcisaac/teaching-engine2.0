@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { JSDOM } from 'jsdom';
 import { createHash } from 'crypto';
+import logger from '../logger.js';
 
 interface CacheEntry {
   html: string;
@@ -50,7 +51,7 @@ export class WebFetch {
       
       return html;
     } catch (error) {
-      console.error(`Error fetching ${url}:`, error);
+      logger.error({ error, url }, 'Error fetching URL');
       
       // Try with JSDOM as fallback for JavaScript-heavy sites
       try {
@@ -75,7 +76,7 @@ export class WebFetch {
         dom.window.close();
         return html;
       } catch (fallbackError) {
-        console.error(`Fallback fetch also failed for ${url}:`, fallbackError);
+        logger.error({ error: fallbackError, url }, 'Fallback fetch also failed');
         throw new Error(`Unable to fetch content from ${url}`);
       }
     }
