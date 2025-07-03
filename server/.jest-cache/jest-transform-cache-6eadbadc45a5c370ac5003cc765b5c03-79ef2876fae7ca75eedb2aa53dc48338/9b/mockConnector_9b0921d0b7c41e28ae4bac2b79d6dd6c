@@ -1,0 +1,1217 @@
+0656d4a9cd0825fced25a4b92122bb93
+/* istanbul ignore next */
+function cov_vi2vohc6u() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/connectors/mockConnector.ts";
+  var hash = "112a8a856683017b759ffe8445d4dbd01665bbad";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/connectors/mockConnector.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 9,
+          column: 8
+        },
+        end: {
+          line: 9,
+          column: 22
+        }
+      },
+      "1": {
+        start: {
+          line: 10,
+          column: 8
+        },
+        end: {
+          line: 10,
+          column: 60
+        }
+      },
+      "2": {
+        start: {
+          line: 13,
+          column: 22
+        },
+        end: {
+          line: 13,
+          column: 46
+        }
+      },
+      "3": {
+        start: {
+          line: 15,
+          column: 8
+        },
+        end: {
+          line: 19,
+          column: 9
+        }
+      },
+      "4": {
+        start: {
+          line: 16,
+          column: 26
+        },
+        end: {
+          line: 16,
+          column: 52
+        }
+      },
+      "5": {
+        start: {
+          line: 17,
+          column: 12
+        },
+        end: {
+          line: 18,
+          column: 76
+        }
+      },
+      "6": {
+        start: {
+          line: 17,
+          column: 49
+        },
+        end: {
+          line: 18,
+          column: 74
+        }
+      },
+      "7": {
+        start: {
+          line: 21,
+          column: 8
+        },
+        end: {
+          line: 24,
+          column: 9
+        }
+      },
+      "8": {
+        start: {
+          line: 22,
+          column: 12
+        },
+        end: {
+          line: 23,
+          column: 56
+        }
+      },
+      "9": {
+        start: {
+          line: 22,
+          column: 49
+        },
+        end: {
+          line: 23,
+          column: 54
+        }
+      },
+      "10": {
+        start: {
+          line: 26,
+          column: 8
+        },
+        end: {
+          line: 28,
+          column: 9
+        }
+      },
+      "11": {
+        start: {
+          line: 27,
+          column: 12
+        },
+        end: {
+          line: 27,
+          column: 114
+        }
+      },
+      "12": {
+        start: {
+          line: 27,
+          column: 49
+        },
+        end: {
+          line: 27,
+          column: 112
+        }
+      },
+      "13": {
+        start: {
+          line: 30,
+          column: 8
+        },
+        end: {
+          line: 32,
+          column: 9
+        }
+      },
+      "14": {
+        start: {
+          line: 31,
+          column: 12
+        },
+        end: {
+          line: 31,
+          column: 53
+        }
+      },
+      "15": {
+        start: {
+          line: 34,
+          column: 8
+        },
+        end: {
+          line: 39,
+          column: 12
+        }
+      },
+      "16": {
+        start: {
+          line: 34,
+          column: 40
+        },
+        end: {
+          line: 39,
+          column: 9
+        }
+      },
+      "17": {
+        start: {
+          line: 42,
+          column: 25
+        },
+        end: {
+          line: 42,
+          column: 83
+        }
+      },
+      "18": {
+        start: {
+          line: 42,
+          column: 55
+        },
+        end: {
+          line: 42,
+          column: 82
+        }
+      },
+      "19": {
+        start: {
+          line: 43,
+          column: 8
+        },
+        end: {
+          line: 44,
+          column: 24
+        }
+      },
+      "20": {
+        start: {
+          line: 44,
+          column: 12
+        },
+        end: {
+          line: 44,
+          column: 24
+        }
+      },
+      "21": {
+        start: {
+          line: 45,
+          column: 8
+        },
+        end: {
+          line: 50,
+          column: 10
+        }
+      },
+      "22": {
+        start: {
+          line: 53,
+          column: 8
+        },
+        end: {
+          line: 334,
+          column: 10
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "(anonymous_0)",
+        decl: {
+          start: {
+            line: 8,
+            column: 4
+          },
+          end: {
+            line: 8,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 8,
+            column: 18
+          },
+          end: {
+            line: 11,
+            column: 5
+          }
+        },
+        line: 8
+      },
+      "1": {
+        name: "(anonymous_1)",
+        decl: {
+          start: {
+            line: 12,
+            column: 4
+          },
+          end: {
+            line: 12,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 12,
+            column: 25
+          },
+          end: {
+            line: 40,
+            column: 5
+          }
+        },
+        line: 12
+      },
+      "2": {
+        name: "(anonymous_2)",
+        decl: {
+          start: {
+            line: 17,
+            column: 37
+          },
+          end: {
+            line: 17,
+            column: 38
+          }
+        },
+        loc: {
+          start: {
+            line: 17,
+            column: 49
+          },
+          end: {
+            line: 18,
+            column: 74
+          }
+        },
+        line: 17
+      },
+      "3": {
+        name: "(anonymous_3)",
+        decl: {
+          start: {
+            line: 22,
+            column: 37
+          },
+          end: {
+            line: 22,
+            column: 38
+          }
+        },
+        loc: {
+          start: {
+            line: 22,
+            column: 49
+          },
+          end: {
+            line: 23,
+            column: 54
+          }
+        },
+        line: 22
+      },
+      "4": {
+        name: "(anonymous_4)",
+        decl: {
+          start: {
+            line: 27,
+            column: 37
+          },
+          end: {
+            line: 27,
+            column: 38
+          }
+        },
+        loc: {
+          start: {
+            line: 27,
+            column: 49
+          },
+          end: {
+            line: 27,
+            column: 112
+          }
+        },
+        line: 27
+      },
+      "5": {
+        name: "(anonymous_5)",
+        decl: {
+          start: {
+            line: 34,
+            column: 27
+          },
+          end: {
+            line: 34,
+            column: 28
+          }
+        },
+        loc: {
+          start: {
+            line: 34,
+            column: 40
+          },
+          end: {
+            line: 39,
+            column: 9
+          }
+        },
+        line: 34
+      },
+      "6": {
+        name: "(anonymous_6)",
+        decl: {
+          start: {
+            line: 41,
+            column: 4
+          },
+          end: {
+            line: 41,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 41,
+            column: 41
+          },
+          end: {
+            line: 51,
+            column: 5
+          }
+        },
+        line: 41
+      },
+      "7": {
+        name: "(anonymous_7)",
+        decl: {
+          start: {
+            line: 42,
+            column: 50
+          },
+          end: {
+            line: 42,
+            column: 51
+          }
+        },
+        loc: {
+          start: {
+            line: 42,
+            column: 55
+          },
+          end: {
+            line: 42,
+            column: 82
+          }
+        },
+        line: 42
+      },
+      "8": {
+        name: "(anonymous_8)",
+        decl: {
+          start: {
+            line: 52,
+            column: 4
+          },
+          end: {
+            line: 52,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 52,
+            column: 29
+          },
+          end: {
+            line: 335,
+            column: 5
+          }
+        },
+        line: 52
+      }
+    },
+    branchMap: {
+      "0": {
+        loc: {
+          start: {
+            line: 15,
+            column: 8
+          },
+          end: {
+            line: 19,
+            column: 9
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 15,
+            column: 8
+          },
+          end: {
+            line: 19,
+            column: 9
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 15
+      },
+      "1": {
+        loc: {
+          start: {
+            line: 17,
+            column: 49
+          },
+          end: {
+            line: 18,
+            column: 74
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 17,
+            column: 49
+          },
+          end: {
+            line: 17,
+            column: 93
+          }
+        }, {
+          start: {
+            line: 18,
+            column: 16
+          },
+          end: {
+            line: 18,
+            column: 74
+          }
+        }],
+        line: 17
+      },
+      "2": {
+        loc: {
+          start: {
+            line: 18,
+            column: 17
+          },
+          end: {
+            line: 18,
+            column: 43
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 18,
+            column: 17
+          },
+          end: {
+            line: 18,
+            column: 37
+          }
+        }, {
+          start: {
+            line: 18,
+            column: 41
+          },
+          end: {
+            line: 18,
+            column: 43
+          }
+        }],
+        line: 18
+      },
+      "3": {
+        loc: {
+          start: {
+            line: 21,
+            column: 8
+          },
+          end: {
+            line: 24,
+            column: 9
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 21,
+            column: 8
+          },
+          end: {
+            line: 24,
+            column: 9
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 21
+      },
+      "4": {
+        loc: {
+          start: {
+            line: 22,
+            column: 49
+          },
+          end: {
+            line: 23,
+            column: 54
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 22,
+            column: 49
+          },
+          end: {
+            line: 22,
+            column: 87
+          }
+        }, {
+          start: {
+            line: 23,
+            column: 16
+          },
+          end: {
+            line: 23,
+            column: 54
+          }
+        }],
+        line: 22
+      },
+      "5": {
+        loc: {
+          start: {
+            line: 26,
+            column: 8
+          },
+          end: {
+            line: 28,
+            column: 9
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 26,
+            column: 8
+          },
+          end: {
+            line: 28,
+            column: 9
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 26
+      },
+      "6": {
+        loc: {
+          start: {
+            line: 30,
+            column: 8
+          },
+          end: {
+            line: 32,
+            column: 9
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 30,
+            column: 8
+          },
+          end: {
+            line: 32,
+            column: 9
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 30
+      },
+      "7": {
+        loc: {
+          start: {
+            line: 43,
+            column: 8
+          },
+          end: {
+            line: 44,
+            column: 24
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 43,
+            column: 8
+          },
+          end: {
+            line: 44,
+            column: 24
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 43
+      }
+    },
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 0,
+      "16": 0,
+      "17": 0,
+      "18": 0,
+      "19": 0,
+      "20": 0,
+      "21": 0,
+      "22": 0
+    },
+    f: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0
+    },
+    b: {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0],
+      "3": [0, 0],
+      "4": [0, 0],
+      "5": [0, 0],
+      "6": [0, 0],
+      "7": [0, 0]
+    },
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/connectors/mockConnector.ts",
+      mappings: "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",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/connectors/mockConnector.ts"],
+      sourcesContent: ["import { ExternalActivity } from '@teaching-engine/database';\nimport { BaseConnector } from './baseConnector';\nimport { SearchParams } from '../activityDiscoveryService';\n\n/**\n * Mock connector for testing and development\n * Provides sample activities without requiring external API connections\n */\nexport class MockConnector extends BaseConnector {\n  private mockActivities: Omit<ExternalActivity, 'id' | 'createdAt' | 'updatedAt'>[];\n\n  constructor() {\n    super('mock');\n    this.mockActivities = this.generateMockActivities();\n  }\n\n  async search(params: SearchParams): Promise<ExternalActivity[]> {\n    let results = [...this.mockActivities];\n\n    // Apply query filter\n    if (params.query) {\n      const query = params.query.toLowerCase();\n      results = results.filter(activity => \n        activity.title.toLowerCase().includes(query) ||\n        (activity.description || '').toLowerCase().includes(query)\n      );\n    }\n\n    // Apply grade filter\n    if (params.gradeLevel) {\n      results = results.filter(activity => \n        activity.gradeMin <= params.gradeLevel! && \n        activity.gradeMax >= params.gradeLevel!\n      );\n    }\n\n    // Apply subject filter\n    if (params.subject) {\n      results = results.filter(activity => \n        activity.subject.toLowerCase() === params.subject!.toLowerCase()\n      );\n    }\n\n    // Apply limit\n    if (params.limit) {\n      results = results.slice(0, params.limit);\n    }\n\n    // Convert to full ExternalActivity objects\n    return results.map(activity => ({\n      ...activity,\n      id: `mock-${activity.externalId}`,\n      createdAt: new Date(),\n      updatedAt: new Date()\n    } as ExternalActivity));\n  }\n\n  async getActivityDetails(externalId: string): Promise<ExternalActivity | null> {\n    const activity = this.mockActivities.find(a => a.externalId === externalId);\n    \n    if (!activity) return null;\n\n    return {\n      ...activity,\n      id: `mock-${activity.externalId}`,\n      createdAt: new Date(),\n      updatedAt: new Date()\n    } as ExternalActivity;\n  }\n\n  private generateMockActivities(): Omit<ExternalActivity, 'id' | 'createdAt' | 'updatedAt'>[] {\n    return [\n      {\n        source: 'mock',\n        externalId: 'math-centres-grade1',\n        url: 'https://example.com/math-centres-grade1',\n        title: 'Centres de Math\xE9matiques - 1re ann\xE9e',\n        description: 'Ensemble de 5 centres de math\xE9matiques align\xE9s avec le curriculum de l\\'Ontario. Inclut des activit\xE9s de num\xE9ration, mesure et g\xE9om\xE9trie adapt\xE9es pour l\\'immersion fran\xE7aise.',\n        thumbnailUrl: 'https://placehold.co/300x200/4F46E5/white?text=Math+Centres',\n        duration: 45,\n        activityType: 'center_activity',\n        gradeMin: 1,\n        gradeMax: 1,\n        subject: 'Mathematics',\n        language: 'fr',\n        materials: ['jetons', 'd\xE9s', 'r\xE8gles', 'blocs de base 10', 'cartes de nombres'],\n        technology: null,\n        groupSize: 'small group',\n        sourceRating: 4.8,\n        sourceReviews: 234,\n        internalRating: 4.7,\n        internalReviews: 12,\n        curriculumTags: ['B1.1', 'B1.2', 'B2.1', 'E1.1'],\n        learningGoals: ['Repr\xE9senter des nombres jusqu\\'\xE0 50', 'Mesurer avec des unit\xE9s non standard', 'Identifier et d\xE9crire des formes 2D'],\n        isFree: true,\n        price: null,\n        license: 'CC BY-SA 4.0',\n        lastVerified: new Date(),\n        isActive: true\n      },\n      {\n        source: 'mock',\n        externalId: 'literacy-circles-fr',\n        url: 'https://example.com/literacy-circles-fr',\n        title: 'Cercles de Litt\xE9ratie - Immersion fran\xE7aise',\n        description: 'Structure compl\xE8te pour les cercles de litt\xE9ratie incluant des r\xF4les diff\xE9renci\xE9s, des fiches de suivi et des mini-le\xE7ons pour d\xE9velopper les comp\xE9tences en lecture.',\n        thumbnailUrl: 'https://placehold.co/300x200/10B981/white?text=Literacy+Circles',\n        duration: 30,\n        activityType: 'reading',\n        gradeMin: 1,\n        gradeMax: 2,\n        subject: 'French',\n        language: 'fr',\n        materials: ['livres nivel\xE9s', 'fiches de r\xF4les', 'journaux de lecture'],\n        technology: null,\n        groupSize: 'small group',\n        sourceRating: 4.9,\n        sourceReviews: 156,\n        internalRating: null,\n        internalReviews: null,\n        curriculumTags: ['A1.1', 'A1.2', 'A2.1', 'B1.1'],\n        learningGoals: ['D\xE9velopper la fluidit\xE9 en lecture', 'Comprendre les \xE9l\xE9ments d\\'une histoire', 'Exprimer ses id\xE9es oralement'],\n        isFree: true,\n        price: null,\n        license: 'CC BY-SA 4.0',\n        lastVerified: new Date(),\n        isActive: true\n      },\n      {\n        source: 'mock',\n        externalId: 'writing-workshop-gr1',\n        url: 'https://example.com/writing-workshop-gr1',\n        title: 'Atelier d\\'\xC9criture - Textes Narratifs',\n        description: 'Plan de le\xE7on complet pour un atelier d\\'\xE9criture sur les textes narratifs. Inclut une mini-le\xE7on, du temps d\\'\xE9criture autonome et un partage en groupe.',\n        thumbnailUrl: 'https://placehold.co/300x200/F59E0B/white?text=Writing+Workshop',\n        duration: 40,\n        activityType: 'lesson_plan',\n        gradeMin: 1,\n        gradeMax: 1,\n        subject: 'French',\n        language: 'fr',\n        materials: ['papier \xE0 \xE9crire', 'crayons', 'tableau d\\'ancrage', 'mentor texts'],\n        technology: null,\n        groupSize: 'whole class',\n        sourceRating: 4.7,\n        sourceReviews: 89,\n        internalRating: 4.8,\n        internalReviews: 8,\n        curriculumTags: ['B1.1', 'B1.2', 'B2.1', 'B2.2'],\n        learningGoals: ['\xC9crire un d\xE9but, milieu et fin', 'Utiliser des mots de transition', 'Ajouter des d\xE9tails descriptifs'],\n        isFree: true,\n        price: null,\n        license: 'Free for educational use',\n        lastVerified: new Date(),\n        isActive: true\n      },\n      {\n        source: 'mock',\n        externalId: 'social-studies-community',\n        url: 'https://example.com/community-helpers',\n        title: 'Notre Communaut\xE9 - Unit\xE9 Int\xE9gr\xE9e',\n        description: 'Unit\xE9 th\xE9matique sur les m\xE9tiers et les helpers de la communaut\xE9. Inclut des activit\xE9s de lecture, \xE9criture, arts et \xE9tudes sociales int\xE9gr\xE9es.',\n        thumbnailUrl: 'https://placehold.co/300x200/8B5CF6/white?text=Community',\n        duration: 180,\n        activityType: 'project',\n        gradeMin: 1,\n        gradeMax: 1,\n        subject: 'Social Studies',\n        language: 'fr',\n        materials: ['livres sur les m\xE9tiers', 'mat\xE9riaux d\\'art', 'invit\xE9s de la communaut\xE9'],\n        technology: ['tablette pour recherche'],\n        groupSize: 'flexible',\n        sourceRating: 4.9,\n        sourceReviews: 412,\n        internalRating: 4.9,\n        internalReviews: 15,\n        curriculumTags: ['A1.1', 'A1.2', 'B1.1'],\n        learningGoals: ['Identifier les m\xE9tiers dans la communaut\xE9', 'Comprendre les r\xF4les et responsabilit\xE9s', 'Cr\xE9er un projet sur un m\xE9tier'],\n        isFree: true,\n        price: null,\n        license: 'CC BY-SA 4.0',\n        lastVerified: new Date(),\n        isActive: true\n      },\n      {\n        source: 'mock',\n        externalId: 'science-living-things',\n        url: 'https://example.com/living-things-gr1',\n        title: 'Les \xEAtres Vivants et Non-Vivants',\n        description: 'S\xE9quence d\\'apprentissage compl\xE8te sur les caract\xE9ristiques des \xEAtres vivants. Inclut une sortie dans la cour d\\'\xE9cole, un tri d\\'images et un journal d\\'observation.',\n        thumbnailUrl: 'https://placehold.co/300x200/06B6D4/white?text=Living+Things',\n        duration: 45,\n        activityType: 'experiment',\n        gradeMin: 1,\n        gradeMax: 1,\n        subject: 'Science',\n        language: 'fr',\n        materials: ['loupes', 'journal d\\'observation', 'images \xE0 trier', 'contenants pour sp\xE9cimens'],\n        technology: null,\n        groupSize: 'pairs',\n        sourceRating: 4.7,\n        sourceReviews: 178,\n        internalRating: 4.6,\n        internalReviews: 9,\n        curriculumTags: ['A2.1', 'A2.3', 'A3.1'],\n        learningGoals: ['Faire des pr\xE9dictions', 'Observer et enregistrer', 'Comprendre la flottabilit\xE9'],\n        isFree: true,\n        price: null,\n        license: 'CC BY 4.0',\n        lastVerified: new Date(),\n        isActive: true\n      },\n      {\n        source: 'mock',\n        externalId: 'phonics-sound-hunt',\n        url: 'https://example.com/phonics-sound-hunt',\n        title: 'Chasse aux Sons - Conscience Phonologique',\n        description: 'Activit\xE9 interactive pour d\xE9velopper la conscience phonologique. Les \xE9l\xE8ves cherchent des objets qui commencent par des sons sp\xE9cifiques.',\n        thumbnailUrl: 'https://placehold.co/300x200/EC4899/white?text=Sound+Hunt',\n        duration: 25,\n        activityType: 'handson',\n        gradeMin: 1,\n        gradeMax: 1,\n        subject: 'French',\n        language: 'fr',\n        materials: ['sacs de collection', 'images de r\xE9f\xE9rence', 'fiche de suivi'],\n        technology: null,\n        groupSize: 'pairs',\n        sourceRating: 4.8,\n        sourceReviews: 203,\n        internalRating: null,\n        internalReviews: null,\n        curriculumTags: ['A1.3', 'A2.1', 'B1.1'],\n        learningGoals: ['Identifier les sons initiaux', 'Associer sons et lettres', 'D\xE9velopper le vocabulaire'],\n        isFree: true,\n        price: null,\n        license: 'CC BY-SA 4.0',\n        lastVerified: new Date(),\n        isActive: true\n      },\n      {\n        source: 'mock',\n        externalId: 'art-integration-seasons',\n        url: 'https://example.com/art-seasons',\n        title: 'Art Visuel: Les Quatre Saisons',\n        description: 'Projet d\\'art int\xE9gr\xE9 avec les sciences. Les \xE9l\xE8ves cr\xE9ent des \u0153uvres repr\xE9sentant les caract\xE9ristiques de chaque saison.',\n        thumbnailUrl: 'https://placehold.co/300x200/3B82F6/white?text=Seasons+Art',\n        duration: 50,\n        activityType: 'art_craft',\n        gradeMin: 1,\n        gradeMax: 3,\n        subject: 'physical-education',\n        language: 'fr',\n        materials: [],\n        technology: ['projecteur', 'espace pour bouger'],\n        groupSize: 'whole class',\n        sourceRating: 4.8,\n        sourceReviews: 324,\n        internalRating: 4.9,\n        internalReviews: 22,\n        curriculumTags: ['A1.1', 'B1.1'],\n        learningGoals: ['D\xE9velopper la motricit\xE9 globale', 'Suivre des instructions', 'Lib\xE9rer l\\'\xE9nergie'],\n        isFree: true,\n        price: null,\n        license: 'CC BY-SA 4.0',\n        lastVerified: new Date(),\n        isActive: true\n      },\n      {\n        source: 'mock',\n        externalId: 'word-families-game',\n        url: 'https://example.com/word-families',\n        title: 'Jeu des Familles de Mots',\n        description: 'Jeu de cartes pour pratiquer les familles de mots et les rimes en fran\xE7ais.',\n        thumbnailUrl: 'https://placehold.co/300x200/A855F7/white?text=Word+Families',\n        duration: 15,\n        activityType: 'game',\n        gradeMin: 1,\n        gradeMax: 2,\n        subject: 'francais',\n        language: 'fr',\n        materials: ['cartes de mots', 'tableau de pointage'],\n        technology: null,\n        groupSize: 'pairs',\n        sourceRating: 4.6,\n        sourceReviews: 145,\n        internalRating: 4.5,\n        internalReviews: 6,\n        curriculumTags: ['CL.1', 'CE.1'],\n        learningGoals: ['Identifier les rimes', 'Regrouper les mots par famille', 'D\xE9velopper le vocabulaire'],\n        isFree: false,\n        price: 2.99,\n        license: 'Commercial - Single Classroom Use',\n        lastVerified: new Date(),\n        isActive: true\n      },\n      {\n        source: 'mock',\n        externalId: 'art-texture-exploration',\n        url: 'https://example.com/texture-art',\n        title: 'Exploration des Textures en Art',\n        description: 'Projet d\\'art tactile o\xF9 les \xE9l\xE8ves explorent diff\xE9rentes textures et cr\xE9ent un collage.',\n        thumbnailUrl: 'https://placehold.co/300x200/F97316/white?text=Texture+Art',\n        duration: 40,\n        activityType: 'handson',\n        gradeMin: 1,\n        gradeMax: 3,\n        subject: 'arts',\n        language: 'fr',\n        materials: ['papiers textur\xE9s', 'tissus', 'colle', 'ciseaux', 'carton'],\n        technology: null,\n        groupSize: 'individual',\n        sourceRating: 4.7,\n        sourceReviews: 89,\n        internalRating: null,\n        internalReviews: null,\n        curriculumTags: ['D1.1', 'D1.3'],\n        learningGoals: ['Explorer les textures', 'Cr\xE9er un collage', 'D\xE9crire les sensations tactiles'],\n        isFree: true,\n        price: null,\n        license: 'CC BY-NC 4.0',\n        lastVerified: new Date(),\n        isActive: true\n      },\n      {\n        source: 'mock',\n        externalId: 'counting-coins',\n        url: 'https://example.com/counting-coins',\n        title: 'Compter la Monnaie Canadienne',\n        description: 'Activit\xE9 interactive pour apprendre \xE0 reconna\xEEtre et compter la monnaie canadienne.',\n        thumbnailUrl: 'https://placehold.co/300x200/0EA5E9/white?text=Counting+Coins',\n        duration: 25,\n        activityType: 'handson',\n        gradeMin: 1,\n        gradeMax: 2,\n        subject: 'math',\n        language: 'fr',\n        materials: ['monnaie factice', 'porte-monnaie', 'cartes de prix'],\n        technology: null,\n        groupSize: 'small group',\n        sourceRating: 4.5,\n        sourceReviews: 201,\n        internalRating: 4.6,\n        internalReviews: 11,\n        curriculumTags: ['F1.1', 'F1.2', 'C3.1'],\n        learningGoals: ['Identifier les pi\xE8ces canadiennes', 'Compter la monnaie', 'R\xE9soudre des probl\xE8mes d\\'argent'],\n        isFree: true,\n        price: null,\n        license: 'Free for educational use',\n        lastVerified: new Date(),\n        isActive: true\n      }\n    ];\n  }\n}"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "112a8a856683017b759ffe8445d4dbd01665bbad"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_vi2vohc6u = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_vi2vohc6u();
+import { BaseConnector } from './baseConnector';
+/**
+ * Mock connector for testing and development
+ * Provides sample activities without requiring external API connections
+ */
+export class MockConnector extends BaseConnector {
+  mockActivities;
+  constructor() {
+    /* istanbul ignore next */
+    cov_vi2vohc6u().f[0]++;
+    cov_vi2vohc6u().s[0]++;
+    super('mock');
+    /* istanbul ignore next */
+    cov_vi2vohc6u().s[1]++;
+    this.mockActivities = this.generateMockActivities();
+  }
+  async search(params) {
+    /* istanbul ignore next */
+    cov_vi2vohc6u().f[1]++;
+    let results =
+    /* istanbul ignore next */
+    (cov_vi2vohc6u().s[2]++, [...this.mockActivities]);
+    // Apply query filter
+    /* istanbul ignore next */
+    cov_vi2vohc6u().s[3]++;
+    if (params.query) {
+      /* istanbul ignore next */
+      cov_vi2vohc6u().b[0][0]++;
+      const query =
+      /* istanbul ignore next */
+      (cov_vi2vohc6u().s[4]++, params.query.toLowerCase());
+      /* istanbul ignore next */
+      cov_vi2vohc6u().s[5]++;
+      results = results.filter(activity => {
+        /* istanbul ignore next */
+        cov_vi2vohc6u().f[2]++;
+        cov_vi2vohc6u().s[6]++;
+        return /* istanbul ignore next */(cov_vi2vohc6u().b[1][0]++, activity.title.toLowerCase().includes(query)) ||
+        /* istanbul ignore next */
+        (cov_vi2vohc6u().b[1][1]++, (
+        /* istanbul ignore next */
+        (cov_vi2vohc6u().b[2][0]++, activity.description) ||
+        /* istanbul ignore next */
+        (cov_vi2vohc6u().b[2][1]++, '')).toLowerCase().includes(query));
+      });
+    } else
+    /* istanbul ignore next */
+    {
+      cov_vi2vohc6u().b[0][1]++;
+    }
+    // Apply grade filter
+    cov_vi2vohc6u().s[7]++;
+    if (params.gradeLevel) {
+      /* istanbul ignore next */
+      cov_vi2vohc6u().b[3][0]++;
+      cov_vi2vohc6u().s[8]++;
+      results = results.filter(activity => {
+        /* istanbul ignore next */
+        cov_vi2vohc6u().f[3]++;
+        cov_vi2vohc6u().s[9]++;
+        return /* istanbul ignore next */(cov_vi2vohc6u().b[4][0]++, activity.gradeMin <= params.gradeLevel) &&
+        /* istanbul ignore next */
+        (cov_vi2vohc6u().b[4][1]++, activity.gradeMax >= params.gradeLevel);
+      });
+    } else
+    /* istanbul ignore next */
+    {
+      cov_vi2vohc6u().b[3][1]++;
+    }
+    // Apply subject filter
+    cov_vi2vohc6u().s[10]++;
+    if (params.subject) {
+      /* istanbul ignore next */
+      cov_vi2vohc6u().b[5][0]++;
+      cov_vi2vohc6u().s[11]++;
+      results = results.filter(activity => {
+        /* istanbul ignore next */
+        cov_vi2vohc6u().f[4]++;
+        cov_vi2vohc6u().s[12]++;
+        return activity.subject.toLowerCase() === params.subject.toLowerCase();
+      });
+    } else
+    /* istanbul ignore next */
+    {
+      cov_vi2vohc6u().b[5][1]++;
+    }
+    // Apply limit
+    cov_vi2vohc6u().s[13]++;
+    if (params.limit) {
+      /* istanbul ignore next */
+      cov_vi2vohc6u().b[6][0]++;
+      cov_vi2vohc6u().s[14]++;
+      results = results.slice(0, params.limit);
+    } else
+    /* istanbul ignore next */
+    {
+      cov_vi2vohc6u().b[6][1]++;
+    }
+    // Convert to full ExternalActivity objects
+    cov_vi2vohc6u().s[15]++;
+    return results.map(activity => {
+      /* istanbul ignore next */
+      cov_vi2vohc6u().f[5]++;
+      cov_vi2vohc6u().s[16]++;
+      return {
+        ...activity,
+        id: `mock-${activity.externalId}`,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      };
+    });
+  }
+  async getActivityDetails(externalId) {
+    /* istanbul ignore next */
+    cov_vi2vohc6u().f[6]++;
+    const activity =
+    /* istanbul ignore next */
+    (cov_vi2vohc6u().s[17]++, this.mockActivities.find(a => {
+      /* istanbul ignore next */
+      cov_vi2vohc6u().f[7]++;
+      cov_vi2vohc6u().s[18]++;
+      return a.externalId === externalId;
+    }));
+    /* istanbul ignore next */
+    cov_vi2vohc6u().s[19]++;
+    if (!activity) {
+      /* istanbul ignore next */
+      cov_vi2vohc6u().b[7][0]++;
+      cov_vi2vohc6u().s[20]++;
+      return null;
+    } else
+    /* istanbul ignore next */
+    {
+      cov_vi2vohc6u().b[7][1]++;
+    }
+    cov_vi2vohc6u().s[21]++;
+    return {
+      ...activity,
+      id: `mock-${activity.externalId}`,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+  }
+  generateMockActivities() {
+    /* istanbul ignore next */
+    cov_vi2vohc6u().f[8]++;
+    cov_vi2vohc6u().s[22]++;
+    return [{
+      source: 'mock',
+      externalId: 'math-centres-grade1',
+      url: 'https://example.com/math-centres-grade1',
+      title: 'Centres de Mathématiques - 1re année',
+      description: 'Ensemble de 5 centres de mathématiques alignés avec le curriculum de l\'Ontario. Inclut des activités de numération, mesure et géométrie adaptées pour l\'immersion française.',
+      thumbnailUrl: 'https://placehold.co/300x200/4F46E5/white?text=Math+Centres',
+      duration: 45,
+      activityType: 'center_activity',
+      gradeMin: 1,
+      gradeMax: 1,
+      subject: 'Mathematics',
+      language: 'fr',
+      materials: ['jetons', 'dés', 'règles', 'blocs de base 10', 'cartes de nombres'],
+      technology: null,
+      groupSize: 'small group',
+      sourceRating: 4.8,
+      sourceReviews: 234,
+      internalRating: 4.7,
+      internalReviews: 12,
+      curriculumTags: ['B1.1', 'B1.2', 'B2.1', 'E1.1'],
+      learningGoals: ['Représenter des nombres jusqu\'à 50', 'Mesurer avec des unités non standard', 'Identifier et décrire des formes 2D'],
+      isFree: true,
+      price: null,
+      license: 'CC BY-SA 4.0',
+      lastVerified: new Date(),
+      isActive: true
+    }, {
+      source: 'mock',
+      externalId: 'literacy-circles-fr',
+      url: 'https://example.com/literacy-circles-fr',
+      title: 'Cercles de Littératie - Immersion française',
+      description: 'Structure complète pour les cercles de littératie incluant des rôles différenciés, des fiches de suivi et des mini-leçons pour développer les compétences en lecture.',
+      thumbnailUrl: 'https://placehold.co/300x200/10B981/white?text=Literacy+Circles',
+      duration: 30,
+      activityType: 'reading',
+      gradeMin: 1,
+      gradeMax: 2,
+      subject: 'French',
+      language: 'fr',
+      materials: ['livres nivelés', 'fiches de rôles', 'journaux de lecture'],
+      technology: null,
+      groupSize: 'small group',
+      sourceRating: 4.9,
+      sourceReviews: 156,
+      internalRating: null,
+      internalReviews: null,
+      curriculumTags: ['A1.1', 'A1.2', 'A2.1', 'B1.1'],
+      learningGoals: ['Développer la fluidité en lecture', 'Comprendre les éléments d\'une histoire', 'Exprimer ses idées oralement'],
+      isFree: true,
+      price: null,
+      license: 'CC BY-SA 4.0',
+      lastVerified: new Date(),
+      isActive: true
+    }, {
+      source: 'mock',
+      externalId: 'writing-workshop-gr1',
+      url: 'https://example.com/writing-workshop-gr1',
+      title: 'Atelier d\'Écriture - Textes Narratifs',
+      description: 'Plan de leçon complet pour un atelier d\'écriture sur les textes narratifs. Inclut une mini-leçon, du temps d\'écriture autonome et un partage en groupe.',
+      thumbnailUrl: 'https://placehold.co/300x200/F59E0B/white?text=Writing+Workshop',
+      duration: 40,
+      activityType: 'lesson_plan',
+      gradeMin: 1,
+      gradeMax: 1,
+      subject: 'French',
+      language: 'fr',
+      materials: ['papier à écrire', 'crayons', 'tableau d\'ancrage', 'mentor texts'],
+      technology: null,
+      groupSize: 'whole class',
+      sourceRating: 4.7,
+      sourceReviews: 89,
+      internalRating: 4.8,
+      internalReviews: 8,
+      curriculumTags: ['B1.1', 'B1.2', 'B2.1', 'B2.2'],
+      learningGoals: ['Écrire un début, milieu et fin', 'Utiliser des mots de transition', 'Ajouter des détails descriptifs'],
+      isFree: true,
+      price: null,
+      license: 'Free for educational use',
+      lastVerified: new Date(),
+      isActive: true
+    }, {
+      source: 'mock',
+      externalId: 'social-studies-community',
+      url: 'https://example.com/community-helpers',
+      title: 'Notre Communauté - Unité Intégrée',
+      description: 'Unité thématique sur les métiers et les helpers de la communauté. Inclut des activités de lecture, écriture, arts et études sociales intégrées.',
+      thumbnailUrl: 'https://placehold.co/300x200/8B5CF6/white?text=Community',
+      duration: 180,
+      activityType: 'project',
+      gradeMin: 1,
+      gradeMax: 1,
+      subject: 'Social Studies',
+      language: 'fr',
+      materials: ['livres sur les métiers', 'matériaux d\'art', 'invités de la communauté'],
+      technology: ['tablette pour recherche'],
+      groupSize: 'flexible',
+      sourceRating: 4.9,
+      sourceReviews: 412,
+      internalRating: 4.9,
+      internalReviews: 15,
+      curriculumTags: ['A1.1', 'A1.2', 'B1.1'],
+      learningGoals: ['Identifier les métiers dans la communauté', 'Comprendre les rôles et responsabilités', 'Créer un projet sur un métier'],
+      isFree: true,
+      price: null,
+      license: 'CC BY-SA 4.0',
+      lastVerified: new Date(),
+      isActive: true
+    }, {
+      source: 'mock',
+      externalId: 'science-living-things',
+      url: 'https://example.com/living-things-gr1',
+      title: 'Les êtres Vivants et Non-Vivants',
+      description: 'Séquence d\'apprentissage complète sur les caractéristiques des êtres vivants. Inclut une sortie dans la cour d\'école, un tri d\'images et un journal d\'observation.',
+      thumbnailUrl: 'https://placehold.co/300x200/06B6D4/white?text=Living+Things',
+      duration: 45,
+      activityType: 'experiment',
+      gradeMin: 1,
+      gradeMax: 1,
+      subject: 'Science',
+      language: 'fr',
+      materials: ['loupes', 'journal d\'observation', 'images à trier', 'contenants pour spécimens'],
+      technology: null,
+      groupSize: 'pairs',
+      sourceRating: 4.7,
+      sourceReviews: 178,
+      internalRating: 4.6,
+      internalReviews: 9,
+      curriculumTags: ['A2.1', 'A2.3', 'A3.1'],
+      learningGoals: ['Faire des prédictions', 'Observer et enregistrer', 'Comprendre la flottabilité'],
+      isFree: true,
+      price: null,
+      license: 'CC BY 4.0',
+      lastVerified: new Date(),
+      isActive: true
+    }, {
+      source: 'mock',
+      externalId: 'phonics-sound-hunt',
+      url: 'https://example.com/phonics-sound-hunt',
+      title: 'Chasse aux Sons - Conscience Phonologique',
+      description: 'Activité interactive pour développer la conscience phonologique. Les élèves cherchent des objets qui commencent par des sons spécifiques.',
+      thumbnailUrl: 'https://placehold.co/300x200/EC4899/white?text=Sound+Hunt',
+      duration: 25,
+      activityType: 'handson',
+      gradeMin: 1,
+      gradeMax: 1,
+      subject: 'French',
+      language: 'fr',
+      materials: ['sacs de collection', 'images de référence', 'fiche de suivi'],
+      technology: null,
+      groupSize: 'pairs',
+      sourceRating: 4.8,
+      sourceReviews: 203,
+      internalRating: null,
+      internalReviews: null,
+      curriculumTags: ['A1.3', 'A2.1', 'B1.1'],
+      learningGoals: ['Identifier les sons initiaux', 'Associer sons et lettres', 'Développer le vocabulaire'],
+      isFree: true,
+      price: null,
+      license: 'CC BY-SA 4.0',
+      lastVerified: new Date(),
+      isActive: true
+    }, {
+      source: 'mock',
+      externalId: 'art-integration-seasons',
+      url: 'https://example.com/art-seasons',
+      title: 'Art Visuel: Les Quatre Saisons',
+      description: 'Projet d\'art intégré avec les sciences. Les élèves créent des œuvres représentant les caractéristiques de chaque saison.',
+      thumbnailUrl: 'https://placehold.co/300x200/3B82F6/white?text=Seasons+Art',
+      duration: 50,
+      activityType: 'art_craft',
+      gradeMin: 1,
+      gradeMax: 3,
+      subject: 'physical-education',
+      language: 'fr',
+      materials: [],
+      technology: ['projecteur', 'espace pour bouger'],
+      groupSize: 'whole class',
+      sourceRating: 4.8,
+      sourceReviews: 324,
+      internalRating: 4.9,
+      internalReviews: 22,
+      curriculumTags: ['A1.1', 'B1.1'],
+      learningGoals: ['Développer la motricité globale', 'Suivre des instructions', 'Libérer l\'énergie'],
+      isFree: true,
+      price: null,
+      license: 'CC BY-SA 4.0',
+      lastVerified: new Date(),
+      isActive: true
+    }, {
+      source: 'mock',
+      externalId: 'word-families-game',
+      url: 'https://example.com/word-families',
+      title: 'Jeu des Familles de Mots',
+      description: 'Jeu de cartes pour pratiquer les familles de mots et les rimes en français.',
+      thumbnailUrl: 'https://placehold.co/300x200/A855F7/white?text=Word+Families',
+      duration: 15,
+      activityType: 'game',
+      gradeMin: 1,
+      gradeMax: 2,
+      subject: 'francais',
+      language: 'fr',
+      materials: ['cartes de mots', 'tableau de pointage'],
+      technology: null,
+      groupSize: 'pairs',
+      sourceRating: 4.6,
+      sourceReviews: 145,
+      internalRating: 4.5,
+      internalReviews: 6,
+      curriculumTags: ['CL.1', 'CE.1'],
+      learningGoals: ['Identifier les rimes', 'Regrouper les mots par famille', 'Développer le vocabulaire'],
+      isFree: false,
+      price: 2.99,
+      license: 'Commercial - Single Classroom Use',
+      lastVerified: new Date(),
+      isActive: true
+    }, {
+      source: 'mock',
+      externalId: 'art-texture-exploration',
+      url: 'https://example.com/texture-art',
+      title: 'Exploration des Textures en Art',
+      description: 'Projet d\'art tactile où les élèves explorent différentes textures et créent un collage.',
+      thumbnailUrl: 'https://placehold.co/300x200/F97316/white?text=Texture+Art',
+      duration: 40,
+      activityType: 'handson',
+      gradeMin: 1,
+      gradeMax: 3,
+      subject: 'arts',
+      language: 'fr',
+      materials: ['papiers texturés', 'tissus', 'colle', 'ciseaux', 'carton'],
+      technology: null,
+      groupSize: 'individual',
+      sourceRating: 4.7,
+      sourceReviews: 89,
+      internalRating: null,
+      internalReviews: null,
+      curriculumTags: ['D1.1', 'D1.3'],
+      learningGoals: ['Explorer les textures', 'Créer un collage', 'Décrire les sensations tactiles'],
+      isFree: true,
+      price: null,
+      license: 'CC BY-NC 4.0',
+      lastVerified: new Date(),
+      isActive: true
+    }, {
+      source: 'mock',
+      externalId: 'counting-coins',
+      url: 'https://example.com/counting-coins',
+      title: 'Compter la Monnaie Canadienne',
+      description: 'Activité interactive pour apprendre à reconnaître et compter la monnaie canadienne.',
+      thumbnailUrl: 'https://placehold.co/300x200/0EA5E9/white?text=Counting+Coins',
+      duration: 25,
+      activityType: 'handson',
+      gradeMin: 1,
+      gradeMax: 2,
+      subject: 'math',
+      language: 'fr',
+      materials: ['monnaie factice', 'porte-monnaie', 'cartes de prix'],
+      technology: null,
+      groupSize: 'small group',
+      sourceRating: 4.5,
+      sourceReviews: 201,
+      internalRating: 4.6,
+      internalReviews: 11,
+      curriculumTags: ['F1.1', 'F1.2', 'C3.1'],
+      learningGoals: ['Identifier les pièces canadiennes', 'Compter la monnaie', 'Résoudre des problèmes d\'argent'],
+      isFree: true,
+      price: null,
+      license: 'Free for educational use',
+      lastVerified: new Date(),
+      isActive: true
+    }];
+  }
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3Zfdmkydm9oYzZ1IiwiYWN0dWFsQ292ZXJhZ2UiLCJCYXNlQ29ubmVjdG9yIiwiTW9ja0Nvbm5lY3RvciIsIm1vY2tBY3Rpdml0aWVzIiwiY29uc3RydWN0b3IiLCJmIiwicyIsImdlbmVyYXRlTW9ja0FjdGl2aXRpZXMiLCJzZWFyY2giLCJwYXJhbXMiLCJyZXN1bHRzIiwicXVlcnkiLCJiIiwidG9Mb3dlckNhc2UiLCJmaWx0ZXIiLCJhY3Rpdml0eSIsInRpdGxlIiwiaW5jbHVkZXMiLCJkZXNjcmlwdGlvbiIsImdyYWRlTGV2ZWwiLCJncmFkZU1pbiIsImdyYWRlTWF4Iiwic3ViamVjdCIsImxpbWl0Iiwic2xpY2UiLCJtYXAiLCJpZCIsImV4dGVybmFsSWQiLCJjcmVhdGVkQXQiLCJEYXRlIiwidXBkYXRlZEF0IiwiZ2V0QWN0aXZpdHlEZXRhaWxzIiwiZmluZCIsImEiLCJzb3VyY2UiLCJ1cmwiLCJ0aHVtYm5haWxVcmwiLCJkdXJhdGlvbiIsImFjdGl2aXR5VHlwZSIsImxhbmd1YWdlIiwibWF0ZXJpYWxzIiwidGVjaG5vbG9neSIsImdyb3VwU2l6ZSIsInNvdXJjZVJhdGluZyIsInNvdXJjZVJldmlld3MiLCJpbnRlcm5hbFJhdGluZyIsImludGVybmFsUmV2aWV3cyIsImN1cnJpY3VsdW1UYWdzIiwibGVhcm5pbmdHb2FscyIsImlzRnJlZSIsInByaWNlIiwibGljZW5zZSIsImxhc3RWZXJpZmllZCIsImlzQWN0aXZlIl0sInNvdXJjZXMiOlsiL1VzZXJzL21pY2hhZWxtY2lzYWFjL0dpdEh1Yi90ZWFjaGluZy1lbmdpbmUyLjAvc2VydmVyL3NyYy9zZXJ2aWNlcy9jb25uZWN0b3JzL21vY2tDb25uZWN0b3IudHMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgRXh0ZXJuYWxBY3Rpdml0eSB9IGZyb20gJ0B0ZWFjaGluZy1lbmdpbmUvZGF0YWJhc2UnO1xuaW1wb3J0IHsgQmFzZUNvbm5lY3RvciB9IGZyb20gJy4vYmFzZUNvbm5lY3Rvcic7XG5pbXBvcnQgeyBTZWFyY2hQYXJhbXMgfSBmcm9tICcuLi9hY3Rpdml0eURpc2NvdmVyeVNlcnZpY2UnO1xuXG4vKipcbiAqIE1vY2sgY29ubmVjdG9yIGZvciB0ZXN0aW5nIGFuZCBkZXZlbG9wbWVudFxuICogUHJvdmlkZXMgc2FtcGxlIGFjdGl2aXRpZXMgd2l0aG91dCByZXF1aXJpbmcgZXh0ZXJuYWwgQVBJIGNvbm5lY3Rpb25zXG4gKi9cbmV4cG9ydCBjbGFzcyBNb2NrQ29ubmVjdG9yIGV4dGVuZHMgQmFzZUNvbm5lY3RvciB7XG4gIHByaXZhdGUgbW9ja0FjdGl2aXRpZXM6IE9taXQ8RXh0ZXJuYWxBY3Rpdml0eSwgJ2lkJyB8ICdjcmVhdGVkQXQnIHwgJ3VwZGF0ZWRBdCc+W107XG5cbiAgY29uc3RydWN0b3IoKSB7XG4gICAgc3VwZXIoJ21vY2snKTtcbiAgICB0aGlzLm1vY2tBY3Rpdml0aWVzID0gdGhpcy5nZW5lcmF0ZU1vY2tBY3Rpdml0aWVzKCk7XG4gIH1cblxuICBhc3luYyBzZWFyY2gocGFyYW1zOiBTZWFyY2hQYXJhbXMpOiBQcm9taXNlPEV4dGVybmFsQWN0aXZpdHlbXT4ge1xuICAgIGxldCByZXN1bHRzID0gWy4uLnRoaXMubW9ja0FjdGl2aXRpZXNdO1xuXG4gICAgLy8gQXBwbHkgcXVlcnkgZmlsdGVyXG4gICAgaWYgKHBhcmFtcy5xdWVyeSkge1xuICAgICAgY29uc3QgcXVlcnkgPSBwYXJhbXMucXVlcnkudG9Mb3dlckNhc2UoKTtcbiAgICAgIHJlc3VsdHMgPSByZXN1bHRzLmZpbHRlcihhY3Rpdml0eSA9PiBcbiAgICAgICAgYWN0aXZpdHkudGl0bGUudG9Mb3dlckNhc2UoKS5pbmNsdWRlcyhxdWVyeSkgfHxcbiAgICAgICAgKGFjdGl2aXR5LmRlc2NyaXB0aW9uIHx8ICcnKS50b0xvd2VyQ2FzZSgpLmluY2x1ZGVzKHF1ZXJ5KVxuICAgICAgKTtcbiAgICB9XG5cbiAgICAvLyBBcHBseSBncmFkZSBmaWx0ZXJcbiAgICBpZiAocGFyYW1zLmdyYWRlTGV2ZWwpIHtcbiAgICAgIHJlc3VsdHMgPSByZXN1bHRzLmZpbHRlcihhY3Rpdml0eSA9PiBcbiAgICAgICAgYWN0aXZpdHkuZ3JhZGVNaW4gPD0gcGFyYW1zLmdyYWRlTGV2ZWwhICYmIFxuICAgICAgICBhY3Rpdml0eS5ncmFkZU1heCA+PSBwYXJhbXMuZ3JhZGVMZXZlbCFcbiAgICAgICk7XG4gICAgfVxuXG4gICAgLy8gQXBwbHkgc3ViamVjdCBmaWx0ZXJcbiAgICBpZiAocGFyYW1zLnN1YmplY3QpIHtcbiAgICAgIHJlc3VsdHMgPSByZXN1bHRzLmZpbHRlcihhY3Rpdml0eSA9PiBcbiAgICAgICAgYWN0aXZpdHkuc3ViamVjdC50b0xvd2VyQ2FzZSgpID09PSBwYXJhbXMuc3ViamVjdCEudG9Mb3dlckNhc2UoKVxuICAgICAgKTtcbiAgICB9XG5cbiAgICAvLyBBcHBseSBsaW1pdFxuICAgIGlmIChwYXJhbXMubGltaXQpIHtcbiAgICAgIHJlc3VsdHMgPSByZXN1bHRzLnNsaWNlKDAsIHBhcmFtcy5saW1pdCk7XG4gICAgfVxuXG4gICAgLy8gQ29udmVydCB0byBmdWxsIEV4dGVybmFsQWN0aXZpdHkgb2JqZWN0c1xuICAgIHJldHVybiByZXN1bHRzLm1hcChhY3Rpdml0eSA9PiAoe1xuICAgICAgLi4uYWN0aXZpdHksXG4gICAgICBpZDogYG1vY2stJHthY3Rpdml0eS5leHRlcm5hbElkfWAsXG4gICAgICBjcmVhdGVkQXQ6IG5ldyBEYXRlKCksXG4gICAgICB1cGRhdGVkQXQ6IG5ldyBEYXRlKClcbiAgICB9IGFzIEV4dGVybmFsQWN0aXZpdHkpKTtcbiAgfVxuXG4gIGFzeW5jIGdldEFjdGl2aXR5RGV0YWlscyhleHRlcm5hbElkOiBzdHJpbmcpOiBQcm9taXNlPEV4dGVybmFsQWN0aXZpdHkgfCBudWxsPiB7XG4gICAgY29uc3QgYWN0aXZpdHkgPSB0aGlzLm1vY2tBY3Rpdml0aWVzLmZpbmQoYSA9PiBhLmV4dGVybmFsSWQgPT09IGV4dGVybmFsSWQpO1xuICAgIFxuICAgIGlmICghYWN0aXZpdHkpIHJldHVybiBudWxsO1xuXG4gICAgcmV0dXJuIHtcbiAgICAgIC4uLmFjdGl2aXR5LFxuICAgICAgaWQ6IGBtb2NrLSR7YWN0aXZpdHkuZXh0ZXJuYWxJZH1gLFxuICAgICAgY3JlYXRlZEF0OiBuZXcgRGF0ZSgpLFxuICAgICAgdXBkYXRlZEF0OiBuZXcgRGF0ZSgpXG4gICAgfSBhcyBFeHRlcm5hbEFjdGl2aXR5O1xuICB9XG5cbiAgcHJpdmF0ZSBnZW5lcmF0ZU1vY2tBY3Rpdml0aWVzKCk6IE9taXQ8RXh0ZXJuYWxBY3Rpdml0eSwgJ2lkJyB8ICdjcmVhdGVkQXQnIHwgJ3VwZGF0ZWRBdCc+W10ge1xuICAgIHJldHVybiBbXG4gICAgICB7XG4gICAgICAgIHNvdXJjZTogJ21vY2snLFxuICAgICAgICBleHRlcm5hbElkOiAnbWF0aC1jZW50cmVzLWdyYWRlMScsXG4gICAgICAgIHVybDogJ2h0dHBzOi8vZXhhbXBsZS5jb20vbWF0aC1jZW50cmVzLWdyYWRlMScsXG4gICAgICAgIHRpdGxlOiAnQ2VudHJlcyBkZSBNYXRow6ltYXRpcXVlcyAtIDFyZSBhbm7DqWUnLFxuICAgICAgICBkZXNjcmlwdGlvbjogJ0Vuc2VtYmxlIGRlIDUgY2VudHJlcyBkZSBtYXRow6ltYXRpcXVlcyBhbGlnbsOpcyBhdmVjIGxlIGN1cnJpY3VsdW0gZGUgbFxcJ09udGFyaW8uIEluY2x1dCBkZXMgYWN0aXZpdMOpcyBkZSBudW3DqXJhdGlvbiwgbWVzdXJlIGV0IGfDqW9tw6l0cmllIGFkYXB0w6llcyBwb3VyIGxcXCdpbW1lcnNpb24gZnJhbsOnYWlzZS4nLFxuICAgICAgICB0aHVtYm5haWxVcmw6ICdodHRwczovL3BsYWNlaG9sZC5jby8zMDB4MjAwLzRGNDZFNS93aGl0ZT90ZXh0PU1hdGgrQ2VudHJlcycsXG4gICAgICAgIGR1cmF0aW9uOiA0NSxcbiAgICAgICAgYWN0aXZpdHlUeXBlOiAnY2VudGVyX2FjdGl2aXR5JyxcbiAgICAgICAgZ3JhZGVNaW46IDEsXG4gICAgICAgIGdyYWRlTWF4OiAxLFxuICAgICAgICBzdWJqZWN0OiAnTWF0aGVtYXRpY3MnLFxuICAgICAgICBsYW5ndWFnZTogJ2ZyJyxcbiAgICAgICAgbWF0ZXJpYWxzOiBbJ2pldG9ucycsICdkw6lzJywgJ3LDqGdsZXMnLCAnYmxvY3MgZGUgYmFzZSAxMCcsICdjYXJ0ZXMgZGUgbm9tYnJlcyddLFxuICAgICAgICB0ZWNobm9sb2d5OiBudWxsLFxuICAgICAgICBncm91cFNpemU6ICdzbWFsbCBncm91cCcsXG4gICAgICAgIHNvdXJjZVJhdGluZzogNC44LFxuICAgICAgICBzb3VyY2VSZXZpZXdzOiAyMzQsXG4gICAgICAgIGludGVybmFsUmF0aW5nOiA0LjcsXG4gICAgICAgIGludGVybmFsUmV2aWV3czogMTIsXG4gICAgICAgIGN1cnJpY3VsdW1UYWdzOiBbJ0IxLjEnLCAnQjEuMicsICdCMi4xJywgJ0UxLjEnXSxcbiAgICAgICAgbGVhcm5pbmdHb2FsczogWydSZXByw6lzZW50ZXIgZGVzIG5vbWJyZXMganVzcXVcXCfDoCA1MCcsICdNZXN1cmVyIGF2ZWMgZGVzIHVuaXTDqXMgbm9uIHN0YW5kYXJkJywgJ0lkZW50aWZpZXIgZXQgZMOpY3JpcmUgZGVzIGZvcm1lcyAyRCddLFxuICAgICAgICBpc0ZyZWU6IHRydWUsXG4gICAgICAgIHByaWNlOiBudWxsLFxuICAgICAgICBsaWNlbnNlOiAnQ0MgQlktU0EgNC4wJyxcbiAgICAgICAgbGFzdFZlcmlmaWVkOiBuZXcgRGF0ZSgpLFxuICAgICAgICBpc0FjdGl2ZTogdHJ1ZVxuICAgICAgfSxcbiAgICAgIHtcbiAgICAgICAgc291cmNlOiAnbW9jaycsXG4gICAgICAgIGV4dGVybmFsSWQ6ICdsaXRlcmFjeS1jaXJjbGVzLWZyJyxcbiAgICAgICAgdXJsOiAnaHR0cHM6Ly9leGFtcGxlLmNvbS9saXRlcmFjeS1jaXJjbGVzLWZyJyxcbiAgICAgICAgdGl0bGU6ICdDZXJjbGVzIGRlIExpdHTDqXJhdGllIC0gSW1tZXJzaW9uIGZyYW7Dp2Fpc2UnLFxuICAgICAgICBkZXNjcmlwdGlvbjogJ1N0cnVjdHVyZSBjb21wbMOodGUgcG91ciBsZXMgY2VyY2xlcyBkZSBsaXR0w6lyYXRpZSBpbmNsdWFudCBkZXMgcsO0bGVzIGRpZmbDqXJlbmNpw6lzLCBkZXMgZmljaGVzIGRlIHN1aXZpIGV0IGRlcyBtaW5pLWxlw6dvbnMgcG91ciBkw6l2ZWxvcHBlciBsZXMgY29tcMOpdGVuY2VzIGVuIGxlY3R1cmUuJyxcbiAgICAgICAgdGh1bWJuYWlsVXJsOiAnaHR0cHM6Ly9wbGFjZWhvbGQuY28vMzAweDIwMC8xMEI5ODEvd2hpdGU/dGV4dD1MaXRlcmFjeStDaXJjbGVzJyxcbiAgICAgICAgZHVyYXRpb246IDMwLFxuICAgICAgICBhY3Rpdml0eVR5cGU6ICdyZWFkaW5nJyxcbiAgICAgICAgZ3JhZGVNaW46IDEsXG4gICAgICAgIGdyYWRlTWF4OiAyLFxuICAgICAgICBzdWJqZWN0OiAnRnJlbmNoJyxcbiAgICAgICAgbGFuZ3VhZ2U6ICdmcicsXG4gICAgICAgIG1hdGVyaWFsczogWydsaXZyZXMgbml2ZWzDqXMnLCAnZmljaGVzIGRlIHLDtGxlcycsICdqb3VybmF1eCBkZSBsZWN0dXJlJ10sXG4gICAgICAgIHRlY2hub2xvZ3k6IG51bGwsXG4gICAgICAgIGdyb3VwU2l6ZTogJ3NtYWxsIGdyb3VwJyxcbiAgICAgICAgc291cmNlUmF0aW5nOiA0LjksXG4gICAgICAgIHNvdXJjZVJldmlld3M6IDE1NixcbiAgICAgICAgaW50ZXJuYWxSYXRpbmc6IG51bGwsXG4gICAgICAgIGludGVybmFsUmV2aWV3czogbnVsbCxcbiAgICAgICAgY3VycmljdWx1bVRhZ3M6IFsnQTEuMScsICdBMS4yJywgJ0EyLjEnLCAnQjEuMSddLFxuICAgICAgICBsZWFybmluZ0dvYWxzOiBbJ0TDqXZlbG9wcGVyIGxhIGZsdWlkaXTDqSBlbiBsZWN0dXJlJywgJ0NvbXByZW5kcmUgbGVzIMOpbMOpbWVudHMgZFxcJ3VuZSBoaXN0b2lyZScsICdFeHByaW1lciBzZXMgaWTDqWVzIG9yYWxlbWVudCddLFxuICAgICAgICBpc0ZyZWU6IHRydWUsXG4gICAgICAgIHByaWNlOiBudWxsLFxuICAgICAgICBsaWNlbnNlOiAnQ0MgQlktU0EgNC4wJyxcbiAgICAgICAgbGFzdFZlcmlmaWVkOiBuZXcgRGF0ZSgpLFxuICAgICAgICBpc0FjdGl2ZTogdHJ1ZVxuICAgICAgfSxcbiAgICAgIHtcbiAgICAgICAgc291cmNlOiAnbW9jaycsXG4gICAgICAgIGV4dGVybmFsSWQ6ICd3cml0aW5nLXdvcmtzaG9wLWdyMScsXG4gICAgICAgIHVybDogJ2h0dHBzOi8vZXhhbXBsZS5jb20vd3JpdGluZy13b3Jrc2hvcC1ncjEnLFxuICAgICAgICB0aXRsZTogJ0F0ZWxpZXIgZFxcJ8OJY3JpdHVyZSAtIFRleHRlcyBOYXJyYXRpZnMnLFxuICAgICAgICBkZXNjcmlwdGlvbjogJ1BsYW4gZGUgbGXDp29uIGNvbXBsZXQgcG91ciB1biBhdGVsaWVyIGRcXCfDqWNyaXR1cmUgc3VyIGxlcyB0ZXh0ZXMgbmFycmF0aWZzLiBJbmNsdXQgdW5lIG1pbmktbGXDp29uLCBkdSB0ZW1wcyBkXFwnw6ljcml0dXJlIGF1dG9ub21lIGV0IHVuIHBhcnRhZ2UgZW4gZ3JvdXBlLicsXG4gICAgICAgIHRodW1ibmFpbFVybDogJ2h0dHBzOi8vcGxhY2Vob2xkLmNvLzMwMHgyMDAvRjU5RTBCL3doaXRlP3RleHQ9V3JpdGluZytXb3Jrc2hvcCcsXG4gICAgICAgIGR1cmF0aW9uOiA0MCxcbiAgICAgICAgYWN0aXZpdHlUeXBlOiAnbGVzc29uX3BsYW4nLFxuICAgICAgICBncmFkZU1pbjogMSxcbiAgICAgICAgZ3JhZGVNYXg6IDEsXG4gICAgICAgIHN1YmplY3Q6ICdGcmVuY2gnLFxuICAgICAgICBsYW5ndWFnZTogJ2ZyJyxcbiAgICAgICAgbWF0ZXJpYWxzOiBbJ3BhcGllciDDoCDDqWNyaXJlJywgJ2NyYXlvbnMnLCAndGFibGVhdSBkXFwnYW5jcmFnZScsICdtZW50b3IgdGV4dHMnXSxcbiAgICAgICAgdGVjaG5vbG9neTogbnVsbCxcbiAgICAgICAgZ3JvdXBTaXplOiAnd2hvbGUgY2xhc3MnLFxuICAgICAgICBzb3VyY2VSYXRpbmc6IDQuNyxcbiAgICAgICAgc291cmNlUmV2aWV3czogODksXG4gICAgICAgIGludGVybmFsUmF0aW5nOiA0LjgsXG4gICAgICAgIGludGVybmFsUmV2aWV3czogOCxcbiAgICAgICAgY3VycmljdWx1bVRhZ3M6IFsnQjEuMScsICdCMS4yJywgJ0IyLjEnLCAnQjIuMiddLFxuICAgICAgICBsZWFybmluZ0dvYWxzOiBbJ8OJY3JpcmUgdW4gZMOpYnV0LCBtaWxpZXUgZXQgZmluJywgJ1V0aWxpc2VyIGRlcyBtb3RzIGRlIHRyYW5zaXRpb24nLCAnQWpvdXRlciBkZXMgZMOpdGFpbHMgZGVzY3JpcHRpZnMnXSxcbiAgICAgICAgaXNGcmVlOiB0cnVlLFxuICAgICAgICBwcmljZTogbnVsbCxcbiAgICAgICAgbGljZW5zZTogJ0ZyZWUgZm9yIGVkdWNhdGlvbmFsIHVzZScsXG4gICAgICAgIGxhc3RWZXJpZmllZDogbmV3IERhdGUoKSxcbiAgICAgICAgaXNBY3RpdmU6IHRydWVcbiAgICAgIH0sXG4gICAgICB7XG4gICAgICAgIHNvdXJjZTogJ21vY2snLFxuICAgICAgICBleHRlcm5hbElkOiAnc29jaWFsLXN0dWRpZXMtY29tbXVuaXR5JyxcbiAgICAgICAgdXJsOiAnaHR0cHM6Ly9leGFtcGxlLmNvbS9jb21tdW5pdHktaGVscGVycycsXG4gICAgICAgIHRpdGxlOiAnTm90cmUgQ29tbXVuYXV0w6kgLSBVbml0w6kgSW50w6lncsOpZScsXG4gICAgICAgIGRlc2NyaXB0aW9uOiAnVW5pdMOpIHRow6ltYXRpcXVlIHN1ciBsZXMgbcOpdGllcnMgZXQgbGVzIGhlbHBlcnMgZGUgbGEgY29tbXVuYXV0w6kuIEluY2x1dCBkZXMgYWN0aXZpdMOpcyBkZSBsZWN0dXJlLCDDqWNyaXR1cmUsIGFydHMgZXQgw6l0dWRlcyBzb2NpYWxlcyBpbnTDqWdyw6llcy4nLFxuICAgICAgICB0aHVtYm5haWxVcmw6ICdodHRwczovL3BsYWNlaG9sZC5jby8zMDB4MjAwLzhCNUNGNi93aGl0ZT90ZXh0PUNvbW11bml0eScsXG4gICAgICAgIGR1cmF0aW9uOiAxODAsXG4gICAgICAgIGFjdGl2aXR5VHlwZTogJ3Byb2plY3QnLFxuICAgICAgICBncmFkZU1pbjogMSxcbiAgICAgICAgZ3JhZGVNYXg6IDEsXG4gICAgICAgIHN1YmplY3Q6ICdTb2NpYWwgU3R1ZGllcycsXG4gICAgICAgIGxhbmd1YWdlOiAnZnInLFxuICAgICAgICBtYXRlcmlhbHM6IFsnbGl2cmVzIHN1ciBsZXMgbcOpdGllcnMnLCAnbWF0w6lyaWF1eCBkXFwnYXJ0JywgJ2ludml0w6lzIGRlIGxhIGNvbW11bmF1dMOpJ10sXG4gICAgICAgIHRlY2hub2xvZ3k6IFsndGFibGV0dGUgcG91ciByZWNoZXJjaGUnXSxcbiAgICAgICAgZ3JvdXBTaXplOiAnZmxleGlibGUnLFxuICAgICAgICBzb3VyY2VSYXRpbmc6IDQuOSxcbiAgICAgICAgc291cmNlUmV2aWV3czogNDEyLFxuICAgICAgICBpbnRlcm5hbFJhdGluZzogNC45LFxuICAgICAgICBpbnRlcm5hbFJldmlld3M6IDE1LFxuICAgICAgICBjdXJyaWN1bHVtVGFnczogWydBMS4xJywgJ0ExLjInLCAnQjEuMSddLFxuICAgICAgICBsZWFybmluZ0dvYWxzOiBbJ0lkZW50aWZpZXIgbGVzIG3DqXRpZXJzIGRhbnMgbGEgY29tbXVuYXV0w6knLCAnQ29tcHJlbmRyZSBsZXMgcsO0bGVzIGV0IHJlc3BvbnNhYmlsaXTDqXMnLCAnQ3LDqWVyIHVuIHByb2pldCBzdXIgdW4gbcOpdGllciddLFxuICAgICAgICBpc0ZyZWU6IHRydWUsXG4gICAgICAgIHByaWNlOiBudWxsLFxuICAgICAgICBsaWNlbnNlOiAnQ0MgQlktU0EgNC4wJyxcbiAgICAgICAgbGFzdFZlcmlmaWVkOiBuZXcgRGF0ZSgpLFxuICAgICAgICBpc0FjdGl2ZTogdHJ1ZVxuICAgICAgfSxcbiAgICAgIHtcbiAgICAgICAgc291cmNlOiAnbW9jaycsXG4gICAgICAgIGV4dGVybmFsSWQ6ICdzY2llbmNlLWxpdmluZy10aGluZ3MnLFxuICAgICAgICB1cmw6ICdodHRwczovL2V4YW1wbGUuY29tL2xpdmluZy10aGluZ3MtZ3IxJyxcbiAgICAgICAgdGl0bGU6ICdMZXMgw6p0cmVzIFZpdmFudHMgZXQgTm9uLVZpdmFudHMnLFxuICAgICAgICBkZXNjcmlwdGlvbjogJ1PDqXF1ZW5jZSBkXFwnYXBwcmVudGlzc2FnZSBjb21wbMOodGUgc3VyIGxlcyBjYXJhY3TDqXJpc3RpcXVlcyBkZXMgw6p0cmVzIHZpdmFudHMuIEluY2x1dCB1bmUgc29ydGllIGRhbnMgbGEgY291ciBkXFwnw6ljb2xlLCB1biB0cmkgZFxcJ2ltYWdlcyBldCB1biBqb3VybmFsIGRcXCdvYnNlcnZhdGlvbi4nLFxuICAgICAgICB0aHVtYm5haWxVcmw6ICdodHRwczovL3BsYWNlaG9sZC5jby8zMDB4MjAwLzA2QjZENC93aGl0ZT90ZXh0PUxpdmluZytUaGluZ3MnLFxuICAgICAgICBkdXJhdGlvbjogNDUsXG4gICAgICAgIGFjdGl2aXR5VHlwZTogJ2V4cGVyaW1lbnQnLFxuICAgICAgICBncmFkZU1pbjogMSxcbiAgICAgICAgZ3JhZGVNYXg6IDEsXG4gICAgICAgIHN1YmplY3Q6ICdTY2llbmNlJyxcbiAgICAgICAgbGFuZ3VhZ2U6ICdmcicsXG4gICAgICAgIG1hdGVyaWFsczogWydsb3VwZXMnLCAnam91cm5hbCBkXFwnb2JzZXJ2YXRpb24nLCAnaW1hZ2VzIMOgIHRyaWVyJywgJ2NvbnRlbmFudHMgcG91ciBzcMOpY2ltZW5zJ10sXG4gICAgICAgIHRlY2hub2xvZ3k6IG51bGwsXG4gICAgICAgIGdyb3VwU2l6ZTogJ3BhaXJzJyxcbiAgICAgICAgc291cmNlUmF0aW5nOiA0LjcsXG4gICAgICAgIHNvdXJjZVJldmlld3M6IDE3OCxcbiAgICAgICAgaW50ZXJuYWxSYXRpbmc6IDQuNixcbiAgICAgICAgaW50ZXJuYWxSZXZpZXdzOiA5LFxuICAgICAgICBjdXJyaWN1bHVtVGFnczogWydBMi4xJywgJ0EyLjMnLCAnQTMuMSddLFxuICAgICAgICBsZWFybmluZ0dvYWxzOiBbJ0ZhaXJlIGRlcyBwcsOpZGljdGlvbnMnLCAnT2JzZXJ2ZXIgZXQgZW5yZWdpc3RyZXInLCAnQ29tcHJlbmRyZSBsYSBmbG90dGFiaWxpdMOpJ10sXG4gICAgICAgIGlzRnJlZTogdHJ1ZSxcbiAgICAgICAgcHJpY2U6IG51bGwsXG4gICAgICAgIGxpY2Vuc2U6ICdDQyBCWSA0LjAnLFxuICAgICAgICBsYXN0VmVyaWZpZWQ6IG5ldyBEYXRlKCksXG4gICAgICAgIGlzQWN0aXZlOiB0cnVlXG4gICAgICB9LFxuICAgICAge1xuICAgICAgICBzb3VyY2U6ICdtb2NrJyxcbiAgICAgICAgZXh0ZXJuYWxJZDogJ3Bob25pY3Mtc291bmQtaHVudCcsXG4gICAgICAgIHVybDogJ2h0dHBzOi8vZXhhbXBsZS5jb20vcGhvbmljcy1zb3VuZC1odW50JyxcbiAgICAgICAgdGl0bGU6ICdDaGFzc2UgYXV4IFNvbnMgLSBDb25zY2llbmNlIFBob25vbG9naXF1ZScsXG4gICAgICAgIGRlc2NyaXB0aW9uOiAnQWN0aXZpdMOpIGludGVyYWN0aXZlIHBvdXIgZMOpdmVsb3BwZXIgbGEgY29uc2NpZW5jZSBwaG9ub2xvZ2lxdWUuIExlcyDDqWzDqHZlcyBjaGVyY2hlbnQgZGVzIG9iamV0cyBxdWkgY29tbWVuY2VudCBwYXIgZGVzIHNvbnMgc3DDqWNpZmlxdWVzLicsXG4gICAgICAgIHRodW1ibmFpbFVybDogJ2h0dHBzOi8vcGxhY2Vob2xkLmNvLzMwMHgyMDAvRUM0ODk5L3doaXRlP3RleHQ9U291bmQrSHVudCcsXG4gICAgICAgIGR1cmF0aW9uOiAyNSxcbiAgICAgICAgYWN0aXZpdHlUeXBlOiAnaGFuZHNvbicsXG4gICAgICAgIGdyYWRlTWluOiAxLFxuICAgICAgICBncmFkZU1heDogMSxcbiAgICAgICAgc3ViamVjdDogJ0ZyZW5jaCcsXG4gICAgICAgIGxhbmd1YWdlOiAnZnInLFxuICAgICAgICBtYXRlcmlhbHM6IFsnc2FjcyBkZSBjb2xsZWN0aW9uJywgJ2ltYWdlcyBkZSByw6lmw6lyZW5jZScsICdmaWNoZSBkZSBzdWl2aSddLFxuICAgICAgICB0ZWNobm9sb2d5OiBudWxsLFxuICAgICAgICBncm91cFNpemU6ICdwYWlycycsXG4gICAgICAgIHNvdXJjZVJhdGluZzogNC44LFxuICAgICAgICBzb3VyY2VSZXZpZXdzOiAyMDMsXG4gICAgICAgIGludGVybmFsUmF0aW5nOiBudWxsLFxuICAgICAgICBpbnRlcm5hbFJldmlld3M6IG51bGwsXG4gICAgICAgIGN1cnJpY3VsdW1UYWdzOiBbJ0ExLjMnLCAnQTIuMScsICdCMS4xJ10sXG4gICAgICAgIGxlYXJuaW5nR29hbHM6IFsnSWRlbnRpZmllciBsZXMgc29ucyBpbml0aWF1eCcsICdBc3NvY2llciBzb25zIGV0IGxldHRyZXMnLCAnRMOpdmVsb3BwZXIgbGUgdm9jYWJ1bGFpcmUnXSxcbiAgICAgICAgaXNGcmVlOiB0cnVlLFxuICAgICAgICBwcmljZTogbnVsbCxcbiAgICAgICAgbGljZW5zZTogJ0NDIEJZLVNBIDQuMCcsXG4gICAgICAgIGxhc3RWZXJpZmllZDogbmV3IERhdGUoKSxcbiAgICAgICAgaXNBY3RpdmU6IHRydWVcbiAgICAgIH0sXG4gICAgICB7XG4gICAgICAgIHNvdXJjZTogJ21vY2snLFxuICAgICAgICBleHRlcm5hbElkOiAnYXJ0LWludGVncmF0aW9uLXNlYXNvbnMnLFxuICAgICAgICB1cmw6ICdodHRwczovL2V4YW1wbGUuY29tL2FydC1zZWFzb25zJyxcbiAgICAgICAgdGl0bGU6ICdBcnQgVmlzdWVsOiBMZXMgUXVhdHJlIFNhaXNvbnMnLFxuICAgICAgICBkZXNjcmlwdGlvbjogJ1Byb2pldCBkXFwnYXJ0IGludMOpZ3LDqSBhdmVjIGxlcyBzY2llbmNlcy4gTGVzIMOpbMOodmVzIGNyw6llbnQgZGVzIMWTdXZyZXMgcmVwcsOpc2VudGFudCBsZXMgY2FyYWN0w6lyaXN0aXF1ZXMgZGUgY2hhcXVlIHNhaXNvbi4nLFxuICAgICAgICB0aHVtYm5haWxVcmw6ICdodHRwczovL3BsYWNlaG9sZC5jby8zMDB4MjAwLzNCODJGNi93aGl0ZT90ZXh0PVNlYXNvbnMrQXJ0JyxcbiAgICAgICAgZHVyYXRpb246IDUwLFxuICAgICAgICBhY3Rpdml0eVR5cGU6ICdhcnRfY3JhZnQnLFxuICAgICAgICBncmFkZU1pbjogMSxcbiAgICAgICAgZ3JhZGVNYXg6IDMsXG4gICAgICAgIHN1YmplY3Q6ICdwaHlzaWNhbC1lZHVjYXRpb24nLFxuICAgICAgICBsYW5ndWFnZTogJ2ZyJyxcbiAgICAgICAgbWF0ZXJpYWxzOiBbXSxcbiAgICAgICAgdGVjaG5vbG9neTogWydwcm9qZWN0ZXVyJywgJ2VzcGFjZSBwb3VyIGJvdWdlciddLFxuICAgICAgICBncm91cFNpemU6ICd3aG9sZSBjbGFzcycsXG4gICAgICAgIHNvdXJjZVJhdGluZzogNC44LFxuICAgICAgICBzb3VyY2VSZXZpZXdzOiAzMjQsXG4gICAgICAgIGludGVybmFsUmF0aW5nOiA0LjksXG4gICAgICAgIGludGVybmFsUmV2aWV3czogMjIsXG4gICAgICAgIGN1cnJpY3VsdW1UYWdzOiBbJ0ExLjEnLCAnQjEuMSddLFxuICAgICAgICBsZWFybmluZ0dvYWxzOiBbJ0TDqXZlbG9wcGVyIGxhIG1vdHJpY2l0w6kgZ2xvYmFsZScsICdTdWl2cmUgZGVzIGluc3RydWN0aW9ucycsICdMaWLDqXJlciBsXFwnw6luZXJnaWUnXSxcbiAgICAgICAgaXNGcmVlOiB0cnVlLFxuICAgICAgICBwcmljZTogbnVsbCxcbiAgICAgICAgbGljZW5zZTogJ0NDIEJZLVNBIDQuMCcsXG4gICAgICAgIGxhc3RWZXJpZmllZDogbmV3IERhdGUoKSxcbiAgICAgICAgaXNBY3RpdmU6IHRydWVcbiAgICAgIH0sXG4gICAgICB7XG4gICAgICAgIHNvdXJjZTogJ21vY2snLFxuICAgICAgICBleHRlcm5hbElkOiAnd29yZC1mYW1pbGllcy1nYW1lJyxcbiAgICAgICAgdXJsOiAnaHR0cHM6Ly9leGFtcGxlLmNvbS93b3JkLWZhbWlsaWVzJyxcbiAgICAgICAgdGl0bGU6ICdKZXUgZGVzIEZhbWlsbGVzIGRlIE1vdHMnLFxuICAgICAgICBkZXNjcmlwdGlvbjogJ0pldSBkZSBjYXJ0ZXMgcG91ciBwcmF0aXF1ZXIgbGVzIGZhbWlsbGVzIGRlIG1vdHMgZXQgbGVzIHJpbWVzIGVuIGZyYW7Dp2Fpcy4nLFxuICAgICAgICB0aHVtYm5haWxVcmw6ICdodHRwczovL3BsYWNlaG9sZC5jby8zMDB4MjAwL0E4NTVGNy93aGl0ZT90ZXh0PVdvcmQrRmFtaWxpZXMnLFxuICAgICAgICBkdXJhdGlvbjogMTUsXG4gICAgICAgIGFjdGl2aXR5VHlwZTogJ2dhbWUnLFxuICAgICAgICBncmFkZU1pbjogMSxcbiAgICAgICAgZ3JhZGVNYXg6IDIsXG4gICAgICAgIHN1YmplY3Q6ICdmcmFuY2FpcycsXG4gICAgICAgIGxhbmd1YWdlOiAnZnInLFxuICAgICAgICBtYXRlcmlhbHM6IFsnY2FydGVzIGRlIG1vdHMnLCAndGFibGVhdSBkZSBwb2ludGFnZSddLFxuICAgICAgICB0ZWNobm9sb2d5OiBudWxsLFxuICAgICAgICBncm91cFNpemU6ICdwYWlycycsXG4gICAgICAgIHNvdXJjZVJhdGluZzogNC42LFxuICAgICAgICBzb3VyY2VSZXZpZXdzOiAxNDUsXG4gICAgICAgIGludGVybmFsUmF0aW5nOiA0LjUsXG4gICAgICAgIGludGVybmFsUmV2aWV3czogNixcbiAgICAgICAgY3VycmljdWx1bVRhZ3M6IFsnQ0wuMScsICdDRS4xJ10sXG4gICAgICAgIGxlYXJuaW5nR29hbHM6IFsnSWRlbnRpZmllciBsZXMgcmltZXMnLCAnUmVncm91cGVyIGxlcyBtb3RzIHBhciBmYW1pbGxlJywgJ0TDqXZlbG9wcGVyIGxlIHZvY2FidWxhaXJlJ10sXG4gICAgICAgIGlzRnJlZTogZmFsc2UsXG4gICAgICAgIHByaWNlOiAyLjk5LFxuICAgICAgICBsaWNlbnNlOiAnQ29tbWVyY2lhbCAtIFNpbmdsZSBDbGFzc3Jvb20gVXNlJyxcbiAgICAgICAgbGFzdFZlcmlmaWVkOiBuZXcgRGF0ZSgpLFxuICAgICAgICBpc0FjdGl2ZTogdHJ1ZVxuICAgICAgfSxcbiAgICAgIHtcbiAgICAgICAgc291cmNlOiAnbW9jaycsXG4gICAgICAgIGV4dGVybmFsSWQ6ICdhcnQtdGV4dHVyZS1leHBsb3JhdGlvbicsXG4gICAgICAgIHVybDogJ2h0dHBzOi8vZXhhbXBsZS5jb20vdGV4dHVyZS1hcnQnLFxuICAgICAgICB0aXRsZTogJ0V4cGxvcmF0aW9uIGRlcyBUZXh0dXJlcyBlbiBBcnQnLFxuICAgICAgICBkZXNjcmlwdGlvbjogJ1Byb2pldCBkXFwnYXJ0IHRhY3RpbGUgb8O5IGxlcyDDqWzDqHZlcyBleHBsb3JlbnQgZGlmZsOpcmVudGVzIHRleHR1cmVzIGV0IGNyw6llbnQgdW4gY29sbGFnZS4nLFxuICAgICAgICB0aHVtYm5haWxVcmw6ICdodHRwczovL3BsYWNlaG9sZC5jby8zMDB4MjAwL0Y5NzMxNi93aGl0ZT90ZXh0PVRleHR1cmUrQXJ0JyxcbiAgICAgICAgZHVyYXRpb246IDQwLFxuICAgICAgICBhY3Rpdml0eVR5cGU6ICdoYW5kc29uJyxcbiAgICAgICAgZ3JhZGVNaW46IDEsXG4gICAgICAgIGdyYWRlTWF4OiAzLFxuICAgICAgICBzdWJqZWN0OiAnYXJ0cycsXG4gICAgICAgIGxhbmd1YWdlOiAnZnInLFxuICAgICAgICBtYXRlcmlhbHM6IFsncGFwaWVycyB0ZXh0dXLDqXMnLCAndGlzc3VzJywgJ2NvbGxlJywgJ2Npc2VhdXgnLCAnY2FydG9uJ10sXG4gICAgICAgIHRlY2hub2xvZ3k6IG51bGwsXG4gICAgICAgIGdyb3VwU2l6ZTogJ2luZGl2aWR1YWwnLFxuICAgICAgICBzb3VyY2VSYXRpbmc6IDQuNyxcbiAgICAgICAgc291cmNlUmV2aWV3czogODksXG4gICAgICAgIGludGVybmFsUmF0aW5nOiBudWxsLFxuICAgICAgICBpbnRlcm5hbFJldmlld3M6IG51bGwsXG4gICAgICAgIGN1cnJpY3VsdW1UYWdzOiBbJ0QxLjEnLCAnRDEuMyddLFxuICAgICAgICBsZWFybmluZ0dvYWxzOiBbJ0V4cGxvcmVyIGxlcyB0ZXh0dXJlcycsICdDcsOpZXIgdW4gY29sbGFnZScsICdEw6ljcmlyZSBsZXMgc2Vuc2F0aW9ucyB0YWN0aWxlcyddLFxuICAgICAgICBpc0ZyZWU6IHRydWUsXG4gICAgICAgIHByaWNlOiBudWxsLFxuICAgICAgICBsaWNlbnNlOiAnQ0MgQlktTkMgNC4wJyxcbiAgICAgICAgbGFzdFZlcmlmaWVkOiBuZXcgRGF0ZSgpLFxuICAgICAgICBpc0FjdGl2ZTogdHJ1ZVxuICAgICAgfSxcbiAgICAgIHtcbiAgICAgICAgc291cmNlOiAnbW9jaycsXG4gICAgICAgIGV4dGVybmFsSWQ6ICdjb3VudGluZy1jb2lucycsXG4gICAgICAgIHVybDogJ2h0dHBzOi8vZXhhbXBsZS5jb20vY291bnRpbmctY29pbnMnLFxuICAgICAgICB0aXRsZTogJ0NvbXB0ZXIgbGEgTW9ubmFpZSBDYW5hZGllbm5lJyxcbiAgICAgICAgZGVzY3JpcHRpb246ICdBY3Rpdml0w6kgaW50ZXJhY3RpdmUgcG91ciBhcHByZW5kcmUgw6AgcmVjb25uYcOudHJlIGV0IGNvbXB0ZXIgbGEgbW9ubmFpZSBjYW5hZGllbm5lLicsXG4gICAgICAgIHRodW1ibmFpbFVybDogJ2h0dHBzOi8vcGxhY2Vob2xkLmNvLzMwMHgyMDAvMEVBNUU5L3doaXRlP3RleHQ9Q291bnRpbmcrQ29pbnMnLFxuICAgICAgICBkdXJhdGlvbjogMjUsXG4gICAgICAgIGFjdGl2aXR5VHlwZTogJ2hhbmRzb24nLFxuICAgICAgICBncmFkZU1pbjogMSxcbiAgICAgICAgZ3JhZGVNYXg6IDIsXG4gICAgICAgIHN1YmplY3Q6ICdtYXRoJyxcbiAgICAgICAgbGFuZ3VhZ2U6ICdmcicsXG4gICAgICAgIG1hdGVyaWFsczogWydtb25uYWllIGZhY3RpY2UnLCAncG9ydGUtbW9ubmFpZScsICdjYXJ0ZXMgZGUgcHJpeCddLFxuICAgICAgICB0ZWNobm9sb2d5OiBudWxsLFxuICAgICAgICBncm91cFNpemU6ICdzbWFsbCBncm91cCcsXG4gICAgICAgIHNvdXJjZVJhdGluZzogNC41LFxuICAgICAgICBzb3VyY2VSZXZpZXdzOiAyMDEsXG4gICAgICAgIGludGVybmFsUmF0aW5nOiA0LjYsXG4gICAgICAgIGludGVybmFsUmV2aWV3czogMTEsXG4gICAgICAgIGN1cnJpY3VsdW1UYWdzOiBbJ0YxLjEnLCAnRjEuMicsICdDMy4xJ10sXG4gICAgICAgIGxlYXJuaW5nR29hbHM6IFsnSWRlbnRpZmllciBsZXMgcGnDqGNlcyBjYW5hZGllbm5lcycsICdDb21wdGVyIGxhIG1vbm5haWUnLCAnUsOpc291ZHJlIGRlcyBwcm9ibMOobWVzIGRcXCdhcmdlbnQnXSxcbiAgICAgICAgaXNGcmVlOiB0cnVlLFxuICAgICAgICBwcmljZTogbnVsbCxcbiAgICAgICAgbGljZW5zZTogJ0ZyZWUgZm9yIGVkdWNhdGlvbmFsIHVzZScsXG4gICAgICAgIGxhc3RWZXJpZmllZDogbmV3IERhdGUoKSxcbiAgICAgICAgaXNBY3RpdmU6IHRydWVcbiAgICAgIH1cbiAgICBdO1xuICB9XG59Il0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7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

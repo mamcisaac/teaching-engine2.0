@@ -1,0 +1,413 @@
+3f8424613838bbd4229e8cc81ed27cd4
+/* istanbul ignore next */
+function cov_p4ru7v4gb() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/data/bilingualLessonTemplates.ts";
+  var hash = "641c9106807f44ca238face5daca454ec87df45e";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/data/bilingualLessonTemplates.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 4,
+          column: 40
+        },
+        end: {
+          line: 250,
+          column: 1
+        }
+      },
+      "1": {
+        start: {
+          line: 255,
+          column: 22
+        },
+        end: {
+          line: 255,
+          column: 24
+        }
+      },
+      "2": {
+        start: {
+          line: 256,
+          column: 4
+        },
+        end: {
+          line: 267,
+          column: 5
+        }
+      },
+      "3": {
+        start: {
+          line: 257,
+          column: 24
+        },
+        end: {
+          line: 265,
+          column: 10
+        }
+      },
+      "4": {
+        start: {
+          line: 266,
+          column: 8
+        },
+        end: {
+          line: 266,
+          column: 32
+        }
+      },
+      "5": {
+        start: {
+          line: 268,
+          column: 4
+        },
+        end: {
+          line: 268,
+          column: 21
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "seedBilingualTemplates",
+        decl: {
+          start: {
+            line: 254,
+            column: 22
+          },
+          end: {
+            line: 254,
+            column: 44
+          }
+        },
+        loc: {
+          start: {
+            line: 254,
+            column: 67
+          },
+          end: {
+            line: 269,
+            column: 1
+          }
+        },
+        line: 254
+      }
+    },
+    branchMap: {},
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0
+    },
+    f: {
+      "0": 0
+    },
+    b: {},
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/data/bilingualLessonTemplates.ts",
+      mappings: "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",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/data/bilingualLessonTemplates.ts"],
+      sourcesContent: ["/**\n * Bilingual Lesson Plan Templates for French Immersion and Core French Teachers\n */\n\nexport const bilingualLessonTemplates = [\n  {\n    title: 'French Immersion Math Lesson',\n    titleFr: 'Le\xE7on de math\xE9matiques en immersion fran\xE7aise',\n    description: 'A template for teaching math concepts in French immersion',\n    descriptionFr: 'Un mod\xE8le pour enseigner les concepts math\xE9matiques en immersion fran\xE7aise',\n    type: 'LESSON_PLAN' as const,\n    category: 'BY_SUBJECT' as const,\n    subject: 'Mathematics',\n    gradeMin: 1,\n    gradeMax: 6,\n    tags: ['french-immersion', 'math', 'bilingual'],\n    keywords: ['immersion', 'math\xE9matiques', 'nombres', 'calcul'],\n    isSystem: true,\n    isPublic: true,\n    estimatedMinutes: 60,\n    lessonStructure: {\n      mindsOn: {\n        duration: 10,\n        activities: ['Number talk', 'Mental math warm-up'],\n        activitiesFr: ['Conversation math\xE9matique', '\xC9chauffement de calcul mental']\n      },\n      action: {\n        duration: 35,\n        activities: ['Guided practice', 'Partner work'],\n        activitiesFr: ['Pratique guid\xE9e', 'Travail en partenaire']\n      },\n      consolidation: {\n        duration: 15,\n        activities: ['Exit ticket', 'Math journal'],\n        activitiesFr: ['Billet de sortie', 'Journal math\xE9matique']\n      }\n    },\n    content: {\n      title: 'Place Value Exploration',\n      titleFr: 'Exploration de la valeur de position',\n      mindsOn: 'Begin with a number talk in French. Show the number 235 and ask students: \"Qu\\'est-ce que vous voyez?\" Encourage mathematical vocabulary.',\n      mindsOnFr: 'Commencez par une conversation math\xE9matique. Montrez le nombre 235 et demandez aux \xE9l\xE8ves : \"Qu\\'est-ce que vous voyez?\" Encouragez le vocabulaire math\xE9matique.',\n      action: 'Students work with base-10 blocks to build numbers. Use French mathematical language: unit\xE9s, dizaines, centaines.',\n      actionFr: 'Les \xE9l\xE8ves travaillent avec des blocs de base 10 pour construire des nombres. Utilisez le langage math\xE9matique fran\xE7ais : unit\xE9s, dizaines, centaines.',\n      consolidation: 'Students complete an exit ticket explaining the value of each digit in a 3-digit number.',\n      consolidationFr: 'Les \xE9l\xE8ves compl\xE8tent un billet de sortie expliquant la valeur de chaque chiffre dans un nombre \xE0 3 chiffres.',\n      learningGoals: 'Students will understand place value in 3-digit numbers',\n      learningGoalsFr: 'Les \xE9l\xE8ves comprendront la valeur de position dans les nombres \xE0 3 chiffres',\n      materials: ['Base-10 blocks', 'Whiteboards', 'Exit tickets'],\n      materialsFr: ['Blocs de base 10', 'Tableaux blancs', 'Billets de sortie'],\n      keyVocabulary: ['ones', 'tens', 'hundreds', 'place value'],\n      keyVocabularyFr: ['unit\xE9s', 'dizaines', 'centaines', 'valeur de position']\n    }\n  },\n  {\n    title: 'Core French Vocabulary Introduction',\n    titleFr: 'Introduction du vocabulaire - Fran\xE7ais de base',\n    description: 'A template for introducing new vocabulary in Core French classes',\n    descriptionFr: 'Un mod\xE8le pour introduire du nouveau vocabulaire en fran\xE7ais de base',\n    type: 'LESSON_PLAN' as const,\n    category: 'BY_SUBJECT' as const,\n    subject: 'French as a Second Language',\n    gradeMin: 4,\n    gradeMax: 8,\n    tags: ['core-french', 'vocabulary', 'bilingual'],\n    keywords: ['vocabulaire', 'FSL', 'oral', 'communication'],\n    isSystem: true,\n    isPublic: true,\n    estimatedMinutes: 40,\n    lessonStructure: {\n      mindsOn: {\n        duration: 8,\n        activities: ['Visual vocabulary preview', 'TPR warm-up'],\n        activitiesFr: ['Aper\xE7u visuel du vocabulaire', '\xC9chauffement RPT']\n      },\n      action: {\n        duration: 22,\n        activities: ['Vocabulary games', 'Partner practice'],\n        activitiesFr: ['Jeux de vocabulaire', 'Pratique avec partenaire']\n      },\n      consolidation: {\n        duration: 10,\n        activities: ['Quick quiz', 'Reflection'],\n        activitiesFr: ['Quiz rapide', 'R\xE9flexion']\n      }\n    },\n    content: {\n      title: 'Weather and Seasons Vocabulary',\n      titleFr: 'Vocabulaire de la m\xE9t\xE9o et des saisons',\n      mindsOn: 'Display weather images. Students use gestures to show understanding (TPR). Review previous vocabulary.',\n      mindsOnFr: 'Affichez des images de la m\xE9t\xE9o. Les \xE9l\xE8ves utilisent des gestes pour montrer leur compr\xE9hension (RPT). R\xE9visez le vocabulaire pr\xE9c\xE9dent.',\n      action: 'Introduce new vocabulary with visuals. Play \"Quel temps fait-il?\" game. Students practice in pairs with weather cards.',\n      actionFr: 'Introduisez le nouveau vocabulaire avec des visuels. Jouez au jeu \"Quel temps fait-il?\". Les \xE9l\xE8ves pratiquent en paires avec des cartes m\xE9t\xE9o.',\n      consolidation: 'Students draw their favorite weather and write a simple sentence in French.',\n      consolidationFr: 'Les \xE9l\xE8ves dessinent leur m\xE9t\xE9o pr\xE9f\xE9r\xE9e et \xE9crivent une phrase simple en fran\xE7ais.',\n      learningGoals: 'Students will learn 8-10 weather vocabulary words in French',\n      learningGoalsFr: 'Les \xE9l\xE8ves apprendront 8-10 mots de vocabulaire m\xE9t\xE9o en fran\xE7ais',\n      materials: ['Weather flashcards', 'Drawing paper', 'Colored pencils'],\n      materialsFr: ['Cartes \xE9clairs m\xE9t\xE9o', 'Papier \xE0 dessin', 'Crayons de couleur'],\n      keyVocabulary: ['sunny', 'rainy', 'snowy', 'cloudy', 'windy'],\n      keyVocabularyFr: ['ensoleill\xE9', 'pluvieux', 'neigeux', 'nuageux', 'venteux']\n    }\n  },\n  {\n    title: 'Bilingual Science Investigation',\n    titleFr: 'Investigation scientifique bilingue',\n    description: 'A template for hands-on science lessons with bilingual support',\n    descriptionFr: 'Un mod\xE8le pour des le\xE7ons de sciences pratiques avec support bilingue',\n    type: 'LESSON_PLAN' as const,\n    category: 'BY_SUBJECT' as const,\n    subject: 'Science',\n    gradeMin: 2,\n    gradeMax: 5,\n    tags: ['science', 'inquiry', 'bilingual', 'hands-on'],\n    keywords: ['investigation', 'exp\xE9rience', 'scientific method', 'm\xE9thode scientifique'],\n    isSystem: true,\n    isPublic: true,\n    estimatedMinutes: 75,\n    lessonStructure: {\n      mindsOn: {\n        duration: 15,\n        activities: ['Wonder wall', 'Hypothesis formation'],\n        activitiesFr: ['Mur des questions', 'Formation d\\'hypoth\xE8ses']\n      },\n      action: {\n        duration: 45,\n        activities: ['Investigation', 'Data collection'],\n        activitiesFr: ['Investigation', 'Collecte de donn\xE9es']\n      },\n      consolidation: {\n        duration: 15,\n        activities: ['Share findings', 'Scientific drawing'],\n        activitiesFr: ['Partager les d\xE9couvertes', 'Dessin scientifique']\n      }\n    },\n    content: {\n      title: 'Properties of Matter Investigation',\n      titleFr: 'Investigation des propri\xE9t\xE9s de la mati\xE8re',\n      mindsOn: 'Present mystery objects in bags. Students feel and describe using property words in both languages.',\n      mindsOnFr: 'Pr\xE9sentez des objets myst\xE8res dans des sacs. Les \xE9l\xE8ves touchent et d\xE9crivent en utilisant des mots de propri\xE9t\xE9s dans les deux langues.',\n      action: 'Students investigate objects at stations, recording observations in bilingual science journals.',\n      actionFr: 'Les \xE9l\xE8ves investiguent des objets aux stations, enregistrant leurs observations dans des journaux scientifiques bilingues.',\n      consolidation: 'Gallery walk to share findings. Students use sentence frames in both languages.',\n      consolidationFr: 'Promenade en galerie pour partager les d\xE9couvertes. Les \xE9l\xE8ves utilisent des cadres de phrases dans les deux langues.',\n      learningGoals: 'Students will identify and describe properties of matter',\n      learningGoalsFr: 'Les \xE9l\xE8ves identifieront et d\xE9criront les propri\xE9t\xE9s de la mati\xE8re',\n      materials: ['Mystery objects', 'Magnifying glasses', 'Science journals', 'Property word cards'],\n      materialsFr: ['Objets myst\xE8res', 'Loupes', 'Journaux scientifiques', 'Cartes de mots de propri\xE9t\xE9s'],\n      keyVocabulary: ['hard', 'soft', 'rough', 'smooth', 'flexible'],\n      keyVocabularyFr: ['dur', 'mou', 'rugueux', 'lisse', 'flexible']\n    }\n  },\n  {\n    title: 'French Immersion Literacy Centers',\n    titleFr: 'Centres de litt\xE9ratie en immersion fran\xE7aise',\n    description: 'A template for organizing literacy centers in French immersion',\n    descriptionFr: 'Un mod\xE8le pour organiser des centres de litt\xE9ratie en immersion fran\xE7aise',\n    type: 'LESSON_PLAN' as const,\n    category: 'BY_SUBJECT' as const,\n    subject: 'Language Arts',\n    gradeMin: 1,\n    gradeMax: 3,\n    tags: ['literacy', 'centers', 'french-immersion', 'differentiation'],\n    keywords: ['lecture', '\xE9criture', 'centres', 'litt\xE9ratie'],\n    isSystem: true,\n    isPublic: true,\n    estimatedMinutes: 90,\n    lessonStructure: {\n      mindsOn: {\n        duration: 15,\n        activities: ['Mini-lesson', 'Center expectations review'],\n        activitiesFr: ['Mini-le\xE7on', 'R\xE9vision des attentes des centres']\n      },\n      action: {\n        duration: 60,\n        activities: ['Rotation through 3 centers'],\n        activitiesFr: ['Rotation \xE0 travers 3 centres']\n      },\n      consolidation: {\n        duration: 15,\n        activities: ['Sharing circle', 'Reflection'],\n        activitiesFr: ['Cercle de partage', 'R\xE9flexion']\n      }\n    },\n    content: {\n      title: 'Reading and Writing Centers',\n      titleFr: 'Centres de lecture et d\\'\xE9criture',\n      mindsOn: 'Review center expectations and today\\'s learning goals. Model one activity from each center.',\n      mindsOnFr: 'R\xE9visez les attentes des centres et les objectifs d\\'apprentissage. Mod\xE9lisez une activit\xE9 de chaque centre.',\n      action: 'Center 1: Guided reading with teacher. Center 2: Word work activities. Center 3: Writing workshop.',\n      actionFr: 'Centre 1 : Lecture guid\xE9e avec l\\'enseignant. Centre 2 : Activit\xE9s d\\'\xE9tude de mots. Centre 3 : Atelier d\\'\xE9criture.',\n      consolidation: 'Students share one thing they learned or created. Use talking stick for French oral practice.',\n      consolidationFr: 'Les \xE9l\xE8ves partagent une chose qu\\'ils ont apprise ou cr\xE9\xE9e. Utilisez le b\xE2ton de parole pour la pratique orale.',\n      learningGoals: 'Students will practice reading, writing, and word study skills',\n      learningGoalsFr: 'Les \xE9l\xE8ves pratiqueront les comp\xE9tences de lecture, d\\'\xE9criture et d\\'\xE9tude de mots',\n      materials: ['Leveled books', 'Word work materials', 'Writing folders', 'Anchor charts'],\n      materialsFr: ['Livres nivel\xE9s', 'Mat\xE9riel d\\'\xE9tude de mots', 'Dossiers d\\'\xE9criture', 'Tableaux d\\'ancrage'],\n      keyVocabulary: ['reading', 'writing', 'words', 'sounds', 'story'],\n      keyVocabularyFr: ['lecture', '\xE9criture', 'mots', 'sons', 'histoire']\n    }\n  },\n  {\n    title: 'Bilingual Physical Education',\n    titleFr: '\xC9ducation physique bilingue',\n    description: 'A template for PE lessons with bilingual instruction',\n    descriptionFr: 'Un mod\xE8le pour les le\xE7ons d\\'\xE9ducation physique avec instruction bilingue',\n    type: 'LESSON_PLAN' as const,\n    category: 'BY_SUBJECT' as const,\n    subject: 'Physical Education',\n    gradeMin: 1,\n    gradeMax: 8,\n    tags: ['PE', 'movement', 'bilingual', 'active'],\n    keywords: ['physical', 'physique', 'movement', 'mouvement'],\n    isSystem: true,\n    isPublic: true,\n    estimatedMinutes: 40,\n    lessonStructure: {\n      mindsOn: {\n        duration: 8,\n        activities: ['Dynamic warm-up', 'Movement vocabulary'],\n        activitiesFr: ['\xC9chauffement dynamique', 'Vocabulaire de mouvement']\n      },\n      action: {\n        duration: 25,\n        activities: ['Skill practice', 'Game play'],\n        activitiesFr: ['Pratique des comp\xE9tences', 'Jeu']\n      },\n      consolidation: {\n        duration: 7,\n        activities: ['Cool down', 'Reflection circle'],\n        activitiesFr: ['Retour au calme', 'Cercle de r\xE9flexion']\n      }\n    },\n    content: {\n      title: 'Ball Skills Development',\n      titleFr: 'D\xE9veloppement des habilet\xE9s avec ballon',\n      mindsOn: 'Simon Says with movement vocabulary in both languages. Practice directional words.',\n      mindsOnFr: 'Jean dit avec vocabulaire de mouvement dans les deux langues. Pratiquez les mots directionnels.',\n      action: 'Skill stations: throwing/lancer, catching/attraper, bouncing/faire rebondir. Use both languages for instructions.',\n      actionFr: 'Stations d\\'habilet\xE9s : lancer, attraper, faire rebondir. Utilisez les deux langues pour les instructions.',\n      consolidation: 'Cool down stretches with counting in French. Reflection on skills learned.',\n      consolidationFr: '\xC9tirements de retour au calme en comptant en fran\xE7ais. R\xE9flexion sur les habilet\xE9s apprises.',\n      learningGoals: 'Students will develop ball handling skills',\n      learningGoalsFr: 'Les \xE9l\xE8ves d\xE9velopperont des habilet\xE9s de manipulation de ballon',\n      materials: ['Various balls', 'Cones', 'Hoops', 'Music player'],\n      materialsFr: ['Ballons vari\xE9s', 'C\xF4nes', 'Cerceaux', 'Lecteur de musique'],\n      keyVocabulary: ['throw', 'catch', 'bounce', 'roll', 'pass'],\n      keyVocabularyFr: ['lancer', 'attraper', 'faire rebondir', 'rouler', 'passer']\n    }\n  }\n];\n\n/**\n * Function to create bilingual lesson plan templates in the database\n */\nexport async function seedBilingualTemplates(prisma: { planTemplate: { create: (args: { data: unknown }) => Promise<unknown> } }, systemUserId: number) {\n  const templates = [];\n  \n  for (const template of bilingualLessonTemplates) {\n    const created = await prisma.planTemplate.create({\n      data: {\n        ...template,\n        createdByUserId: systemUserId,\n        usageCount: 0,\n        averageRating: 0.0,\n        totalRatings: 0,\n      }\n    });\n    templates.push(created);\n  }\n  \n  return templates;\n}"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "641c9106807f44ca238face5daca454ec87df45e"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_p4ru7v4gb = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_p4ru7v4gb();
+/**
+ * Bilingual Lesson Plan Templates for French Immersion and Core French Teachers
+ */
+export const bilingualLessonTemplates =
+/* istanbul ignore next */
+(cov_p4ru7v4gb().s[0]++, [{
+  title: 'French Immersion Math Lesson',
+  titleFr: 'Leçon de mathématiques en immersion française',
+  description: 'A template for teaching math concepts in French immersion',
+  descriptionFr: 'Un modèle pour enseigner les concepts mathématiques en immersion française',
+  type: 'LESSON_PLAN',
+  category: 'BY_SUBJECT',
+  subject: 'Mathematics',
+  gradeMin: 1,
+  gradeMax: 6,
+  tags: ['french-immersion', 'math', 'bilingual'],
+  keywords: ['immersion', 'mathématiques', 'nombres', 'calcul'],
+  isSystem: true,
+  isPublic: true,
+  estimatedMinutes: 60,
+  lessonStructure: {
+    mindsOn: {
+      duration: 10,
+      activities: ['Number talk', 'Mental math warm-up'],
+      activitiesFr: ['Conversation mathématique', 'Échauffement de calcul mental']
+    },
+    action: {
+      duration: 35,
+      activities: ['Guided practice', 'Partner work'],
+      activitiesFr: ['Pratique guidée', 'Travail en partenaire']
+    },
+    consolidation: {
+      duration: 15,
+      activities: ['Exit ticket', 'Math journal'],
+      activitiesFr: ['Billet de sortie', 'Journal mathématique']
+    }
+  },
+  content: {
+    title: 'Place Value Exploration',
+    titleFr: 'Exploration de la valeur de position',
+    mindsOn: 'Begin with a number talk in French. Show the number 235 and ask students: "Qu\'est-ce que vous voyez?" Encourage mathematical vocabulary.',
+    mindsOnFr: 'Commencez par une conversation mathématique. Montrez le nombre 235 et demandez aux élèves : "Qu\'est-ce que vous voyez?" Encouragez le vocabulaire mathématique.',
+    action: 'Students work with base-10 blocks to build numbers. Use French mathematical language: unités, dizaines, centaines.',
+    actionFr: 'Les élèves travaillent avec des blocs de base 10 pour construire des nombres. Utilisez le langage mathématique français : unités, dizaines, centaines.',
+    consolidation: 'Students complete an exit ticket explaining the value of each digit in a 3-digit number.',
+    consolidationFr: 'Les élèves complètent un billet de sortie expliquant la valeur de chaque chiffre dans un nombre à 3 chiffres.',
+    learningGoals: 'Students will understand place value in 3-digit numbers',
+    learningGoalsFr: 'Les élèves comprendront la valeur de position dans les nombres à 3 chiffres',
+    materials: ['Base-10 blocks', 'Whiteboards', 'Exit tickets'],
+    materialsFr: ['Blocs de base 10', 'Tableaux blancs', 'Billets de sortie'],
+    keyVocabulary: ['ones', 'tens', 'hundreds', 'place value'],
+    keyVocabularyFr: ['unités', 'dizaines', 'centaines', 'valeur de position']
+  }
+}, {
+  title: 'Core French Vocabulary Introduction',
+  titleFr: 'Introduction du vocabulaire - Français de base',
+  description: 'A template for introducing new vocabulary in Core French classes',
+  descriptionFr: 'Un modèle pour introduire du nouveau vocabulaire en français de base',
+  type: 'LESSON_PLAN',
+  category: 'BY_SUBJECT',
+  subject: 'French as a Second Language',
+  gradeMin: 4,
+  gradeMax: 8,
+  tags: ['core-french', 'vocabulary', 'bilingual'],
+  keywords: ['vocabulaire', 'FSL', 'oral', 'communication'],
+  isSystem: true,
+  isPublic: true,
+  estimatedMinutes: 40,
+  lessonStructure: {
+    mindsOn: {
+      duration: 8,
+      activities: ['Visual vocabulary preview', 'TPR warm-up'],
+      activitiesFr: ['Aperçu visuel du vocabulaire', 'Échauffement RPT']
+    },
+    action: {
+      duration: 22,
+      activities: ['Vocabulary games', 'Partner practice'],
+      activitiesFr: ['Jeux de vocabulaire', 'Pratique avec partenaire']
+    },
+    consolidation: {
+      duration: 10,
+      activities: ['Quick quiz', 'Reflection'],
+      activitiesFr: ['Quiz rapide', 'Réflexion']
+    }
+  },
+  content: {
+    title: 'Weather and Seasons Vocabulary',
+    titleFr: 'Vocabulaire de la météo et des saisons',
+    mindsOn: 'Display weather images. Students use gestures to show understanding (TPR). Review previous vocabulary.',
+    mindsOnFr: 'Affichez des images de la météo. Les élèves utilisent des gestes pour montrer leur compréhension (RPT). Révisez le vocabulaire précédent.',
+    action: 'Introduce new vocabulary with visuals. Play "Quel temps fait-il?" game. Students practice in pairs with weather cards.',
+    actionFr: 'Introduisez le nouveau vocabulaire avec des visuels. Jouez au jeu "Quel temps fait-il?". Les élèves pratiquent en paires avec des cartes météo.',
+    consolidation: 'Students draw their favorite weather and write a simple sentence in French.',
+    consolidationFr: 'Les élèves dessinent leur météo préférée et écrivent une phrase simple en français.',
+    learningGoals: 'Students will learn 8-10 weather vocabulary words in French',
+    learningGoalsFr: 'Les élèves apprendront 8-10 mots de vocabulaire météo en français',
+    materials: ['Weather flashcards', 'Drawing paper', 'Colored pencils'],
+    materialsFr: ['Cartes éclairs météo', 'Papier à dessin', 'Crayons de couleur'],
+    keyVocabulary: ['sunny', 'rainy', 'snowy', 'cloudy', 'windy'],
+    keyVocabularyFr: ['ensoleillé', 'pluvieux', 'neigeux', 'nuageux', 'venteux']
+  }
+}, {
+  title: 'Bilingual Science Investigation',
+  titleFr: 'Investigation scientifique bilingue',
+  description: 'A template for hands-on science lessons with bilingual support',
+  descriptionFr: 'Un modèle pour des leçons de sciences pratiques avec support bilingue',
+  type: 'LESSON_PLAN',
+  category: 'BY_SUBJECT',
+  subject: 'Science',
+  gradeMin: 2,
+  gradeMax: 5,
+  tags: ['science', 'inquiry', 'bilingual', 'hands-on'],
+  keywords: ['investigation', 'expérience', 'scientific method', 'méthode scientifique'],
+  isSystem: true,
+  isPublic: true,
+  estimatedMinutes: 75,
+  lessonStructure: {
+    mindsOn: {
+      duration: 15,
+      activities: ['Wonder wall', 'Hypothesis formation'],
+      activitiesFr: ['Mur des questions', 'Formation d\'hypothèses']
+    },
+    action: {
+      duration: 45,
+      activities: ['Investigation', 'Data collection'],
+      activitiesFr: ['Investigation', 'Collecte de données']
+    },
+    consolidation: {
+      duration: 15,
+      activities: ['Share findings', 'Scientific drawing'],
+      activitiesFr: ['Partager les découvertes', 'Dessin scientifique']
+    }
+  },
+  content: {
+    title: 'Properties of Matter Investigation',
+    titleFr: 'Investigation des propriétés de la matière',
+    mindsOn: 'Present mystery objects in bags. Students feel and describe using property words in both languages.',
+    mindsOnFr: 'Présentez des objets mystères dans des sacs. Les élèves touchent et décrivent en utilisant des mots de propriétés dans les deux langues.',
+    action: 'Students investigate objects at stations, recording observations in bilingual science journals.',
+    actionFr: 'Les élèves investiguent des objets aux stations, enregistrant leurs observations dans des journaux scientifiques bilingues.',
+    consolidation: 'Gallery walk to share findings. Students use sentence frames in both languages.',
+    consolidationFr: 'Promenade en galerie pour partager les découvertes. Les élèves utilisent des cadres de phrases dans les deux langues.',
+    learningGoals: 'Students will identify and describe properties of matter',
+    learningGoalsFr: 'Les élèves identifieront et décriront les propriétés de la matière',
+    materials: ['Mystery objects', 'Magnifying glasses', 'Science journals', 'Property word cards'],
+    materialsFr: ['Objets mystères', 'Loupes', 'Journaux scientifiques', 'Cartes de mots de propriétés'],
+    keyVocabulary: ['hard', 'soft', 'rough', 'smooth', 'flexible'],
+    keyVocabularyFr: ['dur', 'mou', 'rugueux', 'lisse', 'flexible']
+  }
+}, {
+  title: 'French Immersion Literacy Centers',
+  titleFr: 'Centres de littératie en immersion française',
+  description: 'A template for organizing literacy centers in French immersion',
+  descriptionFr: 'Un modèle pour organiser des centres de littératie en immersion française',
+  type: 'LESSON_PLAN',
+  category: 'BY_SUBJECT',
+  subject: 'Language Arts',
+  gradeMin: 1,
+  gradeMax: 3,
+  tags: ['literacy', 'centers', 'french-immersion', 'differentiation'],
+  keywords: ['lecture', 'écriture', 'centres', 'littératie'],
+  isSystem: true,
+  isPublic: true,
+  estimatedMinutes: 90,
+  lessonStructure: {
+    mindsOn: {
+      duration: 15,
+      activities: ['Mini-lesson', 'Center expectations review'],
+      activitiesFr: ['Mini-leçon', 'Révision des attentes des centres']
+    },
+    action: {
+      duration: 60,
+      activities: ['Rotation through 3 centers'],
+      activitiesFr: ['Rotation à travers 3 centres']
+    },
+    consolidation: {
+      duration: 15,
+      activities: ['Sharing circle', 'Reflection'],
+      activitiesFr: ['Cercle de partage', 'Réflexion']
+    }
+  },
+  content: {
+    title: 'Reading and Writing Centers',
+    titleFr: 'Centres de lecture et d\'écriture',
+    mindsOn: 'Review center expectations and today\'s learning goals. Model one activity from each center.',
+    mindsOnFr: 'Révisez les attentes des centres et les objectifs d\'apprentissage. Modélisez une activité de chaque centre.',
+    action: 'Center 1: Guided reading with teacher. Center 2: Word work activities. Center 3: Writing workshop.',
+    actionFr: 'Centre 1 : Lecture guidée avec l\'enseignant. Centre 2 : Activités d\'étude de mots. Centre 3 : Atelier d\'écriture.',
+    consolidation: 'Students share one thing they learned or created. Use talking stick for French oral practice.',
+    consolidationFr: 'Les élèves partagent une chose qu\'ils ont apprise ou créée. Utilisez le bâton de parole pour la pratique orale.',
+    learningGoals: 'Students will practice reading, writing, and word study skills',
+    learningGoalsFr: 'Les élèves pratiqueront les compétences de lecture, d\'écriture et d\'étude de mots',
+    materials: ['Leveled books', 'Word work materials', 'Writing folders', 'Anchor charts'],
+    materialsFr: ['Livres nivelés', 'Matériel d\'étude de mots', 'Dossiers d\'écriture', 'Tableaux d\'ancrage'],
+    keyVocabulary: ['reading', 'writing', 'words', 'sounds', 'story'],
+    keyVocabularyFr: ['lecture', 'écriture', 'mots', 'sons', 'histoire']
+  }
+}, {
+  title: 'Bilingual Physical Education',
+  titleFr: 'Éducation physique bilingue',
+  description: 'A template for PE lessons with bilingual instruction',
+  descriptionFr: 'Un modèle pour les leçons d\'éducation physique avec instruction bilingue',
+  type: 'LESSON_PLAN',
+  category: 'BY_SUBJECT',
+  subject: 'Physical Education',
+  gradeMin: 1,
+  gradeMax: 8,
+  tags: ['PE', 'movement', 'bilingual', 'active'],
+  keywords: ['physical', 'physique', 'movement', 'mouvement'],
+  isSystem: true,
+  isPublic: true,
+  estimatedMinutes: 40,
+  lessonStructure: {
+    mindsOn: {
+      duration: 8,
+      activities: ['Dynamic warm-up', 'Movement vocabulary'],
+      activitiesFr: ['Échauffement dynamique', 'Vocabulaire de mouvement']
+    },
+    action: {
+      duration: 25,
+      activities: ['Skill practice', 'Game play'],
+      activitiesFr: ['Pratique des compétences', 'Jeu']
+    },
+    consolidation: {
+      duration: 7,
+      activities: ['Cool down', 'Reflection circle'],
+      activitiesFr: ['Retour au calme', 'Cercle de réflexion']
+    }
+  },
+  content: {
+    title: 'Ball Skills Development',
+    titleFr: 'Développement des habiletés avec ballon',
+    mindsOn: 'Simon Says with movement vocabulary in both languages. Practice directional words.',
+    mindsOnFr: 'Jean dit avec vocabulaire de mouvement dans les deux langues. Pratiquez les mots directionnels.',
+    action: 'Skill stations: throwing/lancer, catching/attraper, bouncing/faire rebondir. Use both languages for instructions.',
+    actionFr: 'Stations d\'habiletés : lancer, attraper, faire rebondir. Utilisez les deux langues pour les instructions.',
+    consolidation: 'Cool down stretches with counting in French. Reflection on skills learned.',
+    consolidationFr: 'Étirements de retour au calme en comptant en français. Réflexion sur les habiletés apprises.',
+    learningGoals: 'Students will develop ball handling skills',
+    learningGoalsFr: 'Les élèves développeront des habiletés de manipulation de ballon',
+    materials: ['Various balls', 'Cones', 'Hoops', 'Music player'],
+    materialsFr: ['Ballons variés', 'Cônes', 'Cerceaux', 'Lecteur de musique'],
+    keyVocabulary: ['throw', 'catch', 'bounce', 'roll', 'pass'],
+    keyVocabularyFr: ['lancer', 'attraper', 'faire rebondir', 'rouler', 'passer']
+  }
+}]);
+/**
+ * Function to create bilingual lesson plan templates in the database
+ */
+export async function seedBilingualTemplates(prisma, systemUserId) {
+  /* istanbul ignore next */
+  cov_p4ru7v4gb().f[0]++;
+  const templates =
+  /* istanbul ignore next */
+  (cov_p4ru7v4gb().s[1]++, []);
+  /* istanbul ignore next */
+  cov_p4ru7v4gb().s[2]++;
+  for (const template of bilingualLessonTemplates) {
+    const created =
+    /* istanbul ignore next */
+    (cov_p4ru7v4gb().s[3]++, await prisma.planTemplate.create({
+      data: {
+        ...template,
+        createdByUserId: systemUserId,
+        usageCount: 0,
+        averageRating: 0.0,
+        totalRatings: 0
+      }
+    }));
+    /* istanbul ignore next */
+    cov_p4ru7v4gb().s[4]++;
+    templates.push(created);
+  }
+  /* istanbul ignore next */
+  cov_p4ru7v4gb().s[5]++;
+  return templates;
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3ZfcDRydTd2NGdiIiwiYWN0dWFsQ292ZXJhZ2UiLCJiaWxpbmd1YWxMZXNzb25UZW1wbGF0ZXMiLCJzIiwidGl0bGUiLCJ0aXRsZUZyIiwiZGVzY3JpcHRpb24iLCJkZXNjcmlwdGlvbkZyIiwidHlwZSIsImNhdGVnb3J5Iiwic3ViamVjdCIsImdyYWRlTWluIiwiZ3JhZGVNYXgiLCJ0YWdzIiwia2V5d29yZHMiLCJpc1N5c3RlbSIsImlzUHVibGljIiwiZXN0aW1hdGVkTWludXRlcyIsImxlc3NvblN0cnVjdHVyZSIsIm1pbmRzT24iLCJkdXJhdGlvbiIsImFjdGl2aXRpZXMiLCJhY3Rpdml0aWVzRnIiLCJhY3Rpb24iLCJjb25zb2xpZGF0aW9uIiwiY29udGVudCIsIm1pbmRzT25GciIsImFjdGlvbkZyIiwiY29uc29saWRhdGlvbkZyIiwibGVhcm5pbmdHb2FscyIsImxlYXJuaW5nR29hbHNGciIsIm1hdGVyaWFscyIsIm1hdGVyaWFsc0ZyIiwia2V5Vm9jYWJ1bGFyeSIsImtleVZvY2FidWxhcnlGciIsInNlZWRCaWxpbmd1YWxUZW1wbGF0ZXMiLCJwcmlzbWEiLCJzeXN0ZW1Vc2VySWQiLCJmIiwidGVtcGxhdGVzIiwidGVtcGxhdGUiLCJjcmVhdGVkIiwicGxhblRlbXBsYXRlIiwiY3JlYXRlIiwiZGF0YSIsImNyZWF0ZWRCeVVzZXJJZCIsInVzYWdlQ291bnQiLCJhdmVyYWdlUmF0aW5nIiwidG90YWxSYXRpbmdzIiwicHVzaCJdLCJzb3VyY2VzIjpbIi9Vc2Vycy9taWNoYWVsbWNpc2FhYy9HaXRIdWIvdGVhY2hpbmctZW5naW5lMi4wL3NlcnZlci9zcmMvZGF0YS9iaWxpbmd1YWxMZXNzb25UZW1wbGF0ZXMudHMiXSwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBCaWxpbmd1YWwgTGVzc29uIFBsYW4gVGVtcGxhdGVzIGZvciBGcmVuY2ggSW1tZXJzaW9uIGFuZCBDb3JlIEZyZW5jaCBUZWFjaGVyc1xuICovXG5cbmV4cG9ydCBjb25zdCBiaWxpbmd1YWxMZXNzb25UZW1wbGF0ZXMgPSBbXG4gIHtcbiAgICB0aXRsZTogJ0ZyZW5jaCBJbW1lcnNpb24gTWF0aCBMZXNzb24nLFxuICAgIHRpdGxlRnI6ICdMZcOnb24gZGUgbWF0aMOpbWF0aXF1ZXMgZW4gaW1tZXJzaW9uIGZyYW7Dp2Fpc2UnLFxuICAgIGRlc2NyaXB0aW9uOiAnQSB0ZW1wbGF0ZSBmb3IgdGVhY2hpbmcgbWF0aCBjb25jZXB0cyBpbiBGcmVuY2ggaW1tZXJzaW9uJyxcbiAgICBkZXNjcmlwdGlvbkZyOiAnVW4gbW9kw6hsZSBwb3VyIGVuc2VpZ25lciBsZXMgY29uY2VwdHMgbWF0aMOpbWF0aXF1ZXMgZW4gaW1tZXJzaW9uIGZyYW7Dp2Fpc2UnLFxuICAgIHR5cGU6ICdMRVNTT05fUExBTicgYXMgY29uc3QsXG4gICAgY2F0ZWdvcnk6ICdCWV9TVUJKRUNUJyBhcyBjb25zdCxcbiAgICBzdWJqZWN0OiAnTWF0aGVtYXRpY3MnLFxuICAgIGdyYWRlTWluOiAxLFxuICAgIGdyYWRlTWF4OiA2LFxuICAgIHRhZ3M6IFsnZnJlbmNoLWltbWVyc2lvbicsICdtYXRoJywgJ2JpbGluZ3VhbCddLFxuICAgIGtleXdvcmRzOiBbJ2ltbWVyc2lvbicsICdtYXRow6ltYXRpcXVlcycsICdub21icmVzJywgJ2NhbGN1bCddLFxuICAgIGlzU3lzdGVtOiB0cnVlLFxuICAgIGlzUHVibGljOiB0cnVlLFxuICAgIGVzdGltYXRlZE1pbnV0ZXM6IDYwLFxuICAgIGxlc3NvblN0cnVjdHVyZToge1xuICAgICAgbWluZHNPbjoge1xuICAgICAgICBkdXJhdGlvbjogMTAsXG4gICAgICAgIGFjdGl2aXRpZXM6IFsnTnVtYmVyIHRhbGsnLCAnTWVudGFsIG1hdGggd2FybS11cCddLFxuICAgICAgICBhY3Rpdml0aWVzRnI6IFsnQ29udmVyc2F0aW9uIG1hdGjDqW1hdGlxdWUnLCAnw4ljaGF1ZmZlbWVudCBkZSBjYWxjdWwgbWVudGFsJ11cbiAgICAgIH0sXG4gICAgICBhY3Rpb246IHtcbiAgICAgICAgZHVyYXRpb246IDM1LFxuICAgICAgICBhY3Rpdml0aWVzOiBbJ0d1aWRlZCBwcmFjdGljZScsICdQYXJ0bmVyIHdvcmsnXSxcbiAgICAgICAgYWN0aXZpdGllc0ZyOiBbJ1ByYXRpcXVlIGd1aWTDqWUnLCAnVHJhdmFpbCBlbiBwYXJ0ZW5haXJlJ11cbiAgICAgIH0sXG4gICAgICBjb25zb2xpZGF0aW9uOiB7XG4gICAgICAgIGR1cmF0aW9uOiAxNSxcbiAgICAgICAgYWN0aXZpdGllczogWydFeGl0IHRpY2tldCcsICdNYXRoIGpvdXJuYWwnXSxcbiAgICAgICAgYWN0aXZpdGllc0ZyOiBbJ0JpbGxldCBkZSBzb3J0aWUnLCAnSm91cm5hbCBtYXRow6ltYXRpcXVlJ11cbiAgICAgIH1cbiAgICB9LFxuICAgIGNvbnRlbnQ6IHtcbiAgICAgIHRpdGxlOiAnUGxhY2UgVmFsdWUgRXhwbG9yYXRpb24nLFxuICAgICAgdGl0bGVGcjogJ0V4cGxvcmF0aW9uIGRlIGxhIHZhbGV1ciBkZSBwb3NpdGlvbicsXG4gICAgICBtaW5kc09uOiAnQmVnaW4gd2l0aCBhIG51bWJlciB0YWxrIGluIEZyZW5jaC4gU2hvdyB0aGUgbnVtYmVyIDIzNSBhbmQgYXNrIHN0dWRlbnRzOiBcIlF1XFwnZXN0LWNlIHF1ZSB2b3VzIHZveWV6P1wiIEVuY291cmFnZSBtYXRoZW1hdGljYWwgdm9jYWJ1bGFyeS4nLFxuICAgICAgbWluZHNPbkZyOiAnQ29tbWVuY2V6IHBhciB1bmUgY29udmVyc2F0aW9uIG1hdGjDqW1hdGlxdWUuIE1vbnRyZXogbGUgbm9tYnJlIDIzNSBldCBkZW1hbmRleiBhdXggw6lsw6h2ZXMgOiBcIlF1XFwnZXN0LWNlIHF1ZSB2b3VzIHZveWV6P1wiIEVuY291cmFnZXogbGUgdm9jYWJ1bGFpcmUgbWF0aMOpbWF0aXF1ZS4nLFxuICAgICAgYWN0aW9uOiAnU3R1ZGVudHMgd29yayB3aXRoIGJhc2UtMTAgYmxvY2tzIHRvIGJ1aWxkIG51bWJlcnMuIFVzZSBGcmVuY2ggbWF0aGVtYXRpY2FsIGxhbmd1YWdlOiB1bml0w6lzLCBkaXphaW5lcywgY2VudGFpbmVzLicsXG4gICAgICBhY3Rpb25GcjogJ0xlcyDDqWzDqHZlcyB0cmF2YWlsbGVudCBhdmVjIGRlcyBibG9jcyBkZSBiYXNlIDEwIHBvdXIgY29uc3RydWlyZSBkZXMgbm9tYnJlcy4gVXRpbGlzZXogbGUgbGFuZ2FnZSBtYXRow6ltYXRpcXVlIGZyYW7Dp2FpcyA6IHVuaXTDqXMsIGRpemFpbmVzLCBjZW50YWluZXMuJyxcbiAgICAgIGNvbnNvbGlkYXRpb246ICdTdHVkZW50cyBjb21wbGV0ZSBhbiBleGl0IHRpY2tldCBleHBsYWluaW5nIHRoZSB2YWx1ZSBvZiBlYWNoIGRpZ2l0IGluIGEgMy1kaWdpdCBudW1iZXIuJyxcbiAgICAgIGNvbnNvbGlkYXRpb25GcjogJ0xlcyDDqWzDqHZlcyBjb21wbMOodGVudCB1biBiaWxsZXQgZGUgc29ydGllIGV4cGxpcXVhbnQgbGEgdmFsZXVyIGRlIGNoYXF1ZSBjaGlmZnJlIGRhbnMgdW4gbm9tYnJlIMOgIDMgY2hpZmZyZXMuJyxcbiAgICAgIGxlYXJuaW5nR29hbHM6ICdTdHVkZW50cyB3aWxsIHVuZGVyc3RhbmQgcGxhY2UgdmFsdWUgaW4gMy1kaWdpdCBudW1iZXJzJyxcbiAgICAgIGxlYXJuaW5nR29hbHNGcjogJ0xlcyDDqWzDqHZlcyBjb21wcmVuZHJvbnQgbGEgdmFsZXVyIGRlIHBvc2l0aW9uIGRhbnMgbGVzIG5vbWJyZXMgw6AgMyBjaGlmZnJlcycsXG4gICAgICBtYXRlcmlhbHM6IFsnQmFzZS0xMCBibG9ja3MnLCAnV2hpdGVib2FyZHMnLCAnRXhpdCB0aWNrZXRzJ10sXG4gICAgICBtYXRlcmlhbHNGcjogWydCbG9jcyBkZSBiYXNlIDEwJywgJ1RhYmxlYXV4IGJsYW5jcycsICdCaWxsZXRzIGRlIHNvcnRpZSddLFxuICAgICAga2V5Vm9jYWJ1bGFyeTogWydvbmVzJywgJ3RlbnMnLCAnaHVuZHJlZHMnLCAncGxhY2UgdmFsdWUnXSxcbiAgICAgIGtleVZvY2FidWxhcnlGcjogWyd1bml0w6lzJywgJ2RpemFpbmVzJywgJ2NlbnRhaW5lcycsICd2YWxldXIgZGUgcG9zaXRpb24nXVxuICAgIH1cbiAgfSxcbiAge1xuICAgIHRpdGxlOiAnQ29yZSBGcmVuY2ggVm9jYWJ1bGFyeSBJbnRyb2R1Y3Rpb24nLFxuICAgIHRpdGxlRnI6ICdJbnRyb2R1Y3Rpb24gZHUgdm9jYWJ1bGFpcmUgLSBGcmFuw6dhaXMgZGUgYmFzZScsXG4gICAgZGVzY3JpcHRpb246ICdBIHRlbXBsYXRlIGZvciBpbnRyb2R1Y2luZyBuZXcgdm9jYWJ1bGFyeSBpbiBDb3JlIEZyZW5jaCBjbGFzc2VzJyxcbiAgICBkZXNjcmlwdGlvbkZyOiAnVW4gbW9kw6hsZSBwb3VyIGludHJvZHVpcmUgZHUgbm91dmVhdSB2b2NhYnVsYWlyZSBlbiBmcmFuw6dhaXMgZGUgYmFzZScsXG4gICAgdHlwZTogJ0xFU1NPTl9QTEFOJyBhcyBjb25zdCxcbiAgICBjYXRlZ29yeTogJ0JZX1NVQkpFQ1QnIGFzIGNvbnN0LFxuICAgIHN1YmplY3Q6ICdGcmVuY2ggYXMgYSBTZWNvbmQgTGFuZ3VhZ2UnLFxuICAgIGdyYWRlTWluOiA0LFxuICAgIGdyYWRlTWF4OiA4LFxuICAgIHRhZ3M6IFsnY29yZS1mcmVuY2gnLCAndm9jYWJ1bGFyeScsICdiaWxpbmd1YWwnXSxcbiAgICBrZXl3b3JkczogWyd2b2NhYnVsYWlyZScsICdGU0wnLCAnb3JhbCcsICdjb21tdW5pY2F0aW9uJ10sXG4gICAgaXNTeXN0ZW06IHRydWUsXG4gICAgaXNQdWJsaWM6IHRydWUsXG4gICAgZXN0aW1hdGVkTWludXRlczogNDAsXG4gICAgbGVzc29uU3RydWN0dXJlOiB7XG4gICAgICBtaW5kc09uOiB7XG4gICAgICAgIGR1cmF0aW9uOiA4LFxuICAgICAgICBhY3Rpdml0aWVzOiBbJ1Zpc3VhbCB2b2NhYnVsYXJ5IHByZXZpZXcnLCAnVFBSIHdhcm0tdXAnXSxcbiAgICAgICAgYWN0aXZpdGllc0ZyOiBbJ0FwZXLDp3UgdmlzdWVsIGR1IHZvY2FidWxhaXJlJywgJ8OJY2hhdWZmZW1lbnQgUlBUJ11cbiAgICAgIH0sXG4gICAgICBhY3Rpb246IHtcbiAgICAgICAgZHVyYXRpb246IDIyLFxuICAgICAgICBhY3Rpdml0aWVzOiBbJ1ZvY2FidWxhcnkgZ2FtZXMnLCAnUGFydG5lciBwcmFjdGljZSddLFxuICAgICAgICBhY3Rpdml0aWVzRnI6IFsnSmV1eCBkZSB2b2NhYnVsYWlyZScsICdQcmF0aXF1ZSBhdmVjIHBhcnRlbmFpcmUnXVxuICAgICAgfSxcbiAgICAgIGNvbnNvbGlkYXRpb246IHtcbiAgICAgICAgZHVyYXRpb246IDEwLFxuICAgICAgICBhY3Rpdml0aWVzOiBbJ1F1aWNrIHF1aXonLCAnUmVmbGVjdGlvbiddLFxuICAgICAgICBhY3Rpdml0aWVzRnI6IFsnUXVpeiByYXBpZGUnLCAnUsOpZmxleGlvbiddXG4gICAgICB9XG4gICAgfSxcbiAgICBjb250ZW50OiB7XG4gICAgICB0aXRsZTogJ1dlYXRoZXIgYW5kIFNlYXNvbnMgVm9jYWJ1bGFyeScsXG4gICAgICB0aXRsZUZyOiAnVm9jYWJ1bGFpcmUgZGUgbGEgbcOpdMOpbyBldCBkZXMgc2Fpc29ucycsXG4gICAgICBtaW5kc09uOiAnRGlzcGxheSB3ZWF0aGVyIGltYWdlcy4gU3R1ZGVudHMgdXNlIGdlc3R1cmVzIHRvIHNob3cgdW5kZXJzdGFuZGluZyAoVFBSKS4gUmV2aWV3IHByZXZpb3VzIHZvY2FidWxhcnkuJyxcbiAgICAgIG1pbmRzT25GcjogJ0FmZmljaGV6IGRlcyBpbWFnZXMgZGUgbGEgbcOpdMOpby4gTGVzIMOpbMOodmVzIHV0aWxpc2VudCBkZXMgZ2VzdGVzIHBvdXIgbW9udHJlciBsZXVyIGNvbXByw6loZW5zaW9uIChSUFQpLiBSw6l2aXNleiBsZSB2b2NhYnVsYWlyZSBwcsOpY8OpZGVudC4nLFxuICAgICAgYWN0aW9uOiAnSW50cm9kdWNlIG5ldyB2b2NhYnVsYXJ5IHdpdGggdmlzdWFscy4gUGxheSBcIlF1ZWwgdGVtcHMgZmFpdC1pbD9cIiBnYW1lLiBTdHVkZW50cyBwcmFjdGljZSBpbiBwYWlycyB3aXRoIHdlYXRoZXIgY2FyZHMuJyxcbiAgICAgIGFjdGlvbkZyOiAnSW50cm9kdWlzZXogbGUgbm91dmVhdSB2b2NhYnVsYWlyZSBhdmVjIGRlcyB2aXN1ZWxzLiBKb3VleiBhdSBqZXUgXCJRdWVsIHRlbXBzIGZhaXQtaWw/XCIuIExlcyDDqWzDqHZlcyBwcmF0aXF1ZW50IGVuIHBhaXJlcyBhdmVjIGRlcyBjYXJ0ZXMgbcOpdMOpby4nLFxuICAgICAgY29uc29saWRhdGlvbjogJ1N0dWRlbnRzIGRyYXcgdGhlaXIgZmF2b3JpdGUgd2VhdGhlciBhbmQgd3JpdGUgYSBzaW1wbGUgc2VudGVuY2UgaW4gRnJlbmNoLicsXG4gICAgICBjb25zb2xpZGF0aW9uRnI6ICdMZXMgw6lsw6h2ZXMgZGVzc2luZW50IGxldXIgbcOpdMOpbyBwcsOpZsOpcsOpZSBldCDDqWNyaXZlbnQgdW5lIHBocmFzZSBzaW1wbGUgZW4gZnJhbsOnYWlzLicsXG4gICAgICBsZWFybmluZ0dvYWxzOiAnU3R1ZGVudHMgd2lsbCBsZWFybiA4LTEwIHdlYXRoZXIgdm9jYWJ1bGFyeSB3b3JkcyBpbiBGcmVuY2gnLFxuICAgICAgbGVhcm5pbmdHb2Fsc0ZyOiAnTGVzIMOpbMOodmVzIGFwcHJlbmRyb250IDgtMTAgbW90cyBkZSB2b2NhYnVsYWlyZSBtw6l0w6lvIGVuIGZyYW7Dp2FpcycsXG4gICAgICBtYXRlcmlhbHM6IFsnV2VhdGhlciBmbGFzaGNhcmRzJywgJ0RyYXdpbmcgcGFwZXInLCAnQ29sb3JlZCBwZW5jaWxzJ10sXG4gICAgICBtYXRlcmlhbHNGcjogWydDYXJ0ZXMgw6ljbGFpcnMgbcOpdMOpbycsICdQYXBpZXIgw6AgZGVzc2luJywgJ0NyYXlvbnMgZGUgY291bGV1ciddLFxuICAgICAga2V5Vm9jYWJ1bGFyeTogWydzdW5ueScsICdyYWlueScsICdzbm93eScsICdjbG91ZHknLCAnd2luZHknXSxcbiAgICAgIGtleVZvY2FidWxhcnlGcjogWydlbnNvbGVpbGzDqScsICdwbHV2aWV1eCcsICduZWlnZXV4JywgJ251YWdldXgnLCAndmVudGV1eCddXG4gICAgfVxuICB9LFxuICB7XG4gICAgdGl0bGU6ICdCaWxpbmd1YWwgU2NpZW5jZSBJbnZlc3RpZ2F0aW9uJyxcbiAgICB0aXRsZUZyOiAnSW52ZXN0aWdhdGlvbiBzY2llbnRpZmlxdWUgYmlsaW5ndWUnLFxuICAgIGRlc2NyaXB0aW9uOiAnQSB0ZW1wbGF0ZSBmb3IgaGFuZHMtb24gc2NpZW5jZSBsZXNzb25zIHdpdGggYmlsaW5ndWFsIHN1cHBvcnQnLFxuICAgIGRlc2NyaXB0aW9uRnI6ICdVbiBtb2TDqGxlIHBvdXIgZGVzIGxlw6dvbnMgZGUgc2NpZW5jZXMgcHJhdGlxdWVzIGF2ZWMgc3VwcG9ydCBiaWxpbmd1ZScsXG4gICAgdHlwZTogJ0xFU1NPTl9QTEFOJyBhcyBjb25zdCxcbiAgICBjYXRlZ29yeTogJ0JZX1NVQkpFQ1QnIGFzIGNvbnN0LFxuICAgIHN1YmplY3Q6ICdTY2llbmNlJyxcbiAgICBncmFkZU1pbjogMixcbiAgICBncmFkZU1heDogNSxcbiAgICB0YWdzOiBbJ3NjaWVuY2UnLCAnaW5xdWlyeScsICdiaWxpbmd1YWwnLCAnaGFuZHMtb24nXSxcbiAgICBrZXl3b3JkczogWydpbnZlc3RpZ2F0aW9uJywgJ2V4cMOpcmllbmNlJywgJ3NjaWVudGlmaWMgbWV0aG9kJywgJ23DqXRob2RlIHNjaWVudGlmaXF1ZSddLFxuICAgIGlzU3lzdGVtOiB0cnVlLFxuICAgIGlzUHVibGljOiB0cnVlLFxuICAgIGVzdGltYXRlZE1pbnV0ZXM6IDc1LFxuICAgIGxlc3NvblN0cnVjdHVyZToge1xuICAgICAgbWluZHNPbjoge1xuICAgICAgICBkdXJhdGlvbjogMTUsXG4gICAgICAgIGFjdGl2aXRpZXM6IFsnV29uZGVyIHdhbGwnLCAnSHlwb3RoZXNpcyBmb3JtYXRpb24nXSxcbiAgICAgICAgYWN0aXZpdGllc0ZyOiBbJ011ciBkZXMgcXVlc3Rpb25zJywgJ0Zvcm1hdGlvbiBkXFwnaHlwb3Row6hzZXMnXVxuICAgICAgfSxcbiAgICAgIGFjdGlvbjoge1xuICAgICAgICBkdXJhdGlvbjogNDUsXG4gICAgICAgIGFjdGl2aXRpZXM6IFsnSW52ZXN0aWdhdGlvbicsICdEYXRhIGNvbGxlY3Rpb24nXSxcbiAgICAgICAgYWN0aXZpdGllc0ZyOiBbJ0ludmVzdGlnYXRpb24nLCAnQ29sbGVjdGUgZGUgZG9ubsOpZXMnXVxuICAgICAgfSxcbiAgICAgIGNvbnNvbGlkYXRpb246IHtcbiAgICAgICAgZHVyYXRpb246IDE1LFxuICAgICAgICBhY3Rpdml0aWVzOiBbJ1NoYXJlIGZpbmRpbmdzJywgJ1NjaWVudGlmaWMgZHJhd2luZyddLFxuICAgICAgICBhY3Rpdml0aWVzRnI6IFsnUGFydGFnZXIgbGVzIGTDqWNvdXZlcnRlcycsICdEZXNzaW4gc2NpZW50aWZpcXVlJ11cbiAgICAgIH1cbiAgICB9LFxuICAgIGNvbnRlbnQ6IHtcbiAgICAgIHRpdGxlOiAnUHJvcGVydGllcyBvZiBNYXR0ZXIgSW52ZXN0aWdhdGlvbicsXG4gICAgICB0aXRsZUZyOiAnSW52ZXN0aWdhdGlvbiBkZXMgcHJvcHJpw6l0w6lzIGRlIGxhIG1hdGnDqHJlJyxcbiAgICAgIG1pbmRzT246ICdQcmVzZW50IG15c3Rlcnkgb2JqZWN0cyBpbiBiYWdzLiBTdHVkZW50cyBmZWVsIGFuZCBkZXNjcmliZSB1c2luZyBwcm9wZXJ0eSB3b3JkcyBpbiBib3RoIGxhbmd1YWdlcy4nLFxuICAgICAgbWluZHNPbkZyOiAnUHLDqXNlbnRleiBkZXMgb2JqZXRzIG15c3TDqHJlcyBkYW5zIGRlcyBzYWNzLiBMZXMgw6lsw6h2ZXMgdG91Y2hlbnQgZXQgZMOpY3JpdmVudCBlbiB1dGlsaXNhbnQgZGVzIG1vdHMgZGUgcHJvcHJpw6l0w6lzIGRhbnMgbGVzIGRldXggbGFuZ3Vlcy4nLFxuICAgICAgYWN0aW9uOiAnU3R1ZGVudHMgaW52ZXN0aWdhdGUgb2JqZWN0cyBhdCBzdGF0aW9ucywgcmVjb3JkaW5nIG9ic2VydmF0aW9ucyBpbiBiaWxpbmd1YWwgc2NpZW5jZSBqb3VybmFscy4nLFxuICAgICAgYWN0aW9uRnI6ICdMZXMgw6lsw6h2ZXMgaW52ZXN0aWd1ZW50IGRlcyBvYmpldHMgYXV4IHN0YXRpb25zLCBlbnJlZ2lzdHJhbnQgbGV1cnMgb2JzZXJ2YXRpb25zIGRhbnMgZGVzIGpvdXJuYXV4IHNjaWVudGlmaXF1ZXMgYmlsaW5ndWVzLicsXG4gICAgICBjb25zb2xpZGF0aW9uOiAnR2FsbGVyeSB3YWxrIHRvIHNoYXJlIGZpbmRpbmdzLiBTdHVkZW50cyB1c2Ugc2VudGVuY2UgZnJhbWVzIGluIGJvdGggbGFuZ3VhZ2VzLicsXG4gICAgICBjb25zb2xpZGF0aW9uRnI6ICdQcm9tZW5hZGUgZW4gZ2FsZXJpZSBwb3VyIHBhcnRhZ2VyIGxlcyBkw6ljb3V2ZXJ0ZXMuIExlcyDDqWzDqHZlcyB1dGlsaXNlbnQgZGVzIGNhZHJlcyBkZSBwaHJhc2VzIGRhbnMgbGVzIGRldXggbGFuZ3Vlcy4nLFxuICAgICAgbGVhcm5pbmdHb2FsczogJ1N0dWRlbnRzIHdpbGwgaWRlbnRpZnkgYW5kIGRlc2NyaWJlIHByb3BlcnRpZXMgb2YgbWF0dGVyJyxcbiAgICAgIGxlYXJuaW5nR29hbHNGcjogJ0xlcyDDqWzDqHZlcyBpZGVudGlmaWVyb250IGV0IGTDqWNyaXJvbnQgbGVzIHByb3ByacOpdMOpcyBkZSBsYSBtYXRpw6hyZScsXG4gICAgICBtYXRlcmlhbHM6IFsnTXlzdGVyeSBvYmplY3RzJywgJ01hZ25pZnlpbmcgZ2xhc3NlcycsICdTY2llbmNlIGpvdXJuYWxzJywgJ1Byb3BlcnR5IHdvcmQgY2FyZHMnXSxcbiAgICAgIG1hdGVyaWFsc0ZyOiBbJ09iamV0cyBteXN0w6hyZXMnLCAnTG91cGVzJywgJ0pvdXJuYXV4IHNjaWVudGlmaXF1ZXMnLCAnQ2FydGVzIGRlIG1vdHMgZGUgcHJvcHJpw6l0w6lzJ10sXG4gICAgICBrZXlWb2NhYnVsYXJ5OiBbJ2hhcmQnLCAnc29mdCcsICdyb3VnaCcsICdzbW9vdGgnLCAnZmxleGlibGUnXSxcbiAgICAgIGtleVZvY2FidWxhcnlGcjogWydkdXInLCAnbW91JywgJ3J1Z3VldXgnLCAnbGlzc2UnLCAnZmxleGlibGUnXVxuICAgIH1cbiAgfSxcbiAge1xuICAgIHRpdGxlOiAnRnJlbmNoIEltbWVyc2lvbiBMaXRlcmFjeSBDZW50ZXJzJyxcbiAgICB0aXRsZUZyOiAnQ2VudHJlcyBkZSBsaXR0w6lyYXRpZSBlbiBpbW1lcnNpb24gZnJhbsOnYWlzZScsXG4gICAgZGVzY3JpcHRpb246ICdBIHRlbXBsYXRlIGZvciBvcmdhbml6aW5nIGxpdGVyYWN5IGNlbnRlcnMgaW4gRnJlbmNoIGltbWVyc2lvbicsXG4gICAgZGVzY3JpcHRpb25GcjogJ1VuIG1vZMOobGUgcG91ciBvcmdhbmlzZXIgZGVzIGNlbnRyZXMgZGUgbGl0dMOpcmF0aWUgZW4gaW1tZXJzaW9uIGZyYW7Dp2Fpc2UnLFxuICAgIHR5cGU6ICdMRVNTT05fUExBTicgYXMgY29uc3QsXG4gICAgY2F0ZWdvcnk6ICdCWV9TVUJKRUNUJyBhcyBjb25zdCxcbiAgICBzdWJqZWN0OiAnTGFuZ3VhZ2UgQXJ0cycsXG4gICAgZ3JhZGVNaW46IDEsXG4gICAgZ3JhZGVNYXg6IDMsXG4gICAgdGFnczogWydsaXRlcmFjeScsICdjZW50ZXJzJywgJ2ZyZW5jaC1pbW1lcnNpb24nLCAnZGlmZmVyZW50aWF0aW9uJ10sXG4gICAga2V5d29yZHM6IFsnbGVjdHVyZScsICfDqWNyaXR1cmUnLCAnY2VudHJlcycsICdsaXR0w6lyYXRpZSddLFxuICAgIGlzU3lzdGVtOiB0cnVlLFxuICAgIGlzUHVibGljOiB0cnVlLFxuICAgIGVzdGltYXRlZE1pbnV0ZXM6IDkwLFxuICAgIGxlc3NvblN0cnVjdHVyZToge1xuICAgICAgbWluZHNPbjoge1xuICAgICAgICBkdXJhdGlvbjogMTUsXG4gICAgICAgIGFjdGl2aXRpZXM6IFsnTWluaS1sZXNzb24nLCAnQ2VudGVyIGV4cGVjdGF0aW9ucyByZXZpZXcnXSxcbiAgICAgICAgYWN0aXZpdGllc0ZyOiBbJ01pbmktbGXDp29uJywgJ1LDqXZpc2lvbiBkZXMgYXR0ZW50ZXMgZGVzIGNlbnRyZXMnXVxuICAgICAgfSxcbiAgICAgIGFjdGlvbjoge1xuICAgICAgICBkdXJhdGlvbjogNjAsXG4gICAgICAgIGFjdGl2aXRpZXM6IFsnUm90YXRpb24gdGhyb3VnaCAzIGNlbnRlcnMnXSxcbiAgICAgICAgYWN0aXZpdGllc0ZyOiBbJ1JvdGF0aW9uIMOgIHRyYXZlcnMgMyBjZW50cmVzJ11cbiAgICAgIH0sXG4gICAgICBjb25zb2xpZGF0aW9uOiB7XG4gICAgICAgIGR1cmF0aW9uOiAxNSxcbiAgICAgICAgYWN0aXZpdGllczogWydTaGFyaW5nIGNpcmNsZScsICdSZWZsZWN0aW9uJ10sXG4gICAgICAgIGFjdGl2aXRpZXNGcjogWydDZXJjbGUgZGUgcGFydGFnZScsICdSw6lmbGV4aW9uJ11cbiAgICAgIH1cbiAgICB9LFxuICAgIGNvbnRlbnQ6IHtcbiAgICAgIHRpdGxlOiAnUmVhZGluZyBhbmQgV3JpdGluZyBDZW50ZXJzJyxcbiAgICAgIHRpdGxlRnI6ICdDZW50cmVzIGRlIGxlY3R1cmUgZXQgZFxcJ8OpY3JpdHVyZScsXG4gICAgICBtaW5kc09uOiAnUmV2aWV3IGNlbnRlciBleHBlY3RhdGlvbnMgYW5kIHRvZGF5XFwncyBsZWFybmluZyBnb2Fscy4gTW9kZWwgb25lIGFjdGl2aXR5IGZyb20gZWFjaCBjZW50ZXIuJyxcbiAgICAgIG1pbmRzT25GcjogJ1LDqXZpc2V6IGxlcyBhdHRlbnRlcyBkZXMgY2VudHJlcyBldCBsZXMgb2JqZWN0aWZzIGRcXCdhcHByZW50aXNzYWdlLiBNb2TDqWxpc2V6IHVuZSBhY3Rpdml0w6kgZGUgY2hhcXVlIGNlbnRyZS4nLFxuICAgICAgYWN0aW9uOiAnQ2VudGVyIDE6IEd1aWRlZCByZWFkaW5nIHdpdGggdGVhY2hlci4gQ2VudGVyIDI6IFdvcmQgd29yayBhY3Rpdml0aWVzLiBDZW50ZXIgMzogV3JpdGluZyB3b3Jrc2hvcC4nLFxuICAgICAgYWN0aW9uRnI6ICdDZW50cmUgMSA6IExlY3R1cmUgZ3VpZMOpZSBhdmVjIGxcXCdlbnNlaWduYW50LiBDZW50cmUgMiA6IEFjdGl2aXTDqXMgZFxcJ8OpdHVkZSBkZSBtb3RzLiBDZW50cmUgMyA6IEF0ZWxpZXIgZFxcJ8OpY3JpdHVyZS4nLFxuICAgICAgY29uc29saWRhdGlvbjogJ1N0dWRlbnRzIHNoYXJlIG9uZSB0aGluZyB0aGV5IGxlYXJuZWQgb3IgY3JlYXRlZC4gVXNlIHRhbGtpbmcgc3RpY2sgZm9yIEZyZW5jaCBvcmFsIHByYWN0aWNlLicsXG4gICAgICBjb25zb2xpZGF0aW9uRnI6ICdMZXMgw6lsw6h2ZXMgcGFydGFnZW50IHVuZSBjaG9zZSBxdVxcJ2lscyBvbnQgYXBwcmlzZSBvdSBjcsOpw6llLiBVdGlsaXNleiBsZSBiw6J0b24gZGUgcGFyb2xlIHBvdXIgbGEgcHJhdGlxdWUgb3JhbGUuJyxcbiAgICAgIGxlYXJuaW5nR29hbHM6ICdTdHVkZW50cyB3aWxsIHByYWN0aWNlIHJlYWRpbmcsIHdyaXRpbmcsIGFuZCB3b3JkIHN0dWR5IHNraWxscycsXG4gICAgICBsZWFybmluZ0dvYWxzRnI6ICdMZXMgw6lsw6h2ZXMgcHJhdGlxdWVyb250IGxlcyBjb21ww6l0ZW5jZXMgZGUgbGVjdHVyZSwgZFxcJ8OpY3JpdHVyZSBldCBkXFwnw6l0dWRlIGRlIG1vdHMnLFxuICAgICAgbWF0ZXJpYWxzOiBbJ0xldmVsZWQgYm9va3MnLCAnV29yZCB3b3JrIG1hdGVyaWFscycsICdXcml0aW5nIGZvbGRlcnMnLCAnQW5jaG9yIGNoYXJ0cyddLFxuICAgICAgbWF0ZXJpYWxzRnI6IFsnTGl2cmVzIG5pdmVsw6lzJywgJ01hdMOpcmllbCBkXFwnw6l0dWRlIGRlIG1vdHMnLCAnRG9zc2llcnMgZFxcJ8OpY3JpdHVyZScsICdUYWJsZWF1eCBkXFwnYW5jcmFnZSddLFxuICAgICAga2V5Vm9jYWJ1bGFyeTogWydyZWFkaW5nJywgJ3dyaXRpbmcnLCAnd29yZHMnLCAnc291bmRzJywgJ3N0b3J5J10sXG4gICAgICBrZXlWb2NhYnVsYXJ5RnI6IFsnbGVjdHVyZScsICfDqWNyaXR1cmUnLCAnbW90cycsICdzb25zJywgJ2hpc3RvaXJlJ11cbiAgICB9XG4gIH0sXG4gIHtcbiAgICB0aXRsZTogJ0JpbGluZ3VhbCBQaHlzaWNhbCBFZHVjYXRpb24nLFxuICAgIHRpdGxlRnI6ICfDiWR1Y2F0aW9uIHBoeXNpcXVlIGJpbGluZ3VlJyxcbiAgICBkZXNjcmlwdGlvbjogJ0EgdGVtcGxhdGUgZm9yIFBFIGxlc3NvbnMgd2l0aCBiaWxpbmd1YWwgaW5zdHJ1Y3Rpb24nLFxuICAgIGRlc2NyaXB0aW9uRnI6ICdVbiBtb2TDqGxlIHBvdXIgbGVzIGxlw6dvbnMgZFxcJ8OpZHVjYXRpb24gcGh5c2lxdWUgYXZlYyBpbnN0cnVjdGlvbiBiaWxpbmd1ZScsXG4gICAgdHlwZTogJ0xFU1NPTl9QTEFOJyBhcyBjb25zdCxcbiAgICBjYXRlZ29yeTogJ0JZX1NVQkpFQ1QnIGFzIGNvbnN0LFxuICAgIHN1YmplY3Q6ICdQaHlzaWNhbCBFZHVjYXRpb24nLFxuICAgIGdyYWRlTWluOiAxLFxuICAgIGdyYWRlTWF4OiA4LFxuICAgIHRhZ3M6IFsnUEUnLCAnbW92ZW1lbnQnLCAnYmlsaW5ndWFsJywgJ2FjdGl2ZSddLFxuICAgIGtleXdvcmRzOiBbJ3BoeXNpY2FsJywgJ3BoeXNpcXVlJywgJ21vdmVtZW50JywgJ21vdXZlbWVudCddLFxuICAgIGlzU3lzdGVtOiB0cnVlLFxuICAgIGlzUHVibGljOiB0cnVlLFxuICAgIGVzdGltYXRlZE1pbnV0ZXM6IDQwLFxuICAgIGxlc3NvblN0cnVjdHVyZToge1xuICAgICAgbWluZHNPbjoge1xuICAgICAgICBkdXJhdGlvbjogOCxcbiAgICAgICAgYWN0aXZpdGllczogWydEeW5hbWljIHdhcm0tdXAnLCAnTW92ZW1lbnQgdm9jYWJ1bGFyeSddLFxuICAgICAgICBhY3Rpdml0aWVzRnI6IFsnw4ljaGF1ZmZlbWVudCBkeW5hbWlxdWUnLCAnVm9jYWJ1bGFpcmUgZGUgbW91dmVtZW50J11cbiAgICAgIH0sXG4gICAgICBhY3Rpb246IHtcbiAgICAgICAgZHVyYXRpb246IDI1LFxuICAgICAgICBhY3Rpdml0aWVzOiBbJ1NraWxsIHByYWN0aWNlJywgJ0dhbWUgcGxheSddLFxuICAgICAgICBhY3Rpdml0aWVzRnI6IFsnUHJhdGlxdWUgZGVzIGNvbXDDqXRlbmNlcycsICdKZXUnXVxuICAgICAgfSxcbiAgICAgIGNvbnNvbGlkYXRpb246IHtcbiAgICAgICAgZHVyYXRpb246IDcsXG4gICAgICAgIGFjdGl2aXRpZXM6IFsnQ29vbCBkb3duJywgJ1JlZmxlY3Rpb24gY2lyY2xlJ10sXG4gICAgICAgIGFjdGl2aXRpZXNGcjogWydSZXRvdXIgYXUgY2FsbWUnLCAnQ2VyY2xlIGRlIHLDqWZsZXhpb24nXVxuICAgICAgfVxuICAgIH0sXG4gICAgY29udGVudDoge1xuICAgICAgdGl0bGU6ICdCYWxsIFNraWxscyBEZXZlbG9wbWVudCcsXG4gICAgICB0aXRsZUZyOiAnRMOpdmVsb3BwZW1lbnQgZGVzIGhhYmlsZXTDqXMgYXZlYyBiYWxsb24nLFxuICAgICAgbWluZHNPbjogJ1NpbW9uIFNheXMgd2l0aCBtb3ZlbWVudCB2b2NhYnVsYXJ5IGluIGJvdGggbGFuZ3VhZ2VzLiBQcmFjdGljZSBkaXJlY3Rpb25hbCB3b3Jkcy4nLFxuICAgICAgbWluZHNPbkZyOiAnSmVhbiBkaXQgYXZlYyB2b2NhYnVsYWlyZSBkZSBtb3V2ZW1lbnQgZGFucyBsZXMgZGV1eCBsYW5ndWVzLiBQcmF0aXF1ZXogbGVzIG1vdHMgZGlyZWN0aW9ubmVscy4nLFxuICAgICAgYWN0aW9uOiAnU2tpbGwgc3RhdGlvbnM6IHRocm93aW5nL2xhbmNlciwgY2F0Y2hpbmcvYXR0cmFwZXIsIGJvdW5jaW5nL2ZhaXJlIHJlYm9uZGlyLiBVc2UgYm90aCBsYW5ndWFnZXMgZm9yIGluc3RydWN0aW9ucy4nLFxuICAgICAgYWN0aW9uRnI6ICdTdGF0aW9ucyBkXFwnaGFiaWxldMOpcyA6IGxhbmNlciwgYXR0cmFwZXIsIGZhaXJlIHJlYm9uZGlyLiBVdGlsaXNleiBsZXMgZGV1eCBsYW5ndWVzIHBvdXIgbGVzIGluc3RydWN0aW9ucy4nLFxuICAgICAgY29uc29saWRhdGlvbjogJ0Nvb2wgZG93biBzdHJldGNoZXMgd2l0aCBjb3VudGluZyBpbiBGcmVuY2guIFJlZmxlY3Rpb24gb24gc2tpbGxzIGxlYXJuZWQuJyxcbiAgICAgIGNvbnNvbGlkYXRpb25GcjogJ8OJdGlyZW1lbnRzIGRlIHJldG91ciBhdSBjYWxtZSBlbiBjb21wdGFudCBlbiBmcmFuw6dhaXMuIFLDqWZsZXhpb24gc3VyIGxlcyBoYWJpbGV0w6lzIGFwcHJpc2VzLicsXG4gICAgICBsZWFybmluZ0dvYWxzOiAnU3R1ZGVudHMgd2lsbCBkZXZlbG9wIGJhbGwgaGFuZGxpbmcgc2tpbGxzJyxcbiAgICAgIGxlYXJuaW5nR29hbHNGcjogJ0xlcyDDqWzDqHZlcyBkw6l2ZWxvcHBlcm9udCBkZXMgaGFiaWxldMOpcyBkZSBtYW5pcHVsYXRpb24gZGUgYmFsbG9uJyxcbiAgICAgIG1hdGVyaWFsczogWydWYXJpb3VzIGJhbGxzJywgJ0NvbmVzJywgJ0hvb3BzJywgJ011c2ljIHBsYXllciddLFxuICAgICAgbWF0ZXJpYWxzRnI6IFsnQmFsbG9ucyB2YXJpw6lzJywgJ0PDtG5lcycsICdDZXJjZWF1eCcsICdMZWN0ZXVyIGRlIG11c2lxdWUnXSxcbiAgICAgIGtleVZvY2FidWxhcnk6IFsndGhyb3cnLCAnY2F0Y2gnLCAnYm91bmNlJywgJ3JvbGwnLCAncGFzcyddLFxuICAgICAga2V5Vm9jYWJ1bGFyeUZyOiBbJ2xhbmNlcicsICdhdHRyYXBlcicsICdmYWlyZSByZWJvbmRpcicsICdyb3VsZXInLCAncGFzc2VyJ11cbiAgICB9XG4gIH1cbl07XG5cbi8qKlxuICogRnVuY3Rpb24gdG8gY3JlYXRlIGJpbGluZ3VhbCBsZXNzb24gcGxhbiB0ZW1wbGF0ZXMgaW4gdGhlIGRhdGFiYXNlXG4gKi9cbmV4cG9ydCBhc3luYyBmdW5jdGlvbiBzZWVkQmlsaW5ndWFsVGVtcGxhdGVzKHByaXNtYTogeyBwbGFuVGVtcGxhdGU6IHsgY3JlYXRlOiAoYXJnczogeyBkYXRhOiB1bmtub3duIH0pID0+IFByb21pc2U8dW5rbm93bj4gfSB9LCBzeXN0ZW1Vc2VySWQ6IG51bWJlcikge1xuICBjb25zdCB0ZW1wbGF0ZXMgPSBbXTtcbiAgXG4gIGZvciAoY29uc3QgdGVtcGxhdGUgb2YgYmlsaW5ndWFsTGVzc29uVGVtcGxhdGVzKSB7XG4gICAgY29uc3QgY3JlYXRlZCA9IGF3YWl0IHByaXNtYS5wbGFuVGVtcGxhdGUuY3JlYXRlKHtcbiAgICAgIGRhdGE6IHtcbiAgICAgICAgLi4udGVtcGxhdGUsXG4gICAgICAgIGNyZWF0ZWRCeVVzZXJJZDogc3lzdGVtVXNlcklkLFxuICAgICAgICB1c2FnZUNvdW50OiAwLFxuICAgICAgICBhdmVyYWdlUmF0aW5nOiAwLjAsXG4gICAgICAgIHRvdGFsUmF0aW5nczogMCxcbiAgICAgIH1cbiAgICB9KTtcbiAgICB0ZW1wbGF0ZXMucHVzaChjcmVhdGVkKTtcbiAgfVxuICBcbiAgcmV0dXJuIHRlbXBsYXRlcztcbn0iXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztJQWdCSTtJQUFBQSxhQUFBLFlBQUFBLENBQUE7TUFBQSxPQUFBQyxjQUFBO0lBQUE7RUFBQTtFQUFBLE9BQUFBLGNBQUE7QUFBQTtBQUFBRCxhQUFBO0FBaEJKOzs7QUFJQSxPQUFPLE1BQU1FLHdCQUF3QjtBQUFBO0FBQUEsQ0FBQUYsYUFBQSxHQUFBRyxDQUFBLE9BQUcsQ0FDdEM7RUFDRUMsS0FBSyxFQUFFLDhCQUE4QjtFQUNyQ0MsT0FBTyxFQUFFLCtDQUErQztFQUN4REMsV0FBVyxFQUFFLDJEQUEyRDtFQUN4RUMsYUFBYSxFQUFFLDRFQUE0RTtFQUMzRkMsSUFBSSxFQUFFLGFBQXNCO0VBQzVCQyxRQUFRLEVBQUUsWUFBcUI7RUFDL0JDLE9B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
