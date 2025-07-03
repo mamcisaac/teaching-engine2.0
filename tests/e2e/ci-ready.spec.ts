@@ -49,7 +49,7 @@ test.describe('CI-Ready E2E Tests', () => {
     expect(registerResponse.ok()).toBeTruthy();
     const registerData = await registerResponse.json();
     expect(registerData.user.email).toBe(testUser.email);
-    expect(registerData.token).toBeTruthy();
+    expect(registerData.accessToken).toBeTruthy();
 
     // Login with same user
     const loginResponse = await request.post('http://localhost:3000/api/auth/login', {
@@ -62,7 +62,7 @@ test.describe('CI-Ready E2E Tests', () => {
     expect(loginResponse.ok()).toBeTruthy();
     const loginData = await loginResponse.json();
     expect(loginData.user.email).toBe(testUser.email);
-    expect(loginData.token).toBeTruthy();
+    expect(loginData.accessToken).toBeTruthy();
   });
 
   test('protected endpoints require authentication', async ({ request }) => {
@@ -79,12 +79,12 @@ test.describe('CI-Ready E2E Tests', () => {
     });
 
     expect(loginResponse.ok()).toBeTruthy();
-    const { token } = await loginResponse.json();
+    const { accessToken } = await loginResponse.json();
 
     // Access protected endpoint with token
     const authorizedResponse = await request.get('http://localhost:3000/api/auth/me', {
       headers: {
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${accessToken}`
       }
     });
 

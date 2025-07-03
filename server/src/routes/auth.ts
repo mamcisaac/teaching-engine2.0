@@ -48,7 +48,7 @@ export function authRoutes(prisma: PrismaClient): Router {
           path: '/',
         };
 
-        res.cookie('authToken', result.token, cookieOptions);
+        res.cookie('authToken', result.accessToken, cookieOptions);
         res.json(result);
       } catch (error) {
         logger.warn(`Failed login attempt for email: ${email}`, { error });
@@ -107,7 +107,7 @@ export function authRoutes(prisma: PrismaClient): Router {
       res.cookie('authToken', token, cookieOptions);
       res.status(201).json({
         user: userWithoutPassword,
-        token,
+        accessToken: token,
       });
     }),
   );

@@ -17,8 +17,17 @@ const log = debug('server:main');
 const error = debug('server:error');
 
 // Get directory name in ES module
-const __filename_index = fileURLToPath(import.meta.url);
-const __dirname_index = path.dirname(__filename_index);
+let __filename_index: string;
+let __dirname_index: string;
+
+// Skip import.meta in test environment
+if (process.env.NODE_ENV === 'test' || process.env.JEST_WORKER_ID) {
+  __filename_index = __filename || '';
+  __dirname_index = __dirname || process.cwd();
+} else {
+  __filename_index = fileURLToPath(import.meta.url);
+  __dirname_index = path.dirname(__filename_index);
+}
 
 // Use global Express Request type with user: { id: number; email: string }
 
@@ -26,8 +35,7 @@ const __dirname_index = path.dirname(__filename_index);
 import curriculumImportRoutes from './routes/curriculumImport';
 import curriculumDiscoveryRoutes from './routes/curriculum-discovery';
 import discoverySchedulerRoutes from './routes/discovery-scheduler';
-import studentRoutes from './routes/student';
-import parentSummaryRoutes from './routes/parentSummary';
+// Student-related routes removed - app does not store student data
 import newsletterRoutes from './routes/newsletters';
 import curriculumExpectationRoutes from './routes/curriculum-expectations';
 import longRangePlanRoutes from './routes/long-range-plans';
@@ -49,9 +57,6 @@ import batchApiRoutes from './routes/batch';
 import subPlanRoutes from './routes/sub-plan';
 // import { authRoutes as _authRoutes } from './routes/auth';
 import authEndpoints from './routes/authEndpoints';
-import { teamRoutes } from './routes/teams';
-import { sharingRoutes } from './routes/sharing';
-import { commentRoutes } from './routes/comments';
 import { userRoutes } from './routes/user';
 import notificationRoutes from './routes/notifications';
 import {
@@ -136,10 +141,24 @@ app.post('/api/login', authRateLimitMiddleware, async (req: Request, res: Respon
   authEndpoints(req, res, () => {});
 });
 
+// Legacy register endpoint for backward compatibility
+app.post('/api/register', authRateLimitMiddleware, async (req: Request, res: Response) => {
+  // Forward to the new auth endpoint
+  req.url = '/register';
+  authEndpoints(req, res, () => {});
+});
+
 // Auth check endpoint is handled by authEndpoints router at /api/auth/me
 
 app.get('/api/auth/check', authenticate, (req: Request, res: Response) => {
   res.json({ userId: req.user?.id });
+});
+
+// Legacy logout endpoint for backward compatibility
+app.post('/api/logout', (req: Request, res: Response) => {
+  // Forward to the new auth endpoint
+  req.url = '/logout';
+  authEndpoints(req, res, () => {});
 });
 
 // Logout endpoint is handled by authEndpoints router at /api/auth/logout
@@ -178,8 +197,7 @@ app.use('/api/notifications', authenticate, rateLimiters.api as any, notificatio
 
 // Apply authentication and rate limiting to all API routes
 log('Mounting ETFO-aligned API routes...');
-app.use('/api/students', authenticate, rateLimiters.api as any, studentRoutes);
-app.use('/api/parent-summary', authenticate, rateLimiters.write as any, parentSummaryRoutes);
+// Student endpoints removed - app does not store student data
 app.use('/api/newsletters', authenticate, rateLimiters.write as any, newsletterRoutes);
 app.use(
   '/api/curriculum-import',
@@ -257,10 +275,7 @@ app.use('/api/sub-plan', authenticate, rateLimiters.write as any, subPlanRoutes)
 // Batch API Routes (for request batching)
 app.use('/api/batch', authenticate, rateLimiters.api as any, batchApiRoutes);
 
-// Collaboration Routes
-app.use('/api/teams', authenticate, rateLimiters.api as any, teamRoutes(prisma));
-app.use('/api/sharing', authenticate, rateLimiters.api as any, sharingRoutes(prisma));
-app.use('/api/comments', authenticate, rateLimiters.api as any, commentRoutes(prisma));
+// Collaboration Routes removed - focusing on single-teacher planning
 
 // Service health check endpoint (no auth required for monitoring)
 app.get('/api/health/services', async (_req, res) => {

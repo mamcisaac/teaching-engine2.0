@@ -4,8 +4,7 @@
  * Exposes authentication middleware functions as API endpoints
  */
 
-import { Router } from 'express';
-// import { Request, Response, NextFunction } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import {
   login,
   register,
@@ -53,13 +52,42 @@ const resetPasswordSchema = z.object({
   newPassword: z.string().min(8, 'New password must be at least 8 characters'),
 });
 
+// Middleware to validate auth inputs with test-compatible error messages
+function validateAuthInputs(isRegister = false) {
+  return (req: Request, res: Response, next: NextFunction) => {
+    let { email, password } = req.body;
+
+    // Check for missing or non-string email/password
+    if (!email || !password || typeof email !== 'string' || typeof password !== 'string') {
+      return res.status(400).json({ error: 'Email and password are required' });
+    }
+
+    // Trim email whitespace
+    email = email.trim();
+    req.body.email = email;
+
+    // Check basic email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: 'Invalid email format' });
+    }
+
+    // For register, check if name is provided
+    if (isRegister && !req.body.name) {
+      return res.status(400).json({ error: 'Email, password, and name are required' });
+    }
+
+    next();
+  };
+}
+
 // Create router with optional prisma instance for testing
 function createAuthRouter(prisma = defaultPrisma) {
   const router = Router();
 
-  // Public endpoints with rate limiting
-  router.post('/login', authRateLimiter as any, validateRequest(loginSchema), login);
-  router.post('/register', authRateLimiter as any, validateRequest(registerSchema), register);
+  // Public endpoints with rate limiting and custom validation
+  router.post('/login', authRateLimiter as any, validateAuthInputs(false), validateRequest(loginSchema), login);
+  router.post('/register', authRateLimiter as any, validateAuthInputs(true), validateRequest(registerSchema), register);
   router.post(
     '/forgot-password',
     authRateLimiter as any,
@@ -82,10 +110,10 @@ function createAuthRouter(prisma = defaultPrisma) {
     changePassword,
   );
 
-  // Session check endpoint with user verification
+  // Session check endpoint - authentication middleware handles all error cases
   router.get('/me', authenticate, async (req, res) => {
     try {
-      // Always verify user exists in database
+      // Always fetch fresh user data from database for /me endpoint
       const userId = req.user!.id;
 
       const user = await prisma.user.findUnique({
@@ -99,26 +127,31 @@ function createAuthRouter(prisma = defaultPrisma) {
       });
 
       if (!user) {
+        // This shouldn't happen as authenticate middleware already checked
         return res.status(404).json({
-          error: 'Not Found',
-          message: 'User not found',
+          error: 'User not found',
         });
       }
 
+      // Return user data directly in response body
       res.json({
-        user: {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          role: user.role,
-        },
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        role: user.role,
       });
     } catch (error) {
-      return res.status(401).json({
-        error: 'Unauthorized',
-        message: 'Authentication required',
+      // This should rarely happen as authenticate middleware handles most errors
+      return res.status(500).json({
+        error: 'Internal Server Error',
+        message: 'Failed to retrieve user data',
       });
     }
+  });
+
+  // Simple auth check endpoint - returns userId if authenticated
+  router.get('/check', authenticate, (req, res) => {
+    res.json({ userId: req.user!.id });
   });
 
   return router;

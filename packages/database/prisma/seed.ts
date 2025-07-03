@@ -14,9 +14,7 @@ async function main() {
   await prisma.templateRating.deleteMany();
   await prisma.templateVariation.deleteMany();
   await prisma.planTemplate.deleteMany();
-  await prisma.studentReflection.deleteMany();
-  await prisma.studentGoal.deleteMany();
-  await prisma.student.deleteMany();
+  // Student-related deletions removed - app does not store student data
   await prisma.daybookEntry.deleteMany();
   await prisma.eTFOLessonPlanResource.deleteMany();
   await prisma.eTFOLessonPlanExpectation.deleteMany();
@@ -28,7 +26,7 @@ async function main() {
   await prisma.longRangePlan.deleteMany();
   await prisma.curriculumExpectation.deleteMany();
   await prisma.curriculumImport.deleteMany();
-  await prisma.parentMessage.deleteMany();
+  await prisma.classroomAnnouncement.deleteMany();
   await prisma.calendarEvent.deleteMany();
   await prisma.classRoutine.deleteMany();
   await prisma.subPlanRecord.deleteMany();
@@ -152,36 +150,7 @@ async function main() {
     },
   });
 
-  // Create sample students
-  console.log('Creating sample students...');
-  const student1 = await prisma.student.create({
-    data: {
-      userId: defaultUser.id,
-      firstName: 'Alice',
-      lastName: 'Johnson',
-      grade: 1,
-    },
-  });
-
-  const student2 = await prisma.student.create({
-    data: {
-      userId: defaultUser.id,
-      firstName: 'Bob',
-      lastName: 'Smith',
-      grade: 1,
-    },
-  });
-
-  // Create sample student goals
-  console.log('Creating sample student goals...');
-  await prisma.studentGoal.create({
-    data: {
-      studentId: student1.id,
-      text: 'Count to 20 independently',
-      unitPlanId: unitPlan.id,
-      status: 'active',
-    },
-  });
+  // Student creation removed - app does not store student data
 
   // Create sample daybook entry
   console.log('Creating sample daybook entry...');
@@ -194,7 +163,7 @@ async function main() {
       whatDidntWork: 'Some students struggled with number recognition',
       nextSteps: 'Provide more visual supports for number recognition',
       studentEngagement: 'High - students actively participated',
-      studentSuccesses: 'Alice counted to 15 independently',
+      studentSuccesses: 'Several students demonstrated counting to 15 independently',
       expectations: {
         create: {
           expectationId: mathExpectation.id,
@@ -255,7 +224,7 @@ async function main() {
 
   // Create sample parent message
   console.log('Creating sample parent message...');
-  await prisma.parentMessage.create({
+  await prisma.classroomAnnouncement.create({
     data: {
       userId: defaultUser.id,
       title: 'Weekly Update',

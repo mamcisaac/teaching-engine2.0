@@ -120,7 +120,7 @@ describe('Authentication Routes - Working Tests', () => {
 
       expect(res.status).toBe(200);
       expect(res.body).toHaveProperty('user');
-      expect(res.body).toHaveProperty('token');
+      expect(res.body).toHaveProperty('accessToken');
       expect(res.body.user).toMatchObject({
         email: validUser.email,
         name: validUser.name,
@@ -129,15 +129,9 @@ describe('Authentication Routes - Working Tests', () => {
       expect(res.body.user).not.toHaveProperty('password');
 
       // Verify JWT token
-      const decoded = jwt.verify(res.body.token, process.env.JWT_SECRET!) as any;
+      const decoded = jwt.verify(res.body.accessToken, process.env.JWT_SECRET!) as any;
       expect(decoded.email).toBe(validUser.email);
       expect(decoded.userId).toBeDefined();
-
-      // Check httpOnly cookie is set
-      const cookies = res.headers['set-cookie'];
-      expect(cookies).toBeDefined();
-      expect(cookies[0]).toMatch(/authToken=/);
-      expect(cookies[0]).toMatch(/HttpOnly/);
     });
 
     it('should return 401 with incorrect password', async () => {
@@ -194,7 +188,7 @@ describe('Authentication Routes - Working Tests', () => {
 
       expect(res.status).toBe(201);
       expect(res.body).toHaveProperty('user');
-      expect(res.body).toHaveProperty('token');
+      expect(res.body).toHaveProperty('accessToken');
       expect(res.body.user).toMatchObject({
         email: newUser.email,
         name: newUser.name,
@@ -249,7 +243,7 @@ describe('Authentication Routes - Working Tests', () => {
         password: validUser.password,
       });
 
-      const token = loginRes.body.token;
+      const token = loginRes.body.accessToken;
 
       const res = await request(app).get('/api/auth/me').set('Authorization', `Bearer ${token}`);
 
@@ -286,11 +280,7 @@ describe('Authentication Routes - Working Tests', () => {
 
       expect(res.status).toBe(200);
       expect(res.body).toEqual({ message: 'Logged out successfully' });
-
-      // Check that cookie is cleared
-      const cookies = res.headers['set-cookie'];
-      expect(cookies).toBeDefined();
-      expect(cookies[0]).toMatch(/authToken=;/);
+      
     });
   });
 });

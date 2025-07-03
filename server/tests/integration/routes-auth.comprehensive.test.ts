@@ -95,7 +95,7 @@ describe('Authentication Routes - Comprehensive Integration Tests', () => {
 
       // Validate response structure
       expect(response.body).toHaveProperty('user');
-      expect(response.body).toHaveProperty('token');
+      expect(response.body).toHaveProperty('accessToken');
       expect(response.body.user).toHaveProperty('id');
       expect(response.body.user).toHaveProperty('email', userData.email);
       expect(response.body.user).toHaveProperty('name', userData.name);
@@ -103,14 +103,12 @@ describe('Authentication Routes - Comprehensive Integration Tests', () => {
       expect(response.body.user).not.toHaveProperty('password');
 
       // Validate JWT token
-      const decodedToken = jwt.verify(response.body.token, TEST_JWT_SECRET) as any;
+      const decodedToken = jwt.verify(response.body.accessToken, TEST_JWT_SECRET) as any;
       expect(decodedToken).toHaveProperty('userId');
       expect(decodedToken).toHaveProperty('email', userData.email);
       expect(decodedToken).toHaveProperty('exp');
 
       // Validate cookie is set with proper security options
-      const cookies = response.headers['set-cookie'];
-      expect(cookies).toBeDefined();
       expect(cookies[0]).toContain('authToken=');
       expect(cookies[0]).toContain('HttpOnly');
       expect(cookies[0]).toContain('Path=/');
@@ -290,19 +288,17 @@ describe('Authentication Routes - Comprehensive Integration Tests', () => {
 
       // Validate response structure
       expect(response.body).toHaveProperty('user');
-      expect(response.body).toHaveProperty('token');
+      expect(response.body).toHaveProperty('accessToken');
       expect(response.body.user).toHaveProperty('email', 'test@test.com');
       expect(response.body.user).toHaveProperty('name', 'Test User');
       expect(response.body.user).not.toHaveProperty('password');
 
       // Validate JWT token
-      const decodedToken = jwt.verify(response.body.token, TEST_JWT_SECRET) as any;
+      const decodedToken = jwt.verify(response.body.accessToken, TEST_JWT_SECRET) as any;
       expect(decodedToken).toHaveProperty('userId');
       expect(decodedToken).toHaveProperty('email', 'test@test.com');
 
       // Validate secure cookie is set
-      const cookies = response.headers['set-cookie'];
-      expect(cookies).toBeDefined();
       expect(cookies[0]).toContain('authToken=');
       expect(cookies[0]).toContain('HttpOnly');
     });
@@ -414,11 +410,11 @@ describe('Authentication Routes - Comprehensive Integration Tests', () => {
       expect(successfulResponses.length).toBeGreaterThan(0);
 
       successfulResponses.forEach((response) => {
-        expect(response.body).toHaveProperty('token');
+        expect(response.body).toHaveProperty('accessToken');
       });
 
       // Tokens should be generated (may be identical if generated at exact same time)
-      const tokens = successfulResponses.map((r) => r.body.token);
+      const tokens = successfulResponses.map((r) => r.body.accessToken);
       tokens.forEach((token) => {
         expect(typeof token).toBe('string');
         expect(token.length).toBeGreaterThan(0);
@@ -504,7 +500,7 @@ describe('Authentication Routes - Comprehensive Integration Tests', () => {
         })
         .expect(201);
 
-      const token = registerResponse.body.token;
+      const token = registerResponse.body.accessToken;
 
       // Decode token to check expiration
       const decodedToken = jwt.decode(token) as any;
@@ -538,9 +534,7 @@ describe('Authentication Routes - Comprehensive Integration Tests', () => {
             name: 'Production Test User',
           })
           .expect(201);
-
-        const cookies = response.headers['set-cookie'];
-        expect(cookies).toBeDefined();
+        
         expect(cookies[0]).toContain('HttpOnly');
         expect(cookies[0]).toContain('SameSite=Strict');
         expect(cookies[0]).toContain('Secure'); // Should be secure in production
@@ -559,9 +553,7 @@ describe('Authentication Routes - Comprehensive Integration Tests', () => {
           name: 'Cookie Test User',
         })
         .expect(201);
-
-      const cookies = response.headers['set-cookie'];
-      expect(cookies).toBeDefined();
+      
       expect(cookies[0]).toContain('HttpOnly');
       expect(cookies[0]).toContain('SameSite=Lax'); // Lax in non-production
       expect(cookies[0]).not.toContain('Secure'); // Not secure in test mode

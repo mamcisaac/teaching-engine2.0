@@ -120,10 +120,10 @@ const baseConfig = {
   coverageReporters: process.env.CI ? ['text', 'lcov', 'json'] : ['text', 'html'],
   coverageThreshold: {
     global: {
-      branches: 0, // TODO: Increase to 80% as test coverage improves
-      functions: 0, // TODO: Increase to 85% as test coverage improves
-      lines: 0, // TODO: Increase to 90% as test coverage improves
-      statements: 0, // TODO: Increase to 90% as test coverage improves
+      branches: 50, // Current: 51.01%, Target: 80%
+      functions: 55, // Current: 56.24%, Target: 85%
+      lines: 60, // Current: 62.82%, Target: 90%
+      statements: 60, // Current: 62.47%, Target: 90%
     },
   },
 
@@ -207,11 +207,41 @@ const unitTestProject = {
 
 // Integration test project configuration
 const integrationTestProject = {
-  ...baseConfig,
+  // Use base config but override specific settings for integration tests
+  preset: baseConfig.preset,
+  testEnvironment: baseConfig.testEnvironment,
+  extensionsToTreatAsEsm: baseConfig.extensionsToTreatAsEsm,
+  cache: baseConfig.cache,
+  cacheDirectory: baseConfig.cacheDirectory,
+  maxWorkers: 2, // Limited parallelism for database access
+  bail: baseConfig.bail,
+  workerIdleMemoryLimit: baseConfig.workerIdleMemoryLimit,
+  maxConcurrency: baseConfig.maxConcurrency,
+  detectOpenHandles: baseConfig.detectOpenHandles,
+  detectLeaks: baseConfig.detectLeaks,
+  errorOnDeprecated: baseConfig.errorOnDeprecated,
+  testLocationInResults: baseConfig.testLocationInResults,
+  logHeapUsage: baseConfig.logHeapUsage,
+  moduleDirectories: baseConfig.moduleDirectories,
+  moduleFileExtensions: baseConfig.moduleFileExtensions,
+  transform: baseConfig.transform,
+  transformIgnorePatterns: baseConfig.transformIgnorePatterns,
+  testPathIgnorePatterns: baseConfig.testPathIgnorePatterns,
+  clearMocks: baseConfig.clearMocks,
+  resetMocks: baseConfig.resetMocks,
+  restoreMocks: baseConfig.restoreMocks,
+  forceExit: baseConfig.forceExit,
+  collectCoverageFrom: baseConfig.collectCoverageFrom,
+  coverageDirectory: baseConfig.coverageDirectory,
+  coverageReporters: baseConfig.coverageReporters,
+  coverageThreshold: baseConfig.coverageThreshold,
+  silent: baseConfig.silent,
+  verbose: baseConfig.verbose,
+  globalSetup: baseConfig.globalSetup,
+  globalTeardown: baseConfig.globalTeardown,
   displayName: 'Integration Tests',
   testMatch: ['<rootDir>/tests/integration/**/*.test.ts'],
   testTimeout: 30000, // 30 seconds for integration tests
-  maxWorkers: 2, // Limited parallelism for database access
 
   // Integration test setup with unified database setup (no per-test transactions)
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js', '<rootDir>/tests/integration-test-setup.ts'],

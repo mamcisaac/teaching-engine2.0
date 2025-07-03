@@ -43,7 +43,7 @@ describe('Enhanced Sub Plan API', () => {
       );
     }
 
-    authToken = loginResponse.body.token;
+    authToken = loginResponse.body.accessToken;
 
     if (!authToken) {
       throw new Error('No auth token received from login');

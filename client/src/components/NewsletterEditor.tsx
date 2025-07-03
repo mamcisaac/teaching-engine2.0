@@ -403,7 +403,7 @@ export default function NewsletterEditor({
       <div className="mt-8 pt-6 border-t border-gray-200 text-sm text-gray-500">
         <div className="flex justify-between items-center">
           <div>
-            Recipients: {localDraft.studentIds.length} parents | 
+            Template type: General newsletter | 
             Date range: {localDraft.dateFrom.toLocaleDateString()} - {localDraft.dateTo.toLocaleDateString()} |
             Tone: {localDraft.tone}
           </div>

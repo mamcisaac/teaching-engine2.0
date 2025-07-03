@@ -52,8 +52,8 @@ test.describe('Minimal API Tests', () => {
 
       if (response.ok()) {
         const userData = JSON.parse(responseText);
-        console.log(`Login successful! Token: ${userData.token ? 'present' : 'missing'}, User: ${userData.user ? 'present' : 'missing'}`);
-        expect(userData.token).toBeTruthy();
+        console.log(`Login successful! Token: ${userData.accessToken ? 'present' : 'missing'}, User: ${userData.user ? 'present' : 'missing'}`);
+        expect(userData.accessToken).toBeTruthy();
         expect(userData.user).toBeTruthy();
       } else {
         console.log(`Login failed with status ${response.status()}: ${responseText}`);

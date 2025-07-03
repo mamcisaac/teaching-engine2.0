@@ -10,7 +10,7 @@ import { getTestPrismaClient } from './jest.setup.js';
 export async function getAuthToken(
   app: Application,
   email?: string,
-): Promise<{ token: string; userId: number }> {
+): Promise<{ accessToken: string; userId: number }> {
   const prisma = getTestPrismaClient();
 
   // Generate unique email if not provided
@@ -38,7 +38,7 @@ export async function getAuthToken(
     throw new Error(`Login failed: ${loginResponse.status} ${loginResponse.text}`);
   }
 
-  return { token: loginResponse.body.token, userId: user.id };
+  return { accessToken: loginResponse.body.accessToken, userId: user.id };
 }
 
 /**
@@ -51,7 +51,7 @@ export function authRequest(app: Application) {
   return {
     async setup(): Promise<void> {
       const authData = await getAuthToken(app);
-      token = authData.token;
+      token = authData.accessToken;
       userId = authData.userId;
     },
     get userId() {
@@ -110,7 +110,7 @@ export function createAuthToken(userId: number, email: string): string {
 /**
  * Alias for getAuthToken to match expected import name
  */
-export const getTestAuthToken = async () => {
+export const getTestAuthToken = async (): Promise<{ accessToken: string; userId: number }> => {
   const prisma = getTestPrismaClient();
   
   // Create a test user with hashed password
@@ -127,7 +127,7 @@ export const getTestAuthToken = async () => {
   // Create token directly without HTTP request
   const token = createAuthToken(user.id, user.email);
 
-  return { token, userId: user.id };
+  return { accessToken: token, userId: user.id };
 };
 
 /**

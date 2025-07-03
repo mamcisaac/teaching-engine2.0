@@ -62,10 +62,10 @@ test.describe('Messenger Agent E2E Tests', () => {
               },
               body: JSON.stringify({
                 name: 'E2E Test Template',
-                subject: 'Test Subject - {studentName}',
-                contentFr: 'Contenu français pour {studentName}',
-                contentEn: 'English content for {studentName}',
-                variables: ['studentName', 'parentName'],
+                subject: 'Test Subject - {recipientName}',
+                contentFr: 'Contenu français pour {recipientName}',
+                contentEn: 'English content for {recipientName}',
+                variables: ['recipientName', 'recipientTitle'],
               }),
             });
             return { status: response.status, ok: response.ok };
@@ -81,9 +81,9 @@ test.describe('Messenger Agent E2E Tests', () => {
       // If template page found, test the UI
       const templateData = {
         name: `E2E Test Template ${Date.now()}`,
-        subject: 'Weekly Update - {studentName}',
-        contentFr: 'Bonjour {parentName}, voici les nouvelles de {studentName} cette semaine.',
-        contentEn: "Hello {parentName}, here are this week's updates for {studentName}.",
+        subject: 'Weekly Update - {recipientName}',
+        contentFr: 'Bonjour {recipientTitle}, voici les nouvelles de {recipientName} cette semaine.',
+        contentEn: "Hello {recipientTitle}, here are this week's updates for {recipientName}.",
       };
 
       // Look for create template button
@@ -231,7 +231,7 @@ test.describe('Messenger Agent E2E Tests', () => {
             const report = await reportResponse.json();
             return {
               status: reportResponse.status,
-              hasStudentName: !!report.studentName,
+              hasStudentName: !!report.recipientName,
               hasSections: Array.isArray(report.sections),
               hasComments: !!report.overallComments,
             };
@@ -285,7 +285,7 @@ test.describe('Messenger Agent E2E Tests', () => {
               const report = await reportResponse.json();
               return {
                 status: reportResponse.status,
-                hasStudentName: !!report.studentName,
+                hasStudentName: !!report.recipientName,
                 hasSections: Array.isArray(report.sections),
               };
             } catch (error) {
@@ -533,14 +533,14 @@ test.describe('Messenger Agent E2E Tests', () => {
                 {
                   email: 'test.parent@example.com',
                   name: 'Test Parent',
-                  studentName: 'Test Student',
+                  recipientName: 'Test Student',
                 },
               ],
               subject: 'E2E Test Newsletter',
-              htmlContent: '<h1>Test Newsletter</h1><p>This is a test email for {studentName}</p>',
-              textContent: 'Test Newsletter\n\nThis is a test email for {studentName}',
+              htmlContent: '<h1>Test Newsletter</h1><p>This is a test email for {recipientName}</p>',
+              textContent: 'Test Newsletter\n\nThis is a test email for {recipientName}',
               templateVariables: {
-                studentName: 'Test Student',
+                recipientName: 'Test Student',
               },
             }),
           });
@@ -716,7 +716,7 @@ test.describe('Messenger Agent E2E Tests', () => {
             .map((_, i) => ({
               email: `test${i}@example.com`,
               name: `Test Parent ${i}`,
-              studentName: `Test Student ${i}`,
+              recipientName: `Test Student ${i}`,
             }));
 
           const startTime = Date.now();

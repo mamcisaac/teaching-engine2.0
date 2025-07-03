@@ -56,7 +56,7 @@ describe('Newsletter Routes', () => {
       email: testUser.email,
       password: 'test123',
     });
-    authToken = loginRes.body.token;
+    authToken = loginRes.body.accessToken;
   });
 
   describe('POST /api/newsletters/generate-newsletter', () => {

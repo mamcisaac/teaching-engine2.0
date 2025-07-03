@@ -14,18 +14,14 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // Import components to test
 import { AuthProvider } from '../../src/contexts/AuthContext';
 import { LanguageProvider } from '../../src/contexts/LanguageContext';
-import StudentSelector from '../../src/components/StudentSelector';
+// Student-related imports removed - app does not store student data
 import BilingualTextInput from '../../src/components/BilingualTextInput';
 import RichTextEditor from '../../src/components/RichTextEditor';
 import TeacherOnboardingFlow from '../../src/components/TeacherOnboardingFlow';
-import ParentSummaryPreview from '../../src/components/ParentSummaryPreview';
 
 // Mock API calls
 vi.mock('../../src/api', () => ({
-  getStudents: vi.fn(() => Promise.resolve([])),
-  createStudent: vi.fn((data) => Promise.resolve({ id: 1, ...data })),
-  updateStudent: vi.fn((id, data) => Promise.resolve({ id, ...data })),
-  deleteStudent: vi.fn(() => Promise.resolve({})),
+  // Student-related API mocks removed - app does not store student data
 }));
 
 // Mock auth context

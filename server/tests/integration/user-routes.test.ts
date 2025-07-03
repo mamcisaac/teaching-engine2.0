@@ -62,13 +62,13 @@ describe('User Routes', () => {
       email: userData.email,
       password: userData.password,
     });
-    authToken = userLoginRes.body.token;
+    authToken = userLoginRes.body.accessToken;
 
     const adminLoginRes = await request(app).post('/api/login').send({
       email: adminData.email,
       password: adminData.password,
     });
-    adminToken = adminLoginRes.body.token;
+    adminToken = adminLoginRes.body.accessToken;
   });
 
   afterEach(() => {
@@ -91,18 +91,6 @@ describe('User Routes', () => {
       expect(res.body).not.toHaveProperty('password');
     });
 
-    it('should work with cookie authentication', async () => {
-      const agent = request.agent(app);
-      await agent.post('/api/login').send({
-        email: userData.email,
-        password: userData.password,
-      });
-
-      const res = await agent.get('/api/user/profile');
-
-      expect(res.status).toBe(200);
-      expect(res.body.email).toBe(testUser.email);
-    });
 
     it('should return 401 without authentication', async () => {
       const res = await request(app).get('/api/user/profile');

@@ -151,13 +151,7 @@ export const auditLogger = new AuditLogger();
 
 // Pre-configured audit middleware for common operations
 export const auditLoggers = {
-  // Student operations
-  createStudent: auditLogger.middleware('CREATE', 'student'),
-  updateStudent: auditLogger.middleware('UPDATE', 'student'),
-  deleteStudent: auditLogger.middleware('DELETE', 'student'),
-  viewStudent: auditLogger.middleware('VIEW', 'student'),
-  studentView: auditLogger.middleware('VIEW', 'student'), // Alias for backward compatibility
-  listStudents: auditLogger.middleware('LIST', 'student'),
+  // Student operations removed - app does not store student data
 
   // Curriculum operations
   importCurriculum: auditLogger.middleware('IMPORT', 'curriculum'),

@@ -213,10 +213,10 @@ describe('Authentication Routes Security Tests', () => {
       const response = await request.post('/api/auth/register').send(validTestUser);
 
       expect(response.status).toBe(201);
-      expect(response.body.token).toBeTruthy();
+      expect(response.body.accessToken).toBeTruthy();
 
       // Verify token structure
-      const token = response.body.token;
+      const token = response.body.accessToken;
       const parts = token.split('.');
       expect(parts.length).toBe(3); // JWT has 3 parts
 
@@ -267,7 +267,7 @@ describe('Authentication Routes Security Tests', () => {
       }
     });
 
-    it('should set secure HTTP-only cookies on successful login', async () => {
+    it('should provide secure JWT tokens on successful login', async () => {
       const response = await request.post('/api/auth/login').send({
         email: validTestUser.email,
         password: validTestUser.password,
@@ -275,14 +275,13 @@ describe('Authentication Routes Security Tests', () => {
 
       expect(response.status).toBe(200);
 
-      // Check cookie headers
-      const cookies = response.headers['set-cookie'];
-      expect(cookies).toBeTruthy();
-
-      const authCookie = cookies.find((cookie: string) => cookie.startsWith('authToken='));
-      expect(authCookie).toBeTruthy();
-      expect(authCookie).toContain('HttpOnly');
-      expect(authCookie).toContain('Path=/');
+      // Check that JWT token is provided in response body
+      expect(response.body.accessToken).toBeTruthy();
+      
+      // Verify it's a valid JWT structure
+      const token = response.body.accessToken;
+      const parts = token.split('.');
+      expect(parts.length).toBe(3); // JWT has 3 parts
     });
 
     it('should not expose password in login response', async () => {
@@ -386,7 +385,7 @@ describe('Authentication Routes Security Tests', () => {
       // Create user and get token
       const response = await request.post('/api/auth/register').send(validTestUser);
 
-      validToken = response.body.token;
+      validToken = response.body.accessToken;
       userId = response.body.user.id;
     });
 

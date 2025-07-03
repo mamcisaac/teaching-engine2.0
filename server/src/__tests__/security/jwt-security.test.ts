@@ -504,12 +504,12 @@ describe('JWT Security Tests', () => {
     it('should integrate token generation with authentication', async () => {
       const result = await authenticate(testUserWithPassword.email, 'TestPassword123!', prisma);
 
-      expect(result.token).toBeTruthy();
+      expect(result.accessToken).toBeTruthy();
       expect(result.user.id).toBe(testUserWithPassword.id.toString());
       expect(result.user.email).toBe(testUserWithPassword.email);
 
       // Verify the generated token
-      const tokenResult = await verifyToken(result.token);
+      const tokenResult = await verifyToken(result.accessToken);
       expect(tokenResult.userId).toBe(testUserWithPassword.id.toString());
       expect(tokenResult.email).toBe(testUserWithPassword.email);
     });
@@ -521,7 +521,7 @@ describe('JWT Security Tests', () => {
       expect(result.password).toBeUndefined();
 
       // Token payload should also not contain sensitive info
-      const decoded = jwt.verify(result.token, JWT_SECRET) as any;
+      const decoded = jwt.verify(result.accessToken, JWT_SECRET) as any;
       expect(decoded.password).toBeUndefined();
       expect(decoded.passwordHash).toBeUndefined();
     });

@@ -80,19 +80,8 @@ describe('Input Validation and Sanitization Security Tests', () => {
       throw new Error(`Login failed with status ${loginResponse.status}`);
     }
 
-    // Extract token from cookies
-    const cookies = loginResponse.headers['set-cookie'];
-    if (cookies) {
-      const authCookie = cookies.find((cookie: string) => cookie.startsWith('authToken='));
-      if (authCookie) {
-        authToken = authCookie.split('=')[1].split(';')[0];
-      }
-    }
-
-    // If no auth token from cookies, try to get it from the response body
-    if (!authToken && loginResponse.body?.token) {
-      authToken = loginResponse.body.token;
-    }
+    // Extract token from response body (Bearer token authentication)
+    authToken = loginResponse.body.accessToken;
 
     // Ensure we have a valid token
     if (!authToken) {

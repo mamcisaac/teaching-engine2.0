@@ -18,7 +18,7 @@ test.describe('API Smoke Tests', () => {
 
     expect(response.ok()).toBeTruthy();
     const data = await response.json();
-    expect(data.token).toBeTruthy();
+    expect(data.accessToken).toBeTruthy();
     expect(data.user).toBeTruthy();
   });
 
@@ -31,12 +31,12 @@ test.describe('API Smoke Tests', () => {
       },
     });
 
-    const { token } = await loginResponse.json();
+    const { accessToken } = await loginResponse.json();
 
     // Then make authenticated request
     const response = await request.get('/api/subjects', {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     });
 

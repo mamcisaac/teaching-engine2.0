@@ -27,6 +27,56 @@ This document serves as the central repository for all known bugs, issues, and t
 
 ## 🐛 Known Resolved Issues
 
+### Feature Scope Issues
+
+#### Issue #000: Collaboration Feature Creep Removal
+
+**Status**: Resolved  
+**Severity**: Medium  
+**Last Occurred**: 2025-07-03
+
+**Description**: The application had accumulated extensive collaboration features (teams, sharing, comments, resource libraries) that went beyond the core scope of single-teacher planning assistance.
+
+**Root Cause**:
+
+- Feature creep during development that extended beyond single-teacher use case
+- Database models and UI components for multi-teacher collaboration
+- Complex sharing and team management systems
+- Public template libraries that encouraged collaboration
+
+**Solution**:
+
+```bash
+# Removed collaboration models from Prisma schema
+# Deleted backend route files: teams.ts, sharing.ts, comments.ts
+# Removed frontend collaboration components
+# Updated templateService to focus on private templates only
+# Created database migration: 20250703125832_remove_collaboration_features
+```
+
+**Files Removed**:
+
+- `server/src/routes/teams.ts`
+- `server/src/routes/sharing.ts`
+- `server/src/routes/comments.ts`
+- `client/src/components/collaboration/` (entire directory)
+- `client/src/pages/TeamsPage.tsx`
+- `server/src/services/__tests__/lessonPlanService.test.ts`
+
+**Files Modified**:
+
+- `packages/database/prisma/schema.prisma` - Removed all collaboration models
+- `server/src/index.ts` - Removed collaboration route imports
+- `client/src/App.tsx` - Removed Teams routes
+- `client/src/components/MainLayout.tsx` - Removed Teams navigation
+- `server/src/services/templateService.ts` - Removed public sharing features
+
+**Prevention Strategy**: 
+
+- Maintain clear scope documentation focused on single-teacher use
+- Regular scope reviews during feature development
+- Reject features that encourage multi-user collaboration
+
 ### Database Issues
 
 #### Issue #001: Prisma Client Out of Sync

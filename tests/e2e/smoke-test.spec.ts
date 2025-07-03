@@ -39,10 +39,6 @@ test.describe('Smoke Tests', () => {
       await expect(page.locator('text=Activity Library')).toBeVisible();
     }
 
-    // Check for students (from main)
-    await page.goto('/students');
-    await expect(
-      page.locator('h1:has-text("Students"), .text-xl:has-text("Students")').first(),
-    ).toBeVisible({ timeout: 10000 });
+    // Student page check removed - app does not store student data
   });
 });

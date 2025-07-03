@@ -17,7 +17,7 @@ describe('Curriculum Import API Integration', () => {
 
   beforeAll(async () => {
     const auth = await getTestAuthToken();
-    authToken = auth.token;
+    authToken = auth.accessToken;
     userId = auth.userId;
   });
 

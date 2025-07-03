@@ -75,7 +75,7 @@ const sharedMocks = {
     dayBookEntry: createMockModel('dayBookEntry'),
     calendarEvent: createMockModel('calendarEvent'),
     team: createMockModel('team'),
-    student: createMockModel('student'),
+    // student model removed - app does not store student data
     unitPlan: createMockModel('unitPlan'),
     weeklyPlan: createMockModel('weeklyPlan'),
     longRangePlan: createMockModel('longRangePlan'),
@@ -86,7 +86,7 @@ const sharedMocks = {
     outcomeEmbedding: createMockModel('outcomeEmbedding'),
     activityCollection: createMockModel('activityCollection'),
     subPlanMaterial: createMockModel('subPlanMaterial'),
-    parentSummary: createMockModel('parentSummary'),
+    // parentSummary model removed - app does not store student data
     workflowState: createMockModel('workflowState'),
     plannerState: createMockModel('plannerState'),
     template: createMockModel('template'),

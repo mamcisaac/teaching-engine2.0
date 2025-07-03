@@ -31,7 +31,6 @@ import {
   Save,
   RefreshCw,
   BookTemplate,
-  Share2,
 } from 'lucide-react';
 import { format } from 'date-fns';
 import { Checkbox } from '../components/ui/checkbox';
@@ -62,7 +61,6 @@ import { MobileOptimizedForm, CollapsibleSection } from '../components/ui/Mobile
 import { generateLessonPlanHTML, printHTML, downloadHTML } from '../utils/printUtils';
 import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
 import { SafeHtmlRenderer } from '../utils/sanitization';
-import { SharePlanModal } from '../components/collaboration';
 
 export default function ETFOLessonPlanPage() {
   const { unitId, lessonId } = useParams();
@@ -72,7 +70,6 @@ export default function ETFOLessonPlanPage() {
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
   const [isTemplateModalOpen, setIsTemplateModalOpen] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<PlanTemplate | null>(null);
-  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
   // Fetch data
   const { data: unitPlan } = useUnitPlan(unitId || '');
@@ -493,15 +490,6 @@ export default function ETFOLessonPlanPage() {
                 >
                   <Download className="h-4 w-4" />
                   Export
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setIsShareModalOpen(true)}
-                  className="flex items-center gap-2"
-                >
-                  <Share2 className="h-4 w-4" />
-                  Share
                 </Button>
                 <Button
                   variant="outline"
@@ -1625,16 +1613,6 @@ Assessment Strategies:
         </AlertDialogContent>
       </AlertDialog>
 
-      {/* Share Plan Modal */}
-      {selectedLesson && (
-        <SharePlanModal
-          isOpen={isShareModalOpen}
-          onClose={() => setIsShareModalOpen(false)}
-          planType="lesson"
-          planId={selectedLesson.id}
-          planTitle={selectedLesson.title}
-        />
-      )}
     </div>
   );
 }

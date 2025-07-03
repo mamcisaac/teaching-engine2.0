@@ -106,7 +106,7 @@ describe('Comprehensive Security Tests', () => {
       throw new Error(`Registration failed: ${response.status} - ${JSON.stringify(response.body)}`);
     }
 
-    return response.body.accessToken || response.body.token;
+    return response.body.accessToken;
   }
 
   describe('Input Sanitization', () => {

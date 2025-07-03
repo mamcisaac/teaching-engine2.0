@@ -580,7 +580,7 @@ describe('Authorization Security Tests', () => {
       // Check that sensitive info is not exposed
       expect(response.body.user.password).toBeUndefined();
       expect(response.body.user.passwordHash).toBeUndefined();
-      expect(response.body.token).toBeUndefined();
+      expect(response.body.accessToken).toBeUndefined();
       expect(response.body.secret).toBeUndefined();
     });
 

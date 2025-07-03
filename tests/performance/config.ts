@@ -87,7 +87,7 @@ export const LOAD_TEST_SCENARIOS = [
       { endpoint: '/api/etfo-lesson-plans', weight: 25 },
       { endpoint: '/api/unit-plans', weight: 20 },
       { endpoint: '/api/newsletters', weight: 10 },
-      { endpoint: '/api/students', weight: 10 },
+      // Student endpoint removed - app does not store student data
     ],
   },
   {
@@ -110,7 +110,7 @@ export const LOAD_TEST_SCENARIOS = [
     scenarios: [
       { endpoint: '/api/newsletters/generate', weight: 50 },
       { endpoint: '/api/parent-summary', weight: 30 },
-      { endpoint: '/api/students', weight: 20 },
+      // Student endpoint removed - app does not store student data
     ],
   },
 ];

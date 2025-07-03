@@ -100,7 +100,7 @@ describe('Authentication Security Tests', () => {
 
     return {
       user: response.body.user,
-      token: response.body.accessToken || response.body.token,
+      token: response.body.accessToken,
       alreadyExists: false,
     };
   }

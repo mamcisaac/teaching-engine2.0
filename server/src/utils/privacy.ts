@@ -1,137 +1,115 @@
 /**
- * Privacy utilities for protecting student data
+ * Privacy utilities for protecting user data
+ * This application does not store any student data
  */
 
 export interface PrivacyOptions {
-  showFullName?: boolean;
-  showGrade?: boolean;
-  showReflections?: boolean;
-  showGoals?: boolean;
+  showFullData?: boolean;
   isOwner?: boolean;
 }
 
 /**
- * Masks sensitive student information based on privacy settings
+ * Masks sensitive user information based on privacy settings
  */
-export function maskStudentData(student: Record<string, unknown>, options: PrivacyOptions = {}): Record<string, unknown> | null {
+export function maskUserData(user: Record<string, unknown>, options: PrivacyOptions = {}): Record<string, unknown> | null {
   const {
-    showFullName = true,
-    showGrade = true,
-    showReflections = true,
-    showGoals = true,
+    showFullData = true,
     isOwner = true,
   } = options;
 
-  if (!student) return null;
+  if (!user) return null;
 
-  const masked = { ...student };
+  const masked = { ...user };
 
-  // Mask name if needed
-  if (!showFullName && !isOwner) {
-    if (typeof student.firstName === 'string' && typeof student.lastName === 'string') {
-      masked.firstName = student.firstName.charAt(0) + '***';
-      masked.lastName = student.lastName.charAt(0) + '***';
-      masked.name = `${masked.firstName} ${masked.lastName}`;
-    }
+  // Mask email if not owner
+  if (!showFullData && !isOwner && typeof user.email === 'string') {
+    const [localPart, domain] = user.email.split('@');
+    masked.email = `${localPart.slice(0, 2)}***@${domain}`;
   }
 
-  // Remove grade if not allowed
-  if (!showGrade && !isOwner) {
-    delete masked.grade;
-  }
+  // Always remove sensitive fields
+  delete masked.password;
+  delete masked.passwordResetToken;
+  delete masked.passwordResetExpires;
 
-  // Remove reflections if not allowed
-  if (!showReflections && !isOwner) {
-    delete masked.reflections;
-    if (masked._count && typeof masked._count === 'object') {
-      delete (masked._count as Record<string, unknown>).reflections;
-    }
+  // Remove system fields if not owner
+  if (!isOwner) {
+    delete masked.createdAt;
+    delete masked.updatedAt;
   }
-
-  // Remove goals if not allowed
-  if (!showGoals && !isOwner) {
-    delete masked.goals;
-    if (masked._count && typeof masked._count === 'object') {
-      delete (masked._count as Record<string, unknown>).goals;
-    }
-  }
-
-  // Always remove system fields
-  delete masked.createdAt;
-  delete masked.updatedAt;
-  delete masked.userId; // Never expose the teacher's ID
 
   return masked;
 }
 
 /**
- * Generates a privacy-safe student identifier for logging
+ * Generates a privacy-safe user identifier for logging
  */
-export function getStudentIdentifier(student: Record<string, unknown>): string {
-  if (!student) return 'unknown';
+export function getUserIdentifier(user: Record<string, unknown>): string {
+  if (!user) return 'unknown';
   
-  // Use initials + partial ID for privacy
-  const firstInitial = typeof student.firstName === 'string' ? student.firstName.charAt(0).toUpperCase() : 'X';
-  const lastInitial = typeof student.lastName === 'string' ? student.lastName.charAt(0).toUpperCase() : 'X';
-  const idSuffix = student.id ? String(student.id).slice(-4) : '0000';
+  // Use partial email + partial ID for privacy
+  const email = typeof user.email === 'string' ? user.email : 'unknown@example.com';
+  const [localPart] = email.split('@');
+  const idSuffix = user.id ? String(user.id).slice(-4) : '0000';
   
-  return `${firstInitial}${lastInitial}-${idSuffix}`;
+  return `${localPart.slice(0, 3)}-${idSuffix}`;
 }
 
 /**
- * Checks if a user has permission to access detailed student data
+ * Validates data access permissions
  */
-export function canAccessStudentDetails(
+export function validateDataAccess(
   userId: number,
-  student: Record<string, unknown>,
-  _permissionLevel: 'view' | 'edit' | 'delete' = 'view'
+  targetUserId: number,
+  role: string = 'teacher'
 ): boolean {
-  // Teacher can only access their own students
-  if (student.userId !== userId) {
-    return false;
+  // Teachers can only access their own data
+  if (role === 'teacher') {
+    return userId === targetUserId;
   }
-
-  // Additional permission checks can be added here
-  // For example, checking roles, time-based access, etc.
-
-  return true;
+  
+  // Admins can access any data
+  if (role === 'admin') {
+    return true;
+  }
+  
+  return false;
 }
 
 /**
- * Sanitizes student data for export or sharing
+ * Sanitizes user data for export
  */
-export function sanitizeStudentDataForExport(students: Record<string, unknown>[]): Record<string, unknown>[] {
-  return students.map(student => ({
-    // Only include necessary fields
-    studentId: getStudentIdentifier(student),
-    grade: student.grade,
-    // Aggregate data only
-    totalGoals: (student._count && typeof student._count === 'object' && (student._count as Record<string, unknown>).goals) || 0,
-    totalReflections: (student._count && typeof student._count === 'object' && (student._count as Record<string, unknown>).reflections) || 0,
-    totalArtifacts: (student._count && typeof student._count === 'object' && (student._count as Record<string, unknown>).artifacts) || 0,
-    // No personally identifiable information
+export function sanitizeUserDataForExport(users: Record<string, unknown>[]): Record<string, unknown>[] {
+  return users.map(user => ({
+    userId: getUserIdentifier(user),
+    role: user.role || 'teacher',
+    // Only include non-sensitive fields
+    name: user.name,
+    preferredLanguage: user.preferredLanguage,
   }));
 }
 
 /**
- * Validates student data access request
+ * Anonymizes data for analytics
  */
-export function validateStudentDataAccess(
-  requestingUserId: number,
-  targetStudentId: number,
-  _operation: 'read' | 'write' | 'delete'
-): { allowed: boolean; reason?: string } {
-  // Implement access control logic
-  if (!requestingUserId) {
-    return { allowed: false, reason: 'User not authenticated' };
-  }
+export function anonymizeForAnalytics(data: Record<string, unknown>): Record<string, unknown> {
+  const anonymized = { ...data };
+  
+  // Remove all PII
+  delete anonymized.email;
+  delete anonymized.name;
+  delete anonymized.userId;
+  
+  // Replace with anonymous identifiers
+  anonymized.userHash = data.userId ? hashUserId(Number(data.userId)) : 'anonymous';
+  
+  return anonymized;
+}
 
-  if (!targetStudentId) {
-    return { allowed: false, reason: 'Invalid student ID' };
-  }
-
-  // Additional validation can be added here
-  // For example: checking if user is suspended, checking access logs for suspicious activity, etc.
-
-  return { allowed: true };
+/**
+ * Simple hash function for user IDs
+ */
+function hashUserId(userId: number): string {
+  // Simple hash for demo - in production use proper hashing
+  return `user_${(userId * 7919) % 10000}`;
 }

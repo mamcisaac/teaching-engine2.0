@@ -1,29 +1,5 @@
-// Newsletter types for parent communication system
-
-export interface Student {
-  id: number;
-  firstName: string;
-  lastName: string;
-  grade: number;
-}
-
-export interface StudentWithData extends Student {
-  artifacts: StudentArtifact[];
-  reflections: StudentReflection[];
-}
-
-export interface StudentArtifact {
-  id: number;
-  title: string;
-  description?: string;
-  createdAt: string;
-}
-
-export interface StudentReflection {
-  id: number;
-  content: string;
-  createdAt: string;
-}
+// Newsletter types for general communication templates
+// This application does not store any student information
 
 export type NewsletterTone = 'friendly' | 'formal' | 'informative';
 
@@ -38,22 +14,20 @@ export interface NewsletterSection {
 }
 
 export interface NewsletterGenerationParams {
-  studentIds: number[];
+  // Removed studentIds - newsletters are now general templates
   from: Date;
   to: Date;
   tone: NewsletterTone;
   focusAreas?: string[];
-  includeArtifacts?: boolean;
-  includeReflections?: boolean;
-  includeLearningGoals?: boolean;
   includeUpcomingEvents?: boolean;
+  templateType?: 'weekly' | 'monthly' | 'special';
 }
 
 export interface NewsletterDraft {
   id?: string;
   title: string;
   titleFr: string;
-  studentIds: number[];
+  // Removed studentIds - newsletters are now general templates
   dateFrom: Date;
   dateTo: Date;
   tone: NewsletterTone;
@@ -66,25 +40,13 @@ export interface NewsletterDraft {
 export interface GeneratedNewsletter {
   sections: NewsletterSection[];
   metadata: {
-    studentsIncluded: number;
+    // Removed studentsIncluded - newsletters are now general templates
     dateRange: {
       from: string;
       to: string;
     };
     tone: NewsletterTone;
     generatedAt: string;
+    templateType?: string;
   };
-}
-
-export interface ParentSummary {
-  id: number;
-  studentId: number;
-  dateFrom: string;
-  dateTo: string;
-  focus?: string[];
-  contentFr: string;
-  contentEn: string;
-  isDraft: boolean;
-  createdAt: string;
-  updatedAt: string;
 }

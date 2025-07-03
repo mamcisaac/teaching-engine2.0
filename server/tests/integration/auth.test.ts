@@ -56,7 +56,7 @@ describe('Authentication API', () => {
       });
 
       expect(res.status).toBe(200);
-      expect(res.body).toHaveProperty('token');
+      expect(res.body).toHaveProperty('accessToken');
       expect(res.body).toHaveProperty('user');
       expect(res.body.user.email).toBe(testUser.email);
     });
@@ -81,7 +81,7 @@ describe('Authentication API', () => {
         password: TEST_USER.password,
       });
 
-      const authToken = loginRes.body.token;
+      const authToken = loginRes.body.accessToken;
 
       const res = await request(app)
         .get('/api/auth/me')

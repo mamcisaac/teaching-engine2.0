@@ -1,0 +1,1215 @@
+272f45b37d12c4ced452173a22c3b064
+/* istanbul ignore next */
+function cov_21zt5skwsx() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/middleware/rateLimiter.ts";
+  var hash = "0da283c36d73b636c7a8a35618ad4c76ff13cc4f";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/middleware/rateLimiter.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 8,
+          column: 34
+        },
+        end: {
+          line: 30,
+          column: 2
+        }
+      },
+      "1": {
+        start: {
+          line: 15,
+          column: 8
+        },
+        end: {
+          line: 19,
+          column: 34
+        }
+      },
+      "2": {
+        start: {
+          line: 20,
+          column: 8
+        },
+        end: {
+          line: 24,
+          column: 11
+        }
+      },
+      "3": {
+        start: {
+          line: 28,
+          column: 8
+        },
+        end: {
+          line: 28,
+          column: 68
+        }
+      },
+      "4": {
+        start: {
+          line: 32,
+          column: 31
+        },
+        end: {
+          line: 55,
+          column: 2
+        }
+      },
+      "5": {
+        start: {
+          line: 40,
+          column: 8
+        },
+        end: {
+          line: 44,
+          column: 49
+        }
+      },
+      "6": {
+        start: {
+          line: 45,
+          column: 8
+        },
+        end: {
+          line: 49,
+          column: 11
+        }
+      },
+      "7": {
+        start: {
+          line: 53,
+          column: 8
+        },
+        end: {
+          line: 53,
+          column: 79
+        }
+      },
+      "8": {
+        start: {
+          line: 57,
+          column: 41
+        },
+        end: {
+          line: 75,
+          column: 2
+        }
+      },
+      "9": {
+        start: {
+          line: 64,
+          column: 8
+        },
+        end: {
+          line: 68,
+          column: 52
+        }
+      },
+      "10": {
+        start: {
+          line: 69,
+          column: 8
+        },
+        end: {
+          line: 73,
+          column: 11
+        }
+      },
+      "11": {
+        start: {
+          line: 77,
+          column: 31
+        },
+        end: {
+          line: 83,
+          column: 2
+        }
+      },
+      "12": {
+        start: {
+          line: 85,
+          column: 33
+        },
+        end: {
+          line: 102,
+          column: 2
+        }
+      },
+      "13": {
+        start: {
+          line: 92,
+          column: 8
+        },
+        end: {
+          line: 95,
+          column: 46
+        }
+      },
+      "14": {
+        start: {
+          line: 96,
+          column: 8
+        },
+        end: {
+          line: 100,
+          column: 11
+        }
+      },
+      "15": {
+        start: {
+          line: 104,
+          column: 29
+        },
+        end: {
+          line: 122,
+          column: 2
+        }
+      },
+      "16": {
+        start: {
+          line: 111,
+          column: 8
+        },
+        end: {
+          line: 115,
+          column: 37
+        }
+      },
+      "17": {
+        start: {
+          line: 116,
+          column: 8
+        },
+        end: {
+          line: 120,
+          column: 11
+        }
+      },
+      "18": {
+        start: {
+          line: 125,
+          column: 4
+        },
+        end: {
+          line: 140,
+          column: 7
+        }
+      },
+      "19": {
+        start: {
+          line: 129,
+          column: 12
+        },
+        end: {
+          line: 131,
+          column: 13
+        }
+      },
+      "20": {
+        start: {
+          line: 130,
+          column: 16
+        },
+        end: {
+          line: 130,
+          column: 36
+        }
+      },
+      "21": {
+        start: {
+          line: 132,
+          column: 12
+        },
+        end: {
+          line: 132,
+          column: 29
+        }
+      },
+      "22": {
+        start: {
+          line: 136,
+          column: 12
+        },
+        end: {
+          line: 136,
+          column: 67
+        }
+      },
+      "23": {
+        start: {
+          line: 143,
+          column: 28
+        },
+        end: {
+          line: 152,
+          column: 1
+        }
+      },
+      "24": {
+        start: {
+          line: 155,
+          column: 34
+        },
+        end: {
+          line: 155,
+          column: 52
+        }
+      },
+      "25": {
+        start: {
+          line: 156,
+          column: 43
+        },
+        end: {
+          line: 156,
+          column: 68
+        }
+      },
+      "26": {
+        start: {
+          line: 162,
+          column: 4
+        },
+        end: {
+          line: 162,
+          column: 55
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "(anonymous_0)",
+        decl: {
+          start: {
+            line: 14,
+            column: 14
+          },
+          end: {
+            line: 14,
+            column: 15
+          }
+        },
+        loc: {
+          start: {
+            line: 14,
+            column: 28
+          },
+          end: {
+            line: 25,
+            column: 5
+          }
+        },
+        line: 14
+      },
+      "1": {
+        name: "(anonymous_1)",
+        decl: {
+          start: {
+            line: 26,
+            column: 11
+          },
+          end: {
+            line: 26,
+            column: 12
+          }
+        },
+        loc: {
+          start: {
+            line: 26,
+            column: 20
+          },
+          end: {
+            line: 29,
+            column: 5
+          }
+        },
+        line: 26
+      },
+      "2": {
+        name: "(anonymous_2)",
+        decl: {
+          start: {
+            line: 39,
+            column: 14
+          },
+          end: {
+            line: 39,
+            column: 15
+          }
+        },
+        loc: {
+          start: {
+            line: 39,
+            column: 28
+          },
+          end: {
+            line: 50,
+            column: 5
+          }
+        },
+        line: 39
+      },
+      "3": {
+        name: "(anonymous_3)",
+        decl: {
+          start: {
+            line: 51,
+            column: 11
+          },
+          end: {
+            line: 51,
+            column: 12
+          }
+        },
+        loc: {
+          start: {
+            line: 51,
+            column: 20
+          },
+          end: {
+            line: 54,
+            column: 5
+          }
+        },
+        line: 51
+      },
+      "4": {
+        name: "(anonymous_4)",
+        decl: {
+          start: {
+            line: 63,
+            column: 14
+          },
+          end: {
+            line: 63,
+            column: 15
+          }
+        },
+        loc: {
+          start: {
+            line: 63,
+            column: 28
+          },
+          end: {
+            line: 74,
+            column: 5
+          }
+        },
+        line: 63
+      },
+      "5": {
+        name: "(anonymous_5)",
+        decl: {
+          start: {
+            line: 91,
+            column: 14
+          },
+          end: {
+            line: 91,
+            column: 15
+          }
+        },
+        loc: {
+          start: {
+            line: 91,
+            column: 28
+          },
+          end: {
+            line: 101,
+            column: 5
+          }
+        },
+        line: 91
+      },
+      "6": {
+        name: "(anonymous_6)",
+        decl: {
+          start: {
+            line: 110,
+            column: 14
+          },
+          end: {
+            line: 110,
+            column: 15
+          }
+        },
+        loc: {
+          start: {
+            line: 110,
+            column: 28
+          },
+          end: {
+            line: 121,
+            column: 5
+          }
+        },
+        line: 110
+      },
+      "7": {
+        name: "createUserBasedRateLimiter",
+        decl: {
+          start: {
+            line: 124,
+            column: 16
+          },
+          end: {
+            line: 124,
+            column: 42
+          }
+        },
+        loc: {
+          start: {
+            line: 124,
+            column: 106
+          },
+          end: {
+            line: 141,
+            column: 1
+          }
+        },
+        line: 124
+      },
+      "8": {
+        name: "(anonymous_8)",
+        decl: {
+          start: {
+            line: 127,
+            column: 14
+          },
+          end: {
+            line: 127,
+            column: 15
+          }
+        },
+        loc: {
+          start: {
+            line: 127,
+            column: 23
+          },
+          end: {
+            line: 133,
+            column: 9
+          }
+        },
+        line: 127
+      },
+      "9": {
+        name: "(anonymous_9)",
+        decl: {
+          start: {
+            line: 134,
+            column: 23
+          },
+          end: {
+            line: 134,
+            column: 24
+          }
+        },
+        loc: {
+          start: {
+            line: 134,
+            column: 32
+          },
+          end: {
+            line: 137,
+            column: 9
+          }
+        },
+        line: 134
+      },
+      "10": {
+        name: "resetRateLimiterState",
+        decl: {
+          start: {
+            line: 158,
+            column: 16
+          },
+          end: {
+            line: 158,
+            column: 37
+          }
+        },
+        loc: {
+          start: {
+            line: 158,
+            column: 40
+          },
+          end: {
+            line: 163,
+            column: 1
+          }
+        },
+        line: 158
+      }
+    },
+    branchMap: {
+      "0": {
+        loc: {
+          start: {
+            line: 28,
+            column: 15
+          },
+          end: {
+            line: 28,
+            column: 67
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 28,
+            column: 15
+          },
+          end: {
+            line: 28,
+            column: 37
+          }
+        }, {
+          start: {
+            line: 28,
+            column: 41
+          },
+          end: {
+            line: 28,
+            column: 67
+          }
+        }],
+        line: 28
+      },
+      "1": {
+        loc: {
+          start: {
+            line: 33,
+            column: 14
+          },
+          end: {
+            line: 33,
+            column: 69
+          }
+        },
+        type: "cond-expr",
+        locations: [{
+          start: {
+            line: 33,
+            column: 48
+          },
+          end: {
+            line: 33,
+            column: 52
+          }
+        }, {
+          start: {
+            line: 33,
+            column: 55
+          },
+          end: {
+            line: 33,
+            column: 69
+          }
+        }],
+        line: 33
+      },
+      "2": {
+        loc: {
+          start: {
+            line: 34,
+            column: 9
+          },
+          end: {
+            line: 34,
+            column: 49
+          }
+        },
+        type: "cond-expr",
+        locations: [{
+          start: {
+            line: 34,
+            column: 43
+          },
+          end: {
+            line: 34,
+            column: 45
+          }
+        }, {
+          start: {
+            line: 34,
+            column: 48
+          },
+          end: {
+            line: 34,
+            column: 49
+          }
+        }],
+        line: 34
+      },
+      "3": {
+        loc: {
+          start: {
+            line: 53,
+            column: 15
+          },
+          end: {
+            line: 53,
+            column: 78
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 53,
+            column: 15
+          },
+          end: {
+            line: 53,
+            column: 46
+          }
+        }, {
+          start: {
+            line: 53,
+            column: 50
+          },
+          end: {
+            line: 53,
+            column: 78
+          }
+        }],
+        line: 53
+      },
+      "4": {
+        loc: {
+          start: {
+            line: 124,
+            column: 43
+          },
+          end: {
+            line: 124,
+            column: 57
+          }
+        },
+        type: "default-arg",
+        locations: [{
+          start: {
+            line: 124,
+            column: 55
+          },
+          end: {
+            line: 124,
+            column: 57
+          }
+        }],
+        line: 124
+      },
+      "5": {
+        loc: {
+          start: {
+            line: 124,
+            column: 59
+          },
+          end: {
+            line: 124,
+            column: 77
+          }
+        },
+        type: "default-arg",
+        locations: [{
+          start: {
+            line: 124,
+            column: 74
+          },
+          end: {
+            line: 124,
+            column: 77
+          }
+        }],
+        line: 124
+      },
+      "6": {
+        loc: {
+          start: {
+            line: 124,
+            column: 79
+          },
+          end: {
+            line: 124,
+            column: 104
+          }
+        },
+        type: "default-arg",
+        locations: [{
+          start: {
+            line: 124,
+            column: 90
+          },
+          end: {
+            line: 124,
+            column: 104
+          }
+        }],
+        line: 124
+      },
+      "7": {
+        loc: {
+          start: {
+            line: 129,
+            column: 12
+          },
+          end: {
+            line: 131,
+            column: 13
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 129,
+            column: 12
+          },
+          end: {
+            line: 131,
+            column: 13
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 129
+      },
+      "8": {
+        loc: {
+          start: {
+            line: 129,
+            column: 16
+          },
+          end: {
+            line: 129,
+            column: 74
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 129,
+            column: 16
+          },
+          end: {
+            line: 129,
+            column: 44
+          }
+        }, {
+          start: {
+            line: 129,
+            column: 48
+          },
+          end: {
+            line: 129,
+            column: 74
+          }
+        }],
+        line: 129
+      },
+      "9": {
+        loc: {
+          start: {
+            line: 136,
+            column: 19
+          },
+          end: {
+            line: 136,
+            column: 66
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 136,
+            column: 19
+          },
+          end: {
+            line: 136,
+            column: 43
+          }
+        }, {
+          start: {
+            line: 136,
+            column: 47
+          },
+          end: {
+            line: 136,
+            column: 53
+          }
+        }, {
+          start: {
+            line: 136,
+            column: 57
+          },
+          end: {
+            line: 136,
+            column: 66
+          }
+        }],
+        line: 136
+      }
+    },
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 0,
+      "16": 0,
+      "17": 0,
+      "18": 0,
+      "19": 0,
+      "20": 0,
+      "21": 0,
+      "22": 0,
+      "23": 0,
+      "24": 0,
+      "25": 0,
+      "26": 0
+    },
+    f: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0
+    },
+    b: {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0],
+      "3": [0, 0],
+      "4": [0],
+      "5": [0],
+      "6": [0],
+      "7": [0, 0],
+      "8": [0, 0],
+      "9": [0, 0, 0]
+    },
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/middleware/rateLimiter.ts",
+      mappings: "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",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/middleware/rateLimiter.ts"],
+      sourcesContent: ["/* eslint-disable @typescript-eslint/no-explicit-any */\nimport { Request, Response } from 'express';\nimport rateLimit, { RateLimitRequestHandler } from 'express-rate-limit';\nimport logger from '../logger.js';\n\n// Extend Express Request to include rate limit info\ndeclare global {\n  // eslint-disable-next-line @typescript-eslint/no-namespace\n  namespace Express {\n    interface Request {\n      rateLimit?: {\n        resetTime?: Date;\n        remaining?: number;\n        totalHits?: number;\n      };\n    }\n  }\n}\n\n/**\n * Rate limiting middleware configuration\n * Implements different rate limits for different types of operations\n */\n\n// Default rate limiter for general API endpoints\nexport const defaultRateLimiter: RateLimitRequestHandler = rateLimit({\n  windowMs: 15 * 60 * 1000, // 15 minutes\n  max: 100, // Limit each IP to 100 requests per windowMs\n  message: 'Too many requests from this IP, please try again later.',\n  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers\n  legacyHeaders: false, // Disable the `X-RateLimit-*` headers\n  handler: ((req: Request, res: Response) => {\n    logger.warn(\n      {\n        ip: req.ip,\n        path: req.path,\n        method: req.method,\n      },\n      'Rate limit exceeded',\n    );\n\n    res.status(429).json({\n      error: 'Too Many Requests',\n      message: 'Rate limit exceeded. Please try again later.',\n      retryAfter: req.rateLimit?.resetTime,\n    });\n  }) as any,\n  skip: ((req: Request) => {\n    // Skip rate limiting for health check endpoints\n    return req.path === '/health' || req.path === '/api/health';\n  }) as any,\n});\n\n// Strict rate limiter for authentication endpoints\nexport const authRateLimiter: RateLimitRequestHandler = rateLimit({\n  windowMs: process.env.NODE_ENV === 'test' ? 5000 : 15 * 60 * 1000, // 5 seconds for tests, 15 minutes for production\n  max: process.env.NODE_ENV === 'test' ? 20 : 5, // Higher limit for tests, same limit for production\n  message: 'Too many authentication attempts from this IP, please try again later.',\n  standardHeaders: true,\n  legacyHeaders: false,\n  skipSuccessfulRequests: true, // Don't count successful auth requests\n  handler: ((req: Request, res: Response) => {\n    logger.warn(\n      {\n        ip: req.ip,\n        path: req.path,\n        userAgent: req.headers['user-agent'],\n      },\n      'Authentication rate limit exceeded',\n    );\n\n    res.status(429).json({\n      error: 'Too Many Authentication Attempts',\n      message: 'Please wait before trying again.',\n      retryAfter: req.rateLimit?.resetTime,\n    });\n  }) as any,\n  skip: ((req: Request) => {\n    // Only skip rate limiting for specific test paths that need to bypass it\n    return process.env.NODE_ENV === 'test' && req.path.includes('/health');\n  }) as any,\n});\n\n// Moderate rate limiter for resource creation endpoints\nexport const createResourceRateLimiter: RateLimitRequestHandler = rateLimit({\n  windowMs: 60 * 60 * 1000, // 1 hour\n  max: 30, // Limit each IP to 30 resource creation requests per hour\n  message: 'Too many resources created from this IP, please try again later.',\n  standardHeaders: true,\n  legacyHeaders: false,\n  handler: ((req: Request, res: Response) => {\n    logger.warn(\n      {\n        ip: req.ip,\n        path: req.path,\n        method: req.method,\n      },\n      'Resource creation rate limit exceeded',\n    );\n\n    res.status(429).json({\n      error: 'Too Many Requests',\n      message: 'Resource creation limit exceeded. Please try again later.',\n      retryAfter: req.rateLimit?.resetTime,\n    });\n  }) as any,\n});\n\n// Lenient rate limiter for read operations\nexport const readRateLimiter: RateLimitRequestHandler = rateLimit({\n  windowMs: 15 * 60 * 1000, // 15 minutes\n  max: 500, // Limit each IP to 500 read requests per windowMs\n  message: 'Too many requests from this IP, please try again later.',\n  standardHeaders: true,\n  legacyHeaders: false,\n});\n\n// Rate limiter for file uploads\nexport const uploadRateLimiter: RateLimitRequestHandler = rateLimit({\n  windowMs: 60 * 60 * 1000, // 1 hour\n  max: 10, // Limit each IP to 10 file uploads per hour\n  message: 'Too many file uploads from this IP, please try again later.',\n  standardHeaders: true,\n  legacyHeaders: false,\n  handler: ((req: Request, res: Response) => {\n    logger.warn(\n      {\n        ip: req.ip,\n        path: req.path,\n      },\n      'File upload rate limit exceeded',\n    );\n\n    res.status(429).json({\n      error: 'Too Many Uploads',\n      message: 'File upload limit exceeded. Please try again later.',\n      retryAfter: req.rateLimit?.resetTime,\n    });\n  }) as any,\n});\n\n// Rate limiter for AI/LLM endpoints (more restrictive due to cost)\nexport const aiRateLimiter: RateLimitRequestHandler = rateLimit({\n  windowMs: 60 * 60 * 1000, // 1 hour\n  max: 20, // Limit each IP to 20 AI requests per hour\n  message: 'Too many AI requests from this IP, please try again later.',\n  standardHeaders: true,\n  legacyHeaders: false,\n  handler: ((req: Request, res: Response) => {\n    logger.warn(\n      {\n        ip: req.ip,\n        path: req.path,\n        userId: (req as { user?: { id: number } }).user?.id,\n      },\n      'AI rate limit exceeded',\n    );\n\n    res.status(429).json({\n      error: 'Too Many AI Requests',\n      message: 'AI request limit exceeded. Please try again later.',\n      retryAfter: req.rateLimit?.resetTime,\n    });\n  }) as any,\n});\n\n// Dynamic rate limiter based on user role\nexport function createUserBasedRateLimiter(\n  freeLimit: number = 50,\n  premiumLimit: number = 200,\n  windowMs: number = 15 * 60 * 1000,\n): RateLimitRequestHandler {\n  return rateLimit({\n    windowMs,\n    max: ((req: Request) => {\n      // Check if user is authenticated and has premium access\n      if (req.user?.role === 'premium' || req.user?.role === 'admin') {\n        return premiumLimit;\n      }\n      return freeLimit;\n    }) as any,\n    keyGenerator: ((req: Request) => {\n      // Use user ID if authenticated, otherwise use IP\n      return req.user?.id?.toString() || req.ip || 'unknown';\n    }) as any,\n    standardHeaders: true,\n    legacyHeaders: false,\n  });\n}\n\n// Export as rateLimiters object for backward compatibility\nexport const rateLimiters = {\n  general: defaultRateLimiter,\n  auth: authRateLimiter,\n  resourceCreation: createResourceRateLimiter,\n  upload: uploadRateLimiter,\n  ai: aiRateLimiter,\n  read: readRateLimiter,\n  api: defaultRateLimiter, // Alias for general API endpoints\n  write: createResourceRateLimiter, // Alias for write operations\n};\n\n// Individual limiters are already exported above with their declarations\n\n// Export aliases for expected names\nexport const generalRateLimiter = defaultRateLimiter;\nexport const resourceCreationRateLimiter = createResourceRateLimiter;\n\n// Reset rate limiter state for testing\nexport function resetRateLimiterState(): void {\n  // Rate limiters use memory store by default, which doesn't expose a reset method\n  // For testing, we rely on the windowMs to expire naturally or use mock time\n  // In production, you might want to use Redis store which has better control\n  logger.debug('Rate limiter state reset requested');\n}\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "0da283c36d73b636c7a8a35618ad4c76ff13cc4f"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_21zt5skwsx = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_21zt5skwsx();
+import rateLimit from 'express-rate-limit';
+import logger from '../logger.js';
+/**
+ * Rate limiting middleware configuration
+ * Implements different rate limits for different types of operations
+ */
+// Default rate limiter for general API endpoints
+export const defaultRateLimiter =
+/* istanbul ignore next */
+(cov_21zt5skwsx().s[0]++, rateLimit({
+  windowMs: 15 * 60 * 1000,
+  // 15 minutes
+  max: 100,
+  // Limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP, please try again later.',
+  standardHeaders: true,
+  // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false,
+  // Disable the `X-RateLimit-*` headers
+  handler: (req, res) => {
+    /* istanbul ignore next */
+    cov_21zt5skwsx().f[0]++;
+    cov_21zt5skwsx().s[1]++;
+    logger.warn({
+      ip: req.ip,
+      path: req.path,
+      method: req.method
+    }, 'Rate limit exceeded');
+    /* istanbul ignore next */
+    cov_21zt5skwsx().s[2]++;
+    res.status(429).json({
+      error: 'Too Many Requests',
+      message: 'Rate limit exceeded. Please try again later.',
+      retryAfter: req.rateLimit?.resetTime
+    });
+  },
+  skip: req => {
+    /* istanbul ignore next */
+    cov_21zt5skwsx().f[1]++;
+    cov_21zt5skwsx().s[3]++;
+    // Skip rate limiting for health check endpoints
+    return /* istanbul ignore next */(cov_21zt5skwsx().b[0][0]++, req.path === '/health') ||
+    /* istanbul ignore next */
+    (cov_21zt5skwsx().b[0][1]++, req.path === '/api/health');
+  }
+}));
+// Strict rate limiter for authentication endpoints
+export const authRateLimiter =
+/* istanbul ignore next */
+(cov_21zt5skwsx().s[4]++, rateLimit({
+  windowMs: process.env.NODE_ENV === 'test' ?
+  /* istanbul ignore next */
+  (cov_21zt5skwsx().b[1][0]++, 5000) :
+  /* istanbul ignore next */
+  (cov_21zt5skwsx().b[1][1]++, 15 * 60 * 1000),
+  // 5 seconds for tests, 15 minutes for production
+  max: process.env.NODE_ENV === 'test' ?
+  /* istanbul ignore next */
+  (cov_21zt5skwsx().b[2][0]++, 20) :
+  /* istanbul ignore next */
+  (cov_21zt5skwsx().b[2][1]++, 5),
+  // Higher limit for tests, same limit for production
+  message: 'Too many authentication attempts from this IP, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false,
+  skipSuccessfulRequests: true,
+  // Don't count successful auth requests
+  handler: (req, res) => {
+    /* istanbul ignore next */
+    cov_21zt5skwsx().f[2]++;
+    cov_21zt5skwsx().s[5]++;
+    logger.warn({
+      ip: req.ip,
+      path: req.path,
+      userAgent: req.headers['user-agent']
+    }, 'Authentication rate limit exceeded');
+    /* istanbul ignore next */
+    cov_21zt5skwsx().s[6]++;
+    res.status(429).json({
+      error: 'Too Many Authentication Attempts',
+      message: 'Please wait before trying again.',
+      retryAfter: req.rateLimit?.resetTime
+    });
+  },
+  skip: req => {
+    /* istanbul ignore next */
+    cov_21zt5skwsx().f[3]++;
+    cov_21zt5skwsx().s[7]++;
+    // Only skip rate limiting for specific test paths that need to bypass it
+    return /* istanbul ignore next */(cov_21zt5skwsx().b[3][0]++, process.env.NODE_ENV === 'test') &&
+    /* istanbul ignore next */
+    (cov_21zt5skwsx().b[3][1]++, req.path.includes('/health'));
+  }
+}));
+// Moderate rate limiter for resource creation endpoints
+export const createResourceRateLimiter =
+/* istanbul ignore next */
+(cov_21zt5skwsx().s[8]++, rateLimit({
+  windowMs: 60 * 60 * 1000,
+  // 1 hour
+  max: 30,
+  // Limit each IP to 30 resource creation requests per hour
+  message: 'Too many resources created from this IP, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false,
+  handler: (req, res) => {
+    /* istanbul ignore next */
+    cov_21zt5skwsx().f[4]++;
+    cov_21zt5skwsx().s[9]++;
+    logger.warn({
+      ip: req.ip,
+      path: req.path,
+      method: req.method
+    }, 'Resource creation rate limit exceeded');
+    /* istanbul ignore next */
+    cov_21zt5skwsx().s[10]++;
+    res.status(429).json({
+      error: 'Too Many Requests',
+      message: 'Resource creation limit exceeded. Please try again later.',
+      retryAfter: req.rateLimit?.resetTime
+    });
+  }
+}));
+// Lenient rate limiter for read operations
+export const readRateLimiter =
+/* istanbul ignore next */
+(cov_21zt5skwsx().s[11]++, rateLimit({
+  windowMs: 15 * 60 * 1000,
+  // 15 minutes
+  max: 500,
+  // Limit each IP to 500 read requests per windowMs
+  message: 'Too many requests from this IP, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false
+}));
+// Rate limiter for file uploads
+export const uploadRateLimiter =
+/* istanbul ignore next */
+(cov_21zt5skwsx().s[12]++, rateLimit({
+  windowMs: 60 * 60 * 1000,
+  // 1 hour
+  max: 10,
+  // Limit each IP to 10 file uploads per hour
+  message: 'Too many file uploads from this IP, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false,
+  handler: (req, res) => {
+    /* istanbul ignore next */
+    cov_21zt5skwsx().f[5]++;
+    cov_21zt5skwsx().s[13]++;
+    logger.warn({
+      ip: req.ip,
+      path: req.path
+    }, 'File upload rate limit exceeded');
+    /* istanbul ignore next */
+    cov_21zt5skwsx().s[14]++;
+    res.status(429).json({
+      error: 'Too Many Uploads',
+      message: 'File upload limit exceeded. Please try again later.',
+      retryAfter: req.rateLimit?.resetTime
+    });
+  }
+}));
+// Rate limiter for AI/LLM endpoints (more restrictive due to cost)
+export const aiRateLimiter =
+/* istanbul ignore next */
+(cov_21zt5skwsx().s[15]++, rateLimit({
+  windowMs: 60 * 60 * 1000,
+  // 1 hour
+  max: 20,
+  // Limit each IP to 20 AI requests per hour
+  message: 'Too many AI requests from this IP, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false,
+  handler: (req, res) => {
+    /* istanbul ignore next */
+    cov_21zt5skwsx().f[6]++;
+    cov_21zt5skwsx().s[16]++;
+    logger.warn({
+      ip: req.ip,
+      path: req.path,
+      userId: req.user?.id
+    }, 'AI rate limit exceeded');
+    /* istanbul ignore next */
+    cov_21zt5skwsx().s[17]++;
+    res.status(429).json({
+      error: 'Too Many AI Requests',
+      message: 'AI request limit exceeded. Please try again later.',
+      retryAfter: req.rateLimit?.resetTime
+    });
+  }
+}));
+// Dynamic rate limiter based on user role
+export function createUserBasedRateLimiter(freeLimit =
+/* istanbul ignore next */
+(cov_21zt5skwsx().b[4][0]++, 50), premiumLimit =
+/* istanbul ignore next */
+(cov_21zt5skwsx().b[5][0]++, 200), windowMs =
+/* istanbul ignore next */
+(cov_21zt5skwsx().b[6][0]++, 15 * 60 * 1000)) {
+  /* istanbul ignore next */
+  cov_21zt5skwsx().f[7]++;
+  cov_21zt5skwsx().s[18]++;
+  return rateLimit({
+    windowMs,
+    max: req => {
+      /* istanbul ignore next */
+      cov_21zt5skwsx().f[8]++;
+      cov_21zt5skwsx().s[19]++;
+      // Check if user is authenticated and has premium access
+      if (
+      /* istanbul ignore next */
+      (cov_21zt5skwsx().b[8][0]++, req.user?.role === 'premium') ||
+      /* istanbul ignore next */
+      (cov_21zt5skwsx().b[8][1]++, req.user?.role === 'admin')) {
+        /* istanbul ignore next */
+        cov_21zt5skwsx().b[7][0]++;
+        cov_21zt5skwsx().s[20]++;
+        return premiumLimit;
+      } else
+      /* istanbul ignore next */
+      {
+        cov_21zt5skwsx().b[7][1]++;
+      }
+      cov_21zt5skwsx().s[21]++;
+      return freeLimit;
+    },
+    keyGenerator: req => {
+      /* istanbul ignore next */
+      cov_21zt5skwsx().f[9]++;
+      cov_21zt5skwsx().s[22]++;
+      // Use user ID if authenticated, otherwise use IP
+      return /* istanbul ignore next */(cov_21zt5skwsx().b[9][0]++, req.user?.id?.toString()) ||
+      /* istanbul ignore next */
+      (cov_21zt5skwsx().b[9][1]++, req.ip) ||
+      /* istanbul ignore next */
+      (cov_21zt5skwsx().b[9][2]++, 'unknown');
+    },
+    standardHeaders: true,
+    legacyHeaders: false
+  });
+}
+// Export as rateLimiters object for backward compatibility
+export const rateLimiters =
+/* istanbul ignore next */
+(cov_21zt5skwsx().s[23]++, {
+  general: defaultRateLimiter,
+  auth: authRateLimiter,
+  resourceCreation: createResourceRateLimiter,
+  upload: uploadRateLimiter,
+  ai: aiRateLimiter,
+  read: readRateLimiter,
+  api: defaultRateLimiter,
+  // Alias for general API endpoints
+  write: createResourceRateLimiter // Alias for write operations
+});
+// Individual limiters are already exported above with their declarations
+// Export aliases for expected names
+export const generalRateLimiter =
+/* istanbul ignore next */
+(cov_21zt5skwsx().s[24]++, defaultRateLimiter);
+export const resourceCreationRateLimiter =
+/* istanbul ignore next */
+(cov_21zt5skwsx().s[25]++, createResourceRateLimiter);
+// Reset rate limiter state for testing
+export function resetRateLimiterState() {
+  /* istanbul ignore next */
+  cov_21zt5skwsx().f[10]++;
+  cov_21zt5skwsx().s[26]++;
+  // Rate limiters use memory store by default, which doesn't expose a reset method
+  // For testing, we rely on the windowMs to expire naturally or use mock time
+  // In production, you might want to use Redis store which has better control
+  logger.debug('Rate limiter state reset requested');
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3ZfMjF6dDVza3dzeCIsImFjdHVhbENvdmVyYWdlIiwicmF0ZUxpbWl0IiwibG9nZ2VyIiwiZGVmYXVsdFJhdGVMaW1pdGVyIiwicyIsIndpbmRvd01zIiwibWF4IiwibWVzc2FnZSIsInN0YW5kYXJkSGVhZGVycyIsImxlZ2FjeUhlYWRlcnMiLCJoYW5kbGVyIiwicmVxIiwicmVzIiwiZiIsIndhcm4iLCJpcCIsInBhdGgiLCJtZXRob2QiLCJzdGF0dXMiLCJqc29uIiwiZXJyb3IiLCJyZXRyeUFmdGVyIiwicmVzZXRUaW1lIiwic2tpcCIsImIiLCJhdXRoUmF0ZUxpbWl0ZXIiLCJwcm9jZXNzIiwiZW52IiwiTk9ERV9FTlYiLCJza2lwU3VjY2Vzc2Z1bFJlcXVlc3RzIiwidXNlckFnZW50IiwiaGVhZGVycyIsImluY2x1ZGVzIiwiY3JlYXRlUmVzb3VyY2VSYXRlTGltaXRlciIsInJlYWRSYXRlTGltaXRlciIsInVwbG9hZFJhdGVMaW1pdGVyIiwiYWlSYXRlTGltaXRlciIsInVzZXJJZCIsInVzZXIiLCJpZCIsImNyZWF0ZVVzZXJCYXNlZFJhdGVMaW1pdGVyIiwiZnJlZUxpbWl0IiwicHJlbWl1bUxpbWl0Iiwicm9sZSIsImtleUdlbmVyYXRvciIsInRvU3RyaW5nIiwicmF0ZUxpbWl0ZXJzIiwiZ2VuZXJhbCIsImF1dGgiLCJyZXNvdXJjZUNyZWF0aW9uIiwidXBsb2FkIiwiYWkiLCJyZWFkIiwiYXBpIiwid3JpdGUiLCJnZW5lcmFsUmF0ZUxpbWl0ZXIiLCJyZXNvdXJjZUNyZWF0aW9uUmF0ZUxpbWl0ZXIiLCJyZXNldFJhdGVMaW1pdGVyU3RhdGUiLCJkZWJ1ZyJdLCJzb3VyY2VzIjpbIi9Vc2Vycy9taWNoYWVsbWNpc2FhYy9HaXRIdWIvdGVhY2hpbmctZW5naW5lMi4wL3NlcnZlci9zcmMvbWlkZGxld2FyZS9yYXRlTGltaXRlci50cyJdLCJzb3VyY2VzQ29udGVudCI6WyIvKiBlc2xpbnQtZGlzYWJsZSBAdHlwZXNjcmlwdC1lc2xpbnQvbm8tZXhwbGljaXQtYW55ICovXG5pbXBvcnQgeyBSZXF1ZXN0LCBSZXNwb25zZSB9IGZyb20gJ2V4cHJlc3MnO1xuaW1wb3J0IHJhdGVMaW1pdCwgeyBSYXRlTGltaXRSZXF1ZXN0SGFuZGxlciB9IGZyb20gJ2V4cHJlc3MtcmF0ZS1saW1pdCc7XG5pbXBvcnQgbG9nZ2VyIGZyb20gJy4uL2xvZ2dlci5qcyc7XG5cbi8vIEV4dGVuZCBFeHByZXNzIFJlcXVlc3QgdG8gaW5jbHVkZSByYXRlIGxpbWl0IGluZm9cbmRlY2xhcmUgZ2xvYmFsIHtcbiAgLy8gZXNsaW50LWRpc2FibGUtbmV4dC1saW5lIEB0eXBlc2NyaXB0LWVzbGludC9uby1uYW1lc3BhY2VcbiAgbmFtZXNwYWNlIEV4cHJlc3Mge1xuICAgIGludGVyZmFjZSBSZXF1ZXN0IHtcbiAgICAgIHJhdGVMaW1pdD86IHtcbiAgICAgICAgcmVzZXRUaW1lPzogRGF0ZTtcbiAgICAgICAgcmVtYWluaW5nPzogbnVtYmVyO1xuICAgICAgICB0b3RhbEhpdHM/OiBudW1iZXI7XG4gICAgICB9O1xuICAgIH1cbiAgfVxufVxuXG4vKipcbiAqIFJhdGUgbGltaXRpbmcgbWlkZGxld2FyZSBjb25maWd1cmF0aW9uXG4gKiBJbXBsZW1lbnRzIGRpZmZlcmVudCByYXRlIGxpbWl0cyBmb3IgZGlmZmVyZW50IHR5cGVzIG9mIG9wZXJhdGlvbnNcbiAqL1xuXG4vLyBEZWZhdWx0IHJhdGUgbGltaXRlciBmb3IgZ2VuZXJhbCBBUEkgZW5kcG9pbnRzXG5leHBvcnQgY29uc3QgZGVmYXVsdFJhdGVMaW1pdGVyOiBSYXRlTGltaXRSZXF1ZXN0SGFuZGxlciA9IHJhdGVMaW1pdCh7XG4gIHdpbmRvd01zOiAxNSAqIDYwICogMTAwMCwgLy8gMTUgbWludXRlc1xuICBtYXg6IDEwMCwgLy8gTGltaXQgZWFjaCBJUCB0byAxMDAgcmVxdWVzdHMgcGVyIHdpbmRvd01zXG4gIG1lc3NhZ2U6ICdUb28gbWFueSByZXF1ZXN0cyBmcm9tIHRoaXMgSVAsIHBsZWFzZSB0cnkgYWdhaW4gbGF0ZXIuJyxcbiAgc3RhbmRhcmRIZWFkZXJzOiB0cnVlLCAvLyBSZXR1cm4gcmF0ZSBsaW1pdCBpbmZvIGluIHRoZSBgUmF0ZUxpbWl0LSpgIGhlYWRlcnNcbiAgbGVnYWN5SGVhZGVyczogZmFsc2UsIC8vIERpc2FibGUgdGhlIGBYLVJhdGVMaW1pdC0qYCBoZWFkZXJzXG4gIGhhbmRsZXI6ICgocmVxOiBSZXF1ZXN0LCByZXM6IFJlc3BvbnNlKSA9PiB7XG4gICAgbG9nZ2VyLndhcm4oXG4gICAgICB7XG4gICAgICAgIGlwOiByZXEuaXAsXG4gICAgICAgIHBhdGg6IHJlcS5wYXRoLFxuICAgICAgICBtZXRob2Q6IHJlcS5tZXRob2QsXG4gICAgICB9LFxuICAgICAgJ1JhdGUgbGltaXQgZXhjZWVkZWQnLFxuICAgICk7XG5cbiAgICByZXMuc3RhdHVzKDQyOSkuanNvbih7XG4gICAgICBlcnJvcjogJ1RvbyBNYW55IFJlcXVlc3RzJyxcbiAgICAgIG1lc3NhZ2U6ICdSYXRlIGxpbWl0IGV4Y2VlZGVkLiBQbGVhc2UgdHJ5IGFnYWluIGxhdGVyLicsXG4gICAgICByZXRyeUFmdGVyOiByZXEucmF0ZUxpbWl0Py5yZXNldFRpbWUsXG4gICAgfSk7XG4gIH0pIGFzIGFueSxcbiAgc2tpcDogKChyZXE6IFJlcXVlc3QpID0+IHtcbiAgICAvLyBTa2lwIHJhdGUgbGltaXRpbmcgZm9yIGhlYWx0aCBjaGVjayBlbmRwb2ludHNcbiAgICByZXR1cm4gcmVxLnBhdGggPT09ICcvaGVhbHRoJyB8fCByZXEucGF0aCA9PT0gJy9hcGkvaGVhbHRoJztcbiAgfSkgYXMgYW55LFxufSk7XG5cbi8vIFN0cmljdCByYXRlIGxpbWl0ZXIgZm9yIGF1dGhlbnRpY2F0aW9uIGVuZHBvaW50c1xuZXhwb3J0IGNvbnN0IGF1dGhSYXRlTGltaXRlcjogUmF0ZUxpbWl0UmVxdWVzdEhhbmRsZXIgPSByYXRlTGltaXQoe1xuICB3aW5kb3dNczogcHJvY2Vzcy5lbnYuTk9ERV9FTlYgPT09ICd0ZXN0JyA/IDUwMDAgOiAxNSAqIDYwICogMTAwMCwgLy8gNSBzZWNvbmRzIGZvciB0ZXN0cywgMTUgbWludXRlcyBmb3IgcHJvZHVjdGlvblxuICBtYXg6IHByb2Nlc3MuZW52Lk5PREVfRU5WID09PSAndGVzdCcgPyAyMCA6IDUsIC8vIEhpZ2hlciBsaW1pdCBmb3IgdGVzdHMsIHNhbWUgbGltaXQgZm9yIHByb2R1Y3Rpb25cbiAgbWVzc2FnZTogJ1RvbyBtYW55IGF1dGhlbnRpY2F0aW9uIGF0dGVtcHRzIGZyb20gdGhpcyBJUCwgcGxlYXNlIHRyeSBhZ2FpbiBsYXRlci4nLFxuICBzdGFuZGFyZEhlYWRlcnM6IHRydWUsXG4gIGxlZ2FjeUhlYWRlcnM6IGZhbHNlLFxuICBza2lwU3VjY2Vzc2Z1bFJlcXVlc3RzOiB0cnVlLCAvLyBEb24ndCBjb3VudCBzdWNjZXNzZnVsIGF1dGggcmVxdWVzdHNcbiAgaGFuZGxlcjogKChyZXE6IFJlcXVlc3QsIHJlczogUmVzcG9uc2UpID0+IHtcbiAgICBsb2dnZXIud2FybihcbiAgICAgIHtcbiAgICAgICAgaXA6IHJlcS5pcCxcbiAgICAgICAgcGF0aDogcmVxLnBhdGgsXG4gICAgICAgIHVzZXJBZ2VudDogcmVxLmhlYWRlcnNbJ3VzZXItYWdlbnQnXSxcbiAgICAgIH0sXG4gICAgICAnQXV0aGVudGljYXRpb24gcmF0ZSBsaW1pdCBleGNlZWRlZCcsXG4gICAgKTtcblxuICAgIHJlcy5zdGF0dXMoNDI5KS5qc29uKHtcbiAgICAgIGVycm9yOiAnVG9vIE1hbnkgQXV0aGVudGljYXRpb24gQXR0ZW1wdHMnLFxuICAgICAgbWVzc2FnZTogJ1BsZWFzZSB3YWl0IGJlZm9yZSB0cnlpbmcgYWdhaW4uJyxcbiAgICAgIHJldHJ5QWZ0ZXI6IHJlcS5yYXRlTGltaXQ/LnJlc2V0VGltZSxcbiAgICB9KTtcbiAgfSkgYXMgYW55LFxuICBza2lwOiAoKHJlcTogUmVxdWVzdCkgPT4ge1xuICAgIC8vIE9ubHkgc2tpcCByYXRlIGxpbWl0aW5nIGZvciBzcGVjaWZpYyB0ZXN0IHBhdGhzIHRoYXQgbmVlZCB0byBieXBhc3MgaXRcbiAgICByZXR1cm4gcHJvY2Vzcy5lbnYuTk9ERV9FTlYgPT09ICd0ZXN0JyAmJiByZXEucGF0aC5pbmNsdWRlcygnL2hlYWx0aCcpO1xuICB9KSBhcyBhbnksXG59KTtcblxuLy8gTW9kZXJhdGUgcmF0ZSBsaW1pdGVyIGZvciByZXNvdXJjZSBjcmVhdGlvbiBlbmRwb2ludHNcbmV4cG9ydCBjb25zdCBjcmVhdGVSZXNvdXJjZVJhdGVMaW1pdGVyOiBSYXRlTGltaXRSZXF1ZXN0SGFuZGxlciA9IHJhdGVMaW1pdCh7XG4gIHdpbmRvd01zOiA2MCAqIDYwICogMTAwMCwgLy8gMSBob3VyXG4gIG1heDogMzAsIC8vIExpbWl0IGVhY2ggSVAgdG8gMzAgcmVzb3VyY2UgY3JlYXRpb24gcmVxdWVzdHMgcGVyIGhvdXJcbiAgbWVzc2FnZTogJ1RvbyBtYW55IHJlc291cmNlcyBjcmVhdGVkIGZyb20gdGhpcyBJUCwgcGxlYXNlIHRyeSBhZ2FpbiBsYXRlci4nLFxuICBzdGFuZGFyZEhlYWRlcnM6IHRydWUsXG4gIGxlZ2FjeUhlYWRlcnM6IGZhbHNlLFxuICBoYW5kbGVyOiAoKHJlcTogUmVxdWVzdCwgcmVzOiBSZXNwb25zZSkgPT4ge1xuICAgIGxvZ2dlci53YXJuKFxuICAgICAge1xuICAgICAgICBpcDogcmVxLmlwLFxuICAgICAgICBwYXRoOiByZXEucGF0aCxcbiAgICAgICAgbWV0aG9kOiByZXEubWV0aG9kLFxuICAgICAgfSxcbiAgICAgICdSZXNvdXJjZSBjcmVhdGlvbiByYXRlIGxpbWl0IGV4Y2VlZGVkJyxcbiAgICApO1xuXG4gICAgcmVzLnN0YXR1cyg0MjkpLmpzb24oe1xuICAgICAgZXJyb3I6ICdUb28gTWFueSBSZXF1ZXN0cycsXG4gICAgICBtZXNzYWdlOiAnUmVzb3VyY2UgY3JlYXRpb24gbGltaXQgZXhjZWVkZWQuIFBsZWFzZSB0cnkgYWdhaW4gbGF0ZXIuJyxcbiAgICAgIHJldHJ5QWZ0ZXI6IHJlcS5yYXRlTGltaXQ/LnJlc2V0VGltZSxcbiAgICB9KTtcbiAgfSkgYXMgYW55LFxufSk7XG5cbi8vIExlbmllbnQgcmF0ZSBsaW1pdGVyIGZvciByZWFkIG9wZXJhdGlvbnNcbmV4cG9ydCBjb25zdCByZWFkUmF0ZUxpbWl0ZXI6IFJhdGVMaW1pdFJlcXVlc3RIYW5kbGVyID0gcmF0ZUxpbWl0KHtcbiAgd2luZG93TXM6IDE1ICogNjAgKiAxMDAwLCAvLyAxNSBtaW51dGVzXG4gIG1heDogNTAwLCAvLyBMaW1pdCBlYWNoIElQIHRvIDUwMCByZWFkIHJlcXVlc3RzIHBlciB3aW5kb3dNc1xuICBtZXNzYWdlOiAnVG9vIG1hbnkgcmVxdWVzdHMgZnJvbSB0aGlzIElQLCBwbGVhc2UgdHJ5IGFnYWluIGxhdGVyLicsXG4gIHN0YW5kYXJkSGVhZGVyczogdHJ1ZSxcbiAgbGVnYWN5SGVhZGVyczogZmFsc2UsXG59KTtcblxuLy8gUmF0ZSBsaW1pdGVyIGZvciBmaWxlIHVwbG9hZHNcbmV4cG9ydCBjb25zdCB1cGxvYWRSYXRlTGltaXRlcjogUmF0ZUxpbWl0UmVxdWVzdEhhbmRsZXIgPSByYXRlTGltaXQoe1xuICB3aW5kb3dNczogNjAgKiA2MCAqIDEwMDAsIC8vIDEgaG91clxuICBtYXg6IDEwLCAvLyBMaW1pdCBlYWNoIElQIHRvIDEwIGZpbGUgdXBsb2FkcyBwZXIgaG91clxuICBtZXNzYWdlOiAnVG9vIG1hbnkgZmlsZSB1cGxvYWRzIGZyb20gdGhpcyBJUCwgcGxlYXNlIHRyeSBhZ2FpbiBsYXRlci4nLFxuICBzdGFuZGFyZEhlYWRlcnM6IHRydWUsXG4gIGxlZ2FjeUhlYWRlcnM6IGZhbHNlLFxuICBoYW5kbGVyOiAoKHJlcTogUmVxdWVzdCwgcmVzOiBSZXNwb25zZSkgPT4ge1xuICAgIGxvZ2dlci53YXJuKFxuICAgICAge1xuICAgICAgICBpcDogcmVxLmlwLFxuICAgICAgICBwYXRoOiByZXEucGF0aCxcbiAgICAgIH0sXG4gICAgICAnRmlsZSB1cGxvYWQgcmF0ZSBsaW1pdCBleGNlZWRlZCcsXG4gICAgKTtcblxuICAgIHJlcy5zdGF0dXMoNDI5KS5qc29uKHtcbiAgICAgIGVycm9yOiAnVG9vIE1hbnkgVXBsb2FkcycsXG4gICAgICBtZXNzYWdlOiAnRmlsZSB1cGxvYWQgbGltaXQgZXhjZWVkZWQuIFBsZWFzZSB0cnkgYWdhaW4gbGF0ZXIuJyxcbiAgICAgIHJldHJ5QWZ0ZXI6IHJlcS5yYXRlTGltaXQ/LnJlc2V0VGltZSxcbiAgICB9KTtcbiAgfSkgYXMgYW55LFxufSk7XG5cbi8vIFJhdGUgbGltaXRlciBmb3IgQUkvTExNIGVuZHBvaW50cyAobW9yZSByZXN0cmljdGl2ZSBkdWUgdG8gY29zdClcbmV4cG9ydCBjb25zdCBhaVJhdGVMaW1pdGVyOiBSYXRlTGltaXRSZXF1ZXN0SGFuZGxlciA9IHJhdGVMaW1pdCh7XG4gIHdpbmRvd01zOiA2MCAqIDYwICogMTAwMCwgLy8gMSBob3VyXG4gIG1heDogMjAsIC8vIExpbWl0IGVhY2ggSVAgdG8gMjAgQUkgcmVxdWVzdHMgcGVyIGhvdXJcbiAgbWVzc2FnZTogJ1RvbyBtYW55IEFJIHJlcXVlc3RzIGZyb20gdGhpcyBJUCwgcGxlYXNlIHRyeSBhZ2FpbiBsYXRlci4nLFxuICBzdGFuZGFyZEhlYWRlcnM6IHRydWUsXG4gIGxlZ2FjeUhlYWRlcnM6IGZhbHNlLFxuICBoYW5kbGVyOiAoKHJlcTogUmVxdWVzdCwgcmVzOiBSZXNwb25zZSkgPT4ge1xuICAgIGxvZ2dlci53YXJuKFxuICAgICAge1xuICAgICAgICBpcDogcmVxLmlwLFxuICAgICAgICBwYXRoOiByZXEucGF0aCxcbiAgICAgICAgdXNlcklkOiAocmVxIGFzIHsgdXNlcj86IHsgaWQ6IG51bWJlciB9IH0pLnVzZXI/LmlkLFxuICAgICAgfSxcbiAgICAgICdBSSByYXRlIGxpbWl0IGV4Y2VlZGVkJyxcbiAgICApO1xuXG4gICAgcmVzLnN0YXR1cyg0MjkpLmpzb24oe1xuICAgICAgZXJyb3I6ICdUb28gTWFueSBBSSBSZXF1ZXN0cycsXG4gICAgICBtZXNzYWdlOiAnQUkgcmVxdWVzdCBsaW1pdCBleGNlZWRlZC4gUGxlYXNlIHRyeSBhZ2FpbiBsYXRlci4nLFxuICAgICAgcmV0cnlBZnRlcjogcmVxLnJhdGVMaW1pdD8ucmVzZXRUaW1lLFxuICAgIH0pO1xuICB9KSBhcyBhbnksXG59KTtcblxuLy8gRHluYW1pYyByYXRlIGxpbWl0ZXIgYmFzZWQgb24gdXNlciByb2xlXG5leHBvcnQgZnVuY3Rpb24gY3JlYXRlVXNlckJhc2VkUmF0ZUxpbWl0ZXIoXG4gIGZyZWVMaW1pdDogbnVtYmVyID0gNTAsXG4gIHByZW1pdW1MaW1pdDogbnVtYmVyID0gMjAwLFxuICB3aW5kb3dNczogbnVtYmVyID0gMTUgKiA2MCAqIDEwMDAsXG4pOiBSYXRlTGltaXRSZXF1ZXN0SGFuZGxlciB7XG4gIHJldHVybiByYXRlTGltaXQoe1xuICAgIHdpbmRvd01zLFxuICAgIG1heDogKChyZXE6IFJlcXVlc3QpID0+IHtcbiAgICAgIC8vIENoZWNrIGlmIHVzZXIgaXMgYXV0aGVudGljYXRlZCBhbmQgaGFzIHByZW1pdW0gYWNjZXNzXG4gICAgICBpZiAocmVxLnVzZXI/LnJvbGUgPT09ICdwcmVtaXVtJyB8fCByZXEudXNlcj8ucm9sZSA9PT0gJ2FkbWluJykge1xuICAgICAgICByZXR1cm4gcHJlbWl1bUxpbWl0O1xuICAgICAgfVxuICAgICAgcmV0dXJuIGZyZWVMaW1pdDtcbiAgICB9KSBhcyBhbnksXG4gICAga2V5R2VuZXJhdG9yOiAoKHJlcTogUmVxdWVzdCkgPT4ge1xuICAgICAgLy8gVXNlIHVzZXIgSUQgaWYgYXV0aGVudGljYXRlZCwgb3RoZXJ3aXNlIHVzZSBJUFxuICAgICAgcmV0dXJuIHJlcS51c2VyPy5pZD8udG9TdHJpbmcoKSB8fCByZXEuaXAgfHwgJ3Vua25vd24nO1xuICAgIH0pIGFzIGFueSxcbiAgICBzdGFuZGFyZEhlYWRlcnM6IHRydWUsXG4gICAgbGVnYWN5SGVhZGVyczogZmFsc2UsXG4gIH0pO1xufVxuXG4vLyBFeHBvcnQgYXMgcmF0ZUxpbWl0ZXJzIG9iamVjdCBmb3IgYmFja3dhcmQgY29tcGF0aWJpbGl0eVxuZXhwb3J0IGNvbnN0IHJhdGVMaW1pdGVycyA9IHtcbiAgZ2VuZXJhbDogZGVmYXVsdFJhdGVMaW1pdGVyLFxuICBhdXRoOiBhdXRoUmF0ZUxpbWl0ZXIsXG4gIHJlc291cmNlQ3JlYXRpb246IGNyZWF0ZVJlc291cmNlUmF0ZUxpbWl0ZXIsXG4gIHVwbG9hZDogdXBsb2FkUmF0ZUxpbWl0ZXIsXG4gIGFpOiBhaVJhdGVMaW1pdGVyLFxuICByZWFkOiByZWFkUmF0ZUxpbWl0ZXIsXG4gIGFwaTogZGVmYXVsdFJhdGVMaW1pdGVyLCAvLyBBbGlhcyBmb3IgZ2VuZXJhbCBBUEkgZW5kcG9pbnRzXG4gIHdyaXRlOiBjcmVhdGVSZXNvdXJjZVJhdGVMaW1pdGVyLCAvLyBBbGlhcyBmb3Igd3JpdGUgb3BlcmF0aW9uc1xufTtcblxuLy8gSW5kaXZpZHVhbCBsaW1pdGVycyBhcmUgYWxyZWFkeSBleHBvcnRlZCBhYm92ZSB3aXRoIHRoZWlyIGRlY2xhcmF0aW9uc1xuXG4vLyBFeHBvcnQgYWxpYXNlcyBmb3IgZXhwZWN0ZWQgbmFtZXNcbmV4cG9ydCBjb25zdCBnZW5lcmFsUmF0ZUxpbWl0ZXIgPSBkZWZhdWx0UmF0ZUxpbWl0ZXI7XG5leHBvcnQgY29uc3QgcmVzb3VyY2VDcmVhdGlvblJhdGVMaW1pdGVyID0gY3JlYXRlUmVzb3VyY2VSYXRlTGltaXRlcjtcblxuLy8gUmVzZXQgcmF0ZSBsaW1pdGVyIHN0YXRlIGZvciB0ZXN0aW5nXG5leHBvcnQgZnVuY3Rpb24gcmVzZXRSYXRlTGltaXRlclN0YXRlKCk6IHZvaWQge1xuICAvLyBSYXRlIGxpbWl0ZXJzIHVzZSBtZW1vcnkgc3RvcmUgYnkgZGVmYXVsdCwgd2hpY2ggZG9lc24ndCBleHBvc2UgYSByZXNldCBtZXRob2RcbiAgLy8gRm9yIHRlc3RpbmcsIHdlIHJlbHkgb24gdGhlIHdpbmRvd01zIHRvIGV4cGlyZSBuYXR1cmFsbHkgb3IgdXNlIG1vY2sgdGltZVxuICAvLyBJbiBwcm9kdWN0aW9uLCB5b3UgbWlnaHQgd2FudCB0byB1c2UgUmVkaXMgc3RvcmUgd2hpY2ggaGFzIGJldHRlciBjb250cm9sXG4gIGxvZ2dlci5kZWJ1ZygnUmF0ZSBsaW1pdGVyIHN0YXRlIHJlc2V0IHJlcXVlc3RlZCcpO1xufVxuIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7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

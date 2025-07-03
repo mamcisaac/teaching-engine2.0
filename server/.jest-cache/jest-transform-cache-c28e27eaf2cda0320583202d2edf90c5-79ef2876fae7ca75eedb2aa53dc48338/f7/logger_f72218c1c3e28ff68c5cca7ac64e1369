@@ -1,0 +1,10 @@
+03a6c6687b8fe54a1ddf4e99f64a2e98
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const pino_1 = __importDefault(require("pino"));
+const logger = (0, pino_1.default)();
+exports.default = logger;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL1VzZXJzL21pY2hhZWxtY2lzYWFjL0dpdEh1Yi90ZWFjaGluZy1lbmdpbmUyLjAvc2VydmVyL3NyYy9sb2dnZXIudHMiLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBQSxnREFBd0I7QUFFeEIsTUFBTSxNQUFNLEdBQUcsSUFBQSxjQUFJLEdBQUUsQ0FBQztBQUV0QixrQkFBZSxNQUFNLENBQUMiLCJuYW1lcyI6W10sInNvdXJjZXMiOlsiL1VzZXJzL21pY2hhZWxtY2lzYWFjL0dpdEh1Yi90ZWFjaGluZy1lbmdpbmUyLjAvc2VydmVyL3NyYy9sb2dnZXIudHMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHBpbm8gZnJvbSAncGlubyc7XG5cbmNvbnN0IGxvZ2dlciA9IHBpbm8oKTtcblxuZXhwb3J0IGRlZmF1bHQgbG9nZ2VyO1xuIl0sInZlcnNpb24iOjN9

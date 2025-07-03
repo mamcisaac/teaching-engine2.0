@@ -185,7 +185,7 @@ export const thematicUnitUpdateSchema = baseThematicUnitSchema
     },
   );
 
-export const parentMessageCreateSchema = z.object({
+export const classroomAnnouncementCreateSchema = z.object({
   ...bilingualString('title', true, { max: 200 }),
   timeframe: z.string().min(1).max(100),
   contentFr: z.string().min(1),
@@ -194,37 +194,9 @@ export const parentMessageCreateSchema = z.object({
   linkedActivityIds: z.array(z.number().int()).optional(),
 });
 
-export const parentMessageUpdateSchema = parentMessageCreateSchema.partial();
+export const classroomAnnouncementUpdateSchema = classroomAnnouncementCreateSchema.partial();
 
-export const studentCreateSchema = z.object({
-  name: z.string().min(1).max(200),
-});
-
-export const studentGoalCreateSchema = z.object({
-  text: z.string().min(1).max(500),
-  outcomeId: z.string().optional(),
-  // themeId removed - ThematicUnit model archived
-  unitPlanId: z.string().optional(),
-  status: z.enum(['active', 'completed', 'abandoned']).default('active'),
-});
-
-export const studentGoalUpdateSchema = z.object({
-  text: z.string().min(1).max(500).optional(),
-  outcomeId: z.string().optional(),
-  // themeId removed - ThematicUnit model archived
-  unitPlanId: z.string().optional(),
-  status: z.enum(['active', 'completed', 'abandoned']).optional(),
-});
-
-export const studentReflectionCreateSchema = z.object({
-  date: z.string().datetime().optional(),
-  text: z.string().max(1000).optional(),
-  emoji: z.string().max(10).optional(),
-  voicePath: z.string().max(500).optional(),
-  outcomeId: z.string().optional(),
-  // themeId removed - ThematicUnit model archived
-  unitPlanId: z.string().optional(),
-});
+// Student-related schemas removed - app does not store student data
 
 // CUID validation helper - matches Prisma @default(cuid()) format
 export const cuidSchema = () => z.string().regex(/^c[0-9a-z]{24}$/, 'Invalid ID format');

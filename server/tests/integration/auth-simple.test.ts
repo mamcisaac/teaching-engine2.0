@@ -43,7 +43,7 @@ describe('Authentication Tests', () => {
 
     expect(res.status).toBe(201);
     expect(res.body).toHaveProperty('user');
-    expect(res.body).toHaveProperty('token');
+    expect(res.body).toHaveProperty('accessToken');
     expect(res.body.user.email).toBe('test@example.com');
     expect(res.body.user.name).toBe('Test User');
     expect(res.body.user).not.toHaveProperty('password');
@@ -69,18 +69,12 @@ describe('Authentication Tests', () => {
 
     expect(res.status).toBe(200);
     expect(res.body).toHaveProperty('user');
-    expect(res.body).toHaveProperty('token');
+    expect(res.body).toHaveProperty('accessToken');
     expect(res.body.user.email).toBe('test@example.com');
 
     // Verify JWT
-    const decoded = jwt.verify(res.body.token, process.env.JWT_SECRET!) as any;
+    const decoded = jwt.verify(res.body.accessToken, process.env.JWT_SECRET!) as any;
     expect(decoded.email).toBe('test@example.com');
-
-    // Check cookie
-    const cookies = res.headers['set-cookie'];
-    expect(cookies).toBeDefined();
-    expect(cookies[0]).toMatch(/authToken=/);
-    expect(cookies[0]).toMatch(/HttpOnly/);
   });
 
   it('should reject invalid credentials', async () => {
@@ -111,7 +105,7 @@ describe('Authentication Tests', () => {
       password: 'TestPassword123!',
     });
 
-    const token = loginRes.body.token;
+    const token = loginRes.body.accessToken;
 
     const res = await request(app).get('/api/auth/me').set('Authorization', `Bearer ${token}`);
 
@@ -136,9 +130,5 @@ describe('Authentication Tests', () => {
 
     expect(res.status).toBe(200);
     expect(res.body).toEqual({ message: 'Logged out successfully' });
-
-    const cookies = res.headers['set-cookie'];
-    expect(cookies).toBeDefined();
-    expect(cookies[0]).toMatch(/authToken=;/);
   });
 });

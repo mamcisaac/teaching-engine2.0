@@ -247,7 +247,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
           email: email.toLowerCase(),
           password: passwordHash,
           name,
-          role: 'teacher', // Default role
+          role: 'USER', // Default role
         },
       });
 

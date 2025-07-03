@@ -84,7 +84,7 @@ test.describe('Simple Smoke Tests', () => {
     expect(response.ok()).toBeTruthy();
 
     const userData = await response.json();
-    expect(userData.token).toBeTruthy();
+    expect(userData.accessToken).toBeTruthy();
     expect(userData.user).toBeTruthy();
     expect(userData.user.email).toBe(loginData.email);
   });

@@ -8,7 +8,7 @@ export interface TemplateSearchOptions {
   gradeMin?: number;
   gradeMax?: number;
   isSystem?: boolean;
-  isPublic?: boolean;
+  // isPublic removed - focusing on single-teacher use
   createdByUserId?: number;
   search?: string;
   tags?: string[];
@@ -30,7 +30,7 @@ export interface TemplateCreateData {
   gradeMax?: number;
   tags?: string[];
   keywords?: string[];
-  isPublic?: boolean;
+  // isPublic removed - focusing on single-teacher use
   content: Record<string, unknown>;
   estimatedWeeks?: number;
   unitStructure?: Record<string, unknown>;
@@ -68,7 +68,7 @@ export class TemplateService {
       gradeMin,
       gradeMax,
       isSystem,
-      isPublic,
+      // isPublic removed - focusing on single-teacher use
       createdByUserId,
       search,
       tags,
@@ -81,8 +81,7 @@ export class TemplateService {
     const where: Prisma.PlanTemplateWhereInput = {
       OR: [
         { isSystem: true }, // System templates visible to all
-        { isPublic: true }, // Public templates visible to all
-        { createdByUserId: userId }, // User's own templates
+        { createdByUserId: userId }, // User's own templates only
       ],
     };
 
@@ -110,7 +109,7 @@ export class TemplateService {
       }
     }
     if (isSystem !== undefined) where.isSystem = isSystem;
-    if (isPublic !== undefined) where.isPublic = isPublic;
+    // isPublic filter removed - focusing on single-teacher use
     if (createdByUserId !== undefined) where.createdByUserId = createdByUserId;
 
     // Text search with database-specific case handling
@@ -230,7 +229,7 @@ export class TemplateService {
     const {
       tags = [],
       keywords = [],
-      isPublic = false,
+      // isPublic removed - focusing on single-teacher use
       content,
       unitStructure,
       lessonStructure,
@@ -248,7 +247,7 @@ export class TemplateService {
         createdByUserId: userId,
         tags,
         keywords,
-        isPublic,
+        isPublic: false, // Always private for single-teacher use
         content: content as Prisma.JsonValue,
         unitStructure: unitStructure as Prisma.JsonValue || null,
         lessonStructure: lessonStructure as Prisma.JsonValue || null,
@@ -352,14 +351,13 @@ export class TemplateService {
   /**
    * Duplicate a template
    */
-  static async duplicateTemplate(userId: number, templateId: string, title?: string, isPublic = false) {
+  static async duplicateTemplate(userId: number, templateId: string, title?: string) {
     const original = await prisma.planTemplate.findFirst({
       where: {
         id: templateId,
         OR: [
           { isSystem: true },
-          { isPublic: true },
-          { createdByUserId: userId },
+          { createdByUserId: userId }, // Only user's own templates or system templates
         ],
       },
     });
@@ -383,7 +381,7 @@ export class TemplateService {
         keywords: original.keywords,
         createdByUserId: userId,
         isSystem: false,
-        isPublic,
+        isPublic: false, // Always private for single-teacher use
         content: original.content as Prisma.JsonValue,
         estimatedWeeks: original.estimatedWeeks,
         unitStructure: original.unitStructure as Prisma.JsonValue,

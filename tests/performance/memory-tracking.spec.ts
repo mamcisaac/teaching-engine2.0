@@ -352,7 +352,7 @@ test.describe('Memory Usage Tracking', () => {
       { path: '/api/curriculum-expectations', method: 'GET' },
       { path: '/api/etfo-lesson-plans', method: 'GET' },
       { path: '/api/unit-plans', method: 'GET' },
-      { path: '/api/students', method: 'GET' },
+      // Student endpoint removed - app does not store student data
     ];
 
     // Simulate load by making repeated requests

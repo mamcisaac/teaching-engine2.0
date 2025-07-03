@@ -105,7 +105,7 @@ describe('Report Routes', () => {
       email: testUser.email,
       password: 'test123',
     });
-    authToken = loginRes.body.token;
+    authToken = loginRes.body.accessToken;
   });
 
   describe('GET /api/curriculum-expectations/coverage/report', () => {

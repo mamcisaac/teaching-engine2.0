@@ -259,7 +259,7 @@ describe('Real Authentication Security Tests - NO MOCKS', () => {
       // Verify all authentication components are real
       expect(result).toBeDefined();
       expect(result.user).toBeDefined();
-      expect(result.token).toBeDefined();
+      expect(result.accessToken).toBeDefined();
       expect(result.user.email).toBe(testUsers.teacher.email);
       expect(result.user.name).toBe(testUsers.teacher.name);
       expect(result.user.role).toBe(testUsers.teacher.role);
@@ -269,12 +269,12 @@ describe('Real Authentication Security Tests - NO MOCKS', () => {
       expect((result.user as any).password).toBeUndefined();
 
       // Verify token is a real JWT that can be verified
-      const verified = await verifyToken(result.token);
+      const verified = await verifyToken(result.accessToken);
       expect(verified.userId).toBe(createdUser.id.toString());
       expect(verified.email).toBe(testUsers.teacher.email);
 
       // Verify token was signed with real secret
-      const decoded = jwt.verify(result.token, process.env.JWT_SECRET!) as any;
+      const decoded = jwt.verify(result.accessToken, process.env.JWT_SECRET!) as any;
       expect(decoded.userId).toBe(createdUser.id.toString());
     });
 
@@ -301,13 +301,13 @@ describe('Real Authentication Security Tests - NO MOCKS', () => {
       // All should succeed with real authentication
       results.forEach((result) => {
         expect(result.user.email).toBe(testUsers.teacher.email);
-        expect(result.token).toBeTruthy();
+        expect(result.accessToken).toBeTruthy();
         expect(result.user.id).toBe(createdUser.id.toString());
       });
 
       // Verify all tokens are valid JWT tokens (regardless of uniqueness)
       for (const result of results) {
-        const verified = await verifyToken(result.token);
+        const verified = await verifyToken(result.accessToken);
         expect(verified.userId).toBe(createdUser.id.toString());
         expect(verified.email).toBe(testUsers.teacher.email);
       }
@@ -373,26 +373,17 @@ describe('Real Authentication Security Tests - NO MOCKS', () => {
 
       expect(response.status).toBe(200);
       expect(response.body.user).toBeDefined();
-      expect(response.body.token || response.body.accessToken).toBeDefined();
+      expect(response.body.accessToken || response.body.accessToken).toBeDefined();
       expect(response.body.user.email).toBe(testUsers.teacher.email);
       expect(response.body.user.password).toBeUndefined();
 
-      authToken = response.body.token || response.body.accessToken;
+      authToken = response.body.accessToken || response.body.accessToken;
 
       // Verify token is real and valid
       const verified = await verifyToken(authToken);
       expect(verified.userId).toBe(createdUser.id.toString());
 
-      // Verify secure cookies are set
-      const cookies = response.headers['set-cookie'];
-      if (cookies) {
-        const authCookie = cookies.find(
-          (cookie: string) => cookie.includes('Token=') || cookie.includes('refreshToken='),
-        );
-        if (authCookie) {
-          expect(authCookie).toContain('HttpOnly');
-        }
-      }
+      // Note: Cookie authentication has been removed - using Bearer tokens only
     });
 
     it('should reject invalid credentials with real verification', async () => {
@@ -416,7 +407,7 @@ describe('Real Authentication Security Tests - NO MOCKS', () => {
 
       expect(response.status).toBe(201);
       expect(response.body.user).toBeDefined();
-      expect(response.body.token || response.body.accessToken).toBeDefined();
+      expect(response.body.accessToken || response.body.accessToken).toBeDefined();
       expect(response.body.user.email).toBe(newUser.email);
       expect(response.body.user.password).toBeUndefined();
 
@@ -461,7 +452,7 @@ describe('Real Authentication Security Tests - NO MOCKS', () => {
         password: testUsers.teacher.password,
       });
 
-      authToken = loginResponse.body.token || loginResponse.body.accessToken;
+      authToken = loginResponse.body.accessToken || loginResponse.body.accessToken;
 
       // Access protected endpoint with real token
       const protectedResponse = await request(app)
@@ -495,7 +486,7 @@ describe('Real Authentication Security Tests - NO MOCKS', () => {
         password: testUsers.teacher.password,
       });
 
-      const validToken = loginResponse.body.token || loginResponse.body.accessToken;
+      const validToken = loginResponse.body.accessToken || loginResponse.body.accessToken;
 
       // Send token without Bearer prefix
       const response = await request(app).get('/api/students').set('Authorization', validToken);

@@ -76,13 +76,9 @@ describe('Authentication Debug', () => {
 
     expect(loginResponse.status).toBe(200);
 
-    const cookies = loginResponse.headers['set-cookie'];
-    console.log('Cookies:', cookies);
+    const authToken = loginResponse.body.accessToken || '';
 
-    const authCookie = cookies?.find((cookie: string) => cookie.startsWith('authToken='));
-    const authToken = authCookie?.split('=')[1].split(';')[0] || '';
-
-    console.log('Auth token from cookie:', authToken);
+    console.log('Auth token from response body:', authToken);
 
     // Try using the token
     const testResponse = await request(app)

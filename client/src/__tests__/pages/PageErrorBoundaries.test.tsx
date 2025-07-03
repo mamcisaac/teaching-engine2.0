@@ -15,7 +15,7 @@ import CurriculumImportPage from '../../pages/CurriculumImportPage';
 import LongRangePlanPage from '../../pages/LongRangePlanPage';
 import ParentNewsletterPage from '../../pages/ParentNewsletterPage';
 import HelpPage from '../../pages/HelpPage';
-import { TeamsPage } from '../../pages/TeamsPage';
+// TeamsPage removed - focusing on single-teacher planning
 import TemplatesPage from '../../pages/TemplatesPage';
 import CalendarPlanningPage from '../../pages/planning/CalendarPlanningPage';
 import CurriculumExpectationsPage from '../../pages/CurriculumExpectationsPage';
@@ -94,12 +94,6 @@ vi.mock('../../components/NewsletterEditor', () => ({
 vi.mock('../../components/calendar/CalendarEventModal', () => ({
   __esModule: true,
   default: () => <div data-testid="calendar-event-modal">Calendar Event Modal</div>,
-}));
-
-vi.mock('../../components/collaboration', () => ({
-  TeamList: () => <div data-testid="team-list">Team List</div>,
-  CreateTeamModal: () => <div data-testid="create-team-modal">Create Team Modal</div>,
-  SharedPlansView: () => <div data-testid="shared-plans-view">Shared Plans View</div>,
 }));
 
 // Mock third-party libraries
@@ -365,10 +359,6 @@ describe('Page Error Boundaries and Loading States', () => {
       expect(screen.getByText('Help & Documentation')).toBeInTheDocument();
     });
 
-    it('renders TeamsPage without crashing', () => {
-      renderWithAuth(<TeamsPage />);
-      expect(screen.getByText('Collaboration Hub')).toBeInTheDocument();
-    });
 
     it('renders TemplatesPage without crashing', () => {
       renderWithAuth(<TemplatesPage />);

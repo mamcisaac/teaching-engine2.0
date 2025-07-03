@@ -409,7 +409,7 @@ describe('Authentication Security - REAL Testing', () => {
       expect(response.body.accessToken).toBeDefined();
 
       // Make sure we're testing the access token, not refresh token
-      const accessToken = response.body.accessToken || response.body.token; // Check both fields
+      const accessToken = response.body.accessToken;
       expect(accessToken).toBeTruthy();
 
       // Also check refresh token is different

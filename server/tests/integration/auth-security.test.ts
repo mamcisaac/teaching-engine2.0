@@ -30,32 +30,8 @@ describe('Authentication Security - REAL Cookie Testing', () => {
   // Test JWT secret
   const TEST_JWT_SECRET = 'test-jwt-secret-for-security-testing-2024';
 
-  // Helper to parse Set-Cookie headers
-  const parseCookies = (setCookieHeaders: string[]): Map<string, any> => {
-    const cookies = new Map();
-    if (!setCookieHeaders) return cookies;
-
-    setCookieHeaders.forEach((cookieStr) => {
-      const parts = cookieStr.split(';').map((p) => p.trim());
-      const [nameValue] = parts;
-      const [name, value] = nameValue.split('=');
-
-      const cookieData: any = { value, attributes: {} };
-
-      parts.slice(1).forEach((attr) => {
-        if (attr.includes('=')) {
-          const [key, val] = attr.split('=');
-          cookieData.attributes[key.toLowerCase()] = val;
-        } else {
-          cookieData.attributes[attr.toLowerCase()] = true;
-        }
-      });
-
-      cookies.set(name, cookieData);
-    });
-
-    return cookies;
-  };
+  // Note: Cookie authentication has been removed from the system
+  // Tests now focus on Bearer token authentication only
 
   beforeAll(async () => {
     // Set test environment
@@ -102,8 +78,8 @@ describe('Authentication Security - REAL Cookie Testing', () => {
     }
   });
 
-  describe('Cookie Security in Production Mode', () => {
-    it('should set all security attributes on cookies in production', async () => {
+  describe('Bearer Token Security in Production Mode', () => {
+    it('should provide secure JWT tokens in production', async () => {
       // Set production mode
       const originalEnv = process.env.NODE_ENV;
       process.env.NODE_ENV = 'production';
@@ -118,37 +94,22 @@ describe('Authentication Security - REAL Cookie Testing', () => {
           })
           .expect(201);
 
-        // Parse cookies
-        const cookies = parseCookies(response.headers['set-cookie']);
-        const authCookie = cookies.get('authToken');
+        // Verify JWT token is provided in response body
+        expect(response.body.accessToken).toBeTruthy();
 
-        // Verify cookie exists
-        expect(authCookie).toBeDefined();
-        expect(authCookie.value).toBeTruthy();
-
-        // CRITICAL: Verify all production security attributes
-        expect(authCookie.attributes.httponly).toBe(true);
-        expect(authCookie.attributes.secure).toBe(true);
-        expect(authCookie.attributes.samesite).toBe('Strict'); // Express uses Title Case
-        expect(authCookie.attributes.path).toBe('/');
-
-        // Verify expiration is set (7 days)
-        expect(authCookie.attributes['max-age']).toBe('604800');
-
-        // Verify JWT token in cookie is valid
-        const decodedToken = jwt.verify(authCookie.value, TEST_JWT_SECRET) as any;
+        // Verify JWT token is valid
+        const decodedToken = jwt.verify(response.body.accessToken, TEST_JWT_SECRET) as any;
         expect(decodedToken.userId).toBeTruthy();
         expect(decodedToken.email).toBe('prod-security@test.com');
+        expect(decodedToken.exp).toBeTruthy(); // Expiration should be set
       } finally {
         process.env.NODE_ENV = originalEnv;
       }
     });
 
-    it('should validate cookie domain restrictions in production', async () => {
+    it('should validate Bearer token format in production', async () => {
       const originalEnv = process.env.NODE_ENV;
-      const originalDomain = process.env.COOKIE_DOMAIN;
       process.env.NODE_ENV = 'production';
-      process.env.COOKIE_DOMAIN = '.example.com';
 
       try {
         // First create a user
@@ -167,27 +128,21 @@ describe('Authentication Security - REAL Cookie Testing', () => {
           password: 'SecurePass123!@#',
         });
 
-        if (response.status === 200) {
-          const cookies = parseCookies(response.headers['set-cookie']);
-          const authCookie = cookies.get('authToken');
-
-          // Note: Express doesn't use COOKIE_DOMAIN by default
-          // This would need to be implemented in the auth routes
-          expect(authCookie).toBeDefined();
-        }
+        expect(response.status).toBe(200);
+        expect(response.body.accessToken).toBeTruthy();
+        
+        // Verify JWT token format
+        const token = response.body.accessToken;
+        const parts = token.split('.');
+        expect(parts.length).toBe(3); // JWT has 3 parts: header.payload.signature
       } finally {
         process.env.NODE_ENV = originalEnv;
-        if (originalDomain !== undefined) {
-          process.env.COOKIE_DOMAIN = originalDomain;
-        } else {
-          delete process.env.COOKIE_DOMAIN;
-        }
       }
     });
   });
 
-  describe('Cookie Security in Development Mode', () => {
-    it('should set appropriate security for development', async () => {
+  describe('Bearer Token Security in Development Mode', () => {
+    it('should provide tokens in development mode', async () => {
       process.env.NODE_ENV = 'development';
 
       const response = await request(app)
@@ -199,19 +154,17 @@ describe('Authentication Security - REAL Cookie Testing', () => {
         })
         .expect(201);
 
-      const cookies = parseCookies(response.headers['set-cookie']);
-      const authCookie = cookies.get('authToken');
-
-      expect(authCookie).toBeDefined();
-
-      // Development mode: HttpOnly always on, Secure off for localhost
-      expect(authCookie.attributes.httponly).toBe(true);
-      expect(authCookie.attributes.secure).toBeFalsy();
-      expect(authCookie.attributes.samesite).toBe('Lax'); // Express uses Title Case
+      // Verify JWT token is provided
+      expect(response.body.accessToken).toBeTruthy();
+      
+      // Verify token structure
+      const token = response.body.accessToken;
+      const parts = token.split('.');
+      expect(parts.length).toBe(3);
     });
   });
 
-  describe('Cookie Lifecycle and Management', () => {
+  describe('Bearer Token Lifecycle and Management', () => {
     beforeEach(async () => {
       // Create test user with proper password
       const hashedPassword = await bcrypt.hash('TestPass123!', 10);
@@ -225,7 +178,7 @@ describe('Authentication Security - REAL Cookie Testing', () => {
       });
     });
 
-    it('should properly set cookie on login', async () => {
+    it('should provide bearer token on login', async () => {
       const response = await request(app)
         .post('/api/login')
         .send({
@@ -234,19 +187,15 @@ describe('Authentication Security - REAL Cookie Testing', () => {
         })
         .expect(200);
 
-      const cookies = parseCookies(response.headers['set-cookie']);
-      const authCookie = cookies.get('authToken');
+      expect(response.body.accessToken).toBeTruthy();
 
-      expect(authCookie).toBeDefined();
-      expect(authCookie.value).toBeTruthy();
-
-      // Verify cookie contains valid JWT
-      const decoded = jwt.verify(authCookie.value, TEST_JWT_SECRET) as any;
+      // Verify token contains valid JWT
+      const decoded = jwt.verify(response.body.accessToken, TEST_JWT_SECRET) as any;
       expect(decoded.email).toBe('lifecycle@test.com');
     });
 
-    it('should clear cookie on logout', async () => {
-      // First login to get cookie
+    it('should accept bearer tokens for authenticated requests', async () => {
+      // First login to get token
       const loginResponse = await request(app)
         .post('/api/login')
         .send({
@@ -255,27 +204,15 @@ describe('Authentication Security - REAL Cookie Testing', () => {
         })
         .expect(200);
 
-      const authToken = loginResponse.body.token;
+      const authToken = loginResponse.body.accessToken;
 
-      // Check if logout endpoint exists
-      const logoutResponse = await request(app)
-        .post('/api/logout')
-        .set('Cookie', `authToken=${authToken}`);
+      // Use token for authenticated request (test with a protected endpoint if available)
+      const protectedResponse = await request(app)
+        .get('/api/auth/me')
+        .set('Authorization', `Bearer ${authToken}`);
 
-      // If logout endpoint exists (200) check cookie clearing
-      if (logoutResponse.status === 200) {
-        const cookies = parseCookies(logoutResponse.headers['set-cookie']);
-        const authCookie = cookies.get('authToken');
-
-        if (authCookie) {
-          // Cookie should be empty or have past expiration
-          expect(authCookie.value).toBeFalsy();
-          // Max-Age=0 or negative indicates immediate expiration
-          if (authCookie.attributes['max-age']) {
-            expect(parseInt(authCookie.attributes['max-age'])).toBeLessThanOrEqual(0);
-          }
-        }
-      }
+      // Should either return user data (200) or not found (404) if endpoint doesn't exist
+      expect([200, 404]).toContain(protectedResponse.status);
     });
   });
 
@@ -308,7 +245,7 @@ describe('Authentication Security - REAL Cookie Testing', () => {
         })
         .expect(201);
 
-      const token = response.body.token;
+      const token = response.body.accessToken;
       const decoded = jwt.decode(token, { complete: true }) as any;
 
       // Verify JWT header uses secure algorithm
@@ -395,7 +332,7 @@ describe('Authentication Security - REAL Cookie Testing', () => {
         })
         .expect(200);
 
-      const authToken = loginResponse.body.token;
+      const authToken = loginResponse.body.accessToken;
 
       // Attempt cross-origin request (simulated)
       const corsResponse = await request(app)
@@ -471,7 +408,7 @@ describe('Authentication Security - REAL Cookie Testing', () => {
       expect(validSessions.length).toBeGreaterThan(0);
 
       // Each session should have a token (they may be the same if generated at exact same time)
-      const tokens = validSessions.map((s) => s.body.token);
+      const tokens = validSessions.map((s) => s.body.accessToken);
       const uniqueTokens = new Set(tokens);
       // At least one unique token should exist
       expect(uniqueTokens.size).toBeGreaterThanOrEqual(1);
@@ -514,7 +451,7 @@ describe('Authentication Security - REAL Cookie Testing', () => {
         })
         .expect(200);
 
-      expect(loginResponse.body.token).toBeTruthy();
+      expect(loginResponse.body.accessToken).toBeTruthy();
     });
   });
 

@@ -22,7 +22,7 @@ export interface AuthUser {
 
 export interface AuthResult {
   user: AuthUser;
-  token: string;
+  accessToken: string;
 }
 
 /**
@@ -118,7 +118,7 @@ export async function authenticate(
       ...userWithoutPassword,
       id: userWithoutPassword.id.toString(),
     } as AuthUser,
-    token,
+    accessToken: token,
   };
 }
 

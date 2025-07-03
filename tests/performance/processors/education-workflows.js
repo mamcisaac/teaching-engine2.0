@@ -49,8 +49,7 @@ export function beforeRequest(requestParams, context, next) {
     setTimeout(next, teacherThinkTime.planning);
   } else if (endpoint.includes('/curriculum') || endpoint.includes('/search')) {
     setTimeout(next, teacherThinkTime.browsing);
-  } else if (endpoint.includes('/students') || endpoint.includes('/progress')) {
-    setTimeout(next, teacherThinkTime.data_entry);
+  // Student endpoints removed - app does not store student data
   } else if (endpoint.includes('/ai-') || endpoint.includes('/generate')) {
     setTimeout(next, teacherThinkTime.ai_generation);
   } else {
@@ -101,9 +100,7 @@ export function afterResponse(requestParams, response, context, next) {
       console.error('🚨 Critical: Curriculum expectations not found - impacts lesson planning');
     }
 
-    if (endpoint.includes('/students') && response.statusCode >= 500) {
-      console.error('🚨 Critical: Student data service unavailable - impacts daily operations');
-    }
+    // Student error handling removed - app does not store student data
 
     if (endpoint.includes('/auth/') && response.statusCode === 401) {
       console.error('🚨 Critical: Authentication failure - prevents teacher access');
@@ -134,12 +131,7 @@ export function afterResponse(requestParams, response, context, next) {
         });
       }
 
-      // Validate student data structure
-      if (endpoint.includes('/students') && body.id) {
-        if (!body.firstName || !body.lastName || !body.grade) {
-          console.warn('⚠️  Student record missing required demographic information');
-        }
-      }
+      // Student validation removed - app does not store student data
     } catch (parseError) {
       console.warn(`⚠️  Could not parse response body for validation: ${parseError.message}`);
     }

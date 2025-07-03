@@ -31,7 +31,7 @@ const ParentNewsletterPage = lazy(() => import('./pages/ParentNewsletterPage'));
 const HelpPage = lazy(() => import('./pages/HelpPage'));
 const TemplatesPage = lazy(() => import('./pages/TemplatesPage'));
 const CalendarPlanningPage = lazy(() => import('./pages/planning/CalendarPlanningPage'));
-const TeamsPage = lazy(() => import('./pages/TeamsPage'));
+// TeamsPage removed - focusing on single-teacher planning
 
 // Common suspense fallback
 const SuspenseFallback = () => (
@@ -251,23 +251,7 @@ function AppRoutes() {
           }
         />
 
-        {/* Teams and Collaboration */}
-        <Route
-          path="/teams"
-          element={
-            <Suspense fallback={<SuspenseFallback />}>
-              <TeamsPage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/teams/:teamId"
-          element={
-            <Suspense fallback={<SuspenseFallback />}>
-              <TeamsPage />
-            </Suspense>
-          }
-        />
+        {/* Teams and Collaboration removed - focusing on single-teacher planning */}
 
         {/* Help & Documentation */}
         <Route

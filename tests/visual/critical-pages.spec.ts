@@ -189,35 +189,7 @@ test.describe('Critical Teacher Pages - Visual Regression', () => {
     );
   });
 
-  test('Student Management Interface', async ({ page }) => {
-    await authenticateForVisualTest(page);
-
-    // Navigate to student management
-    await page.goto('/students');
-    await page.waitForSelector('[data-testid="student-list"]');
-    await waitForStablePageState(page);
-
-    // Student list view
-    await expect(page).toHaveScreenshot('students-list-view.png', {
-      fullPage: true,
-      animations: 'disabled',
-    });
-
-    // Test student profile view
-    await page.click('[data-testid="student-card"]:first-child');
-    await page.waitForSelector('[data-testid="student-profile"]');
-    await waitForStablePageState(page);
-
-    await expect(page.locator('[data-testid="student-profile"]')).toHaveScreenshot(
-      'student-profile-view.png',
-    );
-    await expect(page.locator('[data-testid="student-progress"]')).toHaveScreenshot(
-      'student-progress-section.png',
-    );
-    await expect(page.locator('[data-testid="student-accommodations"]')).toHaveScreenshot(
-      'student-accommodations.png',
-    );
-  });
+  // Student Management Interface test removed - app does not store student data
 
   test('Newsletter Editor Interface', async ({ page }) => {
     await authenticateForVisualTest(page);

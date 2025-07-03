@@ -22,7 +22,7 @@ test.describe('Direct API Tests', () => {
     expect(response.ok()).toBeTruthy();
     
     const userData = await response.json();
-    expect(userData.token).toBeTruthy();
+    expect(userData.accessToken).toBeTruthy();
     expect(userData.user).toBeTruthy();
     expect(userData.user.email).toBe(loginData.email);
   });
@@ -43,7 +43,7 @@ test.describe('Direct API Tests', () => {
     const userData = await response.json();
     expect(userData.user).toBeTruthy();
     expect(userData.user.email).toBe(testUser.email);
-    expect(userData.token).toBeTruthy();
+    expect(userData.accessToken).toBeTruthy();
   });
 
   test('can access protected endpoint with token', async ({ request }) => {
@@ -56,12 +56,12 @@ test.describe('Direct API Tests', () => {
     });
 
     expect(loginResponse.ok()).toBeTruthy();
-    const { token } = await loginResponse.json();
+    const { accessToken } = await loginResponse.json();
 
     // Then access protected endpoint
     const meResponse = await request.get('http://localhost:3000/api/auth/me', {
       headers: {
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${accessToken}`
       }
     });
 

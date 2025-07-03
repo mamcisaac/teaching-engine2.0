@@ -218,7 +218,7 @@ describe('Real Database Authentication Integration Tests', () => {
 
       expect(result).toBeDefined();
       expect(result.user).toBeDefined();
-      expect(result.token).toBeDefined();
+      expect(result.accessToken).toBeDefined();
       expect(result.user.email).toBe(testUser.email);
       expect(result.user.name).toBe(testUser.name);
       expect(result.user.role).toBe(testUser.role);
@@ -228,7 +228,7 @@ describe('Real Database Authentication Integration Tests', () => {
       expect((result.user as any).password).toBeUndefined();
 
       // Verify token is valid
-      const verified = await verifyToken(result.token);
+      const verified = await verifyToken(result.accessToken);
       expect(verified.userId).toBe(createdUser.id.toString());
       expect(verified.email).toBe(testUser.email);
     });
@@ -447,11 +447,11 @@ describe('Real Database Authentication Integration Tests', () => {
 
       expect(response.status).toBe(200);
       expect(response.body.user).toBeDefined();
-      expect(response.body.token).toBeDefined();
+      expect(response.body.accessToken).toBeDefined();
       expect(response.body.user.email).toBe(testUser.email);
       expect(response.body.user.password).toBeUndefined();
 
-      authToken = response.body.token;
+      authToken = response.body.accessToken;
 
       // Verify token is valid
       const verified = await verifyToken(authToken);
@@ -481,7 +481,7 @@ describe('Real Database Authentication Integration Tests', () => {
       expect(response.status).toBe(201);
       expect(response.body.user).toBeDefined();
       // Check for either token or accessToken field
-      expect(response.body.token || response.body.accessToken).toBeDefined();
+      expect(response.body.accessToken || response.body.accessToken).toBeDefined();
       expect(response.body.user.email).toBe(newUser.email);
       expect(response.body.user.password).toBeUndefined();
 

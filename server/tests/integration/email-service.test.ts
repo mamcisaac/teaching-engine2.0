@@ -70,7 +70,7 @@ describe('Email Service Integration Tests', () => {
       password: testUser.password,
     });
 
-    teacherToken = loginRes.body.token;
+    teacherToken = loginRes.body.accessToken;
   });
 
   afterAll(async () => {

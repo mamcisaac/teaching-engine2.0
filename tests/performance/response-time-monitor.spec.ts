@@ -49,7 +49,7 @@ class ResponseTimeMonitoringSystem {
       { path: '/api/etfo-lesson-plans', method: 'POST' },
       { path: '/api/unit-plans', method: 'GET' },
       { path: '/api/newsletters', method: 'GET' },
-      { path: '/api/students', method: 'GET' },
+      // Student endpoint removed - app does not store student data
       { path: '/api/curriculum-import', method: 'POST' },
     ];
 
@@ -291,7 +291,7 @@ test.describe('Response Time Monitoring', () => {
       { path: '/api/curriculum-expectations', method: 'GET', maxTime: 500 },
       { path: '/api/etfo-lesson-plans', method: 'GET', maxTime: 800 },
       { path: '/api/unit-plans', method: 'GET', maxTime: 600 },
-      { path: '/api/students', method: 'GET', maxTime: 400 },
+      // Student endpoint removed - app does not store student data
       { path: '/api/newsletters', method: 'GET', maxTime: 800 },
     ];
 

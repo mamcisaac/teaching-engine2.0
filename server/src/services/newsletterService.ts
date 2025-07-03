@@ -1,8 +1,10 @@
-import { Student, DaybookEntry, StudentArtifact, StudentReflection } from '@teaching-engine/database';
+import { DaybookEntry, CalendarEvent } from '@teaching-engine/database';
+import { prisma } from '../prisma';
 import OpenAI from 'openai';
 
 // Newsletter types
 export type NewsletterTone = 'friendly' | 'formal' | 'informative';
+export type TemplateType = 'weekly' | 'monthly' | 'special';
 
 export interface NewsletterSection {
   id: string;
@@ -19,230 +21,201 @@ const openai = new OpenAI({
 });
 
 interface NewsletterGenerationOptions {
-  students: (Student & { artifacts: StudentArtifact[]; reflections: StudentReflection[] })[];
-  daybookEntries: DaybookEntry[];
-  fromDate: Date;
-  toDate: Date;
+  userId: number;
+  dateFrom: Date;
+  dateTo: Date;
   tone: NewsletterTone;
   focusAreas?: string[];
-  options: {
-    includeArtifacts: boolean;
-    includeReflections: boolean;
-    includeLearningGoals: boolean;
-    includeUpcomingEvents: boolean;
-  };
+  includeUpcomingEvents?: boolean;
+  templateType?: TemplateType;
+  existingSections?: NewsletterSection[];
 }
 
 export async function generateNewsletterContent({
-  students,
-  daybookEntries,
-  fromDate,
-  toDate,
+  userId,
+  dateFrom,
+  dateTo,
   tone,
   focusAreas = [],
-  options,
+  includeUpcomingEvents = true,
+  templateType = 'weekly',
+  existingSections = [],
 }: NewsletterGenerationOptions) {
-  const dateRange = `${fromDate.toLocaleDateString()} to ${toDate.toLocaleDateString()}`;
-  const studentNames = students.map(s => s.firstName).join(', ');
+  const dateRange = `${dateFrom.toLocaleDateString()} to ${dateTo.toLocaleDateString()}`;
+
+  // Get teacher's lesson plans and activities for the period
+  const daybookEntries = await prisma.daybookEntry.findMany({
+    where: {
+      userId,
+      date: {
+        gte: dateFrom,
+        lte: dateTo,
+      },
+    },
+    include: {
+      lessonPlan: true,
+    },
+    orderBy: { date: 'asc' },
+  });
+
+  // Get upcoming events if requested
+  let upcomingEvents: CalendarEvent[] = [];
+  if (includeUpcomingEvents) {
+    upcomingEvents = await prisma.calendarEvent.findMany({
+      where: {
+        userId,
+        date: {
+          gte: dateTo,
+          lte: new Date(dateTo.getTime() + 14 * 24 * 60 * 60 * 1000), // Next 2 weeks
+        },
+      },
+      orderBy: { date: 'asc' },
+      take: 5,
+    });
+  }
 
   // Prepare context for AI
   const learningActivities = daybookEntries.map(entry => ({
     date: entry.date,
-    notes: entry.notes,
-    whatWorked: entry.whatWorked,
-    studentEngagement: entry.studentEngagement,
-    studentSuccesses: entry.studentSuccesses,
-  }));
-
-  const studentProgress = students.map(student => ({
-    name: student.firstName,
-    artifacts: options.includeArtifacts ? student.artifacts : [],
-    reflections: options.includeReflections ? student.reflections : [],
+    subject: entry.lessonPlan?.subject || 'General',
+    topics: entry.lessonPlan?.learningGoals || [],
+    activities: entry.actualActivities || entry.lessonPlan?.activities || 'Regular classroom activities',
   }));
 
   const toneDescriptions = {
-    friendly: 'warm, approachable, and conversational',
-    formal: 'professional, structured, and detailed',
-    informative: 'clear, factual, and educational',
+    friendly: 'warm, conversational, and approachable',
+    formal: 'professional, respectful, and structured',
+    informative: 'clear, educational, and detailed',
   };
 
-  const systemPrompt = `You are an elementary school teacher creating a newsletter for parents. 
-Your tone should be ${toneDescriptions[tone]}. 
-Create bilingual content (English and French) for each section.
-Focus on: ${focusAreas.length > 0 ? focusAreas.join(', ') : 'overall student progress and activities'}.`;
+  const templateDescriptions = {
+    weekly: 'a weekly update covering the past week\'s learning activities',
+    monthly: 'a comprehensive monthly overview of learning progress and achievements',
+    special: 'a special announcement or themed newsletter',
+  };
 
-  const userPrompt = `Create a parent newsletter for the period ${dateRange} for students: ${studentNames}.
+  const prompt = `Create a ${templateType} newsletter template for parents in both English and French.
+This is a general template that teachers can customize for their classroom communication.
 
-Learning Activities:
-${JSON.stringify(learningActivities, null, 2)}
+Context:
+- Date range: ${dateRange}
+- Tone: ${toneDescriptions[tone]}
+- Template type: ${templateDescriptions[templateType]}
+${focusAreas.length > 0 ? `- Focus areas: ${focusAreas.join(', ')}` : ''}
 
-${options.includeArtifacts || options.includeReflections ? `Student Progress:
-${JSON.stringify(studentProgress, null, 2)}` : ''}
+Recent classroom activities:
+${learningActivities.map(a => `- ${a.date.toLocaleDateString()}: ${a.subject} - ${a.topics.join(', ')}`).join('\n')}
 
-Please create the following sections:
-1. Introduction/Overview
-2. Academic Highlights
-3. Learning Activities & Projects
-${options.includeArtifacts ? '4. Student Work Showcase' : ''}
-${options.includeReflections ? '5. Student Reflections' : ''}
-${options.includeLearningGoals ? '6. Upcoming Learning Goals' : ''}
-${options.includeUpcomingEvents ? '7. Important Dates & Events' : ''}
-8. Home Support Tips
-9. Closing Message
+${includeUpcomingEvents && upcomingEvents.length > 0 ? `
+Upcoming events:
+${upcomingEvents.map(e => `- ${e.date.toLocaleDateString()}: ${e.title}`).join('\n')}
+` : ''}
+
+Generate newsletter sections with the following structure:
+1. Welcome/Introduction section
+2. Learning highlights from the period
+3. Skills development focus
+4. Home connection ideas (activities parents can do at home)
+${includeUpcomingEvents ? '5. Upcoming events and reminders' : ''}
+6. Closing message
 
 For each section, provide:
-- title (English)
-- titleFr (French)
-- content (English, using simple HTML for formatting)
-- contentFr (French, using simple HTML for formatting)
+- A title in English and French
+- Content in English and French
+- Make content general enough that teachers can adapt it to their specific classroom
 
-Format the response as a JSON array of sections.`;
+Return the response in this JSON format:
+{
+  "sections": [
+    {
+      "id": "unique-id",
+      "title": "English title",
+      "titleFr": "French title",
+      "content": "English content",
+      "contentFr": "French content",
+      "isEditable": true,
+      "order": 1
+    }
+  ]
+}`;
 
   try {
-    const response = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
+    const completion = await openai.chat.completions.create({
+      model: 'gpt-4',
       messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: userPrompt },
+        {
+          role: 'system',
+          content: 'You are an educational newsletter writer creating templates for elementary school teachers to communicate with parents. Create general, adaptable content that teachers can customize.',
+        },
+        { role: 'user', content: prompt },
       ],
-      temperature: tone === 'friendly' ? 0.8 : tone === 'formal' ? 0.5 : 0.6,
+      temperature: 0.7,
       response_format: { type: 'json_object' },
     });
 
-    const content = response.choices[0]?.message?.content;
-    if (!content) {
-      throw new Error('No content generated');
+    const response = JSON.parse(completion.choices[0].message.content || '{}');
+    
+    // Merge with existing sections if provided
+    if (existingSections.length > 0) {
+      const editableSectionIds = response.sections
+        .filter((s: NewsletterSection) => s.isEditable)
+        .map((s: NewsletterSection) => s.id);
+      
+      // Keep non-editable sections and replace editable ones
+      const mergedSections = [
+        ...existingSections.filter(s => !editableSectionIds.includes(s.id)),
+        ...response.sections,
+      ].sort((a, b) => a.order - b.order);
+      
+      response.sections = mergedSections;
     }
 
-    const parsed = JSON.parse(content);
-    const sections: NewsletterSection[] = (parsed.sections || []).map((section: { title?: string; titleFr?: string; content?: string; contentFr?: string }, index: number) => ({
-      id: `section-${Date.now()}-${index}`,
-      title: section.title || 'Section',
-      titleFr: section.titleFr || 'Section',
-      content: section.content || '',
-      contentFr: section.contentFr || '',
-      isEditable: true,
-      order: index,
-    }));
-
-    return { sections };
+    return {
+      sections: response.sections,
+      metadata: {
+        dateRange: { from: dateFrom.toISOString(), to: dateTo.toISOString() },
+        tone,
+        templateType,
+        generatedAt: new Date().toISOString(),
+      },
+    };
   } catch (error) {
     console.error('Error generating newsletter content:', error);
-    
-    // Fallback to template-based generation
-    return generateFallbackNewsletter({
-      dateRange,
-      studentNames,
-      tone,
-      focusAreas,
-      options,
-    });
+    throw new Error('Failed to generate newsletter content');
   }
 }
 
-function generateFallbackNewsletter({
-  dateRange,
-  studentNames,
-  tone: _tone,
-  focusAreas,
-  options,
-}: {
-  dateRange: string;
-  studentNames: string;
-  tone: NewsletterTone;
-  focusAreas: string[];
-  options: {
-    includeArtifacts: boolean;
-    includeReflections: boolean;
-    includeLearningGoals: boolean;
-    includeUpcomingEvents: boolean;
-  };
-}): { sections: NewsletterSection[] } {
-  const sections: NewsletterSection[] = [];
-  let order = 0;
-
-  // Introduction
-  sections.push({
-    id: `section-intro-${Date.now()}`,
-    title: 'Newsletter Introduction',
-    titleFr: 'Introduction du bulletin',
-    content: `<p>Dear Parents and Guardians,</p>
-<p>Welcome to our classroom newsletter for ${dateRange}. This update covers the learning journey of ${studentNames}.</p>`,
-    contentFr: `<p>Chers parents et tuteurs,</p>
-<p>Bienvenue à notre bulletin de classe pour ${dateRange}. Cette mise à jour couvre le parcours d'apprentissage de ${studentNames}.</p>`,
-    isEditable: true,
-    order: order++,
+// Get suggested focus areas based on recent teaching activities
+export async function getSuggestedFocusAreas(userId: number): Promise<string[]> {
+  const recentEntries = await prisma.daybookEntry.findMany({
+    where: { userId },
+    include: { lessonPlan: true },
+    orderBy: { date: 'desc' },
+    take: 10,
   });
 
-  // Academic Highlights
-  sections.push({
-    id: `section-highlights-${Date.now()}`,
-    title: 'Academic Highlights',
-    titleFr: 'Points saillants académiques',
-    content: `<p>This period, our students have been working on various subjects and activities. ${focusAreas.length > 0 ? `We particularly focused on: ${focusAreas.join(', ')}.` : ''}</p>`,
-    contentFr: `<p>Au cours de cette période, nos élèves ont travaillé sur divers sujets et activités. ${focusAreas.length > 0 ? `Nous nous sommes particulièrement concentrés sur : ${focusAreas.join(', ')}.` : ''}</p>`,
-    isEditable: true,
-    order: order++,
+  const subjects = new Set<string>();
+  const skills = new Set<string>();
+
+  recentEntries.forEach(entry => {
+    if (entry.lessonPlan?.subject) {
+      subjects.add(entry.lessonPlan.subject);
+    }
+    if (entry.lessonPlan?.learningGoals) {
+      entry.lessonPlan.learningGoals.forEach(goal => {
+        // Extract key skills from learning goals
+        const skillKeywords = ['reading', 'writing', 'math', 'science', 'social', 'art', 'music', 'physical'];
+        skillKeywords.forEach(keyword => {
+          if (goal.toLowerCase().includes(keyword)) {
+            skills.add(keyword.charAt(0).toUpperCase() + keyword.slice(1));
+          }
+        });
+      });
+    }
   });
 
-  // Learning Activities
-  sections.push({
-    id: `section-activities-${Date.now()}`,
-    title: 'Learning Activities & Projects',
-    titleFr: 'Activités d\'apprentissage et projets',
-    content: `<p>Students engaged in hands-on learning experiences including group projects, individual assignments, and collaborative activities.</p>`,
-    contentFr: `<p>Les élèves ont participé à des expériences d'apprentissage pratiques comprenant des projets de groupe, des devoirs individuels et des activités collaboratives.</p>`,
-    isEditable: true,
-    order: order++,
-  });
-
-  if (options.includeLearningGoals) {
-    sections.push({
-      id: `section-goals-${Date.now()}`,
-      title: 'Upcoming Learning Goals',
-      titleFr: 'Objectifs d\'apprentissage à venir',
-      content: `<p>In the coming weeks, we will be focusing on developing key skills and exploring new concepts across our curriculum.</p>`,
-      contentFr: `<p>Dans les semaines à venir, nous nous concentrerons sur le développement de compétences clés et l'exploration de nouveaux concepts dans notre programme.</p>`,
-      isEditable: true,
-      order: order++,
-    });
-  }
-
-  // Home Support
-  sections.push({
-    id: `section-support-${Date.now()}`,
-    title: 'How You Can Help at Home',
-    titleFr: 'Comment vous pouvez aider à la maison',
-    content: `<p>You can support your child's learning by:</p>
-<ul>
-  <li>Reading together daily</li>
-  <li>Practicing math facts during everyday activities</li>
-  <li>Encouraging questions and curiosity</li>
-  <li>Providing a quiet study space</li>
-</ul>`,
-    contentFr: `<p>Vous pouvez soutenir l'apprentissage de votre enfant en :</p>
-<ul>
-  <li>Lisant ensemble tous les jours</li>
-  <li>Pratiquant les faits mathématiques lors des activités quotidiennes</li>
-  <li>Encourageant les questions et la curiosité</li>
-  <li>Fournissant un espace d'étude calme</li>
-</ul>`,
-    isEditable: true,
-    order: order++,
-  });
-
-  // Closing
-  sections.push({
-    id: `section-closing-${Date.now()}`,
-    title: 'Closing Message',
-    titleFr: 'Message de clôture',
-    content: `<p>Thank you for your continued support. Please don't hesitate to reach out if you have any questions or concerns.</p>
-<p>Best regards,<br>Your Teaching Team</p>`,
-    contentFr: `<p>Merci pour votre soutien continu. N'hésitez pas à nous contacter si vous avez des questions ou des préoccupations.</p>
-<p>Cordialement,<br>Votre équipe enseignante</p>`,
-    isEditable: true,
-    order: order++,
-  });
-
-  return { sections };
+  return [
+    ...Array.from(subjects).slice(0, 3),
+    ...Array.from(skills).slice(0, 2),
+  ];
 }
