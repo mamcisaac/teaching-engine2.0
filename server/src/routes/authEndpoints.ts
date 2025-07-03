@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Authentication Endpoints Router
  * Exposes authentication middleware functions as API endpoints
@@ -57,17 +58,17 @@ function createAuthRouter(prisma = defaultPrisma) {
   const router = Router();
 
   // Public endpoints with rate limiting
-  router.post('/login', authRateLimiter, validateRequest(loginSchema), login);
-  router.post('/register', authRateLimiter, validateRequest(registerSchema), register);
+  router.post('/login', authRateLimiter as any, validateRequest(loginSchema), login);
+  router.post('/register', authRateLimiter as any, validateRequest(registerSchema), register);
   router.post(
     '/forgot-password',
-    authRateLimiter,
+    authRateLimiter as any,
     validateRequest(forgotPasswordSchema),
     forgotPassword,
   );
   router.post(
     '/reset-password',
-    authRateLimiter,
+    authRateLimiter as any,
     validateRequest(resetPasswordSchema),
     resetPassword,
   );

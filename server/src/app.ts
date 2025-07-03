@@ -7,7 +7,6 @@ import express, { Express } from 'express';
 import cors from 'cors';
 import { PrismaClient } from '@teaching-engine/database';
 import { errorHandler } from './middleware/errorHandler';
-import { rateLimiters } from './middleware/rateLimiter';
 import { authRoutes } from './routes/auth';
 import { userRoutes } from './routes/user';
 
@@ -24,8 +23,7 @@ export function createApp(prisma: PrismaClient): Express {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
-  // Rate limiting
-  app.use('/api/auth', rateLimiters.auth);
+  // Rate limiting is applied at route level, not here
 
   // Health check
   app.get('/health', (req, res) => {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import express, { Request, Response } from 'express';
 import { Server } from 'http';
 // import cors from 'cors';
@@ -169,53 +170,63 @@ app.use('/api/auth', authEndpoints);
 
 // Mount user routes (authenticated)
 log('Mounting user routes...');
-app.use('/api/user', authenticate, rateLimiters.api, userRoutes(prisma));
+app.use('/api/user', authenticate, rateLimiters.api as any, userRoutes(prisma));
 
 // Mount notification routes (authenticated)
 log('Mounting notification routes...');
-app.use('/api/notifications', authenticate, rateLimiters.api, notificationRoutes);
+app.use('/api/notifications', authenticate, rateLimiters.api as any, notificationRoutes);
 
 // Apply authentication and rate limiting to all API routes
 log('Mounting ETFO-aligned API routes...');
-app.use('/api/students', authenticate, rateLimiters.api, studentRoutes);
-app.use('/api/parent-summary', authenticate, rateLimiters.write, parentSummaryRoutes);
-app.use('/api/newsletters', authenticate, rateLimiters.write, newsletterRoutes);
+app.use('/api/students', authenticate, rateLimiters.api as any, studentRoutes);
+app.use('/api/parent-summary', authenticate, rateLimiters.write as any, parentSummaryRoutes);
+app.use('/api/newsletters', authenticate, rateLimiters.write as any, newsletterRoutes);
 app.use(
   '/api/curriculum-import',
   authenticate,
-  rateLimiters.upload,
+  rateLimiters.upload as any,
   validateFileUpload(['application/pdf', 'text/csv']),
   curriculumImportRoutes,
 );
-app.use('/api/curriculum-discovery', authenticate, rateLimiters.read, curriculumDiscoveryRoutes);
-app.use('/api/discovery-scheduler', authenticate, rateLimiters.api, discoverySchedulerRoutes);
+app.use(
+  '/api/curriculum-discovery',
+  authenticate,
+  rateLimiters.read as any,
+  curriculumDiscoveryRoutes,
+);
+app.use(
+  '/api/discovery-scheduler',
+  authenticate,
+  rateLimiters.api as any,
+  discoverySchedulerRoutes,
+);
 
 // ETFO-aligned Planning Routes
 app.use(
   '/api/curriculum-expectations',
   authenticate,
-  rateLimiters.read,
+  rateLimiters.read as any,
   curriculumExpectationRoutes,
 );
-app.use('/api/long-range-plans', authenticate, rateLimiters.write, longRangePlanRoutes);
-app.use('/api/unit-plans', authenticate, rateLimiters.write, unitPlanRoutes);
-app.use('/api/etfo-lesson-plans', authenticate, rateLimiters.write, etfoLessonPlanRoutes);
-app.use('/api/daybook-entries', authenticate, rateLimiters.write, daybookEntryRoutes);
-app.use('/api/etfo', authenticate, rateLimiters.read, etfoProgressRoutes);
+app.use('/api/long-range-plans', authenticate, rateLimiters.write as any, longRangePlanRoutes);
+app.use('/api/unit-plans', authenticate, rateLimiters.write as any, unitPlanRoutes);
+app.use('/api/etfo-lesson-plans', authenticate, rateLimiters.write as any, etfoLessonPlanRoutes);
+app.use('/api/daybook-entries', authenticate, rateLimiters.write as any, daybookEntryRoutes);
+app.use('/api/etfo', authenticate, rateLimiters.read as any, etfoProgressRoutes);
 
 // State Management Routes
-app.use('/api/planner', authenticate, rateLimiters.api, plannerStateRoutes);
-app.use('/api/workflow', authenticate, rateLimiters.api, workflowStateRoutes);
-app.use('/api/ai-planning', authenticate, rateLimiters.ai, aiPlanningRoutes);
+app.use('/api/planner', authenticate, rateLimiters.api as any, plannerStateRoutes);
+app.use('/api/workflow', authenticate, rateLimiters.api as any, workflowStateRoutes);
+app.use('/api/ai-planning', authenticate, rateLimiters.ai as any, aiPlanningRoutes);
 
 // Template System Routes
-app.use('/api/templates', authenticate, rateLimiters.api, templateRoutes);
+app.use('/api/templates', authenticate, rateLimiters.api as any, templateRoutes);
 
 // Calendar Routes
-app.use('/api/calendar-events', authenticate, rateLimiters.api, calendarEventRoutes);
+app.use('/api/calendar-events', authenticate, rateLimiters.api as any, calendarEventRoutes);
 
 // Recent Plans Routes
-app.use('/api/recent-plans', authenticate, rateLimiters.api, recentPlansRoutes);
+app.use('/api/recent-plans', authenticate, rateLimiters.api as any, recentPlansRoutes);
 
 // AI status endpoint (maps to ai-planning/status for backward compatibility)
 app.get('/api/ai/status', authenticate, async (req, res) => {
@@ -228,23 +239,28 @@ app.get('/api/ai/status', authenticate, async (req, res) => {
 app.use('/api/planner', authenticate, plannerStateRoutes);
 
 // Activity Discovery Routes
-app.use('/api/activities', authenticate, rateLimiters.read, activityDiscoveryRoutes);
-app.use('/api/activity-collections', authenticate, rateLimiters.write, activityCollectionsRoutes);
-app.use('/api/ai-activities', authenticate, rateLimiters.ai, aiActivityGenerationRoutes);
+app.use('/api/activities', authenticate, rateLimiters.read as any, activityDiscoveryRoutes);
+app.use(
+  '/api/activity-collections',
+  authenticate,
+  rateLimiters.write as any,
+  activityCollectionsRoutes,
+);
+app.use('/api/ai-activities', authenticate, rateLimiters.ai as any, aiActivityGenerationRoutes);
 
 // Batch Processing Routes
-app.use('/api/batch-processing', authenticate, rateLimiters.write, batchProcessingRoutes);
+app.use('/api/batch-processing', authenticate, rateLimiters.write as any, batchProcessingRoutes);
 
 // Sub-plan Routes
-app.use('/api/sub-plan', authenticate, rateLimiters.write, subPlanRoutes);
+app.use('/api/sub-plan', authenticate, rateLimiters.write as any, subPlanRoutes);
 
 // Batch API Routes (for request batching)
-app.use('/api/batch', authenticate, rateLimiters.api, batchApiRoutes);
+app.use('/api/batch', authenticate, rateLimiters.api as any, batchApiRoutes);
 
 // Collaboration Routes
-app.use('/api/teams', authenticate, rateLimiters.api, teamRoutes(prisma));
-app.use('/api/sharing', authenticate, rateLimiters.api, sharingRoutes(prisma));
-app.use('/api/comments', authenticate, rateLimiters.api, commentRoutes(prisma));
+app.use('/api/teams', authenticate, rateLimiters.api as any, teamRoutes(prisma));
+app.use('/api/sharing', authenticate, rateLimiters.api as any, sharingRoutes(prisma));
+app.use('/api/comments', authenticate, rateLimiters.api as any, commentRoutes(prisma));
 
 // Service health check endpoint (no auth required for monitoring)
 app.get('/api/health/services', async (_req, res) => {

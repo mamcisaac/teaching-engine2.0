@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
 import rateLimit, { RateLimitRequestHandler } from 'express-rate-limit';
 import logger from '../logger.js';
@@ -28,7 +29,7 @@ export const defaultRateLimiter: RateLimitRequestHandler = rateLimit({
   message: 'Too many requests from this IP, please try again later.',
   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-  handler: (req: Request, res: Response) => {
+  handler: ((req: Request, res: Response) => {
     logger.warn(
       {
         ip: req.ip,
@@ -43,11 +44,11 @@ export const defaultRateLimiter: RateLimitRequestHandler = rateLimit({
       message: 'Rate limit exceeded. Please try again later.',
       retryAfter: req.rateLimit?.resetTime,
     });
-  },
-  skip: (req: Request) => {
+  }) as any,
+  skip: ((req: Request) => {
     // Skip rate limiting for health check endpoints
     return req.path === '/health' || req.path === '/api/health';
-  },
+  }) as any,
 });
 
 // Strict rate limiter for authentication endpoints
@@ -58,7 +59,7 @@ export const authRateLimiter: RateLimitRequestHandler = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   skipSuccessfulRequests: true, // Don't count successful auth requests
-  handler: (req: Request, res: Response) => {
+  handler: ((req: Request, res: Response) => {
     logger.warn(
       {
         ip: req.ip,
@@ -73,11 +74,11 @@ export const authRateLimiter: RateLimitRequestHandler = rateLimit({
       message: 'Please wait before trying again.',
       retryAfter: req.rateLimit?.resetTime,
     });
-  },
-  skip: (req: Request) => {
+  }) as any,
+  skip: ((req: Request) => {
     // Only skip rate limiting for specific test paths that need to bypass it
     return process.env.NODE_ENV === 'test' && req.path.includes('/health');
-  },
+  }) as any,
 });
 
 // Moderate rate limiter for resource creation endpoints
@@ -87,7 +88,7 @@ export const createResourceRateLimiter: RateLimitRequestHandler = rateLimit({
   message: 'Too many resources created from this IP, please try again later.',
   standardHeaders: true,
   legacyHeaders: false,
-  handler: (req: Request, res: Response) => {
+  handler: ((req: Request, res: Response) => {
     logger.warn(
       {
         ip: req.ip,
@@ -102,7 +103,7 @@ export const createResourceRateLimiter: RateLimitRequestHandler = rateLimit({
       message: 'Resource creation limit exceeded. Please try again later.',
       retryAfter: req.rateLimit?.resetTime,
     });
-  },
+  }) as any,
 });
 
 // Lenient rate limiter for read operations
@@ -121,7 +122,7 @@ export const uploadRateLimiter: RateLimitRequestHandler = rateLimit({
   message: 'Too many file uploads from this IP, please try again later.',
   standardHeaders: true,
   legacyHeaders: false,
-  handler: (req: Request, res: Response) => {
+  handler: ((req: Request, res: Response) => {
     logger.warn(
       {
         ip: req.ip,
@@ -135,7 +136,7 @@ export const uploadRateLimiter: RateLimitRequestHandler = rateLimit({
       message: 'File upload limit exceeded. Please try again later.',
       retryAfter: req.rateLimit?.resetTime,
     });
-  },
+  }) as any,
 });
 
 // Rate limiter for AI/LLM endpoints (more restrictive due to cost)
@@ -145,7 +146,7 @@ export const aiRateLimiter: RateLimitRequestHandler = rateLimit({
   message: 'Too many AI requests from this IP, please try again later.',
   standardHeaders: true,
   legacyHeaders: false,
-  handler: (req: Request, res: Response) => {
+  handler: ((req: Request, res: Response) => {
     logger.warn(
       {
         ip: req.ip,
@@ -160,7 +161,7 @@ export const aiRateLimiter: RateLimitRequestHandler = rateLimit({
       message: 'AI request limit exceeded. Please try again later.',
       retryAfter: req.rateLimit?.resetTime,
     });
-  },
+  }) as any,
 });
 
 // Dynamic rate limiter based on user role
@@ -171,17 +172,17 @@ export function createUserBasedRateLimiter(
 ): RateLimitRequestHandler {
   return rateLimit({
     windowMs,
-    max: (req: Request) => {
+    max: ((req: Request) => {
       // Check if user is authenticated and has premium access
       if (req.user?.role === 'premium' || req.user?.role === 'admin') {
         return premiumLimit;
       }
       return freeLimit;
-    },
-    keyGenerator: (req: Request) => {
+    }) as any,
+    keyGenerator: ((req: Request) => {
       // Use user ID if authenticated, otherwise use IP
       return req.user?.id?.toString() || req.ip || 'unknown';
-    },
+    }) as any,
     standardHeaders: true,
     legacyHeaders: false,
   });
