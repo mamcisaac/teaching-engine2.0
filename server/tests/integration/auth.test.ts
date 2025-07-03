@@ -1,7 +1,10 @@
 import request from 'supertest';
 import { describe, beforeAll, beforeEach, it, expect } from '@jest/globals';
-import { app } from '../../src/index';
-import { getTestPrismaClient } from '../jest.setup';
+import { createTestApp } from './simple-test-app';
+import {
+  getIntegrationTestPrismaClient,
+  cleanIntegrationTestData,
+} from '../integration-test-setup';
 import bcrypt from 'bcryptjs';
 
 // Test user credentials
@@ -11,15 +14,23 @@ const TEST_USER = {
 };
 
 describe('Authentication API', () => {
-  let prisma: ReturnType<typeof getTestPrismaClient>;
+  let prisma: ReturnType<typeof getIntegrationTestPrismaClient>;
+  let app: ReturnType<typeof createTestApp>;
 
   beforeAll(async () => {
-    prisma = getTestPrismaClient();
+    prisma = getIntegrationTestPrismaClient();
+    app = createTestApp(prisma);
+  });
+
+  beforeEach(async () => {
+    // Clean the database before each test to ensure test isolation
+    await cleanIntegrationTestData();
   });
 
   const createTestUser = async (email?: string) => {
-    const testEmail = email || `test-${Date.now()}-${Math.random().toString(36).substr(2, 9)}@example.com`;
-    
+    const testEmail =
+      email || `test-${Date.now()}-${Math.random().toString(36).substr(2, 9)}@example.com`;
+
     // Hash the password before creating the user
     const hashedPassword = await bcrypt.hash(TEST_USER.password, 10);
 
@@ -38,7 +49,7 @@ describe('Authentication API', () => {
   describe('POST /api/login', () => {
     it('should log in with valid credentials', async () => {
       const testUser = await createTestUser();
-      
+
       const res = await request(app).post('/api/login').send({
         email: testUser.email,
         password: TEST_USER.password,
@@ -63,7 +74,7 @@ describe('Authentication API', () => {
   describe('GET /api/auth/me', () => {
     it('should return user data with valid token', async () => {
       const testUser = await createTestUser();
-      
+
       // Log in to get a token
       const loginRes = await request(app).post('/api/login').send({
         email: testUser.email,
@@ -71,7 +82,7 @@ describe('Authentication API', () => {
       });
 
       const authToken = loginRes.body.token;
-      
+
       const res = await request(app)
         .get('/api/auth/me')
         .set('Authorization', `Bearer ${authToken}`);

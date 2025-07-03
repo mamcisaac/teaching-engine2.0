@@ -1,27 +1,29 @@
 # DATA_FLOW.md - Teaching Engine 2.0 System Architecture
 
 > **Last Updated**: 2025-07-03  
-> **Version**: 1.0  
-> **Architecture**: Monorepo with Frontend/Backend/Database Separation
+> **Version**: 2.0  
+> **Architecture**: ETFO-Aligned Educational Planning Platform
 
 ---
 
 ## 🏗️ System Overview
 
-Teaching Engine 2.0 follows a traditional 3-tier architecture with a React frontend, Express.js backend, and SQLite/PostgreSQL database. The system is containerized with Docker and uses a monorepo structure for code organization.
+Teaching Engine 2.0 is a monorepo-based educational planning platform that follows Ontario's ETFO (Elementary Teachers' Federation of Ontario) planning methodology. The system implements a traditional 3-tier architecture with a React frontend, Express.js backend, and SQLite database, designed specifically for K-6 educators in Ontario.
 
 ### High-Level Architecture
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   React Client  │    │  Express Server │    │   Database      │
-│   (Frontend)    │◄──►│   (Backend)     │◄──►│ SQLite/Postgres │
+│   React Client  │    │  Express Server │    │   SQLite DB     │
+│   (Frontend)    │◄──►│   (Backend)     │◄──►│  via Prisma    │
+│   Port: 5173    │    │   Port: 3000    │    │                 │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
          │                       │                       │
          │                       │                       │
     ┌────▼────┐              ┌───▼───┐              ┌────▼────┐
-    │ Tailwind│              │ Prisma│              │ Schemas │
-    │ shadcn  │              │  ORM  │              │ Migrations│
+    │ Vite    │              │ Prisma│              │ Dev.db  │
+    │ TanStack│              │  ORM  │              │ Migrations│
+    │ React   │              │ JWT   │              │ Seed Data│
     └─────────┘              └───────┘              └─────────┘
 ```
 
@@ -29,332 +31,464 @@ Teaching Engine 2.0 follows a traditional 3-tier architecture with a React front
 
 ## 📁 Project Structure
 
-### Monorepo Organization
+### Actual Monorepo Organization
 
 ```
 teaching-engine2.0/
-├── client/                    # React frontend application
+├── client/                    # React frontend (Vite + TypeScript)
 │   ├── src/
-│   │   ├── components/        # Reusable UI components
-│   │   ├── pages/            # Route-based page components
+│   │   ├── components/        # UI components (shadcn/ui)
+│   │   ├── pages/            # ETFO-aligned pages
 │   │   ├── hooks/            # Custom React hooks
-│   │   ├── lib/              # Utility functions and configs
-│   │   └── types/            # TypeScript type definitions
-│   ├── public/               # Static assets
-│   └── dist/                 # Built frontend assets
+│   │   ├── contexts/         # React contexts (Auth, Language, etc.)
+│   │   ├── services/         # API service layer
+│   │   ├── stores/           # Zustand state management
+│   │   └── types/            # TypeScript definitions
+│   ├── package.json          # Frontend dependencies
+│   └── vite.config.ts        # Vite configuration
 ├── server/                   # Express.js backend
 │   ├── src/
 │   │   ├── routes/           # API route handlers
-│   │   ├── middleware/       # Express middleware
 │   │   ├── services/         # Business logic services
+│   │   ├── middleware/       # Express middleware (auth, security)
 │   │   ├── utils/            # Utility functions
-│   │   └── types/            # TypeScript types
-│   └── dist/                 # Built server code
+│   │   └── types/            # TypeScript type definitions
+│   └── package.json          # Backend dependencies
 ├── packages/
-│   └── database/             # Prisma database package
+│   └── database/             # Shared database package
 │       ├── prisma/
-│       │   ├── schema.prisma # Database schema definition
-│       │   ├── migrations/   # Database migration files
-│       │   └── seed.ts       # Database seeding script
-│       └── src/              # Database client exports
+│       │   ├── schema.prisma # Complete database schema
+│       │   ├── migrations/   # Database migrations
+│       │   └── seed.ts       # Database seeding
+│       └── package.json      # Database package config
+├── scripts/                  # Build and development scripts
 ├── docs/                     # Documentation
-└── docker/                   # Docker configuration
+└── package.json              # Root workspace configuration
 ```
 
 ---
 
-## 🔄 Data Flow Patterns
+## 🔄 ETFO Planning Hierarchy Data Flow
 
-### 1. ETFO Planning Hierarchy Flow
+### Core Educational Data Model
 
-The core data model follows Ontario's ETFO 5-level planning structure:
+The system implements Ontario's ETFO 5-level planning structure as the central data flow:
 
 ```
-Curriculum Expectations (Province)
-         ↓
-Long-Range Plans (Year)
-         ↓
-Unit Plans (Multi-week)
-         ↓
-Lesson Plans (Daily)
-         ↓
-Daybook Entries (Real-time)
+CurriculumExpectation (Provincial Standards)
+         ↓ (many-to-many)
+LongRangePlan (Yearly/Term Overview)
+         ↓ (one-to-many)
+UnitPlan (Multi-week Themes)
+         ↓ (one-to-many)
+ETFOLessonPlan (Daily Lessons)
+         ↓ (one-to-one)
+DaybookEntry (Reflection & Assessment)
 ```
 
-#### Data Relationships
+#### Actual Database Schema Relationships
 
 ```typescript
-CurriculumExpectation {
-  id: number
-  code: string (e.g., "FLA1.1")
-  description: string
-  subject: string
-  grade: string
-  strand: string
+// From packages/database/prisma/schema.prisma
+
+model CurriculumExpectation {
+  id              String   @id @default(cuid())
+  code            String   @unique // e.g., "A1.2", "B2.3"
+  description     String
+  strand          String   // Major curriculum category
+  substrand       String?  // Subcategory if applicable
+  grade           Int
+  subject         String
+
+  // Bilingual support
+  descriptionFr   String?
+  strandFr        String?
+  substrandFr     String?
+
+  // ETFO Planning Relationships
+  longRangePlans  LongRangePlanExpectation[]
+  unitPlans       UnitPlanExpectation[]
+  lessonPlans     ETFOLessonPlanExpectation[]
+  daybookEntries  DaybookEntryExpectation[]
 }
-  ↓ (many-to-many)
-LongRangePlan {
-  id: number
-  title: string
-  academicYear: string
-  expectations: CurriculumExpectation[]
+
+model LongRangePlan {
+  id            String   @id @default(cuid())
+  userId        Int
+  title         String
+  academicYear  String   // e.g., "2024-2025"
+  term          String?  // "Full Year", "Term 1", "Term 2"
+  grade         Int
+  subject       String
+
+  // ETFO-specific fields
+  overarchingQuestions  String?
+  assessmentOverview    String?
+  resourceNeeds         String?
+  professionalGoals     String?
+
+  // Relationships
+  expectations  LongRangePlanExpectation[]
+  unitPlans     UnitPlan[]
 }
-  ↓ (one-to-many)
-UnitPlan {
-  id: number
-  title: string
-  longRangePlanId: number
-  startDate: Date
-  endDate: Date
-  expectations: CurriculumExpectation[]
+
+model UnitPlan {
+  id              String   @id @default(cuid())
+  title           String
+  longRangePlanId String
+  startDate       DateTime
+  endDate         DateTime
+
+  // ETFO planning fields
+  bigIdeas        String?
+  essentialQuestions Json?
+  crossCurricularConnections String?
+  learningSkills  Json?
+  culminatingTask String?
+
+  // Relationships
+  longRangePlan   LongRangePlan @relation(fields: [longRangePlanId], references: [id])
+  expectations    UnitPlanExpectation[]
+  lessonPlans     ETFOLessonPlan[]
 }
-  ↓ (one-to-many)
-LessonPlan {
-  id: number
-  title: string
-  unitPlanId: number
-  date: Date
-  activities: Activity[]
-  expectations: CurriculumExpectation[]
+
+model ETFOLessonPlan {
+  id         String   @id @default(cuid())
+  title      String
+  date       DateTime
+  duration   Int      // in minutes
+
+  // Three-part lesson structure (ETFO standard)
+  mindsOn    String?  // Introduction/hook
+  action     String?  // Main learning activities
+  consolidation String? // Closure/assessment
+
+  // Relationships
+  unitPlan     UnitPlan @relation(fields: [unitPlanId], references: [id])
+  expectations ETFOLessonPlanExpectation[]
+  daybookEntry DaybookEntry?
 }
-  ↓ (one-to-one)
-DaybookEntry {
-  id: number
-  date: Date
-  lessonPlanId: number
-  reflectionNotes: string
-  completionStatus: enum
-  nextSteps: string
+
+model DaybookEntry {
+  id           String         @id @default(cuid())
+  date         DateTime
+  lessonPlanId String?        @unique
+
+  // Reflection prompts
+  whatWorked   String?        // What went well?
+  whatDidntWork String?       // What could be improved?
+  nextSteps    String?        // What to do differently next time?
+
+  // Student observations
+  studentEngagement String?
+  studentChallenges String?
+  studentSuccesses  String?
+
+  // Relationships
+  lessonPlan   ETFOLessonPlan? @relation(fields: [lessonPlanId], references: [id])
+  expectations DaybookEntryExpectation[]
 }
-```
-
-### 2. Request-Response Flow
-
-#### Frontend to Backend Communication
-
-```
-┌─────────────────┐
-│ User Interaction│
-└─────────┬───────┘
-          │
-          ▼
-┌─────────────────┐    HTTP Request     ┌─────────────────┐
-│ React Component │───────────────────►│ Express Route   │
-└─────────────────┘                    └─────────┬───────┘
-          ▲                                      │
-          │                                      ▼
-          │            HTTP Response    ┌─────────────────┐
-          └─────────────────────────────│ Service Layer   │
-                                       └─────────┬───────┘
-                                                 │
-                                                 ▼
-                                       ┌─────────────────┐
-                                       │ Prisma ORM      │
-                                       └─────────┬───────┘
-                                                 │
-                                                 ▼
-                                       ┌─────────────────┐
-                                       │ Database        │
-                                       └─────────────────┘
-```
-
-#### Typical API Flow Example
-
-```javascript
-// 1. Frontend Action (React)
-const createLessonPlan = async (lessonData) => {
-  const response = await fetch('/api/planning/lessons', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(lessonData),
-  });
-  return response.json();
-};
-
-// 2. Backend Route (Express)
-app.post('/api/planning/lessons', authenticateToken, async (req, res) => {
-  try {
-    const lessonPlan = await lessonService.create(req.body, req.user.id);
-    res.status(201).json({ success: true, data: lessonPlan });
-  } catch (error) {
-    res.status(400).json({ success: false, error: error.message });
-  }
-});
-
-// 3. Service Layer (Business Logic)
-const lessonService = {
-  async create(data, userId) {
-    const lesson = await prisma.lessonPlan.create({
-      data: {
-        ...data,
-        createdBy: userId,
-        expectations: {
-          connect: data.expectationIds.map((id) => ({ id })),
-        },
-      },
-      include: {
-        expectations: true,
-        unitPlan: true,
-        activities: true,
-      },
-    });
-    return lesson;
-  },
-};
 ```
 
 ---
 
-## 🔌 Component Interactions
+## 🔌 Frontend Architecture & Data Flow
 
-### Frontend Component Architecture
+### React Component Architecture
 
 ```
-App (Root)
-├── AuthProvider (Context)
-├── Router
-│   ├── DashboardPage
-│   │   ├── ProgressOverview
-│   │   ├── RecentActivities
-│   │   └── QuickActions
-│   ├── PlanningPage
-│   │   ├── PlanningNavigation
-│   │   ├── LongRangePlans
-│   │   ├── UnitPlans
-│   │   ├── LessonPlans
-│   │   └── DaybookEntries
-│   ├── CurriculumPage
-│   │   ├── ExpectationsList
-│   │   ├── ProgressTracking
-│   │   └── CoverageAnalytics
-│   └── CommunicationPage
-│       ├── MessageComposer
-│       ├── MessageHistory
-│       └── DeliveryAnalytics
-└── GlobalComponents
-    ├── Navigation
-    ├── Notifications
-    └── LoadingStates
+App (Root Component)
+├── AuthProvider (Authentication Context)
+├── LanguageProvider (Bilingual Support)
+├── NotificationProvider (Toast Notifications)
+├── HelpProvider (Context-Sensitive Help)
+├── OnboardingProvider (Teacher Onboarding)
+├── KeyboardShortcutsProvider (Accessibility)
+└── Router (React Router)
+    ├── LoginPage
+    └── ProtectedRoute
+        └── MainLayout
+            ├── PlanningDashboard
+            ├── LongRangePlanPage
+            ├── UnitPlansPage
+            ├── ETFOLessonPlanPage
+            ├── DaybookPage
+            ├── CurriculumExpectationsPage
+            ├── ParentNewsletterPage
+            ├── CalendarPlanningPage
+            └── HelpPage
 ```
 
 ### State Management Patterns
 
-#### React Query for Server State
+#### TanStack Query for Server State
 
 ```typescript
-// Custom hook for lesson plans
-const useLessonPlans = (unitId: number) => {
-  return useQuery({
-    queryKey: ['lessonPlans', unitId],
-    queryFn: () => lessonPlanService.getByUnit(unitId),
+// From client/src/api.ts - Actual implementation
+
+// Curriculum expectations with ETFO alignment
+export const useCurriculumExpectations = (filters?: {
+  subject?: string;
+  grade?: string | number;
+  search?: string;
+}) => {
+  return useQuery<
+    Array<{
+      id: string;
+      code: string;
+      description: string;
+      strand: string;
+      substrand?: string;
+      subject: string;
+      grade: number;
+    }>
+  >({
+    queryKey: ['curriculum-expectations', filters],
+    queryFn: async () => {
+      const response = await api.get('/api/curriculum-expectations', { params: filters });
+      return response.data;
+    },
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 };
 
-// Mutation for creating lessons
-const useCreateLessonPlan = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: lessonPlanService.create,
-    onSuccess: (newLesson) => {
-      // Invalidate and refetch lesson plans
-      queryClient.invalidateQueries(['lessonPlans']);
-      // Optimistically update cache
-      queryClient.setQueryData(['lessonPlans', newLesson.unitPlanId], (old) => [
-        ...(old || []),
-        newLesson,
-      ]);
+// ETFO lesson plans
+export const useLessonPlan = (weekStart: string) => {
+  return useQuery<{
+    id: string;
+    weekStart: string;
+    activities: Array<{
+      id: number;
+      title: string;
+      description: string;
+      duration: number;
+      subjectId: number;
+    }>;
+  }>({
+    queryKey: ['lesson-plan', weekStart],
+    queryFn: async () => {
+      try {
+        return (await api.get(`/api/lesson-plans/${weekStart}`)).data;
+      } catch (error) {
+        if (error.response?.status === 404) {
+          const response = await api.post('/api/lesson-plans/generate', {
+            weekStart,
+            preserveBuffer: true,
+            pacingStrategy: 'relaxed',
+          });
+          return response.data;
+        }
+        throw error;
+      }
     },
+    retry: false,
   });
 };
 ```
 
-#### Context for Global State
+#### React Context for Global State
 
 ```typescript
-// Authentication context
-const AuthContext = createContext<{
-  user: User | null;
-  login: (credentials: LoginCredentials) => Promise<void>;
-  logout: () => void;
-  isLoading: boolean;
-}>({});
+// From client/src/contexts/AuthContext.tsx - Actual implementation
 
-// Settings context
-const SettingsContext = createContext<{
-  theme: 'light' | 'dark';
+interface AuthContextType {
+  user: User | null;
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  login: (email: string, password: string) => Promise<void>;
+  logout: () => void;
+}
+
+export const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+// Language context for bilingual support
+interface LanguageContextType {
   language: 'en' | 'fr';
-  notifications: NotificationSettings;
-  updateSettings: (settings: Partial<Settings>) => void;
-}>({});
+  setLanguage: (lang: 'en' | 'fr') => void;
+  t: (key: string, params?: Record<string, string>) => string;
+}
 ```
 
 ---
 
-## 🗄️ Database Interaction Patterns
+## 🗄️ Backend Architecture & Data Flow
 
-### Prisma ORM Integration
+### Express.js Route Structure
 
-#### Schema Relationships
+```typescript
+// From server/src/index.ts - Actual implementation
 
-```prisma
-model CurriculumExpectation {
-  id          Int    @id @default(autoincrement())
-  code        String @unique
-  description String
-  subject     String
-  grade       String
-  strand      String
+// ETFO-aligned Planning Routes
+app.use(
+  '/api/curriculum-expectations',
+  authenticate,
+  rateLimiters.read,
+  curriculumExpectationRoutes,
+);
+app.use('/api/long-range-plans', authenticate, rateLimiters.write, longRangePlanRoutes);
+app.use('/api/unit-plans', authenticate, rateLimiters.write, unitPlanRoutes);
+app.use('/api/etfo-lesson-plans', authenticate, rateLimiters.write, etfoLessonPlanRoutes);
+app.use('/api/daybook-entries', authenticate, rateLimiters.write, daybookEntryRoutes);
 
-  // Relationships
-  longRangePlans LongRangePlanExpectation[]
-  unitPlans      UnitPlanExpectation[]
-  lessonPlans    LessonPlanExpectation[]
+// State Management Routes
+app.use('/api/planner', authenticate, rateLimiters.api, plannerStateRoutes);
+app.use('/api/workflow', authenticate, rateLimiters.api, workflowStateRoutes);
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+// AI-Powered Features
+app.use('/api/ai-planning', authenticate, rateLimiters.ai, aiPlanningRoutes);
+app.use('/api/newsletters', authenticate, rateLimiters.write, newsletterRoutes);
+app.use('/api/parent-summary', authenticate, rateLimiters.write, parentSummaryRoutes);
+
+// Template System
+app.use('/api/templates', authenticate, rateLimiters.api, templateRoutes);
+
+// Collaboration Features
+app.use('/api/teams', authenticate, rateLimiters.api, teamRoutes);
+app.use('/api/sharing', authenticate, rateLimiters.api, sharingRoutes);
+app.use('/api/comments', authenticate, rateLimiters.api, commentRoutes);
+```
+
+### Service Layer Architecture
+
+```typescript
+// From server/src/services/ - Actual implementation pattern
+
+// Authentication Service
+export async function authenticate(
+  email: string,
+  password: string,
+  prisma: PrismaClient,
+): Promise<AuthResult> {
+  const user = await prisma.user.findUnique({ where: { email } });
+  if (!user || !(await bcrypt.compare(password, user.password))) {
+    throw new Error('Invalid credentials');
+  }
+
+  const token = await generateAuthToken(user.id.toString(), user.email);
+  return { user: { ...user, id: user.id.toString() }, token };
 }
 
-model LessonPlan {
-  id          Int      @id @default(autoincrement())
-  title       String
-  date        DateTime
-  duration    Int      // minutes
-  objective   String?
-  materials   String[] // JSON array
-  assessment  String?
-
-  // Foreign keys
-  unitPlanId  Int
-  createdBy   Int
-
-  // Relationships
-  unitPlan      UnitPlan @relation(fields: [unitPlanId], references: [id])
-  createdByUser User     @relation(fields: [createdBy], references: [id])
-  expectations  LessonPlanExpectation[]
-  activities    Activity[]
-  daybookEntry  DaybookEntry?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+// Newsletter Service with AI integration
+export class NewsletterService {
+  async generateNewsletter(data: {
+    studentIds: number[];
+    dateFrom: string;
+    dateTo: string;
+    tone: string;
+  }): Promise<Newsletter> {
+    // AI-powered newsletter generation
+    const aiContent = await this.aiService.generateNewsletterContent(data);
+    return await this.prisma.newsletter.create({
+      data: {
+        ...data,
+        sections: aiContent.sections,
+        isDraft: true,
+      },
+    });
+  }
 }
 ```
 
-#### Common Query Patterns
+---
+
+## 🔐 Security & Authentication Flow
+
+### JWT-Based Authentication
 
 ```typescript
-// Complex query with nested relationships
-const getLessonPlanWithDetails = async (id: number) => {
-  return await prisma.lessonPlan.findUnique({
+// From server/src/services/authService.ts
+
+export async function generateAuthToken(
+  userId: string,
+  email: string,
+  expiresIn: string = '7d',
+): Promise<string> {
+  const secret = process.env.JWT_SECRET;
+  const payload = { userId, email };
+  return jwt.sign(payload, secret, { expiresIn });
+}
+
+// Authentication middleware
+export const authenticate = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const token = req.headers.authorization?.replace('Bearer ', '');
+    if (!token) throw new Error('No token provided');
+
+    const decoded = await verifyToken(token);
+    req.user = { id: parseInt(decoded.userId), email: decoded.email };
+    next();
+  } catch (error) {
+    res.status(401).json({ error: 'Unauthorized' });
+  }
+};
+```
+
+### Security Middleware Stack
+
+```typescript
+// From server/src/middleware/security.ts
+
+export function applySecurityMiddleware(app: Express) {
+  // Helmet for security headers
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          styleSrc: ["'self'", "'unsafe-inline'"],
+          scriptSrc: ["'self'"],
+          imgSrc: ["'self'", 'data:', 'https:'],
+        },
+      },
+    }),
+  );
+
+  // CORS configuration
+  app.use(
+    cors({
+      origin: process.env.CLIENT_URL || 'http://localhost:5173',
+      credentials: true,
+    }),
+  );
+
+  // Rate limiting
+  app.use('/api/auth/', authRateLimitMiddleware);
+  app.use('/api/', rateLimiters.api);
+}
+```
+
+---
+
+## 📊 Database Interaction Patterns
+
+For complete database schema documentation, see [Database Schema Documentation](./SCHEMAS.md).
+
+### Prisma ORM Integration
+
+```typescript
+// From packages/database/src/index.ts
+
+export const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: process.env.DATABASE_URL || 'file:./dev.db',
+    },
+  },
+});
+
+// Complex queries with ETFO relationships
+const getLessonPlanWithETFODetails = async (id: string) => {
+  return await prisma.etfoLessonPlan.findUnique({
     where: { id },
     include: {
       unitPlan: {
         include: {
           longRangePlan: true,
+          expectations: {
+            include: {
+              expectation: true,
+            },
+          },
         },
       },
       expectations: {
@@ -362,392 +496,262 @@ const getLessonPlanWithDetails = async (id: number) => {
           expectation: true,
         },
       },
-      activities: true,
       daybookEntry: true,
-      createdByUser: {
-        select: {
-          id: true,
-          name: true,
-          email: true,
-        },
-      },
+      resources: true,
     },
   });
 };
+```
 
-// Aggregation query for progress tracking
-const getCurriculumProgress = async (userId: number) => {
-  const totalExpectations = await prisma.curriculumExpectation.count();
+### Database Schema Highlights
 
-  const coveredExpectations = await prisma.curriculumExpectation.count({
-    where: {
-      lessonPlans: {
-        some: {
-          lessonPlan: {
-            createdBy: userId,
-            daybookEntry: {
-              completionStatus: 'COMPLETED',
-            },
-          },
-        },
+```prisma
+// Key models from packages/database/prisma/schema.prisma
+
+model User {
+  id                Int      @id @default(autoincrement())
+  email             String   @unique
+  password          String
+  name              String
+  role              String   @default("teacher")
+  preferredLanguage String   @default("en")
+
+  // ETFO planning relationships
+  longRangePlans    LongRangePlan[]
+  unitPlans         UnitPlan[]
+  etfoLessonPlans   ETFOLessonPlan[]
+  daybookEntries    DaybookEntry[]
+  newsletters       Newsletter[]
+  students          Student[]
+}
+
+model Newsletter {
+  id          String    @id @default(cuid())
+  title       String
+  titleFr     String
+  studentIds  Json      // Array of student IDs
+  dateFrom    DateTime
+  dateTo      DateTime
+  tone        String    // "friendly" | "formal" | "informative"
+  sections    Json      // AI-generated newsletter sections
+  isDraft     Boolean   @default(true)
+}
+```
+
+---
+
+## 🚀 Performance & Optimization
+
+### Frontend Optimizations
+
+```typescript
+// From client/src/App.tsx - Code splitting implementation
+
+// Lazy loading for ETFO pages
+const LongRangePlanPage = lazy(() => import('./pages/LongRangePlanPage'));
+const UnitPlansPage = lazy(() => import('./pages/UnitPlansPage'));
+const ETFOLessonPlanPage = lazy(() => import('./pages/ETFOLessonPlanPage'));
+const DaybookPage = lazy(() => import('./pages/DaybookPage'));
+
+// React Query configuration for offline support
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      networkMode: 'offlineFirst',
+      retry: (failureCount, _error) => {
+        if (!navigator.onLine) return false;
+        return failureCount < 3;
       },
     },
-  });
-
-  return {
-    total: totalExpectations,
-    covered: coveredExpectations,
-    percentage: (coveredExpectations / totalExpectations) * 100,
-  };
-};
-```
-
----
-
-## 🚀 Performance Optimizations
-
-### Frontend Performance
-
-#### Code Splitting
-
-```typescript
-// Lazy loading for route components
-const PlanningPage = lazy(() => import('../pages/PlanningPage'));
-const CurriculumPage = lazy(() => import('../pages/CurriculumPage'));
-
-// Component lazy loading
-const ExpensiveChart = lazy(() => import('../components/ExpensiveChart'));
-```
-
-#### Memoization
-
-```typescript
-// Expensive calculations
-const curriculumProgress = useMemo(() => {
-  return calculateProgress(lessonPlans, expectations);
-}, [lessonPlans, expectations]);
-
-// Component memoization
-const LessonPlanItem = memo(({ lessonPlan, onEdit, onDelete }) => {
-  return (
-    <div className="lesson-plan-item">
-      {/* Component content */}
-    </div>
-  );
+  },
 });
 ```
 
-### Backend Performance
-
-#### Database Optimization
+### Backend Performance Monitoring
 
 ```typescript
-// Efficient pagination
-const getLessonPlansPage = async (page: number, limit: number) => {
-  const skip = (page - 1) * limit;
+// From server/src/middleware/performanceMonitoring.ts
 
-  const [lessonPlans, total] = await Promise.all([
-    prisma.lessonPlan.findMany({
-      skip,
-      take: limit,
-      include: {
-        expectations: {
-          include: {
-            expectation: {
-              select: {
-                id: true,
-                code: true,
-                description: true,
-              },
-            },
-          },
-        },
-      },
-      orderBy: {
-        date: 'desc',
-      },
-    }),
-    prisma.lessonPlan.count(),
-  ]);
-
-  return {
-    data: lessonPlans,
-    pagination: {
-      page,
-      limit,
-      total,
-      pages: Math.ceil(total / limit),
-    },
-  };
-};
-```
-
-#### Caching Strategy
-
-```typescript
-// Redis cache for frequently accessed data
-const cache = new Redis(process.env.REDIS_URL);
-
-const getCachedCurriculumExpectations = async () => {
-  const cached = await cache.get('curriculum:expectations');
-  if (cached) {
-    return JSON.parse(cached);
-  }
-
-  const expectations = await prisma.curriculumExpectation.findMany();
-  await cache.setex('curriculum:expectations', 3600, JSON.stringify(expectations));
-
-  return expectations;
-};
-```
-
----
-
-## 🔐 Security Data Flow
-
-### Authentication Flow
-
-```
-1. User Login Request
-   ├── Validate Credentials (bcrypt)
-   ├── Generate JWT Token
-   └── Return Token + User Data
-
-2. Authenticated Requests
-   ├── Extract JWT from Header
-   ├── Verify Token Signature
-   ├── Extract User ID from Payload
-   └── Attach User to Request Context
-
-3. Authorization Check
-   ├── Check User Role
-   ├── Verify Resource Ownership
-   └── Allow/Deny Access
-```
-
-### Data Validation Pipeline
-
-```typescript
-// Input validation with Zod
-const lessonPlanSchema = z.object({
-  title: z.string().min(1).max(255),
-  date: z.string().datetime(),
-  duration: z.number().min(1).max(480),
-  unitPlanId: z.number().positive(),
-  expectationIds: z.array(z.number()).optional(),
-});
-
-// Middleware validation
-const validateLessonPlan = (req, res, next) => {
-  try {
-    req.body = lessonPlanSchema.parse(req.body);
-    next();
-  } catch (error) {
-    res.status(400).json({
-      success: false,
-      error: error.issues,
-    });
-  }
-};
-```
-
----
-
-## 📊 Data Processing Workflows
-
-### AI-Powered Features Flow
-
-#### Activity Generation
-
-```
-1. User Request
-   ├── Extract Requirements (expectations, duration, etc.)
-   ├── Context Gathering (previous activities, student data)
-   └── Send to AI Service
-
-2. AI Processing
-   ├── Analyze Curriculum Expectations
-   ├── Generate Activity Suggestions
-   ├── Rank by Relevance and Quality
-   └── Return Structured Results
-
-3. Result Processing
-   ├── Validate Generated Content
-   ├── Format for Frontend Display
-   ├── Store in Cache for Performance
-   └── Return to User
-```
-
-#### Content Translation
-
-```
-1. Translation Request
-   ├── Detect Source Language
-   ├── Extract Context (newsletter, report, etc.)
-   └── Send to Translation Service
-
-2. Translation Processing
-   ├── Apply Educational Context
-   ├── Generate Multiple Options
-   ├── Confidence Scoring
-   └── Return Best Translation
-
-3. Result Enhancement
-   ├── Grammar Check
-   ├── Educational Terminology Validation
-   └── Return with Alternatives
-```
-
----
-
-## 🔄 Real-time Updates
-
-### WebSocket Integration (Future)
-
-```typescript
-// Real-time collaboration on lesson plans
-const lessonPlanSocket = io('/lesson-plans');
-
-lessonPlanSocket.on('lesson-updated', (update) => {
-  // Update local state
-  queryClient.setQueryData(['lessonPlan', update.id], update);
-
-  // Show notification to user
-  showNotification(`Lesson plan "${update.title}" was updated`);
-});
-
-// Broadcasting updates
-const updateLessonPlan = async (id, data) => {
-  const updated = await prisma.lessonPlan.update({
-    where: { id },
-    data,
-  });
-
-  // Broadcast to all connected clients
-  io.to(`lesson-${id}`).emit('lesson-updated', updated);
-
-  return updated;
-};
-```
-
----
-
-## 📱 Progressive Web App Features
-
-### Offline Capability
-
-```typescript
-// Service worker for offline functionality
-self.addEventListener('fetch', (event) => {
-  if (event.request.url.includes('/api/planning/')) {
-    event.respondWith(
-      caches.match(event.request).then((response) => {
-        // Return cached version or fetch from network
-        return response || fetch(event.request);
-      }),
-    );
-  }
-});
-
-// Background sync for lesson plan updates
-const syncLessonPlans = async () => {
-  const offlineUpdates = await getOfflineUpdates();
-
-  for (const update of offlineUpdates) {
-    try {
-      await fetch('/api/planning/lessons/' + update.id, {
-        method: 'PATCH',
-        body: JSON.stringify(update.data),
-      });
-      await markAsSynced(update.id);
-    } catch (error) {
-      // Retry later
-      console.error('Sync failed:', error);
-    }
-  }
-};
-```
-
----
-
-## 📈 Monitoring and Analytics
-
-### Application Metrics
-
-```typescript
-// Performance monitoring
-const trackApiPerformance = (req, res, next) => {
+export const performanceMonitoring = (req: Request, res: Response, next: NextFunction) => {
   const start = Date.now();
 
   res.on('finish', () => {
     const duration = Date.now() - start;
-    metrics.histogram('api_request_duration', duration, {
+    performanceMonitor.recordRequest({
       method: req.method,
       route: req.route?.path || 'unknown',
+      duration,
       status: res.statusCode,
     });
   });
 
   next();
 };
-
-// User behavior analytics
-const trackUserAction = (action, metadata) => {
-  analytics.track({
-    event: action,
-    userId: req.user?.id,
-    properties: {
-      ...metadata,
-      timestamp: new Date(),
-      userAgent: req.get('User-Agent'),
-    },
-  });
-};
 ```
 
 ---
 
-## 🔗 External Integrations
+## 🤖 AI Integration Patterns
 
-### Third-Party Service Integration
+### Service Layer AI Integration
 
 ```typescript
-// Email service integration
-const emailService = {
-  async sendNewsletter(message, recipients) {
-    const response = await fetch(EMAIL_API_URL, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${EMAIL_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        to: recipients,
-        subject: message.title,
-        html: message.contentEn,
-        attachments: message.attachments,
-      }),
+// From server/src/services/aiParentSummaryService.ts
+
+export class AIParentSummaryService {
+  async generateParentSummary(request: {
+    studentId: number;
+    dateFrom: string;
+    dateTo: string;
+    focus?: string[];
+  }): Promise<{
+    contentFr: string;
+    contentEn: string;
+    confidence: number;
+  }> {
+    // Gather student data and reflections
+    const studentData = await this.gatherStudentData(request);
+
+    // Generate bilingual content using AI
+    const aiResponse = await this.llmService.generateBilingualSummary({
+      studentData,
+      focus: request.focus,
+      template: 'parent_summary',
     });
 
-    return response.json();
-  },
+    return {
+      contentFr: aiResponse.french,
+      contentEn: aiResponse.english,
+      confidence: aiResponse.confidence,
+    };
+  }
+}
+```
+
+### AI-Powered Newsletter Generation
+
+```typescript
+// From server/src/services/newsletterService.ts
+
+export class NewsletterService {
+  async generateNewsletterSections(data: {
+    studentIds: number[];
+    dateRange: { from: string; to: string };
+    tone: 'friendly' | 'formal' | 'informative';
+  }): Promise<NewsletterSection[]> {
+    // Aggregate classroom activities and achievements
+    const classroomData = await this.aggregateClassroomData(data);
+
+    // Generate contextual newsletter sections
+    return await this.aiService.generateNewsletterSections({
+      classroomData,
+      tone: data.tone,
+      language: 'bilingual',
+    });
+  }
+}
+```
+
+---
+
+## 🔗 Technology Stack Summary
+
+### Frontend Stack
+
+- **Framework**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **State Management**: TanStack Query + React Context
+- **UI Library**: shadcn/ui + Tailwind CSS
+- **Routing**: React Router v6
+- **Form Handling**: React Hook Form
+- **HTTP Client**: Axios with interceptors
+
+### Backend Stack
+
+- **Runtime**: Node.js with TypeScript
+- **Framework**: Express.js
+- **Database**: SQLite (development) / PostgreSQL (production)
+- **ORM**: Prisma
+- **Authentication**: JWT with bcrypt
+- **Security**: Helmet, CORS, Rate limiting
+- **AI Integration**: OpenAI API
+
+### Database & Infrastructure
+
+- **Development DB**: SQLite (`packages/database/prisma/dev.db`)
+- **Schema Management**: Prisma migrations
+- **Seeding**: TypeScript seed scripts
+- **File Storage**: Local filesystem (development)
+
+---
+
+## 📈 Request Flow Examples
+
+### Creating an ETFO Lesson Plan
+
+```typescript
+// 1. Frontend API call
+const createLessonPlan = async (lessonData: ETFOLessonPlanInput) => {
+  const response = await api.post('/api/etfo-lesson-plans', lessonData);
+  return response.data;
 };
 
-// Calendar integration
-const calendarService = {
-  async syncLessonPlans(lessonPlans) {
-    const events = lessonPlans.map((lesson) => ({
-      title: lesson.title,
-      start: lesson.date,
-      duration: lesson.duration,
-      description: lesson.objective,
-    }));
+// 2. Backend route handler
+app.post('/api/etfo-lesson-plans', authenticate, rateLimiters.write, async (req, res) => {
+  try {
+    const lessonPlan = await etfoLessonPlanService.create(req.body, req.user.id);
+    res.status(201).json({ success: true, data: lessonPlan });
+  } catch (error) {
+    res.status(400).json({ success: false, error: error.message });
+  }
+});
 
-    await calendar.events.batchCreate(events);
+// 3. Service layer implementation
+const etfoLessonPlanService = {
+  async create(data: ETFOLessonPlanInput, userId: number) {
+    return await prisma.etfoLessonPlan.create({
+      data: {
+        ...data,
+        userId,
+        expectations: {
+          connect: data.expectationIds?.map((id) => ({ id })) || [],
+        },
+      },
+      include: {
+        expectations: { include: { expectation: true } },
+        unitPlan: true,
+        resources: true,
+      },
+    });
   },
 };
 ```
 
 ---
 
-_This data flow documentation provides a comprehensive overview of how data moves through Teaching Engine 2.0, from user interactions to database persistence and external service integrations. For specific implementation details, refer to the codebase and individual component documentation._
+## 📊 Monitoring & Analytics
+
+### Performance Metrics Collection
+
+```typescript
+// From server/src/middleware/performanceMonitoring.ts
+
+export class PerformanceMonitor {
+  getHealthStatus() {
+    return {
+      healthy: this.averageResponseTime < 1000,
+      averageResponseTime: this.averageResponseTime,
+      requestCount: this.requestCount,
+      errorRate: this.errorCount / this.requestCount,
+    };
+  }
+
+  getSlowestEndpoints() {
+    return this.endpointMetrics.sort((a, b) => b.averageTime - a.averageTime).slice(0, 10);
+  }
+}
+```
+
+---
+
+_This data flow documentation accurately reflects the Teaching Engine 2.0 implementation as of July 2025, focusing on the ETFO-aligned educational planning features and the actual technology choices made in the codebase._

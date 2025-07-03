@@ -470,4 +470,17 @@ The platform now serves as a comprehensive digital teaching assistant that seaml
 
 ---
 
+## 📚 Related Documentation
+
+- [Project Roadmap](./ROADMAP.md) - Project overview and architecture
+- [API Reference](./API_REFERENCE.md) - Complete API documentation
+- [Database Schemas](./SCHEMAS.md) - Database design and relationships
+- [Data Flow](./DATA_FLOW.md) - System architecture and data patterns
+- [Bug Reference](./BUG_REFERENCE.md) - Troubleshooting and issue tracking
+- [Testing Guide](./TESTING_GUIDE.md) - Testing approach and best practices
+- [Features](./FEATURES.md) - Feature overview and implementation details
+- [Memory Archive](./memory-archive/README.md) - Historical documentation versions
+
+---
+
 _This version history documents the complete evolution of Teaching Engine 2.0 from initial concept to feature-complete educational technology platform. The project has successfully achieved its primary mission and continues to support elementary teachers in reducing administrative overhead while improving educational outcomes._

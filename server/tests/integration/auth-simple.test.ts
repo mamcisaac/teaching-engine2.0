@@ -1,173 +1,33 @@
 /**
  * Simple Authentication Integration Test
- * Direct test without complex setup
+ * Using integration test setup
  */
 
 import { describe, it, expect, beforeAll, afterAll, beforeEach } from '@jest/globals';
 import request from 'supertest';
-import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import cookieParser from 'cookie-parser';
-import { PrismaClient as TeachingEnginePrismaClient } from '@teaching-engine/database';
+import { createTestApp } from './simple-test-app';
+import {
+  getIntegrationTestPrismaClient,
+  cleanIntegrationTestData,
+} from '../integration-test-setup';
 
 // Set up environment
 process.env.JWT_SECRET = 'test-secret-key';
-process.env.DATABASE_URL = 'file:../packages/database/test-auth-integration.db';
 
-// Create Prisma client
-const prisma = new TeachingEnginePrismaClient({
-  datasources: {
-    db: {
-      url: process.env.DATABASE_URL,
-    },
-  },
-});
-
-// Create Express app
-const app = express();
-app.use(express.json());
-app.use(cookieParser());
-
-// Simple login route
-app.post('/api/login', async (req, res) => {
-  try {
-    const { email, password } = req.body;
-
-    if (!email || !password) {
-      return res.status(400).json({ error: 'Email and password are required' });
-    }
-
-    const user = await prisma.user.findFirst({
-      where: { email },
-    });
-
-    if (!user) {
-      return res.status(401).json({ error: 'Invalid credentials' });
-    }
-
-    const isValid = await bcrypt.compare(password, user.password);
-    if (!isValid) {
-      return res.status(401).json({ error: 'Invalid credentials' });
-    }
-
-    const token = jwt.sign(
-      { userId: user.id.toString(), email: user.email },
-      process.env.JWT_SECRET!,
-    );
-
-    const { password: _, ...userWithoutPassword } = user;
-
-    res.cookie('authToken', token, {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'lax',
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
-
-    res.json({ user: userWithoutPassword, token });
-  } catch (error) {
-    console.error('Login error:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
-
-// Simple register route
-app.post('/api/register', async (req, res) => {
-  try {
-    const { email, password, name } = req.body;
-
-    if (!email || !password || !name) {
-      return res.status(400).json({ error: 'All fields are required' });
-    }
-
-    if (password.length < 8) {
-      return res.status(400).json({ error: 'Password must be at least 8 characters' });
-    }
-
-    const existing = await prisma.user.findUnique({ where: { email } });
-    if (existing) {
-      return res.status(409).json({ error: 'Email already exists' });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const user = await prisma.user.create({
-      data: {
-        email,
-        password: hashedPassword,
-        name,
-        role: 'USER',
-        preferredLanguage: 'en',
-      },
-    });
-
-    const token = jwt.sign(
-      { userId: user.id.toString(), email: user.email },
-      process.env.JWT_SECRET!,
-    );
-
-    const { password: _, ...userWithoutPassword } = user;
-
-    res.cookie('authToken', token, {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'lax',
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
-
-    res.status(201).json({ user: userWithoutPassword, token });
-  } catch (error) {
-    console.error('Register error:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
-
-// Middleware
-function authMiddleware(req: any, res: any, next: any) {
-  const token = req.headers.authorization?.replace('Bearer ', '') || req.cookies?.authToken;
-
-  if (!token) {
-    return res.status(401).json({ error: 'Authentication required' });
-  }
-
-  try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET!) as any;
-    req.userId = payload.userId;
-    next();
-  } catch (error) {
-    return res.status(403).json({ error: 'Invalid token' });
-  }
-}
-
-// Protected route
-app.get('/api/auth/me', authMiddleware, async (req: any, res) => {
-  const user = await prisma.user.findUnique({
-    where: { id: parseInt(req.userId) },
-    select: { id: true, email: true, name: true, role: true },
-  });
-
-  if (!user) {
-    return res.status(404).json({ error: 'User not found' });
-  }
-
-  res.json(user);
-});
-
-// Logout
-app.post('/api/logout', (req, res) => {
-  res.clearCookie('authToken');
-  res.json({ message: 'Logged out successfully' });
-});
+let prisma: any;
+let app: any;
 
 describe('Authentication Tests', () => {
   beforeAll(async () => {
-    // Connect to the database
-    await prisma.$connect();
+    // Initialize test database and app
+    prisma = getIntegrationTestPrismaClient();
+    app = createTestApp(prisma);
   });
 
   beforeEach(async () => {
-    await prisma.user.deleteMany({});
+    await cleanIntegrationTestData();
   });
 
   afterAll(async () => {
@@ -197,7 +57,8 @@ describe('Authentication Tests', () => {
         email: 'test@example.com',
         password: hashedPassword,
         name: 'Test User',
-        role: 'USER',
+        role: 'teacher',
+        preferredLanguage: 'en',
       },
     });
 
@@ -240,7 +101,8 @@ describe('Authentication Tests', () => {
         email: 'test@example.com',
         password: hashedPassword,
         name: 'Test User',
-        role: 'USER',
+        role: 'teacher',
+        preferredLanguage: 'en',
       },
     });
 
@@ -258,7 +120,7 @@ describe('Authentication Tests', () => {
       id: user.id,
       email: 'test@example.com',
       name: 'Test User',
-      role: 'USER',
+      role: 'teacher',
     });
   });
 

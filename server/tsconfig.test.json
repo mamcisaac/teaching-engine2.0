@@ -4,6 +4,7 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "isolatedModules": true,
     "types": ["node", "jest", "@jest/globals"],
     "lib": ["es2022"],
     "module": "ESNext",
@@ -19,14 +20,6 @@
       "tests/*": ["tests/*"]
     }
   },
-  "include": [
-    "src/**/*",
-    "tests/**/*",
-    "jest.setup.js",
-    "jest.config.js"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": ["src/**/*", "tests/**/*", "jest.setup.js", "jest.config.js"],
+  "exclude": ["node_modules", "dist"]
 }

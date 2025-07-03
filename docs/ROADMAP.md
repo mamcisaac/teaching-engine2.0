@@ -209,6 +209,7 @@ Future development will be driven by:
 - **Database Schemas** - See `docs/SCHEMAS.md`
 - **Bug Reports** - See `docs/BUG_REFERENCE.md`
 - **Version History** - See `docs/VERSION_LOG.md`
+- **Memory Archive** - See `docs/memory-archive/README.md`
 
 ### Development Resources
 

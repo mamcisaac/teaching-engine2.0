@@ -9,8 +9,7 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { authRoutes } from './auth-routes-mock';
-import { userRoutes } from '../../src/routes/users';
-import { validationMiddleware } from '../../src/middleware/validation';
+import { userRoutes } from '../../src/routes/user';
 import { errorHandler } from '../../src/middleware/errorHandler';
 import { getIntegrationTestPrismaClient } from '../integration-test-setup';
 import jwt from 'jsonwebtoken';
@@ -30,8 +29,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Get test database client
-const prisma = getIntegrationTestPrismaClient();
+// Get test database client function (will be called later)
+function getPrisma() {
+  return getIntegrationTestPrismaClient();
+}
 
 // Custom auth middleware for tests
 function authMiddleware(prismaClient: any) {
@@ -81,13 +82,13 @@ function authMiddleware(prismaClient: any) {
 }
 
 // Auth routes (no authentication required)
-app.use('/api', authRoutes(prisma));
+app.use('/api', authRoutes(getPrisma()));
 
 // Protected routes
-app.use('/api/auth', authMiddleware(prisma));
+app.use('/api/auth', authMiddleware(getPrisma()));
 app.get('/api/auth/me', async (req, res) => {
   const userId = (req as any).userId;
-  const user = await prisma.user.findUnique({
+  const user = await getPrisma().user.findUnique({
     where: { id: parseInt(userId) },
     select: {
       id: true,
@@ -105,12 +106,12 @@ app.get('/api/auth/me', async (req, res) => {
   res.json(user);
 });
 
-app.get('/api/auth/check', authMiddleware(prisma), (req, res) => {
+app.get('/api/auth/check', authMiddleware(getPrisma()), (req, res) => {
   res.json({ userId: (req as any).userId });
 });
 
 // User routes
-app.use('/api/user', authMiddleware(prisma), userRoutes(prisma));
+app.use('/api/user', authMiddleware(getPrisma()), userRoutes(getPrisma()));
 
 // Logout route
 app.post('/api/logout', (req, res) => {

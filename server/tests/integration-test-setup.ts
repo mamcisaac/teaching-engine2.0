@@ -1,10 +1,10 @@
 /**
  * Unified Integration Test Setup
- * 
+ *
  * This file provides a unified setup system specifically designed for integration tests.
  * Unlike unit tests that use transactions per test for isolation, integration tests
  * need data persistence within test suites but isolation between test files.
- * 
+ *
  * Key features:
  * - No per-test transactions (data persists within describe blocks)
  * - Manual cleanup between test files
@@ -30,7 +30,7 @@ beforeAll(async () => {
 
   try {
     console.log(`[Integration Setup] Setting up database for worker ${workerId}`);
-    
+
     // Create a unique test database for this worker
     await testDb.createTestDatabase(workerId);
 
@@ -48,7 +48,10 @@ beforeAll(async () => {
     }
 
     // Verify the client has the expected properties
-    if (!integrationTestClient.user || typeof integrationTestClient.user.deleteMany !== 'function') {
+    if (
+      !integrationTestClient.user ||
+      typeof integrationTestClient.user.deleteMany !== 'function'
+    ) {
       console.error('[Integration Setup] Client properties:', Object.keys(integrationTestClient));
       throw new Error('Integration test client does not have expected database models');
     }
@@ -81,12 +84,12 @@ beforeEach(async () => {
 
 /**
  * Global cleanup after all integration tests
- * Cleans the database and closes connections  
+ * Cleans the database and closes connections
  */
 afterAll(async () => {
   try {
     console.log(`[Integration Setup] Cleaning up for worker ${workerId}`);
-    
+
     if (workerId) {
       // Reset the database after all tests
       await testDb.resetDatabase(workerId);
@@ -102,7 +105,7 @@ afterAll(async () => {
     globalForPrisma.testPrismaClient = undefined;
 
     integrationTestClient = null;
-    
+
     console.log(`[Integration Setup] Cleanup complete for worker ${workerId}`);
   } catch (error) {
     console.warn('[Integration Setup] Failed to cleanup integration test database:', error);
@@ -115,7 +118,9 @@ afterAll(async () => {
  */
 export function getIntegrationTestPrismaClient(): PrismaClient {
   if (!integrationTestClient) {
-    throw new Error('Integration test client not initialized. Make sure this is called from within an integration test.');
+    throw new Error(
+      'Integration test client not initialized. Make sure this is called from within an integration test.',
+    );
   }
   return integrationTestClient;
 }
@@ -131,10 +136,9 @@ export async function cleanIntegrationTestData(): Promise<void> {
 
   try {
     // Clean test data in dependency order (children first, then parents)
-    // Only clean tables that exist on the client
-    
-    // Clean dependent tables first (in dependency order)
-    // Clean many-to-many join tables first
+    // This order prevents foreign key constraint violations
+
+    // 1. Clean junction tables first (many-to-many relationships)
     if (integrationTestClient.daybookEntryExpectation) {
       await integrationTestClient.daybookEntryExpectation.deleteMany({});
     }
@@ -148,39 +152,104 @@ export async function cleanIntegrationTestData(): Promise<void> {
       await integrationTestClient.longRangePlanExpectation.deleteMany({});
     }
 
-    // Clean dependent data models
+    // 2. Clean deeply nested child records first
+    if (integrationTestClient.studentGoal) {
+      await integrationTestClient.studentGoal.deleteMany({});
+    }
+    if (integrationTestClient.studentReflection) {
+      await integrationTestClient.studentReflection.deleteMany({});
+    }
+    if (integrationTestClient.studentArtifact) {
+      await integrationTestClient.studentArtifact.deleteMany({});
+    }
+    if (integrationTestClient.parentSummary) {
+      await integrationTestClient.parentSummary.deleteMany({});
+    }
+
+    // 3. Clean calendar and activity-related records
+    if (integrationTestClient.calendarEvent) {
+      await integrationTestClient.calendarEvent.deleteMany({});
+    }
+    if (integrationTestClient.unavailableBlock) {
+      await integrationTestClient.unavailableBlock.deleteMany({});
+    }
+    if (integrationTestClient.activityRating) {
+      await integrationTestClient.activityRating.deleteMany({});
+    }
+    if (integrationTestClient.activityCollection) {
+      await integrationTestClient.activityCollection.deleteMany({});
+    }
+    if (integrationTestClient.activityImport) {
+      await integrationTestClient.activityImport.deleteMany({});
+    }
+
+    // 4. Clean planning records (in dependency order)
     if (integrationTestClient.daybookEntry) {
       await integrationTestClient.daybookEntry.deleteMany({});
     }
-    
     if (integrationTestClient.eTFOLessonPlan) {
       await integrationTestClient.eTFOLessonPlan.deleteMany({});
     }
-    
     if (integrationTestClient.unitPlan) {
       await integrationTestClient.unitPlan.deleteMany({});
     }
-    
     if (integrationTestClient.longRangePlan) {
       await integrationTestClient.longRangePlan.deleteMany({});
     }
-    
+
+    // 5. Clean other user-related records
+    if (integrationTestClient.newsletter) {
+      await integrationTestClient.newsletter.deleteMany({});
+    }
+    if (integrationTestClient.parentMessage) {
+      await integrationTestClient.parentMessage.deleteMany({});
+    }
+    if (integrationTestClient.classRoutine) {
+      await integrationTestClient.classRoutine.deleteMany({});
+    }
+    if (integrationTestClient.subPlanRecord) {
+      await integrationTestClient.subPlanRecord.deleteMany({});
+    }
+    if (integrationTestClient.weeklyPlannerState) {
+      await integrationTestClient.weeklyPlannerState.deleteMany({});
+    }
+
+    // 6. Clean curriculum and import records
+    if (integrationTestClient.curriculumExpectationEmbedding) {
+      await integrationTestClient.curriculumExpectationEmbedding.deleteMany({});
+    }
+    if (integrationTestClient.expectationCluster) {
+      await integrationTestClient.expectationCluster.deleteMany({});
+    }
     if (integrationTestClient.curriculumExpectation) {
       await integrationTestClient.curriculumExpectation.deleteMany({});
     }
-    
+    if (integrationTestClient.curriculumImport) {
+      await integrationTestClient.curriculumImport.deleteMany({});
+    }
+
+    // 7. Clean students (depends on User)
+    if (integrationTestClient.student) {
+      await integrationTestClient.student.deleteMany({});
+    }
+
+    // 8. Clean subjects (depends on User)
     if (integrationTestClient.subject) {
       await integrationTestClient.subject.deleteMany({});
     }
-    
+
+    // 9. Finally clean users (parent table)
     if (integrationTestClient.user) {
       await integrationTestClient.user.deleteMany({});
     }
-    
+
     console.log('[Integration Setup] Test data cleaned successfully');
   } catch (error) {
     console.error('[Integration Setup] Failed to clean test data:', error);
-    console.error('[Integration Setup] Available client properties:', Object.keys(integrationTestClient || {}));
+    console.error(
+      '[Integration Setup] Available client properties:',
+      Object.keys(integrationTestClient || {}),
+    );
     throw error;
   }
 }
