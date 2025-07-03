@@ -1,5 +1,5 @@
 import { openai } from './llmService';
-import BaseService from './base/BaseService';
+import BaseService, { ServiceDependencies } from './base/BaseService';
 
 export interface EmbeddingResult {
   expectationId?: string;
@@ -14,8 +14,8 @@ export class EmbeddingService extends BaseService {
   private readonly maxRetries = 3;
   private readonly retryDelay = 1000; // ms
 
-  constructor() {
-    super('EmbeddingService');
+  constructor(dependencies?: ServiceDependencies) {
+    super('EmbeddingService', dependencies);
   }
 
   /**

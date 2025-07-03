@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { z } from 'zod';
 import { CalendarEventType, CalendarEventSource, Prisma } from '@teaching-engine/database';
-import { requireAuth } from '../middleware/auth';
+// Note: Authentication is handled at the route mounting level in index.ts
 import { validateRequest } from '../middleware/validateRequest';
 import { startOfDay, endOfDay, parseISO } from 'date-fns';
 import { prisma } from '../prisma';
@@ -26,7 +26,7 @@ const querySchema = z.object({
 });
 
 // Get calendar events for a date range
-router.get('/', requireAuth, validateRequest({ query: querySchema }), async (req, res) => {
+router.get('/', validateRequest({ query: querySchema }), async (req, res) => {
   try {
     const { start, end, eventType } = req.query as z.infer<typeof querySchema>;
     const userId = req.user!.id;
@@ -63,7 +63,7 @@ router.get('/', requireAuth, validateRequest({ query: querySchema }), async (req
 });
 
 // Create a new calendar event
-router.post('/', requireAuth, validateRequest({ body: calendarEventSchema }), async (req, res) => {
+router.post('/', validateRequest({ body: calendarEventSchema }), async (req, res) => {
   try {
     const data = req.body as z.infer<typeof calendarEventSchema>;
     const userId = req.user!.id;
@@ -89,7 +89,7 @@ router.post('/', requireAuth, validateRequest({ body: calendarEventSchema }), as
 });
 
 // Update a calendar event
-router.patch('/:id', requireAuth, async (req, res) => {
+router.patch('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const userId = req.user!.id;
@@ -124,7 +124,7 @@ router.patch('/:id', requireAuth, async (req, res) => {
 });
 
 // Delete a calendar event
-router.delete('/:id', requireAuth, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const userId = req.user!.id;
@@ -153,7 +153,7 @@ router.delete('/:id', requireAuth, async (req, res) => {
 });
 
 // Import holidays from a standard calendar
-router.post('/import-holidays', requireAuth, async (req, res) => {
+router.post('/import-holidays', async (req, res) => {
   try {
     const { year = new Date().getFullYear() } = req.body;
 

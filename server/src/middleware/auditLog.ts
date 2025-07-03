@@ -1,127 +1,191 @@
 import { Request, Response, NextFunction } from 'express';
-import logger from '../logger';
+import logger from '../logger.js';
 
-interface AuditLogOptions {
+export interface AuditLogEntry {
+  userId: string;
   action: string;
-  resourceType: 'student' | 'parent_summary' | 'lesson_plan' | 'unit_plan' | 'curriculum' | 'user';
-  sensitiveData?: boolean;
-  includeRequestBody?: boolean;
-  includeResponseStatus?: boolean;
-}
-
-export function createAuditLog(options: AuditLogOptions) {
-  return async (req: Request, res: Response, next: NextFunction) => {
-    const startTime = Date.now();
-    const auditEntry = {
-      action: options.action,
-      resourceType: options.resourceType,
-      resourceId: req.params.id || req.params.studentId || null,
-      userId: req.user?.id || null,
-      ipAddress: req.ip || req.connection.remoteAddress || 'unknown',
-      userAgent: req.headers['user-agent'] || 'unknown',
-      method: req.method,
-      path: req.path,
-      timestamp: new Date(),
-      requestBody: options.includeRequestBody && !options.sensitiveData ? req.body : undefined,
-      responseStatus: 0,
-      duration: 0,
-    };
-
-    // Log response when it's sent
-    const originalSend = res.send;
-    res.send = function (data) {
-      auditEntry.responseStatus = res.statusCode;
-      auditEntry.duration = Date.now() - startTime;
-
-      // Log to database asynchronously
-      if (options.sensitiveData || auditEntry.responseStatus < 400) {
-        logAuditEntry(auditEntry).catch((error) => {
-          logger.error({ error, auditEntry }, 'Failed to create audit log entry');
-        });
-      }
-
-      return originalSend.call(this, data);
-    };
-
-    next();
-  };
-}
-
-async function logAuditEntry(entry: {
-  action: string;
-  resourceType: string;
-  resourceId: string | null;
-  userId: number | null;
-  ipAddress: string;
-  userAgent: string;
-  method: string;
-  path: string;
+  resource: string;
+  resourceId?: string;
+  metadata?: Record<string, unknown>;
+  ip?: string;
+  userAgent?: string;
   timestamp: Date;
-  requestBody?: unknown;
-  responseStatus: number;
-  duration: number;
-}) {
-  try {
-    // AuditLog model archived - audit logging disabled in ETFO migration
-    console.log('Audit log entry (model archived):', {
-      action: entry.action,
-      resourceType: entry.resourceType,
-      resourceId: entry.resourceId,
-      userId: entry.userId,
-      ipAddress: entry.ipAddress,
-      userAgent: entry.userAgent,
-      method: entry.method,
-      path: entry.path,
-      requestBody: entry.requestBody ? '[LOGGED TO CONSOLE ONLY]' : null,
-      responseStatus: entry.responseStatus,
-      duration: entry.duration,
-      timestamp: entry.timestamp,
-    });
-  } catch (error) {
-    // If audit log table doesn't exist, just log to console
-    logger.warn({ entry }, 'Audit log entry (table may not exist)');
+  success: boolean;
+  errorMessage?: string;
+}
+
+class AuditLogger {
+  private readonly maxRetries = 3;
+  private readonly retryDelay = 1000; // 1 second
+
+  /**
+   * Log an audit event
+   * Currently logs to application logs only, as AuditLog table is not yet implemented
+   */
+  async log(entry: AuditLogEntry): Promise<void> {
+    // Log to application logs
+    if (entry.success) {
+      logger.info(
+        {
+          audit: true,
+          ...entry,
+        },
+        `Audit: ${entry.action} on ${entry.resource}`,
+      );
+    } else {
+      logger.warn(
+        {
+          audit: true,
+          ...entry,
+        },
+        `Audit: Failed ${entry.action} on ${entry.resource}`,
+      );
+    }
+
+    // TODO: When AuditLog model is added to schema, implement database storage:
+    // await prisma.auditLog.create({ data: { ... } });
+  }
+
+  /**
+   * Create audit middleware for specific actions
+   */
+  middleware(action: string, resource: string) {
+    return async (req: Request, res: Response, next: NextFunction) => {
+      const start = Date.now();
+      const originalSend = res.send;
+      const originalJson = res.json;
+
+      let _responseData: unknown;
+      let success = true;
+      let errorMessage: string | undefined;
+
+      // Intercept response
+      res.send = function (data: unknown) {
+        _responseData = data;
+        if (res.statusCode >= 400) {
+          success = false;
+          errorMessage = typeof data === 'string' ? data : data?.error || data?.message;
+        }
+        return originalSend.call(res, data);
+      };
+
+      res.json = function (data: unknown) {
+        _responseData = data;
+        if (res.statusCode >= 400) {
+          success = false;
+          errorMessage = data?.error || data?.message;
+        }
+        return originalJson.call(res, data);
+      };
+
+      // Continue with request
+      res.on('finish', async () => {
+        const duration = Date.now() - start;
+
+        const entry: AuditLogEntry = {
+          userId: req.user?.id || 'anonymous',
+          action,
+          resource,
+          resourceId: req.params.id || req.body?.id,
+          metadata: {
+            method: req.method,
+            path: req.path,
+            query: req.query,
+            body: req.body,
+            duration,
+            statusCode: res.statusCode,
+          },
+          ip: req.ip || req.socket.remoteAddress,
+          userAgent: req.headers['user-agent'],
+          timestamp: new Date(),
+          success,
+          errorMessage,
+        };
+
+        // Log asynchronously, don't block response
+        this.log(entry).catch((error) => {
+          logger.error({ error }, 'Failed to create audit log');
+        });
+      });
+
+      next();
+    };
+  }
+
+  /**
+   * Log a custom audit event
+   */
+  async logCustom(
+    userId: string,
+    action: string,
+    resource: string,
+    options?: {
+      resourceId?: string;
+      metadata?: Record<string, unknown>;
+      success?: boolean;
+      errorMessage?: string;
+      req?: Request;
+    },
+  ): Promise<void> {
+    const entry: AuditLogEntry = {
+      userId,
+      action,
+      resource,
+      resourceId: options?.resourceId,
+      metadata: options?.metadata,
+      ip: options?.req?.ip || options?.req?.socket.remoteAddress,
+      userAgent: options?.req?.headers['user-agent'],
+      timestamp: new Date(),
+      success: options?.success ?? true,
+      errorMessage: options?.errorMessage,
+    };
+
+    await this.log(entry);
   }
 }
 
-// Pre-configured audit loggers for different operations
+// Create singleton instance
+export const auditLogger = new AuditLogger();
+
+// Pre-configured audit middleware for common operations
 export const auditLoggers = {
-  // Student data access
-  studentView: createAuditLog({
-    action: 'VIEW_STUDENT',
-    resourceType: 'student',
-    sensitiveData: true,
-  }),
+  // Student operations
+  createStudent: auditLogger.middleware('CREATE', 'student'),
+  updateStudent: auditLogger.middleware('UPDATE', 'student'),
+  deleteStudent: auditLogger.middleware('DELETE', 'student'),
+  viewStudent: auditLogger.middleware('VIEW', 'student'),
+  studentView: auditLogger.middleware('VIEW', 'student'), // Alias for backward compatibility
+  listStudents: auditLogger.middleware('LIST', 'student'),
 
-  studentCreate: createAuditLog({
-    action: 'CREATE_STUDENT',
-    resourceType: 'student',
-    sensitiveData: true,
-    includeRequestBody: true,
-  }),
+  // Curriculum operations
+  importCurriculum: auditLogger.middleware('IMPORT', 'curriculum'),
+  viewCurriculum: auditLogger.middleware('VIEW', 'curriculum'),
+  updateCurriculum: auditLogger.middleware('UPDATE', 'curriculum'),
 
-  studentUpdate: createAuditLog({
-    action: 'UPDATE_STUDENT',
-    resourceType: 'student',
-    sensitiveData: true,
-    includeRequestBody: true,
-  }),
+  // Planning operations
+  createPlan: auditLogger.middleware('CREATE', 'plan'),
+  updatePlan: auditLogger.middleware('UPDATE', 'plan'),
+  deletePlan: auditLogger.middleware('DELETE', 'plan'),
+  viewPlan: auditLogger.middleware('VIEW', 'plan'),
 
-  studentDelete: createAuditLog({
-    action: 'DELETE_STUDENT',
-    resourceType: 'student',
-    sensitiveData: true,
-  }),
+  // Authentication operations
+  login: auditLogger.middleware('LOGIN', 'auth'),
+  logout: auditLogger.middleware('LOGOUT', 'auth'),
+  register: auditLogger.middleware('REGISTER', 'auth'),
 
-  // Parent communication
-  parentSummaryView: createAuditLog({
-    action: 'VIEW_PARENT_SUMMARY',
-    resourceType: 'parent_summary',
-    sensitiveData: true,
-  }),
+  // File operations
+  uploadFile: auditLogger.middleware('UPLOAD', 'file'),
+  downloadFile: auditLogger.middleware('DOWNLOAD', 'file'),
+  deleteFile: auditLogger.middleware('DELETE', 'file'),
 
-  parentSummaryCreate: createAuditLog({
-    action: 'CREATE_PARENT_SUMMARY',
-    resourceType: 'parent_summary',
-    sensitiveData: true,
-  }),
+  // Admin operations
+  updateUserRole: auditLogger.middleware('UPDATE_ROLE', 'user'),
+  deleteUser: auditLogger.middleware('DELETE', 'user'),
+
+  // Generic operations
+  create: (resource: string) => auditLogger.middleware('CREATE', resource),
+  update: (resource: string) => auditLogger.middleware('UPDATE', resource),
+  delete: (resource: string) => auditLogger.middleware('DELETE', resource),
+  view: (resource: string) => auditLogger.middleware('VIEW', resource),
+  list: (resource: string) => auditLogger.middleware('LIST', resource),
 };

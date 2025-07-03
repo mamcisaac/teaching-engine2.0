@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // import { embeddingService } from './embeddingService'; // Currently unused
-import BaseService from './base/BaseService';
+import BaseService, { ServiceDependencies } from './base/BaseService';
 import { ImportStatus } from '@teaching-engine/database';
 // Import pdf-parse dynamically to avoid loading test files during module initialization
 let pdf: any;
@@ -18,14 +18,16 @@ export interface ImportProgress {
 export class CurriculumImportService extends BaseService {
   private openai: OpenAI | null = null;
 
-  constructor() {
-    super('CurriculumImportService');
+  constructor(dependencies?: ServiceDependencies) {
+    super('CurriculumImportService', dependencies);
     // Only initialize OpenAI if we have an API key
     const apiKey = process.env.OPENAI_API_KEY;
-    if (apiKey) {
+    if (apiKey && apiKey.trim().length > 0) {
       this.openai = new OpenAI({ apiKey });
+      this.logger.info('OpenAI client initialized successfully');
     } else {
       this.logger.warn('OpenAI API key not found - AI features will be disabled');
+      this.openai = null;
     }
   }
 
@@ -148,7 +150,14 @@ export class CurriculumImportService extends BaseService {
     substrand?: string;
   }> {
     try {
-      const lines = csvContent.split('\n');
+      // Handle different line endings and trim content
+      const normalizedContent = csvContent.replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim();
+      const lines = normalizedContent.split('\n');
+
+      if (lines.length === 0 || (lines.length === 1 && lines[0].trim() === '')) {
+        throw new Error('CSV file is empty');
+      }
+
       // Parse header line handling quoted values
       const headerLine = lines[0].toLowerCase();
       const headers: string[] = [];
@@ -157,17 +166,36 @@ export class CurriculumImportService extends BaseService {
 
       for (let j = 0; j < headerLine.length; j++) {
         const char = headerLine[j];
+        const nextChar = j < headerLine.length - 1 ? headerLine[j + 1] : '';
 
         if (char === '"') {
-          inQuotes = !inQuotes;
+          if (inQuotes && nextChar === '"') {
+            // Escaped quote within quoted field
+            current += '"';
+            j++; // Skip the next quote
+          } else {
+            inQuotes = !inQuotes;
+          }
         } else if (char === ',' && !inQuotes) {
-          headers.push(current.trim().replace(/^"(.*)"$/, '$1'));
+          // Process the field
+          let value = current.trim();
+          // Remove outer quotes if present
+          if (value.startsWith('"') && value.endsWith('"')) {
+            value = value.slice(1, -1).replace(/""/g, '"'); // Handle escaped quotes
+          }
+          headers.push(value);
           current = '';
         } else {
           current += char;
         }
       }
-      headers.push(current.trim().replace(/^"(.*)"$/, '$1'));
+      // Process the last field
+      let value = current.trim();
+      // Remove outer quotes if present
+      if (value.startsWith('"') && value.endsWith('"')) {
+        value = value.slice(1, -1).replace(/""/g, '"'); // Handle escaped quotes
+      }
+      headers.push(value);
 
       const codeIndex = headers.indexOf('code');
       const descriptionIndex = headers.indexOf('description');
@@ -188,51 +216,117 @@ export class CurriculumImportService extends BaseService {
         substrand?: string;
       }> = [];
 
-      for (let i = 1; i < lines.length; i++) {
-        const line = lines[i].trim();
-        if (!line) continue;
+      // Parse data rows - handle newlines within quotes
+      const dataRows: string[][] = [];
+      let currentRow: string[] = [];
+      let currentField = '';
+      let inFieldQuotes = false;
+      let i = 1; // Start after header
 
-        // Parse CSV line handling quoted values properly
-        const columns: string[] = [];
-        let current = '';
-        let inQuotes = false;
+      while (i < lines.length) {
+        const line = lines[i];
+
+        // If we're in quotes from a previous line, add a newline
+        if (inFieldQuotes && currentField.length > 0) {
+          currentField += '\n';
+        }
 
         for (let j = 0; j < line.length; j++) {
           const char = line[j];
+          const nextChar = j < line.length - 1 ? line[j + 1] : '';
 
           if (char === '"') {
-            inQuotes = !inQuotes;
-          } else if (char === ',' && !inQuotes) {
-            columns.push(current.trim().replace(/^"(.*)"$/, '$1'));
-            current = '';
+            if (inFieldQuotes && nextChar === '"') {
+              // Escaped quote within quoted field
+              currentField += '"';
+              j++; // Skip the next quote
+            } else {
+              inFieldQuotes = !inFieldQuotes;
+            }
+          } else if (char === ',' && !inFieldQuotes) {
+            // End of field
+            let value = currentField.trim();
+            // Remove outer quotes if present and unescape inner quotes
+            if (value.startsWith('"') && value.endsWith('"')) {
+              value = value.slice(1, -1).replace(/""/g, '"');
+            }
+            currentRow.push(value);
+            currentField = '';
           } else {
-            current += char;
+            currentField += char;
           }
         }
 
-        // Don't forget the last column
-        columns.push(current.trim().replace(/^"(.*)"$/, '$1'));
+        // If we're not in quotes, this line is complete
+        if (!inFieldQuotes) {
+          // Process the last field of the line
+          let value = currentField.trim();
+          if (value.startsWith('"') && value.endsWith('"')) {
+            value = value.slice(1, -1).replace(/""/g, '"');
+          }
+          currentRow.push(value);
 
+          // Add the row if it has content
+          if (currentRow.length > 0 && currentRow.some((field) => field.length > 0)) {
+            dataRows.push(currentRow);
+          }
+
+          // Reset for next row
+          currentRow = [];
+          currentField = '';
+        }
+
+        i++;
+      }
+
+      // Process the rows
+      for (const columns of dataRows) {
         if (columns.length < Math.max(codeIndex, descriptionIndex) + 1) {
-          this.logger.warn({ lineNumber: i + 1, line }, 'Skipping invalid CSV line');
+          this.logger.warn({ columns, columnCount: columns.length }, 'Skipping invalid CSV line');
           continue;
         }
 
+        // Sanitize grade value
+        let grade = 0;
+        if (gradeIndex >= 0 && gradeIndex < columns.length) {
+          const gradeValue = columns[gradeIndex];
+          // Handle various grade formats: "1", "Grade 1", "K", "JK/SK", etc.
+          if (gradeValue) {
+            const gradeMatch = gradeValue.match(/\d+/);
+            if (gradeMatch) {
+              grade = parseInt(gradeMatch[0]) || 0;
+            } else if (gradeValue.toLowerCase().includes('k')) {
+              grade = 0; // Kindergarten
+            }
+          }
+        }
+
         const expectation = {
-          code: columns[codeIndex],
-          description: columns[descriptionIndex],
-          subject: subjectIndex >= 0 ? columns[subjectIndex] : 'Unknown',
-          grade: gradeIndex >= 0 ? parseInt(columns[gradeIndex]) || 0 : 0,
-          strand: domainIndex >= 0 ? columns[domainIndex] : 'General',
+          code: columns[codeIndex] || '',
+          description: columns[descriptionIndex] || '',
+          subject:
+            subjectIndex >= 0 && subjectIndex < columns.length ? columns[subjectIndex] : 'Unknown',
+          grade,
+          strand:
+            domainIndex >= 0 && domainIndex < columns.length ? columns[domainIndex] : 'General',
         };
 
-        expectations.push(expectation);
+        // Only add if we have both code and description
+        if (expectation.code && expectation.description) {
+          expectations.push(expectation);
+        } else {
+          this.logger.warn(
+            { expectation },
+            'Skipping expectation with missing code or description',
+          );
+        }
       }
 
       return expectations;
     } catch (error) {
-      this.logger.error({ error }, 'Failed to parse CSV content');
-      throw new Error(`CSV parsing failed: ${error.message}`);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      this.logger.error({ error, errorMessage }, 'Failed to parse CSV content');
+      throw new Error(`CSV parsing failed: ${errorMessage}`);
     }
   }
 
@@ -261,11 +355,21 @@ export class CurriculumImportService extends BaseService {
       const pdfData = await pdf(fileBuffer);
       const text = pdfData.text;
 
-      if (!text || text.length < 100) {
-        throw new Error('PDF appears to be empty or too short');
+      if (!text || text.trim().length === 0) {
+        throw new Error('PDF appears to be empty');
       }
 
-      this.logger.info(`Extracted ${text.length} characters from PDF`);
+      if (text.trim().length < 100) {
+        throw new Error('PDF content is too short to contain curriculum expectations');
+      }
+
+      this.logger.info(
+        {
+          textLength: text.length,
+          firstChars: text.substring(0, 100),
+        },
+        'Extracted text from PDF',
+      );
 
       // Use AI to parse the curriculum text
       const expectations = await this.parseTextWithAI(text);
@@ -300,8 +404,12 @@ export class CurriculumImportService extends BaseService {
       const result = await mammoth.extractRawText({ buffer: fileBuffer });
       const text = result.value;
 
-      if (!text || text.length < 100) {
-        throw new Error('DOCX appears to be empty or too short');
+      if (!text || text.trim().length === 0) {
+        throw new Error('DOCX appears to be empty');
+      }
+
+      if (text.trim().length < 100) {
+        throw new Error('DOCX content is too short to contain curriculum expectations');
       }
 
       this.logger.info(`Extracted ${text.length} characters from DOCX`);
@@ -448,7 +556,7 @@ export class CurriculumImportService extends BaseService {
       // Detect if document is in French or bilingual
       const isFrench = this.detectLanguage(text);
       const isBilingual = this.detectBilingual(text);
-      
+
       // Split text into chunks if it's too long (GPT-4 has token limits)
       const chunks = this.chunkText(text, 3000); // ~750 words per chunk
       const allExpectations: Array<{
@@ -466,7 +574,11 @@ export class CurriculumImportService extends BaseService {
       for (let i = 0; i < chunks.length; i++) {
         this.logger.info(`Processing chunk ${i + 1} of ${chunks.length}`);
 
-        const languageInfo = isFrench ? 'French' : isBilingual ? 'bilingual (English and French)' : 'English';
+        const languageInfo = isFrench
+          ? 'French'
+          : isBilingual
+            ? 'bilingual (English and French)'
+            : 'English';
         const prompt = `You are an expert in curriculum design for elementary education. Extract curriculum expectations from the following ${languageInfo} text.
 
 Please extract and return in JSON format:
@@ -559,30 +671,38 @@ ${chunks[i]}
    */
   private detectLanguage(text: string): boolean {
     const frenchIndicators = [
-      'attentes', 'domaine', 'année', 'élève', 'apprentissage',
-      'français', 'mathématiques', 'sciences', 'études sociales',
-      'contenus d\'apprentissage', 'pistes de réflexion'
+      'attentes',
+      'domaine',
+      'année',
+      'élève',
+      'apprentissage',
+      'français',
+      'mathématiques',
+      'sciences',
+      'études sociales',
+      "contenus d'apprentissage",
+      'pistes de réflexion',
     ];
-    
+
     const textLower = text.toLowerCase();
-    const frenchCount = frenchIndicators.filter(indicator => 
-      textLower.includes(indicator)
+    const frenchCount = frenchIndicators.filter((indicator) =>
+      textLower.includes(indicator),
     ).length;
-    
+
     return frenchCount >= 3;
   }
-  
+
   /**
    * Detect if text contains both English and French
    */
   private detectBilingual(text: string): boolean {
     const englishIndicators = ['expectations', 'strand', 'grade', 'student', 'learning'];
     const frenchIndicators = ['attentes', 'domaine', 'année', 'élève', 'apprentissage'];
-    
+
     const textLower = text.toLowerCase();
-    const hasEnglish = englishIndicators.some(indicator => textLower.includes(indicator));
-    const hasFrench = frenchIndicators.some(indicator => textLower.includes(indicator));
-    
+    const hasEnglish = englishIndicators.some((indicator) => textLower.includes(indicator));
+    const hasFrench = frenchIndicators.some((indicator) => textLower.includes(indicator));
+
     return hasEnglish && hasFrench;
   }
 
@@ -618,13 +738,32 @@ ${chunks[i]}
     // - Single letter or number (e.g., "A", "1")
     // - Ends with .0 (e.g., "A1.0")
     // - Contains "overall" in description
+    // - Pattern like A1, B2 without decimal
+    // - Starts with "Overall" in description
+    // - No decimal point in code (e.g., "M1" vs "M1.1")
 
+    const codeUpper = code.toUpperCase();
+    const descLower = description.toLowerCase();
+
+    // Single character codes are overall
     if (code.length === 1) return 'overall';
-    if (code.endsWith('.0')) return 'overall';
-    if (description.toLowerCase().includes('overall')) return 'overall';
-    if (code.match(/^[A-Z]\d*$/)) return 'overall'; // e.g., "A1", "B2"
 
-    // Everything else is specific
+    // Codes ending with .0 are overall
+    if (code.endsWith('.0')) return 'overall';
+
+    // Description contains "overall"
+    if (descLower.includes('overall')) return 'overall';
+
+    // Pattern like A1, B2 (letter + number, no decimal)
+    if (codeUpper.match(/^[A-Z]+\d+$/)) return 'overall';
+
+    // If code has no decimal point and is short, likely overall
+    if (!code.includes('.') && code.length <= 3) return 'overall';
+
+    // Codes with decimal points (except .0) are specific
+    if (code.includes('.') && !code.endsWith('.0')) return 'specific';
+
+    // Default to specific for everything else
     return 'specific';
   }
 

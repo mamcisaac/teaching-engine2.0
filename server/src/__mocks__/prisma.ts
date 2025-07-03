@@ -101,6 +101,22 @@ export const prisma = {
     delete: jest.fn(),
     deleteMany: jest.fn(),
   },
+  unitPlan: {
+    findUnique: jest.fn(),
+    findMany: jest.fn(),
+    create: jest.fn(),
+    update: jest.fn(),
+    delete: jest.fn(),
+    deleteMany: jest.fn(),
+  },
+  lessonPlan: {
+    findUnique: jest.fn(),
+    findMany: jest.fn(),
+    create: jest.fn(),
+    update: jest.fn(),
+    delete: jest.fn(),
+    deleteMany: jest.fn(),
+  },
   // Add transaction support
   $transaction: jest.fn((fn) => {
     if (typeof fn === 'function') {

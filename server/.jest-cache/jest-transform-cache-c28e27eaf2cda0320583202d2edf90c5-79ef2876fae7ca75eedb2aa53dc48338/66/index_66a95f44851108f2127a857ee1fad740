@@ -1,0 +1,60 @@
+cfd63d3cb6f9b762113c9ad3d93eb026
+/* istanbul ignore next */
+function cov_hpg01jvs3() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/index.ts";
+  var hash = "5e22ee61a5b3d695630a60e93c4897dc7a001107";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/index.ts",
+    statementMap: {},
+    fnMap: {},
+    branchMap: {},
+    s: {},
+    f: {},
+    b: {},
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/index.ts",
+      mappings: "AAAA,gBAAgB;AAChB,OAAO,EAAE,gBAAgB,EAAE,MAAM,oBAAoB,CAAC;AACtD,OAAO,EAAE,uBAAuB,EAAE,MAAM,2BAA2B,CAAC;AACpE,OAAO,EAAE,iBAAiB,EAAE,MAAM,qBAAqB,CAAC;AACxD,OAAO,EAAE,YAAY,EAAE,MAAM,gBAAgB,CAAC;AAE9C,yBAAyB;AACzB,OAAO,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AACpD,OAAO,EAAE,OAAO,IAAI,WAAW,EAAE,MAAM,oBAAoB,CAAC;AAE5D,cAAc;AACd,OAAO,EAAE,sBAAsB,EAAE,qBAAqB,EAAE,MAAM,0BAA0B,CAAC;AACzF,OAAO,EAAE,0BAA0B,EAAE,MAAM,uBAAuB,CAAC;AACnE,OAAO,EAAE,mBAAmB,EAAE,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AACjF,OAAO,EAAE,0BAA0B,EAAE,MAAM,8BAA8B,CAAC;AAC1E,OAAO,EAAE,uBAAuB,EAAE,MAAM,2BAA2B,CAAC;AACpE,OAAO,EACL,0BAA0B,EAC1B,qBAAqB,EACrB,uBAAuB,EACvB,oBAAoB,EACpB,uBAAuB,EACxB,MAAM,kBAAkB,CAAC;AAE1B,oBAAoB;AACpB,OAAO,EAAE,MAAM,EAAE,MAAM,cAAc,CAAC;AACtC,OAAO,EAAE,gBAAgB,EAAE,MAAM,qBAAqB,CAAC;AACvD,OAAO,EAAE,sBAAsB,EAAE,MAAM,kBAAkB,CAAC",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/index.ts"],
+      sourcesContent: ["// Core services\nexport { embeddingService } from './embeddingService';\nexport { curriculumImportService } from './curriculumImportService';\nexport { clusteringService } from './clusteringService';\nexport { cacheService } from './CacheService';\n\n// Service infrastructure\nexport { serviceRegistry } from './ServiceRegistry';\nexport { default as BaseService } from './base/BaseService';\n\n// AI services\nexport { AIParentSummaryService, generateParentSummary } from './aiParentSummaryService';\nexport { AIPlanningAssistantService } from './aiPlanningAssistant';\nexport { AIActivityGenerator, aiActivityGenerator } from './aiActivityGenerator';\nexport { AIActivityGeneratorService } from './aiActivityGeneratorService';\nexport { aiPromptTemplateService } from './aiPromptTemplateService';\nexport { \n  generateLongRangePlanDraft,\n  generateUnitPlanDraft,\n  generateLessonPlanDraft,\n  generateDaybookDraft,\n  generatePlanSuggestions\n} from './aiDraftService';\n\n// Existing services\nexport { openai } from './llmService';\nexport { extractMaterials } from './materialGenerator';\nexport { generateWeeklySchedule } from './planningEngine';\n\n// Service types\nexport type { EmbeddingResult } from './embeddingService';\nexport type { ImportProgress } from './curriculumImportService';\nexport type { ClusterResult, ClusteringOptions } from './clusteringService';\nexport type { CacheEntry, CacheOptions, CacheStats } from './CacheService';\nexport type { ServiceMetrics, RetryOptions } from './base/BaseService';\nexport type { ServiceHealth, ServiceRegistration } from './ServiceRegistry';\nexport type { ParentSummaryRequest, ParentSummaryResponse } from './aiParentSummaryService';\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "5e22ee61a5b3d695630a60e93c4897dc7a001107"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_hpg01jvs3 = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_hpg01jvs3();
+// Core services
+export { embeddingService } from './embeddingService';
+export { curriculumImportService } from './curriculumImportService';
+export { clusteringService } from './clusteringService';
+export { cacheService } from './CacheService';
+// Service infrastructure
+export { serviceRegistry } from './ServiceRegistry';
+export { default as BaseService } from './base/BaseService';
+// AI services
+export { AIParentSummaryService, generateParentSummary } from './aiParentSummaryService';
+export { AIPlanningAssistantService } from './aiPlanningAssistant';
+export { AIActivityGenerator, aiActivityGenerator } from './aiActivityGenerator';
+export { AIActivityGeneratorService } from './aiActivityGeneratorService';
+export { aiPromptTemplateService } from './aiPromptTemplateService';
+export { generateLongRangePlanDraft, generateUnitPlanDraft, generateLessonPlanDraft, generateDaybookDraft, generatePlanSuggestions } from './aiDraftService';
+// Existing services
+export { openai } from './llmService';
+export { extractMaterials } from './materialGenerator';
+export { generateWeeklySchedule } from './planningEngine';
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3ZfaHBnMDFqdnMzIiwiYWN0dWFsQ292ZXJhZ2UiLCJlbWJlZGRpbmdTZXJ2aWNlIiwiY3VycmljdWx1bUltcG9ydFNlcnZpY2UiLCJjbHVzdGVyaW5nU2VydmljZSIsImNhY2hlU2VydmljZSIsInNlcnZpY2VSZWdpc3RyeSIsImRlZmF1bHQiLCJCYXNlU2VydmljZSIsIkFJUGFyZW50U3VtbWFyeVNlcnZpY2UiLCJnZW5lcmF0ZVBhcmVudFN1bW1hcnkiLCJBSVBsYW5uaW5nQXNzaXN0YW50U2VydmljZSIsIkFJQWN0aXZpdHlHZW5lcmF0b3IiLCJhaUFjdGl2aXR5R2VuZXJhdG9yIiwiQUlBY3Rpdml0eUdlbmVyYXRvclNlcnZpY2UiLCJhaVByb21wdFRlbXBsYXRlU2VydmljZSIsImdlbmVyYXRlTG9uZ1JhbmdlUGxhbkRyYWZ0IiwiZ2VuZXJhdGVVbml0UGxhbkRyYWZ0IiwiZ2VuZXJhdGVMZXNzb25QbGFuRHJhZnQiLCJnZW5lcmF0ZURheWJvb2tEcmFmdCIsImdlbmVyYXRlUGxhblN1Z2dlc3Rpb25zIiwib3BlbmFpIiwiZXh0cmFjdE1hdGVyaWFscyIsImdlbmVyYXRlV2Vla2x5U2NoZWR1bGUiXSwic291cmNlcyI6WyIvVXNlcnMvbWljaGFlbG1jaXNhYWMvR2l0SHViL3RlYWNoaW5nLWVuZ2luZTIuMC9zZXJ2ZXIvc3JjL3NlcnZpY2VzL2luZGV4LnRzIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIENvcmUgc2VydmljZXNcbmV4cG9ydCB7IGVtYmVkZGluZ1NlcnZpY2UgfSBmcm9tICcuL2VtYmVkZGluZ1NlcnZpY2UnO1xuZXhwb3J0IHsgY3VycmljdWx1bUltcG9ydFNlcnZpY2UgfSBmcm9tICcuL2N1cnJpY3VsdW1JbXBvcnRTZXJ2aWNlJztcbmV4cG9ydCB7IGNsdXN0ZXJpbmdTZXJ2aWNlIH0gZnJvbSAnLi9jbHVzdGVyaW5nU2VydmljZSc7XG5leHBvcnQgeyBjYWNoZVNlcnZpY2UgfSBmcm9tICcuL0NhY2hlU2VydmljZSc7XG5cbi8vIFNlcnZpY2UgaW5mcmFzdHJ1Y3R1cmVcbmV4cG9ydCB7IHNlcnZpY2VSZWdpc3RyeSB9IGZyb20gJy4vU2VydmljZVJlZ2lzdHJ5JztcbmV4cG9ydCB7IGRlZmF1bHQgYXMgQmFzZVNlcnZpY2UgfSBmcm9tICcuL2Jhc2UvQmFzZVNlcnZpY2UnO1xuXG4vLyBBSSBzZXJ2aWNlc1xuZXhwb3J0IHsgQUlQYXJlbnRTdW1tYXJ5U2VydmljZSwgZ2VuZXJhdGVQYXJlbnRTdW1tYXJ5IH0gZnJvbSAnLi9haVBhcmVudFN1bW1hcnlTZXJ2aWNlJztcbmV4cG9ydCB7IEFJUGxhbm5pbmdBc3Npc3RhbnRTZXJ2aWNlIH0gZnJvbSAnLi9haVBsYW5uaW5nQXNzaXN0YW50JztcbmV4cG9ydCB7IEFJQWN0aXZpdHlHZW5lcmF0b3IsIGFpQWN0aXZpdHlHZW5lcmF0b3IgfSBmcm9tICcuL2FpQWN0aXZpdHlHZW5lcmF0b3InO1xuZXhwb3J0IHsgQUlBY3Rpdml0eUdlbmVyYXRvclNlcnZpY2UgfSBmcm9tICcuL2FpQWN0aXZpdHlHZW5lcmF0b3JTZXJ2aWNlJztcbmV4cG9ydCB7IGFpUHJvbXB0VGVtcGxhdGVTZXJ2aWNlIH0gZnJvbSAnLi9haVByb21wdFRlbXBsYXRlU2VydmljZSc7XG5leHBvcnQgeyBcbiAgZ2VuZXJhdGVMb25nUmFuZ2VQbGFuRHJhZnQsXG4gIGdlbmVyYXRlVW5pdFBsYW5EcmFmdCxcbiAgZ2VuZXJhdGVMZXNzb25QbGFuRHJhZnQsXG4gIGdlbmVyYXRlRGF5Ym9va0RyYWZ0LFxuICBnZW5lcmF0ZVBsYW5TdWdnZXN0aW9uc1xufSBmcm9tICcuL2FpRHJhZnRTZXJ2aWNlJztcblxuLy8gRXhpc3Rpbmcgc2VydmljZXNcbmV4cG9ydCB7IG9wZW5haSB9IGZyb20gJy4vbGxtU2VydmljZSc7XG5leHBvcnQgeyBleHRyYWN0TWF0ZXJpYWxzIH0gZnJvbSAnLi9tYXRlcmlhbEdlbmVyYXRvcic7XG5leHBvcnQgeyBnZW5lcmF0ZVdlZWtseVNjaGVkdWxlIH0gZnJvbSAnLi9wbGFubmluZ0VuZ2luZSc7XG5cbi8vIFNlcnZpY2UgdHlwZXNcbmV4cG9ydCB0eXBlIHsgRW1iZWRkaW5nUmVzdWx0IH0gZnJvbSAnLi9lbWJlZGRpbmdTZXJ2aWNlJztcbmV4cG9ydCB0eXBlIHsgSW1wb3J0UHJvZ3Jlc3MgfSBmcm9tICcuL2N1cnJpY3VsdW1JbXBvcnRTZXJ2aWNlJztcbmV4cG9ydCB0eXBlIHsgQ2x1c3RlclJlc3VsdCwgQ2x1c3RlcmluZ09wdGlvbnMgfSBmcm9tICcuL2NsdXN0ZXJpbmdTZXJ2aWNlJztcbmV4cG9ydCB0eXBlIHsgQ2FjaGVFbnRyeSwgQ2FjaGVPcHRpb25zLCBDYWNoZVN0YXRzIH0gZnJvbSAnLi9DYWNoZVNlcnZpY2UnO1xuZXhwb3J0IHR5cGUgeyBTZXJ2aWNlTWV0cmljcywgUmV0cnlPcHRpb25zIH0gZnJvbSAnLi9iYXNlL0Jhc2VTZXJ2aWNlJztcbmV4cG9ydCB0eXBlIHsgU2VydmljZUhlYWx0aCwgU2VydmljZVJlZ2lzdHJhdGlvbiB9IGZyb20gJy4vU2VydmljZVJlZ2lzdHJ5JztcbmV4cG9ydCB0eXBlIHsgUGFyZW50U3VtbWFyeVJlcXVlc3QsIFBhcmVudFN1bW1hcnlSZXNwb25zZSB9IGZyb20gJy4vYWlQYXJlbnRTdW1tYXJ5U2VydmljZSc7XG4iXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7SUF3QkE7SUFBQUEsYUFBQSxZQUFBQSxDQUFBO01BQUEsT0FBQUMsY0FBQTtJQUFBO0VBQUE7RUFBQSxPQUFBQSxjQUFBO0FBQUE7QUFBQUQsYUFBQTtBQXhCQTtBQUNBLFNBQVNFLGdCQUFnQixRQUFRLG9CQUFvQjtBQUNyRCxTQUFTQyx1QkFBdUIsUUFBUSwyQkFBMkI7QUFDbkUsU0FBU0MsaUJBQWlCLFFBQVEscUJBQXFCO0FBQ3ZELFNBQVNDLFlBQVksUUFBUSxnQkFBZ0I7QUFFN0M7QUFDQSxTQUFTQyxlQUFlLFFBQVEsbUJBQW1CO0FBQ25ELFNBQVNDLE9BQU8sSUFBSUMsV0FBVyxRQUFRLG9CQUFvQjtBQUUzRDtBQUNBLFNBQVNDLHNCQUFzQixFQUFFQyxxQkFBcUIsUUFBUSwwQkFBMEI7QUFDeEYsU0FBU0MsMEJBQTBCLFFBQVEsdUJBQXVCO0FBQ2xFLFNBQVNDLG1CQUFtQixFQUFFQyxtQkFBbUIsUUFBUSx1QkFBdUI7QUFDaEYsU0FBU0MsMEJBQTBCLFFBQVEsOEJBQThCO0FBQ3pFLFNBQVNDLHVCQUF1QixRQUFRLDJCQUEyQjtBQUNuRSxTQUNFQywwQkFBMEIsRUFDMUJDLHFCQUFxQixFQUNyQkMsdUJBQXVCLEVBQ3ZCQyxvQkFBb0IsRUFDcEJDLHVCQUF1QixRQUNsQixrQkFBa0I7QUFFekI7QUFDQSxTQUFTQyxNQUFNLFFBQVEsY0FBYztBQUNyQyxTQUFTQyxnQkFBZ0IsUUFBUSxxQkFBcUI7QUFDdEQsU0FBU0Msc0JBQXNCLFFBQVEsa0JBQWtCIiwiaWdub3JlTGlzdCI6W119

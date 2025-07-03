@@ -80,7 +80,9 @@ export class TestServer {
       process.env.PORT = String(this.port);
       process.env.NODE_ENV = 'test';
       process.env.JWT_SECRET = 'test-secret-key';
+      process.env.JWT_EXPIRES_IN = '7d';
       process.env.LOG_LEVEL = 'error'; // Reduce noise during tests
+      process.env.IS_TEST_SERVER = 'true'; // Flag to indicate test server
 
       // Ensure test database URL is set
       if (!process.env.DATABASE_URL?.includes('test')) {
@@ -135,7 +137,9 @@ export class TestServer {
         PORT: String(this.port),
         NODE_ENV: 'test',
         JWT_SECRET: 'test-secret-key',
+        JWT_EXPIRES_IN: '7d',
         LOG_LEVEL: 'error',
+        IS_TEST_SERVER: 'true',
       };
 
       // Ensure test database URL

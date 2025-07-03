@@ -111,4 +111,67 @@ export const mockRegistry = {
   },
 };
 
+// Export as MockRegistry for backward compatibility
+export const MockRegistry = {
+  // Spread mockRegistry first, then override openai
+  ...mockRegistry,
+  openai: {
+    create: () => {
+      // Return a fresh instance each time
+      return {
+        chat: {
+          completions: {
+            create: jest.fn().mockResolvedValue({
+              id: 'mock-completion-id',
+              object: 'chat.completion',
+              created: Date.now(),
+              model: 'gpt-4',
+              choices: [
+                {
+                  index: 0,
+                  message: {
+                    role: 'assistant',
+                    content: 'MOCK: Test response',
+                  },
+                  finish_reason: 'stop',
+                },
+              ],
+              usage: {
+                prompt_tokens: 10,
+                completion_tokens: 10,
+                total_tokens: 20,
+              },
+            }),
+          },
+        },
+        embeddings: {
+          create: jest.fn().mockResolvedValue({
+            object: 'list',
+            data: [
+              {
+                object: 'embedding',
+                index: 0,
+                embedding: Array(1536).fill(0.1),
+              },
+            ],
+            model: 'text-embedding-ada-002',
+            usage: {
+              prompt_tokens: 5,
+              total_tokens: 5,
+            },
+          }),
+        },
+      };
+    },
+    chat: (response: any) => {
+      // Just return the response directly - tests expect the response, not the instance
+      return response;
+    },
+    embedding: (response: any) => {
+      // Add embedding method for consistency
+      return response;
+    },
+  },
+};
+
 export default mockRegistry;

@@ -1,0 +1,14 @@
+01835186160db4f9d954d0d4d0130192
+/**
+ * TypeScript mock for mammoth (DOCX parser)
+ */
+export const extractRawText = async ({ buffer }) => {
+    return {
+        value: 'Mock DOCX content with curriculum expectations',
+        messages: [],
+    };
+};
+export default {
+    extractRawText,
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL1VzZXJzL21pY2hhZWxtY2lzYWFjL0dpdEh1Yi90ZWFjaGluZy1lbmdpbmUyLjAvc2VydmVyL3NyYy9fX21vY2tzX18vbWFtbW90aC50cyIsIm1hcHBpbmdzIjoiQUFBQTs7R0FFRztBQUNILE1BQU0sQ0FBQyxNQUFNLGNBQWMsR0FBRyxLQUFLLEVBQUUsRUFBRSxNQUFNLEVBQXNCLEVBQUUsRUFBRTtJQUNyRSxPQUFPO1FBQ0wsS0FBSyxFQUFFLGdEQUFnRDtRQUN2RCxRQUFRLEVBQUUsRUFBRTtLQUNiLENBQUM7QUFDSixDQUFDLENBQUM7QUFFRixlQUFlO0lBQ2IsY0FBYztDQUNmLENBQUMiLCJuYW1lcyI6W10sInNvdXJjZXMiOlsiL1VzZXJzL21pY2hhZWxtY2lzYWFjL0dpdEh1Yi90ZWFjaGluZy1lbmdpbmUyLjAvc2VydmVyL3NyYy9fX21vY2tzX18vbWFtbW90aC50cyJdLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIFR5cGVTY3JpcHQgbW9jayBmb3IgbWFtbW90aCAoRE9DWCBwYXJzZXIpXG4gKi9cbmV4cG9ydCBjb25zdCBleHRyYWN0UmF3VGV4dCA9IGFzeW5jICh7IGJ1ZmZlciB9OiB7IGJ1ZmZlcjogQnVmZmVyIH0pID0+IHtcbiAgcmV0dXJuIHtcbiAgICB2YWx1ZTogJ01vY2sgRE9DWCBjb250ZW50IHdpdGggY3VycmljdWx1bSBleHBlY3RhdGlvbnMnLFxuICAgIG1lc3NhZ2VzOiBbXSxcbiAgfTtcbn07XG5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgZXh0cmFjdFJhd1RleHQsXG59OyJdLCJ2ZXJzaW9uIjozfQ==

@@ -1,0 +1,305 @@
+d8c05750c6a2f9e966132b43561232a6
+/* istanbul ignore next */
+function cov_2c1xqclxgp() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/routes/authEndpoints.ts";
+  var hash = "0795996bdb258ab401b08a475836f1190f1512be";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/routes/authEndpoints.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 10,
+          column: 15
+        },
+        end: {
+          line: 10,
+          column: 23
+        }
+      },
+      "1": {
+        start: {
+          line: 12,
+          column: 20
+        },
+        end: {
+          line: 15,
+          column: 2
+        }
+      },
+      "2": {
+        start: {
+          line: 16,
+          column: 23
+        },
+        end: {
+          line: 21,
+          column: 2
+        }
+      },
+      "3": {
+        start: {
+          line: 22,
+          column: 29
+        },
+        end: {
+          line: 25,
+          column: 2
+        }
+      },
+      "4": {
+        start: {
+          line: 26,
+          column: 29
+        },
+        end: {
+          line: 28,
+          column: 2
+        }
+      },
+      "5": {
+        start: {
+          line: 29,
+          column: 28
+        },
+        end: {
+          line: 32,
+          column: 2
+        }
+      },
+      "6": {
+        start: {
+          line: 34,
+          column: 0
+        },
+        end: {
+          line: 34,
+          column: 76
+        }
+      },
+      "7": {
+        start: {
+          line: 35,
+          column: 0
+        },
+        end: {
+          line: 35,
+          column: 85
+        }
+      },
+      "8": {
+        start: {
+          line: 36,
+          column: 0
+        },
+        end: {
+          line: 36,
+          column: 104
+        }
+      },
+      "9": {
+        start: {
+          line: 37,
+          column: 0
+        },
+        end: {
+          line: 37,
+          column: 101
+        }
+      },
+      "10": {
+        start: {
+          line: 39,
+          column: 0
+        },
+        end: {
+          line: 39,
+          column: 45
+        }
+      },
+      "11": {
+        start: {
+          line: 40,
+          column: 0
+        },
+        end: {
+          line: 40,
+          column: 101
+        }
+      },
+      "12": {
+        start: {
+          line: 42,
+          column: 0
+        },
+        end: {
+          line: 51,
+          column: 3
+        }
+      },
+      "13": {
+        start: {
+          line: 43,
+          column: 4
+        },
+        end: {
+          line: 50,
+          column: 7
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "(anonymous_0)",
+        decl: {
+          start: {
+            line: 42,
+            column: 32
+          },
+          end: {
+            line: 42,
+            column: 33
+          }
+        },
+        loc: {
+          start: {
+            line: 42,
+            column: 46
+          },
+          end: {
+            line: 51,
+            column: 1
+          }
+        },
+        line: 42
+      }
+    },
+    branchMap: {},
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0
+    },
+    f: {
+      "0": 0
+    },
+    b: {},
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/routes/authEndpoints.ts",
+      mappings: "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",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/routes/authEndpoints.ts"],
+      sourcesContent: ["/**\n * Authentication Endpoints Router\n * Exposes authentication middleware functions as API endpoints\n */\n\nimport { Router } from 'express';\nimport { \n  login, \n  register, \n  logout, \n  changePassword, \n  forgotPassword, \n  resetPassword,\n  authenticate \n} from '../middleware/auth';\nimport { validateRequest } from '../middleware/validateRequest';\nimport { authRateLimiter } from '../middleware/rateLimiter';\nimport { z } from 'zod';\n\nconst router = Router();\n\n// Validation schemas\nconst loginSchema = z.object({\n  email: z.string().email('Invalid email format'),\n  password: z.string().min(1, 'Password is required'),\n});\n\nconst registerSchema = z.object({\n  email: z.string().email('Invalid email format'),\n  password: z.string().min(8, 'Password must be at least 8 characters'),\n  name: z.string().min(1, 'Name is required'),\n  organizationId: z.number().optional(),\n});\n\nconst changePasswordSchema = z.object({\n  currentPassword: z.string().min(1, 'Current password is required'),\n  newPassword: z.string().min(8, 'New password must be at least 8 characters'),\n});\n\nconst forgotPasswordSchema = z.object({\n  email: z.string().email('Invalid email format'),\n});\n\nconst resetPasswordSchema = z.object({\n  token: z.string().min(1, 'Reset token is required'),\n  newPassword: z.string().min(8, 'New password must be at least 8 characters'),\n});\n\n// Public endpoints with rate limiting\nrouter.post('/login', authRateLimiter, validateRequest(loginSchema), login);\nrouter.post('/register', authRateLimiter, validateRequest(registerSchema), register);\nrouter.post('/forgot-password', authRateLimiter, validateRequest(forgotPasswordSchema), forgotPassword);\nrouter.post('/reset-password', authRateLimiter, validateRequest(resetPasswordSchema), resetPassword);\n\n// Protected endpoints\nrouter.post('/logout', authenticate, logout);\nrouter.post('/change-password', authenticate, validateRequest(changePasswordSchema), changePassword);\n\n// Session check endpoint\nrouter.get('/me', authenticate, (req, res) => {\n  res.json({\n    user: {\n      id: req.user!.id,\n      email: req.user!.email,\n      name: req.user!.name,\n      role: req.user!.role,\n    },\n  });\n});\n\nexport default router;"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "0795996bdb258ab401b08a475836f1190f1512be"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_2c1xqclxgp = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_2c1xqclxgp();
+/**
+ * Authentication Endpoints Router
+ * Exposes authentication middleware functions as API endpoints
+ */
+import { Router } from 'express';
+import { login, register, logout, changePassword, forgotPassword, resetPassword, authenticate } from '../middleware/auth';
+import { validateRequest } from '../middleware/validateRequest';
+import { authRateLimiter } from '../middleware/rateLimiter';
+import { z } from 'zod';
+const router =
+/* istanbul ignore next */
+(cov_2c1xqclxgp().s[0]++, Router());
+// Validation schemas
+const loginSchema =
+/* istanbul ignore next */
+(cov_2c1xqclxgp().s[1]++, z.object({
+  email: z.string().email('Invalid email format'),
+  password: z.string().min(1, 'Password is required')
+}));
+const registerSchema =
+/* istanbul ignore next */
+(cov_2c1xqclxgp().s[2]++, z.object({
+  email: z.string().email('Invalid email format'),
+  password: z.string().min(8, 'Password must be at least 8 characters'),
+  name: z.string().min(1, 'Name is required'),
+  organizationId: z.number().optional()
+}));
+const changePasswordSchema =
+/* istanbul ignore next */
+(cov_2c1xqclxgp().s[3]++, z.object({
+  currentPassword: z.string().min(1, 'Current password is required'),
+  newPassword: z.string().min(8, 'New password must be at least 8 characters')
+}));
+const forgotPasswordSchema =
+/* istanbul ignore next */
+(cov_2c1xqclxgp().s[4]++, z.object({
+  email: z.string().email('Invalid email format')
+}));
+const resetPasswordSchema =
+/* istanbul ignore next */
+(cov_2c1xqclxgp().s[5]++, z.object({
+  token: z.string().min(1, 'Reset token is required'),
+  newPassword: z.string().min(8, 'New password must be at least 8 characters')
+}));
+// Public endpoints with rate limiting
+/* istanbul ignore next */
+cov_2c1xqclxgp().s[6]++;
+router.post('/login', authRateLimiter, validateRequest(loginSchema), login);
+/* istanbul ignore next */
+cov_2c1xqclxgp().s[7]++;
+router.post('/register', authRateLimiter, validateRequest(registerSchema), register);
+/* istanbul ignore next */
+cov_2c1xqclxgp().s[8]++;
+router.post('/forgot-password', authRateLimiter, validateRequest(forgotPasswordSchema), forgotPassword);
+/* istanbul ignore next */
+cov_2c1xqclxgp().s[9]++;
+router.post('/reset-password', authRateLimiter, validateRequest(resetPasswordSchema), resetPassword);
+// Protected endpoints
+/* istanbul ignore next */
+cov_2c1xqclxgp().s[10]++;
+router.post('/logout', authenticate, logout);
+/* istanbul ignore next */
+cov_2c1xqclxgp().s[11]++;
+router.post('/change-password', authenticate, validateRequest(changePasswordSchema), changePassword);
+// Session check endpoint
+/* istanbul ignore next */
+cov_2c1xqclxgp().s[12]++;
+router.get('/me', authenticate, (req, res) => {
+  /* istanbul ignore next */
+  cov_2c1xqclxgp().f[0]++;
+  cov_2c1xqclxgp().s[13]++;
+  res.json({
+    user: {
+      id: req.user.id,
+      email: req.user.email,
+      name: req.user.name,
+      role: req.user.role
+    }
+  });
+});
+export default router;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3ZfMmMxeHFjbHhncCIsImFjdHVhbENvdmVyYWdlIiwiUm91dGVyIiwibG9naW4iLCJyZWdpc3RlciIsImxvZ291dCIsImNoYW5nZVBhc3N3b3JkIiwiZm9yZ290UGFzc3dvcmQiLCJyZXNldFBhc3N3b3JkIiwiYXV0aGVudGljYXRlIiwidmFsaWRhdGVSZXF1ZXN0IiwiYXV0aFJhdGVMaW1pdGVyIiwieiIsInJvdXRlciIsInMiLCJsb2dpblNjaGVtYSIsIm9iamVjdCIsImVtYWlsIiwic3RyaW5nIiwicGFzc3dvcmQiLCJtaW4iLCJyZWdpc3RlclNjaGVtYSIsIm5hbWUiLCJvcmdhbml6YXRpb25JZCIsIm51bWJlciIsIm9wdGlvbmFsIiwiY2hhbmdlUGFzc3dvcmRTY2hlbWEiLCJjdXJyZW50UGFzc3dvcmQiLCJuZXdQYXNzd29yZCIsImZvcmdvdFBhc3N3b3JkU2NoZW1hIiwicmVzZXRQYXNzd29yZFNjaGVtYSIsInRva2VuIiwicG9zdCIsImdldCIsInJlcSIsInJlcyIsImYiLCJqc29uIiwidXNlciIsImlkIiwicm9sZSJdLCJzb3VyY2VzIjpbIi9Vc2Vycy9taWNoYWVsbWNpc2FhYy9HaXRIdWIvdGVhY2hpbmctZW5naW5lMi4wL3NlcnZlci9zcmMvcm91dGVzL2F1dGhFbmRwb2ludHMudHMiXSwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBBdXRoZW50aWNhdGlvbiBFbmRwb2ludHMgUm91dGVyXG4gKiBFeHBvc2VzIGF1dGhlbnRpY2F0aW9uIG1pZGRsZXdhcmUgZnVuY3Rpb25zIGFzIEFQSSBlbmRwb2ludHNcbiAqL1xuXG5pbXBvcnQgeyBSb3V0ZXIgfSBmcm9tICdleHByZXNzJztcbmltcG9ydCB7IFxuICBsb2dpbiwgXG4gIHJlZ2lzdGVyLCBcbiAgbG9nb3V0LCBcbiAgY2hhbmdlUGFzc3dvcmQsIFxuICBmb3Jnb3RQYXNzd29yZCwgXG4gIHJlc2V0UGFzc3dvcmQsXG4gIGF1dGhlbnRpY2F0ZSBcbn0gZnJvbSAnLi4vbWlkZGxld2FyZS9hdXRoJztcbmltcG9ydCB7IHZhbGlkYXRlUmVxdWVzdCB9IGZyb20gJy4uL21pZGRsZXdhcmUvdmFsaWRhdGVSZXF1ZXN0JztcbmltcG9ydCB7IGF1dGhSYXRlTGltaXRlciB9IGZyb20gJy4uL21pZGRsZXdhcmUvcmF0ZUxpbWl0ZXInO1xuaW1wb3J0IHsgeiB9IGZyb20gJ3pvZCc7XG5cbmNvbnN0IHJvdXRlciA9IFJvdXRlcigpO1xuXG4vLyBWYWxpZGF0aW9uIHNjaGVtYXNcbmNvbnN0IGxvZ2luU2NoZW1hID0gei5vYmplY3Qoe1xuICBlbWFpbDogei5zdHJpbmcoKS5lbWFpbCgnSW52YWxpZCBlbWFpbCBmb3JtYXQnKSxcbiAgcGFzc3dvcmQ6IHouc3RyaW5nKCkubWluKDEsICdQYXNzd29yZCBpcyByZXF1aXJlZCcpLFxufSk7XG5cbmNvbnN0IHJlZ2lzdGVyU2NoZW1hID0gei5vYmplY3Qoe1xuICBlbWFpbDogei5zdHJpbmcoKS5lbWFpbCgnSW52YWxpZCBlbWFpbCBmb3JtYXQnKSxcbiAgcGFzc3dvcmQ6IHouc3RyaW5nKCkubWluKDgsICdQYXNzd29yZCBtdXN0IGJlIGF0IGxlYXN0IDggY2hhcmFjdGVycycpLFxuICBuYW1lOiB6LnN0cmluZygpLm1pbigxLCAnTmFtZSBpcyByZXF1aXJlZCcpLFxuICBvcmdhbml6YXRpb25JZDogei5udW1iZXIoKS5vcHRpb25hbCgpLFxufSk7XG5cbmNvbnN0IGNoYW5nZVBhc3N3b3JkU2NoZW1hID0gei5vYmplY3Qoe1xuICBjdXJyZW50UGFzc3dvcmQ6IHouc3RyaW5nKCkubWluKDEsICdDdXJyZW50IHBhc3N3b3JkIGlzIHJlcXVpcmVkJyksXG4gIG5ld1Bhc3N3b3JkOiB6LnN0cmluZygpLm1pbig4LCAnTmV3IHBhc3N3b3JkIG11c3QgYmUgYXQgbGVhc3QgOCBjaGFyYWN0ZXJzJyksXG59KTtcblxuY29uc3QgZm9yZ290UGFzc3dvcmRTY2hlbWEgPSB6Lm9iamVjdCh7XG4gIGVtYWlsOiB6LnN0cmluZygpLmVtYWlsKCdJbnZhbGlkIGVtYWlsIGZvcm1hdCcpLFxufSk7XG5cbmNvbnN0IHJlc2V0UGFzc3dvcmRTY2hlbWEgPSB6Lm9iamVjdCh7XG4gIHRva2VuOiB6LnN0cmluZygpLm1pbigxLCAnUmVzZXQgdG9rZW4gaXMgcmVxdWlyZWQnKSxcbiAgbmV3UGFzc3dvcmQ6IHouc3RyaW5nKCkubWluKDgsICdOZXcgcGFzc3dvcmQgbXVzdCBiZSBhdCBsZWFzdCA4IGNoYXJhY3RlcnMnKSxcbn0pO1xuXG4vLyBQdWJsaWMgZW5kcG9pbnRzIHdpdGggcmF0ZSBsaW1pdGluZ1xucm91dGVyLnBvc3QoJy9sb2dpbicsIGF1dGhSYXRlTGltaXRlciwgdmFsaWRhdGVSZXF1ZXN0KGxvZ2luU2NoZW1hKSwgbG9naW4pO1xucm91dGVyLnBvc3QoJy9yZWdpc3RlcicsIGF1dGhSYXRlTGltaXRlciwgdmFsaWRhdGVSZXF1ZXN0KHJlZ2lzdGVyU2NoZW1hKSwgcmVnaXN0ZXIpO1xucm91dGVyLnBvc3QoJy9mb3Jnb3QtcGFzc3dvcmQnLCBhdXRoUmF0ZUxpbWl0ZXIsIHZhbGlkYXRlUmVxdWVzdChmb3Jnb3RQYXNzd29yZFNjaGVtYSksIGZvcmdvdFBhc3N3b3JkKTtcbnJvdXRlci5wb3N0KCcvcmVzZXQtcGFzc3dvcmQnLCBhdXRoUmF0ZUxpbWl0ZXIsIHZhbGlkYXRlUmVxdWVzdChyZXNldFBhc3N3b3JkU2NoZW1hKSwgcmVzZXRQYXNzd29yZCk7XG5cbi8vIFByb3RlY3RlZCBlbmRwb2ludHNcbnJvdXRlci5wb3N0KCcvbG9nb3V0JywgYXV0aGVudGljYXRlLCBsb2dvdXQpO1xucm91dGVyLnBvc3QoJy9jaGFuZ2UtcGFzc3dvcmQnLCBhdXRoZW50aWNhdGUsIHZhbGlkYXRlUmVxdWVzdChjaGFuZ2VQYXNzd29yZFNjaGVtYSksIGNoYW5nZVBhc3N3b3JkKTtcblxuLy8gU2Vzc2lvbiBjaGVjayBlbmRwb2ludFxucm91dGVyLmdldCgnL21lJywgYXV0aGVudGljYXRlLCAocmVxLCByZXMpID0+IHtcbiAgcmVzLmpzb24oe1xuICAgIHVzZXI6IHtcbiAgICAgIGlkOiByZXEudXNlciEuaWQsXG4gICAgICBlbWFpbDogcmVxLnVzZXIhLmVtYWlsLFxuICAgICAgbmFtZTogcmVxLnVzZXIhLm5hbWUsXG4gICAgICByb2xlOiByZXEudXNlciEucm9sZSxcbiAgICB9LFxuICB9KTtcbn0pO1xuXG5leHBvcnQgZGVmYXVsdCByb3V0ZXI7Il0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0lBMkJNO0lBQUFBLGNBQUEsWUFBQUEsQ0FBQTtNQUFBLE9BQUFDLGNBQUE7SUFBQTtFQUFBO0VBQUEsT0FBQUEsY0FBQTtBQUFBO0FBQUFELGNBQUE7QUEzQk47Ozs7QUFLQSxTQUFTRSxNQUFNLFFBQVEsU0FBUztBQUNoQyxTQUNFQyxLQUFLLEVBQ0xDLFFBQVEsRUFDUkMsTUFBTSxFQUNOQyxjQUFjLEVBQ2RDLGNBQWMsRUFDZEMsYUFBYSxFQUNiQyxZQUFZLFFBQ1Asb0JBQW9CO0FBQzNCLFNBQVNDLGVBQWUsUUFBUSwrQkFBK0I7QUFDL0QsU0FBU0MsZUFBZSxRQUFRLDJCQUEyQjtBQUMzRCxTQUFTQyxDQUFDLFFBQVEsS0FBSztBQUV2QixNQUFNQyxNQUFNO0FBQUE7QUFBQSxDQUFBYixjQUFBLEdBQUFjLENBQUEsT0FBR1osTUFBTSxFQUFFO0FBRXZCO0FBQ0EsTUFBTWEsV0FBVztBQUFBO0FBQUEsQ0FBQWYsY0FBQSxHQUFBYyxDQUFBLE9BQUdGLENBQUMsQ0FBQ0ksTUFBTSxDQUFDO0VBQzNCQyxLQUFLLEVBQUVMLENBQUMsQ0FBQ00sTUFBTSxFQUFFLENBQUNELEtBQUssQ0FBQyxzQkFBc0IsQ0FBQztFQUMvQ0UsUUFBUSxFQUFFUCxDQUFDLENBQUNNLE1BQU0sRUFBRSxDQUFDRSxHQUFHLENBQUMsQ0FBQyxFQUFFLHNCQUFzQjtDQUNuRCxDQUFDO0FBRUYsTUFBTUMsY0FBYztBQUFBO0FBQUEsQ0FBQXJCLGNBQUEsR0FBQWMsQ0FBQSxPQUFHRixDQUFDLENBQUNJLE1BQU0sQ0FBQztFQUM5QkMsS0FBSyxFQUFFTCxDQUFDLENBQUNNLE1BQU0sRUFBRSxDQUFDRCxLQUFLLENBQUMsc0JBQXNCLENBQUM7RUFDL0NFLFFBQVEsRUFBRVAsQ0FBQyxDQUFDTSxNQUFNLEVBQUUsQ0FBQ0UsR0FBRyxDQUFDLENBQUMsRUFBRSx3Q0FBd0MsQ0FBQztFQUNyRUUsSUFBSSxFQUFFVixDQUFDLENBQUNNLE1BQU0sRUFBRSxDQUFDRSxHQUFHLENBQUMsQ0FBQyxFQUFFLGtCQUFrQixDQUFDO0VBQzNDRyxjQUFjLEVBQUVYLENBQUMsQ0FBQ1ksTUFBTSxFQUFFLENBQUNDLFFBQVE7Q0FDcEMsQ0FBQztBQUVGLE1BQU1DLG9CQUFvQjtBQUFBO0FBQUEsQ0FBQTFCLGNBQUEsR0FBQWMsQ0FBQSxPQUFHRixDQUFDLENBQUNJLE1BQU0sQ0FBQztFQUNwQ1csZUFBZSxFQUFFZixDQUFDLENBQUNNLE1BQU0sRUFBRSxDQUFDRSxHQUFHLENBQUMsQ0FBQyxFQUFFLDhCQUE4QixDQUFDO0VBQ2xFUSxXQUFXLEVBQUVoQixDQUFDLENBQUNNLE1BQU0sRUFBRSxDQUFDRSxHQUFHLENBQUMsQ0FBQyxFQUFFLDRDQUE0QztDQUM1RSxDQUFDO0FBRUYsTUFBTVMsb0JBQW9CO0FBQUE7QUFBQSxDQUFBN0IsY0FBQSxHQUFBYyxDQUFBLE9BQUdGLENBQUMsQ0FBQ0ksTUFBTSxDQUFDO0VBQ3BDQyxLQUFLLEVBQUVMLENBQUMsQ0FBQ00sTUFBTSxFQUFFLENBQUNELEtBQUssQ0FBQyxzQkFBc0I7Q0FDL0MsQ0FBQztBQUVGLE1BQU1hLG1CQUFtQjtBQUFBO0FBQUEsQ0FBQTlCLGNBQUEsR0FBQWMsQ0FBQSxPQUFHRixDQUFDLENBQUNJLE1BQU0sQ0FBQztFQUNuQ2UsS0FBSyxFQUFFbkIsQ0FBQyxDQUFDTSxNQUFNLEVBQUUsQ0FBQ0UsR0FBRyxDQUFDLENBQUMsRUFBRSx5QkFBeUIsQ0FBQztFQUNuRFEsV0FBVyxFQUFFaEIsQ0FBQyxDQUFDTSxNQUFNLEVBQUUsQ0FBQ0UsR0FBRyxDQUFDLENBQUMsRUFBRSw0Q0FBNEM7Q0FDNUUsQ0FBQztBQUVGO0FBQUE7QUFBQXBCLGNBQUEsR0FBQWMsQ0FBQTtBQUNBRCxNQUFNLENBQUNtQixJQUFJLENBQUMsUUFBUSxFQUFFckIsZUFBZSxFQUFFRCxlQUFlLENBQUNLLFdBQVcsQ0FBQyxFQUFFWixLQUFLLENBQUM7QUFBQztBQUFBSCxjQUFBLEdBQUFjLENBQUE7QUFDNUVELE1BQU0sQ0FBQ21CLElBQUksQ0FBQyxXQUFXLEVBQUVyQixlQUFlLEVBQUVELGVBQWUsQ0FBQ1csY0FBYyxDQUFDLEVBQUVqQixRQUFRLENBQUM7QUFBQztBQUFBSixjQUFBLEdBQUFjLENBQUE7QUFDckZELE1BQU0sQ0FBQ21CLElBQUksQ0FBQyxrQkFBa0IsRUFBRXJCLGVBQWUsRUFBRUQsZUFBZSxDQUFDbUIsb0JBQW9CLENBQUMsRUFBRXRCLGNBQWMsQ0FBQztBQUFDO0FBQUFQLGNBQUEsR0FBQWMsQ0FBQTtBQUN4R0QsTUFBTSxDQUFDbUIsSUFBSSxDQUFDLGlCQUFpQixFQUFFckIsZUFBZSxFQUFFRCxlQUFlLENBQUNvQixtQkFBbUIsQ0FBQyxFQUFFdEIsYUFBYSxDQUFDO0FBRXBHO0FBQUE7QUFBQVIsY0FBQSxHQUFBYyxDQUFBO0FBQ0FELE1BQU0sQ0FBQ21CLElBQUksQ0FBQyxTQUFTLEVBQUV2QixZQUFZLEVBQUVKLE1BQU0sQ0FBQztBQUFDO0FBQUFMLGNBQUEsR0FBQWMsQ0FBQTtBQUM3Q0QsTUFBTSxDQUFDbUIsSUFBSSxDQUFDLGtCQUFrQixFQUFFdkIsWUFBWSxFQUFFQyxlQUFlLENBQUNnQixvQkFBb0IsQ0FBQyxFQUFFcEIsY0FBYyxDQUFDO0FBRXBHO0FBQUE7QUFBQU4sY0FBQSxHQUFBYyxDQUFBO0FBQ0FELE1BQU0sQ0FBQ29CLEdBQUcsQ0FBQyxLQUFLLEVBQUV4QixZQUFZLEVBQUUsQ0FBQ3lCLEdBQUcsRUFBRUMsR0FBRyxLQUFJO0VBQUE7RUFBQW5DLGNBQUEsR0FBQW9DLENBQUE7RUFBQXBDLGNBQUEsR0FBQWMsQ0FBQTtFQUMzQ3FCLEdBQUcsQ0FBQ0UsSUFBSSxDQUFDO0lBQ1BDLElBQUksRUFBRTtNQUNKQyxFQUFFLEVBQUVMLEdBQUcsQ0FBQ0ksSUFBSyxDQUFDQyxFQUFFO01BQ2hCdEIsS0FBSyxFQUFFaUIsR0FBRyxDQUFDSSxJQUFLLENBQUNyQixLQUFLO01BQ3RCSyxJQUFJLEVBQUVZLEdBQUcsQ0FBQ0ksSUFBSyxDQUFDaEIsSUFBSTtNQUNwQmtCLElBQUksRUFBRU4sR0FBRyxDQUFDSSxJQUFLLENBQUNFOztHQUVuQixDQUFDO0FBQ0osQ0FBQyxDQUFDO0FBRUYsZUFBZTNCLE1BQU0iLCJpZ25vcmVMaXN0IjpbXX0=

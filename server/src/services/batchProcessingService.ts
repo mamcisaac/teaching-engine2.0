@@ -1,4 +1,4 @@
-import { BaseService } from './base/BaseService';
+import { BaseService, ServiceDependencies } from './base/BaseService';
 
 export interface BatchOperation<T = unknown> {
   id: string;
@@ -68,8 +68,8 @@ class BatchProcessingService extends BaseService {
   private readonly queues = new Map<string, BatchOperation[]>();
   private readonly activeProcesses = new Set<string>();
 
-  constructor() {
-    super('BatchProcessingService');
+  constructor(dependencies?: ServiceDependencies) {
+    super('BatchProcessingService', dependencies);
   }
 
   /**
@@ -418,7 +418,7 @@ class BatchProcessingService extends BaseService {
             title: data.title as string,
             type: data.type as string,
             url: data.url as string,
-            unitPlan: { connect: { id: data.unitPlanId as string } }
+            unitPlan: { connect: { id: data.unitPlanId as string } },
           },
         });
       } else if (data.lessonPlanId) {
@@ -427,7 +427,7 @@ class BatchProcessingService extends BaseService {
             title: data.title as string,
             type: data.type as string,
             url: data.url as string,
-            lessonPlan: { connect: { id: data.lessonPlanId as string } }
+            lessonPlan: { connect: { id: data.lessonPlanId as string } },
           },
         });
       } else {

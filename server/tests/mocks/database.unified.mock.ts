@@ -96,10 +96,12 @@ function createMockFunction<T = any>(
       switch (operation) {
         case 'findUnique':
         case 'findFirst':
-          return globalMockStore.get(modelName, args?.where?.id || 'default') as T;
+          const foundItem = globalMockStore.get(modelName, args?.where?.id || 'default');
+          return foundItem as T;
 
         case 'findMany':
-          return globalMockStore.getAll(modelName) as T;
+          const allItems = globalMockStore.getAll(modelName);
+          return allItems as T;
 
         case 'create':
           const id = args?.data?.id || globalMockStore.generateId(modelName);
@@ -136,6 +138,7 @@ function createMockFunction<T = any>(
           const updated = {
             ...existing,
             ...args?.data,
+            id: updateId,
             updatedAt: new Date(),
           };
           globalMockStore.set(modelName, updateId, updated);

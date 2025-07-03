@@ -1,4 +1,5 @@
-import { prisma } from '../prisma';
+import { openai } from './llmService';
+import BaseService, { ServiceDependencies } from './base/BaseService';
 
 export interface ParentSummaryRequest {
   studentId: number;
@@ -11,84 +12,181 @@ export interface ParentSummaryRequest {
 export interface ParentSummaryResponse {
   french: string;
   english: string;
+  metadata?: {
+    activitiesCount: number;
+    goalsCount: number;
+    reflectionsCount: number;
+    outcomesCount: number;
+    subjects: string[];
+  };
+}
+
+export class AIParentSummaryService extends BaseService {
+  constructor(dependencies?: ServiceDependencies) {
+    super('AIParentSummaryService', dependencies);
+  }
+
+  /**
+   * Check if AI service is available
+   */
+  isAIServiceAvailable(): boolean {
+    return !!openai;
+  }
+
+  /**
+   * Generate AI-based parent summary for a student
+   */
+  async generateParentSummary(request: ParentSummaryRequest): Promise<ParentSummaryResponse> {
+    const { studentId, from, to, focus, userId } = request;
+
+    try {
+      // Get student information
+      const student = await this.prisma.student.findFirst({
+        where: {
+          id: studentId,
+          userId: userId,
+        },
+      });
+
+      if (!student) {
+        this.logger.error({ studentId, userId }, 'Student not found');
+        throw new Error('Failed to generate parent summary');
+      }
+
+      // Fetch student goals
+      const goals = await this.prisma.studentGoal.findMany({
+        where: {
+          studentId: studentId,
+          createdAt: {
+            gte: from,
+            lte: to,
+          },
+        },
+      });
+
+      // Fetch student reflections
+      const reflections = await this.prisma.studentReflection.findMany({
+        where: {
+          studentId: studentId,
+          date: {
+            gte: from,
+            lte: to,
+          },
+        },
+      });
+
+      // Fetch activities from daybook entries
+      const activities = await this.fetchStudentActivities(from, to);
+
+      // Generate summary based on collected data
+      const summaryData = {
+        studentName: `${student.firstName} ${student.lastName}`,
+        period: { from, to },
+        focus: focus || [],
+        activities: activities.length,
+        outcomes: [
+          ...new Set(
+            activities.flatMap((a) => a.expectations?.map((e) => e.expectation?.code) || []),
+          ),
+        ],
+        subjects: [
+          ...new Set(
+            activities.flatMap((a) => a.expectations?.map((e) => e.expectation?.subject) || []),
+          ),
+        ].filter(Boolean),
+        goals: goals.length,
+        reflections: reflections.length,
+        assessments: 0, // TODO: Implement assessment tracking
+      };
+
+      // Generate summaries
+      let french: string;
+      let english: string;
+
+      if (this.isAIServiceAvailable()) {
+        // Use AI service if available
+        const aiSummary = await this.generateAISummary(summaryData);
+        french = aiSummary.french;
+        english = aiSummary.english;
+      } else {
+        // Fallback to rule-based summaries
+        french = generateFrenchSummary(summaryData);
+        english = generateEnglishSummary(summaryData);
+      }
+
+      return {
+        french,
+        english,
+        metadata: {
+          activitiesCount: summaryData.activities,
+          goalsCount: summaryData.goals,
+          reflectionsCount: summaryData.reflections,
+          outcomesCount: summaryData.outcomes.length,
+          subjects: summaryData.subjects,
+        },
+      };
+    } catch (error) {
+      this.logger.error({ error, studentId }, 'Error generating parent summary');
+      throw new Error('Failed to generate parent summary');
+    }
+  }
+
+  /**
+   * Fetch student activities from daybook entries
+   */
+  private async fetchStudentActivities(from: Date, to: Date) {
+    try {
+      const daybookEntries = await this.prisma.daybookEntry.findMany({
+        where: {
+          date: {
+            gte: from,
+            lte: to,
+          },
+        },
+        include: {
+          expectations: {
+            include: {
+              expectation: true,
+            },
+          },
+        },
+      });
+
+      return daybookEntries;
+    } catch (error) {
+      this.logger.error({ error }, 'Failed to fetch student activities');
+      return [];
+    }
+  }
+
+  /**
+   * Generate AI-powered summary
+   */
+  private async generateAISummary(
+    summaryData: SummaryData,
+  ): Promise<{ french: string; english: string }> {
+    // This would use OpenAI or similar service in production
+    // For now, using rule-based generation
+    return {
+      french: generateFrenchSummary(summaryData),
+      english: generateEnglishSummary(summaryData),
+    };
+  }
 }
 
 /**
- * Generate AI-based parent summary for a student
+ * Generate AI-based parent summary for a student (backward compatibility)
  */
 export async function generateParentSummary(
   request: ParentSummaryRequest,
 ): Promise<ParentSummaryResponse> {
-  const { studentId, from, to, focus, userId } = request;
-
-  try {
-    // Get student information
-    const student = await prisma.student.findFirst({
-      where: {
-        id: studentId,
-        userId: userId,
-      },
-      include: {
-        goals: {
-          where: {
-            createdAt: {
-              gte: from,
-              lte: to,
-            },
-          },
-        },
-        reflections: {
-          where: {
-            date: {
-              gte: from,
-              lte: to,
-            },
-          },
-        },
-      },
-    });
-
-    if (!student) {
-      throw new Error('Student not found');
-    }
-
-    // TODO: Replace with ETFO lesson plan data
-    // Fetch lesson plans and activities from the ETFO planning system
-    const activities: Array<{
-      outcomes?: Array<{
-        outcome: { id: string; code: string; description: string; subject: string };
-      }>;
-    }> = [];
-
-    // TODO: Implement assessment tracking
-    // Assessment data will be integrated with ETFO lesson plans
-    const _assessments: Array<Record<string, unknown>> = [];
-
-    // Generate summary based on collected data
-    const summaryData = {
-      studentName: `${student.firstName} ${student.lastName}`,
-      period: { from, to },
-      focus: focus || [],
-      activities: activities.length,
-      outcomes: [
-        ...new Set(activities.flatMap((a) => a.outcomes?.map((o) => o.outcome?.code) || [])),
-      ],
-      subjects: [...new Set(activities.map((_a) => 'General'))], // TODO: Extract subjects from ETFO lesson plans
-      goals: student.goals?.length || 0,
-      reflections: student.reflections?.length || 0,
-      assessments: 0,
-    };
-
-    // For now, generate basic rule-based summaries
-    // In future versions, this would use OpenAI or similar AI service
-    const french = generateFrenchSummary(summaryData);
-    const english = generateEnglishSummary(summaryData);
-
-    return { french, english };
-  } catch (error) {
-    console.error('Error generating parent summary:', error);
-    throw new Error('Failed to generate parent summary');
-  }
+  const service = new AIParentSummaryService();
+  const result = await service.generateParentSummary(request);
+  // Return without metadata for backward compatibility
+  return {
+    french: result.french,
+    english: result.english,
+  };
 }
 
 interface SummaryData {

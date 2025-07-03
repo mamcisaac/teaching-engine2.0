@@ -19,8 +19,8 @@ export interface AISuggestion {
 export class AIPlanningAssistantService extends BaseService {
   private openai: OpenAI | null = null;
 
-  constructor() {
-    super('AIPlanningAssistantService');
+  constructor(dependencies?: ServiceDependencies) {
+    super('AIPlanningAssistantService', dependencies);
     const apiKey = process.env.OPENAI_API_KEY;
     if (apiKey) {
       this.openai = new OpenAI({ apiKey });
@@ -499,13 +499,13 @@ Return ONLY a JSON array of strings:
   }> {
     try {
       const hasApiKey = !!this.openai;
-      
+
       if (!hasApiKey) {
         return {
           healthy: false,
           apiKey: false,
           lastCheck: new Date().toISOString(),
-          error: 'OpenAI API key not configured'
+          error: 'OpenAI API key not configured',
         };
       }
 
@@ -513,7 +513,7 @@ Return ONLY a JSON array of strings:
       const testResponse = await this.openai!.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [{ role: 'user', content: 'Test' }],
-        max_tokens: 5
+        max_tokens: 5,
       });
 
       const healthy = !!testResponse.choices[0]?.message?.content;
@@ -521,7 +521,7 @@ Return ONLY a JSON array of strings:
       return {
         healthy,
         apiKey: hasApiKey,
-        lastCheck: new Date().toISOString()
+        lastCheck: new Date().toISOString(),
       };
     } catch (error) {
       this.logger.error({ error }, 'AI service health check failed');
@@ -529,7 +529,7 @@ Return ONLY a JSON array of strings:
         healthy: false,
         apiKey: !!this.openai,
         lastCheck: new Date().toISOString(),
-        error: error instanceof Error ? error.message : 'Unknown error'
+        error: error instanceof Error ? error.message : 'Unknown error',
       };
     }
   }

@@ -1,7 +1,7 @@
 import { Router, Request } from 'express';
 import { Prisma } from '../prisma';
 import { prisma } from '../prisma';
-import { validate } from '../validation';
+import { validateRequest as validate } from '../middleware/validateRequest';
 import { z } from 'zod';
 import { auditLoggers } from '../middleware/auditLog';
 
@@ -58,7 +58,7 @@ const studentReflectionCreateSchema = z.object({
 });
 
 // Get all students for the authenticated teacher
-router.get('/', auditLoggers.studentView, async (req: Request, res, next) => {
+router.get('/', auditLoggers.listStudents, async (req: Request, res, next) => {
   try {
     const userId = req.user?.id;
 
@@ -101,7 +101,7 @@ router.get('/', auditLoggers.studentView, async (req: Request, res, next) => {
 });
 
 // Get a specific student
-router.get('/:id', auditLoggers.studentView, async (req: Request, res, next) => {
+router.get('/:id', auditLoggers.viewStudent, async (req: Request, res, next) => {
   try {
     const userId = req.user?.id;
     const studentId = parseInt(req.params.id);
@@ -155,7 +155,7 @@ router.get('/:id', auditLoggers.studentView, async (req: Request, res, next) => 
 router.post(
   '/',
   validate(studentCreateSchema),
-  auditLoggers.studentCreate,
+  auditLoggers.createStudent,
   async (req: Request, res, next) => {
     try {
       const userId = req.user?.id;
@@ -217,7 +217,7 @@ router.post(
 router.put(
   '/:id',
   validate(studentUpdateSchema),
-  auditLoggers.studentUpdate,
+  auditLoggers.updateStudent,
   async (req: Request, res, next) => {
     try {
       const userId = req.user?.id;
@@ -276,7 +276,7 @@ router.put(
 );
 
 // Delete a student
-router.delete('/:id', auditLoggers.studentDelete, async (req: Request, res, next) => {
+router.delete('/:id', auditLoggers.deleteStudent, async (req: Request, res, next) => {
   try {
     const userId = req.user?.id;
     const studentId = parseInt(req.params.id);
@@ -533,7 +533,7 @@ router.delete('/:id/reflections/:reflectionId', async (req: Request, res, next) 
 });
 
 // Get student progress summary
-router.get('/:id/progress', auditLoggers.studentView, async (req: Request, res, next) => {
+router.get('/:id/progress', auditLoggers.viewStudent, async (req: Request, res, next) => {
   try {
     const userId = req.user?.id;
     const studentId = parseInt(req.params.id);

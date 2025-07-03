@@ -127,7 +127,7 @@ export function getEmergencyContactsList(contacts: ExtractedContacts): string {
   const emergencyContacts = [
     ...contacts.emergency,
     ...contacts.administration.filter((c) => c.priority === 'urgent'),
-    ...contacts.medical,
+    ...contacts.medical.filter((c) => c.priority === 'urgent'), // Only urgent medical contacts
   ];
 
   if (emergencyContacts.length === 0) {
@@ -202,13 +202,32 @@ function _extractCustomContacts(subPlanContacts: unknown): ContactInfo[] {
 function parseContactString(role: string, info: string): ContactInfo | null {
   if (!info || typeof info !== 'string') return null;
 
-  // Try to extract phone number
-  const phoneMatch = info.match(/(\d{3}[-.\s]?\d{3}[-.\s]?\d{4})/);
-  const extMatch = info.match(/ext\.?\s*(\d+)/i);
+  // Enhanced phone regex to support multiple formats
+  // Support: (416) 555-1234, 416-555-1234, 416.555.1234, 416 555 1234, 4165551234, +1-416-555-1234, 911, 416-555-SAFE
+  const phonePatterns = [
+    /(\+?1[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/, // Regular North American formats including parentheses
+    /\b(911|999|112)\b/, // Emergency numbers
+    /(\+\d{1,3}[-.\s]?\d+[-.\s]?\d+[-.\s]?\d+)/, // International format
+    /(\d{3}[-.\s]?\d{3}[-.\s]?[A-Z]{4})/, // Phone numbers with letters (e.g., 416-555-SAFE)
+  ];
+
+  let phoneMatch = null;
+  let phone = '';
+
+  // Try each pattern until we find a match
+  for (const pattern of phonePatterns) {
+    const match = info.match(pattern);
+    if (match) {
+      phoneMatch = match;
+      phone = match[0];
+      break;
+    }
+  }
 
   if (!phoneMatch) return null;
 
-  const phone = phoneMatch[1];
+  // Extract extension - support ext, ext., extension
+  const extMatch = info.match(/(?:ext\.?|extension)\s*(\d+)/i);
   const extension = extMatch ? extMatch[1] : undefined;
 
   // Extract name (text before the phone number)
@@ -303,7 +322,7 @@ function determineCategory(role: string): ContactInfo['category'] {
 function formatContact(contact: ContactInfo): string {
   let formatted = `${contact.role}: ${contact.name}`;
 
-  if (contact.phone) {
+  if (contact.phone && contact.phone !== '') {
     formatted += ` - ${contact.phone}`;
     if (contact.extension) {
       formatted += ` ext. ${contact.extension}`;
@@ -314,8 +333,11 @@ function formatContact(contact: ContactInfo): string {
     formatted += ` (${contact.location})`;
   }
 
-  if (contact.availability !== 'School hours') {
-    formatted += ` [${contact.availability}]`;
+  // Show availability if it's not "School hours" OR if it's "School hours" AND there's a location
+  if (contact.availability) {
+    if (contact.availability !== 'School hours' || contact.location) {
+      formatted += ` [${contact.availability}]`;
+    }
   }
 
   return formatted;

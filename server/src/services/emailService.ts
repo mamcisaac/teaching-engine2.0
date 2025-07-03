@@ -53,21 +53,28 @@ let customEmailHandler:
 let transporter: Transporter | null = null;
 
 // Initialize SMTP transporter if configured
-if (process.env.SMTP_HOST) {
-  const transporterConfig: SMTPConfig = {
-    host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT || '587'),
-  };
-
-  if (process.env.SMTP_USER && process.env.SMTP_PASS) {
-    transporterConfig.auth = {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
+function initializeTransporter() {
+  if (process.env.SMTP_HOST) {
+    const transporterConfig: SMTPConfig = {
+      host: process.env.SMTP_HOST,
+      port: parseInt(process.env.SMTP_PORT || '587'),
     };
-  }
 
-  transporter = nodemailer.createTransport(transporterConfig);
+    if (process.env.SMTP_USER && process.env.SMTP_PASS) {
+      transporterConfig.auth = {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      };
+    }
+
+    transporter = nodemailer.createTransport(transporterConfig);
+  } else {
+    transporter = null;
+  }
 }
+
+// Initialize on module load
+initializeTransporter();
 
 export function setEmailHandler(
   handler: (
@@ -83,6 +90,16 @@ export function setEmailHandler(
 
 export function clearEmailHandler() {
   customEmailHandler = null;
+}
+
+// Function to reinitialize transporter (useful for tests)
+export function reinitializeTransporter() {
+  initializeTransporter();
+}
+
+// Function to get current transporter (useful for tests)
+export function getTransporter(): Transporter | null {
+  return transporter;
 }
 
 export async function sendEmail(

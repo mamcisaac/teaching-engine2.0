@@ -1,4 +1,4 @@
-import BaseService from './base/BaseService';
+import BaseService, { ServiceDependencies } from './base/BaseService';
 import { curriculumDiscoveryService } from './curriculumDiscoveryService';
 // import { activityDiscoveryService } from './activityDiscoveryService'; // Unused import
 
@@ -37,8 +37,8 @@ export class DiscoverySchedulerService extends BaseService {
   private taskTimers: Map<string, NodeJS.Timeout> = new Map();
   private isInitialized: boolean = false;
 
-  constructor() {
-    super('DiscoverySchedulerService');
+  constructor(dependencies?: ServiceDependencies) {
+    super('DiscoverySchedulerService', dependencies);
   }
 
   /**
@@ -49,13 +49,13 @@ export class DiscoverySchedulerService extends BaseService {
 
     try {
       this.logger.info('Initializing Discovery Scheduler Service');
-      
+
       // Create default scheduled tasks
       await this.createDefaultTasks();
-      
+
       // Start the scheduler
       this.startScheduler();
-      
+
       this.isInitialized = true;
       this.logger.info('Discovery Scheduler Service initialized successfully');
     } catch (error) {
@@ -109,7 +109,7 @@ export class DiscoverySchedulerService extends BaseService {
         id: this.generateTaskId(taskData.name),
         ...taskData,
       };
-      
+
       this.scheduledTasks.set(task.id, task);
       this.logger.info(`Created task: ${task.name} (${task.id})`);
     }
@@ -120,7 +120,7 @@ export class DiscoverySchedulerService extends BaseService {
    */
   private startScheduler(): void {
     this.logger.info('Starting task scheduler');
-    
+
     // Schedule all active tasks
     for (const task of this.scheduledTasks.values()) {
       if (task.isActive) {
@@ -129,9 +129,12 @@ export class DiscoverySchedulerService extends BaseService {
     }
 
     // Set up periodic scheduler check (every hour)
-    setInterval(() => {
-      this.checkAndScheduleTasks();
-    }, 60 * 60 * 1000);
+    setInterval(
+      () => {
+        this.checkAndScheduleTasks();
+      },
+      60 * 60 * 1000,
+    );
   }
 
   /**
@@ -140,7 +143,7 @@ export class DiscoverySchedulerService extends BaseService {
   private scheduleTask(task: ScheduledTask): void {
     const now = new Date();
     const delay = Math.max(0, task.nextRun.getTime() - now.getTime());
-    
+
     // Clear existing timer if any
     const existingTimer = this.taskTimers.get(task.id);
     if (existingTimer) {
@@ -153,10 +156,10 @@ export class DiscoverySchedulerService extends BaseService {
     }, delay);
 
     this.taskTimers.set(task.id, timer);
-    
+
     this.logger.info(
       { taskId: task.id, taskName: task.name, nextRun: task.nextRun, delay },
-      'Task scheduled'
+      'Task scheduled',
     );
   }
 
@@ -196,18 +199,20 @@ export class DiscoverySchedulerService extends BaseService {
       execution.endTime = new Date();
 
       this.logger.info(
-        { taskId: task.id, taskName: task.name, result, duration: execution.endTime.getTime() - execution.startTime.getTime() },
-        'Task completed successfully'
+        {
+          taskId: task.id,
+          taskName: task.name,
+          result,
+          duration: execution.endTime.getTime() - execution.startTime.getTime(),
+        },
+        'Task completed successfully',
       );
     } catch (error) {
       execution.status = 'failed';
       execution.error = error instanceof Error ? error.message : 'Unknown error';
       execution.endTime = new Date();
 
-      this.logger.error(
-        { taskId: task.id, taskName: task.name, error },
-        'Task execution failed'
-      );
+      this.logger.error({ taskId: task.id, taskName: task.name, error }, 'Task execution failed');
     } finally {
       // Update task schedule
       task.lastRun = execution.startTime;
@@ -226,10 +231,10 @@ export class DiscoverySchedulerService extends BaseService {
    */
   private async executeDiscoveryTask(task: ScheduledTask): Promise<TaskExecution['result']> {
     const config = task.config;
-    
+
     try {
       const documents = await curriculumDiscoveryService.discoverDocuments();
-      
+
       let processedCount = 0;
       const errors: string[] = [];
 
@@ -241,7 +246,7 @@ export class DiscoverySchedulerService extends BaseService {
             // For now, we'll just log the discovery
             this.logger.info(
               { documentId: document.id, title: document.title },
-              'Document discovered (auto-processing disabled)'
+              'Document discovered (auto-processing disabled)',
             );
             processedCount++;
           } catch (error) {
@@ -257,7 +262,9 @@ export class DiscoverySchedulerService extends BaseService {
         errors: errors.length > 0 ? errors : undefined,
       };
     } catch (error) {
-      throw new Error(`Discovery task failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(
+        `Discovery task failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      );
     }
   }
 
@@ -272,12 +279,14 @@ export class DiscoverySchedulerService extends BaseService {
     try {
       const documents = curriculumDiscoveryService.getDiscoveredDocuments();
       const now = new Date();
-      
+
       // Find documents that need verification
-      const documentsToVerify = documents.filter(doc => {
-        const timeSinceVerification = now.getTime() - doc.lastVerified.getTime();
-        return timeSinceVerification > maxAge;
-      }).slice(0, batchSize);
+      const documentsToVerify = documents
+        .filter((doc) => {
+          const timeSinceVerification = now.getTime() - doc.lastVerified.getTime();
+          return timeSinceVerification > maxAge;
+        })
+        .slice(0, batchSize);
 
       let verifiedCount = 0;
       const errors: string[] = [];
@@ -285,13 +294,13 @@ export class DiscoverySchedulerService extends BaseService {
       for (const document of documentsToVerify) {
         try {
           const isAvailable = await curriculumDiscoveryService.verifyDocument(document.id);
-          
+
           if (isAvailable) {
             verifiedCount++;
           } else {
             this.logger.warn(
               { documentId: document.id, title: document.title },
-              'Document is no longer available'
+              'Document is no longer available',
             );
           }
         } catch (error) {
@@ -308,7 +317,9 @@ export class DiscoverySchedulerService extends BaseService {
         errors: errors.length > 0 ? errors : undefined,
       };
     } catch (error) {
-      throw new Error(`Verification task failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(
+        `Verification task failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      );
     }
   }
 
@@ -323,7 +334,7 @@ export class DiscoverySchedulerService extends BaseService {
     try {
       const documents = curriculumDiscoveryService.getDiscoveredDocuments();
       const now = new Date();
-      
+
       let removedCount = 0;
       const errors: string[] = [];
 
@@ -348,7 +359,7 @@ export class DiscoverySchedulerService extends BaseService {
               removedCount++;
               this.logger.info(
                 { documentId: document.id, title: document.title },
-                'Document removed during cleanup'
+                'Document removed during cleanup',
               );
             }
           } catch (error) {
@@ -363,7 +374,9 @@ export class DiscoverySchedulerService extends BaseService {
         errors: errors.length > 0 ? errors : undefined,
       };
     } catch (error) {
-      throw new Error(`Cleanup task failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(
+        `Cleanup task failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      );
     }
   }
 
@@ -405,13 +418,10 @@ export class DiscoverySchedulerService extends BaseService {
    */
   private checkAndScheduleTasks(): void {
     const now = new Date();
-    
+
     for (const task of this.scheduledTasks.values()) {
       if (task.isActive && task.nextRun <= now && !this.runningTasks.has(task.id)) {
-        this.logger.info(
-          { taskId: task.id, taskName: task.name },
-          'Rescheduling missed task'
-        );
+        this.logger.info({ taskId: task.id, taskName: task.name }, 'Rescheduling missed task');
         this.scheduleTask(task);
       }
     }
@@ -427,7 +437,7 @@ export class DiscoverySchedulerService extends BaseService {
     };
 
     this.scheduledTasks.set(task.id, task);
-    
+
     if (task.isActive) {
       this.scheduleTask(task);
     }
@@ -447,7 +457,7 @@ export class DiscoverySchedulerService extends BaseService {
     }
 
     const removed = this.scheduledTasks.delete(taskId);
-    
+
     if (removed) {
       this.logger.info({ taskId }, 'Task removed');
     }
@@ -495,10 +505,7 @@ export class DiscoverySchedulerService extends BaseService {
       }
     }
 
-    this.logger.info(
-      { taskId, taskName: task.name, isActive },
-      'Task status updated'
-    );
+    this.logger.info({ taskId, taskName: task.name, isActive }, 'Task status updated');
 
     return true;
   }
@@ -531,7 +538,7 @@ export class DiscoverySchedulerService extends BaseService {
   } {
     return {
       totalTasks: this.scheduledTasks.size,
-      activeTasks: Array.from(this.scheduledTasks.values()).filter(t => t.isActive).length,
+      activeTasks: Array.from(this.scheduledTasks.values()).filter((t) => t.isActive).length,
       runningTasks: this.runningTasks.size,
       uptime: this.isInitialized ? Date.now() - Date.now() : 0, // Would track actual uptime in production
     };
@@ -553,7 +560,7 @@ export class DiscoverySchedulerService extends BaseService {
     const runningTaskIds = Array.from(this.runningTasks.keys());
     if (runningTaskIds.length > 0) {
       this.logger.info(`Waiting for ${runningTaskIds.length} running tasks to complete`);
-      
+
       // Wait up to 30 seconds for tasks to complete
       const timeout = setTimeout(() => {
         this.logger.warn('Shutdown timeout reached, some tasks may not have completed');

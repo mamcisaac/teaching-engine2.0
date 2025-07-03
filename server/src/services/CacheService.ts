@@ -1,4 +1,4 @@
-import BaseService from './base/BaseService';
+import BaseService, { ServiceDependencies } from './base/BaseService';
 
 export interface CacheEntry<T = unknown> {
   key: string;
@@ -13,6 +13,7 @@ export interface CacheOptions {
   defaultTTL?: number; // Default TTL in milliseconds
   cleanupInterval?: number; // Cleanup interval in milliseconds
   maxSize?: number; // Maximum number of entries
+  dependencies?: ServiceDependencies; // Optional dependencies for testing
 }
 
 export interface CacheStats {
@@ -36,7 +37,7 @@ export class CacheService extends BaseService {
   private readonly cleanupIntervalMs: number;
 
   constructor(options: CacheOptions = {}) {
-    super('CacheService');
+    super('CacheService', options.dependencies);
 
     this.defaultTTL = options.defaultTTL || 5 * 60 * 1000; // 5 minutes
     this.maxSize = options.maxSize || 10000; // Maximum cache entries
@@ -395,8 +396,9 @@ export class CacheService extends BaseService {
     const evictedKeys: string[] = [];
 
     // Get all entries sorted by last access time
-    const sortedEntries = Array.from(this.cache.entries())
-      .sort(([, a], [, b]) => a.lastAccessed - b.lastAccessed);
+    const sortedEntries = Array.from(this.cache.entries()).sort(
+      ([, a], [, b]) => a.lastAccessed - b.lastAccessed,
+    );
 
     // Evict the least recently used entries
     for (let i = 0; i < entriesToEvict && i < sortedEntries.length; i++) {

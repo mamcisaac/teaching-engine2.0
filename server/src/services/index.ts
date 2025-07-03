@@ -8,6 +8,20 @@ export { cacheService } from './CacheService';
 export { serviceRegistry } from './ServiceRegistry';
 export { default as BaseService } from './base/BaseService';
 
+// AI services
+export { AIParentSummaryService, generateParentSummary } from './aiParentSummaryService';
+export { AIPlanningAssistantService } from './aiPlanningAssistant';
+export { AIActivityGenerator, aiActivityGenerator } from './aiActivityGenerator';
+export { AIActivityGeneratorService } from './aiActivityGeneratorService';
+export { aiPromptTemplateService } from './aiPromptTemplateService';
+export {
+  generateLongRangePlanDraft,
+  generateUnitPlanDraft,
+  generateLessonPlanDraft,
+  generateDaybookDraft,
+  generatePlanSuggestions,
+} from './aiDraftService';
+
 // Existing services
 export { openai } from './llmService';
 export { extractMaterials } from './materialGenerator';
@@ -20,3 +34,4 @@ export type { ClusterResult, ClusteringOptions } from './clusteringService';
 export type { CacheEntry, CacheOptions, CacheStats } from './CacheService';
 export type { ServiceMetrics, RetryOptions } from './base/BaseService';
 export type { ServiceHealth, ServiceRegistration } from './ServiceRegistry';
+export type { ParentSummaryRequest, ParentSummaryResponse } from './aiParentSummaryService';

@@ -1,0 +1,75 @@
+1dfaf7c6334d38eafddeef280a31c3b6
+/**
+ * TypeScript mock for pdf-parse
+ */
+const pdfParse = async (buffer) => {
+    // Return empty text for empty buffer to test error handling
+    if (!buffer || buffer.length === 0) {
+        return {
+            numpages: 0,
+            numrender: 0,
+            info: {
+                PDFFormatVersion: '1.4',
+                IsAcroFormPresent: false,
+                IsXFAPresent: false,
+            },
+            metadata: null,
+            version: '1.10.100',
+            text: '',
+        };
+    }
+    // Return short text for small buffer
+    if (buffer.length < 100) {
+        return {
+            numpages: 1,
+            numrender: 1,
+            info: {
+                PDFFormatVersion: '1.4',
+                IsAcroFormPresent: false,
+                IsXFAPresent: false,
+            },
+            metadata: null,
+            version: '1.10.100',
+            text: 'Too short',
+        };
+    }
+    // Return realistic curriculum content for normal buffers
+    return {
+        numpages: 10,
+        numrender: 10,
+        info: {
+            PDFFormatVersion: '1.4',
+            IsAcroFormPresent: false,
+            IsXFAPresent: false,
+            Title: 'Ontario Curriculum - Mathematics Grade 1',
+            Subject: 'Curriculum',
+            Author: 'Ministry of Education',
+        },
+        metadata: null,
+        version: '1.10.100',
+        text: `Ontario Curriculum - Mathematics Grade 1
+    
+Overall Expectations
+
+A. Number Sense and Numeration
+A1. Demonstrate an understanding of numbers and make connections to the way numbers are used in everyday life
+
+Specific Expectations
+
+A1.1 Read, represent, compare, and order whole numbers to 50, and use concrete materials to represent fractions and money amounts to 100¢
+A1.2 Demonstrate an understanding of magnitude by counting forward to 100 and backwards from 20
+A1.3 Solve problems involving the addition and subtraction of single-digit whole numbers, using a variety of strategies
+
+B. Measurement
+B1. Demonstrate an understanding of the length, weight, capacity, area, and temperature
+
+Specific Expectations
+
+B1.1 Estimate, measure, and describe length, area, mass, capacity, time, and temperature, using non-standard units
+B1.2 Compare and order objects by their linear measurements, using the same non-standard unit
+
+This curriculum document contains many more expectations across different strands including Geometry, Patterning, and Data Management.`,
+    };
+};
+export default pdfParse;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL1VzZXJzL21pY2hhZWxtY2lzYWFjL0dpdEh1Yi90ZWFjaGluZy1lbmdpbmUyLjAvc2VydmVyL3NyYy9fX21vY2tzX18vcGRmLXBhcnNlLnRzIiwibWFwcGluZ3MiOiJBQUFBOztHQUVHO0FBQ0gsTUFBTSxRQUFRLEdBQUcsS0FBSyxFQUFFLE1BQWMsRUFBRSxFQUFFO0lBQ3hDLDREQUE0RDtJQUM1RCxJQUFJLENBQUMsTUFBTSxJQUFJLE1BQU0sQ0FBQyxNQUFNLEtBQUssQ0FBQyxFQUFFLENBQUM7UUFDbkMsT0FBTztZQUNMLFFBQVEsRUFBRSxDQUFDO1lBQ1gsU0FBUyxFQUFFLENBQUM7WUFDWixJQUFJLEVBQUU7Z0JBQ0osZ0JBQWdCLEVBQUUsS0FBSztnQkFDdkIsaUJBQWlCLEVBQUUsS0FBSztnQkFDeEIsWUFBWSxFQUFFLEtBQUs7YUFDcEI7WUFDRCxRQUFRLEVBQUUsSUFBSTtZQUNkLE9BQU8sRUFBRSxVQUFVO1lBQ25CLElBQUksRUFBRSxFQUFFO1NBQ1QsQ0FBQztJQUNKLENBQUM7SUFFRCxxQ0FBcUM7SUFDckMsSUFBSSxNQUFNLENBQUMsTUFBTSxHQUFHLEdBQUcsRUFBRSxDQUFDO1FBQ3hCLE9BQU87WUFDTCxRQUFRLEVBQUUsQ0FBQztZQUNYLFNBQVMsRUFBRSxDQUFDO1lBQ1osSUFBSSxFQUFFO2dCQUNKLGdCQUFnQixFQUFFLEtBQUs7Z0JBQ3ZCLGlCQUFpQixFQUFFLEtBQUs7Z0JBQ3hCLFlBQVksRUFBRSxLQUFLO2FBQ3BCO1lBQ0QsUUFBUSxFQUFFLElBQUk7WUFDZCxPQUFPLEVBQUUsVUFBVTtZQUNuQixJQUFJLEVBQUUsV0FBVztTQUNsQixDQUFDO0lBQ0osQ0FBQztJQUVELHlEQUF5RDtJQUN6RCxPQUFPO1FBQ0wsUUFBUSxFQUFFLEVBQUU7UUFDWixTQUFTLEVBQUUsRUFBRTtRQUNiLElBQUksRUFBRTtZQUNKLGdCQUFnQixFQUFFLEtBQUs7WUFDdkIsaUJBQWlCLEVBQUUsS0FBSztZQUN4QixZQUFZLEVBQUUsS0FBSztZQUNuQixLQUFLLEVBQUUsMENBQTBDO1lBQ2pELE9BQU8sRUFBRSxZQUFZO1lBQ3JCLE1BQU0sRUFBRSx1QkFBdUI7U0FDaEM7UUFDRCxRQUFRLEVBQUUsSUFBSTtRQUNkLE9BQU8sRUFBRSxVQUFVO1FBQ25CLElBQUksRUFBRTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O3VJQXFCNkg7S0FDcEksQ0FBQztBQUNKLENBQUMsQ0FBQztBQUVGLGVBQWUsUUFBUSxDQUFDIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbIi9Vc2Vycy9taWNoYWVsbWNpc2FhYy9HaXRIdWIvdGVhY2hpbmctZW5naW5lMi4wL3NlcnZlci9zcmMvX19tb2Nrc19fL3BkZi1wYXJzZS50cyJdLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIFR5cGVTY3JpcHQgbW9jayBmb3IgcGRmLXBhcnNlXG4gKi9cbmNvbnN0IHBkZlBhcnNlID0gYXN5bmMgKGJ1ZmZlcjogQnVmZmVyKSA9PiB7XG4gIC8vIFJldHVybiBlbXB0eSB0ZXh0IGZvciBlbXB0eSBidWZmZXIgdG8gdGVzdCBlcnJvciBoYW5kbGluZ1xuICBpZiAoIWJ1ZmZlciB8fCBidWZmZXIubGVuZ3RoID09PSAwKSB7XG4gICAgcmV0dXJuIHtcbiAgICAgIG51bXBhZ2VzOiAwLFxuICAgICAgbnVtcmVuZGVyOiAwLFxuICAgICAgaW5mbzoge1xuICAgICAgICBQREZGb3JtYXRWZXJzaW9uOiAnMS40JyxcbiAgICAgICAgSXNBY3JvRm9ybVByZXNlbnQ6IGZhbHNlLFxuICAgICAgICBJc1hGQVByZXNlbnQ6IGZhbHNlLFxuICAgICAgfSxcbiAgICAgIG1ldGFkYXRhOiBudWxsLFxuICAgICAgdmVyc2lvbjogJzEuMTAuMTAwJyxcbiAgICAgIHRleHQ6ICcnLFxuICAgIH07XG4gIH1cbiAgXG4gIC8vIFJldHVybiBzaG9ydCB0ZXh0IGZvciBzbWFsbCBidWZmZXJcbiAgaWYgKGJ1ZmZlci5sZW5ndGggPCAxMDApIHtcbiAgICByZXR1cm4ge1xuICAgICAgbnVtcGFnZXM6IDEsXG4gICAgICBudW1yZW5kZXI6IDEsXG4gICAgICBpbmZvOiB7XG4gICAgICAgIFBERkZvcm1hdFZlcnNpb246ICcxLjQnLFxuICAgICAgICBJc0Fjcm9Gb3JtUHJlc2VudDogZmFsc2UsXG4gICAgICAgIElzWEZBUHJlc2VudDogZmFsc2UsXG4gICAgICB9LFxuICAgICAgbWV0YWRhdGE6IG51bGwsXG4gICAgICB2ZXJzaW9uOiAnMS4xMC4xMDAnLFxuICAgICAgdGV4dDogJ1RvbyBzaG9ydCcsXG4gICAgfTtcbiAgfVxuICBcbiAgLy8gUmV0dXJuIHJlYWxpc3RpYyBjdXJyaWN1bHVtIGNvbnRlbnQgZm9yIG5vcm1hbCBidWZmZXJzXG4gIHJldHVybiB7XG4gICAgbnVtcGFnZXM6IDEwLFxuICAgIG51bXJlbmRlcjogMTAsXG4gICAgaW5mbzoge1xuICAgICAgUERGRm9ybWF0VmVyc2lvbjogJzEuNCcsXG4gICAgICBJc0Fjcm9Gb3JtUHJlc2VudDogZmFsc2UsXG4gICAgICBJc1hGQVByZXNlbnQ6IGZhbHNlLFxuICAgICAgVGl0bGU6ICdPbnRhcmlvIEN1cnJpY3VsdW0gLSBNYXRoZW1hdGljcyBHcmFkZSAxJyxcbiAgICAgIFN1YmplY3Q6ICdDdXJyaWN1bHVtJyxcbiAgICAgIEF1dGhvcjogJ01pbmlzdHJ5IG9mIEVkdWNhdGlvbicsXG4gICAgfSxcbiAgICBtZXRhZGF0YTogbnVsbCxcbiAgICB2ZXJzaW9uOiAnMS4xMC4xMDAnLFxuICAgIHRleHQ6IGBPbnRhcmlvIEN1cnJpY3VsdW0gLSBNYXRoZW1hdGljcyBHcmFkZSAxXG4gICAgXG5PdmVyYWxsIEV4cGVjdGF0aW9uc1xuXG5BLiBOdW1iZXIgU2Vuc2UgYW5kIE51bWVyYXRpb25cbkExLiBEZW1vbnN0cmF0ZSBhbiB1bmRlcnN0YW5kaW5nIG9mIG51bWJlcnMgYW5kIG1ha2UgY29ubmVjdGlvbnMgdG8gdGhlIHdheSBudW1iZXJzIGFyZSB1c2VkIGluIGV2ZXJ5ZGF5IGxpZmVcblxuU3BlY2lmaWMgRXhwZWN0YXRpb25zXG5cbkExLjEgUmVhZCwgcmVwcmVzZW50LCBjb21wYXJlLCBhbmQgb3JkZXIgd2hvbGUgbnVtYmVycyB0byA1MCwgYW5kIHVzZSBjb25jcmV0ZSBtYXRlcmlhbHMgdG8gcmVwcmVzZW50IGZyYWN0aW9ucyBhbmQgbW9uZXkgYW1vdW50cyB0byAxMDDColxuQTEuMiBEZW1vbnN0cmF0ZSBhbiB1bmRlcnN0YW5kaW5nIG9mIG1hZ25pdHVkZSBieSBjb3VudGluZyBmb3J3YXJkIHRvIDEwMCBhbmQgYmFja3dhcmRzIGZyb20gMjBcbkExLjMgU29sdmUgcHJvYmxlbXMgaW52b2x2aW5nIHRoZSBhZGRpdGlvbiBhbmQgc3VidHJhY3Rpb24gb2Ygc2luZ2xlLWRpZ2l0IHdob2xlIG51bWJlcnMsIHVzaW5nIGEgdmFyaWV0eSBvZiBzdHJhdGVnaWVzXG5cbkIuIE1lYXN1cmVtZW50XG5CMS4gRGVtb25zdHJhdGUgYW4gdW5kZXJzdGFuZGluZyBvZiB0aGUgbGVuZ3RoLCB3ZWlnaHQsIGNhcGFjaXR5LCBhcmVhLCBhbmQgdGVtcGVyYXR1cmVcblxuU3BlY2lmaWMgRXhwZWN0YXRpb25zXG5cbkIxLjEgRXN0aW1hdGUsIG1lYXN1cmUsIGFuZCBkZXNjcmliZSBsZW5ndGgsIGFyZWEsIG1hc3MsIGNhcGFjaXR5LCB0aW1lLCBhbmQgdGVtcGVyYXR1cmUsIHVzaW5nIG5vbi1zdGFuZGFyZCB1bml0c1xuQjEuMiBDb21wYXJlIGFuZCBvcmRlciBvYmplY3RzIGJ5IHRoZWlyIGxpbmVhciBtZWFzdXJlbWVudHMsIHVzaW5nIHRoZSBzYW1lIG5vbi1zdGFuZGFyZCB1bml0XG5cblRoaXMgY3VycmljdWx1bSBkb2N1bWVudCBjb250YWlucyBtYW55IG1vcmUgZXhwZWN0YXRpb25zIGFjcm9zcyBkaWZmZXJlbnQgc3RyYW5kcyBpbmNsdWRpbmcgR2VvbWV0cnksIFBhdHRlcm5pbmcsIGFuZCBEYXRhIE1hbmFnZW1lbnQuYCxcbiAgfTtcbn07XG5cbmV4cG9ydCBkZWZhdWx0IHBkZlBhcnNlOyJdLCJ2ZXJzaW9uIjozfQ==

@@ -1,6 +1,6 @@
 import { embeddingService } from './embeddingService';
 import { openai } from './llmService';
-import BaseService from './base/BaseService';
+import BaseService, { ServiceDependencies } from './base/BaseService';
 
 export interface ClusterResult {
   id: string;
@@ -26,8 +26,8 @@ export class ClusteringService extends BaseService {
     useAISuggestions: true,
   };
 
-  constructor() {
-    super('ClusteringService');
+  constructor(dependencies?: ServiceDependencies) {
+    super('ClusteringService', dependencies);
   }
 
   /**

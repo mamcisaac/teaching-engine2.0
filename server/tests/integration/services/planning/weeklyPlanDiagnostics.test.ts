@@ -34,7 +34,7 @@ const mockPrisma = {
 const calculateWeeklyPlanDiagnostics = jest.fn();
 const getPlanningQualityTrend = jest.fn();
 
-describe.skip('weeklyPlanDiagnostics', () => {
+describe.skip('weeklyPlanDiagnostics - FEATURE NOT IMPLEMENTED', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

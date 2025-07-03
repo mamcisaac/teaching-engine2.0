@@ -1,5 +1,7 @@
 // Stub for AIActivityGenerator to fix missing import
 export class AIActivityGenerator {
+  private static globalCounter = 0;
+
   constructor() {}
 
   async generateActivity(params: {
@@ -21,15 +23,16 @@ export class AIActivityGenerator {
     grade: number;
   }> {
     // Stub implementation
+    AIActivityGenerator.globalCounter++;
     return {
-      id: 'generated-' + Date.now(),
+      id: 'generated-' + Date.now() + AIActivityGenerator.globalCounter,
       title: 'Generated Activity',
       description: 'This is a stub implementation',
       duration: 30,
       materials: [],
       learningGoals: [],
       subject: params.subject || 'General',
-      grade: params.grade || 1,
+      grade: params.grade !== undefined ? params.grade : 1,
     };
   }
 

@@ -1,4 +1,4 @@
-import BaseService from './base/BaseService';
+import BaseService, { ServiceDependencies } from './base/BaseService';
 import { ExternalActivity, Prisma } from '@teaching-engine/database';
 import { BaseConnector } from './connectors/baseConnector';
 import { OERConnector } from './connectors/oerConnector';
@@ -51,8 +51,8 @@ export class ActivityDiscoveryService extends BaseService {
   private cache: Map<string, { data: unknown; expiry: number }> = new Map();
   private readonly CACHE_TTL = 1000 * 60 * 30; // 30 minutes
 
-  constructor() {
-    super('ActivityDiscoveryService');
+  constructor(dependencies?: ServiceDependencies) {
+    super('ActivityDiscoveryService', dependencies);
     this.initializeConnectors();
   }
 

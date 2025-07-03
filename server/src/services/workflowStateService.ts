@@ -1,4 +1,4 @@
-import BaseService from './base/BaseService';
+import BaseService, { ServiceDependencies } from './base/BaseService';
 import { prisma } from '../prisma';
 
 export interface WorkflowState {
@@ -70,8 +70,8 @@ export const ETFO_LEVEL_METADATA = {
 };
 
 export class WorkflowStateService extends BaseService {
-  constructor() {
-    super('WorkflowStateService');
+  constructor(dependencies?: ServiceDependencies) {
+    super('WorkflowStateService', dependencies);
   }
 
   /**

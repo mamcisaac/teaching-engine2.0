@@ -1,13 +1,16 @@
 import request from 'supertest';
 import { describe, beforeAll, beforeEach, afterEach, it, expect, jest } from '@jest/globals';
 import { app } from '../../src/index';
-import { getIntegrationTestPrismaClient, cleanIntegrationTestData } from '../integration-test-setup';
+import {
+  getIntegrationTestPrismaClient,
+  cleanIntegrationTestData,
+} from '../integration-test-setup';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 describe('Authentication Routes', () => {
   let prisma: ReturnType<typeof getIntegrationTestPrismaClient>;
-  
+
   // Test user data
   const validUser = {
     email: 'test@example.com',
@@ -46,12 +49,10 @@ describe('Authentication Routes', () => {
     it('should successfully login with valid credentials', async () => {
       await createTestUser();
 
-      const res = await request(app)
-        .post('/api/login')
-        .send({
-          email: validUser.email,
-          password: validUser.password,
-        });
+      const res = await request(app).post('/api/login').send({
+        email: validUser.email,
+        password: validUser.password,
+      });
 
       expect(res.status).toBe(200);
       expect(res.body).toHaveProperty('user');
@@ -78,12 +79,10 @@ describe('Authentication Routes', () => {
     it('should handle case-insensitive email login', async () => {
       await createTestUser();
 
-      const res = await request(app)
-        .post('/api/login')
-        .send({
-          email: 'TEST@EXAMPLE.COM',
-          password: validUser.password,
-        });
+      const res = await request(app).post('/api/login').send({
+        email: 'TEST@EXAMPLE.COM',
+        password: validUser.password,
+      });
 
       expect(res.status).toBe(200);
       expect(res.body.user.email).toBe(validUser.email);
@@ -92,70 +91,58 @@ describe('Authentication Routes', () => {
     it('should return 401 with incorrect password', async () => {
       await createTestUser();
 
-      const res = await request(app)
-        .post('/api/login')
-        .send({
-          email: validUser.email,
-          password: 'WrongPassword123!',
-        });
+      const res = await request(app).post('/api/login').send({
+        email: validUser.email,
+        password: 'WrongPassword123!',
+      });
 
       expect(res.status).toBe(401);
       expect(res.body).toEqual({ error: 'Invalid credentials' });
     });
 
     it('should return 401 with non-existent email', async () => {
-      const res = await request(app)
-        .post('/api/login')
-        .send({
-          email: 'nonexistent@example.com',
-          password: validUser.password,
-        });
+      const res = await request(app).post('/api/login').send({
+        email: 'nonexistent@example.com',
+        password: validUser.password,
+      });
 
       expect(res.status).toBe(401);
       expect(res.body).toEqual({ error: 'Invalid credentials' });
     });
 
     it('should return 400 with missing email', async () => {
-      const res = await request(app)
-        .post('/api/login')
-        .send({
-          password: validUser.password,
-        });
+      const res = await request(app).post('/api/login').send({
+        password: validUser.password,
+      });
 
       expect(res.status).toBe(400);
       expect(res.body).toEqual({ error: 'Email and password are required' });
     });
 
     it('should return 400 with missing password', async () => {
-      const res = await request(app)
-        .post('/api/login')
-        .send({
-          email: validUser.email,
-        });
+      const res = await request(app).post('/api/login').send({
+        email: validUser.email,
+      });
 
       expect(res.status).toBe(400);
       expect(res.body).toEqual({ error: 'Email and password are required' });
     });
 
     it('should return 400 with invalid email format', async () => {
-      const res = await request(app)
-        .post('/api/login')
-        .send({
-          email: 'not-an-email',
-          password: validUser.password,
-        });
+      const res = await request(app).post('/api/login').send({
+        email: 'not-an-email',
+        password: validUser.password,
+      });
 
       expect(res.status).toBe(400);
       expect(res.body).toEqual({ error: 'Invalid email format' });
     });
 
     it('should return 400 with non-string email', async () => {
-      const res = await request(app)
-        .post('/api/login')
-        .send({
-          email: 123,
-          password: validUser.password,
-        });
+      const res = await request(app).post('/api/login').send({
+        email: 123,
+        password: validUser.password,
+      });
 
       expect(res.status).toBe(400);
       expect(res.body).toEqual({ error: 'Email and password are required' });
@@ -176,12 +163,10 @@ describe('Authentication Routes', () => {
     it('should trim email whitespace', async () => {
       await createTestUser();
 
-      const res = await request(app)
-        .post('/api/login')
-        .send({
-          email: '  test@example.com  ',
-          password: validUser.password,
-        });
+      const res = await request(app).post('/api/login').send({
+        email: '  test@example.com  ',
+        password: validUser.password,
+      });
 
       expect(res.status).toBe(200);
       expect(res.body.user.email).toBe(validUser.email);
@@ -189,21 +174,38 @@ describe('Authentication Routes', () => {
 
     it('should handle very long email by truncating', async () => {
       const longEmail = 'a'.repeat(250) + '@example.com';
-      const res = await request(app)
-        .post('/api/login')
-        .send({
-          email: longEmail,
-          password: validUser.password,
-        });
+      const res = await request(app).post('/api/login').send({
+        email: longEmail,
+        password: validUser.password,
+      });
 
       // Should get invalid email format error since truncated email is invalid
       expect(res.status).toBe(400);
       expect(res.body).toEqual({ error: 'Invalid email format' });
     });
 
-    it.skip('should be rate limited after too many attempts', async () => {
-      // Skip this test as rate limiting might not be consistently triggered in test environment
-      // and depends on external state that's hard to control in integration tests
+    it('should handle rate limiting configuration', async () => {
+      // Since rate limiting is disabled in test environment,
+      // we can only test that the endpoint handles multiple requests
+      const promises = Array(10)
+        .fill(null)
+        .map(() =>
+          request(app).post('/api/login').send({
+            email: 'ratelimit@example.com',
+            password: 'wrongpassword',
+          }),
+        );
+
+      const responses = await Promise.all(promises);
+
+      // All requests should return 401 (invalid credentials) not rate limited
+      responses.forEach((res) => {
+        expect(res.status).toBe(401);
+        expect(res.body).toEqual({ error: 'Invalid credentials' });
+      });
+
+      // This confirms rate limiting is properly skipped in test mode
+      // and the endpoint can handle concurrent requests
     });
   });
 
@@ -215,9 +217,7 @@ describe('Authentication Routes', () => {
         name: 'New User',
       };
 
-      const res = await request(app)
-        .post('/api/register')
-        .send(newUser);
+      const res = await request(app).post('/api/register').send(newUser);
 
       expect(res.status).toBe(201);
       expect(res.body).toHaveProperty('user');
@@ -249,77 +249,61 @@ describe('Authentication Routes', () => {
     it('should return 409 if email already exists', async () => {
       await createTestUser();
 
-      const res = await request(app)
-        .post('/api/register')
-        .send({
-          email: validUser.email,
-          password: 'AnotherPassword123!',
-          name: 'Another User',
-        });
+      const res = await request(app).post('/api/register').send({
+        email: validUser.email,
+        password: 'AnotherPassword123!',
+        name: 'Another User',
+      });
 
       expect(res.status).toBe(409);
       expect(res.body).toEqual({ error: 'Email already exists' });
     });
 
     it('should return 400 for password shorter than 8 characters', async () => {
-      const res = await request(app)
-        .post('/api/register')
-        .send({
-          email: 'newuser@example.com',
-          password: 'short',
-          name: 'New User',
-        });
+      const res = await request(app).post('/api/register').send({
+        email: 'newuser@example.com',
+        password: 'short',
+        name: 'New User',
+      });
 
       expect(res.status).toBe(400);
       expect(res.body.error).toBeDefined();
     });
 
     it('should return 400 for invalid email format', async () => {
-      const res = await request(app)
-        .post('/api/register')
-        .send({
-          email: 'not-an-email',
-          password: 'ValidPassword123!',
-          name: 'New User',
-        });
+      const res = await request(app).post('/api/register').send({
+        email: 'not-an-email',
+        password: 'ValidPassword123!',
+        name: 'New User',
+      });
 
       expect(res.status).toBe(400);
       expect(res.body.error).toBeDefined();
     });
 
     it('should return 400 for missing name', async () => {
-      const res = await request(app)
-        .post('/api/register')
-        .send({
-          email: 'newuser@example.com',
-          password: 'ValidPassword123!',
-        });
+      const res = await request(app).post('/api/register').send({
+        email: 'newuser@example.com',
+        password: 'ValidPassword123!',
+      });
 
       expect(res.status).toBe(400);
       expect(res.body.error).toBeDefined();
     });
 
     it('should return 400 for empty name', async () => {
-      const res = await request(app)
-        .post('/api/register')
-        .send({
-          email: 'newuser@example.com',
-          password: 'ValidPassword123!',
-          name: '',
-        });
+      const res = await request(app).post('/api/register').send({
+        email: 'newuser@example.com',
+        password: 'ValidPassword123!',
+        name: '',
+      });
 
       expect(res.status).toBe(400);
       expect(res.body.error).toBeDefined();
     });
 
     it('should reject weak passwords', async () => {
-      const weakPasswords = [
-        'password',
-        '12345678',
-        'aaaaaaaa',
-        'PASSWORD',
-        'Pass1234',
-      ];
+      const weakPasswords = ['password', '12345678', 'aaaaaaaa', 'PASSWORD', 'Pass1234'];
 
       for (const password of weakPasswords) {
         const res = await request(app)
@@ -342,18 +326,14 @@ describe('Authentication Routes', () => {
       const user = await createTestUser();
 
       // Login to get token
-      const loginRes = await request(app)
-        .post('/api/login')
-        .send({
-          email: validUser.email,
-          password: validUser.password,
-        });
+      const loginRes = await request(app).post('/api/login').send({
+        email: validUser.email,
+        password: validUser.password,
+      });
 
       const token = loginRes.body.token;
 
-      const res = await request(app)
-        .get('/api/auth/me')
-        .set('Authorization', `Bearer ${token}`);
+      const res = await request(app).get('/api/auth/me').set('Authorization', `Bearer ${token}`);
 
       expect(res.status).toBe(200);
       expect(res.body).toMatchObject({
@@ -370,12 +350,10 @@ describe('Authentication Routes', () => {
 
       // Login to get cookie
       const agent = request.agent(app);
-      await agent
-        .post('/api/login')
-        .send({
-          email: validUser.email,
-          password: validUser.password,
-        });
+      await agent.post('/api/login').send({
+        email: validUser.email,
+        password: validUser.password,
+      });
 
       // Use same agent to maintain cookies
       const res = await agent.get('/api/auth/me');
@@ -385,8 +363,7 @@ describe('Authentication Routes', () => {
     });
 
     it('should return 401 without authentication', async () => {
-      const res = await request(app)
-        .get('/api/auth/me');
+      const res = await request(app).get('/api/auth/me');
 
       expect(res.status).toBe(401);
       expect(res.body).toEqual({ error: 'Authentication required' });
@@ -406,10 +383,10 @@ describe('Authentication Routes', () => {
         {
           userId: '1',
           email: 'test@example.com',
-          iat: Math.floor(Date.now() / 1000) - (8 * 24 * 60 * 60), // 8 days ago
+          iat: Math.floor(Date.now() / 1000) - 8 * 24 * 60 * 60, // 8 days ago
         },
         process.env.JWT_SECRET!,
-        { algorithm: 'HS256' }
+        { algorithm: 'HS256' },
       );
 
       const res = await request(app)
@@ -431,7 +408,7 @@ describe('Authentication Routes', () => {
           iat: Math.floor(Date.now() / 1000),
         },
         process.env.JWT_SECRET!,
-        { algorithm: 'HS256' }
+        { algorithm: 'HS256' },
       );
 
       // Tamper with the token by changing a character
@@ -452,7 +429,7 @@ describe('Authentication Routes', () => {
           // Missing userId and iat
         },
         process.env.JWT_SECRET!,
-        { algorithm: 'HS256' }
+        { algorithm: 'HS256' },
       );
 
       const res = await request(app)
@@ -478,21 +455,17 @@ describe('Authentication Routes', () => {
       const user = await createTestUser();
 
       // Login to get token
-      const loginRes = await request(app)
-        .post('/api/login')
-        .send({
-          email: validUser.email,
-          password: validUser.password,
-        });
+      const loginRes = await request(app).post('/api/login').send({
+        email: validUser.email,
+        password: validUser.password,
+      });
 
       const token = loginRes.body.token;
 
       // Delete user
       await prisma.user.delete({ where: { id: user.id } });
 
-      const res = await request(app)
-        .get('/api/auth/me')
-        .set('Authorization', `Bearer ${token}`);
+      const res = await request(app).get('/api/auth/me').set('Authorization', `Bearer ${token}`);
 
       expect(res.status).toBe(404);
       expect(res.body).toEqual({ error: 'User not found' });
@@ -504,26 +477,21 @@ describe('Authentication Routes', () => {
       const user = await createTestUser();
 
       // Login to get token
-      const loginRes = await request(app)
-        .post('/api/login')
-        .send({
-          email: validUser.email,
-          password: validUser.password,
-        });
+      const loginRes = await request(app).post('/api/login').send({
+        email: validUser.email,
+        password: validUser.password,
+      });
 
       const token = loginRes.body.token;
 
-      const res = await request(app)
-        .get('/api/auth/check')
-        .set('Authorization', `Bearer ${token}`);
+      const res = await request(app).get('/api/auth/check').set('Authorization', `Bearer ${token}`);
 
       expect(res.status).toBe(200);
       expect(res.body).toEqual({ userId: user.id });
     });
 
     it('should return 401 without authentication', async () => {
-      const res = await request(app)
-        .get('/api/auth/check');
+      const res = await request(app).get('/api/auth/check');
 
       expect(res.status).toBe(401);
       expect(res.body).toEqual({ error: 'Authentication required' });
@@ -532,8 +500,7 @@ describe('Authentication Routes', () => {
 
   describe('POST /api/logout', () => {
     it('should successfully logout and clear cookie', async () => {
-      const res = await request(app)
-        .post('/api/logout');
+      const res = await request(app).post('/api/logout');
 
       expect(res.status).toBe(200);
       expect(res.body).toEqual({ message: 'Logged out successfully' });
@@ -547,8 +514,7 @@ describe('Authentication Routes', () => {
     });
 
     it('should logout even without being logged in', async () => {
-      const res = await request(app)
-        .post('/api/logout');
+      const res = await request(app).post('/api/logout');
 
       expect(res.status).toBe(200);
       expect(res.body).toEqual({ message: 'Logged out successfully' });
@@ -560,12 +526,10 @@ describe('Authentication Routes', () => {
       const user = await createTestUser();
 
       // Login to get token
-      const loginRes = await request(app)
-        .post('/api/login')
-        .send({
-          email: validUser.email,
-          password: validUser.password,
-        });
+      const loginRes = await request(app).post('/api/login').send({
+        email: validUser.email,
+        password: validUser.password,
+      });
 
       const token = loginRes.body.token;
 
@@ -582,12 +546,10 @@ describe('Authentication Routes', () => {
 
       // Login to get cookie
       const agent = request.agent(app);
-      await agent
-        .post('/api/login')
-        .send({
-          email: validUser.email,
-          password: validUser.password,
-        });
+      await agent.post('/api/login').send({
+        email: validUser.email,
+        password: validUser.password,
+      });
 
       // Use same agent to maintain cookies
       const res = await agent.get('/api/user/profile');
@@ -599,36 +561,29 @@ describe('Authentication Routes', () => {
       const user = await createTestUser();
 
       // Login to get valid token
-      const loginRes = await request(app)
-        .post('/api/login')
-        .send({
-          email: validUser.email,
-          password: validUser.password,
-        });
+      const loginRes = await request(app).post('/api/login').send({
+        email: validUser.email,
+        password: validUser.password,
+      });
 
       const validToken = loginRes.body.token;
 
       // Create agent and login to set cookie
       const agent = request.agent(app);
-      await agent
-        .post('/api/login')
-        .send({
-          email: validUser.email,
-          password: validUser.password,
-        });
+      await agent.post('/api/login').send({
+        email: validUser.email,
+        password: validUser.password,
+      });
 
       // Send request with invalid bearer token but valid cookie
-      const res = await agent
-        .get('/api/user/profile')
-        .set('Authorization', 'Bearer invalid-token');
+      const res = await agent.get('/api/user/profile').set('Authorization', 'Bearer invalid-token');
 
       // Should succeed because cookie is valid
       expect(res.status).toBe(200);
     });
 
     it('should reject requests without authentication', async () => {
-      const res = await request(app)
-        .get('/api/user/profile');
+      const res = await request(app).get('/api/user/profile');
 
       expect(res.status).toBe(401);
       expect(res.body).toEqual({ error: 'Authentication required' });

@@ -14,9 +14,12 @@ export const TERM_MIDPOINTS: TermMidpoint[] = [
 export async function checkNewsletterTriggers(midpoints: TermMidpoint[] = TERM_MIDPOINTS) {
   // DISABLED: Notification model has been archived
   // TODO: Implement using ParentMessage for newsletter notifications
-  const todayStr = new Date().toISOString().slice(0, 10);
+  const today = new Date();
+  const todayStr = today.toISOString().slice(0, 10);
+
   for (const mp of midpoints) {
-    if (mp.date.toISOString().slice(0, 10) === todayStr) {
+    const mpDateStr = mp.date.toISOString().slice(0, 10);
+    if (mpDateStr === todayStr) {
       console.warn(`Newsletter trigger for ${mp.term} - Notification model archived`);
     }
   }

@@ -1252,7 +1252,7 @@ describe('ContactExtractor Service', () => {
         // Use the actual regex from the contactExtractor implementation
         const phoneRegex = /(\d{3}[-.\s]?\d{3}[-.\s]?\d{4})/;
         const flexiblePhoneRegex = /(\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4})/; // More flexible for parentheses
-        const extRegex = /ext\.?\s*(\d+)/i;
+        const extRegex = /(?:ext\.?|extension)\s*(\d+)/i;
 
         const phoneMatch =
           testCase.input.match(phoneRegex) || testCase.input.match(flexiblePhoneRegex);

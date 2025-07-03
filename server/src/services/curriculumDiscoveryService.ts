@@ -1,4 +1,4 @@
-import BaseService from './base/BaseService';
+import BaseService, { ServiceDependencies } from './base/BaseService';
 import * as cheerio from 'cheerio';
 import { z } from 'zod';
 import { CurriculumImportService } from './curriculumImportService';
@@ -61,8 +61,8 @@ export class CurriculumDiscoveryService extends BaseService {
   private discoveredDocuments: Map<string, CurriculumDocument> = new Map();
   private sources: DiscoverySource[] = [];
 
-  constructor() {
-    super('CurriculumDiscoveryService');
+  constructor(dependencies?: ServiceDependencies) {
+    super('CurriculumDiscoveryService', dependencies);
     this.curriculumImportService = new CurriculumImportService();
     this.initializeDefaultSources();
   }
@@ -138,13 +138,13 @@ export class CurriculumDiscoveryService extends BaseService {
           this.logger.info(`Discovering documents from ${source.name}`);
           const documents = await this.discoverFromSource(source);
           allDocuments.push(...documents);
-          
+
           // Update last scan date
           source.lastScanDate = new Date();
         } catch (error) {
           this.logger.error(
             { error, sourceId: source.id },
-            `Failed to discover documents from ${source.name}`
+            `Failed to discover documents from ${source.name}`,
           );
         }
 
@@ -169,18 +169,10 @@ export class CurriculumDiscoveryService extends BaseService {
 
     for (const searchUrl of source.searchUrls) {
       try {
-        const pageDocuments = await this.crawlPage(
-          searchUrl,
-          source,
-          visitedUrls,
-          0
-        );
+        const pageDocuments = await this.crawlPage(searchUrl, source, visitedUrls, 0);
         documents.push(...pageDocuments);
       } catch (error) {
-        this.logger.error(
-          { error, searchUrl, sourceId: source.id },
-          'Failed to crawl search URL'
-        );
+        this.logger.error({ error, searchUrl, sourceId: source.id }, 'Failed to crawl search URL');
       }
     }
 
@@ -194,7 +186,7 @@ export class CurriculumDiscoveryService extends BaseService {
     url: string,
     source: DiscoverySource,
     visitedUrls: Set<string>,
-    depth: number
+    depth: number,
   ): Promise<CurriculumDocument[]> {
     if (depth > source.maxDepth || visitedUrls.has(url)) {
       return [];
@@ -210,7 +202,7 @@ export class CurriculumDiscoveryService extends BaseService {
 
     try {
       this.logger.debug(`Crawling page: ${url} (depth: ${depth})`);
-      
+
       // Validate and fetch page content securely
       const urlValidation = isValidExternalURL(url);
       if (!urlValidation.valid) {
@@ -219,7 +211,7 @@ export class CurriculumDiscoveryService extends BaseService {
 
       const response = await safeFetch(url, {
         headers: {
-          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
         },
       });
 
@@ -228,7 +220,8 @@ export class CurriculumDiscoveryService extends BaseService {
       }
 
       // Validate file size for large responses
-      if (!validateFileSize(response, 10 * 1024 * 1024)) { // 10MB limit
+      if (!validateFileSize(response, 10 * 1024 * 1024)) {
+        // 10MB limit
         throw new Error('Response too large - potential DoS attempt');
       }
 
@@ -242,7 +235,7 @@ export class CurriculumDiscoveryService extends BaseService {
       // Find links to other curriculum pages
       if (depth < source.maxDepth) {
         const links = this.extractCurriculumLinks($, url, source);
-        
+
         for (const link of links) {
           await this.delay(source.crawlDelay);
           const linkedDocuments = await this.crawlPage(link, source, visitedUrls, depth + 1);
@@ -262,12 +255,14 @@ export class CurriculumDiscoveryService extends BaseService {
   private async extractDocumentsFromPage(
     $: cheerio.CheerioAPI,
     pageUrl: string,
-    source: DiscoverySource
+    source: DiscoverySource,
   ): Promise<CurriculumDocument[]> {
     const documents: CurriculumDocument[] = [];
 
     // Look for PDF and DOCX links that might be curriculum documents
-    const documentLinks = $('a[href$=".pdf"], a[href$=".docx"], a[href*="/download/"], a[href*="/resource/"]');
+    const documentLinks = $(
+      'a[href$=".pdf"], a[href$=".docx"], a[href*="/download/"], a[href*="/resource/"]',
+    );
 
     documentLinks.each((_, element) => {
       const $link = $(element);
@@ -305,7 +300,7 @@ export class CurriculumDiscoveryService extends BaseService {
    */
   private isCurriculumDocument(linkText: string, context: string): boolean {
     const combinedText = (linkText + ' ' + context).toLowerCase();
-    
+
     const curriculumKeywords = [
       'curriculum',
       'program of studies',
@@ -329,7 +324,7 @@ export class CurriculumDiscoveryService extends BaseService {
 
     // Must contain at least one curriculum keyword
     const hasCurriculumKeyword = curriculumKeywords.some((keyword) =>
-      combinedText.includes(keyword)
+      combinedText.includes(keyword),
     );
 
     // Exclude non-curriculum documents
@@ -347,9 +342,7 @@ export class CurriculumDiscoveryService extends BaseService {
       'procedure',
     ];
 
-    const hasExcludeKeyword = excludeKeywords.some((keyword) =>
-      combinedText.includes(keyword)
-    );
+    const hasExcludeKeyword = excludeKeywords.some((keyword) => combinedText.includes(keyword));
 
     return hasCurriculumKeyword && !hasExcludeKeyword;
   }
@@ -360,7 +353,7 @@ export class CurriculumDiscoveryService extends BaseService {
   private extractCurriculumLinks(
     $: cheerio.CheerioAPI,
     pageUrl: string,
-    source: DiscoverySource
+    source: DiscoverySource,
   ): string[] {
     const links: string[] = [];
     const linkElements = $('a[href]');
@@ -453,7 +446,7 @@ export class CurriculumDiscoveryService extends BaseService {
       if (!validation.success) {
         this.logger.warn(
           { errors: validation.error.errors, document },
-          'Invalid curriculum document discovered'
+          'Invalid curriculum document discovered',
         );
         return null;
       }
@@ -499,13 +492,25 @@ export class CurriculumDiscoveryService extends BaseService {
    */
   private extractSubject(text: string): string | undefined {
     const subjectPatterns: Record<string, RegExp[]> = {
-      'Mathematics': [/math/i, /mathematics/i, /mathématiques/i],
-      'French': [/french/i, /français/i, /fsl/i, /french immersion/i],
-      'English': [/english/i, /language arts/i, /ela/i, /anglais/i],
-      'Science': [/science/i, /sciences/i],
-      'Social Studies': [/social studies/i, /social science/i, /études sociales/i, /history/i, /geography/i],
-      'Physical Education': [/physical education/i, /phys ed/i, /pe/i, /éducation physique/i, /health/i],
-      'Arts': [/arts/i, /art/i, /music/i, /drama/i, /visual arts/i],
+      Mathematics: [/math/i, /mathematics/i, /mathématiques/i],
+      French: [/french/i, /français/i, /fsl/i, /french immersion/i],
+      English: [/english/i, /language arts/i, /ela/i, /anglais/i],
+      Science: [/science/i, /sciences/i],
+      'Social Studies': [
+        /social studies/i,
+        /social science/i,
+        /études sociales/i,
+        /history/i,
+        /geography/i,
+      ],
+      'Physical Education': [
+        /physical education/i,
+        /phys ed/i,
+        /pe/i,
+        /éducation physique/i,
+        /health/i,
+      ],
+      Arts: [/arts/i, /art/i, /music/i, /drama/i, /visual arts/i],
     };
 
     for (const [subject, patterns] of Object.entries(subjectPatterns)) {
@@ -523,10 +528,18 @@ export class CurriculumDiscoveryService extends BaseService {
   private extractDocumentType(text: string): CurriculumDocument['documentType'] {
     const lowerText = text.toLowerCase();
 
-    if (lowerText.includes('assessment') || lowerText.includes('rubric') || lowerText.includes('evaluation')) {
+    if (
+      lowerText.includes('assessment') ||
+      lowerText.includes('rubric') ||
+      lowerText.includes('evaluation')
+    ) {
       return 'assessment';
     }
-    if (lowerText.includes('guide') || lowerText.includes('resource') || lowerText.includes('support')) {
+    if (
+      lowerText.includes('guide') ||
+      lowerText.includes('resource') ||
+      lowerText.includes('support')
+    ) {
       return 'resource';
     }
     if (lowerText.includes('guideline') || lowerText.includes('framework')) {
@@ -552,7 +565,8 @@ export class CurriculumDiscoveryService extends BaseService {
    */
   private extractLanguage(text: string): CurriculumDocument['language'] {
     const hasFrench = /french|français|immersion|fsl|francophone/i.test(text);
-    const hasEnglish = /english|anglais/i.test(text) || (!hasFrench && /curriculum|program|guide/i.test(text));
+    const hasEnglish =
+      /english|anglais/i.test(text) || (!hasFrench && /curriculum|program|guide/i.test(text));
 
     if (hasFrench && hasEnglish) return 'both';
     if (hasFrench) return 'fr';
@@ -630,12 +644,12 @@ export class CurriculumDiscoveryService extends BaseService {
       }
 
       const buffer = await response.arrayBuffer();
-      
+
       // Additional size check after download
       if (buffer.byteLength > maxFileSize) {
         throw new Error('Downloaded file exceeds size limit');
       }
-      
+
       const fileBuffer = Buffer.from(buffer);
 
       // Store file metadata
@@ -651,7 +665,7 @@ export class CurriculumDiscoveryService extends BaseService {
       };
     } catch (error) {
       this.logger.error({ error, documentId }, 'Failed to download document');
-      
+
       const document = this.discoveredDocuments.get(documentId);
       if (document) {
         document.downloadStatus = 'failed';
@@ -671,7 +685,7 @@ export class CurriculumDiscoveryService extends BaseService {
    */
   async processDocument(
     documentId: string,
-    userId: number
+    userId: number,
   ): Promise<{
     success: boolean;
     importId?: string;
@@ -702,7 +716,7 @@ export class CurriculumDiscoveryService extends BaseService {
           documentType: document.documentType,
           province: document.province,
           autoDiscovered: true,
-        }
+        },
       );
 
       // Update document status
@@ -750,7 +764,7 @@ export class CurriculumDiscoveryService extends BaseService {
     downloadStatus?: string;
   }): CurriculumDocument[] {
     const documents = this.getDiscoveredDocuments();
-    
+
     return documents.filter((doc) => {
       if (filter.province && doc.province !== filter.province) return false;
       if (filter.grade && doc.grade !== filter.grade) return false;
@@ -822,7 +836,7 @@ export class CurriculumDiscoveryService extends BaseService {
     byLanguage: Record<string, number>;
   } {
     const documents = this.getDiscoveredDocuments();
-    
+
     const stats = {
       totalDocuments: documents.length,
       byProvince: {} as Record<string, number>,
@@ -835,21 +849,21 @@ export class CurriculumDiscoveryService extends BaseService {
     documents.forEach((doc) => {
       // Count by province
       stats.byProvince[doc.province] = (stats.byProvince[doc.province] || 0) + 1;
-      
+
       // Count by subject
       if (doc.subject) {
         stats.bySubject[doc.subject] = (stats.bySubject[doc.subject] || 0) + 1;
       }
-      
+
       // Count by grade
       if (doc.grade !== undefined) {
         const gradeKey = `Grade ${doc.grade}`;
         stats.byGrade[gradeKey] = (stats.byGrade[gradeKey] || 0) + 1;
       }
-      
+
       // Count by status
       stats.byStatus[doc.downloadStatus] = (stats.byStatus[doc.downloadStatus] || 0) + 1;
-      
+
       // Count by language
       stats.byLanguage[doc.language] = (stats.byLanguage[doc.language] || 0) + 1;
     });

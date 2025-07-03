@@ -3,31 +3,64 @@
 // Jest setup file for server tests
 // This ensures consistent test environment between local and CI
 
-// Set test environment variables
-process.env.NODE_ENV = 'test';
+// Set test environment variables - only if not already set
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = 'test';
+}
 
 // Set DATABASE_URL with a consistent default for both local and CI
 // In CI, this can be overridden by the workflow file if needed
 // Use a relative path that works from the server directory
 const testType = process.env.TEST_TYPE;
-if (testType === 'integration') {
-  process.env.DATABASE_URL = process.env.DATABASE_URL || 'file:../packages/database/prisma/test-integration.db';
-} else {
-  process.env.DATABASE_URL = process.env.DATABASE_URL || 'file:../packages/database/prisma/test.db';
+if (!process.env.DATABASE_URL) {
+  if (testType === 'integration') {
+    process.env.DATABASE_URL = 'file:../packages/database/prisma/test-integration.db';
+  } else if (testType === 'security') {
+    process.env.DATABASE_URL = 'file:../packages/database/prisma/test-security.db';
+  } else {
+    process.env.DATABASE_URL = 'file:../packages/database/prisma/test.db';
+  }
 }
 
-// Set other required environment variables for tests
-process.env.JWT_SECRET = process.env.JWT_SECRET || 'test-secret-key';
-process.env.JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '1h';
+// Set other required environment variables for tests - only if not set
+if (!process.env.JWT_SECRET) {
+  process.env.JWT_SECRET = 'test-secret-key';
+}
+if (!process.env.JWT_EXPIRES_IN) {
+  process.env.JWT_EXPIRES_IN = '1h';
+}
 
 // Optional: Set a flag to detect CI environment
-process.env.IS_CI = process.env.CI || 'false';
+if (!process.env.IS_CI) {
+  process.env.IS_CI = process.env.CI || 'false';
+}
 
-// Set OpenAI API key for tests (should be mocked)
-process.env.OPENAI_API_KEY = process.env.OPENAI_API_KEY || 'test-api-key';
+// Set OpenAI API key for tests (should be mocked) - only if not set
+if (!process.env.OPENAI_API_KEY) {
+  process.env.OPENAI_API_KEY = 'test-api-key';
+}
 
 // Suppress console warnings in tests unless explicitly debugging
 if (!process.env.DEBUG_TESTS) {
   // Create a no-op function to suppress warnings
   global.console.warn = () => {};
 }
+
+// Add custom matchers
+expect.extend({
+  toBeOneOf(received, array) {
+    const pass = array.includes(received);
+
+    if (pass) {
+      return {
+        message: () => `expected ${received} not to be one of ${array.join(', ')}`,
+        pass: true,
+      };
+    } else {
+      return {
+        message: () => `expected ${received} to be one of ${array.join(', ')}`,
+        pass: false,
+      };
+    }
+  },
+});

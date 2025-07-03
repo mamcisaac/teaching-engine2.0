@@ -1,11 +1,9 @@
 import express, { Request, Response } from 'express';
 import { Server } from 'http';
-import cors from 'cors';
+// import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
-import bcrypt from 'bcryptjs';
 import debug from 'debug';
 import { config } from 'dotenv';
 import { authenticate } from './middleware/authenticate';
@@ -48,7 +46,8 @@ import calendarEventRoutes from './routes/calendar-events';
 import recentPlansRoutes from './routes/recent-plans';
 import batchApiRoutes from './routes/batch';
 import subPlanRoutes from './routes/sub-plan';
-import { authRoutes } from './routes/auth';
+// import { authRoutes as _authRoutes } from './routes/auth';
+import authEndpoints from './routes/authEndpoints';
 import { teamRoutes } from './routes/teams';
 import { sharingRoutes } from './routes/sharing';
 import { commentRoutes } from './routes/comments';
@@ -59,86 +58,30 @@ import {
   shutdownServices,
   getServiceHealth,
 } from './services/initializeServices';
-import logger from './logger';
+// import _logger from './logger';
 import { prisma } from './prisma';
 import { rateLimiters } from './middleware/rateLimiter';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
-import { sanitizeInput } from './middleware/inputSanitization';
+// import { sanitizeInput as _sanitizeInput } from './middleware/inputSanitization';
 import performanceMonitoring, { performanceMonitor } from './middleware/performanceMonitoring';
+import {
+  applySecurityMiddleware,
+  authRateLimitMiddleware,
+  validateFileUpload,
+} from './middleware/security';
 
 // Initialize Express app
 log('Initializing Express application...');
 const app = express();
 
-// Security middleware
-log('Configuring security headers...');
-app.use((req, res, next) => {
-  // Content Security Policy
-  res.setHeader(
-    'Content-Security-Policy',
-    [
-      "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'", // Allow inline scripts for dev
-      "style-src 'self' 'unsafe-inline'", // Allow inline styles for CSS-in-JS
-      "img-src 'self' data: https:",
-      "font-src 'self' data:",
-      "connect-src 'self'",
-      "frame-src 'none'",
-      "object-src 'none'",
-      "base-uri 'self'",
-      "form-action 'self'",
-      'upgrade-insecure-requests',
-    ].join('; '),
-  );
+// Apply comprehensive security middleware
+log('Applying comprehensive security middleware...');
+applySecurityMiddleware(app);
 
-  // Additional security headers
-  res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('X-Frame-Options', 'DENY');
-  res.setHeader('X-XSS-Protection', '1; mode=block');
-  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-  res.setHeader('Permissions-Policy', 'geolocation=(), microphone=(), camera=()');
-
-  next();
-});
-
-// Configure CORS with credentials support
-log('Configuring CORS...');
-// CORS options
-const corsOptions: cors.CorsOptions = {
-  origin: (origin, callback) => {
-    // In production, replace with your actual domain
-    const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [
-      'http://localhost:5173',
-      'http://localhost:3000',
-      'http://127.0.0.1:5173',
-      'http://127.0.0.1:3000',
-    ];
-
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  exposedHeaders: ['Content-Range', 'X-Total-Count'],
-};
-
-// Handle preflight requests
-log('Configuring CORS preflight...');
-app.options('*', cors(corsOptions));
-
-// Apply CORS to all routes
-log('Applying CORS and JSON middleware...');
-app.use(cors(corsOptions));
+// Apply JSON and cookie parsing middleware
+log('Applying body parsing middleware...');
 app.use(express.json({ limit: '10mb' })); // Set reasonable payload limit
 app.use(cookieParser());
-
-// Apply input sanitization middleware
-log('Applying input sanitization...');
-app.use(sanitizeInput);
 
 // Apply performance monitoring
 log('Applying performance monitoring...');
@@ -185,125 +128,20 @@ app.get('/api/metrics', (req, res) => {
 
 // Use imported authenticate middleware from @/middleware/authenticate
 
-// Login rate limiting is now handled by the rateLimiters.auth middleware
-
-// Login endpoint with enhanced rate limiting
-app.post('/api/login', rateLimiters.auth, async (req, res) => {
-  try {
-    const { email, password: passwordInput } = req.body as { email: string; password: string };
-    // Input validation and sanitization
-    if (
-      !email ||
-      !passwordInput ||
-      typeof email !== 'string' ||
-      typeof passwordInput !== 'string'
-    ) {
-      return res.status(400).json({ error: 'Email and password are required' });
-    }
-
-    const sanitizedEmail = email.trim().toLowerCase().slice(0, 255);
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(sanitizedEmail)) {
-      return res.status(400).json({ error: 'Invalid email format' });
-    }
-
-    // Rate limiting is handled by middleware
-
-    const user = await prisma.user.findUnique({
-      where: { email: sanitizedEmail },
-      select: { id: true, email: true, name: true, role: true, password: true },
-    });
-
-    if (!user) {
-      return res.status(401).json({ error: 'Invalid credentials' });
-    }
-
-    // Compare the provided password with the hashed password in the database
-    const isPasswordValid = await bcrypt.compare(passwordInput, user.password);
-
-    if (!isPasswordValid) {
-      return res.status(401).json({ error: 'Invalid credentials' });
-    }
-
-    const secret = process.env.JWT_SECRET;
-    if (!secret) {
-      logger.error('CRITICAL: JWT_SECRET environment variable not configured');
-      return res.status(500).json({ error: 'Server configuration error' });
-    }
-
-    const token = jwt.sign(
-      {
-        userId: user.id.toString(),
-        email: user.email,
-        iat: Math.floor(Date.now() / 1000),
-      },
-      secret,
-      {
-        expiresIn: process.env.JWT_EXPIRES_IN || '7d',
-        algorithm: 'HS256',
-      } as jwt.SignOptions,
-    );
-
-    // Return user data without password
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...userData } = user;
-
-    // Set JWT in httpOnly cookie for security
-    const isProduction = process.env.NODE_ENV === 'production';
-    const cookieOptions = {
-      httpOnly: true,
-      secure: isProduction, // Use secure flag in production
-      sameSite: isProduction ? ('strict' as const) : ('lax' as const), // Use 'lax' in development for cross-port requests
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-      path: '/',
-    };
-
-    res.cookie('authToken', token, cookieOptions);
-
-    const response = {
-      user: userData,
-      token: token, // Include token in response for E2E tests
-    };
-
-    res.json(response);
-  } catch (error) {
-    logger.error('Login error:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
+// Legacy login endpoint for backward compatibility
+app.post('/api/login', authRateLimitMiddleware, async (req: Request, res: Response) => {
+  // Forward to the new auth endpoint
+  req.url = '/login';
+  authEndpoints(req, res, () => {});
 });
 
-// Auth check endpoint
-app.get('/api/auth/me', authenticate, async (req: Request, res: Response) => {
-  try {
-    if (!req.user?.id) {
-      return res.status(401).json({ error: 'Unauthorized' });
-    }
-    const user = await prisma.user.findUnique({
-      where: { id: req.user.id },
-      select: { id: true, email: true, name: true, role: true },
-    });
-    if (!user) return res.status(404).json({ error: 'User not found' });
-    res.json(user);
-  } catch (error) {
-    logger.error('Auth check error:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
+// Auth check endpoint is handled by authEndpoints router at /api/auth/me
 
 app.get('/api/auth/check', authenticate, (req: Request, res: Response) => {
   res.json({ userId: req.user?.id });
 });
 
-// Logout endpoint to clear httpOnly cookie
-app.post('/api/logout', (_req, res) => {
-  const isProduction = process.env.NODE_ENV === 'production';
-  res.clearCookie('authToken', {
-    httpOnly: true,
-    secure: isProduction,
-    sameSite: isProduction ? ('strict' as const) : ('lax' as const),
-    path: '/',
-  });
-  res.json({ message: 'Logged out successfully' });
-});
+// Logout endpoint is handled by authEndpoints router at /api/auth/logout
 
 // Removed duplicate health endpoint - using the one with performance monitoring above
 
@@ -315,9 +153,19 @@ if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
   log('Skipping test routes - not in test or development mode');
 }
 
-// Mount auth routes (no authentication required)
+// Mount auth routes (no authentication required, but rate limited)
 log('Mounting auth routes...');
-app.use('/api', authRoutes(prisma));
+// Apply strict rate limiting to auth endpoints
+app.use('/api/auth/login', authRateLimitMiddleware);
+app.use('/api/auth/register', authRateLimitMiddleware);
+app.use('/api/auth/forgot-password', authRateLimitMiddleware);
+app.use('/api/auth/reset-password', authRateLimitMiddleware);
+
+// Mount auth endpoints (new auth middleware)
+app.use('/api/auth', authEndpoints);
+
+// Legacy auth routes disabled - using new auth middleware
+// app.use('/api', authRoutes(prisma));
 
 // Mount user routes (authenticated)
 log('Mounting user routes...');
@@ -332,7 +180,13 @@ log('Mounting ETFO-aligned API routes...');
 app.use('/api/students', authenticate, rateLimiters.api, studentRoutes);
 app.use('/api/parent-summary', authenticate, rateLimiters.write, parentSummaryRoutes);
 app.use('/api/newsletters', authenticate, rateLimiters.write, newsletterRoutes);
-app.use('/api/curriculum-import', authenticate, rateLimiters.upload, curriculumImportRoutes);
+app.use(
+  '/api/curriculum-import',
+  authenticate,
+  rateLimiters.upload,
+  validateFileUpload(['application/pdf', 'text/csv']),
+  curriculumImportRoutes,
+);
 app.use('/api/curriculum-discovery', authenticate, rateLimiters.read, curriculumDiscoveryRoutes);
 app.use('/api/discovery-scheduler', authenticate, rateLimiters.api, discoverySchedulerRoutes);
 
@@ -385,7 +239,7 @@ app.use('/api/batch-processing', authenticate, rateLimiters.write, batchProcessi
 app.use('/api/sub-plan', authenticate, rateLimiters.write, subPlanRoutes);
 
 // Batch API Routes (for request batching)
-app.use('/api', authenticate, rateLimiters.api, batchApiRoutes);
+app.use('/api/batch', authenticate, rateLimiters.api, batchApiRoutes);
 
 // Collaboration Routes
 app.use('/api/teams', authenticate, rateLimiters.api, teamRoutes(prisma));
@@ -404,8 +258,8 @@ app.get('/api/health/services', async (_req, res) => {
 
 log('All API routes mounted successfully.');
 
-// 404 handler for API routes
-app.use('/api/*', notFoundHandler);
+// 404 handler for API routes - must handle all unmatched API routes
+app.all('/api/*', notFoundHandler);
 
 const clientDist = path.join(__dirname_index, '../../client/dist');
 log('Configuring URL-encoded and cookie parser middleware...');

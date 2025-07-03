@@ -1,0 +1,20 @@
+3801806b59ce381c9b255d67f4ebc4b5
+/**
+ * TypeScript mock for pdf-parse
+ */
+const pdfParse = async (buffer) => {
+    return {
+        numpages: 1,
+        numrender: 1,
+        info: {
+            PDFFormatVersion: '1.4',
+            IsAcroFormPresent: false,
+            IsXFAPresent: false,
+        },
+        metadata: null,
+        version: '1.10.100',
+        text: 'Mock PDF content with curriculum expectations',
+    };
+};
+export default pdfParse;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL1VzZXJzL21pY2hhZWxtY2lzYWFjL0dpdEh1Yi90ZWFjaGluZy1lbmdpbmUyLjAvc2VydmVyL3NyYy9fX21vY2tzX18vcGRmLXBhcnNlLnRzIiwibWFwcGluZ3MiOiJBQUFBOztHQUVHO0FBQ0gsTUFBTSxRQUFRLEdBQUcsS0FBSyxFQUFFLE1BQWMsRUFBRSxFQUFFO0lBQ3hDLE9BQU87UUFDTCxRQUFRLEVBQUUsQ0FBQztRQUNYLFNBQVMsRUFBRSxDQUFDO1FBQ1osSUFBSSxFQUFFO1lBQ0osZ0JBQWdCLEVBQUUsS0FBSztZQUN2QixpQkFBaUIsRUFBRSxLQUFLO1lBQ3hCLFlBQVksRUFBRSxLQUFLO1NBQ3BCO1FBQ0QsUUFBUSxFQUFFLElBQUk7UUFDZCxPQUFPLEVBQUUsVUFBVTtRQUNuQixJQUFJLEVBQUUsK0NBQStDO0tBQ3RELENBQUM7QUFDSixDQUFDLENBQUM7QUFFRixlQUFlLFFBQVEsQ0FBQyIsIm5hbWVzIjpbXSwic291cmNlcyI6WyIvVXNlcnMvbWljaGFlbG1jaXNhYWMvR2l0SHViL3RlYWNoaW5nLWVuZ2luZTIuMC9zZXJ2ZXIvc3JjL19fbW9ja3NfXy9wZGYtcGFyc2UudHMiXSwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBUeXBlU2NyaXB0IG1vY2sgZm9yIHBkZi1wYXJzZVxuICovXG5jb25zdCBwZGZQYXJzZSA9IGFzeW5jIChidWZmZXI6IEJ1ZmZlcikgPT4ge1xuICByZXR1cm4ge1xuICAgIG51bXBhZ2VzOiAxLFxuICAgIG51bXJlbmRlcjogMSxcbiAgICBpbmZvOiB7XG4gICAgICBQREZGb3JtYXRWZXJzaW9uOiAnMS40JyxcbiAgICAgIElzQWNyb0Zvcm1QcmVzZW50OiBmYWxzZSxcbiAgICAgIElzWEZBUHJlc2VudDogZmFsc2UsXG4gICAgfSxcbiAgICBtZXRhZGF0YTogbnVsbCxcbiAgICB2ZXJzaW9uOiAnMS4xMC4xMDAnLFxuICAgIHRleHQ6ICdNb2NrIFBERiBjb250ZW50IHdpdGggY3VycmljdWx1bSBleHBlY3RhdGlvbnMnLFxuICB9O1xufTtcblxuZXhwb3J0IGRlZmF1bHQgcGRmUGFyc2U7Il0sInZlcnNpb24iOjN9

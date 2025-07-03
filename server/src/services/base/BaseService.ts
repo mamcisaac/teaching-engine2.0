@@ -3,6 +3,11 @@ import { prisma } from '../../prisma';
 import logger from '../../logger';
 import type { Logger } from 'pino';
 
+export interface ServiceDependencies {
+  prisma?: PrismaClient;
+  logger?: Logger;
+}
+
 export interface ServiceMetrics {
   operationCount: number;
   errorCount: number;
@@ -23,10 +28,18 @@ export abstract class BaseService {
   protected readonly serviceName: string;
   private metrics: ServiceMetrics;
 
-  constructor(serviceName?: string) {
-    this.prisma = prisma;
+  constructor(serviceName?: string, dependencies?: ServiceDependencies) {
+    // Use injected dependencies or fall back to real ones
+    this.prisma = dependencies?.prisma || prisma;
     this.serviceName = serviceName || this.constructor.name;
-    this.logger = logger.child({ service: this.serviceName });
+
+    // Use injected logger or create a child of the real logger
+    if (dependencies?.logger) {
+      this.logger = dependencies.logger;
+    } else {
+      this.logger = logger.child({ service: this.serviceName });
+    }
+
     this.metrics = {
       operationCount: 0,
       errorCount: 0,

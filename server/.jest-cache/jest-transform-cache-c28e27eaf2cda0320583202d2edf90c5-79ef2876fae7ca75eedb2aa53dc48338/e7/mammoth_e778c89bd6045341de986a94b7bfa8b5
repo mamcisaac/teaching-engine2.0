@@ -1,0 +1,15 @@
+3f494f5c97ae9e86de536f1dd34018f7
+/**
+ * Manual mock for mammoth (DOCX parser)
+ */
+const mammoth = {
+  extractRawText: jest.fn().mockImplementation(({ buffer }) => {
+    return Promise.resolve({
+      value: 'Mock DOCX content with curriculum expectations',
+      messages: [],
+    });
+  }),
+};
+
+module.exports = mammoth;
+module.exports.default = mammoth;

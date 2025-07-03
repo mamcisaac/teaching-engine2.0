@@ -1,181 +1,395 @@
 import { Request, Response, NextFunction } from 'express';
-import type { Prisma } from '@teaching-engine/database';
-import logger from '../logger';
 import { ZodError } from 'zod';
+import { Prisma } from '@prisma/client';
+import jwt from 'jsonwebtoken';
+import logger from '../logger.js';
 
-interface ErrorResponse {
-  error: string;
-  message?: string;
+/**
+ * Error interface for type safety
+ */
+interface ErrorLike {
+  statusCode?: number;
+  message: string;
   code?: string;
-  details?: unknown;
-  timestamp?: string;
-  path?: string;
+  name?: string;
+  stack?: string;
+  isOperational?: boolean;
 }
 
+/**
+ * Custom error classes for better error handling
+ */
 export class AppError extends Error {
   statusCode: number;
-  code: string;
   isOperational: boolean;
+  code?: string;
 
-  constructor(message: string, statusCode: number, code: string, isOperational = true) {
+  constructor(message: string, statusCode: number, code?: string) {
     super(message);
     this.statusCode = statusCode;
+    this.isOperational = true;
     this.code = code;
-    this.isOperational = isOperational;
-
     Error.captureStackTrace(this, this.constructor);
   }
 }
 
-export const asyncHandler =
-  (fn: (req: Request, res: Response, next: NextFunction) => Promise<unknown>) =>
-  (req: Request, res: Response, next: NextFunction) => {
+export class ValidationError extends AppError {
+  constructor(message: string) {
+    super(message, 400, 'VALIDATION_ERROR');
+  }
+}
+
+export class AuthenticationError extends AppError {
+  constructor(message: string = 'Authentication failed') {
+    super(message, 401, 'AUTHENTICATION_ERROR');
+  }
+}
+
+export class AuthorizationError extends AppError {
+  constructor(message: string = 'Insufficient permissions') {
+    super(message, 403, 'AUTHORIZATION_ERROR');
+  }
+}
+
+export class NotFoundError extends AppError {
+  constructor(message: string = 'Resource not found') {
+    super(message, 404, 'NOT_FOUND');
+  }
+}
+
+export class ConflictError extends AppError {
+  constructor(message: string = 'Resource conflict') {
+    super(message, 409, 'CONFLICT');
+  }
+}
+
+export class RateLimitError extends AppError {
+  constructor(message: string = 'Too many requests') {
+    super(message, 429, 'RATE_LIMIT');
+  }
+}
+
+/**
+ * Async error wrapper for route handlers
+ */
+export function asyncHandler(
+  fn: (req: Request, res: Response, next: NextFunction) => Promise<unknown>,
+) {
+  return (req: Request, res: Response, next: NextFunction) => {
     Promise.resolve(fn(req, res, next)).catch(next);
   };
+}
 
-export function errorHandler(err: Error, req: Request, res: Response, _next: NextFunction) {
-  let statusCode = 500;
-  const response: ErrorResponse = {
-    error: 'Internal Server Error',
-    timestamp: new Date().toISOString(),
-    path: req.path,
-  };
+/**
+ * 404 Not Found handler
+ */
+export function notFoundHandler(req: Request, res: Response, next: NextFunction): void {
+  const error = new NotFoundError(`Route ${req.method} ${req.path} not found`);
+  next(error);
+}
 
-  // Log the error
+/**
+ * Development error response with stack trace
+ */
+function sendErrorDev(err: ErrorLike, req: Request, res: Response) {
+  const statusCode = err.statusCode || 500;
+
   logger.error(
     {
-      err,
-      method: req.method,
-      path: req.path,
-      query: req.query,
-      ip: req.ip,
-      userId: (req as Request & { user?: { userId?: string } }).user?.userId,
+      error: err,
+      request: {
+        method: req.method,
+        url: req.url,
+        headers: req.headers,
+        body: req.body,
+        query: req.query,
+        params: req.params,
+        ip: req.ip,
+        user: req.user,
+      },
     },
     'Request error',
   );
 
-  // Handle known error types
-  if (err instanceof AppError) {
-    statusCode = err.statusCode;
-    response.error = err.message;
-    response.code = err.code;
-  } else if (
-    err &&
-    typeof err === 'object' &&
-    'code' in err &&
-    err.constructor.name === 'PrismaClientKnownRequestError'
-  ) {
-    // Handle Prisma errors
-    const prismaError = err as Prisma.PrismaClientKnownRequestError;
-    switch (prismaError.code) {
-      case 'P2002':
-        statusCode = 409;
-        response.error = 'Duplicate entry';
-        response.message = 'A record with this value already exists';
-        response.code = 'DUPLICATE_ENTRY';
-        break;
-      case 'P2025':
-        statusCode = 404;
-        response.error = 'Record not found';
-        response.message = 'The requested record does not exist';
-        response.code = 'NOT_FOUND';
-        break;
-      case 'P2003':
-        statusCode = 400;
-        response.error = 'Foreign key constraint failed';
-        response.message = 'Referenced record does not exist';
-        response.code = 'FOREIGN_KEY_ERROR';
-        break;
-      case 'P2016':
-        statusCode = 400;
-        response.error = 'Query interpretation error';
-        response.message = 'Invalid query parameters';
-        response.code = 'INVALID_QUERY';
-        break;
-      default:
-        statusCode = 400;
-        response.error = 'Database operation failed';
-        response.message = err.message;
-        response.code = `PRISMA_${prismaError.code}`;
-    }
-  } else if (
-    err &&
-    typeof err === 'object' &&
-    err.constructor.name === 'PrismaClientValidationError'
-  ) {
-    statusCode = 400;
-    response.error = 'Validation error';
-    response.message = 'Invalid data provided';
-    response.code = 'VALIDATION_ERROR';
-
-    // Extract useful validation info if possible
-    const validationMatch = err.message.match(/Argument (\w+): (.+)/);
-    if (validationMatch) {
-      response.details = {
-        field: validationMatch[1],
-        issue: validationMatch[2],
-      };
-    }
-  } else if (err instanceof ZodError) {
-    // Handle Zod validation errors
-    statusCode = 400;
-    response.error = 'Validation error';
-    response.code = 'VALIDATION_ERROR';
-    response.details = err.errors.map((e) => ({
-      field: e.path.join('.'),
-      message: e.message,
-    }));
-  } else if (err.name === 'JsonWebTokenError') {
-    statusCode = 401;
-    response.error = 'Invalid token';
-    response.code = 'INVALID_TOKEN';
-  } else if (err.name === 'TokenExpiredError') {
-    statusCode = 401;
-    response.error = 'Token expired';
-    response.code = 'TOKEN_EXPIRED';
-  } else if (err.name === 'MulterError') {
-    statusCode = 400;
-    response.error = 'File upload error';
-    response.message = err.message;
-    response.code = 'FILE_UPLOAD_ERROR';
-  } else if (err.message.includes('CORS')) {
-    statusCode = 403;
-    response.error = 'CORS error';
-    response.message = 'Cross-origin request blocked';
-    response.code = 'CORS_ERROR';
-  } else {
-    // Generic error handling
-    response.error =
-      process.env.NODE_ENV === 'production' ? 'An unexpected error occurred' : err.message;
-
-    // Don't leak stack traces in production
-    if (process.env.NODE_ENV !== 'production') {
-      response.details = {
-        stack: err.stack,
-      };
-    }
-  }
-
-  res.status(statusCode).json(response);
-}
-
-// Catch unhandled routes
-export function notFoundHandler(req: Request, res: Response) {
-  res.status(404).json({
-    error: 'Not Found',
-    message: `Cannot ${req.method} ${req.path}`,
-    code: 'ROUTE_NOT_FOUND',
-    timestamp: new Date().toISOString(),
+  res.status(statusCode).json({
+    status: 'error',
+    error: err,
+    message: err.message,
+    stack: err.stack,
+    code: err.code,
   });
 }
 
-// Common error generators
-export const errors = {
-  unauthorized: () => new AppError('Unauthorized', 401, 'UNAUTHORIZED'),
-  forbidden: () => new AppError('Forbidden', 403, 'FORBIDDEN'),
-  notFound: (resource: string) => new AppError(`${resource} not found`, 404, 'NOT_FOUND'),
-  badRequest: (message: string) => new AppError(message, 400, 'BAD_REQUEST'),
-  conflict: (message: string) => new AppError(message, 409, 'CONFLICT'),
-  tooManyRequests: () => new AppError('Too many requests', 429, 'RATE_LIMIT_EXCEEDED'),
-  serverError: (message = 'Internal server error') => new AppError(message, 500, 'SERVER_ERROR'),
-};
+/**
+ * Production error response without sensitive details
+ */
+function sendErrorProd(err: ErrorLike, req: Request, res: Response) {
+  const statusCode = err.statusCode || 500;
+
+  // Operational, trusted error: send message to client
+  if (err.isOperational) {
+    logger.warn(
+      {
+        error: {
+          message: err.message,
+          code: err.code,
+          statusCode: err.statusCode,
+        },
+        request: {
+          method: req.method,
+          url: req.url,
+          ip: req.ip,
+          userId: req.user?.id,
+        },
+      },
+      'Operational error',
+    );
+
+    res.status(statusCode).json({
+      status: 'error',
+      message: err.message,
+      code: err.code,
+    });
+  } else {
+    // Programming or other unknown error: don't leak error details
+    logger.error(
+      {
+        error: err,
+        request: {
+          method: req.method,
+          url: req.url,
+          headers: req.headers,
+          body: req.body,
+          ip: req.ip,
+          userId: req.user?.id,
+        },
+      },
+      'Unexpected error',
+    );
+
+    res.status(500).json({
+      status: 'error',
+      message: 'Something went wrong',
+      code: 'INTERNAL_ERROR',
+    });
+  }
+}
+
+/**
+ * Handle specific error types
+ */
+function handleSpecificErrors(
+  err: ErrorLike & {
+    type?: string;
+    path?: string;
+    value?: unknown;
+    keyValue?: Record<string, unknown>;
+  },
+): AppError {
+  // JSON parsing errors (malformed JSON)
+  if (err instanceof SyntaxError && err.message.includes('JSON')) {
+    return new ValidationError('Invalid JSON format in request body');
+  }
+
+  // Express JSON parser errors
+  if (err.type === 'entity.parse.failed') {
+    return new ValidationError('Invalid JSON format in request body');
+  }
+
+  if (err.type === 'entity.too.large') {
+    return new ValidationError('Request payload too large');
+  }
+
+  // Zod validation errors
+  if (err instanceof ZodError) {
+    const errors = err.errors.map((e) => {
+      return {
+        field: e.path.join('.'),
+        message: e.message,
+      };
+    });
+
+    return new ValidationError(
+      `Validation failed: ${errors.map((e) => `${e.field}: ${e.message}`).join(', ')}`,
+    );
+  }
+
+  // Prisma errors
+  if (err instanceof Prisma.PrismaClientKnownRequestError) {
+    switch (err.code) {
+      case 'P2002': {
+        const field = err.meta?.target as string[];
+        return new ConflictError(`Duplicate value for field: ${field?.join(', ') || 'unknown'}`);
+      }
+      case 'P2025':
+        return new NotFoundError('Record not found');
+      case 'P2003':
+        return new ValidationError('Foreign key constraint failed');
+      default:
+        return new AppError('Database error', 400, err.code);
+    }
+  }
+
+  if (err instanceof Prisma.PrismaClientValidationError) {
+    return new ValidationError('Invalid data provided');
+  }
+
+  // JWT errors
+  if (err instanceof jwt.TokenExpiredError) {
+    return new AuthenticationError('Token has expired');
+  }
+
+  if (err instanceof jwt.JsonWebTokenError) {
+    return new AuthenticationError('Invalid token');
+  }
+
+  // CORS errors
+  if (err.message === 'Not allowed by CORS') {
+    return new AppError('Cross-origin request blocked', 403, 'CORS_ERROR');
+  }
+
+  // File upload errors
+  if (err.message && err.message.includes('File too large')) {
+    return new ValidationError('File size exceeds maximum allowed size');
+  }
+
+  if (err.message && err.message.includes('Invalid file type')) {
+    return new ValidationError('File type not allowed');
+  }
+
+  // MongoDB/Mongoose-like errors (if using)
+  if (err.name === 'CastError') {
+    return new ValidationError(`Invalid ${err.path}: ${err.value}`);
+  }
+
+  if (err.code === 11000) {
+    const field = Object.keys(err.keyValue || {})[0];
+    return new ConflictError(`Duplicate field value: ${field}`);
+  }
+
+  if (err.name === 'ValidationError') {
+    const errors = Object.values(
+      (err as { errors: Record<string, { message: string }> }).errors || {},
+    ).map((e: { message: string }) => e.message);
+    return new ValidationError(`Validation failed: ${errors.join(', ')}`);
+  }
+
+  return err;
+}
+
+/**
+ * Global error handling middleware
+ */
+export function errorHandler(err: Error, req: Request, res: Response, _next: NextFunction): void {
+  // Handle specific error types
+  const error = handleSpecificErrors(err);
+
+  // Set default values if not set
+  error.statusCode = error.statusCode || 500;
+
+  // Send appropriate error response
+  if (process.env.NODE_ENV === 'development') {
+    sendErrorDev(error, req, res);
+  } else {
+    sendErrorProd(error, req, res);
+  }
+}
+
+/**
+ * Uncaught exception handler
+ */
+export function handleUncaughtException(): void {
+  process.on('uncaughtException', (error: Error) => {
+    logger.fatal({ error }, 'Uncaught Exception');
+
+    // Give logger time to write
+    setTimeout(() => {
+      process.exit(1);
+    }, 1000);
+  });
+}
+
+/**
+ * Unhandled rejection handler
+ */
+export function handleUnhandledRejection(): void {
+  process.on('unhandledRejection', (reason: unknown, promise: Promise<unknown>) => {
+    logger.fatal({ reason, promise }, 'Unhandled Rejection');
+
+    // Give logger time to write
+    setTimeout(() => {
+      process.exit(1);
+    }, 1000);
+  });
+}
+
+/**
+ * Graceful shutdown handler
+ */
+export function handleGracefulShutdown(server: { close: (callback: () => void) => void }): void {
+  const shutdown = (signal: string) => {
+    logger.info(`${signal} received. Starting graceful shutdown...`);
+
+    server.close(() => {
+      logger.info('HTTP server closed');
+
+      // Close database connections
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const { prisma } = require('../prisma.js');
+        prisma
+          .$disconnect()
+          .then(() => {
+            logger.info('Database connections closed');
+            process.exit(0);
+          })
+          .catch((err) => {
+            logger.error({ error: err }, 'Error closing database connections');
+            process.exit(1);
+          });
+      } catch (error) {
+        logger.warn('Could not access prisma for shutdown');
+        process.exit(0);
+      }
+    });
+
+    // Force shutdown after 30 seconds
+    setTimeout(() => {
+      logger.error('Could not close connections in time, forcefully shutting down');
+      process.exit(1);
+    }, 30000);
+  };
+
+  process.on('SIGTERM', () => shutdown('SIGTERM'));
+  process.on('SIGINT', () => shutdown('SIGINT'));
+}
+
+/**
+ * Request timeout middleware
+ */
+export function requestTimeout(timeoutMs: number = 30000) {
+  return (req: Request, res: Response, next: NextFunction) => {
+    const timeout = setTimeout(() => {
+      logger.warn(
+        {
+          method: req.method,
+          url: req.url,
+          ip: req.ip,
+          userId: req.user?.id,
+        },
+        'Request timeout',
+      );
+
+      res.status(408).json({
+        status: 'error',
+        message: 'Request timeout',
+        code: 'REQUEST_TIMEOUT',
+      });
+    }, timeoutMs);
+
+    res.on('finish', () => clearTimeout(timeout));
+    res.on('close', () => clearTimeout(timeout));
+
+    next();
+  };
+}

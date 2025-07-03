@@ -8,7 +8,11 @@ interface EducationalSite {
   name: string;
   baseUrl: string;
   searchUrl: (query: string, params: SearchParams) => string;
-  parseResults: (html: string, $: cheerio.CheerioAPI, site: EducationalSite) => EducationalActivity[];
+  parseResults: (
+    html: string,
+    $: cheerio.CheerioAPI,
+    site: EducationalSite,
+  ) => EducationalActivity[];
   isActive: boolean;
   language: 'en' | 'fr' | 'both';
   crawlDelay: number; // milliseconds
@@ -46,19 +50,19 @@ export class EducationWebConnector extends BaseConnector {
           search: query,
           sort: 'votes',
         });
-        
+
         if (params.grade) {
           // Khan Academy uses different grade representations
           if (params.grade >= 1 && params.grade <= 8) {
             searchParams.append('class', `grade-${params.grade}`);
           }
         }
-        
+
         if (params.subject) {
           const subjectMap: Record<string, string> = {
-            'math': 'math',
-            'science': 'science',
-            'english': 'ela',
+            math: 'math',
+            science: 'science',
+            english: 'ela',
             'social-studies': 'humanities',
           };
           const khanSubject = subjectMap[params.subject.toLowerCase()];
@@ -105,7 +109,7 @@ export class EducationWebConnector extends BaseConnector {
         const searchParams = new URLSearchParams({
           q: query,
         });
-        
+
         if (params.grade) {
           searchParams.append('grade', params.grade.toString());
         }
@@ -119,7 +123,11 @@ export class EducationWebConnector extends BaseConnector {
           const $element = $(element);
           const title = $element.find('.title, h3, .card-title').first().text().trim();
           const url = $element.find('a').first().attr('href');
-          const description = $element.find('.description, .excerpt, .card-text').first().text().trim();
+          const description = $element
+            .find('.description, .excerpt, .card-text')
+            .first()
+            .text()
+            .trim();
           const gradeText = $element.find('.grade, .grade-level').text().trim();
 
           if (title && url) {
@@ -149,7 +157,7 @@ export class EducationWebConnector extends BaseConnector {
           q: query,
           sort: 'relevance',
         });
-        
+
         if (params.language === 'fr') {
           searchParams.append('lang', 'fr');
         }
@@ -194,7 +202,7 @@ export class EducationWebConnector extends BaseConnector {
         const searchParams = new URLSearchParams({
           q: query,
         });
-        
+
         if (params.grade) {
           searchParams.append('niveau', params.grade.toString());
         }
@@ -248,7 +256,7 @@ export class EducationWebConnector extends BaseConnector {
               title,
               url: url.startsWith('http') ? url : `https://www.teachingideas.co.uk${url}`,
               description,
-              type: this.inferTypeFromTitle(title),
+              type: this.inferActivityType({ title, description }),
               isFree: true,
             });
           }
@@ -280,10 +288,10 @@ export class EducationWebConnector extends BaseConnector {
     for (const site of sitesToSearch) {
       try {
         console.log(`Searching ${site.name} for: ${params.query}`);
-        
+
         const searchUrl = site.searchUrl(params.query || '', params);
         const html = await this.fetchWithRetry(searchUrl);
-        
+
         if (!html) continue;
 
         const $ = cheerio.load(html);
@@ -291,30 +299,31 @@ export class EducationWebConnector extends BaseConnector {
 
         // Transform results to ExternalActivity format
         for (const result of siteResults) {
-          const activity = this.transformToExternalActivity(
-            result,
-            {
-              externalId: this.generateIdFromUrl(result.url),
-              source: this.sourceName,
-              url: result.url,
-              title: result.title,
-              description: result.description,
-              thumbnailUrl: result.thumbnail,
-              duration: result.duration || this.estimateDuration(result),
-              activityType: result.type || this.inferActivityType({
+          const activity = this.transformToExternalActivity(result, {
+            externalId: this.generateIdFromUrl(result.url),
+            source: this.sourceName,
+            url: result.url,
+            title: result.title,
+            description: result.description,
+            thumbnailUrl: result.thumbnail,
+            duration: result.duration || this.estimateDuration(result),
+            activityType:
+              result.type ||
+              this.inferActivityType({
                 title: result.title,
                 description: result.description,
               }),
-              gradeMin: this.extractGradeFromText(result.grade || result.description || '').min,
-              gradeMax: this.extractGradeFromText(result.grade || result.description || '').max,
-              subject: this.normalizeSubject(result.subject || this.inferSubject(result.title + ' ' + (result.description || ''))),
-              language: params.language || site.language === 'fr' ? 'fr' : 'en',
-              materials: result.materials || this.extractMaterials(result.description || ''),
-              sourceRating: result.rating,
-              isFree: result.isFree !== false, // Default to free
-              license: 'Educational Use',
-            }
-          );
+            gradeMin: this.extractGradeFromText(result.grade || result.description || '').min,
+            gradeMax: this.extractGradeFromText(result.grade || result.description || '').max,
+            subject: this.normalizeSubject(
+              result.subject || this.inferSubject(result.title + ' ' + (result.description || '')),
+            ),
+            language: params.language || site.language === 'fr' ? 'fr' : 'en',
+            materials: result.materials || this.extractMaterials(result.description || ''),
+            sourceRating: result.rating,
+            isFree: result.isFree !== false, // Default to free
+            license: 'Educational Use',
+          });
 
           activities.push(activity);
         }
@@ -348,11 +357,12 @@ export class EducationWebConnector extends BaseConnector {
   private async fetchWithRetry(
     url: string,
     maxRetries: number = 3,
-    delay: number = 1000
+    delay: number = 1000,
   ): Promise<string | null> {
     const headers = {
-      'User-Agent': 'Teaching Engine 2.0 Educational Resource Bot (+https://teaching-engine.ca/bot)',
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      'User-Agent':
+        'Teaching Engine 2.0 Educational Resource Bot (+https://teaching-engine.ca/bot)',
+      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
       'Accept-Language': 'en-US,en;q=0.9,fr;q=0.8',
     };
 
@@ -362,7 +372,7 @@ export class EducationWebConnector extends BaseConnector {
       { headers },
       maxRetries,
       30000, // 30 second timeout per request
-      delay
+      delay,
     );
   }
 
@@ -374,11 +384,11 @@ export class EducationWebConnector extends BaseConnector {
 
   private extractGradeFromText(text: string): { min: number; max: number } {
     const gradeMatch = text.match(/grade\s*(\d+)(?:\s*-\s*(\d+))?|(\d+)(?:st|nd|rd|th)\s*grade/i);
-    
+
     if (gradeMatch) {
       const grade1 = parseInt(gradeMatch[1] || gradeMatch[3]);
       const grade2 = gradeMatch[2] ? parseInt(gradeMatch[2]) : grade1;
-      
+
       return {
         min: Math.min(grade1, grade2),
         max: Math.max(grade1, grade2),
@@ -391,20 +401,36 @@ export class EducationWebConnector extends BaseConnector {
 
   private inferSubject(text: string): string {
     const lowerText = text.toLowerCase();
-    
-    if (lowerText.includes('math') || lowerText.includes('number') || lowerText.includes('calculation')) {
+
+    if (
+      lowerText.includes('math') ||
+      lowerText.includes('number') ||
+      lowerText.includes('calculation')
+    ) {
       return 'mathematics';
     }
-    if (lowerText.includes('science') || lowerText.includes('experiment') || lowerText.includes('biology')) {
+    if (
+      lowerText.includes('science') ||
+      lowerText.includes('experiment') ||
+      lowerText.includes('biology')
+    ) {
       return 'science';
     }
-    if (lowerText.includes('english') || lowerText.includes('reading') || lowerText.includes('writing')) {
+    if (
+      lowerText.includes('english') ||
+      lowerText.includes('reading') ||
+      lowerText.includes('writing')
+    ) {
       return 'english';
     }
     if (lowerText.includes('french') || lowerText.includes('français')) {
       return 'french';
     }
-    if (lowerText.includes('history') || lowerText.includes('geography') || lowerText.includes('social')) {
+    if (
+      lowerText.includes('history') ||
+      lowerText.includes('geography') ||
+      lowerText.includes('social')
+    ) {
       return 'social-studies';
     }
     if (lowerText.includes('art') || lowerText.includes('music') || lowerText.includes('drama')) {
@@ -419,7 +445,7 @@ export class EducationWebConnector extends BaseConnector {
 
   private inferTypeFromTitle(title: string): string {
     const lowerTitle = title.toLowerCase();
-    
+
     if (lowerTitle.includes('worksheet') || lowerTitle.includes('printable')) {
       return 'worksheet';
     }
@@ -441,13 +467,13 @@ export class EducationWebConnector extends BaseConnector {
 
   private estimateDuration(activity: EducationalActivity): number {
     const text = (activity.title + ' ' + (activity.description || '')).toLowerCase();
-    
+
     // Look for explicit duration mentions
     const durationMatch = text.match(/(\d+)\s*(?:minutes?|mins?|hours?)/i);
     if (durationMatch) {
       const value = parseInt(durationMatch[1]);
       const unit = durationMatch[0].toLowerCase();
-      
+
       if (unit.includes('hour')) {
         return value * 60;
       }
@@ -463,5 +489,4 @@ export class EducationWebConnector extends BaseConnector {
 
     return 30; // Default
   }
-
 }

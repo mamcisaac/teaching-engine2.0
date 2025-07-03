@@ -3,11 +3,11 @@
 import { jest } from '@jest/globals';
 import { randomBytes } from 'crypto';
 
-// Set up environment variables
-process.env.NODE_ENV = 'test';
-process.env.DATABASE_URL = 'file:./test.db';
-process.env.JWT_SECRET = process.env.JWT_SECRET || randomBytes(32).toString('hex'); // Reuse existing if available
-process.env.OPENAI_API_KEY = 'test-api-key';
+// Environment variables should be set by jest.setup.js and test-env.ts
+// Do not override them here
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = 'test';
+}
 
 // Mock UUID before any other imports
 jest.mock('uuid', () => ({
@@ -31,18 +31,8 @@ const loadDatabaseMock = async () => {
   }
 };
 
-// Mock @teaching-engine/database with lazy loading
-jest.mock('@teaching-engine/database', async () => {
-  // Only load database mock when actually needed
-  const { prisma, PrismaClient, ImportStatus, Prisma } = await import('./mocks/database.mock.ts');
-  
-  return {
-    prisma,
-    PrismaClient,
-    ImportStatus,
-    Prisma,
-  };
-});
+// Mock @teaching-engine/database - Don't use async, let moduleNameMapper handle it
+// The moduleNameMapper in jest.config.js already points to the mock file
 
 // Optimized logger mock - reuse instances to reduce memory
 let mockLogger: any;
@@ -90,12 +80,39 @@ jest.doMock('../src/prisma', async () => {
 const generateMockEmbedding = () => {
   // Use consistent mock embedding to reduce memory usage
   if (!global.__mockEmbedding) {
-    global.__mockEmbedding = Array(1536).fill(0).map(() => Math.random());
+    global.__mockEmbedding = Array(1536)
+      .fill(0)
+      .map(() => Math.random());
   }
   return global.__mockEmbedding;
 };
 
+// Mock embeddingService with multiple paths
 jest.mock('@/services/embeddingService', () => ({
+  embeddingService: {
+    calculateSimilarity: jest.fn().mockReturnValue(0.85),
+    generateBatchEmbeddings: jest.fn().mockResolvedValue([]),
+    findSimilarOutcomes: jest.fn().mockResolvedValue([]),
+    generateEmbedding: jest.fn().mockResolvedValue({
+      outcomeId: 'test-outcome',
+      embedding: generateMockEmbedding(),
+      model: 'text-embedding-3-small',
+    }),
+    generateMissingEmbeddings: jest.fn().mockResolvedValue(0),
+    getOrCreateOutcomeEmbedding: jest.fn().mockResolvedValue({
+      outcomeId: 'test-outcome',
+      embedding: generateMockEmbedding(),
+      model: 'text-embedding-3-small',
+    }),
+    searchOutcomesByText: jest.fn().mockResolvedValue([]),
+    isEmbeddingServiceAvailable: jest.fn().mockReturnValue(true),
+    // Add alias for test compatibility
+    cosineSimilarity: jest.fn().mockReturnValue(0.85),
+  },
+}));
+
+// Also mock the relative path version
+jest.doMock('../src/services/embeddingService', () => ({
   embeddingService: {
     calculateSimilarity: jest.fn().mockReturnValue(0.85),
     generateBatchEmbeddings: jest.fn().mockResolvedValue([]),
@@ -162,11 +179,29 @@ const mockOpenAIInstance = {
   },
 };
 
-// Mock OpenAI before any imports
-jest.mock('openai', () => ({
-  __esModule: true,
-  default: jest.fn().mockImplementation(() => mockOpenAIInstance),
-  OpenAI: jest.fn().mockImplementation(() => mockOpenAIInstance),
+// OpenAI is mocked via moduleNameMapper in jest.config.js
+// For security tests, use the secure mock when ENABLE_SECURITY_CHECKS is set
+if (process.env.ENABLE_SECURITY_CHECKS === 'true') {
+  jest.doMock('openai', async () => {
+    const { default: SecureMockOpenAI } = await import('../src/__mocks__/openai-secure.js');
+    return {
+      __esModule: true,
+      default: SecureMockOpenAI,
+      OpenAI: SecureMockOpenAI,
+    };
+  });
+
+  // Mock fetch with secure implementation for security tests
+  (async () => {
+    const { secureFetchMock } = await import('./mocks/fetch-secure.mock.ts');
+    global.fetch = secureFetchMock;
+  })();
+}
+
+// Mock llmService
+jest.doMock('../src/services/llmService', () => ({
+  openai: mockOpenAIInstance,
+  generateContent: jest.fn().mockResolvedValue('Mocked AI response'),
 }));
 
 // Conditional mocking - only mock services that are actually used

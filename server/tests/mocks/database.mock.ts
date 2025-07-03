@@ -9,9 +9,16 @@ import { jest } from '@jest/globals';
 const createMockModel = (modelName: string, options: { useStringIds?: boolean } = {}) => {
   const mockData = new Map<string, any>();
   let idCounter = 1;
-  
+
   // Models that use CUID format
-  const cuidModels = ['curriculumImport', 'eTFOLessonPlan', 'longRangePlan', 'unitPlan', 'daybookEntry', 'curriculumExpectation'];
+  const cuidModels = [
+    'curriculumImport',
+    'eTFOLessonPlan',
+    'longRangePlan',
+    'unitPlan',
+    'daybookEntry',
+    'curriculumExpectation',
+  ];
   const shouldUseStringIds = options.useStringIds || cuidModels.includes(modelName);
 
   const generateId = () => {
@@ -22,38 +29,44 @@ const createMockModel = (modelName: string, options: { useStringIds?: boolean } 
     return idCounter++;
   };
 
-  return {
-    findUnique: jest.fn(({ where }) => {
+  // Create implementation functions first
+  const implementations = {
+    findUnique: async ({ where }: any) => {
       const key = Object.values(where)[0];
-      return Promise.resolve(mockData.get(String(key)) || null);
-    }),
-    
-    findMany: jest.fn(() => {
-      return Promise.resolve(Array.from(mockData.values()));
-    }),
-    
-    findFirst: jest.fn(() => {
+      return mockData.get(String(key)) || null;
+    },
+    findMany: async () => {
+      return Array.from(mockData.values());
+    },
+    findFirst: async () => {
       const values = Array.from(mockData.values());
-      return Promise.resolve(values[0] || null);
-    }),
-    
-    create: jest.fn(({ data }) => {
+      return values[0] || null;
+    },
+    create: async (args: any) => {
+      const { data } = args || {};
       const id = data.id || generateId();
       const record = { id, ...data, createdAt: new Date(), updatedAt: new Date() };
       mockData.set(String(id), record);
-      return Promise.resolve(record);
-    }),
-    
-    createMany: jest.fn(({ data }) => {
+      return record;
+    },
+    createMany: async ({ data }: any) => {
       const created = data.map((item: any) => {
         const id = item.id || generateId();
         const record = { id, ...item, createdAt: new Date(), updatedAt: new Date() };
         mockData.set(String(id), record);
         return record;
       });
-      return Promise.resolve({ count: created.length });
-    }),
-    
+      return { count: created.length };
+    },
+  };
+
+  return {
+    findUnique: jest.fn(implementations.findUnique),
+    findMany: jest.fn(implementations.findMany),
+    findFirst: jest.fn(implementations.findFirst),
+    create: jest.fn(implementations.create),
+    createMany: jest.fn(implementations.createMany),
+
     update: jest.fn(({ where, data }) => {
       const key = String(Object.values(where)[0]);
       const existing = mockData.get(key);
@@ -62,11 +75,11 @@ const createMockModel = (modelName: string, options: { useStringIds?: boolean } 
       mockData.set(key, updated);
       return Promise.resolve(updated);
     }),
-    
+
     updateMany: jest.fn(() => {
       return Promise.resolve({ count: mockData.size });
     }),
-    
+
     delete: jest.fn(({ where }) => {
       const key = String(Object.values(where)[0]);
       const record = mockData.get(key);
@@ -74,17 +87,17 @@ const createMockModel = (modelName: string, options: { useStringIds?: boolean } 
       mockData.delete(key);
       return Promise.resolve(record);
     }),
-    
+
     deleteMany: jest.fn(() => {
       const count = mockData.size;
       mockData.clear();
       return Promise.resolve({ count });
     }),
-    
+
     count: jest.fn(() => Promise.resolve(mockData.size)),
     aggregate: jest.fn(() => Promise.resolve({})),
     groupBy: jest.fn(() => Promise.resolve([])),
-    
+
     // Test helper to access mock data
     _getMockData: () => mockData,
     _reset: () => mockData.clear(),
@@ -96,7 +109,7 @@ export class PrismaClient {
   // Connection methods
   $connect = jest.fn().mockResolvedValue(undefined);
   $disconnect = jest.fn().mockResolvedValue(undefined);
-  
+
   // Transaction support
   $transaction = jest.fn().mockImplementation((fn) => {
     if (typeof fn === 'function') {
@@ -104,19 +117,20 @@ export class PrismaClient {
     }
     return Promise.all(fn);
   });
-  
+
   // Raw query methods (optimized)
   $queryRaw = jest.fn().mockResolvedValue([]);
   $queryRawUnsafe = jest.fn().mockResolvedValue([]);
   $executeRaw = jest.fn().mockResolvedValue(0);
   $executeRawUnsafe = jest.fn().mockResolvedValue(0);
-  
+
   // All models
   user = createMockModel('user');
   outcome = createMockModel('outcome');
   outcomeEmbedding = createMockModel('outcomeEmbedding');
   curriculumExpectation = createMockModel('curriculumExpectation');
   curriculumExpectationEmbedding = createMockModel('curriculumExpectationEmbedding');
+  expectationCluster = createMockModel('expectationCluster');
   curriculumImport = createMockModel('curriculumImport');
   outcomeCluster = createMockModel('outcomeCluster');
   subject = createMockModel('subject');
@@ -161,8 +175,34 @@ export class PrismaClient {
   };
 }
 
-// Create singleton instance
-export const prisma = new PrismaClient();
+// Create singleton instance with pre-configured mocks
+const createPrismaClientMock = () => {
+  const client = new PrismaClient();
+
+  // Ensure all model methods have implementations
+  const models = ['curriculumExpectation', 'user', 'outcome', 'subject', 'milestone', 'activity'];
+
+  models.forEach((modelName) => {
+    if (client[modelName]) {
+      // The model already has mock implementations from createMockModel
+      // Just ensure they're properly set up
+      const model = client[modelName];
+
+      // Verify the mocks have implementations
+      if (
+        model.create &&
+        jest.isMockFunction(model.create) &&
+        !model.create.getMockImplementation()
+      ) {
+        console.warn(`Mock for ${modelName}.create has no implementation!`);
+      }
+    }
+  });
+
+  return client;
+};
+
+export const prisma = createPrismaClientMock();
 
 // Export additional models that might be needed
 export class ExtendedPrismaClient extends PrismaClient {
@@ -202,6 +242,73 @@ export const ImportStatus = {
   FAILED: 'FAILED',
   CANCELLED: 'CANCELLED',
 };
+
+export const CalendarEventType = {
+  PD_DAY: 'PD_DAY',
+  ASSEMBLY: 'ASSEMBLY',
+  TRIP: 'TRIP',
+  HOLIDAY: 'HOLIDAY',
+  CUSTOM: 'CUSTOM',
+};
+
+export const CalendarEventSource = {
+  MANUAL: 'MANUAL',
+  ICAL_FEED: 'ICAL_FEED',
+};
+
+export const InvitationStatus = {
+  PENDING: 'PENDING',
+  ACCEPTED: 'ACCEPTED',
+  DECLINED: 'DECLINED',
+};
+
+export const TeamRole = {
+  OWNER: 'OWNER',
+  ADMIN: 'ADMIN',
+  MEMBER: 'MEMBER',
+  VIEWER: 'VIEWER',
+};
+
+// Export type definitions for models
+export interface Student {
+  id: number;
+  firstName: string;
+  lastName: string;
+  name: string;
+  grade: number;
+  userId: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface DaybookEntry {
+  id: string;
+  date: Date;
+  content: string;
+  contentFr?: string;
+  userId: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface StudentArtifact {
+  id: number;
+  studentId: number;
+  title: string;
+  description?: string;
+  filePath?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface StudentReflection {
+  id: number;
+  studentId: number;
+  content: string;
+  date: Date;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 export const Prisma = {
   PrismaClientKnownRequestError: class PrismaClientKnownRequestError extends Error {

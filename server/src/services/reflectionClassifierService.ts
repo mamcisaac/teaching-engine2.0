@@ -1,4 +1,4 @@
-import { BaseService } from './base/BaseService';
+import { BaseService, ServiceDependencies } from './base/BaseService';
 import { EmbeddingService } from './embeddingService';
 import { generateContent } from './llmService';
 
@@ -40,8 +40,8 @@ export class ReflectionClassifierService extends BaseService {
     'cultural-awareness',
   ];
 
-  constructor() {
-    super('ReflectionClassifierService');
+  constructor(dependencies?: ServiceDependencies) {
+    super('ReflectionClassifierService', dependencies);
     this.embeddingService = new EmbeddingService();
   }
 

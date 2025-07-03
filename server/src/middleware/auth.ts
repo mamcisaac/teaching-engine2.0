@@ -1,51 +1,622 @@
 import { Request, Response, NextFunction } from 'express';
+import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import logger from '../logger.js';
+import { prisma } from '../prisma.js';
+import { generateToken, generateRefreshToken } from './authenticate.js';
+// import { authenticate, authorize } from './authenticate.js';
+import { AuthenticationError, ValidationError, ConflictError, AppError } from './errorHandler.js';
 
-export function authMiddleware(req: Request, res: Response, next: NextFunction) {
-  const header = req.headers.authorization;
-  if (!header) return res.status(401).json({ error: 'Unauthorized' });
-  const token = header.replace('Bearer ', '');
+// The global prisma client already handles test client selection via proxy
+// No need for getPrismaClient function - just use prisma directly
+
+/**
+ * Comprehensive authentication middleware and utilities
+ * Combines authentication, authorization, and user management
+ */
+
+// Password requirements
+const PASSWORD_MIN_LENGTH = 8;
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/;
+
+/**
+ * Hash password using bcrypt
+ */
+export async function hashPassword(password: string): Promise<string> {
+  const saltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS || '10', 10);
+  return bcryptjs.hash(password, saltRounds);
+}
+
+/**
+ * Verify password against hash
+ */
+export async function verifyPassword(password: string, hash: string): Promise<boolean> {
+  return bcryptjs.compare(password, hash);
+}
+
+/**
+ * Validate password strength
+ */
+export function validatePasswordStrength(password: string): { isValid: boolean; errors: string[] } {
+  const errors: string[] = [];
+
+  if (password.length < PASSWORD_MIN_LENGTH) {
+    errors.push(`Password must be at least ${PASSWORD_MIN_LENGTH} characters long`);
+  }
+
+  if (!PASSWORD_REGEX.test(password)) {
+    errors.push(
+      'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character',
+    );
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors,
+  };
+}
+
+/**
+ * Login endpoint handler
+ */
+export async function login(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
-    const secret = process.env.JWT_SECRET;
-    if (!secret) {
-      throw new Error('JWT_SECRET environment variable is required');
+    const { email, password } = req.body;
+
+    // Validate input
+    if (!email || !password) {
+      throw new ValidationError('Email and password are required');
     }
-    const payload = jwt.verify(token, secret) as { userId: string; email?: string };
-    req.user = {
-      id: parseInt(payload.userId),
-      userId: payload.userId,
-      email: payload.email || 'unknown@example.com',
-    };
+
+    // Find user
+    const user = await prisma.user.findUnique({
+      where: { email: email.toLowerCase() },
+    });
+
+    if (!user) {
+      // Don't reveal whether email exists
+      throw new AuthenticationError('Invalid email or password');
+    }
+
+    // Skip active check as the field doesn't exist in schema
+
+    // Verify password
+    const isPasswordValid = await verifyPassword(password, user.password);
+    if (!isPasswordValid) {
+      // Log failed attempt
+      logger.warn(
+        {
+          email,
+          ip: req.ip,
+          userAgent: req.headers['user-agent'],
+        },
+        'Failed login attempt',
+      );
+
+      throw new AuthenticationError('Invalid email or password');
+    }
+
+    // Skip last login update as field doesn't exist in schema
+
+    // Generate tokens - ensure consistent ID type
+    const accessToken = generateToken({
+      id: user.id.toString(),
+      email: user.email,
+      role: user.role,
+    });
+
+    const refreshToken = generateRefreshToken(user.id.toString());
+
+    // Set refresh token as HTTP-only cookie with secure options
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      path: '/',
+      domain: process.env.COOKIE_DOMAIN, // Optional: set domain for subdomain sharing
+    });
+
+    // Also set authToken cookie for backward compatibility with tests
+    res.cookie('authToken', accessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours (shorter than refresh token)
+      path: '/',
+      domain: process.env.COOKIE_DOMAIN,
+    });
+
+    // Log successful login
+    logger.info(
+      {
+        userId: user.id,
+        email: user.email,
+        ip: req.ip,
+      },
+      'User logged in successfully',
+    );
+
+    res.json({
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+      },
+      accessToken,
+      refreshToken, // Include refreshToken in response for tests
+      token: accessToken, // Include token field for backward compatibility with tests
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
+ * Register endpoint handler
+ */
+export async function register(req: Request, res: Response, next: NextFunction): Promise<void> {
+  try {
+    logger.info(
+      {
+        bodyKeys: Object.keys(req.body || {}),
+        bodyType: typeof req.body,
+        hasBody: !!req.body,
+      },
+      'Registration function entry',
+    );
+
+    const { email, password, name, organizationId: _organizationId } = req.body;
+
+    // Log registration attempt for debugging
+    logger.info(
+      {
+        email: email?.toLowerCase(),
+        hasPassword: !!password,
+        hasName: !!name,
+        extractedData: { email: !!email, password: !!password, name: !!name },
+      },
+      'Registration attempt',
+    );
+
+    // Validate input
+    logger.info(
+      {
+        emailCheck: { exists: !!email, type: typeof email, value: email },
+        passwordCheck: { exists: !!password, type: typeof password, length: password?.length },
+        nameCheck: { exists: !!name, type: typeof name, value: name },
+      },
+      'Input validation checks',
+    );
+
+    if (!email || !password || !name) {
+      logger.warn(
+        { email: !!email, password: !!password, name: !!name },
+        'Missing required fields',
+      );
+      throw new ValidationError('Email, password, and name are required');
+    }
+
+    // Validate email format - more strict regex that doesn't allow consecutive dots
+    const emailRegex =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    if (!emailRegex.test(email) || email.includes('..')) {
+      logger.warn({ email }, 'Invalid email format');
+      throw new ValidationError('Invalid email format');
+    }
+
+    // Validate password strength
+    const passwordValidation = validatePasswordStrength(password);
+    if (!passwordValidation.isValid) {
+      logger.warn({ passwordValidation }, 'Password validation failed');
+      throw new ValidationError(passwordValidation.errors.join('. '));
+    }
+
+    logger.info('Basic validation passed, proceeding to database checks');
+
+    // Check if user already exists
+    try {
+      const existingUser = await prisma.user.findUnique({
+        where: { email: email.toLowerCase() },
+      });
+
+      if (existingUser) {
+        // Use ConflictError for duplicate email instead of ValidationError
+        throw new ConflictError('Email already registered');
+      }
+    } catch (error: unknown) {
+      if (error instanceof ConflictError) {
+        throw error; // Re-throw conflict errors
+      }
+      logger.error({ error, email: email.toLowerCase() }, 'Error checking existing user');
+      throw new AppError('Database error during user lookup', 500, 'DATABASE_ERROR');
+    }
+
+    // Hash password
+    let passwordHash: string;
+    try {
+      passwordHash = await hashPassword(password);
+    } catch (error: unknown) {
+      logger.error({ error }, 'Error hashing password');
+      throw new AppError('Error processing password', 500, 'HASH_ERROR');
+    }
+
+    // Create user
+    let user: { id: number; email: string; name: string; role: string };
+    try {
+      logger.info(
+        {
+          email: email.toLowerCase(),
+          isTestEnv: process.env.NODE_ENV === 'test',
+        },
+        'About to create user in database',
+      );
+
+      user = await prisma.user.create({
+        data: {
+          email: email.toLowerCase(),
+          password: passwordHash,
+          name,
+          role: 'teacher', // Default role
+        },
+      });
+
+      logger.info(
+        {
+          userResult: user,
+          userId: user?.id,
+          email: user?.email,
+          userType: typeof user,
+          userKeys: user ? Object.keys(user) : [],
+        },
+        'User created successfully',
+      );
+    } catch (error: unknown) {
+      logger.error(
+        {
+          error: {
+            message: error?.message,
+            code: error?.code,
+            name: error?.name,
+            stack: error?.stack,
+            meta: error?.meta,
+            toString: error?.toString(),
+          },
+          email: email.toLowerCase(),
+          errorType: typeof error,
+          errorConstructor: error?.constructor?.name,
+        },
+        'Error creating user',
+      );
+
+      if (error.code === 'P2002') {
+        // Prisma unique constraint violation
+        throw new ConflictError('Email already registered');
+      }
+
+      // Check for other specific Prisma errors
+      if (error.name === 'PrismaClientKnownRequestError') {
+        logger.error({ prismaErrorCode: error.code, prismaMeta: error.meta }, 'Prisma known error');
+        throw new AppError(`Database error: ${error.message}`, 500, 'PRISMA_ERROR');
+      }
+
+      if (error.name === 'PrismaClientUnknownRequestError') {
+        logger.error({ errorMessage: error.message }, 'Prisma unknown error');
+        throw new AppError('Database connection error', 500, 'DATABASE_CONNECTION_ERROR');
+      }
+
+      if (error.name === 'PrismaClientValidationError') {
+        logger.error({ validationError: error.message }, 'Prisma validation error');
+        throw new AppError('Database validation error', 500, 'DATABASE_VALIDATION_ERROR');
+      }
+
+      throw new AppError('Database error during user creation', 500, 'USER_CREATION_ERROR');
+    }
+
+    // Generate tokens
+    let accessToken: string;
+    let refreshToken: string;
+    try {
+      logger.info(
+        { userId: user.id, hasJwtSecret: !!process.env.JWT_SECRET },
+        'About to generate tokens',
+      );
+
+      accessToken = generateToken({
+        id: user.id.toString(),
+        email: user.email,
+        role: user.role,
+      });
+
+      refreshToken = generateRefreshToken(user.id.toString());
+
+      logger.info(
+        { userId: user.id, hasTokens: !!accessToken && !!refreshToken },
+        'Tokens generated successfully',
+      );
+    } catch (error: unknown) {
+      logger.error({ error, userId: user.id }, 'Error generating tokens');
+      throw new AppError('Error generating authentication tokens', 500, 'TOKEN_ERROR');
+    }
+
+    // Set refresh token as HTTP-only cookie with secure options
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      path: '/',
+      domain: process.env.COOKIE_DOMAIN, // Optional: set domain for subdomain sharing
+    });
+
+    // Log new registration
+    logger.info(
+      {
+        userId: user.id,
+        email: user.email,
+      },
+      'New user registered',
+    );
+
+    res.status(201).json({
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+      },
+      accessToken,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
+ * Logout endpoint handler
+ */
+export async function logout(req: Request, res: Response, next: NextFunction): Promise<void> {
+  try {
+    // Clear refresh token cookie
+    res.clearCookie('refreshToken');
+
+    // Log logout
+    if (req.user) {
+      logger.info(
+        {
+          userId: req.user.id,
+          email: req.user.email,
+        },
+        'User logged out',
+      );
+    }
+
+    res.json({ message: 'Logged out successfully' });
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
+ * Change password endpoint handler
+ */
+export async function changePassword(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> {
+  try {
+    if (!req.user) {
+      throw new AuthenticationError('Authentication required');
+    }
+
+    const { currentPassword, newPassword } = req.body;
+
+    // Validate input
+    if (!currentPassword || !newPassword) {
+      throw new ValidationError('Current password and new password are required');
+    }
+
+    // Validate new password strength
+    const passwordValidation = validatePasswordStrength(newPassword);
+    if (!passwordValidation.isValid) {
+      throw new ValidationError(passwordValidation.errors.join('. '));
+    }
+
+    // Get user with password hash
+    const user = await prisma.user.findUnique({
+      where: { id: req.user.id },
+    });
+
+    if (!user) {
+      throw new AuthenticationError('User not found');
+    }
+
+    // Verify current password
+    const isPasswordValid = await verifyPassword(currentPassword, user.password);
+    if (!isPasswordValid) {
+      throw new ValidationError('Current password is incorrect');
+    }
+
+    // Check if new password is different from current
+    const isSamePassword = await verifyPassword(newPassword, user.password);
+    if (isSamePassword) {
+      throw new ValidationError('New password must be different from current password');
+    }
+
+    // Hash new password
+    const newPasswordHash = await hashPassword(newPassword);
+
+    // Update password
+    await prisma.user.update({
+      where: { id: user.id },
+      data: {
+        password: newPasswordHash,
+        // passwordChangedAt field doesn't exist in schema
+      },
+    });
+
+    logger.info(
+      {
+        userId: user.id,
+        email: user.email,
+      },
+      'Password changed successfully',
+    );
+
+    res.json({ message: 'Password changed successfully' });
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
+ * Forgot password endpoint handler
+ */
+export async function forgotPassword(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      throw new ValidationError('Email is required');
+    }
+
+    const user = await prisma.user.findUnique({
+      where: { email: email.toLowerCase() },
+    });
+
+    // Always return success to prevent email enumeration
+    if (!user) {
+      res.json({ message: 'If the email exists, a reset link has been sent' });
+      return;
+    }
+
+    // Generate reset token
+    const resetToken = jwt.sign(
+      { userId: user.id, type: 'password-reset' },
+      process.env.JWT_SECRET!,
+      { expiresIn: '1h' },
+    );
+
+    // Store reset token (you might want to store this in database)
+    // For now, we'll include it in the response (in production, send via email)
+
+    logger.info(
+      {
+        userId: user.id,
+        email: user.email,
+      },
+      'Password reset requested',
+    );
+
+    // In production, send email with reset link
+    // For development, return token
+    if (process.env.NODE_ENV === 'development') {
+      res.json({
+        message: 'Password reset token generated',
+        resetToken, // Don't include in production!
+      });
+    } else {
+      // TODO: Send email with reset link
+      res.json({ message: 'If the email exists, a reset link has been sent' });
+    }
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
+ * Reset password endpoint handler
+ */
+export async function resetPassword(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> {
+  try {
+    const { token, newPassword } = req.body;
+
+    if (!token || !newPassword) {
+      throw new ValidationError('Token and new password are required');
+    }
+
+    // Verify reset token
+    let decoded: { userId: string; exp: number };
+    try {
+      decoded = jwt.verify(token, process.env.JWT_SECRET!);
+    } catch (error) {
+      throw new ValidationError('Invalid or expired reset token');
+    }
+
+    if (decoded.type !== 'password-reset') {
+      throw new ValidationError('Invalid token type');
+    }
+
+    // Validate new password
+    const passwordValidation = validatePasswordStrength(newPassword);
+    if (!passwordValidation.isValid) {
+      throw new ValidationError(passwordValidation.errors.join('. '));
+    }
+
+    // Hash new password
+    const passwordHash = await hashPassword(newPassword);
+
+    // Update user password
+    await prisma.user.update({
+      where: { id: decoded.userId },
+      data: {
+        password: passwordHash,
+        // passwordChangedAt field doesn't exist in schema
+      },
+    });
+
+    logger.info(
+      {
+        userId: decoded.userId,
+      },
+      'Password reset successfully',
+    );
+
+    res.json({ message: 'Password reset successfully' });
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
+ * Session validation middleware
+ */
+export async function validateSession(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> {
+  try {
+    if (!req.user) {
+      throw new AuthenticationError('Session invalid');
+    }
+
+    // Skip password change check as passwordChangedAt field doesn't exist in schema
+
     next();
   } catch (error) {
-    if (error instanceof Error && error.message === 'JWT_SECRET environment variable is required') {
-      console.error('CRITICAL: JWT_SECRET not configured');
-      return res.status(500).json({ error: 'Server configuration error' });
-    }
-    res.status(401).json({ error: 'Unauthorized' });
+    next(error);
   }
 }
 
-// Export as 'auth' for consistency with service
-export const auth = authMiddleware;
+// Re-export middleware from authenticate.ts for convenience
+export {
+  authenticate,
+  authorize,
+  optionalAuthenticate,
+  requirePermission,
+  requireOrganization,
+} from './authenticate.js';
 
-// Export as requireAuth for consistency with routes
-export const requireAuth = authMiddleware;
-
-// Export as authenticate for batch routes
-export const authenticate = authMiddleware;
-
-export function requireAdminToken(req: Request, res: Response, next: NextFunction) {
-  const token = req.headers.authorization?.replace('Bearer ', '');
-
-  if (!token) {
-    return res.status(401).json({ error: 'Admin token required' });
-  }
-
-  // Check if token matches the admin/wizard token
-  if (token !== process.env.WIZARD_TOKEN) {
-    return res.status(403).json({ error: 'Invalid admin token' });
-  }
-
-  next();
-}
+// Export authenticate as authMiddleware for backward compatibility
+export { authenticate as authMiddleware } from './authenticate.js';

@@ -1,4 +1,4 @@
-import BaseService from './base/BaseService';
+import BaseService, { ServiceDependencies } from './base/BaseService';
 import { emailService } from './emailService';
 import { prisma } from '../prisma';
 
@@ -47,8 +47,8 @@ export class NotificationService extends BaseService {
   private templates: Map<string, NotificationTemplate> = new Map();
   private cleanupInterval: NodeJS.Timeout;
 
-  constructor() {
-    super('NotificationService');
+  constructor(dependencies?: ServiceDependencies) {
+    super('NotificationService', dependencies);
     this.initializeDefaultTemplates();
     this.startCleanupTask();
   }

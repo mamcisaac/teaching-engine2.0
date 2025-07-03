@@ -6,7 +6,7 @@
  */
 
 import { jest } from '@jest/globals';
-import { unifiedPrismaClient } from '../mocks/database.unified.mock.js';
+import { prisma as unifiedPrismaClient } from '@teaching-engine/database';
 
 /**
  * Test isolation manager for database operations
@@ -57,9 +57,6 @@ export class DatabaseTestIsolation {
    * Complete isolation reset - clears all data and mock history
    */
   static performCompleteReset(): void {
-    // Reset all mock data
-    unifiedPrismaClient.resetAllMocks();
-
     // Clear all jest mock call history
     jest.clearAllMocks();
 
@@ -81,36 +78,9 @@ export class DatabaseTestIsolation {
    * Setup default mock behavior for common operations
    */
   private static setupDefaultMockBehavior(): void {
-    // Set up basic CRUD operation defaults that most tests expect
-    const modelNames = [
-      'user',
-      'outcome',
-      'outcomeEmbedding',
-      'curriculumExpectation',
-      'curriculumExpectationEmbedding',
-      'curriculumImport',
-      'outcomeCluster',
-    ];
-
-    modelNames.forEach((modelName) => {
-      const model = (unifiedPrismaClient as any)[modelName];
-      if (model) {
-        // findUnique should return null by default (no record found)
-        if (model.findUnique && jest.isMockFunction(model.findUnique)) {
-          model.findUnique.mockResolvedValue(null);
-        }
-
-        // findMany should return empty array by default
-        if (model.findMany && jest.isMockFunction(model.findMany)) {
-          model.findMany.mockResolvedValue([]);
-        }
-
-        // count should return 0 by default
-        if (model.count && jest.isMockFunction(model.count)) {
-          model.count.mockResolvedValue(0);
-        }
-      }
-    });
+    // Don't override the existing mock implementations
+    // The unified mock already has proper implementations
+    // This was causing the mocks to return undefined
   }
 
   /**
@@ -140,29 +110,42 @@ export class DatabaseTestIsolation {
   /**
    * Setup mock data for a specific test scenario
    */
-  static seedTestData(model: string, data: any[]): void {
-    unifiedPrismaClient.seedData(model, data);
+  static async seedTestData(model: string, data: any[]): Promise<void> {
+    const modelObj = (unifiedPrismaClient as any)[model];
+    if (modelObj?.createMany) {
+      await modelObj.createMany({ data });
+    }
   }
 
   /**
    * Setup a specific mock response for testing
    */
   static setupMockResponse(model: string, operation: string, response: any): void {
-    unifiedPrismaClient.setupMock(model, operation, response);
+    const modelObj = (unifiedPrismaClient as any)[model];
+    if (modelObj?.[operation] && jest.isMockFunction(modelObj[operation])) {
+      modelObj[operation].mockResolvedValueOnce(response);
+    }
   }
 
   /**
    * Setup a mock error for testing error scenarios
    */
   static setupMockError(model: string, operation: string, error: Error): void {
-    unifiedPrismaClient.setupError(model, operation, error);
+    const modelObj = (unifiedPrismaClient as any)[model];
+    if (modelObj?.[operation] && jest.isMockFunction(modelObj[operation])) {
+      modelObj[operation].mockRejectedValueOnce(error);
+    }
   }
 
   /**
    * Get mock data for verification in tests
    */
-  static getMockData(model: string): any[] {
-    return unifiedPrismaClient.getMockData(model);
+  static async getMockData(model: string): Promise<any[]> {
+    const modelObj = (unifiedPrismaClient as any)[model];
+    if (modelObj?.findMany) {
+      return await modelObj.findMany();
+    }
+    return [];
   }
 
   /**
