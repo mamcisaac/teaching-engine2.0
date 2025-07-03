@@ -58,18 +58,21 @@ export function authRoutes(prisma: PrismaClient): Router {
         return res.status(400).json({ error: 'Invalid email format' });
       }
 
-      // Find user (case-insensitive)
+      // Find user (case-insensitive for PostgreSQL, exact match for SQLite)
+      console.log('[AUTH] Searching for user with email:', email);
       const user = await prisma.user
         .findFirst({
           where: {
-            email: {
-              equals: email,
-              mode: 'insensitive',
-            },
+            email: email,
           },
         })
         .catch((err) => {
           console.error('[AUTH] Database error finding user:', err);
+          console.error('[AUTH] Error details:', {
+            code: err.code,
+            message: err.message,
+            clientVersion: err.clientVersion
+          });
           throw err;
         });
 
@@ -129,7 +132,14 @@ export function authRoutes(prisma: PrismaClient): Router {
     } catch (error: any) {
       console.error('Login error:', error);
       console.error('Error stack:', error.stack);
-      res.status(500).json({ error: 'Internal server error', debug: error.message });
+      
+      // Handle specific database errors
+      if (error.code === 'P2002' || error.code === 'P2021' || error.code === 'P2025') {
+        return res.status(500).json({ error: 'Database error' });
+      }
+      
+      // Return 500 for unexpected errors
+      res.status(500).json({ error: 'Internal server error' });
     }
   });
 

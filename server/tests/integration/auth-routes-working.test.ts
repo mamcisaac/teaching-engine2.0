@@ -9,13 +9,13 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@teaching-engine/database';
 import { authRoutes } from './auth-routes-mock';
+import { getIntegrationTestPrismaClient } from '../integration-test-setup';
 
 // Set test environment
 process.env.NODE_ENV = 'test';
 process.env.JWT_SECRET = process.env.JWT_SECRET || 'test-secret-key-for-testing';
-process.env.DATABASE_URL = process.env.DATABASE_URL || 'file:./test-auth.db';
 
 describe('Authentication Routes - Working Tests', () => {
   let app: express.Express;
@@ -29,14 +29,8 @@ describe('Authentication Routes - Working Tests', () => {
   };
 
   beforeAll(async () => {
-    // Create real Prisma client
-    prisma = new PrismaClient({
-      datasources: {
-        db: {
-          url: process.env.DATABASE_URL,
-        },
-      },
-    });
+    // Use the integration test Prisma client
+    prisma = getIntegrationTestPrismaClient();
 
     // Initialize app
     app = express();
@@ -188,7 +182,7 @@ describe('Authentication Routes - Working Tests', () => {
     });
   });
 
-  describe('POST /api/register', () => {
+  describe('POST /api/auth/register', () => {
     it('should successfully register a new user', async () => {
       const newUser = {
         email: 'newuser@example.com',
@@ -196,7 +190,7 @@ describe('Authentication Routes - Working Tests', () => {
         name: 'New User',
       };
 
-      const res = await request(app).post('/api/register').send(newUser);
+      const res = await request(app).post('/api/auth/register').send(newUser);
 
       expect(res.status).toBe(201);
       expect(res.body).toHaveProperty('user');
@@ -223,7 +217,7 @@ describe('Authentication Routes - Working Tests', () => {
     it('should return 409 if email already exists', async () => {
       await createTestUser();
 
-      const res = await request(app).post('/api/register').send({
+      const res = await request(app).post('/api/auth/register').send({
         email: validUser.email,
         password: 'AnotherPassword123!',
         name: 'Another User',
@@ -234,7 +228,7 @@ describe('Authentication Routes - Working Tests', () => {
     });
 
     it('should return 400 for password shorter than 8 characters', async () => {
-      const res = await request(app).post('/api/register').send({
+      const res = await request(app).post('/api/auth/register').send({
         email: 'newuser@example.com',
         password: 'short',
         name: 'New User',

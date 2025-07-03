@@ -1,0 +1,544 @@
+f10aa6c022b14e92470e76ad2d96ff8f
+/* istanbul ignore next */
+function cov_1zgiqk4sz4() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/storage.ts";
+  var hash = "fefbd202507205d390182edfca664501d5d38e59";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/storage.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 4,
+          column: 27
+        },
+        end: {
+          line: 4,
+          column: 57
+        }
+      },
+      "1": {
+        start: {
+          line: 5,
+          column: 26
+        },
+        end: {
+          line: 5,
+          column: 58
+        }
+      },
+      "2": {
+        start: {
+          line: 8,
+          column: 15
+        },
+        end: {
+          line: 8,
+          column: 19
+        }
+      },
+      "3": {
+        start: {
+          line: 9,
+          column: 15
+        },
+        end: {
+          line: 9,
+          column: 42
+        }
+      },
+      "4": {
+        start: {
+          line: 10,
+          column: 0
+        },
+        end: {
+          line: 14,
+          column: 1
+        }
+      },
+      "5": {
+        start: {
+          line: 12,
+          column: 25
+        },
+        end: {
+          line: 12,
+          column: 54
+        }
+      },
+      "6": {
+        start: {
+          line: 13,
+          column: 4
+        },
+        end: {
+          line: 13,
+          column: 79
+        }
+      },
+      "7": {
+        start: {
+          line: 15,
+          column: 17
+        },
+        end: {
+          line: 15,
+          column: 59
+        }
+      },
+      "8": {
+        start: {
+          line: 23,
+          column: 4
+        },
+        end: {
+          line: 29,
+          column: 5
+        }
+      },
+      "9": {
+        start: {
+          line: 25,
+          column: 37
+        },
+        end: {
+          line: 25,
+          column: 66
+        }
+      },
+      "10": {
+        start: {
+          line: 26,
+          column: 20
+        },
+        end: {
+          line: 26,
+          column: 47
+        }
+      },
+      "11": {
+        start: {
+          line: 27,
+          column: 8
+        },
+        end: {
+          line: 27,
+          column: 94
+        }
+      },
+      "12": {
+        start: {
+          line: 28,
+          column: 8
+        },
+        end: {
+          line: 28,
+          column: 59
+        }
+      },
+      "13": {
+        start: {
+          line: 30,
+          column: 4
+        },
+        end: {
+          line: 30,
+          column: 50
+        }
+      },
+      "14": {
+        start: {
+          line: 31,
+          column: 21
+        },
+        end: {
+          line: 31,
+          column: 50
+        }
+      },
+      "15": {
+        start: {
+          line: 32,
+          column: 4
+        },
+        end: {
+          line: 32,
+          column: 41
+        }
+      },
+      "16": {
+        start: {
+          line: 33,
+          column: 4
+        },
+        end: {
+          line: 33,
+          column: 34
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "saveFile",
+        decl: {
+          start: {
+            line: 22,
+            column: 22
+          },
+          end: {
+            line: 22,
+            column: 30
+          }
+        },
+        loc: {
+          start: {
+            line: 22,
+            column: 49
+          },
+          end: {
+            line: 34,
+            column: 1
+          }
+        },
+        line: 22
+      }
+    },
+    branchMap: {
+      "0": {
+        loc: {
+          start: {
+            line: 10,
+            column: 0
+          },
+          end: {
+            line: 14,
+            column: 1
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 10,
+            column: 0
+          },
+          end: {
+            line: 14,
+            column: 1
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 10
+      },
+      "1": {
+        loc: {
+          start: {
+            line: 10,
+            column: 4
+          },
+          end: {
+            line: 10,
+            column: 80
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 10,
+            column: 4
+          },
+          end: {
+            line: 10,
+            column: 10
+          }
+        }, {
+          start: {
+            line: 10,
+            column: 14
+          },
+          end: {
+            line: 10,
+            column: 43
+          }
+        }, {
+          start: {
+            line: 10,
+            column: 47
+          },
+          end: {
+            line: 10,
+            column: 80
+          }
+        }],
+        line: 10
+      },
+      "2": {
+        loc: {
+          start: {
+            line: 13,
+            column: 38
+          },
+          end: {
+            line: 13,
+            column: 75
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 13,
+            column: 38
+          },
+          end: {
+            line: 13,
+            column: 60
+          }
+        }, {
+          start: {
+            line: 13,
+            column: 64
+          },
+          end: {
+            line: 13,
+            column: 75
+          }
+        }],
+        line: 13
+      },
+      "3": {
+        loc: {
+          start: {
+            line: 23,
+            column: 4
+          },
+          end: {
+            line: 29,
+            column: 5
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 23,
+            column: 4
+          },
+          end: {
+            line: 29,
+            column: 5
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 23
+      },
+      "4": {
+        loc: {
+          start: {
+            line: 23,
+            column: 8
+          },
+          end: {
+            line: 23,
+            column: 26
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 23,
+            column: 8
+          },
+          end: {
+            line: 23,
+            column: 16
+          }
+        }, {
+          start: {
+            line: 23,
+            column: 20
+          },
+          end: {
+            line: 23,
+            column: 26
+          }
+        }],
+        line: 23
+      }
+    },
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 0,
+      "16": 0
+    },
+    f: {
+      "0": 0
+    },
+    b: {
+      "0": [0, 0],
+      "1": [0, 0, 0],
+      "2": [0, 0],
+      "3": [0, 0],
+      "4": [0, 0]
+    },
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/storage.ts",
+      mappings: "AAAA,OAAO,EAAE,MAAM,aAAa,CAAC;AAC7B,OAAO,IAAI,MAAM,MAAM,CAAC;AACxB,OAAO,EAAE,aAAa,EAAE,MAAM,KAAK,CAAC;AAEpC,MAAM,kBAAkB,GAAG,aAAa,CAAC,MAAM,CAAC,IAAI,CAAC,GAAG,CAAC,CAAC;AAC1D,MAAM,iBAAiB,GAAG,IAAI,CAAC,OAAO,CAAC,kBAAkB,CAAC,CAAC;AAE3D,8DAA8D;AAC9D,8DAA8D;AAC9D,IAAI,QAAQ,GAAY,IAAI,CAAC;AAC7B,MAAM,MAAM,GAAG,OAAO,CAAC,GAAG,CAAC,eAAe,CAAC;AAC3C,IAAI,MAAM,IAAI,OAAO,CAAC,GAAG,CAAC,iBAAiB,IAAI,OAAO,CAAC,GAAG,CAAC,qBAAqB,EAAE,CAAC;IACjF,8DAA8D;IAC9D,MAAM,EAAE,QAAQ,EAAE,GAAG,OAAO,CAAC,oBAAoB,CAAC,CAAC;IACnD,QAAQ,GAAG,IAAI,QAAQ,CAAC,EAAE,MAAM,EAAE,OAAO,CAAC,GAAG,CAAC,UAAU,IAAI,WAAW,EAAE,CAAC,CAAC;AAC7E,CAAC;AAED,MAAM,QAAQ,GAAG,IAAI,CAAC,IAAI,CAAC,iBAAiB,EAAE,YAAY,CAAC,CAAC;AAE5D;;;;;GAKG;AACH,MAAM,CAAC,KAAK,UAAU,QAAQ,CAAC,QAAgB,EAAE,MAAc;IAC7D,IAAI,QAAQ,IAAI,MAAM,EAAE,CAAC;QACvB,8DAA8D;QAC9D,MAAM,EAAE,gBAAgB,EAAE,GAAG,OAAO,CAAC,oBAAoB,CAAC,CAAC;QAC3D,MAAM,GAAG,GAAG,GAAG,IAAI,CAAC,GAAG,EAAE,IAAI,QAAQ,EAAE,CAAC;QACxC,MAAO,QAA6D,CAAC,IAAI,CACvE,IAAI,gBAAgB,CAAC,EAAE,MAAM,EAAE,MAAM,EAAE,GAAG,EAAE,GAAG,EAAE,IAAI,EAAE,MAAM,EAAE,CAAC,CACjE,CAAC;QACF,OAAO,WAAW,MAAM,qBAAqB,GAAG,EAAE,CAAC;IACrD,CAAC;IACD,MAAM,EAAE,CAAC,KAAK,CAAC,QAAQ,EAAE,EAAE,SAAS,EAAE,IAAI,EAAE,CAAC,CAAC;IAC9C,MAAM,QAAQ,GAAG,IAAI,CAAC,IAAI,CAAC,QAAQ,EAAE,QAAQ,CAAC,CAAC;IAC/C,MAAM,EAAE,CAAC,SAAS,CAAC,QAAQ,EAAE,MAAM,CAAC,CAAC;IACrC,OAAO,YAAY,QAAQ,EAAE,CAAC;AAChC,CAAC",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/storage.ts"],
+      sourcesContent: ["import fs from 'fs/promises';\nimport path from 'path';\nimport { fileURLToPath } from 'url';\n\nconst __filename_storage = fileURLToPath(import.meta.url);\nconst __dirname_storage = path.dirname(__filename_storage);\n\n// use any to avoid requiring aws-sdk types when not installed\n// eslint-disable-next-line @typescript-eslint/no-explicit-any\nlet s3Client: unknown = null;\nconst bucket = process.env.AWS_BUCKET_NAME;\nif (bucket && process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY) {\n  // eslint-disable-next-line @typescript-eslint/no-var-requires\n  const { S3Client } = require('@aws-sdk/client-s3');\n  s3Client = new S3Client({ region: process.env.AWS_REGION || 'us-east-1' });\n}\n\nconst localDir = path.join(__dirname_storage, '../uploads');\n\n/**\n * Save a file to either local disk or S3 depending on env config.\n * @param filename output file name\n * @param buffer file contents\n * @returns public URL to the stored file\n */\nexport async function saveFile(filename: string, buffer: Buffer): Promise<string> {\n  if (s3Client && bucket) {\n    // eslint-disable-next-line @typescript-eslint/no-var-requires\n    const { PutObjectCommand } = require('@aws-sdk/client-s3');\n    const key = `${Date.now()}-${filename}`;\n    await (s3Client as { send: (command: unknown) => Promise<unknown> }).send(\n      new PutObjectCommand({ Bucket: bucket, Key: key, Body: buffer }),\n    );\n    return `https://${bucket}.s3.amazonaws.com/${key}`;\n  }\n  await fs.mkdir(localDir, { recursive: true });\n  const filePath = path.join(localDir, filename);\n  await fs.writeFile(filePath, buffer);\n  return `/uploads/${filename}`;\n}\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "fefbd202507205d390182edfca664501d5d38e59"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_1zgiqk4sz4 = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_1zgiqk4sz4();
+import fs from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename_storage =
+/* istanbul ignore next */
+(cov_1zgiqk4sz4().s[0]++, fileURLToPath(import.meta.url));
+const __dirname_storage =
+/* istanbul ignore next */
+(cov_1zgiqk4sz4().s[1]++, path.dirname(__filename_storage));
+// use any to avoid requiring aws-sdk types when not installed
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let s3Client =
+/* istanbul ignore next */
+(cov_1zgiqk4sz4().s[2]++, null);
+const bucket =
+/* istanbul ignore next */
+(cov_1zgiqk4sz4().s[3]++, process.env.AWS_BUCKET_NAME);
+/* istanbul ignore next */
+cov_1zgiqk4sz4().s[4]++;
+if (
+/* istanbul ignore next */
+(cov_1zgiqk4sz4().b[1][0]++, bucket) &&
+/* istanbul ignore next */
+(cov_1zgiqk4sz4().b[1][1]++, process.env.AWS_ACCESS_KEY_ID) &&
+/* istanbul ignore next */
+(cov_1zgiqk4sz4().b[1][2]++, process.env.AWS_SECRET_ACCESS_KEY)) {
+  /* istanbul ignore next */
+  cov_1zgiqk4sz4().b[0][0]++;
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const {
+    S3Client
+  } =
+  /* istanbul ignore next */
+  (cov_1zgiqk4sz4().s[5]++, require('@aws-sdk/client-s3'));
+  /* istanbul ignore next */
+  cov_1zgiqk4sz4().s[6]++;
+  s3Client = new S3Client({
+    region:
+    /* istanbul ignore next */
+    (cov_1zgiqk4sz4().b[2][0]++, process.env.AWS_REGION) ||
+    /* istanbul ignore next */
+    (cov_1zgiqk4sz4().b[2][1]++, 'us-east-1')
+  });
+} else
+/* istanbul ignore next */
+{
+  cov_1zgiqk4sz4().b[0][1]++;
+}
+const localDir =
+/* istanbul ignore next */
+(cov_1zgiqk4sz4().s[7]++, path.join(__dirname_storage, '../uploads'));
+/**
+ * Save a file to either local disk or S3 depending on env config.
+ * @param filename output file name
+ * @param buffer file contents
+ * @returns public URL to the stored file
+ */
+export async function saveFile(filename, buffer) {
+  /* istanbul ignore next */
+  cov_1zgiqk4sz4().f[0]++;
+  cov_1zgiqk4sz4().s[8]++;
+  if (
+  /* istanbul ignore next */
+  (cov_1zgiqk4sz4().b[4][0]++, s3Client) &&
+  /* istanbul ignore next */
+  (cov_1zgiqk4sz4().b[4][1]++, bucket)) {
+    /* istanbul ignore next */
+    cov_1zgiqk4sz4().b[3][0]++;
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const {
+      PutObjectCommand
+    } =
+    /* istanbul ignore next */
+    (cov_1zgiqk4sz4().s[9]++, require('@aws-sdk/client-s3'));
+    const key =
+    /* istanbul ignore next */
+    (cov_1zgiqk4sz4().s[10]++, `${Date.now()}-${filename}`);
+    /* istanbul ignore next */
+    cov_1zgiqk4sz4().s[11]++;
+    await s3Client.send(new PutObjectCommand({
+      Bucket: bucket,
+      Key: key,
+      Body: buffer
+    }));
+    /* istanbul ignore next */
+    cov_1zgiqk4sz4().s[12]++;
+    return `https://${bucket}.s3.amazonaws.com/${key}`;
+  } else
+  /* istanbul ignore next */
+  {
+    cov_1zgiqk4sz4().b[3][1]++;
+  }
+  cov_1zgiqk4sz4().s[13]++;
+  await fs.mkdir(localDir, {
+    recursive: true
+  });
+  const filePath =
+  /* istanbul ignore next */
+  (cov_1zgiqk4sz4().s[14]++, path.join(localDir, filename));
+  /* istanbul ignore next */
+  cov_1zgiqk4sz4().s[15]++;
+  await fs.writeFile(filePath, buffer);
+  /* istanbul ignore next */
+  cov_1zgiqk4sz4().s[16]++;
+  return `/uploads/${filename}`;
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3ZfMXpnaXFrNHN6NCIsImFjdHVhbENvdmVyYWdlIiwiZnMiLCJwYXRoIiwiZmlsZVVSTFRvUGF0aCIsIl9fZmlsZW5hbWVfc3RvcmFnZSIsInMiLCJpbXBvcnQiLCJtZXRhIiwidXJsIiwiX19kaXJuYW1lX3N0b3JhZ2UiLCJkaXJuYW1lIiwiczNDbGllbnQiLCJidWNrZXQiLCJwcm9jZXNzIiwiZW52IiwiQVdTX0JVQ0tFVF9OQU1FIiwiYiIsIkFXU19BQ0NFU1NfS0VZX0lEIiwiQVdTX1NFQ1JFVF9BQ0NFU1NfS0VZIiwiUzNDbGllbnQiLCJyZXF1aXJlIiwicmVnaW9uIiwiQVdTX1JFR0lPTiIsImxvY2FsRGlyIiwiam9pbiIsInNhdmVGaWxlIiwiZmlsZW5hbWUiLCJidWZmZXIiLCJmIiwiUHV0T2JqZWN0Q29tbWFuZCIsImtleSIsIkRhdGUiLCJub3ciLCJzZW5kIiwiQnVja2V0IiwiS2V5IiwiQm9keSIsIm1rZGlyIiwicmVjdXJzaXZlIiwiZmlsZVBhdGgiLCJ3cml0ZUZpbGUiXSwic291cmNlcyI6WyIvVXNlcnMvbWljaGFlbG1jaXNhYWMvR2l0SHViL3RlYWNoaW5nLWVuZ2luZTIuMC9zZXJ2ZXIvc3JjL3N0b3JhZ2UudHMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGZzIGZyb20gJ2ZzL3Byb21pc2VzJztcbmltcG9ydCBwYXRoIGZyb20gJ3BhdGgnO1xuaW1wb3J0IHsgZmlsZVVSTFRvUGF0aCB9IGZyb20gJ3VybCc7XG5cbmNvbnN0IF9fZmlsZW5hbWVfc3RvcmFnZSA9IGZpbGVVUkxUb1BhdGgoaW1wb3J0Lm1ldGEudXJsKTtcbmNvbnN0IF9fZGlybmFtZV9zdG9yYWdlID0gcGF0aC5kaXJuYW1lKF9fZmlsZW5hbWVfc3RvcmFnZSk7XG5cbi8vIHVzZSBhbnkgdG8gYXZvaWQgcmVxdWlyaW5nIGF3cy1zZGsgdHlwZXMgd2hlbiBub3QgaW5zdGFsbGVkXG4vLyBlc2xpbnQtZGlzYWJsZS1uZXh0LWxpbmUgQHR5cGVzY3JpcHQtZXNsaW50L25vLWV4cGxpY2l0LWFueVxubGV0IHMzQ2xpZW50OiB1bmtub3duID0gbnVsbDtcbmNvbnN0IGJ1Y2tldCA9IHByb2Nlc3MuZW52LkFXU19CVUNLRVRfTkFNRTtcbmlmIChidWNrZXQgJiYgcHJvY2Vzcy5lbnYuQVdTX0FDQ0VTU19LRVlfSUQgJiYgcHJvY2Vzcy5lbnYuQVdTX1NFQ1JFVF9BQ0NFU1NfS0VZKSB7XG4gIC8vIGVzbGludC1kaXNhYmxlLW5leHQtbGluZSBAdHlwZXNjcmlwdC1lc2xpbnQvbm8tdmFyLXJlcXVpcmVzXG4gIGNvbnN0IHsgUzNDbGllbnQgfSA9IHJlcXVpcmUoJ0Bhd3Mtc2RrL2NsaWVudC1zMycpO1xuICBzM0NsaWVudCA9IG5ldyBTM0NsaWVudCh7IHJlZ2lvbjogcHJvY2Vzcy5lbnYuQVdTX1JFR0lPTiB8fCAndXMtZWFzdC0xJyB9KTtcbn1cblxuY29uc3QgbG9jYWxEaXIgPSBwYXRoLmpvaW4oX19kaXJuYW1lX3N0b3JhZ2UsICcuLi91cGxvYWRzJyk7XG5cbi8qKlxuICogU2F2ZSBhIGZpbGUgdG8gZWl0aGVyIGxvY2FsIGRpc2sgb3IgUzMgZGVwZW5kaW5nIG9uIGVudiBjb25maWcuXG4gKiBAcGFyYW0gZmlsZW5hbWUgb3V0cHV0IGZpbGUgbmFtZVxuICogQHBhcmFtIGJ1ZmZlciBmaWxlIGNvbnRlbnRzXG4gKiBAcmV0dXJucyBwdWJsaWMgVVJMIHRvIHRoZSBzdG9yZWQgZmlsZVxuICovXG5leHBvcnQgYXN5bmMgZnVuY3Rpb24gc2F2ZUZpbGUoZmlsZW5hbWU6IHN0cmluZywgYnVmZmVyOiBCdWZmZXIpOiBQcm9taXNlPHN0cmluZz4ge1xuICBpZiAoczNDbGllbnQgJiYgYnVja2V0KSB7XG4gICAgLy8gZXNsaW50LWRpc2FibGUtbmV4dC1saW5lIEB0eXBlc2NyaXB0LWVzbGludC9uby12YXItcmVxdWlyZXNcbiAgICBjb25zdCB7IFB1dE9iamVjdENvbW1hbmQgfSA9IHJlcXVpcmUoJ0Bhd3Mtc2RrL2NsaWVudC1zMycpO1xuICAgIGNvbnN0IGtleSA9IGAke0RhdGUubm93KCl9LSR7ZmlsZW5hbWV9YDtcbiAgICBhd2FpdCAoczNDbGllbnQgYXMgeyBzZW5kOiAoY29tbWFuZDogdW5rbm93bikgPT4gUHJvbWlzZTx1bmtub3duPiB9KS5zZW5kKFxuICAgICAgbmV3IFB1dE9iamVjdENvbW1hbmQoeyBCdWNrZXQ6IGJ1Y2tldCwgS2V5OiBrZXksIEJvZHk6IGJ1ZmZlciB9KSxcbiAgICApO1xuICAgIHJldHVybiBgaHR0cHM6Ly8ke2J1Y2tldH0uczMuYW1hem9uYXdzLmNvbS8ke2tleX1gO1xuICB9XG4gIGF3YWl0IGZzLm1rZGlyKGxvY2FsRGlyLCB7IHJlY3Vyc2l2ZTogdHJ1ZSB9KTtcbiAgY29uc3QgZmlsZVBhdGggPSBwYXRoLmpvaW4obG9jYWxEaXIsIGZpbGVuYW1lKTtcbiAgYXdhaXQgZnMud3JpdGVGaWxlKGZpbGVQYXRoLCBidWZmZXIpO1xuICByZXR1cm4gYC91cGxvYWRzLyR7ZmlsZW5hbWV9YDtcbn1cbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7SUFtQkE7SUFBQUEsY0FBQSxZQUFB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

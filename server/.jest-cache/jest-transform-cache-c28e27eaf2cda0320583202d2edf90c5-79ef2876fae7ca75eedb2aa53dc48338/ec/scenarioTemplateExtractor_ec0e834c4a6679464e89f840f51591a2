@@ -1,0 +1,1813 @@
+d5a8b4ee7ae1bc1a102b213f0197d6b6
+/* istanbul ignore next */
+function cov_1mc9mk7z8f() {
+  var path = "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/scenarioTemplateExtractor.ts";
+  var hash = "7e7608d057d5c7db800fd02bab74004819e57b39";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/scenarioTemplateExtractor.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 5,
+          column: 25
+        },
+        end: {
+          line: 5,
+          column: 42
+        }
+      },
+      "1": {
+        start: {
+          line: 6,
+          column: 21
+        },
+        end: {
+          line: 6,
+          column: 23
+        }
+      },
+      "2": {
+        start: {
+          line: 9,
+          column: 4
+        },
+        end: {
+          line: 30,
+          column: 5
+        }
+      },
+      "3": {
+        start: {
+          line: 10,
+          column: 8
+        },
+        end: {
+          line: 13,
+          column: 9
+        }
+      },
+      "4": {
+        start: {
+          line: 11,
+          column: 12
+        },
+        end: {
+          line: 11,
+          column: 44
+        }
+      },
+      "5": {
+        start: {
+          line: 12,
+          column: 12
+        },
+        end: {
+          line: 12,
+          column: 86
+        }
+      },
+      "6": {
+        start: {
+          line: 12,
+          column: 59
+        },
+        end: {
+          line: 12,
+          column: 84
+        }
+      },
+      "7": {
+        start: {
+          line: 14,
+          column: 8
+        },
+        end: {
+          line: 19,
+          column: 9
+        }
+      },
+      "8": {
+        start: {
+          line: 15,
+          column: 12
+        },
+        end: {
+          line: 15,
+          column: 48
+        }
+      },
+      "9": {
+        start: {
+          line: 16,
+          column: 12
+        },
+        end: {
+          line: 18,
+          column: 13
+        }
+      },
+      "10": {
+        start: {
+          line: 17,
+          column: 16
+        },
+        end: {
+          line: 17,
+          column: 94
+        }
+      },
+      "11": {
+        start: {
+          line: 17,
+          column: 63
+        },
+        end: {
+          line: 17,
+          column: 92
+        }
+      },
+      "12": {
+        start: {
+          line: 20,
+          column: 8
+        },
+        end: {
+          line: 23,
+          column: 9
+        }
+      },
+      "13": {
+        start: {
+          line: 21,
+          column: 12
+        },
+        end: {
+          line: 21,
+          column: 38
+        }
+      },
+      "14": {
+        start: {
+          line: 22,
+          column: 12
+        },
+        end: {
+          line: 22,
+          column: 80
+        }
+      },
+      "15": {
+        start: {
+          line: 22,
+          column: 59
+        },
+        end: {
+          line: 22,
+          column: 78
+        }
+      },
+      "16": {
+        start: {
+          line: 24,
+          column: 8
+        },
+        end: {
+          line: 29,
+          column: 9
+        }
+      },
+      "17": {
+        start: {
+          line: 25,
+          column: 12
+        },
+        end: {
+          line: 25,
+          column: 44
+        }
+      },
+      "18": {
+        start: {
+          line: 26,
+          column: 12
+        },
+        end: {
+          line: 28,
+          column: 13
+        }
+      },
+      "19": {
+        start: {
+          line: 27,
+          column: 16
+        },
+        end: {
+          line: 27,
+          column: 90
+        }
+      },
+      "20": {
+        start: {
+          line: 27,
+          column: 63
+        },
+        end: {
+          line: 27,
+          column: 88
+        }
+      },
+      "21": {
+        start: {
+          line: 32,
+          column: 4
+        },
+        end: {
+          line: 34,
+          column: 5
+        }
+      },
+      "22": {
+        start: {
+          line: 33,
+          column: 8
+        },
+        end: {
+          line: 33,
+          column: 85
+        }
+      },
+      "23": {
+        start: {
+          line: 33,
+          column: 55
+        },
+        end: {
+          line: 33,
+          column: 83
+        }
+      },
+      "24": {
+        start: {
+          line: 35,
+          column: 4
+        },
+        end: {
+          line: 39,
+          column: 6
+        }
+      },
+      "25": {
+        start: {
+          line: 45,
+          column: 4
+        },
+        end: {
+          line: 45,
+          column: 62
+        }
+      },
+      "26": {
+        start: {
+          line: 45,
+          column: 41
+        },
+        end: {
+          line: 45,
+          column: 60
+        }
+      },
+      "27": {
+        start: {
+          line: 51,
+          column: 21
+        },
+        end: {
+          line: 55,
+          column: 61
+        }
+      },
+      "28": {
+        start: {
+          line: 56,
+          column: 4
+        },
+        end: {
+          line: 56,
+          column: 20
+        }
+      },
+      "29": {
+        start: {
+          line: 68,
+          column: 24
+        },
+        end: {
+          line: 68,
+          column: 45
+        }
+      },
+      "30": {
+        start: {
+          line: 69,
+          column: 22
+        },
+        end: {
+          line: 69,
+          column: 58
+        }
+      },
+      "31": {
+        start: {
+          line: 72,
+          column: 24
+        },
+        end: {
+          line: 72,
+          column: 26
+        }
+      },
+      "32": {
+        start: {
+          line: 74,
+          column: 4
+        },
+        end: {
+          line: 77,
+          column: 5
+        }
+      },
+      "33": {
+        start: {
+          line: 76,
+          column: 8
+        },
+        end: {
+          line: 76,
+          column: 52
+        }
+      },
+      "34": {
+        start: {
+          line: 78,
+          column: 4
+        },
+        end: {
+          line: 81,
+          column: 5
+        }
+      },
+      "35": {
+        start: {
+          line: 80,
+          column: 8
+        },
+        end: {
+          line: 80,
+          column: 49
+        }
+      },
+      "36": {
+        start: {
+          line: 83,
+          column: 4
+        },
+        end: {
+          line: 83,
+          column: 48
+        }
+      },
+      "37": {
+        start: {
+          line: 89,
+          column: 4
+        },
+        end: {
+          line: 478,
+          column: 6
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "extractScenarioTemplates",
+        decl: {
+          start: {
+            line: 4,
+            column: 22
+          },
+          end: {
+            line: 4,
+            column: 46
+          }
+        },
+        loc: {
+          start: {
+            line: 4,
+            column: 59
+          },
+          end: {
+            line: 40,
+            column: 1
+          }
+        },
+        line: 4
+      },
+      "1": {
+        name: "(anonymous_1)",
+        decl: {
+          start: {
+            line: 12,
+            column: 52
+          },
+          end: {
+            line: 12,
+            column: 53
+          }
+        },
+        loc: {
+          start: {
+            line: 12,
+            column: 59
+          },
+          end: {
+            line: 12,
+            column: 84
+          }
+        },
+        line: 12
+      },
+      "2": {
+        name: "(anonymous_2)",
+        decl: {
+          start: {
+            line: 17,
+            column: 56
+          },
+          end: {
+            line: 17,
+            column: 57
+          }
+        },
+        loc: {
+          start: {
+            line: 17,
+            column: 63
+          },
+          end: {
+            line: 17,
+            column: 92
+          }
+        },
+        line: 17
+      },
+      "3": {
+        name: "(anonymous_3)",
+        decl: {
+          start: {
+            line: 22,
+            column: 52
+          },
+          end: {
+            line: 22,
+            column: 53
+          }
+        },
+        loc: {
+          start: {
+            line: 22,
+            column: 59
+          },
+          end: {
+            line: 22,
+            column: 78
+          }
+        },
+        line: 22
+      },
+      "4": {
+        name: "(anonymous_4)",
+        decl: {
+          start: {
+            line: 27,
+            column: 56
+          },
+          end: {
+            line: 27,
+            column: 57
+          }
+        },
+        loc: {
+          start: {
+            line: 27,
+            column: 63
+          },
+          end: {
+            line: 27,
+            column: 88
+          }
+        },
+        line: 27
+      },
+      "5": {
+        name: "(anonymous_5)",
+        decl: {
+          start: {
+            line: 33,
+            column: 48
+          },
+          end: {
+            line: 33,
+            column: 49
+          }
+        },
+        loc: {
+          start: {
+            line: 33,
+            column: 55
+          },
+          end: {
+            line: 33,
+            column: 83
+          }
+        },
+        line: 33
+      },
+      "6": {
+        name: "getScenarioById",
+        decl: {
+          start: {
+            line: 44,
+            column: 16
+          },
+          end: {
+            line: 44,
+            column: 31
+          }
+        },
+        loc: {
+          start: {
+            line: 44,
+            column: 44
+          },
+          end: {
+            line: 46,
+            column: 1
+          }
+        },
+        line: 44
+      },
+      "7": {
+        name: "(anonymous_7)",
+        decl: {
+          start: {
+            line: 45,
+            column: 34
+          },
+          end: {
+            line: 45,
+            column: 35
+          }
+        },
+        loc: {
+          start: {
+            line: 45,
+            column: 41
+          },
+          end: {
+            line: 45,
+            column: 60
+          }
+        },
+        line: 45
+      },
+      "8": {
+        name: "generateScenarioContent",
+        decl: {
+          start: {
+            line: 50,
+            column: 16
+          },
+          end: {
+            line: 50,
+            column: 39
+          }
+        },
+        loc: {
+          start: {
+            line: 50,
+            column: 74
+          },
+          end: {
+            line: 57,
+            column: 1
+          }
+        },
+        line: 50
+      },
+      "9": {
+        name: "autoDetectScenario",
+        decl: {
+          start: {
+            line: 61,
+            column: 22
+          },
+          end: {
+            line: 61,
+            column: 40
+          }
+        },
+        loc: {
+          start: {
+            line: 61,
+            column: 54
+          },
+          end: {
+            line: 84,
+            column: 1
+          }
+        },
+        line: 61
+      },
+      "10": {
+        name: "getAllScenarios",
+        decl: {
+          start: {
+            line: 88,
+            column: 9
+          },
+          end: {
+            line: 88,
+            column: 24
+          }
+        },
+        loc: {
+          start: {
+            line: 88,
+            column: 27
+          },
+          end: {
+            line: 479,
+            column: 1
+          }
+        },
+        line: 88
+      }
+    },
+    branchMap: {
+      "0": {
+        loc: {
+          start: {
+            line: 9,
+            column: 4
+          },
+          end: {
+            line: 30,
+            column: 5
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 9,
+            column: 4
+          },
+          end: {
+            line: 30,
+            column: 5
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 9
+      },
+      "1": {
+        loc: {
+          start: {
+            line: 10,
+            column: 8
+          },
+          end: {
+            line: 13,
+            column: 9
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 10,
+            column: 8
+          },
+          end: {
+            line: 13,
+            column: 9
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 10
+      },
+      "2": {
+        loc: {
+          start: {
+            line: 10,
+            column: 12
+          },
+          end: {
+            line: 10,
+            column: 79
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 10,
+            column: 12
+          },
+          end: {
+            line: 10,
+            column: 43
+          }
+        }, {
+          start: {
+            line: 10,
+            column: 47
+          },
+          end: {
+            line: 10,
+            column: 79
+          }
+        }],
+        line: 10
+      },
+      "3": {
+        loc: {
+          start: {
+            line: 14,
+            column: 8
+          },
+          end: {
+            line: 19,
+            column: 9
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 14,
+            column: 8
+          },
+          end: {
+            line: 19,
+            column: 9
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 14
+      },
+      "4": {
+        loc: {
+          start: {
+            line: 16,
+            column: 12
+          },
+          end: {
+            line: 18,
+            column: 13
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 16,
+            column: 12
+          },
+          end: {
+            line: 18,
+            column: 13
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 16
+      },
+      "5": {
+        loc: {
+          start: {
+            line: 20,
+            column: 8
+          },
+          end: {
+            line: 23,
+            column: 9
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 20,
+            column: 8
+          },
+          end: {
+            line: 23,
+            column: 9
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 20
+      },
+      "6": {
+        loc: {
+          start: {
+            line: 24,
+            column: 8
+          },
+          end: {
+            line: 29,
+            column: 9
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 24,
+            column: 8
+          },
+          end: {
+            line: 29,
+            column: 9
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 24
+      },
+      "7": {
+        loc: {
+          start: {
+            line: 24,
+            column: 12
+          },
+          end: {
+            line: 24,
+            column: 82
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 24,
+            column: 12
+          },
+          end: {
+            line: 24,
+            column: 47
+          }
+        }, {
+          start: {
+            line: 24,
+            column: 51
+          },
+          end: {
+            line: 24,
+            column: 82
+          }
+        }],
+        line: 24
+      },
+      "8": {
+        loc: {
+          start: {
+            line: 26,
+            column: 12
+          },
+          end: {
+            line: 28,
+            column: 13
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 26,
+            column: 12
+          },
+          end: {
+            line: 28,
+            column: 13
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 26
+      },
+      "9": {
+        loc: {
+          start: {
+            line: 32,
+            column: 4
+          },
+          end: {
+            line: 34,
+            column: 5
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 32,
+            column: 4
+          },
+          end: {
+            line: 34,
+            column: 5
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 32
+      },
+      "10": {
+        loc: {
+          start: {
+            line: 52,
+            column: 37
+          },
+          end: {
+            line: 52,
+            column: 68
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 52,
+            column: 37
+          },
+          end: {
+            line: 52,
+            column: 48
+          }
+        }, {
+          start: {
+            line: 52,
+            column: 52
+          },
+          end: {
+            line: 52,
+            column: 68
+          }
+        }],
+        line: 52
+      },
+      "11": {
+        loc: {
+          start: {
+            line: 53,
+            column: 35
+          },
+          end: {
+            line: 53,
+            column: 62
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 53,
+            column: 35
+          },
+          end: {
+            line: 53,
+            column: 44
+          }
+        }, {
+          start: {
+            line: 53,
+            column: 48
+          },
+          end: {
+            line: 53,
+            column: 62
+          }
+        }],
+        line: 53
+      },
+      "12": {
+        loc: {
+          start: {
+            line: 61,
+            column: 41
+          },
+          end: {
+            line: 61,
+            column: 52
+          }
+        },
+        type: "default-arg",
+        locations: [{
+          start: {
+            line: 61,
+            column: 51
+          },
+          end: {
+            line: 61,
+            column: 52
+          }
+        }],
+        line: 61
+      },
+      "13": {
+        loc: {
+          start: {
+            line: 74,
+            column: 4
+          },
+          end: {
+            line: 77,
+            column: 5
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 74,
+            column: 4
+          },
+          end: {
+            line: 77,
+            column: 5
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 74
+      },
+      "14": {
+        loc: {
+          start: {
+            line: 74,
+            column: 8
+          },
+          end: {
+            line: 74,
+            column: 56
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 74,
+            column: 8
+          },
+          end: {
+            line: 74,
+            column: 23
+          }
+        }, {
+          start: {
+            line: 74,
+            column: 27
+          },
+          end: {
+            line: 74,
+            column: 43
+          }
+        }, {
+          start: {
+            line: 74,
+            column: 47
+          },
+          end: {
+            line: 74,
+            column: 56
+          }
+        }],
+        line: 74
+      },
+      "15": {
+        loc: {
+          start: {
+            line: 78,
+            column: 4
+          },
+          end: {
+            line: 81,
+            column: 5
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 78,
+            column: 4
+          },
+          end: {
+            line: 81,
+            column: 5
+          }
+        }, {
+          start: {
+            line: undefined,
+            column: undefined
+          },
+          end: {
+            line: undefined,
+            column: undefined
+          }
+        }],
+        line: 78
+      }
+    },
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 0,
+      "16": 0,
+      "17": 0,
+      "18": 0,
+      "19": 0,
+      "20": 0,
+      "21": 0,
+      "22": 0,
+      "23": 0,
+      "24": 0,
+      "25": 0,
+      "26": 0,
+      "27": 0,
+      "28": 0,
+      "29": 0,
+      "30": 0,
+      "31": 0,
+      "32": 0,
+      "33": 0,
+      "34": 0,
+      "35": 0,
+      "36": 0,
+      "37": 0
+    },
+    f: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0
+    },
+    b: {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0],
+      "3": [0, 0],
+      "4": [0, 0],
+      "5": [0, 0],
+      "6": [0, 0],
+      "7": [0, 0],
+      "8": [0, 0],
+      "9": [0, 0],
+      "10": [0, 0],
+      "11": [0, 0],
+      "12": [0],
+      "13": [0, 0],
+      "14": [0, 0, 0],
+      "15": [0, 0]
+    },
+    inputSourceMap: {
+      file: "/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/scenarioTemplateExtractor.ts",
+      mappings: "AAyBA;;GAEG;AACH,MAAM,CAAC,KAAK,UAAU,wBAAwB,CAAC,UAK9C;IACC,MAAM,YAAY,GAAG,eAAe,EAAE,CAAC;IACvC,MAAM,QAAQ,GAAa,EAAE,CAAC;IAC9B,IAAI,mBAAkD,CAAC;IAEvD,4CAA4C;IAC5C,IAAI,UAAU,EAAE,CAAC;QACf,IAAI,UAAU,CAAC,OAAO,KAAK,QAAQ,IAAI,UAAU,CAAC,OAAO,KAAK,SAAS,EAAE,CAAC;YACxE,QAAQ,CAAC,IAAI,CAAC,gBAAgB,CAAC,CAAC;YAChC,mBAAmB,GAAG,YAAY,CAAC,IAAI,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,EAAE,KAAK,gBAAgB,CAAC,CAAC;QAC5E,CAAC;QAED,IAAI,UAAU,CAAC,UAAU,KAAK,MAAM,EAAE,CAAC;YACrC,QAAQ,CAAC,IAAI,CAAC,oBAAoB,CAAC,CAAC;YACpC,IAAI,CAAC,mBAAmB,EAAE,CAAC;gBACzB,mBAAmB,GAAG,YAAY,CAAC,IAAI,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,EAAE,KAAK,oBAAoB,CAAC,CAAC;YAChF,CAAC;QACH,CAAC;QAED,IAAI,UAAU,CAAC,QAAQ,KAAK,WAAW,EAAE,CAAC;YACxC,QAAQ,CAAC,IAAI,CAAC,UAAU,CAAC,CAAC;YAC1B,mBAAmB,GAAG,YAAY,CAAC,IAAI,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,EAAE,KAAK,UAAU,CAAC,CAAC,CAAC,kBAAkB;QACzF,CAAC;QAED,IAAI,UAAU,CAAC,QAAQ,KAAK,WAAW,IAAI,UAAU,CAAC,QAAQ,KAAK,OAAO,EAAE,CAAC;YAC3E,QAAQ,CAAC,IAAI,CAAC,gBAAgB,CAAC,CAAC;YAChC,IAAI,CAAC,mBAAmB,EAAE,CAAC;gBACzB,mBAAmB,GAAG,YAAY,CAAC,IAAI,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,EAAE,KAAK,gBAAgB,CAAC,CAAC;YAC5E,CAAC;QACH,CAAC;IACH,CAAC;IAED,sDAAsD;IACtD,IAAI,CAAC,mBAAmB,EAAE,CAAC;QACzB,mBAAmB,GAAG,YAAY,CAAC,IAAI,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,EAAE,KAAK,mBAAmB,CAAC,CAAC;IAC/E,CAAC;IAED,OAAO;QACL,SAAS,EAAE,YAAY;QACvB,QAAQ;QACR,mBAAmB;KACpB,CAAC;AACJ,CAAC;AAED;;GAEG;AACH,MAAM,UAAU,eAAe,CAAC,UAAkB;IAChD,OAAO,eAAe,EAAE,CAAC,IAAI,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,EAAE,KAAK,UAAU,CAAC,CAAC;AAC5D,CAAC;AAED;;GAEG;AACH,MAAM,UAAU,uBAAuB,CACrC,QAA2B,EAC3B,WAAoB,EACpB,SAAkB;IAElB,MAAM,QAAQ,GAAG,QAAQ,CAAC,QAAQ;SAC/B,OAAO,CAAC,kBAAkB,EAAE,WAAW,IAAI,gBAAgB,CAAC;SAC5D,OAAO,CAAC,gBAAgB,EAAE,SAAS,IAAI,cAAc,CAAC;SACtD,OAAO,CAAC,UAAU,EAAE,IAAI,IAAI,EAAE,CAAC,kBAAkB,EAAE,CAAC;SACpD,OAAO,CAAC,UAAU,EAAE,IAAI,IAAI,EAAE,CAAC,kBAAkB,EAAE,CAAC,CAAC;IAExD,OAAO,QAAQ,CAAC;AAClB,CAAC;AAED;;GAEG;AACH,MAAM,CAAC,KAAK,UAAU,kBAAkB,CAAC,UAAkB,CAAC;IAC1D,8CAA8C;IAC9C,iBAAiB;IACjB,kBAAkB;IAClB,yBAAyB;IACzB,uBAAuB;IAEvB,0EAA0E;IAC1E,MAAM,WAAW,GAAG,IAAI,IAAI,EAAE,CAAC,QAAQ,EAAE,CAAC;IAC1C,MAAM,SAAS,GAAG,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,QAAQ,CAAC,IAAI,IAAI,EAAE,CAAC,MAAM,EAAE,CAAC,CAAC;IAEvD,wDAAwD;IACxD,6DAA6D;IAC7D,MAAM,WAAW,GAAmB,EAAE,CAAC,CAAC,kCAAkC;IAE1E,2CAA2C;IAC3C,IAAI,WAAW,GAAG,CAAC,IAAI,WAAW,GAAG,EAAE,IAAI,SAAS,EAAE,CAAC;QACrD,sBAAsB;QACtB,OAAO,eAAe,CAAC,mBAAmB,CAAE,CAAC;IAC/C,CAAC;IAED,IAAI,WAAW,CAAC,MAAM,KAAK,CAAC,EAAE,CAAC;QAC7B,oEAAoE;QACpE,OAAO,eAAe,CAAC,gBAAgB,CAAE,CAAC;IAC5C,CAAC;IAED,8BAA8B;IAC9B,OAAO,eAAe,CAAC,mBAAmB,CAAE,CAAC;AAC/C,CAAC;AAED;;GAEG;AACH,SAAS,eAAe;IACtB,OAAO;QACL;YACE,EAAE,EAAE,mBAAmB;YACvB,IAAI,EAAE,wBAAwB;YAC9B,WAAW,EAAE,4DAA4D;YACzE,UAAU,EAAE;gBACV,yCAAyC;gBACzC,sCAAsC;gBACtC,uDAAuD;gBACvD,uDAAuD;gBACvD,2CAA2C;gBAC3C,6CAA6C;aAC9C;YACD,SAAS,EAAE;gBACT,2CAA2C;gBAC3C,qCAAqC;gBACrC,kCAAkC;gBAClC,6BAA6B;gBAC7B,+BAA+B;aAChC;YACD,QAAQ,EAAE;gBACR,EAAE,IAAI,EAAE,oBAAoB,EAAE,MAAM,EAAE,KAAK,EAAE,IAAI,EAAE,uCAAuC,EAAE;gBAC5F,EAAE,IAAI,EAAE,WAAW,EAAE,MAAM,EAAE,UAAU,EAAE,IAAI,EAAE,qCAAqC,EAAE;gBACtF;oBACE,IAAI,EAAE,QAAQ;oBACd,MAAM,EAAE,UAAU;oBAClB,IAAI,EAAE,qDAAqD;iBAC5D;gBACD,EAAE,IAAI,EAAE,gBAAgB,EAAE,MAAM,EAAE,UAAU,EAAE,IAAI,EAAE,uBAAuB,EAAE;gBAC7E;oBACE,IAAI,EAAE,cAAc;oBACpB,MAAM,EAAE,UAAU;oBAClB,IAAI,EAAE,2CAA2C;iBAClD;aACF;YACD,aAAa,EAAE;gBACb,QAAQ,EAAE;oBACR,+CAA+C;oBAC/C,qDAAqD;oBACrD,oDAAoD;iBACrD;gBACD,UAAU,EAAE;oBACV,uDAAuD;oBACvD,4DAA4D;oBAC5D,sCAAsC;iBACvC;gBACD,MAAM,EAAE;oBACN,yCAAyC;oBACzC,kCAAkC;oBAClC,iDAAiD;iBAClD;aACF;YACD,QAAQ,EAAE;;;;;;;;;;;;;;;;;;;;;;;;;;;8EA2B8D;SACzE;QAED;YACE,EAAE,EAAE,oBAAoB;YACxB,IAAI,EAAE,yBAAyB;YAC/B,WAAW,EAAE,oEAAoE;YACjF,UAAU,EAAE;gBACV,2CAA2C;gBAC3C,oDAAoD;gBACpD,uDAAuD;gBACvD,2DAA2D;gBAC3D,8DAA8D;gBAC9D,mDAAmD;aACpD;YACD,SAAS,EAAE;gBACT,oDAAoD;gBACpD,gCAAgC;gBAChC,0CAA0C;gBAC1C,6BAA6B;gBAC7B,oCAAoC;gBACpC,uBAAuB;aACxB;YACD,QAAQ,EAAE;gBACR,EAAE,IAAI,EAAE,oBAAoB,EAAE,MAAM,EAAE,KAAK,EAAE,IAAI,EAAE,uCAAuC,EAAE;gBAC5F,EAAE,IAAI,EAAE,YAAY,EAAE,MAAM,EAAE,UAAU,EAAE,IAAI,EAAE,6BAA6B,EAAE;gBAC/E,EAAE,IAAI,EAAE,QAAQ,EAAE,MAAM,EAAE,UAAU,EAAE,IAAI,EAAE,kCAAkC,EAAE;gBAChF;oBACE,IAAI,EAAE,WAAW;oBACjB,MAAM,EAAE,UAAU;oBAClB,IAAI,EAAE,0DAA0D;iBACjE;aACF;YACD,aAAa,EAAE;gBACb,QAAQ,EAAE;oBACR,6CAA6C;oBAC7C,mDAAmD;oBACnD,qDAAqD;iBACtD;gBACD,UAAU,EAAE;oBACV,uDAAuD;oBACvD,wCAAwC;oBACxC,oCAAoC;oBACpC,2CAA2C;iBAC5C;gBACD,MAAM,EAAE;oBACN,mDAAmD;oBACnD,4CAA4C;oBAC5C,gCAAgC;iBACjC;aACF;YACD,QAAQ,EAAE;;;;;;;;;;;;;;;;;;;;;;;;;;+CA0B+B;SAC1C;QAED;YACE,EAAE,EAAE,gBAAgB;YACpB,IAAI,EAAE,qBAAqB;YAC3B,WAAW,EAAE,gEAAgE;YAC7E,UAAU,EAAE;gBACV,kDAAkD;gBAClD,6DAA6D;gBAC7D,+CAA+C;gBAC/C,uDAAuD;gBACvD,0CAA0C;gBAC1C,2DAA2D;aAC5D;YACD,SAAS,EAAE;gBACT,uCAAuC;gBACvC,oCAAoC;gBACpC,2CAA2C;gBAC3C,mCAAmC;gBACnC,gCAAgC;gBAChC,gCAAgC;aACjC;YACD,QAAQ,EAAE;gBACR,EAAE,IAAI,EAAE,oBAAoB,EAAE,MAAM,EAAE,KAAK,EAAE,IAAI,EAAE,uCAAuC,EAAE;gBAC5F,EAAE,IAAI,EAAE,QAAQ,EAAE,MAAM,EAAE,UAAU,EAAE,IAAI,EAAE,2CAA2C,EAAE;gBACzF,EAAE,IAAI,EAAE,WAAW,EAAE,MAAM,EAAE,UAAU,EAAE,IAAI,EAAE,yBAAyB,EAAE;gBAC1E;oBACE,IAAI,EAAE,iBAAiB;oBACvB,MAAM,EAAE,UAAU;oBAClB,IAAI,EAAE,qCAAqC;iBAC5C;gBACD,EAAE,IAAI,EAAE,gBAAgB,EAAE,MAAM,EAAE,UAAU,EAAE,IAAI,EAAE,0BAA0B,EAAE;aACjF;YACD,aAAa,EAAE;gBACb,QAAQ,EAAE;oBACR,8CAA8C;oBAC9C,iDAAiD;oBACjD,iDAAiD;oBACjD,oCAAoC;iBACrC;gBACD,UAAU,EAAE;oBACV,qCAAqC;oBACrC,wCAAwC;oBACxC,iDAAiD;oBACjD,0CAA0C;iBAC3C;gBACD,MAAM,EAAE;oBACN,8CAA8C;oBAC9C,oCAAoC;oBACpC,0CAA0C;oBAC1C,iCAAiC;iBAClC;aACF;YACD,QAAQ,EAAE;;;;;;;;;;;;;;;;;;;;;;;qCAuBqB;SAChC;QAED;YACE,EAAE,EAAE,UAAU;YACd,IAAI,EAAE,wBAAwB;YAC9B,WAAW,EAAE,4DAA4D;YACzE,UAAU,EAAE;gBACV,+CAA+C;gBAC/C,yCAAyC;gBACzC,iDAAiD;gBACjD,gEAAgE;gBAChE,0BAA0B;gBAC1B,wCAAwC;aACzC;YACD,SAAS,EAAE;gBACT,wBAAwB;gBACxB,eAAe;gBACf,8BAA8B;gBAC9B,iCAAiC;gBACjC,oCAAoC;gBACpC,2BAA2B;aAC5B;YACD,QAAQ,EAAE;gBACR;oBACE,IAAI,EAAE,KAAK;oBACX,MAAM,EAAE,KAAK;oBACb,IAAI,EAAE,0DAA0D;iBACjE;gBACD;oBACE,IAAI,EAAE,WAAW;oBACjB,MAAM,EAAE,UAAU;oBAClB,IAAI,EAAE,kDAAkD;iBACzD;gBACD,EAAE,IAAI,EAAE,QAAQ,EAAE,MAAM,EAAE,UAAU,EAAE,IAAI,EAAE,iCAAiC,EAAE;aAChF;YACD,aAAa,EAAE;gBACb,QAAQ,EAAE;oBACR,oCAAoC;oBACpC,2CAA2C;oBAC3C,2BAA2B;oBAC3B,+BAA+B;iBAChC;gBACD,UAAU,EAAE;oBACV,wBAAwB;oBACxB,gCAAgC;oBAChC,mCAAmC;oBACnC,0BAA0B;iBAC3B;gBACD,MAAM,EAAE;oBACN,yBAAyB;oBACzB,kCAAkC;oBAClC,kBAAkB;oBAClB,mCAAmC;iBACpC;aACF;YACD,QAAQ,EAAE;;;;;;;;;;;;;;;;;;;;;;;uEAuBuD;SAClE;QAED;YACE,EAAE,EAAE,gBAAgB;YACpB,IAAI,EAAE,qBAAqB;YAC3B,WAAW,EAAE,wDAAwD;YACrE,UAAU,EAAE;gBACV,0DAA0D;gBAC1D,wCAAwC;gBACxC,wCAAwC;gBACxC,2CAA2C;gBAC3C,6CAA6C;gBAC7C,sCAAsC;aACvC;YACD,SAAS,EAAE;gBACT,+BAA+B;gBAC/B,4BAA4B;gBAC5B,4CAA4C;gBAC5C,8BAA8B;gBAC9B,+BAA+B;gBAC/B,mCAAmC;aACpC;YACD,QAAQ,EAAE;gBACR,EAAE,IAAI,EAAE,oBAAoB,EAAE,MAAM,EAAE,KAAK,EAAE,IAAI,EAAE,uCAAuC,EAAE;gBAC5F,EAAE,IAAI,EAAE,WAAW,EAAE,MAAM,EAAE,UAAU,EAAE,IAAI,EAAE,oCAAoC,EAAE;gBACrF,EAAE,IAAI,EAAE,gBAAgB,EAAE,MAAM,EAAE,UAAU,EAAE,IAAI,EAAE,kCAAkC,EAAE;gBACxF;oBACE,IAAI,EAAE,QAAQ;oBACd,MAAM,EAAE,UAAU;oBAClB,IAAI,EAAE,+CAA+C;iBACtD;aACF;YACD,aAAa,EAAE;gBACb,QAAQ,EAAE;oBACR,iDAAiD;oBACjD,sCAAsC;oBACtC,sCAAsC;oBACtC,oCAAoC;iBACrC;gBACD,UAAU,EAAE;oBACV,gCAAgC;oBAChC,kCAAkC;oBAClC,qCAAqC;oBACrC,2BAA2B;iBAC5B;gBACD,MAAM,EAAE;oBACN,oCAAoC;oBACpC,sCAAsC;oBACtC,0BAA0B;oBAC1B,kDAAkD;iBACnD;aACF;YACD,QAAQ,EAAE;;;;;;;;;;;;;;;;;;;;;;;;;;qCA0BqB;SAChC;KACF,CAAC;AACJ,CAAC",
+      names: [],
+      sources: ["/Users/michaelmcisaac/GitHub/teaching-engine2.0/server/src/services/scenarioTemplateExtractor.ts"],
+      sourcesContent: ["export interface EmergencyScenario {\n  id: string;\n  name: string;\n  description: string;\n  procedures: string[];\n  materials: string[];\n  contacts: Array<{\n    role: string;\n    number: string;\n    when: string;\n  }>;\n  modifications: {\n    schedule: string[];\n    activities: string[];\n    safety: string[];\n  };\n  template: string;\n}\n\nexport interface ScenarioDetectionResult {\n  scenarios: EmergencyScenario[];\n  triggers: string[];\n  recommendedScenario?: EmergencyScenario;\n}\n\n/**\n * Extract appropriate emergency scenario templates based on conditions\n */\nexport async function extractScenarioTemplates(conditions?: {\n  weather?: 'normal' | 'severe' | 'extreme';\n  technology?: 'working' | 'partial' | 'down';\n  staffing?: 'full' | 'short' | 'emergency';\n  building?: 'normal' | 'maintenance' | 'emergency';\n}): Promise<ScenarioDetectionResult> {\n  const allScenarios = getAllScenarios();\n  const triggers: string[] = [];\n  let recommendedScenario: EmergencyScenario | undefined;\n\n  // Analyze conditions and determine triggers\n  if (conditions) {\n    if (conditions.weather === 'severe' || conditions.weather === 'extreme') {\n      triggers.push('severe_weather');\n      recommendedScenario = allScenarios.find((s) => s.id === 'severe_weather');\n    }\n\n    if (conditions.technology === 'down') {\n      triggers.push('technology_failure');\n      if (!recommendedScenario) {\n        recommendedScenario = allScenarios.find((s) => s.id === 'technology_failure');\n      }\n    }\n\n    if (conditions.building === 'emergency') {\n      triggers.push('lockdown');\n      recommendedScenario = allScenarios.find((s) => s.id === 'lockdown'); // Override others\n    }\n\n    if (conditions.staffing === 'emergency' || conditions.staffing === 'short') {\n      triggers.push('staff_shortage');\n      if (!recommendedScenario) {\n        recommendedScenario = allScenarios.find((s) => s.id === 'staff_shortage');\n      }\n    }\n  }\n\n  // If no specific conditions, provide general scenario\n  if (!recommendedScenario) {\n    recommendedScenario = allScenarios.find((s) => s.id === 'general_emergency');\n  }\n\n  return {\n    scenarios: allScenarios,\n    triggers,\n    recommendedScenario,\n  };\n}\n\n/**\n * Get specific scenario by ID\n */\nexport function getScenarioById(scenarioId: string): EmergencyScenario | undefined {\n  return getAllScenarios().find((s) => s.id === scenarioId);\n}\n\n/**\n * Generate scenario-specific substitute plan content\n */\nexport function generateScenarioContent(\n  scenario: EmergencyScenario,\n  teacherName?: string,\n  className?: string,\n): string {\n  const template = scenario.template\n    .replace('{{TEACHER_NAME}}', teacherName || '[Teacher Name]')\n    .replace('{{CLASS_NAME}}', className || '[Class Name]')\n    .replace('{{DATE}}', new Date().toLocaleDateString())\n    .replace('{{TIME}}', new Date().toLocaleTimeString());\n\n  return template;\n}\n\n/**\n * Check current conditions and auto-select scenario\n */\nexport async function autoDetectScenario(_userId: number = 1): Promise<EmergencyScenario> {\n  // In a real implementation, this might check:\n  // - Weather APIs\n  // - System status\n  // - School announcements\n  // - Staff availability\n\n  // For now, we'll use a simple heuristic based on time and recent patterns\n  const currentHour = new Date().getHours();\n  const isWeekend = [0, 6].includes(new Date().getDay());\n\n  // Check if there are any system issues (mock detection)\n  // DISABLED: Legacy dailyPlan model removed in ETFO migration\n  const recentPlans: Array<unknown> = []; // Legacy dailyPlan query disabled\n\n  // Simple heuristics for scenario detection\n  if (currentHour < 6 || currentHour > 20 || isWeekend) {\n    // Off-hours emergency\n    return getScenarioById('general_emergency')!;\n  }\n\n  if (recentPlans.length === 0) {\n    // No recent planning data - might be start of year or system issues\n    return getScenarioById('staff_shortage')!;\n  }\n\n  // Default to general scenario\n  return getScenarioById('general_emergency')!;\n}\n\n/**\n * Get all available emergency scenarios\n */\nfunction getAllScenarios(): EmergencyScenario[] {\n  return [\n    {\n      id: 'general_emergency',\n      name: 'General Emergency Plan',\n      description: 'Standard emergency substitute plan for unexpected absences',\n      procedures: [\n        'Contact office immediately upon arrival',\n        'Review daily schedule posted on desk',\n        'Follow regular classroom routines as much as possible',\n        'Take attendance at the beginning of each class period',\n        'Maintain normal break and lunch schedules',\n        'Report any issues to the office immediately',\n      ],\n      materials: [\n        'Emergency sub folder (in top desk drawer)',\n        'Class lists with emergency contacts',\n        'Daily schedule and room routines',\n        'Generic activity worksheets',\n        'Books for silent reading time',\n      ],\n      contacts: [\n        { role: 'Emergency Services', number: '911', when: 'For life-threatening emergencies only' },\n        { role: 'Principal', number: 'Ext. 100', when: 'For any emergencies or major issues' },\n        {\n          role: 'Office',\n          number: 'Ext. 101',\n          when: 'For attendance, late students, or general questions',\n        },\n        { role: 'Vice Principal', number: 'Ext. 102', when: 'For discipline issues' },\n        {\n          role: 'School Nurse',\n          number: 'Ext. 105',\n          when: 'For health emergencies or student illness',\n        },\n      ],\n      modifications: {\n        schedule: [\n          'Follow posted schedule as closely as possible',\n          'Allow extra time for transitions between activities',\n          'Be flexible with timing if students need more help',\n        ],\n        activities: [\n          'Use pre-planned backup activities if technology fails',\n          'Focus on review and reinforcement rather than new concepts',\n          'Allow for more independent work time',\n        ],\n        safety: [\n          'Keep classroom door locked during class',\n          'Know location of emergency exits',\n          'Familiarize yourself with evacuation procedures',\n        ],\n      },\n      template: `EMERGENCY SUBSTITUTE PLAN - {{CLASS_NAME}}\nDate: {{DATE}}\nTeacher: {{TEACHER_NAME}}\nSubstitute: _______________\n\nIMPORTANT: Please read this entire plan before students arrive.\n\nDAILY SCHEDULE:\n[Specific schedule will be inserted here]\n\nEMERGENCY CONTACTS:\n- Principal: Ext. 100\n- Office: Ext. 101\n- Vice Principal: Ext. 102\n\nCLASSROOM PROCEDURES:\n1. Students enter quietly and begin morning routine\n2. Take attendance using class list in red folder\n3. Follow posted schedule as closely as possible\n4. For any issues, call the office immediately\n\nBACKUP ACTIVITIES:\nIf planned activities cannot be completed:\n- Silent reading from classroom library\n- Math review worksheets (in green folder)\n- Journal writing prompts (posted on wall)\n\nThank you for covering this class. Please leave detailed notes about the day.`,\n    },\n\n    {\n      id: 'technology_failure',\n      name: 'Technology Failure Plan',\n      description: 'Plan for when computers, internet, or smart boards are not working',\n      procedures: [\n        'Do not attempt to fix technical equipment',\n        'Report technology issues to IT support immediately',\n        'Switch to paper-based alternatives for all activities',\n        'Use analog teaching tools (whiteboard, printed materials)',\n        'Inform students of technology issues and adjust expectations',\n        \"Focus on activities that don't require technology\",\n      ],\n      materials: [\n        'Printed worksheets and activities (in blue folder)',\n        'Whiteboard markers and erasers',\n        'Physical manipulatives and teaching aids',\n        'Books and reading materials',\n        'Paper and pencils for all students',\n        'Analog timer or watch',\n      ],\n      contacts: [\n        { role: 'Emergency Services', number: '911', when: 'For life-threatening emergencies only' },\n        { role: 'IT Support', number: 'Ext. 150', when: 'To report technology issues' },\n        { role: 'Office', number: 'Ext. 101', when: 'To inform of technology problems' },\n        {\n          role: 'Principal',\n          number: 'Ext. 100',\n          when: 'If technology failure affects safety or major activities',\n        },\n      ],\n      modifications: {\n        schedule: [\n          'Allow extra time for distributing materials',\n          'Simplify transitions that normally use technology',\n          'Extend activities that work well without technology',\n        ],\n        activities: [\n          'Replace digital activities with hands-on alternatives',\n          'Use printed versions of all worksheets',\n          'Focus on discussion-based learning',\n          'Increase physical movement and group work',\n        ],\n        safety: [\n          'Ensure emergency communication methods still work',\n          'Have backup plans for dismissal procedures',\n          'Keep manual attendance records',\n        ],\n      },\n      template: `TECHNOLOGY FAILURE SUBSTITUTE PLAN - {{CLASS_NAME}}\nDate: {{DATE}}\nTeacher: {{TEACHER_NAME}}\n\n\u26A0\uFE0F TECHNOLOGY ALERT: Systems may not be working normally\n\nIMPORTANT NOTES:\n- Do NOT attempt to fix any technology\n- Use only paper-based materials and activities\n- Report any tech issues to IT Support (Ext. 150)\n\nNO-TECH DAILY SCHEDULE:\n[Modified schedule with analog alternatives]\n\nBACKUP ACTIVITIES (No Technology Required):\n- Reading from physical books\n- Hand-written assignments\n- Group discussions and presentations\n- Physical math manipulatives\n- Art projects with paper/pencils\n\nMATERIALS LOCATION:\n- Blue folder: Printed worksheets\n- Supply cabinet: Paper, pencils, manipulatives\n- Bookshelf: Reading materials\n\nRemember: Focus on engagement over technology!`,\n    },\n\n    {\n      id: 'severe_weather',\n      name: 'Severe Weather Plan',\n      description: 'Plan for severe weather conditions affecting normal operations',\n      procedures: [\n        'Monitor weather announcements throughout the day',\n        'Keep students calm and informed appropriately for their age',\n        'Be prepared for modified dismissal procedures',\n        'Keep students away from windows during severe weather',\n        \"Follow school's severe weather protocols\",\n        'Have indoor activities ready if outdoor time is cancelled',\n      ],\n      materials: [\n        'Weather-appropriate indoor activities',\n        'Comfort items (books, quiet games)',\n        'Extra snacks in case of delayed dismissal',\n        'Battery-powered radio for updates',\n        'Flashlights (in emergency kit)',\n        'First aid kit (check location)',\n      ],\n      contacts: [\n        { role: 'Emergency Services', number: '911', when: 'For life-threatening emergencies only' },\n        { role: 'Office', number: 'Ext. 101', when: 'For weather updates and dismissal changes' },\n        { role: 'Principal', number: 'Ext. 100', when: 'For emergency decisions' },\n        {\n          role: 'District Office',\n          number: '555-0123',\n          when: 'For district-wide weather decisions',\n        },\n        { role: 'Transportation', number: '555-0124', when: 'For bus schedule changes' },\n      ],\n      modifications: {\n        schedule: [\n          'Cancel any outdoor activities or field trips',\n          'Be prepared for early dismissal or extended day',\n          'Keep flexible schedule based on weather updates',\n          'Plan for possible indoor recess/PE',\n        ],\n        activities: [\n          'Focus on calming, indoor activities',\n          'Have extra movies or quiet games ready',\n          'Prepare extended activities in case of long day',\n          'Include weather education if appropriate',\n        ],\n        safety: [\n          'Know location of severe weather shelter area',\n          'Keep emergency supplies accessible',\n          'Monitor school communications constantly',\n          'Stay calm to keep students calm',\n        ],\n      },\n      template: `SEVERE WEATHER SUBSTITUTE PLAN - {{CLASS_NAME}}\nDate: {{DATE}}\nTeacher: {{TEACHER_NAME}}\n\n\uD83C\uDF2A\uFE0F WEATHER ALERT: Severe weather conditions expected\n\nSAFETY FIRST:\n- Keep students away from windows\n- Monitor school announcements\n- Be prepared for modified dismissal\n- Weather shelter area: [Location]\n\nINDOOR SCHEDULE:\n[Modified schedule with indoor alternatives]\n\nWEATHER-SAFE ACTIVITIES:\n- Indoor games and movement\n- Weather science discussions\n- Quiet reading time\n- Art projects\n- Movies if extended day needed\n\nIMPORTANT: Stay calm, keep students informed age-appropriately.\nCheck office every hour for updates.`,\n    },\n\n    {\n      id: 'lockdown',\n      name: 'Lockdown/Security Plan',\n      description: 'Plan for security situations requiring lockdown procedures',\n      procedures: [\n        'Follow school lockdown procedures immediately',\n        'Lock classroom door and turn off lights',\n        'Keep students quiet and away from windows/doors',\n        'Do not open door for anyone except identified school officials',\n        'Take attendance silently',\n        'Wait for all-clear from administration',\n      ],\n      materials: [\n        'Emergency contact list',\n        'First aid kit',\n        'Water bottles (if available)',\n        'Quiet activities (books, paper)',\n        'Charged phone/communication device',\n        'Emergency procedures card',\n      ],\n      contacts: [\n        {\n          role: '911',\n          number: '911',\n          when: 'Only if immediate danger and no school contact available',\n        },\n        {\n          role: 'Principal',\n          number: 'Ext. 100',\n          when: 'Follow their lead - do not call unless emergency',\n        },\n        { role: 'Office', number: 'Ext. 101', when: 'Only if specifically instructed' },\n      ],\n      modifications: {\n        schedule: [\n          'All normal schedules are suspended',\n          'Remain in secure location until all-clear',\n          'No movement between rooms',\n          'Cancel all outside activities',\n        ],\n        activities: [\n          'Silent activities only',\n          'No technology that makes noise',\n          'Comfort and calm students quietly',\n          'Reading or quiet drawing',\n        ],\n        safety: [\n          'Door locked, lights off',\n          'Students away from windows/doors',\n          'Maintain silence',\n          'Follow official instructions only',\n        ],\n      },\n      template: `\uD83D\uDD12 LOCKDOWN PROCEDURES - {{CLASS_NAME}}\nDate: {{DATE}}\n\nTHIS IS A LOCKDOWN SITUATION\n\nIMMEDIATE ACTIONS:\n1. Lock door, turn off lights\n2. Move students away from windows/doors\n3. Keep everyone quiet\n4. Take silent attendance\n5. Wait for official all-clear\n\nDO NOT:\n- Open door for anyone\n- Use phones unless emergency\n- Make noise\n- Leave secure area\n\nKEEP STUDENTS CALM:\n- Speak in whispers only\n- Provide comfort quietly\n- Use silent activities\n\nWait for administration's all-clear before resuming normal activities.`,\n    },\n\n    {\n      id: 'staff_shortage',\n      name: 'Staff Shortage Plan',\n      description: 'Plan for when multiple staff are absent or unavailable',\n      procedures: [\n        'Check with office for class combinations or room changes',\n        'Be prepared to supervise larger groups',\n        'Focus on simple, manageable activities',\n        'Use peer helpers and responsible students',\n        'Communicate frequently with remaining staff',\n        'Prioritize safety and basic routines',\n      ],\n      materials: [\n        'Large group activity supplies',\n        'Extra seating arrangements',\n        'Simple worksheets for various grade levels',\n        'Movies or educational videos',\n        'Books for independent reading',\n        'Art supplies for quiet activities',\n      ],\n      contacts: [\n        { role: 'Emergency Services', number: '911', when: 'For life-threatening emergencies only' },\n        { role: 'Principal', number: 'Ext. 100', when: 'For grouping decisions and support' },\n        { role: 'Vice Principal', number: 'Ext. 102', when: 'For assistance with large groups' },\n        {\n          role: 'Office',\n          number: 'Ext. 101',\n          when: 'For student location and parent communication',\n        },\n      ],\n      modifications: {\n        schedule: [\n          'Simplified schedule with longer activity blocks',\n          'Combined classes for some activities',\n          'Extra supervision during transitions',\n          'Modified lunch and break schedules',\n        ],\n        activities: [\n          'Simple, independent activities',\n          'Large group games and activities',\n          'Extended movie/video time if needed',\n          'Cross-grade buddy reading',\n        ],\n        safety: [\n          'Maintain higher supervision ratios',\n          'Use buddy system for bathroom breaks',\n          'Keep accurate headcounts',\n          'Have emergency evacuation plan for larger groups',\n        ],\n      },\n      template: `STAFF SHORTAGE SUBSTITUTE PLAN\nDate: {{DATE}}\nClasses Combined: _______________\n\n\u26A0\uFE0F MULTIPLE STAFF ABSENT - LARGE GROUP MANAGEMENT\n\nSTUDENT COUNT: ________\nADDITIONAL CLASSES: _______________\n\nSIMPLIFIED SCHEDULE:\n- Focus on basic routines\n- Longer activity periods\n- Extra supervision for transitions\n\nLARGE GROUP ACTIVITIES:\n- Movies/educational videos\n- Group reading time\n- Simple art projects\n- Indoor games\n\nSAFETY REMINDERS:\n- Higher supervision needed\n- Buddy system for movements\n- Frequent headcounts\n- Office support available\n\nStay flexible and prioritize safety!`,\n    },\n  ];\n}\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "7e7608d057d5c7db800fd02bab74004819e57b39"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_1mc9mk7z8f = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_1mc9mk7z8f();
+/**
+ * Extract appropriate emergency scenario templates based on conditions
+ */
+export async function extractScenarioTemplates(conditions) {
+  /* istanbul ignore next */
+  cov_1mc9mk7z8f().f[0]++;
+  const allScenarios =
+  /* istanbul ignore next */
+  (cov_1mc9mk7z8f().s[0]++, getAllScenarios());
+  const triggers =
+  /* istanbul ignore next */
+  (cov_1mc9mk7z8f().s[1]++, []);
+  let recommendedScenario;
+  // Analyze conditions and determine triggers
+  /* istanbul ignore next */
+  cov_1mc9mk7z8f().s[2]++;
+  if (conditions) {
+    /* istanbul ignore next */
+    cov_1mc9mk7z8f().b[0][0]++;
+    cov_1mc9mk7z8f().s[3]++;
+    if (
+    /* istanbul ignore next */
+    (cov_1mc9mk7z8f().b[2][0]++, conditions.weather === 'severe') ||
+    /* istanbul ignore next */
+    (cov_1mc9mk7z8f().b[2][1]++, conditions.weather === 'extreme')) {
+      /* istanbul ignore next */
+      cov_1mc9mk7z8f().b[1][0]++;
+      cov_1mc9mk7z8f().s[4]++;
+      triggers.push('severe_weather');
+      /* istanbul ignore next */
+      cov_1mc9mk7z8f().s[5]++;
+      recommendedScenario = allScenarios.find(s => {
+        /* istanbul ignore next */
+        cov_1mc9mk7z8f().f[1]++;
+        cov_1mc9mk7z8f().s[6]++;
+        return s.id === 'severe_weather';
+      });
+    } else
+    /* istanbul ignore next */
+    {
+      cov_1mc9mk7z8f().b[1][1]++;
+    }
+    cov_1mc9mk7z8f().s[7]++;
+    if (conditions.technology === 'down') {
+      /* istanbul ignore next */
+      cov_1mc9mk7z8f().b[3][0]++;
+      cov_1mc9mk7z8f().s[8]++;
+      triggers.push('technology_failure');
+      /* istanbul ignore next */
+      cov_1mc9mk7z8f().s[9]++;
+      if (!recommendedScenario) {
+        /* istanbul ignore next */
+        cov_1mc9mk7z8f().b[4][0]++;
+        cov_1mc9mk7z8f().s[10]++;
+        recommendedScenario = allScenarios.find(s => {
+          /* istanbul ignore next */
+          cov_1mc9mk7z8f().f[2]++;
+          cov_1mc9mk7z8f().s[11]++;
+          return s.id === 'technology_failure';
+        });
+      } else
+      /* istanbul ignore next */
+      {
+        cov_1mc9mk7z8f().b[4][1]++;
+      }
+    } else
+    /* istanbul ignore next */
+    {
+      cov_1mc9mk7z8f().b[3][1]++;
+    }
+    cov_1mc9mk7z8f().s[12]++;
+    if (conditions.building === 'emergency') {
+      /* istanbul ignore next */
+      cov_1mc9mk7z8f().b[5][0]++;
+      cov_1mc9mk7z8f().s[13]++;
+      triggers.push('lockdown');
+      /* istanbul ignore next */
+      cov_1mc9mk7z8f().s[14]++;
+      recommendedScenario = allScenarios.find(s => {
+        /* istanbul ignore next */
+        cov_1mc9mk7z8f().f[3]++;
+        cov_1mc9mk7z8f().s[15]++;
+        return s.id === 'lockdown';
+      }); // Override others
+    } else
+    /* istanbul ignore next */
+    {
+      cov_1mc9mk7z8f().b[5][1]++;
+    }
+    cov_1mc9mk7z8f().s[16]++;
+    if (
+    /* istanbul ignore next */
+    (cov_1mc9mk7z8f().b[7][0]++, conditions.staffing === 'emergency') ||
+    /* istanbul ignore next */
+    (cov_1mc9mk7z8f().b[7][1]++, conditions.staffing === 'short')) {
+      /* istanbul ignore next */
+      cov_1mc9mk7z8f().b[6][0]++;
+      cov_1mc9mk7z8f().s[17]++;
+      triggers.push('staff_shortage');
+      /* istanbul ignore next */
+      cov_1mc9mk7z8f().s[18]++;
+      if (!recommendedScenario) {
+        /* istanbul ignore next */
+        cov_1mc9mk7z8f().b[8][0]++;
+        cov_1mc9mk7z8f().s[19]++;
+        recommendedScenario = allScenarios.find(s => {
+          /* istanbul ignore next */
+          cov_1mc9mk7z8f().f[4]++;
+          cov_1mc9mk7z8f().s[20]++;
+          return s.id === 'staff_shortage';
+        });
+      } else
+      /* istanbul ignore next */
+      {
+        cov_1mc9mk7z8f().b[8][1]++;
+      }
+    } else
+    /* istanbul ignore next */
+    {
+      cov_1mc9mk7z8f().b[6][1]++;
+    }
+  } else
+  /* istanbul ignore next */
+  {
+    cov_1mc9mk7z8f().b[0][1]++;
+  }
+  // If no specific conditions, provide general scenario
+  cov_1mc9mk7z8f().s[21]++;
+  if (!recommendedScenario) {
+    /* istanbul ignore next */
+    cov_1mc9mk7z8f().b[9][0]++;
+    cov_1mc9mk7z8f().s[22]++;
+    recommendedScenario = allScenarios.find(s => {
+      /* istanbul ignore next */
+      cov_1mc9mk7z8f().f[5]++;
+      cov_1mc9mk7z8f().s[23]++;
+      return s.id === 'general_emergency';
+    });
+  } else
+  /* istanbul ignore next */
+  {
+    cov_1mc9mk7z8f().b[9][1]++;
+  }
+  cov_1mc9mk7z8f().s[24]++;
+  return {
+    scenarios: allScenarios,
+    triggers,
+    recommendedScenario
+  };
+}
+/**
+ * Get specific scenario by ID
+ */
+export function getScenarioById(scenarioId) {
+  /* istanbul ignore next */
+  cov_1mc9mk7z8f().f[6]++;
+  cov_1mc9mk7z8f().s[25]++;
+  return getAllScenarios().find(s => {
+    /* istanbul ignore next */
+    cov_1mc9mk7z8f().f[7]++;
+    cov_1mc9mk7z8f().s[26]++;
+    return s.id === scenarioId;
+  });
+}
+/**
+ * Generate scenario-specific substitute plan content
+ */
+export function generateScenarioContent(scenario, teacherName, className) {
+  /* istanbul ignore next */
+  cov_1mc9mk7z8f().f[8]++;
+  const template =
+  /* istanbul ignore next */
+  (cov_1mc9mk7z8f().s[27]++, scenario.template.replace('{{TEACHER_NAME}}',
+  /* istanbul ignore next */
+  (cov_1mc9mk7z8f().b[10][0]++, teacherName) ||
+  /* istanbul ignore next */
+  (cov_1mc9mk7z8f().b[10][1]++, '[Teacher Name]')).replace('{{CLASS_NAME}}',
+  /* istanbul ignore next */
+  (cov_1mc9mk7z8f().b[11][0]++, className) ||
+  /* istanbul ignore next */
+  (cov_1mc9mk7z8f().b[11][1]++, '[Class Name]')).replace('{{DATE}}', new Date().toLocaleDateString()).replace('{{TIME}}', new Date().toLocaleTimeString()));
+  /* istanbul ignore next */
+  cov_1mc9mk7z8f().s[28]++;
+  return template;
+}
+/**
+ * Check current conditions and auto-select scenario
+ */
+export async function autoDetectScenario(_userId =
+/* istanbul ignore next */
+(cov_1mc9mk7z8f().b[12][0]++, 1)) {
+  /* istanbul ignore next */
+  cov_1mc9mk7z8f().f[9]++;
+  // In a real implementation, this might check:
+  // - Weather APIs
+  // - System status
+  // - School announcements
+  // - Staff availability
+  // For now, we'll use a simple heuristic based on time and recent patterns
+  const currentHour =
+  /* istanbul ignore next */
+  (cov_1mc9mk7z8f().s[29]++, new Date().getHours());
+  const isWeekend =
+  /* istanbul ignore next */
+  (cov_1mc9mk7z8f().s[30]++, [0, 6].includes(new Date().getDay()));
+  // Check if there are any system issues (mock detection)
+  // DISABLED: Legacy dailyPlan model removed in ETFO migration
+  const recentPlans =
+  /* istanbul ignore next */
+  (cov_1mc9mk7z8f().s[31]++, []); // Legacy dailyPlan query disabled
+  // Simple heuristics for scenario detection
+  /* istanbul ignore next */
+  cov_1mc9mk7z8f().s[32]++;
+  if (
+  /* istanbul ignore next */
+  (cov_1mc9mk7z8f().b[14][0]++, currentHour < 6) ||
+  /* istanbul ignore next */
+  (cov_1mc9mk7z8f().b[14][1]++, currentHour > 20) ||
+  /* istanbul ignore next */
+  (cov_1mc9mk7z8f().b[14][2]++, isWeekend)) {
+    /* istanbul ignore next */
+    cov_1mc9mk7z8f().b[13][0]++;
+    cov_1mc9mk7z8f().s[33]++;
+    // Off-hours emergency
+    return getScenarioById('general_emergency');
+  } else
+  /* istanbul ignore next */
+  {
+    cov_1mc9mk7z8f().b[13][1]++;
+  }
+  cov_1mc9mk7z8f().s[34]++;
+  if (recentPlans.length === 0) {
+    /* istanbul ignore next */
+    cov_1mc9mk7z8f().b[15][0]++;
+    cov_1mc9mk7z8f().s[35]++;
+    // No recent planning data - might be start of year or system issues
+    return getScenarioById('staff_shortage');
+  } else
+  /* istanbul ignore next */
+  {
+    cov_1mc9mk7z8f().b[15][1]++;
+  }
+  // Default to general scenario
+  cov_1mc9mk7z8f().s[36]++;
+  return getScenarioById('general_emergency');
+}
+/**
+ * Get all available emergency scenarios
+ */
+function getAllScenarios() {
+  /* istanbul ignore next */
+  cov_1mc9mk7z8f().f[10]++;
+  cov_1mc9mk7z8f().s[37]++;
+  return [{
+    id: 'general_emergency',
+    name: 'General Emergency Plan',
+    description: 'Standard emergency substitute plan for unexpected absences',
+    procedures: ['Contact office immediately upon arrival', 'Review daily schedule posted on desk', 'Follow regular classroom routines as much as possible', 'Take attendance at the beginning of each class period', 'Maintain normal break and lunch schedules', 'Report any issues to the office immediately'],
+    materials: ['Emergency sub folder (in top desk drawer)', 'Class lists with emergency contacts', 'Daily schedule and room routines', 'Generic activity worksheets', 'Books for silent reading time'],
+    contacts: [{
+      role: 'Emergency Services',
+      number: '911',
+      when: 'For life-threatening emergencies only'
+    }, {
+      role: 'Principal',
+      number: 'Ext. 100',
+      when: 'For any emergencies or major issues'
+    }, {
+      role: 'Office',
+      number: 'Ext. 101',
+      when: 'For attendance, late students, or general questions'
+    }, {
+      role: 'Vice Principal',
+      number: 'Ext. 102',
+      when: 'For discipline issues'
+    }, {
+      role: 'School Nurse',
+      number: 'Ext. 105',
+      when: 'For health emergencies or student illness'
+    }],
+    modifications: {
+      schedule: ['Follow posted schedule as closely as possible', 'Allow extra time for transitions between activities', 'Be flexible with timing if students need more help'],
+      activities: ['Use pre-planned backup activities if technology fails', 'Focus on review and reinforcement rather than new concepts', 'Allow for more independent work time'],
+      safety: ['Keep classroom door locked during class', 'Know location of emergency exits', 'Familiarize yourself with evacuation procedures']
+    },
+    template: `EMERGENCY SUBSTITUTE PLAN - {{CLASS_NAME}}
+Date: {{DATE}}
+Teacher: {{TEACHER_NAME}}
+Substitute: _______________
+
+IMPORTANT: Please read this entire plan before students arrive.
+
+DAILY SCHEDULE:
+[Specific schedule will be inserted here]
+
+EMERGENCY CONTACTS:
+- Principal: Ext. 100
+- Office: Ext. 101
+- Vice Principal: Ext. 102
+
+CLASSROOM PROCEDURES:
+1. Students enter quietly and begin morning routine
+2. Take attendance using class list in red folder
+3. Follow posted schedule as closely as possible
+4. For any issues, call the office immediately
+
+BACKUP ACTIVITIES:
+If planned activities cannot be completed:
+- Silent reading from classroom library
+- Math review worksheets (in green folder)
+- Journal writing prompts (posted on wall)
+
+Thank you for covering this class. Please leave detailed notes about the day.`
+  }, {
+    id: 'technology_failure',
+    name: 'Technology Failure Plan',
+    description: 'Plan for when computers, internet, or smart boards are not working',
+    procedures: ['Do not attempt to fix technical equipment', 'Report technology issues to IT support immediately', 'Switch to paper-based alternatives for all activities', 'Use analog teaching tools (whiteboard, printed materials)', 'Inform students of technology issues and adjust expectations', "Focus on activities that don't require technology"],
+    materials: ['Printed worksheets and activities (in blue folder)', 'Whiteboard markers and erasers', 'Physical manipulatives and teaching aids', 'Books and reading materials', 'Paper and pencils for all students', 'Analog timer or watch'],
+    contacts: [{
+      role: 'Emergency Services',
+      number: '911',
+      when: 'For life-threatening emergencies only'
+    }, {
+      role: 'IT Support',
+      number: 'Ext. 150',
+      when: 'To report technology issues'
+    }, {
+      role: 'Office',
+      number: 'Ext. 101',
+      when: 'To inform of technology problems'
+    }, {
+      role: 'Principal',
+      number: 'Ext. 100',
+      when: 'If technology failure affects safety or major activities'
+    }],
+    modifications: {
+      schedule: ['Allow extra time for distributing materials', 'Simplify transitions that normally use technology', 'Extend activities that work well without technology'],
+      activities: ['Replace digital activities with hands-on alternatives', 'Use printed versions of all worksheets', 'Focus on discussion-based learning', 'Increase physical movement and group work'],
+      safety: ['Ensure emergency communication methods still work', 'Have backup plans for dismissal procedures', 'Keep manual attendance records']
+    },
+    template: `TECHNOLOGY FAILURE SUBSTITUTE PLAN - {{CLASS_NAME}}
+Date: {{DATE}}
+Teacher: {{TEACHER_NAME}}
+
+⚠️ TECHNOLOGY ALERT: Systems may not be working normally
+
+IMPORTANT NOTES:
+- Do NOT attempt to fix any technology
+- Use only paper-based materials and activities
+- Report any tech issues to IT Support (Ext. 150)
+
+NO-TECH DAILY SCHEDULE:
+[Modified schedule with analog alternatives]
+
+BACKUP ACTIVITIES (No Technology Required):
+- Reading from physical books
+- Hand-written assignments
+- Group discussions and presentations
+- Physical math manipulatives
+- Art projects with paper/pencils
+
+MATERIALS LOCATION:
+- Blue folder: Printed worksheets
+- Supply cabinet: Paper, pencils, manipulatives
+- Bookshelf: Reading materials
+
+Remember: Focus on engagement over technology!`
+  }, {
+    id: 'severe_weather',
+    name: 'Severe Weather Plan',
+    description: 'Plan for severe weather conditions affecting normal operations',
+    procedures: ['Monitor weather announcements throughout the day', 'Keep students calm and informed appropriately for their age', 'Be prepared for modified dismissal procedures', 'Keep students away from windows during severe weather', "Follow school's severe weather protocols", 'Have indoor activities ready if outdoor time is cancelled'],
+    materials: ['Weather-appropriate indoor activities', 'Comfort items (books, quiet games)', 'Extra snacks in case of delayed dismissal', 'Battery-powered radio for updates', 'Flashlights (in emergency kit)', 'First aid kit (check location)'],
+    contacts: [{
+      role: 'Emergency Services',
+      number: '911',
+      when: 'For life-threatening emergencies only'
+    }, {
+      role: 'Office',
+      number: 'Ext. 101',
+      when: 'For weather updates and dismissal changes'
+    }, {
+      role: 'Principal',
+      number: 'Ext. 100',
+      when: 'For emergency decisions'
+    }, {
+      role: 'District Office',
+      number: '555-0123',
+      when: 'For district-wide weather decisions'
+    }, {
+      role: 'Transportation',
+      number: '555-0124',
+      when: 'For bus schedule changes'
+    }],
+    modifications: {
+      schedule: ['Cancel any outdoor activities or field trips', 'Be prepared for early dismissal or extended day', 'Keep flexible schedule based on weather updates', 'Plan for possible indoor recess/PE'],
+      activities: ['Focus on calming, indoor activities', 'Have extra movies or quiet games ready', 'Prepare extended activities in case of long day', 'Include weather education if appropriate'],
+      safety: ['Know location of severe weather shelter area', 'Keep emergency supplies accessible', 'Monitor school communications constantly', 'Stay calm to keep students calm']
+    },
+    template: `SEVERE WEATHER SUBSTITUTE PLAN - {{CLASS_NAME}}
+Date: {{DATE}}
+Teacher: {{TEACHER_NAME}}
+
+🌪️ WEATHER ALERT: Severe weather conditions expected
+
+SAFETY FIRST:
+- Keep students away from windows
+- Monitor school announcements
+- Be prepared for modified dismissal
+- Weather shelter area: [Location]
+
+INDOOR SCHEDULE:
+[Modified schedule with indoor alternatives]
+
+WEATHER-SAFE ACTIVITIES:
+- Indoor games and movement
+- Weather science discussions
+- Quiet reading time
+- Art projects
+- Movies if extended day needed
+
+IMPORTANT: Stay calm, keep students informed age-appropriately.
+Check office every hour for updates.`
+  }, {
+    id: 'lockdown',
+    name: 'Lockdown/Security Plan',
+    description: 'Plan for security situations requiring lockdown procedures',
+    procedures: ['Follow school lockdown procedures immediately', 'Lock classroom door and turn off lights', 'Keep students quiet and away from windows/doors', 'Do not open door for anyone except identified school officials', 'Take attendance silently', 'Wait for all-clear from administration'],
+    materials: ['Emergency contact list', 'First aid kit', 'Water bottles (if available)', 'Quiet activities (books, paper)', 'Charged phone/communication device', 'Emergency procedures card'],
+    contacts: [{
+      role: '911',
+      number: '911',
+      when: 'Only if immediate danger and no school contact available'
+    }, {
+      role: 'Principal',
+      number: 'Ext. 100',
+      when: 'Follow their lead - do not call unless emergency'
+    }, {
+      role: 'Office',
+      number: 'Ext. 101',
+      when: 'Only if specifically instructed'
+    }],
+    modifications: {
+      schedule: ['All normal schedules are suspended', 'Remain in secure location until all-clear', 'No movement between rooms', 'Cancel all outside activities'],
+      activities: ['Silent activities only', 'No technology that makes noise', 'Comfort and calm students quietly', 'Reading or quiet drawing'],
+      safety: ['Door locked, lights off', 'Students away from windows/doors', 'Maintain silence', 'Follow official instructions only']
+    },
+    template: `🔒 LOCKDOWN PROCEDURES - {{CLASS_NAME}}
+Date: {{DATE}}
+
+THIS IS A LOCKDOWN SITUATION
+
+IMMEDIATE ACTIONS:
+1. Lock door, turn off lights
+2. Move students away from windows/doors
+3. Keep everyone quiet
+4. Take silent attendance
+5. Wait for official all-clear
+
+DO NOT:
+- Open door for anyone
+- Use phones unless emergency
+- Make noise
+- Leave secure area
+
+KEEP STUDENTS CALM:
+- Speak in whispers only
+- Provide comfort quietly
+- Use silent activities
+
+Wait for administration's all-clear before resuming normal activities.`
+  }, {
+    id: 'staff_shortage',
+    name: 'Staff Shortage Plan',
+    description: 'Plan for when multiple staff are absent or unavailable',
+    procedures: ['Check with office for class combinations or room changes', 'Be prepared to supervise larger groups', 'Focus on simple, manageable activities', 'Use peer helpers and responsible students', 'Communicate frequently with remaining staff', 'Prioritize safety and basic routines'],
+    materials: ['Large group activity supplies', 'Extra seating arrangements', 'Simple worksheets for various grade levels', 'Movies or educational videos', 'Books for independent reading', 'Art supplies for quiet activities'],
+    contacts: [{
+      role: 'Emergency Services',
+      number: '911',
+      when: 'For life-threatening emergencies only'
+    }, {
+      role: 'Principal',
+      number: 'Ext. 100',
+      when: 'For grouping decisions and support'
+    }, {
+      role: 'Vice Principal',
+      number: 'Ext. 102',
+      when: 'For assistance with large groups'
+    }, {
+      role: 'Office',
+      number: 'Ext. 101',
+      when: 'For student location and parent communication'
+    }],
+    modifications: {
+      schedule: ['Simplified schedule with longer activity blocks', 'Combined classes for some activities', 'Extra supervision during transitions', 'Modified lunch and break schedules'],
+      activities: ['Simple, independent activities', 'Large group games and activities', 'Extended movie/video time if needed', 'Cross-grade buddy reading'],
+      safety: ['Maintain higher supervision ratios', 'Use buddy system for bathroom breaks', 'Keep accurate headcounts', 'Have emergency evacuation plan for larger groups']
+    },
+    template: `STAFF SHORTAGE SUBSTITUTE PLAN
+Date: {{DATE}}
+Classes Combined: _______________
+
+⚠️ MULTIPLE STAFF ABSENT - LARGE GROUP MANAGEMENT
+
+STUDENT COUNT: ________
+ADDITIONAL CLASSES: _______________
+
+SIMPLIFIED SCHEDULE:
+- Focus on basic routines
+- Longer activity periods
+- Extra supervision for transitions
+
+LARGE GROUP ACTIVITIES:
+- Movies/educational videos
+- Group reading time
+- Simple art projects
+- Indoor games
+
+SAFETY REMINDERS:
+- Higher supervision needed
+- Buddy system for movements
+- Frequent headcounts
+- Office support available
+
+Stay flexible and prioritize safety!`
+  }];
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3ZfMW1jOW1rN3o4ZiIsImFjdHVhbENvdmVyYWdlIiwiZXh0cmFjdFNjZW5hcmlvVGVtcGxhdGVzIiwiY29uZGl0aW9ucyIsImYiLCJhbGxTY2VuYXJpb3MiLCJzIiwiZ2V0QWxsU2NlbmFyaW9zIiwidHJpZ2dlcnMiLCJyZWNvbW1lbmRlZFNjZW5hcmlvIiwiYiIsIndlYXRoZXIiLCJwdXNoIiwiZmluZCIsImlkIiwidGVjaG5vbG9neSIsImJ1aWxkaW5nIiwic3RhZmZpbmciLCJzY2VuYXJpb3MiLCJnZXRTY2VuYXJpb0J5SWQiLCJzY2VuYXJpb0lkIiwiZ2VuZXJhdGVTY2VuYXJpb0NvbnRlbnQiLCJzY2VuYXJpbyIsInRlYWNoZXJOYW1lIiwiY2xhc3NOYW1lIiwidGVtcGxhdGUiLCJyZXBsYWNlIiwiRGF0ZSIsInRvTG9jYWxlRGF0ZVN0cmluZyIsInRvTG9jYWxlVGltZVN0cmluZyIsImF1dG9EZXRlY3RTY2VuYXJpbyIsIl91c2VySWQiLCJjdXJyZW50SG91ciIsImdldEhvdXJzIiwiaXNXZWVrZW5kIiwiaW5jbHVkZXMiLCJnZXREYXkiLCJyZWNlbnRQbGFucyIsImxlbmd0aCIsIm5hbWUiLCJkZXNjcmlwdGlvbiIsInByb2NlZHVyZXMiLCJtYXRlcmlhbHMiLCJjb250YWN0cyIsInJvbGUiLCJudW1iZXIiLCJ3aGVuIiwibW9kaWZpY2F0aW9ucyIsInNjaGVkdWxlIiwiYWN0aXZpdGllcyIsInNhZmV0eSJdLCJzb3VyY2VzIjpbIi9Vc2Vycy9taWNoYWVsbWNpc2FhYy9HaXRIdWIvdGVhY2hpbmctZW5naW5lMi4wL3NlcnZlci9zcmMvc2VydmljZXMvc2NlbmFyaW9UZW1wbGF0ZUV4dHJhY3Rvci50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgaW50ZXJmYWNlIEVtZXJnZW5jeVNjZW5hcmlvIHtcbiAgaWQ6IHN0cmluZztcbiAgbmFtZTogc3RyaW5nO1xuICBkZXNjcmlwdGlvbjogc3RyaW5nO1xuICBwcm9jZWR1cmVzOiBzdHJpbmdbXTtcbiAgbWF0ZXJpYWxzOiBzdHJpbmdbXTtcbiAgY29udGFjdHM6IEFycmF5PHtcbiAgICByb2xlOiBzdHJpbmc7XG4gICAgbnVtYmVyOiBzdHJpbmc7XG4gICAgd2hlbjogc3RyaW5nO1xuICB9PjtcbiAgbW9kaWZpY2F0aW9uczoge1xuICAgIHNjaGVkdWxlOiBzdHJpbmdbXTtcbiAgICBhY3Rpdml0aWVzOiBzdHJpbmdbXTtcbiAgICBzYWZldHk6IHN0cmluZ1tdO1xuICB9O1xuICB0ZW1wbGF0ZTogc3RyaW5nO1xufVxuXG5leHBvcnQgaW50ZXJmYWNlIFNjZW5hcmlvRGV0ZWN0aW9uUmVzdWx0IHtcbiAgc2NlbmFyaW9zOiBFbWVyZ2VuY3lTY2VuYXJpb1tdO1xuICB0cmlnZ2Vyczogc3RyaW5nW107XG4gIHJlY29tbWVuZGVkU2NlbmFyaW8/OiBFbWVyZ2VuY3lTY2VuYXJpbztcbn1cblxuLyoqXG4gKiBFeHRyYWN0IGFwcHJvcHJpYXRlIGVtZXJnZW5jeSBzY2VuYXJpbyB0ZW1wbGF0ZXMgYmFzZWQgb24gY29uZGl0aW9uc1xuICovXG5leHBvcnQgYXN5bmMgZnVuY3Rpb24gZXh0cmFjdFNjZW5hcmlvVGVtcGxhdGVzKGNvbmRpdGlvbnM/OiB7XG4gIHdlYXRoZXI/OiAnbm9ybWFsJyB8ICdzZXZlcmUnIHwgJ2V4dHJlbWUnO1xuICB0ZWNobm9sb2d5PzogJ3dvcmtpbmcnIHwgJ3BhcnRpYWwnIHwgJ2Rvd24nO1xuICBzdGFmZmluZz86ICdmdWxsJyB8ICdzaG9ydCcgfCAnZW1lcmdlbmN5JztcbiAgYnVpbGRpbmc/OiAnbm9ybWFsJyB8ICdtYWludGVuYW5jZScgfCAnZW1lcmdlbmN5Jztcbn0pOiBQcm9taXNlPFNjZW5hcmlvRGV0ZWN0aW9uUmVzdWx0PiB7XG4gIGNvbnN0IGFsbFNjZW5hcmlvcyA9IGdldEFsbFNjZW5hcmlvcygpO1xuICBjb25zdCB0cmlnZ2Vyczogc3RyaW5nW10gPSBbXTtcbiAgbGV0IHJlY29tbWVuZGVkU2NlbmFyaW86IEVtZXJnZW5jeVNjZW5hcmlvIHwgdW5kZWZpbmVkO1xuXG4gIC8vIEFuYWx5emUgY29uZGl0aW9ucyBhbmQgZGV0ZXJtaW5lIHRyaWdnZXJzXG4gIGlmIChjb25kaXRpb25zKSB7XG4gICAgaWYgKGNvbmRpdGlvbnMud2VhdGhlciA9PT0gJ3NldmVyZScgfHwgY29uZGl0aW9ucy53ZWF0aGVyID09PSAnZXh0cmVtZScpIHtcbiAgICAgIHRyaWdnZXJzLnB1c2goJ3NldmVyZV93ZWF0aGVyJyk7XG4gICAgICByZWNvbW1lbmRlZFNjZW5hcmlvID0gYWxsU2NlbmFyaW9zLmZpbmQoKHMpID0+IHMuaWQgPT09ICdzZXZlcmVfd2VhdGhlcicpO1xuICAgIH1cblxuICAgIGlmIChjb25kaXRpb25zLnRlY2hub2xvZ3kgPT09ICdkb3duJykge1xuICAgICAgdHJpZ2dlcnMucHVzaCgndGVjaG5vbG9neV9mYWlsdXJlJyk7XG4gICAgICBpZiAoIXJlY29tbWVuZGVkU2NlbmFyaW8pIHtcbiAgICAgICAgcmVjb21tZW5kZWRTY2VuYXJpbyA9IGFsbFNjZW5hcmlvcy5maW5kKChzKSA9PiBzLmlkID09PSAndGVjaG5vbG9neV9mYWlsdXJlJyk7XG4gICAgICB9XG4gICAgfVxuXG4gICAgaWYgKGNvbmRpdGlvbnMuYnVpbGRpbmcgPT09ICdlbWVyZ2VuY3knKSB7XG4gICAgICB0cmlnZ2Vycy5wdXNoKCdsb2NrZG93bicpO1xuICAgICAgcmVjb21tZW5kZWRTY2VuYXJpbyA9IGFsbFNjZW5hcmlvcy5maW5kKChzKSA9PiBzLmlkID09PSAnbG9ja2Rvd24nKTsgLy8gT3ZlcnJpZGUgb3RoZXJzXG4gICAgfVxuXG4gICAgaWYgKGNvbmRpdGlvbnMuc3RhZmZpbmcgPT09ICdlbWVyZ2VuY3knIHx8IGNvbmRpdGlvbnMuc3RhZmZpbmcgPT09ICdzaG9ydCcpIHtcbiAgICAgIHRyaWdnZXJzLnB1c2goJ3N0YWZmX3Nob3J0YWdlJyk7XG4gICAgICBpZiAoIXJlY29tbWVuZGVkU2NlbmFyaW8pIHtcbiAgICAgICAgcmVjb21tZW5kZWRTY2VuYXJpbyA9IGFsbFNjZW5hcmlvcy5maW5kKChzKSA9PiBzLmlkID09PSAnc3RhZmZfc2hvcnRhZ2UnKTtcbiAgICAgIH1cbiAgICB9XG4gIH1cblxuICAvLyBJZiBubyBzcGVjaWZpYyBjb25kaXRpb25zLCBwcm92aWRlIGdlbmVyYWwgc2NlbmFyaW9cbiAgaWYgKCFyZWNvbW1lbmRlZFNjZW5hcmlvKSB7XG4gICAgcmVjb21tZW5kZWRTY2VuYXJpbyA9IGFsbFNjZW5hcmlvcy5maW5kKChzKSA9PiBzLmlkID09PSAnZ2VuZXJhbF9lbWVyZ2VuY3knKTtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgc2NlbmFyaW9zOiBhbGxTY2VuYXJpb3MsXG4gICAgdHJpZ2dlcnMsXG4gICAgcmVjb21tZW5kZWRTY2VuYXJpbyxcbiAgfTtcbn1cblxuLyoqXG4gKiBHZXQgc3BlY2lmaWMgc2NlbmFyaW8gYnkgSURcbiAqL1xuZXhwb3J0IGZ1bmN0aW9uIGdldFNjZW5hcmlvQnlJZChzY2VuYXJpb0lkOiBzdHJpbmcpOiBFbWVyZ2VuY3lTY2VuYXJpbyB8IHVuZGVmaW5lZCB7XG4gIHJldHVybiBnZXRBbGxTY2VuYXJpb3MoKS5maW5kKChzKSA9PiBzLmlkID09PSBzY2VuYXJpb0lkKTtcbn1cblxuLyoqXG4gKiBHZW5lcmF0ZSBzY2VuYXJpby1zcGVjaWZpYyBzdWJzdGl0dXRlIHBsYW4gY29udGVudFxuICovXG5leHBvcnQgZnVuY3Rpb24gZ2VuZXJhdGVTY2VuYXJpb0NvbnRlbnQoXG4gIHNjZW5hcmlvOiBFbWVyZ2VuY3lTY2VuYXJpbyxcbiAgdGVhY2hlck5hbWU/OiBzdHJpbmcsXG4gIGNsYXNzTmFtZT86IHN0cmluZyxcbik6IHN0cmluZyB7XG4gIGNvbnN0IHRlbXBsYXRlID0gc2NlbmFyaW8udGVtcGxhdGVcbiAgICAucmVwbGFjZSgne3tURUFDSEVSX05BTUV9fScsIHRlYWNoZXJOYW1lIHx8ICdbVGVhY2hlciBOYW1lXScpXG4gICAgLnJlcGxhY2UoJ3t7Q0xBU1NfTkFNRX19JywgY2xhc3NOYW1lIHx8ICdbQ2xhc3MgTmFtZV0nKVxuICAgIC5yZXBsYWNlKCd7e0RBVEV9fScsIG5ldyBEYXRlKCkudG9Mb2NhbGVEYXRlU3RyaW5nKCkpXG4gICAgLnJlcGxhY2UoJ3t7VElNRX19JywgbmV3IERhdGUoKS50b0xvY2FsZVRpbWVTdHJpbmcoKSk7XG5cbiAgcmV0dXJuIHRlbXBsYXRlO1xufVxuXG4vKipcbiAqIENoZWNrIGN1cnJlbnQgY29uZGl0aW9ucyBhbmQgYXV0by1zZWxlY3Qgc2NlbmFyaW9cbiAqL1xuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIGF1dG9EZXRlY3RTY2VuYXJpbyhfdXNlcklkOiBudW1iZXIgPSAxKTogUHJvbWlzZTxFbWVyZ2VuY3lTY2VuYXJpbz4ge1xuICAvLyBJbiBhIHJlYWwgaW1wbGVtZW50YXRpb24sIHRoaXMgbWlnaHQgY2hlY2s6XG4gIC8vIC0gV2VhdGhlciBBUElzXG4gIC8vIC0gU3lzdGVtIHN0YXR1c1xuICAvLyAtIFNjaG9vbCBhbm5vdW5jZW1lbnRzXG4gIC8vIC0gU3RhZmYgYXZhaWxhYmlsaXR5XG5cbiAgLy8gRm9yIG5vdywgd2UnbGwgdXNlIGEgc2ltcGxlIGhldXJpc3RpYyBiYXNlZCBvbiB0aW1lIGFuZCByZWNlbnQgcGF0dGVybnNcbiAgY29uc3QgY3VycmVudEhvdXIgPSBuZXcgRGF0ZSgpLmdldEhvdXJzKCk7XG4gIGNvbnN0IGlzV2Vla2VuZCA9IFswLCA2XS5pbmNsdWRlcyhuZXcgRGF0ZSgpLmdldERheSgpKTtcblxuICAvLyBDaGVjayBpZiB0aGVyZSBhcmUgYW55IHN5c3RlbSBpc3N1ZXMgKG1vY2sgZGV0ZWN0aW9uKVxuICAvLyBESVNBQkxFRDogTGVnYWN5IGRhaWx5UGxhbiBtb2RlbCByZW1vdmVkIGluIEVURk8gbWlncmF0aW9uXG4gIGNvbnN0IHJlY2VudFBsYW5zOiBBcnJheTx1bmtub3duPiA9IFtdOyAvLyBMZWdhY3kgZGFpbHlQbGFuIHF1ZXJ5IGRpc2FibGVkXG5cbiAgLy8gU2ltcGxlIGhldXJpc3RpY3MgZm9yIHNjZW5hcmlvIGRldGVjdGlvblxuICBpZiAoY3VycmVudEhvdXIgPCA2IHx8IGN1cnJlbnRIb3VyID4gMjAgfHwgaXNXZWVrZW5kKSB7XG4gICAgLy8gT2ZmLWhvdXJzIGVtZXJnZW5jeVxuICAgIHJldHVybiBnZXRTY2VuYXJpb0J5SWQoJ2dlbmVyYWxfZW1lcmdlbmN5JykhO1xuICB9XG5cbiAgaWYgKHJlY2VudFBsYW5zLmxlbmd0aCA9PT0gMCkge1xuICAgIC8vIE5vIHJlY2VudCBwbGFubmluZyBkYXRhIC0gbWlnaHQgYmUgc3RhcnQgb2YgeWVhciBvciBzeXN0ZW0gaXNzdWVzXG4gICAgcmV0dXJuIGdldFNjZW5hcmlvQnlJZCgnc3RhZmZfc2hvcnRhZ2UnKSE7XG4gIH1cblxuICAvLyBEZWZhdWx0IHRvIGdlbmVyYWwgc2NlbmFyaW9cbiAgcmV0dXJuIGdldFNjZW5hcmlvQnlJZCgnZ2VuZXJhbF9lbWVyZ2VuY3knKSE7XG59XG5cbi8qKlxuICogR2V0IGFsbCBhdmFpbGFibGUgZW1lcmdlbmN5IHNjZW5hcmlvc1xuICovXG5mdW5jdGlvbiBnZXRBbGxTY2VuYXJpb3MoKTogRW1lcmdlbmN5U2NlbmFyaW9bXSB7XG4gIHJldHVybiBbXG4gICAge1xuICAgICAgaWQ6ICdnZW5lcmFsX2VtZXJnZW5jeScsXG4gICAgICBuYW1lOiAnR2VuZXJhbCBFbWVyZ2VuY3kgUGxhbicsXG4gICAgICBkZXNjcmlwdGlvbjogJ1N0YW5kYXJkIGVtZXJnZW5jeSBzdWJzdGl0dXRlIHBsYW4gZm9yIHVuZXhwZWN0ZWQgYWJzZW5jZXMnLFxuICAgICAgcHJvY2VkdXJlczogW1xuICAgICAgICAnQ29udGFjdCBvZmZpY2UgaW1tZWRpYXRlbHkgdXBvbiBhcnJpdmFsJyxcbiAgICAgICAgJ1JldmlldyBkYWlseSBzY2hlZHVsZSBwb3N0ZWQgb24gZGVzaycsXG4gICAgICAgICdGb2xsb3cgcmVndWxhciBjbGFzc3Jvb20gcm91dGluZXMgYXMgbXVjaCBhcyBwb3NzaWJsZScsXG4gICAgICAgICdUYWtlIGF0dGVuZGFuY2UgYXQgdGhlIGJlZ2lubmluZyBvZiBlYWNoIGNsYXNzIHBlcmlvZCcsXG4gICAgICAgICdNYWludGFpbiBub3JtYWwgYnJlYWsgYW5kIGx1bmNoIHNjaGVkdWxlcycsXG4gICAgICAgICdSZXBvcnQgYW55IGlzc3VlcyB0byB0aGUgb2ZmaWNlIGltbWVkaWF0ZWx5JyxcbiAgICAgIF0sXG4gICAgICBtYXRlcmlhbHM6IFtcbiAgICAgICAgJ0VtZXJnZW5jeSBzdWIgZm9sZGVyIChpbiB0b3AgZGVzayBkcmF3ZXIpJyxcbiAgICAgICAgJ0NsYXNzIGxpc3RzIHdpdGggZW1lcmdlbmN5IGNvbnRhY3RzJyxcbiAgICAgICAgJ0RhaWx5IHNjaGVkdWxlIGFuZCByb29tIHJvdXRpbmVzJyxcbiAgICAgICAgJ0dlbmVyaWMgYWN0aXZpdHkgd29ya3NoZWV0cycsXG4gICAgICAgICdCb29rcyBmb3Igc2lsZW50IHJlYWRpbmcgdGltZScsXG4gICAgICBdLFxuICAgICAgY29udGFjdHM6IFtcbiAgICAgICAgeyByb2xlOiAnRW1lcmdlbmN5IFNlcnZpY2VzJywgbnVtYmVyOiAnOTExJywgd2hlbjogJ0ZvciBsaWZlLXRocmVhdGVuaW5nIGVtZXJnZW5jaWVzIG9ubHknIH0sXG4gICAgICAgIHsgcm9sZTogJ1ByaW5jaXBhbCcsIG51bWJlcjogJ0V4dC4gMTAwJywgd2hlbjogJ0ZvciBhbnkgZW1lcmdlbmNpZXMgb3IgbWFqb3IgaXNzdWVzJyB9LFxuICAgICAgICB7XG4gICAgICAgICAgcm9sZTogJ09mZmljZScsXG4gICAgICAgICAgbnVtYmVyOiAnRXh0LiAxMDEnLFxuICAgICAgICAgIHdoZW46ICdGb3IgYXR0ZW5kYW5jZSwgbGF0ZSBzdHVkZW50cywgb3IgZ2VuZXJhbCBxdWVzdGlvbnMnLFxuICAgICAgICB9LFxuICAgICAgICB7IHJvbGU6ICdWaWNlIFByaW5jaXBhbCcsIG51bWJlcjogJ0V4dC4gMTAyJywgd2hlbjogJ0ZvciBkaXNjaXBsaW5lIGlzc3VlcycgfSxcbiAgICAgICAge1xuICAgICAgICAgIHJvbGU6ICdTY2hvb2wgTnVyc2UnLFxuICAgICAgICAgIG51bWJlcjogJ0V4dC4gMTA1JyxcbiAgICAgICAgICB3aGVuOiAnRm9yIGhlYWx0aCBlbWVyZ2VuY2llcyBvciBzdHVkZW50IGlsbG5lc3MnLFxuICAgICAgICB9LFxuICAgICAgXSxcbiAgICAgIG1vZGlmaWNhdGlvbnM6IHtcbiAgICAgICAgc2NoZWR1bGU6IFtcbiAgICAgICAgICAnRm9sbG93IHBvc3RlZCBzY2hlZHVsZSBhcyBjbG9zZWx5IGFzIHBvc3NpYmxlJyxcbiAgICAgICAgICAnQWxsb3cgZXh0cmEgdGltZSBmb3IgdHJhbnNpdGlvbnMgYmV0d2VlbiBhY3Rpdml0aWVzJyxcbiAgICAgICAgICAnQmUgZmxleGlibGUgd2l0aCB0aW1pbmcgaWYgc3R1ZGVudHMgbmVlZCBtb3JlIGhlbHAnLFxuICAgICAgICBdLFxuICAgICAgICBhY3Rpdml0aWVzOiBbXG4gICAgICAgICAgJ1VzZSBwcmUtcGxhbm5lZCBiYWNrdXAgYWN0aXZpdGllcyBpZiB0ZWNobm9sb2d5IGZhaWxzJyxcbiAgICAgICAgICAnRm9jdXMgb24gcmV2aWV3IGFuZCByZWluZm9yY2VtZW50IHJhdGhlciB0aGFuIG5ldyBjb25jZXB0cycsXG4gICAgICAgICAgJ0FsbG93IGZvciBtb3JlIGluZGVwZW5kZW50IHdvcmsgdGltZScsXG4gICAgICAgIF0sXG4gICAgICAgIHNhZmV0eTogW1xuICAgICAgICAgICdLZWVwIGNsYXNzcm9vbSBkb29yIGxvY2tlZCBkdXJpbmcgY2xhc3MnLFxuICAgICAgICAgICdLbm93IGxvY2F0aW9uIG9mIGVtZXJnZW5jeSBleGl0cycsXG4gICAgICAgICAgJ0ZhbWlsaWFyaXplIHlvdXJzZWxmIHdpdGggZXZhY3VhdGlvbiBwcm9jZWR1cmVzJyxcbiAgICAgICAgXSxcbiAgICAgIH0sXG4gICAgICB0ZW1wbGF0ZTogYEVNRVJHRU5DWSBTVUJTVElUVVRFIFBMQU4gLSB7e0NMQVNTX05BTUV9fVxuRGF0ZToge3tEQVRFfX1cblRlYWNoZXI6IHt7VEVBQ0hFUl9OQU1FfX1cblN1YnN0aXR1dGU6IF9fX19fX19fX19fX19fX1xuXG5JTVBPUlRBTlQ6IFBsZWFzZSByZWFkIHRoaXMgZW50aXJlIHBsYW4gYmVmb3JlIHN0dWRlbnRzIGFycml2ZS5cblxuREFJTFkgU0NIRURVTEU6XG5bU3BlY2lmaWMgc2NoZWR1bGUgd2lsbCBiZSBpbnNlcnRlZCBoZXJlXVxuXG5FTUVSR0VOQ1kgQ09OVEFDVFM6XG4tIFByaW5jaXBhbDogRXh0LiAxMDBcbi0gT2ZmaWNlOiBFeHQuIDEwMVxuLSBWaWNlIFByaW5jaXBhbDogRXh0LiAxMDJcblxuQ0xBU1NST09NIFBST0NFRFVSRVM6XG4xLiBTdHVkZW50cyBlbnRlciBxdWlldGx5IGFuZCBiZWdpbiBtb3JuaW5nIHJvdXRpbmVcbjIuIFRha2UgYXR0ZW5kYW5jZSB1c2luZyBjbGFzcyBsaXN0IGluIHJlZCBmb2xkZXJcbjMuIEZvbGxvdyBwb3N0ZWQgc2NoZWR1bGUgYXMgY2xvc2VseSBhcyBwb3NzaWJsZVxuNC4gRm9yIGFueSBpc3N1ZXMsIGNhbGwgdGhlIG9mZmljZSBpbW1lZGlhdGVseVxuXG5CQUNLVVAgQUNUSVZJVElFUzpcbklmIHBsYW5uZWQgYWN0aXZpdGllcyBjYW5ub3QgYmUgY29tcGxldGVkOlxuLSBTaWxlbnQgcmVhZGluZyBmcm9tIGNsYXNzcm9vbSBsaWJyYXJ5XG4tIE1hdGggcmV2aWV3IHdvcmtzaGVldHMgKGluIGdyZWVuIGZvbGRlcilcbi0gSm91cm5hbCB3cml0aW5nIHByb21wdHMgKHBvc3RlZCBvbiB3YWxsKVxuXG5UaGFuayB5b3UgZm9yIGNvdmVyaW5nIHRoaXMgY2xhc3MuIFBsZWFzZSBsZWF2ZSBkZXRhaWxlZCBub3RlcyBhYm91dCB0aGUgZGF5LmAsXG4gICAgfSxcblxuICAgIHtcbiAgICAgIGlkOiAndGVjaG5vbG9neV9mYWlsdXJlJyxcbiAgICAgIG5hbWU6ICdUZWNobm9sb2d5IEZhaWx1cmUgUGxhbicsXG4gICAgICBkZXNjcmlwdGlvbjogJ1BsYW4gZm9yIHdoZW4gY29tcHV0ZXJzLCBpbnRlcm5ldCwgb3Igc21hcnQgYm9hcmRzIGFyZSBub3Qgd29ya2luZycsXG4gICAgICBwcm9jZWR1cmVzOiBbXG4gICAgICAgICdEbyBub3QgYXR0ZW1wdCB0byBmaXggdGVjaG5pY2FsIGVxdWlwbWVudCcsXG4gICAgICAgICdSZXBvcnQgdGVjaG5vbG9neSBpc3N1ZXMgdG8gSVQgc3VwcG9ydCBpbW1lZGlhdGVseScsXG4gICAgICAgICdTd2l0Y2ggdG8gcGFwZXItYmFzZWQgYWx0ZXJuYXRpdmVzIGZvciBhbGwgYWN0aXZpdGllcycsXG4gICAgICAgICdVc2UgYW5hbG9nIHRlYWNoaW5nIHRvb2xzICh3aGl0ZWJvYXJkLCBwcmludGVkIG1hdGVyaWFscyknLFxuICAgICAgICAnSW5mb3JtIHN0dWRlbnRzIG9mIHRlY2hub2xvZ3kgaXNzdWVzIGFuZCBhZGp1c3QgZXhwZWN0YXRpb25zJyxcbiAgICAgICAgXCJGb2N1cyBvbiBhY3Rpdml0aWVzIHRoYXQgZG9uJ3QgcmVxdWlyZSB0ZWNobm9sb2d5XCIsXG4gICAgICBdLFxuICAgICAgbWF0ZXJpYWxzOiBbXG4gICAgICAgICdQcmludGVkIHdvcmtzaGVldHMgYW5kIGFjdGl2aXRpZXMgKGluIGJsdWUgZm9sZGVyKScsXG4gICAgICAgICdXaGl0ZWJvYXJkIG1hcmtlcnMgYW5kIGVyYXNlcnMnLFxuICAgICAgICAnUGh5c2ljYWwgbWFuaXB1bGF0aXZlcyBhbmQgdGVhY2hpbmcgYWlkcycsXG4gICAgICAgICdCb29rcyBhbmQgcmVhZGluZyBtYXRlcmlhbHMnLFxuICAgICAgICAnUGFwZXIgYW5kIHBlbmNpbHMgZm9yIGFsbCBzdHVkZW50cycsXG4gICAgICAgICdBbmFsb2cgdGltZXIgb3Igd2F0Y2gnLFxuICAgICAgXSxcbiAgICAgIGNvbnRhY3RzOiBbXG4gICAgICAgIHsgcm9sZTogJ0VtZXJnZW5jeSBTZXJ2aWNlcycsIG51bWJlcjogJzkxMScsIHdoZW46ICdGb3IgbGlmZS10aHJlYXRlbmluZyBlbWVyZ2VuY2llcyBvbmx5JyB9LFxuICAgICAgICB7IHJvbGU6ICdJVCBTdXBwb3J0JywgbnVtYmVyOiAnRXh0LiAxNTAnLCB3aGVuOiAnVG8gcmVwb3J0IHRlY2hub2xvZ3kgaXNzdWVzJyB9LFxuICAgICAgICB7IHJvbGU6ICdPZmZpY2UnLCBudW1iZXI6ICdFeHQuIDEwMScsIHdoZW46ICdUbyBpbmZvcm0gb2YgdGVjaG5vbG9neSBwcm9ibGVtcycgfSxcbiAgICAgICAge1xuICAgICAgICAgIHJvbGU6ICdQcmluY2lwYWwnLFxuICAgICAgICAgIG51bWJlcjogJ0V4dC4gMTAwJyxcbiAgICAgICAgICB3aGVuOiAnSWYgdGVjaG5vbG9neSBmYWlsdXJlIGFmZmVjdHMgc2FmZXR5IG9yIG1ham9yIGFjdGl2aXRpZXMnLFxuICAgICAgICB9LFxuICAgICAgXSxcbiAgICAgIG1vZGlmaWNhdGlvbnM6IHtcbiAgICAgICAgc2NoZWR1bGU6IFtcbiAgICAgICAgICAnQWxsb3cgZXh0cmEgdGltZSBmb3IgZGlzdHJpYnV0aW5nIG1hdGVyaWFscycsXG4gICAgICAgICAgJ1NpbXBsaWZ5IHRyYW5zaXRpb25zIHRoYXQgbm9ybWFsbHkgdXNlIHRlY2hub2xvZ3knLFxuICAgICAgICAgICdFeHRlbmQgYWN0aXZpdGllcyB0aGF0IHdvcmsgd2VsbCB3aXRob3V0IHRlY2hub2xvZ3knLFxuICAgICAgICBdLFxuICAgICAgICBhY3Rpdml0aWVzOiBbXG4gICAgICAgICAgJ1JlcGxhY2UgZGlnaXRhbCBhY3Rpdml0aWVzIHdpdGggaGFuZHMtb24gYWx0ZXJuYXRpdmVzJyxcbiAgICAgICAgICAnVXNlIHByaW50ZWQgdmVyc2lvbnMgb2YgYWxsIHdvcmtzaGVldHMnLFxuICAgICAgICAgICdGb2N1cyBvbiBkaXNjdXNzaW9uLWJhc2VkIGxlYXJuaW5nJyxcbiAgICAgICAgICAnSW5jcmVhc2UgcGh5c2ljYWwgbW92ZW1lbnQgYW5kIGdyb3VwIHdvcmsnLFxuICAgICAgICBdLFxuICAgICAgICBzYWZldHk6IFtcbiAgICAgICAgICAnRW5zdXJlIGVtZXJnZW5jeSBjb21tdW5pY2F0aW9uIG1ldGhvZHMgc3RpbGwgd29yaycsXG4gICAgICAgICAgJ0hhdmUgYmFja3VwIHBsYW5zIGZvciBkaXNtaXNzYWwgcHJvY2VkdXJlcycsXG4gICAgICAgICAgJ0tlZXAgbWFudWFsIGF0dGVuZGFuY2UgcmVjb3JkcycsXG4gICAgICAgIF0sXG4gICAgICB9LFxuICAgICAgdGVtcGxhdGU6IGBURUNITk9MT0dZIEZBSUxVUkUgU1VCU1RJVFVURSBQTEFOIC0ge3tDTEFTU19OQU1FfX1cbkRhdGU6IHt7REFURX19XG5UZWFjaGVyOiB7e1RFQUNIRVJfTkFNRX19XG5cbuKaoO+4jyBURUNITk9MT0dZIEFMRVJUOiBTeXN0ZW1zIG1heSBub3QgYmUgd29ya2luZyBub3JtYWxseVxuXG5JTVBPUlRBTlQgTk9URVM6XG4tIERvIE5PVCBhdHRlbXB0IHRvIGZpeCBhbnkgdGVjaG5vbG9neVxuLSBVc2Ugb25seSBwYXBlci1iYXNlZCBtYXRlcmlhbHMgYW5kIGFjdGl2aXRpZXNcbi0gUmVwb3J0IGFueSB0ZWNoIGlzc3VlcyB0byBJVCBTdXBwb3J0IChFeHQuIDE1MClcblxuTk8tVEVDSCBEQUlMWSBTQ0hFRFVMRTpcbltNb2RpZmllZCBzY2hlZHVsZSB3aXRoIGFuYWxvZyBhbHRlcm5hdGl2ZXNdXG5cbkJBQ0tVUCBBQ1RJVklUSUVTIChObyBUZWNobm9sb2d5IFJlcXVpcmVkKTpcbi0gUmVhZGluZyBmcm9tIHBoeXNpY2FsIGJvb2tzXG4tIEhhbmQtd3JpdHRlbiBhc3NpZ25tZW50c1xuLSBHcm91cCBkaXNjdXNzaW9ucyBhbmQgcHJlc2VudGF0aW9uc1xuLSBQaHlzaWNhbCBtYXRoIG1hbmlwdWxhdGl2ZXNcbi0gQXJ0IHByb2plY3RzIHdpdGggcGFwZXIvcGVuY2lsc1xuXG5NQVRFUklBTFMgTE9DQVRJT046XG4tIEJsdWUgZm9sZGVyOiBQcmludGVkIHdvcmtzaGVldHNcbi0gU3VwcGx5IGNhYmluZXQ6IFBhcGVyLCBwZW5jaWxzLCBtYW5pcHVsYXRpdmVzXG4tIEJvb2tzaGVsZjogUmVhZGluZyBtYXRlcmlhbHNcblxuUmVtZW1iZXI6IEZvY3VzIG9uIGVuZ2FnZW1lbnQgb3ZlciB0ZWNobm9sb2d5IWAsXG4gICAgfSxcblxuICAgIHtcbiAgICAgIGlkOiAnc2V2ZXJlX3dlYXRoZXInLFxuICAgICAgbmFtZTogJ1NldmVyZSBXZWF0aGVyIFBsYW4nLFxuICAgICAgZGVzY3JpcHRpb246ICdQbGFuIGZvciBzZXZlcmUgd2VhdGhlciBjb25kaXRpb25zIGFmZmVjdGluZyBub3JtYWwgb3BlcmF0aW9ucycsXG4gICAgICBwcm9jZWR1cmVzOiBbXG4gICAgICAgICdNb25pdG9yIHdlYXRoZXIgYW5ub3VuY2VtZW50cyB0aHJvdWdob3V0IHRoZSBkYXknLFxuICAgICAgICAnS2VlcCBzdHVkZW50cyBjYWxtIGFuZCBpbmZvcm1lZCBhcHByb3ByaWF0ZWx5IGZvciB0aGVpciBhZ2UnLFxuICAgICAgICAnQmUgcHJlcGFyZWQgZm9yIG1vZGlmaWVkIGRpc21pc3NhbCBwcm9jZWR1cmVzJyxcbiAgICAgICAgJ0tlZXAgc3R1ZGVudHMgYXdheSBmcm9tIHdpbmRvd3MgZHVyaW5nIHNldmVyZSB3ZWF0aGVyJyxcbiAgICAgICAgXCJGb2xsb3cgc2Nob29sJ3Mgc2V2ZXJlIHdlYXRoZXIgcHJvdG9jb2xzXCIsXG4gICAgICAgICdIYXZlIGluZG9vciBhY3Rpdml0aWVzIHJlYWR5IGlmIG91dGRvb3IgdGltZSBpcyBjYW5jZWxsZWQnLFxuICAgICAgXSxcbiAgICAgIG1hdGVyaWFsczogW1xuICAgICAgICAnV2VhdGhlci1hcHByb3ByaWF0ZSBpbmRvb3IgYWN0aXZpdGllcycsXG4gICAgICAgICdDb21mb3J0IGl0ZW1zIChib29rcywgcXVpZXQgZ2FtZXMpJyxcbiAgICAgICAgJ0V4dHJhIHNuYWNrcyBpbiBjYXNlIG9mIGRlbGF5ZWQgZGlzbWlzc2FsJyxcbiAgICAgICAgJ0JhdHRlcnktcG93ZXJlZCByYWRpbyBmb3IgdXBkYXRlcycsXG4gICAgICAgICdGbGFzaGxpZ2h0cyAoaW4gZW1lcmdlbmN5IGtpdCknLFxuICAgICAgICAnRmlyc3QgYWlkIGtpdCAoY2hlY2sgbG9jYXRpb24pJyxcbiAgICAgIF0sXG4gICAgICBjb250YWN0czogW1xuICAgICAgICB7IHJvbGU6ICdFbWVyZ2VuY3kgU2VydmljZXMnLCBudW1iZXI6ICc5MTEnLCB3aGVuOiAnRm9yIGxpZmUtdGhyZWF0ZW5pbmcgZW1lcmdlbmNpZXMgb25seScgfSxcbiAgICAgICAgeyByb2xlOiAnT2ZmaWNlJywgbnVtYmVyOiAnRXh0LiAxMDEnLCB3aGVuOiAnRm9yIHdlYXRoZXIgdXBkYXRlcyBhbmQgZGlzbWlzc2FsIGNoYW5nZXMnIH0sXG4gICAgICAgIHsgcm9sZTogJ1ByaW5jaXBhbCcsIG51bWJlcjogJ0V4dC4gMTAwJywgd2hlbjogJ0ZvciBlbWVyZ2VuY3kgZGVjaXNpb25zJyB9LFxuICAgICAgICB7XG4gICAgICAgICAgcm9sZTogJ0Rpc3RyaWN0IE9mZmljZScsXG4gICAgICAgICAgbnVtYmVyOiAnNTU1LTAxMjMnLFxuICAgICAgICAgIHdoZW46ICdGb3IgZGlzdHJpY3Qtd2lkZSB3ZWF0aGVyIGRlY2lzaW9ucycsXG4gICAgICAgIH0sXG4gICAgICAgIHsgcm9sZTogJ1RyYW5zcG9ydGF0aW9uJywgbnVtYmVyOiAnNTU1LTAxMjQnLCB3aGVuOiAnRm9yIGJ1cyBzY2hlZHVsZSBjaGFuZ2VzJyB9LFxuICAgICAgXSxcbiAgICAgIG1vZGlmaWNhdGlvbnM6IHtcbiAgICAgICAgc2NoZWR1bGU6IFtcbiAgICAgICAgICAnQ2FuY2VsIGFueSBvdXRkb29yIGFjdGl2aXRpZXMgb3IgZmllbGQgdHJpcHMnLFxuICAgICAgICAgICdCZSBwcmVwYXJlZCBmb3IgZWFybHkgZGlzbWlzc2FsIG9yIGV4dGVuZGVkIGRheScsXG4gICAgICAgICAgJ0tlZXAgZmxleGlibGUgc2NoZWR1bGUgYmFzZWQgb24gd2VhdGhlciB1cGRhdGVzJyxcbiAgICAgICAgICAnUGxhbiBmb3IgcG9zc2libGUgaW5kb29yIHJlY2Vzcy9QRScsXG4gICAgICAgIF0sXG4gICAgICAgIGFjdGl2aXRpZXM6IFtcbiAgICAgICAgICAnRm9jdXMgb24gY2FsbWluZywgaW5kb29yIGFjdGl2aXRpZXMnLFxuICAgICAgICAgICdIYXZlIGV4dHJhIG1vdmllcyBvciBxdWlldCBnYW1lcyByZWFkeScsXG4gICAgICAgICAgJ1ByZXBhcmUgZXh0ZW5kZWQgYWN0aXZpdGllcyBpbiBjYXNlIG9mIGxvbmcgZGF5JyxcbiAgICAgICAgICAnSW5jbHVkZSB3ZWF0aGVyIGVkdWNhdGlvbiBpZiBhcHByb3ByaWF0ZScsXG4gICAgICAgIF0sXG4gICAgICAgIHNhZmV0eTogW1xuICAgICAgICAgICdLbm93IGxvY2F0aW9uIG9mIHNldmVyZSB3ZWF0aGVyIHNoZWx0ZXIgYXJlYScsXG4gICAgICAgICAgJ0tlZXAgZW1lcmdlbmN5IHN1cHBsaWVzIGFjY2Vzc2libGUnLFxuICAgICAgICAgICdNb25pdG9yIHNjaG9vbCBjb21tdW5pY2F0aW9ucyBjb25zdGFudGx5JyxcbiAgICAgICAgICAnU3RheSBjYWxtIHRvIGtlZXAgc3R1ZGVudHMgY2FsbScsXG4gICAgICAgIF0sXG4gICAgICB9LFxuICAgICAgdGVtcGxhdGU6IGBTRVZFUkUgV0VBVEhFUiBTVUJTVElUVVRFIFBMQU4gLSB7e0NMQVNTX05BTUV9fVxuRGF0ZToge3tEQVRFfX1cblRlYWNoZXI6IHt7VEVBQ0hFUl9OQU1FfX1cblxu8J+Mqu+4jyBXRUFUSEVSIEFMRVJUOiBTZXZlcmUgd2VhdGhlciBjb25kaXRpb25zIGV4cGVjdGVkXG5cblNBRkVUWSBGSVJTVDpcbi0gS2VlcCBzdHVkZW50cyBhd2F5IGZyb20gd2luZG93c1xuLSBNb25pdG9yIHNjaG9vbCBhbm5vdW5jZW1lbnRzXG4tIEJlIHByZXBhcmVkIGZvciBtb2RpZmllZCBkaXNtaXNzYWxcbi0gV2VhdGhlciBzaGVsdGVyIGFyZWE6IFtMb2NhdGlvbl1cblxuSU5ET09SIFNDSEVEVUxFOlxuW01vZGlmaWVkIHNjaGVkdWxlIHdpdGggaW5kb29yIGFsdGVybmF0aXZlc11cblxuV0VBVEhFUi1TQUZFIEFDVElWSVRJRVM6XG4tIEluZG9vciBnYW1lcyBhbmQgbW92ZW1lbnRcbi0gV2VhdGhlciBzY2llbmNlIGRpc2N1c3Npb25zXG4tIFF1aWV0IHJlYWRpbmcgdGltZVxuLSBBcnQgcHJvamVjdHNcbi0gTW92aWVzIGlmIGV4dGVuZGVkIGRheSBuZWVkZWRcblxuSU1QT1JUQU5UOiBTdGF5IGNhbG0sIGtlZXAgc3R1ZGVudHMgaW5mb3JtZWQgYWdlLWFwcHJvcHJpYXRlbHkuXG5DaGVjayBvZmZpY2UgZXZlcnkgaG91ciBmb3IgdXBkYXRlcy5gLFxuICAgIH0sXG5cbiAgICB7XG4gICAgICBpZDogJ2xvY2tkb3duJyxcbiAgICAgIG5hbWU6ICdMb2NrZG93bi9TZWN1cml0eSBQbGFuJyxcbiAgICAgIGRlc2NyaXB0aW9uOiAnUGxhbiBmb3Igc2VjdXJpdHkgc2l0dWF0aW9ucyByZXF1aXJpbmcgbG9ja2Rvd24gcHJvY2VkdXJlcycsXG4gICAgICBwcm9jZWR1cmVzOiBbXG4gICAgICAgICdGb2xsb3cgc2Nob29sIGxvY2tkb3duIHByb2NlZHVyZXMgaW1tZWRpYXRlbHknLFxuICAgICAgICAnTG9jayBjbGFzc3Jvb20gZG9vciBhbmQgdHVybiBvZmYgbGlnaHRzJyxcbiAgICAgICAgJ0tlZXAgc3R1ZGVudHMgcXVpZXQgYW5kIGF3YXkgZnJvbSB3aW5kb3dzL2Rvb3JzJyxcbiAgICAgICAgJ0RvIG5vdCBvcGVuIGRvb3IgZm9yIGFueW9uZSBleGNlcHQgaWRlbnRpZmllZCBzY2hvb2wgb2ZmaWNpYWxzJyxcbiAgICAgICAgJ1Rha2UgYXR0ZW5kYW5jZSBzaWxlbnRseScsXG4gICAgICAgICdXYWl0IGZvciBhbGwtY2xlYXIgZnJvbSBhZG1pbmlzdHJhdGlvbicsXG4gICAgICBdLFxuICAgICAgbWF0ZXJpYWxzOiBbXG4gICAgICAgICdFbWVyZ2VuY3kgY29udGFjdCBsaXN0JyxcbiAgICAgICAgJ0ZpcnN0IGFpZCBraXQnLFxuICAgICAgICAnV2F0ZXIgYm90dGxlcyAoaWYgYXZhaWxhYmxlKScsXG4gICAgICAgICdRdWlldCBhY3Rpdml0aWVzIChib29rcywgcGFwZXIpJyxcbiAgICAgICAgJ0NoYXJnZWQgcGhvbmUvY29tbXVuaWNhdGlvbiBkZXZpY2UnLFxuICAgICAgICAnRW1lcmdlbmN5IHByb2NlZHVyZXMgY2FyZCcsXG4gICAgICBdLFxuICAgICAgY29udGFjdHM6IFtcbiAgICAgICAge1xuICAgICAgICAgIHJvbGU6ICc5MTEnLFxuICAgICAgICAgIG51bWJlcjogJzkxMScsXG4gICAgICAgICAgd2hlbjogJ09ubHkgaWYgaW1tZWRpYXRlIGRhbmdlciBhbmQgbm8gc2Nob29sIGNvbnRhY3QgYXZhaWxhYmxlJyxcbiAgICAgICAgfSxcbiAgICAgICAge1xuICAgICAgICAgIHJvbGU6ICdQcmluY2lwYWwnLFxuICAgICAgICAgIG51bWJlcjogJ0V4dC4gMTAwJyxcbiAgICAgICAgICB3aGVuOiAnRm9sbG93IHRoZWlyIGxlYWQgLSBkbyBub3QgY2FsbCB1bmxlc3MgZW1lcmdlbmN5JyxcbiAgICAgICAgfSxcbiAgICAgICAgeyByb2xlOiAnT2ZmaWNlJywgbnVtYmVyOiAnRXh0LiAxMDEnLCB3aGVuOiAnT25seSBpZiBzcGVjaWZpY2FsbHkgaW5zdHJ1Y3RlZCcgfSxcbiAgICAgIF0sXG4gICAgICBtb2RpZmljYXRpb25zOiB7XG4gICAgICAgIHNjaGVkdWxlOiBbXG4gICAgICAgICAgJ0FsbCBub3JtYWwgc2NoZWR1bGVzIGFyZSBzdXNwZW5kZWQnLFxuICAgICAgICAgICdSZW1haW4gaW4gc2VjdXJlIGxvY2F0aW9uIHVudGlsIGFsbC1jbGVhcicsXG4gICAgICAgICAgJ05vIG1vdmVtZW50IGJldHdlZW4gcm9vbXMnLFxuICAgICAgICAgICdDYW5jZWwgYWxsIG91dHNpZGUgYWN0aXZpdGllcycsXG4gICAgICAgIF0sXG4gICAgICAgIGFjdGl2aXRpZXM6IFtcbiAgICAgICAgICAnU2lsZW50IGFjdGl2aXRpZXMgb25seScsXG4gICAgICAgICAgJ05vIHRlY2hub2xvZ3kgdGhhdCBtYWtlcyBub2lzZScsXG4gICAgICAgICAgJ0NvbWZvcnQgYW5kIGNhbG0gc3R1ZGVudHMgcXVpZXRseScsXG4gICAgICAgICAgJ1JlYWRpbmcgb3IgcXVpZXQgZHJhd2luZycsXG4gICAgICAgIF0sXG4gICAgICAgIHNhZmV0eTogW1xuICAgICAgICAgICdEb29yIGxvY2tlZCwgbGlnaHRzIG9mZicsXG4gICAgICAgICAgJ1N0dWRlbnRzIGF3YXkgZnJvbSB3aW5kb3dzL2Rvb3JzJyxcbiAgICAgICAgICAnTWFpbnRhaW4gc2lsZW5jZScsXG4gICAgICAgICAgJ0ZvbGxvdyBvZmZpY2lhbCBpbnN0cnVjdGlvbnMgb25seScsXG4gICAgICAgIF0sXG4gICAgICB9LFxuICAgICAgdGVtcGxhdGU6IGDwn5SSIExPQ0tET1dOIFBST0NFRFVSRVMgLSB7e0NMQVNTX05BTUV9fVxuRGF0ZToge3tEQVRFfX1cblxuVEhJUyBJUyBBIExPQ0tET1dOIFNJVFVBVElPTlxuXG5JTU1FRElBVEUgQUNUSU9OUzpcbjEuIExvY2sgZG9vciwgdHVybiBvZmYgbGlnaHRzXG4yLiBNb3ZlIHN0dWRlbnRzIGF3YXkgZnJvbSB3aW5kb3dzL2Rvb3JzXG4zLiBLZWVwIGV2ZXJ5b25lIHF1aWV0XG40LiBUYWtlIHNpbGVudCBhdHRlbmRhbmNlXG41LiBXYWl0IGZvciBvZmZpY2lhbCBhbGwtY2xlYXJcblxuRE8gTk9UOlxuLSBPcGVuIGRvb3IgZm9yIGFueW9uZVxuLSBVc2UgcGhvbmVzIHVubGVzcyBlbWVyZ2VuY3lcbi0gTWFrZSBub2lzZVxuLSBMZWF2ZSBzZWN1cmUgYXJlYVxuXG5LRUVQIFNUVURFTlRTIENBTE06XG4tIFNwZWFrIGluIHdoaXNwZXJzIG9ubHlcbi0gUHJvdmlkZSBjb21mb3J0IHF1aWV0bHlcbi0gVXNlIHNpbGVudCBhY3Rpdml0aWVzXG5cbldhaXQgZm9yIGFkbWluaXN0cmF0aW9uJ3MgYWxsLWNsZWFyIGJlZm9yZSByZXN1bWluZyBub3JtYWwgYWN0aXZpdGllcy5gLFxuICAgIH0sXG5cbiAgICB7XG4gICAgICBpZDogJ3N0YWZmX3Nob3J0YWdlJyxcbiAgICAgIG5hbWU6ICdTdGFmZiBTaG9ydGFnZSBQbGFuJyxcbiAgICAgIGRlc2NyaXB0aW9uOiAnUGxhbiBmb3Igd2hlbiBtdWx0aXBsZSBzdGFmZiBhcmUgYWJzZW50IG9yIHVuYXZhaWxhYmxlJyxcbiAgICAgIHByb2NlZHVyZXM6IFtcbiAgICAgICAgJ0NoZWNrIHdpdGggb2ZmaWNlIGZvciBjbGFzcyBjb21iaW5hdGlvbnMgb3Igcm9vbSBjaGFuZ2VzJyxcbiAgICAgICAgJ0JlIHByZXBhcmVkIHRvIHN1cGVydmlzZSBsYXJnZXIgZ3JvdXBzJyxcbiAgICAgICAgJ0ZvY3VzIG9uIHNpbXBsZSwgbWFuYWdlYWJsZSBhY3Rpdml0aWVzJyxcbiAgICAgICAgJ1VzZSBwZWVyIGhlbHBlcnMgYW5kIHJlc3BvbnNpYmxlIHN0dWRlbnRzJyxcbiAgICAgICAgJ0NvbW11bmljYXRlIGZyZXF1ZW50bHkgd2l0aCByZW1haW5pbmcgc3RhZmYnLFxuICAgICAgICAnUHJpb3JpdGl6ZSBzYWZldHkgYW5kIGJhc2ljIHJvdXRpbmVzJyxcbiAgICAgIF0sXG4gICAgICBtYXRlcmlhbHM6IFtcbiAgICAgICAgJ0xhcmdlIGdyb3VwIGFjdGl2aXR5IHN1cHBsaWVzJyxcbiAgICAgICAgJ0V4dHJhIHNlYXRpbmcgYXJyYW5nZW1lbnRzJyxcbiAgICAgICAgJ1NpbXBsZSB3b3Jrc2hlZXRzIGZvciB2YXJpb3VzIGdyYWRlIGxldmVscycsXG4gICAgICAgICdNb3ZpZXMgb3IgZWR1Y2F0aW9uYWwgdmlkZW9zJyxcbiAgICAgICAgJ0Jvb2tzIGZvciBpbmRlcGVuZGVudCByZWFkaW5nJyxcbiAgICAgICAgJ0FydCBzdXBwbGllcyBmb3IgcXVpZXQgYWN0aXZpdGllcycsXG4gICAgICBdLFxuICAgICAgY29udGFjdHM6IFtcbiAgICAgICAgeyByb2xlOiAnRW1lcmdlbmN5IFNlcnZpY2VzJywgbnVtYmVyOiAnOTExJywgd2hlbjogJ0ZvciBsaWZlLXRocmVhdGVuaW5nIGVtZXJnZW5jaWVzIG9ubHknIH0sXG4gICAgICAgIHsgcm9sZTogJ1ByaW5jaXBhbCcsIG51bWJlcjogJ0V4dC4gMTAwJywgd2hlbjogJ0ZvciBncm91cGluZyBkZWNpc2lvbnMgYW5kIHN1cHBvcnQnIH0sXG4gICAgICAgIHsgcm9sZTogJ1ZpY2UgUHJpbmNpcGFsJywgbnVtYmVyOiAnRXh0LiAxMDInLCB3aGVuOiAnRm9yIGFzc2lzdGFuY2Ugd2l0aCBsYXJnZSBncm91cHMnIH0sXG4gICAgICAgIHtcbiAgICAgICAgICByb2xlOiAnT2ZmaWNlJyxcbiAgICAgICAgICBudW1iZXI6ICdFeHQuIDEwMScsXG4gICAgICAgICAgd2hlbjogJ0ZvciBzdHVkZW50IGxvY2F0aW9uIGFuZCBwYXJlbnQgY29tbXVuaWNhdGlvbicsXG4gICAgICAgIH0sXG4gICAgICBdLFxuICAgICAgbW9kaWZpY2F0aW9uczoge1xuICAgICAgICBzY2hlZHVsZTogW1xuICAgICAgICAgICdTaW1wbGlmaWVkIHNjaGVkdWxlIHdpdGggbG9uZ2VyIGFjdGl2aXR5IGJsb2NrcycsXG4gICAgICAgICAgJ0NvbWJpbmVkIGNsYXNzZXMgZm9yIHNvbWUgYWN0aXZpdGllcycsXG4gICAgICAgICAgJ0V4dHJhIHN1cGVydmlzaW9uIGR1cmluZyB0cmFuc2l0aW9ucycsXG4gICAgICAgICAgJ01vZGlmaWVkIGx1bmNoIGFuZCBicmVhayBzY2hlZHVsZXMnLFxuICAgICAgICBdLFxuICAgICAgICBhY3Rpdml0aWVzOiBbXG4gICAgICAgICAgJ1NpbXBsZSwgaW5kZXBlbmRlbnQgYWN0aXZpdGllcycsXG4gICAgICAgICAgJ0xhcmdlIGdyb3VwIGdhbWVzIGFuZCBhY3Rpdml0aWVzJyxcbiAgICAgICAgICAnRXh0ZW5kZWQgbW92aWUvdmlkZW8gdGltZSBpZiBuZWVkZWQnLFxuICAgICAgICAgICdDcm9zcy1ncmFkZSBidWRkeSByZWFkaW5nJyxcbiAgICAgICAgXSxcbiAgICAgICAgc2FmZXR5OiBbXG4gICAgICAgICAgJ01haW50YWluIGhpZ2hlciBzdXBlcnZpc2lvbiByYXRpb3MnLFxuICAgICAgICAgICdVc2UgYnVkZHkgc3lzdGVtIGZvciBiYXRocm9vbSBicmVha3MnLFxuICAgICAgICAgICdLZWVwIGFjY3VyYXRlIGhlYWRjb3VudHMnLFxuICAgICAgICAgICdIYXZlIGVtZXJnZW5jeSBldmFjdWF0aW9uIHBsYW4gZm9yIGxhcmdlciBncm91cHMnLFxuICAgICAgICBdLFxuICAgICAgfSxcbiAgICAgIHRlbXBsYXRlOiBgU1RBRkYgU0hPUlRBR0UgU1VCU1RJVFVURSBQTEFOXG5EYXRlOiB7e0RBVEV9fVxuQ2xhc3NlcyBDb21iaW5lZDogX19fX19fX19fX19fX19fXG5cbuKaoO+4jyBNVUxUSVBMRSBTVEFGRiBBQlNFTlQgLSBMQVJHRSBHUk9VUCBNQU5BR0VNRU5UXG5cblNUVURFTlQgQ09VTlQ6IF9fX19fX19fXG5BRERJVElPTkFMIENMQVNTRVM6IF9fX19fX19fX19fX19fX1xuXG5TSU1QTElGSUVEIFNDSEVEVUxFOlxuLSBGb2N1cyBvbiBiYXNpYyByb3V0aW5lc1xuLSBMb25nZXIgYWN0aXZpdHkgcGVyaW9kc1xuLSBFeHRyYSBzdXBlcnZpc2lvbiBmb3IgdHJhbnNpdGlvbnNcblxuTEFSR0UgR1JPVVAgQUNUSVZJVElFUzpcbi0gTW92aWVzL2VkdWNhdGlvbmFsIHZpZGVvc1xuLSBHcm91cCByZWFkaW5nIHRpbWVcbi0gU2ltcGxlIGFydCBwcm9qZWN0c1xuLSBJbmRvb3IgZ2FtZXNcblxuU0FGRVRZIFJFTUlOREVSUzpcbi0gSGlnaGVyIHN1cGVydmlzaW9uIG5lZWRlZFxuLSBCdWRkeSBzeXN0ZW0gZm9yIG1vdmVtZW50c1xuLSBGcmVxdWVudCBoZWFkY291bnRzXG4tIE9mZmljZSBzdXBwb3J0IGF2YWlsYWJsZVxuXG5TdGF5IGZsZXhpYmxlIGFuZCBwcmlvcml0aXplIHNhZmV0eSFgLFxuICAgIH0sXG4gIF07XG59XG4iXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7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
