@@ -43,7 +43,7 @@ describe('Authentication Routes - Working Tests', () => {
     app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
     app.use(express.json());
     app.use(cookieParser());
-    app.use('/api', authRoutes(prisma));
+    app.use('/api/auth', authRoutes(prisma));
 
     // Simple auth middleware
     const authMiddleware = (req: any, res: any, next: any) => {
@@ -115,11 +115,11 @@ describe('Authentication Routes - Working Tests', () => {
     });
   };
 
-  describe('POST /api/login', () => {
+  describe('POST /api/auth/login', () => {
     it('should successfully login with valid credentials', async () => {
       const user = await createTestUser();
 
-      const res = await request(app).post('/api/login').send({
+      const res = await request(app).post('/api/auth/login').send({
         email: validUser.email,
         password: validUser.password,
       });
@@ -149,7 +149,7 @@ describe('Authentication Routes - Working Tests', () => {
     it('should return 401 with incorrect password', async () => {
       await createTestUser();
 
-      const res = await request(app).post('/api/login').send({
+      const res = await request(app).post('/api/auth/login').send({
         email: validUser.email,
         password: 'WrongPassword123!',
       });
@@ -159,7 +159,7 @@ describe('Authentication Routes - Working Tests', () => {
     });
 
     it('should return 401 with non-existent email', async () => {
-      const res = await request(app).post('/api/login').send({
+      const res = await request(app).post('/api/auth/login').send({
         email: 'nonexistent@example.com',
         password: validUser.password,
       });
@@ -169,7 +169,7 @@ describe('Authentication Routes - Working Tests', () => {
     });
 
     it('should return 400 with missing email', async () => {
-      const res = await request(app).post('/api/login').send({
+      const res = await request(app).post('/api/auth/login').send({
         password: validUser.password,
       });
 
@@ -178,7 +178,7 @@ describe('Authentication Routes - Working Tests', () => {
     });
 
     it('should return 400 with invalid email format', async () => {
-      const res = await request(app).post('/api/login').send({
+      const res = await request(app).post('/api/auth/login').send({
         email: 'not-an-email',
         password: validUser.password,
       });
@@ -250,7 +250,7 @@ describe('Authentication Routes - Working Tests', () => {
       const user = await createTestUser();
 
       // Login to get token
-      const loginRes = await request(app).post('/api/login').send({
+      const loginRes = await request(app).post('/api/auth/login').send({
         email: validUser.email,
         password: validUser.password,
       });
