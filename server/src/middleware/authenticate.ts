@@ -10,10 +10,10 @@ declare global {
   namespace Express {
     interface Request {
       user?: {
-        id: string;
+        id: number;
         email: string;
         role: string;
-        organizationId?: string;
+        organizationId?: number;
         permissions?: string[];
       };
     }
@@ -42,17 +42,17 @@ const JWT_REFRESH_EXPIRES_IN = process.env.JWT_REFRESH_EXPIRES_IN || '7d';
  * Generate JWT token for user
  */
 export function generateToken(user: {
-  id: string;
+  id: number;
   email: string;
   role: string;
-  organizationId?: string;
+  organizationId?: number;
   permissions?: string[];
 }): string {
   const payload: TokenPayload = {
-    userId: user.id,
+    userId: user.id.toString(),
     email: user.email,
     role: user.role,
-    organizationId: user.organizationId,
+    organizationId: user.organizationId?.toString(),
     permissions: user.permissions || [],
   };
 
@@ -66,8 +66,8 @@ export function generateToken(user: {
 /**
  * Generate refresh token
  */
-export function generateRefreshToken(userId: string): string {
-  return jwt.sign({ userId, type: 'refresh' }, JWT_SECRET, {
+export function generateRefreshToken(userId: number): string {
+  return jwt.sign({ userId: userId.toString(), type: 'refresh' }, JWT_SECRET, {
     expiresIn: JWT_REFRESH_EXPIRES_IN,
     issuer: 'teaching-engine',
   });
@@ -233,19 +233,19 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
 
       // Update request with fresh user data
       req.user = {
-        id: user.id.toString(),
+        id: user.id,
         email: user.email,
         role: user.role,
-        organizationId: decoded.organizationId, // Use from token, not from DB
+        organizationId: decoded.organizationId ? parseInt(decoded.organizationId, 10) : undefined,
         permissions: decoded.permissions,
       };
     } else {
       // Use token data directly
       req.user = {
-        id: decoded.userId,
+        id: parseInt(decoded.userId, 10),
         email: decoded.email,
         role: decoded.role,
-        organizationId: decoded.organizationId,
+        organizationId: decoded.organizationId ? parseInt(decoded.organizationId, 10) : undefined,
         permissions: decoded.permissions,
       };
     }
@@ -297,10 +297,10 @@ export async function optionalAuthenticate(
 
     if (decoded) {
       req.user = {
-        id: decoded.userId,
+        id: parseInt(decoded.userId, 10),
         email: decoded.email,
         role: decoded.role,
-        organizationId: decoded.organizationId,
+        organizationId: decoded.organizationId ? parseInt(decoded.organizationId, 10) : undefined,
         permissions: decoded.permissions,
       };
     }
@@ -435,20 +435,19 @@ export async function refreshToken(req: Request, res: Response): Promise<void> {
 
     // Get fresh user data
     const user = await prisma.user.findUnique({
-      where: { id: decoded.userId },
+      where: { id: parseInt(decoded.userId, 10) },
       select: {
         id: true,
         email: true,
         role: true,
-        active: true,
         organizationId: true,
       },
     });
 
-    if (!user || !user.active) {
+    if (!user) {
       res.status(401).json({
         error: 'Unauthorized',
-        message: 'User not found or inactive',
+        message: 'User not found',
       });
       return;
     }

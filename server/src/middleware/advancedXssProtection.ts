@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { createDOMPurify } from 'isomorphic-dompurify';
+import createDOMPurify from 'isomorphic-dompurify';
 import { JSDOM } from 'jsdom';
 import logger from '../logger.js';
 
