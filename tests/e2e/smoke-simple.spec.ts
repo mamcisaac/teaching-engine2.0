@@ -49,7 +49,7 @@ test.describe('Simple Smoke Tests', () => {
       name: 'Test User',
     };
 
-    const response = await request.post(`${API_BASE}/api/register`, {
+    const response = await request.post(`${API_BASE}/api/auth/register`, {
       data: testUser,
     });
 

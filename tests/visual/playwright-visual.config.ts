@@ -7,7 +7,7 @@ import { defineConfig, devices } from '@playwright/test';
 import path from 'path';
 
 export default defineConfig({
-  testDir: './tests/visual',
+  testDir: '.',
 
   // Global test configuration
   timeout: 60000,
@@ -190,8 +190,8 @@ export default defineConfig({
   ],
 
   // Test setup and teardown
-  globalSetup: './tests/visual/global-setup.ts',
-  globalTeardown: './tests/visual/global-teardown.ts',
+  globalSetup: './global-setup.ts',
+  globalTeardown: './global-teardown.ts',
 
   // Web server configuration for visual testing
   webServer: {

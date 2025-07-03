@@ -110,18 +110,23 @@ async function globalSetup(config: FullConfig) {
 
 async function measureServerStartupTime(): Promise<number> {
   const startTime = Date.now();
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 5000);
 
   try {
     // Try to connect to the development server
     const response = await fetch('http://localhost:3000/api/health', {
-      timeout: 5000,
+      signal: controller.signal,
     });
 
     if (response.ok) {
+      clearTimeout(timeoutId);
       return Date.now() - startTime;
     }
-  } catch (error) {
+  } catch (error: any) {
     console.warn('Could not measure server startup time:', error.message);
+  } finally {
+    clearTimeout(timeoutId);
   }
 
   return -1; // Indicates measurement failed
@@ -129,18 +134,23 @@ async function measureServerStartupTime(): Promise<number> {
 
 async function measureDatabaseConnection(): Promise<number> {
   const startTime = Date.now();
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 5000);
 
   try {
     // Try to connect to the database via API
     const response = await fetch('http://localhost:3000/api/curriculum-expectations?limit=1', {
-      timeout: 5000,
+      signal: controller.signal,
     });
 
     if (response.ok) {
+      clearTimeout(timeoutId);
       return Date.now() - startTime;
     }
-  } catch (error) {
+  } catch (error: any) {
     console.warn('Could not measure database connection time:', error.message);
+  } finally {
+    clearTimeout(timeoutId);
   }
 
   return -1; // Indicates measurement failed
