@@ -40,7 +40,7 @@ export async function login(page: Page): Promise<string> {
     throw new Error(`Login failed with status ${res.status()}: ${errorBody}`);
   }
 
-  const { token, user } = (await res.json()) as { token: string; user: unknown };
+  const { accessToken, user } = (await res.json()) as { accessToken: string; user: unknown };
 
   // Set initial script to run before page loads
   await page.addInitScript(
@@ -50,7 +50,7 @@ export async function login(page: Page): Promise<string> {
       localStorage.setItem('user', JSON.stringify(u));
       localStorage.setItem('onboarded', 'true');
     },
-    { t: token, u: user },
+    { t: accessToken, u: user },
   );
 
   // Navigate to home page with more reliable wait strategy

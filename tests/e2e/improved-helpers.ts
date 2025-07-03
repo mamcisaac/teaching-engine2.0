@@ -23,7 +23,7 @@ export async function login(page: Page): Promise<string> {
     throw new Error(`Login failed with status ${response.status()}: ${errorBody}`);
   }
 
-  const { token, user } = (await response.json()) as { token: string; user: unknown };
+  const { accessToken, user } = (await response.json()) as { accessToken: string; user: unknown };
 
   // Set auth data before navigation
   await page.addInitScript(
@@ -33,7 +33,7 @@ export async function login(page: Page): Promise<string> {
       localStorage.setItem('user', JSON.stringify(u));
       localStorage.setItem('onboarded', 'true');
     },
-    { t: token, u: user },
+    { t: accessToken, u: user },
   );
 
   // Navigate and wait for authentication

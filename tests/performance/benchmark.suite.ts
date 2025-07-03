@@ -231,8 +231,8 @@ test.describe('Performance Benchmarks', () => {
       },
     });
 
-    const { token } = await loginResponse.json();
-    authToken = token;
+    const { accessToken } = await loginResponse.json();
+    authToken = accessToken;
   });
 
   test('Dashboard Page Performance', async ({ page }) => {
