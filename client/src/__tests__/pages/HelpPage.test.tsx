@@ -8,7 +8,7 @@ import { renderWithAuth } from '../../test-utils';
 const mockHelpContext = {
   state: {
     searchQuery: '',
-    currentSection: null,
+    currentSection: null as string | null,
     viewedPages: [],
   },
   setCurrentSection: vi.fn(),

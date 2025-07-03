@@ -74,7 +74,7 @@ const createMockFormData = (overrides: Partial<UnitPlanFormData> = {}): UnitPlan
   keyVocabulary: ['numerator', 'denominator', ''],
   priorKnowledge: 'Basic division',
   crossCurricular: 'Cooking connections',
-  learningSkills: 'Problem solving',
+  learningSkills: ['Problem solving'],
   differentiationStrategies: {
     forStruggling: ['visual aids', '', 'manipulatives'],
     forAdvanced: ['complex problems', ''],
@@ -102,7 +102,7 @@ describe('UnitPlanService', () => {
   describe('calculateProgress', () => {
     it('should calculate progress correctly with completed lessons', () => {
       const unit = createMockUnitPlan({
-        _count: { lessonPlans: 5, expectations: 3 },
+        _count: { lessonPlans: 5, expectations: 3, resources: 0 },
         lessonPlans: [
           createMockLessonPlan(1, true), // completed
           createMockLessonPlan(2, false), // not completed
@@ -118,7 +118,7 @@ describe('UnitPlanService', () => {
 
     it('should return 0 for unit with no lessons', () => {
       const unit = createMockUnitPlan({
-        _count: { lessonPlans: 0, expectations: 3 },
+        _count: { lessonPlans: 0, expectations: 3, resources: 0 },
         lessonPlans: [],
       });
 
@@ -138,7 +138,7 @@ describe('UnitPlanService', () => {
 
     it('should handle all lessons completed', () => {
       const unit = createMockUnitPlan({
-        _count: { lessonPlans: 3, expectations: 3 },
+        _count: { lessonPlans: 3, expectations: 3, resources: 0 },
         lessonPlans: [
           createMockLessonPlan(1, true),
           createMockLessonPlan(2, true),
@@ -152,7 +152,7 @@ describe('UnitPlanService', () => {
 
     it('should handle no lessons completed', () => {
       const unit = createMockUnitPlan({
-        _count: { lessonPlans: 3, expectations: 3 },
+        _count: { lessonPlans: 3, expectations: 3, resources: 0 },
         lessonPlans: [
           createMockLessonPlan(1, false),
           createMockLessonPlan(2, false),
@@ -166,7 +166,7 @@ describe('UnitPlanService', () => {
 
     it('should handle undefined lessonPlans array', () => {
       const unit = createMockUnitPlan({
-        _count: { lessonPlans: 3, expectations: 3 },
+        _count: { lessonPlans: 3, expectations: 3, resources: 0 },
         lessonPlans: undefined as any,
       });
 
@@ -176,7 +176,7 @@ describe('UnitPlanService', () => {
 
     it('should round progress correctly', () => {
       const unit = createMockUnitPlan({
-        _count: { lessonPlans: 3, expectations: 3 },
+        _count: { lessonPlans: 3, expectations: 3, resources: 0 },
         lessonPlans: [
           createMockLessonPlan(1, true), // completed
           createMockLessonPlan(2, false), // not completed
@@ -460,16 +460,24 @@ describe('UnitPlanService', () => {
   describe('getStatusColor', () => {
     it('should return correct colors for different progress levels', () => {
       expect(
-        UnitPlanService.getStatusColor(createMockUnitPlan({ progress: { percentage: 100 } })),
+        UnitPlanService.getStatusColor(
+          createMockUnitPlan({ progress: { percentage: 100, total: 10, completed: 10 } }),
+        ),
       ).toBe('text-green-600');
       expect(
-        UnitPlanService.getStatusColor(createMockUnitPlan({ progress: { percentage: 75 } })),
+        UnitPlanService.getStatusColor(
+          createMockUnitPlan({ progress: { percentage: 75, total: 10, completed: 7 } }),
+        ),
       ).toBe('text-yellow-600');
       expect(
-        UnitPlanService.getStatusColor(createMockUnitPlan({ progress: { percentage: 25 } })),
+        UnitPlanService.getStatusColor(
+          createMockUnitPlan({ progress: { percentage: 25, total: 10, completed: 2 } }),
+        ),
       ).toBe('text-orange-600');
       expect(
-        UnitPlanService.getStatusColor(createMockUnitPlan({ progress: { percentage: 0 } })),
+        UnitPlanService.getStatusColor(
+          createMockUnitPlan({ progress: { percentage: 0, total: 10, completed: 0 } }),
+        ),
       ).toBe('text-gray-600');
     });
 
@@ -483,10 +491,14 @@ describe('UnitPlanService', () => {
 
     it('should handle edge cases', () => {
       expect(
-        UnitPlanService.getStatusColor(createMockUnitPlan({ progress: { percentage: 50 } })),
+        UnitPlanService.getStatusColor(
+          createMockUnitPlan({ progress: { percentage: 50, total: 10, completed: 5 } }),
+        ),
       ).toBe('text-orange-600');
       expect(
-        UnitPlanService.getStatusColor(createMockUnitPlan({ progress: { percentage: 51 } })),
+        UnitPlanService.getStatusColor(
+          createMockUnitPlan({ progress: { percentage: 51, total: 10, completed: 5 } }),
+        ),
       ).toBe('text-yellow-600');
     });
   });
@@ -499,6 +511,7 @@ describe('UnitPlanService', () => {
         _count: {
           lessonPlans: 8,
           expectations: 5,
+          resources: 0,
         },
       });
 
@@ -526,6 +539,7 @@ describe('UnitPlanService', () => {
         _count: {
           lessonPlans: 3,
           expectations: undefined as any,
+          resources: 0,
         },
       });
 
@@ -545,7 +559,7 @@ describe('UnitPlanService', () => {
         const unit = createMockUnitPlan({
           startDate: start,
           endDate: end,
-          _count: { lessonPlans: 5, expectations: 3 },
+          _count: { lessonPlans: 5, expectations: 3, resources: 0 },
         });
 
         const result = UnitPlanService.generateSummary(unit);
@@ -589,7 +603,7 @@ describe('UnitPlanService', () => {
 
     it('should handle very small progress calculations', () => {
       const unit = createMockUnitPlan({
-        _count: { lessonPlans: 1000, expectations: 3 },
+        _count: { lessonPlans: 1000, expectations: 3, resources: 0 },
         lessonPlans: [createMockLessonPlan(1, true)] as any, // 1 out of 1000
       });
 

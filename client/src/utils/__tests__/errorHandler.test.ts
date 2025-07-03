@@ -151,6 +151,9 @@ describe('handleApiError', () => {
           data: { error: 'Too many requests' },
         },
         isAxiosError: true,
+        name: 'AxiosError',
+        message: 'Request failed with status code 429',
+        toJSON: () => ({}),
       } as AxiosError;
 
       handleApiError(axiosError);
@@ -525,8 +528,8 @@ describe('optimisticUpdate', () => {
 
     const { optimistic, revert } = optimisticUpdate(getCurrent, update, operation, onError);
 
-    expect(optimistic.posts).toHaveLength(2);
-    expect(optimistic.posts[1]).toEqual({ id: 2, title: 'New Post' });
+    expect((optimistic as any).posts).toHaveLength(2);
+    expect((optimistic as any).posts[1]).toEqual({ id: 2, title: 'New Post' });
     expect(revert).toBe(currentValue);
   });
 

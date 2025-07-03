@@ -508,7 +508,7 @@ describe('AILessonPlanPanel', () => {
       const titleInput = screen.getByLabelText(/lesson title/i);
 
       // Type multiple characters quickly
-      await user.type(titleInput, 'abc', { delay: 1 });
+      await user.type(titleInput, 'abc');
 
       // Should not trigger multiple regenerations
       expect(mockGenerateLesson).not.toHaveBeenCalled();

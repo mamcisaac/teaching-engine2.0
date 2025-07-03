@@ -1,6 +1,6 @@
 /**
  * Test Utilities
- * 
+ *
  * Provides common testing utilities, mock factories, and custom render functions
  * for Testing Engine 2.0 frontend components.
  */
@@ -42,7 +42,9 @@ export interface User {
 }
 
 // Mock data factories
-export const createMockUser = (overrides: Partial<User & { token?: string }> = {}): User & { token?: string } => ({
+export const createMockUser = (
+  overrides: Partial<User & { token?: string }> = {},
+): User & { token?: string } => ({
   id: 'user-123',
   email: 'teacher@example.com',
   name: 'Test Teacher',
@@ -85,11 +87,13 @@ export const createMockUnitPlan = (overrides: Record<string, unknown> = {}) => (
   subject: 'Mathematics',
   gradeLevel: 'Grade 3',
   duration: '2 weeks',
-  bigIdeas: ['Numbers can be represented in different ways'],
-  essentialQuestions: ['How do we use numbers in everyday life?'],
-  learningGoals: ['Understand place value'],
-  successCriteria: ['Can identify place value positions'],
-  assessments: ['Formative quizzes', 'Summative test'],
+  startDate: new Date().toISOString(),
+  endDate: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(), // 2 weeks from now
+  bigIdeas: 'Numbers can be represented in different ways',
+  essentialQuestions: 'How do we use numbers in everyday life?',
+  learningGoals: 'Understand place value',
+  successCriteria: 'Can identify place value positions',
+  assessments: 'Formative quizzes, Summative test',
   lessonPlans: [],
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString(),
@@ -115,7 +119,10 @@ export const mockUnitPlan = createMockUnitPlan();
 // Mock API responses
 export const mockApiResponses = {
   lessonPlans: {
-    getAll: [createMockLessonPlan(), createMockLessonPlan({ id: 'lesson-456', title: 'Second Lesson' })],
+    getAll: [
+      createMockLessonPlan(),
+      createMockLessonPlan({ id: 'lesson-456', title: 'Second Lesson' }),
+    ],
     getById: createMockLessonPlan(),
     create: createMockLessonPlan(),
     update: createMockLessonPlan({ title: 'Updated Lesson' }),
@@ -129,7 +136,10 @@ export const mockApiResponses = {
     delete: { success: true },
   },
   curriculumExpectations: {
-    search: [createMockCurriculumExpectation(), createMockCurriculumExpectation({ id: 'expectation-456', code: 'B1.2' })],
+    search: [
+      createMockCurriculumExpectation(),
+      createMockCurriculumExpectation({ id: 'expectation-456', code: 'B1.2' }),
+    ],
     getById: createMockCurriculumExpectation(),
   },
   auth: {
@@ -187,12 +197,8 @@ export const MockAuthProvider: React.FC<{
 
   // Create a mock context provider
   const AuthContext = React.createContext<AuthContextValue>(defaultAuthValue);
-  
-  return (
-    <AuthContext.Provider value={defaultAuthValue}>
-      {children}
-    </AuthContext.Provider>
-  );
+
+  return <AuthContext.Provider value={defaultAuthValue}>{children}</AuthContext.Provider>;
 };
 
 // All providers wrapper for comprehensive testing
@@ -206,17 +212,16 @@ const AllProviders: React.FC<{
   const routerProps = initialEntries ? { initialEntries } : {};
 
   // If we need auth, wrap with MockAuthProvider
-  const content = initialAuthState !== undefined ? (
-    <MockAuthProvider value={initialAuthState}>
-      {children}
-    </MockAuthProvider>
-  ) : children;
+  const content =
+    initialAuthState !== undefined ? (
+      <MockAuthProvider value={initialAuthState}>{children}</MockAuthProvider>
+    ) : (
+      children
+    );
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterComponent {...routerProps}>
-        {content}
-      </RouterComponent>
+      <RouterComponent {...routerProps}>{content}</RouterComponent>
     </QueryClientProvider>
   );
 };
@@ -224,10 +229,7 @@ const AllProviders: React.FC<{
 /**
  * Custom render function that includes providers commonly used in the app
  */
-export const renderWithProviders = (
-  ui: ReactElement,
-  options: CustomRenderOptions = {}
-) => {
+export const renderWithProviders = (ui: ReactElement, options: CustomRenderOptions = {}) => {
   const {
     initialEntries,
     withRouter = true,
@@ -279,11 +281,7 @@ export const renderWithRouter = (ui: ReactElement, initialEntries?: string[]) =>
   const RouterComponent = initialEntries ? MemoryRouter : BrowserRouter;
   const routerProps = initialEntries ? { initialEntries } : {};
 
-  return render(
-    <RouterComponent {...routerProps}>
-      {ui}
-    </RouterComponent>
-  );
+  return render(<RouterComponent {...routerProps}>{ui}</RouterComponent>);
 };
 
 /**
@@ -294,11 +292,7 @@ export const renderWithQueryClient = (ui: ReactElement) => {
 
   return {
     queryClient,
-    ...render(
-      <QueryClientProvider client={queryClient}>
-        {ui}
-      </QueryClientProvider>
-    ),
+    ...render(<QueryClientProvider client={queryClient}>{ui}</QueryClientProvider>),
   };
 };
 
@@ -346,7 +340,7 @@ export const mockLocalStorage = () => {
       delete store[key];
     }),
     clear: vi.fn(() => {
-      Object.keys(store).forEach(key => delete store[key]);
+      Object.keys(store).forEach((key) => delete store[key]);
     }),
     length: Object.keys(store).length,
     key: vi.fn((index: number) => Object.keys(store)[index] || null),
@@ -355,7 +349,7 @@ export const mockLocalStorage = () => {
 
 // Common test helpers
 export const waitForLoadingToFinish = () => {
-  return new Promise(resolve => setTimeout(resolve, 0));
+  return new Promise((resolve) => setTimeout(resolve, 0));
 };
 
 export const mockScrollIntoView = () => {
