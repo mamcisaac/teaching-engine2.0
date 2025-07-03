@@ -91,7 +91,7 @@ export const embeddingService = {
   /**
    * Find similar outcomes based on text query
    */
-  async searchOutcomesByText(queryText: string, limit: number = 10): Promise<SimilarityResult[]> {
+  async searchOutcomesByText(queryText: string, _limit: number = 10): Promise<SimilarityResult[]> {
     try {
       // This would typically search a vector database
       // For now, return empty results
@@ -106,7 +106,7 @@ export const embeddingService = {
   /**
    * Find similar outcomes based on embedding
    */
-  async findSimilarOutcomes(embedding: number[], limit: number = 10): Promise<SimilarityResult[]> {
+  async findSimilarOutcomes(embedding: number[]): Promise<SimilarityResult[]> {
     try {
       // This would typically search a vector database
       // For now, return empty results

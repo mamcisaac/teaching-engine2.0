@@ -1,30 +1,26 @@
+/**
+ * Newsletter Trigger Job
+ * Scheduled job for triggering newsletter generation reminders
+ */
+
 import cron from 'node-cron';
 
-export interface TermMidpoint {
-  term: string;
-  date: Date;
-}
-
-export const TERM_MIDPOINTS: TermMidpoint[] = [
-  { term: 'Term 1', date: new Date('2025-10-15') },
-  { term: 'Term 2', date: new Date('2025-02-14') },
-  { term: 'Term 3', date: new Date('2025-05-05') },
-];
-
-export async function checkNewsletterTriggers(midpoints: TermMidpoint[] = TERM_MIDPOINTS) {
-  // DISABLED: Notification model has been archived
-  // TODO: Implement using ParentMessage for newsletter notifications
-  const today = new Date();
-  const todayStr = today.toISOString().slice(0, 10);
-
-  for (const mp of midpoints) {
-    const mpDateStr = mp.date.toISOString().slice(0, 10);
-    if (mpDateStr === todayStr) {
-      console.warn(`Newsletter trigger for ${mp.term} - Notification model archived`);
-    }
+// Newsletter reminder job - runs weekly on Friday at 3 PM
+// This is a placeholder for future newsletter automation
+export const newsletterTriggerJob = cron.schedule(
+  '0 15 * * 5', // Every Friday at 3 PM
+  () => {
+    console.log('Newsletter reminder: Consider generating weekly parent newsletter');
+    // In the future, this could send reminders to teachers
+    // or automatically generate draft newsletters
+  },
+  {
+    scheduled: false, // Don't start automatically
+    timezone: 'America/Toronto'
   }
-}
+);
 
-export function scheduleNewsletterTriggers() {
-  cron.schedule('0 7 * * *', () => checkNewsletterTriggers());
-}
+// Start the job (commented out for now)
+// newsletterTriggerJob.start();
+
+export default newsletterTriggerJob;

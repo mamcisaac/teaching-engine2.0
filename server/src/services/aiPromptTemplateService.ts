@@ -489,7 +489,7 @@ Respond in JSON format but keep that practical teacher voice - like you're shari
   }
 
   // A/B Testing and Analytics
-  public recordPromptUsage(_templateId: string, success: boolean, feedback?: string) {
+  public recordPromptUsage(_templateId: string, _success: boolean, _feedback?: string) {
     // In a real implementation, this would log to analytics
     // Template feedback logging removed for production
   }

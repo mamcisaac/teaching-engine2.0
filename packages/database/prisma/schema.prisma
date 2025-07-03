@@ -74,7 +74,7 @@ model User {
   classroomAnnouncements ClassroomAnnouncement[]
   curriculumImports CurriculumImport[]
   classRoutines ClassRoutine[]
-  subPlanRecords SubPlanRecord[]
+  // SubPlanRecord removed - teachers prefer editable document templates
   
   // ETFO-aligned planning models
   longRangePlans LongRangePlan[]
@@ -82,8 +82,7 @@ model User {
   etfoLessonPlans ETFOLessonPlan[]
   daybookEntries DaybookEntry[]
   
-  // Newsletters
-  newsletters Newsletter[]
+  // Newsletter model removed - teachers have better tools (Google Docs, Canva, ClassDojo)
   
   // Activity Discovery
   activityImports ActivityImport[]
@@ -208,31 +207,7 @@ model UnavailableBlock {
 
 
 
-// Newsletter model for general communication templates
-model Newsletter {
-  id          String    @id @default(cuid())
-  userId      Int
-  user        User      @relation(fields: [userId], references: [id])
-  
-  title       String
-  titleFr     String
-  
-  // Removed studentIds - newsletters are now general templates
-  dateFrom    DateTime
-  dateTo      DateTime
-  
-  tone        String    // "friendly" | "formal" | "informative"
-  sections    Json      // Array of newsletter sections
-  
-  isDraft     Boolean   @default(true)
-  sentAt      DateTime?
-  
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  
-  @@index([userId])
-  @@index([isDraft])
-}
+// Newsletter model removed - teachers have better tools (Google Docs, Canva, ClassDojo)
 
 // ==================== Phase 5: Curriculum Intelligence Models ====================
 
@@ -319,24 +294,7 @@ model ClassRoutine {
   @@index([userId, isActive])
 }
 
-// Tracks generated substitute plans for reuse and history
-model SubPlanRecord {
-  id              Int      @id @default(autoincrement())
-  userId          Int
-  user            User     @relation(fields: [userId], references: [id])
-  date            DateTime
-  daysCount       Int      @default(1) // Number of days included
-  content         Json     // Full generated content
-  includeGoals    Boolean  @default(true)
-  includeRoutines Boolean  @default(true)
-  includePlans    Boolean  @default(true)
-  anonymized      Boolean  @default(false)
-  notes           String?  // Additional notes from teacher
-  createdAt       DateTime @default(now())
-  
-  @@index([userId, date])
-  @@index([userId, createdAt])
-}
+// SubPlanRecord model removed - teachers prefer editable document templates (Google Docs, Word)
 
 // ==================== ETFO-Aligned Planning Models ====================
 // These models implement the 5-level ETFO planning hierarchy:

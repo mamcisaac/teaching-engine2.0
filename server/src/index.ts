@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === 'test' || process.env.JEST_WORKER_ID) {
 // ETFO-aligned route imports
 import curriculumImportRoutes from './routes/curriculumImport';
 // Student-related routes removed - app does not store student data
-import newsletterRoutes from './routes/newsletters';
+// Newsletter routes removed - teachers have better tools (Google Docs, Canva, ClassDojo)
 import curriculumExpectationRoutes from './routes/curriculum-expectations';
 import longRangePlanRoutes from './routes/long-range-plans';
 import unitPlanRoutes from './routes/unit-plans';
@@ -50,7 +50,7 @@ import templateRoutes from './routes/templates';
 import calendarEventRoutes from './routes/calendar-events';
 import recentPlansRoutes from './routes/recent-plans';
 import batchApiRoutes from './routes/batch';
-import subPlanRoutes from './routes/sub-plan';
+// import subPlanRoutes from './routes/sub-plan'; // File missing - commenting out for build
 // import { authRoutes as _authRoutes } from './routes/auth';
 import authEndpoints from './routes/authEndpoints';
 import { userRoutes } from './routes/user';
@@ -187,7 +187,7 @@ app.use('/api/user', authenticate, rateLimiters.api as any, userRoutes(prisma));
 // Apply authentication and rate limiting to all API routes
 log('Mounting ETFO-aligned API routes...');
 // Student endpoints removed - app does not store student data
-app.use('/api/newsletters', authenticate, rateLimiters.write as any, newsletterRoutes);
+// Newsletter API removed - teachers have better tools (Google Docs, Canva, ClassDojo)
 app.use(
   '/api/curriculum-import',
   authenticate,
@@ -246,7 +246,7 @@ app.use('/api/ai-activities', authenticate, rateLimiters.ai as any, aiActivityGe
 // Batch Processing Routes
 
 // Sub-plan Routes
-app.use('/api/sub-plan', authenticate, rateLimiters.write as any, subPlanRoutes);
+// app.use('/api/sub-plan', authenticate, rateLimiters.write as any, subPlanRoutes); // Commented out - missing file
 
 // Batch API Routes (for request batching)
 app.use('/api/batch', authenticate, rateLimiters.api as any, batchApiRoutes);

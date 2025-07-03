@@ -1,9 +1,5 @@
 // Core services
 export { curriculumImportService } from './curriculumImportService';
-export { embeddingService } from './embeddingService';
-export { clusteringService } from './clusteringService';
-export { CacheService } from './CacheService';
-export { BaseService } from './base/BaseService';
 
 // AI services
 // AIParentSummaryService removed - not aligned with single-teacher focus
@@ -25,5 +21,3 @@ export { openai } from './llmService';
 
 // Service types
 export type { ImportProgress } from './curriculumImportService';
-export type { EmbeddingResult, SimilarityResult } from './embeddingService';
-export type { ClusterItem, Cluster, ClusteringOptions } from './clusteringService';

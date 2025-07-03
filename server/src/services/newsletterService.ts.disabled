@@ -1,0 +1,455 @@
+/**
+ * Newsletter Service
+ * Handles generation of newsletter content for parent communication
+ */
+
+import { PrismaClient } from '@teaching-engine/database';
+import { prisma } from '../prisma';
+import OpenAI from 'openai';
+
+export type NewsletterTone = 'friendly' | 'formal' | 'informative';
+
+export interface NewsletterSection {
+  id: string;
+  title: string;
+  titleFr: string;
+  content: string;
+  contentFr: string;
+  isEditable: boolean;
+  order: number;
+}
+
+export interface NewsletterGenerationParams {
+  userId: string;
+  dateFrom: Date;
+  dateTo: Date;
+  tone: NewsletterTone;
+  focusAreas?: string[];
+  includeUpcomingEvents?: boolean;
+  templateType?: 'weekly' | 'monthly' | 'special';
+  existingSections?: NewsletterSection[];
+}
+
+export interface GeneratedNewsletter {
+  sections: NewsletterSection[];
+  metadata: {
+    dateRange: {
+      from: string;
+      to: string;
+    };
+    tone: NewsletterTone;
+    generatedAt: string;
+    templateType?: string;
+  };
+}
+
+// Initialize OpenAI client (optional - only if API key is available)
+let openai: OpenAI | null = null;
+try {
+  if (process.env.OPENAI_API_KEY) {
+    openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
+  }
+} catch (error) {
+  console.warn('OpenAI not initialized - newsletter generation will use templates');
+}
+
+/**
+ * Generate newsletter content
+ */
+export async function generateNewsletterContent(
+  params: NewsletterGenerationParams
+): Promise<GeneratedNewsletter> {
+  const {
+    userId,
+    dateFrom,
+    dateTo,
+    tone,
+    focusAreas = [],
+    includeUpcomingEvents = true,
+    templateType = 'weekly',
+    existingSections = []
+  } = params;
+
+  try {
+    // If OpenAI is available, use AI generation
+    if (openai) {
+      return await generateAINewsletterContent(params);
+    }
+
+    // Fallback to template-based generation
+    return await generateTemplateNewsletterContent(params);
+  } catch (error) {
+    console.error('Error generating newsletter content:', error);
+    // Always fallback to template generation
+    return await generateTemplateNewsletterContent(params);
+  }
+}
+
+/**
+ * Generate newsletter content using AI
+ */
+async function generateAINewsletterContent(
+  params: NewsletterGenerationParams
+): Promise<GeneratedNewsletter> {
+  if (!openai) {
+    throw new Error('OpenAI not initialized');
+  }
+
+  const {
+    userId,
+    dateFrom,
+    dateTo,
+    tone,
+    focusAreas = [],
+    includeUpcomingEvents = true,
+    templateType = 'weekly',
+  } = params;
+
+  // Get recent lesson plans and activities for context
+  const recentLessons = await prisma.eTFOLessonPlan.findMany({
+    where: {
+      userId,
+      createdAt: {
+        gte: dateFrom,
+        lte: dateTo,
+      },
+    },
+    orderBy: { createdAt: 'desc' },
+    take: 10,
+  });
+
+  // Get recent daybook entries
+  const recentEntries = await prisma.daybookEntry.findMany({
+    where: {
+      userId: parseInt(userId),
+      date: {
+        gte: dateFrom,
+        lte: dateTo,
+      },
+    },
+    orderBy: { date: 'desc' },
+    take: 10,
+  });
+
+  // Create AI prompt
+  const prompt = createNewsletterPrompt({
+    dateFrom,
+    dateTo,
+    tone,
+    focusAreas,
+    includeUpcomingEvents,
+    templateType,
+    recentLessons,
+    recentEntries,
+  });
+
+  const completion = await openai.chat.completions.create({
+    model: 'gpt-4',
+    messages: [
+      {
+        role: 'system',
+        content: 'You are an expert educational content writer specializing in parent communication for elementary school teachers.',
+      },
+      {
+        role: 'user',
+        content: prompt,
+      },
+    ],
+    temperature: 0.7,
+    max_tokens: 2000,
+  });
+
+  const content = completion.choices[0]?.message?.content;
+  if (!content) {
+    throw new Error('No content generated from AI');
+  }
+
+  // Parse AI response into sections
+  const sections = parseAINewsletterContent(content);
+
+  return {
+    sections,
+    metadata: {
+      dateRange: {
+        from: dateFrom.toISOString(),
+        to: dateTo.toISOString(),
+      },
+      tone,
+      generatedAt: new Date().toISOString(),
+      templateType,
+    },
+  };
+}
+
+/**
+ * Generate newsletter content using templates
+ */
+async function generateTemplateNewsletterContent(
+  params: NewsletterGenerationParams
+): Promise<GeneratedNewsletter> {
+  const {
+    userId,
+    dateFrom,
+    dateTo,
+    tone,
+    focusAreas = [],
+    includeUpcomingEvents = true,
+    templateType = 'weekly',
+  } = params;
+
+  // Get recent lesson plans for context
+  const recentLessons = await prisma.eTFOLessonPlan.findMany({
+    where: {
+      userId,
+      createdAt: {
+        gte: dateFrom,
+        lte: dateTo,
+      },
+    },
+    orderBy: { createdAt: 'desc' },
+    take: 5,
+  });
+
+  const sections: NewsletterSection[] = [];
+
+  // Welcome section
+  sections.push({
+    id: 'welcome',
+    title: 'Welcome',
+    titleFr: 'Bienvenue',
+    content: getWelcomeContent(tone, templateType),
+    contentFr: getWelcomeContentFr(tone, templateType),
+    isEditable: true,
+    order: 0,
+  });
+
+  // Learning highlights
+  if (recentLessons.length > 0) {
+    sections.push({
+      id: 'learning-highlights',
+      title: 'Learning Highlights',
+      titleFr: 'Points saillants d\'apprentissage',
+      content: getLearningHighlightsContent(recentLessons, focusAreas),
+      contentFr: getLearningHighlightsContentFr(recentLessons, focusAreas),
+      isEditable: true,
+      order: 1,
+    });
+  }
+
+  // Upcoming events (if requested)
+  if (includeUpcomingEvents) {
+    sections.push({
+      id: 'upcoming-events',
+      title: 'Upcoming Events',
+      titleFr: 'Événements à venir',
+      content: getUpcomingEventsContent(),
+      contentFr: getUpcomingEventsContentFr(),
+      isEditable: true,
+      order: 2,
+    });
+  }
+
+  // Closing section
+  sections.push({
+    id: 'closing',
+    title: 'Looking Forward',
+    titleFr: 'Vers l\'avenir',
+    content: getClosingContent(tone),
+    contentFr: getClosingContentFr(tone),
+    isEditable: true,
+    order: sections.length,
+  });
+
+  return {
+    sections,
+    metadata: {
+      dateRange: {
+        from: dateFrom.toISOString(),
+        to: dateTo.toISOString(),
+      },
+      tone,
+      generatedAt: new Date().toISOString(),
+      templateType,
+    },
+  };
+}
+
+/**
+ * Create AI prompt for newsletter generation
+ */
+function createNewsletterPrompt(params: {
+  dateFrom: Date;
+  dateTo: Date;
+  tone: NewsletterTone;
+  focusAreas: string[];
+  includeUpcomingEvents: boolean;
+  templateType: string;
+  recentLessons: unknown[];
+  recentEntries: unknown[];
+}): string {
+  const { dateFrom, dateTo, tone, focusAreas, templateType } = params;
+
+  return `Generate a ${templateType} parent newsletter for the period from ${dateFrom.toDateString()} to ${dateTo.toDateString()}.
+
+Tone: ${tone}
+Focus areas: ${focusAreas.join(', ') || 'General classroom activities'}
+
+Please create 3-4 sections with both English and French content:
+1. Welcome/Introduction
+2. Learning Highlights (based on recent activities)
+3. Upcoming Events (if applicable)
+4. Closing/Looking Forward
+
+Format the response as structured sections that can be easily parsed. Each section should have:
+- A clear title in both English and French
+- Content in both English and French
+- Appropriate tone and educational focus
+
+Keep the content engaging, informative, and appropriate for elementary school parents.`;
+}
+
+/**
+ * Parse AI-generated content into newsletter sections
+ */
+function parseAINewsletterContent(content: string): NewsletterSection[] {
+  // Simple parsing - in practice, you'd want more sophisticated parsing
+  const sections: NewsletterSection[] = [];
+  const lines = content.split('\n').filter(line => line.trim());
+
+  let currentSection: Partial<NewsletterSection> | null = null;
+  let order = 0;
+
+  for (const line of lines) {
+    if (line.startsWith('#') || line.includes('Section')) {
+      // Save previous section
+      if (currentSection && currentSection.title && currentSection.content) {
+        sections.push({
+          id: `section-${order}`,
+          title: currentSection.title,
+          titleFr: currentSection.titleFr || currentSection.title,
+          content: currentSection.content,
+          contentFr: currentSection.contentFr || currentSection.content,
+          isEditable: true,
+          order,
+        });
+        order++;
+      }
+
+      // Start new section
+      currentSection = {
+        title: line.replace(/^#+\s*/, '').trim(),
+        content: '',
+      };
+    } else if (currentSection && line.trim()) {
+      currentSection.content = (currentSection.content || '') + line + '\n';
+    }
+  }
+
+  // Add final section
+  if (currentSection && currentSection.title && currentSection.content) {
+    sections.push({
+      id: `section-${order}`,
+      title: currentSection.title,
+      titleFr: currentSection.titleFr || currentSection.title,
+      content: currentSection.content,
+      contentFr: currentSection.contentFr || currentSection.content,
+      isEditable: true,
+      order,
+    });
+  }
+
+  return sections;
+}
+
+// Template content helpers
+function getWelcomeContent(tone: NewsletterTone, templateType: string): string {
+  const greetings = {
+    friendly: `Hello families! 👋\n\nI hope you're all doing well! I'm excited to share what we've been learning about in class this ${templateType === 'weekly' ? 'week' : 'month'}.`,
+    formal: `Dear Parents and Guardians,\n\nI hope this newsletter finds you well. I am pleased to share an update on your child's learning progress and classroom activities.`,
+    informative: `Classroom Update - ${templateType === 'weekly' ? 'Weekly' : 'Monthly'} Report\n\nThis newsletter provides an overview of recent learning activities and upcoming events in our classroom.`,
+  };
+
+  return greetings[tone] || greetings.friendly;
+}
+
+function getWelcomeContentFr(tone: NewsletterTone, templateType: string): string {
+  const greetings = {
+    friendly: `Bonjour les familles! 👋\n\nJ'espère que vous allez tous bien! Je suis ravi de partager ce que nous avons appris en classe cette ${templateType === 'weekly' ? 'semaine' : 'mois'}.`,
+    formal: `Chers parents et tuteurs,\n\nJ'espère que ce bulletin vous trouve en bonne santé. Je suis heureux de partager une mise à jour sur les progrès d'apprentissage de votre enfant et les activités de classe.`,
+    informative: `Mise à jour de la classe - Rapport ${templateType === 'weekly' ? 'hebdomadaire' : 'mensuel'}\n\nCe bulletin donne un aperçu des activités d'apprentissage récentes et des événements à venir dans notre classe.`,
+  };
+
+  return greetings[tone] || greetings.friendly;
+}
+
+function getLearningHighlightsContent(lessons: unknown[], focusAreas: string[]): string {
+  const defaultContent = `Our students have been engaged in exciting learning activities across various subjects. We've been focusing on building fundamental skills in literacy, numeracy, and critical thinking.
+
+Key learning areas this period:
+• Reading comprehension and vocabulary development
+• Mathematical problem-solving strategies
+• Scientific inquiry and observation
+• Creative expression through arts and writing
+
+${focusAreas.length > 0 ? `Special focus areas: ${focusAreas.join(', ')}` : ''}`;
+
+  return defaultContent;
+}
+
+function getLearningHighlightsContentFr(lessons: unknown[], focusAreas: string[]): string {
+  const defaultContent = `Nos élèves ont participé à des activités d'apprentissage passionnantes dans diverses matières. Nous nous sommes concentrés sur le développement des compétences fondamentales en littératie, numératie et pensée critique.
+
+Domaines d'apprentissage clés de cette période:
+• Compréhension de lecture et développement du vocabulaire
+• Stratégies de résolution de problèmes mathématiques
+• Enquête scientifique et observation
+• Expression créative par les arts et l'écriture
+
+${focusAreas.length > 0 ? `Domaines d'attention particulière: ${focusAreas.join(', ')}` : ''}`;
+
+  return defaultContent;
+}
+
+function getUpcomingEventsContent(): string {
+  return `Please mark your calendars for these upcoming events:
+
+• Parent-teacher conferences (dates to be announced)
+• School library visit next week
+• Art showcase preparation
+• Seasonal celebration planning
+
+More details will be shared as events approach. Thank you for your continued support!`;
+}
+
+function getUpcomingEventsContentFr(): string {
+  return `Veuillez noter ces événements à venir dans vos calendriers:
+
+• Rencontres parents-enseignants (dates à annoncer)
+• Visite de la bibliothèque scolaire la semaine prochaine
+• Préparation de l'exposition d'art
+• Planification de la célébration saisonnière
+
+Plus de détails seront partagés à l'approche des événements. Merci pour votre soutien continu!`;
+}
+
+function getClosingContent(tone: NewsletterTone): string {
+  const closings = {
+    friendly: `Thank you for being such wonderful partners in your child's learning journey! Please don't hesitate to reach out if you have any questions or concerns.\n\nWarm regards! 🌟`,
+    formal: `Thank you for your continued support of your child's education. Please feel free to contact me if you have any questions or would like to discuss your child's progress.\n\nSincerely,`,
+    informative: `For questions about your child's progress or classroom activities, please contact me during school hours or via email.\n\nNext update will be sent in one week.`,
+  };
+
+  return closings[tone] || closings.friendly;
+}
+
+function getClosingContentFr(tone: NewsletterTone): string {
+  const closings = {
+    friendly: `Merci d'être de si merveilleux partenaires dans le parcours d'apprentissage de votre enfant! N'hésitez pas à me contacter si vous avez des questions ou des préoccupations.\n\nCordialement! 🌟`,
+    formal: `Merci pour votre soutien continu à l'éducation de votre enfant. N'hésitez pas à me contacter si vous avez des questions ou souhaitez discuter des progrès de votre enfant.\n\nSincèrement,`,
+    informative: `Pour des questions sur les progrès de votre enfant ou les activités de classe, veuillez me contacter pendant les heures d'école ou par courriel.\n\nLa prochaine mise à jour sera envoyée dans une semaine.`,
+  };
+
+  return closings[tone] || closings.friendly;
+}
