@@ -198,7 +198,7 @@ export default defineConfig({
     command: process.env.CI ? 'pnpm build && pnpm preview --port 5173' : 'pnpm dev --port 5173',
     port: 5173,
     timeout: 120000,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: true,
     env: {
       // Ensure consistent data for visual tests
       NODE_ENV: 'test',
