@@ -19,8 +19,13 @@ vi.mock('react-router-dom', () => ({
 
 // Mock the useWorkflowState hook
 const mockWorkflowState = {
-  currentLevel: 'curriculum-expectations' as const,
-  completedLevels: [],
+  currentLevel: 'curriculum-expectations' as
+    | 'curriculum-expectations'
+    | 'long-range-plans'
+    | 'unit-plans'
+    | 'lesson-plans'
+    | 'daybook-entries',
+  completedLevels: [] as string[],
   progress: 0,
   canAdvance: true,
   markLevelComplete: vi.fn(),

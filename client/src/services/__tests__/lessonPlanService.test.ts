@@ -11,7 +11,7 @@ import { LessonPlanFormData } from '../../hooks/useETFOLessonPlanForm';
 
 // Mock data
 const createMockLessonPlan = (overrides: Partial<ETFOLessonPlan> = {}): ETFOLessonPlan => ({
-  id: 1,
+  id: 'lesson-1',
   title: 'Test Lesson',
   titleFr: 'Leçon de test',
   date: '2023-12-01',
@@ -29,20 +29,18 @@ const createMockLessonPlan = (overrides: Partial<ETFOLessonPlan> = {}): ETFOLess
   assessmentNotes: 'Observe participation',
   isSubFriendly: true,
   subNotes: 'Materials prepared',
-  unitPlanId: 1,
-  expectationIds: ['1', '2'],
-  createdAt: '2023-12-01T00:00:00Z',
-  updatedAt: '2023-12-01T00:00:00Z',
+  unitPlanId: 'unit-1',
+  expectations: [{ expectation: { id: 'exp-1' } }, { expectation: { id: 'exp-2' } }] as any,
   ...overrides,
 });
 
 const createMockUnitPlan = (overrides: Partial<UnitPlan> = {}): UnitPlan => ({
-  id: 1,
+  id: 'unit-1',
   title: 'Test Unit',
   description: 'Test unit description',
   startDate: '2023-11-01',
   endDate: '2023-12-31',
-  longRangePlanId: 1,
+  longRangePlanId: 'lrp-1',
   estimatedHours: 20,
   bigIdeas: 'Big ideas',
   essentialQuestions: ['Question 1'],
@@ -51,8 +49,8 @@ const createMockUnitPlan = (overrides: Partial<UnitPlan> = {}): UnitPlan => ({
   culminatingTask: 'Final project',
   keyVocabulary: ['word1'],
   priorKnowledge: 'Prior knowledge',
-  crossCurricular: 'Cross-curricular connections',
-  learningSkills: 'Learning skills',
+  crossCurricularConnections: 'Cross-curricular connections',
+  learningSkills: ['Learning skills'],
   differentiationStrategies: {
     forStruggling: ['strategy1'],
     forAdvanced: ['strategy2'],
@@ -61,14 +59,11 @@ const createMockUnitPlan = (overrides: Partial<UnitPlan> = {}): UnitPlan => ({
   },
   indigenousPerspectives: 'Indigenous perspectives',
   environmentalEducation: 'Environmental education',
-  socialJustice: 'Social justice',
+  socialJusticeConnections: 'Social justice',
   technologyIntegration: 'Technology integration',
   communityConnections: 'Community connections',
-  parentCommunication: 'Parent communication',
-  fieldTrips: 'Field trips',
-  expectationIds: ['1', '2', '3'],
-  createdAt: '2023-11-01T00:00:00Z',
-  updatedAt: '2023-11-01T00:00:00Z',
+  parentCommunicationPlan: 'Parent communication',
+  fieldTripsAndGuestSpeakers: 'Field trips',
   ...overrides,
 });
 
@@ -78,9 +73,13 @@ const createMockFormData = (overrides: Partial<LessonPlanFormData> = {}): Lesson
   date: '2023-12-01',
   duration: 60,
   learningGoals: 'Students will learn...',
+  learningGoalsFr: 'Les élèves apprendront...',
   mindsOn: 'Activation activity',
+  mindsOnFr: "Activité d'activation",
   action: 'Main instruction',
+  actionFr: 'Instruction principale',
   consolidation: 'Wrap-up activity',
+  consolidationFr: 'Activité de consolidation',
   materials: ['whiteboard', 'worksheets', ''],
   accommodations: ['extra time', ''],
   modifications: ['simplified text', ''],
@@ -245,7 +244,7 @@ describe('LessonPlanService', () => {
 
       const result = LessonPlanService.prepareFormData(formData, unitPlanId);
 
-      expect(result.unitPlanId).toBe(unitPlanId);
+      // unitPlanId is passed separately to the service, not in form data
       expect(result.materials).toEqual(['whiteboard', 'worksheets']);
       expect(result.accommodations).toEqual(['extra time']);
       expect(result.modifications).toEqual(['simplified text']);

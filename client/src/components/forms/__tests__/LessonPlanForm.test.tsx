@@ -86,7 +86,7 @@ const mockUnitExpectations = [
     description: 'demonstrate understanding of addition',
     strand: 'Number',
     subject: 'Mathematics',
-    gradeLevel: 'Grade 3',
+    grade: 3,
   },
   {
     id: 'exp-2',
@@ -94,7 +94,7 @@ const mockUnitExpectations = [
     description: 'demonstrate understanding of subtraction',
     strand: 'Number',
     subject: 'Mathematics',
-    gradeLevel: 'Grade 3',
+    grade: 3,
   },
 ];
 

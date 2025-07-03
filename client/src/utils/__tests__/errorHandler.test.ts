@@ -147,8 +147,10 @@ describe('handleApiError', () => {
       const axiosError = {
         response: {
           status: 429,
+          statusText: 'Too Many Requests',
           headers: { 'retry-after': '60' },
           data: { error: 'Too many requests' },
+          config: {} as any,
         },
         isAxiosError: true,
         name: 'AxiosError',

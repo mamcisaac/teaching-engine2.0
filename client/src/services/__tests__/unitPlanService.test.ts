@@ -11,12 +11,12 @@ import { UnitPlanFormData } from '../../hooks/useUnitPlanForm';
 
 // Mock data
 const createMockUnitPlan = (overrides: Partial<UnitPlan> = {}): UnitPlan => ({
-  id: 1,
+  id: 'unit-1',
   title: 'Test Unit',
   description: 'Test unit description',
   startDate: '2023-12-01',
   endDate: '2023-12-31',
-  longRangePlanId: 1,
+  longRangePlanId: 'lrp-1',
   estimatedHours: 20,
   bigIdeas: 'Understanding fractions is fundamental to mathematical literacy',
   essentialQuestions: ['What makes a fraction?', 'How do fractions relate to real life?'],
@@ -25,8 +25,8 @@ const createMockUnitPlan = (overrides: Partial<UnitPlan> = {}): UnitPlan => ({
   culminatingTask: 'Create a fraction cookbook',
   keyVocabulary: ['numerator', 'denominator', 'whole'],
   priorKnowledge: 'Students understand whole numbers and basic division',
-  crossCurricular: 'Connections to cooking and art',
-  learningSkills: 'Problem solving and communication',
+  crossCurricularConnections: 'Connections to cooking and art',
+  learningSkills: ['Problem solving', 'communication'],
   differentiationStrategies: {
     forStruggling: ['visual aids', 'manipulatives'],
     forAdvanced: ['complex problems', 'peer tutoring'],
@@ -35,12 +35,11 @@ const createMockUnitPlan = (overrides: Partial<UnitPlan> = {}): UnitPlan => ({
   },
   indigenousPerspectives: 'Traditional sharing practices',
   environmentalEducation: 'Reducing food waste through proper portioning',
-  socialJustice: 'Fair sharing and equity concepts',
+  socialJusticeConnections: 'Fair sharing and equity concepts',
   technologyIntegration: 'Interactive fraction games',
   communityConnections: 'Local bakery visit',
-  parentCommunication: 'Weekly progress updates',
-  fieldTrips: "Bakery and farmer's market",
-  expectationIds: ['B1.1', 'B1.2', 'B1.3'],
+  parentCommunicationPlan: 'Weekly progress updates',
+  fieldTripsAndGuestSpeakers: "Bakery and farmer's market",
   expectations: [
     { id: 'B1.1', code: 'B1.1', description: 'Represent fractions' },
     { id: 'B1.2', code: 'B1.2', description: 'Compare fractions' },
@@ -50,12 +49,13 @@ const createMockUnitPlan = (overrides: Partial<UnitPlan> = {}): UnitPlan => ({
   _count: {
     lessonPlans: 5,
     expectations: 3,
+    resources: 0,
   },
   progress: {
+    total: 5,
+    completed: 3,
     percentage: 60,
   },
-  createdAt: '2023-11-01T00:00:00Z',
-  updatedAt: '2023-11-01T00:00:00Z',
   ...overrides,
 });
 
@@ -64,7 +64,7 @@ const createMockFormData = (overrides: Partial<UnitPlanFormData> = {}): UnitPlan
   description: 'Test unit description',
   startDate: '2023-12-01',
   endDate: '2023-12-31',
-  longRangePlanId: 1,
+  longRangePlanId: 'lrp-1',
   estimatedHours: 20,
   bigIdeas: 'Understanding fractions',
   essentialQuestions: ['What makes a fraction?', '', 'How do we use fractions?'],
@@ -73,7 +73,7 @@ const createMockFormData = (overrides: Partial<UnitPlanFormData> = {}): UnitPlan
   culminatingTask: 'Fraction cookbook',
   keyVocabulary: ['numerator', 'denominator', ''],
   priorKnowledge: 'Basic division',
-  crossCurricular: 'Cooking connections',
+  crossCurricularConnections: 'Cooking connections',
   learningSkills: ['Problem solving'],
   differentiationStrategies: {
     forStruggling: ['visual aids', '', 'manipulatives'],
@@ -83,11 +83,11 @@ const createMockFormData = (overrides: Partial<UnitPlanFormData> = {}): UnitPlan
   },
   indigenousPerspectives: 'Traditional sharing',
   environmentalEducation: 'Reducing waste',
-  socialJustice: 'Fair sharing',
+  socialJusticeConnections: 'Fair sharing',
   technologyIntegration: 'Fraction games',
   communityConnections: 'Bakery visit',
-  parentCommunication: 'Weekly updates',
-  fieldTrips: 'Bakery tour',
+  parentCommunicationPlan: 'Weekly updates',
+  fieldTripsAndGuestSpeakers: 'Bakery tour',
   expectationIds: ['B1.1', 'B1.2'],
   ...overrides,
 });
