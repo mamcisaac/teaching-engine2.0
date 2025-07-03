@@ -459,6 +459,53 @@ await retry(
 - Adding test isolation improvements
 - Considering test environment optimization
 
+#### Issue #015: Extremely Low Test Coverage Percentages
+
+**Status**: Resolved  
+**Severity**: High  
+**First Reported**: 2025-07-03
+**Fixed**: 2025-07-03
+
+**Description**: Test coverage reporting extremely low percentages (0.93% statements, 0.64% branches) in CI, despite having 84 test files.
+
+**Root Cause**:
+- Jest configuration defaults to running only unit tests when no TEST_TYPE is specified
+- Only 3 unit test files exist out of 84 total test files
+- Coverage command wasn't setting TEST_TYPE environment variable
+- Most tests are integration (50) and security (13) tests, not unit tests
+
+**Test Distribution**:
+```
+Unit tests: 3 files
+Security tests: 13 files
+Integration tests: 50 files
+Other tests: 18 files
+Total: 84 test files
+```
+
+**Solution**:
+1. Updated `scripts/smart-test-runner-enhanced.js` to set TEST_TYPE='all' instead of undefined
+2. Updated `server/package.json` test:coverage script to include TEST_TYPE=all
+
+```bash
+# Before
+"test:coverage": "NODE_OPTIONS='--experimental-vm-modules' jest --coverage"
+
+# After  
+"test:coverage": "NODE_OPTIONS='--experimental-vm-modules' TEST_TYPE=all jest --coverage"
+```
+
+**Prevention Strategy**:
+- Always verify coverage includes all test types
+- Monitor coverage metrics for sudden drops
+- Document test type distribution in test documentation
+- Consider setting TEST_TYPE=all as default for coverage runs
+
+**Impact**:
+- CI/CD pipeline showing misleading coverage metrics
+- Developers unable to assess true test coverage
+- Risk of shipping untested code due to false coverage reports
+
 ## 🔒 Security Considerations
 
 ### Security Issues (Historical)

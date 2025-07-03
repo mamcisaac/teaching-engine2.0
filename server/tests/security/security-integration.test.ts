@@ -3,6 +3,7 @@ import request from 'supertest';
 import bcrypt from 'bcryptjs';
 import { app } from '../../src/index';
 import { prisma } from '../../src/prisma';
+import { resetRateLimiterState } from '../../src/middleware/rateLimiter';
 
 describe('Security Integration Tests', () => {
   beforeAll(async () => {
@@ -17,6 +18,9 @@ describe('Security Integration Tests', () => {
   });
 
   beforeEach(async () => {
+    // Reset rate limiter state to avoid test interference
+    resetRateLimiterState();
+    
     // Clean up test data before each test
     await prisma.user.deleteMany({
       where: { email: { contains: 'securitytest' } },

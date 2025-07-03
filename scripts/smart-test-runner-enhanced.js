@@ -213,7 +213,7 @@ class SmartTestRunner {
       switch (testType) {
         case 'all':
           command = 'pnpm';
-          args = ['test'];
+          args = coverage ? ['--filter', 'server', 'test:coverage'] : ['test'];
           break;
         case 'unit':
           command = 'pnpm';
@@ -241,7 +241,7 @@ class SmartTestRunner {
       if (watch) {
         args.push('--', '--watch');
       }
-      if (coverage) {
+      if (coverage && testType !== 'all') {
         args.push('--', '--coverage');
       }
       if (debug) {
@@ -257,7 +257,7 @@ class SmartTestRunner {
         ...process.env,
         NODE_ENV: 'test',
         FORCE_COLOR: '1',
-        TEST_TYPE: testType === 'all' ? undefined : testType
+        TEST_TYPE: testType === 'all' ? 'all' : testType
       };
       
       console.log(chalk.gray(`Executing: ${command} ${args.join(' ')}`));

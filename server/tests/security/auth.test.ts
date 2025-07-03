@@ -10,6 +10,7 @@ import request from 'supertest';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { getTestPrismaClient, createTestData } from '../jest.setup';
+import { resetRateLimiterState } from '../../src/middleware/rateLimiter';
 
 // Import the actual app - we need to access it through a dynamic import
 // to ensure the test database is properly set up before the app starts
@@ -42,6 +43,9 @@ expect.extend({
 });
 
 beforeEach(async () => {
+  // Reset rate limiter state to avoid test interference
+  resetRateLimiterState();
+  
   // Import the actual app
   const appModule = await import('../../src/index');
   app = appModule.app;
@@ -261,6 +265,9 @@ describe('Authentication Security Tests', () => {
     let testUserId: number;
 
     beforeEach(async () => {
+      // Reset rate limiter to avoid test interference
+      resetRateLimiterState();
+      
       // Instead of creating user directly in DB, register through API
       // This ensures the user is created in the same way the app expects
       const uniqueEmail = `test-${Date.now()}@example.com`;
