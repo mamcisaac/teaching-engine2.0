@@ -33,8 +33,6 @@ if (process.env.NODE_ENV === 'test' || process.env.JEST_WORKER_ID) {
 
 // ETFO-aligned route imports
 import curriculumImportRoutes from './routes/curriculumImport';
-import curriculumDiscoveryRoutes from './routes/curriculum-discovery';
-import discoverySchedulerRoutes from './routes/discovery-scheduler';
 // Student-related routes removed - app does not store student data
 import newsletterRoutes from './routes/newsletters';
 import curriculumExpectationRoutes from './routes/curriculum-expectations';
@@ -44,12 +42,10 @@ import etfoLessonPlanRoutes from './routes/etfo-lesson-plans';
 import daybookEntryRoutes from './routes/daybook-entries';
 import etfoProgressRoutes from './routes/etfo-progress';
 import plannerStateRoutes from './routes/planner-state';
-import workflowStateRoutes from './routes/workflow-state';
+// Workflow state routes removed - over-engineered for single-teacher use
 import aiPlanningRoutes from './routes/ai-planning';
-import activityDiscoveryRoutes from './routes/activity-discovery';
 import activityCollectionsRoutes from './routes/activity-collections';
 import aiActivityGenerationRoutes from './routes/ai-activity-generation';
-import batchProcessingRoutes from './routes/batch-processing';
 import templateRoutes from './routes/templates';
 import calendarEventRoutes from './routes/calendar-events';
 import recentPlansRoutes from './routes/recent-plans';
@@ -58,12 +54,7 @@ import subPlanRoutes from './routes/sub-plan';
 // import { authRoutes as _authRoutes } from './routes/auth';
 import authEndpoints from './routes/authEndpoints';
 import { userRoutes } from './routes/user';
-import notificationRoutes from './routes/notifications';
-import {
-  initializeServices,
-  shutdownServices,
-  getServiceHealth,
-} from './services/initializeServices';
+// Notification routes and service infrastructure removed - over-engineered for single-teacher use
 import logger from './logger.js';
 import { prisma } from './prisma';
 import { rateLimiters } from './middleware/rateLimiter';
@@ -191,9 +182,7 @@ app.use('/api/auth', authEndpoints);
 log('Mounting user routes...');
 app.use('/api/user', authenticate, rateLimiters.api as any, userRoutes(prisma));
 
-// Mount notification routes (authenticated)
-log('Mounting notification routes...');
-app.use('/api/notifications', authenticate, rateLimiters.api as any, notificationRoutes);
+// Notification routes removed - over-engineered for single-teacher use
 
 // Apply authentication and rate limiting to all API routes
 log('Mounting ETFO-aligned API routes...');
@@ -206,18 +195,7 @@ app.use(
   validateFileUpload(['application/pdf', 'text/csv']),
   curriculumImportRoutes,
 );
-app.use(
-  '/api/curriculum-discovery',
-  authenticate,
-  rateLimiters.read as any,
-  curriculumDiscoveryRoutes,
-);
-app.use(
-  '/api/discovery-scheduler',
-  authenticate,
-  rateLimiters.api as any,
-  discoverySchedulerRoutes,
-);
+// Curriculum discovery routes removed - over-engineered for single-teacher use
 
 // ETFO-aligned Planning Routes
 app.use(
@@ -234,7 +212,7 @@ app.use('/api/etfo', authenticate, rateLimiters.read as any, etfoProgressRoutes)
 
 // State Management Routes
 app.use('/api/planner', authenticate, rateLimiters.api as any, plannerStateRoutes);
-app.use('/api/workflow', authenticate, rateLimiters.api as any, workflowStateRoutes);
+// Workflow state routes removed - over-engineered for single-teacher use
 app.use('/api/ai-planning', authenticate, rateLimiters.ai as any, aiPlanningRoutes);
 
 // Template System Routes
@@ -257,7 +235,6 @@ app.get('/api/ai/status', authenticate, async (req, res) => {
 app.use('/api/planner', authenticate, plannerStateRoutes);
 
 // Activity Discovery Routes
-app.use('/api/activities', authenticate, rateLimiters.read as any, activityDiscoveryRoutes);
 app.use(
   '/api/activity-collections',
   authenticate,
@@ -267,7 +244,6 @@ app.use(
 app.use('/api/ai-activities', authenticate, rateLimiters.ai as any, aiActivityGenerationRoutes);
 
 // Batch Processing Routes
-app.use('/api/batch-processing', authenticate, rateLimiters.write as any, batchProcessingRoutes);
 
 // Sub-plan Routes
 app.use('/api/sub-plan', authenticate, rateLimiters.write as any, subPlanRoutes);
@@ -277,15 +253,7 @@ app.use('/api/batch', authenticate, rateLimiters.api as any, batchApiRoutes);
 
 // Collaboration Routes removed - focusing on single-teacher planning
 
-// Service health check endpoint (no auth required for monitoring)
-app.get('/api/health/services', async (_req, res) => {
-  try {
-    const health = await getServiceHealth();
-    res.status(health.healthy ? 200 : 503).json(health);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to get service health' });
-  }
-});
+// Service health endpoint removed - simplified for single-teacher use
 
 log('All API routes mounted successfully.');
 
@@ -325,8 +293,7 @@ async function gracefulShutdown(signal: string, server?: Server) {
       });
     }
 
-    // Shutdown services
-    await shutdownServices();
+    // Service shutdown removed - simplified for single-teacher use
 
     // Close database connections
     await prisma.$disconnect();
@@ -351,29 +318,22 @@ if (isDirectRun || isE2ETest || isDevelopment) {
   console.log('Starting server because:', { isDirectRun, isE2ETest, isDevelopment });
   let server;
 
-  // Initialize services before starting the server
-  initializeServices()
-    .then(() => {
-      server = app.listen(PORT, '0.0.0.0', () => {
-        console.log(`Server is running on port ${PORT}`);
-        console.log('Server address:', server.address());
-        log('Server started successfully');
+  // Start server directly - service initialization removed for simplicity
+  server = app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server is running on port ${PORT}`);
+    console.log('Server address:', server.address());
+    log('Server started successfully');
 
-        // Background jobs disabled - ETFO approach uses manual workflow
-      });
+    // Background jobs disabled - ETFO approach uses manual workflow
+  });
 
-      server.on('error', (err) => {
-        logger.error({ error: err }, 'Server error');
-      });
+  server.on('error', (err) => {
+    logger.error({ error: err }, 'Server error');
+  });
 
-      // Handle keep-alive timeouts
-      server.keepAliveTimeout = 65000;
-      server.headersTimeout = 66000;
-    })
-    .catch((err) => {
-      error('Failed to initialize services:', err);
-      process.exit(1);
-    });
+  // Handle keep-alive timeouts
+  server.keepAliveTimeout = 65000;
+  server.headersTimeout = 66000;
 
   // Graceful shutdown
   process.on('SIGTERM', () => gracefulShutdown('SIGTERM', server));

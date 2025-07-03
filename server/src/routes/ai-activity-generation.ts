@@ -2,11 +2,10 @@ import { Router, Request, Response } from 'express';
 import { z } from 'zod';
 import { authMiddleware } from '../middleware/auth';
 import { AIActivityGeneratorService } from '../services/aiActivityGeneratorService';
-import { ActivityDiscoveryService } from '../services/activityDiscoveryService';
+// ActivityDiscoveryService removed - over-engineered for single-teacher use
 
 const router = Router();
 const aiGenerator = new AIActivityGeneratorService();
-const activityService = new ActivityDiscoveryService();
 
 // Schema for activity generation request
 const generateActivitySchema = z.object({
@@ -80,19 +79,7 @@ router.post('/generate', authMiddleware, async (req: Request, res: Response) => 
     const params = generateActivitySchema.parse(req.body);
     let searchResults = undefined;
 
-    // If requested, perform a search first to get inspiration
-    if (params.useSearchResults && (params.searchQuery || params.lessonContext)) {
-      const searchParams = {
-        query: params.searchQuery || params.lessonContext?.title || '',
-        gradeLevel: params.lessonContext?.grade,
-        subject: params.lessonContext?.subject,
-        language: params.specificRequirements?.language || 'fr',
-        limit: 5,
-      };
-
-      const results = await activityService.search(searchParams, Number(req.user!.id));
-      searchResults = results;
-    }
+    // Activity search removed - generating activities directly from lesson context
 
     // Generate the activity
     const generatedActivity = await aiGenerator.generateActivity({
@@ -124,19 +111,7 @@ router.post('/generate-variations', authMiddleware, async (req: Request, res: Re
 
     let searchResults = undefined;
 
-    // If requested, perform a search first
-    if (params.useSearchResults && (params.searchQuery || params.lessonContext)) {
-      const searchParams = {
-        query: params.searchQuery || params.lessonContext?.title || '',
-        gradeLevel: params.lessonContext?.grade,
-        subject: params.lessonContext?.subject,
-        language: params.specificRequirements?.language || 'fr',
-        limit: 10,
-      };
-
-      const results = await activityService.search(searchParams, Number(req.user!.id));
-      searchResults = results;
-    }
+    // Activity search removed - generating variations directly from lesson context
 
     // Generate variations
     const variations = await aiGenerator.generateActivityVariations(
@@ -164,38 +139,7 @@ router.post('/generate-variations', authMiddleware, async (req: Request, res: Re
   }
 });
 
-/**
- * Enhance an existing activity
- */
-router.post('/enhance', authMiddleware, async (req: Request, res: Response) => {
-  try {
-    const params = enhanceActivitySchema.parse(req.body);
-
-    // Get the activity details
-    const activityDetails = await activityService.getActivityDetails(params.activityId);
-
-    if (!activityDetails) {
-      return res.status(404).json({
-        success: false,
-        error: 'Activity not found',
-      });
-    }
-
-    // Enhance the activity
-    const enhancements = await aiGenerator.enhanceActivity(activityDetails, params.enhancements);
-
-    res.json({
-      success: true,
-      data: enhancements,
-    });
-  } catch (error) {
-    console.error('Error enhancing activity:', error);
-    res.status(500).json({
-      success: false,
-      error: 'Failed to enhance activity',
-    });
-  }
-});
+// Activity enhancement route removed - over-engineered for single-teacher use
 
 /**
  * Save a generated activity

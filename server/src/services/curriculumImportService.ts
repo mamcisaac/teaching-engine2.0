@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import { embeddingService } from './embeddingService'; // Currently unused
-import BaseService, { ServiceDependencies } from './base/BaseService';
 import { ImportStatus } from '@teaching-engine/database';
+import { prisma } from '../prisma';
+import logger from '../logger';
 // Import pdf-parse dynamically to avoid loading test files during module initialization
 let pdf: any;
 import mammoth from 'mammoth';
@@ -15,18 +15,17 @@ export interface ImportProgress {
   errors: string[];
 }
 
-export class CurriculumImportService extends BaseService {
+export class CurriculumImportService {
   private openai: OpenAI | null = null;
 
-  constructor(dependencies?: ServiceDependencies) {
-    super('CurriculumImportService', dependencies);
+  constructor() {
     // Only initialize OpenAI if we have an API key
     const apiKey = process.env.OPENAI_API_KEY;
     if (apiKey && apiKey.trim().length > 0) {
       this.openai = new OpenAI({ apiKey });
-      this.logger.info('OpenAI client initialized successfully');
+      logger.info('OpenAI client initialized successfully');
     } else {
-      this.logger.warn('OpenAI API key not found - AI features will be disabled');
+      logger.warn('OpenAI API key not found - AI features will be disabled');
       this.openai = null;
     }
   }
@@ -36,7 +35,7 @@ export class CurriculumImportService extends BaseService {
    */
   async confirmImport(importId: string): Promise<{ created: number }> {
     try {
-      const importRecord = await this.prisma.curriculumImport.findUnique({
+      const importRecord = await prisma.curriculumImport.findUnique({
         where: { id: importId },
       });
 
@@ -59,12 +58,12 @@ export class CurriculumImportService extends BaseService {
         for (const expectation of subject.expectations) {
           try {
             // Check if expectation already exists
-            const existing = await this.prisma.curriculumExpectation.findUnique({
+            const existing = await prisma.curriculumExpectation.findUnique({
               where: { code: expectation.code },
             });
 
             if (!existing) {
-              await this.prisma.curriculumExpectation.create({
+              await prisma.curriculumExpectation.create({
                 data: {
                   code: expectation.code,
                   description: expectation.description,
@@ -78,7 +77,7 @@ export class CurriculumImportService extends BaseService {
               createdCount++;
             }
           } catch (error) {
-            this.logger.warn(
+            logger.warn(
               { error, code: expectation.code },
               'Failed to create expectation, skipping',
             );
@@ -90,14 +89,14 @@ export class CurriculumImportService extends BaseService {
       await this.updateImportStatus(importId, ImportStatus.COMPLETED);
       await this.setCompletionTime(importId);
 
-      this.logger.info(
+      logger.info(
         { importId, created: createdCount },
         'Import confirmed and expectations created',
       );
 
       return { created: createdCount };
     } catch (error) {
-      this.logger.error({ error, importId }, 'Failed to confirm import');
+      logger.error({ error, importId }, 'Failed to confirm import');
       throw error;
     }
   }
@@ -114,7 +113,7 @@ export class CurriculumImportService extends BaseService {
     metadata?: Record<string, unknown>,
   ): Promise<string> {
     try {
-      const curriculumImport = await this.prisma.curriculumImport.create({
+      const curriculumImport = await prisma.curriculumImport.create({
         data: {
           userId,
           grade,
@@ -126,14 +125,14 @@ export class CurriculumImportService extends BaseService {
         },
       });
 
-      this.logger.info(
+      logger.info(
         { importId: curriculumImport.id, userId, grade, subject, sourceFormat },
         'Started curriculum import session',
       );
 
       return curriculumImport.id;
     } catch (error) {
-      this.logger.error({ error, userId, grade, subject }, 'Failed to start curriculum import');
+      logger.error({ error, userId, grade, subject }, 'Failed to start curriculum import');
       throw new Error('Failed to start import session');
     }
   }
@@ -282,7 +281,7 @@ export class CurriculumImportService extends BaseService {
       // Process the rows
       for (const columns of dataRows) {
         if (columns.length < Math.max(codeIndex, descriptionIndex) + 1) {
-          this.logger.warn({ columns, columnCount: columns.length }, 'Skipping invalid CSV line');
+          logger.warn({ columns, columnCount: columns.length }, 'Skipping invalid CSV line');
           continue;
         }
 
@@ -315,7 +314,7 @@ export class CurriculumImportService extends BaseService {
         if (expectation.code && expectation.description) {
           expectations.push(expectation);
         } else {
-          this.logger.warn(
+          logger.warn(
             { expectation },
             'Skipping expectation with missing code or description',
           );
@@ -325,7 +324,7 @@ export class CurriculumImportService extends BaseService {
       return expectations;
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      this.logger.error({ error, errorMessage }, 'Failed to parse CSV content');
+      logger.error({ error, errorMessage }, 'Failed to parse CSV content');
       throw new Error(`CSV parsing failed: ${errorMessage}`);
     }
   }
@@ -344,7 +343,7 @@ export class CurriculumImportService extends BaseService {
     }>
   > {
     try {
-      this.logger.info('Starting PDF parsing');
+      logger.info('Starting PDF parsing');
 
       // Lazy load pdf-parse to avoid initialization issues
       if (!pdf) {
@@ -363,7 +362,7 @@ export class CurriculumImportService extends BaseService {
         throw new Error('PDF content is too short to contain curriculum expectations');
       }
 
-      this.logger.info(
+      logger.info(
         {
           textLength: text.length,
           firstChars: text.substring(0, 100),
@@ -374,10 +373,10 @@ export class CurriculumImportService extends BaseService {
       // Use AI to parse the curriculum text
       const expectations = await this.parseTextWithAI(text);
 
-      this.logger.info(`Parsed ${expectations.length} expectations from PDF`);
+      logger.info(`Parsed ${expectations.length} expectations from PDF`);
       return expectations;
     } catch (error) {
-      this.logger.error({ error }, 'Failed to parse PDF');
+      logger.error({ error }, 'Failed to parse PDF');
       throw new Error(
         `PDF parsing failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
       );
@@ -398,7 +397,7 @@ export class CurriculumImportService extends BaseService {
     }>
   > {
     try {
-      this.logger.info('Starting DOCX parsing');
+      logger.info('Starting DOCX parsing');
 
       // Extract text from DOCX
       const result = await mammoth.extractRawText({ buffer: fileBuffer });
@@ -412,15 +411,15 @@ export class CurriculumImportService extends BaseService {
         throw new Error('DOCX content is too short to contain curriculum expectations');
       }
 
-      this.logger.info(`Extracted ${text.length} characters from DOCX`);
+      logger.info(`Extracted ${text.length} characters from DOCX`);
 
       // Use AI to parse the curriculum text
       const expectations = await this.parseTextWithAI(text);
 
-      this.logger.info(`Parsed ${expectations.length} expectations from DOCX`);
+      logger.info(`Parsed ${expectations.length} expectations from DOCX`);
       return expectations;
     } catch (error) {
-      this.logger.error({ error }, 'Failed to parse DOCX');
+      logger.error({ error }, 'Failed to parse DOCX');
       throw new Error(
         `DOCX parsing failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
       );
@@ -432,7 +431,7 @@ export class CurriculumImportService extends BaseService {
    */
   async getImportProgress(importId: string): Promise<ImportProgress | null> {
     try {
-      const importRecord = await this.prisma.curriculumImport.findUnique({
+      const importRecord = await prisma.curriculumImport.findUnique({
         where: { id: importId },
       });
 
@@ -446,7 +445,7 @@ export class CurriculumImportService extends BaseService {
         errors: (importRecord.errorLog as string[]) || [],
       };
     } catch (error) {
-      this.logger.error({ error, importId }, 'Failed to get import progress');
+      logger.error({ error, importId }, 'Failed to get import progress');
       return null;
     }
   }
@@ -457,10 +456,10 @@ export class CurriculumImportService extends BaseService {
   async cancelImport(importId: string): Promise<boolean> {
     try {
       await this.updateImportStatus(importId, ImportStatus.CANCELLED);
-      this.logger.info({ importId }, 'Cancelled curriculum import');
+      logger.info({ importId }, 'Cancelled curriculum import');
       return true;
     } catch (error) {
-      this.logger.error({ error, importId }, 'Failed to cancel import');
+      logger.error({ error, importId }, 'Failed to cancel import');
       return false;
     }
   }
@@ -470,7 +469,7 @@ export class CurriculumImportService extends BaseService {
    */
   async getImportHistory(userId: number, limit: number = 20): Promise<unknown[]> {
     try {
-      const imports = await this.prisma.curriculumImport.findMany({
+      const imports = await prisma.curriculumImport.findMany({
         where: { userId },
         orderBy: { createdAt: 'desc' },
         take: limit,
@@ -492,7 +491,7 @@ export class CurriculumImportService extends BaseService {
 
       return imports;
     } catch (error) {
-      this.logger.error({ error, userId }, 'Failed to get import history');
+      logger.error({ error, userId }, 'Failed to get import history');
       return [];
     }
   }
@@ -509,28 +508,28 @@ export class CurriculumImportService extends BaseService {
       updateData.totalOutcomes = totalOutcomes;
     }
 
-    await this.prisma.curriculumImport.update({
+    await prisma.curriculumImport.update({
       where: { id: importId },
       data: updateData,
     });
   }
 
   private async updateProgress(importId: string, processedOutcomes: number): Promise<void> {
-    await this.prisma.curriculumImport.update({
+    await prisma.curriculumImport.update({
       where: { id: importId },
       data: { processedOutcomes },
     });
   }
 
   private async setCompletionTime(importId: string): Promise<void> {
-    await this.prisma.curriculumImport.update({
+    await prisma.curriculumImport.update({
       where: { id: importId },
       data: { completedAt: new Date() },
     });
   }
 
   private async logErrors(importId: string, errors: string[]): Promise<void> {
-    await this.prisma.curriculumImport.update({
+    await prisma.curriculumImport.update({
       where: { id: importId },
       data: { errorLog: errors },
     });
@@ -572,7 +571,7 @@ export class CurriculumImportService extends BaseService {
       }> = [];
 
       for (let i = 0; i < chunks.length; i++) {
-        this.logger.info(`Processing chunk ${i + 1} of ${chunks.length}`);
+        logger.info(`Processing chunk ${i + 1} of ${chunks.length}`);
 
         const languageInfo = isFrench
           ? 'French'
@@ -633,7 +632,7 @@ ${chunks[i]}
 
         const content = response.choices[0]?.message?.content;
         if (!content) {
-          this.logger.warn(`No content returned for chunk ${i + 1}`);
+          logger.warn(`No content returned for chunk ${i + 1}`);
           continue;
         }
 
@@ -655,13 +654,13 @@ ${chunks[i]}
             allExpectations.push(...expectations);
           }
         } catch (parseError) {
-          this.logger.error({ parseError, chunk: i }, 'Failed to parse AI response');
+          logger.error({ parseError, chunk: i }, 'Failed to parse AI response');
         }
       }
 
       return allExpectations;
     } catch (error) {
-      this.logger.error({ error }, 'Failed to parse text with AI');
+      logger.error({ error }, 'Failed to parse text with AI');
       throw new Error('AI parsing failed');
     }
   }
@@ -773,7 +772,7 @@ ${chunks[i]}
   async storeUploadedFile(importId: string, file: Express.Multer.File): Promise<void> {
     try {
       // Store file metadata and content
-      await this.prisma.curriculumImport.update({
+      await prisma.curriculumImport.update({
         where: { id: importId },
         data: {
           sourceFile: file.originalname,
@@ -788,9 +787,9 @@ ${chunks[i]}
         },
       });
 
-      this.logger.info(`File stored for import ${importId}: ${file.originalname}`);
+      logger.info(`File stored for import ${importId}: ${file.originalname}`);
     } catch (error) {
-      this.logger.error({ error, importId }, 'Failed to store uploaded file');
+      logger.error({ error, importId }, 'Failed to store uploaded file');
       throw error;
     }
   }
@@ -817,7 +816,7 @@ ${chunks[i]}
     errors?: string[];
   }> {
     try {
-      const importRecord = await this.prisma.curriculumImport.findUnique({
+      const importRecord = await prisma.curriculumImport.findUnique({
         where: { id: importId },
       });
 
@@ -885,7 +884,7 @@ ${chunks[i]}
       const subjects = Array.from(subjectMap.values());
 
       // Store parsed subjects in metadata for later use
-      await this.prisma.curriculumImport.update({
+      await prisma.curriculumImport.update({
         where: { id: importId },
         data: {
           metadata: {
@@ -898,14 +897,14 @@ ${chunks[i]}
       // Update status to ready for review
       await this.updateImportStatus(importId, ImportStatus.READY_FOR_REVIEW);
 
-      this.logger.info(`File parsed for import ${importId}: ${subjects.length} subjects`);
+      logger.info(`File parsed for import ${importId}: ${subjects.length} subjects`);
 
       return {
         subjects: subjects,
         errors: [],
       };
     } catch (error) {
-      this.logger.error({ error, importId }, 'Failed to parse uploaded file');
+      logger.error({ error, importId }, 'Failed to parse uploaded file');
       await this.updateImportStatus(importId, ImportStatus.FAILED);
       throw error;
     }
@@ -1051,7 +1050,7 @@ ${chunks[i]}
       }
 
       // Store parsed subjects in metadata for later use
-      await this.prisma.curriculumImport.update({
+      await prisma.curriculumImport.update({
         where: { id: sessionId },
         data: {
           metadata: {
@@ -1065,14 +1064,14 @@ ${chunks[i]}
       // Update import status
       await this.updateImportStatus(sessionId, 'READY_FOR_REVIEW');
 
-      this.logger.info(`Preset curriculum loaded: ${presetId} for user ${userId}`);
+      logger.info(`Preset curriculum loaded: ${presetId} for user ${userId}`);
 
       return {
         sessionId,
         subjects,
       };
     } catch (error) {
-      this.logger.error({ error, presetId, userId }, 'Failed to load preset curriculum');
+      logger.error({ error, presetId, userId }, 'Failed to load preset curriculum');
       throw error;
     }
   }
@@ -1088,7 +1087,7 @@ ${chunks[i]}
     subjects: string[];
   }> {
     try {
-      const importRecord = await this.prisma.curriculumImport.findUnique({
+      const importRecord = await prisma.curriculumImport.findUnique({
         where: { id: importId },
         include: {
           curriculumExpectations: true,
@@ -1110,7 +1109,7 @@ ${chunks[i]}
         subjects.push(subject.name);
 
         for (const expectation of subject.expectations) {
-          await this.prisma.curriculumExpectation.create({
+          await prisma.curriculumExpectation.create({
             data: {
               code: expectation.code,
               description: expectation.description,
@@ -1130,7 +1129,7 @@ ${chunks[i]}
       await this.setCompletionTime(importId);
 
       // Store final results in metadata
-      await this.prisma.curriculumImport.update({
+      await prisma.curriculumImport.update({
         where: { id: importId },
         data: {
           metadata: {
@@ -1144,14 +1143,14 @@ ${chunks[i]}
         },
       });
 
-      this.logger.info(`Import finalized: ${importId}, created ${totalExpectations} expectations`);
+      logger.info(`Import finalized: ${importId}, created ${totalExpectations} expectations`);
 
       return {
         totalExpectations,
         subjects,
       };
     } catch (error) {
-      this.logger.error({ error, importId }, 'Failed to finalize import');
+      logger.error({ error, importId }, 'Failed to finalize import');
       await this.updateImportStatus(importId, 'FAILED');
       throw error;
     }

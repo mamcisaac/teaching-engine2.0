@@ -83,33 +83,8 @@ export class UserBuilder extends BaseBuilder<any> {
 }
 
 /**
- * Student Builder
+ * Student Builder removed - app does not store student data
  */
-export class StudentBuilder extends BaseBuilder<any> {
-  withName(firstName: string, lastName: string): this {
-    this.data.firstName = firstName;
-    this.data.lastName = lastName;
-    return this;
-  }
-
-  inGrade(grade: number): this {
-    this.data.grade = grade;
-    return this;
-  }
-
-  forTeacher(userId: number): this {
-    this.data.userId = userId;
-    return this;
-  }
-
-  build(): Partial<any> {
-    return modernFactories.student.build(this.data);
-  }
-
-  async create(): Promise<any> {
-    return await modernFactories.student.create(this.data);
-  }
-}
 
 /**
  * Curriculum Expectation Builder
@@ -539,18 +514,18 @@ export class DaybookEntryBuilder extends BaseBuilder<any> {
     return this;
   }
 
-  studentEngagement(engagement: string): this {
-    this.data.studentEngagement = engagement;
+  classEngagement(engagement: string): this {
+    this.data.classEngagement = engagement;
     return this;
   }
 
-  studentChallenges(challenges: string): this {
-    this.data.studentChallenges = challenges;
+  commonChallenges(challenges: string): this {
+    this.data.commonChallenges = challenges;
     return this;
   }
 
-  studentSuccesses(successes: string): this {
-    this.data.studentSuccesses = successes;
+  notableAchievements(successes: string): this {
+    this.data.notableAchievements = successes;
     return this;
   }
 
@@ -821,7 +796,7 @@ export class ScenarioBuilder {
           .whatWorked('Students engaged with manipulatives')
           .whatDidntWork('Some students needed more scaffolding')
           .nextSteps('Provide additional practice opportunities')
-          .studentEngagement('High - active participation')
+          .classEngagement('High - active participation')
           .withRating(4)
           .wouldReuse()
           .create();
@@ -855,7 +830,7 @@ export class ScenarioBuilder {
  */
 export const builders = {
   user: () => new UserBuilder(),
-  student: () => new StudentBuilder(),
+  // student builder removed - app does not store student data
   curriculumExpectation: () => new CurriculumExpectationBuilder(),
   longRangePlan: () => new LongRangePlanBuilder(),
   unitPlan: () => new UnitPlanBuilder(),

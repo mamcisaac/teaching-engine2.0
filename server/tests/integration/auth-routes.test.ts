@@ -43,7 +43,19 @@ describe('Authentication Routes', () => {
 
   beforeEach(async () => {
     // Clean up database before each test
-    await cleanIntegrationTestData();
+    try {
+      await cleanIntegrationTestData();
+      console.log('Database cleaned successfully before test');
+    } catch (error) {
+      console.error('Failed to clean database before test:', error);
+      // Try a more aggressive cleanup
+      try {
+        await prisma.user.deleteMany({});
+        console.log('Aggressive user cleanup succeeded');
+      } catch (cleanupError) {
+        console.error('Aggressive cleanup also failed:', cleanupError);
+      }
+    }
   });
 
   afterEach(() => {
@@ -55,8 +67,11 @@ describe('Authentication Routes', () => {
     console.log('Creating test user with hashed password:', hashedPassword.substring(0, 10) + '...');
     
     try {
+      // Generate unique email for each test to avoid conflicts
+      const uniqueEmail = `test-${Date.now()}-${Math.random().toString(36).substr(2, 9)}@example.com`;
+      
       console.log('About to create user with data:', {
-        email: validUser.email.toLowerCase(),
+        email: uniqueEmail,
         name: validUser.name,
         role: 'teacher',
         preferredLanguage: 'en',
@@ -77,7 +92,7 @@ describe('Authentication Routes', () => {
       
       const user = await prisma.user.create({
         data: {
-          email: validUser.email.toLowerCase(), // Match simple-test-app behavior
+          email: uniqueEmail, // Use unique email to avoid conflicts
           password: hashedPassword,
           name: validUser.name,
           role: 'teacher',
@@ -98,7 +113,8 @@ describe('Authentication Routes', () => {
       const isValid = await bcrypt.compare(validUser.password, user.password);
       console.log('Password verification check:', isValid);
       
-      return user;
+      // Return user with the test email added for tests that need to know the actual email
+      return { ...user, testEmail: uniqueEmail };
     } catch (error) {
       console.error('Failed to create user:', error);
       throw error;
@@ -107,10 +123,10 @@ describe('Authentication Routes', () => {
 
   describe('POST /api/login', () => {
     it('should successfully login with valid credentials', async () => {
-      await createTestUser();
+      const user = await createTestUser();
 
       const res = await request(app).post('/api/login').send({
-        email: validUser.email,
+        email: user.email,
         password: validUser.password,
       });
 
@@ -122,7 +138,7 @@ describe('Authentication Routes', () => {
       expect(res.body).toHaveProperty('user');
       expect(res.body).toHaveProperty('accessToken');
       expect(res.body.user).toMatchObject({
-        email: validUser.email,
+        email: user.email,
         name: validUser.name,
         role: 'teacher',
       });
@@ -130,27 +146,27 @@ describe('Authentication Routes', () => {
 
       // Verify JWT token
       const decoded = jwt.verify(res.body.accessToken, process.env.JWT_SECRET!) as any;
-      expect(decoded.email).toBe(validUser.email);
+      expect(decoded.email).toBe(user.email);
       expect(decoded.userId).toBeDefined();
     });
 
     it('should handle case-insensitive email login', async () => {
-      await createTestUser();
+      const user = await createTestUser();
 
       const res = await request(app).post('/api/login').send({
-        email: 'TEST@EXAMPLE.COM',
+        email: user.email.toUpperCase(),
         password: validUser.password,
       });
 
       expect(res.status).toBe(200);
-      expect(res.body.user.email).toBe(validUser.email);
+      expect(res.body.user.email).toBe(user.email);
     });
 
     it('should return 401 with incorrect password', async () => {
-      await createTestUser();
+      const user = await createTestUser();
 
       const res = await request(app).post('/api/login').send({
-        email: validUser.email,
+        email: user.email,
         password: 'WrongPassword123!',
       });
 
@@ -219,15 +235,15 @@ describe('Authentication Routes', () => {
     });
 
     it('should trim email whitespace', async () => {
-      await createTestUser();
+      const user = await createTestUser();
 
       const res = await request(app).post('/api/login').send({
-        email: '  test@example.com  ',
+        email: `  ${user.email}  `,
         password: validUser.password,
       });
 
       expect(res.status).toBe(200);
-      expect(res.body.user.email).toBe(validUser.email);
+      expect(res.body.user.email).toBe(user.email);
     });
 
     it('should handle very long email by truncating', async () => {
@@ -300,10 +316,10 @@ describe('Authentication Routes', () => {
     });
 
     it('should return 409 if email already exists', async () => {
-      await createTestUser();
+      const user = await createTestUser();
 
       const res = await request(app).post('/api/register').send({
-        email: validUser.email,
+        email: user.email,
         password: 'AnotherPassword123!',
         name: 'Another User',
       });
@@ -380,7 +396,7 @@ describe('Authentication Routes', () => {
 
       // Login to get token
       const loginRes = await request(app).post('/api/login').send({
-        email: validUser.email,
+        email: user.email,
         password: validUser.password,
       });
 
@@ -388,6 +404,11 @@ describe('Authentication Routes', () => {
 
       const res = await request(app).get('/api/auth/me').set('Authorization', `Bearer ${token}`);
 
+      if (res.status !== 200) {
+        console.log('Auth /me failed:', res.status, res.body);
+        console.log('Token:', token ? token.substring(0, 30) + '...' : 'undefined');
+        console.log('Login response:', loginRes.status, loginRes.body);
+      }
       expect(res.status).toBe(200);
       expect(res.body).toMatchObject({
         id: user.id,
@@ -403,7 +424,7 @@ describe('Authentication Routes', () => {
 
       // Login to get token
       const loginRes = await request(app).post('/api/login').send({
-        email: validUser.email,
+        email: user.email,
         password: validUser.password,
       });
 

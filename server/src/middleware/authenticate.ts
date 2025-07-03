@@ -176,61 +176,18 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
     }
 
     if (!token) {
-      const isAuthTestEndpoint =
-        req.path === '/me' ||
-        req.path === '/check' ||
-        req.originalUrl === '/api/auth/me' ||
-        req.originalUrl === '/api/auth/check' ||
-        req.url === '/api/auth/me' ||
-        req.url === '/api/auth/check' ||
-        req.path.endsWith('/me') ||
-        req.path.endsWith('/check') ||
-        req.originalUrl?.endsWith('/me') ||
-        req.originalUrl?.endsWith('/check') ||
-        (req.baseUrl === '/api/auth' && (req.path === '/me' || req.path === '/check')) ||
-        req.baseUrl + req.path === '/api/auth/me' ||
-        req.baseUrl + req.path === '/api/auth/check';
-      
-      if (isAuthTestEndpoint) {
-        res.status(401).json({
-          error: 'Authentication required',
-        });
-      } else {
-        res.status(401).json({
-          error: 'Unauthorized',
-          message: 'Authentication required',
-        });
-      }
+      // For consistency, always return the same error format
+      res.status(401).json({
+        error: 'Authentication required',
+      });
       return;
     }
 
     // Check for extremely long tokens (potential security issue)
     if (token.length > 1000) {
-      const isAuthTestEndpoint =
-        req.path === '/me' ||
-        req.path === '/check' ||
-        req.originalUrl === '/api/auth/me' ||
-        req.originalUrl === '/api/auth/check' ||
-        req.url === '/api/auth/me' ||
-        req.url === '/api/auth/check' ||
-        req.path.endsWith('/me') ||
-        req.path.endsWith('/check') ||
-        req.originalUrl?.endsWith('/me') ||
-        req.originalUrl?.endsWith('/check') ||
-        (req.baseUrl === '/api/auth' && (req.path === '/me' || req.path === '/check')) ||
-        req.baseUrl + req.path === '/api/auth/me' ||
-        req.baseUrl + req.path === '/api/auth/check';
-        
-      if (isAuthTestEndpoint) {
-        res.status(401).json({
-          error: 'Invalid token format',
-        });
-      } else {
-        res.status(401).json({
-          error: 'Unauthorized',
-          message: 'Invalid token format',
-        });
-      }
+      res.status(401).json({
+        error: 'Invalid token format',
+      });
       return;
     }
 
@@ -249,48 +206,29 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
 
     // Handle specific JWT errors
     if ('error' in decoded) {
-      const isAuthTestEndpoint =
-        req.path === '/me' ||
-        req.path === '/check' ||
-        req.originalUrl === '/api/auth/me' ||
-        req.originalUrl === '/api/auth/check' ||
-        req.url === '/api/auth/me' ||
-        req.url === '/api/auth/check' ||
-        req.path.endsWith('/me') ||
-        req.path.endsWith('/check') ||
-        req.originalUrl?.endsWith('/me') ||
-        req.originalUrl?.endsWith('/check') ||
-        (req.baseUrl === '/api/auth' && (req.path === '/me' || req.path === '/check')) ||
-        req.baseUrl + req.path === '/api/auth/me' ||
-        req.baseUrl + req.path === '/api/auth/check';
-      
       if (process.env.NODE_ENV === 'test') {
         logger.debug({
           decodedError: decoded.error,
-          isAuthTestEndpoint,
           path: req.path,
           originalUrl: req.originalUrl,
           baseUrl: req.baseUrl
         }, 'JWT error detected');
       }
       
-      if (isAuthTestEndpoint) {
-        if (decoded.error === 'expired') {
-          res.status(403).json({
-            error: 'Token expired',
-          });
-          return;
-        } else if (decoded.error === 'invalid') {
-          res.status(403).json({
-            error: 'Invalid token',
-          });
-          return;
-        }
+      if (decoded.error === 'expired') {
+        res.status(403).json({
+          error: 'Token expired',
+        });
+        return;
+      } else if (decoded.error === 'invalid') {
+        res.status(403).json({
+          error: 'Invalid token',
+        });
+        return;
       }
       
       res.status(401).json({
-        error: 'Unauthorized',
-        message: 'Authentication required',
+        error: 'Authentication required',
       });
       return;
     }
@@ -343,8 +281,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
           });
         } else {
           res.status(401).json({
-            error: 'Unauthorized',
-            message: 'Invalid user ID in token',
+            error: 'Authentication required',
           });
         }
         return;
@@ -401,8 +338,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
           });
         } else {
           res.status(401).json({
-            error: 'Unauthorized',
-            message: 'Authentication required',
+            error: 'Authentication required',
           });
         }
         return;
@@ -448,8 +384,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
       'Authentication middleware error',
     );
     res.status(500).json({
-      error: 'Internal Server Error',
-      message: 'Authentication failed',
+      error: 'Server configuration error',
     });
   }
 }

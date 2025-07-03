@@ -198,19 +198,7 @@ test.describe('Messenger Agent E2E Tests', () => {
 
         const reportResult = await page.evaluate(async () => {
           try {
-            // First get students
-            const studentsResponse = await fetch('/api/students', {
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
-              },
-            });
-            const students = await studentsResponse.json();
-
-            if (students.length === 0) {
-              return { error: 'No students found' };
-            }
-
-            // Generate a progress report
+            // Test general classroom report generation (no individual student data)
             const reportResponse = await fetch('/api/reports/generate', {
               method: 'POST',
               headers: {
@@ -218,8 +206,7 @@ test.describe('Messenger Agent E2E Tests', () => {
                 Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
               },
               body: JSON.stringify({
-                studentId: students[0].id,
-                reportType: 'progress',
+                reportType: 'classroom-summary',
                 startDate: '2024-01-01T00:00:00Z',
                 endDate: '2024-01-31T23:59:59Z',
                 language: 'en',
@@ -231,7 +218,7 @@ test.describe('Messenger Agent E2E Tests', () => {
             const report = await reportResponse.json();
             return {
               status: reportResponse.status,
-              hasStudentName: !!report.recipientName,
+              hasTitle: !!report.title,
               hasSections: Array.isArray(report.sections),
               hasComments: !!report.overallComments,
             };
@@ -240,64 +227,9 @@ test.describe('Messenger Agent E2E Tests', () => {
           }
         });
 
-        if (reportResult.error && reportResult.error === 'No students found') {
-          // Create a test student first
-          await page.evaluate(async () => {
-            await fetch('/api/students', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
-              },
-              body: JSON.stringify({
-                firstName: 'Test',
-                lastName: 'Student',
-                grade: 5,
-              }),
-            });
-          });
-
-          // Retry report generation
-          const retryResult = await page.evaluate(async () => {
-            try {
-              const studentsResponse = await fetch('/api/students', {
-                headers: {
-                  Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
-                },
-              });
-              const students = await studentsResponse.json();
-
-              const reportResponse = await fetch('/api/reports/generate', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
-                },
-                body: JSON.stringify({
-                  studentId: students[0].id,
-                  reportType: 'progress',
-                  startDate: '2024-01-01T00:00:00Z',
-                  endDate: '2024-01-31T23:59:59Z',
-                  language: 'en',
-                }),
-              });
-
-              const report = await reportResponse.json();
-              return {
-                status: reportResponse.status,
-                hasStudentName: !!report.recipientName,
-                hasSections: Array.isArray(report.sections),
-              };
-            } catch (error) {
-              return { error: error.message };
-            }
-          });
-
-          expect(retryResult.status).toBe(200);
-          expect(retryResult.hasStudentName).toBe(true);
-        } else {
+        if (reportResult.status) {
           expect(reportResult.status).toBe(200);
-          expect(reportResult.hasStudentName).toBe(true);
+          expect(reportResult.hasTitle).toBe(true);
         }
 
         return;
@@ -342,20 +274,9 @@ test.describe('Messenger Agent E2E Tests', () => {
     test('should support different report languages', async ({ page }) => {
       await page.goto('/');
 
-      // Test French report generation
+      // Test French report generation for classroom summaries
       const frenchReportResult = await page.evaluate(async () => {
         try {
-          const studentsResponse = await fetch('/api/students', {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
-            },
-          });
-          const students = await studentsResponse.json();
-
-          if (students.length === 0) {
-            return { error: 'No students found' };
-          }
-
           const reportResponse = await fetch('/api/reports/generate', {
             method: 'POST',
             headers: {
@@ -363,8 +284,7 @@ test.describe('Messenger Agent E2E Tests', () => {
               Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
             },
             body: JSON.stringify({
-              studentId: students[0].id,
-              reportType: 'narrative',
+              reportType: 'classroom-narrative',
               startDate: '2024-01-01T00:00:00Z',
               endDate: '2024-01-31T23:59:59Z',
               language: 'fr',
@@ -424,50 +344,28 @@ test.describe('Messenger Agent E2E Tests', () => {
         // Test contacts via API
         await page.goto('/');
 
-        // Create a test student first
-        const studentResult = await page.evaluate(async () => {
+        // Test general contact management via API (no student associations)
+        const contactResult = await page.evaluate(async () => {
           try {
-            const response = await fetch('/api/students', {
+            const response = await fetch('/api/contacts', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
               },
               body: JSON.stringify({
-                firstName: 'Contact',
-                lastName: 'Test',
-                grade: 3,
+                name: 'Test Community Contact',
+                email: 'test.contact@example.com',
+                type: 'community',
               }),
             });
-            const student = await response.json();
-            return { status: response.status, studentId: student.id };
+            return { status: response.status, ok: response.ok };
           } catch (error) {
             return { error: error.message };
           }
         });
 
-        if (studentResult.status === 201) {
-          // Test adding parent contact via API
-          const contactResult = await page.evaluate(async (studentId) => {
-            try {
-              const response = await fetch('/api/parent-contacts', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
-                },
-                body: JSON.stringify({
-                  name: 'Test Parent',
-                  email: 'test.parent@example.com',
-                  studentId: studentId,
-                }),
-              });
-              return { status: response.status, ok: response.ok };
-            } catch (error) {
-              return { error: error.message };
-            }
-          }, studentResult.studentId);
-
+        if (contactResult.status) {
           expect(contactResult.status).toBe(201);
         }
 
@@ -482,8 +380,8 @@ test.describe('Messenger Agent E2E Tests', () => {
         await addButton.click();
 
         const contactData = {
-          name: 'E2E Test Parent',
-          email: 'e2e.parent@example.com',
+          name: 'E2E Test Contact',
+          email: 'e2e.contact@example.com',
         };
 
         // Fill contact form
@@ -493,12 +391,12 @@ test.describe('Messenger Agent E2E Tests', () => {
           contactData.email,
         );
 
-        // Select student if dropdown exists
-        const studentSelect = page.locator(
-          'select[name*="student"], select[placeholder*="student"]',
+        // Select contact type if dropdown exists
+        const typeSelect = page.locator(
+          'select[name*="type"], select[placeholder*="type"]',
         );
-        if (await studentSelect.isVisible({ timeout: 1000 })) {
-          await studentSelect.selectOption({ index: 1 }); // Select first student
+        if (await typeSelect.isVisible({ timeout: 1000 })) {
+          await typeSelect.selectOption('community'); // Select community contact type
         }
 
         // Submit form
@@ -531,16 +429,16 @@ test.describe('Messenger Agent E2E Tests', () => {
             body: JSON.stringify({
               recipients: [
                 {
-                  email: 'test.parent@example.com',
-                  name: 'Test Parent',
-                  recipientName: 'Test Student',
+                  email: 'test.contact@example.com',
+                  name: 'Test Contact',
+                  recipientName: 'Community Member',
                 },
               ],
               subject: 'E2E Test Newsletter',
               htmlContent: '<h1>Test Newsletter</h1><p>This is a test email for {recipientName}</p>',
               textContent: 'Test Newsletter\n\nThis is a test email for {recipientName}',
               templateVariables: {
-                recipientName: 'Test Student',
+                recipientName: 'Community Member',
               },
             }),
           });
@@ -617,22 +515,21 @@ test.describe('Messenger Agent E2E Tests', () => {
       }
     });
 
-    test('should integrate with student management for contact info', async ({ page }) => {
-      await page.goto('/students');
+    test('should integrate with general contact management', async ({ page }) => {
+      await page.goto('/contacts');
 
-      // Look for student list or management
-      await waitForElement(page, 'text=Students', { timeout: 5000 });
+      // Look for contact list or management
+      await waitForElement(page, 'text=Contact', { timeout: 5000 });
 
-      // Check if we can access student details with contact info
-      const studentCards = page.locator('[class*="student"], [class*="card"]');
-      const firstStudent = studentCards.first();
+      // Check if we can access contact management features
+      const contactCards = page.locator('[class*="contact"], [class*="card"]');
+      const firstContact = contactCards.first();
 
-      if (await firstStudent.isVisible({ timeout: 2000 })) {
-        await firstStudent.click();
+      if (await firstContact.isVisible({ timeout: 2000 })) {
+        await firstContact.click();
 
-        // Look for parent contact information
+        // Look for contact information
         const hasContactInfo = await Promise.race([
-          page.locator('text=Parent').isVisible({ timeout: 2000 }),
           page.locator('text=Contact').isVisible({ timeout: 2000 }),
           page.locator('text=Email').isVisible({ timeout: 2000 }),
           page.locator('input[type="email"]').isVisible({ timeout: 2000 }),
@@ -688,7 +585,7 @@ test.describe('Messenger Agent E2E Tests', () => {
               recipients: [
                 {
                   email: 'invalid-email-format',
-                  name: 'Test Parent',
+                  name: 'Test Contact',
                 },
               ],
               subject: 'Test',
@@ -715,8 +612,8 @@ test.describe('Messenger Agent E2E Tests', () => {
             .fill(null)
             .map((_, i) => ({
               email: `test${i}@example.com`,
-              name: `Test Parent ${i}`,
-              recipientName: `Test Student ${i}`,
+              name: `Test Contact ${i}`,
+              recipientName: `Community Member ${i}`,
             }));
 
           const startTime = Date.now();
@@ -805,7 +702,7 @@ test.describe('Messenger Agent E2E Tests', () => {
               Authorization: `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`,
             },
             body: JSON.stringify({
-              recipients: [{ email: 'test@example.com', name: 'Test Parent' }],
+              recipients: [{ email: 'test@example.com', name: 'Test Contact' }],
               subject: 'Feedback Test',
               htmlContent: 'Test content',
             }),

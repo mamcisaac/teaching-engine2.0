@@ -186,7 +186,6 @@ export class TemplateService {
         id: templateId,
         OR: [
           { isSystem: true },
-          { isPublic: true },
           { createdByUserId: userId },
         ],
       },
@@ -247,7 +246,6 @@ export class TemplateService {
         createdByUserId: userId,
         tags,
         keywords,
-        isPublic: false, // Always private for single-teacher use
         content: content as Prisma.JsonValue,
         unitStructure: unitStructure as Prisma.JsonValue || null,
         lessonStructure: lessonStructure as Prisma.JsonValue || null,
@@ -381,7 +379,6 @@ export class TemplateService {
         keywords: original.keywords,
         createdByUserId: userId,
         isSystem: false,
-        isPublic: false, // Always private for single-teacher use
         content: original.content as Prisma.JsonValue,
         estimatedWeeks: original.estimatedWeeks,
         unitStructure: original.unitStructure as Prisma.JsonValue,
@@ -416,7 +413,6 @@ export class TemplateService {
         id: templateId,
         OR: [
           { isSystem: true },
-          { isPublic: true },
           { createdByUserId: userId },
         ],
       },
@@ -470,7 +466,6 @@ export class TemplateService {
         id: templateId,
         OR: [
           { isSystem: true },
-          { isPublic: true },
           { createdByUserId: userId },
         ],
       },
@@ -527,7 +522,6 @@ export class TemplateService {
         where: {
           OR: [
             { isSystem: true },
-            { isPublic: true },
             { createdByUserId: userId },
           ],
           subject: { not: null },
@@ -563,7 +557,6 @@ export class TemplateService {
         where: {
           OR: [
             { isSystem: true },
-            { isPublic: true },
             { createdByUserId: userId },
           ],
         },
@@ -614,7 +607,6 @@ export class TemplateService {
         gradeMin: 1,
         gradeMax: 1,
         isSystem: true,
-        isPublic: true,
         estimatedWeeks: 2,
         tags: ['number-sense', 'hands-on', 'primary', 'counting', 'place-value'],
         keywords: ['numbers', 'counting', 'math', 'grade-1', 'manipulatives'],
@@ -716,7 +708,6 @@ export class TemplateService {
         gradeMin: 3,
         gradeMax: 3,
         isSystem: true,
-        isPublic: true,
         estimatedWeeks: 1,
         tags: ['poetry', 'writing', 'language-arts', 'creative', 'performance'],
         keywords: ['poems', 'rhyme', 'rhythm', 'writing', 'language'],
@@ -771,7 +762,6 @@ export class TemplateService {
         gradeMin: 5,
         gradeMax: 5,
         isSystem: true,
-        isPublic: true,
         estimatedWeeks: 3,
         tags: ['simple-machines', 'science', 'inquiry', 'STEM', 'investigation'],
         keywords: ['machines', 'lever', 'pulley', 'wheel', 'inclined-plane', 'wedge', 'screw'],
@@ -826,7 +816,6 @@ export class TemplateService {
         gradeMin: 1,
         gradeMax: 3,
         isSystem: true,
-        isPublic: true,
         estimatedWeeks: 4,
         tags: ['community-helpers', 'cross-curricular', 'integrated', 'project-based', 'social-studies'],
         keywords: ['community', 'helpers', 'jobs', 'careers', 'integrated-learning'],
@@ -848,7 +837,6 @@ export class TemplateService {
         gradeMin: 2,
         gradeMax: 6,
         isSystem: true,
-        isPublic: true,
         estimatedMinutes: 60,
         tags: ['problem-solving', 'mathematics', 'three-part-lesson', 'strategies', 'reasoning'],
         keywords: ['problem-solving', 'math', 'strategies', 'thinking', 'reasoning'],

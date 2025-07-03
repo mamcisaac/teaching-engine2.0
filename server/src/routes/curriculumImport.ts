@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import multer from 'multer';
 import { curriculumImportService } from '../services/curriculumImportService';
-import { clusteringService } from '../services/clusteringService';
+// Clustering service removed - over-engineered for single-teacher use
 import logger from '../logger';
 
 // Use global Express.Request type extended with user property
@@ -306,8 +306,6 @@ router.delete('/:id', async (req: Request, res: Response) => {
   }
 });
 
-// Phase 5 Routes - Additional clustering functionality
-
 // Start a new curriculum import session
 router.post('/start', async (req: Request, res: Response) => {
   try {
@@ -413,68 +411,6 @@ router.post('/:id', async (req: Request, res: Response) => {
   }
 });
 
-// Clustering Routes (Phase 5)
-
-// Trigger clustering for an import
-router.post('/:importId/cluster', async (req: Request, res: Response) => {
-  try {
-    const { importId } = req.params;
-    const { options = {} } = req.body;
-
-    const clusters = await clusteringService.clusterExpectations(importId, options);
-
-    res.json({
-      message: 'Clustering completed successfully',
-      clusters,
-    });
-  } catch (error) {
-    logger.error({ error }, 'Failed to cluster expectations');
-    res.status(500).json({ error: 'Failed to cluster expectations' });
-  }
-});
-
-// Re-cluster with different parameters
-router.post('/:importId/recluster', async (req: Request, res: Response) => {
-  try {
-    const { importId } = req.params;
-    const { options = {} } = req.body;
-
-    const clusters = await clusteringService.reclusterExpectations(importId, options);
-
-    res.json({
-      message: 'Re-clustering completed successfully',
-      clusters,
-    });
-  } catch (error) {
-    logger.error({ error }, 'Failed to re-cluster expectations');
-    res.status(500).json({ error: 'Failed to re-cluster expectations' });
-  }
-});
-
-// Get clusters for an import
-router.get('/:importId/clusters', async (req: Request, res: Response) => {
-  try {
-    const { importId } = req.params;
-    const clusters = await clusteringService.getClusters(importId);
-
-    res.json(clusters);
-  } catch (error) {
-    logger.error({ error }, 'Failed to get clusters');
-    res.status(500).json({ error: 'Failed to get clusters' });
-  }
-});
-
-// Analyze cluster quality
-router.get('/:importId/clusters/quality', async (req: Request, res: Response) => {
-  try {
-    const { importId } = req.params;
-    const analysis = await clusteringService.analyzeClusterQuality(importId);
-
-    res.json(analysis);
-  } catch (error) {
-    logger.error({ error }, 'Failed to analyze cluster quality');
-    res.status(500).json({ error: 'Failed to analyze cluster quality' });
-  }
-});
+// Clustering routes removed - over-engineered for single-teacher use
 
 export default router;

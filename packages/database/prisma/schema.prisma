@@ -624,9 +624,9 @@ model DaybookEntry {
   nextSteps    String?        // What to do differently next time?
   
   // General classroom observations (no individual student data)
-  studentEngagement String?    // Notes on engagement levels
-  studentChallenges String?    // Observed difficulties
-  studentSuccesses  String?    // Notable achievements
+  classEngagement String?    // Notes on overall engagement levels
+  commonChallenges String?    // Observed class difficulties
+  notableAchievements  String?    // Class achievements and successes
   
   // General notes
   notes        String?        // Any other observations
@@ -776,14 +776,13 @@ model ActivityCollection {
   
   name        String
   description String?
-  isPublic    Boolean    @default(false)
   
   items       ActivityCollectionItem[]
   
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
   
-  @@index([userId, isPublic])
+  @@index([userId])
 }
 
 // Junction table for ActivityCollection and ExternalActivity
@@ -888,7 +887,6 @@ model PlanTemplate {
   isSystem        Boolean          @default(false) // System-provided templates
   createdByUserId Int?
   createdByUser   User?            @relation(fields: [createdByUserId], references: [id])
-  isPublic        Boolean          @default(false) // Can other teachers use this?
   
   // Template content (JSON structure based on type)
   content         Json             // Full template content
@@ -917,7 +915,7 @@ model PlanTemplate {
   
   @@index([type, category])
   @@index([subject, gradeMin, gradeMax])
-  @@index([isSystem, isPublic])
+  @@index([isSystem])
   @@index([createdByUserId])
   @@index([usageCount])
 }

@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import logger from '../logger.js';
-import { CacheService } from '../services/CacheService.js';
 
 /**
  * Middleware for API key validation
@@ -67,13 +66,7 @@ export async function validateApiKey(
       return;
     }
 
-    // Try to use cache for performance (optional enhancement)
-    try {
-      const _cache = new CacheService();
-      // Could cache validated keys here for performance
-    } catch (cacheError) {
-      // Cache is optional, continue without it
-    }
+    // Cache functionality removed - keeping simple for single-teacher use
 
     // API key is valid, proceed to next middleware
     next();

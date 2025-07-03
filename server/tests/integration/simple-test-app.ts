@@ -225,6 +225,12 @@ export function createTestApp(prismaClient: any) {
         return res.status(403).json({ error: 'Invalid token payload' });
       }
 
+      // Set user object for compatibility with auth middleware expectations
+      (req as any).user = {
+        id: parseInt(payload.userId),
+        email: payload.email,
+        role: payload.role
+      };
       (req as any).userId = payload.userId;
       (req as any).email = payload.email;
       next();
@@ -268,6 +274,31 @@ export function createTestApp(prismaClient: any) {
   app.get('/api/auth/check', authMiddleware, (req: Request, res: Response) => {
     const userId = (req as any).userId;
     res.json({ userId: parseInt(userId) });
+  });
+
+  // User profile endpoint for auth middleware tests
+  app.get('/api/user/profile', authMiddleware, async (req: Request, res: Response) => {
+    try {
+      const userId = (req as any).userId;
+      const user = await prismaClient.user.findUnique({
+        where: { id: parseInt(userId) },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+        },
+      });
+
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+
+      res.json(user);
+    } catch (error: any) {
+      console.error('Get user profile error:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
   });
 
   // Logout route
