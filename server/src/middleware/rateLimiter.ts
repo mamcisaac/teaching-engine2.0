@@ -2,6 +2,20 @@ import { Request, Response } from 'express';
 import rateLimit, { RateLimitRequestHandler } from 'express-rate-limit';
 import logger from '../logger.js';
 
+// Extend Express Request to include rate limit info
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace Express {
+    interface Request {
+      rateLimit?: {
+        resetTime?: Date;
+        remaining?: number;
+        totalHits?: number;
+      };
+    }
+  }
+}
+
 /**
  * Rate limiting middleware configuration
  * Implements different rate limits for different types of operations
@@ -159,16 +173,14 @@ export function createUserBasedRateLimiter(
     windowMs,
     max: (req: Request) => {
       // Check if user is authenticated and has premium access
-      const user = (req as { user?: { id: number; role: string } }).user;
-      if (user?.role === 'premium' || user?.role === 'admin') {
+      if (req.user?.role === 'premium' || req.user?.role === 'admin') {
         return premiumLimit;
       }
       return freeLimit;
     },
     keyGenerator: (req: Request) => {
       // Use user ID if authenticated, otherwise use IP
-      const user = (req as { user?: { id: number; role: string } }).user;
-      return user?.id || req.ip || 'unknown';
+      return req.user?.id || req.ip || 'unknown';
     },
     standardHeaders: true,
     legacyHeaders: false,
@@ -187,15 +199,7 @@ export const rateLimiters = {
   write: createResourceRateLimiter, // Alias for write operations
 };
 
-// Also export individual limiters with their actual names
-export {
-  defaultRateLimiter,
-  authRateLimiter,
-  createResourceRateLimiter,
-  readRateLimiter,
-  uploadRateLimiter,
-  aiRateLimiter,
-};
+// Individual limiters are already exported above with their declarations
 
 // Export aliases for expected names
 export const generalRateLimiter = defaultRateLimiter;

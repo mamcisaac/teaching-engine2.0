@@ -273,15 +273,23 @@ export async function register(req: Request, res: Response, next: NextFunction):
         'User created successfully',
       );
     } catch (error: unknown) {
+      const errorObj = error as {
+        message?: string;
+        code?: string;
+        name?: string;
+        stack?: string;
+        meta?: unknown;
+        toString?: () => string;
+      };
       logger.error(
         {
           error: {
-            message: error?.message,
-            code: error?.code,
-            name: error?.name,
-            stack: error?.stack,
-            meta: error?.meta,
-            toString: error?.toString(),
+            message: errorObj.message,
+            code: errorObj.code,
+            name: errorObj.name,
+            stack: errorObj.stack,
+            meta: errorObj.meta,
+            toString: errorObj.toString?.(),
           },
           email: email.toLowerCase(),
           errorType: typeof error,
@@ -290,24 +298,27 @@ export async function register(req: Request, res: Response, next: NextFunction):
         'Error creating user',
       );
 
-      if (error.code === 'P2002') {
+      if (errorObj.code === 'P2002') {
         // Prisma unique constraint violation
         throw new ConflictError('Email already registered');
       }
 
       // Check for other specific Prisma errors
-      if (error.name === 'PrismaClientKnownRequestError') {
-        logger.error({ prismaErrorCode: error.code, prismaMeta: error.meta }, 'Prisma known error');
-        throw new AppError(`Database error: ${error.message}`, 500, 'PRISMA_ERROR');
+      if (errorObj.name === 'PrismaClientKnownRequestError') {
+        logger.error(
+          { prismaErrorCode: errorObj.code, prismaMeta: errorObj.meta },
+          'Prisma known error',
+        );
+        throw new AppError(`Database error: ${errorObj.message}`, 500, 'PRISMA_ERROR');
       }
 
-      if (error.name === 'PrismaClientUnknownRequestError') {
-        logger.error({ errorMessage: error.message }, 'Prisma unknown error');
+      if (errorObj.name === 'PrismaClientUnknownRequestError') {
+        logger.error({ errorMessage: errorObj.message }, 'Prisma unknown error');
         throw new AppError('Database connection error', 500, 'DATABASE_CONNECTION_ERROR');
       }
 
-      if (error.name === 'PrismaClientValidationError') {
-        logger.error({ validationError: error.message }, 'Prisma validation error');
+      if (errorObj.name === 'PrismaClientValidationError') {
+        logger.error({ validationError: errorObj.message }, 'Prisma validation error');
         throw new AppError('Database validation error', 500, 'DATABASE_VALIDATION_ERROR');
       }
 
@@ -546,9 +557,13 @@ export async function resetPassword(
     }
 
     // Verify reset token
-    let decoded: { userId: string; exp: number };
+    let decoded: { userId: string; exp: number; type?: string };
     try {
-      decoded = jwt.verify(token, process.env.JWT_SECRET!);
+      const verifyResult = jwt.verify(token, process.env.JWT_SECRET!);
+      if (typeof verifyResult === 'string') {
+        throw new ValidationError('Invalid token format');
+      }
+      decoded = verifyResult as { userId: string; exp: number; type?: string };
     } catch (error) {
       throw new ValidationError('Invalid or expired reset token');
     }
@@ -568,7 +583,7 @@ export async function resetPassword(
 
     // Update user password
     await prisma.user.update({
-      where: { id: decoded.userId },
+      where: { id: parseInt(decoded.userId, 10) },
       data: {
         password: passwordHash,
         // passwordChangedAt field doesn't exist in schema

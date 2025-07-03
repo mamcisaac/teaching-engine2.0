@@ -1,11 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
-import createDOMPurify from 'isomorphic-dompurify';
+import { createDOMPurify } from 'isomorphic-dompurify';
 import { JSDOM } from 'jsdom';
 import logger from '../logger.js';
 
 // Initialize DOMPurify with jsdom for server-side usage
 const window = new JSDOM('').window;
-const DOMPurify = createDOMPurify(window as unknown);
+const DOMPurify = createDOMPurify(window as unknown as Window);
 
 /**
  * Advanced XSS Protection Middleware
@@ -425,29 +425,30 @@ export function sanitizeHtmlAdvanced(
 
     // Add custom hooks for additional security
     DOMPurify.addHook('beforeSanitizeElements', (node) => {
+      const element = node as Element;
       // Remove SVG with scripts
-      if (node.tagName === 'SVG') {
-        const svgContent = node.innerHTML;
+      if (element.tagName === 'SVG') {
+        const svgContent = element.innerHTML;
         if (/script|onload|onerror|onmouse|onclick|href.*javascript/i.test(svgContent)) {
-          node.remove();
+          element.remove();
           return;
         }
       }
 
       // Remove MathML with dangerous attributes
-      if (node.tagName === 'MATH' || node.tagName?.startsWith('M')) {
-        if (node.hasAttribute('href') || node.hasAttribute('xlink:href')) {
-          node.remove();
+      if (element.tagName === 'MATH' || element.tagName?.startsWith('M')) {
+        if (element.hasAttribute('href') || element.hasAttribute('xlink:href')) {
+          element.remove();
           return;
         }
       }
 
       // Remove any element with dangerous data attributes
-      if (node.hasAttributes && node.hasAttributes()) {
-        const attrs = Array.from(node.attributes);
+      if (element.hasAttributes && element.hasAttributes()) {
+        const attrs = Array.from(element.attributes);
         for (const attr of attrs) {
           if (attr.name.startsWith('data-') && /script|javascript|vbscript/i.test(attr.value)) {
-            node.remove();
+            element.remove();
             return;
           }
         }
@@ -456,17 +457,18 @@ export function sanitizeHtmlAdvanced(
 
     DOMPurify.addHook('afterSanitizeAttributes', (node) => {
       // Ensure no dangerous attributes survived
-      if (node.hasAttributes && node.hasAttributes()) {
-        const attrs = Array.from(node.attributes);
+      const element = node as Element;
+      if (element.hasAttributes && element.hasAttributes()) {
+        const attrs = Array.from(element.attributes);
         for (const attr of attrs) {
           // Remove any attribute containing JavaScript
           if (/javascript|vbscript|data:text\/html|expression\(/i.test(attr.value)) {
-            node.removeAttribute(attr.name);
+            element.removeAttribute(attr.name);
           }
 
           // Remove event handlers that might have been missed
           if (/^on/i.test(attr.name)) {
-            node.removeAttribute(attr.name);
+            element.removeAttribute(attr.name);
           }
         }
       }
@@ -716,7 +718,7 @@ export function advancedXssProtection(req: Request, res: Response, next: NextFun
           sanitizedQuery[key] = value;
         }
       }
-      req.query = sanitizedQuery;
+      req.query = sanitizedQuery as typeof req.query;
     }
 
     // Sanitize URL parameters
@@ -730,7 +732,7 @@ export function advancedXssProtection(req: Request, res: Response, next: NextFun
           sanitizedParams[key] = value;
         }
       }
-      req.params = sanitizedParams;
+      req.params = sanitizedParams as typeof req.params;
     }
 
     const endTime = Date.now();
