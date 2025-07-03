@@ -25,7 +25,7 @@ export async function login(page: Page): Promise<string> {
     await new Promise((r) => setTimeout(r, 1000));
   }
 
-  const res = await page.request.post(`${API_BASE}/api/login`, {
+  const res = await page.request.post(`${API_BASE}/api/auth/login`, {
     data: { email: 'teacher@example.com', password: 'Password123!' },
   });
 

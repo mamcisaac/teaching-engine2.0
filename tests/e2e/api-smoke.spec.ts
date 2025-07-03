@@ -9,7 +9,7 @@ test.describe('API Smoke Tests', () => {
   });
 
   test('login endpoint works', async ({ request }) => {
-    const response = await request.post('/api/login', {
+    const response = await request.post('/api/auth/login', {
       data: {
         email: 'teacher@example.com',
         password: 'password123',
@@ -24,7 +24,7 @@ test.describe('API Smoke Tests', () => {
 
   test('authenticated request works', async ({ request }) => {
     // First login
-    const loginResponse = await request.post('/api/login', {
+    const loginResponse = await request.post('/api/auth/login', {
       data: {
         email: 'teacher@example.com',
         password: 'password123',

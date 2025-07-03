@@ -15,7 +15,7 @@ test.describe('Direct API Tests', () => {
       password: 'Password123!'
     };
 
-    const response = await request.post('http://localhost:3000/api/login', {
+    const response = await request.post('http://localhost:3000/api/auth/login', {
       data: loginData
     });
 
@@ -48,7 +48,7 @@ test.describe('Direct API Tests', () => {
 
   test('can access protected endpoint with token', async ({ request }) => {
     // First login to get token
-    const loginResponse = await request.post('http://localhost:3000/api/login', {
+    const loginResponse = await request.post('http://localhost:3000/api/auth/login', {
       data: {
         email: 'teacher@example.com',
         password: 'Password123!'

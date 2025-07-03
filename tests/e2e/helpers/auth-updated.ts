@@ -185,7 +185,7 @@ export async function loginAsTestUser(page: Page, user: TestUser): Promise<void>
 
   // Otherwise, login via API
   const api = getApiContext();
-  const loginResponse = await api.post('/api/login', {
+  const loginResponse = await api.post('/api/auth/login', {
     data: {
       email: user.email,
       password: user.password,

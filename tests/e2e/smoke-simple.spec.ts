@@ -72,7 +72,7 @@ test.describe('Simple Smoke Tests', () => {
       password: 'Password123!',
     };
 
-    const response = await request.post(`${API_BASE}/api/login`, {
+    const response = await request.post(`${API_BASE}/api/auth/login`, {
       data: loginData,
     });
 

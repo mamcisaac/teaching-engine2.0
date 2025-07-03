@@ -85,7 +85,7 @@ export async function login(page: Page) {
     try {
       console.log('Making API login request...');
       const api = getApiContext();
-      const loginResponse = await api.post('/api/login', {
+      const loginResponse = await api.post('/api/auth/login', {
         data: {
           email: 'teacher@example.com',
           password: 'Password123!',
@@ -150,7 +150,7 @@ export async function login(page: Page) {
       await Promise.all([
         page.waitForResponse(
           (response) =>
-            response.url().includes('/api/login') && response.request().method() === 'POST',
+            response.url().includes('/api/auth/login') && response.request().method() === 'POST',
         ),
         page.click('button[type="submit"]'),
       ]);

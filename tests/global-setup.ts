@@ -15,7 +15,7 @@ export default async function globalSetup() {
 
     while (retryCount < maxRetries) {
       try {
-        response = await page.request.post('http://localhost:3000/api/login', {
+        response = await page.request.post('http://localhost:3000/api/auth/login', {
           data: {
             email: 'teacher@example.com',
             password: 'Password123!', // Match seed data

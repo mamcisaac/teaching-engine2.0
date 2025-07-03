@@ -67,7 +67,7 @@ async function createE2ETestUsers(serverUrl) {
     }
 
     // Now login to get a token
-    const loginResponse = await fetch(`${serverUrl}/api/login`, {
+    const loginResponse = await fetch(`${serverUrl}/api/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

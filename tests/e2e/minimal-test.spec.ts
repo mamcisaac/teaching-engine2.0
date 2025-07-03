@@ -37,7 +37,7 @@ test.describe('Minimal API Tests', () => {
     console.log(`Attempting login with: ${JSON.stringify(loginData)}`);
     
     try {
-      const response = await request.post('/api/login', {
+      const response = await request.post('/api/auth/login', {
         data: loginData,
         headers: {
           'Content-Type': 'application/json'

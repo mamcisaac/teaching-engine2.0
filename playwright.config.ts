@@ -2,7 +2,9 @@ import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
-  globalSetup: process.env.CI ? undefined : require.resolve('./tests/global-setup'),
+  globalSetup: process.env.CI 
+    ? require.resolve('./tests/global-setup-ci')
+    : require.resolve('./tests/global-setup'),
 
   webServer: process.env.CI
     ? undefined // In CI, we manage servers manually
@@ -29,7 +31,7 @@ export default defineConfig({
     screenshot: process.env.CI ? 'on' : 'only-on-failure',
     actionTimeout: process.env.CI ? 45000 : 30000,
     navigationTimeout: process.env.CI ? 90000 : 60000,
-    storageState: process.env.CI ? undefined : 'tests/storage/auth.json',
+    storageState: 'tests/storage/auth.json',
     headless: true,
     video: process.env.CI ? 'retain-on-failure' : 'off',
     // CI-specific: Ignore HTTPS errors which can occur in CI environments

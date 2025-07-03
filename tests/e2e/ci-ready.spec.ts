@@ -52,7 +52,7 @@ test.describe('CI-Ready E2E Tests', () => {
     expect(registerData.token).toBeTruthy();
 
     // Login with same user
-    const loginResponse = await request.post('http://localhost:3000/api/login', {
+    const loginResponse = await request.post('http://localhost:3000/api/auth/login', {
       data: {
         email: testUser.email,
         password: testUser.password
@@ -71,7 +71,7 @@ test.describe('CI-Ready E2E Tests', () => {
     expect(unauthorizedResponse.status()).toBe(401);
 
     // Login to get token
-    const loginResponse = await request.post('http://localhost:3000/api/login', {
+    const loginResponse = await request.post('http://localhost:3000/api/auth/login', {
       data: {
         email: 'teacher@example.com',
         password: 'Password123!'

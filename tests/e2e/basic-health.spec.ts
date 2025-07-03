@@ -28,7 +28,7 @@ test.describe('Basic Health Check', () => {
   test('API auth endpoint exists', async ({ request }) => {
     console.log('Testing API auth endpoint...');
     // Just check if the login endpoint exists (don't actually login)
-    const response = await request.post('http://127.0.0.1:3000/api/login', {
+    const response = await request.post('http://127.0.0.1:3000/api/auth/login', {
       data: { email: 'test@test.com', password: 'test' },
     });
     // We expect either 401 (unauthorized) or 200 (if test user exists)

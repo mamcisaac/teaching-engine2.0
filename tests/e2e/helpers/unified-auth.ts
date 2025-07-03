@@ -85,7 +85,7 @@ export async function login(page: Page, credentials = DEFAULT_TEST_USER): Promis
   await waitForServices(page);
 
   // Perform login via API
-  const response = await page.request.post(`${API_BASE}/api/login`, {
+  const response = await page.request.post(`${API_BASE}/api/auth/login`, {
     data: {
       email: credentials.email,
       password: credentials.password,
