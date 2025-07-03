@@ -3,22 +3,7 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 import logger from '../logger.js';
 import { prisma } from '../prisma.js';
 
-// Extend Express Request to include user
-// eslint-disable-next-line @typescript-eslint/no-namespace
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace Express {
-    interface Request {
-      user?: {
-        id: number;
-        email: string;
-        role: string;
-        organizationId?: number;
-        permissions?: string[];
-      };
-    }
-  }
-}
+// User interface is defined in /src/types/express.d.ts
 
 interface TokenPayload extends JwtPayload {
   userId: string;
