@@ -62,7 +62,6 @@ export const useKeyboardShortcut = (
     return () => {
       unregisterShortcut(id);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     handler,
     registerShortcut,
@@ -77,6 +76,7 @@ export const useKeyboardShortcut = (
     options.enabled,
     options.visible,
     options.preventDefault,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     ...deps,
   ]);
 };

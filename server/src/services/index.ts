@@ -1,6 +1,9 @@
 // Core services
 export { curriculumImportService } from './curriculumImportService';
-// Deleted services: embeddingService, clusteringService, cacheService, serviceRegistry, BaseService - over-engineered for single-teacher use
+export { embeddingService } from './embeddingService';
+export { clusteringService } from './clusteringService';
+export { CacheService } from './CacheService';
+export { BaseService } from './base/BaseService';
 
 // AI services
 // AIParentSummaryService removed - not aligned with single-teacher focus
@@ -22,4 +25,5 @@ export { openai } from './llmService';
 
 // Service types
 export type { ImportProgress } from './curriculumImportService';
-// Deleted types: EmbeddingResult, ClusterResult, ClusteringOptions, CacheEntry, CacheOptions, CacheStats, ServiceMetrics, RetryOptions, ServiceHealth, ServiceRegistration, ParentSummaryRequest, ParentSummaryResponse - over-engineered for single-teacher use
+export type { EmbeddingResult, SimilarityResult } from './embeddingService';
+export type { ClusterItem, Cluster, ClusteringOptions } from './clusteringService';

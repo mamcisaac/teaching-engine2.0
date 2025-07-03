@@ -315,11 +315,11 @@ const isE2ETest =
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 if (isDirectRun || isE2ETest || isDevelopment) {
-  console.log('Starting server because:', { isDirectRun, isE2ETest, isDevelopment });
+  log('Starting server because:', { isDirectRun, isE2ETest, isDevelopment });
   // Start server directly - service initialization removed for simplicity
   const server = app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server is running on port ${PORT}`);
-    console.log('Server address:', server.address());
+    log(`Server is running on port ${PORT}`);
+    log('Server address:', server.address());
     log('Server started successfully');
 
     // Background jobs disabled - ETFO approach uses manual workflow

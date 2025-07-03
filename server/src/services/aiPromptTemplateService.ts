@@ -491,7 +491,7 @@ Respond in JSON format but keep that practical teacher voice - like you're shari
   // A/B Testing and Analytics
   public recordPromptUsage(_templateId: string, success: boolean, feedback?: string) {
     // In a real implementation, this would log to analytics
-    console.log(`Template ${_templateId}: ${success ? 'SUCCESS' : 'FAILURE'}`, feedback);
+    // Template feedback logging removed for production
   }
 
   public getTemplateMetrics(_templateId: string) {
