@@ -8,8 +8,8 @@ import supertest from 'supertest';
 import express from 'express';
 import multer from 'multer';
 import { PrismaClient } from '@teaching-engine/database';
-import { generateAuthToken } from '../../services/authService';
-import { rateLimiters } from '../../middleware/rateLimiter';
+import { generateAuthToken } from '../../services/auth/authService';
+import { rateLimiters } from '../../middleware/rateLimit';
 import curriculumImportRoutes from '../../routes/curriculumImport';
 import { authMiddleware } from '../../middleware/auth';
 import logger from '../../logger';
@@ -25,7 +25,7 @@ jest.mock('../../logger', () => ({
 }));
 
 // Mock the curriculum import service
-jest.mock('../../services/curriculumImportService', () => ({
+jest.mock('../../services/curriculum', () => ({
   curriculumImportService: {
     startImport: jest.fn().mockResolvedValue('test-import-id'),
     storeUploadedFile: jest.fn().mockResolvedValue(true),

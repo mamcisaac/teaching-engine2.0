@@ -3,7 +3,7 @@ import { Prisma } from '../prisma';
 import { prisma } from '../prisma';
 import { validate } from '../validation';
 import { z } from 'zod';
-import { generateLongRangePlanDraft, generatePlanSuggestions } from '../services/aiDraftService';
+import { generateLongRangePlanDraft, generatePlanSuggestions } from '../services/ai/aiDraftService';
 
 const router = Router();
 

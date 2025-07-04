@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken';
 import logger from '../logger.js';
 import { prisma } from '../prisma.js';
 import { generateToken, generateRefreshToken } from './authenticate.js';
-// import { authenticate, authorize } from './authenticate.js';
 import { AuthenticationError, ValidationError, ConflictError, AppError } from './errorHandler.js';
 
 // The global prisma client already handles test client selection via proxy

@@ -4,7 +4,7 @@
  */
 
 import { PrismaClient } from '@teaching-engine/database';
-import { generateAuthToken } from '../../../services/authService';
+import { generateAuthToken } from '../../../services/auth/authService';
 import bcrypt from 'bcryptjs';
 
 export interface TestUser {

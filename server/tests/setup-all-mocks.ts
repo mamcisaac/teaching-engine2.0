@@ -87,53 +87,7 @@ const generateMockEmbedding = () => {
   return global.__mockEmbedding;
 };
 
-// Mock embeddingService with multiple paths
-jest.mock('@/services/embeddingService', () => ({
-  embeddingService: {
-    calculateSimilarity: jest.fn().mockReturnValue(0.85),
-    generateBatchEmbeddings: jest.fn().mockResolvedValue([]),
-    findSimilarOutcomes: jest.fn().mockResolvedValue([]),
-    generateEmbedding: jest.fn().mockResolvedValue({
-      outcomeId: 'test-outcome',
-      embedding: generateMockEmbedding(),
-      model: 'text-embedding-3-small',
-    }),
-    generateMissingEmbeddings: jest.fn().mockResolvedValue(0),
-    getOrCreateOutcomeEmbedding: jest.fn().mockResolvedValue({
-      outcomeId: 'test-outcome',
-      embedding: generateMockEmbedding(),
-      model: 'text-embedding-3-small',
-    }),
-    searchOutcomesByText: jest.fn().mockResolvedValue([]),
-    isEmbeddingServiceAvailable: jest.fn().mockReturnValue(true),
-    // Add alias for test compatibility
-    cosineSimilarity: jest.fn().mockReturnValue(0.85),
-  },
-}));
-
-// Also mock the relative path version
-jest.doMock('../src/services/embeddingService', () => ({
-  embeddingService: {
-    calculateSimilarity: jest.fn().mockReturnValue(0.85),
-    generateBatchEmbeddings: jest.fn().mockResolvedValue([]),
-    findSimilarOutcomes: jest.fn().mockResolvedValue([]),
-    generateEmbedding: jest.fn().mockResolvedValue({
-      outcomeId: 'test-outcome',
-      embedding: generateMockEmbedding(),
-      model: 'text-embedding-3-small',
-    }),
-    generateMissingEmbeddings: jest.fn().mockResolvedValue(0),
-    getOrCreateOutcomeEmbedding: jest.fn().mockResolvedValue({
-      outcomeId: 'test-outcome',
-      embedding: generateMockEmbedding(),
-      model: 'text-embedding-3-small',
-    }),
-    searchOutcomesByText: jest.fn().mockResolvedValue([]),
-    isEmbeddingServiceAvailable: jest.fn().mockReturnValue(true),
-    // Add alias for test compatibility
-    cosineSimilarity: jest.fn().mockReturnValue(0.85),
-  },
-}));
+// Legacy embeddingService references removed - service was part of refactored cleanup
 
 // Optimized OpenAI mock - reuse mock responses
 const mockEmbeddingResponse = {

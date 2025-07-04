@@ -16,7 +16,7 @@ import {
   detectXssAttempt,
   unicodeNormalization,
 } from '../../middleware/advancedXssProtection';
-import { generateAuthToken } from '../../services/authService';
+import { generateAuthToken } from '../../services/auth/authService';
 import logger from '../../logger';
 
 // Mock logger

@@ -5,7 +5,7 @@
 
 import { Router, Request, Response } from 'express';
 import { z } from 'zod';
-import { NewsletterService } from '../services/newsletterService';
+import { NewsletterService } from '../services';
 import { prisma } from '../prisma';
 import debug from 'debug';
 

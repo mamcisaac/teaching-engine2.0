@@ -1,26 +1,39 @@
-// Core services
-export { curriculumImportService } from './curriculumImportService';
+// Core services - Modern modular curriculum services
+export { 
+  curriculumImportOrchestrator as curriculumImportService,
+  curriculumExportService,
+  curriculumSearchService,
+  curriculumStatsService,
+  CurriculumImportService
+} from './curriculum';
 
-// Key Teacher Features
-export { NewsletterService } from './newsletterService';
-export { SubstitutePlanService } from './substitutePlanService';
+// Template services - Modern modular template architecture
+export { 
+  templateOrchestrator as templateService,
+  templateRegistry,
+  templateCache,
+  templateHelpers,
+  partialManager,
+  renderCoordinator,
+  renderLessonPlan,
+  renderNewsletter,
+  renderProgressReport
+} from './templates';
 
-// AI services
-// AIParentSummaryService removed - not aligned with single-teacher focus
-export { AIPlanningAssistantService } from './aiPlanningAssistant';
-export { AIActivityGeneratorService } from './aiActivityGeneratorService';
-export { aiPromptTemplateService } from './aiPromptTemplateService';
-export {
-  generateLongRangePlanDraft,
-  generateUnitPlanDraft,
-  generateLessonPlanDraft,
-  generateDaybookDraft,
-  generatePlanSuggestions,
-} from './aiDraftService';
+// AI services - Modern AI planning and drafting
+export * from './ai';
 
-// Existing services
-export { openai } from './llmService';
-// materialGenerator and planningEngine removed - over-engineered for single-teacher use
+// Authentication services - Modern secure authentication
+export * from './auth';
 
-// Service types
-export type { ImportProgress } from './curriculumImportService';
+// Service types - Modern curriculum service types
+export type { 
+  ImportOptions,
+  ImportResult,
+  ExportOptions,
+  SearchOptions,
+  SearchResult,
+  CurriculumStats,
+  SubjectStats,
+  GradeStats
+} from './curriculum';

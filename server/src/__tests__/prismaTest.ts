@@ -1,12 +1,13 @@
 import { prisma } from '../prisma';
+import logger from '../logger.js';
 
 describe('Prisma Client', () => {
   it('should be able to connect to the database', async () => {
-    console.log('Testing Prisma connection');
+    logger.info('Testing Prisma connection');
 
     // Try a simple query
     const result = await prisma.$queryRaw`SELECT 1 as test`;
-    console.log('Prisma query result:', result);
+    logger.debug('Prisma query result:', result);
 
     expect(result).toBeDefined();
   });

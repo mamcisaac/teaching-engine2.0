@@ -8,7 +8,7 @@ import supertest from 'supertest';
 import express from 'express';
 import { PrismaClient } from '@teaching-engine/database';
 import { authRoutes } from '../../routes/auth';
-import { rateLimiters, resetRateLimiterState } from '../../middleware/rateLimiter';
+import { rateLimiters, resetRateLimiterState } from '../../middleware/rateLimit';
 import { sanitizeInput } from '../../middleware/inputSanitization';
 import logger from '../../logger';
 import bcrypt from 'bcryptjs';

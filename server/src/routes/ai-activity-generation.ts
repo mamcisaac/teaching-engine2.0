@@ -1,7 +1,8 @@
 import { Router, Request, Response } from 'express';
 import { z } from 'zod';
 import { authMiddleware } from '../middleware/auth';
-import { AIActivityGeneratorService } from '../services/aiActivityGeneratorService';
+import { AIActivityGeneratorService } from '../services';
+import { enhancedRateLimiters } from '../middleware/rateLimit/enhanced-config.js';
 import debug from 'debug';
 
 const log = debug('server:ai-activity:error');
@@ -9,6 +10,9 @@ const log = debug('server:ai-activity:error');
 
 const router = Router();
 const aiGenerator = new AIActivityGeneratorService();
+
+// Use centralized rate limiting for AI endpoints
+const aiRateLimit = enhancedRateLimiters.ai();
 
 // Schema for activity generation request
 const generateActivitySchema = z.object({
@@ -77,7 +81,7 @@ const saveActivitySchema = z.object({
 /**
  * Generate an AI-powered activity
  */
-router.post('/generate', authMiddleware, async (req: Request, res: Response) => {
+router.post('/generate', authMiddleware, aiRateLimit, async (req: Request, res: Response) => {
   try {
     const params = generateActivitySchema.parse(req.body);
     const searchResults = undefined;
@@ -107,7 +111,7 @@ router.post('/generate', authMiddleware, async (req: Request, res: Response) => 
 /**
  * Generate multiple activity variations
  */
-router.post('/generate-variations', authMiddleware, async (req: Request, res: Response) => {
+router.post('/generate-variations', authMiddleware, aiRateLimit, async (req: Request, res: Response) => {
   try {
     const params = generateActivitySchema.parse(req.body);
     const count = Math.min(req.body.count || 3, 5); // Max 5 variations

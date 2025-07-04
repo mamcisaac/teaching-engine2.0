@@ -4,7 +4,6 @@ import cors from 'cors';
 import { RateLimiterMemory, RateLimiterRedis } from 'rate-limiter-flexible';
 import Redis from 'ioredis';
 import logger from '../logger.js';
-// import { ValidationError } from './errorHandler.js';
 
 // Security configuration
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || 'http://localhost:5173').split(',');

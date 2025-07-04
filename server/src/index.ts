@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import express, { Request, Response } from 'express';
 import { Server } from 'http';
-// import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import cookieParser from 'cookie-parser';
@@ -37,39 +36,49 @@ import curriculumImportRoutes from './routes/curriculumImport';
 
 // Key Teacher Features - Newsletter and Substitute Plans
 import newsletterRoutes from './routes/newsletters';
-import substitutePlanRoutes from './routes/substitute-plans';
+import { router as substitutePlanRoutes } from './routes/substitute-plans';
 
 import curriculumExpectationRoutes from './routes/curriculum-expectations';
 import longRangePlanRoutes from './routes/long-range-plans';
-import unitPlanRoutes from './routes/unit-plans';
-import etfoLessonPlanRoutes from './routes/etfo-lesson-plans';
-import daybookEntryRoutes from './routes/daybook-entries';
+import { router as unitPlanRoutes } from './routes/unit-plans';
+import { router as etfoLessonPlanRoutes } from './routes/etfo-lesson-plans';
+import { router as daybookEntryRoutes } from './routes/daybook-entries';
 import etfoProgressRoutes from './routes/etfo-progress';
 import plannerStateRoutes from './routes/planner-state';
 // Workflow state routes removed - over-engineered for single-teacher use
 import aiPlanningRoutes from './routes/ai-planning';
 import activityCollectionsRoutes from './routes/activity-collections';
 import aiActivityGenerationRoutes from './routes/ai-activity-generation';
-import templateRoutes from './routes/templates';
+import { router as templateRoutes } from './routes/templates';
 import calendarEventRoutes from './routes/calendar-events';
 import recentPlansRoutes from './routes/recent-plans';
+import cacheRoutes from './routes/cache';
+import metricsRoutes from './routes/metrics';
+import dashboardMetricsRoutes from './routes/dashboard-metrics';
 // batchApiRoutes removed - premature optimization for single-teacher use
-// import subPlanRoutes from './routes/sub-plan'; // File missing - commenting out for build
-// import { authRoutes as _authRoutes } from './routes/auth';
 import authEndpoints from './routes/authEndpoints';
 import { userRoutes } from './routes/user';
 // Notification routes and service infrastructure removed - over-engineered for single-teacher use
 import logger from './logger.js';
 import { prisma } from './prisma';
-import { rateLimiters } from './middleware/rateLimiter';
+import { rateLimiters } from './middleware/rateLimit';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
-// import { sanitizeInput as _sanitizeInput } from './middleware/inputSanitization';
 // performanceMonitoring removed - adds unnecessary complexity for single-teacher use
 import {
   applySecurityMiddleware,
   authRateLimitMiddleware,
   validateFileUpload,
 } from './middleware/security';
+import { curriculumCache, staticCache, userCache } from './middleware/cache';
+import { httpMetricsMiddleware, startSystemMetricsCollection } from './middleware/metrics';
+import { requestLoggingMiddleware, errorLoggingMiddleware } from './middleware/requestLogger';
+import { standardErrorHandler } from './middleware/standardErrorHandler';
+import { initTelemetry, startAlertMonitoring } from './monitoring';
+import monitoringRoutes from './routes/monitoring';
+
+// Initialize OpenTelemetry before anything else
+log('Initializing OpenTelemetry...');
+await initTelemetry();
 
 // Initialize Express app
 log('Initializing Express application...');
@@ -83,6 +92,14 @@ applySecurityMiddleware(app);
 log('Applying body parsing middleware...');
 app.use(express.json({ limit: '10mb' })); // Set reasonable payload limit
 app.use(cookieParser());
+
+// Apply request logging middleware
+log('Applying request logging middleware...');
+app.use(requestLoggingMiddleware);
+
+// Apply metrics collection middleware
+log('Applying metrics collection middleware...');
+app.use(httpMetricsMiddleware);
 
 // Performance monitoring removed - adds unnecessary complexity for single-teacher use
 
@@ -191,12 +208,13 @@ app.use(
   '/api/curriculum-expectations',
   authenticate,
   rateLimiters.read as any,
+  curriculumCache, // Cache curriculum data for 30 minutes
   curriculumExpectationRoutes,
 );
-app.use('/api/long-range-plans', authenticate, rateLimiters.write as any, longRangePlanRoutes);
-app.use('/api/unit-plans', authenticate, rateLimiters.write as any, unitPlanRoutes);
-app.use('/api/etfo-lesson-plans', authenticate, rateLimiters.write as any, etfoLessonPlanRoutes);
-app.use('/api/daybook-entries', authenticate, rateLimiters.write as any, daybookEntryRoutes);
+app.use('/api/long-range-plans', authenticate, rateLimiters.write as any, userCache, longRangePlanRoutes);
+app.use('/api/unit-plans', authenticate, rateLimiters.write as any, userCache, unitPlanRoutes);
+app.use('/api/etfo-lesson-plans', authenticate, rateLimiters.write as any, userCache, etfoLessonPlanRoutes);
+app.use('/api/daybook-entries', authenticate, rateLimiters.write as any, userCache, daybookEntryRoutes);
 app.use('/api/etfo', authenticate, rateLimiters.read as any, etfoProgressRoutes);
 
 // State Management Routes
@@ -205,13 +223,26 @@ app.use('/api/planner', authenticate, rateLimiters.api as any, plannerStateRoute
 app.use('/api/ai-planning', authenticate, rateLimiters.ai as any, aiPlanningRoutes);
 
 // Template System Routes
-app.use('/api/templates', authenticate, rateLimiters.api as any, templateRoutes);
+app.use('/api/templates', authenticate, rateLimiters.api as any, staticCache, templateRoutes);
 
 // Calendar Routes
-app.use('/api/calendar-events', authenticate, rateLimiters.api as any, calendarEventRoutes);
+app.use('/api/calendar-events', authenticate, rateLimiters.api as any, userCache, calendarEventRoutes);
 
 // Recent Plans Routes
-app.use('/api/recent-plans', authenticate, rateLimiters.api as any, recentPlansRoutes);
+app.use('/api/recent-plans', authenticate, rateLimiters.api as any, userCache, recentPlansRoutes);
+
+// Cache Management Routes
+app.use('/api/cache', cacheRoutes);
+
+// Metrics Routes
+app.use('/metrics', metricsRoutes); // Prometheus endpoint (no /api prefix for standard)
+app.use('/api/metrics', metricsRoutes);
+
+// Dashboard Metrics Routes
+app.use('/api/dashboard', dashboardMetricsRoutes);
+
+// Monitoring Routes (includes enhanced dashboard and alerting)
+app.use('/api/monitoring', authenticate, monitoringRoutes);
 
 // AI status endpoint (maps to ai-planning/status for backward compatibility)
 app.get('/api/ai/status', authenticate, async (req, res) => {
@@ -245,8 +276,22 @@ app.use('/api/ai-activities', authenticate, rateLimiters.ai as any, aiActivityGe
 
 log('All API routes mounted successfully.');
 
+// Start system metrics collection
+log('Starting system metrics collection...');
+startSystemMetricsCollection(30000); // Collect every 30 seconds
+
+// Start alert monitoring
+log('Starting alert monitoring...');
+startAlertMonitoring();
+
 // 404 handler for API routes - must handle all unmatched API routes
 app.all('/api/*', notFoundHandler);
+
+// Error logging middleware (before error handler)
+app.use(errorLoggingMiddleware);
+
+// Standardized error handler
+app.use(standardErrorHandler);
 
 const clientDist = path.join(__dirname_index, '../../client/dist');
 log('Configuring URL-encoded and cookie parser middleware...');

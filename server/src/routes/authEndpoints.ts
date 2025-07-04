@@ -15,7 +15,7 @@ import {
   authenticate,
 } from '../middleware/auth';
 import { validateRequest } from '../middleware/validateRequest';
-import { authRateLimiter } from '../middleware/rateLimiter';
+import { authRateLimiter } from '../middleware/rateLimit';
 import { z } from 'zod';
 import { prisma as defaultPrisma } from '@teaching-engine/database';
 

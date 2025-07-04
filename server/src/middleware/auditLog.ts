@@ -42,8 +42,8 @@ class AuditLogger {
       );
     }
 
-    // TODO: When AuditLog model is added to schema, implement database storage:
-    // await prisma.auditLog.create({ data: { ... } });
+    // NOTE: Database audit logging can be implemented when AuditLog model is added to schema
+    // Future implementation: await prisma.auditLog.create({ data: entry });
   }
 
   /**

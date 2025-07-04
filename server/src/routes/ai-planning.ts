@@ -1,58 +1,9 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { aiPlanningAssistant } from '../services/aiPlanningAssistant';
+import { aiPlanningAssistant } from '../services/ai/aiPlanningService';
+import { enhancedRateLimiters } from '../middleware/rateLimit/enhanced-config.js';
 
-// Rate limiting for AI requests
-const aiRequestTracking = new Map<string, { count: number; lastReset: number }>();
-const AI_RATE_LIMIT = 10; // requests per hour
-const AI_RATE_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
-
-// Cleanup old rate limit entries every 5 minutes to prevent memory leaks
-setInterval(
-  () => {
-    const now = Date.now();
-    for (const [userId, tracking] of aiRequestTracking.entries()) {
-      if (now - tracking.lastReset > AI_RATE_WINDOW * 2) {
-        // Remove entries older than 2 hours
-        aiRequestTracking.delete(userId);
-      }
-    }
-  },
-  5 * 60 * 1000,
-); // Clean up every 5 minutes
-
-const aiRateLimit = (req: Request, res: Response, next: NextFunction) => {
-  const userId = req.user?.id;
-  if (!userId) {
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
-
-  const now = Date.now();
-  const userIdStr = userId.toString();
-  const userTracking = aiRequestTracking.get(userIdStr) || { count: 0, lastReset: now };
-
-  // Reset count if window has expired
-  if (now - userTracking.lastReset > AI_RATE_WINDOW) {
-    userTracking.count = 0;
-    userTracking.lastReset = now;
-  }
-
-  // Check rate limit
-  if (userTracking.count >= AI_RATE_LIMIT) {
-    const resetTime = userTracking.lastReset + AI_RATE_WINDOW;
-    const waitTime = Math.ceil((resetTime - now) / 1000 / 60); // minutes
-    return res.status(429).json({
-      error: 'AI request limit exceeded',
-      retryAfter: waitTime,
-      limit: AI_RATE_LIMIT,
-      window: 'hour',
-    });
-  }
-
-  // Increment count
-  userTracking.count++;
-  aiRequestTracking.set(userIdStr, userTracking);
-  next();
-};
+// Use centralized rate limiting for AI endpoints
+const aiRateLimit = enhancedRateLimiters.ai();
 
 // Enhanced input sanitization to prevent prompt injection and security issues
 const sanitizeAIInput = (input: unknown): unknown => {

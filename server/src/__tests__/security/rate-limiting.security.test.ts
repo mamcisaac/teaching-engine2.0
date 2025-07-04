@@ -13,8 +13,8 @@ import {
   resetRateLimiterState,
   clearRateLimit,
   clearAllRateLimits,
-} from '../../middleware/rateLimiter';
-import { generateAuthToken } from '../../services/authService';
+} from '../../middleware/rateLimit';
+import { generateAuthToken } from '../../services/auth/authService';
 import { authRoutes } from '../../routes/auth';
 import logger from '../../logger';
 

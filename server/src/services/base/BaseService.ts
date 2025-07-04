@@ -5,6 +5,7 @@
 
 import { prisma } from '../../prisma.js';
 import logger from '../../logger.js';
+import { recordDatabaseQuery } from '../../middleware/metrics.js';
 
 export interface ServiceMetrics {
   requestCount: number;
@@ -142,6 +143,16 @@ export abstract class BaseService {
       const duration = Date.now() - startTime;
       this.recordRequest(duration, error);
     }
+  }
+
+  /**
+   * Execute database operation with metrics
+   */
+  protected async executeDbOperation<T>(
+    operation: () => Promise<T>,
+    operationName: string
+  ): Promise<T> {
+    return recordDatabaseQuery(operationName, operation);
   }
 
   /**

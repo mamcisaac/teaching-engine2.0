@@ -90,7 +90,6 @@ export const timetableEntrySchema = z.object({
 export const newsletterGenerateSchema = z.object({
   startDate: z.string().datetime(),
   endDate: z.string().datetime(),
-  template: z.string().optional(), // Legacy newsletter templates disabled
   includePhotos: z.boolean().optional(),
   useLLM: z.boolean().optional(),
   language: z.enum(['en', 'fr', 'both']).optional(),

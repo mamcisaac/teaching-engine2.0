@@ -1,5 +1,5 @@
 import { describe, test, expect, beforeEach, afterEach, jest } from '@jest/globals';
-import { rateLimiter, createRateLimiter } from '../rateLimiter';
+import { rateLimiter, createRateLimiter } from '../rateLimit';
 import { mockRequest, mockResponse, mockNext } from '../../../tests/utils/sharedTestUtils';
 import Redis from 'ioredis';
 

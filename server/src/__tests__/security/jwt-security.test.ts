@@ -11,7 +11,7 @@ import {
   verifyToken,
   authenticate,
   checkPermissions,
-} from '../../services/authService';
+} from '../../services/auth/authService';
 import logger from '../../logger';
 
 // Mock logger

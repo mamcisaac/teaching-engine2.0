@@ -306,6 +306,29 @@ const performanceTestProject = {
   globalTeardown: undefined,
 };
 
+// Property-based test project configuration
+const propertyTestProject = {
+  ...baseConfig,
+  displayName: 'Property Tests',
+  testMatch: ['<rootDir>/tests/property-based/**/*.property.test.ts'],
+  testTimeout: 30000, // 30 seconds for property tests
+  maxWorkers: getOptimalWorkerCount(), // Use optimized worker count
+
+  // Property test specific setup
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js', '<rootDir>/tests/setup/property-test-setup.ts'],
+
+  // Mock external dependencies for property tests
+  moduleNameMapper: {
+    ...baseConfig.moduleNameMapper,
+    // Mock database for property tests
+    '^@teaching-engine/database$': '<rootDir>/tests/mocks/database.mock.ts',
+  },
+
+  // No database setup for property tests
+  globalSetup: undefined,
+  globalTeardown: undefined,
+};
+
 // Export configuration based on test type
 const getConfig = () => {
   const testType = process.env.TEST_TYPE;
@@ -321,6 +344,8 @@ const getConfig = () => {
       return aiSnapshotTestProject;
     case 'performance':
       return performanceTestProject;
+    case 'property':
+      return propertyTestProject;
     case 'all':
       // Run all test types as projects
       return {
@@ -330,15 +355,21 @@ const getConfig = () => {
           securityTestProject,
           integrationTestProject,
           aiSnapshotTestProject,
+          propertyTestProject,
         ],
         testMatch: undefined, // Let projects handle matching
         testTimeout: 60000, // Longest timeout for multi-project runs
       };
     default:
-      // Check if running specific security test file
-      const testPathPattern = process.argv.find((arg) => arg.includes('security'));
-      if (testPathPattern) {
+      // Check if running specific test file
+      const testPathPattern = process.argv.find(
+        (arg) => arg.includes('security') || arg.includes('property-based'),
+      );
+      if (testPathPattern && testPathPattern.includes('security')) {
         return securityTestProject;
+      }
+      if (testPathPattern && testPathPattern.includes('property-based')) {
+        return propertyTestProject;
       }
       // Default to unit tests only for fast feedback
       return unitTestProject;
