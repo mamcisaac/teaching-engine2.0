@@ -168,7 +168,7 @@ export async function requestBackgroundSync(tag: string): Promise<boolean> {
       const registration = await navigator.serviceWorker.ready;
       await (registration as ServiceWorkerRegistrationWithSync).sync?.register(tag);
       return true;
-    } catch (error) {
+    } catch (_error) {
       console.error('Background sync registration failed:', error);
       return false;
     }

@@ -12,13 +12,13 @@ import { errorCounter } from '../../monitoring/telemetry';
 // Extended Express Request with additional properties
 interface ExtendedRequest extends Request {
   id?: string;
-  user?: { id: number; email: string };
+  user?: { id: number; email: string; role: string; organizationId?: number; permissions?: string[] };
   startTime?: number;
 }
 
 // Error logging middleware
 export const errorLoggingMiddleware = (
-  err: any,
+  err: Error | AppError | ZodError,
   req: ExtendedRequest,
   res: Response,
   next: NextFunction
@@ -57,9 +57,11 @@ export const errorLoggingMiddleware = (
                    err instanceof ZodError ? 'validation_error' : 
                    'unhandled_error';
   
+  const statusCode = err instanceof AppError ? err.statusCode.toString() : '500';
+  
   errorCounter.add(1, {
     type: errorType,
-    status: err.statusCode || '500',
+    status: statusCode,
     path: req.path,
     method: req.method,
   });
@@ -69,7 +71,7 @@ export const errorLoggingMiddleware = (
 
 // Main error handler middleware
 export const errorHandlerMiddleware = (
-  err: any,
+  err: Error | AppError | ZodError,
   req: ExtendedRequest,
   res: Response,
   next: NextFunction
@@ -80,7 +82,7 @@ export const errorHandlerMiddleware = (
   }
 
   // Handle database errors
-  if (err.code && err.code.startsWith('P')) {
+  if ('code' in err && typeof err.code === 'string' && err.code.startsWith('P')) {
     err = handleDatabaseError(err);
   }
 
@@ -106,7 +108,7 @@ export const errorHandlerMiddleware = (
       new AppError(400, err.message || 'Validation failed', 'VALIDATION_ERROR'),
       req.id
     );
-  } else if (err.type === 'entity.too.large') {
+  } else if ('type' in err && err.type === 'entity.too.large') {
     statusCode = 413;
     errorResponse = formatErrorResponse(
       new AppError(413, 'Request entity too large', 'PAYLOAD_TOO_LARGE'),
@@ -144,7 +146,7 @@ export const notFoundHandler = (
 
 // Async error catcher for route handlers
 export const catchAsync = (
-  fn: (req: Request, res: Response, next: NextFunction) => Promise<any>
+  fn: (req: Request, res: Response, next: NextFunction) => Promise<void>
 ) => {
   return (req: Request, res: Response, next: NextFunction): void => {
     Promise.resolve(fn(req, res, next)).catch(next);
@@ -153,8 +155,8 @@ export const catchAsync = (
 
 // Error handler for unhandled promise rejections
 export const unhandledRejectionHandler = (
-  reason: any,
-  promise: Promise<any>
+  reason: unknown,
+  promise: Promise<unknown>
 ): void => {
   logger.error(
     {
@@ -208,9 +210,9 @@ export const installGlobalErrorHandlers = (): void => {
 
 // Create error boundary middleware for specific routes
 export const errorBoundary = (
-  handler: (err: any, req: Request, res: Response) => void
+  handler: (err: unknown, req: Request, res: Response) => void
 ) => {
-  return (err: any, req: Request, res: Response, next: NextFunction): void => {
+  return (err: unknown, req: Request, res: Response, next: NextFunction): void => {
     try {
       handler(err, req, res);
     } catch (boundaryError) {

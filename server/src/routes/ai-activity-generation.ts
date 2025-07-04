@@ -99,7 +99,7 @@ router.post('/generate', authMiddleware, aiRateLimit, async (req: Request, res: 
       success: true,
       data: generatedActivity,
     });
-  } catch (error) {
+  } catch (_error) {
     log('Error generating activity:', error);
     res.status(500).json({
       success: false,
@@ -137,7 +137,7 @@ router.post('/generate-variations', authMiddleware, aiRateLimit, async (req: Req
         count: variations.length,
       },
     });
-  } catch (error) {
+  } catch (_error) {
     log('Error generating activity variations:', error);
     res.status(500).json({
       success: false,
@@ -185,7 +185,7 @@ router.post('/save', authMiddleware, async (req: Request, res: Response) => {
       success: true,
       data: savedActivity,
     });
-  } catch (error) {
+  } catch (_error) {
     console.error('Error saving generated activity:', error);
     res.status(500).json({
       success: false,

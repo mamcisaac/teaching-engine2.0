@@ -171,12 +171,5 @@ beforeEach(() => {
   }
 });
 
-// Mock llmService with shared responses
-jest.mock('@/services/llmService', () => ({
-  openai: mockOpenAIInstance,
-  generateContent: jest.fn().mockResolvedValue('Mock content for testing.'),
-  generateBilingualContent: jest.fn().mockResolvedValue({
-    english: 'Mock English content',
-    french: 'Mock French content',
-  }),
-}));
+// Note: llmService has been refactored into separate AI services
+// If needed, mock specific AI services like aiPlanningService or aiDraftService individually

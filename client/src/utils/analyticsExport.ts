@@ -5,7 +5,7 @@
  * in various formats (CSV, PDF, PNG) across different visualization components.
  */
 
-import { api } from '../api';
+import { api } from '../api/legacy/api';
 
 export interface ExportOptions {
   title?: string;
@@ -28,7 +28,7 @@ export type ExportType =
 export async function exportAnalyticsData(
   type: ExportType,
   format: ExportFormat,
-  data: any,
+  data: unknown,
   options: ExportOptions = {},
 ): Promise<void> {
   try {
@@ -73,7 +73,7 @@ export async function exportAnalyticsData(
     link.click();
     document.body.removeChild(link);
     window.URL.revokeObjectURL(url);
-  } catch (error) {
+  } catch (_error) {
     console.error('Export failed:', error);
     throw new Error(`Failed to export ${type} as ${format}`);
   }
@@ -83,7 +83,7 @@ export async function exportAnalyticsData(
  * Export curriculum heatmap data
  */
 export async function exportCurriculumHeatmap(
-  data: any,
+  data: unknown,
   format: ExportFormat,
   options: ExportOptions = {},
 ): Promise<void> {
@@ -97,7 +97,7 @@ export async function exportCurriculumHeatmap(
  * Export domain radar chart data
  */
 export async function exportDomainRadar(
-  data: any,
+  data: unknown,
   format: ExportFormat,
   options: ExportOptions = {},
 ): Promise<void> {
@@ -111,7 +111,7 @@ export async function exportDomainRadar(
  * Export theme analytics data
  */
 export async function exportThemeAnalytics(
-  data: any,
+  data: unknown,
   format: ExportFormat,
   options: ExportOptions = {},
 ): Promise<void> {
@@ -125,7 +125,7 @@ export async function exportThemeAnalytics(
  * Export vocabulary growth data
  */
 export async function exportVocabularyGrowth(
-  data: any,
+  data: unknown,
   format: ExportFormat,
   options: ExportOptions = {},
 ): Promise<void> {
@@ -157,13 +157,13 @@ export function showExportError(type: ExportType, format: ExportFormat, error: E
 export async function exportWithNotifications(
   type: ExportType,
   format: ExportFormat,
-  data: any,
+  data: unknown,
   options: ExportOptions = {},
 ): Promise<void> {
   try {
     await exportAnalyticsData(type, format, data, options);
     showExportSuccess(type, format);
-  } catch (error) {
+  } catch (_error) {
     showExportError(type, format, error as Error);
     throw error;
   }

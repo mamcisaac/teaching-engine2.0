@@ -10,12 +10,12 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import { NotificationProvider, useNotification } from '../NotificationContext';
 import { useAuth } from '../AuthContext';
-import { useNotifications, useMarkNotificationRead } from '../../api';
+import { useNotifications, useMarkNotificationAsRead } from '../../api';
 
 // Mock the API hooks
 vi.mock('../../api', () => ({
   useNotifications: vi.fn(),
-  useMarkNotificationRead: vi.fn(),
+  useMarkNotificationAsRead: vi.fn(),
 }));
 
 // Mock the AuthContext
@@ -24,7 +24,7 @@ vi.mock('../AuthContext', () => ({
 }));
 
 const mockUseNotifications = vi.mocked(useNotifications);
-const mockUseMarkNotificationRead = vi.mocked(useMarkNotificationRead);
+const mockUseMarkNotificationAsRead = vi.mocked(useMarkNotificationAsRead);
 const mockUseAuth = vi.mocked(useAuth);
 
 // Test utilities
@@ -83,7 +83,7 @@ describe('NotificationContext', () => {
     });
 
     // Default mark mutation state
-    mockUseMarkNotificationRead.mockReturnValue(mockMarkMutation);
+    mockUseMarkNotificationAsRead.mockReturnValue(mockMarkMutation);
   });
 
   afterEach(() => {
@@ -353,7 +353,7 @@ describe('NotificationContext', () => {
 
     it('should handle null data gracefully', () => {
       mockUseNotifications.mockReturnValue({
-        data: null as any,
+        data: null as unknown,
         isLoading: false,
         error: null,
         refetch: vi.fn(),

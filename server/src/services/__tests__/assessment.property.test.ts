@@ -30,7 +30,7 @@ describe('Assessment Services - Property Tests', () => {
       );
 
       const property = properties.bounded(
-        (gradeData: any[]) => calculateGPA(gradeData),
+        (gradeData: unknown[]) => calculateGPA(gradeData),
         grades,
         0,
         4
@@ -362,7 +362,7 @@ describe('Assessment Services - Property Tests', () => {
       const property = fc.property(assessmentsWithStrands, (assessments) => {
         const aggregated = aggregateAssessmentsByStrand(assessments);
         const totalCount = Object.values(aggregated).reduce(
-          (sum, strand: any) => sum + strand.assessments.length, 0
+          (sum, strand: unknown) => sum + strand.assessments.length, 0
         );
         
         return totalCount === assessments.length;
@@ -582,7 +582,7 @@ describe('Assessment Services - Property Tests', () => {
           
           // Assessment count should be preserved in strand breakdown
           const totalAssessments = Object.values(report.strandBreakdown)
-            .reduce((sum: number, strand: any) => sum + strand.assessmentCount, 0);
+            .reduce((sum: number, strand: unknown) => sum + strand.assessmentCount, 0);
           
           return totalAssessments === reportData.assessments.length;
         }
@@ -604,7 +604,7 @@ describe('Assessment Services - Property Tests', () => {
           
           const aggregated = aggregateAssessmentsByStrand(assessments);
           const allStrandAverages = Object.values(aggregated)
-            .map((strand: any) => strand.averageRating);
+            .map((strand: unknown) => strand.averageRating);
           
           // All averages should be within valid rating bounds
           return (

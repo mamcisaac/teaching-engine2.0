@@ -72,7 +72,7 @@ export const validate = (schema: z.ZodSchema) => {
       const validatedData = schema.parse(req.body);
       req.body = validatedData;
       next();
-    } catch (error) {
+    } catch (_error) {
       if (error instanceof z.ZodError) {
         const formattedError = formatValidationError(error);
         res.status(400).json(formattedError);
@@ -93,7 +93,7 @@ export const validateQuery = (schema: z.ZodSchema) => {
       const validatedQuery = schema.parse(req.query);
       req.query = validatedQuery;
       next();
-    } catch (error) {
+    } catch (_error) {
       if (error instanceof z.ZodError) {
         const formattedError = formatValidationError(error);
         res.status(400).json(formattedError);
@@ -195,10 +195,14 @@ export const sanitizeInput = (
   res: Response,
   next: NextFunction
 ): void => {
-  const sanitizeValue = (value: any): any => {
+  const sanitizeValue = (value: unknown): unknown => {
     if (typeof value === 'string') {
-      // Remove HTML tags and normalize whitespace
-      return value.replace(/<[^>]*>/g, '').trim().replace(/\s+/g, ' ');
+      // Remove HTML tags, including content within script tags, and normalize whitespace
+      return value
+        .replace(/<script[^>]*>.*?<\/script>/gi, '') // Remove script tags and their content
+        .replace(/<[^>]*>/g, '') // Remove all other HTML tags
+        .trim()
+        .replace(/\s+/g, ' ');
     }
     if (Array.isArray(value)) {
       return value.map(sanitizeValue);

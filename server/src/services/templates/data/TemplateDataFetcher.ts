@@ -8,7 +8,7 @@ import { DataRequirement } from '../providers/TemplateProvider';
 
 export interface FetchContext {
   userId: number;
-  filters?: Record<string, any>;
+  filters?: Record<string, unknown>;
   options?: {
     includeRelations?: boolean;
     limit?: number;
@@ -23,15 +23,15 @@ export class TemplateDataFetcher {
   async fetchData(
     requirements: DataRequirement[],
     context: FetchContext
-  ): Promise<Record<string, any>> {
-    const data: Record<string, any> = {};
+  ): Promise<Record<string, unknown>> {
+    const data: Record<string, unknown> = {};
     
     // Fetch data for each requirement
     const fetchPromises = requirements.map(async (req) => {
       try {
         const result = await this.fetchDataForRequirement(req, context);
         data[req.key] = result;
-      } catch (error) {
+      } catch (_error) {
         if (req.required) {
           throw error;
         }
@@ -51,7 +51,7 @@ export class TemplateDataFetcher {
   private async fetchDataForRequirement(
     requirement: DataRequirement,
     context: FetchContext
-  ): Promise<any> {
+  ): Promise<unknown> {
     switch (requirement.type) {
       case 'user':
         return this.fetchUserData(context.userId);
@@ -79,7 +79,7 @@ export class TemplateDataFetcher {
   /**
    * Fetch user data
    */
-  private async fetchUserData(userId: number): Promise<any> {
+  private async fetchUserData(userId: number): Promise<unknown> {
     const user = await prisma.user.findUnique({
       where: { id: userId },
       select: {
@@ -96,7 +96,7 @@ export class TemplateDataFetcher {
     }
 
     // Extract preferences
-    const preferences = user.preferences as any || {};
+    const preferences = user.preferences as unknown || {};
 
     return {
       id: user.id,
@@ -113,7 +113,7 @@ export class TemplateDataFetcher {
   /**
    * Fetch student data
    */
-  private async fetchStudentData(context: FetchContext): Promise<any> {
+  private async fetchStudentData(context: FetchContext): Promise<unknown> {
     const where: any = {
       userId: context.userId,
       active: true,
@@ -150,7 +150,7 @@ export class TemplateDataFetcher {
   /**
    * Fetch lesson data
    */
-  private async fetchLessonData(context: FetchContext): Promise<any> {
+  private async fetchLessonData(context: FetchContext): Promise<unknown> {
     const where: any = {
       userId: context.userId,
     };
@@ -222,7 +222,7 @@ export class TemplateDataFetcher {
   /**
    * Fetch assessment data
    */
-  private async fetchAssessmentData(context: FetchContext): Promise<any> {
+  private async fetchAssessmentData(context: FetchContext): Promise<unknown> {
     // This would fetch from assessment tables
     // For now, return mock data
     return {
@@ -234,7 +234,7 @@ export class TemplateDataFetcher {
   /**
    * Fetch curriculum data
    */
-  private async fetchCurriculumData(context: FetchContext): Promise<any> {
+  private async fetchCurriculumData(context: FetchContext): Promise<unknown> {
     const where: any = {
       isActive: true,
     };
@@ -273,7 +273,7 @@ export class TemplateDataFetcher {
   private async fetchCustomData(
     key: string,
     context: FetchContext
-  ): Promise<any> {
+  ): Promise<unknown> {
     // Handle specific custom data requirements
     switch (key) {
       case 'reportPeriod':
@@ -324,7 +324,7 @@ export class TemplateDataFetcher {
     userId: number,
     startDate: Date,
     endDate: Date
-  ): Promise<any> {
+  ): Promise<unknown> {
     const lessons = await this.fetchLessonData({
       userId,
       filters: { startDate, endDate },
@@ -358,7 +358,7 @@ export class TemplateDataFetcher {
   /**
    * Group lessons by subject
    */
-  private groupLessonsBySubject(lessons: any[]): any[] {
+  private groupLessonsBySubject(lessons: unknown[]): unknown[] {
     const grouped = new Map<string, any>();
 
     for (const lesson of lessons) {
@@ -446,7 +446,7 @@ export class TemplateDataFetcher {
   /**
    * Generate parent suggestions
    */
-  private generateParentSuggestions(subjectSummaries: any[]): string[] {
+  private generateParentSuggestions(subjectSummaries: unknown[]): string[] {
     const suggestions: string[] = [
       'Ask your child about their favorite lesson from this week',
       'Practice reading together for 20 minutes each evening',

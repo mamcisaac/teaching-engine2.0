@@ -172,7 +172,7 @@ router.get('/state', async (req: express.Request, res: express.Response) => {
     };
 
     res.json(responseState);
-  } catch (error) {
+  } catch (_error) {
     console.error('Error fetching planner state:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
@@ -182,7 +182,7 @@ router.get('/state', async (req: express.Request, res: express.Response) => {
 router.put(
   '/state',
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  stateRateLimit as any,
+  stateRateLimit as unknown,
   csrfProtection,
   async (req: express.Request, res: Response) => {
     try {
@@ -274,7 +274,7 @@ router.put(
       };
 
       res.json(responseState);
-    } catch (error) {
+    } catch (_error) {
       console.error('Error updating planner state:', error);
       res.status(500).json({ error: 'Internal server error' });
     }
@@ -390,7 +390,7 @@ router.get('/week/:weekStart/state', async (req: express.Request, res: Response)
     };
 
     res.json(weeklyState);
-  } catch (error) {
+  } catch (_error) {
     console.error('Error fetching weekly state:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
@@ -400,7 +400,7 @@ router.get('/week/:weekStart/state', async (req: express.Request, res: Response)
 router.post(
   '/state/reset',
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  stateRateLimit as any,
+  stateRateLimit as unknown,
   csrfProtection,
   async (req: express.Request, res: Response) => {
     try {
@@ -456,7 +456,7 @@ router.post(
       };
 
       res.json(responseState);
-    } catch (error) {
+    } catch (_error) {
       console.error('Error resetting planner state:', error);
       res.status(500).json({ error: 'Internal server error' });
     }

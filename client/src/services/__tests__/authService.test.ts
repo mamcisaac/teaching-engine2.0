@@ -97,10 +97,10 @@ describe('AuthService', () => {
   describe('User Management', () => {
     it('should store and retrieve user data', () => {
       const user = {
-        id: '1',
+        id: 1,
         email: 'test@example.com',
         name: 'Test User',
-        role: 'teacher',
+        role: 'USER' as const,
       };
 
       authService.setUser(user);
@@ -135,10 +135,10 @@ describe('AuthService', () => {
   describe('Login', () => {
     it('should handle successful login', async () => {
       const mockUser = {
-        id: '1',
+        id: 1,
         email: 'test@example.com',
         name: 'Test User',
-        role: 'teacher',
+        role: 'USER' as const,
       };
 
       const mockResponse = {

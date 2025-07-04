@@ -219,7 +219,7 @@ export function unicodeNormalization(input: string): string {
       .replace(/&amp;/g, '&'); // Do this last to avoid double-decoding
 
     return normalized;
-  } catch (error) {
+  } catch (_error) {
     logger.error({ error, input: input.substring(0, 100) }, 'Unicode normalization error');
     return input; // Return original if normalization fails
   }
@@ -358,7 +358,7 @@ export function sanitizeCssContent(css: string): string {
     sanitized = sanitized.replace(/\b(eval|alert|confirm|prompt|document|window|location)\b/gi, '');
 
     return sanitized.trim();
-  } catch (error) {
+  } catch (_error) {
     logger.error({ error, css: css.substring(0, 100) }, 'CSS sanitization error');
     return ''; // Return empty string if sanitization fails
   }
@@ -493,7 +493,7 @@ export function sanitizeHtmlAdvanced(
     DOMPurify.removeAllHooks();
 
     return sanitizedString;
-  } catch (error) {
+  } catch (_error) {
     logger.error({ error, html: html.substring(0, 100) }, 'HTML sanitization error');
     return ''; // Return empty string if sanitization fails
   }
@@ -554,7 +554,7 @@ export function sanitizeEmailAdvanced(email: string): string {
     }
 
     return sanitized;
-  } catch (error) {
+  } catch (_error) {
     logger.error({ error, email: email.substring(0, 50) }, 'Email sanitization error');
     return '';
   }
@@ -632,7 +632,7 @@ export function sanitizeUrlAdvanced(url: string): string {
     }
 
     return sanitized;
-  } catch (error) {
+  } catch (_error) {
     logger.error({ error, url: url.substring(0, 100) }, 'URL sanitization error');
     return '';
   }
@@ -749,7 +749,7 @@ export function advancedXssProtection(req: Request, res: Response, next: NextFun
     }
 
     next();
-  } catch (error) {
+  } catch (_error) {
     logger.error(
       {
         error,

@@ -3,7 +3,7 @@
 import { create } from 'zustand';
 import { persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
-import { api } from '../api';
+import { api } from '../api/legacy/api';
 import { createOfflineSlice, createAutoSave, OfflineState, BaseActions } from './basePlanningStore';
 import { offlineStorage, StoredData } from '../services/offlineStorage';
 
@@ -121,7 +121,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
                   throw new Error('No cached data available offline');
                 }
               }
-            } catch (error) {
+            } catch (_error) {
               console.error('Failed to load unit plans:', error);
 
               // Try to load from cache as fallback
@@ -175,7 +175,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
                   }
                 }
               }
-            } catch (error) {
+            } catch (_error) {
               console.error('Failed to load unit plan:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to load plan';
@@ -228,7 +228,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
 
                 return newPlan;
               }
-            } catch (error) {
+            } catch (_error) {
               console.error('Failed to create unit plan:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to create plan';
@@ -285,7 +285,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
                   data: updatedPlan,
                 });
               }
-            } catch (error) {
+            } catch (_error) {
               console.error('Failed to update unit plan:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to update plan';
@@ -331,7 +331,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
                   data: { id },
                 });
               }
-            } catch (error) {
+            } catch (_error) {
               console.error('Failed to delete unit plan:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to delete plan';

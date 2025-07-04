@@ -1,4 +1,4 @@
-import { apiClient } from '../../core';
+import { apiClient } from '../../core/client';
 
 export interface MediaResource {
   id: number;
@@ -20,7 +20,7 @@ export interface MediaResource {
   category: 'lesson' | 'assessment' | 'classroom' | 'curriculum' | 'personal' | 'shared';
   visibility: 'private' | 'shared' | 'public';
   isActive: boolean;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   sharedWith?: number[]; // user IDs
   downloadCount: number;
   viewCount: number;
@@ -34,7 +34,7 @@ export interface MediaResourceInput {
   tags?: string[];
   category: string;
   visibility?: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   sharedWith?: number[];
 }
 

@@ -87,17 +87,17 @@ function createAuthRouter(prisma = defaultPrisma) {
   const router = Router();
 
   // Public endpoints with rate limiting and custom validation
-  router.post('/login', authRateLimiter as any, validateAuthInputs(false), validateRequest(loginSchema), login);
-  router.post('/register', authRateLimiter as any, validateAuthInputs(true), validateRequest(registerSchema), register);
+  router.post('/login', authRateLimiter as unknown, validateAuthInputs(false), validateRequest(loginSchema), login);
+  router.post('/register', authRateLimiter as unknown, validateAuthInputs(true), validateRequest(registerSchema), register);
   router.post(
     '/forgot-password',
-    authRateLimiter as any,
+    authRateLimiter as unknown,
     validateRequest(forgotPasswordSchema),
     forgotPassword,
   );
   router.post(
     '/reset-password',
-    authRateLimiter as any,
+    authRateLimiter as unknown,
     validateRequest(resetPasswordSchema),
     resetPassword,
   );
@@ -141,7 +141,7 @@ function createAuthRouter(prisma = defaultPrisma) {
         name: user.name,
         role: user.role,
       });
-    } catch (error) {
+    } catch (_error) {
       // This should rarely happen as authenticate middleware handles most errors
       return res.status(500).json({
         error: 'Internal Server Error',

@@ -26,6 +26,9 @@ export * from './ai';
 // Authentication services - Modern secure authentication
 export * from './auth';
 
+// LLM services - OpenAI integration and content generation
+export * from './llmService';
+
 // Service types - Modern curriculum service types
 export type { 
   ImportOptions,

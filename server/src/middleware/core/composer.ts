@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express';
-import { logger } from '../../logger';
+import logger from '../../logger';
 
 // Middleware type
 export type Middleware = RequestHandler | ErrorRequestHandler;
 
 // Error-handling middleware type
 export type ErrorRequestHandler = (
-  err: any,
+  err: Error,
   req: Request,
   res: Response,
   next: NextFunction
@@ -17,7 +17,7 @@ export const compose = (...middlewares: Middleware[]): RequestHandler => {
   return async (req: Request, res: Response, next: NextFunction) => {
     let index = 0;
 
-    const dispatch = async (err?: any): Promise<void> => {
+    const dispatch = async (err?: Error): Promise<void> => {
       if (err) {
         return next(err);
       }
@@ -37,8 +37,8 @@ export const compose = (...middlewares: Middleware[]): RequestHandler => {
 
         // Regular middleware
         await (middleware as RequestHandler)(req, res, dispatch);
-      } catch (error) {
-        dispatch(error);
+      } catch (_error) {
+        next(error);
       }
     };
 
@@ -93,7 +93,7 @@ export const withTimeout = (
     });
 
     const middlewarePromise = new Promise<void>((resolve, reject) => {
-      (middleware as RequestHandler)(req, res, (err?: any) => {
+      (middleware as RequestHandler)(req, res, (err?: unknown) => {
         completed = true;
         if (timeoutId) clearTimeout(timeoutId);
         
@@ -108,8 +108,8 @@ export const withTimeout = (
     try {
       await Promise.race([middlewarePromise, timeoutPromise]);
       next();
-    } catch (error) {
-      next(error);
+    } catch (_error) {
+      next(error as unknown);
     }
   };
 };
@@ -119,7 +119,7 @@ export const parallel = (...middlewares: Middleware[]): RequestHandler => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const promises = middlewares.map(middleware => {
       return new Promise<void>((resolve, reject) => {
-        (middleware as RequestHandler)(req, res, (err?: any) => {
+        (middleware as RequestHandler)(req, res, (err?: unknown) => {
           if (err) reject(err);
           else resolve();
         });
@@ -129,8 +129,8 @@ export const parallel = (...middlewares: Middleware[]): RequestHandler => {
     try {
       await Promise.all(promises);
       next();
-    } catch (error) {
-      next(error);
+    } catch (_error) {
+      next(error as unknown);
     }
   };
 };
@@ -169,7 +169,7 @@ export const chain = (): MiddlewareChain => new MiddlewareChain();
 
 // Middleware error wrapper
 export const asyncMiddleware = (
-  fn: (req: Request, res: Response, next: NextFunction) => Promise<any>
+  fn: (req: Request, res: Response, next: NextFunction) => Promise<void>
 ): RequestHandler => {
   return (req: Request, res: Response, next: NextFunction) => {
     Promise.resolve(fn(req, res, next)).catch(next);
@@ -181,7 +181,7 @@ export const timed = (name: string, middleware: Middleware): RequestHandler => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const start = Date.now();
     
-    const handleNext = (err?: any) => {
+    const handleNext = (err?: unknown) => {
       const duration = Date.now() - start;
       
       logger.debug({
@@ -203,8 +203,8 @@ export const timed = (name: string, middleware: Middleware): RequestHandler => {
 
     try {
       (middleware as RequestHandler)(req, res, handleNext);
-    } catch (error) {
-      handleNext(error);
+    } catch (_error) {
+      handleNext(error as unknown);
     }
   };
 };

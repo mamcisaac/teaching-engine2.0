@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 import rateLimit, { RateLimitRequestHandler, Options } from 'express-rate-limit';
 // Optional Redis support
-let RedisStore: any;
-let createClient: any;
+let RedisStore: unknown;
+let createClient: unknown;
 
 try {
-  RedisStore = require('rate-limit-redis');
-  createClient = require('redis').createClient;
-} catch (e) {
+  RedisStore = await import('rate-limit-redis');
+  createClient = (await import('redis').createClient;
+} catch (_e) {
   // Redis not available
 }
 import logger from '../../logger.js';
@@ -72,7 +72,7 @@ export function createRateLimiter(
         return `user:${req.user.id}`;
       }
       return req.ip || 'unknown';
-    }) as any,
+    }) as unknown,
     
     // Skip successful requests if configured
     skipSuccessfulRequests: config.skipSuccessful || false,
@@ -80,7 +80,7 @@ export function createRateLimiter(
     // Skip rate limiting for certain paths
     skip: ((req: Request) => {
       return skipRateLimitPaths.includes(req.path);
-    }) as any,
+    }) as unknown,
     
     // Custom handler for rate limit exceeded
     handler: ((req: Request, res: Response) => {
@@ -99,7 +99,7 @@ export function createRateLimiter(
         limit: config.max,
         windowMs: config.windowMs,
       });
-    }) as any,
+    }) as unknown,
     
     // Apply custom options
     ...customOptions,
@@ -125,7 +125,7 @@ export function createDynamicRateLimiter(
       const userTier = getUserTier(req);
       const config = getRateLimitConfig(configName, userTier);
       return config.max;
-    }) as any,
+    }) as unknown,
     
     // Use Redis store if available
     ...(redisClient && storeConfig.useRedis ? {
@@ -142,12 +142,12 @@ export function createDynamicRateLimiter(
         return `user:${req.user.id}`;
       }
       return req.ip || 'unknown';
-    }) as any,
+    }) as unknown,
     
     // Skip rate limiting for certain paths
     skip: ((req: Request) => {
       return skipRateLimitPaths.includes(req.path);
-    }) as any,
+    }) as unknown,
     
     // Custom handler
     handler: ((req: Request, res: Response) => {
@@ -170,7 +170,7 @@ export function createDynamicRateLimiter(
         windowMs: config.windowMs,
         userTier,
       });
-    }) as any,
+    }) as unknown,
     
     ...customOptions,
   });
@@ -202,8 +202,8 @@ export function applyRateLimitGroup(
 ): RateLimitRequestHandler[] {
   return limiters.map(limiter => {
     // Add group name to logger context
-    const originalHandler = (limiter as any).handler;
-    (limiter as any).handler = (req: Request, res: Response) => {
+    const originalHandler = (limiter as unknown).handler;
+    (limiter as unknown).handler = (req: Request, res: Response) => {
       logger.warn({
         rateLimitGroup: groupName,
         ip: req.ip,
@@ -259,7 +259,7 @@ export async function resetRateLimit(
   try {
     await redisClient.del(fullKey);
     logger.info(`Reset rate limit for ${fullKey}`);
-  } catch (error) {
+  } catch (_error) {
     logger.error('Failed to reset rate limit:', error);
   }
 }
@@ -286,7 +286,7 @@ export async function getRateLimitStatus(
         resetTime: new Date(Date.now() + ttl * 1000),
       };
     }
-  } catch (error) {
+  } catch (_error) {
     logger.error('Failed to get rate limit status:', error);
   }
   

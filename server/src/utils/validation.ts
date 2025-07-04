@@ -107,7 +107,7 @@ export const validateId = (id: string | number): number => {
   return result.data;
 };
 
-export const validatePagination = (query: any) => {
+export const validatePagination = (query: unknown) => {
   const defaultPagination = { page: 1, pageSize: 20 };
   
   if (!query || typeof query !== 'object') {
@@ -145,16 +145,16 @@ export const validateDateRange = (from?: string | Date, to?: string | Date) => {
 };
 
 // Transform helpers
-export const transformToNumber = (value: any): number | undefined => {
+export const transformToNumber = (value: unknown): number | undefined => {
   if (value === undefined || value === null || value === '') {
     return undefined;
   }
   
-  const num = typeof value === 'string' ? parseFloat(value) : value;
+  const num = typeof value === 'string' ? parseFloat(value) : value as number;
   return isNaN(num) ? undefined : num;
 };
 
-export const transformToBoolean = (value: any): boolean => {
+export const transformToBoolean = (value: unknown): boolean => {
   if (typeof value === 'boolean') return value;
   if (typeof value === 'string') {
     return value.toLowerCase() === 'true' || value === '1';
@@ -162,7 +162,7 @@ export const transformToBoolean = (value: any): boolean => {
   return !!value;
 };
 
-export const transformToArray = (value: any): string[] => {
+export const transformToArray = (value: unknown): string[] => {
   if (Array.isArray(value)) return value;
   if (typeof value === 'string') {
     return value.split(',').map(s => s.trim()).filter(Boolean);
@@ -206,7 +206,7 @@ export const isValidCanadianPostalCode = (code: string): boolean => {
 };
 
 // Schema builders
-export const buildFilterSchema = <T extends z.ZodObject<any>>(
+export const buildFilterSchema = <T extends z.ZodObject<unknown>>(
   baseSchema: T,
   additionalFields?: z.ZodRawShape
 ) => {
@@ -218,11 +218,11 @@ export const buildFilterSchema = <T extends z.ZodObject<any>>(
   });
 };
 
-export const buildCreateSchema = <T extends z.ZodObject<any>>(
+export const buildCreateSchema = <T extends z.ZodObject<unknown>>(
   baseSchema: T,
   requiredFields: Array<keyof T['shape']>
 ) => {
-  const shape: any = {};
+  const shape: Record<string, unknown> = {};
   
   for (const key of requiredFields) {
     if (baseSchema.shape[key]) {
@@ -233,13 +233,13 @@ export const buildCreateSchema = <T extends z.ZodObject<any>>(
   return z.object(shape);
 };
 
-export const buildUpdateSchema = <T extends z.ZodObject<any>>(
+export const buildUpdateSchema = <T extends z.ZodObject<unknown>>(
   baseSchema: T
 ) => {
-  const shape: any = {};
+  const shape: Record<string, unknown> = {};
   
   for (const [key, schema] of Object.entries(baseSchema.shape)) {
-    shape[key] = (schema as any).optional();
+    shape[key] = (schema as unknown).optional();
   }
   
   return z.object(shape);
@@ -247,7 +247,7 @@ export const buildUpdateSchema = <T extends z.ZodObject<any>>(
 
 // Validation middleware factory
 export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>) => {
-  return (req: any, res: any, next: any) => {
+  return (req: unknown, res: unknown, next: unknown) => {
     try {
       const data = {
         ...(req.body || {}),
@@ -258,7 +258,7 @@ export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>) => {
       const result = schema.parse(data);
       req.validated = result;
       next();
-    } catch (error) {
+    } catch (_error) {
       if (error instanceof z.ZodError) {
         res.status(400).json({
           success: false,

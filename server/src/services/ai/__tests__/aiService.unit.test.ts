@@ -5,8 +5,8 @@ import { createTestUser, createTestLessonPlan } from '../../../../tests/factorie
 
 describe('AIService', () => {
   let aiService: AIService;
-  let mockOpenAI: any;
-  let openAIUtilities: any;
+  let mockOpenAI: unknown;
+  let openAIUtilities: unknown;
 
   beforeEach(() => {
     const { client, utilities } = createOpenAIMock();
@@ -143,7 +143,7 @@ describe('AIService', () => {
 
       // Should adjust to grade-appropriate content
       expect(result.complexity).not.toBe('advanced');
-      expect(result.activities.every((a: any) => 
+      expect(result.activities.every((a: unknown) => 
         !a.description?.includes('calculus')
       )).toBe(true);
     });
@@ -231,7 +231,7 @@ describe('AIService', () => {
       await aiService.generateLesson(input);
 
       const call = mockOpenAI.chat.completions.create.mock.calls[0][0];
-      const userMessage = call.messages.find((m: any) => m.role === 'user').content;
+      const userMessage = call.messages.find((m: unknown) => m.role === 'user').content;
 
       expect(userMessage).toContain('Grade: 3');
       expect(userMessage).toContain('Subject: Science');
@@ -251,7 +251,7 @@ describe('AIService', () => {
       await aiService.generateLesson(maliciousInput);
 
       const call = mockOpenAI.chat.completions.create.mock.calls[0][0];
-      const userMessage = call.messages.find((m: any) => m.role === 'user').content;
+      const userMessage = call.messages.find((m: unknown) => m.role === 'user').content;
 
       // Should escape or sanitize the malicious input
       expect(userMessage).not.toContain('Ignore previous instructions');
@@ -262,19 +262,19 @@ describe('AIService', () => {
       // Lesson generation
       await aiService.generateLesson({ grade: '3' });
       let systemPrompt = mockOpenAI.chat.completions.create.mock.calls[0][0]
-        .messages.find((m: any) => m.role === 'system').content;
+        .messages.find((m: unknown) => m.role === 'system').content;
       expect(systemPrompt).toContain('educational lesson plan');
 
       // Curriculum analysis
       await aiService.analyzeCurriculum('Math curriculum text');
       systemPrompt = mockOpenAI.chat.completions.create.mock.calls[1][0]
-        .messages.find((m: any) => m.role === 'system').content;
+        .messages.find((m: unknown) => m.role === 'system').content;
       expect(systemPrompt).toContain('curriculum analysis');
 
       // Question generation
       await aiService.generateQuestions({ topic: 'Fractions' });
       systemPrompt = mockOpenAI.chat.completions.create.mock.calls[2][0]
-        .messages.find((m: any) => m.role === 'system').content;
+        .messages.find((m: unknown) => m.role === 'system').content;
       expect(systemPrompt).toContain('assessment questions');
     });
   });
@@ -325,7 +325,7 @@ describe('AIService', () => {
       const result = await aiService.generateLesson({ duration: 45 });
 
       // Should adjust activities or add buffer time
-      const totalDuration = result.activities.reduce((sum: number, a: any) => sum + a.duration, 0);
+      const totalDuration = result.activities.reduce((sum: number, a: unknown) => sum + a.duration, 0);
       expect(totalDuration).toBeLessThanOrEqual(45);
     });
   });

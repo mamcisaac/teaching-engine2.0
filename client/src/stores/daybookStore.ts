@@ -3,7 +3,7 @@
 import { create } from 'zustand';
 import { persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
-import { api } from '../api';
+import { api } from '../api/legacy/api';
 import { createOfflineSlice, createAutoSave, OfflineState, BaseActions } from './basePlanningStore';
 import { offlineStorage, StoredData } from '../services/offlineStorage';
 
@@ -142,7 +142,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                   }
                 }
               }
-            } catch (error) {
+            } catch (_error) {
               console.error('Failed to load daybook entries:', error);
 
               // Try to load from cache as fallback
@@ -202,7 +202,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                   state.isLoading = false;
                 });
               }
-            } catch (error) {
+            } catch (_error) {
               console.error('Failed to load daybook entry:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to load entry';
@@ -269,7 +269,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
 
                 return newEntry;
               }
-            } catch (error) {
+            } catch (_error) {
               console.error('Failed to create daybook entry:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to create entry';
@@ -326,7 +326,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                   data: updatedEntry,
                 });
               }
-            } catch (error) {
+            } catch (_error) {
               console.error('Failed to update daybook entry:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to update entry';
@@ -372,7 +372,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                   data: { id },
                 });
               }
-            } catch (error) {
+            } catch (_error) {
               console.error('Failed to delete daybook entry:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to delete entry';

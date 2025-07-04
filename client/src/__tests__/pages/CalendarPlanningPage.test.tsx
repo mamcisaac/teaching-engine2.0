@@ -6,7 +6,7 @@ import { renderWithAuth } from '../../test-utils';
 
 // Mock react-big-calendar
 vi.mock('react-big-calendar', () => ({
-  Calendar: ({ onSelectEvent, onSelectSlot, components, eventPropGetter }: any) => (
+  Calendar: ({ onSelectEvent, onSelectSlot, components, eventPropGetter }: unknown) => (
     <div data-testid="calendar">
       <div data-testid="custom-toolbar">
         {components?.toolbar &&
@@ -104,7 +104,7 @@ vi.mock('sonner', () => ({
 // Mock calendar components
 vi.mock('../../components/calendar/CalendarEventModal', () => ({
   __esModule: true,
-  default: ({ isOpen, onClose, selectedDate, onEventCreated }: any) =>
+  default: ({ isOpen, onClose, selectedDate, onEventCreated }: unknown) =>
     isOpen ? (
       <div data-testid="calendar-event-modal">
         <h3>Create Event</h3>
@@ -121,7 +121,7 @@ vi.mock('../../components/calendar/CalendarEventModal', () => ({
 
 vi.mock('../../components/calendar/CalendarEventDetails', () => ({
   __esModule: true,
-  default: ({ event, onClose, onUpdate }: any) => (
+  default: ({ event, onClose, onUpdate }: unknown) => (
     <div data-testid="calendar-event-details">
       <h3>Event Details</h3>
       <div>Event: {event.title}</div>
@@ -138,7 +138,7 @@ vi.mock('../../components/calendar/CalendarEventDetails', () => ({
 
 vi.mock('../../components/calendar/CalendarFilters', () => ({
   __esModule: true,
-  default: ({ filters, onFiltersChange, availableSubjects }: any) => (
+  default: ({ filters, onFiltersChange, availableSubjects }: unknown) => (
     <div data-testid="calendar-filters">
       <h3>Calendar Filters</h3>
       <div>Available Subjects: {availableSubjects.join(', ')}</div>

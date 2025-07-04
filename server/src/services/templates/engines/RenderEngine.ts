@@ -16,10 +16,10 @@ export interface RenderResult {
 }
 
 export interface RenderContext {
-  data: Record<string, any>;
+  data: Record<string, unknown>;
   helpers?: Record<string, Function>;
   partials?: Record<string, string>;
-  options?: Record<string, any>;
+  options?: Record<string, unknown>;
 }
 
 export abstract class RenderEngine {
@@ -43,7 +43,7 @@ export abstract class RenderEngine {
   /**
    * Precompile template for performance
    */
-  abstract precompile(template: Template): Promise<any>;
+  abstract precompile(template: Template): Promise<unknown>;
 
   /**
    * Get engine name
@@ -51,4 +51,19 @@ export abstract class RenderEngine {
   getName(): string {
     return this.name;
   }
+
+  /**
+   * Initialize the engine (optional)
+   */
+  async initialize?(): Promise<void>;
+
+  /**
+   * Validate engine health (optional)
+   */
+  validateHealth?(): boolean;
+
+  /**
+   * Cleanup engine resources (optional)
+   */
+  async cleanup?(): Promise<void>;
 }

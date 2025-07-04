@@ -289,7 +289,7 @@ export function AILessonPlanPanel({
         onLessonGenerated(structure);
       }
 
-    } catch (error) {
+    } catch (_error) {
       console.error('Error generating three-part lesson:', error);
       toast({
         title: 'Generation Failed',
@@ -354,7 +354,7 @@ export function AILessonPlanPanel({
         description: `Generated ${result.suggestions.length} ${type} suggestions.`,
       });
 
-    } catch (error) {
+    } catch (_error) {
       console.error('Error generating suggestions:', error);
       toast({
         title: 'Generation Failed',

@@ -7,7 +7,7 @@ import * as XLSX from 'xlsx';
 import { CurriculumParser, ParsedCurriculum, ParsedExpectation } from './CurriculumParser';
 
 export interface ExcelRow {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export class ExcelParser extends CurriculumParser {
@@ -88,7 +88,7 @@ export class ExcelParser extends CurriculumParser {
   } {
     // Try to extract from workbook properties
     const props = workbook.Props;
-    const metadata: any = {};
+    const metadata: unknown = {};
 
     if (props) {
       metadata.version = props.Title || props.Subject;

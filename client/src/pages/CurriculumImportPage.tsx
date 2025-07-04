@@ -19,7 +19,7 @@ import { Label } from '@/components/ui/Label';
 import { Textarea } from '@/components/ui/Textarea';
 import { Upload, CheckCircle, AlertCircle, Sparkles, Edit2, Trash2 } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
-import { api } from '../api';
+import { api } from '../api/legacy/api';
 
 interface ParsedExpectation {
   code: string;
@@ -116,7 +116,7 @@ export default function CurriculumImportPage() {
           title: 'Success',
           description: `Parsed ${parseResponse.data.subjects?.length || 0} subjects from ${file.name}`,
         });
-      } catch (error) {
+      } catch (_error) {
         console.error('Import error:', error);
         setImportSession((prev) =>
           prev
@@ -163,7 +163,7 @@ export default function CurriculumImportPage() {
         title: 'Success',
         description: `Loaded ${response.data.subjects?.length || 0} subjects from preset`,
       });
-    } catch (error) {
+    } catch (_error) {
       toast({
         title: 'Error',
         description: 'Failed to load preset curriculum',
@@ -243,7 +243,7 @@ export default function CurriculumImportPage() {
       setTimeout(() => {
         navigate('/curriculum');
       }, 1500);
-    } catch (error) {
+    } catch (_error) {
       toast({
         title: 'Error',
         description: 'Failed to import curriculum',

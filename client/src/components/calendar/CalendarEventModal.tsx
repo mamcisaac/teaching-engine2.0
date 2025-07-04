@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import { Calendar, Clock } from 'lucide-react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { api } from '../../api';
+import { api } from '../../api/legacy/api';
 import { Button } from '../ui/Button';
 import {
   Dialog,

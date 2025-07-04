@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
         totalLessonPlans: lessonCount,
         lastChecked: new Date().toISOString()
       };
-    } catch (error) {
+    } catch (_error) {
       dbStatus = 'unhealthy';
       logger.error('Database health check failed:', error);
     }
@@ -69,7 +69,7 @@ router.get('/', async (req, res) => {
       },
       timestamp: new Date().toISOString()
     });
-  } catch (error) {
+  } catch (_error) {
     logger.error('Error getting dashboard metrics:', error);
     res.status(500).json({
       success: false,
@@ -143,7 +143,7 @@ router.get('/trends', async (req, res) => {
       },
       timestamp: new Date().toISOString()
     });
-  } catch (error) {
+  } catch (_error) {
     logger.error('Error getting performance trends:', error);
     res.status(500).json({
       success: false,
@@ -197,7 +197,7 @@ router.get('/resources', async (req, res) => {
       },
       timestamp: new Date().toISOString()
     });
-  } catch (error) {
+  } catch (_error) {
     logger.error('Error getting resource usage:', error);
     res.status(500).json({
       success: false,
@@ -263,7 +263,7 @@ router.get('/insights', async (req, res) => {
       },
       timestamp: new Date().toISOString()
     });
-  } catch (error) {
+  } catch (_error) {
     logger.error('Error getting application insights:', error);
     res.status(500).json({
       success: false,
@@ -275,11 +275,11 @@ router.get('/insights', async (req, res) => {
 /**
  * Calculate overall cache hit rate from cache stats
  */
-function calculateOverallCacheHitRate(cacheStats: any): number {
+function calculateOverallCacheHitRate(cacheStats: unknown): number {
   let totalHits = 0;
   let totalRequests = 0;
   
-  Object.values(cacheStats).forEach((cache: any) => {
+  Object.values(cacheStats).forEach((cache: unknown) => {
     totalHits += cache.hits;
     totalRequests += cache.hits + cache.misses;
   });

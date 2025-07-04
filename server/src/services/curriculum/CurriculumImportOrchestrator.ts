@@ -34,8 +34,8 @@ export interface ImportResult {
   };
   validation?: {
     isValid: boolean;
-    errors: any[];
-    warnings: any[];
+    errors: unknown[];
+    warnings: unknown[];
   };
   subjectId?: number;
 }
@@ -226,7 +226,7 @@ export class CurriculumImportOrchestrator extends BaseService {
           result.subjectId = importResult.subjectId;
 
           return result;
-        } catch (error) {
+        } catch (_error) {
           this.logger.error('Import failed', { error, options });
           result.message = `Import failed: ${error.message}`;
           result.stats.errors++;
@@ -243,7 +243,7 @@ export class CurriculumImportOrchestrator extends BaseService {
   private async validateCurriculum(
     parsed: ParsedCurriculum,
     validationOptions?: ValidationOptions
-  ): Promise<{ isValid: boolean; errors: any[]; warnings: any[] }> {
+  ): Promise<{ isValid: boolean; errors: unknown[]; warnings: unknown[] }> {
     const validator = validationOptions 
       ? new CurriculumValidator(validationOptions)
       : this.validator;
@@ -393,23 +393,23 @@ export class CurriculumImportOrchestrator extends BaseService {
   }
 
   // Delegate to specialized services
-  public async export(options: any): Promise<Buffer> {
+  public async export(options: unknown): Promise<Buffer> {
     return this.exportService.export(options);
   }
 
-  public async searchExpectations(options: any): Promise<any> {
+  public async searchExpectations(options: unknown): Promise<unknown> {
     return this.searchService.searchExpectations(options);
   }
 
-  public async getImportStats(): Promise<any> {
+  public async getImportStats(): Promise<unknown> {
     return this.statsService.getOverallStats();
   }
 
-  public async getSubjectStats(subjectId: number): Promise<any> {
+  public async getSubjectStats(subjectId: number): Promise<unknown> {
     return this.statsService.getSubjectStats(subjectId);
   }
 
-  public async getCoverageStats(): Promise<any> {
+  public async getCoverageStats(): Promise<unknown> {
     return this.statsService.getCoverageStats();
   }
 }
@@ -426,15 +426,15 @@ export class CurriculumImportService {
     return curriculumImportOrchestrator.importFromFile(fileContent, options);
   }
 
-  static async export(options: any): Promise<Buffer> {
+  static async export(options: unknown): Promise<Buffer> {
     return curriculumImportOrchestrator.export(options);
   }
 
-  static async searchExpectations(query: string, filters?: any): Promise<any[]> {
+  static async searchExpectations(query: string, filters?: unknown): Promise<any[]> {
     return curriculumImportOrchestrator.searchExpectations({ query, filters });
   }
 
-  static async getImportStats(): Promise<any> {
+  static async getImportStats(): Promise<unknown> {
     return curriculumImportOrchestrator.getImportStats();
   }
 }

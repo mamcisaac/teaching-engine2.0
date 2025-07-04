@@ -1,4 +1,4 @@
-import { getWeekStartISO } from '../api';
+import { getWeekStartISO } from '../api/legacy/api';
 
 test('normalizes week start to YYYY-MM-DD', () => {
   const date = new Date('2025-06-09T12:05:40Z');

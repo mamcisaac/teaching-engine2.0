@@ -4,9 +4,9 @@ import { mockRequest, mockResponse, mockNext, generateTestToken } from '../../..
 import jwt from 'jsonwebtoken';
 
 describe('Authentication Middleware', () => {
-  let req: any;
-  let res: any;
-  let next: any;
+  let req: unknown;
+  let res: unknown;
+  let next: unknown;
 
   beforeEach(() => {
     req = mockRequest();

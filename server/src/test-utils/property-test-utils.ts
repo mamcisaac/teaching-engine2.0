@@ -272,7 +272,7 @@ export const educationProperties = {
    */
   user: () => fc.record({
     email: arbitraries.email(),
-    name: fc.fullName(),
+    name: fc.string({ minLength: 2, maxLength: 50 }),
     role: arbitraries.userRole(),
     preferredLanguage: fc.constantFrom('en', 'fr')
   }),
@@ -316,7 +316,7 @@ export const testConfig = {
  * Helper function to run property tests with custom configuration
  */
 export const runPropertyTest = (
-  property: fc.Property<any>,
+  property: unknown,
   config: Partial<typeof testConfig> = {}
 ) => {
   const finalConfig = { ...testConfig, ...config };
@@ -387,22 +387,22 @@ export const invariants = {
    * Lesson plan invariants
    */
   lessonPlan: {
-    durationIsPositive: (plan: any) => plan.duration > 0,
-    hasRequiredSections: (plan: any) => 
+    durationIsPositive: (plan: unknown) => plan.duration > 0,
+    hasRequiredSections: (plan: unknown) => 
       plan.mindsOn && plan.action && plan.consolidation,
-    dateIsValid: (plan: any) => isValid(new Date(plan.date)),
-    gradeIsElementary: (plan: any) => matchers.isValidElementaryGrade(plan.grade)
+    dateIsValid: (plan: unknown) => isValid(new Date(plan.date)),
+    gradeIsElementary: (plan: unknown) => matchers.isValidElementaryGrade(plan.grade)
   },
 
   /**
    * Unit plan invariants
    */
   unitPlan: {
-    endDateAfterStart: (plan: any) => 
+    endDateAfterStart: (plan: unknown) => 
       new Date(plan.endDate) > new Date(plan.startDate),
-    hoursAreReasonable: (plan: any) => 
+    hoursAreReasonable: (plan: unknown) => 
       plan.totalHours >= 1 && plan.totalHours <= 200,
-    titleIsNotEmpty: (plan: any) => 
+    titleIsNotEmpty: (plan: unknown) => 
       plan.title && plan.title.trim().length > 0
   },
 
@@ -410,11 +410,11 @@ export const invariants = {
    * User invariants
    */
   user: {
-    emailIsValid: (user: any) => 
+    emailIsValid: (user: unknown) => 
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email),
-    roleIsValid: (user: any) => 
+    roleIsValid: (user: unknown) => 
       ['teacher', 'principal', 'vice-principal', 'supply-teacher'].includes(user.role),
-    languageIsSupported: (user: any) => 
+    languageIsSupported: (user: unknown) => 
       ['en', 'fr'].includes(user.preferredLanguage)
   },
 
@@ -422,8 +422,8 @@ export const invariants = {
    * Curriculum expectation invariants
    */
   curriculumExpectation: {
-    codeIsValid: (exp: any) => matchers.isValidCurriculumCode(exp.code),
-    gradeIsValid: (exp: any) => matchers.isValidElementaryGrade(exp.grade),
-    hasDescription: (exp: any) => exp.description && exp.description.length > 10
+    codeIsValid: (exp: unknown) => matchers.isValidCurriculumCode(exp.code),
+    gradeIsValid: (exp: unknown) => matchers.isValidElementaryGrade(exp.grade),
+    hasDescription: (exp: unknown) => exp.description && exp.description.length > 10
   }
 };

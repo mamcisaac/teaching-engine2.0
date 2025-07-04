@@ -182,7 +182,7 @@ describe('CurriculumValidator', () => {
           {
             code: 'A1',
             description: 'Test',
-            type: 'invalid' as any,
+            type: 'invalid' as unknown,
             strand: 'Test',
           },
         ],

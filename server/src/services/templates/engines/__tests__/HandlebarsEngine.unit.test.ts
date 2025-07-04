@@ -570,8 +570,8 @@ describe('HandlebarsEngine', () => {
 
     it('should clear cache when requested', () => {
       // Add some compiled templates
-      engine['compiledTemplates'].set('test1', {} as any);
-      engine['compiledTemplates'].set('test2', {} as any);
+      engine['compiledTemplates'].set('test1', {} as unknown);
+      engine['compiledTemplates'].set('test2', {} as unknown);
 
       expect(engine['compiledTemplates'].size).toBe(2);
 

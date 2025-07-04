@@ -54,7 +54,7 @@ describe('ExpectationSelector', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     
-    (etfoHooks.useCurriculumExpectations as any).mockReturnValue({
+    (etfoHooks.useCurriculumExpectations as unknown).mockReturnValue({
       data: mockExpectations,
       isLoading: false,
       error: null,
@@ -226,7 +226,7 @@ describe('ExpectationSelector', () => {
   });
 
   it('shows loading state', () => {
-    (etfoHooks.useCurriculumExpectations as any).mockReturnValue({
+    (etfoHooks.useCurriculumExpectations as unknown).mockReturnValue({
       data: [],
       isLoading: true,
       error: null,
@@ -240,7 +240,7 @@ describe('ExpectationSelector', () => {
   });
 
   it('shows error state', () => {
-    (etfoHooks.useCurriculumExpectations as any).mockReturnValue({
+    (etfoHooks.useCurriculumExpectations as unknown).mockReturnValue({
       data: [],
       isLoading: false,
       error: new Error('Failed to load'),
@@ -252,7 +252,7 @@ describe('ExpectationSelector', () => {
   });
 
   it('shows empty state when no expectations found', async () => {
-    (etfoHooks.useCurriculumExpectations as any).mockReturnValue({
+    (etfoHooks.useCurriculumExpectations as unknown).mockReturnValue({
       data: [],
       isLoading: false,
       error: null,
@@ -397,7 +397,7 @@ describe('ExpectationSelector', () => {
       type: 'specific',
     }));
 
-    (etfoHooks.useCurriculumExpectations as any).mockReturnValue({
+    (etfoHooks.useCurriculumExpectations as unknown).mockReturnValue({
       data: manyExpectations,
       isLoading: false,
       error: null,

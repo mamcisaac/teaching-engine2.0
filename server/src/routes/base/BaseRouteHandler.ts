@@ -23,10 +23,10 @@ export interface RouteHandlerOptions {
 }
 
 export interface CrudOperations<T> {
-  create: (data: any, userId: number) => Promise<T>;
-  findMany: (filters: any, userId: number) => Promise<T[]>;
+  create: (data: unknown, userId: number) => Promise<T>;
+  findMany: (filters: unknown, userId: number) => Promise<T[]>;
   findById: (id: string, userId: number) => Promise<T | null>;
-  update: (id: string, data: any, userId: number) => Promise<T>;
+  update: (id: string, data: unknown, userId: number) => Promise<T>;
   delete: (id: string, userId: number) => Promise<boolean>;
 }
 
@@ -154,7 +154,7 @@ export abstract class BaseRouteHandler<T = any> {
       
       const items = await crudOps.findMany(filters, userId);
       res.json(items);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error(`Error in ${this.routeName} list:`, error);
       next(error);
     }
@@ -178,7 +178,7 @@ export abstract class BaseRouteHandler<T = any> {
       }
       
       res.json(item);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error(`Error in ${this.routeName} get:`, error);
       next(error);
     }
@@ -197,7 +197,7 @@ export abstract class BaseRouteHandler<T = any> {
       
       const item = await crudOps.create(data, userId);
       res.status(201).json(item);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error(`Error in ${this.routeName} create:`, error);
       next(error);
     }
@@ -217,7 +217,7 @@ export abstract class BaseRouteHandler<T = any> {
       
       const item = await crudOps.update(id, data, userId);
       res.json(item);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error(`Error in ${this.routeName} update:`, error);
       next(error);
     }
@@ -241,7 +241,7 @@ export abstract class BaseRouteHandler<T = any> {
       }
       
       res.status(204).send();
-    } catch (error) {
+    } catch (_error) {
       this.logger.error(`Error in ${this.routeName} delete:`, error);
       next(error);
     }
@@ -250,7 +250,7 @@ export abstract class BaseRouteHandler<T = any> {
   /**
    * Helper method to create ownership filter
    */
-  protected createOwnershipFilter(userId: number, additionalFilters?: any): any {
+  protected createOwnershipFilter(userId: number, additionalFilters?: unknown): unknown {
     return {
       AND: [
         {
@@ -274,7 +274,7 @@ export abstract class BaseRouteHandler<T = any> {
     userId: number
   ): Promise<boolean> {
     try {
-      const record = await (prisma as any)[tableName].findFirst({
+      const record = await (prisma as unknown)[tableName].findFirst({
         where: {
           id,
           OR: [
@@ -285,7 +285,7 @@ export abstract class BaseRouteHandler<T = any> {
         }
       });
       return !!record;
-    } catch (error) {
+    } catch (_error) {
       this.logger.error(`Error validating ownership for ${tableName}:`, error);
       return false;
     }

@@ -1,17 +1,17 @@
 import { lazy, Suspense, ComponentType } from 'react';
 
 // Lazy load heavy AI components
-const AILessonPlanPanel = lazy(() => import('../ai/AILessonPlanPanel'));
-const AIUnitPlanPanel = lazy(() => import('../ai/AIUnitPlanPanel'));
-const AIWeeklyPlanModal = lazy(() => import('../ai/AIWeeklyPlanModal'));
-const GPTPlanningAgent = lazy(() => import('../ai/GPTPlanningAgent'));
+const AILessonPlanPanel = lazy(() => import('../ai/AILessonPlanPanel').then(module => ({ default: module.AILessonPlanPanel })));
+const AIUnitPlanPanel = lazy(() => import('../ai/AIUnitPlanPanel').then(module => ({ default: module.AIUnitPlanPanel })));
+const AIWeeklyPlanModal = lazy(() => import('../ai/AIWeeklyPlanModal').then(module => ({ default: module.AIWeeklyPlanModal })));
+const GPTPlanningAgent = lazy(() => import('../ai/GPTPlanningAgent').then(module => ({ default: module.GPTPlanningAgent })));
 
 // Lazy load chart components
 const CurriculumExpectationCoverage = lazy(() => import('../CurriculumExpectationCoverage'));
 
 // Lazy load form wizards
 const CurriculumSetupWizard = lazy(() => import('../forms/CurriculumSetupWizard'));
-const PlanningWizard = lazy(() => import('../planning/PlanningWizard'));
+const PlanningWizard = lazy(() => import('../planning/PlanningWizard').then(module => ({ default: module.PlanningWizard })));
 
 // Lazy load complex modals
 const TemplatePreviewModal = lazy(() => import('../templates/TemplatePreviewModal'));
@@ -74,14 +74,15 @@ const ModalLoadingFallback = () => (
 );
 
 // Higher-order component for creating lazy wrapped components
-function createLazyComponent<T = {}>(
+function createLazyComponent<T extends {} = {}>(
   LazyComponent: ComponentType<T>, 
   fallback: ComponentType = () => <div>Loading...</div>
 ) {
   return function LazyWrapper(props: T) {
+    const FallbackComponent = fallback;
     return (
-      <Suspense fallback={<fallback />}>
-        <LazyComponent {...props} />
+      <Suspense fallback={<FallbackComponent />}>
+        <LazyComponent {...(props as unknown)} />
       </Suspense>
     );
   };

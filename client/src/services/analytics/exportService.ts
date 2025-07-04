@@ -3,7 +3,7 @@ import { api } from '@/api';
 export interface ExportOptions {
   type: string;
   format: 'pdf' | 'csv' | 'png';
-  data: Record<string, any>;
+  data: Record<string, unknown>;
 }
 
 class ExportService {
@@ -32,7 +32,7 @@ class ExportService {
       // Cleanup
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
-    } catch (error) {
+    } catch (_error) {
       console.error('Export failed:', error);
       throw new Error('Failed to export data');
     }

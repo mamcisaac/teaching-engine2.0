@@ -94,7 +94,7 @@ describe('JWT Security Tests', () => {
 
     it('should include required claims in token payload', async () => {
       const token = await generateAuthToken(testUserId, testUserEmail);
-      const decoded = jwt.verify(token, JWT_SECRET) as any;
+      const decoded = jwt.verify(token, JWT_SECRET) as unknown;
 
       expect(decoded.userId).toBe(testUserId);
       expect(decoded.email).toBe(testUserEmail);
@@ -105,7 +105,7 @@ describe('JWT Security Tests', () => {
 
     it('should set appropriate token expiration', async () => {
       const token = await generateAuthToken(testUserId, testUserEmail);
-      const decoded = jwt.verify(token, JWT_SECRET) as any;
+      const decoded = jwt.verify(token, JWT_SECRET) as unknown;
 
       const now = Math.floor(Date.now() / 1000);
       const oneWeek = 7 * 24 * 60 * 60; // 7 days in seconds
@@ -116,7 +116,7 @@ describe('JWT Security Tests', () => {
 
     it('should accept custom expiration times', async () => {
       const shortToken = await generateAuthToken(testUserId, testUserEmail, '1h');
-      const decoded = jwt.verify(shortToken, JWT_SECRET) as any;
+      const decoded = jwt.verify(shortToken, JWT_SECRET) as unknown;
 
       const now = Math.floor(Date.now() / 1000);
       const oneHour = 60 * 60;
@@ -144,8 +144,8 @@ describe('JWT Security Tests', () => {
 
       expect(token1).not.toBe(token2);
 
-      const decoded1 = jwt.verify(token1, JWT_SECRET) as any;
-      const decoded2 = jwt.verify(token2, JWT_SECRET) as any;
+      const decoded1 = jwt.verify(token1, JWT_SECRET) as unknown;
+      const decoded2 = jwt.verify(token2, JWT_SECRET) as unknown;
 
       expect(decoded1.userId).not.toBe(decoded2.userId);
       expect(decoded1.email).not.toBe(decoded2.email);
@@ -161,8 +161,8 @@ describe('JWT Security Tests', () => {
 
       expect(token1).not.toBe(token2);
 
-      const decoded1 = jwt.verify(token1, JWT_SECRET) as any;
-      const decoded2 = jwt.verify(token2, JWT_SECRET) as any;
+      const decoded1 = jwt.verify(token1, JWT_SECRET) as unknown;
+      const decoded2 = jwt.verify(token2, JWT_SECRET) as unknown;
 
       expect(decoded2.iat).toBeGreaterThan(decoded1.iat);
     });
@@ -312,7 +312,7 @@ describe('JWT Security Tests', () => {
   describe('Token Security Best Practices', () => {
     it('should not include sensitive information in token payload', async () => {
       const token = await generateAuthToken(testUserId, testUserEmail);
-      const decoded = jwt.verify(token, JWT_SECRET) as any;
+      const decoded = jwt.verify(token, JWT_SECRET) as unknown;
 
       // Should not contain password or other sensitive data
       expect(decoded.password).toBeUndefined();
@@ -372,7 +372,7 @@ describe('JWT Security Tests', () => {
         const start1 = Date.now();
         try {
           await verifyToken(validToken);
-        } catch (error) {
+        } catch (_error) {
           // Expected to succeed
         }
         validTimes.push(Date.now() - start1);
@@ -381,7 +381,7 @@ describe('JWT Security Tests', () => {
         const start2 = Date.now();
         try {
           await verifyToken(invalidToken);
-        } catch (error) {
+        } catch (_error) {
           // Expected to fail
         }
         invalidTimes.push(Date.now() - start2);
@@ -468,7 +468,7 @@ describe('JWT Security Tests', () => {
       ];
 
       const results = await Promise.all(
-        maliciousUsers.map((user) => checkPermissions(user as any, 'admin.access')),
+        maliciousUsers.map((user) => checkPermissions(user as unknown, 'admin.access')),
       );
 
       expect(results[0]).toBe(true); // Explicit permissions should work
@@ -481,7 +481,7 @@ describe('JWT Security Tests', () => {
   });
 
   describe('Integration with Authentication Flow', () => {
-    let testUserWithPassword: any;
+    let testUserWithPassword: unknown;
 
     beforeEach(async () => {
       const bcrypt = await import('bcryptjs');
@@ -521,7 +521,7 @@ describe('JWT Security Tests', () => {
       expect(result.password).toBeUndefined();
 
       // Token payload should also not contain sensitive info
-      const decoded = jwt.verify(result.accessToken, JWT_SECRET) as any;
+      const decoded = jwt.verify(result.accessToken, JWT_SECRET) as unknown;
       expect(decoded.password).toBeUndefined();
       expect(decoded.passwordHash).toBeUndefined();
     });

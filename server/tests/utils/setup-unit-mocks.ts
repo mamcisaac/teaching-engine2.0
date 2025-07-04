@@ -60,15 +60,8 @@ jest.mock('@/services/clusteringService', () => ({
   },
 }));
 
-// Mock LLM service
-jest.mock('@/services/llmService', () => ({
-  openai: mockOpenAI,
-  generateContent: jest.fn().mockResolvedValue('Mocked content for unit tests'),
-  generateBilingualContent: jest.fn().mockResolvedValue({
-    english: 'Mock English content',
-    french: 'Mock French content',
-  }),
-}));
+// Note: llmService has been refactored into separate AI services
+// Individual tests should mock aiPlanningService or aiDraftService as needed
 
 // Mock file system operations for unit tests
 jest.mock('fs', () => ({

@@ -2,16 +2,17 @@ import { Request, Response, NextFunction } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { logger } from '../../logger';
 import { addSpanAttributes } from '../../monitoring/telemetry';
+import { AuditEventType } from '../auditLogger';
 
 // Extended request interface
 interface LoggedRequest extends Request {
   id?: string;
   startTime?: number;
-  user?: { id: number; email: string };
+  user?: { id: number; email: string; role: string; organizationId?: number; permissions?: string[] };
 }
 
 // Sanitize sensitive data from logs
-const sanitizeData = (data: any): any => {
+const sanitizeData = (data: unknown): unknown => {
   if (!data || typeof data !== 'object') return data;
 
   const sensitive = ['password', 'token', 'secret', 'authorization', 'cookie'];
@@ -73,7 +74,7 @@ export const requestLoggingMiddleware = (
 
   // Capture response
   const originalSend = res.send;
-  res.send = function(data: any) {
+  res.send = function(data: unknown) {
     res.locals.body = data;
     return originalSend.call(this, data);
   };
@@ -117,41 +118,17 @@ export const requestLoggingMiddleware = (
   next();
 };
 
-// Audit logging for sensitive operations
-export enum AuditEventType {
-  // Authentication events
-  LOGIN_SUCCESS = 'LOGIN_SUCCESS',
-  LOGIN_FAILURE = 'LOGIN_FAILURE',
-  LOGOUT = 'LOGOUT',
-  PASSWORD_CHANGE = 'PASSWORD_CHANGE',
-  PASSWORD_RESET = 'PASSWORD_RESET',
-  
-  // Authorization events
-  ACCESS_GRANTED = 'ACCESS_GRANTED',
-  ACCESS_DENIED = 'ACCESS_DENIED',
-  PERMISSION_CHANGE = 'PERMISSION_CHANGE',
-  
-  // Data events
-  DATA_CREATE = 'DATA_CREATE',
-  DATA_READ = 'DATA_READ',
-  DATA_UPDATE = 'DATA_UPDATE',
-  DATA_DELETE = 'DATA_DELETE',
-  DATA_EXPORT = 'DATA_EXPORT',
-  DATA_IMPORT = 'DATA_IMPORT',
-  
-  // System events
-  CONFIG_CHANGE = 'CONFIG_CHANGE',
-  SYSTEM_ERROR = 'SYSTEM_ERROR',
-  SECURITY_ALERT = 'SECURITY_ALERT',
-}
+// Re-export AuditEventType from auditLogger
+export { AuditEventType };
 
+// Audit logging for sensitive operations
 export interface AuditEvent {
   eventType: AuditEventType;
   userId?: number;
   userEmail?: string;
   targetResource?: string;
   targetId?: string | number;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   severity?: 'low' | 'medium' | 'high' | 'critical';
   ip?: string;
   userAgent?: string;

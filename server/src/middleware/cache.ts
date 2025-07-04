@@ -136,7 +136,7 @@ export function createCacheMiddleware(
       const originalJson = res.json;
       
       // Override json method to cache the response
-      res.json = function(data: any) {
+      res.json = function(data: unknown) {
         // Cache the response data
         if (res.statusCode === 200 && data) {
           const cacheTTL = ttl || cache.options.stdTTL || DEFAULT_TTL;
@@ -158,7 +158,7 @@ export function createCacheMiddleware(
       };
       
       next();
-    } catch (error) {
+    } catch (_error) {
       logger.error('Cache middleware error:', error);
       // Continue without caching on error
       next();
@@ -230,12 +230,12 @@ export function invalidateCache(patterns: string[], cacheTypes: (keyof typeof ca
     }
 
     // Override response methods
-    res.json = function(data: any) {
+    res.json = function(data: unknown) {
       invalidateCacheEntries();
       return originalJson.call(this, data);
     };
 
-    res.end = function(chunk?: any, encoding?: any) {
+    res.end = function(chunk?: unknown, encoding?: BufferEncoding) {
       invalidateCacheEntries();
       return originalEnd.call(this, chunk, encoding);
     };
@@ -259,7 +259,7 @@ export async function warmUpCache() {
     // - System templates
     
     logger.info('Cache warm-up completed');
-  } catch (error) {
+  } catch (_error) {
     logger.error('Cache warm-up failed:', error);
   }
 }
@@ -310,7 +310,13 @@ export function clearCache(cacheType: keyof typeof caches): void {
  * Get cache memory usage
  */
 export function getCacheMemoryUsage() {
-  const usage: Record<string, any> = {};
+  const usage: Record<string, {
+    keyCount: number;
+    hits: number;
+    misses: number;
+    ksize: number;
+    vsize: number;
+  }> = {};
   
   Object.entries(caches).forEach(([name, cache]) => {
     const keys = cache.keys();
@@ -343,7 +349,7 @@ export function isCacheHealthy(): boolean {
       cache.del(testKey);
     });
     return true;
-  } catch (error) {
+  } catch (_error) {
     logger.error('Cache health check failed:', error);
     return false;
   }

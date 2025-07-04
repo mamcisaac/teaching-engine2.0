@@ -136,7 +136,7 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
       },
       accessToken,
     });
-  } catch (error) {
+  } catch (_error) {
     next(error);
   }
 }
@@ -367,7 +367,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
       },
       accessToken,
     });
-  } catch (error) {
+  } catch (_error) {
     next(error);
   }
 }
@@ -392,7 +392,7 @@ export async function logout(req: Request, res: Response, next: NextFunction): P
     }
 
     res.json({ message: 'Logged out successfully' });
-  } catch (error) {
+  } catch (_error) {
     next(error);
   }
 }
@@ -465,7 +465,7 @@ export async function changePassword(
     );
 
     res.json({ message: 'Password changed successfully' });
-  } catch (error) {
+  } catch (_error) {
     next(error);
   }
 }
@@ -524,7 +524,7 @@ export async function forgotPassword(
       // TODO: Send email with reset link
       res.json({ message: 'If the email exists, a reset link has been sent' });
     }
-  } catch (error) {
+  } catch (_error) {
     next(error);
   }
 }
@@ -552,7 +552,7 @@ export async function resetPassword(
         throw new ValidationError('Invalid token format');
       }
       decoded = verifyResult as { userId: string; exp: number; type?: string };
-    } catch (error) {
+    } catch (_error) {
       throw new ValidationError('Invalid or expired reset token');
     }
 
@@ -586,7 +586,7 @@ export async function resetPassword(
     );
 
     res.json({ message: 'Password reset successfully' });
-  } catch (error) {
+  } catch (_error) {
     next(error);
   }
 }
@@ -607,7 +607,7 @@ export async function validateSession(
     // Skip password change check as passwordChangedAt field doesn't exist in schema
 
     next();
-  } catch (error) {
+  } catch (_error) {
     next(error);
   }
 }

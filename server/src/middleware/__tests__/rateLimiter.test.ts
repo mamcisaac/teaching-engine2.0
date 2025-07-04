@@ -7,10 +7,10 @@ import Redis from 'ioredis';
 jest.mock('ioredis');
 
 describe('Rate Limiter Middleware', () => {
-  let req: any;
-  let res: any;
-  let next: any;
-  let mockRedis: any;
+  let req: unknown;
+  let res: unknown;
+  let next: unknown;
+  let mockRedis: unknown;
 
   beforeEach(() => {
     req = mockRequest();
@@ -27,7 +27,7 @@ describe('Rate Limiter Middleware', () => {
       set: jest.fn().mockResolvedValue('OK')
     };
     
-    (Redis as any).mockImplementation(() => mockRedis);
+    (Redis as unknown).mockImplementation(() => mockRedis);
     jest.clearAllMocks();
   });
 

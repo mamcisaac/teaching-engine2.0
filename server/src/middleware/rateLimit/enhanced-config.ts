@@ -23,7 +23,7 @@ export interface RateLimitConfig {
   skipFailedRequests?: boolean;
   keyGenerator?: (req: Request) => string;
   skip?: (req: Request) => boolean;
-  handler?: (req: Request, res: any, next: any, options: any) => void;
+  handler?: (req: Request, res: unknown, next: unknown, options: unknown) => void;
   store?: Redis | 'memory';
 }
 
@@ -102,7 +102,7 @@ export const rateLimitConfigs = {
  * Get user tier from request
  */
 export function getUserTier(req: Request): UserTier {
-  const user = (req as any).user;
+  const user = (req as unknown).user;
   if (!user) return UserTier.FREE;
   
   switch (user.role) {
@@ -121,7 +121,7 @@ export function getUserTier(req: Request): UserTier {
 export async function createEnhancedRateLimiter(
   type: keyof typeof rateLimitConfigs,
   customConfig?: Partial<RateLimitConfig>
-): Promise<any> {
+): Promise<unknown> {
   const config = rateLimitConfigs[type];
   const redis = await getRedisClient();
 
@@ -140,7 +140,7 @@ export async function createEnhancedRateLimiter(
     : new RateLimiterMemory(options);
 
   // Return Express middleware
-  return async (req: Request, res: any, next: any) => {
+  return async (req: Request, res: unknown, next: unknown) => {
     try {
       // Get user tier and corresponding limit
       const tier = getUserTier(req);
@@ -149,7 +149,7 @@ export async function createEnhancedRateLimiter(
       // Generate key
       const key = customConfig?.keyGenerator
         ? customConfig.keyGenerator(req)
-        : (req as any).user?.userId || req.ip;
+        : (req as unknown).user?.userId || req.ip;
 
       // Check if should skip
       if (customConfig?.skip?.(req)) {
@@ -168,7 +168,7 @@ export async function createEnhancedRateLimiter(
       res.setHeader('X-RateLimit-Tier', tier);
 
       next();
-    } catch (rejRes: any) {
+    } catch (rejRes: unknown) {
       // Rate limit exceeded
       const retryAfter = Math.floor((rejRes?.msBeforeNext || config.windowMs) / 1000);
       
@@ -213,7 +213,7 @@ export async function getRedisClient(): Promise<Redis | null> {
     console.info('Redis connected for rate limiting');
     
     return redisClient;
-  } catch (error) {
+  } catch (_error) {
     console.info('Redis connection failed, using in-memory rate limiting', error);
     return null;
   }
@@ -245,7 +245,7 @@ export function applyRateLimits(types: Array<keyof typeof rateLimitConfigs>) {
  * Dynamic rate limiter based on request properties
  */
 export function dynamicRateLimiter() {
-  return async (req: Request, res: any, next: any) => {
+  return async (req: Request, res: unknown, next: unknown) => {
     // Determine rate limit type based on request
     let type: keyof typeof rateLimitConfigs = 'api';
     

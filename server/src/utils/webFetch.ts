@@ -50,7 +50,7 @@ export class WebFetch {
       this.cleanCache();
       
       return html;
-    } catch (error) {
+    } catch (_error) {
       logger.error({ error, url }, 'Error fetching URL');
       
       // Try with JSDOM as fallback for JavaScript-heavy sites

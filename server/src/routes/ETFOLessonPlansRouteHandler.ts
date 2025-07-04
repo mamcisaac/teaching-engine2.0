@@ -90,7 +90,7 @@ class ETFOLessonPlanService extends BaseService {
     super('ETFOLessonPlanService');
   }
 
-  async findMany(filters: any, userId: number) {
+  async findMany(filters: unknown, userId: number) {
     const {
       unitPlanId,
       startDate,
@@ -169,7 +169,7 @@ class ETFOLessonPlanService extends BaseService {
     );
   }
 
-  async create(data: any, userId: number) {
+  async create(data: unknown, userId: number) {
     // Verify user owns the unit plan
     const unitPlan = await prisma.unitPlan.findFirst({
       where: {
@@ -207,7 +207,7 @@ class ETFOLessonPlanService extends BaseService {
     });
   }
 
-  async update(id: string, data: any, userId: number) {
+  async update(id: string, data: unknown, userId: number) {
     // Verify ownership
     const lessonPlan = await prisma.eTFOLessonPlan.findFirst({
       where: { id, userId },
@@ -261,7 +261,7 @@ class ETFOLessonPlanService extends BaseService {
     return true;
   }
 
-  async addResource(lessonPlanId: string, resourceData: any, userId: number) {
+  async addResource(lessonPlanId: string, resourceData: unknown, userId: number) {
     // Verify ownership
     const lessonPlan = await prisma.eTFOLessonPlan.findFirst({
       where: { id: lessonPlanId, userId },
@@ -357,7 +357,7 @@ class ETFOLessonPlanService extends BaseService {
     });
   }
 
-  async reschedule(lessonPlanId: string, rescheduleData: any, userId: number) {
+  async reschedule(lessonPlanId: string, rescheduleData: unknown, userId: number) {
     const { newDate, updateRelated } = rescheduleData;
 
     const lessonPlan = await prisma.eTFOLessonPlan.findFirst({
@@ -390,7 +390,7 @@ class ETFOLessonPlanService extends BaseService {
     return updatedLesson;
   }
 
-  async duplicate(duplicateData: any, userId: number) {
+  async duplicate(duplicateData: unknown, userId: number) {
     const { lessonPlanId, unitPlanId, date, title } = duplicateData;
 
     // Verify user owns both the source lesson plan and target unit plan
@@ -480,7 +480,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     };
   }
 
-  protected getCrudOperations(): CrudOperations<any> {
+  protected getCrudOperations(): CrudOperations<unknown> {
     return {
       create: this.lessonPlanService.create.bind(this.lessonPlanService),
       findMany: this.lessonPlanService.findMany.bind(this.lessonPlanService),
@@ -502,7 +502,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       
       const result = await this.lessonPlanService.findMany(filters, userId);
       res.json(result);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error(`Error in ${this.routeName} list:`, error);
       next(error);
     }
@@ -557,7 +557,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       
       const resource = await this.lessonPlanService.addResource(lessonPlanId, resourceData, userId);
       res.status(201).json(resource);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error('Error adding resource:', error);
       next(error);
     }
@@ -580,7 +580,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       }
       
       res.status(204).send();
-    } catch (error) {
+    } catch (_error) {
       this.logger.error('Error removing resource:', error);
       next(error);
     }
@@ -597,7 +597,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       
       const subVersion = await this.lessonPlanService.createSubVersion(lessonPlanId, userId);
       res.status(201).json(subVersion);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error('Error creating sub version:', error);
       next(error);
     }
@@ -615,7 +615,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       
       const rescheduledLesson = await this.lessonPlanService.reschedule(lessonPlanId, rescheduleData, userId);
       res.json(rescheduledLesson);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error('Error rescheduling lesson:', error);
       next(error);
     }
@@ -632,7 +632,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       
       const duplicatedLesson = await this.lessonPlanService.duplicate(duplicateData, userId);
       res.status(201).json(duplicatedLesson);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error('Error duplicating lesson plan:', error);
       next(error);
     }

@@ -75,11 +75,11 @@ describe('PlanningDashboard', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     
-    (workflowHook.useWorkflowState as any).mockReturnValue({
+    (workflowHook.useWorkflowState as unknown).mockReturnValue({
       workflowState: mockWorkflowState,
     });
 
-    (plannerStore.useWeeklyPlannerStore as any).mockReturnValue(mockPlannerStore);
+    (plannerStore.useWeeklyPlannerStore as unknown).mockReturnValue(mockPlannerStore);
   });
 
   it('renders dashboard with workflow progress', () => {
@@ -147,7 +147,7 @@ describe('PlanningDashboard', () => {
 
   it('handles redo action when clicked', async () => {
     // Mock store with redo history
-    (plannerStore.useWeeklyPlannerStore as any).mockReturnValue({
+    (plannerStore.useWeeklyPlannerStore as unknown).mockReturnValue({
       ...mockPlannerStore,
       redoHistory: ['action1'],
     });
@@ -163,7 +163,7 @@ describe('PlanningDashboard', () => {
   });
 
   it('shows offline indicator when there are offline changes', () => {
-    (plannerStore.useWeeklyPlannerStore as any).mockReturnValue({
+    (plannerStore.useWeeklyPlannerStore as unknown).mockReturnValue({
       ...mockPlannerStore,
       hasOfflineChanges: true,
     });
@@ -175,7 +175,7 @@ describe('PlanningDashboard', () => {
   });
 
   it('handles sync with server when sync button is clicked', async () => {
-    (plannerStore.useWeeklyPlannerStore as any).mockReturnValue({
+    (plannerStore.useWeeklyPlannerStore as unknown).mockReturnValue({
       ...mockPlannerStore,
       hasOfflineChanges: true,
     });
@@ -196,7 +196,7 @@ describe('PlanningDashboard', () => {
   });
 
   it('shows loading state when data is loading', () => {
-    (plannerStore.useWeeklyPlannerStore as any).mockReturnValue({
+    (plannerStore.useWeeklyPlannerStore as unknown).mockReturnValue({
       ...mockPlannerStore,
       isLoading: true,
     });
@@ -207,7 +207,7 @@ describe('PlanningDashboard', () => {
   });
 
   it('shows saving indicator when saving', () => {
-    (plannerStore.useWeeklyPlannerStore as any).mockReturnValue({
+    (plannerStore.useWeeklyPlannerStore as unknown).mockReturnValue({
       ...mockPlannerStore,
       isSaving: true,
     });
@@ -291,7 +291,7 @@ describe('PlanningDashboard', () => {
   });
 
   it('displays workflow completion celebration when all steps complete', () => {
-    (workflowHook.useWorkflowState as any).mockReturnValue({
+    (workflowHook.useWorkflowState as unknown).mockReturnValue({
       workflowState: {
         ...mockWorkflowState,
         isComplete: true,

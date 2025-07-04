@@ -19,6 +19,12 @@ export class UnitPlanService {
   static validateDateRange(startDate: string, endDate: string): boolean {
     const start = new Date(startDate);
     const end = new Date(endDate);
+    
+    // Handle invalid dates
+    if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+      return false;
+    }
+    
     return start <= end;
   }
 
@@ -26,9 +32,18 @@ export class UnitPlanService {
   static calculateEstimatedWeeks(startDate: string, endDate: string): number {
     const start = new Date(startDate);
     const end = new Date(endDate);
+    
+    // Handle invalid dates
+    if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+      return 1; // Default to minimum 1 week
+    }
+    
     const diffTime = Math.abs(end.getTime() - start.getTime());
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return Math.ceil(diffDays / 7);
+    
+    // Ensure minimum 1 week even for same day
+    const weeks = diffDays === 0 ? 1 : Math.ceil(diffDays / 7);
+    return weeks;
   }
 
   // Format unit plan for export

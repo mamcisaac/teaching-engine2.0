@@ -101,7 +101,7 @@ router.get('/progress', async (req: Request, res) => {
     };
 
     res.json(progressData);
-  } catch (error) {
+  } catch (_error) {
     console.error('Error fetching ETFO progress:', error);
     res.status(500).json({ error: 'Failed to fetch ETFO progress' });
   }

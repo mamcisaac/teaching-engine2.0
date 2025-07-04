@@ -142,7 +142,7 @@ describe('ETFO Lesson Plans Provider Contract Tests', () => {
           };
         },
       },
-      requestFilter: (req: any, res: any, next: any) => {
+      requestFilter: (req: unknown, res: unknown, next: unknown) => {
         // Replace the test token with the actual token
         if (req.headers.authorization === 'Bearer test-token') {
           req.headers.authorization = `Bearer ${testToken}`;
@@ -160,7 +160,7 @@ describe('ETFO Lesson Plans Provider Contract Tests', () => {
     try {
       await verifier.verifyProvider();
       console.log('Pact verification complete!');
-    } catch (error) {
+    } catch (_error) {
       console.error('Pact verification failed:', error);
       throw error;
     }

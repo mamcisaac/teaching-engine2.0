@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { api } from '../api';
+import { api } from '../api/legacy/api';
 
 export interface AIStatusInfo {
   available: boolean;

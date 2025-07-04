@@ -104,7 +104,7 @@ class UnitPlanService extends BaseService {
     super('UnitPlanService');
   }
 
-  async findMany(filters: any, userId: number) {
+  async findMany(filters: unknown, userId: number) {
     const {
       longRangePlanId,
       startDate,
@@ -193,7 +193,7 @@ class UnitPlanService extends BaseService {
     );
   }
 
-  async create(data: any, userId: number) {
+  async create(data: unknown, userId: number) {
     // Verify user owns the long range plan
     const longRangePlan = await prisma.longRangePlan.findFirst({
       where: {
@@ -231,7 +231,7 @@ class UnitPlanService extends BaseService {
     });
   }
 
-  async update(id: string, data: any, userId: number) {
+  async update(id: string, data: unknown, userId: number) {
     // Verify ownership
     const unitPlan = await prisma.unitPlan.findFirst({
       where: {
@@ -292,7 +292,7 @@ class UnitPlanService extends BaseService {
     return true;
   }
 
-  async addResource(unitPlanId: string, resourceData: any, userId: number) {
+  async addResource(unitPlanId: string, resourceData: unknown, userId: number) {
     // Verify ownership
     const unitPlan = await prisma.unitPlan.findFirst({
       where: {
@@ -336,7 +336,7 @@ class UnitPlanService extends BaseService {
     return true;
   }
 
-  async duplicate(duplicateData: any, userId: number) {
+  async duplicate(duplicateData: unknown, userId: number) {
     const { unitPlanId, longRangePlanId, title } = duplicateData;
 
     // Verify user owns both the source unit plan and target long range plan
@@ -430,7 +430,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
     };
   }
 
-  protected getCrudOperations(): CrudOperations<any> {
+  protected getCrudOperations(): CrudOperations<unknown> {
     return {
       create: this.unitPlanService.create.bind(this.unitPlanService),
       findMany: this.unitPlanService.findMany.bind(this.unitPlanService),
@@ -452,7 +452,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       
       const result = await this.unitPlanService.findMany(filters, userId);
       res.json(result);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error(`Error in ${this.routeName} list:`, error);
       next(error);
     }
@@ -493,7 +493,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       
       const resource = await this.unitPlanService.addResource(unitPlanId, resourceData, userId);
       res.status(201).json(resource);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error('Error adding resource:', error);
       next(error);
     }
@@ -516,7 +516,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       }
       
       res.status(204).send();
-    } catch (error) {
+    } catch (_error) {
       this.logger.error('Error removing resource:', error);
       next(error);
     }
@@ -533,7 +533,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       
       const duplicatedUnitPlan = await this.unitPlanService.duplicate(duplicateData, userId);
       res.status(201).json(duplicatedUnitPlan);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error('Error duplicating unit plan:', error);
       next(error);
     }

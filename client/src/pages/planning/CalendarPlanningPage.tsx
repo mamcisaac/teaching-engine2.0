@@ -5,7 +5,7 @@ import { format, startOfMonth, endOfMonth } from 'date-fns';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Plus, Filter } from 'lucide-react';
-import { api } from '../../api';
+import { api } from '../../api/legacy/api';
 import { useAuth } from '../../contexts/AuthContext';
 import { Button } from '../../components/ui/Button';
 import CalendarEventModal from '../../components/calendar/CalendarEventModal';

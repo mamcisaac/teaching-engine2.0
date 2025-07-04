@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { authApi } from './api';
-import { queryKeys, showSuccessToast, handleApiError } from '../../core';
+import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 import { authService } from '../../../services/authService';
 import type { LoginCredentials, RegisterData, User } from '../../../types';
 
@@ -23,7 +23,14 @@ export const useLogin = () => {
     mutationFn: (credentials: LoginCredentials) => authApi.login(credentials),
     onSuccess: (data) => {
       // Store tokens
-      authService.setTokens(data.accessToken, data.refreshToken);
+      authService.setTokens({
+        accessToken: data.accessToken,
+        refreshToken: data.refreshToken,
+        expiresAt: Date.now() + 60 * 60 * 1000 // 1 hour default
+      });
+      
+      // Store user
+      authService.setUser(data.user);
       
       // Invalidate and refetch user data
       queryClient.invalidateQueries({ queryKey: ['auth', 'currentUser'] });
@@ -43,7 +50,14 @@ export const useRegister = () => {
     mutationFn: (userData: RegisterData) => authApi.register(userData),
     onSuccess: (data) => {
       // Store tokens
-      authService.setTokens(data.accessToken, data.refreshToken);
+      authService.setTokens({
+        accessToken: data.accessToken,
+        refreshToken: data.refreshToken,
+        expiresAt: Date.now() + 60 * 60 * 1000 // 1 hour default
+      });
+      
+      // Store user
+      authService.setUser(data.user);
       
       // Invalidate and refetch user data
       queryClient.invalidateQueries({ queryKey: ['auth', 'currentUser'] });

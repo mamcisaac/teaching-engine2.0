@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { substituteApi } from './api';
-import { showSuccessToast, handleApiError } from '../../core';
+import { showSuccessToast, handleApiError } from '../../core/utils';
 import type { SubstitutePlan, SubstitutePlanInput, SubstituteTemplate, SubstituteFilters } from './api';
 
 // Plan query hooks

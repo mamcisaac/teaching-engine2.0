@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/Button';
 import { Progress } from './ui/Progress';
-import { api } from '../api';
+import { api } from '../api/legacy/api';
 import { useLanguage } from '../contexts/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import PreferenceWizard from './onboarding/PreferenceWizard';
@@ -59,7 +59,7 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
     if (completedSteps.length > 0) {
       try {
         localStorage.setItem('onboarding-completed-steps', JSON.stringify(completedSteps));
-      } catch (error) {
+      } catch (_error) {
         console.warn('Failed to save onboarding progress:', error);
       }
     }
@@ -133,7 +133,7 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
       });
 
       markStepCompleted('sample-data');
-    } catch (error) {
+    } catch (_error) {
       console.error('Error creating sample data:', error);
     } finally {
       setIsCreatingSampleData(false);

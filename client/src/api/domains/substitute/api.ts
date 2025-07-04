@@ -1,4 +1,4 @@
-import { apiClient } from '../../core';
+import { apiClient } from '../../core/client';
 
 export interface SubstitutePlan {
   id: number;

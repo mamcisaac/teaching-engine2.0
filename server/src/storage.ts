@@ -11,7 +11,7 @@ let s3Client: unknown = null;
 const bucket = process.env.AWS_BUCKET_NAME;
 if (bucket && process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY) {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { S3Client } = require('@aws-sdk/client-s3');
+  const imported = await import('@aws-sdk/client-s3');
   s3Client = new S3Client({ region: process.env.AWS_REGION || 'us-east-1' });
 }
 
@@ -26,7 +26,7 @@ const localDir = path.join(__dirname_storage, '../uploads');
 export async function saveFile(filename: string, buffer: Buffer): Promise<string> {
   if (s3Client && bucket) {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const { PutObjectCommand } = require('@aws-sdk/client-s3');
+    const imported = await import('@aws-sdk/client-s3');
     const key = `${Date.now()}-${filename}`;
     await (s3Client as { send: (command: unknown) => Promise<unknown> }).send(
       new PutObjectCommand({ Bucket: bucket, Key: key, Body: buffer }),

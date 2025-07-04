@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { newsletterApi } from './api';
-import { queryKeys, showSuccessToast, handleApiError } from '../../core';
+import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 import type { Newsletter } from '../../../types';
 
 // Query hooks

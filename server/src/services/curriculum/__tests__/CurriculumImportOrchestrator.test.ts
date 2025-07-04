@@ -319,7 +319,7 @@ describe('CurriculumImportOrchestrator', () => {
       await expect(
         orchestrator.exportCurriculum(
           { userId: mockUserId },
-          { format: 'xml' as any, filters: {} }
+          { format: 'xml' as unknown, filters: {} }
         )
       ).rejects.toThrow('Unsupported export format: xml');
     });
@@ -561,7 +561,7 @@ describe('CurriculumImportOrchestrator', () => {
           { userId: mockUserId },
           { filePath: tempFile, subject: 'Mathematics', grade: 5 }
         );
-      } catch (error) {
+      } catch (_error) {
         // Error expected
       }
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { authService } from '../services/authService';
+import { authService } from '../../services/authService';
 import type {
   Newsletter,
   Subject,
@@ -33,7 +33,7 @@ import type {
   TeacherReflectionInput,
   CognatePair,
   CognateInput,
-} from '../types';
+} from '../../types';
 
 // Define missing types that are used but not exported from types
 
@@ -75,7 +75,7 @@ api.interceptors.request.use(
     // Try to ensure we have a valid token before making the request
     try {
       await authService.ensureValidToken();
-    } catch (error) {
+    } catch (_error) {
       // If token refresh fails, continue with request anyway
       // The response interceptor will handle 401 errors
       console.warn('Token refresh failed before request:', error);
@@ -134,7 +134,7 @@ export type {
   YearPlanEntry,
   Notification,
   CalendarEvent,
-} from './types';
+} from '../../types';
 
 // Query hooks
 export const useNewsletter = (id: number, type: 'raw' | 'polished' = 'raw') =>
@@ -671,7 +671,7 @@ export const useLessonPlan = (weekStart: string) => {
       try {
         // First try to get the existing plan
         return (await api.get(`/api/lesson-plans/${weekStart}`)).data;
-      } catch (error) {
+      } catch (_error) {
         // If plan doesn't exist, generate a new one
         const axiosError = error as { response?: { status?: number } };
         if (axiosError.response?.status === 404) {
@@ -753,7 +753,7 @@ export const usePlannerSuggestions = (weekStart: string, filters?: Record<string
               .map(([tag]) => tag);
             if (enabledFilters.length === 0) return true; // Changed from false to true - show all if no filters
 
-            // Check if the suggestion has any of the enabled filter tags
+            // Check if the suggestion has unknown of the enabled filter tags
             // This requires getting the activity data to check tags
             // For now, we'll do a simple check based on activity title patterns
             const matches = enabledFilters.some((tag) => {
@@ -782,7 +782,7 @@ export const usePlannerSuggestions = (weekStart: string, filters?: Record<string
         }
 
         return suggestions;
-      } catch (error) {
+      } catch (_error) {
         console.error('Error fetching planner suggestions:', error);
         throw error;
       }
@@ -978,7 +978,7 @@ export const useCurriculumExpectations = (filters?: {
       try {
         const response = await api.get('/api/curriculum-expectations', { params: filters });
         return response.data;
-      } catch (error) {
+      } catch (_error) {
         console.error('Error fetching curriculum expectations:', error);
         throw error;
       }
@@ -1017,7 +1017,7 @@ export const useExpectationCoverage = (filters?: {
           params: filters,
         });
         return response.data;
-      } catch (error) {
+      } catch (_error) {
         console.error('Error fetching expectation coverage:', error);
         throw error;
       }

@@ -52,7 +52,7 @@ describe('File Upload Security Tests', () => {
   let prisma: PrismaClient;
   let request: supertest.SuperTest<supertest.Test>;
   let testToken: string;
-  let testUser: any;
+  let testUser: unknown;
 
   // Malicious file content samples
   const maliciousFiles = {

@@ -88,10 +88,10 @@ export class TemplateRegistry extends BaseService {
       }
     }
 
-    this.logger.info('Template registry initialized', {
+    this.logger.info({
       providers: this.providers.size,
       engines: this.engines.size,
-    });
+    }, 'Template registry initialized');
   }
 
   /**
@@ -145,7 +145,7 @@ export class TemplateRegistry extends BaseService {
     }
     this.providersByType.get(providerType)!.push(name);
 
-    this.logger.info('Template provider registered', { name, type: providerType });
+    this.logger.info({ name, type: providerType }, 'Template provider registered');
   }
 
   /**
@@ -161,7 +161,7 @@ export class TemplateRegistry extends BaseService {
     };
 
     this.engines.set(name, info);
-    this.logger.info('Template engine registered', { name, supportedFormats: info.supportedFormats });
+    this.logger.info({ name, supportedFormats: info.supportedFormats }, 'Template engine registered');
   }
 
   /**
@@ -215,7 +215,7 @@ export class TemplateRegistry extends BaseService {
         try {
           const templates = await info.provider.listTemplates();
           allTemplates.push(...templates);
-        } catch (error) {
+        } catch (_error) {
           this.logger.error('Failed to list templates', { 
             provider: info.name, 
             error: error.message 
@@ -377,7 +377,7 @@ export class TemplateRegistry extends BaseService {
           const templates = await info.provider.listTemplates();
           stats.templates.total += templates.length;
           stats.templates.byProvider[info.name] = templates.length;
-        } catch (error) {
+        } catch (_error) {
           this.logger.error('Failed to count templates', { 
             provider: info.name, 
             error: error.message 
@@ -431,7 +431,7 @@ export class TemplateRegistry extends BaseService {
             issues.push(`Provider ${info.name} health check failed: ${health.issues?.join(', ')}`);
           }
         }
-      } catch (error) {
+      } catch (_error) {
         issues.push(`Provider ${info.name} health check error: ${error.message}`);
       }
     }
@@ -445,7 +445,7 @@ export class TemplateRegistry extends BaseService {
             issues.push(`Engine ${info.name} health check failed: ${health.issues?.join(', ')}`);
           }
         }
-      } catch (error) {
+      } catch (_error) {
         issues.push(`Engine ${info.name} health check error: ${error.message}`);
       }
     }

@@ -16,7 +16,7 @@ export function validateRequest(schema: ZodSchema) {
       req.body = validated;
 
       next();
-    } catch (error) {
+    } catch (_error) {
       if (error instanceof ZodError) {
         // Log validation errors
         logger.warn(
@@ -88,7 +88,7 @@ export function validateQuery(schema: ZodSchema) {
       req.query = validated;
 
       next();
-    } catch (error) {
+    } catch (_error) {
       if (error instanceof ZodError) {
         logger.warn(
           {
@@ -145,7 +145,7 @@ export function validateParams(schema: ZodSchema) {
       req.params = validated;
 
       next();
-    } catch (error) {
+    } catch (_error) {
       if (error instanceof ZodError) {
         logger.warn(
           {
@@ -209,7 +209,7 @@ export function validate(options: { body?: ZodSchema; query?: ZodSchema; params?
       }
 
       next();
-    } catch (error) {
+    } catch (_error) {
       if (error instanceof ZodError) {
         logger.warn(
           {

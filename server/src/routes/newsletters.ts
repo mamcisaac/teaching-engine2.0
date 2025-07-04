@@ -53,7 +53,7 @@ router.post('/generate', async (req: Request, res: Response) => {
       data: newsletter,
     });
 
-  } catch (error) {
+  } catch (_error) {
     log('Error generating newsletter:', error);
     res.status(500).json({
       error: 'Failed to generate newsletter',
@@ -109,7 +109,7 @@ router.get('/status', async (req: Request, res: Response) => {
       },
     });
 
-  } catch (error) {
+  } catch (_error) {
     log('Error getting newsletter status:', error);
     res.status(500).json({
       error: 'Failed to get newsletter status',

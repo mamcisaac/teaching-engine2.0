@@ -1,6 +1,6 @@
 import { useState, memo, useMemo } from 'react';
 import { startOfMonth, endOfMonth, eachDayOfInterval } from 'date-fns';
-import { CalendarEvent, useCalendarEvents } from '../api';
+import { CalendarEvent, useCalendarEvents } from '../api/legacy/api';
 import EventEditorModal from './EventEditorModal';
 
 interface Props {

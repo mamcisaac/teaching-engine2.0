@@ -86,7 +86,7 @@ class TemplateService extends BaseService {
     super('TemplateService');
   }
 
-  async findMany(filters: any, userId: number) {
+  async findMany(filters: unknown, userId: number) {
     const {
       type,
       category,
@@ -175,7 +175,7 @@ class TemplateService extends BaseService {
     );
   }
 
-  async create(data: any, userId: number) {
+  async create(data: unknown, userId: number) {
     return prisma.planTemplate.create({
       data: {
         ...data,
@@ -185,7 +185,7 @@ class TemplateService extends BaseService {
     });
   }
 
-  async update(id: string, data: any, userId: number) {
+  async update(id: string, data: unknown, userId: number) {
     // Check ownership
     const template = await prisma.planTemplate.findFirst({
       where: {
@@ -314,7 +314,7 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
     };
   }
 
-  protected getCrudOperations(): CrudOperations<any> {
+  protected getCrudOperations(): CrudOperations<unknown> {
     return {
       create: this.templateService.create.bind(this.templateService),
       findMany: this.templateService.findMany.bind(this.templateService),
@@ -339,7 +339,7 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
       
       const result = await this.templateService.findMany(filters, userId);
       res.json(result);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error(`Error in ${this.routeName} list:`, error);
       next(error);
     }
@@ -366,7 +366,7 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
       const userId = req.userId!;
       const options = await this.templateService.getFilterOptions(userId);
       res.json(options);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error('Error getting filter options:', error);
       next(error);
     }

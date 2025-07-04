@@ -31,7 +31,7 @@ const mockJwt = {
             iat: Date.now(),
           });
         }
-      } catch (e) {
+      } catch (_e) {
         callback(null, {
           userId: '123',
           id: NaN,
@@ -55,7 +55,7 @@ const mockJwt = {
       if (parts.length > 3 && parts[0] === 'mock') {
         return JSON.parse(Buffer.from(parts[3], 'base64').toString());
       }
-    } catch (e) {
+    } catch (_e) {
       // ignore
     }
     return { userId: '123', iat: Date.now() };

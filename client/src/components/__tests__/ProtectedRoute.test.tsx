@@ -21,7 +21,7 @@ vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual('react-router-dom');
   return {
     ...actual,
-    Navigate: ({ to, state, replace }: { to: string; state?: any; replace?: boolean }) => {
+    Navigate: ({ to, state, replace }: { to: string; state?: unknown; replace?: boolean }) => {
       mockNavigate(to, state, replace);
       return <div data-testid="navigate-component">Redirecting to {to}</div>;
     },
@@ -440,7 +440,7 @@ describe('ProtectedRoute', () => {
 
       renderWithProviders(
         <ProtectedRoute>
-          {undefined as any}
+          {undefined as unknown}
         </ProtectedRoute>
       );
 
@@ -456,7 +456,7 @@ describe('ProtectedRoute', () => {
 
       renderWithProviders(
         <ProtectedRoute>
-          {null as any}
+          {null as unknown}
         </ProtectedRoute>
       );
 

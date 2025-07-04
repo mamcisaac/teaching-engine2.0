@@ -53,7 +53,7 @@ describe('Authentication Middleware - Real Implementation Tests', () => {
       const decoded = jwt.verify(
         response.body.token,
         process.env.JWT_SECRET || 'test-secret'
-      ) as any;
+      ) as unknown;
       expect(decoded.userId).toBe(testUser.id);
       expect(decoded.email).toBe(testUser.email);
     });
@@ -113,8 +113,8 @@ describe('Authentication Middleware - Real Implementation Tests', () => {
       app.get('/test/protected', (req, res) => {
         res.json({ 
           message: 'Success',
-          userId: (req as any).userId,
-          email: (req as any).userEmail,
+          userId: (req as unknown).userId,
+          email: (req as unknown).userEmail,
         });
       });
 

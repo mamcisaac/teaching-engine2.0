@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { logger } from '../logger';
+import logger from '../logger';
 
 // Standard response types
 export interface SuccessResponse<T = unknown> {
@@ -197,7 +197,7 @@ export const sendFile = (
 
 export const sendJSON = (
   res: Response,
-  data: any,
+  data: unknown,
   filename: string = 'data.json'
 ): void => {
   res.setHeader('Content-Type', 'application/json');

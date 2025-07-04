@@ -76,7 +76,7 @@ export function isValidExternalURL(
     }
 
     return { valid: true, url };
-  } catch (error) {
+  } catch (_error) {
     return {
       valid: false,
       error: `Invalid URL format: ${error instanceof Error ? error.message : 'Unknown error'}`,
@@ -181,7 +181,7 @@ export async function safeFetch(
 
     clearTimeout(timeoutId);
     return response;
-  } catch (error) {
+  } catch (_error) {
     clearTimeout(timeoutId);
     throw error;
   }

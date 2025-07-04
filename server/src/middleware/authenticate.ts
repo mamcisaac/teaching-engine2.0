@@ -144,7 +144,7 @@ export async function verifyToken(token: string): Promise<TokenPayload | { error
       // Re-throw the error if it's not an issuer/audience issue
       throw issuerError;
     }
-  } catch (error) {
+  } catch (_error) {
     if (error instanceof jwt.TokenExpiredError) {
       logger.debug('Token expired');
       return { error: 'expired' };
@@ -374,7 +374,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
     );
 
     next();
-  } catch (error) {
+  } catch (_error) {
     logger.error(
       {
         error,
@@ -418,7 +418,7 @@ export async function optionalAuthenticate(
     }
 
     next();
-  } catch (error) {
+  } catch (_error) {
     // Log error but continue without authentication
     logger.error({ error }, 'Optional authentication error');
     next();
@@ -581,7 +581,7 @@ export async function refreshToken(req: Request, res: Response): Promise<void> {
         role: user.role,
       },
     });
-  } catch (error) {
+  } catch (_error) {
     logger.error({ error }, 'Refresh token error');
     res.status(401).json({
       error: 'Unauthorized',

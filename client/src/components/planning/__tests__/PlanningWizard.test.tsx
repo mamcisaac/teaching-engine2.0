@@ -303,7 +303,7 @@ describe('PlanningWizard', () => {
       ];
 
       levels.forEach((level) => {
-        mockWorkflowState.currentLevel = level as any;
+        mockWorkflowState.currentLevel = level as unknown;
 
         const { unmount } = renderWithProviders(<PlanningWizard />);
 
@@ -424,7 +424,7 @@ describe('PlanningWizard', () => {
   describe('Error Handling', () => {
     it('should handle missing workflow state gracefully', () => {
       // Mock broken workflow state
-      mockWorkflowState.currentLevel = undefined as any;
+      mockWorkflowState.currentLevel = undefined as unknown;
 
       renderWithProviders(<PlanningWizard />);
 

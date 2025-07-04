@@ -17,7 +17,7 @@ describe('AI Service - Real Implementation Tests', () => {
   const testLifecycle = setupRealTestLifecycle();
   let aiService: AIActivityGeneratorService;
   let factory: TestDataFactory;
-  let testUser: any;
+  let testUser: unknown;
 
   beforeAll(async () => {
     factory = new TestDataFactory();
@@ -80,7 +80,7 @@ describe('AI Service - Real Implementation Tests', () => {
           subject: 'Mathematics',
           grade: 5,
           expectations: [expectation.id],
-          activityType: 'unsupported-type' as any,
+          activityType: 'unsupported-type' as unknown,
         })
       ).rejects.toThrow('Unsupported activity type');
     });

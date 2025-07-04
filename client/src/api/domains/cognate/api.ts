@@ -1,4 +1,4 @@
-import { apiClient } from '../../core';
+import { apiClient } from '../../core/client';
 
 export interface CognatePair {
   id: number;
@@ -70,7 +70,7 @@ export const cognateApi = {
 
   // Bulk create cognate pairs
   bulkCreateCognates: async (cognates: CognateInput[]) => {
-    const { data } = await apiClient.post<{ created: CognatePair[]; failed: any[] }>(
+    const { data } = await apiClient.post<{ created: CognatePair[]; failed: unknown[] }>(
       '/api/cognates/bulk',
       { cognates }
     );

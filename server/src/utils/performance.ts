@@ -1,4 +1,4 @@
-import { logger } from '../logger';
+import logger from '../logger';
 import { withSpan, dbQueryDuration, dbQueryCounter } from '../monitoring/telemetry';
 
 // Performance measurement class
@@ -81,7 +81,7 @@ export const measurePerformance = async <T>(
       
       return result;
     }
-  } catch (error) {
+  } catch (_error) {
     timer.end();
     throw error;
   }
@@ -92,7 +92,7 @@ export const measureDatabaseQuery = async <T>(
   queryName: string,
   queryFn: () => Promise<T>
 ): Promise<T> => {
-  return withSpan(`db.query.${queryName}`, async (span) => {
+  return withSpan(`db.query.${queryName}`, {}, async (span) => {
     const startTime = performance.now();
     
     try {
@@ -118,7 +118,7 @@ export const measureDatabaseQuery = async <T>(
       });
       
       return result;
-    } catch (error) {
+    } catch (_error) {
       const duration = performance.now() - startTime;
       
       // Record error metrics
@@ -146,12 +146,12 @@ export const measureBatchOperation = async <T, R>(
     logProgress?: boolean;
     stopOnError?: boolean;
   } = {}
-): Promise<{ results: R[]; errors: Array<{ item: T; error: any }> }> => {
+): Promise<{ results: R[]; errors: Array<{ item: T; error: Error }> }> => {
   const { concurrency = 10, logProgress = true, stopOnError = false } = options;
   const timer = new PerformanceTimer(`batch_${name}`);
   
   const results: R[] = [];
-  const errors: Array<{ item: T; error: any }> = [];
+  const errors: Array<{ item: T; error: Error }> = [];
   let processed = 0;
   
   // Process in chunks
@@ -174,7 +174,7 @@ export const measureBatchOperation = async <T, R>(
         }
         
         return result;
-      } catch (error) {
+      } catch (_error) {
         errors.push({ item, error });
         
         if (stopOnError) {
@@ -229,7 +229,7 @@ export const trackMemoryUsage = (operation: string): (() => void) => {
 };
 
 // Throttle function execution
-export const throttle = <T extends (...args: any[]) => any>(
+export const throttle = <T extends (...args: unknown[]) => unknown>(
   fn: T,
   delay: number
 ): ((...args: Parameters<T>) => ReturnType<T> | undefined) => {
@@ -248,7 +248,7 @@ export const throttle = <T extends (...args: any[]) => any>(
 };
 
 // Debounce function execution
-export const debounce = <T extends (...args: any[]) => any>(
+export const debounce = <T extends (...args: unknown[]) => unknown>(
   fn: T,
   delay: number
 ): ((...args: Parameters<T>) => Promise<ReturnType<T>>) => {
@@ -275,7 +275,7 @@ export const retryWithBackoff = async <T>(
     initialDelay?: number;
     maxDelay?: number;
     factor?: number;
-    onRetry?: (error: any, attempt: number) => void;
+    onRetry?: (error: Error, attempt: number) => void;
   } = {}
 ): Promise<T> => {
   const {
@@ -286,12 +286,12 @@ export const retryWithBackoff = async <T>(
     onRetry,
   } = options;
   
-  let lastError: any;
+  let lastError: unknown;
   
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
       return await operation();
-    } catch (error) {
+    } catch (_error) {
       lastError = error;
       
       if (attempt === maxRetries) {

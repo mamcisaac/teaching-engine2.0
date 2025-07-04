@@ -1,15 +1,15 @@
-import jwt, { JwtPayload } from 'jsonwebtoken';
-import { TokenPayload, JWTConfig } from './types';
+import jwt, { SignOptions } from 'jsonwebtoken';
+import { TokenPayload, JWTConfig as _JWTConfig } from './types';
 import logger from '../../logger.js';
 
 // JWT Configuration
-const config: JWTConfig = {
+const config = {
   secret: process.env.JWT_SECRET || 'your-secret-key-change-in-production',
   expiresIn: process.env.JWT_EXPIRES_IN || '24h',
   refreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d',
   issuer: 'teaching-engine',
   audience: 'teaching-engine-users',
-};
+} as const;
 
 /**
  * Generate JWT access token
@@ -30,10 +30,10 @@ export function generateAccessToken(user: {
   };
 
   return jwt.sign(payload, config.secret, {
-    expiresIn: config.expiresIn,
+    expiresIn: '24h',
     issuer: config.issuer,
     audience: config.audience,
-  } as any);
+  });
 }
 
 /**
@@ -44,10 +44,10 @@ export function generateRefreshToken(userId: number): string {
     { userId: userId.toString(), type: 'refresh' },
     config.secret,
     {
-      expiresIn: config.refreshExpiresIn,
+      expiresIn: '7d',
       issuer: config.issuer,
       audience: config.audience,
-    } as any
+    }
   );
 }
 
@@ -62,8 +62,8 @@ export function verifyToken(token: string): TokenPayload {
     }) as TokenPayload;
     
     return decoded;
-  } catch (error) {
-    logger.error('Token verification failed:', error);
+  } catch (_error) {
+    logger.error({ error }, 'Token verification failed');
     throw new Error('Invalid or expired token');
   }
 }

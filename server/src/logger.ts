@@ -17,33 +17,42 @@ const pinoConfig: pino.LoggerOptions = {
   
   // Custom serializers for better structured logging
   serializers: {
-    req: (req: Record<string, unknown>) => ({
-      method: req.method,
-      url: req.url,
+    req: (req: unknown) => {{
+      const request = req as Record<string, unknown> & { method?: string; url?: string; headers?: Record<string, unknown>; remoteAddress?: string; remotePort?: number; connection?: { remoteAddress?: string; remotePort?: number } };
+      return {
+      method: request.method,
+      url: request.url,
       headers: {
-        'user-agent': req.headers?.['user-agent'],
-        'content-type': req.headers?.['content-type'],
-        'authorization': req.headers?.authorization ? '[REDACTED]' : undefined
+        'user-agent': request.headers?.['user-agent'],
+        'content-type': request.headers?.['content-type'],
+        'authorization': request.headers?.authorization ? '[REDACTED]' : undefined
       },
-      remoteAddress: req.remoteAddress || req.connection?.remoteAddress,
-      remotePort: req.remotePort || req.connection?.remotePort
-    }),
+      remoteAddress: request.remoteAddress || request.connection?.remoteAddress,
+      remotePort: request.remotePort || request.connection?.remotePort
+    }};
+    },
     
-    res: (res: Record<string, unknown>) => ({
-      statusCode: res.statusCode,
+    res: (res: unknown) => {{
+      const response = res as { statusCode?: number; getHeader?: (name: string) => unknown };
+      return {
+      statusCode: response.statusCode,
       headers: {
-        'content-type': res.getHeader?.('content-type'),
-        'content-length': res.getHeader?.('content-length')
+        'content-type': typeof response.getHeader === 'function' ? response.getHeader('content-type') : undefined,
+        'content-length': typeof response.getHeader === 'function' ? response.getHeader('content-length') : undefined
       }
-    }),
+    }};
+    },
     
     err: pino.stdSerializers.err,
     
-    user: (user: Record<string, unknown>) => ({
-      id: user?.id,
-      email: user?.email ? user.email.substring(0, 3) + '***' : undefined,
-      role: user?.role
-    })
+    user: (user: unknown) => {{
+      const userData = user as { id?: string | number; email?: string; role?: string };
+      return {
+      id: userData?.id,
+      email: userData?.email && typeof userData.email === 'string' ? userData.email.substring(0, 3) + '***' : undefined,
+      role: userData?.role
+    }};
+    }}
   },
 
   // Add timestamp and performance info
@@ -77,28 +86,28 @@ class EnhancedLogger {
     this.logger = logger;
   }
 
-  // Standard log methods
-  fatal(obj: Record<string, unknown>, msg?: string, ...args: unknown[]) {
+  // Standard log methods (allow both string and object for flexibility)
+  fatal(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]) {
     return this.logger.fatal(this.enhanceLogObject(obj), msg, ...args);
   }
 
-  error(obj: Record<string, unknown>, msg?: string, ...args: unknown[]) {
+  error(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]) {
     return this.logger.error(this.enhanceLogObject(obj), msg, ...args);
   }
 
-  warn(obj: Record<string, unknown>, msg?: string, ...args: unknown[]) {
+  warn(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]) {
     return this.logger.warn(this.enhanceLogObject(obj), msg, ...args);
   }
 
-  info(obj: Record<string, unknown>, msg?: string, ...args: unknown[]) {
+  info(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]) {
     return this.logger.info(this.enhanceLogObject(obj), msg, ...args);
   }
 
-  debug(obj: Record<string, unknown>, msg?: string, ...args: unknown[]) {
+  debug(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]) {
     return this.logger.debug(this.enhanceLogObject(obj), msg, ...args);
   }
 
-  trace(obj: Record<string, unknown>, msg?: string, ...args: unknown[]) {
+  trace(obj: Record<string, unknown> | string, msg?: string, ...args: unknown[]) {
     return this.logger.trace(this.enhanceLogObject(obj), msg, ...args);
   }
 
@@ -205,8 +214,17 @@ class EnhancedLogger {
       };
     }
 
+    if (obj && typeof obj === 'object') {
+      return {
+        ...(obj as Record<string, unknown>),
+        requestId: this.requestId,
+        service: 'teaching-engine',
+        version: process.env.npm_package_version || 'unknown'
+      };
+    }
+
     return {
-      ...obj,
+      data: obj,
       requestId: this.requestId,
       service: 'teaching-engine',
       version: process.env.npm_package_version || 'unknown'
@@ -239,7 +257,7 @@ class EnhancedLogger {
       sanitized.ip = this.maskIP(sanitized.ip);
     }
     
-    if (sanitized.userAgent) {
+    if (sanitized.userAgent && typeof sanitized.userAgent === 'string') {
       sanitized.userAgent = sanitized.userAgent.substring(0, 100);
     }
     
@@ -260,7 +278,7 @@ class EnhancedLogger {
     const sanitized = { ...details };
     
     // Remove sensitive query parameters
-    if (sanitized.query) {
+    if (sanitized.query && typeof sanitized.query === 'string') {
       sanitized.query = sanitized.query.replace(/password\s*=\s*'[^']*'/gi, "password='[REDACTED]'");
     }
     
@@ -271,19 +289,22 @@ class EnhancedLogger {
     const sanitized = { ...details };
     
     // Limit prompt size and remove sensitive content
-    if (sanitized.prompt) {
+    if (sanitized.prompt && typeof sanitized.prompt === 'string') {
       sanitized.prompt = sanitized.prompt.substring(0, 500) + (sanitized.prompt.length > 500 ? '...' : '');
     }
     
     return sanitized;
   }
 
-  private redactEmail(email: string): string {
+  private redactEmail(email: unknown): string {
+    if (typeof email !== 'string') return '[INVALID_EMAIL]';
     const [local, domain] = email.split('@');
+    if (!local || !domain) return '[INVALID_EMAIL]';
     return `${local.substring(0, 2)}***@${domain}`;
   }
 
-  private maskIP(ip: string): string {
+  private maskIP(ip: unknown): string {
+    if (typeof ip !== 'string') return 'xxx.xxx.xxx.xxx';
     const parts = ip.split('.');
     if (parts.length === 4) {
       return `${parts[0]}.${parts[1]}.xxx.xxx`;
@@ -297,5 +318,8 @@ const logger = new EnhancedLogger(baseLogger);
 
 // Export types for TypeScript
 export type Logger = EnhancedLogger;
+
+// Named export for compatibility
+export { logger };
 
 export default logger;

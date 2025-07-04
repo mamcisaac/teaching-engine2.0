@@ -1,4 +1,4 @@
-import { downloadPrintables } from '../api';
+import { downloadPrintables } from '../api/legacy/api';
 
 interface Props {
   weekStart: string;

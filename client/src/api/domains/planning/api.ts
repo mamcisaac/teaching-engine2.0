@@ -1,4 +1,5 @@
-import { apiClient, getWeekStartISO } from '../../core';
+import { apiClient } from '../../core/client';
+import { getWeekStartISO } from '../../core/utils';
 import type { 
   YearPlanEntry, 
   DailyPlan, 

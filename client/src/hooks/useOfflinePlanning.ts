@@ -132,7 +132,7 @@ export function useUnitPlanWithOffline(unitPlanId?: string) {
       setLoading(true);
       try {
         await unitPlanStore.loadUnitPlan(unitPlanId);
-      } catch (error) {
+      } catch (_error) {
         console.error('Failed to load unit plan:', error);
       } finally {
         setLoading(false);
@@ -185,7 +185,7 @@ export function useBatchedRequests() {
       const promises = urls.map(url => batchedApi.get(url));
       const results = await Promise.all(promises);
       return results.map((r: unknown) => (r as { data: unknown }).data);
-    } catch (error) {
+    } catch (_error) {
       console.error('Batch request failed:', error);
       throw error;
     } finally {

@@ -156,7 +156,7 @@ export default function FormsDataAgent({
       setBatchOperations((prev) =>
         prev.map((op) => (op.errors && op.errors.length > 0 ? { ...op, status: 'error' } : op)),
       );
-    } catch (error) {
+    } catch (_error) {
       console.error('Batch processing error:', error);
       setBatchOperations((prev) =>
         prev.map((op) => ({
@@ -248,7 +248,7 @@ export default function FormsDataAgent({
         const type = data[0]?.unitPlanId ? 'lesson' : 'unit';
         onDataImport?.(type, data);
       }
-    } catch (error) {
+    } catch (_error) {
       console.error('Import error:', error);
     }
   };

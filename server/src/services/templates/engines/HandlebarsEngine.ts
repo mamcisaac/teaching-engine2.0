@@ -3,7 +3,7 @@
  * Renders templates using Handlebars
  */
 
-import * as Handlebars from 'handlebars';
+import Handlebars from 'handlebars';
 import { RenderEngine, RenderResult, RenderContext } from './RenderEngine';
 import { Template } from '../providers/TemplateProvider';
 
@@ -50,14 +50,14 @@ export class HandlebarsEngine extends RenderEngine {
 
       return {
         content,
-        format: template.format as any,
+        format: template.format as unknown,
         metadata: {
           renderTime: Date.now() - startTime,
           engine: this.name,
           warnings: warnings.length > 0 ? warnings : undefined,
         },
       };
-    } catch (error) {
+    } catch (_error) {
       throw new Error(`Handlebars render error: ${error.message}`);
     }
   }
@@ -67,9 +67,21 @@ export class HandlebarsEngine extends RenderEngine {
    */
   async validate(template: Template): Promise<boolean> {
     try {
-      this.handlebars.compile(template.content);
+      // Try to compile the template
+      const compiled = this.handlebars.compile(template.content);
+      
+      // Try to render with empty context to catch runtime errors
+      // This helps catch unclosed blocks and other syntax errors
+      try {
+        compiled({});
+      } catch (renderError) {
+        // If rendering with empty context fails, it's likely a syntax error
+        return false;
+      }
+      
       return true;
-    } catch (error) {
+    } catch (_error) {
+      // Compilation error
       return false;
     }
   }
@@ -95,13 +107,38 @@ export class HandlebarsEngine extends RenderEngine {
    */
   private registerDefaultHelpers(): void {
     // Date formatting
-    this.handlebars.registerHelper('formatDate', (date: any, format?: string) => {
+    this.handlebars.registerHelper('formatDate', (date: unknown, format?: string) => {
       if (!date) return '';
       
-      const d = date === 'now' ? new Date() : new Date(date);
+      let d: Date;
+      if (date === 'now') {
+        d = new Date();
+      } else if (typeof date === 'string') {
+        // Parse ISO date strings as UTC and convert to local date
+        // This ensures '2024-01-15' is always treated as Jan 15, not Jan 14
+        const match = date.match(/^(\d{4})-(\d{2})-(\d{2})/);
+        if (match) {
+          d = new Date(parseInt(match[1]), parseInt(match[2]) - 1, parseInt(match[3]));
+        } else {
+          d = new Date(date);
+        }
+      } else if (date instanceof Date) {
+        // For Date objects created from date-only strings, check if it's at UTC midnight
+        // and adjust to local date if so
+        if (date.getUTCHours() === 0 && date.getUTCMinutes() === 0 && 
+            date.getUTCSeconds() === 0 && date.getUTCMilliseconds() === 0) {
+          // This is likely a date-only Date object, use local date components
+          d = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+        } else {
+          d = date;
+        }
+      } else {
+        d = new Date(date);
+      }
       
       if (format === 'short') {
-        return d.toLocaleDateString();
+        // Use manual formatting to ensure consistent results
+        return `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`;
       } else if (format === 'long') {
         return d.toLocaleDateString('en-US', {
           weekday: 'long',
@@ -119,7 +156,7 @@ export class HandlebarsEngine extends RenderEngine {
     });
 
     // Time formatting
-    this.handlebars.registerHelper('formatTime', (date: any) => {
+    this.handlebars.registerHelper('formatTime', (date: unknown) => {
       if (!date) return '';
       const d = new Date(date);
       return d.toLocaleTimeString('en-US', {
@@ -129,33 +166,33 @@ export class HandlebarsEngine extends RenderEngine {
     });
 
     // Number formatting
-    this.handlebars.registerHelper('formatNumber', (num: any, decimals: number = 0) => {
+    this.handlebars.registerHelper('formatNumber', (num: unknown, decimals: number = 0) => {
       const n = parseFloat(num);
       if (isNaN(n)) return '0';
       return n.toFixed(decimals);
     });
 
     // Percentage formatting
-    this.handlebars.registerHelper('formatPercent', (num: any) => {
+    this.handlebars.registerHelper('formatPercent', (num: unknown) => {
       const n = parseFloat(num);
       if (isNaN(n)) return '0%';
       return `${Math.round(n)}%`;
     });
 
     // Conditional helpers
-    this.handlebars.registerHelper('eq', (a: any, b: any) => a === b);
-    this.handlebars.registerHelper('ne', (a: any, b: any) => a !== b);
-    this.handlebars.registerHelper('lt', (a: any, b: any) => a < b);
-    this.handlebars.registerHelper('gt', (a: any, b: any) => a > b);
-    this.handlebars.registerHelper('lte', (a: any, b: any) => a <= b);
-    this.handlebars.registerHelper('gte', (a: any, b: any) => a >= b);
+    this.handlebars.registerHelper('eq', (a: unknown, b: unknown) => a === b);
+    this.handlebars.registerHelper('ne', (a: unknown, b: unknown) => a !== b);
+    this.handlebars.registerHelper('lt', (a: unknown, b: unknown) => a < b);
+    this.handlebars.registerHelper('gt', (a: unknown, b: unknown) => a > b);
+    this.handlebars.registerHelper('lte', (a: unknown, b: unknown) => a <= b);
+    this.handlebars.registerHelper('gte', (a: unknown, b: unknown) => a >= b);
 
     // Array helpers
-    this.handlebars.registerHelper('length', (arr: any[]) => {
+    this.handlebars.registerHelper('length', (arr: unknown[]) => {
       return Array.isArray(arr) ? arr.length : 0;
     });
 
-    this.handlebars.registerHelper('join', (arr: any[], separator: string = ', ') => {
+    this.handlebars.registerHelper('join', (arr: unknown[], separator: string = ', ') => {
       return Array.isArray(arr) ? arr.join(separator) : '';
     });
 
@@ -189,12 +226,12 @@ export class HandlebarsEngine extends RenderEngine {
     this.handlebars.registerHelper('inc', (value: number) => value + 1);
 
     // JSON helper
-    this.handlebars.registerHelper('json', (context: any) => {
+    this.handlebars.registerHelper('json', (context: unknown) => {
       return JSON.stringify(context, null, 2);
     });
 
     // Default value helper
-    this.handlebars.registerHelper('default', (value: any, defaultValue: any) => {
+    this.handlebars.registerHelper('default', (value: unknown, defaultValue: unknown) => {
       return value || defaultValue;
     });
 
@@ -215,7 +252,7 @@ export class HandlebarsEngine extends RenderEngine {
    * Register custom helper
    */
   registerHelper(name: string, helper: Function): void {
-    this.handlebars.registerHelper(name, helper as any);
+    this.handlebars.registerHelper(name, helper as unknown);
   }
 
   /**

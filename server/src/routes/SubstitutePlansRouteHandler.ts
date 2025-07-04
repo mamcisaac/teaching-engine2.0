@@ -96,7 +96,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
     this.substitutePlanService = new SubstitutePlanService();
   }
 
-  async findMany(filters: any, userId: number) {
+  async findMany(filters: unknown, userId: number) {
     const {
       startDate,
       endDate,
@@ -171,7 +171,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
     );
   }
 
-  async create(data: any, userId: number) {
+  async create(data: unknown, userId: number) {
     return prisma.substitutePlan.create({
       data: {
         ...data,
@@ -181,7 +181,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
     });
   }
 
-  async update(id: string, data: any, userId: number) {
+  async update(id: string, data: unknown, userId: number) {
     // Verify ownership
     const plan = await prisma.substitutePlan.findFirst({
       where: { id, userId },
@@ -213,7 +213,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
     return true;
   }
 
-  async generatePlan(generateData: any, userId: number) {
+  async generatePlan(generateData: unknown, userId: number) {
     return this.substitutePlanService.generateComprehensivePlan(userId, generateData);
   }
 
@@ -310,7 +310,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
     };
   }
 
-  protected getCrudOperations(): CrudOperations<any> {
+  protected getCrudOperations(): CrudOperations<unknown> {
     return {
       create: this.substitutePlanService.create.bind(this.substitutePlanService),
       findMany: this.substitutePlanService.findMany.bind(this.substitutePlanService),
@@ -332,7 +332,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       
       const result = await this.substitutePlanService.findMany(filters, userId);
       res.json(result);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error(`Error in ${this.routeName} list:`, error);
       next(error);
     }
@@ -379,7 +379,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       
       const generatedPlan = await this.substitutePlanService.generatePlan(generateData, userId);
       res.status(201).json(generatedPlan);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error('Error generating substitute plan:', error);
       next(error);
     }
@@ -396,7 +396,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       
       const deactivatedPlan = await this.substitutePlanService.deactivatePlan(planId, userId);
       res.json(deactivatedPlan);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error('Error deactivating substitute plan:', error);
       next(error);
     }
@@ -411,7 +411,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       const userId = req.userId!;
       const stats = await this.substitutePlanService.getStats(userId);
       res.json(stats);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error('Error getting substitute plan stats:', error);
       next(error);
     }
@@ -428,7 +428,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       
       const upcomingDates = await this.substitutePlanService.getUpcomingDates(userId, daysAhead);
       res.json(upcomingDates);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error('Error getting upcoming dates:', error);
       next(error);
     }

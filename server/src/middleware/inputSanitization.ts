@@ -98,7 +98,7 @@ function sanitizeObject(obj: unknown, config: Record<string, unknown> = strictCo
       sanitized = sanitized.replace(/vbscript\s*:/gi, '');
 
       return sanitized;
-    } catch (error) {
+    } catch (_error) {
       // If sanitization fails, return empty string to be safe
       logger.warn({ obj: obj.substring(0, 100), error }, 'Failed to sanitize string');
       return '';
@@ -219,7 +219,7 @@ export function strictSanitization(req: Request, res: Response, next: NextFuncti
     }
 
     next();
-  } catch (error) {
+  } catch (_error) {
     logger.error({ error, path: req.path, ip: req.ip }, 'Input sanitization error');
     res.status(400).json({
       error: 'Invalid Input',
@@ -246,7 +246,7 @@ export function moderateSanitization(req: Request, res: Response, next: NextFunc
     }
 
     next();
-  } catch (error) {
+  } catch (_error) {
     logger.error({ error, path: req.path }, 'Input sanitization error');
     res.status(400).json({
       error: 'Invalid Input',
@@ -273,7 +273,7 @@ export function lenientSanitization(req: Request, res: Response, next: NextFunct
     }
 
     next();
-  } catch (error) {
+  } catch (_error) {
     logger.error({ error, path: req.path }, 'Input sanitization error');
     res.status(400).json({
       error: 'Invalid Input',
@@ -339,7 +339,7 @@ export function preventSQLInjection(req: Request, res: Response, next: NextFunct
     }
 
     next();
-  } catch (error) {
+  } catch (_error) {
     logger.error({ error }, 'SQL injection prevention error');
     next(error);
   }
@@ -406,7 +406,7 @@ export function preventNoSQLInjection(req: Request, res: Response, next: NextFun
     }
 
     next();
-  } catch (error) {
+  } catch (_error) {
     logger.error({ error }, 'NoSQL injection prevention error');
     next(error);
   }

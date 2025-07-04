@@ -40,7 +40,7 @@ export function useForm<T extends Record<string, unknown>>({
         // For object schemas, try to get the field schema
         if ('shape' in validationSchema && validationSchema.shape) {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const fieldSchema = (validationSchema.shape as Record<string, any>)[name];
+          const fieldSchema = (validationSchema.shape as Record<string, unknown>)[name];
           if (fieldSchema && typeof fieldSchema === 'object' && 'parse' in fieldSchema) {
             (fieldSchema as z.ZodSchema).parse(value);
           } else {
@@ -57,9 +57,9 @@ export function useForm<T extends Record<string, unknown>>({
           error &&
           typeof error === 'object' &&
           'errors' in error &&
-          Array.isArray((error as any).errors)
+          Array.isArray((error as unknown).errors)
         ) {
-          return ((error as any).errors[0]?.message as string) || 'Invalid value';
+          return ((error as unknown).errors[0]?.message as string) || 'Invalid value';
         }
         return 'Validation error';
       }
@@ -80,10 +80,10 @@ export function useForm<T extends Record<string, unknown>>({
         error &&
         typeof error === 'object' &&
         'errors' in error &&
-        Array.isArray((error as any).errors)
+        Array.isArray((error as unknown).errors)
       ) {
         const newErrors: FormError = {};
-        ((error as any).errors as any[]).forEach((err: any) => {
+        ((error as unknown).errors as unknown[]).forEach((err: unknown) => {
           const path = err.path.join('.');
           newErrors[path] = err.message;
         });
@@ -178,7 +178,7 @@ export function useForm<T extends Record<string, unknown>>({
       try {
         await onSubmit(values);
         setIsDirty(false);
-      } catch (error) {
+      } catch (_error) {
         // Error handling is done in onSubmit
       } finally {
         setIsSubmitting(false);

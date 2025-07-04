@@ -15,14 +15,14 @@ export interface ValidationResult {
 export interface ValidationError {
   field: string;
   message: string;
-  value?: any;
+  value?: unknown;
   expectationCode?: string;
 }
 
 export interface ValidationWarning {
   field: string;
   message: string;
-  value?: any;
+  value?: unknown;
   expectationCode?: string;
 }
 
@@ -88,6 +88,8 @@ export class CurriculumValidator {
     // Check duplicates
     if (this.options.checkDuplicates) {
       stats.duplicates = this.checkDuplicates(curriculum.expectations, warnings);
+    } else {
+      stats.duplicates = 0;
     }
 
     // Calculate stats
@@ -222,16 +224,18 @@ export class CurriculumValidator {
           stats.invalidCodes++;
         }
 
-        // Check for duplicate codes
-        if (seenCodes.has(expectation.code)) {
-          warnings.push({
-            field: 'expectation.code',
-            message: 'Duplicate expectation code',
-            value: expectation.code,
-            expectationCode: expectation.code,
-          });
+        // Check for duplicate codes only if checkDuplicates is enabled
+        if (this.options.checkDuplicates) {
+          if (seenCodes.has(expectation.code)) {
+            warnings.push({
+              field: 'expectation.code',
+              message: 'Duplicate expectation code',
+              value: expectation.code,
+              expectationCode: expectation.code,
+            });
+          }
+          seenCodes.add(expectation.code);
         }
-        seenCodes.add(expectation.code);
       }
 
       // Validate description
@@ -281,23 +285,19 @@ export class CurriculumValidator {
    * Check for duplicate expectations
    */
   private checkDuplicates(expectations: ParsedExpectation[], warnings: ValidationWarning[]): number {
-    const seen = new Map<string, ParsedExpectation>();
+    const seenCodes = new Map<string, number>();
     let duplicates = 0;
 
+    // Count occurrences of each code
     for (const expectation of expectations) {
-      // Create a key based on code and description
-      const key = `${expectation.code}-${expectation.description.substring(0, 50)}`;
-      
-      if (seen.has(key)) {
-        warnings.push({
-          field: 'expectation',
-          message: 'Duplicate expectation found',
-          value: expectation.code,
-          expectationCode: expectation.code,
-        });
-        duplicates++;
-      } else {
-        seen.set(key, expectation);
+      const count = seenCodes.get(expectation.code) || 0;
+      seenCodes.set(expectation.code, count + 1);
+    }
+
+    // Count codes that appear more than once
+    for (const [code, count] of seenCodes.entries()) {
+      if (count > 1) {
+        duplicates += count - 1; // Each duplicate after the first
       }
     }
 
@@ -349,7 +349,8 @@ export class CurriculumValidator {
   private isValidCode(code: string): boolean {
     // Ontario curriculum code patterns
     const patterns = [
-      /^[A-Z]\d+\.[A-Z]+\d+$/i, // A1.2
+      /^[A-Z]\d+\.\d+$/i, // A1.2 (Letter + number + dot + number)
+      /^[A-Z]\d+\.[A-Z]+\d+$/i, // A1.NA2 (Letter + number + dot + letters + number)
       /^[A-Z0-9]+\.[A-Z0-9]+\.[A-Z0-9]+$/i, // 1.NA.2
       /^\d+\.[A-Z]+\.\d+$/i, // 1.NA.2
       /^[A-Z]+\d*$/i, // Overall expectations like A1

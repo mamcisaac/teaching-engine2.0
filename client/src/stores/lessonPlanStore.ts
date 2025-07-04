@@ -3,7 +3,7 @@
 import { create } from 'zustand';
 import { persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
-import { api } from '../api';
+import { api } from '../api/legacy/api';
 import { createOfflineSlice, createAutoSave, OfflineState, BaseActions } from './basePlanningStore';
 import { offlineStorage, StoredData } from '../services/offlineStorage';
 
@@ -135,7 +135,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
                   });
                 }
               }
-            } catch (error) {
+            } catch (_error) {
               console.error('Failed to load lesson plans:', error);
 
               // Try to load from cache as fallback
@@ -192,7 +192,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
                   }
                 }
               }
-            } catch (error) {
+            } catch (_error) {
               console.error('Failed to load lesson plan:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to load lesson';
@@ -245,7 +245,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
 
                 return newLesson;
               }
-            } catch (error) {
+            } catch (_error) {
               console.error('Failed to create lesson plan:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to create lesson';
@@ -302,7 +302,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
                   data: updatedLesson,
                 });
               }
-            } catch (error) {
+            } catch (_error) {
               console.error('Failed to update lesson plan:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to update lesson';
@@ -348,7 +348,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
                   data: { id },
                 });
               }
-            } catch (error) {
+            } catch (_error) {
               console.error('Failed to delete lesson plan:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to delete lesson';

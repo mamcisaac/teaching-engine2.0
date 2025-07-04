@@ -331,7 +331,7 @@ describe('Curriculum Services - Property Tests', () => {
 
     it('should handle identical datasets correctly', () => {
       const property = properties.idempotent(
-        (data: any[]) => mergeCurriculumData(data, data),
+        (data: unknown[]) => mergeCurriculumData(data, data),
         fc.array(educationProperties.curriculumExpectation())
       );
 
@@ -418,7 +418,7 @@ describe('Curriculum Services - Property Tests', () => {
   describe('rankExpectationsByRelevance', () => {
     it('should preserve array length', () => {
       const property = properties.preservesLength(
-        (expectations: any[]) => rankExpectationsByRelevance(expectations, 'math'),
+        (expectations: unknown[]) => rankExpectationsByRelevance(expectations, 'math'),
         fc.array(educationProperties.curriculumExpectation())
       );
 
@@ -427,7 +427,7 @@ describe('Curriculum Services - Property Tests', () => {
 
     it('should maintain all original elements', () => {
       const property = properties.sortingPreservesElements(
-        (expectations: any[]) => rankExpectationsByRelevance(expectations, 'science'),
+        (expectations: unknown[]) => rankExpectationsByRelevance(expectations, 'science'),
         fc.array(educationProperties.curriculumExpectation())
       );
 

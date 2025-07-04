@@ -5,12 +5,12 @@
 
 import { Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
-import { BaseRouteHandler, CrudOperations, AuthenticatedRequest } from '../BaseRouteHandler.js';
-import { BaseService } from '../../../services/base/BaseService.js';
+import { BaseRouteHandler, CrudOperations, AuthenticatedRequest } from '../BaseRouteHandler';
+import { BaseService } from '../../../services/base/BaseService';
 import { jest } from '@jest/globals';
 
 // Mock logger
-jest.mock('../../../logger.js', () => ({
+jest.mock('@/logger', () => ({
   default: {
     child: jest.fn(() => ({
       error: jest.fn(),
@@ -27,7 +27,7 @@ class TestService extends BaseService {
     super('TestService');
   }
 
-  async create(data: any): Promise<any> {
+  async create(data: unknown): Promise<unknown> {
     return { id: '123', ...data };
   }
 
@@ -40,12 +40,12 @@ class TestService extends BaseService {
     return { id, name: `Test ${id}` };
   }
 
-  async update(id: string, data: any): Promise<any> {
+  async update(id: string, data: unknown): Promise<unknown> {
     return { id, ...data };
   }
 
-  async delete(): Promise<boolean> {
-    return true;
+  async delete(id: string): Promise<boolean> {
+    return id !== 'not-found';
   }
 }
 
@@ -82,7 +82,7 @@ class TestRouteHandler extends BaseRouteHandler {
     };
   }
 
-  protected getCrudOperations(): CrudOperations<any> {
+  protected getCrudOperations(): CrudOperations<unknown> {
     return {
       create: this.testService.create.bind(this.testService),
       findMany: this.testService.findMany.bind(this.testService),
@@ -283,10 +283,6 @@ describe('BaseRouteHandler', () => {
       });
 
       it('should return 404 for non-existent item', async () => {
-        // Mock delete to return false
-        const deleteOperation = handler.getCrudOperations().delete;
-        jest.spyOn(handler.getCrudOperations(), 'delete').mockResolvedValue(false);
-        
         mockRequest.params = { id: 'not-found' };
         
         await handler['handleDelete'](

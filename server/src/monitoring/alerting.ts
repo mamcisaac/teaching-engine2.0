@@ -8,7 +8,7 @@ interface Alert {
   id: string;
   name: string;
   condition: () => Promise<boolean>;
-  message: (context: any) => string;
+  message: (context: unknown) => string;
   severity: 'info' | 'warning' | 'error' | 'critical';
   cooldown: number; // Minutes before re-alerting
   channels: Array<'log' | 'email' | 'webhook'>;
@@ -85,7 +85,7 @@ const alerts: Alert[] = [
       try {
         await prisma.$queryRaw`SELECT 1`;
         return false;
-      } catch (error) {
+      } catch (_error) {
         return true;
       }
     },
@@ -179,7 +179,7 @@ const alerts: Alert[] = [
 ];
 
 // Send alert through various channels
-const sendAlert = async (alert: Alert, context: any): Promise<void> => {
+const sendAlert = async (alert: Alert, context: unknown): Promise<void> => {
   await withSpan('alerting.sendAlert', { attributes: { alertId: alert.id } }, async (span) => {
     const message = alert.message(context);
     const timestamp = new Date().toISOString();
@@ -228,7 +228,7 @@ const sendAlert = async (alert: Alert, context: any): Promise<void> => {
           `,
         });
         logger.info(`Email alert sent for ${alert.name}`);
-      } catch (error) {
+      } catch (_error) {
         logger.error('Failed to send email alert', error);
       }
     }
@@ -255,7 +255,7 @@ const sendAlert = async (alert: Alert, context: any): Promise<void> => {
         }
 
         logger.info(`Webhook alert sent for ${alert.name}`);
-      } catch (error) {
+      } catch (_error) {
         logger.error('Failed to send webhook alert', error);
       }
     }
@@ -310,7 +310,7 @@ const checkAlerts = async (): Promise<void> => {
             alert_id: alert.id,
           });
         }
-      } catch (error) {
+      } catch (_error) {
         logger.error(`Failed to check alert ${alert.name}`, error);
       }
     }
@@ -318,7 +318,7 @@ const checkAlerts = async (): Promise<void> => {
 };
 
 // Gather context data for alert
-const gatherAlertContext = async (alert: Alert): Promise<any> => {
+const gatherAlertContext = async (alert: Alert): Promise<unknown> => {
   const metrics = getMetrics();
   const context: any = {};
 
@@ -430,7 +430,7 @@ export const triggerManualAlert = async (
 };
 
 // Get alert status
-export const getAlertStatus = (): any => {
+export const getAlertStatus = (): unknown => {
   return {
     alerts: alerts.map((alert) => ({
       id: alert.id,

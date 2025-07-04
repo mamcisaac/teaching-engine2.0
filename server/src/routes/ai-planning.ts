@@ -104,7 +104,7 @@ router.get('/status', async (req: Request, res) => {
     };
 
     res.json(status);
-  } catch (error) {
+  } catch (_error) {
     console.error('Error checking AI status:', error);
     res.status(500).json({
       available: false,
@@ -141,7 +141,7 @@ router.post('/long-range/goals', aiRateLimit, async (req: Request, res) => {
     });
 
     res.json(suggestions);
-  } catch (error) {
+  } catch (_error) {
     console.error('Error generating long-range goals:', error);
     res.status(500).json({ error: 'Failed to generate suggestions' });
   }
@@ -178,7 +178,7 @@ router.post('/unit/big-ideas', aiRateLimit, async (req: Request, res) => {
     });
 
     res.json(suggestions);
-  } catch (error) {
+  } catch (_error) {
     console.error('Error generating unit big ideas:', error);
     res.status(500).json({ error: 'Failed to generate suggestions' });
   }
@@ -216,7 +216,7 @@ router.post('/lesson/activities', aiRateLimit, async (req: Request, res) => {
     });
 
     res.json(suggestions);
-  } catch (error) {
+  } catch (_error) {
     console.error('Error generating lesson activities:', error);
     res.status(500).json({ error: 'Failed to generate suggestions' });
   }
@@ -250,7 +250,7 @@ router.post('/lesson/materials', aiRateLimit, async (req: Request, res) => {
     });
 
     res.json(suggestions);
-  } catch (error) {
+  } catch (_error) {
     console.error('Error generating materials list:', error);
     res.status(500).json({ error: 'Failed to generate suggestions' });
   }
@@ -284,7 +284,7 @@ router.post('/lesson/assessments', aiRateLimit, async (req: Request, res) => {
     });
 
     res.json(suggestions);
-  } catch (error) {
+  } catch (_error) {
     console.error('Error generating assessment strategies:', error);
     res.status(500).json({ error: 'Failed to generate suggestions' });
   }
@@ -320,7 +320,7 @@ router.post('/daybook/reflections', aiRateLimit, async (req: Request, res) => {
     });
 
     res.json(suggestions);
-  } catch (error) {
+  } catch (_error) {
     console.error('Error generating reflection prompts:', error);
     res.status(500).json({ error: 'Failed to generate suggestions' });
   }
@@ -356,7 +356,7 @@ router.post('/curriculum-aligned', aiRateLimit, async (req: Request, res) => {
     );
 
     res.json({ suggestions });
-  } catch (error) {
+  } catch (_error) {
     console.error('Error generating curriculum-aligned suggestions:', error);
     res.status(500).json({ error: 'Failed to generate suggestions' });
   }

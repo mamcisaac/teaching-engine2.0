@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll, afterAll, afterEach } from 'vitest';
+import { describe, it, expect, beforeAll } from 'vitest';
 import { PactV3, MatchersV3 } from '@pact-foundation/pact';
 import { pactConfig, createInteractionUrl } from './setup';
 import axios from 'axios';
@@ -10,22 +10,23 @@ const provider = new PactV3({
   provider: pactConfig.provider,
   port: pactConfig.port,
   dir: pactConfig.dir,
-  logLevel: pactConfig.logLevel as any,
+  logLevel: pactConfig.logLevel as unknown,
   spec: pactConfig.spec,
   cors: pactConfig.cors,
 });
 
 describe('Daybook Entries API Contract Tests', () => {
-  beforeAll(() => provider.setup());
-  afterAll(() => provider.finalize());
-  afterEach(() => provider.verify());
+  beforeAll(async () => {
+    // Setup is handled internally by PactV3
+  });
+  // Cleanup is handled internally by PactV3
 
   describe('GET /api/daybook-entries', () => {
     it('should return a list of daybook entries', async () => {
       const expectedResponse = {
         daybookEntries: eachLike({
           id: string('daybook123'),
-          date: datetime('2024-01-15T00:00:00.000Z'),
+          date: datetime('yyyy-MM-ddTHH:mm:ss.SSSX', '2024-01-15T00:00:00.000Z'),
           lessonPlanId: string('lesson123'),
           lessonPlan: like({
             id: string('lesson123'),
@@ -83,34 +84,35 @@ describe('Daybook Entries API Contract Tests', () => {
             'Content-Type': 'application/json',
           },
           body: expectedResponse,
+        })
+        .executeTest(async (mockService) => {
+          const response = await axios.get(
+            createInteractionUrl('/api/daybook-entries'),
+            {
+              params: {
+                startDate: '2024-01-01T00:00:00.000Z',
+                endDate: '2024-01-31T23:59:59.999Z',
+                limit: 20,
+                offset: 0,
+              },
+              headers: {
+                Authorization: 'Bearer test-token',
+              },
+            }
+          );
+
+          expect(response.status).toBe(200);
+          expect(response.data).toHaveProperty('daybookEntries');
+          expect(response.data).toHaveProperty('pagination');
+          expect(Array.isArray(response.data.daybookEntries)).toBe(true);
         });
-
-      const response = await axios.get(
-        createInteractionUrl('/api/daybook-entries'),
-        {
-          params: {
-            startDate: '2024-01-01T00:00:00.000Z',
-            endDate: '2024-01-31T23:59:59.999Z',
-            limit: 20,
-            offset: 0,
-          },
-          headers: {
-            Authorization: 'Bearer test-token',
-          },
-        }
-      );
-
-      expect(response.status).toBe(200);
-      expect(response.data).toHaveProperty('daybookEntries');
-      expect(response.data).toHaveProperty('pagination');
-      expect(Array.isArray(response.data.daybookEntries)).toBe(true);
     });
 
     it('should filter daybook entries by rating', async () => {
       const expectedResponse = {
         daybookEntries: eachLike({
           id: string('daybook456'),
-          date: datetime('2024-01-20T00:00:00.000Z'),
+          date: datetime('yyyy-MM-ddTHH:mm:ss.SSSX', '2024-01-20T00:00:00.000Z'),
           overallRating: integer(5),
           wouldReuseLesson: boolean(true),
           whatWorked: string('Excellent lesson - students fully engaged'),
@@ -143,24 +145,25 @@ describe('Daybook Entries API Contract Tests', () => {
             'Content-Type': 'application/json',
           },
           body: expectedResponse,
+        })
+        .executeTest(async (mockService) => {
+          const response = await axios.get(
+            createInteractionUrl('/api/daybook-entries'),
+            {
+              params: {
+                rating: 5,
+                limit: 10,
+                offset: 0,
+              },
+              headers: {
+                Authorization: 'Bearer test-token',
+              },
+            }
+          );
+
+          expect(response.status).toBe(200);
+          expect(response.data.daybookEntries).toBeDefined();
         });
-
-      const response = await axios.get(
-        createInteractionUrl('/api/daybook-entries'),
-        {
-          params: {
-            rating: 5,
-            limit: 10,
-            offset: 0,
-          },
-          headers: {
-            Authorization: 'Bearer test-token',
-          },
-        }
-      );
-
-      expect(response.status).toBe(200);
-      expect(response.data.daybookEntries).toBeDefined();
     });
   });
 
@@ -187,7 +190,7 @@ describe('Daybook Entries API Contract Tests', () => {
       const expectedResponse = {
         id: string('daybook-new-123'),
         ...newDaybookEntry,
-        date: datetime(newDaybookEntry.date),
+        date: datetime('yyyy-MM-ddTHH:mm:ss.SSSX', newDaybookEntry.date),
         userId: integer(1),
         expectations: eachLike({
           expectationId: string('exp123'),
@@ -198,8 +201,8 @@ describe('Daybook Entries API Contract Tests', () => {
             description: string('Represent and describe whole numbers'),
           }),
         }),
-        createdAt: datetime('2024-01-16T12:00:00.000Z'),
-        updatedAt: datetime('2024-01-16T12:00:00.000Z'),
+        createdAt: datetime('yyyy-MM-ddTHH:mm:ss.SSSX', '2024-01-16T12:00:00.000Z'),
+        updatedAt: datetime('yyyy-MM-ddTHH:mm:ss.SSSX', '2024-01-16T12:00:00.000Z'),
       };
 
       await provider
@@ -220,22 +223,23 @@ describe('Daybook Entries API Contract Tests', () => {
             'Content-Type': 'application/json',
           },
           body: expectedResponse,
+        })
+        .executeTest(async (mockService) => {
+          const response = await axios.post(
+            createInteractionUrl('/api/daybook-entries'),
+            newDaybookEntry,
+            {
+              headers: {
+                Authorization: 'Bearer test-token',
+                'Content-Type': 'application/json',
+              },
+            }
+          );
+
+          expect(response.status).toBe(201);
+          expect(response.data.id).toBeDefined();
+          expect(response.data.overallRating).toBe(newDaybookEntry.overallRating);
         });
-
-      const response = await axios.post(
-        createInteractionUrl('/api/daybook-entries'),
-        newDaybookEntry,
-        {
-          headers: {
-            Authorization: 'Bearer test-token',
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-
-      expect(response.status).toBe(201);
-      expect(response.data.id).toBeDefined();
-      expect(response.data.overallRating).toBe(newDaybookEntry.overallRating);
     });
   });
 
@@ -251,9 +255,9 @@ describe('Daybook Entries API Contract Tests', () => {
       const expectedResponse = {
         id: string(daybookId),
         ...updateData,
-        date: datetime('2024-01-15T00:00:00.000Z'),
+        date: datetime('yyyy-MM-ddTHH:mm:ss.SSSX', '2024-01-15T00:00:00.000Z'),
         lessonPlanId: string('lesson123'),
-        updatedAt: datetime('2024-01-17T00:00:00.000Z'),
+        updatedAt: datetime('yyyy-MM-ddTHH:mm:ss.SSSX', '2024-01-17T00:00:00.000Z'),
       };
 
       await provider
@@ -274,22 +278,23 @@ describe('Daybook Entries API Contract Tests', () => {
             'Content-Type': 'application/json',
           },
           body: expectedResponse,
+        })
+        .executeTest(async (mockService) => {
+          const response = await axios.put(
+            createInteractionUrl(`/api/daybook-entries/${daybookId}`),
+            updateData,
+            {
+              headers: {
+                Authorization: 'Bearer test-token',
+                'Content-Type': 'application/json',
+              },
+            }
+          );
+
+          expect(response.status).toBe(200);
+          expect(response.data.whatWorked).toBe(updateData.whatWorked);
+          expect(response.data.overallRating).toBe(updateData.overallRating);
         });
-
-      const response = await axios.put(
-        createInteractionUrl(`/api/daybook-entries/${daybookId}`),
-        updateData,
-        {
-          headers: {
-            Authorization: 'Bearer test-token',
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-
-      expect(response.status).toBe(200);
-      expect(response.data.whatWorked).toBe(updateData.whatWorked);
-      expect(response.data.overallRating).toBe(updateData.overallRating);
     });
   });
 });

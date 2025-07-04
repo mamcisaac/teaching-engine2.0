@@ -9,6 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { render, RenderOptions } from '@testing-library/react';
 import { AuthProvider } from '../contexts/AuthContext';
 import { ThemeProvider } from '../contexts/ThemeContext';
+import { vi } from 'vitest';
 
 // Create a test query client with specific settings
 export function createTestQueryClient() {
@@ -59,11 +60,11 @@ export function AllProviders({
   // Mock AuthContext value
   const mockAuthContext = {
     ...initialAuthState,
-    login: jest.fn().mockResolvedValue({ user: mockUser, token: 'mock-token' }),
-    logout: jest.fn(),
-    register: jest.fn().mockResolvedValue({ user: mockUser, token: 'mock-token' }),
-    updateUser: jest.fn().mockResolvedValue(mockUser),
-    checkAuth: jest.fn().mockResolvedValue(true),
+    login: vi.fn().mockResolvedValue({ user: mockUser, token: 'mock-token' }),
+    logout: vi.fn(),
+    register: vi.fn().mockResolvedValue({ user: mockUser, token: 'mock-token' }),
+    updateUser: vi.fn().mockResolvedValue(mockUser),
+    checkAuth: vi.fn().mockResolvedValue(true),
   };
 
   React.useEffect(() => {
@@ -75,11 +76,9 @@ export function AllProviders({
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <AuthProvider value={mockAuthContext}>
-          <ThemeProvider>
-            {children}
-          </ThemeProvider>
-        </AuthProvider>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </BrowserRouter>
     </QueryClientProvider>
   );
@@ -176,7 +175,7 @@ export const testUtils = {
     renderWithProviders(ui, { ...options, initialRoute: route }),
 
   // Create test query client with specific config
-  createQueryClient: (config?: Partial<QueryClient['defaultOptions']>) =>
+  createQueryClient: (config?: { queries?: unknown; mutations?: any }) =>
     new QueryClient({
       defaultOptions: {
         queries: {
@@ -197,17 +196,17 @@ export const testUtils = {
 export * from '@testing-library/react';
 export { renderWithProviders as render };
 
-// Custom jest matchers for common assertions
+// Custom vitest matchers for common assertions
 declare global {
-  namespace jest {
-    interface Matchers<R> {
-      toBeInTheDocument(): R;
-      toHaveClass(className: string): R;
-      toBeVisible(): R;
-      toBeDisabled(): R;
-      toBeEnabled(): R;
-      toHaveValue(value: string | string[] | number): R;
-      toHaveTextContent(text: string | RegExp): R;
+  namespace Vi {
+    interface JestAssertion<T = any> {
+      toBeInTheDocument(): T;
+      toHaveClass(className: string): T;
+      toBeVisible(): T;
+      toBeDisabled(): T;
+      toBeEnabled(): T;
+      toHaveValue(value: string | string[] | number): T;
+      toHaveTextContent(text: string | RegExp): T;
     }
   }
 }
@@ -217,8 +216,8 @@ const originalError = console.error;
 const originalWarn = console.warn;
 
 beforeAll(() => {
-  console.error = jest.fn();
-  console.warn = jest.fn();
+  console.error = vi.fn();
+  console.warn = vi.fn();
 });
 
 afterAll(() => {
@@ -269,6 +268,6 @@ export const performanceUtils = {
   },
 
   // Test with many items
-  createLargeDataSet: (count: number, template: any) =>
+  createLargeDataSet: (count: number, template: unknown) =>
     Array.from({ length: count }, (_, i) => ({ ...template, id: i })),
 };

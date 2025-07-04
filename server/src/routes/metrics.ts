@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     
     res.set('Content-Type', 'text/plain; version=0.0.4; charset=utf-8');
     res.send(prometheusFormat);
-  } catch (error) {
+  } catch (_error) {
     logger.error('Error generating Prometheus metrics:', error);
     res.status(500).send('Error generating metrics');
   }
@@ -34,7 +34,7 @@ router.get('/json', authMiddleware, (req, res) => {
       data: metrics,
       timestamp: new Date().toISOString()
     });
-  } catch (error) {
+  } catch (_error) {
     logger.error('Error getting JSON metrics:', error);
     res.status(500).json({
       success: false,
@@ -56,7 +56,7 @@ router.get('/summary', authMiddleware, (req, res) => {
       data: summary,
       timestamp: new Date().toISOString()
     });
-  } catch (error) {
+  } catch (_error) {
     logger.error('Error getting performance summary:', error);
     res.status(500).json({
       success: false,
@@ -115,7 +115,7 @@ router.get('/health', authMiddleware, (req, res) => {
         timestamp: new Date().toISOString()
       }
     });
-  } catch (error) {
+  } catch (_error) {
     logger.error('Error getting health metrics:', error);
     res.status(500).json({
       success: false,
@@ -147,7 +147,7 @@ router.delete('/reset', authMiddleware, (req, res) => {
       message: 'Metrics reset successfully',
       timestamp: new Date().toISOString()
     });
-  } catch (error) {
+  } catch (_error) {
     logger.error('Error resetting metrics:', error);
     res.status(500).json({
       success: false,
@@ -192,7 +192,7 @@ router.get('/realtime', authMiddleware, (req, res) => {
       },
       timestamp: new Date().toISOString()
     });
-  } catch (error) {
+  } catch (_error) {
     logger.error('Error getting realtime metrics:', error);
     res.status(500).json({
       success: false,

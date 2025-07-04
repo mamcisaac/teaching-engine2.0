@@ -2,6 +2,7 @@
  * BaseService Test Suite
  */
 
+import { jest } from '@jest/globals';
 import { BaseService } from '../BaseService';
 
 // Mock implementation for testing
@@ -48,6 +49,16 @@ class TestService extends BaseService {
   public isHealthyForTest() {
     return this.isHealthy;
   }
+
+  // Expose ensureInitialized for testing
+  public async ensureInitializedForTest() {
+    return this.ensureInitialized();
+  }
+
+  // Expose name for testing
+  public getNameForTest() {
+    return this.name;
+  }
 }
 
 describe('BaseService', () => {
@@ -60,19 +71,19 @@ describe('BaseService', () => {
   describe('Initialization', () => {
     it('should initialize service correctly', async () => {
       expect(service.initializeCalled).toBe(false);
-      await service['ensureInitialized']();
+      await service.ensureInitializedForTest();
       expect(service.initializeCalled).toBe(true);
     });
 
     it('should only initialize once', async () => {
-      await service['ensureInitialized']();
+      await service.ensureInitializedForTest();
       service.initializeCalled = false;
-      await service['ensureInitialized']();
+      await service.ensureInitializedForTest();
       expect(service.initializeCalled).toBe(false);
     });
 
     it('should have correct service name', () => {
-      expect(service['name']).toBe('TestService');
+      expect(service.getNameForTest()).toBe('TestService');
     });
   });
 
@@ -163,7 +174,7 @@ describe('BaseService', () => {
       for (let i = 0; i < 5; i++) {
         try {
           await service.testMethod(true);
-        } catch (e) {
+        } catch (_e) {
           // Expected
         }
       }

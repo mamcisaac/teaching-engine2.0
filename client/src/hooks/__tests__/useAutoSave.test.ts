@@ -110,7 +110,7 @@ describe('useAutoSave', () => {
         await act(async () => {
           await result.current.saveNow();
         });
-      } catch (e) {
+      } catch (_e) {
         caughtError = e as Error;
       }
 
@@ -132,7 +132,7 @@ describe('useAutoSave', () => {
         await act(async () => {
           await result.current.saveNow();
         });
-      } catch (error) {
+      } catch (_error) {
         // Expected error
       }
 

@@ -1,4 +1,4 @@
-import { apiClient } from '../../core';
+import { apiClient } from '../../core/client';
 import type { Subject, CurriculumExpectation, ThematicUnit } from '../../../types';
 
 // API endpoints

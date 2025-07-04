@@ -257,7 +257,7 @@ describe('ETFO Progress Routes', () => {
       expect(Array.isArray(response.body.data.timeline)).toBe(true);
 
       // Verify timeline contains all planning levels
-      const timelineTypes = response.body.data.timeline.map((item: any) => item.type);
+      const timelineTypes = response.body.data.timeline.map((item: unknown) => item.type);
       expect(timelineTypes).toContain('unit_start');
       expect(timelineTypes).toContain('lesson');
       expect(timelineTypes).toContain('daybook');

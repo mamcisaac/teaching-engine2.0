@@ -65,16 +65,8 @@ jest.doMock('../src/logger', () => ({
 
 // Email service removed - app only creates newsletter drafts, doesn't send emails
 
-// Mock llmService (OpenAI)
-jest.doMock('../src/services/llmService', () => ({
-  __esModule: true,
-  llmService: {
-    generateText: jest.fn().mockResolvedValue('Generated text'),
-    generateActivityIdeas: jest.fn().mockResolvedValue([]),
-    generateNewsletterContent: jest.fn().mockResolvedValue('Newsletter content'),
-  },
-  openai: null, // Mock as unavailable for unit tests
-}));
+// Note: llmService has been refactored into separate AI services
+// Individual tests should mock aiPlanningService or aiDraftService as needed
 
 // Mock embeddingService - commented out as individual tests handle their own mocks
 // jest.doMock('../src/services/embeddingService', () => ({

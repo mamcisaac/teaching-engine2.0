@@ -114,7 +114,7 @@ router.get('/', async (req: Request, res) => {
       limit: limitNumber,
       hasMore: (pageNumber - 1) * limitNumber + expectations.length < total,
     });
-  } catch (error) {
+  } catch (_error) {
     console.error('Error fetching curriculum expectations:', error);
     res.status(500).json({ error: 'Failed to fetch curriculum expectations' });
   }
@@ -156,7 +156,7 @@ router.get('/:id', async (req: Request, res) => {
     }
 
     res.json(expectation);
-  } catch (error) {
+  } catch (_error) {
     console.error('Error fetching curriculum expectation:', error);
     res.status(500).json({ error: 'Failed to fetch curriculum expectation' });
   }
@@ -188,7 +188,7 @@ router.get('/filters/options', async (req: Request, res) => {
       grades: grades.map(g => g.grade),
       strands: strands.map(s => s.strand),
     });
-  } catch (error) {
+  } catch (_error) {
     console.error('Error fetching filter options:', error);
     res.status(500).json({ error: 'Failed to fetch filter options' });
   }

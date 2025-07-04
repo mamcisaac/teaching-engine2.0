@@ -22,7 +22,7 @@ export interface JSONExpectation {
   subject?: string;
   course?: string;
   keywords?: string[];
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface JSONCurriculum {
@@ -33,8 +33,8 @@ export interface JSONCurriculum {
   expectations?: JSONExpectation[];
   outcomes?: JSONExpectation[];
   standards?: JSONExpectation[];
-  metadata?: any;
-  [key: string]: any;
+  metadata?: unknown;
+  [key: string]: unknown;
 }
 
 export class JSONParser extends CurriculumParser {
@@ -44,10 +44,10 @@ export class JSONParser extends CurriculumParser {
   async parse(content: string | Buffer): Promise<ParsedCurriculum> {
     const stringContent = content instanceof Buffer ? content.toString('utf-8') : content;
     
-    let data: any;
+    let data: unknown;
     try {
       data = JSON.parse(stringContent);
-    } catch (error) {
+    } catch (_error) {
       throw new Error(`Invalid JSON format: ${error.message}`);
     }
 
@@ -67,7 +67,7 @@ export class JSONParser extends CurriculumParser {
   /**
    * Parse array of expectations
    */
-  private parseExpectationArray(data: any[]): ParsedCurriculum {
+  private parseExpectationArray(data: unknown[]): ParsedCurriculum {
     const expectations: ParsedExpectation[] = [];
     let inferredGrade: number | undefined;
     let inferredSubject: string | undefined;
@@ -154,7 +154,7 @@ export class JSONParser extends CurriculumParser {
   /**
    * Find expectations array in nested object
    */
-  private findExpectationsArray(obj: any, depth: number = 0): any[] | null {
+  private findExpectationsArray(obj: unknown, depth: number = 0): unknown[] | null {
     if (depth > 3) return null; // Prevent deep recursion
 
     for (const key in obj) {
@@ -235,7 +235,7 @@ export class JSONParser extends CurriculumParser {
   /**
    * Parse grade value
    */
-  private parseGrade(value: any): number | undefined {
+  private parseGrade(value: unknown): number | undefined {
     if (typeof value === 'number') {
       return value;
     }

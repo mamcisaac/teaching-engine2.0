@@ -107,7 +107,7 @@ export function CurriculumImportWizard({
             });
             setCurrentStep('upload');
           }
-        } catch (error) {
+        } catch (_error) {
           console.error('Status poll error:', error);
           toast({
             title: 'Status Check Failed',
@@ -156,7 +156,7 @@ export function CurriculumImportWizard({
           title: 'Upload Successful',
           description: 'Your curriculum document is being processed...',
         });
-      } catch (error) {
+      } catch (_error) {
         console.error('Upload error:', error);
         toast({
           title: 'Upload Failed',
@@ -205,7 +205,7 @@ export function CurriculumImportWizard({
       
       // Store timeout ID for cleanup
       return () => clearTimeout(timeoutId);
-    } catch (error) {
+    } catch (_error) {
       console.error('Confirm import error:', error);
       toast({
         title: 'Import Failed',

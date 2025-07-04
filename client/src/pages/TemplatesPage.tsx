@@ -133,7 +133,7 @@ export default function TemplatesPage() {
         content: {},
       });
       navigate(`/templates/${newTemplate.id}`);
-    } catch (error) {
+    } catch (_error) {
       console.error('Failed to create template:', error);
     }
   };
@@ -145,7 +145,7 @@ export default function TemplatesPage() {
         title: `${template.title} (Copy)`,
       });
       navigate(`/templates/${duplicated.id}`);
-    } catch (error) {
+    } catch (_error) {
       console.error('Failed to duplicate template:', error);
     }
   };
@@ -160,7 +160,7 @@ export default function TemplatesPage() {
       if (templateId === selectedTemplate.id) {
         navigate('/templates');
       }
-    } catch (error) {
+    } catch (_error) {
       console.error('Failed to delete template:', error);
     }
   };
@@ -181,7 +181,7 @@ export default function TemplatesPage() {
           state: { templateData: applied.appliedContent },
         });
       }
-    } catch (error) {
+    } catch (_error) {
       console.error('Failed to apply template:', error);
     }
   };
@@ -189,7 +189,7 @@ export default function TemplatesPage() {
   // const handleRateTemplate = async (template: PlanTemplate, rating: number) => {
   //   try {
   //     await rateTemplate.mutateAsync({ id: template.id, rating });
-  //   } catch (error) {
+  //   } catch (_error) {
   //     console.error('Failed to rate template:', error);
   //   }
   // };

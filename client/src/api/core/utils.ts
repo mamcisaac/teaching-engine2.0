@@ -55,8 +55,8 @@ export const queryKeys = {
   curriculum: {
     subjects: ['subjects'] as const,
     subject: (id: number) => ['subject', id] as const,
-    expectations: (filters?: any) => ['curriculum-expectations', filters] as const,
-    thematicUnits: (filters?: any) => ['thematic-units', filters] as const,
+    expectations: (filters?: unknown) => ['curriculum-expectations', filters] as const,
+    thematicUnits: (filters?: unknown) => ['thematic-units', filters] as const,
     thematicUnit: (id: number) => ['thematic-unit', id] as const,
   },
   // Calendar keys
@@ -72,10 +72,10 @@ export const queryKeys = {
   // Notes keys
   notes: {
     all: ['notes'] as const,
-    filtered: (filters: any) => ['filtered-notes', filters] as const,
+    filtered: (filters: unknown) => ['filtered-notes', filters] as const,
     journal: {
       all: ['journal-entries'] as const,
-      list: (params?: any) => ['journal-entries', params] as const,
+      list: (params?: unknown) => ['journal-entries', params] as const,
       detail: (id: number) => ['journal-entry', id] as const,
       search: (query: string) => ['journal-search', query] as const,
     },
@@ -89,9 +89,9 @@ export const queryKeys = {
   },
   // Routine keys
   routine: {
-    templates: (filters?: any) => ['oral-routine-templates', filters] as const,
-    daily: (filters?: any) => ['daily-oral-routines', filters] as const,
-    stats: (filters?: any) => ['oral-routine-stats', filters] as const,
+    templates: (filters?: unknown) => ['oral-routine-templates', filters] as const,
+    daily: (filters?: unknown) => ['daily-oral-routines', filters] as const,
+    stats: (filters?: unknown) => ['oral-routine-stats', filters] as const,
     class: ['class-routines'] as const,
   },
   // Resource keys
@@ -129,7 +129,7 @@ export const queryKeys = {
     detail: (id: number) => ['cognate', id] as const,
   },
   // Smart goals
-  smartGoals: (filters?: any) => ['smart-goals', filters] as const,
+  smartGoals: (filters?: unknown) => ['smart-goals', filters] as const,
 } as const;
 
 // Type for mutation options with consistent error handling

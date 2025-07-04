@@ -121,7 +121,7 @@ A1.1,"Unclosed quote,overall,"Number Sense",1,Mathematics`;
       try {
         const result = await parser.parse(csvContent);
         expect(result).toBeDefined();
-      } catch (error) {
+      } catch (_error) {
         expect(error.message).toBeDefined();
       }
     });
@@ -132,7 +132,7 @@ A1.1,"Unclosed quote,overall,"Number Sense",1,Mathematics`;
       const csvContent = `code,description,type,strand,grade,subject
 A1,"Overall expectation",overall,"Number Sense",1,Mathematics
 A1.1,"Specific expectation",specific,"Number Sense",1,Mathematics
-A2,"Type from description - overall expectation",,Number Sense",1,Mathematics`;
+A2,"Type from description - overall expectation",,"Number Sense",1,Mathematics`;
 
       const result = await parser.parse(csvContent);
 

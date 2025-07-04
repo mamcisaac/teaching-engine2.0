@@ -182,7 +182,7 @@ app.use('/api/auth', authEndpoints);
 
 // Mount user routes (authenticated)
 log('Mounting user routes...');
-app.use('/api/user', authenticate, rateLimiters.api as any, userRoutes(prisma));
+app.use('/api/user', authenticate, rateLimiters.api as unknown, userRoutes(prisma));
 
 // Notification routes removed - over-engineered for single-teacher use
 
@@ -191,13 +191,13 @@ log('Mounting ETFO-aligned API routes...');
 // Student endpoints removed - app does not store student data
 
 // Key Teacher Features
-app.use('/api/newsletters', authenticate, rateLimiters.write as any, newsletterRoutes);
-app.use('/api/substitute-plans', authenticate, rateLimiters.write as any, substitutePlanRoutes);
+app.use('/api/newsletters', authenticate, rateLimiters.write as unknown, newsletterRoutes);
+app.use('/api/substitute-plans', authenticate, rateLimiters.write as unknown, substitutePlanRoutes);
 
 app.use(
   '/api/curriculum-import',
   authenticate,
-  rateLimiters.upload as any,
+  rateLimiters.upload as unknown,
   validateFileUpload(['application/pdf', 'text/csv']),
   curriculumImportRoutes,
 );
@@ -207,29 +207,29 @@ app.use(
 app.use(
   '/api/curriculum-expectations',
   authenticate,
-  rateLimiters.read as any,
+  rateLimiters.read as unknown,
   curriculumCache, // Cache curriculum data for 30 minutes
   curriculumExpectationRoutes,
 );
-app.use('/api/long-range-plans', authenticate, rateLimiters.write as any, userCache, longRangePlanRoutes);
-app.use('/api/unit-plans', authenticate, rateLimiters.write as any, userCache, unitPlanRoutes);
-app.use('/api/etfo-lesson-plans', authenticate, rateLimiters.write as any, userCache, etfoLessonPlanRoutes);
-app.use('/api/daybook-entries', authenticate, rateLimiters.write as any, userCache, daybookEntryRoutes);
-app.use('/api/etfo', authenticate, rateLimiters.read as any, etfoProgressRoutes);
+app.use('/api/long-range-plans', authenticate, rateLimiters.write as unknown, userCache, longRangePlanRoutes);
+app.use('/api/unit-plans', authenticate, rateLimiters.write as unknown, userCache, unitPlanRoutes);
+app.use('/api/etfo-lesson-plans', authenticate, rateLimiters.write as unknown, userCache, etfoLessonPlanRoutes);
+app.use('/api/daybook-entries', authenticate, rateLimiters.write as unknown, userCache, daybookEntryRoutes);
+app.use('/api/etfo', authenticate, rateLimiters.read as unknown, etfoProgressRoutes);
 
 // State Management Routes
-app.use('/api/planner', authenticate, rateLimiters.api as any, plannerStateRoutes);
+app.use('/api/planner', authenticate, rateLimiters.api as unknown, plannerStateRoutes);
 // Workflow state routes removed - over-engineered for single-teacher use
-app.use('/api/ai-planning', authenticate, rateLimiters.ai as any, aiPlanningRoutes);
+app.use('/api/ai-planning', authenticate, rateLimiters.ai as unknown, aiPlanningRoutes);
 
 // Template System Routes
-app.use('/api/templates', authenticate, rateLimiters.api as any, staticCache, templateRoutes);
+app.use('/api/templates', authenticate, rateLimiters.api as unknown, staticCache, templateRoutes);
 
 // Calendar Routes
-app.use('/api/calendar-events', authenticate, rateLimiters.api as any, userCache, calendarEventRoutes);
+app.use('/api/calendar-events', authenticate, rateLimiters.api as unknown, userCache, calendarEventRoutes);
 
 // Recent Plans Routes
-app.use('/api/recent-plans', authenticate, rateLimiters.api as any, userCache, recentPlansRoutes);
+app.use('/api/recent-plans', authenticate, rateLimiters.api as unknown, userCache, recentPlansRoutes);
 
 // Cache Management Routes
 app.use('/api/cache', cacheRoutes);
@@ -258,15 +258,15 @@ app.use('/api/planner', authenticate, plannerStateRoutes);
 app.use(
   '/api/activity-collections',
   authenticate,
-  rateLimiters.write as any,
+  rateLimiters.write as unknown,
   activityCollectionsRoutes,
 );
-app.use('/api/ai-activities', authenticate, rateLimiters.ai as any, aiActivityGenerationRoutes);
+app.use('/api/ai-activities', authenticate, rateLimiters.ai as unknown, aiActivityGenerationRoutes);
 
 // Batch Processing Routes
 
 // Sub-plan Routes
-// app.use('/api/sub-plan', authenticate, rateLimiters.write as any, subPlanRoutes); // Commented out - missing file
+// app.use('/api/sub-plan', authenticate, rateLimiters.write as unknown, subPlanRoutes); // Commented out - missing file
 
 // Batch API removed - premature optimization for single-teacher use
 
@@ -333,7 +333,7 @@ async function gracefulShutdown(signal: string, server?: Server) {
 
     log('Graceful shutdown completed');
     process.exit(0);
-  } catch (err) {
+  } catch (_err) {
     error('Error during graceful shutdown:', err);
     process.exit(1);
   }

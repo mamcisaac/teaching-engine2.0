@@ -1,5 +1,6 @@
 import { createContext, useContext } from 'react';
-import { useNotifications, useMarkNotificationRead, Notification } from '../api';
+import { useNotifications, useMarkNotificationRead } from '../api/legacy/api';
+import type { Notification } from '../types';
 import { useAuth } from './AuthContext';
 
 interface NotificationContextValue {
@@ -24,19 +25,7 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
     data = [],
     isLoading,
     error,
-  } = useNotifications({
-    enabled: isAuthenticated,
-    retry: (failureCount, error) => {
-      // Don't retry on 401 errors (authentication issues)
-      const err = error as { response?: { status?: number } };
-      if (err?.response?.status === 401) {
-        return false;
-      }
-      // Retry up to 3 times for other errors
-      return failureCount < 3;
-    },
-    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
-  });
+  } = useNotifications();
 
   const markMutation = useMarkNotificationRead();
 

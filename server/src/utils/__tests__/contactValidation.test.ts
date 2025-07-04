@@ -131,11 +131,11 @@ describe('Contact Validation Utilities', () => {
 
     describe('Edge Cases', () => {
       it('should handle null and undefined inputs', () => {
-        const result1 = validatePhoneNumber(null as any);
+        const result1 = validatePhoneNumber(null as unknown);
         expect(result1.isValid).toBe(false);
         expect(result1.errors).toContain('Phone number is required');
 
-        const result2 = validatePhoneNumber(undefined as any);
+        const result2 = validatePhoneNumber(undefined as unknown);
         expect(result2.isValid).toBe(false);
         expect(result2.errors).toContain('Phone number is required');
       });
@@ -223,7 +223,7 @@ describe('Contact Validation Utilities', () => {
       expect(empty.errors).toContain('Email is required');
 
       // Null email
-      const nullEmail = validateEmail(null as any);
+      const nullEmail = validateEmail(null as unknown);
       expect(nullEmail.isValid).toBe(false);
       expect(nullEmail.errors).toContain('Email is required');
 
@@ -387,7 +387,7 @@ describe('Contact Validation Utilities', () => {
       expect(empty.isValid).toBe(false);
       expect(empty.errors).toContain('Contact string is required');
 
-      const nullInput = parseContactString(null as any);
+      const nullInput = parseContactString(null as unknown);
       expect(nullInput.isValid).toBe(false);
       expect(nullInput.errors).toContain('Contact string is required');
     });
@@ -552,15 +552,15 @@ describe('Contact Validation Utilities', () => {
       const malformedInputs = [null, undefined, 123, {}, [], '', '   '];
 
       malformedInputs.forEach((input) => {
-        const phoneResult = validatePhoneNumber(input as any);
+        const phoneResult = validatePhoneNumber(input as unknown);
         expect(phoneResult.isValid).toBe(false);
         expect(phoneResult.errors).toBeDefined();
 
-        const emailResult = validateEmail(input as any);
+        const emailResult = validateEmail(input as unknown);
         expect(emailResult.isValid).toBe(false);
         expect(emailResult.errors).toBeDefined();
 
-        const contactResult = parseContactString(input as any);
+        const contactResult = parseContactString(input as unknown);
         expect(contactResult.isValid).toBe(false);
         expect(contactResult.errors).toBeDefined();
       });

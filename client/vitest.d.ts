@@ -29,4 +29,5 @@ declare const expect: (typeof import('vitest'))['expect'];
 declare const beforeEach: (typeof import('vitest'))['beforeEach'];
 declare const afterEach: (typeof import('vitest'))['afterEach'];
 declare const beforeAll: (typeof import('vitest'))['beforeAll'];
+declare const afterAll: (typeof import('vitest'))['afterAll'];
 // Add any other Vitest globals you need

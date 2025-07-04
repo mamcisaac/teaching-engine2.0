@@ -37,6 +37,15 @@ export class PartialManager extends BaseService {
   }
 
   /**
+   * Cleanup resources
+   */
+  public async cleanup(): Promise<void> {
+    this.partials.clear();
+    this.categories.clear();
+    await this.shutdown();
+  }
+
+  /**
    * Get singleton instance
    */
   public static getInstance(partialsDirectory?: string): PartialManager {
@@ -373,7 +382,7 @@ export class PartialManager extends BaseService {
       // Check if partials directory exists
       try {
         await fs.access(this.partialsDirectory);
-      } catch (error) {
+      } catch (_error) {
         this.logger.info('Partials directory does not exist, skipping file loading', {
           directory: this.partialsDirectory,
         });
@@ -405,7 +414,7 @@ export class PartialManager extends BaseService {
           });
 
           this.logger.debug('Partial loaded from file', { name, file });
-        } catch (error) {
+        } catch (_error) {
           this.logger.error('Failed to load partial file', { file, error: error.message });
         }
       }
@@ -414,7 +423,7 @@ export class PartialManager extends BaseService {
         directory: this.partialsDirectory,
         loaded: partialFiles.length,
       });
-    } catch (error) {
+    } catch (_error) {
       this.logger.error('Failed to load partials from files', { 
         directory: this.partialsDirectory,
         error: error.message,
@@ -443,7 +452,7 @@ export class PartialManager extends BaseService {
       partial.lastModified = new Date();
 
       this.logger.info('Partial saved to file', { name, filePath });
-    } catch (error) {
+    } catch (_error) {
       this.logger.error('Failed to save partial to file', { name, error: error.message });
       throw error;
     }

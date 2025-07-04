@@ -349,7 +349,7 @@ describe('MonitoringService', () => {
     it('should provide real-time metrics updates', async () => {
       const metricsStream = monitoringService.getMetricsStream();
       
-      const receivedMetrics: any[] = [];
+      const receivedMetrics: unknown[] = [];
       metricsStream.on('data', (metric) => {
         receivedMetrics.push(metric);
       });

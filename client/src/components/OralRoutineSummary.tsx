@@ -1,4 +1,4 @@
-import { useOralRoutineStats } from '../api';
+import { useOralRoutineStats } from '../api/legacy/api';
 
 interface OralRoutineSummaryProps {
   className?: string;

@@ -224,7 +224,7 @@ describe('Input Validation Security Tests', () => {
         };
 
         res.json(result);
-      } catch (error) {
+      } catch (_error) {
         res.status(500).json({ error: 'Database error' });
       }
     });
@@ -668,7 +668,7 @@ describe('Input Validation Security Tests', () => {
         ];
 
         for (const identifier of invalidIdentifiers) {
-          expect(() => escapeSqlIdentifier(identifier as any)).toThrow();
+          expect(() => escapeSqlIdentifier(identifier as unknown)).toThrow();
         }
       });
     });

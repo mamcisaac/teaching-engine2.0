@@ -74,7 +74,7 @@ export const inputSanitizationMiddleware = (
   next: NextFunction
 ): void => {
   // Recursive sanitization function
-  const sanitize = (data: any): any => {
+  const sanitize = (data: unknown): unknown => {
     if (typeof data === 'string') {
       // Remove any HTML/script tags
       return DOMPurify.sanitize(data, { 
@@ -104,11 +104,11 @@ export const inputSanitizationMiddleware = (
   }
   
   if (req.query) {
-    req.query = sanitize(req.query) as any;
+    req.query = sanitize(req.query) as unknown;
   }
   
   if (req.params) {
-    req.params = sanitize(req.params) as any;
+    req.params = sanitize(req.params) as unknown;
   }
 
   next();
@@ -123,7 +123,7 @@ export const xssProtectionMiddleware = (
   // Additional XSS protection for JSON responses
   const originalJson = res.json;
   
-  res.json = function(data: any) {
+  res.json = function(data: unknown) {
     // Escape HTML in JSON responses
     const escapeHtml = (str: string): string => {
       return str
@@ -134,7 +134,7 @@ export const xssProtectionMiddleware = (
         .replace(/'/g, '&#039;');
     };
 
-    const escapeData = (obj: any): any => {
+    const escapeData = (obj: unknown): unknown => {
       if (typeof obj === 'string') {
         return escapeHtml(obj);
       }
@@ -175,13 +175,13 @@ export const sqlInjectionProtectionMiddleware = (
     /(\band\b\s*\d+\s*=\s*\d+)/gi,
   ];
 
-  const checkForSQLInjection = (value: any): boolean => {
+  const checkForSQLInjection = (value: unknown): boolean => {
     if (typeof value !== 'string') return false;
     
     return suspiciousPatterns.some(pattern => pattern.test(value));
   };
 
-  const checkObject = (obj: any): void => {
+  const checkObject = (obj: unknown): void => {
     for (const [key, value] of Object.entries(obj)) {
       if (checkForSQLInjection(value)) {
         logger.warn({
@@ -189,7 +189,7 @@ export const sqlInjectionProtectionMiddleware = (
           value,
           ip: req.ip,
           path: req.path,
-          userId: (req as any).user?.id,
+          userId: (req as unknown).user?.id,
         }, 'Potential SQL injection attempt detected');
         
         throw new AppError(400, 'Invalid input detected', 'SECURITY_VIOLATION');
@@ -206,7 +206,7 @@ export const sqlInjectionProtectionMiddleware = (
     if (req.body) checkObject(req.body);
     if (req.query) checkObject(req.query);
     if (req.params) checkObject(req.params);
-  } catch (error) {
+  } catch (_error) {
     return next(error);
   }
 

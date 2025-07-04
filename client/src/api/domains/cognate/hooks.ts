@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { cognateApi } from './api';
-import { queryKeys, showSuccessToast, handleApiError } from '../../core';
+import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 import type { CognatePair, CognateInput, CognateFilters } from './api';
 
 // Query hooks

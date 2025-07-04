@@ -7,8 +7,8 @@ import { logger } from '../../logger';
 export interface ValidatedRequest<T = any> extends Request {
   validated?: T;
   validatedBody?: T;
-  validatedQuery?: any;
-  validatedParams?: any;
+  validatedQuery?: unknown;
+  validatedParams?: unknown;
 }
 
 // Validation source types
@@ -19,8 +19,8 @@ export interface ValidationOptions {
   source?: ValidationSource | ValidationSource[];
   stripUnknown?: boolean;
   abortEarly?: boolean;
-  context?: any;
-  customErrorHandler?: (error: ZodError, req: Request) => any;
+  context?: unknown;
+  customErrorHandler?: (error: ZodError, req: Request) => unknown;
 }
 
 // Main validation middleware factory
@@ -83,12 +83,12 @@ export const validate = <T>(
       // Replace original data with validated data if stripUnknown is true
       if (stripUnknown) {
         if (sources.includes('body')) req.body = validated;
-        if (sources.includes('query')) req.query = validated as any;
-        if (sources.includes('params')) req.params = validated as any;
+        if (sources.includes('query')) req.query = validated as unknown;
+        if (sources.includes('params')) req.params = validated as unknown;
       }
 
       next();
-    } catch (error) {
+    } catch (_error) {
       if (error instanceof ZodError) {
         // Log validation failure
         logger.warn({
@@ -152,7 +152,7 @@ export const validateIf = <T>(
 };
 
 // Multiple schema validation (OR)
-export const validateOneOf = <T extends ZodSchema<any>[]>(
+export const validateOneOf = <T extends ZodSchema<unknown>[]>(
   schemas: T,
   options?: ValidationOptions
 ) => {
@@ -163,7 +163,7 @@ export const validateOneOf = <T extends ZodSchema<any>[]>(
       try {
         await validate(schema, options)(req, res, () => {});
         return next(); // Success on first valid schema
-      } catch (error) {
+      } catch (_error) {
         if (error instanceof ZodError) {
           errors.push(error);
         }
@@ -177,7 +177,7 @@ export const validateOneOf = <T extends ZodSchema<any>[]>(
 };
 
 // Schema composition helpers
-export const mergeSchemas = <T extends ZodSchema<any>[]>(
+export const mergeSchemas = <T extends ZodSchema<unknown>[]>(
   ...schemas: T
 ): ZodSchema => {
   return schemas.reduce((merged, schema) => merged.merge(schema), z.object({}));
@@ -270,16 +270,16 @@ export const coerceQueryParams = (
 
         switch (type) {
           case 'number':
-            req.query[param] = parseFloat(value) as any;
+            req.query[param] = parseFloat(value) as unknown;
             break;
           case 'boolean':
-            req.query[param] = (value === 'true' || value === '1') as any;
+            req.query[param] = (value === 'true' || value === '1') as unknown;
             break;
           case 'array':
-            req.query[param] = value.split(',') as any;
+            req.query[param] = value.split(',') as unknown;
             break;
           case 'date':
-            req.query[param] = new Date(value) as any;
+            req.query[param] = new Date(value) as unknown;
             break;
         }
       }

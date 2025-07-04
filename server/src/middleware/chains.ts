@@ -39,7 +39,7 @@ export const coreMiddleware = chain()
 // API middleware chain - for all API routes
 export const apiMiddleware = compose(
   coreMiddleware,
-  rateLimiters.api as any,
+  rateLimiters.api,
   performanceLoggingMiddleware
 );
 
@@ -52,20 +52,20 @@ export const authenticatedApiMiddleware = compose(
 // Public API chain (no auth required)
 export const publicApiMiddleware = compose(
   apiMiddleware,
-  conditional(isProduction, rateLimiters.strict as any)
+  conditional(isProduction, rateLimiters.auth)
 );
 
 // Write operation chain (POST, PUT, DELETE)
 export const writeOperationMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.write as any,
-  auditMiddleware(AuditEventType.DATA_UPDATE, { severity: 'medium' })
+  rateLimiters.write,
+  auditMiddleware(AuditEventType.PLAN_MODIFICATION, { severity: 'medium' })
 );
 
 // Read operation chain (GET)
 export const readOperationMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.read as any,
+  rateLimiters.read,
   conditional(
     (req) => req.path.includes('/api/curriculum'),
     curriculumCache
@@ -75,7 +75,7 @@ export const readOperationMiddleware = compose(
 // File upload chain
 export const fileUploadMiddleware = (allowedTypes?: string[]) => compose(
   authenticatedApiMiddleware,
-  rateLimiters.upload as any,
+  rateLimiters.upload,
   fileUploadSecurityMiddleware(allowedTypes),
   auditMiddleware(AuditEventType.DATA_IMPORT, { 
     severity: 'high',
@@ -86,8 +86,8 @@ export const fileUploadMiddleware = (allowedTypes?: string[]) => compose(
 // Auth endpoint chain
 export const authEndpointMiddleware = compose(
   coreMiddleware,
-  rateLimiters.auth as any,
-  auditMiddleware(AuditEventType.LOGIN_ATTEMPT, { severity: 'high' })
+  rateLimiters.auth,
+  auditMiddleware(AuditEventType.LOGIN_SUCCESS, { severity: 'high' })
 );
 
 // Admin operation chain
@@ -99,7 +99,7 @@ export const adminOperationMiddleware = compose(
     }
     next();
   },
-  auditMiddleware(AuditEventType.CONFIG_CHANGE, { severity: 'critical' })
+  auditMiddleware(AuditEventType.SYSTEM_CONFIG_CHANGE, { severity: 'critical' })
 );
 
 // Cached read chain
@@ -119,16 +119,16 @@ export const cachedReadMiddleware = (cacheType: 'api' | 'curriculum' | 'static' 
 
 // Error handling chain - should be last
 export const errorHandlingMiddleware = compose(
-  errorLoggingMiddleware as any,
-  errorHandlerMiddleware as any
+  errorLoggingMiddleware,
+  errorHandlerMiddleware
 );
 
 // Specific feature chains
 export const planningOperationsMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.write as any,
+  rateLimiters.write,
   userCache,
-  auditMiddleware(AuditEventType.DATA_CREATE, {
+  auditMiddleware(AuditEventType.PLAN_CREATION, {
     severity: 'low',
     targetResource: 'planning'
   })
@@ -136,9 +136,9 @@ export const planningOperationsMiddleware = compose(
 
 export const aiOperationsMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.ai as any,
+  rateLimiters.ai,
   performanceLoggingMiddleware,
-  auditMiddleware(AuditEventType.DATA_CREATE, {
+  auditMiddleware(AuditEventType.AI_GENERATION, {
     severity: 'medium',
     targetResource: 'ai_generation'
   })
@@ -146,7 +146,7 @@ export const aiOperationsMiddleware = compose(
 
 export const exportOperationsMiddleware = compose(
   authenticatedApiMiddleware,
-  rateLimiters.read as any,
+  rateLimiters.read,
   auditMiddleware(AuditEventType.DATA_EXPORT, {
     severity: 'high',
     targetResource: 'data_export'
@@ -167,7 +167,7 @@ export const developmentMiddleware = conditional(
 
 // Health check chain (minimal processing)
 export const healthCheckMiddleware = compose(
-  rateLimiters.health as any,
+  rateLimiters.public,
   (req, res, next) => {
     res.locals.skipLogging = true;
     next();
@@ -184,13 +184,13 @@ export const createCustomChain = (options: {
     severity?: 'low' | 'medium' | 'high' | 'critical';
     resource?: string;
   };
-  validators?: any[];
+  validators?: unknown[];
 }) => {
   const chainBuilder = chain()
     .add(coreMiddleware);
 
   if (options.rateLimit) {
-    chainBuilder.add(rateLimiters[options.rateLimit] as any);
+    chainBuilder.add(rateLimiters[options.rateLimit]);
   }
 
   if (options.authenticate) {

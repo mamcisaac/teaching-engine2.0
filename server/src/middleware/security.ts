@@ -109,7 +109,7 @@ export async function rateLimitMiddleware(req: Request, res: Response, next: Nex
     const key = req.ip || 'unknown';
     await generalLimiter.consume(key);
     next();
-  } catch (error) {
+  } catch (_error) {
     logger.warn(
       {
         ip: req.ip,
@@ -141,7 +141,7 @@ export async function authRateLimitMiddleware(req: Request, res: Response, next:
     const key = `auth:${req.ip || 'unknown'}`;
     await authLimiter.consume(key);
     next();
-  } catch (error) {
+  } catch (_error) {
     logger.warn(
       {
         ip: req.ip,

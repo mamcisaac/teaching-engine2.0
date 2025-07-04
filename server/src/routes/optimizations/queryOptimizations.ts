@@ -196,14 +196,14 @@ export const optimizedQueries = {
    * Get paginated results with count optimization
    */
   async paginatedQuery<T>(
-    model: any,
-    where: any,
+    model: unknown,
+    where: unknown,
     options: {
       limit: number;
       offset: number;
-      orderBy?: any;
-      include?: any;
-      select?: any;
+      orderBy?: unknown;
+      include?: unknown;
+      select?: unknown;
     }
   ): Promise<{ items: T[]; total: number }> {
     const { limit, offset, orderBy, include, select } = options;
@@ -227,7 +227,7 @@ export const optimizedQueries = {
   /**
    * Optimized search query with text search
    */
-  createSearchWhere(searchTerm: string, fields: string[]): any {
+  createSearchWhere(searchTerm: string, fields: string[]): unknown {
     if (!searchTerm || !fields.length) return {};
 
     return {
@@ -247,7 +247,7 @@ export const optimizedQueries = {
     dateField: string,
     startDate?: string | Date,
     endDate?: string | Date
-  ): any {
+  ): unknown {
     const where: any = {};
 
     if (startDate || endDate) {
@@ -262,7 +262,7 @@ export const optimizedQueries = {
   /**
    * Ownership filter for user-specific data
    */
-  createOwnershipWhere(userId: number, additionalWhere?: any): any {
+  createOwnershipWhere(userId: number, additionalWhere?: unknown): unknown {
     return {
       AND: [
         {
@@ -300,7 +300,7 @@ export const queryPerformance = {
       }
       
       return result;
-    } catch (error) {
+    } catch (_error) {
       const duration = Date.now() - start;
       console.error(`Query failed: ${queryName} failed after ${duration}ms:`, error);
       throw error;
@@ -314,7 +314,7 @@ export const queryPerformance = {
     sortBy: string,
     sortOrder: 'asc' | 'desc',
     allowedFields: string[]
-  ): any {
+  ): unknown {
     if (!allowedFields.includes(sortBy)) {
       return { createdAt: 'desc' }; // Default safe sort
     }
@@ -364,7 +364,7 @@ export const queryUtils = {
   /**
    * Limit the depth of includes to prevent N+1 queries
    */
-  limitIncludeDepth(include: any, maxDepth: number = 3): any {
+  limitIncludeDepth(include: unknown, maxDepth: number = 3): unknown {
     if (maxDepth <= 0) return undefined;
 
     const limited: any = {};
@@ -388,7 +388,7 @@ export const queryUtils = {
   /**
    * Create efficient pagination cursor
    */
-  createCursor(id: string, sortField: string, sortValue: any): any {
+  createCursor(id: string, sortField: string, sortValue: unknown): unknown {
     return {
       id,
       [sortField]: sortValue,

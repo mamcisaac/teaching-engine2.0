@@ -26,10 +26,10 @@ describe('Authorization Security Tests', () => {
   let request: supertest.SuperTest<supertest.Test>;
 
   // Test users with different roles
-  let adminUser: any;
-  let moderatorUser: any;
-  let regularUser: any;
-  let inactiveUser: any;
+  let adminUser: unknown;
+  let moderatorUser: unknown;
+  let regularUser: unknown;
+  let inactiveUser: unknown;
 
   // Test tokens
   let adminToken: string;

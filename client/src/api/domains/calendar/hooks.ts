@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { calendarApi } from './api';
-import { queryKeys, showSuccessToast, handleApiError } from '../../core';
+import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 import type { CalendarEvent } from '../../../types';
 
 // Query hooks

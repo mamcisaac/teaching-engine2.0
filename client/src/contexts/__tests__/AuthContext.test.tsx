@@ -104,7 +104,7 @@ describe('AuthContext', () => {
     await act(async () => {
       try {
         await result.current.login('test@example.com', 'wrong-password');
-      } catch (error) {
+      } catch (_error) {
         expect(error).toBeInstanceOf(Error);
       }
     });
@@ -227,7 +227,7 @@ describe('AuthContext', () => {
     await act(async () => {
       try {
         await result.current.login('test@example.com', 'password');
-      } catch (error) {
+      } catch (_error) {
         expect((error as Error).message).toBe('Network error');
       }
     });

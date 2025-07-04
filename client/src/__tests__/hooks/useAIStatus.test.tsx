@@ -36,7 +36,7 @@ describe('useAIStatus hooks', () => {
 
   describe('useAIStatus', () => {
     it('returns default AI status when no data is available', () => {
-      (api.api.get as any).mockImplementation(() => new Promise(() => {})); // Never resolves
+      (api.api.get as unknown).mockImplementation(() => new Promise(() => {})); // Never resolves
 
       const { result } = renderHook(() => useAIStatus(), { wrapper });
 
@@ -76,7 +76,7 @@ describe('useAIStatus hooks', () => {
         },
       };
 
-      (api.api.get as any).mockResolvedValueOnce({ data: mockStatus });
+      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
 
       const { result } = renderHook(() => useAIStatus(), { wrapper });
 
@@ -91,7 +91,7 @@ describe('useAIStatus hooks', () => {
     });
 
     it('handles service unavailable error (503)', async () => {
-      (api.api.get as any).mockRejectedValueOnce({
+      (api.api.get as unknown).mockRejectedValueOnce({
         response: { status: 503 },
       });
 
@@ -105,7 +105,7 @@ describe('useAIStatus hooks', () => {
     });
 
     it('handles authentication error (401)', async () => {
-      (api.api.get as any).mockRejectedValueOnce({
+      (api.api.get as unknown).mockRejectedValueOnce({
         response: { status: 401 },
       });
 
@@ -120,7 +120,7 @@ describe('useAIStatus hooks', () => {
     });
 
     it('handles rate limit error (429)', async () => {
-      (api.api.get as any).mockRejectedValueOnce({
+      (api.api.get as unknown).mockRejectedValueOnce({
         response: { status: 429 },
       });
 
@@ -133,7 +133,7 @@ describe('useAIStatus hooks', () => {
     });
 
     it('handles network errors', async () => {
-      (api.api.get as any).mockRejectedValueOnce(new Error('Network error'));
+      (api.api.get as unknown).mockRejectedValueOnce(new Error('Network error'));
 
       const { result } = renderHook(() => useAIStatus(), { wrapper });
 
@@ -157,7 +157,7 @@ describe('useAIStatus hooks', () => {
         },
       };
 
-      (api.api.get as any).mockResolvedValueOnce({ data: mockStatus });
+      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
 
       const { result } = renderHook(() => useAIStatus(), { wrapper });
 
@@ -188,7 +188,7 @@ describe('useAIStatus hooks', () => {
         },
       };
 
-      (api.api.get as any).mockResolvedValueOnce({ data: mockStatus });
+      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
 
       const { result } = renderHook(() => useAIStatus(), { wrapper });
 
@@ -227,7 +227,7 @@ describe('useAIStatus hooks', () => {
         features: {},
       };
 
-      (api.api.get as any).mockResolvedValue({ data: mockStatus });
+      (api.api.get as unknown).mockResolvedValue({ data: mockStatus });
 
       renderHook(() => useAIStatus(), { wrapper });
 
@@ -265,7 +265,7 @@ describe('useAIStatus hooks', () => {
         },
       };
 
-      (api.api.get as any).mockResolvedValueOnce({ data: mockStatus });
+      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
 
       const { result } = renderHook(() => useAIFeature('planGeneration'), { wrapper });
 
@@ -292,7 +292,7 @@ describe('useAIStatus hooks', () => {
         },
       };
 
-      (api.api.get as any).mockResolvedValueOnce({ data: mockStatus });
+      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
 
       const { result } = renderHook(() => useAIFeature('planGeneration'), { wrapper });
 
@@ -314,7 +314,7 @@ describe('useAIStatus hooks', () => {
         },
       };
 
-      (api.api.get as any).mockResolvedValueOnce({ data: mockStatus });
+      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
 
       const { result } = renderHook(() => useAIQuota(), { wrapper });
 
@@ -336,7 +336,7 @@ describe('useAIStatus hooks', () => {
         },
       };
 
-      (api.api.get as any).mockResolvedValueOnce({ data: mockStatus });
+      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
 
       const { result } = renderHook(() => useAIQuota(), { wrapper });
 
@@ -356,7 +356,7 @@ describe('useAIStatus hooks', () => {
         },
       };
 
-      (api.api.get as any).mockResolvedValueOnce({ data: mockStatus });
+      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
 
       const { result } = renderHook(() => useAIQuota(), { wrapper });
 
@@ -377,7 +377,7 @@ describe('useAIStatus hooks', () => {
         features: {},
       };
 
-      (api.api.get as any).mockResolvedValueOnce({ data: mockStatus });
+      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
 
       const TestComponent = () => {
         const { aiStatus } = useAIStatusContext();
@@ -421,7 +421,7 @@ describe('useAIStatus hooks', () => {
         features: {},
       };
 
-      (api.api.get as any).mockResolvedValueOnce({ data: mockStatus });
+      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
 
       const { getByText } = renderWithProviders(
         <AIStatusIndicator compact={true} />,
@@ -450,7 +450,7 @@ describe('useAIStatus hooks', () => {
         lastChecked: new Date('2024-01-15T10:00:00Z'),
       };
 
-      (api.api.get as any).mockResolvedValueOnce({ data: mockStatus });
+      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
 
       const { getByText } = renderWithProviders(
         <AIStatusIndicator showDetails={true} />,

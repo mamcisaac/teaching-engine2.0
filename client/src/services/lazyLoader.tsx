@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { offlineStorage, StoredData } from './offlineStorage';
-import { api } from '../api';
+import { api } from '../api/legacy/api';
 
 interface LoadOptions {
   cache?: boolean;
@@ -156,7 +156,7 @@ class LazyLoader {
       // Assemble and return
       return this.assembleDocument(chunkedDoc);
 
-    } catch (error) {
+    } catch (_error) {
       console.error('Failed to load document:', error);
       throw error;
     }
@@ -231,7 +231,7 @@ class LazyLoader {
         await this.loadDocument(id, { cache: true });
         completed++;
         onProgress?.(completed, total);
-      } catch (error) {
+      } catch (_error) {
         console.error(`Failed to preload document ${id}:`, error);
       }
     });
@@ -294,7 +294,7 @@ export function useLazyDocument(documentId: string | null, options?: LoadOptions
         if (!cancelled) {
           setDocument(doc);
         }
-      } catch (err) {
+      } catch (_err) {
         if (!cancelled) {
           setError(err instanceof Error ? err : new Error('Failed to load document'));
         }

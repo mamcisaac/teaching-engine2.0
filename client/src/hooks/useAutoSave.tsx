@@ -63,7 +63,7 @@ export function useAutoSave<T>({
         });
 
         onSaveSuccess?.();
-      } catch (error) {
+      } catch (_error) {
         console.error('Auto-save failed:', error);
         
         toast({
@@ -103,7 +103,7 @@ export function useAutoSave<T>({
       });
 
       onSaveSuccess?.();
-    } catch (error) {
+    } catch (_error) {
       console.error('Manual save failed:', error);
       
       toast({

@@ -17,7 +17,7 @@ declare module 'jest-axe' {
   }>;
 
   export function toHaveNoViolations(received: {
-    violations: Array<any>;
+    violations: Array<unknown>;
   }): MatcherResult;
 }
 
@@ -27,7 +27,7 @@ declare global {
       toHaveNoViolations(): T;
     }
     interface AsymmetricMatchersContaining {
-      toHaveNoViolations(): any;
+      toHaveNoViolations(): unknown;
     }
   }
 }

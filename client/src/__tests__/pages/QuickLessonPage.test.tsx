@@ -29,7 +29,7 @@ vi.mock('sonner', () => ({
 
 // Mock onboarding components
 vi.mock('../../components/onboarding', () => ({
-  OnboardingTooltip: ({ children, title, content }: any) => (
+  OnboardingTooltip: ({ children, title, content }: unknown) => (
     <div data-testid="onboarding-tooltip" title={`${title}: ${content}`}>
       {children}
     </div>
@@ -44,7 +44,7 @@ vi.mock('../../hooks/useFeatureTutorial', () => ({
 // Mock the lesson plan form
 vi.mock('../../components/forms/LessonPlanForm', () => ({
   __esModule: true,
-  default: ({ onSubmit, onCancel, isSubmitting, showUnitPlanSelector, initialData }: any) => (
+  default: ({ onSubmit, onCancel, isSubmitting, showUnitPlanSelector, initialData }: unknown) => (
     <div data-testid="lesson-plan-form">
       <h3>Lesson Plan Form</h3>
       <div>Show Unit Plan Selector: {showUnitPlanSelector ? 'Yes' : 'No'}</div>
@@ -300,7 +300,7 @@ describe('QuickLessonPage', () => {
   });
 
   it('maintains state during submission', async () => {
-    let resolvePromise: (value: any) => void;
+    let resolvePromise: (value: unknown) => void;
     const mockMutateAsync = vi.fn(
       () =>
         new Promise((resolve) => {

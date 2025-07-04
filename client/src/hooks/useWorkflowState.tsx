@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { api } from '../api';
+import { api } from '../api/legacy/api';
 
 export interface WorkflowState {
   userId: number;
@@ -61,7 +61,7 @@ export function useWorkflowState() {
     try {
       const response = await api.get(`/api/workflow/access/${level}`);
       return response.data;
-    } catch (error) {
+    } catch (_error) {
       console.error('Error checking level access:', error);
       return { canAccess: false, reason: 'Error checking access' };
     }
@@ -77,7 +77,7 @@ export function useWorkflowState() {
         entityId,
       });
       return response.data;
-    } catch (error) {
+    } catch (_error) {
       console.error('Error validating level:', error);
       return { isValid: false, missingFields: ['Validation error'] };
     }

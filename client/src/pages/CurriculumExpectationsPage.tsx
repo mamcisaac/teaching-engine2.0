@@ -122,7 +122,7 @@ export default function CurriculumExpectationsPage() {
 
       setIsEditDialogOpen(false);
       setEditingExpectation(null);
-    } catch (error) {
+    } catch (_error) {
       toast({
         title: 'Error',
         description: 'Failed to update expectation',
@@ -146,7 +146,7 @@ export default function CurriculumExpectationsPage() {
         title: 'Success',
         description: 'Expectation deleted successfully',
       });
-    } catch (error) {
+    } catch (_error) {
       toast({
         title: 'Error',
         description: 'Failed to delete expectation',

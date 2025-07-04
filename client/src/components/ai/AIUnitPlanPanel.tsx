@@ -169,7 +169,7 @@ export function AIUnitPlanPanel({
         description: `Generated ${result.suggestions.length} ${type} suggestions.`,
       });
 
-    } catch (error) {
+    } catch (_error) {
       console.error('Error generating suggestions:', error);
       toast({
         title: 'Generation Failed',
@@ -252,7 +252,7 @@ export function AIUnitPlanPanel({
 
       setActiveTab('review');
 
-    } catch (error) {
+    } catch (_error) {
       console.error('Error generating complete unit:', error);
       toast({
         title: 'Generation Failed',

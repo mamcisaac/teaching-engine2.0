@@ -314,7 +314,7 @@ export class SecurityAssertions {
   /**
    * Assert that a response does not contain sensitive information
    */
-  static assertNoSensitiveData(data: any): void {
+  static assertNoSensitiveData(data: unknown): void {
     const sensitiveFields = [
       'password',
       'passwordHash',
@@ -380,7 +380,7 @@ export class SecurityAssertions {
   /**
    * Assert that rate limiting is working
    */
-  static assertRateLimited(response: any): void {
+  static assertRateLimited(response: unknown): void {
     if (response.status !== 429) {
       throw new Error(`Expected rate limit (429), got ${response.status}`);
     }
@@ -434,7 +434,7 @@ export class SecurityTestRunner {
    * Run authentication bypass tests
    */
   async testAuthenticationBypass(
-    requestFn: (token?: string) => Promise<any>,
+    requestFn: (token?: string) => Promise<unknown>,
     expectStatus: number = 401,
   ): Promise<void> {
     const bypassAttempts = [
@@ -461,7 +461,7 @@ export class SecurityTestRunner {
    * Run authorization escalation tests
    */
   async testAuthorizationEscalation(
-    requestFn: (token: string) => Promise<any>,
+    requestFn: (token: string) => Promise<unknown>,
     requiredRole: string = 'ADMIN',
   ): Promise<void> {
     if (!this.testUsers) {
@@ -487,8 +487,8 @@ export class SecurityTestRunner {
    * Test input validation with malicious payloads
    */
   async testInputValidation(
-    requestFn: (payload: any) => Promise<any>,
-    maliciousPayloads: any[],
+    requestFn: (payload: unknown) => Promise<unknown>,
+    maliciousPayloads: unknown[],
   ): Promise<void> {
     for (const payload of maliciousPayloads) {
       const response = await requestFn(payload);
@@ -512,7 +512,7 @@ export class SecurityTestRunner {
    * Test rate limiting behavior
    */
   async testRateLimiting(
-    requestFn: () => Promise<any>,
+    requestFn: () => Promise<unknown>,
     maxRequests: number = 10,
     windowMs: number = 60000,
   ): Promise<void> {

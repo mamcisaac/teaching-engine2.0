@@ -78,12 +78,12 @@ vi.mock('../../types/help', () => ({
 
 // Mock the help components
 vi.mock('../../components/help', () => ({
-  HelpButton: ({ variant, content, onClick }: any) => (
+  HelpButton: ({ variant, content, onClick }: unknown) => (
     <button onClick={onClick} data-testid={`help-button-${variant}`}>
       {content}
     </button>
   ),
-  HelpSearch: ({ placeholder, showFilters, showSuggestions, onResultSelect }: any) => (
+  HelpSearch: ({ placeholder, showFilters, showSuggestions, onResultSelect }: unknown) => (
     <div data-testid="help-search">
       <input
         type="text"

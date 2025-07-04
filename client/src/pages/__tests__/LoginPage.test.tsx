@@ -195,7 +195,7 @@ describe('LoginPage', () => {
 
   describe('Loading State', () => {
     it('should show loading state during form submission', async () => {
-      let resolveApiCall: (value: any) => void;
+      let resolveApiCall: (value: unknown) => void;
       const apiPromise = new Promise(resolve => {
         resolveApiCall = resolve;
       });
@@ -226,7 +226,7 @@ describe('LoginPage', () => {
     });
 
     it('should prevent multiple submissions during loading', async () => {
-      let resolveApiCall: (value: any) => void;
+      let resolveApiCall: (value: unknown) => void;
       const apiPromise = new Promise(resolve => {
         resolveApiCall = resolve;
       });

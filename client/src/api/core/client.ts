@@ -38,7 +38,7 @@ apiClient.interceptors.request.use(
     // Try to ensure we have a valid token before making the request
     try {
       await authService.ensureValidToken();
-    } catch (error) {
+    } catch (_error) {
       // If token refresh fails, continue with request anyway
       // The response interceptor will handle 401 errors
       console.warn('Token refresh failed before request:', error);
@@ -62,7 +62,7 @@ apiClient.interceptors.response.use(
 
       // Try to handle the auth error with the auth service
       try {
-        const recovered = await authService.handleAuthError();
+        const recovered = await authService.handleAuthError(error.response);
         if (recovered) {
           // Update the authorization header with the new token
           const authHeaders = authService.getAuthHeaders();
@@ -75,8 +75,8 @@ apiClient.interceptors.response.use(
         console.error('Token refresh failed:', refreshError);
       }
 
-      // If we couldn't recover, redirect to login
-      authService.redirectToLogin();
+      // If we couldn't recover, clear tokens and let the app handle redirect
+      authService.clearTokens();
       return Promise.reject(error);
     }
 

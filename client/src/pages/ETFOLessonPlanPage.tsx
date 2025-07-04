@@ -395,7 +395,7 @@ export default function ETFOLessonPlanPage() {
       setIsTemplateModalOpen(false);
       setSelectedTemplate(null);
       setIsCreateModalOpen(true);
-    } catch (error) {
+    } catch (_error) {
       console.error('Failed to apply template:', error);
     }
   };

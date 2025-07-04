@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll, afterAll, afterEach } from 'vitest';
+import { describe, it, expect, beforeAll } from 'vitest';
 import { PactV3, MatchersV3 } from '@pact-foundation/pact';
 import { pactConfig, createInteractionUrl } from './setup';
 import axios from 'axios';
@@ -10,15 +10,17 @@ const provider = new PactV3({
   provider: pactConfig.provider,
   port: pactConfig.port,
   dir: pactConfig.dir,
-  logLevel: pactConfig.logLevel as any,
+  logLevel: pactConfig.logLevel as unknown,
   spec: pactConfig.spec,
   cors: pactConfig.cors,
 });
 
 describe('Unit Plans API Contract Tests', () => {
-  beforeAll(() => provider.setup());
-  afterAll(() => provider.finalize());
-  afterEach(() => provider.verify());
+  beforeAll(async () => {
+    // Setup is handled internally by PactV3
+  });
+  // Cleanup is handled internally by PactV3
+  // Note: PactV3 doesn't require afterEach verify
 
   describe('GET /api/unit-plans', () => {
     it('should return a list of unit plans', async () => {
@@ -31,8 +33,8 @@ describe('Unit Plans API Contract Tests', () => {
           description: string('Understanding fractions and decimal relationships'),
           bigIdeas: string('Fractions represent parts of a whole'),
           essentialQuestions: eachLike(string('How do fractions relate to everyday life?')),
-          startDate: datetime('2024-01-01T00:00:00.000Z'),
-          endDate: datetime('2024-01-31T00:00:00.000Z'),
+          startDate: datetime('yyyy-MM-ddTHH:mm:ss.SSSX', '2024-01-01T00:00:00.000Z'),
+          endDate: datetime('yyyy-MM-ddTHH:mm:ss.SSSX', '2024-01-31T00:00:00.000Z'),
           estimatedHours: integer(20),
           assessmentPlan: string('Formative and summative assessments throughout'),
           successCriteria: eachLike(string('Students can identify fractions in real-world contexts')),
@@ -79,26 +81,27 @@ describe('Unit Plans API Contract Tests', () => {
             'Content-Type': 'application/json',
           },
           body: expectedResponse,
+        })
+        .executeTest(async (mockService) => {
+          const response = await axios.get(
+            createInteractionUrl('/api/unit-plans'),
+            {
+              params: {
+                longRangePlanId: 'lrp123',
+                limit: 20,
+                offset: 0,
+              },
+              headers: {
+                Authorization: 'Bearer test-token',
+              },
+            }
+          );
+
+          expect(response.status).toBe(200);
+          expect(response.data).toHaveProperty('unitPlans');
+          expect(response.data).toHaveProperty('pagination');
+          expect(Array.isArray(response.data.unitPlans)).toBe(true);
         });
-
-      const response = await axios.get(
-        createInteractionUrl('/api/unit-plans'),
-        {
-          params: {
-            longRangePlanId: 'lrp123',
-            limit: 20,
-            offset: 0,
-          },
-          headers: {
-            Authorization: 'Bearer test-token',
-          },
-        }
-      );
-
-      expect(response.status).toBe(200);
-      expect(response.data).toHaveProperty('unitPlans');
-      expect(response.data).toHaveProperty('pagination');
-      expect(Array.isArray(response.data.unitPlans)).toBe(true);
     });
   });
 
@@ -121,8 +124,8 @@ describe('Unit Plans API Contract Tests', () => {
       const expectedResponse = {
         id: string('unit-new-123'),
         ...newUnitPlan,
-        startDate: datetime(newUnitPlan.startDate),
-        endDate: datetime(newUnitPlan.endDate),
+        startDate: datetime('yyyy-MM-ddTHH:mm:ss.SSSX', newUnitPlan.startDate),
+        endDate: datetime('yyyy-MM-ddTHH:mm:ss.SSSX', newUnitPlan.endDate),
         expectations: eachLike({
           expectationId: string('exp-geo-1'),
           expectation: like({
@@ -131,8 +134,8 @@ describe('Unit Plans API Contract Tests', () => {
             description: string('Identify and describe shapes'),
           }),
         }),
-        createdAt: datetime('2024-01-10T00:00:00.000Z'),
-        updatedAt: datetime('2024-01-10T00:00:00.000Z'),
+        createdAt: datetime('yyyy-MM-ddTHH:mm:ss.SSSX', '2024-01-10T00:00:00.000Z'),
+        updatedAt: datetime('yyyy-MM-ddTHH:mm:ss.SSSX', '2024-01-10T00:00:00.000Z'),
       };
 
       await provider
@@ -153,22 +156,23 @@ describe('Unit Plans API Contract Tests', () => {
             'Content-Type': 'application/json',
           },
           body: expectedResponse,
+        })
+        .executeTest(async (mockService) => {
+          const response = await axios.post(
+            createInteractionUrl('/api/unit-plans'),
+            newUnitPlan,
+            {
+              headers: {
+                Authorization: 'Bearer test-token',
+                'Content-Type': 'application/json',
+              },
+            }
+          );
+
+          expect(response.status).toBe(201);
+          expect(response.data.id).toBeDefined();
+          expect(response.data.title).toBe(newUnitPlan.title);
         });
-
-      const response = await axios.post(
-        createInteractionUrl('/api/unit-plans'),
-        newUnitPlan,
-        {
-          headers: {
-            Authorization: 'Bearer test-token',
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-
-      expect(response.status).toBe(201);
-      expect(response.data.id).toBeDefined();
-      expect(response.data.title).toBe(newUnitPlan.title);
     });
   });
 });

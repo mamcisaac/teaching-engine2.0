@@ -103,7 +103,7 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
         limit: Number(limit),
         totalPages: Math.ceil(total / Number(limit)),
       });
-    } catch (error) {
+    } catch (_error) {
       logger.error({ error, modelName }, `Error fetching ${modelName}s`);
       res.status(500).json({ message: `Failed to fetch ${modelName}s` });
     }
@@ -124,7 +124,7 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
       }
 
       res.json(transformResponse(item));
-    } catch (error) {
+    } catch (_error) {
       logger.error({ error, modelName, id: req.params.id }, `Error fetching ${modelName}`);
       res.status(500).json({ message: `Failed to fetch ${modelName}` });
     }
@@ -156,7 +156,7 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
       }
 
       res.status(201).json(transformResponse(item));
-    } catch (error) {
+    } catch (_error) {
       if (error instanceof z.ZodError) {
         return res.status(400).json({ message: 'Invalid data', errors: error.errors });
       }
@@ -199,7 +199,7 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
       }
 
       res.json(transformResponse(item));
-    } catch (error) {
+    } catch (_error) {
       if (error instanceof z.ZodError) {
         return res.status(400).json({ message: 'Invalid data', errors: error.errors });
       }
@@ -237,7 +237,7 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
       }
 
       res.status(204).send();
-    } catch (error) {
+    } catch (_error) {
       logger.error({ error, modelName, id: req.params.id }, `Error deleting ${modelName}`);
       res.status(500).json({ message: `Failed to delete ${modelName}` });
     }

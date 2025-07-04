@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { api } from '../api';
+import { api } from '../api/legacy/api';
 import Dialog from '../components/Dialog';
 import { Button } from '../components/ui/Button';
 import { useAIPlanningAssistant, AISuggestion } from '../hooks/useAIPlanningAssistant';

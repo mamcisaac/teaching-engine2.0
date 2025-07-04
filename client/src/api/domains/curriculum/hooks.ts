@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { curriculumApi } from './api';
-import { queryKeys, showSuccessToast, handleApiError } from '../../core';
+import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 
 // Subject Query Hooks
 export const useSubjects = () =>

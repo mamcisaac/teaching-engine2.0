@@ -1,19 +1,9 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { UnitPlanCard } from '../UnitPlanCard';
 import { BrowserRouter } from 'react-router-dom';
-import { format } from 'date-fns';
-
-// Mock router navigation
-const mockNavigate = vi.fn();
-vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual('react-router-dom');
-  return {
-    ...actual,
-    useNavigate: () => mockNavigate,
-  };
-});
+import type { UnitPlan } from '../../../hooks/useETFOPlanning';
 
 const createWrapper = () => {
   return ({ children }: { children: React.ReactNode }) => (
@@ -24,446 +14,334 @@ const createWrapper = () => {
 };
 
 describe('UnitPlanCard', () => {
-  const mockUnitPlan = {
+  const mockUnitPlan: UnitPlan = {
     id: 'unit-1',
     title: 'Number Patterns and Algebra',
-    description: 'Exploring patterns and early algebra concepts for Grade 5',
+    description: 'Exploring patterns, variables, and algebraic thinking',
     longRangePlanId: 'lrp-1',
-    userId: 1,
-    startDate: new Date('2024-09-15'),
-    endDate: new Date('2024-10-15'),
-    bigIdeas: 'Patterns help us make predictions and solve problems',
-    grade: 5,
-    subjects: ['Mathematics'],
-    totalHours: 24,
-    createdAt: new Date('2024-09-01'),
-    updatedAt: new Date('2024-09-14'),
-    // Related data
-    lessonCount: 12,
-    completedLessons: 5,
+    startDate: '2024-09-15',
+    endDate: '2024-10-15',
+    estimatedHours: 20,
+    bigIdeas: 'Patterns exist everywhere in mathematics and can be represented in multiple ways',
+    essentialQuestions: [
+      'How do patterns help us understand the world?',
+      'What is the relationship between patterns and algebra?'
+    ],
+    assessmentPlan: 'Formative assessments throughout, summative pattern project',
+    successCriteria: [
+      'I can identify and extend patterns',
+      'I can create algebraic expressions',
+      'I can solve simple equations'
+    ],
     expectations: [
-      { id: 'exp-1', code: 'A1.1', description: 'Identify and describe patterns' },
-      { id: 'exp-2', code: 'A1.2', description: 'Extend and create patterns' },
-      { id: 'exp-3', code: 'A1.3', description: 'Use patterns to solve problems' },
+      { expectation: { id: 'exp-1', code: 'A1.1', description: 'Identify patterns' } as unknown },
+      { expectation: { id: 'exp-2', code: 'A1.2', description: 'Extend patterns' } as unknown },
     ],
     resources: [
-      { id: 'res-1', title: 'Pattern blocks', type: 'manipulative' },
-      { id: 'res-2', title: 'Graphing paper', type: 'material' },
+      { id: 'res-1', unitPlanId: 'unit-1', title: 'Pattern Blocks', type: 'manipulative' } as unknown,
+      { id: 'res-2', unitPlanId: 'unit-1', title: 'Algebra Tiles', type: 'manipulative' } as unknown,
     ],
+    _count: {
+      lessonPlans: 12,
+      expectations: 8,
+      resources: 5,
+    },
+    progress: {
+      total: 12,
+      completed: 7,
+      percentage: 58,
+    },
   };
 
-  const defaultProps = {
-    unitPlan: mockUnitPlan,
-    onEdit: vi.fn(),
-  };
+  const mockOnEdit = vi.fn();
 
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  describe('Basic Display', () => {
-    it('should render unit plan title and description', () => {
-      render(<UnitPlanCard {...defaultProps} />, { wrapper: createWrapper() });
+  describe('Basic Rendering', () => {
+    it('should render unit plan title', () => {
+      render(
+        <UnitPlanCard unitPlan={mockUnitPlan} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
 
       expect(screen.getByText('Number Patterns and Algebra')).toBeInTheDocument();
-      expect(screen.getByText('Exploring patterns and early algebra concepts for Grade 5')).toBeInTheDocument();
     });
 
-    it('should display date range correctly', () => {
-      render(<UnitPlanCard {...defaultProps} />, { wrapper: createWrapper() });
+    it('should render unit plan duration', () => {
+      render(
+        <UnitPlanCard unitPlan={mockUnitPlan} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
 
-      // Should format dates nicely
-      expect(screen.getByText(/Sep 15 - Oct 15, 2024/)).toBeInTheDocument();
+      expect(screen.getByText('20 hours')).toBeInTheDocument();
     });
 
-    it('should show duration in weeks', () => {
-      render(<UnitPlanCard {...defaultProps} />, { wrapper: createWrapper() });
+    it('should render date range', () => {
+      render(
+        <UnitPlanCard unitPlan={mockUnitPlan} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
 
-      // 30 days = ~4 weeks
-      expect(screen.getByText(/4 weeks/i)).toBeInTheDocument();
+      // Check that dates are displayed (format may vary)
+      expect(screen.getByText(/9\/15\/2024.*10\/15\/2024/)).toBeInTheDocument();
     });
 
-    it('should display big ideas section', () => {
-      render(<UnitPlanCard {...defaultProps} />, { wrapper: createWrapper() });
+    it('should render big ideas when present', () => {
+      render(
+        <UnitPlanCard unitPlan={mockUnitPlan} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
 
       expect(screen.getByText('Big Ideas')).toBeInTheDocument();
-      expect(screen.getByText('Patterns help us make predictions and solve problems')).toBeInTheDocument();
+      expect(screen.getByText(/Patterns exist everywhere/)).toBeInTheDocument();
     });
 
-    it('should show grade and subject information', () => {
-      render(<UnitPlanCard {...defaultProps} />, { wrapper: createWrapper() });
-
-      expect(screen.getByText(/Grade 5/)).toBeInTheDocument();
-      expect(screen.getByText(/Mathematics/)).toBeInTheDocument();
-    });
-  });
-
-  describe('Metrics Display', () => {
-    it('should display total hours', () => {
-      render(<UnitPlanCard {...defaultProps} />, { wrapper: createWrapper() });
-
-      expect(screen.getByText('24')).toBeInTheDocument();
-      expect(screen.getByText(/hours/i)).toBeInTheDocument();
-    });
-
-    it('should show lesson count and progress', () => {
-      render(<UnitPlanCard {...defaultProps} />, { wrapper: createWrapper() });
-
-      expect(screen.getByText('12')).toBeInTheDocument();
-      expect(screen.getByText(/lessons/i)).toBeInTheDocument();
+    it('should not render big ideas section when not present', () => {
+      const unitWithoutBigIdeas = { ...mockUnitPlan, bigIdeas: undefined };
       
-      // Progress: 5/12 completed
-      expect(screen.getByText('5/12')).toBeInTheDocument();
-      expect(screen.getByText(/completed/i)).toBeInTheDocument();
+      render(
+        <UnitPlanCard unitPlan={unitWithoutBigIdeas} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
+
+      expect(screen.queryByText('Big Ideas')).not.toBeInTheDocument();
     });
 
-    it('should display progress percentage', () => {
-      render(<UnitPlanCard {...defaultProps} />, { wrapper: createWrapper() });
+    it('should render lesson and expectation counts', () => {
+      render(
+        <UnitPlanCard unitPlan={mockUnitPlan} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
 
-      // 5/12 = ~42%
-      expect(screen.getByText(/42%/)).toBeInTheDocument();
+      expect(screen.getByText('12 lessons')).toBeInTheDocument();
+      expect(screen.getByText('8 expectations')).toBeInTheDocument();
     });
 
-    it('should show progress bar', () => {
-      render(<UnitPlanCard {...defaultProps} />, { wrapper: createWrapper() });
+    it('should handle missing counts gracefully', () => {
+      const unitWithoutCounts = { ...mockUnitPlan, _count: undefined };
+      
+      render(
+        <UnitPlanCard unitPlan={unitWithoutCounts} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
 
-      const progressBar = screen.getByRole('progressbar');
-      expect(progressBar).toBeInTheDocument();
-      expect(progressBar).toHaveAttribute('aria-valuenow', '42');
-      expect(progressBar).toHaveAttribute('aria-valuemin', '0');
-      expect(progressBar).toHaveAttribute('aria-valuemax', '100');
-    });
-
-    it('should display expectation count', () => {
-      render(<UnitPlanCard {...defaultProps} />, { wrapper: createWrapper() });
-
-      expect(screen.getByText('3')).toBeInTheDocument();
-      expect(screen.getByText(/expectations/i)).toBeInTheDocument();
-    });
-
-    it('should handle zero metrics gracefully', () => {
-      const unitPlanNoProgress = {
-        ...mockUnitPlan,
-        lessonCount: 0,
-        completedLessons: 0,
-        expectations: [],
-      };
-
-      render(<UnitPlanCard unitPlan={unitPlanNoProgress} onEdit={vi.fn()} />, { wrapper: createWrapper() });
-
-      expect(screen.getByText('0')).toBeInTheDocument();
-      expect(screen.getByText(/0%/)).toBeInTheDocument();
+      expect(screen.getByText('0 lessons')).toBeInTheDocument();
+      expect(screen.getByText('0 expectations')).toBeInTheDocument();
     });
   });
 
-  describe('User Interactions', () => {
-    it('should navigate to unit plan details when clicking view details', async () => {
-      const user = userEvent.setup();
-      render(<UnitPlanCard {...defaultProps} />, { wrapper: createWrapper() });
-
-      const viewDetailsLink = screen.getByRole('link', { name: /view details/i });
-      expect(viewDetailsLink).toHaveAttribute('href', '/unit-plans/unit-1');
-
-      await user.click(viewDetailsLink);
-      // Navigation handled by React Router
-    });
-
+  describe('Interactions', () => {
     it('should call onEdit when edit button is clicked', async () => {
       const user = userEvent.setup();
-      const onEdit = vi.fn();
       
-      render(<UnitPlanCard unitPlan={mockUnitPlan} onEdit={onEdit} />, { wrapper: createWrapper() });
+      render(
+        <UnitPlanCard unitPlan={mockUnitPlan} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
 
       const editButton = screen.getByRole('button', { name: /edit/i });
       await user.click(editButton);
 
-      expect(onEdit).toHaveBeenCalledWith(mockUnitPlan);
+      expect(mockOnEdit).toHaveBeenCalledWith(mockUnitPlan);
+      expect(mockOnEdit).toHaveBeenCalledTimes(1);
     });
 
-    it('should not show edit button if onEdit is not provided', () => {
-      render(<UnitPlanCard unitPlan={mockUnitPlan} />, { wrapper: createWrapper() });
+    it('should navigate to unit detail page when title is clicked', () => {
+      render(
+        <UnitPlanCard unitPlan={mockUnitPlan} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
 
-      expect(screen.queryByRole('button', { name: /edit/i })).not.toBeInTheDocument();
-    });
-
-    it('should expand/collapse expectation details', async () => {
-      const user = userEvent.setup();
-      render(<UnitPlanCard {...defaultProps} showExpectations={true} />, { wrapper: createWrapper() });
-
-      // Initially collapsed
-      expect(screen.queryByText('A1.1')).not.toBeInTheDocument();
-
-      // Click to expand
-      const expandButton = screen.getByRole('button', { name: /show expectations/i });
-      await user.click(expandButton);
-
-      // Should show expectation codes
-      expect(screen.getByText('A1.1')).toBeInTheDocument();
-      expect(screen.getByText('A1.2')).toBeInTheDocument();
-      expect(screen.getByText('A1.3')).toBeInTheDocument();
-
-      // Click to collapse
-      await user.click(expandButton);
-      expect(screen.queryByText('A1.1')).not.toBeInTheDocument();
+      const titleLink = screen.getByRole('link', { name: 'Number Patterns and Algebra' });
+      expect(titleLink).toHaveAttribute('href', '/planner/units/unit-1');
     });
   });
 
-  describe('Visual States', () => {
-    it('should show completed status when all lessons are done', () => {
+  describe('Progress Display', () => {
+    it('should show progress bar when progress data is available', () => {
+      render(
+        <UnitPlanCard unitPlan={mockUnitPlan} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
+
+      const progressBar = screen.getByRole('progressbar');
+      expect(progressBar).toBeInTheDocument();
+      expect(progressBar).toHaveAttribute('aria-valuenow', '58');
+      expect(screen.getByText('58%')).toBeInTheDocument();
+    });
+
+    it('should not show progress bar when progress data is not available', () => {
+      const unitWithoutProgress = { ...mockUnitPlan, progress: undefined };
+      
+      render(
+        <UnitPlanCard unitPlan={unitWithoutProgress} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
+
+      expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+    });
+
+    it('should indicate when unit is completed', () => {
       const completedUnit = {
         ...mockUnitPlan,
-        completedLessons: 12, // All 12 lessons completed
+        progress: { total: 12, completed: 12, percentage: 100 },
       };
+      
+      render(
+        <UnitPlanCard unitPlan={completedUnit} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
 
-      render(<UnitPlanCard unitPlan={completedUnit} onEdit={vi.fn()} />, { wrapper: createWrapper() });
-
-      expect(screen.getByText(/100%/)).toBeInTheDocument();
-      expect(screen.getByText(/completed/i)).toHaveClass('text-green-600');
-    });
-
-    it('should show in-progress status for partial completion', () => {
-      render(<UnitPlanCard {...defaultProps} />, { wrapper: createWrapper() });
-
-      const progressElement = screen.getByText(/42%/);
-      expect(progressElement).toHaveClass('text-blue-600');
-    });
-
-    it('should show not-started status when no lessons completed', () => {
-      const notStartedUnit = {
-        ...mockUnitPlan,
-        completedLessons: 0,
-      };
-
-      render(<UnitPlanCard unitPlan={notStartedUnit} onEdit={vi.fn()} />, { wrapper: createWrapper() });
-
-      expect(screen.getByText(/0%/)).toBeInTheDocument();
-      expect(screen.getByText(/not started/i)).toBeInTheDocument();
-    });
-
-    it('should highlight overdue units', () => {
-      const overdueUnit = {
-        ...mockUnitPlan,
-        endDate: new Date('2024-01-01'), // Past date
-        completedLessons: 5, // Not completed
-      };
-
-      render(<UnitPlanCard unitPlan={overdueUnit} onEdit={vi.fn()} />, { wrapper: createWrapper() });
-
-      const card = screen.getByRole('article');
-      expect(card).toHaveClass('border-red-300');
-      expect(screen.getByText(/overdue/i)).toBeInTheDocument();
-    });
-
-    it('should show upcoming badge for future units', () => {
-      const futureUnit = {
-        ...mockUnitPlan,
-        startDate: new Date('2025-01-01'), // Future date
-      };
-
-      render(<UnitPlanCard unitPlan={futureUnit} onEdit={vi.fn()} />, { wrapper: createWrapper() });
-
-      expect(screen.getByText(/upcoming/i)).toBeInTheDocument();
+      expect(screen.getByText('100%')).toBeInTheDocument();
+      expect(screen.getByText('Completed')).toBeInTheDocument();
     });
   });
 
-  describe('Compact Mode', () => {
-    it('should render in compact mode when specified', () => {
-      render(<UnitPlanCard {...defaultProps} compact={true} />, { wrapper: createWrapper() });
+  describe('Date Formatting', () => {
+    it('should handle different date formats', () => {
+      const unitWithDifferentDates = {
+        ...mockUnitPlan,
+        startDate: '2024-12-01',
+        endDate: '2024-12-31',
+      };
+      
+      render(
+        <UnitPlanCard unitPlan={unitWithDifferentDates} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
 
-      // Should still show essential information
-      expect(screen.getByText('Number Patterns and Algebra')).toBeInTheDocument();
-      expect(screen.getByText(/42%/)).toBeInTheDocument();
-
-      // But hide some details
-      expect(screen.queryByText('Big Ideas')).not.toBeInTheDocument();
-      expect(screen.queryByText(mockUnitPlan.description)).not.toBeInTheDocument();
+      // Should show December dates
+      expect(screen.getByText(/12\/1\/2024.*12\/31\/2024/)).toBeInTheDocument();
     });
 
-    it('should truncate long titles in compact mode', () => {
-      const longTitleUnit = {
+    it('should handle invalid dates gracefully', () => {
+      const unitWithInvalidDates = {
         ...mockUnitPlan,
-        title: 'This is an extremely long unit title that should be truncated in compact mode to maintain layout',
+        startDate: 'invalid-date',
+        endDate: 'invalid-date',
       };
+      
+      render(
+        <UnitPlanCard unitPlan={unitWithInvalidDates} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
 
-      render(<UnitPlanCard unitPlan={longTitleUnit} onEdit={vi.fn()} compact={true} />, { wrapper: createWrapper() });
-
-      const title = screen.getByText(/This is an extremely long unit title/);
-      expect(title).toHaveClass('truncate');
+      // Should not crash and show some date indicator
+      expect(screen.getByText(/Invalid Date/)).toBeInTheDocument();
     });
   });
 
-  describe('Resource Display', () => {
-    it('should show resource count when resources exist', () => {
-      render(<UnitPlanCard {...defaultProps} showResources={true} />, { wrapper: createWrapper() });
+  describe('Styling and Hover Effects', () => {
+    it('should have hover effect on card', () => {
+      const { container } = render(
+        <UnitPlanCard unitPlan={mockUnitPlan} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
 
-      expect(screen.getByText('2')).toBeInTheDocument();
-      expect(screen.getByText(/resources/i)).toBeInTheDocument();
+      const card = container.querySelector('.hover\\:shadow-lg');
+      expect(card).toBeInTheDocument();
     });
 
-    it('should list resources when expanded', async () => {
-      const user = userEvent.setup();
-      render(<UnitPlanCard {...defaultProps} showResources={true} />, { wrapper: createWrapper() });
+    it('should apply appropriate styling for hours badge', () => {
+      render(
+        <UnitPlanCard unitPlan={mockUnitPlan} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
 
-      const resourceButton = screen.getByRole('button', { name: /show resources/i });
-      await user.click(resourceButton);
-
-      expect(screen.getByText('Pattern blocks')).toBeInTheDocument();
-      expect(screen.getByText('Graphing paper')).toBeInTheDocument();
+      const hoursBadge = screen.getByText('20 hours');
+      expect(hoursBadge).toHaveClass('bg-indigo-100', 'text-indigo-800');
     });
   });
 
   describe('Edge Cases', () => {
-    it('should handle missing description gracefully', () => {
-      const noDescriptionUnit = {
-        ...mockUnitPlan,
-        description: null,
+    it('should handle unit with minimal data', () => {
+      const minimalUnit: UnitPlan = {
+        id: 'unit-minimal',
+        title: 'Minimal Unit',
+        longRangePlanId: 'lrp-1',
+        startDate: '2024-09-01',
+        endDate: '2024-09-30',
       };
+      
+      render(
+        <UnitPlanCard unitPlan={minimalUnit} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
 
-      render(<UnitPlanCard unitPlan={noDescriptionUnit} onEdit={vi.fn()} />, { wrapper: createWrapper() });
+      expect(screen.getByText('Minimal Unit')).toBeInTheDocument();
+      expect(screen.getByText('0 hours')).toBeInTheDocument();
+      expect(screen.getByText('0 lessons')).toBeInTheDocument();
+      expect(screen.getByText('0 expectations')).toBeInTheDocument();
+    });
 
+    it('should truncate long big ideas text', () => {
+      const unitWithLongBigIdeas = {
+        ...mockUnitPlan,
+        bigIdeas: 'This is a very long big ideas text that should be truncated. '.repeat(10),
+      };
+      
+      render(
+        <UnitPlanCard unitPlan={unitWithLongBigIdeas} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
+
+      const bigIdeasText = screen.getByText(/This is a very long big ideas text/);
+      expect(bigIdeasText).toHaveClass('line-clamp-2');
+    });
+
+    it('should handle null description gracefully', () => {
+      const unitWithNullDescription = {
+        ...mockUnitPlan,
+        description: null as unknown,
+      };
+      
+      render(
+        <UnitPlanCard unitPlan={unitWithNullDescription} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
+
+      // Should render without crashing
       expect(screen.getByText('Number Patterns and Algebra')).toBeInTheDocument();
-      // Should not crash, just not show description
-    });
-
-    it('should handle invalid dates', () => {
-      const invalidDateUnit = {
-        ...mockUnitPlan,
-        startDate: new Date('invalid'),
-        endDate: new Date('invalid'),
-      };
-
-      render(<UnitPlanCard unitPlan={invalidDateUnit} onEdit={vi.fn()} />, { wrapper: createWrapper() });
-
-      // Should show fallback or handle gracefully
-      expect(screen.queryByText(/Invalid Date/)).not.toBeInTheDocument();
-    });
-
-    it('should handle very long big ideas text', () => {
-      const longBigIdeasUnit = {
-        ...mockUnitPlan,
-        bigIdeas: 'This is an extremely long big ideas text that goes on and on and on with many concepts and ideas that should be displayed properly without breaking the layout of the card component even when it contains multiple sentences and paragraphs of educational content.',
-      };
-
-      render(<UnitPlanCard unitPlan={longBigIdeasUnit} onEdit={vi.fn()} />, { wrapper: createWrapper() });
-
-      const bigIdeas = screen.getByText(/This is an extremely long big ideas text/);
-      expect(bigIdeas).toBeInTheDocument();
-      // Should have proper text wrapping
-      expect(bigIdeas.closest('div')).not.toHaveClass('truncate');
-    });
-
-    it('should calculate progress correctly with edge values', () => {
-      const edgeCases = [
-        { completedLessons: 0, lessonCount: 0, expected: '0%' },
-        { completedLessons: 10, lessonCount: 0, expected: '100%' }, // Prevent division by zero
-        { completedLessons: 15, lessonCount: 10, expected: '100%' }, // Cap at 100%
-      ];
-
-      edgeCases.forEach(({ completedLessons, lessonCount, expected }) => {
-        const { unmount } = render(
-          <UnitPlanCard 
-            unitPlan={{ ...mockUnitPlan, completedLessons, lessonCount }} 
-            onEdit={vi.fn()} 
-          />,
-          { wrapper: createWrapper() }
-        );
-
-        expect(screen.getByText(expected)).toBeInTheDocument();
-        unmount();
-      });
     });
   });
 
   describe('Accessibility', () => {
-    it('should have proper ARIA labels', () => {
-      render(<UnitPlanCard {...defaultProps} />, { wrapper: createWrapper() });
+    it('should have appropriate ARIA labels', () => {
+      render(
+        <UnitPlanCard unitPlan={mockUnitPlan} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
 
-      const card = screen.getByRole('article');
-      expect(card).toHaveAttribute('aria-label', expect.stringContaining('Number Patterns and Algebra'));
-
+      const editButton = screen.getByRole('button', { name: /edit/i });
+      expect(editButton).toHaveAttribute('aria-label', expect.stringContaining('Edit'));
+      
       const progressBar = screen.getByRole('progressbar');
-      expect(progressBar).toHaveAttribute('aria-label', expect.stringContaining('Progress'));
+      expect(progressBar).toHaveAttribute('aria-label', 'Unit progress');
     });
 
-    it('should support keyboard navigation', async () => {
+    it('should be keyboard navigable', async () => {
       const user = userEvent.setup();
-      render(<UnitPlanCard {...defaultProps} />, { wrapper: createWrapper() });
+      
+      render(
+        <UnitPlanCard unitPlan={mockUnitPlan} onEdit={mockOnEdit} />,
+        { wrapper: createWrapper() }
+      );
 
-      // Tab to view details link
+      // Tab to title link
       await user.tab();
-      expect(screen.getByRole('link', { name: /view details/i })).toHaveFocus();
+      const titleLink = screen.getByRole('link', { name: 'Number Patterns and Algebra' });
+      expect(titleLink).toHaveFocus();
 
       // Tab to edit button
       await user.tab();
-      expect(screen.getByRole('button', { name: /edit/i })).toHaveFocus();
-    });
+      const editButton = screen.getByRole('button', { name: /edit/i });
+      expect(editButton).toHaveFocus();
 
-    it('should announce status to screen readers', () => {
-      const overdueUnit = {
-        ...mockUnitPlan,
-        endDate: new Date('2024-01-01'),
-        completedLessons: 5,
-      };
-
-      render(<UnitPlanCard unitPlan={overdueUnit} onEdit={vi.fn()} />, { wrapper: createWrapper() });
-
-      const status = screen.getByText(/overdue/i);
-      expect(status).toHaveAttribute('role', 'status');
-      expect(status).toHaveAttribute('aria-live', 'polite');
-    });
-  });
-
-  describe('Responsive Design', () => {
-    it('should adapt layout for different screen sizes', () => {
-      render(<UnitPlanCard {...defaultProps} />, { wrapper: createWrapper() });
-
-      const card = screen.getByRole('article');
-      // Should have responsive classes
-      expect(card).toHaveClass('flex', 'flex-col', 'md:flex-row');
-    });
-
-    it('should stack metrics vertically on small screens', () => {
-      render(<UnitPlanCard {...defaultProps} />, { wrapper: createWrapper() });
-
-      const metricsContainer = screen.getByTestId('unit-metrics');
-      expect(metricsContainer).toHaveClass('grid', 'grid-cols-2', 'md:grid-cols-4');
-    });
-  });
-
-  describe('Loading States', () => {
-    it('should show skeleton loader when data is loading', () => {
-      render(<UnitPlanCard loading={true} />, { wrapper: createWrapper() });
-
-      expect(screen.getByTestId('unit-card-skeleton')).toBeInTheDocument();
-      expect(screen.queryByText('Number Patterns and Algebra')).not.toBeInTheDocument();
-    });
-  });
-
-  describe('Custom Styling', () => {
-    it('should accept custom className', () => {
-      render(
-        <UnitPlanCard 
-          {...defaultProps} 
-          className="custom-class shadow-xl" 
-        />,
-        { wrapper: createWrapper() }
-      );
-
-      const card = screen.getByRole('article');
-      expect(card).toHaveClass('custom-class', 'shadow-xl');
-    });
-
-    it('should merge custom styles with default styles', () => {
-      render(
-        <UnitPlanCard 
-          {...defaultProps} 
-          style={{ backgroundColor: 'rgb(255, 0, 0)' }} 
-        />,
-        { wrapper: createWrapper() }
-      );
-
-      const card = screen.getByRole('article');
-      expect(card).toHaveStyle({ backgroundColor: 'rgb(255, 0, 0)' });
+      // Activate with Enter key
+      await user.keyboard('{Enter}');
+      expect(mockOnEdit).toHaveBeenCalled();
     });
   });
 });

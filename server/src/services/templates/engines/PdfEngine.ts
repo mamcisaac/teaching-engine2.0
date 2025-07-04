@@ -106,7 +106,7 @@ export class PdfEngine extends RenderEngine {
           warnings: warnings.length > 0 ? warnings : undefined,
         },
       };
-    } catch (error) {
+    } catch (_error) {
       throw new Error(`PDF render error: ${error.message}`);
     }
   }
@@ -129,7 +129,7 @@ export class PdfEngine extends RenderEngine {
   /**
    * Precompile template
    */
-  async precompile(template: Template): Promise<any> {
+  async precompile(template: Template): Promise<unknown> {
     // Precompile as Handlebars template
     return this.handlebarsEngine.precompile(template);
   }

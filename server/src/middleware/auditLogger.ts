@@ -54,14 +54,14 @@ interface AuditEvent {
   resource?: string;
   resourceId?: string;
   action: string;
-  details?: Record<string, any>;
+  details?: Record<string, unknown>;
   ipAddress?: string;
   userAgent?: string;
   sessionId?: string;
   timestamp: string;
   success: boolean;
   errorMessage?: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 /**
@@ -112,7 +112,7 @@ class AuditLogger {
     req: Request,
     eventType: AuditEventType,
     action: string,
-    details?: Record<string, any>,
+    details?: Record<string, unknown>,
     success: boolean = true,
     errorMessage?: string
   ): AuditEvent {
@@ -125,7 +125,7 @@ class AuditLogger {
       details,
       ipAddress: req.ip || req.connection.remoteAddress,
       userAgent: req.get('User-Agent'),
-      sessionId: req.sessionID || req.requestId,
+      sessionId: (req as unknown).sessionID || (req as unknown).requestId,
       timestamp: new Date().toISOString(),
       success,
       errorMessage
@@ -147,7 +147,7 @@ class AuditLogger {
     return 'xxx.xxx.xxx.xxx';
   }
 
-  private sanitizeDetails(details?: Record<string, any>): Record<string, any> | undefined {
+  private sanitizeDetails(details?: Record<string, unknown>): Record<string, unknown> | undefined {
     if (!details) return undefined;
     
     const sanitized = { ...details };
@@ -271,7 +271,7 @@ export const auditLogger = new AuditLogger();
 export function auditMiddleware(
   eventType: AuditEventType,
   getActionFromRequest?: (req: Request) => string,
-  getDetailsFromRequest?: (req: Request) => Record<string, any>
+  getDetailsFromRequest?: (req: Request) => Record<string, unknown>
 ) {
   return (req: Request, res: Response, next: NextFunction) => {
     // Store original response methods
@@ -279,7 +279,7 @@ export function auditMiddleware(
     const originalSend = res.send;
     
     // Override response methods to capture success/failure
-    res.json = function(data: any) {
+    res.json = function(data: unknown) {
       const success = res.statusCode < 400;
       const action = getActionFromRequest ? getActionFromRequest(req) : `${req.method} ${req.path}`;
       const details = getDetailsFromRequest ? getDetailsFromRequest(req) : undefined;
@@ -290,7 +290,7 @@ export function auditMiddleware(
         action,
         details,
         success,
-        success ? undefined : data.message || 'Operation failed'
+        success ? undefined : (typeof data === 'object' && data !== null && 'message' in data ? (data as { message: string }).message : 'Operation failed')
       );
       
       auditLogger.logEvent(event);
@@ -298,7 +298,7 @@ export function auditMiddleware(
       return originalJson.call(this, data);
     };
     
-    res.send = function(data: any) {
+    res.send = function(data: unknown) {
       const success = res.statusCode < 400;
       const action = getActionFromRequest ? getActionFromRequest(req) : `${req.method} ${req.path}`;
       const details = getDetailsFromRequest ? getDetailsFromRequest(req) : undefined;
@@ -392,7 +392,7 @@ export const auditFunctions = {
     auditLogger.logEvent(event);
   },
 
-  suspiciousActivity: (req: Request, activityType: string, details: Record<string, any>) => {
+  suspiciousActivity: (req: Request, activityType: string, details: Record<string, unknown>) => {
     const event = auditLogger.createEventFromRequest(
       req,
       AuditEventType.SUSPICIOUS_ACTIVITY,

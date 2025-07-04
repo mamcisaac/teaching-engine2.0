@@ -183,7 +183,7 @@ describe('useAutoSave', () => {
     await act(async () => {
       try {
         await result.current.saveNow();
-      } catch (error) {
+      } catch (_error) {
         // Expected to fail
       }
     });
@@ -427,7 +427,7 @@ describe('useUnsavedChangesWarning', () => {
     const mockEvent = {
       preventDefault: vi.fn(),
       returnValue: '',
-    } as any;
+    } as unknown;
 
     // Simulate beforeunload event
     window.dispatchEvent(new Event('beforeunload'));
@@ -451,7 +451,7 @@ describe('useUnsavedChangesWarning', () => {
     const mockEvent = {
       preventDefault: vi.fn(),
       returnValue: '',
-    } as any;
+    } as unknown;
 
     // The handler should not prevent default when no unsaved changes
     const handler = vi.fn((e: BeforeUnloadEvent) => {

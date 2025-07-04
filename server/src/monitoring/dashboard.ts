@@ -78,7 +78,7 @@ interface DashboardMetrics {
     level: 'info' | 'warning' | 'error' | 'critical';
     message: string;
     timestamp: string;
-    details?: any;
+    details?: unknown;
   }>;
   health: {
     status: 'healthy' | 'degraded' | 'unhealthy';
@@ -205,7 +205,7 @@ const performHealthChecks = async (): Promise<DashboardMetrics['health']> => {
   try {
     await prisma.$queryRaw`SELECT 1`;
     checks.database = true;
-  } catch (error) {
+  } catch (_error) {
     checks.database = false;
     score -= 30;
     logger.error('Database health check failed', error);
@@ -422,7 +422,7 @@ export const getDashboardMetrics = async (req: Request, res: Response): Promise<
       });
 
       res.json(dashboardMetrics);
-    } catch (error) {
+    } catch (_error) {
       logger.error('Failed to generate dashboard metrics', error);
       res.status(500).json({ error: 'Failed to generate dashboard metrics' });
     }
@@ -430,7 +430,7 @@ export const getDashboardMetrics = async (req: Request, res: Response): Promise<
 };
 
 // WebSocket support for real-time dashboard updates
-export const dashboardWebSocketHandler = (ws: any): void => {
+export const dashboardWebSocketHandler = (ws: unknown): void => {
   const interval = setInterval(async () => {
     try {
       const metrics = getMetrics();
@@ -443,7 +443,7 @@ export const dashboardWebSocketHandler = (ws: any): void => {
       };
 
       ws.send(JSON.stringify(realtimeData));
-    } catch (error) {
+    } catch (_error) {
       logger.error('Failed to send real-time metrics', error);
     }
   }, 1000); // Update every second

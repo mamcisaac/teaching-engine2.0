@@ -64,7 +64,7 @@ router.get('/', async (req, res) => {
     });
 
     res.json(events);
-  } catch (error) {
+  } catch (_error) {
     console.error('Error fetching calendar events:', error);
     res.status(500).json({ error: 'Failed to fetch calendar events' });
   }
@@ -90,7 +90,7 @@ router.post('/', validateRequest(calendarEventSchema), async (req, res) => {
     });
 
     res.status(201).json(event);
-  } catch (error) {
+  } catch (_error) {
     console.error('Error creating calendar event:', error);
     res.status(500).json({ error: 'Failed to create calendar event' });
   }
@@ -125,7 +125,7 @@ router.patch('/:id', async (req, res) => {
     });
 
     res.json(updatedEvent);
-  } catch (error) {
+  } catch (_error) {
     console.error('Error updating calendar event:', error);
     res.status(500).json({ error: 'Failed to update calendar event' });
   }
@@ -154,7 +154,7 @@ router.delete('/:id', async (req, res) => {
     });
 
     res.status(204).send();
-  } catch (error) {
+  } catch (_error) {
     console.error('Error deleting calendar event:', error);
     res.status(500).json({ error: 'Failed to delete calendar event' });
   }

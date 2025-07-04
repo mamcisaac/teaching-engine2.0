@@ -31,7 +31,7 @@ export const arrayUtils = {
   sortBy: <T>(
     array: T[],
     fields: Array<{
-      key: keyof T | ((item: T) => any);
+      key: keyof T | ((item: T) => unknown);
       order?: 'asc' | 'desc';
     }>
   ): T[] => {
@@ -57,9 +57,9 @@ export const arrayUtils = {
   },
   
   // Flatten nested arrays
-  flattenDeep: <T>(array: any[]): T[] => {
-    return array.reduce((flat, item) => {
-      return flat.concat(Array.isArray(item) ? arrayUtils.flattenDeep(item) : item);
+  flattenDeep: <T>(array: unknown[]): T[] => {
+    return array.reduce<T[]>((flat, item) => {
+      return flat.concat(Array.isArray(item) ? arrayUtils.flattenDeep<T>(item) : [item as T]);
     }, []);
   },
   
@@ -134,12 +134,12 @@ export const objectUtils = {
     for (const obj of objects) {
       for (const [key, value] of Object.entries(obj)) {
         if (value && typeof value === 'object' && !Array.isArray(value)) {
-          (result as any)[key] = objectUtils.deepMerge(
-            (result as any)[key] || {},
+          (result as unknown)[key] = objectUtils.deepMerge(
+            (result as unknown)[key] || {},
             value
           );
         } else {
-          (result as any)[key] = value;
+          (result as unknown)[key] = value;
         }
       }
     }
@@ -153,7 +153,7 @@ export const objectUtils = {
     
     for (const [key, value] of Object.entries(obj)) {
       if (value !== null && value !== undefined) {
-        (result as any)[key] = value;
+        (result as unknown)[key] = value;
       }
     }
     
@@ -285,11 +285,11 @@ export const transformUtils = {
     items: T[],
     keyField: keyof T,
     valueField: keyof T
-  ): Record<string, any> => {
+  ): Record<string, unknown> => {
     return items.reduce((acc, item) => {
       acc[String(item[keyField])] = item[valueField];
       return acc;
-    }, {} as Record<string, any>);
+    }, {} as Record<string, unknown>);
   },
   
   // Normalize array to object

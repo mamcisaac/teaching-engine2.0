@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { resourceApi } from './api';
-import { queryKeys, showSuccessToast, handleApiError } from '../../core';
+import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 import type {
   MediaResource,
   MediaResourceInput,
@@ -183,7 +183,7 @@ export const useDeleteResource = () => {
     mutationFn: (id: number) => resourceApi.media.delete(id),
     onSuccess: (_, id) => {
       queryClient.removeQueries({ queryKey: queryKeys.resource.detail(id) });
-      queryClient.invalidateQueries({ queryKey: queryKeys.resource.media() });
+      queryClient.invalidateQueries({ queryKey: ['media-resources'] });
       queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
       queryClient.invalidateQueries({ queryKey: ['storage-usage'] });
       
@@ -204,7 +204,7 @@ export const useBulkDeleteResources = () => {
         queryClient.removeQueries({ queryKey: queryKeys.resource.detail(id) });
       });
       
-      queryClient.invalidateQueries({ queryKey: queryKeys.resource.media() });
+      queryClient.invalidateQueries({ queryKey: ['media-resources'] });
       queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
       queryClient.invalidateQueries({ queryKey: ['storage-usage'] });
       
@@ -350,7 +350,7 @@ export const useBulkImportLinks = () => {
     mutationFn: ({ urls, defaultCategory }: { urls: string[]; defaultCategory: string }) =>
       resourceApi.links.importBulk(urls, defaultCategory),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: queryKeys.resource.media() });
+      queryClient.invalidateQueries({ queryKey: ['media-resources'] });
       queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
       queryClient.invalidateQueries({ queryKey: ['resource-tags'] });
       
@@ -388,7 +388,7 @@ export const useStorageOptimize = () => {
     mutationFn: (resourceIds?: number[]) => resourceApi.storage.optimize(resourceIds),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['storage-usage'] });
-      queryClient.invalidateQueries({ queryKey: queryKeys.resource.media() });
+      queryClient.invalidateQueries({ queryKey: ['media-resources'] });
       
       showSuccessToast(`Optimized ${data.optimized} files, saved ${(data.saved / 1024 / 1024).toFixed(2)} MB`);
       return data;

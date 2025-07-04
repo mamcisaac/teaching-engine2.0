@@ -105,7 +105,7 @@ export async function retryOperation<T>(
   for (let i = 0; i < maxRetries; i++) {
     try {
       return await operation();
-    } catch (error) {
+    } catch (_error) {
       lastError = error;
 
       // Don't retry on certain errors

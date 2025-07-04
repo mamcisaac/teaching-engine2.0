@@ -133,7 +133,7 @@ export function HelpProvider({ children }: { children: React.ReactNode }) {
         }
         dispatch({ type: 'LOAD_STATE', payload: parsedState });
       }
-    } catch (error) {
+    } catch (_error) {
       console.warn('Failed to load help state from localStorage:', error);
     }
   }, []);
@@ -142,7 +142,7 @@ export function HelpProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     try {
       localStorage.setItem(HELP_STATE_KEY, JSON.stringify(state));
-    } catch (error) {
+    } catch (_error) {
       console.warn('Failed to save help state to localStorage:', error);
     }
   }, [state]);

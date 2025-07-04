@@ -20,7 +20,7 @@ router.get('/alerts', authenticate, async (req, res) => {
     try {
       const status = getAlertStatus();
       res.json(status);
-    } catch (error) {
+    } catch (_error) {
       logger.error('Failed to get alert status', error);
       res.status(500).json({ error: 'Failed to get alert status' });
     }
@@ -41,7 +41,7 @@ router.post('/alerts/:alertId/trigger', authenticate, async (req, res) => {
 
       await triggerManualAlert(alertId, context);
       res.json({ success: true, message: `Alert ${alertId} triggered` });
-    } catch (error) {
+    } catch (_error) {
       logger.error('Failed to trigger manual alert', error);
       res.status(500).json({ error: 'Failed to trigger alert' });
     }
@@ -73,7 +73,7 @@ router.get('/health/detailed', async (req, res) => {
         const { prisma } = await import('@teaching-engine/database');
         await prisma.$queryRaw`SELECT 1`;
         health.services.database = true;
-      } catch (error) {
+      } catch (_error) {
         health.status = 'degraded';
         health.services.database = false;
       }
@@ -86,7 +86,7 @@ router.get('/health/detailed', async (req, res) => {
 
       const statusCode = health.status === 'healthy' ? 200 : 503;
       res.status(statusCode).json(health);
-    } catch (error) {
+    } catch (_error) {
       logger.error('Health check failed', error);
       res.status(503).json({
         status: 'unhealthy',

@@ -5,6 +5,31 @@ export interface Subject {
   name: string;
 }
 
+// Auth types
+export interface User {
+  id: number;
+  email: string;
+  name: string;
+  role: "USER" | "ADMIN";
+}
+
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+export interface RegisterData {
+  email: string;
+  password: string;
+  name: string;
+}
+
+export interface TokenResponse {
+  accessToken: string;
+  refreshToken?: string;
+  user: User;
+}
+
 // Re-export ETFO planning types from hooks
 export type { 
   ETFOLessonPlan, 
@@ -15,6 +40,30 @@ export type {
   ETFOLessonPlanResource,
   UnitPlanResource
 } from '../hooks/useETFOPlanning';
+
+// Planning types 
+export interface LessonPlan {
+  id: number;
+  title: string;
+  description?: string;
+  weekStart: string;
+  unitPlanId?: number;
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PlannerSuggestion {
+  id: number;
+  type: 'lesson' | 'activity' | 'resource';
+  title: string;
+  description: string;
+  category: string;
+  tags: string[];
+  estimatedDuration?: number;
+  gradeLevel?: string;
+  subject?: string;
+}
 
 
 

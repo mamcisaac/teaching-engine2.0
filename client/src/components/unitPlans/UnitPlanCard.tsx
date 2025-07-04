@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { UnitPlan } from '../../hooks/useETFOPlanning';
 
 interface UnitPlanCardProps {
-  unit: UnitPlan;
+  unitPlan: UnitPlan;
   onEdit: (unit: UnitPlan) => void;
 }
 
-export const UnitPlanCard: React.FC<UnitPlanCardProps> = memo(function UnitPlanCard({ unit, onEdit }) {
+export const UnitPlanCard: React.FC<UnitPlanCardProps> = memo(function UnitPlanCard({ unitPlan: unit, onEdit }) {
   // Memoize expensive date formatting
   const dateRange = useMemo(() => {
     const startDate = new Date(unit.startDate).toLocaleDateString();

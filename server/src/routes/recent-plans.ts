@@ -40,7 +40,7 @@ router.post('/track', async (req: Request, res, _next) => {
     });
 
     res.json({ success: true });
-  } catch (err) {
+  } catch (_err) {
     console.error('Error in recent plans route:', err);
     res.status(500).json({ error: 'Failed to process request' });
   }
@@ -203,7 +203,7 @@ router.get('/', async (req: Request, res, _next) => {
     const validPlans = recentPlans.filter(Boolean);
 
     res.json(validPlans);
-  } catch (err) {
+  } catch (_err) {
     console.error('Error in recent plans route:', err);
     res.status(500).json({ error: 'Failed to process request' });
   }
@@ -222,7 +222,7 @@ router.delete('/clear', async (req: Request, res, _next) => {
     });
 
     res.json({ success: true });
-  } catch (err) {
+  } catch (_err) {
     console.error('Error in recent plans route:', err);
     res.status(500).json({ error: 'Failed to process request' });
   }

@@ -276,8 +276,8 @@ describe('LanguageContext', () => {
         wrapper: createWrapper(),
       });
 
-      expect(result.current.getLocalizedField(null as any, 'title')).toBe('');
-      expect(result.current.getLocalizedField(undefined as any, 'title')).toBe('');
+      expect(result.current.getLocalizedField(null as unknown, 'title')).toBe('');
+      expect(result.current.getLocalizedField(undefined as unknown, 'title')).toBe('');
     });
 
     it('should handle missing field', () => {

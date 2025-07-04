@@ -9,7 +9,7 @@ import {
   useUpdateUnitPlan,
   UnitPlan,
 } from '../hooks/useETFOPlanning';
-import { useCurriculumExpectations } from '../api';
+import { useCurriculumExpectations } from '../api/legacy/api';
 import { useUnitPlanForm } from '../hooks/useUnitPlanForm';
 // import { UnitPlanService } from '../services/unitPlanService';
 import { useTemplates, useApplyTemplate } from '../hooks/useTemplates';
@@ -280,7 +280,7 @@ export default function UnitPlansPage() {
       setIsTemplateModalOpen(false);
       setSelectedTemplate(null);
       setIsCreateModalOpen(true);
-    } catch (error) {
+    } catch (_error) {
       console.error('Failed to apply template:', error);
     }
   };
@@ -688,7 +688,7 @@ export default function UnitPlansPage() {
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {unitPlans.map((unit) => (
-              <UnitPlanCard key={unit.id} unit={unit} onEdit={handleEditUnit} />
+              <UnitPlanCard key={unit.id} unitPlan={unit} onEdit={handleEditUnit} />
             ))}
           </div>
         )}

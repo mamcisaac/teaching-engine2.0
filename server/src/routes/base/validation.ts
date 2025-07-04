@@ -117,9 +117,12 @@ export const commonQuerySchemas = {
     subject: z.string().max(100).optional(),
     grade: z.coerce.number().int().min(1).max(12).optional(),
     category: z.string().optional(),
-    tags: z.union([z.string(), z.array(z.string())]).optional().transform(val => 
-      typeof val === 'string' ? [val] : val
-    )
+    tags: z.union([z.string(), z.array(z.string())]).optional().transform(val => {
+      if (!val) return undefined;
+      if (Array.isArray(val)) return val;
+      // Split comma-separated string into array
+      return val.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+    })
   }),
 
   // Date range query
@@ -205,7 +208,14 @@ export const sanitize = {
    */
   stringArray: (input: string[]): string[] => {
     return input
-      .map(str => sanitize.normalizeWhitespace(sanitize.removeHtmlTags(str)))
+      .map(str => {
+        // First remove script tags and their content completely
+        let cleaned = str.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+        // Then remove any other HTML tags
+        cleaned = sanitize.removeHtmlTags(cleaned);
+        // Finally normalize whitespace
+        return sanitize.normalizeWhitespace(cleaned);
+      })
       .filter(str => str.length > 0);
   }
 };

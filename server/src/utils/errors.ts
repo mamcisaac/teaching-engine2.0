@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { logger } from '../logger';
+import logger from '../logger';
 import { ZodError } from 'zod';
 import { errorCounter } from '../monitoring/telemetry';
 
@@ -18,7 +18,7 @@ export class AppError extends Error {
 }
 
 export class ValidationError extends AppError {
-  constructor(message: string, details?: any) {
+  constructor(message: string, details?: unknown) {
     super(400, message, 'VALIDATION_ERROR', details);
     this.name = 'ValidationError';
   }
@@ -47,7 +47,7 @@ export class NotFoundError extends AppError {
 }
 
 export class ConflictError extends AppError {
-  constructor(message: string, details?: any) {
+  constructor(message: string, details?: unknown) {
     super(409, message, 'CONFLICT', details);
     this.name = 'ConflictError';
   }
@@ -61,7 +61,7 @@ export class RateLimitError extends AppError {
 }
 
 export class ExternalServiceError extends AppError {
-  constructor(service: string, originalError?: any) {
+  constructor(service: string, originalError?: unknown) {
     super(503, `External service error: ${service}`, 'EXTERNAL_SERVICE_ERROR', originalError);
     this.name = 'ExternalServiceError';
   }
@@ -72,7 +72,7 @@ interface ErrorResponse {
   error: {
     code: string;
     message: string;
-    details?: any;
+    details?: unknown;
     timestamp: string;
     requestId?: string;
   };
@@ -114,14 +114,14 @@ export const formatErrorResponse = (
 };
 
 // Async error handler wrapper
-export const asyncHandler = <T extends (...args: any[]) => Promise<any>>(
+export const asyncHandler = <T extends (...args: unknown[]) => Promise<unknown>>(
   fn: T
 ): ((...args: Parameters<T>) => Promise<void>) => {
   return async (...args: Parameters<T>): Promise<void> => {
     try {
       await fn(...args);
-    } catch (error) {
-      const [req, res, next] = args as [any, Response, any];
+    } catch (_error) {
+      const [req, res, next] = args as unknown as [any, Response, any];
       
       // Log the error
       logger.error({
@@ -176,7 +176,7 @@ export const handleErrorResponse = (
 };
 
 // Database error handler
-export const handleDatabaseError = (error: any): AppError => {
+export const handleDatabaseError = (error: unknown): AppError => {
   // Prisma error codes
   if (error.code === 'P2002') {
     return new ConflictError('A record with this value already exists', {
@@ -231,14 +231,14 @@ export const assertAuthenticated = (userId?: number | null): void => {
 };
 
 // Error type guards
-export const isAppError = (error: any): error is AppError => {
+export const isAppError = (error: Error): error is AppError => {
   return error instanceof AppError;
 };
 
-export const isValidationError = (error: any): error is ValidationError => {
+export const isValidationError = (error: Error): error is ValidationError => {
   return error instanceof ValidationError;
 };
 
-export const isZodError = (error: any): error is ZodError => {
+export const isZodError = (error: Error): error is ZodError => {
   return error instanceof ZodError;
 };

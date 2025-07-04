@@ -66,12 +66,12 @@ export class PDFParser extends CurriculumParser {
   /**
    * Extract metadata from PDF
    */
-  private extractMetadata(pdfData: any): {
+  private extractMetadata(pdfData: unknown): {
     grade?: number;
     subject?: string;
     version?: string;
   } {
-    const metadata: any = {};
+    const metadata: unknown = {};
     
     // Try to extract from PDF metadata
     if (pdfData.info) {

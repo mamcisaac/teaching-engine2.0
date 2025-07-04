@@ -221,7 +221,7 @@ describe('Authentication Routes Security Tests', () => {
       expect(parts.length).toBe(3); // JWT has 3 parts
 
       // Verify token can be decoded
-      const decoded = jwt.verify(token, process.env.JWT_SECRET!) as any;
+      const decoded = jwt.verify(token, process.env.JWT_SECRET!) as unknown;
       expect(decoded.email).toBe(validTestUser.email);
       expect(decoded.userId).toBeTruthy();
       expect(decoded.exp).toBeTruthy(); // Expiration should be set
@@ -390,7 +390,7 @@ describe('Authentication Routes Security Tests', () => {
     });
 
     it('should generate tokens with expiration', async () => {
-      const decoded = jwt.verify(validToken, process.env.JWT_SECRET!) as any;
+      const decoded = jwt.verify(validToken, process.env.JWT_SECRET!) as unknown;
       expect(decoded.exp).toBeTruthy();
       expect(decoded.exp > Math.floor(Date.now() / 1000)).toBe(true);
     });

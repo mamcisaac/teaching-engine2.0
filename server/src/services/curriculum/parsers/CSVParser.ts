@@ -3,7 +3,7 @@
  * Parses curriculum expectations from CSV files
  */
 
-import * as csvParse from 'csv-parse/sync';
+import { parse } from 'csv-parse/sync';
 import { CurriculumParser, ParsedCurriculum, ParsedExpectation } from './CurriculumParser';
 
 export interface CSVRow {
@@ -17,7 +17,7 @@ export interface CSVRow {
   substrand?: string;
   grade?: string | number;
   subject?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export class CSVParser extends CurriculumParser {
@@ -27,14 +27,34 @@ export class CSVParser extends CurriculumParser {
   async parse(content: string | Buffer): Promise<ParsedCurriculum> {
     const stringContent = content instanceof Buffer ? content.toString('utf-8') : content;
     
-    // Parse CSV
-    const records = csvParse.parse(stringContent, {
-      columns: true,
-      skip_empty_lines: true,
-      trim: true,
-      cast: true,
-      cast_date: false,
-    }) as CSVRow[];
+    // Parse CSV with error handling for malformed data
+    let records: CSVRow[];
+    try {
+      records = parse(stringContent, {
+        columns: true,
+        skip_empty_lines: true,
+        trim: true,
+        cast: true,
+        cast_date: false,
+        relax_quotes: true, // Allow unescaped quotes
+        skip_records_with_error: true, // Skip malformed records
+      }) as CSVRow[];
+    } catch (_error) {
+      // If parsing fails, try with more relaxed settings
+      try {
+        records = parse(stringContent, {
+          columns: true,
+          skip_empty_lines: true,
+          trim: true,
+          cast: false, // Don't cast types
+          relax_quotes: true,
+          relax_column_count: true, // Allow varying column counts
+          skip_records_with_error: true,
+        }) as CSVRow[];
+      } catch (fallbackError) {
+        throw new Error(`Failed to parse CSV: ${error.message}`);
+      }
+    }
 
     if (!records || records.length === 0) {
       throw new Error('No data found in CSV file');
@@ -55,9 +75,25 @@ export class CSVParser extends CurriculumParser {
       }
     }
 
+    // Try to extract subject and grade from any row if not found in first row
+    let finalSubject = subject;
+    let finalGrade = grade;
+    
+    if (!finalSubject || !finalGrade) {
+      for (const expectation of expectations) {
+        if (!finalSubject && expectation.subject) {
+          finalSubject = expectation.subject;
+        }
+        if (!finalGrade && expectation.grade) {
+          finalGrade = expectation.grade;
+        }
+        if (finalSubject && finalGrade) break;
+      }
+    }
+
     const curriculum: ParsedCurriculum = {
-      subject: subject || 'Unknown',
-      grade: grade || 0,
+      subject: finalSubject || 'Unknown',
+      grade: finalGrade || 1,
       expectations,
       metadata: {
         source: 'CSV Import',
@@ -191,13 +227,14 @@ export class CSVParser extends CurriculumParser {
       return false;
     }
 
-    if (data.expectations.length === 0) {
+    // In non-strict mode, allow empty expectations for better error handling
+    if (this.options.strict && data.expectations.length === 0) {
       return false;
     }
 
-    // Check for at least some overall expectations
+    // Check for at least some overall expectations only in strict mode
     const hasOverallExpectations = data.expectations.some(e => e.type === 'overall');
-    if (this.options.strict && !hasOverallExpectations) {
+    if (this.options.strict && data.expectations.length > 0 && !hasOverallExpectations) {
       return false;
     }
 

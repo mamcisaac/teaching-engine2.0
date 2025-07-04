@@ -30,7 +30,9 @@ export class LessonPlanService {
     if (lesson.titleFr) {
       content += `## ${lesson.titleFr}\n`;
     }
-    content += `\n**Date:** ${new Date(lesson.date).toLocaleDateString()}\n`;
+    // Handle date formatting properly to avoid timezone issues
+    const dateObj = new Date(lesson.date + 'T12:00:00'); // Add time to avoid timezone issues
+    content += `\n**Date:** ${dateObj.toLocaleDateString('en-US')}\n`;
     content += `**Duration:** ${lesson.duration} minutes\n`;
 
     if (unitPlan) {

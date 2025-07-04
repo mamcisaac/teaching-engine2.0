@@ -6,8 +6,10 @@
 export interface Template {
   id: string;
   name: string;
+  type?: string;
   engine: 'handlebars' | 'pdf' | 'email' | 'react';
   format: 'html' | 'pdf' | 'text' | 'markdown';
+  supportedFormats: string[];
   content: string;
   dataRequirements: DataRequirement[];
   metadata?: {
@@ -23,7 +25,7 @@ export interface DataRequirement {
   type: 'user' | 'student' | 'lesson' | 'assessment' | 'curriculum' | 'custom';
   required: boolean;
   description?: string;
-  defaultValue?: any;
+  defaultValue?: unknown;
 }
 
 export interface TemplateContext {
@@ -31,7 +33,7 @@ export interface TemplateContext {
   templateId?: string;
   locale?: string;
   timezone?: string;
-  parameters?: Record<string, any>;
+  parameters?: Record<string, unknown>;
 }
 
 export interface RenderOptions {
@@ -61,6 +63,26 @@ export abstract class TemplateProvider {
    * Validate template context
    */
   abstract validateContext(context: TemplateContext): boolean;
+
+  /**
+   * Initialize the provider (optional)
+   */
+  async initialize?(): Promise<void>;
+
+  /**
+   * Validate provider health (optional)
+   */
+  validateHealth?(): boolean;
+
+  /**
+   * Get provider metadata (optional)
+   */
+  getMetadata?(): Record<string, unknown>;
+
+  /**
+   * Cleanup provider resources (optional)
+   */
+  async cleanup?(): Promise<void>;
 
   /**
    * Get template by ID

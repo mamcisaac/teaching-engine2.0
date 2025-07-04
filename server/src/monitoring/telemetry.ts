@@ -78,7 +78,7 @@ export const initTelemetry = async (): Promise<void> => {
         .then(() => logger.info('OpenTelemetry terminated'))
         .catch((error) => logger.error('Error terminating OpenTelemetry', error));
     });
-  } catch (error) {
+  } catch (_error) {
     logger.error('Failed to initialize OpenTelemetry', error);
   }
 };
@@ -104,7 +104,7 @@ export const withSpan = async <T>(
       const result = await fn(span);
       span.setStatus({ code: SpanStatusCode.OK });
       return result;
-    } catch (error) {
+    } catch (_error) {
       span.setStatus({
         code: SpanStatusCode.ERROR,
         message: error instanceof Error ? error.message : 'Unknown error',

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchNewsletterSuggestions } from '../api';
+import { fetchNewsletterSuggestions } from '../api/legacy/api';
 import { Link } from 'react-router-dom';
 
 export default function NotificationBell() {

@@ -122,11 +122,11 @@ export const commonIncludes = {
 
 // Transaction helper
 export const withTransaction = async <T>(
-  prisma: any,
-  callback: (tx: any) => Promise<T>
+  prisma: unknown,
+  callback: (tx: unknown) => Promise<T>
 ): Promise<T> => {
   return measureDatabaseQuery('transaction', async () => {
-    return prisma.$transaction(async (tx: any) => {
+    return prisma.$transaction(async (tx: unknown) => {
       return callback(tx);
     });
   });
@@ -134,7 +134,7 @@ export const withTransaction = async <T>(
 
 // Batch operations
 export const batchCreate = async <T>(
-  model: any,
+  model: unknown,
   data: T[],
   chunkSize: number = 100
 ): Promise<number> => {
@@ -150,8 +150,8 @@ export const batchCreate = async <T>(
 };
 
 export const batchUpdate = async <T>(
-  model: any,
-  updates: Array<{ where: any; data: T }>,
+  model: unknown,
+  updates: Array<{ where: unknown; data: T }>,
   chunkSize: number = 50
 ): Promise<number> => {
   let updated = 0;
@@ -172,7 +172,7 @@ export const batchUpdate = async <T>(
 };
 
 export const batchDelete = async (
-  model: any,
+  model: unknown,
   ids: Array<string | number>,
   chunkSize: number = 100
 ): Promise<number> => {
@@ -191,9 +191,9 @@ export const batchDelete = async (
 
 // Upsert helper
 export const upsertMany = async <T>(
-  model: any,
+  model: unknown,
   records: Array<{
-    where: any;
+    where: unknown;
     create: T;
     update: Partial<T>;
   }>
@@ -207,28 +207,28 @@ export const upsertMany = async <T>(
 
 // Aggregation helpers
 export const getCountByField = async (
-  model: any,
+  model: unknown,
   field: string,
   where: any = {}
-): Promise<Array<{ field: any; count: number }>> => {
+): Promise<Array<{ field: unknown; count: number }>> => {
   const results = await model.groupBy({
     by: [field],
     where,
     _count: true,
   });
   
-  return results.map((r: any) => ({
+  return results.map((r: unknown) => ({
     field: r[field],
     count: r._count,
   }));
 };
 
 export const getSumByField = async (
-  model: any,
+  model: unknown,
   sumField: string,
   groupByField: string,
   where: any = {}
-): Promise<Array<{ field: any; sum: number }>> => {
+): Promise<Array<{ field: unknown; sum: number }>> => {
   const results = await model.groupBy({
     by: [groupByField],
     where,
@@ -237,7 +237,7 @@ export const getSumByField = async (
     },
   });
   
-  return results.map((r: any) => ({
+  return results.map((r: unknown) => ({
     field: r[groupByField],
     sum: r._sum[sumField] || 0,
   }));
@@ -245,10 +245,10 @@ export const getSumByField = async (
 
 // Soft delete helper
 export const softDelete = async (
-  model: any,
+  model: unknown,
   id: string | number,
   deletedAtField: string = 'deletedAt'
-): Promise<any> => {
+): Promise<unknown> => {
   return model.update({
     where: { id },
     data: { [deletedAtField]: new Date() },
@@ -257,10 +257,10 @@ export const softDelete = async (
 
 // Find or create helper
 export const findOrCreate = async <T>(
-  model: any,
-  where: any,
+  model: unknown,
+  where: unknown,
   create: T
-): Promise<{ record: any; created: boolean }> => {
+): Promise<{ record: unknown; created: boolean }> => {
   const existing = await model.findUnique({ where });
   
   if (existing) {
@@ -273,7 +273,7 @@ export const findOrCreate = async <T>(
 
 // Query optimization helpers
 export const optimizedCount = async (
-  model: any,
+  model: unknown,
   where: any = {}
 ): Promise<number> => {
   // Use raw query for better performance on large tables
@@ -292,7 +292,7 @@ export const optimizedCount = async (
 };
 
 // Connection helpers
-export const testConnection = async (prisma: any): Promise<boolean> => {
+export const testConnection = async (prisma: unknown): Promise<boolean> => {
   try {
     await prisma.$queryRaw`SELECT 1`;
     return true;
@@ -301,7 +301,7 @@ export const testConnection = async (prisma: any): Promise<boolean> => {
   }
 };
 
-export const getConnectionInfo = async (prisma: any): Promise<any> => {
+export const getConnectionInfo = async (prisma: unknown): Promise<unknown> => {
   const [version, tables, size] = await Promise.all([
     prisma.$queryRaw`SELECT sqlite_version() as version`,
     prisma.$queryRaw`SELECT name FROM sqlite_master WHERE type='table'`,

@@ -344,7 +344,7 @@ export const useWeeklyPlannerStore = create<WeeklyPlannerState>()(
                 hasOfflineChanges: false
               });
             });
-          } catch (error) {
+          } catch (_error) {
             console.error('Failed to load planner state from server:', error);
             set((state) => {
               state.isLoading = false;
@@ -376,7 +376,7 @@ export const useWeeklyPlannerStore = create<WeeklyPlannerState>()(
               s.hasOfflineChanges = false;
               s.isSaving = false;
             });
-          } catch (error) {
+          } catch (_error) {
             console.error('Failed to save planner state to server:', error);
             set((s) => {
               s.isSaving = false;

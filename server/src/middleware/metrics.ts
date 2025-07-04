@@ -214,7 +214,7 @@ export function httpMetricsMiddleware(req: Request, res: Response, next: NextFun
 
   // Override end method to capture response metrics
   const originalEnd = res.end;
-  res.end = function(chunk?: any, encoding?: any) {
+  res.end = function(chunk?: unknown, encoding?: unknown) {
     const duration = performance.now() - startTime;
     
     // Record request duration
@@ -300,7 +300,7 @@ export function collectSystemMetrics() {
     const cpuPercent = (cpuUsage.user + cpuUsage.system) / 1000000; // Convert to seconds
     metricsStore.setGauge('cpu_usage_percent', cpuPercent);
     
-  } catch (error) {
+  } catch (_error) {
     logger.error('Error collecting system metrics:', error);
   }
 }
@@ -331,7 +331,7 @@ export function withMetrics<T extends any[], R>(
   metricName: string,
   labels: Record<string, string> = {}
 ) {
-  return function(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+  return function(target: unknown, propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
     
     descriptor.value = async function(...args: T): Promise<R> {
@@ -348,7 +348,7 @@ export function withMetrics<T extends any[], R>(
         });
         
         return result;
-      } catch (error) {
+      } catch (_error) {
         const duration = performance.now() - startTime;
         
         metricsStore.observeHistogram(metricName, duration, { 

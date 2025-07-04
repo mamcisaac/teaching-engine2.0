@@ -85,17 +85,17 @@ export function requestLoggingMiddleware(req: Request, res: Response, next: Next
   }
   
   // Override response methods
-  res.json = function(obj: any) {
+  res.json = function(obj: unknown) {
     logResponse();
     return originalJson.call(this, obj);
   };
   
-  res.send = function(body: any) {
+  res.send = function(body: unknown) {
     logResponse();
     return originalSend.call(this, body);
   };
   
-  res.end = function(chunk?: any, encoding?: any) {
+  res.end = function(chunk?: unknown, encoding?: unknown) {
     logResponse();
     return originalEnd.call(this, chunk, encoding);
   };
@@ -120,7 +120,7 @@ export function requestLoggingMiddleware(req: Request, res: Response, next: Next
 /**
  * Sanitize request body to remove sensitive information
  */
-function sanitizeRequestBody(body: any): any {
+function sanitizeRequestBody(body: unknown): unknown {
   if (!body || typeof body !== 'object') {
     return body;
   }
@@ -152,7 +152,7 @@ function sanitizeRequestBody(body: any): any {
 /**
  * Sanitize headers to remove sensitive information
  */
-function sanitizeHeaders(headers: any): any {
+function sanitizeHeaders(headers: unknown): unknown {
   const sanitized = { ...headers };
   
   // Remove or redact sensitive headers

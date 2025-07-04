@@ -24,7 +24,7 @@ export class StandardError extends Error {
   public readonly type: ErrorType;
   public readonly statusCode: number;
   public readonly isOperational: boolean;
-  public readonly details?: Record<string, any>;
+  public readonly details?: Record<string, unknown>;
   public readonly userMessage?: string;
 
   constructor(
@@ -33,7 +33,7 @@ export class StandardError extends Error {
     statusCode: number = 500,
     isOperational: boolean = true,
     userMessage?: string,
-    details?: Record<string, any>
+    details?: Record<string, unknown>
   ) {
     super(message);
     this.type = type;
@@ -52,7 +52,7 @@ export class StandardError extends Error {
 
 // Specific error classes
 export class ValidationError extends StandardError {
-  constructor(message: string, details?: Record<string, any>) {
+  constructor(message: string, details?: Record<string, unknown>) {
     super(
       ErrorType.VALIDATION_ERROR,
       message,
@@ -101,7 +101,7 @@ export class NotFoundError extends StandardError {
 }
 
 export class ConflictError extends StandardError {
-  constructor(message: string, details?: Record<string, any>) {
+  constructor(message: string, details?: Record<string, unknown>) {
     super(
       ErrorType.CONFLICT_ERROR,
       message,
@@ -127,7 +127,7 @@ export class RateLimitError extends StandardError {
 }
 
 export class DatabaseError extends StandardError {
-  constructor(message: string, details?: Record<string, any>) {
+  constructor(message: string, details?: Record<string, unknown>) {
     super(
       ErrorType.DATABASE_ERROR,
       message,
@@ -152,7 +152,7 @@ export class ExternalServiceError extends StandardError {
 }
 
 export class BusinessLogicError extends StandardError {
-  constructor(message: string, userMessage?: string, details?: Record<string, any>) {
+  constructor(message: string, userMessage?: string, details?: Record<string, unknown>) {
     super(
       ErrorType.BUSINESS_LOGIC_ERROR,
       message,
@@ -165,7 +165,7 @@ export class BusinessLogicError extends StandardError {
 }
 
 export class FileUploadError extends StandardError {
-  constructor(message: string, details?: Record<string, any>) {
+  constructor(message: string, details?: Record<string, unknown>) {
     super(
       ErrorType.FILE_UPLOAD_ERROR,
       message,
@@ -178,7 +178,7 @@ export class FileUploadError extends StandardError {
 }
 
 export class AIServiceError extends StandardError {
-  constructor(message: string, details?: Record<string, any>) {
+  constructor(message: string, details?: Record<string, unknown>) {
     super(
       ErrorType.AI_SERVICE_ERROR,
       message,
@@ -203,7 +203,7 @@ export function standardErrorHandler(
   let statusCode = 500;
   let errorType = ErrorType.INTERNAL_ERROR;
   let userMessage = 'An unexpected error occurred. Please try again later.';
-  let details: Record<string, any> = {};
+  let details: Record<string, unknown> = {};
 
   // Handle different error types
   if (error instanceof StandardError) {
@@ -227,7 +227,7 @@ export function standardErrorHandler(
     statusCode = 400;
     errorType = ErrorType.DATABASE_ERROR;
     
-    const prismaError = error as any;
+    const prismaError = error as unknown;
     switch (prismaError.code) {
       case 'P2002':
         userMessage = 'A record with this information already exists.';
@@ -254,7 +254,7 @@ export function standardErrorHandler(
     statusCode = 400;
     errorType = ErrorType.FILE_UPLOAD_ERROR;
     userMessage = 'File upload failed. Please check the file and try again.';
-    details = { multerCode: (error as any).code };
+    details = { multerCode: (error as unknown).code };
   }
 
   // Log the error
@@ -337,7 +337,7 @@ export function standardErrorHandler(
  * Async error wrapper for route handlers
  */
 export function asyncHandler<T extends Request, U extends Response>(
-  fn: (req: T, res: U, next: NextFunction) => Promise<any>
+  fn: (req: T, res: U, next: NextFunction) => Promise<unknown>
 ) {
   return (req: T, res: U, next: NextFunction) => {
     Promise.resolve(fn(req, res, next)).catch(next);
@@ -348,7 +348,7 @@ export function asyncHandler<T extends Request, U extends Response>(
  * Error factory functions for common errors
  */
 export const errorFactory = {
-  validation: (message: string, details?: Record<string, any>) => 
+  validation: (message: string, details?: Record<string, unknown>) => 
     new ValidationError(message, details),
 
   notFound: (resource: string = 'Resource') => 
@@ -360,25 +360,25 @@ export const errorFactory = {
   forbidden: (message?: string) => 
     new AuthorizationError(message),
 
-  conflict: (message: string, details?: Record<string, any>) => 
+  conflict: (message: string, details?: Record<string, unknown>) => 
     new ConflictError(message, details),
 
   rateLimit: (retryAfter?: number) => 
     new RateLimitError(retryAfter),
 
-  database: (message: string, details?: Record<string, any>) => 
+  database: (message: string, details?: Record<string, unknown>) => 
     new DatabaseError(message, details),
 
   externalService: (service: string, message: string) => 
     new ExternalServiceError(service, message),
 
-  businessLogic: (message: string, userMessage?: string, details?: Record<string, any>) => 
+  businessLogic: (message: string, userMessage?: string, details?: Record<string, unknown>) => 
     new BusinessLogicError(message, userMessage, details),
 
-  fileUpload: (message: string, details?: Record<string, any>) => 
+  fileUpload: (message: string, details?: Record<string, unknown>) => 
     new FileUploadError(message, details),
 
-  aiService: (message: string, details?: Record<string, any>) => 
+  aiService: (message: string, details?: Record<string, unknown>) => 
     new AIServiceError(message, details)
 };
 
@@ -386,7 +386,7 @@ export const errorFactory = {
  * Response helper functions
  */
 export const responseHelpers = {
-  success: (res: Response, data: any, message?: string, statusCode: number = 200) => {
+  success: (res: Response, data: unknown, message?: string, statusCode: number = 200) => {
     res.status(statusCode).json({
       success: true,
       data,
@@ -395,7 +395,7 @@ export const responseHelpers = {
     });
   },
 
-  created: (res: Response, data: any, message?: string) => {
+  created: (res: Response, data: unknown, message?: string) => {
     responseHelpers.success(res, data, message, 201);
   },
 
@@ -403,7 +403,7 @@ export const responseHelpers = {
     res.status(204).send();
   },
 
-  paginated: (res: Response, data: any[], pagination: {
+  paginated: (res: Response, data: unknown[], pagination: {
     page: number;
     limit: number;
     total: number;

@@ -15,15 +15,15 @@ import { RenderEngine, RenderResult } from './engines/RenderEngine';
 export interface TemplateRenderOptions extends RenderOptions {
   templateType: string;
   templateId?: string;
-  data?: Record<string, any>;
-  filters?: Record<string, any>;
+  data?: Record<string, unknown>;
+  filters?: Record<string, unknown>;
   fetchData?: boolean;
   useCache?: boolean;
 }
 
 export interface TemplateServiceOptions {
   enableCache?: boolean;
-  cacheOptions?: any;
+  cacheOptions?: unknown;
   partialsDirectory?: string;
 }
 
@@ -186,7 +186,7 @@ export class TemplateOrchestrator extends BaseService {
   public async previewTemplate(
     templateType: string,
     templateId: string,
-    sampleData: Record<string, any> = {},
+    sampleData: Record<string, unknown> = {},
     options: Partial<TemplateRenderOptions> = {}
   ): Promise<RenderResult> {
     const response = await this.renderCoordinator.previewTemplate(
@@ -280,7 +280,7 @@ export class TemplateOrchestrator extends BaseService {
   /**
    * Search helpers
    */
-  public searchHelpers(query: string): any[] {
+  public searchHelpers(query: string): unknown[] {
     return this.helpers.searchHelpers(query);
   }
 
@@ -311,14 +311,14 @@ export class TemplateOrchestrator extends BaseService {
   /**
    * List all partials
    */
-  public listPartials(): any[] {
+  public listPartials(): unknown[] {
     return this.partialManager.listPartials();
   }
 
   /**
    * Search partials
    */
-  public searchPartials(query: string): any[] {
+  public searchPartials(query: string): unknown[] {
     return this.partialManager.searchPartials(query);
   }
 
@@ -335,7 +335,7 @@ export class TemplateOrchestrator extends BaseService {
   /**
    * Get cache statistics
    */
-  public getCacheStats(): any {
+  public getCacheStats(): unknown {
     return this.cache.getStats();
   }
 
@@ -346,7 +346,7 @@ export class TemplateOrchestrator extends BaseService {
     templates: Array<{
       templateType: string;
       templateId?: string;
-      sampleData?: Record<string, any>;
+      sampleData?: Record<string, unknown>;
     }>
   ): Promise<void> {
     await this.renderCoordinator.warmupCaches(templates);
@@ -365,11 +365,11 @@ export class TemplateOrchestrator extends BaseService {
    * Get comprehensive statistics
    */
   public async getStats(): Promise<{
-    registry: any;
-    cache: any;
-    helpers: any;
-    partials: any;
-    health: any;
+    registry: unknown;
+    cache: unknown;
+    helpers: unknown;
+    partials: unknown;
+    health: unknown;
   }> {
     return {
       registry: await this.registry.getStats(),
@@ -444,7 +444,7 @@ export const templateOrchestrator = TemplateOrchestrator.getInstance();
 // Export convenience functions for backward compatibility
 export const renderLessonPlan = async (
   userId: number,
-  lessonData: any,
+  lessonData: unknown,
   format: 'html' | 'pdf' = 'html'
 ): Promise<RenderResult> => {
   return templateOrchestrator.render(
@@ -479,7 +479,7 @@ export const renderNewsletter = async (
 export const renderProgressReport = async (
   userId: number,
   studentId: number,
-  reportPeriod: any,
+  reportPeriod: unknown,
   format: 'html' | 'pdf' = 'pdf'
 ): Promise<RenderResult> => {
   return templateOrchestrator.render(

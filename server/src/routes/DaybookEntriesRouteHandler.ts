@@ -141,7 +141,7 @@ class DaybookService extends BaseService {
     super('DaybookService');
   }
 
-  async findMany(filters: any, userId: number) {
+  async findMany(filters: unknown, userId: number) {
     const {
       startDate,
       endDate,
@@ -237,7 +237,7 @@ class DaybookService extends BaseService {
     });
   }
 
-  async create(data: any, userId: number) {
+  async create(data: unknown, userId: number) {
     return prisma.daybookEntry.create({
       data: {
         ...data,
@@ -247,7 +247,7 @@ class DaybookService extends BaseService {
     });
   }
 
-  async update(id: string, data: any, userId: number) {
+  async update(id: string, data: unknown, userId: number) {
     // Verify ownership
     const entry = await prisma.daybookEntry.findFirst({
       where: { id, userId },
@@ -357,7 +357,7 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
     };
   }
 
-  protected getCrudOperations(): CrudOperations<any> {
+  protected getCrudOperations(): CrudOperations<unknown> {
     return {
       create: this.daybookService.create.bind(this.daybookService),
       findMany: this.daybookService.findMany.bind(this.daybookService),
@@ -379,7 +379,7 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
       
       const result = await this.daybookService.findMany(filters, userId);
       res.json(result);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error(`Error in ${this.routeName} list:`, error);
       next(error);
     }
@@ -403,7 +403,7 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
       const userId = req.userId!;
       const insights = await this.daybookService.getInsightsSummary(userId);
       res.json(insights);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error('Error getting insights summary:', error);
       next(error);
     }

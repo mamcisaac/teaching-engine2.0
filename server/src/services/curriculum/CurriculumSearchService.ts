@@ -22,7 +22,7 @@ export interface SearchOptions {
 }
 
 export interface SearchResult {
-  expectations: any[];
+  expectations: unknown[];
   total: number;
   hasMore: boolean;
 }

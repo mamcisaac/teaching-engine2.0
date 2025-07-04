@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { api } from '../api';
+import { api } from '../api/legacy/api';
 import type {
   PlanTemplate,
   TemplateSearchOptions,

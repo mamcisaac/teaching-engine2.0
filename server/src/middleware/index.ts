@@ -25,41 +25,14 @@ export * from './rateLimit';
 export { middleware } from './chains';
 
 // Re-export frequently used items
-export {
-  // Composers
-  compose,
-  chain,
-  conditional,
-  parallel,
-  withTimeout,
-  asyncMiddleware,
-  
-  // Error handling
-  errorHandlerMiddleware,
-  errorLoggingMiddleware,
-  notFoundHandler,
-  catchAsync,
-  
-  // Logging
-  requestLoggingMiddleware,
-  auditMiddleware,
-  AuditEventType,
-  auditLog,
-  
-  // Security
-  applySecurityMiddleware,
-  inputSanitizationMiddleware,
-  xssProtectionMiddleware,
-  fileUploadSecurityMiddleware,
-  
-  // Validation
-  validate,
-  validateBody,
-  validateQuery,
-  validateParams,
-  commonValidators,
-  ValidatedRequest,
-} from './core/index';
+// Import from core modules
+import { applySecurityMiddleware } from './core/security';
+import { errorLoggingMiddleware, errorHandlerMiddleware, notFoundHandler } from './core/error';
+import { AuditEventType } from './auditLogger';
+import { rateLimiters } from './rateLimit';
+
+// Re-export for convenience
+export { applySecurityMiddleware, errorLoggingMiddleware, errorHandlerMiddleware, notFoundHandler, AuditEventType, rateLimiters };
 
 // Helper to apply middleware to Express app
 import { Application } from 'express';
@@ -139,9 +112,9 @@ export const setup = {
   admin: (auditResource?: string) =>
     middleware.custom({
       authenticate: true,
-      rateLimit: 'strict',
+      rateLimit: 'auth',
       audit: {
-        event: AuditEventType.CONFIG_CHANGE,
+        event: AuditEventType.SYSTEM_CONFIG_CHANGE,
         severity: 'critical',
         resource: auditResource,
       },

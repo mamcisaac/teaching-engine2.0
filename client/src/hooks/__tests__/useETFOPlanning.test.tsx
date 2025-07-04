@@ -65,7 +65,7 @@ vi.mock('sonner', () => ({
 }));
 
 describe('useETFOPlanning Hooks', () => {
-  let queryClient: any;
+  let queryClient: unknown;
 
   const wrapper = ({ children }: { children: React.ReactNode }) => (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>

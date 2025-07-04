@@ -17,11 +17,11 @@ import {
   errorHandler,
   securityHeaders,
   AuthenticatedRequest,
-} from '../middleware.js';
+} from '../middleware';
 import { jest } from '@jest/globals';
 
 // Mock logger
-jest.mock('../../../logger.js', () => ({
+jest.mock('@/logger', () => ({
   default: {
     info: jest.fn(),
     error: jest.fn(),
@@ -44,12 +44,17 @@ describe('Middleware Functions', () => {
       method: 'GET',
       url: '/test',
       ip: '127.0.0.1',
+      get: jest.fn((header: string) => {
+        if (header === 'User-Agent') return 'Test User Agent';
+        return undefined;
+      }),
     };
     mockResponse = {
       json: jest.fn(() => mockResponse as Response),
       status: jest.fn(() => mockResponse as Response),
       send: jest.fn(() => mockResponse as Response),
       setHeader: jest.fn(),
+      statusCode: 200,
     };
     mockNext = jest.fn();
   });
@@ -73,7 +78,7 @@ describe('Middleware Functions', () => {
     });
 
     it('should return 401 for user without id', () => {
-      mockRequest.user = { email: 'test@example.com', name: 'Test User' } as any;
+      mockRequest.user = { email: 'test@example.com', name: 'Test User' } as unknown;
       
       requireAuth(mockRequest as AuthenticatedRequest, mockResponse as Response, mockNext);
       
@@ -121,7 +126,7 @@ describe('Middleware Functions', () => {
     });
 
     it('should deny user without role', () => {
-      mockRequest.user = { id: 1, email: 'test@example.com', name: 'Test User' } as any;
+      mockRequest.user = { id: 1, email: 'test@example.com', name: 'Test User' } as unknown;
       const middleware = requireRole('ADMIN');
       
       middleware(mockRequest as AuthenticatedRequest, mockResponse as Response, mockNext);

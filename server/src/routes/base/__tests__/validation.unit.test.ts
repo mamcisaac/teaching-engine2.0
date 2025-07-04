@@ -10,7 +10,7 @@ import {
   createValidationSchema,
   sanitize,
   formatValidationError,
-} from '../validation.js';
+} from '../validation';
 
 describe('Validation Utilities', () => {
   describe('commonValidations', () => {

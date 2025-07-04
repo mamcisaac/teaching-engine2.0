@@ -26,7 +26,7 @@ api.interceptors.request.use(
     // Try to ensure we have a valid token before making the request
     try {
       await authService.ensureValidToken();
-    } catch (error) {
+    } catch (_error) {
       console.warn('Token refresh failed before request:', error);
     }
 

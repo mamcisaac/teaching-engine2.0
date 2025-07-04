@@ -2,14 +2,10 @@
  * Centralized authentication service for managing tokens and auth state
  */
 
-import { api } from '../api';
+import { api } from '../api/legacy/api';
 
-export interface User {
-  id: string;
-  email: string;
-  name: string;
-  role: string;
-}
+// Import User type from shared types
+import type { User } from '../types';
 
 export interface AuthTokens {
   accessToken: string;
@@ -150,7 +146,7 @@ class AuthService {
       }
 
       return data;
-    } catch (error) {
+    } catch (_error) {
       this.clearTokens();
       throw error;
     }
@@ -168,7 +164,7 @@ class AuthService {
           headers: this.getAuthHeaders(),
         },
       );
-    } catch (error) {
+    } catch (_error) {
       console.warn('Logout request failed:', error);
     } finally {
       this.clearTokens();
@@ -227,7 +223,7 @@ class AuthService {
       }
 
       throw new Error('Invalid refresh response');
-    } catch (error) {
+    } catch (_error) {
       console.error('Token refresh failed:', error);
       this.clearTokens();
       return false;
@@ -268,7 +264,7 @@ class AuthService {
       const userData = await response.json();
       this.setUser(userData);
       return userData;
-    } catch (error) {
+    } catch (_error) {
       console.error('Auth verification failed:', error);
 
       // Try token refresh on network errors

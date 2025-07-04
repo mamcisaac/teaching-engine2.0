@@ -150,7 +150,7 @@ describe('handleApiError', () => {
           statusText: 'Too Many Requests',
           headers: { 'retry-after': '60' },
           data: { error: 'Too many requests' },
-          config: {} as any,
+          config: {} as unknown,
         },
         isAxiosError: true,
         name: 'AxiosError',
@@ -530,8 +530,8 @@ describe('optimisticUpdate', () => {
 
     const { optimistic, revert } = optimisticUpdate(getCurrent, update, operation, onError);
 
-    expect((optimistic as any).posts).toHaveLength(2);
-    expect((optimistic as any).posts[1]).toEqual({ id: 2, title: 'New Post' });
+    expect((optimistic as unknown).posts).toHaveLength(2);
+    expect((optimistic as unknown).posts[1]).toEqual({ id: 2, title: 'New Post' });
     expect(revert).toBe(currentValue);
   });
 
@@ -597,7 +597,7 @@ describe('Error handling integration', () => {
 
     try {
       await retryOperation(operation, 2);
-    } catch (error) {
+    } catch (_error) {
       handler(error);
     }
 

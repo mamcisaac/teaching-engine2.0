@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Dialog from './Dialog';
-import { generateSubPlan } from '../api';
+import { generateSubPlan } from '../api/legacy/api';
 
 interface Props {
   onClose: () => void;

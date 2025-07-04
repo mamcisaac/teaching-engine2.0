@@ -36,7 +36,7 @@ router.get('/', authMiddleware, async (req, res) => {
       success: true,
       data: collections,
     });
-  } catch (error) {
+  } catch (_error) {
     console.error('Get collections error:', error);
     res.status(500).json({
       success: false,
@@ -82,7 +82,7 @@ router.get('/:collectionId', authMiddleware, async (req, res) => {
       success: true,
       data: collection,
     });
-  } catch (error) {
+  } catch (_error) {
     console.error('Get collection details error:', error);
     res.status(500).json({
       success: false,
@@ -115,7 +115,7 @@ router.post('/', authMiddleware, async (req, res) => {
       success: true,
       data: collection,
     });
-  } catch (error) {
+  } catch (_error) {
     console.error('Create collection error:', error);
     res.status(400).json({
       success: false,
@@ -160,7 +160,7 @@ router.put('/:collectionId', authMiddleware, async (req, res) => {
       success: true,
       data: updated,
     });
-  } catch (error) {
+  } catch (_error) {
     console.error('Update collection error:', error);
     res.status(400).json({
       success: false,
@@ -197,7 +197,7 @@ router.delete('/:collectionId', authMiddleware, async (req, res) => {
       success: true,
       message: 'Collection deleted successfully',
     });
-  } catch (error) {
+  } catch (_error) {
     console.error('Delete collection error:', error);
     res.status(500).json({
       success: false,
@@ -267,7 +267,7 @@ router.post('/:collectionId/activities', authMiddleware, async (req, res) => {
       success: true,
       data: item,
     });
-  } catch (error) {
+  } catch (_error) {
     console.error('Add activity to collection error:', error);
     res.status(400).json({
       success: false,
@@ -309,7 +309,7 @@ router.delete('/:collectionId/activities/:activityId', authMiddleware, async (re
       success: true,
       message: 'Activity removed from collection',
     });
-  } catch (error) {
+  } catch (_error) {
     console.error('Remove activity from collection error:', error);
     res.status(500).json({
       success: false,
@@ -344,7 +344,7 @@ router.get('/trending/public', authMiddleware, async (req, res) => {
       success: true,
       data: collections,
     });
-  } catch (error) {
+  } catch (_error) {
     console.error('Get trending collections error:', error);
     res.status(500).json({
       success: false,

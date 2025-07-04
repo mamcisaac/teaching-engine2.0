@@ -17,8 +17,8 @@ export interface RenderRequest {
   options: RenderOptions & {
     templateType: string;
     templateId?: string;
-    data?: Record<string, any>;
-    filters?: Record<string, any>;
+    data?: Record<string, unknown>;
+    filters?: Record<string, unknown>;
     fetchData?: boolean;
     useCache?: boolean;
   };
@@ -242,10 +242,10 @@ export class RenderCoordinator extends BaseService {
    * Fetch template data
    */
   private async fetchTemplateData(
-    template: any,
+    template: unknown,
     context: TemplateContext,
     options: RenderRequest['options']
-  ): Promise<Record<string, any>> {
+  ): Promise<Record<string, unknown>> {
     const fetchContext: FetchContext = {
       userId: context.userId,
       filters: options.filters,
@@ -267,7 +267,7 @@ export class RenderCoordinator extends BaseService {
    * Prepare render context
    */
   private async prepareRenderContext(
-    data: Record<string, any>,
+    data: Record<string, unknown>,
     options: RenderRequest['options']
   ): Promise<RenderContext> {
     return {
@@ -315,7 +315,7 @@ export class RenderCoordinator extends BaseService {
   /**
    * Hash object for cache key
    */
-  private hashObject(obj: any): string {
+  private hashObject(obj: unknown): string {
     const str = JSON.stringify(obj, Object.keys(obj).sort());
     let hash = 0;
     
@@ -334,7 +334,7 @@ export class RenderCoordinator extends BaseService {
   public async previewTemplate(
     templateType: string,
     templateId: string,
-    sampleData: Record<string, any> = {},
+    sampleData: Record<string, unknown> = {},
     options: Partial<RenderRequest['options']> = {}
   ): Promise<RenderResponse> {
     const request: RenderRequest = {
@@ -416,7 +416,7 @@ export class RenderCoordinator extends BaseService {
         issues.push(`Missing required partials: ${missingPartials.join(', ')}`);
       }
 
-    } catch (error) {
+    } catch (_error) {
       issues.push(`Validation error: ${error.message}`);
     }
 
@@ -498,8 +498,8 @@ export class RenderCoordinator extends BaseService {
    * Get rendering statistics
    */
   public async getRenderingStats(): Promise<{
-    cacheStats: any;
-    registryStats: any;
+    cacheStats: unknown;
+    registryStats: unknown;
     recentRenders: Array<{
       templateType: string;
       renderTime: number;
@@ -529,7 +529,7 @@ export class RenderCoordinator extends BaseService {
     commonTemplates: Array<{
       templateType: string;
       templateId?: string;
-      sampleData?: Record<string, any>;
+      sampleData?: Record<string, unknown>;
     }>
   ): Promise<void> {
     this.logger.info('Starting cache warmup', { templateCount: commonTemplates.length });
@@ -541,7 +541,7 @@ export class RenderCoordinator extends BaseService {
           template.templateId || 'default',
           template.sampleData || {}
         );
-      } catch (error) {
+      } catch (_error) {
         this.logger.error('Failed to warm up template cache', {
           template,
           error: error.message,

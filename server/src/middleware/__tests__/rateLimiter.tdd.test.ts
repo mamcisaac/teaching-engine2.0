@@ -29,7 +29,7 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
         redis = new Redis(process.env.REDIS_URL || 'redis://localhost:6379/1');
         await redis.ping();
         console.log('Using real Redis for rate limiter tests');
-      } catch (error) {
+      } catch (_error) {
         console.log('Redis not available, using in-memory store');
         redis = null;
       }
@@ -175,7 +175,7 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
       });
 
       app.get('/test/user-limit', userLimiter, (req, res) => {
-        res.json({ userId: (req as any).userId });
+        res.json({ userId: (req as unknown).userId });
       });
 
       // Authenticated requests - should track by user
@@ -216,7 +216,7 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
       const roleLimiter = createRateLimiter({
         windowMs: 60 * 1000,
         max: (req) => {
-          const role = (req as any).user?.role;
+          const role = (req as unknown).user?.role;
           switch (role) {
             case 'ADMIN': return 100;
             case 'PREMIUM': return 50;
@@ -228,7 +228,7 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
       });
 
       app.get('/test/role-limit', roleLimiter, (req, res) => {
-        res.json({ role: (req as any).user?.role || 'anonymous' });
+        res.json({ role: (req as unknown).user?.role || 'anonymous' });
       });
 
       // Regular user gets 10 requests
@@ -489,13 +489,13 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
       const adminSkipLimiter = createRateLimiter({
         windowMs: 60 * 1000,
         max: 1,
-        skip: (req) => (req as any).user?.role === 'ADMIN',
+        skip: (req) => (req as unknown).user?.role === 'ADMIN',
         keyGenerator: (req) => req.user ? `user_${req.user.userId}` : req.ip,
         store: redis || undefined,
       });
 
       app.get('/test/admin-skip', adminSkipLimiter, (req, res) => {
-        res.json({ role: (req as any).user?.role || 'anonymous' });
+        res.json({ role: (req as unknown).user?.role || 'anonymous' });
       });
 
       // Admin can make unlimited requests

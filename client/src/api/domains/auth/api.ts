@@ -1,4 +1,4 @@
-import { apiClient } from '../../core';
+import { apiClient } from '../../core/client';
 import type { User, LoginCredentials, RegisterData, TokenResponse } from '../../../types';
 
 // API endpoints

@@ -4,7 +4,7 @@ import { X, Edit, Trash2, Calendar, Clock, Book } from 'lucide-react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
-import { api } from '../../api';
+import { api } from '../../api/legacy/api';
 import { Button } from '../ui/Button';
 
 interface CalendarViewEvent {

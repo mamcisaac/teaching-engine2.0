@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useUploadMediaResource } from '../api';
+import { useUploadMediaResource } from '../api/legacy/api';
 
 // Updated for ETFO-aligned media resource uploads
 export default function FileUpload() {

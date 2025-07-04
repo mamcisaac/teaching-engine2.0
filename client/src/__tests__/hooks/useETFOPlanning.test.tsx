@@ -69,7 +69,7 @@ describe('useETFOPlanning hooks', () => {
           { id: '2', title: 'Grade 3 Language', grade: 3, subject: 'Language Arts' },
         ];
         
-        (api.api.get as any).mockResolvedValueOnce({ data: mockPlans });
+        (api.api.get as unknown).mockResolvedValueOnce({ data: mockPlans });
 
         const { result } = renderHook(() => useLongRangePlans(), { wrapper });
 
@@ -84,7 +84,7 @@ describe('useETFOPlanning hooks', () => {
 
       it('handles API error', async () => {
         const mockError = new Error('API Error');
-        (api.api.get as any).mockRejectedValueOnce(mockError);
+        (api.api.get as unknown).mockRejectedValueOnce(mockError);
 
         const { result } = renderHook(() => useLongRangePlans(), { wrapper });
 
@@ -98,7 +98,7 @@ describe('useETFOPlanning hooks', () => {
     describe('useLongRangePlan', () => {
       it('fetches single long range plan', async () => {
         const mockPlan = { id: '1', title: 'Grade 3 Math', grade: 3 };
-        (api.api.get as any).mockResolvedValueOnce({ data: mockPlan });
+        (api.api.get as unknown).mockResolvedValueOnce({ data: mockPlan });
 
         const { result } = renderHook(() => useLongRangePlan('1'), { wrapper });
 
@@ -122,7 +122,7 @@ describe('useETFOPlanning hooks', () => {
         const newPlan = { title: 'New Plan', grade: 3, subject: 'Mathematics' };
         const createdPlan = { id: '3', ...newPlan };
         
-        (api.api.post as any).mockResolvedValueOnce({ data: createdPlan });
+        (api.api.post as unknown).mockResolvedValueOnce({ data: createdPlan });
 
         const { result } = renderHook(() => useCreateLongRangePlan(), { wrapper });
 
@@ -137,7 +137,7 @@ describe('useETFOPlanning hooks', () => {
 
       it('handles creation error', async () => {
         const mockError = new Error('Creation failed');
-        (api.api.post as any).mockRejectedValueOnce(mockError);
+        (api.api.post as unknown).mockRejectedValueOnce(mockError);
 
         const { result } = renderHook(() => useCreateLongRangePlan(), { wrapper });
 
@@ -153,7 +153,7 @@ describe('useETFOPlanning hooks', () => {
     describe('useUpdateLongRangePlan', () => {
       it('updates long range plan successfully', async () => {
         const updatedPlan = { id: '1', title: 'Updated Plan' };
-        (api.api.put as any).mockResolvedValueOnce({ data: updatedPlan });
+        (api.api.put as unknown).mockResolvedValueOnce({ data: updatedPlan });
 
         const { result } = renderHook(() => useUpdateLongRangePlan(), { wrapper });
 
@@ -169,7 +169,7 @@ describe('useETFOPlanning hooks', () => {
 
     describe('useDeleteLongRangePlan', () => {
       it('deletes long range plan successfully', async () => {
-        (api.api.delete as any).mockResolvedValueOnce({});
+        (api.api.delete as unknown).mockResolvedValueOnce({});
 
         const { result } = renderHook(() => useDeleteLongRangePlan(), { wrapper });
 
@@ -188,7 +188,7 @@ describe('useETFOPlanning hooks', () => {
     describe('useUnitPlans', () => {
       it('fetches unit plans for long range plan', async () => {
         const mockUnits = [mockUnitPlan];
-        (api.api.get as any).mockResolvedValueOnce({ data: mockUnits });
+        (api.api.get as unknown).mockResolvedValueOnce({ data: mockUnits });
 
         const { result } = renderHook(() => useUnitPlans({ longRangePlanId: '1' }), { wrapper });
 
@@ -201,7 +201,7 @@ describe('useETFOPlanning hooks', () => {
 
       it('fetches all unit plans when no longRangePlanId provided', async () => {
         const mockUnits = [mockUnitPlan];
-        (api.api.get as any).mockResolvedValueOnce({ data: mockUnits });
+        (api.api.get as unknown).mockResolvedValueOnce({ data: mockUnits });
 
         const { result } = renderHook(() => useUnitPlans(), { wrapper });
 
@@ -218,7 +218,7 @@ describe('useETFOPlanning hooks', () => {
         const newUnit = { title: 'New Unit', longRangePlanId: '1' };
         const createdUnit = { id: '2', ...newUnit };
         
-        (api.api.post as any).mockResolvedValueOnce({ data: createdUnit });
+        (api.api.post as unknown).mockResolvedValueOnce({ data: createdUnit });
 
         const { result } = renderHook(() => useCreateUnitPlan(), { wrapper });
 
@@ -237,7 +237,7 @@ describe('useETFOPlanning hooks', () => {
     describe('useETFOLessonPlans', () => {
       it('fetches lesson plans for unit', async () => {
         const mockLessons = [mockLessonPlan];
-        (api.api.get as any).mockResolvedValueOnce({ data: mockLessons });
+        (api.api.get as unknown).mockResolvedValueOnce({ data: mockLessons });
 
         const { result } = renderHook(() => useETFOLessonPlans({ unitPlanId: '1' }), { wrapper });
 
@@ -250,7 +250,7 @@ describe('useETFOPlanning hooks', () => {
 
       it('fetches all lesson plans when no unitId provided', async () => {
         const mockLessons = [mockLessonPlan];
-        (api.api.get as any).mockResolvedValueOnce({ data: mockLessons });
+        (api.api.get as unknown).mockResolvedValueOnce({ data: mockLessons });
 
         const { result } = renderHook(() => useETFOLessonPlans(), { wrapper });
 
@@ -264,7 +264,7 @@ describe('useETFOPlanning hooks', () => {
 
     describe('useETFOLessonPlan', () => {
       it('fetches single lesson plan', async () => {
-        (api.api.get as any).mockResolvedValueOnce({ data: mockLessonPlan });
+        (api.api.get as unknown).mockResolvedValueOnce({ data: mockLessonPlan });
 
         const { result } = renderHook(() => useETFOLessonPlan('1'), { wrapper });
 
@@ -281,7 +281,7 @@ describe('useETFOPlanning hooks', () => {
         const newLesson = { title: 'New Lesson', unitId: '1' };
         const createdLesson = { id: '2', ...newLesson };
         
-        (api.api.post as any).mockResolvedValueOnce({ data: createdLesson });
+        (api.api.post as unknown).mockResolvedValueOnce({ data: createdLesson });
 
         const { result } = renderHook(() => useCreateETFOLessonPlan(), { wrapper });
 
@@ -298,7 +298,7 @@ describe('useETFOPlanning hooks', () => {
     describe('useUpdateETFOLessonPlan', () => {
       it('updates lesson plan successfully', async () => {
         const updatedLesson = { id: '1', title: 'Updated Lesson' };
-        (api.api.put as any).mockResolvedValueOnce({ data: updatedLesson });
+        (api.api.put as unknown).mockResolvedValueOnce({ data: updatedLesson });
 
         const { result } = renderHook(() => useUpdateETFOLessonPlan(), { wrapper });
 
@@ -314,7 +314,7 @@ describe('useETFOPlanning hooks', () => {
 
     describe('useDeleteETFOLessonPlan', () => {
       it('deletes lesson plan successfully', async () => {
-        (api.api.delete as any).mockResolvedValueOnce({});
+        (api.api.delete as unknown).mockResolvedValueOnce({});
 
         const { result } = renderHook(() => useDeleteETFOLessonPlan(), { wrapper });
 
@@ -341,7 +341,7 @@ describe('useETFOPlanning hooks', () => {
           },
         ];
         
-        (api.api.get as any).mockResolvedValueOnce({ data: mockEntries });
+        (api.api.get as unknown).mockResolvedValueOnce({ data: mockEntries });
 
         const { result } = renderHook(
           () => useDaybookEntries({ startDate: '2024-01-15', endDate: '2024-01-19' }),
@@ -356,8 +356,8 @@ describe('useETFOPlanning hooks', () => {
       });
 
       it('calls API with empty query string when no dates provided', async () => {
-        const mockEntries: any[] = [];
-        (api.api.get as any).mockResolvedValueOnce({ data: mockEntries });
+        const mockEntries: unknown[] = [];
+        (api.api.get as unknown).mockResolvedValueOnce({ data: mockEntries });
 
         const { result } = renderHook(
           () => useDaybookEntries(),
@@ -380,7 +380,7 @@ describe('useETFOPlanning hooks', () => {
         };
         const createdEntry = { id: '2', ...newEntry };
         
-        (api.api.post as any).mockResolvedValueOnce({ data: createdEntry });
+        (api.api.post as unknown).mockResolvedValueOnce({ data: createdEntry });
 
         const { result } = renderHook(() => useCreateDaybookEntry(), { wrapper });
 
@@ -401,7 +401,7 @@ describe('useETFOPlanning hooks', () => {
           morningReflection: 'Updated reflection',
         };
         
-        (api.api.put as any).mockResolvedValueOnce({ data: updatedEntry });
+        (api.api.put as unknown).mockResolvedValueOnce({ data: updatedEntry });
 
         const { result } = renderHook(() => useUpdateDaybookEntry(), { wrapper });
 
@@ -421,7 +421,7 @@ describe('useETFOPlanning hooks', () => {
       const invalidateQueriesSpy = vi.spyOn(queryClient, 'invalidateQueries');
       
       const newPlan = { title: 'New Plan', grade: 3 };
-      (api.api.post as any).mockResolvedValueOnce({ data: { id: '1', ...newPlan } });
+      (api.api.post as unknown).mockResolvedValueOnce({ data: { id: '1', ...newPlan } });
 
       const { result } = renderHook(() => useCreateLongRangePlan(), { wrapper });
 
@@ -440,7 +440,7 @@ describe('useETFOPlanning hooks', () => {
       const invalidateQueriesSpy = vi.spyOn(queryClient, 'invalidateQueries');
       
       const updatedPlan = { id: '1', title: 'Updated Plan' };
-      (api.api.put as any).mockResolvedValueOnce({ data: updatedPlan });
+      (api.api.put as unknown).mockResolvedValueOnce({ data: updatedPlan });
 
       const { result } = renderHook(() => useUpdateLongRangePlan(), { wrapper });
 
@@ -458,7 +458,7 @@ describe('useETFOPlanning hooks', () => {
     it('invalidates related queries after successful deletion', async () => {
       const invalidateQueriesSpy = vi.spyOn(queryClient, 'invalidateQueries');
       
-      (api.api.delete as any).mockResolvedValueOnce({});
+      (api.api.delete as unknown).mockResolvedValueOnce({});
 
       const { result } = renderHook(() => useDeleteLongRangePlan(), { wrapper });
 

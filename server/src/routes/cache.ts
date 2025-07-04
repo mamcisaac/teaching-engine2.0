@@ -34,7 +34,7 @@ router.get('/stats', async (req, res) => {
         timestamp: new Date().toISOString()
       }
     });
-  } catch (error) {
+  } catch (_error) {
     logger.error('Error getting cache stats:', error);
     res.status(500).json({
       success: false,
@@ -60,7 +60,7 @@ router.get('/health', async (req, res) => {
         timestamp: new Date().toISOString()
       }
     });
-  } catch (error) {
+  } catch (_error) {
     logger.error('Error checking cache health:', error);
     res.status(500).json({
       success: false,
@@ -82,7 +82,7 @@ router.post('/warmup', async (req, res) => {
       message: 'Cache warm-up completed',
       timestamp: new Date().toISOString()
     });
-  } catch (error) {
+  } catch (_error) {
     logger.error('Error warming up cache:', error);
     res.status(500).json({
       success: false,
@@ -106,7 +106,7 @@ router.delete('/all', async (req, res) => {
       message: 'All caches cleared successfully',
       timestamp: new Date().toISOString()
     });
-  } catch (error) {
+  } catch (_error) {
     logger.error('Error clearing all caches:', error);
     res.status(500).json({
       success: false,
@@ -132,7 +132,7 @@ router.delete('/:cacheType', async (req, res) => {
       });
     }
     
-    clearCache(cacheType as any);
+    clearCache(cacheType as unknown);
     
     logger.info(`Cache cleared: ${cacheType}`, { userId: req.user?.id });
     
@@ -141,7 +141,7 @@ router.delete('/:cacheType', async (req, res) => {
       message: `Cache '${cacheType}' cleared successfully`,
       timestamp: new Date().toISOString()
     });
-  } catch (error) {
+  } catch (_error) {
     logger.error('Error clearing cache:', error);
     res.status(500).json({
       success: false,
@@ -178,7 +178,7 @@ router.get('/memory', async (req, res) => {
         timestamp: new Date().toISOString()
       }
     });
-  } catch (error) {
+  } catch (_error) {
     logger.error('Error getting cache memory usage:', error);
     res.status(500).json({
       success: false,

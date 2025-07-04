@@ -47,13 +47,13 @@ vi.mock('../../types/template', () => ({
 // Mock Dialog component
 vi.mock('../../components/Dialog', () => ({
   __esModule: true,
-  default: ({ open, onOpenChange, children }: any) =>
+  default: ({ open, onOpenChange, children }: unknown) =>
     open ? <div data-testid="dialog">{children}</div> : null,
 }));
 
 // Mock LoadingStates component
 vi.mock('../../components/LoadingStates', () => ({
-  LoadingSpinner: ({ size, message }: any) => (
+  LoadingSpinner: ({ size, message }: unknown) => (
     <div data-testid="loading-spinner" data-size={size}>
       {message}
     </div>

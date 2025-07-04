@@ -398,7 +398,7 @@ export default function DaybookPage() {
         title: 'Success',
         description: 'Daybook entry saved successfully',
       });
-    } catch (error) {
+    } catch (_error) {
       toast({
         title: 'Error',
         description: 'Failed to save daybook entry',

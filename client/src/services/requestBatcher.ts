@@ -132,7 +132,7 @@ class RequestBatcher {
       }
 
       pending.resolve(response.data);
-    } catch (error) {
+    } catch (_error) {
       pending.reject(error);
     }
   }
@@ -170,7 +170,7 @@ class RequestBatcher {
           pending.reject(new Error('No response received for request'));
         }
       }
-    } catch (error) {
+    } catch (_error) {
       // If batch fails, fall back to individual requests
       console.warn('Batch request failed, falling back to individual requests:', error);
       
@@ -246,7 +246,7 @@ export function createDebouncedRequest<T extends (...args: Parameters<T>) => Pro
           try {
             const result = await fn(...(lastArgs as Parameters<T>));
             resolve(result);
-          } catch (error) {
+          } catch (_error) {
             reject(error);
           } finally {
             timeout = null;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { api } from '../api';
+import { api } from '../api/legacy/api';
 
 export interface AISuggestion {
   type: 'goals' | 'bigIdeas' | 'activities' | 'materials' | 'assessments' | 'reflections';

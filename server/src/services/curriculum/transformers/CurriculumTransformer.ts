@@ -102,7 +102,7 @@ export class CurriculumTransformer {
         source: options.sourceFile,
       },
       // Relations will be connected in the service
-      subject: undefined as any, // Will be connected by service
+      subject: undefined as unknown, // Will be connected by service
     };
   }
 
@@ -111,7 +111,7 @@ export class CurriculumTransformer {
    */
   transformForUpdate(
     parsed: ParsedCurriculum,
-    existingExpectations: any[],
+    existingExpectations: unknown[],
     options: TransformOptions
   ): {
     toCreate: Prisma.CurriculumExpectationCreateInput[];
@@ -150,7 +150,7 @@ export class CurriculumTransformer {
               substrand: expectation.substrand,
               keywords: expectation.keywords || [],
               metadata: {
-                ...(existing.metadata as any || {}),
+                ...(existing.metadata as unknown || {}),
                 lastUpdated: new Date().toISOString(),
                 updateSource: options.sourceFile,
               },
@@ -178,7 +178,7 @@ export class CurriculumTransformer {
   /**
    * Check if expectation has changes
    */
-  private hasChanges(parsed: ParsedExpectation, existing: any): boolean {
+  private hasChanges(parsed: ParsedExpectation, existing: unknown): boolean {
     return (
       parsed.description !== existing.description ||
       parsed.type !== existing.type ||
@@ -192,9 +192,9 @@ export class CurriculumTransformer {
    * Transform to export format
    */
   static transformForExport(
-    expectations: any[],
+    expectations: unknown[],
     format: 'csv' | 'json' | 'excel' = 'json'
-  ): any {
+  ): unknown {
     switch (format) {
       case 'csv':
         return expectations.map(e => ({

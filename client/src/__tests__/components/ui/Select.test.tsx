@@ -7,7 +7,7 @@ import { renderWithProviders } from '../../../test-utils';
 describe('Select', () => {
   const user = userEvent.setup();
 
-  const BasicSelect = ({ onValueChange, value, disabled = false }: any) => (
+  const BasicSelect = ({ onValueChange, value, disabled = false }: unknown) => (
     <Select onValueChange={onValueChange} value={value} disabled={disabled}>
       <SelectTrigger>
         <SelectValue placeholder="Select an option" />

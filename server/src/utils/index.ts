@@ -15,7 +15,7 @@ export {
   ValidationError,
   NotFoundError,
   asyncHandler,
-  handleErrorResponse,
+  handleErrorResponse as _handleErrorResponse,
   assertExists,
   assertAuthorized,
 } from './errors';

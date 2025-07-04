@@ -138,7 +138,7 @@ export class LessonTemplateProvider extends TemplateProvider {
           });
         }
       }
-    } catch (error) {
+    } catch (_error) {
       // Directory might not exist, which is fine
     }
   }

@@ -44,7 +44,7 @@ const createMockUnitPlan = (overrides: Partial<UnitPlan> = {}): UnitPlan => ({
     { id: 'B1.1', code: 'B1.1', description: 'Represent fractions' },
     { id: 'B1.2', code: 'B1.2', description: 'Compare fractions' },
     { id: 'B1.3', code: 'B1.3', description: 'Add fractions' },
-  ] as any,
+  ] as unknown,
   lessonPlans: [],
   _count: {
     lessonPlans: 5,
@@ -109,7 +109,7 @@ describe('UnitPlanService', () => {
           createMockLessonPlan(3, true), // completed
           createMockLessonPlan(4, false), // not completed
           createMockLessonPlan(5, true), // completed
-        ] as any,
+        ] as unknown,
       });
 
       const result = UnitPlanService.calculateProgress(unit);
@@ -128,7 +128,7 @@ describe('UnitPlanService', () => {
 
     it('should return 0 for unit with undefined lesson count', () => {
       const unit = createMockUnitPlan({
-        _count: undefined as any,
+        _count: undefined as unknown,
         lessonPlans: [],
       });
 
@@ -143,7 +143,7 @@ describe('UnitPlanService', () => {
           createMockLessonPlan(1, true),
           createMockLessonPlan(2, true),
           createMockLessonPlan(3, true),
-        ] as any,
+        ] as unknown,
       });
 
       const result = UnitPlanService.calculateProgress(unit);
@@ -157,7 +157,7 @@ describe('UnitPlanService', () => {
           createMockLessonPlan(1, false),
           createMockLessonPlan(2, false),
           createMockLessonPlan(3, false),
-        ] as any,
+        ] as unknown,
       });
 
       const result = UnitPlanService.calculateProgress(unit);
@@ -167,7 +167,7 @@ describe('UnitPlanService', () => {
     it('should handle undefined lessonPlans array', () => {
       const unit = createMockUnitPlan({
         _count: { lessonPlans: 3, expectations: 3, resources: 0 },
-        lessonPlans: undefined as any,
+        lessonPlans: undefined as unknown,
       });
 
       const result = UnitPlanService.calculateProgress(unit);
@@ -181,7 +181,7 @@ describe('UnitPlanService', () => {
           createMockLessonPlan(1, true), // completed
           createMockLessonPlan(2, false), // not completed
           createMockLessonPlan(3, false), // not completed
-        ] as any,
+        ] as unknown,
       });
 
       const result = UnitPlanService.calculateProgress(unit);
@@ -301,7 +301,7 @@ describe('UnitPlanService', () => {
     });
 
     it('should handle undefined essential questions', () => {
-      const unit = createMockUnitPlan({ essentialQuestions: undefined as any });
+      const unit = createMockUnitPlan({ essentialQuestions: undefined as unknown });
 
       const result = UnitPlanService.formatForExport(unit);
 
@@ -446,9 +446,9 @@ describe('UnitPlanService', () => {
 
     it('should handle undefined fields', () => {
       const unit = createMockUnitPlan({
-        title: undefined as any,
-        essentialQuestions: undefined as any,
-        expectations: undefined as any,
+        title: undefined as unknown,
+        essentialQuestions: undefined as unknown,
+        expectations: undefined as unknown,
       });
 
       const result = UnitPlanService.isComplete(unit);
@@ -482,7 +482,7 @@ describe('UnitPlanService', () => {
     });
 
     it('should handle missing progress', () => {
-      const unit = createMockUnitPlan({ progress: undefined as any });
+      const unit = createMockUnitPlan({ progress: undefined as unknown });
 
       const result = UnitPlanService.getStatusColor(unit);
 
@@ -524,7 +524,7 @@ describe('UnitPlanService', () => {
       const unit = createMockUnitPlan({
         startDate: '2023-12-01',
         endDate: '2023-12-14', // 14 days = 2 weeks
-        _count: undefined as any,
+        _count: undefined as unknown,
       });
 
       const result = UnitPlanService.generateSummary(unit);
@@ -538,7 +538,7 @@ describe('UnitPlanService', () => {
         endDate: '2023-12-07', // 7 days = 1 week
         _count: {
           lessonPlans: 3,
-          expectations: undefined as any,
+          expectations: undefined as unknown,
           resources: 0,
         },
       });
@@ -570,10 +570,10 @@ describe('UnitPlanService', () => {
 
   describe('Edge cases and error handling', () => {
     it('should handle null or undefined inputs gracefully', () => {
-      expect(() => UnitPlanService.calculateProgress(null as any)).toThrow();
+      expect(() => UnitPlanService.calculateProgress(null as unknown)).toThrow();
       expect(() => UnitPlanService.validateDateRange('', '')).not.toThrow();
-      expect(() => UnitPlanService.formatForExport(null as any)).toThrow();
-      expect(() => UnitPlanService.isComplete(null as any)).toThrow();
+      expect(() => UnitPlanService.formatForExport(null as unknown)).toThrow();
+      expect(() => UnitPlanService.isComplete(null as unknown)).toThrow();
     });
 
     it('should handle very large date ranges', () => {
@@ -604,7 +604,7 @@ describe('UnitPlanService', () => {
     it('should handle very small progress calculations', () => {
       const unit = createMockUnitPlan({
         _count: { lessonPlans: 1000, expectations: 3, resources: 0 },
-        lessonPlans: [createMockLessonPlan(1, true)] as any, // 1 out of 1000
+        lessonPlans: [createMockLessonPlan(1, true)] as unknown, // 1 out of 1000
       });
 
       const result = UnitPlanService.calculateProgress(unit);

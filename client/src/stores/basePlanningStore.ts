@@ -162,7 +162,7 @@ async function syncWithServer<T extends Record<string, unknown>>(
     // Cache the latest data
     await offlineStorage.cacheData(config.getCacheKey(), state, 60); // Cache for 1 hour
 
-  } catch (error) {
+  } catch (_error) {
     console.error('Sync failed:', error);
     set((s) => ({
       ...s,
@@ -288,7 +288,7 @@ export function createAutoSave(
       if (state.hasOfflineChanges && !state.isSaving) {
         try {
           await saveFunction();
-        } catch (error) {
+        } catch (_error) {
           console.error('Auto-save failed:', error);
         }
       }

@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
-import { authService, type User } from '../services/authService';
+import { authService } from '../services/authService';
+import type { User } from '../types';
 
 interface AuthContextValue {
   user: User | null;
@@ -51,7 +52,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const userData = await authService.verifyAuth();
       updateAuthState(userData);
       setRetryCount(0); // Reset retry count on success
-    } catch (error) {
+    } catch (_error) {
       console.error('Auth check failed:', error);
       updateAuthState(null);
 
@@ -74,7 +75,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const response = await authService.login(email, password);
         updateAuthState(response.user);
         setRetryCount(0);
-      } catch (error) {
+      } catch (_error) {
         console.error('Login failed:', error);
 
         // Extract user-friendly error message
@@ -109,7 +110,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     try {
       await authService.logout();
-    } catch (error) {
+    } catch (_error) {
       console.error('Logout failed:', error);
       // Don't show error for logout failures, just clear local state
     } finally {
@@ -135,7 +136,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         updateAuthState(null);
         return false;
       }
-    } catch (error) {
+    } catch (_error) {
       console.error('Token refresh failed:', error);
       updateAuthState(null);
       return false;
@@ -176,7 +177,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           authService.clearTokens();
           updateAuthState(null);
         }
-      } catch (error) {
+      } catch (_error) {
         console.error('Initial auth check failed:', error);
         if (isMounted) {
           updateAuthState(null);
@@ -204,7 +205,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const interval = setInterval(async () => {
       try {
         await authService.ensureValidToken();
-      } catch (error) {
+      } catch (_error) {
         console.error('Auto token refresh failed:', error);
       }
     }, 60000); // Check every minute

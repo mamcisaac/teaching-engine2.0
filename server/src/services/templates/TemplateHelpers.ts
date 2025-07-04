@@ -222,7 +222,7 @@ export class TemplateHelpers extends BaseService {
     // Comparison helpers
     this.registerHelper('eq', {
       name: 'eq',
-      fn: (a: any, b: any) => a === b,
+      fn: (a: unknown, b: unknown) => a === b,
       description: 'Check if values are equal',
       category: 'comparison',
       examples: ['{{#if (eq status "active")}}...{{/if}}'],
@@ -230,7 +230,7 @@ export class TemplateHelpers extends BaseService {
 
     this.registerHelper('ne', {
       name: 'ne',
-      fn: (a: any, b: any) => a !== b,
+      fn: (a: unknown, b: unknown) => a !== b,
       description: 'Check if values are not equal',
       category: 'comparison',
       examples: ['{{#if (ne status "inactive")}}...{{/if}}'],
@@ -290,7 +290,7 @@ export class TemplateHelpers extends BaseService {
     // Array helpers
     this.registerHelper('first', {
       name: 'first',
-      fn: (array: any[]) => array && array.length > 0 ? array[0] : null,
+      fn: (array: unknown[]) => array && array.length > 0 ? array[0] : null,
       description: 'Get first item from array',
       category: 'array',
       examples: ['{{first students}}'],
@@ -298,7 +298,7 @@ export class TemplateHelpers extends BaseService {
 
     this.registerHelper('last', {
       name: 'last',
-      fn: (array: any[]) => array && array.length > 0 ? array[array.length - 1] : null,
+      fn: (array: unknown[]) => array && array.length > 0 ? array[array.length - 1] : null,
       description: 'Get last item from array',
       category: 'array',
       examples: ['{{last grades}}'],
@@ -306,7 +306,7 @@ export class TemplateHelpers extends BaseService {
 
     this.registerHelper('length', {
       name: 'length',
-      fn: (array: any[]) => array ? array.length : 0,
+      fn: (array: unknown[]) => array ? array.length : 0,
       description: 'Get array length',
       category: 'array',
       examples: ['{{length students}}'],
@@ -314,7 +314,7 @@ export class TemplateHelpers extends BaseService {
 
     this.registerHelper('join', {
       name: 'join',
-      fn: (array: any[], separator: string = ', ') => {
+      fn: (array: unknown[], separator: string = ', ') => {
         if (!array || !Array.isArray(array)) return '';
         return array.join(separator);
       },
@@ -484,7 +484,7 @@ export class TemplateHelpers extends BaseService {
   /**
    * Test helper function
    */
-  public testHelper(name: string, ...args: any[]): any {
+  public testHelper(name: string, ...args: unknown[]): unknown {
     const helper = this.getHelper(name);
     if (!helper) {
       throw new Error(`Helper not found: ${name}`);
@@ -492,7 +492,7 @@ export class TemplateHelpers extends BaseService {
 
     try {
       return helper(...args);
-    } catch (error) {
+    } catch (_error) {
       this.logger.error('Helper test failed', { name, args, error: error.message });
       throw error;
     }
@@ -513,7 +513,7 @@ export class TemplateHelpers extends BaseService {
         } else {
           valid.push(name);
         }
-      } catch (error) {
+      } catch (_error) {
         invalid.push({ name, error: error.message });
       }
     }
