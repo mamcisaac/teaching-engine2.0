@@ -37,7 +37,9 @@ export function register(config?: ServiceWorkerConfig) {
 
         // Add some additional logging to localhost
         navigator.serviceWorker.ready.then(() => {
-          console.log('This web app is being served cache-first by a service worker.');
+          if (process.env.NODE_ENV === 'development') {
+            console.info('This web app is being served cache-first by a service worker.');
+          }
         });
       } else {
         // Is not localhost. Just register service worker
@@ -47,7 +49,9 @@ export function register(config?: ServiceWorkerConfig) {
 
     // Listen for online/offline events
     window.addEventListener('online', () => {
-      console.log('Back online');
+      if (process.env.NODE_ENV === 'development') {
+        console.info('Back online');
+      }
       config?.onOnline?.();
 
       // Trigger background sync
@@ -59,7 +63,9 @@ export function register(config?: ServiceWorkerConfig) {
     });
 
     window.addEventListener('offline', () => {
-      console.log('Gone offline');
+      if (process.env.NODE_ENV === 'development') {
+        console.info('Gone offline');
+      }
       config?.onOffline?.();
     });
   }
@@ -80,7 +86,9 @@ function registerValidSW(swUrl: string, config?: ServiceWorkerConfig) {
               // At this point, the updated precached content has been fetched,
               // but the previous service worker will still serve the older
               // content until all client tabs are closed.
-              console.log('New content is available and will be used when all tabs are closed.');
+              if (process.env.NODE_ENV === 'development') {
+                console.info('New content is available and will be used when all tabs are closed.');
+              }
 
               // Execute callback
               if (config && config.onUpdate) {
@@ -88,7 +96,9 @@ function registerValidSW(swUrl: string, config?: ServiceWorkerConfig) {
               }
             } else {
               // At this point, everything has been precached.
-              console.log('Content is cached for offline use.');
+              if (process.env.NODE_ENV === 'development') {
+                console.info('Content is cached for offline use.');
+              }
 
               // Execute callback
               if (config && config.onSuccess) {
@@ -128,7 +138,9 @@ function checkValidServiceWorker(swUrl: string, config?: ServiceWorkerConfig) {
       }
     })
     .catch(() => {
-      console.log('No internet connection found. App is running in offline mode.');
+      if (process.env.NODE_ENV === 'development') {
+        console.info('No internet connection found. App is running in offline mode.');
+      }
     });
 }
 

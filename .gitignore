@@ -187,3 +187,9 @@ client/.vite-cache/
 
 # Jest cache
 server/.jest-cache/
+
+# Pact files
+client/pacts/
+server/pacts/
+pact-logs/
+.pact/

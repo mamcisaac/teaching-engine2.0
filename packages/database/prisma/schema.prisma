@@ -50,6 +50,9 @@ model ClassroomAnnouncement {
   contentEn    String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  
+  @@index([userId, createdAt])
+  @@index([userId, updatedAt])
 }
 
 
@@ -256,6 +259,9 @@ model CurriculumImport {
   
   @@index([userId, status])
   @@index([createdAt])
+  @@index([userId, createdAt]) // User's imports by date
+  @@index([status, createdAt]) // Status with date filter
+  @@index([userId, status, createdAt]) // User's imports by status and date
 }
 
 // Stores clustered groups of related expectations for intelligent curriculum organization
@@ -334,6 +340,9 @@ model CurriculumExpectation {
   
   @@index([subject, grade])
   @@index([code])
+  @@index([strand, grade]) // For strand-based filtering
+  @@index([subject, strand]) // For subject-strand combinations
+  @@index([subject, grade, strand]) // Full curriculum filter
 }
 
 // Vector embeddings for curriculum expectations (for AI clustering)
@@ -386,6 +395,10 @@ model LongRangePlan {
   
   @@index([userId, academicYear])
   @@index([userId, subject, grade])
+  @@index([academicYear, grade, subject]) // For academic year overview queries
+  @@index([userId, updatedAt]) // For recent activity
+  @@index([userId, academicYear, subject]) // User's plans by year and subject
+  @@index([academicYear, subject, grade]) // Academic year overview with subject filter
 }
 
 // Junction table for Long-Range Plans and Curriculum Expectations
@@ -453,6 +466,10 @@ model UnitPlan {
   
   @@index([userId, startDate])
   @@index([longRangePlanId])
+  @@index([userId, updatedAt])  // For recent activity queries
+  @@index([startDate, endDate]) // For date range queries
+  @@index([userId, startDate, endDate]) // User's units by date range
+  @@index([longRangePlanId, startDate]) // Plan units by start date
 }
 
 // Junction table for Unit Plans and Curriculum Expectations
@@ -541,6 +558,15 @@ model ETFOLessonPlan {
   @@index([unitPlanId])
   @@index([grade, subject])
   @@index([language])
+  @@index([userId, isSubFriendly]) // For substitute-friendly lesson queries
+  @@index([userId, assessmentType]) // For assessment filtering
+  @@index([userId, updatedAt]) // For recent activity queries
+  @@index([date, duration]) // For time-based scheduling queries
+  @@index([userId, date, grade]) // User's lessons by date and grade
+  @@index([userId, date, subject]) // User's lessons by date and subject
+  @@index([grade, subject, date]) // Grade/subject with date range
+  @@index([userId, grade, subject]) // User's lessons by grade and subject
+  @@index([isSubFriendly, grade, subject]) // Sub-friendly lessons by grade/subject
 }
 
 // Junction table for Lesson Plans and Curriculum Expectations
@@ -608,6 +634,12 @@ model DaybookEntry {
   updatedAt    DateTime @updatedAt
   
   @@index([userId, date])
+  @@index([userId, overallRating]) // For rating-based queries
+  @@index([userId, updatedAt]) // For recent entries
+  @@index([lessonPlanId]) // For lesson plan relationship queries
+  @@index([userId, date, overallRating]) // User's entries by date with rating filter
+  @@index([date, overallRating]) // Global date range with rating
+  @@index([userId, wouldReuseLesson]) // Filter for reusable lessons
 }
 
 // Junction table for Daybook Entries and Curriculum Expectations
@@ -676,6 +708,10 @@ model ExternalActivity {
   @@index([subject, gradeMin, gradeMax])
   @@index([activityType, language])
   @@index([isActive, lastVerified])
+  @@index([isActive, subject, gradeMin, gradeMax])  // Active activities by subject/grade
+  @@index([isActive, activityType, subject])        // Active activities by type/subject
+  @@index([internalRating, subject])               // Highly rated by subject
+  @@index([isFree, subject, gradeMin, gradeMax])   // Free activities by subject/grade
 }
 
 model ActivityImport {
@@ -877,6 +913,9 @@ model PlanTemplate {
   @@index([isSystem])
   @@index([createdByUserId])
   @@index([usageCount])
+  @@index([isSystem, averageRating]) // For system template ranking
+  @@index([createdByUserId, type]) // For user's templates by type
+  @@index([lastUsedAt]) // For recently used templates
 }
 
 model TemplateRating {
@@ -964,6 +1003,9 @@ model Newsletter {
   @@index([userId, isDraft])
   @@index([userId, sentAt])
   @@index([dateFrom, dateTo])
+  @@index([userId, dateFrom, dateTo]) // User's newsletters by date range
+  @@index([isDraft, sentAt]) // Draft status with send date
+  @@index([userId, createdAt]) // User's newsletters by creation date
 }
 
 // Substitute Plan System - Comprehensive substitute teacher planning
@@ -1008,4 +1050,8 @@ model SubstitutePlan {
   @@index([userId, dateFor])
   @@index([userId, isActive])
   @@index([grade, subject])
+  @@index([userId, dateFor, grade]) // User's sub plans by date and grade
+  @@index([dateFor, grade, subject]) // Date range with grade/subject
+  @@index([isActive, dateFor]) // Active plans by date
+  @@index([userId, isActive, dateFor]) // User's active plans by date
 }

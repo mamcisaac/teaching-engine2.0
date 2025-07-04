@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { UnitPlan } from '../../hooks/useETFOPlanning';
 
@@ -7,14 +7,28 @@ interface UnitPlanCardProps {
   onEdit: (unit: UnitPlan) => void;
 }
 
-export const UnitPlanCard: React.FC<UnitPlanCardProps> = ({ unit, onEdit }) => {
+export const UnitPlanCard: React.FC<UnitPlanCardProps> = memo(function UnitPlanCard({ unit, onEdit }) {
+  // Memoize expensive date formatting
+  const dateRange = useMemo(() => {
+    const startDate = new Date(unit.startDate).toLocaleDateString();
+    const endDate = new Date(unit.endDate).toLocaleDateString();
+    return `${startDate} - ${endDate}`;
+  }, [unit.startDate, unit.endDate]);
+
+  // Memoize count calculations
+  const counts = useMemo(() => ({
+    lessons: unit._count?.lessonPlans || 0,
+    expectations: unit._count?.expectations || 0,
+    hours: unit.estimatedHours || 0,
+  }), [unit._count?.lessonPlans, unit._count?.expectations, unit.estimatedHours]);
+
   return (
     <div className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow border border-gray-200">
       <div className="p-6">
         <div className="flex justify-between items-start mb-4">
           <h3 className="text-lg font-semibold text-gray-900">{unit.title}</h3>
           <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
-            {unit.estimatedHours || 0} hours
+            {counts.hours} hours
           </span>
         </div>
 
@@ -26,14 +40,13 @@ export const UnitPlanCard: React.FC<UnitPlanCardProps> = ({ unit, onEdit }) => {
         )}
 
         <div className="text-sm text-gray-500 mb-4">
-          {new Date(unit.startDate).toLocaleDateString()} -{' '}
-          {new Date(unit.endDate).toLocaleDateString()}
+          {dateRange}
         </div>
 
         <div className="flex justify-between items-center">
           <div className="flex gap-4 text-sm text-gray-500">
-            <span>{unit._count?.lessonPlans || 0} lessons</span>
-            <span>{unit._count?.expectations || 0} expectations</span>
+            <span>{counts.lessons} lessons</span>
+            <span>{counts.expectations} expectations</span>
           </div>
 
           {unit.progress && (
@@ -63,4 +76,4 @@ export const UnitPlanCard: React.FC<UnitPlanCardProps> = ({ unit, onEdit }) => {
       </div>
     </div>
   );
-};
+});

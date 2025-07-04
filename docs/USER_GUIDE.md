@@ -40,7 +40,7 @@ Teaching Engine 2.0 is your comprehensive digital teaching assistant, designed t
 
 **Minutes 6-15: Initial Configuration**
 
-- [ ] Import your curriculum expectations (or use pre-loaded ETFO standards)
+- [ ] Import your curriculum expectations (or use pre-loaded PEI curriculum standards adapted from ETFO resources)
 - [ ] Set up your school calendar and holidays
 - [ ] Configure your preferred lesson template
 - [ ] Add your student roster (names only - no personal data required)
@@ -63,7 +63,7 @@ Teaching Engine 2.0 is your comprehensive digital teaching assistant, designed t
 
 By the end of your first session, you'll have:
 
-- A complete understanding of the ETFO planning hierarchy
+- A complete understanding of the PEI curriculum planning hierarchy using ETFO best practices
 - Your first AI-generated lesson plan ready to use
 - A personalized workspace tailored to your teaching style
 - Confidence to begin your workload reduction journey
@@ -74,9 +74,9 @@ By the end of your first session, you'll have:
 
 ## Complete Feature Walkthrough
 
-### The ETFO Planning Hierarchy
+### The PEI Planning Hierarchy using ETFO Framework
 
-Teaching Engine 2.0 follows the five-level ETFO planning framework:
+Teaching Engine 2.0 follows the five-level planning framework adapted from ETFO best practices for PEI teachers:
 
 #### 1. Long-Range Plans (Yearly Overview)
 
@@ -85,7 +85,7 @@ Teaching Engine 2.0 follows the five-level ETFO planning framework:
 **Key Features**:
 
 - **AI-Powered Generation**: Upload curriculum documents and get instant yearly plans
-- **Expectation Mapping**: Automatic alignment with ETFO standards
+- **Expectation Mapping**: Automatic alignment with PEI curriculum expectations using ETFO-style organization
 - **Flexible Timeline**: Drag-and-drop pacing adjustments
 - **Cross-Curricular Connections**: Smart suggestions for integrated learning
 
@@ -106,7 +106,7 @@ Teaching Engine 2.0 follows the five-level ETFO planning framework:
 
 #### 3. Lesson Plans (Individual Learning Experiences)
 
-**Purpose**: Detailed daily instruction with ETFO three-part structure
+**Purpose**: Detailed daily instruction using the ETFO three-part structure adapted for PEI curriculum
 
 **Key Features**:
 
@@ -134,7 +134,7 @@ Teaching Engine 2.0 follows the five-level ETFO planning framework:
 
 **Key Features**:
 
-- **ETFO Learning Skills**: Track all six areas (Responsibility, Organization, etc.)
+- **Learning Skills**: Track key areas aligned with PEI curriculum (Responsibility, Organization, etc.) using ETFO assessment approaches
 - **Progress Visualization**: Clear charts and graphs
 - **Parent Communication**: Auto-generated progress summaries
 - **Report Card Integration**: Seamless data transfer

@@ -1,0 +1,186 @@
+name: Pact Contract Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+env:
+  PACT_BROKER_URL: ${{ secrets.PACT_BROKER_URL }}
+  PACT_BROKER_USERNAME: ${{ secrets.PACT_BROKER_USERNAME }}
+  PACT_BROKER_PASSWORD: ${{ secrets.PACT_BROKER_PASSWORD }}
+
+jobs:
+  consumer-tests:
+    name: Consumer Contract Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+          
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+            
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        
+      - name: Run consumer contract tests
+        run: |
+          cd client
+          pnpm test:pact
+          
+      - name: Upload pact files
+        uses: actions/upload-artifact@v3
+        with:
+          name: pact-files
+          path: client/pacts/
+          
+      - name: Publish pacts to broker
+        if: github.event_name == 'push' && env.PACT_BROKER_URL != ''
+        run: |
+          cd client
+          pnpm test:pact:publish
+          
+  provider-tests:
+    name: Provider Contract Tests
+    runs-on: ubuntu-latest
+    needs: consumer-tests
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: testuser
+          POSTGRES_PASSWORD: testpass
+          POSTGRES_DB: teaching_engine_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+          
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+          
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+            
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        
+      - name: Download pact files
+        uses: actions/download-artifact@v3
+        with:
+          name: pact-files
+          path: client/pacts/
+          
+      - name: Setup database
+        env:
+          DATABASE_URL: postgresql://testuser:testpass@localhost:5432/teaching_engine_test
+        run: |
+          cd packages/database
+          pnpm db:push
+          
+      - name: Run provider verification tests
+        env:
+          DATABASE_URL: postgresql://testuser:testpass@localhost:5432/teaching_engine_test
+          JWT_SECRET: test-jwt-secret
+          NODE_ENV: test
+        run: |
+          cd server
+          pnpm test:pact:verify
+          
+      - name: Can-i-deploy check
+        if: github.event_name == 'push' && env.PACT_BROKER_URL != ''
+        run: |
+          npx @pact-foundation/pact-cli can-i-deploy \
+            --pacticipant TeachingEngineClient \
+            --version ${{ github.sha }} \
+            --to production \
+            --broker-base-url $PACT_BROKER_URL \
+            --broker-username $PACT_BROKER_USERNAME \
+            --broker-password $PACT_BROKER_PASSWORD
+
+  contract-compatibility:
+    name: Contract Compatibility Check
+    runs-on: ubuntu-latest
+    needs: [consumer-tests, provider-tests]
+    if: github.event_name == 'pull_request'
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Check breaking changes
+        if: env.PACT_BROKER_URL != ''
+        run: |
+          npx @pact-foundation/pact-cli can-i-deploy \
+            --pacticipant TeachingEngineClient \
+            --latest \
+            --pacticipant TeachingEngineServer \
+            --latest \
+            --broker-base-url $PACT_BROKER_URL \
+            --broker-username $PACT_BROKER_USERNAME \
+            --broker-password $PACT_BROKER_PASSWORD
+            
+      - name: Comment PR
+        if: failure()
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '⚠️ **Contract Breaking Change Detected**\n\nThis PR introduces breaking changes to the API contracts. Please review the Pact test results and ensure backward compatibility or coordinate with API consumers.'
+            })

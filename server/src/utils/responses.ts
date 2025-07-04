@@ -2,17 +2,17 @@ import { Response } from 'express';
 import { logger } from '../logger';
 
 // Standard response types
-export interface SuccessResponse<T = any> {
+export interface SuccessResponse<T = unknown> {
   success: true;
   data: T;
   meta?: {
     timestamp: string;
     requestId?: string;
-    [key: string]: any;
+    [key: string]: unknown;
   };
 }
 
-export interface PaginatedResponse<T = any> extends SuccessResponse<T[]> {
+export interface PaginatedResponse<T = unknown> extends SuccessResponse<T[]> {
   meta: {
     timestamp: string;
     requestId?: string;
@@ -27,7 +27,7 @@ export interface PaginatedResponse<T = any> extends SuccessResponse<T[]> {
   };
 }
 
-export interface CreatedResponse<T = any> extends SuccessResponse<T> {
+export interface CreatedResponse<T = unknown> extends SuccessResponse<T> {
   meta: {
     timestamp: string;
     requestId?: string;
@@ -55,7 +55,7 @@ export const paginatedResponse = <T>(
   page: number,
   pageSize: number,
   totalItems: number,
-  meta?: Record<string, any>
+  meta?: Record<string, unknown>
 ): PaginatedResponse<T> => {
   const totalPages = Math.ceil(totalItems / pageSize);
   
@@ -80,7 +80,7 @@ export const paginatedResponse = <T>(
 export const createdResponse = <T>(
   data: T,
   location?: string,
-  meta?: Record<string, any>
+  meta?: Record<string, unknown>
 ): CreatedResponse<T> => {
   return {
     success: true,
@@ -98,10 +98,10 @@ export const sendSuccess = <T>(
   res: Response,
   data: T,
   statusCode: number = 200,
-  meta?: Record<string, any>
+  meta?: Record<string, unknown>
 ): void => {
   const response = successResponse(data, {
-    requestId: (res as any).locals?.requestId,
+    requestId: (res as unknown as { locals?: { requestId?: string } }).locals?.requestId,
     ...meta,
   });
   
@@ -112,10 +112,10 @@ export const sendCreated = <T>(
   res: Response,
   data: T,
   location?: string,
-  meta?: Record<string, any>
+  meta?: Record<string, unknown>
 ): void => {
   const response = createdResponse(data, location, {
-    requestId: (res as any).locals?.requestId,
+    requestId: (res as unknown as { locals?: { requestId?: string } }).locals?.requestId,
     ...meta,
   });
   
@@ -132,10 +132,10 @@ export const sendPaginated = <T>(
   page: number,
   pageSize: number,
   totalItems: number,
-  meta?: Record<string, any>
+  meta?: Record<string, unknown>
 ): void => {
   const response = paginatedResponse(data, page, pageSize, totalItems, {
-    requestId: (res as any).locals?.requestId,
+    requestId: (res as unknown as { locals?: { requestId?: string } }).locals?.requestId,
     ...meta,
   });
   
@@ -149,7 +149,7 @@ export const sendNoContent = (res: Response): void => {
 export const sendAccepted = <T>(
   res: Response,
   data?: T,
-  meta?: Record<string, any>
+  meta?: Record<string, unknown>
 ): void => {
   if (data) {
     sendSuccess(res, data, 202, meta);
@@ -159,7 +159,7 @@ export const sendAccepted = <T>(
       message: 'Request accepted for processing',
       meta: {
         timestamp: new Date().toISOString(),
-        requestId: (res as any).locals?.requestId,
+        requestId: (res as unknown as { locals?: { requestId?: string } }).locals?.requestId,
         ...meta,
       },
     });

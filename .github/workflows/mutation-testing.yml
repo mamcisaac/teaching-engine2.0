@@ -1,0 +1,355 @@
+name: Mutation Testing
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Target to test (server, client, both)'
+        required: true
+        default: 'both'
+        type: choice
+        options:
+        - 'server'
+        - 'client'
+        - 'both'
+      scope:
+        description: 'Test scope (core, full)'
+        required: true
+        default: 'core'
+        type: choice
+        options:
+        - 'core'
+        - 'full'
+      threshold:
+        description: 'Mutation score threshold (override default)'
+        required: false
+        type: number
+  schedule:
+    # Run weekly on Sundays at 2 AM UTC (during low usage time)
+    - cron: '0 2 * * 0'
+  pull_request:
+    paths:
+      # Only run mutation tests on changes to critical business logic
+      - 'server/src/services/**'
+      - 'server/src/utils/**'
+      - 'server/src/middleware/**'
+      - 'client/src/hooks/**'
+      - 'client/src/services/**'
+      - 'client/src/stores/**'
+      - 'client/src/utils/**'
+    types: [opened, synchronize, labeled]
+
+jobs:
+  # Pre-mutation validation
+  validate:
+    runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event_name == 'schedule' ||
+      (github.event_name == 'pull_request' && 
+       (contains(github.event.pull_request.labels.*.name, 'mutation-test') ||
+        contains(github.event.pull_request.labels.*.name, 'core-changes')))
+    env:
+      PRISMA_NO_ENGINE_DOWNLOAD: '1'
+      PRISMA_ENGINES_CHECKSUM_IGNORE_MISSING: '1'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 10.11.1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Prisma Client
+        run: pnpm db:generate
+
+      - name: Run quick tests to validate environment
+        env:
+          DATABASE_URL: file:./packages/database/prisma/test.db
+          JWT_SECRET: test-secret-key
+          JWT_EXPIRES_IN: 1h
+          OPENAI_API_KEY: 'test-api-key'
+        run: |
+          echo "🧪 Running pre-mutation test validation..."
+          pnpm --filter server test:quick
+          pnpm --filter client test:quick
+
+  # Server mutation testing
+  mutation-test-server:
+    runs-on: ubuntu-latest
+    needs: validate
+    if: >
+      always() && needs.validate.result == 'success' &&
+      (github.event.inputs.target == 'server' || 
+       github.event.inputs.target == 'both' || 
+       github.event_name == 'schedule' ||
+       (github.event_name == 'pull_request' && 
+        (contains(github.event.pull_request.labels.*.name, 'mutation-test') ||
+         contains(github.event.pull_request.labels.*.name, 'core-changes'))))
+    timeout-minutes: 90
+    env:
+      PRISMA_NO_ENGINE_DOWNLOAD: '1'
+      PRISMA_ENGINES_CHECKSUM_IGNORE_MISSING: '1'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 10.11.1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Prisma Client
+        run: pnpm db:generate
+
+      - name: Deploy database schema
+        env:
+          DATABASE_URL: file:./packages/database/prisma/test.db
+        run: pnpm db:deploy
+
+      - name: Run server mutation testing
+        env:
+          DATABASE_URL: file:./packages/database/prisma/test.db
+          JWT_SECRET: test-secret-key
+          JWT_EXPIRES_IN: 1h
+          OPENAI_API_KEY: 'test-api-key'
+          NODE_ENV: test
+        run: |
+          echo "🧬 Starting server mutation testing..."
+          cd server
+          
+          # Set scope based on input or default to core for PR
+          SCOPE="${{ github.event.inputs.scope || 'core' }}"
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            SCOPE="core"  # Always use core scope for PR to save time
+          fi
+          
+          # Set threshold if provided
+          THRESHOLD_ARG=""
+          if [ -n "${{ github.event.inputs.threshold }}" ]; then
+            THRESHOLD_ARG="--threshold ${{ github.event.inputs.threshold }}"
+          fi
+          
+          # Run mutation testing
+          if [ "$SCOPE" = "core" ]; then
+            echo "Running core business logic mutation testing..."
+            pnpm test:mutation:core --ci $THRESHOLD_ARG
+          else
+            echo "Running full mutation testing..."
+            pnpm test:mutation:ci $THRESHOLD_ARG
+          fi
+
+      - name: Upload server mutation report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: server-mutation-report
+          path: server/reports/mutation/
+          retention-days: 30
+
+  # Client mutation testing
+  mutation-test-client:
+    runs-on: ubuntu-latest
+    needs: validate
+    if: >
+      always() && needs.validate.result == 'success' &&
+      (github.event.inputs.target == 'client' || 
+       github.event.inputs.target == 'both' || 
+       github.event_name == 'schedule' ||
+       (github.event_name == 'pull_request' && 
+        (contains(github.event.pull_request.labels.*.name, 'mutation-test') ||
+         contains(github.event.pull_request.labels.*.name, 'core-changes'))))
+    timeout-minutes: 60
+    env:
+      PRISMA_NO_ENGINE_DOWNLOAD: '1'
+      PRISMA_ENGINES_CHECKSUM_IGNORE_MISSING: '1'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 10.11.1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run client mutation testing
+        env:
+          NODE_ENV: test
+        run: |
+          echo "🧬 Starting client mutation testing..."
+          cd client
+          
+          # Set scope based on input or default to core for PR
+          SCOPE="${{ github.event.inputs.scope || 'core' }}"
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            SCOPE="core"  # Always use core scope for PR to save time
+          fi
+          
+          # Set threshold if provided
+          THRESHOLD_ARG=""
+          if [ -n "${{ github.event.inputs.threshold }}" ]; then
+            THRESHOLD_ARG="--threshold ${{ github.event.inputs.threshold }}"
+          fi
+          
+          # Run mutation testing
+          if [ "$SCOPE" = "core" ]; then
+            echo "Running core business logic mutation testing..."
+            npx stryker run --configFile stryker.core.conf.mjs --ci $THRESHOLD_ARG
+          else
+            echo "Running full mutation testing..."
+            pnpm test:mutation:ci $THRESHOLD_ARG
+          fi
+
+      - name: Upload client mutation report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: client-mutation-report
+          path: client/reports/mutation/
+          retention-days: 30
+
+  # Generate comprehensive report
+  generate-report:
+    runs-on: ubuntu-latest
+    needs: [mutation-test-server, mutation-test-client]
+    if: always() && (needs.mutation-test-server.result != 'skipped' || needs.mutation-test-client.result != 'skipped')
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 10.11.1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Download mutation reports
+        uses: actions/download-artifact@v4
+        with:
+          path: mutation-artifacts/
+
+      - name: Generate comprehensive report
+        run: |
+          echo "📊 Generating comprehensive mutation testing report..."
+          
+          TARGET="${{ github.event.inputs.target || 'both' }}"
+          SCOPE="${{ github.event.inputs.scope || 'core' }}"
+          
+          # Use the mutation test runner to generate comprehensive report
+          node scripts/mutation-test-runner.cjs \
+            --target "$TARGET" \
+            --scope "$SCOPE" \
+            --ci \
+            --reporters "clear-text,progress"
+
+      - name: Upload comprehensive report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mutation-testing-report
+          path: reports/mutation/
+          retention-days: 30
+
+      - name: Post PR comment with results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            
+            try {
+              // Try to read the mutation summary
+              const summaryPath = 'reports/mutation/mutation-summary.json';
+              
+              if (fs.existsSync(summaryPath)) {
+                const summary = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
+                
+                const comment = `## 🧬 Mutation Testing Results
+                
+                **Overall Mutation Score: ${summary.summary.mutationScore}%**
+                
+                | Metric | Count |
+                |--------|-------|
+                | Total Mutants | ${summary.summary.totalMutants} |
+                | Killed | ${summary.summary.killedMutants} |
+                | Survived | ${summary.summary.survivedMutants} |
+                | Timed Out | ${summary.summary.timedOutMutants} |
+                | Runtime Errors | ${summary.summary.runtimeErrorMutants} |
+                
+                ${summary.server ? `**Server Score: ${summary.server.mutationScore}%**` : ''}
+                ${summary.client ? `**Client Score: ${summary.client.mutationScore}%**` : ''}
+                
+                *Mutation testing helps ensure your tests can detect bugs by introducing artificial defects.*
+                
+                📊 [View detailed report in artifacts](${context.payload.pull_request.html_url}/checks)`;
+                
+                github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: comment
+                });
+              } else {
+                console.log('No mutation summary found');
+              }
+            } catch (error) {
+              console.log('Failed to post mutation testing comment:', error);
+            }
+
+  # Quality gate - fail if mutation scores are too low
+  quality-gate:
+    runs-on: ubuntu-latest
+    needs: [mutation-test-server, mutation-test-client]
+    if: always() && (needs.mutation-test-server.result != 'skipped' || needs.mutation-test-client.result != 'skipped')
+    steps:
+      - name: Check mutation testing results
+        run: |
+          echo "🚦 Checking mutation testing quality gate..."
+          
+          SERVER_RESULT="${{ needs.mutation-test-server.result }}"
+          CLIENT_RESULT="${{ needs.mutation-test-client.result }}"
+          
+          # Check if any mutation tests failed
+          if [ "$SERVER_RESULT" = "failure" ] || [ "$CLIENT_RESULT" = "failure" ]; then
+            echo "❌ Mutation testing failed - scores below threshold"
+            echo "This indicates that your tests may not be effective at catching bugs."
+            echo "Consider:"
+            echo "  1. Adding more edge case tests"
+            echo "  2. Improving test assertions"
+            echo "  3. Increasing test coverage"
+            echo "  4. Testing error conditions"
+            
+            # Only fail in strict mode (scheduled runs and explicit requests)
+            if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.scope }}" = "full" ]; then
+              exit 1
+            else
+              echo "⚠️  Warning: Mutation scores below threshold (non-blocking for PR)"
+            fi
+          else
+            echo "✅ Mutation testing quality gate passed"
+          fi

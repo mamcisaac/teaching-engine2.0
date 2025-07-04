@@ -16,9 +16,23 @@
     "test:unit": "vitest run --config vitest.config.ts",
     "test:integration": "vitest run --config vitest.integration.config.ts",
     "test:contract": "vitest run --config vitest.integration.config.ts src/__tests__/contract/",
+    "test:pact": "vitest run --config vitest.pact.config.ts",
+    "test:pact:publish": "pact-broker publish ./pacts --consumer-app-version $npm_package_version --broker-base-url ${PACT_BROKER_URL:-http://localhost:9292} --broker-username ${PACT_BROKER_USERNAME:-} --broker-password ${PACT_BROKER_PASSWORD:-}",
     "test:all": "npm run test:unit && npm run test:integration",
+    "test:mutation": "stryker run",
+    "test:mutation:components": "stryker run --mutate 'src/components/**/*.{ts,tsx}'",
+    "test:mutation:hooks": "stryker run --mutate 'src/hooks/**/*.{ts,tsx}'",
+    "test:mutation:utils": "stryker run --mutate 'src/utils/**/*.{ts,tsx}'",
+    "test:mutation:services": "stryker run --mutate 'src/services/**/*.{ts,tsx}'",
+    "test:mutation:stores": "stryker run --mutate 'src/stores/**/*.{ts,tsx}'",
+    "test:mutation:api": "stryker run --mutate 'src/api/**/*.{ts,tsx}'",
+    "test:mutation:report": "stryker run --reporters html,clear-text,progress",
+    "test:mutation:quick": "stryker run --maxConcurrentTestRunners 1 --timeoutMS 20000",
+    "test:mutation:ci": "stryker run --maxConcurrentTestRunners 1 --reporters clear-text,progress --logLevel error",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint --config ../.eslintrc.json \"src/**/*.{ts,tsx,js,jsx}\""
+    "lint": "eslint --config ../.eslintrc.json \"src/**/*.{ts,tsx,js,jsx}\"",
+    "analyze": "node scripts/bundle-analyzer.js",
+    "analyze:build": "npm run build && npm run analyze"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -63,6 +77,13 @@
     "zustand": "^4.5.7"
   },
   "devDependencies": {
+    "@pact-foundation/pact": "^13.1.2",
+    "@pact-foundation/pact-node": "^10.18.0",
+    "@stryker-mutator/core": "^9.0.1",
+    "@stryker-mutator/html-reporter": "^3.1.0",
+    "@stryker-mutator/javascript-mutator": "^4.0.0",
+    "@stryker-mutator/typescript-checker": "^9.0.1",
+    "@stryker-mutator/vitest-runner": "^9.0.1",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^14.3.1",
     "@testing-library/user-event": "^14.6.1",

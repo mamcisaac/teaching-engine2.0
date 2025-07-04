@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo, useMemo } from 'react';
 import { startOfMonth, endOfMonth, eachDayOfInterval } from 'date-fns';
 import { CalendarEvent, useCalendarEvents } from '../api';
 import EventEditorModal from './EventEditorModal';
@@ -8,33 +8,51 @@ interface Props {
   events?: CalendarEvent[];
 }
 
-export default function CalendarViewComponent({ month, events }: Props) {
+const CalendarViewComponent = memo(function CalendarViewComponent({ month, events }: Props) {
   const [editorOpen, setEditorOpen] = useState(false);
-  const from = startOfMonth(month).toISOString();
-  const to = endOfMonth(month).toISOString();
-  const fetch = useCalendarEvents(from, to);
-  // Ensure we always have an array, even if the data is undefined or not an array
-  const evts = Array.isArray(events) ? events : Array.isArray(fetch.data) ? fetch.data : [];
+  
+  // Memoize expensive date calculations
+  const dateRange = useMemo(() => {
+    const from = startOfMonth(month).toISOString();
+    const to = endOfMonth(month).toISOString();
+    return { from, to };
+  }, [month]);
+
+  const fetch = useCalendarEvents(dateRange.from, dateRange.to);
+  
+  // Memoize event array processing
+  const evts = useMemo(() => {
+    return Array.isArray(events) ? events : Array.isArray(fetch.data) ? fetch.data : [];
+  }, [events, fetch.data]);
 
   // Log any errors for debugging
   if (fetch.error) {
     console.error('Error loading calendar events:', fetch.error);
   }
 
-  const days = eachDayOfInterval({ start: new Date(from), end: new Date(to) });
-  const grouped: Record<string, CalendarEvent[]> = {};
-  // Safely process events
-  if (Array.isArray(evts)) {
-    evts.forEach((e) => {
-      if (e?.start) {
-        const d = e.start.split('T')[0];
-        if (d) {
-          if (!grouped[d]) grouped[d] = [];
-          grouped[d].push(e);
-        }
-      }
+  // Memoize expensive day calculations and event grouping
+  const { days, grouped } = useMemo(() => {
+    const days = eachDayOfInterval({ 
+      start: new Date(dateRange.from), 
+      end: new Date(dateRange.to) 
     });
-  }
+    
+    const grouped: Record<string, CalendarEvent[]> = {};
+    // Safely process events
+    if (Array.isArray(evts)) {
+      evts.forEach((e) => {
+        if (e?.start) {
+          const d = e.start.split('T')[0];
+          if (d) {
+            if (!grouped[d]) grouped[d] = [];
+            grouped[d].push(e);
+          }
+        }
+      });
+    }
+    
+    return { days, grouped };
+  }, [dateRange.from, dateRange.to, evts]);
 
   return (
     <div className="border rounded p-2">
@@ -61,4 +79,6 @@ export default function CalendarViewComponent({ month, events }: Props) {
       {!events && editorOpen && <EventEditorModal onClose={() => setEditorOpen(false)} />}
     </div>
   );
-}
+});
+
+export default CalendarViewComponent;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { 
@@ -58,7 +58,16 @@ const PLAN_TYPE_CONFIG = {
   }
 };
 
-export function RecentPlans({ plans, isLoading, className }: RecentPlansProps) {
+export const RecentPlans = memo(function RecentPlans({ plans, isLoading, className }: RecentPlansProps) {
+  // Memoize expensive calculations for plan processing
+  const processedPlans = useMemo(() => {
+    return plans.map(plan => ({
+      ...plan,
+      formattedDate: formatDistanceToNow(plan.lastAccessed, { addSuffix: true }),
+      planRoute: `${PLAN_TYPE_CONFIG[plan.type].route}/${plan.id}`
+    }));
+  }, [plans]);
+
   if (isLoading) {
     return (
       <Card className={className}>
@@ -160,15 +169,14 @@ export function RecentPlans({ plans, isLoading, className }: RecentPlansProps) {
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
-          {plans.map((plan) => {
+          {processedPlans.map((plan) => {
             const config = PLAN_TYPE_CONFIG[plan.type];
             const Icon = config.icon;
-            const planRoute = `${config.route}/${plan.id}`;
 
             return (
               <Link
                 key={`${plan.type}-${plan.id}`}
-                to={planRoute}
+                to={plan.planRoute}
                 className="block group"
               >
                 <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
@@ -208,7 +216,7 @@ export function RecentPlans({ plans, isLoading, className }: RecentPlansProps) {
                     
                     <div className="flex items-center justify-between mt-2">
                       <span className="text-xs text-gray-500">
-                        {formatDistanceToNow(plan.lastAccessed, { addSuffix: true })}
+                        {plan.formattedDate}
                       </span>
                       {getStatusBadge(plan)}
                     </div>
@@ -219,7 +227,7 @@ export function RecentPlans({ plans, isLoading, className }: RecentPlansProps) {
           })}
         </div>
         
-        {plans.length >= 5 && (
+        {processedPlans.length >= 5 && (
           <div className="mt-4 pt-4 border-t">
             <Link
               to="/planner/history"
@@ -233,4 +241,4 @@ export function RecentPlans({ plans, isLoading, className }: RecentPlansProps) {
       </CardContent>
     </Card>
   );
-}
+});

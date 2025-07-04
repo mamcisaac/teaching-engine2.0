@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { authService } from './services/authService';
+import { authService } from '../services/authService';
 import type {
   Newsletter,
   Subject,
@@ -33,7 +33,7 @@ import type {
   TeacherReflectionInput,
   CognatePair,
   CognateInput,
-} from './types';
+} from '../types';
 
 // Define missing types that are used but not exported from types
 

@@ -2,7 +2,7 @@ import pino from 'pino';
 import { performance } from 'perf_hooks';
 
 // Log levels configuration
-const LOG_LEVELS = {
+const _LOG_LEVELS = {
   fatal: 60,
   error: 50,
   warn: 40,
@@ -17,7 +17,7 @@ const pinoConfig: pino.LoggerOptions = {
   
   // Custom serializers for better structured logging
   serializers: {
-    req: (req: any) => ({
+    req: (req: Record<string, unknown>) => ({
       method: req.method,
       url: req.url,
       headers: {
@@ -29,7 +29,7 @@ const pinoConfig: pino.LoggerOptions = {
       remotePort: req.remotePort || req.connection?.remotePort
     }),
     
-    res: (res: any) => ({
+    res: (res: Record<string, unknown>) => ({
       statusCode: res.statusCode,
       headers: {
         'content-type': res.getHeader?.('content-type'),
@@ -39,7 +39,7 @@ const pinoConfig: pino.LoggerOptions = {
     
     err: pino.stdSerializers.err,
     
-    user: (user: any) => ({
+    user: (user: Record<string, unknown>) => ({
       id: user?.id,
       email: user?.email ? user.email.substring(0, 3) + '***' : undefined,
       role: user?.role
@@ -78,27 +78,27 @@ class EnhancedLogger {
   }
 
   // Standard log methods
-  fatal(obj: any, msg?: string, ...args: any[]) {
+  fatal(obj: Record<string, unknown>, msg?: string, ...args: unknown[]) {
     return this.logger.fatal(this.enhanceLogObject(obj), msg, ...args);
   }
 
-  error(obj: any, msg?: string, ...args: any[]) {
+  error(obj: Record<string, unknown>, msg?: string, ...args: unknown[]) {
     return this.logger.error(this.enhanceLogObject(obj), msg, ...args);
   }
 
-  warn(obj: any, msg?: string, ...args: any[]) {
+  warn(obj: Record<string, unknown>, msg?: string, ...args: unknown[]) {
     return this.logger.warn(this.enhanceLogObject(obj), msg, ...args);
   }
 
-  info(obj: any, msg?: string, ...args: any[]) {
+  info(obj: Record<string, unknown>, msg?: string, ...args: unknown[]) {
     return this.logger.info(this.enhanceLogObject(obj), msg, ...args);
   }
 
-  debug(obj: any, msg?: string, ...args: any[]) {
+  debug(obj: Record<string, unknown>, msg?: string, ...args: unknown[]) {
     return this.logger.debug(this.enhanceLogObject(obj), msg, ...args);
   }
 
-  trace(obj: any, msg?: string, ...args: any[]) {
+  trace(obj: Record<string, unknown>, msg?: string, ...args: unknown[]) {
     return this.logger.trace(this.enhanceLogObject(obj), msg, ...args);
   }
 
@@ -112,7 +112,7 @@ class EnhancedLogger {
   }
 
   // Audit logging for sensitive operations
-  audit(operation: string, details: any = {}) {
+  audit(operation: string, details: Record<string, unknown> = {}) {
     return this.info({
       audit: true,
       operation,
@@ -122,7 +122,7 @@ class EnhancedLogger {
   }
 
   // Security event logging
-  security(event: string, details: any = {}) {
+  security(event: string, details: Record<string, unknown> = {}) {
     return this.warn({
       security: true,
       event,
@@ -132,7 +132,7 @@ class EnhancedLogger {
   }
 
   // Business logic logging
-  business(action: string, context: any = {}) {
+  business(action: string, context: Record<string, unknown> = {}) {
     return this.info({
       business: true,
       action,
@@ -142,7 +142,7 @@ class EnhancedLogger {
   }
 
   // API request/response logging
-  apiRequest(req: any, additionalData: any = {}) {
+  apiRequest(req: Record<string, unknown>, additionalData: Record<string, unknown> = {}) {
     return this.info({
       api: true,
       type: 'request',
@@ -151,7 +151,7 @@ class EnhancedLogger {
     }, `API Request: ${req.method} ${req.url}`);
   }
 
-  apiResponse(req: any, res: any, duration: number, additionalData: any = {}) {
+  apiResponse(req: Record<string, unknown>, res: Record<string, unknown>, duration: number, additionalData: Record<string, unknown> = {}) {
     return this.info({
       api: true,
       type: 'response',
@@ -163,7 +163,7 @@ class EnhancedLogger {
   }
 
   // Database operation logging
-  database(operation: string, details: any = {}) {
+  database(operation: string, details: Record<string, unknown> = {}) {
     return this.debug({
       database: true,
       operation,
@@ -172,7 +172,7 @@ class EnhancedLogger {
   }
 
   // AI operation logging
-  ai(operation: string, model: string, details: any = {}) {
+  ai(operation: string, model: string, details: Record<string, unknown> = {}) {
     return this.info({
       ai: true,
       operation,
@@ -182,7 +182,7 @@ class EnhancedLogger {
   }
 
   // Create child logger with context
-  child(context: any) {
+  child(context: Record<string, unknown>) {
     const childLogger = this.logger.child(this.enhanceLogObject(context));
     const enhanced = new EnhancedLogger(childLogger);
     enhanced.requestId = this.requestId;
@@ -195,7 +195,7 @@ class EnhancedLogger {
   }
 
   // Enhance log object with common fields
-  private enhanceLogObject(obj: any): any {
+  private enhanceLogObject(obj: unknown): Record<string, unknown> {
     if (typeof obj === 'string') {
       return {
         message: obj,
@@ -214,7 +214,7 @@ class EnhancedLogger {
   }
 
   // Sanitization methods to prevent sensitive data leakage
-  private sanitizeAuditDetails(details: any): any {
+  private sanitizeAuditDetails(details: Record<string, unknown>): Record<string, unknown> {
     const sanitized = { ...details };
     
     // Remove sensitive fields
@@ -231,7 +231,7 @@ class EnhancedLogger {
     return sanitized;
   }
 
-  private sanitizeSecurityDetails(details: any): any {
+  private sanitizeSecurityDetails(details: Record<string, unknown>): Record<string, unknown> {
     const sanitized = { ...details };
     
     // Keep only necessary security info
@@ -246,7 +246,7 @@ class EnhancedLogger {
     return sanitized;
   }
 
-  private sanitizeBusinessContext(context: any): any {
+  private sanitizeBusinessContext(context: Record<string, unknown>): Record<string, unknown> {
     const sanitized = { ...context };
     
     // Remove any PII
@@ -256,7 +256,7 @@ class EnhancedLogger {
     return sanitized;
   }
 
-  private sanitizeDatabaseDetails(details: any): any {
+  private sanitizeDatabaseDetails(details: Record<string, unknown>): Record<string, unknown> {
     const sanitized = { ...details };
     
     // Remove sensitive query parameters
@@ -267,7 +267,7 @@ class EnhancedLogger {
     return sanitized;
   }
 
-  private sanitizeAIDetails(details: any): any {
+  private sanitizeAIDetails(details: Record<string, unknown>): Record<string, unknown> {
     const sanitized = { ...details };
     
     // Limit prompt size and remove sensitive content

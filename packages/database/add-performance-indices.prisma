@@ -1,0 +1,195 @@
+-- Database Performance Optimization Migration
+-- Additional composite indices for improved query performance
+
+-- This file contains the Prisma schema additions for performance optimization
+-- Add these indices to the existing models in schema.prisma
+
+/*
+
+// Enhanced DaybookEntry indices for common query patterns
+model DaybookEntry {
+  // ... existing fields ...
+  
+  // Existing indices:
+  @@index([userId, date])
+  @@index([userId, overallRating])
+  @@index([userId, updatedAt])
+  @@index([lessonPlanId])
+  
+  // New performance indices:
+  @@index([userId, date, overallRating])    // User's entries by date with rating filter
+  @@index([date, overallRating])            // Global date range with rating
+  @@index([userId, wouldReuseLesson])       // Filter for reusable lessons
+}
+
+// Enhanced ETFOLessonPlan indices
+model ETFOLessonPlan {
+  // ... existing fields ...
+  
+  // Existing indices:
+  @@index([userId, date])
+  @@index([unitPlanId])
+  @@index([grade, subject])
+  @@index([language])
+  @@index([userId, isSubFriendly])
+  @@index([userId, assessmentType])
+  @@index([userId, updatedAt])
+  @@index([date, duration])
+  
+  // New performance indices:
+  @@index([userId, date, grade])            // User's lessons by date and grade
+  @@index([userId, date, subject])          // User's lessons by date and subject
+  @@index([grade, subject, date])           // Grade/subject with date range
+  @@index([userId, grade, subject])         // User's lessons by grade and subject
+  @@index([isSubFriendly, grade, subject])  // Sub-friendly lessons by grade/subject
+}
+
+// Enhanced UnitPlan indices
+model UnitPlan {
+  // ... existing fields ...
+  
+  // Existing indices:
+  @@index([userId, startDate])
+  @@index([longRangePlanId])
+  @@index([userId, updatedAt])
+  @@index([startDate, endDate])
+  
+  // New performance indices:
+  @@index([userId, startDate, endDate])     // User's units by date range
+  @@index([longRangePlanId, startDate])     // Plan units by start date
+}
+
+// Enhanced CurriculumExpectation indices
+model CurriculumExpectation {
+  // ... existing fields ...
+  
+  // Existing indices:
+  @@index([subject, grade])
+  @@index([code])
+  @@index([strand, grade])
+  @@index([subject, strand])
+  
+  // New performance indices:
+  @@index([isActive, subject, grade])       // Active expectations by subject/grade
+  @@index([isActive, strand, grade])        // Active expectations by strand/grade
+  @@index([subject, grade, strand])         // Full curriculum filter
+  @@index([isActive, updatedAt])            // Recently updated active expectations
+}
+
+// Enhanced LongRangePlan indices
+model LongRangePlan {
+  // ... existing fields ...
+  
+  // Existing indices:
+  @@index([userId, academicYear])
+  @@index([userId, subject, grade])
+  @@index([academicYear, grade, subject])
+  @@index([userId, updatedAt])
+  
+  // New performance indices:
+  @@index([userId, academicYear, subject])  // User's plans by year and subject
+  @@index([academicYear, subject, grade])   // Academic year overview with filters
+}
+
+// Enhanced ClassroomAnnouncement indices
+model ClassroomAnnouncement {
+  // ... existing fields ...
+  
+  // No existing indices shown
+  // New performance indices:
+  @@index([userId, createdAt])              // User's announcements by date
+  @@index([userId, updatedAt])              // Recently updated announcements
+  @@index([createdAt])                      // Global announcements by date
+}
+
+// Enhanced Newsletter indices (if model exists)
+model Newsletter {
+  // ... existing fields ...
+  
+  // Existing indices:
+  @@index([userId, isDraft])
+  @@index([userId, sentAt])
+  @@index([dateFrom, dateTo])
+  
+  // New performance indices:
+  @@index([userId, dateFrom, dateTo])       // User's newsletters by date range
+  @@index([isDraft, sentAt])                // Draft status with send date
+  @@index([userId, createdAt])              // User's newsletters by creation date
+}
+
+// Enhanced SubstitutePlan indices (if model exists)
+model SubstitutePlan {
+  // ... existing fields ...
+  
+  // Existing indices:
+  @@index([userId, dateFor])
+  @@index([userId, isActive])
+  @@index([grade, subject])
+  
+  // New performance indices:
+  @@index([userId, dateFor, grade])         // User's sub plans by date and grade
+  @@index([dateFor, grade, subject])        // Date range with grade/subject
+  @@index([isActive, dateFor])              // Active plans by date
+  @@index([userId, isActive, dateFor])      // User's active plans by date
+}
+
+// Enhanced CurriculumImport indices
+model CurriculumImport {
+  // ... existing fields ...
+  
+  // Existing indices:
+  @@index([userId, status])
+  @@index([createdAt])
+  
+  // New performance indices:
+  @@index([userId, createdAt])              // User's imports by date
+  @@index([status, createdAt])              // Status with date filter
+  @@index([userId, status, createdAt])      // User's imports by status and date
+}
+
+// Enhanced ExternalActivity indices
+model ExternalActivity {
+  // ... existing fields ...
+  
+  // Existing indices:
+  @@index([subject, gradeMin, gradeMax])
+  @@index([activityType, language])
+  @@index([isActive, lastVerified])
+  
+  // New performance indices:
+  @@index([isActive, subject, gradeMin, gradeMax])  // Active activities by subject/grade
+  @@index([isActive, activityType, subject])        // Active activities by type/subject
+  @@index([internalRating, subject])               // Highly rated by subject
+  @@index([isFree, subject, gradeMin, gradeMax])   // Free activities by subject/grade
+}
+
+*/
+
+-- SQL commands for manual index creation (if needed outside Prisma)
+-- Note: These should be added via Prisma schema and migrations instead
+
+-- DaybookEntry performance indices
+-- CREATE INDEX IF NOT EXISTS idx_daybookentry_user_date_rating ON DaybookEntry(userId, date, overallRating);
+-- CREATE INDEX IF NOT EXISTS idx_daybookentry_date_rating ON DaybookEntry(date, overallRating);
+-- CREATE INDEX IF NOT EXISTS idx_daybookentry_user_reusable ON DaybookEntry(userId, wouldReuseLesson);
+
+-- ETFOLessonPlan performance indices  
+-- CREATE INDEX IF NOT EXISTS idx_etfolessonplan_user_date_grade ON ETFOLessonPlan(userId, date, grade);
+-- CREATE INDEX IF NOT EXISTS idx_etfolessonplan_user_date_subject ON ETFOLessonPlan(userId, date, subject);
+-- CREATE INDEX IF NOT EXISTS idx_etfolessonplan_grade_subject_date ON ETFOLessonPlan(grade, subject, date);
+
+-- UnitPlan performance indices
+-- CREATE INDEX IF NOT EXISTS idx_unitplan_user_daterange ON UnitPlan(userId, startDate, endDate);
+-- CREATE INDEX IF NOT EXISTS idx_unitplan_longrange_start ON UnitPlan(longRangePlanId, startDate);
+
+-- CurriculumExpectation performance indices  
+-- CREATE INDEX IF NOT EXISTS idx_curriculumexp_active_subject_grade ON CurriculumExpectation(isActive, subject, grade);
+-- CREATE INDEX IF NOT EXISTS idx_curriculumexp_active_strand_grade ON CurriculumExpectation(isActive, strand, grade);
+-- CREATE INDEX IF NOT EXISTS idx_curriculumexp_subject_grade_strand ON CurriculumExpectation(subject, grade, strand);
+
+-- Implementation Steps:
+-- 1. Add the @@index directives to the appropriate models in schema.prisma
+-- 2. Run: npx prisma db push (for development environment)
+-- 3. Run: npx prisma migrate dev --name "add-performance-indices" (for production migration)
+-- 4. Monitor query performance with EXPLAIN QUERY PLAN
+-- 5. Adjust indices based on actual query patterns and performance measurements
