@@ -15,9 +15,9 @@ const SuspenseFallback = () => (
 
 function renderRoute(route: RouteConfig, index: number): JSX.Element {
   const { path, element: Element, workflowLevel, children, index: isIndex } = route;
-  
+
   let content: React.ReactNode;
-  
+
   if (typeof Element === 'function') {
     content = (
       <Suspense fallback={<SuspenseFallback />}>
@@ -42,20 +42,16 @@ function renderRoute(route: RouteConfig, index: number): JSX.Element {
     );
   }
 
-  return (
-    <Route
-      key={path || index}
-      path={path}
-      index={isIndex}
-      element={content}
-    />
-  );
+  return <Route key={path || index} path={path} index={isIndex} element={content} />;
 }
 
 export function AppRouter() {
-  const { isAuthenticated: _isAuthenticated, isLoading, isInitialized } = useAuth();
+  const { isLoading, isInitialized } = useAuth();
+
+  // Debug auth state if needed
 
   if (!isInitialized || isLoading) {
+    // Showing loading fallback
     return <SuspenseFallback />;
   }
 
