@@ -61,11 +61,7 @@ export class TemplateCache extends BaseService {
    */
   protected async initialize(): Promise<void> {
     await super.initialize();
-    this.logger.info('Template cache initialized', {
-      maxSize: this.maxSize,
-      maxAge: this.maxAge,
-      enableCompression: this.enableCompression,
-    });
+    this.logger.info(`Template cache initialized: maxSize=${this.maxSize}, maxAge=${this.maxAge}ms, enableCompression=${this.enableCompression}`);
   }
 
   /**
@@ -102,7 +98,7 @@ export class TemplateCache extends BaseService {
     entry.lastAccessed = Date.now();
     this.hits++;
 
-    this.logger.debug('Cache hit', { key, accessCount: entry.accessCount });
+    this.logger.debug(`Cache hit: key=${key}, accessCount=${entry.accessCount}`);
     return entry.result;
   }
 
@@ -124,11 +120,7 @@ export class TemplateCache extends BaseService {
 
     this.cache.set(key, entry);
     
-    this.logger.debug('Cache entry added', { 
-      key, 
-      size: this.cache.size,
-      contentSize: this.getContentSize(result),
-    });
+    this.logger.debug(`Cache entry added: key=${key}, size=${this.cache.size}, contentSize=${this.getContentSize(result)}`);
   }
 
   /**
@@ -137,7 +129,7 @@ export class TemplateCache extends BaseService {
   public delete(key: string): boolean {
     const deleted = this.cache.delete(key);
     if (deleted) {
-      this.logger.debug('Cache entry removed', { key });
+      this.logger.debug(`Cache entry removed: key=${key}`);
     }
     return deleted;
   }
@@ -151,7 +143,7 @@ export class TemplateCache extends BaseService {
     this.hits = 0;
     this.misses = 0;
     
-    this.logger.info('Template cache cleared', { entriesCleared: size });
+    this.logger.info(`Template cache cleared: entriesCleared=${size}`);
   }
 
   /**
@@ -230,10 +222,7 @@ export class TemplateCache extends BaseService {
       }
     }
 
-    this.logger.info('Cache entries invalidated by pattern', {
-      pattern: pattern.toString(),
-      invalidated,
-    });
+    this.logger.info(`Cache entries invalidated by pattern: pattern=${pattern.toString()}, invalidated=${invalidated}`);
 
     return invalidated;
   }
@@ -246,7 +235,7 @@ export class TemplateCache extends BaseService {
       this.set(key, result);
     }
 
-    this.logger.info('Cache warmed', { entriesAdded: entries.length });
+    this.logger.info(`Cache warmed: entriesAdded=${entries.length}`);
   }
 
   /**
@@ -265,7 +254,7 @@ export class TemplateCache extends BaseService {
 
     if (oldestKey) {
       this.cache.delete(oldestKey);
-      this.logger.debug('Evicted LRU cache entry', { key: oldestKey });
+      this.logger.debug(`Evicted LRU cache entry: key=${oldestKey}`);
     }
   }
 
@@ -293,7 +282,7 @@ export class TemplateCache extends BaseService {
     }
 
     if (cleaned > 0) {
-      this.logger.debug('Cleaned up expired cache entries', { cleaned });
+      this.logger.debug(`Cleaned up expired cache entries: cleaned=${cleaned}`);
     }
   }
 

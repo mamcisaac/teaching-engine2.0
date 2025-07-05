@@ -7,9 +7,9 @@ export default function HolidaySettings() {
   // const { data: holidays } = useHolidays();
   // const add = useAddHoliday();
   // const remove = useDeleteHoliday();
-  const holidays: any[] = []; // Placeholder
-  const add = { mutate: (_data: any) => {} }; // Placeholder
-  const remove = { mutate: (_id: any) => {} }; // Placeholder
+  const holidays: Array<{ id: number; date: string; name: string }> = []; // Placeholder
+  const add = { mutate: (_data: { date: string; name: string }) => {} }; // Placeholder
+  const remove = { mutate: (_id: number) => {} }; // Placeholder
   const [date, setDate] = useState('');
   const [name, setName] = useState('');
 

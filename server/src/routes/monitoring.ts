@@ -1,22 +1,22 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { authenticate } from '../middleware/auth';
 import { getDashboardMetrics } from '../monitoring/dashboard';
 import { getAlertStatus, triggerManualAlert } from '../monitoring/alerting';
-import { logger } from '../logger';
+import logger from '../logger';
 import { withSpan } from '../monitoring/telemetry';
 
 const router = Router();
 
 // Dashboard metrics endpoint
 router.get('/dashboard', authenticate, async (req: Request, res: Response) => {
-  await withSpan('api.monitoring.dashboard', async () => {
+  await withSpan('api.monitoring.dashboard', {}, async () => {
     await getDashboardMetrics(req, res);
   });
 });
 
 // Alert status endpoint
 router.get('/alerts', authenticate, async (req: Request, res: Response) => {
-  await withSpan('api.monitoring.alerts', async () => {
+  await withSpan('api.monitoring.alerts', {}, async () => {
     try {
       const status = getAlertStatus();
       res.json(status);
@@ -29,7 +29,7 @@ router.get('/alerts', authenticate, async (req: Request, res: Response) => {
 
 // Manual alert trigger (for testing)
 router.post('/alerts/:alertId/trigger', authenticate, async (req: Request, res: Response) => {
-  await withSpan('api.monitoring.triggerAlert', async (span) => {
+  await withSpan('api.monitoring.triggerAlert', {}, async (span) => {
     try {
       const { alertId } = req.params;
       const { context } = req.body;
@@ -50,7 +50,7 @@ router.post('/alerts/:alertId/trigger', authenticate, async (req: Request, res: 
 
 // Health check endpoint with detailed status
 router.get('/health/detailed', async (req: Request, res: Response) => {
-  await withSpan('api.monitoring.healthDetailed', async (span) => {
+  await withSpan('api.monitoring.healthDetailed', {}, async (span) => {
     try {
       const health = {
         status: 'healthy',

@@ -87,7 +87,7 @@ class TemplateService extends BaseService {
     super('TemplateService');
   }
 
-  async findMany(filters: unknown, userId: number) {
+  async findMany(filters: Record<string, any>, userId: number) {
     const {
       type,
       category,
@@ -179,9 +179,20 @@ class TemplateService extends BaseService {
   async create(data: TemplateCreateData, userId: number) {
     return prisma.planTemplate.create({
       data: {
-        ...data,
+        title: data.title,
+        titleFr: data.titleFr,
+        description: data.description,
+        descriptionFr: data.descriptionFr,
+        type: data.type as any, // Will be validated by schema
+        category: data.category as any, // Will be validated by schema
+        subject: data.subject,
+        gradeMin: data.gradeMin,
+        gradeMax: data.gradeMax,
+        tags: data.tags || [],
+        keywords: data.tags || [], // Use same as tags for now
+        isSystem: data.isSystem ?? false,
         createdByUserId: userId,
-        isSystem: false,
+        content: data.content || {},
       },
     });
   }
@@ -201,7 +212,20 @@ class TemplateService extends BaseService {
 
     return prisma.planTemplate.update({
       where: { id },
-      data,
+      data: {
+        ...(data.title && { title: data.title }),
+        ...(data.titleFr && { titleFr: data.titleFr }),
+        ...(data.description && { description: data.description }),
+        ...(data.descriptionFr && { descriptionFr: data.descriptionFr }),
+        ...(data.type && { type: data.type as any }),
+        ...(data.category && { category: data.category as any }),
+        ...(data.subject && { subject: data.subject }),
+        ...(data.gradeMin !== undefined && { gradeMin: data.gradeMin }),
+        ...(data.gradeMax !== undefined && { gradeMax: data.gradeMax }),
+        ...(data.tags && { tags: data.tags }),
+        ...(data.content && { content: data.content }),
+        ...(data.templateData && { templateData: data.templateData }),
+      },
     });
   }
 
@@ -263,7 +287,7 @@ class TemplateService extends BaseService {
 
     const uniqueSubjects = subjects
       .map((t) => t.subject)
-      .filter((_s) => s !== null)
+      .filter((s) => s !== null)
       .sort();
 
     const gradeRange = grades.reduce(

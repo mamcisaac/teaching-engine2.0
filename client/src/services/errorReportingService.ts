@@ -20,7 +20,7 @@ interface BreadcrumbData {
   message: string;
   category?: string;
   level?: Sentry.SeverityLevel;
-  data?: Record<string, any>;
+  data?: Record<string, unknown>;
 }
 
 export class ErrorReportingService {
@@ -70,7 +70,7 @@ export class ErrorReportingService {
     /\b\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}\b/g, // Credit card
     /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g, // Email
     /\b\d{3}[-.\s]?\d{3}[-.\s]?\d{4}\b/g, // Phone number
-    /Bearer\s+[A-Za-z0-9\-._~+\/]+=*/g, // Bearer tokens
+    /Bearer\s+[A-Za-z0-9\-._~+/]+=*/g, // Bearer tokens
   ];
 
   constructor() {
@@ -145,7 +145,7 @@ export class ErrorReportingService {
     }
   }
 
-  captureError(error: Error | unknown, context?: Record<string, any>, errorInfo?: ErrorInfo): void {
+  captureError(error: Error | unknown, context?: Record<string, unknown>, errorInfo?: ErrorInfo): void {
     if (!this.enabled) {
       console.debug('Error reporting disabled, skipping:', { error, context });
       return;
@@ -247,7 +247,7 @@ export class ErrorReportingService {
     });
   }
 
-  setErrorContext(key: string, context: Record<string, any>): void {
+  setErrorContext(key: string, context: Record<string, unknown>): void {
     if (!this.enabled) {
       return;
     }
@@ -357,7 +357,7 @@ export class ErrorReportingService {
     return this.sanitizeEvent(event);
   }
 
-  private beforeBreadcrumb(breadcrumb: Sentry.Breadcrumb, hint?: Sentry.BreadcrumbHint): Sentry.Breadcrumb | null {
+  private beforeBreadcrumb(breadcrumb: Sentry.Breadcrumb, _hint?: Sentry.BreadcrumbHint): Sentry.Breadcrumb | null {
     // Filter out noisy breadcrumbs
     if (breadcrumb.category === 'console' && breadcrumb.level === 'warning') {
       // Filter out React development warnings
@@ -435,7 +435,7 @@ export class ErrorReportingService {
     return sanitized;
   }
 
-  private sanitizeData(data: any): any {
+  private sanitizeData(data: unknown): unknown {
     if (!data) return data;
 
     if (typeof data === 'string') {
@@ -447,20 +447,21 @@ export class ErrorReportingService {
     }
 
     if (typeof data === 'object') {
-      const sanitized: any = {};
+      const sanitized: Record<string, unknown> = {};
+      const dataObj = data as Record<string, unknown>;
       
-      for (const key in data) {
+      for (const key in dataObj) {
         const lowerKey = key.toLowerCase();
         
         // Check if field should be redacted
         if (this.sensitiveFields.some(field => lowerKey.includes(field))) {
           sanitized[key] = '[REDACTED]';
         } else if (key === 'email') {
-          sanitized[key] = this.maskEmail(data[key]);
+          sanitized[key] = this.maskEmail(String(dataObj[key]));
         } else if (key === 'ip' || key === 'ipAddress' || key === 'ip_address') {
-          sanitized[key] = this.maskIP(data[key]);
+          sanitized[key] = this.maskIP(String(dataObj[key]));
         } else {
-          sanitized[key] = this.sanitizeData(data[key]);
+          sanitized[key] = this.sanitizeData(dataObj[key]);
         }
       }
       
@@ -488,8 +489,8 @@ export class ErrorReportingService {
     return sanitized;
   }
 
-  private sanitizeHeaders(headers: Record<string, any>): Record<string, any> {
-    const sanitized: Record<string, any> = {};
+  private sanitizeHeaders(headers: Record<string, unknown>): Record<string, unknown> {
+    const sanitized: Record<string, unknown> = {};
     
     for (const key in headers) {
       const lowerKey = key.toLowerCase();

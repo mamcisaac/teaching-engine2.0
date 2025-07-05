@@ -1,9 +1,7 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { useNavigation } from './NavigationProvider';
 import { SidebarHeader } from './SidebarHeader';
-import { SidebarNavItem } from './SidebarNavItem';
 import { ETFONavigationSection } from './ETFONavigationSection';
 import { ResourceNavigationSection } from './ResourceNavigationSection';
 

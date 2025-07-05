@@ -4,7 +4,7 @@
  * Exposes authentication middleware functions as API endpoints
  */
 
-import { Router, Request, Response, NextFunction, RequestHandler } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import {
   login,
   register,

@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable @typescript-eslint/no-var-requires */
 import { Request, Response } from 'express';
-import '../../types/express.js';
+// import '../../types/express';
 import rateLimit, { RateLimitRequestHandler, Options } from 'express-rate-limit';
 // Optional Redis support
 let RedisStore: unknown;

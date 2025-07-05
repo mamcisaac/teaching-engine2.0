@@ -476,7 +476,7 @@ export const substituteApi = {
     return response;
   },
 
-  generateSubPlanWithOptions: async (options: any) => {
+  generateSubPlanWithOptions: async (options: { startDate: string; endDate?: string; includeResources?: boolean; format?: string }) => {
     const response = await apiClient.post(`/subplan/generate`, options, {
       responseType: 'blob',
     });
@@ -493,7 +493,7 @@ export const substituteApi = {
     return response.data;
   },
 
-  saveClassRoutine: async (routine: any) => {
+  saveClassRoutine: async (routine: { name: string; description?: string; activities: unknown[]; timeSlots?: unknown[] }) => {
     const response = await apiClient.post('/subplan/routines', routine);
     return response.data;
   },
@@ -530,7 +530,7 @@ export const substituteApi = {
     return response.data;
   },
 
-  extractScenarioTemplates: async (conditions?: any) => {
+  extractScenarioTemplates: async (conditions?: Record<string, string | number>) => {
     const params = new URLSearchParams();
     if (conditions) {
       Object.entries(conditions).forEach(([key, value]) => {
@@ -596,7 +596,7 @@ export const substituteApi = {
     return response.data;
   },
 
-  extractComprehensiveSubPlan: async (request: any) => {
+  extractComprehensiveSubPlan: async (request: { startDate: string; endDate: string; userId?: number; options?: Record<string, unknown> }) => {
     const response = await apiClient.post('/subplan/extract/comprehensive', request);
     return response.data;
   },

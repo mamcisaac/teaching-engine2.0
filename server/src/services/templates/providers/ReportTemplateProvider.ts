@@ -57,6 +57,7 @@ export class ReportTemplateProvider extends TemplateProvider {
       name: 'Student Progress Report',
       engine: 'pdf',
       format: 'pdf',
+      supportedFormats: ['pdf'],
       content: this.getProgressReportTemplate(),
       dataRequirements: [
         { key: 'student', type: 'student', required: true },
@@ -76,6 +77,7 @@ export class ReportTemplateProvider extends TemplateProvider {
       name: 'Term Report Card',
       engine: 'handlebars',
       format: 'html',
+      supportedFormats: ['html', 'pdf'],
       content: this.getTermReportTemplate(),
       dataRequirements: [
         { key: 'student', type: 'student', required: true },
@@ -95,6 +97,7 @@ export class ReportTemplateProvider extends TemplateProvider {
       name: 'Class Summary Report',
       engine: 'handlebars',
       format: 'html',
+      supportedFormats: ['html', 'pdf'],
       content: this.getClassSummaryTemplate(),
       dataRequirements: [
         { key: 'classStats', type: 'custom', required: true },
@@ -113,6 +116,7 @@ export class ReportTemplateProvider extends TemplateProvider {
       name: 'IEP Progress Report',
       engine: 'pdf',
       format: 'pdf',
+      supportedFormats: ['pdf'],
       content: this.getIEPReportTemplate(),
       dataRequirements: [
         { key: 'student', type: 'student', required: true },

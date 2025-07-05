@@ -20,7 +20,8 @@ export class PDFParser extends CurriculumParser {
    */
   async parse(content: string | Buffer): Promise<ParsedCurriculum> {
     // Parse PDF
-    const data = await pdfParse(content);
+    const buffer = content instanceof Buffer ? content : Buffer.from(content);
+    const data = await pdfParse(buffer);
     
     if (!data.text) {
       throw new Error('No text content found in PDF');
@@ -73,15 +74,16 @@ export class PDFParser extends CurriculumParser {
     subject?: string;
     version?: string;
   } {
-    const metadata: unknown = {};
+    const metadata: any = {};
     
     // Try to extract from PDF metadata
-    if (pdfData.info) {
-      metadata.version = pdfData.info.Title || pdfData.info.Subject;
+    if (pdfData && typeof pdfData === 'object' && 'info' in pdfData) {
+      const info = (pdfData as any).info;
+      metadata.version = info?.Title || info?.Subject;
     }
 
     // Extract from text content
-    const text = pdfData.text;
+    const text = pdfData && typeof pdfData === 'object' && 'text' in pdfData ? (pdfData as any).text : '';
     
     // Look for grade
     const gradeMatch = text.match(/Grade\s*(\d+)/i);

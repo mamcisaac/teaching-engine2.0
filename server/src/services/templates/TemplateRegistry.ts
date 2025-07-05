@@ -88,10 +88,10 @@ export class TemplateRegistry extends BaseService {
       }
     }
 
-    this.logger.info('Template registry initialized', {
+    this.logger.info({
       providers: this.providers.size,
       engines: this.engines.size,
-    });
+    }, 'Template registry initialized');
   }
 
   /**
@@ -145,7 +145,7 @@ export class TemplateRegistry extends BaseService {
     }
     this.providersByType.get(providerType)!.push(name);
 
-    this.logger.info('Template provider registered', { name, type: providerType });
+    this.logger.info({ name, type: providerType }, 'Template provider registered');
   }
 
   /**
@@ -161,10 +161,10 @@ export class TemplateRegistry extends BaseService {
     };
 
     this.engines.set(name, info);
-    this.logger.info('Template engine registered', {
+    this.logger.info({
       name,
       supportedFormats: info.supportedFormats,
-    });
+    }, 'Template engine registered');
   }
 
   /**
@@ -219,10 +219,10 @@ export class TemplateRegistry extends BaseService {
           const templates = await info.provider.listTemplates();
           allTemplates.push(...templates);
         } catch (_error) {
-          this.logger.error('Failed to list templates', {
+          this.logger.error({
             provider: info.name,
             error: _error instanceof Error ? _error.message : _error,
-          });
+          }, 'Failed to list templates');
         }
       }
     }
@@ -296,7 +296,7 @@ export class TemplateRegistry extends BaseService {
     const info = this.providers.get(name);
     if (info) {
       info.isActive = active;
-      this.logger.info('Provider activation changed', { name, active });
+      this.logger.info({ name, active }, 'Provider activation changed');
       return true;
     }
     return false;
@@ -309,7 +309,7 @@ export class TemplateRegistry extends BaseService {
     const info = this.engines.get(name);
     if (info) {
       info.isActive = active;
-      this.logger.info('Engine activation changed', { name, active });
+      this.logger.info({ name, active }, 'Engine activation changed');
       return true;
     }
     return false;
@@ -331,7 +331,7 @@ export class TemplateRegistry extends BaseService {
       }
 
       this.providers.delete(name);
-      this.logger.info('Provider removed', { name });
+      this.logger.info({ name }, 'Provider removed');
       return true;
     }
     return false;
@@ -343,7 +343,7 @@ export class TemplateRegistry extends BaseService {
   public removeEngine(name: string): boolean {
     const removed = this.engines.delete(name);
     if (removed) {
-      this.logger.info('Engine removed', { name });
+      this.logger.info({ name }, 'Engine removed');
     }
     return removed;
   }
@@ -381,10 +381,10 @@ export class TemplateRegistry extends BaseService {
           stats.templates.total += templates.length;
           stats.templates.byProvider[info.name] = templates.length;
         } catch (_error) {
-          this.logger.error('Failed to count templates', {
+          this.logger.error({
             provider: info.name,
             error: _error instanceof Error ? _error.message : _error,
-          });
+          }, 'Failed to count templates');
         }
       }
     }
@@ -430,8 +430,8 @@ export class TemplateRegistry extends BaseService {
       try {
         if (info.provider.validateHealth) {
           const health = await info.provider.validateHealth();
-          if (!health.isHealthy) {
-            issues.push(`Provider ${info.name} health check failed: ${health.issues?.join(', ')}`);
+          if (!health) {
+            issues.push(`Provider ${info.name} health check failed`);
           }
         }
       } catch (_error) {
@@ -446,8 +446,8 @@ export class TemplateRegistry extends BaseService {
       try {
         if (info.engine.validateHealth) {
           const health = await info.engine.validateHealth();
-          if (!health.isHealthy) {
-            issues.push(`Engine ${info.name} health check failed: ${health.issues?.join(', ')}`);
+          if (!health) {
+            issues.push(`Engine ${info.name} health check failed`);
           }
         }
       } catch (_error) {
@@ -479,7 +479,8 @@ export class TemplateRegistry extends BaseService {
   private inferProviderType(name: string, provider: TemplateProvider): string {
     // Try to get type from provider metadata
     if (provider.getMetadata && provider.getMetadata().type) {
-      return provider.getMetadata().type;
+      const type = provider.getMetadata().type;
+      return typeof type === 'string' ? type : 'generic';
     }
 
     // Fallback to name-based inference

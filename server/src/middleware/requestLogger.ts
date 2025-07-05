@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import '../types/express.js';
+// import '../types/express.js';
 import { randomUUID } from 'crypto';
 import logger from '../logger.js';
 import { performance } from 'perf_hooks';

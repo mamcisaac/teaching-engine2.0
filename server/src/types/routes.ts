@@ -14,7 +14,6 @@ export interface ResourceData {
   type: string;
   url?: string;
   content?: string;
-  description?: string;
 }
 
 // Daybook Entry Types
@@ -44,42 +43,41 @@ export interface DaybookEntryUpdateData extends Partial<DaybookEntryCreateData> 
 export interface ETFOLessonPlanCreateData {
   title: string;
   date: string | Date;
-  unitPlanId?: string;
-  subject: string;
-  grade: string;
+  unitPlanId: string;
   duration?: number;
   
-  // Content
-  lessonObjectives?: string;
+  // Three-part lesson structure
+  mindsOn?: string;
+  mindsOnFr?: string;
+  action?: string;
+  actionFr?: string;
+  consolidation?: string;
+  consolidationFr?: string;
+  
+  // Planning details
   learningGoals?: string;
-  successCriteria?: string;
-  assessment?: string;
-  materials?: string;
-  activities?: string;
+  learningGoalsFr?: string;
+  materials?: string[];
+  grouping?: string;
   
   // Bilingual support
   titleFr?: string;
-  lessonObjectivesFr?: string;
-  learningGoalsFr?: string;
-  successCriteriaFr?: string;
-  assessmentFr?: string;
-  materialsFr?: string;
-  activitiesFr?: string;
   
-  // ETFO-specific fields
-  minds_on?: string;
-  action?: string;
-  consolidation?: string;
-  accommodations?: string;
-  modifications?: string;
+  // Differentiation
+  accommodations?: string[];
+  modifications?: string[];
+  extensions?: string[];
   
-  // Metadata
+  // Assessment
+  assessmentType?: 'diagnostic' | 'formative' | 'summative';
+  assessmentNotes?: string;
+  
+  // Substitute teacher support
   isSubFriendly?: boolean;
-  isCompleted?: boolean;
+  subNotes?: string;
   
-  // Relationships
-  expectations?: ExpectationData[];
-  resources?: ResourceData[];
+  // Curriculum expectations
+  expectationIds?: string[];
 }
 
 export interface ETFOLessonPlanUpdateData extends Partial<ETFOLessonPlanCreateData> {}
@@ -123,6 +121,7 @@ export interface UnitPlanCreateData {
   
   // Relationships
   expectations?: ExpectationData[];
+  expectationIds?: string[];
   resources?: ResourceData[];
 }
 

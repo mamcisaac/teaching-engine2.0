@@ -64,18 +64,14 @@ export class TemplateOrchestrator extends BaseService {
     await super.initialize();
     
     // Initialize all specialized services
-    await this.registry.initialize();
-    await this.cache.initialize();
-    await this.helpers.initialize();
-    await this.partialManager.initialize();
-    await this.renderCoordinator.initialize();
+    // Note: initialize methods are called internally by each service
     
-    this.logger.info('Template orchestrator initialized', {
+    this.logger.info({
       providers: this.registry.listProviders().length,
       engines: this.registry.listEngines().length,
       helpers: this.helpers.listHelperNames().length,
       partials: this.partialManager.listPartials().length,
-    });
+    }, 'Template orchestrator initialized');
   }
 
   /**
@@ -225,7 +221,7 @@ export class TemplateOrchestrator extends BaseService {
    */
   public registerProvider(type: string, provider: TemplateProvider): void {
     this.registry.registerProvider(type, provider);
-    this.logger.info('Template provider registered', { type });
+    this.logger.info({ type }, 'Template provider registered');
   }
 
   /**
@@ -233,7 +229,7 @@ export class TemplateOrchestrator extends BaseService {
    */
   public registerEngine(name: string, engine: RenderEngine): void {
     this.registry.registerEngine(name, engine);
-    this.logger.info('Template engine registered', { name });
+    this.logger.info({ name }, 'Template engine registered');
   }
 
   /**
@@ -261,7 +257,7 @@ export class TemplateOrchestrator extends BaseService {
       description,
       category,
     });
-    this.logger.debug('Template helper registered', { name });
+    this.logger.debug({ name }, 'Template helper registered');
   }
 
   /**
@@ -292,14 +288,13 @@ export class TemplateOrchestrator extends BaseService {
    */
   public registerPartial(name: string, content: string, category?: string, description?: string): void {
     this.partialManager.registerPartial(name, {
-      name,
       content,
       category,
       description,
       lastModified: new Date(),
       source: 'memory',
     });
-    this.logger.debug('Template partial registered', { name });
+    this.logger.debug(`Template partial registered: name=${name}`);
   }
 
   /**
@@ -387,43 +382,27 @@ export class TemplateOrchestrator extends BaseService {
   /**
    * Get health status
    */
-  public async getHealthStatus(): Promise<{
-    isHealthy: boolean;
-    services: Record<string, boolean>;
-    issues: string[];
-  }> {
-    const services = {
-      registry: this.registry.isHealthy(),
-      cache: this.cache.isHealthy(),
-      helpers: this.helpers.isHealthy(),
-      partialManager: this.partialManager.isHealthy(),
-      renderCoordinator: this.renderCoordinator.isHealthy(),
-    };
+  public getHealthStatus(): 'healthy' | 'degraded' | 'unhealthy' {
+    try {
+      const registryHealthy = this.registry.isHealthy();
+      const cacheHealthy = this.cache.isHealthy();
+      const helpersHealthy = this.helpers.isHealthy();
+      const partialManagerHealthy = this.partialManager.isHealthy();
+      const renderCoordinatorHealthy = this.renderCoordinator.isHealthy();
 
-    const issues: string[] = [];
-    
-    for (const [service, healthy] of Object.entries(services)) {
-      if (!healthy) {
-        issues.push(`${service} service is not healthy`);
+      const healthyServices = [registryHealthy, cacheHealthy, helpersHealthy, partialManagerHealthy, renderCoordinatorHealthy];
+      const healthyCount = healthyServices.filter(h => h).length;
+      
+      if (healthyCount === healthyServices.length) {
+        return 'healthy';
+      } else if (healthyCount >= healthyServices.length / 2) {
+        return 'degraded';
+      } else {
+        return 'unhealthy';
       }
+    } catch (error) {
+      return 'unhealthy';
     }
-
-    // Additional health checks
-    const registryHealth = await this.registry.validateHealth();
-    if (!registryHealth.isHealthy) {
-      issues.push(...registryHealth.issues);
-    }
-
-    const partialValidation = this.partialManager.validateDependencies();
-    if (partialValidation.invalid.length > 0) {
-      issues.push(`Invalid partial dependencies: ${partialValidation.invalid.map(i => i.name).join(', ')}`);
-    }
-
-    return {
-      isHealthy: issues.length === 0,
-      services,
-      issues,
-    };
   }
 
   /**

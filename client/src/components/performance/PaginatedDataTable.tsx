@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
 // Simple debounce implementation
-const debounce = <T extends (...args: any[]) => any>(
+const debounce = <T extends (...args: unknown[]) => unknown>(
   func: T,
   wait: number
 ): ((...args: Parameters<T>) => void) => {
@@ -22,7 +22,7 @@ interface Column<T> {
   sortable?: boolean;
   filterable?: boolean;
   width?: string;
-  render?: (value: any, item: T) => React.ReactNode;
+  render?: (value: unknown, item: T) => React.ReactNode;
 }
 
 interface PaginatedResult<T> {
@@ -37,7 +37,7 @@ interface FetchParams {
   pageSize: number;
   sortBy?: string;
   sortOrder: 'asc' | 'desc';
-  filters: Record<string, any>;
+  filters: Record<string, string | number | boolean>;
 }
 
 interface PaginatedDataTableProps<T> {
@@ -51,7 +51,7 @@ interface PaginatedDataTableProps<T> {
   enableGlobalSearch?: boolean;
 }
 
-export function PaginatedDataTable<T extends Record<string, any>>({
+export function PaginatedDataTable<T extends Record<string, unknown>>({
   columns,
   fetchData,
   pageSize = 25,
@@ -63,12 +63,12 @@ export function PaginatedDataTable<T extends Record<string, any>>({
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState<string | undefined>(initialSort?.key as string);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>(initialSort?.order || 'asc');
-  const [filters, setFilters] = useState<Record<string, any>>({});
+  const [filters, setFilters] = useState<Record<string, string | number | boolean>>({});
   const [globalSearch, setGlobalSearch] = useState('');
 
   // Debounced filter updates
   const debouncedUpdateFilters = useMemo(
-    () => debounce((newFilters: Record<string, any>) => {
+    () => debounce((newFilters: Record<string, string | number | boolean>) => {
       setFilters(newFilters);
       setCurrentPage(1); // Reset to first page when filtering
     }, 300),

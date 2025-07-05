@@ -108,7 +108,7 @@ export class PdfEngine extends RenderEngine {
         },
       };
     } catch (_error) {
-      throw new Error(`PDF render error: ${error.message}`);
+      throw new Error(`PDF render error: ${_error instanceof Error ? _error.message : String(_error)}`);
     }
   }
 

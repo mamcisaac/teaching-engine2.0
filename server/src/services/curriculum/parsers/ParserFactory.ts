@@ -11,7 +11,7 @@ import { PDFParser } from './PDFParser';
 import { JSONParser } from './JSONParser';
 
 export class ParserFactory {
-  private static parsers: Map<string, new (options?: ParserOptions) => CurriculumParser> = new Map([
+  private static parsers = new Map<string, new (options?: ParserOptions) => CurriculumParser>([
     ['.csv', CSVParser],
     ['.txt', CSVParser],
     ['.xlsx', ExcelParser],

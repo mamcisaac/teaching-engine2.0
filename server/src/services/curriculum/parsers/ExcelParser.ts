@@ -88,7 +88,7 @@ export class ExcelParser extends CurriculumParser {
   } {
     // Try to extract from workbook properties
     const props = workbook.Props;
-    const metadata: unknown = {};
+    const metadata: any = {};
 
     if (props) {
       metadata.version = props.Title || props.Subject;

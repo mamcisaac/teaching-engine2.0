@@ -43,13 +43,18 @@ export class JSONParser extends CurriculumParser {
    * Parse JSON content
    */
   async parse(content: string | Buffer): Promise<ParsedCurriculum> {
-    const stringContent = content instanceof Buffer ? content.toString('utf-8') : content;
+    let stringContent: string;
+    if (content instanceof Buffer) {
+      stringContent = content.toString('utf-8');
+    } else {
+      stringContent = content as string;
+    }
     
     let data: unknown;
     try {
       data = JSON.parse(stringContent);
     } catch (_error) {
-      throw new Error(`Invalid JSON format: ${error.message}`);
+      throw new Error(`Invalid JSON format: ${_error instanceof Error ? _error.message : String(_error)}`);
     }
 
     // Handle array of expectations
@@ -58,8 +63,8 @@ export class JSONParser extends CurriculumParser {
     }
 
     // Handle object with expectations
-    if (typeof data === 'object') {
-      return this.parseCurriculumObject(data);
+    if (typeof data === 'object' && data !== null) {
+      return this.parseCurriculumObject(data as JSONCurriculum);
     }
 
     throw new Error('Invalid JSON structure for curriculum data');
@@ -74,7 +79,7 @@ export class JSONParser extends CurriculumParser {
     let inferredSubject: string | undefined;
 
     for (const item of data) {
-      const expectation = this.parseExpectation(item);
+      const expectation = this.parseExpectation(item as JSONExpectation);
       if (expectation) {
         expectations.push(expectation);
         
@@ -128,7 +133,7 @@ export class JSONParser extends CurriculumParser {
     const expectations: ParsedExpectation[] = [];
     
     for (const item of expectationsList) {
-      const expectation = this.parseExpectation(item, grade, subject);
+      const expectation = this.parseExpectation(item as JSONExpectation, grade, subject);
       if (expectation) {
         expectations.push(expectation);
       }
@@ -141,7 +146,7 @@ export class JSONParser extends CurriculumParser {
       metadata: {
         source: 'JSON Import',
         lastUpdated: new Date(),
-        ...(data.metadata || {}),
+        ...(typeof data.metadata === 'object' && data.metadata !== null ? data.metadata : {}),
       },
     };
 
@@ -157,9 +162,11 @@ export class JSONParser extends CurriculumParser {
    */
   private findExpectationsArray(obj: unknown, depth: number = 0): unknown[] | null {
     if (depth > 3) return null; // Prevent deep recursion
+    
+    if (typeof obj !== 'object' || obj === null) return null;
 
-    for (const key in obj) {
-      const value = obj[key];
+    for (const key in obj as Record<string, unknown>) {
+      const value = (obj as Record<string, unknown>)[key];
       
       if (Array.isArray(value) && value.length > 0) {
         // Check if this looks like an expectations array
@@ -201,7 +208,7 @@ export class JSONParser extends CurriculumParser {
     if (!description) return null;
 
     // Extract type
-    const type = this.parseExpectationType(
+    const type = this.parseExpectationTypeFromJSON(
       item.type || item.category || '',
       code,
       description
@@ -252,9 +259,9 @@ export class JSONParser extends CurriculumParser {
   }
 
   /**
-   * Parse expectation type
+   * Parse expectation type from JSON value or fallback to parent logic
    */
-  private parseExpectationType(typeValue: string, code: string, description: string): string {
+  private parseExpectationTypeFromJSON(typeValue: string, code: string, description: string): 'overall' | 'specific' {
     if (typeValue) {
       const normalized = typeValue.toLowerCase();
       if (normalized.includes('overall')) return 'overall';

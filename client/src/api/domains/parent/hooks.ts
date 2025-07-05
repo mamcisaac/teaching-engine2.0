@@ -2,12 +2,8 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { parentApi } from './api';
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 import type { 
-  ParentMessage, 
   ParentMessageInput, 
-  ParentSummary, 
-  GenerateParentSummaryRequest, 
-  SaveParentSummaryRequest, 
-  ParentSummaryGeneration 
+  SaveParentSummaryRequest
 } from '../../../types';
 
 // Parent Messages Query hooks

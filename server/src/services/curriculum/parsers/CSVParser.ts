@@ -131,12 +131,12 @@ export class CSVParser extends CurriculumParser {
   private parseRow(row: CSVRow, defaultGrade?: number, defaultSubject?: string): ParsedExpectation | null {
     // Try different column name variations
     const code = this.cleanText(
-      row.code || row.expectation_code || row.Code || row['Expectation Code'] || ''
+      this.ensureString(row.code || row.expectation_code || row.Code || row['Expectation Code'] || '')
     );
     
     const description = this.cleanText(
-      row.description || row.expectation_description || 
-      row.Description || row['Expectation Description'] || ''
+      this.ensureString(row.description || row.expectation_description || 
+      row.Description || row['Expectation Description'] || '')
     );
 
     if (!code || !description) {
@@ -144,8 +144,8 @@ export class CSVParser extends CurriculumParser {
     }
 
     const type = this.parseType(row);
-    const strand = this.cleanText(row.strand || row.Strand || '');
-    const substrand = this.cleanText(row.substrand || row.Substrand || '');
+    const strand = this.cleanText(this.ensureString(row.strand || row.Strand || ''));
+    const substrand = this.cleanText(this.ensureString(row.substrand || row.Substrand || ''));
 
     const expectation: ParsedExpectation = {
       code,
@@ -219,6 +219,16 @@ export class CSVParser extends CurriculumParser {
       return parts[1];
     }
     return 'General';
+  }
+
+  /**
+   * Ensure value is a string
+   */
+  private ensureString(value: unknown): string {
+    if (value === null || value === undefined) {
+      return '';
+    }
+    return String(value);
   }
 
   /**

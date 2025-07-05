@@ -1,12 +1,15 @@
 import { apiClient } from '../api/core/client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { RecentPlan } from '../components/planning/RecentPlans';
+import { useAuth } from '../contexts/AuthContext';
 
 interface UseRecentPlansOptions {
   limit?: number;
 }
 
 export function useRecentPlans(options?: UseRecentPlansOptions) {
+  const { isAuthenticated } = useAuth();
+  
   return useQuery<RecentPlan[]>({
     queryKey: ['recent-plans', options?.limit],
     queryFn: async () => {
@@ -17,6 +20,7 @@ export function useRecentPlans(options?: UseRecentPlansOptions) {
       const response = await apiClient.get(`/api/recent-plans?${params.toString()}`);
       return response.data;
     },
+    enabled: isAuthenticated, // Only run when authenticated
     staleTime: 30000, // 30 seconds
   });
 }

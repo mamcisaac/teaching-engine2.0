@@ -17,7 +17,7 @@ interface NotificationContextValue {
 const NotificationContext = createContext<NotificationContextValue | null>(null);
 
 export function NotificationProvider({ children }: { children: ReactNode }) {
-  const { isAuthenticated, isInitialized } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   // Only fetch notifications if user is authenticated and auth is initialized
   const {
@@ -46,7 +46,7 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
 
   const deleteNotification = (id: number) => {
     // TODO: Implement delete notification mutation
-    console.log('Delete notification:', id);
+    // console.log('Delete notification:', id);
   };
 
   // Computed values

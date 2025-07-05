@@ -19,7 +19,7 @@ import {
 } from '../../test-utils/auth-test-utils';
 
 // Test utilities for creating users
-let testCleanupFunctions: Array<() => Promise<void>> = [];
+let testCleanupFunctions: Array<(() => Promise<void>) | undefined> = [];
 
 describe('AuthContext - Real Authentication Flows', () => {
   beforeEach(async () => {
@@ -30,7 +30,7 @@ describe('AuthContext - Real Authentication Flows', () => {
 
   afterEach(async () => {
     // Clean up all test users and auth state
-    await Promise.all(testCleanupFunctions.map(cleanup => cleanup()));
+    await Promise.all(testCleanupFunctions.filter(cleanup => cleanup !== undefined).map(cleanup => cleanup!()));
     testCleanupFunctions = [];
     clearAuthState();
   });
@@ -70,7 +70,7 @@ describe('AuthContext - Real Authentication Flows', () => {
       email: 'test-login@example.com',
       password: 'TestPassword123!',
     });
-    testCleanupFunctions.push(() => deleteTestUser(testUser.id));
+    testCleanupFunctions.push(async () => await deleteTestUser(testUser.id));
 
     const { result } = renderHook(() => useAuth(), {
       wrapper: AuthProvider,
@@ -111,7 +111,9 @@ describe('AuthContext - Real Authentication Flows', () => {
   it('should handle complete login and logout flow', async () => {
     // Setup test with real user
     const { user, authContext, cleanup } = await setupAuthTest();
-    testCleanupFunctions.push(cleanup);
+    if (cleanup) {
+      testCleanupFunctions.push(cleanup);
+    }
 
     const { result } = renderHook(() => useAuth(), {
       wrapper: AuthProvider,
@@ -141,7 +143,9 @@ describe('AuthContext - Real Authentication Flows', () => {
   it('should restore user from real stored token on mount', async () => {
     // Create authenticated user and store token
     const authContext = await createAuthenticatedTestUser();
-    testCleanupFunctions.push(authContext.cleanup);
+    if (authContext.cleanup) {
+      testCleanupFunctions.push(authContext.cleanup);
+    }
 
     // Verify token is stored
     expect(authContext.token).toBeTruthy();
@@ -175,7 +179,9 @@ describe('AuthContext - Real Authentication Flows', () => {
 
   it('should handle real token refresh flow', async () => {
     const authContext = await createAuthenticatedTestUser();
-    testCleanupFunctions.push(authContext.cleanup);
+    if (authContext?.cleanup) {
+      testCleanupFunctions.push(authContext.cleanup);
+    }
 
     const { result } = renderHook(() => useAuth(), {
       wrapper: AuthProvider,
@@ -223,7 +229,9 @@ describe('AuthContext - Real Authentication Flows', () => {
 
   it('should verify auth status with real backend calls', async () => {
     const authContext = await createAuthenticatedTestUser();
-    testCleanupFunctions.push(authContext.cleanup);
+    if (authContext?.cleanup) {
+      testCleanupFunctions.push(authContext.cleanup);
+    }
 
     const { result } = renderHook(() => useAuth(), {
       wrapper: AuthProvider,
@@ -249,7 +257,7 @@ describe('AuthContext - Real Authentication Flows', () => {
       email: 'concurrent-test@example.com',
       password: 'TestPassword123!',
     });
-    testCleanupFunctions.push(() => deleteTestUser(testUser.id));
+    testCleanupFunctions.push(async () => await deleteTestUser(testUser.id));
 
     const { result } = renderHook(() => useAuth(), {
       wrapper: AuthProvider,

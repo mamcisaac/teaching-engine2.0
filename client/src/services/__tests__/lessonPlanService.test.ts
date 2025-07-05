@@ -31,7 +31,7 @@ const createMockLessonPlan = (overrides: Partial<ETFOLessonPlan> = {}): ETFOLess
   isSubFriendly: true,
   subNotes: 'Materials prepared',
   unitPlanId: 'unit-1',
-  expectations: [{ expectation: { id: 'exp-1' } }, { expectation: { id: 'exp-2' } }] as unknown,
+  expectations: [{ expectation: { id: 'exp-1' } }, { expectation: { id: 'exp-2' } }] as any,
   ...overrides,
 });
 
@@ -330,9 +330,9 @@ describe('LessonPlanService', () => {
 
     it('should handle undefined fields', () => {
       const lesson = createMockLessonPlan({
-        title: undefined as unknown,
-        learningGoals: undefined as unknown,
-        materials: undefined as unknown,
+        title: undefined as any,
+        learningGoals: undefined as any,
+        materials: undefined as any,
       });
 
       const result = LessonPlanService.isComplete(lesson);
@@ -456,8 +456,8 @@ describe('LessonPlanService', () => {
 
     it('should handle undefined fields', () => {
       const lesson = createMockLessonPlan({
-        title: undefined as unknown,
-        materials: undefined as unknown,
+        title: undefined as any,
+        materials: undefined as any,
       });
 
       const result = LessonPlanService.isReadyForTeaching(lesson);
@@ -478,8 +478,8 @@ describe('LessonPlanService', () => {
     it('should handle null or undefined inputs gracefully', () => {
       expect(() => LessonPlanService.calculateTimeAllocation(0)).not.toThrow();
       expect(() => LessonPlanService.validateTiming('', '', '')).not.toThrow();
-      expect(() => LessonPlanService.formatForExport(null as unknown)).toThrow();
-      expect(() => LessonPlanService.isComplete(null as unknown)).toThrow();
+      expect(() => LessonPlanService.formatForExport(null as any)).toThrow();
+      expect(() => LessonPlanService.isComplete(null as any)).toThrow();
     });
 
     it('should handle very large durations', () => {

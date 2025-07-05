@@ -60,7 +60,7 @@ router.get('/', async (req: Request, res, _next) => {
 
     res.json(plans);
   } catch (_err) {
-    _next(err);
+    _next(_err);
   }
 });
 
@@ -106,7 +106,7 @@ router.get('/:id', async (req: Request, res, _next) => {
 
     res.json(plan);
   } catch (_err) {
-    _next(err);
+    _next(_err);
   }
 });
 
@@ -177,7 +177,7 @@ router.post('/', validate(longRangePlanCreateSchema), async (req: Request, res, 
 
     res.status(201).json(plan);
   } catch (_err) {
-    _next(err);
+    _next(_err);
   }
 });
 
@@ -250,7 +250,7 @@ router.put('/:id', validate(longRangePlanUpdateSchema), async (req: Request, res
 
     res.json(updatedPlan);
   } catch (_err) {
-    _next(err);
+    _next(_err);
   }
 });
 
@@ -286,7 +286,7 @@ router.delete('/:id', async (req: Request, res, _next) => {
 
     res.status(204).end();
   } catch (_err) {
-    _next(err);
+    _next(_err);
   }
 });
 
@@ -331,7 +331,7 @@ router.post('/ai-draft', async (req: Request, res, _next) => {
 
     res.json(draft);
   } catch (_err) {
-    logger.error('AI draft generation error:', err);
+    logger.error('AI draft generation error:', _err);
     res.status(500).json({ error: 'Failed to generate AI draft' });
   }
 });
@@ -368,7 +368,7 @@ Expectations: ${plan.expectations.map((e) => `${e.expectation.code}: ${e.expecta
 
     res.json({ suggestions });
   } catch (_err) {
-    logger.error('AI suggestions error:', err);
+    logger.error('AI suggestions error:', _err);
     res.status(500).json({ error: 'Failed to generate suggestions' });
   }
 });

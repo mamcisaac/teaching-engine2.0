@@ -261,7 +261,7 @@ describe('ExportService', () => {
 
   describe('getMimeType', () => {
     it('should return correct MIME types for supported formats', () => {
-      const service = exportService as unknown; // Access private method for testing
+      const service = exportService as any; // Access private method for testing
 
       expect(service.getMimeType('pdf')).toBe('application/pdf');
       expect(service.getMimeType('csv')).toBe('text/csv');
@@ -269,7 +269,7 @@ describe('ExportService', () => {
     });
 
     it('should return default MIME type for unsupported formats', () => {
-      const service = exportService as unknown;
+      const service = exportService as any;
 
       expect(service.getMimeType('unknown')).toBe('application/octet-stream');
       expect(service.getMimeType('')).toBe('application/octet-stream');

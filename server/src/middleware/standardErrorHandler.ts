@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import '../types/express.js';
+// import '../types/express.js';
 import { ZodError } from 'zod';
 import logger from '../logger.js';
 import { auditFunctions } from './auditLogger.js';

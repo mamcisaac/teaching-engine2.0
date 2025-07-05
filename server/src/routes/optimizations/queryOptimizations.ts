@@ -4,7 +4,7 @@
  * Centralized optimizations for common query patterns
  */
 
-import { Prisma, PrismaClient } from '@teaching-engine/database';
+import { Prisma } from '@teaching-engine/database';
 import logger from '../../logger';
 /**
  * Optimized select patterns for common relationships

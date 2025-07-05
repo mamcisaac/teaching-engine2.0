@@ -200,7 +200,7 @@ export class AIActivityGeneratorService {
     const grade = context.grade || 1;
     const subject = context.subject || 'Learning';
     const title = context.title || 'Exploration';
-    const duration = context.duration || reqs.duration || 30;
+    const duration = context.duration || 30;
 
     return {
       title: `${subject} Activity - ${title}`,

@@ -106,10 +106,7 @@ export class ErrorReportingService {
           // HTTP request tracing
           new Sentry.Integrations.Http({ tracing: true }),
           // Express middleware tracing
-          new Sentry.Integrations.Express({
-            app: true,
-            router: true,
-          }),
+          new Sentry.Integrations.Express(),
           // Performance profiling (optional, can be removed to reduce overhead)
           nodeProfilingIntegration(),
         ],
@@ -128,16 +125,12 @@ export class ErrorReportingService {
 
   captureError(error: Error | unknown, context?: Record<string, any>): void {
     if (!this.enabled) {
-      logger.debug('Error reporting disabled, skipping:', { error, context });
+      logger.debug(`Error reporting disabled, skipping error: ${error}`);
       return;
     }
 
     if (this.mockMode) {
-      logger.info('[MOCK] Would capture error:', {
-        error: error instanceof Error ? error.message : String(error),
-        stack: error instanceof Error ? error.stack : undefined,
-        context: this.sanitizeData(context || {}),
-      });
+      logger.info(`[MOCK] Would capture error: ${error instanceof Error ? error.message : String(error)}`);
       return;
     }
 
@@ -166,7 +159,7 @@ export class ErrorReportingService {
     }
 
     if (this.mockMode) {
-      logger.info('[MOCK] Would capture message:', { message, level });
+      logger.info(`[MOCK] Would capture message: ${message} (level: ${level})`);
       return;
     }
 
@@ -179,7 +172,7 @@ export class ErrorReportingService {
     }
 
     if (this.mockMode) {
-      logger.info('[MOCK] Would set user context:', user);
+      logger.info(`[MOCK] Would set user context for user: ${user?.id}`);
       return;
     }
 
@@ -205,7 +198,7 @@ export class ErrorReportingService {
     }
 
     if (this.mockMode) {
-      logger.info('[MOCK] Would add breadcrumb:', breadcrumb);
+      logger.info(`[MOCK] Would add breadcrumb: ${breadcrumb.message}`);
       return;
     }
 
@@ -226,7 +219,7 @@ export class ErrorReportingService {
     }
 
     if (this.mockMode) {
-      logger.info('[MOCK] Would set error context:', { key, context });
+      logger.info(`[MOCK] Would set error context: ${key}`);
       return;
     }
 

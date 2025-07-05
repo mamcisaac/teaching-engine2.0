@@ -61,6 +61,7 @@ export class NewsletterTemplateProvider extends TemplateProvider {
       name: 'Weekly Newsletter - Standard',
       engine: 'handlebars',
       format: 'html',
+      supportedFormats: ['html', 'text'],
       content: this.getWeeklyNewsletterTemplate(),
       dataRequirements: [
         { key: 'user', type: 'user', required: true },
@@ -81,6 +82,7 @@ export class NewsletterTemplateProvider extends TemplateProvider {
       name: 'Monthly Newsletter - Detailed',
       engine: 'handlebars',
       format: 'html',
+      supportedFormats: ['html', 'text'],
       content: this.getMonthlyNewsletterTemplate(),
       dataRequirements: [
         { key: 'user', type: 'user', required: true },
@@ -101,6 +103,7 @@ export class NewsletterTemplateProvider extends TemplateProvider {
       name: 'Weekly Newsletter - Bilingual',
       engine: 'handlebars',
       format: 'html',
+      supportedFormats: ['html', 'text'],
       content: this.getBilingualNewsletterTemplate(),
       dataRequirements: [
         { key: 'user', type: 'user', required: true },

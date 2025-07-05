@@ -39,8 +39,8 @@ describe('UnitPlanCard', () => {
       { expectation: { id: 'exp-2', code: 'A1.2', description: 'Extend patterns', strand: 'Algebra', grade: 6, subject: 'Mathematics' } },
     ],
     resources: [
-      { id: 'res-1', unitPlanId: 'unit-1', title: 'Pattern Blocks', type: 'manipulative', url: '' },
-      { id: 'res-2', unitPlanId: 'unit-1', title: 'Algebra Tiles', type: 'manipulative', url: '' },
+      { id: 'res-1', unitPlanId: 'unit-1', title: 'Pattern Blocks', type: 'manipulative', url: '', createdAt: '2024-09-01T00:00:00Z' },
+      { id: 'res-2', unitPlanId: 'unit-1', title: 'Algebra Tiles', type: 'manipulative', url: '', createdAt: '2024-09-01T00:00:00Z' },
     ],
     _count: {
       lessonPlans: 12,

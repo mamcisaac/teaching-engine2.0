@@ -68,7 +68,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     },
     retry: (failureCount, error) => {
       // Only retry on network errors, not auth errors
-      const statusCode = (error as any)?.response?.status;
+      const statusCode = (error as { response?: { status?: number } })?.response?.status;
       if (statusCode === 401 || statusCode === 403) {
         return false;
       }

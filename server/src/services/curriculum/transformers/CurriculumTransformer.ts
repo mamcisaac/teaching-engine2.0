@@ -45,13 +45,8 @@ export class CurriculumTransformer {
   ): Prisma.SubjectCreateInput {
     return {
       name: parsed.subject,
-      description: `Grade ${parsed.grade} ${parsed.subject} Curriculum`,
-      gradeLevel: parsed.grade,
-      isActive: true,
-      metadata: {
-        source: options.sourceFile || 'Import',
-        importDate: new Date().toISOString(),
-        version: parsed.metadata?.version,
+      user: {
+        connect: { id: options.userId }
       },
     };
   }
@@ -91,19 +86,11 @@ export class CurriculumTransformer {
     return {
       code: expectation.code,
       description: expectation.description,
-      type: expectation.type,
       strand: expectation.strand,
       substrand: expectation.substrand,
       grade: expectation.grade || curriculum.grade,
-      keywords: expectation.keywords || [],
-      isActive: true,
-      metadata: {
-        imported: true,
-        importDate: new Date().toISOString(),
-        source: options.sourceFile,
-      },
-      // Relations will be connected in the service
-      subject: undefined as unknown, // Will be connected by service
+      subject: curriculum.subject,
+      // Note: type, keywords, isActive, metadata fields don't exist in the schema
     };
   }
 
@@ -112,19 +99,19 @@ export class CurriculumTransformer {
    */
   transformForUpdate(
     parsed: ParsedCurriculum,
-    existingExpectations: unknown[],
+    existingExpectations: Array<{ id: string; code: string; description: string; strand: string; substrand?: string | null; grade: number; subject: string }>,
     options: TransformOptions
   ): {
     toCreate: Prisma.CurriculumExpectationCreateInput[];
     toUpdate: Array<{
-      id: number;
+      id: string;
       data: Prisma.CurriculumExpectationUpdateInput;
     }>;
-    toDeactivate: number[];
+    toDeactivate: string[];
   } {
     const toCreate: Prisma.CurriculumExpectationCreateInput[] = [];
-    const toUpdate: Array<{ id: number; data: Prisma.CurriculumExpectationUpdateInput }> = [];
-    const toDeactivate: number[] = [];
+    const toUpdate: Array<{ id: string; data: Prisma.CurriculumExpectationUpdateInput }> = [];
+    const toDeactivate: string[] = [];
 
     // Create lookup map for existing expectations
     const existingMap = new Map(
@@ -132,35 +119,30 @@ export class CurriculumTransformer {
     );
 
     // Process parsed expectations
-    const processedIds = new Set<number>();
+    const processedIds = new Set<string>();
 
     for (const expectation of parsed.expectations) {
-      const existing = existingMap.get(expectation.code);
+      const typedExpectation = expectation as ParsedExpectation;
+      const existing = existingMap.get(typedExpectation.code);
 
       if (existing) {
         // Update existing
         processedIds.add(existing.id);
         
-        if (this.hasChanges(expectation, existing)) {
+        if (this.hasChanges(typedExpectation, existing)) {
           toUpdate.push({
             id: existing.id,
             data: {
-              description: expectation.description,
-              type: expectation.type,
-              strand: expectation.strand,
-              substrand: expectation.substrand,
-              keywords: expectation.keywords || [],
-              metadata: {
-                ...(existing.metadata as unknown || {}),
-                lastUpdated: new Date().toISOString(),
-                updateSource: options.sourceFile,
-              },
+              description: typedExpectation.description,
+              strand: typedExpectation.strand,
+              substrand: typedExpectation.substrand,
+              // Note: type, keywords, metadata fields don't exist in schema
             },
           });
         }
       } else {
         // Create new
-        toCreate.push(this.transformExpectation(expectation, parsed, options));
+        toCreate.push(this.transformExpectation(typedExpectation, parsed, options));
       }
     }
 
@@ -179,13 +161,12 @@ export class CurriculumTransformer {
   /**
    * Check if expectation has changes
    */
-  private hasChanges(parsed: ParsedExpectation, existing: unknown): boolean {
+  private hasChanges(parsed: ParsedExpectation, existing: { description: string; strand: string; substrand?: string | null }): boolean {
     return (
       parsed.description !== existing.description ||
-      parsed.type !== existing.type ||
       parsed.strand !== existing.strand ||
-      parsed.substrand !== existing.substrand ||
-      JSON.stringify(parsed.keywords || []) !== JSON.stringify(existing.keywords || [])
+      parsed.substrand !== existing.substrand
+      // Note: removed type and keywords checks as they don't exist in schema
     );
   }
 
@@ -193,7 +174,7 @@ export class CurriculumTransformer {
    * Transform to export format
    */
   static transformForExport(
-    expectations: unknown[],
+    expectations: Array<{ id: string; code: string; description: string; strand: string; substrand?: string | null; grade: number; subject: string }>,
     format: 'csv' | 'json' | 'excel' = 'json'
   ): unknown {
     switch (format) {
@@ -201,27 +182,24 @@ export class CurriculumTransformer {
         return expectations.map(e => ({
           code: e.code,
           description: e.description,
-          type: e.type,
           strand: e.strand,
           substrand: e.substrand || '',
           grade: e.grade,
-          subject: e.subject?.name || '',
-          keywords: (e.keywords || []).join(';'),
+          subject: e.subject,
+          // Note: type and keywords fields don't exist in schema
         }));
 
       case 'excel':
         // Similar to CSV but with additional formatting info
         return {
-          headers: ['Code', 'Description', 'Type', 'Strand', 'Substrand', 'Grade', 'Subject', 'Keywords'],
+          headers: ['Code', 'Description', 'Strand', 'Substrand', 'Grade', 'Subject'],
           data: expectations.map(e => [
             e.code,
             e.description,
-            e.type,
             e.strand,
             e.substrand || '',
             e.grade,
-            e.subject?.name || '',
-            (e.keywords || []).join('; '),
+            e.subject,
           ]),
         };
 
@@ -233,15 +211,14 @@ export class CurriculumTransformer {
             totalExpectations: expectations.length,
           },
           expectations: expectations.map(e => ({
+            id: e.id,
             code: e.code,
             description: e.description,
-            type: e.type,
             strand: e.strand,
             substrand: e.substrand,
             grade: e.grade,
-            subject: e.subject?.name,
-            keywords: e.keywords,
-            isActive: e.isActive,
+            subject: e.subject,
+            // Note: type, keywords, isActive fields don't exist in schema
           })),
         };
     }

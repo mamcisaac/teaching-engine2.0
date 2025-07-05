@@ -76,12 +76,13 @@ export class CurriculumStatsService extends BaseService {
   public async getOverallStats(): Promise<CurriculumStats> {
     return this.executeWithMetrics(
       async () => {
-        const subjects = await prisma.subject.findMany({
-          include: {
-            expectations: {
-              where: { isActive: true },
-            },
-          },
+        // Note: Subject model doesn't have expectations relation
+        const subjects = await prisma.subject.findMany();
+        
+        // Get all expectations separately
+        const allExpectations = await prisma.curriculumExpectation.findMany({
+          // Note: isActive field doesn't exist
+          // where: { isActive: true }
         });
 
         const stats: CurriculumStats = {
@@ -93,30 +94,33 @@ export class CurriculumStatsService extends BaseService {
           byType: {},
         };
 
+        // Count expectations by subject
         for (const subject of subjects) {
-          const count = subject.expectations.length;
+          const subjectExpectations = allExpectations.filter(e => e.subject === subject.name);
+          const count = subjectExpectations.length;
           stats.totalExpectations += count;
           stats.bySubject[subject.name] = count;
+        }
 
-          for (const exp of subject.expectations) {
-            // By grade
-            stats.byGrade[exp.grade] = (stats.byGrade[exp.grade] || 0) + 1;
-            
-            // By strand
-            if (exp.strand) {
-              stats.byStrand[exp.strand] = (stats.byStrand[exp.strand] || 0) + 1;
-            }
-            
-            // By type
-            if (exp.type) {
-              stats.byType[exp.type] = (stats.byType[exp.type] || 0) + 1;
-            }
+        // Process all expectations for stats
+        for (const exp of allExpectations) {
+          // By grade
+          stats.byGrade[exp.grade] = (stats.byGrade[exp.grade] || 0) + 1;
+          
+          // By strand
+          if (exp.strand) {
+            stats.byStrand[exp.strand] = (stats.byStrand[exp.strand] || 0) + 1;
           }
+          
+          // Note: type field doesn't exist in schema
+          // if (exp.type) {
+          //   stats.byType[exp.type] = (stats.byType[exp.type] || 0) + 1;
+          // }
         }
 
         // Get last import date
         const lastImport = await prisma.curriculumImport.findFirst({
-          where: { status: 'completed' },
+          where: { status: 'COMPLETED' },
           orderBy: { createdAt: 'desc' },
         });
 
@@ -138,11 +142,13 @@ export class CurriculumStatsService extends BaseService {
       async () => {
         const subject = await prisma.subject.findUnique({
           where: { id: subjectId },
-          include: {
-            expectations: {
-              where: { isActive: true },
-            },
-          },
+          // Note: Subject model doesn't have expectations relation
+        });
+        
+        // Get expectations for this subject separately
+        const expectations = await prisma.curriculumExpectation.findMany({
+          where: { subject: subject?.name },
+          // Note: isActive field doesn't exist
         });
 
         if (!subject) {
@@ -152,14 +158,14 @@ export class CurriculumStatsService extends BaseService {
         const stats: SubjectStats = {
           subjectId: subject.id,
           subjectName: subject.name,
-          totalExpectations: subject.expectations.length,
+          totalExpectations: expectations.length,
           byGrade: {},
           byStrand: {},
           byType: {},
-          lastUpdated: subject.updatedAt,
+          lastUpdated: subject.createdAt, // Note: Subject doesn't have updatedAt
         };
 
-        for (const exp of subject.expectations) {
+        for (const exp of expectations) {
           // By grade
           stats.byGrade[exp.grade] = (stats.byGrade[exp.grade] || 0) + 1;
           
@@ -168,10 +174,10 @@ export class CurriculumStatsService extends BaseService {
             stats.byStrand[exp.strand] = (stats.byStrand[exp.strand] || 0) + 1;
           }
           
-          // By type
-          if (exp.type) {
-            stats.byType[exp.type] = (stats.byType[exp.type] || 0) + 1;
-          }
+          // Note: type field doesn't exist in schema
+          // if (exp.type) {
+          //   stats.byType[exp.type] = (stats.byType[exp.type] || 0) + 1;
+          // }
         }
 
         return stats;
@@ -189,11 +195,9 @@ export class CurriculumStatsService extends BaseService {
         const expectations = await prisma.curriculumExpectation.findMany({
           where: {
             grade,
-            isActive: true,
+            // Note: isActive field doesn't exist
           },
-          include: {
-            subject: true,
-          },
+          // Note: subject is a string field, not a relation
         });
 
         const stats: GradeStats = {
@@ -206,7 +210,7 @@ export class CurriculumStatsService extends BaseService {
 
         for (const exp of expectations) {
           // By subject
-          const subjectName = exp.subject.name;
+          const subjectName = exp.subject; // subject is a string field
           stats.bySubject[subjectName] = (stats.bySubject[subjectName] || 0) + 1;
           
           // By strand
@@ -214,10 +218,10 @@ export class CurriculumStatsService extends BaseService {
             stats.byStrand[exp.strand] = (stats.byStrand[exp.strand] || 0) + 1;
           }
           
-          // By type
-          if (exp.type) {
-            stats.byType[exp.type] = (stats.byType[exp.type] || 0) + 1;
-          }
+          // Note: type field doesn't exist in schema
+          // if (exp.type) {
+          //   stats.byType[exp.type] = (stats.byType[exp.type] || 0) + 1;
+          // }
         }
 
         return stats;
@@ -243,10 +247,9 @@ export class CurriculumStatsService extends BaseService {
     return this.executeWithMetrics(
       async () => {
         const expectations = await prisma.curriculumExpectation.findMany({
-          where: { isActive: true },
-          include: {
-            subject: true,
-          },
+          // Note: isActive field doesn't exist
+          // where: { isActive: true },
+          // Note: subject is a string field, not a relation
         });
 
         const coverageByGradeAndStrand: Record<number, Record<string, number>> = {};
@@ -263,7 +266,7 @@ export class CurriculumStatsService extends BaseService {
           }
 
           // By subject and grade
-          const subjectName = exp.subject.name;
+          const subjectName = exp.subject; // subject is a string field
           if (!coverageBySubjectAndGrade[subjectName]) {
             coverageBySubjectAndGrade[subjectName] = {};
           }
@@ -297,7 +300,7 @@ export class CurriculumStatsService extends BaseService {
    */
   public async getTrendingStats(): Promise<{
     mostUsedExpectations: Array<{
-      id: number;
+      id: string;
       code: string;
       description: string;
       usageCount: number;
@@ -317,7 +320,7 @@ export class CurriculumStatsService extends BaseService {
         // For now, we'll return expectations by creation/update frequency
         
         const expectations = await prisma.curriculumExpectation.findMany({
-          where: { isActive: true },
+          // Note: isActive field doesn't exist in schema
           orderBy: { updatedAt: 'desc' },
           take: 10,
           select: {
@@ -383,7 +386,7 @@ export class CurriculumStatsService extends BaseService {
           imports.map(async (importRecord) => {
             let expectationsCount: number | undefined;
 
-            if (importRecord.status === 'completed') {
+            if (importRecord.status === 'COMPLETED') {
               // Count expectations created around the import time
               const count = await prisma.curriculumExpectation.count({
                 where: {

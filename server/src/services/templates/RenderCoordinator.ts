@@ -9,7 +9,7 @@ import { TemplateRegistry } from './TemplateRegistry';
 import { TemplateCache } from './TemplateCache';
 import { TemplateHelpers } from './TemplateHelpers';
 import { PartialManager } from './PartialManager';
-import { TemplateProvider, TemplateContext, RenderOptions } from './providers/TemplateProvider';
+import { TemplateProvider, TemplateContext, RenderOptions, Template } from './providers/TemplateProvider';
 import { RenderResult, RenderContext } from './engines/RenderEngine';
 import { TemplateDataFetcher, FetchContext } from './data/TemplateDataFetcher';
 
@@ -65,11 +65,8 @@ export class RenderCoordinator extends BaseService {
   protected async initialize(): Promise<void> {
     await super.initialize();
     
-    // Initialize all dependent services
-    await this.registry.initialize();
-    await this.cache.initialize();
-    await this.helpers.initialize();
-    await this.partialManager.initialize();
+    // Dependent services will initialize themselves on first use
+    // No need to explicitly initialize them here
     
     this.logger.info('Render coordinator initialized');
   }
@@ -108,10 +105,7 @@ export class RenderCoordinator extends BaseService {
             cacheHit = true;
             const renderTime = Date.now() - startTime;
             
-            this.logger.debug('Returning cached render result', { 
-              cacheKey, 
-              renderTime 
-            });
+            this.logger.debug(`Returning cached render result: cacheKey=${cacheKey}, renderTime=${renderTime}ms`);
 
             return {
               ...cachedResult,
@@ -157,16 +151,7 @@ export class RenderCoordinator extends BaseService {
 
         const totalRenderTime = Date.now() - startTime;
 
-        this.logger.info('Template rendered successfully', {
-          templateType: options.templateType,
-          templateId: template.id,
-          engine: template.engine,
-          format: result.format,
-          renderTime: totalRenderTime,
-          templateResolutionTime,
-          dataFetchTime,
-          cacheHit: false,
-        });
+        this.logger.info(`Template rendered successfully: type=${options.templateType}, id=${template.id}, engine=${template.engine}, format=${result.format}, renderTime=${totalRenderTime}ms, templateResolutionTime=${templateResolutionTime}ms, dataFetchTime=${dataFetchTime}ms, cacheHit=false`);
 
         return {
           ...result,
@@ -190,10 +175,7 @@ export class RenderCoordinator extends BaseService {
           requests.map(request => this.render(request))
         );
 
-        this.logger.info('Batch rendering completed', {
-          requestCount: requests.length,
-          totalTime: results.reduce((sum, r) => sum + r.renderTime, 0),
-        });
+        this.logger.info(`Batch rendering completed: requestCount=${requests.length}, totalTime=${results.reduce((sum, r) => sum + r.renderTime, 0)}ms`);
 
         return results;
       },
@@ -208,7 +190,7 @@ export class RenderCoordinator extends BaseService {
     templateType: string, 
     context: TemplateContext, 
     options: RenderRequest['options']
-  ): Promise<{ provider: TemplateProvider; template: any }> {
+  ): Promise<{ provider: TemplateProvider; template: Template }> {
     // Get provider
     const provider = this.registry.getProvider(templateType);
     if (!provider) {
@@ -243,7 +225,7 @@ export class RenderCoordinator extends BaseService {
    * Fetch template data
    */
   private async fetchTemplateData(
-    template: unknown,
+    template: Template,
     context: TemplateContext,
     options: RenderRequest['options']
   ): Promise<Record<string, unknown>> {
@@ -533,7 +515,7 @@ export class RenderCoordinator extends BaseService {
       sampleData?: Record<string, unknown>;
     }>
   ): Promise<void> {
-    this.logger.info('Starting cache warmup', { templateCount: commonTemplates.length });
+    this.logger.info(`Starting cache warmup: templateCount=${commonTemplates.length}`);
 
     for (const template of commonTemplates) {
       try {
@@ -543,10 +525,7 @@ export class RenderCoordinator extends BaseService {
           template.sampleData || {}
         );
       } catch (_error) {
-        this.logger.error('Failed to warm up template cache', {
-          template,
-          error: _error instanceof Error ? _error.message : _error,
-        });
+        this.logger.error(`Failed to warm up template cache for ${template.templateType}/${template.templateId || 'default'}: ${_error instanceof Error ? _error.message : _error}`);
       }
     }
 

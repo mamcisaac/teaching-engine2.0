@@ -97,7 +97,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
     this.substitutePlanService = new SubstitutePlanService();
   }
 
-  async findMany(filters: unknown, userId: number) {
+  async findMany(filters: any, userId: number) {
     const {
       startDate,
       endDate,
@@ -109,7 +109,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
       offset,
       sortBy,
       sortOrder,
-    } = filters;
+    } = filters as Record<string, any>;
 
     const where: Prisma.SubstitutePlanWhereInput = { userId };
 
@@ -120,7 +120,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
     }
 
     if (grade) where.grade = grade;
-    if (subject) where.subject = { contains: subject, mode: 'insensitive' };
+    if (subject) where.subject = { contains: subject };
     if (isActive !== undefined) where.isActive = isActive;
 
     // Filter for upcoming plans
@@ -175,9 +175,20 @@ class SubstitutePlanServiceWrapper extends BaseService {
   async create(data: SubstitutePlanCreateData, userId: number) {
     return prisma.substitutePlan.create({
       data: {
-        ...data,
         userId,
+        title: data.title,
         dateFor: new Date(data.dateFor),
+        grade: data.gradeLevel ? parseInt(data.gradeLevel, 10) : null,
+        subject: data.subject,
+        schedule: data.activities ? [{ time: '9:00', activity: data.activities, notes: data.notes }] : [],
+        classroomRoutines: data.classroomManagement ? [{ category: 'other', description: data.classroomManagement }] : [],
+        emergencyInfo: data.emergencyContacts ? { contacts: data.emergencyContacts } : {},
+        lessonPlans: data.objectives ? { objectives: data.objectives, materials: data.materials } : {},
+        behaviorPlan: {},
+        studentNotes: {},
+        materialsList: data.materials ? { materials: data.materials } : {},
+        importantInfo: data.importantNotes ? { notes: data.importantNotes } : null,
+        isActive: data.isActive ?? true,
       },
     });
   }
@@ -215,7 +226,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
   }
 
   async generatePlan(generateData: unknown, userId: number) {
-    return this.substitutePlanService.generateComprehensivePlan(userId, generateData);
+    return SubstitutePlanService.generate(generateData);
   }
 
   async deactivatePlan(planId: string, userId: number) {

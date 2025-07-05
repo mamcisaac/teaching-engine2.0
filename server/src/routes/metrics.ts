@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { metricsStore, getPerformanceSummary } from '../middleware/metrics.js';
 import { authMiddleware } from '../middleware/auth.js';
 import logger from '../logger.js';
@@ -9,7 +9,7 @@ const router = Router();
  * Prometheus metrics endpoint (no auth required for monitoring tools)
  * GET /metrics
  */
-router.get('/', (req: Request, res: Response) => {
+router.get('/', (req, res) => {
   try {
     const prometheusFormat = metricsStore.getPrometheusFormat();
     
@@ -25,7 +25,7 @@ router.get('/', (req: Request, res: Response) => {
  * JSON metrics endpoint (requires authentication)
  * GET /api/metrics/json
  */
-router.get('/json', authMiddleware, (req: Request, res: Response) => {
+router.get('/json', authMiddleware, (req, res) => {
   try {
     const metrics = metricsStore.getMetrics();
     
@@ -47,7 +47,7 @@ router.get('/json', authMiddleware, (req: Request, res: Response) => {
  * Performance summary endpoint
  * GET /api/metrics/summary
  */
-router.get('/summary', authMiddleware, (req: Request, res: Response) => {
+router.get('/summary', authMiddleware, (req, res) => {
   try {
     const summary = getPerformanceSummary();
     
@@ -69,7 +69,7 @@ router.get('/summary', authMiddleware, (req: Request, res: Response) => {
  * Health check with performance data
  * GET /api/metrics/health
  */
-router.get('/health', authMiddleware, (req: Request, res: Response) => {
+router.get('/health', authMiddleware, (req, res) => {
   try {
     const summary = getPerformanceSummary();
     
@@ -128,7 +128,7 @@ router.get('/health', authMiddleware, (req: Request, res: Response) => {
  * Reset metrics (development/testing only)
  * DELETE /api/metrics/reset
  */
-router.delete('/reset', authMiddleware, (req: Request, res: Response) => {
+router.delete('/reset', authMiddleware, (req, res) => {
   try {
     // Only allow in development/test environments
     if (process.env.NODE_ENV === 'production') {
@@ -140,7 +140,7 @@ router.delete('/reset', authMiddleware, (req: Request, res: Response) => {
     
     metricsStore.reset();
     
-    logger.info('Metrics reset by user', { userId: req.user?.id });
+    logger.info(`Metrics reset by user ${req.user?.id || 'unknown'}`);
     
     res.json({
       success: true,
@@ -160,7 +160,7 @@ router.delete('/reset', authMiddleware, (req: Request, res: Response) => {
  * Real-time metrics for dashboard
  * GET /api/metrics/realtime
  */
-router.get('/realtime', authMiddleware, (req: Request, res: Response) => {
+router.get('/realtime', authMiddleware, (req, res) => {
   try {
     const summary = getPerformanceSummary();
     const metrics = metricsStore.getMetrics();

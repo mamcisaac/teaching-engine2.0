@@ -19,7 +19,7 @@ import '../../styles/calendar.css';
 import type { CalendarEvent, ETFOLessonPlan, UnitPlan } from '../../types';
 
 // We'll initialize this asynchronously
-let localizer: any = null;
+let localizer: DateLocalizer | null = null;
 
 // Types for calendar events
 interface CalendarViewEvent extends Event {
@@ -435,8 +435,8 @@ export default function CalendarPlanningPage() {
             <BigCalendar
               localizer={localizer}
               events={events}
-              startAccessor="start"
-              endAccessor="end"
+              startAccessor={(event: any) => event.start}
+              endAccessor={(event: any) => event.end}
               style={{ height: window.innerWidth < 768 ? 500 : 700 }}
               onSelectEvent={(event: object) => handleSelectEvent(event as CalendarViewEvent)}
               onSelectSlot={handleSelectSlot}

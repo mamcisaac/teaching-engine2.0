@@ -6,7 +6,7 @@ interface SidebarNavItemProps {
   path: string;
   label: string;
   icon: JSX.Element;
-  isActive?: (match: any, location: any) => boolean;
+  isActive?: (match: { pathname: string } | null, location: { pathname: string }) => boolean;
   testId?: string;
 }
 

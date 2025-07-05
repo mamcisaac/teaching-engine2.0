@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 // Simple debounce implementation
-const debounce = <T extends (...args: any[]) => any>(
+const debounce = <T extends (...args: unknown[]) => unknown>(
   func: T,
   wait: number
 ): ((...args: Parameters<T>) => void) & { cancel(): void } => {
@@ -106,7 +106,7 @@ export function VirtualizedList<T>({
   }, [debouncedScrollEnd]);
 
   // Scroll to position (useful for external control)
-  const scrollToIndex = useCallback((index: number, align: 'start' | 'center' | 'end' = 'start') => {
+  const _scrollToIndex = useCallback((index: number, align: 'start' | 'center' | 'end' = 'start') => {
     if (!containerRef.current) return;
 
     let scrollTop = index * itemHeight;

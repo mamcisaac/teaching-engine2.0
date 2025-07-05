@@ -67,10 +67,10 @@ const lessonPlanQuerySchema = z.object({
 });
 
 const resourceSchema = z.object({
-  name: z.string().min(1).max(255),
+  title: z.string().min(1).max(255),
   url: z.string().url().optional(),
-  type: z.enum(['website', 'document', 'video', 'image', 'other']).default('other'),
-  description: z.string().max(500).optional(),
+  type: z.enum(['handout', 'slide', 'video', 'website', 'document', 'image', 'other']).default('other'),
+  content: z.string().max(500).optional(),
 });
 
 const duplicateSchema = z.object({
@@ -185,19 +185,47 @@ class ETFOLessonPlanService extends BaseService {
 
     const { expectationIds, ...lessonPlanData } = data;
 
+    // Create lesson plan data that matches Prisma schema
+    const baseData = {
+      title: data.title,
+      unitPlanId: data.unitPlanId || '',
+      date: new Date(data.date),
+      duration: data.duration,
+      mindsOn: data.mindsOn,
+      mindsOnFr: data.mindsOnFr,
+      action: data.action,
+      actionFr: data.actionFr,
+      consolidation: data.consolidation,
+      consolidationFr: data.consolidationFr,
+      learningGoals: data.learningGoals,
+      learningGoalsFr: data.learningGoalsFr,
+      materials: data.materials ? JSON.stringify(data.materials) : null,
+      grouping: data.grouping,
+      titleFr: data.titleFr,
+      accommodations: data.accommodations ? JSON.stringify(data.accommodations) : null,
+      modifications: data.modifications ? JSON.stringify(data.modifications) : null,
+      extensions: data.extensions ? JSON.stringify(data.extensions) : null,
+      assessmentType: data.assessmentType,
+      assessmentNotes: data.assessmentNotes,
+      isSubFriendly: data.isSubFriendly ?? true,
+      subNotes: data.subNotes,
+      userId,
+    };
+
+    // Add expectations relationship if provided
+    const createData = expectationIds && expectationIds.length > 0 
+      ? {
+          ...baseData,
+          expectations: {
+            create: expectationIds.map((expectationId: string) => ({
+              expectationId,
+            })),
+          },
+        }
+      : baseData;
+
     return prisma.eTFOLessonPlan.create({
-      data: {
-        ...lessonPlanData,
-        userId,
-        date: new Date(data.date),
-        expectations: expectationIds
-          ? {
-              create: expectationIds.map((expectationId: string) => ({
-                expectationId,
-              })),
-            }
-          : undefined,
-      },
+      data: createData,
       include: {
         expectations: {
           include: {
@@ -220,22 +248,53 @@ class ETFOLessonPlanService extends BaseService {
 
     const { expectationIds, ...updateData } = data;
 
+    // Create update data that matches Prisma schema
+    const baseUpdateData: Record<string, any> = {};
+    
+    // Only include fields that are actually being updated
+    if (updateData.title !== undefined) baseUpdateData.title = updateData.title;
+    if (updateData.unitPlanId !== undefined) baseUpdateData.unitPlanId = updateData.unitPlanId;
+    if (updateData.duration !== undefined) baseUpdateData.duration = updateData.duration;
+    if (updateData.mindsOn !== undefined) baseUpdateData.mindsOn = updateData.mindsOn;
+    if (updateData.mindsOnFr !== undefined) baseUpdateData.mindsOnFr = updateData.mindsOnFr;
+    if (updateData.action !== undefined) baseUpdateData.action = updateData.action;
+    if (updateData.actionFr !== undefined) baseUpdateData.actionFr = updateData.actionFr;
+    if (updateData.consolidation !== undefined) baseUpdateData.consolidation = updateData.consolidation;
+    if (updateData.consolidationFr !== undefined) baseUpdateData.consolidationFr = updateData.consolidationFr;
+    if (updateData.learningGoals !== undefined) baseUpdateData.learningGoals = updateData.learningGoals;
+    if (updateData.learningGoalsFr !== undefined) baseUpdateData.learningGoalsFr = updateData.learningGoalsFr;
+    if (updateData.materials !== undefined) baseUpdateData.materials = updateData.materials ? JSON.stringify(updateData.materials) : null;
+    if (updateData.grouping !== undefined) baseUpdateData.grouping = updateData.grouping;
+    if (updateData.titleFr !== undefined) baseUpdateData.titleFr = updateData.titleFr;
+    if (updateData.accommodations !== undefined) baseUpdateData.accommodations = updateData.accommodations ? JSON.stringify(updateData.accommodations) : null;
+    if (updateData.modifications !== undefined) baseUpdateData.modifications = updateData.modifications ? JSON.stringify(updateData.modifications) : null;
+    if (updateData.extensions !== undefined) baseUpdateData.extensions = updateData.extensions ? JSON.stringify(updateData.extensions) : null;
+    if (updateData.assessmentType !== undefined) baseUpdateData.assessmentType = updateData.assessmentType;
+    if (updateData.assessmentNotes !== undefined) baseUpdateData.assessmentNotes = updateData.assessmentNotes;
+    if (updateData.isSubFriendly !== undefined) baseUpdateData.isSubFriendly = updateData.isSubFriendly;
+    if (updateData.subNotes !== undefined) baseUpdateData.subNotes = updateData.subNotes;
+    
     // Handle date conversion
-    if (data.date) updateData.date = new Date(data.date);
+    if (data.date) {
+      baseUpdateData.date = new Date(data.date);
+    }
 
-    return prisma.eTFOLessonPlan.update({
-      where: { id },
-      data: {
-        ...updateData,
-        ...(expectationIds && {
+    // Handle expectations relationship if provided
+    const updateInput = expectationIds !== undefined 
+      ? {
+          ...baseUpdateData,
           expectations: {
             deleteMany: {},
             create: expectationIds.map((expectationId: string) => ({
               expectationId,
             })),
           },
-        }),
-      },
+        }
+      : baseUpdateData;
+
+    return prisma.eTFOLessonPlan.update({
+      where: { id },
+      data: updateInput,
       include: {
         expectations: {
           include: {
@@ -262,7 +321,7 @@ class ETFOLessonPlanService extends BaseService {
     return true;
   }
 
-  async addResource(lessonPlanId: string, resourceData: unknown, userId: number) {
+  async addResource(lessonPlanId: string, resourceData: any, userId: number) {
     // Verify ownership
     const lessonPlan = await prisma.eTFOLessonPlan.findFirst({
       where: { id: lessonPlanId, userId },
@@ -272,11 +331,17 @@ class ETFOLessonPlanService extends BaseService {
       throw new Error('Lesson plan not found or access denied');
     }
 
+    // Map resource data to match Prisma schema
+    const createData = {
+      lessonPlanId,
+      title: resourceData.title,
+      type: resourceData.type,
+      url: resourceData.url,
+      content: resourceData.content,
+    };
+
     return prisma.eTFOLessonPlanResource.create({
-      data: {
-        ...resourceData,
-        lessonPlanId,
-      },
+      data: createData,
     });
   }
 
@@ -348,17 +413,17 @@ class ETFOLessonPlanService extends BaseService {
         },
         resources: {
           create: originalLesson.resources.map((resource) => ({
-            name: resource.name,
+            title: resource.title,
             url: resource.url,
             type: resource.type,
-            description: resource.description,
+            content: resource.content,
           })),
         },
       },
     });
   }
 
-  async reschedule(lessonPlanId: string, rescheduleData: unknown, userId: number) {
+  async reschedule(lessonPlanId: string, rescheduleData: any, userId: number) {
     const { newDate, updateRelated } = rescheduleData;
 
     const lessonPlan = await prisma.eTFOLessonPlan.findFirst({
@@ -391,7 +456,7 @@ class ETFOLessonPlanService extends BaseService {
     return updatedLesson;
   }
 
-  async duplicate(duplicateData: unknown, userId: number) {
+  async duplicate(duplicateData: any, userId: number) {
     const { lessonPlanId, unitPlanId, date, title } = duplicateData;
 
     // Verify user owns both the source lesson plan and target unit plan
@@ -447,10 +512,10 @@ class ETFOLessonPlanService extends BaseService {
         },
         resources: {
           create: sourceLessonPlan.resources.map((resource) => ({
-            name: resource.name,
+            title: resource.title,
             url: resource.url,
             type: resource.type,
-            description: resource.description,
+            content: resource.content,
           })),
         },
       },

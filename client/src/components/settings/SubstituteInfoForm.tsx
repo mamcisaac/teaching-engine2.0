@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 // TODO: Substitute info hooks not yet implemented - using substitute plan hooks instead
 // import { useSubstituteInfo, useSaveSubstituteInfo } from '../../api';
-import { useSubstitutePlans } from '../../api';
+// import { useSubstitutePlans } from '../../api';
 
 export default function SubstituteInfoForm() {
   // TODO: Substitute info hooks not yet implemented
   // const { data } = useSubstituteInfo();
   // const save = useSaveSubstituteInfo();
-  const data: any = null; // Placeholder
-  const save = { mutate: (_data: any) => {} }; // Placeholder
+  const data: { procedures?: string; allergies?: string } | null = null; // Placeholder
+  const save = { mutate: (_data: { procedures: string; allergies: string }) => {} }; // Placeholder
   const [procedures, setProcedures] = useState('');
   const [allergies, setAllergies] = useState('');
 

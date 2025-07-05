@@ -104,9 +104,8 @@ export class CurriculumSearchService extends BaseService {
         // Get expectations
         const expectations = await prisma.curriculumExpectation.findMany({
           where,
-          include: {
-            subject: true,
-          },
+          // Note: subject is a string field, not a relation
+          // include: { subject: true },
           orderBy: [
             { grade: 'asc' },
             { code: 'asc' },
@@ -131,16 +130,20 @@ export class CurriculumSearchService extends BaseService {
   public async searchByKeywords(keywords: string[], filters?: SearchFilters): Promise<any[]> {
     return this.executeWithMetrics(
       async () => {
-        const where: any = {
-          isActive: filters?.includeInactive ? undefined : true,
-          keywords: {
-            hasEvery: keywords.map(k => k.toLowerCase()),
-          },
-        };
+        const where: any = {};
+        
+        // Note: keywords field doesn't exist in schema - use description search instead
+        if (keywords.length > 0) {
+          where.description = {
+            contains: keywords.join(' '),
+            mode: 'insensitive'
+          };
+        }
 
         // Apply filters
         if (filters?.subjectId) {
-          where.subjectId = filters.subjectId;
+          // Note: subject is a string field, not a relation
+          where.subject = filters.subjectId?.toString();
         }
         
         if (filters?.grade) {
@@ -151,15 +154,15 @@ export class CurriculumSearchService extends BaseService {
           where.strand = filters.strand;
         }
         
-        if (filters?.type) {
-          where.type = filters.type;
-        }
+        // Note: type field doesn't exist in schema
+        // if (filters?.type) {
+        //   where.type = filters.type;
+        // }
 
         return prisma.curriculumExpectation.findMany({
           where,
-          include: {
-            subject: true,
-          },
+          // Note: subject is a string field, not a relation
+          // include: { subject: true },
           orderBy: [
             { grade: 'asc' },
             { code: 'asc' },
@@ -177,7 +180,8 @@ export class CurriculumSearchService extends BaseService {
     return this.executeWithMetrics(
       async () => {
         const where: any = {
-          isActive: filters?.includeInactive ? undefined : true,
+          // Note: isActive field doesn't exist in schema
+          // isActive: filters?.includeInactive ? undefined : true,
           code: {
             contains: pattern,
             mode: 'insensitive',
@@ -186,7 +190,8 @@ export class CurriculumSearchService extends BaseService {
 
         // Apply filters
         if (filters?.subjectId) {
-          where.subjectId = filters.subjectId;
+          // Note: subjectId doesn't exist, using subject string field
+          where.subject = filters.subjectId.toString();
         }
         
         if (filters?.grade) {
@@ -197,15 +202,15 @@ export class CurriculumSearchService extends BaseService {
           where.strand = filters.strand;
         }
         
-        if (filters?.type) {
-          where.type = filters.type;
-        }
+        // Note: type field doesn't exist in schema
+        // if (filters?.type) {
+        //   where.type = filters.type;
+        // }
 
         return prisma.curriculumExpectation.findMany({
           where,
-          include: {
-            subject: true,
-          },
+          // Note: subject is a string field, not a relation
+          // include: { subject: true },
           orderBy: [
             { grade: 'asc' },
             { code: 'asc' },
@@ -219,7 +224,7 @@ export class CurriculumSearchService extends BaseService {
   /**
    * Get similar expectations
    */
-  public async getSimilarExpectations(expectationId: number, limit: number = 10): Promise<any[]> {
+  public async getSimilarExpectations(expectationId: string, limit: number = 10): Promise<any[]> {
     return this.executeWithMetrics(
       async () => {
         // Get the reference expectation
@@ -231,26 +236,25 @@ export class CurriculumSearchService extends BaseService {
           throw new Error('Reference expectation not found');
         }
 
-        // Find similar expectations by keywords and strand
+        // Find similar expectations by strand and grade (keywords field doesn't exist)
         const similar = await prisma.curriculumExpectation.findMany({
           where: {
             id: { not: expectationId },
-            isActive: true,
+            // Note: isActive field doesn't exist in schema
+            // isActive: true,
             OR: [
-              {
-                keywords: {
-                  hasEvery: reference.keywords.slice(0, 3), // First 3 keywords
-                },
-              },
               {
                 strand: reference.strand,
                 grade: reference.grade,
               },
+              {
+                subject: reference.subject,
+                grade: reference.grade,
+              },
             ],
           },
-          include: {
-            subject: true,
-          },
+          // Note: subject is a string field, not a relation
+          // include: { subject: true },
           orderBy: [
             { grade: 'asc' },
             { code: 'asc' },
@@ -269,39 +273,31 @@ export class CurriculumSearchService extends BaseService {
    */
   public async getAutoCompleteSuggestions(
     query: string,
-    field: 'code' | 'description' | 'keywords',
+    field: 'code' | 'description',
     limit: number = 10
   ): Promise<string[]> {
     return this.executeWithMetrics(
       async () => {
         const where: any = {
-          isActive: true,
+          // Note: isActive field doesn't exist in schema
+          // isActive: true,
         };
 
         if (field === 'code') {
           where.code = { startsWith: query, mode: 'insensitive' };
         } else if (field === 'description') {
           where.description = { contains: query, mode: 'insensitive' };
-        } else if (field === 'keywords') {
-          where.keywords = { has: query.toLowerCase() };
         }
 
         const expectations = await prisma.curriculumExpectation.findMany({
           where,
-          select: {
-            [field]: true,
-          },
+          select: field === 'code' ? { code: true } : { description: true },
           take: limit,
         });
 
-        if (field === 'keywords') {
-          // For keywords, return unique keywords that match
-          const allKeywords = expectations.flatMap(e => e.keywords as string[]);
-          const uniqueKeywords = [...new Set(allKeywords)];
-          return uniqueKeywords.filter(k => k.includes(query.toLowerCase()));
-        }
-
-        return expectations.map(e => e[field]).filter(Boolean);
+        return expectations
+          .map(e => field === 'code' ? (e as any).code : (e as any).description)
+          .filter((value): value is string => typeof value === 'string' && Boolean(value));
       },
       'getAutoCompleteSuggestions'
     );

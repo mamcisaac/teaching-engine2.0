@@ -68,6 +68,10 @@ interface LessonPlan {
   }>;
   materials: string[];
   duration: number;
+  fallback?: boolean;
+  error?: string;
+  gradeLevel?: string;
+  subject?: string;
 }
 
 interface Activity {
@@ -156,7 +160,7 @@ export class AIService extends BaseService {
 
       const content = response.choices[0]?.message?.content;
       if (!content) {
-        throw new AppError('No response from AI service', 500);
+        throw new AppError(500, 'No response from AI service');
       }
 
       let lessonPlan: LessonPlan;
@@ -208,7 +212,7 @@ export class AIService extends BaseService {
 
       const content = response.choices[0]?.message?.content;
       if (!content) {
-        throw new AppError('No response from AI service', 500);
+        throw new AppError(500, 'No response from AI service');
       }
 
       let activity: Activity;
@@ -249,7 +253,7 @@ export class AIService extends BaseService {
 
       const content = response.choices[0]?.message?.content;
       if (!content) {
-        throw new AppError('No response from AI service', 500);
+        throw new AppError(500, 'No response from AI service');
       }
 
       let plan: SubstitutePlan;
@@ -290,7 +294,7 @@ export class AIService extends BaseService {
 
       const content = response.choices[0]?.message?.content;
       if (!content) {
-        throw new AppError('No response from AI service', 500);
+        throw new AppError(500, 'No response from AI service');
       }
 
       let newsletter: Newsletter;
@@ -343,7 +347,7 @@ export class AIService extends BaseService {
       return response.choices[0]?.message?.content;
     } catch (error: any) {
       logger.error('Error analyzing curriculum:', error);
-      throw new AppError('Failed to analyze curriculum', 500);
+      throw new AppError(500, 'Failed to analyze curriculum');
     }
   }
 
@@ -366,7 +370,7 @@ export class AIService extends BaseService {
       return response.choices[0]?.message?.content;
     } catch (error: any) {
       logger.error('Error generating questions:', error);
-      throw new AppError('Failed to generate questions', 500);
+      throw new AppError(500, 'Failed to generate questions');
     }
   }
 
@@ -501,9 +505,7 @@ Return a JSON object with the structure: { title, dateRange, sections, footer }`
         }
       ],
       materials: ['Whiteboard', 'Markers', 'Worksheets', 'Pencils'],
-      duration: input.duration,
-      gradeLevel: input.grade,
-      subject: input.subject
+      duration: input.duration
     };
   }
 

@@ -88,7 +88,7 @@ export class AIPlanningService extends BaseService {
         responseTime,
       };
     } catch (_error) {
-      this.logger.error('Health check failed:', error);
+      this.logger.error('Health check failed:', _error);
       return {
         healthy: false,
         lastCheck: new Date(),
@@ -97,7 +97,7 @@ export class AIPlanningService extends BaseService {
   }
 
   async generateLongRangeGoals(request: LongRangeGoalsRequest): Promise<string[]> {
-    this.logger.info('Generating long-range goals', { request });
+    this.logger.info('Generating long-range goals');
     
     // For now, return static educational suggestions
     // In a full implementation, this would use OpenAI API
@@ -118,7 +118,7 @@ export class AIPlanningService extends BaseService {
   }
 
   async generateUnitBigIdeas(request: UnitBigIdeasRequest): Promise<string[]> {
-    this.logger.info('Generating unit big ideas', { request });
+    this.logger.info('Generating unit big ideas');
     
     return [
       `${request.unitTitle} connects to broader themes in ${request.subject}`,
@@ -129,7 +129,7 @@ export class AIPlanningService extends BaseService {
   }
 
   async generateLessonActivities(request: LessonActivitiesRequest): Promise<string[]> {
-    this.logger.info('Generating lesson activities', { request });
+    this.logger.info('Generating lesson activities');
     
     return [
       `Opening activity to activate prior knowledge (5-10 minutes)`,
@@ -140,7 +140,7 @@ export class AIPlanningService extends BaseService {
   }
 
   async generateMaterialsList(request: MaterialsListRequest): Promise<string[]> {
-    this.logger.info('Generating materials list', { request });
+    this.logger.info('Generating materials list');
     
     const baseMaterials = [
       'Whiteboard and markers',
@@ -160,8 +160,8 @@ export class AIPlanningService extends BaseService {
     return baseMaterials;
   }
 
-  async generateAssessmentStrategies(request: AssessmentStrategiesRequest): Promise<string[]> {
-    this.logger.info('Generating assessment strategies', { request });
+  async generateAssessmentStrategies(_request: AssessmentStrategiesRequest): Promise<string[]> {
+    this.logger.info('Generating assessment strategies');
     
     return [
       'Formative assessment through observation and questioning',
@@ -172,8 +172,8 @@ export class AIPlanningService extends BaseService {
     ];
   }
 
-  async generateReflectionPrompts(request: ReflectionPromptsRequest): Promise<string[]> {
-    this.logger.info('Generating reflection prompts', { request });
+  async generateReflectionPrompts(_request: ReflectionPromptsRequest): Promise<string[]> {
+    this.logger.info('Generating reflection prompts');
     
     return [
       'What went well in today\'s lesson?',
@@ -188,7 +188,7 @@ export class AIPlanningService extends BaseService {
     expectationIds: string[],
     suggestionType: 'activities' | 'assessments' | 'resources'
   ): Promise<string[]> {
-    this.logger.info('Generating curriculum-aligned suggestions', { expectationIds, suggestionType });
+    this.logger.info('Generating curriculum-aligned suggestions');
     
     const suggestions: Record<string, string[]> = {
       activities: [

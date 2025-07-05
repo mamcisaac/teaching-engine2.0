@@ -181,8 +181,7 @@ router.get('/state', async (req: express.Request, res: express.Response) => {
 // PUT /api/planner/state - Update user's planner state
 router.put(
   '/state',
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  stateRateLimit as unknown,
+  stateRateLimit,
   csrfProtection,
   async (req: express.Request, res: Response) => {
     try {
@@ -399,8 +398,7 @@ router.get('/week/:weekStart/state', async (req: express.Request, res: Response)
 // POST /api/planner/state/reset - Reset planner state to defaults
 router.post(
   '/state/reset',
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  stateRateLimit as unknown,
+  stateRateLimit,
   csrfProtection,
   async (req: express.Request, res: Response) => {
     try {

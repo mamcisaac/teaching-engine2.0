@@ -41,10 +41,9 @@ router.post('/generate', async (req: Request, res: Response) => {
     log(`Generating newsletter for user ${userId}`, { sinceDate });
 
     // Generate newsletter using the new template system
-    const newsletter = await renderNewsletter({
-      userId,
-      sinceDate: sinceDate ? new Date(sinceDate) : undefined,
-    });
+    const startDate = sinceDate ? new Date(sinceDate) : new Date(Date.now() - 7 * 24 * 60 * 60 * 1000); // Default to 1 week ago
+    const endDate = new Date(); // Current date
+    const newsletter = await renderNewsletter(userId, startDate, endDate, 'standard');
 
     // Record generation in audit log
     log(`Newsletter generated for user ${userId}`);

@@ -29,7 +29,7 @@ export class LessonTemplateProvider extends TemplateProvider {
       templateId += `-grade${grade}`;
     }
     if (subject) {
-      templateId += `-${subject.toLowerCase()}`;
+      templateId += `-${String(subject).toLowerCase()}`;
     }
 
     // Try specific template first, fall back to general
@@ -72,6 +72,7 @@ export class LessonTemplateProvider extends TemplateProvider {
       name: 'Standard Lesson Plan',
       engine: 'handlebars',
       format: 'html',
+      supportedFormats: ['html'],
       content: this.getStandardLessonTemplate(),
       dataRequirements: this.getStandardDataRequirements(),
       metadata: {
@@ -86,6 +87,7 @@ export class LessonTemplateProvider extends TemplateProvider {
       name: 'Detailed Lesson Plan',
       engine: 'handlebars',
       format: 'html',
+      supportedFormats: ['html'],
       content: this.getDetailedLessonTemplate(),
       dataRequirements: this.getDetailedDataRequirements(),
       metadata: {
@@ -100,6 +102,7 @@ export class LessonTemplateProvider extends TemplateProvider {
       name: 'Quick Lesson Plan',
       engine: 'handlebars',
       format: 'html',
+      supportedFormats: ['html'],
       content: this.getQuickLessonTemplate(),
       dataRequirements: this.getQuickDataRequirements(),
       metadata: {
@@ -130,6 +133,7 @@ export class LessonTemplateProvider extends TemplateProvider {
             name: `Custom: ${path.basename(file, path.extname(file))}`,
             engine: 'handlebars',
             format: 'html',
+            supportedFormats: ['html'],
             content,
             dataRequirements: this.extractDataRequirements(content),
             metadata: {

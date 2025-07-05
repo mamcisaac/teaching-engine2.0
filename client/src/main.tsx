@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'sonner';
 import App from './App';
 import './index.css';
-import logger from './utils/logger';
+// import logger from './utils/logger';
 import { errorReportingService } from './services/errorReportingService';
 
 // Initialize error reporting service
@@ -18,6 +18,9 @@ const queryClient = new QueryClient({
       retry: (failureCount, error: unknown) => {
         // Don't retry if offline
         if (!navigator.onLine) return false;
+        // Don't retry on 401 errors
+        const err = error as { response?: { status?: number } };
+        if (err?.response?.status === 401) return false;
         // Retry up to 3 times for other errors
         return failureCount < 3;
       },
@@ -25,6 +28,13 @@ const queryClient = new QueryClient({
     mutations: {
       // Enable offline persistence for mutations
       networkMode: 'offlineFirst',
+      retry: (failureCount, error: unknown) => {
+        // Don't retry on 401 errors
+        const err = error as { response?: { status?: number } };
+        if (err?.response?.status === 401) return false;
+        // Retry up to 3 times for other errors
+        return failureCount < 3;
+      },
     },
   },
 });

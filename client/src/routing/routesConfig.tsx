@@ -119,7 +119,6 @@ export const protectedRoutes: RouteConfig[] = [
   },
   {
     path: '/planner',
-    element: <Navigate to="/planner/dashboard" replace />,
     children: plannerRoutes,
   },
   // Legacy redirects

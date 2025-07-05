@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { notesApi } from './api';
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
-import type { ReflectionJournalEntry, ReflectionInput, ReflectionUpdate } from '../../../types';
+import type { ReflectionUpdate } from '../../../types';
 
 // Journal Query hooks
 export const useJournalEntries = (params?: {

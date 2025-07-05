@@ -64,11 +64,7 @@ export class PartialManager extends BaseService {
     // Load partials from file system
     await this.loadPartialsFromFiles();
 
-    this.logger.info('Partial manager initialized', {
-      partialsCount: this.partials.size,
-      categoriesCount: this.categories.size,
-      partialsDirectory: this.partialsDirectory,
-    });
+    this.logger.info(`Partial manager initialized with ${this.partials.size} partials in ${this.categories.size} categories`);
   }
 
   /**
@@ -88,7 +84,8 @@ export class PartialManager extends BaseService {
   private initializeDefaultPartials(): void {
     // Header partial
     this.registerPartial('header', {
-      name: 'header',
+      // name: 'header', // name is not part of PartialInfo type
+      // name: 'header',
       content: `
         <div class="header">
           <h1>{{title}}</h1>
@@ -105,7 +102,7 @@ export class PartialManager extends BaseService {
 
     // Footer partial
     this.registerPartial('footer', {
-      name: 'footer',
+      // name: 'footer', // name is not part of PartialInfo type
       content: `
         <div class="footer">
           <p>&copy; {{year}} {{schoolName}}</p>
@@ -122,7 +119,7 @@ export class PartialManager extends BaseService {
 
     // Student info partial
     this.registerPartial('studentInfo', {
-      name: 'studentInfo',
+      // name: 'studentInfo', // name is not part of PartialInfo type
       content: `
         <div class="student-info">
           <h3>{{student.firstName}} {{student.lastName}}</h3>
@@ -150,7 +147,7 @@ export class PartialManager extends BaseService {
 
     // Grade display partial
     this.registerPartial('gradeDisplay', {
-      name: 'gradeDisplay',
+      // name: 'gradeDisplay', // name is not part of PartialInfo type
       content: `
         <div class="grade-display {{#if (gt grade 80)}}grade-excellent{{else if (gt grade 70)}}grade-good{{else if (gt grade 60)}}grade-satisfactory{{else}}grade-needs-improvement{{/if}}">
           <span class="grade-number">{{grade}}%</span>
@@ -167,7 +164,7 @@ export class PartialManager extends BaseService {
 
     // Assignment summary partial
     this.registerPartial('assignmentSummary', {
-      name: 'assignmentSummary',
+      // name: 'assignmentSummary', // name is not part of PartialInfo type
       content: `
         <div class="assignment-summary">
           <h4>{{assignment.title}}</h4>
@@ -196,7 +193,7 @@ export class PartialManager extends BaseService {
 
     // Newsletter section partial
     this.registerPartial('newsletterSection', {
-      name: 'newsletterSection',
+      // name: 'newsletterSection', // name is not part of PartialInfo type
       content: `
         <section class="newsletter-section">
           <h2 class="section-title">{{title}}</h2>
@@ -221,7 +218,7 @@ export class PartialManager extends BaseService {
 
     // Progress chart partial
     this.registerPartial('progressChart', {
-      name: 'progressChart',
+      // name: 'progressChart', // name is not part of PartialInfo type
       content: `
         <div class="progress-chart">
           <h4>{{title}}</h4>
@@ -247,7 +244,7 @@ export class PartialManager extends BaseService {
 
     // Contact info partial
     this.registerPartial('contactInfo', {
-      name: 'contactInfo',
+      // name: 'contactInfo', // name is not part of PartialInfo type
       content: `
         <div class="contact-info">
           <h4>Contact Information</h4>
@@ -322,7 +319,7 @@ export class PartialManager extends BaseService {
     // Update category membership
     this.updateCategoryMembership();
 
-    this.logger.debug('Partial registered', { name, category: partial.category });
+    this.logger.debug(`Partial registered: ${name} (category: ${partial.category})`);
   }
 
   /**
@@ -397,9 +394,7 @@ export class PartialManager extends BaseService {
       try {
         await fs.access(this.partialsDirectory);
       } catch (_error) {
-        this.logger.info('Partials directory does not exist, skipping file loading', {
-          directory: this.partialsDirectory,
-        });
+        this.logger.info('Partials directory does not exist, skipping file loading');
         return;
       }
 
@@ -418,7 +413,6 @@ export class PartialManager extends BaseService {
           const category = this.inferCategoryFromFilename(name);
 
           this.registerPartial(name, {
-            name,
             content: content.trim(),
             category,
             description: `Loaded from ${file}`,
@@ -427,24 +421,15 @@ export class PartialManager extends BaseService {
             source: 'file',
           });
 
-          this.logger.debug('Partial loaded from file', { name, file });
+          this.logger.debug('Partial loaded from file');
         } catch (_error) {
-          this.logger.error('Failed to load partial file', { 
-            file, 
-            error: _error instanceof Error ? _error.message : _error 
-          });
+          this.logger.error(`Failed to load partial file: ${file} - ${_error instanceof Error ? _error.message : _error}`);
         }
       }
 
-      this.logger.info('Partials loaded from files', {
-        directory: this.partialsDirectory,
-        loaded: partialFiles.length,
-      });
+      this.logger.info(`Partials loaded from files: ${partialFiles.length} loaded from ${this.partialsDirectory}`);
     } catch (_error) {
-      this.logger.error('Failed to load partials from files', {
-        directory: this.partialsDirectory,
-        error: _error instanceof Error ? _error.message : _error,
-      });
+      this.logger.error(`Failed to load partials from files in ${this.partialsDirectory}: ${_error instanceof Error ? _error.message : _error}`);
     }
   }
 
@@ -468,12 +453,9 @@ export class PartialManager extends BaseService {
       partial.source = 'file';
       partial.lastModified = new Date();
 
-      this.logger.info('Partial saved to file', { name, filePath });
+      this.logger.info(`Partial saved to file: ${name} -> ${filePath}`);
     } catch (_error) {
-      this.logger.error('Failed to save partial to file', {
-        name,
-        error: _error instanceof Error ? _error.message : _error,
-      });
+      this.logger.error(`Failed to save partial to file ${name}: ${_error instanceof Error ? _error.message : _error}`);
       throw _error;
     }
   }
@@ -485,7 +467,7 @@ export class PartialManager extends BaseService {
     const removed = this.partials.delete(name);
     if (removed) {
       this.updateCategoryMembership();
-      this.logger.debug('Partial removed', { name });
+      this.logger.debug(`Partial removed: ${name}`);
     }
     return removed;
   }
@@ -504,7 +486,7 @@ export class PartialManager extends BaseService {
         partial.description = description;
       }
 
-      this.logger.debug('Partial updated', { name });
+      this.logger.debug(`Partial updated: ${name}`);
     } else {
       throw new Error(`Partial not found: ${name}`);
     }

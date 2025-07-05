@@ -37,7 +37,9 @@
     "test-*.js",
     "test-*.cjs",
     "*.test.js",
-    "*.test.cjs"
+    "*.test.cjs",
+    "server/client/**/*",
+    "client/public/service-worker.js"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {

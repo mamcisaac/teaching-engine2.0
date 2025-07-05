@@ -11,7 +11,7 @@ import { commonValidations } from './base/validation.js';
 import { prisma } from '../prisma.js';
 import { Prisma } from '@teaching-engine/database';
 import { optimizedIncludes, optimizedQueries, queryPerformance } from './optimizations/queryOptimizations.js';
-import { UnitPlanCreateData, UnitPlanUpdateData } from '../types/routes.js';
+import { UnitPlanCreateData, UnitPlanUpdateData, ResourceData } from '../types/routes.js';
 
 // Unit plan-specific validation schemas
 const unitPlanCreateSchema = z.object({
@@ -105,7 +105,8 @@ class UnitPlanService extends BaseService {
     super('UnitPlanService');
   }
 
-  async findMany(filters: unknown, userId: number) {
+  async findMany(filters: Record<string, any>, userId: number) {
+    const filtersObj = filters || {};
     const {
       longRangePlanId,
       startDate,
@@ -116,23 +117,20 @@ class UnitPlanService extends BaseService {
       offset,
       sortBy,
       sortOrder,
-    } = filters;
+    } = filtersObj;
+
+    const longRangePlanFilter: Prisma.LongRangePlanWhereInput = { userId };
+    if (subject) {
+      longRangePlanFilter.subject = { contains: subject };
+    }
 
     const where: Prisma.UnitPlanWhereInput = {
-      longRangePlan: { userId },
+      longRangePlan: longRangePlanFilter,
     };
 
     if (longRangePlanId) where.longRangePlanId = longRangePlanId;
     if (startDate) where.startDate = { gte: new Date(startDate) };
     if (endDate) where.endDate = { lte: new Date(endDate) };
-
-    // Subject filtering through long range plan
-    if (subject) {
-      where.longRangePlan = {
-        ...where.longRangePlan,
-        subject: { contains: subject, mode: 'insensitive' },
-      };
-    }
 
     // Search functionality using optimized search utility
     if (search) {
@@ -207,27 +205,67 @@ class UnitPlanService extends BaseService {
       throw new Error('Long range plan not found or access denied');
     }
 
-    const { expectationIds, ...unitPlanData } = data;
+    const { expectations, resources, ...unitPlanData } = data;
+
+    // Create unit plan data that matches Prisma schema
+    const createData = {
+      userId,
+      title: data.title,
+      longRangePlanId: data.longRangePlanId,
+      description: data.description,
+      bigIdeas: data.bigIdeas,
+      essentialQuestions: data.essentialQuestions ? JSON.stringify(data.essentialQuestions) : null,
+      startDate: new Date(data.startDate),
+      endDate: new Date(data.endDate),
+      estimatedHours: data.estimatedHours,
+      titleFr: data.titleFr,
+      descriptionFr: data.descriptionFr,
+      bigIdeasFr: data.bigIdeasFr,
+      assessmentPlan: data.assessmentPlan,
+      successCriteria: data.successCriteria ? JSON.stringify(data.successCriteria) : null,
+      crossCurricularConnections: data.crossCurricularConnections,
+      learningSkills: data.learningSkills ? JSON.stringify(data.learningSkills) : null,
+      culminatingTask: data.culminatingTask,
+      keyVocabulary: data.keyVocabulary ? JSON.stringify(data.keyVocabulary) : null,
+      priorKnowledge: data.priorKnowledge,
+      parentCommunicationPlan: data.parentCommunicationPlan,
+      fieldTripsAndGuestSpeakers: data.fieldTripsAndGuestSpeakers,
+      differentiationStrategies: data.differentiationStrategies ? JSON.stringify(data.differentiationStrategies) : null,
+      indigenousPerspectives: data.indigenousPerspectives,
+      environmentalEducation: data.environmentalEducation,
+      socialJusticeConnections: data.socialJusticeConnections,
+      technologyIntegration: data.technologyIntegration,
+      communityConnections: data.communityConnections,
+      // Add expectations relationship if provided
+      ...(expectations && expectations.length > 0 && {
+        expectations: {
+          create: expectations.map((exp) => ({
+            expectationId: exp.expectationId,
+          })),
+        },
+      }),
+      // Add resources relationship if provided
+      ...(resources && resources.length > 0 && {
+        resources: {
+          create: resources.map((resource) => ({
+            title: resource.title,
+            type: resource.type,
+            url: resource.url,
+            notes: resource.content, // Map content to notes field
+          })),
+        },
+      }),
+    };
 
     return prisma.unitPlan.create({
-      data: {
-        ...unitPlanData,
-        startDate: new Date(data.startDate),
-        endDate: new Date(data.endDate),
-        expectations: expectationIds
-          ? {
-              create: expectationIds.map((expectationId: string) => ({
-                expectationId,
-              })),
-            }
-          : undefined,
-      },
+      data: createData as any,
       include: {
         expectations: {
           include: {
             expectation: true,
           },
         },
+        resources: true,
       },
     });
   }
@@ -263,7 +301,7 @@ class UnitPlanService extends BaseService {
             })),
           },
         }),
-      },
+      } as any,
       include: {
         expectations: {
           include: {
@@ -293,7 +331,7 @@ class UnitPlanService extends BaseService {
     return true;
   }
 
-  async addResource(unitPlanId: string, resourceData: unknown, userId: number) {
+  async addResource(unitPlanId: string, resourceData: ResourceData, userId: number) {
     // Verify ownership
     const unitPlan = await prisma.unitPlan.findFirst({
       where: {
@@ -337,7 +375,7 @@ class UnitPlanService extends BaseService {
     return true;
   }
 
-  async duplicate(duplicateData: unknown, userId: number) {
+  async duplicate(duplicateData: { unitPlanId: string; longRangePlanId: string; title: string }, userId: number) {
     const { unitPlanId, longRangePlanId, title } = duplicateData;
 
     // Verify user owns both the source unit plan and target long range plan
@@ -397,13 +435,13 @@ class UnitPlanService extends BaseService {
         },
         resources: {
           create: sourceUnitPlan.resources.map((resource) => ({
-            name: resource.name,
-            url: resource.url,
+            title: resource.title,
+            url: resource.url || '',
             type: resource.type,
-            description: resource.description,
+            notes: resource.notes || '',
           })),
         },
-      },
+      } as any,
     });
   }
 }
@@ -490,7 +528,13 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
     try {
       const userId = req.userId!;
       const { id: unitPlanId } = req.params;
-      const resourceData = resourceSchema.parse(req.body);
+      const parsedData = resourceSchema.parse(req.body);
+      const resourceData: ResourceData = {
+        title: parsedData.name,
+        type: parsedData.type,
+        url: parsedData.url,
+        content: parsedData.description,
+      };
       
       const resource = await this.unitPlanService.addResource(unitPlanId, resourceData, userId);
       res.status(201).json(resource);
@@ -530,7 +574,12 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
   ): Promise<void> {
     try {
       const userId = req.userId!;
-      const duplicateData = duplicateUnitPlanSchema.parse(req.body);
+      const parsedData = duplicateUnitPlanSchema.parse(req.body);
+      const duplicateData = {
+        unitPlanId: parsedData.unitPlanId,
+        longRangePlanId: parsedData.longRangePlanId,
+        title: parsedData.title || '', // Will use default in the duplicate method if empty
+      };
       
       const duplicatedUnitPlan = await this.unitPlanService.duplicate(duplicateData, userId);
       res.status(201).json(duplicatedUnitPlan);

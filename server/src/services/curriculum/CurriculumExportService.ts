@@ -81,12 +81,12 @@ export class CurriculumExportService extends BaseService {
         const expectations = await prisma.curriculumExpectation.findMany({
           where,
           include: {
-            subject: true,
+            import: true,
           },
           orderBy: [
             { grade: 'asc' },
             { strand: 'asc' },
-            { type: 'asc' },
+            { subject: 'asc' },
             { code: 'asc' },
           ],
         });
@@ -125,10 +125,7 @@ export class CurriculumExportService extends BaseService {
             throw new Error(`Unsupported export format: ${options.format}`);
         }
 
-        this.logger.info('Export completed', {
-          format: options.format,
-          count: expectations.length,
-        });
+        this.logger.info('Export completed');
 
         return buffer;
       },

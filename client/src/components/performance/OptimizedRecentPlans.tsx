@@ -189,7 +189,7 @@ export const OptimizedRecentPlans = memo(function OptimizedRecentPlans({
   }, [plans]);
 
   // Memoize the render function for virtualized list
-  const renderPlanItem = useCallback(({ item, index }: { item: any; index: number }) => (
+  const renderPlanItem = useCallback(({ item, _index }: { item: RecentPlan; index: number }) => (
     <PlanItem key={`${item.type}-${item.id}`} plan={item} compact={compact} />
   ), [compact]);
 

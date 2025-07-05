@@ -24,7 +24,7 @@ export function userRoutes(prisma: PrismaClient): Router {
   // Get user profile
   router.get(
     '/profile',
-    asyncHandler(async (req: Request, res: Response) => {
+    asyncHandler(async (req, res) => {
       const userId = req.user!.id;
 
       const user = await prisma.user.findUnique({
@@ -48,7 +48,7 @@ export function userRoutes(prisma: PrismaClient): Router {
   // Update password
   router.put(
     '/password',
-    asyncHandler(async (req: Request, res: Response) => {
+    asyncHandler(async (req, res) => {
       const userId = req.user!.id;
       const { currentPassword, newPassword } = updatePasswordSchema.parse(req.body);
 
@@ -86,7 +86,7 @@ export function userRoutes(prisma: PrismaClient): Router {
   // Create user (admin only)
   router.post(
     '/create',
-    asyncHandler(async (req: Request, res: Response) => {
+    asyncHandler(async (req, res) => {
       const userRole = (req as Request & { user?: { role?: string } }).user?.role;
 
       if (userRole !== 'ADMIN') {
@@ -115,7 +115,7 @@ export function userRoutes(prisma: PrismaClient): Router {
   // Data validation endpoint
   router.post(
     '/data/validate',
-    asyncHandler(async (req: Request, res: Response) => {
+    asyncHandler(async (req, res) => {
       const data = req.body;
 
       // Type validation

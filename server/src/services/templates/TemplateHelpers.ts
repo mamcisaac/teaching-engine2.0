@@ -45,10 +45,7 @@ export class TemplateHelpers extends BaseService {
    */
   protected async initialize(): Promise<void> {
     await super.initialize();
-    this.logger.info('Template helpers initialized', {
-      helpersCount: this.helpers.size,
-      categoriesCount: this.categories.size,
-    });
+    this.logger.info(`Template helpers initialized: helpersCount=${this.helpers.size}, categoriesCount=${this.categories.size}`);
   }
 
   /**
@@ -68,7 +65,6 @@ export class TemplateHelpers extends BaseService {
   private initializeDefaultHelpers(): void {
     // Formatting helpers
     this.registerHelper('formatCurrency', {
-      name: 'formatCurrency',
       fn: (amount: number, currency: string = 'USD', locale: string = 'en-US') => {
         return new Intl.NumberFormat(locale, {
           style: 'currency',
@@ -81,7 +77,6 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('formatDate', {
-      name: 'formatDate',
       fn: (date: Date | string, format: string = 'short', locale: string = 'en-US') => {
         const dateObj = typeof date === 'string' ? new Date(date) : date;
 
@@ -106,7 +101,6 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('formatGrade', {
-      name: 'formatGrade',
       fn: (grade: string | number) => {
         const numGrade = typeof grade === 'string' ? parseFloat(grade) : grade;
         if (isNaN(numGrade)) return 'N/A';
@@ -122,7 +116,6 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('formatPhoneNumber', {
-      name: 'formatPhoneNumber',
       fn: (phone: string) => {
         const cleaned = phone.replace(/\D/g, '');
         const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
@@ -138,7 +131,6 @@ export class TemplateHelpers extends BaseService {
 
     // Math helpers
     this.registerHelper('add', {
-      name: 'add',
       fn: (a: number, b: number) => a + b,
       description: 'Add two numbers',
       category: 'math',
@@ -146,7 +138,6 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('subtract', {
-      name: 'subtract',
       fn: (a: number, b: number) => a - b,
       description: 'Subtract two numbers',
       category: 'math',
@@ -154,7 +145,6 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('multiply', {
-      name: 'multiply',
       fn: (a: number, b: number) => a * b,
       description: 'Multiply two numbers',
       category: 'math',
@@ -162,7 +152,6 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('divide', {
-      name: 'divide',
       fn: (a: number, b: number) => (b !== 0 ? a / b : 0),
       description: 'Divide two numbers (safe division)',
       category: 'math',
@@ -170,7 +159,6 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('percentage', {
-      name: 'percentage',
       fn: (value: number, total: number) => {
         if (total === 0) return '0%';
         return `${Math.round((value / total) * 100)}%`;
@@ -182,7 +170,6 @@ export class TemplateHelpers extends BaseService {
 
     // String helpers
     this.registerHelper('capitalize', {
-      name: 'capitalize',
       fn: (str: string) => {
         if (!str) return '';
         return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
@@ -193,7 +180,7 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('uppercase', {
-      name: 'uppercase',
+      
       fn: (str: string) => (str ? str.toUpperCase() : ''),
       description: 'Convert to uppercase',
       category: 'string',
@@ -201,7 +188,7 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('lowercase', {
-      name: 'lowercase',
+      
       fn: (str: string) => (str ? str.toLowerCase() : ''),
       description: 'Convert to lowercase',
       category: 'string',
@@ -209,7 +196,7 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('truncate', {
-      name: 'truncate',
+      
       fn: (str: string, length: number = 50) => {
         if (!str) return '';
         if (str.length <= length) return str;
@@ -222,7 +209,7 @@ export class TemplateHelpers extends BaseService {
 
     // Comparison helpers
     this.registerHelper('eq', {
-      name: 'eq',
+      
       fn: (a: unknown, b: unknown) => a === b,
       description: 'Check if values are equal',
       category: 'comparison',
@@ -230,7 +217,7 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('ne', {
-      name: 'ne',
+      
       fn: (a: unknown, b: unknown) => a !== b,
       description: 'Check if values are not equal',
       category: 'comparison',
@@ -238,7 +225,7 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('gt', {
-      name: 'gt',
+      
       fn: (a: number, b: number) => a > b,
       description: 'Check if first value is greater than second',
       category: 'comparison',
@@ -246,7 +233,7 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('lt', {
-      name: 'lt',
+      
       fn: (a: number, b: number) => a < b,
       description: 'Check if first value is less than second',
       category: 'comparison',
@@ -255,7 +242,7 @@ export class TemplateHelpers extends BaseService {
 
     // Educational helpers
     this.registerHelper('gradeLevel', {
-      name: 'gradeLevel',
+      
       fn: (grade: number) => {
         if (grade <= 0) return 'Pre-K';
         if (grade <= 8) return `Grade ${grade}`;
@@ -271,7 +258,7 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('academicYear', {
-      name: 'academicYear',
+      
       fn: (date?: Date) => {
         const now = date || new Date();
         const year = now.getFullYear();
@@ -291,7 +278,7 @@ export class TemplateHelpers extends BaseService {
 
     // Array helpers
     this.registerHelper('first', {
-      name: 'first',
+      
       fn: (array: unknown[]) => (array && array.length > 0 ? array[0] : null),
       description: 'Get first item from array',
       category: 'array',
@@ -299,7 +286,7 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('last', {
-      name: 'last',
+      
       fn: (array: unknown[]) => (array && array.length > 0 ? array[array.length - 1] : null),
       description: 'Get last item from array',
       category: 'array',
@@ -307,7 +294,7 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('length', {
-      name: 'length',
+      
       fn: (array: unknown[]) => (array ? array.length : 0),
       description: 'Get array length',
       category: 'array',
@@ -315,7 +302,7 @@ export class TemplateHelpers extends BaseService {
     });
 
     this.registerHelper('join', {
-      name: 'join',
+      
       fn: (array: unknown[], separator: string = ', ') => {
         if (!array || !Array.isArray(array)) return '';
         return array.join(separator);
@@ -334,37 +321,37 @@ export class TemplateHelpers extends BaseService {
    */
   private initializeCategories(): void {
     this.categories.set('formatting', {
-      name: 'Formatting',
+      name: 'formatting',
       description: 'Helpers for formatting numbers, dates, and text',
       helpers: [],
     });
 
     this.categories.set('math', {
-      name: 'Math',
+      name: 'math',
       description: 'Mathematical operations and calculations',
       helpers: [],
     });
 
     this.categories.set('string', {
-      name: 'String',
+      name: 'string',
       description: 'String manipulation and formatting',
       helpers: [],
     });
 
     this.categories.set('comparison', {
-      name: 'Comparison',
+      name: 'comparison',
       description: 'Comparison operations for conditional logic',
       helpers: [],
     });
 
     this.categories.set('educational', {
-      name: 'Educational',
+      name: 'educational',
       description: 'Education-specific helpers for grades, dates, etc.',
       helpers: [],
     });
 
     this.categories.set('array', {
-      name: 'Array',
+      name: 'array',
       description: 'Array manipulation and iteration helpers',
       helpers: [],
     });
@@ -394,7 +381,7 @@ export class TemplateHelpers extends BaseService {
       }
     }
 
-    this.logger.debug('Helper registered', { name, category: helper.category });
+    this.logger.debug(`Helper registered: name=${name}, category=${helper.category || 'none'}`);
   }
 
   /**
@@ -478,7 +465,7 @@ export class TemplateHelpers extends BaseService {
         }
       }
 
-      this.logger.debug('Helper removed', { name });
+      this.logger.debug(`Helper removed: name=${name}`);
       return true;
     }
     return false;
@@ -496,11 +483,7 @@ export class TemplateHelpers extends BaseService {
     try {
       return helper(...args);
     } catch (_error) {
-      this.logger.error('Helper test failed', {
-        name,
-        args,
-        error: _error instanceof Error ? _error.message : _error,
-      });
+      this.logger.error(`Helper test failed: name=${name}, args=${JSON.stringify(args)}, error=${_error instanceof Error ? _error.message : _error}`);
       throw _error;
     }
   }

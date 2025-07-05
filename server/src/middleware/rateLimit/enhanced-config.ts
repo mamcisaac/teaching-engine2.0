@@ -216,7 +216,7 @@ export async function getRedisClient(): Promise<Redis | null> {
     
     return redisClient;
   } catch (_error) {
-    logger.info('Redis connection failed, using in-memory rate limiting', error);
+    logger.info('Redis connection failed, using in-memory rate limiting', _error);
     return null;
   }
 }

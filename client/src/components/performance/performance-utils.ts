@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 // Simple debounce and throttle implementations
-const debounce = <T extends (...args: any[]) => any>(
+const _debounce = <T extends (...args: unknown[]) => unknown>(
   func: T,
   wait: number
 ): ((...args: Parameters<T>) => void) => {
@@ -11,7 +11,7 @@ const debounce = <T extends (...args: any[]) => any>(
   };
 };
 
-const throttle = <T extends (...args: any[]) => any>(
+const throttle = <T extends (...args: unknown[]) => unknown>(
   func: T,
   wait: number
 ): ((...args: Parameters<T>) => void) & { cancel(): void } => {
@@ -56,7 +56,7 @@ export function useDebounced<T>(value: T, delay: number): T {
 /**
  * Hook for throttled callbacks to limit execution frequency
  */
-export function useThrottled<T extends (...args: any[]) => any>(
+export function useThrottled<T extends (...args: unknown[]) => unknown>(
   callback: T,
   delay: number
 ): T {
@@ -116,7 +116,7 @@ export function useRenderPerformance(componentName: string) {
   useEffect(() => {
     const renderTime = performance.now() - renderStart.current;
     if (process.env.NODE_ENV === 'development') {
-      console.log(`${componentName} render #${renderCount.current}: ${renderTime.toFixed(2)}ms`);
+      // console.log(`${componentName} render #${renderCount.current}: ${renderTime.toFixed(2)}ms`);
     }
   });
 
@@ -124,7 +124,7 @@ export function useRenderPerformance(componentName: string) {
     renderCount: renderCount.current,
     logRender: (operation: string) => {
       if (process.env.NODE_ENV === 'development') {
-        console.log(`${componentName} ${operation} at render #${renderCount.current}`);
+        // console.log(`${componentName} ${operation} at render #${renderCount.current}`);
       }
     },
   };
@@ -216,7 +216,7 @@ export const PerformanceMonitor = {
     const end = performance.now();
     
     if (process.env.NODE_ENV === 'development') {
-      console.log(`${componentName} rendered in ${(end - start).toFixed(2)}ms`);
+      // console.log(`${componentName} rendered in ${(end - start).toFixed(2)}ms`);
     }
   },
 
@@ -230,7 +230,7 @@ export const PerformanceMonitor = {
       const end = performance.now();
       
       if (process.env.NODE_ENV === 'development') {
-        console.log(`${operation} completed in ${(end - start).toFixed(2)}ms`);
+        // console.log(`${operation} completed in ${(end - start).toFixed(2)}ms`);
       }
       
       return result;
@@ -265,7 +265,7 @@ export const PerformanceMonitor = {
         const duration = measures[measures.length - 1]?.duration;
         
         if (process.env.NODE_ENV === 'development' && duration) {
-          console.log(`${name}: ${duration.toFixed(2)}ms`);
+          // console.log(`${name}: ${duration.toFixed(2)}ms`);
         }
         
         return duration;
@@ -296,7 +296,7 @@ export const MemoUtils = {
       if (keysA.length !== keysB.length) return false;
 
       return keysA.every(key => 
-        MemoUtils.deepEqual((a as any)[key], (b as any)[key])
+        MemoUtils.deepEqual((a as Record<string, unknown>)[key], (b as Record<string, unknown>)[key])
       );
     }
 
@@ -306,7 +306,7 @@ export const MemoUtils = {
   /**
    * Shallow comparison for most memo scenarios
    */
-  shallowEqual: <T extends Record<string, any>>(a: T, b: T): boolean => {
+  shallowEqual: <T extends Record<string, unknown>>(a: T, b: T): boolean => {
     const keysA = Object.keys(a);
     const keysB = Object.keys(b);
 

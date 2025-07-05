@@ -15,6 +15,7 @@ export interface TestUser {
   boardRegion: string;
   onboardingStatus: 'completed';
   apiKey: string;
+  password: string;
   preferences: {
     theme: 'light' | 'dark';
     notifications: boolean;
@@ -30,6 +31,7 @@ export interface AuthTestContext {
     Authorization: string;
     'Content-Type': string;
   };
+  authContext?: AuthTestContext;
   cleanup?: () => Promise<void>;
 }
 
@@ -47,6 +49,7 @@ export const mockUser = {
   boardRegion: 'Test Region',
   onboardingStatus: 'completed' as const,
   apiKey: 'test-api-key',
+  password: 'TestPassword123!',
   preferences: {
     theme: 'light' as const,
     notifications: true,
@@ -221,8 +224,8 @@ export function createMockAuthHandlers() {
 /**
  * Create a test user
  */
-export async function createTestUser(): Promise<TestUser> {
-  return { ...mockUser };
+export async function createTestUser(userData?: Partial<TestUser>): Promise<TestUser> {
+  return { ...mockUser, ...userData };
 }
 
 /**
@@ -237,7 +240,11 @@ export async function deleteTestUser(userId: string): Promise<void> {
  * Setup auth test environment
  */
 export async function setupAuthTest(): Promise<AuthTestContext> {
-  return createAuthenticatedTestUser();
+  const authContext = await createAuthenticatedTestUser();
+  return {
+    ...authContext,
+    authContext: authContext // Add the authContext property for compatibility
+  };
 }
 
 /**

@@ -63,6 +63,14 @@ export class LLMService extends BaseService {
     this.initializeOpenAI();
   }
 
+  /**
+   * Service initialization override
+   */
+  protected async initialize(): Promise<void> {
+    await super.initialize();
+    // OpenAI initialization is already done in constructor
+  }
+
   public static getInstance(): LLMService {
     if (!LLMService.instance) {
       LLMService.instance = new LLMService();
@@ -78,7 +86,7 @@ export class LLMService extends BaseService {
       const apiKey = process.env.OPENAI_API_KEY;
       
       if (!apiKey) {
-        this.logger.warn('OpenAI API key not provided. LLM features will be disabled.', {});
+        this.logger.warn('OpenAI API key not provided. LLM features will be disabled.');
         return;
       }
 
@@ -88,9 +96,9 @@ export class LLMService extends BaseService {
         maxRetries: this.maxRetries,
       });
 
-      this.logger.info('OpenAI client initialized successfully', {});
+      this.logger.info('OpenAI client initialized successfully');
     } catch (error) {
-      this.logger.error('Failed to initialize OpenAI client', { error });
+      this.logger.error(`Failed to initialize OpenAI client: ${error}`);
       this.openaiClient = null;
     }
   }
@@ -120,11 +128,7 @@ export class LLMService extends BaseService {
 
       const enhancedPrompt = this.enhancePrompt(request);
       
-      this.logger.debug('Generating content with prompt', {
-        type: request.type,
-        promptLength: enhancedPrompt.length,
-        context: request.context,
-      });
+      this.logger.debug(`Generating content with prompt - type: ${request.type}, promptLength: ${enhancedPrompt.length}`);
 
       const response = await this.openaiClient!.chat.completions.create({
         model: this.defaultModel,
@@ -148,10 +152,7 @@ export class LLMService extends BaseService {
         throw new Error('No content generated from OpenAI');
       }
 
-      this.logger.debug('Content generated successfully', {
-        contentLength: content.length,
-        tokensUsed: response.usage?.total_tokens,
-      });
+      this.logger.debug(`Content generated successfully - length: ${content.length}, tokens: ${response.usage?.total_tokens || 'unknown'}`);
 
       return content;
     }, 'generateContent');
@@ -321,7 +322,7 @@ export class LLMService extends BaseService {
   /**
    * Clean shutdown
    */
-  protected async shutdown(): Promise<void> {
+  public async shutdown(): Promise<void> {
     await super.shutdown();
     this.openaiClient = null;
   }
