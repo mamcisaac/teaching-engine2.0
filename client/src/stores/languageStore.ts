@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
+import type { Draft } from 'immer';
 
 // Comprehensive translation system for Teaching Engine 2.0
 const translations: Record<string, Record<string, string>> = {
@@ -376,12 +377,12 @@ const translations: Record<string, Record<string, string>> = {
 
 interface LanguageState {
   language: string;
-  
+
   // Actions
   setLanguage: (lang: string) => void;
   t: (key: string, fallback?: string, substitutions?: string[]) => string;
   getLocalizedField: (obj: Record<string, unknown>, field: string) => string;
-  
+
   // Computed values
   isEnglish: boolean;
   isFrench: boolean;
@@ -390,8 +391,8 @@ interface LanguageState {
 
 export const useLanguageStore = create<LanguageState>()(
   persist(
-    immer((set, get) => {
-      const updateComputedValues = (state: any) => {
+    immer<LanguageState>((set, get) => {
+      const updateComputedValues = (state: Draft<LanguageState>) => {
         state.isEnglish = state.language === 'en';
         state.isFrench = state.language === 'fr';
         state.currentTranslations = translations[state.language] || translations.en;
@@ -403,7 +404,7 @@ export const useLanguageStore = create<LanguageState>()(
         isEnglish: true,
         isFrench: false,
         currentTranslations: translations.en,
-        
+
         // Actions
         setLanguage: (lang: string) => {
           if (lang === 'en' || lang === 'fr') {
@@ -414,7 +415,7 @@ export const useLanguageStore = create<LanguageState>()(
             // TODO: Update user preference in backend
           }
         },
-        
+
         t: (key: string, fallback?: string, substitutions?: string[]): string => {
           const state = get();
           let translation = translations[state.language]?.[key] || fallback || key;
@@ -428,10 +429,10 @@ export const useLanguageStore = create<LanguageState>()(
 
           return translation;
         },
-        
+
         getLocalizedField: (obj: Record<string, unknown>, field: string): string => {
           if (!obj) return '';
-          
+
           const state = get();
           const localizedFieldName = `${field}${state.language.charAt(0).toUpperCase() + state.language.slice(1)}`;
           const localizedValue = obj[localizedFieldName];
@@ -446,13 +447,13 @@ export const useLanguageStore = create<LanguageState>()(
       partialize: (state) => ({
         language: state.language,
       }),
-    }
-  )
+    },
+  ),
 );
 
 // Selector hooks for performance
-export const useCurrentLanguage = () => useLanguageStore(state => state.language);
-export const useTranslation = () => useLanguageStore(state => state.t);
-export const useLocalizedField = () => useLanguageStore(state => state.getLocalizedField);
-export const useIsEnglish = () => useLanguageStore(state => state.isEnglish);
-export const useIsFrench = () => useLanguageStore(state => state.isFrench);
+export const useCurrentLanguage = () => useLanguageStore((state) => state.language);
+export const useTranslation = () => useLanguageStore((state) => state.t);
+export const useLocalizedField = () => useLanguageStore((state) => state.getLocalizedField);
+export const useIsEnglish = () => useLanguageStore((state) => state.isEnglish);
+export const useIsFrench = () => useLanguageStore((state) => state.isFrench);

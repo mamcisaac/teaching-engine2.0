@@ -1,6 +1,6 @@
 /**
  * State Management Migration Guide
- * 
+ *
  * This file provides guidance and utilities for migrating from the old context-based
  * state management to the new standardized Zustand + React Query approach.
  */
@@ -8,39 +8,39 @@
 // Migration mappings for Context API → Zustand Store conversions
 export const CONTEXT_TO_STORE_MAPPINGS = {
   // Onboarding Context → Onboarding Store
-  'useOnboarding': 'useOnboardingStore',
-  'OnboardingProvider': 'remove - use store directly',
-  'useOnboardingComplete': 'useOnboardingComplete (from store)',
-  
+  useOnboarding: 'useOnboardingStore',
+  OnboardingProvider: 'remove - use store directly',
+  useOnboardingComplete: 'useOnboardingComplete (from store)',
+
   // Help Context → Help Store
-  'useHelp': 'useHelpStore',
-  'HelpProvider': 'remove - use store directly',
-  'useTutorialProgress': 'useTutorialProgress (from store)',
-  'useHelpAnalytics': 'useHelpAnalytics (from store)',
-  
+  useHelp: 'useHelpStore',
+  HelpProvider: 'remove - use store directly',
+  useTutorialProgress: 'useTutorialProgress (from store)',
+  useHelpAnalytics: 'useHelpAnalytics (from store)',
+
   // Keyboard Shortcuts Context → Keyboard Shortcuts Store
-  'useKeyboardShortcuts': 'useKeyboardShortcutsStore',
-  'KeyboardShortcutsProvider': 'remove - use store directly',
-  'formatShortcut': 'formatShortcut (from store)',
-  
+  useKeyboardShortcuts: 'useKeyboardShortcutsStore',
+  KeyboardShortcutsProvider: 'remove - use store directly',
+  formatShortcut: 'formatShortcut (from store)',
+
   // Language Context → Language Store
-  'useLanguage': 'useLanguageStore',
-  'LanguageProvider': 'remove - use store directly',
+  useLanguage: 'useLanguageStore',
+  LanguageProvider: 'remove - use store directly',
   't()': 'useTranslation() hook',
   'getLocalizedField()': 'useLocalizedField() hook',
-  
+
   // Theme Context → UI Store
-  'useTheme': 'useTheme (from uiStore)',
-  'ThemeProvider': 'remove - use UI store directly',
-  'toggleTheme': 'theme.toggleTheme from useTheme hook',
-  
+  useTheme: 'useTheme (from uiStore)',
+  ThemeProvider: 'remove - use UI store directly',
+  toggleTheme: 'theme.toggleTheme from useTheme hook',
+
   // Auth Context → Enhanced Auth Context (React Query)
-  'useAuth': 'useAuth (enhanced with React Query)',
-  'AuthProvider': 'AuthProvider (enhanced)',
-  
+  useAuth: 'useAuth (enhanced with React Query)',
+  AuthProvider: 'AuthProvider (enhanced)',
+
   // Notification Context → Enhanced Notification Context (React Query)
-  'useNotification': 'useNotification (enhanced)',
-  'NotificationProvider': 'NotificationProvider (enhanced)',
+  useNotification: 'useNotification (enhanced)',
+  NotificationProvider: 'NotificationProvider (enhanced)',
 };
 
 // Code transformation examples
@@ -83,9 +83,9 @@ const Component = () => {
     </div>
   );
 };
-    `
+    `,
   },
-  
+
   help: {
     before: `
 // Old Context API approach
@@ -110,9 +110,9 @@ const Component = () => {
   
   return <HelpPanel section={currentSection} />;
 };
-    `
+    `,
   },
-  
+
   theme: {
     before: `
 // Old Context API approach
@@ -141,9 +141,9 @@ const Component = () => {
     </button>
   );
 };
-    `
+    `,
   },
-  
+
   language: {
     before: `
 // Old Context API approach
@@ -182,8 +182,8 @@ const Component = () => {
     </div>
   );
 };
-    `
-  }
+    `,
+  },
 };
 
 // Provider setup migration
@@ -220,7 +220,7 @@ export const PROVIDER_MIGRATION = {
 
 // Note: Zustand stores are available globally without providers
 // UI Store, Language Store, Help Store, etc. work automatically
-  `
+  `,
 };
 
 // Performance optimization tips
@@ -231,7 +231,7 @@ export const PERFORMANCE_TIPS = [
   'Keep Zustand stores focused on specific domains',
   'Use immer middleware for complex state updates',
   'Persist only necessary state to localStorage',
-  'Use subscribeWithSelector for performance optimization'
+  'Use subscribeWithSelector for performance optimization',
 ];
 
 // Testing migration guide
@@ -260,7 +260,7 @@ beforeEach(() => {
 const renderWithStores = (component) => {
   return render(component); // No providers needed for Zustand stores
 };
-  `
+  `,
 };
 
 // Utility function to check if migration is needed
@@ -275,14 +275,14 @@ export const checkMigrationNeeded = (filePath: string, content: string): boolean
     'useLanguage',
     'LanguageProvider',
     'useTheme',
-    'ThemeProvider'
+    'ThemeProvider',
   ];
-  
-  return oldPatterns.some(pattern => content.includes(pattern));
+
+  return oldPatterns.some((pattern) => content.includes(pattern));
 };
 
 // Generate migration checklist for a component
-export const generateMigrationChecklist = (componentPath: string): string[] => {
+export const generateMigrationChecklist = (_componentPath: string): string[] => {
   return [
     '□ Replace Context imports with Store imports',
     '□ Remove Provider wrapper from component tree',
@@ -290,6 +290,6 @@ export const generateMigrationChecklist = (componentPath: string): string[] => {
     '□ Test component functionality',
     '□ Update tests to reset store state',
     '□ Verify no performance regressions',
-    '□ Update TypeScript types if needed'
+    '□ Update TypeScript types if needed',
   ];
 };

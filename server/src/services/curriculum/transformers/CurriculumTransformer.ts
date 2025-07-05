@@ -23,10 +23,7 @@ export class CurriculumTransformer {
   /**
    * Transform parsed curriculum to database entities
    */
-  transform(
-    parsed: ParsedCurriculum,
-    options: TransformOptions
-  ): TransformedCurriculum {
+  transform(parsed: ParsedCurriculum, options: TransformOptions): TransformedCurriculum {
     // Transform subject
     const subject = this.transformSubject(parsed, options);
 
@@ -41,12 +38,12 @@ export class CurriculumTransformer {
    */
   private transformSubject(
     parsed: ParsedCurriculum,
-    options: TransformOptions
+    options: TransformOptions,
   ): Prisma.SubjectCreateInput {
     return {
       name: parsed.subject,
       user: {
-        connect: { id: options.userId }
+        connect: { id: options.userId },
       },
     };
   }
@@ -57,7 +54,7 @@ export class CurriculumTransformer {
   private transformExpectations(
     expectations: ParsedExpectation[],
     curriculum: ParsedCurriculum,
-    options: TransformOptions
+    options: TransformOptions,
   ): Prisma.CurriculumExpectationCreateInput[] {
     const transformed: Prisma.CurriculumExpectationCreateInput[] = [];
     const processedCodes = new Set<string>();
@@ -81,7 +78,7 @@ export class CurriculumTransformer {
   private transformExpectation(
     expectation: ParsedExpectation,
     curriculum: ParsedCurriculum,
-    options: TransformOptions
+    _options: TransformOptions,
   ): Prisma.CurriculumExpectationCreateInput {
     return {
       code: expectation.code,
@@ -99,8 +96,16 @@ export class CurriculumTransformer {
    */
   transformForUpdate(
     parsed: ParsedCurriculum,
-    existingExpectations: Array<{ id: string; code: string; description: string; strand: string; substrand?: string | null; grade: number; subject: string }>,
-    options: TransformOptions
+    existingExpectations: Array<{
+      id: string;
+      code: string;
+      description: string;
+      strand: string;
+      substrand?: string | null;
+      grade: number;
+      subject: string;
+    }>,
+    options: TransformOptions,
   ): {
     toCreate: Prisma.CurriculumExpectationCreateInput[];
     toUpdate: Array<{
@@ -114,9 +119,7 @@ export class CurriculumTransformer {
     const toDeactivate: string[] = [];
 
     // Create lookup map for existing expectations
-    const existingMap = new Map(
-      existingExpectations.map(e => [e.code, e])
-    );
+    const existingMap = new Map(existingExpectations.map((e) => [e.code, e]));
 
     // Process parsed expectations
     const processedIds = new Set<string>();
@@ -128,7 +131,7 @@ export class CurriculumTransformer {
       if (existing) {
         // Update existing
         processedIds.add(existing.id);
-        
+
         if (this.hasChanges(typedExpectation, existing)) {
           toUpdate.push({
             id: existing.id,
@@ -161,7 +164,10 @@ export class CurriculumTransformer {
   /**
    * Check if expectation has changes
    */
-  private hasChanges(parsed: ParsedExpectation, existing: { description: string; strand: string; substrand?: string | null }): boolean {
+  private hasChanges(
+    parsed: ParsedExpectation,
+    existing: { description: string; strand: string; substrand?: string | null },
+  ): boolean {
     return (
       parsed.description !== existing.description ||
       parsed.strand !== existing.strand ||
@@ -174,12 +180,20 @@ export class CurriculumTransformer {
    * Transform to export format
    */
   static transformForExport(
-    expectations: Array<{ id: string; code: string; description: string; strand: string; substrand?: string | null; grade: number; subject: string }>,
-    format: 'csv' | 'json' | 'excel' = 'json'
+    expectations: Array<{
+      id: string;
+      code: string;
+      description: string;
+      strand: string;
+      substrand?: string | null;
+      grade: number;
+      subject: string;
+    }>,
+    format: 'csv' | 'json' | 'excel' = 'json',
   ): unknown {
     switch (format) {
       case 'csv':
-        return expectations.map(e => ({
+        return expectations.map((e) => ({
           code: e.code,
           description: e.description,
           strand: e.strand,
@@ -193,7 +207,7 @@ export class CurriculumTransformer {
         // Similar to CSV but with additional formatting info
         return {
           headers: ['Code', 'Description', 'Strand', 'Substrand', 'Grade', 'Subject'],
-          data: expectations.map(e => [
+          data: expectations.map((e) => [
             e.code,
             e.description,
             e.strand,
@@ -210,7 +224,7 @@ export class CurriculumTransformer {
             exportDate: new Date().toISOString(),
             totalExpectations: expectations.length,
           },
-          expectations: expectations.map(e => ({
+          expectations: expectations.map((e) => ({
             id: e.id,
             code: e.code,
             description: e.description,

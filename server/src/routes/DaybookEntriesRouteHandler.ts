@@ -9,7 +9,11 @@ import { BaseRouteHandler, AuthenticatedRequest, CrudOperations } from './base/B
 import { BaseService } from '../services/base/BaseService.js';
 import { prisma } from '../prisma.js';
 import { Prisma } from '@teaching-engine/database';
-import { optimizedIncludes, optimizedQueries, queryPerformance } from './optimizations/queryOptimizations.js';
+import {
+  optimizedIncludes,
+  optimizedQueries,
+  queryPerformance,
+} from './optimizations/queryOptimizations.js';
 import { DaybookEntryCreateData, DaybookEntryUpdateData } from '../types/routes.js';
 
 // Daybook-specific interfaces
@@ -93,8 +97,10 @@ function calculateTrends(entries: DaybookEntryForAnalytics[]): {
     const firstHalf = ratingsWithValues.slice(0, Math.ceil(ratingsWithValues.length / 2));
     const secondHalf = ratingsWithValues.slice(Math.floor(ratingsWithValues.length / 2));
 
-    const firstAvg = firstHalf.reduce((sum, e) => sum + (e.overallRating || 0), 0) / firstHalf.length;
-    const secondAvg = secondHalf.reduce((sum, e) => sum + (e.overallRating || 0), 0) / secondHalf.length;
+    const firstAvg =
+      firstHalf.reduce((sum, e) => sum + (e.overallRating || 0), 0) / firstHalf.length;
+    const secondAvg =
+      secondHalf.reduce((sum, e) => sum + (e.overallRating || 0), 0) / secondHalf.length;
 
     if (secondAvg > firstAvg + 0.3) {
       ratingTrend = 'improving';
@@ -111,27 +117,63 @@ function calculateTrends(entries: DaybookEntryForAnalytics[]): {
 
 function extractKeywords(entries: DaybookEntryForAnalytics[]): string[] {
   const stopWords = [
-    'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by',
-    'was', 'were', 'is', 'are', 'be', 'been', 'have', 'has', 'had', 'do', 'does', 'did',
-    'will', 'would', 'could', 'should', 'may', 'might', 'can', 'this', 'that', 'these', 'those'
+    'the',
+    'a',
+    'an',
+    'and',
+    'or',
+    'but',
+    'in',
+    'on',
+    'at',
+    'to',
+    'for',
+    'of',
+    'with',
+    'by',
+    'was',
+    'were',
+    'is',
+    'are',
+    'be',
+    'been',
+    'have',
+    'has',
+    'had',
+    'do',
+    'does',
+    'did',
+    'will',
+    'would',
+    'could',
+    'should',
+    'may',
+    'might',
+    'can',
+    'this',
+    'that',
+    'these',
+    'those',
   ];
 
   const allText = entries
-    .map(e => [e.whatWorked, e.whatDidntWork, e.commonChallenges, e.nextSteps].filter(Boolean).join(' '))
+    .map((e) =>
+      [e.whatWorked, e.whatDidntWork, e.commonChallenges, e.nextSteps].filter(Boolean).join(' '),
+    )
     .join(' ')
     .toLowerCase();
 
   const words = allText.match(/\b\w{3,}\b/g) || [];
   const wordFreq: Record<string, number> = {};
 
-  words.forEach(word => {
+  words.forEach((word) => {
     if (!stopWords.includes(word)) {
       wordFreq[word] = (wordFreq[word] || 0) + 1;
     }
   });
 
   return Object.entries(wordFreq)
-    .sort(([,a], [,b]) => b - a)
+    .sort(([, a], [, b]) => b - a)
     .slice(0, 10)
     .map(([word]) => word);
 }
@@ -142,24 +184,27 @@ class DaybookService extends BaseService {
     super('DaybookService');
   }
 
-  async findMany(filters: any, userId: number) {
-    const {
-      startDate,
-      endDate,
-      lessonPlanId,
-      subject,
-      limit,
-      offset,
-      sortBy,
-      sortOrder,
-    } = filters;
+  async findMany(
+    filters: {
+      startDate?: Date;
+      endDate?: Date;
+      lessonPlanId?: number;
+      subject?: string;
+      limit?: number;
+      offset?: number;
+      sort?: string;
+      order?: 'asc' | 'desc';
+    },
+    userId: number,
+  ) {
+    const { startDate, endDate, lessonPlanId, subject, limit, offset, sortBy, sortOrder } = filters;
 
     const where: Prisma.DaybookEntryWhereInput = { userId };
 
     if (startDate && endDate) {
-      where.date = { 
+      where.date = {
         gte: new Date(startDate),
-        lte: new Date(endDate)
+        lte: new Date(endDate),
       };
     } else if (startDate) {
       where.date = { gte: new Date(startDate) };
@@ -173,9 +218,9 @@ class DaybookService extends BaseService {
       where.lessonPlan = {
         unitPlan: {
           longRangePlan: {
-            subject: { contains: subject }
-          }
-        }
+            subject: { contains: subject },
+          },
+        },
       };
     }
 
@@ -184,18 +229,13 @@ class DaybookService extends BaseService {
     else if (sortBy === 'overallRating') orderBy.overallRating = sortOrder;
     else if (sortBy === 'createdAt') orderBy.createdAt = sortOrder;
 
-    const result = await queryPerformance.monitorQuery(
-      'daybookEntry.findMany',
-      () => optimizedQueries.paginatedQuery(
-        prisma.daybookEntry,
-        where,
-        {
-          limit,
-          offset,
-          orderBy,
-          include: optimizedIncludes.daybookEntry,
-        }
-      )
+    const result = await queryPerformance.monitorQuery('daybookEntry.findMany', () =>
+      optimizedQueries.paginatedQuery(prisma.daybookEntry, where, {
+        limit,
+        offset,
+        orderBy,
+        include: optimizedIncludes.daybookEntry,
+      }),
     );
 
     const { items: entries, total } = result;
@@ -248,7 +288,7 @@ class DaybookService extends BaseService {
 
   async create(data: DaybookEntryCreateData, userId: number) {
     const { expectations, ...daybookData } = data;
-    
+
     return prisma.daybookEntry.create({
       data: {
         ...daybookData,
@@ -256,7 +296,7 @@ class DaybookService extends BaseService {
         date: new Date(data.date),
         expectations: expectations
           ? {
-              create: expectations.map((exp: any) => ({
+              create: expectations.map((exp: { expectationId: number; notes?: string }) => ({
                 expectationId: exp.expectationId,
                 coverage: exp.coverage,
               })),
@@ -287,10 +327,12 @@ class DaybookService extends BaseService {
         ...(expectations && {
           expectations: {
             deleteMany: {},
-            create: expectations.map((exp: any) => ({
-              expectationId: exp.expectationId,
-              coverage: exp.coverage,
-            })),
+            create: expectations.map(
+              (exp: { expectationId: number; notes?: string; coverage?: string }) => ({
+                expectationId: exp.expectationId,
+                coverage: exp.coverage,
+              }),
+            ),
           },
         }),
       },
@@ -342,15 +384,20 @@ class DaybookService extends BaseService {
     const trends = calculateTrends(recentEntries);
     const keywords = extractKeywords(recentEntries);
 
-    const averageRating = recentEntries.length > 0
-      ? recentEntries.reduce((sum, entry) => sum + (entry.overallRating || 0), 0) / recentEntries.length
-      : 0;
+    const averageRating =
+      recentEntries.length > 0
+        ? recentEntries.reduce((sum, entry) => sum + (entry.overallRating || 0), 0) /
+          recentEntries.length
+        : 0;
 
-    const subjectBreakdown = recentEntries.reduce((acc, entry) => {
-      const subject = entry.lessonPlan?.unitPlan?.longRangePlan?.subject || 'Unknown';
-      acc[subject] = (acc[subject] || 0) + 1;
-      return acc;
-    }, {} as Record<string, number>);
+    const subjectBreakdown = recentEntries.reduce(
+      (acc, entry) => {
+        const subject = entry.lessonPlan?.unitPlan?.longRangePlan?.subject || 'Unknown';
+        acc[subject] = (acc[subject] || 0) + 1;
+        return acc;
+      },
+      {} as Record<string, number>,
+    );
 
     return {
       totalEntries: recentEntries.length,
@@ -402,13 +449,13 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
   protected async handleList(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
       const schemas = this.getValidationSchemas();
       const filters = schemas.query.parse(req.query);
-      
+
       const result = await this.daybookService.findMany(filters, userId);
       res.json(result);
     } catch (_error) {
@@ -422,14 +469,14 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
     this.router.get(
       '/insights/summary',
       this.requireAuthentication,
-      this.asyncHandler(this.handleInsightsSummary.bind(this))
+      this.asyncHandler(this.handleInsightsSummary.bind(this)),
     );
   }
 
   private async handleInsightsSummary(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;

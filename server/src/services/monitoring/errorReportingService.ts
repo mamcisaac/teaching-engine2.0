@@ -21,7 +21,7 @@ interface BreadcrumbData {
   message: string;
   category?: string;
   level?: Sentry.SeverityLevel;
-  data?: Record<string, any>;
+  data?: Record<string, unknown>;
 }
 
 export class ErrorReportingService {
@@ -71,7 +71,7 @@ export class ErrorReportingService {
     /\b\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}\b/g, // Credit card
     /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g, // Email
     /\b\d{3}[-.\s]?\d{3}[-.\s]?\d{4}\b/g, // Phone number
-    /Bearer\s+[A-Za-z0-9\-._~+\/]+=*/g, // Bearer tokens
+    /Bearer\s+[A-Za-z0-9\-._~+/]+=*/g, // Bearer tokens
   ];
 
   constructor() {
@@ -123,14 +123,16 @@ export class ErrorReportingService {
     }
   }
 
-  captureError(error: Error | unknown, context?: Record<string, any>): void {
+  captureError(error: Error | unknown, context?: Record<string, unknown>): void {
     if (!this.enabled) {
       logger.debug(`Error reporting disabled, skipping error: ${error}`);
       return;
     }
 
     if (this.mockMode) {
-      logger.info(`[MOCK] Would capture error: ${error instanceof Error ? error.message : String(error)}`);
+      logger.info(
+        `[MOCK] Would capture error: ${error instanceof Error ? error.message : String(error)}`,
+      );
       return;
     }
 
@@ -213,7 +215,7 @@ export class ErrorReportingService {
     });
   }
 
-  setErrorContext(key: string, context: Record<string, any>): void {
+  setErrorContext(key: string, context: Record<string, unknown>): void {
     if (!this.enabled) {
       return;
     }
@@ -247,7 +249,7 @@ export class ErrorReportingService {
 
       if (statusCode >= 400 && statusCode < 500) {
         category.severity = 'warning';
-        
+
         if (statusCode === 400 || errorCode.includes('VALIDATION')) {
           category.category = 'validation';
         } else if (statusCode === 401 || statusCode === 403) {
@@ -273,7 +275,11 @@ export class ErrorReportingService {
       if (message.includes('network') || message.includes('fetch') || message.includes('timeout')) {
         category.category = 'network';
         category.severity = 'warning';
-      } else if (message.includes('database') || message.includes('prisma') || message.includes('sql')) {
+      } else if (
+        message.includes('database') ||
+        message.includes('prisma') ||
+        message.includes('sql')
+      ) {
         category.category = 'database';
         category.severity = 'error';
       } else if (message.includes('permission') || message.includes('unauthorized')) {
@@ -293,12 +299,15 @@ export class ErrorReportingService {
     this.enabled = true;
   }
 
-  private beforeSend(event: Sentry.Event, hint: Sentry.EventHint): Sentry.Event | null {
+  private beforeSend(event: Sentry.Event, _hint: Sentry.EventHint): Sentry.Event | null {
     // Sanitize the entire event
     return this.sanitizeEvent(event);
   }
 
-  private beforeBreadcrumb(breadcrumb: Sentry.Breadcrumb, hint?: Sentry.BreadcrumbHint): Sentry.Breadcrumb | null {
+  private beforeBreadcrumb(
+    breadcrumb: Sentry.Breadcrumb,
+    _hint?: Sentry.BreadcrumbHint,
+  ): Sentry.Breadcrumb | null {
     // Sanitize breadcrumb
     if (breadcrumb.message) {
       breadcrumb.message = this.sanitizeString(breadcrumb.message);
@@ -353,7 +362,7 @@ export class ErrorReportingService {
     return sanitized;
   }
 
-  private sanitizeData(data: any): any {
+  private sanitizeData(data: unknown): unknown {
     if (!data) return data;
 
     if (typeof data === 'string') {
@@ -361,27 +370,28 @@ export class ErrorReportingService {
     }
 
     if (Array.isArray(data)) {
-      return data.map(item => this.sanitizeData(item));
+      return data.map((item) => this.sanitizeData(item));
     }
 
     if (typeof data === 'object') {
-      const sanitized: any = {};
-      
-      for (const key in data) {
+      const sanitized: Record<string, unknown> = {};
+
+      for (const key in data as Record<string, unknown>) {
         const lowerKey = key.toLowerCase();
-        
+        const value = (data as Record<string, unknown>)[key];
+
         // Check if field should be redacted
-        if (this.sensitiveFields.some(field => lowerKey.includes(field))) {
+        if (this.sensitiveFields.some((field) => lowerKey.includes(field))) {
           sanitized[key] = '[REDACTED]';
         } else if (key === 'email') {
-          sanitized[key] = this.maskEmail(data[key]);
+          sanitized[key] = this.maskEmail(value as string);
         } else if (key === 'ip' || key === 'ipAddress' || key === 'ip_address') {
-          sanitized[key] = this.maskIP(data[key]);
+          sanitized[key] = this.maskIP(value as string);
         } else {
-          sanitized[key] = this.sanitizeData(data[key]);
+          sanitized[key] = this.sanitizeData(value);
         }
       }
-      
+
       return sanitized;
     }
 
@@ -399,55 +409,55 @@ export class ErrorReportingService {
     // Remove sensitive keywords with their values
     const sensitivePattern = new RegExp(
       `(${this.sensitiveFields.join('|')})\\s*[:=]\\s*[^\\s,;}]+`,
-      'gi'
+      'gi',
     );
     sanitized = sanitized.replace(sensitivePattern, '$1=[REDACTED]');
 
     return sanitized;
   }
 
-  private sanitizeHeaders(headers: Record<string, any>): Record<string, any> {
-    const sanitized: Record<string, any> = {};
-    
+  private sanitizeHeaders(headers: Record<string, unknown>): Record<string, unknown> {
+    const sanitized: Record<string, unknown> = {};
+
     for (const key in headers) {
       const lowerKey = key.toLowerCase();
-      
-      if (lowerKey.includes('authorization') || 
-          lowerKey.includes('x-api-key') || 
-          lowerKey.includes('x-auth-token') ||
-          lowerKey.includes('cookie')) {
+
+      if (
+        lowerKey.includes('authorization') ||
+        lowerKey.includes('x-api-key') ||
+        lowerKey.includes('x-auth-token') ||
+        lowerKey.includes('cookie')
+      ) {
         sanitized[key] = '[REDACTED]';
       } else {
         sanitized[key] = headers[key];
       }
     }
-    
+
     return sanitized;
   }
 
   private maskEmail(email: string): string {
     if (!email || typeof email !== 'string') return '[INVALID_EMAIL]';
-    
+
     const parts = email.split('@');
     if (parts.length !== 2) return '[INVALID_EMAIL]';
-    
+
     const [local, domain] = parts;
-    const maskedLocal = local.length > 3 
-      ? local.substring(0, 3) + '***' 
-      : '***';
-    
+    const maskedLocal = local.length > 3 ? local.substring(0, 3) + '***' : '***';
+
     return `${maskedLocal}@${domain}`;
   }
 
   private maskIP(ip: string): string {
     if (!ip || typeof ip !== 'string') return 'xxx.xxx.xxx.xxx';
-    
+
     const parts = ip.split('.');
     if (parts.length === 4) {
       // Keep first two octets for general location info
       return `${parts[0]}.${parts[1]}.xxx.xxx`;
     }
-    
+
     // IPv6 or invalid format
     return 'xxx.xxx.xxx.xxx';
   }

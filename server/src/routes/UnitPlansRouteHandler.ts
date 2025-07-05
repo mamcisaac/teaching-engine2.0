@@ -10,7 +10,11 @@ import { BaseService } from '../services/base/BaseService.js';
 import { commonValidations } from './base/validation.js';
 import { prisma } from '../prisma.js';
 import { Prisma } from '@teaching-engine/database';
-import { optimizedIncludes, optimizedQueries, queryPerformance } from './optimizations/queryOptimizations.js';
+import {
+  optimizedIncludes,
+  optimizedQueries,
+  queryPerformance,
+} from './optimizations/queryOptimizations.js';
 import { UnitPlanCreateData, UnitPlanUpdateData, ResourceData } from '../types/routes.js';
 
 // Unit plan-specific validation schemas
@@ -54,25 +58,28 @@ const unitPlanCreateSchema = z.object({
   communityConnections: z.string().max(1000).optional(),
 });
 
-const unitPlanUpdateSchema = unitPlanCreateSchema.partial().omit({ longRangePlanId: true }).extend({
-  // Allow null values for optional fields
-  description: z.string().max(2000).nullable().optional(),
-  descriptionFr: z.string().max(2000).nullable().optional(),
-  bigIdeas: z.string().max(2000).nullable().optional(),
-  bigIdeasFr: z.string().max(2000).nullable().optional(),
-  assessmentPlan: z.string().max(2000).nullable().optional(),
-  differentiationStrategies: z
-    .object({
-      forStruggling: z.array(z.string().max(200)).max(10).optional(),
-      forAdvanced: z.array(z.string().max(200)).max(10).optional(),
-      forELL: z.array(z.string().max(200)).max(10).optional(),
-      forIEP: z.array(z.string().max(200)).max(10).optional(),
-    })
-    .nullable()
-    .optional(),
-  // Override expectationIds to allow empty array on updates
-  expectationIds: z.array(z.string().cuid()).max(50).optional(),
-});
+const unitPlanUpdateSchema = unitPlanCreateSchema
+  .partial()
+  .omit({ longRangePlanId: true })
+  .extend({
+    // Allow null values for optional fields
+    description: z.string().max(2000).nullable().optional(),
+    descriptionFr: z.string().max(2000).nullable().optional(),
+    bigIdeas: z.string().max(2000).nullable().optional(),
+    bigIdeasFr: z.string().max(2000).nullable().optional(),
+    assessmentPlan: z.string().max(2000).nullable().optional(),
+    differentiationStrategies: z
+      .object({
+        forStruggling: z.array(z.string().max(200)).max(10).optional(),
+        forAdvanced: z.array(z.string().max(200)).max(10).optional(),
+        forELL: z.array(z.string().max(200)).max(10).optional(),
+        forIEP: z.array(z.string().max(200)).max(10).optional(),
+      })
+      .nullable()
+      .optional(),
+    // Override expectationIds to allow empty array on updates
+    expectationIds: z.array(z.string().cuid()).max(50).optional(),
+  });
 
 const unitPlanQuerySchema = z.object({
   longRangePlanId: z.string().cuid().optional(),
@@ -105,7 +112,7 @@ class UnitPlanService extends BaseService {
     super('UnitPlanService');
   }
 
-  async findMany(filters: Record<string, any>, userId: number) {
+  async findMany(filters: Record<string, unknown>, userId: number) {
     const filtersObj = filters || {};
     const {
       longRangePlanId,
@@ -146,24 +153,20 @@ class UnitPlanService extends BaseService {
     }
 
     // Sorting with validation
-    const orderBy = queryPerformance.createOptimizedSort(
-      sortBy,
-      sortOrder,
-      ['title', 'startDate', 'endDate', 'createdAt']
-    );
+    const orderBy = queryPerformance.createOptimizedSort(sortBy, sortOrder, [
+      'title',
+      'startDate',
+      'endDate',
+      'createdAt',
+    ]);
 
-    const result = await queryPerformance.monitorQuery(
-      'unitPlan.findMany',
-      () => optimizedQueries.paginatedQuery(
-        prisma.unitPlan,
-        where,
-        {
-          limit,
-          offset,
-          orderBy,
-          include: optimizedIncludes.unitPlan,
-        }
-      )
+    const result = await queryPerformance.monitorQuery('unitPlan.findMany', () =>
+      optimizedQueries.paginatedQuery(prisma.unitPlan, where, {
+        limit,
+        offset,
+        orderBy,
+        include: optimizedIncludes.unitPlan,
+      }),
     );
 
     const { items: unitPlans, total } = result;
@@ -180,15 +183,14 @@ class UnitPlanService extends BaseService {
   }
 
   async findById(id: string, userId: number) {
-    return queryPerformance.monitorQuery(
-      'unitPlan.findById',
-      () => prisma.unitPlan.findFirst({
+    return queryPerformance.monitorQuery('unitPlan.findById', () =>
+      prisma.unitPlan.findFirst({
         where: {
           id,
           longRangePlan: { userId },
         },
         include: optimizedIncludes.unitPlan,
-      })
+      }),
     );
   }
 
@@ -205,7 +207,7 @@ class UnitPlanService extends BaseService {
       throw new Error('Long range plan not found or access denied');
     }
 
-    const { expectations, resources, ...unitPlanData } = data;
+    const { expectations, resources, ..._unitPlanData } = data;
 
     // Create unit plan data that matches Prisma schema
     const createData = {
@@ -230,35 +232,39 @@ class UnitPlanService extends BaseService {
       priorKnowledge: data.priorKnowledge,
       parentCommunicationPlan: data.parentCommunicationPlan,
       fieldTripsAndGuestSpeakers: data.fieldTripsAndGuestSpeakers,
-      differentiationStrategies: data.differentiationStrategies ? JSON.stringify(data.differentiationStrategies) : null,
+      differentiationStrategies: data.differentiationStrategies
+        ? JSON.stringify(data.differentiationStrategies)
+        : null,
       indigenousPerspectives: data.indigenousPerspectives,
       environmentalEducation: data.environmentalEducation,
       socialJusticeConnections: data.socialJusticeConnections,
       technologyIntegration: data.technologyIntegration,
       communityConnections: data.communityConnections,
       // Add expectations relationship if provided
-      ...(expectations && expectations.length > 0 && {
-        expectations: {
-          create: expectations.map((exp) => ({
-            expectationId: exp.expectationId,
-          })),
-        },
-      }),
+      ...(expectations &&
+        expectations.length > 0 && {
+          expectations: {
+            create: expectations.map((exp) => ({
+              expectationId: exp.expectationId,
+            })),
+          },
+        }),
       // Add resources relationship if provided
-      ...(resources && resources.length > 0 && {
-        resources: {
-          create: resources.map((resource) => ({
-            title: resource.title,
-            type: resource.type,
-            url: resource.url,
-            notes: resource.content, // Map content to notes field
-          })),
-        },
-      }),
+      ...(resources &&
+        resources.length > 0 && {
+          resources: {
+            create: resources.map((resource) => ({
+              title: resource.title,
+              type: resource.type,
+              url: resource.url,
+              notes: resource.content, // Map content to notes field
+            })),
+          },
+        }),
     };
 
     return prisma.unitPlan.create({
-      data: createData as any,
+      data: createData,
       include: {
         expectations: {
           include: {
@@ -301,7 +307,7 @@ class UnitPlanService extends BaseService {
             })),
           },
         }),
-      } as any,
+      },
       include: {
         expectations: {
           include: {
@@ -375,7 +381,10 @@ class UnitPlanService extends BaseService {
     return true;
   }
 
-  async duplicate(duplicateData: { unitPlanId: string; longRangePlanId: string; title: string }, userId: number) {
+  async duplicate(
+    duplicateData: { unitPlanId: string; longRangePlanId: string; title: string },
+    userId: number,
+  ) {
     const { unitPlanId, longRangePlanId, title } = duplicateData;
 
     // Verify user owns both the source unit plan and target long range plan
@@ -441,7 +450,7 @@ class UnitPlanService extends BaseService {
             notes: resource.notes || '',
           })),
         },
-      } as any,
+      },
     });
   }
 }
@@ -482,13 +491,13 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
   protected async handleList(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
       const schemas = this.getValidationSchemas();
       const filters = schemas.query.parse(req.query);
-      
+
       const result = await this.unitPlanService.findMany(filters, userId);
       res.json(result);
     } catch (_error) {
@@ -502,28 +511,28 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
     this.router.post(
       '/:id/resources',
       this.requireAuthentication,
-      this.asyncHandler(this.handleAddResource.bind(this))
+      this.asyncHandler(this.handleAddResource.bind(this)),
     );
 
     // DELETE /unit-plans/:id/resources/:resourceId
     this.router.delete(
       '/:id/resources/:resourceId',
       this.requireAuthentication,
-      this.asyncHandler(this.handleRemoveResource.bind(this))
+      this.asyncHandler(this.handleRemoveResource.bind(this)),
     );
 
     // POST /unit-plans/duplicate
     this.router.post(
       '/duplicate',
       this.requireAuthentication,
-      this.asyncHandler(this.handleDuplicate.bind(this))
+      this.asyncHandler(this.handleDuplicate.bind(this)),
     );
   }
 
   private async handleAddResource(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
@@ -535,7 +544,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
         url: parsedData.url,
         content: parsedData.description,
       };
-      
+
       const resource = await this.unitPlanService.addResource(unitPlanId, resourceData, userId);
       res.status(201).json(resource);
     } catch (_error) {
@@ -547,19 +556,19 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
   private async handleRemoveResource(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
       const { id: unitPlanId, resourceId } = req.params;
-      
+
       const success = await this.unitPlanService.removeResource(unitPlanId, resourceId, userId);
-      
+
       if (!success) {
         res.status(404).json({ error: 'Resource not found' });
         return;
       }
-      
+
       res.status(204).send();
     } catch (_error) {
       this.logger.error('Error removing resource:', _error);
@@ -570,7 +579,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
   private async handleDuplicate(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
@@ -580,7 +589,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
         longRangePlanId: parsedData.longRangePlanId,
         title: parsedData.title || '', // Will use default in the duplicate method if empty
       };
-      
+
       const duplicatedUnitPlan = await this.unitPlanService.duplicate(duplicateData, userId);
       res.status(201).json(duplicatedUnitPlan);
     } catch (_error) {

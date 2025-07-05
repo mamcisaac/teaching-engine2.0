@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, ComponentType } from 'react';
 import { Navigate } from 'react-router-dom';
 import { ETFOLevel } from '../hooks/useWorkflowState';
 
@@ -19,7 +19,7 @@ const CalendarPlanningPage = lazy(() => import('../pages/planning/CalendarPlanni
 
 export interface RouteConfig {
   path?: string;
-  element?: React.ComponentType<any> | JSX.Element;
+  element?: ComponentType<Record<string, never>> | JSX.Element;
   workflowLevel?: ETFOLevel;
   children?: RouteConfig[];
   index?: boolean;

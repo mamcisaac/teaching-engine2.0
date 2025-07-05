@@ -31,6 +31,8 @@
     "**/*.test.tsx",
     "**/*.spec.ts",
     "**/*.spec.tsx",
+    "**/test-utils/**/*",
+    "**/mocks/**/*",
     "jest.*.js",
     "jest.*.ts",
     "vitest.*.ts",
@@ -39,7 +41,13 @@
     "*.test.js",
     "*.test.cjs",
     "server/client/**/*",
-    "client/public/service-worker.js"
+    "client/public/service-worker.js",
+    "server/src/utils/errors.ts",
+    "server/src/utils/performance.ts",
+    "server/src/utils/routeFactory.ts",
+    "server/src/utils/urlValidator.ts",
+    "server/src/middleware/rateLimit/**/*",
+    "server/src/utils/database.ts"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {

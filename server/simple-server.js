@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+// Simple test server - console output needed for CLI usage
+
 import express from 'express';
 import cors from 'cors';
 import bcrypt from 'bcryptjs';
@@ -16,32 +19,32 @@ const JWT_SECRET = process.env.JWT_SECRET || 'teaching-engine-demo-secret-key-20
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
   console.log('Login attempt:', email);
-  
+
   try {
     const user = await prisma.user.findUnique({
       where: { email },
-      select: { id: true, email: true, name: true, role: true, password: true }
+      select: { id: true, email: true, name: true, role: true, password: true },
     });
-    
+
     if (!user) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
-    
+
     const valid = await bcrypt.compare(password, user.password);
     if (!valid) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
-    
+
     const token = jwt.sign({ userId: user.id, email: user.email }, JWT_SECRET, { expiresIn: '7d' });
-    
+
     res.json({
       user: {
         id: user.id,
         email: user.email,
         name: user.name,
-        role: user.role
+        role: user.role,
       },
-      token
+      token,
     });
   } catch (error) {
     console.error('Login error:', error);
@@ -52,22 +55,22 @@ app.post('/api/login', async (req, res) => {
 // Auth check endpoint
 app.get('/api/auth/me', async (req, res) => {
   const token = req.headers.authorization?.replace('Bearer ', '');
-  
+
   if (!token) {
     return res.status(401).json({ error: 'No token' });
   }
-  
+
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
     const user = await prisma.user.findUnique({
       where: { id: decoded.userId },
-      select: { id: true, email: true, name: true, role: true }
+      select: { id: true, email: true, name: true, role: true },
     });
-    
+
     if (!user) {
       return res.status(401).json({ error: 'User not found' });
     }
-    
+
     res.json(user);
   } catch (err) {
     res.status(401).json({ error: 'Invalid token' });

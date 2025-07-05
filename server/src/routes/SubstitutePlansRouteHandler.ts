@@ -42,11 +42,16 @@ const emergencyInfoSchema = z.object({
   evacuationProcedure: z.string().min(1).max(2000),
   lockdownProcedure: z.string().min(1).max(2000),
   emergencyContacts: z.array(emergencyContactSchema).min(1).max(10),
-  importantStudentInfo: z.array(z.object({
-    studentName: z.string().min(1).max(100),
-    info: z.string().min(1).max(500),
-    priority: z.enum(['low', 'medium', 'high']),
-  })).max(30).optional(),
+  importantStudentInfo: z
+    .array(
+      z.object({
+        studentName: z.string().min(1).max(100),
+        info: z.string().min(1).max(500),
+        priority: z.enum(['low', 'medium', 'high']),
+      }),
+    )
+    .max(30)
+    .optional(),
 });
 
 const generateSubPlanSchema = z.object({
@@ -97,7 +102,21 @@ class SubstitutePlanServiceWrapper extends BaseService {
     this.substitutePlanService = new SubstitutePlanService();
   }
 
-  async findMany(filters: any, userId: number) {
+  async findMany(
+    filters: {
+      startDate?: Date;
+      endDate?: Date;
+      grade?: string;
+      subject?: string;
+      isActive?: boolean;
+      upcoming?: boolean;
+      limit?: number;
+      offset?: number;
+      sortBy?: string;
+      sortOrder?: 'asc' | 'desc';
+    },
+    userId: number,
+  ) {
     const {
       startDate,
       endDate,
@@ -109,7 +128,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
       offset,
       sortBy,
       sortOrder,
-    } = filters as Record<string, any>;
+    } = filters;
 
     const where: Prisma.SubstitutePlanWhereInput = { userId };
 
@@ -131,23 +150,19 @@ class SubstitutePlanServiceWrapper extends BaseService {
     }
 
     // Sorting with validation
-    const orderBy = queryPerformance.createOptimizedSort(
-      sortBy,
-      sortOrder,
-      ['dateFor', 'title', 'grade', 'createdAt']
-    );
+    const orderBy = queryPerformance.createOptimizedSort(sortBy, sortOrder, [
+      'dateFor',
+      'title',
+      'grade',
+      'createdAt',
+    ]);
 
-    const result = await queryPerformance.monitorQuery(
-      'substitutePlan.findMany',
-      () => optimizedQueries.paginatedQuery(
-        prisma.substitutePlan,
-        where,
-        {
-          limit,
-          offset,
-          orderBy,
-        }
-      )
+    const result = await queryPerformance.monitorQuery('substitutePlan.findMany', () =>
+      optimizedQueries.paginatedQuery(prisma.substitutePlan, where, {
+        limit,
+        offset,
+        orderBy,
+      }),
     );
 
     const { items: plans, total } = result;
@@ -164,11 +179,10 @@ class SubstitutePlanServiceWrapper extends BaseService {
   }
 
   async findById(id: string, userId: number) {
-    return queryPerformance.monitorQuery(
-      'substitutePlan.findById',
-      () => prisma.substitutePlan.findFirst({
+    return queryPerformance.monitorQuery('substitutePlan.findById', () =>
+      prisma.substitutePlan.findFirst({
         where: { id, userId },
-      })
+      }),
     );
   }
 
@@ -180,10 +194,16 @@ class SubstitutePlanServiceWrapper extends BaseService {
         dateFor: new Date(data.dateFor),
         grade: data.gradeLevel ? parseInt(data.gradeLevel, 10) : null,
         subject: data.subject,
-        schedule: data.activities ? [{ time: '9:00', activity: data.activities, notes: data.notes }] : [],
-        classroomRoutines: data.classroomManagement ? [{ category: 'other', description: data.classroomManagement }] : [],
+        schedule: data.activities
+          ? [{ time: '9:00', activity: data.activities, notes: data.notes }]
+          : [],
+        classroomRoutines: data.classroomManagement
+          ? [{ category: 'other', description: data.classroomManagement }]
+          : [],
         emergencyInfo: data.emergencyContacts ? { contacts: data.emergencyContacts } : {},
-        lessonPlans: data.objectives ? { objectives: data.objectives, materials: data.materials } : {},
+        lessonPlans: data.objectives
+          ? { objectives: data.objectives, materials: data.materials }
+          : {},
         behaviorPlan: {},
         studentNotes: {},
         materialsList: data.materials ? { materials: data.materials } : {},
@@ -209,7 +229,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
     });
   }
 
-  async delete(id: string, userId: number): Promise<boolean> {
+  async delete(id: string, _userId: number): Promise<boolean> {
     const plan = await prisma.substitutePlan.findFirst({
       where: { id, userId },
     });
@@ -225,7 +245,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
     return true;
   }
 
-  async generatePlan(generateData: unknown, userId: number) {
+  async generatePlan(generateData: unknown, _userId: number) {
     return SubstitutePlanService.generate(generateData);
   }
 
@@ -335,13 +355,13 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
   protected async handleList(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
       const schemas = this.getValidationSchemas();
       const filters = schemas.query.parse(req.query);
-      
+
       const result = await this.substitutePlanService.findMany(filters, userId);
       res.json(result);
     } catch (_error) {
@@ -355,40 +375,40 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
     this.router.post(
       '/generate',
       this.requireAuthentication,
-      this.asyncHandler(this.handleGenerate.bind(this))
+      this.asyncHandler(this.handleGenerate.bind(this)),
     );
 
     // POST /substitute-plans/:id/deactivate
     this.router.post(
       '/:id/deactivate',
       this.requireAuthentication,
-      this.asyncHandler(this.handleDeactivate.bind(this))
+      this.asyncHandler(this.handleDeactivate.bind(this)),
     );
 
     // GET /substitute-plans/stats
     this.router.get(
       '/stats',
       this.requireAuthentication,
-      this.asyncHandler(this.handleStats.bind(this))
+      this.asyncHandler(this.handleStats.bind(this)),
     );
 
     // GET /substitute-plans/upcoming-dates
     this.router.get(
       '/upcoming-dates',
       this.requireAuthentication,
-      this.asyncHandler(this.handleUpcomingDates.bind(this))
+      this.asyncHandler(this.handleUpcomingDates.bind(this)),
     );
   }
 
   private async handleGenerate(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
       const generateData = generateSubPlanSchema.parse(req.body);
-      
+
       const generatedPlan = await this.substitutePlanService.generatePlan(generateData, userId);
       res.status(201).json(generatedPlan);
     } catch (_error) {
@@ -400,12 +420,12 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
   private async handleDeactivate(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
       const { id: planId } = req.params;
-      
+
       const deactivatedPlan = await this.substitutePlanService.deactivatePlan(planId, userId);
       res.json(deactivatedPlan);
     } catch (_error) {
@@ -417,7 +437,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
   private async handleStats(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
@@ -432,12 +452,12 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
   private async handleUpcomingDates(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
       const daysAhead = req.query.days ? parseInt(req.query.days as string, 10) : 30;
-      
+
       const upcomingDates = await this.substitutePlanService.getUpcomingDates(userId, daysAhead);
       res.json(upcomingDates);
     } catch (_error) {

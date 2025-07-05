@@ -1,5 +1,8 @@
 import { createContext, useContext, ReactNode } from 'react';
-import { useNotifications as useNotificationsApi, useMarkNotificationAsRead } from '../api/domains/notification';
+import {
+  useNotifications as useNotificationsApi,
+  useMarkNotificationAsRead,
+} from '../api/domains/notification';
 import type { Notification } from '../types';
 import { useAuth } from './AuthContext';
 
@@ -20,11 +23,7 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
   const { isAuthenticated } = useAuth();
 
   // Only fetch notifications if user is authenticated and auth is initialized
-  const {
-    data: notifications = [],
-    isLoading,
-    error,
-  } = useNotificationsApi();
+  const { data: notifications = [], isLoading, error } = useNotificationsApi();
 
   const markMutation = useMarkNotificationAsRead();
 
@@ -37,20 +36,20 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
   const markAllRead = () => {
     if (isAuthenticated && notifications.length > 0) {
       const unreadIds = notifications
-        .filter(notification => !notification.read)
-        .map(notification => notification.id);
-      
-      unreadIds.forEach(id => markMutation.mutate(id));
+        .filter((notification) => !notification.read)
+        .map((notification) => notification.id);
+
+      unreadIds.forEach((id) => markMutation.mutate(id));
     }
   };
 
-  const deleteNotification = (id: number) => {
+  const deleteNotification = (_id: number) => {
     // TODO: Implement delete notification mutation
     // console.log('Delete notification:', id);
   };
 
   // Computed values
-  const unreadCount = notifications.filter(n => !n.read).length;
+  const unreadCount = notifications.filter((n) => !n.read).length;
   const hasUnread = unreadCount > 0;
 
   const contextValue: NotificationContextValue = {
@@ -65,9 +64,7 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <NotificationContext.Provider value={contextValue}>
-      {children}
-    </NotificationContext.Provider>
+    <NotificationContext.Provider value={contextValue}>{children}</NotificationContext.Provider>
   );
 }
 

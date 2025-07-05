@@ -84,9 +84,9 @@ export class CurriculumImportOrchestrator extends BaseService {
    */
   protected async initialize(): Promise<void> {
     await super.initialize();
-    
+
     // Dependent services will auto-initialize when needed
-    
+
     this.logger.info('Curriculum import orchestrator initialized');
   }
 
@@ -112,128 +112,113 @@ export class CurriculumImportOrchestrator extends BaseService {
     userId: number,
     grade: number,
     subject: string,
-    sourceFormat: 'pdf' | 'docx' | 'csv' | 'manual'
+    sourceFormat: 'pdf' | 'docx' | 'csv' | 'manual',
   ): Promise<string> {
-    return this.executeWithMetrics(
-      async () => {
-        // Create import record
-        const importRecord = await prisma.curriculumImport.create({
-          data: {
-            userId,
-            status: 'UPLOADING',
-            grade,
-            subject,
-            sourceFormat,
-          },
-        });
-        
-        this.logger.info('Import session started');
-        
-        return importRecord.id;
-      },
-      'startImport'
-    );
+    return this.executeWithMetrics(async () => {
+      // Create import record
+      const importRecord = await prisma.curriculumImport.create({
+        data: {
+          userId,
+          status: 'UPLOADING',
+          grade,
+          subject,
+          sourceFormat,
+        },
+      });
+
+      this.logger.info('Import session started');
+
+      return importRecord.id;
+    }, 'startImport');
   }
 
   /**
    * Store uploaded file
    */
-  public async storeUploadedFile(
-    importId: string,
-    file: Express.Multer.File
-  ): Promise<void> {
-    return this.executeWithMetrics(
-      async () => {
-        // Store file content in import record
-        await prisma.curriculumImport.update({
-          where: { id: importId },
-          data: {
-            rawText: file.buffer.toString('utf-8'),
-            originalName: file.originalname,
-            mimeType: file.mimetype,
-            fileSize: file.size,
-          },
-        });
-        
-        this.logger.info('File stored for import');
-      },
-      'storeUploadedFile'
-    );
+  public async storeUploadedFile(importId: string, file: Express.Multer.File): Promise<void> {
+    return this.executeWithMetrics(async () => {
+      // Store file content in import record
+      await prisma.curriculumImport.update({
+        where: { id: importId },
+        data: {
+          rawText: file.buffer.toString('utf-8'),
+          originalName: file.originalname,
+          mimeType: file.mimetype,
+          fileSize: file.size,
+        },
+      });
+
+      this.logger.info('File stored for import');
+    }, 'storeUploadedFile');
   }
 
   /**
    * Import curriculum from file
    */
-  public async importFromFile(
-    fileContent: Buffer,
-    options: ImportOptions
-  ): Promise<ImportResult> {
-    return this.executeWithMetrics(
-      async () => {
-        const result: ImportResult = {
-          success: false,
-          message: '',
-          stats: {
-            totalExpectations: 0,
-            created: 0,
-            updated: 0,
-            deactivated: 0,
-            errors: 0,
-          },
-        };
+  public async importFromFile(fileContent: Buffer, options: ImportOptions): Promise<ImportResult> {
+    return this.executeWithMetrics(async () => {
+      const result: ImportResult = {
+        success: false,
+        message: '',
+        stats: {
+          totalExpectations: 0,
+          created: 0,
+          updated: 0,
+          deactivated: 0,
+          errors: 0,
+        },
+      };
 
-        try {
-          // Check if file type is supported
-          if (!ParserFactory.isSupported(options.filename)) {
-            throw new Error(`Unsupported file type: ${options.filename}`);
-          }
+      try {
+        // Check if file type is supported
+        if (!ParserFactory.isSupported(options.filename)) {
+          throw new Error(`Unsupported file type: ${options.filename}`);
+        }
 
-          // Parse file
-          const parser = ParserFactory.createParser(options.filename);
-          const parsed = await parser.parse(fileContent);
-          
-          result.stats.totalExpectations = parsed.expectations.length;
+        // Parse file
+        const parser = ParserFactory.createParser(options.filename);
+        const parsed = await parser.parse(fileContent);
 
-          // Validate if requested
-          if (options.validate !== false) {
-            const validationResult = await this.validateCurriculum(parsed, options.validationOptions);
-            result.validation = validationResult;
+        result.stats.totalExpectations = parsed.expectations.length;
 
-            if (!validationResult.isValid) {
-              result.message = 'Validation failed';
-              result.stats.errors = validationResult.errors.length;
-              return result;
-            }
-          }
+        // Validate if requested
+        if (options.validate !== false) {
+          const validationResult = await this.validateCurriculum(parsed, options.validationOptions);
+          result.validation = validationResult;
 
-          // Dry run - return without saving
-          if (options.dryRun) {
-            result.success = true;
-            result.message = 'Dry run completed successfully';
+          if (!validationResult.isValid) {
+            result.message = 'Validation failed';
+            result.stats.errors = validationResult.errors.length;
             return result;
           }
+        }
 
-          // Process import
-          const importResult = await this.processImport(parsed, options);
-          
+        // Dry run - return without saving
+        if (options.dryRun) {
           result.success = true;
-          result.message = 'Import completed successfully';
-          result.stats = {
-            ...result.stats,
-            ...importResult.stats,
-          };
-          result.subjectId = importResult.subjectId;
-
-          return result;
-        } catch (error) {
-          this.logger.error('Import failed');
-          result.message = `Import failed: ${error.message}`;
-          result.stats.errors++;
+          result.message = 'Dry run completed successfully';
           return result;
         }
-      },
-      'importFromFile'
-    );
+
+        // Process import
+        const importResult = await this.processImport(parsed, options);
+
+        result.success = true;
+        result.message = 'Import completed successfully';
+        result.stats = {
+          ...result.stats,
+          ...importResult.stats,
+        };
+        result.subjectId = importResult.subjectId;
+
+        return result;
+      } catch (error) {
+        this.logger.error('Import failed');
+        result.message = `Import failed: ${error.message}`;
+        result.stats.errors++;
+        return result;
+      }
+    }, 'importFromFile');
   }
 
   /**
@@ -241,12 +226,12 @@ export class CurriculumImportOrchestrator extends BaseService {
    */
   private async validateCurriculum(
     parsed: ParsedCurriculum,
-    validationOptions?: ValidationOptions
+    validationOptions?: ValidationOptions,
   ): Promise<{ isValid: boolean; errors: unknown[]; warnings: unknown[] }> {
-    const validator = validationOptions 
+    const validator = validationOptions
       ? new CurriculumValidator(validationOptions)
       : this.validator;
-      
+
     return validator.validate(parsed);
   }
 
@@ -255,7 +240,7 @@ export class CurriculumImportOrchestrator extends BaseService {
    */
   private async processImport(
     parsed: ParsedCurriculum,
-    options: ImportOptions
+    options: ImportOptions,
   ): Promise<{
     subjectId: number;
     stats: {
@@ -289,12 +274,15 @@ export class CurriculumImportOrchestrator extends BaseService {
         };
 
         const transformed = this.transformer.transform(parsed, transformOptions);
-        
+
         subject = await tx.subject.create({
           data: transformed.subject,
         });
-        
-        this.logger.info('Created new subject', `Created subject with id ${subject.id} and name ${subject.name}`);
+
+        this.logger.info(
+          'Created new subject',
+          `Created subject with id ${subject.id} and name ${subject.name}`,
+        );
       }
 
       // Get existing expectations
@@ -316,13 +304,13 @@ export class CurriculumImportOrchestrator extends BaseService {
       const { toCreate, toUpdate, toDeactivate } = this.transformer.transformForUpdate(
         parsed,
         existingExpectations,
-        transformOptions
+        transformOptions,
       );
 
       // Create new expectations
       if (toCreate.length > 0) {
         await tx.curriculumExpectation.createMany({
-          data: toCreate.map(exp => ({
+          data: toCreate.map((exp) => ({
             ...exp,
             subject: subject!.name,
           })),
@@ -356,7 +344,10 @@ export class CurriculumImportOrchestrator extends BaseService {
       return { subjectId: subject.id, stats };
     });
 
-    this.logger.info('Import processed', `Import completed with ${result.stats.created} created and ${result.stats.updated} updated`);
+    this.logger.info(
+      'Import processed',
+      `Import completed with ${result.stats.created} created and ${result.stats.updated} updated`,
+    );
     return result;
   }
 
@@ -413,7 +404,10 @@ export class CurriculumImportOrchestrator extends BaseService {
   /**
    * Parse uploaded file - alias for existing method
    */
-  public async parseUploadedFile(_filePath: string, _options: ImportOptions): Promise<ImportResult> {
+  public async parseUploadedFile(
+    _filePath: string,
+    _options: ImportOptions,
+  ): Promise<ImportResult> {
     // This method should use the proper import flow
     return {
       success: false,
@@ -423,15 +417,18 @@ export class CurriculumImportOrchestrator extends BaseService {
         created: 0,
         updated: 0,
         deactivated: 0,
-        errors: 1
-      }
+        errors: 1,
+      },
     };
   }
 
   /**
    * Load preset curriculum data
    */
-  public async loadPresetCurriculum(presetId: string | number, options: ImportOptions): Promise<ImportResult> {
+  public async loadPresetCurriculum(
+    presetId: string | number,
+    _options: ImportOptions,
+  ): Promise<ImportResult> {
     // For now, return a mock result
     return {
       success: true,
@@ -441,9 +438,9 @@ export class CurriculumImportOrchestrator extends BaseService {
         created: 0,
         updated: 0,
         deactivated: 0,
-        errors: 0
+        errors: 0,
       },
-      importId: `preset_${presetId}_${Date.now()}`
+      importId: `preset_${presetId}_${Date.now()}`,
     };
   }
 
@@ -472,8 +469,8 @@ export class CurriculumImportOrchestrator extends BaseService {
       endTime: new Date(),
       stats: {
         totalExpectations: 0,
-        processedExpectations: 0
-      }
+        processedExpectations: 0,
+      },
     };
   }
 
@@ -490,16 +487,16 @@ export class CurriculumImportOrchestrator extends BaseService {
         created: 0,
         updated: 0,
         deactivated: 0,
-        errors: 0
+        errors: 0,
       },
-      importId
+      importId,
     };
   }
 
   /**
    * Get import history
    */
-  public async getImportHistory(userId?: number, limit?: number): Promise<unknown[]> {
+  public async getImportHistory(userId?: number, _limit?: number): Promise<unknown[]> {
     // Mock history data
     return [
       {
@@ -510,9 +507,9 @@ export class CurriculumImportOrchestrator extends BaseService {
         createdAt: new Date(),
         stats: {
           totalExpectations: 0,
-          processedExpectations: 0
-        }
-      }
+          processedExpectations: 0,
+        },
+      },
     ];
   }
 
@@ -522,14 +519,14 @@ export class CurriculumImportOrchestrator extends BaseService {
   public async cancelImport(importId: string): Promise<{ success: boolean; message: string }> {
     return {
       success: true,
-      message: `Import ${importId} cancelled successfully`
+      message: `Import ${importId} cancelled successfully`,
     };
   }
 
   /**
    * Finalize import
    */
-  public async finalizeImport(importId: string, userId?: number): Promise<ImportResult> {
+  public async finalizeImport(importId: string, _userId?: number): Promise<ImportResult> {
     return {
       success: true,
       message: `Import ${importId} finalized successfully`,
@@ -538,9 +535,9 @@ export class CurriculumImportOrchestrator extends BaseService {
         created: 0,
         updated: 0,
         deactivated: 0,
-        errors: 0
+        errors: 0,
       },
-      importId
+      importId,
     };
   }
 }
@@ -550,10 +547,7 @@ export const curriculumImportOrchestrator = CurriculumImportOrchestrator.getInst
 
 // Export static class for backward compatibility
 export class CurriculumImportService {
-  static async importFromFile(
-    fileContent: Buffer,
-    options: ImportOptions
-  ): Promise<ImportResult> {
+  static async importFromFile(fileContent: Buffer, options: ImportOptions): Promise<ImportResult> {
     return curriculumImportOrchestrator.importFromFile(fileContent, options);
   }
 

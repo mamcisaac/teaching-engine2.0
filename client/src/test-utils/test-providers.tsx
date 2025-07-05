@@ -2,7 +2,7 @@
 /**
  * Test Providers for Real Component Testing
  * Provides real context providers and utilities for TDD-compliant tests
- * 
+ *
  * This module supports real implementations by default and provides utilities
  * for migrating from mock-based tests to real implementation tests.
  */
@@ -16,7 +16,12 @@ import { AuthProvider } from '../contexts/AuthContext';
 import { ThemeProvider } from '../contexts/ThemeContext';
 import { NotificationProvider } from '../contexts/NotificationContext';
 import { KeyboardShortcutsProvider } from '../contexts/KeyboardShortcutsContext';
-import { createAuthenticatedTestUser, clearAuthState, type TestUser, type AuthTestContext } from './auth-test-utils';
+import {
+  createAuthenticatedTestUser,
+  clearAuthState,
+  type TestUser,
+  type AuthTestContext,
+} from './auth-test-utils';
 
 // Test configuration for real implementations
 interface TestConfig {
@@ -32,7 +37,7 @@ export function createTestQueryClient(config: TestConfig = {}) {
     useRealApi = true,
     enableCache = false,
     networkDelay = 0,
-    mockExternalServices = true
+    mockExternalServices = true,
   } = config;
 
   return new QueryClient({
@@ -87,7 +92,7 @@ export function RealProviders({
 
   // Router component selection
   const RouterComponent = useMemoryRouter ? MemoryRouter : BrowserRouter;
-  const routerProps = useMemoryRouter 
+  const routerProps = useMemoryRouter
     ? { initialEntries: initialEntries.length > 0 ? initialEntries : [initialRoute] }
     : {};
 
@@ -105,9 +110,7 @@ export function RealProviders({
           <ThemeProvider>
             {enableAllContexts ? (
               <NotificationProvider>
-                <KeyboardShortcutsProvider>
-                  {children}
-                </KeyboardShortcutsProvider>
+                <KeyboardShortcutsProvider>{children}</KeyboardShortcutsProvider>
               </NotificationProvider>
             ) : (
               children
@@ -151,22 +154,21 @@ export function AllProviders({
   enableAllContexts = true,
   useMockProviders = false, // For gradual migration
 }: AllProvidersProps) {
+  // Move useEffect before conditional return
+  useEffect(() => {
+    if (useMockProviders && initialRoute !== '/') {
+      window.history.pushState({}, '', initialRoute);
+    }
+  }, [useMockProviders, initialRoute]);
+
   // If explicitly using mock providers (legacy mode)
   if (useMockProviders) {
     const legacyQueryClient = queryClient || createTestQueryClient({ useRealApi: false });
-    
-    useEffect(() => {
-      if (initialRoute !== '/') {
-        window.history.pushState({}, '', initialRoute);
-      }
-    }, [initialRoute]);
 
     return (
       <QueryClientProvider client={legacyQueryClient}>
         <BrowserRouter>
-          <ThemeProvider>
-            {children}
-          </ThemeProvider>
+          <ThemeProvider>{children}</ThemeProvider>
         </BrowserRouter>
       </QueryClientProvider>
     );
@@ -217,7 +219,7 @@ export function renderWithProviders(
     useMockProviders = false,
     waitForLoad = false,
     ...renderOptions
-  }: CustomRenderOptions = {}
+  }: CustomRenderOptions = {},
 ) {
   const Wrapper = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -255,7 +257,7 @@ export async function renderWithRealAuth(
   options: Omit<CustomRenderOptions, 'useRealAuth' | 'authenticated'> & {
     createUser?: boolean;
     testUser?: TestUser;
-  } = {}
+  } = {},
 ) {
   const { createUser = true, testUser, ...renderOptions } = options;
   let authContext: AuthTestContext | undefined;
@@ -292,25 +294,28 @@ export const testUtils = {
 
   // Render with specific route (real implementation by default)
   renderWithRoute: (ui: React.ReactElement, route: string, options?: CustomRenderOptions) =>
-    renderWithProviders(ui, { 
-      ...options, 
+    renderWithProviders(ui, {
+      ...options,
       initialRoute: route,
       useMemoryRouter: true,
-      initialEntries: [route]
+      initialEntries: [route],
     }),
 
   // Render with real auth and specific route
-  renderAuthenticatedWithRoute: async (ui: React.ReactElement, route: string, options?: CustomRenderOptions) =>
-    await renderWithRealAuth(ui, { 
-      ...options, 
+  renderAuthenticatedWithRoute: async (
+    ui: React.ReactElement,
+    route: string,
+    options?: CustomRenderOptions,
+  ) =>
+    await renderWithRealAuth(ui, {
+      ...options,
       initialRoute: route,
       useMemoryRouter: true,
-      initialEntries: [route]
+      initialEntries: [route],
     }),
 
   // Create test query client with real implementation config
-  createQueryClient: (config?: TestConfig) =>
-    createTestQueryClient(config),
+  createQueryClient: (config?: TestConfig) => createTestQueryClient(config),
 
   // Render with real providers and wait for loading
   renderAndWaitForLoad: async (ui: React.ReactElement, options?: CustomRenderOptions) => {
@@ -326,24 +331,28 @@ export const testUtils = {
     const start = performance.now();
     const result = renderWithProviders(ui, options);
     const renderTime = performance.now() - start;
-    
+
     return {
       ...result,
       renderTime,
       performance: {
         renderTime,
         isAcceptable: renderTime < 100, // Less than 100ms is acceptable
-      }
+      },
     };
   },
 
   // Test with large datasets
-  renderWithLargeDataset: (ui: React.ReactElement, dataSize: number, options?: CustomRenderOptions) => {
+  renderWithLargeDataset: (
+    ui: React.ReactElement,
+    dataSize: number,
+    options?: CustomRenderOptions,
+  ) => {
     const testConfig: TestConfig = {
       ...options?.testConfig,
       enableCache: true, // Enable caching for large datasets
     };
-    
+
     return renderWithProviders(ui, {
       ...options,
       testConfig,
@@ -353,7 +362,11 @@ export const testUtils = {
   // Migration utilities for existing tests
   migration: {
     // Gradually migrate from mock to real providers
-    renderWithMigration: (ui: React.ReactElement, useReal: boolean, options?: CustomRenderOptions) =>
+    renderWithMigration: (
+      ui: React.ReactElement,
+      useReal: boolean,
+      options?: CustomRenderOptions,
+    ) =>
       renderWithProviders(ui, {
         ...options,
         useMockProviders: !useReal,
@@ -361,22 +374,22 @@ export const testUtils = {
 
     // Test both mock and real implementations side by side
     testBothImplementations: async (
-      ui: React.ReactElement, 
+      ui: React.ReactElement,
       testFn: (result: any) => void | Promise<void>,
-      options?: CustomRenderOptions
+      options?: CustomRenderOptions,
     ) => {
       // Test with mock providers
-      const mockResult = renderWithProviders(ui, { 
-        ...options, 
-        useMockProviders: true 
+      const mockResult = renderWithProviders(ui, {
+        ...options,
+        useMockProviders: true,
       });
       await testFn(mockResult);
       mockResult.unmount();
 
       // Test with real providers
-      const realResult = renderWithProviders(ui, { 
-        ...options, 
-        useMockProviders: false 
+      const realResult = renderWithProviders(ui, {
+        ...options,
+        useMockProviders: false,
       });
       await testFn(realResult);
       realResult.unmount();
@@ -449,7 +462,7 @@ export function conditionalConsoleMock(useMocks: boolean = false) {
   if (useMocks) {
     mockConsole();
   }
-  
+
   return () => {
     if (useMocks) {
       restoreConsole();
@@ -467,10 +480,10 @@ export async function waitForLoadingToFinish(timeout: number = 5000) {
         document.querySelector('.loading'),
         document.querySelector('[aria-label="Loading"]'),
       ].filter(Boolean);
-      
+
       expect(loadingElements).toHaveLength(0);
     },
-    { timeout }
+    { timeout },
   );
 }
 
@@ -487,29 +500,32 @@ export async function waitForError(errorMessage?: string, timeout: number = 5000
           document.querySelector('.error'),
           document.querySelector('[role="alert"]'),
         ].filter(Boolean);
-        
+
         expect(errorElements.length).toBeGreaterThan(0);
       }
     },
-    { timeout }
+    { timeout },
   );
 }
 
 // Enhanced form filling with real user interactions
-export async function fillForm(form: Record<string, string>, options: { 
-  waitForValidation?: boolean;
-  submitForm?: boolean;
-} = {}) {
+export async function fillForm(
+  form: Record<string, string>,
+  options: {
+    waitForValidation?: boolean;
+    submitForm?: boolean;
+  } = {},
+) {
   const { screen, waitFor } = await import('@testing-library/react');
   const userEvent = await import('@testing-library/user-event');
-  
+
   const user = userEvent.default.setup();
-  
+
   for (const [fieldName, value] of Object.entries(form)) {
     const field = screen.getByLabelText(new RegExp(fieldName, 'i'));
     await user.clear(field);
     await user.type(field, value);
-    
+
     // Wait for validation if requested
     if (options.waitForValidation) {
       await waitFor(() => {
@@ -523,7 +539,7 @@ export async function fillForm(form: Record<string, string>, options: {
       });
     }
   }
-  
+
   // Submit form if requested
   if (options.submitForm) {
     const submitButton = screen.getByRole('button', { name: /submit|save|create/i });
@@ -549,15 +565,13 @@ export const realDataUtils = {
     title: 'Test Curriculum',
     subject: 'Mathematics',
     grade: 5,
-    expectations: [
-      { code: 'M5.1', description: 'Test expectation' }
-    ],
+    expectations: [{ code: 'M5.1', description: 'Test expectation' }],
   }),
 
   // Generate large realistic datasets
   generateLargeDataset: function generateLargeDatasetImpl<T>(
     createItem: (index: number) => T,
-    count: number
+    count: number,
   ): T[] {
     return Array.from({ length: count }, (_, i) => createItem(i));
   },
@@ -575,8 +589,8 @@ export const performanceUtils = {
 
   // Test with realistic large datasets
   createLargeDataSet: (count: number, template: unknown) =>
-    Array.from({ length: count }, (_, i) => ({ 
-      ...(template as any), 
+    Array.from({ length: count }, (_, i) => ({
+      ...(template as any),
       id: `item-${i}`,
       createdAt: new Date(Date.now() - Math.random() * 86400000).toISOString(),
     })),
@@ -597,7 +611,7 @@ export const performanceUtils = {
   testComponentPerformance: async (
     component: React.ReactElement,
     dataSize: number,
-    options?: CustomRenderOptions
+    options?: CustomRenderOptions,
   ) => {
     const renderStart = performance.now();
     const result = renderWithProviders(component, {

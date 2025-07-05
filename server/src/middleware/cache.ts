@@ -5,11 +5,9 @@ import logger from '../logger.js';
 import { cacheMetrics } from './metrics.js';
 
 // Extend Express Request type to include cacheEnabled
-declare global {
-  namespace Express {
-    interface Request {
-      cacheEnabled?: boolean;
-    }
+declare module 'express-serve-static-core' {
+  interface Request {
+    cacheEnabled?: boolean;
   }
 }
 
@@ -20,32 +18,32 @@ const MAX_CACHE_SIZE = 1000; // Maximum number of cached items
 // Create cache instances for different types of data
 const caches = {
   // Short-term cache for API responses (5 minutes)
-  api: new NodeCache({ 
-    stdTTL: DEFAULT_TTL, 
+  api: new NodeCache({
+    stdTTL: DEFAULT_TTL,
     maxKeys: MAX_CACHE_SIZE,
-    checkperiod: 60 // Check for expired keys every minute
+    checkperiod: 60, // Check for expired keys every minute
   }),
-  
+
   // Medium-term cache for curriculum data (30 minutes)
-  curriculum: new NodeCache({ 
-    stdTTL: 1800, 
+  curriculum: new NodeCache({
+    stdTTL: 1800,
     maxKeys: 500,
-    checkperiod: 300
+    checkperiod: 300,
   }),
-  
+
   // Long-term cache for static data (2 hours)
-  static: new NodeCache({ 
-    stdTTL: 7200, 
+  static: new NodeCache({
+    stdTTL: 7200,
     maxKeys: 200,
-    checkperiod: 600
+    checkperiod: 600,
   }),
-  
+
   // User-specific cache (10 minutes)
-  user: new NodeCache({ 
-    stdTTL: 600, 
+  user: new NodeCache({
+    stdTTL: 600,
     maxKeys: 1000,
-    checkperiod: 120
-  })
+    checkperiod: 120,
+  }),
 };
 
 // Cache statistics
@@ -61,7 +59,7 @@ const stats = {
   api: { hits: 0, misses: 0 },
   curriculum: { hits: 0, misses: 0 },
   static: { hits: 0, misses: 0 },
-  user: { hits: 0, misses: 0 }
+  user: { hits: 0, misses: 0 },
 };
 
 /**
@@ -73,7 +71,7 @@ function generateCacheKey(req: Request, prefix: string = ''): string {
   const path = req.path;
   const query = JSON.stringify(req.query);
   const body = req.method === 'GET' ? '' : JSON.stringify(req.body);
-  
+
   const keyData = `${prefix}:${userId}:${method}:${path}:${query}:${body}`;
   return crypto.createHash('md5').update(keyData).digest('hex');
 }
@@ -84,13 +82,13 @@ function generateCacheKey(req: Request, prefix: string = ''): string {
 function shouldCache(req: Request): boolean {
   // Only cache GET requests
   if (req.method !== 'GET') return false;
-  
+
   // Don't cache authenticated endpoints by default unless explicitly enabled
   if (req.headers.authorization && !req.cacheEnabled) return false;
-  
+
   // Don't cache requests with specific headers
   if (req.headers['cache-control'] === 'no-cache') return false;
-  
+
   return true;
 }
 
@@ -104,7 +102,7 @@ export function createCacheMiddleware(
     keyPrefix?: string;
     condition?: (req: Request) => boolean;
     skipUserSpecific?: boolean;
-  } = {}
+  } = {},
 ) {
   const cache = caches[cacheType];
   const { ttl, keyPrefix = '', condition = shouldCache, skipUserSpecific = false } = options;
@@ -117,62 +115,68 @@ export function createCacheMiddleware(
 
     try {
       // Generate cache key
-      const cacheKey = skipUserSpecific 
-        ? generateCacheKey({
-            path: req.path,
-            method: req.method,
-            query: req.query,
-            body: req.body,
-            headers: req.headers,
-            user: undefined
-          } as any, keyPrefix)
+      const cacheKey = skipUserSpecific
+        ? generateCacheKey(
+            {
+              path: req.path,
+              method: req.method,
+              query: req.query,
+              body: req.body,
+              headers: req.headers,
+              user: undefined,
+            } as Request,
+            keyPrefix,
+          )
         : generateCacheKey(req, keyPrefix);
 
       // Try to get from cache
       const cachedResponse = cache.get(cacheKey);
-      
+
       if (cachedResponse) {
         // Cache hit
         stats[cacheType].hits++;
         cacheMetrics.recordHit(cacheType);
         logger.debug({ cacheType, path: req.path }, `Cache hit for key: ${cacheKey}`);
-        
+
         // Set cache headers
         res.set('X-Cache', 'HIT');
         res.set('X-Cache-Key', cacheKey.substring(0, 8));
-        
+
         return res.json(cachedResponse);
       }
 
       // Cache miss - continue to route handler
       stats[cacheType].misses++;
       cacheMetrics.recordMiss(cacheType);
-      
+
       // Store original json method
       const originalJson = res.json;
-      
+
       // Override json method to cache the response
-      res.json = function(data: unknown) {
+      res.json = function (data: unknown) {
         // Cache the response data
         if (res.statusCode === 200 && data) {
           const cacheTTL = ttl || cache.options.stdTTL || DEFAULT_TTL;
           cache.set(cacheKey, data, cacheTTL);
-          
-          logger.debug({ 
-            cacheType, 
-            path: req.path, 
-            ttl: cacheTTL 
-          }, `Cached response for key: ${cacheKey}`);
+
+          logger.debug(
+            {
+              cacheType,
+              path: req.path,
+              ttl: cacheTTL,
+            },
+            `Cached response for key: ${cacheKey}`,
+          );
         }
-        
+
         // Set cache headers
         res.set('X-Cache', 'MISS');
         res.set('X-Cache-Key', cacheKey.substring(0, 8));
-        
+
         // Call original json method
         return originalJson.call(this, data);
       };
-      
+
       next();
     } catch (_error) {
       logger.error('Cache middleware error:', _error);
@@ -190,71 +194,82 @@ export function createCacheMiddleware(
 export const apiCache = createCacheMiddleware('api', { keyPrefix: 'api' });
 
 // Curriculum data cache (30 minutes)
-export const curriculumCache = createCacheMiddleware('curriculum', { 
+export const curriculumCache = createCacheMiddleware('curriculum', {
   keyPrefix: 'curriculum',
-  ttl: 1800 
+  ttl: 1800,
 });
 
 // Static data cache (2 hours) - user-independent
-export const staticCache = createCacheMiddleware('static', { 
+export const staticCache = createCacheMiddleware('static', {
   keyPrefix: 'static',
   ttl: 7200,
-  skipUserSpecific: true
+  skipUserSpecific: true,
 });
 
 // User-specific data cache (10 minutes)
-export const userCache = createCacheMiddleware('user', { 
+export const userCache = createCacheMiddleware('user', {
   keyPrefix: 'user',
-  ttl: 600
+  ttl: 600,
 });
 
 /**
  * Cache invalidation middleware
  */
-export function invalidateCache(patterns: string[], cacheTypes: (keyof typeof caches)[] = ['api', 'user']) {
+export function invalidateCache(
+  patterns: string[],
+  cacheTypes: (keyof typeof caches)[] = ['api', 'user'],
+) {
   return (req: Request, res: Response, next: NextFunction) => {
     // Store original methods
     const originalJson = res.json;
     const originalEnd = res.end;
-    
+
     function invalidateCacheEntries() {
       if (res.statusCode >= 200 && res.statusCode < 300) {
-        cacheTypes.forEach(cacheType => {
+        cacheTypes.forEach((cacheType) => {
           const cache = caches[cacheType];
           const keys = cache.keys();
-          
+
           let invalidatedCount = 0;
-          patterns.forEach(pattern => {
+          patterns.forEach((pattern) => {
             const regex = new RegExp(pattern);
-            keys.forEach(key => {
+            keys.forEach((key) => {
               if (regex.test(key)) {
                 cache.del(key);
                 invalidatedCount++;
               }
             });
           });
-          
+
           if (invalidatedCount > 0) {
-            logger.debug({ 
-              cacheType, 
-              patterns,
-              path: req.path 
-            }, `Invalidated ${invalidatedCount} cache entries`);
+            logger.debug(
+              {
+                cacheType,
+                patterns,
+                path: req.path,
+              },
+              `Invalidated ${invalidatedCount} cache entries`,
+            );
           }
         });
       }
     }
 
     // Override response methods
-    res.json = function(data: unknown) {
+    res.json = function (data: unknown) {
       invalidateCacheEntries();
       return originalJson.call(this, data);
     };
 
-    res.end = function(this: Response, chunk?: any, encoding?: BufferEncoding, cb?: () => void) {
+    res.end = function (
+      this: Response,
+      chunk?: unknown,
+      encoding?: BufferEncoding,
+      cb?: () => void,
+    ) {
       invalidateCacheEntries();
       return originalEnd.call(this, chunk, encoding, cb);
-    } as any;
+    } as Response['end'];
 
     next();
   };
@@ -265,7 +280,7 @@ export function invalidateCache(patterns: string[], cacheTypes: (keyof typeof ca
  */
 export async function warmUpCache() {
   logger.info('Starting cache warm-up...');
-  
+
   try {
     // Warm up static data (can be done without user context)
     // This would typically include:
@@ -273,7 +288,7 @@ export async function warmUpCache() {
     // - Subject lists
     // - Grade levels
     // - System templates
-    
+
     logger.info('Cache warm-up completed');
   } catch (_error) {
     logger.error('Cache warm-up failed:', _error);
@@ -285,20 +300,20 @@ export async function warmUpCache() {
  */
 export function getCacheStats(): Record<string, CacheStats> {
   const result: Record<string, CacheStats> = {};
-  
+
   Object.entries(caches).forEach(([name, cache]) => {
     const cacheStats = stats[name as keyof typeof stats];
     const totalRequests = cacheStats.hits + cacheStats.misses;
     const hitRate = totalRequests > 0 ? (cacheStats.hits / totalRequests) * 100 : 0;
-    
+
     result[name] = {
       hits: cacheStats.hits,
       misses: cacheStats.misses,
       hitRate: Math.round(hitRate * 100) / 100,
-      totalKeys: cache.keys().length
+      totalKeys: cache.keys().length,
     };
   });
-  
+
   return result;
 }
 
@@ -306,8 +321,8 @@ export function getCacheStats(): Record<string, CacheStats> {
  * Clear all caches
  */
 export function clearAllCaches(): void {
-  Object.values(caches).forEach(cache => cache.flushAll());
-  Object.keys(stats).forEach(key => {
+  Object.values(caches).forEach((cache) => cache.flushAll());
+  Object.keys(stats).forEach((key) => {
     stats[key as keyof typeof stats] = { hits: 0, misses: 0 };
   });
   logger.info('All caches cleared');
@@ -326,27 +341,30 @@ export function clearCache(cacheType: keyof typeof caches): void {
  * Get cache memory usage
  */
 export function getCacheMemoryUsage() {
-  const usage: Record<string, {
-    keyCount: number;
-    hits: number;
-    misses: number;
-    ksize: number;
-    vsize: number;
-  }> = {};
-  
+  const usage: Record<
+    string,
+    {
+      keyCount: number;
+      hits: number;
+      misses: number;
+      ksize: number;
+      vsize: number;
+    }
+  > = {};
+
   Object.entries(caches).forEach(([name, cache]) => {
     const keys = cache.keys();
     const stats = cache.getStats();
-    
+
     usage[name] = {
       keyCount: keys.length,
       hits: stats.hits,
       misses: stats.misses,
       ksize: stats.ksize,
-      vsize: stats.vsize
+      vsize: stats.vsize,
     };
   });
-  
+
   return usage;
 }
 
@@ -354,7 +372,7 @@ export function getCacheMemoryUsage() {
 export function isCacheHealthy(): boolean {
   try {
     // Test each cache by setting and getting a value
-    Object.values(caches).forEach(cache => {
+    Object.values(caches).forEach((cache) => {
       const testKey = '__health_check__';
       const testValue = Date.now();
       cache.set(testKey, testValue, 1);

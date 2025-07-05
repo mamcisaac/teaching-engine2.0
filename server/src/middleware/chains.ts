@@ -2,40 +2,34 @@ import { Request, Response, NextFunction } from 'express';
 import { compose, chain, conditional, timed } from './core/composer';
 
 // Extend Express types
-declare global {
-  namespace Express {
-    interface Request {
-      user?: {
-        id: number;
-        email: string;
-        role: string;
-        organizationId?: number;
-        permissions?: string[];
-      };
-    }
-    interface Response {
-      locals: any;
-    }
+declare module 'express-serve-static-core' {
+  interface Request {
+    user?: {
+      id: number;
+      email: string;
+      role: string;
+      organizationId?: number;
+      permissions?: string[];
+    };
+  }
+  interface Response {
+    locals: Record<string, unknown>;
   }
 }
-import { 
-  requestLoggingMiddleware, 
-  auditMiddleware, 
+import {
+  requestLoggingMiddleware,
+  auditMiddleware,
   AuditEventType,
   performanceLoggingMiddleware,
-  developmentLoggingMiddleware 
+  developmentLoggingMiddleware,
 } from './core/logging';
-import { 
-  errorLoggingMiddleware, 
-  errorHandlerMiddleware,
-  notFoundHandler 
-} from './core/error';
-import { 
+import { errorLoggingMiddleware, errorHandlerMiddleware, notFoundHandler } from './core/error';
+import {
   inputSanitizationMiddleware,
   xssProtectionMiddleware,
   sqlInjectionProtectionMiddleware,
   fileUploadSecurityMiddleware,
-  securityMonitoringMiddleware
+  securityMonitoringMiddleware,
 } from './core/security';
 import { authenticate } from './authenticate';
 import { rateLimiters } from './rateLimit';
@@ -59,54 +53,49 @@ export const coreMiddleware = chain()
 export const apiMiddleware = compose(
   coreMiddleware,
   rateLimiters.api,
-  performanceLoggingMiddleware
+  performanceLoggingMiddleware,
 );
 
 // Authenticated API chain
-export const authenticatedApiMiddleware = compose(
-  apiMiddleware,
-  authenticate
-);
+export const authenticatedApiMiddleware = compose(apiMiddleware, authenticate);
 
 // Public API chain (no auth required)
 export const publicApiMiddleware = compose(
   apiMiddleware,
-  conditional(isProduction, rateLimiters.auth)
+  conditional(isProduction, rateLimiters.auth),
 );
 
 // Write operation chain (POST, PUT, DELETE)
 export const writeOperationMiddleware = compose(
   authenticatedApiMiddleware,
   rateLimiters.write,
-  auditMiddleware(AuditEventType.PLAN_MODIFICATION, { severity: 'medium' })
+  auditMiddleware(AuditEventType.PLAN_MODIFICATION, { severity: 'medium' }),
 );
 
 // Read operation chain (GET)
 export const readOperationMiddleware = compose(
   authenticatedApiMiddleware,
   rateLimiters.read,
-  conditional(
-    (req) => req.path.includes('/api/curriculum'),
-    curriculumCache
-  )
+  conditional((req) => req.path.includes('/api/curriculum'), curriculumCache),
 );
 
 // File upload chain
-export const fileUploadMiddleware = (allowedTypes?: string[]) => compose(
-  authenticatedApiMiddleware,
-  rateLimiters.upload,
-  fileUploadSecurityMiddleware(allowedTypes),
-  auditMiddleware(AuditEventType.DATA_IMPORT, { 
-    severity: 'high',
-    targetResource: 'file_upload' 
-  })
-);
+export const fileUploadMiddleware = (allowedTypes?: string[]) =>
+  compose(
+    authenticatedApiMiddleware,
+    rateLimiters.upload,
+    fileUploadSecurityMiddleware(allowedTypes),
+    auditMiddleware(AuditEventType.DATA_IMPORT, {
+      severity: 'high',
+      targetResource: 'file_upload',
+    }),
+  );
 
 // Auth endpoint chain
 export const authEndpointMiddleware = compose(
   coreMiddleware,
   rateLimiters.auth,
-  auditMiddleware(AuditEventType.LOGIN_SUCCESS, { severity: 'high' })
+  auditMiddleware(AuditEventType.LOGIN_SUCCESS, { severity: 'high' }),
 );
 
 // Admin operation chain
@@ -118,11 +107,13 @@ export const adminOperationMiddleware = compose(
     }
     next();
   },
-  auditMiddleware(AuditEventType.SYSTEM_CONFIG_CHANGE, { severity: 'critical' })
+  auditMiddleware(AuditEventType.SYSTEM_CONFIG_CHANGE, { severity: 'critical' }),
 );
 
 // Cached read chain
-export const cachedReadMiddleware = (cacheType: 'api' | 'curriculum' | 'static' | 'user' = 'api') => {
+export const cachedReadMiddleware = (
+  cacheType: 'api' | 'curriculum' | 'static' | 'user' = 'api',
+) => {
   const cacheMiddleware = {
     api: apiCache,
     curriculum: curriculumCache,
@@ -130,17 +121,11 @@ export const cachedReadMiddleware = (cacheType: 'api' | 'curriculum' | 'static' 
     user: userCache,
   }[cacheType];
 
-  return compose(
-    readOperationMiddleware,
-    cacheMiddleware
-  );
+  return compose(readOperationMiddleware, cacheMiddleware);
 };
 
 // Error handling chain - should be last
-export const errorHandlingMiddleware = compose(
-  errorLoggingMiddleware,
-  errorHandlerMiddleware
-);
+export const errorHandlingMiddleware = compose(errorLoggingMiddleware, errorHandlerMiddleware);
 
 // Specific feature chains
 export const planningOperationsMiddleware = compose(
@@ -149,8 +134,8 @@ export const planningOperationsMiddleware = compose(
   userCache,
   auditMiddleware(AuditEventType.PLAN_CREATION, {
     severity: 'low',
-    targetResource: 'planning'
-  })
+    targetResource: 'planning',
+  }),
 );
 
 export const aiOperationsMiddleware = compose(
@@ -159,8 +144,8 @@ export const aiOperationsMiddleware = compose(
   performanceLoggingMiddleware,
   auditMiddleware(AuditEventType.AI_GENERATION, {
     severity: 'medium',
-    targetResource: 'ai_generation'
-  })
+    targetResource: 'ai_generation',
+  }),
 );
 
 export const exportOperationsMiddleware = compose(
@@ -168,20 +153,17 @@ export const exportOperationsMiddleware = compose(
   rateLimiters.read,
   auditMiddleware(AuditEventType.DATA_EXPORT, {
     severity: 'high',
-    targetResource: 'data_export'
-  })
+    targetResource: 'data_export',
+  }),
 );
 
 // Development-only chains
 export const developmentMiddleware = conditional(
   isDevelopment,
-  compose(
-    (req: Request, res: Response, next: NextFunction) => {
-      logger.info(`[DEV] ${req.method} ${req.path}`);
-      next();
-    },
-    performanceLoggingMiddleware
-  )
+  compose((req: Request, res: Response, next: NextFunction) => {
+    logger.info(`[DEV] ${req.method} ${req.path}`);
+    next();
+  }, performanceLoggingMiddleware),
 );
 
 // Health check chain (minimal processing)
@@ -190,7 +172,7 @@ export const healthCheckMiddleware = compose(
   (req: Request, res: Response, next: NextFunction) => {
     res.locals.skipLogging = true;
     next();
-  }
+  },
 );
 
 // Helper to create custom chains
@@ -203,10 +185,9 @@ export const createCustomChain = (options: {
     severity?: 'low' | 'medium' | 'high' | 'critical';
     resource?: string;
   };
-  validators?: any[];
+  validators?: ((req: Request, res: Response, next: NextFunction) => void)[];
 }) => {
-  const chainBuilder = chain()
-    .add(coreMiddleware);
+  const chainBuilder = chain().add(coreMiddleware);
 
   if (options.rateLimit) {
     chainBuilder.add(rateLimiters[options.rateLimit]);
@@ -225,12 +206,12 @@ export const createCustomChain = (options: {
       auditMiddleware(options.audit.event, {
         severity: options.audit.severity,
         targetResource: options.audit.resource,
-      })
+      }),
     );
   }
 
   if (options.validators) {
-    options.validators.forEach(validator => chainBuilder.add(validator));
+    options.validators.forEach((validator) => chainBuilder.add(validator));
   }
 
   return chainBuilder.build();
@@ -243,28 +224,28 @@ export const middleware = {
   api: apiMiddleware,
   authenticated: authenticatedApiMiddleware,
   public: publicApiMiddleware,
-  
+
   // Operation chains
   read: readOperationMiddleware,
   write: writeOperationMiddleware,
   upload: fileUploadMiddleware,
-  
+
   // Feature chains
   auth: authEndpointMiddleware,
   admin: adminOperationMiddleware,
   planning: planningOperationsMiddleware,
   ai: aiOperationsMiddleware,
   export: exportOperationsMiddleware,
-  
+
   // Utility chains
   cached: cachedReadMiddleware,
   health: healthCheckMiddleware,
   development: developmentMiddleware,
-  
+
   // Error handling (use last)
   errorHandling: errorHandlingMiddleware,
   notFound: notFoundHandler,
-  
+
   // Chain builder
   custom: createCustomChain,
 };

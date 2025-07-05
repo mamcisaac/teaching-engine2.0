@@ -110,7 +110,7 @@ const getCpuUsage = (): number => {
   const idle = totalIdle / cpus.length;
   const total = totalTick / cpus.length;
   const usage = 100 - ~~((idle * 100) / total);
-  
+
   return usage;
 };
 
@@ -245,32 +245,37 @@ export const getDashboardMetrics = async (req: Request, res: Response): Promise<
       // Calculate request metrics
       const totalRequests = metrics.counters.http_requests_total || 0;
       const totalErrors = metrics.counters.http_errors_total || 0;
-      const successRate = totalRequests > 0 ? ((totalRequests - totalErrors) / totalRequests) * 100 : 100;
+      const successRate =
+        totalRequests > 0 ? ((totalRequests - totalErrors) / totalRequests) * 100 : 100;
 
       // Get response time percentiles
       const httpDuration = metrics.histograms.http_request_duration_ms;
       // Calculate percentiles from histogram data
-      let percentiles = { p50: 0, p90: 0, p95: 0, p99: 0 };
+      const percentiles = { p50: 0, p90: 0, p95: 0, p99: 0 };
       if (httpDuration && httpDuration.count > 0) {
         const p50Target = (httpDuration.count * 50) / 100;
         const p90Target = (httpDuration.count * 90) / 100;
         const p95Target = (httpDuration.count * 95) / 100;
         const p99Target = (httpDuration.count * 99) / 100;
         let cumulativeCount = 0;
-        
+
         for (const bucket of httpDuration.buckets) {
           cumulativeCount += bucket.count;
           if (cumulativeCount >= p50Target && percentiles.p50 === 0) {
-            percentiles.p50 = bucket.le === Infinity ? httpDuration.sum / httpDuration.count : bucket.le;
+            percentiles.p50 =
+              bucket.le === Infinity ? httpDuration.sum / httpDuration.count : bucket.le;
           }
           if (cumulativeCount >= p90Target && percentiles.p90 === 0) {
-            percentiles.p90 = bucket.le === Infinity ? httpDuration.sum / httpDuration.count : bucket.le;
+            percentiles.p90 =
+              bucket.le === Infinity ? httpDuration.sum / httpDuration.count : bucket.le;
           }
           if (cumulativeCount >= p95Target && percentiles.p95 === 0) {
-            percentiles.p95 = bucket.le === Infinity ? httpDuration.sum / httpDuration.count : bucket.le;
+            percentiles.p95 =
+              bucket.le === Infinity ? httpDuration.sum / httpDuration.count : bucket.le;
           }
           if (cumulativeCount >= p99Target && percentiles.p99 === 0) {
-            percentiles.p99 = bucket.le === Infinity ? httpDuration.sum / httpDuration.count : bucket.le;
+            percentiles.p99 =
+              bucket.le === Infinity ? httpDuration.sum / httpDuration.count : bucket.le;
           }
         }
       }
@@ -335,9 +340,8 @@ export const getDashboardMetrics = async (req: Request, res: Response): Promise<
         }),
       ]);
 
-      const coveragePercentage = totalExpectations > 0 
-        ? (coveredExpectations / totalExpectations) * 100 
-        : 0;
+      const coveragePercentage =
+        totalExpectations > 0 ? (coveredExpectations / totalExpectations) * 100 : 0;
 
       // Get most used subjects
       const subjectCounts = await prisma.eTFOLessonPlan.groupBy({
@@ -383,18 +387,26 @@ export const getDashboardMetrics = async (req: Request, res: Response): Promise<
             p90: percentiles.p90 || 0,
             p95: percentiles.p95 || 0,
             p99: percentiles.p99 || 0,
-            mean: httpDuration && httpDuration.count > 0 ? (httpDuration.sum / httpDuration.count) : 0,
+            mean:
+              httpDuration && httpDuration.count > 0 ? httpDuration.sum / httpDuration.count : 0,
           },
           active_users: activeUsersToday,
           database: {
             connections: 1, // Would need actual pool stats
-            queries_per_minute: (metrics.counters.database_queries_total || 0) / (process.uptime() / 60),
+            queries_per_minute:
+              (metrics.counters.database_queries_total || 0) / (process.uptime() / 60),
             slow_queries: metrics.counters.database_slow_queries_total || 0,
-            error_rate: ((metrics.counters.database_errors_total || 0) / (metrics.counters.database_queries_total || 1)) * 100,
+            error_rate:
+              ((metrics.counters.database_errors_total || 0) /
+                (metrics.counters.database_queries_total || 1)) *
+              100,
           },
           cache: {
-            hit_rate: ((metrics.counters.cache_hits_total || 0) / 
-              ((metrics.counters.cache_hits_total || 0) + (metrics.counters.cache_misses_total || 1))) * 100,
+            hit_rate:
+              ((metrics.counters.cache_hits_total || 0) /
+                ((metrics.counters.cache_hits_total || 0) +
+                  (metrics.counters.cache_misses_total || 1))) *
+              100,
             size: metrics.gauges.cache_size_bytes || 0,
             evictions: metrics.counters.cache_evictions_total || 0,
           },
@@ -419,7 +431,7 @@ export const getDashboardMetrics = async (req: Request, res: Response): Promise<
           curriculum: {
             expectations_covered: coveredExpectations,
             coverage_percentage: coveragePercentage,
-            most_used_subjects: subjectCounts.map(sc => ({
+            most_used_subjects: subjectCounts.map((sc) => ({
               subject: sc.subject || 'Unknown',
               count: sc._count.subject,
             })),
@@ -427,8 +439,10 @@ export const getDashboardMetrics = async (req: Request, res: Response): Promise<
           ai_usage: {
             total_operations: metrics.counters.ai_operations_total || 0,
             operations_today: 0, // Would need time-based tracking
-            average_duration: metrics.histograms.ai_operation_duration_ms ? 
-              (metrics.histograms.ai_operation_duration_ms.sum / metrics.histograms.ai_operation_duration_ms.count) : 0,
+            average_duration: metrics.histograms.ai_operation_duration_ms
+              ? metrics.histograms.ai_operation_duration_ms.sum /
+                metrics.histograms.ai_operation_duration_ms.count
+              : 0,
             success_rate: 95, // Would need actual tracking
           },
         },

@@ -3,13 +3,20 @@
  * Utilities for testing with actual API calls instead of mocks
  */
 
-import { QueryClient } from '@tanstack/react-query';
-import { createRealBackendClient, REAL_BACKEND_URL } from './real-backend-setup';
+// import { QueryClient } from '@tanstack/react-query';
+import { createRealBackendClient } from './real-backend-setup';
 import type { AuthTestContext } from './auth-test-utils';
+import type {
+  LongRangePlan,
+  UnitPlan,
+  ETFOLessonPlan,
+  CurriculumExpectation,
+  DaybookEntry,
+} from '../hooks/useETFOPlanning';
 
 // Create test API client
 const testAPI = createRealBackendClient();
-const TEST_CONFIG = { baseURL: REAL_BACKEND_URL };
+// const TEST_CONFIG = { baseURL: REAL_BACKEND_URL };
 
 // Real data factory for consistent test data
 export const testDataFactory = {
@@ -99,7 +106,11 @@ export const realApiHelpers = {
     return response.data;
   },
 
-  async updateLongRangePlan(authContext: AuthTestContext, id: string, data: any) {
+  async updateLongRangePlan(
+    authContext: AuthTestContext,
+    id: string,
+    data: Partial<LongRangePlan>,
+  ) {
     const response = await testAPI.put(`/long-range-plans/${id}`, data);
     return response.data;
   },
@@ -127,7 +138,7 @@ export const realApiHelpers = {
     return response.data;
   },
 
-  async updateUnitPlan(authContext: AuthTestContext, id: string, data: any) {
+  async updateUnitPlan(authContext: AuthTestContext, id: string, data: Partial<UnitPlan>) {
     const response = await testAPI.put(`/unit-plans/${id}`, data);
     return response.data;
   },
@@ -155,7 +166,11 @@ export const realApiHelpers = {
     return response.data;
   },
 
-  async updateETFOLessonPlan(authContext: AuthTestContext, id: string, data: any) {
+  async updateETFOLessonPlan(
+    authContext: AuthTestContext,
+    id: string,
+    data: Partial<ETFOLessonPlan>,
+  ) {
     const response = await testAPI.put(`/etfo-lesson-plans/${id}`, data);
     return response.data;
   },
@@ -178,7 +193,7 @@ export const realApiHelpers = {
     return response.data;
   },
 
-  async updateDaybookEntry(authContext: AuthTestContext, id: string, data: any) {
+  async updateDaybookEntry(authContext: AuthTestContext, id: string, data: Partial<DaybookEntry>) {
     const response = await testAPI.put(`/daybook-entries/${id}`, data);
     return response.data;
   },
@@ -197,12 +212,12 @@ export const realApiHelpers = {
   },
 
   // Notifications
-  async getNotifications(authContext: AuthTestContext) {
+  async getNotifications(_authContext: AuthTestContext) {
     const response = await testAPI.get('/notifications');
     return response.data;
   },
 
-  async markNotificationRead(authContext: AuthTestContext, id: string) {
+  async markNotificationRead(_authContext: AuthTestContext, id: string) {
     const response = await testAPI.put(`/notifications/${id}/read`);
     return response.data;
   },
@@ -240,8 +255,8 @@ export const testDataSeeder = {
   },
 
   async seedCurriculumData(authContext: AuthTestContext) {
-    const expectations: any[] = [];
-    
+    const expectations: CurriculumExpectation[] = [];
+
     // Create several curriculum expectations
     for (let i = 0; i < 5; i++) {
       const expectation = await realApiHelpers.createCurriculumExpectation(authContext, {
@@ -255,7 +270,11 @@ export const testDataSeeder = {
   },
 
   async seedLargePlanningData(authContext: AuthTestContext, count = 10) {
-    const data: any = {
+    const data: {
+      longRangePlans: unknown[];
+      unitPlans: unknown[];
+      lessonPlans: unknown[];
+    } = {
       longRangePlans: [],
       unitPlans: [],
       lessonPlans: [],
@@ -292,7 +311,7 @@ export const testDataSeeder = {
 
 // Test assertions for real API responses
 export const realApiAssertions = {
-  assertValidLongRangePlan(plan: any) {
+  assertValidLongRangePlan(plan: unknown) {
     expect(plan).toHaveProperty('id');
     expect(plan).toHaveProperty('title');
     expect(plan).toHaveProperty('grade');
@@ -304,7 +323,7 @@ export const realApiAssertions = {
     expect(typeof plan.grade).toBe('number');
   },
 
-  assertValidUnitPlan(plan: any) {
+  assertValidUnitPlan(plan: unknown) {
     expect(plan).toHaveProperty('id');
     expect(plan).toHaveProperty('title');
     expect(plan).toHaveProperty('longRangePlanId');
@@ -315,7 +334,7 @@ export const realApiAssertions = {
     expect(typeof plan.longRangePlanId).toBe('string');
   },
 
-  assertValidETFOLessonPlan(plan: any) {
+  assertValidETFOLessonPlan(plan: unknown) {
     expect(plan).toHaveProperty('id');
     expect(plan).toHaveProperty('title');
     expect(plan).toHaveProperty('unitPlanId');
@@ -327,7 +346,7 @@ export const realApiAssertions = {
     expect(typeof plan.unitPlanId).toBe('string');
   },
 
-  assertValidDaybookEntry(entry: any) {
+  assertValidDaybookEntry(entry: unknown) {
     expect(entry).toHaveProperty('id');
     expect(entry).toHaveProperty('date');
     expect(entry).toHaveProperty('createdAt');
@@ -336,7 +355,7 @@ export const realApiAssertions = {
     expect(typeof entry.date).toBe('string');
   },
 
-  assertValidUser(user: any) {
+  assertValidUser(user: unknown) {
     expect(user).toHaveProperty('id');
     expect(user).toHaveProperty('email');
     expect(user).toHaveProperty('name');
@@ -349,7 +368,7 @@ export const realApiAssertions = {
 
 // Performance testing helpers
 export const performanceHelpers = {
-  async measureApiCallTime(apiCall: () => Promise<any>) {
+  async measureApiCallTime<T>(apiCall: () => Promise<T>) {
     const start = performance.now();
     const result = await apiCall();
     const end = performance.now();
@@ -364,7 +383,7 @@ export const performanceHelpers = {
 
     for (let i = 0; i < iterations; i++) {
       const { timeMs } = await this.measureApiCallTime(() =>
-        realApiHelpers.getLongRangePlans(authContext)
+        realApiHelpers.getLongRangePlans(authContext),
       );
       results.push(timeMs);
     }
@@ -383,8 +402,12 @@ export const errorTestHelpers = {
     try {
       await testAPI.get(endpoint);
       throw new Error('Expected unauthorized error');
-    } catch (error: any) {
-      expect(error.response?.status).toBe(401);
+    } catch (error) {
+      if (error && typeof error === 'object' && 'response' in error) {
+        expect((error as { response?: { status: number } }).response?.status).toBe(401);
+      } else {
+        throw error;
+      }
     }
   },
 
@@ -392,17 +415,25 @@ export const errorTestHelpers = {
     try {
       await testAPI.get(endpoint);
       throw new Error('Expected not found error');
-    } catch (error: any) {
-      expect(error.response?.status).toBe(404);
+    } catch (error) {
+      if (error && typeof error === 'object' && 'response' in error) {
+        expect((error as { response?: { status: number } }).response?.status).toBe(404);
+      } else {
+        throw error;
+      }
     }
   },
 
-  async testValidationError(authContext: AuthTestContext, endpoint: string, invalidData: any) {
+  async testValidationError(authContext: AuthTestContext, endpoint: string, invalidData: unknown) {
     try {
       await testAPI.post(endpoint, invalidData);
       throw new Error('Expected validation error');
-    } catch (error: any) {
-      expect(error.response?.status).toBe(400);
+    } catch (error) {
+      if (error && typeof error === 'object' && 'response' in error) {
+        expect((error as { response?: { status: number } }).response?.status).toBe(400);
+      } else {
+        throw error;
+      }
     }
   },
 };

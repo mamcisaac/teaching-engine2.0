@@ -19,7 +19,7 @@ export interface TimerTestContext {
 export function setupFakeTimers(): TimerTestContext {
   // Use fake timers
   vi.useFakeTimers();
-  
+
   return {
     /**
      * Advance time by specified milliseconds
@@ -27,7 +27,7 @@ export function setupFakeTimers(): TimerTestContext {
     async advanceTime(ms: number): Promise<void> {
       await vi.advanceTimersByTimeAsync(ms);
     },
-    
+
     /**
      * Set the current system time for Date.now(), new Date(), etc.
      */
@@ -35,14 +35,14 @@ export function setupFakeTimers(): TimerTestContext {
       const targetDate = typeof date === 'string' ? new Date(date) : date;
       vi.setSystemTime(targetDate);
     },
-    
+
     /**
      * Restore real timers
      */
     restoreTime(): void {
       vi.useRealTimers();
     },
-    
+
     /**
      * Run all pending timers to completion
      */
@@ -57,7 +57,7 @@ export function setupFakeTimers(): TimerTestContext {
  * Automatically sets up and tears down fake timers
  */
 export function withFakeTimers<T>(
-  testFn: (timers: TimerTestContext) => Promise<T> | T
+  testFn: (timers: TimerTestContext) => Promise<T> | T,
 ): () => Promise<void> {
   return async () => {
     const timers = setupFakeTimers();
@@ -77,25 +77,25 @@ export function mockCurrentTime(date: Date | string): () => void {
   const targetDate = typeof date === 'string' ? new Date(date) : date;
   const originalNow = Date.now;
   const originalDateConstructor = global.Date;
-  
+
   // Mock Date.now()
   Date.now = vi.fn(() => targetDate.getTime());
-  
+
   // Mock new Date() when called without arguments
   global.Date = class extends Date {
-    constructor(...args: any[]) {
+    constructor(...args: ConstructorParameters<typeof Date>) {
       if (args.length === 0) {
         super(targetDate);
       } else {
-        super(...(args as [any]));
+        super(...args);
       }
     }
-    
+
     static now() {
       return targetDate.getTime();
     }
-  } as any;
-  
+  } as DateConstructor;
+
   // Return cleanup function
   return () => {
     Date.now = originalNow;
@@ -108,9 +108,9 @@ export function mockCurrentTime(date: Date | string): () => void {
  * Useful when testing async code with timers
  */
 export async function flushPromisesAndTimers(): Promise<void> {
-  await new Promise(resolve => setImmediate(resolve));
+  await new Promise((resolve) => setImmediate(resolve));
   await vi.runAllTimersAsync();
-  await new Promise(resolve => setImmediate(resolve));
+  await new Promise((resolve) => setImmediate(resolve));
 }
 
 /**
@@ -118,27 +118,27 @@ export async function flushPromisesAndTimers(): Promise<void> {
  */
 export class IntervalTester {
   private intervals: NodeJS.Timeout[] = [];
-  
+
   /**
    * Start monitoring intervals created during test
    */
   startMonitoring(): void {
     const originalSetInterval = global.setInterval;
-    global.setInterval = ((fn: Function, delay: number, ...args: any[]) => {
+    global.setInterval = ((fn: TimerHandler, delay?: number, ...args: unknown[]) => {
       const interval = originalSetInterval(fn, delay, ...args);
-      this.intervals.push(interval as any);
+      this.intervals.push(interval as NodeJS.Timeout);
       return interval;
-    }) as any;
+    }) as typeof setInterval;
   }
-  
+
   /**
    * Clear all monitored intervals
    */
   clearAll(): void {
-    this.intervals.forEach(interval => clearInterval(interval));
+    this.intervals.forEach((interval) => clearInterval(interval));
     this.intervals = [];
   }
-  
+
   /**
    * Get count of active intervals
    */
@@ -152,27 +152,27 @@ export class IntervalTester {
  */
 export class TimeoutTester {
   private timeouts: NodeJS.Timeout[] = [];
-  
+
   /**
    * Start monitoring timeouts created during test
    */
   startMonitoring(): void {
     const originalSetTimeout = global.setTimeout;
-    global.setTimeout = ((fn: Function, delay: number, ...args: any[]) => {
+    global.setTimeout = ((fn: TimerHandler, delay?: number, ...args: unknown[]) => {
       const timeout = originalSetTimeout(fn, delay, ...args);
-      this.timeouts.push(timeout as any);
+      this.timeouts.push(timeout as NodeJS.Timeout);
       return timeout;
-    }) as any;
+    }) as typeof setTimeout;
   }
-  
+
   /**
    * Clear all monitored timeouts
    */
   clearAll(): void {
-    this.timeouts.forEach(timeout => clearTimeout(timeout));
+    this.timeouts.forEach((timeout) => clearTimeout(timeout));
     this.timeouts = [];
   }
-  
+
   /**
    * Get count of active timeouts
    */

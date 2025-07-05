@@ -1,12 +1,12 @@
 /**
  * API Mock Setup for Tests
- * 
+ *
  * Provides a centralized way to mock API calls without triggering
  * navigation issues in the test environment.
  */
 
 import { vi } from 'vitest';
-import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig, AxiosRequestHeaders } from 'axios';
+import type { AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 // Create a mock axios instance that prevents navigation
 export const createMockAxiosInstance = (): AxiosInstance => {
@@ -35,7 +35,7 @@ export const createMockAxiosInstance = (): AxiosInstance => {
     },
     interceptors: {
       request: {
-        use: vi.fn((onFulfilled, onRejected) => {
+        use: vi.fn(() => {
           // Return a mock interceptor ID
           return 0;
         }),
@@ -43,7 +43,7 @@ export const createMockAxiosInstance = (): AxiosInstance => {
         clear: vi.fn(),
       },
       response: {
-        use: vi.fn((onFulfilled, onRejected) => {
+        use: vi.fn(() => {
           // Store the error handler but don't execute it automatically
           // This prevents the navigation issue in tests
           return 0;
@@ -55,14 +55,15 @@ export const createMockAxiosInstance = (): AxiosInstance => {
   } as unknown as AxiosInstance;
 
   // Make all HTTP methods return resolved promises by default
-  const methods = ['get', 'post', 'put', 'patch', 'delete', 'head', 'options', 'request'];
-  methods.forEach(method => {
-    (mockInstance as any)[method].mockResolvedValue({ 
-      data: {}, 
+  const methods = ['get', 'post', 'put', 'patch', 'delete', 'head', 'options', 'request'] as const;
+  methods.forEach((method) => {
+    const mockedMethod = mockInstance[method] as ReturnType<typeof vi.fn>;
+    mockedMethod.mockResolvedValue({
+      data: {},
       status: 200,
       statusText: 'OK',
       headers: {},
-      config: { headers: {} as AxiosRequestHeaders } as InternalAxiosRequestConfig,
+      config: { headers: {} } as InternalAxiosRequestConfig,
     });
   });
 
@@ -70,23 +71,38 @@ export const createMockAxiosInstance = (): AxiosInstance => {
 };
 
 // Helper to create a mock response
-export const createMockResponse = <T = any>(data: T, status = 200): AxiosResponse<T> => ({
+export const createMockResponse = <T = unknown>(data: T, status = 200): AxiosResponse<T> => ({
   data,
   status,
   statusText: status === 200 ? 'OK' : 'Error',
   headers: {},
-  config: { headers: {} as AxiosRequestHeaders } as InternalAxiosRequestConfig,
+  config: { headers: {} } as InternalAxiosRequestConfig,
 });
+
+// Type for Axios error with additional properties
+interface MockAxiosError extends Error {
+  response?: {
+    data: unknown;
+    status: number;
+    statusText: string;
+    headers: Record<string, string>;
+    config: InternalAxiosRequestConfig;
+  };
+  request?: XMLHttpRequest;
+  config?: InternalAxiosRequestConfig;
+  isAxiosError?: boolean;
+  code?: string;
+}
 
 // Helper to create a mock error response
 export const createMockErrorResponse = (status: number, message?: string) => {
-  const error = new Error(message || `Request failed with status ${status}`) as any;
+  const error = new Error(message || `Request failed with status ${status}`) as MockAxiosError;
   error.response = {
     status,
     statusText: message || 'Error',
     data: { message: message || `Request failed with status ${status}` },
     headers: {},
-    config: { headers: {} as AxiosRequestHeaders } as InternalAxiosRequestConfig,
+    config: { headers: {} } as InternalAxiosRequestConfig,
   };
   error.isAxiosError = true;
   return error;
@@ -95,7 +111,7 @@ export const createMockErrorResponse = (status: number, message?: string) => {
 // Mock the entire api module for tests that need it
 export const mockApiModule = () => {
   const mockAxios = createMockAxiosInstance();
-  
+
   vi.mock('../api/legacy/api', () => ({
     api: mockAxios,
     getWeekStartISO: vi.fn((date: Date) => {
@@ -119,7 +135,7 @@ export const mockApiModule = () => {
 export const setupApiMocks = () => {
   // Clear any existing mocks
   vi.clearAllMocks();
-  
+
   // Return the mock instance for test-specific configuration
   return mockApiModule();
 };

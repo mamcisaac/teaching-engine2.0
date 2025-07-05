@@ -17,7 +17,7 @@ export enum ErrorType {
   INTERNAL_ERROR = 'INTERNAL_ERROR',
   BUSINESS_LOGIC_ERROR = 'BUSINESS_LOGIC_ERROR',
   FILE_UPLOAD_ERROR = 'FILE_UPLOAD_ERROR',
-  AI_SERVICE_ERROR = 'AI_SERVICE_ERROR'
+  AI_SERVICE_ERROR = 'AI_SERVICE_ERROR',
 }
 
 // Standard error class
@@ -34,7 +34,7 @@ export class StandardError extends Error {
     statusCode: number = 500,
     isOperational: boolean = true,
     userMessage?: string,
-    details?: Record<string, unknown>
+    details?: Record<string, unknown>,
   ) {
     super(message);
     this.type = type;
@@ -42,10 +42,10 @@ export class StandardError extends Error {
     this.isOperational = isOperational;
     this.userMessage = userMessage;
     this.details = details;
-    
+
     // Ensure the name of this error is the same as the class name
     this.name = this.constructor.name;
-    
+
     // This clips the constructor invocation from the stack trace
     Error.captureStackTrace(this, this.constructor);
   }
@@ -60,7 +60,7 @@ export class ValidationError extends StandardError {
       400,
       true,
       'The provided data is invalid. Please check your input and try again.',
-      details
+      details,
     );
   }
 }
@@ -72,7 +72,7 @@ export class AuthenticationError extends StandardError {
       message,
       401,
       true,
-      'Please log in to access this resource.'
+      'Please log in to access this resource.',
     );
   }
 }
@@ -84,7 +84,7 @@ export class AuthorizationError extends StandardError {
       message,
       403,
       true,
-      'You do not have permission to perform this action.'
+      'You do not have permission to perform this action.',
     );
   }
 }
@@ -96,7 +96,7 @@ export class NotFoundError extends StandardError {
       `${resource} not found`,
       404,
       true,
-      `The requested ${resource.toLowerCase()} could not be found.`
+      `The requested ${resource.toLowerCase()} could not be found.`,
     );
   }
 }
@@ -109,7 +109,7 @@ export class ConflictError extends StandardError {
       409,
       true,
       'The request conflicts with the current state of the resource.',
-      details
+      details,
     );
   }
 }
@@ -122,7 +122,7 @@ export class RateLimitError extends StandardError {
       429,
       true,
       'Too many requests. Please try again later.',
-      { retryAfter }
+      { retryAfter },
     );
   }
 }
@@ -135,7 +135,7 @@ export class DatabaseError extends StandardError {
       500,
       true,
       'A database error occurred. Please try again later.',
-      details
+      details,
     );
   }
 }
@@ -147,7 +147,7 @@ export class ExternalServiceError extends StandardError {
       `${service}: ${message}`,
       503,
       true,
-      'An external service is currently unavailable. Please try again later.'
+      'An external service is currently unavailable. Please try again later.',
     );
   }
 }
@@ -160,7 +160,7 @@ export class BusinessLogicError extends StandardError {
       400,
       true,
       userMessage || 'The operation cannot be completed due to business rules.',
-      details
+      details,
     );
   }
 }
@@ -173,7 +173,7 @@ export class FileUploadError extends StandardError {
       400,
       true,
       'File upload failed. Please check the file and try again.',
-      details
+      details,
     );
   }
 }
@@ -186,7 +186,7 @@ export class AIServiceError extends StandardError {
       503,
       true,
       'AI service is currently unavailable. Please try again later.',
-      details
+      details,
     );
   }
 }
@@ -198,7 +198,7 @@ export function standardErrorHandler(
   error: Error,
   req: Request,
   res: Response,
-  _next: NextFunction
+  _next: NextFunction,
 ) {
   // Default error properties
   let statusCode = 500;
@@ -217,17 +217,17 @@ export function standardErrorHandler(
     errorType = ErrorType.VALIDATION_ERROR;
     userMessage = 'The provided data is invalid. Please check your input and try again.';
     details = {
-      validationErrors: error.errors.map(err => ({
+      validationErrors: error.errors.map((err) => ({
         path: err.path.join('.'),
         message: err.message,
-        code: err.code
-      }))
+        code: err.code,
+      })),
     };
   } else if (error.name === 'PrismaClientKnownRequestError') {
     // Handle Prisma database errors
     statusCode = 400;
     errorType = ErrorType.DATABASE_ERROR;
-    
+
     const prismaError = error as unknown as { code: string };
     switch (prismaError.code) {
       case 'P2002':
@@ -241,7 +241,7 @@ export function standardErrorHandler(
       default:
         userMessage = 'A database error occurred. Please try again later.';
     }
-    
+
     details = { prismaCode: prismaError.code };
   } else if (error.name === 'JsonWebTokenError') {
     statusCode = 401;
@@ -260,40 +260,46 @@ export function standardErrorHandler(
 
   // Log the error
   const requestLogger = (req as { logger?: typeof logger }).logger || logger;
-  
+
   if (statusCode >= 500) {
     // Server errors
-    requestLogger.error({
-      error: {
-        name: error.name,
-        message: (error as any).message,
-        stack: error.stack,
-        type: errorType
+    requestLogger.error(
+      {
+        error: {
+          name: error.name,
+          message: (error as Error).message,
+          stack: error.stack,
+          type: errorType,
+        },
+        request: {
+          method: req.method,
+          url: req.url,
+          userId: (req as { user?: { id?: unknown } }).user?.id,
+          ip: req.ip,
+        },
+        statusCode,
       },
-      request: {
-        method: req.method,
-        url: req.url,
-        userId: (req as { user?: { id?: unknown } }).user?.id,
-        ip: req.ip
-      },
-      statusCode
-    }, `Server error: ${(error as any).message}`);
+      `Server error: ${(error as Error).message}`,
+    );
   } else {
     // Client errors
-    requestLogger.warn({
-      error: {
-        name: error.name,
-        message: (error as any).message,
-        type: errorType
+    requestLogger.warn(
+      {
+        error: {
+          name: error.name,
+          message: (error as Error).message,
+          type: errorType,
+        },
+        request: {
+          method: req.method,
+          url: req.url,
+          userId: (req as { user?: { id?: unknown } }).user?.id,
+          ip: req.ip,
+        },
+        statusCode,
       },
-      request: {
-        method: req.method,
-        url: req.url,
-        userId: (req as { user?: { id?: unknown } }).user?.id,
-        ip: req.ip
-      },
-      statusCode
-    }, `Client error: ${(error as any).message}`);
+      `Client error: ${(error as Error).message}`,
+    );
   }
 
   // Log security events for specific error types
@@ -301,7 +307,7 @@ export function standardErrorHandler(
     auditFunctions.suspiciousActivity(req, 'Authentication/Authorization Failure', {
       errorType,
       statusCode,
-      userAgent: req.get('User-Agent')
+      userAgent: req.get('User-Agent'),
     });
   }
 
@@ -317,11 +323,11 @@ export function standardErrorHandler(
       message: userMessage,
       ...(process.env.NODE_ENV !== 'production' && {
         details: details,
-        stack: error.stack
-      })
+        stack: error.stack,
+      }),
     },
     timestamp: new Date().toISOString(),
-    requestId: (req as { requestId?: string }).requestId
+    requestId: (req as { requestId?: string }).requestId,
   };
 
   // Add retry information for rate limit errors
@@ -338,7 +344,7 @@ export function standardErrorHandler(
  * Async error wrapper for route handlers
  */
 export function asyncHandler<T extends Request, U extends Response>(
-  fn: (req: T, res: U, next: NextFunction) => Promise<unknown>
+  fn: (req: T, res: U, next: NextFunction) => Promise<unknown>,
 ) {
   return (req: T, res: U, next: NextFunction) => {
     Promise.resolve(fn(req, res, next)).catch(next);
@@ -349,38 +355,33 @@ export function asyncHandler<T extends Request, U extends Response>(
  * Error factory functions for common errors
  */
 export const errorFactory = {
-  validation: (message: string, details?: Record<string, unknown>) => 
+  validation: (message: string, details?: Record<string, unknown>) =>
     new ValidationError(message, details),
 
-  notFound: (resource: string = 'Resource') => 
-    new NotFoundError(resource),
+  notFound: (resource: string = 'Resource') => new NotFoundError(resource),
 
-  unauthorized: (message?: string) => 
-    new AuthenticationError(message),
+  unauthorized: (message?: string) => new AuthenticationError(message),
 
-  forbidden: (message?: string) => 
-    new AuthorizationError(message),
+  forbidden: (message?: string) => new AuthorizationError(message),
 
-  conflict: (message: string, details?: Record<string, unknown>) => 
+  conflict: (message: string, details?: Record<string, unknown>) =>
     new ConflictError(message, details),
 
-  rateLimit: (retryAfter?: number) => 
-    new RateLimitError(retryAfter),
+  rateLimit: (retryAfter?: number) => new RateLimitError(retryAfter),
 
-  database: (message: string, details?: Record<string, unknown>) => 
+  database: (message: string, details?: Record<string, unknown>) =>
     new DatabaseError(message, details),
 
-  externalService: (service: string, message: string) => 
-    new ExternalServiceError(service, message),
+  externalService: (service: string, message: string) => new ExternalServiceError(service, message),
 
-  businessLogic: (message: string, userMessage?: string, details?: Record<string, unknown>) => 
+  businessLogic: (message: string, userMessage?: string, details?: Record<string, unknown>) =>
     new BusinessLogicError(message, userMessage, details),
 
-  fileUpload: (message: string, details?: Record<string, unknown>) => 
+  fileUpload: (message: string, details?: Record<string, unknown>) =>
     new FileUploadError(message, details),
 
-  aiService: (message: string, details?: Record<string, unknown>) => 
-    new AIServiceError(message, details)
+  aiService: (message: string, details?: Record<string, unknown>) =>
+    new AIServiceError(message, details),
 };
 
 /**
@@ -392,7 +393,7 @@ export const responseHelpers = {
       success: true,
       data,
       message,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   },
 
@@ -404,19 +405,23 @@ export const responseHelpers = {
     res.status(204).send();
   },
 
-  paginated: (res: Response, data: unknown[], pagination: {
-    page: number;
-    limit: number;
-    total: number;
-    totalPages: number;
-  }) => {
+  paginated: (
+    res: Response,
+    data: unknown[],
+    pagination: {
+      page: number;
+      limit: number;
+      total: number;
+      totalPages: number;
+    },
+  ) => {
     res.json({
       success: true,
       data,
       pagination,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
-  }
+  },
 };
 
 export default {
@@ -435,5 +440,5 @@ export default {
   standardErrorHandler,
   asyncHandler,
   errorFactory,
-  responseHelpers
+  responseHelpers,
 };

@@ -10,7 +10,11 @@ import { BaseService } from '../services/base/BaseService.js';
 import { commonValidations } from './base/validation.js';
 import { prisma } from '../prisma.js';
 import { Prisma } from '@teaching-engine/database';
-import { optimizedIncludes, optimizedQueries, queryPerformance } from './optimizations/queryOptimizations.js';
+import {
+  optimizedIncludes,
+  optimizedQueries,
+  queryPerformance,
+} from './optimizations/queryOptimizations.js';
 import { ETFOLessonPlanCreateData, ETFOLessonPlanUpdateData } from '../types/routes.js';
 
 // ETFO lesson plan-specific validation schemas
@@ -20,7 +24,7 @@ const lessonPlanCreateSchema = z.object({
   unitPlanId: z.string().cuid(),
   date: z.string().datetime(),
   duration: z.number().int().positive().max(480), // Max 8 hours
-  
+
   // Three-part lesson structure
   mindsOn: z.string().max(2000).optional(),
   mindsOnFr: z.string().max(2000).optional(),
@@ -28,25 +32,25 @@ const lessonPlanCreateSchema = z.object({
   actionFr: z.string().max(5000).optional(),
   consolidation: z.string().max(2000).optional(),
   consolidationFr: z.string().max(2000).optional(),
-  
+
   learningGoals: z.string().max(2000).optional(),
   learningGoalsFr: z.string().max(2000).optional(),
   materials: z.array(z.string().max(200)).max(50).optional(),
   grouping: z.string().max(500).optional(),
-  
+
   // Differentiation
   accommodations: z.array(z.string().max(300)).max(20).optional(),
   modifications: z.array(z.string().max(300)).max(20).optional(),
   extensions: z.array(z.string().max(300)).max(20).optional(),
-  
+
   // Assessment
   assessmentType: z.enum(['diagnostic', 'formative', 'summative']).optional(),
   assessmentNotes: z.string().max(1000).optional(),
-  
+
   // Substitute teacher support
   isSubFriendly: z.boolean().optional(),
   subNotes: z.string().max(1000).optional(),
-  
+
   // Curriculum expectations
   expectationIds: z.array(z.string().cuid()).max(20).optional(),
 });
@@ -69,7 +73,9 @@ const lessonPlanQuerySchema = z.object({
 const resourceSchema = z.object({
   title: z.string().min(1).max(255),
   url: z.string().url().optional(),
-  type: z.enum(['handout', 'slide', 'video', 'website', 'document', 'image', 'other']).default('other'),
+  type: z
+    .enum(['handout', 'slide', 'video', 'website', 'document', 'image', 'other'])
+    .default('other'),
   content: z.string().max(500).optional(),
 });
 
@@ -91,7 +97,26 @@ class ETFOLessonPlanService extends BaseService {
     super('ETFOLessonPlanService');
   }
 
-  async findMany(filters: any, userId: number) {
+  async findMany(
+    filters: {
+      unitPlanId?: number;
+      startDate?: Date;
+      endDate?: Date;
+      isSubFriendly?: boolean;
+      assessmentType?: string;
+      hasExpectations?: boolean;
+      hasAccommodations?: boolean;
+      hasTechIntegration?: boolean;
+      subjects?: string[];
+      resourceTypes?: string[];
+      selectedActivityIds?: number[];
+      limit?: number;
+      offset?: number;
+      sort?: string;
+      order?: 'asc' | 'desc';
+    },
+    userId: number,
+  ) {
     const {
       unitPlanId,
       startDate,
@@ -127,24 +152,20 @@ class ETFOLessonPlanService extends BaseService {
     }
 
     // Sorting with validation
-    const orderBy = queryPerformance.createOptimizedSort(
-      sortBy,
-      sortOrder,
-      ['date', 'title', 'duration', 'createdAt']
-    );
+    const orderBy = queryPerformance.createOptimizedSort(sortBy, sortOrder, [
+      'date',
+      'title',
+      'duration',
+      'createdAt',
+    ]);
 
-    const result = await queryPerformance.monitorQuery(
-      'etfoLessonPlan.findMany',
-      () => optimizedQueries.paginatedQuery(
-        prisma.eTFOLessonPlan,
-        where,
-        {
-          limit,
-          offset,
-          orderBy,
-          include: optimizedIncludes.etfoLessonPlan,
-        }
-      )
+    const result = await queryPerformance.monitorQuery('etfoLessonPlan.findMany', () =>
+      optimizedQueries.paginatedQuery(prisma.eTFOLessonPlan, where, {
+        limit,
+        offset,
+        orderBy,
+        include: optimizedIncludes.etfoLessonPlan,
+      }),
     );
 
     const { items: lessonPlans, total } = result;
@@ -161,12 +182,11 @@ class ETFOLessonPlanService extends BaseService {
   }
 
   async findById(id: string, userId: number) {
-    return queryPerformance.monitorQuery(
-      'etfoLessonPlan.findById',
-      () => prisma.eTFOLessonPlan.findFirst({
+    return queryPerformance.monitorQuery('etfoLessonPlan.findById', () =>
+      prisma.eTFOLessonPlan.findFirst({
         where: { id, userId },
         include: optimizedIncludes.etfoLessonPlan,
-      })
+      }),
     );
   }
 
@@ -183,7 +203,7 @@ class ETFOLessonPlanService extends BaseService {
       throw new Error('Unit plan not found or access denied');
     }
 
-    const { expectationIds, ...lessonPlanData } = data;
+    const { expectationIds } = data;
 
     // Create lesson plan data that matches Prisma schema
     const baseData = {
@@ -213,16 +233,17 @@ class ETFOLessonPlanService extends BaseService {
     };
 
     // Add expectations relationship if provided
-    const createData = expectationIds && expectationIds.length > 0 
-      ? {
-          ...baseData,
-          expectations: {
-            create: expectationIds.map((expectationId: string) => ({
-              expectationId,
-            })),
-          },
-        }
-      : baseData;
+    const createData =
+      expectationIds && expectationIds.length > 0
+        ? {
+            ...baseData,
+            expectations: {
+              create: expectationIds.map((expectationId: string) => ({
+                expectationId,
+              })),
+            },
+          }
+        : baseData;
 
     return prisma.eTFOLessonPlan.create({
       data: createData,
@@ -249,8 +270,8 @@ class ETFOLessonPlanService extends BaseService {
     const { expectationIds, ...updateData } = data;
 
     // Create update data that matches Prisma schema
-    const baseUpdateData: Record<string, any> = {};
-    
+    const baseUpdateData: Record<string, unknown> = {};
+
     // Only include fields that are actually being updated
     if (updateData.title !== undefined) baseUpdateData.title = updateData.title;
     if (updateData.unitPlanId !== undefined) baseUpdateData.unitPlanId = updateData.unitPlanId;
@@ -259,38 +280,56 @@ class ETFOLessonPlanService extends BaseService {
     if (updateData.mindsOnFr !== undefined) baseUpdateData.mindsOnFr = updateData.mindsOnFr;
     if (updateData.action !== undefined) baseUpdateData.action = updateData.action;
     if (updateData.actionFr !== undefined) baseUpdateData.actionFr = updateData.actionFr;
-    if (updateData.consolidation !== undefined) baseUpdateData.consolidation = updateData.consolidation;
-    if (updateData.consolidationFr !== undefined) baseUpdateData.consolidationFr = updateData.consolidationFr;
-    if (updateData.learningGoals !== undefined) baseUpdateData.learningGoals = updateData.learningGoals;
-    if (updateData.learningGoalsFr !== undefined) baseUpdateData.learningGoalsFr = updateData.learningGoalsFr;
-    if (updateData.materials !== undefined) baseUpdateData.materials = updateData.materials ? JSON.stringify(updateData.materials) : null;
+    if (updateData.consolidation !== undefined)
+      baseUpdateData.consolidation = updateData.consolidation;
+    if (updateData.consolidationFr !== undefined)
+      baseUpdateData.consolidationFr = updateData.consolidationFr;
+    if (updateData.learningGoals !== undefined)
+      baseUpdateData.learningGoals = updateData.learningGoals;
+    if (updateData.learningGoalsFr !== undefined)
+      baseUpdateData.learningGoalsFr = updateData.learningGoalsFr;
+    if (updateData.materials !== undefined)
+      baseUpdateData.materials = updateData.materials ? JSON.stringify(updateData.materials) : null;
     if (updateData.grouping !== undefined) baseUpdateData.grouping = updateData.grouping;
     if (updateData.titleFr !== undefined) baseUpdateData.titleFr = updateData.titleFr;
-    if (updateData.accommodations !== undefined) baseUpdateData.accommodations = updateData.accommodations ? JSON.stringify(updateData.accommodations) : null;
-    if (updateData.modifications !== undefined) baseUpdateData.modifications = updateData.modifications ? JSON.stringify(updateData.modifications) : null;
-    if (updateData.extensions !== undefined) baseUpdateData.extensions = updateData.extensions ? JSON.stringify(updateData.extensions) : null;
-    if (updateData.assessmentType !== undefined) baseUpdateData.assessmentType = updateData.assessmentType;
-    if (updateData.assessmentNotes !== undefined) baseUpdateData.assessmentNotes = updateData.assessmentNotes;
-    if (updateData.isSubFriendly !== undefined) baseUpdateData.isSubFriendly = updateData.isSubFriendly;
+    if (updateData.accommodations !== undefined)
+      baseUpdateData.accommodations = updateData.accommodations
+        ? JSON.stringify(updateData.accommodations)
+        : null;
+    if (updateData.modifications !== undefined)
+      baseUpdateData.modifications = updateData.modifications
+        ? JSON.stringify(updateData.modifications)
+        : null;
+    if (updateData.extensions !== undefined)
+      baseUpdateData.extensions = updateData.extensions
+        ? JSON.stringify(updateData.extensions)
+        : null;
+    if (updateData.assessmentType !== undefined)
+      baseUpdateData.assessmentType = updateData.assessmentType;
+    if (updateData.assessmentNotes !== undefined)
+      baseUpdateData.assessmentNotes = updateData.assessmentNotes;
+    if (updateData.isSubFriendly !== undefined)
+      baseUpdateData.isSubFriendly = updateData.isSubFriendly;
     if (updateData.subNotes !== undefined) baseUpdateData.subNotes = updateData.subNotes;
-    
+
     // Handle date conversion
     if (data.date) {
       baseUpdateData.date = new Date(data.date);
     }
 
     // Handle expectations relationship if provided
-    const updateInput = expectationIds !== undefined 
-      ? {
-          ...baseUpdateData,
-          expectations: {
-            deleteMany: {},
-            create: expectationIds.map((expectationId: string) => ({
-              expectationId,
-            })),
-          },
-        }
-      : baseUpdateData;
+    const updateInput =
+      expectationIds !== undefined
+        ? {
+            ...baseUpdateData,
+            expectations: {
+              deleteMany: {},
+              create: expectationIds.map((expectationId: string) => ({
+                expectationId,
+              })),
+            },
+          }
+        : baseUpdateData;
 
     return prisma.eTFOLessonPlan.update({
       where: { id },
@@ -321,7 +360,11 @@ class ETFOLessonPlanService extends BaseService {
     return true;
   }
 
-  async addResource(lessonPlanId: string, resourceData: any, userId: number) {
+  async addResource(
+    lessonPlanId: string,
+    resourceData: { url: string; title: string; type: string; description?: string },
+    userId: number,
+  ) {
     // Verify ownership
     const lessonPlan = await prisma.eTFOLessonPlan.findFirst({
       where: { id: lessonPlanId, userId },
@@ -405,7 +448,8 @@ class ETFOLessonPlanService extends BaseService {
         assessmentType: originalLesson.assessmentType,
         assessmentNotes: originalLesson.assessmentNotes,
         isSubFriendly: true,
-        subNotes: 'Auto-generated substitute-friendly version. Please review and customize as needed.',
+        subNotes:
+          'Auto-generated substitute-friendly version. Please review and customize as needed.',
         expectations: {
           create: originalLesson.expectations.map((exp) => ({
             expectationId: exp.expectationId,
@@ -423,7 +467,11 @@ class ETFOLessonPlanService extends BaseService {
     });
   }
 
-  async reschedule(lessonPlanId: string, rescheduleData: any, userId: number) {
+  async reschedule(
+    lessonPlanId: string,
+    rescheduleData: { newDate: string | Date; updateRelated?: boolean },
+    userId: number,
+  ) {
     const { newDate, updateRelated } = rescheduleData;
 
     const lessonPlan = await prisma.eTFOLessonPlan.findFirst({
@@ -456,7 +504,10 @@ class ETFOLessonPlanService extends BaseService {
     return updatedLesson;
   }
 
-  async duplicate(duplicateData: any, userId: number) {
+  async duplicate(
+    duplicateData: { lessonPlanId: string; unitPlanId: string; date: string | Date; title: string },
+    userId: number,
+  ) {
     const { lessonPlanId, unitPlanId, date, title } = duplicateData;
 
     // Verify user owns both the source lesson plan and target unit plan
@@ -559,13 +610,13 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   protected async handleList(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
       const schemas = this.getValidationSchemas();
       const filters = schemas.query.parse(req.query);
-      
+
       const result = await this.lessonPlanService.findMany(filters, userId);
       res.json(result);
     } catch (error) {
@@ -580,48 +631,48 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     this.router.post(
       '/:id/resources',
       this.requireAuthentication,
-      this.asyncHandler(this.handleAddResource.bind(this))
+      this.asyncHandler(this.handleAddResource.bind(this)),
     );
 
     // DELETE /etfo-lesson-plans/:id/resources/:resourceId
     this.router.delete(
       '/:id/resources/:resourceId',
       this.requireAuthentication,
-      this.asyncHandler(this.handleRemoveResource.bind(this))
+      this.asyncHandler(this.handleRemoveResource.bind(this)),
     );
 
     // POST /etfo-lesson-plans/:id/sub-version
     this.router.post(
       '/:id/sub-version',
       this.requireAuthentication,
-      this.asyncHandler(this.handleCreateSubVersion.bind(this))
+      this.asyncHandler(this.handleCreateSubVersion.bind(this)),
     );
 
     // PUT /etfo-lesson-plans/:id/reschedule
     this.router.put(
       '/:id/reschedule',
       this.requireAuthentication,
-      this.asyncHandler(this.handleReschedule.bind(this))
+      this.asyncHandler(this.handleReschedule.bind(this)),
     );
 
     // POST /etfo-lesson-plans/duplicate
     this.router.post(
       '/duplicate',
       this.requireAuthentication,
-      this.asyncHandler(this.handleDuplicate.bind(this))
+      this.asyncHandler(this.handleDuplicate.bind(this)),
     );
   }
 
   private async handleAddResource(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
       const { id: lessonPlanId } = req.params;
       const resourceData = resourceSchema.parse(req.body);
-      
+
       const resource = await this.lessonPlanService.addResource(lessonPlanId, resourceData, userId);
       res.status(201).json(resource);
     } catch (_error) {
@@ -633,19 +684,19 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   private async handleRemoveResource(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
       const { id: lessonPlanId, resourceId } = req.params;
-      
+
       const success = await this.lessonPlanService.removeResource(lessonPlanId, resourceId, userId);
-      
+
       if (!success) {
         res.status(404).json({ error: 'Resource not found' });
         return;
       }
-      
+
       res.status(204).send();
     } catch (_error) {
       this.logger.error('Error removing resource:', _error);
@@ -656,12 +707,12 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   private async handleCreateSubVersion(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
       const { id: lessonPlanId } = req.params;
-      
+
       const subVersion = await this.lessonPlanService.createSubVersion(lessonPlanId, userId);
       res.status(201).json(subVersion);
     } catch (_error) {
@@ -673,14 +724,18 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   private async handleReschedule(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
       const { id: lessonPlanId } = req.params;
       const rescheduleData = rescheduleSchema.parse(req.body);
-      
-      const rescheduledLesson = await this.lessonPlanService.reschedule(lessonPlanId, rescheduleData, userId);
+
+      const rescheduledLesson = await this.lessonPlanService.reschedule(
+        lessonPlanId,
+        rescheduleData,
+        userId,
+      );
       res.json(rescheduledLesson);
     } catch (_error) {
       this.logger.error('Error rescheduling lesson:', _error);
@@ -691,12 +746,12 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   private async handleDuplicate(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
       const duplicateData = duplicateSchema.parse(req.body);
-      
+
       const duplicatedLesson = await this.lessonPlanService.duplicate(duplicateData, userId);
       res.status(201).json(duplicatedLesson);
     } catch (_error) {

@@ -11,7 +11,7 @@ const router = Router();
 const aiGenerator = new AIActivityGeneratorService();
 
 // Simple rate limiting for AI endpoints (to avoid async issues)
-const aiRateLimit = (req: any, res: any, next: any) => {
+const aiRateLimit = (_req: Request, _res: Response, next: () => void) => {
   // Simple in-memory rate limiting - production should use proper rate limiter
   next();
 };
@@ -113,40 +113,45 @@ router.post('/generate', authMiddleware, aiRateLimit, async (req: Request, res: 
 /**
  * Generate multiple activity variations
  */
-router.post('/generate-variations', authMiddleware, aiRateLimit, async (req: Request, res: Response) => {
-  try {
-    const params = generateActivitySchema.parse(req.body);
-    const count = Math.min(req.body.count || 3, 5); // Max 5 variations
+router.post(
+  '/generate-variations',
+  authMiddleware,
+  aiRateLimit,
+  async (req: Request, res: Response) => {
+    try {
+      const params = generateActivitySchema.parse(req.body);
+      const count = Math.min(req.body.count || 3, 5); // Max 5 variations
 
-    const searchResults = undefined;
+      const searchResults = undefined;
 
-    // Activity search removed - generating variations directly from lesson context
+      // Activity search removed - generating variations directly from lesson context
 
-    // Generate variations
-    const variations = await aiGenerator.generateActivityVariations(
-      {
-        searchResults,
-        lessonContext: params.lessonContext,
-        specificRequirements: params.specificRequirements,
-      },
-      count,
-    );
+      // Generate variations
+      const variations = await aiGenerator.generateActivityVariations(
+        {
+          searchResults,
+          lessonContext: params.lessonContext,
+          specificRequirements: params.specificRequirements,
+        },
+        count,
+      );
 
-    res.json({
-      success: true,
-      data: {
-        variations,
-        count: variations.length,
-      },
-    });
-  } catch (_error) {
-    log('Error generating activity variations:', _error);
-    res.status(500).json({
-      success: false,
-      error: 'Failed to generate activity variations',
-    });
-  }
-});
+      res.json({
+        success: true,
+        data: {
+          variations,
+          count: variations.length,
+        },
+      });
+    } catch (_error) {
+      log('Error generating activity variations:', _error);
+      res.status(500).json({
+        success: false,
+        error: 'Failed to generate activity variations',
+      });
+    }
+  },
+);
 
 // Activity enhancement route removed - over-engineered for single-teacher use
 

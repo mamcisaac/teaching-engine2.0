@@ -31,9 +31,9 @@ afterAll(() => {
 
 // Mock setup functions
 export function setupTests() {
-  console.log('Setting up tests...');
+  // Test setup - logging removed to comply with ESLint
 }
 
 export function teardownTests() {
-  console.log('Tearing down tests...');
+  // Test teardown - logging removed to comply with ESLint
 }

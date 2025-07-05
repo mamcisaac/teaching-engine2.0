@@ -17,18 +17,18 @@ export class ExcelParser extends CurriculumParser {
   async parse(content: string | Buffer): Promise<ParsedCurriculum> {
     // Read workbook
     const workbook = XLSX.read(content, { type: 'buffer' });
-    
+
     if (!workbook.SheetNames || workbook.SheetNames.length === 0) {
       throw new Error('No sheets found in Excel file');
     }
 
     // Process first sheet (or sheet named 'Expectations' if exists)
-    const sheetName = workbook.SheetNames.includes('Expectations') 
-      ? 'Expectations' 
+    const sheetName = workbook.SheetNames.includes('Expectations')
+      ? 'Expectations'
       : workbook.SheetNames[0];
-    
+
     const worksheet = workbook.Sheets[sheetName];
-    
+
     if (!worksheet) {
       throw new Error(`Worksheet ${sheetName} not found`);
     }
@@ -49,7 +49,7 @@ export class ExcelParser extends CurriculumParser {
 
     // Parse expectations
     const expectations: ParsedExpectation[] = [];
-    
+
     for (const row of rows) {
       const expectation = this.parseRow(row, grade, subject);
       if (expectation && this.isValidExpectation(expectation)) {
@@ -81,14 +81,21 @@ export class ExcelParser extends CurriculumParser {
   /**
    * Extract metadata from workbook
    */
-  private extractMetadata(workbook: XLSX.WorkBook, rows: ExcelRow[]): {
+  private extractMetadata(
+    workbook: XLSX.WorkBook,
+    rows: ExcelRow[],
+  ): {
     grade?: number;
     subject?: string;
     version?: string;
   } {
     // Try to extract from workbook properties
     const props = workbook.Props;
-    const metadata: any = {};
+    const metadata: {
+      grade?: number;
+      subject?: string;
+      version?: string;
+    } = {};
 
     if (props) {
       metadata.version = props.Title || props.Subject;
@@ -108,7 +115,7 @@ export class ExcelParser extends CurriculumParser {
         if (gradeMatch) {
           metadata.grade = parseInt(gradeMatch[1]);
         }
-        
+
         // Check for subject in sheet name
         const subjects = ['Mathematics', 'Language', 'Science', 'Social Studies', 'Arts'];
         for (const subject of subjects) {
@@ -126,17 +133,28 @@ export class ExcelParser extends CurriculumParser {
   /**
    * Parse a single Excel row
    */
-  private parseRow(row: ExcelRow, defaultGrade?: number, defaultSubject?: string): ParsedExpectation | null {
+  private parseRow(
+    row: ExcelRow,
+    defaultGrade?: number,
+    defaultSubject?: string,
+  ): ParsedExpectation | null {
     // Find code column (try various naming conventions)
     const codeKeys = ['Code', 'code', 'Expectation Code', 'expectation_code', 'ID', 'Reference'];
     const code = this.findValue(row, codeKeys);
-    
+
     if (!code) return null;
 
     // Find description column
-    const descKeys = ['Description', 'description', 'Expectation', 'expectation', 'Text', 'Content'];
+    const descKeys = [
+      'Description',
+      'description',
+      'Expectation',
+      'expectation',
+      'Text',
+      'Content',
+    ];
     const description = this.findValue(row, descKeys);
-    
+
     if (!description) return null;
 
     // Find other fields
@@ -187,7 +205,7 @@ export class ExcelParser extends CurriculumParser {
       if (normalized.includes('overall')) return 'overall';
       if (normalized.includes('specific')) return 'specific';
     }
-    
+
     return this.parseExpectationType(code, description);
   }
 
@@ -197,14 +215,14 @@ export class ExcelParser extends CurriculumParser {
   private extractGrade(row: ExcelRow): number | undefined {
     const gradeKeys = ['Grade', 'grade', 'Level', 'Year'];
     const gradeValue = this.findValue(row, gradeKeys);
-    
+
     if (gradeValue) {
       const numericGrade = parseInt(gradeValue.replace(/\D/g, ''));
       if (!isNaN(numericGrade) && numericGrade >= 1 && numericGrade <= 12) {
         return numericGrade;
       }
     }
-    
+
     return undefined;
   }
 
@@ -225,13 +243,13 @@ export class ExcelParser extends CurriculumParser {
     if (parts.length >= 2) {
       return parts[1];
     }
-    
+
     // Try to extract from code pattern
     const match = code.match(/^[A-Z0-9]+\.([A-Z]+)/);
     if (match) {
       return match[1];
     }
-    
+
     return 'General';
   }
 
@@ -239,13 +257,13 @@ export class ExcelParser extends CurriculumParser {
    * Organize expectations (group overall before specific)
    */
   private organizeExpectations(expectations: ParsedExpectation[]): ParsedExpectation[] {
-    const overall = expectations.filter(e => e.type === 'overall');
-    const specific = expectations.filter(e => e.type === 'specific');
-    
+    const overall = expectations.filter((e) => e.type === 'overall');
+    const specific = expectations.filter((e) => e.type === 'specific');
+
     // Sort by code
     overall.sort((a, b) => a.code.localeCompare(b.code));
     specific.sort((a, b) => a.code.localeCompare(b.code));
-    
+
     return [...overall, ...specific];
   }
 

@@ -10,18 +10,18 @@ export enum AuditEventType {
   PASSWORD_CHANGE = 'password_change',
   ACCOUNT_CREATION = 'account_creation',
   ACCOUNT_DELETION = 'account_deletion',
-  
+
   // Authorization events
   ACCESS_GRANTED = 'access_granted',
   ACCESS_DENIED = 'access_denied',
   PERMISSION_ELEVATION = 'permission_elevation',
-  
+
   // Data access events
   DATA_VIEW = 'data_view',
   DATA_EXPORT = 'data_export',
   DATA_IMPORT = 'data_import',
   DATA_BACKUP = 'data_backup',
-  
+
   // Sensitive operations
   PLAN_CREATION = 'plan_creation',
   PLAN_MODIFICATION = 'plan_modification',
@@ -29,20 +29,20 @@ export enum AuditEventType {
   CURRICULUM_IMPORT = 'curriculum_import',
   AI_GENERATION = 'ai_generation',
   TEMPLATE_CREATION = 'template_creation',
-  
+
   // System operations
   CACHE_CLEAR = 'cache_clear',
   METRICS_RESET = 'metrics_reset',
   SYSTEM_CONFIG_CHANGE = 'system_config_change',
-  
+
   // Security events
   RATE_LIMIT_EXCEEDED = 'rate_limit_exceeded',
   SUSPICIOUS_ACTIVITY = 'suspicious_activity',
   SECURITY_VIOLATION = 'security_violation',
-  
+
   // Privacy events
   PII_ACCESS = 'pii_access',
-  DATA_RETENTION_ACTION = 'data_retention_action'
+  DATA_RETENTION_ACTION = 'data_retention_action',
 }
 
 // Audit event interface
@@ -90,9 +90,9 @@ class AuditLogger {
       errorMessage: event.errorMessage,
       metadata: event.metadata,
       severity: this.getEventSeverity(event.eventType),
-      category: this.getEventCategory(event.eventType)
+      category: this.getEventCategory(event.eventType),
     });
-    
+
     // Also log security events to separate security log
     if (this.isSecurityEvent(event.eventType)) {
       logger.security(event.eventType, {
@@ -100,7 +100,7 @@ class AuditLogger {
         action: event.action,
         success: event.success,
         ipAddress: this.maskIP(event.ipAddress),
-        details: this.sanitizeDetails(event.details)
+        details: this.sanitizeDetails(event.details),
       });
     }
   }
@@ -114,7 +114,7 @@ class AuditLogger {
     action: string,
     details?: Record<string, unknown>,
     success: boolean = true,
-    errorMessage?: string
+    errorMessage?: string,
   ): AuditEvent {
     return {
       eventType,
@@ -125,10 +125,12 @@ class AuditLogger {
       details,
       ipAddress: req.ip || req.connection.remoteAddress,
       userAgent: req.get('User-Agent'),
-      sessionId: (req as any).sessionID || (req as any).requestId,
+      sessionId:
+        (req as Request & { sessionID?: string; requestId?: string }).sessionID ||
+        (req as Request & { sessionID?: string; requestId?: string }).requestId,
       timestamp: new Date().toISOString(),
       success,
-      errorMessage
+      errorMessage,
     };
   }
 
@@ -149,21 +151,27 @@ class AuditLogger {
 
   private sanitizeDetails(details?: Record<string, unknown>): Record<string, unknown> | undefined {
     if (!details) return undefined;
-    
+
     const sanitized = { ...details };
-    
+
     // Remove sensitive fields
     const sensitiveFields = [
-      'password', 'token', 'secret', 'apiKey', 'privateKey',
-      'sessionToken', 'refreshToken', 'accessToken'
+      'password',
+      'token',
+      'secret',
+      'apiKey',
+      'privateKey',
+      'sessionToken',
+      'refreshToken',
+      'accessToken',
     ];
-    
-    sensitiveFields.forEach(field => {
+
+    sensitiveFields.forEach((field) => {
       if (sanitized[field]) {
         sanitized[field] = '[REDACTED]';
       }
     });
-    
+
     return sanitized;
   }
 
@@ -171,27 +179,27 @@ class AuditLogger {
     const criticalEvents = [
       AuditEventType.ACCOUNT_DELETION,
       AuditEventType.SECURITY_VIOLATION,
-      AuditEventType.SYSTEM_CONFIG_CHANGE
+      AuditEventType.SYSTEM_CONFIG_CHANGE,
     ];
-    
+
     const highEvents = [
       AuditEventType.LOGIN_FAILURE,
       AuditEventType.ACCESS_DENIED,
       AuditEventType.PERMISSION_ELEVATION,
       AuditEventType.DATA_EXPORT,
       AuditEventType.SUSPICIOUS_ACTIVITY,
-      AuditEventType.PII_ACCESS
+      AuditEventType.PII_ACCESS,
     ];
-    
+
     const mediumEvents = [
       AuditEventType.LOGIN_SUCCESS,
       AuditEventType.PASSWORD_CHANGE,
       AuditEventType.ACCOUNT_CREATION,
       AuditEventType.DATA_IMPORT,
       AuditEventType.PLAN_DELETION,
-      AuditEventType.RATE_LIMIT_EXCEEDED
+      AuditEventType.RATE_LIMIT_EXCEEDED,
     ];
-    
+
     if (criticalEvents.includes(eventType)) return 'critical';
     if (highEvents.includes(eventType)) return 'high';
     if (mediumEvents.includes(eventType)) return 'medium';
@@ -199,53 +207,63 @@ class AuditLogger {
   }
 
   private getEventCategory(eventType: AuditEventType): string {
-    if ([
-      AuditEventType.LOGIN_SUCCESS,
-      AuditEventType.LOGIN_FAILURE,
-      AuditEventType.LOGOUT,
-      AuditEventType.PASSWORD_CHANGE,
-      AuditEventType.ACCOUNT_CREATION,
-      AuditEventType.ACCOUNT_DELETION
-    ].includes(eventType)) {
+    if (
+      [
+        AuditEventType.LOGIN_SUCCESS,
+        AuditEventType.LOGIN_FAILURE,
+        AuditEventType.LOGOUT,
+        AuditEventType.PASSWORD_CHANGE,
+        AuditEventType.ACCOUNT_CREATION,
+        AuditEventType.ACCOUNT_DELETION,
+      ].includes(eventType)
+    ) {
       return 'authentication';
     }
-    
-    if ([
-      AuditEventType.ACCESS_GRANTED,
-      AuditEventType.ACCESS_DENIED,
-      AuditEventType.PERMISSION_ELEVATION
-    ].includes(eventType)) {
+
+    if (
+      [
+        AuditEventType.ACCESS_GRANTED,
+        AuditEventType.ACCESS_DENIED,
+        AuditEventType.PERMISSION_ELEVATION,
+      ].includes(eventType)
+    ) {
       return 'authorization';
     }
-    
-    if ([
-      AuditEventType.DATA_VIEW,
-      AuditEventType.DATA_EXPORT,
-      AuditEventType.DATA_IMPORT,
-      AuditEventType.DATA_BACKUP
-    ].includes(eventType)) {
+
+    if (
+      [
+        AuditEventType.DATA_VIEW,
+        AuditEventType.DATA_EXPORT,
+        AuditEventType.DATA_IMPORT,
+        AuditEventType.DATA_BACKUP,
+      ].includes(eventType)
+    ) {
       return 'data_access';
     }
-    
-    if ([
-      AuditEventType.PLAN_CREATION,
-      AuditEventType.PLAN_MODIFICATION,
-      AuditEventType.PLAN_DELETION,
-      AuditEventType.CURRICULUM_IMPORT,
-      AuditEventType.AI_GENERATION,
-      AuditEventType.TEMPLATE_CREATION
-    ].includes(eventType)) {
+
+    if (
+      [
+        AuditEventType.PLAN_CREATION,
+        AuditEventType.PLAN_MODIFICATION,
+        AuditEventType.PLAN_DELETION,
+        AuditEventType.CURRICULUM_IMPORT,
+        AuditEventType.AI_GENERATION,
+        AuditEventType.TEMPLATE_CREATION,
+      ].includes(eventType)
+    ) {
       return 'business_operation';
     }
-    
-    if ([
-      AuditEventType.RATE_LIMIT_EXCEEDED,
-      AuditEventType.SUSPICIOUS_ACTIVITY,
-      AuditEventType.SECURITY_VIOLATION
-    ].includes(eventType)) {
+
+    if (
+      [
+        AuditEventType.RATE_LIMIT_EXCEEDED,
+        AuditEventType.SUSPICIOUS_ACTIVITY,
+        AuditEventType.SECURITY_VIOLATION,
+      ].includes(eventType)
+    ) {
       return 'security';
     }
-    
+
     return 'system';
   }
 
@@ -255,9 +273,9 @@ class AuditLogger {
       AuditEventType.ACCESS_DENIED,
       AuditEventType.RATE_LIMIT_EXCEEDED,
       AuditEventType.SUSPICIOUS_ACTIVITY,
-      AuditEventType.SECURITY_VIOLATION
+      AuditEventType.SECURITY_VIOLATION,
     ];
-    
+
     return securityEvents.includes(eventType);
   }
 }
@@ -271,52 +289,56 @@ export const auditLogger = new AuditLogger();
 export function auditMiddleware(
   eventType: AuditEventType,
   getActionFromRequest?: (req: Request) => string,
-  getDetailsFromRequest?: (req: Request) => Record<string, unknown>
+  getDetailsFromRequest?: (req: Request) => Record<string, unknown>,
 ) {
   return (req: Request, res: Response, next: NextFunction) => {
     // Store original response methods
     const originalJson = res.json;
     const originalSend = res.send;
-    
+
     // Override response methods to capture success/failure
-    res.json = function(data: unknown) {
+    res.json = function (data: unknown) {
       const success = res.statusCode < 400;
       const action = getActionFromRequest ? getActionFromRequest(req) : `${req.method} ${req.path}`;
       const details = getDetailsFromRequest ? getDetailsFromRequest(req) : undefined;
-      
+
       const event = auditLogger.createEventFromRequest(
         req,
         eventType,
         action,
         details,
         success,
-        success ? undefined : (typeof data === 'object' && data !== null && 'message' in data ? (data as { message: string }).message : 'Operation failed')
+        success
+          ? undefined
+          : typeof data === 'object' && data !== null && 'message' in data
+            ? (data as { message: string }).message
+            : 'Operation failed',
       );
-      
+
       auditLogger.logEvent(event);
-      
+
       return originalJson.call(this, data);
     };
-    
-    res.send = function(data: unknown) {
+
+    res.send = function (data: unknown) {
       const success = res.statusCode < 400;
       const action = getActionFromRequest ? getActionFromRequest(req) : `${req.method} ${req.path}`;
       const details = getDetailsFromRequest ? getDetailsFromRequest(req) : undefined;
-      
+
       const event = auditLogger.createEventFromRequest(
         req,
         eventType,
         action,
         details,
         success,
-        success ? undefined : 'Operation failed'
+        success ? undefined : 'Operation failed',
       );
-      
+
       auditLogger.logEvent(event);
-      
+
       return originalSend.call(this, data);
     };
-    
+
     next();
   };
 }
@@ -332,32 +354,33 @@ export const auditFunctions = {
       'User login attempt',
       { email: req.body.email },
       success,
-      errorMessage
+      errorMessage,
     );
     auditLogger.logEvent(event);
   },
 
   logout: (req: Request) => {
-    const event = auditLogger.createEventFromRequest(
-      req,
-      AuditEventType.LOGOUT,
-      'User logout'
-    );
+    const event = auditLogger.createEventFromRequest(req, AuditEventType.LOGOUT, 'User logout');
     auditLogger.logEvent(event);
   },
 
-  planOperation: (req: Request, operation: 'create' | 'update' | 'delete', planType: string, planId: string) => {
+  planOperation: (
+    req: Request,
+    operation: 'create' | 'update' | 'delete',
+    planType: string,
+    planId: string,
+  ) => {
     const eventTypeMap = {
       create: AuditEventType.PLAN_CREATION,
       update: AuditEventType.PLAN_MODIFICATION,
-      delete: AuditEventType.PLAN_DELETION
+      delete: AuditEventType.PLAN_DELETION,
     };
-    
+
     const event = auditLogger.createEventFromRequest(
       req,
       eventTypeMap[operation],
       `${operation} ${planType}`,
-      { planType, planId }
+      { planType, planId },
     );
     auditLogger.logEvent(event);
   },
@@ -367,7 +390,7 @@ export const auditFunctions = {
       req,
       AuditEventType.DATA_EXPORT,
       `Export ${dataType}`,
-      { dataType, format }
+      { dataType, format },
     );
     auditLogger.logEvent(event);
   },
@@ -377,7 +400,7 @@ export const auditFunctions = {
       req,
       AuditEventType.CURRICULUM_IMPORT,
       'Import curriculum data',
-      { fileName, recordCount }
+      { fileName, recordCount },
     );
     auditLogger.logEvent(event);
   },
@@ -387,7 +410,7 @@ export const auditFunctions = {
       req,
       AuditEventType.AI_GENERATION,
       `AI ${operation}`,
-      { model, operation }
+      { model, operation },
     );
     auditLogger.logEvent(event);
   },
@@ -397,7 +420,7 @@ export const auditFunctions = {
       req,
       AuditEventType.SUSPICIOUS_ACTIVITY,
       `Suspicious activity: ${activityType}`,
-      details
+      details,
     );
     auditLogger.logEvent(event);
   },
@@ -407,10 +430,10 @@ export const auditFunctions = {
       req,
       AuditEventType.RATE_LIMIT_EXCEEDED,
       'Rate limit exceeded',
-      { limitType }
+      { limitType },
     );
     auditLogger.logEvent(event);
-  }
+  },
 };
 
 export default auditLogger;

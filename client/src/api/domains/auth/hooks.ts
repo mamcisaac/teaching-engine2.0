@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { authApi } from './api';
-import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+import { showSuccessToast, handleApiError } from '../../core/utils';
 import { authService } from '../../../services/authService';
 import type { LoginCredentials, RegisterData, User } from '../../../types';
 
@@ -26,15 +26,15 @@ export const useLogin = () => {
       authService.setTokens({
         accessToken: data.accessToken,
         refreshToken: data.refreshToken,
-        expiresAt: Date.now() + 60 * 60 * 1000 // 1 hour default
+        expiresAt: Date.now() + 60 * 60 * 1000, // 1 hour default
       });
-      
+
       // Store user
       authService.setUser(data.user);
-      
+
       // Invalidate and refetch user data
       queryClient.invalidateQueries({ queryKey: ['auth', 'currentUser'] });
-      
+
       showSuccessToast('Logged in successfully');
       navigate('/dashboard');
     },
@@ -53,15 +53,15 @@ export const useRegister = () => {
       authService.setTokens({
         accessToken: data.accessToken,
         refreshToken: data.refreshToken,
-        expiresAt: Date.now() + 60 * 60 * 1000 // 1 hour default
+        expiresAt: Date.now() + 60 * 60 * 1000, // 1 hour default
       });
-      
+
       // Store user
       authService.setUser(data.user);
-      
+
       // Invalidate and refetch user data
       queryClient.invalidateQueries({ queryKey: ['auth', 'currentUser'] });
-      
+
       showSuccessToast('Registration successful');
       navigate('/onboarding');
     },
@@ -78,10 +78,10 @@ export const useLogout = () => {
     onSuccess: () => {
       // Clear tokens
       authService.clearTokens();
-      
+
       // Clear all cached data
       queryClient.clear();
-      
+
       showSuccessToast('Logged out successfully');
       navigate('/login');
     },
@@ -110,7 +110,7 @@ export const useUpdateProfile = () => {
 
 export const useChangePassword = () => {
   return useMutation({
-    mutationFn: (passwords: { currentPassword: string; newPassword: string }) => 
+    mutationFn: (passwords: { currentPassword: string; newPassword: string }) =>
       authApi.changePassword(passwords),
     onSuccess: () => {
       showSuccessToast('Password changed successfully');
@@ -133,7 +133,7 @@ export const useResetPassword = () => {
   const navigate = useNavigate();
 
   return useMutation({
-    mutationFn: ({ token, newPassword }: { token: string; newPassword: string }) => 
+    mutationFn: ({ token, newPassword }: { token: string; newPassword: string }) =>
       authApi.resetPassword(token, newPassword),
     onSuccess: () => {
       showSuccessToast('Password reset successfully. Please login with your new password.');

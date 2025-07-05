@@ -40,7 +40,7 @@ export function ProgressiveDataLoader<T>({
   const [hasMore, setHasMore] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [total, setTotal] = useState<number | undefined>();
-  
+
   const containerRef = useRef<HTMLDivElement>(null);
   const isInitialLoad = useRef(true);
 
@@ -50,12 +50,12 @@ export function ProgressiveDataLoader<T>({
       isInitialLoad.current = false;
       loadInitialData();
     }
-  }, []);
+  }, [loadInitialData]);
 
-  const loadInitialData = async () => {
+  const loadInitialData = useCallback(async () => {
     setLoading(true);
     setError(null);
-    
+
     try {
       const result = await loadData(0, batchSize);
       setItems(result.data);
@@ -66,7 +66,7 @@ export function ProgressiveDataLoader<T>({
     } finally {
       setLoading(false);
     }
-  };
+  }, [loadData, batchSize]);
 
   const loadMoreData = useCallback(async () => {
     if (loadingMore || !hasMore) return;
@@ -76,7 +76,7 @@ export function ProgressiveDataLoader<T>({
 
     try {
       const result = await loadData(items.length, batchSize);
-      setItems(prev => [...prev, ...result.data]);
+      setItems((prev) => [...prev, ...result.data]);
       setHasMore(result.hasMore);
       setTotal(result.total);
       onLoadMore?.(items.length + result.data.length);
@@ -167,7 +167,7 @@ export function ProgressiveDataLoader<T>({
   }
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className={`${className} ${infiniteScroll ? 'overflow-auto' : ''}`}
       data-testid="progressive-loader-container"
@@ -184,9 +184,7 @@ export function ProgressiveDataLoader<T>({
       {/* Items */}
       <div className="space-y-2">
         {items.map((item, index) => (
-          <div key={index}>
-            {renderItem(item, index)}
-          </div>
+          <div key={index}>{renderItem(item, index)}</div>
         ))}
       </div>
 
@@ -208,9 +206,7 @@ export function ProgressiveDataLoader<T>({
               Load More
             </Button>
           ) : (
-            <div className="py-2 text-xs text-gray-400">
-              Scroll down to load more items
-            </div>
+            <div className="py-2 text-xs text-gray-400">Scroll down to load more items</div>
           )}
         </div>
       )}

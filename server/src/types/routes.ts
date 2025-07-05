@@ -45,7 +45,7 @@ export interface ETFOLessonPlanCreateData {
   date: string | Date;
   unitPlanId: string;
   duration?: number;
-  
+
   // Three-part lesson structure
   mindsOn?: string;
   mindsOnFr?: string;
@@ -53,29 +53,29 @@ export interface ETFOLessonPlanCreateData {
   actionFr?: string;
   consolidation?: string;
   consolidationFr?: string;
-  
+
   // Planning details
   learningGoals?: string;
   learningGoalsFr?: string;
   materials?: string[];
   grouping?: string;
-  
+
   // Bilingual support
   titleFr?: string;
-  
+
   // Differentiation
   accommodations?: string[];
   modifications?: string[];
   extensions?: string[];
-  
+
   // Assessment
   assessmentType?: 'diagnostic' | 'formative' | 'summative';
   assessmentNotes?: string;
-  
+
   // Substitute teacher support
   isSubFriendly?: boolean;
   subNotes?: string;
-  
+
   // Curriculum expectations
   expectationIds?: string[];
 }
@@ -89,21 +89,21 @@ export interface UnitPlanCreateData {
   description?: string;
   bigIdeas?: string;
   essentialQuestions?: string[];
-  
+
   // Timeline
   startDate: string | Date;
   endDate: string | Date;
   estimatedHours?: number;
-  
+
   // Bilingual support
   titleFr?: string;
   descriptionFr?: string;
   bigIdeasFr?: string;
-  
+
   // Assessment
   assessmentPlan?: string;
   successCriteria?: string[];
-  
+
   // ETFO-aligned fields
   crossCurricularConnections?: string;
   learningSkills?: string[];
@@ -118,7 +118,7 @@ export interface UnitPlanCreateData {
   socialJusticeConnections?: string;
   technologyIntegration?: string;
   communityConnections?: string;
-  
+
   // Relationships
   expectations?: ExpectationData[];
   expectationIds?: string[];
@@ -134,24 +134,24 @@ export interface SubstitutePlanCreateData {
   gradeLevel: string;
   subject: string;
   duration?: number;
-  
+
   // Plan content
   objectives?: string;
   materials?: string;
   activities?: string;
   notes?: string;
-  
+
   // Bilingual support
   titleFr?: string;
   objectivesFr?: string;
   materialsFr?: string;
   activitiesFr?: string;
   notesFr?: string;
-  
+
   // Metadata
   isActive?: boolean;
   difficulty?: number;
-  
+
   // Emergency contact info
   emergencyContacts?: string;
   classroomManagement?: string;
@@ -168,22 +168,22 @@ export interface TemplateCreateData {
   subject: string;
   gradeMin: number;
   gradeMax: number;
-  
+
   // Content
   description?: string;
   content?: string;
-  
+
   // Bilingual support
   titleFr?: string;
   descriptionFr?: string;
   contentFr?: string;
-  
+
   // Metadata
   isSystem?: boolean;
   tags?: string[];
-  
+
   // Template-specific fields
-  templateData?: Record<string, any>;
+  templateData?: Record<string, unknown>;
 }
 
 export interface TemplateUpdateData extends Partial<TemplateCreateData> {}
@@ -191,7 +191,7 @@ export interface TemplateUpdateData extends Partial<TemplateCreateData> {}
 // Cache Types
 export interface CacheData {
   key: string;
-  value: any;
+  value: unknown;
   ttl?: number;
   category?: 'user' | 'api' | 'curriculum' | 'static';
 }
@@ -210,25 +210,25 @@ export interface AIServiceRequestData {
   title?: string;
   date?: string | Date;
   planType?: string;
-  existingContent?: any;
+  existingContent?: unknown;
 }
 
 // Curriculum Export Types
 export interface CurriculumExportData {
-  expectations?: any[];
+  expectations?: unknown[];
   format?: string;
-  options?: Record<string, any>;
+  options?: Record<string, unknown>;
 }
 
 // Curriculum Import Types
 export interface CurriculumImportData {
-  exportOptions?: Record<string, any>;
-  searchOptions?: Record<string, any>;
+  exportOptions?: Record<string, unknown>;
+  searchOptions?: Record<string, unknown>;
 }
 
 // Curriculum Search Types
 export interface CurriculumSearchData {
   query?: string;
-  filters?: Record<string, any>;
+  filters?: Record<string, unknown>;
   results?: string[];
 }

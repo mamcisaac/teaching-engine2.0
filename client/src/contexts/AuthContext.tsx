@@ -116,7 +116,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setIsLoading(false);
       }
     },
-    [updateAuthState, error],
+    [updateAuthState],
   );
 
   const logout = useCallback(async () => {
@@ -132,7 +132,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       updateAuthState(null);
       setIsLoading(false);
     }
-  }, [updateAuthState, error]);
+  }, [updateAuthState]);
 
   const getToken = useCallback((): string | null => {
     return authService.getAccessToken();
@@ -156,7 +156,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       updateAuthState(null);
       return false;
     }
-  }, [updateAuthState, error]);
+  }, [updateAuthState]);
 
   // Initial auth check with improved error handling and retry logic
   useEffect(() => {

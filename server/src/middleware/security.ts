@@ -89,8 +89,8 @@ function createRateLimiter() {
 }
 
 // Rate limiter instances
-const generalLimiter = createRateLimiter();
-const authLimiter = new RateLimiterMemory({
+const _generalLimiter = createRateLimiter();
+const _authLimiter = new RateLimiterMemory({
   points: process.env.NODE_ENV === 'test' ? 20 : 5, // Higher limit for tests to allow multiple test registrations
   duration: process.env.NODE_ENV === 'test' ? 5 : 900, // 5 seconds for tests, 15 minutes for production
   blockDuration: process.env.NODE_ENV === 'test' ? 1 : 1800, // 1 second for tests, 30 minutes for production

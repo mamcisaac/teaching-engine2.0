@@ -10,7 +10,11 @@ import { BaseService } from '../services/base/BaseService.js';
 import { commonValidations } from './base/validation.js';
 import { prisma } from '../prisma.js';
 import { Prisma } from '@teaching-engine/database';
-import { optimizedIncludes, optimizedQueries, queryPerformance } from './optimizations/queryOptimizations.js';
+import {
+  optimizedIncludes,
+  optimizedQueries,
+  queryPerformance,
+} from './optimizations/queryOptimizations.js';
 import { TemplateCreateData, TemplateUpdateData } from '../types/routes.js';
 
 // Template-specific validation schemas
@@ -33,7 +37,7 @@ const templateContentSchema = z.object({
       forIEP: z.array(z.string()).optional(),
     })
     .optional(),
-  
+
   // Lesson Plan fields
   minds_on: z.record(z.unknown()).optional(),
   action: z.record(z.unknown()).optional(),
@@ -66,15 +70,18 @@ const templateUpdateSchema = templateCreateSchema.partial();
 
 const templateQuerySchema = z.object({
   type: z.enum(['UNIT_PLAN', 'LESSON_PLAN']).optional(),
-  category: z.enum(['BY_SUBJECT', 'BY_GRADE', 'BY_THEME', 'BY_SEASON', 'BY_SKILL', 'CUSTOM']).optional(),
+  category: z
+    .enum(['BY_SUBJECT', 'BY_GRADE', 'BY_THEME', 'BY_SEASON', 'BY_SKILL', 'CUSTOM'])
+    .optional(),
   subject: z.string().optional(),
   gradeMin: z.coerce.number().int().min(1).max(12).optional(),
   gradeMax: z.coerce.number().int().min(1).max(12).optional(),
   isSystem: z.coerce.boolean().optional(),
   search: z.string().optional(),
-  tags: z.union([z.string(), z.array(z.string())]).optional().transform(val => 
-    typeof val === 'string' ? [val] : val
-  ),
+  tags: z
+    .union([z.string(), z.array(z.string())])
+    .optional()
+    .transform((val) => (typeof val === 'string' ? [val] : val)),
   sortBy: z.enum(['title', 'usageCount', 'averageRating', 'createdAt', 'lastUsedAt']).optional(),
   sortOrder: z.enum(['asc', 'desc']).optional(),
   limit: z.coerce.number().int().min(1).max(100).default(10),
@@ -87,7 +94,7 @@ class TemplateService extends BaseService {
     super('TemplateService');
   }
 
-  async findMany(filters: Record<string, any>, userId: number) {
+  async findMany(filters: Record<string, unknown>, userId: number) {
     const {
       type,
       category,
@@ -115,7 +122,11 @@ class TemplateService extends BaseService {
 
     // Search functionality using optimized search utility
     if (search) {
-      const searchWhere = optimizedQueries.createSearchWhere(search, ['title', 'description', 'subject']);
+      const searchWhere = optimizedQueries.createSearchWhere(search, [
+        'title',
+        'description',
+        'subject',
+      ]);
       where.AND.push(searchWhere);
     }
 
@@ -130,24 +141,21 @@ class TemplateService extends BaseService {
     }
 
     // Sorting with validation
-    const orderBy = queryPerformance.createOptimizedSort(
-      sortBy,
-      sortOrder,
-      ['title', 'usageCount', 'averageRating', 'createdAt', 'lastUsedAt']
-    );
+    const orderBy = queryPerformance.createOptimizedSort(sortBy, sortOrder, [
+      'title',
+      'usageCount',
+      'averageRating',
+      'createdAt',
+      'lastUsedAt',
+    ]);
 
-    const result = await queryPerformance.monitorQuery(
-      'template.findMany',
-      () => optimizedQueries.paginatedQuery(
-        prisma.planTemplate,
-        where,
-        {
-          limit,
-          offset,
-          orderBy,
-          include: optimizedIncludes.template,
-        }
-      )
+    const result = await queryPerformance.monitorQuery('template.findMany', () =>
+      optimizedQueries.paginatedQuery(prisma.planTemplate, where, {
+        limit,
+        offset,
+        orderBy,
+        include: optimizedIncludes.template,
+      }),
     );
 
     const { items: templates, total } = result;
@@ -164,15 +172,14 @@ class TemplateService extends BaseService {
   }
 
   async findById(id: string, userId: number) {
-    return queryPerformance.monitorQuery(
-      'template.findById',
-      () => prisma.planTemplate.findFirst({
+    return queryPerformance.monitorQuery('template.findById', () =>
+      prisma.planTemplate.findFirst({
         where: {
           id,
           OR: [{ isSystem: true }, { createdByUserId: userId }],
         },
         include: optimizedIncludes.template,
-      })
+      }),
     );
   }
 
@@ -183,8 +190,8 @@ class TemplateService extends BaseService {
         titleFr: data.titleFr,
         description: data.description,
         descriptionFr: data.descriptionFr,
-        type: data.type as any, // Will be validated by schema
-        category: data.category as any, // Will be validated by schema
+        type: data.type,
+        category: data.category,
         subject: data.subject,
         gradeMin: data.gradeMin,
         gradeMax: data.gradeMax,
@@ -217,8 +224,8 @@ class TemplateService extends BaseService {
         ...(data.titleFr && { titleFr: data.titleFr }),
         ...(data.description && { description: data.description }),
         ...(data.descriptionFr && { descriptionFr: data.descriptionFr }),
-        ...(data.type && { type: data.type as any }),
-        ...(data.category && { category: data.category as any }),
+        ...(data.type && { type: data.type }),
+        ...(data.category && { category: data.category }),
         ...(data.subject && { subject: data.subject }),
         ...(data.gradeMin !== undefined && { gradeMin: data.gradeMin }),
         ...(data.gradeMax !== undefined && { gradeMax: data.gradeMax }),
@@ -355,13 +362,13 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
   protected async handleList(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;
       const schemas = this.getValidationSchemas();
       const filters = schemas.query.parse(req.query);
-      
+
       const result = await this.templateService.findMany(filters, userId);
       res.json(result);
     } catch (_error) {
@@ -378,14 +385,14 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
     this.router.get(
       '/filter-options',
       this.requireAuthentication,
-      this.asyncHandler(this.handleFilterOptions.bind(this))
+      this.asyncHandler(this.handleFilterOptions.bind(this)),
     );
   }
 
   private async handleFilterOptions(
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     try {
       const userId = req.userId!;

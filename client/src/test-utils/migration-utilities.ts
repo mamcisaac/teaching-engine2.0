@@ -1,13 +1,14 @@
 /**
  * Migration Utilities for Real Implementation Testing
- * 
+ *
  * These utilities help developers migrate existing mock-based tests
  * to use real implementations while maintaining test reliability.
  */
 
 import React from 'react';
-import { renderWithProviders, testUtils } from './test-providers';
+import { renderWithProviders } from './test-providers';
 import type { CustomRenderOptions } from './test-providers';
+import logger from '../utils/logger';
 
 // Migration configuration
 export interface MigrationConfig {
@@ -22,12 +23,12 @@ export interface MigrationConfig {
 export function detectMigrationPhase(): MigrationConfig['phase'] {
   const envPhase = process.env.VITE_MIGRATION_PHASE as MigrationConfig['phase'];
   if (envPhase) return envPhase;
-  
+
   // Auto-detect based on environment
   if (process.env.NODE_ENV === 'test' && process.env.VITE_USE_REAL_API === 'true') {
     return 'real';
   }
-  
+
   return 'mock'; // Default to mock for safety
 }
 
@@ -39,9 +40,13 @@ export class TestMigrationHelper {
   private config: MigrationConfig;
   private testResults: Array<{
     testName: string;
-    mockResult?: any;
-    realResult?: any;
-    differences?: any[];
+    mockResult?: unknown;
+    realResult?: unknown;
+    differences?: Array<{
+      path: string;
+      mockValue: unknown;
+      realValue: unknown;
+    }>;
     performance?: { mock: number; real: number };
   }> = [];
 
@@ -62,7 +67,7 @@ export class TestMigrationHelper {
   async renderWithMigration(
     ui: React.ReactElement,
     testName: string,
-    options: CustomRenderOptions = {}
+    options: CustomRenderOptions = {},
   ) {
     const phase = this.config.phase;
 
@@ -97,9 +102,19 @@ export class TestMigrationHelper {
   private async renderWithComparison(
     ui: React.ReactElement,
     testName: string,
-    options: CustomRenderOptions
+    options: CustomRenderOptions,
   ) {
-    const results: any = { testName };
+    const results: {
+      testName: string;
+      mockResult?: unknown;
+      realResult?: unknown;
+      differences?: Array<{
+        path: string;
+        mockValue: unknown;
+        realValue: unknown;
+      }>;
+      performance?: { mock: number; real: number };
+    } = { testName };
 
     if (this.config.enableComparison) {
       // Test with mock first (faster)
@@ -147,7 +162,7 @@ export class TestMigrationHelper {
   async testApiWithMigration<T>(
     apiCall: () => Promise<T>,
     testName: string,
-    mockImplementation?: () => Promise<T>
+    mockImplementation?: () => Promise<T>,
   ): Promise<T> {
     const phase = this.config.phase;
 
@@ -162,18 +177,19 @@ export class TestMigrationHelper {
         if (this.config.enableComparison && mockImplementation) {
           return this.compareApiImplementations(apiCall, mockImplementation, testName);
         }
-        // Fall through to real implementation
+      // Fall through to real implementation
 
-      case 'real':
+      case 'real': {
         const start = performance.now();
         const result = await apiCall();
         const duration = performance.now() - start;
-        
+
         if (duration > (this.config.maxResponseTime || 5000)) {
           console.warn(`Slow API call in ${testName}: ${duration}ms`);
         }
-        
+
         return result;
+      }
 
       default:
         throw new Error(`Unknown migration phase: ${phase}`);
@@ -186,7 +202,7 @@ export class TestMigrationHelper {
   private async compareApiImplementations<T>(
     realApi: () => Promise<T>,
     mockApi: () => Promise<T>,
-    testName: string
+    testName: string,
   ): Promise<T> {
     const mockStart = performance.now();
     const mockResult = await mockApi();
@@ -198,7 +214,7 @@ export class TestMigrationHelper {
 
     // Compare results structure (not exact values)
     const differences = this.findDifferences(mockResult, realResult);
-    
+
     if (differences.length > 0 && this.config.logDifferences) {
       console.warn(`API differences in ${testName}:`, differences);
     }
@@ -218,15 +234,27 @@ export class TestMigrationHelper {
   /**
    * Find differences between mock and real results
    */
-  private findDifferences(mock: any, real: any): any[] {
-    const differences: any[] = [];
+  private findDifferences(
+    mock: unknown,
+    real: unknown,
+    path = '',
+  ): Array<{
+    path: string;
+    mockValue: unknown;
+    realValue: unknown;
+  }> {
+    const differences: Array<{
+      path: string;
+      mockValue: unknown;
+      realValue: unknown;
+    }> = [];
 
     // Type comparison
     if (typeof mock !== typeof real) {
       differences.push({
-        type: 'type_mismatch',
-        mock: typeof mock,
-        real: typeof real,
+        path: path || 'root',
+        mockValue: mock,
+        realValue: real,
       });
       return differences;
     }
@@ -235,9 +263,9 @@ export class TestMigrationHelper {
     if (Array.isArray(mock) && Array.isArray(real)) {
       if (mock.length !== real.length) {
         differences.push({
-          type: 'array_length',
-          mock: mock.length,
-          real: real.length,
+          path: `${path}.length`,
+          mockValue: mock.length,
+          realValue: real.length,
         });
       }
       return differences;
@@ -245,25 +273,29 @@ export class TestMigrationHelper {
 
     // Object property comparison
     if (mock && real && typeof mock === 'object') {
-      const mockKeys = Object.keys(mock);
-      const realKeys = Object.keys(real);
-      
-      const missingInReal = mockKeys.filter(key => !realKeys.includes(key));
-      const extraInReal = realKeys.filter(key => !mockKeys.includes(key));
-      
-      if (missingInReal.length > 0) {
+      const mockObj = mock as Record<string, unknown>;
+      const realObj = real as Record<string, unknown>;
+      const mockKeys = Object.keys(mockObj);
+      const realKeys = Object.keys(realObj);
+
+      const missingInReal = mockKeys.filter((key) => !realKeys.includes(key));
+      const extraInReal = realKeys.filter((key) => !mockKeys.includes(key));
+
+      missingInReal.forEach((key) => {
         differences.push({
-          type: 'missing_properties',
-          properties: missingInReal,
+          path: `${path}.${key}`,
+          mockValue: mockObj[key],
+          realValue: undefined,
         });
-      }
-      
-      if (extraInReal.length > 0) {
+      });
+
+      extraInReal.forEach((key) => {
         differences.push({
-          type: 'extra_properties',
-          properties: extraInReal,
+          path: `${path}.${key}`,
+          mockValue: undefined,
+          realValue: realObj[key],
         });
-      }
+      });
     }
 
     return differences;
@@ -275,9 +307,9 @@ export class TestMigrationHelper {
   private logPerformanceComparison(testName: string, mockTime: number, realTime: number) {
     const ratio = realTime / mockTime;
     const status = ratio > 10 ? '⚠️' : ratio > 3 ? '⏳' : '✅';
-    
-    console.log(
-      `${status} ${testName} - Mock: ${mockTime.toFixed(1)}ms, Real: ${realTime.toFixed(1)}ms (${ratio.toFixed(1)}x)`
+
+    logger.info(
+      `${status} ${testName} - Mock: ${mockTime.toFixed(1)}ms, Real: ${realTime.toFixed(1)}ms (${ratio.toFixed(1)}x)`,
     );
   }
 
@@ -306,19 +338,19 @@ export class TestMigrationHelper {
     }
 
     const performanceData = this.testResults
-      .filter(r => r.performance)
-      .map(r => r.performance!);
+      .filter((r) => r.performance)
+      .map((r) => r.performance!);
 
-    const slowdowns = performanceData.map(p => p.real / p.mock);
+    const slowdowns = performanceData.map((p) => p.real / p.mock);
     const averageSlowdown = slowdowns.reduce((a, b) => a + b, 0) / slowdowns.length;
 
     const slowTests = this.testResults
-      .filter(r => r.performance && r.performance.real > 1000)
-      .map(r => r.testName);
+      .filter((r) => r.performance && r.performance.real > 1000)
+      .map((r) => r.testName);
 
     const testsWithDifferences = this.testResults
-      .filter(r => r.differences && r.differences.length > 0)
-      .map(r => r.testName);
+      .filter((r) => r.differences && r.differences.length > 0)
+      .map((r) => r.testName);
 
     const recommendations: string[] = [];
 
@@ -362,17 +394,14 @@ export const migrationUtils = {
    */
   createMigrationTest: (config?: Partial<MigrationConfig>) => {
     const helper = new TestMigrationHelper(config);
-    
+
     return {
       render: (ui: React.ReactElement, testName: string, options?: CustomRenderOptions) =>
         helper.renderWithMigration(ui, testName, options),
-      
-      testApi: <T>(
-        apiCall: () => Promise<T>,
-        testName: string,
-        mockImpl?: () => Promise<T>
-      ) => helper.testApiWithMigration(apiCall, testName, mockImpl),
-      
+
+      testApi: <T>(apiCall: () => Promise<T>, testName: string, mockImpl?: () => Promise<T>) =>
+        helper.testApiWithMigration(apiCall, testName, mockImpl),
+
       report: () => helper.generateReport(),
       cleanup: () => helper.cleanup(),
     };
@@ -401,16 +430,16 @@ export const migrationUtils = {
   expectPerformance: async <T>(
     operation: () => Promise<T>,
     maxTime: number = 1000,
-    operationName: string = 'operation'
+    operationName: string = 'operation',
   ): Promise<T> => {
     const start = performance.now();
     const result = await operation();
     const duration = performance.now() - start;
-    
+
     if (duration > maxTime) {
       console.warn(`Performance warning: ${operationName} took ${duration}ms (max: ${maxTime}ms)`);
     }
-    
+
     return result;
   },
 };
@@ -424,13 +453,13 @@ export function setupMigrationEnvironment(phase: MigrationConfig['phase']) {
     process.env.VITE_MIGRATION_PHASE = phase;
     process.env.VITE_USE_REAL_API = phase === 'real' ? 'true' : 'false';
   }
-  
+
   // Configure global test settings
   const globalConfig = {
     testTimeout: phase === 'real' ? 15000 : 5000,
     retryCount: phase === 'real' ? 2 : 0,
   };
-  
+
   return globalConfig;
 }
 
@@ -439,19 +468,19 @@ export function setupMigrationEnvironment(phase: MigrationConfig['phase']) {
  */
 export function setupMigrationTest(config?: Partial<MigrationConfig>) {
   const helper = new TestMigrationHelper(config);
-  
+
   // Setup before each test
   beforeEach(() => {
     helper.cleanup();
   });
-  
+
   // Cleanup after all tests
   afterAll(() => {
     const report = helper.generateReport();
     if (report.summary.totalTests > 0) {
-      console.log('Migration Test Report:', report);
+      logger.info('Migration Test Report:', report);
     }
   });
-  
+
   return helper;
 }

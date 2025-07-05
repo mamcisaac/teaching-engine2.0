@@ -28,7 +28,7 @@ interface KeyboardShortcutsState {
   isEnabled: boolean;
   preferences: KeyboardShortcutPreferences;
   isListening: boolean;
-  
+
   // Actions
   registerShortcut: (shortcut: KeyboardShortcut) => void;
   unregisterShortcut: (id: string) => void;
@@ -38,7 +38,7 @@ interface KeyboardShortcutsState {
   updatePreferences: (prefs: Partial<KeyboardShortcutPreferences>) => void;
   startListening: () => void;
   stopListening: () => void;
-  
+
   // Computed values
   getShortcutsByCategory: (category: string) => KeyboardShortcut[];
   getFormattedShortcut: (shortcut: KeyboardShortcut) => string;
@@ -47,22 +47,22 @@ interface KeyboardShortcutsState {
 const defaultPreferences: KeyboardShortcutPreferences = {
   enabled: true,
   showHints: true,
-  customShortcuts: {}
+  customShortcuts: {},
 };
 
 const isMac = typeof window !== 'undefined' && navigator.platform.toUpperCase().indexOf('MAC') >= 0;
 
 export const formatShortcut = (shortcut: KeyboardShortcut): string => {
   const parts: string[] = [];
-  
+
   if (shortcut.ctrl && !isMac) parts.push('Ctrl');
   if (shortcut.cmd && isMac) parts.push('⌘');
   if (shortcut.ctrl && isMac) parts.push('⌃');
   if (shortcut.alt) parts.push(isMac ? '⌥' : 'Alt');
   if (shortcut.shift) parts.push(isMac ? '⇧' : 'Shift');
-  
+
   parts.push(shortcut.key.toUpperCase());
-  
+
   return parts.join(isMac ? '' : '+');
 };
 
@@ -74,11 +74,11 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
       isEnabled: true,
       preferences: defaultPreferences,
       isListening: false,
-      
+
       // Actions
       registerShortcut: (shortcut: KeyboardShortcut) => {
         set((state) => {
-          const existingIndex = state.shortcuts.findIndex(s => s.id === shortcut.id);
+          const existingIndex = state.shortcuts.findIndex((s) => s.id === shortcut.id);
           if (existingIndex >= 0) {
             // Update existing shortcut
             state.shortcuts[existingIndex] = shortcut;
@@ -88,38 +88,38 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
           }
         });
       },
-      
+
       unregisterShortcut: (id: string) => {
         set((state) => {
-          state.shortcuts = state.shortcuts.filter(s => s.id !== id);
+          state.shortcuts = state.shortcuts.filter((s) => s.id !== id);
         });
       },
-      
+
       enableShortcut: (id: string) => {
         set((state) => {
-          const shortcut = state.shortcuts.find(s => s.id === id);
+          const shortcut = state.shortcuts.find((s) => s.id === id);
           if (shortcut) {
             shortcut.enabled = true;
           }
         });
       },
-      
+
       disableShortcut: (id: string) => {
         set((state) => {
-          const shortcut = state.shortcuts.find(s => s.id === id);
+          const shortcut = state.shortcuts.find((s) => s.id === id);
           if (shortcut) {
             shortcut.enabled = false;
           }
         });
       },
-      
+
       setIsEnabled: (enabled: boolean) => {
         set((state) => {
           state.isEnabled = enabled;
           state.preferences.enabled = enabled;
         });
       },
-      
+
       updatePreferences: (prefs: Partial<KeyboardShortcutPreferences>) => {
         set((state) => {
           state.preferences = { ...state.preferences, ...prefs };
@@ -128,25 +128,27 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
           }
         });
       },
-      
+
       startListening: () => {
         const state = get();
         if (state.isListening) return;
-        
+
         set((draft) => {
           draft.isListening = true;
         });
-        
+
         const handleKeyDown = (event: KeyboardEvent) => {
           const currentState = get();
           if (!currentState.isEnabled || !currentState.preferences.enabled) return;
-          
+
           // Don't trigger shortcuts when typing in input fields
           const target = event.target as HTMLElement;
-          if (target.tagName === 'INPUT' || 
-              target.tagName === 'TEXTAREA' || 
-              target.tagName === 'SELECT' ||
-              target.contentEditable === 'true') {
+          if (
+            target.tagName === 'INPUT' ||
+            target.tagName === 'TEXTAREA' ||
+            target.tagName === 'SELECT' ||
+            target.contentEditable === 'true'
+          ) {
             // Allow some global shortcuts even in input fields
             const allowedInInputs = ['Escape', 'F1'];
             if (!allowedInInputs.includes(event.key)) {
@@ -175,7 +177,12 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
             if (finalShortcut.shift && !event.shiftKey) continue;
 
             // Check for no modifiers when none are specified
-            if (!finalShortcut.ctrl && !finalShortcut.cmd && !finalShortcut.alt && !finalShortcut.shift) {
+            if (
+              !finalShortcut.ctrl &&
+              !finalShortcut.cmd &&
+              !finalShortcut.alt &&
+              !finalShortcut.shift
+            ) {
               if (event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) continue;
             }
 
@@ -186,35 +193,42 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
             break;
           }
         };
-        
+
         window.addEventListener('keydown', handleKeyDown);
-        
+
         // Store cleanup function
-        (window as any).__keyboardShortcutCleanup = () => {
+        interface WindowWithCleanup extends Window {
+          __keyboardShortcutCleanup?: () => void;
+        }
+        (window as unknown as WindowWithCleanup).__keyboardShortcutCleanup = () => {
           window.removeEventListener('keydown', handleKeyDown);
         };
       },
-      
+
       stopListening: () => {
         set((state) => {
           state.isListening = false;
         });
-        
-        if ((window as any).__keyboardShortcutCleanup) {
-          (window as any).__keyboardShortcutCleanup();
-          delete (window as any).__keyboardShortcutCleanup;
+
+        interface WindowWithCleanup extends Window {
+          __keyboardShortcutCleanup?: () => void;
+        }
+        const windowWithCleanup = window as unknown as WindowWithCleanup;
+        if (windowWithCleanup.__keyboardShortcutCleanup) {
+          windowWithCleanup.__keyboardShortcutCleanup();
+          delete windowWithCleanup.__keyboardShortcutCleanup;
         }
       },
-      
+
       // Computed values
       getShortcutsByCategory: (category: string) => {
         const state = get();
-        return state.shortcuts.filter(s => s.category === category);
+        return state.shortcuts.filter((s) => s.category === category);
       },
-      
+
       getFormattedShortcut: (shortcut: KeyboardShortcut) => {
         return formatShortcut(shortcut);
-      }
+      },
     })),
     {
       name: 'keyboard-shortcuts-storage',
@@ -234,8 +248,8 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
           }
         }
       },
-    }
-  )
+    },
+  ),
 );
 
 // Cleanup function for when the store is no longer needed
@@ -248,9 +262,7 @@ if (typeof window !== 'undefined') {
 
 // Selector hooks for performance
 export const useKeyboardShortcuts = () => useKeyboardShortcutsStore();
-export const useShortcutsByCategory = (category: string) => 
-  useKeyboardShortcutsStore(state => state.getShortcutsByCategory(category));
-export const useShortcutsEnabled = () => 
-  useKeyboardShortcutsStore(state => state.isEnabled);
-export const useKeyboardPreferences = () => 
-  useKeyboardShortcutsStore(state => state.preferences);
+export const useShortcutsByCategory = (category: string) =>
+  useKeyboardShortcutsStore((state) => state.getShortcutsByCategory(category));
+export const useShortcutsEnabled = () => useKeyboardShortcutsStore((state) => state.isEnabled);
+export const useKeyboardPreferences = () => useKeyboardShortcutsStore((state) => state.preferences);

@@ -1,6 +1,8 @@
+/* eslint-disable no-console */
 /**
  * Fast TypeScript Transformer for Jest
  * Uses SWC for faster TypeScript compilation
+ * Console output is needed for CLI usage
  */
 
 import { transformSync } from '@swc/core';

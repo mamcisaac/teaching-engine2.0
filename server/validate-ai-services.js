@@ -1,9 +1,11 @@
 #!/usr/bin/env node
+/* eslint-disable no-console */
 
 /**
  * Validation script for AI service implementation
  * This script validates that OpenAI API configuration is working properly
  * for production-level testing in Teaching Engine 2.0
+ * Console output is necessary for CLI validation reports
  */
 
 import { config } from 'dotenv';

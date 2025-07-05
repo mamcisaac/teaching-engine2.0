@@ -200,21 +200,28 @@ beforeEach(() => {
   if (process.env.VITE_PRESERVE_TEST_STATE !== 'true') {
     localStorageMock.clear();
   }
-  
+
   // Clear mocks but be selective to avoid breaking real implementations
   vi.clearAllMocks();
   vi.clearAllTimers();
-  
+
   // Clear any test-specific global state
   if (typeof window !== 'undefined') {
     // Clear any test-specific window properties
-    delete (window as any).testAuthState;
-    delete (window as any).testQueryClient;
+    delete (window as unknown as Record<string, unknown>).testAuthState;
+    delete (window as unknown as Record<string, unknown>).testQueryClient;
   }
 });
 
+// Define the interface for our test utilities
+interface TestUtils {
+  isRealMode: () => boolean;
+  isUsingRealAPI: () => boolean;
+  getAPIBaseURL: () => string | undefined;
+}
+
 // Global test utilities for real implementation testing
-(global as any).testUtils = {
+(global as unknown as { testUtils: TestUtils }).testUtils = {
   isRealMode: () => process.env.VITE_TEST_MODE === 'real',
   isUsingRealAPI: () => process.env.VITE_USE_REAL_API === 'true',
   getAPIBaseURL: () => process.env.VITE_API_BASE_URL,

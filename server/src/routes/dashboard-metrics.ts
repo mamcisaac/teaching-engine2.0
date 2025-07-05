@@ -18,62 +18,62 @@ router.get('/', async (req: Request, res: Response) => {
   try {
     const performanceSummary = getPerformanceSummary();
     const cacheStats = getCacheStats();
-    
+
     // Get database connection info
     let dbStatus = 'healthy';
     let dbInfo = {};
-    
+
     try {
       // Simple database health check
       await prisma.$queryRaw`SELECT 1`;
-      
+
       // Get basic database stats if available
       const userCount = await prisma.user.count();
       const planCount = await prisma.unitPlan.count();
       const lessonCount = await prisma.eTFOLessonPlan.count();
-      
+
       dbInfo = {
         totalUsers: userCount,
         totalUnitPlans: planCount,
         totalLessonPlans: lessonCount,
-        lastChecked: new Date().toISOString()
+        lastChecked: new Date().toISOString(),
       };
     } catch (_error) {
       dbStatus = 'unhealthy';
       logger.error('Database health check failed:', _error);
     }
-    
+
     res.json({
       success: true,
       data: {
         performance: performanceSummary,
         cache: {
           stats: cacheStats,
-          hitRateOverall: calculateOverallCacheHitRate(cacheStats)
+          hitRateOverall: calculateOverallCacheHitRate(cacheStats),
         },
         database: {
           status: dbStatus,
-          info: dbInfo
+          info: dbInfo,
         },
         system: {
           uptime: process.uptime(),
           memoryUsage: process.memoryUsage(),
           nodeVersion: process.version,
           platform: process.platform,
-          env: process.env.NODE_ENV
+          env: process.env.NODE_ENV,
         },
         application: {
           version: process.env.npm_package_version || '0.0.0',
-          startTime: new Date(Date.now() - process.uptime() * 1000).toISOString()
-        }
+          startTime: new Date(Date.now() - process.uptime() * 1000).toISOString(),
+        },
       },
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   } catch (_error) {
     logger.error('Error getting dashboard metrics:', _error);
     res.status(500).json({
       success: false,
-      message: 'Failed to get dashboard metrics'
+      message: 'Failed to get dashboard metrics',
     });
   }
 });
@@ -85,40 +85,40 @@ router.get('/', async (req: Request, res: Response) => {
 router.get('/trends', async (req: Request, res: Response) => {
   try {
     const metrics = metricsStore.getMetrics();
-    
+
     // Get recent metrics for trending
     const now = Date.now();
     const timeRanges = {
       last5min: now - 5 * 60 * 1000,
       last15min: now - 15 * 60 * 1000,
-      last1hour: now - 60 * 60 * 1000
+      last1hour: now - 60 * 60 * 1000,
     };
-    
+
     const trends = {
       requests: {
-        last5min: metrics.recent.filter(m => 
-          m.name === 'http_requests_total' && m.timestamp > timeRanges.last5min
+        last5min: metrics.recent.filter(
+          (m) => m.name === 'http_requests_total' && m.timestamp > timeRanges.last5min,
         ).length,
-        last15min: metrics.recent.filter(m => 
-          m.name === 'http_requests_total' && m.timestamp > timeRanges.last15min
+        last15min: metrics.recent.filter(
+          (m) => m.name === 'http_requests_total' && m.timestamp > timeRanges.last15min,
         ).length,
-        last1hour: metrics.recent.filter(m => 
-          m.name === 'http_requests_total' && m.timestamp > timeRanges.last1hour
-        ).length
+        last1hour: metrics.recent.filter(
+          (m) => m.name === 'http_requests_total' && m.timestamp > timeRanges.last1hour,
+        ).length,
       },
       errors: {
-        last5min: metrics.recent.filter(m => 
-          m.name === 'http_errors_total' && m.timestamp > timeRanges.last5min
+        last5min: metrics.recent.filter(
+          (m) => m.name === 'http_errors_total' && m.timestamp > timeRanges.last5min,
         ).length,
-        last15min: metrics.recent.filter(m => 
-          m.name === 'http_errors_total' && m.timestamp > timeRanges.last15min
+        last15min: metrics.recent.filter(
+          (m) => m.name === 'http_errors_total' && m.timestamp > timeRanges.last15min,
         ).length,
-        last1hour: metrics.recent.filter(m => 
-          m.name === 'http_errors_total' && m.timestamp > timeRanges.last1hour
-        ).length
-      }
+        last1hour: metrics.recent.filter(
+          (m) => m.name === 'http_errors_total' && m.timestamp > timeRanges.last1hour,
+        ).length,
+      },
     };
-    
+
     // Calculate rates per minute
     const rates = {
       requestsPerMin5min: trends.requests.last5min / 5,
@@ -126,9 +126,9 @@ router.get('/trends', async (req: Request, res: Response) => {
       requestsPerMin1hour: trends.requests.last1hour / 60,
       errorsPerMin5min: trends.errors.last5min / 5,
       errorsPerMin15min: trends.errors.last15min / 15,
-      errorsPerMin1hour: trends.errors.last1hour / 60
+      errorsPerMin1hour: trends.errors.last1hour / 60,
     };
-    
+
     res.json({
       success: true,
       data: {
@@ -138,16 +138,16 @@ router.get('/trends', async (req: Request, res: Response) => {
           last5min: new Date(timeRanges.last5min).toISOString(),
           last15min: new Date(timeRanges.last15min).toISOString(),
           last1hour: new Date(timeRanges.last1hour).toISOString(),
-          now: new Date(now).toISOString()
-        }
+          now: new Date(now).toISOString(),
+        },
       },
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   } catch (_error) {
     logger.error('Error getting performance trends:', _error);
     res.status(500).json({
       success: false,
-      message: 'Failed to get performance trends'
+      message: 'Failed to get performance trends',
     });
   }
 });
@@ -160,48 +160,48 @@ router.get('/resources', async (req: Request, res: Response) => {
   try {
     const memUsage = process.memoryUsage();
     const cpuUsage = process.cpuUsage();
-    
+
     // Convert memory to MB for readability
     const memoryMB = {
       rss: Math.round(memUsage.rss / 1024 / 1024),
       heapTotal: Math.round(memUsage.heapTotal / 1024 / 1024),
       heapUsed: Math.round(memUsage.heapUsed / 1024 / 1024),
       external: Math.round(memUsage.external / 1024 / 1024),
-      arrayBuffers: Math.round(memUsage.arrayBuffers / 1024 / 1024)
+      arrayBuffers: Math.round(memUsage.arrayBuffers / 1024 / 1024),
     };
-    
+
     // Calculate heap usage percentage
     const heapUsagePercent = (memoryMB.heapUsed / memoryMB.heapTotal) * 100;
-    
+
     res.json({
       success: true,
       data: {
         memory: {
           ...memoryMB,
           heapUsagePercent: Math.round(heapUsagePercent * 100) / 100,
-          unit: 'MB'
+          unit: 'MB',
         },
         cpu: {
           user: cpuUsage.user,
           system: cpuUsage.system,
           userMs: cpuUsage.user / 1000,
-          systemMs: cpuUsage.system / 1000
+          systemMs: cpuUsage.system / 1000,
         },
         process: {
           pid: process.pid,
           uptime: process.uptime(),
           platform: process.platform,
           arch: process.arch,
-          nodeVersion: process.version
-        }
+          nodeVersion: process.version,
+        },
       },
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   } catch (_error) {
     logger.error('Error getting resource usage:', _error);
     res.status(500).json({
       success: false,
-      message: 'Failed to get resource usage'
+      message: 'Failed to get resource usage',
     });
   }
 });
@@ -213,40 +213,40 @@ router.get('/resources', async (req: Request, res: Response) => {
 router.get('/insights', async (req: Request, res: Response) => {
   try {
     const userId = req.user?.id;
-    
+
     // Get user-specific insights
     const insights = await Promise.all([
       // Recent activity counts
       prisma.recentPlanAccess.count({
-        where: { userId }
+        where: { userId },
       }),
-      
+
       // Active unit plans
       prisma.unitPlan.count({
-        where: { userId }
+        where: { userId },
       }),
-      
+
       // Lesson plans this month
       prisma.eTFOLessonPlan.count({
         where: {
           userId,
           createdAt: {
-            gte: new Date(new Date().setDate(1)) // First day of current month
-          }
-        }
+            gte: new Date(new Date().setDate(1)), // First day of current month
+          },
+        },
       }),
-      
+
       // Newsletter drafts
       prisma.newsletter.count({
         where: {
           userId,
-          isDraft: true
-        }
-      })
+          isDraft: true,
+        },
+      }),
     ]);
-    
+
     const [recentAccess, unitPlans, monthlyLessons, drafts] = insights;
-    
+
     res.json({
       success: true,
       data: {
@@ -254,20 +254,20 @@ router.get('/insights', async (req: Request, res: Response) => {
           recentPlanAccess: recentAccess,
           activeUnitPlans: unitPlans,
           lessonPlansThisMonth: monthlyLessons,
-          newsletterDrafts: drafts
+          newsletterDrafts: drafts,
         },
         productivity: {
           plansPerWeek: monthlyLessons / 4, // Rough estimate
-          averageAccessPerPlan: unitPlans > 0 ? recentAccess / unitPlans : 0
-        }
+          averageAccessPerPlan: unitPlans > 0 ? recentAccess / unitPlans : 0,
+        },
       },
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   } catch (_error) {
     logger.error('Error getting application insights:', _error);
     res.status(500).json({
       success: false,
-      message: 'Failed to get application insights'
+      message: 'Failed to get application insights',
     });
   }
 });
@@ -278,12 +278,14 @@ router.get('/insights', async (req: Request, res: Response) => {
 function calculateOverallCacheHitRate(cacheStats: unknown): number {
   let totalHits = 0;
   let totalRequests = 0;
-  
-  Object.values(cacheStats).forEach((cache: any) => {
-    totalHits += cache.hits || 0;
-    totalRequests += (cache.hits || 0) + (cache.misses || 0);
-  });
-  
+
+  Object.values(cacheStats as Record<string, { hits?: number; misses?: number }>).forEach(
+    (cache) => {
+      totalHits += cache.hits || 0;
+      totalRequests += (cache.hits || 0) + (cache.misses || 0);
+    },
+  );
+
   return totalRequests > 0 ? (totalHits / totalRequests) * 100 : 0;
 }
 

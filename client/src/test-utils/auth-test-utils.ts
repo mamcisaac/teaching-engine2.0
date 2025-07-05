@@ -54,8 +54,8 @@ export const mockUser = {
     theme: 'light' as const,
     notifications: true,
     keyboardShortcuts: true,
-    language: 'en' as const
-  }
+    language: 'en' as const,
+  },
 };
 
 /**
@@ -76,8 +76,8 @@ export const mockTeacher = {
     theme: 'light' as const,
     notifications: true,
     keyboardShortcuts: true,
-    language: 'en' as const
-  }
+    language: 'en' as const,
+  },
 };
 
 /**
@@ -90,7 +90,7 @@ export const mockAuthToken = 'mock-jwt-token';
  */
 export const mockAuthHeaders = {
   Authorization: `Bearer ${mockAuthToken}`,
-  'Content-Type': 'application/json'
+  'Content-Type': 'application/json',
 };
 
 /**
@@ -100,11 +100,11 @@ export function setupAuthenticatedUser() {
   // Set up localStorage
   localStorage.setItem('authToken', mockAuthToken);
   localStorage.setItem('user', JSON.stringify(mockUser));
-  
+
   return {
     user: mockUser,
     token: mockAuthToken,
-    headers: mockAuthHeaders
+    headers: mockAuthHeaders,
   };
 }
 
@@ -130,7 +130,7 @@ export const mockAuthContextValue = {
   isLoading: false,
   isAuthenticated: true,
   error: null,
-  clearError: vi.fn()
+  clearError: vi.fn(),
 };
 
 /**
@@ -146,7 +146,7 @@ export const mockUnauthenticatedContextValue = {
   isLoading: false,
   isAuthenticated: false,
   error: null,
-  clearError: vi.fn()
+  clearError: vi.fn(),
 };
 
 /**
@@ -155,7 +155,7 @@ export const mockUnauthenticatedContextValue = {
 export function createAuthContextValue(overrides?: Partial<typeof mockAuthContextValue>) {
   return {
     ...mockAuthContextValue,
-    ...overrides
+    ...overrides,
   };
 }
 
@@ -170,7 +170,7 @@ export async function createAuthenticatedTestUser(): Promise<AuthTestContext> {
     headers: result.headers,
     cleanup: async () => {
       clearAuthData();
-    }
+    },
   };
 }
 
@@ -179,15 +179,14 @@ export async function createAuthenticatedTestUser(): Promise<AuthTestContext> {
  */
 export const clearAuthState = clearAuthData;
 
-
 /**
  * Mock login response
  */
 export const mockLoginResponse = {
   data: {
     user: mockUser,
-    token: mockAuthToken
-  }
+    token: mockAuthToken,
+  },
 };
 
 /**
@@ -196,8 +195,8 @@ export const mockLoginResponse = {
 export const mockRegisterResponse = {
   data: {
     user: mockUser,
-    token: mockAuthToken
-  }
+    token: mockAuthToken,
+  },
 };
 
 /**
@@ -205,7 +204,7 @@ export const mockRegisterResponse = {
  */
 export async function waitForAuth() {
   // Wait for next tick
-  await new Promise(resolve => setTimeout(resolve, 0));
+  await new Promise((resolve) => setTimeout(resolve, 0));
 }
 
 /**
@@ -217,7 +216,7 @@ export function createMockAuthHandlers() {
     register: vi.fn().mockResolvedValue(mockRegisterResponse),
     logout: vi.fn().mockResolvedValue({ data: { success: true } }),
     getCurrentUser: vi.fn().mockResolvedValue({ data: mockUser }),
-    updateProfile: vi.fn().mockResolvedValue({ data: mockUser })
+    updateProfile: vi.fn().mockResolvedValue({ data: mockUser }),
   };
 }
 
@@ -231,9 +230,9 @@ export async function createTestUser(userData?: Partial<TestUser>): Promise<Test
 /**
  * Delete a test user
  */
-export async function deleteTestUser(userId: string): Promise<void> {
+export async function deleteTestUser(_userId: string): Promise<void> {
   // Mock implementation - in real tests this would clean up the user
-  console.log(`Deleting test user: ${userId}`);
+  // Logging removed - use debug logger if needed in actual implementation
 }
 
 /**
@@ -243,7 +242,7 @@ export async function setupAuthTest(): Promise<AuthTestContext> {
   const authContext = await createAuthenticatedTestUser();
   return {
     ...authContext,
-    authContext: authContext // Add the authContext property for compatibility
+    authContext: authContext, // Add the authContext property for compatibility
   };
 }
 

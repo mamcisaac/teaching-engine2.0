@@ -2,7 +2,7 @@ import { expect } from 'vitest';
 
 /**
  * Retry Helpers for Integration Tests
- * 
+ *
  * Provides utilities for implementing retry logic in tests,
  * particularly useful for integration tests with external dependencies.
  */
@@ -13,25 +13,25 @@ export interface RetryOptions {
    * @default 3
    */
   maxAttempts?: number;
-  
+
   /**
    * Delay between retry attempts in milliseconds
    * @default 1000
    */
   delay?: number;
-  
+
   /**
    * Exponential backoff multiplier
    * @default 1.5
    */
   backoffMultiplier?: number;
-  
+
   /**
    * Function to determine if error should trigger retry
    * @default () => true
    */
   shouldRetry?: (error: Error, attempt: number) => boolean;
-  
+
   /**
    * Callback before each retry attempt
    */
@@ -40,15 +40,12 @@ export interface RetryOptions {
 
 /**
  * Retry a function with exponential backoff
- * 
+ *
  * @param fn Function to retry
  * @param options Retry configuration
  * @returns Result of successful function execution
  */
-export async function retry<T>(
-  fn: () => Promise<T>,
-  options: RetryOptions = {}
-): Promise<T> {
+export async function retry<T>(fn: () => Promise<T>, options: RetryOptions = {}): Promise<T> {
   const {
     maxAttempts = 3,
     delay = 1000,
@@ -65,16 +62,16 @@ export async function retry<T>(
       return await fn();
     } catch (error) {
       lastError = error as Error;
-      
+
       if (attempt === maxAttempts || !shouldRetry(lastError, attempt)) {
         throw lastError;
       }
-      
+
       if (onRetry) {
         await onRetry(lastError, attempt);
       }
-      
-      await new Promise(resolve => setTimeout(resolve, currentDelay));
+
+      await new Promise((resolve) => setTimeout(resolve, currentDelay));
       currentDelay = Math.floor(currentDelay * backoffMultiplier);
     }
   }
@@ -84,41 +81,44 @@ export async function retry<T>(
 
 /**
  * Retry an assertion until it passes
- * 
+ *
  * @param assertion Function containing assertions
  * @param options Retry configuration
  */
 export async function retryAssertion(
   assertion: () => void | Promise<void>,
-  options: RetryOptions = {}
+  options: RetryOptions = {},
 ): Promise<void> {
-  return retry(async () => {
-    await assertion();
-  }, {
-    ...options,
-    shouldRetry: (error, attempt) => {
-      // Only retry assertion errors
-      const isAssertionError = error.name === 'AssertionError' || 
-                             error.message.includes('expected');
-      
-      if (options.shouldRetry) {
-        return isAssertionError && options.shouldRetry(error, attempt);
-      }
-      
-      return isAssertionError;
+  return retry(
+    async () => {
+      await assertion();
     },
-  });
+    {
+      ...options,
+      shouldRetry: (error, attempt) => {
+        // Only retry assertion errors
+        const isAssertionError =
+          error.name === 'AssertionError' || error.message.includes('expected');
+
+        if (options.shouldRetry) {
+          return isAssertionError && options.shouldRetry(error, attempt);
+        }
+
+        return isAssertionError;
+      },
+    },
+  );
 }
 
 /**
  * Wait for a condition to be true with retries
- * 
+ *
  * @param condition Function that returns true when condition is met
  * @param options Retry configuration
  */
 export async function waitForWithRetry(
   condition: () => boolean | Promise<boolean>,
-  options: RetryOptions = {}
+  options: RetryOptions = {},
 ): Promise<void> {
   return retry(async () => {
     const result = await condition();
@@ -130,34 +130,34 @@ export async function waitForWithRetry(
 
 /**
  * Retry a test case
- * 
+ *
  * @param testFn Test function to retry
  * @param options Retry configuration
  */
-export function retryTest(
-  testFn: () => void | Promise<void>,
-  options: RetryOptions = {}
-) {
+export function retryTest(testFn: () => void | Promise<void>, options: RetryOptions = {}) {
   return async () => {
-    await retry(async () => {
-      await testFn();
-    }, {
-      maxAttempts: 3,
-      delay: 500,
-      ...options,
-      onRetry: (error, attempt) => {
-        console.log(`Test failed on attempt ${attempt}, retrying...`);
-        if (options.onRetry) {
-          return options.onRetry(error, attempt);
-        }
+    await retry(
+      async () => {
+        await testFn();
       },
-    });
+      {
+        maxAttempts: 3,
+        delay: 500,
+        ...options,
+        onRetry: (error, attempt) => {
+          // Test failed on attempt ${attempt}, retrying...
+          if (options.onRetry) {
+            return options.onRetry(error, attempt);
+          }
+        },
+      },
+    );
   };
 }
 
 /**
  * Create a flaky test handler that retries specific assertions
- * 
+ *
  * @param options Retry configuration
  */
 export function flakyTest(options: RetryOptions = {}) {
@@ -177,7 +177,7 @@ export function flakyTest(options: RetryOptions = {}) {
             expect(actual).toEqual(expected);
           }, options);
         },
-        toContain: async (expected: any) => {
+        toContain: async (expected: unknown) => {
           await retryAssertion(() => {
             expect(actual).toContain(expected);
           }, options);
@@ -187,13 +187,13 @@ export function flakyTest(options: RetryOptions = {}) {
             expect(actual).toHaveBeenCalled();
           }, options);
         },
-        toHaveBeenCalledWith: async (...args: any[]) => {
+        toHaveBeenCalledWith: async (...args: unknown[]) => {
           await retryAssertion(() => {
             expect(actual).toHaveBeenCalledWith(...args);
           }, options);
         },
       };
-      
+
       return expectWrapper;
     },
   };
@@ -201,13 +201,11 @@ export function flakyTest(options: RetryOptions = {}) {
 
 /**
  * Network-aware retry configuration
- * 
+ *
  * @param baseOptions Base retry options
  * @returns Retry options configured for network operations
  */
-export function networkRetryOptions(
-  baseOptions: RetryOptions = {}
-): RetryOptions {
+export function networkRetryOptions(baseOptions: RetryOptions = {}): RetryOptions {
   return {
     maxAttempts: 5,
     delay: 2000,
@@ -215,17 +213,17 @@ export function networkRetryOptions(
     ...baseOptions,
     shouldRetry: (error, attempt) => {
       // Retry on network errors
-      const isNetworkError = 
+      const isNetworkError =
         error.message.includes('ECONNREFUSED') ||
         error.message.includes('ETIMEDOUT') ||
         error.message.includes('ENOTFOUND') ||
         error.message.includes('network') ||
         error.message.includes('fetch');
-      
+
       if (baseOptions.shouldRetry) {
         return isNetworkError && baseOptions.shouldRetry(error, attempt);
       }
-      
+
       return isNetworkError;
     },
   };
@@ -233,13 +231,11 @@ export function networkRetryOptions(
 
 /**
  * Database-aware retry configuration
- * 
+ *
  * @param baseOptions Base retry options
  * @returns Retry options configured for database operations
  */
-export function databaseRetryOptions(
-  baseOptions: RetryOptions = {}
-): RetryOptions {
+export function databaseRetryOptions(baseOptions: RetryOptions = {}): RetryOptions {
   return {
     maxAttempts: 3,
     delay: 1000,
@@ -247,16 +243,16 @@ export function databaseRetryOptions(
     ...baseOptions,
     shouldRetry: (error, attempt) => {
       // Retry on database errors
-      const isDatabaseError = 
+      const isDatabaseError =
         error.message.includes('SQLITE_BUSY') ||
         error.message.includes('deadlock') ||
         error.message.includes('connection') ||
         error.message.includes('timeout');
-      
+
       if (baseOptions.shouldRetry) {
         return isDatabaseError && baseOptions.shouldRetry(error, attempt);
       }
-      
+
       return isDatabaseError;
     },
   };
@@ -264,7 +260,7 @@ export function databaseRetryOptions(
 
 /**
  * Create a test suite with retry logic for all tests
- * 
+ *
  * @param suiteName Name of the test suite
  * @param suiteFactory Function that defines the test suite
  * @param options Retry configuration
@@ -272,24 +268,28 @@ export function databaseRetryOptions(
 export function retriableDescribe(
   suiteName: string,
   suiteFactory: () => void,
-  options: RetryOptions = {}
+  options: RetryOptions = {},
 ) {
   describe(suiteName, () => {
     // Store original it function
-    const originalIt = (global as any).it;
-    
+    interface GlobalWithIt extends NodeJS.Global {
+      it: (testName: string, testFn: () => void | Promise<void>) => void;
+    }
+    const globalWithIt = global as unknown as GlobalWithIt;
+    const originalIt = globalWithIt.it;
+
     // Override it with retry logic
     beforeAll(() => {
-      (global as any).it = (testName: string, testFn: () => void | Promise<void>) => {
+      globalWithIt.it = (testName: string, testFn: () => void | Promise<void>) => {
         originalIt(testName, retryTest(testFn, options));
       };
     });
-    
+
     // Restore original it function
     afterAll(() => {
-      (global as any).it = originalIt;
+      globalWithIt.it = originalIt;
     });
-    
+
     // Run the test suite
     suiteFactory();
   });

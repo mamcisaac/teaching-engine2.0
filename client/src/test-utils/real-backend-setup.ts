@@ -10,7 +10,8 @@ import { QueryClient } from '@tanstack/react-query';
 export const REAL_BACKEND_URL = process.env.VITE_API_URL || 'http://localhost:3000';
 
 // Test database URL for integration tests
-export const TEST_DATABASE_URL = process.env.TEST_DATABASE_URL || 'postgresql://test:test@localhost:5432/teaching_engine_test';
+export const TEST_DATABASE_URL =
+  process.env.TEST_DATABASE_URL || 'postgresql://test:test@localhost:5432/teaching_engine_test';
 
 /**
  * Configuration for real backend tests
@@ -28,7 +29,7 @@ export interface RealBackendConfig {
 export interface RealBackendTestContext {
   baseURL: string;
   isAvailable: boolean;
-  queryClient?: any;
+  queryClient?: QueryClient;
   cleanup?: () => Promise<void>;
 }
 
@@ -36,7 +37,7 @@ export interface RealBackendTestContext {
  * Test server instance
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-let _testServerInstance: any = null;
+const _testServerInstance: unknown = null;
 
 /**
  * Check if the real backend is available
@@ -44,7 +45,7 @@ let _testServerInstance: any = null;
 export async function isRealBackendAvailable(url = REAL_BACKEND_URL): Promise<boolean> {
   try {
     const response = await axios.get(`${url}/api/health`, {
-      timeout: 5000
+      timeout: 5000,
     });
     return response.status === 200;
   } catch {
@@ -60,7 +61,7 @@ export async function waitForBackend(url = REAL_BACKEND_URL, maxAttempts = 30): 
     if (await isRealBackendAvailable(url)) {
       return;
     }
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
   }
   throw new Error('Backend did not start within timeout');
 }
@@ -68,12 +69,10 @@ export async function waitForBackend(url = REAL_BACKEND_URL, maxAttempts = 30): 
 /**
  * Setup real backend for tests
  */
-export async function setupRealBackend(config: RealBackendConfig = {}): Promise<RealBackendTestContext> {
-  const {
-    baseURL = REAL_BACKEND_URL,
-    timeout = 30000,
-    setupDatabase = true
-  } = config;
+export async function setupRealBackend(
+  config: RealBackendConfig = {},
+): Promise<RealBackendTestContext> {
+  const { baseURL = REAL_BACKEND_URL, timeout = 30000, setupDatabase = true } = config;
 
   // Set axios defaults
   axios.defaults.baseURL = baseURL;
@@ -81,9 +80,11 @@ export async function setupRealBackend(config: RealBackendConfig = {}): Promise<
 
   // Check if backend is available
   const backendAvailable = await isRealBackendAvailable(baseURL);
-  
+
   if (!backendAvailable) {
-    throw new Error(`Real backend is not available at ${baseURL}. Please start the backend server.`);
+    throw new Error(
+      `Real backend is not available at ${baseURL}. Please start the backend server.`,
+    );
   }
 
   // Setup test database if requested
@@ -96,7 +97,7 @@ export async function setupRealBackend(config: RealBackendConfig = {}): Promise<
     isAvailable: true,
     cleanup: async () => {
       await teardownRealBackend();
-    }
+    },
   };
 }
 
@@ -106,7 +107,7 @@ export async function setupRealBackend(config: RealBackendConfig = {}): Promise<
 export async function teardownRealBackend() {
   // Clean up test data
   await cleanupTestDatabase();
-  
+
   // Reset axios defaults
   delete axios.defaults.baseURL;
   delete axios.defaults.timeout;
@@ -119,7 +120,7 @@ export async function setupTestDatabase() {
   try {
     // Run database setup endpoint if available
     await axios.post(`${REAL_BACKEND_URL}/api/test/setup-database`, {
-      testRun: true
+      testRun: true,
     });
   } catch (error) {
     console.warn('Could not setup test database:', error);
@@ -133,7 +134,7 @@ export async function cleanupTestDatabase() {
   try {
     // Run database cleanup endpoint if available
     await axios.post(`${REAL_BACKEND_URL}/api/test/cleanup-database`, {
-      testRun: true
+      testRun: true,
     });
   } catch (error) {
     console.warn('Could not cleanup test database:', error);
@@ -143,7 +144,18 @@ export async function cleanupTestDatabase() {
 /**
  * Create a test user in the real backend
  */
-export async function createTestUser(userData?: Partial<any>) {
+interface TestUserData {
+  email?: string;
+  password?: string;
+  name?: string;
+  role?: string;
+  boardId?: string;
+  subject?: string;
+  gradeLevel?: string;
+  province?: string;
+}
+
+export async function createTestUser(userData?: Partial<TestUserData>) {
   const defaultUser = {
     email: `test-${Date.now()}@example.com`,
     password: 'Test123!',
@@ -151,7 +163,7 @@ export async function createTestUser(userData?: Partial<any>) {
     role: 'teacher',
     boardId: 'test-board',
     boardName: 'Test Board',
-    boardRegion: 'Test Region'
+    boardRegion: 'Test Region',
   };
 
   const user = { ...defaultUser, ...userData };
@@ -172,10 +184,10 @@ export async function loginTestUser(email: string, password: string) {
   try {
     const response = await axios.post('/api/auth/login', { email, password });
     const { token, user } = response.data;
-    
+
     // Set auth header for subsequent requests
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    
+
     return { token, user };
   } catch (error) {
     console.error('Failed to login test user:', error);
@@ -251,7 +263,7 @@ export async function setupRealBackendTest(config?: RealBackendConfig): Promise<
       },
     },
   });
-  
+
   return {
     queryClient,
     cleanup: async () => {
@@ -259,7 +271,7 @@ export async function setupRealBackendTest(config?: RealBackendConfig): Promise<
       if (context.cleanup) {
         await context.cleanup();
       }
-    }
+    },
   };
 }
 
@@ -289,7 +301,6 @@ export function skipIfNoRealBackend(testFn: () => void | Promise<void>) {
     return testFn();
   };
 }
-
 
 /**
  * Aliases for backward compatibility

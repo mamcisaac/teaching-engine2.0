@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import logger from '../../utils/logger';
+
 // Simple debounce and throttle implementations
 const _debounce = <T extends (...args: unknown[]) => unknown>(
   func: T,
-  wait: number
+  wait: number,
 ): ((...args: Parameters<T>) => void) => {
   let timeout: ReturnType<typeof setTimeout>;
   return (...args: Parameters<T>) => {
@@ -13,24 +15,24 @@ const _debounce = <T extends (...args: unknown[]) => unknown>(
 
 const throttle = <T extends (...args: unknown[]) => unknown>(
   func: T,
-  wait: number
+  wait: number,
 ): ((...args: Parameters<T>) => void) & { cancel(): void } => {
   let inThrottle: boolean;
   let timeoutId: ReturnType<typeof setTimeout>;
-  
+
   const throttled = (...args: Parameters<T>) => {
     if (!inThrottle) {
       func(...args);
       inThrottle = true;
-      timeoutId = setTimeout(() => inThrottle = false, wait);
+      timeoutId = setTimeout(() => (inThrottle = false), wait);
     }
   };
-  
+
   throttled.cancel = () => {
     clearTimeout(timeoutId);
     inThrottle = false;
   };
-  
+
   return throttled;
 };
 
@@ -58,7 +60,7 @@ export function useDebounced<T>(value: T, delay: number): T {
  */
 export function useThrottled<T extends (...args: unknown[]) => unknown>(
   callback: T,
-  delay: number
+  delay: number,
 ): T {
   const throttledCallback = useRef(throttle(callback, delay)).current;
 
@@ -75,7 +77,7 @@ export function useThrottled<T extends (...args: unknown[]) => unknown>(
  * Hook for detecting when an element enters viewport (for lazy loading)
  */
 export function useIntersectionObserver(
-  options: IntersectionObserverInit = {}
+  options: IntersectionObserverInit = {},
 ): [React.RefObject<Element>, boolean] {
   const elementRef = useRef<Element>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -88,7 +90,7 @@ export function useIntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
       },
-      { threshold: 0.1, ...options }
+      { threshold: 0.1, ...options },
     );
 
     observer.observe(element);
@@ -96,7 +98,7 @@ export function useIntersectionObserver(
     return () => {
       observer.unobserve(element);
     };
-  }, [options.threshold, options.rootMargin]);
+  }, [options]);
 
   return [elementRef, isVisible];
 }
@@ -104,7 +106,7 @@ export function useIntersectionObserver(
 /**
  * Hook for measuring render performance
  */
-export function useRenderPerformance(componentName: string) {
+export function useRenderPerformance(_componentName: string) {
   const renderStart = useRef<number>(0);
   const renderCount = useRef<number>(0);
 
@@ -114,7 +116,7 @@ export function useRenderPerformance(componentName: string) {
   });
 
   useEffect(() => {
-    const renderTime = performance.now() - renderStart.current;
+    // const renderTime = performance.now() - renderStart.current;
     if (process.env.NODE_ENV === 'development') {
       // console.log(`${componentName} render #${renderCount.current}: ${renderTime.toFixed(2)}ms`);
     }
@@ -122,7 +124,7 @@ export function useRenderPerformance(componentName: string) {
 
   return {
     renderCount: renderCount.current,
-    logRender: (operation: string) => {
+    logRender: (_operation: string) => {
       if (process.env.NODE_ENV === 'development') {
         // console.log(`${componentName} ${operation} at render #${renderCount.current}`);
       }
@@ -133,10 +135,7 @@ export function useRenderPerformance(componentName: string) {
 /**
  * Hook for managing component state with optimistic updates
  */
-export function useOptimisticState<T>(
-  initialValue: T,
-  asyncUpdate: (value: T) => Promise<T>
-) {
+export function useOptimisticState<T>(initialValue: T, asyncUpdate: (value: T) => Promise<T>) {
   const [value, setValue] = useState(initialValue);
   const [isUpdating, setIsUpdating] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -158,7 +157,7 @@ export function useOptimisticState<T>(
         setIsUpdating(false);
       }
     },
-    [value, asyncUpdate]
+    [value, asyncUpdate],
   );
 
   return {
@@ -176,7 +175,7 @@ export function useVirtualizedList<T>(
   items: T[],
   itemHeight: number,
   containerHeight: number,
-  overscan: number = 5
+  overscan: number = 5,
 ) {
   const [scrollTop, setScrollTop] = useState(0);
 
@@ -184,7 +183,7 @@ export function useVirtualizedList<T>(
     const startIndex = Math.floor(scrollTop / itemHeight);
     const endIndex = Math.min(
       items.length - 1,
-      Math.ceil((scrollTop + containerHeight) / itemHeight)
+      Math.ceil((scrollTop + containerHeight) / itemHeight),
     );
 
     return {
@@ -214,9 +213,9 @@ export const PerformanceMonitor = {
     const start = performance.now();
     renderFn();
     const end = performance.now();
-    
+
     if (process.env.NODE_ENV === 'development') {
-      // console.log(`${componentName} rendered in ${(end - start).toFixed(2)}ms`);
+      logger.debug(`${componentName} rendered in ${(end - start).toFixed(2)}ms`);
     }
   },
 
@@ -228,19 +227,19 @@ export const PerformanceMonitor = {
     try {
       const result = await asyncFn();
       const end = performance.now();
-      
+
       if (process.env.NODE_ENV === 'development') {
-        // console.log(`${operation} completed in ${(end - start).toFixed(2)}ms`);
+        logger.debug(`${operation} completed in ${(end - start).toFixed(2)}ms`);
       }
-      
+
       return result;
     } catch (error) {
       const end = performance.now();
-      
+
       if (process.env.NODE_ENV === 'development') {
-        console.error(`${operation} failed after ${(end - start).toFixed(2)}ms:`, error);
+        logger.error(`${operation} failed after ${(end - start).toFixed(2)}ms:`, error);
       }
-      
+
       throw error;
     }
   },
@@ -263,14 +262,14 @@ export const PerformanceMonitor = {
         performance.measure(name, startMark, endMark);
         const measures = performance.getEntriesByName(name, 'measure');
         const duration = measures[measures.length - 1]?.duration;
-        
+
         if (process.env.NODE_ENV === 'development' && duration) {
           // console.log(`${name}: ${duration.toFixed(2)}ms`);
         }
-        
+
         return duration;
       } catch (error) {
-        console.warn('Performance measurement failed:', error);
+        logger.warn('Performance measurement failed:', error);
       }
     }
     return 0;
@@ -295,8 +294,11 @@ export const MemoUtils = {
 
       if (keysA.length !== keysB.length) return false;
 
-      return keysA.every(key => 
-        MemoUtils.deepEqual((a as Record<string, unknown>)[key], (b as Record<string, unknown>)[key])
+      return keysA.every((key) =>
+        MemoUtils.deepEqual(
+          (a as Record<string, unknown>)[key],
+          (b as Record<string, unknown>)[key],
+        ),
       );
     }
 
@@ -312,7 +314,7 @@ export const MemoUtils = {
 
     if (keysA.length !== keysB.length) return false;
 
-    return keysA.every(key => a[key] === b[key]);
+    return keysA.every((key) => a[key] === b[key]);
   },
 
   /**
@@ -320,7 +322,7 @@ export const MemoUtils = {
    */
   createSelector: <TState, TResult>(
     selector: (state: TState) => TResult,
-    equalityFn: (a: TResult, b: TResult) => boolean = Object.is
+    equalityFn: (a: TResult, b: TResult) => boolean = Object.is,
   ) => {
     let lastState: TState;
     let lastResult: TResult;
@@ -349,13 +351,13 @@ export const ImageUtils = {
    */
   optimizeImageUrl: (url: string, width?: number, height?: number, quality?: number): string => {
     if (!url) return '';
-    
+
     const urlObj = new URL(url, window.location.origin);
-    
+
     if (width) urlObj.searchParams.set('w', width.toString());
     if (height) urlObj.searchParams.set('h', height.toString());
     if (quality) urlObj.searchParams.set('q', quality.toString());
-    
+
     return urlObj.toString();
   },
 
@@ -363,9 +365,7 @@ export const ImageUtils = {
    * Create srcSet for responsive images
    */
   createSrcSet: (baseUrl: string, sizes: number[]): string => {
-    return sizes
-      .map(size => `${ImageUtils.optimizeImageUrl(baseUrl, size)} ${size}w`)
-      .join(', ');
+    return sizes.map((size) => `${ImageUtils.optimizeImageUrl(baseUrl, size)} ${size}w`).join(', ');
   },
 
   /**

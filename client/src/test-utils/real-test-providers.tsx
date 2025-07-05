@@ -9,7 +9,12 @@ import { BrowserRouter } from 'react-router-dom';
 import { render, RenderOptions } from '@testing-library/react';
 import { AuthProvider } from '../contexts/AuthContext';
 import { ThemeProvider } from '../contexts/ThemeContext';
-import { createAuthenticatedTestUser, clearAuthState, type TestUser, type AuthTestContext } from './auth-test-utils';
+import {
+  createAuthenticatedTestUser,
+  clearAuthState,
+  type TestUser,
+  type AuthTestContext,
+} from './auth-test-utils';
 import { createRealTestQueryClient, setupRealBackendTest } from './real-backend-setup';
 
 // Real test providers wrapper
@@ -25,7 +30,7 @@ export function RealTestProviders({
   children,
   queryClient,
   initialRoute = '/',
-  authenticated = false,
+  // authenticated = false,
   authContext,
 }: RealTestProvidersProps) {
   const [testQueryClient] = React.useState(() => queryClient || createRealTestQueryClient());
@@ -50,9 +55,7 @@ export function RealTestProviders({
     <QueryClientProvider client={testQueryClient}>
       <BrowserRouter>
         <AuthProvider>
-          <ThemeProvider>
-            {children}
-          </ThemeProvider>
+          <ThemeProvider>{children}</ThemeProvider>
         </AuthProvider>
       </BrowserRouter>
     </QueryClientProvider>
@@ -77,7 +80,7 @@ export async function renderWithRealBackend(
     authContext,
     withBackendSetup = true,
     ...renderOptions
-  }: RealRenderOptions = {}
+  }: RealRenderOptions = {},
 ) {
   // Setup backend if requested
   let backendCleanup: (() => Promise<void>) | undefined;
@@ -131,7 +134,7 @@ export async function renderAuthenticatedWithRealBackend(
   options: Omit<RealRenderOptions, 'authenticated'> & {
     createUser?: boolean;
     testUser?: TestUser;
-  } = {}
+  } = {},
 ) {
   const { createUser = true, testUser, ...renderOptions } = options;
   let authContext: AuthTestContext | undefined;
@@ -187,13 +190,13 @@ export function useRealTestSetup() {
 
   React.useEffect(() => {
     setupRealBackendTest().then(setSetup);
-    
+
     return () => {
       if (setup) {
         setup.cleanup().catch(console.error);
       }
     };
-  }, []);
+  }, [setup]);
 
   return setup;
 }
@@ -210,7 +213,7 @@ export function useAuthenticatedTestSetup() {
     async function setup() {
       const backendSetup = await setupRealBackendTest();
       const authContext = await createAuthenticatedTestUser();
-      
+
       setAuthSetup({
         authContext,
         queryClient: backendSetup.queryClient,
@@ -230,7 +233,7 @@ export function useAuthenticatedTestSetup() {
         authSetup.cleanup().catch(console.error);
       }
     };
-  }, []);
+  }, [authSetup]);
 
   return authSetup;
 }
@@ -273,13 +276,13 @@ export function TestWrapper({ children, authenticated = false, route = '/' }: Te
 export async function waitForRealApiCall(
   queryClient: QueryClient,
   queryKey: string[],
-  timeout: number = 5000
+  timeout: number = 5000,
 ) {
   const startTime = Date.now();
 
   while (Date.now() - startTime < timeout) {
     const query = queryClient.getQueryCache().find({ queryKey });
-    
+
     if (query && query.state.status === 'success') {
       return query.state.data;
     }
@@ -288,7 +291,7 @@ export async function waitForRealApiCall(
       throw query.state.error;
     }
 
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await new Promise((resolve) => setTimeout(resolve, 100));
   }
 
   throw new Error(`API call for ${queryKey.join('.')} did not complete within ${timeout}ms`);
@@ -298,7 +301,7 @@ export async function waitForRealApiCall(
 export async function submitFormWithRealBackend(
   form: HTMLFormElement,
   queryClient: QueryClient,
-  expectedMutationKey?: string[]
+  expectedMutationKey?: string[],
 ) {
   const submitEvent = new Event('submit', { bubbles: true, cancelable: true });
   form.dispatchEvent(submitEvent);
@@ -310,8 +313,8 @@ export async function submitFormWithRealBackend(
 
     while (Date.now() - startTime < timeout) {
       const mutations = queryClient.getMutationCache().getAll();
-      const targetMutation = mutations.find(m => 
-        JSON.stringify(m.options.mutationKey) === JSON.stringify(expectedMutationKey)
+      const targetMutation = mutations.find(
+        (m) => JSON.stringify(m.options.mutationKey) === JSON.stringify(expectedMutationKey),
       );
 
       if (targetMutation) {
@@ -323,7 +326,7 @@ export async function submitFormWithRealBackend(
         }
       }
 
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise((resolve) => setTimeout(resolve, 100));
     }
 
     throw new Error(`Form submission did not complete within ${timeout}ms`);

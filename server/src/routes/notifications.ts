@@ -16,7 +16,7 @@ router.get('/', async (req: Request, res) => {
     const read = req.query.read === 'true' ? true : req.query.read === 'false' ? false : undefined;
 
     // Build where clause
-    const where: any = { userId };
+    const where: { userId: number; read?: boolean } = { userId };
     if (read !== undefined) {
       where.read = read;
     }

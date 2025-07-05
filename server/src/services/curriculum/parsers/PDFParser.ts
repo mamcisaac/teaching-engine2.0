@@ -22,27 +22,27 @@ export class PDFParser extends CurriculumParser {
     // Parse PDF
     const buffer = content instanceof Buffer ? content : Buffer.from(content);
     const data = await pdfParse(buffer);
-    
+
     if (!data.text) {
       throw new Error('No text content found in PDF');
     }
 
     // Extract metadata from PDF info
     const metadata = this.extractMetadata(data);
-    
+
     // Split into sections
     const sections = this.extractSections(data.text);
-    
+
     // Find curriculum sections
     const curriculumSections = this.findCurriculumSections(sections);
-    
+
     if (curriculumSections.length === 0) {
       throw new Error('No curriculum expectations found in PDF');
     }
 
     // Parse expectations from sections
     const expectations: ParsedExpectation[] = [];
-    
+
     for (const section of curriculumSections) {
       const sectionExpectations = this.parseSection(section, metadata);
       expectations.push(...sectionExpectations);
@@ -74,29 +74,41 @@ export class PDFParser extends CurriculumParser {
     subject?: string;
     version?: string;
   } {
-    const metadata: any = {};
-    
+    const metadata: {
+      grade?: number;
+      subject?: string;
+      version?: string;
+    } = {};
+
     // Try to extract from PDF metadata
     if (pdfData && typeof pdfData === 'object' && 'info' in pdfData) {
-      const info = (pdfData as any).info;
+      const info = (pdfData as { info?: { Title?: string; Subject?: string } }).info;
       metadata.version = info?.Title || info?.Subject;
     }
 
     // Extract from text content
-    const text = pdfData && typeof pdfData === 'object' && 'text' in pdfData ? (pdfData as any).text : '';
-    
+    const text =
+      pdfData && typeof pdfData === 'object' && 'text' in pdfData
+        ? (pdfData as { text: string }).text
+        : '';
+
     // Look for grade
     const gradeMatch = text.match(/Grade\s*(\d+)/i);
     if (gradeMatch) {
       metadata.grade = parseInt(gradeMatch[1]);
     }
-    
+
     // Look for subject
     const subjects = [
-      'Mathematics', 'Language', 'Science', 'Social Studies', 
-      'The Arts', 'Health and Physical Education', 'French'
+      'Mathematics',
+      'Language',
+      'Science',
+      'Social Studies',
+      'The Arts',
+      'Health and Physical Education',
+      'French',
     ];
-    
+
     for (const subject of subjects) {
       if (text.includes(subject)) {
         metadata.subject = subject;
@@ -112,7 +124,7 @@ export class PDFParser extends CurriculumParser {
    */
   private extractSections(text: string): PDFSection[] {
     const sections: PDFSection[] = [];
-    
+
     // Split by common section headers
     const sectionPatterns = [
       /^Overall Expectations?$/im,
@@ -128,7 +140,7 @@ export class PDFParser extends CurriculumParser {
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i].trim();
-      
+
       // Check for page break
       if (line.includes('Page') && line.match(/\d+/)) {
         const match = line.match(/Page\s*(\d+)/i);
@@ -151,7 +163,7 @@ export class PDFParser extends CurriculumParser {
         if (currentSection) {
           sections.push(currentSection);
         }
-        
+
         // Start new section
         currentSection = {
           title: line,
@@ -176,10 +188,10 @@ export class PDFParser extends CurriculumParser {
    * Find sections containing curriculum expectations
    */
   private findCurriculumSections(sections: PDFSection[]): PDFSection[] {
-    return sections.filter(section => {
+    return sections.filter((section) => {
       const title = section.title.toLowerCase();
       const content = section.content.toLowerCase();
-      
+
       return (
         title.includes('expectation') ||
         title.includes('strand') ||
@@ -194,18 +206,18 @@ export class PDFParser extends CurriculumParser {
    * Parse expectations from a section
    */
   private parseSection(
-    section: PDFSection, 
-    metadata: { grade?: number; subject?: string }
+    section: PDFSection,
+    metadata: { grade?: number; subject?: string },
   ): ParsedExpectation[] {
     const expectations: ParsedExpectation[] = [];
-    
+
     // Determine if this is overall or specific expectations
     const isOverall = section.title.toLowerCase().includes('overall');
     const type: 'overall' | 'specific' = isOverall ? 'overall' : 'specific';
-    
+
     // Extract strand from section title
     const strand = this.extractStrand(section.title) || 'General';
-    
+
     // Parse expectations using different patterns
     const patterns = [
       // Pattern 1: Code. Description
@@ -218,11 +230,11 @@ export class PDFParser extends CurriculumParser {
 
     for (const pattern of patterns) {
       const matches = [...section.content.matchAll(pattern)];
-      
+
       for (const match of matches) {
         let code: string;
         let description: string;
-        
+
         if (match.length >= 3) {
           // Pattern with code and description
           code = match[1];
@@ -236,9 +248,9 @@ export class PDFParser extends CurriculumParser {
         }
 
         description = this.cleanText(description);
-        
+
         if (description.length < 10) continue; // Skip very short descriptions
-        
+
         const expectation: ParsedExpectation = {
           code: this.cleanText(code),
           description,
@@ -254,7 +266,7 @@ export class PDFParser extends CurriculumParser {
 
         expectations.push(expectation);
       }
-      
+
       // If we found expectations with this pattern, don't try others
       if (expectations.length > 0) {
         break;
@@ -273,25 +285,30 @@ export class PDFParser extends CurriculumParser {
     if (strandMatch) {
       return strandMatch[2].trim();
     }
-    
+
     // Pattern: A. Number Sense
     const letterMatch = title.match(/^([A-Z])\.\s*(.+)/);
     if (letterMatch) {
       return letterMatch[2].trim();
     }
-    
+
     // Check for known strand names
     const strandNames = [
-      'Number Sense', 'Measurement', 'Geometry', 'Patterning',
-      'Data Management', 'Probability', 'Algebra'
+      'Number Sense',
+      'Measurement',
+      'Geometry',
+      'Patterning',
+      'Data Management',
+      'Probability',
+      'Algebra',
     ];
-    
+
     for (const strandName of strandNames) {
       if (title.includes(strandName)) {
         return strandName;
       }
     }
-    
+
     return undefined;
   }
 
@@ -301,7 +318,7 @@ export class PDFParser extends CurriculumParser {
   private deduplicateExpectations(expectations: ParsedExpectation[]): ParsedExpectation[] {
     const seen = new Set<string>();
     const unique: ParsedExpectation[] = [];
-    
+
     for (const exp of expectations) {
       const key = `${exp.code}-${exp.description.substring(0, 50)}`;
       if (!seen.has(key)) {
@@ -309,7 +326,7 @@ export class PDFParser extends CurriculumParser {
         unique.push(exp);
       }
     }
-    
+
     return unique;
   }
 

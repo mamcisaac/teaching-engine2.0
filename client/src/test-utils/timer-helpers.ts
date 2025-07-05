@@ -2,7 +2,7 @@ import { vi, afterEach } from 'vitest';
 
 /**
  * Timer Helpers for Testing
- * 
+ *
  * Provides utilities for working with fake timers in tests,
  * ensuring proper cleanup and consistent behavior.
  */
@@ -13,13 +13,13 @@ export interface TimerOptions {
    * @default false
    */
   shouldAdvanceTimers?: boolean;
-  
+
   /**
    * Initial system time to set
    * @default new Date()
    */
   now?: Date | number;
-  
+
   /**
    * Whether to mock nextTick
    * @default true
@@ -29,16 +29,12 @@ export interface TimerOptions {
 
 /**
  * Setup fake timers with proper configuration
- * 
+ *
  * @param options Timer configuration options
  * @returns Cleanup function to restore real timers
  */
 export function useFakeTimers(options: TimerOptions = {}) {
-  const {
-    shouldAdvanceTimers = false,
-    now = new Date(),
-    shouldMockNextTick = true,
-  } = options;
+  const { shouldAdvanceTimers = false, now = new Date(), shouldMockNextTick = true } = options;
 
   // Setup fake timers
   vi.useFakeTimers({
@@ -64,12 +60,12 @@ export function useFakeTimers(options: TimerOptions = {}) {
 
 /**
  * Helper to advance timers and flush promises
- * 
+ *
  * @param ms Time to advance in milliseconds
  */
 export async function advanceTimersByTimeAsync(ms: number) {
   vi.advanceTimersByTime(ms);
-  
+
   // Flush any pending promises
   await flushPromises();
 }
@@ -107,7 +103,7 @@ export async function advanceTimersToNextTimerAsync() {
 
 /**
  * Setup fake timers that automatically cleanup after each test
- * 
+ *
  * @param options Timer configuration options
  */
 export function setupFakeTimers(options: TimerOptions = {}) {
@@ -124,7 +120,7 @@ export function setupFakeTimers(options: TimerOptions = {}) {
 
 /**
  * Wait for a specific condition with timeout
- * 
+ *
  * @param condition Function that returns true when condition is met
  * @param timeout Maximum time to wait in milliseconds
  * @param interval Check interval in milliseconds
@@ -132,38 +128,38 @@ export function setupFakeTimers(options: TimerOptions = {}) {
 export async function waitForCondition(
   condition: () => boolean | Promise<boolean>,
   timeout = 5000,
-  interval = 50
+  interval = 50,
 ): Promise<void> {
   const startTime = Date.now();
-  
+
   while (Date.now() - startTime < timeout) {
     const result = await condition();
     if (result) {
       return;
     }
-    
+
     if (vi.isFakeTimers()) {
       vi.advanceTimersByTime(interval);
     } else {
-      await new Promise(resolve => setTimeout(resolve, interval));
+      await new Promise((resolve) => setTimeout(resolve, interval));
     }
   }
-  
+
   throw new Error(`Condition not met within ${timeout}ms`);
 }
 
 /**
  * Mock and control Date.now() for consistent testing
- * 
+ *
  * @param initialTime Initial timestamp
  * @returns Object with methods to control time
  */
 export function mockDateNow(initialTime = Date.now()) {
   let currentTime = initialTime;
-  
+
   const originalDateNow = Date.now;
   Date.now = vi.fn(() => currentTime);
-  
+
   return {
     advance: (ms: number) => {
       currentTime += ms;
@@ -194,14 +190,14 @@ export class TestScheduler {
 
   async advance(ms: number) {
     const targetTime = this.currentTime + ms;
-    
+
     while (this.tasks.length > 0 && this.tasks[0].time <= targetTime) {
       const task = this.tasks.shift()!;
       this.currentTime = task.time;
       task.callback();
       await flushPromises();
     }
-    
+
     this.currentTime = targetTime;
   }
 
@@ -222,54 +218,48 @@ export class TestScheduler {
 
 /**
  * Helper for testing debounced functions
- * 
+ *
  * @param fn Debounced function to test
  * @param delay Debounce delay
  */
-export async function testDebounce(
-  fn: (...args: any[]) => void,
-  delay: number
-) {
+export async function testDebounce(fn: (...args: unknown[]) => void, delay: number) {
   const spy = vi.fn();
   const debounced = vi.fn(fn);
-  
+
   // Call multiple times quickly
   debounced();
   debounced();
   debounced();
-  
+
   // Should not have been called yet
   expect(spy).not.toHaveBeenCalled();
-  
+
   // Advance time past debounce delay
   await advanceTimersByTimeAsync(delay + 1);
-  
+
   // Should have been called once
   expect(spy).toHaveBeenCalledTimes(1);
 }
 
 /**
  * Helper for testing throttled functions
- * 
+ *
  * @param fn Throttled function to test
  * @param delay Throttle delay
  */
-export async function testThrottle(
-  fn: (...args: any[]) => void,
-  delay: number
-) {
+export async function testThrottle(fn: (...args: unknown[]) => void, delay: number) {
   const spy = vi.fn();
   const throttled = vi.fn(fn);
-  
+
   // First call should go through immediately
   throttled();
   expect(spy).toHaveBeenCalledTimes(1);
-  
+
   // Subsequent calls within delay should be ignored
   throttled();
   throttled();
   expect(spy).toHaveBeenCalledTimes(1);
-  
+
   // After delay, next call should go through
   await advanceTimersByTimeAsync(delay + 1);
   throttled();
