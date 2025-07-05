@@ -35,7 +35,8 @@ export interface RealBackendTestContext {
 /**
  * Test server instance
  */
-let testServerInstance: any = null;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+let _testServerInstance: any = null;
 
 /**
  * Check if the real backend is available
@@ -238,7 +239,18 @@ export async function setupRealBackendTest(config?: RealBackendConfig): Promise<
   cleanup: () => Promise<void>;
 }> {
   const context = await setupRealBackend(config);
-  const queryClient = createRealTestQueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+        staleTime: 0,
+        gcTime: 0,
+      },
+      mutations: {
+        retry: false,
+      },
+    },
+  });
   
   return {
     queryClient,
@@ -294,6 +306,4 @@ export function createRealBackendClient(config?: Partial<RealBackendConfig>) {
 /**
  * Aliases for backward compatibility
  */
-export const setupRealBackendTest = setupRealBackendTestSuite;
-export const createRealTestQueryClient = () => createRealBackendClient();
 export const resetTestDatabase = cleanupTestDatabase;

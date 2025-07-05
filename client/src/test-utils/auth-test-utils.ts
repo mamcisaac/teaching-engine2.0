@@ -3,7 +3,6 @@
  */
 
 import { vi } from 'vitest';
-import axios from 'axios';
 
 export interface TestUser {
   id: string;
