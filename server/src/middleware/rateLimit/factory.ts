@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { Request, Response } from 'express';
+import '../../types/express.js';
 import rateLimit, { RateLimitRequestHandler, Options } from 'express-rate-limit';
 // Optional Redis support
 let RedisStore: unknown;
@@ -71,7 +72,7 @@ export function createRateLimiter(
     throw new Error(`Unknown rate limit config: ${configName}`);
   }
 
-  const options: Options = {
+  const options: Partial<Options> = {
     windowMs: config.windowMs,
     limit: config.max,
     message: config.message,
@@ -83,27 +84,27 @@ export function createRateLimiter(
       store: new (RedisStore as { default: new (config: { client: unknown; prefix: string }) => unknown }).default({
         client: redisClient,
         prefix: `${storeConfig.keyPrefix}${configName}:`,
-      }),
+      }) as unknown as Options['store'],
     } : {}),
     
     // Key generator based on config
-    keyGenerator: ((req: Request) => {
+    keyGenerator: (req: Request) => {
       if (config.keyGenerator === 'user' && req.user?.id) {
         return `user:${req.user.id}`;
       }
       return req.ip || 'unknown';
-    }) as unknown,
+    },
     
     // Skip successful requests if configured
     skipSuccessfulRequests: config.skipSuccessful || false,
     
     // Skip rate limiting for certain paths or in development
-    skip: ((req: Request) => {
+    skip: (req: Request) => {
       return skipRateLimitPaths.includes(req.path) || shouldBypassRateLimit(req);
-    }) as unknown,
+    },
     
     // Custom handler for rate limit exceeded
-    handler: ((req: Request, res: Response) => {
+    handler: (req: Request, res: Response) => {
       logger.warn({
         ip: req.ip,
         path: req.path,
@@ -119,7 +120,7 @@ export function createRateLimiter(
         limit: config.max,
         windowMs: config.windowMs,
       });
-    }) as unknown,
+    },
     
     // Apply custom options
     ...customOptions,
@@ -141,36 +142,36 @@ export function createDynamicRateLimiter(
     legacyHeaders: false,
     
     // Dynamic max based on user tier
-    max: ((req: Request) => {
+    max: (req: Request) => {
       const userTier = getUserTier(req);
       const config = getRateLimitConfig(configName, userTier);
       return config.max;
-    }) as unknown,
+    },
     
     // Use Redis store if available
     ...(redisClient && storeConfig.useRedis && RedisStore ? {
       store: new (RedisStore as { default: new (config: { client: unknown; prefix: string }) => unknown }).default({
         client: redisClient,
         prefix: `${storeConfig.keyPrefix}${configName}:`,
-      }),
+      }) as unknown as Options['store'],
     } : {}),
     
     // Key generator
-    keyGenerator: ((req: Request) => {
+    keyGenerator: (req: Request) => {
       const config = rateLimitConfigs[configName];
       if (config.keyGenerator === 'user' && req.user?.id) {
         return `user:${req.user.id}`;
       }
       return req.ip || 'unknown';
-    }) as unknown,
+    },
     
     // Skip rate limiting for certain paths or in development
-    skip: ((req: Request) => {
+    skip: (req: Request) => {
       return skipRateLimitPaths.includes(req.path) || shouldBypassRateLimit(req);
-    }) as unknown,
+    },
     
     // Custom handler
-    handler: ((req: Request, res: Response) => {
+    handler: (req: Request, res: Response) => {
       const userTier = getUserTier(req);
       const config = getRateLimitConfig(configName, userTier);
       
@@ -190,7 +191,7 @@ export function createDynamicRateLimiter(
         windowMs: config.windowMs,
         userTier,
       });
-    }) as unknown,
+    },
     
     ...customOptions,
   });
@@ -222,8 +223,8 @@ export function applyRateLimitGroup(
 ): RateLimitRequestHandler[] {
   return limiters.map(limiter => {
     // Add group name to logger context
-    const originalHandler = (limiter as unknown).handler;
-    (limiter as unknown).handler = (req: Request, res: Response) => {
+    const originalHandler = (limiter as RateLimitRequestHandler & { handler?: (req: Request, res: Response) => void }).handler;
+    (limiter as RateLimitRequestHandler & { handler?: (req: Request, res: Response) => void }).handler = (req: Request, res: Response) => {
       logger.warn({
         rateLimitGroup: groupName,
         ip: req.ip,

@@ -163,7 +163,7 @@ describe('ETFO Lesson Plans Provider Contract Tests', () => {
       console.log('Pact verification complete!');
     } catch (_error) {
       console.error('Pact verification failed:', error);
-      throw error;
+      throw _error;
     }
   }, 60000); // 60 second timeout for provider tests
 });

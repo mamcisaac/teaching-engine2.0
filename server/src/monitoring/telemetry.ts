@@ -55,7 +55,7 @@ export const initTelemetry = async (): Promise<void> => {
       metricReader: new PeriodicExportingMetricReader({
         exporter: metricExporter,
         exportIntervalMillis: 10000, // Export every 10 seconds
-      }),
+      }) as any,
       instrumentations: [
         getNodeAutoInstrumentations({
           '@opentelemetry/instrumentation-fs': {
@@ -67,11 +67,11 @@ export const initTelemetry = async (): Promise<void> => {
 
     // Start SDK
     await otelSDK.start();
-    logger.info('OpenTelemetry initialized successfully', {
+    logger.info({
       endpoint: OTEL_ENDPOINT,
       serviceName: OTEL_SERVICE_NAME,
       environment: OTEL_ENVIRONMENT,
-    });
+    }, 'OpenTelemetry initialized successfully');
 
     // Graceful shutdown
     process.on('SIGTERM', () => {

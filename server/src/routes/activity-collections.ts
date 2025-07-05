@@ -1,7 +1,7 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { authMiddleware } from '../middleware/auth';
 import { z } from 'zod';
-import { prisma } from '../prisma';
+import { prisma } from '@teaching-engine/database';
 import logger from '../logger';
 const router = Router();
 

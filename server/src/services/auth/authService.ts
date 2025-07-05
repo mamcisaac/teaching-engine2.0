@@ -82,7 +82,7 @@ export class AuthService extends BaseService {
       return hash;
     } catch (error) {
       this.logger.error('Password hashing failed:', error);
-      throw error;
+      throw _error;
     }
   }
 

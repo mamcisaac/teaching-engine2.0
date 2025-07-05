@@ -1,6 +1,32 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Prisma } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 import { measureDatabaseQuery } from './performance';
+
+// Type definitions for better type safety
+type PrismaModel = {
+  findUnique: Function;
+  findMany: Function;
+  findFirst: Function;
+  create: Function;
+  createMany: Function;
+  update: Function;
+  updateMany: Function;
+  upsert: Function;
+  delete: Function;
+  deleteMany: Function;
+  count: Function;
+  aggregate: Function;
+  groupBy: Function;
+  $queryRaw: Function;
+  $transaction: Function;
+  name?: string;
+  constructor: { name: string };
+};
+
+type PrismaClientLike = {
+  $queryRaw: Function;
+  $transaction: Function;
+};
 
 // Common database query builders
 export const dbUtils = {
@@ -123,11 +149,11 @@ export const commonIncludes = {
 
 // Transaction helper
 export const withTransaction = async <T>(
-  prisma: unknown,
-  callback: (tx: unknown) => Promise<T>
+  prisma: PrismaClientLike,
+  callback: (tx: PrismaClientLike) => Promise<T>
 ): Promise<T> => {
   return measureDatabaseQuery('transaction', async () => {
-    return prisma.$transaction(async (tx: unknown) => {
+    return (prisma as any).$transaction(async (tx: PrismaClientLike) => {
       return callback(tx);
     });
   });
@@ -135,7 +161,7 @@ export const withTransaction = async <T>(
 
 // Batch operations
 export const batchCreate = async <T>(
-  model: unknown,
+  model: PrismaModel,
   data: T[],
   chunkSize: number = 100
 ): Promise<number> => {
@@ -143,7 +169,7 @@ export const batchCreate = async <T>(
   
   for (let i = 0; i < data.length; i += chunkSize) {
     const chunk = data.slice(i, i + chunkSize);
-    const result = await model.createMany({ data: chunk });
+    const result = await (model as any).createMany({ data: chunk });
     created += result.count;
   }
   
@@ -151,8 +177,8 @@ export const batchCreate = async <T>(
 };
 
 export const batchUpdate = async <T>(
-  model: unknown,
-  updates: Array<{ where: unknown; data: T }>,
+  model: PrismaModel,
+  updates: Array<{ where: any; data: T }>,
   chunkSize: number = 50
 ): Promise<number> => {
   let updated = 0;
@@ -161,8 +187,8 @@ export const batchUpdate = async <T>(
     const chunk = updates.slice(i, i + chunkSize);
     
     const results = await Promise.all(
-      chunk.map(({ where, data }) =>
-        model.update({ where, data }).catch(() => null)
+      chunk.map(({ where, data }): Promise<any> =>
+        (model as any).update({ where, data }).catch(() => null)
       )
     );
     
@@ -173,7 +199,7 @@ export const batchUpdate = async <T>(
 };
 
 export const batchDelete = async (
-  model: unknown,
+  model: PrismaModel,
   ids: Array<string | number>,
   chunkSize: number = 100
 ): Promise<number> => {
@@ -181,7 +207,7 @@ export const batchDelete = async (
   
   for (let i = 0; i < ids.length; i += chunkSize) {
     const chunk = ids.slice(i, i + chunkSize);
-    const result = await model.deleteMany({
+    const result = await (model as any).deleteMany({
       where: { id: { in: chunk } },
     });
     deleted += result.count;
@@ -192,45 +218,45 @@ export const batchDelete = async (
 
 // Upsert helper
 export const upsertMany = async <T>(
-  model: unknown,
+  model: PrismaModel,
   records: Array<{
-    where: unknown;
+    where: any;
     create: T;
     update: Partial<T>;
   }>
 ): Promise<any[]> => {
   return Promise.all(
     records.map(({ where, create, update }) =>
-      model.upsert({ where, create, update })
+      (model as any).upsert({ where, create, update })
     )
   );
 };
 
 // Aggregation helpers
 export const getCountByField = async (
-  model: unknown,
+  model: PrismaModel,
   field: string,
   where: any = {}
-): Promise<Array<{ field: unknown; count: number }>> => {
-  const results = await model.groupBy({
+): Promise<Array<{ field: any; count: number }>> => {
+  const results = await (model as any).groupBy({
     by: [field],
     where,
     _count: true,
   });
   
-  return results.map((r: unknown) => ({
+  return results.map((r: any) => ({
     field: r[field],
     count: r._count,
   }));
 };
 
 export const getSumByField = async (
-  model: unknown,
+  model: PrismaModel,
   sumField: string,
   groupByField: string,
   where: any = {}
-): Promise<Array<{ field: unknown; sum: number }>> => {
-  const results = await model.groupBy({
+): Promise<Array<{ field: any; sum: number }>> => {
+  const results = await (model as any).groupBy({
     by: [groupByField],
     where,
     _sum: {
@@ -238,7 +264,7 @@ export const getSumByField = async (
     },
   });
   
-  return results.map((r: unknown) => ({
+  return results.map((r: any) => ({
     field: r[groupByField],
     sum: r._sum[sumField] || 0,
   }));
@@ -246,11 +272,11 @@ export const getSumByField = async (
 
 // Soft delete helper
 export const softDelete = async (
-  model: unknown,
+  model: PrismaModel,
   id: string | number,
   deletedAtField: string = 'deletedAt'
-): Promise<unknown> => {
-  return model.update({
+): Promise<any> => {
+  return (model as any).update({
     where: { id },
     data: { [deletedAtField]: new Date() },
   });
@@ -258,34 +284,34 @@ export const softDelete = async (
 
 // Find or create helper
 export const findOrCreate = async <T>(
-  model: unknown,
-  where: unknown,
+  model: PrismaModel,
+  where: any,
   create: T
-): Promise<{ record: unknown; created: boolean }> => {
-  const existing = await model.findUnique({ where });
+): Promise<{ record: any; created: boolean }> => {
+  const existing = await (model as any).findUnique({ where });
   
   if (existing) {
     return { record: existing, created: false };
   }
   
-  const record = await model.create({ data: create });
+  const record = await (model as any).create({ data: create });
   return { record, created: true };
 };
 
 // Query optimization helpers
 export const optimizedCount = async (
-  model: unknown,
+  model: PrismaModel,
   where: any = {}
 ): Promise<number> => {
   // Use raw query for better performance on large tables
-  const tableName = model.name || model.constructor.name;
+  const tableName = (model as any).name || model.constructor.name;
   const whereClause = Object.keys(where).length > 0
     ? `WHERE ${Object.entries(where)
         .map(([key, value]) => `${key} = ${typeof value === 'string' ? `'${value}'` : value}`)
         .join(' AND ')}`
     : '';
   
-  const result = await model.$queryRaw`
+  const result = await (model as any).$queryRaw`
     SELECT COUNT(*) as count FROM ${Prisma.sql([tableName])} ${Prisma.sql([whereClause])}
   `;
   
@@ -293,20 +319,20 @@ export const optimizedCount = async (
 };
 
 // Connection helpers
-export const testConnection = async (prisma: unknown): Promise<boolean> => {
+export const testConnection = async (prisma: PrismaClientLike): Promise<boolean> => {
   try {
-    await prisma.$queryRaw`SELECT 1`;
+    await (prisma as any).$queryRaw`SELECT 1`;
     return true;
   } catch {
     return false;
   }
 };
 
-export const getConnectionInfo = async (prisma: unknown): Promise<unknown> => {
+export const getConnectionInfo = async (prisma: PrismaClientLike): Promise<any> => {
   const [version, tables, size] = await Promise.all([
-    prisma.$queryRaw`SELECT sqlite_version() as version`,
-    prisma.$queryRaw`SELECT name FROM sqlite_master WHERE type='table'`,
-    prisma.$queryRaw`SELECT page_count * page_size as size FROM pragma_page_count(), pragma_page_size()`,
+    (prisma as any).$queryRaw`SELECT sqlite_version() as version`,
+    (prisma as any).$queryRaw`SELECT name FROM sqlite_master WHERE type='table'`,
+    (prisma as any).$queryRaw`SELECT page_count * page_size as size FROM pragma_page_count(), pragma_page_size()`,
   ]);
   
   return {

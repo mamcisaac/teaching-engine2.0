@@ -319,6 +319,7 @@ const logger = new EnhancedLogger(baseLogger);
 
 // Export types for TypeScript
 export type Logger = EnhancedLogger;
+export { EnhancedLogger };
 
 // Named export for compatibility
 export { logger };

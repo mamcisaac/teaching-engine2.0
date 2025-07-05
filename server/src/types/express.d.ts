@@ -1,4 +1,5 @@
 import { Request } from 'express';
+import { EnhancedLogger } from '../logger';
 
 declare global {
   namespace Express {
@@ -10,6 +11,19 @@ declare global {
         organizationId?: number;
         permissions?: string[];
       };
+      // Rate limiting properties
+      rateLimit?: {
+        resetTime?: Date;
+        remaining?: number;
+        total?: number;
+        used?: number;
+      };
+      // Request logging properties
+      logger?: EnhancedLogger;
+      requestId?: string;
+      startTime?: number;
+      // Error handling properties
+      code?: string;
     }
   }
 }

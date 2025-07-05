@@ -183,7 +183,7 @@ export async function safeFetch(
     return response;
   } catch (_error) {
     clearTimeout(timeoutId);
-    throw error;
+    throw _error;
   }
 }
 

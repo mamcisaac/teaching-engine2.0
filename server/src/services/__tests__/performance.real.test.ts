@@ -152,7 +152,7 @@ describe('Service Layer - Real Performance Tests', () => {
           });
         } catch (error) {
           results.push({ input, time: Date.now() - startTime, success: false });
-          throw error;
+          throw _error;
         }
       }
 

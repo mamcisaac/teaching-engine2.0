@@ -34,7 +34,7 @@ export class TemplateDataFetcher {
         data[req.key] = result;
       } catch (_error) {
         if (req.required) {
-          throw error;
+          throw _error;
         }
         // Use default value for optional requirements
         data[req.key] = req.defaultValue || null;

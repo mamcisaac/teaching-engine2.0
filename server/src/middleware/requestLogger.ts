@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import '../types/express.js';
 import { randomUUID } from 'crypto';
 import logger from '../logger.js';
 import { performance } from 'perf_hooks';
@@ -8,38 +9,41 @@ interface ExtendedRequest extends Request {
   logger: typeof logger;
   requestId: string;
   startTime: number;
+  // Allow for additional properties
+  [key: string]: unknown;
 }
 
 
 /**
  * Request logging middleware that provides structured logging for all requests
  */
-export function requestLoggingMiddleware(req: ExtendedRequest, res: Response, next: NextFunction) {
+export function requestLoggingMiddleware(req: Request, res: Response, next: NextFunction) {
+  const extendedReq = req as ExtendedRequest;
   // Generate unique request ID
   const requestId = randomUUID();
   const startTime = performance.now();
   
   // Add request ID and timing to request object
-  req.requestId = requestId;
-  req.startTime = startTime;
+  extendedReq.requestId = requestId;
+  extendedReq.startTime = startTime;
   
   // Create child logger with request context
-  req.logger = logger.child({
+  extendedReq.logger = logger.child({
     requestId,
-    method: req.method,
-    url: req.url,
-    userAgent: req.get('User-Agent'),
-    ip: req.ip || req.connection.remoteAddress
+    method: extendedReq.method,
+    url: extendedReq.url,
+    userAgent: extendedReq.get('User-Agent'),
+    ip: extendedReq.ip || extendedReq.connection.remoteAddress
   });
   
   // Set request ID in main logger for this request
   logger.setRequestId(requestId);
   
   // Log incoming request
-  req.logger.apiRequest(req, {
-    query: req.query,
-    body: sanitizeRequestBody(req.body),
-    headers: sanitizeHeaders(req.headers)
+  extendedReq.logger.apiRequest(extendedReq, {
+    query: extendedReq.query,
+    body: sanitizeRequestBody(extendedReq.body),
+    headers: sanitizeHeaders(extendedReq.headers)
   });
   
   // Override response methods to log response
@@ -56,28 +60,28 @@ export function requestLoggingMiddleware(req: ExtendedRequest, res: Response, ne
     
     const duration = performance.now() - startTime;
     
-    req.logger.apiResponse(req, res, duration, {
+    extendedReq.logger.apiResponse(extendedReq as Record<string, unknown>, res as unknown as Record<string, unknown>, duration, {
       responseSize: res.get('Content-Length') || 0,
       cacheStatus: res.get('X-Cache') || 'MISS'
     });
     
     // Log slow requests
     if (duration > 2000) {
-      req.logger.warn({
+      extendedReq.logger.warn({
         slowRequest: true,
         duration,
         threshold: 2000
-      }, `Slow request detected: ${req.method} ${req.url} took ${duration}ms`);
+      }, `Slow request detected: ${extendedReq.method} ${extendedReq.url} took ${duration}ms`);
     }
     
     // Log errors
     if (res.statusCode >= 400) {
       const level = res.statusCode >= 500 ? 'error' : 'warn';
-      req.logger[level]({
+      extendedReq.logger[level]({
         errorResponse: true,
         statusCode: res.statusCode,
         duration
-      }, `Error response: ${req.method} ${req.url} - ${res.statusCode}`);
+      }, `Error response: ${extendedReq.method} ${extendedReq.url} - ${res.statusCode}`);
     }
   }
   
@@ -104,7 +108,7 @@ export function requestLoggingMiddleware(req: ExtendedRequest, res: Response, ne
   
   // Handle request errors
   res.on('error', (error) => {
-    req.logger.error({
+    extendedReq.logger.error({
       responseError: true,
       error: error.message,
       stack: error.stack
@@ -150,7 +154,11 @@ function sanitizeRequestBody(body: unknown): unknown {
  * Sanitize headers to remove sensitive information
  */
 function sanitizeHeaders(headers: unknown): unknown {
-  const sanitized = { ...headers };
+  if (!headers || typeof headers !== 'object') {
+    return headers;
+  }
+  
+  const sanitized = { ...headers } as Record<string, unknown>;
   
   // Remove or redact sensitive headers
   if (sanitized.authorization) {
@@ -187,11 +195,12 @@ function sanitizeHeaders(headers: unknown): unknown {
  */
 export function errorLoggingMiddleware(
   error: Error,
-  req: ExtendedRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) {
-  const requestLogger = req.logger || logger;
+  const extendedReq = req as ExtendedRequest;
+  const requestLogger = extendedReq.logger || logger;
   
   requestLogger.error({
     unhandledError: true,
@@ -201,10 +210,10 @@ export function errorLoggingMiddleware(
       stack: error.stack
     },
     request: {
-      method: req.method,
-      url: req.url,
-      headers: sanitizeHeaders(req.headers),
-      body: sanitizeRequestBody(req.body)
+      method: extendedReq.method,
+      url: extendedReq.url,
+      headers: sanitizeHeaders(extendedReq.headers),
+      body: sanitizeRequestBody(extendedReq.body)
     }
   }, `Unhandled error: ${error.message}`);
   
@@ -215,18 +224,19 @@ export function errorLoggingMiddleware(
  * Security event logging helper
  */
 export function logSecurityEvent(
-  req: ExtendedRequest,
+  req: Request,
   event: string,
   details: Record<string, unknown> = {}
 ) {
-  const requestLogger = req.logger || logger;
+  const extendedReq = req as ExtendedRequest;
+  const requestLogger = extendedReq.logger || logger;
   
   requestLogger.security(event, {
     ...details,
-    ip: req.ip || req.connection.remoteAddress,
-    userAgent: req.get('User-Agent'),
-    method: req.method,
-    url: req.url,
+    ip: extendedReq.ip || extendedReq.connection.remoteAddress,
+    userAgent: extendedReq.get('User-Agent'),
+    method: extendedReq.method,
+    url: extendedReq.url,
     timestamp: new Date().toISOString()
   });
 }
@@ -235,15 +245,16 @@ export function logSecurityEvent(
  * Business operation logging helper
  */
 export function logBusinessOperation(
-  req: ExtendedRequest,
+  req: Request,
   operation: string,
   context: Record<string, unknown> = {}
 ) {
-  const requestLogger = req.logger || logger;
+  const extendedReq = req as ExtendedRequest;
+  const requestLogger = extendedReq.logger || logger;
   
   requestLogger.business(operation, {
     ...context,
-    userId: req.user?.id,
+    userId: (extendedReq.user as { id?: unknown })?.id,
     timestamp: new Date().toISOString()
   });
 }
@@ -252,16 +263,17 @@ export function logBusinessOperation(
  * Audit trail logging helper
  */
 export function logAuditEvent(
-  req: ExtendedRequest,
+  req: Request,
   operation: string,
   details: Record<string, unknown> = {}
 ) {
-  const requestLogger = req.logger || logger;
+  const extendedReq = req as ExtendedRequest;
+  const requestLogger = extendedReq.logger || logger;
   
   requestLogger.audit(operation, {
     ...details,
-    userId: req.user?.id,
-    ip: req.ip || req.connection.remoteAddress,
+    userId: (extendedReq.user as { id?: unknown })?.id,
+    ip: extendedReq.ip || extendedReq.connection.remoteAddress,
     timestamp: new Date().toISOString()
   });
 }

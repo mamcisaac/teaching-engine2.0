@@ -104,7 +104,7 @@ describe('MonitoringService', () => {
       
       const operation = async () => {
         return await monitoringService.withSpan('failing-operation', async (span) => {
-          throw error;
+          throw _error;
         });
       };
 

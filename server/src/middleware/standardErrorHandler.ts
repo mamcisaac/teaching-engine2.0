@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import '../types/express.js';
 import { ZodError } from 'zod';
 import logger from '../logger.js';
 import { auditFunctions } from './auditLogger.js';
@@ -227,7 +228,7 @@ export function standardErrorHandler(
     statusCode = 400;
     errorType = ErrorType.DATABASE_ERROR;
     
-    const prismaError = error as unknown;
+    const prismaError = error as unknown as { code: string };
     switch (prismaError.code) {
       case 'P2002':
         userMessage = 'A record with this information already exists.';
@@ -254,45 +255,45 @@ export function standardErrorHandler(
     statusCode = 400;
     errorType = ErrorType.FILE_UPLOAD_ERROR;
     userMessage = 'File upload failed. Please check the file and try again.';
-    details = { multerCode: (error as unknown).code };
+    details = { multerCode: (error as unknown as { code: string }).code };
   }
 
   // Log the error
-  const requestLogger = req.logger || logger;
+  const requestLogger = (req as { logger?: typeof logger }).logger || logger;
   
   if (statusCode >= 500) {
     // Server errors
     requestLogger.error({
       error: {
         name: error.name,
-        message: error.message,
+        message: (error as any).message,
         stack: error.stack,
         type: errorType
       },
       request: {
         method: req.method,
         url: req.url,
-        userId: req.user?.id,
+        userId: (req as { user?: { id?: unknown } }).user?.id,
         ip: req.ip
       },
       statusCode
-    }, `Server error: ${error.message}`);
+    }, `Server error: ${(error as any).message}`);
   } else {
     // Client errors
     requestLogger.warn({
       error: {
         name: error.name,
-        message: error.message,
+        message: (error as any).message,
         type: errorType
       },
       request: {
         method: req.method,
         url: req.url,
-        userId: req.user?.id,
+        userId: (req as { user?: { id?: unknown } }).user?.id,
         ip: req.ip
       },
       statusCode
-    }, `Client error: ${error.message}`);
+    }, `Client error: ${(error as any).message}`);
   }
 
   // Log security events for specific error types
@@ -320,7 +321,7 @@ export function standardErrorHandler(
       })
     },
     timestamp: new Date().toISOString(),
-    requestId: req.requestId
+    requestId: (req as { requestId?: string }).requestId
   };
 
   // Add retry information for rate limit errors

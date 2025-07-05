@@ -115,9 +115,11 @@ export const validatePagination = (query: unknown) => {
     return defaultPagination;
   }
   
+  const queryObj = query as Record<string, any>;
+  
   return {
-    page: Math.max(1, parseInt(query.page, 10) || 1),
-    pageSize: Math.min(100, Math.max(1, parseInt(query.pageSize, 10) || 20)),
+    page: Math.max(1, parseInt(queryObj.page, 10) || 1),
+    pageSize: Math.min(100, Math.max(1, parseInt(queryObj.pageSize, 10) || 20)),
   };
 };
 
@@ -207,8 +209,8 @@ export const isValidCanadianPostalCode = (code: string): boolean => {
 };
 
 // Schema builders
-export const buildFilterSchema = <T extends z.ZodObject<unknown>>(
-  baseSchema: T,
+export const buildFilterSchema = <T extends z.ZodRawShape>(
+  baseSchema: z.ZodObject<T>,
   additionalFields?: z.ZodRawShape
 ) => {
   return baseSchema.extend({
@@ -219,28 +221,28 @@ export const buildFilterSchema = <T extends z.ZodObject<unknown>>(
   });
 };
 
-export const buildCreateSchema = <T extends z.ZodObject<unknown>>(
-  baseSchema: T,
-  requiredFields: Array<keyof T['shape']>
+export const buildCreateSchema = <T extends z.ZodRawShape>(
+  baseSchema: z.ZodObject<T>,
+  requiredFields: Array<keyof T>
 ) => {
-  const shape: Record<string, unknown> = {};
+  const shape: z.ZodRawShape = {};
   
   for (const key of requiredFields) {
     if (baseSchema.shape[key]) {
-      shape[key] = baseSchema.shape[key];
+      shape[key as string] = baseSchema.shape[key];
     }
   }
   
   return z.object(shape);
 };
 
-export const buildUpdateSchema = <T extends z.ZodObject<unknown>>(
-  baseSchema: T
+export const buildUpdateSchema = <T extends z.ZodRawShape>(
+  baseSchema: z.ZodObject<T>
 ) => {
-  const shape: Record<string, unknown> = {};
+  const shape: z.ZodRawShape = {};
   
   for (const [key, schema] of Object.entries(baseSchema.shape)) {
-    shape[key] = (schema as unknown).optional();
+    shape[key] = (schema as any).optional();
   }
   
   return z.object(shape);

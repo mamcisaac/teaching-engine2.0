@@ -215,7 +215,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
       }
     } catch (error: unknown) {
       if (error instanceof ConflictError) {
-        throw error; // Re-throw conflict errors
+        throw _error; // Re-throw conflict errors
       }
       logger.error({ error, email: email.toLowerCase() }, 'Error checking existing user');
       throw new AppError('Database error during user lookup', 500, 'DATABASE_ERROR');

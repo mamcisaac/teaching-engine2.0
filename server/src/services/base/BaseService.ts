@@ -170,7 +170,7 @@ export abstract class BaseService {
         error,
       });
       
-      throw error;
+      throw _error;
     }
   }
 
