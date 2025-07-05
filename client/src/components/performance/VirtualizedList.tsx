@@ -3,12 +3,19 @@ import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 const debounce = <T extends (...args: any[]) => any>(
   func: T,
   wait: number
-): ((...args: Parameters<T>) => void) => {
+): ((...args: Parameters<T>) => void) & { cancel(): void } => {
   let timeout: ReturnType<typeof setTimeout>;
-  return (...args: Parameters<T>) => {
+  
+  const debounced = (...args: Parameters<T>) => {
     clearTimeout(timeout);
     timeout = setTimeout(() => func(...args), wait);
   };
+  
+  debounced.cancel = () => {
+    clearTimeout(timeout);
+  };
+  
+  return debounced;
 };
 
 interface VirtualizedListProps<T> {
@@ -59,7 +66,7 @@ export function VirtualizedList<T>({
 
   // Visible items
   const visibleItems = useMemo(() => {
-    const result = [];
+    const result: { index: number; item: T }[] = [];
     for (let i = visibleRange.start; i <= visibleRange.end; i++) {
       if (i < items.length) {
         result.push({
@@ -113,11 +120,8 @@ export function VirtualizedList<T>({
     containerRef.current.scrollTop = Math.max(0, scrollTop);
   }, [itemHeight, height]);
 
-  // Expose scroll methods via ref
-  React.useImperativeHandle(containerRef, () => ({
-    scrollToIndex,
-    scrollTop: containerRef.current?.scrollTop || 0,
-  }));
+  // Note: For external scroll methods, use the returned containerRef.current.scrollTop directly
+  // and call scrollToIndex from the component instance
 
   return (
     <div

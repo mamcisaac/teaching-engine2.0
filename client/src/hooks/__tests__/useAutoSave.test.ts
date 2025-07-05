@@ -111,8 +111,8 @@ describe('useAutoSave', () => {
         await act(async () => {
           await result.current.saveNow();
         });
-      } catch (_e) {
-        caughtError = e as Error;
+      } catch (error) {
+        caughtError = error as Error;
       }
 
       expect(caughtError).toBeTruthy();

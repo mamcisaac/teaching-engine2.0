@@ -19,10 +19,8 @@ export const OnboardingProgress = lazy(() =>
   }))
 );
 
-// Lazy load framer-motion components
-export const MotionComponents = lazy(async () => {
+// Export motion components for use
+export const loadMotionComponents = async () => {
   const { motion, AnimatePresence } = await import('framer-motion');
-  return {
-    default: { motion, AnimatePresence }
-  };
-});
+  return { motion, AnimatePresence };
+};

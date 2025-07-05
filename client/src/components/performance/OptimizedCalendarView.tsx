@@ -130,9 +130,9 @@ const EventListItem = memo(function EventListItem({
         <h4 className="font-medium text-gray-900 truncate">{event.title}</h4>
         <p className="text-sm text-gray-500">{eventDate}</p>
       </div>
-      {event.type && (
+      {event.eventType && (
         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-          {event.type}
+          {event.eventType}
         </span>
       )}
     </div>
@@ -164,10 +164,11 @@ export const OptimizedCalendarView = memo(function OptimizedCalendarView({
     return { from, to };
   }, [month]);
 
+  // Only fetch events if we don't have external events provided
+  const shouldFetchEvents = !externalEvents;
   const { data: fetchedEvents, error, isLoading } = useCalendarEvents(
-    dateRange.from,
-    dateRange.to,
-    { enabled: !externalEvents }
+    shouldFetchEvents ? dateRange.from : '',
+    shouldFetchEvents ? dateRange.to : ''
   );
 
   // Log any errors for debugging

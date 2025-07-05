@@ -57,9 +57,9 @@ export function useForm<T extends Record<string, unknown>>({
           error &&
           typeof error === 'object' &&
           'errors' in error &&
-          Array.isArray((error as unknown).errors)
+          Array.isArray((error as { errors: unknown[] }).errors)
         ) {
-          return ((error as unknown).errors[0]?.message as string) || 'Invalid value';
+          return ((error as { errors: { message: string }[] }).errors[0]?.message as string) || 'Invalid value';
         }
         return 'Validation error';
       }
@@ -80,10 +80,10 @@ export function useForm<T extends Record<string, unknown>>({
         error &&
         typeof error === 'object' &&
         'errors' in error &&
-        Array.isArray((error as unknown).errors)
+        Array.isArray((error as { errors: unknown[] }).errors)
       ) {
         const newErrors: FormError = {};
-        ((error as unknown).errors as unknown[]).forEach((err: unknown) => {
+        ((error as { errors: { path: string[]; message: string }[] }).errors).forEach((err) => {
           const path = err.path.join('.');
           newErrors[path] = err.message;
         });

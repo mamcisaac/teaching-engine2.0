@@ -438,9 +438,9 @@ export default function CalendarPlanningPage() {
               startAccessor="start"
               endAccessor="end"
               style={{ height: window.innerWidth < 768 ? 500 : 700 }}
-              onSelectEvent={handleSelectEvent}
+              onSelectEvent={(event: object) => handleSelectEvent(event as CalendarViewEvent)}
               onSelectSlot={handleSelectSlot}
-              eventPropGetter={eventStyleGetter}
+              eventPropGetter={(event: object) => eventStyleGetter(event as CalendarViewEvent)}
               selectable
               view={view}
               onView={setView}

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useMediaResources } from '../api/domains/resource';
-import type { MediaResource } from '../types';
+import type { MediaResource } from '../api/domains/resource/api';
 import Dialog from './Dialog';
 
 interface ResourceSelectorProps {
@@ -21,12 +21,13 @@ export default function ResourceSelector({
   const [search, setSearch] = useState('');
   const [selectedFileType, setSelectedFileType] = useState(fileTypeFilter || '');
 
-  const { data: resources = [], isLoading } = useMediaResources(userId);
+  const { data: mediaData, isLoading } = useMediaResources({ userId });
+  const resources = mediaData?.resources || [];
 
   // Filter resources
   const filteredResources = resources.filter((resource) => {
     // File type filter
-    if (selectedFileType && resource.fileType !== selectedFileType) {
+    if (selectedFileType && resource.type !== selectedFileType) {
       return false;
     }
 
@@ -62,8 +63,7 @@ export default function ResourceSelector({
   };
 
   const getResourceUrl = (resource: MediaResource) => {
-    const filename = resource.filePath.split('/').pop();
-    return `/api/media-resources/file/${resource.userId}/${filename}`;
+    return resource.fileUrl || resource.thumbnailUrl || '/placeholder-image.png';
   };
 
   return (
@@ -126,7 +126,7 @@ export default function ResourceSelector({
                 >
                   {/* Thumbnail */}
                   <div className="w-full h-32 mb-3 flex items-center justify-center bg-gray-100 rounded">
-                    {resource.fileType === 'image' ? (
+                    {resource.type === 'image' ? (
                       <img
                         src={getResourceUrl(resource)}
                         alt={resource.title}
@@ -137,8 +137,8 @@ export default function ResourceSelector({
                         }}
                       />
                     ) : null}
-                    <div className={`text-4xl ${resource.fileType === 'image' ? 'hidden' : ''}`}>
-                      {getFileIcon(resource.fileType)}
+                    <div className={`text-4xl ${resource.type === 'image' ? 'hidden' : ''}`}>
+                      {getFileIcon(resource.type)}
                     </div>
                   </div>
 
@@ -147,7 +147,7 @@ export default function ResourceSelector({
 
                   <div className="text-sm text-gray-500 mb-2">
                     <div className="flex items-center gap-2">
-                      <span className="capitalize">{resource.fileType}</span>
+                      <span className="capitalize">{resource.type}</span>
                       {resource.fileSize && (
                         <>
                           <span>•</span>

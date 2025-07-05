@@ -18,8 +18,8 @@ const TemplatesPage = lazy(() => import('../pages/TemplatesPage'));
 const CalendarPlanningPage = lazy(() => import('../pages/planning/CalendarPlanningPage'));
 
 export interface RouteConfig {
-  path: string;
-  element: React.ComponentType<any> | JSX.Element;
+  path?: string;
+  element?: React.ComponentType<any> | JSX.Element;
   workflowLevel?: ETFOLevel;
   children?: RouteConfig[];
   index?: boolean;
@@ -34,6 +34,7 @@ export const publicRoutes: RouteConfig[] = [
 
 export const plannerRoutes: RouteConfig[] = [
   {
+    path: '',
     index: true,
     element: <Navigate to="/planner/dashboard" replace />,
   },
@@ -118,6 +119,7 @@ export const protectedRoutes: RouteConfig[] = [
   },
   {
     path: '/planner',
+    element: <Navigate to="/planner/dashboard" replace />,
     children: plannerRoutes,
   },
   // Legacy redirects

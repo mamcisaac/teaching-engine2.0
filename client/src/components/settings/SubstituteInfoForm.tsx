@@ -8,7 +8,7 @@ export default function SubstituteInfoForm() {
   // const { data } = useSubstituteInfo();
   // const save = useSaveSubstituteInfo();
   const data: any = null; // Placeholder
-  const save = { mutate: () => {} }; // Placeholder
+  const save = { mutate: (_data: any) => {} }; // Placeholder
   const [procedures, setProcedures] = useState('');
   const [allergies, setAllergies] = useState('');
 

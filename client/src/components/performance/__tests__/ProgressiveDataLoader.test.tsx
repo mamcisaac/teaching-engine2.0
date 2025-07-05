@@ -3,6 +3,11 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { ProgressiveDataLoader } from '../ProgressiveDataLoader';
 
+interface TestItem {
+  id: number;
+  title: string;
+}
+
 describe('ProgressiveDataLoader', () => {
   it('loads initial batch of data on mount', async () => {
     const mockLoadData = vi.fn().mockResolvedValue({
@@ -11,10 +16,10 @@ describe('ProgressiveDataLoader', () => {
     });
 
     render(
-      <ProgressiveDataLoader
+      <ProgressiveDataLoader<TestItem>
         loadData={mockLoadData}
         batchSize={20}
-        renderItem={(item) => <div key={item.id}>{item.title}</div>}
+        renderItem={(item, index) => <div key={(item as TestItem).id}>{(item as TestItem).title}</div>}
       />
     );
 
@@ -37,10 +42,10 @@ describe('ProgressiveDataLoader', () => {
       });
 
     render(
-      <ProgressiveDataLoader
+      <ProgressiveDataLoader<TestItem>
         loadData={mockLoadData}
         batchSize={20}
-        renderItem={(item) => <div key={item.id}>{item.title}</div>}
+        renderItem={(item, index) => <div key={(item as TestItem).id}>{(item as TestItem).title}</div>}
       />
     );
 
@@ -72,10 +77,10 @@ describe('ProgressiveDataLoader', () => {
       });
 
     render(
-      <ProgressiveDataLoader
+      <ProgressiveDataLoader<TestItem>
         loadData={mockLoadData}
         batchSize={20}
-        renderItem={(item) => <div key={item.id}>{item.title}</div>}
+        renderItem={(item, index) => <div key={(item as TestItem).id}>{(item as TestItem).title}</div>}
         infiniteScroll={true}
       />
     );
@@ -108,15 +113,15 @@ describe('ProgressiveDataLoader', () => {
     const mockLoadData = vi.fn().mockReturnValue(promise);
 
     render(
-      <ProgressiveDataLoader
+      <ProgressiveDataLoader<TestItem>
         loadData={mockLoadData}
         batchSize={20}
-        renderItem={(item) => <div key={item.id}>{item.title}</div>}
+        renderItem={(item, index) => <div key={(item as TestItem).id}>{(item as TestItem).title}</div>}
       />
     );
 
     // Initial loading state
-    expect(screen.getByTestId('loading-skeleton')).toBeInTheDocument();
+    expect(screen.getAllByTestId('loading-skeleton')[0]).toBeInTheDocument();
 
     // Resolve initial load
     resolvePromise({
@@ -141,10 +146,10 @@ describe('ProgressiveDataLoader', () => {
     const mockLoadData = vi.fn().mockRejectedValue(new Error('Failed to load'));
 
     render(
-      <ProgressiveDataLoader
+      <ProgressiveDataLoader<TestItem>
         loadData={mockLoadData}
         batchSize={20}
-        renderItem={(item) => <div key={item.id}>{item.title}</div>}
+        renderItem={(item, index) => <div key={(item as TestItem).id}>{(item as TestItem).title}</div>}
       />
     );
 
@@ -165,10 +170,10 @@ describe('ProgressiveDataLoader', () => {
       });
 
     render(
-      <ProgressiveDataLoader
+      <ProgressiveDataLoader<TestItem>
         loadData={mockLoadData}
         batchSize={20}
-        renderItem={(item) => <div key={item.id}>{item.title}</div>}
+        renderItem={(item, index) => <div key={(item as TestItem).id}>{(item as TestItem).title}</div>}
       />
     );
 
@@ -180,6 +185,9 @@ describe('ProgressiveDataLoader', () => {
 
     await waitFor(() => {
       expect(mockLoadData).toHaveBeenCalledTimes(2);
+    });
+
+    await waitFor(() => {
       expect(screen.getByText('Item 0')).toBeInTheDocument();
     });
   });
@@ -193,10 +201,10 @@ describe('ProgressiveDataLoader', () => {
     const CustomEmptyState = () => <div>No items found</div>;
 
     render(
-      <ProgressiveDataLoader
+      <ProgressiveDataLoader<TestItem>
         loadData={mockLoadData}
         batchSize={20}
-        renderItem={(item) => <div key={item.id}>{item.title}</div>}
+        renderItem={(item, index) => <div key={(item as TestItem).id}>{(item as TestItem).title}</div>}
         emptyState={<CustomEmptyState />}
       />
     );

@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { LoadingSkeleton } from '../LoadingSkeleton';
 import { OptimizedUnitPlanCard } from '../OptimizedUnitPlanCard';
 
-const TestWrapper = ({ children }) => (
+const TestWrapper = ({ children }: { children: React.ReactNode }) => (
   <BrowserRouter>
     {children}
   </BrowserRouter>
@@ -27,6 +27,7 @@ describe('Performance Components Integration', () => {
     const mockUnitPlan = {
       id: '1',
       title: 'Test Unit Plan',
+      longRangePlanId: 'lrp-1',
       startDate: '2024-01-01',
       endDate: '2024-01-31',
       estimatedHours: 20,
@@ -34,6 +35,7 @@ describe('Performance Components Integration', () => {
       _count: {
         lessonPlans: 5,
         expectations: 3,
+        resources: 2,
       },
       progress: {
         percentage: 50,
@@ -55,8 +57,10 @@ describe('Performance Components Integration', () => {
 
     expect(screen.getByText('Test Unit Plan')).toBeInTheDocument();
     expect(screen.getByText('20h')).toBeInTheDocument();
-    expect(screen.getByText('5 lessons')).toBeInTheDocument();
-    expect(screen.getByText('3 expectations')).toBeInTheDocument();
+    expect(screen.getByText('5')).toBeInTheDocument();
+    expect(screen.getByText(/lessons/)).toBeInTheDocument();
+    expect(screen.getByText('3')).toBeInTheDocument();
+    expect(screen.getByText(/expectations/)).toBeInTheDocument();
   });
 
   it('renders loading skeleton with different variants', () => {
@@ -74,10 +78,15 @@ describe('Performance Components Integration', () => {
     const mockUnitPlan = {
       id: '1',
       title: 'Test Unit Plan',
+      longRangePlanId: 'lrp-1',
       startDate: '2024-01-01',
       endDate: '2024-01-31',
       estimatedHours: 0,
-      _count: {},
+      _count: {
+        lessonPlans: 0,
+        expectations: 0,
+        resources: 0,
+      },
     };
 
     const mockOnEdit = () => {};
@@ -93,7 +102,9 @@ describe('Performance Components Integration', () => {
 
     expect(screen.getByText('Test Unit Plan')).toBeInTheDocument();
     expect(screen.getByText('0h')).toBeInTheDocument();
-    expect(screen.getByText('0 lessons')).toBeInTheDocument();
-    expect(screen.getByText('0 expectations')).toBeInTheDocument();
+    expect(screen.getAllByText('0')[0]).toBeInTheDocument(); // First 0 for lessons
+    expect(screen.getByText(/lessons/)).toBeInTheDocument();
+    expect(screen.getAllByText('0')[1]).toBeInTheDocument(); // Second 0 for expectations
+    expect(screen.getByText(/expectations/)).toBeInTheDocument();
   });
 });

@@ -21,24 +21,10 @@ const queryClient = new QueryClient({
         // Retry up to 3 times for other errors
         return failureCount < 3;
       },
-      onError: (error: unknown) => {
-        // Report query errors
-        errorReportingService.captureError(error, {
-          source: 'react-query',
-          type: 'query',
-        });
-      },
     },
     mutations: {
       // Enable offline persistence for mutations
       networkMode: 'offlineFirst',
-      onError: (error: unknown) => {
-        // Report mutation errors
-        errorReportingService.captureError(error, {
-          source: 'react-query',
-          type: 'mutation',
-        });
-      },
     },
   },
 });

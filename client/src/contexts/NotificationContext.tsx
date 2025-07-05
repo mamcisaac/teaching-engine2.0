@@ -1,5 +1,5 @@
 import { createContext, useContext, ReactNode } from 'react';
-import { useNotifications, useMarkNotificationAsRead } from '../api/domains/notification';
+import { useNotifications as useNotificationsApi, useMarkNotificationAsRead } from '../api/domains/notification';
 import type { Notification } from '../types';
 import { useAuth } from './AuthContext';
 
@@ -24,7 +24,7 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
     data: notifications = [],
     isLoading,
     error,
-  } = useNotifications();
+  } = useNotificationsApi();
 
   const markMutation = useMarkNotificationAsRead();
 
@@ -82,7 +82,7 @@ export const useNotificationContext = () => {
 export const useNotification = useNotificationContext;
 
 // Additional selector hooks for performance
-export const useNotifications = () => {
+export const useNotificationsList = () => {
   const { notifications } = useNotificationContext();
   return notifications;
 };

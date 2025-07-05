@@ -14,15 +14,24 @@ const debounce = <T extends (...args: any[]) => any>(
 const throttle = <T extends (...args: any[]) => any>(
   func: T,
   wait: number
-): ((...args: Parameters<T>) => void) => {
+): ((...args: Parameters<T>) => void) & { cancel(): void } => {
   let inThrottle: boolean;
-  return (...args: Parameters<T>) => {
+  let timeoutId: ReturnType<typeof setTimeout>;
+  
+  const throttled = (...args: Parameters<T>) => {
     if (!inThrottle) {
       func(...args);
       inThrottle = true;
-      setTimeout(() => inThrottle = false, wait);
+      timeoutId = setTimeout(() => inThrottle = false, wait);
     }
   };
+  
+  throttled.cancel = () => {
+    clearTimeout(timeoutId);
+    inThrottle = false;
+  };
+  
+  return throttled;
 };
 
 /**
@@ -59,7 +68,7 @@ export function useThrottled<T extends (...args: any[]) => any>(
     };
   }, [throttledCallback]);
 
-  return throttledCallback as T;
+  return throttledCallback as unknown as T;
 }
 
 /**

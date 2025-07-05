@@ -8,8 +8,8 @@ export default function HolidaySettings() {
   // const add = useAddHoliday();
   // const remove = useDeleteHoliday();
   const holidays: any[] = []; // Placeholder
-  const add = { mutate: () => {} }; // Placeholder
-  const remove = { mutate: () => {} }; // Placeholder
+  const add = { mutate: (_data: any) => {} }; // Placeholder
+  const remove = { mutate: (_id: any) => {} }; // Placeholder
   const [date, setDate] = useState('');
   const [name, setName] = useState('');
 

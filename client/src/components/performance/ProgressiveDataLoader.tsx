@@ -115,6 +115,7 @@ export function ProgressiveDataLoader<T>({
     setError(null);
     setHasMore(true);
     isInitialLoad.current = true;
+    loadInitialData();
   };
 
   // Error state

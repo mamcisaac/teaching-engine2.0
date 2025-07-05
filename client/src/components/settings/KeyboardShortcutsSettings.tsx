@@ -25,7 +25,7 @@ export const KeyboardShortcutsSettings: React.FC = () => {
 
   // Group shortcuts by category
   const shortcutsByCategory = shortcuts
-    .filter((_s) => s.visible !== false)
+    .filter((s) => s.visible !== false)
     .reduce(
       (acc, shortcut) => {
         if (!acc[shortcut.category]) {

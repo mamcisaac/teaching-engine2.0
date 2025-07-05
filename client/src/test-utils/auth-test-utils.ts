@@ -217,3 +217,32 @@ export function createMockAuthHandlers() {
     updateProfile: vi.fn().mockResolvedValue({ data: mockUser })
   };
 }
+
+/**
+ * Create a test user
+ */
+export async function createTestUser(): Promise<TestUser> {
+  return { ...mockUser };
+}
+
+/**
+ * Delete a test user
+ */
+export async function deleteTestUser(userId: string): Promise<void> {
+  // Mock implementation - in real tests this would clean up the user
+  console.log(`Deleting test user: ${userId}`);
+}
+
+/**
+ * Setup auth test environment
+ */
+export async function setupAuthTest(): Promise<AuthTestContext> {
+  return createAuthenticatedTestUser();
+}
+
+/**
+ * Verify test authentication
+ */
+export async function verifyTestAuth(context: AuthTestContext): Promise<boolean> {
+  return context.user && context.token ? true : false;
+}

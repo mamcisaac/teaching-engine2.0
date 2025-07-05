@@ -11,6 +11,7 @@ import { screen, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { PlanningWizard } from '../PlanningWizard';
 import { renderWithProviders } from '@/test-utils';
+import { ETFOLevel } from '@/hooks/useWorkflowState';
 
 // Mock react-router-dom
 const mockNavigate = vi.fn();
@@ -301,10 +302,10 @@ describe('PlanningWizard', () => {
         'unit-plans',
         'lesson-plans',
         'daybook-entries',
-      ];
+      ] as const;
 
       levels.forEach((level) => {
-        mockWorkflowState.currentLevel = level as unknown;
+        mockWorkflowState.currentLevel = level;
 
         const { unmount } = renderWithProviders(<PlanningWizard />);
 
@@ -425,7 +426,7 @@ describe('PlanningWizard', () => {
   describe('Error Handling', () => {
     it('should handle missing workflow state gracefully', () => {
       // Mock broken workflow state
-      mockWorkflowState.currentLevel = undefined as unknown;
+      mockWorkflowState.currentLevel = undefined as unknown as "curriculum-expectations" | "long-range-plans" | "unit-plans" | "daybook-entries" | "lesson-plans";
 
       renderWithProviders(<PlanningWizard />);
 

@@ -52,15 +52,21 @@ export function LoadingSkeleton({
     className: boxClassName = '', 
     style = {},
     'data-testid': testId,
+    role,
+    'aria-label': ariaLabelProp,
   }: { 
     className?: string; 
     style?: React.CSSProperties;
     'data-testid'?: string;
+    role?: string;
+    'aria-label'?: string;
   }) => (
     <div
       className={cn(baseClasses, animationClasses, boxClassName)}
       style={style}
       data-testid={testId}
+      role={role}
+      aria-label={ariaLabelProp}
     />
   );
 

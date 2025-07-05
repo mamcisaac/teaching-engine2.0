@@ -92,7 +92,9 @@ export default function UnitPlansPage() {
   // Curriculum expectations for AI assistance
   const { data: curriculumExpectations = [] } = useCurriculumExpectations({
     grade: longRangePlan?.grade,
-    subjectId: longRangePlan?.subjectId,
+    // Note: longRangePlan.subject is a string but hook expects subjectId as number
+    // This needs to be resolved by either changing the LongRangePlan schema
+    // or adding a subject name to ID mapping
   });
 
   // Mutations

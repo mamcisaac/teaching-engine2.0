@@ -186,8 +186,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const contextValue: AuthContextValue = {
     user: user || null,
-    login: loginMutation.mutateAsync,
-    logout: logoutMutation.mutateAsync,
+    login: async (credentials: LoginCredentials) => {
+      await loginMutation.mutateAsync(credentials);
+    },
+    logout: async () => {
+      await logoutMutation.mutateAsync();
+    },
     isAuthenticated: !!user,
     isLoading: isLoading || loginMutation.isPending || logoutMutation.isPending,
     isInitialized: !isLoading,

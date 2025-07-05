@@ -102,7 +102,7 @@ export function PaginatedDataTable<T extends Record<string, any>>({
       sortOrder,
       filters,
     }),
-    keepPreviousData: true,
+    placeholderData: (prev) => prev,
   });
 
   // Handle sorting
@@ -143,7 +143,7 @@ export function PaginatedDataTable<T extends Record<string, any>>({
     if (!data) return [];
 
     const { totalPages } = data;
-    const buttons = [];
+    const buttons: (number | string)[] = [];
     const maxButtons = 7;
     
     if (totalPages <= maxButtons) {
@@ -245,7 +245,6 @@ export function PaginatedDataTable<T extends Record<string, any>>({
                       value={filters[column.key as string] || ''}
                       onChange={(e) => handleColumnFilter(column.key as string, e.target.value)}
                       className="text-sm"
-                      size="sm"
                     />
                   )}
                 </th>
@@ -310,7 +309,7 @@ export function PaginatedDataTable<T extends Record<string, any>>({
             {paginationButtons.map((page, index) => (
               <Button
                 key={index}
-                variant={page === currentPage ? "default" : "outline"}
+                variant={page === currentPage ? "primary" : "outline"}
                 size="sm"
                 onClick={() => typeof page === 'number' ? handlePageChange(page) : undefined}
                 disabled={page === '...'}
