@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../App';
+import { useAuth } from '../contexts/AuthContext';
 import logger from '../utils/logger';
 export default function LoginPage() {
   const [email, setEmail] = useState('');

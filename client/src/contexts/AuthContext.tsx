@@ -34,8 +34,8 @@ const AuthContext = createContext<AuthContextValue>({
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false); // Start as false
-  const [isInitialized, _setIsInitialized] = useState<boolean>(true); // Start as true
+  const [isLoading, setIsLoading] = useState<boolean>(true); // Start as true
+  const [isInitialized, setIsInitialized] = useState<boolean>(false); // Start as false
   const [error, setError] = useState<string | null>(null);
   const [retryCount, setRetryCount] = useState(0);
 
@@ -158,74 +158,74 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, [updateAuthState]);
 
-  // TEMPORARILY DISABLED - Initial auth check with improved error handling and retry logic
-  // useEffect(() => {
-  //   let isMounted = true;
-  //   const timeoutId: NodeJS.Timeout = setTimeout(() => {
-  //     if (isMounted && isLoading) {
-  //       logger.warn('Auth check timeout - assuming not authenticated');
-  //       setIsLoading(false);
-  //       setIsInitialized(true);
-  //       updateAuthState(null);
-  //     }
-  //   }, 5000); // 5 second timeout
+  // Initial auth check with improved error handling and retry logic
+  useEffect(() => {
+    let isMounted = true;
+    const timeoutId: NodeJS.Timeout = setTimeout(() => {
+      if (isMounted && isLoading) {
+        logger.warn('Auth check timeout - assuming not authenticated');
+        setIsLoading(false);
+        setIsInitialized(true);
+        updateAuthState(null);
+      }
+    }, 5000); // 5 second timeout
 
-  //   const performInitialAuthCheck = async () => {
-  //     logger.debug('[AuthContext] Starting initial auth check');
-  //     try {
-  //       // Check if we have any stored authentication data
-  //       const storedUser = authService.getUser();
-  //       const hasToken = authService.isAuthenticated();
+    const performInitialAuthCheck = async () => {
+      logger.debug('[AuthContext] Starting initial auth check');
+      try {
+        // Check if we have any stored authentication data
+        const storedUser = authService.getUser();
+        const hasToken = authService.isAuthenticated();
 
-  //       // Debug logging in development
-  //       logger.debug('[AuthContext] Initial auth check:', {
-  //         hasStoredUser: !!storedUser,
-  //         hasToken: !!hasToken,
-  //         storedUser: storedUser,
-  //         tokenValue: authService.getAccessToken()?.substring(0, 20) + '...',
-  //       });
+        // Debug logging in development
+        logger.debug('[AuthContext] Initial auth check:', {
+          hasStoredUser: !!storedUser,
+          hasToken: !!hasToken,
+          storedUser: storedUser,
+          tokenValue: authService.getAccessToken()?.substring(0, 20) + '...',
+        });
 
-  //       if (!hasToken) {
-  //         // No token, definitely not authenticated
-  //         if (isMounted) {
-  //           updateAuthState(null);
-  //           setIsLoading(false);
-  //           setIsInitialized(true);
-  //         }
-  //         return;
-  //       }
+        if (!hasToken) {
+          // No token, definitely not authenticated
+          if (isMounted) {
+            updateAuthState(null);
+            setIsLoading(false);
+            setIsInitialized(true);
+          }
+          return;
+        }
 
-  //       // If we have a stored user and token, verify with server
-  //       if (storedUser && hasToken) {
-  //         await checkAuth();
-  //       } else {
-  //         // Clear inconsistent state
-  //         authService.clearTokens();
-  //         updateAuthState(null);
-  //       }
-  //     } catch (_error) {
-  //       logger.error('Initial auth check failed:', _error);
-  //       if (isMounted) {
-  //         updateAuthState(null);
-  //       }
-  //     } finally {
-  //       logger.debug('[AuthContext] Finalizing auth check, isMounted:', isMounted);
-  //       if (isMounted) {
-  //         setIsLoading(false);
-  //         setIsInitialized(true);
-  //         logger.debug('[AuthContext] Auth initialized');
-  //       }
-  //     }
-  //   };
+        // If we have a stored user and token, verify with server
+        if (storedUser && hasToken) {
+          await checkAuth();
+        } else {
+          // Clear inconsistent state
+          authService.clearTokens();
+          updateAuthState(null);
+        }
+      } catch (_error) {
+        logger.error('Initial auth check failed:', _error);
+        if (isMounted) {
+          updateAuthState(null);
+        }
+      } finally {
+        logger.debug('[AuthContext] Finalizing auth check, isMounted:', isMounted);
+        if (isMounted) {
+          setIsLoading(false);
+          setIsInitialized(true);
+          logger.debug('[AuthContext] Auth initialized');
+        }
+      }
+    };
 
-  //   performInitialAuthCheck();
+    performInitialAuthCheck();
 
-  //   return () => {
-  //     isMounted = false;
-  //     clearTimeout(timeoutId);
-  //   };
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []); // Only run once on mount
+    return () => {
+      isMounted = false;
+      clearTimeout(timeoutId);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Only run once on mount
 
   // Auto-refresh token when it's about to expire
   useEffect(() => {

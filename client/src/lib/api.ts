@@ -18,12 +18,6 @@ apiClient.interceptors.request.use(async (config) => {
     config.headers.Authorization = authHeaders.Authorization;
   }
 
-  // Also support legacy token for backward compatibility
-  const legacyToken = localStorage.getItem('token');
-  if (legacyToken && !authHeaders.Authorization) {
-    config.headers.Authorization = `Bearer ${legacyToken}`;
-  }
-
   // Try to ensure we have a valid token before making the request
   try {
     await authService.ensureValidToken();
@@ -61,6 +55,3 @@ apiClient.interceptors.response.use(
     return Promise.reject(error);
   },
 );
-
-// Export as 'api' for backward compatibility
-export const api = apiClient;

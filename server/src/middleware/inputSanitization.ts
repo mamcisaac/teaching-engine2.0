@@ -376,7 +376,8 @@ export function preventNoSQLInjection(req: Request, res: Response, next: NextFun
       }
 
       if (typeof obj === 'object') {
-        for (const key in obj) {
+        const typedObj = obj as Record<string, unknown>;
+        for (const key in typedObj) {
           if (key.startsWith('$')) {
             logger.warn(
               {
@@ -389,7 +390,7 @@ export function preventNoSQLInjection(req: Request, res: Response, next: NextFun
             );
             return true;
           }
-          if (deepCheck(obj[key], `${path}.${key}`)) {
+          if (deepCheck(typedObj[key], `${path}.${key}`)) {
             return true;
           }
         }

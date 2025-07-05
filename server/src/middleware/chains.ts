@@ -12,9 +12,6 @@ declare module 'express-serve-static-core' {
       permissions?: string[];
     };
   }
-  interface Response {
-    locals: Record<string, unknown>;
-  }
 }
 import {
   requestLoggingMiddleware,

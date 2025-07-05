@@ -3,18 +3,8 @@
 import { prisma } from '../../prisma.js';
 import { hashPassword, verifyPassword, validatePasswordStrength } from './password';
 import { generateTokenPair } from './jwt';
-import { 
-  LoginCredentials, 
-  RegistrationData, 
-  TokenResponse, 
-  UserResponse,
-  UserRole 
-} from './types';
-import {
-  AuthenticationError,
-  ValidationError,
-  ConflictError,
-} from '../errorHandler.js';
+import { LoginCredentials, RegistrationData, TokenResponse, UserResponse, UserRole } from './types';
+import { AuthenticationError, ValidationError, ConflictError } from '../errorHandler.js';
 import logger from '../../logger.js';
 
 /**
@@ -95,7 +85,10 @@ export async function login(credentials: LoginCredentials): Promise<{
   }
 
   // Log last login
-  logger.info({ userId: user.id, email: user.email }, `User ${user.email} logged in at ${new Date().toISOString()}`);
+  logger.info(
+    { userId: user.id, email: user.email },
+    `User ${user.email} logged in at ${new Date().toISOString()}`,
+  );
 
   // Generate tokens
   const tokens = generateTokenPair({
@@ -139,7 +132,7 @@ export async function logout(userId: number): Promise<void> {
 export async function changePassword(
   userId: number,
   currentPassword: string,
-  newPassword: string
+  newPassword: string,
 ): Promise<void> {
   // Validate new password
   const passwordValidation = validatePasswordStrength(newPassword);
@@ -168,7 +161,7 @@ export async function changePassword(
   // Update password
   await prisma.user.update({
     where: { id: userId },
-    data: { 
+    data: {
       password: hashedPassword,
     },
   });
@@ -200,16 +193,16 @@ export async function requestPasswordReset(email: string): Promise<void> {
 
   // NOTE: Email service integration needed for production
   // For now, reset token should be communicated through secure channel
-  logger.info({ userId: user.id, email: user.email }, `Password reset requested for: ${user.email}`);
+  logger.info(
+    { userId: user.id, email: user.email },
+    `Password reset requested for: ${user.email}`,
+  );
 }
 
 /**
  * Reset password with token
  */
-export async function resetPassword(
-  token: string,
-  newPassword: string
-): Promise<void> {
+export async function resetPassword(token: string, newPassword: string): Promise<void> {
   // Validate new password
   const passwordValidation = validatePasswordStrength(newPassword);
   if (!passwordValidation.isValid) {
@@ -219,24 +212,9 @@ export async function resetPassword(
   // TODO: Implement reset token validation
   // Current User model doesn't support passwordResetToken/passwordResetExpires
   // For now, reject all reset attempts
-  const user = null;
-
-  if (!user) {
-    throw new AuthenticationError('Invalid or expired reset token');
-  }
-
-  // Hash new password
-  const hashedPassword = await hashPassword(newPassword);
-
-  // Update password 
-  await prisma.user.update({
-    where: { id: user.id },
-    data: {
-      password: hashedPassword,
-    },
-  });
-
-  logger.info({ userId: user.id, email: user.email }, `Password reset completed for: ${user.email}`);
+  throw new AuthenticationError(
+    'Password reset functionality not yet implemented - User model needs passwordResetToken/passwordResetExpires fields',
+  );
 }
 
 /**

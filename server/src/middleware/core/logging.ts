@@ -8,7 +8,13 @@ import { AuditEventType } from '../auditLogger';
 interface LoggedRequest extends Request {
   id?: string;
   startTime?: number;
-  user?: { id: number; email: string; role: string; organizationId?: number; permissions?: string[] };
+  user?: {
+    id: number;
+    email: string;
+    role: string;
+    organizationId?: number;
+    permissions?: string[];
+  };
 }
 
 // Sanitize sensitive data from logs
@@ -16,11 +22,11 @@ const sanitizeData = (data: unknown): unknown => {
   if (!data || typeof data !== 'object') return data;
 
   const sensitive = ['password', 'token', 'secret', 'authorization', 'cookie'];
-  const sanitized = { ...data };
+  const sanitized = { ...data } as Record<string, unknown>;
 
-  Object.keys(sanitized).forEach(key => {
+  Object.keys(sanitized).forEach((key) => {
     const lowerKey = key.toLowerCase();
-    if (sensitive.some(s => lowerKey.includes(s))) {
+    if (sensitive.some((s) => lowerKey.includes(s))) {
       sanitized[key] = '[REDACTED]';
     } else if (typeof sanitized[key] === 'object') {
       sanitized[key] = sanitizeData(sanitized[key]);
@@ -34,7 +40,7 @@ const sanitizeData = (data: unknown): unknown => {
 export const requestLoggingMiddleware = (
   req: LoggedRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void => {
   // Generate request ID
   req.id = req.id || uuidv4();
@@ -55,7 +61,7 @@ export const requestLoggingMiddleware = (
   });
 
   // Log request
-  const requestLog = {
+  const requestLog: Record<string, unknown> = {
     requestId: req.id,
     method: req.method,
     path: req.path,
@@ -67,14 +73,14 @@ export const requestLoggingMiddleware = (
 
   // Don't log body for GET requests or file uploads
   if (req.method !== 'GET' && !req.is('multipart/form-data')) {
-    requestLog['body'] = sanitizeData(req.body);
+    requestLog.body = sanitizeData(req.body);
   }
 
   logger.info(requestLog, 'Incoming request');
 
   // Capture response
   const originalSend = res.send;
-  res.send = function(data: unknown) {
+  res.send = function (data: unknown) {
     res.locals.body = data;
     return originalSend.call(this, data);
   };
@@ -82,7 +88,7 @@ export const requestLoggingMiddleware = (
   // Log response on finish
   res.on('finish', () => {
     const duration = Date.now() - (req.startTime || 0);
-    const responseLog = {
+    const responseLog: Record<string, unknown> = {
       requestId: req.id,
       method: req.method,
       path: req.path,
@@ -94,7 +100,7 @@ export const requestLoggingMiddleware = (
     // Add response size if available
     const contentLength = res.get('content-length');
     if (contentLength) {
-      responseLog['responseSize'] = parseInt(contentLength, 10);
+      responseLog.responseSize = parseInt(contentLength, 10);
     }
 
     // Log based on status code
@@ -175,7 +181,7 @@ export const auditMiddleware = (
     targetResource?: string;
     severity?: 'low' | 'medium' | 'high' | 'critical';
     condition?: (req: Request) => boolean;
-  } = {}
+  } = {},
 ) => {
   return (req: LoggedRequest, res: Response, next: NextFunction): void => {
     // Check condition if provided
@@ -207,17 +213,17 @@ export const auditMiddleware = (
 export const performanceLoggingMiddleware = (
   req: LoggedRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void => {
   const segments: { name: string; start: number; end?: number }[] = [];
-  
+
   // Add performance tracking methods
   res.locals.perfMark = (name: string) => {
     segments.push({ name, start: Date.now() });
   };
 
   res.locals.perfMeasure = (name: string) => {
-    const segment = segments.find(s => s.name === name && !s.end);
+    const segment = segments.find((s) => s.name === name && !s.end);
     if (segment) {
       segment.end = Date.now();
     }
@@ -227,20 +233,23 @@ export const performanceLoggingMiddleware = (
   res.on('finish', () => {
     const totalDuration = Date.now() - (req.startTime || 0);
     const measurements = segments
-      .filter(s => s.end)
-      .map(s => ({
+      .filter((s) => s.end)
+      .map((s) => ({
         name: s.name,
         duration: s.end! - s.start,
       }));
 
     if (measurements.length > 0 || totalDuration > 1000) {
-      logger.info({
-        requestId: req.id,
-        totalDuration,
-        measurements,
-        path: req.path,
-        method: req.method,
-      }, 'Request performance metrics');
+      logger.info(
+        {
+          requestId: req.id,
+          totalDuration,
+          measurements,
+          path: req.path,
+          method: req.method,
+        },
+        'Request performance metrics',
+      );
     }
   });
 
@@ -251,19 +260,22 @@ export const performanceLoggingMiddleware = (
 export const developmentLoggingMiddleware = (
   req: LoggedRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void => {
   if (process.env.NODE_ENV !== 'development') {
     return next();
   }
 
   // Log all headers in development
-  logger.debug({
-    requestId: req.id,
-    headers: req.headers,
-    method: req.method,
-    path: req.path,
-  }, 'Development: Request headers');
+  logger.debug(
+    {
+      requestId: req.id,
+      headers: req.headers,
+      method: req.method,
+      path: req.path,
+    },
+    'Development: Request headers',
+  );
 
   next();
 };

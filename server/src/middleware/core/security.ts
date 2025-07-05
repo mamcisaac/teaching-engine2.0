@@ -51,7 +51,7 @@ export const applySecurityMiddleware = (app: Application): void => {
         includeSubDomains: true,
         preload: true,
       },
-    })
+    }),
   );
 
   // CORS
@@ -72,22 +72,22 @@ export const applySecurityMiddleware = (app: Application): void => {
 export const inputSanitizationMiddleware = (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void => {
   // Recursive sanitization function
   const sanitize = (data: unknown): unknown => {
     if (typeof data === 'string') {
       // Remove any HTML/script tags
-      return DOMPurify.sanitize(data, { 
+      return DOMPurify.sanitize(data, {
         ALLOWED_TAGS: [],
         ALLOWED_ATTR: [],
       }).trim();
     }
-    
+
     if (Array.isArray(data)) {
       return data.map(sanitize);
     }
-    
+
     if (data && typeof data === 'object') {
       const sanitized: any = {};
       for (const [key, value] of Object.entries(data)) {
@@ -95,7 +95,7 @@ export const inputSanitizationMiddleware = (
       }
       return sanitized;
     }
-    
+
     return data;
   };
 
@@ -103,11 +103,11 @@ export const inputSanitizationMiddleware = (
   if (req.body) {
     req.body = sanitize(req.body);
   }
-  
+
   if (req.query) {
     req.query = sanitize(req.query) as any;
   }
-  
+
   if (req.params) {
     req.params = sanitize(req.params) as any;
   }
@@ -116,15 +116,11 @@ export const inputSanitizationMiddleware = (
 };
 
 // XSS Protection middleware
-export const xssProtectionMiddleware = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): void => {
+export const xssProtectionMiddleware = (req: Request, res: Response, next: NextFunction): void => {
   // Additional XSS protection for JSON responses
   const originalJson = res.json;
-  
-  res.json = function(data: unknown) {
+
+  res.json = function (data: unknown) {
     // Escape HTML in JSON responses
     const escapeHtml = (str: string): string => {
       return str
@@ -153,9 +149,7 @@ export const xssProtectionMiddleware = (
     };
 
     // Only escape HTML in production
-    const processedData = process.env.NODE_ENV === 'production' 
-      ? escapeData(data) 
-      : data;
+    const processedData = process.env.NODE_ENV === 'production' ? escapeData(data) : data;
 
     return originalJson.call(this, processedData);
   };
@@ -167,7 +161,7 @@ export const xssProtectionMiddleware = (
 export const sqlInjectionProtectionMiddleware = (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void => {
   const suspiciousPatterns = [
     /(\b(union|select|insert|update|delete|drop|create|alter|exec|execute)\b)/gi,
@@ -178,24 +172,29 @@ export const sqlInjectionProtectionMiddleware = (
 
   const checkForSQLInjection = (value: unknown): boolean => {
     if (typeof value !== 'string') return false;
-    
-    return suspiciousPatterns.some(pattern => pattern.test(value));
+
+    return suspiciousPatterns.some((pattern) => pattern.test(value));
   };
 
   const checkObject = (obj: unknown): void => {
-    for (const [key, value] of Object.entries(obj)) {
+    if (!obj || typeof obj !== 'object') return;
+
+    for (const [key, value] of Object.entries(obj as Record<string, unknown>)) {
       if (checkForSQLInjection(value)) {
-        logger.warn({
-          key,
-          value,
-          ip: req.ip,
-          path: req.path,
-          userId: (req as any).user?.id,
-        }, 'Potential SQL injection attempt detected');
-        
+        logger.warn(
+          {
+            key,
+            value,
+            ip: req.ip,
+            path: req.path,
+            userId: (req as any).user?.id,
+          },
+          'Potential SQL injection attempt detected',
+        );
+
         throw new AppError(400, 'Invalid input detected', 'SECURITY_VIOLATION');
       }
-      
+
       if (value && typeof value === 'object') {
         checkObject(value);
       }
@@ -216,7 +215,7 @@ export const sqlInjectionProtectionMiddleware = (
 
 // File upload security middleware
 export const fileUploadSecurityMiddleware = (
-  allowedTypes: string[] = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf']
+  allowedTypes: string[] = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'],
 ) => {
   return (req: Request, res: Response, next: NextFunction): void => {
     if (!req.file && !req.files) {
@@ -239,7 +238,7 @@ export const fileUploadSecurityMiddleware = (
 
       // Check file extension
       const ext = file.originalname.split('.').pop()?.toLowerCase();
-      const allowedExtensions = allowedTypes.map(type => {
+      const allowedExtensions = allowedTypes.map((type) => {
         const parts = type.split('/');
         return parts[1] || parts[0];
       });
@@ -257,7 +256,7 @@ export const fileUploadSecurityMiddleware = (
 export const securityMonitoringMiddleware = (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void => {
   // Track security-relevant events
   const securityEvents = {
@@ -266,11 +265,7 @@ export const securityMonitoringMiddleware = (
   };
 
   // Check for suspicious headers
-  const suspiciousHeaders = [
-    'x-forwarded-host',
-    'x-original-url',
-    'x-rewrite-url',
-  ];
+  const suspiciousHeaders = ['x-forwarded-host', 'x-original-url', 'x-rewrite-url'];
 
   for (const header of suspiciousHeaders) {
     if (req.headers[header]) {
@@ -284,26 +279,24 @@ export const securityMonitoringMiddleware = (
   }
 
   // Log security events
-  if (securityEvents.suspiciousHeaders.length > 0 || 
-      securityEvents.suspiciousPatterns.length > 0) {
-    logger.warn({
-      securityEvents,
-      ip: req.ip,
-      path: req.path,
-      method: req.method,
-      headers: req.headers,
-    }, 'Security monitoring alert');
+  if (securityEvents.suspiciousHeaders.length > 0 || securityEvents.suspiciousPatterns.length > 0) {
+    logger.warn(
+      {
+        securityEvents,
+        ip: req.ip,
+        path: req.path,
+        method: req.method,
+        headers: req.headers,
+      },
+      'Security monitoring alert',
+    );
   }
 
   next();
 };
 
 // Rate limiting specific to authentication attempts
-export const authRateLimitMiddleware = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): void => {
+export const authRateLimitMiddleware = (req: Request, res: Response, next: NextFunction): void => {
   // This would integrate with the rate limiting module
   // Placeholder for now - actual implementation in rateLimit module
   next();

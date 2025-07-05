@@ -11,12 +11,12 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "noImplicitAny": false,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
     "noImplicitReturns": false,
     "noImplicitThis": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "strictNullChecks": false,
     "strictBindCallApply": false,
     "strictFunctionTypes": false,
     "strictPropertyInitialization": false

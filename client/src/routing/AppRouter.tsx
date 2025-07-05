@@ -1,8 +1,7 @@
 import React, { Suspense } from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
-// Temporarily disabled auth imports
-// import { useAuth } from '../contexts/AuthContext';
-// import ProtectedRoute from '../components/ProtectedRoute';
+import { useAuth } from '../contexts/AuthContext';
+import ProtectedRoute from '../components/ProtectedRoute';
 import MainLayout from '../components/MainLayout';
 import WorkflowGate from '../components/WorkflowGate';
 import { publicRoutes, protectedRoutes, RouteConfig } from './routesConfig';
@@ -20,6 +19,7 @@ function renderRoute(route: RouteConfig, index: number): JSX.Element {
   let content: React.ReactNode;
 
   if (typeof Element === 'function') {
+    // This is a component (including lazy components)
     content = (
       <Suspense fallback={<SuspenseFallback />}>
         {workflowLevel ? (
@@ -31,7 +31,11 @@ function renderRoute(route: RouteConfig, index: number): JSX.Element {
         )}
       </Suspense>
     );
+  } else if (React.isValidElement(Element)) {
+    // This is a JSX element (like <Navigate />)
+    content = Element;
   } else {
+    // This shouldn't happen, but fallback
     content = Element;
   }
 
@@ -47,18 +51,25 @@ function renderRoute(route: RouteConfig, index: number): JSX.Element {
 }
 
 export function AppRouter() {
-  // Temporarily bypass auth check for testing
+  const { isLoading, isInitialized } = useAuth();
+
+  if (!isInitialized || isLoading) {
+    return <SuspenseFallback />;
+  }
+
   return (
     <Routes>
       {/* Public routes */}
       {publicRoutes.map((route, index) => renderRoute(route, index))}
 
-      {/* Protected routes with MainLayout - temporarily bypass ProtectedRoute */}
+      {/* Protected routes with MainLayout */}
       <Route
         element={
-          <MainLayout>
-            <Outlet />
-          </MainLayout>
+          <ProtectedRoute>
+            <MainLayout>
+              <Outlet />
+            </MainLayout>
+          </ProtectedRoute>
         }
       >
         {protectedRoutes.map((route, index) => renderRoute(route, index))}

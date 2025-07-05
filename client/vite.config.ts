@@ -1,64 +1,233 @@
+// Optimized Vite configuration for Teaching Engine 2.0
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+// import { visualizer } from 'rollup-plugin-visualizer';
+// import compression from 'vite-plugin-compression';
 
-export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
-  },
-  server: {
-    port: 5173,
-    strictPort: true,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
+// Custom chunk splitting strategy
+function manualChunks(id: string) {
+  if (id.includes('node_modules')) {
+    // Core React ecosystem
+    if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
+      return 'vendor-react';
+    }
+
+    // UI libraries
+    if (id.includes('@radix-ui') || id.includes('@headlessui') || id.includes('lucide-react')) {
+      return 'vendor-ui';
+    }
+
+    // Data & state management
+    if (id.includes('@tanstack/react-query') || id.includes('zustand') || id.includes('immer')) {
+      return 'vendor-data';
+    }
+
+    // Utilities
+    if (id.includes('lodash') || id.includes('date-fns') || id.includes('axios')) {
+      return 'vendor-utils';
+    }
+
+    // Charts & visualization (separate large libraries)
+    if (id.includes('chart.js')) {
+      return 'vendor-chartjs';
+    }
+    if (id.includes('recharts')) {
+      return 'vendor-recharts';
+    }
+
+    // Calendar libraries
+    if (id.includes('react-big-calendar') || id.includes('moment')) {
+      return 'vendor-calendar';
+    }
+
+    // Animation libraries
+    if (id.includes('framer-motion')) {
+      return 'vendor-animation';
+    }
+
+    // PDF generation
+    if (id.includes('jspdf') || id.includes('html2canvas')) {
+      return 'vendor-pdf';
+    }
+
+    // DND libraries
+    if (id.includes('@dnd-kit')) {
+      return 'vendor-dnd';
+    }
+
+    // Form handling
+    if (id.includes('react-hook-form') || id.includes('zod')) {
+      return 'vendor-forms';
+    }
+
+    // File handling
+    if (id.includes('react-dropzone') || id.includes('dompurify')) {
+      return 'vendor-files';
+    }
+  }
+}
+
+export default defineConfig(({ mode }) => {
+  const isDev = mode === 'development';
+  const isProd = mode === 'production';
+
+  return {
+    plugins: [
+      react({
+        // Optimize React for production
+        babel: isProd
+          ? {
+              plugins: [
+                ['@babel/plugin-transform-react-constant-elements'],
+                ['@babel/plugin-transform-react-inline-elements'],
+              ],
+            }
+          : undefined,
+      }),
+
+      // Vendor chunk splitting is now handled in build.rollupOptions.output.manualChunks
+
+      // Compress assets in production
+      // isProd && compression({
+      //   algorithm: 'gzip',
+      //   ext: '.gz',
+      //   threshold: 10240, // Only compress files > 10KB
+      // }),
+
+      // isProd && compression({
+      //   algorithm: 'brotliCompress',
+      //   ext: '.br',
+      //   threshold: 10240,
+      // }),
+
+      // Bundle analyzer for production builds
+      // isProd && process.env.ANALYZE && visualizer({
+      //   open: true,
+      //   filename: 'dist/bundle-analysis.html',
+      //   gzipSize: true,
+      //   brotliSize: true,
+      // })
+    ].filter(Boolean),
+
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
       },
     },
-  },
-  build: {
-    target: 'es2020',
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          // React core
-          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          
-          // UI libraries
-          'vendor-ui': ['@radix-ui/react-dialog', '@radix-ui/react-tabs', '@radix-ui/react-select', 
-                        '@radix-ui/react-checkbox', '@radix-ui/react-progress', 'lucide-react'],
-          
-          // State management
-          'vendor-state': ['@tanstack/react-query', 'zustand', 'immer'],
-          
-          // Utils
-          'vendor-utils': ['axios', 'date-fns', 'clsx', 'zod'],
-          
-          // Heavy libraries - separate chunks
-          'vendor-calendar': ['react-big-calendar', 'moment'],
-          'vendor-charts': ['recharts', 'chart.js', 'react-chartjs-2'],
-          'vendor-animation': ['framer-motion'],
-          'vendor-pdf': ['jspdf', 'html2canvas'],
-          'vendor-dnd': ['@dnd-kit/core', '@dnd-kit/sortable'],
-          'vendor-forms': ['react-hook-form', 'react-dropzone'],
-          
-          // Sanitization
-          'vendor-sanitize': ['dompurify'],
+
+    envPrefix: 'VITE_',
+
+    server: {
+      port: 5173,
+      strictPort: true,
+      proxy: {
+        '/api': {
+          target: 'http://localhost:3000',
+          changeOrigin: true,
+        },
+      },
+      // Optimize HMR
+      hmr: {
+        overlay: false, // Reduce overhead
+      },
+    },
+
+    preview: {
+      port: 5173,
+      strictPort: true,
+      proxy: {
+        '/api': {
+          target: 'http://localhost:3000',
+          changeOrigin: true,
         },
       },
     },
-    chunkSizeWarningLimit: 300,
-  },
-  optimizeDeps: {
-    include: [
-      'react',
-      'react-dom',
-      'react-router-dom',
-      '@tanstack/react-query',
-      'axios',
-    ],
-  },
+
+    build: {
+      target: 'es2020',
+      minify: isProd ? 'esbuild' : false,
+
+      // Source maps only in development
+      sourcemap: isDev,
+
+      // Optimize chunks
+      rollupOptions: {
+        output: {
+          manualChunks,
+          // Asset naming for better caching
+          assetFileNames: (assetInfo) => {
+            const info = (assetInfo.name || 'asset').split('.');
+            let extType = info[info.length - 1];
+            if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
+              extType = 'img';
+            } else if (/woff|woff2|eot|ttf|otf/i.test(extType)) {
+              extType = 'fonts';
+            }
+            return `assets/${extType}/[name]-[hash][extname]`;
+          },
+          chunkFileNames: 'assets/js/[name]-[hash].js',
+          entryFileNames: 'assets/js/[name]-[hash].js',
+        },
+      },
+
+      // Chunk size warnings
+      chunkSizeWarningLimit: 1000, // 1MB
+
+      // CSS optimization
+      cssCodeSplit: true,
+      cssMinify: isProd,
+
+      // Build performance
+      reportCompressedSize: false, // Faster builds
+
+      // Module preload
+      modulePreload: {
+        polyfill: true,
+      },
+    },
+
+    // Dependency optimization
+    optimizeDeps: {
+      include: [
+        'react',
+        'react-dom',
+        'react-router-dom',
+        '@tanstack/react-query',
+        'axios',
+        'date-fns',
+      ],
+      exclude: [
+        '@teaching-engine/database', // Local package
+      ],
+      // Force optimization in development for consistency
+      force: isDev,
+    },
+
+    // Cache configuration
+    cacheDir: '.vite-cache',
+
+    // Performance optimizations
+    esbuild: {
+      target: 'es2020',
+      // Remove automatic React inject - using new JSX transform
+      // jsxInject: `import React from 'react'`,
+      // Remove unused code
+      treeShaking: true,
+      // Optimize for speed in development
+      minifyIdentifiers: isProd,
+      minifySyntax: isProd,
+      minifyWhitespace: isProd,
+    },
+
+    // Worker configuration
+    worker: {
+      format: 'es',
+      rollupOptions: {
+        output: {
+          entryFileNames: 'assets/worker/[name]-[hash].js',
+        },
+      },
+    },
+  };
 });
