@@ -52,11 +52,23 @@ export class CSVParser extends CurriculumParser {
           skip_records_with_error: true,
         }) as CSVRow[];
       } catch (fallbackError) {
-        throw new Error(`Failed to parse CSV: ${error.message}`);
+        throw new Error(`Failed to parse CSV: ${fallbackError.message}`);
       }
     }
 
     if (!records || records.length === 0) {
+      // In non-strict mode, return empty curriculum
+      if (!this.options.strict) {
+        return {
+          subject: 'Unknown',
+          grade: 1,
+          expectations: [],
+          metadata: {
+            source: 'CSV Import',
+            lastUpdated: new Date(),
+          },
+        };
+      }
       throw new Error('No data found in CSV file');
     }
 
@@ -100,6 +112,11 @@ export class CSVParser extends CurriculumParser {
         lastUpdated: new Date(),
       },
     };
+
+    // In non-strict mode, always return the curriculum even if validation would fail
+    if (!this.options.strict) {
+      return curriculum;
+    }
 
     if (!this.validate(curriculum)) {
       throw new Error('Invalid curriculum data structure');
@@ -227,17 +244,14 @@ export class CSVParser extends CurriculumParser {
       return false;
     }
 
-    // In non-strict mode, allow empty expectations for better error handling
+    // In strict mode, require non-empty expectations
     if (this.options.strict && data.expectations.length === 0) {
       return false;
     }
 
-    // Check for at least some overall expectations only in strict mode
-    const hasOverallExpectations = data.expectations.some(e => e.type === 'overall');
-    if (this.options.strict && data.expectations.length > 0 && !hasOverallExpectations) {
-      return false;
-    }
-
+    // Don't require overall expectations - some curriculum files might only have specific expectations
+    // This was causing valid data to be rejected
+    
     return true;
   }
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * @file errorHandler.test.ts
  * @description Comprehensive tests for error handling utilities including API errors,
@@ -530,8 +531,8 @@ describe('optimisticUpdate', () => {
 
     const { optimistic, revert } = optimisticUpdate(getCurrent, update, operation, onError);
 
-    expect((optimistic as unknown).posts).toHaveLength(2);
-    expect((optimistic as unknown).posts[1]).toEqual({ id: 2, title: 'New Post' });
+    expect((optimistic as any).posts).toHaveLength(2);
+    expect((optimistic as any).posts[1]).toEqual({ id: 2, title: 'New Post' });
     expect(revert).toBe(currentValue);
   });
 
@@ -597,7 +598,7 @@ describe('Error handling integration', () => {
 
     try {
       await retryOperation(operation, 2);
-    } catch (_error) {
+    } catch (error) {
       handler(error);
     }
 

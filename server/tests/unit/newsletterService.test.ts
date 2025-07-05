@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Comprehensive unit tests for NewsletterService
  * Tests all methods with mocked dependencies following TDD principles
@@ -74,7 +75,7 @@ describe('NewsletterService', () => {
         },
       ];
 
-      const result = (NewsletterService as any).generateTemplateContent(
+      const result = (NewsletterService as unknown).generateTemplateContent(
         mockLessonPlans,
         mockReflections,
         mockFromDate,
@@ -118,7 +119,7 @@ describe('NewsletterService', () => {
         },
       ];
 
-      const result = (NewsletterService as any).generateTemplateContent(
+      const result = (NewsletterService as unknown).generateTemplateContent(
         mockLessonPlans,
         [],
         mockFromDate,
@@ -149,7 +150,7 @@ describe('NewsletterService', () => {
         },
       ];
 
-      const result = (NewsletterService as any).generateTemplateContent(
+      const result = (NewsletterService as unknown).generateTemplateContent(
         mockLessonPlans,
         [],
         mockFromDate,
@@ -161,7 +162,7 @@ describe('NewsletterService', () => {
     });
 
     it('should generate fallback content when no lessons or reflections', () => {
-      const result = (NewsletterService as any).generateTemplateContent(
+      const result = (NewsletterService as unknown).generateTemplateContent(
         [],
         [],
         mockFromDate,
@@ -196,7 +197,7 @@ describe('NewsletterService', () => {
         },
       ];
 
-      const result = (NewsletterService as any).generateTemplateContent(
+      const result = (NewsletterService as unknown).generateTemplateContent(
         [],
         mockReflections,
         mockFromDate,
@@ -229,7 +230,7 @@ describe('NewsletterService', () => {
         },
       ];
 
-      const result = (NewsletterService as any).generateTemplateContent(
+      const result = (NewsletterService as unknown).generateTemplateContent(
         mockLessonPlans,
         [],
         mockFromDate,
@@ -244,7 +245,7 @@ describe('NewsletterService', () => {
       const fromDate = new Date('2023-10-15');
       const toDate = new Date('2023-10-29');
 
-      const result = (NewsletterService as any).generateTemplateContent(
+      const result = (NewsletterService as unknown).generateTemplateContent(
         [],
         [],
         fromDate,
@@ -279,7 +280,7 @@ describe('NewsletterService', () => {
         },
       ];
 
-      const result = (NewsletterService as any).generateTemplateContent(
+      const result = (NewsletterService as unknown).generateTemplateContent(
         mockLessonPlans,
         [],
         mockFromDate,
@@ -293,14 +294,14 @@ describe('NewsletterService', () => {
 
   describe('getUserPreferences', () => {
     it('should return empty preferences object', async () => {
-      const result = await (NewsletterService as any).getUserPreferences(1);
+      const result = await (NewsletterService as unknown).getUserPreferences(1);
 
       expect(result).toEqual({});
     });
 
     it('should handle different user IDs', async () => {
-      const result1 = await (NewsletterService as any).getUserPreferences(1);
-      const result2 = await (NewsletterService as any).getUserPreferences(999);
+      const result1 = await (NewsletterService as unknown).getUserPreferences(1);
+      const result2 = await (NewsletterService as unknown).getUserPreferences(999);
 
       expect(result1).toEqual({});
       expect(result2).toEqual({});
@@ -309,14 +310,14 @@ describe('NewsletterService', () => {
 
   describe('getLastNewsletterDate', () => {
     it('should return null when no last newsletter date', async () => {
-      const result = await (NewsletterService as any).getLastNewsletterDate(1);
+      const result = await (NewsletterService as unknown).getLastNewsletterDate(1);
 
       expect(result).toBeNull();
     });
 
     it('should handle different user IDs', async () => {
-      const result1 = await (NewsletterService as any).getLastNewsletterDate(1);
-      const result2 = await (NewsletterService as any).getLastNewsletterDate(999);
+      const result1 = await (NewsletterService as unknown).getLastNewsletterDate(1);
+      const result2 = await (NewsletterService as unknown).getLastNewsletterDate(999);
 
       expect(result1).toBeNull();
       expect(result2).toBeNull();
@@ -335,7 +336,7 @@ describe('NewsletterService', () => {
       const fromDate = new Date('2023-11-01');
       const toDate = new Date('2023-11-15');
       
-      const result = (NewsletterService as any).formatDateRange(fromDate, toDate);
+      const result = (NewsletterService as unknown).formatDateRange(fromDate, toDate);
       
       expect(result).toBe('2023-10-31 to 2023-11-14'); // Adjusted for actual date formatting
     });
@@ -354,7 +355,7 @@ describe('NewsletterService', () => {
         },
       ];
 
-      const result = (NewsletterService as any).formatLessonSummary(mockLessonPlans);
+      const result = (NewsletterService as unknown).formatLessonSummary(mockLessonPlans);
 
       expect(result).toContain('### Recent Lessons');
       expect(result).toContain('**2023-11-01**: Math Addition'); // Adjusted for actual date formatting
@@ -377,7 +378,7 @@ describe('NewsletterService', () => {
         },
       ];
 
-      const result = (NewsletterService as any).formatReflectionHighlights(mockReflections);
+      const result = (NewsletterService as unknown).formatReflectionHighlights(mockReflections);
 
       expect(result).toContain('### Teacher Reflections');
       expect(result).toContain('- 2023-11-01: Great progress in math'); // Adjusted for actual date formatting
@@ -386,12 +387,12 @@ describe('NewsletterService', () => {
     });
 
     it('should return empty string for empty lesson summary', () => {
-      const result = (NewsletterService as any).formatLessonSummary([]);
+      const result = (NewsletterService as unknown).formatLessonSummary([]);
       expect(result).toBe('');
     });
 
     it('should return empty string for empty reflection highlights', () => {
-      const result = (NewsletterService as any).formatReflectionHighlights([]);
+      const result = (NewsletterService as unknown).formatReflectionHighlights([]);
       expect(result).toBe('');
     });
   });

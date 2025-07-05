@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { Page, expect, APIRequestContext } from '@playwright/test'; // PlaywrightTestArgs not used
 
 // Global API context for making direct API requests
@@ -221,7 +222,7 @@ export async function login(page: Page) {
       await page.screenshot({ path: 'test-results/after-login.png', fullPage: true });
 
       console.log('Login verification successful!');
-    } catch (error) {
+    } catch (_error) {
       console.error('Failed to verify login. Current URL:', page.url());
       console.error('Page title:', await page.title());
 
@@ -234,7 +235,7 @@ export async function login(page: Page) {
 
       throw error;
     }
-  } catch (error) {
+  } catch (_error) {
     console.error('Login failed. Current page state:');
     console.error('URL:', await page.url());
     console.error('Title:', await page.title());
@@ -260,7 +261,7 @@ export async function logout(page: Page) {
     // Verify we're on the login page
     await expect(page).toHaveURL(/\/login$/);
     console.log('Logout successful!');
-  } catch (error) {
+  } catch (_error) {
     console.error('Logout failed:', error);
     throw error;
   }

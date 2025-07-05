@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Memory Tracker Utility
  * Advanced memory monitoring and leak detection for all application components
@@ -70,7 +71,7 @@ export class MemoryTracker {
 
           this.gcObserver.observe({ entryTypes: ['gc'] });
         }
-      } catch (error) {
+      } catch (_error) {
         console.warn('GC monitoring not available:', error.message);
       }
     }

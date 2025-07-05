@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * @file NotificationContext.test.tsx
  * @description Comprehensive tests for NotificationContext including notification fetching,

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Authentication Security Tests
  *
@@ -14,7 +15,7 @@ import { resetRateLimiterState } from '../../src/middleware/rateLimiter';
 
 // Import the actual app - we need to access it through a dynamic import
 // to ensure the test database is properly set up before the app starts
-let app: any;
+let app: unknown;
 
 // Custom matcher for checking multiple possible values
 declare global {
@@ -26,7 +27,7 @@ declare global {
 }
 
 expect.extend({
-  toBeOneOf(received: any, expected: Array<any>) {
+  toBeOneOf(received: unknown, expected: Array<any>) {
     const pass = expected.includes(received);
     if (pass) {
       return {
@@ -458,7 +459,7 @@ describe('Authentication Security Tests', () => {
       expect(validToken).not.toBe('');
 
       // Verify the token is valid by decoding it
-      const decoded = jwt.decode(validToken) as any;
+      const decoded = jwt.decode(validToken) as unknown;
       expect(decoded).toBeDefined();
       expect(decoded.userId).toBe(testUserId.toString());
       expect(decoded.email).toBe(testUserEmail);

@@ -19,7 +19,7 @@ router.use(authMiddleware);
  * Get cache statistics
  * GET /api/cache/stats
  */
-router.get('/stats', async (req, res) => {
+router.get('/stats', async (req: Request, res: Response) => {
   try {
     const stats = getCacheStats();
     const memoryUsage = getCacheMemoryUsage();
@@ -35,7 +35,7 @@ router.get('/stats', async (req, res) => {
       }
     });
   } catch (_error) {
-    logger.error('Error getting cache stats:', error);
+    logger.error('Error getting cache stats:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to get cache statistics'
@@ -47,7 +47,7 @@ router.get('/stats', async (req, res) => {
  * Get cache health status
  * GET /api/cache/health
  */
-router.get('/health', async (req, res) => {
+router.get('/health', async (req: Request, res: Response) => {
   try {
     const isHealthy = isCacheHealthy();
     const stats = getCacheStats();
@@ -61,7 +61,7 @@ router.get('/health', async (req, res) => {
       }
     });
   } catch (_error) {
-    logger.error('Error checking cache health:', error);
+    logger.error('Error checking cache health:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to check cache health'
@@ -73,7 +73,7 @@ router.get('/health', async (req, res) => {
  * Warm up cache with commonly accessed data
  * POST /api/cache/warmup
  */
-router.post('/warmup', async (req, res) => {
+router.post('/warmup', async (req: Request, res: Response) => {
   try {
     await warmUpCache();
     
@@ -83,7 +83,7 @@ router.post('/warmup', async (req, res) => {
       timestamp: new Date().toISOString()
     });
   } catch (_error) {
-    logger.error('Error warming up cache:', error);
+    logger.error('Error warming up cache:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to warm up cache'
@@ -95,7 +95,7 @@ router.post('/warmup', async (req, res) => {
  * Clear all caches
  * DELETE /api/cache/all
  */
-router.delete('/all', async (req, res) => {
+router.delete('/all', async (req: Request, res: Response) => {
   try {
     clearAllCaches();
     
@@ -107,7 +107,7 @@ router.delete('/all', async (req, res) => {
       timestamp: new Date().toISOString()
     });
   } catch (_error) {
-    logger.error('Error clearing all caches:', error);
+    logger.error('Error clearing all caches:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to clear caches'
@@ -119,7 +119,7 @@ router.delete('/all', async (req, res) => {
  * Clear specific cache type
  * DELETE /api/cache/:cacheType
  */
-router.delete('/:cacheType', async (req, res) => {
+router.delete('/:cacheType', async (req: Request, res: Response) => {
   try {
     const { cacheType } = req.params;
     
@@ -142,7 +142,7 @@ router.delete('/:cacheType', async (req, res) => {
       timestamp: new Date().toISOString()
     });
   } catch (_error) {
-    logger.error('Error clearing cache:', error);
+    logger.error('Error clearing cache:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to clear cache'
@@ -154,7 +154,7 @@ router.delete('/:cacheType', async (req, res) => {
  * Get cache memory usage
  * GET /api/cache/memory
  */
-router.get('/memory', async (req, res) => {
+router.get('/memory', async (req: Request, res: Response) => {
   try {
     const memoryUsage = getCacheMemoryUsage();
     
@@ -179,7 +179,7 @@ router.get('/memory', async (req, res) => {
       }
     });
   } catch (_error) {
-    logger.error('Error getting cache memory usage:', error);
+    logger.error('Error getting cache memory usage:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to get cache memory usage'

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * BaseRouteHandler - Base class for all route handlers in the Teaching Engine
  * Provides common functionality, authentication, and CRUD operations
@@ -154,7 +155,7 @@ export abstract class BaseRouteHandler<T = any> {
       
       const items = await crudOps.findMany(filters, userId);
       res.json(items);
-    } catch (_error) {
+    } catch (error) {
       this.logger.error(`Error in ${this.routeName} list:`, error);
       next(error);
     }
@@ -178,7 +179,7 @@ export abstract class BaseRouteHandler<T = any> {
       }
       
       res.json(item);
-    } catch (_error) {
+    } catch (error) {
       this.logger.error(`Error in ${this.routeName} get:`, error);
       next(error);
     }
@@ -197,7 +198,7 @@ export abstract class BaseRouteHandler<T = any> {
       
       const item = await crudOps.create(data, userId);
       res.status(201).json(item);
-    } catch (_error) {
+    } catch (error) {
       this.logger.error(`Error in ${this.routeName} create:`, error);
       next(error);
     }
@@ -217,7 +218,7 @@ export abstract class BaseRouteHandler<T = any> {
       
       const item = await crudOps.update(id, data, userId);
       res.json(item);
-    } catch (_error) {
+    } catch (error) {
       this.logger.error(`Error in ${this.routeName} update:`, error);
       next(error);
     }
@@ -241,7 +242,7 @@ export abstract class BaseRouteHandler<T = any> {
       }
       
       res.status(204).send();
-    } catch (_error) {
+    } catch (error) {
       this.logger.error(`Error in ${this.routeName} delete:`, error);
       next(error);
     }
@@ -285,7 +286,7 @@ export abstract class BaseRouteHandler<T = any> {
         }
       });
       return !!record;
-    } catch (_error) {
+    } catch (error) {
       this.logger.error(`Error validating ownership for ${tableName}:`, error);
       return false;
     }

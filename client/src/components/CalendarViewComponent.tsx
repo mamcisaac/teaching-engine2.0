@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { useState, memo, useMemo } from 'react';
 import { startOfMonth, endOfMonth, eachDayOfInterval } from 'date-fns';
-import { CalendarEvent, useCalendarEvents } from '../api/legacy/api';
+import { useCalendarEvents } from '../api/domains/calendar';
+import type { CalendarEvent } from '../types';
 import EventEditorModal from './EventEditorModal';
-
+import { LoadingSkeleton } from './performance';
+import logger from '../utils/logger';
 interface Props {
   month: Date;
   events?: CalendarEvent[];
@@ -27,7 +30,7 @@ const CalendarViewComponent = memo(function CalendarViewComponent({ month, event
 
   // Log any errors for debugging
   if (fetch.error) {
-    console.error('Error loading calendar events:', fetch.error);
+    logger.error('Error loading calendar events:', fetch.error);
   }
 
   // Memoize expensive day calculations and event grouping
@@ -53,6 +56,14 @@ const CalendarViewComponent = memo(function CalendarViewComponent({ month, event
     
     return { days, grouped };
   }, [dateRange.from, dateRange.to, evts]);
+
+  if (fetch.isLoading) {
+    return (
+      <div className="border rounded p-2">
+        <LoadingSkeleton variant="table" rows={6} columns={7} />
+      </div>
+    );
+  }
 
   return (
     <div className="border rounded p-2">

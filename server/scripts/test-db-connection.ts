@@ -14,7 +14,7 @@ async function testDbConnection() {
     const subjects = await prisma.subject.findMany();
     console.log('Subjects in database:', subjects);
     
-  } catch (error) {
+  } catch (_error) {
     console.error('Database connection error:', error);
   } finally {
     await prisma.$disconnect();

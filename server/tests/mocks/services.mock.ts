@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Optimized Service Mocks
  * Lightweight mocks for all services to speed up unit tests

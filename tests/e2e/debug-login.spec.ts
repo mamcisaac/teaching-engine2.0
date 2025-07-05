@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { test } from '@playwright/test'; // expect not used in this file
 
 test('debug login page', async ({ page }) => {
@@ -18,7 +19,7 @@ test('debug login page', async ({ page }) => {
         console.log('Frontend is ready');
         break;
       }
-    } catch (error) {
+    } catch (_error) {
       console.log(`Frontend check attempt ${i + 1} failed:`, error);
     }
     await new Promise((r) => setTimeout(r, 1000));
@@ -42,14 +43,14 @@ test('debug login page', async ({ page }) => {
     console.log('Page URL:', page.url());
     const title = await page.title();
     console.log('Page title:', title);
-  } catch (error) {
+  } catch (_error) {
     console.log('Could not get page info:', error);
   }
 
   // Take a screenshot
   try {
     await page.screenshot({ path: 'test-results/debug-login.png', fullPage: true });
-  } catch (error) {
+  } catch (_error) {
     console.log('Could not take screenshot:', error);
   }
 
@@ -65,7 +66,7 @@ test('debug login page', async ({ page }) => {
     } else {
       console.log('Already authenticated or redirected to:', currentUrl);
     }
-  } catch (error) {
+  } catch (_error) {
     console.log('Login form elements not found within timeout:', error);
     // Continue with test to gather diagnostic information
   }
@@ -83,7 +84,7 @@ test('debug login page', async ({ page }) => {
       })),
     );
     console.log('Input fields:', JSON.stringify(inputs, null, 2));
-  } catch (error) {
+  } catch (_error) {
     console.log('Could not evaluate input fields:', error);
   }
 
@@ -98,7 +99,7 @@ test('debug login page', async ({ page }) => {
       })),
     );
     console.log('Buttons:', JSON.stringify(buttons, null, 2));
-  } catch (error) {
+  } catch (_error) {
     console.log('Could not evaluate buttons:', error);
   }
 
@@ -113,7 +114,7 @@ test('debug login page', async ({ page }) => {
       })),
     );
     console.log('Forms:', JSON.stringify(forms, null, 2));
-  } catch (error) {
+  } catch (_error) {
     console.log('Could not evaluate forms:', error);
   }
 

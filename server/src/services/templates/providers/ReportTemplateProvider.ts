@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Report Template Provider
  * Provides templates for various reports
  */
 
-import { TemplateProvider, Template, TemplateContext, DataRequirement } from './TemplateProvider';
+import { TemplateProvider, Template, TemplateContext } from './TemplateProvider';
 
 export class ReportTemplateProvider extends TemplateProvider {
   constructor() {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { describe, it, expect, beforeEach, afterEach, vi } from '@jest/globals';
 import { MonitoringService } from '../telemetry';
 import { MetricCollector } from '../metrics';

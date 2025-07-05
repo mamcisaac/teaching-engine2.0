@@ -45,7 +45,7 @@ async function testDbOperations() {
     
     console.log('\n✅ All database operations completed successfully!');
     
-  } catch (error) {
+  } catch (_error) {
     console.error('❌ Database test failed:', error);
     process.exit(1);
   } finally {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { describe, it, expect, beforeEach, afterEach } from '@jest/globals';
 import { extractScenarioTemplates, autoDetectScenario } from '../../src/services/scenarioTemplateExtractor';
 import { formatContactsForSubPlan, getEmergencyContactsList, generateEmergencyContactCard, ExtractedContacts } from '../../src/services/contactExtractor';

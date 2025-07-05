@@ -3,7 +3,7 @@
  * Extends BaseRouteHandler with daybook-specific business logic and analytics
  */
 
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 import { z } from 'zod';
 import { BaseRouteHandler, AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
 import { BaseService } from '../services/base/BaseService.js';
@@ -49,7 +49,7 @@ const daybookEntryCreateSchema = z.object({
   privateNotes: z.string().optional(),
   overallRating: z.number().int().min(1).max(5).optional(),
   wouldReuseLesson: z.boolean().optional(),
-  expectationCoverage: z
+  expectations: z
     .array(
       z.object({
         expectationId: z.string(),
@@ -223,7 +223,7 @@ class DaybookService extends BaseService {
             },
           },
         },
-        expectationCoverage: {
+        expectations: {
           include: {
             expectation: {
               select: {
@@ -238,12 +238,23 @@ class DaybookService extends BaseService {
   }
 
   async create(data: unknown, userId: number) {
+    const { expectations, ...daybookData } = data;
+    
     return prisma.daybookEntry.create({
       data: {
-        ...data,
+        ...daybookData,
         userId,
         date: new Date(data.date),
+        expectations: expectations
+          ? {
+              create: expectations.map((exp: any) => ({
+                expectationId: exp.expectationId,
+                coverage: exp.coverage,
+              })),
+            }
+          : undefined,
       },
+      include: optimizedIncludes.daybookEntry,
     });
   }
 
@@ -257,12 +268,24 @@ class DaybookService extends BaseService {
       throw new Error('Daybook entry not found');
     }
 
+    const { expectations, ...updateData } = data;
+
     return prisma.daybookEntry.update({
       where: { id },
       data: {
-        ...data,
+        ...updateData,
         ...(data.date && { date: new Date(data.date) }),
+        ...(expectations && {
+          expectations: {
+            deleteMany: {},
+            create: expectations.map((exp: any) => ({
+              expectationId: exp.expectationId,
+              coverage: exp.coverage,
+            })),
+          },
+        }),
       },
+      include: optimizedIncludes.daybookEntry,
     });
   }
 
@@ -380,8 +403,8 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
       const result = await this.daybookService.findMany(filters, userId);
       res.json(result);
     } catch (_error) {
-      this.logger.error(`Error in ${this.routeName} list:`, error);
-      next(error);
+      this.logger.error(`Error in ${this.routeName} list:`, _error);
+      next(_error);
     }
   }
 
@@ -404,8 +427,8 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
       const insights = await this.daybookService.getInsightsSummary(userId);
       res.json(insights);
     } catch (_error) {
-      this.logger.error('Error getting insights summary:', error);
-      next(error);
+      this.logger.error('Error getting insights summary:', _error);
+      next(_error);
     }
   }
 }

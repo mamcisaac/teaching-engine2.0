@@ -45,7 +45,7 @@ export const assertThrows = async (
 
   try {
     await fn();
-  } catch (error) {
+  } catch (_error) {
     thrownError = error as Error;
   }
 

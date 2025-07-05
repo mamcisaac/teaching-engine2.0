@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { test, expect } from '@playwright/test';
 import { login, TestDataFactory } from './helpers/unified-auth';
 
@@ -37,7 +38,7 @@ test.describe('Quick Smoke Tests', () => {
       try {
         subject = await testData.createSubject(subjectName);
         break;
-      } catch (error) {
+      } catch (_error) {
         if (i === 2) throw error;
         console.log(`Retry ${i + 1}: Creating subject failed, retrying...`);
         await new Promise((resolve) => setTimeout(resolve, 1000));

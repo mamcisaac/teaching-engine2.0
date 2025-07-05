@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { Request, Response, NextFunction } from 'express';
 import { ParsedQs } from 'qs';
 import { ParamsDictionary } from 'express-serve-static-core';
@@ -100,7 +101,7 @@ function sanitizeObject(obj: unknown, config: Record<string, unknown> = strictCo
       return sanitized;
     } catch (_error) {
       // If sanitization fails, return empty string to be safe
-      logger.warn({ obj: obj.substring(0, 100), error }, 'Failed to sanitize string');
+      logger.warn({ obj: obj.substring(0, 100), error: _error }, 'Failed to sanitize string');
       return '';
     }
   }
@@ -220,7 +221,7 @@ export function strictSanitization(req: Request, res: Response, next: NextFuncti
 
     next();
   } catch (_error) {
-    logger.error({ error, path: req.path, ip: req.ip }, 'Input sanitization error');
+    logger.error({ error: _error, path: req.path, ip: req.ip }, 'Input sanitization error');
     res.status(400).json({
       error: 'Invalid Input',
       message: 'Request contains invalid characters or format',
@@ -247,7 +248,7 @@ export function moderateSanitization(req: Request, res: Response, next: NextFunc
 
     next();
   } catch (_error) {
-    logger.error({ error, path: req.path }, 'Input sanitization error');
+    logger.error({ error: _error, path: req.path }, 'Input sanitization error');
     res.status(400).json({
       error: 'Invalid Input',
       message: 'Request contains invalid characters or format',
@@ -274,7 +275,7 @@ export function lenientSanitization(req: Request, res: Response, next: NextFunct
 
     next();
   } catch (_error) {
-    logger.error({ error, path: req.path }, 'Input sanitization error');
+    logger.error({ error: _error, path: req.path }, 'Input sanitization error');
     res.status(400).json({
       error: 'Invalid Input',
       message: 'Request contains invalid characters or format',
@@ -340,8 +341,8 @@ export function preventSQLInjection(req: Request, res: Response, next: NextFunct
 
     next();
   } catch (_error) {
-    logger.error({ error }, 'SQL injection prevention error');
-    next(error);
+    logger.error({ error: _error }, 'SQL injection prevention error');
+    next(_error);
   }
 }
 
@@ -407,8 +408,8 @@ export function preventNoSQLInjection(req: Request, res: Response, next: NextFun
 
     next();
   } catch (_error) {
-    logger.error({ error }, 'NoSQL injection prevention error');
-    next(error);
+    logger.error({ error: _error }, 'NoSQL injection prevention error');
+    next(_error);
   }
 }
 

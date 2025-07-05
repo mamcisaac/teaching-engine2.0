@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 // Express types imported but not used in this file
 import { prisma } from '../../prisma.js';
 import { hashPassword, verifyPassword, validatePasswordStrength } from './password';

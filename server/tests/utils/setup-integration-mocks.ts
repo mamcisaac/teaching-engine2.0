@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Mock setup for integration tests
  * Integration tests use real database but mock external services

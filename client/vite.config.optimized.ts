@@ -28,14 +28,42 @@ function manualChunks(id: string) {
       return 'vendor-utils';
     }
     
-    // Charts & visualization
-    if (id.includes('chart.js') || id.includes('recharts')) {
-      return 'vendor-charts';
+    // Charts & visualization (separate large libraries)
+    if (id.includes('chart.js')) {
+      return 'vendor-chartjs';
+    }
+    if (id.includes('recharts')) {
+      return 'vendor-recharts';
+    }
+    
+    // Calendar libraries
+    if (id.includes('react-big-calendar') || id.includes('moment')) {
+      return 'vendor-calendar';
+    }
+    
+    // Animation libraries
+    if (id.includes('framer-motion')) {
+      return 'vendor-animation';
+    }
+    
+    // PDF generation
+    if (id.includes('jspdf') || id.includes('html2canvas')) {
+      return 'vendor-pdf';
+    }
+    
+    // DND libraries
+    if (id.includes('@dnd-kit')) {
+      return 'vendor-dnd';
     }
     
     // Form handling
-    if (id.includes('react-dropzone') || id.includes('dompurify')) {
+    if (id.includes('react-hook-form') || id.includes('zod')) {
       return 'vendor-forms';
+    }
+    
+    // File handling
+    if (id.includes('react-dropzone') || id.includes('dompurify')) {
+      return 'vendor-files';
     }
   }
 }
@@ -180,8 +208,8 @@ export default defineConfig(({ mode }) => {
     // Performance optimizations
     esbuild: {
       target: 'es2020',
-      // Faster JSX transform
-      jsxInject: `import React from 'react'`,
+      // Remove automatic React inject - using new JSX transform
+      // jsxInject: `import React from 'react'`,
       // Remove unused code
       treeShaking: true,
       // Optimize for speed in development

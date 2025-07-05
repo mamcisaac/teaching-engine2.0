@@ -339,7 +339,7 @@ export class RealTestDatabase {
           rmSync(dbPath);
         }
       }
-    } catch (error) {
+    } catch (_error) {
       console.error(`Cleanup error for worker ${workerId}:`, error);
     } finally {
       this.clients.delete(workerId);
@@ -375,7 +375,7 @@ export class RealTestDatabase {
       // Drop database
       await adminClient.$executeRawUnsafe(`DROP DATABASE IF EXISTS "${dbName}"`);
       await adminClient.$disconnect();
-    } catch (error) {
+    } catch (_error) {
       console.error(`Failed to drop database ${dbName}:`, error);
     }
   }

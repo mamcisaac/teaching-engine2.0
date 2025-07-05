@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Debug API test to identify validation issues
  */
@@ -11,7 +12,7 @@ import {
 } from '../integration-test-setup';
 
 // Import the actual app
-let app: any;
+let app: unknown;
 
 beforeEach(async () => {
   // Import the actual app
@@ -93,7 +94,7 @@ describe('API Debug Tests', () => {
     try {
       const result = studentCreateSchema.parse(testData);
       console.log('Schema validation passed:', result);
-    } catch (error) {
+    } catch (_error) {
       console.error('Schema validation failed:', error);
     }
   });

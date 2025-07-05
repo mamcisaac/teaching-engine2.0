@@ -194,7 +194,7 @@ function checkForExposedSecrets(): void {
             });
           }
         }
-      } catch (error) {
+      } catch (_error) {
         console.warn(`Could not read ${filename}: ${error}`);
       }
     }

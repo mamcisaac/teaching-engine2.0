@@ -24,7 +24,7 @@ import UnitPlanForm, { UnitPlanFormData } from './UnitPlanForm';
 import LessonPlanForm, { LessonPlanFormData } from './LessonPlanForm';
 import { validateUnitPlan, validateLessonPlan } from '../../utils/formValidation';
 import { LongRangePlan, UnitPlan } from '../../hooks/useETFOPlanning';
-
+import logger from '../../utils/logger';
 interface BatchOperation {
   id: string;
   type: 'unit' | 'lesson';
@@ -157,7 +157,7 @@ export default function FormsDataAgent({
         prev.map((op) => (op.errors && op.errors.length > 0 ? { ...op, status: 'error' } : op)),
       );
     } catch (_error) {
-      console.error('Batch processing error:', error);
+      logger.error('Batch processing error:', error);
       setBatchOperations((prev) =>
         prev.map((op) => ({
           ...op,
@@ -249,7 +249,7 @@ export default function FormsDataAgent({
         onDataImport?.(type, data);
       }
     } catch (_error) {
-      console.error('Import error:', error);
+      logger.error('Import error:', error);
     }
   };
 

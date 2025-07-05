@@ -134,7 +134,7 @@ class TestEnvironmentValidator {
       }
 
       await prisma.$disconnect();
-    } catch (error) {
+    } catch (_error) {
       this.addResult(
         'Database Connection',
         'fail',
@@ -166,7 +166,7 @@ class TestEnvironmentValidator {
           'Run: pnpm test:setup to seed test data',
         );
       }
-    } catch (error) {
+    } catch (_error) {
       this.addResult('Test Data', 'fail', `Failed to check test data: ${error}`);
     }
   }

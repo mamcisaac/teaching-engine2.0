@@ -8,7 +8,7 @@ import { TemplateProvider, Template } from './providers/TemplateProvider';
 import { LessonTemplateProvider } from './providers/LessonTemplateProvider';
 import { NewsletterTemplateProvider } from './providers/NewsletterTemplateProvider';
 import { ReportTemplateProvider } from './providers/ReportTemplateProvider';
-import { RenderEngine } from './engines/RenderEngine';
+// import { RenderEngine } from './engines/RenderEngine';
 import { HandlebarsEngine } from './engines/HandlebarsEngine';
 import { PdfEngine } from './engines/PdfEngine';
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * TDD Integration Test Setup
  * Uses real file-based SQLite or PostgreSQL database
@@ -34,7 +35,7 @@ beforeAll(async () => {
     await seedIntegrationData();
     
     console.log(`[TDD Integration Setup] Database ready with test data`);
-  } catch (error) {
+  } catch (_error) {
     console.error('[TDD Integration Setup] Failed to initialize:', error);
     throw error;
   }
@@ -58,7 +59,7 @@ afterAll(async () => {
       testPrismaClient: PrismaClient | undefined;
     };
     globalForPrisma.testPrismaClient = undefined;
-  } catch (error) {
+  } catch (_error) {
     console.error('[TDD Integration Setup] Cleanup error:', error);
   }
 });

@@ -1,22 +1,25 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Database Query Optimizations
  * Centralized optimizations for common query patterns
  */
 
 import { Prisma } from '@teaching-engine/database';
-
+import logger from '../../logger';
 /**
  * Optimized select patterns for common relationships
  */
+// Basic user selection (exclude sensitive data)
+const userSelect = {
+  id: true,
+  name: true,
+  email: true,
+  role: true,
+  createdAt: true,
+};
+
 export const optimizedSelects = {
-  // Basic user selection (exclude sensitive data)
-  user: {
-    id: true,
-    name: true,
-    email: true,
-    role: true,
-    createdAt: true,
-  },
+  user: userSelect,
 
   // Minimal lesson plan selection for lists
   lessonPlanMinimal: {
@@ -45,7 +48,7 @@ export const optimizedSelects = {
     code: true,
     description: true,
     strand: true,
-    overallExpectation: true,
+    substrand: true,
   },
 
   // Daybook entry with optimized relationships
@@ -88,7 +91,7 @@ export const optimizedSelects = {
     averageRating: true,
     createdAt: true,
     createdByUser: {
-      select: optimizedSelects.user,
+      select: userSelect,
     },
   },
 };
@@ -102,9 +105,9 @@ export const optimizedIncludes = {
     lessonPlan: {
       select: optimizedSelects.lessonPlanMinimal,
     },
-    expectationCoverage: {
+    expectations: {
       select: {
-        id: true,
+        expectationId: true,
         coverage: true,
         expectation: {
           select: optimizedSelects.expectationMinimal,
@@ -164,7 +167,7 @@ export const optimizedIncludes = {
   // Template with relationships
   template: {
     createdByUser: {
-      select: optimizedSelects.user,
+      select: userSelect,
     },
     ratings: {
       select: {
@@ -269,7 +272,6 @@ export const optimizedQueries = {
           OR: [
             { isSystem: true },
             { createdByUserId: userId },
-            { userId: userId },
           ],
         },
         ...(additionalWhere ? [additionalWhere] : []),
@@ -296,13 +298,13 @@ export const queryPerformance = {
       
       // Log slow queries (>1 second) in development only
       if (duration > 1000 && process.env.NODE_ENV === 'development') {
-        console.warn(`Slow query detected: ${queryName} took ${duration}ms`);
+        logger.warn(`Slow query detected: ${queryName} took ${duration}ms`);
       }
       
       return result;
-    } catch (_error) {
+    } catch (error) {
       const duration = Date.now() - start;
-      console.error(`Query failed: ${queryName} failed after ${duration}ms:`, error);
+      logger.error(`Query failed: ${queryName} failed after ${duration}ms:`, error);
       throw error;
     }
   },

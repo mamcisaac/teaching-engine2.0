@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Secure Fetch Mock Implementation
  * Validates security headers, protocols, and request patterns

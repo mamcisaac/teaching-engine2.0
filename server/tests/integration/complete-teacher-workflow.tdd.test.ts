@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * TDD Integration Test - Complete Teacher Workflow
  * Tests end-to-end user scenarios with real database and services
@@ -16,9 +17,9 @@ import jwt from 'jsonwebtoken';
 
 describe('Complete Teacher Workflow - Integration Tests', () => {
   let app: Express;
-  let client: any;
+  let client: unknown;
   let teacherToken: string;
-  let teacher: any;
+  let teacher: unknown;
 
   beforeAll(async () => {
     app = await createTestApp();
@@ -253,8 +254,8 @@ describe('Complete Teacher Workflow - Integration Tests', () => {
 
       // Should include progress data
       const studentsWithProgress = classOverviewResponse.body;
-      expect(studentsWithProgress.find((s: any) => s.id === student1.id)).toBeTruthy();
-      expect(studentsWithProgress.find((s: any) => s.id === student2.id)).toBeTruthy();
+      expect(studentsWithProgress.find((s: unknown) => s.id === student1.id)).toBeTruthy();
+      expect(studentsWithProgress.find((s: unknown) => s.id === student2.id)).toBeTruthy();
     });
   });
 

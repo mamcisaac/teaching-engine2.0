@@ -48,7 +48,7 @@ afterAll(async () => {
       if (handle && typeof handle.destroy === 'function') {
         handle.destroy();
       }
-    } catch (error) {
+    } catch (_error) {
       // Ignore cleanup errors
     }
   });

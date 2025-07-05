@@ -51,7 +51,7 @@ export class WebFetch {
       
       return html;
     } catch (_error) {
-      logger.error({ error, url }, 'Error fetching URL');
+      logger.error({ error: _error, url }, 'Error fetching URL');
       
       // Try with JSDOM as fallback for JavaScript-heavy sites
       try {

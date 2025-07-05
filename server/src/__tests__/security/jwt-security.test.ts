@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * JWT Security Test Suite
  * Comprehensive JWT token security validation

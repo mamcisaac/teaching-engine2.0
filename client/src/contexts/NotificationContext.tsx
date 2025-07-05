@@ -1,31 +1,34 @@
-import { createContext, useContext } from 'react';
-import { useNotifications, useMarkNotificationRead } from '../api/legacy/api';
+import { createContext, useContext, ReactNode } from 'react';
+import { useNotifications, useMarkNotificationRead } from '../api/domains/notification';
 import type { Notification } from '../types';
 import { useAuth } from './AuthContext';
 
 interface NotificationContextValue {
   notifications: Notification[];
   markRead: (id: number) => void;
+  markAllRead: () => void;
+  deleteNotification: (id: number) => void;
   isLoading: boolean;
   error: Error | null;
+  unreadCount: number;
+  hasUnread: boolean;
 }
 
-const NotificationContext = createContext<NotificationContextValue>({
-  notifications: [],
-  markRead: () => {},
-  isLoading: false,
-  error: null,
-});
+const NotificationContext = createContext<NotificationContextValue | null>(null);
 
-export function NotificationProvider({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated } = useAuth();
+export function NotificationProvider({ children }: { children: ReactNode }) {
+  const { isAuthenticated, isInitialized } = useAuth();
 
-  // Only fetch notifications if user is authenticated
+  // Only fetch notifications if user is authenticated and auth is initialized
   const {
-    data = [],
+    data: notifications = [],
     isLoading,
     error,
-  } = useNotifications();
+  } = useNotifications({
+    enabled: isAuthenticated && isInitialized,
+    refetchInterval: 30000, // Refetch every 30 seconds
+    staleTime: 10000, // Consider data stale after 10 seconds
+  });
 
   const markMutation = useMarkNotificationRead();
 
@@ -35,19 +38,65 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
     }
   };
 
+  const markAllRead = () => {
+    if (isAuthenticated && notifications.length > 0) {
+      const unreadIds = notifications
+        .filter(notification => !notification.read)
+        .map(notification => notification.id);
+      
+      unreadIds.forEach(id => markMutation.mutate(id));
+    }
+  };
+
+  const deleteNotification = (id: number) => {
+    // TODO: Implement delete notification mutation
+    console.log('Delete notification:', id);
+  };
+
+  // Computed values
+  const unreadCount = notifications.filter(n => !n.read).length;
+  const hasUnread = unreadCount > 0;
+
+  const contextValue: NotificationContextValue = {
+    notifications,
+    markRead,
+    markAllRead,
+    deleteNotification,
+    isLoading,
+    error: error as Error | null,
+    unreadCount,
+    hasUnread,
+  };
+
   return (
-    <NotificationContext.Provider
-      value={{
-        notifications: data,
-        markRead,
-        isLoading,
-        error: error as Error | null,
-      }}
-    >
+    <NotificationContext.Provider value={contextValue}>
       {children}
     </NotificationContext.Provider>
   );
 }
 
-export const useNotificationContext = () => useContext(NotificationContext);
+export const useNotificationContext = () => {
+  const context = useContext(NotificationContext);
+  if (!context) {
+    throw new Error('useNotificationContext must be used within a NotificationProvider');
+  }
+  return context;
+};
+
 export const useNotification = useNotificationContext;
+
+// Additional selector hooks for performance
+export const useNotifications = () => {
+  const { notifications } = useNotificationContext();
+  return notifications;
+};
+
+export const useUnreadCount = () => {
+  const { unreadCount } = useNotificationContext();
+  return unreadCount;
+};
+
+export const useHasUnreadNotifications = () => {
+  const { hasUnread } = useNotificationContext();
+  return hasUnread;
+};

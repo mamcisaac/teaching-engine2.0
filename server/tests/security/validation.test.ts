@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Input Validation and Sanitization Security Tests
  *
@@ -14,11 +15,11 @@ import { setupSecurityTestEnv, restoreOriginalEnv } from './test-env';
 import { secureFetchMock } from '../mocks/fetch-secure.mock';
 
 // Replace global fetch with secure mock
-(global as any).fetch = secureFetchMock;
+(global as unknown).fetch = secureFetchMock;
 
 // Create test app
-let app: any;
-let mockUsers: any;
+let app: unknown;
+let mockUsers: unknown;
 let originalEnv: NodeJS.ProcessEnv;
 
 beforeEach(async () => {
@@ -440,7 +441,7 @@ describe('Input Validation and Sanitization Security Tests', () => {
 
         // Should reject oversized files or return not found if endpoint doesn't exist
         expect(response.status).toBeOneOf([400, 404, 413, 422]);
-      } catch (error: any) {
+      } catch (error: unknown) {
         // Connection reset/pipe errors are acceptable for very large files
         if (
           error.code === 'ECONNRESET' ||

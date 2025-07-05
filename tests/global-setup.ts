@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { chromium } from '@playwright/test';
 
 export default async function globalSetup() {
@@ -22,7 +23,7 @@ export default async function globalSetup() {
           },
         });
         break; // Success, exit retry loop
-      } catch (error) {
+      } catch (_error) {
         retryCount++;
         if (retryCount === maxRetries) {
           throw new Error(`Server not available after ${maxRetries} attempts: ${error}`);
@@ -72,7 +73,7 @@ export default async function globalSetup() {
       }
       throw new Error(`Login failed with status: ${response.status()}: ${errorBody}`);
     }
-  } catch (error) {
+  } catch (_error) {
     console.error('Global setup failed:', error);
     throw error;
   } finally {

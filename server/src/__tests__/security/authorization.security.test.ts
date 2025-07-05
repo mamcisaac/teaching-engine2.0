@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Authorization Security Test Suite
  * Role-based access control and permission boundary testing
@@ -104,17 +105,17 @@ describe('Authorization Security Tests', () => {
     app.use(express.json());
 
     // Public endpoint
-    app.get('/api/public', (req, res) => {
+    app.get('/api/public', (req: Request, res: Response) => {
       res.json({ message: 'public endpoint' });
     });
 
     // Protected endpoint requiring authentication
-    app.get('/api/protected', authMiddleware, (req, res) => {
+    app.get('/api/protected', authMiddleware, (req: Request, res: Response) => {
       res.json({ message: 'protected endpoint', user: req.user });
     });
 
     // Admin-only endpoint
-    app.get('/api/admin', authMiddleware, (req, res) => {
+    app.get('/api/admin', authMiddleware, (req: Request, res: Response) => {
       // Check if user is admin
       if (req.user?.role !== 'ADMIN') {
         return res.status(403).json({ error: 'Admin access required' });
@@ -123,7 +124,7 @@ describe('Authorization Security Tests', () => {
     });
 
     // Moderator or admin endpoint
-    app.get('/api/moderator', authMiddleware, (req, res) => {
+    app.get('/api/moderator', authMiddleware, (req: Request, res: Response) => {
       // Check if user is moderator or admin
       if (!['MODERATOR', 'ADMIN'].includes(req.user?.role || '')) {
         return res.status(403).json({ error: 'Moderator access required' });
@@ -132,17 +133,17 @@ describe('Authorization Security Tests', () => {
     });
 
     // Wizard token protected endpoint
-    app.get('/api/wizard', requireAdminToken, (req, res) => {
+    app.get('/api/wizard', requireAdminToken, (req: Request, res: Response) => {
       res.json({ message: 'wizard endpoint' });
     });
 
     // Rate limited endpoint
-    app.get('/api/limited', rateLimiters.api, (req, res) => {
+    app.get('/api/limited', rateLimiters.api, (req: Request, res: Response) => {
       res.json({ message: 'rate limited endpoint' });
     });
 
     // User-specific resource endpoint
-    app.get('/api/users/:userId/data', authMiddleware, (req, res) => {
+    app.get('/api/users/:userId/data', authMiddleware, (req: Request, res: Response) => {
       const requestedUserId = req.params.userId;
       const currentUserId = req.user?.userId;
 

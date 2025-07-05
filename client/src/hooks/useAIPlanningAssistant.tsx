@@ -1,7 +1,6 @@
+import { apiClient } from '../api/core/client';
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { api } from '../api/legacy/api';
-
 export interface AISuggestion {
   type: 'goals' | 'bigIdeas' | 'activities' | 'materials' | 'assessments' | 'reflections';
   suggestions: string[];
@@ -21,7 +20,7 @@ export function useAIPlanningAssistant() {
     }) => {
       setIsGenerating(true);
       try {
-        const response = await api.post('/api/ai-planning/long-range/goals', params);
+        const response = await apiClient.post('/api/ai-planning/long-range/goals', params);
         return response.data as AISuggestion;
       } finally {
         setIsGenerating(false);
@@ -40,7 +39,7 @@ export function useAIPlanningAssistant() {
     }) => {
       setIsGenerating(true);
       try {
-        const response = await api.post('/api/ai-planning/unit/big-ideas', params);
+        const response = await apiClient.post('/api/ai-planning/unit/big-ideas', params);
         return response.data as AISuggestion;
       } finally {
         setIsGenerating(false);
@@ -60,7 +59,7 @@ export function useAIPlanningAssistant() {
     }) => {
       setIsGenerating(true);
       try {
-        const response = await api.post('/api/ai-planning/lesson/activities', params);
+        const response = await apiClient.post('/api/ai-planning/lesson/activities', params);
         return response.data as AISuggestion;
       } finally {
         setIsGenerating(false);
@@ -78,7 +77,7 @@ export function useAIPlanningAssistant() {
     }) => {
       setIsGenerating(true);
       try {
-        const response = await api.post('/api/ai-planning/lesson/materials', params);
+        const response = await apiClient.post('/api/ai-planning/lesson/materials', params);
         return response.data as AISuggestion;
       } finally {
         setIsGenerating(false);
@@ -96,7 +95,7 @@ export function useAIPlanningAssistant() {
     }) => {
       setIsGenerating(true);
       try {
-        const response = await api.post('/api/ai-planning/lesson/assessments', params);
+        const response = await apiClient.post('/api/ai-planning/lesson/assessments', params);
         return response.data as AISuggestion;
       } finally {
         setIsGenerating(false);
@@ -115,7 +114,7 @@ export function useAIPlanningAssistant() {
     }) => {
       setIsGenerating(true);
       try {
-        const response = await api.post('/api/ai-planning/daybook/reflections', params);
+        const response = await apiClient.post('/api/ai-planning/daybook/reflections', params);
         return response.data as AISuggestion;
       } finally {
         setIsGenerating(false);
@@ -131,7 +130,7 @@ export function useAIPlanningAssistant() {
     }) => {
       setIsGenerating(true);
       try {
-        const response = await api.post('/api/ai-planning/curriculum-aligned', params);
+        const response = await apiClient.post('/api/ai-planning/curriculum-aligned', params);
         return response.data.suggestions as string[];
       } finally {
         setIsGenerating(false);

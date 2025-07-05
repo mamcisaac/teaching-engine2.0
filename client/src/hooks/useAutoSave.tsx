@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useToast } from '../components/ui/use-toast';
-
+import logger from '../utils/logger';
 interface UseAutoSaveOptions<T> {
   data: T;
   saveFn: (data: T) => Promise<void>;
@@ -64,7 +64,7 @@ export function useAutoSave<T>({
 
         onSaveSuccess?.();
       } catch (_error) {
-        console.error('Auto-save failed:', error);
+        logger.error('Auto-save failed:', error);
         
         toast({
           title: 'Auto-save failed',
@@ -104,7 +104,7 @@ export function useAutoSave<T>({
 
       onSaveSuccess?.();
     } catch (_error) {
-      console.error('Manual save failed:', error);
+      logger.error('Manual save failed:', error);
       
       toast({
         title: 'Save failed',

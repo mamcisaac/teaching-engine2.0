@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Comprehensive Security Test Suite
  *
@@ -10,7 +11,7 @@ import { PrismaClient } from '@teaching-engine/database';
 import bcrypt from 'bcryptjs';
 
 // Import the actual app
-let app: any;
+let app: unknown;
 let prisma: PrismaClient;
 
 beforeEach(async () => {
@@ -73,7 +74,7 @@ async function cleanDatabase() {
     await prisma.etfoProgress.deleteMany({});
     await prisma.bulkMaterial.deleteMany({});
     await prisma.substitutePlan.deleteMany({});
-  } catch (error) {
+  } catch (_error) {
     console.warn('Error cleaning database:', error);
   }
 }
@@ -399,7 +400,7 @@ describe('Comprehensive Security Tests', () => {
 
         // Should reject files that are too large
         expect(response.status).toBeOneOf([400, 413, 404]); // Bad request, payload too large, or not found
-      } catch (error: any) {
+      } catch (error: unknown) {
         // Connection reset is also acceptable for very large files
         expect(['ECONNRESET', 'EPIPE'].includes(error.code)).toBe(true);
       }

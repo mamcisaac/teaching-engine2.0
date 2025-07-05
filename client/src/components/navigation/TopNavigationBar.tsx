@@ -1,0 +1,70 @@
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import { useETFOProgress } from '../../hooks/useETFOProgress';
+import { useNavigation } from './NavigationProvider';
+import { secondaryNavItems } from './navigationConfig';
+import NotificationBell from '../NotificationBell';
+import LanguageSwitcher from '../LanguageSwitcher';
+
+export function TopNavigationBar() {
+  const location = useLocation();
+  const { getETFOLevels } = useETFOProgress();
+  const { toggleSidebar, isMobile } = useNavigation();
+  const etfoLevels = getETFOLevels();
+
+  const getCurrentPageTitle = () => {
+    // Check ETFO levels first
+    const etfoMatch = etfoLevels.find((level) =>
+      location.pathname.startsWith(level.path),
+    );
+    if (etfoMatch) return etfoMatch.name;
+
+    // Check for exact analytics match
+    if (location.pathname === '/analytics') {
+      return 'Analytics';
+    }
+
+    // Check secondary nav items
+    const secondaryMatch = secondaryNavItems.find((item) =>
+      location.pathname.startsWith(item.path),
+    );
+    if (secondaryMatch) return secondaryMatch.label;
+
+    // Default
+    return 'Teaching Engine 2.0';
+  };
+
+  return (
+    <div className="bg-white shadow-sm p-4 flex justify-between items-center">
+      {/* Mobile menu button */}
+      {isMobile && (
+        <button
+          onClick={toggleSidebar}
+          className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+          aria-label="Open menu"
+        >
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      )}
+      <div className="text-lg md:text-xl font-semibold flex-1 text-center md:text-left">
+        {getCurrentPageTitle()}
+      </div>
+      <div className="flex items-center space-x-2 md:space-x-4">
+        <div className="hidden sm:block">
+          <LanguageSwitcher />
+        </div>
+        <NotificationBell />
+        <div className="h-8 w-8 rounded-full bg-indigo-500 flex items-center justify-center text-white">
+          <span className="font-semibold text-sm">TP</span>
+        </div>
+      </div>
+    </div>
+  );
+}

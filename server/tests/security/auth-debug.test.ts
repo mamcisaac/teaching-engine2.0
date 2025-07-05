@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Debug test for authentication in validation tests
  */
@@ -11,11 +12,11 @@ import { setupSecurityTestEnv, restoreOriginalEnv } from './test-env';
 import { secureFetchMock } from '../mocks/fetch-secure.mock';
 
 // Replace global fetch with secure mock
-(global as any).fetch = secureFetchMock;
+(global as unknown).fetch = secureFetchMock;
 
 describe('Authentication Debug', () => {
-  let app: any;
-  let mockUsers: any;
+  let app: unknown;
+  let mockUsers: unknown;
   let originalEnv: NodeJS.ProcessEnv;
 
   beforeEach(async () => {

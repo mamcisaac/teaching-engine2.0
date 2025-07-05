@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useRef, useState, useCallback } from 'react';
-
+import logger from '../utils/logger';
 export interface KeyboardShortcut {
   id: string;
   key: string;
@@ -78,22 +78,25 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
         const parsed = JSON.parse(savedPrefs);
         setPreferences({ ...defaultPreferences, ...parsed });
         setIsEnabled(parsed.enabled ?? true);
-      } catch (_e) {
-        console.error('Failed to parse keyboard shortcuts preferences:', e);
+      } catch (e) {
+        logger.error('Failed to parse keyboard shortcuts preferences:', e);
       }
     }
   }, []);
 
   // Save preferences to localStorage
   const updatePreferences = useCallback((prefs: Partial<KeyboardShortcutPreferences>) => {
-    const newPrefs = { ...preferences, ...prefs };
-    setPreferences(newPrefs);
-    localStorage.setItem('keyboard-shortcuts-preferences', JSON.stringify(newPrefs));
-    
-    if (prefs.enabled !== undefined) {
-      setIsEnabled(prefs.enabled);
-    }
-  }, [preferences]);
+    setPreferences(prevPreferences => {
+      const newPrefs = { ...prevPreferences, ...prefs };
+      localStorage.setItem('keyboard-shortcuts-preferences', JSON.stringify(newPrefs));
+      
+      if (prefs.enabled !== undefined) {
+        setIsEnabled(prefs.enabled);
+      }
+      
+      return newPrefs;
+    });
+  }, []);
 
   const registerShortcut = useCallback((shortcut: KeyboardShortcut) => {
     setShortcuts(prev => {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Comprehensive AI Planning Routes Tests
  * Priority 2A: AI-Powered Routes with Real OpenAI API Integration
@@ -48,7 +49,7 @@ describe('AI Planning Routes - Comprehensive Integration Tests', () => {
     app.use('/ai-planning', aiPlanningRouter);
 
     // Global error handler
-    app.use((error: any, req: any, res: any, next: any) => {
+    app.use((error: unknown, req: unknown, res: unknown, next: unknown) => {
       console.error('Test app error:', error);
       res.status(500).json({ error: 'Internal server error' });
     });

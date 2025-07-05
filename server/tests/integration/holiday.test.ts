@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { describe, it, expect, beforeAll } from '@jest/globals';
 import { app } from '../../src/index';
 import { authRequest } from '../test-auth-helper';

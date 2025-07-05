@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
@@ -7,7 +8,11 @@ import { renderWithProviders } from '../../../test-utils';
 describe('Select', () => {
   const user = userEvent.setup();
 
-  const BasicSelect = ({ onValueChange, value, disabled = false }: unknown) => (
+  const BasicSelect = ({ onValueChange, value, disabled = false }: {
+    onValueChange?: (value: string) => void;
+    value?: string;
+    disabled?: boolean;
+  }) => (
     <Select onValueChange={onValueChange} value={value} disabled={disabled}>
       <SelectTrigger>
         <SelectValue placeholder="Select an option" />

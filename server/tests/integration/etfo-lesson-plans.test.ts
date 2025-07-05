@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import request from 'supertest';
 import { describe, test, expect, beforeAll, afterAll } from '@jest/globals';
 import { app } from '../../src/index';
@@ -110,7 +111,7 @@ describe('ETFO Lesson Plans - Comprehensive CRUD Tests', () => {
         await prisma.curriculumImport.deleteMany({ where: { userId } });
 
         await prisma.user.delete({ where: { id: userId } });
-      } catch (error) {
+      } catch (_error) {
         console.warn('Failed to delete primary user test data:', error);
       }
     }
@@ -149,7 +150,7 @@ describe('ETFO Lesson Plans - Comprehensive CRUD Tests', () => {
         await prisma.curriculumImport.deleteMany({ where: { userId: unauthorizedUserId } });
 
         await prisma.user.delete({ where: { id: unauthorizedUserId } });
-      } catch (error) {
+      } catch (_error) {
         console.warn('Failed to delete unauthorized user test data:', error);
       }
     }

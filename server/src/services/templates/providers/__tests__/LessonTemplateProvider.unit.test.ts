@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Lesson Template Provider Test Suite
  */
@@ -102,7 +103,7 @@ describe('LessonTemplateProvider', () => {
 
       // Check for expected variables
       expect(standardTemplate.content).toContain('{{lesson.title}}');
-      expect(standardTemplate.content).toContain('{{lesson.date}}');
+      expect(standardTemplate.content).toContain('{{formatDate lesson.date}}');
       expect(standardTemplate.content).toContain('{{user.name}}');
     });
 

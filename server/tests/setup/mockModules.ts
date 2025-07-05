@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Centralized module mocking setup
  * Use this to ensure consistent mocking across all tests

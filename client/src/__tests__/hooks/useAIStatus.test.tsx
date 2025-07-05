@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
+import { apiClient } from '../../api/core/client';
 import { renderHook, act, waitFor } from '@testing-library/react';
-import { vi } from 'vitest';
+import { vi, beforeEach, afterEach } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
 import {
@@ -11,13 +13,31 @@ import {
   AIStatusIndicator,
 } from '../../hooks/useAIStatus';
 import { createTestQueryClient, renderWithProviders } from '../../test-utils';
-import * as api from '../../api';
 
-// Mock the API
-vi.mock('../../api', () => ({
+// Mock the api modules
+vi.mock('../../api/core/client', () => ({
+  apiClient: {
+    get: vi.fn(),
+    post: vi.fn(),
+    put: vi.fn(),
+    delete: vi.fn(),
+    patch: vi.fn(),
+  },
+}));
+
+vi.mock('../../api/legacy/api', () => ({
   api: {
     get: vi.fn(),
+    post: vi.fn(),
+    put: vi.fn(),
+    delete: vi.fn(),
+    patch: vi.fn(),
+    interceptors: {
+      request: { use: vi.fn() },
+      response: { use: vi.fn() },
+    },
   },
+  getWeekStartISO: vi.fn(),
 }));
 
 describe('useAIStatus hooks', () => {
@@ -32,11 +52,19 @@ describe('useAIStatus hooks', () => {
     vi.clearAllMocks();
     // Clear session storage
     sessionStorage.clear();
+    // Reset fake timers if they were used
+    vi.useRealTimers();
+  });
+
+  afterEach(() => {
+    vi.clearAllMocks();
+    vi.useRealTimers();
   });
 
   describe('useAIStatus', () => {
-    it('returns default AI status when no data is available', () => {
-      (api.api.get as unknown).mockImplementation(() => new Promise(() => {})); // Never resolves
+    it('returns default AI status when no data is available', async () => {
+      // Mock API to never resolve
+      vi.mocked(apiClient.get).mockImplementation(() => new Promise(() => {}));
 
       const { result } = renderHook(() => useAIStatus(), { wrapper });
 
@@ -76,74 +104,78 @@ describe('useAIStatus hooks', () => {
         },
       };
 
-      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
+      vi.mocked(apiClient.get).mockResolvedValueOnce({ data: mockStatus });
 
       const { result } = renderHook(() => useAIStatus(), { wrapper });
 
       await waitFor(() => {
         expect(result.current.aiStatus.available).toBe(true);
-        expect(result.current.isAIEnabled).toBe(true);
-        expect(result.current.canUseAI).toBe(true);
-        expect(result.current.aiDisabledReason).toBeUndefined();
       });
 
-      expect(api.api.get).toHaveBeenCalledWith('/api/ai/status');
+      expect(result.current.isAIEnabled).toBe(true);
+      expect(result.current.canUseAI).toBe(true);
+      expect(result.current.aiDisabledReason).toBeUndefined();
+      expect(apiClient.get).toHaveBeenCalledWith('/api/ai/status');
     });
 
     it('handles service unavailable error (503)', async () => {
-      (api.api.get as unknown).mockRejectedValueOnce({
-        response: { status: 503 },
-      });
+      const error = new Error('Service Unavailable') as any;
+      error.response = { status: 503 };
+      vi.mocked(apiClient.get).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useAIStatus(), { wrapper });
 
       await waitFor(() => {
         expect(result.current.aiStatus.serviceHealth).toBe('unavailable');
-        expect(result.current.aiStatus.error).toBe('AI service is temporarily unavailable');
-        expect(result.current.canUseAI).toBe(false);
       });
+
+      expect(result.current.aiStatus.error).toBe('AI service is temporarily unavailable');
+      expect(result.current.canUseAI).toBe(false);
     });
 
     it('handles authentication error (401)', async () => {
-      (api.api.get as unknown).mockRejectedValueOnce({
-        response: { status: 401 },
-      });
+      const error = new Error('Unauthorized') as any;
+      error.response = { status: 401 };
+      vi.mocked(apiClient.get).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useAIStatus(), { wrapper });
 
       await waitFor(() => {
         expect(result.current.aiStatus.hasApiKey).toBe(false);
-        expect(result.current.aiStatus.apiKeyConfigured).toBe(false);
-        expect(result.current.aiStatus.error).toBe('API key not configured or invalid');
-        expect(result.current.aiDisabledReason).toBe('OpenAI API key is not configured');
       });
+
+      expect(result.current.aiStatus.apiKeyConfigured).toBe(false);
+      expect(result.current.aiStatus.error).toBe('API key not configured or invalid');
+      expect(result.current.aiDisabledReason).toBe('OpenAI API key is not configured');
     });
 
     it('handles rate limit error (429)', async () => {
-      (api.api.get as unknown).mockRejectedValueOnce({
-        response: { status: 429 },
-      });
+      const error = new Error('Rate Limited') as any;
+      error.response = { status: 429 };
+      vi.mocked(apiClient.get).mockRejectedValueOnce(error);
 
       const { result } = renderHook(() => useAIStatus(), { wrapper });
 
       await waitFor(() => {
         expect(result.current.aiStatus.serviceHealth).toBe('degraded');
-        expect(result.current.aiStatus.error).toBe('Rate limit exceeded');
       });
+
+      expect(result.current.aiStatus.error).toBe('Rate limit exceeded');
     });
 
     it('handles network errors', async () => {
-      (api.api.get as unknown).mockRejectedValueOnce(new Error('Network error'));
+      vi.mocked(apiClient.get).mockRejectedValueOnce(new Error('Network error'));
 
       const { result } = renderHook(() => useAIStatus(), { wrapper });
 
       await waitFor(() => {
         expect(result.current.aiStatus.serviceHealth).toBe('unavailable');
-        expect(result.current.aiStatus.error).toBe('Unable to check AI service status');
       });
+
+      expect(result.current.aiStatus.error).toBe('Unable to check AI service status');
     });
 
-    it('allows user to manually disable AI', () => {
+    it('allows user to manually disable AI', async () => {
       const mockStatus = {
         available: true,
         hasApiKey: true,
@@ -157,9 +189,13 @@ describe('useAIStatus hooks', () => {
         },
       };
 
-      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
+      vi.mocked(apiClient.get).mockResolvedValueOnce({ data: mockStatus });
 
       const { result } = renderHook(() => useAIStatus(), { wrapper });
+
+      await waitFor(() => {
+        expect(result.current.aiStatus.available).toBe(true);
+      });
 
       act(() => {
         result.current.disableAI();
@@ -188,7 +224,7 @@ describe('useAIStatus hooks', () => {
         },
       };
 
-      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
+      vi.mocked(apiClient.get).mockResolvedValue({ data: mockStatus });
 
       const { result } = renderHook(() => useAIStatus(), { wrapper });
 
@@ -201,11 +237,11 @@ describe('useAIStatus hooks', () => {
 
       await waitFor(() => {
         expect(result.current.isAIEnabled).toBe(true);
-        expect(result.current.canUseAI).toBe(true);
-        expect(sessionStorage.getItem('ai_disabled')).toBeNull();
       });
 
-      expect(api.api.get).toHaveBeenCalledTimes(2); // Initial call + refetch after enable
+      expect(result.current.canUseAI).toBe(true);
+      expect(sessionStorage.getItem('ai_disabled')).toBeNull();
+      expect(apiClient.get).toHaveBeenCalledTimes(2); // Initial call + refetch after enable
     });
 
     it('persists disabled state from session storage', () => {
@@ -227,12 +263,14 @@ describe('useAIStatus hooks', () => {
         features: {},
       };
 
-      (api.api.get as unknown).mockResolvedValue({ data: mockStatus });
+      vi.mocked(apiClient.get).mockResolvedValue({ data: mockStatus });
 
-      renderHook(() => useAIStatus(), { wrapper });
+      const { unmount } = renderHook(() => useAIStatus(), { wrapper });
 
       // Initial call
-      expect(api.api.get).toHaveBeenCalledTimes(1);
+      await waitFor(() => {
+        expect(apiClient.get).toHaveBeenCalledTimes(1);
+      });
 
       // Fast forward 10 minutes (refetch interval)
       act(() => {
@@ -240,9 +278,11 @@ describe('useAIStatus hooks', () => {
       });
 
       await waitFor(() => {
-        expect(api.api.get).toHaveBeenCalledTimes(2);
+        expect(apiClient.get).toHaveBeenCalledTimes(2);
       });
 
+      // Cleanup
+      unmount();
       vi.useRealTimers();
     });
   });
@@ -265,16 +305,17 @@ describe('useAIStatus hooks', () => {
         },
       };
 
-      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
+      vi.mocked(apiClient.get).mockResolvedValueOnce({ data: mockStatus });
 
       const { result } = renderHook(() => useAIFeature('planGeneration'), { wrapper });
 
       await waitFor(() => {
         expect(result.current.available).toBe(true);
-        expect(result.current.status).toBe('healthy');
-        expect(result.current.limitations).toEqual({
-          requestsRemaining: 50,
-        });
+      });
+
+      expect(result.current.status).toBe('healthy');
+      expect(result.current.limitations).toEqual({
+        requestsRemaining: 50,
       });
     });
 
@@ -292,7 +333,7 @@ describe('useAIStatus hooks', () => {
         },
       };
 
-      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
+      vi.mocked(apiClient.get).mockResolvedValueOnce({ data: mockStatus });
 
       const { result } = renderHook(() => useAIFeature('planGeneration'), { wrapper });
 
@@ -314,17 +355,18 @@ describe('useAIStatus hooks', () => {
         },
       };
 
-      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
+      vi.mocked(apiClient.get).mockResolvedValueOnce({ data: mockStatus });
 
       const { result } = renderHook(() => useAIQuota(), { wrapper });
 
       await waitFor(() => {
         expect(result.current.quotaUsed).toBe(750);
-        expect(result.current.quotaLimit).toBe(1000);
-        expect(result.current.quotaPercentage).toBe(75);
-        expect(result.current.isNearQuotaLimit).toBe(false);
-        expect(result.current.isQuotaExceeded).toBe(false);
       });
+
+      expect(result.current.quotaLimit).toBe(1000);
+      expect(result.current.quotaPercentage).toBe(75);
+      expect(result.current.isNearQuotaLimit).toBe(false);
+      expect(result.current.isQuotaExceeded).toBe(false);
     });
 
     it('detects near quota limit', async () => {
@@ -336,15 +378,16 @@ describe('useAIStatus hooks', () => {
         },
       };
 
-      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
+      vi.mocked(apiClient.get).mockResolvedValueOnce({ data: mockStatus });
 
       const { result } = renderHook(() => useAIQuota(), { wrapper });
 
       await waitFor(() => {
         expect(result.current.quotaPercentage).toBe(85);
-        expect(result.current.isNearQuotaLimit).toBe(true);
-        expect(result.current.isQuotaExceeded).toBe(false);
       });
+
+      expect(result.current.isNearQuotaLimit).toBe(true);
+      expect(result.current.isQuotaExceeded).toBe(false);
     });
 
     it('detects quota exceeded', async () => {
@@ -356,15 +399,16 @@ describe('useAIStatus hooks', () => {
         },
       };
 
-      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
+      vi.mocked(apiClient.get).mockResolvedValueOnce({ data: mockStatus });
 
       const { result } = renderHook(() => useAIQuota(), { wrapper });
 
       await waitFor(() => {
         expect(result.current.quotaPercentage).toBe(100);
-        expect(result.current.isNearQuotaLimit).toBe(true);
-        expect(result.current.isQuotaExceeded).toBe(true);
       });
+
+      expect(result.current.isNearQuotaLimit).toBe(true);
+      expect(result.current.isQuotaExceeded).toBe(true);
     });
   });
 
@@ -377,7 +421,7 @@ describe('useAIStatus hooks', () => {
         features: {},
       };
 
-      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
+      vi.mocked(apiClient.get).mockResolvedValueOnce({ data: mockStatus });
 
       const TestComponent = () => {
         const { aiStatus } = useAIStatusContext();
@@ -421,7 +465,7 @@ describe('useAIStatus hooks', () => {
         features: {},
       };
 
-      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
+      vi.mocked(apiClient.get).mockResolvedValueOnce({ data: mockStatus });
 
       const { getByText } = renderWithProviders(
         <AIStatusIndicator compact={true} />,
@@ -450,7 +494,7 @@ describe('useAIStatus hooks', () => {
         lastChecked: new Date('2024-01-15T10:00:00Z'),
       };
 
-      (api.api.get as unknown).mockResolvedValueOnce({ data: mockStatus });
+      vi.mocked(apiClient.get).mockResolvedValueOnce({ data: mockStatus });
 
       const { getByText } = renderWithProviders(
         <AIStatusIndicator showDetails={true} />,
@@ -459,9 +503,10 @@ describe('useAIStatus hooks', () => {
 
       await waitFor(() => {
         expect(getByText('AI Assistant: Available')).toBeInTheDocument();
-        expect(getByText(/planGeneration, contentSuggestions/)).toBeInTheDocument();
-        expect(getByText('Requests remaining: 50')).toBeInTheDocument();
       });
+
+      expect(getByText(/planGeneration, contentSuggestions/)).toBeInTheDocument();
+      expect(getByText('Requests remaining: 50')).toBeInTheDocument();
     });
 
     it('shows disabled reason when AI is unavailable', async () => {

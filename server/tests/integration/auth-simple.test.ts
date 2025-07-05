@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Simple Authentication Integration Test
  * Using integration test setup
@@ -16,8 +17,8 @@ import {
 // Set up environment
 process.env.JWT_SECRET = 'test-secret-key';
 
-let prisma: any;
-let app: any;
+let prisma: unknown;
+let app: unknown;
 
 describe('Authentication Tests', () => {
   beforeAll(async () => {
@@ -73,7 +74,7 @@ describe('Authentication Tests', () => {
     expect(res.body.user.email).toBe('test@example.com');
 
     // Verify JWT
-    const decoded = jwt.verify(res.body.accessToken, process.env.JWT_SECRET!) as any;
+    const decoded = jwt.verify(res.body.accessToken, process.env.JWT_SECRET!) as unknown;
     expect(decoded.email).toBe('test@example.com');
   });
 

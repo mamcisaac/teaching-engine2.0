@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { describe, it, expect, beforeEach, afterEach } from '@jest/globals';
 import { MockRegistry } from '../mocks/registry';
 import { EmbeddingService } from '../../src/services/embeddingService';

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Playwright Visual Regression Testing Configuration
  * Teaching Engine 2.0 - Comprehensive UI consistency testing

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Mock Authentication Routes for Testing
  * Provides complete authentication functionality with proper error handling

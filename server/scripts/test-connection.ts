@@ -53,15 +53,15 @@ async function testConnection() {
           // Use a type assertion for the result since we don't know the exact shape
           const result = await prisma.$queryRawUnsafe<Array<Record<string, unknown>>>(`SELECT * FROM \`${table.name}\` LIMIT 5`);
           console.log(JSON.stringify(result, null, 2));
-        } catch (error) {
+        } catch (_error) {
           console.error(`  ❌ Error querying table ${table.name}:`, error instanceof Error ? error.message : String(error));
         }
       }
-    } catch (error) {
+    } catch (_error) {
       console.error('\n❌ Error querying database:', error instanceof Error ? error.message : String(error));
     }
 
-  } catch (error) {
+  } catch (_error) {
     console.error('\n❌ Database connection error:', error instanceof Error ? error.message : String(error));
   } finally {
     await prisma.$disconnect();

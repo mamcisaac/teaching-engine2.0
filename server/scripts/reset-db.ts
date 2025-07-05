@@ -24,7 +24,7 @@ async function resetDatabase() {
     });
 
     console.log('✅ Database reset complete!');
-  } catch (error) {
+  } catch (_error) {
     console.error('❌ Failed to reset database:', error);
     process.exit(1);
   }

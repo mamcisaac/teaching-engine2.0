@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Performance Benchmark Suite
  * Comprehensive performance testing for Teaching Engine 2.0

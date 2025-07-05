@@ -50,7 +50,7 @@ const testAuthenticate = async (req: any, res: any, next: any) => {
     };
 
     next();
-  } catch (error) {
+  } catch (_error) {
     return res.status(401).json({
       error: 'Unauthorized',
       message: 'Invalid or expired token',
@@ -174,7 +174,7 @@ export function createTestApp() {
       });
 
       res.json({ user: userData });
-    } catch (error) {
+    } catch (_error) {
       console.error('Login error:', error);
       res.status(500).json({ error: 'Internal server error' });
     }

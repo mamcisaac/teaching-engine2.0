@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { logger } from '../logger';
 import { getMetrics } from '../middleware/metrics';
 import { prisma } from '@teaching-engine/database';
@@ -320,32 +321,35 @@ const checkAlerts = async (): Promise<void> => {
 // Gather context data for alert
 const gatherAlertContext = async (alert: Alert): Promise<unknown> => {
   const metrics = getMetrics();
-  const context: any = {};
+  const context: Record<string, unknown> = {};
 
   switch (alert.id) {
-    case 'high_error_rate':
+    case 'high_error_rate': {
       const errors = metrics.http_errors_total?.getValue() || 0;
       const total = metrics.http_requests_total?.getValue() || 1;
       context.errorRate = (errors / total) * 100;
       context.errorCount = errors;
       context.totalRequests = total;
       break;
+    }
 
-    case 'high_memory_usage':
+    case 'high_memory_usage': {
       const memUsage = process.memoryUsage();
       context.percentage = (memUsage.heapUsed / memUsage.heapTotal) * 100;
       context.heapUsed = memUsage.heapUsed;
       context.heapTotal = memUsage.heapTotal;
       break;
+    }
 
-    case 'slow_response_times':
+    case 'slow_response_times': {
       const percentiles = metrics.http_request_duration_ms?.getPercentiles() || {};
       context.p95 = percentiles.p95 || 0;
       context.p99 = percentiles.p99 || 0;
       context.mean = metrics.http_request_duration_ms?.getMean() || 0;
       break;
+    }
 
-    case 'low_cache_hit_rate':
+    case 'low_cache_hit_rate': {
       const hits = metrics.cache_hits_total?.getValue() || 0;
       const misses = metrics.cache_misses_total?.getValue() || 0;
       const totalCache = hits + misses;
@@ -353,16 +357,18 @@ const gatherAlertContext = async (alert: Alert): Promise<unknown> => {
       context.hits = hits;
       context.misses = misses;
       break;
+    }
 
-    case 'high_ai_operation_failures':
+    case 'high_ai_operation_failures': {
       const aiErrors = metrics.ai_operation_errors_total?.getValue() || 0;
       const aiTotal = metrics.ai_operations_total?.getValue() || 1;
       context.errorRate = (aiErrors / aiTotal) * 100;
       context.errorCount = aiErrors;
       context.totalOperations = aiTotal;
       break;
+    }
 
-    case 'unusual_user_activity':
+    case 'unusual_user_activity': {
       const now = new Date();
       const fiveMinutesAgo = new Date(now.getTime() - 5 * 60 * 1000);
       context.count = await prisma.daybookEntry.count({
@@ -373,6 +379,7 @@ const gatherAlertContext = async (alert: Alert): Promise<unknown> => {
         },
       });
       break;
+    }
   }
 
   return context;

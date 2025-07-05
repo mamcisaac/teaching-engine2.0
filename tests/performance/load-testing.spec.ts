@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Load Testing Scenarios
  * Tests application performance under various load conditions
@@ -250,7 +251,7 @@ test.describe('Load Testing Scenarios', () => {
           errorCount++;
         }
         requestCount++;
-      } catch (error) {
+      } catch (_error) {
         errorCount++;
         requestCount++;
       }

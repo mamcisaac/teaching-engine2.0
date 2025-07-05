@@ -36,7 +36,7 @@ export class DatabaseTestUtils {
       await this.cleanupTestDatabase();
 
       console.log('Test database setup completed');
-    } catch (error) {
+    } catch (_error) {
       console.error('Failed to setup test database:', error);
       throw error;
     }
@@ -58,7 +58,7 @@ export class DatabaseTestUtils {
         embeddings: [],
         clusters: [],
       };
-    } catch (error) {
+    } catch (_error) {
       console.error('Failed to reset test data:', error);
       throw error;
     }
@@ -324,7 +324,7 @@ export class DatabaseTestUtils {
       });
 
       console.log('Test database cleanup completed');
-    } catch (error) {
+    } catch (_error) {
       console.error('Failed to cleanup test database:', error);
       throw error;
     }
@@ -365,7 +365,7 @@ export class DatabaseTestUtils {
           where: { id: { in: this.createdIds.users } },
         });
       }
-    } catch (error) {
+    } catch (_error) {
       console.error('Failed to cleanup created data:', error);
       throw error;
     }
@@ -378,7 +378,7 @@ export class DatabaseTestUtils {
     try {
       await prisma.$queryRaw`SELECT 1`;
       return true;
-    } catch (error) {
+    } catch (_error) {
       console.error('Database connection failed:', error);
       return false;
     }
@@ -403,7 +403,7 @@ export class DatabaseTestUtils {
         testDataPresent,
         connectionHealthy,
       };
-    } catch (error) {
+    } catch (_error) {
       return {
         totalTables: 0,
         testDataPresent: false,

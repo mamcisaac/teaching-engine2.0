@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { describe, test, expect, beforeEach, afterEach, jest } from '@jest/globals';
 import { AIActivityGeneratorService } from '@/services/aiActivityGeneratorService';
 import { ExternalActivity } from '@teaching-engine/database';
@@ -53,7 +54,7 @@ describe('AIActivityGeneratorService', () => {
         ],
       };
 
-      const prompt = (service as any).buildGenerationPrompt(params);
+      const prompt = (service as unknown).buildGenerationPrompt(params);
 
       expect(prompt).toContain('Generate an engaging educational activity');
       expect(prompt).toContain('Title: Fractions Introduction');
@@ -75,7 +76,7 @@ describe('AIActivityGeneratorService', () => {
     test('should handle minimal parameters', () => {
       const params = {};
 
-      const prompt = (service as any).buildGenerationPrompt(params);
+      const prompt = (service as unknown).buildGenerationPrompt(params);
 
       expect(prompt).toContain('Generate an engaging educational activity');
       expect(prompt).toContain('Please provide a complete activity plan in JSON format');
@@ -108,7 +109,7 @@ describe('AIActivityGeneratorService', () => {
       }));
 
       const params = { searchResults: mockSearchResults };
-      const prompt = (service as any).buildGenerationPrompt(params);
+      const prompt = (service as unknown).buildGenerationPrompt(params);
 
       // Should only include first 3 results
       expect(prompt).toContain('Activity 1: Description 1');
@@ -139,7 +140,7 @@ describe('AIActivityGeneratorService', () => {
       };
 
       const response = `Here's the activity: ${JSON.stringify(mockActivityJSON)}`;
-      const result = (service as any).parseGeneratedActivity(response);
+      const result = (service as unknown).parseGeneratedActivity(response);
 
       expect(result).toEqual(mockActivityJSON);
     });
@@ -153,7 +154,7 @@ describe('AIActivityGeneratorService', () => {
       };
 
       const response = JSON.stringify(mockActivityJSON);
-      const result = (service as any).parseGeneratedActivity(response);
+      const result = (service as unknown).parseGeneratedActivity(response);
 
       expect(result).toEqual({
         title: 'Test Activity',
@@ -183,7 +184,7 @@ describe('AIActivityGeneratorService', () => {
       const response = JSON.stringify(mockActivityJSON);
 
       expect(() => {
-        (service as any).parseGeneratedActivity(response);
+        (service as unknown).parseGeneratedActivity(response);
       }).toThrow('Failed to parse generated activity');
     });
 
@@ -191,7 +192,7 @@ describe('AIActivityGeneratorService', () => {
       const response = 'Invalid JSON {]';
 
       expect(() => {
-        (service as any).parseGeneratedActivity(response);
+        (service as unknown).parseGeneratedActivity(response);
       }).toThrow('Failed to parse generated activity');
     });
 
@@ -199,7 +200,7 @@ describe('AIActivityGeneratorService', () => {
       const response = 'No JSON content here';
 
       expect(() => {
-        (service as any).parseGeneratedActivity(response);
+        (service as unknown).parseGeneratedActivity(response);
       }).toThrow('Failed to parse generated activity');
     });
   });
@@ -214,11 +215,11 @@ describe('AIActivityGeneratorService', () => {
         },
       };
 
-      const result = (service as any).generateTemplateActivity(params);
+      const result = (service as unknown).generateTemplateActivity(params);
 
       expect(result).toEqual({
         title: 'Science Activity - Basic Lesson',
-        description: 'An engaging Science activity designed for Grade 2 students.',
+        description: 'An engaging science activity designed for Grade 2 students.',
         detailedInstructions: [
           'Introduce the activity and learning goals to students',
           'Provide necessary materials and set up workspace',
@@ -261,11 +262,11 @@ describe('AIActivityGeneratorService', () => {
         },
       };
 
-      const result = (service as any).generateTemplateActivity(params);
+      const result = (service as unknown).generateTemplateActivity(params);
 
       expect(result).toMatchObject({
         title: 'Math Activity - Advanced Lesson',
-        description: 'An engaging Math activity designed for Grade 5 students.',
+        description: 'An engaging math activity designed for Grade 5 students.',
         duration: 60,
         activityType: 'experiment',
         materials: ['calculators', 'graph paper'],
@@ -277,7 +278,7 @@ describe('AIActivityGeneratorService', () => {
     test('should handle empty parameters gracefully', () => {
       const params = {};
 
-      const result = (service as any).generateTemplateActivity(params);
+      const result = (service as unknown).generateTemplateActivity(params);
 
       expect(result).toMatchObject({
         title: 'Learning Activity - Exploration',
@@ -308,7 +309,7 @@ describe('AIActivityGeneratorService', () => {
         },
       };
 
-      const result = (service as any).generateTemplateActivity(params);
+      const result = (service as unknown).generateTemplateActivity(params);
 
       expect(result).toEqual({
         title: 'Mathematics Activity - Fractions Workshop',
@@ -353,7 +354,7 @@ describe('AIActivityGeneratorService', () => {
           },
         };
 
-        const result = (service as any).generateTemplateActivity(params);
+        const result = (service as unknown).generateTemplateActivity(params);
 
         // Should be age-appropriate
         expect(result.title).toContain(`Grade ${grade}`);
@@ -388,7 +389,7 @@ describe('AIActivityGeneratorService', () => {
           },
         };
 
-        const result = (service as any).generateTemplateActivity(params);
+        const result = (service as unknown).generateTemplateActivity(params);
 
         expect(result.title).toContain(subject);
         expect(result.description).toContain(subject);
@@ -405,7 +406,7 @@ describe('AIActivityGeneratorService', () => {
         },
       };
 
-      const result = (service as any).generateTemplateActivity(params);
+      const result = (service as unknown).generateTemplateActivity(params);
 
       // Check all required educational components are present
       expect(result).toHaveProperty('title');
@@ -453,7 +454,7 @@ describe('AIActivityGeneratorService', () => {
         },
       };
 
-      const prompt = (service as any).buildGenerationPrompt(params);
+      const prompt = (service as unknown).buildGenerationPrompt(params);
 
       // Should reference French language instruction
       expect(prompt).toContain('Language: fr');
@@ -475,14 +476,14 @@ describe('AIActivityGeneratorService', () => {
         },
       };
 
-      const prompt = (service as any).buildGenerationPrompt(params);
+      const prompt = (service as unknown).buildGenerationPrompt(params);
 
       expect(prompt).toContain('Curriculum Expectations: 3.NF.1, 3.NF.2, 3.OA.1');
     });
 
     test('should include proper JSON schema in prompt', () => {
       const params = {};
-      const prompt = (service as any).buildGenerationPrompt(params);
+      const prompt = (service as unknown).buildGenerationPrompt(params);
 
       // Check that the JSON schema is complete and valid
       expect(prompt).toContain('"title"');
@@ -504,7 +505,7 @@ describe('AIActivityGeneratorService', () => {
 
   describe('System Prompt Quality', () => {
     test('should include comprehensive system prompt requirements', () => {
-      const systemPrompt = (service as any).getSystemPrompt();
+      const systemPrompt = (service as unknown).getSystemPrompt();
 
       expect(systemPrompt).toContain('expert elementary school teacher');
       expect(systemPrompt).toContain('French immersion');

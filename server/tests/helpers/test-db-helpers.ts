@@ -96,7 +96,7 @@ export async function cleanAllTables(prisma: PrismaClient): Promise<void> {
     ]);
 
     console.log('[Test DB Helper] All tables cleaned successfully');
-  } catch (error) {
+  } catch (_error) {
     console.error('[Test DB Helper] Failed to clean tables:', error);
     throw error;
   }
@@ -341,7 +341,7 @@ export async function waitForDatabase(
     try {
       await prisma.$queryRaw`SELECT 1`;
       return true;
-    } catch (error) {
+    } catch (_error) {
       if (i < maxAttempts - 1) {
         await new Promise((resolve) => setTimeout(resolve, delayMs));
       }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Report Deadline Integration Tests
  * 
@@ -14,7 +15,7 @@ import { addDays, subDays, format } from 'date-fns';
 const auth = authRequest(app);
 
 describe('Report Deadline API', () => {
-  let testStudent: any;
+  let testStudent: unknown;
 
   beforeAll(async () => {
     await auth.setup();
@@ -169,7 +170,7 @@ describe('Report Deadline API', () => {
       expect(Array.isArray(response.body)).toBe(true);
       
       // All deadlines should be in the future
-      response.body.forEach((deadline: any) => {
+      response.body.forEach((deadline: unknown) => {
         expect(new Date(deadline.dueDate).getTime()).toBeGreaterThan(Date.now());
       });
     });
@@ -181,7 +182,7 @@ describe('Report Deadline API', () => {
       expect(Array.isArray(response.body)).toBe(true);
       
       // All deadlines should be in the past
-      response.body.forEach((deadline: any) => {
+      response.body.forEach((deadline: unknown) => {
         expect(new Date(deadline.dueDate).getTime()).toBeLessThan(Date.now());
       });
     });
@@ -190,7 +191,7 @@ describe('Report Deadline API', () => {
       const response = await auth.get('/api/report-deadlines?type=progress');
 
       expect(response.status).toBe(200);
-      response.body.forEach((deadline: any) => {
+      response.body.forEach((deadline: unknown) => {
         expect(deadline.reportType).toBe('progress');
       });
     });
@@ -212,7 +213,7 @@ describe('Report Deadline API', () => {
       const response = await auth.get('/api/report-deadlines?priority=high');
 
       expect(response.status).toBe(200);
-      response.body.forEach((deadline: any) => {
+      response.body.forEach((deadline: unknown) => {
         expect(deadline.priority).toBe('high');
       });
     });
@@ -235,7 +236,7 @@ describe('Report Deadline API', () => {
       expect(Array.isArray(response.body)).toBe(true);
       
       // Should include our deadline since it has a 7-day reminder
-      const foundDeadline = response.body.find((d: any) => d.id === deadline.body.id);
+      const foundDeadline = response.body.find((d: unknown) => d.id === deadline.body.id);
       expect(foundDeadline).toBeDefined();
     });
 

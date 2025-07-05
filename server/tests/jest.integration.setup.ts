@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { beforeAll, afterAll } from '@jest/globals';
 import { testDb } from './setup-test-db';
 import { PrismaClient } from '@teaching-engine/database';
@@ -25,7 +26,7 @@ beforeAll(async () => {
       testPrismaClient: PrismaClient | undefined;
     };
     globalForPrisma.testPrismaClient = testDb.getPrismaClient(workerId);
-  } catch (error) {
+  } catch (_error) {
     console.error('Failed to setup integration test database:', error);
     throw error;
   }
@@ -37,7 +38,7 @@ afterAll(async () => {
     const workerId = process.env.JEST_WORKER_ID || 'default';
     await testDb.resetDatabase(workerId);
     await testDb.cleanup();
-  } catch (error) {
+  } catch (_error) {
     console.warn('Failed to cleanup integration test database:', error);
   }
 });

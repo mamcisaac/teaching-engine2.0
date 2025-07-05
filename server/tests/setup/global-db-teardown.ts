@@ -19,7 +19,7 @@ export default async function globalTeardown() {
     }
     
     console.log('✅ Test database cleanup complete');
-  } catch (error) {
+  } catch (_error) {
     console.error('⚠️  Failed to cleanup test database:', error);
     // Don't throw - cleanup errors shouldn't fail the test run
   }

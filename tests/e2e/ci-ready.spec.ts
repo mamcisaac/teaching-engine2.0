@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { test, expect } from '@playwright/test';
 
 test.describe('CI-Ready E2E Tests', () => {
@@ -11,7 +12,7 @@ test.describe('CI-Ready E2E Tests', () => {
           console.log('✅ Backend is ready');
           break;
         }
-      } catch (error) {
+      } catch (_error) {
         // Backend not ready yet
       }
       
@@ -121,7 +122,7 @@ test.describe('CI-Ready E2E Tests', () => {
           status: res.status,
           data: await res.json()
         };
-      } catch (error) {
+      } catch (_error) {
         return {
           ok: false,
           error: error.message

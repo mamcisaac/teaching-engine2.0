@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { execSync, spawn, ChildProcess } from 'child_process';
 import { createEmailTestProvider } from './helpers/emailTestHelper';
 
@@ -18,7 +19,7 @@ export async function setupEmailTesting(): Promise<void> {
     await fetch('http://localhost:8025/api/v1/messages');
     console.log('MailHog already running on localhost:8025');
     return;
-  } catch (error) {
+  } catch (_error) {
     // MailHog not running, try to start it
   }
 
@@ -34,7 +35,7 @@ export async function setupEmailTesting(): Promise<void> {
     await waitForMailHog();
     console.log('MailHog started successfully');
     return;
-  } catch (error) {
+  } catch (_error) {
     console.warn('Failed to start MailHog via Docker Compose:', error);
   }
 
@@ -54,7 +55,7 @@ export async function setupEmailTesting(): Promise<void> {
       console.log('MailHog started successfully');
       return;
     }
-  } catch (error) {
+  } catch (_error) {
     console.warn('Failed to start MailHog directly:', error);
   }
 
@@ -72,7 +73,7 @@ async function waitForMailHog(maxAttempts = 30): Promise<void> {
       if (response.ok) {
         return;
       }
-    } catch (error) {
+    } catch (_error) {
       // Continue waiting
     }
     
@@ -91,7 +92,7 @@ export async function teardownEmailTesting(): Promise<void> {
   try {
     const provider = createEmailTestProvider();
     await provider.clearEmails();
-  } catch (error) {
+  } catch (_error) {
     console.warn('Failed to clear emails:', error);
   }
 
@@ -109,7 +110,7 @@ export async function teardownEmailTesting(): Promise<void> {
       cwd: process.cwd(),
     });
     console.log('Docker Compose services stopped');
-  } catch (error) {
+  } catch (_error) {
     // Ignore errors if Docker Compose isn't running
   }
 }
@@ -149,7 +150,7 @@ export async function isMailHogAvailable(): Promise<boolean> {
   try {
     const response = await fetch('http://localhost:8025/api/v1/messages');
     return response.ok;
-  } catch (error) {
+  } catch (_error) {
     return false;
   }
 }

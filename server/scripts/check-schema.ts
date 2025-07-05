@@ -39,7 +39,7 @@ async function checkSchema() {
       console.log('\n❌ No tables found in the database');
     }
 
-  } catch (error) {
+  } catch (_error) {
     console.error('Error checking database schema:', error);
   } finally {
     await prisma.$disconnect();

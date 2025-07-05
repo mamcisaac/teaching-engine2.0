@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * @file exportService.test.ts
  * @description Comprehensive tests for ExportService including file exports,

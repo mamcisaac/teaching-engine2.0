@@ -1,9 +1,12 @@
 import React, { useState, ReactElement, cloneElement } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HelpCircle, X } from 'lucide-react';
-import { useOnboarding } from '../../contexts/OnboardingContext';
+import { HelpCircle, X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { useOnboarding, OnboardingStep, OnboardingState } from '../../contexts/OnboardingContext';
+import { Button } from '../ui/Button';
+import { Progress } from '../ui/Progress';
 
-interface OnboardingTooltipProps {
+// Original hover tooltip interface
+interface HoverTooltipProps {
   id: string;
   title: string;
   content: string;
@@ -15,7 +18,159 @@ interface OnboardingTooltipProps {
   onAction?: () => void;
 }
 
-export function OnboardingTooltip({
+// Flow tooltip interface (for OnboardingFlow)
+interface FlowTooltipProps {
+  currentStep: OnboardingStep;
+  state: OnboardingState;
+  progress: number;
+  canGoBack: boolean;
+  canGoForward: boolean;
+  skipOnboarding: () => void;
+  previousStep: () => void;
+  nextStep: () => void;
+  tooltipPosition: { top: number; left: number };
+  isCenter: boolean;
+}
+
+// Combined props type
+type OnboardingTooltipProps = HoverTooltipProps | FlowTooltipProps;
+
+// Type guard to check which props type we have
+function isFlowTooltipProps(props: OnboardingTooltipProps): props is FlowTooltipProps {
+  return 'currentStep' in props;
+}
+
+export function OnboardingTooltip(props: OnboardingTooltipProps) {
+  // If this is being used in the flow, render the flow tooltip
+  if (isFlowTooltipProps(props)) {
+    return <FlowTooltip {...props} />;
+  }
+
+  // Otherwise, render the hover tooltip
+  return <HoverTooltip {...props} />;
+}
+
+// Flow tooltip component
+function FlowTooltip({
+  currentStep,
+  state,
+  progress,
+  canGoBack,
+  canGoForward,
+  skipOnboarding,
+  previousStep,
+  nextStep,
+  tooltipPosition,
+  isCenter,
+}: FlowTooltipProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+      transition={{ delay: 0.2 }}
+      className={`absolute bg-white rounded-lg shadow-2xl p-6 max-w-md ${
+        isCenter ? 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2' : ''
+      }`}
+      style={
+        isCenter
+          ? {}
+          : {
+              top: tooltipPosition.top,
+              left: tooltipPosition.left,
+              width: '400px',
+            }
+      }
+    >
+      {/* Close button */}
+      {currentStep.showSkip && (
+        <button
+          onClick={skipOnboarding}
+          className="absolute top-2 right-2 p-1 text-gray-400 hover:text-gray-600 transition-colors"
+          aria-label="Skip onboarding"
+        >
+          <X className="h-5 w-5" />
+        </button>
+      )}
+
+      {/* Progress indicator */}
+      <div className="mb-4">
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-sm text-gray-500">
+            Step {state.currentStepIndex + 1} of {state.currentFlow?.steps.length || 0}
+          </span>
+          {state.currentFlow?.estimatedTime && (
+            <span className="text-sm text-gray-500">
+              ~{state.currentFlow.estimatedTime} min
+            </span>
+          )}
+        </div>
+        <Progress value={progress} className="h-2" />
+      </div>
+
+      {/* Content */}
+      <div className="space-y-4">
+        <div className="flex items-start gap-3">
+          <div className="p-2 bg-blue-100 rounded-full flex-shrink-0">
+            <Sparkles className="h-5 w-5 text-blue-600" />
+          </div>
+          <div className="flex-1">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">{currentStep.title}</h3>
+            <p className="text-gray-600 leading-relaxed">{currentStep.description}</p>
+          </div>
+        </div>
+
+        {/* Action hint */}
+        {currentStep.requiresAction && (
+          <div className="bg-blue-50 border border-blue-200 rounded-md p-3 text-sm text-blue-700">
+            <p className="font-medium">Action required:</p>
+            <p>
+              {currentStep.action === 'click' && 'Click the highlighted element to continue'}
+              {currentStep.action === 'input' && 'Fill in the required information'}
+              {currentStep.action === 'hover' && 'Hover over the highlighted element'}
+            </p>
+          </div>
+        )}
+
+        {/* Navigation buttons */}
+        <div className="flex items-center justify-between pt-2">
+          <div className="flex items-center gap-2">
+            {canGoBack && (
+              <Button variant="ghost" size="sm" onClick={previousStep} className="gap-1">
+                <ChevronLeft className="h-4 w-4" />
+                Previous
+              </Button>
+            )}
+            {currentStep.showSkip && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={skipOnboarding}
+                className="text-gray-500"
+              >
+                {currentStep.skipButtonText || 'Skip tour'}
+              </Button>
+            )}
+          </div>
+
+          {!currentStep.requiresAction && (
+            <Button
+              onClick={nextStep}
+              size="sm"
+              className="gap-1 bg-blue-600 hover:bg-blue-700"
+            >
+              {currentStep.nextButtonText || 'Next'}
+              {canGoForward && <ChevronRight className="h-4 w-4" />}
+            </Button>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// Hover tooltip component
+function HoverTooltip({
   id: _id,
   title,
   content,
@@ -25,7 +180,7 @@ export function OnboardingTooltip({
   delay = 1000,
   actionText,
   onAction,
-}: OnboardingTooltipProps) {
+}: HoverTooltipProps) {
   const { state } = useOnboarding();
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);

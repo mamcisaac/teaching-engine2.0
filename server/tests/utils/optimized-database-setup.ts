@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Optimized database setup for faster test execution
  */
@@ -36,7 +37,7 @@ export class OptimizedDatabaseManager {
       const schemaPath = path.resolve(__dirname, '../../../packages/database/prisma/schema.prisma');
       const schemaContent = fs.readFileSync(schemaPath, 'utf8');
       return crypto.createHash('md5').update(schemaContent).digest('hex');
-    } catch (error) {
+    } catch (_error) {
       console.warn('Could not read schema file for hashing:', error);
       return Date.now().toString();
     }
@@ -67,7 +68,7 @@ export class OptimizedDatabaseManager {
     try {
       await setupPromise;
       return this.databaseCache.get(cacheKey)!;
-    } catch (error) {
+    } catch (_error) {
       this.setupPromises.delete(cacheKey);
       throw error;
     }
@@ -115,7 +116,7 @@ export class OptimizedDatabaseManager {
       }
 
       this.databaseCache.set(cacheKey, databaseUrl);
-    } catch (error) {
+    } catch (_error) {
       console.error(`Failed to setup database for ${testName}:`, error);
       throw error;
     }
@@ -135,7 +136,7 @@ export class OptimizedDatabaseManager {
         if (cachedHash === schemaHash) {
           return; // Client is up to date
         }
-      } catch (error) {
+      } catch (_error) {
         // Ignore cache read errors
       }
     }
@@ -150,7 +151,7 @@ export class OptimizedDatabaseManager {
 
       // Update cache
       fs.writeFileSync(clientCacheFile, schemaHash);
-    } catch (error) {
+    } catch (_error) {
       console.warn('Failed to generate Prisma client:', error);
       throw error;
     }
@@ -168,7 +169,7 @@ export class OptimizedDatabaseManager {
         cwd: path.resolve(__dirname, '../../..'),
         env: { ...process.env, DATABASE_URL: databaseUrl },
       });
-    } catch (error) {
+    } catch (_error) {
       console.warn('Failed to initialize database schema:', error);
       throw error;
     }
@@ -194,13 +195,13 @@ export class OptimizedDatabaseManager {
               const shmPath = `${filePath}-shm`;
               if (fs.existsSync(walPath)) fs.unlinkSync(walPath);
               if (fs.existsSync(shmPath)) fs.unlinkSync(shmPath);
-            } catch (error) {
+            } catch (_error) {
               console.warn(`Failed to delete test database: ${file}`, error);
             }
           }
         }
       }
-    } catch (error) {
+    } catch (_error) {
       console.warn('Database cleanup failed:', error);
     }
 
@@ -331,7 +332,7 @@ export class TestResultCache {
       };
       
       fs.writeFileSync(cacheFile, JSON.stringify(cacheData, null, 2));
-    } catch (error) {
+    } catch (_error) {
       console.warn('Failed to cache test results:', error);
     }
   }
@@ -349,7 +350,7 @@ export class TestResultCache {
           }
         }
       }
-    } catch (error) {
+    } catch (_error) {
       console.warn('Failed to clear test cache:', error);
     }
   }

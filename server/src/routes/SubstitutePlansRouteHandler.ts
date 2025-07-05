@@ -3,7 +3,7 @@
  * Extends BaseRouteHandler with substitute plan-specific business logic
  */
 
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 import { z } from 'zod';
 import { BaseRouteHandler, AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
 import { BaseService } from '../services/base/BaseService.js';
@@ -33,7 +33,7 @@ const routineSchema = z.object({
 const emergencyContactSchema = z.object({
   name: z.string().min(1).max(100),
   role: z.string().max(100),
-  phone: z.string().regex(/^[\d\s\-\(\)\+\.]+$/, 'Invalid phone number format'),
+  phone: z.string().regex(/^[\d\s\-()+'". ]+$/, 'Invalid phone number format'),
   extension: z.string().max(10).optional(),
 });
 
@@ -333,8 +333,8 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       const result = await this.substitutePlanService.findMany(filters, userId);
       res.json(result);
     } catch (_error) {
-      this.logger.error(`Error in ${this.routeName} list:`, error);
-      next(error);
+      this.logger.error(`Error in ${this.routeName} list:`, _error);
+      next(_error);
     }
   }
 
@@ -380,8 +380,8 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       const generatedPlan = await this.substitutePlanService.generatePlan(generateData, userId);
       res.status(201).json(generatedPlan);
     } catch (_error) {
-      this.logger.error('Error generating substitute plan:', error);
-      next(error);
+      this.logger.error('Error generating substitute plan:', _error);
+      next(_error);
     }
   }
 
@@ -397,8 +397,8 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       const deactivatedPlan = await this.substitutePlanService.deactivatePlan(planId, userId);
       res.json(deactivatedPlan);
     } catch (_error) {
-      this.logger.error('Error deactivating substitute plan:', error);
-      next(error);
+      this.logger.error('Error deactivating substitute plan:', _error);
+      next(_error);
     }
   }
 
@@ -412,8 +412,8 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       const stats = await this.substitutePlanService.getStats(userId);
       res.json(stats);
     } catch (_error) {
-      this.logger.error('Error getting substitute plan stats:', error);
-      next(error);
+      this.logger.error('Error getting substitute plan stats:', _error);
+      next(_error);
     }
   }
 
@@ -429,8 +429,8 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       const upcomingDates = await this.substitutePlanService.getUpcomingDates(userId, daysAhead);
       res.json(upcomingDates);
     } catch (_error) {
-      this.logger.error('Error getting upcoming dates:', error);
-      next(error);
+      this.logger.error('Error getting upcoming dates:', _error);
+      next(_error);
     }
   }
 }

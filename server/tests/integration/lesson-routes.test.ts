@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import request from 'supertest';
 import { describe, beforeAll, beforeEach, afterEach, it, expect } from '@jest/globals';
 import { app } from '../../src/index';
@@ -9,12 +10,12 @@ describe('Lesson Planning Routes', () => {
   let prisma: ReturnType<typeof getIntegrationTestPrismaClient>;
   let authToken: string;
   let userId: number;
-  let testUser: any;
-  let testLongRangePlan: any;
-  let testUnitPlan: any;
-  let testExpectation: any;
-  let testLesson: any;
-  let testDaybookEntry: any;
+  let testUser: unknown;
+  let testLongRangePlan: unknown;
+  let testUnitPlan: unknown;
+  let testExpectation: unknown;
+  let testLesson: unknown;
+  let testDaybookEntry: unknown;
 
   beforeAll(async () => {
     prisma = getIntegrationTestPrismaClient();

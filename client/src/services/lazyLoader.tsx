@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { offlineStorage, StoredData } from './offlineStorage';
-import { api } from '../api/legacy/api';
-
+import { apiClient } from '../api/core/client';
+import logger from '../utils/logger';
 interface LoadOptions {
   cache?: boolean;
   cacheTime?: number; // minutes
@@ -108,12 +108,12 @@ class LazyLoader {
   ): Promise<unknown> {
     try {
       // Get document metadata first
-      const metaResponse = await api.get(`/api/documents/${documentId}/metadata`);
+      const metaResponse = await apiClient.get(`/api/documents/${documentId}/metadata`);
       const metadata = metaResponse.data;
 
       // For small documents, load in one request
       if (metadata.size < 1024 * 1024) { // Less than 1MB
-        const response = await api.get(`/api/documents/${documentId}`);
+        const response = await apiClient.get(`/api/documents/${documentId}`);
         options.onProgress?.(100);
         return response.data;
       }
@@ -156,8 +156,8 @@ class LazyLoader {
       // Assemble and return
       return this.assembleDocument(chunkedDoc);
 
-    } catch (_error) {
-      console.error('Failed to load document:', error);
+    } catch (error) {
+      logger.error('Failed to load document:', error);
       throw error;
     }
   }
@@ -168,7 +168,7 @@ class LazyLoader {
     chunkIndex: number, 
     totalChunks: number
   ): Promise<unknown> {
-    const response = await api.get(
+    const response = await apiClient.get(
       `/api/documents/${documentId}/chunk/${chunkIndex}`,
       {
         headers: {
@@ -231,8 +231,8 @@ class LazyLoader {
         await this.loadDocument(id, { cache: true });
         completed++;
         onProgress?.(completed, total);
-      } catch (_error) {
-        console.error(`Failed to preload document ${id}:`, error);
+      } catch (error) {
+        logger.error(`Failed to preload document ${id}:`, error);
       }
     });
 
@@ -294,7 +294,7 @@ export function useLazyDocument(documentId: string | null, options?: LoadOptions
         if (!cancelled) {
           setDocument(doc);
         }
-      } catch (_err) {
+      } catch (err) {
         if (!cancelled) {
           setError(err instanceof Error ? err : new Error('Failed to load document'));
         }

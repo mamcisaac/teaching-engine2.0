@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { execSync } from 'child_process';
 
 async function setupTestDatabase() {
@@ -32,7 +33,7 @@ async function setupTestDatabase() {
     
     console.log('✅ Test database setup completed successfully!');
     
-  } catch (error) {
+  } catch (_error) {
     console.error('❌ Test database setup failed:', error);
     process.exit(1);
   }

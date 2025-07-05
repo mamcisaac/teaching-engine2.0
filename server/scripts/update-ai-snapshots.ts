@@ -82,7 +82,7 @@ class AISnapshotUpdater {
       
       console.log('✅ AI snapshot update completed successfully');
       
-    } catch (error) {
+    } catch (_error) {
       console.error('❌ Snapshot update failed:', error);
       await this.restoreBackup();
       throw error;
@@ -135,7 +135,7 @@ class AISnapshotUpdater {
           throw new Error('Update cancelled due to uncommitted changes');
         }
       }
-    } catch (error) {
+    } catch (_error) {
       if (error instanceof Error && error.message.includes('Update cancelled')) {
         throw error;
       }
@@ -165,7 +165,7 @@ class AISnapshotUpdater {
       );
       
       console.log(`✅ Backup created at: ${backupPath}`);
-    } catch (error) {
+    } catch (_error) {
       console.warn('⚠️  Could not create backup:', error);
     }
   }
@@ -198,7 +198,7 @@ class AISnapshotUpdater {
       });
       
       console.log('✅ New snapshots generated');
-    } catch (error) {
+    } catch (_error) {
       throw new Error(`Test execution failed: ${error}`);
     }
   }
@@ -226,7 +226,7 @@ class AISnapshotUpdater {
       }
       
       return changes;
-    } catch (error) {
+    } catch (_error) {
       console.warn('Could not analyze changes:', error);
       return [];
     }
@@ -259,7 +259,7 @@ class AISnapshotUpdater {
         hasValidationChanges: diff.includes('validation'),
         hasContentChanges: diff.includes('response'),
       };
-    } catch (error) {
+    } catch (_error) {
       return {
         file: fileName,
         path: filePath,
@@ -326,7 +326,7 @@ class AISnapshotUpdater {
       });
       
       console.log('✅ Snapshot validation passed');
-    } catch (error) {
+    } catch (_error) {
       throw new Error('New snapshots failed validation. Update aborted.');
     }
   }
@@ -357,7 +357,7 @@ ${changes.map(c => `- ${c.testType}: ${c.scenario}`).join('\n')}
       });
       
       console.log('✅ Changes committed successfully');
-    } catch (error) {
+    } catch (_error) {
       console.warn('Could not commit changes:', error);
       throw new Error('Failed to commit snapshot changes');
     }
@@ -381,7 +381,7 @@ ${changes.map(c => `- ${c.testType}: ${c.scenario}`).join('\n')}
         await fs.cp(latestBackupPath, this.snapshotsDir, { recursive: true });
         console.log('✅ Backup restored successfully');
       }
-    } catch (error) {
+    } catch (_error) {
       console.error('❌ Failed to restore backup:', error);
     }
   }
@@ -462,7 +462,7 @@ async function main() {
   try {
     await updater.updateSnapshots(options);
     process.exit(0);
-  } catch (error) {
+  } catch (_error) {
     console.error('Update failed:', error);
     process.exit(1);
   }

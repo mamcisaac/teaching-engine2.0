@@ -1,4 +1,4 @@
-import { downloadPrintables } from '../api/legacy/api';
+import { planningApi } from '../api/domains/planning';
 
 interface Props {
   weekStart: string;
@@ -6,7 +6,7 @@ interface Props {
 
 export default function DownloadPrintablesButton({ weekStart }: Props) {
   const handleClick = async () => {
-    const res = await downloadPrintables(weekStart);
+    const res = await planningApi.downloadPrintables(weekStart);
     const url = window.URL.createObjectURL(res.data);
     const a = document.createElement('a');
     a.href = url;

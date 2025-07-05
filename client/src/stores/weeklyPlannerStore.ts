@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 import { api } from '../lib/api';
-
+import logger from '../utils/logger';
 export interface WorkingHours {
   start: string;
   end: string;
@@ -344,8 +344,8 @@ export const useWeeklyPlannerStore = create<WeeklyPlannerState>()(
                 hasOfflineChanges: false
               });
             });
-          } catch (_error) {
-            console.error('Failed to load planner state from server:', error);
+          } catch (error) {
+            logger.error('Failed to load planner state from server:', error);
             set((state) => {
               state.isLoading = false;
             });
@@ -376,8 +376,8 @@ export const useWeeklyPlannerStore = create<WeeklyPlannerState>()(
               s.hasOfflineChanges = false;
               s.isSaving = false;
             });
-          } catch (_error) {
-            console.error('Failed to save planner state to server:', error);
+          } catch (error) {
+            logger.error('Failed to save planner state to server:', error);
             set((s) => {
               s.isSaving = false;
               s.hasOfflineChanges = true;
@@ -446,7 +446,7 @@ const debouncedAutoSave = () => {
   if (!state.isSaving && state.hasOfflineChanges) {
     lastAutoSaveAttempt = now;
     state.saveToServer().catch(error => {
-      console.warn('Auto-save failed:', error);
+      logger.warn('Auto-save failed:', error);
     });
   }
 };

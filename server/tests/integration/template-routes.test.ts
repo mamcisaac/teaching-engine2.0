@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import request from 'supertest';
 import { describe, beforeAll, beforeEach, it, expect } from '@jest/globals';
 import { app } from '../../src/index';
@@ -134,7 +135,7 @@ describe('Template Routes', () => {
         .set('Authorization', `Bearer ${authToken}`);
 
       expect(res.status).toBe(200);
-      expect(res.body.templates.every((t: any) => t.type === 'UNIT_PLAN')).toBe(true);
+      expect(res.body.templates.every((t: unknown) => t.type === 'UNIT_PLAN')).toBe(true);
     });
 
     it('should filter by category', async () => {
@@ -143,7 +144,7 @@ describe('Template Routes', () => {
         .set('Authorization', `Bearer ${authToken}`);
 
       expect(res.status).toBe(200);
-      expect(res.body.templates.every((t: any) => t.category === 'BY_SUBJECT')).toBe(true);
+      expect(res.body.templates.every((t: unknown) => t.category === 'BY_SUBJECT')).toBe(true);
     });
 
     it('should filter by subject', async () => {
@@ -152,7 +153,7 @@ describe('Template Routes', () => {
         .set('Authorization', `Bearer ${authToken}`);
 
       expect(res.status).toBe(200);
-      expect(res.body.templates.every((t: any) => t.subject === 'Mathematics')).toBe(true);
+      expect(res.body.templates.every((t: unknown) => t.subject === 'Mathematics')).toBe(true);
     });
 
     it('should filter by grade range', async () => {
@@ -161,7 +162,7 @@ describe('Template Routes', () => {
         .set('Authorization', `Bearer ${authToken}`);
 
       expect(res.status).toBe(200);
-      res.body.templates.forEach((template: any) => {
+      res.body.templates.forEach((template: unknown) => {
         if (template.gradeMin) expect(template.gradeMin).toBeLessThanOrEqual(4);
         if (template.gradeMax) expect(template.gradeMax).toBeGreaterThanOrEqual(3);
       });
@@ -173,7 +174,7 @@ describe('Template Routes', () => {
         .set('Authorization', `Bearer ${authToken}`);
 
       expect(res.status).toBe(200);
-      expect(res.body.templates.some((t: any) => 
+      expect(res.body.templates.some((t: unknown) => 
         t.title.toLowerCase().includes('math') || 
         t.description?.toLowerCase().includes('math')
       )).toBe(true);
@@ -185,7 +186,7 @@ describe('Template Routes', () => {
         .set('Authorization', `Bearer ${authToken}`);
 
       expect(res.status).toBe(200);
-      expect(res.body.templates.some((t: any) => 
+      expect(res.body.templates.some((t: unknown) => 
         t.tags?.includes('math') && t.tags?.includes('unit')
       )).toBe(true);
     });
@@ -207,7 +208,7 @@ describe('Template Routes', () => {
         .set('Authorization', `Bearer ${authToken}`);
 
       expect(res.status).toBe(200);
-      const titles = res.body.templates.map((t: any) => t.title);
+      const titles = res.body.templates.map((t: unknown) => t.title);
       const sortedTitles = [...titles].sort();
       expect(titles).toEqual(sortedTitles);
     });

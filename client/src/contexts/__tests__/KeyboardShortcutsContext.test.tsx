@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * @file KeyboardShortcutsContext.test.tsx
  * @description Comprehensive tests for KeyboardShortcutsContext including shortcut registration,

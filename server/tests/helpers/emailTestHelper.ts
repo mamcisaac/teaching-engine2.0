@@ -39,7 +39,7 @@ export class MailHogTestProvider implements TestEmailProvider {
       
       const data = await response.json();
       return data.items?.map(this.parseMailHogMessage) || [];
-    } catch (error) {
+    } catch (_error) {
       if (error instanceof Error && error.message.includes('ECONNREFUSED')) {
         throw new Error('MailHog server not running. Start with: docker run -p 1025:1025 -p 8025:8025 mailhog/mailhog');
       }
@@ -55,7 +55,7 @@ export class MailHogTestProvider implements TestEmailProvider {
       if (!response.ok) {
         throw new Error(`Failed to clear emails: ${response.status}`);
       }
-    } catch (error) {
+    } catch (_error) {
       console.warn('Failed to clear MailHog emails:', error);
     }
   }

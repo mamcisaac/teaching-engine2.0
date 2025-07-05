@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { BaseService } from '../base/BaseService';
 
 interface ServiceHealth {

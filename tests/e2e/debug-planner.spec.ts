@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { test, expect } from '@playwright/test';
 import { login } from './helpers/unified-auth';
 
@@ -32,7 +33,7 @@ test('debug planner component errors', async ({ page }) => {
   try {
     await page.waitForSelector('.planner-grid, [data-testid="planner"]', { timeout: 10000 });
     console.log('Planner components loaded successfully');
-  } catch (error) {
+  } catch (_error) {
     console.log('Planner components not found within timeout:', error);
   }
 

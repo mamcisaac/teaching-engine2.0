@@ -29,13 +29,13 @@ export { middleware } from './chains';
 import { applySecurityMiddleware } from './core/security';
 import { errorLoggingMiddleware, errorHandlerMiddleware, notFoundHandler } from './core/error';
 import { AuditEventType } from './auditLogger';
-import { rateLimiters } from './rateLimit';
+import { rateLimiters as rateLimitersCore } from './rateLimit';
 
 // Re-export for convenience
-export { applySecurityMiddleware, errorLoggingMiddleware, errorHandlerMiddleware, notFoundHandler, AuditEventType, rateLimiters };
+export { applySecurityMiddleware, errorLoggingMiddleware, errorHandlerMiddleware, notFoundHandler, AuditEventType, rateLimitersCore as rateLimitersInternal };
 
 // Helper to apply middleware to Express app
-import { Application } from 'express';
+import { Application, Request, Response } from 'express';
 import { middleware } from './chains';
 
 export const applyMiddleware = (app: Application): void => {
@@ -46,11 +46,11 @@ export const applyMiddleware = (app: Application): void => {
   app.use(middleware.core);
   
   // Health check routes (before authentication)
-  app.get('/health', middleware.health, (req, res) => {
+  app.get('/health', middleware.health, (req: Request, res: Response) => {
     res.status(200).json({ status: 'ok' });
   });
   
-  app.get('/api/health', middleware.health, (req, res) => {
+  app.get('/api/health', middleware.health, (req: Request, res: Response) => {
     res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
   });
 };
@@ -90,14 +90,14 @@ export const middlewareGroups = {
 // Quick middleware setup for routes
 export const setup = {
   // Public endpoints
-  public: (rateLimitKey?: keyof typeof rateLimiters) => 
+  public: (rateLimitKey?: keyof typeof rateLimitersCore) => 
     middleware.custom({
       rateLimit: rateLimitKey || 'api',
     }),
   
   // Authenticated endpoints
   authenticated: (options?: {
-    rateLimit?: keyof typeof rateLimiters;
+    rateLimit?: keyof typeof rateLimitersCore;
     cache?: boolean;
     audit?: { event: AuditEventType; severity?: 'low' | 'medium' | 'high' | 'critical' };
   }) => 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Basic Health Check E2E Test
  * Minimal test to verify E2E setup is working

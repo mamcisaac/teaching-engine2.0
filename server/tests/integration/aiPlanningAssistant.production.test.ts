@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Production-level integration tests for AIPlanningAssistantService
  *
@@ -45,7 +46,7 @@ describe('AIPlanningAssistantService - Production Integration', () => {
 
     // Setup centralized mocks
     const mockOpenAIInstance = MockRegistry.openai.create();
-    (OpenAI as jest.MockedClass<typeof OpenAI>).mockImplementation(() => mockOpenAIInstance as any);
+    (OpenAI as jest.MockedClass<typeof OpenAI>).mockImplementation(() => mockOpenAIInstance as unknown);
   });
 
   describe('Service Health and Configuration', () => {

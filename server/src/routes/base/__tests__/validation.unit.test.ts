@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Validation Utilities Unit Tests
  * Test suite for shared validation functions and schemas

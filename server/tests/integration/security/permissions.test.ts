@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Permissions and Authorization Security Tests
  *
@@ -14,7 +15,7 @@ import {
 } from '../../integration-test-setup';
 
 // Import the actual app
-let app: any;
+let app: unknown;
 
 beforeEach(async () => {
   // Import the actual app
@@ -83,7 +84,7 @@ describe('Authorization and Permissions Security Tests', () => {
 
       teacher1Id = user1.id;
       teacher2Id = user2.id;
-    } catch (error) {
+    } catch (_error) {
       console.error('Error creating users:', error);
       throw error;
     }
@@ -110,8 +111,8 @@ describe('Authorization and Permissions Security Tests', () => {
   });
 
   describe('Student Data Isolation', () => {
-    let teacher1Student: any;
-    let teacher2Student: any;
+    let teacher1Student: unknown;
+    let teacher2Student: unknown;
 
     beforeEach(async () => {
       // Create students for each teacher
@@ -206,8 +207,8 @@ describe('Authorization and Permissions Security Tests', () => {
   });
 
   describe('Curriculum Data Isolation', () => {
-    let teacher1LRP: any;
-    let teacher2LRP: any;
+    let teacher1LRP: unknown;
+    let teacher2LRP: unknown;
 
     beforeEach(async () => {
       // Create long range plans for each teacher
@@ -248,18 +249,18 @@ describe('Authorization and Permissions Security Tests', () => {
       expect(response2.status).toBe(200);
 
       // Teacher 1 should only see their LRP
-      const teacher1Plans = response1.body.filter((plan: any) => plan.id === teacher1LRP.id);
+      const teacher1Plans = response1.body.filter((plan: unknown) => plan.id === teacher1LRP.id);
       const teacher2PlansInTeacher1Response = response1.body.filter(
-        (plan: any) => plan.id === teacher2LRP.id,
+        (plan: unknown) => plan.id === teacher2LRP.id,
       );
 
       expect(teacher1Plans).toHaveLength(1);
       expect(teacher2PlansInTeacher1Response).toHaveLength(0);
 
       // Teacher 2 should only see their LRP
-      const teacher2Plans = response2.body.filter((plan: any) => plan.id === teacher2LRP.id);
+      const teacher2Plans = response2.body.filter((plan: unknown) => plan.id === teacher2LRP.id);
       const teacher1PlansInTeacher2Response = response2.body.filter(
-        (plan: any) => plan.id === teacher1LRP.id,
+        (plan: unknown) => plan.id === teacher1LRP.id,
       );
 
       expect(teacher2Plans).toHaveLength(1);
@@ -277,8 +278,8 @@ describe('Authorization and Permissions Security Tests', () => {
   });
 
   describe('Unit Plan Data Isolation', () => {
-    let teacher1UnitPlan: any;
-    let teacher2UnitPlan: any;
+    let teacher1UnitPlan: unknown;
+    let teacher2UnitPlan: unknown;
 
     beforeEach(async () => {
       // Create unit plans for each teacher
@@ -319,9 +320,9 @@ describe('Authorization and Permissions Security Tests', () => {
       expect(response2.status).toBe(200);
 
       // Check that teachers only see their own plans
-      const teacher1Plans = response1.body.filter((plan: any) => plan.id === teacher1UnitPlan.id);
+      const teacher1Plans = response1.body.filter((plan: unknown) => plan.id === teacher1UnitPlan.id);
       const teacher2PlansInTeacher1Response = response1.body.filter(
-        (plan: any) => plan.id === teacher2UnitPlan.id,
+        (plan: unknown) => plan.id === teacher2UnitPlan.id,
       );
 
       expect(teacher1Plans).toHaveLength(1);
@@ -339,8 +340,8 @@ describe('Authorization and Permissions Security Tests', () => {
   });
 
   describe('Lesson Plan Data Isolation', () => {
-    let teacher1LessonPlan: any;
-    let teacher2LessonPlan: any;
+    let teacher1LessonPlan: unknown;
+    let teacher2LessonPlan: unknown;
 
     beforeEach(async () => {
       // Create lesson plans for each teacher
@@ -381,9 +382,9 @@ describe('Authorization and Permissions Security Tests', () => {
       expect(response2.status).toBe(200);
 
       // Check that teachers only see their own plans
-      const teacher1Plans = response1.body.filter((plan: any) => plan.id === teacher1LessonPlan.id);
+      const teacher1Plans = response1.body.filter((plan: unknown) => plan.id === teacher1LessonPlan.id);
       const teacher2PlansInTeacher1Response = response1.body.filter(
-        (plan: any) => plan.id === teacher2LessonPlan.id,
+        (plan: unknown) => plan.id === teacher2LessonPlan.id,
       );
 
       expect(teacher1Plans).toHaveLength(1);

@@ -1,0 +1,197 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/**
+ * AI Activity Generator Service
+ * Generates educational activities using AI
+ */
+
+import { ExternalActivity } from '@teaching-engine/database';
+
+export interface LessonContext {
+  title?: string;
+  grade?: number;
+  subject?: string;
+  learningGoals?: string[];
+  duration?: number;
+  section?: 'minds-on' | 'action' | 'consolidation';
+}
+
+export interface SpecificRequirements {
+  activityType?: string;
+  materials?: string[];
+  groupSize?: string;
+  language?: string;
+  curriculumExpectations?: string[];
+}
+
+export interface GeneratedActivity {
+  title: string;
+  description: string;
+  detailedInstructions: string[];
+  duration: number;
+  activityType: string;
+  materials: string[];
+  groupSize: string;
+  learningGoals: string[];
+  assessmentSuggestions: string[];
+  differentiation: {
+    support: string[];
+    extension: string[];
+  };
+  safetyConsiderations?: string[];
+  technologyRequirements?: string[];
+}
+
+export interface GenerationParams {
+  lessonContext?: LessonContext;
+  specificRequirements?: SpecificRequirements;
+  searchResults?: ExternalActivity[];
+}
+
+export class AIActivityGeneratorService {
+  private buildGenerationPrompt(params: GenerationParams): string {
+    let prompt = 'Generate an engaging educational activity.\n\n';
+
+    if (params.lessonContext) {
+      const context = params.lessonContext;
+      prompt += 'Lesson Context:\n';
+      if (context.title) prompt += `Title: ${context.title}\n`;
+      if (context.grade) prompt += `Grade: ${context.grade}\n`;
+      if (context.subject) prompt += `Subject: ${context.subject}\n`;
+      if (context.learningGoals?.length) prompt += `Learning Goals: ${context.learningGoals.join(', ')}\n`;
+      if (context.duration) prompt += `Duration: ${context.duration} minutes\n`;
+      if (context.section) prompt += `Section: ${context.section}\n`;
+      prompt += '\n';
+    }
+
+    if (params.specificRequirements) {
+      const reqs = params.specificRequirements;
+      prompt += 'Requirements:\n';
+      if (reqs.activityType) prompt += `Activity Type: ${reqs.activityType}\n`;
+      if (reqs.materials?.length) prompt += `Materials Available: ${reqs.materials.join(', ')}\n`;
+      if (reqs.groupSize) prompt += `Group Size: ${reqs.groupSize}\n`;
+      if (reqs.language) prompt += `Language: ${reqs.language}\n`;
+      if (reqs.curriculumExpectations?.length) prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`;
+      prompt += '\n';
+    }
+
+    if (params.searchResults?.length) {
+      prompt += 'Consider these similar activities for inspiration:\n';
+      const limitedResults = params.searchResults.slice(0, 3);
+      limitedResults.forEach(result => {
+        prompt += `${result.title}: ${result.description}\n`;
+      });
+      prompt += '\n';
+    }
+
+    prompt += 'Please provide a complete activity plan in JSON format with the following structure:\n';
+    prompt += '{\n';
+    prompt += '  "title": "string",\n';
+    prompt += '  "description": "string",\n';
+    prompt += '  "detailedInstructions": ["string"],\n';
+    prompt += '  "duration": number,\n';
+    prompt += '  "activityType": "string",\n';
+    prompt += '  "materials": ["string"],\n';
+    prompt += '  "groupSize": "string",\n';
+    prompt += '  "learningGoals": ["string"],\n';
+    prompt += '  "assessmentSuggestions": ["string"],\n';
+    prompt += '  "differentiation": {\n';
+    prompt += '    "support": ["string"],\n';
+    prompt += '    "extension": ["string"]\n';
+    prompt += '  },\n';
+    prompt += '  "safetyConsiderations": ["string"],\n';
+    prompt += '  "technologyRequirements": ["string"]\n';
+    prompt += '}';
+
+    return prompt;
+  }
+
+  private parseGeneratedActivity(response: string): GeneratedActivity {
+    try {
+      // Extract JSON from response
+      const jsonMatch = response.match(/\{[\s\S]*\}/);
+      if (!jsonMatch) {
+        throw new Error('No JSON found in response');
+      }
+
+      const parsed = JSON.parse(jsonMatch[0]);
+
+      // Validate required fields
+      if (!parsed.title || !parsed.description || !parsed.detailedInstructions) {
+        throw new Error('Missing required fields');
+      }
+
+      // Apply defaults for missing optional fields
+      return {
+        title: parsed.title,
+        description: parsed.description,
+        detailedInstructions: parsed.detailedInstructions || [],
+        duration: parsed.duration || 30,
+        activityType: parsed.activityType || 'handson',
+        materials: parsed.materials || [],
+        groupSize: parsed.groupSize || 'flexible',
+        learningGoals: parsed.learningGoals || [],
+        assessmentSuggestions: parsed.assessmentSuggestions || [],
+        differentiation: {
+          support: parsed.differentiation?.support || [],
+          extension: parsed.differentiation?.extension || [],
+        },
+        safetyConsiderations: parsed.safetyConsiderations,
+        technologyRequirements: parsed.technologyRequirements,
+      };
+    } catch (error) {
+      throw new Error('Failed to parse generated activity');
+    }
+  }
+
+  private generateTemplateActivity(params: GenerationParams): GeneratedActivity {
+    const context = params.lessonContext || {};
+    const reqs = params.specificRequirements || {};
+
+    const grade = context.grade || 1;
+    const subject = context.subject || 'Learning';
+    const title = context.title || 'Exploration';
+    const duration = context.duration || reqs.duration || 30;
+
+    return {
+      title: `${subject} Activity - ${title}`,
+      description: `An engaging ${subject.toLowerCase()} activity designed for Grade ${grade} students.`,
+      detailedInstructions: [
+        'Introduce the activity and learning goals to students',
+        'Provide necessary materials and set up workspace',
+        'Guide students through the main activity',
+        'Facilitate discussion and reflection',
+        'Assess understanding and provide feedback',
+      ],
+      duration,
+      activityType: reqs.activityType || 'hands-on',
+      materials: reqs.materials || ['paper', 'pencils', 'whiteboard'],
+      groupSize: reqs.groupSize || 'individual or small groups',
+      learningGoals: context.learningGoals || ['Students will explore new concepts'],
+      assessmentSuggestions: [
+        'Observe student participation and engagement',
+        'Ask questions to check understanding',
+        'Review completed work for accuracy',
+      ],
+      differentiation: {
+        support: ['Provide visual aids', 'Offer one-on-one assistance', 'Break tasks into smaller steps'],
+        extension: ['Provide additional challenges', 'Encourage peer teaching', 'Offer independent research opportunities'],
+      },
+      safetyConsiderations: ['Ensure proper use of materials', 'Maintain safe classroom environment'],
+      technologyRequirements: [],
+    };
+  }
+
+  private getSystemPrompt(): string {
+    return `You are an expert elementary school teacher with extensive experience in French immersion education and the Ontario curriculum. You specialize in creating engaging, developmentally appropriate learning activities that follow ETFO best practices.
+
+Your activities should be:
+- Aligned with Ontario curriculum expectations
+- Developmentally appropriate for the specified grade level
+- Include clear differentiation strategies
+- Provide comprehensive assessment suggestions
+- Follow ETFO pedagogical best practices
+- Include safety considerations when relevant
+
+Always respond with valid JSON format only.`;
+  }
+}

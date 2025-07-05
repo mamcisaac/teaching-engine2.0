@@ -68,7 +68,7 @@ export function testRoundtrip<T>(
         const serialized = serialize(value);
         const deserialized = deserialize(serialized);
         return equality(value, deserialized);
-      } catch (error) {
+      } catch (_error) {
         return false;
       }
     },
@@ -122,7 +122,7 @@ export function testCommutativity<T>(
         const ab = operation(a, b);
         const ba = operation(b, a);
         return equality(ab, ba);
-      } catch (error) {
+      } catch (_error) {
         return false;
       }
     },
@@ -148,7 +148,7 @@ export function testAssociativity<T>(
         const ab_c = operation(operation(a, b), c);
         const a_bc = operation(a, operation(b, c));
         return equality(ab_c, a_bc);
-      } catch (error) {
+      } catch (_error) {
         return false;
       }
     },
@@ -174,7 +174,7 @@ export function testIdempotency<T>(
         const once = operation(value);
         const twice = operation(once);
         return equality(once, twice);
-      } catch (error) {
+      } catch (_error) {
         return false;
       }
     },
@@ -200,7 +200,7 @@ export function testIdentity<T>(
       try {
         const result = operation(value, identity);
         return equality(value, result);
-      } catch (error) {
+      } catch (_error) {
         return false;
       }
     },
@@ -227,7 +227,7 @@ export function testInverse<T>(
         const transformed = operation(value);
         const restored = inverse(transformed);
         return equality(value, restored);
-      } catch (error) {
+      } catch (_error) {
         return false;
       }
     },
@@ -257,7 +257,7 @@ export function testContract<T, R>(
       try {
         const result = operation(value);
         return postcondition(value, result);
-      } catch (error) {
+      } catch (_error) {
         return false;
       }
     },
@@ -285,7 +285,7 @@ export function testMetamorphic<T, R>(
         const transformedValue = transform(value);
         const transformedResult = operation(transformedValue);
         return relation(originalResult, transformedResult);
-      } catch (error) {
+      } catch (_error) {
         return false;
       }
     },
@@ -312,7 +312,7 @@ export function testStatistical<T>(
       try {
         const numbers = values.map(extract);
         return predicate(numbers);
-      } catch (error) {
+      } catch (_error) {
         return false;
       }
     },

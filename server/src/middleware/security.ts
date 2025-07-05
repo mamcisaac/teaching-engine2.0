@@ -100,64 +100,16 @@ const authLimiter = new RateLimiterMemory({
  * General rate limiting middleware
  */
 export async function rateLimitMiddleware(req: Request, res: Response, next: NextFunction) {
-  // Skip rate limiting for health endpoints in test environment
-  if (process.env.NODE_ENV === 'test' && (req.path === '/health' || req.path === '/api/health')) {
-    return next();
-  }
-
-  try {
-    const key = req.ip || 'unknown';
-    await generalLimiter.consume(key);
-    next();
-  } catch (_error) {
-    logger.warn(
-      {
-        ip: req.ip,
-        path: req.path,
-        method: req.method,
-      },
-      'Rate limit exceeded',
-    );
-
-    res.status(429).json({
-      error: 'Too Many Requests',
-      message: 'Rate limit exceeded. Please try again later.',
-      retryAfter:
-        Math.round((error as { msBeforeNext?: number }).msBeforeNext || 900000 / 1000) || 900,
-    });
-  }
+  // SINGLE USER APP - Skip all rate limiting
+  return next();
 }
 
 /**
  * Strict rate limiting for authentication endpoints
  */
 export async function authRateLimitMiddleware(req: Request, res: Response, next: NextFunction) {
-  // Skip rate limiting for health endpoints in test environment
-  if (process.env.NODE_ENV === 'test' && (req.path === '/health' || req.path === '/api/health')) {
-    return next();
-  }
-
-  try {
-    const key = `auth:${req.ip || 'unknown'}`;
-    await authLimiter.consume(key);
-    next();
-  } catch (_error) {
-    logger.warn(
-      {
-        ip: req.ip,
-        path: req.path,
-        email: req.body?.email,
-      },
-      'Authentication rate limit exceeded',
-    );
-
-    res.status(429).json({
-      error: 'Too Many Requests',
-      message: 'Too many authentication attempts. Please try again later.',
-      retryAfter:
-        Math.round((error as { msBeforeNext?: number }).msBeforeNext || 1800000 / 1000) || 1800,
-    });
-  }
+  // SINGLE USER APP - Skip all rate limiting
+  return next();
 }
 
 /**
@@ -325,7 +277,8 @@ export function applySecurityMiddleware(app: { use: (middleware: unknown) => voi
   app.use(sanitizeInput);
 
   // Apply general rate limiting
-  app.use(rateLimitMiddleware);
+  // DISABLED FOR SINGLE USER APP - Using new rate limit system instead
+  // app.use(rateLimitMiddleware);
 
   // Log security middleware applied
   logger.info('Security middleware applied successfully');

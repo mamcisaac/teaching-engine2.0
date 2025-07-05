@@ -1,6 +1,6 @@
+import { apiClient } from '../api/core/client';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { api } from '../api/legacy/api';
-
+import logger from '../utils/logger';
 export interface WorkflowState {
   userId: number;
   currentLevel: ETFOLevel;
@@ -49,7 +49,7 @@ export function useWorkflowState() {
   } = useQuery<WorkflowState>({
     queryKey: ['workflow-state'],
     queryFn: async () => {
-      const response = await api.get('/api/workflow/state');
+      const response = await apiClient.get('/api/workflow/state');
       return response.data;
     },
     staleTime: 30000, // Cache for 30 seconds
@@ -59,10 +59,10 @@ export function useWorkflowState() {
     level: ETFOLevel,
   ): Promise<{ canAccess: boolean; reason?: string }> => {
     try {
-      const response = await api.get(`/api/workflow/access/${level}`);
+      const response = await apiClient.get(`/api/workflow/access/${level}`);
       return response.data;
     } catch (_error) {
-      console.error('Error checking level access:', error);
+      logger.error('Error checking level access:', error);
       return { canAccess: false, reason: 'Error checking access' };
     }
   };
@@ -72,13 +72,13 @@ export function useWorkflowState() {
     entityId: string,
   ): Promise<{ isValid: boolean; missingFields: string[] }> => {
     try {
-      const response = await api.post('/api/workflow/validate', {
+      const response = await apiClient.post('/api/workflow/validate', {
         level,
         entityId,
       });
       return response.data;
     } catch (_error) {
-      console.error('Error validating level:', error);
+      logger.error('Error validating level:', error);
       return { isValid: false, missingFields: ['Validation error'] };
     }
   };

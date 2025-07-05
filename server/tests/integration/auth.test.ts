@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import request from 'supertest';
 import { describe, beforeAll, beforeEach, it, expect } from '@jest/globals';
 import { createTestApp } from './simple-test-app';

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { describe, it, expect, beforeEach, afterEach, jest } from '@jest/globals';
 import express, { Request, Response, NextFunction } from 'express';
 import request from 'supertest';
@@ -219,12 +220,12 @@ describe('Security Middleware', () => {
           mimetype: 'application/pdf',
           originalname: 'test.pdf',
         },
-      } as any;
+      } as unknown;
 
       const res = {
         status: jest.fn().mockReturnThis(),
         json: jest.fn(),
-      } as any;
+      } as unknown;
 
       const next = jest.fn();
 
@@ -247,12 +248,12 @@ describe('Security Middleware', () => {
           mimetype: 'application/javascript',
           originalname: 'malicious.js',
         },
-      } as any;
+      } as unknown;
 
       const res = {
         status: jest.fn().mockReturnThis(),
         json: jest.fn(),
-      } as any;
+      } as unknown;
 
       const next = jest.fn();
 
@@ -274,12 +275,12 @@ describe('Security Middleware', () => {
           mimetype: 'application/pdf',
           originalname: '../../../etc/passwd',
         },
-      } as any;
+      } as unknown;
 
       const res = {
         status: jest.fn().mockReturnThis(),
         json: jest.fn(),
-      } as any;
+      } as unknown;
 
       const next = jest.fn();
 
@@ -301,9 +302,9 @@ describe('Security Middleware', () => {
           mimetype: 'application/pdf',
           originalname: 'curriculum.pdf',
         },
-      } as any;
+      } as unknown;
 
-      const res = {} as any;
+      const res = {} as unknown;
       const next = jest.fn();
 
       middleware(req, res, next);
@@ -323,9 +324,9 @@ describe('Security Middleware', () => {
         },
         query: {},
         params: {},
-      } as any;
+      } as unknown;
 
-      const res = {} as any;
+      const res = {} as unknown;
       const next = jest.fn();
 
       sanitizeInput(req, res, next);
@@ -351,9 +352,9 @@ describe('Security Middleware', () => {
         },
         query: {},
         params: {},
-      } as any;
+      } as unknown;
 
-      const res = {} as any;
+      const res = {} as unknown;
       const next = jest.fn();
 
       sanitizeInput(req, res, next);
@@ -390,11 +391,11 @@ describe('Security Middleware', () => {
 
   describe('Security Headers Middleware', () => {
     it('should set all required security headers', () => {
-      const req = {} as any;
+      const req = {} as unknown;
       const res = {
         setHeader: jest.fn(),
         removeHeader: jest.fn(),
-      } as any;
+      } as unknown;
       const next = jest.fn();
 
       securityHeaders(req, res, next);

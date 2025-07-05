@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Simple Authentication Test
  * Basic test to verify authentication works
@@ -8,7 +9,7 @@ import request from 'supertest';
 import bcrypt from 'bcryptjs';
 
 // Import the actual app
-let app: any;
+let app: unknown;
 
 beforeEach(async () => {
   // Set required environment variables

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { test, expect, Page } from '@playwright/test';
 import { loginAsTestUser } from './helpers/auth';
 
@@ -90,7 +91,7 @@ class PerformanceTestRunner {
 
         times.push(endTime - startTime);
         successes++;
-      } catch (error) {
+      } catch (_error) {
         console.error(`Operation failed on iteration ${i}:`, error);
       }
     }

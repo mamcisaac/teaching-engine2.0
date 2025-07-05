@@ -402,6 +402,28 @@ export class CurriculumFactory extends BaseFactory<CurriculumExpectation> {
   }
 
   /**
+   * Create expectations for a specific grade and subject
+   */
+  async createGradeExpectations(options: {
+    grade: number;
+    subject: string;
+    count: number;
+  }): Promise<CurriculumExpectation[]> {
+    const expectations: CurriculumExpectation[] = [];
+    
+    for (let i = 0; i < options.count; i++) {
+      const expectation = await this.create({
+        grade: options.grade,
+        subject: options.subject,
+        code: `${options.grade}.${options.subject.charAt(0)}.${i + 1}`,
+      });
+      expectations.push(expectation);
+    }
+    
+    return expectations;
+  }
+
+  /**
    * Create a full strand of expectations
    */
   async createStrand(options: {

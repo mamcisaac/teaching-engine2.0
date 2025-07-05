@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Unit Plan AI Snapshot Tests
  * 
@@ -31,7 +32,7 @@ describe('Unit Plan AI Snapshot Tests', () => {
     test.each(scenarios)(
       'should generate consistent unit plan for $name',
       async (scenario) => {
-        const aiFunction = async (input: any) => {
+        const aiFunction = async (input: unknown) => {
           if (!AI_TESTING_CONFIG.testApiKey) {
             return AITestMockResponses.mockUnitPlan(scenario);
           }
@@ -58,7 +59,7 @@ describe('Unit Plan AI Snapshot Tests', () => {
     test.each(scenarios)(
       'should generate consistent unit plan for $name',
       async (scenario) => {
-        const aiFunction = async (input: any) => {
+        const aiFunction = async (input: unknown) => {
           if (!AI_TESTING_CONFIG.testApiKey) {
             return AITestMockResponses.mockUnitPlan(scenario);
           }
@@ -85,7 +86,7 @@ describe('Unit Plan AI Snapshot Tests', () => {
     test.each(scenarios)(
       'should generate consistent unit plan for $name',
       async (scenario) => {
-        const aiFunction = async (input: any) => {
+        const aiFunction = async (input: unknown) => {
           if (!AI_TESTING_CONFIG.testApiKey) {
             return AITestMockResponses.mockUnitPlan(scenario);
           }

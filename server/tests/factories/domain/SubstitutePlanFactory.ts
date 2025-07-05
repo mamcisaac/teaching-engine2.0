@@ -497,7 +497,7 @@ Contains: First aid, flashlight, class list, emergency contacts`;
    */
   private getNextMonday(): Date {
     const date = new Date();
-    const day = date.getDay();
+    const _day = date.getDay();
     const diff = day === 0 ? 1 : 8 - day;
     date.setDate(date.getDate() + diff);
     return date;

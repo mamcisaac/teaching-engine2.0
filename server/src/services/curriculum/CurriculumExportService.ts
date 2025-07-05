@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Curriculum Export Service
  * Handles exporting curriculum expectations to various formats
@@ -108,15 +109,17 @@ export class CurriculumExportService extends BaseService {
             buffer = Buffer.from(JSON.stringify(exportData, null, 2));
             break;
             
-          case 'csv':
+          case 'csv': {
             // Convert to CSV
             const csv = this.convertToCSV(exportData);
             buffer = Buffer.from(csv);
             break;
+          }
             
-          case 'excel':
+          case 'excel': {
             // Would use xlsx library here
             throw new Error('Excel export not yet implemented');
+          }
             
           default:
             throw new Error(`Unsupported export format: ${options.format}`);

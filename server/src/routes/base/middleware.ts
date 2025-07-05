@@ -73,11 +73,11 @@ export const validate = (schema: z.ZodSchema) => {
       req.body = validatedData;
       next();
     } catch (_error) {
-      if (error instanceof z.ZodError) {
-        const formattedError = formatValidationError(error);
+      if (_error instanceof z.ZodError) {
+        const formattedError = formatValidationError(_error);
         res.status(400).json(formattedError);
       } else {
-        logger.error('Validation error:', error);
+        logger.error({ error: _error }, 'Validation error');
         res.status(500).json({ error: 'Internal server error' });
       }
     }
@@ -94,11 +94,11 @@ export const validateQuery = (schema: z.ZodSchema) => {
       req.query = validatedQuery;
       next();
     } catch (_error) {
-      if (error instanceof z.ZodError) {
-        const formattedError = formatValidationError(error);
+      if (_error instanceof z.ZodError) {
+        const formattedError = formatValidationError(_error);
         res.status(400).json(formattedError);
       } else {
-        logger.error('Query validation error:', error);
+        logger.error({ error: _error }, 'Query validation error');
         res.status(500).json({ error: 'Internal server error' });
       }
     }
@@ -208,7 +208,7 @@ export const sanitizeInput = (
       return value.map(sanitizeValue);
     }
     if (value && typeof value === 'object') {
-      const sanitized: any = {};
+      const sanitized: Record<string, unknown> = {};
       for (const [key, val] of Object.entries(value)) {
         sanitized[key] = sanitizeValue(val);
       }
@@ -234,16 +234,16 @@ export const errorHandler = (
   err: Error,
   req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ): void => {
-  logger.error('Route error:', {
+  logger.error({
     error: err.message,
     stack: err.stack,
     method: req.method,
     url: req.url,
     body: req.body,
     query: req.query
-  });
+  }, 'Route error');
 
   // Handle specific error types
   if (err instanceof z.ZodError) {

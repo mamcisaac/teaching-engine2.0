@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Property-based testing utilities for Teaching Engine 2.0
  * Provides helper functions and common patterns for property tests

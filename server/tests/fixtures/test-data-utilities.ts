@@ -257,7 +257,7 @@ export class TestDataManager {
               });
               break;
           }
-        } catch (error) {
+        } catch (_error) {
           console.warn(`Warning: Could not delete ${entityType} entities:`, error);
         }
       }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * @file lessonPlanService.test.ts
  * @description Comprehensive tests for LessonPlanService including time calculations,

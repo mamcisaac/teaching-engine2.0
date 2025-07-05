@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { describe, it, expect, jest } from '@jest/globals';
 import {
   secureCookieOptions,
@@ -51,7 +52,7 @@ describe('Security Middleware Verification', () => {
       const mockRes = {
         status: jest.fn().mockReturnThis(),
         json: jest.fn(),
-      } as any;
+      } as unknown;
 
       // Test valid file
       const validReq = {
@@ -60,7 +61,7 @@ describe('Security Middleware Verification', () => {
           size: 1024,
           originalname: 'test.pdf',
         },
-      } as any;
+      } as unknown;
 
       middleware(validReq, mockRes, mockNext);
       expect(mockNext).toHaveBeenCalled();
@@ -77,7 +78,7 @@ describe('Security Middleware Verification', () => {
           size: 1024,
           originalname: 'script.js',
         },
-      } as any;
+      } as unknown;
 
       middleware(invalidReq, mockRes, mockNext);
       expect(mockNext).not.toHaveBeenCalled();
@@ -94,7 +95,7 @@ describe('Security Middleware Verification', () => {
       const mockRes = {
         status: jest.fn().mockReturnThis(),
         json: jest.fn(),
-      } as any;
+      } as unknown;
 
       const oversizedReq = {
         file: {
@@ -102,7 +103,7 @@ describe('Security Middleware Verification', () => {
           size: 20 * 1024 * 1024, // 20MB
           originalname: 'large.pdf',
         },
-      } as any;
+      } as unknown;
 
       middleware(oversizedReq, mockRes, mockNext);
       expect(mockNext).not.toHaveBeenCalled();
@@ -119,7 +120,7 @@ describe('Security Middleware Verification', () => {
       const mockRes = {
         status: jest.fn().mockReturnThis(),
         json: jest.fn(),
-      } as any;
+      } as unknown;
 
       const maliciousReq = {
         file: {
@@ -127,7 +128,7 @@ describe('Security Middleware Verification', () => {
           size: 1024,
           originalname: '../../etc/passwd',
         },
-      } as any;
+      } as unknown;
 
       middleware(maliciousReq, mockRes, mockNext);
       expect(mockNext).not.toHaveBeenCalled();
@@ -149,7 +150,7 @@ describe('Security Middleware Verification', () => {
         },
         query: {},
         params: {},
-      } as any;
+      } as unknown;
 
       const mockNext = jest.fn();
       sanitizeInput(req, {} as Response, mockNext);
@@ -169,7 +170,7 @@ describe('Security Middleware Verification', () => {
         },
         query: {},
         params: {},
-      } as any;
+      } as unknown;
 
       const mockNext = jest.fn();
       sanitizeInput(req, {} as Response, mockNext);
@@ -188,7 +189,7 @@ describe('Security Middleware Verification', () => {
         },
         query: {},
         params: {},
-      } as any;
+      } as unknown;
 
       const mockNext = jest.fn();
       sanitizeInput(req, {} as Response, mockNext);
@@ -210,7 +211,7 @@ describe('Security Middleware Verification', () => {
         },
         query: {},
         params: {},
-      } as any;
+      } as unknown;
 
       const mockNext = jest.fn();
       sanitizeInput(req, {} as Response, mockNext);

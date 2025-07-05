@@ -13,9 +13,9 @@ describe('Curriculum Import Routes', () => {
   let prisma: ReturnType<typeof getTestPrismaClient>;
   let authToken: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let mockCurriculumImportService: any;
+  let mockCurriculumImportService: unknown;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let mockClusteringService: any;
+  let mockClusteringService: unknown;
 
   beforeEach(async () => {
     prisma = getTestPrismaClient();

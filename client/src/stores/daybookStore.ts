@@ -3,10 +3,10 @@
 import { create } from 'zustand';
 import { persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
-import { api } from '../api/legacy/api';
+import { apiClient } from '../api/core/client';
 import { createOfflineSlice, createAutoSave, OfflineState, BaseActions } from './basePlanningStore';
 import { offlineStorage, StoredData } from '../services/offlineStorage';
-
+import logger from '../utils/logger';
 export interface DaybookEntry {
   id: string;
   date: string;
@@ -54,7 +54,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
         const offlineSlice = createOfflineSlice<DaybookState>({
           entityType: 'daybook',
           fetchFromServer: async () => {
-            const response = await api.get('/api/daybook');
+            const response = await apiClient.get('/api/daybook');
             return response.data;
           },
           saveToServer: async (data) => {
@@ -66,10 +66,10 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             for (const entry of modifiedEntries) {
               if (entry.id.startsWith('temp-')) {
                 // Create new entry
-                await api.post('/api/daybook', entry);
+                await apiClient.post('/api/daybook', entry);
               } else {
                 // Update existing entry
-                await api.put(`/api/daybook/${entry.id}`, entry);
+                await apiClient.put(`/api/daybook/${entry.id}`, entry);
               }
             }
           },
@@ -99,7 +99,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             try {
               if (get().isOnline) {
                 const params = new URLSearchParams({ startDate, endDate });
-                const response = await api.get(`/api/daybook?${params.toString()}`);
+                const response = await apiClient.get(`/api/daybook?${params.toString()}`);
                 const entries = response.data;
 
                 set((state) => {
@@ -142,8 +142,8 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                   }
                 }
               }
-            } catch (_error) {
-              console.error('Failed to load daybook entries:', error);
+            } catch (error) {
+              logger.error('Failed to load daybook entries:', error);
 
               // Try to load from cache as fallback
               const cachedEntries =
@@ -176,7 +176,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
               }
 
               if (get().isOnline) {
-                const response = await api.get(`/api/daybook/date/${date}`);
+                const response = await apiClient.get(`/api/daybook/date/${date}`);
                 const entry = response.data;
 
                 set((state) => {
@@ -202,8 +202,8 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                   state.isLoading = false;
                 });
               }
-            } catch (_error) {
-              console.error('Failed to load daybook entry:', error);
+            } catch (error) {
+              logger.error('Failed to load daybook entry:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to load entry';
                 state.isLoading = false;
@@ -227,7 +227,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
               } as DaybookEntry;
 
               if (get().isOnline) {
-                const response = await api.post('/api/daybook', entryData);
+                const response = await apiClient.post('/api/daybook', entryData);
                 const createdEntry = response.data;
 
                 set((state) => {
@@ -269,8 +269,8 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
 
                 return newEntry;
               }
-            } catch (_error) {
-              console.error('Failed to create daybook entry:', error);
+            } catch (error) {
+              logger.error('Failed to create daybook entry:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to create entry';
                 state.isSaving = false;
@@ -292,7 +292,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
               };
 
               if (get().isOnline) {
-                await api.put(`/api/daybook/${id}`, updatedEntry);
+                await apiClient.put(`/api/daybook/${id}`, updatedEntry);
 
                 set((state) => {
                   const index = state.entries.findIndex((e) => e.id === id);
@@ -326,8 +326,8 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                   data: updatedEntry,
                 });
               }
-            } catch (_error) {
-              console.error('Failed to update daybook entry:', error);
+            } catch (error) {
+              logger.error('Failed to update daybook entry:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to update entry';
                 state.isSaving = false;
@@ -344,7 +344,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
 
             try {
               if (get().isOnline) {
-                await api.delete(`/api/daybook/${id}`);
+                await apiClient.delete(`/api/daybook/${id}`);
 
                 set((state) => {
                   state.entries = state.entries.filter((e) => e.id !== id);
@@ -372,8 +372,8 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                   data: { id },
                 });
               }
-            } catch (_error) {
-              console.error('Failed to delete daybook entry:', error);
+            } catch (error) {
+              logger.error('Failed to delete daybook entry:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to delete entry';
                 state.isSaving = false;

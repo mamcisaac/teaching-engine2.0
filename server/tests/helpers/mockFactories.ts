@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Centralized Mock Factories
  * Provides consistent mock implementations across all tests

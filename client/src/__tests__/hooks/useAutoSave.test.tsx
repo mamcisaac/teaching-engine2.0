@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { renderHook, act, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { useAutoSave, useUnsavedChangesWarning } from '../../hooks/useAutoSave';
@@ -439,9 +440,9 @@ describe('useUnsavedChangesWarning', () => {
       return e.returnValue;
     });
 
-    const result = handler(mockEvent);
+    const result = handler(mockEvent as BeforeUnloadEvent);
 
-    expect(mockEvent.preventDefault).toHaveBeenCalled();
+    expect((mockEvent as any).preventDefault).toHaveBeenCalled();
     expect(result).toBe('You have unsaved changes. Are you sure you want to leave?');
   });
 
@@ -458,9 +459,9 @@ describe('useUnsavedChangesWarning', () => {
       // Should not call preventDefault when hasUnsavedChanges is false
     });
 
-    handler(mockEvent);
+    handler(mockEvent as BeforeUnloadEvent);
 
-    expect(mockEvent.preventDefault).not.toHaveBeenCalled();
+    expect((mockEvent as any).preventDefault).not.toHaveBeenCalled();
   });
 
   it('updates event listener when unsaved changes state changes', () => {

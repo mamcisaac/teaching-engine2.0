@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import request from 'supertest';
 import { describe, test, expect, beforeAll, afterAll } from '@jest/globals';
 import { app } from '../../src/index';
@@ -97,7 +98,7 @@ describe('ETFO Planning Integration Tests', () => {
         await prisma.curriculumImport.deleteMany({ where: { userId } });
 
         await prisma.user.delete({ where: { id: userId } });
-      } catch (error) {
+      } catch (_error) {
         console.warn('Failed to delete test data:', error);
       }
     }

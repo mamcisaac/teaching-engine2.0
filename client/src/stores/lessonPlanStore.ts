@@ -1,12 +1,12 @@
 // Lesson Plan Store with Offline Support
 
+import { apiClient } from '../api/core/client';
 import { create } from 'zustand';
 import { persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
-import { api } from '../api/legacy/api';
 import { createOfflineSlice, createAutoSave, OfflineState, BaseActions } from './basePlanningStore';
 import { offlineStorage, StoredData } from '../services/offlineStorage';
-
+import logger from '../utils/logger';
 export interface LessonPlan {
   id: string;
   title: string;
@@ -54,7 +54,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
         const offlineSlice = createOfflineSlice<LessonPlanState>({
           entityType: 'lesson-plan',
           fetchFromServer: async () => {
-            const response = await api.get('/api/etfo-lesson-plans');
+            const response = await apiClient.get('/api/etfo-lesson-plans');
             return response.data;
           },
           saveToServer: async (data) => {
@@ -66,10 +66,10 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
             for (const plan of modifiedPlans) {
               if (plan.id.startsWith('temp-')) {
                 // Create new plan
-                await api.post('/api/etfo-lesson-plans', plan);
+                await apiClient.post('/api/etfo-lesson-plans', plan);
               } else {
                 // Update existing plan
-                await api.put(`/api/etfo-lesson-plans/${plan.id}`, plan);
+                await apiClient.put(`/api/etfo-lesson-plans/${plan.id}`, plan);
               }
             }
           },
@@ -103,7 +103,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
                 if (endDate) params.append('endDate', endDate);
                 if (params.toString()) url += `?${params.toString()}`;
 
-                const response = await api.get(url);
+                const response = await apiClient.get(url);
                 const plans = response.data;
 
                 set((state) => {
@@ -135,8 +135,8 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
                   });
                 }
               }
-            } catch (_error) {
-              console.error('Failed to load lesson plans:', error);
+            } catch (error) {
+              logger.error('Failed to load lesson plans:', error);
 
               // Try to load from cache as fallback
               const cachedPlans =
@@ -158,7 +158,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
 
             try {
               if (get().isOnline) {
-                const response = await api.get(`/api/etfo-lesson-plans/${id}`);
+                const response = await apiClient.get(`/api/etfo-lesson-plans/${id}`);
                 const lesson = response.data;
 
                 set((state) => {
@@ -192,8 +192,8 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
                   }
                 }
               }
-            } catch (_error) {
-              console.error('Failed to load lesson plan:', error);
+            } catch (error) {
+              logger.error('Failed to load lesson plan:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to load lesson';
                 state.isLoading = false;
@@ -217,7 +217,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
               } as LessonPlan;
 
               if (get().isOnline) {
-                const response = await api.post('/api/etfo-lesson-plans', planData);
+                const response = await apiClient.post('/api/etfo-lesson-plans', planData);
                 const createdLesson = response.data;
 
                 set((state) => {
@@ -245,8 +245,8 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
 
                 return newLesson;
               }
-            } catch (_error) {
-              console.error('Failed to create lesson plan:', error);
+            } catch (error) {
+              logger.error('Failed to create lesson plan:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to create lesson';
                 state.isSaving = false;
@@ -268,7 +268,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
               };
 
               if (get().isOnline) {
-                await api.put(`/api/etfo-lesson-plans/${id}`, updatedLesson);
+                await apiClient.put(`/api/etfo-lesson-plans/${id}`, updatedLesson);
 
                 set((state) => {
                   const index = state.lessonPlans.findIndex((p) => p.id === id);
@@ -302,8 +302,8 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
                   data: updatedLesson,
                 });
               }
-            } catch (_error) {
-              console.error('Failed to update lesson plan:', error);
+            } catch (error) {
+              logger.error('Failed to update lesson plan:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to update lesson';
                 state.isSaving = false;
@@ -320,7 +320,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
 
             try {
               if (get().isOnline) {
-                await api.delete(`/api/etfo-lesson-plans/${id}`);
+                await apiClient.delete(`/api/etfo-lesson-plans/${id}`);
 
                 set((state) => {
                   state.lessonPlans = state.lessonPlans.filter((p) => p.id !== id);
@@ -348,8 +348,8 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
                   data: { id },
                 });
               }
-            } catch (_error) {
-              console.error('Failed to delete lesson plan:', error);
+            } catch (error) {
+              logger.error('Failed to delete lesson plan:', error);
               set((state) => {
                 state.error = error instanceof Error ? error.message : 'Failed to delete lesson';
                 state.isSaving = false;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Logger Mock for Tests
  * Provides silent logging during tests to reduce console noise

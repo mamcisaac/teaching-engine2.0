@@ -4,6 +4,15 @@ import crypto from 'crypto';
 import logger from '../logger.js';
 import { cacheMetrics } from './metrics.js';
 
+// Extend Express Request type to include cacheEnabled
+declare global {
+  namespace Express {
+    interface Request {
+      cacheEnabled?: boolean;
+    }
+  }
+}
+
 // Cache configuration
 const DEFAULT_TTL = 300; // 5 minutes in seconds
 const MAX_CACHE_SIZE = 1000; // Maximum number of cached items
@@ -109,7 +118,14 @@ export function createCacheMiddleware(
     try {
       // Generate cache key
       const cacheKey = skipUserSpecific 
-        ? generateCacheKey({ ...req, user: undefined }, keyPrefix)
+        ? generateCacheKey({
+            path: req.path,
+            method: req.method,
+            query: req.query,
+            body: req.body,
+            headers: req.headers,
+            user: undefined
+          } as any, keyPrefix)
         : generateCacheKey(req, keyPrefix);
 
       // Try to get from cache
@@ -119,7 +135,7 @@ export function createCacheMiddleware(
         // Cache hit
         stats[cacheType].hits++;
         cacheMetrics.recordHit(cacheType);
-        logger.debug(`Cache hit for key: ${cacheKey}`, { cacheType, path: req.path });
+        logger.debug({ cacheType, path: req.path }, `Cache hit for key: ${cacheKey}`);
         
         // Set cache headers
         res.set('X-Cache', 'HIT');
@@ -142,11 +158,11 @@ export function createCacheMiddleware(
           const cacheTTL = ttl || cache.options.stdTTL || DEFAULT_TTL;
           cache.set(cacheKey, data, cacheTTL);
           
-          logger.debug(`Cached response for key: ${cacheKey}`, { 
+          logger.debug({ 
             cacheType, 
             path: req.path, 
             ttl: cacheTTL 
-          });
+          }, `Cached response for key: ${cacheKey}`);
         }
         
         // Set cache headers
@@ -159,7 +175,7 @@ export function createCacheMiddleware(
       
       next();
     } catch (_error) {
-      logger.error('Cache middleware error:', error);
+      logger.error('Cache middleware error:', _error);
       // Continue without caching on error
       next();
     }
@@ -219,11 +235,11 @@ export function invalidateCache(patterns: string[], cacheTypes: (keyof typeof ca
           });
           
           if (invalidatedCount > 0) {
-            logger.debug(`Invalidated ${invalidatedCount} cache entries`, { 
+            logger.debug({ 
               cacheType, 
               patterns,
               path: req.path 
-            });
+            }, `Invalidated ${invalidatedCount} cache entries`);
           }
         });
       }
@@ -235,10 +251,10 @@ export function invalidateCache(patterns: string[], cacheTypes: (keyof typeof ca
       return originalJson.call(this, data);
     };
 
-    res.end = function(chunk?: unknown, encoding?: BufferEncoding) {
+    res.end = function(this: Response, chunk?: any, encoding?: BufferEncoding, cb?: () => void) {
       invalidateCacheEntries();
-      return originalEnd.call(this, chunk, encoding);
-    };
+      return originalEnd.call(this, chunk, encoding, cb);
+    } as any;
 
     next();
   };
@@ -260,7 +276,7 @@ export async function warmUpCache() {
     
     logger.info('Cache warm-up completed');
   } catch (_error) {
-    logger.error('Cache warm-up failed:', error);
+    logger.error('Cache warm-up failed:', _error);
   }
 }
 
@@ -350,7 +366,7 @@ export function isCacheHealthy(): boolean {
     });
     return true;
   } catch (_error) {
-    logger.error('Cache health check failed:', error);
+    logger.error('Cache health check failed:', _error);
     return false;
   }
 }

@@ -189,7 +189,7 @@ export const validateServiceMocks = () => {
   const failed = validations.filter((v) => {
     try {
       return !v.check();
-    } catch (error) {
+    } catch (_error) {
       console.warn(`Service mock validation failed for ${v.name}:`, error);
       return true;
     }

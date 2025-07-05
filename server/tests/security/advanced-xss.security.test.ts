@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Advanced XSS Protection Security Test Suite
  * Tests for comprehensive XSS prevention including SVG, Unicode, CSS injection, and context-aware sanitization

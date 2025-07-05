@@ -3,7 +3,7 @@
  * Extends BaseRouteHandler with unit plan-specific business logic
  */
 
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 import { z } from 'zod';
 import { BaseRouteHandler, AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
 import { BaseService } from '../services/base/BaseService.js';
@@ -453,8 +453,8 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       const result = await this.unitPlanService.findMany(filters, userId);
       res.json(result);
     } catch (_error) {
-      this.logger.error(`Error in ${this.routeName} list:`, error);
-      next(error);
+      this.logger.error(`Error in ${this.routeName} list:`, _error);
+      next(_error);
     }
   }
 
@@ -494,8 +494,8 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       const resource = await this.unitPlanService.addResource(unitPlanId, resourceData, userId);
       res.status(201).json(resource);
     } catch (_error) {
-      this.logger.error('Error adding resource:', error);
-      next(error);
+      this.logger.error('Error adding resource:', _error);
+      next(_error);
     }
   }
 
@@ -517,8 +517,8 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       
       res.status(204).send();
     } catch (_error) {
-      this.logger.error('Error removing resource:', error);
-      next(error);
+      this.logger.error('Error removing resource:', _error);
+      next(_error);
     }
   }
 
@@ -534,8 +534,8 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       const duplicatedUnitPlan = await this.unitPlanService.duplicate(duplicateData, userId);
       res.status(201).json(duplicatedUnitPlan);
     } catch (_error) {
-      this.logger.error('Error duplicating unit plan:', error);
-      next(error);
+      this.logger.error('Error duplicating unit plan:', _error);
+      next(_error);
     }
   }
 }

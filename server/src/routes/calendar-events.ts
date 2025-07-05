@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import { z } from 'zod';
-import { CalendarEventType, CalendarEventSource, Prisma } from '@teaching-engine/database';
+import { Prisma } from '@teaching-engine/database';
 // Note: Authentication is handled at the route mounting level in index.ts
 import { validateRequest } from '../middleware/validateRequest';
-import { startOfDay, endOfDay, parseISO } from 'date-fns';
+import { endOfDay, parseISO } from 'date-fns';
 import { prisma } from '../prisma';
-
+import logger from '../logger';
 const router = Router();
 
 // Validation schemas
@@ -26,7 +26,7 @@ const querySchema = z.object({
 });
 
 // Get calendar events for a date range
-router.get('/', async (req, res) => {
+router.get('/', async (req: Request, res: Response) => {
   try {
     // Validate query parameters
     const queryValidation = querySchema.safeParse(req.query);
@@ -65,13 +65,13 @@ router.get('/', async (req, res) => {
 
     res.json(events);
   } catch (_error) {
-    console.error('Error fetching calendar events:', error);
+    logger.error('Error fetching calendar events:', _error);
     res.status(500).json({ error: 'Failed to fetch calendar events' });
   }
 });
 
 // Create a new calendar event
-router.post('/', validateRequest(calendarEventSchema), async (req, res) => {
+router.post('/', validateRequest(calendarEventSchema), async (req: Request, res: Response) => {
   try {
     const data = req.body as z.infer<typeof calendarEventSchema>;
     const userId = req.user!.id;
@@ -91,13 +91,13 @@ router.post('/', validateRequest(calendarEventSchema), async (req, res) => {
 
     res.status(201).json(event);
   } catch (_error) {
-    console.error('Error creating calendar event:', error);
+    logger.error('Error creating calendar event:', _error);
     res.status(500).json({ error: 'Failed to create calendar event' });
   }
 });
 
 // Update a calendar event
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const userId = req.user!.id;
@@ -126,13 +126,13 @@ router.patch('/:id', async (req, res) => {
 
     res.json(updatedEvent);
   } catch (_error) {
-    console.error('Error updating calendar event:', error);
+    logger.error('Error updating calendar event:', _error);
     res.status(500).json({ error: 'Failed to update calendar event' });
   }
 });
 
 // Delete a calendar event
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const userId = req.user!.id;
@@ -155,7 +155,7 @@ router.delete('/:id', async (req, res) => {
 
     res.status(204).send();
   } catch (_error) {
-    console.error('Error deleting calendar event:', error);
+    logger.error('Error deleting calendar event:', _error);
     res.status(500).json({ error: 'Failed to delete calendar event' });
   }
 });

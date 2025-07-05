@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Property-Based Tests for Assessment Calculations
  * Tests mathematical invariants and educational assessment logic

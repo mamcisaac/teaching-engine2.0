@@ -1,10 +1,10 @@
+import { apiClient } from '../api/core/client';
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { X, Edit, Trash2, Calendar, Clock, Book } from 'lucide-react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
-import { api } from '../../api/legacy/api';
 import { Button } from '../ui/Button';
 
 interface CalendarViewEvent {
@@ -46,9 +46,9 @@ export default function CalendarEventDetails({
   const deleteMutation = useMutation({
     mutationFn: async () => {
       if (event.type === 'lesson' && event.metadata?.lessonId) {
-        return api.delete(`/api/etfo-lesson-plans/${event.metadata.lessonId}`);
+        return apiClient.delete(`/api/etfo-lesson-plans/${event.metadata.lessonId}`);
       } else if (event.originalData?.id) {
-        return api.delete(`/api/calendar-events/${event.originalData.id}`);
+        return apiClient.delete(`/api/calendar-events/${event.originalData.id}`);
       }
     },
     onSuccess: () => {
@@ -67,11 +67,11 @@ export default function CalendarEventDetails({
   const updateTitleMutation = useMutation({
     mutationFn: async (newTitle: string) => {
       if (event.type === 'lesson' && event.metadata?.lessonId) {
-        return api.patch(`/api/etfo-lesson-plans/${event.metadata.lessonId}`, {
+        return apiClient.patch(`/api/etfo-lesson-plans/${event.metadata.lessonId}`, {
           title: newTitle,
         });
       } else if (event.originalData?.id) {
-        return api.patch(`/api/calendar-events/${event.originalData.id}`, {
+        return apiClient.patch(`/api/calendar-events/${event.originalData.id}`, {
           title: newTitle,
         });
       }

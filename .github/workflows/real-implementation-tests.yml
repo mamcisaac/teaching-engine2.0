@@ -1,0 +1,813 @@
+name: Real Implementation Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FORCE_COLOR: 1
+  CI: true
+  DATABASE_URL: postgresql://test_user:test_password@localhost:5432/teaching_engine_test
+  JWT_SECRET: test-jwt-secret-key-for-ci-environment
+  NODE_ENV: test
+  USE_REAL_IMPLEMENTATIONS: true
+  MOCK_EXTERNAL_APIS: true
+  TEST_PERFORMANCE_MONITORING: true
+  
+jobs:
+  # Quality gate validation
+  validate-test-quality:
+    runs-on: ubuntu-latest
+    name: Validate Test Quality Standards
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate test quality standards
+        run: |
+          echo "🔍 Validating test quality standards..."
+          pnpm --filter server run test:validate-quality
+        continue-on-error: false
+
+      - name: Check for forbidden patterns
+        run: |
+          echo "🚫 Checking for forbidden test patterns..."
+          pnpm --filter server run test:lint-enforcement
+        continue-on-error: false
+
+      - name: Performance validation for changed tests
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "⚡ Validating performance of changed tests..."
+          git diff --name-only origin/main...HEAD | grep -E '\.(test|spec)\.ts$' > changed_tests.txt || true
+          if [ -s changed_tests.txt ]; then
+            echo "Changed test files:"
+            cat changed_tests.txt
+            pnpm --filter server run test:performance-check $(cat changed_tests.txt | tr '\n' ' ')
+          else
+            echo "No test files changed"
+          fi
+
+  # Setup test database
+  setup-test-database:
+    runs-on: ubuntu-latest
+    name: Setup Test Database
+    
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_USER: test_user
+          POSTGRES_DB: teaching_engine_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Prisma client
+        run: pnpm --filter @teaching-engine/database db:generate
+
+      - name: Validate database schema
+        run: |
+          echo "🗄️ Validating database schema..."
+          pnpm --filter @teaching-engine/database db:push --preview-feature
+
+      - name: Test database connectivity
+        run: |
+          echo "🔗 Testing database connectivity..."
+          pnpm --filter server run test:db-connection
+
+      - name: Seed test database
+        run: |
+          echo "🌱 Seeding test database..."
+          pnpm --filter @teaching-engine/database db:seed:test
+
+  # Real implementation unit tests
+  real-implementation-unit-tests:
+    runs-on: ubuntu-latest
+    name: Real Implementation Unit Tests
+    needs: [validate-test-quality, setup-test-database]
+    
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_USER: test_user
+          POSTGRES_DB: teaching_engine_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    strategy:
+      matrix:
+        test-suite: [services, routes, middleware, utils]
+      fail-fast: false
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Prisma client
+        run: pnpm --filter @teaching-engine/database db:generate
+
+      - name: Setup test database
+        run: |
+          pnpm --filter @teaching-engine/database db:push
+          pnpm --filter @teaching-engine/database db:seed:test
+
+      - name: Run real implementation unit tests - ${{ matrix.test-suite }}
+        run: |
+          echo "🧪 Running real implementation unit tests for ${{ matrix.test-suite }}..."
+          pnpm --filter server test -- --testPathPattern=".*/${{ matrix.test-suite }}/.*\.test\.ts$" --testNamePattern="Real Implementation" --maxWorkers=2
+        timeout-minutes: 10
+
+      - name: Collect performance metrics
+        run: |
+          echo "📊 Collecting performance metrics..."
+          pnpm --filter server run test:performance-report -- --suite=${{ matrix.test-suite }}
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-test-results-${{ matrix.test-suite }}
+          path: |
+            server/coverage/
+            server/test-results/
+            server/performance-reports/
+
+  # Real implementation integration tests
+  real-implementation-integration-tests:
+    runs-on: ubuntu-latest
+    name: Real Implementation Integration Tests
+    needs: [validate-test-quality, setup-test-database]
+    
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_USER: test_user
+          POSTGRES_DB: teaching_engine_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    strategy:
+      matrix:
+        integration-suite: [auth, curriculum, planning, templates]
+      fail-fast: false
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Prisma client
+        run: pnpm --filter @teaching-engine/database db:generate
+
+      - name: Setup test database with larger dataset
+        run: |
+          pnpm --filter @teaching-engine/database db:push
+          pnpm --filter @teaching-engine/database db:seed:integration
+
+      - name: Run real implementation integration tests - ${{ matrix.integration-suite }}
+        run: |
+          echo "🔗 Running real implementation integration tests for ${{ matrix.integration-suite }}..."
+          pnpm --filter server test:integration -- --testPathPattern=".*${{ matrix.integration-suite }}.*\.test\.ts$" --maxWorkers=1
+        timeout-minutes: 15
+
+      - name: Validate database integrity
+        run: |
+          echo "🔍 Validating database integrity after tests..."
+          pnpm --filter server run test:db-integrity-check
+
+      - name: Upload integration test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-test-results-${{ matrix.integration-suite }}
+          path: |
+            server/coverage/
+            server/test-results/
+            server/performance-reports/
+
+  # API endpoint testing with real implementations
+  real-api-endpoint-tests:
+    runs-on: ubuntu-latest
+    name: Real API Endpoint Tests
+    needs: [validate-test-quality, setup-test-database]
+    
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_USER: test_user
+          POSTGRES_DB: teaching_engine_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Prisma client
+        run: pnpm --filter @teaching-engine/database db:generate
+
+      - name: Setup test database
+        run: |
+          pnpm --filter @teaching-engine/database db:push
+          pnpm --filter @teaching-engine/database db:seed:api-tests
+
+      - name: Start test server
+        run: |
+          echo "🚀 Starting test server..."
+          pnpm --filter server run start:test &
+          sleep 10
+
+      - name: Run API endpoint tests with real implementations
+        run: |
+          echo "🌐 Running API endpoint tests with real implementations..."
+          pnpm --filter server test:api-real -- --maxWorkers=1
+        timeout-minutes: 20
+
+      - name: Test API performance under load
+        run: |
+          echo "⚡ Testing API performance under load..."
+          pnpm --filter server run test:api-performance
+
+      - name: Upload API test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-test-results
+          path: |
+            server/coverage/
+            server/test-results/
+            server/performance-reports/
+            server/api-test-results/
+
+  # Performance regression testing
+  performance-regression-tests:
+    runs-on: ubuntu-latest
+    name: Performance Regression Tests
+    needs: [real-implementation-unit-tests, real-implementation-integration-tests]
+    
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_USER: test_user
+          POSTGRES_DB: teaching_engine_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Prisma client
+        run: pnpm --filter @teaching-engine/database db:generate
+
+      - name: Setup performance test database
+        run: |
+          pnpm --filter @teaching-engine/database db:push
+          pnpm --filter @teaching-engine/database db:seed:performance
+
+      - name: Download baseline performance metrics
+        uses: actions/download-artifact@v4
+        with:
+          name: baseline-performance-metrics
+          path: ./baseline-metrics/
+        continue-on-error: true
+
+      - name: Run performance regression tests
+        run: |
+          echo "📈 Running performance regression tests..."
+          pnpm --filter server run test:performance-regression
+
+      - name: Compare with baseline
+        run: |
+          echo "📊 Comparing performance with baseline..."
+          pnpm --filter server run test:performance-compare
+
+      - name: Upload performance results
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-regression-results
+          path: |
+            server/performance-reports/
+            server/regression-analysis/
+
+      - name: Update baseline if on main branch
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "💾 Updating performance baseline..."
+          pnpm --filter server run test:performance-update-baseline
+
+      - name: Upload new baseline
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: baseline-performance-metrics
+          path: server/performance-baseline/
+
+  # Coverage analysis with quality gates
+  coverage-analysis:
+    runs-on: ubuntu-latest
+    name: Coverage Analysis & Quality Gates
+    needs: [real-implementation-unit-tests, real-implementation-integration-tests, real-api-endpoint-tests]
+    
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_USER: test_user
+          POSTGRES_DB: teaching_engine_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Download all test results
+        uses: actions/download-artifact@v4
+        with:
+          path: ./test-artifacts/
+
+      - name: Generate Prisma client
+        run: pnpm --filter @teaching-engine/database db:generate
+
+      - name: Setup test database
+        run: |
+          pnpm --filter @teaching-engine/database db:push
+          pnpm --filter @teaching-engine/database db:seed:coverage
+
+      - name: Run comprehensive coverage analysis
+        run: |
+          echo "📊 Running comprehensive coverage analysis..."
+          pnpm --filter server run test:coverage:comprehensive
+        timeout-minutes: 15
+
+      - name: Validate coverage thresholds
+        run: |
+          echo "🎯 Validating coverage thresholds..."
+          pnpm --filter server run test:coverage:validate
+
+      - name: Generate coverage report
+        run: |
+          echo "📈 Generating coverage report..."
+          pnpm --filter server run test:coverage:report
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./server/coverage/lcov.info
+          flags: real-implementation
+          name: real-implementation-coverage
+          fail_ci_if_error: true
+
+      - name: Upload coverage reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-reports
+          path: |
+            server/coverage/
+            server/coverage-reports/
+
+      - name: Quality gate check
+        run: |
+          echo "🚪 Running quality gate check..."
+          pnpm --filter server run test:quality-gate
+
+  # Frontend real implementation tests
+  frontend-real-implementation-tests:
+    runs-on: ubuntu-latest
+    name: Frontend Real Implementation Tests
+    needs: [validate-test-quality]
+    
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_USER: test_user
+          POSTGRES_DB: teaching_engine_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Setup backend for frontend tests
+        run: |
+          echo "🔧 Setting up backend for frontend tests..."
+          pnpm --filter @teaching-engine/database db:generate
+          pnpm --filter @teaching-engine/database db:push
+          pnpm --filter @teaching-engine/database db:seed:frontend
+
+      - name: Start backend server
+        run: |
+          echo "🚀 Starting backend server for frontend tests..."
+          pnpm --filter server run start:test &
+          sleep 15
+
+      - name: Run frontend tests with real backend
+        run: |
+          echo "🖥️ Running frontend tests with real backend..."
+          pnpm --filter client run test:real-backend
+        timeout-minutes: 15
+
+      - name: Run component integration tests
+        run: |
+          echo "🧩 Running component integration tests..."
+          pnpm --filter client run test:integration
+
+      - name: Upload frontend test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-test-results
+          path: |
+            client/coverage/
+            client/test-results/
+
+  # Security validation for real implementations
+  security-validation:
+    runs-on: ubuntu-latest
+    name: Security Validation
+    needs: [validate-test-quality]
+    
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_USER: test_user
+          POSTGRES_DB: teaching_engine_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Prisma client
+        run: pnpm --filter @teaching-engine/database db:generate
+
+      - name: Setup security test database
+        run: |
+          pnpm --filter @teaching-engine/database db:push
+          pnpm --filter @teaching-engine/database db:seed:security
+
+      - name: Run security tests with real implementations
+        run: |
+          echo "🔒 Running security tests with real implementations..."
+          pnpm --filter server run test:security:real
+        timeout-minutes: 10
+
+      - name: Validate authentication flows
+        run: |
+          echo "🔐 Validating authentication flows..."
+          pnpm --filter server run test:security:auth
+
+      - name: Check for security vulnerabilities
+        run: |
+          echo "🛡️ Checking for security vulnerabilities..."
+          pnpm audit --audit-level moderate
+
+      - name: Upload security test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-test-results
+          path: |
+            server/security-reports/
+            server/vulnerability-reports/
+
+  # Generate comprehensive test report
+  generate-test-report:
+    runs-on: ubuntu-latest
+    name: Generate Comprehensive Test Report
+    needs: [
+      real-implementation-unit-tests,
+      real-implementation-integration-tests,
+      real-api-endpoint-tests,
+      performance-regression-tests,
+      coverage-analysis,
+      frontend-real-implementation-tests,
+      security-validation
+    ]
+    if: always()
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Download all test artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./all-test-results/
+
+      - name: Generate comprehensive test report
+        run: |
+          echo "📋 Generating comprehensive test report..."
+          pnpm --filter server run test:report:comprehensive
+
+      - name: Upload comprehensive report
+        uses: actions/upload-artifact@v4
+        with:
+          name: comprehensive-test-report
+          path: |
+            server/reports/
+            all-test-results/
+
+      - name: Comment PR with test summary
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = './server/reports/test-summary.json';
+            
+            if (fs.existsSync(path)) {
+              const summary = JSON.parse(fs.readFileSync(path, 'utf8'));
+              
+              const comment = `
+              ## 🧪 Real Implementation Test Results
+              
+              ### Overall Status
+              **Quality Score: ${summary.qualityScore}/100** ${summary.qualityScore >= 85 ? '✅' : '❌'}
+              
+              ### Test Results Summary
+              | Test Suite | Status | Coverage | Performance |
+              |------------|---------|----------|-------------|
+              | Unit Tests | ${summary.unitTests.status} | ${summary.unitTests.coverage}% | ${summary.unitTests.performance} |
+              | Integration Tests | ${summary.integrationTests.status} | ${summary.integrationTests.coverage}% | ${summary.integrationTests.performance} |
+              | API Tests | ${summary.apiTests.status} | ${summary.apiTests.coverage}% | ${summary.apiTests.performance} |
+              | Frontend Tests | ${summary.frontendTests.status} | ${summary.frontendTests.coverage}% | ${summary.frontendTests.performance} |
+              | Security Tests | ${summary.securityTests.status} | N/A | ${summary.securityTests.performance} |
+              
+              ### Quality Gates
+              ${summary.qualityGates.map(gate => `- ${gate.name}: ${gate.status} ${gate.passed ? '✅' : '❌'}`).join('\n')}
+              
+              ### Performance Analysis
+              - **Execution Time**: ${summary.performance.totalTime}ms
+              - **Memory Usage**: ${summary.performance.peakMemory}MB
+              - **Database Queries**: ${summary.performance.queryCount} total
+              - **Slow Tests**: ${summary.performance.slowTests} tests > 5s
+              
+              ### Recommendations
+              ${summary.recommendations.map(rec => `- ${rec}`).join('\n')}
+              
+              ---
+              📊 [View Detailed Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+              `;
+              
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            }
+
+  # Cleanup and notifications
+  cleanup-and-notify:
+    runs-on: ubuntu-latest
+    name: Cleanup and Notifications
+    needs: [generate-test-report]
+    if: always()
+
+    steps:
+      - name: Cleanup test databases
+        run: |
+          echo "🧹 Cleaning up test databases..."
+          # Cleanup commands would go here
+
+      - name: Send Slack notification on failure
+        if: failure()
+        uses: 8398a7/action-slack@v3
+        with:
+          status: failure
+          channel: '#ci-alerts'
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+          message: |
+            🚨 Real Implementation Tests Failed
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref }}
+            Commit: ${{ github.sha }}
+            View Details: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+      - name: Send success notification
+        if: success()
+        uses: 8398a7/action-slack@v3
+        with:
+          status: success
+          channel: '#ci-updates'
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+          message: |
+            ✅ Real Implementation Tests Passed
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref }}
+            All quality gates passed successfully!

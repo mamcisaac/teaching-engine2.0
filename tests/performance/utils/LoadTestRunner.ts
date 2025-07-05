@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Load Test Runner
  * Executes load testing scenarios with configurable virtual users and scenarios
@@ -97,7 +98,7 @@ export class LoadTestRunner {
       try {
         const result = await this.makeRequest(scenario);
         results.push(result);
-      } catch (error) {
+      } catch (_error) {
         results.push({
           responseTime: 0,
           success: false,
@@ -163,7 +164,7 @@ export class LoadTestRunner {
         endpoint: scenario.endpoint,
         timestamp,
       };
-    } catch (error) {
+    } catch (_error) {
       const endTime = performance.now();
       const responseTime = endTime - startTime;
 

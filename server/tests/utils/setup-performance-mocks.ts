@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Mock setup for performance tests
  * Performance tests need real implementations but may mock expensive external calls

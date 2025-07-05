@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Mock setup for E2E tests
  * E2E tests use minimal mocking - only external APIs that would be expensive/unreliable

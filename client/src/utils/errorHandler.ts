@@ -1,6 +1,6 @@
 import { toast } from 'sonner';
 import { AxiosError } from 'axios';
-
+import logger from './logger';
 interface ApiError {
   error: string;
   message?: string;
@@ -21,7 +21,7 @@ export class ClientError extends Error {
 }
 
 export function handleApiError(error: unknown, customMessage?: string): void {
-  console.error('API Error:', error);
+  logger.error('API Error:', error);
 
   if (error instanceof AxiosError) {
     const apiError = error.response?.data as ApiError;
@@ -105,7 +105,7 @@ export async function retryOperation<T>(
   for (let i = 0; i < maxRetries; i++) {
     try {
       return await operation();
-    } catch (_error) {
+    } catch (error) {
       lastError = error;
 
       // Don't retry on certain errors

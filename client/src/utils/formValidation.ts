@@ -39,8 +39,8 @@ export function validateUnitPlan(data: UnitPlanFormData): ValidationResult {
     const startDate = new Date(data.startDate);
     const endDate = new Date(data.endDate);
 
-    if (startDate >= endDate) {
-      errors.endDate = 'End date must be after start date';
+    if (startDate > endDate) {
+      errors.endDate = 'End date must be after or equal to start date';
     }
 
     // Check if dates are reasonable (not too far in past/future)

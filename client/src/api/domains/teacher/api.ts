@@ -1,5 +1,4 @@
 import { apiClient } from '../../core/client';
-import type { TeacherPreferencesInput, TeacherReflection, TeacherReflectionInput } from '../../../types';
 
 // API endpoints
 export const teacherApi = {

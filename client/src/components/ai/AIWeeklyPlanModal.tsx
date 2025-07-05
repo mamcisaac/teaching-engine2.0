@@ -69,7 +69,7 @@ export function AIWeeklyPlanModal({
       });
       return response.data.data;
     },
-    onSuccess: (data) => {
+    onSuccess: (_data) => {
       setGeneratedPlan(data);
       toast.success('Weekly plan generated successfully!');
     },

@@ -1,5 +1,5 @@
 import { api } from '@/api';
-
+import logger from '../../utils/logger';
 export interface ExportOptions {
   type: string;
   format: 'pdf' | 'csv' | 'png';
@@ -32,8 +32,8 @@ class ExportService {
       // Cleanup
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
-    } catch (_error) {
-      console.error('Export failed:', error);
+    } catch (error) {
+      logger.error('Export failed:', error);
       throw new Error('Failed to export data');
     }
   }

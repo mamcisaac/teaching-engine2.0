@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Mock setup specifically for unit tests
  * Unit tests should be fast and isolated with extensive mocking

@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { authApi } from './api';
-import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+import { queryKeys as _queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 import { authService } from '../../../services/authService';
 import type { LoginCredentials, RegisterData, User } from '../../../types';
 
@@ -85,7 +85,7 @@ export const useLogout = () => {
       showSuccessToast('Logged out successfully');
       navigate('/login');
     },
-    onError: (error) => {
+    onError: (_error) => {
       // Even if logout fails on server, clear local state
       authService.clearTokens();
       queryClient.clear();

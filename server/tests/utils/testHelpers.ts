@@ -118,7 +118,7 @@ export class TestCleanup {
     for (const task of this.cleanupTasks.reverse()) {
       try {
         await task();
-      } catch (error) {
+      } catch (_error) {
         console.error('Cleanup task failed:', error);
       }
     }
@@ -164,7 +164,7 @@ export const retryTest = async <T>(
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
       return await testFn();
-    } catch (error) {
+    } catch (_error) {
       lastError = error as Error;
       
       if (attempt === maxRetries) {

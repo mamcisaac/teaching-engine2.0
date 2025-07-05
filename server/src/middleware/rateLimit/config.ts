@@ -1,6 +1,9 @@
 /**
  * Centralized Rate Limit Configuration
- * Defines all rate limiting rules in one place for easy management
+ * 
+ * SINGLE USER APP - Rate limiting is disabled via shouldBypassRateLimit()
+ * This app is for personal use by a single teacher, so rate limits are not needed.
+ * The configuration is kept for reference but all requests bypass rate limiting.
  */
 
 export interface RateLimitConfig {
@@ -158,6 +161,27 @@ export const developmentOverrides: Partial<RateLimitConfig> = isDevelopment ? {
 } : {};
 
 /**
+ * Development bypass for testing
+ */
+export const shouldBypassRateLimit = (req: any): boolean => {
+  // SINGLE USER APP - Always bypass rate limits
+  return true;
+  
+  // Original logic kept for reference:
+  // // Always bypass in development for easier testing
+  // if (isDevelopment) {
+  //   return true;
+  // }
+  // 
+  // // Check for specific test header
+  // if (req.headers['x-test-bypass-rate-limit'] === 'true') {
+  //   return true;
+  // }
+  // 
+  // return false;
+};
+
+/**
  * Get rate limit config with user tier multiplier
  */
 export function getRateLimitConfig(
@@ -183,6 +207,15 @@ export function getRateLimitConfig(
 /**
  * Rate limit groups for applying multiple limits
  */
+/**
+ * Reset rate limiter state for testing
+ */
+export function resetRateLimiterState(): void {
+  // This function is used for testing to reset rate limit state
+  // Implementation would depend on the store being used
+  // For now, this is a placeholder
+}
+
 export const rateLimitGroups = {
   // Standard API protection
   api: ['general', 'read'],

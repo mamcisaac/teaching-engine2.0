@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import logger from '../logger';
 import { withSpan, dbQueryDuration, dbQueryCounter } from '../monitoring/telemetry';
 
@@ -49,7 +50,7 @@ export class PerformanceTimer {
   }
 }
 
-// Function performance wrapper
+// (...args: unknown[]) => unknown performance wrapper
 export const measurePerformance = async <T>(
   name: string,
   fn: () => Promise<T>,

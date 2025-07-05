@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Advanced XSS Protection Security Test Suite
  * Tests for comprehensive XSS prevention including SVG, Unicode, CSS injection, and context-aware sanitization
@@ -197,23 +198,23 @@ describe('Advanced XSS Protection Security Tests', () => {
     app.use(advancedXssProtection);
 
     // Test endpoints
-    app.post('/api/test/html-content', (req, res) => {
+    app.post('/api/test/html-content', (req: Request, res: Response) => {
       res.json({ content: req.body.content });
     });
 
-    app.post('/api/test/css-content', (req, res) => {
+    app.post('/api/test/css-content', (req: Request, res: Response) => {
       res.json({ styles: req.body.styles });
     });
 
-    app.post('/api/test/email', (req, res) => {
+    app.post('/api/test/email', (req: Request, res: Response) => {
       res.json({ email: req.body.email });
     });
 
-    app.post('/api/test/url', (req, res) => {
+    app.post('/api/test/url', (req: Request, res: Response) => {
       res.json({ url: req.body.url });
     });
 
-    app.post('/api/test/mixed-content', (req, res) => {
+    app.post('/api/test/mixed-content', (req: Request, res: Response) => {
       res.json({
         title: req.body.title,
         description: req.body.description,

@@ -30,6 +30,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 // import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import Dialog from '../components/Dialog';
 import { LoadingSpinner } from '../components/LoadingStates';
+import logger from '../utils/logger';
 import {
   Search,
   Filter,
@@ -134,7 +135,7 @@ export default function TemplatesPage() {
       });
       navigate(`/templates/${newTemplate.id}`);
     } catch (_error) {
-      console.error('Failed to create template:', error);
+      logger.error('Failed to create template:', error);
     }
   };
 
@@ -146,7 +147,7 @@ export default function TemplatesPage() {
       });
       navigate(`/templates/${duplicated.id}`);
     } catch (_error) {
-      console.error('Failed to duplicate template:', error);
+      logger.error('Failed to duplicate template:', error);
     }
   };
 
@@ -161,7 +162,7 @@ export default function TemplatesPage() {
         navigate('/templates');
       }
     } catch (_error) {
-      console.error('Failed to delete template:', error);
+      logger.error('Failed to delete template:', error);
     }
   };
 
@@ -182,7 +183,7 @@ export default function TemplatesPage() {
         });
       }
     } catch (_error) {
-      console.error('Failed to apply template:', error);
+      logger.error('Failed to apply template:', error);
     }
   };
 
@@ -190,7 +191,7 @@ export default function TemplatesPage() {
   //   try {
   //     await rateTemplate.mutateAsync({ id: template.id, rating });
   //   } catch (_error) {
-  //     console.error('Failed to rate template:', error);
+  //     logger.error('Failed to rate template:', error);
   //   }
   // };
 

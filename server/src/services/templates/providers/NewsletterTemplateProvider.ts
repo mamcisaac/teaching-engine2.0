@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Newsletter Template Provider
  * Provides templates for newsletters
  */
 
-import { TemplateProvider, Template, TemplateContext, DataRequirement } from './TemplateProvider';
+import { TemplateProvider, Template, TemplateContext } from './TemplateProvider';
 
 export class NewsletterTemplateProvider extends TemplateProvider {
   constructor() {

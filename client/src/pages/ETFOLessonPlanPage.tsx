@@ -61,7 +61,7 @@ import { MobileOptimizedForm, CollapsibleSection } from '../components/ui/Mobile
 import { generateLessonPlanHTML, printHTML, downloadHTML } from '../utils/printUtils';
 import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
 import { SafeHtmlRenderer } from '../utils/sanitization';
-
+import logger from '../utils/logger';
 export default function ETFOLessonPlanPage() {
   const { unitId, lessonId } = useParams();
   const navigate = useNavigate();
@@ -396,7 +396,7 @@ export default function ETFOLessonPlanPage() {
       setSelectedTemplate(null);
       setIsCreateModalOpen(true);
     } catch (_error) {
-      console.error('Failed to apply template:', error);
+      logger.error('Failed to apply template:', error);
     }
   };
 

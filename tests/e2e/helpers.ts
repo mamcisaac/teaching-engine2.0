@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { Page } from '@playwright/test';
 
 export const API_BASE = 'http://127.0.0.1:3000';
@@ -19,7 +20,7 @@ export async function login(page: Page): Promise<string> {
         console.log('Both API and frontend are ready');
         break;
       }
-    } catch (error) {
+    } catch (_error) {
       console.log(`Health check attempt ${i + 1} failed:`, error);
     }
     await new Promise((r) => setTimeout(r, 1000));

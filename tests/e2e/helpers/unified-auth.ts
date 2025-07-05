@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { Page, expect, APIRequestContext } from '@playwright/test';
 
 // API base URL configuration
@@ -58,7 +59,7 @@ async function waitForServices(page: Page, maxRetries = 60): Promise<void> {
           `Services status: API ${apiReady ? 'OK' : 'Failed'}, Frontend ${frontendReady ? 'OK' : 'Failed'}`,
         );
       }
-    } catch (error) {
+    } catch (_error) {
       if (i % 10 === 0) {
         console.log(
           `Service check attempt ${i + 1} failed:`,
@@ -240,7 +241,7 @@ export async function createTestUser(
     createdTestUsers.push(userWithToken);
 
     return userWithToken;
-  } catch (error) {
+  } catch (_error) {
     console.error('Failed to create test user:', error);
     throw error;
   }
@@ -264,7 +265,7 @@ export async function retry<T>(
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
       return await operation();
-    } catch (error) {
+    } catch (_error) {
       lastError = error as Error;
 
       if (attempt === maxRetries || !retryCondition(lastError)) {
@@ -426,7 +427,7 @@ export async function cleanupTestUsers(): Promise<void> {
       } else {
         console.warn(`No token available to clean up user: ${user.email}`);
       }
-    } catch (error) {
+    } catch (_error) {
       console.warn(`Failed to cleanup test user ${user.email}:`, error);
     }
   }

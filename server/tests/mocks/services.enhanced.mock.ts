@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Enhanced Service Mocks for Stable Testing Infrastructure
  * This provides comprehensive mocking for all service dependencies with proper isolation

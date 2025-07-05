@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { test, expect, Page } from '@playwright/test';
 import { loginAsTestUser, createTestUser, cleanupTestData } from './helpers/auth';
 
@@ -507,7 +508,7 @@ test.describe('Planning Data Integrity Tests', () => {
       // This should either succeed or fail gracefully
       try {
         await corruptionSim.simulateNetworkInterruption(createOperation);
-      } catch (error) {
+      } catch (_error) {
         // Network interruption should not cause data corruption
         await validator.validateDatabaseConstraints();
       }

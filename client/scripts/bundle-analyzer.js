@@ -112,11 +112,19 @@ function generateRecommendations(analysis) {
   const recommendations = [];
   const mainBundle = analysis.js.files.find(f => f.name.includes('index') || f.name.includes('main'));
   
-  if (mainBundle && mainBundle.size > 1024 * 1024) { // > 1MB
+  // Target thresholds
+  const BUNDLE_TARGETS = {
+    mainBundle: 250 * 1024, // 250KB target
+    vendorChunk: 150 * 1024, // 150KB per vendor chunk
+    lazyChunk: 50 * 1024, // 50KB per lazy chunk
+    totalSize: 500 * 1024, // 500KB total initial load
+  };
+  
+  if (mainBundle && mainBundle.size > BUNDLE_TARGETS.mainBundle) {
     recommendations.push({
-      type: 'warning',
-      message: 'Main bundle is larger than 1MB. Consider code splitting.',
-      details: `Main bundle: ${formatBytes(mainBundle.size)}`
+      type: 'critical',
+      message: `Main bundle (${formatBytes(mainBundle.size)}) exceeds target of ${formatBytes(BUNDLE_TARGETS.mainBundle)}.`,
+      details: `Consider:\n  - Lazy loading heavy components\n  - Code splitting by routes\n  - Moving large dependencies to lazy chunks`
     });
   }
   
@@ -142,6 +150,25 @@ function generateRecommendations(analysis) {
       type: 'warning',
       message: `Found ${largeFiles.length} large JavaScript files (>500KB).`,
       details: largeFiles.map(f => `${f.name}: ${formatBytes(f.size)}`).join('\n  ')
+    });
+  }
+  
+  // Specific component recommendations
+  const calendarChunk = analysis.js.files.find(f => f.name.includes('Calendar'));
+  if (calendarChunk && calendarChunk.size > 100 * 1024) {
+    recommendations.push({
+      type: 'info',
+      message: 'CalendarPlanningPage is large. Consider:',
+      details: '- Lazy load react-big-calendar\n- Split calendar modals into separate chunks\n- Load moment.js dynamically'
+    });
+  }
+  
+  const onboardingChunk = analysis.js.files.find(f => f.name.includes('Onboarding'));
+  if (onboardingChunk && onboardingChunk.size > 50 * 1024) {
+    recommendations.push({
+      type: 'info',
+      message: 'OnboardingFlow is large. Consider:',
+      details: '- Lazy load framer-motion\n- Split tooltip components\n- Load onboarding flow on demand'
     });
   }
   

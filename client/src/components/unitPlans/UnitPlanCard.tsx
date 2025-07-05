@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import React, { memo, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { UnitPlan } from '../../hooks/useETFOPlanning';

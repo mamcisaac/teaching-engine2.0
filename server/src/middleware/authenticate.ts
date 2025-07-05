@@ -121,7 +121,7 @@ export async function verifyToken(token: string): Promise<TokenPayload | { error
 
       return decoded;
     } catch (issuerError) {
-      // If it's a test environment and the error is about issuer/audience, try without them
+      // If it's a test environment and the _error is about issuer/audience, try without them
       if (process.env.NODE_ENV === 'test' && 
           issuerError instanceof jwt.JsonWebTokenError && 
           (issuerError.message.includes('jwt audience invalid') || 
@@ -141,18 +141,18 @@ export async function verifyToken(token: string): Promise<TokenPayload | { error
         return decoded;
       }
       
-      // Re-throw the error if it's not an issuer/audience issue
+      // Re-throw the _error if it's not an issuer/audience issue
       throw issuerError;
     }
   } catch (_error) {
-    if (error instanceof jwt.TokenExpiredError) {
+    if (_error instanceof jwt.TokenExpiredError) {
       logger.debug('Token expired');
       return { error: 'expired' };
-    } else if (error instanceof jwt.JsonWebTokenError) {
-      logger.debug({ error: error.message }, 'Invalid token');
+    } else if (_error instanceof jwt.JsonWebTokenError) {
+      logger.debug({ error: _error.message }, 'Invalid token');
       return { error: 'invalid' };
     } else {
-      logger.error({ error }, 'Token verification error');
+      logger.error({ error: _error }, 'Token verification error');
       return { error: 'invalid' }; // Return invalid for any other error
     }
   }
@@ -377,9 +377,9 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
   } catch (_error) {
     logger.error(
       {
-        error,
-        errorMessage: error instanceof Error ? error.message : 'Unknown error',
-        errorStack: error instanceof Error ? error.stack : undefined,
+        error: _error,
+        errorMessage: _error instanceof Error ? _error.message : 'Unknown error',
+        errorStack: _error instanceof Error ? _error.stack : undefined,
       },
       'Authentication middleware error',
     );
@@ -420,7 +420,7 @@ export async function optionalAuthenticate(
     next();
   } catch (_error) {
     // Log error but continue without authentication
-    logger.error({ error }, 'Optional authentication error');
+    logger.error({ error: _error }, 'Optional authentication error');
     next();
   }
 }
@@ -582,7 +582,7 @@ export async function refreshToken(req: Request, res: Response): Promise<void> {
       },
     });
   } catch (_error) {
-    logger.error({ error }, 'Refresh token error');
+    logger.error({ error: _error }, 'Refresh token error');
     res.status(401).json({
       error: 'Unauthorized',
       message: 'Invalid refresh token',

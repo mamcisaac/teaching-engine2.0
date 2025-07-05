@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import jwt, { SignOptions } from 'jsonwebtoken';
 import { TokenPayload, JWTConfig as _JWTConfig } from './types';
 import logger from '../../logger.js';
@@ -63,7 +64,7 @@ export function verifyToken(token: string): TokenPayload {
     
     return decoded;
   } catch (_error) {
-    logger.error({ error }, 'Token verification failed');
+    logger.error({ error: _error }, 'Token verification failed');
     throw new Error('Invalid or expired token');
   }
 }

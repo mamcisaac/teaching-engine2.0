@@ -1,7 +1,6 @@
+import { apiClient } from '../api/core/client';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { api } from '../api/legacy/api';
-
 export interface AIStatusInfo {
   available: boolean;
   hasApiKey: boolean;
@@ -66,7 +65,7 @@ export function useAIStatus(): AIStatusHookReturn {
     queryKey: ['ai-status'],
     queryFn: async () => {
       try {
-        const response = await api.get('/api/ai/status');
+        const response = await apiClient.get('/api/ai/status');
         return {
           ...response.data,
           lastChecked: new Date(),

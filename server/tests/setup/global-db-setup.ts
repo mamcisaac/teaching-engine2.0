@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Global database setup for integration tests
  * Runs once before all integration tests
@@ -35,7 +36,7 @@ export default async function globalSetup() {
     execSync('pnpm --filter @teaching-engine/database db:push', { stdio: 'pipe' });
     
     console.log('✅ Test database setup complete');
-  } catch (error) {
+  } catch (_error) {
     console.error('❌ Failed to setup test database:', error);
     throw error;
   }

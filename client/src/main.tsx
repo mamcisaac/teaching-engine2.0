@@ -1,45 +1,63 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'sonner';
 import App from './App';
 import './index.css';
+import logger from './utils/logger';
+import { errorReportingService } from './services/errorReportingService';
 
+// Initialize error reporting service
+errorReportingService.init();
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       // Enable offline caching
       networkMode: 'offlineFirst',
-      retry: (failureCount, _error: unknown) => {
+      retry: (failureCount, error: unknown) => {
         // Don't retry if offline
         if (!navigator.onLine) return false;
         // Retry up to 3 times for other errors
         return failureCount < 3;
       },
+      onError: (error: unknown) => {
+        // Report query errors
+        errorReportingService.captureError(error, {
+          source: 'react-query',
+          type: 'query',
+        });
+      },
     },
     mutations: {
       // Enable offline persistence for mutations
       networkMode: 'offlineFirst',
+      onError: (error: unknown) => {
+        // Report mutation errors
+        errorReportingService.captureError(error, {
+          source: 'react-query',
+          type: 'mutation',
+        });
+      },
     },
   },
 });
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
+  <StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
       <Toaster position="top-right" />
     </QueryClientProvider>
-  </React.StrictMode>,
+  </StrictMode>,
 );
 
 // Register service worker - TEMPORARILY DISABLED FOR DEBUGGING
 // serviceWorkerRegistration.register({
 //   onSuccess: (registration) => {
-//     console.log('Service Worker registered successfully:', registration);
+//     logger.info('Service Worker registered successfully:', registration);
 //   },
 //   onUpdate: (registration) => {
 //     toast.info('New version available! Refresh to update.', {

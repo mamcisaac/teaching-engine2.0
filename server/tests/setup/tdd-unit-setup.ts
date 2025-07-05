@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * TDD Unit Test Setup
  * Uses real SQLite in-memory database for fast unit tests
@@ -33,7 +34,7 @@ beforeAll(async () => {
     await testClient.$queryRaw`SELECT 1`;
     
     console.log(`[TDD Unit Setup] Database ready for worker ${workerId}`);
-  } catch (error) {
+  } catch (_error) {
     console.error('[TDD Unit Setup] Failed to initialize database:', error);
     throw error;
   }
@@ -55,7 +56,7 @@ afterAll(async () => {
       testPrismaClient: PrismaClient | undefined;
     };
     globalForPrisma.testPrismaClient = undefined;
-  } catch (error) {
+  } catch (_error) {
     console.error('[TDD Unit Setup] Cleanup error:', error);
   }
 });

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Daybook AI Snapshot Tests
  * 
@@ -31,7 +32,7 @@ describe('Daybook AI Snapshot Tests', () => {
     test.each(scenarios)(
       'should generate consistent daybook entry for $name',
       async (scenario) => {
-        const aiFunction = async (input: any) => {
+        const aiFunction = async (input: unknown) => {
           if (!AI_TESTING_CONFIG.testApiKey) {
             return AITestMockResponses.mockDaybook(scenario);
           }
@@ -58,7 +59,7 @@ describe('Daybook AI Snapshot Tests', () => {
     test.each(scenarios)(
       'should generate consistent daybook entry for $name',
       async (scenario) => {
-        const aiFunction = async (input: any) => {
+        const aiFunction = async (input: unknown) => {
           if (!AI_TESTING_CONFIG.testApiKey) {
             return AITestMockResponses.mockDaybook(scenario);
           }
@@ -85,7 +86,7 @@ describe('Daybook AI Snapshot Tests', () => {
     test.each(scenarios)(
       'should generate consistent daybook entry for $name',
       async (scenario) => {
-        const aiFunction = async (input: any) => {
+        const aiFunction = async (input: unknown) => {
           if (!AI_TESTING_CONFIG.testApiKey) {
             return AITestMockResponses.mockDaybook(scenario);
           }

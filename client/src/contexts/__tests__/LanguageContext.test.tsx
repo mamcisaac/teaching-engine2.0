@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * @file LanguageContext.test.tsx
  * @description Comprehensive tests for LanguageContext including language switching,

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Curriculum Validator
  * Validates curriculum data structure and content
@@ -284,7 +285,7 @@ export class CurriculumValidator {
   /**
    * Check for duplicate expectations
    */
-  private checkDuplicates(expectations: ParsedExpectation[], warnings: ValidationWarning[]): number {
+  private checkDuplicates(expectations: ParsedExpectation[], _warnings: ValidationWarning[]): number {
     const seenCodes = new Map<string, number>();
     let duplicates = 0;
 
@@ -295,7 +296,7 @@ export class CurriculumValidator {
     }
 
     // Count codes that appear more than once
-    for (const [code, count] of seenCodes.entries()) {
+    for (const [_code, count] of seenCodes.entries()) {
       if (count > 1) {
         duplicates += count - 1; // Each duplicate after the first
       }

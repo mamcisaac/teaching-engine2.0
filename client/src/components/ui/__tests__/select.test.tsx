@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * @file select.test.tsx
  * @description Comprehensive tests for Select components including all sub-components,

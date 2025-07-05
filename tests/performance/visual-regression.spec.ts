@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Visual Regression Testing Suite
  * Automated screenshot comparison testing for UI consistency
@@ -101,7 +102,7 @@ class VisualRegressionSuite {
 
       this.results.push(result);
       return result;
-    } catch (error) {
+    } catch (_error) {
       const result: VisualTestResult = {
         pageName,
         viewport: viewport.name,

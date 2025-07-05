@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { lazy, Suspense, ComponentType } from 'react';
 
 // Lazy load heavy AI components
@@ -74,7 +75,7 @@ const ModalLoadingFallback = () => (
 );
 
 // Higher-order component for creating lazy wrapped components
-function createLazyComponent<T extends {} = {}>(
+function createLazyComponent<T extends Record<string, unknown> = Record<string, never>>(
   LazyComponent: ComponentType<T>, 
   fallback: ComponentType = () => <div>Loading...</div>
 ) {

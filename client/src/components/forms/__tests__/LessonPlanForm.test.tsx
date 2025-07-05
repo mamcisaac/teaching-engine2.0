@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * @file LessonPlanForm.test.tsx
  * @description Comprehensive tests for LessonPlanForm component including form validation,

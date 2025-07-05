@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import pino from 'pino';
 import { performance } from 'perf_hooks';
 
@@ -17,7 +18,7 @@ const pinoConfig: pino.LoggerOptions = {
   
   // Custom serializers for better structured logging
   serializers: {
-    req: (req: unknown) => {{
+    req: (req: unknown) => {
       const request = req as Record<string, unknown> & { method?: string; url?: string; headers?: Record<string, unknown>; remoteAddress?: string; remotePort?: number; connection?: { remoteAddress?: string; remotePort?: number } };
       return {
       method: request.method,
@@ -29,10 +30,10 @@ const pinoConfig: pino.LoggerOptions = {
       },
       remoteAddress: request.remoteAddress || request.connection?.remoteAddress,
       remotePort: request.remotePort || request.connection?.remotePort
-    }};
+    };
     },
     
-    res: (res: unknown) => {{
+    res: (res: unknown) => {
       const response = res as { statusCode?: number; getHeader?: (name: string) => unknown };
       return {
       statusCode: response.statusCode,
@@ -40,19 +41,19 @@ const pinoConfig: pino.LoggerOptions = {
         'content-type': typeof response.getHeader === 'function' ? response.getHeader('content-type') : undefined,
         'content-length': typeof response.getHeader === 'function' ? response.getHeader('content-length') : undefined
       }
-    }};
+    };
     },
     
     err: pino.stdSerializers.err,
     
-    user: (user: unknown) => {{
+    user: (user: unknown) => {
       const userData = user as { id?: string | number; email?: string; role?: string };
       return {
       id: userData?.id,
       email: userData?.email && typeof userData.email === 'string' ? userData.email.substring(0, 3) + '***' : undefined,
       role: userData?.role
-    }};
-    }}
+    };
+    }
   },
 
   // Add timestamp and performance info

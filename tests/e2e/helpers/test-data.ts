@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { APIRequestContext } from '@playwright/test';
 
 export async function createTestData(request: APIRequestContext) {
@@ -28,7 +29,7 @@ export async function createTestData(request: APIRequestContext) {
         },
       });
     }
-  } catch (error) {
+  } catch (_error) {
     console.error('Error creating test data:', error);
   }
 }

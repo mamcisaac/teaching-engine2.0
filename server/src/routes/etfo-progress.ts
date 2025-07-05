@@ -1,6 +1,6 @@
 import { Router, Request } from 'express';
 import { prisma } from '../prisma';
-
+import logger from '../logger';
 const router = Router();
 
 /**
@@ -101,8 +101,9 @@ router.get('/progress', async (req: Request, res) => {
     };
 
     res.json(progressData);
-  } catch (_error) {
-    console.error('Error fetching ETFO progress:', error);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    logger.error('Error fetching ETFO progress:', message);
     res.status(500).json({ error: 'Failed to fetch ETFO progress' });
   }
 });

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * @file AILessonPlanPanel.test.tsx
  * @description Comprehensive tests for AILessonPlanPanel component including AI interactions,

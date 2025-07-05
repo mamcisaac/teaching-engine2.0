@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Property-based testing setup for Teaching Engine 2.0
  * Configures fast-check for education domain testing

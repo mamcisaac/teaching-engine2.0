@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Template Data Fetcher
  * Fetches and aggregates data for templates
@@ -222,7 +223,7 @@ export class TemplateDataFetcher {
   /**
    * Fetch assessment data
    */
-  private async fetchAssessmentData(context: FetchContext): Promise<unknown> {
+  private async fetchAssessmentData(_context: FetchContext): Promise<unknown> {
     // This would fetch from assessment tables
     // For now, return mock data
     return {
@@ -301,7 +302,7 @@ export class TemplateDataFetcher {
         return [];
 
       case 'weekStart':
-      case 'weekEnd':
+      case 'weekEnd': {
         // Calculate week dates
         const now = new Date();
         const dayOfWeek = now.getDay();
@@ -311,6 +312,7 @@ export class TemplateDataFetcher {
         weekEnd.setDate(weekStart.getDate() + 6);
         
         return key === 'weekStart' ? weekStart : weekEnd;
+      }
 
       default:
         return null;
@@ -416,7 +418,7 @@ export class TemplateDataFetcher {
   /**
    * Fetch upcoming events
    */
-  private async fetchUpcomingEvents(userId: number): Promise<any[]> {
+  private async fetchUpcomingEvents(_userId: number): Promise<unknown[]> {
     // This would fetch from calendar events
     return [];
   }

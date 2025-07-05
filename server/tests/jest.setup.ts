@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { beforeEach, afterEach, beforeAll, afterAll } from '@jest/globals';
 import { testDb } from './setup-test-db';
 import { randomBytes } from 'crypto';
@@ -29,14 +30,14 @@ beforeAll(async () => {
       testPrismaClient: PrismaClient | undefined;
     };
     globalForPrisma.testPrismaClient = testDb.getPrismaClient(workerId);
-  } catch (error) {
+  } catch (_error) {
     console.error('Failed to setup test database:', error);
     throw error;
   }
 });
 
 /**
- * Setup before each test - start transaction
+ * Enhanced setup for real implementation testing
  */
 beforeEach(async () => {
   // Generate unique test ID
@@ -46,6 +47,9 @@ beforeEach(async () => {
     // Reset rate limiter state for each test
     resetRateLimiterState();
 
+    // Clear any previous auth state
+    clearPreviousAuthState();
+
     // Start a real transaction for this test
     currentTransactionClient = await testDb.startTransaction(currentTestId);
 
@@ -54,11 +58,42 @@ beforeEach(async () => {
       testPrismaClient: PrismaClient | undefined;
     };
     globalForPrisma.testPrismaClient = currentTransactionClient;
-  } catch (error) {
+
+    // Set up real implementation environment
+    setupRealTestEnvironment();
+  } catch (_error) {
     console.error('Failed to start transaction for test:', error);
     throw error;
   }
 });
+
+/**
+ * Clear previous authentication state
+ */
+function clearPreviousAuthState() {
+  // Clear any JWT tokens or session data that might leak between tests
+  process.env.TEST_JWT_SECRET = process.env.TEST_JWT_SECRET || 'test-secret-key';
+  
+  // Clear any cached authentication state
+  const globalForAuth = globalThis as unknown as {
+    testAuthState?: any;
+  };
+  globalForAuth.testAuthState = undefined;
+}
+
+/**
+ * Setup real test environment
+ */
+function setupRealTestEnvironment() {
+  // Set environment variables for real testing
+  process.env.NODE_ENV = 'test';
+  process.env.SKIP_RATE_LIMITING = 'true';
+  process.env.ENABLE_TEST_ROUTES = 'true';
+  
+  // Configure for real implementations
+  process.env.USE_REAL_SERVICES = 'true';
+  process.env.MOCK_EXTERNAL_APIS = 'true'; // Mock external APIs but use real internal services
+}
 
 /**
  * Cleanup after each test - reset database
@@ -75,7 +110,7 @@ afterEach(async () => {
         testPrismaClient: PrismaClient | undefined;
       };
       globalForPrisma.testPrismaClient = testDb.getPrismaClient(workerId);
-    } catch (error) {
+    } catch (_error) {
       console.error('Failed to reset database:', error);
     } finally {
       currentTestId = null;
@@ -97,7 +132,7 @@ afterAll(async () => {
     }
 
     await testDb.cleanup();
-  } catch (error) {
+  } catch (_error) {
     console.warn('Failed to cleanup test database:', error);
   }
 });
@@ -170,7 +205,7 @@ export async function createTestData<T>(
     const result = await executeWithRetry(() => createFn(client));
     console.log('createTestData result:', result);
     return result;
-  } catch (error) {
+  } catch (_error) {
     console.error('createTestData error:', error);
     throw error;
   }

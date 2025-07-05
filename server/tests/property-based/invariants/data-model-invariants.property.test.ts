@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Property-Based Invariant Tests for Data Models
  * Tests data model invariants and business rules

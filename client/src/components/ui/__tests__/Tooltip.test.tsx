@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Tooltip, InfoTooltip } from '../Tooltip';

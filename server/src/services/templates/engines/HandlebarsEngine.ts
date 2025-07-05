@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Handlebars Template Engine
  * Renders templates using Handlebars
@@ -57,8 +58,8 @@ export class HandlebarsEngine extends RenderEngine {
           warnings: warnings.length > 0 ? warnings : undefined,
         },
       };
-    } catch (_error) {
-      throw new Error(`Handlebars render error: ${error.message}`);
+    } catch (error) {
+      throw new Error(`Handlebars render error: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 
@@ -80,7 +81,7 @@ export class HandlebarsEngine extends RenderEngine {
       }
       
       return true;
-    } catch (_error) {
+    } catch (error) {
       // Compilation error
       return false;
     }
@@ -251,7 +252,7 @@ export class HandlebarsEngine extends RenderEngine {
   /**
    * Register custom helper
    */
-  registerHelper(name: string, helper: Function): void {
+  registerHelper(name: string, helper: (...args: unknown[]) => unknown): void {
     this.handlebars.registerHelper(name, helper as unknown);
   }
 

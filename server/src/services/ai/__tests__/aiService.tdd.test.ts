@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * TDD-Compliant AI Service Tests
  * Uses real service instances with test configurations

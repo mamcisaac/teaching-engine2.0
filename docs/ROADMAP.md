@@ -214,6 +214,8 @@ Future development will be driven by:
 - **Claude Development Workflows** - See `docs/claude/workflows.md`
 - **Troubleshooting Guide** - See `docs/claude/troubleshooting.md`
 - **Custom Commands** - See `docs/claude/commands.md`
+- **Roadmap Features** - See `docs/agents/ROADMAP_FEATURES.md`
+- **Missing Features** - See `docs/agents/MISSING_FEATURES.md`
 
 ### External Links
 

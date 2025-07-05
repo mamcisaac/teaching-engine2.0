@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Property-Based Tests for Grade Progression Logic
  * Tests educational progression invariants and developmental appropriateness

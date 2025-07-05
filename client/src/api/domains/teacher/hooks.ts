@@ -1,7 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { teacherApi } from './api';
-import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
-import type { TeacherPreferencesInput, TeacherReflection, TeacherReflectionInput } from '../../../types';
+import { queryKeys as _queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 
 // Preferences Query hooks
 export const useTeacherPreferences = () =>

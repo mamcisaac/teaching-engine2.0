@@ -68,7 +68,7 @@ class SeedGenerator {
       }
 
       console.log('✅ Seed generation completed successfully!');
-    } catch (error) {
+    } catch (_error) {
       console.error('❌ Seed generation failed:', error);
       throw error;
     } finally {

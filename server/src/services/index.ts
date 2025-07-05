@@ -29,6 +29,12 @@ export * from './auth';
 // LLM services - OpenAI integration and content generation
 export * from './llmService';
 
+// Substitute Plan services
+export { SubstitutePlanService } from './substitutePlanService';
+
+// AI Activity Generator service
+export { AIActivityGeneratorService } from './aiActivityGeneratorService';
+
 // Service types - Modern curriculum service types
 export type { 
   ImportOptions,

@@ -25,7 +25,7 @@ async function testDbConfig() {
     const result = await prisma.$queryRaw`SELECT * FROM test_table`;
     console.log('Test query result:', result);
     
-  } catch (error) {
+  } catch (_error) {
     console.error('Database test error:', error);
   } finally {
     await prisma.$disconnect();

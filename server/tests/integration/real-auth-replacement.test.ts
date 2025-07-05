@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Real Authentication Security Tests - No Mocks
  *
@@ -175,7 +176,7 @@ describe('Real Authentication Security Tests - NO MOCKS', () => {
       expect(tokenParts).toHaveLength(3); // header.payload.signature
 
       // Verify token can be decoded with real JWT library
-      const decoded = jwt.decode(token, { complete: true }) as any;
+      const decoded = jwt.decode(token, { complete: true }) as unknown;
       expect(decoded.header.alg).toBe('HS256');
       expect(decoded.payload.userId).toBe(userId);
       expect(decoded.payload.email).toBe(email);
@@ -234,7 +235,7 @@ describe('Real Authentication Security Tests - NO MOCKS', () => {
   });
 
   describe('REAL Database User Authentication', () => {
-    let createdUser: any;
+    let createdUser: unknown;
 
     beforeEach(async () => {
       // Create REAL user in REAL database
@@ -266,7 +267,7 @@ describe('Real Authentication Security Tests - NO MOCKS', () => {
       expect(result.user.id).toBe(createdUser.id.toString());
 
       // Verify sensitive data is not leaked
-      expect((result.user as any).password).toBeUndefined();
+      expect((result.user as unknown).password).toBeUndefined();
 
       // Verify token is a real JWT that can be verified
       const verified = await verifyToken(result.accessToken);
@@ -274,7 +275,7 @@ describe('Real Authentication Security Tests - NO MOCKS', () => {
       expect(verified.email).toBe(testUsers.teacher.email);
 
       // Verify token was signed with real secret
-      const decoded = jwt.verify(result.accessToken, process.env.JWT_SECRET!) as any;
+      const decoded = jwt.verify(result.accessToken, process.env.JWT_SECRET!) as unknown;
       expect(decoded.userId).toBe(createdUser.id.toString());
     });
 
@@ -350,7 +351,7 @@ describe('Real Authentication Security Tests - NO MOCKS', () => {
 
   describe('REAL API Authentication Endpoints', () => {
     let authToken: string;
-    let createdUser: any;
+    let createdUser: unknown;
 
     beforeEach(async () => {
       // Create real user for API testing

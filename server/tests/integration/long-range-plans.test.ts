@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import request from 'supertest';
 import { describe, beforeAll, beforeEach, afterEach, it, expect } from '@jest/globals';
 import { app } from '../../src/index';
@@ -12,11 +13,11 @@ describe('Long-Range Plans CRUD Operations', () => {
   let otherUserToken: string;
   let userId: number;
   let otherUserId: number;
-  let testUser: any;
-  let otherUser: any;
-  let testExpectation1: any;
-  let testExpectation2: any;
-  let testLongRangePlan: any;
+  let testUser: unknown;
+  let otherUser: unknown;
+  let testExpectation1: unknown;
+  let testExpectation2: unknown;
+  let testLongRangePlan: unknown;
 
   beforeAll(async () => {
     prisma = getIntegrationTestPrismaClient();
@@ -488,8 +489,8 @@ describe('Long-Range Plans CRUD Operations', () => {
   });
 
   describe('Authorization Tests', () => {
-    let userAPlan: any;
-    let userBPlan: any;
+    let userAPlan: unknown;
+    let userBPlan: unknown;
     let userAToken: string;
     let userBToken: string;
 

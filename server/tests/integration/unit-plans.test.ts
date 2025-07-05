@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import request from 'supertest';
 import { describe, beforeAll, beforeEach, afterEach, it, expect } from '@jest/globals';
 import { app } from '../../src/index';
@@ -12,14 +13,14 @@ describe('Unit Plans CRUD Operations', () => {
   let otherUserToken: string;
   let userId: number;
   let otherUserId: number;
-  let testUser: any;
-  let otherUser: any;
-  let testExpectation1: any;
-  let testExpectation2: any;
-  let testExpectation3: any;
-  let testLongRangePlan: any;
-  let otherUserLongRangePlan: any;
-  let testUnitPlan: any;
+  let testUser: unknown;
+  let otherUser: unknown;
+  let testExpectation1: unknown;
+  let testExpectation2: unknown;
+  let testExpectation3: unknown;
+  let testLongRangePlan: unknown;
+  let otherUserLongRangePlan: unknown;
+  let testUnitPlan: unknown;
 
   beforeAll(async () => {
     prisma = getIntegrationTestPrismaClient();
@@ -468,7 +469,7 @@ describe('Unit Plans CRUD Operations', () => {
         });
 
         // Verify ordering by startDate
-        const dates = response.body.map((plan: any) => new Date(plan.startDate).getTime());
+        const dates = response.body.map((plan: unknown) => new Date(plan.startDate).getTime());
         expect(dates).toEqual([...dates].sort((a, b) => a - b));
       });
 
@@ -479,7 +480,7 @@ describe('Unit Plans CRUD Operations', () => {
           .expect(200);
 
         expect(response.body).toHaveLength(3);
-        expect(response.body.every((plan: any) => plan.longRangePlanId === testLongRangePlan.id)).toBe(true);
+        expect(response.body.every((plan: unknown) => plan.longRangePlanId === testLongRangePlan.id)).toBe(true);
       });
 
       it('should filter by date range', async () => {
@@ -529,9 +530,9 @@ describe('Unit Plans CRUD Operations', () => {
     });
 
     describe('GET /api/unit-plans/:id (single)', () => {
-      let lessonPlan1: any;
-      let lessonPlan2: any;
-      let resource1: any;
+      let lessonPlan1: unknown;
+      let lessonPlan2: unknown;
+      let resource1: unknown;
 
       beforeEach(async () => {
         // Create lesson plans for the unit
@@ -648,11 +649,11 @@ describe('Unit Plans CRUD Operations', () => {
         });
 
         // Verify expectations are ordered by code
-        const expectationCodes = response.body.expectations.map((e: any) => e.expectation.code);
+        const expectationCodes = response.body.expectations.map((e: unknown) => e.expectation.code);
         expect(expectationCodes).toEqual([...expectationCodes].sort());
 
         // Verify lesson plans are ordered by date
-        const lessonDates = response.body.lessonPlans.map((lp: any) => new Date(lp.date).getTime());
+        const lessonDates = response.body.lessonPlans.map((lp: unknown) => new Date(lp.date).getTime());
         expect(lessonDates).toEqual([...lessonDates].sort((a, b) => a - b));
       });
 
@@ -1166,7 +1167,7 @@ describe('Unit Plans CRUD Operations', () => {
     });
 
     describe('DELETE /api/unit-plans/:id/resources/:resourceId', () => {
-      let testResource: any;
+      let testResource: unknown;
 
       beforeEach(async () => {
         testResource = await prisma.unitPlanResource.create({
@@ -1234,9 +1235,9 @@ describe('Unit Plans CRUD Operations', () => {
   });
 
   describe('Duplicate Unit Plan', () => {
-    let sourceUnit: any;
-    let sourceResource: any;
-    let sourceLesson: any;
+    let sourceUnit: unknown;
+    let sourceResource: unknown;
+    let sourceLesson: unknown;
 
     beforeEach(async () => {
       // Reset rate limiter state before each test

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { jest } from '@jest/globals';
 import request from 'supertest';
 import express from 'express';

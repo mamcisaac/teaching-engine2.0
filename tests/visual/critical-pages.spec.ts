@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Visual Regression Tests for Critical Teacher-Facing Pages
  * Teaching Engine 2.0 - Ensuring UI consistency across platforms

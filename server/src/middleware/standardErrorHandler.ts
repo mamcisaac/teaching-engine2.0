@@ -197,7 +197,7 @@ export function standardErrorHandler(
   error: Error,
   req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) {
   // Default error properties
   let statusCode = 500;
@@ -309,7 +309,7 @@ export function standardErrorHandler(
   }
 
   // Prepare error response
-  const errorResponse: any = {
+  const errorResponse: Record<string, unknown> = {
     success: false,
     error: {
       type: errorType,

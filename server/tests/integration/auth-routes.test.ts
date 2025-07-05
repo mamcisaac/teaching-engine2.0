@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import request from 'supertest';
 import { describe, beforeAll, beforeEach, afterEach, it, expect, jest } from '@jest/globals';
 import { createTestApp } from './simple-test-app';
@@ -46,7 +47,7 @@ describe('Authentication Routes', () => {
     try {
       await cleanIntegrationTestData();
       console.log('Database cleaned successfully before test');
-    } catch (error) {
+    } catch (_error) {
       console.error('Failed to clean database before test:', error);
       // Try a more aggressive cleanup
       try {
@@ -115,7 +116,7 @@ describe('Authentication Routes', () => {
       
       // Return user with the test email added for tests that need to know the actual email
       return { ...user, testEmail: uniqueEmail };
-    } catch (error) {
+    } catch (_error) {
       console.error('Failed to create user:', error);
       throw error;
     }
@@ -145,7 +146,7 @@ describe('Authentication Routes', () => {
       expect(res.body.user).not.toHaveProperty('password');
 
       // Verify JWT token
-      const decoded = jwt.verify(res.body.accessToken, process.env.JWT_SECRET!) as any;
+      const decoded = jwt.verify(res.body.accessToken, process.env.JWT_SECRET!) as unknown;
       expect(decoded.email).toBe(user.email);
       expect(decoded.userId).toBeDefined();
     });

@@ -3,7 +3,7 @@
  * Extends BaseRouteHandler with ETFO lesson plan-specific business logic
  */
 
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 import { z } from 'zod';
 import { BaseRouteHandler, AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
 import { BaseService } from '../services/base/BaseService.js';
@@ -502,8 +502,9 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       
       const result = await this.lessonPlanService.findMany(filters, userId);
       res.json(result);
-    } catch (_error) {
-      this.logger.error(`Error in ${this.routeName} list:`, error);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Unknown error';
+      this.logger.error(`Error in ${this.routeName} list:`, message);
       next(error);
     }
   }
@@ -558,8 +559,8 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       const resource = await this.lessonPlanService.addResource(lessonPlanId, resourceData, userId);
       res.status(201).json(resource);
     } catch (_error) {
-      this.logger.error('Error adding resource:', error);
-      next(error);
+      this.logger.error('Error adding resource:', _error);
+      next(_error);
     }
   }
 
@@ -581,8 +582,8 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       
       res.status(204).send();
     } catch (_error) {
-      this.logger.error('Error removing resource:', error);
-      next(error);
+      this.logger.error('Error removing resource:', _error);
+      next(_error);
     }
   }
 
@@ -598,8 +599,8 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       const subVersion = await this.lessonPlanService.createSubVersion(lessonPlanId, userId);
       res.status(201).json(subVersion);
     } catch (_error) {
-      this.logger.error('Error creating sub version:', error);
-      next(error);
+      this.logger.error('Error creating sub version:', _error);
+      next(_error);
     }
   }
 
@@ -616,8 +617,8 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       const rescheduledLesson = await this.lessonPlanService.reschedule(lessonPlanId, rescheduleData, userId);
       res.json(rescheduledLesson);
     } catch (_error) {
-      this.logger.error('Error rescheduling lesson:', error);
-      next(error);
+      this.logger.error('Error rescheduling lesson:', _error);
+      next(_error);
     }
   }
 
@@ -633,8 +634,8 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       const duplicatedLesson = await this.lessonPlanService.duplicate(duplicateData, userId);
       res.status(201).json(duplicatedLesson);
     } catch (_error) {
-      this.logger.error('Error duplicating lesson plan:', error);
-      next(error);
+      this.logger.error('Error duplicating lesson plan:', _error);
+      next(_error);
     }
   }
 }

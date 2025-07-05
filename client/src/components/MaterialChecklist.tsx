@@ -1,4 +1,4 @@
-import { useMaterialList } from '../api/legacy/api';
+import { useMaterialList } from '../api/domains/planning';
 
 interface Props {
   weekStart: string;

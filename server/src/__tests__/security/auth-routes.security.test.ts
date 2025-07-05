@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Authentication Routes Security Test Suite
  * Comprehensive security testing for authentication endpoints
@@ -401,7 +402,7 @@ describe('Authentication Routes Security Tests', () => {
       const app2 = express();
       app2.use(express.json());
       const { authMiddleware } = await import('../../middleware/auth');
-      app2.use('/protected', authMiddleware, (req, res) => {
+      app2.use('/protected', authMiddleware, (req: Request, res: Response) => {
         res.json({ success: true });
       });
 
@@ -426,7 +427,7 @@ describe('Authentication Routes Security Tests', () => {
       const app2 = express();
       app2.use(express.json());
       const { authMiddleware } = await import('../../middleware/auth');
-      app2.use('/protected', authMiddleware, (req, res) => {
+      app2.use('/protected', authMiddleware, (req: Request, res: Response) => {
         res.json({ success: true });
       });
 
@@ -441,7 +442,7 @@ describe('Authentication Routes Security Tests', () => {
       const app2 = express();
       app2.use(express.json());
       const { authMiddleware } = await import('../../middleware/auth');
-      app2.use('/protected', authMiddleware, (req, res) => {
+      app2.use('/protected', authMiddleware, (req: Request, res: Response) => {
         res.json({ success: true });
       });
 

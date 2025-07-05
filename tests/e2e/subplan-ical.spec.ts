@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { test, expect } from '@playwright/test';
 import { login, API_BASE } from './helpers/unified-auth';
 import http from 'http';
@@ -62,7 +63,7 @@ test('ical import blocks planner and sub plan lists event', async ({ page }) => 
       (r) => r.url().includes('/api/calendar-events') && r.request().method() === 'GET',
       { timeout: 10000 },
     );
-  } catch (error) {
+  } catch (_error) {
     console.log('Calendar events API call timeout, proceeding with test...');
   }
   // Wait for the page to potentially render the event

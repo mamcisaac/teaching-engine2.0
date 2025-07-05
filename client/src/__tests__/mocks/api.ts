@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { vi } from 'vitest';
 
 // Mock all API hooks to return default values

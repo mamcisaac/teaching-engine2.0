@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Authentication Security Tests
  *
@@ -25,7 +26,7 @@ import {
 describe('Authentication Security - REAL Cookie Testing', () => {
   let app: express.Application;
   let prisma: PrismaClient;
-  let server: any;
+  let server: unknown;
 
   // Test JWT secret
   const TEST_JWT_SECRET = 'test-jwt-secret-for-security-testing-2024';
@@ -61,7 +62,7 @@ describe('Authentication Security - REAL Cookie Testing', () => {
     app.use('/api', authRoutes(prisma));
 
     // Error handler
-    app.use((error: any, req: any, res: any, next: any) => {
+    app.use((error: unknown, req: unknown, res: unknown, next: unknown) => {
       console.error('Security test error:', error);
       res.status(error.statusCode || 500).json({ error: error.message || 'Internal server error' });
     });
@@ -98,7 +99,7 @@ describe('Authentication Security - REAL Cookie Testing', () => {
         expect(response.body.accessToken).toBeTruthy();
 
         // Verify JWT token is valid
-        const decodedToken = jwt.verify(response.body.accessToken, TEST_JWT_SECRET) as any;
+        const decodedToken = jwt.verify(response.body.accessToken, TEST_JWT_SECRET) as unknown;
         expect(decodedToken.userId).toBeTruthy();
         expect(decodedToken.email).toBe('prod-security@test.com');
         expect(decodedToken.exp).toBeTruthy(); // Expiration should be set
@@ -190,7 +191,7 @@ describe('Authentication Security - REAL Cookie Testing', () => {
       expect(response.body.accessToken).toBeTruthy();
 
       // Verify token contains valid JWT
-      const decoded = jwt.verify(response.body.accessToken, TEST_JWT_SECRET) as any;
+      const decoded = jwt.verify(response.body.accessToken, TEST_JWT_SECRET) as unknown;
       expect(decoded.email).toBe('lifecycle@test.com');
     });
 
@@ -246,7 +247,7 @@ describe('Authentication Security - REAL Cookie Testing', () => {
         .expect(201);
 
       const token = response.body.accessToken;
-      const decoded = jwt.decode(token, { complete: true }) as any;
+      const decoded = jwt.decode(token, { complete: true }) as unknown;
 
       // Verify JWT header uses secure algorithm
       expect(decoded.header.alg).toBe('HS256');
@@ -404,11 +405,11 @@ describe('Authentication Security - REAL Cookie Testing', () => {
       );
 
       // All sessions should be valid (unless there's a session limit)
-      const validSessions = sessions.filter((s) => s.status === 200);
+      const validSessions = sessions.filter((_s) => s.status === 200);
       expect(validSessions.length).toBeGreaterThan(0);
 
       // Each session should have a token (they may be the same if generated at exact same time)
-      const tokens = validSessions.map((s) => s.body.accessToken);
+      const tokens = validSessions.map((_s) => s.body.accessToken);
       const uniqueTokens = new Set(tokens);
       // At least one unique token should exist
       expect(uniqueTokens.size).toBeGreaterThanOrEqual(1);

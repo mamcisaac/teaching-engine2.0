@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import request from 'supertest';
 import { describe, test, expect, beforeAll, afterAll, beforeEach } from '@jest/globals';
 import { app } from '../../src/index';
@@ -212,8 +213,8 @@ describe('Activity Collections Routes', () => {
         .get('/api/activity-collections')
         .set('Authorization', `Bearer ${authToken}`);
 
-      expect(response.body.data.every((c: any) => c.user.id === userId)).toBe(true);
-      expect(response.body.data.find((c: any) => c.name === 'Other User Collection')).toBeUndefined();
+      expect(response.body.data.every((c: unknown) => c.user.id === userId)).toBe(true);
+      expect(response.body.data.find((c: unknown) => c.name === 'Other User Collection')).toBeUndefined();
     });
 
     test('should require authentication', async () => {
@@ -887,8 +888,8 @@ describe('Activity Collections Routes', () => {
         .set('Authorization', `Bearer ${authToken}`);
 
       // Should not include other user's collection
-      expect(response.body.data.every((c: any) => c.user.id === userId)).toBe(true);
-      expect(response.body.data.find((c: any) => c.name === 'Super Popular Collection')).toBeUndefined();
+      expect(response.body.data.every((c: unknown) => c.user.id === userId)).toBe(true);
+      expect(response.body.data.find((c: unknown) => c.name === 'Super Popular Collection')).toBeUndefined();
     });
 
     test('should handle secondary sort by updatedAt', async () => {
@@ -922,8 +923,8 @@ describe('Activity Collections Routes', () => {
         .set('Authorization', `Bearer ${authToken}`);
 
       const collections = response.body.data;
-      const sameCount1Index = collections.findIndex((c: any) => c.name === 'Same Count 1');
-      const sameCount2Index = collections.findIndex((c: any) => c.name === 'Same Count 2');
+      const sameCount1Index = collections.findIndex((c: unknown) => c.name === 'Same Count 1');
+      const sameCount2Index = collections.findIndex((c: unknown) => c.name === 'Same Count 2');
 
       // More recently updated should come first when item counts are equal
       expect(sameCount2Index).toBeLessThan(sameCount1Index);

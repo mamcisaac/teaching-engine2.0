@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Unified Integration Test Setup
  *
@@ -15,7 +16,7 @@
 import { beforeAll, afterAll, beforeEach } from '@jest/globals';
 import { testDb } from './setup-test-db';
 import { PrismaClient } from '@teaching-engine/database';
-import { resetRateLimiterState } from '../src/middleware/rateLimiter';
+import { resetRateLimiterState } from '../src/middleware/rateLimit';
 
 // Store the integration test client
 let integrationTestClient: PrismaClient | null = null;
@@ -63,7 +64,7 @@ beforeAll(async () => {
     globalForPrisma.testPrismaClient = integrationTestClient;
 
     console.log(`[Integration Setup] Database setup complete for worker ${workerId}`);
-  } catch (error) {
+  } catch (_error) {
     console.error('[Integration Setup] Failed to setup integration test database:', error);
     throw error;
   }
@@ -77,8 +78,8 @@ beforeEach(async () => {
   try {
     // Reset rate limiter state for each test
     resetRateLimiterState();
-  } catch (error) {
-    console.error('[Integration Setup] Failed to reset rate limiter:', error);
+  } catch (_error) {
+    console.error('[Integration Setup] Failed to reset rate limiter:', _error);
   }
 });
 
@@ -107,8 +108,8 @@ afterAll(async () => {
     integrationTestClient = null;
 
     console.log(`[Integration Setup] Cleanup complete for worker ${workerId}`);
-  } catch (error) {
-    console.warn('[Integration Setup] Failed to cleanup integration test database:', error);
+  } catch (_error) {
+    console.warn('[Integration Setup] Failed to cleanup integration test database:', _error);
   }
 });
 
@@ -250,7 +251,7 @@ export async function cleanIntegrationTestData(): Promise<void> {
     }
 
     console.log('[Integration Setup] Test data cleaned successfully');
-  } catch (error) {
+  } catch (_error) {
     console.error('[Integration Setup] Failed to clean test data:', error);
     console.error(
       '[Integration Setup] Available client properties:',

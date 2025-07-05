@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { Button } from '../ui/Button';
 import Dialog from '../Dialog';
 import { useToast } from '../ui/use-toast';
-
+import logger from '../../utils/logger';
 interface ParsedExpectation {
   code: string;
   description: string;
@@ -108,7 +108,7 @@ export function CurriculumImportWizard({
             setCurrentStep('upload');
           }
         } catch (_error) {
-          console.error('Status poll error:', error);
+          logger.error('Status poll error:', error);
           toast({
             title: 'Status Check Failed',
             description: 'Failed to check processing status',
@@ -157,7 +157,7 @@ export function CurriculumImportWizard({
           description: 'Your curriculum document is being processed...',
         });
       } catch (_error) {
-        console.error('Upload error:', error);
+        logger.error('Upload error:', error);
         toast({
           title: 'Upload Failed',
           description: error instanceof Error ? error.message : 'Failed to upload document',
@@ -206,7 +206,7 @@ export function CurriculumImportWizard({
       // Store timeout ID for cleanup
       return () => clearTimeout(timeoutId);
     } catch (_error) {
-      console.error('Confirm import error:', error);
+      logger.error('Confirm import error:', error);
       toast({
         title: 'Import Failed',
         description: error instanceof Error ? error.message : 'Failed to import curriculum',

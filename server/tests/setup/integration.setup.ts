@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Integration Test Setup
  *
@@ -88,7 +89,7 @@ async function setupTestDatabase() {
           stdio: 'pipe', // Capture output instead of showing it
         });
         break; // Success, exit retry loop
-      } catch (error) {
+      } catch (_error) {
         retries--;
         if (retries === 0) {
           console.error('Failed to setup test database after retries:', error);
@@ -98,7 +99,7 @@ async function setupTestDatabase() {
         await new Promise((resolve) => setTimeout(resolve, 1000));
       }
     }
-  } catch (error) {
+  } catch (_error) {
     console.error('Failed to setup test database:', error);
     throw error;
   }
@@ -133,7 +134,7 @@ async function cleanTestDatabase() {
         // Table might not exist or have dependencies
       }
     }
-  } catch (error) {
+  } catch (_error) {
     console.error('Failed to clean test database:', error);
   }
 }

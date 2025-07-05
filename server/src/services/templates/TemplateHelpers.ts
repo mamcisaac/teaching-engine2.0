@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Template Helpers Service
  * Manages template helper functions and utilities
@@ -7,7 +8,7 @@ import { BaseService } from '../base/BaseService';
 
 export interface HelperFunction {
   name: string;
-  fn: Function;
+  fn: (...args: unknown[]) => unknown;
   description?: string;
   category?: string;
   examples?: string[];
@@ -398,7 +399,7 @@ export class TemplateHelpers extends BaseService {
   /**
    * Get helper function
    */
-  public getHelper(name: string): Function | null {
+  public getHelper(name: string): ((...args: unknown[]) => unknown) | null {
     const helper = this.helpers.get(name);
     return helper ? helper.fn : null;
   }
@@ -406,8 +407,8 @@ export class TemplateHelpers extends BaseService {
   /**
    * Get all helpers as a record for template engines
    */
-  public getHelpersRecord(): Record<string, Function> {
-    const record: Record<string, Function> = {};
+  public getHelpersRecord(): Record<string, (...args: unknown[]) => unknown> {
+    const record: Record<string, (...args: unknown[]) => unknown> = {};
     
     for (const [name, helper] of this.helpers) {
       record[name] = helper.fn;

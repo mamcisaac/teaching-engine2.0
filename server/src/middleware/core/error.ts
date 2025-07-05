@@ -1,13 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response, NextFunction } from 'express';
 import { ZodError } from 'zod';
 import { logger } from '../../logger';
 import { 
   AppError, 
-  handleErrorResponse, 
   handleDatabaseError,
   formatErrorResponse 
 } from '../../utils/errors';
 import { errorCounter } from '../../monitoring/telemetry';
+import { errorReportingService } from '../../services/monitoring/errorReportingService';
 
 // Extended Express Request with additional properties
 interface ExtendedRequest extends Request {
@@ -41,15 +42,53 @@ export const errorLoggingMiddleware = (
   if (err instanceof AppError) {
     if (err.statusCode >= 500) {
       logger.error(errorData, 'Application error');
+      // Report server errors to Sentry
+      errorReportingService.captureError(err, {
+        request: {
+          method: req.method,
+          path: req.path,
+          query: req.query,
+          headers: req.headers,
+        },
+        user: req.user,
+        requestId: req.id,
+        duration: errorData.duration,
+      });
     } else if (err.statusCode >= 400) {
       logger.warn(errorData, 'Client error');
+      // Only report client errors that might indicate bugs
+      if (err.statusCode !== 404 && err.statusCode !== 401) {
+        errorReportingService.captureError(err, {
+          request: {
+            method: req.method,
+            path: req.path,
+            query: req.query,
+          },
+          user: req.user,
+          requestId: req.id,
+        });
+      }
     } else {
       logger.info(errorData, 'Handled error');
     }
   } else if (err instanceof ZodError) {
     logger.warn(errorData, 'Validation error');
+    // Don't report validation errors to Sentry unless they're unexpected
   } else {
     logger.error(errorData, 'Unhandled error');
+    // Always report unhandled errors
+    errorReportingService.captureError(err, {
+      request: {
+        method: req.method,
+        path: req.path,
+        query: req.query,
+        headers: req.headers,
+        body: req.body,
+      },
+      user: req.user,
+      requestId: req.id,
+      duration: errorData.duration,
+    });
   }
 
   // Track error metrics
@@ -167,6 +206,15 @@ export const unhandledRejectionHandler = (
     'Unhandled Promise Rejection'
   );
 
+  // Report to error service
+  errorReportingService.captureError(
+    reason instanceof Error ? reason : new Error(String(reason)),
+    {
+      type: 'unhandledRejection',
+      promise: String(promise),
+    }
+  );
+
   // In production, you might want to gracefully shutdown
   if (process.env.NODE_ENV === 'production') {
     // Give time for logging before exit
@@ -185,6 +233,12 @@ export const uncaughtExceptionHandler = (error: Error): void => {
     },
     'Uncaught Exception'
   );
+
+  // Report critical error
+  errorReportingService.captureError(error, {
+    type: 'uncaughtException',
+    fatal: true,
+  });
 
   // Exit immediately as the process is in an undefined state
   process.exit(1);

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import request from 'supertest';
 import { describe, beforeAll, beforeEach, afterEach, it, expect, jest } from '@jest/globals';
 import { app } from '../../src/index';
@@ -8,9 +9,9 @@ import jwt from 'jsonwebtoken';
 describe('User Routes', () => {
   let prisma: ReturnType<typeof getTestPrismaClient>;
   let authToken: string;
-  let testUser: any;
+  let testUser: unknown;
   let adminToken: string;
-  let adminUser: any;
+  let adminUser: unknown;
 
   // Test user data
   const userData = {
@@ -242,7 +243,7 @@ describe('User Routes', () => {
       try {
         // Delete the user if it exists
         await prisma.user.delete({ where: { id: testUser.id } });
-      } catch (error) {
+      } catch (_error) {
         // User might already be deleted, ignore the error
       }
 

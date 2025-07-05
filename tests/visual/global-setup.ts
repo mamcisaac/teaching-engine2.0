@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Global setup for visual regression tests
  * Ensures consistent test environment for screenshot comparisons
@@ -30,7 +31,7 @@ async function globalSetup(config: FullConfig) {
         cwd: config.rootDir,
         stdio: 'inherit',
       });
-    } catch (error) {
+    } catch (_error) {
       console.error('Failed to setup test database:', error);
     }
   }

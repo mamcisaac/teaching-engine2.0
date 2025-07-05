@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { BaseService } from '../base/BaseService';
 
 interface LongRangePlanDraftRequest {
@@ -145,7 +146,7 @@ export class AIDraftService extends BaseService {
     return questions.join('\n\n');
   }
 
-  private generateAssessmentOverview(request: LongRangePlanDraftRequest): string {
+  private generateAssessmentOverview(_request: LongRangePlanDraftRequest): string {
     return [
       'Assessment will be ongoing and varied, including:',
       '• Formative assessment through observation, questioning, and student self-reflection',
@@ -158,7 +159,7 @@ export class AIDraftService extends BaseService {
     ].join('\n');
   }
 
-  private generateResourceNeeds(request: LongRangePlanDraftRequest): string {
+  private generateResourceNeeds(_request: LongRangePlanDraftRequest): string {
     const resources = [
       'Prince Edward Island Department of Education curriculum documents and resources',
       'ETFO lesson planning templates and best practice guides',
@@ -171,7 +172,7 @@ export class AIDraftService extends BaseService {
     return resources.join('\n• ');
   }
 
-  private generateProfessionalGoals(request: LongRangePlanDraftRequest): string {
+  private generateProfessionalGoals(_request: LongRangePlanDraftRequest): string {
     return [
       'Professional goals for this long-range plan include:',
       '',

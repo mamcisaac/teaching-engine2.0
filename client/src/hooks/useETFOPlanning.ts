@@ -1,5 +1,5 @@
+import { apiClient } from '../api/core/client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { api } from '../api/legacy/api';
 import { handleApiError } from '../utils/errorHandler';
 import { toast } from 'sonner';
 
@@ -194,7 +194,7 @@ export function useCurriculumExpectations(filters?: {
       if (filters?.strand) params.append('strand', filters.strand);
       if (filters?.search) params.append('search', filters.search);
 
-      const response = await api.get(`/api/curriculum-expectations?${params}`);
+      const response = await apiClient.get(`/api/curriculum-expectations?${params}`);
       return response.data as CurriculumExpectation[];
     },
   });
@@ -204,7 +204,7 @@ export function useCurriculumExpectation(id: string) {
   return useQuery({
     queryKey: ['curriculum-expectations', id],
     queryFn: async () => {
-      const response = await api.get(`/api/curriculum-expectations/${id}`);
+      const response = await apiClient.get(`/api/curriculum-expectations/${id}`);
       return response.data as CurriculumExpectation;
     },
     enabled: !!id,
@@ -216,7 +216,7 @@ export function useUpdateCurriculumExpectation() {
 
   return useMutation({
     mutationFn: async ({ id, data }: { id: string; data: Partial<CurriculumExpectation> }) => {
-      const response = await api.put(`/api/curriculum-expectations/${id}`, data);
+      const response = await apiClient.put(`/api/curriculum-expectations/${id}`, data);
       return response.data;
     },
     onSuccess: () => {
@@ -234,7 +234,7 @@ export function useDeleteCurriculumExpectation() {
 
   return useMutation({
     mutationFn: async (id: string) => {
-      const response = await api.delete(`/api/curriculum-expectations/${id}`);
+      const response = await apiClient.delete(`/api/curriculum-expectations/${id}`);
       return response.data;
     },
     onSuccess: () => {
@@ -261,7 +261,7 @@ export function useLongRangePlans(filters?: {
       if (filters?.subject) params.append('subject', filters.subject);
       if (filters?.grade) params.append('grade', filters.grade.toString());
 
-      const response = await api.get(`/api/long-range-plans?${params}`);
+      const response = await apiClient.get(`/api/long-range-plans?${params}`);
       return response.data as LongRangePlan[];
     },
   });
@@ -271,7 +271,7 @@ export function useLongRangePlan(id: string) {
   return useQuery({
     queryKey: ['long-range-plans', id],
     queryFn: async () => {
-      const response = await api.get(`/api/long-range-plans/${id}`);
+      const response = await apiClient.get(`/api/long-range-plans/${id}`);
       return response.data as LongRangePlan;
     },
     enabled: !!id,
@@ -283,7 +283,7 @@ export function useCreateLongRangePlan() {
 
   return useMutation({
     mutationFn: async (data: Partial<LongRangePlan> & { expectationIds?: string[] }) => {
-      const response = await api.post('/api/long-range-plans', data);
+      const response = await apiClient.post('/api/long-range-plans', data);
       return response.data;
     },
     onSuccess: () => {
@@ -300,10 +300,10 @@ export function useUpdateLongRangePlan() {
       id,
       ...data
     }: Partial<LongRangePlan> & { id: string; expectationIds?: string[] }) => {
-      const response = await api.put(`/api/long-range-plans/${id}`, data);
+      const response = await apiClient.put(`/api/long-range-plans/${id}`, data);
       return response.data;
     },
-    onSuccess: (data) => {
+    onSuccess: (_data) => {
       queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
       queryClient.invalidateQueries({ queryKey: ['long-range-plans', data.id] });
     },
@@ -315,7 +315,7 @@ export function useDeleteLongRangePlan() {
 
   return useMutation({
     mutationFn: async (id: string) => {
-      const response = await api.delete(`/api/long-range-plans/${id}`);
+      const response = await apiClient.delete(`/api/long-range-plans/${id}`);
       return response.data;
     },
     onSuccess: (_, id) => {
@@ -339,7 +339,7 @@ export function useUnitPlans(filters?: {
       if (filters?.startDate) params.append('startDate', filters.startDate);
       if (filters?.endDate) params.append('endDate', filters.endDate);
 
-      const response = await api.get(`/api/unit-plans?${params}`);
+      const response = await apiClient.get(`/api/unit-plans?${params}`);
       return response.data as UnitPlan[];
     },
   });
@@ -349,7 +349,7 @@ export function useUnitPlan(id: string) {
   return useQuery({
     queryKey: ['unit-plans', id],
     queryFn: async () => {
-      const response = await api.get(`/api/unit-plans/${id}`);
+      const response = await apiClient.get(`/api/unit-plans/${id}`);
       return response.data as UnitPlan;
     },
     enabled: !!id,
@@ -361,10 +361,10 @@ export function useCreateUnitPlan() {
 
   return useMutation({
     mutationFn: async (data: Partial<UnitPlan> & { expectationIds?: string[] }) => {
-      const response = await api.post('/api/unit-plans', data);
+      const response = await apiClient.post('/api/unit-plans', data);
       return response.data;
     },
-    onSuccess: (data) => {
+    onSuccess: (_data) => {
       queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
       queryClient.invalidateQueries({ queryKey: ['long-range-plans', data.longRangePlanId] });
     },
@@ -379,10 +379,10 @@ export function useUpdateUnitPlan() {
       id,
       ...data
     }: Partial<UnitPlan> & { id: string; expectationIds?: string[] }) => {
-      const response = await api.put(`/api/unit-plans/${id}`, data);
+      const response = await apiClient.put(`/api/unit-plans/${id}`, data);
       return response.data;
     },
-    onSuccess: (data) => {
+    onSuccess: (_data) => {
       queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
       queryClient.invalidateQueries({ queryKey: ['unit-plans', data.id] });
     },
@@ -394,7 +394,7 @@ export function useDeleteUnitPlan() {
 
   return useMutation({
     mutationFn: async (id: string) => {
-      const response = await api.delete(`/api/unit-plans/${id}`);
+      const response = await apiClient.delete(`/api/unit-plans/${id}`);
       return response.data;
     },
     onSuccess: (_, id) => {
@@ -425,7 +425,7 @@ export function useETFOLessonPlans(filters?: {
       if (filters?.isSubFriendly !== undefined)
         params.append('isSubFriendly', filters.isSubFriendly.toString());
 
-      const response = await api.get(`/api/etfo-lesson-plans?${params}`);
+      const response = await apiClient.get(`/api/etfo-lesson-plans?${params}`);
       return response.data as ETFOLessonPlan[];
     },
   });
@@ -435,7 +435,7 @@ export function useETFOLessonPlan(id: string) {
   return useQuery({
     queryKey: ['etfo-lesson-plans', id],
     queryFn: async () => {
-      const response = await api.get(`/api/etfo-lesson-plans/${id}`);
+      const response = await apiClient.get(`/api/etfo-lesson-plans/${id}`);
       return response.data as ETFOLessonPlan;
     },
     enabled: !!id,
@@ -447,10 +447,10 @@ export function useCreateETFOLessonPlan() {
 
   return useMutation({
     mutationFn: async (data: Partial<ETFOLessonPlan> & { expectationIds?: string[] }) => {
-      const response = await api.post('/api/etfo-lesson-plans', data);
+      const response = await apiClient.post('/api/etfo-lesson-plans', data);
       return response.data;
     },
-    onSuccess: (data) => {
+    onSuccess: (_data) => {
       queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
       queryClient.invalidateQueries({ queryKey: ['unit-plans', data.unitPlanId] });
     },
@@ -468,10 +468,10 @@ export function useUpdateETFOLessonPlan() {
       id: string;
       data: Partial<ETFOLessonPlan> & { expectationIds?: string[] };
     }) => {
-      const response = await api.put(`/api/etfo-lesson-plans/${id}`, data);
+      const response = await apiClient.put(`/api/etfo-lesson-plans/${id}`, data);
       return response.data;
     },
-    onSuccess: (data) => {
+    onSuccess: (_data) => {
       queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
       queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans', data.id] });
     },
@@ -483,7 +483,7 @@ export function useDeleteETFOLessonPlan() {
 
   return useMutation({
     mutationFn: async (id: string) => {
-      const response = await api.delete(`/api/etfo-lesson-plans/${id}`);
+      const response = await apiClient.delete(`/api/etfo-lesson-plans/${id}`);
       return response.data;
     },
     onSuccess: () => {
@@ -509,7 +509,7 @@ export function useDaybookEntries(filters?: {
         params.append('hasLessonPlan', filters.hasLessonPlan.toString());
       if (filters?.rating) params.append('rating', filters.rating.toString());
 
-      const response = await api.get(`/api/daybook-entries?${params}`);
+      const response = await apiClient.get(`/api/daybook-entries?${params}`);
       return response.data as DaybookEntry[];
     },
   });
@@ -519,7 +519,7 @@ export function useDaybookEntry(id: string) {
   return useQuery({
     queryKey: ['daybook-entries', id],
     queryFn: async () => {
-      const response = await api.get(`/api/daybook-entries/${id}`);
+      const response = await apiClient.get(`/api/daybook-entries/${id}`);
       return response.data as DaybookEntry;
     },
     enabled: !!id,
@@ -535,10 +535,10 @@ export function useCreateDaybookEntry() {
         expectationCoverage?: { expectationId: string; coverage: string }[];
       },
     ) => {
-      const response = await api.post('/api/daybook-entries', data);
+      const response = await apiClient.post('/api/daybook-entries', data);
       return response.data;
     },
-    onSuccess: (data) => {
+    onSuccess: (_data) => {
       queryClient.invalidateQueries({ queryKey: ['daybook-entries'] });
       if (data.lessonPlanId) {
         queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans', data.lessonPlanId] });
@@ -558,10 +558,10 @@ export function useUpdateDaybookEntry() {
       id: string;
       expectationCoverage?: { expectationId: string; coverage: string }[];
     }) => {
-      const response = await api.put(`/api/daybook-entries/${id}`, data);
+      const response = await apiClient.put(`/api/daybook-entries/${id}`, data);
       return response.data;
     },
-    onSuccess: (data) => {
+    onSuccess: (_data) => {
       queryClient.invalidateQueries({ queryKey: ['daybook-entries'] });
       queryClient.invalidateQueries({ queryKey: ['daybook-entries', data.id] });
     },

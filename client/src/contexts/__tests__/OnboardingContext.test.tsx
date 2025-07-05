@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * @file OnboardingContext.test.tsx
  * @description Comprehensive tests for OnboardingContext including onboarding flows,

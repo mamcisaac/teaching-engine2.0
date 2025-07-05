@@ -150,7 +150,7 @@ export class TestPerformanceMonitor {
       const result = await fn();
       this.endTest(name, 'passed');
       return result;
-    } catch (error) {
+    } catch (_error) {
       this.endTest(name, 'failed');
       throw error;
     }
@@ -166,7 +166,7 @@ export class TestPerformanceMonitor {
       const result = fn();
       this.endTest(name, 'passed');
       return result;
-    } catch (error) {
+    } catch (_error) {
       this.endTest(name, 'failed');
       throw error;
     }

@@ -137,7 +137,7 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
       accessToken,
     });
   } catch (_error) {
-    next(error);
+    next(_error);
   }
 }
 
@@ -368,7 +368,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
       accessToken,
     });
   } catch (_error) {
-    next(error);
+    next(_error);
   }
 }
 
@@ -393,7 +393,7 @@ export async function logout(req: Request, res: Response, next: NextFunction): P
 
     res.json({ message: 'Logged out successfully' });
   } catch (_error) {
-    next(error);
+    next(_error);
   }
 }
 
@@ -466,7 +466,7 @@ export async function changePassword(
 
     res.json({ message: 'Password changed successfully' });
   } catch (_error) {
-    next(error);
+    next(_error);
   }
 }
 
@@ -525,7 +525,7 @@ export async function forgotPassword(
       res.json({ message: 'If the email exists, a reset link has been sent' });
     }
   } catch (_error) {
-    next(error);
+    next(_error);
   }
 }
 
@@ -587,7 +587,7 @@ export async function resetPassword(
 
     res.json({ message: 'Password reset successfully' });
   } catch (_error) {
-    next(error);
+    next(_error);
   }
 }
 
@@ -608,7 +608,7 @@ export async function validateSession(
 
     next();
   } catch (_error) {
-    next(error);
+    next(_error);
   }
 }
 

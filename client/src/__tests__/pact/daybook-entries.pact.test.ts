@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { describe, it, expect, beforeAll } from 'vitest';
 import { PactV3, MatchersV3 } from '@pact-foundation/pact';
 import { pactConfig, createInteractionUrl } from './setup';
@@ -10,7 +11,7 @@ const provider = new PactV3({
   provider: pactConfig.provider,
   port: pactConfig.port,
   dir: pactConfig.dir,
-  logLevel: pactConfig.logLevel as unknown,
+  logLevel: pactConfig.logLevel as any,
   spec: pactConfig.spec,
   cors: pactConfig.cors,
 });

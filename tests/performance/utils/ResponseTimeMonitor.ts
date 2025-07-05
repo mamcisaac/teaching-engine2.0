@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Response Time Monitor
  * Real-time monitoring and tracking of API response times
@@ -154,7 +155,7 @@ export class ResponseTimeMonitor {
         statusCode: response.status,
         timestamp: Date.now(),
       };
-    } catch (error) {
+    } catch (_error) {
       const endTime = performance.now();
 
       return {

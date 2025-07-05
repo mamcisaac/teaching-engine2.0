@@ -1,4 +1,4 @@
-import { PrismaClient } from '@teaching-engine/database';
+import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 
 // Initialize Prisma client
@@ -14,7 +14,13 @@ async function main() {
   await prisma.templateRating.deleteMany();
   await prisma.templateVariation.deleteMany();
   await prisma.planTemplate.deleteMany();
-  // Student-related deletions removed - app does not store student data
+  await prisma.recentPlanAccess.deleteMany();
+  await prisma.activityCollectionItem.deleteMany();
+  await prisma.activityCollection.deleteMany();
+  await prisma.activityRating.deleteMany();
+  await prisma.activityImport.deleteMany();
+  await prisma.externalActivity.deleteMany();
+  await prisma.daybookEntryExpectation.deleteMany();
   await prisma.daybookEntry.deleteMany();
   await prisma.eTFOLessonPlanResource.deleteMany();
   await prisma.eTFOLessonPlanExpectation.deleteMany();
@@ -24,12 +30,18 @@ async function main() {
   await prisma.unitPlan.deleteMany();
   await prisma.longRangePlanExpectation.deleteMany();
   await prisma.longRangePlan.deleteMany();
+  await prisma.curriculumExpectationEmbedding.deleteMany();
   await prisma.curriculumExpectation.deleteMany();
+  await prisma.expectationCluster.deleteMany();
   await prisma.curriculumImport.deleteMany();
   await prisma.classroomAnnouncement.deleteMany();
   await prisma.calendarEvent.deleteMany();
+  await prisma.unavailableBlock.deleteMany();
   await prisma.classRoutine.deleteMany();
-  await prisma.subPlanRecord.deleteMany();
+  await prisma.substitutePlan.deleteMany();
+  await prisma.newsletter.deleteMany();
+  await prisma.weeklyPlannerState.deleteMany();
+  await prisma.subject.deleteMany();
   await prisma.user.deleteMany();
   
   console.log('Cleared existing data successfully');

@@ -3,11 +3,11 @@
  * Extends BaseRouteHandler with templates-specific business logic
  */
 
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 import { z } from 'zod';
 import { BaseRouteHandler, AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
 import { BaseService } from '../services/base/BaseService.js';
-import { commonValidations, createValidationSchema } from './base/validation.js';
+import { commonValidations } from './base/validation.js';
 import { prisma } from '../prisma.js';
 import { Prisma } from '@teaching-engine/database';
 import { optimizedIncludes, optimizedQueries, queryPerformance } from './optimizations/queryOptimizations.js';
@@ -262,7 +262,7 @@ class TemplateService extends BaseService {
 
     const uniqueSubjects = subjects
       .map((t) => t.subject)
-      .filter((s) => s !== null)
+      .filter((_s) => s !== null)
       .sort();
 
     const gradeRange = grades.reduce(
@@ -340,8 +340,8 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
       const result = await this.templateService.findMany(filters, userId);
       res.json(result);
     } catch (_error) {
-      this.logger.error(`Error in ${this.routeName} list:`, error);
-      next(error);
+      this.logger.error(`Error in ${this.routeName} list:`, _error);
+      next(_error);
     }
   }
 
@@ -367,8 +367,8 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
       const options = await this.templateService.getFilterOptions(userId);
       res.json(options);
     } catch (_error) {
-      this.logger.error('Error getting filter options:', error);
-      next(error);
+      this.logger.error('Error getting filter options:', _error);
+      next(_error);
     }
   }
 }

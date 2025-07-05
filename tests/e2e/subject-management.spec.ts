@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { test, expect } from '@playwright/test';
 import {
   useDefaultTestUser,
@@ -78,7 +79,7 @@ test.describe('Subject Management Workflow', () => {
         // This is expected behavior in a real application with referential integrity
         console.log('Delete button clicked - deletion may be prevented by foreign key constraints');
       }
-    } catch (error) {
+    } catch (_error) {
       await page.screenshot({
         path: `test-results/subject-management-failure-${Date.now()}.png`,
         fullPage: true,
@@ -121,7 +122,7 @@ test.describe('Subject Management Workflow', () => {
           page.locator(`h1:has-text("${subject.name}"), h2:has-text("${subject.name}")`),
         ).toBeVisible({ timeout: 10000 });
       }
-    } catch (error) {
+    } catch (_error) {
       await page.screenshot({
         path: `test-results/subject-navigation-failure-${Date.now()}.png`,
         fullPage: true,
@@ -177,7 +178,7 @@ test.describe('Subject Management Workflow', () => {
           await expect(page.locator(`text="${subject.name}"`)).toBeVisible();
         }
       }
-    } catch (error) {
+    } catch (_error) {
       await page.screenshot({
         path: `test-results/subject-filtering-failure-${Date.now()}.png`,
         fullPage: true,
@@ -223,7 +224,7 @@ test.describe('Subject Management Workflow', () => {
           });
         }
       }
-    } catch (error) {
+    } catch (_error) {
       await page.screenshot({
         path: `test-results/subject-validation-failure-${Date.now()}.png`,
         fullPage: true,
@@ -252,7 +253,7 @@ test.describe('Subject Management Workflow', () => {
 
       // At least one should be visible
       expect(hasEmptyState || hasAddButton).toBeTruthy();
-    } catch (error) {
+    } catch (_error) {
       await page.screenshot({
         path: `test-results/subject-empty-state-failure-${Date.now()}.png`,
         fullPage: true,

@@ -125,7 +125,7 @@ class AuditLogger {
       details,
       ipAddress: req.ip || req.connection.remoteAddress,
       userAgent: req.get('User-Agent'),
-      sessionId: (req as unknown).sessionID || (req as unknown).requestId,
+      sessionId: (req as any).sessionID || (req as any).requestId,
       timestamp: new Date().toISOString(),
       success,
       errorMessage

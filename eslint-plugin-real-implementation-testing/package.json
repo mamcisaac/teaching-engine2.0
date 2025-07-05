@@ -1,0 +1,21 @@
+{
+  "name": "eslint-plugin-real-implementation-testing",
+  "version": "1.0.0",
+  "description": "ESLint plugin to enforce real implementation testing standards",
+  "main": "index.js",
+  "keywords": [
+    "eslint",
+    "plugin",
+    "testing",
+    "real-implementation",
+    "quality"
+  ],
+  "author": "Teaching Engine 2.0 Team",
+  "license": "MIT",
+  "peerDependencies": {
+    "eslint": ">=8.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

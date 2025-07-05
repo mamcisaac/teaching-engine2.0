@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { Page, expect, APIRequestContext } from '@playwright/test';
 
 // Global API context for making direct API requests
@@ -144,7 +145,7 @@ export async function createTestUser(
 
     console.log(`Created test user: ${user.email}`);
     return user;
-  } catch (error) {
+  } catch (_error) {
     console.error('Failed to create test user:', error);
     throw error;
   }
@@ -287,7 +288,7 @@ export async function cleanupTestUsers(): Promise<void> {
       } else {
         console.warn(`No token available to clean up user: ${user.email}`);
       }
-    } catch (error) {
+    } catch (_error) {
       console.warn(`Failed to cleanup test user ${user.email}:`, error);
     }
   }
@@ -307,7 +308,7 @@ export async function cleanupAllE2EData(): Promise<void> {
       const data = await response.json();
       console.log(`Cleaned up ${data.deletedUsers} test users`);
     }
-  } catch (error) {
+  } catch (_error) {
     console.warn('Failed to cleanup E2E data:', error);
   }
 }

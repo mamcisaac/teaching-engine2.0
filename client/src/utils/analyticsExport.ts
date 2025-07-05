@@ -5,8 +5,8 @@
  * in various formats (CSV, PDF, PNG) across different visualization components.
  */
 
-import { api } from '../api/legacy/api';
-
+import { apiClient } from '../api/core/client';
+import logger from './logger';
 export interface ExportOptions {
   title?: string;
   subtitle?: string;
@@ -32,7 +32,7 @@ export async function exportAnalyticsData(
   options: ExportOptions = {},
 ): Promise<void> {
   try {
-    const response = await api.post(
+    const response = await apiClient.post(
       '/api/analytics/export',
       {
         type,
@@ -73,8 +73,8 @@ export async function exportAnalyticsData(
     link.click();
     document.body.removeChild(link);
     window.URL.revokeObjectURL(url);
-  } catch (_error) {
-    console.error('Export failed:', error);
+  } catch (error) {
+    logger.error('Export failed:', error);
     throw new Error(`Failed to export ${type} as ${format}`);
   }
 }
@@ -102,7 +102,7 @@ export async function exportDomainRadar(
   options: ExportOptions = {},
 ): Promise<void> {
   return exportAnalyticsData('domain-radar', format, data, {
-    title: `Domain Strength Analysis - ${data.studentName || 'Student'}`,
+    title: `Domain Strength Analysis - ${(data as { studentName?: string }).studentName || 'Student'}`,
     ...options,
   });
 }
@@ -130,7 +130,7 @@ export async function exportVocabularyGrowth(
   options: ExportOptions = {},
 ): Promise<void> {
   return exportAnalyticsData('vocabulary-growth', format, data, {
-    title: `Vocabulary Growth - ${data.studentName || 'Student'}`,
+    title: `Vocabulary Growth - ${(data as { studentName?: string }).studentName || 'Student'}`,
     ...options,
   });
 }
@@ -148,7 +148,7 @@ export function showExportSuccess(type: ExportType, format: ExportFormat): void 
  */
 export function showExportError(type: ExportType, format: ExportFormat, error: Error): void {
   // This could integrate with a toast notification system
-  console.error(`Failed to export ${type} as ${format}:`, error.message);
+  logger.error(`Failed to export ${type} as ${format}:`, error.message);
 }
 
 /**
@@ -163,7 +163,7 @@ export async function exportWithNotifications(
   try {
     await exportAnalyticsData(type, format, data, options);
     showExportSuccess(type, format);
-  } catch (_error) {
+  } catch (error) {
     showExportError(type, format, error as Error);
     throw error;
   }

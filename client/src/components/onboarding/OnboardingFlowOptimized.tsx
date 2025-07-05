@@ -1,0 +1,184 @@
+import React, { useEffect, useRef, useState, Suspense } from 'react';
+import { createPortal } from 'react-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useOnboarding } from '../../contexts/OnboardingContext';
+import { OnboardingHighlight } from './OnboardingHighlight';
+import { OnboardingProgress } from './OnboardingProgress';
+import { OnboardingTooltip } from './OnboardingTooltip';
+
+interface HighlightPosition {
+  top: number;
+  left: number;
+  width: number;
+  height: number;
+}
+
+// Loading fallback for lazy components
+const OnboardingLoadingFallback = () => (
+  <div className="fixed inset-0 z-[9999] bg-black/50 flex items-center justify-center">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+  </div>
+);
+
+export function OnboardingFlowOptimized() {
+  const {
+    isOnboardingActive,
+    currentStep,
+    progress,
+    nextStep,
+    previousStep,
+    skipOnboarding,
+    canGoBack,
+    canGoForward,
+    state,
+  } = useOnboarding();
+
+  const [highlightPosition, setHighlightPosition] = useState<HighlightPosition | null>(null);
+  const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
+  const overlayRef = useRef<HTMLDivElement>(null);
+
+  // Update highlight position when step changes
+  useEffect(() => {
+    if (!currentStep?.targetElement) {
+      setHighlightPosition(null);
+      return;
+    }
+
+    const updatePosition = () => {
+      const element = currentStep.targetElement
+        ? document.querySelector(currentStep.targetElement)
+        : null;
+      if (!element) {
+        setHighlightPosition(null);
+        return;
+      }
+
+      const rect = element.getBoundingClientRect();
+      const padding = currentStep.highlightPadding || 8;
+
+      setHighlightPosition({
+        top: rect.top - padding + window.scrollY,
+        left: rect.left - padding + window.scrollX,
+        width: rect.width + padding * 2,
+        height: rect.height + padding * 2,
+      });
+
+      // Calculate tooltip position
+      const tooltipWidth = 400;
+      const tooltipHeight = 200;
+      let top = rect.top + window.scrollY;
+      let left = rect.left + window.scrollX;
+
+      switch (currentStep.position) {
+        case 'top':
+          top -= tooltipHeight + 20;
+          left += rect.width / 2 - tooltipWidth / 2;
+          break;
+        case 'bottom':
+          top += rect.height + 20;
+          left += rect.width / 2 - tooltipWidth / 2;
+          break;
+        case 'left':
+          top += rect.height / 2 - tooltipHeight / 2;
+          left -= tooltipWidth + 20;
+          break;
+        case 'right':
+          top += rect.height / 2 - tooltipHeight / 2;
+          left += rect.width + 20;
+          break;
+        default:
+          // Center
+          top = window.innerHeight / 2 - tooltipHeight / 2 + window.scrollY;
+          left = window.innerWidth / 2 - tooltipWidth / 2 + window.scrollX;
+      }
+
+      // Keep tooltip within viewport
+      const viewportPadding = 20;
+      left = Math.max(
+        viewportPadding,
+        Math.min(left, window.innerWidth - tooltipWidth - viewportPadding),
+      );
+      top = Math.max(viewportPadding + window.scrollY, top);
+
+      setTooltipPosition({ top, left });
+    };
+
+    updatePosition();
+
+    // Update on scroll or resize
+    window.addEventListener('scroll', updatePosition);
+    window.addEventListener('resize', updatePosition);
+
+    return () => {
+      window.removeEventListener('scroll', updatePosition);
+      window.removeEventListener('resize', updatePosition);
+    };
+  }, [currentStep]);
+
+  // Handle element click if required
+  useEffect(() => {
+    if (!currentStep?.targetElement || !currentStep.requiresAction) return;
+
+    const handleClick = (e: MouseEvent) => {
+      const element = document.querySelector(currentStep.targetElement!);
+      if (element && element.contains(e.target as Node)) {
+        nextStep();
+      }
+    };
+
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, [currentStep, nextStep]);
+
+  if (!isOnboardingActive || !currentStep) return null;
+
+  const isCenter = currentStep.position === 'center' || !currentStep.targetElement;
+
+  return createPortal(
+    <Suspense fallback={<OnboardingLoadingFallback />}>
+      <AnimatePresence>
+        <div className="fixed inset-0 z-[9999]" ref={overlayRef}>
+          {/* Dark overlay with spotlight */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 bg-black/50"
+            onClick={(e) => {
+              // Allow clicking through to highlighted element
+              if (highlightPosition && currentStep?.requiresAction) {
+                e.stopPropagation();
+              }
+            }}
+          >
+            {/* Spotlight cutout */}
+            {highlightPosition && (
+              <OnboardingHighlight highlightPosition={highlightPosition} />
+            )}
+          </motion.div>
+
+          {/* Tooltip */}
+          <OnboardingTooltip
+            currentStep={currentStep}
+            state={state}
+            progress={progress}
+            canGoBack={canGoBack}
+            canGoForward={canGoForward}
+            skipOnboarding={skipOnboarding}
+            previousStep={previousStep}
+            nextStep={nextStep}
+            tooltipPosition={tooltipPosition}
+            isCenter={isCenter}
+          />
+
+          {/* Completion message */}
+          {state.currentFlow?.completionMessage &&
+            state.currentStepIndex === state.currentFlow.steps.length - 1 && (
+              <OnboardingProgress completionMessage={state.currentFlow.completionMessage} />
+            )}
+        </div>
+      </AnimatePresence>
+    </Suspense>,
+    document.body,
+  );
+}

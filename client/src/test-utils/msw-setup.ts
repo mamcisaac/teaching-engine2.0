@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Test setup utilities
  * Basic test configuration without MSW dependency

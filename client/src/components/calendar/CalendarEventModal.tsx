@@ -1,9 +1,9 @@
+import { apiClient } from '../api/core/client';
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { Calendar, Clock } from 'lucide-react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { api } from '../../api/legacy/api';
 import { Button } from '../ui/Button';
 import {
   Dialog,
@@ -59,7 +59,7 @@ export default function CalendarEventModal({
     mutationFn: async (data: typeof formData) => {
       if (eventType === 'lesson') {
         // Create a lesson plan
-        return api.post('/api/etfo-lesson-plans', {
+        return apiClient.post('/api/etfo-lesson-plans', {
           title: data.title,
           description: data.description,
           date: data.date,
@@ -76,7 +76,7 @@ export default function CalendarEventModal({
           'lesson': 'CUSTOM',
         };
 
-        return api.post('/api/calendar-events', {
+        return apiClient.post('/api/calendar-events', {
           title: data.title,
           description: data.description,
           start: data.allDay ? `${data.date}T00:00:00Z` : `${data.date}T${data.startTime}:00Z`,

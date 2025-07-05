@@ -114,7 +114,7 @@ class TestDatabaseManager {
 
       // Re-enable foreign key constraints
       await client.$executeRawUnsafe('PRAGMA foreign_keys = ON');
-    } catch (error) {
+    } catch (_error) {
       console.error(`Failed to reset database for worker ${workerId}:`, error);
       throw error;
     }
@@ -136,7 +136,7 @@ class TestDatabaseManager {
     for (const [workerId, client] of this.clients) {
       try {
         await client.$disconnect();
-      } catch (error) {
+      } catch (_error) {
         console.error(`Failed to disconnect client for worker ${workerId}:`, error);
       }
     }
@@ -173,7 +173,7 @@ class TestDatabaseManager {
     for (let i = 0; i < retries; i++) {
       try {
         return await fn();
-      } catch (error) {
+      } catch (_error) {
         lastError = error as Error;
 
         // If it's a database locked error, wait before retrying

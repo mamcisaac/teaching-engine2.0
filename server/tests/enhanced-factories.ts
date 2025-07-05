@@ -117,7 +117,7 @@ export class SubjectFactory implements Factory<any> {
     return await this.prisma.subject.findMany({
       where: {
         name: {
-          in: subjects.map((s) => s.name),
+          in: subjects.map((_s) => s.name),
         },
       },
       orderBy: { id: 'asc' },

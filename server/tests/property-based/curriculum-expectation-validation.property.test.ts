@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Property-Based Tests for Curriculum Expectation Validation
  * Tests invariants and properties of curriculum expectation validation logic
@@ -458,7 +459,7 @@ describe('Error Handling Properties', () => {
         }),
         (malformedData) => {
           // Property: Validation should handle partial/malformed data
-          const validatePartialExpectation = (data: any): boolean => {
+          const validatePartialExpectation = (data: unknown): boolean => {
             try {
               // Required fields check
               if (!data.id || !data.code || !data.description || !data.grade || !data.subject) {
@@ -482,7 +483,7 @@ describe('Error Handling Properties', () => {
               }
 
               return true;
-            } catch (error) {
+            } catch (_error) {
               return false;
             }
           };

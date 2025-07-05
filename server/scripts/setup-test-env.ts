@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 #!/usr/bin/env node
 
 import { execSync } from 'child_process';
@@ -51,7 +52,7 @@ class TestEnvironmentSetup {
       await this.verifySetup();
 
       console.log('\n✅ Test environment setup complete!');
-    } catch (error) {
+    } catch (_error) {
       console.error('\n❌ Test environment setup failed:', error);
       process.exit(1);
     }
@@ -89,7 +90,7 @@ class TestEnvironmentSetup {
       await prisma.$connect();
       await prisma.$disconnect();
       this.log('  ✓ Database connection');
-    } catch (error) {
+    } catch (_error) {
       throw new Error(`Database connection failed: ${error}`);
     }
 
@@ -126,7 +127,7 @@ class TestEnvironmentSetup {
       }
 
       this.log(`  ✓ Removed ${dbFiles.length} old test database files`);
-    } catch (error) {
+    } catch (_error) {
       // Directory might not exist
       this.log('  ✓ No old test database files to clean');
     }
@@ -161,7 +162,7 @@ class TestEnvironmentSetup {
         env: process.env,
       });
       this.log('  ✓ Database migrations applied');
-    } catch (error) {
+    } catch (_error) {
       // Try db push as fallback
       this.log('  ⚠️  Migrations failed, trying db push...');
       try {

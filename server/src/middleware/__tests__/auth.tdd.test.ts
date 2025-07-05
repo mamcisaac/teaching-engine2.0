@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * TDD-Compliant Authentication Middleware Tests
  * Uses real implementations instead of mocks
@@ -110,7 +111,7 @@ describe('Authentication Middleware - Real Implementation Tests', () => {
   describe('JWT Middleware - Real Token Validation', () => {
     it('should validate real JWT tokens', async () => {
       // Create a protected test endpoint
-      app.get('/test/protected', (req, res) => {
+      app.get('/test/protected', (req: Request, res: Response) => {
         res.json({ 
           message: 'Success',
           userId: (req as unknown).userId,

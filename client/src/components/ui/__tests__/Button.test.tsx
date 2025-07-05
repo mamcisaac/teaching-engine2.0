@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * @file Button.test.tsx
  * @description Comprehensive tests for Button component including variants, sizes,

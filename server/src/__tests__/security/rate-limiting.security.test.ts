@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Rate Limiting Security Test Suite
  * Brute force protection and rate limiting validation
@@ -60,32 +61,32 @@ describe('Rate Limiting Security Tests', () => {
     app.use(express.json());
 
     // Public endpoint without rate limiting
-    app.get('/api/public', (req, res) => {
+    app.get('/api/public', (req: Request, res: Response) => {
       res.json({ message: 'public endpoint' });
     });
 
     // Endpoints with different rate limiters
-    app.get('/api/auth-limited', rateLimiters.auth, (req, res) => {
+    app.get('/api/auth-limited', rateLimiters.auth, (req: Request, res: Response) => {
       res.json({ message: 'auth rate limited' });
     });
 
-    app.get('/api/api-limited', rateLimiters.api, (req, res) => {
+    app.get('/api/api-limited', rateLimiters.api, (req: Request, res: Response) => {
       res.json({ message: 'api rate limited' });
     });
 
-    app.get('/api/read-limited', rateLimiters.read, (req, res) => {
+    app.get('/api/read-limited', rateLimiters.read, (req: Request, res: Response) => {
       res.json({ message: 'read rate limited' });
     });
 
-    app.get('/api/write-limited', rateLimiters.write, (req, res) => {
+    app.get('/api/write-limited', rateLimiters.write, (req: Request, res: Response) => {
       res.json({ message: 'write rate limited' });
     });
 
-    app.get('/api/ai-limited', rateLimiters.ai, (req, res) => {
+    app.get('/api/ai-limited', rateLimiters.ai, (req: Request, res: Response) => {
       res.json({ message: 'ai rate limited' });
     });
 
-    app.post('/api/upload-limited', rateLimiters.upload, (req, res) => {
+    app.post('/api/upload-limited', rateLimiters.upload, (req: Request, res: Response) => {
       res.json({ message: 'upload rate limited' });
     });
 
@@ -96,7 +97,7 @@ describe('Rate Limiting Security Tests', () => {
       message: 'Strict rate limit exceeded',
     });
 
-    app.get('/api/strict-limited', strictLimiter, (req, res) => {
+    app.get('/api/strict-limited', strictLimiter, (req: Request, res: Response) => {
       res.json({ message: 'strict rate limited' });
     });
 
@@ -115,7 +116,7 @@ describe('Rate Limiting Security Tests', () => {
       message: 'User-based rate limit exceeded',
     });
 
-    app.get('/api/user-limited', userBasedLimiter, (req, res) => {
+    app.get('/api/user-limited', userBasedLimiter, (req: Request, res: Response) => {
       res.json({ message: 'user rate limited' });
     });
 
@@ -208,7 +209,7 @@ describe('Rate Limiting Security Tests', () => {
         message: 'Short window exceeded',
       });
 
-      app.get('/api/short-limited', shortLimiter, (req, res) => {
+      app.get('/api/short-limited', shortLimiter, (req: Request, res: Response) => {
         res.json({ message: 'short limited' });
       });
 
@@ -541,14 +542,14 @@ describe('Rate Limiting Security Tests', () => {
     it('should handle invalid IP addresses gracefully', async () => {
       // Mock request with invalid IP
       const invalidIpApp = express();
-      invalidIpApp.use((req, res, next) => {
+      invalidIpApp.use((req: Request, res: Response, next: NextFunction) => {
         // Simulate invalid IP
         req.ip = undefined;
         req.connection.remoteAddress = undefined;
         next();
       });
       invalidIpApp.use(rateLimiters.api);
-      invalidIpApp.get('/test', (req, res) => {
+      invalidIpApp.get('/test', (req: Request, res: Response) => {
         res.json({ message: 'test' });
       });
 
@@ -593,7 +594,7 @@ describe('Rate Limiting Security Tests', () => {
         keyGenerator: () => `test-key-${keyCounter++}`,
       });
 
-      manyKeyApp.get('/test', testLimiter, (req, res) => {
+      manyKeyApp.get('/test', testLimiter, (req: Request, res: Response) => {
         res.json({ message: 'test' });
       });
 

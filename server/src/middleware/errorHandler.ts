@@ -381,23 +381,25 @@ export function handleGracefulShutdown(server: { close: (callback: () => void) =
       logger.info('HTTP server closed');
 
       // Close database connections
-      try {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const imported = await import('../prisma.js');
-        prisma
-          .$disconnect()
-          .then(() => {
-            logger.info('Database connections closed');
-            process.exit(0);
-          })
-          .catch((err) => {
-            logger.error({ error: err }, 'Error closing database connections');
-            process.exit(1);
-          });
-      } catch (_error) {
-        logger.warn('Could not access prisma for shutdown');
-        process.exit(0);
-      }
+      (async () => {
+        try {
+          // eslint-disable-next-line @typescript-eslint/no-var-requires
+          const { prisma } = await import('../prisma.js');
+          prisma
+            .$disconnect()
+            .then(() => {
+              logger.info('Database connections closed');
+              process.exit(0);
+            })
+            .catch((err) => {
+              logger.error({ error: err }, 'Error closing database connections');
+              process.exit(1);
+            });
+        } catch (_error) {
+          logger.warn('Could not access prisma for shutdown');
+          process.exit(0);
+        }
+      })();
     });
 
     // Force shutdown after 30 seconds

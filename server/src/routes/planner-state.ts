@@ -4,7 +4,7 @@ import { z } from 'zod';
 import rateLimit from 'express-rate-limit';
 import { cuidSchema } from '../validation';
 import DOMPurify from 'isomorphic-dompurify';
-
+import logger from '../logger';
 const router = express.Router();
 
 // Rate limiting for state operations
@@ -173,7 +173,7 @@ router.get('/state', async (req: express.Request, res: express.Response) => {
 
     res.json(responseState);
   } catch (_error) {
-    console.error('Error fetching planner state:', error);
+    logger.error('Error fetching planner state:', _error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -275,7 +275,7 @@ router.put(
 
       res.json(responseState);
     } catch (_error) {
-      console.error('Error updating planner state:', error);
+      logger.error('Error updating planner state:', _error);
       res.status(500).json({ error: 'Internal server error' });
     }
   },
@@ -391,7 +391,7 @@ router.get('/week/:weekStart/state', async (req: express.Request, res: Response)
 
     res.json(weeklyState);
   } catch (_error) {
-    console.error('Error fetching weekly state:', error);
+    logger.error('Error fetching weekly state:', _error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -457,7 +457,7 @@ router.post(
 
       res.json(responseState);
     } catch (_error) {
-      console.error('Error resetting planner state:', error);
+      logger.error('Error resetting planner state:', _error);
       res.status(500).json({ error: 'Internal server error' });
     }
   },

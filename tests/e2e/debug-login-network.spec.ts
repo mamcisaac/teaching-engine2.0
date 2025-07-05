@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { test, expect, type Page } from '@playwright/test';
 import { login as reliableLogin } from './helpers/unified-auth';
 import { initApiContext } from './helpers/unified-auth';
@@ -58,7 +59,7 @@ async function checkAuthState(page: Page, context: string): Promise<AuthState> {
           data: await response.json().catch(() => null),
           headers: Object.fromEntries([...response.headers.entries()]),
         };
-      } catch (error) {
+      } catch (_error) {
         return {
           status: 0,
           statusText: 'Error',
@@ -90,7 +91,7 @@ async function checkAuthState(page: Page, context: string): Promise<AuthState> {
       hasCookies: authCookies.length > 0,
       isAuthenticated: authResponse.ok === true,
     };
-  } catch (error) {
+  } catch (_error) {
     const err = error as Error;
     console.error(`Error checking auth state (${context}):`, err);
     return {

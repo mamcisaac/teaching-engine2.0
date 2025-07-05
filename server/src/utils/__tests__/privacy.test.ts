@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { describe, test, expect, beforeEach, jest } from '@jest/globals';
 import { PrivacyUtils } from '../privacy';
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Input Validation Security Test Suite
  * XSS, SQL injection, and malicious input protection testing
@@ -194,11 +195,11 @@ describe('Input Validation Security Tests', () => {
     app.use(sanitizeInput);
 
     // Test endpoints
-    app.post('/api/test/echo', (req, res) => {
+    app.post('/api/test/echo', (req: Request, res: Response) => {
       res.json({ body: req.body, query: req.query, params: req.params });
     });
 
-    app.post('/api/test/user/:userId', (req, res) => {
+    app.post('/api/test/user/:userId', (req: Request, res: Response) => {
       res.json({
         userId: req.params.userId,
         data: req.body,
@@ -206,12 +207,12 @@ describe('Input Validation Security Tests', () => {
       });
     });
 
-    app.get('/api/test/search', (req, res) => {
+    app.get('/api/test/search', (req: Request, res: Response) => {
       res.json({ query: req.query });
     });
 
     // Endpoint that creates database records (for SQL injection testing)
-    app.post('/api/test/create-record', async (req, res) => {
+    app.post('/api/test/create-record', async (req: Request, res: Response) => {
       try {
         const { name, description } = req.body;
 
@@ -465,7 +466,7 @@ describe('Input Validation Security Tests', () => {
 
     it('should handle deeply nested objects', async () => {
       // Create deeply nested object
-      let deepObject: any = { value: 'deep' };
+      let deepObject: unknown = { value: 'deep' };
       for (let i = 0; i < 1000; i++) {
         deepObject = { nested: deepObject };
       }
@@ -689,7 +690,7 @@ describe('Input Validation Security Tests', () => {
 
     it('should handle sanitization errors gracefully', async () => {
       // Create circular reference to cause JSON serialization error
-      const circularObj: any = { test: 'data' };
+      const circularObj: unknown = { test: 'data' };
       circularObj.circular = circularObj;
 
       const response = await request.post('/api/test/echo').send(circularObj);

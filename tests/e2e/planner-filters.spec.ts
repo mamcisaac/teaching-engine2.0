@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { test, expect } from '@playwright/test';
 import { login, API_BASE } from './helpers/unified-auth';
 
 // Helper function to get the Monday of the current week in ISO format
 const getWeekStartISO = (date: Date): string => {
   const d = new Date(date);
-  const day = d.getUTCDay();
+  const _day = d.getUTCDay();
   const diff = d.getUTCDate() - day + (day === 0 ? -6 : 1); // Adjust when day is Sunday
   const monday = new Date(d.setUTCDate(diff));
   return monday.toISOString().split('T')[0];
@@ -29,7 +30,7 @@ test('planner tag filters', async ({ page }) => {
       }
       subjects = await subjectsRes.json();
       break;
-    } catch (error) {
+    } catch (_error) {
       attempts++;
       console.log(`Attempt ${attempts} to get subjects failed:`, error);
       if (attempts >= maxAttempts) {

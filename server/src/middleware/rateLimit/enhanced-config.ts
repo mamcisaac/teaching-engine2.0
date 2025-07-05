@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-var-requires */
 /**
  * Enhanced Rate Limiting Configuration
  * Supports Redis, user tiers, and dynamic limits
@@ -6,7 +8,7 @@
 import { Request } from 'express';
 import Redis from 'ioredis';
 import { RateLimiterRedis, RateLimiterMemory, IRateLimiterOptions } from 'rate-limiter-flexible';
-
+import logger from '../../logger';
 export enum UserTier {
   FREE = 'FREE',
   PREMIUM = 'PREMIUM',
@@ -210,11 +212,11 @@ export async function getRedisClient(): Promise<Redis | null> {
     });
 
     await redisClient.ping();
-    console.info('Redis connected for rate limiting');
+    logger.info('Redis connected for rate limiting');
     
     return redisClient;
   } catch (_error) {
-    console.info('Redis connection failed, using in-memory rate limiting', error);
+    logger.info('Redis connection failed, using in-memory rate limiting', error);
     return null;
   }
 }

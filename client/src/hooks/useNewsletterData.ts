@@ -1,5 +1,5 @@
+import { apiClient } from '../api/core/client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { api } from '../api/legacy/api';
 import { 
   NewsletterGenerationParams, 
   GeneratedNewsletter, 
@@ -14,7 +14,7 @@ export function useStudents() {
   return useQuery<Student[]>({
     queryKey: ['students'],
     queryFn: async () => {
-      const response = await api.get('/students');
+      const response = await apiClient.get('/students');
       return response.data;
     },
   });
@@ -27,7 +27,7 @@ export function useGenerateNewsletter() {
   return useMutation<GeneratedNewsletter, Error, NewsletterGenerationParams>({
     mutationFn: async (params) => {
       // For multi-student newsletters, we'll generate a comprehensive summary
-      const response = await api.post('/newsletters/generate-newsletter', {
+      const response = await apiClient.post('/newsletters/generate-newsletter', {
         studentIds: params.studentIds,
         from: params.from.toISOString(),
         to: params.to.toISOString(),
@@ -57,7 +57,7 @@ export function useRegenerateNewsletter() {
     tone?: 'friendly' | 'formal' | 'informative';
   }>({
     mutationFn: async ({ draft, tone }) => {
-      const response = await api.post('/newsletters/regenerate-newsletter', {
+      const response = await apiClient.post('/newsletters/regenerate-newsletter', {
         sections: draft.sections,
         studentIds: draft.studentIds,
         from: draft.dateFrom,
@@ -90,7 +90,7 @@ export function useSaveNewsletterDraft() {
       const response = await api[method](endpoint, draft);
       return response.data;
     },
-    onSuccess: (data) => {
+    onSuccess: (_data) => {
       toast.success(data.isDraft ? 'Draft saved!' : 'Newsletter finalized!');
       queryClient.invalidateQueries({ queryKey: ['newsletter-drafts'] });
       queryClient.invalidateQueries({ queryKey: ['newsletter', data.id] });
@@ -106,7 +106,7 @@ export function useNewsletterDrafts() {
   return useQuery<NewsletterDraft[]>({
     queryKey: ['newsletter-drafts'],
     queryFn: async () => {
-      const response = await api.get('/newsletters?isDraft=true');
+      const response = await apiClient.get('/newsletters?isDraft=true');
       return response.data;
     },
   });
@@ -118,7 +118,7 @@ export function useNewsletter(id: string | undefined) {
     queryKey: ['newsletter', id],
     queryFn: async () => {
       if (!id) throw new Error('Newsletter ID is required');
-      const response = await api.get(`/newsletters/${id}`);
+      const response = await apiClient.get(`/newsletters/${id}`);
       return response.data;
     },
     enabled: !!id,
@@ -131,7 +131,7 @@ export function useSendNewsletter() {
 
   return useMutation<void, Error, { newsletterId: string; recipientEmails?: string[] }>({
     mutationFn: async ({ newsletterId, recipientEmails }) => {
-      await api.post(`/newsletters/${newsletterId}/send`, {
+      await apiClient.post(`/newsletters/${newsletterId}/send`, {
         recipientEmails,
       });
     },
@@ -152,7 +152,7 @@ export function useDeleteNewsletter() {
 
   return useMutation<void, Error, string>({
     mutationFn: async (id) => {
-      await api.delete(`/newsletters/${id}`);
+      await apiClient.delete(`/newsletters/${id}`);
     },
     onSuccess: () => {
       toast.success('Newsletter deleted successfully!');
@@ -170,7 +170,7 @@ export function useParentSummaries(studentId: number | undefined) {
     queryKey: ['parent-summaries', studentId],
     queryFn: async () => {
       if (!studentId) throw new Error('Student ID is required');
-      const response = await api.get(`/parent-summaries/student/${studentId}`);
+      const response = await apiClient.get(`/parent-summaries/student/${studentId}`);
       return response.data;
     },
     enabled: !!studentId,

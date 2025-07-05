@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { Page } from '@playwright/test';
 
 /**
@@ -41,7 +42,7 @@ export class DebugHelper {
         fullPage: true,
       });
       console.log(`Screenshot saved for ${testName}`);
-    } catch (error) {
+    } catch (_error) {
       console.log(`Failed to take screenshot: ${error}`);
     }
   }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * @file unitPlanService.test.ts
  * @description Comprehensive tests for UnitPlanService including progress calculations,

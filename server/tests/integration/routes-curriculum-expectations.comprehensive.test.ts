@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Comprehensive Curriculum Expectations Route Tests
  * Priority 1B: Core CRUD Operations with Semantic Search Testing
@@ -45,7 +46,7 @@ describe('Curriculum Expectations Routes - Comprehensive Integration Tests', () 
     app.use('/curriculum-expectations', curriculumExpectationsRouter);
 
     // Global error handler
-    app.use((error: any, req: any, res: any, next: any) => {
+    app.use((error: unknown, req: unknown, res: unknown, next: unknown) => {
       console.error('Test app error:', error);
       res.status(500).json({ error: 'Internal server error' });
     });
@@ -146,7 +147,7 @@ describe('Curriculum Expectations Routes - Comprehensive Integration Tests', () 
         .expect(200);
 
       expect(response.body).toHaveLength(2);
-      response.body.forEach((expectation: any) => {
+      response.body.forEach((expectation: unknown) => {
         expect(expectation.subject).toBe('Mathematics');
       });
     });
@@ -155,7 +156,7 @@ describe('Curriculum Expectations Routes - Comprehensive Integration Tests', () 
       const response = await request(app).get('/curriculum-expectations?grade=1').expect(200);
 
       expect(response.body).toHaveLength(2);
-      response.body.forEach((expectation: any) => {
+      response.body.forEach((expectation: unknown) => {
         expect(expectation.grade).toBe(1);
       });
     });
@@ -166,7 +167,7 @@ describe('Curriculum Expectations Routes - Comprehensive Integration Tests', () 
         .expect(200);
 
       expect(response.body).toHaveLength(2);
-      response.body.forEach((expectation: any) => {
+      response.body.forEach((expectation: unknown) => {
         expect(expectation.strand).toBe('Reading');
       });
     });
@@ -661,7 +662,7 @@ describe('Curriculum Expectations Routes - Comprehensive Integration Tests', () 
 
       // Should include math-related expectations
       const mathExpectations = response.body.filter(
-        (exp: any) => exp.subject === 'Mathematics' || exp.description.includes('addition'),
+        (exp: unknown) => exp.subject === 'Mathematics' || exp.description.includes('addition'),
       );
       expect(mathExpectations.length).toBeGreaterThan(0);
     });
@@ -684,7 +685,7 @@ describe('Curriculum Expectations Routes - Comprehensive Integration Tests', () 
       expect(Array.isArray(response.body)).toBe(true);
 
       // All results should match filters
-      response.body.forEach((expectation: any) => {
+      response.body.forEach((expectation: unknown) => {
         expect(expectation.subject).toBe('Mathematics');
         expect(expectation.grade).toBe(1);
       });
@@ -705,7 +706,7 @@ describe('Curriculum Expectations Routes - Comprehensive Integration Tests', () 
       expect(Array.isArray(response.body)).toBe(true);
 
       // Should find the reading comprehension expectation
-      const comprehensionResults = response.body.filter((exp: any) =>
+      const comprehensionResults = response.body.filter((exp: unknown) =>
         exp.description.includes('comprehension'),
       );
       expect(comprehensionResults.length).toBeGreaterThan(0);

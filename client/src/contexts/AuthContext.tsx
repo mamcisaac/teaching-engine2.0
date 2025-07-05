@@ -1,13 +1,15 @@
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { authService } from '../services/authService';
 import type { User } from '../types';
-
+import logger from '../utils/logger';
+import { errorReportingService } from '../services/errorReportingService';
 interface AuthContextValue {
   user: User | null;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   isAuthenticated: boolean;
   isLoading: boolean;
+  isInitialized: boolean;
   checkAuth: () => Promise<void>;
   getToken: () => string | null;
   refreshToken: () => Promise<boolean>;
@@ -21,6 +23,7 @@ const AuthContext = createContext<AuthContextValue>({
   logout: async () => {},
   isAuthenticated: false,
   isLoading: true,
+  isInitialized: false,
   checkAuth: async () => {},
   getToken: () => null,
   refreshToken: async () => false,
@@ -32,6 +35,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isInitialized, setIsInitialized] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [retryCount, setRetryCount] = useState(0);
 
@@ -44,6 +48,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsAuthenticated(!!userData);
     if (userData) {
       setError(null); // Clear errors on successful auth
+      // Set user context for error reporting
+      errorReportingService.setUserContext({
+        id: String(userData.id),
+        email: userData.email,
+        name: userData.name,
+        role: userData.role || 'teacher',
+        organizationId: userData.organizationId ? String(userData.organizationId) : undefined,
+      });
+    } else {
+      // Clear user context when logged out
+      errorReportingService.setUserContext(null);
     }
   }, []);
 
@@ -53,7 +68,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       updateAuthState(userData);
       setRetryCount(0); // Reset retry count on success
     } catch (_error) {
-      console.error('Auth check failed:', error);
+      logger.error('Auth check failed:', _error);
       updateAuthState(null);
 
       // Set user-friendly error message
@@ -76,11 +91,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         updateAuthState(response.user);
         setRetryCount(0);
       } catch (_error) {
-        console.error('Login failed:', error);
+        logger.error('Login failed:', _error);
 
         // Extract user-friendly error message
         let errorMessage = 'Login failed';
-        const err = error as {
+        const err = _error as {
           response?: { data?: { error?: string }; status?: number };
           message?: string;
         };
@@ -96,12 +111,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
         setError(errorMessage);
         updateAuthState(null);
-        throw error; // Re-throw for component handling
+        throw _error; // Re-throw for component handling
       } finally {
         setIsLoading(false);
       }
     },
-    [updateAuthState],
+    [updateAuthState, error],
   );
 
   const logout = useCallback(async () => {
@@ -111,13 +126,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       await authService.logout();
     } catch (_error) {
-      console.error('Logout failed:', error);
+      logger.error('Logout failed:', _error);
       // Don't show error for logout failures, just clear local state
     } finally {
       updateAuthState(null);
       setIsLoading(false);
     }
-  }, [updateAuthState]);
+  }, [updateAuthState, error]);
 
   const getToken = useCallback((): string | null => {
     return authService.getAccessToken();
@@ -137,19 +152,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return false;
       }
     } catch (_error) {
-      console.error('Token refresh failed:', error);
+      logger.error('Token refresh failed:', _error);
       updateAuthState(null);
       return false;
     }
-  }, [updateAuthState]);
+  }, [updateAuthState, error]);
 
   // Initial auth check with improved error handling and retry logic
   useEffect(() => {
     let isMounted = true;
     const timeoutId: NodeJS.Timeout = setTimeout(() => {
       if (isMounted && isLoading) {
-        console.warn('Auth check timeout - assuming not authenticated');
+        logger.warn('Auth check timeout - assuming not authenticated');
         setIsLoading(false);
+        setIsInitialized(true);
         updateAuthState(null);
       }
     }, 5000); // 5 second timeout
@@ -160,11 +176,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const storedUser = authService.getUser();
         const hasToken = authService.isAuthenticated();
 
+        // Debug logging in development
+        if (process.env.NODE_ENV === 'development') {
+          logger.info('[AuthContext] Initial auth check:', {
+            hasStoredUser: !!storedUser,
+            hasToken: !!hasToken,
+            storedUser: storedUser,
+            tokenValue: authService.getAccessToken()?.substring(0, 20) + '...',
+          });
+        }
+
         if (!hasToken) {
           // No token, definitely not authenticated
           if (isMounted) {
             updateAuthState(null);
             setIsLoading(false);
+            setIsInitialized(true);
           }
           return;
         }
@@ -178,13 +205,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           updateAuthState(null);
         }
       } catch (_error) {
-        console.error('Initial auth check failed:', error);
+        logger.error('Initial auth check failed:', _error);
         if (isMounted) {
           updateAuthState(null);
         }
       } finally {
         if (isMounted) {
           setIsLoading(false);
+          setIsInitialized(true);
         }
       }
     };
@@ -206,12 +234,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       try {
         await authService.ensureValidToken();
       } catch (_error) {
-        console.error('Auto token refresh failed:', error);
+        logger.error('Auto token refresh failed:', _error);
       }
     }, 60000); // Check every minute
 
     return () => clearInterval(interval);
-  }, [isAuthenticated]);
+  }, [isAuthenticated, error]);
 
   // Retry auth check with exponential backoff when there are connection issues
   useEffect(() => {
@@ -231,6 +259,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     logout,
     isAuthenticated,
     isLoading,
+    isInitialized,
     checkAuth,
     getToken,
     refreshToken,
@@ -241,4 +270,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 }
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  return useContext(AuthContext);
+};

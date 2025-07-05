@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /**
  * Long-Range Plan AI Snapshot Tests
  * 
@@ -31,7 +32,7 @@ describe('Long-Range Plan AI Snapshot Tests', () => {
     test.each(scenarios)(
       'should generate consistent long-range plan for $name',
       async (scenario) => {
-        const aiFunction = async (input: any) => {
+        const aiFunction = async (input: unknown) => {
           // Use mock responses in test environment
           if (!AI_TESTING_CONFIG.testApiKey) {
             return AITestMockResponses.mockLongRangePlan(scenario);
@@ -61,7 +62,7 @@ describe('Long-Range Plan AI Snapshot Tests', () => {
     test.each(scenarios)(
       'should generate consistent long-range plan for $name',
       async (scenario) => {
-        const aiFunction = async (input: any) => {
+        const aiFunction = async (input: unknown) => {
           if (!AI_TESTING_CONFIG.testApiKey) {
             return AITestMockResponses.mockLongRangePlan(scenario);
           }
@@ -88,7 +89,7 @@ describe('Long-Range Plan AI Snapshot Tests', () => {
     test.each(scenarios)(
       'should generate consistent long-range plan for $name',
       async (scenario) => {
-        const aiFunction = async (input: any) => {
+        const aiFunction = async (input: unknown) => {
           if (!AI_TESTING_CONFIG.testApiKey) {
             return AITestMockResponses.mockLongRangePlan(scenario);
           }
@@ -110,9 +111,9 @@ describe('Long-Range Plan AI Snapshot Tests', () => {
     test('should show appropriate complexity progression across grades', async () => {
       const allScenarios = AISnapshotTestBase.getTestScenarios();
       const complexityAnalysis = {
-        basic: [] as any[],
-        intermediate: [] as any[],
-        advanced: [] as any[],
+        basic: [] as unknown[],
+        intermediate: [] as unknown[],
+        advanced: [] as unknown[],
       };
 
       // Generate responses for complexity analysis
@@ -125,8 +126,8 @@ describe('Long-Range Plan AI Snapshot Tests', () => {
           grade: scenario.grade,
           subject: scenario.subject,
           unitCount: response.units.length,
-          averageDuration: response.units.reduce((sum: number, unit: any) => sum + unit.expectedDurationWeeks, 0) / response.units.length,
-          bigIdeasCount: response.units.reduce((sum: number, unit: any) => sum + unit.bigIdeas.length, 0),
+          averageDuration: response.units.reduce((sum: number, unit: unknown) => sum + unit.expectedDurationWeeks, 0) / response.units.length,
+          bigIdeasCount: response.units.reduce((sum: number, unit: unknown) => sum + unit.bigIdeas.length, 0),
           qualityScore: normalized.validation.contentScore,
         });
       }

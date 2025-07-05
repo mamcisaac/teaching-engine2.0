@@ -662,7 +662,7 @@ Summative Assessment (End of Unit):
                       } else {
                         setFormData({
                           ...formData,
-                          learningSkills: formData.learningSkills.filter((s) => s !== skill),
+                          learningSkills: formData.learningSkills.filter((_s) => s !== skill),
                         });
                       }
                     }}

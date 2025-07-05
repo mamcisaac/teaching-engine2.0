@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { afterEach } from '@jest/globals';
 
 // Configuration for test retries
@@ -54,7 +55,7 @@ function createRetryableTest(testFn: typeof it) {
           }
           
           return; // Success
-        } catch (error) {
+        } catch (_error) {
           lastError = error as Error;
           
           // Check if error is retryable

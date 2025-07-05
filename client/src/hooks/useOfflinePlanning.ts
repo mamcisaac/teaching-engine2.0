@@ -9,7 +9,7 @@ import { useWeeklyPlannerStore } from '../stores/weeklyPlannerStore';
 import { offlineStorage, StoredData } from '../services/offlineStorage';
 import { lazyLoader } from '../services/lazyLoader';
 import { batchedApi } from '../services/requestBatcher';
-
+import logger from '../utils/logger';
 // Combined offline planning hook
 export function useOfflinePlanning() {
   const unitPlanStore = useUnitPlanStore();
@@ -66,7 +66,7 @@ export function useOfflinePlanning() {
   // Preload curriculum documents for offline use
   const preloadCurriculum = async (documentIds: string[]) => {
     await lazyLoader.preloadDocuments(documentIds, (current, total) => {
-      console.log(`Preloading curriculum: ${current}/${total}`);
+      logger.info(`Preloading curriculum: ${current}/${total}`);
     });
   };
 
@@ -133,7 +133,7 @@ export function useUnitPlanWithOffline(unitPlanId?: string) {
       try {
         await unitPlanStore.loadUnitPlan(unitPlanId);
       } catch (_error) {
-        console.error('Failed to load unit plan:', error);
+        logger.error('Failed to load unit plan:', error);
       } finally {
         setLoading(false);
       }
@@ -186,7 +186,7 @@ export function useBatchedRequests() {
       const results = await Promise.all(promises);
       return results.map((r: unknown) => (r as { data: unknown }).data);
     } catch (_error) {
-      console.error('Batch request failed:', error);
+      logger.error('Batch request failed:', error);
       throw error;
     } finally {
       setLoading(false);

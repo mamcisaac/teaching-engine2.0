@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Property-Based Tests for API Contracts
  * Tests API behavior invariants and contract compliance
@@ -500,7 +501,7 @@ describe('API Contract Properties', () => {
           ),
           (malformedInput) => {
             // Property: API should handle malformed input gracefully
-            const handleRequest = (input: any) => {
+            const handleRequest = (input: unknown) => {
               try {
                 // Simulate request validation
                 if (input === null || input === undefined) {
@@ -524,7 +525,7 @@ describe('API Contract Properties', () => {
                   data: input,
                   error: null,
                 };
-              } catch (error) {
+              } catch (_error) {
                 return {
                   success: false,
                   data: null,
@@ -556,7 +557,7 @@ describe('API Contract Properties', () => {
           }),
           (validationCase) => {
             // Property: Error messages should be specific and helpful
-            const generateErrorMessage = (field: string, value: any, rule: string) => {
+            const generateErrorMessage = (field: string, value: unknown, rule: string) => {
               switch (rule) {
                 case 'required':
                   if (value === null || value === undefined || value === '') {

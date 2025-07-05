@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { studentApi } from './api';
-import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+import { queryKeys as _queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 
 // Student Query Hooks
 export const useStudents = () =>
@@ -59,7 +59,7 @@ export const useUpdateStudent = () => {
 
   return useMutation({
     mutationFn: studentApi.updateStudent,
-    onSuccess: (data) => {
+    onSuccess: (__data) => {
       showSuccessToast('Student updated successfully');
       queryClient.invalidateQueries({ queryKey: queryKeys.student.all });
       queryClient.invalidateQueries({ queryKey: queryKeys.student.detail(data.id) });
@@ -87,7 +87,7 @@ export const useCreateStudentGoal = () => {
 
   return useMutation({
     mutationFn: studentApi.createStudentGoal,
-    onSuccess: (data) => {
+    onSuccess: (__data) => {
       showSuccessToast('Goal created successfully');
       queryClient.invalidateQueries({ queryKey: queryKeys.student.goals(data.studentId) });
     },
@@ -100,7 +100,7 @@ export const useUpdateStudentGoal = () => {
 
   return useMutation({
     mutationFn: studentApi.updateStudentGoal,
-    onSuccess: (data) => {
+    onSuccess: (__data) => {
       showSuccessToast('Goal updated successfully');
       queryClient.invalidateQueries({ queryKey: queryKeys.student.goals(data.studentId) });
     },
@@ -127,7 +127,7 @@ export const useCreateStudentReflection = () => {
 
   return useMutation({
     mutationFn: studentApi.createStudentReflection,
-    onSuccess: (data) => {
+    onSuccess: (__data) => {
       showSuccessToast('Reflection created successfully');
       queryClient.invalidateQueries({ queryKey: queryKeys.student.reflections(data.studentId) });
     },
@@ -164,7 +164,7 @@ export const useSaveParentSummary = () => {
 
   return useMutation({
     mutationFn: studentApi.saveParentSummary,
-    onSuccess: (data) => {
+    onSuccess: (__data) => {
       showSuccessToast('Parent summary saved successfully');
       queryClient.invalidateQueries({ queryKey: queryKeys.student.parentSummaries(data.studentId) });
     },
@@ -177,7 +177,7 @@ export const useUpdateParentSummary = () => {
 
   return useMutation({
     mutationFn: studentApi.updateParentSummary,
-    onSuccess: (data) => {
+    onSuccess: (__data) => {
       showSuccessToast('Parent summary updated successfully');
       queryClient.invalidateQueries({ queryKey: queryKeys.student.parentSummaries(data.studentId) });
     },

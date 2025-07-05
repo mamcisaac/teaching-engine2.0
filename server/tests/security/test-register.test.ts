@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Test Registration Endpoint
  * Simple test to check if registration works
@@ -7,7 +8,7 @@ import { describe, it, expect, beforeEach } from '@jest/globals';
 import request from 'supertest';
 
 // Import the actual app
-let app: any;
+let app: unknown;
 
 beforeEach(async () => {
   // Set required environment variables

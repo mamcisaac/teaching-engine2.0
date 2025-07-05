@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { z } from 'zod';
 
 // Common field schemas
@@ -247,7 +248,7 @@ export const buildUpdateSchema = <T extends z.ZodObject<unknown>>(
 
 // Validation middleware factory
 export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>) => {
-  return (req: unknown, res: unknown, next: unknown) => {
+  return (req: any, res: any, next: any) => {
     try {
       const data = {
         ...(req.body || {}),
@@ -259,17 +260,17 @@ export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>) => {
       req.validated = result;
       next();
     } catch (_error) {
-      if (error instanceof z.ZodError) {
+      if (_error instanceof z.ZodError) {
         res.status(400).json({
           success: false,
           error: {
             code: 'VALIDATION_ERROR',
             message: 'Validation failed',
-            details: error.errors,
+            details: _error.errors,
           },
         });
       } else {
-        next(error);
+        next(_error);
       }
     }
   };

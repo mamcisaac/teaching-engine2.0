@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Simple Curriculum Property Tests
  * Basic curriculum validation tests using fast-check

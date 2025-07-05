@@ -1,22 +1,25 @@
-import { useState, useMemo, useCallback } from 'react';
-import { Calendar, momentLocalizer, Event, View, SlotInfo } from 'react-big-calendar';
-import moment from 'moment';
+import { apiClient } from '../api/core/client';
+import { useState, useMemo, useCallback, Suspense, useEffect } from 'react';
+import { Event, View, SlotInfo } from 'react-big-calendar';
 import { format, startOfMonth, endOfMonth } from 'date-fns';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Plus, Filter } from 'lucide-react';
-import { api } from '../../api/legacy/api';
 import { useAuth } from '../../contexts/AuthContext';
 import { Button } from '../../components/ui/Button';
-import CalendarEventModal from '../../components/calendar/CalendarEventModal';
-import CalendarEventDetails from '../../components/calendar/CalendarEventDetails';
-import CalendarFilters from '../../components/calendar/CalendarFilters';
+import { 
+  CalendarEventModal, 
+  CalendarEventDetails, 
+  CalendarFilters,
+  BigCalendar,
+  createMomentLocalizer
+} from '../../components/calendar/LazyCalendarComponents';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import '../../styles/calendar.css';
 import type { CalendarEvent, ETFOLessonPlan, UnitPlan } from '../../types';
 
-// Setup the localizer for react-big-calendar
-const localizer = momentLocalizer(moment);
+// We'll initialize this asynchronously
+let localizer: any = null;
 
 // Types for calendar events
 interface CalendarViewEvent extends Event {
@@ -58,7 +61,30 @@ const SUBJECT_COLORS: Record<string, string> = {
   default: '#6B7280', // gray
 };
 
+// Loading component for calendar
+const CalendarLoadingFallback = () => (
+  <div className="bg-white rounded-lg shadow-lg p-6">
+    <div className="animate-pulse">
+      <div className="h-8 bg-gray-200 rounded w-1/3 mb-4"></div>
+      <div className="grid grid-cols-7 gap-2">
+        {[...Array(35)].map((_, i) => (
+          <div key={i} className="h-20 bg-gray-100 rounded"></div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
 export default function CalendarPlanningPage() {
+  const [localizerReady, setLocalizerReady] = useState(false);
+
+  // Load the localizer asynchronously
+  useEffect(() => {
+    createMomentLocalizer().then((loc) => {
+      localizer = loc;
+      setLocalizerReady(true);
+    });
+  }, []);
   const { user: _user } = useAuth();
   const queryClient = useQueryClient();
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -81,7 +107,7 @@ export default function CalendarPlanningPage() {
       format(endOfMonth(currentDate), 'yyyy-MM-dd'),
     ],
     queryFn: async () => {
-      const response = await api.get('/api/calendar-events', {
+      const response = await apiClient.get('/api/calendar-events', {
         params: {
           start: format(startOfMonth(currentDate), 'yyyy-MM-dd'),
           end: format(endOfMonth(currentDate), 'yyyy-MM-dd'),
@@ -95,7 +121,7 @@ export default function CalendarPlanningPage() {
   const { data: lessons = [] } = useQuery({
     queryKey: ['lessons', format(currentDate, 'yyyy-MM')],
     queryFn: async () => {
-      const response = await api.get('/api/etfo-lesson-plans', {
+      const response = await apiClient.get('/api/etfo-lesson-plans', {
         params: {
           startDate: format(startOfMonth(currentDate), 'yyyy-MM-dd'),
           endDate: format(endOfMonth(currentDate), 'yyyy-MM-dd'),
@@ -109,7 +135,7 @@ export default function CalendarPlanningPage() {
   const { data: units = [] } = useQuery({
     queryKey: ['unit-plans'],
     queryFn: async () => {
-      const response = await api.get('/api/unit-plans');
+      const response = await apiClient.get('/api/unit-plans');
       return response.data;
     },
   });
@@ -117,7 +143,7 @@ export default function CalendarPlanningPage() {
   // Update lesson date mutation
   const updateLessonMutation = useMutation({
     mutationFn: async ({ lessonId, newDate }: { lessonId: string; newDate: Date }) => {
-      const response = await api.put(`/api/etfo-lesson-plans/${lessonId}/reschedule`, {
+      const response = await apiClient.put(`/api/etfo-lesson-plans/${lessonId}/reschedule`, {
         newDate: format(newDate, 'yyyy-MM-dd'),
       });
       return response.data;
@@ -219,7 +245,7 @@ export default function CalendarPlanningPage() {
         if (!filters.eventTypes.includes(event.type)) return false;
       }
       if (!filters.showWeekends && event.start) {
-        const day = event.start.getDay();
+        const _day = event.start.getDay();
         if (day === 0 || day === 6) return false;
       }
       return true;
@@ -387,71 +413,83 @@ export default function CalendarPlanningPage() {
       </div>
 
       {showFilters && (
-        <CalendarFilters
-          filters={filters}
-          // @ts-expect-error - Type mismatch in CalendarFilter interface
-          onFiltersChange={(newFilters: CalendarFilter) => setFilters(newFilters)}
-          availableSubjects={[
-            ...new Set(
-              lessons
-                .map((l: ETFOLessonPlan) => (l as { subject?: string }).subject)
-                .filter(Boolean),
-            ),
-          ].map((s) => String(s))}
-        />
+        <Suspense fallback={<div className="mb-4 p-4 bg-gray-50 rounded-lg animate-pulse h-20"></div>}>
+          <CalendarFilters
+            filters={filters}
+            // @ts-expect-error - Type mismatch in CalendarFilter interface
+            onFiltersChange={(newFilters: CalendarFilter) => setFilters(newFilters)}
+            availableSubjects={[
+              ...new Set(
+                lessons
+                  .map((l: ETFOLessonPlan) => (l as { subject?: string }).subject)
+                  .filter(Boolean),
+              ),
+            ].map((_s) => String(s))}
+          />
+        </Suspense>
       )}
 
       <div className="bg-white rounded-lg shadow-lg p-2 sm:p-4 md:p-6">
-        <Calendar
-          localizer={localizer}
-          events={events}
-          startAccessor="start"
-          endAccessor="end"
-          style={{ height: window.innerWidth < 768 ? 500 : 700 }}
-          onSelectEvent={handleSelectEvent}
-          onSelectSlot={handleSelectSlot}
-          eventPropGetter={eventStyleGetter}
-          selectable
-          view={view}
-          onView={setView}
-          date={currentDate}
-          onNavigate={handleNavigate}
-          components={{
-            // @ts-expect-error - Toolbar component type mismatch
-            toolbar: CustomToolbar,
-          }}
-          views={['month', 'week', 'agenda']}
-          defaultView={window.innerWidth < 768 ? 'agenda' : 'month'}
-        />
+        {localizerReady ? (
+          <Suspense fallback={<CalendarLoadingFallback />}>
+            <BigCalendar
+              localizer={localizer}
+              events={events}
+              startAccessor="start"
+              endAccessor="end"
+              style={{ height: window.innerWidth < 768 ? 500 : 700 }}
+              onSelectEvent={handleSelectEvent}
+              onSelectSlot={handleSelectSlot}
+              eventPropGetter={eventStyleGetter}
+              selectable
+              view={view}
+              onView={setView}
+              date={currentDate}
+              onNavigate={handleNavigate}
+              components={{
+                // @ts-expect-error - Toolbar component type mismatch
+                toolbar: CustomToolbar,
+              }}
+              views={['month', 'week', 'agenda']}
+              defaultView={window.innerWidth < 768 ? 'agenda' : 'month'}
+            />
+          </Suspense>
+        ) : (
+          <CalendarLoadingFallback />
+        )}
       </div>
 
       {/* Event Modal */}
       {showEventModal && (
-        <CalendarEventModal
-          isOpen={showEventModal}
-          onClose={() => {
-            setShowEventModal(false);
-            setSelectedSlot(null);
-          }}
-          selectedDate={selectedSlot?.start || new Date()}
-          onEventCreated={() => {
-            queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
-            queryClient.invalidateQueries({ queryKey: ['lessons'] });
-          }}
-        />
+        <Suspense fallback={<div className="fixed inset-0 bg-black/50 flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div></div>}>
+          <CalendarEventModal
+            isOpen={showEventModal}
+            onClose={() => {
+              setShowEventModal(false);
+              setSelectedSlot(null);
+            }}
+            selectedDate={selectedSlot?.start || new Date()}
+            onEventCreated={() => {
+              queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
+              queryClient.invalidateQueries({ queryKey: ['lessons'] });
+            }}
+          />
+        </Suspense>
       )}
 
       {/* Event Details */}
       {selectedEvent && (
-        <CalendarEventDetails
-          // @ts-expect-error - CalendarViewEvent type mismatch
-          event={selectedEvent}
-          onClose={() => setSelectedEvent(null)}
-          onUpdate={() => {
-            queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
-            queryClient.invalidateQueries({ queryKey: ['lessons'] });
-          }}
-        />
+        <Suspense fallback={<div className="fixed inset-0 bg-black/50 flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div></div>}>
+          <CalendarEventDetails
+            // @ts-expect-error - CalendarViewEvent type mismatch
+            event={selectedEvent}
+            onClose={() => setSelectedEvent(null)}
+            onUpdate={() => {
+              queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
+              queryClient.invalidateQueries({ queryKey: ['lessons'] });
+            }}
+          />
+        </Suspense>
       )}
     </div>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * PDF Template Engine
  * Renders templates to PDF format
@@ -186,8 +187,8 @@ export class PdfEngine extends RenderEngine {
    */
   async addWatermark(
     pdfBuffer: Buffer,
-    watermarkText: string,
-    options?: {
+    _watermarkText: string,
+    _options?: {
       opacity?: number;
       fontSize?: number;
       color?: string;

@@ -226,7 +226,7 @@ async function validateSecurity() {
       checkPasswordSecurity(file, content);
       checkSecurityHeaders(file, content);
       checkXSSVulnerabilities(file, content);
-    } catch (error) {
+    } catch (_error) {
       console.warn(`⚠️  Could not read file ${file}: ${error}`);
     }
   }

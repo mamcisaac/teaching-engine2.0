@@ -2,7 +2,7 @@
 // Batches multiple API requests to reduce network overhead
 
 import { api } from '../lib/api';
-
+import logger from '../utils/logger';
 interface BatchRequest {
   id: string;
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -132,7 +132,7 @@ class RequestBatcher {
       }
 
       pending.resolve(response.data);
-    } catch (_error) {
+    } catch (error) {
       pending.reject(error);
     }
   }
@@ -170,9 +170,9 @@ class RequestBatcher {
           pending.reject(new Error('No response received for request'));
         }
       }
-    } catch (_error) {
+    } catch (error) {
       // If batch fails, fall back to individual requests
-      console.warn('Batch request failed, falling back to individual requests:', error);
+      logger.warn('Batch request failed, falling back to individual requests:', error);
       
       for (const pending of requests) {
         await this.processSingleRequest(pending);
@@ -246,7 +246,7 @@ export function createDebouncedRequest<T extends (...args: Parameters<T>) => Pro
           try {
             const result = await fn(...(lastArgs as Parameters<T>));
             resolve(result);
-          } catch (_error) {
+          } catch (error) {
             reject(error);
           } finally {
             timeout = null;

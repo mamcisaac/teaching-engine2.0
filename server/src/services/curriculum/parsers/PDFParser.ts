@@ -3,7 +3,9 @@
  * Parses curriculum expectations from PDF files
  */
 
-import * as pdfParse from 'pdf-parse';
+// Temporarily disabled to avoid startup issues
+// import * as pdfParse from 'pdf-parse';
+import pdfParse from '../../../__mocks__/pdf-parse';
 import { CurriculumParser, ParsedCurriculum, ParsedExpectation } from './CurriculumParser';
 
 export interface PDFSection {

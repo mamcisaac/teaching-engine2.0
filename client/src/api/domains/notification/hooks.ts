@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { notificationApi } from './api';
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
-import type { Notification } from '../../../types';
+// import type { Notification } from '../../../types';
 
 // Query hooks
 export const useNotifications = () =>

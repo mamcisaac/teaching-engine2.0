@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * JSON Curriculum Parser
  * Parses curriculum expectations from JSON files
@@ -299,7 +300,7 @@ export class JSONParser extends CurriculumParser {
     // Sort and flatten
     const organized: ParsedExpectation[] = [];
     
-    for (const [strand, group] of grouped) {
+    for (const [_strand, group] of grouped) {
       // Sort within groups
       group.overall.sort((a, b) => a.code.localeCompare(b.code));
       group.specific.sort((a, b) => a.code.localeCompare(b.code));

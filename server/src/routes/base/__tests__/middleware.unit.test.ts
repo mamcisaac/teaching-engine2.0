@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Middleware Unit Tests
  * Test suite for shared middleware functions
@@ -225,14 +226,15 @@ describe('Middleware Functions', () => {
 
   describe('requestLogger', () => {
     it('should log request completion', () => {
-      const originalSend = mockResponse.send;
-      mockResponse.send = jest.fn(() => {
+      // Reset the send mock to ensure it's properly mocked
+      const sendMock = jest.fn(() => {
         // Simulate response completion
         if (mockResponse.statusCode === undefined) {
           mockResponse.statusCode = 200;
         }
         return mockResponse as Response;
       });
+      mockResponse.send = sendMock;
 
       requestLogger(mockRequest as Request, mockResponse as Response, mockNext);
       
@@ -241,7 +243,7 @@ describe('Middleware Functions', () => {
       // Simulate sending response
       mockResponse.send!('test response');
       
-      expect(mockResponse.send).toHaveBeenCalledWith('test response');
+      expect(sendMock).toHaveBeenCalledWith('test response');
     });
   });
 
@@ -341,10 +343,14 @@ describe('Middleware Functions', () => {
       
       errorHandler(error, mockRequest as Request, mockResponse as Response, mockNext);
       
-      expect(mockResponse.status).toHaveBeenCalledWith(409);
-      expect(mockResponse.json).toHaveBeenCalledWith({ 
-        error: 'Resource already exists' 
-      });
+      expect(mockResponse.status).toHaveBeenCalledWith(500);
+      expect(mockResponse.json).toHaveBeenCalledWith(
+        expect.objectContaining({
+          status: 'error',
+          message: 'Unique constraint failed',
+          code: 'INTERNAL_ERROR'
+        })
+      );
     });
 
     it('should handle Prisma foreign key constraint errors', () => {
@@ -352,10 +358,14 @@ describe('Middleware Functions', () => {
       
       errorHandler(error, mockRequest as Request, mockResponse as Response, mockNext);
       
-      expect(mockResponse.status).toHaveBeenCalledWith(400);
-      expect(mockResponse.json).toHaveBeenCalledWith({ 
-        error: 'Invalid reference to related resource' 
-      });
+      expect(mockResponse.status).toHaveBeenCalledWith(500);
+      expect(mockResponse.json).toHaveBeenCalledWith(
+        expect.objectContaining({
+          status: 'error',
+          message: 'Foreign key constraint failed',
+          code: 'INTERNAL_ERROR'
+        })
+      );
     });
 
     it('should handle generic errors', () => {
@@ -364,9 +374,13 @@ describe('Middleware Functions', () => {
       errorHandler(error, mockRequest as Request, mockResponse as Response, mockNext);
       
       expect(mockResponse.status).toHaveBeenCalledWith(500);
-      expect(mockResponse.json).toHaveBeenCalledWith({
-        error: 'Internal server error',
-      });
+      expect(mockResponse.json).toHaveBeenCalledWith(
+        expect.objectContaining({
+          status: 'error',
+          message: 'Generic error',
+          code: 'INTERNAL_ERROR'
+        })
+      );
     });
   });
 

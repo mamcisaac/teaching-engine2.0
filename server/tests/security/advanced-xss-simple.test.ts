@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Advanced XSS Protection Simple Test Suite
  * Focused on core security functionality rather than complex edge cases

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-interface OnboardingStep {
+export interface OnboardingStep {
   id: string;
   title: string;
   description: string;
@@ -14,7 +14,7 @@ interface OnboardingStep {
   highlightPadding?: number;
 }
 
-interface OnboardingFlow {
+export interface OnboardingFlow {
   id: string;
   name: string;
   description: string;
@@ -23,7 +23,7 @@ interface OnboardingFlow {
   estimatedTime?: number; // in minutes
 }
 
-interface OnboardingState {
+export interface OnboardingState {
   isFirstTimeUser: boolean;
   currentFlow: OnboardingFlow | null;
   currentStepIndex: number;
@@ -196,16 +196,16 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
       currentStepIndex: 0,
       completedFlows: savedState?.completedFlows || [],
       skippedOnboarding: savedState?.skippedOnboarding || false,
-      showOnboarding: isFirstTime && !savedState?.skippedOnboarding
+      showOnboarding: false // Disabled by default to not block UI
     };
   });
 
-  // Auto-start onboarding for first-time users
-  useEffect(() => {
-    if (state.isFirstTimeUser && state.showOnboarding && !state.currentFlow && !state.skippedOnboarding) {
-      startOnboarding('main-onboarding');
-    }
-  }, [state.isFirstTimeUser, state.showOnboarding, state.currentFlow, state.skippedOnboarding]);
+  // Auto-start onboarding for first-time users - DISABLED
+  // useEffect(() => {
+  //   if (state.isFirstTimeUser && state.showOnboarding && !state.currentFlow && !state.skippedOnboarding) {
+  //     startOnboarding('main-onboarding');
+  //   }
+  // }, [state.isFirstTimeUser, state.showOnboarding, state.currentFlow, state.skippedOnboarding]);
 
   // Save state to localStorage
   useEffect(() => {

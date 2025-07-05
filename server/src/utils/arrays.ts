@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Array and data transformation utilities
 
 // Array manipulation

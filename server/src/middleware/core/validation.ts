@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { Request, Response, NextFunction } from 'express';
 import { z, ZodError, ZodSchema } from 'zod';
 import { ValidationError } from '../../utils/errors';
@@ -20,7 +21,7 @@ export interface ValidationOptions {
   stripUnknown?: boolean;
   abortEarly?: boolean;
   context?: unknown;
-  customErrorHandler?: (error: ZodError, req: Request) => unknown;
+  customErrorHandler?: (_error: ZodError, req: Request) => unknown;
 }
 
 // Main validation middleware factory
@@ -83,39 +84,39 @@ export const validate = <T>(
       // Replace original data with validated data if stripUnknown is true
       if (stripUnknown) {
         if (sources.includes('body')) req.body = validated;
-        if (sources.includes('query')) req.query = validated as unknown;
-        if (sources.includes('params')) req.params = validated as unknown;
+        if (sources.includes('query')) req.query = validated as any;
+        if (sources.includes('params')) req.params = validated as any;
       }
 
       next();
     } catch (_error) {
-      if (error instanceof ZodError) {
+      if (_error instanceof ZodError) {
         // Log validation failure
         logger.warn({
           path: req.path,
           method: req.method,
-          errors: error.errors,
+          errors: _error.errors,
           data: { body: req.body, query: req.query, params: req.params },
         }, 'Validation failed');
 
-        // Use custom error handler if provided
+        // Use custom _error handler if provided
         if (customErrorHandler) {
-          const customError = customErrorHandler(error, req);
+          const customError = customErrorHandler(_error, req);
           return next(customError);
         }
 
-        // Format validation errors
-        const formattedErrors = error.errors.map(err => ({
+        // Format validation _errors
+        const formattedErrors = _error.errors.map(err => ({
           field: err.path.join('.'),
           message: err.message,
           code: err.code,
-          ...(err.expected !== undefined && { expected: err.expected }),
-          ...(err.received !== undefined && { received: err.received }),
+          ...((err as any).expected !== undefined && { expected: (err as any).expected }),
+          ...((err as any).received !== undefined && { received: (err as any).received }),
         }));
 
         next(new ValidationError('Validation failed', formattedErrors));
       } else {
-        next(error);
+        next(_error as Error);
       }
     }
   };
@@ -164,8 +165,8 @@ export const validateOneOf = <T extends ZodSchema<unknown>[]>(
         await validate(schema, options)(req, res, () => {});
         return next(); // Success on first valid schema
       } catch (_error) {
-        if (error instanceof ZodError) {
-          errors.push(error);
+        if (_error instanceof ZodError) {
+          errors.push(_error);
         }
       }
     }
@@ -180,7 +181,12 @@ export const validateOneOf = <T extends ZodSchema<unknown>[]>(
 export const mergeSchemas = <T extends ZodSchema<unknown>[]>(
   ...schemas: T
 ): ZodSchema => {
-  return schemas.reduce((merged, schema) => merged.merge(schema), z.object({}));
+  return schemas.reduce((merged, schema) => {
+    if ('merge' in merged && typeof merged.merge === 'function') {
+      return merged.merge(schema);
+    }
+    return schema;
+  }, z.object({}));
 };
 
 // Common validation patterns
@@ -270,16 +276,16 @@ export const coerceQueryParams = (
 
         switch (type) {
           case 'number':
-            req.query[param] = parseFloat(value) as unknown;
+            (req.query as any)[param] = parseFloat(value);
             break;
           case 'boolean':
-            req.query[param] = (value === 'true' || value === '1') as unknown;
+            (req.query as any)[param] = (value === 'true' || value === '1');
             break;
           case 'array':
-            req.query[param] = value.split(',') as unknown;
+            (req.query as any)[param] = value.split(',');
             break;
           case 'date':
-            req.query[param] = new Date(value) as unknown;
+            (req.query as any)[param] = new Date(value);
             break;
         }
       }

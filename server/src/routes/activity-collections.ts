@@ -2,11 +2,11 @@ import { Router } from 'express';
 import { authMiddleware } from '../middleware/auth';
 import { z } from 'zod';
 import { prisma } from '../prisma';
-
+import logger from '../logger';
 const router = Router();
 
 // Get user's collections
-router.get('/', authMiddleware, async (req, res) => {
+router.get('/', authMiddleware, async (req: Request, res: Response) => {
   try {
     const { includePublic = false } = req.query;
 
@@ -37,7 +37,7 @@ router.get('/', authMiddleware, async (req, res) => {
       data: collections,
     });
   } catch (_error) {
-    console.error('Get collections error:', error);
+    logger.error('Get collections error:', _error);
     res.status(500).json({
       success: false,
       error: 'Failed to get collections',
@@ -46,7 +46,7 @@ router.get('/', authMiddleware, async (req, res) => {
 });
 
 // Get collection details with activities
-router.get('/:collectionId', authMiddleware, async (req, res) => {
+router.get('/:collectionId', authMiddleware, async (req: Request, res: Response) => {
   try {
     const { collectionId } = req.params;
 
@@ -83,7 +83,7 @@ router.get('/:collectionId', authMiddleware, async (req, res) => {
       data: collection,
     });
   } catch (_error) {
-    console.error('Get collection details error:', error);
+    logger.error('Get collection details error:', _error);
     res.status(500).json({
       success: false,
       error: 'Failed to get collection details',
@@ -98,7 +98,7 @@ const createCollectionSchema = z.object({
   // isPublic field removed - single-teacher use only
 });
 
-router.post('/', authMiddleware, async (req, res) => {
+router.post('/', authMiddleware, async (req: Request, res: Response) => {
   try {
     const data = createCollectionSchema.parse(req.body);
 
@@ -116,10 +116,10 @@ router.post('/', authMiddleware, async (req, res) => {
       data: collection,
     });
   } catch (_error) {
-    console.error('Create collection error:', error);
+    logger.error('Create collection error:', _error);
     res.status(400).json({
       success: false,
-      error: error instanceof z.ZodError ? error.errors : 'Failed to create collection',
+      error: _error instanceof z.ZodError ? _error.errors : 'Failed to create collection',
     });
   }
 });
@@ -131,7 +131,7 @@ const updateCollectionSchema = z.object({
   // isPublic field removed - single-teacher use only
 });
 
-router.put('/:collectionId', authMiddleware, async (req, res) => {
+router.put('/:collectionId', authMiddleware, async (req: Request, res: Response) => {
   try {
     const { collectionId } = req.params;
     const data = updateCollectionSchema.parse(req.body);
@@ -161,16 +161,16 @@ router.put('/:collectionId', authMiddleware, async (req, res) => {
       data: updated,
     });
   } catch (_error) {
-    console.error('Update collection error:', error);
+    logger.error('Update collection error:', _error);
     res.status(400).json({
       success: false,
-      error: error instanceof z.ZodError ? error.errors : 'Failed to update collection',
+      error: _error instanceof z.ZodError ? _error.errors : 'Failed to update collection',
     });
   }
 });
 
 // Delete collection
-router.delete('/:collectionId', authMiddleware, async (req, res) => {
+router.delete('/:collectionId', authMiddleware, async (req: Request, res: Response) => {
   try {
     const { collectionId } = req.params;
 
@@ -198,7 +198,7 @@ router.delete('/:collectionId', authMiddleware, async (req, res) => {
       message: 'Collection deleted successfully',
     });
   } catch (_error) {
-    console.error('Delete collection error:', error);
+    logger.error('Delete collection error:', _error);
     res.status(500).json({
       success: false,
       error: 'Failed to delete collection',
@@ -211,7 +211,7 @@ const addActivitySchema = z.object({
   activityId: z.string(),
 });
 
-router.post('/:collectionId/activities', authMiddleware, async (req, res) => {
+router.post('/:collectionId/activities', authMiddleware, async (req: Request, res: Response) => {
   try {
     const { collectionId } = req.params;
     const { activityId } = addActivitySchema.parse(req.body);
@@ -268,16 +268,16 @@ router.post('/:collectionId/activities', authMiddleware, async (req, res) => {
       data: item,
     });
   } catch (_error) {
-    console.error('Add activity to collection error:', error);
+    logger.error('Add activity to collection error:', _error);
     res.status(400).json({
       success: false,
-      error: error instanceof z.ZodError ? error.errors : 'Failed to add activity to collection',
+      error: _error instanceof z.ZodError ? _error.errors : 'Failed to add activity to collection',
     });
   }
 });
 
 // Remove activity from collection
-router.delete('/:collectionId/activities/:activityId', authMiddleware, async (req, res) => {
+router.delete('/:collectionId/activities/:activityId', authMiddleware, async (req: Request, res: Response) => {
   try {
     const { collectionId, activityId } = req.params;
 
@@ -310,7 +310,7 @@ router.delete('/:collectionId/activities/:activityId', authMiddleware, async (re
       message: 'Activity removed from collection',
     });
   } catch (_error) {
-    console.error('Remove activity from collection error:', error);
+    logger.error('Remove activity from collection error:', _error);
     res.status(500).json({
       success: false,
       error: 'Failed to remove activity from collection',
@@ -319,7 +319,7 @@ router.delete('/:collectionId/activities/:activityId', authMiddleware, async (re
 });
 
 // Get popular/trending collections
-router.get('/trending/public', authMiddleware, async (req, res) => {
+router.get('/trending/public', authMiddleware, async (req: Request, res: Response) => {
   try {
     const { limit = 10 } = req.query;
 
@@ -345,7 +345,7 @@ router.get('/trending/public', authMiddleware, async (req, res) => {
       data: collections,
     });
   } catch (_error) {
-    console.error('Get trending collections error:', error);
+    logger.error('Get trending collections error:', _error);
     res.status(500).json({
       success: false,
       error: 'Failed to get trending collections',

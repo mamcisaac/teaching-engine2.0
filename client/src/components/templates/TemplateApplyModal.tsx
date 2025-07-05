@@ -80,7 +80,7 @@ export default function TemplateApplyModal({
       const response = await api.post(endpoint, payload);
       return response.data;
     },
-    onSuccess: (data) => {
+    onSuccess: (_data) => {
       toast.success(`${template.type === 'UNIT_PLAN' ? 'Unit' : 'Lesson'} created from template`);
       
       // Navigate to the created plan

@@ -5,7 +5,7 @@ import { HelpButton, HelpSearch } from '../components/help';
 import { useHelpContent } from '../hooks/useHelp';
 import { Button } from '../components/ui/Button';
 import { clsx } from 'clsx';
-
+import logger from '../utils/logger';
 // Mock help content - in a real app, this would come from markdown files
 const mockHelpContent: Record<string, string> = {
   'keyboard-shortcuts': `
@@ -331,7 +331,7 @@ export default function HelpPage() {
               showSuggestions={true}
               onResultSelect={(contentId) => {
                 // In a real app, you would navigate to the specific content
-                console.log('Selected content:', contentId);
+                logger.info('Selected content:', contentId);
               }}
             />
             {state.searchQuery && (

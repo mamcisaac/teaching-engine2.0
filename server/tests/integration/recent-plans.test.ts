@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import request from 'supertest';
 import { describe, test, expect, beforeAll, afterAll, beforeEach } from '@jest/globals';
 import { app } from '../../src/index';
@@ -307,7 +308,7 @@ describe('Recent Plans Routes', () => {
         .set('Authorization', `Bearer ${authToken}`);
 
       // Check long-range plan
-      const longRangePlanEntry = response.body.find((p: any) => p.type === 'long-range');
+      const longRangePlanEntry = response.body.find((p: unknown) => p.type === 'long-range');
       expect(longRangePlanEntry).toMatchObject({
         id: longRangePlan.id,
         type: 'long-range',
@@ -318,7 +319,7 @@ describe('Recent Plans Routes', () => {
       });
 
       // Check unit plan
-      const unitPlanEntry = response.body.find((p: any) => p.type === 'unit');
+      const unitPlanEntry = response.body.find((p: unknown) => p.type === 'unit');
       expect(unitPlanEntry).toMatchObject({
         id: unitPlan.id,
         type: 'unit',
@@ -329,7 +330,7 @@ describe('Recent Plans Routes', () => {
       });
 
       // Check lesson plan
-      const lessonPlanEntry = response.body.find((p: any) => p.type === 'lesson');
+      const lessonPlanEntry = response.body.find((p: unknown) => p.type === 'lesson');
       expect(lessonPlanEntry).toMatchObject({
         id: lessonPlan.id,
         type: 'lesson',
@@ -339,7 +340,7 @@ describe('Recent Plans Routes', () => {
       });
 
       // Check daybook entry
-      const daybookPlanEntry = response.body.find((p: any) => p.type === 'daybook');
+      const daybookPlanEntry = response.body.find((p: unknown) => p.type === 'daybook');
       expect(daybookPlanEntry).toMatchObject({
         id: daybookEntry.id,
         type: 'daybook',
@@ -367,7 +368,7 @@ describe('Recent Plans Routes', () => {
       expect(response.status).toBe(200);
       // Should return 3 plans (unit plan filtered out)
       expect(response.body).toHaveLength(3);
-      expect(response.body.find((p: any) => p.type === 'unit')).toBeUndefined();
+      expect(response.body.find((p: unknown) => p.type === 'unit')).toBeUndefined();
     });
 
     test('should only show plans for authenticated user', async () => {
@@ -410,7 +411,7 @@ describe('Recent Plans Routes', () => {
         .get('/api/recent-plans')
         .set('Authorization', `Bearer ${authToken}`);
 
-      expect(response.body.find((p: any) => p.title === 'Other User Plan')).toBeUndefined();
+      expect(response.body.find((p: unknown) => p.title === 'Other User Plan')).toBeUndefined();
     });
 
     test('should require authentication', async () => {
@@ -538,7 +539,7 @@ describe('Recent Plans Routes', () => {
         .get('/api/recent-plans')
         .set('Authorization', `Bearer ${authToken}`);
 
-      const orphanedEntry = response.body.find((p: any) => p.id === orphanedLesson.id);
+      const orphanedEntry = response.body.find((p: unknown) => p.id === orphanedLesson.id);
       expect(orphanedEntry).toBeTruthy();
       expect(orphanedEntry.parentTitle).toBeUndefined();
     });
@@ -598,8 +599,8 @@ describe('Recent Plans Routes', () => {
         .get('/api/recent-plans')
         .set('Authorization', `Bearer ${authToken}`);
 
-      const longRangeEntry = response.body.find((p: any) => p.type === 'long-range');
-      const unitEntry = response.body.find((p: any) => p.type === 'unit');
+      const longRangeEntry = response.body.find((p: unknown) => p.type === 'long-range');
+      const unitEntry = response.body.find((p: unknown) => p.type === 'unit');
 
       // Progress should be capped at 100
       expect(longRangeEntry.progress).toBe(100); // 10 units * 10 = 100

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Curriculum Import Orchestrator
  * Coordinates curriculum import operations using specialized services
@@ -226,7 +227,7 @@ export class CurriculumImportOrchestrator extends BaseService {
           result.subjectId = importResult.subjectId;
 
           return result;
-        } catch (_error) {
+        } catch (error) {
           this.logger.error('Import failed', { error, options });
           result.message = `Import failed: ${error.message}`;
           result.stats.errors++;

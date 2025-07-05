@@ -2,7 +2,7 @@
 // Provides persistent storage for planning data with conflict resolution
 
 import { nanoid } from 'nanoid';
-
+import logger from '../utils/logger';
 // Generic data type for stored entities
 export type StoredData = Record<string, unknown>;
 
@@ -40,7 +40,7 @@ class OfflineStorageService {
       const request = indexedDB.open(DB_NAME, DB_VERSION);
 
       request.onerror = () => {
-        console.error('Failed to open IndexedDB:', request.error);
+        logger.error('Failed to open IndexedDB:', request.error);
         reject(request.error);
       };
 

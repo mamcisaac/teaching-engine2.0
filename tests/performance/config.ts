@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Performance Testing Configuration
  * Defines baseline metrics, thresholds, and test scenarios for the Teaching Engine 2.0

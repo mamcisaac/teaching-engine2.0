@@ -493,7 +493,7 @@ export class AITestFixtureManager {
 
     return {
       userId: this.testUserId,
-      studentIds: students.map((s) => s.id),
+      studentIds: students.map((_s) => s.id),
     };
   }
 

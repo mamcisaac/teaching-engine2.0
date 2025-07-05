@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Global test setup for mocks
  * This file configures common mocks for all tests

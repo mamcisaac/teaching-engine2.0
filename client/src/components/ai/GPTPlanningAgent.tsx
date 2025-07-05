@@ -88,7 +88,7 @@ export function GPTPlanningAgent({
       const response = await api.post('/api/ai/agent/sessions');
       return response.data.data;
     },
-    onSuccess: (data) => {
+    onSuccess: (_data) => {
       setSessionId(data.sessionId);
       setMessages([
         {
@@ -110,7 +110,7 @@ export function GPTPlanningAgent({
       });
       return response.data.data;
     },
-    onSuccess: (data) => {
+    onSuccess: (_data) => {
       setMessages((prev) => [
         ...prev,
         {

@@ -1,6 +1,6 @@
+import { apiClient } from '../api/core/client';
 import React from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { api } from '../api/legacy/api';
 import type {
   PlanTemplate,
   TemplateSearchOptions,
@@ -28,54 +28,54 @@ export const templatesApi = {
       }
     });
 
-    const response = await api.get(`${API_BASE}?${params.toString()}`);
+    const response = await apiClient.get(`${API_BASE}?${params.toString()}`);
     return response.data;
   },
 
   // Get a single template
   getTemplate: async (id: string): Promise<PlanTemplate> => {
-    const response = await api.get(`${API_BASE}/${id}`);
+    const response = await apiClient.get(`${API_BASE}/${id}`);
     return response.data;
   },
 
   // Create a new template
   createTemplate: async (data: TemplateCreateData): Promise<PlanTemplate> => {
-    const response = await api.post(API_BASE, data);
+    const response = await apiClient.post(API_BASE, data);
     return response.data;
   },
 
   // Update a template
   updateTemplate: async (id: string, data: Partial<TemplateCreateData>): Promise<PlanTemplate> => {
-    const response = await api.put(`${API_BASE}/${id}`, data);
+    const response = await apiClient.put(`${API_BASE}/${id}`, data);
     return response.data;
   },
 
   // Delete a template
   deleteTemplate: async (id: string): Promise<void> => {
-    await api.delete(`${API_BASE}/${id}`);
+    await apiClient.delete(`${API_BASE}/${id}`);
   },
 
   // Duplicate a template
   duplicateTemplate: async (id: string, title?: string, isPublic?: boolean): Promise<PlanTemplate> => {
-    const response = await api.post(`${API_BASE}/${id}/duplicate`, { title, isPublic });
+    const response = await apiClient.post(`${API_BASE}/${id}/duplicate`, { title, isPublic });
     return response.data;
   },
 
   // Apply a template
   applyTemplate: async (id: string, customizations?: Record<string, unknown>): Promise<AppliedTemplateData> => {
-    const response = await api.post(`${API_BASE}/${id}/apply`, { customizations });
+    const response = await apiClient.post(`${API_BASE}/${id}/apply`, { customizations });
     return response.data;
   },
 
   // Rate a template
   rateTemplate: async (id: string, rating: number, comment?: string): Promise<{ success: boolean; message?: string }> => {
-    const response = await api.post(`${API_BASE}/${id}/rate`, { rating, comment });
+    const response = await apiClient.post(`${API_BASE}/${id}/rate`, { rating, comment });
     return response.data;
   },
 
   // Get filter options
   getFilterOptions: async (): Promise<TemplateFilterOptions> => {
-    const response = await api.get(`${API_BASE}/metadata/options`);
+    const response = await apiClient.get(`${API_BASE}/metadata/options`);
     return response.data;
   },
 };

@@ -237,7 +237,7 @@ export default function FrenchImmersionWeeklyTemplate({
                   ...weekData,
                   weekFocus: {
                     ...weekData.weekFocus,
-                    structures: e.target.value.split('\n').filter((s) => s.trim()),
+                    structures: e.target.value.split('\n').filter((_s) => s.trim()),
                   },
                 })
               }
@@ -261,7 +261,7 @@ Il/Elle s'appelle..."
                   ...weekData,
                   weekFocus: {
                     ...weekData.weekFocus,
-                    communicationGoals: e.target.value.split('\n').filter((s) => s.trim()),
+                    communicationGoals: e.target.value.split('\n').filter((_s) => s.trim()),
                   },
                 })
               }

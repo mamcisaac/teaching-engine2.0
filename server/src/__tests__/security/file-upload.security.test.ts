@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * File Upload Security Test Suite
  * Comprehensive file upload security validation and malicious file detection
@@ -218,7 +219,7 @@ describe('File Upload Security Tests', () => {
       },
     });
 
-    app.post('/api/test/upload', testUpload.single('file'), (req, res) => {
+    app.post('/api/test/upload', testUpload.single('file'), (req: Request, res: Response) => {
       if (!req.file) {
         return res.status(400).json({ error: 'No file uploaded' });
       }
@@ -247,7 +248,7 @@ describe('File Upload Security Tests', () => {
       },
     });
 
-    app.post('/api/test/strict-upload', strictUpload.single('file'), (req, res) => {
+    app.post('/api/test/strict-upload', strictUpload.single('file'), (req: Request, res: Response) => {
       res.json({ message: 'File uploaded successfully' });
     });
 

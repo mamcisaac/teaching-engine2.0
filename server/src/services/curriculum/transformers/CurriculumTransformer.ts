@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Curriculum Transformer
  * Transforms parsed curriculum data into database entities

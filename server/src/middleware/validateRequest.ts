@@ -17,27 +17,27 @@ export function validateRequest(schema: ZodSchema) {
 
       next();
     } catch (_error) {
-      if (error instanceof ZodError) {
+      if (_error instanceof ZodError) {
         // Log validation errors
         logger.warn(
           {
             path: req.path,
             method: req.method,
-            errors: error.errors,
+            errors: _error.errors,
             body: req.body,
           },
           'Request validation failed',
         );
 
         // Format validation errors for response
-        const formattedErrors = error.errors.map((err) => ({
+        const formattedErrors = _error.errors.map((err) => ({
           field: err.path.join('.'),
           message: err.message,
           code: err.code,
         }));
 
         // Also create messages array for backward compatibility
-        const messages = error.errors.map((err) => ({
+        const messages = _error.errors.map((err) => ({
           field: err.path.join('.'),
           message: err.message,
         }));
@@ -46,7 +46,7 @@ export function validateRequest(schema: ZodSchema) {
         let mainMessage = 'Invalid request data';
 
         // Only for password validation errors in registration, use the specific message
-        const passwordError = error.errors.find(
+        const passwordError = _error.errors.find(
           (err) =>
             err.path.includes('password') &&
             (err.message.toLowerCase().includes('password must') ||
@@ -66,7 +66,7 @@ export function validateRequest(schema: ZodSchema) {
       }
 
       // Handle unexpected errors
-      logger.error({ error }, 'Unexpected error in validation middleware');
+      logger.error({ error: _error }, 'Unexpected error in validation middleware');
       return res.status(500).json({
         error: 'Internal server error',
         message: 'An unexpected error occurred',
@@ -89,25 +89,25 @@ export function validateQuery(schema: ZodSchema) {
 
       next();
     } catch (_error) {
-      if (error instanceof ZodError) {
+      if (_error instanceof ZodError) {
         logger.warn(
           {
             path: req.path,
             method: req.method,
-            errors: error.errors,
+            errors: _error.errors,
             query: req.query,
           },
           'Query validation failed',
         );
 
-        const formattedErrors = error.errors.map((err) => ({
+        const formattedErrors = _error.errors.map((err) => ({
           field: err.path.join('.'),
           message: err.message,
           code: err.code,
         }));
 
         // Also create messages array for backward compatibility
-        const messages = error.errors.map((err) => ({
+        const messages = _error.errors.map((err) => ({
           field: err.path.join('.'),
           message: err.message,
         }));
@@ -123,7 +123,7 @@ export function validateQuery(schema: ZodSchema) {
         });
       }
 
-      logger.error({ error }, 'Unexpected error in query validation middleware');
+      logger.error({ error: _error }, 'Unexpected error in query validation middleware');
       return res.status(500).json({
         error: 'Internal server error',
         message: 'An unexpected error occurred',
@@ -146,25 +146,25 @@ export function validateParams(schema: ZodSchema) {
 
       next();
     } catch (_error) {
-      if (error instanceof ZodError) {
+      if (_error instanceof ZodError) {
         logger.warn(
           {
             path: req.path,
             method: req.method,
-            errors: error.errors,
+            errors: _error.errors,
             params: req.params,
           },
           'Parameter validation failed',
         );
 
-        const formattedErrors = error.errors.map((err) => ({
+        const formattedErrors = _error.errors.map((err) => ({
           field: err.path.join('.'),
           message: err.message,
           code: err.code,
         }));
 
         // Also create messages array for backward compatibility
-        const messages = error.errors.map((err) => ({
+        const messages = _error.errors.map((err) => ({
           field: err.path.join('.'),
           message: err.message,
         }));
@@ -180,7 +180,7 @@ export function validateParams(schema: ZodSchema) {
         });
       }
 
-      logger.error({ error }, 'Unexpected error in parameter validation middleware');
+      logger.error({ error: _error }, 'Unexpected error in parameter validation middleware');
       return res.status(500).json({
         error: 'Internal server error',
         message: 'An unexpected error occurred',
@@ -210,24 +210,24 @@ export function validate(options: { body?: ZodSchema; query?: ZodSchema; params?
 
       next();
     } catch (_error) {
-      if (error instanceof ZodError) {
+      if (_error instanceof ZodError) {
         logger.warn(
           {
             path: req.path,
             method: req.method,
-            errors: error.errors,
+            errors: _error.errors,
           },
           'Request validation failed',
         );
 
-        const formattedErrors = error.errors.map((err) => ({
+        const formattedErrors = _error.errors.map((err) => ({
           field: err.path.join('.'),
           message: err.message,
           code: err.code,
         }));
 
         // Also create messages array for backward compatibility
-        const messages = error.errors.map((err) => ({
+        const messages = _error.errors.map((err) => ({
           field: err.path.join('.'),
           message: err.message,
         }));
@@ -236,7 +236,7 @@ export function validate(options: { body?: ZodSchema; query?: ZodSchema; params?
         let mainMessage = 'Invalid request data';
 
         // Only for password validation errors in registration, use the specific message
-        const passwordError = error.errors.find(
+        const passwordError = _error.errors.find(
           (err) =>
             err.path.includes('password') &&
             (err.message.toLowerCase().includes('password must') ||
@@ -255,7 +255,7 @@ export function validate(options: { body?: ZodSchema; query?: ZodSchema; params?
         });
       }
 
-      logger.error({ error }, 'Unexpected error in validation middleware');
+      logger.error({ error: _error }, 'Unexpected error in validation middleware');
       return res.status(500).json({
         error: 'Internal server error',
         message: 'An unexpected error occurred',

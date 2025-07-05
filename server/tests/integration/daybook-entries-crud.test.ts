@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import request from 'supertest';
 import { describe, test, expect, beforeAll, afterAll, beforeEach } from '@jest/globals';
 import { app } from '../../src/index';
@@ -267,7 +268,7 @@ describe('Daybook Entries - Core CRUD Tests', () => {
       expect(response.body.length).toBeGreaterThan(0);
       
       // Check that all entries belong to the authenticated user
-      response.body.forEach((entry: any) => {
+      response.body.forEach((entry: unknown) => {
         expect(entry.userId).toBe(userId);
       });
     });
@@ -285,7 +286,7 @@ describe('Daybook Entries - Core CRUD Tests', () => {
       expect(Array.isArray(response.body)).toBe(true);
       
       // Check that all entries are within the date range
-      response.body.forEach((entry: any) => {
+      response.body.forEach((entry: unknown) => {
         const entryDate = new Date(entry.date);
         expect(entryDate.getTime()).toBeGreaterThanOrEqual(new Date('2024-09-15T00:00:00Z').getTime());
         expect(entryDate.getTime()).toBeLessThanOrEqual(new Date('2024-09-16T00:00:00Z').getTime());
@@ -302,7 +303,7 @@ describe('Daybook Entries - Core CRUD Tests', () => {
       expect(Array.isArray(response.body)).toBe(true);
       
       // Check that all entries have the specified rating
-      response.body.forEach((entry: any) => {
+      response.body.forEach((entry: unknown) => {
         expect(entry.overallRating).toBe(4);
       });
     });

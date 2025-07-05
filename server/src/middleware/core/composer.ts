@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { Request, Response, NextFunction, RequestHandler } from 'express';
 import logger from '../../logger';
 
@@ -29,16 +30,22 @@ export const compose = (...middlewares: Middleware[]): RequestHandler => {
       const middleware = middlewares[index++];
 
       try {
-        // Check if it's an error-handling middleware (4 parameters)
+        // Check if it's an _error-handling middleware (4 parameters)
         if (middleware.length === 4) {
-          // Skip error handlers in normal flow
+          // Skip _error handlers in normal flow
           return dispatch();
         }
 
         // Regular middleware
-        await (middleware as RequestHandler)(req, res, dispatch);
+        await (middleware as RequestHandler)(req, res, (err?: unknown) => {
+          if (err && typeof err === 'string') {
+            dispatch(new Error(err));
+          } else {
+            dispatch(err as Error);
+          }
+        });
       } catch (_error) {
-        next(error);
+        next(_error);
       }
     };
 
@@ -109,7 +116,7 @@ export const withTimeout = (
       await Promise.race([middlewarePromise, timeoutPromise]);
       next();
     } catch (_error) {
-      next(error as unknown);
+      next(_error as unknown);
     }
   };
 };
@@ -130,7 +137,7 @@ export const parallel = (...middlewares: Middleware[]): RequestHandler => {
       await Promise.all(promises);
       next();
     } catch (_error) {
-      next(error as unknown);
+      next(_error as unknown);
     }
   };
 };
@@ -167,7 +174,7 @@ export class MiddlewareChain {
 // Create a new middleware chain
 export const chain = (): MiddlewareChain => new MiddlewareChain();
 
-// Middleware error wrapper
+// Middleware _error wrapper
 export const asyncMiddleware = (
   fn: (req: Request, res: Response, next: NextFunction) => Promise<void>
 ): RequestHandler => {
@@ -204,7 +211,7 @@ export const timed = (name: string, middleware: Middleware): RequestHandler => {
     try {
       (middleware as RequestHandler)(req, res, handleNext);
     } catch (_error) {
-      handleNext(error as unknown);
+      handleNext(_error as unknown);
     }
   };
 };

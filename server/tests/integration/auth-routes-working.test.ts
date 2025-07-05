@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Working Authentication Routes Integration Tests
  * This test file uses real database operations without mocking
@@ -40,7 +41,7 @@ describe('Authentication Routes - Working Tests', () => {
     app.use('/api/auth', authRoutes(prisma));
 
     // Simple auth middleware
-    const authMiddleware = (req: any, res: any, next: any) => {
+    const authMiddleware = (req: unknown, res: unknown, next: unknown) => {
       const token = req.headers.authorization?.replace('Bearer ', '') || req.cookies?.authToken;
 
       if (!token) {
@@ -48,17 +49,17 @@ describe('Authentication Routes - Working Tests', () => {
       }
 
       try {
-        const payload = jwt.verify(token, process.env.JWT_SECRET!) as any;
+        const payload = jwt.verify(token, process.env.JWT_SECRET!) as unknown;
         req.userId = payload.userId;
         req.email = payload.email;
         next();
-      } catch (error) {
+      } catch (_error) {
         return res.status(403).json({ error: 'Invalid token' });
       }
     };
 
     // Protected routes
-    app.get('/api/auth/me', authMiddleware, async (req: any, res) => {
+    app.get('/api/auth/me', authMiddleware, async (req: unknown, res) => {
       const user = await prisma.user.findUnique({
         where: { id: parseInt(req.userId) },
         select: { id: true, email: true, name: true, role: true },
@@ -71,7 +72,7 @@ describe('Authentication Routes - Working Tests', () => {
       res.json(user);
     });
 
-    app.get('/api/auth/check', authMiddleware, (req: any, res) => {
+    app.get('/api/auth/check', authMiddleware, (req: unknown, res) => {
       res.json({ userId: req.userId });
     });
 
@@ -129,7 +130,7 @@ describe('Authentication Routes - Working Tests', () => {
       expect(res.body.user).not.toHaveProperty('password');
 
       // Verify JWT token
-      const decoded = jwt.verify(res.body.accessToken, process.env.JWT_SECRET!) as any;
+      const decoded = jwt.verify(res.body.accessToken, process.env.JWT_SECRET!) as unknown;
       expect(decoded.email).toBe(validUser.email);
       expect(decoded.userId).toBeDefined();
     });

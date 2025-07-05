@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Global teardown for visual regression tests
  * Cleans up test environment and generates reports
@@ -32,7 +33,7 @@ async function globalTeardown(config: FullConfig) {
         console.log(`\n📸 Review screenshots in: ${resultsDir}/artifacts`);
       }
     }
-  } catch (error) {
+  } catch (_error) {
     // Report may not exist if all tests passed
   }
 

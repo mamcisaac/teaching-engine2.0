@@ -58,10 +58,10 @@ export async function authenticate(
     logger.debug(`User ${user.email} authenticated successfully`);
     next();
   } catch (_error) {
-    if (error instanceof AuthenticationError) {
-      next(error);
+    if (_error instanceof AuthenticationError) {
+      next(_error);
     } else {
-      logger.error('Authentication error:', error);
+      logger.error('Authentication error:', _error);
       next(new AuthenticationError('Authentication failed'));
     }
   }
@@ -133,7 +133,7 @@ export async function optionalAuthenticate(
     next();
   } catch (_error) {
     // Log error but continue without authentication
-    logger.debug('Optional authentication failed:', error);
+    logger.debug('Optional authentication failed:', _error);
     next();
   }
 }

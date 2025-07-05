@@ -112,7 +112,7 @@ function createAuthRouter(prisma = defaultPrisma) {
   );
 
   // Session check endpoint - authentication middleware handles all error cases
-  router.get('/me', authenticate, async (req, res) => {
+  router.get('/me', authenticate, async (req: Request, res: Response) => {
     try {
       // Always fetch fresh user data from database for /me endpoint
       const userId = req.user!.id;
@@ -151,7 +151,7 @@ function createAuthRouter(prisma = defaultPrisma) {
   });
 
   // Simple auth check endpoint - returns userId if authenticated
-  router.get('/check', authenticate, (req, res) => {
+  router.get('/check', authenticate, (req: Request, res: Response) => {
     res.json({ userId: req.user!.id });
   });
 

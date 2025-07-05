@@ -26,7 +26,7 @@ app.get('/api/test', async (req, res) => {
   try {
     const subjects = await prisma.subject.findMany();
     res.json({ success: true, subjects });
-  } catch (error) {
+  } catch (_error) {
     console.error('Error:', error);
     res.status(500).json({ success: false, error: 'Database error' });
   }

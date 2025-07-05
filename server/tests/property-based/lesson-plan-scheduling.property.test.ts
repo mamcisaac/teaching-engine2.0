@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Property-Based Tests for Lesson Plan Scheduling Constraints
  * Tests scheduling invariants and time management properties

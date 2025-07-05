@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Comprehensive Authentication Route Tests
  * Priority 1A: Authentication & Security Routes
@@ -27,7 +28,7 @@ import { performance } from 'perf_hooks';
 describe('Authentication Routes - Comprehensive Integration Tests', () => {
   let app: express.Application;
   let prisma: PrismaClient;
-  let server: any;
+  let server: unknown;
 
   // Test JWT secret for consistent testing
   const TEST_JWT_SECRET = 'test-jwt-secret-for-auth-testing-2024';
@@ -56,7 +57,7 @@ describe('Authentication Routes - Comprehensive Integration Tests', () => {
     app.use('/api', authRoutes(prisma));
 
     // Global error handler
-    app.use((error: any, req: any, res: any, next: any) => {
+    app.use((error: unknown, req: unknown, res: unknown, next: unknown) => {
       console.error('Test app error:', error);
       res.status(500).json({ error: 'Internal server error' });
     });
@@ -103,7 +104,7 @@ describe('Authentication Routes - Comprehensive Integration Tests', () => {
       expect(response.body.user).not.toHaveProperty('password');
 
       // Validate JWT token
-      const decodedToken = jwt.verify(response.body.accessToken, TEST_JWT_SECRET) as any;
+      const decodedToken = jwt.verify(response.body.accessToken, TEST_JWT_SECRET) as unknown;
       expect(decodedToken).toHaveProperty('userId');
       expect(decodedToken).toHaveProperty('email', userData.email);
       expect(decodedToken).toHaveProperty('exp');
@@ -294,7 +295,7 @@ describe('Authentication Routes - Comprehensive Integration Tests', () => {
       expect(response.body.user).not.toHaveProperty('password');
 
       // Validate JWT token
-      const decodedToken = jwt.verify(response.body.accessToken, TEST_JWT_SECRET) as any;
+      const decodedToken = jwt.verify(response.body.accessToken, TEST_JWT_SECRET) as unknown;
       expect(decodedToken).toHaveProperty('userId');
       expect(decodedToken).toHaveProperty('email', 'test@test.com');
 
@@ -503,7 +504,7 @@ describe('Authentication Routes - Comprehensive Integration Tests', () => {
       const token = registerResponse.body.accessToken;
 
       // Decode token to check expiration
-      const decodedToken = jwt.decode(token) as any;
+      const decodedToken = jwt.decode(token) as unknown;
       expect(decodedToken).toHaveProperty('exp');
 
       const expirationTime = decodedToken.exp * 1000; // Convert to milliseconds

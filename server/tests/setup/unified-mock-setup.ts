@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /**
  * Unified Mock Setup - Production-Grade Stability
  * This provides a comprehensive, stable mock foundation for all test types

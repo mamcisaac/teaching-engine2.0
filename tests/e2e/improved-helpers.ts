@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { Page, expect } from '@playwright/test';
 
 export const API_BASE =
@@ -103,7 +104,7 @@ async function waitForServices(page: Page, maxRetries = 60): Promise<void> {
           `Services status: API ${apiReady ? 'OK' : 'Failed'}, Frontend ${frontendReady ? 'OK' : 'Failed'}`,
         );
       }
-    } catch (error) {
+    } catch (_error) {
       if (i % 10 === 0) {
         // Log every 10th attempt to reduce noise
         console.log(
@@ -139,7 +140,7 @@ export async function retry<T>(
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
       return await operation();
-    } catch (error) {
+    } catch (_error) {
       lastError = error as Error;
 
       if (attempt === maxRetries || !retryCondition(lastError)) {
@@ -568,7 +569,7 @@ export async function capturePageState(page: Page, testName: string): Promise<vo
     // Log network failures
     const url = page.url();
     console.log(`Page state captured for ${testName} at ${url}`);
-  } catch (error) {
+  } catch (_error) {
     console.error('Error capturing page state:', error);
   }
 }

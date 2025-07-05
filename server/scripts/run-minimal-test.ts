@@ -8,7 +8,7 @@ function test(name: string, fn: () => void) {
   try {
     fn();
     console.log('✅ Test passed');
-  } catch (error) {
+  } catch (_error) {
     console.error('❌ Test failed:', error);
     process.exit(1);
   }

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import express, { Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import { Server } from 'http';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -59,9 +59,10 @@ import dashboardMetricsRoutes from './routes/dashboard-metrics';
 import authEndpoints from './routes/authEndpoints';
 import { userRoutes } from './routes/user';
 // Notification routes and service infrastructure removed - over-engineered for single-teacher use
+import notificationRoutes from './routes/notifications';
 import logger from './logger.js';
 import { prisma } from './prisma';
-import { rateLimiters } from './middleware/rateLimit';
+import { rateLimiters } from './middleware/rateLimit/index';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 // performanceMonitoring removed - adds unnecessary complexity for single-teacher use
 import {
@@ -75,10 +76,8 @@ import { requestLoggingMiddleware, errorLoggingMiddleware } from './middleware/r
 import { standardErrorHandler } from './middleware/standardErrorHandler';
 import { initTelemetry, startAlertMonitoring } from './monitoring';
 import monitoringRoutes from './routes/monitoring';
-
-// Initialize OpenTelemetry before anything else
-log('Initializing OpenTelemetry...');
-await initTelemetry();
+import { errorReportingService } from './services/monitoring/errorReportingService';
+import { errorContextMiddleware, authErrorMiddleware } from './middleware/errorContext';
 
 // Initialize Express app
 log('Initializing Express application...');
@@ -92,6 +91,10 @@ applySecurityMiddleware(app);
 log('Applying body parsing middleware...');
 app.use(express.json({ limit: '10mb' })); // Set reasonable payload limit
 app.use(cookieParser());
+
+// Apply error context middleware early in the chain
+log('Applying error context middleware...');
+app.use(errorContextMiddleware);
 
 // Apply request logging middleware
 log('Applying request logging middleware...');
@@ -128,10 +131,10 @@ app.get('/api/health/detailed', (_req, res) => {
 // Use imported authenticate middleware from @/middleware/authenticate
 
 // Legacy login endpoint for backward compatibility
-app.post('/api/login', authRateLimitMiddleware, async (req: Request, res: Response) => {
-  // Forward to the new auth endpoint
-  req.url = '/login';
-  authEndpoints(req, res, () => {});
+app.post('/api/login', authRateLimitMiddleware, (req: Request, res: Response, next: NextFunction) => {
+  // Forward to the auth router
+  req.url = '/auth/login';
+  next();
 });
 
 // Legacy register endpoint for backward compatibility
@@ -182,22 +185,24 @@ app.use('/api/auth', authEndpoints);
 
 // Mount user routes (authenticated)
 log('Mounting user routes...');
-app.use('/api/user', authenticate, rateLimiters.api as unknown, userRoutes(prisma));
+app.use('/api/user', authenticate, rateLimiters.api, userRoutes(prisma));
 
-// Notification routes removed - over-engineered for single-teacher use
+// Notification routes
+log('Mounting notification routes...');
+app.use('/api/notifications', authenticate, rateLimiters.api, notificationRoutes);
 
 // Apply authentication and rate limiting to all API routes
 log('Mounting ETFO-aligned API routes...');
 // Student endpoints removed - app does not store student data
 
 // Key Teacher Features
-app.use('/api/newsletters', authenticate, rateLimiters.write as unknown, newsletterRoutes);
-app.use('/api/substitute-plans', authenticate, rateLimiters.write as unknown, substitutePlanRoutes);
+app.use('/api/newsletters', authenticate, rateLimiters.write, newsletterRoutes);
+app.use('/api/substitute-plans', authenticate, rateLimiters.write, substitutePlanRoutes);
 
 app.use(
   '/api/curriculum-import',
   authenticate,
-  rateLimiters.upload as unknown,
+  rateLimiters.upload,
   validateFileUpload(['application/pdf', 'text/csv']),
   curriculumImportRoutes,
 );
@@ -207,29 +212,29 @@ app.use(
 app.use(
   '/api/curriculum-expectations',
   authenticate,
-  rateLimiters.read as unknown,
+  rateLimiters.read,
   curriculumCache, // Cache curriculum data for 30 minutes
   curriculumExpectationRoutes,
 );
-app.use('/api/long-range-plans', authenticate, rateLimiters.write as unknown, userCache, longRangePlanRoutes);
-app.use('/api/unit-plans', authenticate, rateLimiters.write as unknown, userCache, unitPlanRoutes);
-app.use('/api/etfo-lesson-plans', authenticate, rateLimiters.write as unknown, userCache, etfoLessonPlanRoutes);
-app.use('/api/daybook-entries', authenticate, rateLimiters.write as unknown, userCache, daybookEntryRoutes);
-app.use('/api/etfo', authenticate, rateLimiters.read as unknown, etfoProgressRoutes);
+app.use('/api/long-range-plans', authenticate, rateLimiters.write, userCache, longRangePlanRoutes);
+app.use('/api/unit-plans', authenticate, rateLimiters.write, userCache, unitPlanRoutes);
+app.use('/api/etfo-lesson-plans', authenticate, rateLimiters.write, userCache, etfoLessonPlanRoutes);
+app.use('/api/daybook-entries', authenticate, rateLimiters.write, userCache, daybookEntryRoutes);
+app.use('/api/etfo', authenticate, rateLimiters.read, etfoProgressRoutes);
 
 // State Management Routes
-app.use('/api/planner', authenticate, rateLimiters.api as unknown, plannerStateRoutes);
+app.use('/api/planner', authenticate, rateLimiters.api, plannerStateRoutes);
 // Workflow state routes removed - over-engineered for single-teacher use
-app.use('/api/ai-planning', authenticate, rateLimiters.ai as unknown, aiPlanningRoutes);
+app.use('/api/ai-planning', authenticate, rateLimiters.ai, aiPlanningRoutes);
 
 // Template System Routes
-app.use('/api/templates', authenticate, rateLimiters.api as unknown, staticCache, templateRoutes);
+app.use('/api/templates', authenticate, rateLimiters.api, staticCache, templateRoutes);
 
 // Calendar Routes
-app.use('/api/calendar-events', authenticate, rateLimiters.api as unknown, userCache, calendarEventRoutes);
+app.use('/api/calendar-events', authenticate, rateLimiters.api, userCache, calendarEventRoutes);
 
 // Recent Plans Routes
-app.use('/api/recent-plans', authenticate, rateLimiters.api as unknown, userCache, recentPlansRoutes);
+app.use('/api/recent-plans', authenticate, rateLimiters.api, userCache, recentPlansRoutes);
 
 // Cache Management Routes
 app.use('/api/cache', cacheRoutes);
@@ -245,7 +250,7 @@ app.use('/api/dashboard', dashboardMetricsRoutes);
 app.use('/api/monitoring', authenticate, monitoringRoutes);
 
 // AI status endpoint (maps to ai-planning/status for backward compatibility)
-app.get('/api/ai/status', authenticate, async (req, res) => {
+app.get('/api/ai/status', authenticate, async (req: Request, res: Response) => {
   // Forward to ai-planning routes handler
   req.url = '/status';
   aiPlanningRoutes(req, res, () => {});
@@ -258,10 +263,10 @@ app.use('/api/planner', authenticate, plannerStateRoutes);
 app.use(
   '/api/activity-collections',
   authenticate,
-  rateLimiters.write as unknown,
+  rateLimiters.write,
   activityCollectionsRoutes,
 );
-app.use('/api/ai-activities', authenticate, rateLimiters.ai as unknown, aiActivityGenerationRoutes);
+app.use('/api/ai-activities', authenticate, rateLimiters.ai, aiActivityGenerationRoutes);
 
 // Batch Processing Routes
 
@@ -286,6 +291,9 @@ startAlertMonitoring();
 
 // 404 handler for API routes - must handle all unmatched API routes
 app.all('/api/*', notFoundHandler);
+
+// Auth error middleware
+app.use(authErrorMiddleware);
 
 // Error logging middleware (before error handler)
 app.use(errorLoggingMiddleware);
@@ -314,6 +322,25 @@ log(`Starting server on port ${PORT}...`);
 // Export app before starting the server
 export { app };
 
+// Initialize app asynchronously
+async function initializeApp() {
+  // Initialize error reporting service first
+  log('Initializing error reporting service...');
+  errorReportingService.init();
+
+  // Initialize OpenTelemetry before anything else
+  log('Initializing OpenTelemetry...');
+  await initTelemetry();
+
+  // Start alert monitoring
+  startAlertMonitoring();
+
+  // Start system metrics collection
+  startSystemMetricsCollection();
+
+  return app;
+}
+
 // Graceful shutdown handler
 async function gracefulShutdown(signal: string, server?: Server) {
   log(`${signal} received, shutting down gracefully...`);
@@ -333,7 +360,7 @@ async function gracefulShutdown(signal: string, server?: Server) {
 
     log('Graceful shutdown completed');
     process.exit(0);
-  } catch (_err) {
+  } catch (err) {
     error('Error during graceful shutdown:', err);
     process.exit(1);
   }
@@ -349,14 +376,17 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 
 if (isDirectRun || isE2ETest || isDevelopment) {
   log('Starting server because:', { isDirectRun, isE2ETest, isDevelopment });
-  // Start server directly - service initialization removed for simplicity
-  const server = app.listen(PORT, '0.0.0.0', () => {
-    log(`Server is running on port ${PORT}`);
-    log('Server address:', server.address());
-    log('Server started successfully');
+  
+  // Initialize app asynchronously then start server
+  initializeApp().then(() => {
+    // Start server directly - service initialization removed for simplicity
+    const server = app.listen(PORT, '0.0.0.0', () => {
+      log(`Server is running on port ${PORT}`);
+      log('Server address:', server.address());
+      log('Server started successfully');
 
-    // Background jobs disabled - ETFO approach uses manual workflow
-  });
+      // Background jobs disabled - ETFO approach uses manual workflow
+    });
 
   server.on('error', (err) => {
     logger.error({ error: err }, 'Server error');
@@ -370,15 +400,19 @@ if (isDirectRun || isE2ETest || isDevelopment) {
   process.on('SIGTERM', () => gracefulShutdown('SIGTERM', server));
   process.on('SIGINT', () => gracefulShutdown('SIGINT', server));
 
-  // Handle uncaught exceptions
-  process.on('uncaughtException', (err) => {
-    error('Uncaught Exception:', err);
-    gracefulShutdown('UNCAUGHT_EXCEPTION', server);
-  });
+    // Handle uncaught exceptions
+    process.on('uncaughtException', (err) => {
+      error('Uncaught Exception:', err);
+      gracefulShutdown('UNCAUGHT_EXCEPTION', server);
+    });
 
-  process.on('unhandledRejection', (reason, promise) => {
-    error('Unhandled Rejection at:', promise, 'reason:', reason);
-    gracefulShutdown('UNHANDLED_REJECTION', server);
+    process.on('unhandledRejection', (reason, promise) => {
+      error('Unhandled Rejection at:', promise, 'reason:', reason);
+      gracefulShutdown('UNHANDLED_REJECTION', server);
+    });
+  }).catch((err) => {
+    error('Failed to initialize app:', err);
+    process.exit(1);
   });
 }
 // test

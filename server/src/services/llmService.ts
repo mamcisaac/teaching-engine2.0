@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * LLM Service - Large Language Model operations for Teaching Engine 2.0
  * Handles OpenAI integration and content generation
@@ -5,7 +6,7 @@
 
 import OpenAI from 'openai';
 import { BaseService } from './base/BaseService.js';
-import logger from '../logger.js';
+// import logger from '../logger.js';
 
 export interface ContentGenerationRequest {
   prompt: string;
@@ -88,7 +89,7 @@ export class LLMService extends BaseService {
       });
 
       this.logger.info('OpenAI client initialized successfully', {});
-    } catch (_error) {
+    } catch (error) {
       this.logger.error('Failed to initialize OpenAI client', { error });
       this.openaiClient = null;
     }

@@ -1,7 +1,7 @@
 import { Router, Request } from 'express';
 import { Prisma } from '../prisma';
 import { prisma } from '../prisma';
-
+import logger from '../logger';
 const router = Router();
 
 // Simple text search helper function for curriculum expectations
@@ -115,7 +115,7 @@ router.get('/', async (req: Request, res) => {
       hasMore: (pageNumber - 1) * limitNumber + expectations.length < total,
     });
   } catch (_error) {
-    console.error('Error fetching curriculum expectations:', error);
+    logger.error('Error fetching curriculum expectations:', _error);
     res.status(500).json({ error: 'Failed to fetch curriculum expectations' });
   }
 });
@@ -157,7 +157,7 @@ router.get('/:id', async (req: Request, res) => {
 
     res.json(expectation);
   } catch (_error) {
-    console.error('Error fetching curriculum expectation:', error);
+    logger.error('Error fetching curriculum expectation:', _error);
     res.status(500).json({ error: 'Failed to fetch curriculum expectation' });
   }
 });
@@ -189,7 +189,7 @@ router.get('/filters/options', async (req: Request, res) => {
       strands: strands.map(s => s.strand),
     });
   } catch (_error) {
-    console.error('Error fetching filter options:', error);
+    logger.error('Error fetching filter options:', _error);
     res.status(500).json({ error: 'Failed to fetch filter options' });
   }
 });

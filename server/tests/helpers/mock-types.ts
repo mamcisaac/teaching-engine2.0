@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Mock Types Helper for Teaching Engine 2.0
  * Provides proper TypeScript interfaces for Jest mocks

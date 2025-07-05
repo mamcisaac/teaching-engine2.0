@@ -4,7 +4,7 @@ import { prisma } from '../prisma';
 import { validate } from '../validation';
 import { z } from 'zod';
 import { generateLongRangePlanDraft, generatePlanSuggestions } from '../services/ai/aiDraftService';
-
+import logger from '../logger';
 const router = Router();
 
 // Validation schemas
@@ -331,7 +331,7 @@ router.post('/ai-draft', async (req: Request, res, _next) => {
 
     res.json(draft);
   } catch (_err) {
-    console.error('AI draft generation error:', err);
+    logger.error('AI draft generation error:', err);
     res.status(500).json({ error: 'Failed to generate AI draft' });
   }
 });
@@ -368,7 +368,7 @@ Expectations: ${plan.expectations.map((e) => `${e.expectation.code}: ${e.expecta
 
     res.json({ suggestions });
   } catch (_err) {
-    console.error('AI suggestions error:', err);
+    logger.error('AI suggestions error:', err);
     res.status(500).json({ error: 'Failed to generate suggestions' });
   }
 });

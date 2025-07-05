@@ -13,7 +13,7 @@ interface LessonTheme {
   assessmentTypes: string[];
 }
 
-export class LessonPlanFactory extends BaseFactory<ETFOLessonPlan> {
+export class ETFOLessonPlanFactory extends BaseFactory<ETFOLessonPlan> {
   private createdLessons: string[] = [];
 
   // Realistic lesson themes by subject
@@ -393,6 +393,41 @@ export class LessonPlanFactory extends BaseFactory<ETFOLessonPlan> {
     ];
 
     return this.faker.helpers.arrayElement(notes);
+  }
+
+  /**
+   * Create lessons for a unit plan
+   */
+  async createUnitLessons(options: {
+    userId: number;
+    unitPlan: any; // UnitPlan type
+    count: number;
+  }): Promise<ETFOLessonPlan[]> {
+    const lessons: ETFOLessonPlan[] = [];
+    const startDate = new Date(options.unitPlan.startDate);
+    
+    for (let i = 0; i < options.count; i++) {
+      const lessonDate = new Date(startDate);
+      lessonDate.setDate(startDate.getDate() + (i * 2)); // Every other day
+      
+      // Skip weekends
+      while (lessonDate.getDay() === 0 || lessonDate.getDay() === 6) {
+        lessonDate.setDate(lessonDate.getDate() + 1);
+      }
+      
+      const lesson = await this.create({
+        userId: options.userId,
+        unitPlanId: options.unitPlan.id,
+        grade: options.unitPlan.grade || 4,
+        subject: options.unitPlan.subject || 'Mathematics',
+        date: lessonDate,
+        title: `${options.unitPlan.title} - Lesson ${i + 1}`,
+      });
+      
+      lessons.push(lesson);
+    }
+    
+    return lessons;
   }
 
   /**

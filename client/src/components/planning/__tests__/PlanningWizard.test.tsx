@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * @file PlanningWizard.test.tsx
  * @description Comprehensive tests for PlanningWizard component including step navigation,

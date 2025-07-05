@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Curriculum Search Service
  * Handles searching and filtering curriculum expectations

@@ -1,42 +1,62 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { Request, Response } from 'express';
 import rateLimit, { RateLimitRequestHandler, Options } from 'express-rate-limit';
 // Optional Redis support
 let RedisStore: unknown;
 let createClient: unknown;
 
-try {
-  RedisStore = await import('rate-limit-redis');
-  createClient = (await import('redis').createClient;
-} catch (_e) {
-  // Redis not available
+// Load Redis modules lazily
+async function loadRedisModules() {
+  if (!RedisStore) {
+    try {
+      RedisStore = await import('rate-limit-redis');
+      createClient = (await import('redis')).createClient;
+    } catch (_e) {
+      // Redis not available
+    }
+  }
 }
 import logger from '../../logger.js';
 import { 
-  RateLimitConfig, 
   rateLimitConfigs, 
   rateLimitTiers,
   skipRateLimitPaths,
   storeConfig,
   endpointOverrides,
-  getRateLimitConfig
+  getRateLimitConfig,
+  shouldBypassRateLimit
 } from './config';
 
 // Redis client for rate limiting (if configured)
-let redisClient: ReturnType<typeof createClient> | null = null;
+let redisClient: unknown = null;
+let redisInitialized = false;
 
-if (storeConfig.useRedis && process.env.REDIS_URL) {
-  redisClient = createClient({
-    url: process.env.REDIS_URL,
-  });
+// Initialize Redis on first use
+async function _initializeRedis() {
+  if (redisInitialized) return;
+  redisInitialized = true;
   
-  redisClient.on('error', (err) => {
-    logger.error('Redis client error:', err);
-  });
-  
-  redisClient.connect().catch((err) => {
-    logger.error('Failed to connect to Redis:', err);
-    redisClient = null;
-  });
+  if (storeConfig.useRedis && process.env.REDIS_URL) {
+    await loadRedisModules();
+    
+    if (createClient) {
+      try {
+        redisClient = (createClient as (config: { url: string }) => unknown)({
+          url: process.env.REDIS_URL,
+        });
+        
+        (redisClient as { on: (event: string, callback: (err: unknown) => void) => void }).on('error', (err: unknown) => {
+          logger.error({ error: err }, 'Redis client error');
+        });
+        
+        await (redisClient as { connect: () => Promise<void> }).connect();
+      } catch (err) {
+        logger.error({ error: err }, 'Failed to connect to Redis');
+        redisClient = null;
+      }
+    }
+  }
 }
 
 /**
@@ -58,9 +78,9 @@ export function createRateLimiter(
     standardHeaders: true,
     legacyHeaders: false,
     
-    // Use Redis store in production
-    ...(redisClient && storeConfig.useRedis ? {
-      store: new RedisStore({
+    // Use Redis store in production (if available)
+    ...(redisClient && storeConfig.useRedis && RedisStore ? {
+      store: new (RedisStore as { default: new (config: { client: unknown; prefix: string }) => unknown }).default({
         client: redisClient,
         prefix: `${storeConfig.keyPrefix}${configName}:`,
       }),
@@ -77,9 +97,9 @@ export function createRateLimiter(
     // Skip successful requests if configured
     skipSuccessfulRequests: config.skipSuccessful || false,
     
-    // Skip rate limiting for certain paths
+    // Skip rate limiting for certain paths or in development
     skip: ((req: Request) => {
-      return skipRateLimitPaths.includes(req.path);
+      return skipRateLimitPaths.includes(req.path) || shouldBypassRateLimit(req);
     }) as unknown,
     
     // Custom handler for rate limit exceeded
@@ -128,8 +148,8 @@ export function createDynamicRateLimiter(
     }) as unknown,
     
     // Use Redis store if available
-    ...(redisClient && storeConfig.useRedis ? {
-      store: new RedisStore({
+    ...(redisClient && storeConfig.useRedis && RedisStore ? {
+      store: new (RedisStore as { default: new (config: { client: unknown; prefix: string }) => unknown }).default({
         client: redisClient,
         prefix: `${storeConfig.keyPrefix}${configName}:`,
       }),
@@ -144,9 +164,9 @@ export function createDynamicRateLimiter(
       return req.ip || 'unknown';
     }) as unknown,
     
-    // Skip rate limiting for certain paths
+    // Skip rate limiting for certain paths or in development
     skip: ((req: Request) => {
-      return skipRateLimitPaths.includes(req.path);
+      return skipRateLimitPaths.includes(req.path) || shouldBypassRateLimit(req);
     }) as unknown,
     
     // Custom handler
@@ -257,9 +277,9 @@ export async function resetRateLimit(
   
   const fullKey = `${storeConfig.keyPrefix}${configName}:${key}`;
   try {
-    await redisClient.del(fullKey);
+    await (redisClient as { del: (key: string) => Promise<void> }).del(fullKey);
     logger.info(`Reset rate limit for ${fullKey}`);
-  } catch (_error) {
+  } catch (error) {
     logger.error('Failed to reset rate limit:', error);
   }
 }
@@ -277,8 +297,8 @@ export async function getRateLimitStatus(
   
   const fullKey = `${storeConfig.keyPrefix}${configName}:${key}`;
   try {
-    const count = await redisClient.get(fullKey);
-    const ttl = await redisClient.ttl(fullKey);
+    const count = await (redisClient as { get: (key: string) => Promise<string | null> }).get(fullKey);
+    const ttl = await (redisClient as { ttl: (key: string) => Promise<number> }).ttl(fullKey);
     
     if (count && ttl > 0) {
       return {
@@ -286,7 +306,7 @@ export async function getRateLimitStatus(
         resetTime: new Date(Date.now() + ttl * 1000),
       };
     }
-  } catch (_error) {
+  } catch (error) {
     logger.error('Failed to get rate limit status:', error);
   }
   
@@ -298,7 +318,7 @@ export async function getRateLimitStatus(
  */
 export async function cleanupRateLimiters(): Promise<void> {
   if (redisClient) {
-    await redisClient.quit();
+    await (redisClient as { quit: () => Promise<void> }).quit();
     logger.info('Redis client disconnected');
   }
 }

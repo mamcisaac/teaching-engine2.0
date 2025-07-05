@@ -49,7 +49,7 @@ async function clearDatabase() {
     try {
       await prisma.$executeRawUnsafe(`DELETE FROM \`${name}\`;`);
       console.log(`  ✅ Cleared table: ${name}`);
-    } catch (error) {
+    } catch (_error) {
       console.error(
         `  ❌ Error clearing table ${name}:`,
         error instanceof Error ? error.message : String(error),
@@ -86,7 +86,7 @@ async function seedTestData() {
     `;
 
     console.log('✅ Created test subjects: Mathematics, Science, English');
-  } catch (error) {
+  } catch (_error) {
     console.error(
       '❌ Error seeding test data:',
       error instanceof Error ? error.message : String(error),
@@ -139,7 +139,7 @@ async function seedDevData() {
 
     console.log('✅ Created development subjects');
     console.log('✅ Development data seeding complete');
-  } catch (error) {
+  } catch (_error) {
     console.error(
       '❌ Error seeding development data:',
       error instanceof Error ? error.message : String(error),
@@ -162,7 +162,7 @@ async function main() {
     }
 
     console.log('\n🎉 Database seeding completed successfully!');
-  } catch (error) {
+  } catch (_error) {
     console.error('\n❌ Error during database seeding:', error);
     process.exit(1);
   } finally {

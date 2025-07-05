@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Authentication Security Tests - REAL Cookie Testing
  *
@@ -31,7 +32,7 @@ const parseCookies = (setCookieHeaders: string[] | undefined): Map<string, any> 
     const [nameValue] = parts;
     const [name, value] = nameValue.split('=');
 
-    const cookieData: any = { value, attributes: {} };
+    const cookieData: unknown = { value, attributes: {} };
 
     parts.slice(1).forEach((attr) => {
       if (attr.includes('=')) {
@@ -125,7 +126,7 @@ describe('Authentication Security - REAL Testing', () => {
       expect(refreshTokenCookie.attributes['max-age']).toBe('604800'); // 7 days in seconds
 
       // Verify the JWT token is REAL and valid
-      const decodedToken = jwt.verify(refreshTokenCookie.value, TEST_JWT_SECRET) as any;
+      const decodedToken = jwt.verify(refreshTokenCookie.value, TEST_JWT_SECRET) as unknown;
       expect(decodedToken.userId).toBe(testUser.id.toString());
       expect(decodedToken.type).toBe('refresh'); // Refresh tokens have type field
     });
@@ -418,7 +419,7 @@ describe('Authentication Security - REAL Testing', () => {
       }
 
       // Decode and verify REAL JWT token
-      const decoded = jwt.decode(accessToken, { complete: true }) as any;
+      const decoded = jwt.decode(accessToken, { complete: true }) as unknown;
 
       // Verify header
       expect(decoded.header.alg).toBe('HS256');
@@ -464,7 +465,7 @@ describe('Authentication Security - REAL Testing', () => {
         try {
           const decoded = jwt.verify(token, TEST_JWT_SECRET);
           res.json({ message: 'Access granted', user: decoded });
-        } catch (error) {
+        } catch (_error) {
           res.status(401).json({ message: 'Invalid token' });
         }
       });
@@ -513,7 +514,7 @@ describe('Authentication Security - REAL Testing', () => {
       const uniqueTokens = new Set(tokens);
 
       // Decode tokens to check timestamps
-      const decodedTokens = tokens.map((token) => jwt.decode(token) as any);
+      const decodedTokens = tokens.map((token) => jwt.decode(token) as unknown);
       const timestamps = decodedTokens.map((decoded) => decoded?.iat);
 
       // Log for debugging
@@ -527,7 +528,7 @@ describe('Authentication Security - REAL Testing', () => {
 
       // Each token should be valid
       tokens.forEach((token) => {
-        const decoded = jwt.verify(token, TEST_JWT_SECRET) as any;
+        const decoded = jwt.verify(token, TEST_JWT_SECRET) as unknown;
         expect(decoded.email).toBe('concurrent@example.com');
       });
     });

@@ -3,7 +3,8 @@ import { AlertCircle, RefreshCw, Home, Mail } from 'lucide-react';
 import { Button } from './ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Alert, AlertDescription, AlertTitle } from './ui/alert';
-
+import logger from '../utils/logger';
+import { errorReportingService } from '../services/errorReportingService';
 interface ErrorBoundaryProps {
   children: ReactNode;
   fallback?: ReactNode;
@@ -35,7 +36,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('ErrorBoundary caught an error:', error, errorInfo);
+    logger.error('ErrorBoundary caught an error:', error, errorInfo);
     this.setState({ errorInfo });
     
     // Call custom error handler if provided
@@ -43,10 +44,15 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
       this.props.onError(error, errorInfo);
     }
     
-    // Log to error reporting service in production
-    if (process.env.NODE_ENV === 'production') {
-      // TODO: Send to error reporting service (e.g., Sentry)
-    }
+    // Send to error reporting service
+    errorReportingService.captureError(error, {
+      component: 'ErrorBoundary',
+      errorBoundaryProps: {
+        errorTitle: this.props.errorTitle,
+        errorDescription: this.props.errorDescription,
+      },
+      retryCount: this.state.retryCount,
+    }, errorInfo);
   }
 
   handleReset = () => {
@@ -195,9 +201,15 @@ export const GlobalErrorBoundary: React.FC<{ children: ReactNode }> = ({ childre
     onError={(error, errorInfo) => {
       // Log to console in development
       if (process.env.NODE_ENV === 'development') {
-        console.error('Global Error:', error);
-        console.error('Error Info:', errorInfo);
+        logger.error('Global Error:', error);
+        logger.error('Error Info:', errorInfo);
       }
+      
+      // Report global errors with additional context
+      errorReportingService.captureError(error, {
+        component: 'GlobalErrorBoundary',
+        global: true,
+      }, errorInfo);
     }}
   >
     {children}

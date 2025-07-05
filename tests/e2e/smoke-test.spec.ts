@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { test, expect } from '@playwright/test';
 import { loginAsTestUser, DEFAULT_TEST_USER, initApiContext } from './helpers/unified-auth';
 

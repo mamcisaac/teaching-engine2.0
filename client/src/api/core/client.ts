@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { authService } from '../../services/authService';
-
+import logger from '../../utils/logger';
 // Extend the ImportMeta interface to include Vite's environment variables
 declare global {
   interface ImportMetaEnv {
@@ -41,7 +41,7 @@ apiClient.interceptors.request.use(
     } catch (_error) {
       // If token refresh fails, continue with request anyway
       // The response interceptor will handle 401 errors
-      console.warn('Token refresh failed before request:', error);
+      logger.warn('Token refresh failed before request:', error);
     }
 
     return config;
@@ -72,7 +72,7 @@ apiClient.interceptors.response.use(
           return apiClient(originalRequest);
         }
       } catch (refreshError) {
-        console.error('Token refresh failed:', refreshError);
+        logger.error('Token refresh failed:', refreshError);
       }
 
       // If we couldn't recover, clear tokens and let the app handle redirect

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 import { HelpState, HelpContextType } from '../types/help';
-
+import logger from '../utils/logger';
 // Initial state
 const initialState: HelpState = {
   currentSection: null,
@@ -134,7 +134,7 @@ export function HelpProvider({ children }: { children: React.ReactNode }) {
         dispatch({ type: 'LOAD_STATE', payload: parsedState });
       }
     } catch (_error) {
-      console.warn('Failed to load help state from localStorage:', error);
+      logger.warn('Failed to load help state from localStorage:', _error);
     }
   }, []);
 
@@ -143,7 +143,7 @@ export function HelpProvider({ children }: { children: React.ReactNode }) {
     try {
       localStorage.setItem(HELP_STATE_KEY, JSON.stringify(state));
     } catch (_error) {
-      console.warn('Failed to save help state to localStorage:', error);
+      logger.warn('Failed to save help state to localStorage:', _error);
     }
   }, [state]);
 

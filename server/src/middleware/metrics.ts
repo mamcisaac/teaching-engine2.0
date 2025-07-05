@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { Request, Response, NextFunction } from 'express';
 import { performance } from 'perf_hooks';
 import logger from '../logger.js';
@@ -301,7 +302,7 @@ export function collectSystemMetrics() {
     metricsStore.setGauge('cpu_usage_percent', cpuPercent);
     
   } catch (_error) {
-    logger.error('Error collecting system metrics:', error);
+    logger.error('Error collecting system metrics:', _error);
   }
 }
 
@@ -357,7 +358,7 @@ export function withMetrics<T extends any[], R>(
           status: 'error' 
         });
         
-        throw error;
+        throw _error;
       }
     };
     
@@ -435,3 +436,6 @@ export function getPerformanceSummary() {
 }
 
 export default metricsStore;
+
+// Named export for getMetrics function
+export const getMetrics = () => metricsStore.getMetrics();

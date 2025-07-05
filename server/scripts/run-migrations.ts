@@ -16,7 +16,7 @@ async function runMigrations() {
     });
     
     console.log('✅ Database migrations applied successfully!');
-  } catch (error) {
+  } catch (_error) {
     console.error('❌ Failed to apply migrations:', error);
     process.exit(1);
   }

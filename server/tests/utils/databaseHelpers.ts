@@ -40,7 +40,7 @@ export class DatabaseTestHelper {
         timeout: 30000,
         cwd: path.resolve(__dirname, '../../..'),
       });
-    } catch (error) {
+    } catch (_error) {
       console.warn('Failed to generate Prisma client:', error);
     }
 
@@ -62,7 +62,7 @@ export class DatabaseTestHelper {
       const shmPath = `${this.testDbPath}-shm`;
       if (fs.existsSync(walPath)) fs.unlinkSync(walPath);
       if (fs.existsSync(shmPath)) fs.unlinkSync(shmPath);
-    } catch (error) {
+    } catch (_error) {
       console.warn('Database cleanup failed:', error);
     }
   }
@@ -136,7 +136,7 @@ export class DatabasePool {
         if (fs.existsSync(walPath)) fs.unlinkSync(walPath);
         if (fs.existsSync(shmPath)) fs.unlinkSync(shmPath);
       }
-    } catch (error) {
+    } catch (_error) {
       console.warn(`Failed to clean up database ${dbPath}:`, error);
     }
   }

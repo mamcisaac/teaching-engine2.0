@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Unified Database Mock - Production-Grade Stability
  *
@@ -170,7 +171,7 @@ function createMockFunction<T = any>(
         default:
           return null as T;
       }
-    } catch (error) {
+    } catch (_error) {
       throw error;
     }
   });

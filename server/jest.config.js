@@ -47,28 +47,18 @@ const baseConfig = {
   testLocationInResults: true,
   logHeapUsage: process.env.DEBUG_TESTS === 'true', // Only log heap in debug mode
 
-  // Module resolution - Fixed paths and mappings
+  // Module resolution - Only necessary path mappings and asset mocks
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
     '^@/(.*)$': '<rootDir>/src/$1',
     '^tests/(.*)$': '<rootDir>/tests/$1',
-    '^@/utils/logger$': '<rootDir>/src/logger',
-    // Mock external dependencies by default
-    '^openai$': '<rootDir>/src/__mocks__/openai.js',
-    '^canvas$': '<rootDir>/tests/mocks/canvas.mock.ts',
-    '^pdfkit$': '<rootDir>/tests/mocks/pdfkit.mock.ts',
-    '^pdf-parse$': '<rootDir>/src/__mocks__/pdf-parse.ts',
-    '^mammoth$': '<rootDir>/src/__mocks__/mammoth.ts',
-    // Mock UUID to fix test issues
-    '^uuid$': '<rootDir>/tests/mocks/uuid.mock.ts',
-    // Fix prisma path resolution
-    '^@teaching-engine/database$': '<rootDir>/tests/mocks/database.mock.ts',
-    // Add src/ path resolution for relative imports (more specific patterns)
+    // Only mock truly external dependencies that cannot be used in tests
+    '^canvas$': '<rootDir>/tests/mocks/canvas.mock.ts', // Canvas rendering not available in Node
+    '^pdfkit$': '<rootDir>/tests/mocks/pdfkit.mock.ts', // PDF generation not needed in tests
+    '^puppeteer$': '<rootDir>/tests/mocks/puppeteer.mock.ts', // Puppeteer browser automation not available in Node
+    // Path resolution for imports
     '^\\.\\.\/\\.\\.\/src\/(.*)$': '<rootDir>/src/$1',
     '^\\.\\.\/src\/(.*)$': '<rootDir>/src/$1',
-    // Add specific patterns for common relative imports
-    '^\\.\\.\/\\.\\.\/prisma$': '<rootDir>/tests/mocks/database.mock.ts',
-    '^\\.\\.\/prisma$': '<rootDir>/tests/mocks/database.mock.ts',
   },
 
   moduleDirectories: ['node_modules', 'src'],
@@ -151,16 +141,15 @@ const securityTestProject = {
     '<rootDir>/tests/jest.setup.ts', // Real database setup
   ],
 
-  // Minimal mocking for security tests - real database needed
+  // Security tests use real implementations
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
     '^@/(.*)$': '<rootDir>/src/$1',
     '^tests/(.*)$': '<rootDir>/tests/$1',
-    '^@/utils/logger$': '<rootDir>/src/logger',
-    // Still mock expensive external APIs
-    '^openai$': '<rootDir>/src/__mocks__/openai.js',
+    // Only mock rendering libraries not available in Node
     '^canvas$': '<rootDir>/tests/mocks/canvas.mock.ts',
     '^pdfkit$': '<rootDir>/tests/mocks/pdfkit.mock.ts',
+    '^puppeteer$': '<rootDir>/tests/mocks/puppeteer.mock.ts',
   },
 };
 
@@ -176,28 +165,17 @@ const unitTestProject = {
   testTimeout: 8000, // Reduced to 8 seconds for unit tests
   maxWorkers: getOptimalWorkerCount(), // Use optimized worker count
 
-  // Unit test specific setup - Load jest.setup.js FIRST for proper env var configuration
+  // Unit test specific setup - Minimal setup for TDD compliance
   setupFilesAfterEnv: [
-    '<rootDir>/jest.setup.js', // Must be FIRST - sets up environment variables
-    '<rootDir>/tests/setup/00-security-mocks.ts', // Load security mocks SECOND
-    '<rootDir>/tests/setup/file-parsing-mocks.ts', // Load file parsing mocks
-    '<rootDir>/tests/setup-all-mocks.ts',
+    '<rootDir>/jest.setup.js', // Environment variables only
+    // Remove global mocks - tests should mock dependencies explicitly as needed
   ],
 
-  // Aggressive mocking for unit tests
+  // Unit tests should use real implementations or explicit mocks
   moduleNameMapper: {
     ...baseConfig.moduleNameMapper,
-    // Mock database for unit tests
-    '^@teaching-engine/database$': '<rootDir>/tests/mocks/database.mock.ts',
-    // Don't mock all services - only specific ones as needed
-    // '^@/services/(.*)$': '<rootDir>/tests/mocks/services.mock.ts',
-    // Ensure relative paths to src are resolved correctly
-    '^\\.\\.\/\\.\\.\/src\/prisma$': '<rootDir>/tests/mocks/database.mock.ts',
-    '^\\.\\.\/src\/prisma$': '<rootDir>/tests/mocks/database.mock.ts',
-    '^src/prisma$': '<rootDir>/tests/mocks/database.mock.ts',
-    // Add more specific prisma resolution patterns
-    '^@/prisma$': '<rootDir>/tests/mocks/database.mock.ts',
-    '^\\.\\.\/\\.\\.\/prisma$': '<rootDir>/tests/mocks/database.mock.ts',
+    // Unit tests must explicitly mock dependencies in test files
+    // No automatic database mocking - violates TDD principles
   },
 
   // No database setup for unit tests
@@ -246,16 +224,15 @@ const integrationTestProject = {
   // Integration test setup with unified database setup (no per-test transactions)
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js', '<rootDir>/tests/integration-test-setup.ts'],
 
-  // Minimal mocking for integration tests
+  // Integration tests use real implementations
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
     '^@/(.*)$': '<rootDir>/src/$1',
     '^tests/(.*)$': '<rootDir>/tests/$1',
-    '^@/utils/logger$': '<rootDir>/src/logger',
-    // Still mock expensive external APIs
-    '^openai$': '<rootDir>/src/__mocks__/openai.js',
+    // Only mock rendering libraries not available in Node
     '^canvas$': '<rootDir>/tests/mocks/canvas.mock.ts',
     '^pdfkit$': '<rootDir>/tests/mocks/pdfkit.mock.ts',
+    '^puppeteer$': '<rootDir>/tests/mocks/puppeteer.mock.ts',
   },
 };
 
@@ -269,15 +246,14 @@ const aiSnapshotTestProject = {
 
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js', '<rootDir>/tests/jest.setup.ts'],
 
-  // AI tests need database but mock external AI services by default
+  // AI snapshot tests should use real database and real AI services when possible
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
     '^@/(.*)$': '<rootDir>/src/$1',
     '^tests/(.*)$': '<rootDir>/tests/$1',
-    '^@/utils/logger$': '<rootDir>/src/logger',
-    // Mock OpenAI by default unless OPENAI_API_KEY is set for real testing
+    // Only mock if API key is not available - tests should handle this gracefully
     '^openai$':
-      process.env.OPENAI_API_KEY && process.env.USE_REAL_OPENAI
+      process.env.OPENAI_API_KEY
         ? 'openai'
         : '<rootDir>/src/__mocks__/openai.js',
   },
@@ -317,11 +293,10 @@ const propertyTestProject = {
   // Property test specific setup
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js', '<rootDir>/tests/setup/property-test-setup.ts'],
 
-  // Mock external dependencies for property tests
+  // Property tests should use real implementations where possible
   moduleNameMapper: {
     ...baseConfig.moduleNameMapper,
-    // Mock database for property tests
-    '^@teaching-engine/database$': '<rootDir>/tests/mocks/database.mock.ts',
+    // Property tests may need to mock database for speed, but should be explicit
   },
 
   // No database setup for property tests

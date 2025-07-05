@@ -1,4 +1,23 @@
+import { Request, Response, NextFunction } from 'express';
 import { compose, chain, conditional, timed } from './core/composer';
+
+// Extend Express types
+declare global {
+  namespace Express {
+    interface Request {
+      user?: {
+        id: number;
+        email: string;
+        role: string;
+        organizationId?: number;
+        permissions?: string[];
+      };
+    }
+    interface Response {
+      locals: any;
+    }
+  }
+}
 import { 
   requestLoggingMiddleware, 
   auditMiddleware, 
@@ -21,7 +40,7 @@ import {
 import { authenticate } from './authenticate';
 import { rateLimiters } from './rateLimit';
 import { apiCache, curriculumCache, staticCache, userCache } from './cache';
-
+import logger from '../logger';
 // Environment checks
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isProduction = process.env.NODE_ENV === 'production';
@@ -93,7 +112,7 @@ export const authEndpointMiddleware = compose(
 // Admin operation chain
 export const adminOperationMiddleware = compose(
   authenticatedApiMiddleware,
-  (req, res, next) => {
+  (req: Request, res: Response, next: NextFunction) => {
     if (req.user?.role !== 'admin') {
       return res.status(403).json({ error: 'Admin access required' });
     }
@@ -157,8 +176,8 @@ export const exportOperationsMiddleware = compose(
 export const developmentMiddleware = conditional(
   isDevelopment,
   compose(
-    (req, res, next) => {
-      console.log(`[DEV] ${req.method} ${req.path}`);
+    (req: Request, res: Response, next: NextFunction) => {
+      logger.info(`[DEV] ${req.method} ${req.path}`);
       next();
     },
     performanceLoggingMiddleware
@@ -168,7 +187,7 @@ export const developmentMiddleware = conditional(
 // Health check chain (minimal processing)
 export const healthCheckMiddleware = compose(
   rateLimiters.public,
-  (req, res, next) => {
+  (req: Request, res: Response, next: NextFunction) => {
     res.locals.skipLogging = true;
     next();
   }
@@ -184,7 +203,7 @@ export const createCustomChain = (options: {
     severity?: 'low' | 'medium' | 'high' | 'critical';
     resource?: string;
   };
-  validators?: unknown[];
+  validators?: any[];
 }) => {
   const chainBuilder = chain()
     .add(coreMiddleware);

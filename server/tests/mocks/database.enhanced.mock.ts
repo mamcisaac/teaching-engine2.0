@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Enhanced Database Mock for Stable Testing Infrastructure
  * This provides comprehensive mocking for all Prisma operations with proper isolation

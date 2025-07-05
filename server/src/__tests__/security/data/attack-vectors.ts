@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Security Attack Vectors
  * Comprehensive collection of attack patterns for security testing

@@ -1,7 +1,6 @@
+import { apiClient } from '../api/core/client';
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { api } from '../api/legacy/api';
-
 export interface ETFOProgressData {
   curriculumExpectations: {
     total: number;
@@ -44,7 +43,7 @@ export function useETFOProgress() {
   const { data: progressData, isLoading } = useQuery<ETFOProgressData>({
     queryKey: ['etfo-progress'],
     queryFn: async () => {
-      const response = await api.get('/api/etfo/progress');
+      const response = await apiClient.get('/api/etfo/progress');
       return response.data;
     },
     staleTime: 30000, // Cache for 30 seconds

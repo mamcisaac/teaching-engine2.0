@@ -1,5 +1,5 @@
+import { apiClient } from '../api/core/client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { api } from '../api/legacy/api';
 import { RecentPlan } from '../components/planning/RecentPlans';
 
 interface UseRecentPlansOptions {
@@ -14,7 +14,7 @@ export function useRecentPlans(options?: UseRecentPlansOptions) {
       if (options?.limit) {
         params.append('limit', options.limit.toString());
       }
-      const response = await api.get(`/api/recent-plans?${params.toString()}`);
+      const response = await apiClient.get(`/api/recent-plans?${params.toString()}`);
       return response.data;
     },
     staleTime: 30000, // 30 seconds
@@ -26,7 +26,7 @@ export function useTrackPlanAccess() {
   
   return useMutation({
     mutationFn: async ({ planType, planId }: { planType: string; planId: string }) => {
-      const response = await api.post('/api/recent-plans/track', {
+      const response = await apiClient.post('/api/recent-plans/track', {
         planType,
         planId,
       });
@@ -44,7 +44,7 @@ export function useClearRecentPlans() {
   
   return useMutation({
     mutationFn: async () => {
-      const response = await api.delete('/api/recent-plans/clear');
+      const response = await apiClient.delete('/api/recent-plans/clear');
       return response.data;
     },
     onSuccess: () => {
@@ -77,7 +77,7 @@ export function useDuplicatePlan() {
         'lesson': '/api/etfo-lesson-plans/duplicate',
       }[planType];
       
-      const response = await api.post(endpoint, {
+      const response = await apiClient.post(endpoint, {
         sourceId,
         title,
         notes,

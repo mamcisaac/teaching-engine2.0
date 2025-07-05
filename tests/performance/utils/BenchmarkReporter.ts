@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Benchmark Reporter
  * Generates detailed performance reports and comparisons
@@ -158,7 +159,7 @@ export class BenchmarkReporter {
         responseTime: responseTimeTrend,
         memoryUsage: memoryTrend,
       };
-    } catch (error) {
+    } catch (_error) {
       return { responseTime: 'stable', memoryUsage: 'stable' };
     }
   }
@@ -174,7 +175,7 @@ export class BenchmarkReporter {
   private async ensureReportDirectory(): Promise<void> {
     try {
       await fs.mkdir(this.reportDir, { recursive: true });
-    } catch (error) {
+    } catch (_error) {
       // Directory may already exist
     }
   }
@@ -385,7 +386,7 @@ ${report.results
     try {
       const existing = await fs.readFile(historyFile, 'utf-8');
       historical = JSON.parse(existing);
-    } catch (error) {
+    } catch (_error) {
       // File doesn't exist yet, use empty structure
     }
 
@@ -405,7 +406,7 @@ ${report.results
     try {
       const data = await fs.readFile(historyFile, 'utf-8');
       return JSON.parse(data);
-    } catch (error) {
+    } catch (_error) {
       return { reports: [] };
     }
   }

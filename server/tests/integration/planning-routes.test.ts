@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import request from 'supertest';
 import { describe, beforeAll, beforeEach, afterEach, it, expect } from '@jest/globals';
 import { app } from '../../src/index';
@@ -9,7 +10,7 @@ describe('Planning Routes', () => {
   let prisma: ReturnType<typeof getTestPrismaClient>;
   let authToken: string;
   let userId: number;
-  let testUser: any;
+  let testUser: unknown;
 
   beforeAll(async () => {
     prisma = getTestPrismaClient();

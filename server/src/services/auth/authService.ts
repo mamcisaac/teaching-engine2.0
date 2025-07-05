@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import bcrypt from 'bcrypt';
 import { BaseService } from '../base/BaseService';
 
@@ -48,7 +49,7 @@ export class AuthService extends BaseService {
     }
 
     // Check for at least one special character
-    if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>?]/.test(password)) {
+    if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>?]/.test(password)) {
       throw new Error('Password must contain at least one special character');
     }
 
@@ -79,7 +80,7 @@ export class AuthService extends BaseService {
       this.logger.info('Password hashed successfully');
       
       return hash;
-    } catch (_error) {
+    } catch (error) {
       this.logger.error('Password hashing failed:', error);
       throw error;
     }
@@ -94,7 +95,7 @@ export class AuthService extends BaseService {
       this.logger.info('Password comparison completed', { isMatch });
       
       return isMatch;
-    } catch (_error) {
+    } catch (error) {
       this.logger.error('Password comparison failed:', error);
       throw new Error('Authentication failed');
     }

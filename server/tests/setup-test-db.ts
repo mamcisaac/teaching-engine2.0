@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { execSync } from 'child_process';
 import { resolve } from 'path';
 import { testDb } from './test-database-manager';
@@ -38,7 +39,7 @@ export default async function setup() {
     });
 
     console.log('Test database setup completed successfully');
-  } catch (error) {
+  } catch (_error) {
     console.error('Error setting up test database:', error);
     throw error;
   }

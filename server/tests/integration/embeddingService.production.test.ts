@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals';
 import { MockRegistry } from '../mocks/registry';
 /**
@@ -49,7 +50,7 @@ describe('EmbeddingService - Production Integration', () => {
 
     // Setup centralized mocks
     const mockOpenAIInstance = MockRegistry.openai.create();
-    (OpenAI as jest.MockedClass<typeof OpenAI>).mockImplementation(() => mockOpenAIInstance as any);
+    (OpenAI as jest.MockedClass<typeof OpenAI>).mockImplementation(() => mockOpenAIInstance as unknown);
   });
 
   describe('Service Availability and Health', () => {
@@ -81,7 +82,7 @@ describe('EmbeddingService - Production Integration', () => {
   });
 
   describe('Single Embedding Generation', () => {
-    let testExpectation: any;
+    let testExpectation: unknown;
 
     beforeEach(async () => {
       const { expectations } = await testUtils.createRealisticCurriculumData();
@@ -154,7 +155,7 @@ describe('EmbeddingService - Production Integration', () => {
           },
         ];
 
-        const results: any[] = [];
+        const results: unknown[] = [];
 
         for (const testCase of testCases) {
           const { expectations } = await testUtils.createRealisticCurriculumData();
@@ -182,7 +183,7 @@ describe('EmbeddingService - Production Integration', () => {
   });
 
   describe('Batch Embedding Generation', () => {
-    let testExpectations: any[];
+    let testExpectations: unknown[];
 
     beforeEach(async () => {
       const { expectations } = await testUtils.createRealisticCurriculumData();
@@ -350,7 +351,7 @@ describe('EmbeddingService - Production Integration', () => {
   });
 
   describe('Similar Expectations Finding', () => {
-    let testExpectations: any[];
+    let testExpectations: unknown[];
     let embeddedExpectations: string[];
 
     beforeEach(async () => {
@@ -532,7 +533,7 @@ describe('EmbeddingService - Production Integration', () => {
   });
 
   describe('Missing Embeddings Generation', () => {
-    let testImport: any;
+    let testImport: unknown;
 
     beforeEach(async () => {
       const { import: importData } = await testUtils.createRealisticCurriculumData();
@@ -593,7 +594,7 @@ describe('EmbeddingService - Production Integration', () => {
   });
 
   describe('Get or Create Embedding', () => {
-    let testExpectation: any;
+    let testExpectation: unknown;
 
     beforeEach(async () => {
       const { expectations } = await testUtils.createRealisticCurriculumData();
@@ -720,7 +721,7 @@ describe('EmbeddingService - Production Integration', () => {
           if (embedding) {
             expect(embedding.length).toBe(EMBEDDING_DIMENSION);
           }
-        } catch (error) {
+        } catch (_error) {
           // If it fails, it should be a controlled failure
           expect(error).toBeDefined();
         }

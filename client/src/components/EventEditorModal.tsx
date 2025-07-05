@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Dialog from './Dialog';
-import { useAddCalendarEvent } from '../api/legacy/api';
+import { useAddCalendarEvent } from '../api/domains/calendar';
 
 interface Props {
   onClose: () => void;

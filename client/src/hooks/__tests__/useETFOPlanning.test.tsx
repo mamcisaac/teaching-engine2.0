@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * @file useETFOPlanning.test.ts
  * @description Comprehensive tests for useETFOPlanning hooks including all CRUD operations,

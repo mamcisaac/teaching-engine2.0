@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { describe, test, expect, beforeEach, afterEach, jest } from '@jest/globals';
 import { rateLimiter, createRateLimiter } from '../rateLimit';
 import { mockRequest, mockResponse, mockNext } from '../../../tests/utils/sharedTestUtils';
@@ -40,7 +41,7 @@ describe('Rate Limiter Middleware', () => {
       req.ip = '192.168.1.1';
       mockRedis.incr.mockResolvedValue(5); // 5 requests
 
-      await rateLimiter(req, res, next);
+      await rateLimiter(req: Request, res: Response, next: NextFunction);
 
       expect(mockRedis.incr).toHaveBeenCalledWith('rate_limit:192.168.1.1');
       expect(res.setHeader).toHaveBeenCalledWith('X-RateLimit-Limit', '100');
@@ -53,7 +54,7 @@ describe('Rate Limiter Middleware', () => {
       req.ip = '192.168.1.1';
       mockRedis.incr.mockResolvedValue(101); // Over limit
 
-      await rateLimiter(req, res, next);
+      await rateLimiter(req: Request, res: Response, next: NextFunction);
 
       expect(res.status).toHaveBeenCalledWith(429);
       expect(res.json).toHaveBeenCalledWith({
@@ -70,7 +71,7 @@ describe('Rate Limiter Middleware', () => {
       mockRedis.incr.mockResolvedValue(1);
       mockRedis.ttl.mockResolvedValue(-1); // No TTL set
 
-      await rateLimiter(req, res, next);
+      await rateLimiter(req: Request, res: Response, next: NextFunction);
 
       expect(mockRedis.expire).toHaveBeenCalledWith('rate_limit:192.168.1.1', 3600); // 1 hour
       expect(next).toHaveBeenCalled();
@@ -82,7 +83,7 @@ describe('Rate Limiter Middleware', () => {
       req.user = { userId: '123', role: 'teacher' };
       req.ip = '192.168.1.1';
       
-      await rateLimiter(req, res, next);
+      await rateLimiter(req: Request, res: Response, next: NextFunction);
 
       expect(mockRedis.incr).toHaveBeenCalledWith('rate_limit:user:123');
       expect(mockRedis.incr).not.toHaveBeenCalledWith('rate_limit:192.168.1.1');
@@ -93,7 +94,7 @@ describe('Rate Limiter Middleware', () => {
       req.ip = '192.168.1.1';
       // No user object
       
-      await rateLimiter(req, res, next);
+      await rateLimiter(req: Request, res: Response, next: NextFunction);
 
       expect(mockRedis.incr).toHaveBeenCalledWith('rate_limit:192.168.1.1');
       expect(next).toHaveBeenCalled();
@@ -108,7 +109,7 @@ describe('Rate Limiter Middleware', () => {
       req.user = { userId: '123', role: 'premium' };
       mockRedis.incr.mockResolvedValue(500);
 
-      await premiumLimiter(req, res, next);
+      await premiumLimiter(req: Request, res: Response, next: NextFunction);
 
       expect(res.setHeader).toHaveBeenCalledWith('X-RateLimit-Limit', '1000');
       expect(res.setHeader).toHaveBeenCalledWith('X-RateLimit-Remaining', '500');
@@ -124,7 +125,7 @@ describe('Rate Limiter Middleware', () => {
         req.ip = ip;
         req.headers['user-agent'] = 'suspicious-bot';
         
-        await rateLimiter(req, res, next);
+        await rateLimiter(req: Request, res: Response, next: NextFunction);
         
         expect(mockRedis.incr).toHaveBeenCalledWith(`rate_limit:${ip}`);
       }
@@ -137,7 +138,7 @@ describe('Rate Limiter Middleware', () => {
       req.headers['user-agent'] = 'known-attack-bot';
       mockRedis.get.mockResolvedValue('blocked');
 
-      await rateLimiter(req, res, next);
+      await rateLimiter(req: Request, res: Response, next: NextFunction);
 
       expect(res.status).toHaveBeenCalledWith(403);
       expect(res.json).toHaveBeenCalledWith({
@@ -152,7 +153,7 @@ describe('Rate Limiter Middleware', () => {
       req.ip = '10.0.0.1'; // Internal IP
       process.env.RATE_LIMIT_WHITELIST = '10.0.0.0/24';
 
-      await rateLimiter(req, res, next);
+      await rateLimiter(req: Request, res: Response, next: NextFunction);
 
       expect(mockRedis.incr).not.toHaveBeenCalled();
       expect(next).toHaveBeenCalled();
@@ -161,7 +162,7 @@ describe('Rate Limiter Middleware', () => {
     test('should bypass rate limiting for health check endpoints', async () => {
       req.path = '/health';
       
-      await rateLimiter(req, res, next);
+      await rateLimiter(req: Request, res: Response, next: NextFunction);
 
       expect(mockRedis.incr).not.toHaveBeenCalled();
       expect(next).toHaveBeenCalled();
@@ -177,7 +178,7 @@ describe('Rate Limiter Middleware', () => {
         keyGenerator: (req) => req.headers['x-api-key'] || req.ip
       });
 
-      await apiLimiter(req, res, next);
+      await apiLimiter(req: Request, res: Response, next: NextFunction);
 
       expect(mockRedis.incr).toHaveBeenCalledWith('rate_limit:valid-api-key');
       expect(next).toHaveBeenCalled();
@@ -190,7 +191,7 @@ describe('Rate Limiter Middleware', () => {
       
       const consoleSpy = jest.spyOn(console, 'error').mockImplementation();
 
-      await rateLimiter(req, res, next);
+      await rateLimiter(req: Request, res: Response, next: NextFunction);
 
       expect(consoleSpy).toHaveBeenCalledWith(
         'Rate limiter Redis error:',
@@ -207,7 +208,7 @@ describe('Rate Limiter Middleware', () => {
       
       // Multiple requests to test in-memory tracking
       for (let i = 0; i < 5; i++) {
-        await rateLimiter(req, res, next);
+        await rateLimiter(req: Request, res: Response, next: NextFunction);
       }
 
       expect(next).toHaveBeenCalledTimes(5);
@@ -215,7 +216,7 @@ describe('Rate Limiter Middleware', () => {
       // Test that in-memory limiting still works
       req.ip = 'spam-ip';
       for (let i = 0; i < 150; i++) {
-        await rateLimiter(req, res, next);
+        await rateLimiter(req: Request, res: Response, next: NextFunction);
       }
 
       // Should eventually block
@@ -230,7 +231,7 @@ describe('Rate Limiter Middleware', () => {
       
       for (const ip of ips) {
         req.ip = ip;
-        await rateLimiter(req, res, next);
+        await rateLimiter(req: Request, res: Response, next: NextFunction);
       }
 
       expect(next).toHaveBeenCalledTimes(10);
@@ -250,7 +251,7 @@ describe('Rate Limiter Middleware', () => {
       mockRedis.zadd = jest.fn().mockResolvedValue(1);
       mockRedis.zcard = jest.fn().mockResolvedValue(5);
 
-      await slidingLimiter(req, res, next);
+      await slidingLimiter(req: Request, res: Response, next: NextFunction);
 
       const now = Date.now();
       const windowStart = now - 60000;
@@ -274,7 +275,7 @@ describe('Rate Limiter Middleware', () => {
       req.headers['user-agent'] = 'Mozilla/5.0';
       req.method = 'POST';
 
-      await customLimiter(req, res, next);
+      await customLimiter(req: Request, res: Response, next: NextFunction);
 
       expect(mockRedis.incr).toHaveBeenCalledWith(
         'rate_limit:192.168.1.1:Mozilla/5.0:POST'
@@ -288,7 +289,7 @@ describe('Rate Limiter Middleware', () => {
 
       req.user = { userId: '123', role: 'admin' };
 
-      await conditionalLimiter(req, res, next);
+      await conditionalLimiter(req: Request, res: Response, next: NextFunction);
 
       expect(mockRedis.incr).not.toHaveBeenCalled();
       expect(next).toHaveBeenCalled();
@@ -303,7 +304,7 @@ describe('Rate Limiter Middleware', () => {
 
       mockRedis.incr.mockResolvedValue(101);
 
-      await customLimiter(req, res, next);
+      await customLimiter(req: Request, res: Response, next: NextFunction);
 
       expect(res.json).toHaveBeenCalledWith({
         error: 'You have exceeded the rate limit. Please try again later.',
@@ -317,7 +318,7 @@ describe('Rate Limiter Middleware', () => {
       mockRedis.incr.mockResolvedValue(25);
       mockRedis.ttl.mockResolvedValue(1800); // 30 minutes remaining
 
-      await rateLimiter(req, res, next);
+      await rateLimiter(req: Request, res: Response, next: NextFunction);
 
       expect(res.setHeader).toHaveBeenCalledWith('X-RateLimit-Limit', '100');
       expect(res.setHeader).toHaveBeenCalledWith('X-RateLimit-Remaining', '75');
@@ -329,7 +330,7 @@ describe('Rate Limiter Middleware', () => {
       mockRedis.incr.mockResolvedValue(101);
       mockRedis.ttl.mockResolvedValue(1800); // 30 minutes
 
-      await rateLimiter(req, res, next);
+      await rateLimiter(req: Request, res: Response, next: NextFunction);
 
       expect(res.setHeader).toHaveBeenCalledWith('Retry-After', '1800');
       expect(res.status).toHaveBeenCalledWith(429);
@@ -348,7 +349,7 @@ describe('Rate Limiter Middleware', () => {
       req.body = { email: 'user@test.com', password: 'wrong' };
       mockRedis.incr.mockResolvedValue(3);
 
-      await loginLimiter(req, res, next);
+      await loginLimiter(req: Request, res: Response, next: NextFunction);
 
       expect(res.setHeader).toHaveBeenCalledWith('X-RateLimit-Limit', '5');
       expect(res.setHeader).toHaveBeenCalledWith('X-RateLimit-Remaining', '2');
@@ -371,7 +372,7 @@ describe('Rate Limiter Middleware', () => {
       req.method = 'DELETE';
       mockRedis.incr.mockResolvedValue(4);
 
-      await methodLimiter(req, res, next);
+      await methodLimiter(req: Request, res: Response, next: NextFunction);
 
       expect(res.setHeader).toHaveBeenCalledWith('X-RateLimit-Limit', '5');
       expect(res.setHeader).toHaveBeenCalledWith('X-RateLimit-Remaining', '1');

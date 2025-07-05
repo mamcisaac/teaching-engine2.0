@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Render Engine Interface
  * Base interface for all template rendering engines
@@ -17,7 +18,7 @@ export interface RenderResult {
 
 export interface RenderContext {
   data: Record<string, unknown>;
-  helpers?: Record<string, Function>;
+  helpers?: Record<string, (...args: unknown[]) => unknown>;
   partials?: Record<string, string>;
   options?: Record<string, unknown>;
 }

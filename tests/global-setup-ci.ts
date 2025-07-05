@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { chromium } from '@playwright/test';
 import * as fs from 'fs/promises';
 import * as path from 'path';

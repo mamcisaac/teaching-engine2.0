@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { jest } from '@jest/globals';
 import { getTestPrismaClient } from '../jest.setup';
 

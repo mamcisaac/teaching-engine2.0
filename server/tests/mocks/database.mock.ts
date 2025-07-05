@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Optimized Database Mock
  * Provides a complete mock implementation of PrismaClient

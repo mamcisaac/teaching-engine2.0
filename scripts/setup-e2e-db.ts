@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 #!/usr/bin/env tsx
 import { execSync } from 'child_process';
 import { existsSync, mkdirSync } from 'fs';
@@ -35,7 +36,7 @@ try {
   });
   
   console.log('E2E database setup complete!');
-} catch (error) {
+} catch (_error) {
   console.error('Failed to setup E2E database:', error);
   process.exit(1);
 }

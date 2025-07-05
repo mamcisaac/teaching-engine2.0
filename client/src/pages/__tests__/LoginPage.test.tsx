@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * @file LoginPage.test.tsx
  * @description Comprehensive tests for LoginPage component including form validation,

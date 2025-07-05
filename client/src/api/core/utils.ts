@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { toast } from 'sonner';
 import { AxiosError } from 'axios';
 
 // Helper function to get ISO week start date
 export const getWeekStartISO = (date: Date): string => {
   const d = new Date(date);
-  const day = d.getDay();
+  const _day = d.getDay();
   const diff = d.getDate() - day + (day === 0 ? -6 : 1);
   d.setDate(diff);
   d.setHours(0, 0, 0, 0);

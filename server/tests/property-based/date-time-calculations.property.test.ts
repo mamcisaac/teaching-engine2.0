@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Property-Based Tests for Date/Time Calculations
  * Tests temporal logic invariants and calendar operations
@@ -605,7 +606,7 @@ describe('Date/Time Calculations Properties', () => {
           fc.oneof(fc.constant(null), fc.constant(undefined), fc.string(), fc.integer()),
           (invalidInput) => {
             // Property: Date validation should handle invalid inputs
-            const validateDate = (input: any): boolean => {
+            const validateDate = (input: unknown): boolean => {
               try {
                 const date = new Date(input);
                 return !isNaN(date.getTime());

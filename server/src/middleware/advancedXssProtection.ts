@@ -220,7 +220,7 @@ export function unicodeNormalization(input: string): string {
 
     return normalized;
   } catch (_error) {
-    logger.error({ error, input: input.substring(0, 100) }, 'Unicode normalization error');
+    logger.error({ error: _error, input: input.substring(0, 100) }, 'Unicode normalization error');
     return input; // Return original if normalization fails
   }
 }
@@ -359,7 +359,7 @@ export function sanitizeCssContent(css: string): string {
 
     return sanitized.trim();
   } catch (_error) {
-    logger.error({ error, css: css.substring(0, 100) }, 'CSS sanitization error');
+    logger.error({ error: _error, css: css.substring(0, 100) }, 'CSS sanitization error');
     return ''; // Return empty string if sanitization fails
   }
 }
@@ -494,7 +494,7 @@ export function sanitizeHtmlAdvanced(
 
     return sanitizedString;
   } catch (_error) {
-    logger.error({ error, html: html.substring(0, 100) }, 'HTML sanitization error');
+    logger.error({ error: _error, html: html.substring(0, 100) }, 'HTML sanitization error');
     return ''; // Return empty string if sanitization fails
   }
 }
@@ -555,7 +555,7 @@ export function sanitizeEmailAdvanced(email: string): string {
 
     return sanitized;
   } catch (_error) {
-    logger.error({ error, email: email.substring(0, 50) }, 'Email sanitization error');
+    logger.error({ error: _error, email: email.substring(0, 50) }, 'Email sanitization error');
     return '';
   }
 }
@@ -633,7 +633,7 @@ export function sanitizeUrlAdvanced(url: string): string {
 
     return sanitized;
   } catch (_error) {
-    logger.error({ error, url: url.substring(0, 100) }, 'URL sanitization error');
+    logger.error({ error: _error, url: url.substring(0, 100) }, 'URL sanitization error');
     return '';
   }
 }
@@ -752,7 +752,7 @@ export function advancedXssProtection(req: Request, res: Response, next: NextFun
   } catch (_error) {
     logger.error(
       {
-        error,
+        error: _error,
         path: req.path,
         method: req.method,
         bodySize: req.body ? JSON.stringify(req.body).length : 0,

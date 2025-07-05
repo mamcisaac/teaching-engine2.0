@@ -25,7 +25,7 @@ import { useAIStatus, useAIFeature } from '../../hooks/useAIStatus';
 import { AILoadingIndicator, AI_LOADING_PRESETS } from './AILoadingIndicator';
 import { WithAIErrorBoundary } from './AIErrorBoundary';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
-
+import logger from '../../utils/logger';
 interface UnitPlanSuggestion {
   type: 'bigIdeas' | 'learningGoals' | 'activities' | 'assessments' | 'materials' | 'vocabulary';
   content: string[];
@@ -170,7 +170,7 @@ export function AIUnitPlanPanel({
       });
 
     } catch (_error) {
-      console.error('Error generating suggestions:', error);
+      logger.error('Error generating suggestions:', error);
       toast({
         title: 'Generation Failed',
         description: (error instanceof Error ? error.message : String(error)) || 'Failed to generate suggestions. Please try again.',
@@ -253,7 +253,7 @@ export function AIUnitPlanPanel({
       setActiveTab('review');
 
     } catch (_error) {
-      console.error('Error generating complete unit:', error);
+      logger.error('Error generating complete unit:', error);
       toast({
         title: 'Generation Failed',
         description: (error instanceof Error ? error.message : String(error)) || 'Failed to generate complete unit plan.',

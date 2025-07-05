@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Security Gap Analysis Test
  * Tests for advanced attack vectors that may bypass current validation
@@ -9,7 +10,7 @@ import { JSDOM } from 'jsdom';
 
 // Initialize DOMPurify for testing
 const window = new JSDOM('').window;
-const DOMPurify = createDOMPurify(window as any);
+const DOMPurify = createDOMPurify(window as unknown);
 
 // Advanced XSS payloads that might bypass basic filters
 const ADVANCED_XSS_PAYLOADS = [

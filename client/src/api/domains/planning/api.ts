@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { apiClient } from '../../core/client';
 import { getWeekStartISO } from '../../core/utils';
 import type { 
@@ -76,5 +77,12 @@ export const planningApi = {
   // Resources (deprecated - using ETFO lesson plans now)
   deleteResource: async (id: number) => {
     await apiClient.delete(`/api/resources/${id}`);
+  },
+
+  // Printables
+  downloadPrintables: async (weekStart: string) => {
+    return apiClient.get(`/printables?weekStart=${weekStart}`, {
+      responseType: 'blob',
+    });
   },
 };

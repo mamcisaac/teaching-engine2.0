@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { authService } from '../services/authService';
-
+import logger from '../utils/logger';
 // Create axios instance with base configuration
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000',
@@ -27,7 +27,7 @@ api.interceptors.request.use(
     try {
       await authService.ensureValidToken();
     } catch (_error) {
-      console.warn('Token refresh failed before request:', error);
+      logger.warn('Token refresh failed before request:', error);
     }
 
     return config;

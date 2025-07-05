@@ -8,27 +8,27 @@ import { withSpan } from '../monitoring/telemetry';
 const router = Router();
 
 // Dashboard metrics endpoint
-router.get('/dashboard', authenticate, async (req, res) => {
+router.get('/dashboard', authenticate, async (req: Request, res: Response) => {
   await withSpan('api.monitoring.dashboard', async () => {
     await getDashboardMetrics(req, res);
   });
 });
 
 // Alert status endpoint
-router.get('/alerts', authenticate, async (req, res) => {
+router.get('/alerts', authenticate, async (req: Request, res: Response) => {
   await withSpan('api.monitoring.alerts', async () => {
     try {
       const status = getAlertStatus();
       res.json(status);
     } catch (_error) {
-      logger.error('Failed to get alert status', error);
+      logger.error('Failed to get alert status', _error);
       res.status(500).json({ error: 'Failed to get alert status' });
     }
   });
 });
 
 // Manual alert trigger (for testing)
-router.post('/alerts/:alertId/trigger', authenticate, async (req, res) => {
+router.post('/alerts/:alertId/trigger', authenticate, async (req: Request, res: Response) => {
   await withSpan('api.monitoring.triggerAlert', async (span) => {
     try {
       const { alertId } = req.params;
@@ -42,14 +42,14 @@ router.post('/alerts/:alertId/trigger', authenticate, async (req, res) => {
       await triggerManualAlert(alertId, context);
       res.json({ success: true, message: `Alert ${alertId} triggered` });
     } catch (_error) {
-      logger.error('Failed to trigger manual alert', error);
+      logger.error('Failed to trigger manual alert', _error);
       res.status(500).json({ error: 'Failed to trigger alert' });
     }
   });
 });
 
 // Health check endpoint with detailed status
-router.get('/health/detailed', async (req, res) => {
+router.get('/health/detailed', async (req: Request, res: Response) => {
   await withSpan('api.monitoring.healthDetailed', async (span) => {
     try {
       const health = {
@@ -87,7 +87,7 @@ router.get('/health/detailed', async (req, res) => {
       const statusCode = health.status === 'healthy' ? 200 : 503;
       res.status(statusCode).json(health);
     } catch (_error) {
-      logger.error('Health check failed', error);
+      logger.error('Health check failed', _error);
       res.status(503).json({
         status: 'unhealthy',
         error: 'Health check failed',

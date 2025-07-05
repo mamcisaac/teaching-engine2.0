@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * PDFKit Mock
  * Lightweight mock for pdfkit package

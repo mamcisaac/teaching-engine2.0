@@ -9,14 +9,14 @@ const router = Router();
  * Prometheus metrics endpoint (no auth required for monitoring tools)
  * GET /metrics
  */
-router.get('/', (req, res) => {
+router.get('/', (req: Request, res: Response) => {
   try {
     const prometheusFormat = metricsStore.getPrometheusFormat();
     
     res.set('Content-Type', 'text/plain; version=0.0.4; charset=utf-8');
     res.send(prometheusFormat);
   } catch (_error) {
-    logger.error('Error generating Prometheus metrics:', error);
+    logger.error('Error generating Prometheus metrics:', _error);
     res.status(500).send('Error generating metrics');
   }
 });
@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
  * JSON metrics endpoint (requires authentication)
  * GET /api/metrics/json
  */
-router.get('/json', authMiddleware, (req, res) => {
+router.get('/json', authMiddleware, (req: Request, res: Response) => {
   try {
     const metrics = metricsStore.getMetrics();
     
@@ -35,7 +35,7 @@ router.get('/json', authMiddleware, (req, res) => {
       timestamp: new Date().toISOString()
     });
   } catch (_error) {
-    logger.error('Error getting JSON metrics:', error);
+    logger.error('Error getting JSON metrics:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to get metrics'
@@ -47,7 +47,7 @@ router.get('/json', authMiddleware, (req, res) => {
  * Performance summary endpoint
  * GET /api/metrics/summary
  */
-router.get('/summary', authMiddleware, (req, res) => {
+router.get('/summary', authMiddleware, (req: Request, res: Response) => {
   try {
     const summary = getPerformanceSummary();
     
@@ -57,7 +57,7 @@ router.get('/summary', authMiddleware, (req, res) => {
       timestamp: new Date().toISOString()
     });
   } catch (_error) {
-    logger.error('Error getting performance summary:', error);
+    logger.error('Error getting performance summary:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to get performance summary'
@@ -69,7 +69,7 @@ router.get('/summary', authMiddleware, (req, res) => {
  * Health check with performance data
  * GET /api/metrics/health
  */
-router.get('/health', authMiddleware, (req, res) => {
+router.get('/health', authMiddleware, (req: Request, res: Response) => {
   try {
     const summary = getPerformanceSummary();
     
@@ -116,7 +116,7 @@ router.get('/health', authMiddleware, (req, res) => {
       }
     });
   } catch (_error) {
-    logger.error('Error getting health metrics:', error);
+    logger.error('Error getting health metrics:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to get health metrics'
@@ -128,7 +128,7 @@ router.get('/health', authMiddleware, (req, res) => {
  * Reset metrics (development/testing only)
  * DELETE /api/metrics/reset
  */
-router.delete('/reset', authMiddleware, (req, res) => {
+router.delete('/reset', authMiddleware, (req: Request, res: Response) => {
   try {
     // Only allow in development/test environments
     if (process.env.NODE_ENV === 'production') {
@@ -148,7 +148,7 @@ router.delete('/reset', authMiddleware, (req, res) => {
       timestamp: new Date().toISOString()
     });
   } catch (_error) {
-    logger.error('Error resetting metrics:', error);
+    logger.error('Error resetting metrics:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to reset metrics'
@@ -160,7 +160,7 @@ router.delete('/reset', authMiddleware, (req, res) => {
  * Real-time metrics for dashboard
  * GET /api/metrics/realtime
  */
-router.get('/realtime', authMiddleware, (req, res) => {
+router.get('/realtime', authMiddleware, (req: Request, res: Response) => {
   try {
     const summary = getPerformanceSummary();
     const metrics = metricsStore.getMetrics();
@@ -193,7 +193,7 @@ router.get('/realtime', authMiddleware, (req, res) => {
       timestamp: new Date().toISOString()
     });
   } catch (_error) {
-    logger.error('Error getting realtime metrics:', error);
+    logger.error('Error getting realtime metrics:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to get realtime metrics'

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-
+import logger from '../utils/logger';
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -51,7 +51,7 @@ export default function LoginPage() {
       }, 1000);
     } catch (err: unknown) {
       // The AuthContext already handles the error, but we can show additional local feedback
-      console.error('Login error:', err);
+      logger.error('Login error:', err);
 
       // Don't set local error since AuthContext already handles it
       // The authError will be displayed instead

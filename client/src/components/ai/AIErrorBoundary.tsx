@@ -3,7 +3,7 @@ import { AlertTriangle, RefreshCw, FileText, Wifi, Settings } from 'lucide-react
 import { Button } from '../ui/Button';
 import { Alert, AlertDescription } from '../ui/alert';
 import { cn } from '../../lib/utils';
-
+import logger from '../../utils/logger';
 interface Props {
   children: ReactNode;
   fallback?: ReactNode;
@@ -57,12 +57,12 @@ export class AIErrorBoundary extends Component<Props, State> {
     this.setState({ errorInfo });
 
     // Log AI-specific errors with context
-    console.error('=== AI ERROR BOUNDARY ===');
-    console.error('Error:', error.name, '-', error.message);
-    console.error('Stack:', error.stack);
-    console.error('Component Stack:', errorInfo.componentStack);
-    console.error('Retry Count:', this.state.retryCount);
-    console.error('========================');
+    logger.error('=== AI ERROR BOUNDARY ===');
+    logger.error('Error:', error.name, '-', error.message);
+    logger.error('Stack:', error.stack);
+    logger.error('Component Stack:', errorInfo.componentStack);
+    logger.error('Retry Count:', this.state.retryCount);
+    logger.error('========================');
 
     // Report to monitoring service if available
     if (window.gtag) {
@@ -323,7 +323,7 @@ export class AIErrorBoundary extends Component<Props, State> {
 // Hook for handling AI errors in functional components
 export function useAIErrorHandler() {
   const handleAIError = (error: unknown, context?: string) => {
-    console.error(`AI Error${context ? ` in ${context}` : ''}:`, error);
+    logger.error(`AI Error${context ? ` in ${context}` : ''}:`, error);
     
     // Report to monitoring
     if (window.gtag) {

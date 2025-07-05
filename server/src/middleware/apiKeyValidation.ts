@@ -70,7 +70,7 @@ export async function validateApiKey(
 
     // API key is valid, proceed to next middleware
     next();
-  } catch (_error) {
+  } catch (error) {
     // Handle unexpected errors
     logger.error(error, 'Authentication error');
 

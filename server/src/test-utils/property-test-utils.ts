@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Property-based testing utilities for Teaching Engine 2.0
  * Uses fast-check to generate test data and validate properties
  */
 
 import fc from 'fast-check';
-import { addDays, addWeeks, addMonths, isValid, format } from 'date-fns';
+import { isValid } from 'date-fns';
 
 /**
  * Custom arbitraries for education domain objects
@@ -42,7 +43,7 @@ export const arbitraries = {
   expectationCode: () => fc.string({
     minLength: 3,
     maxLength: 5
-  }).map(s => {
+  }).map(_s => {
     const letter = fc.sample(fc.constantFrom('A', 'B', 'C', 'D'), 1)[0];
     const major = fc.sample(fc.integer({ min: 1, max: 5 }), 1)[0];
     const minor = fc.sample(fc.integer({ min: 1, max: 9 }), 1)[0];
@@ -66,7 +67,7 @@ export const arbitraries = {
     min: new Date('2024-09-01'),
     max: new Date('2025-06-30')
   }).filter(date => {
-    const day = date.getDay();
+    const _day = date.getDay();
     return day >= 1 && day <= 5; // Monday to Friday
   }),
 
@@ -115,7 +116,7 @@ export const arbitraries = {
   email: () => fc.emailAddress(),
 
   // Canadian postal codes
-  postalCode: () => fc.string({ minLength: 6, maxLength: 6 }).map(s => {
+  postalCode: () => fc.string({ minLength: 6, maxLength: 6 }).map(_s => {
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const digits = '0123456789';
     return `${letters[Math.floor(Math.random() * letters.length)]}${digits[Math.floor(Math.random() * digits.length)]}${letters[Math.floor(Math.random() * letters.length)]} ${digits[Math.floor(Math.random() * digits.length)]}${letters[Math.floor(Math.random() * letters.length)]}${digits[Math.floor(Math.random() * digits.length)]}`;
@@ -365,7 +366,7 @@ export const matchers = {
    */
   isSchoolYearDate: (date: Date): boolean => {
     const month = date.getMonth() + 1; // JavaScript months are 0-indexed
-    const day = date.getDate();
+    const _day = date.getDate();
     
     // School year typically runs September to June
     return (month >= 9) || (month <= 6);

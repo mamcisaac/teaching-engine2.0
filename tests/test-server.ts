@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 // Re-export TestServer from CommonJS module for ESM compatibility
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);

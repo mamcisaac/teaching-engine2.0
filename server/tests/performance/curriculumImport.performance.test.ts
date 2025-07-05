@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { describe, it, expect, beforeAll, afterAll } from '@jest/globals';
 import { CurriculumImportService } from '../../src/services/curriculumImportService';
 import { PrismaClient } from '@teaching-engine/database';
@@ -12,7 +13,7 @@ describe('Curriculum Import Performance Tests', () => {
 
   beforeAll(async () => {
     service = new CurriculumImportService();
-    (service as any).prisma = prisma;
+    (service as unknown).prisma = prisma;
 
     // Create test user
     const user = await prisma.user.create({
@@ -193,7 +194,7 @@ describe('Curriculum Import Performance Tests', () => {
         .join('');
 
       const startTime = performance.now();
-      const chunks = (service as any).chunkText(largeText, 3000);
+      const chunks = (service as unknown).chunkText(largeText, 3000);
       const endTime = performance.now();
 
       expect(chunks.length).toBeGreaterThan(100);
@@ -208,7 +209,7 @@ describe('Curriculum Import Performance Tests', () => {
         .join('');
 
       const startTime = performance.now();
-      const isFrench = (service as any).detectLanguage(frenchText);
+      const isFrench = (service as unknown).detectLanguage(frenchText);
       const endTime = performance.now();
 
       expect(isFrench).toBe(true);

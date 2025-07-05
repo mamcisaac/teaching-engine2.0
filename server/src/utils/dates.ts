@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Common date/time manipulation utilities
 
 // Date range helpers
@@ -41,7 +42,7 @@ export const getDateRanges = () => {
 // Get start of week (Monday by default)
 export const getStartOfWeek = (date: Date, startDay: number = 1): Date => {
   const d = new Date(date);
-  const day = d.getDay();
+  const _day = d.getDay();
   const diff = d.getDate() - day + (day === 0 ? -6 : startDay);
   return new Date(d.setDate(diff));
 };
@@ -58,7 +59,7 @@ export const formatDate = (date: Date | string, format: string = 'YYYY-MM-DD'): 
   
   const year = d.getFullYear();
   const month = String(d.getMonth() + 1).padStart(2, '0');
-  const day = String(d.getDate()).padStart(2, '0');
+  const _day = String(d.getDate()).padStart(2, '0');
   const hours = String(d.getHours()).padStart(2, '0');
   const minutes = String(d.getMinutes()).padStart(2, '0');
   const seconds = String(d.getSeconds()).padStart(2, '0');

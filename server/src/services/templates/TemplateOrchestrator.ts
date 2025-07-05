@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Template Orchestrator Service
  * Main coordination service for all template operations using specialized services
@@ -254,7 +255,7 @@ export class TemplateOrchestrator extends BaseService {
   /**
    * Register custom helper
    */
-  public registerHelper(name: string, helperFn: Function, description?: string, category?: string): void {
+  public registerHelper(name: string, helperFn: (...args: unknown[]) => unknown, description?: string, category?: string): void {
     this.helpers.registerHelper(name, {
       fn: helperFn,
       description,
@@ -266,7 +267,7 @@ export class TemplateOrchestrator extends BaseService {
   /**
    * Get helper function
    */
-  public getHelper(name: string): Function | null {
+  public getHelper(name: string): ((...args: unknown[]) => unknown) | null {
     return this.helpers.getHelper(name);
   }
 

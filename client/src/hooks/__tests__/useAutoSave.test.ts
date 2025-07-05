@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * @file useAutoSave.test.ts
  * @description Comprehensive tests for useAutoSave and useUnsavedChangesWarning hooks

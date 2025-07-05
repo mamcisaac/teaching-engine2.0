@@ -4,20 +4,17 @@ import logger from '../logger.js';
 import { performance } from 'perf_hooks';
 
 // Extend Request interface to include logger and timing
-declare global {
-  namespace Express {
-    interface Request {
-      logger: typeof logger;
-      requestId: string;
-      startTime: number;
-    }
-  }
+interface ExtendedRequest extends Request {
+  logger: typeof logger;
+  requestId: string;
+  startTime: number;
 }
+
 
 /**
  * Request logging middleware that provides structured logging for all requests
  */
-export function requestLoggingMiddleware(req: Request, res: Response, next: NextFunction) {
+export function requestLoggingMiddleware(req: ExtendedRequest, res: Response, next: NextFunction) {
   // Generate unique request ID
   const requestId = randomUUID();
   const startTime = performance.now();
@@ -175,7 +172,7 @@ function sanitizeHeaders(headers: unknown): unknown {
     'x-requested-with', 'x-forwarded-for', 'authorization'
   ];
   
-  const filtered: any = {};
+  const filtered: Record<string, unknown> = {};
   relevantHeaders.forEach(header => {
     if (sanitized[header]) {
       filtered[header] = sanitized[header];
@@ -190,7 +187,7 @@ function sanitizeHeaders(headers: unknown): unknown {
  */
 export function errorLoggingMiddleware(
   error: Error,
-  req: Request,
+  req: ExtendedRequest,
   res: Response,
   next: NextFunction
 ) {
@@ -218,9 +215,9 @@ export function errorLoggingMiddleware(
  * Security event logging helper
  */
 export function logSecurityEvent(
-  req: Request,
+  req: ExtendedRequest,
   event: string,
-  details: any = {}
+  details: Record<string, unknown> = {}
 ) {
   const requestLogger = req.logger || logger;
   
@@ -238,9 +235,9 @@ export function logSecurityEvent(
  * Business operation logging helper
  */
 export function logBusinessOperation(
-  req: Request,
+  req: ExtendedRequest,
   operation: string,
-  context: any = {}
+  context: Record<string, unknown> = {}
 ) {
   const requestLogger = req.logger || logger;
   
@@ -255,9 +252,9 @@ export function logBusinessOperation(
  * Audit trail logging helper
  */
 export function logAuditEvent(
-  req: Request,
+  req: ExtendedRequest,
   operation: string,
-  details: any = {}
+  details: Record<string, unknown> = {}
 ) {
   const requestLogger = req.logger || logger;
   

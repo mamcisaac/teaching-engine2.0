@@ -52,7 +52,7 @@ export class TestServer {
             return;
           }
         }
-      } catch (error) {
+      } catch (_error) {
         // Server not ready yet, continue waiting
       }
 
@@ -110,7 +110,7 @@ export class TestServer {
 
       this.isRunning = true;
       console.log(`Test server started successfully on ${this.baseUrl}`);
-    } catch (error) {
+    } catch (_error) {
       console.error('Failed to start test server:', error);
       await this.stop();
       throw error;
@@ -173,7 +173,7 @@ export class TestServer {
 
       this.isRunning = true;
       console.log(`Test server process started successfully on ${this.baseUrl}`);
-    } catch (error) {
+    } catch (_error) {
       console.error('Failed to start test server process:', error);
       await this.stop();
       throw error;
@@ -229,7 +229,7 @@ export class TestServer {
 
       this.isRunning = false;
       console.log('Test server stopped successfully');
-    } catch (error) {
+    } catch (_error) {
       console.error('Error stopping test server:', error);
       // Force cleanup
       if (this.serverProcess) {

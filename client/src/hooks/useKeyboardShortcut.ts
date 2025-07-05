@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import logger from '../utils/logger';
 import {
   useKeyboardShortcuts as useKeyboardShortcutsContext,
   KeyboardShortcut,
@@ -34,6 +35,10 @@ export const useKeyboardShortcut = (
   deps: React.DependencyList = [],
 ) => {
   const { registerShortcut, unregisterShortcut } = useKeyboardShortcutsContext();
+  
+  // Use a ref to always have access to the latest handler without triggering re-registration
+  const handlerRef = useRef(handler);
+  handlerRef.current = handler;
 
   useEffect(() => {
     const id = `${options.category || 'other'}-${options.key}-${Date.now()}`;
@@ -51,7 +56,8 @@ export const useKeyboardShortcut = (
         if (options.preventDefault !== false) {
           event.preventDefault();
         }
-        handler(event);
+        // Use the ref to always call the latest handler
+        handlerRef.current(event);
       },
       enabled: options.enabled !== false,
       visible: options.visible !== false,
@@ -63,7 +69,7 @@ export const useKeyboardShortcut = (
       unregisterShortcut(id);
     };
   }, [
-    handler,
+    // Don't include handler in dependencies - we use handlerRef instead
     registerShortcut,
     unregisterShortcut,
     options.key,
@@ -95,7 +101,7 @@ export const useMultipleKeyboardShortcuts = (
 ) => {
   // This implementation violates Rules of Hooks because the number of hooks
   // called can change between renders. Don't use this.
-  console.warn(
+  logger.warn(
     'useMultipleKeyboardShortcuts is deprecated. Use individual useKeyboardShortcut calls instead.',
   );
 

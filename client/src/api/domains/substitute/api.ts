@@ -458,4 +458,146 @@ export const substituteApi = {
       return data;
     },
   },
+
+  // Legacy compatibility functions
+  generateSubPlan: async (date: string, reason: string) => {
+    const { data } = await apiClient.post('/api/sub-plan', { date, reason });
+    return data;
+  },
+
+  generateSubPlanPDF: async (date: string, days: number) => {
+    const response = await apiClient.post(
+      `/subplan/generate?date=${date}&days=${days}`,
+      {},
+      {
+        responseType: 'blob',
+      },
+    );
+    return response;
+  },
+
+  generateSubPlanWithOptions: async (options: any) => {
+    const response = await apiClient.post(`/subplan/generate`, options, {
+      responseType: 'blob',
+    });
+    return response;
+  },
+
+  getSubPlanRecords: async (userId?: number) => {
+    const response = await apiClient.get('/subplan/records', { params: { userId } });
+    return response.data;
+  },
+
+  getClassRoutines: async (userId?: number) => {
+    const response = await apiClient.get('/subplan/routines', { params: { userId } });
+    return response.data;
+  },
+
+  saveClassRoutine: async (routine: any) => {
+    const response = await apiClient.post('/subplan/routines', routine);
+    return response.data;
+  },
+
+  deleteClassRoutine: async (id: number) => {
+    const response = await apiClient.delete(`/subplan/routines/${id}`);
+    return response.data;
+  },
+
+  extractWeeklyPlan: async (
+    startDate: string,
+    days: number = 5,
+    options: {
+      includeGoals?: boolean;
+      includeRoutines?: boolean;
+      includePlans?: boolean;
+      anonymize?: boolean;
+      userId?: number;
+    } = {},
+  ) => {
+    const params = new URLSearchParams({
+      startDate,
+      days: days.toString(),
+      ...(options.includeGoals !== undefined && { includeGoals: options.includeGoals.toString() }),
+      ...(options.includeRoutines !== undefined && {
+        includeRoutines: options.includeRoutines.toString(),
+      }),
+      ...(options.includePlans !== undefined && { includePlans: options.includePlans.toString() }),
+      ...(options.anonymize !== undefined && { anonymize: options.anonymize.toString() }),
+      ...(options.userId && { userId: options.userId.toString() }),
+    });
+
+    const response = await apiClient.get(`/subplan/extract/weekly?${params}`);
+    return response.data;
+  },
+
+  extractScenarioTemplates: async (conditions?: any) => {
+    const params = new URLSearchParams();
+    if (conditions) {
+      Object.entries(conditions).forEach(([key, value]) => {
+        if (value) params.append(key, value as string);
+      });
+    }
+
+    const response = await apiClient.get(`/subplan/extract/scenarios?${params}`);
+    return response.data;
+  },
+
+  autoDetectScenario: async (userId?: number) => {
+    const params = userId ? `?userId=${userId}` : '';
+    const response = await apiClient.get(`/subplan/extract/scenarios/auto${params}`);
+    return response.data;
+  },
+
+  getScenarioById: async (
+    scenarioId: string,
+    teacherName?: string,
+    className?: string,
+  ) => {
+    const params = new URLSearchParams();
+    if (teacherName) params.append('teacherName', teacherName);
+    if (className) params.append('className', className);
+
+    const response = await apiClient.get(`/subplan/extract/scenarios/${scenarioId}?${params}`);
+    return response.data;
+  },
+
+  extractSchoolContacts: async (
+    userId?: number,
+    format: 'organized' | 'emergency' | 'card' | 'formatted' = 'organized',
+  ) => {
+    const params = new URLSearchParams();
+    if (userId) params.append('userId', userId.toString());
+    params.append('format', format);
+
+    const response = await apiClient.get(`/subplan/extract/contacts?${params}`);
+    return response.data;
+  },
+
+  extractDayMaterials: async (
+    date: string,
+    userId?: number,
+  ) => {
+    const params = new URLSearchParams({ date });
+    if (userId) params.append('userId', userId.toString());
+
+    const response = await apiClient.get(`/subplan/extract/materials/day?${params}`);
+    return response.data;
+  },
+
+  extractWeeklyMaterials: async (
+    startDate: string,
+    days: number = 5,
+    userId?: number,
+  ) => {
+    const params = new URLSearchParams({ startDate, days: days.toString() });
+    if (userId) params.append('userId', userId.toString());
+
+    const response = await apiClient.get(`/subplan/extract/materials/weekly?${params}`);
+    return response.data;
+  },
+
+  extractComprehensiveSubPlan: async (request: any) => {
+    const response = await apiClient.post('/subplan/extract/comprehensive', request);
+    return response.data;
+  },
 };

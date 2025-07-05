@@ -29,7 +29,7 @@ import { useAIStatus, useAIFeature } from '../../hooks/useAIStatus';
 import { AILoadingIndicator, AI_LOADING_PRESETS } from './AILoadingIndicator';
 import { WithAIErrorBoundary } from './AIErrorBoundary';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
-
+import logger from '../../utils/logger';
 interface LessonPlanSuggestion {
   type: 'mindson' | 'handson' | 'mindson_reflection' | 'materials' | 'assessments' | 'differentiation';
   content: string[];
@@ -290,7 +290,7 @@ export function AILessonPlanPanel({
       }
 
     } catch (_error) {
-      console.error('Error generating three-part lesson:', error);
+      logger.error('Error generating three-part lesson:', error);
       toast({
         title: 'Generation Failed',
         description: (error instanceof Error ? error.message : String(error)) || 'Failed to generate lesson plan.',
@@ -355,7 +355,7 @@ export function AILessonPlanPanel({
       });
 
     } catch (_error) {
-      console.error('Error generating suggestions:', error);
+      logger.error('Error generating suggestions:', error);
       toast({
         title: 'Generation Failed',
         description: (error instanceof Error ? error.message : String(error)) || 'Failed to generate suggestions.',

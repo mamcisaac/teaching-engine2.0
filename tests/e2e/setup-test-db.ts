@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 #!/usr/bin/env node
 
 /**
@@ -56,7 +57,7 @@ try {
 
   console.log('✅ Test database setup complete!');
   console.log(`Database location: ${testDbPath}`);
-} catch (error) {
+} catch (_error) {
   console.error('❌ Test database setup failed:', error);
   process.exit(1);
 }

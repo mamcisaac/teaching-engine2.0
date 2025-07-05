@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Global Setup for Performance Testing
  * Initializes test environment and baseline measurements
@@ -48,7 +49,7 @@ async function globalSetup(config: FullConfig) {
     });
 
     console.log('✅ Authentication state saved for performance tests');
-  } catch (error) {
+  } catch (_error) {
     console.warn('⚠️ Could not setup authentication state:', error.message);
     // Continue without auth state - tests should handle this gracefully
   } finally {

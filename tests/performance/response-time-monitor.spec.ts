@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Response Time Monitoring System
  * Continuous monitoring and alerting for application response times
@@ -454,7 +455,7 @@ test.describe('Response Time Alerting', () => {
         timeout: 10000,
         headers: { Authorization: 'Bearer mock-token' },
       });
-    } catch (error) {
+    } catch (_error) {
       // Expected for slow/non-existent endpoint
     }
 

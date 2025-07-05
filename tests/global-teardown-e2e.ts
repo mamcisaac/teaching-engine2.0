@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Global teardown for E2E tests
  */
@@ -26,7 +27,7 @@ export default async function globalTeardown() {
         } else {
           console.warn('Failed to clean up test user:', response.statusText);
         }
-      } catch (error) {
+      } catch (_error) {
         console.warn('Error cleaning up test data:', error);
       }
     }
@@ -36,7 +37,7 @@ export default async function globalTeardown() {
     delete global.__E2E_TEST_USER__;
 
     console.log('\n✅ E2E global teardown complete\n');
-  } catch (error) {
+  } catch (_error) {
     console.error('❌ Error during E2E global teardown:', error);
     // Don't throw - we want cleanup to be best effort
   }

@@ -14,7 +14,7 @@ router.use(authMiddleware);
  * Dashboard overview metrics
  * GET /api/dashboard/metrics
  */
-router.get('/', async (req, res) => {
+router.get('/', async (req: Request, res: Response) => {
   try {
     const performanceSummary = getPerformanceSummary();
     const cacheStats = getCacheStats();
@@ -40,7 +40,7 @@ router.get('/', async (req, res) => {
       };
     } catch (_error) {
       dbStatus = 'unhealthy';
-      logger.error('Database health check failed:', error);
+      logger.error('Database health check failed:', _error);
     }
     
     res.json({
@@ -70,7 +70,7 @@ router.get('/', async (req, res) => {
       timestamp: new Date().toISOString()
     });
   } catch (_error) {
-    logger.error('Error getting dashboard metrics:', error);
+    logger.error('Error getting dashboard metrics:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to get dashboard metrics'
@@ -82,7 +82,7 @@ router.get('/', async (req, res) => {
  * Performance trends over time
  * GET /api/dashboard/trends
  */
-router.get('/trends', async (req, res) => {
+router.get('/trends', async (req: Request, res: Response) => {
   try {
     const metrics = metricsStore.getMetrics();
     
@@ -144,7 +144,7 @@ router.get('/trends', async (req, res) => {
       timestamp: new Date().toISOString()
     });
   } catch (_error) {
-    logger.error('Error getting performance trends:', error);
+    logger.error('Error getting performance trends:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to get performance trends'
@@ -156,7 +156,7 @@ router.get('/trends', async (req, res) => {
  * Resource usage insights
  * GET /api/dashboard/resources
  */
-router.get('/resources', async (req, res) => {
+router.get('/resources', async (req: Request, res: Response) => {
   try {
     const memUsage = process.memoryUsage();
     const cpuUsage = process.cpuUsage();
@@ -198,7 +198,7 @@ router.get('/resources', async (req, res) => {
       timestamp: new Date().toISOString()
     });
   } catch (_error) {
-    logger.error('Error getting resource usage:', error);
+    logger.error('Error getting resource usage:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to get resource usage'
@@ -210,7 +210,7 @@ router.get('/resources', async (req, res) => {
  * Application insights (user activity, popular features)
  * GET /api/dashboard/insights
  */
-router.get('/insights', async (req, res) => {
+router.get('/insights', async (req: Request, res: Response) => {
   try {
     const userId = req.user?.id;
     
@@ -264,7 +264,7 @@ router.get('/insights', async (req, res) => {
       timestamp: new Date().toISOString()
     });
   } catch (_error) {
-    logger.error('Error getting application insights:', error);
+    logger.error('Error getting application insights:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to get application insights'

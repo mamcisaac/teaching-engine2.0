@@ -34,7 +34,7 @@ async function waitForServer(url: string, maxRetries = 30): Promise<void> {
       } else {
         console.log(`Health check failed with status: ${response.status}`);
       }
-    } catch (error) {
+    } catch (_error) {
       // Server not ready yet
       const errorMessage = error instanceof Error ? error.message : String(error);
       console.log(`Health check error: ${errorMessage}`);
@@ -112,7 +112,7 @@ async function createE2ETestUsers(serverUrl: string): Promise<void> {
     };
 
     console.log('✅ Test user logged in successfully');
-  } catch (error) {
+  } catch (_error) {
     console.error('Failed to create E2E test users:', error);
     throw error;
   }
@@ -174,7 +174,7 @@ export default async function globalSetup() {
     }
 
     console.log('\n✅ E2E global setup complete\n');
-  } catch (error) {
+  } catch (_error) {
     console.error('❌ E2E global setup failed:', error);
     throw error;
   }

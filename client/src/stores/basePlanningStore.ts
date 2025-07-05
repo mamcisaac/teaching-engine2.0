@@ -4,7 +4,7 @@
 import { StateCreator } from 'zustand';
 import { offlineStorage } from '../services/offlineStorage';
 import { isOnline } from '../utils/serviceWorkerRegistration';
-
+import logger from '../utils/logger';
 export interface OfflineState {
   isOnline: boolean;
   lastSyncedAt: Date | null;
@@ -162,8 +162,8 @@ async function syncWithServer<T extends Record<string, unknown>>(
     // Cache the latest data
     await offlineStorage.cacheData(config.getCacheKey(), state, 60); // Cache for 1 hour
 
-  } catch (_error) {
-    console.error('Sync failed:', error);
+  } catch (error) {
+    logger.error('Sync failed:', error);
     set((s) => ({
       ...s,
       syncStatus: 'error',
@@ -288,8 +288,8 @@ export function createAutoSave(
       if (state.hasOfflineChanges && !state.isSaving) {
         try {
           await saveFunction();
-        } catch (_error) {
-          console.error('Auto-save failed:', error);
+        } catch (error) {
+          logger.error('Auto-save failed:', error);
         }
       }
     }, debounceMs);

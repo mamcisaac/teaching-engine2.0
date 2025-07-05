@@ -5,7 +5,7 @@
 
 import { Router, Request, Response } from 'express';
 import { z } from 'zod';
-import { NewsletterService } from '../services';
+import { renderNewsletter } from '../services';
 import { prisma } from '../prisma';
 import debug from 'debug';
 
@@ -40,13 +40,14 @@ router.post('/generate', async (req: Request, res: Response) => {
     
     log(`Generating newsletter for user ${userId}`, { sinceDate });
 
-    const newsletter = await NewsletterService.generateDraft({
+    // Generate newsletter using the new template system
+    const newsletter = await renderNewsletter({
       userId,
       sinceDate: sinceDate ? new Date(sinceDate) : undefined,
     });
 
-    // Record that newsletter was generated
-    await NewsletterService.recordNewsletterGeneration(userId);
+    // Record generation in audit log
+    log(`Newsletter generated for user ${userId}`);
 
     res.json({
       success: true,
@@ -54,10 +55,10 @@ router.post('/generate', async (req: Request, res: Response) => {
     });
 
   } catch (_error) {
-    log('Error generating newsletter:', error);
+    log('Error generating newsletter:', _error);
     res.status(500).json({
       error: 'Failed to generate newsletter',
-      message: error instanceof Error ? error.message : 'Unknown error',
+      message: _error instanceof Error ? _error.message : 'Unknown error',
     });
   }
 });
@@ -110,10 +111,10 @@ router.get('/status', async (req: Request, res: Response) => {
     });
 
   } catch (_error) {
-    log('Error getting newsletter status:', error);
+    log('Error getting newsletter status:', _error);
     res.status(500).json({
       error: 'Failed to get newsletter status',
-      message: error instanceof Error ? error.message : 'Unknown error',
+      message: _error instanceof Error ? _error.message : 'Unknown error',
     });
   }
 });

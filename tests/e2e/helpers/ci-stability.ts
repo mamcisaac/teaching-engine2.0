@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { Page, Locator } from '@playwright/test';
 
 /**
@@ -30,7 +31,7 @@ export async function clickWithRetry(
     try {
       await locator.click({ timeout: 10000 });
       return;
-    } catch (error) {
+    } catch (_error) {
       lastError = error;
       if (i < maxRetries - 1) {
         await locator.page().waitForTimeout(delay);
@@ -56,7 +57,7 @@ export async function fillWithRetry(
     try {
       await locator.fill(value, { timeout: 10000 });
       return;
-    } catch (error) {
+    } catch (_error) {
       lastError = error;
       if (i < maxRetries - 1) {
         await locator.page().waitForTimeout(delay);
@@ -100,7 +101,7 @@ export async function navigateWithRetry(
         timeout: process.env.CI ? 60000 : 30000,
       });
       return;
-    } catch (error) {
+    } catch (_error) {
       lastError = error;
       if (i < maxRetries - 1) {
         await new Promise((resolve) => setTimeout(resolve, 2000));

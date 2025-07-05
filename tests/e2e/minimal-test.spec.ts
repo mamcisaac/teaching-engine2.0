@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { test, expect } from '@playwright/test';
 
 test.describe('Minimal API Tests', () => {
@@ -23,7 +24,7 @@ test.describe('Minimal API Tests', () => {
         const data = JSON.parse(responseText);
         expect(data.status).toBe('ok');
       }
-    } catch (error) {
+    } catch (_error) {
       console.log(`API Health error: ${error}`);
     }
   });
@@ -58,7 +59,7 @@ test.describe('Minimal API Tests', () => {
       } else {
         console.log(`Login failed with status ${response.status()}: ${responseText}`);
       }
-    } catch (error) {
+    } catch (_error) {
       console.log(`Login error: ${error}`);
     }
   });

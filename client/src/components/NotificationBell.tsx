@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { fetchNewsletterSuggestions } from '../api/legacy/api';
+import { newsletterApi } from '../api/domains/newsletter';
 import { Link } from 'react-router-dom';
 
 export default function NotificationBell() {
   const [suggested, setSuggested] = useState(false);
 
   useEffect(() => {
-    fetchNewsletterSuggestions().then((r) => setSuggested(r.suggested));
+    newsletterApi.getSuggestions().then((r) => setSuggested(r.suggested));
   }, []);
 
   if (!suggested) return null;

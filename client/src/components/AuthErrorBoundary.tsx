@@ -4,7 +4,8 @@ import { Button } from './ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Alert, AlertDescription, AlertTitle } from './ui/alert';
 import { authService } from '../services/authService';
-
+import logger from '../utils/logger';
+import { errorReportingService } from '../services/errorReportingService';
 interface AuthErrorBoundaryProps {
   children: ReactNode;
   fallback?: ReactNode;
@@ -43,13 +44,22 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('AuthErrorBoundary caught an error:', error, errorInfo);
+    logger.error('AuthErrorBoundary caught an error:', error, errorInfo);
     this.setState({ errorInfo });
 
     // Call custom error handler if provided
     if (this.props.onAuthError) {
       this.props.onAuthError(error, errorInfo);
     }
+
+    // Report auth errors with context
+    errorReportingService.captureError(error, {
+      component: 'AuthErrorBoundary',
+      isAuthError: this.isAuthError(error),
+      isNetworkError: this.isNetworkError(error),
+      connectionStatus: this.state.connectionStatus,
+      retryCount: this.state.retryCount,
+    }, errorInfo);
 
     // Start monitoring connection status
     this.startConnectionMonitoring();
@@ -170,7 +180,7 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
         throw new Error('Authentication verification failed');
       }
     } catch (_error) {
-      console.error('Auth retry failed:', error);
+      logger.error('Auth retry failed:', error);
 
       this.setState({
         isRetrying: false,
@@ -338,11 +348,11 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
 export const AppAuthErrorBoundary: React.FC<{ children: ReactNode }> = ({ children }) => (
   <AuthErrorBoundary
     onAuthError={(error, errorInfo) => {
-      // Log to error reporting service in production
-      if (process.env.NODE_ENV === 'production') {
-        console.error('App-level auth error:', error, errorInfo);
-        // TODO: Send to error reporting service
-      }
+      // Report app-level auth errors
+      errorReportingService.captureError(error, {
+        component: 'AppAuthErrorBoundary',
+        appLevel: true,
+      }, errorInfo);
     }}
   >
     {children}

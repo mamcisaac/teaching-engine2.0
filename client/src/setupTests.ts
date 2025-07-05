@@ -1,12 +1,16 @@
 /**
- * Test Environment Setup
+ * Enhanced Test Environment Setup for Real Implementation Testing
  *
- * Configures the test environment for analytics components including
- * canvas mocking and other browser API polyfills.
+ * Configures the test environment to support both mock-based legacy tests
+ * and new real implementation tests. Includes browser API polyfills while
+ * avoiding global mocks that interfere with real testing.
  */
 
-// Set environment variables
+// Set environment variables for real implementation testing
 process.env.NODE_ENV = 'test';
+process.env.VITE_TEST_MODE = 'real';
+process.env.VITE_USE_REAL_API = process.env.VITE_USE_REAL_API || 'true';
+process.env.VITE_API_BASE_URL = process.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
 // Import testing library matchers for Vitest
 import { expect, vi, beforeEach } from 'vitest';
@@ -150,40 +154,19 @@ Object.defineProperty(global, 'ResizeObserver', {
   value: MockResizeObserver,
 });
 
-// Mock global fetch for API calls in tests
-global.fetch = vi.fn((url, _options) => {
-  // Convert relative URLs to absolute URLs for testing
-  const absoluteUrl =
-    typeof url === 'string' && url.startsWith('/') ? `http://localhost:3000${url}` : url;
+// NOTE: Global fetch mocking removed for TDD compliance
+// Tests should either:
+// 1. Use MSW (Mock Service Worker) for API mocking
+// 2. Mock fetch explicitly in individual test files
+// 3. Use real API calls in integration tests
+// This ensures tests are written with real implementations in mind
 
-  // Default mock responses for common endpoints
-  if (absoluteUrl === 'http://localhost:3000/api/auth/me') {
-    return Promise.resolve({
-      ok: false,
-      status: 401,
-      json: async () => ({ error: 'Not authenticated' }),
-    } as Response);
-  }
+// NOTE: API module mocking removed for TDD compliance
+// Tests must mock API calls explicitly when needed
+// Consider using MSW for more realistic API mocking
 
-  // Generic mock response
-  return Promise.resolve({
-    ok: true,
-    status: 200,
-    json: async () => ({}),
-  } as Response);
-});
-
-// Mock the api module
-vi.mock('./api', () => ({
-  api: {
-    post: vi.fn().mockResolvedValue({ data: {} }),
-    get: vi.fn().mockResolvedValue({ data: {} }),
-    put: vi.fn().mockResolvedValue({ data: {} }),
-    delete: vi.fn().mockResolvedValue({ data: {} }),
-  },
-}));
-
-// AuthContext is mocked per test file when needed
+// AuthContext should use real implementation or be mocked explicitly in tests
+// No global auth mocking - violates TDD principles
 
 // Setup localStorage mock
 const localStorageMock = (() => {
@@ -211,12 +194,31 @@ Object.defineProperty(window, 'localStorage', {
   writable: true,
 });
 
-// Reset mocks before each test
+// Enhanced test cleanup for real implementations
 beforeEach(() => {
-  localStorageMock.clear();
+  // Clear localStorage but preserve real implementation state if needed
+  if (process.env.VITE_PRESERVE_TEST_STATE !== 'true') {
+    localStorageMock.clear();
+  }
+  
+  // Clear mocks but be selective to avoid breaking real implementations
   vi.clearAllMocks();
   vi.clearAllTimers();
+  
+  // Clear any test-specific global state
+  if (typeof window !== 'undefined') {
+    // Clear any test-specific window properties
+    delete (window as any).testAuthState;
+    delete (window as any).testQueryClient;
+  }
 });
+
+// Global test utilities for real implementation testing
+(global as any).testUtils = {
+  isRealMode: () => process.env.VITE_TEST_MODE === 'real',
+  isUsingRealAPI: () => process.env.VITE_USE_REAL_API === 'true',
+  getAPIBaseURL: () => process.env.VITE_API_BASE_URL,
+};
 
 // Suppress specific console errors and warnings in tests
 const originalError = console.error;

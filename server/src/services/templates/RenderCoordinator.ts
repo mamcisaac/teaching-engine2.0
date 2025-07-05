@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Render Coordinator Service
  * Coordinates the template rendering process using all template services
@@ -9,7 +10,7 @@ import { TemplateCache } from './TemplateCache';
 import { TemplateHelpers } from './TemplateHelpers';
 import { PartialManager } from './PartialManager';
 import { TemplateProvider, TemplateContext, RenderOptions } from './providers/TemplateProvider';
-import { RenderEngine, RenderResult, RenderContext } from './engines/RenderEngine';
+import { RenderResult, RenderContext } from './engines/RenderEngine';
 import { TemplateDataFetcher, FetchContext } from './data/TemplateDataFetcher';
 
 export interface RenderRequest {
@@ -123,7 +124,7 @@ export class RenderCoordinator extends BaseService {
 
         // Step 2: Resolve template provider and template
         const templateStartTime = Date.now();
-        const { provider, template } = await this.resolveTemplate(options.templateType, context, options);
+        const { provider: _provider, template } = await this.resolveTemplate(options.templateType, context, options);
         const templateResolutionTime = Date.now() - templateStartTime;
 
         // Step 3: Fetch data if needed

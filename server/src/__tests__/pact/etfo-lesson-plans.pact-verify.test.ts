@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { Verifier } from '@pact-foundation/pact';
 import path from 'path';
 import { describe, it, beforeAll, afterAll } from '@jest/globals';

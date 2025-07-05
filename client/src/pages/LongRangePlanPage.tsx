@@ -1,7 +1,7 @@
+import { apiClient } from '../api/core/client';
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { api } from '../api/legacy/api';
 import Dialog from '../components/Dialog';
 import { Button } from '../components/ui/Button';
 import { useAIPlanningAssistant, AISuggestion } from '../hooks/useAIPlanningAssistant';
@@ -50,7 +50,7 @@ export default function LongRangePlanPage() {
   const { data: plans = [], isLoading } = useQuery({
     queryKey: ['long-range-plans', selectedYear],
     queryFn: async () => {
-      const response = await api.get(`/api/long-range-plans?academicYear=${selectedYear}`);
+      const response = await apiClient.get(`/api/long-range-plans?academicYear=${selectedYear}`);
       return response.data;
     },
   });
@@ -58,7 +58,7 @@ export default function LongRangePlanPage() {
   // Create mutation
   const createPlan = useMutation({
     mutationFn: async (data: Partial<LongRangePlan>) => {
-      const response = await api.post('/api/long-range-plans', data);
+      const response = await apiClient.post('/api/long-range-plans', data);
       return response.data;
     },
     onSuccess: () => {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Standardized OpenAI Mock for Testing Infrastructure
  * This provides a consistent mock across all test types with proper Jest typing
@@ -156,4 +157,26 @@ export const setupChatError = (
   );
   mockFn.mockRejectedValueOnce(error);
   return mockFn;
+};
+
+// Enhanced mock creation function for complex test scenarios
+export const createOpenAIMock = () => {
+  const client = createMockOpenAIInstance();
+  
+  const utilities = {
+    mockRateLimit: () => {
+      ensureMockFunction(client.chat.completions.create, 'client.chat.completions.create')
+        .mockRejectedValueOnce(createMockErrorResponse(429, 'Rate limit exceeded'));
+    },
+    mockTimeout: () => {
+      ensureMockFunction(client.chat.completions.create, 'client.chat.completions.create')
+        .mockRejectedValueOnce(new Error('Request timeout'));
+    },
+    mockInvalidAPIKey: () => {
+      ensureMockFunction(client.chat.completions.create, 'client.chat.completions.create')
+        .mockRejectedValueOnce(createMockErrorResponse(401, 'Invalid API key'));
+    },
+  };
+  
+  return { client, utilities };
 };

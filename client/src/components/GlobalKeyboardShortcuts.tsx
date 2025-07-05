@@ -11,14 +11,26 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
+  // Wrap all handlers in useCallback to prevent infinite re-renders
+  const handleShowHelp = useCallback(() => setIsHelpOpen(true), []);
+  const handleCreateNewLesson = useCallback(() => {
+    navigate('/planner/quick-lesson');
+    // addNotification('info', 'Create a new lesson plan');
+  }, [navigate]);
+  const handleSave = useCallback(() => {
+    // Dispatch a custom event that components can listen to
+    window.dispatchEvent(new CustomEvent('global:save'));
+    // addNotification('success', 'Saved successfully');
+  }, []);
+
   // Global: Show keyboard shortcuts help (? or F1)
-  useKeyboardShortcut(() => setIsHelpOpen(true), {
+  useKeyboardShortcut(handleShowHelp, {
     key: '?',
     description: 'Show keyboard shortcuts help',
     category: 'global',
   });
 
-  useKeyboardShortcut(() => setIsHelpOpen(true), {
+  useKeyboardShortcut(handleShowHelp, {
     key: 'F1',
     description: 'Show help',
     category: 'global',
@@ -26,10 +38,7 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
 
   // Global: Create new lesson plan (Ctrl/Cmd + N)
   useKeyboardShortcut(
-    () => {
-      navigate('/planner/quick-lesson');
-      // addNotification('info', 'Create a new lesson plan');
-    },
+    handleCreateNewLesson,
     {
       key: 'n',
       ctrl: true,
@@ -41,11 +50,7 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
 
   // Global: Save current work (Ctrl/Cmd + S)
   useKeyboardShortcut(
-    (_e) => {
-      // Dispatch a custom event that components can listen to
-      window.dispatchEvent(new CustomEvent('global:save'));
-      // addNotification('success', 'Saved successfully');
-    },
+    handleSave,
     {
       key: 's',
       ctrl: true,
@@ -72,13 +77,22 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
     preventDefault: true,
   });
 
+  const handleEscape = useCallback(() => {
+    // Dispatch event for components to handle escape
+    window.dispatchEvent(new CustomEvent('global:escape'));
+    setIsSearchOpen(false);
+  }, []);
+
+  const handleNavigateDashboard = useCallback(() => navigate('/planner/dashboard'), [navigate]);
+  const handleNavigatePlanning = useCallback(() => navigate('/planner/long-range'), [navigate]);
+  const handleNavigateCurriculum = useCallback(() => navigate('/curriculum'), [navigate]);
+  const handleNavigateHelp = useCallback(() => navigate('/help'), [navigate]);
+  const handleGoBack = useCallback(() => window.history.back(), []);
+  const handleGoForward = useCallback(() => window.history.forward(), []);
+
   // Global: Close modals/overlays (Escape)
   useKeyboardShortcut(
-    () => {
-      // Dispatch event for components to handle escape
-      window.dispatchEvent(new CustomEvent('global:escape'));
-      setIsSearchOpen(false);
-    },
+    handleEscape,
     {
       key: 'Escape',
       description: 'Close modals/overlays',
@@ -88,7 +102,7 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
   );
 
   // Navigation: Dashboard (Alt + D)
-  useKeyboardShortcut(() => navigate('/planner/dashboard'), {
+  useKeyboardShortcut(handleNavigateDashboard, {
     key: 'd',
     alt: true,
     description: 'Go to Dashboard',
@@ -96,7 +110,7 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
   });
 
   // Navigation: Planning (Alt + P)
-  useKeyboardShortcut(() => navigate('/planner/long-range'), {
+  useKeyboardShortcut(handleNavigatePlanning, {
     key: 'p',
     alt: true,
     description: 'Go to Planning',
@@ -104,7 +118,7 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
   });
 
   // Navigation: Curriculum (Alt + C)
-  useKeyboardShortcut(() => navigate('/curriculum'), {
+  useKeyboardShortcut(handleNavigateCurriculum, {
     key: 'c',
     alt: true,
     description: 'Go to Curriculum',
@@ -112,7 +126,7 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
   });
 
   // Navigation: Help (Alt + H)
-  useKeyboardShortcut(() => navigate('/help'), {
+  useKeyboardShortcut(handleNavigateHelp, {
     key: 'h',
     alt: true,
     description: 'Go to Help',
@@ -120,7 +134,7 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
   });
 
   // Navigation: Previous page (Alt + Left Arrow)
-  useKeyboardShortcut(() => window.history.back(), {
+  useKeyboardShortcut(handleGoBack, {
     key: 'ArrowLeft',
     alt: true,
     description: 'Go back',
@@ -128,7 +142,7 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
   });
 
   // Navigation: Next page (Alt + Right Arrow)
-  useKeyboardShortcut(() => window.history.forward(), {
+  useKeyboardShortcut(handleGoForward, {
     key: 'ArrowRight',
     alt: true,
     description: 'Go forward',

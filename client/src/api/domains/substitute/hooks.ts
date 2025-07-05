@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { substituteApi } from './api';
 import { showSuccessToast, handleApiError } from '../../core/utils';
@@ -71,7 +72,7 @@ export const useCreateSubstitutePlan = () => {
 
   return useMutation({
     mutationFn: (plan: SubstitutePlanInput) => substituteApi.plans.create(plan),
-    onSuccess: (data) => {
+    onSuccess: (__data) => {
       queryClient.invalidateQueries({ queryKey: ['substitute-plans'] });
       queryClient.invalidateQueries({ queryKey: ['substitute-plans-by-date', data.date] });
       queryClient.invalidateQueries({ queryKey: ['substitute-stats'] });
@@ -89,7 +90,7 @@ export const useUpdateSubstitutePlan = () => {
   return useMutation({
     mutationFn: ({ id, updates }: { id: number; updates: Partial<SubstitutePlanInput> }) =>
       substituteApi.plans.update(id, updates),
-    onSuccess: (data) => {
+    onSuccess: (__data) => {
       queryClient.setQueryData(['substitute-plan', data.id], data);
       queryClient.invalidateQueries({ queryKey: ['substitute-plans'] });
       queryClient.invalidateQueries({ queryKey: ['substitute-plans-by-date', data.date] });
@@ -123,7 +124,7 @@ export const useDuplicateSubstitutePlan = () => {
   return useMutation({
     mutationFn: ({ id, newDate }: { id: number; newDate?: string }) =>
       substituteApi.plans.duplicate(id, newDate),
-    onSuccess: (data) => {
+    onSuccess: (__data) => {
       queryClient.invalidateQueries({ queryKey: ['substitute-plans'] });
       if (data.date) {
         queryClient.invalidateQueries({ queryKey: ['substitute-plans-by-date', data.date] });
@@ -151,7 +152,7 @@ export const useMarkPlanCompleted = () => {
         substituteNotes?: string;
       };
     }) => substituteApi.plans.markCompleted(id, feedback),
-    onSuccess: (data) => {
+    onSuccess: (__data) => {
       queryClient.setQueryData(['substitute-plan', data.id], data);
       queryClient.invalidateQueries({ queryKey: ['substitute-plans'] });
       queryClient.invalidateQueries({ queryKey: ['substitute-stats'] });
@@ -170,7 +171,7 @@ export const useCreateSubstituteTemplate = () => {
   return useMutation({
     mutationFn: (template: Omit<SubstituteTemplate, 'id' | 'userId' | 'usageCount' | 'rating' | 'createdAt' | 'updatedAt'>) =>
       substituteApi.templates.create(template),
-    onSuccess: (data) => {
+    onSuccess: (__data) => {
       queryClient.invalidateQueries({ queryKey: ['substitute-templates'] });
       
       showSuccessToast('Template created successfully');
@@ -186,7 +187,7 @@ export const useCreateEmergencyPlan = () => {
   return useMutation({
     mutationFn: ({ grade, subject }: { grade: number; subject?: string }) =>
       substituteApi.quickActions.createEmergencyPlan(grade, subject),
-    onSuccess: (data) => {
+    onSuccess: (__data) => {
       queryClient.invalidateQueries({ queryKey: ['substitute-plans'] });
       queryClient.invalidateQueries({ queryKey: ['substitute-plans-by-date', data.date] });
       

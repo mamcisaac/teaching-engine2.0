@@ -2,11 +2,11 @@ import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/Button';
 import { Progress } from './ui/Progress';
-import { api } from '../api/legacy/api';
+import { apiClient } from '../api/core/client';
 import { useLanguage } from '../contexts/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import PreferenceWizard from './onboarding/PreferenceWizard';
-
+import logger from '../utils/logger';
 interface OnboardingStep {
   id: string;
   title: string;
@@ -30,9 +30,10 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
   const [visible, setVisible] = useState(() => {
     try {
       const onboarded = localStorage.getItem('onboarded');
-      return onboarded !== 'true';
+      // Default to false to not block the UI on initial load
+      return onboarded === 'false'; // Only show if explicitly set to false
     } catch {
-      return true;
+      return false; // Default to not showing
     }
   });
 
@@ -60,7 +61,7 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
       try {
         localStorage.setItem('onboarding-completed-steps', JSON.stringify(completedSteps));
       } catch (_error) {
-        console.warn('Failed to save onboarding progress:', error);
+        logger.warn('Failed to save onboarding progress:', error);
       }
     }
   }, [completedSteps]);
@@ -91,7 +92,7 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
     setIsCreatingSampleData(true);
     try {
       // Create sample curriculum expectations
-      await api.post('/api/curriculum-expectations', {
+      await apiClient.post('/api/curriculum-expectations', {
         grade: '1',
         subject: 'Mathematics',
         strand: 'Number Sense',
@@ -107,7 +108,7 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
         isSample: true,
       });
 
-      await api.post('/api/curriculum-expectations', {
+      await apiClient.post('/api/curriculum-expectations', {
         grade: '1',
         subject: 'Language Arts',
         strand: 'Reading',
@@ -123,7 +124,7 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
       });
 
       // Create sample long-range plan
-      const _longRangePlan = await api.post('/api/long-range-plans', {
+      const _longRangePlan = await apiClient.post('/api/long-range-plans', {
         title: 'Grade 1 Fall Term Sample Plan',
         description: 'A sample long-range plan for Grade 1 covering September to December',
         startDate: new Date('2024-09-01').toISOString(),
@@ -134,7 +135,7 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
 
       markStepCompleted('sample-data');
     } catch (_error) {
-      console.error('Error creating sample data:', error);
+      logger.error('Error creating sample data:', error);
     } finally {
       setIsCreatingSampleData(false);
     }

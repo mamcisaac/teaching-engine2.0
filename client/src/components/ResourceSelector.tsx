@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useMediaResources } from '../api/legacy/api';
+import { useMediaResources } from '../api/domains/resource';
 import type { MediaResource } from '../types';
 import Dialog from './Dialog';
 

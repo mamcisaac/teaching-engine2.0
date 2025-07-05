@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Global Teardown for Performance Testing
  * Cleanup and final reporting for performance test environment
@@ -21,7 +22,7 @@ async function globalTeardown(config: FullConfig) {
     await archiveResults();
 
     console.log('✅ Performance testing cleanup completed');
-  } catch (error) {
+  } catch (_error) {
     console.error('❌ Error during performance testing cleanup:', error);
   }
 }
@@ -53,7 +54,7 @@ async function generateFinalReport(): Promise<void> {
           timestamp: report.timestamp,
           summary: report.summary,
         });
-      } catch (error) {
+      } catch (_error) {
         console.warn(`Could not parse report file ${file}:`, error.message);
       }
     }
@@ -83,7 +84,7 @@ async function generateFinalReport(): Promise<void> {
 
     await fs.writeFile(finalReportPath, JSON.stringify(finalSummary, null, 2));
     console.log(`📊 Final performance summary saved: ${finalReportPath}`);
-  } catch (error) {
+  } catch (_error) {
     console.warn('Could not generate final report:', error.message);
   }
 }
@@ -155,7 +156,7 @@ async function calculateKeyMetrics(reports: any[]): Promise<any> {
       (sum, r) => sum + (r.summary?.totalAlerts || 0),
       0,
     );
-  } catch (error) {
+  } catch (_error) {
     console.warn('Error calculating key metrics:', error.message);
   }
 
@@ -221,7 +222,7 @@ async function listArtifacts(): Promise<string[]> {
     try {
       const files = await fs.readdir(dir, { recursive: true });
       artifacts.push(...files.map((file) => `${dir}/${file}`));
-    } catch (error) {
+    } catch (_error) {
       // Directory might not exist, continue
     }
   }
@@ -236,7 +237,7 @@ async function cleanupTempFiles(): Promise<void> {
     try {
       await fs.unlink(file);
       console.log(`🗑️ Cleaned up ${file}`);
-    } catch (error) {
+    } catch (_error) {
       // File might not exist, continue
     }
   }
@@ -262,13 +263,13 @@ async function archiveResults(): Promise<void> {
         const content = await fs.readFile(file);
         const filename = path.basename(file);
         await fs.writeFile(path.join(archiveDir, filename), content);
-      } catch (error) {
+      } catch (_error) {
         // File might not exist, continue
       }
     }
 
     console.log(`📁 Performance results archived to: ${archiveDir}`);
-  } catch (error) {
+  } catch (_error) {
     console.warn('Could not archive results:', error.message);
   }
 }

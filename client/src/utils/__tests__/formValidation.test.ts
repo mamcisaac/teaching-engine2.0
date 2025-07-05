@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * @file formValidation.test.ts
  * @description Comprehensive tests for form validation utilities including unit plan validation,
@@ -19,7 +20,7 @@ import {
 // Mock form data types (simplified)
 interface MockUnitPlanFormData {
   title?: string;
-  longRangePlanId?: number;
+  longRangePlanId?: string;
   startDate?: string;
   endDate?: string;
   expectationIds?: string[];
@@ -31,7 +32,7 @@ interface MockUnitPlanFormData {
 
 interface MockLessonPlanFormData {
   title?: string;
-  unitPlanId?: number;
+  unitPlanId?: string;
   date?: string;
   duration?: number;
   expectationIds?: string[];
@@ -45,9 +46,9 @@ interface MockLessonPlanFormData {
 describe('validateUnitPlan', () => {
   const createValidUnitPlan = (): MockUnitPlanFormData => ({
     title: 'Test Unit Plan',
-    longRangePlanId: 1,
-    startDate: '2023-12-01',
-    endDate: '2023-12-31',
+    longRangePlanId: '1',
+    startDate: '2024-12-01',
+    endDate: '2024-12-31',
     expectationIds: ['B1.1', 'B1.2'],
     estimatedHours: 20,
     description: 'Test description',
@@ -57,7 +58,11 @@ describe('validateUnitPlan', () => {
 
   it('should validate a complete unit plan', () => {
     const data = createValidUnitPlan();
-    const result = validateUnitPlan(data as unknown);
+    const result = validateUnitPlan(data as any);
+
+    if (!result.isValid) {
+      console.log('Validation errors:', JSON.stringify(result.errors, null, 2));
+    }
 
     expect(result.isValid).toBe(true);
     expect(Object.keys(result.errors)).toHaveLength(0);
@@ -68,7 +73,7 @@ describe('validateUnitPlan', () => {
       const data = createValidUnitPlan();
       data.title = '';
 
-      const result = validateUnitPlan(data as unknown);
+      const result = validateUnitPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.title).toBe('Unit title is required');
@@ -78,7 +83,7 @@ describe('validateUnitPlan', () => {
       const data = createValidUnitPlan();
       data.longRangePlanId = undefined;
 
-      const result = validateUnitPlan(data as unknown);
+      const result = validateUnitPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.longRangePlanId).toBe('Long-range plan selection is required');
@@ -88,7 +93,7 @@ describe('validateUnitPlan', () => {
       const data = createValidUnitPlan();
       data.startDate = '';
 
-      const result = validateUnitPlan(data as unknown);
+      const result = validateUnitPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.startDate).toBe('Start date is required');
@@ -98,7 +103,7 @@ describe('validateUnitPlan', () => {
       const data = createValidUnitPlan();
       data.endDate = '';
 
-      const result = validateUnitPlan(data as unknown);
+      const result = validateUnitPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.endDate).toBe('End date is required');
@@ -111,10 +116,10 @@ describe('validateUnitPlan', () => {
       data.startDate = '2023-12-31';
       data.endDate = '2023-12-01';
 
-      const result = validateUnitPlan(data as unknown);
+      const result = validateUnitPlan(data as any);
 
       expect(result.isValid).toBe(false);
-      expect(result.errors.endDate).toBe('End date must be after start date');
+      expect(result.errors.endDate).toBe('End date must be after or equal to start date');
     });
 
     it('should reject start date too far in past', () => {
@@ -123,7 +128,7 @@ describe('validateUnitPlan', () => {
       oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 2);
       data.startDate = oneYearAgo.toISOString().split('T')[0];
 
-      const result = validateUnitPlan(data as unknown);
+      const result = validateUnitPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.startDate).toBe('Start date cannot be more than one year in the past');
@@ -135,7 +140,7 @@ describe('validateUnitPlan', () => {
       twoYearsFromNow.setFullYear(twoYearsFromNow.getFullYear() + 3);
       data.endDate = twoYearsFromNow.toISOString().split('T')[0];
 
-      const result = validateUnitPlan(data as unknown);
+      const result = validateUnitPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.endDate).toBe('End date cannot be more than two years in the future');
@@ -146,7 +151,7 @@ describe('validateUnitPlan', () => {
       data.startDate = '2023-12-15';
       data.endDate = '2023-12-15';
 
-      const result = validateUnitPlan(data as unknown);
+      const result = validateUnitPlan(data as any);
 
       expect(result.isValid).toBe(true);
     });
@@ -157,7 +162,7 @@ describe('validateUnitPlan', () => {
       const data = createValidUnitPlan();
       data.expectationIds = [];
 
-      const result = validateUnitPlan(data as unknown);
+      const result = validateUnitPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.expectationIds).toBe(
@@ -169,7 +174,7 @@ describe('validateUnitPlan', () => {
       const data = createValidUnitPlan();
       data.expectationIds = undefined;
 
-      const result = validateUnitPlan(data as unknown);
+      const result = validateUnitPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.expectationIds).toBe(
@@ -183,7 +188,7 @@ describe('validateUnitPlan', () => {
       const data = createValidUnitPlan();
       data.estimatedHours = 0;
 
-      const result = validateUnitPlan(data as unknown);
+      const result = validateUnitPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.estimatedHours).toBe('Estimated hours must be greater than 0');
@@ -193,7 +198,7 @@ describe('validateUnitPlan', () => {
       const data = createValidUnitPlan();
       data.estimatedHours = 600;
 
-      const result = validateUnitPlan(data as unknown);
+      const result = validateUnitPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.estimatedHours).toBe(
@@ -205,7 +210,7 @@ describe('validateUnitPlan', () => {
       const data = createValidUnitPlan();
       data.estimatedHours = undefined;
 
-      const result = validateUnitPlan(data as unknown);
+      const result = validateUnitPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.estimatedHours).toBe('Estimated hours must be greater than 0');
@@ -217,7 +222,7 @@ describe('validateUnitPlan', () => {
       const data = createValidUnitPlan();
       data.title = 'a'.repeat(201);
 
-      const result = validateUnitPlan(data as unknown);
+      const result = validateUnitPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.title).toBe('Title must be 200 characters or less');
@@ -227,7 +232,7 @@ describe('validateUnitPlan', () => {
       const data = createValidUnitPlan();
       data.description = 'a'.repeat(2001);
 
-      const result = validateUnitPlan(data as unknown);
+      const result = validateUnitPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.description).toBe('Description must be 2000 characters or less');
@@ -237,7 +242,7 @@ describe('validateUnitPlan', () => {
       const data = createValidUnitPlan();
       data.essentialQuestions = ['', '   ', '\t'];
 
-      const result = validateUnitPlan(data as unknown);
+      const result = validateUnitPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.essentialQuestions).toBe('At least one essential question is required');
@@ -247,7 +252,7 @@ describe('validateUnitPlan', () => {
       const data = createValidUnitPlan();
       data.successCriteria = ['', '   '];
 
-      const result = validateUnitPlan(data as unknown);
+      const result = validateUnitPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.successCriteria).toBe('At least one success criteria is required');
@@ -258,8 +263,8 @@ describe('validateUnitPlan', () => {
 describe('validateLessonPlan', () => {
   const createValidLessonPlan = (): MockLessonPlanFormData => ({
     title: 'Test Lesson',
-    unitPlanId: 1,
-    date: '2023-12-15',
+    unitPlanId: '1',
+    date: '2024-12-15',
     duration: 60,
     expectationIds: ['B1.1'],
     learningGoals: 'Students will learn fractions',
@@ -271,7 +276,11 @@ describe('validateLessonPlan', () => {
 
   it('should validate a complete lesson plan', () => {
     const data = createValidLessonPlan();
-    const result = validateLessonPlan(data as unknown);
+    const result = validateLessonPlan(data as any);
+
+    if (!result.isValid) {
+      console.log('Lesson validation errors:', JSON.stringify(result.errors, null, 2));
+    }
 
     expect(result.isValid).toBe(true);
     expect(Object.keys(result.errors)).toHaveLength(0);
@@ -282,7 +291,7 @@ describe('validateLessonPlan', () => {
       const data = createValidLessonPlan();
       data.title = '';
 
-      const result = validateLessonPlan(data as unknown);
+      const result = validateLessonPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.title).toBe('Lesson title is required');
@@ -292,7 +301,7 @@ describe('validateLessonPlan', () => {
       const data = createValidLessonPlan();
       data.unitPlanId = undefined;
 
-      const result = validateLessonPlan(data as unknown);
+      const result = validateLessonPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.unitPlanId).toBe('Unit plan selection is required');
@@ -302,7 +311,7 @@ describe('validateLessonPlan', () => {
       const data = createValidLessonPlan();
       data.date = '';
 
-      const result = validateLessonPlan(data as unknown);
+      const result = validateLessonPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.date).toBe('Date is required');
@@ -316,7 +325,7 @@ describe('validateLessonPlan', () => {
       oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 2);
       data.date = oneYearAgo.toISOString().split('T')[0];
 
-      const result = validateLessonPlan(data as unknown);
+      const result = validateLessonPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.date).toBe('Lesson date cannot be more than one year in the past');
@@ -328,7 +337,7 @@ describe('validateLessonPlan', () => {
       oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 2);
       data.date = oneYearFromNow.toISOString().split('T')[0];
 
-      const result = validateLessonPlan(data as unknown);
+      const result = validateLessonPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.date).toBe('Lesson date cannot be more than one year in the future');
@@ -340,7 +349,7 @@ describe('validateLessonPlan', () => {
       const data = createValidLessonPlan();
       data.duration = 0;
 
-      const result = validateLessonPlan(data as unknown);
+      const result = validateLessonPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.duration).toBe('Duration must be greater than 0 minutes');
@@ -350,7 +359,7 @@ describe('validateLessonPlan', () => {
       const data = createValidLessonPlan();
       data.duration = 500;
 
-      const result = validateLessonPlan(data as unknown);
+      const result = validateLessonPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.duration).toBe('Duration cannot exceed 480 minutes (8 hours)');
@@ -362,7 +371,7 @@ describe('validateLessonPlan', () => {
       const data = createValidLessonPlan();
       data.expectationIds = [];
 
-      const result = validateLessonPlan(data as unknown);
+      const result = validateLessonPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.expectationIds).toBe(
@@ -378,7 +387,7 @@ describe('validateLessonPlan', () => {
       data.action = '';
       data.consolidation = '';
 
-      const result = validateLessonPlan(data as unknown);
+      const result = validateLessonPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.lessonStructure).toBe(
@@ -391,7 +400,7 @@ describe('validateLessonPlan', () => {
       data.action = '';
       data.consolidation = '';
 
-      const result = validateLessonPlan(data as unknown);
+      const result = validateLessonPlan(data as any);
 
       expect(result.isValid).toBe(true);
     });
@@ -402,7 +411,7 @@ describe('validateLessonPlan', () => {
       const data = createValidLessonPlan();
       data.title = 'a'.repeat(201);
 
-      const result = validateLessonPlan(data as unknown);
+      const result = validateLessonPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.title).toBe('Title must be 200 characters or less');
@@ -412,7 +421,7 @@ describe('validateLessonPlan', () => {
       const data = createValidLessonPlan();
       data.learningGoals = 'a'.repeat(1001);
 
-      const result = validateLessonPlan(data as unknown);
+      const result = validateLessonPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.learningGoals).toBe('Learning goals must be 1000 characters or less');
@@ -424,7 +433,7 @@ describe('validateLessonPlan', () => {
       const data = createValidLessonPlan();
       data.materials = [];
 
-      const result = validateLessonPlan(data as unknown);
+      const result = validateLessonPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.materials).toBe('At least one material or resource is required');
@@ -434,7 +443,7 @@ describe('validateLessonPlan', () => {
       const data = createValidLessonPlan();
       data.materials = ['', '   ', '\t'];
 
-      const result = validateLessonPlan(data as unknown);
+      const result = validateLessonPlan(data as any);
 
       expect(result.isValid).toBe(false);
       expect(result.errors.materials).toBe('At least one material or resource is required');

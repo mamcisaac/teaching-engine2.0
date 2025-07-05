@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * TDD-Compliant Rate Limiter Tests
  * Uses real Redis or in-memory store instead of mocks
@@ -68,7 +69,7 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
         store: redis || undefined,
       });
 
-      app.get('/test/rate-limit', limiter, (req, res) => {
+      app.get('/test/rate-limit', limiter, (req: Request, res: Response) => {
         res.json({ message: 'Success' });
       });
 
@@ -103,7 +104,7 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
         store: redis || undefined,
       });
 
-      app.post('/test/ip-tracking', limiter, (req, res) => {
+      app.post('/test/ip-tracking', limiter, (req: Request, res: Response) => {
         res.json({ ip: req.ip });
       });
 
@@ -136,7 +137,7 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
         store: redis || undefined,
       });
 
-      app.get('/test/window-reset', limiter, (req, res) => {
+      app.get('/test/window-reset', limiter, (req: Request, res: Response) => {
         res.json({ time: Date.now() });
       });
 
@@ -174,7 +175,7 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
         store: redis || undefined,
       });
 
-      app.get('/test/user-limit', userLimiter, (req, res) => {
+      app.get('/test/user-limit', userLimiter, (req: Request, res: Response) => {
         res.json({ userId: (req as unknown).userId });
       });
 
@@ -227,7 +228,7 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
         store: redis || undefined,
       });
 
-      app.get('/test/role-limit', roleLimiter, (req, res) => {
+      app.get('/test/role-limit', roleLimiter, (req: Request, res: Response) => {
         res.json({ role: (req as unknown).user?.role || 'anonymous' });
       });
 
@@ -265,7 +266,7 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
         store: redis || undefined,
       });
 
-      app.post('/test/auth/login', loginLimiter, async (req, res) => {
+      app.post('/test/auth/login', loginLimiter, async (req: Request, res: Response) => {
         const { email, password } = req.body;
         
         // Simulate login check
@@ -323,9 +324,9 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
       });
 
       app.route('/test/resource')
-        .get(methodLimiter, (req, res) => res.json({ method: 'GET' }))
-        .post(methodLimiter, (req, res) => res.json({ method: 'POST' }))
-        .delete(methodLimiter, (req, res) => res.json({ method: 'DELETE' }));
+        .get(methodLimiter, (req: Request, res: Response) => res.json({ method: 'GET' }))
+        .post(methodLimiter, (req: Request, res: Response) => res.json({ method: 'POST' }))
+        .delete(methodLimiter, (req: Request, res: Response) => res.json({ method: 'DELETE' }));
 
       const testIp = '192.168.1.60';
 
@@ -369,7 +370,7 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
         store: redis || undefined,
       });
 
-      app.get('/test/pattern', patternLimiter, (req, res) => {
+      app.get('/test/pattern', patternLimiter, (req: Request, res: Response) => {
         res.json({ detected: false });
       });
 
@@ -417,7 +418,7 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
         skipFailedRequests: false,
       });
 
-      app.get('/test/fallback', fallbackLimiter, (req, res) => {
+      app.get('/test/fallback', fallbackLimiter, (req: Request, res: Response) => {
         res.json({ fallback: true });
       });
 
@@ -455,7 +456,7 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
         store: redis || undefined,
       });
 
-      app.get('/test/whitelist', whitelistLimiter, (req, res) => {
+      app.get('/test/whitelist', whitelistLimiter, (req: Request, res: Response) => {
         res.json({ whitelisted: true });
       });
 
@@ -494,7 +495,7 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
         store: redis || undefined,
       });
 
-      app.get('/test/admin-skip', adminSkipLimiter, (req, res) => {
+      app.get('/test/admin-skip', adminSkipLimiter, (req: Request, res: Response) => {
         res.json({ role: (req as unknown).user?.role || 'anonymous' });
       });
 
@@ -527,7 +528,7 @@ describe('Rate Limiter Middleware - Real Implementation Tests', () => {
         store: redis || undefined,
       });
 
-      app.get('/test/performance', performanceLimiter, (req, res) => {
+      app.get('/test/performance', performanceLimiter, (req: Request, res: Response) => {
         res.json({ timestamp: Date.now() });
       });
 

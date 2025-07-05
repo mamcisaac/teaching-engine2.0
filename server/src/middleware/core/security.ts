@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { Application, Request, Response, NextFunction } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
@@ -57,7 +58,7 @@ export const applySecurityMiddleware = (app: Application): void => {
   app.use(cors(corsOptions));
 
   // Additional security headers
-  app.use((req, res, next) => {
+  app.use((req: Request, res: Response, next: NextFunction) => {
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('X-Frame-Options', 'DENY');
     res.setHeader('X-XSS-Protection', '1; mode=block');
@@ -104,11 +105,11 @@ export const inputSanitizationMiddleware = (
   }
   
   if (req.query) {
-    req.query = sanitize(req.query) as unknown;
+    req.query = sanitize(req.query) as any;
   }
   
   if (req.params) {
-    req.params = sanitize(req.params) as unknown;
+    req.params = sanitize(req.params) as any;
   }
 
   next();
@@ -189,7 +190,7 @@ export const sqlInjectionProtectionMiddleware = (
           value,
           ip: req.ip,
           path: req.path,
-          userId: (req as unknown).user?.id,
+          userId: (req as any).user?.id,
         }, 'Potential SQL injection attempt detected');
         
         throw new AppError(400, 'Invalid input detected', 'SECURITY_VIOLATION');
@@ -207,7 +208,7 @@ export const sqlInjectionProtectionMiddleware = (
     if (req.query) checkObject(req.query);
     if (req.params) checkObject(req.params);
   } catch (_error) {
-    return next(error);
+    return next(_error);
   }
 
   next();

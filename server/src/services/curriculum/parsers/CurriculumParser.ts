@@ -86,8 +86,8 @@ export abstract class CurriculumParser {
    * Validate expectation code format
    */
   protected validateExpectationCode(code: string): boolean {
-    // Ontario curriculum code format: Grade.Strand.Substrand.Number
-    const codePattern = /^[A-Z0-9]+\.[A-Z0-9]+(\.[A-Z0-9]+)?(\.[0-9]+)?$/;
+    // Ontario curriculum code format: supports both single codes (A1) and multi-part codes (A1.1, A1.1.2)
+    const codePattern = /^[A-Z0-9]+(\.[A-Z0-9]+)*$/;
     return codePattern.test(code);
   }
 
@@ -95,8 +95,19 @@ export abstract class CurriculumParser {
    * Parse expectation type from code or description
    */
   protected parseExpectationType(code: string, description: string): 'overall' | 'specific' {
-    // Overall expectations typically have shorter codes or contain "overall" in description
-    if (code.split('.').length <= 2 || description.toLowerCase().includes('overall')) {
+    // Check description first for explicit type indicators
+    const lowerDesc = description.toLowerCase();
+    if (lowerDesc.includes('overall')) {
+      return 'overall';
+    }
+    if (lowerDesc.includes('specific')) {
+      return 'specific';
+    }
+    
+    // Overall expectations typically have single-part codes (e.g., A1, B2)
+    // Specific expectations have multi-part codes (e.g., A1.1, B2.3)
+    const parts = code.split('.');
+    if (parts.length === 1) {
       return 'overall';
     }
     return 'specific';

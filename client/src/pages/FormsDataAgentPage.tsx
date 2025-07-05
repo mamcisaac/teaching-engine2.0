@@ -9,7 +9,7 @@ import {
 } from '../hooks/useETFOPlanning';
 import { UnitPlanFormData } from '../components/forms/UnitPlanForm';
 import { LessonPlanFormData } from '../components/forms/LessonPlanForm';
-
+import logger from '../utils/logger';
 export default function FormsDataAgentPage() {
   // Fetch data for dropdowns and validation
   const { data: longRangePlans = [] } = useLongRangePlans();
@@ -25,7 +25,7 @@ export default function FormsDataAgentPage() {
 
     const failures = results.filter((r) => r.status === 'rejected');
     if (failures.length > 0) {
-      console.error('Some unit creations failed:', failures);
+      logger.error('Some unit creations failed:', failures);
       throw new Error(`${failures.length} unit(s) failed to create`);
     }
   };
@@ -37,7 +37,7 @@ export default function FormsDataAgentPage() {
 
     const failures = results.filter((r) => r.status === 'rejected');
     if (failures.length > 0) {
-      console.error('Some lesson creations failed:', failures);
+      logger.error('Some lesson creations failed:', failures);
       throw new Error(`${failures.length} lesson(s) failed to create`);
     }
   };

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { test, expect } from '@playwright/test';
 import {
   login,
@@ -58,7 +59,7 @@ test.describe('Calendar Blocking', () => {
           { maxRetries: 2, delay: 1000 },
         );
         console.log('Calendar events API called successfully');
-      } catch (error) {
+      } catch (_error) {
         console.log('Calendar events API not called, continuing...');
       }
 
@@ -75,7 +76,7 @@ test.describe('Calendar Blocking', () => {
       // Note: Day column structure may vary, so we just verify the event is visible
       const eventOnPage = page.locator(`text=${eventTitle}`);
       await expect(eventOnPage).toBeVisible({ timeout: 10000 });
-    } catch (error) {
+    } catch (_error) {
       await capturePageState(page, 'calendar-blocking-failure');
       throw error;
     }
@@ -161,7 +162,7 @@ test.describe('Calendar Blocking', () => {
       });
       await expect(page.locator(`text=Field Trip ${timestamp}`)).toBeVisible({ timeout: 10000 });
       await expect(page.locator(`text=PD Session ${timestamp}`)).toBeVisible({ timeout: 10000 });
-    } catch (error) {
+    } catch (_error) {
       await capturePageState(page, 'multiple-events-failure');
       throw error;
     }
@@ -204,7 +205,7 @@ test.describe('Calendar Blocking', () => {
 
       // Verify the holiday event is displayed (this indicates calendar blocking is working)
       await expect(page.locator(`text=${holidayTitle}`)).toBeVisible({ timeout: 10000 });
-    } catch (error) {
+    } catch (_error) {
       await capturePageState(page, 'all-day-event-failure');
       throw error;
     }

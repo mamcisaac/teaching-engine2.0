@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * AI Snapshot Base Test Framework
  * 
@@ -105,7 +106,7 @@ export abstract class AISnapshotTestBase {
         snapshot: existingSnapshot,
         hasChanges,
       };
-    } catch (error) {
+    } catch (_error) {
       // Snapshot doesn't exist, create new one
       if (AI_TESTING_CONFIG.enableSnapshots) {
         await this.saveSnapshot(snapshotPath, normalizedResponse);
@@ -151,9 +152,9 @@ export abstract class AISnapshotTestBase {
   static async runSnapshotTest(
     testType: string,
     scenario: AITestScenario,
-    aiFunction: (input: any) => Promise<any>,
+    aiFunction: (input: unknown) => Promise<any>,
     inputGenerator: (scenario: AITestScenario) => any,
-    normalizer: (response: any, scenario: AITestScenario, input: any) => NormalizedSnapshot
+    normalizer: (response: unknown, scenario: AITestScenario, input: unknown) => NormalizedSnapshot
   ): Promise<void> {
     try {
       // Generate test input
@@ -192,7 +193,7 @@ export abstract class AISnapshotTestBase {
         validationScore: normalizedSnapshot.validation.contentScore,
       });
       
-    } catch (error) {
+    } catch (_error) {
       // Record test failure
       await this.recordTestResult(testType, scenario, {
         success: false,
@@ -241,7 +242,7 @@ export abstract class AISnapshotTestBase {
   ): Promise<void> {
     const reportPath = path.join(this.SNAPSHOTS_DIR, 'validation-reports', `${testType}-results.json`);
     
-    let results: any[] = [];
+    let results: unknown[] = [];
     try {
       const existingContent = await fs.readFile(reportPath, 'utf-8');
       results = JSON.parse(existingContent);
@@ -283,7 +284,7 @@ export abstract class AISnapshotTestBase {
         averageContentScore: 0,
         averageStructureScore: 0,
       },
-      details: [] as any[],
+      details: [] as unknown[],
     };
     
     for (const reportType of reportTypes) {
@@ -294,25 +295,25 @@ export abstract class AISnapshotTestBase {
         const results = JSON.parse(content);
         
         summary.totalTests += results.length;
-        summary.successfulTests += results.filter((r: any) => r.success).length;
-        summary.newSnapshots += results.filter((r: any) => r.isNew).length;
-        summary.changedSnapshots += results.filter((r: any) => r.hasChanges).length;
+        summary.successfulTests += results.filter((r: unknown) => r.success).length;
+        summary.newSnapshots += results.filter((r: unknown) => r.isNew).length;
+        summary.changedSnapshots += results.filter((r: unknown) => r.hasChanges).length;
         
         // Calculate quality averages
-        const validResults = results.filter((r: any) => r.validationScore !== undefined);
+        const validResults = results.filter((r: unknown) => r.validationScore !== undefined);
         if (validResults.length > 0) {
-          const avgScore = validResults.reduce((sum: number, r: any) => sum + r.validationScore, 0) / validResults.length;
+          const avgScore = validResults.reduce((sum: number, r: unknown) => sum + r.validationScore, 0) / validResults.length;
           summary.qualityStats.averageContentScore += avgScore;
         }
         
         summary.details.push({
           testType: reportType,
           results: results.length,
-          successful: results.filter((r: any) => r.success).length,
-          failed: results.filter((r: any) => !r.success).length,
+          successful: results.filter((r: unknown) => r.success).length,
+          failed: results.filter((r: unknown) => !r.success).length,
         });
         
-      } catch (error) {
+      } catch (_error) {
         console.warn(`Could not read report for ${reportType}: ${error}`);
       }
     }

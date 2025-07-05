@@ -49,7 +49,7 @@ export const newsletterApi = {
 
   // Get newsletter suggestions
   getSuggestions: async () => {
-    const { data } = await apiClient.get<string[]>('/api/newsletters/suggestions');
+    const { data } = await apiClient.get<{ suggested: boolean }>('/api/newsletter-suggestions');
     return data;
   },
 };

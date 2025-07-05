@@ -1,6 +1,6 @@
 import cron from 'node-cron';
 import { prisma } from '../prisma';
-
+import logger from '../logger';
 /**
  * Query unit plans that are due within the next week and notify the teacher
  * about any plans that need attention.
@@ -23,7 +23,7 @@ export async function runProgressCheck() {
       const message = `Unit Plan "${plan.title}" is ending soon with ${incompleteLessons} upcoming lessons`;
       // DISABLED: Notification model has been archived
       // TODO: Implement using ParentMessage or DaybookEntry for progress notifications
-      console.warn(`Progress check notification: ${message}`);
+      logger.warn(`Progress check notification: ${message}`);
     }
   }
 }

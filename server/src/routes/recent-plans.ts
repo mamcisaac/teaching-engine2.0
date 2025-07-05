@@ -1,6 +1,6 @@
 import { Router, Request } from 'express';
 import { prisma } from '../prisma';
-
+import logger from '../logger';
 const router = Router();
 
 // Track plan access
@@ -41,7 +41,7 @@ router.post('/track', async (req: Request, res, _next) => {
 
     res.json({ success: true });
   } catch (err) {
-    console.error('Error in recent plans route:', err);
+    logger.error('Error in recent plans route:', err);
     res.status(500).json({ error: 'Failed to process request' });
   }
 });
@@ -204,7 +204,7 @@ router.get('/', async (req: Request, res, _next) => {
 
     res.json(validPlans);
   } catch (err) {
-    console.error('Error in recent plans route:', err);
+    logger.error('Error in recent plans route:', err);
     res.status(500).json({ error: 'Failed to process request' });
   }
 });
@@ -223,7 +223,7 @@ router.delete('/clear', async (req: Request, res, _next) => {
 
     res.json({ success: true });
   } catch (err) {
-    console.error('Error in recent plans route:', err);
+    logger.error('Error in recent plans route:', err);
     res.status(500).json({ error: 'Failed to process request' });
   }
 });

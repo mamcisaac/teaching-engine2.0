@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Lesson Plan AI Snapshot Tests
  * 
@@ -31,7 +32,7 @@ describe('Lesson Plan AI Snapshot Tests', () => {
     test.each(scenarios)(
       'should generate consistent lesson plan for $name',
       async (scenario) => {
-        const aiFunction = async (input: any) => {
+        const aiFunction = async (input: unknown) => {
           if (!AI_TESTING_CONFIG.testApiKey) {
             return AITestMockResponses.mockLessonPlan(scenario);
           }
@@ -58,7 +59,7 @@ describe('Lesson Plan AI Snapshot Tests', () => {
     test.each(scenarios)(
       'should generate consistent lesson plan for $name',
       async (scenario) => {
-        const aiFunction = async (input: any) => {
+        const aiFunction = async (input: unknown) => {
           if (!AI_TESTING_CONFIG.testApiKey) {
             return AITestMockResponses.mockLessonPlan(scenario);
           }
@@ -85,7 +86,7 @@ describe('Lesson Plan AI Snapshot Tests', () => {
     test.each(scenarios)(
       'should generate consistent lesson plan for $name',
       async (scenario) => {
-        const aiFunction = async (input: any) => {
+        const aiFunction = async (input: unknown) => {
           if (!AI_TESTING_CONFIG.testApiKey) {
             return AITestMockResponses.mockLessonPlan(scenario);
           }

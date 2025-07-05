@@ -109,9 +109,9 @@ router.post(
         filename: req.file.originalname,
       });
     } catch (_error) {
-      console.error('Upload error:', error);
+      logger.error('Upload error:', _error);
       res.status(500).json({
-        error: error instanceof Error ? error.message : 'Failed to process upload',
+        error: _error instanceof Error ? _error.message : 'Failed to process upload',
       });
     }
   },
@@ -145,9 +145,9 @@ router.post('/parse', async (req: Request, res: Response) => {
       errors: parseResult.errors || [],
     });
   } catch (_error) {
-    console.error('Parse error:', error);
+    logger.error('Parse error:', _error);
     res.status(500).json({
-      error: error instanceof Error ? error.message : 'Failed to parse file',
+      error: _error instanceof Error ? _error.message : 'Failed to parse file',
     });
   }
 });
@@ -178,9 +178,9 @@ router.post('/import-preset', async (req: Request, res: Response) => {
       subjects: presetResult.subjects,
     });
   } catch (_error) {
-    console.error('Preset load error:', error);
+    logger.error('Preset load error:', _error);
     res.status(500).json({
-      error: error instanceof Error ? error.message : 'Failed to load preset curriculum',
+      error: _error instanceof Error ? _error.message : 'Failed to load preset curriculum',
     });
   }
 });
@@ -206,9 +206,9 @@ router.get('/:id/status', async (req: Request, res: Response) => {
 
     res.json(status);
   } catch (_error) {
-    console.error('Status check error:', error);
+    logger.error('Status check error:', _error);
     res.status(500).json({
-      error: error instanceof Error ? error.message : 'Failed to get import status',
+      error: _error instanceof Error ? _error.message : 'Failed to get import status',
     });
   }
 });
@@ -248,9 +248,9 @@ router.post('/:id/confirm', async (req: Request, res: Response) => {
       created: result.created,
     });
   } catch (_error) {
-    console.error('Confirm import error:', error);
+    logger.error('Confirm import error:', _error);
     res.status(500).json({
-      error: error instanceof Error ? error.message : 'Failed to confirm import',
+      error: _error instanceof Error ? _error.message : 'Failed to confirm import',
     });
   }
 });
@@ -271,9 +271,9 @@ router.get('/history', async (req: Request, res: Response) => {
 
     res.json(history);
   } catch (_error) {
-    console.error('History error:', error);
+    logger.error('History error:', _error);
     res.status(500).json({
-      error: error instanceof Error ? error.message : 'Failed to get import history',
+      error: _error instanceof Error ? _error.message : 'Failed to get import history',
     });
   }
 });
@@ -299,9 +299,9 @@ router.delete('/:id', async (req: Request, res: Response) => {
 
     res.json({ message: 'Import deleted successfully' });
   } catch (_error) {
-    console.error('Delete import error:', error);
+    logger.error('Delete import error:', _error);
     res.status(500).json({
-      error: error instanceof Error ? error.message : 'Failed to delete import',
+      error: _error instanceof Error ? _error.message : 'Failed to delete import',
     });
   }
 });
@@ -330,7 +330,7 @@ router.post('/start', async (req: Request, res: Response) => {
 
     res.json({ importId, message: 'Import session started successfully' });
   } catch (_error) {
-    logger.error({ error }, 'Failed to start curriculum import');
+    logger.error({ error: _error }, 'Failed to start curriculum import');
     res.status(500).json({ error: 'Failed to start import session' });
   }
 });
@@ -347,7 +347,7 @@ router.get('/:importId/progress', async (req: Request, res: Response) => {
 
     res.json(progress);
   } catch (_error) {
-    logger.error({ error }, 'Failed to get import progress');
+    logger.error({ error: _error }, 'Failed to get import progress');
     res.status(500).json({ error: 'Failed to get progress' });
   }
 });
@@ -364,7 +364,7 @@ router.post('/:importId/cancel', async (req: Request, res: Response) => {
 
     res.json({ message: 'Import cancelled successfully' });
   } catch (_error) {
-    logger.error({ error }, 'Failed to cancel import');
+    logger.error({ error: _error }, 'Failed to cancel import');
     res.status(500).json({ error: 'Failed to cancel import' });
   }
 });
@@ -404,9 +404,9 @@ router.post('/:id', async (req: Request, res: Response) => {
       subjects: result.subjects,
     });
   } catch (_error) {
-    console.error('Finalize import error:', error);
+    logger.error('Finalize import error:', _error);
     res.status(500).json({
-      error: error instanceof Error ? error.message : 'Failed to finalize import',
+      error: _error instanceof Error ? _error.message : 'Failed to finalize import',
     });
   }
 });

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { describe, it, expect, beforeAll, afterAll, beforeEach } from '@jest/globals';
 import request from 'supertest';
 import { app } from '../../src/index';
@@ -226,7 +227,7 @@ describe('Enhanced Sub Plan API', () => {
       });
 
       expect(record).toBeDefined();
-      expect((record?.content as any)?.emailedTo).toBe('substitute@school.com');
+      expect((record?.content as unknown)?.emailedTo).toBe('substitute@school.com');
       expect(record?.notes).toBe('Watch for peanut allergies');
     });
   });

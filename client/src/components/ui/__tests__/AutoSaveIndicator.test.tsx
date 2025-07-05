@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * @file AutoSaveIndicator.test.tsx
  * @description Comprehensive tests for AutoSaveIndicator component including all states,

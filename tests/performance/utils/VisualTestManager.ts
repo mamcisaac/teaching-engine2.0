@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Visual Test Manager
  * Manages visual regression testing, screenshot comparison, and reporting
@@ -143,7 +144,7 @@ export class VisualTestManager {
       const baselineInfoPath = path.join(this.baselineDir, 'info.json');
       const data = await fs.readFile(baselineInfoPath, 'utf-8');
       return JSON.parse(data);
-    } catch (error) {
+    } catch (_error) {
       return {
         created: new Date().toISOString(),
         updated: new Date().toISOString(),

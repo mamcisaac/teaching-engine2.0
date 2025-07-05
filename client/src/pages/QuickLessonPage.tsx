@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 import { useCreateETFOLessonPlan } from '../hooks/useETFOPlanning';
 import { OnboardingTooltip } from '../components/onboarding';
 import { useShowContextualHints } from '../hooks/useFeatureTutorial';
-
+import logger from '../utils/logger';
 export default function QuickLessonPage() {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -33,7 +33,7 @@ export default function QuickLessonPage() {
       toast.success('Quick lesson created successfully!');
       navigate('/planner/etfo-lessons');
     } catch (_error) {
-      console.error('Failed to create quick lesson:', error);
+      logger.error('Failed to create quick lesson:', error);
       toast.error('Failed to create lesson. Please try again.');
     } finally {
       setIsSubmitting(false);

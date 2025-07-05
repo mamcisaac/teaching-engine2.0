@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Real Database Authentication Integration Tests
  *
@@ -11,14 +12,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import request from 'supertest';
 import { Express } from 'express';
-import {
-  authenticate,
-  generateAuthToken,
-  hashPassword,
-  validatePassword,
-  verifyToken,
-  checkPermissions,
-} from '../../src/services/authService';
+import { AuthService } from '../../src/services/auth/authService';
 
 describe('Real Database Authentication Integration Tests', () => {
   let prisma: PrismaClient;
@@ -147,7 +141,7 @@ describe('Real Database Authentication Integration Tests', () => {
       expect(token.split('.')).toHaveLength(3); // JWT format: header.payload.signature
 
       // Verify token can be decoded
-      const decoded = jwt.decode(token) as any;
+      const decoded = jwt.decode(token) as unknown;
       expect(decoded.userId).toBe(userId);
       expect(decoded.email).toBe(email);
       expect(decoded.exp).toBeTruthy();
@@ -198,7 +192,7 @@ describe('Real Database Authentication Integration Tests', () => {
   });
 
   describe('Real Database User Authentication', () => {
-    let createdUser: any;
+    let createdUser: unknown;
 
     beforeEach(async () => {
       // Create real user in database
@@ -225,7 +219,7 @@ describe('Real Database Authentication Integration Tests', () => {
       expect(result.user.id).toBe(createdUser.id.toString());
 
       // Verify password not returned
-      expect((result.user as any).password).toBeUndefined();
+      expect((result.user as unknown).password).toBeUndefined();
 
       // Verify token is valid
       const verified = await verifyToken(result.accessToken);
@@ -251,7 +245,7 @@ describe('Real Database Authentication Integration Tests', () => {
       try {
         const result = await authenticate(testUser.email.toUpperCase(), testUser.password, prisma);
         expect(result.user.email).toBe(testUser.email);
-      } catch (error) {
+      } catch (_error) {
         // If case-sensitive lookup fails, that's also valid behavior
         expect(error).toHaveProperty('message', 'Invalid credentials');
       }
@@ -424,7 +418,7 @@ describe('Real Database Authentication Integration Tests', () => {
 
   describe('Real API Authentication Integration', () => {
     let authToken: string;
-    let createdUser: any;
+    let createdUser: unknown;
 
     beforeEach(async () => {
       // Create real user in database

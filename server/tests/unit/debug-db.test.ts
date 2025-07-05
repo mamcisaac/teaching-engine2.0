@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Simple database connectivity test for debugging
  */
@@ -51,7 +52,7 @@ describe('Database Debug Tests', () => {
       expect(user.id).toBeTruthy();
       expect(user.email).toBe(userData.email);
       expect(user.name).toBe(userData.name);
-    } catch (error) {
+    } catch (_error) {
       console.error('Error creating user:', error);
       throw error;
     }

@@ -2,11 +2,11 @@
  * Centralized authentication service for managing tokens and auth state
  */
 
-import { api } from '../api/legacy/api';
+import { apiClient } from '../api/core/client';
 
 // Import User type from shared types
 import type { User } from '../types';
-
+import logger from '../utils/logger';
 export interface AuthTokens {
   accessToken: string;
   refreshToken?: string;
@@ -17,6 +17,7 @@ export interface LoginResponse {
   user: User;
   tokens?: AuthTokens;
   token?: string; // Legacy support
+  accessToken?: string; // Current backend format
 }
 
 class AuthService {
@@ -131,7 +132,7 @@ class AuthService {
    */
   async login(email: string, password: string): Promise<LoginResponse> {
     try {
-      const response = await api.post('/api/login', { email, password });
+      const response = await apiClient.post('/api/auth/login', { email, password });
       const data: LoginResponse = response.data;
 
       if (data.user) {
@@ -139,6 +140,9 @@ class AuthService {
 
         if (data.tokens) {
           this.setTokens(data.tokens);
+        } else if (data.accessToken) {
+          // Current backend format
+          this.setLegacyToken(data.accessToken);
         } else if (data.token) {
           // Legacy token format
           this.setLegacyToken(data.token);
@@ -146,7 +150,7 @@ class AuthService {
       }
 
       return data;
-    } catch (_error) {
+    } catch (error) {
       this.clearTokens();
       throw error;
     }
@@ -157,15 +161,15 @@ class AuthService {
    */
   async logout(): Promise<void> {
     try {
-      await api.post(
-        '/api/logout',
+      await apiClient.post(
+        '/api/auth/logout',
         {},
         {
           headers: this.getAuthHeaders(),
         },
       );
-    } catch (_error) {
-      console.warn('Logout request failed:', error);
+    } catch (error) {
+      logger.warn('Logout request failed:', error);
     } finally {
       this.clearTokens();
     }
@@ -223,8 +227,8 @@ class AuthService {
       }
 
       throw new Error('Invalid refresh response');
-    } catch (_error) {
-      console.error('Token refresh failed:', error);
+    } catch (error) {
+      logger.error('Token refresh failed:', error);
       this.clearTokens();
       return false;
     }
@@ -264,8 +268,8 @@ class AuthService {
       const userData = await response.json();
       this.setUser(userData);
       return userData;
-    } catch (_error) {
-      console.error('Auth verification failed:', error);
+    } catch (error) {
+      logger.error('Auth verification failed:', error);
 
       // Try token refresh on network errors
       if (this.getRefreshToken()) {
@@ -275,7 +279,7 @@ class AuthService {
           try {
             return await this.verifyAuth();
           } catch (retryError) {
-            console.error('Auth verification retry failed:', retryError);
+            logger.error('Auth verification retry failed:', retryError);
           }
         }
       }

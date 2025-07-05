@@ -1,3 +1,4 @@
+import logger from './logger';
 // Service Worker Registration and Management
 
 interface ServiceWorkerRegistrationWithSync extends ServiceWorkerRegistration {
@@ -38,7 +39,7 @@ export function register(config?: ServiceWorkerConfig) {
         // Add some additional logging to localhost
         navigator.serviceWorker.ready.then(() => {
           if (process.env.NODE_ENV === 'development') {
-            console.info('This web app is being served cache-first by a service worker.');
+            logger.info('This web app is being served cache-first by a service worker.');
           }
         });
       } else {
@@ -50,7 +51,7 @@ export function register(config?: ServiceWorkerConfig) {
     // Listen for online/offline events
     window.addEventListener('online', () => {
       if (process.env.NODE_ENV === 'development') {
-        console.info('Back online');
+        logger.info('Back online');
       }
       config?.onOnline?.();
 
@@ -64,7 +65,7 @@ export function register(config?: ServiceWorkerConfig) {
 
     window.addEventListener('offline', () => {
       if (process.env.NODE_ENV === 'development') {
-        console.info('Gone offline');
+        logger.info('Gone offline');
       }
       config?.onOffline?.();
     });
@@ -87,7 +88,7 @@ function registerValidSW(swUrl: string, config?: ServiceWorkerConfig) {
               // but the previous service worker will still serve the older
               // content until all client tabs are closed.
               if (process.env.NODE_ENV === 'development') {
-                console.info('New content is available and will be used when all tabs are closed.');
+                logger.info('New content is available and will be used when all tabs are closed.');
               }
 
               // Execute callback
@@ -97,7 +98,7 @@ function registerValidSW(swUrl: string, config?: ServiceWorkerConfig) {
             } else {
               // At this point, everything has been precached.
               if (process.env.NODE_ENV === 'development') {
-                console.info('Content is cached for offline use.');
+                logger.info('Content is cached for offline use.');
               }
 
               // Execute callback
@@ -110,7 +111,7 @@ function registerValidSW(swUrl: string, config?: ServiceWorkerConfig) {
       };
     })
     .catch((error) => {
-      console.error('Error during service worker registration:', error);
+      logger.error('Error during service worker registration:', error);
     });
 }
 
@@ -139,7 +140,7 @@ function checkValidServiceWorker(swUrl: string, config?: ServiceWorkerConfig) {
     })
     .catch(() => {
       if (process.env.NODE_ENV === 'development') {
-        console.info('No internet connection found. App is running in offline mode.');
+        logger.info('No internet connection found. App is running in offline mode.');
       }
     });
 }
@@ -151,7 +152,7 @@ export function unregister() {
         registration.unregister();
       })
       .catch((error) => {
-        console.error(error.message);
+        logger.error(error.message);
       });
   }
 }
@@ -168,8 +169,8 @@ export async function requestBackgroundSync(tag: string): Promise<boolean> {
       const registration = await navigator.serviceWorker.ready;
       await (registration as ServiceWorkerRegistrationWithSync).sync?.register(tag);
       return true;
-    } catch (_error) {
-      console.error('Background sync registration failed:', error);
+    } catch (error) {
+      logger.error('Background sync registration failed:', error);
       return false;
     }
   }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Memory Usage Tracking and Alerts
  * Comprehensive memory monitoring for both frontend and backend
@@ -176,10 +177,10 @@ class MemoryTrackingSystem {
       timestamp: new Date().toISOString(),
       summary: {
         totalSessions: this.sessions.length,
-        leaksDetected: this.sessions.filter((s) => s.leakDetected).length,
+        leaksDetected: this.sessions.filter((_s) => s.leakDetected).length,
         totalAlerts: this.alerts.length,
         criticalAlerts: this.alerts.filter((a) => a.severity === 'critical').length,
-        peakUsageOverall: Math.max(...this.sessions.map((s) => s.peakUsage)) / 1024 / 1024,
+        peakUsageOverall: Math.max(...this.sessions.map((_s) => s.peakUsage)) / 1024 / 1024,
       },
       sessions: this.sessions,
       alerts: this.alerts,
@@ -203,7 +204,7 @@ class MemoryTrackingSystem {
 
   private generateMemoryRecommendations(): string[] {
     const recommendations: string[] = [];
-    const leakSessions = this.sessions.filter((s) => s.leakDetected);
+    const leakSessions = this.sessions.filter((_s) => s.leakDetected);
     const criticalAlerts = this.alerts.filter((a) => a.severity === 'critical');
 
     if (leakSessions.length > 0) {
@@ -219,8 +220,8 @@ class MemoryTrackingSystem {
     }
 
     // Component-specific recommendations
-    const frontendSessions = this.sessions.filter((s) => s.component === 'frontend');
-    const backendSessions = this.sessions.filter((s) => s.component === 'backend');
+    const frontendSessions = this.sessions.filter((_s) => s.component === 'frontend');
+    const backendSessions = this.sessions.filter((_s) => s.component === 'backend');
 
     if (frontendSessions.some((s) => s.peakUsage > 200 * 1024 * 1024)) {
       recommendations.push(
@@ -363,7 +364,7 @@ test.describe('Memory Usage Tracking', () => {
         await request.get(`http://localhost:3000${endpoint.path}`, {
           headers: { Authorization: 'Bearer mock-token' },
         });
-      } catch (error) {
+      } catch (_error) {
         // Continue on error
       }
 
@@ -412,7 +413,7 @@ test.describe('Memory Usage Tracking', () => {
         data: largeCurriculumData,
         headers: { Authorization: 'Bearer mock-token' },
       });
-    } catch (error) {
+    } catch (_error) {
       // Test is about memory usage, not functionality
     }
 
@@ -455,7 +456,7 @@ test.describe('Memory Usage Tracking', () => {
           },
           headers: { Authorization: 'Bearer mock-token' },
         });
-      } catch (error) {
+      } catch (_error) {
         // Test is about memory usage, not functionality
       }
 

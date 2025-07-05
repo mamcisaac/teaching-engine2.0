@@ -123,7 +123,15 @@ export const mockUser = createMockUser();
 export const mockLessonPlan = createMockLessonPlan();
 export const mockUnitPlan = createMockUnitPlan();
 
-// Mock API responses
+/**
+ * @deprecated Use MSW (Mock Service Worker) for API mocking
+ * 
+ * These mock responses violate TDD principles.
+ * Instead:
+ * 1. Use MSW to mock at the network level
+ * 2. Test with real API calls in integration tests
+ * 3. Keep API mocking close to test files, not global
+ */
 export const mockApiResponses = {
   lessonPlans: {
     getAll: [
@@ -186,11 +194,23 @@ export const createTestQueryClient = () => {
   return client;
 };
 
-// Mock AuthContext provider for testing
+/**
+ * @deprecated Use real AuthProvider from contexts/AuthContext
+ * 
+ * MockAuthProvider violates TDD principles.
+ * Tests should:
+ * 1. Use the real AuthProvider with test data
+ * 2. Mock API calls explicitly when needed
+ * 3. Test authentication flows with real implementations
+ */
 export const MockAuthProvider: React.FC<{
   children: React.ReactNode;
   value?: Partial<AuthContextValue>;
 }> = ({ children, value = {} }) => {
+  console.warn(
+    'MockAuthProvider is deprecated. Use real AuthProvider with test data instead.'
+  );
+  
   const defaultAuthValue: AuthContextValue = {
     user: null,
     login: vi.fn(),
@@ -235,6 +255,11 @@ const AllProviders: React.FC<{
 
 /**
  * Custom render function that includes providers commonly used in the app
+ * 
+ * For TDD compliance:
+ * - Consider using real providers instead of mocked ones
+ * - Mock API calls at the network level (MSW) instead of context level
+ * - Test complete user flows with real implementations
  */
 export const renderWithProviders = (ui: ReactElement, options: CustomRenderOptions = {}) => {
   const {

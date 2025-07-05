@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Mock setup for unit tests only
  * This file sets up all mocks needed for unit testing without database connections

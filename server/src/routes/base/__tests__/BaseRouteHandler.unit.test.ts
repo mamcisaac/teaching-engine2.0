@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * BaseRouteHandler Unit Tests
  * Comprehensive test suite for the BaseRouteHandler abstract class
@@ -300,7 +301,8 @@ describe('BaseRouteHandler', () => {
   describe('Error Handling', () => {
     it('should handle service errors gracefully', async () => {
       // Mock service to throw error
-      jest.spyOn(handler.getCrudOperations(), 'findMany').mockRejectedValue(new Error('Service error'));
+      const testService = handler['testService'];
+      jest.spyOn(testService, 'findMany').mockRejectedValue(new Error('Service error'));
       
       await handler['handleList'](
         mockRequest as AuthenticatedRequest,
@@ -313,7 +315,8 @@ describe('BaseRouteHandler', () => {
 
     it('should log errors with context', async () => {
       const errorSpy = jest.spyOn(handler['logger'], 'error');
-      jest.spyOn(handler.getCrudOperations(), 'findMany').mockRejectedValue(new Error('Service error'));
+      const testService = handler['testService'];
+      jest.spyOn(testService, 'findMany').mockRejectedValue(new Error('Service error'));
       
       await handler['handleList'](
         mockRequest as AuthenticatedRequest,

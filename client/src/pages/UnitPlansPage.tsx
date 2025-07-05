@@ -1,3 +1,4 @@
+import { useCurriculumExpectations } from '../api/domains/curriculum';
 import React, { useState, lazy, Suspense } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
@@ -9,7 +10,6 @@ import {
   useUpdateUnitPlan,
   UnitPlan,
 } from '../hooks/useETFOPlanning';
-import { useCurriculumExpectations } from '../api/legacy/api';
 import { useUnitPlanForm } from '../hooks/useUnitPlanForm';
 // import { UnitPlanService } from '../services/unitPlanService';
 import { useTemplates, useApplyTemplate } from '../hooks/useTemplates';
@@ -17,6 +17,7 @@ import { PlanTemplate, isUnitPlanTemplate, UnitPlanContent } from '../types/temp
 import { PlanningErrorBoundary } from '../components/ErrorBoundaries';
 import { LoadingSpinner, EmptyState } from '../components/LoadingStates';
 import { UnitPlanCard } from '../components/unitPlans/UnitPlanCard';
+import { OptimizedUnitPlanCard, VirtualizedList, LoadingSkeleton } from '../components/performance';
 import { UnitPlanOverviewTab } from '../components/unitPlans/UnitPlanOverviewTab';
 import { UnitPlanPlanningTab } from '../components/unitPlans/UnitPlanPlanningTab';
 import Dialog from '../components/Dialog';
@@ -50,7 +51,7 @@ import { BlankTemplateQuickActions } from '../components/printing/BlankTemplateP
 import { SafeHtmlRenderer } from '../utils/sanitization';
 import RichTextEditor from '../components/RichTextEditor';
 import { PlanAccessTracker } from '../components/planning/PlanAccessTracker';
-
+import logger from '../utils/logger';
 // Extended UnitPlan type with all ETFO fields
 interface ExtendedUnitPlan extends UnitPlan {
   crossCurricularConnections?: string;
@@ -143,7 +144,7 @@ export default function UnitPlansPage() {
 
     const { isValid, errors } = validateForm();
     if (!isValid) {
-      console.error('Form validation errors:', errors);
+      logger.error('Form validation errors:', errors);
       return;
     }
 
@@ -281,7 +282,7 @@ export default function UnitPlansPage() {
       setSelectedTemplate(null);
       setIsCreateModalOpen(true);
     } catch (_error) {
-      console.error('Failed to apply template:', error);
+      logger.error('Failed to apply template:', error);
     }
   };
 
@@ -289,7 +290,15 @@ export default function UnitPlansPage() {
     return (
       <PlanningErrorBoundary>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <LoadingSpinner size="lg" message="Loading unit plans..." />
+          <div className="mb-8">
+            <LoadingSkeleton variant="text" lines={2} className="mb-4" />
+            <LoadingSkeleton width="200px" height="40px" />
+          </div>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <LoadingSkeleton key={index} variant="card" />
+            ))}
+          </div>
         </div>
       </PlanningErrorBoundary>
     );
@@ -688,7 +697,7 @@ export default function UnitPlansPage() {
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {unitPlans.map((unit) => (
-              <UnitPlanCard key={unit.id} unitPlan={unit} onEdit={handleEditUnit} />
+              <OptimizedUnitPlanCard key={unit.id} unitPlan={unit} onEdit={handleEditUnit} />
             ))}
           </div>
         )}
@@ -824,7 +833,7 @@ export default function UnitPlansPage() {
                               } else {
                                 updateField(
                                   'learningSkills',
-                                  formData.learningSkills.filter((s) => s !== skill),
+                                  formData.learningSkills.filter((_s) => s !== skill),
                                 );
                               }
                             }}

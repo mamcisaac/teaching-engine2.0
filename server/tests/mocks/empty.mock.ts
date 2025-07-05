@@ -1,2 +1,3 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Empty mock for heavy dependencies that aren't needed in unit tests
 export default {};

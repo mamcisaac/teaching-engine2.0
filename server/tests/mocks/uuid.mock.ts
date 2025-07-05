@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * UUID Mock for Jest Tests
  * Provides a mockable UUID v4 function for predictable test behavior

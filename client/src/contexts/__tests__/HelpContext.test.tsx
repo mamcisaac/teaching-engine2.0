@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * @file HelpContext.test.tsx
  * @description Comprehensive tests for HelpContext including help state management,

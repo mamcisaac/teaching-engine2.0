@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { describe, it, expect, beforeAll, afterAll } from '@jest/globals';
 import { app } from '../../src/index';
 import fs from 'fs/promises';
@@ -39,7 +40,7 @@ describe('backup route', () => {
       if (files.length === 0) {
         await fs.rmdir(uploads);
       }
-    } catch (error) {
+    } catch (_error) {
       // Directory might not exist or have other files
     }
   });

@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { describe, it, expect, beforeAll, afterAll, beforeEach } from '@jest/globals';
 import request from 'supertest';
 import bcrypt from 'bcryptjs';
 import { resetRateLimiterState } from '../../src/middleware/rateLimiter';
 
-let app: any;
-let prisma: any;
+let app: unknown;
+let prisma: unknown;
 
 describe('Security Integration Tests', () => {
   beforeAll(async () => {

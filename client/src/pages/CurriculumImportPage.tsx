@@ -1,3 +1,4 @@
+import { apiClient } from '../api/core/client';
 import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
@@ -19,8 +20,7 @@ import { Label } from '@/components/ui/Label';
 import { Textarea } from '@/components/ui/Textarea';
 import { Upload, CheckCircle, AlertCircle, Sparkles, Edit2, Trash2 } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
-import { api } from '../api/legacy/api';
-
+import logger from '../utils/logger';
 interface ParsedExpectation {
   code: string;
   type: 'overall' | 'specific';
@@ -66,7 +66,7 @@ export default function CurriculumImportPage() {
         formData.append('file', file);
 
         // Upload file
-        const uploadResponse = await api.post('/api/curriculum/import/upload', formData, {
+        const uploadResponse = await apiClient.post('/api/curriculum/import/upload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -94,7 +94,7 @@ export default function CurriculumImportPage() {
           });
         }, 500);
 
-        const parseResponse = await api.post('/api/curriculum/import/parse', {
+        const parseResponse = await apiClient.post('/api/curriculum/import/parse', {
           sessionId,
           useAiExtraction: true,
         });
@@ -117,7 +117,7 @@ export default function CurriculumImportPage() {
           description: `Parsed ${parseResponse.data.subjects?.length || 0} subjects from ${file.name}`,
         });
       } catch (_error) {
-        console.error('Import error:', error);
+        logger.error('Import error:', error);
         setImportSession((prev) =>
           prev
             ? {
@@ -147,7 +147,7 @@ export default function CurriculumImportPage() {
 
     setIsUploading(true);
     try {
-      const response = await api.post('/api/curriculum/import/import-preset', {
+      const response = await apiClient.post('/api/curriculum/import/import-preset', {
         presetId,
       });
 
@@ -233,7 +233,7 @@ export default function CurriculumImportPage() {
     if (!importSession) return;
 
     try {
-      await api.post(`/api/curriculum/import/${importSession.id}`);
+      await apiClient.post(`/api/curriculum/import/${importSession.id}`);
 
       toast({
         title: 'Success',

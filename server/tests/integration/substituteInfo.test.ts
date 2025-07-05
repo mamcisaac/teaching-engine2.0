@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * Substitute Information Integration Tests
  * 
@@ -13,9 +14,9 @@ import { getTestPrismaClient, createTestData } from '../jest.setup';
 const auth = authRequest(app);
 
 describe('Substitute Information API', () => {
-  let testSubject: any;
-  let testMilestone: any;
-  let testUser: any;
+  let testSubject: unknown;
+  let testMilestone: unknown;
+  let testUser: unknown;
 
   beforeAll(async () => {
     await auth.setup();
@@ -195,7 +196,7 @@ describe('Substitute Information API', () => {
       expect(response.status).toBe(200);
       expect(response.body.schedule.length).toBeGreaterThan(0);
       
-      const mathLesson = response.body.schedule.find((item: any) => 
+      const mathLesson = response.body.schedule.find((item: unknown) => 
         item.subject === 'Mathematics'
       );
       expect(mathLesson).toBeDefined();
@@ -312,7 +313,7 @@ describe('Substitute Information API', () => {
       expect(Array.isArray(response.body)).toBe(true);
       
       // All plans should belong to current user
-      response.body.forEach((plan: any) => {
+      response.body.forEach((plan: unknown) => {
         expect(plan.userId).toBe(auth.userId);
       });
     });

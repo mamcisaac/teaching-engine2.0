@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { test, expect } from '@playwright/test';
 import { loginAsTestUser, DEFAULT_TEST_USER, initApiContext } from './helpers/unified-auth';
 
@@ -43,7 +44,7 @@ test.describe('Frontend Mock Validation', () => {
           itemCount: data.length,
           sampleItem: data.length > 0 ? data[0] : null,
         };
-      } catch (error) {
+      } catch (_error) {
         return { error: error.message };
       }
     });
@@ -104,7 +105,7 @@ test.describe('Frontend Mock Validation', () => {
             }
           })(),
         };
-      } catch (error) {
+      } catch (_error) {
         return { error: error.message };
       }
     });
@@ -142,7 +143,7 @@ test.describe('Frontend Mock Validation', () => {
               t.id && t.name && t.description && typeof t.id === 'string',
           ),
         };
-      } catch (error) {
+      } catch (_error) {
         return { error: error.message };
       }
     });
@@ -218,7 +219,7 @@ test.describe('Frontend Mock Validation', () => {
           ),
           structure: Object.keys(report).sort(),
         };
-      } catch (error) {
+      } catch (_error) {
         return { error: error.message };
       }
     });
@@ -256,7 +257,7 @@ test.describe('Frontend Mock Validation', () => {
           structure: Object.keys(data).sort(),
           summaryStructure: data.summary ? Object.keys(data.summary).sort() : [],
         };
-      } catch (error) {
+      } catch (_error) {
         return { error: error.message };
       }
     });
@@ -303,7 +304,7 @@ test.describe('Frontend Mock Validation', () => {
             'failed' in data.summary,
           resultsMatchSummary: data.results.length === data.summary.total,
         };
-      } catch (error) {
+      } catch (_error) {
         return { error: error.message };
       }
     });
@@ -340,7 +341,7 @@ test.describe('Frontend Mock Validation', () => {
           errorIsString: typeof data.error === 'string',
           structure: Object.keys(data).sort(),
         };
-      } catch (error) {
+      } catch (_error) {
         return { error: error.message };
       }
     });
@@ -364,7 +365,7 @@ test.describe('Frontend Mock Validation', () => {
           hasError: 'error' in data,
           errorIsString: typeof data.error === 'string',
         };
-      } catch (error) {
+      } catch (_error) {
         return { error: error.message };
       }
     });
@@ -384,7 +385,7 @@ test.describe('Frontend Mock Validation', () => {
           status: response.status,
           hasError: 'error' in data,
         };
-      } catch (error) {
+      } catch (_error) {
         return { error: error.message };
       }
     });
@@ -443,7 +444,7 @@ test.describe('Frontend Mock Validation', () => {
             }
           })(),
         };
-      } catch (error) {
+      } catch (_error) {
         return { error: error.message };
       }
     });
@@ -482,7 +483,7 @@ test.describe('Frontend Mock Validation', () => {
           returnsArray: Array.isArray(data),
           limitRespected: data.length <= 5, // If pagination works, should respect limit
         };
-      } catch (error) {
+      } catch (_error) {
         return { error: error.message };
       }
     });
@@ -524,7 +525,7 @@ test.describe('Frontend Mock Validation', () => {
             status: response.status,
             success: response.ok,
           });
-        } catch (error) {
+        } catch (_error) {
           tests.push({
             endpoint,
             error: error.message,

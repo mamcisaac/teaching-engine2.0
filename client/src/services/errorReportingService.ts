@@ -1,0 +1,579 @@
+import * as Sentry from '@sentry/react';
+import { BrowserTracing } from '@sentry/tracing';
+import { Replay } from '@sentry/replay';
+import { ErrorInfo } from 'react';
+
+interface UserContext {
+  id: string;
+  email?: string;
+  name?: string;
+  role?: string;
+  organizationId?: string;
+}
+
+interface ErrorCategory {
+  category: string;
+  severity: Sentry.SeverityLevel;
+  tags: Record<string, string>;
+}
+
+interface BreadcrumbData {
+  message: string;
+  category?: string;
+  level?: Sentry.SeverityLevel;
+  data?: Record<string, any>;
+}
+
+export class ErrorReportingService {
+  private enabled: boolean = false;
+  private mockMode: boolean = false;
+  private sensitiveFields = [
+    'password',
+    'token',
+    'apiKey',
+    'api_key',
+    'secret',
+    'authorization',
+    'creditCard',
+    'credit_card',
+    'ssn',
+    'socialSecurityNumber',
+    'bankAccount',
+    'bank_account',
+    'pin',
+    'cvv',
+    'cvc',
+    'securityCode',
+    'security_code',
+    'accessToken',
+    'access_token',
+    'refreshToken',
+    'refresh_token',
+    'privateKey',
+    'private_key',
+    'sessionId',
+    'session_id',
+    'cookie',
+    'phone',
+    'phoneNumber',
+    'phone_number',
+    'address',
+    'streetAddress',
+    'street_address',
+    'zipCode',
+    'zip_code',
+    'postalCode',
+    'postal_code',
+  ];
+
+  private piiPatterns = [
+    /\b\d{3}-\d{2}-\d{4}\b/g, // SSN
+    /\b\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}\b/g, // Credit card
+    /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g, // Email
+    /\b\d{3}[-.\s]?\d{3}[-.\s]?\d{4}\b/g, // Phone number
+    /Bearer\s+[A-Za-z0-9\-._~+\/]+=*/g, // Bearer tokens
+  ];
+
+  constructor() {
+    this.mockMode = import.meta.env.VITE_SENTRY_MOCK === 'true';
+  }
+
+  init(): void {
+    if (this.mockMode) {
+      console.info('Using mock error reporting service');
+      this.enabled = true;
+      return;
+    }
+
+    if (import.meta.env.MODE === 'development' || import.meta.env.MODE === 'test') {
+      console.info('Error reporting disabled in development');
+      return;
+    }
+
+    const dsn = import.meta.env.VITE_SENTRY_DSN;
+    if (!dsn) {
+      console.warn('VITE_SENTRY_DSN not configured, error reporting disabled');
+      return;
+    }
+
+    try {
+      Sentry.init({
+        dsn,
+        environment: import.meta.env.MODE || 'production',
+        integrations: [
+          new BrowserTracing({
+            // Set sampling rates
+            tracingOrigins: ['localhost', window.location.hostname, /^\//],
+            // Performance Monitoring
+            routingInstrumentation: Sentry.reactRouterV6Instrumentation(
+              React.useEffect,
+              useLocation,
+              useNavigationType,
+              createRoutesFromChildren,
+              matchRoutes
+            ),
+          }),
+          new Replay({
+            // Mask all text and inputs for privacy
+            maskAllText: true,
+            maskAllInputs: true,
+            // Block certain CSS classes from replay
+            blockClass: 'sentry-block',
+            // Ignore certain interactions
+            ignoreClass: 'sentry-ignore',
+            // Sample rates
+            sessionSampleRate: 0.1,
+            errorSampleRate: 1.0,
+          }),
+        ],
+        tracesSampleRate: import.meta.env.MODE === 'production' ? 0.1 : 1.0,
+        replaysSessionSampleRate: 0.1,
+        replaysOnErrorSampleRate: 1.0,
+        beforeSend: (event, hint) => this.beforeSend(event, hint),
+        beforeBreadcrumb: (breadcrumb, hint) => this.beforeBreadcrumb(breadcrumb, hint),
+        // Ignore specific errors
+        ignoreErrors: [
+          'ResizeObserver loop limit exceeded',
+          'ResizeObserver loop completed with undelivered notifications',
+          'Non-Error promise rejection captured',
+          /^No mounted component/,
+          /^Script error/,
+        ],
+        // Filter transactions
+        beforeTransaction: (transaction) => {
+          // Don't send transactions for static assets
+          if (transaction.transaction?.includes('/static/') || 
+              transaction.transaction?.includes('/assets/')) {
+            return null;
+          }
+          return transaction;
+        },
+      });
+
+      this.enabled = true;
+      console.info('Error reporting service initialized');
+    } catch (error) {
+      console.error('Failed to initialize error reporting:', error);
+    }
+  }
+
+  captureError(error: Error | unknown, context?: Record<string, any>, errorInfo?: ErrorInfo): void {
+    if (!this.enabled) {
+      console.debug('Error reporting disabled, skipping:', { error, context });
+      return;
+    }
+
+    if (this.mockMode) {
+      console.info('[MOCK] Would capture error:', {
+        error: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error ? error.stack : undefined,
+        context: this.sanitizeData(context || {}),
+        errorInfo: errorInfo?.componentStack,
+      });
+      return;
+    }
+
+    const errorCategory = this.categorizeError(error);
+    const sanitizedContext = this.sanitizeData(context || {});
+
+    Sentry.withScope((scope) => {
+      // Set error category and severity
+      scope.setLevel(errorCategory.severity);
+      scope.setTags(errorCategory.tags);
+      scope.setContext('category', { type: errorCategory.category });
+
+      // Add custom context
+      if (sanitizedContext) {
+        scope.setContext('custom', sanitizedContext);
+      }
+
+      // Add React error info if available
+      if (errorInfo) {
+        scope.setContext('react', {
+          componentStack: errorInfo.componentStack,
+        });
+      }
+
+      // Capture the exception
+      Sentry.captureException(error);
+    });
+  }
+
+  captureMessage(message: string, level: Sentry.SeverityLevel = 'info'): void {
+    if (!this.enabled) {
+      return;
+    }
+
+    if (this.mockMode) {
+      console.info('[MOCK] Would capture message:', { message, level });
+      return;
+    }
+
+    Sentry.captureMessage(message, level);
+  }
+
+  setUserContext(user: UserContext | null): void {
+    if (!this.enabled) {
+      return;
+    }
+
+    if (this.mockMode) {
+      console.info('[MOCK] Would set user context:', user);
+      return;
+    }
+
+    if (!user) {
+      Sentry.configureScope((scope) => scope.clear());
+      return;
+    }
+
+    const sanitizedUser = {
+      id: String(user.id),
+      email: user.email ? this.maskEmail(user.email) : undefined,
+      username: user.name,
+      role: user.role,
+      organizationId: user.organizationId ? String(user.organizationId) : undefined,
+    };
+
+    Sentry.setUser(sanitizedUser);
+  }
+
+  addBreadcrumb(breadcrumb: BreadcrumbData): void {
+    if (!this.enabled) {
+      return;
+    }
+
+    if (this.mockMode) {
+      console.info('[MOCK] Would add breadcrumb:', breadcrumb);
+      return;
+    }
+
+    const sanitizedData = this.sanitizeData(breadcrumb.data || {});
+
+    Sentry.addBreadcrumb({
+      message: breadcrumb.message,
+      category: breadcrumb.category,
+      level: breadcrumb.level || 'info',
+      data: sanitizedData,
+      timestamp: Date.now() / 1000,
+    });
+  }
+
+  setErrorContext(key: string, context: Record<string, any>): void {
+    if (!this.enabled) {
+      return;
+    }
+
+    if (this.mockMode) {
+      console.info('[MOCK] Would set error context:', { key, context });
+      return;
+    }
+
+    const sanitizedContext = this.sanitizeData(context);
+    Sentry.setContext(key, sanitizedContext);
+  }
+
+  categorizeError(error: unknown): ErrorCategory {
+    // Default category
+    let category: ErrorCategory = {
+      category: 'unknown',
+      severity: 'error',
+      tags: {},
+    };
+
+    if (error instanceof Error) {
+      category.tags = {
+        error_type: error.constructor.name,
+      };
+
+      const message = error.message.toLowerCase();
+      const stack = error.stack?.toLowerCase() || '';
+
+      // Network errors
+      if (message.includes('network') || 
+          message.includes('fetch') || 
+          message.includes('failed to fetch') ||
+          message.includes('networkerror') ||
+          message.includes('timeout')) {
+        category.category = 'network';
+        category.severity = 'warning';
+      }
+      // Authentication errors
+      else if (message.includes('unauthorized') || 
+               message.includes('401') || 
+               message.includes('forbidden') ||
+               message.includes('403') ||
+               message.includes('auth')) {
+        category.category = 'authentication';
+        category.severity = 'warning';
+      }
+      // Validation errors
+      else if (message.includes('validation') || 
+               message.includes('invalid') || 
+               message.includes('required')) {
+        category.category = 'validation';
+        category.severity = 'warning';
+      }
+      // React errors
+      else if (error.name === 'ChunkLoadError' || 
+               message.includes('loading chunk') ||
+               message.includes('dynamic import')) {
+        category.category = 'chunk_load';
+        category.severity = 'warning';
+      }
+      else if (stack.includes('react') || 
+               message.includes('component') ||
+               message.includes('render') ||
+               error.name === 'TypeError' ||
+               error.name === 'ReferenceError') {
+        category.category = 'react';
+        category.severity = 'error';
+      }
+      // API errors
+      else if (message.includes('api') || 
+               message.includes('endpoint') ||
+               message.includes('request failed')) {
+        category.category = 'api';
+        category.severity = 'error';
+      }
+    }
+
+    return category;
+  }
+
+  disable(): void {
+    this.enabled = false;
+  }
+
+  enable(): void {
+    this.enabled = true;
+  }
+
+  private beforeSend(event: Sentry.Event, hint: Sentry.EventHint): Sentry.Event | null {
+    // Filter out non-actionable errors
+    if (hint.originalException) {
+      const error = hint.originalException as Error;
+      
+      // Ignore ResizeObserver errors (browser quirk)
+      if (error.message?.includes('ResizeObserver')) {
+        return null;
+      }
+      
+      // Ignore generic script errors (usually from extensions)
+      if (error.message === 'Script error.' || error.message === 'Script error') {
+        return null;
+      }
+    }
+
+    // Sanitize the entire event
+    return this.sanitizeEvent(event);
+  }
+
+  private beforeBreadcrumb(breadcrumb: Sentry.Breadcrumb, hint?: Sentry.BreadcrumbHint): Sentry.Breadcrumb | null {
+    // Filter out noisy breadcrumbs
+    if (breadcrumb.category === 'console' && breadcrumb.level === 'warning') {
+      // Filter out React development warnings
+      if (breadcrumb.message?.includes('DevTools') || 
+          breadcrumb.message?.includes('React Hook') ||
+          breadcrumb.message?.includes('StrictMode')) {
+        return null;
+      }
+      
+      // Filter out console messages with sensitive data
+      if (this.containsSensitiveData(breadcrumb.message || '')) {
+        return null;
+      }
+    }
+
+    // Sanitize breadcrumb
+    if (breadcrumb.message) {
+      breadcrumb.message = this.sanitizeString(breadcrumb.message);
+    }
+
+    if (breadcrumb.data) {
+      breadcrumb.data = this.sanitizeData(breadcrumb.data);
+    }
+
+    return breadcrumb;
+  }
+
+  private sanitizeEvent(event: Sentry.Event): Sentry.Event {
+    // Deep clone to avoid modifying original
+    const sanitized = JSON.parse(JSON.stringify(event));
+
+    // Sanitize message
+    if (sanitized.message) {
+      sanitized.message = this.sanitizeString(sanitized.message);
+    }
+
+    // Sanitize extra data
+    if (sanitized.extra) {
+      sanitized.extra = this.sanitizeData(sanitized.extra);
+    }
+
+    // Sanitize request data
+    if (sanitized.request) {
+      if (sanitized.request.headers) {
+        sanitized.request.headers = this.sanitizeHeaders(sanitized.request.headers);
+      }
+      if (sanitized.request.data) {
+        sanitized.request.data = this.sanitizeData(sanitized.request.data);
+      }
+      if (sanitized.request.query_string) {
+        sanitized.request.query_string = this.sanitizeString(sanitized.request.query_string);
+      }
+      if (sanitized.request.cookies) {
+        sanitized.request.cookies = '[REDACTED]';
+      }
+    }
+
+    // Sanitize user data
+    if (sanitized.user && sanitized.user.email) {
+      sanitized.user.email = this.maskEmail(sanitized.user.email);
+    }
+
+    // Sanitize contexts
+    if (sanitized.contexts) {
+      for (const key in sanitized.contexts) {
+        sanitized.contexts[key] = this.sanitizeData(sanitized.contexts[key]);
+      }
+    }
+
+    // Sanitize tags
+    if (sanitized.tags) {
+      sanitized.tags = this.sanitizeData(sanitized.tags);
+    }
+
+    return sanitized;
+  }
+
+  private sanitizeData(data: any): any {
+    if (!data) return data;
+
+    if (typeof data === 'string') {
+      return this.sanitizeString(data);
+    }
+
+    if (Array.isArray(data)) {
+      return data.map(item => this.sanitizeData(item));
+    }
+
+    if (typeof data === 'object') {
+      const sanitized: any = {};
+      
+      for (const key in data) {
+        const lowerKey = key.toLowerCase();
+        
+        // Check if field should be redacted
+        if (this.sensitiveFields.some(field => lowerKey.includes(field))) {
+          sanitized[key] = '[REDACTED]';
+        } else if (key === 'email') {
+          sanitized[key] = this.maskEmail(data[key]);
+        } else if (key === 'ip' || key === 'ipAddress' || key === 'ip_address') {
+          sanitized[key] = this.maskIP(data[key]);
+        } else {
+          sanitized[key] = this.sanitizeData(data[key]);
+        }
+      }
+      
+      return sanitized;
+    }
+
+    return data;
+  }
+
+  private sanitizeString(str: string): string {
+    let sanitized = str;
+
+    // Remove PII patterns
+    for (const pattern of this.piiPatterns) {
+      sanitized = sanitized.replace(pattern, '[REDACTED]');
+    }
+
+    // Remove sensitive keywords with their values
+    const sensitivePattern = new RegExp(
+      `(${this.sensitiveFields.join('|')})\\s*[:=]\\s*[^\\s,;}]+`,
+      'gi'
+    );
+    sanitized = sanitized.replace(sensitivePattern, '$1=[REDACTED]');
+
+    return sanitized;
+  }
+
+  private sanitizeHeaders(headers: Record<string, any>): Record<string, any> {
+    const sanitized: Record<string, any> = {};
+    
+    for (const key in headers) {
+      const lowerKey = key.toLowerCase();
+      
+      if (lowerKey.includes('authorization') || 
+          lowerKey.includes('x-api-key') || 
+          lowerKey.includes('x-auth-token') ||
+          lowerKey.includes('cookie') ||
+          lowerKey.includes('x-csrf-token')) {
+        sanitized[key] = '[REDACTED]';
+      } else {
+        sanitized[key] = headers[key];
+      }
+    }
+    
+    return sanitized;
+  }
+
+  private containsSensitiveData(str: string): boolean {
+    const lowerStr = str.toLowerCase();
+    
+    // Check for sensitive field names
+    if (this.sensitiveFields.some(field => lowerStr.includes(field))) {
+      return true;
+    }
+    
+    // Check for PII patterns
+    for (const pattern of this.piiPatterns) {
+      if (pattern.test(str)) {
+        return true;
+      }
+    }
+    
+    return false;
+  }
+
+  private maskEmail(email: string): string {
+    if (!email || typeof email !== 'string') return '[INVALID_EMAIL]';
+    
+    const parts = email.split('@');
+    if (parts.length !== 2) return '[INVALID_EMAIL]';
+    
+    const [local, domain] = parts;
+    const maskedLocal = local.length > 3 
+      ? local.substring(0, 3) + '***' 
+      : '***';
+    
+    return `${maskedLocal}@${domain}`;
+  }
+
+  private maskIP(ip: string): string {
+    if (!ip || typeof ip !== 'string') return 'xxx.xxx.xxx.xxx';
+    
+    const parts = ip.split('.');
+    if (parts.length === 4) {
+      // Keep first two octets for general location info
+      return `${parts[0]}.${parts[1]}.xxx.xxx`;
+    }
+    
+    // IPv6 or invalid format
+    return 'xxx.xxx.xxx.xxx';
+  }
+}
+
+// Export singleton instance
+export const errorReportingService = new ErrorReportingService();
+
+// React Router v6 imports for Sentry integration
+import React from 'react';
+import {
+  useLocation,
+  useNavigationType,
+  createRoutesFromChildren,
+  matchRoutes,
+} from 'react-router-dom';

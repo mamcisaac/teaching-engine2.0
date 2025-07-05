@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 /**
  * BaseService - Base class for all services in the Teaching Engine
  * Provides common functionality and lifecycle management
@@ -124,7 +125,7 @@ export abstract class BaseService {
       // Simple check - if prisma is available
       return !!prisma;
     } catch (_error) {
-      this.logger.error('Database connection check failed:', error);
+      this.logger.error('Database connection check failed:', _error);
       return false;
     }
   }
@@ -153,7 +154,7 @@ export abstract class BaseService {
       
       return result;
     } catch (_err) {
-      error = err instanceof Error ? err : new Error(String(err));
+      error = _err instanceof Error ? _err : new Error(String(_err));
       
       // Record failure
       this.metrics.totalRequests++;
