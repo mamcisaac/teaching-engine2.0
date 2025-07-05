@@ -11,6 +11,7 @@ import { commonValidations } from './base/validation.js';
 import { prisma } from '../prisma.js';
 import { Prisma } from '@teaching-engine/database';
 import { optimizedIncludes, optimizedQueries, queryPerformance } from './optimizations/queryOptimizations.js';
+import { TemplateCreateData, TemplateUpdateData } from '../types/routes.js';
 
 // Template-specific validation schemas
 const templateContentSchema = z.object({
@@ -175,7 +176,7 @@ class TemplateService extends BaseService {
     );
   }
 
-  async create(data: unknown, userId: number) {
+  async create(data: TemplateCreateData, userId: number) {
     return prisma.planTemplate.create({
       data: {
         ...data,
@@ -185,7 +186,7 @@ class TemplateService extends BaseService {
     });
   }
 
-  async update(id: string, data: unknown, userId: number) {
+  async update(id: string, data: TemplateUpdateData, userId: number) {
     // Check ownership
     const template = await prisma.planTemplate.findFirst({
       where: {

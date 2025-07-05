@@ -81,8 +81,8 @@ export class AuthService extends BaseService {
       
       return hash;
     } catch (error) {
-      this.logger.error('Password hashing failed:', error);
-      throw _error;
+      this.logger.error({ error }, 'Password hashing failed');
+      throw error;
     }
   }
 
@@ -92,11 +92,11 @@ export class AuthService extends BaseService {
   async comparePassword(password: string, hash: string): Promise<boolean> {
     try {
       const isMatch = await bcrypt.compare(password, hash);
-      this.logger.info('Password comparison completed', { isMatch });
+      this.logger.info({ isMatch }, 'Password comparison completed');
       
       return isMatch;
     } catch (error) {
-      this.logger.error('Password comparison failed:', error);
+      this.logger.error({ error }, 'Password comparison failed');
       throw new Error('Authentication failed');
     }
   }

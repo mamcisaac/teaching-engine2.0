@@ -262,7 +262,7 @@ export const throttle = <T extends (...args: unknown[]) => unknown>(
 
     if (now - lastCall >= delay) {
       lastCall = now;
-      return fn(...args);
+      return fn(...args) as ReturnType<T>;
     }
 
     return undefined;
@@ -283,7 +283,7 @@ export const debounce = <T extends (...args: unknown[]) => unknown>(
       }
 
       timeoutId = setTimeout(() => {
-        resolve(fn(...args));
+        resolve(fn(...args) as ReturnType<T>);
       }, delay);
     });
   };
@@ -378,7 +378,7 @@ export class SimpleCache<T> {
 
   cleanup(): void {
     const now = Date.now();
-    for (const [key, entry] of this.cache) {
+    for (const [key, entry] of this.cache.entries()) {
       if (now > entry.expiry) {
         this.cache.delete(key);
       }

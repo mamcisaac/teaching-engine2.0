@@ -12,6 +12,7 @@ import { prisma } from '../prisma.js';
 import { Prisma } from '@teaching-engine/database';
 import { SubstitutePlanService } from '../services/index.js';
 import { optimizedQueries, queryPerformance } from './optimizations/queryOptimizations.js';
+import { SubstitutePlanCreateData, SubstitutePlanUpdateData } from '../types/routes.js';
 
 // Substitute plan-specific validation schemas
 const scheduleItemSchema = z.object({
@@ -171,7 +172,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
     );
   }
 
-  async create(data: unknown, userId: number) {
+  async create(data: SubstitutePlanCreateData, userId: number) {
     return prisma.substitutePlan.create({
       data: {
         ...data,
@@ -181,7 +182,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
     });
   }
 
-  async update(id: string, data: unknown, userId: number) {
+  async update(id: string, data: SubstitutePlanUpdateData, userId: number) {
     // Verify ownership
     const plan = await prisma.substitutePlan.findFirst({
       where: { id, userId },

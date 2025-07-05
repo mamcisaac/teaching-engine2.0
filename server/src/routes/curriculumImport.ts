@@ -2,9 +2,8 @@ import express, { Request, Response } from 'express';
 import multer from 'multer';
 import { curriculumImportService } from '../services';
 // Clustering service removed - over-engineered for single-teacher use
+import { AuthenticatedRequest } from './base/middleware';
 import logger from '../logger';
-
-// Use global Express.Request type extended with user property
 
 const router = express.Router();
 
@@ -118,7 +117,7 @@ router.post(
 );
 
 // POST /api/curriculum/import/parse - Parse uploaded file
-router.post('/parse', async (req: Request, res: Response) => {
+router.post('/parse', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { sessionId, useAiExtraction } = req.body;
 
@@ -136,6 +135,8 @@ router.post('/parse', async (req: Request, res: Response) => {
 
     // Parse the uploaded file
     const parseResult = await curriculumImportService.parseUploadedFile(sessionId, {
+      userId: req.user!.id,
+      filename: sessionId,
       useAI: useAiExtraction || true,
     });
 

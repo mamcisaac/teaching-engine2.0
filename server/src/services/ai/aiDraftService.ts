@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { BaseService } from '../base/BaseService';
+import { AIServiceRequestData } from '../../types/routes.js';
 
 interface LongRangePlanDraftRequest {
   title: string;
@@ -52,7 +53,7 @@ export class AIDraftService extends BaseService {
     return draft;
   }
 
-  async generateUnitPlanDraft(request: unknown): Promise<unknown> {
+  async generateUnitPlanDraft(request: AIServiceRequestData): Promise<any> {
     this.logger.info('Generating unit plan draft', { request });
     
     return {
@@ -63,7 +64,7 @@ export class AIDraftService extends BaseService {
     };
   }
 
-  async generateLessonPlanDraft(request: unknown): Promise<unknown> {
+  async generateLessonPlanDraft(request: AIServiceRequestData): Promise<any> {
     this.logger.info('Generating lesson plan draft', { request });
     
     return {
@@ -75,7 +76,7 @@ export class AIDraftService extends BaseService {
     };
   }
 
-  async generateDaybookDraft(request: unknown): Promise<unknown> {
+  async generateDaybookDraft(request: AIServiceRequestData): Promise<any> {
     this.logger.info('Generating daybook draft', { request });
     
     return {
@@ -86,7 +87,7 @@ export class AIDraftService extends BaseService {
     };
   }
 
-  async generatePlanSuggestions(planType: string, existingContent: unknown): Promise<string[]> {
+  async generatePlanSuggestions(planType: string, existingContent: any): Promise<string[]> {
     this.logger.info('Generating plan suggestions', { planType, existingContent });
 
     const suggestions: Record<string, string[]> = {

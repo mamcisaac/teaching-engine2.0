@@ -418,7 +418,7 @@ export class RenderCoordinator extends BaseService {
       }
 
     } catch (_error) {
-      issues.push(`Validation error: ${error.message}`);
+      issues.push(`Validation error: ${_error instanceof Error ? _error.message : _error}`);
     }
 
     return {
@@ -545,7 +545,7 @@ export class RenderCoordinator extends BaseService {
       } catch (_error) {
         this.logger.error('Failed to warm up template cache', {
           template,
-          error: error.message,
+          error: _error instanceof Error ? _error.message : _error,
         });
       }
     }

@@ -108,22 +108,22 @@ export const validateId = (id: string | number): number => {
   return result.data;
 };
 
-export const validatePagination = (query: unknown) => {
+export const validatePagination = (query: unknown): { page: number; pageSize: number } => {
   const defaultPagination = { page: 1, pageSize: 20 };
   
   if (!query || typeof query !== 'object') {
     return defaultPagination;
   }
   
-  const queryObj = query as Record<string, any>;
+  const queryObj = query as Record<string, unknown>;
   
   return {
-    page: Math.max(1, parseInt(queryObj.page, 10) || 1),
-    pageSize: Math.min(100, Math.max(1, parseInt(queryObj.pageSize, 10) || 20)),
+    page: Math.max(1, parseInt(String(queryObj.page), 10) || 1),
+    pageSize: Math.min(100, Math.max(1, parseInt(String(queryObj.pageSize), 10) || 20)),
   };
 };
 
-export const validateDateRange = (from?: string | Date, to?: string | Date) => {
+export const validateDateRange = (from?: string | Date, to?: string | Date): { from?: Date; to?: Date } => {
   const dates: { from?: Date; to?: Date } = {};
   
   if (from) {
@@ -153,7 +153,7 @@ export const transformToNumber = (value: unknown): number | undefined => {
     return undefined;
   }
   
-  const num = typeof value === 'string' ? parseFloat(value) : value as number;
+  const num = typeof value === 'string' ? parseFloat(value) : Number(value);
   return isNaN(num) ? undefined : num;
 };
 
@@ -242,7 +242,7 @@ export const buildUpdateSchema = <T extends z.ZodRawShape>(
   const shape: z.ZodRawShape = {};
   
   for (const [key, schema] of Object.entries(baseSchema.shape)) {
-    shape[key] = (schema as any).optional();
+    shape[key] = (schema as z.ZodTypeAny).optional();
   }
   
   return z.object(shape);

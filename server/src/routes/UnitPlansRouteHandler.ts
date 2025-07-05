@@ -11,6 +11,7 @@ import { commonValidations } from './base/validation.js';
 import { prisma } from '../prisma.js';
 import { Prisma } from '@teaching-engine/database';
 import { optimizedIncludes, optimizedQueries, queryPerformance } from './optimizations/queryOptimizations.js';
+import { UnitPlanCreateData, UnitPlanUpdateData } from '../types/routes.js';
 
 // Unit plan-specific validation schemas
 const unitPlanCreateSchema = z.object({
@@ -193,7 +194,7 @@ class UnitPlanService extends BaseService {
     );
   }
 
-  async create(data: unknown, userId: number) {
+  async create(data: UnitPlanCreateData, userId: number) {
     // Verify user owns the long range plan
     const longRangePlan = await prisma.longRangePlan.findFirst({
       where: {
@@ -231,7 +232,7 @@ class UnitPlanService extends BaseService {
     });
   }
 
-  async update(id: string, data: unknown, userId: number) {
+  async update(id: string, data: UnitPlanUpdateData, userId: number) {
     // Verify ownership
     const unitPlan = await prisma.unitPlan.findFirst({
       where: {

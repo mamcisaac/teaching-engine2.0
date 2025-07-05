@@ -4,7 +4,7 @@
  * Exposes authentication middleware functions as API endpoints
  */
 
-import { Router, Request, Response, NextFunction } from 'express';
+import { Router, Request, Response, NextFunction, RequestHandler } from 'express';
 import {
   login,
   register,
@@ -87,17 +87,17 @@ function createAuthRouter(prisma = defaultPrisma) {
   const router = Router();
 
   // Public endpoints with rate limiting and custom validation
-  router.post('/login', authRateLimiter as unknown, validateAuthInputs(false), validateRequest(loginSchema), login);
-  router.post('/register', authRateLimiter as unknown, validateAuthInputs(true), validateRequest(registerSchema), register);
+  router.post('/login', authRateLimiter, validateAuthInputs(false), validateRequest(loginSchema), login);
+  router.post('/register', authRateLimiter, validateAuthInputs(true), validateRequest(registerSchema), register);
   router.post(
     '/forgot-password',
-    authRateLimiter as unknown,
+    authRateLimiter,
     validateRequest(forgotPasswordSchema),
     forgotPassword,
   );
   router.post(
     '/reset-password',
-    authRateLimiter as unknown,
+    authRateLimiter,
     validateRequest(resetPasswordSchema),
     resetPassword,
   );

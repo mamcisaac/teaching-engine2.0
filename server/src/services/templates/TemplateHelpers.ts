@@ -521,7 +521,7 @@ export class TemplateHelpers extends BaseService {
           valid.push(name);
         }
       } catch (_error) {
-        invalid.push({ name, error: error.message });
+        invalid.push({ name, error: _error instanceof Error ? _error.message : String(_error) });
       }
     }
 

@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { getPerformanceSummary, metricsStore } from '../middleware/metrics.js';
 import { getCacheStats } from '../middleware/cache.js';
 import { authMiddleware } from '../middleware/auth.js';
@@ -279,9 +279,9 @@ function calculateOverallCacheHitRate(cacheStats: unknown): number {
   let totalHits = 0;
   let totalRequests = 0;
   
-  Object.values(cacheStats).forEach((cache: unknown) => {
-    totalHits += cache.hits;
-    totalRequests += cache.hits + cache.misses;
+  Object.values(cacheStats).forEach((cache: any) => {
+    totalHits += cache.hits || 0;
+    totalRequests += (cache.hits || 0) + (cache.misses || 0);
   });
   
   return totalRequests > 0 ? (totalHits / totalRequests) * 100 : 0;

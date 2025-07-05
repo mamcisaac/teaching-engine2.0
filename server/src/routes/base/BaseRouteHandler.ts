@@ -9,10 +9,9 @@ import { z } from 'zod';
 import { prisma } from '../../prisma.js';
 import logger from '../../logger.js';
 import { BaseService } from '../../services/base/BaseService.js';
+import { AuthenticatedRequest } from './middleware.js';
 
-export interface AuthenticatedRequest extends Request {
-  userId?: number;
-}
+export type { AuthenticatedRequest };
 
 export interface RouteHandlerOptions {
   routeName: string;

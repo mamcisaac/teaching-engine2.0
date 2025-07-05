@@ -429,7 +429,10 @@ export class PartialManager extends BaseService {
 
           this.logger.debug('Partial loaded from file', { name, file });
         } catch (_error) {
-          this.logger.error('Failed to load partial file', { file, error: error.message });
+          this.logger.error('Failed to load partial file', { 
+            file, 
+            error: _error instanceof Error ? _error.message : _error 
+          });
         }
       }
 
@@ -440,7 +443,7 @@ export class PartialManager extends BaseService {
     } catch (_error) {
       this.logger.error('Failed to load partials from files', {
         directory: this.partialsDirectory,
-        error: error.message,
+        error: _error instanceof Error ? _error.message : _error,
       });
     }
   }

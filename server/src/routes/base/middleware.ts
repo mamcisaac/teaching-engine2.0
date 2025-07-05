@@ -4,6 +4,7 @@
 
 import { Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
+import { ParsedQs } from 'qs';
 import logger from '../../logger.js';
 import { formatValidationError } from './validation.js';
 
@@ -12,8 +13,10 @@ export interface AuthenticatedRequest extends Request {
   user?: {
     id: number;
     email: string;
-    name: string;
-    role?: string;
+    role: string;
+    name?: string;
+    organizationId?: number;
+    permissions?: string[];
   };
 }
 
@@ -129,14 +132,17 @@ export const requestLogger = (
 
   res.send = function(body) {
     const duration = Date.now() - start;
-    logger.info('Request completed', {
-      method: req.method,
-      url: req.url,
-      statusCode: res.statusCode,
-      duration: `${duration}ms`,
-      userAgent: req.get('User-Agent'),
-      ip: req.ip
-    });
+    logger.info(
+      {
+        method: req.method,
+        url: req.url,
+        statusCode: res.statusCode,
+        duration: `${duration}ms`,
+        userAgent: req.get('User-Agent'),
+        ip: req.ip
+      },
+      'Request completed'
+    );
     return originalSend.call(this, body);
   };
 
@@ -221,7 +227,7 @@ export const sanitizeInput = (
     req.body = sanitizeValue(req.body);
   }
   if (req.query) {
-    req.query = sanitizeValue(req.query);
+    req.query = sanitizeValue(req.query) as ParsedQs;
   }
 
   next();

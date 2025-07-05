@@ -152,16 +152,26 @@ export const createValidationSchema = {
    * Create educational content schema set
    */
   educational: <T extends z.ZodRawShape>(fields: T) => {
-    const baseSchema = z.object({
+    const baseObjectSchema = z.object({
       ...fields,
-      ...commonValidations.gradeRange.shape,
+      gradeMin: z.number().int().min(1).max(12).optional(),
+      gradeMax: z.number().int().min(1).max(12).optional(),
       subject: commonValidations.subject,
       tags: commonValidations.tags,
       keywords: commonValidations.keywords
     });
+    
+    const baseSchema = baseObjectSchema.refine(
+      (data) => !data.gradeMin || !data.gradeMax || data.gradeMin <= data.gradeMax,
+      {
+        message: 'Maximum grade must be greater than or equal to minimum grade',
+        path: ['gradeMax']
+      }
+    );
+    
     return {
       create: baseSchema,
-      update: baseSchema.partial(),
+      update: baseObjectSchema.partial(),
       query: commonQuerySchemas.list.merge(commonQuerySchemas.educational)
     };
   },

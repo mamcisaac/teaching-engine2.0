@@ -11,6 +11,7 @@ import { commonValidations } from './base/validation.js';
 import { prisma } from '../prisma.js';
 import { Prisma } from '@teaching-engine/database';
 import { optimizedIncludes, optimizedQueries, queryPerformance } from './optimizations/queryOptimizations.js';
+import { ETFOLessonPlanCreateData, ETFOLessonPlanUpdateData } from '../types/routes.js';
 
 // ETFO lesson plan-specific validation schemas
 const lessonPlanCreateSchema = z.object({
@@ -90,7 +91,7 @@ class ETFOLessonPlanService extends BaseService {
     super('ETFOLessonPlanService');
   }
 
-  async findMany(filters: unknown, userId: number) {
+  async findMany(filters: any, userId: number) {
     const {
       unitPlanId,
       startDate,
@@ -169,7 +170,7 @@ class ETFOLessonPlanService extends BaseService {
     );
   }
 
-  async create(data: unknown, userId: number) {
+  async create(data: ETFOLessonPlanCreateData, userId: number) {
     // Verify user owns the unit plan
     const unitPlan = await prisma.unitPlan.findFirst({
       where: {
@@ -207,7 +208,7 @@ class ETFOLessonPlanService extends BaseService {
     });
   }
 
-  async update(id: string, data: unknown, userId: number) {
+  async update(id: string, data: ETFOLessonPlanUpdateData, userId: number) {
     // Verify ownership
     const lessonPlan = await prisma.eTFOLessonPlan.findFirst({
       where: { id, userId },

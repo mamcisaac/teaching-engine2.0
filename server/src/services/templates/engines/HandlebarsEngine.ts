@@ -4,7 +4,7 @@
  * Renders templates using Handlebars
  */
 
-import Handlebars from 'handlebars';
+import * as Handlebars from 'handlebars';
 import { RenderEngine, RenderResult, RenderContext } from './RenderEngine';
 import { Template } from '../providers/TemplateProvider';
 
@@ -51,7 +51,7 @@ export class HandlebarsEngine extends RenderEngine {
 
       return {
         content,
-        format: template.format as unknown,
+        format: template.format as 'html' | 'pdf' | 'text' | 'markdown',
         metadata: {
           renderTime: Date.now() - startTime,
           engine: this.name,
@@ -134,7 +134,7 @@ export class HandlebarsEngine extends RenderEngine {
           d = date;
         }
       } else {
-        d = new Date(date);
+        d = new Date(date as string | number | Date);
       }
       
       if (format === 'short') {
@@ -159,7 +159,7 @@ export class HandlebarsEngine extends RenderEngine {
     // Time formatting
     this.handlebars.registerHelper('formatTime', (date: unknown) => {
       if (!date) return '';
-      const d = new Date(date);
+      const d = new Date(date as string | number | Date);
       return d.toLocaleTimeString('en-US', {
         hour: 'numeric',
         minute: '2-digit',
@@ -168,14 +168,14 @@ export class HandlebarsEngine extends RenderEngine {
 
     // Number formatting
     this.handlebars.registerHelper('formatNumber', (num: unknown, decimals: number = 0) => {
-      const n = parseFloat(num);
+      const n = parseFloat(num as string);
       if (isNaN(n)) return '0';
       return n.toFixed(decimals);
     });
 
     // Percentage formatting
     this.handlebars.registerHelper('formatPercent', (num: unknown) => {
-      const n = parseFloat(num);
+      const n = parseFloat(num as string);
       if (isNaN(n)) return '0%';
       return `${Math.round(n)}%`;
     });
@@ -253,7 +253,7 @@ export class HandlebarsEngine extends RenderEngine {
    * Register custom helper
    */
   registerHelper(name: string, helper: (...args: unknown[]) => unknown): void {
-    this.handlebars.registerHelper(name, helper as unknown);
+    this.handlebars.registerHelper(name, helper as any);
   }
 
   /**

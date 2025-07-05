@@ -8,7 +8,7 @@ import { TemplateProvider, Template } from './providers/TemplateProvider';
 import { LessonTemplateProvider } from './providers/LessonTemplateProvider';
 import { NewsletterTemplateProvider } from './providers/NewsletterTemplateProvider';
 import { ReportTemplateProvider } from './providers/ReportTemplateProvider';
-// import { RenderEngine } from './engines/RenderEngine';
+import { RenderEngine } from './engines/RenderEngine';
 import { HandlebarsEngine } from './engines/HandlebarsEngine';
 import { PdfEngine } from './engines/PdfEngine';
 
@@ -88,13 +88,10 @@ export class TemplateRegistry extends BaseService {
       }
     }
 
-    this.logger.info(
-      {
-        providers: this.providers.size,
-        engines: this.engines.size,
-      },
-      'Template registry initialized',
-    );
+    this.logger.info('Template registry initialized', {
+      providers: this.providers.size,
+      engines: this.engines.size,
+    });
   }
 
   /**
@@ -148,7 +145,7 @@ export class TemplateRegistry extends BaseService {
     }
     this.providersByType.get(providerType)!.push(name);
 
-    this.logger.info({ name, type: providerType }, 'Template provider registered');
+    this.logger.info('Template provider registered', { name, type: providerType });
   }
 
   /**
@@ -164,10 +161,10 @@ export class TemplateRegistry extends BaseService {
     };
 
     this.engines.set(name, info);
-    this.logger.info(
-      { name, supportedFormats: info.supportedFormats },
-      'Template engine registered',
-    );
+    this.logger.info('Template engine registered', {
+      name,
+      supportedFormats: info.supportedFormats,
+    });
   }
 
   /**

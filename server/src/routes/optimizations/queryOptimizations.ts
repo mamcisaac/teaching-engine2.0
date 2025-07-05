@@ -4,7 +4,7 @@
  * Centralized optimizations for common query patterns
  */
 
-import { Prisma } from '@teaching-engine/database';
+import { Prisma, PrismaClient } from '@teaching-engine/database';
 import logger from '../../logger';
 /**
  * Optimized select patterns for common relationships
@@ -199,14 +199,14 @@ export const optimizedQueries = {
    * Get paginated results with count optimization
    */
   async paginatedQuery<T>(
-    model: unknown,
-    where: unknown,
+    model: any,
+    where: any,
     options: {
       limit: number;
       offset: number;
-      orderBy?: unknown;
-      include?: unknown;
-      select?: unknown;
+      orderBy?: any;
+      include?: any;
+      select?: any;
     }
   ): Promise<{ items: T[]; total: number }> {
     const { limit, offset, orderBy, include, select } = options;
@@ -230,7 +230,7 @@ export const optimizedQueries = {
   /**
    * Optimized search query with text search
    */
-  createSearchWhere(searchTerm: string, fields: string[]): unknown {
+  createSearchWhere(searchTerm: string, fields: string[]): any {
     if (!searchTerm || !fields.length) return {};
 
     return {
@@ -250,7 +250,7 @@ export const optimizedQueries = {
     dateField: string,
     startDate?: string | Date,
     endDate?: string | Date
-  ): unknown {
+  ): any {
     const where: any = {};
 
     if (startDate || endDate) {
@@ -265,7 +265,7 @@ export const optimizedQueries = {
   /**
    * Ownership filter for user-specific data
    */
-  createOwnershipWhere(userId: number, additionalWhere?: unknown): unknown {
+  createOwnershipWhere(userId: number, additionalWhere?: any): any {
     return {
       AND: [
         {
@@ -305,7 +305,7 @@ export const queryPerformance = {
     } catch (error) {
       const duration = Date.now() - start;
       logger.error(`Query failed: ${queryName} failed after ${duration}ms:`, error);
-      throw _error;
+      throw error;
     }
   },
 
@@ -316,7 +316,7 @@ export const queryPerformance = {
     sortBy: string,
     sortOrder: 'asc' | 'desc',
     allowedFields: string[]
-  ): unknown {
+  ): any {
     if (!allowedFields.includes(sortBy)) {
       return { createdAt: 'desc' }; // Default safe sort
     }
@@ -366,7 +366,7 @@ export const queryUtils = {
   /**
    * Limit the depth of includes to prevent N+1 queries
    */
-  limitIncludeDepth(include: unknown, maxDepth: number = 3): unknown {
+  limitIncludeDepth(include: any, maxDepth: number = 3): any {
     if (maxDepth <= 0) return undefined;
 
     const limited: any = {};
@@ -390,7 +390,7 @@ export const queryUtils = {
   /**
    * Create efficient pagination cursor
    */
-  createCursor(id: string, sortField: string, sortValue: unknown): unknown {
+  createCursor(id: string, sortField: string, sortValue: any): any {
     return {
       id,
       [sortField]: sortValue,

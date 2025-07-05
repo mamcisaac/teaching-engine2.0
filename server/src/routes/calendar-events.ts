@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { z } from 'zod';
 import { Prisma } from '@teaching-engine/database';
 // Note: Authentication is handled at the route mounting level in index.ts
@@ -6,6 +6,7 @@ import { validateRequest } from '../middleware/validateRequest';
 import { endOfDay, parseISO } from 'date-fns';
 import { prisma } from '../prisma';
 import logger from '../logger';
+import { AuthenticatedRequest } from './base/middleware.js';
 const router = Router();
 
 // Validation schemas
@@ -26,7 +27,7 @@ const querySchema = z.object({
 });
 
 // Get calendar events for a date range
-router.get('/', async (req: Request, res: Response) => {
+router.get('/', async (req: AuthenticatedRequest, res: Response) => {
   try {
     // Validate query parameters
     const queryValidation = querySchema.safeParse(req.query);
@@ -71,7 +72,7 @@ router.get('/', async (req: Request, res: Response) => {
 });
 
 // Create a new calendar event
-router.post('/', validateRequest(calendarEventSchema), async (req: Request, res: Response) => {
+router.post('/', validateRequest(calendarEventSchema), async (req: AuthenticatedRequest, res: Response) => {
   try {
     const data = req.body as z.infer<typeof calendarEventSchema>;
     const userId = req.user!.id;
@@ -132,7 +133,7 @@ router.patch('/:id', async (req: Request, res: Response) => {
 });
 
 // Delete a calendar event
-router.delete('/:id', async (req: Request, res: Response) => {
+router.delete('/:id', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { id } = req.params;
     const userId = req.user!.id;

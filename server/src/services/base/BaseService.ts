@@ -35,7 +35,7 @@ export abstract class BaseService {
   protected metrics: ServiceMetrics;
   protected startTime: Date;
   protected lastHealthCheck: Date;
-  protected isHealthy: boolean = true;
+  protected healthyState: boolean = true;
   private initialized: boolean = false;
 
   constructor(serviceName: string) {
@@ -86,7 +86,7 @@ export abstract class BaseService {
       status: this.getHealthStatus(),
       service: this.name,
       uptime: Date.now() - this.startTime.getTime(),
-      metrics: this.getMetrics(),
+      metrics: this.getServiceMetrics(),
       dependencies,
     };
   }
@@ -125,7 +125,7 @@ export abstract class BaseService {
       // Simple check - if prisma is available
       return !!prisma;
     } catch (_error) {
-      this.logger.error('Database connection check failed:', _error);
+      this.logger.error({ error: _error }, 'Database connection check failed');
       return false;
     }
   }
@@ -165,12 +165,9 @@ export abstract class BaseService {
       this.updateOperationMetrics(operationName, duration);
       
       // Log error
-      this.logger.error(`Operation failed: ${operationName}`, {
-        operation: operationName,
-        error,
-      });
+      this.logger.error({ error, operation: operationName }, `Operation failed: ${operationName}`);
       
-      throw _error;
+      throw error;
     }
   }
 
@@ -193,9 +190,9 @@ export abstract class BaseService {
   }
 
   /**
-   * Get service metrics
+   * Get service metrics (protected)
    */
-  protected getMetrics(): ServiceMetrics {
+  protected getServiceMetrics(): ServiceMetrics {
     return { ...this.metrics };
   }
 
@@ -217,7 +214,14 @@ export abstract class BaseService {
   }
 
   /**
-   * Get service metrics
+   * Check if service is healthy
+   */
+  public isHealthy(): boolean {
+    return this.healthyState;
+  }
+
+  /**
+   * Get service metrics (public)
    */
   public getMetrics(): ServiceMetrics {
     return {

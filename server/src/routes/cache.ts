@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { 
   getCacheStats, 
   getCacheMemoryUsage, 
@@ -6,8 +6,9 @@ import {
   clearCache, 
   isCacheHealthy,
   warmUpCache 
-} from '../middleware/cache.js';
-import { authMiddleware } from '../middleware/auth.js';
+} from '../middleware/cache';
+import { authMiddleware } from '../middleware/auth';
+import { AuthenticatedRequest } from './base/middleware';
 import logger from '../logger.js';
 
 const router = Router();
@@ -95,11 +96,11 @@ router.post('/warmup', async (req: Request, res: Response) => {
  * Clear all caches
  * DELETE /api/cache/all
  */
-router.delete('/all', async (req: Request, res: Response) => {
+router.delete('/all', async (req: AuthenticatedRequest, res: Response) => {
   try {
     clearAllCaches();
     
-    logger.info('All caches cleared by user', { userId: req.user?.id });
+    logger.info(`All caches cleared by user ${req.user?.id}`);
     
     res.json({
       success: true,
@@ -119,7 +120,7 @@ router.delete('/all', async (req: Request, res: Response) => {
  * Clear specific cache type
  * DELETE /api/cache/:cacheType
  */
-router.delete('/:cacheType', async (req: Request, res: Response) => {
+router.delete('/:cacheType', async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { cacheType } = req.params;
     
@@ -132,9 +133,9 @@ router.delete('/:cacheType', async (req: Request, res: Response) => {
       });
     }
     
-    clearCache(cacheType as unknown);
+    clearCache(cacheType as 'user' | 'api' | 'curriculum' | 'static');
     
-    logger.info(`Cache cleared: ${cacheType}`, { userId: req.user?.id });
+    logger.info(`Cache cleared: ${cacheType} by user ${req.user?.id}`);
     
     res.json({
       success: true,

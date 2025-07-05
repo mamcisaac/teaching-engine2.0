@@ -23,7 +23,7 @@ export interface SearchOptions {
 }
 
 export interface SearchResult {
-  expectations: unknown[];
+  expectations: any[];
   total: number;
   hasMore: boolean;
 }
@@ -296,7 +296,7 @@ export class CurriculumSearchService extends BaseService {
 
         if (field === 'keywords') {
           // For keywords, return unique keywords that match
-          const allKeywords = expectations.flatMap(e => e.keywords);
+          const allKeywords = expectations.flatMap(e => e.keywords as string[]);
           const uniqueKeywords = [...new Set(allKeywords)];
           return uniqueKeywords.filter(k => k.includes(query.toLowerCase()));
         }

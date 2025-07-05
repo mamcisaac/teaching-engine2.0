@@ -10,6 +10,7 @@ import { BaseService } from '../services/base/BaseService.js';
 import { prisma } from '../prisma.js';
 import { Prisma } from '@teaching-engine/database';
 import { optimizedIncludes, optimizedQueries, queryPerformance } from './optimizations/queryOptimizations.js';
+import { DaybookEntryCreateData, DaybookEntryUpdateData } from '../types/routes.js';
 
 // Daybook-specific interfaces
 interface DaybookEntryForAnalytics {
@@ -141,7 +142,7 @@ class DaybookService extends BaseService {
     super('DaybookService');
   }
 
-  async findMany(filters: unknown, userId: number) {
+  async findMany(filters: any, userId: number) {
     const {
       startDate,
       endDate,
@@ -155,8 +156,16 @@ class DaybookService extends BaseService {
 
     const where: Prisma.DaybookEntryWhereInput = { userId };
 
-    if (startDate) where.date = { gte: new Date(startDate) };
-    if (endDate) where.date = { ...where.date, lte: new Date(endDate) };
+    if (startDate && endDate) {
+      where.date = { 
+        gte: new Date(startDate),
+        lte: new Date(endDate)
+      };
+    } else if (startDate) {
+      where.date = { gte: new Date(startDate) };
+    } else if (endDate) {
+      where.date = { lte: new Date(endDate) };
+    }
     if (lessonPlanId) where.lessonPlanId = lessonPlanId;
 
     // Subject filtering through lesson plan relationship
@@ -164,7 +173,7 @@ class DaybookService extends BaseService {
       where.lessonPlan = {
         unitPlan: {
           longRangePlan: {
-            subject: { contains: subject, mode: 'insensitive' }
+            subject: { contains: subject }
           }
         }
       };
@@ -237,7 +246,7 @@ class DaybookService extends BaseService {
     });
   }
 
-  async create(data: unknown, userId: number) {
+  async create(data: DaybookEntryCreateData, userId: number) {
     const { expectations, ...daybookData } = data;
     
     return prisma.daybookEntry.create({
@@ -258,7 +267,7 @@ class DaybookService extends BaseService {
     });
   }
 
-  async update(id: string, data: unknown, userId: number) {
+  async update(id: string, data: DaybookEntryUpdateData, userId: number) {
     // Verify ownership
     const entry = await prisma.daybookEntry.findFirst({
       where: { id, userId },

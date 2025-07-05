@@ -12,7 +12,7 @@ export interface LessonContext {
   subject?: string;
   learningGoals?: string[];
   duration?: number;
-  section?: 'minds-on' | 'action' | 'consolidation';
+  section?: 'mindsOn' | 'action' | 'consolidation';
 }
 
 export interface SpecificRequirements {
@@ -48,6 +48,56 @@ export interface GenerationParams {
 }
 
 export class AIActivityGeneratorService {
+  /**
+   * Generate a single activity based on provided parameters
+   */
+  async generateActivity(params: GenerationParams): Promise<GeneratedActivity> {
+    // For now, return a template-based activity
+    // In a full implementation, this would call an LLM service
+    return this.generateTemplateActivity(params);
+  }
+
+  /**
+   * Generate multiple activity variations
+   */
+  async generateActivityVariations(params: GenerationParams, count: number = 3): Promise<GeneratedActivity[]> {
+    const variations: GeneratedActivity[] = [];
+    
+    for (let i = 0; i < count; i++) {
+      const variation = await this.generateActivity(params);
+      // Add variation suffix to make each unique
+      variation.title = `${variation.title} - Variation ${i + 1}`;
+      variations.push(variation);
+    }
+    
+    return variations;
+  }
+
+  /**
+   * Save a generated activity to the database
+   */
+  async saveGeneratedActivity(
+    activity: GeneratedActivity,
+    userId: number,
+    metadata?: { lessonPlanId?: string; basedOnActivities?: string[] }
+  ): Promise<{ id: string; activity: GeneratedActivity }> {
+    // In a full implementation, this would save to database
+    // For now, return a mock saved activity
+    const savedActivity = {
+      id: `activity_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      activity,
+      userId,
+      metadata,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+    
+    return {
+      id: savedActivity.id,
+      activity: savedActivity.activity
+    };
+  }
+
   private buildGenerationPrompt(params: GenerationParams): string {
     let prompt = 'Generate an engaging educational activity.\n\n';
 

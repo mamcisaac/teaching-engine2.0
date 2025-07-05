@@ -154,7 +154,7 @@ export const asyncHandler = <T extends (...args: unknown[]) => Promise<unknown>>
         next(_error);
       } else {
         // Handle error directly
-        handleErrorResponse(res, _error, req?.id);
+        handleErrorResponse(res, _error as Error, req?.id);
       }
     }
   };
@@ -185,12 +185,16 @@ export const handleDatabaseError = (error: unknown): AppError => {
   if (error && typeof error === 'object' && 'code' in error) {
     const prismaError = error as {
       code: string;
-      meta?: { target?: string; cause?: string; field_name?: string };
+      meta?: { target?: string | string[]; cause?: string; field_name?: string };
     };
 
     if (prismaError.code === 'P2002') {
+      const target = Array.isArray(prismaError.meta?.target) 
+        ? prismaError.meta.target.join(', ')
+        : prismaError.meta?.target;
+      
       return new ConflictError('A record with this value already exists', {
-        field: prismaError.meta?.target,
+        field: target,
       });
     }
 
