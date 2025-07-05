@@ -1,18 +1,18 @@
 import { apiClient } from '../../api/core/client';
 import { useState, useMemo, useCallback, Suspense, useEffect } from 'react';
-import { Event, View, SlotInfo } from 'react-big-calendar';
+import { Event, View, SlotInfo, DateLocalizer } from 'react-big-calendar';
 import { format, startOfMonth, endOfMonth } from 'date-fns';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Plus, Filter } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { Button } from '../../components/ui/Button';
-import { 
-  CalendarEventModal, 
-  CalendarEventDetails, 
+import {
+  CalendarEventModal,
+  CalendarEventDetails,
   CalendarFilters,
   BigCalendar,
-  createMomentLocalizer
+  createMomentLocalizer,
 } from '../../components/calendar/LazyCalendarComponents';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import '../../styles/calendar.css';
@@ -413,7 +413,9 @@ export default function CalendarPlanningPage() {
       </div>
 
       {showFilters && (
-        <Suspense fallback={<div className="mb-4 p-4 bg-gray-50 rounded-lg animate-pulse h-20"></div>}>
+        <Suspense
+          fallback={<div className="mb-4 p-4 bg-gray-50 rounded-lg animate-pulse h-20"></div>}
+        >
           <CalendarFilters
             filters={filters}
             // @ts-expect-error - Type mismatch in CalendarFilter interface
@@ -430,13 +432,13 @@ export default function CalendarPlanningPage() {
       )}
 
       <div className="bg-white rounded-lg shadow-lg p-2 sm:p-4 md:p-6">
-        {localizerReady ? (
+        {localizerReady && localizer ? (
           <Suspense fallback={<CalendarLoadingFallback />}>
             <BigCalendar
               localizer={localizer}
               events={events}
-              startAccessor={(event: any) => event.start}
-              endAccessor={(event: any) => event.end}
+              startAccessor={(event: CalendarViewEvent) => event.start}
+              endAccessor={(event: CalendarViewEvent) => event.end}
               style={{ height: window.innerWidth < 768 ? 500 : 700 }}
               onSelectEvent={(event: object) => handleSelectEvent(event as CalendarViewEvent)}
               onSelectSlot={handleSelectSlot}
@@ -461,7 +463,13 @@ export default function CalendarPlanningPage() {
 
       {/* Event Modal */}
       {showEventModal && (
-        <Suspense fallback={<div className="fixed inset-0 bg-black/50 flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div></div>}>
+        <Suspense
+          fallback={
+            <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+            </div>
+          }
+        >
           <CalendarEventModal
             isOpen={showEventModal}
             onClose={() => {
@@ -479,7 +487,13 @@ export default function CalendarPlanningPage() {
 
       {/* Event Details */}
       {selectedEvent && (
-        <Suspense fallback={<div className="fixed inset-0 bg-black/50 flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div></div>}>
+        <Suspense
+          fallback={
+            <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+            </div>
+          }
+        >
           <CalendarEventDetails
             // @ts-expect-error - CalendarViewEvent type mismatch
             event={selectedEvent}

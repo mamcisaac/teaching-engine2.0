@@ -1,9 +1,10 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
 // Simple debounce implementation
-const debounce = <T extends (...args: unknown[]) => unknown>(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const debounce = <T extends (...args: any[]) => any>(
   func: T,
-  wait: number
+  wait: number,
 ): ((...args: Parameters<T>) => void) => {
   let timeout: ReturnType<typeof setTimeout>;
   return (...args: Parameters<T>) => {
@@ -68,70 +69,82 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
 
   // Debounced filter updates
   const debouncedUpdateFilters = useMemo(
-    () => debounce((newFilters: Record<string, string | number | boolean>) => {
-      setFilters(newFilters);
-      setCurrentPage(1); // Reset to first page when filtering
-    }, 300),
-    []
+    () =>
+      debounce((newFilters: Record<string, string | number | boolean>) => {
+        setFilters(newFilters);
+        setCurrentPage(1); // Reset to first page when filtering
+      }, 300),
+    [],
   );
 
   // Debounced global search
   const debouncedGlobalSearch = useMemo(
-    () => debounce((search: string) => {
-      setFilters(prev => ({
-        ...prev,
-        _global: search || undefined,
-      }));
-      setCurrentPage(1);
-    }, 300),
-    []
+    () =>
+      debounce((search: string) => {
+        setFilters((prev) => {
+          const newFilters = { ...prev };
+          if (search) {
+            newFilters._global = search;
+          } else {
+            delete newFilters._global;
+          }
+          return newFilters;
+        });
+        setCurrentPage(1);
+      }, 300),
+    [],
   );
 
   // Fetch data query
-  const {
-    data,
-    isLoading,
-    error,
-    refetch,
-  } = useQuery({
+  const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['paginatedData', currentPage, pageSize, sortBy, sortOrder, filters],
-    queryFn: () => fetchData({
-      page: currentPage,
-      pageSize,
-      sortBy,
-      sortOrder,
-      filters,
-    }),
+    queryFn: () =>
+      fetchData({
+        page: currentPage,
+        pageSize,
+        sortBy,
+        sortOrder,
+        filters,
+      }),
     placeholderData: (prev) => prev,
   });
 
   // Handle sorting
-  const handleSort = useCallback((columnKey: string) => {
-    if (sortBy === columnKey) {
-      setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc');
-    } else {
-      setSortBy(columnKey);
-      setSortOrder('asc');
-    }
-    setCurrentPage(1);
-  }, [sortBy]);
+  const handleSort = useCallback(
+    (columnKey: string) => {
+      if (sortBy === columnKey) {
+        setSortOrder((prev) => (prev === 'asc' ? 'desc' : 'asc'));
+      } else {
+        setSortBy(columnKey);
+        setSortOrder('asc');
+      }
+      setCurrentPage(1);
+    },
+    [sortBy],
+  );
 
   // Handle column filter
-  const handleColumnFilter = useCallback((columnKey: string, value: string) => {
-    const newFilters = { ...filters };
-    if (value.trim()) {
-      newFilters[columnKey] = value;
-    } else {
-      delete newFilters[columnKey];
-    }
-    debouncedUpdateFilters(newFilters);
-  }, [filters, debouncedUpdateFilters]);
+  const handleColumnFilter = useCallback(
+    (columnKey: string, value: string) => {
+      const newFilters = { ...filters };
+      if (value.trim()) {
+        newFilters[columnKey] = value;
+      } else {
+        delete newFilters[columnKey];
+      }
+      debouncedUpdateFilters(newFilters);
+    },
+    [filters, debouncedUpdateFilters],
+  );
 
   // Handle global search
-  const handleGlobalSearch = useCallback((value: string) => {
-    setGlobalSearch(value);
-    debouncedGlobalSearch(value);
-  }, [debouncedGlobalSearch]);
+  const handleGlobalSearch = useCallback(
+    (value: string) => {
+      setGlobalSearch(value);
+      debouncedGlobalSearch(value);
+    },
+    [debouncedGlobalSearch],
+  );
 
   // Handle pagination
   const handlePageChange = useCallback((page: number) => {
@@ -145,7 +158,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
     const { totalPages } = data;
     const buttons: (number | string)[] = [];
     const maxButtons = 7;
-    
+
     if (totalPages <= maxButtons) {
       for (let i = 1; i <= totalPages; i++) {
         buttons.push(i);
@@ -178,9 +191,11 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
     if (sortBy !== columnKey) {
       return <ArrowUpDown className="h-4 w-4 text-gray-400" />;
     }
-    return sortOrder === 'asc' 
-      ? <ArrowUp className="h-4 w-4 text-blue-600" />
-      : <ArrowDown className="h-4 w-4 text-blue-600" />;
+    return sortOrder === 'asc' ? (
+      <ArrowUp className="h-4 w-4 text-blue-600" />
+    ) : (
+      <ArrowDown className="h-4 w-4 text-blue-600" />
+    );
   };
 
   if (error) {
@@ -234,7 +249,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
                 </th>
               ))}
             </tr>
-            
+
             {/* Filter Row */}
             <tr className="bg-gray-25">
               {columns.map((column) => (
@@ -242,7 +257,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
                   {column.filterable && (
                     <Input
                       placeholder={`Filter by ${column.label.toLowerCase()}...`}
-                      value={filters[column.key as string] || ''}
+                      value={(filters[column.key as string] as string) || ''}
                       onChange={(e) => handleColumnFilter(column.key as string, e.target.value)}
                       className="text-sm"
                     />
@@ -251,7 +266,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
               ))}
             </tr>
           </thead>
-          
+
           <tbody className="bg-white divide-y divide-gray-200">
             {isLoading ? (
               // Loading skeleton
@@ -274,11 +289,13 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
               data?.items.map((item, index) => (
                 <tr key={index} className="hover:bg-gray-50">
                   {columns.map((column) => (
-                    <td key={column.key as string} className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                      {column.render 
+                    <td
+                      key={column.key as string}
+                      className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
+                    >
+                      {column.render
                         ? column.render(item[column.key], item)
-                        : String(item[column.key] || '')
-                      }
+                        : String(item[column.key] || '')}
                     </td>
                   ))}
                 </tr>
@@ -294,7 +311,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
           <div className="text-sm text-gray-700">
             Page {data.page} of {data.totalPages} ({data.total} total items)
           </div>
-          
+
           <div className="flex space-x-1">
             <Button
               variant="outline"
@@ -305,20 +322,20 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
               <ChevronLeft className="h-4 w-4" />
               Previous
             </Button>
-            
+
             {paginationButtons.map((page, index) => (
               <Button
                 key={index}
-                variant={page === currentPage ? "primary" : "outline"}
+                variant={page === currentPage ? 'primary' : 'outline'}
                 size="sm"
-                onClick={() => typeof page === 'number' ? handlePageChange(page) : undefined}
+                onClick={() => (typeof page === 'number' ? handlePageChange(page) : undefined)}
                 disabled={page === '...'}
                 className={page === '...' ? 'cursor-default' : ''}
               >
                 {page}
               </Button>
             ))}
-            
+
             <Button
               variant="outline"
               size="sm"
@@ -334,7 +351,10 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
 
       {/* Loading overlay for data fetching */}
       {isLoading && data && (
-        <div data-testid="loading-skeleton" className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center">
+        <div
+          data-testid="loading-skeleton"
+          className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center"
+        >
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
         </div>
       )}

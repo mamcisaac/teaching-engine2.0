@@ -79,18 +79,21 @@ export class ErrorReportingService {
 
   init(): void {
     if (this.mockMode) {
+      // eslint-disable-next-line no-console
       console.info('Using mock error reporting service');
       this.enabled = true;
       return;
     }
 
     if (import.meta.env.MODE === 'development' || import.meta.env.MODE === 'test') {
+      // eslint-disable-next-line no-console
       console.info('Error reporting disabled in development');
       return;
     }
 
     const dsn = import.meta.env.VITE_SENTRY_DSN;
     if (!dsn) {
+      // eslint-disable-next-line no-console
       console.warn('VITE_SENTRY_DSN not configured, error reporting disabled');
       return;
     }
@@ -130,8 +133,10 @@ export class ErrorReportingService {
         // Filter transactions
         beforeSendTransaction: (transaction) => {
           // Don't send transactions for static assets
-          if (transaction.transaction?.includes('/static/') || 
-              transaction.transaction?.includes('/assets/')) {
+          if (
+            transaction.transaction?.includes('/static/') ||
+            transaction.transaction?.includes('/assets/')
+          ) {
             return null;
           }
           return transaction;
@@ -139,19 +144,27 @@ export class ErrorReportingService {
       });
 
       this.enabled = true;
+      // eslint-disable-next-line no-console
       console.info('Error reporting service initialized');
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Failed to initialize error reporting:', error);
     }
   }
 
-  captureError(error: Error | unknown, context?: Record<string, unknown>, errorInfo?: ErrorInfo): void {
+  captureError(
+    error: Error | unknown,
+    context?: Record<string, unknown>,
+    errorInfo?: ErrorInfo,
+  ): void {
     if (!this.enabled) {
+      // eslint-disable-next-line no-console
       console.debug('Error reporting disabled, skipping:', { error, context });
       return;
     }
 
     if (this.mockMode) {
+      // eslint-disable-next-line no-console
       console.info('[MOCK] Would capture error:', {
         error: error instanceof Error ? error.message : String(error),
         stack: error instanceof Error ? error.stack : undefined,
@@ -171,8 +184,8 @@ export class ErrorReportingService {
       scope.setContext('category', { type: errorCategory.category });
 
       // Add custom context
-      if (sanitizedContext) {
-        scope.setContext('custom', sanitizedContext);
+      if (sanitizedContext && Object.keys(sanitizedContext).length > 0) {
+        scope.setContext('custom', sanitizedContext as Record<string, unknown>);
       }
 
       // Add React error info if available
@@ -193,6 +206,7 @@ export class ErrorReportingService {
     }
 
     if (this.mockMode) {
+      // eslint-disable-next-line no-console
       console.info('[MOCK] Would capture message:', { message, level });
       return;
     }
@@ -206,6 +220,7 @@ export class ErrorReportingService {
     }
 
     if (this.mockMode) {
+      // eslint-disable-next-line no-console
       console.info('[MOCK] Would set user context:', user);
       return;
     }
@@ -232,6 +247,7 @@ export class ErrorReportingService {
     }
 
     if (this.mockMode) {
+      // eslint-disable-next-line no-console
       console.info('[MOCK] Would add breadcrumb:', breadcrumb);
       return;
     }
@@ -242,7 +258,8 @@ export class ErrorReportingService {
       message: breadcrumb.message,
       category: breadcrumb.category,
       level: breadcrumb.level || 'info',
-      data: sanitizedData,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      data: sanitizedData as Record<string, any>,
       timestamp: Date.now() / 1000,
     });
   }
@@ -253,12 +270,13 @@ export class ErrorReportingService {
     }
 
     if (this.mockMode) {
+      // eslint-disable-next-line no-console
       console.info('[MOCK] Would set error context:', { key, context });
       return;
     }
 
     const sanitizedContext = this.sanitizeData(context);
-    Sentry.setContext(key, sanitizedContext);
+    Sentry.setContext(key, sanitizedContext as Record<string, unknown>);
   }
 
   categorizeError(error: unknown): ErrorCategory {
@@ -278,49 +296,60 @@ export class ErrorReportingService {
       const stack = error.stack?.toLowerCase() || '';
 
       // Network errors
-      if (message.includes('network') || 
-          message.includes('fetch') || 
-          message.includes('failed to fetch') ||
-          message.includes('networkerror') ||
-          message.includes('timeout')) {
+      if (
+        message.includes('network') ||
+        message.includes('fetch') ||
+        message.includes('failed to fetch') ||
+        message.includes('networkerror') ||
+        message.includes('timeout')
+      ) {
         category.category = 'network';
         category.severity = 'warning';
       }
       // Authentication errors
-      else if (message.includes('unauthorized') || 
-               message.includes('401') || 
-               message.includes('forbidden') ||
-               message.includes('403') ||
-               message.includes('auth')) {
+      else if (
+        message.includes('unauthorized') ||
+        message.includes('401') ||
+        message.includes('forbidden') ||
+        message.includes('403') ||
+        message.includes('auth')
+      ) {
         category.category = 'authentication';
         category.severity = 'warning';
       }
       // Validation errors
-      else if (message.includes('validation') || 
-               message.includes('invalid') || 
-               message.includes('required')) {
+      else if (
+        message.includes('validation') ||
+        message.includes('invalid') ||
+        message.includes('required')
+      ) {
         category.category = 'validation';
         category.severity = 'warning';
       }
       // React errors
-      else if (error.name === 'ChunkLoadError' || 
-               message.includes('loading chunk') ||
-               message.includes('dynamic import')) {
+      else if (
+        error.name === 'ChunkLoadError' ||
+        message.includes('loading chunk') ||
+        message.includes('dynamic import')
+      ) {
         category.category = 'chunk_load';
         category.severity = 'warning';
-      }
-      else if (stack.includes('react') || 
-               message.includes('component') ||
-               message.includes('render') ||
-               error.name === 'TypeError' ||
-               error.name === 'ReferenceError') {
+      } else if (
+        stack.includes('react') ||
+        message.includes('component') ||
+        message.includes('render') ||
+        error.name === 'TypeError' ||
+        error.name === 'ReferenceError'
+      ) {
         category.category = 'react';
         category.severity = 'error';
       }
       // API errors
-      else if (message.includes('api') || 
-               message.includes('endpoint') ||
-               message.includes('request failed')) {
+      else if (
+        message.includes('api') ||
+        message.includes('endpoint') ||
+        message.includes('request failed')
+      ) {
         category.category = 'api';
         category.severity = 'error';
       }
@@ -341,12 +370,12 @@ export class ErrorReportingService {
     // Filter out non-actionable errors
     if (hint.originalException) {
       const error = hint.originalException as Error;
-      
+
       // Ignore ResizeObserver errors (browser quirk)
       if (error.message?.includes('ResizeObserver')) {
         return null;
       }
-      
+
       // Ignore generic script errors (usually from extensions)
       if (error.message === 'Script error.' || error.message === 'Script error') {
         return null;
@@ -357,16 +386,21 @@ export class ErrorReportingService {
     return this.sanitizeEvent(event);
   }
 
-  private beforeBreadcrumb(breadcrumb: Sentry.Breadcrumb, _hint?: Sentry.BreadcrumbHint): Sentry.Breadcrumb | null {
+  private beforeBreadcrumb(
+    breadcrumb: Sentry.Breadcrumb,
+    _hint?: Sentry.BreadcrumbHint,
+  ): Sentry.Breadcrumb | null {
     // Filter out noisy breadcrumbs
     if (breadcrumb.category === 'console' && breadcrumb.level === 'warning') {
       // Filter out React development warnings
-      if (breadcrumb.message?.includes('DevTools') || 
-          breadcrumb.message?.includes('React Hook') ||
-          breadcrumb.message?.includes('StrictMode')) {
+      if (
+        breadcrumb.message?.includes('DevTools') ||
+        breadcrumb.message?.includes('React Hook') ||
+        breadcrumb.message?.includes('StrictMode')
+      ) {
         return null;
       }
-      
+
       // Filter out console messages with sensitive data
       if (this.containsSensitiveData(breadcrumb.message || '')) {
         return null;
@@ -379,7 +413,8 @@ export class ErrorReportingService {
     }
 
     if (breadcrumb.data) {
-      breadcrumb.data = this.sanitizeData(breadcrumb.data);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      breadcrumb.data = this.sanitizeData(breadcrumb.data) as Record<string, any>;
     }
 
     return breadcrumb;
@@ -443,18 +478,18 @@ export class ErrorReportingService {
     }
 
     if (Array.isArray(data)) {
-      return data.map(item => this.sanitizeData(item));
+      return data.map((item) => this.sanitizeData(item));
     }
 
     if (typeof data === 'object') {
       const sanitized: Record<string, unknown> = {};
       const dataObj = data as Record<string, unknown>;
-      
+
       for (const key in dataObj) {
         const lowerKey = key.toLowerCase();
-        
+
         // Check if field should be redacted
-        if (this.sensitiveFields.some(field => lowerKey.includes(field))) {
+        if (this.sensitiveFields.some((field) => lowerKey.includes(field))) {
           sanitized[key] = '[REDACTED]';
         } else if (key === 'email') {
           sanitized[key] = this.maskEmail(String(dataObj[key]));
@@ -464,7 +499,7 @@ export class ErrorReportingService {
           sanitized[key] = this.sanitizeData(dataObj[key]);
         }
       }
-      
+
       return sanitized;
     }
 
@@ -482,7 +517,7 @@ export class ErrorReportingService {
     // Remove sensitive keywords with their values
     const sensitivePattern = new RegExp(
       `(${this.sensitiveFields.join('|')})\\s*[:=]\\s*[^\\s,;}]+`,
-      'gi'
+      'gi',
     );
     sanitized = sanitized.replace(sensitivePattern, '$1=[REDACTED]');
 
@@ -491,65 +526,65 @@ export class ErrorReportingService {
 
   private sanitizeHeaders(headers: Record<string, unknown>): Record<string, unknown> {
     const sanitized: Record<string, unknown> = {};
-    
+
     for (const key in headers) {
       const lowerKey = key.toLowerCase();
-      
-      if (lowerKey.includes('authorization') || 
-          lowerKey.includes('x-api-key') || 
-          lowerKey.includes('x-auth-token') ||
-          lowerKey.includes('cookie') ||
-          lowerKey.includes('x-csrf-token')) {
+
+      if (
+        lowerKey.includes('authorization') ||
+        lowerKey.includes('x-api-key') ||
+        lowerKey.includes('x-auth-token') ||
+        lowerKey.includes('cookie') ||
+        lowerKey.includes('x-csrf-token')
+      ) {
         sanitized[key] = '[REDACTED]';
       } else {
         sanitized[key] = headers[key];
       }
     }
-    
+
     return sanitized;
   }
 
   private containsSensitiveData(str: string): boolean {
     const lowerStr = str.toLowerCase();
-    
+
     // Check for sensitive field names
-    if (this.sensitiveFields.some(field => lowerStr.includes(field))) {
+    if (this.sensitiveFields.some((field) => lowerStr.includes(field))) {
       return true;
     }
-    
+
     // Check for PII patterns
     for (const pattern of this.piiPatterns) {
       if (pattern.test(str)) {
         return true;
       }
     }
-    
+
     return false;
   }
 
   private maskEmail(email: string): string {
     if (!email || typeof email !== 'string') return '[INVALID_EMAIL]';
-    
+
     const parts = email.split('@');
     if (parts.length !== 2) return '[INVALID_EMAIL]';
-    
+
     const [local, domain] = parts;
-    const maskedLocal = local.length > 3 
-      ? local.substring(0, 3) + '***' 
-      : '***';
-    
+    const maskedLocal = local.length > 3 ? local.substring(0, 3) + '***' : '***';
+
     return `${maskedLocal}@${domain}`;
   }
 
   private maskIP(ip: string): string {
     if (!ip || typeof ip !== 'string') return 'xxx.xxx.xxx.xxx';
-    
+
     const parts = ip.split('.');
     if (parts.length === 4) {
       // Keep first two octets for general location info
       return `${parts[0]}.${parts[1]}.xxx.xxx`;
     }
-    
+
     // IPv6 or invalid format
     return 'xxx.xxx.xxx.xxx';
   }

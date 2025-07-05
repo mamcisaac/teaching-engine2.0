@@ -48,7 +48,7 @@ export default function HolidaySettings() {
         {holidays?.map((h) => (
           <li key={h.id} className="flex gap-2 items-center">
             <span>
-              {h.start.split('T')[0]} - {h.title}
+              {h.date.split('T')[0]} - {h.name}
             </span>
             <button
               className="px-1 text-sm bg-red-600 text-white"

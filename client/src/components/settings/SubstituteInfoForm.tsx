@@ -7,15 +7,19 @@ export default function SubstituteInfoForm() {
   // TODO: Substitute info hooks not yet implemented
   // const { data } = useSubstituteInfo();
   // const save = useSaveSubstituteInfo();
-  const data: { procedures?: string; allergies?: string } | null = null; // Placeholder
+
+  // Mock data - in reality this would come from the API
+  const data = null as { procedures?: string; allergies?: string } | null;
   const save = { mutate: (_data: { procedures: string; allergies: string }) => {} }; // Placeholder
   const [procedures, setProcedures] = useState('');
   const [allergies, setAllergies] = useState('');
 
   useEffect(() => {
-    if (data) {
-      setProcedures(data.procedures ?? '');
-      setAllergies(data.allergies ?? '');
+    // Since data is always null in this mock, skip the update
+    // When real hooks are implemented, this will work properly
+    if (data && typeof data === 'object') {
+      setProcedures(data.procedures || '');
+      setAllergies(data.allergies || '');
     }
   }, [data]);
 

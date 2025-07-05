@@ -1,20 +1,21 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 // Simple debounce implementation
-const debounce = <T extends (...args: unknown[]) => unknown>(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const debounce = <T extends (...args: any[]) => any>(
   func: T,
-  wait: number
+  wait: number,
 ): ((...args: Parameters<T>) => void) & { cancel(): void } => {
   let timeout: ReturnType<typeof setTimeout>;
-  
+
   const debounced = (...args: Parameters<T>) => {
     clearTimeout(timeout);
     timeout = setTimeout(() => func(...args), wait);
   };
-  
+
   debounced.cancel = () => {
     clearTimeout(timeout);
   };
-  
+
   return debounced;
 };
 
@@ -46,7 +47,7 @@ export function VirtualizedList<T>({
   const visibleRange = useMemo(() => {
     const containerHeight = height;
     const itemCount = items.length;
-    
+
     if (itemCount === 0) {
       return { start: 0, end: 0 };
     }
@@ -55,7 +56,7 @@ export function VirtualizedList<T>({
     const startIndex = Math.floor(scrollTop / effectiveItemHeight);
     const endIndex = Math.min(
       itemCount - 1,
-      Math.ceil((scrollTop + containerHeight) / effectiveItemHeight)
+      Math.ceil((scrollTop + containerHeight) / effectiveItemHeight),
     );
 
     return {
@@ -85,18 +86,22 @@ export function VirtualizedList<T>({
 
   // Debounced scroll end handler
   const debouncedScrollEnd = useMemo(
-    () => debounce((scrollTop: number) => {
-      onScrollEnd?.(scrollTop);
-    }, 150),
-    [onScrollEnd]
+    () =>
+      debounce((scrollTop: number) => {
+        onScrollEnd?.(scrollTop);
+      }, 150),
+    [onScrollEnd],
   );
 
   // Handle scroll
-  const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
-    const newScrollTop = e.currentTarget.scrollTop;
-    setScrollTop(newScrollTop);
-    debouncedScrollEnd(newScrollTop);
-  }, [debouncedScrollEnd]);
+  const handleScroll = useCallback(
+    (e: React.UIEvent<HTMLDivElement>) => {
+      const newScrollTop = e.currentTarget.scrollTop;
+      setScrollTop(newScrollTop);
+      debouncedScrollEnd(newScrollTop);
+    },
+    [debouncedScrollEnd],
+  );
 
   // Cleanup debounced function
   useEffect(() => {
@@ -106,19 +111,22 @@ export function VirtualizedList<T>({
   }, [debouncedScrollEnd]);
 
   // Scroll to position (useful for external control)
-  const _scrollToIndex = useCallback((index: number, align: 'start' | 'center' | 'end' = 'start') => {
-    if (!containerRef.current) return;
+  const _scrollToIndex = useCallback(
+    (index: number, align: 'start' | 'center' | 'end' = 'start') => {
+      if (!containerRef.current) return;
 
-    let scrollTop = index * itemHeight;
-    
-    if (align === 'center') {
-      scrollTop -= height / 2 - itemHeight / 2;
-    } else if (align === 'end') {
-      scrollTop -= height - itemHeight;
-    }
+      let scrollTop = index * itemHeight;
 
-    containerRef.current.scrollTop = Math.max(0, scrollTop);
-  }, [itemHeight, height]);
+      if (align === 'center') {
+        scrollTop -= height / 2 - itemHeight / 2;
+      } else if (align === 'end') {
+        scrollTop -= height - itemHeight;
+      }
+
+      containerRef.current.scrollTop = Math.max(0, scrollTop);
+    },
+    [itemHeight, height],
+  );
 
   // Note: For external scroll methods, use the returned containerRef.current.scrollTop directly
   // and call scrollToIndex from the component instance
@@ -159,7 +167,7 @@ export function VirtualizedList<T>({
 
 // HOC for memoizing items
 export function withVirtualizedMemo<T>(
-  Component: React.ComponentType<{ item: T; index: number; style: React.CSSProperties }>
+  Component: React.ComponentType<{ item: T; index: number; style: React.CSSProperties }>,
 ) {
   return React.memo(Component, (prevProps, nextProps) => {
     return (
