@@ -73,7 +73,7 @@ export class TemplateRegistry extends BaseService {
    */
   protected async initialize(): Promise<void> {
     await super.initialize();
-    
+
     // Initialize all providers
     for (const info of this.providers.values()) {
       if (info.provider.initialize) {
@@ -88,10 +88,13 @@ export class TemplateRegistry extends BaseService {
       }
     }
 
-    this.logger.info({
-      providers: this.providers.size,
-      engines: this.engines.size,
-    }, 'Template registry initialized');
+    this.logger.info(
+      {
+        providers: this.providers.size,
+        engines: this.engines.size,
+      },
+      'Template registry initialized',
+    );
   }
 
   /**
@@ -128,7 +131,7 @@ export class TemplateRegistry extends BaseService {
    */
   public registerProvider(name: string, provider: TemplateProvider, type?: string): void {
     const providerType = type || this.inferProviderType(name, provider);
-    
+
     const info: ProviderInfo = {
       name,
       type: providerType,
@@ -161,7 +164,10 @@ export class TemplateRegistry extends BaseService {
     };
 
     this.engines.set(name, info);
-    this.logger.info({ name, supportedFormats: info.supportedFormats }, 'Template engine registered');
+    this.logger.info(
+      { name, supportedFormats: info.supportedFormats },
+      'Template engine registered',
+    );
   }
 
   /**
@@ -186,22 +192,22 @@ export class TemplateRegistry extends BaseService {
   public getProvidersByType(type: string): TemplateProvider[] {
     const providerNames = this.providersByType.get(type) || [];
     return providerNames
-      .map(name => this.getProvider(name))
-      .filter(provider => provider !== null) as TemplateProvider[];
+      .map((name) => this.getProvider(name))
+      .filter((provider) => provider !== null) as TemplateProvider[];
   }
 
   /**
    * List all providers
    */
   public listProviders(): ProviderInfo[] {
-    return Array.from(this.providers.values()).filter(info => info.isActive);
+    return Array.from(this.providers.values()).filter((info) => info.isActive);
   }
 
   /**
    * List all engines
    */
   public listEngines(): EngineInfo[] {
-    return Array.from(this.engines.values()).filter(info => info.isActive);
+    return Array.from(this.engines.values()).filter((info) => info.isActive);
   }
 
   /**
@@ -209,16 +215,16 @@ export class TemplateRegistry extends BaseService {
    */
   public async listAllTemplates(): Promise<Template[]> {
     const allTemplates: Template[] = [];
-    
+
     for (const info of this.providers.values()) {
       if (info.isActive) {
         try {
           const templates = await info.provider.listTemplates();
           allTemplates.push(...templates);
         } catch (_error) {
-          this.logger.error('Failed to list templates', { 
-            provider: info.name, 
-            error: error.message 
+          this.logger.error('Failed to list templates', {
+            provider: info.name,
+            error: _error instanceof Error ? _error.message : _error,
           });
         }
       }
@@ -261,27 +267,27 @@ export class TemplateRegistry extends BaseService {
     tags?: string[];
   }): Promise<Template[]> {
     const allTemplates = await this.listAllTemplates();
-    
-    return allTemplates.filter(template => {
+
+    return allTemplates.filter((template) => {
       if (criteria.type && template.type !== criteria.type) {
         return false;
       }
-      
+
       if (criteria.format && !template.supportedFormats.includes(criteria.format)) {
         return false;
       }
-      
+
       if (criteria.engine && template.engine !== criteria.engine) {
         return false;
       }
-      
+
       if (criteria.tags && criteria.tags.length > 0) {
         const templateTags = template.metadata?.tags || [];
-        if (!criteria.tags.some(tag => templateTags.includes(tag))) {
+        if (!criteria.tags.some((tag) => templateTags.includes(tag))) {
           return false;
         }
       }
-      
+
       return true;
     });
   }
@@ -378,9 +384,9 @@ export class TemplateRegistry extends BaseService {
           stats.templates.total += templates.length;
           stats.templates.byProvider[info.name] = templates.length;
         } catch (_error) {
-          this.logger.error('Failed to count templates', { 
-            provider: info.name, 
-            error: error.message 
+          this.logger.error('Failed to count templates', {
+            provider: info.name,
+            error: _error instanceof Error ? _error.message : _error,
           });
         }
       }
@@ -391,7 +397,7 @@ export class TemplateRegistry extends BaseService {
     for (const info of this.engines.values()) {
       if (info.isActive) {
         stats.engines.active++;
-        info.supportedFormats.forEach(format => allFormats.add(format));
+        info.supportedFormats.forEach((format) => allFormats.add(format));
       }
     }
     stats.engines.supportedFormats = Array.from(allFormats);
@@ -411,13 +417,13 @@ export class TemplateRegistry extends BaseService {
     const recommendations: string[] = [];
 
     // Check if we have active providers
-    const activeProviders = Array.from(this.providers.values()).filter(p => p.isActive);
+    const activeProviders = Array.from(this.providers.values()).filter((p) => p.isActive);
     if (activeProviders.length === 0) {
       issues.push('No active template providers found');
     }
 
     // Check if we have active engines
-    const activeEngines = Array.from(this.engines.values()).filter(e => e.isActive);
+    const activeEngines = Array.from(this.engines.values()).filter((e) => e.isActive);
     if (activeEngines.length === 0) {
       issues.push('No active render engines found');
     }
@@ -432,7 +438,9 @@ export class TemplateRegistry extends BaseService {
           }
         }
       } catch (_error) {
-        issues.push(`Provider ${info.name} health check error: ${error.message}`);
+        issues.push(
+          `Provider ${info.name} health check error: ${_error instanceof Error ? _error.message : _error}`,
+        );
       }
     }
 
@@ -446,7 +454,9 @@ export class TemplateRegistry extends BaseService {
           }
         }
       } catch (_error) {
-        issues.push(`Engine ${info.name} health check error: ${error.message}`);
+        issues.push(
+          `Engine ${info.name} health check error: ${_error instanceof Error ? _error.message : _error}`,
+        );
       }
     }
 
@@ -480,7 +490,7 @@ export class TemplateRegistry extends BaseService {
     if (name.includes('newsletter')) return 'newsletter';
     if (name.includes('report')) return 'report';
     if (name.includes('plan')) return 'planning';
-    
+
     return 'generic';
   }
 
@@ -491,7 +501,7 @@ export class TemplateRegistry extends BaseService {
     if (engine.getSupportedFormats) {
       return engine.getSupportedFormats();
     }
-    
+
     // Fallback to common formats
     return ['html'];
   }

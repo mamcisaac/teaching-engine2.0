@@ -10,7 +10,7 @@ export class AppError extends Error {
     public statusCode: number,
     public message: string,
     public code?: string,
-    public details?: any
+    public details?: any,
   ) {
     super(message);
     this.name = 'AppError';
@@ -81,12 +81,12 @@ interface ErrorResponse {
 
 export const formatErrorResponse = (
   error: AppError | Error | ZodError,
-  requestId?: string
+  requestId?: string,
 ): ErrorResponse => {
   let code = 'INTERNAL_ERROR';
   let message = 'An unexpected error occurred';
   let details: any = undefined;
-  
+
   if (error instanceof AppError) {
     code = error.code || 'APP_ERROR';
     message = error.message;
@@ -94,7 +94,7 @@ export const formatErrorResponse = (
   } else if (error instanceof ZodError) {
     code = 'VALIDATION_ERROR';
     message = 'Validation failed';
-    details = error.errors.map(err => ({
+    details = error.errors.map((err) => ({
       field: err.path.join('.'),
       message: err.message,
       code: err.code,
@@ -102,7 +102,7 @@ export const formatErrorResponse = (
   } else if (error instanceof Error) {
     message = error.message;
   }
-  
+
   return {
     error: {
       code,
@@ -116,28 +116,31 @@ export const formatErrorResponse = (
 
 // Async error handler wrapper
 export const asyncHandler = <T extends (...args: unknown[]) => Promise<unknown>>(
-  fn: T
+  fn: T,
 ): ((...args: Parameters<T>) => Promise<void>) => {
   return async (...args: Parameters<T>): Promise<void> => {
     try {
       await fn(...args);
     } catch (_error) {
       const [req, res, next] = args as unknown as [any, Response, any];
-      
+
       // Log the error
-      logger.error({
-        error,
-        method: req?.method,
-        path: req?.path,
-        userId: req?.user?.id,
-      }, 'Request handler error');
-      
+      logger.error(
+        {
+          error: _error,
+          method: req?.method,
+          path: req?.path,
+          userId: req?.user?.id,
+        },
+        'Request handler error',
+      );
+
       // Track error metrics
-      if (error instanceof AppError) {
+      if (_error instanceof AppError) {
         errorCounter.add(1, {
           type: 'app_error',
-          code: error.code || 'unknown',
-          status: error.statusCode.toString(),
+          code: _error.code || 'unknown',
+          status: _error.statusCode.toString(),
         });
       } else {
         errorCounter.add(1, {
@@ -145,13 +148,13 @@ export const asyncHandler = <T extends (...args: unknown[]) => Promise<unknown>>
           status: '500',
         });
       }
-      
+
       // Pass to error handler if next is available
       if (next && typeof next === 'function') {
-        next(error);
+        next(_error);
       } else {
         // Handle error directly
-        handleErrorResponse(res, error, req?.id);
+        handleErrorResponse(res, _error, req?.id);
       }
     }
   };
@@ -161,40 +164,47 @@ export const asyncHandler = <T extends (...args: unknown[]) => Promise<unknown>>
 export const handleErrorResponse = (
   res: Response,
   error: AppError | Error | ZodError,
-  requestId?: string
+  requestId?: string,
 ): void => {
   let statusCode = 500;
-  
+
   if (error instanceof AppError) {
     statusCode = error.statusCode;
   } else if (error instanceof ZodError) {
     statusCode = 400;
   }
-  
+
   const errorResponse = formatErrorResponse(error, requestId);
-  
+
   res.status(statusCode).json(errorResponse);
 };
 
 // Database error handler
 export const handleDatabaseError = (error: unknown): AppError => {
   // Prisma error codes
-  if (error.code === 'P2002') {
-    return new ConflictError('A record with this value already exists', {
-      field: error.meta?.target,
-    });
+  if (error && typeof error === 'object' && 'code' in error) {
+    const prismaError = error as {
+      code: string;
+      meta?: { target?: string; cause?: string; field_name?: string };
+    };
+
+    if (prismaError.code === 'P2002') {
+      return new ConflictError('A record with this value already exists', {
+        field: prismaError.meta?.target,
+      });
+    }
+
+    if (prismaError.code === 'P2025') {
+      return new NotFoundError('Record', prismaError.meta?.cause);
+    }
+
+    if (prismaError.code === 'P2003') {
+      return new ValidationError('Foreign key constraint failed', {
+        field: prismaError.meta?.field_name,
+      });
+    }
   }
-  
-  if (error.code === 'P2025') {
-    return new NotFoundError('Record', error.meta?.cause);
-  }
-  
-  if (error.code === 'P2003') {
-    return new ValidationError('Foreign key constraint failed', {
-      field: error.meta?.field_name,
-    });
-  }
-  
+
   // Generic database error
   return new AppError(500, 'Database operation failed', 'DATABASE_ERROR', error);
 };
@@ -208,7 +218,7 @@ export const throwValidationError = (field: string, message: string): never => {
 export const assertExists = <T>(
   value: T | null | undefined,
   resource: string,
-  id?: string | number
+  id?: string | number,
 ): T => {
   if (value === null || value === undefined) {
     throw new NotFoundError(resource, id);
@@ -218,7 +228,7 @@ export const assertExists = <T>(
 
 export const assertAuthorized = (
   condition: boolean,
-  message: string = 'You do not have permission to perform this action'
+  message: string = 'You do not have permission to perform this action',
 ): void => {
   if (!condition) {
     throw new ForbiddenError(message);

@@ -60,10 +60,10 @@ export class PartialManager extends BaseService {
    */
   protected async initialize(): Promise<void> {
     await super.initialize();
-    
+
     // Load partials from file system
     await this.loadPartialsFromFiles();
-    
+
     this.logger.info('Partial manager initialized', {
       partialsCount: this.partials.size,
       categoriesCount: this.categories.size,
@@ -136,7 +136,14 @@ export class PartialManager extends BaseService {
       `,
       category: 'student',
       description: 'Student information display',
-      variables: ['student.firstName', 'student.lastName', 'student.grade', 'student.id', 'student.email', 'student.parentEmail'],
+      variables: [
+        'student.firstName',
+        'student.lastName',
+        'student.grade',
+        'student.id',
+        'student.email',
+        'student.parentEmail',
+      ],
       lastModified: new Date(),
       source: 'memory',
     });
@@ -176,7 +183,13 @@ export class PartialManager extends BaseService {
       `,
       category: 'educational',
       description: 'Assignment summary card',
-      variables: ['assignment.title', 'assignment.dueDate', 'assignment.subject', 'assignment.grade', 'assignment.description'],
+      variables: [
+        'assignment.title',
+        'assignment.dueDate',
+        'assignment.subject',
+        'assignment.grade',
+        'assignment.description',
+      ],
       lastModified: new Date(),
       source: 'memory',
     });
@@ -325,7 +338,7 @@ export class PartialManager extends BaseService {
    */
   public getPartialsRecord(): Record<string, string> {
     const record: Record<string, string> = {};
-    
+
     for (const [name, partial] of this.partials) {
       record[name] = partial.content;
     }
@@ -351,7 +364,7 @@ export class PartialManager extends BaseService {
    * Get partials by category
    */
   public getPartialsByCategory(category: string): PartialInfo[] {
-    return Array.from(this.partials.values()).filter(p => p.category === category);
+    return Array.from(this.partials.values()).filter((p) => p.category === category);
   }
 
   /**
@@ -366,11 +379,12 @@ export class PartialManager extends BaseService {
    */
   public searchPartials(query: string): PartialInfo[] {
     const lowerQuery = query.toLowerCase();
-    
-    return Array.from(this.partials.values()).filter(partial => 
-      partial.name.toLowerCase().includes(lowerQuery) ||
-      (partial.description && partial.description.toLowerCase().includes(lowerQuery)) ||
-      partial.content.toLowerCase().includes(lowerQuery)
+
+    return Array.from(this.partials.values()).filter(
+      (partial) =>
+        partial.name.toLowerCase().includes(lowerQuery) ||
+        (partial.description && partial.description.toLowerCase().includes(lowerQuery)) ||
+        partial.content.toLowerCase().includes(lowerQuery),
     );
   }
 
@@ -390,8 +404,8 @@ export class PartialManager extends BaseService {
       }
 
       const files = await fs.readdir(this.partialsDirectory);
-      const partialFiles = files.filter(file => 
-        file.endsWith('.hbs') || file.endsWith('.handlebars') || file.endsWith('.html')
+      const partialFiles = files.filter(
+        (file) => file.endsWith('.hbs') || file.endsWith('.handlebars') || file.endsWith('.html'),
       );
 
       for (const file of partialFiles) {
@@ -399,7 +413,7 @@ export class PartialManager extends BaseService {
           const filePath = path.join(this.partialsDirectory, file);
           const content = await fs.readFile(filePath, 'utf-8');
           const stats = await fs.stat(filePath);
-          
+
           const name = path.basename(file, path.extname(file));
           const category = this.inferCategoryFromFilename(name);
 
@@ -424,7 +438,7 @@ export class PartialManager extends BaseService {
         loaded: partialFiles.length,
       });
     } catch (_error) {
-      this.logger.error('Failed to load partials from files', { 
+      this.logger.error('Failed to load partials from files', {
         directory: this.partialsDirectory,
         error: error.message,
       });
@@ -453,8 +467,11 @@ export class PartialManager extends BaseService {
 
       this.logger.info('Partial saved to file', { name, filePath });
     } catch (_error) {
-      this.logger.error('Failed to save partial to file', { name, error: error.message });
-      throw error;
+      this.logger.error('Failed to save partial to file', {
+        name,
+        error: _error instanceof Error ? _error.message : _error,
+      });
+      throw _error;
     }
   }
 
@@ -479,7 +496,7 @@ export class PartialManager extends BaseService {
       partial.content = content;
       partial.lastModified = new Date();
       partial.variables = this.extractVariables(content);
-      
+
       if (description) {
         partial.description = description;
       }
@@ -495,17 +512,21 @@ export class PartialManager extends BaseService {
    */
   private extractVariables(content: string): string[] {
     const variables = new Set<string>();
-    
+
     // Match Handlebars variables: {{variable}} or {{object.property}}
     const variableRegex = /\{\{([^{}#/]+)\}\}/g;
     let match;
-    
+
     while ((match = variableRegex.exec(content)) !== null) {
       const variable = match[1].trim();
-      
+
       // Skip helpers and special syntax
-      if (!variable.startsWith('#') && !variable.startsWith('/') && 
-          !variable.startsWith('else') && !variable.startsWith('this.')) {
+      if (
+        !variable.startsWith('#') &&
+        !variable.startsWith('/') &&
+        !variable.startsWith('else') &&
+        !variable.startsWith('this.')
+      ) {
         variables.add(variable);
       }
     }
@@ -518,14 +539,22 @@ export class PartialManager extends BaseService {
    */
   private inferCategoryFromFilename(name: string): string {
     const lowerName = name.toLowerCase();
-    
-    if (lowerName.includes('header') || lowerName.includes('footer') || lowerName.includes('layout')) {
+
+    if (
+      lowerName.includes('header') ||
+      lowerName.includes('footer') ||
+      lowerName.includes('layout')
+    ) {
       return 'layout';
     }
     if (lowerName.includes('student')) {
       return 'student';
     }
-    if (lowerName.includes('grade') || lowerName.includes('assignment') || lowerName.includes('lesson')) {
+    if (
+      lowerName.includes('grade') ||
+      lowerName.includes('assignment') ||
+      lowerName.includes('lesson')
+    ) {
       return 'educational';
     }
     if (lowerName.includes('newsletter')) {
@@ -537,7 +566,7 @@ export class PartialManager extends BaseService {
     if (lowerName.includes('contact') || lowerName.includes('teacher')) {
       return 'contact';
     }
-    
+
     return 'misc';
   }
 
@@ -564,14 +593,17 @@ export class PartialManager extends BaseService {
   /**
    * Validate partial dependencies
    */
-  public validateDependencies(): { valid: string[]; invalid: Array<{ name: string; missing: string[] }> } {
+  public validateDependencies(): {
+    valid: string[];
+    invalid: Array<{ name: string; missing: string[] }>;
+  } {
     const valid: string[] = [];
     const invalid: Array<{ name: string; missing: string[] }> = [];
 
     for (const [name, partial] of this.partials) {
       if (partial.dependencies && partial.dependencies.length > 0) {
-        const missing = partial.dependencies.filter(dep => !this.partials.has(dep));
-        
+        const missing = partial.dependencies.filter((dep) => !this.partials.has(dep));
+
         if (missing.length > 0) {
           invalid.push({ name, missing });
         } else {

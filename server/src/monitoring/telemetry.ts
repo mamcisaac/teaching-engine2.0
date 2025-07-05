@@ -23,7 +23,7 @@ const resource = Resource.default().merge(
     [SemanticResourceAttributes.SERVICE_NAME]: OTEL_SERVICE_NAME,
     [SemanticResourceAttributes.SERVICE_VERSION]: process.env.npm_package_version || '1.0.0',
     [SemanticResourceAttributes.DEPLOYMENT_ENVIRONMENT]: OTEL_ENVIRONMENT,
-  })
+  }),
 );
 
 // Initialize SDK
@@ -75,12 +75,13 @@ export const initTelemetry = async (): Promise<void> => {
 
     // Graceful shutdown
     process.on('SIGTERM', () => {
-      otelSDK?.shutdown()
+      otelSDK
+        ?.shutdown()
         .then(() => logger.info('OpenTelemetry terminated'))
         .catch((error) => logger.error('Error terminating OpenTelemetry', error));
     });
   } catch (_error) {
-    logger.error('Failed to initialize OpenTelemetry', error);
+    logger.error('Failed to initialize OpenTelemetry', _error);
   }
 };
 
@@ -94,7 +95,7 @@ export const meter = metrics.getMeter(OTEL_SERVICE_NAME);
 export const withSpan = async <T>(
   spanName: string,
   spanOptions: SpanOptions & { attributes?: Attributes } = {},
-  fn: (span: Span) => Promise<T>
+  fn: (span: Span) => Promise<T>,
 ): Promise<T> => {
   if (!OTEL_ENABLED) {
     return fn({} as Span);
@@ -108,10 +109,10 @@ export const withSpan = async <T>(
     } catch (_error) {
       span.setStatus({
         code: SpanStatusCode.ERROR,
-        message: error instanceof Error ? error.message : 'Unknown error',
+        message: _error instanceof Error ? _error.message : 'Unknown error',
       });
-      span.recordException(error as Error);
-      throw error;
+      span.recordException(_error as Error);
+      throw _error;
     } finally {
       span.end();
     }
@@ -121,7 +122,7 @@ export const withSpan = async <T>(
 // Utility to add attributes to current span
 export const addSpanAttributes = (attributes: Attributes): void => {
   if (!OTEL_ENABLED) return;
-  
+
   const span = trace.getActiveSpan();
   if (span) {
     span.setAttributes(attributes);
@@ -131,7 +132,7 @@ export const addSpanAttributes = (attributes: Attributes): void => {
 // Utility to record an event in the current span
 export const recordSpanEvent = (name: string, attributes?: Attributes): void => {
   if (!OTEL_ENABLED) return;
-  
+
   const span = trace.getActiveSpan();
   if (span) {
     span.addEvent(name, attributes);

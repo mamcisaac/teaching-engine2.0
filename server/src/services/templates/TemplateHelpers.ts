@@ -84,15 +84,15 @@ export class TemplateHelpers extends BaseService {
       name: 'formatDate',
       fn: (date: Date | string, format: string = 'short', locale: string = 'en-US') => {
         const dateObj = typeof date === 'string' ? new Date(date) : date;
-        
+
         if (format === 'short') {
           return dateObj.toLocaleDateString(locale);
         } else if (format === 'long') {
-          return dateObj.toLocaleDateString(locale, { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
+          return dateObj.toLocaleDateString(locale, {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
           });
         } else if (format === 'time') {
           return dateObj.toLocaleTimeString(locale);
@@ -163,7 +163,7 @@ export class TemplateHelpers extends BaseService {
 
     this.registerHelper('divide', {
       name: 'divide',
-      fn: (a: number, b: number) => b !== 0 ? a / b : 0,
+      fn: (a: number, b: number) => (b !== 0 ? a / b : 0),
       description: 'Divide two numbers (safe division)',
       category: 'math',
       examples: ['{{divide 15 3}}'],
@@ -194,7 +194,7 @@ export class TemplateHelpers extends BaseService {
 
     this.registerHelper('uppercase', {
       name: 'uppercase',
-      fn: (str: string) => str ? str.toUpperCase() : '',
+      fn: (str: string) => (str ? str.toUpperCase() : ''),
       description: 'Convert to uppercase',
       category: 'string',
       examples: ['{{uppercase student.name}}'],
@@ -202,7 +202,7 @@ export class TemplateHelpers extends BaseService {
 
     this.registerHelper('lowercase', {
       name: 'lowercase',
-      fn: (str: string) => str ? str.toLowerCase() : '',
+      fn: (str: string) => (str ? str.toLowerCase() : ''),
       description: 'Convert to lowercase',
       category: 'string',
       examples: ['{{lowercase student.name}}'],
@@ -276,8 +276,9 @@ export class TemplateHelpers extends BaseService {
         const now = date || new Date();
         const year = now.getFullYear();
         const month = now.getMonth();
-        
-        if (month >= 8) { // September or later
+
+        if (month >= 8) {
+          // September or later
           return `${year}-${year + 1}`;
         } else {
           return `${year - 1}-${year}`;
@@ -291,7 +292,7 @@ export class TemplateHelpers extends BaseService {
     // Array helpers
     this.registerHelper('first', {
       name: 'first',
-      fn: (array: unknown[]) => array && array.length > 0 ? array[0] : null,
+      fn: (array: unknown[]) => (array && array.length > 0 ? array[0] : null),
       description: 'Get first item from array',
       category: 'array',
       examples: ['{{first students}}'],
@@ -299,7 +300,7 @@ export class TemplateHelpers extends BaseService {
 
     this.registerHelper('last', {
       name: 'last',
-      fn: (array: unknown[]) => array && array.length > 0 ? array[array.length - 1] : null,
+      fn: (array: unknown[]) => (array && array.length > 0 ? array[array.length - 1] : null),
       description: 'Get last item from array',
       category: 'array',
       examples: ['{{last grades}}'],
@@ -307,7 +308,7 @@ export class TemplateHelpers extends BaseService {
 
     this.registerHelper('length', {
       name: 'length',
-      fn: (array: unknown[]) => array ? array.length : 0,
+      fn: (array: unknown[]) => (array ? array.length : 0),
       description: 'Get array length',
       category: 'array',
       examples: ['{{length students}}'],
@@ -409,7 +410,7 @@ export class TemplateHelpers extends BaseService {
    */
   public getHelpersRecord(): Record<string, (...args: unknown[]) => unknown> {
     const record: Record<string, (...args: unknown[]) => unknown> = {};
-    
+
     for (const [name, helper] of this.helpers) {
       record[name] = helper.fn;
     }
@@ -421,7 +422,7 @@ export class TemplateHelpers extends BaseService {
    * Get helpers by category
    */
   public getHelpersByCategory(category: string): HelperFunction[] {
-    return Array.from(this.helpers.values()).filter(h => h.category === category);
+    return Array.from(this.helpers.values()).filter((h) => h.category === category);
   }
 
   /**
@@ -450,10 +451,11 @@ export class TemplateHelpers extends BaseService {
    */
   public searchHelpers(query: string): HelperFunction[] {
     const lowerQuery = query.toLowerCase();
-    
-    return Array.from(this.helpers.values()).filter(helper => 
-      helper.name.toLowerCase().includes(lowerQuery) ||
-      (helper.description && helper.description.toLowerCase().includes(lowerQuery))
+
+    return Array.from(this.helpers.values()).filter(
+      (helper) =>
+        helper.name.toLowerCase().includes(lowerQuery) ||
+        (helper.description && helper.description.toLowerCase().includes(lowerQuery)),
     );
   }
 
@@ -494,8 +496,12 @@ export class TemplateHelpers extends BaseService {
     try {
       return helper(...args);
     } catch (_error) {
-      this.logger.error('Helper test failed', { name, args, error: error.message });
-      throw error;
+      this.logger.error('Helper test failed', {
+        name,
+        args,
+        error: _error instanceof Error ? _error.message : _error,
+      });
+      throw _error;
     }
   }
 
