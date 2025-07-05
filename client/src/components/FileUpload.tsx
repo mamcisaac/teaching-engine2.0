@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useUploadMediaResource } from '../api/domains/resource';
+import { useUploadResource } from '../api/domains/resource/hooks';
 
 // Updated for ETFO-aligned media resource uploads
 export default function FileUpload() {
   const [file, setFile] = useState<File | null>(null);
-  const upload = useUploadMediaResource();
+  const upload = useUploadResource();
 
   return (
     <div className="space-y-2">
@@ -14,10 +14,15 @@ export default function FileUpload() {
         disabled={!file}
         onClick={() => {
           if (file) {
-            const formData = new FormData();
-            formData.append('file', file);
-            formData.append('title', file.name);
-            upload.mutate(formData);
+            upload.mutate({
+              file,
+              metadata: {
+                title: file.name,
+                description: '',
+                tags: [],
+                category: 'document'
+              }
+            });
           }
         }}
       >

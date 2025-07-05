@@ -28,7 +28,7 @@ apiClient.interceptors.request.use(async (config) => {
   try {
     await authService.ensureValidToken();
   } catch (_error) {
-    logger.warn('Token refresh failed before request:', error);
+    logger.warn('Token refresh failed before request:', _error);
   }
 
   return config;

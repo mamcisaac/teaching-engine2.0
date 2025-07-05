@@ -43,6 +43,7 @@ export type {
 
 // Re-export newsletter types
 export type { ParentSummary } from './newsletter';
+import type { ParentSummary } from './newsletter';
 
 // Planning types 
 export interface LessonPlan {
@@ -382,7 +383,7 @@ export interface ReflectionInput {
   date: string;
   content: string;
   // Legacy outcome IDs removed
-  themeId?: number;
+  themeId?: number | null;
 }
 
 export interface ReflectionUpdate {
@@ -452,7 +453,7 @@ export interface StudentInput {
 export interface StudentGoalInput {
   text: string;
   // Legacy outcome ID removed
-  themeId?: number;
+  themeId?: number | null;
   status?: 'active' | 'completed' | 'abandoned';
 }
 
@@ -462,7 +463,7 @@ export interface StudentReflectionInput {
   emoji?: string;
   voicePath?: string;
   // Legacy outcome ID removed
-  themeId?: number;
+  themeId?: number | null;
 }
 
 export interface ParentContact {
@@ -482,37 +483,4 @@ export interface StudentArtifact {
   createdAt: string;
 }
 
-export interface ParentSummary {
-  id: number;
-  studentId: number;
-  dateFrom: string;
-  dateTo: string;
-  focus: string;
-  contentFr: string;
-  contentEn: string;
-  isDraft: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
 
-export interface ParentSummaryGeneration {
-  french: string;
-  english: string;
-}
-
-export interface GenerateParentSummaryRequest {
-  studentId: number;
-  from: string;
-  to: string;
-  focus?: string[];
-}
-
-export interface SaveParentSummaryRequest {
-  studentId: number;
-  dateFrom: string;
-  dateTo: string;
-  focus?: string[];
-  contentFr: string;
-  contentEn: string;
-  isDraft?: boolean;
-}

@@ -58,7 +58,7 @@ export class AIErrorBoundary extends Component<Props, State> {
 
     // Log AI-specific errors with context
     logger.error('=== AI ERROR BOUNDARY ===');
-    logger.error('Error:', error.name, '-', error.message);
+    logger.error(`Error: ${error.name} - ${error.message}`);
     logger.error('Stack:', error.stack);
     logger.error('Component Stack:', errorInfo.componentStack);
     logger.error('Retry Count:', this.state.retryCount);

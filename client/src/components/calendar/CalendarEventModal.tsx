@@ -1,4 +1,4 @@
-import { apiClient } from '../api/core/client';
+import { apiClient } from '../../api/core';
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { Calendar, Clock } from 'lucide-react';

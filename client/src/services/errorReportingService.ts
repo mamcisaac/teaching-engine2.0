@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/react';
-import { BrowserTracing } from '@sentry/tracing';
+import { Replay } from '@sentry/replay';
 import { ErrorInfo } from 'react';
 
 interface UserContext {
@@ -100,11 +100,8 @@ export class ErrorReportingService {
         dsn,
         environment: import.meta.env.MODE || 'production',
         integrations: [
-          new BrowserTracing({
-            // Set sampling rates
-            tracingOrigins: ['localhost', window.location.hostname, /^\//],
-          }),
-          new Sentry.Replay({
+          Sentry.browserTracingIntegration(),
+          new Replay({
             // Mask all text and inputs for privacy
             maskAllText: true,
             maskAllInputs: true,

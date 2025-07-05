@@ -1,10 +1,15 @@
 import { useState } from 'react';
-import { useHolidays, useAddHoliday, useDeleteHoliday } from '../../api';
+// TODO: Holiday hooks not yet implemented
+// import { useHolidays, useAddHoliday, useDeleteHoliday } from '../../api';
 
 export default function HolidaySettings() {
-  const { data: holidays } = useHolidays();
-  const add = useAddHoliday();
-  const remove = useDeleteHoliday();
+  // TODO: Holiday hooks not yet implemented
+  // const { data: holidays } = useHolidays();
+  // const add = useAddHoliday();
+  // const remove = useDeleteHoliday();
+  const holidays: any[] = []; // Placeholder
+  const add = { mutate: () => {} }; // Placeholder
+  const remove = { mutate: () => {} }; // Placeholder
   const [date, setDate] = useState('');
   const [name, setName] = useState('');
 

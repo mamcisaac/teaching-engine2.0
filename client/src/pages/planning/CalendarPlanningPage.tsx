@@ -245,7 +245,7 @@ export default function CalendarPlanningPage() {
         if (!filters.eventTypes.includes(event.type)) return false;
       }
       if (!filters.showWeekends && event.start) {
-        const _day = event.start.getDay();
+        const day = event.start.getDay();
         if (day === 0 || day === 6) return false;
       }
       return true;
@@ -424,7 +424,7 @@ export default function CalendarPlanningPage() {
                   .map((l: ETFOLessonPlan) => (l as { subject?: string }).subject)
                   .filter(Boolean),
               ),
-            ].map((_s) => String(s))}
+            ].map((s) => String(s))}
           />
         </Suspense>
       )}

@@ -62,7 +62,7 @@ export function useWorkflowState() {
       const response = await apiClient.get(`/api/workflow/access/${level}`);
       return response.data;
     } catch (_error) {
-      logger.error('Error checking level access:', error);
+      logger.error('Error checking level access:', _error);
       return { canAccess: false, reason: 'Error checking access' };
     }
   };
@@ -78,7 +78,7 @@ export function useWorkflowState() {
       });
       return response.data;
     } catch (_error) {
-      logger.error('Error validating level:', error);
+      logger.error('Error validating level:', _error);
       return { isValid: false, missingFields: ['Validation error'] };
     }
   };

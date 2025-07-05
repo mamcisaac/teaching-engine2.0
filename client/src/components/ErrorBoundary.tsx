@@ -22,7 +22,7 @@ export default class ErrorBoundary extends Component<Props, State> {
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     logger.error('=== ERROR BOUNDARY CAUGHT AN ERROR ===');
-    logger.error('Error:', error.name, '-', error.message);
+    logger.error(`Error: ${error.name} - ${error.message}`);
     logger.error('Error stack:', error.stack);
     logger.error('Component stack:', errorInfo.componentStack);
     logger.error('======================================');

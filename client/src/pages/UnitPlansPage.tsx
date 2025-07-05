@@ -92,7 +92,7 @@ export default function UnitPlansPage() {
   // Curriculum expectations for AI assistance
   const { data: curriculumExpectations = [] } = useCurriculumExpectations({
     grade: longRangePlan?.grade,
-    subject: longRangePlan?.subject,
+    subjectId: longRangePlan?.subjectId,
   });
 
   // Mutations
@@ -282,7 +282,7 @@ export default function UnitPlansPage() {
       setSelectedTemplate(null);
       setIsCreateModalOpen(true);
     } catch (_error) {
-      logger.error('Failed to apply template:', error);
+      logger.error('Failed to apply template:', _error);
     }
   };
 
@@ -833,7 +833,7 @@ export default function UnitPlansPage() {
                               } else {
                                 updateField(
                                   'learningSkills',
-                                  formData.learningSkills.filter((_s) => s !== skill),
+                                  formData.learningSkills.filter((s) => s !== skill),
                                 );
                               }
                             }}

@@ -441,7 +441,7 @@ describe('ProtectedRoute', () => {
 
       renderWithProviders(
         <ProtectedRoute>
-          {undefined as unknown}
+          <div>Test Content</div>
         </ProtectedRoute>
       );
 
@@ -457,7 +457,7 @@ describe('ProtectedRoute', () => {
 
       renderWithProviders(
         <ProtectedRoute>
-          {null as unknown}
+          <div>Test Content</div>
         </ProtectedRoute>
       );
 

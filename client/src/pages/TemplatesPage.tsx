@@ -135,7 +135,7 @@ export default function TemplatesPage() {
       });
       navigate(`/templates/${newTemplate.id}`);
     } catch (_error) {
-      logger.error('Failed to create template:', error);
+      logger.error('Failed to create template:', _error);
     }
   };
 
@@ -147,7 +147,7 @@ export default function TemplatesPage() {
       });
       navigate(`/templates/${duplicated.id}`);
     } catch (_error) {
-      logger.error('Failed to duplicate template:', error);
+      logger.error('Failed to duplicate template:', _error);
     }
   };
 
@@ -162,7 +162,7 @@ export default function TemplatesPage() {
         navigate('/templates');
       }
     } catch (_error) {
-      logger.error('Failed to delete template:', error);
+      logger.error('Failed to delete template:', _error);
     }
   };
 
@@ -183,7 +183,7 @@ export default function TemplatesPage() {
         });
       }
     } catch (_error) {
-      logger.error('Failed to apply template:', error);
+      logger.error('Failed to apply template:', _error);
     }
   };
 
@@ -191,7 +191,7 @@ export default function TemplatesPage() {
   //   try {
   //     await rateTemplate.mutateAsync({ id: template.id, rating });
   //   } catch (_error) {
-  //     logger.error('Failed to rate template:', error);
+  //     logger.error('Failed to rate template:', _error);
   //   }
   // };
 

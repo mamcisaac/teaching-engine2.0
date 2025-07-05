@@ -61,7 +61,7 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
       try {
         localStorage.setItem('onboarding-completed-steps', JSON.stringify(completedSteps));
       } catch (_error) {
-        logger.warn('Failed to save onboarding progress:', error);
+        logger.warn('Failed to save onboarding progress:', _error);
       }
     }
   }, [completedSteps]);
@@ -135,7 +135,7 @@ export default function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingF
 
       markStepCompleted('sample-data');
     } catch (_error) {
-      logger.error('Error creating sample data:', error);
+      logger.error('Error creating sample data:', _error);
     } finally {
       setIsCreatingSampleData(false);
     }

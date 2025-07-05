@@ -1,4 +1,4 @@
-import { useOralRoutineStats } from '../api/domains/routine';
+import { useRoutineStats } from '../api/domains/routine/hooks';
 
 interface OralRoutineSummaryProps {
   className?: string;
@@ -12,7 +12,7 @@ export default function OralRoutineSummary({ className = '' }: OralRoutineSummar
   const endOfWeek = new Date(startOfWeek);
   endOfWeek.setDate(endOfWeek.getDate() + 6);
 
-  const { data: stats, isLoading } = useOralRoutineStats({
+  const { data: stats, isLoading } = useRoutineStats({
     startDate: startOfWeek.toISOString(),
     endDate: endOfWeek.toISOString(),
   });
@@ -36,8 +36,8 @@ export default function OralRoutineSummary({ className = '' }: OralRoutineSummar
   }
 
   const completionRate = Math.round((stats.completedRoutines / stats.totalRoutines) * 100);
-  const participationDisplay = stats.averageParticipation
-    ? `${stats.averageParticipation}% avg`
+  const participationDisplay = stats.averageEngagement
+    ? `${Math.round(stats.averageEngagement * 100)}% avg`
     : 'No data';
 
   const getCompletionColor = () => {

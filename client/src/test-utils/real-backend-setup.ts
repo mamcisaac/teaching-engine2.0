@@ -290,18 +290,6 @@ export function skipIfNoRealBackend(testFn: () => void | Promise<void>) {
   };
 }
 
-/**
- * Create axios instance with real backend configuration
- */
-export function createRealBackendClient(config?: Partial<RealBackendConfig>) {
-  return axios.create({
-    baseURL: config?.baseURL || REAL_BACKEND_URL,
-    timeout: config?.timeout || 30000,
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
-}
 
 /**
  * Aliases for backward compatibility

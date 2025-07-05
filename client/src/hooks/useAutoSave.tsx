@@ -64,7 +64,7 @@ export function useAutoSave<T>({
 
         onSaveSuccess?.();
       } catch (_error) {
-        logger.error('Auto-save failed:', error);
+        logger.error('Auto-save failed:', _error);
         
         toast({
           title: 'Auto-save failed',
@@ -73,7 +73,7 @@ export function useAutoSave<T>({
           duration: 5000,
         });
 
-        onSaveError?.(error as Error);
+        onSaveError?.(_error as Error);
       } finally {
         setIsSaving(false);
       }

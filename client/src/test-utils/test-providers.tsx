@@ -11,6 +11,7 @@ import React, { ReactNode, useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import { render, RenderOptions } from '@testing-library/react';
+import { vi } from 'vitest';
 import { AuthProvider } from '../contexts/AuthContext';
 import { ThemeProvider } from '../contexts/ThemeContext';
 import { NotificationProvider } from '../contexts/NotificationContext';
@@ -78,8 +79,8 @@ export function RealProviders({
   useEffect(() => {
     return () => {
       // Cleanup on unmount
-      if (authContext) {
-        authContext.cleanup();
+      if (authContext?.cleanup) {
+        authContext.cleanup().catch(console.error);
       }
     };
   }, [authContext]);
@@ -263,8 +264,7 @@ export async function renderWithRealAuth(
     authContext = await createAuthenticatedTestUser();
   } else if (testUser) {
     // Use existing test user
-    const { createAuthenticatedTestUser: createAuthContext } = await import('./auth-test-utils');
-    authContext = await createAuthContext({ email: testUser.email });
+    authContext = await createAuthenticatedTestUser();
   }
 
   const result = renderWithProviders(ui, {
@@ -277,7 +277,7 @@ export async function renderWithRealAuth(
     ...result,
     authContext,
     cleanup: async () => {
-      if (authContext) {
+      if (authContext?.cleanup) {
         await authContext.cleanup();
       }
     },

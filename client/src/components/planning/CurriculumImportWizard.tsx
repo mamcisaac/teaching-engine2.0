@@ -108,7 +108,7 @@ export function CurriculumImportWizard({
             setCurrentStep('upload');
           }
         } catch (_error) {
-          logger.error('Status poll error:', error);
+          logger.error('Status poll error:', _error);
           toast({
             title: 'Status Check Failed',
             description: 'Failed to check processing status',
@@ -157,10 +157,10 @@ export function CurriculumImportWizard({
           description: 'Your curriculum document is being processed...',
         });
       } catch (_error) {
-        logger.error('Upload error:', error);
+        logger.error('Upload error:', _error);
         toast({
           title: 'Upload Failed',
-          description: error instanceof Error ? error.message : 'Failed to upload document',
+          description: _error instanceof Error ? _error.message : 'Failed to upload document',
           variant: 'destructive',
         });
       } finally {
@@ -206,10 +206,10 @@ export function CurriculumImportWizard({
       // Store timeout ID for cleanup
       return () => clearTimeout(timeoutId);
     } catch (_error) {
-      logger.error('Confirm import error:', error);
+      logger.error('Confirm import error:', _error);
       toast({
         title: 'Import Failed',
-        description: error instanceof Error ? error.message : 'Failed to import curriculum',
+        description: _error instanceof Error ? _error.message : 'Failed to import curriculum',
         variant: 'destructive',
       });
     } finally {

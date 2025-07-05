@@ -28,6 +28,7 @@ export interface AuthTestContext {
   token: string;
   headers: {
     Authorization: string;
+    'Content-Type': string;
   };
   cleanup?: () => Promise<void>;
 }
@@ -161,7 +162,9 @@ export function createAuthContextValue(overrides?: Partial<typeof mockAuthContex
 export async function createAuthenticatedTestUser(): Promise<AuthTestContext> {
   const result = setupAuthenticatedUser();
   return {
-    ...result,
+    user: result.user,
+    token: result.token,
+    headers: result.headers,
     cleanup: async () => {
       clearAuthData();
     }
@@ -173,26 +176,6 @@ export async function createAuthenticatedTestUser(): Promise<AuthTestContext> {
  */
 export const clearAuthState = clearAuthData;
 
-/**
- * Test user interface
- */
-export interface TestUser {
-  id: string;
-  email: string;
-  name: string;
-  role: string;
-  token: string;
-}
-
-/**
- * Auth test context interface
- */
-export interface AuthTestContext {
-  user: typeof mockUser;
-  token: string;
-  headers: typeof mockAuthHeaders;
-  cleanup?: () => void;
-}
 
 /**
  * Mock login response

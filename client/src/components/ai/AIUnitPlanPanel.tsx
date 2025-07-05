@@ -170,10 +170,10 @@ export function AIUnitPlanPanel({
       });
 
     } catch (_error) {
-      logger.error('Error generating suggestions:', error);
+      logger.error('Error generating suggestions:', _error);
       toast({
         title: 'Generation Failed',
-        description: (error instanceof Error ? error.message : String(error)) || 'Failed to generate suggestions. Please try again.',
+        description: (_error instanceof Error ? _error.message : String(_error)) || 'Failed to generate suggestions. Please try again.',
         variant: 'destructive',
       });
     } finally {

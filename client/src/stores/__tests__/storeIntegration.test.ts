@@ -80,7 +80,7 @@ describe('Store Integration Tests', () => {
   it('keyboard shortcuts store should register and handle shortcuts', () => {
     const store = useKeyboardShortcutsStore.getState();
     
-    const mockHandler = viit.fn();
+    const mockHandler = vi.fn();
     const shortcut = {
       id: 'it-shortcut',
       key: 't',

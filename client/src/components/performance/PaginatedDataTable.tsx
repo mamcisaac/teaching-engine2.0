@@ -1,6 +1,16 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { debounce } from 'lodash-es';
+// Simple debounce implementation
+const debounce = <T extends (...args: any[]) => any>(
+  func: T,
+  wait: number
+): ((...args: Parameters<T>) => void) => {
+  let timeout: ReturnType<typeof setTimeout>;
+  return (...args: Parameters<T>) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
+};
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { LoadingSkeleton } from './LoadingSkeleton';

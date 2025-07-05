@@ -1,5 +1,29 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { debounce, throttle } from 'lodash-es';
+// Simple debounce and throttle implementations
+const debounce = <T extends (...args: any[]) => any>(
+  func: T,
+  wait: number
+): ((...args: Parameters<T>) => void) => {
+  let timeout: ReturnType<typeof setTimeout>;
+  return (...args: Parameters<T>) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
+};
+
+const throttle = <T extends (...args: any[]) => any>(
+  func: T,
+  wait: number
+): ((...args: Parameters<T>) => void) => {
+  let inThrottle: boolean;
+  return (...args: Parameters<T>) => {
+    if (!inThrottle) {
+      func(...args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, wait);
+    }
+  };
+};
 
 /**
  * Hook for debounced values to reduce unnecessary re-renders

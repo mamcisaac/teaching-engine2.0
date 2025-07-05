@@ -41,7 +41,7 @@ export function RealTestProviders({
     return () => {
       // Cleanup on unmount
       if (authContext?.cleanup) {
-        authContext.cleanup();
+        authContext.cleanup().catch(console.error);
       }
     };
   }, [authContext]);
@@ -115,7 +115,7 @@ export async function renderWithRealBackend(
     queryClient: testQueryClient,
     authContext: testAuthContext,
     cleanup: async () => {
-      if (testAuthContext) {
+      if (testAuthContext?.cleanup) {
         await testAuthContext.cleanup();
       }
       if (backendCleanup) {
@@ -139,8 +139,7 @@ export async function renderAuthenticatedWithRealBackend(
   if (createUser && !testUser) {
     authContext = await createAuthenticatedTestUser();
   } else if (testUser) {
-    const { createAuthenticatedTestUser: createAuthContext } = await import('./auth-test-utils');
-    authContext = await createAuthContext({ email: testUser.email });
+    authContext = await createAuthenticatedTestUser();
   }
 
   const result = await renderWithRealBackend(ui, {
@@ -191,7 +190,7 @@ export function useRealTestSetup() {
     
     return () => {
       if (setup) {
-        setup.cleanup();
+        setup.cleanup().catch(console.error);
       }
     };
   }, []);
@@ -216,7 +215,9 @@ export function useAuthenticatedTestSetup() {
         authContext,
         queryClient: backendSetup.queryClient,
         cleanup: async () => {
-          await authContext.cleanup();
+          if (authContext?.cleanup) {
+            await authContext.cleanup();
+          }
           await backendSetup.cleanup();
         },
       });
@@ -226,7 +227,7 @@ export function useAuthenticatedTestSetup() {
 
     return () => {
       if (authSetup) {
-        authSetup.cleanup();
+        authSetup.cleanup().catch(console.error);
       }
     };
   }, []);

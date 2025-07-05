@@ -117,7 +117,7 @@ export default function CurriculumImportPage() {
           description: `Parsed ${parseResponse.data.subjects?.length || 0} subjects from ${file.name}`,
         });
       } catch (_error) {
-        logger.error('Import error:', error);
+        logger.error('Import error:', _error);
         setImportSession((prev) =>
           prev
             ? {

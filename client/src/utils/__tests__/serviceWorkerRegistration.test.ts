@@ -379,7 +379,7 @@ describe('serviceWorkerRegistration', () => {
         active: null,
         installing: null,
         sync: { register: vi.fn() },
-      });
+      } as any);
       
       // Should not throw
       await expect(cacheUrls(['/api/data'])).resolves.toBeUndefined();

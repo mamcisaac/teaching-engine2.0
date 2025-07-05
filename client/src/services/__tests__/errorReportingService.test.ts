@@ -242,7 +242,7 @@ describe('ErrorReportingService', () => {
     it('should clear user context when null is passed', () => {
       errorReportingService.setUserContext(null);
 
-      expect(Sentry.configureScope).toHaveBeenCalled();
+      expect(Sentry.setUser).toHaveBeenCalledWith(null);
     });
   });
 

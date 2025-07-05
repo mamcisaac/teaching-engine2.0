@@ -100,7 +100,7 @@ export default function ParentNewsletterPage() {
       navigate(`/newsletters/${savedDraft.id}`);
       setShowCreateForm(false);
     } catch (_error) {
-      logger.error('Failed to generate newsletter:', error);
+      logger.error('Failed to generate newsletter:', _error);
       toast.error('Failed to generate newsletter. Please try again.');
     }
   };
@@ -123,7 +123,7 @@ export default function ParentNewsletterPage() {
       await saveNewsletterDraft.mutateAsync(updatedDraft);
       toast.success('Newsletter regenerated successfully!');
     } catch (_error) {
-      logger.error('Failed to regenerate newsletter:', error);
+      logger.error('Failed to regenerate newsletter:', _error);
       toast.error('Failed to regenerate newsletter. Please try again.');
     }
   };
@@ -132,7 +132,7 @@ export default function ParentNewsletterPage() {
     try {
       await saveNewsletterDraft.mutateAsync(draft);
     } catch (_error) {
-      logger.error('Failed to save draft:', error);
+      logger.error('Failed to save draft:', _error);
       toast.error('Failed to save draft. Please try again.');
     }
   };
@@ -149,7 +149,7 @@ export default function ParentNewsletterPage() {
           ?.filter(Boolean) as string[]
       });
     } catch (_error) {
-      logger.error('Failed to send newsletter:', error);
+      logger.error('Failed to send newsletter:', _error);
       toast.error('Failed to send newsletter. Please try again.');
     }
   };
@@ -161,7 +161,7 @@ export default function ParentNewsletterPage() {
         navigate('/newsletters');
       }
     } catch (_error) {
-      logger.error('Failed to delete newsletter:', error);
+      logger.error('Failed to delete newsletter:', _error);
       toast.error('Failed to delete newsletter. Please try again.');
     }
   };
