@@ -8,8 +8,9 @@ import { PrismaClient } from '@teaching-engine/database';
 import { z } from 'zod';
 import bcrypt from 'bcryptjs';
 import { asyncHandler } from '../middleware/errorHandler';
+import { RepositoryFactory } from '../repositories/RepositoryFactory';
 // Authentication middleware available if needed
-import { validatePassword, hashPassword } from '../services/auth/authService';
+import { validatePassword } from '../services/auth/authService';
 
 // Use global Express Request type with user: { id: number; email: string }
 
@@ -20,6 +21,8 @@ const updatePasswordSchema = z.object({
 
 export function userRoutes(prisma: PrismaClient): Router {
   const router = Router();
+  const repositories = RepositoryFactory.getInstance(prisma);
+  const userRepository = repositories.getUserRepository();
 
   // Get user profile
   router.get(
@@ -27,15 +30,7 @@ export function userRoutes(prisma: PrismaClient): Router {
     asyncHandler(async (req, res) => {
       const userId = req.user!.id;
 
-      const user = await prisma.user.findUnique({
-        where: { id: userId },
-        select: {
-          id: true,
-          email: true,
-          name: true,
-          role: true,
-        },
-      });
+      const user = await userRepository.findByIdWithoutPassword(userId);
 
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
@@ -56,9 +51,7 @@ export function userRoutes(prisma: PrismaClient): Router {
       await validatePassword(newPassword);
 
       // Get user with password
-      const user = await prisma.user.findUnique({
-        where: { id: userId },
-      });
+      const user = await userRepository.findById(userId);
 
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
@@ -70,14 +63,8 @@ export function userRoutes(prisma: PrismaClient): Router {
         return res.status(401).json({ error: 'Current password is incorrect' });
       }
 
-      // Hash new password
-      const hashedPassword = await hashPassword(newPassword);
-
       // Update password
-      await prisma.user.update({
-        where: { id: userId },
-        data: { password: hashedPassword },
-      });
+      await userRepository.updatePassword(userId, newPassword);
 
       res.json({ message: 'Password updated successfully' });
     }),
@@ -98,17 +85,14 @@ export function userRoutes(prisma: PrismaClient): Router {
       // Sanitize input
       const sanitizedName = name.replace(/<[^>]*>/g, ''); // Remove HTML tags
 
-      const user = await prisma.user.create({
-        data: {
-          email,
-          name: sanitizedName,
-          role: role || 'USER',
-          password: await hashPassword('TempPassword123!'), // Temporary password
-        },
+      const user = await userRepository.createUser({
+        email,
+        name: sanitizedName,
+        role: role || 'USER',
+        password: 'TempPassword123!', // Temporary password
       });
 
-      const { password: _, ...userWithoutPassword } = user;
-      res.status(201).json(userWithoutPassword);
+      res.status(201).json(user);
     }),
   );
 

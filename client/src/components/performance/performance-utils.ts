@@ -117,17 +117,12 @@ export function useRenderPerformance(_componentName: string) {
 
   useEffect(() => {
     // const renderTime = performance.now() - renderStart.current;
-    if (process.env.NODE_ENV === 'development') {
-      // console.log(`${componentName} render #${renderCount.current}: ${renderTime.toFixed(2)}ms`);
-    }
   });
 
   return {
     renderCount: renderCount.current,
     logRender: (_operation: string) => {
-      if (process.env.NODE_ENV === 'development') {
-        // console.log(`${componentName} ${operation} at render #${renderCount.current}`);
-      }
+      // Performance logging can be enabled here if needed
     },
   };
 }
@@ -263,9 +258,7 @@ export const PerformanceMonitor = {
         const measures = performance.getEntriesByName(name, 'measure');
         const duration = measures[measures.length - 1]?.duration;
 
-        if (process.env.NODE_ENV === 'development' && duration) {
-          // console.log(`${name}: ${duration.toFixed(2)}ms`);
-        }
+        // Duration is available in 'duration' variable if needed for logging
 
         return duration;
       } catch (error) {

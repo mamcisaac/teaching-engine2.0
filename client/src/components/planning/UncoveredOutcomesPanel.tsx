@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { apiClient } from '../../lib/api';
+import { apiClient } from '../../api/core/client';
 interface CurriculumExpectation {
   id: string;
   code: string;
@@ -115,7 +115,10 @@ export function UncoveredOutcomesPanel({
 
       <div className="space-y-3">
         {uncoveredOutcomes.map(({ expectation, suggestion }) => (
-          <div key={expectation.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
+          <div
+            key={expectation.id}
+            className="border rounded-lg p-4 hover:shadow-md transition-shadow"
+          >
             <div className="flex items-start justify-between">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">

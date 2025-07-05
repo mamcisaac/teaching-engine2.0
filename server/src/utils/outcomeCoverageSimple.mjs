@@ -9,8 +9,6 @@ export const CoverageStatus = {
  * Simplified version of getOutcomeCoverage for testing
  */
 export async function getOutcomeCoverage(outcomeId) {
-  console.log('getOutcomeCoverage called with:', outcomeId);
-  
   // Simulate database call
   const activities = [];
   
@@ -34,8 +32,6 @@ export async function getOutcomeCoverage(outcomeId) {
  * Simplified version of getCoverageSummary for testing
  */
 export function getCoverageSummary(coverage) {
-  console.log('getCoverageSummary called with:', coverage);
-  
   if (!Array.isArray(coverage)) {
     return { total: 0, covered: 0, partial: 0, uncovered: 0 };
   }

@@ -45,7 +45,6 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
 
   const deleteNotification = (_id: number) => {
     // TODO: Implement delete notification mutation
-    // console.log('Delete notification:', id);
   };
 
   // Computed values

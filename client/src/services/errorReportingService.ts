@@ -1,6 +1,7 @@
 import * as Sentry from '@sentry/react';
 import { Replay } from '@sentry/replay';
 import { ErrorInfo } from 'react';
+import { logger } from '../utils/logger';
 
 interface UserContext {
   id: string;
@@ -79,22 +80,19 @@ export class ErrorReportingService {
 
   init(): void {
     if (this.mockMode) {
-      // eslint-disable-next-line no-console
-      console.info('Using mock error reporting service');
+      logger.info('Using mock error reporting service');
       this.enabled = true;
       return;
     }
 
     if (import.meta.env.MODE === 'development' || import.meta.env.MODE === 'test') {
-      // eslint-disable-next-line no-console
-      console.info('Error reporting disabled in development');
+      logger.info('Error reporting disabled in development');
       return;
     }
 
     const dsn = import.meta.env.VITE_SENTRY_DSN;
     if (!dsn) {
-      // eslint-disable-next-line no-console
-      console.warn('VITE_SENTRY_DSN not configured, error reporting disabled');
+      logger.warn('VITE_SENTRY_DSN not configured, error reporting disabled');
       return;
     }
 
@@ -144,11 +142,9 @@ export class ErrorReportingService {
       });
 
       this.enabled = true;
-      // eslint-disable-next-line no-console
-      console.info('Error reporting service initialized');
+      logger.info('Error reporting service initialized');
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('Failed to initialize error reporting:', error);
+      logger.error('Failed to initialize error reporting:', error);
     }
   }
 
@@ -158,8 +154,7 @@ export class ErrorReportingService {
     errorInfo?: ErrorInfo,
   ): void {
     if (!this.enabled) {
-      // eslint-disable-next-line no-console
-      console.debug('Error reporting disabled, skipping:', { error, context });
+      logger.debug('Error reporting disabled, skipping:', { error, context });
       return;
     }
 

@@ -1,7 +1,7 @@
 // Request Batching Service
 // Batches multiple API requests to reduce network overhead
 
-import { api } from '../lib/api';
+import { apiClient } from '../api/core/client';
 import logger from '../utils/logger';
 interface BatchRequest {
   id: string;
@@ -39,7 +39,7 @@ class RequestBatcher {
       this.pendingRequests.set(id, {
         request: batchRequest,
         resolve,
-        reject
+        reject,
       });
 
       // Schedule batch processing
@@ -118,16 +118,16 @@ class RequestBatcher {
 
       switch (method) {
         case 'GET':
-          response = await api.get(url, { headers });
+          response = await apiClient.get(url, { headers });
           break;
         case 'POST':
-          response = await api.post(url, data, { headers });
+          response = await apiClient.post(url, data, { headers });
           break;
         case 'PUT':
-          response = await api.put(url, data, { headers });
+          response = await apiClient.put(url, data, { headers });
           break;
         case 'DELETE':
-          response = await api.delete(url, { headers });
+          response = await apiClient.delete(url, { headers });
           break;
       }
 
@@ -142,24 +142,24 @@ class RequestBatcher {
     try {
       // Send batch request to server
       const batchData = {
-        requests: requests.map(r => ({
+        requests: requests.map((r) => ({
           id: r.request.id,
           method: r.request.method,
           url: r.request.url,
           data: r.request.data,
-          headers: r.request.headers
-        }))
+          headers: r.request.headers,
+        })),
       };
 
-      const response = await api.post('/api/batch', batchData);
+      const response = await apiClient.post('/api/batch', batchData);
       const responses: BatchResponse[] = response.data.responses;
 
       // Map responses back to promises
-      const responseMap = new Map(responses.map(r => [r.id, r]));
+      const responseMap = new Map(responses.map((r) => [r.id, r]));
 
       for (const pending of requests) {
         const batchResponse = responseMap.get(pending.request.id);
-        
+
         if (batchResponse) {
           if (batchResponse.error) {
             pending.reject(new Error(batchResponse.error));
@@ -173,7 +173,7 @@ class RequestBatcher {
     } catch (error) {
       // If batch fails, fall back to individual requests
       logger.warn('Batch request failed, falling back to individual requests:', error);
-      
+
       for (const pending of requests) {
         await this.processSingleRequest(pending);
       }
@@ -196,12 +196,12 @@ class RequestBatcher {
       clearTimeout(this.batchTimeout);
       this.batchTimeout = null;
     }
-    
+
     // Reject all pending requests
     for (const pending of this.pendingRequests.values()) {
       pending.reject(new Error('Request cancelled'));
     }
-    
+
     this.pendingRequests.clear();
   }
 }
@@ -211,24 +211,23 @@ export const requestBatcher = new RequestBatcher();
 
 // Convenience methods for common operations
 export const batchedApi = {
-  get: (url: string, headers?: Record<string, string>) => 
+  get: (url: string, headers?: Record<string, string>) =>
     requestBatcher.addRequest({ method: 'GET', url, headers }),
-  
-  post: (url: string, data?: unknown, headers?: Record<string, string>) => 
+
+  post: (url: string, data?: unknown, headers?: Record<string, string>) =>
     requestBatcher.addRequest({ method: 'POST', url, data, headers }),
-  
-  put: (url: string, data?: unknown, headers?: Record<string, string>) => 
+
+  put: (url: string, data?: unknown, headers?: Record<string, string>) =>
     requestBatcher.addRequest({ method: 'PUT', url, data, headers }),
-  
-  delete: (url: string, headers?: Record<string, string>) => 
-    requestBatcher.addRequest({ method: 'DELETE', url, headers })
+
+  delete: (url: string, headers?: Record<string, string>) =>
+    requestBatcher.addRequest({ method: 'DELETE', url, headers }),
 };
 
 // Debounced request helper
-export function createDebouncedRequest<T extends (...args: Parameters<T>) => Promise<ReturnType<T>>>(
-  fn: T,
-  delay: number = 300
-): T & { cancel: () => void } {
+export function createDebouncedRequest<
+  T extends (...args: Parameters<T>) => Promise<ReturnType<T>>,
+>(fn: T, delay: number = 300): T & { cancel: () => void } {
   let timeout: NodeJS.Timeout | null = null;
   let lastArgs: Parameters<T> | null = null;
   let lastPromise: Promise<ReturnType<T>> | null = null;

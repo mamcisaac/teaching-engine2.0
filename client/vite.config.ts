@@ -2,7 +2,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-// import { visualizer } from 'rollup-plugin-visualizer';
+import { visualizer } from 'rollup-plugin-visualizer';
 // import compression from 'vite-plugin-compression';
 
 // Custom chunk splitting strategy
@@ -74,17 +74,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [
-      react({
-        // Optimize React for production
-        babel: isProd
-          ? {
-              plugins: [
-                ['@babel/plugin-transform-react-constant-elements'],
-                ['@babel/plugin-transform-react-inline-elements'],
-              ],
-            }
-          : undefined,
-      }),
+      react(),
 
       // Vendor chunk splitting is now handled in build.rollupOptions.output.manualChunks
 
@@ -102,12 +92,13 @@ export default defineConfig(({ mode }) => {
       // }),
 
       // Bundle analyzer for production builds
-      // isProd && process.env.ANALYZE && visualizer({
-      //   open: true,
-      //   filename: 'dist/bundle-analysis.html',
-      //   gzipSize: true,
-      //   brotliSize: true,
-      // })
+      isProd &&
+        visualizer({
+          open: false,
+          filename: 'dist/bundle-analysis.html',
+          gzipSize: true,
+          brotliSize: true,
+        }),
     ].filter(Boolean),
 
     resolve: {
