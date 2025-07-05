@@ -1,7 +1,8 @@
 import React, { Suspense } from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import ProtectedRoute from '../components/ProtectedRoute';
+// Temporarily disabled auth imports
+// import { useAuth } from '../contexts/AuthContext';
+// import ProtectedRoute from '../components/ProtectedRoute';
 import MainLayout from '../components/MainLayout';
 import WorkflowGate from '../components/WorkflowGate';
 import { publicRoutes, protectedRoutes, RouteConfig } from './routesConfig';
@@ -46,28 +47,18 @@ function renderRoute(route: RouteConfig, index: number): JSX.Element {
 }
 
 export function AppRouter() {
-  const { isLoading, isInitialized } = useAuth();
-
-  // Debug auth state if needed
-
-  if (!isInitialized || isLoading) {
-    // Showing loading fallback
-    return <SuspenseFallback />;
-  }
-
+  // Temporarily bypass auth check for testing
   return (
     <Routes>
       {/* Public routes */}
       {publicRoutes.map((route, index) => renderRoute(route, index))}
 
-      {/* Protected routes with MainLayout */}
+      {/* Protected routes with MainLayout - temporarily bypass ProtectedRoute */}
       <Route
         element={
-          <ProtectedRoute>
-            <MainLayout>
-              <Outlet />
-            </MainLayout>
-          </ProtectedRoute>
+          <MainLayout>
+            <Outlet />
+          </MainLayout>
         }
       >
         {protectedRoutes.map((route, index) => renderRoute(route, index))}
