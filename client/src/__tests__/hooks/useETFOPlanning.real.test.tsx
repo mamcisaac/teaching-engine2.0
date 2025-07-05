@@ -57,8 +57,12 @@ describe('useETFOPlanning hooks - Real Backend Integration', () => {
   });
 
   afterAll(async () => {
-    await authContext.cleanup();
-    await cleanup();
+    if (authContext?.cleanup) {
+      await authContext.cleanup();
+    }
+    if (cleanup) {
+      await cleanup();
+    }
   });
 
   beforeEach(async () => {

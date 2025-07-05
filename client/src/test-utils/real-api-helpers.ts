@@ -84,105 +84,127 @@ export const realApiHelpers = {
   // Long Range Plans
   async createLongRangePlan(authContext: AuthTestContext, data = {}) {
     const planData = testDataFactory.longRangePlan(data);
-    return await testAPI.post('/long-range-plans', planData);
+    const response = await testAPI.post('/long-range-plans', planData);
+    return response.data;
   },
 
   async getLongRangePlans(authContext: AuthTestContext, params = {}) {
     const queryString = new URLSearchParams(params).toString();
-    return await testAPI.get(`/long-range-plans?${queryString}`);
+    const response = await testAPI.get(`/long-range-plans?${queryString}`);
+    return response.data;
   },
 
   async getLongRangePlan(authContext: AuthTestContext, id: string) {
-    return await testAPI.get(`/long-range-plans/${id}`);
+    const response = await testAPI.get(`/long-range-plans/${id}`);
+    return response.data;
   },
 
   async updateLongRangePlan(authContext: AuthTestContext, id: string, data: any) {
-    return await testAPI.put(`/long-range-plans/${id}`, data);
+    const response = await testAPI.put(`/long-range-plans/${id}`, data);
+    return response.data;
   },
 
   async deleteLongRangePlan(authContext: AuthTestContext, id: string) {
-    return await testAPI.delete(`/long-range-plans/${id}`);
+    const response = await testAPI.delete(`/long-range-plans/${id}`);
+    return response.data;
   },
 
   // Unit Plans
   async createUnitPlan(authContext: AuthTestContext, longRangePlanId: string, data = {}) {
     const planData = testDataFactory.unitPlan(longRangePlanId, data);
-    return await testAPI.post('/unit-plans', planData);
+    const response = await testAPI.post('/unit-plans', planData);
+    return response.data;
   },
 
   async getUnitPlans(authContext: AuthTestContext, params = {}) {
     const queryString = new URLSearchParams(params).toString();
-    return await testAPI.get(`/unit-plans?${queryString}`);
+    const response = await testAPI.get(`/unit-plans?${queryString}`);
+    return response.data;
   },
 
   async getUnitPlan(authContext: AuthTestContext, id: string) {
-    return await testAPI.get(`/unit-plans/${id}`);
+    const response = await testAPI.get(`/unit-plans/${id}`);
+    return response.data;
   },
 
   async updateUnitPlan(authContext: AuthTestContext, id: string, data: any) {
-    return await testAPI.put(`/unit-plans/${id}`, data);
+    const response = await testAPI.put(`/unit-plans/${id}`, data);
+    return response.data;
   },
 
   async deleteUnitPlan(authContext: AuthTestContext, id: string) {
-    return await testAPI.delete(`/unit-plans/${id}`);
+    const response = await testAPI.delete(`/unit-plans/${id}`);
+    return response.data;
   },
 
   // ETFO Lesson Plans
   async createETFOLessonPlan(authContext: AuthTestContext, unitPlanId: string, data = {}) {
     const planData = testDataFactory.etfoLessonPlan(unitPlanId, data);
-    return await testAPI.post('/etfo-lesson-plans', planData);
+    const response = await testAPI.post('/etfo-lesson-plans', planData);
+    return response.data;
   },
 
   async getETFOLessonPlans(authContext: AuthTestContext, params = {}) {
     const queryString = new URLSearchParams(params).toString();
-    return await testAPI.get(`/etfo-lesson-plans?${queryString}`);
+    const response = await testAPI.get(`/etfo-lesson-plans?${queryString}`);
+    return response.data;
   },
 
   async getETFOLessonPlan(authContext: AuthTestContext, id: string) {
-    return await testAPI.get(`/etfo-lesson-plans/${id}`);
+    const response = await testAPI.get(`/etfo-lesson-plans/${id}`);
+    return response.data;
   },
 
   async updateETFOLessonPlan(authContext: AuthTestContext, id: string, data: any) {
-    return await testAPI.put(`/etfo-lesson-plans/${id}`, data);
+    const response = await testAPI.put(`/etfo-lesson-plans/${id}`, data);
+    return response.data;
   },
 
   async deleteETFOLessonPlan(authContext: AuthTestContext, id: string) {
-    return await testAPI.delete(`/etfo-lesson-plans/${id}`);
+    const response = await testAPI.delete(`/etfo-lesson-plans/${id}`);
+    return response.data;
   },
 
   // Daybook Entries
   async createDaybookEntry(authContext: AuthTestContext, data = {}) {
     const entryData = testDataFactory.daybookEntry(data);
-    return await testAPI.post('/daybook-entries', entryData);
+    const response = await testAPI.post('/daybook-entries', entryData);
+    return response.data;
   },
 
   async getDaybookEntries(authContext: AuthTestContext, params = {}) {
     const queryString = new URLSearchParams(params).toString();
-    return await testAPI.get(`/daybook-entries?${queryString}`);
+    const response = await testAPI.get(`/daybook-entries?${queryString}`);
+    return response.data;
   },
 
   async updateDaybookEntry(authContext: AuthTestContext, id: string, data: any) {
-    return await testAPI.put(`/daybook-entries/${id}`, data);
+    const response = await testAPI.put(`/daybook-entries/${id}`, data);
+    return response.data;
   },
 
   // Curriculum Expectations
   async getCurriculumExpectations(authContext: AuthTestContext, params = {}) {
     const queryString = new URLSearchParams(params).toString();
-    return await testAPI.get(`/curriculum-expectations?${queryString}`);
+    const response = await testAPI.get(`/curriculum-expectations?${queryString}`);
+    return response.data;
   },
 
   async createCurriculumExpectation(authContext: AuthTestContext, data = {}) {
     const expectationData = testDataFactory.curriculumExpectation(data);
-    return await testAPI.post('/curriculum-expectations', expectationData);
+    const response = await testAPI.post('/curriculum-expectations', expectationData);
+    return response.data;
   },
 
   // Notifications
   async getNotifications(authContext: AuthTestContext) {
-    return await testAPI.get('/notifications');
+    const response = await testAPI.get('/notifications');
+    return response.data;
   },
 
   async markNotificationRead(authContext: AuthTestContext, id: string) {
-    return await testAPI.put(`/notifications/${id}/read`);
+    const response = await testAPI.put(`/notifications/${id}/read`);
+    return response.data;
   },
 };
 

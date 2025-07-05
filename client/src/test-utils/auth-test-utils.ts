@@ -3,6 +3,35 @@
  */
 
 import { vi } from 'vitest';
+import axios from 'axios';
+
+export interface TestUser {
+  id: string;
+  email: string;
+  name: string;
+  role: 'teacher';
+  schoolId: string;
+  boardId: string;
+  boardName: string;
+  boardRegion: string;
+  onboardingStatus: 'completed';
+  apiKey: string;
+  preferences: {
+    theme: 'light' | 'dark';
+    notifications: boolean;
+    keyboardShortcuts: boolean;
+    language: string;
+  };
+}
+
+export interface AuthTestContext {
+  user: TestUser;
+  token: string;
+  headers: {
+    Authorization: string;
+  };
+  cleanup?: () => Promise<void>;
+}
 
 /**
  * Mock user data for testing
@@ -128,9 +157,17 @@ export function createAuthContextValue(overrides?: Partial<typeof mockAuthContex
 }
 
 /**
- * Create an authenticated test user (alias for setupAuthenticatedUser)
+ * Create an authenticated test user with proper cleanup
  */
-export const createAuthenticatedTestUser = setupAuthenticatedUser;
+export async function createAuthenticatedTestUser(): Promise<AuthTestContext> {
+  const result = setupAuthenticatedUser();
+  return {
+    ...result,
+    cleanup: async () => {
+      clearAuthData();
+    }
+  };
+}
 
 /**
  * Clear auth state (alias for clearAuthData)

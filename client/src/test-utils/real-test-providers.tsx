@@ -40,7 +40,7 @@ export function RealTestProviders({
   React.useEffect(() => {
     return () => {
       // Cleanup on unmount
-      if (authContext) {
+      if (authContext?.cleanup) {
         authContext.cleanup();
       }
     };

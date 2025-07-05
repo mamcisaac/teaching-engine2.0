@@ -105,14 +105,6 @@ export {
   useExportResources
 } from './domains/resource';
 
-// Legacy compatibility - to be removed after full migration
-export { 
-  api, 
-  fetchNewsletterSuggestions,
-  useHolidays,
-  useAddHoliday,
-  useDeleteHoliday,
-  useSubstituteInfo,
-  useSaveSubstituteInfo
-} from './legacy/api';
-export type { PromptGenerationResult, GeneratedPrompt } from './legacy/api';
+// Legacy API module has been removed - all functionality migrated to domain APIs
+// For tests that need the legacy api object, use the core client instead
+export { apiClient as api } from './core/client';

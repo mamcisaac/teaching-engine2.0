@@ -22,7 +22,9 @@ describe('Button - Real Backend Integration', () => {
   });
 
   afterAll(async () => {
-    await authContext.cleanup();
+    if (authContext?.cleanup) {
+      await authContext.cleanup();
+    }
   });
 
   describe('Basic Button Functionality', () => {

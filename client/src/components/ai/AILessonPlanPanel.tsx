@@ -290,10 +290,10 @@ export function AILessonPlanPanel({
       }
 
     } catch (_error) {
-      logger.error('Error generating three-part lesson:', error);
+      logger.error('Error generating three-part lesson:', _error);
       toast({
         title: 'Generation Failed',
-        description: (error instanceof Error ? error.message : String(error)) || 'Failed to generate lesson plan.',
+        description: (_error instanceof Error ? _error.message : String(_error)) || 'Failed to generate lesson plan.',
         variant: 'destructive',
       });
     } finally {
@@ -355,10 +355,10 @@ export function AILessonPlanPanel({
       });
 
     } catch (_error) {
-      logger.error('Error generating suggestions:', error);
+      logger.error('Error generating suggestions:', _error);
       toast({
         title: 'Generation Failed',
-        description: (error instanceof Error ? error.message : String(error)) || 'Failed to generate suggestions.',
+        description: (_error instanceof Error ? _error.message : String(_error)) || 'Failed to generate suggestions.',
         variant: 'destructive',
       });
     } finally {

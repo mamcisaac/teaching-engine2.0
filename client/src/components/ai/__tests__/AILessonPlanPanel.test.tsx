@@ -43,7 +43,7 @@ vi.mock('../ui/use-toast', () => ({
 
 // Mock the AILoadingIndicator
 vi.mock('./AILoadingIndicator', () => ({
-  AILoadingIndicator: ({ preset }: unknown) => (
+  AILoadingIndicator: ({ preset }: { preset: any }) => (
     <div data-testid="ai-loading" data-preset={preset}>
       Loading AI content...
     </div>
@@ -56,7 +56,7 @@ vi.mock('./AILoadingIndicator', () => ({
 
 // Mock the AIErrorBoundary
 vi.mock('./AIErrorBoundary', () => ({
-  WithAIErrorBoundary: ({ children }: unknown) => <div data-testid="ai-error-boundary">{children}</div>,
+  WithAIErrorBoundary: ({ children }: { children: any }) => <div data-testid="ai-error-boundary">{children}</div>,
 }));
 
 describe('AILessonPlanPanel', () => {

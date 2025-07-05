@@ -18,7 +18,7 @@ expect.extend(toHaveNoViolations);
 
 // Mock the context and hooks
 const mockAuthContext = {
-  user: createMockUser(),
+  user: createMockUser() as any,
   logout: vi.fn(),
   isAuthenticated: true,
   login: vi.fn(),

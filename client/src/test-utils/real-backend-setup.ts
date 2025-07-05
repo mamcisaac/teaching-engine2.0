@@ -4,6 +4,7 @@
 
 import { beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
 import axios from 'axios';
+import { QueryClient } from '@tanstack/react-query';
 
 // Base URL for real backend
 export const REAL_BACKEND_URL = process.env.VITE_API_URL || 'http://localhost:3000';
@@ -19,6 +20,16 @@ export interface RealBackendConfig {
   timeout?: number;
   withAuth?: boolean;
   setupDatabase?: boolean;
+}
+
+/**
+ * Real backend test context
+ */
+export interface RealBackendTestContext {
+  baseURL: string;
+  isAvailable: boolean;
+  queryClient?: any;
+  cleanup?: () => Promise<void>;
 }
 
 /**
@@ -56,7 +67,7 @@ export async function waitForBackend(url = REAL_BACKEND_URL, maxAttempts = 30): 
 /**
  * Setup real backend for tests
  */
-export async function setupRealBackend(config: RealBackendConfig = {}) {
+export async function setupRealBackend(config: RealBackendConfig = {}): Promise<RealBackendTestContext> {
   const {
     baseURL = REAL_BACKEND_URL,
     timeout = 30000,
@@ -81,7 +92,10 @@ export async function setupRealBackend(config: RealBackendConfig = {}) {
 
   return {
     baseURL,
-    isAvailable: true
+    isAvailable: true,
+    cleanup: async () => {
+      await teardownRealBackend();
+    }
   };
 }
 
@@ -195,6 +209,58 @@ export function setupRealBackendTestSuite(config?: RealBackendConfig) {
   afterEach(async () => {
     // Cleanup after each test
     logoutTestUser();
+  });
+}
+
+/**
+ * Create a real test query client
+ */
+export function createRealTestQueryClient(): QueryClient {
+  return new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+        staleTime: 0,
+        gcTime: 0,
+      },
+      mutations: {
+        retry: false,
+      },
+    },
+  });
+}
+
+/**
+ * Setup real backend test with query client
+ */
+export async function setupRealBackendTest(config?: RealBackendConfig): Promise<{
+  queryClient: QueryClient;
+  cleanup: () => Promise<void>;
+}> {
+  const context = await setupRealBackend(config);
+  const queryClient = createRealTestQueryClient();
+  
+  return {
+    queryClient,
+    cleanup: async () => {
+      queryClient.clear();
+      if (context.cleanup) {
+        await context.cleanup();
+      }
+    }
+  };
+}
+
+/**
+ * Create a real backend client for API calls
+ */
+export function createRealBackendClient() {
+  return axios.create({
+    baseURL: REAL_BACKEND_URL,
+    timeout: 30000,
+    headers: {
+      'Content-Type': 'application/json',
+    },
   });
 }
 

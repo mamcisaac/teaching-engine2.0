@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'viit';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { useOnboardingStore } from '../onboardingStore';
 import { useHelpStore } from '../helpStore';
 import { useKeyboardShortcutsStore } from '../keyboardShortcutsStore';

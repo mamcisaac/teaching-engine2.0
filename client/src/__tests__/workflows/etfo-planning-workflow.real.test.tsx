@@ -26,7 +26,9 @@ describe('ETFO Planning Workflow - Complete Integration', () => {
   });
 
   afterAll(async () => {
-    await authContext.cleanup();
+    if (authContext?.cleanup) {
+      await authContext.cleanup();
+    }
   });
 
   describe('Complete Planning Workflow: Long Range Plan to Lesson Plan', () => {
@@ -451,7 +453,9 @@ describe('ETFO Planning Workflow - Complete Integration', () => {
 
         await cleanup();
       } finally {
-        await secondAuthContext.cleanup();
+        if (secondAuthContext?.cleanup) {
+          await secondAuthContext.cleanup();
+        }
       }
     });
   });

@@ -14,7 +14,7 @@ import { renderWithProviders, createMockUnitPlan } from '@/test-utils';
 
 // Mock the RichTextEditor component
 vi.mock('../../RichTextEditor', () => ({
-  default: ({ value, onChange, placeholder }: unknown) => (
+  default: ({ value, onChange, placeholder }: { value: any; onChange: any; placeholder: any }) => (
     <textarea
       data-testid="rich-text-editor"
       value={value || ''}
@@ -26,7 +26,7 @@ vi.mock('../../RichTextEditor', () => ({
 
 // Mock the ExpectationSelector component
 vi.mock('../../planning/ExpectationSelector', () => ({
-  default: ({ selectedIds, onSelectionChange }: unknown) => (
+  default: ({ selectedIds, onSelectionChange }: { selectedIds: any; onSelectionChange: any }) => (
     <div data-testid="expectation-selector">
       <input
         type="checkbox"
@@ -45,7 +45,7 @@ vi.mock('../../planning/ExpectationSelector', () => ({
 
 // Mock the BilingualTextInput component
 vi.mock('../../BilingualTextInput', () => ({
-  default: ({ value, valueFr, onChange, onChangeFr, label }: unknown) => (
+  default: ({ value, valueFr, onChange, onChangeFr, label }: { value: any; valueFr: any; onChange: any; onChangeFr: any; label: any }) => (
     <div data-testid="bilingual-input">
       <label>{label}</label>
       <input

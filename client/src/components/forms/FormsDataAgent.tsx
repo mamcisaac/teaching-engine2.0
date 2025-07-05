@@ -157,12 +157,12 @@ export default function FormsDataAgent({
         prev.map((op) => (op.errors && op.errors.length > 0 ? { ...op, status: 'error' } : op)),
       );
     } catch (_error) {
-      logger.error('Batch processing error:', error);
+      logger.error('Batch processing error:', _error);
       setBatchOperations((prev) =>
         prev.map((op) => ({
           ...op,
           status: 'error',
-          errors: ['Processing failed: ' + (error as Error).message],
+          errors: ['Processing failed: ' + (_error as Error).message],
         })),
       );
     } finally {
@@ -249,7 +249,7 @@ export default function FormsDataAgent({
         onDataImport?.(type, data);
       }
     } catch (_error) {
-      logger.error('Import error:', error);
+      logger.error('Import error:', _error);
     }
   };
 
