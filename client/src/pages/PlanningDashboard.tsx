@@ -250,7 +250,9 @@ export default function PlanningDashboard() {
                     <div>
                       <h4 className="font-medium text-gray-900">{plan.title}</h4>
                       <p className="text-sm text-gray-500">
-                        {new Date(plan.lastAccessed).toLocaleDateString()}
+                        {plan.lastAccessed
+                          ? new Date(plan.lastAccessed).toLocaleDateString()
+                          : 'Unknown'}
                       </p>
                     </div>
                     <ChevronRight className="h-4 w-4 text-gray-400" />

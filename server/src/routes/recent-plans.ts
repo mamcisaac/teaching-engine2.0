@@ -40,7 +40,7 @@ router.post('/track', async (req: Request, res, _next) => {
     });
 
     res.json({ success: true });
-  } catch (_err) {
+  } catch (err) {
     console.error('Error in recent plans route:', err);
     res.status(500).json({ error: 'Failed to process request' });
   }
@@ -191,7 +191,7 @@ router.get('/', async (req: Request, res, _next) => {
             'title' in plan ? plan.title : `Daybook - ${new Date(plan.date).toLocaleDateString()}`,
           subject: parentInfo?.longRangePlan?.subject || parentInfo?.subject,
           grade: parentInfo?.longRangePlan?.grade || parentInfo?.grade,
-          lastAccessed: access.lastAccessed,
+          lastAccessed: access.lastAccessed.toISOString(),
           progress,
           status,
           parentTitle: parentInfo?.title,
@@ -203,7 +203,7 @@ router.get('/', async (req: Request, res, _next) => {
     const validPlans = recentPlans.filter(Boolean);
 
     res.json(validPlans);
-  } catch (_err) {
+  } catch (err) {
     console.error('Error in recent plans route:', err);
     res.status(500).json({ error: 'Failed to process request' });
   }
@@ -222,7 +222,7 @@ router.delete('/clear', async (req: Request, res, _next) => {
     });
 
     res.json({ success: true });
-  } catch (_err) {
+  } catch (err) {
     console.error('Error in recent plans route:', err);
     res.status(500).json({ error: 'Failed to process request' });
   }

@@ -1,14 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import React, { memo, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
-import { 
-  Calendar, 
-  BookOpen, 
-  GraduationCap, 
+import {
+  Calendar,
+  BookOpen,
+  GraduationCap,
   Clock,
   ChevronRight,
   FileText,
-  TrendingUp
+  TrendingUp,
 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { cn } from '@/lib/utils';
@@ -19,7 +20,7 @@ export interface RecentPlan {
   title: string;
   subject?: string;
   grade?: number;
-  lastAccessed: Date;
+  lastAccessed: string; // ISO string from server
   progress?: number;
   status?: 'draft' | 'in-progress' | 'completed';
   parentTitle?: string; // For showing hierarchy (e.g., unit name for lesson)
@@ -36,35 +37,39 @@ const PLAN_TYPE_CONFIG = {
     icon: Calendar,
     color: 'text-purple-600 bg-purple-100',
     route: '/planner/long-range',
-    label: 'Long-Range Plan'
+    label: 'Long-Range Plan',
   },
-  'unit': {
+  unit: {
     icon: BookOpen,
     color: 'text-blue-600 bg-blue-100',
     route: '/planner/units',
-    label: 'Unit Plan'
+    label: 'Unit Plan',
   },
-  'lesson': {
+  lesson: {
     icon: GraduationCap,
     color: 'text-green-600 bg-green-100',
     route: '/planner/etfo-lessons',
-    label: 'Lesson Plan'
+    label: 'Lesson Plan',
   },
-  'daybook': {
+  daybook: {
     icon: FileText,
     color: 'text-orange-600 bg-orange-100',
     route: '/planner/daybook',
-    label: 'Daybook Entry'
-  }
+    label: 'Daybook Entry',
+  },
 };
 
-export const RecentPlans = memo(function RecentPlans({ plans, isLoading, className }: RecentPlansProps) {
+export const RecentPlans = memo(function RecentPlans({
+  plans,
+  isLoading,
+  className,
+}: RecentPlansProps) {
   // Memoize expensive calculations for plan processing
   const processedPlans = useMemo(() => {
-    return plans.map(plan => ({
+    return plans.map((plan) => ({
       ...plan,
-      formattedDate: formatDistanceToNow(plan.lastAccessed, { addSuffix: true }),
-      planRoute: `${PLAN_TYPE_CONFIG[plan.type].route}/${plan.id}`
+      formattedDate: formatDistanceToNow(new Date(plan.lastAccessed), { addSuffix: true }),
+      planRoute: `${PLAN_TYPE_CONFIG[plan.type].route}/${plan.id}`,
     }));
   }, [plans]);
 
@@ -158,8 +163,8 @@ export const RecentPlans = memo(function RecentPlans({ plans, isLoading, classNa
             </CardTitle>
             <CardDescription>Your recently accessed planning documents</CardDescription>
           </div>
-          <Link 
-            to="/planner" 
+          <Link
+            to="/planner"
             className="text-sm text-indigo-600 hover:text-indigo-700 flex items-center gap-1"
           >
             View all
@@ -174,16 +179,12 @@ export const RecentPlans = memo(function RecentPlans({ plans, isLoading, classNa
             const Icon = config.icon;
 
             return (
-              <Link
-                key={`${plan.type}-${plan.id}`}
-                to={plan.planRoute}
-                className="block group"
-              >
+              <Link key={`${plan.type}-${plan.id}`} to={plan.planRoute} className="block group">
                 <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
                   <div className={cn('p-2 rounded-lg flex-shrink-0', config.color)}>
                     <Icon className="h-5 w-5" />
                   </div>
-                  
+
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex-1 min-w-0">
@@ -206,18 +207,14 @@ export const RecentPlans = memo(function RecentPlans({ plans, isLoading, classNa
                           )}
                         </div>
                         {plan.parentTitle && (
-                          <p className="text-xs text-gray-500 mt-0.5">
-                            in {plan.parentTitle}
-                          </p>
+                          <p className="text-xs text-gray-500 mt-0.5">in {plan.parentTitle}</p>
                         )}
                       </div>
                       <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-gray-600 flex-shrink-0 mt-0.5" />
                     </div>
-                    
+
                     <div className="flex items-center justify-between mt-2">
-                      <span className="text-xs text-gray-500">
-                        {plan.formattedDate}
-                      </span>
+                      <span className="text-xs text-gray-500">{plan.formattedDate}</span>
                       {getStatusBadge(plan)}
                     </div>
                   </div>
@@ -226,7 +223,7 @@ export const RecentPlans = memo(function RecentPlans({ plans, isLoading, classNa
             );
           })}
         </div>
-        
+
         {processedPlans.length >= 5 && (
           <div className="mt-4 pt-4 border-t">
             <Link
