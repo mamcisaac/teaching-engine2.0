@@ -437,8 +437,8 @@ export default function CalendarPlanningPage() {
             <BigCalendar
               localizer={localizer}
               events={events}
-              startAccessor={(event: CalendarViewEvent) => event.start}
-              endAccessor={(event: CalendarViewEvent) => event.end}
+              startAccessor={(event: object) => (event as CalendarViewEvent).start || new Date()}
+              endAccessor={(event: object) => (event as CalendarViewEvent).end || new Date()}
               style={{ height: window.innerWidth < 768 ? 500 : 700 }}
               onSelectEvent={(event: object) => handleSelectEvent(event as CalendarViewEvent)}
               onSelectSlot={handleSelectSlot}
