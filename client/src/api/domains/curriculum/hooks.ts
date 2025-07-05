@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { curriculumApi } from './api';
-import { queryKeys as _queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 
 // Subject Query Hooks
 export const useSubjects = () =>
@@ -241,7 +241,7 @@ export const useImportCurriculum = () => {
 export const useExportCurriculum = () => {
   return useMutation({
     mutationFn: curriculumApi.exportCurriculum,
-    onSuccess: (_data, _variables) => {
+    onSuccess: (data, variables) => {
       // Create download link
       const url = window.URL.createObjectURL(new Blob([data]));
       const link = document.createElement('a');

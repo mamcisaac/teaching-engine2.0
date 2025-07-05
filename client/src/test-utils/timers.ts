@@ -87,7 +87,7 @@ export function mockCurrentTime(date: Date | string): () => void {
       if (args.length === 0) {
         super(targetDate);
       } else {
-        super(...args);
+        super(...(args as [any]));
       }
     }
     
@@ -126,7 +126,7 @@ export class IntervalTester {
     const originalSetInterval = global.setInterval;
     global.setInterval = ((fn: Function, delay: number, ...args: any[]) => {
       const interval = originalSetInterval(fn, delay, ...args);
-      this.intervals.push(interval);
+      this.intervals.push(interval as any);
       return interval;
     }) as any;
   }
@@ -160,7 +160,7 @@ export class TimeoutTester {
     const originalSetTimeout = global.setTimeout;
     global.setTimeout = ((fn: Function, delay: number, ...args: any[]) => {
       const timeout = originalSetTimeout(fn, delay, ...args);
-      this.timeouts.push(timeout);
+      this.timeouts.push(timeout as any);
       return timeout;
     }) as any;
   }

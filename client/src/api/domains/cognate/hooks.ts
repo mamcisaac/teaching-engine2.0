@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { cognateApi } from './api';
-import { queryKeys as _queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 import type { CognatePair as _CognatePair, CognateInput, CognateFilters } from './api';
 
 // Query hooks
@@ -199,9 +199,9 @@ export const useExportCognates = () => {
   return useMutation({
     mutationFn: ({ format, filters }: { format: 'csv' | 'json'; filters?: CognateFilters }) =>
       cognateApi.exportCognates(format, filters),
-    onSuccess: (_data, _variables) => {
+    onSuccess: (data, variables) => {
       // Create download link
-      const url = window.URL.createObjectURL(_data);
+      const url = window.URL.createObjectURL(data);
       const link = document.createElement('a');
       link.href = url;
       link.setAttribute('download', `cognates.${variables.format}`);
@@ -236,7 +236,7 @@ export const useSubmitPracticeAnswer = () => {
       cognateId: number;
       correct: boolean;
     }) => cognateApi.submitPracticeAnswer(sessionId, cognateId, correct),
-    onSuccess: (_data, _variables) => {
+    onSuccess: (data, variables) => {
       // Update practice stats
       queryClient.invalidateQueries({ 
         queryKey: ['practice-stats', variables.sessionId] 

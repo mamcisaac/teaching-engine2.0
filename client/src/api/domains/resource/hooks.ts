@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { resourceApi } from './api';
-import { queryKeys as _queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 import type {
   MediaResourceInput,
   ResourceFilters,
@@ -120,7 +120,7 @@ export const useUploadResource = () => {
   return useMutation({
     mutationFn: ({ file, metadata }: { file: File; metadata: MediaResourceInput }) =>
       resourceApi.media.upload(file, metadata),
-    onSuccess: (__data) => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: queryKeys.resource.media(data.userId) });
       queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
       queryClient.invalidateQueries({ queryKey: ['resource-tags'] });
@@ -140,7 +140,7 @@ export const useUploadMultipleResources = () => {
   return useMutation({
     mutationFn: ({ files, metadata }: { files: File[]; metadata: MediaResourceInput[] }) =>
       resourceApi.media.uploadMultiple(files, metadata),
-    onSuccess: (__data) => {
+    onSuccess: (data) => {
       if (data.length > 0) {
         queryClient.invalidateQueries({ queryKey: queryKeys.resource.media(data[0].userId) });
       }
@@ -162,7 +162,7 @@ export const useUpdateResource = () => {
   return useMutation({
     mutationFn: ({ id, updates }: { id: number; updates: Partial<MediaResourceInput> }) =>
       resourceApi.media.update(id, updates),
-    onSuccess: (__data) => {
+    onSuccess: (data) => {
       queryClient.setQueryData(queryKeys.resource.detail(data.id), data);
       queryClient.invalidateQueries({ queryKey: queryKeys.resource.media(data.userId) });
       queryClient.invalidateQueries({ queryKey: ['resource-tags'] });
@@ -197,7 +197,7 @@ export const useBulkDeleteResources = () => {
 
   return useMutation({
     mutationFn: (ids: number[]) => resourceApi.media.bulkDelete(ids),
-    onSuccess: (_data, ids) => {
+    onSuccess: (data, ids) => {
       // Remove deleted resources from cache
       ids.forEach(id => {
         queryClient.removeQueries({ queryKey: queryKeys.resource.detail(id) });
@@ -225,7 +225,7 @@ export const useGenerateThumbnail = () => {
       id: number; 
       options?: { width?: number; height?: number };
     }) => resourceApi.media.generateThumbnail(id, options),
-    onSuccess: (_data, _variables) => {
+    onSuccess: (data, variables) => {
       queryClient.invalidateQueries({ queryKey: queryKeys.resource.detail(variables.id) });
       
       showSuccessToast('Thumbnail generated successfully');
@@ -242,7 +242,7 @@ export const useCreateCollection = () => {
   return useMutation({
     mutationFn: (collection: Omit<ResourceCollection, 'id' | 'userId' | 'createdAt' | 'updatedAt'>) =>
       resourceApi.collections.create(collection),
-    onSuccess: (__data) => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['resource-collections'] });
       
       showSuccessToast('Collection created successfully');
@@ -258,7 +258,7 @@ export const useUpdateCollection = () => {
   return useMutation({
     mutationFn: ({ id, updates }: { id: number; updates: Partial<ResourceCollection> }) =>
       resourceApi.collections.update(id, updates),
-    onSuccess: (__data) => {
+    onSuccess: (data) => {
       queryClient.setQueryData(['resource-collection', data.id], data);
       queryClient.invalidateQueries({ queryKey: ['resource-collections'] });
       
@@ -290,7 +290,7 @@ export const useAddResourcesToCollection = () => {
   return useMutation({
     mutationFn: ({ collectionId, resourceIds }: { collectionId: number; resourceIds: number[] }) =>
       resourceApi.collections.addResources(collectionId, resourceIds),
-    onSuccess: (__data) => {
+    onSuccess: (data) => {
       queryClient.setQueryData(['resource-collection', data.id], data);
       queryClient.invalidateQueries({ queryKey: ['resource-collections'] });
       
@@ -307,7 +307,7 @@ export const useRemoveResourcesFromCollection = () => {
   return useMutation({
     mutationFn: ({ collectionId, resourceIds }: { collectionId: number; resourceIds: number[] }) =>
       resourceApi.collections.removeResources(collectionId, resourceIds),
-    onSuccess: (__data) => {
+    onSuccess: (data) => {
       queryClient.setQueryData(['resource-collection', data.id], data);
       queryClient.invalidateQueries({ queryKey: ['resource-collections'] });
       
@@ -330,7 +330,7 @@ export const useAddLink = () => {
       category: string;
       tags?: string[];
     }) => resourceApi.links.add(linkData),
-    onSuccess: (__data) => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: queryKeys.resource.media(data.userId) });
       queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
       queryClient.invalidateQueries({ queryKey: ['resource-tags'] });
@@ -348,7 +348,7 @@ export const useBulkImportLinks = () => {
   return useMutation({
     mutationFn: ({ urls, defaultCategory }: { urls: string[]; defaultCategory: string }) =>
       resourceApi.links.importBulk(urls, defaultCategory),
-    onSuccess: (__data) => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['media-resources'] });
       queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
       queryClient.invalidateQueries({ queryKey: ['resource-tags'] });
@@ -369,7 +369,7 @@ export const useStorageCleanup = () => {
 
   return useMutation({
     mutationFn: resourceApi.storage.cleanup,
-    onSuccess: (__data) => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['storage-usage'] });
       queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
       
@@ -385,7 +385,7 @@ export const useStorageOptimize = () => {
 
   return useMutation({
     mutationFn: (resourceIds?: number[]) => resourceApi.storage.optimize(resourceIds),
-    onSuccess: (__data) => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['storage-usage'] });
       queryClient.invalidateQueries({ queryKey: ['media-resources'] });
       
@@ -410,7 +410,7 @@ export const useShareResource = () => {
       userIds: number[]; 
       permission: 'view' | 'download' | 'edit';
     }) => resourceApi.sharing.shareWithUsers(resourceId, userIds, permission),
-    onSuccess: (__data) => {
+    onSuccess: (data) => {
       queryClient.setQueryData(queryKeys.resource.detail(data.id), data);
       queryClient.invalidateQueries({ queryKey: ['sharing-status', data.id] });
       
@@ -427,7 +427,7 @@ export const useGeneratePublicLink = () => {
   return useMutation({
     mutationFn: ({ resourceId, expiresInDays }: { resourceId: number; expiresInDays?: number }) =>
       resourceApi.sharing.generatePublicLink(resourceId, expiresInDays),
-    onSuccess: (_data, _variables) => {
+    onSuccess: (data, variables) => {
       queryClient.invalidateQueries({ queryKey: ['sharing-status', variables.resourceId] });
       
       showSuccessToast('Public link generated successfully');
@@ -477,7 +477,7 @@ export const useExportResources = () => {
   return useMutation({
     mutationFn: ({ resourceIds, format }: { resourceIds: number[]; format: 'zip' | 'json' }) =>
       resourceApi.export(resourceIds, format),
-    onSuccess: (_data, _variables) => {
+    onSuccess: (_data, variables) => {
       // Create download link
       const url = window.URL.createObjectURL(_data);
       const link = document.createElement('a');

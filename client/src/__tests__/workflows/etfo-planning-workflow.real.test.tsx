@@ -13,9 +13,9 @@ import {
   realApiAssertions,
 } from '../../test-utils/real-api-helpers';
 import { createAuthenticatedTestUser, type AuthTestContext } from '../../test-utils/auth-test-utils';
-import { PlanningDashboard } from '../../pages/PlanningDashboard';
-import { ETFOLessonPlanPage } from '../../pages/ETFOLessonPlanPage';
-import { UnitPlansPage } from '../../pages/UnitPlansPage';
+import PlanningDashboard from '../../pages/PlanningDashboard';
+import ETFOLessonPlanPage from '../../pages/ETFOLessonPlanPage';
+import UnitPlansPage from '../../pages/UnitPlansPage';
 
 describe('ETFO Planning Workflow - Complete Integration', () => {
   let authContext: AuthTestContext;

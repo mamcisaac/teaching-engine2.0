@@ -104,7 +104,7 @@ export function useAutoSave<T>({
 
       onSaveSuccess?.();
     } catch (_error) {
-      logger.error('Manual save failed:', error);
+      logger.error('Manual save failed:', _error);
       
       toast({
         title: 'Save failed',
@@ -112,8 +112,8 @@ export function useAutoSave<T>({
         variant: 'destructive',
       });
 
-      onSaveError?.(error as Error);
-      throw error;
+      onSaveError?.(_error as Error);
+      throw _error;
     } finally {
       setIsSaving(false);
     }

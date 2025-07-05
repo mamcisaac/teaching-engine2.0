@@ -1,234 +1,38 @@
 /**
- * Real Backend Test Setup
- * Utilities for connecting client tests to the real backend server
+ * Real backend setup utilities for integration tests
  */
 
-import { spawn, ChildProcess } from 'child_process';
+import { beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
 import axios from 'axios';
-import { QueryClient } from '@tanstack/react-query';
 
-// Test server configuration
-export const TEST_CONFIG = {
-  serverPort: 3001, // Different from dev port to avoid conflicts
-  clientPort: 5174, // Different from dev client port
-  baseUrl: 'http://localhost:3001',
-  apiUrl: 'http://localhost:3001/api',
-  timeout: 30000, // 30 seconds for server startup
-  maxRetries: 30,
-  retryInterval: 1000,
-} as const;
+// Base URL for real backend
+export const REAL_BACKEND_URL = process.env.VITE_API_URL || 'http://localhost:3000';
 
-let testServer: ChildProcess | null = null;
-let serverReady = false;
+// Test database URL for integration tests
+export const TEST_DATABASE_URL = process.env.TEST_DATABASE_URL || 'postgresql://test:test@localhost:5432/teaching_engine_test';
 
 /**
- * Start the test backend server
+ * Configuration for real backend tests
  */
-export async function startTestServer(): Promise<void> {
-  if (serverReady && testServer) {
-    return; // Server already running
-  }
-
-  console.log('Starting test backend server...');
-
-  return new Promise((resolve, reject) => {
-    // Set test environment variables
-    const env = {
-      ...process.env,
-      NODE_ENV: 'test',
-      PORT: TEST_CONFIG.serverPort.toString(),
-      DATABASE_URL: process.env.TEST_DATABASE_URL || 'file:./test.db',
-      JWT_SECRET: 'test-jwt-secret-for-testing-only',
-      DISABLE_AUTH_RATE_LIMIT: 'true',
-      LOG_LEVEL: 'error', // Reduce log noise in tests
-    };
-
-    testServer = spawn('pnpm', ['--filter', 'server', 'dev'], {
-      env,
-      stdio: ['ignore', 'pipe', 'pipe'],
-      cwd: process.cwd(),
-    });
-
-    let serverOutput = '';
-    let startupTimeout: NodeJS.Timeout;
-
-    const cleanup = () => {
-      if (startupTimeout) clearTimeout(startupTimeout);
-    };
-
-    // Set startup timeout
-    startupTimeout = setTimeout(() => {
-      cleanup();
-      reject(new Error(`Test server failed to start within ${TEST_CONFIG.timeout}ms. Output: ${serverOutput}`));
-    }, TEST_CONFIG.timeout);
-
-    testServer.stdout?.on('data', (data) => {
-      const output = data.toString();
-      serverOutput += output;
-      
-      // Look for server ready indication
-      if (output.includes(`Server running on port ${TEST_CONFIG.serverPort}`) || 
-          output.includes('Server started') ||
-          output.includes('listening on')) {
-        cleanup();
-        serverReady = true;
-        resolve();
-      }
-    });
-
-    testServer.stderr?.on('data', (data) => {
-      const output = data.toString();
-      serverOutput += output;
-      console.error('Test server error:', output);
-    });
-
-    testServer.on('error', (error) => {
-      cleanup();
-      reject(new Error(`Failed to start test server: ${error.message}`));
-    });
-
-    testServer.on('exit', (code) => {
-      serverReady = false;
-      if (code !== 0) {
-        cleanup();
-        reject(new Error(`Test server exited with code ${code}. Output: ${serverOutput}`));
-      }
-    });
-  });
+export interface RealBackendConfig {
+  baseURL?: string;
+  timeout?: number;
+  withAuth?: boolean;
+  setupDatabase?: boolean;
 }
 
 /**
- * Stop the test backend server
+ * Test server instance
  */
-export async function stopTestServer(): Promise<void> {
-  if (!testServer) return;
-
-  console.log('Stopping test backend server...');
-
-  return new Promise((resolve) => {
-    if (!testServer) {
-      resolve();
-      return;
-    }
-
-    testServer.on('exit', () => {
-      testServer = null;
-      serverReady = false;
-      resolve();
-    });
-
-    // Send SIGTERM to gracefully shutdown
-    testServer.kill('SIGTERM');
-
-    // Force kill after 5 seconds if not stopped
-    setTimeout(() => {
-      if (testServer) {
-        testServer.kill('SIGKILL');
-        testServer = null;
-        serverReady = false;
-        resolve();
-      }
-    }, 5000);
-  });
-}
+let testServerInstance: any = null;
 
 /**
- * Wait for the test server to be ready
+ * Check if the real backend is available
  */
-export async function waitForTestServer(): Promise<void> {
-  if (serverReady) return;
-
-  console.log('Waiting for test server to be ready...');
-  
-  for (let i = 0; i < TEST_CONFIG.maxRetries; i++) {
-    try {
-      const response = await axios.get(`${TEST_CONFIG.baseUrl}/health`, {
-        timeout: 2000,
-      });
-      
-      if (response.status === 200) {
-        serverReady = true;
-        console.log('Test server is ready!');
-        return;
-      }
-    } catch (error) {
-      // Server not ready yet, continue waiting
-    }
-
-    await new Promise(resolve => setTimeout(resolve, TEST_CONFIG.retryInterval));
-  }
-
-  throw new Error('Test server failed to become ready within timeout period');
-}
-
-/**
- * Reset test database to clean state
- */
-export async function resetTestDatabase(): Promise<void> {
+export async function isRealBackendAvailable(url = REAL_BACKEND_URL): Promise<boolean> {
   try {
-    await axios.post(`${TEST_CONFIG.apiUrl}/test/reset-db`, {}, {
-      timeout: 10000,
-    });
-  } catch (error) {
-    console.warn('Failed to reset test database:', error);
-    // Don't throw - some tests might not need database reset
-  }
-}
-
-/**
- * Create a test-specific query client
- */
-export function createRealTestQueryClient(): QueryClient {
-  return new QueryClient({
-    defaultOptions: {
-      queries: {
-        retry: false, // Don't retry failed requests in tests
-        gcTime: 0, // Don't cache data between tests
-        staleTime: 0, // Always refetch
-      },
-      mutations: {
-        retry: false,
-      },
-    },
-  });
-}
-
-/**
- * Setup test environment for real backend integration
- */
-export async function setupRealBackendTest(): Promise<{
-  queryClient: QueryClient;
-  cleanup: () => Promise<void>;
-}> {
-  // Start server if not already running
-  if (!serverReady) {
-    await startTestServer();
-    await waitForTestServer();
-  }
-
-  // Reset database to clean state
-  await resetTestDatabase();
-
-  const queryClient = createRealTestQueryClient();
-
-  const cleanup = async () => {
-    // Clear any cached data
-    queryClient.clear();
-    
-    // Reset database for next test
-    await resetTestDatabase();
-  };
-
-  return { queryClient, cleanup };
-}
-
-/**
- * Check if test server is running
- */
-export async function isTestServerRunning(): Promise<boolean> {
-  try {
-    const response = await axios.get(`${TEST_CONFIG.baseUrl}/health`, {
-      timeout: 2000,
+    const response = await axios.get(`${url}/api/health`, {
+      timeout: 5000
     });
     return response.status === 200;
   } catch {
@@ -237,70 +41,193 @@ export async function isTestServerRunning(): Promise<boolean> {
 }
 
 /**
- * Configure axios for test environment
+ * Wait for the backend to be ready
  */
-export function configureTestAxios(): void {
-  // Set base URL for all requests
-  axios.defaults.baseURL = TEST_CONFIG.baseUrl;
-  
-  // Set reasonable timeouts for tests
-  axios.defaults.timeout = 10000;
-  
-  // Add request interceptor for authentication if needed
-  axios.interceptors.request.use((config) => {
-    // Add auth token if available
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+export async function waitForBackend(url = REAL_BACKEND_URL, maxAttempts = 30): Promise<void> {
+  for (let i = 0; i < maxAttempts; i++) {
+    if (await isRealBackendAvailable(url)) {
+      return;
     }
-    return config;
+    await new Promise(resolve => setTimeout(resolve, 1000));
+  }
+  throw new Error('Backend did not start within timeout');
+}
+
+/**
+ * Setup real backend for tests
+ */
+export async function setupRealBackend(config: RealBackendConfig = {}) {
+  const {
+    baseURL = REAL_BACKEND_URL,
+    timeout = 30000,
+    setupDatabase = true
+  } = config;
+
+  // Set axios defaults
+  axios.defaults.baseURL = baseURL;
+  axios.defaults.timeout = timeout;
+
+  // Check if backend is available
+  const backendAvailable = await isRealBackendAvailable(baseURL);
+  
+  if (!backendAvailable) {
+    throw new Error(`Real backend is not available at ${baseURL}. Please start the backend server.`);
+  }
+
+  // Setup test database if requested
+  if (setupDatabase) {
+    await setupTestDatabase();
+  }
+
+  return {
+    baseURL,
+    isAvailable: true
+  };
+}
+
+/**
+ * Teardown real backend after tests
+ */
+export async function teardownRealBackend() {
+  // Clean up test data
+  await cleanupTestDatabase();
+  
+  // Reset axios defaults
+  delete axios.defaults.baseURL;
+  delete axios.defaults.timeout;
+}
+
+/**
+ * Setup test database
+ */
+export async function setupTestDatabase() {
+  try {
+    // Run database setup endpoint if available
+    await axios.post(`${REAL_BACKEND_URL}/api/test/setup-database`, {
+      testRun: true
+    });
+  } catch (error) {
+    console.warn('Could not setup test database:', error);
+  }
+}
+
+/**
+ * Cleanup test database
+ */
+export async function cleanupTestDatabase() {
+  try {
+    // Run database cleanup endpoint if available
+    await axios.post(`${REAL_BACKEND_URL}/api/test/cleanup-database`, {
+      testRun: true
+    });
+  } catch (error) {
+    console.warn('Could not cleanup test database:', error);
+  }
+}
+
+/**
+ * Create a test user in the real backend
+ */
+export async function createTestUser(userData?: Partial<any>) {
+  const defaultUser = {
+    email: `test-${Date.now()}@example.com`,
+    password: 'Test123!',
+    name: 'Test User',
+    role: 'teacher',
+    boardId: 'test-board',
+    boardName: 'Test Board',
+    boardRegion: 'Test Region'
+  };
+
+  const user = { ...defaultUser, ...userData };
+
+  try {
+    const response = await axios.post('/api/auth/register', user);
+    return response.data;
+  } catch (error) {
+    console.error('Failed to create test user:', error);
+    throw error;
+  }
+}
+
+/**
+ * Login with test user
+ */
+export async function loginTestUser(email: string, password: string) {
+  try {
+    const response = await axios.post('/api/auth/login', { email, password });
+    const { token, user } = response.data;
+    
+    // Set auth header for subsequent requests
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    
+    return { token, user };
+  } catch (error) {
+    console.error('Failed to login test user:', error);
+    throw error;
+  }
+}
+
+/**
+ * Logout test user
+ */
+export function logoutTestUser() {
+  delete axios.defaults.headers.common['Authorization'];
+}
+
+/**
+ * Real backend test suite setup
+ */
+export function setupRealBackendTestSuite(config?: RealBackendConfig) {
+  beforeAll(async () => {
+    await setupRealBackend(config);
+  });
+
+  afterAll(async () => {
+    await teardownRealBackend();
+  });
+
+  beforeEach(async () => {
+    // Clear any existing auth
+    logoutTestUser();
+  });
+
+  afterEach(async () => {
+    // Cleanup after each test
+    logoutTestUser();
   });
 }
 
 /**
- * Global test setup for real backend tests
+ * Skip test if real backend is not available
  */
-export async function globalRealBackendSetup(): Promise<void> {
-  console.log('Setting up real backend test environment...');
-  
-  configureTestAxios();
-  await startTestServer();
-  await waitForTestServer();
-  
-  console.log('Real backend test environment ready!');
+export function skipIfNoRealBackend(testFn: () => void | Promise<void>) {
+  return async () => {
+    const isAvailable = await isRealBackendAvailable();
+    if (!isAvailable) {
+      console.warn('Skipping test - real backend not available');
+      return;
+    }
+    return testFn();
+  };
 }
 
 /**
- * Global test teardown for real backend tests
+ * Create axios instance with real backend configuration
  */
-export async function globalRealBackendTeardown(): Promise<void> {
-  console.log('Tearing down real backend test environment...');
-  await stopTestServer();
-  console.log('Real backend test environment cleaned up!');
+export function createRealBackendClient(config?: Partial<RealBackendConfig>) {
+  return axios.create({
+    baseURL: config?.baseURL || REAL_BACKEND_URL,
+    timeout: config?.timeout || 30000,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
 }
 
-// Test helper for API calls
-export const testAPI = {
-  async get(endpoint: string, options?: Record<string, unknown>) {
-    const response = await axios.get(`${TEST_CONFIG.apiUrl}${endpoint}`, options);
-    return response.data;
-  },
-
-  async post(endpoint: string, data?: unknown, options?: Record<string, unknown>) {
-    const response = await axios.post(`${TEST_CONFIG.apiUrl}${endpoint}`, data, options);
-    return response.data;
-  },
-
-  async put(endpoint: string, data?: unknown, options?: Record<string, unknown>) {
-    const response = await axios.put(`${TEST_CONFIG.apiUrl}${endpoint}`, data, options);
-    return response.data;
-  },
-
-  async delete(endpoint: string, options?: Record<string, unknown>) {
-    const response = await axios.delete(`${TEST_CONFIG.apiUrl}${endpoint}`, options);
-    return response.data;
-  },
-};
-
-// Export for external test utilities
-export { testServer, serverReady };
+/**
+ * Aliases for backward compatibility
+ */
+export const setupRealBackendTest = setupRealBackendTestSuite;
+export const createRealTestQueryClient = () => createRealBackendClient();
+export const resetTestDatabase = cleanupTestDatabase;

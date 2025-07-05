@@ -1,4 +1,4 @@
-import { apiClient } from '../api/core/client';
+import { apiClient } from '../../api/core/client';
 import { useState, useMemo, useCallback, Suspense, useEffect } from 'react';
 import { Event, View, SlotInfo } from 'react-big-calendar';
 import { format, startOfMonth, endOfMonth } from 'date-fns';

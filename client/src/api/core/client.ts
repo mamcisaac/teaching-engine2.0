@@ -41,7 +41,7 @@ apiClient.interceptors.request.use(
     } catch (_error) {
       // If token refresh fails, continue with request anyway
       // The response interceptor will handle 401 errors
-      logger.warn('Token refresh failed before request:', error);
+      logger.warn('Token refresh failed before request:', _error);
     }
 
     return config;

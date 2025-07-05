@@ -68,7 +68,7 @@ describe('ETFOLessonPlanPage', () => {
     
     // Set up default mock implementations
     Object.entries(mockHooks).forEach(([key, mock]) => {
-      (etfoHooks as unknown)[key] = mock;
+      (etfoHooks as any)[key] = mock;
     });
 
     mockHooks.useUnitPlan.mockReturnValue({

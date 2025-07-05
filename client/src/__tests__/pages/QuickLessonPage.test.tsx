@@ -30,7 +30,7 @@ vi.mock('sonner', () => ({
 
 // Mock onboarding components
 vi.mock('../../components/onboarding', () => ({
-  OnboardingTooltip: ({ children, title, content }: unknown) => (
+  OnboardingTooltip: ({ children, title, content }: any) => (
     <div data-testid="onboarding-tooltip" title={`${title}: ${content}`}>
       {children}
     </div>
@@ -45,7 +45,7 @@ vi.mock('../../hooks/useFeatureTutorial', () => ({
 // Mock the lesson plan form
 vi.mock('../../components/forms/LessonPlanForm', () => ({
   __esModule: true,
-  default: ({ onSubmit, onCancel, isSubmitting, showUnitPlanSelector, initialData }: unknown) => (
+  default: ({ onSubmit, onCancel, isSubmitting, showUnitPlanSelector, initialData }: any) => (
     <div data-testid="lesson-plan-form">
       <h3>Lesson Plan Form</h3>
       <div>Show Unit Plan Selector: {showUnitPlanSelector ? 'Yes' : 'No'}</div>

@@ -47,14 +47,6 @@ export function createTestQueryClient(config: TestConfig = {}) {
         networkMode: useRealApi ? 'online' : 'offlineFirst',
       },
     },
-    // Add network delay simulation if requested
-    ...(networkDelay > 0 && {
-      mutationCache: {
-        config: {
-          meta: { networkDelay }
-        }
-      }
-    })
   });
 }
 
@@ -195,7 +187,7 @@ export function AllProviders({
 }
 
 // Enhanced render function with real implementation support
-interface CustomRenderOptions extends Omit<RenderOptions, 'wrapper'> {
+export interface CustomRenderOptions extends Omit<RenderOptions, 'wrapper'> {
   queryClient?: QueryClient;
   authenticated?: boolean;
   initialRoute?: string;

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { calendarApi } from './api';
-import { queryKeys as _queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 import type { CalendarEvent as _CalendarEvent } from '../../../types';
 
 // Query hooks
@@ -105,7 +105,7 @@ export const useExportCalendar = () => {
   return useMutation({
     mutationFn: ({ format, start, end }: { format: 'ics' | 'pdf'; start: string; end: string }) =>
       calendarApi.exportCalendar(format, start, end),
-    onSuccess: (_data, _variables) => {
+    onSuccess: (data, variables) => {
       // Create download link
       const url = window.URL.createObjectURL(new Blob([data]));
       const link = document.createElement('a');

@@ -26,7 +26,7 @@ export default async function globalSetup() {
       } catch (_error) {
         retryCount++;
         if (retryCount === maxRetries) {
-          throw new Error(`Server not available after ${maxRetries} attempts: ${error}`);
+          throw new Error(`Server not available after ${maxRetries} attempts: ${_error}`);
         }
         console.log(`Login attempt ${retryCount} failed, retrying in 1 second...`);
         await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -74,8 +74,8 @@ export default async function globalSetup() {
       throw new Error(`Login failed with status: ${response.status()}: ${errorBody}`);
     }
   } catch (_error) {
-    console.error('Global setup failed:', error);
-    throw error;
+    console.error('Global setup failed:', _error);
+    throw _error;
   } finally {
     await browser.close();
   }

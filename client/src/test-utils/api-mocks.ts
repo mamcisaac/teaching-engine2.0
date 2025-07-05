@@ -6,7 +6,7 @@
  */
 
 import { vi } from 'vitest';
-import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig, AxiosRequestHeaders } from 'axios';
 
 // Create a mock axios instance that prevents navigation
 export const createMockAxiosInstance = (): AxiosInstance => {
@@ -62,7 +62,7 @@ export const createMockAxiosInstance = (): AxiosInstance => {
       status: 200,
       statusText: 'OK',
       headers: {},
-      config: {} as AxiosRequestConfig,
+      config: { headers: {} as AxiosRequestHeaders } as InternalAxiosRequestConfig,
     });
   });
 
@@ -75,7 +75,7 @@ export const createMockResponse = <T = any>(data: T, status = 200): AxiosRespons
   status,
   statusText: status === 200 ? 'OK' : 'Error',
   headers: {},
-  config: {} as AxiosRequestConfig,
+  config: { headers: {} as AxiosRequestHeaders } as InternalAxiosRequestConfig,
 });
 
 // Helper to create a mock error response
@@ -86,7 +86,7 @@ export const createMockErrorResponse = (status: number, message?: string) => {
     statusText: message || 'Error',
     data: { message: message || `Request failed with status ${status}` },
     headers: {},
-    config: {} as AxiosRequestConfig,
+    config: { headers: {} as AxiosRequestHeaders } as InternalAxiosRequestConfig,
   };
   error.isAxiosError = true;
   return error;

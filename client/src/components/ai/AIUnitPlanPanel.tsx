@@ -253,10 +253,10 @@ export function AIUnitPlanPanel({
       setActiveTab('review');
 
     } catch (_error) {
-      logger.error('Error generating complete unit:', error);
+      logger.error('Error generating complete unit:', _error);
       toast({
         title: 'Generation Failed',
-        description: (error instanceof Error ? error.message : String(error)) || 'Failed to generate complete unit plan.',
+        description: (_error instanceof Error ? _error.message : String(_error)) || 'Failed to generate complete unit plan.',
         variant: 'destructive',
       });
     } finally {

@@ -1,7 +1,7 @@
 # Bug Reference Guide
 
-**Last Updated**: 2025-07-03  
-**Version**: 1.0.0
+**Last Updated**: 2025-07-05  
+**Version**: 1.1.0
 
 Comprehensive bug reference documentation for Teaching Engine 2.0 with known issues, solutions, and troubleshooting guidance.
 
@@ -71,7 +71,7 @@ This document serves as the central repository for all known bugs, issues, and t
 - `client/src/components/MainLayout.tsx` - Removed Teams navigation
 - `server/src/services/templateService.ts` - Removed public sharing features
 
-**Prevention Strategy**: 
+**Prevention Strategy**:
 
 - Maintain clear scope documentation focused on single-teacher use
 - Regular scope reviews during feature development
@@ -235,6 +235,48 @@ if (cachedResult) return JSON.parse(cachedResult);
 - Load test planning engine with realistic data volumes
 
 ## 🚨 Known Active Issues
+
+### Critical Authentication Issue
+
+#### Issue #100: Authentication Loop Preventing Login
+
+**Status**: CRITICAL - BLOCKING ALL FUNCTIONALITY  
+**Severity**: Critical  
+**First Reported**: 2025-07-05
+
+**Description**: The React frontend is stuck in an authentication loop that prevents users from logging in. The login page shows a blank screen or loading spinner indefinitely due to premature API calls.
+
+**Symptoms**:
+
+- Login page doesn't display (blank screen or infinite spinner)
+- Console shows continuous 401 errors for `/api/notifications`
+- Authentication state check never completes
+- API calls being made before authentication is determined
+
+**Root Cause**:
+
+- AuthContext doesn't properly handle loading states
+- Components make API calls during auth initialization
+- Missing guards to prevent API calls until auth is determined
+- Race condition between auth check and component mounting
+
+**Impact**:
+
+- **System is completely unusable** - no users can log in
+- High CPU usage from continuous API retry loops
+- Poor user experience - app appears broken
+- Server load from unnecessary 401 responses
+
+**Fix Plan**: Documented in detail at `docs/AUTHENTICATION_LOOP_FIX.md`
+
+**Required Actions**:
+
+1. Fix AuthContext timing and loading states
+2. Add API call guards to prevent premature requests
+3. Update ProtectedRoute logic
+4. Add request interceptors
+
+**Temporary Workaround**: None - system is unusable until fixed
 
 ### Current Bugs Under Investigation
 
@@ -519,12 +561,14 @@ await retry(
 **Description**: Test coverage reporting extremely low percentages (0.93% statements, 0.64% branches) in CI, despite having 84 test files.
 
 **Root Cause**:
+
 - Jest configuration defaults to running only unit tests when no TEST_TYPE is specified
 - Only 3 unit test files exist out of 84 total test files
 - Coverage command wasn't setting TEST_TYPE environment variable
 - Most tests are integration (50) and security (13) tests, not unit tests
 
 **Test Distribution**:
+
 ```
 Unit tests: 3 files
 Security tests: 13 files
@@ -534,6 +578,7 @@ Total: 84 test files
 ```
 
 **Solution**:
+
 1. Updated `scripts/smart-test-runner-enhanced.js` to set TEST_TYPE='all' instead of undefined
 2. Updated `server/package.json` test:coverage script to include TEST_TYPE=all
 
@@ -541,17 +586,19 @@ Total: 84 test files
 # Before
 "test:coverage": "NODE_OPTIONS='--experimental-vm-modules' jest --coverage"
 
-# After  
+# After
 "test:coverage": "NODE_OPTIONS='--experimental-vm-modules' TEST_TYPE=all jest --coverage"
 ```
 
 **Prevention Strategy**:
+
 - Always verify coverage includes all test types
 - Monitor coverage metrics for sudden drops
 - Document test type distribution in test documentation
 - Consider setting TEST_TYPE=all as default for coverage runs
 
 **Impact**:
+
 - CI/CD pipeline showing misleading coverage metrics
 - Developers unable to assess true test coverage
 - Risk of shipping untested code due to false coverage reports

@@ -7,7 +7,7 @@
 
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { UnitPlanService } from '../unitPlanService';
-import { UnitPlan } from '../../hooks/useETFOPlanning';
+import { UnitPlan, ETFOLessonPlan } from '../../hooks/useETFOPlanning';
 import { UnitPlanFormData } from '../../hooks/useUnitPlanForm';
 
 // Mock data
@@ -45,7 +45,7 @@ const createMockUnitPlan = (overrides: Partial<UnitPlan> = {}): UnitPlan => ({
     { id: 'B1.1', code: 'B1.1', description: 'Represent fractions' },
     { id: 'B1.2', code: 'B1.2', description: 'Compare fractions' },
     { id: 'B1.3', code: 'B1.3', description: 'Add fractions' },
-  ] as unknown,
+  ] as ETFOLessonPlan[] | undefined,
   lessonPlans: [],
   _count: {
     lessonPlans: 5,
@@ -110,7 +110,7 @@ describe('UnitPlanService', () => {
           createMockLessonPlan(3, true), // completed
           createMockLessonPlan(4, false), // not completed
           createMockLessonPlan(5, true), // completed
-        ] as unknown,
+        ] as ETFOLessonPlan[] | undefined,
       });
 
       const result = UnitPlanService.calculateProgress(unit);
@@ -129,7 +129,7 @@ describe('UnitPlanService', () => {
 
     it('should return 0 for unit with undefined lesson count', () => {
       const unit = createMockUnitPlan({
-        _count: undefined as unknown,
+        _count: undefined as ETFOLessonPlan[] | undefined,
         lessonPlans: [],
       });
 
@@ -144,7 +144,7 @@ describe('UnitPlanService', () => {
           createMockLessonPlan(1, true),
           createMockLessonPlan(2, true),
           createMockLessonPlan(3, true),
-        ] as unknown,
+        ] as ETFOLessonPlan[] | undefined,
       });
 
       const result = UnitPlanService.calculateProgress(unit);
@@ -158,7 +158,7 @@ describe('UnitPlanService', () => {
           createMockLessonPlan(1, false),
           createMockLessonPlan(2, false),
           createMockLessonPlan(3, false),
-        ] as unknown,
+        ] as ETFOLessonPlan[] | undefined,
       });
 
       const result = UnitPlanService.calculateProgress(unit);
@@ -168,7 +168,7 @@ describe('UnitPlanService', () => {
     it('should handle undefined lessonPlans array', () => {
       const unit = createMockUnitPlan({
         _count: { lessonPlans: 3, expectations: 3, resources: 0 },
-        lessonPlans: undefined as unknown,
+        lessonPlans: undefined as ETFOLessonPlan[] | undefined,
       });
 
       const result = UnitPlanService.calculateProgress(unit);
@@ -182,7 +182,7 @@ describe('UnitPlanService', () => {
           createMockLessonPlan(1, true), // completed
           createMockLessonPlan(2, false), // not completed
           createMockLessonPlan(3, false), // not completed
-        ] as unknown,
+        ] as ETFOLessonPlan[] | undefined,
       });
 
       const result = UnitPlanService.calculateProgress(unit);
@@ -302,7 +302,7 @@ describe('UnitPlanService', () => {
     });
 
     it('should handle undefined essential questions', () => {
-      const unit = createMockUnitPlan({ essentialQuestions: undefined as unknown });
+      const unit = createMockUnitPlan({ essentialQuestions: undefined as string[] | undefined });
 
       const result = UnitPlanService.formatForExport(unit);
 
@@ -447,9 +447,9 @@ describe('UnitPlanService', () => {
 
     it('should handle undefined fields', () => {
       const unit = createMockUnitPlan({
-        title: undefined as unknown,
-        essentialQuestions: undefined as unknown,
-        expectations: undefined as unknown,
+        title: undefined as ETFOLessonPlan[] | undefined,
+        essentialQuestions: undefined as ETFOLessonPlan[] | undefined,
+        expectations: undefined as ETFOLessonPlan[] | undefined,
       });
 
       const result = UnitPlanService.isComplete(unit);
@@ -483,7 +483,7 @@ describe('UnitPlanService', () => {
     });
 
     it('should handle missing progress', () => {
-      const unit = createMockUnitPlan({ progress: undefined as unknown });
+      const unit = createMockUnitPlan({ progress: undefined as { total: number; completed: number; percentage: number; } | undefined });
 
       const result = UnitPlanService.getStatusColor(unit);
 
@@ -525,7 +525,7 @@ describe('UnitPlanService', () => {
       const unit = createMockUnitPlan({
         startDate: '2023-12-01',
         endDate: '2023-12-14', // 14 days = 2 weeks
-        _count: undefined as unknown,
+        _count: undefined as ETFOLessonPlan[] | undefined,
       });
 
       const result = UnitPlanService.generateSummary(unit);
@@ -539,7 +539,7 @@ describe('UnitPlanService', () => {
         endDate: '2023-12-07', // 7 days = 1 week
         _count: {
           lessonPlans: 3,
-          expectations: undefined as unknown,
+          expectations: undefined as ETFOLessonPlan[] | undefined,
           resources: 0,
         },
       });
@@ -571,10 +571,10 @@ describe('UnitPlanService', () => {
 
   describe('Edge cases and error handling', () => {
     it('should handle null or undefined inputs gracefully', () => {
-      expect(() => UnitPlanService.calculateProgress(null as unknown)).toThrow();
+      expect(() => UnitPlanService.calculateProgress(null as unknown as UnitPlan)).toThrow();
       expect(() => UnitPlanService.validateDateRange('', '')).not.toThrow();
-      expect(() => UnitPlanService.formatForExport(null as unknown)).toThrow();
-      expect(() => UnitPlanService.isComplete(null as unknown)).toThrow();
+      expect(() => UnitPlanService.formatForExport(null as unknown as UnitPlan)).toThrow();
+      expect(() => UnitPlanService.isComplete(null as unknown as UnitPlan)).toThrow();
     });
 
     it('should handle very large date ranges', () => {
@@ -605,7 +605,7 @@ describe('UnitPlanService', () => {
     it('should handle very small progress calculations', () => {
       const unit = createMockUnitPlan({
         _count: { lessonPlans: 1000, expectations: 3, resources: 0 },
-        lessonPlans: [createMockLessonPlan(1, true)] as unknown, // 1 out of 1000
+        lessonPlans: [createMockLessonPlan(1, true)] as ETFOLessonPlan[] | undefined, // 1 out of 1000
       });
 
       const result = UnitPlanService.calculateProgress(unit);

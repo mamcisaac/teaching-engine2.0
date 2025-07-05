@@ -41,6 +41,9 @@ export type {
   UnitPlanResource
 } from '../hooks/useETFOPlanning';
 
+// Re-export newsletter types
+export type { ParentSummary } from './newsletter';
+
 // Planning types 
 export interface LessonPlan {
   id: number;
@@ -290,6 +293,37 @@ export interface ParentMessageInput {
   // Legacy link IDs removed
 }
 
+// Parent Summary types (moved from newsletter.ts for consistency)
+export interface GenerateParentSummaryRequest {
+  studentId: number;
+  from: string;
+  to: string;
+  focus?: string[];
+}
+
+export interface SaveParentSummaryRequest {
+  studentId: number;
+  dateFrom: string;
+  dateTo: string;
+  focus?: string[];
+  contentFr: string;
+  contentEn: string;
+  isDraft?: boolean;
+}
+
+export interface ParentSummaryGeneration {
+  contentFr: string;
+  contentEn: string;
+  metadata?: {
+    dateRange: {
+      from: string;
+      to: string;
+    };
+    focus?: string[];
+    generatedAt: string;
+  };
+}
+
 export interface ReflectionJournalEntry {
   id: number;
   userId: number;
@@ -304,6 +338,17 @@ export interface ReflectionJournalEntry {
     id: number;
     name: string;
   };
+}
+
+export interface ReflectionInput {
+  date: string;
+  content: string;
+  themeId?: number | null;
+}
+
+export interface ReflectionUpdate {
+  content?: string;
+  themeId?: number | null;
 }
 
 

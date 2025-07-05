@@ -91,7 +91,11 @@ describe('serviceWorkerRegistration', () => {
 
   afterEach(() => {
     process.env = originalEnv;
-    window.location = originalLocation;
+    Object.defineProperty(window, 'location', {
+      value: originalLocation,
+      writable: true,
+      configurable: true
+    });
     Object.defineProperty(window, 'navigator', {
       configurable: true,
       value: originalNavigator,
@@ -236,6 +240,9 @@ describe('serviceWorkerRegistration', () => {
       const mockUnregister = vi.fn().mockResolvedValue(undefined);
       mockServiceWorker.ready = Promise.resolve({
         unregister: mockUnregister,
+        active: { postMessage: vi.fn() },
+        installing: null,
+        sync: { register: vi.fn() },
       });
       
       register();
@@ -368,7 +375,10 @@ describe('serviceWorkerRegistration', () => {
 
     it('should handle missing active worker gracefully', async () => {
       mockServiceWorker.ready = Promise.resolve({
+        unregister: vi.fn(),
         active: null,
+        installing: null,
+        sync: { register: vi.fn() },
       });
       
       // Should not throw

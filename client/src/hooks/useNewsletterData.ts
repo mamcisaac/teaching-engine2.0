@@ -87,13 +87,13 @@ export function useSaveNewsletterDraft() {
       
       const method = draft.id ? 'put' : 'post';
       
-      const response = await api[method](endpoint, draft);
+      const response = await apiClient[method](endpoint, draft);
       return response.data;
     },
     onSuccess: (_data) => {
-      toast.success(data.isDraft ? 'Draft saved!' : 'Newsletter finalized!');
+      toast.success(_data.isDraft ? 'Draft saved!' : 'Newsletter finalized!');
       queryClient.invalidateQueries({ queryKey: ['newsletter-drafts'] });
-      queryClient.invalidateQueries({ queryKey: ['newsletter', data.id] });
+      queryClient.invalidateQueries({ queryKey: ['newsletter', _data.id] });
     },
     onError: (error) => {
       toast.error(`Failed to save newsletter: ${error.message}`);

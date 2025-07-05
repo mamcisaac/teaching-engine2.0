@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { planningApi } from './api';
-import { queryKeys as _queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 
 // Query Hooks
 export const useYearPlan = (teacherId: number, year: number) =>
@@ -62,7 +62,7 @@ export const useUpdateDailyPlan = () => {
 
   return useMutation({
     mutationFn: planningApi.updateDailyPlan,
-    onSuccess: (__data) => {
+    onSuccess: (data) => {
       showSuccessToast('Daily plan updated successfully');
       queryClient.invalidateQueries({ 
         queryKey: queryKeys.planning.dailyPlan(data.date) 
@@ -77,7 +77,7 @@ export const useGenerateDailyPlan = () => {
 
   return useMutation({
     mutationFn: planningApi.generateDailyPlan,
-    onSuccess: (__data) => {
+    onSuccess: (data) => {
       showSuccessToast('Daily plan generated successfully');
       queryClient.invalidateQueries({ 
         queryKey: queryKeys.planning.dailyPlan(data.date) 
@@ -92,7 +92,7 @@ export const useGeneratePlan = () => {
 
   return useMutation({
     mutationFn: planningApi.generateLessonPlan,
-    onSuccess: (__data) => {
+    onSuccess: (data) => {
       showSuccessToast('Lesson plan generated successfully');
       queryClient.invalidateQueries({ 
         queryKey: queryKeys.planning.lessonPlan(data.weekStart) 

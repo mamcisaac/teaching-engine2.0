@@ -1,4 +1,4 @@
-import { describe, test, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach } from 'viit';
 import { useOnboardingStore } from '../onboardingStore';
 import { useHelpStore } from '../helpStore';
 import { useKeyboardShortcutsStore } from '../keyboardShortcutsStore';
@@ -36,7 +36,7 @@ describe('Store Integration Tests', () => {
     });
   });
 
-  test('onboarding store should handle flow management', () => {
+  it('onboarding store should handle flow management', () => {
     const store = useOnboardingStore.getState();
     
     // Start onboarding
@@ -59,30 +59,30 @@ describe('Store Integration Tests', () => {
     expect(finalState.completedFlows).toContain('main-onboarding');
   });
 
-  test('help store should manage tutorial progress', () => {
+  it('help store should manage tutorial progress', () => {
     const store = useHelpStore.getState();
     
     // Start tutorial
-    store.startTutorial('test-tutorial');
-    expect(store.getTutorialProgress('test-tutorial').isActive).toBe(true);
-    expect(store.getTutorialProgress('test-tutorial').currentStep).toBe(0);
+    store.startTutorial('it-tutorial');
+    expect(store.getTutorialProgress('it-tutorial').isActive).toBe(true);
+    expect(store.getTutorialProgress('it-tutorial').currentStep).toBe(0);
     
     // Progress through tutorial
-    store.nextTutorialStep('test-tutorial');
-    expect(store.getTutorialProgress('test-tutorial').currentStep).toBe(1);
+    store.nextTutorialStep('it-tutorial');
+    expect(store.getTutorialProgress('it-tutorial').currentStep).toBe(1);
     
     // Complete tutorial
-    store.completeTutorial('test-tutorial');
-    expect(store.getTutorialProgress('test-tutorial').isCompleted).toBe(true);
-    expect(store.getTutorialProgress('test-tutorial').isActive).toBe(false);
+    store.completeTutorial('it-tutorial');
+    expect(store.getTutorialProgress('it-tutorial').isCompleted).toBe(true);
+    expect(store.getTutorialProgress('it-tutorial').isActive).toBe(false);
   });
 
-  test('keyboard shortcuts store should register and handle shortcuts', () => {
+  it('keyboard shortcuts store should register and handle shortcuts', () => {
     const store = useKeyboardShortcutsStore.getState();
     
-    const mockHandler = vitest.fn();
+    const mockHandler = viit.fn();
     const shortcut = {
-      id: 'test-shortcut',
+      id: 'it-shortcut',
       key: 't',
       ctrl: true,
       description: 'Test shortcut',
@@ -94,14 +94,14 @@ describe('Store Integration Tests', () => {
     store.registerShortcut(shortcut);
     const state = useKeyboardShortcutsStore.getState();
     expect(state.shortcuts).toHaveLength(1);
-    expect(state.shortcuts[0].id).toBe('test-shortcut');
+    expect(state.shortcuts[0].id).toBe('it-shortcut');
     
     // Unregister shortcut
-    store.unregisterShortcut('test-shortcut');
+    store.unregisterShortcut('it-shortcut');
     expect(useKeyboardShortcutsStore.getState().shortcuts).toHaveLength(0);
   });
 
-  test('language store should handle translations', () => {
+  it('language store should handle translations', () => {
     const store = useLanguageStore.getState();
     
     // Test English
@@ -122,7 +122,7 @@ describe('Store Integration Tests', () => {
     expect(frenchState.t('step_x_of_y', undefined, ['1', '5'])).toBe('Étape 1 de 5');
   });
 
-  test('UI store should manage theme and modals', () => {
+  it('UI store should manage theme and modals', () => {
     const store = useUIStore.getState();
     
     // Test theme management
@@ -133,12 +133,12 @@ describe('Store Integration Tests', () => {
     expect(useUIStore.getState().effectiveTheme).toBe('dark');
     
     // Test modal management
-    store.openModal('test-modal');
-    expect(store.isModalOpen('test-modal')).toBe(true);
-    expect(useUIStore.getState().activeModals).toContain('test-modal');
+    store.openModal('it-modal');
+    expect(store.isModalOpen('it-modal')).toBe(true);
+    expect(useUIStore.getState().activeModals).toContain('it-modal');
     
-    store.closeModal('test-modal');
-    expect(useUIStore.getState().isModalOpen('test-modal')).toBe(false);
+    store.closeModal('it-modal');
+    expect(useUIStore.getState().isModalOpen('it-modal')).toBe(false);
     
     // Test toast management
     store.showToast('Test message', 'success');
@@ -148,7 +148,7 @@ describe('Store Integration Tests', () => {
     expect(toastState.activeToasts[0].type).toBe('success');
   });
 
-  test('stores should work together for complex workflows', () => {
+  it('stores should work together for complex workflows', () => {
     // Start onboarding in French with dark theme
     useLanguageStore.getState().setLanguage('fr');
     useUIStore.getState().setTheme('dark');
@@ -170,7 +170,7 @@ describe('Store Integration Tests', () => {
     expect(useHelpStore.getState().currentSection).toBe('getting-started');
   });
 
-  test('stores should persist important state', () => {
+  it('stores should persist important state', () => {
     // Change settings that should persist
     useLanguageStore.getState().setLanguage('fr');
     useUIStore.getState().setTheme('dark');

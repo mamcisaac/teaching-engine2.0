@@ -236,7 +236,7 @@ export class ErrorReportingService {
 
   categorizeError(error: unknown): ErrorCategory {
     // Default category
-    let category: ErrorCategory = {
+    const category: ErrorCategory = {
       category: 'system',
       severity: 'error',
       tags: {},

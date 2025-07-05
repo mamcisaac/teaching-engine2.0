@@ -52,11 +52,11 @@ global.File = class MockFile {
   get type() {
     return 'application/pdf';
   }
-} as unknown;
+} as any;
 
 describe('CurriculumImportPage', () => {
   const user = userEvent.setup();
-  const mockApi = apiModule.api as unknown;
+  const mockApi = apiModule.api as { post: any };
 
   const mockParsedSubjects = [
     {
@@ -198,7 +198,7 @@ describe('CurriculumImportPage', () => {
       });
 
     const { useDropzone } = await import('react-dropzone');
-    const mockUseDropzone = useDropzone as unknown;
+    const mockUseDropzone = useDropzone as any;
 
     // Mock file drop
     const mockFile = new File(['curriculum content'], 'curriculum.pdf', {
@@ -247,7 +247,7 @@ describe('CurriculumImportPage', () => {
       .mockResolvedValueOnce({ data: { subjects: mockParsedSubjects, errors: [] } });
 
     const { useDropzone } = await import('react-dropzone');
-    const mockUseDropzone = useDropzone as unknown;
+    const mockUseDropzone = useDropzone as any;
 
     const mockFile = new File(['content'], 'test.pdf', { type: 'application/pdf' });
     let onDropCallback: (files: File[]) => void;
@@ -290,7 +290,7 @@ describe('CurriculumImportPage', () => {
       .mockResolvedValueOnce({ data: { subjects: mockParsedSubjects, errors: [] } });
 
     const { useDropzone } = await import('react-dropzone');
-    const mockUseDropzone = useDropzone as unknown;
+    const mockUseDropzone = useDropzone as any;
 
     const mockFile = new File(['content'], 'test.pdf', { type: 'application/pdf' });
     let onDropCallback: (files: File[]) => void;
@@ -335,7 +335,7 @@ describe('CurriculumImportPage', () => {
       .mockResolvedValueOnce({ data: { subjects: mockParsedSubjects, errors: [] } });
 
     const { useDropzone } = await import('react-dropzone');
-    const mockUseDropzone = useDropzone as unknown;
+    const mockUseDropzone = useDropzone as any;
 
     const mockFile = new File(['content'], 'test.pdf', { type: 'application/pdf' });
     let onDropCallback: (files: File[]) => void;
@@ -385,7 +385,7 @@ describe('CurriculumImportPage', () => {
       .mockResolvedValueOnce({ data: { success: true } }); // Final import
 
     const { useDropzone } = await import('react-dropzone');
-    const mockUseDropzone = useDropzone as unknown;
+    const mockUseDropzone = useDropzone as any;
 
     const mockFile = new File(['content'], 'test.pdf', { type: 'application/pdf' });
     let onDropCallback: (files: File[]) => void;
@@ -429,7 +429,7 @@ describe('CurriculumImportPage', () => {
     mockApi.post.mockRejectedValueOnce(new Error('Upload failed'));
 
     const { useDropzone } = await import('react-dropzone');
-    const mockUseDropzone = useDropzone as unknown;
+    const mockUseDropzone = useDropzone as any;
 
     const mockFile = new File(['content'], 'test.pdf', { type: 'application/pdf' });
     let onDropCallback: (files: File[]) => void;
@@ -455,7 +455,7 @@ describe('CurriculumImportPage', () => {
 
   it('shows loading progress during upload', async () => {
     const { useDropzone } = await import('react-dropzone');
-    const mockUseDropzone = useDropzone as unknown;
+    const mockUseDropzone = useDropzone as any;
 
     const mockFile = new File(['content'], 'test.pdf', { type: 'application/pdf' });
     let onDropCallback: (files: File[]) => void;
@@ -496,7 +496,7 @@ describe('CurriculumImportPage', () => {
       .mockResolvedValueOnce({ data: { subjects: mockParsedSubjects, errors: [] } });
 
     const { useDropzone } = await import('react-dropzone');
-    const mockUseDropzone = useDropzone as unknown;
+    const mockUseDropzone = useDropzone as any;
 
     const mockFile = new File(['content'], 'test.pdf', { type: 'application/pdf' });
     let onDropCallback: (files: File[]) => void;
@@ -555,7 +555,7 @@ describe('CurriculumImportPage', () => {
       .mockResolvedValueOnce({ data: { subjects: mockParsedSubjects, errors: [] } });
 
     const { useDropzone } = await import('react-dropzone');
-    const mockUseDropzone = useDropzone as unknown;
+    const mockUseDropzone = useDropzone as any;
 
     const mockFile = new File(['content'], 'test.pdf', { type: 'application/pdf' });
     let onDropCallback: (files: File[]) => void;

@@ -67,18 +67,21 @@ pnpm test:all
 ### Test Execution Details
 
 #### Unit Tests
+
 - **Speed**: Fast (< 5 seconds)
 - **Dependencies**: None (uses mocks)
 - **Purpose**: Component logic validation
 - **Pattern**: `**/*.test.{ts,tsx}`
 
 #### Real Backend Tests
+
 - **Speed**: Moderate (30-60 seconds)
 - **Dependencies**: Real backend server
 - **Purpose**: Integration validation
 - **Pattern**: `**/*.real.test.{ts,tsx}`
 
 #### Workflow Tests
+
 - **Speed**: Slow (1-5 minutes)
 - **Dependencies**: Real backend + seeded data
 - **Purpose**: User journey validation
@@ -250,7 +253,7 @@ await errorTestHelpers.testUnauthorizedAccess('/api/admin/users');
 
 ```typescript
 const { timeMs } = await performanceHelpers.measureApiCallTime(() =>
-  realApiHelpers.getLongRangePlans(authContext)
+  realApiHelpers.getLongRangePlans(authContext),
 );
 
 expect(timeMs).toBeLessThan(2000); // 2 seconds
@@ -278,7 +281,7 @@ expect(endTime - startTime).toBeLessThan(5000);
 await errorTestHelpers.testValidationError(
   authContext,
   '/api/long-range-plans',
-  {} // Invalid empty data
+  {}, // Invalid empty data
 );
 ```
 
@@ -296,24 +299,28 @@ try {
 ## Best Practices
 
 ### 1. Test Isolation
+
 - Reset database between tests
 - Create unique test data
 - Clean up created resources
 - Use separate test user accounts
 
 ### 2. Realistic Testing
+
 - Use actual API endpoints
 - Test with real data volumes
 - Validate complete workflows
 - Test error scenarios
 
 ### 3. Performance Awareness
+
 - Monitor test execution time
 - Use appropriate timeouts
 - Optimize test data setup
 - Parallelize when possible
 
 ### 4. Debugging
+
 - Use meaningful test descriptions
 - Log important test data
 - Preserve failing test state
@@ -324,19 +331,21 @@ try {
 ### Common Issues
 
 1. **Server Won't Start**
+
    ```bash
    # Check port availability
    lsof -ti:3001
-   
+
    # View server logs
    pnpm test:real-backend:full
    ```
 
 2. **Database Issues**
+
    ```bash
    # Reset test database
    rm server/test-real-backend.db
-   
+
    # Check database contents
    sqlite3 server/test-real-backend.db ".tables"
    ```
@@ -416,7 +425,7 @@ pnpm test:all --coverage
 ```typescript
 // Before (with mocks)
 vi.mock('../../api', () => ({
-  api: { get: vi.fn().mockResolvedValue({ data: mockPlans }) }
+  api: { get: vi.fn().mockResolvedValue({ data: mockPlans }) },
 }));
 
 const { result } = renderHook(() => useLongRangePlans(), { wrapper });
@@ -428,10 +437,12 @@ const { result } = renderHook(() => useLongRangePlans(), { wrapper });
 
 await waitFor(() => {
   expect(result.current.data).toBeDefined();
-  expect(result.current.data[0]).toEqual(expect.objectContaining({
-    id: createdPlan.id,
-    title: testData.title,
-  }));
+  expect(result.current.data[0]).toEqual(
+    expect.objectContaining({
+      id: createdPlan.id,
+      title: testData.title,
+    }),
+  );
 });
 ```
 

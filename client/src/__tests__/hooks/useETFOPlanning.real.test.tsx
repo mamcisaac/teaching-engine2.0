@@ -88,23 +88,23 @@ describe('useETFOPlanning hooks - Real Backend Integration', () => {
           expect(result.current.isLoading).toBe(false);
           expect(result.current.data).toBeDefined();
           expect(Array.isArray(result.current.data)).toBe(true);
-          expect(result.current.data.length).toBe(2);
+          expect(result.current.data!.length).toBe(2);
           expect(result.current.error).toBeNull();
         });
 
         // Validate the actual data structure
-        result.current.data.forEach(plan => {
+        result.current.data!.forEach(plan => {
           realApiAssertions.assertValidLongRangePlan(plan);
         });
 
         // Check specific plans
-        const mathPlan = result.current.data.find(p => p.title === 'Grade 3 Math');
-        const languagePlan = result.current.data.find(p => p.title === 'Grade 3 Language');
+        const mathPlan = result.current.data!.find(p => p.title === 'Grade 3 Math');
+        const languagePlan = result.current.data!.find(p => p.title === 'Grade 3 Language');
         
         expect(mathPlan).toBeDefined();
-        expect(mathPlan.subject).toBe('Mathematics');
+        expect(mathPlan!.subject).toBe('Mathematics');
         expect(languagePlan).toBeDefined();
-        expect(languagePlan.subject).toBe('Language Arts');
+        expect(languagePlan!.subject).toBe('Language Arts');
       });
 
       it('handles empty result from real API', async () => {
@@ -133,9 +133,9 @@ describe('useETFOPlanning hooks - Real Backend Integration', () => {
         await waitFor(() => {
           expect(result.current.isLoading).toBe(false);
           expect(result.current.data).toBeDefined();
-          expect(result.current.data.length).toBe(1);
-          expect(result.current.data[0].title).toBe('Grade 3 Plan');
-          expect(result.current.data[0].grade).toBe(3);
+          expect(result.current.data!.length).toBe(1);
+          expect(result.current.data![0].title).toBe('Grade 3 Plan');
+          expect(result.current.data![0].grade).toBe(3);
         });
       });
     });
@@ -152,11 +152,11 @@ describe('useETFOPlanning hooks - Real Backend Integration', () => {
         await waitFor(() => {
           expect(result.current.isLoading).toBe(false);
           expect(result.current.data).toBeDefined();
-          expect(result.current.data.id).toBe(createdPlan.id);
-          expect(result.current.data.title).toBe('Grade 3 Math');
+          expect(result.current.data!.id).toBe(createdPlan.id);
+          expect(result.current.data!.title).toBe('Grade 3 Math');
         });
 
-        realApiAssertions.assertValidLongRangePlan(result.current.data);
+        realApiAssertions.assertValidLongRangePlan(result.current.data!);
       });
 
       it('skips query when id is not provided', () => {
@@ -291,10 +291,10 @@ describe('useETFOPlanning hooks - Real Backend Integration', () => {
         await waitFor(() => {
           expect(result.current.isLoading).toBe(false);
           expect(result.current.data).toBeDefined();
-          expect(result.current.data.length).toBe(2);
+          expect(result.current.data!.length).toBe(2);
         });
 
-        result.current.data.forEach(unit => {
+        result.current.data!.forEach(unit => {
           realApiAssertions.assertValidUnitPlan(unit);
           expect(unit.longRangePlanId).toBe(longRangePlan.id);
         });
@@ -312,7 +312,7 @@ describe('useETFOPlanning hooks - Real Backend Integration', () => {
         await waitFor(() => {
           expect(result.current.isLoading).toBe(false);
           expect(result.current.data).toBeDefined();
-          expect(result.current.data.length).toBe(2);
+          expect(result.current.data!.length).toBe(2);
         });
       });
     });
@@ -363,10 +363,10 @@ describe('useETFOPlanning hooks - Real Backend Integration', () => {
         await waitFor(() => {
           expect(result.current.isLoading).toBe(false);
           expect(result.current.data).toBeDefined();
-          expect(result.current.data.length).toBe(2);
+          expect(result.current.data!.length).toBe(2);
         });
 
-        result.current.data.forEach(lesson => {
+        result.current.data!.forEach(lesson => {
           realApiAssertions.assertValidETFOLessonPlan(lesson);
           expect(lesson.unitPlanId).toBe(unitPlan.id);
         });
@@ -417,10 +417,10 @@ describe('useETFOPlanning hooks - Real Backend Integration', () => {
         await waitFor(() => {
           expect(result.current.isLoading).toBe(false);
           expect(result.current.data).toBeDefined();
-          expect(result.current.data.length).toBe(2);
+          expect(result.current.data!.length).toBe(2);
         });
 
-        result.current.data.forEach(entry => {
+        result.current.data!.forEach(entry => {
           realApiAssertions.assertValidDaybookEntry(entry);
         });
       });
@@ -469,7 +469,7 @@ describe('useETFOPlanning hooks - Real Backend Integration', () => {
 
       // Should load within reasonable time
       expect(loadTime).toBeLessThan(5000); // 5 seconds
-      expect(result.current.data.length).toBe(5);
+      expect(result.current.data!.length).toBe(5);
     });
 
     it('handles concurrent mutations properly', async () => {
@@ -493,7 +493,7 @@ describe('useETFOPlanning hooks - Real Backend Integration', () => {
       
       await waitFor(() => {
         expect(listResult.current.data).toBeDefined();
-        expect(listResult.current.data.length).toBe(2);
+        expect(listResult.current.data!.length).toBe(2);
       });
     });
   });

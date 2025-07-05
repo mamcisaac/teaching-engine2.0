@@ -83,7 +83,7 @@ describe('UnitPlansPage', () => {
     
     // Set up default mock implementations
     Object.entries(mockHooks).forEach(([key, mock]) => {
-      (etfoHooks as unknown)[key] = mock;
+      (etfoHooks as any)[key] = mock;
     });
 
     mockHooks.useLongRangePlan.mockReturnValue({
@@ -116,7 +116,7 @@ describe('UnitPlansPage', () => {
       error: null,
     });
 
-    (api.useCurriculumExpectations as unknown).mockReturnValue({
+    (api.useCurriculumExpectations as any).mockReturnValue({
       data: [
         {
           id: '1',

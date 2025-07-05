@@ -181,6 +181,15 @@ playwright-report/
 direct-test.js
 start-and-login.js
 test-login-simple.js
+test-*.js
+test-*.png
+perfect-ui-screenshots/
+screenshots/
+coverage-output.txt
+
+# Uploads directory (keep it empty)
+uploads/*
+!uploads/.gitkeep
 
 # Vite cache
 client/.vite-cache/

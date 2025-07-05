@@ -1,5 +1,5 @@
 import { createContext, useContext, ReactNode } from 'react';
-import { useNotifications, useMarkNotificationRead } from '../api/domains/notification';
+import { useNotifications, useMarkNotificationAsRead } from '../api/domains/notification';
 import type { Notification } from '../types';
 import { useAuth } from './AuthContext';
 
@@ -24,13 +24,9 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
     data: notifications = [],
     isLoading,
     error,
-  } = useNotifications({
-    enabled: isAuthenticated && isInitialized,
-    refetchInterval: 30000, // Refetch every 30 seconds
-    staleTime: 10000, // Consider data stale after 10 seconds
-  });
+  } = useNotifications();
 
-  const markMutation = useMarkNotificationRead();
+  const markMutation = useMarkNotificationAsRead();
 
   const markRead = (id: number) => {
     if (isAuthenticated) {

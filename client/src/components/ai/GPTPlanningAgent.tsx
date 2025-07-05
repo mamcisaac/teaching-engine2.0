@@ -89,11 +89,11 @@ export function GPTPlanningAgent({
       return response.data.data;
     },
     onSuccess: (_data) => {
-      setSessionId(data.sessionId);
+      setSessionId(_data.sessionId);
       setMessages([
         {
           role: 'assistant',
-          content: data.message,
+          content: _data.message,
           timestamp: new Date(),
         },
       ]);
@@ -115,16 +115,16 @@ export function GPTPlanningAgent({
         ...prev,
         {
           role: 'assistant',
-          content: data.message,
+          content: _data.message,
           timestamp: new Date(),
-          actions: data.actions,
-          actionResults: data.actionResults,
+          actions: _data.actions,
+          actionResults: _data.actionResults,
         },
       ]);
 
       // Handle action results
-      if (data.actionResults) {
-        data.actionResults.forEach((result: ActionResult) => {
+      if (_data.actionResults) {
+        _data.actionResults.forEach((result: ActionResult) => {
           switch (result.type) {
             case 'activities_generated':
               if (onActivityGenerated) {

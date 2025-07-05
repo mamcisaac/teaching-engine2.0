@@ -180,7 +180,7 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
         throw new Error('Authentication verification failed');
       }
     } catch (_error) {
-      logger.error('Auth retry failed:', error);
+      logger.error('Auth retry failed:', _error);
 
       this.setState({
         isRetrying: false,

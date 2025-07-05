@@ -276,7 +276,7 @@ export function retriableDescribe(
 ) {
   describe(suiteName, () => {
     // Store original it function
-    const originalIt = global.it;
+    const originalIt = (global as any).it;
     
     // Override it with retry logic
     beforeAll(() => {

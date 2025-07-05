@@ -1,6 +1,5 @@
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
-import { Replay } from '@sentry/replay';
 import { ErrorInfo } from 'react';
 
 interface UserContext {
@@ -104,16 +103,8 @@ export class ErrorReportingService {
           new BrowserTracing({
             // Set sampling rates
             tracingOrigins: ['localhost', window.location.hostname, /^\//],
-            // Performance Monitoring
-            routingInstrumentation: Sentry.reactRouterV6Instrumentation(
-              React.useEffect,
-              useLocation,
-              useNavigationType,
-              createRoutesFromChildren,
-              matchRoutes
-            ),
           }),
-          new Replay({
+          new Sentry.Replay({
             // Mask all text and inputs for privacy
             maskAllText: true,
             maskAllInputs: true,
@@ -140,7 +131,7 @@ export class ErrorReportingService {
           /^Script error/,
         ],
         // Filter transactions
-        beforeTransaction: (transaction) => {
+        beforeSendTransaction: (transaction) => {
           // Don't send transactions for static assets
           if (transaction.transaction?.includes('/static/') || 
               transaction.transaction?.includes('/assets/')) {
@@ -223,7 +214,7 @@ export class ErrorReportingService {
     }
 
     if (!user) {
-      Sentry.configureScope((scope) => scope.clear());
+      Sentry.setUser(null);
       return;
     }
 
@@ -275,7 +266,7 @@ export class ErrorReportingService {
 
   categorizeError(error: unknown): ErrorCategory {
     // Default category
-    let category: ErrorCategory = {
+    const category: ErrorCategory = {
       category: 'unknown',
       severity: 'error',
       tags: {},
@@ -349,7 +340,7 @@ export class ErrorReportingService {
     this.enabled = true;
   }
 
-  private beforeSend(event: Sentry.Event, hint: Sentry.EventHint): Sentry.Event | null {
+  private beforeSend(event: Sentry.ErrorEvent, hint: Sentry.EventHint): Sentry.ErrorEvent | null {
     // Filter out non-actionable errors
     if (hint.originalException) {
       const error = hint.originalException as Error;
@@ -397,7 +388,7 @@ export class ErrorReportingService {
     return breadcrumb;
   }
 
-  private sanitizeEvent(event: Sentry.Event): Sentry.Event {
+  private sanitizeEvent(event: Sentry.ErrorEvent): Sentry.ErrorEvent {
     // Deep clone to avoid modifying original
     const sanitized = JSON.parse(JSON.stringify(event));
 
@@ -568,12 +559,3 @@ export class ErrorReportingService {
 
 // Export singleton instance
 export const errorReportingService = new ErrorReportingService();
-
-// React Router v6 imports for Sentry integration
-import React from 'react';
-import {
-  useLocation,
-  useNavigationType,
-  createRoutesFromChildren,
-  matchRoutes,
-} from 'react-router-dom';

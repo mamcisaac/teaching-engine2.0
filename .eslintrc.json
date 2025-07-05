@@ -21,6 +21,7 @@
     "playwright.config.ci.ts",
     "scripts/**/*",
     "server/scripts/**/*",
+    "client/scripts/**/*",
     "server/tests/**/*",
     "client/tests/**/*",
     "tests/**/*",
@@ -32,7 +33,11 @@
     "**/*.spec.tsx",
     "jest.*.js",
     "jest.*.ts",
-    "vitest.*.ts"
+    "vitest.*.ts",
+    "test-*.js",
+    "test-*.cjs",
+    "*.test.js",
+    "*.test.cjs"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {

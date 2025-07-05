@@ -6,7 +6,7 @@ import { AxiosError } from 'axios';
 export const getWeekStartISO = (date: Date): string => {
   const d = new Date(date);
   const _day = d.getDay();
-  const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+  const diff = d.getDate() - _day + (_day === 0 ? -6 : 1);
   d.setDate(diff);
   d.setHours(0, 0, 0, 0);
   return d.toISOString();

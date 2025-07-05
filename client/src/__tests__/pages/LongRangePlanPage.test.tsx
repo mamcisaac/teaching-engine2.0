@@ -64,7 +64,7 @@ vi.mock('../../components/Dialog', () => {
 
 // Mock the BlankTemplateQuickActions component
 vi.mock('../../components/printing/BlankTemplatePrinter', () => ({
-  BlankTemplateQuickActions: ({ templateType, schoolInfo }: unknown) => (
+  BlankTemplateQuickActions: ({ templateType, schoolInfo }: any) => (
     <div data-testid={`blank-template-${templateType}`}>
       Quick Actions for {schoolInfo.academicYear}
     </div>
@@ -74,7 +74,7 @@ vi.mock('../../components/printing/BlankTemplatePrinter', () => ({
 // Mock AI suggestion panel
 vi.mock('../../components/planning/AISuggestionPanel', () => ({
   __esModule: true,
-  default: ({ title, onGenerate, onAcceptSuggestion, onAcceptAll }: unknown) => (
+  default: ({ title, onGenerate, onAcceptSuggestion, onAcceptAll }: any) => (
     <div data-testid="ai-suggestion-panel">
       <h3>{title}</h3>
       <button onClick={onGenerate}>Generate</button>

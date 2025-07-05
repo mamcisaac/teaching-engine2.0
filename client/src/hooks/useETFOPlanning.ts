@@ -305,7 +305,7 @@ export function useUpdateLongRangePlan() {
     },
     onSuccess: (_data) => {
       queryClient.invalidateQueries({ queryKey: ['long-range-plans'] });
-      queryClient.invalidateQueries({ queryKey: ['long-range-plans', data.id] });
+      queryClient.invalidateQueries({ queryKey: ['long-range-plans', _data.id] });
     },
   });
 }
@@ -366,7 +366,7 @@ export function useCreateUnitPlan() {
     },
     onSuccess: (_data) => {
       queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
-      queryClient.invalidateQueries({ queryKey: ['long-range-plans', data.longRangePlanId] });
+      queryClient.invalidateQueries({ queryKey: ['long-range-plans', _data.longRangePlanId] });
     },
   });
 }
@@ -384,7 +384,7 @@ export function useUpdateUnitPlan() {
     },
     onSuccess: (_data) => {
       queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
-      queryClient.invalidateQueries({ queryKey: ['unit-plans', data.id] });
+      queryClient.invalidateQueries({ queryKey: ['unit-plans', _data.id] });
     },
   });
 }
@@ -452,7 +452,7 @@ export function useCreateETFOLessonPlan() {
     },
     onSuccess: (_data) => {
       queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
-      queryClient.invalidateQueries({ queryKey: ['unit-plans', data.unitPlanId] });
+      queryClient.invalidateQueries({ queryKey: ['unit-plans', _data.unitPlanId] });
     },
   });
 }
@@ -473,7 +473,7 @@ export function useUpdateETFOLessonPlan() {
     },
     onSuccess: (_data) => {
       queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
-      queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans', data.id] });
+      queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans', _data.id] });
     },
   });
 }
@@ -540,8 +540,8 @@ export function useCreateDaybookEntry() {
     },
     onSuccess: (_data) => {
       queryClient.invalidateQueries({ queryKey: ['daybook-entries'] });
-      if (data.lessonPlanId) {
-        queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans', data.lessonPlanId] });
+      if (_data.lessonPlanId) {
+        queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans', _data.lessonPlanId] });
       }
     },
   });
@@ -563,7 +563,7 @@ export function useUpdateDaybookEntry() {
     },
     onSuccess: (_data) => {
       queryClient.invalidateQueries({ queryKey: ['daybook-entries'] });
-      queryClient.invalidateQueries({ queryKey: ['daybook-entries', data.id] });
+      queryClient.invalidateQueries({ queryKey: ['daybook-entries', _data.id] });
     },
   });
 }

@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { newsletterApi } from './api';
-import { queryKeys as _queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 import type { Newsletter as _Newsletter } from '../../../types';
 
 // Query hooks
@@ -23,7 +23,7 @@ export const useCreateNewsletterDraft = () => {
 
   return useMutation({
     mutationFn: newsletterApi.createDraft,
-    onSuccess: (__data) => {
+    onSuccess: (data) => {
       showSuccessToast('Newsletter draft created successfully');
       queryClient.invalidateQueries({ queryKey: queryKeys.newsletter.all });
       return data;
@@ -37,7 +37,7 @@ export const useCreateNewsletter = () => {
 
   return useMutation({
     mutationFn: newsletterApi.create,
-    onSuccess: (__data) => {
+    onSuccess: (data) => {
       showSuccessToast('Newsletter created successfully');
       queryClient.invalidateQueries({ queryKey: queryKeys.newsletter.all });
       return data;
@@ -49,7 +49,7 @@ export const useCreateNewsletter = () => {
 export const useGenerateNewsletter = () => {
   return useMutation({
     mutationFn: newsletterApi.generate,
-    onSuccess: (__data) => {
+    onSuccess: (data) => {
       showSuccessToast('Newsletter generated successfully');
       return data;
     },

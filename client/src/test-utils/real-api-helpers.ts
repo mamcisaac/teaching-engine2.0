@@ -4,8 +4,12 @@
  */
 
 import { QueryClient } from '@tanstack/react-query';
-import { testAPI, TEST_CONFIG } from './real-backend-setup';
+import { createRealBackendClient, REAL_BACKEND_URL } from './real-backend-setup';
 import type { AuthTestContext } from './auth-test-utils';
+
+// Create test API client
+const testAPI = createRealBackendClient();
+const TEST_CONFIG = { baseURL: REAL_BACKEND_URL };
 
 // Real data factory for consistent test data
 export const testDataFactory = {
@@ -45,7 +49,7 @@ export const testDataFactory = {
     introduction: 'Start with a warm-up activity',
     bodyOfLesson: 'Main teaching content',
     consolidation: 'Review and practice',
-    materials: 'Whiteboard, worksheets',
+    materials: ['Whiteboard', 'worksheets'],
     ...overrides,
   }),
 
@@ -214,7 +218,7 @@ export const testDataSeeder = {
   },
 
   async seedCurriculumData(authContext: AuthTestContext) {
-    const expectations = [];
+    const expectations: any[] = [];
     
     // Create several curriculum expectations
     for (let i = 0; i < 5; i++) {
