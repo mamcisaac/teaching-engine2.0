@@ -4,6 +4,7 @@ import { getDashboardMetrics } from '../monitoring/dashboard';
 import { getAlertStatus, triggerManualAlert } from '../monitoring/alerting';
 import logger from '../logger';
 import { withSpan } from '../monitoring/telemetry';
+import { CacheUtils } from '../services/cache';
 
 const router = Router();
 
@@ -76,6 +77,19 @@ router.get('/health/detailed', async (req: Request, res: Response) => {
       } catch (_error) {
         health.status = 'degraded';
         health.services.database = false;
+      }
+
+      // Check cache
+      try {
+        const cacheHealth = await CacheUtils.getHealth();
+        health.services.cache = cacheHealth.healthy;
+        (health as any).cache = {
+          type: cacheHealth.type,
+          stats: cacheHealth.stats,
+        };
+      } catch (_error) {
+        health.status = 'degraded';
+        health.services.cache = false;
       }
 
       span.setAttributes({

@@ -272,7 +272,7 @@ export function retriableDescribe(
 ) {
   describe(suiteName, () => {
     // Store original it function
-    interface GlobalWithIt extends NodeJS.Global {
+    interface GlobalWithIt {
       it: (testName: string, testFn: () => void | Promise<void>) => void;
     }
     const globalWithIt = global as unknown as GlobalWithIt;

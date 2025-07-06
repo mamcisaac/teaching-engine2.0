@@ -318,9 +318,9 @@ export const realApiAssertions = {
     expect(plan).toHaveProperty('subject');
     expect(plan).toHaveProperty('createdAt');
     expect(plan).toHaveProperty('updatedAt');
-    expect(typeof plan.id).toBe('string');
-    expect(typeof plan.title).toBe('string');
-    expect(typeof plan.grade).toBe('number');
+    expect(typeof (plan as any).id).toBe('string');
+    expect(typeof (plan as any).title).toBe('string');
+    expect(typeof (plan as any).grade).toBe('number');
   },
 
   assertValidUnitPlan(plan: unknown) {
@@ -329,9 +329,9 @@ export const realApiAssertions = {
     expect(plan).toHaveProperty('longRangePlanId');
     expect(plan).toHaveProperty('createdAt');
     expect(plan).toHaveProperty('updatedAt');
-    expect(typeof plan.id).toBe('string');
-    expect(typeof plan.title).toBe('string');
-    expect(typeof plan.longRangePlanId).toBe('string');
+    expect(typeof (plan as any).id).toBe('string');
+    expect(typeof (plan as any).title).toBe('string');
+    expect(typeof (plan as any).longRangePlanId).toBe('string');
   },
 
   assertValidETFOLessonPlan(plan: unknown) {
@@ -341,9 +341,9 @@ export const realApiAssertions = {
     expect(plan).toHaveProperty('date');
     expect(plan).toHaveProperty('createdAt');
     expect(plan).toHaveProperty('updatedAt');
-    expect(typeof plan.id).toBe('string');
-    expect(typeof plan.title).toBe('string');
-    expect(typeof plan.unitPlanId).toBe('string');
+    expect(typeof (plan as any).id).toBe('string');
+    expect(typeof (plan as any).title).toBe('string');
+    expect(typeof (plan as any).unitPlanId).toBe('string');
   },
 
   assertValidDaybookEntry(entry: unknown) {
@@ -351,8 +351,8 @@ export const realApiAssertions = {
     expect(entry).toHaveProperty('date');
     expect(entry).toHaveProperty('createdAt');
     expect(entry).toHaveProperty('updatedAt');
-    expect(typeof entry.id).toBe('string');
-    expect(typeof entry.date).toBe('string');
+    expect(typeof (entry as any).id).toBe('string');
+    expect(typeof (entry as any).date).toBe('string');
   },
 
   assertValidUser(user: unknown) {
@@ -360,9 +360,9 @@ export const realApiAssertions = {
     expect(user).toHaveProperty('email');
     expect(user).toHaveProperty('name');
     expect(user).toHaveProperty('role');
-    expect(typeof user.id).toBe('number');
-    expect(typeof user.email).toBe('string');
-    expect(typeof user.name).toBe('string');
+    expect(typeof (user as any).id).toBe('number');
+    expect(typeof (user as any).email).toBe('string');
+    expect(typeof (user as any).name).toBe('string');
   },
 };
 

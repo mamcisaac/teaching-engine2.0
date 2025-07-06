@@ -1,121 +1,128 @@
-import { Router, Request } from 'express';
+import { Router, Request, Response } from 'express';
 import { Prisma } from '../prisma';
 import { prisma } from '../prisma';
 import logger from '../logger';
+import { 
+  getPaginationParams,
+  createPaginatedResponse,
+  setPaginationHeaders,
+  validatePagination,
+  createSearchFilter,
+  combineFilters,
+  fetchPaginatedData
+} from '../utils/pagination';
+import { cache, cacheMiddleware, CacheKeys, CacheTags } from '../services/cache';
+
 const router = Router();
 
-// Simple text search helper function for curriculum expectations
-async function textSearch(
-  query: string,
-  limit: number,
-  filters?: { subject?: string; grade?: number; strand?: string },
-) {
-  const whereConditions: Prisma.CurriculumExpectationWhereInput[] = [];
-
-  // Add text search
-  if (query) {
-    const searchTerms = query.toLowerCase().split(' ').filter(term => term.length > 0);
-    whereConditions.push({
-      OR: [
-        { description: { contains: query } },
-        { code: { contains: query } },
-        { strand: { contains: query } },
-        { substrand: { contains: query } },
-        ...searchTerms.map(term => ({
-          description: { contains: term }
-        }))
-      ]
-    });
-  }
-
-  // Add filters
-  if (filters?.subject) whereConditions.push({ subject: filters.subject });
-  if (filters?.grade) whereConditions.push({ grade: filters.grade });
-  if (filters?.strand) whereConditions.push({ strand: filters.strand });
-
-  const where: Prisma.CurriculumExpectationWhereInput = {
-    AND: whereConditions
-  };
-
-  const expectations = await prisma.curriculumExpectation.findMany({
-    where,
-    take: limit,
-    orderBy: { code: 'asc' }
-  });
-
-  return expectations;
-}
-
-// Get all curriculum expectations with optional filtering
-router.get('/', async (req: Request, res) => {
+// Get curriculum expectations by bulk search (for autocomplete)
+router.get('/search', async (req: Request, res: Response) => {
   try {
-    const {
-      page = '1',
-      limit = '20',
-      subject,
-      grade,
-      strand,
-      search,
-      sortBy = 'code',
-      sortOrder = 'asc',
-    } = req.query as Record<string, string>;
+    const { q, limit = '10' } = req.query as Record<string, string>;
+    const limitNumber = Math.min(parseInt(limit, 10), 50); // Cap at 50 for autocomplete
 
-    const pageNumber = parseInt(page, 10);
-    const limitNumber = parseInt(limit, 10);
-    const gradeNumber = grade ? parseInt(grade, 10) : undefined;
-
-    // Handle search queries
-    if (search) {
-      const results = await textSearch(search, limitNumber, {
-        subject,
-        grade: gradeNumber,
-        strand,
-      });
-
-      res.json({
-        expectations: results,
-        total: results.length,
-        page: pageNumber,
-        limit: limitNumber,
-        hasMore: results.length === limitNumber,
-      });
-      return;
+    if (!q || q.length < 2) {
+      return res.json({ results: [] });
     }
 
-    // Build where clause for regular filtering
-    const where: Prisma.CurriculumExpectationWhereInput = {};
-    if (subject) where.subject = subject;
-    if (gradeNumber) where.grade = gradeNumber;
-    if (strand) where.strand = strand;
+    // Try cache first
+    const cacheKey = CacheKeys.curriculumSearch(`${q}:${limitNumber}`);
+    const cacheService = cache();
+    
+    const results = await cacheService.getOrSet(
+      cacheKey,
+      async () => {
+        const searchFilter = createSearchFilter(q, [
+          'expectation',
+          'description',
+          'strand',
+          'category',
+        ]);
+
+        const expectations = await prisma.curriculumExpectation.findMany({
+          where: searchFilter,
+          take: limitNumber,
+          orderBy: { expectation: 'asc' },
+          select: {
+            id: true,
+            expectation: true,
+            description: true,
+            subject: true,
+            grade: true,
+            strand: true,
+          },
+        });
+
+        return { results: expectations };
+      },
+      { ttl: 300, tags: CacheTags.curriculum() } // Cache for 5 minutes
+    );
+
+    res.json(results);
+  } catch (error) {
+    logger.error('Error searching curriculum expectations:', error);
+    res.status(500).json({ error: 'Failed to search curriculum expectations' });
+  }
+});
+
+// Get all curriculum expectations with optional filtering
+router.get('/', validatePagination, async (req: Request, res: Response) => {
+  try {
+    const pagination = getPaginationParams(req);
+    const { subject, grade, strand } = req.query as Record<string, string>;
+    const gradeNumber = grade ? parseInt(grade, 10) : undefined;
+
+    // Build filters
+    const baseFilter: Prisma.CurriculumExpectationWhereInput = {};
+    if (subject) baseFilter.subject = subject;
+    if (gradeNumber) baseFilter.grade = gradeNumber;
+    if (strand) baseFilter.strand = strand;
+
+    // Build search filter for multiple fields
+    const searchFilter = createSearchFilter(pagination.search, [
+      'description',
+      'expectation',
+      'strand',
+      'substrand',
+      'category',
+    ]);
+
+    // Combine filters
+    const where = combineFilters(baseFilter, searchFilter);
 
     // Build order by clause
     const orderBy: Prisma.CurriculumExpectationOrderByWithRelationInput = {};
-    if (sortBy === 'code') orderBy.code = sortOrder as 'asc' | 'desc';
-    else if (sortBy === 'description') orderBy.description = sortOrder as 'asc' | 'desc';
-    else if (sortBy === 'subject') orderBy.subject = sortOrder as 'asc' | 'desc';
-    else if (sortBy === 'grade') orderBy.grade = sortOrder as 'asc' | 'desc';
-    else if (sortBy === 'strand') orderBy.strand = sortOrder as 'asc' | 'desc';
+    if (pagination.sortBy) {
+      orderBy[pagination.sortBy] = pagination.sortOrder || 'asc';
+    } else {
+      orderBy.expectation = 'asc'; // Default sort by expectation code
+    }
 
-    // Get expectations with pagination
-    const [expectations, total] = await Promise.all([
-      prisma.curriculumExpectation.findMany({
+    // Fetch paginated data
+    const { data: expectations, total } = await fetchPaginatedData(
+      () => prisma.curriculumExpectation.count({ where }),
+      () => prisma.curriculumExpectation.findMany({
         where,
         orderBy,
-        skip: (pageNumber - 1) * limitNumber,
-        take: limitNumber,
+        skip: (pagination.page - 1) * pagination.limit,
+        take: pagination.limit,
       }),
-      prisma.curriculumExpectation.count({ where }),
-    ]);
+      pagination
+    );
 
-    res.json({
-      expectations,
+    // Create paginated response
+    const response = createPaginatedResponse(expectations, {
+      page: pagination.page,
+      limit: pagination.limit,
       total,
-      page: pageNumber,
-      limit: limitNumber,
-      hasMore: (pageNumber - 1) * limitNumber + expectations.length < total,
-    });
-  } catch (_error) {
-    logger.error('Error fetching curriculum expectations:', _error);
+    }, `${req.protocol}://${req.get('host')}${req.baseUrl}${req.path}`);
+
+    // Set pagination headers
+    setPaginationHeaders(res, response.pagination);
+
+    res.json(response);
+  } catch (error) {
+    logger.error('Error fetching curriculum expectations:', error);
     res.status(500).json({ error: 'Failed to fetch curriculum expectations' });
   }
 });
@@ -163,7 +170,7 @@ router.get('/:id', async (req: Request, res) => {
 });
 
 // Get distinct values for filters
-router.get('/filters/options', async (req: Request, res) => {
+router.get('/filters/options', cacheMiddleware('curriculum:filters', { ttl: 3600, tags: CacheTags.curriculum() }), async (req: Request, res) => {
   try {
     const [subjects, grades, strands] = await Promise.all([
       prisma.curriculumExpectation.findMany({

@@ -126,7 +126,7 @@ function sanitizeRequestBody(body: unknown): unknown {
     return body;
   }
   
-  const sanitized = { ...body };
+  const sanitized = { ...body } as Record<string, unknown>;
   
   // Remove sensitive fields
   const sensitiveFields = [

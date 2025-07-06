@@ -8,6 +8,7 @@ import OpenAI from 'openai';
 import { BaseService } from '../base/BaseService';
 import logger from '../../logger';
 import { AppError } from '../../utils/errors';
+import { cache, CacheKeys, CacheTags } from '../cache';
 
 export interface AIServiceOptions {
   openAIClient?: OpenAI;
@@ -119,8 +120,6 @@ export class AIService extends BaseService {
   private temperature: number;
   private maxTokens: number;
   private timeout: number;
-  private requestCache = new Map<string, { data: any; timestamp: number }>();
-  private readonly CACHE_TTL = 60 * 60 * 1000; // 1 hour
 
   constructor(options: AIServiceOptions) {
     super('AIService');
@@ -138,46 +137,52 @@ export class AIService extends BaseService {
 
   async generateLesson(input: LessonGenerationInput): Promise<LessonPlan> {
     try {
-      const cacheKey = this.createCacheKey('lesson', input);
-      const cached = this.getFromCache(cacheKey);
-      if (cached) {
-        logger.debug('Returning cached lesson plan');
-        return cached;
-      }
-
-      const prompt = this.buildLessonPrompt(input);
-      const systemPrompt = this.getLessonSystemPrompt();
+      const cacheService = cache();
+      const cacheKey = CacheKeys.aiGeneration(this.buildLessonPrompt(input));
       
-      const response = await this.openAIClient.chat.completions.create({
-        model: this.model,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: prompt },
-        ],
-        temperature: this.temperature,
-        max_tokens: this.maxTokens,
-      });
+      const lessonPlan = await cacheService.getOrSet(
+        cacheKey,
+        async () => {
+          const prompt = this.buildLessonPrompt(input);
+          const systemPrompt = this.getLessonSystemPrompt();
+          
+          const response = await this.openAIClient.chat.completions.create({
+            model: this.model,
+            messages: [
+              { role: 'system', content: systemPrompt },
+              { role: 'user', content: prompt },
+            ],
+            temperature: this.temperature,
+            max_tokens: this.maxTokens,
+          });
 
-      const content = response.choices[0]?.message?.content;
-      if (!content) {
-        throw new AppError(500, 'No response from AI service');
-      }
+          const content = response.choices[0]?.message?.content;
+          if (!content) {
+            throw new AppError(500, 'No response from AI service');
+          }
 
-      let lessonPlan: LessonPlan;
-      try {
-        lessonPlan = JSON.parse(content);
-      } catch (parseError) {
-        logger.warn('Failed to parse AI response, using fallback');
-        lessonPlan = this.createFallbackLesson(input);
-        lessonPlan.fallback = true;
-        lessonPlan.error = 'JSON parsing failed';
-      }
+          let lessonPlan: LessonPlan;
+          try {
+            lessonPlan = JSON.parse(content);
+          } catch (parseError) {
+            logger.warn('Failed to parse AI response, using fallback');
+            lessonPlan = this.createFallbackLesson(input);
+            lessonPlan.fallback = true;
+            lessonPlan.error = 'JSON parsing failed';
+          }
 
-      // Validate and fix lesson plan structure
-      lessonPlan = this.validateAndFixLessonPlan(lessonPlan, input);
-      
-      this.setCache(cacheKey, lessonPlan);
-      logger.info(`Generated lesson plan for Grade ${input.grade} ${input.subject}: ${input.topic}`);
+          // Validate and fix lesson plan structure
+          lessonPlan = this.validateAndFixLessonPlan(lessonPlan, input);
+          
+          logger.info(`Generated lesson plan for Grade ${input.grade} ${input.subject}: ${input.topic}`);
+          
+          return lessonPlan;
+        },
+        {
+          ttl: 3600, // Cache for 1 hour
+          tags: CacheTags.ai(),
+        }
+      );
       
       return lessonPlan;
     } catch (error: any) {
@@ -191,38 +196,45 @@ export class AIService extends BaseService {
 
   async generateActivity(input: ActivityGenerationInput): Promise<Activity> {
     try {
-      const cacheKey = this.createCacheKey('activity', input);
-      const cached = this.getFromCache(cacheKey);
-      if (cached) {
-        return cached;
-      }
-
-      const prompt = this.buildActivityPrompt(input);
-      const systemPrompt = this.getActivitySystemPrompt();
+      const cacheService = cache();
+      const cacheKey = CacheKeys.aiGeneration(this.buildActivityPrompt(input));
       
-      const response = await this.openAIClient.chat.completions.create({
-        model: this.model,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: prompt },
-        ],
-        temperature: this.temperature,
-        max_tokens: this.maxTokens,
-      });
+      const activity = await cacheService.getOrSet(
+        cacheKey,
+        async () => {
+          const prompt = this.buildActivityPrompt(input);
+          const systemPrompt = this.getActivitySystemPrompt();
+          
+          const response = await this.openAIClient.chat.completions.create({
+            model: this.model,
+            messages: [
+              { role: 'system', content: systemPrompt },
+              { role: 'user', content: prompt },
+            ],
+            temperature: this.temperature,
+            max_tokens: this.maxTokens,
+          });
 
-      const content = response.choices[0]?.message?.content;
-      if (!content) {
-        throw new AppError(500, 'No response from AI service');
-      }
+          const content = response.choices[0]?.message?.content;
+          if (!content) {
+            throw new AppError(500, 'No response from AI service');
+          }
 
-      let activity: Activity;
-      try {
-        activity = JSON.parse(content);
-      } catch (parseError) {
-        activity = this.createFallbackActivity(input);
-      }
+          let activity: Activity;
+          try {
+            activity = JSON.parse(content);
+          } catch (parseError) {
+            activity = this.createFallbackActivity(input);
+          }
+          
+          return activity;
+        },
+        {
+          ttl: 3600, // Cache for 1 hour
+          tags: CacheTags.ai(),
+        }
+      );
       
-      this.setCache(cacheKey, activity);
       return activity;
     } catch (error: any) {
       logger.error('Error generating activity:', error);
@@ -390,21 +402,6 @@ export class AIService extends BaseService {
   }
 
   // Private helper methods
-  private createCacheKey(type: string, input: any): string {
-    return `${type}:${JSON.stringify(input)}`;
-  }
-
-  private getFromCache(key: string): any | null {
-    const cached = this.requestCache.get(key);
-    if (cached && Date.now() - cached.timestamp < this.CACHE_TTL) {
-      return cached.data;
-    }
-    return null;
-  }
-
-  private setCache(key: string, data: any): void {
-    this.requestCache.set(key, { data, timestamp: Date.now() });
-  }
 
   private buildLessonPrompt(input: LessonGenerationInput): string {
     const sanitizedTopic = this.sanitizeInput(input.topic);

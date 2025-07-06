@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
-// import { apiClient } from '../api/core/client'; // TODO: Remove if not needed
+import { api } from '../api';
 import logger from '../utils/logger';
 export interface WorkingHours {
   start: string;

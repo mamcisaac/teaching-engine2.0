@@ -44,14 +44,6 @@ export function ProgressiveDataLoader<T>({
   const containerRef = useRef<HTMLDivElement>(null);
   const isInitialLoad = useRef(true);
 
-  // Load initial data
-  useEffect(() => {
-    if (isInitialLoad.current) {
-      isInitialLoad.current = false;
-      loadInitialData();
-    }
-  }, [loadInitialData]);
-
   const loadInitialData = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -67,6 +59,14 @@ export function ProgressiveDataLoader<T>({
       setLoading(false);
     }
   }, [loadData, batchSize]);
+
+  // Load initial data
+  useEffect(() => {
+    if (isInitialLoad.current) {
+      isInitialLoad.current = false;
+      loadInitialData();
+    }
+  }, [loadInitialData]);
 
   const loadMoreData = useCallback(async () => {
     if (loadingMore || !hasMore) return;

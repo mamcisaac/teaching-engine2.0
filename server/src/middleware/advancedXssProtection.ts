@@ -676,10 +676,11 @@ function sanitizeObjectAdvanced(obj: unknown, depth = 0, parentKey = ''): unknow
 
   if (typeof obj === 'object' && obj.constructor === Object) {
     const sanitized: Record<string, unknown> = {};
-    for (const key in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+    const objRecord = obj as Record<string, unknown>;
+    for (const key in objRecord) {
+      if (Object.prototype.hasOwnProperty.call(objRecord, key)) {
         // Pass the key context down for recursive sanitization
-        sanitized[key] = sanitizeObjectAdvanced(obj[key], depth + 1, key);
+        sanitized[key] = sanitizeObjectAdvanced(objRecord[key], depth + 1, key);
       }
     }
     return sanitized;

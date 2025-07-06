@@ -522,7 +522,8 @@ export function requireOrganization(req: Request, res: Response, next: NextFunct
  */
 export async function refreshToken(req: Request, res: Response): Promise<void> {
   try {
-    const { refreshToken } = req.body;
+    // Read refresh token from HTTP-only cookie
+    const refreshToken = req.cookies?.refreshToken;
 
     if (!refreshToken) {
       res.status(400).json({
@@ -572,9 +573,17 @@ export async function refreshToken(req: Request, res: Response): Promise<void> {
 
     const newRefreshToken = generateRefreshToken(user.id);
 
+    // Set new refresh token as HTTP-only cookie
+    res.cookie('refreshToken', newRefreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      path: '/',
+    });
+
     res.json({
       accessToken: newAccessToken,
-      refreshToken: newRefreshToken,
       user: {
         id: user.id,
         email: user.email,

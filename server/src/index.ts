@@ -61,6 +61,8 @@ import { userRoutes } from './routes/user';
 // Notification routes and service infrastructure removed - over-engineered for single-teacher use
 import notificationRoutes from './routes/notifications';
 import logger from './logger.js';
+import { structuredLogger, correlationMiddleware, errorLoggingMiddleware as structuredErrorLoggingMiddleware } from './utils/structuredLogger';
+import { createCompatibleLogger } from './utils/logger-migration';
 import { prisma } from './prisma';
 import { rateLimiters } from './middleware/rateLimit/index';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
@@ -79,6 +81,9 @@ import monitoringRoutes from './routes/monitoring';
 import { errorReportingService } from './services/monitoring/errorReportingService';
 import { errorContextMiddleware, authErrorMiddleware } from './middleware/errorContext';
 
+// Create backward-compatible logger for gradual migration
+const compatibleLogger = createCompatibleLogger();
+
 // Initialize Express app
 log('Initializing Express application...');
 const app = express();
@@ -91,6 +96,10 @@ applySecurityMiddleware(app);
 log('Applying body parsing middleware...');
 app.use(express.json({ limit: '10mb' })); // Set reasonable payload limit
 app.use(cookieParser());
+
+// Apply correlation ID middleware first
+log('Applying correlation ID middleware...');
+app.use(correlationMiddleware);
 
 // Apply error context middleware early in the chain
 log('Applying error context middleware...');
@@ -297,6 +306,7 @@ app.use(authErrorMiddleware);
 
 // Error logging middleware (before error handler)
 app.use(errorLoggingMiddleware);
+app.use(structuredErrorLoggingMiddleware);
 
 // Standardized error handler
 app.use(standardErrorHandler);
@@ -343,13 +353,13 @@ async function initializeApp() {
 
 // Graceful shutdown handler
 async function gracefulShutdown(signal: string, server?: Server) {
-  log(`${signal} received, shutting down gracefully...`);
+  structuredLogger.info(`${signal} received, shutting down gracefully...`, { signal });
 
   try {
     // Stop accepting new connections
     if (server) {
       server.close(() => {
-        log('HTTP server closed');
+        structuredLogger.info('HTTP server closed');
       });
     }
 
@@ -358,10 +368,10 @@ async function gracefulShutdown(signal: string, server?: Server) {
     // Close database connections
     await prisma.$disconnect();
 
-    log('Graceful shutdown completed');
+    structuredLogger.info('Graceful shutdown completed');
     process.exit(0);
   } catch (err) {
-    error('Error during graceful shutdown:', err);
+    structuredLogger.error('Error during graceful shutdown', err as Error);
     process.exit(1);
   }
 }

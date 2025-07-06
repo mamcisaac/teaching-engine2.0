@@ -1,6 +1,6 @@
-import { CurriculumExpectation, Prisma } from '@prisma/client';
+import { CurriculumExpectation, Prisma, PrismaClient } from '@prisma/client';
 import { BaseRepository } from './base/BaseRepository';
-import { logger } from '../utils/logger';
+import logger from '../logger';
 
 export interface SearchOptions {
   query?: string;
@@ -13,13 +13,13 @@ export interface SearchOptions {
   take?: number;
 }
 
-export class CurriculumExpectationRepository extends BaseRepository<
-  CurriculumExpectation,
-  Prisma.CurriculumExpectationCreateInput,
-  Prisma.CurriculumExpectationUpdateInput
-> {
-  constructor(prisma: Prisma.PrismaClient) {
-    super(prisma, 'curriculumExpectation');
+export class CurriculumExpectationRepository {
+  private prisma: PrismaClient;
+  private model: any;
+
+  constructor(prisma: PrismaClient) {
+    this.prisma = prisma;
+    this.model = (prisma as any).curriculumExpectation;
   }
 
   async search(options: SearchOptions) {
@@ -41,57 +41,53 @@ export class CurriculumExpectationRepository extends BaseRepository<
 
       // Text search across multiple fields
       if (query) {
-        where.AND!.push({
+        (where.AND as any[]).push({
           OR: [
-            { expectation: { contains: query, mode: 'insensitive' } },
+            { code: { contains: query, mode: 'insensitive' } },
+            { description: { contains: query, mode: 'insensitive' } },
             { strand: { contains: query, mode: 'insensitive' } },
-            { category: { contains: query, mode: 'insensitive' } },
-            { subcategory: { contains: query, mode: 'insensitive' } },
-            { overallExpectation: { contains: query, mode: 'insensitive' } },
-            { specificExpectations: { contains: query, mode: 'insensitive' } },
-            { examples: { contains: query, mode: 'insensitive' } },
-            { stemSkills: { contains: query, mode: 'insensitive' } },
+            { substrand: { contains: query, mode: 'insensitive' } },
           ],
         });
       }
 
       // Filter by subjects
       if (subjects.length > 0) {
-        where.AND!.push({
+        (where.AND as any[]).push({
           subject: { in: subjects },
         });
       }
 
       // Filter by grades
       if (grades.length > 0) {
-        where.AND!.push({
+        (where.AND as any[]).push({
           grade: { in: grades },
         });
       }
 
       // Filter by strands
       if (strands.length > 0) {
-        where.AND!.push({
+        (where.AND as any[]).push({
           strand: { in: strands },
         });
       }
 
       // Filter by categories
       if (categories.length > 0) {
-        where.AND!.push({
+        (where.AND as any[]).push({
           category: { in: categories },
         });
       }
 
       // Filter by subcategories
       if (subcategories.length > 0) {
-        where.AND!.push({
+        (where.AND as any[]).push({
           subcategory: { in: subcategories },
         });
       }
 
       // Remove empty AND array if no filters
-      if (where.AND!.length === 0) {
+      if ((where.AND as any[]).length === 0) {
         delete where.AND;
       }
 
@@ -121,7 +117,7 @@ export class CurriculumExpectationRepository extends BaseRepository<
   async findByCode(code: string): Promise<CurriculumExpectation | null> {
     try {
       const expectation = await this.model.findFirst({
-        where: { expectation: code },
+        where: { code: code },
       });
       return expectation;
     } catch (error) {

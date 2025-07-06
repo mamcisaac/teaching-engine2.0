@@ -41,10 +41,12 @@ class AuthService {
   }
 
   /**
-   * Get the refresh token
+   * Check if refresh token exists (now stored as HTTP-only cookie)
    */
-  getRefreshToken(): string | null {
-    return localStorage.getItem(this.REFRESH_TOKEN_KEY);
+  hasRefreshToken(): boolean {
+    // We can't directly read HTTP-only cookies from JavaScript
+    // The server will tell us if the refresh token is valid when we try to use it
+    return true; // Assume it exists and let the server validate
   }
 
   /**
@@ -61,9 +63,8 @@ class AuthService {
   setTokens(tokens: AuthTokens): void {
     localStorage.setItem(this.ACCESS_TOKEN_KEY, tokens.accessToken);
 
-    if (tokens.refreshToken) {
-      localStorage.setItem(this.REFRESH_TOKEN_KEY, tokens.refreshToken);
-    }
+    // Refresh token is now stored as HTTP-only cookie by the server
+    // No longer store it in localStorage for security
 
     if (tokens.expiresAt) {
       localStorage.setItem('auth_expires_at', tokens.expiresAt.toString());
@@ -87,10 +88,10 @@ class AuthService {
    */
   clearTokens(): void {
     localStorage.removeItem(this.ACCESS_TOKEN_KEY);
-    localStorage.removeItem(this.REFRESH_TOKEN_KEY);
     localStorage.removeItem('auth_expires_at');
     localStorage.removeItem('token'); // Legacy cleanup
     localStorage.removeItem(this.USER_KEY);
+    // Refresh token cookie is cleared by the server on logout
   }
 
   /**
@@ -195,21 +196,14 @@ class AuthService {
   }
 
   private async _performTokenRefresh(): Promise<boolean> {
-    const refreshToken = this.getRefreshToken();
-
-    if (!refreshToken) {
-      this.clearTokens();
-      return false;
-    }
-
     try {
+      // Refresh token is now sent as HTTP-only cookie automatically
       const response = await fetch('/api/auth/refresh', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${refreshToken}`,
         },
-        credentials: 'include',
+        credentials: 'include', // This ensures cookies are sent
       });
 
       if (!response.ok) {
@@ -252,7 +246,7 @@ class AuthService {
 
       if (response.status === 401) {
         // Try to refresh token if available
-        if (this.getRefreshToken() && (await this.refreshToken())) {
+        if (this.hasRefreshToken() && (await this.refreshToken())) {
           // Retry with new token
           return this.verifyAuth();
         }
@@ -272,7 +266,7 @@ class AuthService {
       logger.error('Auth verification failed:', error);
 
       // Try token refresh on network errors
-      if (this.getRefreshToken()) {
+      if (this.hasRefreshToken()) {
         const refreshSuccess = await this.refreshToken();
         if (refreshSuccess) {
           // Retry once after successful refresh
@@ -310,7 +304,7 @@ class AuthService {
   async handleAuthError(response: Response): Promise<boolean> {
     if (response.status === 401) {
       // If we have a refresh token, try to refresh
-      if (this.getRefreshToken()) {
+      if (this.hasRefreshToken()) {
         const refreshSuccess = await this.refreshToken();
         if (refreshSuccess) {
           return true; // Indicate that the request should be retried
@@ -339,7 +333,7 @@ class AuthService {
       return false;
     }
 
-    if (this.isTokenExpiringSoon() && this.getRefreshToken()) {
+    if (this.isTokenExpiringSoon() && this.hasRefreshToken()) {
       return await this.refreshToken();
     }
 

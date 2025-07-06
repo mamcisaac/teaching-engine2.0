@@ -126,7 +126,7 @@ export class IntervalTester {
     const originalSetInterval = global.setInterval;
     global.setInterval = ((fn: TimerHandler, delay?: number, ...args: unknown[]) => {
       const interval = originalSetInterval(fn, delay, ...args);
-      this.intervals.push(interval as NodeJS.Timeout);
+      this.intervals.push(interval as unknown as NodeJS.Timeout);
       return interval;
     }) as typeof setInterval;
   }
@@ -160,7 +160,7 @@ export class TimeoutTester {
     const originalSetTimeout = global.setTimeout;
     global.setTimeout = ((fn: TimerHandler, delay?: number, ...args: unknown[]) => {
       const timeout = originalSetTimeout(fn, delay, ...args);
-      this.timeouts.push(timeout as NodeJS.Timeout);
+      this.timeouts.push(timeout as unknown as NodeJS.Timeout);
       return timeout;
     }) as typeof setTimeout;
   }

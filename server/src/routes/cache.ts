@@ -1,15 +1,8 @@
 import { Router, Request, Response } from 'express';
-import { 
-  getCacheStats, 
-  getCacheMemoryUsage, 
-  clearAllCaches, 
-  clearCache, 
-  isCacheHealthy,
-  warmUpCache 
-} from '../middleware/cache';
 import { authMiddleware } from '../middleware/auth';
 import { AuthenticatedRequest } from './base/middleware';
 import logger from '../logger.js';
+import { cache, CacheUtils } from '../services/cache';
 
 const router = Router();
 
@@ -22,16 +15,16 @@ router.use(authMiddleware);
  */
 router.get('/stats', async (req: Request, res: Response) => {
   try {
-    const stats = getCacheStats();
-    const memoryUsage = getCacheMemoryUsage();
-    const isHealthy = isCacheHealthy();
+    const cacheService = cache();
+    const stats = cacheService.getStats();
+    const health = await CacheUtils.getHealth();
     
     res.json({
       success: true,
       data: {
         stats,
-        memoryUsage,
-        isHealthy,
+        type: health.type,
+        isHealthy: health.healthy,
         timestamp: new Date().toISOString()
       }
     });
@@ -50,14 +43,14 @@ router.get('/stats', async (req: Request, res: Response) => {
  */
 router.get('/health', async (req: Request, res: Response) => {
   try {
-    const isHealthy = isCacheHealthy();
-    const stats = getCacheStats();
+    const health = await CacheUtils.getHealth();
     
     res.json({
       success: true,
       data: {
-        healthy: isHealthy,
-        stats,
+        healthy: health.healthy,
+        type: health.type,
+        stats: health.stats,
         timestamp: new Date().toISOString()
       }
     });
@@ -76,7 +69,7 @@ router.get('/health', async (req: Request, res: Response) => {
  */
 router.post('/warmup', async (req: Request, res: Response) => {
   try {
-    await warmUpCache();
+    await CacheUtils.warmUp();
     
     res.json({
       success: true,
@@ -98,7 +91,8 @@ router.post('/warmup', async (req: Request, res: Response) => {
  */
 router.delete('/all', async (req: AuthenticatedRequest, res: Response) => {
   try {
-    clearAllCaches();
+    const cacheService = cache();
+    await cacheService.clear();
     
     logger.info(`All caches cleared by user ${req.user?.id}`);
     
@@ -117,33 +111,33 @@ router.delete('/all', async (req: AuthenticatedRequest, res: Response) => {
 });
 
 /**
- * Clear specific cache type
- * DELETE /api/cache/:cacheType
+ * Clear cache by pattern
+ * DELETE /api/cache/pattern
  */
-router.delete('/:cacheType', async (req: AuthenticatedRequest, res: Response) => {
+router.delete('/pattern', async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const { cacheType } = req.params;
+    const { pattern } = req.body;
     
-    // Validate cache type
-    const validCacheTypes = ['api', 'curriculum', 'static', 'user'];
-    if (!validCacheTypes.includes(cacheType)) {
+    if (!pattern) {
       return res.status(400).json({
         success: false,
-        message: `Invalid cache type. Valid types: ${validCacheTypes.join(', ')}`
+        message: 'Pattern is required'
       });
     }
     
-    clearCache(cacheType as 'user' | 'api' | 'curriculum' | 'static');
+    const cacheService = cache();
+    const deleted = await cacheService.deleteByPattern(pattern);
     
-    logger.info(`Cache cleared: ${cacheType} by user ${req.user?.id}`);
+    logger.info(`Cache cleared by pattern: ${pattern} by user ${req.user?.id}, deleted: ${deleted}`);
     
     res.json({
       success: true,
-      message: `Cache '${cacheType}' cleared successfully`,
+      message: `Cache cleared by pattern successfully`,
+      deleted,
       timestamp: new Date().toISOString()
     });
   } catch (_error) {
-    logger.error('Error clearing cache:', _error);
+    logger.error('Error clearing cache by pattern:', _error);
     res.status(500).json({
       success: false,
       message: 'Failed to clear cache'
@@ -152,38 +146,70 @@ router.delete('/:cacheType', async (req: AuthenticatedRequest, res: Response) =>
 });
 
 /**
- * Get cache memory usage
- * GET /api/cache/memory
+ * Clear cache by tags
+ * DELETE /api/cache/tags
  */
-router.get('/memory', async (req: Request, res: Response) => {
+router.delete('/tags', async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const memoryUsage = getCacheMemoryUsage();
+    const { tags } = req.body;
     
-    // Calculate totals
-    const totals = Object.values(memoryUsage).reduce(
-      (acc, cache) => ({
-        keyCount: acc.keyCount + cache.keyCount,
-        hits: acc.hits + cache.hits,
-        misses: acc.misses + cache.misses,
-        ksize: acc.ksize + cache.ksize,
-        vsize: acc.vsize + cache.vsize
-      }),
-      { keyCount: 0, hits: 0, misses: 0, ksize: 0, vsize: 0 }
-    );
+    if (!tags || !Array.isArray(tags)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Tags array is required'
+      });
+    }
+    
+    const cacheService = cache();
+    const deleted = await cacheService.invalidateByTags(tags);
+    
+    logger.info(`Cache invalidated by tags: ${tags.join(', ')} by user ${req.user?.id}, deleted: ${deleted}`);
     
     res.json({
       success: true,
-      data: {
-        caches: memoryUsage,
-        totals,
-        timestamp: new Date().toISOString()
-      }
+      message: `Cache invalidated by tags successfully`,
+      deleted,
+      timestamp: new Date().toISOString()
     });
   } catch (_error) {
-    logger.error('Error getting cache memory usage:', _error);
+    logger.error('Error invalidating cache by tags:', _error);
     res.status(500).json({
       success: false,
-      message: 'Failed to get cache memory usage'
+      message: 'Failed to invalidate cache'
+    });
+  }
+});
+
+/**
+ * Clear user-specific cache
+ * DELETE /api/cache/user/:userId
+ */
+router.delete('/user/:userId', async (req: AuthenticatedRequest, res: Response) => {
+  try {
+    const { userId } = req.params;
+    const userIdNumber = parseInt(userId, 10);
+    
+    if (isNaN(userIdNumber)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid user ID'
+      });
+    }
+    
+    await CacheUtils.clearUserCache(userIdNumber);
+    
+    logger.info(`User cache cleared for user ${userId} by user ${req.user?.id}`);
+    
+    res.json({
+      success: true,
+      message: `User cache cleared successfully`,
+      timestamp: new Date().toISOString()
+    });
+  } catch (_error) {
+    logger.error('Error clearing user cache:', _error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to clear user cache'
     });
   }
 });

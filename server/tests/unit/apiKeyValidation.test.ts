@@ -1,318 +1,411 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
-import { describe, it, expect, beforeEach, afterEach, jest } from '@jest/globals';
+/**
+ * API Key Validation Integration Tests
+ * Tests real API key validation without mocks
+ */
+import { describe, test, expect, beforeEach, afterEach } from '@jest/globals';
 import type { Request, Response, NextFunction } from 'express';
-
-// Import the modules directly since we're using CommonJS-style imports
+import express from 'express';
+import request from 'supertest';
 import { validateApiKey } from '../../src/middleware/apiKeyValidation';
 import { CacheService } from '../../src/services/CacheService';
+import logger from '../../src/logger';
 
-// Mock logger
-jest.mock('../../src/logger', () => ({
-  default: {
-    error: jest.fn(),
-    info: jest.fn(),
-    warn: jest.fn(),
-    debug: jest.fn(),
-  },
-}));
-
-// Mock CacheService
-jest.mock('../../src/services/CacheService', () => ({
-  CacheService: jest.fn(() => ({
-    get: jest.fn(),
-    set: jest.fn(),
-    delete: jest.fn(),
-    clear: jest.fn(),
-  })),
-}));
-
-describe('API Key Validation Middleware', () => {
-  let mockReq: Partial<Request>;
-  let mockRes: Partial<Response>;
-  let mockNext: NextFunction;
-  let jsonMock: jest.Mock;
-  let statusMock: jest.Mock;
+describe('API Key Validation Integration Tests', () => {
+  let app: express.Application;
+  const originalEnv = { ...process.env };
 
   beforeEach(() => {
-    // Reset mocks
-    jest.clearAllMocks();
-
-    // Setup request mock
-    mockReq = {
-      headers: {},
-      path: '/api/test',
-    };
-
-    // Setup response mock with proper chaining
-    jsonMock = jest.fn();
-    statusMock = jest.fn().mockReturnValue({ json: jsonMock });
-    mockRes = {
-      status: statusMock,
-      json: jsonMock,
-    };
-
-    // Setup next function
-    mockNext = jest.fn();
-
-    // Reset environment
+    // Create fresh Express app for each test
+    app = express();
+    app.use(express.json());
+    
+    // Reset environment variables
+    process.env = { ...originalEnv };
     delete process.env.API_KEY;
     delete process.env.ENABLE_API_KEY_VALIDATION;
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    // Restore original environment
+    process.env = { ...originalEnv };
   });
 
   describe('Security Validation', () => {
-    it('should reject requests without API key when validation is enabled', async () => {
-      // Arrange
+    test('should reject requests without API key when validation is enabled', async () => {
+      // Setup
       process.env.ENABLE_API_KEY_VALIDATION = 'true';
       process.env.API_KEY = 'test-secret-key-12345';
-      mockReq.headers = {}; // No API key provided
+      
+      app.use(validateApiKey);
+      app.get('/api/test', (req, res) => {
+        res.json({ success: true });
+      });
 
-      // Act
-      await validateApiKey(mockReq as Request, mockRes as Response, mockNext);
+      // Test request without API key
+      const response = await request(app)
+        .get('/api/test')
+        .expect(401);
 
-      // Assert - Real security validation
-      expect(statusMock).toHaveBeenCalledWith(401);
-      expect(jsonMock).toHaveBeenCalledWith({
+      expect(response.body).toEqual({
         error: 'Unauthorized: API key is required',
       });
-      expect(mockNext).not.toHaveBeenCalled();
     });
 
-    it('should reject requests with invalid API key format', async () => {
-      // Arrange
+    test('should reject requests with empty API key', async () => {
       process.env.ENABLE_API_KEY_VALIDATION = 'true';
       process.env.API_KEY = 'test-secret-key-12345';
-      mockReq.headers = { 'x-api-key': '' }; // Empty API key
+      
+      app.use(validateApiKey);
+      app.get('/api/test', (req, res) => {
+        res.json({ success: true });
+      });
 
-      // Act
-      await validateApiKey(mockReq as Request, mockRes as Response, mockNext);
+      const response = await request(app)
+        .get('/api/test')
+        .set('x-api-key', '') // Empty API key
+        .expect(401);
 
-      // Assert
-      expect(statusMock).toHaveBeenCalledWith(401);
-      expect(jsonMock).toHaveBeenCalledWith({
+      expect(response.body).toEqual({
         error: 'Unauthorized: API key is required',
       });
-      expect(mockNext).not.toHaveBeenCalled();
     });
 
-    it('should reject requests with incorrect API key', async () => {
-      // Arrange
+    test('should reject requests with incorrect API key', async () => {
       process.env.ENABLE_API_KEY_VALIDATION = 'true';
       process.env.API_KEY = 'test-secret-key-12345';
-      mockReq.headers = { 'x-api-key': 'wrong-key' };
+      
+      app.use(validateApiKey);
+      app.get('/api/test', (req, res) => {
+        res.json({ success: true });
+      });
 
-      // Act
-      await validateApiKey(mockReq as Request, mockRes as Response, mockNext);
+      const response = await request(app)
+        .get('/api/test')
+        .set('x-api-key', 'wrong-key')
+        .expect(401);
 
-      // Assert
-      expect(statusMock).toHaveBeenCalledWith(401);
-      expect(jsonMock).toHaveBeenCalledWith({
+      expect(response.body).toEqual({
         error: 'Unauthorized: Invalid API key',
       });
-      expect(mockNext).not.toHaveBeenCalled();
     });
 
-    it('should accept requests with valid API key', async () => {
-      // Arrange
+    test('should accept requests with valid API key', async () => {
       process.env.ENABLE_API_KEY_VALIDATION = 'true';
       process.env.API_KEY = 'test-secret-key-12345';
-      mockReq.headers = { 'x-api-key': 'test-secret-key-12345' };
+      
+      app.use(validateApiKey);
+      app.get('/api/test', (req, res) => {
+        res.json({ success: true });
+      });
 
-      // Act
-      await validateApiKey(mockReq as Request, mockRes as Response, mockNext);
+      const response = await request(app)
+        .get('/api/test')
+        .set('x-api-key', 'test-secret-key-12345')
+        .expect(200);
 
-      // Assert
-      expect(mockNext).toHaveBeenCalledTimes(1);
-      expect(statusMock).not.toHaveBeenCalled();
-      expect(jsonMock).not.toHaveBeenCalled();
+      expect(response.body).toEqual({ success: true });
     });
 
-    it('should handle API key in Authorization header with Bearer format', async () => {
-      // Arrange
+    test('should handle API key in Authorization header with Bearer format', async () => {
       process.env.ENABLE_API_KEY_VALIDATION = 'true';
       process.env.API_KEY = 'test-secret-key-12345';
-      mockReq.headers = { authorization: 'Bearer test-secret-key-12345' };
+      
+      app.use(validateApiKey);
+      app.get('/api/test', (req, res) => {
+        res.json({ success: true });
+      });
 
-      // Act
-      await validateApiKey(mockReq as Request, mockRes as Response, mockNext);
+      const response = await request(app)
+        .get('/api/test')
+        .set('Authorization', 'Bearer test-secret-key-12345')
+        .expect(200);
 
-      // Assert
-      expect(mockNext).toHaveBeenCalledTimes(1);
-      expect(statusMock).not.toHaveBeenCalled();
+      expect(response.body).toEqual({ success: true });
     });
 
-    it('should skip validation when disabled', async () => {
-      // Arrange
+    test('should skip validation when disabled', async () => {
       process.env.ENABLE_API_KEY_VALIDATION = 'false';
       process.env.API_KEY = 'test-secret-key-12345';
-      mockReq.headers = {}; // No API key
+      
+      app.use(validateApiKey);
+      app.get('/api/test', (req, res) => {
+        res.json({ success: true });
+      });
 
-      // Act
-      await validateApiKey(mockReq as Request, mockRes as Response, mockNext);
+      // Request without API key should succeed
+      const response = await request(app)
+        .get('/api/test')
+        .expect(200);
 
-      // Assert
-      expect(mockNext).toHaveBeenCalledTimes(1);
-      expect(statusMock).not.toHaveBeenCalled();
+      expect(response.body).toEqual({ success: true });
     });
 
-    it('should skip validation when environment variable is not set', async () => {
-      // Arrange - No environment variables set
-      mockReq.headers = {};
+    test('should skip validation when environment variables not set', async () => {
+      // No environment variables set
+      
+      app.use(validateApiKey);
+      app.get('/api/test', (req, res) => {
+        res.json({ success: true });
+      });
 
-      // Act
-      await validateApiKey(mockReq as Request, mockRes as Response, mockNext);
+      const response = await request(app)
+        .get('/api/test')
+        .expect(200);
 
-      // Assert
-      expect(mockNext).toHaveBeenCalledTimes(1);
-      expect(statusMock).not.toHaveBeenCalled();
+      expect(response.body).toEqual({ success: true });
     });
   });
 
   describe('Error Handling', () => {
-    it('should handle missing API_KEY environment variable gracefully', async () => {
-      // Arrange
+    test('should handle missing API_KEY environment variable gracefully', async () => {
       process.env.ENABLE_API_KEY_VALIDATION = 'true';
       // API_KEY not set
-      mockReq.headers = { 'x-api-key': 'some-key' };
+      
+      app.use(validateApiKey);
+      app.get('/api/test', (req, res) => {
+        res.json({ success: true });
+      });
 
-      // Act
-      await validateApiKey(mockReq as Request, mockRes as Response, mockNext);
+      const response = await request(app)
+        .get('/api/test')
+        .set('x-api-key', 'some-key')
+        .expect(500);
 
-      // Assert
-      expect(statusMock).toHaveBeenCalledWith(500);
-      expect(jsonMock).toHaveBeenCalledWith({
+      expect(response.body).toEqual({
         error: 'Server configuration error',
       });
-      expect(mockNext).not.toHaveBeenCalled();
     });
 
-    it('should handle exceptions during validation', async () => {
-      // Arrange
+    test('should handle malformed requests gracefully', async () => {
       process.env.ENABLE_API_KEY_VALIDATION = 'true';
       process.env.API_KEY = 'test-secret-key-12345';
+      
+      // Create middleware that corrupts headers
+      app.use((req, res, next) => {
+        // Force headers to be undefined to test error handling
+        (req as any).headers = undefined;
+        next();
+      });
+      
+      app.use(validateApiKey);
+      app.get('/api/test', (req, res) => {
+        res.json({ success: true });
+      });
 
-      // Force an error by making headers undefined
-      mockReq.headers = undefined as unknown;
+      const response = await request(app)
+        .get('/api/test')
+        .expect(500);
 
-      // Act
-      await validateApiKey(mockReq as Request, mockRes as Response, mockNext);
-
-      // Assert
-      expect(statusMock).toHaveBeenCalledWith(500);
-      expect(jsonMock).toHaveBeenCalledWith({
+      expect(response.body).toEqual({
         error: 'Internal server error during authentication',
       });
-      expect(mockNext).not.toHaveBeenCalled();
     });
   });
 
   describe('Security Headers', () => {
-    it('should not expose sensitive information in error messages', async () => {
-      // Arrange
+    test('should not expose sensitive information in error messages', async () => {
       process.env.ENABLE_API_KEY_VALIDATION = 'true';
       process.env.API_KEY = 'super-secret-production-key';
-      mockReq.headers = { 'x-api-key': 'wrong-key' };
-
-      // Act
-      await validateApiKey(mockReq as Request, mockRes as Response, mockNext);
-
-      // Assert - Should not leak the actual API key
-      expect(jsonMock).toHaveBeenCalledWith({
-        error: 'Unauthorized: Invalid API key',
+      
+      app.use(validateApiKey);
+      app.get('/api/test', (req, res) => {
+        res.json({ success: true });
       });
-      const errorMessage = jsonMock.mock.calls[0][0];
-      expect(errorMessage.error).not.toContain('super-secret-production-key');
+
+      const response = await request(app)
+        .get('/api/test')
+        .set('x-api-key', 'wrong-key')
+        .expect(401);
+
+      // Should not leak the actual API key
+      expect(response.body.error).toBe('Unauthorized: Invalid API key');
+      expect(response.body.error).not.toContain('super-secret-production-key');
+      expect(response.text).not.toContain('super-secret-production-key');
     });
 
-    it('should handle case-insensitive header names', async () => {
-      // Arrange
+    test('should handle case-insensitive header names', async () => {
       process.env.ENABLE_API_KEY_VALIDATION = 'true';
       process.env.API_KEY = 'test-secret-key-12345';
-      // Express converts headers to lowercase, so we simulate this
-      mockReq.headers = { 'x-api-key': 'test-secret-key-12345' };
+      
+      app.use(validateApiKey);
+      app.get('/api/test', (req, res) => {
+        res.json({ success: true });
+      });
 
-      // Act
-      await validateApiKey(mockReq as Request, mockRes as Response, mockNext);
+      // Test various header name cases (Express normalizes to lowercase)
+      const response1 = await request(app)
+        .get('/api/test')
+        .set('X-API-Key', 'test-secret-key-12345')
+        .expect(200);
 
-      // Assert
-      expect(mockNext).toHaveBeenCalledTimes(1);
-      expect(statusMock).not.toHaveBeenCalled();
+      const response2 = await request(app)
+        .get('/api/test')
+        .set('X-Api-Key', 'test-secret-key-12345')
+        .expect(200);
+
+      expect(response1.body).toEqual({ success: true });
+      expect(response2.body).toEqual({ success: true });
     });
   });
 
   describe('Performance and Rate Limiting', () => {
-    it('should process validation quickly for valid keys', async () => {
-      // Arrange
+    test('should process validation quickly for valid keys', async () => {
       process.env.ENABLE_API_KEY_VALIDATION = 'true';
       process.env.API_KEY = 'test-secret-key-12345';
-      mockReq.headers = { 'x-api-key': 'test-secret-key-12345' };
+      
+      app.use(validateApiKey);
+      app.get('/api/test', (req, res) => {
+        res.json({ success: true });
+      });
 
-      // Act
       const startTime = Date.now();
-      await validateApiKey(mockReq as Request, mockRes as Response, mockNext);
+      
+      await request(app)
+        .get('/api/test')
+        .set('x-api-key', 'test-secret-key-12345')
+        .expect(200);
+        
       const endTime = Date.now();
 
-      // Assert - Validation should be fast (< 10ms)
-      expect(endTime - startTime).toBeLessThan(10);
-      expect(mockNext).toHaveBeenCalled();
+      // Validation should be fast (< 50ms including HTTP overhead)
+      expect(endTime - startTime).toBeLessThan(50);
     });
 
-    it('should support multiple API key formats', async () => {
-      // Test different valid formats
-      // Note: Express normalizes all headers to lowercase
-      const testCases = [
-        { header: 'x-api-key', value: 'test-secret-key-12345' },
-        { header: 'authorization', value: 'Bearer test-secret-key-12345' },
-      ];
-
+    test('should support multiple API key formats', async () => {
       process.env.ENABLE_API_KEY_VALIDATION = 'true';
       process.env.API_KEY = 'test-secret-key-12345';
+      
+      app.use(validateApiKey);
+      app.get('/api/test', (req, res) => {
+        res.json({ success: true, headers: req.headers });
+      });
 
-      for (const testCase of testCases) {
-        // Reset mocks
-        jest.clearAllMocks();
-        mockReq.headers = { [testCase.header]: testCase.value };
+      // Test x-api-key header
+      const response1 = await request(app)
+        .get('/api/test')
+        .set('x-api-key', 'test-secret-key-12345')
+        .expect(200);
+        
+      expect(response1.body.success).toBe(true);
 
-        // Act
-        await validateApiKey(mockReq as Request, mockRes as Response, mockNext);
+      // Test Authorization header with Bearer format
+      const response2 = await request(app)
+        .get('/api/test')
+        .set('Authorization', 'Bearer test-secret-key-12345')
+        .expect(200);
+        
+      expect(response2.body.success).toBe(true);
+    });
 
-        // Assert
-        expect(mockNext).toHaveBeenCalledTimes(1);
-        expect(statusMock).not.toHaveBeenCalled();
-      }
+    test('should handle concurrent requests efficiently', async () => {
+      process.env.ENABLE_API_KEY_VALIDATION = 'true';
+      process.env.API_KEY = 'test-secret-key-12345';
+      
+      app.use(validateApiKey);
+      app.get('/api/test', (req, res) => {
+        res.json({ success: true, timestamp: Date.now() });
+      });
+
+      // Send multiple concurrent requests
+      const requests = Array(10).fill(null).map(() => 
+        request(app)
+          .get('/api/test')
+          .set('x-api-key', 'test-secret-key-12345')
+      );
+
+      const responses = await Promise.all(requests);
+      
+      // All should succeed
+      responses.forEach(response => {
+        expect(response.status).toBe(200);
+        expect(response.body.success).toBe(true);
+      });
     });
   });
 
   describe('Infrastructure Integration', () => {
-    it('should validate successfully without cache integration', async () => {
-      // Arrange
+    test('should work with real Express middleware chain', async () => {
       process.env.ENABLE_API_KEY_VALIDATION = 'true';
       process.env.API_KEY = 'test-secret-key-12345';
-      mockReq.headers = { 'x-api-key': 'test-secret-key-12345' };
+      
+      // Set up middleware chain
+      app.use(express.json());
+      app.use(validateApiKey);
+      
+      // Add another middleware to verify the chain continues
+      app.use((req, res, next) => {
+        (req as any).customData = 'middleware-chain-works';
+        next();
+      });
+      
+      app.get('/api/test', (req, res) => {
+        res.json({ 
+          success: true,
+          customData: (req as any).customData 
+        });
+      });
 
-      // Act
-      await validateApiKey(mockReq as Request, mockRes as Response, mockNext);
+      const response = await request(app)
+        .get('/api/test')
+        .set('x-api-key', 'test-secret-key-12345')
+        .expect(200);
 
-      // Assert
-      expect(mockNext).toHaveBeenCalled();
-      expect(statusMock).not.toHaveBeenCalled();
+      expect(response.body).toEqual({
+        success: true,
+        customData: 'middleware-chain-works'
+      });
     });
 
-    it('should handle validation without external dependencies', async () => {
-      // Arrange
+    test('should integrate with error handling middleware', async () => {
       process.env.ENABLE_API_KEY_VALIDATION = 'true';
       process.env.API_KEY = 'test-secret-key-12345';
-      mockReq.headers = { 'x-api-key': 'test-secret-key-12345' };
+      
+      app.use(validateApiKey);
+      
+      // Route that throws an error
+      app.get('/api/test', (req, res) => {
+        throw new Error('Test error');
+      });
+      
+      // Error handling middleware
+      app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+        res.status(500).json({ error: err.message });
+      });
 
-      // Act
-      await validateApiKey(mockReq as Request, mockRes as Response, mockNext);
+      // Valid API key but route throws error
+      const response = await request(app)
+        .get('/api/test')
+        .set('x-api-key', 'test-secret-key-12345')
+        .expect(500);
 
-      // Assert - Should validate successfully
-      expect(mockNext).toHaveBeenCalled();
-      expect(statusMock).not.toHaveBeenCalled();
+      expect(response.body).toEqual({ error: 'Test error' });
+    });
+
+    test('should validate with real cache service if available', async () => {
+      process.env.ENABLE_API_KEY_VALIDATION = 'true';
+      process.env.API_KEY = 'test-secret-key-12345';
+      
+      // Create a real cache service instance
+      const cache = new CacheService();
+      
+      app.use(validateApiKey);
+      app.get('/api/test', (req, res) => {
+        res.json({ success: true });
+      });
+
+      // First request
+      await request(app)
+        .get('/api/test')
+        .set('x-api-key', 'test-secret-key-12345')
+        .expect(200);
+
+      // Second request (might use cache if implemented)
+      const response = await request(app)
+        .get('/api/test')
+        .set('x-api-key', 'test-secret-key-12345')
+        .expect(200);
+
+      expect(response.body).toEqual({ success: true });
     });
   });
 });

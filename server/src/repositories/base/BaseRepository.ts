@@ -1,8 +1,17 @@
 import { PrismaClient } from '@prisma/client';
-import { logger } from '../../utils/logger';
-import type { IRepository, PaginationOptions, PaginatedResult } from './IRepository';
+import logger from '../../logger';
+import type { IRepository } from './IRepository';
+import { 
+  PaginationOptions,
+  PaginatedResponse,
+  createPaginatedResponse,
+  getPrismaArgs,
+  createSearchFilter,
+  combineFilters,
+  fetchPaginatedData
+} from '../../utils/pagination';
 
-export abstract class BaseRepository<T, CreateInput, UpdateInput>
+export abstract class BaseRepository<T extends { id: number }, CreateInput, UpdateInput>
   implements IRepository<T, CreateInput, UpdateInput>
 {
   protected prisma: PrismaClient;
@@ -13,8 +22,8 @@ export abstract class BaseRepository<T, CreateInput, UpdateInput>
     this.modelName = modelName;
   }
 
-  protected get model() {
-    return (this.prisma as Record<string, unknown>)[this.modelName];
+  protected get model(): any {
+    return (this.prisma as any)[this.modelName];
   }
 
   async findById(id: number): Promise<T | null> {
@@ -33,29 +42,39 @@ export abstract class BaseRepository<T, CreateInput, UpdateInput>
     where?: Record<string, unknown>;
     include?: Record<string, boolean>;
     pagination?: PaginationOptions;
-  }): Promise<PaginatedResult<T>> {
+    searchFields?: string[];
+  }): Promise<PaginatedResponse<T>> {
     try {
-      const { where = {}, include = {}, pagination = {} } = options || {};
-      const { skip = 0, take = 20, orderBy = { id: 'desc' } } = pagination;
+      const { 
+        where = {}, 
+        include = {}, 
+        pagination = { page: 1, limit: 20 },
+        searchFields = []
+      } = options || {};
 
-      const [data, total] = await Promise.all([
-        this.model.findMany({
-          where,
+      // Build search filter if search term provided
+      const searchFilter = createSearchFilter(pagination.search, searchFields);
+      const combinedWhere = combineFilters(where, searchFilter);
+
+      // Get Prisma args for pagination
+      const prismaArgs = getPrismaArgs(pagination);
+
+      // Fetch data and count in parallel
+      const { data, total } = await fetchPaginatedData(
+        () => this.model.count({ where: combinedWhere }),
+        () => this.model.findMany({
+          where: combinedWhere,
           include,
-          skip,
-          take,
-          orderBy,
+          ...prismaArgs,
         }),
-        this.model.count({ where }),
-      ]);
+        pagination
+      );
 
-      return {
-        data,
+      return createPaginatedResponse(data, {
+        page: pagination.page,
+        limit: pagination.limit,
         total,
-        skip,
-        take,
-        hasMore: skip + take < total,
-      };
+      });
     } catch (error) {
       logger.error(`Error finding many ${this.modelName}:`, error);
       throw error;
@@ -144,5 +163,52 @@ export abstract class BaseRepository<T, CreateInput, UpdateInput>
   // Transaction support
   async transaction<R>(fn: (tx: PrismaClient) => Promise<R>): Promise<R> {
     return this.prisma.$transaction(fn);
+  }
+
+  // Cursor-based pagination for real-time data
+  async findManyCursor(options?: {
+    where?: Record<string, unknown>;
+    include?: Record<string, boolean>;
+    cursor?: number;
+    limit?: number;
+    orderBy?: Record<string, 'asc' | 'desc'>;
+  }): Promise<{ data: T[]; nextCursor?: number }> {
+    try {
+      const { 
+        where = {}, 
+        include = {}, 
+        cursor,
+        limit = 20,
+        orderBy = { id: 'desc' }
+      } = options || {};
+
+      const queryArgs: any = {
+        where,
+        include,
+        take: limit + 1, // Fetch one extra to check if there's more
+        orderBy,
+      };
+
+      if (cursor) {
+        queryArgs.cursor = { id: cursor };
+        queryArgs.skip = 1; // Skip the cursor item
+      }
+
+      const items = await this.model.findMany(queryArgs);
+      
+      let nextCursor: number | undefined;
+      if (items.length > limit) {
+        const nextItem = items.pop();
+        nextCursor = nextItem!.id;
+      }
+
+      return {
+        data: items,
+        nextCursor,
+      };
+    } catch (error) {
+      logger.error(`Error finding many with cursor ${this.modelName}:`, error);
+      throw error;
+    }
   }
 }
