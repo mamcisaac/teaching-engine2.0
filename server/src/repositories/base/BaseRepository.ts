@@ -22,14 +22,14 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
     this.modelName = modelName;
   }
 
+  // Use Record for Prisma model delegate access - this is necessary for dynamic model access
   protected get model(): Record<string, unknown> {
-    // Access Prisma model delegate by name
     return (this.prisma as Record<string, unknown>)[this.modelName] as Record<string, unknown>;
   }
 
   async findById(id: number): Promise<T | null> {
     try {
-      const result = await (this.model as Record<string, unknown>).findUnique({
+      const result = await this.model.findUnique({
         where: { id },
       });
       return result;

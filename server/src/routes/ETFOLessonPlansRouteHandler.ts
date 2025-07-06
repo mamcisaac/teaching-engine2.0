@@ -126,13 +126,13 @@ class ETFOLessonPlanService extends BaseService {
       hasExpectations,
       limit,
       offset,
-      sortBy,
-      sortOrder,
+      sort,
+      order,
     } = filters;
 
     const where: Prisma.ETFOLessonPlanWhereInput = { userId };
 
-    if (unitPlanId) where.unitPlanId = unitPlanId;
+    if (unitPlanId) where.unitPlanId = String(unitPlanId);
     if (isSubFriendly !== undefined) where.isSubFriendly = isSubFriendly;
     if (assessmentType) where.assessmentType = assessmentType;
 
@@ -152,7 +152,7 @@ class ETFOLessonPlanService extends BaseService {
     }
 
     // Sorting with validation
-    const orderBy = queryPerformance.createOptimizedSort(sortBy, sortOrder, [
+    const orderBy = queryPerformance.createOptimizedSort(sort || 'date', order || 'asc', [
       'date',
       'title',
       'duration',
@@ -161,8 +161,8 @@ class ETFOLessonPlanService extends BaseService {
 
     const result = await queryPerformance.monitorQuery('etfoLessonPlan.findMany', () =>
       optimizedQueries.paginatedQuery(prisma.eTFOLessonPlan, where, {
-        limit,
-        offset,
+        limit: limit!,
+        offset: offset!,
         orderBy,
         include: optimizedIncludes.etfoLessonPlan,
       }),
@@ -174,9 +174,9 @@ class ETFOLessonPlanService extends BaseService {
       lessonPlans,
       pagination: {
         total,
-        limit,
-        offset,
-        hasMore: offset + limit < total,
+        limit: limit!,
+        offset: offset!,
+        hasMore: offset! + limit! < total,
       },
     };
   }
@@ -210,7 +210,7 @@ class ETFOLessonPlanService extends BaseService {
       title: data.title,
       unitPlanId: data.unitPlanId || '',
       date: new Date(data.date),
-      duration: data.duration,
+      duration: data.duration || 60, // Default 60 minutes
       mindsOn: data.mindsOn,
       mindsOnFr: data.mindsOnFr,
       action: data.action,
@@ -219,12 +219,12 @@ class ETFOLessonPlanService extends BaseService {
       consolidationFr: data.consolidationFr,
       learningGoals: data.learningGoals,
       learningGoalsFr: data.learningGoalsFr,
-      materials: data.materials ? JSON.stringify(data.materials) : null,
+      materials: data.materials ? JSON.stringify(data.materials) : undefined,
       grouping: data.grouping,
       titleFr: data.titleFr,
-      accommodations: data.accommodations ? JSON.stringify(data.accommodations) : null,
-      modifications: data.modifications ? JSON.stringify(data.modifications) : null,
-      extensions: data.extensions ? JSON.stringify(data.extensions) : null,
+      accommodations: data.accommodations ? JSON.stringify(data.accommodations) : undefined,
+      modifications: data.modifications ? JSON.stringify(data.modifications) : undefined,
+      extensions: data.extensions ? JSON.stringify(data.extensions) : undefined,
       assessmentType: data.assessmentType,
       assessmentNotes: data.assessmentNotes,
       isSubFriendly: data.isSubFriendly ?? true,
@@ -289,21 +289,21 @@ class ETFOLessonPlanService extends BaseService {
     if (updateData.learningGoalsFr !== undefined)
       baseUpdateData.learningGoalsFr = updateData.learningGoalsFr;
     if (updateData.materials !== undefined)
-      baseUpdateData.materials = updateData.materials ? JSON.stringify(updateData.materials) : null;
+      baseUpdateData.materials = updateData.materials ? JSON.stringify(updateData.materials) : undefined;
     if (updateData.grouping !== undefined) baseUpdateData.grouping = updateData.grouping;
     if (updateData.titleFr !== undefined) baseUpdateData.titleFr = updateData.titleFr;
     if (updateData.accommodations !== undefined)
       baseUpdateData.accommodations = updateData.accommodations
         ? JSON.stringify(updateData.accommodations)
-        : null;
+        : undefined;
     if (updateData.modifications !== undefined)
       baseUpdateData.modifications = updateData.modifications
         ? JSON.stringify(updateData.modifications)
-        : null;
+        : undefined;
     if (updateData.extensions !== undefined)
       baseUpdateData.extensions = updateData.extensions
         ? JSON.stringify(updateData.extensions)
-        : null;
+        : undefined;
     if (updateData.assessmentType !== undefined)
       baseUpdateData.assessmentType = updateData.assessmentType;
     if (updateData.assessmentNotes !== undefined)
@@ -362,7 +362,7 @@ class ETFOLessonPlanService extends BaseService {
 
   async addResource(
     lessonPlanId: string,
-    resourceData: { url: string; title: string; type: string; description?: string },
+    resourceData: { url?: string; title: string; type: string; content?: string },
     userId: number,
   ) {
     // Verify ownership
@@ -440,11 +440,11 @@ class ETFOLessonPlanService extends BaseService {
         consolidationFr: originalLesson.consolidationFr,
         learningGoals: originalLesson.learningGoals,
         learningGoalsFr: originalLesson.learningGoalsFr,
-        materials: originalLesson.materials,
+        materials: originalLesson.materials || undefined,
         grouping: originalLesson.grouping,
-        accommodations: originalLesson.accommodations,
-        modifications: originalLesson.modifications,
-        extensions: originalLesson.extensions,
+        accommodations: originalLesson.accommodations || undefined,
+        modifications: originalLesson.modifications || undefined,
+        extensions: originalLesson.extensions || undefined,
         assessmentType: originalLesson.assessmentType,
         assessmentNotes: originalLesson.assessmentNotes,
         isSubFriendly: true,
@@ -547,11 +547,11 @@ class ETFOLessonPlanService extends BaseService {
         consolidationFr: sourceLessonPlan.consolidationFr,
         learningGoals: sourceLessonPlan.learningGoals,
         learningGoalsFr: sourceLessonPlan.learningGoalsFr,
-        materials: sourceLessonPlan.materials,
+        materials: sourceLessonPlan.materials || undefined,
         grouping: sourceLessonPlan.grouping,
-        accommodations: sourceLessonPlan.accommodations,
-        modifications: sourceLessonPlan.modifications,
-        extensions: sourceLessonPlan.extensions,
+        accommodations: sourceLessonPlan.accommodations || undefined,
+        modifications: sourceLessonPlan.modifications || undefined,
+        extensions: sourceLessonPlan.extensions || undefined,
         assessmentType: sourceLessonPlan.assessmentType,
         assessmentNotes: sourceLessonPlan.assessmentNotes,
         isSubFriendly: sourceLessonPlan.isSubFriendly,
@@ -617,7 +617,19 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       const schemas = this.getValidationSchemas();
       const filters = schemas.query.parse(req.query);
 
-      const result = await this.lessonPlanService.findMany(filters, userId);
+      // Convert string dates to Date objects and fix field names for service
+      const { sortBy, sortOrder, ...filterBase } = filters;
+      const convertedFilters = {
+        ...filterBase,
+        ...(filters.startDate && { startDate: new Date(filters.startDate) }),
+        ...(filters.endDate && { endDate: new Date(filters.endDate) }),
+        ...(filters.unitPlanId && { unitPlanId: parseInt(String(filters.unitPlanId), 10) }),
+        // Convert sortBy/sortOrder to sort/order for service
+        sort: sortBy,
+        order: sortOrder,
+      };
+      
+      const result = await this.lessonPlanService.findMany(convertedFilters, userId);
       res.json(result);
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Unknown error';

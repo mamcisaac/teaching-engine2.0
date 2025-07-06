@@ -33,19 +33,19 @@ router.get('/search', async (req: Request, res: Response) => {
       cacheKey,
       async () => {
         const searchFilter = createSearchFilter(q, [
-          'expectation',
+          'code',
           'description',
           'strand',
-          'category',
+          'substrand',
         ]);
 
         const expectations = await prisma.curriculumExpectation.findMany({
           where: searchFilter,
           take: limitNumber,
-          orderBy: { expectation: 'asc' },
+          orderBy: { code: 'asc' },
           select: {
             id: true,
-            expectation: true,
+            code: true,
             description: true,
             subject: true,
             grade: true,
@@ -81,10 +81,9 @@ router.get('/', validatePagination, async (req: Request, res: Response) => {
     // Build search filter for multiple fields
     const searchFilter = createSearchFilter(pagination.search, [
       'description',
-      'expectation',
+      'code',
       'strand',
       'substrand',
-      'category',
     ]);
 
     // Combine filters
@@ -92,10 +91,11 @@ router.get('/', validatePagination, async (req: Request, res: Response) => {
 
     // Build order by clause
     const orderBy: Prisma.CurriculumExpectationOrderByWithRelationInput = {};
-    if (pagination.sortBy) {
-      orderBy[pagination.sortBy] = pagination.sortOrder || 'asc';
+    const sortBy = pagination.sortBy as keyof Prisma.CurriculumExpectationOrderByWithRelationInput;
+    if (sortBy && sortBy in { code: true, description: true, strand: true, substrand: true, grade: true, subject: true }) {
+      orderBy[sortBy] = pagination.sortOrder || 'asc';
     } else {
-      orderBy.expectation = 'asc'; // Default sort by expectation code
+      orderBy.code = 'asc'; // Default sort by expectation code
     }
 
     // Fetch paginated data

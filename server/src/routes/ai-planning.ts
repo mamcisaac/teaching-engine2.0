@@ -36,7 +36,7 @@ const sanitizeAIInput = (input: unknown): unknown => {
       .slice(0, 20)
       .forEach((key) => {
         // Limit object keys
-        sanitized[key] = sanitizeAIInput(input[key]);
+        (sanitized as Record<string, unknown>)[key] = sanitizeAIInput((input as Record<string, unknown>)[key]);
       });
     return sanitized;
   }

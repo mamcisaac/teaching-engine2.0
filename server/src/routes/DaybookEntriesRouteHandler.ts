@@ -197,7 +197,7 @@ class DaybookService extends BaseService {
     },
     userId: number,
   ) {
-    const { startDate, endDate, lessonPlanId, subject, limit, offset, sortBy, sortOrder } = filters;
+    const { startDate, endDate, lessonPlanId, subject, limit, offset, sort, order } = filters;
 
     const where: Prisma.DaybookEntryWhereInput = { userId };
 
@@ -211,7 +211,7 @@ class DaybookService extends BaseService {
     } else if (endDate) {
       where.date = { lte: new Date(endDate) };
     }
-    if (lessonPlanId) where.lessonPlanId = lessonPlanId;
+    if (lessonPlanId) where.lessonPlanId = String(lessonPlanId);
 
     // Subject filtering through lesson plan relationship
     if (subject) {
@@ -225,14 +225,14 @@ class DaybookService extends BaseService {
     }
 
     const orderBy: Prisma.DaybookEntryOrderByWithRelationInput = {};
-    if (sortBy === 'date') orderBy.date = sortOrder;
-    else if (sortBy === 'overallRating') orderBy.overallRating = sortOrder;
-    else if (sortBy === 'createdAt') orderBy.createdAt = sortOrder;
+    if (sort === 'date') orderBy.date = order;
+    else if (sort === 'overallRating') orderBy.overallRating = order;
+    else if (sort === 'createdAt') orderBy.createdAt = order;
 
     const result = await queryPerformance.monitorQuery('daybookEntry.findMany', () =>
       optimizedQueries.paginatedQuery(prisma.daybookEntry, where, {
-        limit,
-        offset,
+        limit: limit!,
+        offset: offset!,
         orderBy,
         include: optimizedIncludes.daybookEntry,
       }),
@@ -244,9 +244,9 @@ class DaybookService extends BaseService {
       entries,
       pagination: {
         total,
-        limit,
-        offset,
-        hasMore: offset + limit < total,
+        limit: limit!,
+        offset: offset!,
+        hasMore: offset! + limit! < total,
       },
     };
   }
@@ -296,9 +296,9 @@ class DaybookService extends BaseService {
         date: new Date(data.date),
         expectations: expectations
           ? {
-              create: expectations.map((exp: { expectationId: number; notes?: string }) => ({
+              create: expectations.map((exp: { expectationId: string; coverage?: string }) => ({
                 expectationId: exp.expectationId,
-                coverage: exp.coverage,
+                coverage: exp.coverage || 'introduced',
               })),
             }
           : undefined,
@@ -328,9 +328,9 @@ class DaybookService extends BaseService {
           expectations: {
             deleteMany: {},
             create: expectations.map(
-              (exp: { expectationId: number; notes?: string; coverage?: string }) => ({
+              (exp: { expectationId: string; notes?: string; coverage?: string }) => ({
                 expectationId: exp.expectationId,
-                coverage: exp.coverage,
+                coverage: exp.coverage || 'introduced',
               }),
             ),
           },
@@ -456,7 +456,19 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
       const schemas = this.getValidationSchemas();
       const filters = schemas.query.parse(req.query);
 
-      const result = await this.daybookService.findMany(filters, userId);
+      // Convert string dates to Date objects for service and fix field names
+      const { sortBy, sortOrder, ...filterBase } = filters;
+      const convertedFilters = {
+        ...filterBase,
+        ...(filters.startDate && { startDate: new Date(filters.startDate) }),
+        ...(filters.endDate && { endDate: new Date(filters.endDate) }),
+        ...(filters.lessonPlanId && { lessonPlanId: parseInt(String(filters.lessonPlanId), 10) }),
+        // Convert sortBy/sortOrder to sort/order for service
+        sort: sortBy,
+        order: sortOrder,
+      };
+      
+      const result = await this.daybookService.findMany(convertedFilters, userId);
       res.json(result);
     } catch (_error) {
       this.logger.error(`Error in ${this.routeName} list:`, _error);

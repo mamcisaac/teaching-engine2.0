@@ -31,11 +31,12 @@ export async function comparePassword(password: string, hash: string): Promise<b
  * Generate JWT access token
  */
 export function generateAccessToken(payload: JWTPayload): string {
-  if (!process.env.JWT_SECRET) {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
     throw new Error('JWT_SECRET is not defined');
   }
   
-  return jwt.sign(payload, process.env.JWT_SECRET, {
+  return jwt.sign(payload, secret, {
     expiresIn: process.env.JWT_EXPIRES_IN || '7d',
   });
 }
@@ -44,11 +45,12 @@ export function generateAccessToken(payload: JWTPayload): string {
  * Generate JWT refresh token
  */
 export function generateRefreshToken(payload: JWTPayload): string {
-  if (!process.env.JWT_REFRESH_SECRET) {
+  const secret = process.env.JWT_REFRESH_SECRET;
+  if (!secret) {
     throw new Error('JWT_REFRESH_SECRET is not defined');
   }
   
-  return jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {
+  return jwt.sign(payload, secret, {
     expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '30d',
   });
 }

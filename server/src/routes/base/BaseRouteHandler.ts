@@ -274,7 +274,7 @@ export abstract class BaseRouteHandler<T = any> {
     userId: number
   ): Promise<boolean> {
     try {
-      const record = await (prisma as unknown)[tableName].findFirst({
+      const record = await (prisma as Record<string, unknown>)[tableName].findFirst({
         where: {
           id,
           OR: [
