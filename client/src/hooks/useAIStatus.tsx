@@ -1,4 +1,3 @@
-import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 import React, { useState , createContext, useContext } from 'react';
 import type { ReactNode } from 'react';

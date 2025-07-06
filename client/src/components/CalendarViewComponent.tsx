@@ -98,4 +98,6 @@ grouped[d] = [];
   );
 });
 
+CalendarViewComponent.displayName = 'CalendarViewComponent';
+
 export default CalendarViewComponent;

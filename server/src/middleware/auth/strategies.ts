@@ -40,7 +40,7 @@ export async function register(data: RegistrationData): Promise<{
       email: data.email.toLowerCase(),
       password: hashedPassword,
       name: data.name,
-      role: (data.role != null) || UserRole.TEACHER,
+      role: data.role ?? UserRole.TEACHER,
     },
   });
 

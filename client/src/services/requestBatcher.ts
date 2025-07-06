@@ -11,7 +11,7 @@ interface BatchRequest {
   headers?: Record<string, string>;
 }
 
-interface BatchResponse {
+interface _BatchResponse {
   id: string;
   status: number;
   data: unknown;
