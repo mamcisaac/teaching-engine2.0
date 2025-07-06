@@ -2,7 +2,6 @@
 import express, { Request, Response, NextFunction } from 'express';
 import { Server } from 'http';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import cookieParser from 'cookie-parser';
 import debug from 'debug';
 import { config } from 'dotenv';
@@ -15,18 +14,8 @@ config();
 const log = debug('server:main');
 const error = debug('server:error');
 
-// Get directory name in ES module
-let __filename_index: string;
-let __dirname_index: string;
-
-// Skip import.meta in test environment
-if (process.env.NODE_ENV === 'test' || process.env.JEST_WORKER_ID) {
-  __filename_index = '';
-  __dirname_index = process.cwd();
-} else {
-  __filename_index = fileURLToPath(import.meta.url);
-  __dirname_index = path.dirname(__filename_index);
-}
+// Get directory name
+const __dirname_index = __dirname;
 
 // Use global Express Request type with user: { id: number; email: string }
 
@@ -386,7 +375,7 @@ async function gracefulShutdown(signal: string, server?: Server) {
 
 // Only start the server if this file is run directly
 // Also start if running in test mode for E2E tests (unless IS_TEST_SERVER is set)
-const isDirectRun = import.meta.url === `file://${process.argv[1]}`;
+const isDirectRun = require.main === module;
 const isE2ETest =
   process.env.NODE_ENV === 'test' && process.env.E2E_TEST === 'true' && !process.env.IS_TEST_SERVER;
 // Check if running in development mode
