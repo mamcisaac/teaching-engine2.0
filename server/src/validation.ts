@@ -38,7 +38,7 @@ const baseMilestoneSchema = z.object({
 });
 
 export const milestoneCreateSchema = baseMilestoneSchema.refine(
-  (data) => data.startDate == null || data.endDate == null || new Date(data.startDate) <= new Date(data.endDate),
+  (data) => data.startDate === null || data.endDate === null || new Date(data.startDate) <= new Date(data.endDate),
   {
     message: 'End date must be after or equal to start date',
     path: ['endDate'],
@@ -50,7 +50,7 @@ export const milestoneUpdateSchema = baseMilestoneSchema
   .partial()
   .refine(
     (data) =>
-      data.startDate == null || data.endDate == null || new Date(data.startDate) <= new Date(data.endDate),
+      data.startDate === null || data.endDate === null || new Date(data.startDate) <= new Date(data.endDate),
     {
       message: 'End date must be after or equal to start date',
       path: ['endDate'],
@@ -178,7 +178,7 @@ export const thematicUnitUpdateSchema = baseThematicUnitSchema
   .partial()
   .refine(
     (data) =>
-      data.startDate == null || data.endDate == null || new Date(data.startDate) <= new Date(data.endDate),
+      data.startDate === null || data.endDate === null || new Date(data.startDate) <= new Date(data.endDate),
     {
       message: 'End date must be after or equal to start date',
       path: ['endDate'],

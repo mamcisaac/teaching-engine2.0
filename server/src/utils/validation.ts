@@ -278,4 +278,3 @@ export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>) =>
       }
     }
   };
-};
