@@ -74,7 +74,7 @@ export const arbitraries = {
     fc.constantFrom('A', 'B', 'C', 'D', 'E'),
     fc.integer({ min: 1, max: 5 }),
     fc.integer({ min: 1, max: 10 })
-  ).map(([letter, num1, num2]) => `${letter}${num1}.${num2}`),
+  ).map(([letter, num1, num2]: [string, number, number]) => `${letter}${num1}.${num2}`),
   
   assessmentRating: () => fc.integer({ min: 1, max: 4 }),
   
@@ -83,13 +83,13 @@ export const arbitraries = {
   schoolDate: () => fc.date({
     min: new Date('2024-09-01'),
     max: new Date('2025-06-30')
-  }).filter(date => {
+  }).filter((date: Date) => {
     const day = date.getDay();
     return day !== 0 && day !== 6; // Exclude weekends
   }),
   
   schoolYear: () => fc.integer({ min: 2020, max: 2030 })
-    .map(year => `${year}-${year + 1}`),
+    .map((year: number) => `${year}-${year + 1}`),
   
   lessonDuration: () => fc.constantFrom(30, 40, 45, 50, 60, 75, 90, 100, 120),
   
@@ -166,7 +166,7 @@ export const properties = {
     min: number,
     max: number
   ): fc.IProperty<[T]> => {
-    return fc.property(arbitrary, (input) => {
+    return fc.property(arbitrary, (input: T) => {
       const result = fn(input);
       return result >= min && result <= max;
     });
@@ -177,7 +177,7 @@ export const properties = {
     fn: (input: T) => R,
     arbitrary: fc.Arbitrary<T>
   ): fc.IProperty<[T]> => {
-    return fc.property(arbitrary, (input) => {
+    return fc.property(arbitrary, (input: T) => {
       const result1 = fn(input);
       const result2 = fn(input);
       return JSON.stringify(result1) === JSON.stringify(result2);
@@ -189,7 +189,7 @@ export const properties = {
     fn: (input: T[]) => R[],
     arbitrary: fc.Arbitrary<T[]>
   ): fc.IProperty<[T[]]> => {
-    return fc.property(arbitrary, (input) => {
+    return fc.property(arbitrary, (input: T[]) => {
       const result = fn(input);
       return Array.isArray(result) && result.length === input.length;
     });
@@ -200,7 +200,7 @@ export const properties = {
     fn: (input: T[]) => T[],
     arbitrary: fc.Arbitrary<T[]>
   ): fc.IProperty<[T[]]> => {
-    return fc.property(arbitrary, (input) => {
+    return fc.property(arbitrary, (input: T[]) => {
       const result = fn(input);
       const inputSet = new Set(input.map(item => JSON.stringify(item)));
       const resultSet = new Set(result.map(item => JSON.stringify(item)));
@@ -215,7 +215,7 @@ export const properties = {
     fn: (input: T) => Date,
     arbitrary: fc.Arbitrary<T>
   ): fc.IProperty<[T]> => {
-    return fc.property(arbitrary, (input) => {
+    return fc.property(arbitrary, (input: T) => {
       const result = fn(input);
       return result instanceof Date && !isNaN(result.getTime());
     });
@@ -226,7 +226,7 @@ export const properties = {
     fn: (input: T[]) => T[],
     arbitrary: fc.Arbitrary<T[]>
   ): fc.IProperty<[T[]]> => {
-    return fc.property(arbitrary, (input) => {
+    return fc.property(arbitrary, (input: T[]) => {
       const result = fn(input);
       
       // Check same length
