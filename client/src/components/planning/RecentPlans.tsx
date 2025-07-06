@@ -239,3 +239,5 @@ export const RecentPlans = memo(({
     </Card>
   );
 });
+
+RecentPlans.displayName = 'RecentPlans';

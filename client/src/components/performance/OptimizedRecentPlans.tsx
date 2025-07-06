@@ -182,6 +182,8 @@ const PlanItem = memo(
   ,
 );
 
+PlanItem.displayName = 'PlanItem';
+
 export const OptimizedRecentPlans = memo(
   ({
     plans,
@@ -335,3 +337,5 @@ export const OptimizedRecentPlans = memo(
     )
   ,
 );
+
+OptimizedRecentPlans.displayName = 'OptimizedRecentPlans';

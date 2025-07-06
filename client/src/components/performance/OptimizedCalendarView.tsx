@@ -101,6 +101,8 @@ const DayCell = memo(({
   )
 );
 
+DayCell.displayName = 'DayCell';
+
 // Memoized event list item for virtualized view
 const EventListItem = memo(({
   event,
@@ -142,6 +144,8 @@ const EventListItem = memo(({
     prevProps.event.title === nextProps.event.title &&
     prevProps.event.start === nextProps.event.start
   ));
+
+EventListItem.displayName = 'EventListItem';
 
 export const OptimizedCalendarView = memo(({
   month,
@@ -339,3 +343,5 @@ grouped[dateKey] = [];
     prevProps.maxEventsPerDay === nextProps.maxEventsPerDay
   )
 );
+
+OptimizedCalendarView.displayName = 'OptimizedCalendarView';

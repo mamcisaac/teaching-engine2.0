@@ -81,3 +81,5 @@ export const UnitPlanCard: React.FC<UnitPlanCardProps> = memo(({ unitPlan: unit,
     </div>
   );
 });
+
+UnitPlanCard.displayName = 'UnitPlanCard';

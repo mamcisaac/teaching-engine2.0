@@ -169,3 +169,5 @@ return null;
     prevProps.className === nextProps.className
   )
 );
+
+OptimizedUnitPlanCard.displayName = 'OptimizedUnitPlanCard';
