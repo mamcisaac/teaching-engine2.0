@@ -8,6 +8,7 @@ import debug from 'debug';
 import { config } from 'dotenv';
 
 import { authenticate } from './middleware/authenticate';
+
 // Load environment variables
 config();
 

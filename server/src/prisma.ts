@@ -1,13 +1,36 @@
 // Import from the database package
-import { PrismaClient } from '@teaching-engine/database';
+import { PrismaClient as DatabasePrismaClient } from '@teaching-engine/database';
 
-// Re-export everything from database package (including Prisma namespace)
-export * from '@teaching-engine/database';
+// Re-export everything from database package except PrismaClient and prisma
+export {
+  Prisma,
+  type User,
+  type Organization,
+  type UserRole,
+  type CurriculumExpectation,
+  type LongRangePlan,
+  type UnitPlan,
+  type ETFOLessonPlan,
+  type DaybookEntry,
+  type SubstitutePlan,
+  type Newsletter,
+  type CalendarEvent,
+  type Notification,
+  type NotificationType,
+  type ApiKey,
+  type Template,
+  type ActivityCollection,
+  type AuditLog,
+  type SentryTransaction,
+  type SentrySpan,
+  type Alert,
+  type MetricSnapshot
+} from '@teaching-engine/database';
 
 // Create singleton instance for server usage
 const globalForPrisma = globalThis as unknown as {
-  prisma: InstanceType<typeof PrismaClient> | undefined;
-  testPrismaClient: InstanceType<typeof PrismaClient> | undefined;
+  prisma: InstanceType<typeof DatabasePrismaClient> | undefined;
+  testPrismaClient: InstanceType<typeof DatabasePrismaClient> | undefined;
 };
 
 // In test environment, use the test client if available
@@ -20,17 +43,17 @@ const getPrisma = () => {
   }
   return (
     globalForPrisma.prisma ??
-    new PrismaClient({
+    new DatabasePrismaClient({
       log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
     })
   );
 };
 
 // Create a proxy to always use the current client
-export const prisma = new Proxy({} as InstanceType<typeof PrismaClient>, {
+export const prisma = new Proxy({} as InstanceType<typeof DatabasePrismaClient>, {
   get(_target, prop) {
     const client = getPrisma();
-    return client[prop as keyof InstanceType<typeof PrismaClient>];
+    return client[prop as keyof InstanceType<typeof DatabasePrismaClient>];
   },
   has(_target, prop) {
     const client = getPrisma();
@@ -42,5 +65,5 @@ if (process.env.NODE_ENV !== 'production' && !isTestEnvironment) {
   globalForPrisma.prisma = getPrisma();
 }
 
-// Re-export PrismaClient
-export { PrismaClient };
+// Export PrismaClient with our own name to avoid conflicts
+export { DatabasePrismaClient as PrismaClient };

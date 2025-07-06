@@ -1,7 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { z } from 'zod';
 import { Prisma } from '@teaching-engine/database';
-
 // Note: Authentication is handled at the route mounting level in index.ts
 import { endOfDay, parseISO } from 'date-fns';
 

@@ -2,7 +2,6 @@ import express, { Request, Response } from 'express';
 import multer from 'multer';
 
 import { curriculumImportService } from '../services';
-
 // Clustering service removed - over-engineered for single-teacher use
 import logger from '../logger';
 

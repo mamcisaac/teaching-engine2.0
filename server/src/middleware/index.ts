@@ -1,9 +1,19 @@
 // Centralized middleware exports
 
+// Import dependencies first
+import { Application, Request, Response } from 'express';
+
 // Core middleware modules
 export * from './core/composer';
 export * from './core/error';
-export * from './core/logging';
+export {
+  requestLoggingMiddleware,
+  auditLog,
+  auditMiddleware,
+  performanceLoggingMiddleware,
+  developmentLoggingMiddleware,
+  type AuditEvent
+} from './core/logging';
 export * from './core/security';
 export * from './core/validation';
 
@@ -16,7 +26,12 @@ export * from './cache';
 
 // Auth subdirectory exports - but not authenticate which is exported above
 export * from './auth/jwt';
-export * from './auth/middleware';
+export {
+  ForbiddenError,
+  authorize,
+  optionalAuthenticate,
+  requireOrganization
+} from './auth/middleware';
 export * from './auth/password';
 // Note: session.ts doesn't exist, removed export
 export * from './auth/strategies';
@@ -25,21 +40,14 @@ export * from './auth/types';
 // Rate limit subdirectory exports
 export * from './rateLimit';
 
-// Import from core modules
+// Import and re-export AuditEventType only once
 import { AuditEventType } from './auditLogger';
-
-// Re-export for convenience
-export {
-  AuditEventType,
-};
-
-// Helper to apply middleware to Express app
-import { Application, Request, Response } from 'express';
-
 import { middleware } from './chains';
 import { applySecurityMiddleware } from './core/security';
 import { errorLoggingMiddleware, errorHandlerMiddleware, notFoundHandler } from './core/error';
 import { rateLimiters } from './rateLimit';
+
+export { AuditEventType };
 
 export const applyMiddleware = (app: Application): void => {
   // Apply security middleware
