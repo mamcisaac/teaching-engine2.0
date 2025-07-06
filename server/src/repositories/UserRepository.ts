@@ -1,16 +1,22 @@
-import { User, Prisma } from '@prisma/client';
+import { User, Prisma, PrismaClient } from '@prisma/client';
 import { BaseRepository } from './base/BaseRepository';
 import { hashPassword } from '../utils/auth';
-import { logger } from '../utils/logger';
+import logger from '../logger';
 
-export interface UserWithoutPassword extends Omit<User, 'password'> {}
+export interface UserWithoutPassword {
+  id: number;
+  email: string;
+  name: string;
+  role: string;
+  preferredLanguage: string;
+}
 
 export class UserRepository extends BaseRepository<
   User,
   Prisma.UserCreateInput,
   Prisma.UserUpdateInput
 > {
-  constructor(prisma: Prisma.PrismaClient) {
+  constructor(prisma: PrismaClient) {
     super(prisma, 'user');
   }
 
@@ -35,15 +41,7 @@ export class UserRepository extends BaseRepository<
           email: true,
           name: true,
           role: true,
-          isActive: true,
-          grade: true,
-          division: true,
-          province: true,
-          lastLogin: true,
-          createdAt: true,
-          updatedAt: true,
-          onboardingCompleted: true,
-          settings: true,
+          preferredLanguage: true,
         },
       });
       return user;
@@ -73,15 +71,7 @@ export class UserRepository extends BaseRepository<
           email: true,
           name: true,
           role: true,
-          isActive: true,
-          grade: true,
-          division: true,
-          province: true,
-          lastLogin: true,
-          createdAt: true,
-          updatedAt: true,
-          onboardingCompleted: true,
-          settings: true,
+          preferredLanguage: true,
         },
       });
       logger.info(`Created user with email: ${user.email}`);
@@ -106,45 +96,8 @@ export class UserRepository extends BaseRepository<
     }
   }
 
-  async updateLastLogin(userId: number): Promise<void> {
-    try {
-      await this.model.update({
-        where: { id: userId },
-        data: { lastLogin: new Date() },
-      });
-    } catch (error) {
-      logger.error('Error updating last login:', error);
-      throw error;
-    }
-  }
 
-  async updateOnboardingStatus(userId: number, completed: boolean): Promise<void> {
-    try {
-      await this.model.update({
-        where: { id: userId },
-        data: { onboardingCompleted: completed },
-      });
-      logger.info(`Updated onboarding status for user id: ${userId}`);
-    } catch (error) {
-      logger.error('Error updating onboarding status:', error);
-      throw error;
-    }
-  }
 
-  async updateSettings(userId: number, settings: Record<string, unknown>): Promise<void> {
-    try {
-      await this.model.update({
-        where: { id: userId },
-        data: {
-          settings: settings as Prisma.JsonValue,
-        },
-      });
-      logger.info(`Updated settings for user id: ${userId}`);
-    } catch (error) {
-      logger.error('Error updating settings:', error);
-      throw error;
-    }
-  }
 
   async findActiveUsers(pagination?: {
     skip?: number;
@@ -152,25 +105,16 @@ export class UserRepository extends BaseRepository<
   }): Promise<UserWithoutPassword[]> {
     try {
       const users = await this.model.findMany({
-        where: { isActive: true },
         select: {
           id: true,
           email: true,
           name: true,
           role: true,
-          isActive: true,
-          grade: true,
-          division: true,
-          province: true,
-          lastLogin: true,
-          createdAt: true,
-          updatedAt: true,
-          onboardingCompleted: true,
-          settings: true,
+          preferredLanguage: true,
         },
         skip: pagination?.skip,
         take: pagination?.take,
-        orderBy: { createdAt: 'desc' },
+        orderBy: { id: 'desc' },
       });
       return users;
     } catch (error) {
@@ -179,29 +123,4 @@ export class UserRepository extends BaseRepository<
     }
   }
 
-  async deactivateUser(userId: number): Promise<void> {
-    try {
-      await this.model.update({
-        where: { id: userId },
-        data: { isActive: false },
-      });
-      logger.info(`Deactivated user id: ${userId}`);
-    } catch (error) {
-      logger.error('Error deactivating user:', error);
-      throw error;
-    }
-  }
-
-  async activateUser(userId: number): Promise<void> {
-    try {
-      await this.model.update({
-        where: { id: userId },
-        data: { isActive: true },
-      });
-      logger.info(`Activated user id: ${userId}`);
-    } catch (error) {
-      logger.error('Error activating user:', error);
-      throw error;
-    }
-  }
 }

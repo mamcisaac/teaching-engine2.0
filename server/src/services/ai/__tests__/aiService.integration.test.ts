@@ -7,7 +7,7 @@
 import { describe, test, expect, beforeAll, afterAll } from '@jest/globals';
 import { PrismaClient } from '@prisma/client';
 import { AIService } from '../aiService';
-import { logger } from '../../../utils/logger';
+import logger from '../../../logger';
 
 // Real database connection for tests
 const prisma = new PrismaClient({

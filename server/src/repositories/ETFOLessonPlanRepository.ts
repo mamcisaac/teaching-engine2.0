@@ -1,32 +1,53 @@
-import { ETFOLessonPlan, Prisma } from '@prisma/client';
-import { BaseRepository } from './base/BaseRepository';
-import { logger } from '../utils/logger';
+import { ETFOLessonPlan, Prisma, PrismaClient } from '@prisma/client';
+import logger from '../logger';
 
 export interface ETFOLessonPlanWithRelations extends ETFOLessonPlan {
-  user?: {
-    id: number;
-    name: string;
-    email: string;
+  unitPlan?: {
+    id: string;
+    title: string;
+    longRangePlan?: {
+      id: string;
+      title: string;
+      subject: string;
+      grade: number;
+    };
   };
   expectations?: {
-    id: number;
+    lessonPlanId: string;
+    expectationId: string;
     expectation: {
-      id: number;
-      expectation: string;
-      subject: string;
-      grade: string;
+      code: string;
+      description: string;
       strand: string;
+      substrand?: string | null;
     };
+  }[];
+  resources?: {
+    id: string;
+    title: string;
+    url?: string | null;
+    type: string;
+    content?: string | null;
   }[];
 }
 
-export class ETFOLessonPlanRepository extends BaseRepository<
-  ETFOLessonPlan,
-  Prisma.ETFOLessonPlanCreateInput,
-  Prisma.ETFOLessonPlanUpdateInput
-> {
-  constructor(prisma: Prisma.PrismaClient) {
-    super(prisma, 'eTFOLessonPlan');
+export class ETFOLessonPlanRepository {
+  protected prisma: PrismaClient;
+
+  constructor(prisma: PrismaClient) {
+    this.prisma = prisma;
+  }
+
+  async findById(id: string): Promise<ETFOLessonPlan | null> {
+    try {
+      const result = await this.prisma.eTFOLessonPlan.findUnique({
+        where: { id },
+      });
+      return result;
+    } catch (error) {
+      logger.error('Error finding ETFO lesson plan by id:', error);
+      throw error;
+    }
   }
 
   async findByUserId(
@@ -40,28 +61,45 @@ export class ETFOLessonPlanRepository extends BaseRepository<
     try {
       const { includeRelations = false, skip = 0, take = 20 } = options || {};
 
-      const plans = await this.model.findMany({
+      const plans = await this.prisma.eTFOLessonPlan.findMany({
         where: { userId },
         include: includeRelations
           ? {
-              user: {
+              unitPlan: {
                 select: {
                   id: true,
-                  name: true,
-                  email: true,
+                  title: true,
+                  longRangePlan: {
+                    select: {
+                      id: true,
+                      title: true,
+                      subject: true,
+                      grade: true,
+                    },
+                  },
                 },
               },
               expectations: {
-                include: {
+                select: {
+                  lessonPlanId: true,
+                  expectationId: true,
                   expectation: {
                     select: {
-                      id: true,
-                      expectation: true,
-                      subject: true,
-                      grade: true,
+                      code: true,
+                      description: true,
                       strand: true,
+                      substrand: true,
                     },
                   },
+                },
+              },
+              resources: {
+                select: {
+                  id: true,
+                  title: true,
+                  url: true,
+                  type: true,
+                  content: true,
                 },
               },
             }
@@ -78,29 +116,46 @@ export class ETFOLessonPlanRepository extends BaseRepository<
     }
   }
 
-  async findByIdWithRelations(id: number): Promise<ETFOLessonPlanWithRelations | null> {
+  async findByIdWithRelations(id: string): Promise<ETFOLessonPlanWithRelations | null> {
     try {
-      const plan = await this.model.findUnique({
+      const plan = await this.prisma.eTFOLessonPlan.findUnique({
         where: { id },
         include: {
-          user: {
+          unitPlan: {
             select: {
               id: true,
-              name: true,
-              email: true,
+              title: true,
+              longRangePlan: {
+                select: {
+                  id: true,
+                  title: true,
+                  subject: true,
+                  grade: true,
+                },
+              },
             },
           },
           expectations: {
-            include: {
+            select: {
+              lessonPlanId: true,
+              expectationId: true,
               expectation: {
                 select: {
-                  id: true,
-                  expectation: true,
-                  subject: true,
-                  grade: true,
+                  code: true,
+                  description: true,
                   strand: true,
+                  substrand: true,
                 },
               },
+            },
+          },
+          resources: {
+            select: {
+              id: true,
+              title: true,
+              url: true,
+              type: true,
+              content: true,
             },
           },
         },
@@ -115,10 +170,10 @@ export class ETFOLessonPlanRepository extends BaseRepository<
 
   async createWithExpectations(
     data: Prisma.ETFOLessonPlanCreateInput,
-    expectationIds: number[],
+    expectationIds: string[],
   ): Promise<ETFOLessonPlanWithRelations> {
     try {
-      const plan = await this.prisma.$transaction(async (tx) => {
+      const plan = await this.prisma.$transaction(async (tx: PrismaClient) => {
         // Create the lesson plan
         const createdPlan = await tx.eTFOLessonPlan.create({
           data,
@@ -138,24 +193,41 @@ export class ETFOLessonPlanRepository extends BaseRepository<
         return tx.eTFOLessonPlan.findUnique({
           where: { id: createdPlan.id },
           include: {
-            user: {
+            unitPlan: {
               select: {
                 id: true,
-                name: true,
-                email: true,
+                title: true,
+                longRangePlan: {
+                  select: {
+                    id: true,
+                    title: true,
+                    subject: true,
+                    grade: true,
+                  },
+                },
               },
             },
             expectations: {
-              include: {
+              select: {
+                lessonPlanId: true,
+                expectationId: true,
                 expectation: {
                   select: {
-                    id: true,
-                    expectation: true,
-                    subject: true,
-                    grade: true,
+                    code: true,
+                    description: true,
                     strand: true,
+                    substrand: true,
                   },
                 },
+              },
+            },
+            resources: {
+              select: {
+                id: true,
+                title: true,
+                url: true,
+                type: true,
+                content: true,
               },
             },
           },
@@ -170,13 +242,30 @@ export class ETFOLessonPlanRepository extends BaseRepository<
     }
   }
 
-  async updateWithExpectations(
-    id: number,
+  async update(
+    id: string,
     data: Prisma.ETFOLessonPlanUpdateInput,
-    expectationIds?: number[],
+  ): Promise<ETFOLessonPlan> {
+    try {
+      const result = await this.prisma.eTFOLessonPlan.update({
+        where: { id },
+        data,
+      });
+      logger.info(`Updated ETFO lesson plan with id: ${id}`);
+      return result;
+    } catch (error) {
+      logger.error('Error updating ETFO lesson plan:', error);
+      throw error;
+    }
+  }
+
+  async updateWithExpectations(
+    id: string,
+    data: Prisma.ETFOLessonPlanUpdateInput,
+    expectationIds?: string[],
   ): Promise<ETFOLessonPlanWithRelations> {
     try {
-      const plan = await this.prisma.$transaction(async (tx) => {
+      const plan = await this.prisma.$transaction(async (tx: PrismaClient) => {
         // Update the lesson plan
         await tx.eTFOLessonPlan.update({
           where: { id },
@@ -205,24 +294,41 @@ export class ETFOLessonPlanRepository extends BaseRepository<
         return tx.eTFOLessonPlan.findUnique({
           where: { id },
           include: {
-            user: {
+            unitPlan: {
               select: {
                 id: true,
-                name: true,
-                email: true,
+                title: true,
+                longRangePlan: {
+                  select: {
+                    id: true,
+                    title: true,
+                    subject: true,
+                    grade: true,
+                  },
+                },
               },
             },
             expectations: {
-              include: {
+              select: {
+                lessonPlanId: true,
+                expectationId: true,
                 expectation: {
                   select: {
-                    id: true,
-                    expectation: true,
-                    subject: true,
-                    grade: true,
+                    code: true,
+                    description: true,
                     strand: true,
+                    substrand: true,
                   },
                 },
+              },
+            },
+            resources: {
+              select: {
+                id: true,
+                title: true,
+                url: true,
+                type: true,
+                content: true,
               },
             },
           },
@@ -233,6 +339,29 @@ export class ETFOLessonPlanRepository extends BaseRepository<
       return plan!;
     } catch (error) {
       logger.error('Error updating ETFO lesson plan with expectations:', error);
+      throw error;
+    }
+  }
+
+  async delete(id: string): Promise<ETFOLessonPlan> {
+    try {
+      const result = await this.prisma.eTFOLessonPlan.delete({
+        where: { id },
+      });
+      logger.info(`Deleted ETFO lesson plan with id: ${id}`);
+      return result;
+    } catch (error) {
+      logger.error('Error deleting ETFO lesson plan:', error);
+      throw error;
+    }
+  }
+
+  async count(where?: Prisma.ETFOLessonPlanWhereInput): Promise<number> {
+    try {
+      const result = await this.prisma.eTFOLessonPlan.count({ where });
+      return result;
+    } catch (error) {
+      logger.error('Error counting ETFO lesson plans:', error);
       throw error;
     }
   }
@@ -248,28 +377,28 @@ export class ETFOLessonPlanRepository extends BaseRepository<
     try {
       const { skip = 0, take = 20 } = options || {};
 
-      const plans = await this.model.findMany({
+      const plans = await this.prisma.eTFOLessonPlan.findMany({
         where: {
           userId,
           OR: [
-            { title: { contains: searchTerm, mode: 'insensitive' } },
-            { threeBigIdeas: { contains: searchTerm, mode: 'insensitive' } },
-            { overallExpectations: { contains: searchTerm, mode: 'insensitive' } },
-            { specificExpectations: { contains: searchTerm, mode: 'insensitive' } },
-            { lessonOverview: { contains: searchTerm, mode: 'insensitive' } },
-            { assessmentStrategies: { contains: searchTerm, mode: 'insensitive' } },
+            { title: { contains: searchTerm } },
+            { mindsOn: { contains: searchTerm } },
+            { action: { contains: searchTerm } },
+            { consolidation: { contains: searchTerm } },
+            { learningGoals: { contains: searchTerm } },
           ],
         },
         include: {
           expectations: {
-            include: {
+            select: {
+              lessonPlanId: true,
+              expectationId: true,
               expectation: {
                 select: {
-                  id: true,
-                  expectation: true,
-                  subject: true,
-                  grade: true,
+                  code: true,
+                  description: true,
                   strand: true,
+                  substrand: true,
                 },
               },
             },
@@ -283,36 +412,6 @@ export class ETFOLessonPlanRepository extends BaseRepository<
       return plans;
     } catch (error) {
       logger.error('Error searching ETFO lesson plans:', error);
-      throw error;
-    }
-  }
-
-  async duplicatePlan(id: number, userId: number): Promise<ETFOLessonPlanWithRelations> {
-    try {
-      const originalPlan = await this.findByIdWithRelations(id);
-
-      if (!originalPlan) {
-        throw new Error('Original plan not found');
-      }
-
-      const expectationIds = originalPlan.expectations?.map((e) => e.expectation.id) || [];
-
-      const duplicatedPlan = await this.createWithExpectations(
-        {
-          ...originalPlan,
-          id: undefined,
-          userId,
-          title: `${originalPlan.title} (Copy)`,
-          createdAt: undefined,
-          updatedAt: undefined,
-        } as Prisma.ETFOLessonPlanCreateInput,
-        expectationIds,
-      );
-
-      logger.info(`Duplicated ETFO lesson plan ${id} to ${duplicatedPlan.id}`);
-      return duplicatedPlan;
-    } catch (error) {
-      logger.error('Error duplicating ETFO lesson plan:', error);
       throw error;
     }
   }

@@ -305,7 +305,7 @@ export function generatePaginationCacheKey(
   };
 
   const sortedKeys = Object.keys(params).sort();
-  const keyParts = sortedKeys.map((key) => `${key}:${params[key]}`);
+  const keyParts = sortedKeys.map((key) => `${key}:${(params as Record<string, unknown>)[key]}`);
 
   return `pagination:${entity}:${keyParts.join(':')}`;
 }

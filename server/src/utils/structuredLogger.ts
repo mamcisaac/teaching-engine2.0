@@ -52,23 +52,23 @@ const logFormat = winston.format.combine(
       level: info.level,
       message: info.message,
       correlationId: context?.correlationId || 'no-correlation-id',
-      ...(context?.userId && { userId: context.userId }),
-      ...(context?.requestId && { requestId: context.requestId }),
-      ...(context?.sessionId && { sessionId: context.sessionId }),
-      ...(info.duration && { duration: info.duration }),
-      ...(info.meta && { meta: info.meta }),
-      ...(info.error && {
+      ...(context?.userId ? { userId: context.userId } : {}),
+      ...(context?.requestId ? { requestId: context.requestId } : {}),
+      ...(context?.sessionId ? { sessionId: context.sessionId } : {}),
+      ...(info.duration ? { duration: info.duration } : {}),
+      ...(info.meta ? { meta: info.meta } : {}),
+      ...(info.error && typeof info.error === 'object' && 'message' in info.error ? {
         error: {
-          message: info.error.message,
-          stack: info.error.stack,
-          code: info.error.code,
+          message: (info.error as Error).message,
+          stack: (info.error as Error).stack,
+          code: (info.error as { code?: string }).code,
         },
-      }),
+      } : {}),
     };
 
     // Add trace context if available
     if (context?.traceId) {
-      log.trace = {
+      (log as Record<string, unknown>).trace = {
         traceId: context.traceId,
         spanId: context.spanId,
         parentSpanId: context.parentSpanId,
@@ -136,7 +136,7 @@ export class StructuredLogger {
     logger.log(level, message, {
       meta,
       duration,
-      ...(meta?.error && { error: meta.error }),
+      ...(meta?.error ? { error: meta.error } : {}),
     });
   }
 
@@ -179,7 +179,7 @@ export class StructuredLogger {
       get(target, prop) {
         if (typeof target[prop as keyof StructuredLogger] === 'function') {
           return (...args: unknown[]) => {
-            return asyncLocalStorage.run(childContext, () => {
+            return asyncLocalStorage.run(childContext as LogContext, () => {
               return (target[prop as keyof StructuredLogger] as (...args: unknown[]) => unknown)(
                 ...args,
               );
@@ -274,7 +274,7 @@ export function correlationMiddleware(req: Request, res: Response, next: NextFun
     res.send = function (data: unknown) {
       res.send = originalSend;
 
-      const duration = Math.round(performance.now() - context.startTime);
+      const duration = context.startTime ? Math.round(performance.now() - context.startTime) : 0;
 
       structuredLogger.http(`${req.method} ${req.path} ${res.statusCode}`, {
         statusCode: res.statusCode,

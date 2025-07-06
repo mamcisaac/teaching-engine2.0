@@ -42,10 +42,10 @@ export class CurriculumExpectationRepository {
       if (query) {
         (where.AND as Prisma.CurriculumExpectationWhereInput[]).push({
           OR: [
-            { code: { contains: query, mode: 'insensitive' } },
-            { description: { contains: query, mode: 'insensitive' } },
-            { strand: { contains: query, mode: 'insensitive' } },
-            { substrand: { contains: query, mode: 'insensitive' } },
+            { code: { contains: query } },
+            { description: { contains: query } },
+            { strand: { contains: query } },
+            { substrand: { contains: query } },
           ],
         });
       }
@@ -57,10 +57,10 @@ export class CurriculumExpectationRepository {
         });
       }
 
-      // Filter by grades
+      // Filter by grades  
       if (grades.length > 0) {
         (where.AND as Prisma.CurriculumExpectationWhereInput[]).push({
-          grade: { in: grades },
+          grade: { in: grades.map(g => parseInt(g.toString())) },
         });
       }
 
@@ -71,17 +71,17 @@ export class CurriculumExpectationRepository {
         });
       }
 
-      // Filter by categories
+      // Filter by categories (using substrand as equivalent)
       if (categories.length > 0) {
         (where.AND as Prisma.CurriculumExpectationWhereInput[]).push({
-          category: { in: categories },
+          substrand: { in: categories },
         });
       }
 
-      // Filter by subcategories
+      // Filter by subcategories (using substrand as equivalent)
       if (subcategories.length > 0) {
         (where.AND as Prisma.CurriculumExpectationWhereInput[]).push({
-          subcategory: { in: subcategories },
+          substrand: { in: subcategories },
         });
       }
 
@@ -95,7 +95,7 @@ export class CurriculumExpectationRepository {
           where,
           skip,
           take,
-          orderBy: [{ subject: 'asc' }, { grade: 'asc' }, { strand: 'asc' }, { category: 'asc' }],
+          orderBy: [{ subject: 'asc' }, { grade: 'asc' }, { strand: 'asc' }, { substrand: 'asc' }],
         }),
         this.model.count({ where }),
       ]);
@@ -130,9 +130,9 @@ export class CurriculumExpectationRepository {
       const expectations = await this.model.findMany({
         where: {
           subject,
-          grade,
+          grade: parseInt(grade.toString()),
         },
-        orderBy: [{ strand: 'asc' }, { category: 'asc' }, { subcategory: 'asc' }],
+        orderBy: [{ strand: 'asc' }, { substrand: 'asc' }, { code: 'asc' }],
       });
       return expectations;
     } catch (error) {
@@ -182,7 +182,6 @@ export class CurriculumExpectationRepository {
     try {
       const result = await this.model.createMany({
         data: expectations,
-        skipDuplicates: true,
       });
       logger.info(`Bulk created ${result.count} curriculum expectations`);
       return result.count;
@@ -197,7 +196,7 @@ export class CurriculumExpectationRepository {
       const result = await this.model.deleteMany({
         where: {
           subject,
-          grade,
+          grade: parseInt(grade.toString()),
         },
       });
       logger.info(`Deleted ${result.count} expectations for ${subject} grade ${grade}`);

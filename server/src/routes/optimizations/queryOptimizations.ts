@@ -147,7 +147,8 @@ export const optimizedIncludes = {
     },
     expectations: {
       select: {
-        id: true,
+        lessonPlanId: true,
+        expectationId: true,
         expectation: {
           select: optimizedSelects.expectationMinimal,
         },
@@ -156,10 +157,10 @@ export const optimizedIncludes = {
     resources: {
       select: {
         id: true,
-        name: true,
+        title: true,
         url: true,
         type: true,
-        description: true,
+        content: true,
       },
     },
   },

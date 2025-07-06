@@ -67,8 +67,8 @@ function parseArgs(args: unknown[]): [unknown, LogMeta?] {
 
   // If last arg looks like metadata, separate it
   const lastArg = args[args.length - 1];
-  if (typeof lastArg === 'object' && !Array.isArray(lastArg) && !(lastArg instanceof Error)) {
-    return [args.slice(0, -1)[0], lastArg];
+  if (typeof lastArg === 'object' && lastArg !== null && !Array.isArray(lastArg) && !(lastArg instanceof Error)) {
+    return [args.slice(0, -1)[0], lastArg as LogMeta];
   }
 
   return [args[0], { additionalArgs: args.slice(1) }];
@@ -153,19 +153,19 @@ export function requestLoggerMiddleware(
 
   // Helper methods
   req.logInfo = (message: string, meta?: LogMeta) => {
-    req.logger.info(message, meta);
+    req.logger!.info(message, meta);
   };
 
   req.logError = (message: string, error: Error, meta?: LogMeta) => {
-    req.logger.error(message, error, meta);
+    req.logger!.error(message, error, meta);
   };
 
   req.logWarn = (message: string, meta?: LogMeta) => {
-    req.logger.warn(message, meta);
+    req.logger!.warn(message, meta);
   };
 
   req.logDebug = (message: string, meta?: LogMeta) => {
-    req.logger.debug(message, meta);
+    req.logger!.debug(message, meta);
   };
 
   next();
@@ -191,7 +191,7 @@ export function extractCorrelationId(source: {
   }
 
   // From async context
-  if (source._correlationId) {
+  if ('_correlationId' in source && typeof source._correlationId === 'string') {
     return source._correlationId;
   }
 

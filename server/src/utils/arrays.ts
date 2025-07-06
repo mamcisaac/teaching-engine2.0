@@ -38,11 +38,11 @@ export const arrayUtils = {
   ): T[] => {
     return [...array].sort((a, b) => {
       for (const { key, order = 'asc' } of fields) {
-        const aValue = typeof key === 'function' ? key(a) : a[key];
-        const bValue = typeof key === 'function' ? key(b) : b[key];
+        const aValue = typeof key === 'function' ? key(a) : (a as any)[key];
+        const bValue = typeof key === 'function' ? key(b) : (b as any)[key];
         
-        if (aValue < bValue) return order === 'asc' ? -1 : 1;
-        if (aValue > bValue) return order === 'asc' ? 1 : -1;
+        if ((aValue as any) < (bValue as any)) return order === 'asc' ? -1 : 1;
+        if ((aValue as any) > (bValue as any)) return order === 'asc' ? 1 : -1;
       }
       return 0;
     });
@@ -135,12 +135,12 @@ export const objectUtils = {
     for (const obj of objects) {
       for (const [key, value] of Object.entries(obj)) {
         if (value && typeof value === 'object' && !Array.isArray(value)) {
-          (result as unknown)[key] = objectUtils.deepMerge(
-            (result as unknown)[key] || {},
+          (result as any)[key] = objectUtils.deepMerge(
+            (result as any)[key] || {},
             value
           );
         } else {
-          (result as unknown)[key] = value;
+          (result as any)[key] = value;
         }
       }
     }
@@ -154,7 +154,7 @@ export const objectUtils = {
     
     for (const [key, value] of Object.entries(obj)) {
       if (value !== null && value !== undefined) {
-        (result as unknown)[key] = value;
+        (result as any)[key] = value;
       }
     }
     

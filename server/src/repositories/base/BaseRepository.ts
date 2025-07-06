@@ -22,13 +22,14 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
     this.modelName = modelName;
   }
 
-  protected get model(): PrismaClient[keyof PrismaClient] {
-    return (this.prisma as PrismaClient)[this.modelName as keyof PrismaClient];
+  protected get model(): Record<string, unknown> {
+    // Access Prisma model delegate by name
+    return (this.prisma as Record<string, unknown>)[this.modelName] as Record<string, unknown>;
   }
 
   async findById(id: number): Promise<T | null> {
     try {
-      const result = await this.model.findUnique({
+      const result = await (this.model as any).findUnique({
         where: { id },
       });
       return result;
