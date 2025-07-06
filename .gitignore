@@ -101,7 +101,10 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+# dist directories for apps, but not packages
+/client/dist
+/server/dist
+/scripts/dist
 
 # Gatsby files
 .cache/
