@@ -228,9 +228,9 @@ class SmartTestRunner {
           args = ['test:e2e'];
           break;
         case 'quick':
-          // Quick smoke test
+          // Quick smoke test - run unit tests with fast settings
           command = 'pnpm';
-          args = ['--filter', 'server', 'test:unit', '--', '--testTimeout=5000', '--bail'];
+          args = ['--filter', 'server', 'test:unit'];
           break;
         default:
           command = 'pnpm';
