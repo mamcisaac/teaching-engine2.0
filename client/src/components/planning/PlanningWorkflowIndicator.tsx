@@ -1,8 +1,11 @@
+import { CheckCircle2, Circle, Lock } from 'lucide-react';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ETFOLevel, ETFO_LEVEL_PATHS, LevelProgress } from '../../hooks/useWorkflowState';
-import { CheckCircle2, Circle, Lock } from 'lucide-react';
+
 import { cn } from '@/lib/utils';
+
+import type { LevelProgress } from '../../hooks/useWorkflowState';
+import { ETFOLevel, ETFO_LEVEL_PATHS } from '../../hooks/useWorkflowState';
 import { Badge } from '../ui/Badge';
 
 interface PlanningWorkflowIndicatorProps {
@@ -39,9 +42,9 @@ export function PlanningWorkflowIndicator({
       return <Lock className="h-5 w-5 text-gray-400" />;
     } else if (level.level === currentLevel) {
       return <Circle className="h-5 w-5 text-indigo-600 animate-pulse" />;
-    } else {
+    } 
       return <Circle className="h-5 w-5 text-gray-400" />;
-    }
+    
   };
 
   const getStepStyles = (level: LevelProgress) => {
@@ -51,14 +54,12 @@ export function PlanningWorkflowIndicator({
       return 'border-gray-300 bg-gray-50';
     } else if (level.level === currentLevel) {
       return 'border-indigo-600 bg-indigo-50';
-    } else {
+    } 
       return 'border-gray-300 bg-white hover:bg-gray-50';
-    }
+    
   };
 
-  const canNavigate = (level: LevelProgress) => {
-    return level.isAccessible || level.isComplete;
-  };
+  const canNavigate = (level: LevelProgress) => level.isAccessible || level.isComplete;
 
   return (
     <div className={cn('bg-white rounded-lg shadow-sm p-6', className)}>
@@ -80,7 +81,7 @@ export function PlanningWorkflowIndicator({
                     <p className="text-xs text-gray-500 mb-1">Required:</p>
                     <div className="flex flex-wrap gap-1">
                       {level.requiredFields.map((field) => (
-                        <Badge key={field} variant="outline" className="text-xs">
+                        <Badge key={field} className="text-xs" variant="outline">
                           {field}
                         </Badge>
                       ))}
@@ -91,7 +92,7 @@ export function PlanningWorkflowIndicator({
 
               <div className="flex-shrink-0">
                 {level.isComplete ? (
-                  <Badge variant="default" className="bg-green-600">
+                  <Badge className="bg-green-600" variant="default">
                     Complete
                   </Badge>
                 ) : level.isAccessible ? (
@@ -107,12 +108,12 @@ export function PlanningWorkflowIndicator({
             <div key={level.level} className="relative">
               {canNavigate(level) ? (
                 <Link
-                  to={ETFO_LEVEL_PATHS[level.level] as string}
                   className={cn(
                     'flex items-start gap-4 p-4 rounded-lg border-2 transition-all',
                     getStepStyles(level),
                     'cursor-pointer',
                   )}
+                  to={ETFO_LEVEL_PATHS[level.level]}
                 >
                   {stepContent}
                 </Link>

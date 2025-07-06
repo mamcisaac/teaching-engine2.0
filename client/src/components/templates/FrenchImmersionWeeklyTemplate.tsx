@@ -1,8 +1,9 @@
-import React from 'react';
-import { Card } from '../ui/card';
-import { Button } from '../ui/Button';
 import { Calendar, BookOpen, Target, Users, Lightbulb } from 'lucide-react';
-import { BilingualVocabulary, LanguageWeekFocus } from '../../types/frenchImmersion';
+import React from 'react';
+
+import type { BilingualVocabulary, LanguageWeekFocus } from '../../types/frenchImmersion';
+import { Button } from '../ui/Button';
+import { Card } from '../ui/card';
 
 interface WeeklyPlanData {
   weekNumber: number;
@@ -97,7 +98,7 @@ export default function FrenchImmersionWeeklyTemplate({
   const daysFr = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'];
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form className="space-y-6" onSubmit={handleSubmit}>
       {/* Header */}
       <Card className="bg-gradient-to-r from-blue-50 to-red-50 p-6">
         <div className="flex items-center justify-between">
@@ -126,22 +127,26 @@ export default function FrenchImmersionWeeklyTemplate({
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Theme (English)</label>
             <input
-              type="text"
-              value={weekData.theme}
-              onChange={(e) => setWeekData({ ...weekData, theme: e.target.value })}
               className="w-full p-3 border rounded-lg"
               placeholder="e.g., My Family"
+              type="text"
+              value={weekData.theme}
+              onChange={(e) => {
+ setWeekData({ ...weekData, theme: e.target.value }); 
+}}
             />
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Thème (français)</label>
             <input
-              type="text"
-              value={weekData.themeFr}
-              onChange={(e) => setWeekData({ ...weekData, themeFr: e.target.value })}
               className="w-full p-3 border rounded-lg"
               placeholder="ex: Ma famille"
+              type="text"
+              value={weekData.themeFr}
+              onChange={(e) => {
+ setWeekData({ ...weekData, themeFr: e.target.value }); 
+}}
             />
           </div>
         </div>
@@ -162,6 +167,8 @@ export default function FrenchImmersionWeeklyTemplate({
               {weekData.weekFocus.vocabulary.map((vocab, index) => (
                 <div key={index} className="grid grid-cols-4 gap-2">
                   <input
+                    className="p-2 border rounded"
+                    placeholder="English"
                     type="text"
                     value={vocab.english}
                     onChange={(e) => {
@@ -172,10 +179,10 @@ export default function FrenchImmersionWeeklyTemplate({
                         weekFocus: { ...weekData.weekFocus, vocabulary: updated },
                       });
                     }}
-                    placeholder="English"
-                    className="p-2 border rounded"
                   />
                   <input
+                    className="p-2 border rounded"
+                    placeholder="Français"
                     type="text"
                     value={vocab.french}
                     onChange={(e) => {
@@ -186,10 +193,10 @@ export default function FrenchImmersionWeeklyTemplate({
                         weekFocus: { ...weekData.weekFocus, vocabulary: updated },
                       });
                     }}
-                    placeholder="Français"
-                    className="p-2 border rounded"
                   />
                   <input
+                    className="p-2 border rounded"
+                    placeholder="Pronunciation"
                     type="text"
                     value={vocab.pronunciation || ''}
                     onChange={(e) => {
@@ -200,10 +207,10 @@ export default function FrenchImmersionWeeklyTemplate({
                         weekFocus: { ...weekData.weekFocus, vocabulary: updated },
                       });
                     }}
-                    placeholder="Pronunciation"
-                    className="p-2 border rounded"
                   />
                   <input
+                    className="p-2 border rounded"
+                    placeholder="Context"
                     type="text"
                     value={vocab.context || ''}
                     onChange={(e) => {
@@ -214,12 +221,10 @@ export default function FrenchImmersionWeeklyTemplate({
                         weekFocus: { ...weekData.weekFocus, vocabulary: updated },
                       });
                     }}
-                    placeholder="Context"
-                    className="p-2 border rounded"
                   />
                 </div>
               ))}
-              <Button type="button" variant="outline" size="sm" onClick={addVocabularyToWeek}>
+              <Button size="sm" type="button" variant="outline" onClick={addVocabularyToWeek}>
                 + Add Vocabulary
               </Button>
             </div>
@@ -231,21 +236,22 @@ export default function FrenchImmersionWeeklyTemplate({
               Key Language Structures
             </label>
             <textarea
+              className="w-full p-3 border rounded-lg"
+              placeholder="C'est mon/ma...
+J'ai...
+Il/Elle s'appelle..."
+              rows={3}
               value={weekData.weekFocus.structures.join('\n')}
-              onChange={(e) =>
-                setWeekData({
+              onChange={(e) => {
+ setWeekData({
                   ...weekData,
                   weekFocus: {
                     ...weekData.weekFocus,
                     structures: e.target.value.split('\n').filter((_s) => _s.trim()),
                   },
-                })
+                }); 
+}
               }
-              className="w-full p-3 border rounded-lg"
-              rows={3}
-              placeholder="C'est mon/ma...
-J'ai...
-Il/Elle s'appelle..."
             />
           </div>
 
@@ -255,21 +261,22 @@ Il/Elle s'appelle..."
               Communication Goals
             </label>
             <textarea
+              className="w-full p-3 border rounded-lg"
+              placeholder="Introduce family members in French
+Ask and answer simple questions about family
+Use possessive adjectives correctly"
+              rows={3}
               value={weekData.weekFocus.communicationGoals.join('\n')}
-              onChange={(e) =>
-                setWeekData({
+              onChange={(e) => {
+ setWeekData({
                   ...weekData,
                   weekFocus: {
                     ...weekData.weekFocus,
                     communicationGoals: e.target.value.split('\n').filter((_s) => _s.trim()),
                   },
-                })
+                }); 
+}
               }
-              className="w-full p-3 border rounded-lg"
-              rows={3}
-              placeholder="Introduce family members in French
-Ask and answer simple questions about family
-Use possessive adjectives correctly"
             />
           </div>
         </div>
@@ -294,22 +301,26 @@ Use possessive adjectives correctly"
                 <div>
                   <label className="block text-sm text-gray-600 mb-1">Daily Language Target</label>
                   <input
-                    type="text"
-                    value={dayPlan.languageTarget}
-                    onChange={(e) => updateDailyPlan(index, 'languageTarget', e.target.value)}
                     className="w-full p-2 border rounded"
                     placeholder="Introduce 'maman' and 'papa'"
+                    type="text"
+                    value={dayPlan.languageTarget}
+                    onChange={(e) => {
+ updateDailyPlan(index, 'languageTarget', e.target.value); 
+}}
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm text-gray-600 mb-1">Main Activity</label>
                   <input
-                    type="text"
-                    value={dayPlan.mainActivity}
-                    onChange={(e) => updateDailyPlan(index, 'mainActivity', e.target.value)}
                     className="w-full p-2 border rounded"
                     placeholder="Family photo sharing circle"
+                    type="text"
+                    value={dayPlan.mainActivity}
+                    onChange={(e) => {
+ updateDailyPlan(index, 'mainActivity', e.target.value); 
+}}
                   />
                 </div>
               </div>
@@ -317,20 +328,21 @@ Use possessive adjectives correctly"
               <div className="mt-3">
                 <label className="block text-sm text-gray-600 mb-1">Focus Vocabulary</label>
                 <input
+                  className="w-full p-2 border rounded"
+                  placeholder="maman, papa, famille"
                   type="text"
                   value={dayPlan.vocabulary.join(', ')}
-                  onChange={(e) =>
-                    updateDailyPlan(
+                  onChange={(e) => {
+ updateDailyPlan(
                       index,
                       'vocabulary',
                       e.target.value
                         .split(',')
                         .map((v) => v.trim())
                         .filter((v) => v),
-                    )
+                    ); 
+}
                   }
-                  className="w-full p-2 border rounded"
-                  placeholder="maman, papa, famille"
                 />
               </div>
 
@@ -340,11 +352,13 @@ Use possessive adjectives correctly"
                     Cultural Wednesday Special
                   </label>
                   <input
-                    type="text"
-                    value={dayPlan.culturalNote || ''}
-                    onChange={(e) => updateDailyPlan(index, 'culturalNote', e.target.value)}
                     className="w-full p-2 border rounded"
                     placeholder="Explore French-Canadian family traditions"
+                    type="text"
+                    value={dayPlan.culturalNote || ''}
+                    onChange={(e) => {
+ updateDailyPlan(index, 'culturalNote', e.target.value); 
+}}
                   />
                 </div>
               )}
@@ -374,9 +388,9 @@ Use possessive adjectives correctly"
                 <span className="text-xl">🔢</span> Mathematics
               </label>
               <input
-                type="text"
                 className="w-full mt-1 p-2 border rounded"
                 placeholder="Count family members in French (1-10)"
+                type="text"
               />
             </div>
 
@@ -385,9 +399,9 @@ Use possessive adjectives correctly"
                 <span className="text-xl">🔬</span> Science
               </label>
               <input
-                type="text"
                 className="w-full mt-1 p-2 border rounded"
                 placeholder="Describe family traits in French (grand/petit)"
+                type="text"
               />
             </div>
 
@@ -396,9 +410,9 @@ Use possessive adjectives correctly"
                 <span className="text-xl">🎨</span> Arts
               </label>
               <input
-                type="text"
                 className="w-full mt-1 p-2 border rounded"
                 placeholder="Create family portraits with French labels"
+                type="text"
               />
             </div>
           </div>
@@ -409,9 +423,9 @@ Use possessive adjectives correctly"
                 <span className="text-xl">📚</span> Literacy
               </label>
               <input
-                type="text"
                 className="w-full mt-1 p-2 border rounded"
                 placeholder="Read 'Ma famille' picture books"
+                type="text"
               />
             </div>
 
@@ -420,9 +434,9 @@ Use possessive adjectives correctly"
                 <span className="text-xl">🌍</span> Social Studies
               </label>
               <input
-                type="text"
                 className="w-full mt-1 p-2 border rounded"
                 placeholder="Compare families in PEI and Quebec"
+                type="text"
               />
             </div>
 
@@ -431,9 +445,9 @@ Use possessive adjectives correctly"
                 <span className="text-xl">🏃</span> Phys Ed
               </label>
               <input
-                type="text"
                 className="w-full mt-1 p-2 border rounded"
                 placeholder="Play 'Jacques a dit' (Simon Says)"
+                type="text"
               />
             </div>
           </div>
@@ -448,14 +462,16 @@ Use possessive adjectives correctly"
         </div>
 
         <textarea
-          value={weekData.assessmentFocus}
-          onChange={(e) => setWeekData({ ...weekData, assessmentFocus: e.target.value })}
           className="w-full p-3 border rounded-lg"
-          rows={3}
           placeholder="Observe oral participation in French activities
 Note pronunciation attempts and improvements
 Track vocabulary retention through games
 Document comfort level with French instructions"
+          rows={3}
+          value={weekData.assessmentFocus}
+          onChange={(e) => {
+ setWeekData({ ...weekData, assessmentFocus: e.target.value }); 
+}}
         />
 
         <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -493,18 +509,19 @@ Document comfort level with French instructions"
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">English Version</label>
             <textarea
-              value={weekData.parentUpdate.english}
-              onChange={(e) =>
-                setWeekData({
-                  ...weekData,
-                  parentUpdate: { ...weekData.parentUpdate, english: e.target.value },
-                })
-              }
               className="w-full p-3 border rounded-lg"
-              rows={4}
               placeholder="This week we are learning about families in French! 
 Your child will learn to say family member names...
 At home, you can practice by..."
+              rows={4}
+              value={weekData.parentUpdate.english}
+              onChange={(e) => {
+ setWeekData({
+                  ...weekData,
+                  parentUpdate: { ...weekData.parentUpdate, english: e.target.value },
+                }); 
+}
+              }
             />
           </div>
 
@@ -513,18 +530,19 @@ At home, you can practice by..."
               Version française
             </label>
             <textarea
-              value={weekData.parentUpdate.french}
-              onChange={(e) =>
-                setWeekData({
-                  ...weekData,
-                  parentUpdate: { ...weekData.parentUpdate, french: e.target.value },
-                })
-              }
               className="w-full p-3 border rounded-lg"
-              rows={4}
               placeholder="Cette semaine, nous apprenons sur les familles en français!
 Votre enfant apprendra à dire les noms des membres de la famille...
 À la maison, vous pouvez pratiquer en..."
+              rows={4}
+              value={weekData.parentUpdate.french}
+              onChange={(e) => {
+ setWeekData({
+                  ...weekData,
+                  parentUpdate: { ...weekData.parentUpdate, french: e.target.value },
+                }); 
+}
+              }
             />
           </div>
         </div>

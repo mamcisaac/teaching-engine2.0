@@ -1,45 +1,53 @@
+import type { UseQueryResult, UseMutationResult } from '@tanstack/react-query';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
+import type { 
+  YearPlanEntry, 
+  DailyPlan, 
+  MaterialList,
+  LessonPlan,
+  PlannerSuggestion
+} from '../../../types';
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 
 import { planningApi } from './api';
 
 // Query Hooks
-export const useYearPlan = (teacherId: number, year: number) =>
+export const useYearPlan = (teacherId: number, year: number): UseQueryResult<YearPlanEntry[]> =>
   useQuery({
     queryKey: queryKeys.planning.yearPlan(teacherId, year),
     queryFn: () => planningApi.getYearPlan(teacherId, year),
     enabled: !!teacherId && !!year,
   });
 
-export const useDailyPlan = (date: string) =>
+export const useDailyPlan = (date: string): UseQueryResult<DailyPlan> =>
   useQuery({
     queryKey: queryKeys.planning.dailyPlan(date),
     queryFn: () => planningApi.getDailyPlan(date),
     enabled: !!date,
   });
 
-export const useLessonPlan = (weekStart: string) => useQuery({
+export const useLessonPlan = (weekStart: string): UseQueryResult<LessonPlan> => useQuery({
     queryKey: queryKeys.planning.lessonPlan(weekStart),
     queryFn: () => planningApi.getLessonPlan(weekStart),
     enabled: !!weekStart,
   });
 
-export const useMaterialList = (weekStart: string) =>
+export const useMaterialList = (weekStart: string): UseQueryResult<MaterialList> =>
   useQuery({
     queryKey: queryKeys.planning.materials(weekStart),
     queryFn: () => planningApi.getMaterialList(weekStart),
     enabled: !!weekStart,
   });
 
-export const useMaterialDetails = (weekStart: string) =>
+export const useMaterialDetails = (weekStart: string): UseQueryResult<{ items: { category: string; items: string[] }[] }> =>
   useQuery({
     queryKey: queryKeys.planning.materials(weekStart),
     queryFn: () => planningApi.getMaterialDetails(weekStart),
     enabled: !!weekStart,
   });
 
-export const usePlannerSuggestions = (weekStart: string, filters?: Record<string, boolean>) =>
+export const usePlannerSuggestions = (weekStart: string, filters?: Record<string, boolean>): UseQueryResult<PlannerSuggestion[]> =>
   useQuery({
     queryKey: queryKeys.planning.suggestions(weekStart),
     queryFn: () => planningApi.getPlannerSuggestions(weekStart, filters),
@@ -47,7 +55,11 @@ export const usePlannerSuggestions = (weekStart: string, filters?: Record<string
   });
 
 // Mutation Hooks
-export const useShareYearPlan = () => useMutation({
+export const useShareYearPlan = (): UseMutationResult<
+  { success: boolean; message?: string },
+  Error,
+  { recipientEmail: string; yearPlan: YearPlanEntry[] }
+> => useMutation({
     mutationFn: planningApi.shareYearPlan,
     onSuccess: () => {
       showSuccessToast('Year plan shared successfully');
@@ -55,7 +67,7 @@ export const useShareYearPlan = () => useMutation({
     onError: (error) => handleApiError(error, 'Failed to share year plan'),
   });
 
-export const useUpdateDailyPlan = () => {
+export const useUpdateDailyPlan = (): UseMutationResult<DailyPlan, Error, DailyPlan> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -70,7 +82,11 @@ export const useUpdateDailyPlan = () => {
   });
 };
 
-export const useGenerateDailyPlan = () => {
+export const useGenerateDailyPlan = (): UseMutationResult<
+  DailyPlan,
+  Error,
+  { date: string; subjects: string[]; duration: number }
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -85,7 +101,11 @@ export const useGenerateDailyPlan = () => {
   });
 };
 
-export const useGeneratePlan = () => {
+export const useGeneratePlan = (): UseMutationResult<
+  LessonPlan,
+  Error,
+  { weekStart: string; subjects: string[]; theme?: string }
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -100,7 +120,7 @@ export const useGeneratePlan = () => {
   });
 };
 
-export const useDeleteResource = () => {
+export const useDeleteResource = (): UseMutationResult<void, Error, number> => {
   const queryClient = useQueryClient();
 
   return useMutation({

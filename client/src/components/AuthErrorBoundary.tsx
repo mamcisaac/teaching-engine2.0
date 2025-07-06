@@ -1,11 +1,15 @@
-import React, { Component, ReactNode, ErrorInfo } from 'react';
 import { AlertCircle, RefreshCw, LogIn, Wifi, WifiOff } from 'lucide-react';
+import type { ReactNode, ErrorInfo } from 'react';
+import React, { Component } from 'react';
+
+import { authService } from '../services/authService';
+import { errorReportingService } from '../services/errorReportingService';
+import logger from '../utils/logger';
+
+import { Alert, AlertDescription, AlertTitle } from './ui/alert';
 import { Button } from './ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Alert, AlertDescription, AlertTitle } from './ui/alert';
-import { authService } from '../services/authService';
-import logger from '../utils/logger';
-import { errorReportingService } from '../services/errorReportingService';
+
 interface AuthErrorBoundaryProps {
   children: ReactNode;
   fallback?: ReactNode;
@@ -111,7 +115,9 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
   }
 
   private isRetryableError(error?: Error): boolean {
-    if (!error) return false;
+    if (!error) {
+return false;
+}
 
     const message = error.message.toLowerCase();
     const retryableMessages = [
@@ -127,7 +133,9 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
   }
 
   private isNetworkError(error?: Error): boolean {
-    if (!error) return false;
+    if (!error) {
+return false;
+}
 
     const message = error.message.toLowerCase();
     return (
@@ -139,7 +147,9 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
   }
 
   private isAuthError(error?: Error): boolean {
-    if (!error) return false;
+    if (!error) {
+return false;
+}
 
     const message = error.message.toLowerCase();
     return (
@@ -151,7 +161,9 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
   }
 
   private scheduleRetry() {
-    if (this.state.retryCount >= 3) return;
+    if (this.state.retryCount >= 3) {
+return;
+}
 
     const delay = Math.min(1000 * Math.pow(2, this.state.retryCount), 10000);
 
@@ -299,7 +311,7 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
 
               <div className="flex flex-wrap gap-2">
                 {showRetryButton && (
-                  <Button onClick={this.handleManualRetry} disabled={this.state.isRetrying}>
+                  <Button disabled={this.state.isRetrying} onClick={this.handleManualRetry}>
                     <RefreshCw
                       className={`h-4 w-4 mr-2 ${this.state.isRetrying ? 'animate-spin' : ''}`}
                     />
@@ -308,13 +320,15 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
                 )}
 
                 {showLoginButton && (
-                  <Button onClick={this.handleLoginRedirect} variant="outline">
+                  <Button variant="outline" onClick={this.handleLoginRedirect}>
                     <LogIn className="h-4 w-4 mr-2" />
                     Log In Again
                   </Button>
                 )}
 
-                <Button onClick={() => window.location.reload()} variant="outline">
+                <Button variant="outline" onClick={() => {
+ window.location.reload(); 
+}}>
                   <RefreshCw className="h-4 w-4 mr-2" />
                   Refresh Page
                 </Button>
@@ -330,7 +344,7 @@ export class AuthErrorBoundary extends Component<AuthErrorBoundaryProps, AuthErr
                     {'\n\n'}
                     {this.state.error.stack}
                     {this.state.errorInfo &&
-                      '\n\nComponent Stack:\n' + this.state.errorInfo.componentStack}
+                      `\n\nComponent Stack:\n${  this.state.errorInfo.componentStack}`}
                   </pre>
                 </details>
               )}

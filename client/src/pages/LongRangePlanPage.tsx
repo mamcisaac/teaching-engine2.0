@@ -1,12 +1,14 @@
-import { apiClient } from '../api/core/client';
-import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+
+import { apiClient } from '../api/core/client';
 import Dialog from '../components/Dialog';
-import { Button } from '../components/ui/Button';
-import { useAIPlanningAssistant, AISuggestion } from '../hooks/useAIPlanningAssistant';
 import AISuggestionPanel from '../components/planning/AISuggestionPanel';
 import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
+import { Button } from '../components/ui/Button';
+import { useAIPlanningAssistant } from '../hooks/useAIPlanningAssistant';
+import type { AISuggestion } from '../hooks/useAIPlanningAssistant';
 
 interface LongRangePlan {
   id: string;
@@ -94,7 +96,7 @@ export default function LongRangePlanPage() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500" />
       </div>
     );
   }
@@ -112,14 +114,16 @@ export default function LongRangePlanPage() {
       {/* Year Selector and Actions */}
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-4">
-          <label htmlFor="year-select" className="text-sm font-medium text-gray-700">
+          <label className="text-sm font-medium text-gray-700" htmlFor="year-select">
             Academic Year:
           </label>
           <select
+            className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             id="year-select"
             value={selectedYear}
-            onChange={(e) => setSelectedYear(e.target.value)}
-            className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            onChange={(e) => {
+ setSelectedYear(e.target.value); 
+}}
           >
             {[0, 1, 2].map((offset) => {
               const year = new Date().getFullYear() - 1 + offset;
@@ -134,15 +138,17 @@ export default function LongRangePlanPage() {
 
         <div className="flex items-center gap-3">
           <BlankTemplateQuickActions
-            templateType="long-range"
             schoolInfo={{
               academicYear: selectedYear,
             }}
+            templateType="long-range"
           />
           <Button
-            onClick={() => setIsCreateModalOpen(true)}
             className="bg-indigo-600 hover:bg-indigo-700 text-white"
             data-testid="create-long-range-plan-button"
+            onClick={() => {
+ setIsCreateModalOpen(true); 
+}}
           >
             Create Long Range Plan
           </Button>
@@ -155,14 +161,14 @@ export default function LongRangePlanPage() {
           <svg
             className="mx-auto h-12 w-12 text-gray-400"
             fill="none"
-            viewBox="0 0 24 24"
             stroke="currentColor"
+            viewBox="0 0 24 24"
           >
             <path
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
             />
           </svg>
           <h3 className="mt-4 text-lg font-medium text-gray-900">No plans yet</h3>
@@ -171,9 +177,11 @@ export default function LongRangePlanPage() {
           </p>
           <div className="mt-6">
             <Button
-              onClick={() => setIsCreateModalOpen(true)}
               className="bg-indigo-600 hover:bg-indigo-700 text-white"
               data-testid="create-long-range-plan-empty-state-button"
+              onClick={() => {
+ setIsCreateModalOpen(true); 
+}}
             >
               Create Long Range Plan
             </Button>
@@ -184,8 +192,8 @@ export default function LongRangePlanPage() {
           {plans.map((plan: LongRangePlan) => (
             <Link
               key={plan.id}
-              to={`/planner/long-range/${plan.id}/units`}
               className="block bg-white rounded-lg shadow hover:shadow-lg transition-shadow border border-gray-200"
+              to={`/planner/long-range/${plan.id}/units`}
             >
               <div className="p-6">
                 <div className="flex justify-between items-start mb-4">
@@ -212,14 +220,14 @@ export default function LongRangePlanPage() {
                   <svg
                     className="h-5 w-5 text-gray-400"
                     fill="none"
-                    viewBox="0 0 24 24"
                     stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
                     <path
+                      d="M9 5l7 7-7 7"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M9 5l7 7-7 7"
                     />
                   </svg>
                 </div>
@@ -250,16 +258,18 @@ export default function LongRangePlanPage() {
         <div className="p-6 max-w-lg">
           <h3 className="text-lg font-semibold mb-4">Create Long-Range Plan</h3>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Plan Title *</label>
               <input
-                type="text"
                 required
-                value={formData.title}
-                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder="e.g., Grade 3 Mathematics Year Plan"
+                type="text"
+                value={formData.title}
+                onChange={(e) => {
+ setFormData({ ...formData, title: e.target.value }); 
+}}
               />
             </div>
 
@@ -267,21 +277,25 @@ export default function LongRangePlanPage() {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Subject *</label>
                 <input
-                  type="text"
                   required
-                  value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                   placeholder="e.g., Mathematics"
+                  type="text"
+                  value={formData.subject}
+                  onChange={(e) => {
+ setFormData({ ...formData, subject: e.target.value }); 
+}}
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Grade *</label>
                 <select
-                  value={formData.grade}
-                  onChange={(e) => setFormData({ ...formData, grade: Number(e.target.value) })}
                   className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  value={formData.grade}
+                  onChange={(e) => {
+ setFormData({ ...formData, grade: Number(e.target.value) }); 
+}}
                 >
                   {[...Array(8)].map((_, i) => (
                     <option key={i + 1} value={i + 1}>
@@ -295,9 +309,11 @@ export default function LongRangePlanPage() {
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Term</label>
               <select
-                value={formData.term}
-                onChange={(e) => setFormData({ ...formData, term: e.target.value })}
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                value={formData.term}
+                onChange={(e) => {
+ setFormData({ ...formData, term: e.target.value }); 
+}}
               >
                 <option value="Full Year">Full Year</option>
                 <option value="Term 1">Term 1 (Sep-Jan)</option>
@@ -310,28 +326,34 @@ export default function LongRangePlanPage() {
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
               <textarea
-                value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                rows={3}
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder="Brief overview of the year plan..."
+                rows={3}
+                value={formData.description}
+                onChange={(e) => {
+ setFormData({ ...formData, description: e.target.value }); 
+}}
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Learning Goals</label>
               <textarea
-                value={formData.goals}
-                onChange={(e) => setFormData({ ...formData, goals: e.target.value })}
-                rows={3}
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder="Overall learning goals for the year..."
+                rows={3}
+                value={formData.goals}
+                onChange={(e) => {
+ setFormData({ ...formData, goals: e.target.value }); 
+}}
               />
               {formData.subject && formData.grade && (
                 <button
-                  type="button"
-                  onClick={() => setShowAISuggestions(!showAISuggestions)}
                   className="mt-2 text-sm text-indigo-600 hover:text-indigo-500"
+                  type="button"
+                  onClick={() => {
+ setShowAISuggestions(!showAISuggestions); 
+}}
                 >
                   {showAISuggestions ? 'Hide' : 'Show'} AI Suggestions
                 </button>
@@ -340,24 +362,11 @@ export default function LongRangePlanPage() {
 
             {showAISuggestions && formData.subject && formData.grade && (
               <AISuggestionPanel
-                title="AI Goal Suggestions"
                 description="Get AI-powered suggestions for your long-range plan goals"
-                suggestions={aiGoalSuggestions}
+                error={generateLongRangeGoals.error}
                 isGenerating={isGenerating}
-                onGenerate={async () => {
-                  const result = await generateLongRangeGoals.mutateAsync({
-                    subject: formData.subject,
-                    grade: formData.grade,
-                    termLength: formData.term === 'Full Year' ? 40 : 20,
-                  });
-                  setAiGoalSuggestions(result);
-                }}
-                onAcceptSuggestion={(suggestion) => {
-                  setFormData({
-                    ...formData,
-                    goals: formData.goals ? `${formData.goals}\n\n${suggestion}` : suggestion,
-                  });
-                }}
+                suggestions={aiGoalSuggestions}
+                title="AI Goal Suggestions"
                 onAcceptAll={() => {
                   if (aiGoalSuggestions?.suggestions) {
                     setFormData({
@@ -366,7 +375,20 @@ export default function LongRangePlanPage() {
                     });
                   }
                 }}
-                error={generateLongRangeGoals.error}
+                onAcceptSuggestion={(suggestion) => {
+                  setFormData({
+                    ...formData,
+                    goals: formData.goals ? `${formData.goals}\n\n${suggestion}` : suggestion,
+                  });
+                }}
+                onGenerate={async () => {
+                  const result = await generateLongRangeGoals.mutateAsync({
+                    subject: formData.subject,
+                    grade: formData.grade,
+                    termLength: formData.term === 'Full Year' ? 40 : 20,
+                  });
+                  setAiGoalSuggestions(result);
+                }}
               />
             )}
 
@@ -375,6 +397,8 @@ export default function LongRangePlanPage() {
                 Key Themes (press Enter to add)
               </label>
               <input
+                className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                placeholder="Type a theme and press Enter..."
                 type="text"
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
@@ -386,8 +410,6 @@ export default function LongRangePlanPage() {
                     }
                   }
                 }}
-                className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                placeholder="Type a theme and press Enter..."
               />
               <div className="mt-2 flex flex-wrap gap-2">
                 {formData.themes.map((theme, index) => (
@@ -397,14 +419,15 @@ export default function LongRangePlanPage() {
                   >
                     {theme}
                     <button
+                      className="ml-1 hover:text-indigo-900"
                       type="button"
-                      onClick={() =>
-                        setFormData({
+                      onClick={() => {
+ setFormData({
                           ...formData,
                           themes: formData.themes.filter((_, i) => i !== index),
-                        })
+                        }); 
+}
                       }
-                      className="ml-1 hover:text-indigo-900"
                     >
                       ×
                     </button>
@@ -418,11 +441,13 @@ export default function LongRangePlanPage() {
                 Overarching Questions
               </label>
               <textarea
-                value={formData.overarchingQuestions}
-                onChange={(e) => setFormData({ ...formData, overarchingQuestions: e.target.value })}
-                rows={2}
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder="Big questions that will guide the year..."
+                rows={2}
+                value={formData.overarchingQuestions}
+                onChange={(e) => {
+ setFormData({ ...formData, overarchingQuestions: e.target.value }); 
+}}
               />
             </div>
 
@@ -431,22 +456,26 @@ export default function LongRangePlanPage() {
                 Assessment Overview
               </label>
               <textarea
-                value={formData.assessmentOverview}
-                onChange={(e) => setFormData({ ...formData, assessmentOverview: e.target.value })}
-                rows={2}
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder="Overall assessment strategy for the year..."
+                rows={2}
+                value={formData.assessmentOverview}
+                onChange={(e) => {
+ setFormData({ ...formData, assessmentOverview: e.target.value }); 
+}}
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Resource Needs</label>
               <textarea
-                value={formData.resourceNeeds}
-                onChange={(e) => setFormData({ ...formData, resourceNeeds: e.target.value })}
-                rows={2}
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder="Materials, technology, and resources needed..."
+                rows={2}
+                value={formData.resourceNeeds}
+                onChange={(e) => {
+ setFormData({ ...formData, resourceNeeds: e.target.value }); 
+}}
               />
             </div>
 
@@ -455,22 +484,26 @@ export default function LongRangePlanPage() {
                 Professional Learning Goals
               </label>
               <textarea
-                value={formData.professionalGoals}
-                onChange={(e) => setFormData({ ...formData, professionalGoals: e.target.value })}
-                rows={2}
                 className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder="Your professional development goals for this year..."
+                rows={2}
+                value={formData.professionalGoals}
+                onChange={(e) => {
+ setFormData({ ...formData, professionalGoals: e.target.value }); 
+}}
               />
             </div>
 
             <div className="flex justify-end gap-3 pt-4">
-              <Button type="button" variant="outline" onClick={() => setIsCreateModalOpen(false)}>
+              <Button type="button" variant="outline" onClick={() => {
+ setIsCreateModalOpen(false); 
+}}>
                 Cancel
               </Button>
               <Button
-                type="submit"
-                disabled={createPlan.isPending}
                 className="bg-indigo-600 hover:bg-indigo-700 text-white"
+                disabled={createPlan.isPending}
+                type="submit"
               >
                 {createPlan.isPending ? 'Creating...' : 'Create Plan'}
               </Button>

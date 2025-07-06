@@ -3,12 +3,13 @@
  * API endpoints for generating newsletter drafts
  */
 
-import { Router, Request, Response } from 'express';
-import { z } from 'zod';
 import debug from 'debug';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
+import { z } from 'zod';
 
-import { renderNewsletter } from '../services';
 import { prisma } from '../prisma';
+import { renderNewsletter } from '../services';
 
 const log = debug('server:newsletter:routes');
 const router = Router();

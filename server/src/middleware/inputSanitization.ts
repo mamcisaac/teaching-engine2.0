@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
-import { Request, Response, NextFunction } from 'express';
-import { ParsedQs } from 'qs';
-import { ParamsDictionary } from 'express-serve-static-core';
+import type { Request, Response, NextFunction } from 'express';
+import type { ParamsDictionary } from 'express-serve-static-core';
 import DOMPurify from 'isomorphic-dompurify';
+import type { ParsedQs } from 'qs';
 
 import logger from '../logger.js';
 
@@ -369,8 +369,10 @@ export function preventNoSQLInjection(req: Request, res: Response, next: NextFun
     };
 
     // Deep check for objects that might contain MongoDB operators
-    const deepCheck = (obj: unknown, path: string = ''): boolean => {
-      if (obj === null || obj === undefined) return false;
+    const deepCheck = (obj: unknown, path = ''): boolean => {
+      if (obj === null || obj === undefined) {
+return false;
+}
 
       if (typeof obj === 'string') {
         return checkValue(obj, path);
@@ -420,9 +422,13 @@ export function preventNoSQLInjection(req: Request, res: Response, next: NextFun
  */
 export function fullSecuritySanitization(req: Request, res: Response, next: NextFunction): void {
   strictSanitization(req, res, (err?: unknown) => {
-    if (err) return next(err);
+    if (err) {
+next(err); return;
+}
     preventSQLInjection(req, res, (err?: unknown) => {
-      if (err) return next(err);
+      if (err) {
+next(err); return;
+}
       preventNoSQLInjection(req, res, next);
     });
   });

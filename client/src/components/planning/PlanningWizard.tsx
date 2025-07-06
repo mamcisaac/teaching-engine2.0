@@ -1,7 +1,3 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '../ui/Button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { 
   FileText, 
   Calendar, 
@@ -14,8 +10,14 @@ import {
   ChevronRight,
   Sparkles
 } from 'lucide-react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { cn } from '@/lib/utils';
+
 import { ETFOLevel } from '../../hooks/useWorkflowState';
+import { Button } from '../ui/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 
 interface WizardStep {
   id: ETFOLevel;
@@ -142,10 +144,10 @@ export function PlanningWizard({
         <CardHeader className="relative">
           <div className="absolute right-4 top-4">
             <Button
-              variant="ghost"
-              size="sm"
-              onClick={onClose}
               className="text-gray-500 hover:text-gray-700"
+              size="sm"
+              variant="ghost"
+              onClick={onClose}
             >
               ✕
             </Button>
@@ -239,27 +241,27 @@ export function PlanningWizard({
           {/* Action buttons */}
           <div className="flex items-center justify-between pt-6 border-t">
             <Button
+              className="gap-2"
+              disabled={isFirstStep}
               variant="outline"
               onClick={handlePrevious}
-              disabled={isFirstStep}
-              className="gap-2"
             >
               <ChevronLeft className="h-4 w-4" />
               Previous
             </Button>
             
             <Button
-              onClick={handleStartStep}
               className="bg-indigo-600 hover:bg-indigo-700 text-white gap-2"
+              onClick={handleStartStep}
             >
               {isStepCompleted ? 'Revisit' : 'Start'} This Step
               <ArrowRight className="h-4 w-4" />
             </Button>
             
             <Button
+              className="gap-2"
               variant="outline"
               onClick={handleNext}
-              className="gap-2"
             >
               {isLastStep ? 'Finish' : 'Next'}
               <ChevronRight className="h-4 w-4" />

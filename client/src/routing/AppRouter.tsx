@@ -1,15 +1,18 @@
 import React, { Suspense } from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import ProtectedRoute from '../components/ProtectedRoute';
+
 import MainLayout from '../components/MainLayout';
+import ProtectedRoute from '../components/ProtectedRoute';
 import WorkflowGate from '../components/WorkflowGate';
-import { publicRoutes, protectedRoutes, RouteConfig } from './routesConfig';
+import { useAuth } from '../contexts/AuthContext';
+
+import type { RouteConfig } from './routesConfig';
+import { publicRoutes, protectedRoutes } from './routesConfig';
 
 // Common suspense fallback
 const SuspenseFallback = () => (
   <div className="flex items-center justify-center min-h-screen">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" />
   </div>
 );
 
@@ -28,7 +31,7 @@ function renderRoute(route: RouteConfig, index: number): JSX.Element {
 
     content = (
       <Suspense fallback={<SuspenseFallback />}>
-        {workflowLevel ? (
+        {(workflowLevel != null) ? (
           <WorkflowGate level={workflowLevel}>
             <Component />
           </WorkflowGate>
@@ -44,13 +47,13 @@ function renderRoute(route: RouteConfig, index: number): JSX.Element {
 
   if (children) {
     return (
-      <Route key={path || index} path={path} element={<Outlet />}>
+      <Route key={path || index} element={<Outlet />} path={path}>
         {children.map((child, childIndex) => renderRoute(child, childIndex))}
       </Route>
     );
   }
 
-  return <Route key={path || index} path={path} index={isIndex} element={content} />;
+  return <Route key={path || index} element={content} index={isIndex} path={path} />;
 }
 
 export function AppRouter() {

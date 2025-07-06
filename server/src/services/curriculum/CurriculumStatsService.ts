@@ -3,8 +3,8 @@
  * Handles curriculum-related statistics and analytics
  */
 
-import { BaseService } from '../base/BaseService';
 import { prisma } from '../../prisma';
+import { BaseService } from '../base/BaseService';
 
 export interface CurriculumStats {
   totalSubjects: number;
@@ -236,13 +236,13 @@ export class CurriculumStatsService extends BaseService {
   public async getCoverageStats(): Promise<{
     coverageByGradeAndStrand: Record<number, Record<string, number>>;
     coverageBySubjectAndGrade: Record<string, Record<number, number>>;
-    gapsIdentified: Array<{
+    gapsIdentified: {
       grade: number;
       strand: string;
       subject: string;
       expectedCount: number;
       actualCount: number;
-    }>;
+    }[];
   }> {
     return this.executeWithMetrics(
       async () => {
@@ -275,13 +275,13 @@ export class CurriculumStatsService extends BaseService {
         }
 
         // Identify gaps (this is a simplified implementation)
-        const gapsIdentified: Array<{
+        const gapsIdentified: {
           grade: number;
           strand: string;
           subject: string;
           expectedCount: number;
           actualCount: number;
-        }> = [];
+        }[] = [];
 
         // This could be enhanced with curriculum standards to identify actual gaps
         
@@ -299,20 +299,20 @@ export class CurriculumStatsService extends BaseService {
    * Get trending statistics (most used expectations)
    */
   public async getTrendingStats(): Promise<{
-    mostUsedExpectations: Array<{
+    mostUsedExpectations: {
       id: string;
       code: string;
       description: string;
       usageCount: number;
-    }>;
-    popularStrands: Array<{
+    }[];
+    popularStrands: {
       strand: string;
       count: number;
-    }>;
-    popularGrades: Array<{
+    }[];
+    popularGrades: {
       grade: number;
       count: number;
-    }>;
+    }[];
   }> {
     return this.executeWithMetrics(
       async () => {
@@ -365,7 +365,7 @@ export class CurriculumStatsService extends BaseService {
   /**
    * Get import history statistics
    */
-  public async getImportHistory(): Promise<Array<{
+  public async getImportHistory(): Promise<{
     id: string;
     userId: number;
     grade: number;
@@ -373,7 +373,7 @@ export class CurriculumStatsService extends BaseService {
     status: string;
     createdAt: Date;
     expectationsCount?: number;
-  }>> {
+  }[]> {
     return this.executeWithMetrics(
       async () => {
         const imports = await prisma.curriculumImport.findMany({

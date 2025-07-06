@@ -1,7 +1,7 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'sonner';
 
 import { App } from './App';
@@ -18,10 +18,14 @@ const queryClient = new QueryClient({
       networkMode: 'offlineFirst',
       retry: (failureCount, error: unknown) => {
         // Don't retry if offline
-        if (!navigator.onLine) return false;
+        if (!navigator.onLine) {
+return false;
+}
         // Don't retry on 401 errors
         const err = error as { response?: { status?: number } };
-        if (err?.response?.status === 401) return false;
+        if (err.response?.status === 401) {
+return false;
+}
         // Retry up to 3 times for other errors
         return failureCount < 3;
       },
@@ -32,7 +36,9 @@ const queryClient = new QueryClient({
       retry: (failureCount, error: unknown) => {
         // Don't retry on 401 errors
         const err = error as { response?: { status?: number } };
-        if (err?.response?.status === 401) return false;
+        if (err.response?.status === 401) {
+return false;
+}
         // Retry up to 3 times for other errors
         return failureCount < 3;
       },
@@ -40,7 +46,7 @@ const queryClient = new QueryClient({
   },
 });
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
@@ -80,7 +86,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 
 // Unregister any existing service workers
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then(function(registrations) {
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
     for(const registration of registrations) {
       registration.unregister();
     }

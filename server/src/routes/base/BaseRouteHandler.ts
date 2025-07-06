@@ -4,14 +4,15 @@
  * Provides common functionality, authentication, and CRUD operations
  */
 
-import { Router, Response, NextFunction } from 'express';
-import { z } from 'zod';
+import type { Response, NextFunction } from 'express';
+import { Router } from 'express';
+import type { z } from 'zod';
 
-import { prisma } from '../../prisma';
 import logger from '../../logger';
-import { BaseService } from '../../services/base/BaseService';
+import { prisma } from '../../prisma';
+import type { BaseService } from '../../services/base/BaseService';
 
-import { AuthenticatedRequest } from './middleware';
+import type { AuthenticatedRequest } from './middleware';
 
 export type { AuthenticatedRequest };
 
@@ -80,11 +81,9 @@ export abstract class BaseRouteHandler<T = any> {
    */
   protected asyncHandler = (
     fn: (req: AuthenticatedRequest, res: Response, next: NextFunction) => Promise<void>,
-  ) => {
-    return (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+  ) => (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
       Promise.resolve(fn(req, res, next)).catch(next);
     };
-  };
 
   /**
    * Setup common routes
@@ -138,7 +137,7 @@ export abstract class BaseRouteHandler<T = any> {
       res.json(items);
       return;
     } catch (error) {
-      this.logger?.error(`Error in ${this.routeName} list:`, error);
+      this.logger.error(`Error in ${this.routeName} list:`, error);
       next(error);
     }
   }
@@ -163,7 +162,7 @@ export abstract class BaseRouteHandler<T = any> {
       res.json(item);
       return;
     } catch (error) {
-      this.logger?.error(`Error in ${this.routeName} get:`, error);
+      this.logger.error(`Error in ${this.routeName} get:`, error);
       next(error);
     }
   }
@@ -182,7 +181,7 @@ export abstract class BaseRouteHandler<T = any> {
       const item = await crudOps.create(data, userId);
       res.status(201).json(item);
     } catch (error) {
-      this.logger?.error(`Error in ${this.routeName} create:`, error);
+      this.logger.error(`Error in ${this.routeName} create:`, error);
       next(error);
     }
   }
@@ -203,7 +202,7 @@ export abstract class BaseRouteHandler<T = any> {
       res.json(item);
       return;
     } catch (error) {
-      this.logger?.error(`Error in ${this.routeName} update:`, error);
+      this.logger.error(`Error in ${this.routeName} update:`, error);
       next(error);
     }
   }
@@ -227,7 +226,7 @@ export abstract class BaseRouteHandler<T = any> {
 
       res.status(204).send();
     } catch (error) {
-      this.logger?.error(`Error in ${this.routeName} delete:`, error);
+      this.logger.error(`Error in ${this.routeName} delete:`, error);
       next(error);
     }
   }
@@ -242,7 +241,7 @@ export abstract class BaseRouteHandler<T = any> {
           OR: [
             { isSystem: true },
             { createdByUserId: userId },
-            { userId: userId }, // Alternative ownership field
+            { userId }, // Alternative ownership field
           ],
         },
         ...(additionalFilters ? [additionalFilters] : []),
@@ -263,12 +262,12 @@ export abstract class BaseRouteHandler<T = any> {
       const record = await (prisma as any)[tableName].findFirst({
         where: {
           id,
-          OR: [{ isSystem: true }, { createdByUserId: userId }, { userId: userId }],
+          OR: [{ isSystem: true }, { createdByUserId: userId }, { userId }],
         },
       });
       return !!record;
     } catch (error) {
-      this.logger?.error(`Error validating ownership for ${tableName}:`, error);
+      this.logger.error(`Error validating ownership for ${tableName}:`, error);
       return false;
     }
   }

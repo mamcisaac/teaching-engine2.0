@@ -1,26 +1,27 @@
+import type { UseQueryResult, UseMutationResult } from '@tanstack/react-query';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
-import type { Newsletter as _Newsletter } from '../../../types';
+import type { Newsletter, NewsletterDraft, NewsletterInput, NewsletterGenerateInput } from '../../../types';
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 
 import { newsletterApi } from './api';
 
 // Query hooks
-export const useNewsletter = (id: number, type: 'raw' | 'polished' = 'raw') =>
+export const useNewsletter = (id: number, type: 'raw' | 'polished' = 'raw'): UseQueryResult<NewsletterDraft> =>
   useQuery({
     queryKey: queryKeys.newsletter.detail(id, type),
     queryFn: () => newsletterApi.getNewsletter(id, type),
     enabled: !!id,
   });
 
-export const useNewsletterSuggestions = () =>
+export const useNewsletterSuggestions = (): UseQueryResult<string[]> =>
   useQuery({
     queryKey: queryKeys.newsletter.suggestions,
     queryFn: newsletterApi.getSuggestions,
   });
 
 // Mutation hooks
-export const useCreateNewsletterDraft = () => {
+export const useCreateNewsletterDraft = (): UseMutationResult<NewsletterDraft, Error, NewsletterGenerateInput> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -34,7 +35,7 @@ export const useCreateNewsletterDraft = () => {
   });
 };
 
-export const useCreateNewsletter = () => {
+export const useCreateNewsletter = (): UseMutationResult<Newsletter, Error, NewsletterInput> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -48,7 +49,7 @@ export const useCreateNewsletter = () => {
   });
 };
 
-export const useGenerateNewsletter = () => useMutation({
+export const useGenerateNewsletter = (): UseMutationResult<NewsletterDraft, Error, NewsletterGenerateInput> => useMutation({
     mutationFn: newsletterApi.generate,
     onSuccess: (data) => {
       showSuccessToast('Newsletter generated successfully');

@@ -122,7 +122,9 @@ class AuthService {
    */
   isTokenExpiringSoon(): boolean {
     const expiresAt = this.getTokenExpiration();
-    if (!expiresAt) return false;
+    if (!expiresAt) {
+return false;
+}
 
     const fiveMinutesFromNow = Date.now() + 5 * 60 * 1000;
     return expiresAt <= fiveMinutesFromNow;
@@ -134,7 +136,7 @@ class AuthService {
   async login(email: string, password: string): Promise<LoginResponse> {
     try {
       const response = await apiClient.post('/api/auth/login', { email, password });
-      const data: LoginResponse = response.data;
+      const {data} = response;
 
       if (data.user) {
         this.setUser(data.user);

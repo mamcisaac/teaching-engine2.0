@@ -13,8 +13,9 @@ process.env.VITE_USE_REAL_API = process.env.VITE_USE_REAL_API || 'true';
 process.env.VITE_API_BASE_URL = process.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
 // Import testing library matchers for Vitest
-import { expect, vi, beforeEach } from 'vitest';
 import * as matchers from '@testing-library/jest-dom/matchers';
+
+import { expect, vi, beforeEach } from 'vitest';
 
 // Extend Vitest's expect with jest-dom matchers
 expect.extend(matchers);

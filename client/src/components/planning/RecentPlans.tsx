@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
-import React, { memo, useMemo } from 'react';
-import { Link } from 'react-router-dom';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+import { formatDistanceToNow } from 'date-fns';
 import {
   Calendar,
   BookOpen,
@@ -11,9 +9,13 @@ import {
   FileText,
   TrendingUp,
 } from 'lucide-react';
-import { formatDistanceToNow } from 'date-fns';
+import React, { memo, useMemo } from 'react';
+import { Link } from 'react-router-dom';
+
 import { cn } from '@/lib/utils';
+
 import { LoadingSkeleton } from '../performance';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 
 export interface RecentPlan {
   id: string;
@@ -60,19 +62,17 @@ const PLAN_TYPE_CONFIG = {
   },
 };
 
-export const RecentPlans = memo(function RecentPlans({
+export const RecentPlans = memo(({
   plans,
   isLoading,
   className,
-}: RecentPlansProps) {
+}: RecentPlansProps) => {
   // Memoize expensive calculations for plan processing
-  const processedPlans = useMemo(() => {
-    return plans.map((plan) => ({
+  const processedPlans = useMemo(() => plans.map((plan) => ({
       ...plan,
       formattedDate: formatDistanceToNow(new Date(plan.lastAccessed), { addSuffix: true }),
       planRoute: `${PLAN_TYPE_CONFIG[plan.type].route}/${plan.id}`,
-    }));
-  }, [plans]);
+    })), [plans]);
 
   if (isLoading) {
     return (
@@ -89,11 +89,11 @@ export const RecentPlans = memo(function RecentPlans({
             {[1, 2, 3].map((i) => (
               <LoadingSkeleton 
                 key={i} 
-                variant="complex"
                 layout={[
                   { type: 'avatar', size: 'md' },
                   { type: 'text', lines: 2 },
                 ]}
+                variant="complex"
               />
             ))}
           </div>
@@ -164,8 +164,8 @@ export const RecentPlans = memo(function RecentPlans({
             <CardDescription>Your recently accessed planning documents</CardDescription>
           </div>
           <Link
-            to="/planner"
             className="text-sm text-indigo-600 hover:text-indigo-700 flex items-center gap-1"
+            to="/planner"
           >
             View all
             <ChevronRight className="h-3 w-3" />
@@ -179,7 +179,7 @@ export const RecentPlans = memo(function RecentPlans({
             const Icon = config.icon;
 
             return (
-              <Link key={`${plan.type}-${plan.id}`} to={plan.planRoute} className="block group">
+              <Link key={`${plan.type}-${plan.id}`} className="block group" to={plan.planRoute}>
                 <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
                   <div className={cn('p-2 rounded-lg flex-shrink-0', config.color)}>
                     <Icon className="h-5 w-5" />
@@ -227,8 +227,8 @@ export const RecentPlans = memo(function RecentPlans({
         {processedPlans.length >= 5 && (
           <div className="mt-4 pt-4 border-t">
             <Link
-              to="/planner/history"
               className="text-sm text-indigo-600 hover:text-indigo-700 flex items-center justify-center gap-1"
+              to="/planner/history"
             >
               <TrendingUp className="h-4 w-4" />
               View planning history

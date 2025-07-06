@@ -7,14 +7,16 @@ export default function HolidaySettings() {
   // const { data: holidays } = useHolidays();
   // const add = useAddHoliday();
   // const remove = useDeleteHoliday();
-  const holidays: Array<{ id: number; date: string; name: string }> = []; // Placeholder
+  const holidays: { id: number; date: string; name: string }[] = []; // Placeholder
   const add = { mutate: (_data: { date: string; name: string }) => {} }; // Placeholder
   const remove = { mutate: (_id: number) => {} }; // Placeholder
   const [date, setDate] = useState('');
   const [name, setName] = useState('');
 
   const handleAdd = () => {
-    if (!date || !name.trim()) return;
+    if (!date || !name.trim()) {
+return;
+}
     add.mutate({ date: `${date}T00:00:00.000Z`, name });
     setDate('');
     setName('');
@@ -24,36 +26,42 @@ export default function HolidaySettings() {
     <div className="space-y-2">
       <div className="flex gap-2 items-center">
         <input
+          className="border p-1"
           type="date"
           value={date}
-          onChange={(e) => setDate(e.target.value)}
-          className="border p-1"
+          onChange={(e) => {
+ setDate(e.target.value); 
+}}
         />
         <input
-          type="text"
-          placeholder="Holiday name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
           className="border p-1"
+          placeholder="Holiday name"
+          type="text"
+          value={name}
+          onChange={(e) => {
+ setName(e.target.value); 
+}}
         />
         <button
           className="px-2 py-1 bg-blue-600 text-white"
-          onClick={handleAdd}
           title="Add holiday"
+          onClick={handleAdd}
         >
           Add
         </button>
       </div>
       <ul className="space-y-1">
-        {holidays?.map((h) => (
+        {holidays.map((h) => (
           <li key={h.id} className="flex gap-2 items-center">
             <span>
               {h.date.split('T')[0]} - {h.name}
             </span>
             <button
               className="px-1 text-sm bg-red-600 text-white"
-              onClick={() => remove.mutate(h.id)}
               title="Remove holiday"
+              onClick={() => {
+ remove.mutate(h.id); 
+}}
             >
               Delete
             </button>

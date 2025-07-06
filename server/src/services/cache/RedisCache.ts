@@ -3,11 +3,12 @@
  * Production-ready caching layer with Redis
  */
 
-import { createClient, RedisClientType } from 'redis';
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
+import type { RedisClientType } from 'redis';
+import { createClient } from 'redis';
 
-import { structuredLogger } from '../../utils/structuredLogger';
 import { PerformanceLogger } from '../../utils/logger-migration';
+import { structuredLogger } from '../../utils/structuredLogger';
 
 export interface CacheOptions {
   ttl?: number; // Time to live in seconds
@@ -26,7 +27,7 @@ export interface CacheStats {
 
 export class RedisCache {
   private client: RedisClientType;
-  private isConnected: boolean = false;
+  private isConnected = false;
   private stats: CacheStats = {
     hits: 0,
     misses: 0,
@@ -93,7 +94,9 @@ export class RedisCache {
   }
 
   async connect(): Promise<void> {
-    if (this.isConnected) return;
+    if (this.isConnected) {
+return;
+}
 
     try {
       await this.client.connect();
@@ -104,7 +107,9 @@ export class RedisCache {
   }
 
   async disconnect(): Promise<void> {
-    if (!this.isConnected) return;
+    if (!this.isConnected) {
+return;
+}
 
     try {
       await this.client.quit();
@@ -192,7 +197,9 @@ export class RedisCache {
    * Delete value from cache
    */
   async delete(key: string): Promise<boolean> {
-    if (!this.isConnected) return false;
+    if (!this.isConnected) {
+return false;
+}
 
     const fullKey = this.getFullKey(key);
 
@@ -213,13 +220,17 @@ export class RedisCache {
    * Delete multiple keys by pattern
    */
   async deleteByPattern(pattern: string): Promise<number> {
-    if (!this.isConnected) return 0;
+    if (!this.isConnected) {
+return 0;
+}
 
     const fullPattern = this.getFullKey(pattern);
 
     try {
       const keys = await this.client.keys(fullPattern);
-      if (keys.length === 0) return 0;
+      if (keys.length === 0) {
+return 0;
+}
 
       const result = await this.client.del(keys);
       this.stats.deletes += result;
@@ -237,7 +248,9 @@ export class RedisCache {
    * Invalidate cache by tags
    */
   async invalidateByTags(tags: string[]): Promise<number> {
-    if (!this.isConnected || tags.length === 0) return 0;
+    if (!this.isConnected || tags.length === 0) {
+return 0;
+}
 
     let totalDeleted = 0;
 
@@ -268,7 +281,9 @@ export class RedisCache {
    * Clear all cache
    */
   async clear(): Promise<void> {
-    if (!this.isConnected) return;
+    if (!this.isConnected) {
+return;
+}
 
     try {
       await this.client.flushDb();
@@ -309,8 +324,10 @@ export class RedisCache {
   /**
    * Increment counter
    */
-  async increment(key: string, amount: number = 1): Promise<number> {
-    if (!this.isConnected) return 0;
+  async increment(key: string, amount = 1): Promise<number> {
+    if (!this.isConnected) {
+return 0;
+}
 
     const fullKey = this.getFullKey(key);
 
@@ -349,7 +366,9 @@ export class RedisCache {
    * Health check
    */
   async healthCheck(): Promise<boolean> {
-    if (!this.isConnected) return false;
+    if (!this.isConnected) {
+return false;
+}
 
     try {
       await this.client.ping();

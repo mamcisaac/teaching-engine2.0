@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+
 import logger from '../../utils/logger';
 
 // Simple debounce and throttle implementations
@@ -64,11 +65,9 @@ export function useThrottled<T extends (...args: unknown[]) => unknown>(
 ): T {
   const throttledCallback = useRef(throttle(callback, delay)).current;
 
-  useEffect(() => {
-    return () => {
+  useEffect(() => () => {
       throttledCallback.cancel();
-    };
-  }, [throttledCallback]);
+    }, [throttledCallback]);
 
   return throttledCallback as unknown as T;
 }
@@ -84,7 +83,9 @@ export function useIntersectionObserver(
 
   useEffect(() => {
     const element = elementRef.current;
-    if (!element) return;
+    if (!element) {
+return;
+}
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -170,7 +171,7 @@ export function useVirtualizedList<T>(
   items: T[],
   itemHeight: number,
   containerHeight: number,
-  overscan: number = 5,
+  overscan = 5,
 ) {
   const [scrollTop, setScrollTop] = useState(0);
 
@@ -277,15 +278,23 @@ export const MemoUtils = {
    * Deep comparison for memo hooks
    */
   deepEqual: <T>(a: T, b: T): boolean => {
-    if (a === b) return true;
-    if (a == null || b == null) return false;
-    if (typeof a !== typeof b) return false;
+    if (a === b) {
+return true;
+}
+    if (a == null || b == null) {
+return false;
+}
+    if (typeof a !== typeof b) {
+return false;
+}
 
     if (typeof a === 'object') {
       const keysA = Object.keys(a);
       const keysB = Object.keys(b);
 
-      if (keysA.length !== keysB.length) return false;
+      if (keysA.length !== keysB.length) {
+return false;
+}
 
       return keysA.every((key) =>
         MemoUtils.deepEqual(
@@ -305,7 +314,9 @@ export const MemoUtils = {
     const keysA = Object.keys(a);
     const keysB = Object.keys(b);
 
-    if (keysA.length !== keysB.length) return false;
+    if (keysA.length !== keysB.length) {
+return false;
+}
 
     return keysA.every((key) => a[key] === b[key]);
   },
@@ -343,13 +354,21 @@ export const ImageUtils = {
    * Create optimized image URL with size parameters
    */
   optimizeImageUrl: (url: string, width?: number, height?: number, quality?: number): string => {
-    if (!url) return '';
+    if (!url) {
+return '';
+}
 
     const urlObj = new URL(url, window.location.origin);
 
-    if (width) urlObj.searchParams.set('w', width.toString());
-    if (height) urlObj.searchParams.set('h', height.toString());
-    if (quality) urlObj.searchParams.set('q', quality.toString());
+    if (width) {
+urlObj.searchParams.set('w', width.toString());
+}
+    if (height) {
+urlObj.searchParams.set('h', height.toString());
+}
+    if (quality) {
+urlObj.searchParams.set('q', quality.toString());
+}
 
     return urlObj.toString();
   },
@@ -357,9 +376,7 @@ export const ImageUtils = {
   /**
    * Create srcSet for responsive images
    */
-  createSrcSet: (baseUrl: string, sizes: number[]): string => {
-    return sizes.map((size) => `${ImageUtils.optimizeImageUrl(baseUrl, size)} ${size}w`).join(', ');
-  },
+  createSrcSet: (baseUrl: string, sizes: number[]): string => sizes.map((size) => `${ImageUtils.optimizeImageUrl(baseUrl, size)} ${size}w`).join(', '),
 
   /**
    * Lazy load images with intersection observer

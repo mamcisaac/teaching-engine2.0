@@ -37,18 +37,18 @@ export interface UnitPlanContent {
   learningGoals?: string[];
   bigIdeas?: string;
   essentialQuestions?: string[];
-  assessments?: Array<{
+  assessments?: {
     type: string;
     description: string;
     timing?: string;
-  }>;
-  activities?: Array<{
+  }[];
+  activities?: {
     name: string;
     description?: string;
     duration?: number;
     materials?: string[];
     grouping?: string;
-  }>;
+  }[];
   successCriteria?: string[];
   keyVocabulary?: string[];
   crossCurricularConnections?: string;
@@ -85,28 +85,28 @@ export interface LessonPlanContent {
 }
 
 export interface UnitStructure {
-  phases?: Array<{
+  phases?: {
     name: string;
     description?: string;
     estimatedDays?: number;
     learningGoals?: string[];
-  }>;
-  resources?: Array<{
+  }[];
+  resources?: {
     title: string;
     type: string;
     url?: string;
     notes?: string;
-  }>;
+  }[];
 }
 
 export interface LessonStructure {
   duration?: number;
-  sections?: Array<{
+  sections?: {
     name: string;
     description: string;
     timeAllocation?: number;
     activities?: string[];
-  }>;
+  }[];
 }
 
 export interface PlanTemplate {

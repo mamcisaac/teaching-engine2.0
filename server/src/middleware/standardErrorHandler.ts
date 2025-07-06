@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 // import '../types/express.js';
 import { ZodError } from 'zod';
 
@@ -33,8 +33,8 @@ export class StandardError extends Error {
   constructor(
     type: ErrorType,
     message: string,
-    statusCode: number = 500,
-    isOperational: boolean = true,
+    statusCode = 500,
+    isOperational = true,
     userMessage?: string,
     details?: Record<string, unknown>,
   ) {
@@ -68,7 +68,7 @@ export class ValidationError extends StandardError {
 }
 
 export class AuthenticationError extends StandardError {
-  constructor(message: string = 'Authentication required') {
+  constructor(message = 'Authentication required') {
     super(
       ErrorType.AUTHENTICATION_ERROR,
       message,
@@ -80,7 +80,7 @@ export class AuthenticationError extends StandardError {
 }
 
 export class AuthorizationError extends StandardError {
-  constructor(message: string = 'Insufficient permissions') {
+  constructor(message = 'Insufficient permissions') {
     super(
       ErrorType.AUTHORIZATION_ERROR,
       message,
@@ -92,7 +92,7 @@ export class AuthorizationError extends StandardError {
 }
 
 export class NotFoundError extends StandardError {
-  constructor(resource: string = 'Resource') {
+  constructor(resource = 'Resource') {
     super(
       ErrorType.NOT_FOUND_ERROR,
       `${resource} not found`,
@@ -269,7 +269,7 @@ export function standardErrorHandler(
       {
         error: {
           name: error.name,
-          message: (error as Error).message,
+          message: (error).message,
           stack: error.stack,
           type: errorType,
         },
@@ -281,7 +281,7 @@ export function standardErrorHandler(
         },
         statusCode,
       },
-      `Server error: ${(error as Error).message}`,
+      `Server error: ${(error).message}`,
     );
   } else {
     // Client errors
@@ -289,7 +289,7 @@ export function standardErrorHandler(
       {
         error: {
           name: error.name,
-          message: (error as Error).message,
+          message: (error).message,
           type: errorType,
         },
         request: {
@@ -300,7 +300,7 @@ export function standardErrorHandler(
         },
         statusCode,
       },
-      `Client error: ${(error as Error).message}`,
+      `Client error: ${(error).message}`,
     );
   }
 
@@ -324,7 +324,7 @@ export function standardErrorHandler(
       type: errorType,
       message: userMessage,
       ...(process.env.NODE_ENV !== 'production' && {
-        details: details,
+        details,
         stack: error.stack,
       }),
     },
@@ -360,7 +360,7 @@ export const errorFactory = {
   validation: (message: string, details?: Record<string, unknown>) =>
     new ValidationError(message, details),
 
-  notFound: (resource: string = 'Resource') => new NotFoundError(resource),
+  notFound: (resource = 'Resource') => new NotFoundError(resource),
 
   unauthorized: (message?: string) => new AuthenticationError(message),
 
@@ -390,7 +390,7 @@ export const errorFactory = {
  * Response helper functions
  */
 export const responseHelpers = {
-  success: (res: Response, data: unknown, message?: string, statusCode: number = 200) => {
+  success: (res: Response, data: unknown, message?: string, statusCode = 200) => {
     res.status(statusCode).json({
       success: true,
       data,

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { useOnboarding } from '../contexts/OnboardingContext';
 import { useLocation } from 'react-router-dom';
+
+import { useOnboarding } from '../contexts/OnboardingContext';
 
 /**
  * Hook to automatically start feature-specific tutorials when navigating to new pages
@@ -30,7 +31,9 @@ export function useFeatureTutorial() {
         startOnboarding(tutorialId);
       }, 500);
 
-      return () => clearTimeout(timer);
+      return () => {
+ clearTimeout(timer); 
+};
     }
   }, [location.pathname, state, startOnboarding]);
 }

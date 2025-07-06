@@ -4,7 +4,7 @@
  * Validates curriculum data structure and content
  */
 
-import { ParsedCurriculum, ParsedExpectation } from '../parsers/CurriculumParser';
+import type { ParsedCurriculum, ParsedExpectation } from '../parsers/CurriculumParser';
 
 export interface ValidationResult {
   isValid: boolean;
@@ -80,7 +80,7 @@ export class CurriculumValidator {
     this.validateStructure(curriculum, errors);
     
     // Early return if curriculum is invalid
-    if (!curriculum || !curriculum.expectations || !Array.isArray(curriculum.expectations)) {
+    if (!curriculum.expectations || !Array.isArray(curriculum.expectations)) {
       return {
         isValid: false,
         errors,

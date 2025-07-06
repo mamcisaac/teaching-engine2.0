@@ -1,8 +1,11 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 
 import logger from '../logger';
 
+import { authenticate } from './authenticate';
+import { apiCache, curriculumCache, staticCache, userCache } from './cache';
 import { compose, chain, conditional, timed } from './core/composer';
+import { errorLoggingMiddleware, errorHandlerMiddleware, notFoundHandler } from './core/error';
 import {
   requestLoggingMiddleware,
   auditMiddleware,
@@ -10,7 +13,6 @@ import {
   performanceLoggingMiddleware,
   developmentLoggingMiddleware,
 } from './core/logging';
-import { errorLoggingMiddleware, errorHandlerMiddleware, notFoundHandler } from './core/error';
 import {
   inputSanitizationMiddleware,
   xssProtectionMiddleware,
@@ -18,9 +20,7 @@ import {
   fileUploadSecurityMiddleware,
   securityMonitoringMiddleware,
 } from './core/security';
-import { authenticate } from './authenticate';
 import { rateLimiters } from './rateLimit';
-import { apiCache, curriculumCache, staticCache, userCache } from './cache';
 // Environment checks
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isProduction = process.env.NODE_ENV === 'production';

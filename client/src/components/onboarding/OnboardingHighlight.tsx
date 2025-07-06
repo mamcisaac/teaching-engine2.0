@@ -1,5 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import React from 'react';
 
 interface HighlightPosition {
   top: number;
@@ -14,14 +14,15 @@ interface OnboardingHighlightProps {
 }
 
 export function OnboardingHighlight({ highlightPosition, onClick }: OnboardingHighlightProps) {
-  if (!highlightPosition) return null;
+  if (!highlightPosition) {
+return null;
+}
 
   return (
     <motion.div
-      initial={{ scale: 0 }}
       animate={{ scale: 1 }}
-      transition={{ type: 'spring', damping: 25 }}
       className="absolute bg-transparent"
+      initial={{ scale: 0 }}
       style={{
         top: highlightPosition.top,
         left: highlightPosition.left,
@@ -31,6 +32,7 @@ export function OnboardingHighlight({ highlightPosition, onClick }: OnboardingHi
         borderRadius: '8px',
         pointerEvents: 'none',
       }}
+      transition={{ type: 'spring', damping: 25 }}
       onClick={onClick}
     />
   );

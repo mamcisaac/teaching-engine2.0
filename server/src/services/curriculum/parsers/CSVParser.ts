@@ -5,7 +5,8 @@
 
 import { parse } from 'csv-parse/sync';
 
-import { CurriculumParser, ParsedCurriculum, ParsedExpectation } from './CurriculumParser';
+import type { ParsedCurriculum, ParsedExpectation } from './CurriculumParser';
+import { CurriculumParser } from './CurriculumParser';
 
 export interface CSVRow {
   code?: string;
@@ -100,7 +101,9 @@ export class CSVParser extends CurriculumParser {
         if (!finalGrade && expectation.grade) {
           finalGrade = expectation.grade;
         }
-        if (finalSubject && finalGrade) break;
+        if (finalSubject && finalGrade) {
+break;
+}
       }
     }
 
@@ -173,8 +176,12 @@ export class CSVParser extends CurriculumParser {
     
     if (typeValue) {
       const normalizedType = typeValue.toString().toLowerCase();
-      if (normalizedType.includes('overall')) return 'overall';
-      if (normalizedType.includes('specific')) return 'specific';
+      if (normalizedType.includes('overall')) {
+return 'overall';
+}
+      if (normalizedType.includes('specific')) {
+return 'specific';
+}
     }
 
     // Fall back to code analysis

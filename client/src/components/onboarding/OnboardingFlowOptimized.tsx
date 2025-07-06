@@ -1,7 +1,9 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useRef, useState, Suspense } from 'react';
 import { createPortal } from 'react-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+
 import { useOnboarding } from '../../contexts/OnboardingContext';
+
 import { OnboardingHighlight } from './OnboardingHighlight';
 import { OnboardingProgress } from './OnboardingProgress';
 import { OnboardingTooltip } from './OnboardingTooltip';
@@ -16,7 +18,7 @@ interface HighlightPosition {
 // Loading fallback for lazy components
 const OnboardingLoadingFallback = () => (
   <div className="fixed inset-0 z-[9999] bg-black/50 flex items-center justify-center">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" />
   </div>
 );
 
@@ -117,7 +119,9 @@ export function OnboardingFlowOptimized() {
 
   // Handle element click if required
   useEffect(() => {
-    if (!currentStep?.targetElement || !currentStep.requiresAction) return;
+    if (!currentStep?.targetElement || !currentStep.requiresAction) {
+return;
+}
 
     const handleClick = (e: MouseEvent) => {
       const element = document.querySelector(currentStep.targetElement!);
@@ -127,26 +131,30 @@ export function OnboardingFlowOptimized() {
     };
 
     document.addEventListener('click', handleClick);
-    return () => document.removeEventListener('click', handleClick);
+    return () => {
+ document.removeEventListener('click', handleClick); 
+};
   }, [currentStep, nextStep]);
 
-  if (!isOnboardingActive || !currentStep) return null;
+  if (!isOnboardingActive || !currentStep) {
+return null;
+}
 
   const isCenter = currentStep.position === 'center' || !currentStep.targetElement;
 
   return createPortal(
     <Suspense fallback={<OnboardingLoadingFallback />}>
       <AnimatePresence>
-        <div className="fixed inset-0 z-[9999]" ref={overlayRef}>
+        <div ref={overlayRef} className="fixed inset-0 z-[9999]">
           {/* Dark overlay with spotlight */}
           <motion.div
-            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
             className="absolute inset-0 bg-black/50"
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
             onClick={(e) => {
               // Allow clicking through to highlighted element
-              if (highlightPosition && currentStep?.requiresAction) {
+              if (highlightPosition && currentStep.requiresAction) {
                 e.stopPropagation();
               }
             }}
@@ -159,16 +167,16 @@ export function OnboardingFlowOptimized() {
 
           {/* Tooltip */}
           <OnboardingTooltip
-            currentStep={currentStep}
-            state={state}
-            progress={progress}
             canGoBack={canGoBack}
             canGoForward={canGoForward}
-            skipOnboarding={skipOnboarding}
-            previousStep={previousStep}
-            nextStep={nextStep}
-            tooltipPosition={tooltipPosition}
+            currentStep={currentStep}
             isCenter={isCenter}
+            nextStep={nextStep}
+            previousStep={previousStep}
+            progress={progress}
+            skipOnboarding={skipOnboarding}
+            state={state}
+            tooltipPosition={tooltipPosition}
           />
 
           {/* Completion message */}

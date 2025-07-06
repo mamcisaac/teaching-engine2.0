@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 interface LanguageContextType {
   language: string;
@@ -405,7 +406,7 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   };
 
   const t = (key: string, fallback?: string, substitutions?: string[]): string => {
-    let translation = translations[language]?.[key] || fallback || key;
+    let translation = translations[language][key] || fallback || key;
 
     // Handle string interpolation for placeholders like {0}, {1}, etc.
     if (substitutions) {
@@ -419,7 +420,9 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
 
   // Helper function to get localized field from an object
   const getLocalizedField = (obj: Record<string, unknown>, field: string): string => {
-    if (!obj) return '';
+    if (!obj) {
+return '';
+}
 
     const localizedFieldName = `${field}${language.charAt(0).toUpperCase() + language.slice(1)}`;
     const localizedValue = obj[localizedFieldName];

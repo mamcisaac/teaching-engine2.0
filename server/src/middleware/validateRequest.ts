@@ -1,5 +1,6 @@
-import { Request, Response, NextFunction } from 'express';
-import { ZodSchema, ZodError } from 'zod';
+import type { Request, Response, NextFunction } from 'express';
+import type { ZodSchema} from 'zod';
+import { ZodError } from 'zod';
 
 import logger from '../logger.js';
 
@@ -62,7 +63,7 @@ export function validateRequest(schema: ZodSchema) {
           error: 'Validation failed',
           message: mainMessage,
           errors: formattedErrors,
-          messages: messages,
+          messages,
         });
         return;
       }
@@ -122,7 +123,7 @@ export function validateQuery(schema: ZodSchema) {
           error: 'Validation failed',
           message: mainMessage,
           errors: formattedErrors,
-          messages: messages,
+          messages,
         });
         return;
       }
@@ -181,7 +182,7 @@ export function validateParams(schema: ZodSchema) {
           error: 'Validation failed',
           message: mainMessage,
           errors: formattedErrors,
-          messages: messages,
+          messages,
         });
         return;
       }
@@ -258,7 +259,7 @@ export function validate(options: { body?: ZodSchema; query?: ZodSchema; params?
           error: 'Validation failed',
           message: mainMessage,
           errors: formattedErrors,
-          messages: messages,
+          messages,
         });
         return;
       }

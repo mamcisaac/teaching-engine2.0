@@ -1,7 +1,7 @@
+import type { Draft } from 'immer';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
-import type { Draft } from 'immer';
 
 export interface OnboardingStep {
   id: string;
@@ -220,7 +220,7 @@ export const useOnboardingStore = create<OnboardingState>()(
         canGoForward: false,
 
         // Actions
-        startOnboarding: (flowId: string = 'main-onboarding') => {
+        startOnboarding: (flowId = 'main-onboarding') => {
           const flow = TUTORIAL_FLOWS[flowId];
           if (flow) {
             set((state) => {
@@ -234,7 +234,9 @@ export const useOnboardingStore = create<OnboardingState>()(
 
         nextStep: () => {
           const state = get();
-          if (!state.currentFlow) return;
+          if (!state.currentFlow) {
+return;
+}
 
           if (state.currentStepIndex < state.currentFlow.steps.length - 1) {
             set((draft) => {
@@ -316,11 +318,9 @@ export const useOnboardingStore = create<OnboardingState>()(
 );
 
 // Hook to check if a specific flow has been completed
-export const useOnboardingComplete = (flowId: string) => {
-  return useOnboardingStore((state) => state.completedFlows.includes(flowId));
-};
+export const useOnboardingComplete = (flowId: string) => useOnboardingStore((state) => state.completedFlows.includes(flowId));
 
 // Selector hooks for performance
-export const useOnboardingActive = () => useOnboardingStore((state) => state.isOnboardingActive);
-export const useCurrentStep = () => useOnboardingStore((state) => state.currentStep);
-export const useOnboardingProgress = () => useOnboardingStore((state) => state.progress);
+export const useOnboardingActive = (): UseQueryResult<unknown> => useOnboardingStore((state) => state.isOnboardingActive);
+export const useCurrentStep = (): UseQueryResult<unknown> => useOnboardingStore((state) => state.currentStep);
+export const useOnboardingProgress = (): UseQueryResult<unknown> => useOnboardingStore((state) => state.progress);

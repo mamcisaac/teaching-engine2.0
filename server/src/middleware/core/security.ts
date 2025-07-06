@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
-import { Application, Request, Response, NextFunction } from 'express';
-import helmet from 'helmet';
 import cors from 'cors';
+import type { Application, Request, Response, NextFunction } from 'express';
+import helmet from 'helmet';
 import DOMPurify from 'isomorphic-dompurify';
 
-import { AppError } from '../../utils/errors';
 import { logger } from '../../logger';
+import { AppError } from '../../utils/errors';
 
 // CORS configuration
 const corsOptions: cors.CorsOptions = {
@@ -123,14 +123,12 @@ export const xssProtectionMiddleware = (_req: Request, res: Response, next: Next
 
   res.json = function (data: unknown) {
     // Escape HTML in JSON responses
-    const escapeHtml = (str: string): string => {
-      return str
+    const escapeHtml = (str: string): string => str
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#039;');
-    };
 
     const escapeData = (obj: unknown): unknown => {
       if (typeof obj === 'string') {
@@ -172,13 +170,17 @@ export const sqlInjectionProtectionMiddleware = (
   ];
 
   const checkForSQLInjection = (value: unknown): boolean => {
-    if (typeof value !== 'string') return false;
+    if (typeof value !== 'string') {
+return false;
+}
 
     return suspiciousPatterns.some((pattern) => pattern.test(value));
   };
 
   const checkObject = (obj: unknown): void => {
-    if (!obj || typeof obj !== 'object') return;
+    if (!obj || typeof obj !== 'object') {
+return;
+}
 
     for (const [key, value] of Object.entries(obj as Record<string, unknown>)) {
       if (checkForSQLInjection(value)) {
@@ -204,11 +206,17 @@ export const sqlInjectionProtectionMiddleware = (
 
   // Check all input sources
   try {
-    if (req.body) checkObject(req.body);
-    if (req.query) checkObject(req.query);
-    if (req.params) checkObject(req.params);
+    if (req.body) {
+checkObject(req.body);
+}
+    if (req.query) {
+checkObject(req.query);
+}
+    if (req.params) {
+checkObject(req.params);
+}
   } catch (_error) {
-    return next(_error);
+    next(_error); return;
   }
 
   next();
@@ -217,10 +225,9 @@ export const sqlInjectionProtectionMiddleware = (
 // File upload security middleware
 export const fileUploadSecurityMiddleware = (
   allowedTypes: string[] = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'],
-) => {
-  return (req: Request, _res: Response, next: NextFunction): void => {
+) => (req: Request, _res: Response, next: NextFunction): void => {
     if (!req.file && !req.files) {
-      return next();
+      next(); return;
     }
 
     const files = req.file ? [req.file] : Object.values(req.files || {}).flat();
@@ -228,13 +235,13 @@ export const fileUploadSecurityMiddleware = (
     for (const file of files) {
       // Check file type
       if (!allowedTypes.includes(file.mimetype)) {
-        return next(new AppError(400, 'Invalid file type', 'INVALID_FILE_TYPE'));
+        next(new AppError(400, 'Invalid file type', 'INVALID_FILE_TYPE')); return;
       }
 
       // Check file size (10MB default)
       const maxSize = parseInt(process.env.MAX_FILE_SIZE || '10485760', 10);
       if (file.size > maxSize) {
-        return next(new AppError(400, 'File size too large', 'FILE_TOO_LARGE'));
+        next(new AppError(400, 'File size too large', 'FILE_TOO_LARGE')); return;
       }
 
       // Check file extension
@@ -245,13 +252,12 @@ export const fileUploadSecurityMiddleware = (
       });
 
       if (!ext || !allowedExtensions.includes(ext)) {
-        return next(new AppError(400, 'Invalid file extension', 'INVALID_FILE_EXTENSION'));
+        next(new AppError(400, 'Invalid file extension', 'INVALID_FILE_EXTENSION')); return;
       }
     }
 
     next();
   };
-};
 
 // Security monitoring middleware
 export const securityMonitoringMiddleware = (

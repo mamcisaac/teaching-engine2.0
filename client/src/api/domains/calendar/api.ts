@@ -4,7 +4,7 @@ import { apiClient } from '../../core/client';
 // API endpoints
 export const calendarApi = {
   // Get events for a date range
-  getEvents: async (start: string, end: string) => {
+  getEvents: async (start: string, end: string): Promise<CalendarEvent[]> => {
     const { data } = await apiClient.get<CalendarEvent[]>('/api/calendar-events', {
       params: { start, end },
     });
@@ -12,36 +12,36 @@ export const calendarApi = {
   },
 
   // Get single event
-  getEvent: async (id: number) => {
+  getEvent: async (id: number): Promise<CalendarEvent> => {
     const { data } = await apiClient.get<CalendarEvent>(`/api/calendar-events/${id}`);
     return data;
   },
 
   // Create event
-  createEvent: async (event: Omit<CalendarEvent, 'id' | 'createdAt' | 'updatedAt'>) => {
+  createEvent: async (event: Omit<CalendarEvent, 'id' | 'createdAt' | 'updatedAt'>): Promise<CalendarEvent> => {
     const { data } = await apiClient.post<CalendarEvent>('/api/calendar-events', event);
     return data;
   },
 
   // Update event
-  updateEvent: async ({ id, ...event }: CalendarEvent) => {
+  updateEvent: async ({ id, ...event }: CalendarEvent): Promise<CalendarEvent> => {
     const { data } = await apiClient.put<CalendarEvent>(`/api/calendar-events/${id}`, event);
     return data;
   },
 
   // Delete event
-  deleteEvent: async (id: number) => {
+  deleteEvent: async (id: number): Promise<void> => {
     await apiClient.delete(`/api/calendar-events/${id}`);
   },
 
   // Bulk create events
-  bulkCreateEvents: async (events: Omit<CalendarEvent, 'id' | 'createdAt' | 'updatedAt'>[]) => {
+  bulkCreateEvents: async (events: Omit<CalendarEvent, 'id' | 'createdAt' | 'updatedAt'>[]): Promise<CalendarEvent[]> => {
     const { data } = await apiClient.post<CalendarEvent[]>('/api/calendar-events/bulk', { events });
     return data;
   },
 
   // Get recurring events
-  getRecurringEvents: async (start: string, end: string) => {
+  getRecurringEvents: async (start: string, end: string): Promise<CalendarEvent[]> => {
     const { data } = await apiClient.get<CalendarEvent[]>('/api/calendar-events/recurring', {
       params: { start, end },
     });
@@ -49,16 +49,16 @@ export const calendarApi = {
   },
 
   // Export calendar
-  exportCalendar: async (format: 'ics' | 'pdf', start: string, end: string) => {
-    const { data } = await apiClient.get(`/api/calendar-events/export`, {
+  exportCalendar: async (format: 'ics' | 'pdf', start: string, end: string): Promise<Blob> => {
+    const response = await apiClient.get<Blob>(`/api/calendar-events/export`, {
       params: { format, start, end },
       responseType: 'blob',
     });
-    return data;
+    return response.data;
   },
 
   // Import calendar
-  importCalendar: async (file: File) => {
+  importCalendar: async (file: File): Promise<{ imported: number; failed: number }> => {
     const formData = new FormData();
     formData.append('file', file);
     
@@ -75,13 +75,13 @@ export const calendarApi = {
   },
 
   // Get event types
-  getEventTypes: async () => {
+  getEventTypes: async (): Promise<string[]> => {
     const { data } = await apiClient.get<string[]>('/api/calendar-events/types');
     return data;
   },
 
   // Search events
-  searchEvents: async (query: string, filters?: { type?: string; tag?: string }) => {
+  searchEvents: async (query: string, filters?: { type?: string; tag?: string }): Promise<CalendarEvent[]> => {
     const { data } = await apiClient.get<CalendarEvent[]>('/api/calendar-events/search', {
       params: { q: query, ...filters },
     });

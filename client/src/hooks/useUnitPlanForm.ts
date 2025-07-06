@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
+
 import { useAutoSave, useUnsavedChangesWarning } from './useAutoSave';
 
 export interface UnitPlanFormData {
@@ -119,7 +120,7 @@ export function useUnitPlanForm({
   }, []);
 
   // Array field handlers
-  const addArrayItem = useCallback((field: keyof UnitPlanFormData, value: string = '') => {
+  const addArrayItem = useCallback((field: keyof UnitPlanFormData, value = '') => {
     setFormData(prev => ({
       ...prev,
       [field]: [...(prev[field] as string[]), value],
@@ -203,8 +204,7 @@ export function useUnitPlanForm({
   }, [formData, longRangePlanId]);
 
   // Clean form data for submission
-  const getCleanFormData = useCallback((): UnitPlanFormData => {
-    return {
+  const getCleanFormData = useCallback((): UnitPlanFormData => ({
       ...formData,
       essentialQuestions: formData.essentialQuestions.filter(q => q.trim()),
       successCriteria: formData.successCriteria.filter(c => c.trim()),
@@ -215,8 +215,7 @@ export function useUnitPlanForm({
         forELL: formData.differentiationStrategies.forELL.filter(s => s.trim()),
         forIEP: formData.differentiationStrategies.forIEP.filter(s => s.trim()),
       },
-    };
-  }, [formData]);
+    }), [formData]);
 
   // Reset form
   const resetForm = useCallback(() => {
@@ -237,7 +236,7 @@ export function useUnitPlanForm({
     estimatedHours?: number;
     assessmentPlan?: string;
     successCriteria?: string[];
-    expectations?: Array<{ expectation: { id: string } }>;
+    expectations?: { expectation: { id: string } }[];
     longRangePlanId: string;
     crossCurricularConnections?: string;
     learningSkills?: string[];

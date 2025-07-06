@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from 'express';
-import { ZodError } from 'zod';
 import { Prisma } from '@prisma/client';
+import type { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import { ZodError } from 'zod';
 
 import logger from '../logger.js';
 
@@ -41,31 +41,31 @@ export class ValidationError extends AppError {
 }
 
 export class AuthenticationError extends AppError {
-  constructor(message: string = 'Authentication failed') {
+  constructor(message = 'Authentication failed') {
     super(message, 401, 'AUTHENTICATION_ERROR');
   }
 }
 
 export class AuthorizationError extends AppError {
-  constructor(message: string = 'Insufficient permissions') {
+  constructor(message = 'Insufficient permissions') {
     super(message, 403, 'AUTHORIZATION_ERROR');
   }
 }
 
 export class NotFoundError extends AppError {
-  constructor(message: string = 'Resource not found') {
+  constructor(message = 'Resource not found') {
     super(message, 404, 'NOT_FOUND');
   }
 }
 
 export class ConflictError extends AppError {
-  constructor(message: string = 'Resource conflict') {
+  constructor(message = 'Resource conflict') {
     super(message, 409, 'CONFLICT');
   }
 }
 
 export class RateLimitError extends AppError {
-  constructor(message: string = 'Too many requests') {
+  constructor(message = 'Too many requests') {
     super(message, 429, 'RATE_LIMIT');
   }
 }
@@ -203,12 +203,10 @@ function handleSpecificErrors(
 
   // Zod validation errors
   if (err instanceof ZodError) {
-    const errors = err.errors.map((e) => {
-      return {
+    const errors = err.errors.map((e) => ({
         field: e.path.join('.'),
         message: e.message,
-      };
-    });
+      }));
 
     return new ValidationError(
       `Validation failed: ${errors.map((e) => `${e.field}: ${e.message}`).join(', ')}`,
@@ -220,7 +218,7 @@ function handleSpecificErrors(
     switch (err.code) {
       case 'P2002': {
         const field = err.meta?.target as string[];
-        return new ConflictError(`Duplicate value for field: ${field?.join(', ') || 'unknown'}`);
+        return new ConflictError(`Duplicate value for field: ${field.join(', ') || 'unknown'}`);
       }
       case 'P2025':
         return new NotFoundError('Record not found');
@@ -418,14 +416,18 @@ export function handleGracefulShutdown(server: { close: (callback: () => void) =
     }, 30000);
   };
 
-  process.on('SIGTERM', () => shutdown('SIGTERM'));
-  process.on('SIGINT', () => shutdown('SIGINT'));
+  process.on('SIGTERM', () => {
+ shutdown('SIGTERM'); 
+});
+  process.on('SIGINT', () => {
+ shutdown('SIGINT'); 
+});
 }
 
 /**
  * Request timeout middleware
  */
-export function requestTimeout(timeoutMs: number = 30000) {
+export function requestTimeout(timeoutMs = 30000) {
   return (req: Request, res: Response, next: NextFunction) => {
     const timeout = setTimeout(() => {
       logger.warn(
@@ -445,8 +447,12 @@ export function requestTimeout(timeoutMs: number = 30000) {
       });
     }, timeoutMs);
 
-    res.on('finish', () => clearTimeout(timeout));
-    res.on('close', () => clearTimeout(timeout));
+    res.on('finish', () => {
+ clearTimeout(timeout); 
+});
+    res.on('close', () => {
+ clearTimeout(timeout); 
+});
 
     next();
   };

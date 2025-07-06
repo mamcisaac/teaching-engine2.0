@@ -20,9 +20,11 @@ export default function PlannerFilters({ filters, onChange }: Props) {
       {TAGS.map((t) => (
         <label key={t} className="inline-flex items-center gap-1" title={`Show ${t} activities`}>
           <input
-            type="checkbox"
             checked={filters[t] ?? true}
-            onChange={(e) => onChange({ ...filters, [t]: e.target.checked })}
+            type="checkbox"
+            onChange={(e) => {
+ onChange({ ...filters, [t]: e.target.checked }); 
+}}
           />
           {t}
         </label>
@@ -32,7 +34,9 @@ export default function PlannerFilters({ filters, onChange }: Props) {
 }
 
 export function loadPlannerFilters(): Record<string, boolean> {
-  if (typeof window === 'undefined') return {};
+  if (typeof window === 'undefined') {
+return {};
+}
   const stored = localStorage.getItem(STORAGE_KEY);
   return stored ? (JSON.parse(stored) as Record<string, boolean>) : {};
 }

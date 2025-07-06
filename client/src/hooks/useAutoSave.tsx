@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+
 import { useToast } from '../components/ui/use-toast';
 import logger from '../utils/logger';
 interface UseAutoSaveOptions<T> {
@@ -88,7 +89,9 @@ export function useAutoSave<T>({
 
   // Manual save function
   const saveNow = async () => {
-    if (isSaving) return;
+    if (isSaving) {
+return;
+}
     
     try {
       setIsSaving(true);
@@ -120,13 +123,11 @@ export function useAutoSave<T>({
   };
 
   // Cleanup on unmount
-  useEffect(() => {
-    return () => {
+  useEffect(() => () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-    };
-  }, []);
+    }, []);
 
   return {
     lastSaved,

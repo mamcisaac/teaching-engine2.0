@@ -1,6 +1,3 @@
-import React from 'react';
-import { Card } from '../ui/card';
-import { Button } from '../ui/Button';
 import {
   BookOpen,
   Calendar,
@@ -12,9 +9,13 @@ import {
   Star,
   Clock,
 } from 'lucide-react';
+import React from 'react';
+
 import { getAllGrade1FITemplates } from '../../data/templates/french-immersion/grade1-templates';
-import { PlanTemplate } from '../../types/template';
-import { FrenchImmersionTemplateMetadata } from '../../types/frenchImmersion';
+import type { FrenchImmersionTemplateMetadata } from '../../types/frenchImmersion';
+import type { PlanTemplate } from '../../types/template';
+import { Button } from '../ui/Button';
+import { Card } from '../ui/card';
 
 interface FrenchImmersionTemplateSelectorProps {
   onTemplateSelect: (template: PlanTemplate) => void;
@@ -101,10 +102,14 @@ export default function FrenchImmersionTemplateSelector({
 
   // Apply persona recommendations
   const getPersonaRecommendations = (template: PlanTemplate): boolean => {
-    if (!selectedPersona) return true;
+    if (!selectedPersona) {
+return true;
+}
 
     const persona = TEACHER_PERSONAS.find((p) => p.id === selectedPersona);
-    if (!persona) return true;
+    if (!persona) {
+return true;
+}
 
     // Check if template matches persona preferences
     if (selectedPersona === 'jean-luc') {
@@ -158,12 +163,14 @@ export default function FrenchImmersionTemplateSelector({
           {TEACHER_PERSONAS.map((persona) => (
             <button
               key={persona.id}
-              onClick={() => setSelectedPersona(selectedPersona === persona.id ? null : persona.id)}
               className={`p-4 rounded-lg border-2 transition-all text-left ${
                 selectedPersona === persona.id
                   ? `border-${persona.color}-500 bg-${persona.color}-50`
                   : 'border-gray-200 hover:border-gray-300'
               }`}
+              onClick={() => {
+ setSelectedPersona(selectedPersona === persona.id ? null : persona.id); 
+}}
             >
               <div className="flex items-start gap-3">
                 <div className={`text-${persona.color}-600`}>{persona.icon}</div>
@@ -191,19 +198,23 @@ export default function FrenchImmersionTemplateSelector({
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <input
+                className="w-full pl-10 pr-3 py-2 border rounded-lg"
+                placeholder="Search templates..."
                 type="text"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search templates..."
-                className="w-full pl-10 pr-3 py-2 border rounded-lg"
+                onChange={(e) => {
+ setSearchTerm(e.target.value); 
+}}
               />
             </div>
           </div>
 
           <select
-            value={selectedTimeOfYear}
-            onChange={(e) => setSelectedTimeOfYear(e.target.value)}
             className="px-3 py-2 border rounded-lg"
+            value={selectedTimeOfYear}
+            onChange={(e) => {
+ setSelectedTimeOfYear(e.target.value); 
+}}
           >
             <option value="">All Months</option>
             <option value="September">September</option>
@@ -219,9 +230,11 @@ export default function FrenchImmersionTemplateSelector({
           </select>
 
           <Button
-            variant={showOnlyFavorites ? 'primary' : 'outline'}
             size="sm"
-            onClick={() => setShowOnlyFavorites(!showOnlyFavorites)}
+            variant={showOnlyFavorites ? 'primary' : 'outline'}
+            onClick={() => {
+ setShowOnlyFavorites(!showOnlyFavorites); 
+}}
           >
             <Star className="h-4 w-4 mr-1" />
             Favorites
@@ -269,9 +282,7 @@ export default function FrenchImmersionTemplateSelector({
       {/* Template Grid */}
       <div className="grid md:grid-cols-2 gap-4">
         {filteredTemplates.map((template) => {
-          const fiMetadata = (
-            template as PlanTemplate & { fiMetadata?: FrenchImmersionTemplateMetadata }
-          ).fiMetadata;
+          const {fiMetadata} = (template as PlanTemplate & { fiMetadata?: FrenchImmersionTemplateMetadata });
 
           return (
             <Card key={template.id} className="overflow-hidden hover:shadow-lg transition-shadow">
@@ -337,10 +348,12 @@ export default function FrenchImmersionTemplateSelector({
                 )}
 
                 <Button
-                  variant="primary"
-                  size="sm"
                   className="w-full"
-                  onClick={() => onTemplateSelect(template)}
+                  size="sm"
+                  variant="primary"
+                  onClick={() => {
+ onTemplateSelect(template); 
+}}
                 >
                   Use This Template
                   <ChevronRight className="h-4 w-4 ml-1" />

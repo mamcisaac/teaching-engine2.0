@@ -3,22 +3,22 @@
  * Extends BaseRouteHandler with templates-specific business logic
  */
 
-import { Response, NextFunction } from 'express';
+import type { Prisma } from '@teaching-engine/database';
+import type { Response, NextFunction } from 'express';
 import { z } from 'zod';
-import { Prisma } from '@teaching-engine/database';
 
-import { BaseService } from '../services/base/BaseService.js';
 import { prisma } from '../prisma.js';
-import { TemplateCreateData, TemplateUpdateData } from '../types/routes.js';
+import { BaseService } from '../services/base/BaseService.js';
+import type { TemplateCreateData, TemplateUpdateData } from '../types/routes.js';
 
-import { BaseRouteHandler, AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
+import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
+import { BaseRouteHandler } from './base/BaseRouteHandler.js';
 import { commonValidations } from './base/validation.js';
 import {
   optimizedIncludes,
   optimizedQueries,
   queryPerformance,
 } from './optimizations/queryOptimizations.js';
-
 
 // Template-specific validation schemas
 const templateContentSchema = z.object({
@@ -116,12 +116,24 @@ class TemplateService extends BaseService {
     // Build where clause using optimized ownership filter
     const where = optimizedQueries.createOwnershipWhere(userId);
 
-    if (type) where.AND.push({ type });
-    if (category) where.AND.push({ category });
-    if (subject) where.AND.push({ subject: { contains: subject, mode: 'insensitive' } });
-    if (gradeMin) where.AND.push({ gradeMin: { gte: gradeMin } });
-    if (gradeMax) where.AND.push({ gradeMax: { lte: gradeMax } });
-    if (isSystem !== undefined) where.AND.push({ isSystem });
+    if (type) {
+where.AND.push({ type });
+}
+    if (category) {
+where.AND.push({ category });
+}
+    if (subject) {
+where.AND.push({ subject: { contains: subject, mode: 'insensitive' } });
+}
+    if (gradeMin) {
+where.AND.push({ gradeMin: { gte: gradeMin } });
+}
+    if (gradeMax) {
+where.AND.push({ gradeMax: { lte: gradeMax } });
+}
+    if (isSystem !== undefined) {
+where.AND.push({ isSystem });
+}
 
     // Search functionality using optimized search utility
     if (search) {
@@ -314,8 +326,12 @@ class TemplateService extends BaseService {
 
     const gradeRange = grades.reduce(
       (range: { min: number; max: number }, template: { gradeMin: number | null; gradeMax: number | null }) => {
-        if (template.gradeMin) range.min = Math.min(range.min, template.gradeMin);
-        if (template.gradeMax) range.max = Math.max(range.max, template.gradeMax);
+        if (template.gradeMin) {
+range.min = Math.min(range.min, template.gradeMin);
+}
+        if (template.gradeMax) {
+range.max = Math.max(range.max, template.gradeMax);
+}
         return range;
       },
       { min: 12, max: 1 },
@@ -363,9 +379,7 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
 
   protected getCrudOperations(): CrudOperations<unknown> {
     return {
-      create: async (data: unknown, userId: number) => {
-        return this.templateService.create(data as TemplateCreateData, userId);
-      },
+      create: async (data: unknown, userId: number) => this.templateService.create(data as TemplateCreateData, userId),
       findMany: async (filters: unknown, userId: number) => {
         const result = await this.templateService.findMany(
           filters as Record<string, unknown>,
@@ -373,15 +387,9 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
         );
         return result.templates;
       },
-      findById: async (id: string, userId: number) => {
-        return this.templateService.findById(id, userId);
-      },
-      update: async (id: string, data: unknown, userId: number) => {
-        return this.templateService.update(id, data as TemplateUpdateData, userId);
-      },
-      delete: async (id: string, userId: number) => {
-        return this.templateService.delete(id, userId);
-      },
+      findById: async (id: string, userId: number) => this.templateService.findById(id, userId),
+      update: async (id: string, data: unknown, userId: number) => this.templateService.update(id, data as TemplateUpdateData, userId),
+      delete: async (id: string, userId: number) => this.templateService.delete(id, userId),
     };
   }
 
@@ -403,7 +411,7 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
       return;
     } catch (_error) {
       this.logger.error(`Error in ${this.routeName} list:`, _error);
-      return next(_error);
+      next(_error); return;
     }
   }
 
@@ -431,7 +439,7 @@ export class TemplatesRouteHandler extends BaseRouteHandler {
       return;
     } catch (_error) {
       this.logger.error('Error getting filter options:', _error);
-      return next(_error);
+      next(_error); return;
     }
   }
 }

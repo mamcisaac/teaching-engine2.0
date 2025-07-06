@@ -1,6 +1,6 @@
-import React from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { clsx } from 'clsx';
+import React from 'react';
 
 // Wrapper component for consistent API
 interface DialogProps {

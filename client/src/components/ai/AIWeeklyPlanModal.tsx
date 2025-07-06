@@ -1,8 +1,9 @@
-import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { Calendar, Clock, AlertCircle, CheckCircle, Sparkles } from 'lucide-react';
-import { api } from '../../api';
+import { useState } from 'react';
 import { toast } from 'sonner';
+
+import { api } from '../../api';
 import Dialog from '../Dialog';
 
 interface AIWeeklyPlanModalProps {
@@ -116,8 +117,12 @@ export function AIWeeklyPlanModal({
   };
 
   const getMetricColor = (score: number) => {
-    if (score >= 0.8) return 'text-green-600';
-    if (score >= 0.6) return 'text-yellow-600';
+    if (score >= 0.8) {
+return 'text-green-600';
+}
+    if (score >= 0.6) {
+return 'text-yellow-600';
+}
     return 'text-red-600';
   };
 
@@ -130,7 +135,7 @@ export function AIWeeklyPlanModal({
   };
 
   return (
-    <Dialog open={isOpen} onClose={onClose} title="AI Weekly Plan Generator">
+    <Dialog open={isOpen} title="AI Weekly Plan Generator" onClose={onClose}>
       <div className="space-y-6">
         {!generatedPlan ? (
           <>
@@ -145,14 +150,15 @@ export function AIWeeklyPlanModal({
                       Activity Complexity
                     </label>
                     <select
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
                       value={preferences.preferredComplexity}
-                      onChange={(e) =>
-                        setPreferences({
+                      onChange={(e) => {
+ setPreferences({
                           ...preferences,
                           preferredComplexity: e.target.value as 'simple' | 'moderate' | 'complex',
-                        })
+                        }); 
+}
                       }
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
                     >
                       <option value="simple">Simple</option>
                       <option value="moderate">Moderate</option>
@@ -163,15 +169,16 @@ export function AIWeeklyPlanModal({
                   <div>
                     <label className="flex items-center">
                       <input
-                        type="checkbox"
                         checked={preferences.includeAssessments}
-                        onChange={(e) =>
-                          setPreferences({
+                        className="mr-2 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
+                        type="checkbox"
+                        onChange={(e) => {
+ setPreferences({
                             ...preferences,
                             includeAssessments: e.target.checked,
-                          })
+                          }); 
+}
                         }
-                        className="mr-2 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                       />
                       <span className="text-sm text-gray-700">Include assessment activities</span>
                     </label>
@@ -182,17 +189,18 @@ export function AIWeeklyPlanModal({
                       Buffer time between activities (minutes)
                     </label>
                     <input
-                      type="number"
-                      min="0"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
                       max="30"
+                      min="0"
+                      type="number"
                       value={preferences.bufferTime}
-                      onChange={(e) =>
-                        setPreferences({
+                      onChange={(e) => {
+ setPreferences({
                           ...preferences,
                           bufferTime: parseInt(e.target.value),
-                        })
+                        }); 
+}
                       }
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
                     />
                   </div>
                 </div>
@@ -214,15 +222,15 @@ export function AIWeeklyPlanModal({
 
             <div className="flex justify-end gap-3">
               <button
-                onClick={onClose}
                 className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md"
+                onClick={onClose}
               >
                 Cancel
               </button>
               <button
-                onClick={handleGenerate}
-                disabled={generateMutation.isPending}
                 className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 disabled:opacity-50 flex items-center gap-2"
+                disabled={generateMutation.isPending}
+                onClick={handleGenerate}
               >
                 <Sparkles className="h-4 w-4" />
                 {generateMutation.isPending ? 'Generating...' : 'Generate Plan'}
@@ -236,8 +244,10 @@ export function AIWeeklyPlanModal({
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-medium text-gray-900">Generated Plan Preview</h3>
                 <button
-                  onClick={() => setGeneratedPlan(null)}
                   className="text-sm text-purple-600 hover:text-purple-700"
+                  onClick={() => {
+ setGeneratedPlan(null); 
+}}
                 >
                   Generate New Plan
                 </button>
@@ -284,12 +294,14 @@ export function AIWeeklyPlanModal({
                 {(['monday', 'tuesday', 'wednesday', 'thursday', 'friday'] as const).map((day) => (
                   <button
                     key={day}
-                    onClick={() => setSelectedDay(day)}
                     className={`px-3 py-1 rounded-md text-sm font-medium capitalize ${
                       selectedDay === day
                         ? 'bg-purple-600 text-white'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
+                    onClick={() => {
+ setSelectedDay(day); 
+}}
                   >
                     {day}
                   </button>
@@ -361,15 +373,15 @@ export function AIWeeklyPlanModal({
 
             <div className="flex justify-end gap-3">
               <button
-                onClick={onClose}
                 className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md"
+                onClick={onClose}
               >
                 Cancel
               </button>
               <button
-                onClick={handleApply}
-                disabled={applyMutation.isPending}
                 className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 disabled:opacity-50 flex items-center gap-2"
+                disabled={applyMutation.isPending}
+                onClick={handleApply}
               >
                 <Calendar className="h-4 w-4" />
                 {applyMutation.isPending ? 'Applying...' : 'Apply to Calendar'}

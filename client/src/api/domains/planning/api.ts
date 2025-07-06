@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import type { 
   YearPlanEntry, 
   DailyPlan, 
@@ -7,7 +6,6 @@ import type {
   PlannerSuggestion
 } from '../../../types';
 import { apiClient } from '../../core/client';
-import { getWeekStartISO } from '../../core/utils';
 
 // API endpoints
 export const planningApi = {
@@ -17,8 +15,8 @@ export const planningApi = {
     return data;
   },
 
-  shareYearPlan: async (input: { recipientEmail: string; yearPlan: YearPlanEntry[] }) => {
-    const { data } = await apiClient.post('/api/year-plan/share', input);
+  shareYearPlan: async (input: { recipientEmail: string; yearPlan: YearPlanEntry[] }): Promise<{ success: boolean; message?: string }> => {
+    const { data } = await apiClient.post<{ success: boolean; message?: string }>('/api/year-plan/share', input);
     return data;
   },
 
@@ -80,7 +78,10 @@ export const planningApi = {
   },
 
   // Printables
-  downloadPrintables: async (weekStart: string) => apiClient.get(`/printables?weekStart=${weekStart}`, {
+  downloadPrintables: async (weekStart: string): Promise<Blob> => {
+    const { data } = await apiClient.get<Blob>(`/printables?weekStart=${weekStart}`, {
       responseType: 'blob',
-    }),
+    });
+    return data;
+  },
 };

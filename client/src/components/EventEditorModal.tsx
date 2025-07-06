@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import Dialog from './Dialog';
+
 import { useAddCalendarEvent } from '../api/domains/calendar';
+
+import Dialog from './Dialog';
 
 interface Props {
   onClose: () => void;
@@ -12,7 +14,9 @@ export default function EventEditorModal({ onClose }: Props) {
   const mutation = useAddCalendarEvent();
 
   const submit = () => {
-    if (!date || !title) return;
+    if (!date || !title) {
+return;
+}
     mutation.mutate({
       title,
       start: `${date}T00:00:00.000Z`,
@@ -25,20 +29,24 @@ export default function EventEditorModal({ onClose }: Props) {
   };
 
   return (
-    <Dialog open={true} onOpenChange={onClose}>
+    <Dialog open onOpenChange={onClose}>
       <div className="space-y-2 w-64">
         <h2 className="text-lg">Add Event</h2>
         <input
           className="border p-1 w-full"
           placeholder="Title"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => {
+ setTitle(e.target.value); 
+}}
         />
         <input
-          type="date"
           className="border p-1 w-full"
+          type="date"
           value={date}
-          onChange={(e) => setDate(e.target.value)}
+          onChange={(e) => {
+ setDate(e.target.value); 
+}}
         />
         <div className="flex gap-2 mt-2">
           <button className="px-2 py-1 bg-blue-500 text-white rounded" onClick={submit}>
@@ -46,8 +54,8 @@ export default function EventEditorModal({ onClose }: Props) {
           </button>
           <button
             className="px-2 py-1 bg-gray-200 text-gray-800 rounded border"
-            onClick={onClose}
             type="button"
+            onClick={onClose}
           >
             Cancel
           </button>

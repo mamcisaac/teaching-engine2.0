@@ -1,65 +1,72 @@
+import type { UseQueryResult, UseMutationResult } from '@tanstack/react-query';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 
 import { resourceApi } from './api';
 import type {
+  MediaResource,
   MediaResourceInput,
   ResourceFilters,
   ResourceCollection,
+  ResourceStats,
 } from './api';
 
 // Media resource query hooks
-export const useMediaResources = (filters?: ResourceFilters) =>
+export const useMediaResources = (filters?: ResourceFilters): UseQueryResult<{
+  resources: MediaResource[];
+  total: number;
+  hasMore: boolean;
+}> =>
   useQuery({
-    queryKey: queryKeys.resource.media(filters?.userId || 0),
+    queryKey: queryKeys.resource.media(filters?.userId ?? 0),
     queryFn: () => resourceApi.media.getAll(filters),
     staleTime: 2 * 60 * 1000, // 2 minutes
   });
 
-export const useMediaResource = (id: number) =>
+export const useMediaResource = (id: number): UseQueryResult<MediaResource> =>
   useQuery({
     queryKey: queryKeys.resource.detail(id),
     queryFn: () => resourceApi.media.getById(id),
     enabled: !!id,
   });
 
-export const usePopularResources = (timeframe: 'day' | 'week' | 'month' = 'week', limit = 20) =>
+export const usePopularResources = (timeframe: 'day' | 'week' | 'month' = 'week', limit = 20): UseQueryResult<MediaResource[]> =>
   useQuery({
     queryKey: ['popular-resources', timeframe, limit],
     queryFn: () => resourceApi.getPopular(timeframe, limit),
     staleTime: 10 * 60 * 1000, // 10 minutes
   });
 
-export const useRecentResources = (limit = 20, category?: string) =>
+export const useRecentResources = (limit = 20, category?: string): UseQueryResult<MediaResource[]> =>
   useQuery({
     queryKey: ['recent-resources', limit, category],
     queryFn: () => resourceApi.getRecent(limit, category),
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
-export const useSharedResources = () =>
+export const useSharedResources = (): UseQueryResult<MediaResource[]> =>
   useQuery({
     queryKey: ['shared-resources'],
     queryFn: resourceApi.getSharedWithMe,
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
-export const useResourceStats = () =>
+export const useResourceStats = (): UseQueryResult<ResourceStats> =>
   useQuery({
     queryKey: ['resource-stats'],
     queryFn: resourceApi.getStats,
     staleTime: 10 * 60 * 1000, // 10 minutes
   });
 
-export const useResourceTags = () =>
+export const useResourceTags = (): UseQueryResult<{ name: string; count: number }[]> =>
   useQuery({
     queryKey: ['resource-tags'],
     queryFn: resourceApi.getTags,
     staleTime: 15 * 60 * 1000, // 15 minutes
   });
 
-export const useResourceCategories = () =>
+export const useResourceCategories = (): UseQueryResult<{ name: string; count: number }[]> =>
   useQuery({
     queryKey: ['resource-categories'],
     queryFn: resourceApi.getCategories,
@@ -67,14 +74,14 @@ export const useResourceCategories = () =>
   });
 
 // Collection query hooks
-export const useResourceCollections = (includeResources = false) =>
+export const useResourceCollections = (includeResources = false): UseQueryResult<ResourceCollection[]> =>
   useQuery({
     queryKey: ['resource-collections', includeResources],
     queryFn: () => resourceApi.collections.getAll(includeResources),
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
-export const useResourceCollection = (id: number, includeResources = true) =>
+export const useResourceCollection = (id: number, includeResources = true): UseQueryResult<ResourceCollection> =>
   useQuery({
     queryKey: ['resource-collection', id, includeResources],
     queryFn: () => resourceApi.collections.getById(id, includeResources),
@@ -82,7 +89,11 @@ export const useResourceCollection = (id: number, includeResources = true) =>
   });
 
 // Search hooks
-export const useResourceSearch = (query: string, filters?: ResourceFilters) =>
+export const useResourceSearch = (query: string, filters?: ResourceFilters): UseQueryResult<{
+  resources: MediaResource[];
+  collections: ResourceCollection[];
+  total: number;
+}> =>
   useQuery({
     queryKey: ['resource-search', query, filters],
     queryFn: () => resourceApi.search(query, filters),
@@ -91,7 +102,7 @@ export const useResourceSearch = (query: string, filters?: ResourceFilters) =>
   });
 
 // Link validation hook
-export const useLinkValidation = (url: string) =>
+export const useLinkValidation = (url: string): UseQueryResult<{ isValid: boolean; metadata?: Record<string, unknown> }> =>
   useQuery({
     queryKey: ['link-validation', url],
     queryFn: () => resourceApi.links.validate(url),
@@ -100,14 +111,22 @@ export const useLinkValidation = (url: string) =>
   });
 
 // Storage hooks
-export const useStorageUsage = () =>
+export const useStorageUsage = (): UseQueryResult<{
+  used: number;
+  limit: number;
+  percentage: number;
+}> =>
   useQuery({
     queryKey: ['storage-usage'],
     queryFn: resourceApi.storage.getUsage,
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
-export const useSharingStatus = (resourceId: number) =>
+export const useSharingStatus = (resourceId: number): UseQueryResult<{
+  isShared: boolean;
+  sharedWith: number[];
+  permissions: Record<string, boolean>;
+}> =>
   useQuery({
     queryKey: ['sharing-status', resourceId],
     queryFn: () => resourceApi.sharing.getSharingStatus(resourceId),
@@ -116,7 +135,11 @@ export const useSharingStatus = (resourceId: number) =>
   });
 
 // Media resource mutation hooks
-export const useUploadResource = () => {
+export const useUploadResource = (): UseMutationResult<
+  MediaResource,
+  Error,
+  { file: File; metadata: MediaResourceInput }
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -136,7 +159,11 @@ export const useUploadResource = () => {
   });
 };
 
-export const useUploadMultipleResources = () => {
+export const useUploadMultipleResources = (): UseMutationResult<
+  MediaResource[],
+  Error,
+  { files: File[]; metadata: MediaResourceInput[] }
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -158,7 +185,11 @@ export const useUploadMultipleResources = () => {
   });
 };
 
-export const useUpdateResource = () => {
+export const useUpdateResource = (): UseMutationResult<
+  MediaResource,
+  Error,
+  { id: number; updates: Partial<MediaResourceInput> }
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -177,7 +208,7 @@ export const useUpdateResource = () => {
   });
 };
 
-export const useDeleteResource = () => {
+export const useDeleteResource = (): UseMutationResult<void, Error, number> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -194,7 +225,11 @@ export const useDeleteResource = () => {
   });
 };
 
-export const useBulkDeleteResources = () => {
+export const useBulkDeleteResources = (): UseMutationResult<
+  { deleted: number; failed: number },
+  Error,
+  number[]
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -219,7 +254,11 @@ export const useBulkDeleteResources = () => {
   });
 };
 
-export const useGenerateThumbnail = () => {
+export const useGenerateThumbnail = (): UseMutationResult<
+  { thumbnailUrl: string },
+  Error,
+  { id: number; options?: { width?: number; height?: number } }
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -238,7 +277,11 @@ export const useGenerateThumbnail = () => {
 };
 
 // Collection mutation hooks
-export const useCreateCollection = () => {
+export const useCreateCollection = (): UseMutationResult<
+  ResourceCollection,
+  Error,
+  Omit<ResourceCollection, 'id' | 'userId' | 'createdAt' | 'updatedAt'>
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -254,7 +297,11 @@ export const useCreateCollection = () => {
   });
 };
 
-export const useUpdateCollection = () => {
+export const useUpdateCollection = (): UseMutationResult<
+  ResourceCollection,
+  Error,
+  { id: number; updates: Partial<ResourceCollection> }
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -271,7 +318,7 @@ export const useUpdateCollection = () => {
   });
 };
 
-export const useDeleteCollection = () => {
+export const useDeleteCollection = (): UseMutationResult<void, Error, number> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -286,7 +333,11 @@ export const useDeleteCollection = () => {
   });
 };
 
-export const useAddResourcesToCollection = () => {
+export const useAddResourcesToCollection = (): UseMutationResult<
+  ResourceCollection,
+  Error,
+  { collectionId: number; resourceIds: number[] }
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -303,7 +354,11 @@ export const useAddResourcesToCollection = () => {
   });
 };
 
-export const useRemoveResourcesFromCollection = () => {
+export const useRemoveResourcesFromCollection = (): UseMutationResult<
+  ResourceCollection,
+  Error,
+  { collectionId: number; resourceIds: number[] }
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -321,7 +376,17 @@ export const useRemoveResourcesFromCollection = () => {
 };
 
 // Link mutation hooks
-export const useAddLink = () => {
+export const useAddLink = (): UseMutationResult<
+  MediaResource,
+  Error,
+  {
+    url: string;
+    title: string;
+    description?: string;
+    category: string;
+    tags?: string[];
+  }
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -344,7 +409,11 @@ export const useAddLink = () => {
   });
 };
 
-export const useBulkImportLinks = () => {
+export const useBulkImportLinks = (): UseMutationResult<
+  { imported: MediaResource[]; failed: { url: string; error: string }[] },
+  Error,
+  { urls: string[]; defaultCategory: string }
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -366,7 +435,11 @@ export const useBulkImportLinks = () => {
 };
 
 // Storage mutation hooks
-export const useStorageCleanup = () => {
+export const useStorageCleanup = (): UseMutationResult<
+  { cleaned: number; freed: number },
+  Error,
+  void
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -382,7 +455,11 @@ export const useStorageCleanup = () => {
   });
 };
 
-export const useStorageOptimize = () => {
+export const useStorageOptimize = (): UseMutationResult<
+  { optimized: number; saved: number },
+  Error,
+  number[] | undefined
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -399,7 +476,15 @@ export const useStorageOptimize = () => {
 };
 
 // Sharing mutation hooks
-export const useShareResource = () => {
+export const useShareResource = (): UseMutationResult<
+  MediaResource,
+  Error,
+  {
+    resourceId: number;
+    userIds: number[];
+    permission: 'view' | 'download' | 'edit';
+  }
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -423,7 +508,11 @@ export const useShareResource = () => {
   });
 };
 
-export const useGeneratePublicLink = () => {
+export const useGeneratePublicLink = (): UseMutationResult<
+  { url: string; expiresAt?: string },
+  Error,
+  { resourceId: number; expiresInDays?: number }
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -439,7 +528,7 @@ export const useGeneratePublicLink = () => {
   });
 };
 
-export const useRevokePublicLink = () => {
+export const useRevokePublicLink = (): UseMutationResult<void, Error, number> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -454,11 +543,11 @@ export const useRevokePublicLink = () => {
 };
 
 // Download hooks
-export const useDownloadResource = () => useMutation({
+export const useDownloadResource = (): UseMutationResult<Blob, Error, number> => useMutation({
     mutationFn: (id: number) => resourceApi.media.download(id),
     onSuccess: (_data, id) => {
       // Track download
-      resourceApi.media.trackDownload(id);
+      void resourceApi.media.trackDownload(id);
       
       // Create download link
       const url = window.URL.createObjectURL(_data);
@@ -473,7 +562,11 @@ export const useDownloadResource = () => useMutation({
     onError: (error) => handleApiError(error, 'Failed to download resource'),
   });
 
-export const useExportResources = () => useMutation({
+export const useExportResources = (): UseMutationResult<
+  Blob,
+  Error,
+  { resourceIds: number[]; format: 'zip' | 'json' }
+> => useMutation({
     mutationFn: ({ resourceIds, format }: { resourceIds: number[]; format: 'zip' | 'json' }) =>
       resourceApi.export(resourceIds, format),
     onSuccess: (_data, variables) => {

@@ -1,10 +1,13 @@
-import React, { Component, ReactNode, ErrorInfo } from 'react';
 import { AlertCircle, RefreshCw, Home, Mail } from 'lucide-react';
+import type { ReactNode, ErrorInfo } from 'react';
+import React, { Component } from 'react';
+
+import { errorReportingService } from '../services/errorReportingService';
+import logger from '../utils/logger';
+
+import { Alert, AlertDescription, AlertTitle } from './ui/alert';
 import { Button } from './ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Alert, AlertDescription, AlertTitle } from './ui/alert';
-import logger from '../utils/logger';
-import { errorReportingService } from '../services/errorReportingService';
 interface ErrorBoundaryProps {
   children: ReactNode;
   fallback?: ReactNode;
@@ -108,7 +111,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
                 )}
                 
                 {allowHome && (
-                  <Button onClick={() => window.location.href = '/'} variant="outline">
+                  <Button variant="outline" onClick={() => window.location.href = '/'}>
                     <Home className="h-4 w-4 mr-2" />
                     Go Home
                   </Button>
@@ -116,8 +119,8 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
                 
                 {supportEmail && (
                   <Button 
-                    onClick={() => window.location.href = `mailto:${supportEmail}?subject=Error Report`} 
-                    variant="outline"
+                    variant="outline" 
+                    onClick={() => window.location.href = `mailto:${supportEmail}?subject=Error Report`}
                   >
                     <Mail className="h-4 w-4 mr-2" />
                     Contact Support
@@ -134,7 +137,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
                     {this.state.error.message}
                     {'\n\n'}
                     {this.state.error.stack}
-                    {this.state.errorInfo && '\n\nComponent Stack:\n' + this.state.errorInfo.componentStack}
+                    {this.state.errorInfo && `\n\nComponent Stack:\n${  this.state.errorInfo.componentStack}`}
                   </pre>
                 </details>
               )}
@@ -151,10 +154,10 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 // Feature-specific error boundaries
 export const PlanningErrorBoundary: React.FC<{ children: ReactNode }> = ({ children }) => (
   <ErrorBoundary
-    errorTitle="Planning Error"
+    allowHome
+    allowRetry
     errorDescription="There was an issue with the planning feature. Your data is safe."
-    allowRetry={true}
-    allowHome={true}
+    errorTitle="Planning Error"
   >
     {children}
   </ErrorBoundary>
@@ -162,10 +165,10 @@ export const PlanningErrorBoundary: React.FC<{ children: ReactNode }> = ({ child
 
 export const FormErrorBoundary: React.FC<{ children: ReactNode }> = ({ children }) => (
   <ErrorBoundary
-    errorTitle="Form Error"
+    allowRetry
+    showDetails
     errorDescription="There was an issue with the form. Your data has not been lost."
-    allowRetry={true}
-    showDetails={true}
+    errorTitle="Form Error"
   >
     {children}
   </ErrorBoundary>
@@ -173,9 +176,9 @@ export const FormErrorBoundary: React.FC<{ children: ReactNode }> = ({ children 
 
 export const AIErrorBoundary: React.FC<{ children: ReactNode }> = ({ children }) => (
   <ErrorBoundary
-    errorTitle="AI Assistant Error"
+    allowRetry
     errorDescription="The AI assistant encountered an issue. You can continue without AI suggestions."
-    allowRetry={true}
+    errorTitle="AI Assistant Error"
     fallback={
       <Alert>
         <AlertCircle className="h-4 w-4" />
@@ -193,10 +196,10 @@ export const AIErrorBoundary: React.FC<{ children: ReactNode }> = ({ children })
 // Global error boundary wrapper
 export const GlobalErrorBoundary: React.FC<{ children: ReactNode }> = ({ children }) => (
   <ErrorBoundary
-    errorTitle="Application Error"
+    allowHome
+    allowRetry
     errorDescription="Something went wrong with the application. Don't worry, your data is safe."
-    allowRetry={true}
-    allowHome={true}
+    errorTitle="Application Error"
     supportEmail="support@teachingengine.com"
     onError={(error, errorInfo) => {
       // Log to console in development

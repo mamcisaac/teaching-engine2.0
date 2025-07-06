@@ -2,6 +2,7 @@
 // Provides persistent storage for planning data with conflict resolution
 
 import { nanoid } from 'nanoid';
+
 import logger from '../utils/logger';
 // Generic data type for stored entities
 export type StoredData = Record<string, unknown>;
@@ -100,8 +101,12 @@ class OfflineStorageService {
 
     return new Promise((resolve, reject) => {
       const request = store.add(fullChange);
-      request.onsuccess = () => resolve(fullChange.id);
-      request.onerror = () => reject(request.error);
+      request.onsuccess = () => {
+ resolve(fullChange.id); 
+};
+      request.onerror = () => {
+ reject(request.error); 
+};
     });
   }
 
@@ -115,8 +120,12 @@ class OfflineStorageService {
 
     return new Promise((resolve, reject) => {
       const request = index.getAll(IDBKeyRange.only(false));
-      request.onsuccess = () => resolve(request.result);
-      request.onerror = () => reject(request.error);
+      request.onsuccess = () => {
+ resolve(request.result); 
+};
+      request.onerror = () => {
+ reject(request.error); 
+};
     });
   }
 
@@ -135,14 +144,20 @@ class OfflineStorageService {
         if (change) {
           change.synced = true;
           const putRequest = store.put(change);
-          putRequest.onsuccess = () => resolve();
-          putRequest.onerror = () => reject(putRequest.error);
+          putRequest.onsuccess = () => {
+ resolve(); 
+};
+          putRequest.onerror = () => {
+ reject(putRequest.error); 
+};
         } else {
           resolve();
         }
       };
 
-      getRequest.onerror = () => reject(getRequest.error);
+      getRequest.onerror = () => {
+ reject(getRequest.error); 
+};
     });
   }
 
@@ -162,8 +177,12 @@ class OfflineStorageService {
 
     return new Promise((resolve, reject) => {
       const request = store.put(cachedData);
-      request.onsuccess = () => resolve();
-      request.onerror = () => reject(request.error);
+      request.onsuccess = () => {
+ resolve(); 
+};
+      request.onerror = () => {
+ reject(request.error); 
+};
     });
   }
 
@@ -178,7 +197,7 @@ class OfflineStorageService {
       const request = store.get(key);
 
       request.onsuccess = () => {
-        const result = request.result;
+        const {result} = request;
         if (!result) {
           resolve(null);
           return;
@@ -195,7 +214,9 @@ class OfflineStorageService {
         resolve(result.data);
       };
 
-      request.onerror = () => reject(request.error);
+      request.onerror = () => {
+ reject(request.error); 
+};
     });
   }
 
@@ -208,8 +229,12 @@ class OfflineStorageService {
 
     return new Promise((resolve, reject) => {
       const request = store.delete(key);
-      request.onsuccess = () => resolve();
-      request.onerror = () => reject(request.error);
+      request.onsuccess = () => {
+ resolve(); 
+};
+      request.onerror = () => {
+ reject(request.error); 
+};
     });
   }
 
@@ -236,7 +261,9 @@ class OfflineStorageService {
         }
       };
 
-      request.onerror = () => reject(request.error);
+      request.onerror = () => {
+ reject(request.error); 
+};
     });
   }
 
@@ -264,14 +291,18 @@ class OfflineStorageService {
 
     return new Promise((resolve, reject) => {
       const request = store.add(conflict);
-      request.onsuccess = () => resolve(conflict.id);
-      request.onerror = () => reject(request.error);
+      request.onsuccess = () => {
+ resolve(conflict.id); 
+};
+      request.onerror = () => {
+ reject(request.error); 
+};
     });
   }
 
   // Get unresolved conflicts
   async getUnresolvedConflicts(): Promise<
-    Array<{
+    {
       id: string;
       entity: string;
       entityId: string;
@@ -279,7 +310,7 @@ class OfflineStorageService {
       remoteData: StoredData;
       timestamp: number;
       resolved: boolean;
-    }>
+    }[]
   > {
     await this.ensureInitialized();
 
@@ -289,8 +320,12 @@ class OfflineStorageService {
 
     return new Promise((resolve, reject) => {
       const request = index.getAll(IDBKeyRange.only(false));
-      request.onsuccess = () => resolve(request.result);
-      request.onerror = () => reject(request.error);
+      request.onsuccess = () => {
+ resolve(request.result); 
+};
+      request.onerror = () => {
+ reject(request.error); 
+};
     });
   }
 
@@ -322,14 +357,20 @@ class OfflineStorageService {
           conflict.resolvedAt = Date.now();
 
           const putRequest = store.put(conflict);
-          putRequest.onsuccess = () => resolve();
-          putRequest.onerror = () => reject(putRequest.error);
+          putRequest.onsuccess = () => {
+ resolve(); 
+};
+          putRequest.onerror = () => {
+ reject(putRequest.error); 
+};
         } else {
           resolve();
         }
       };
 
-      getRequest.onerror = () => reject(getRequest.error);
+      getRequest.onerror = () => {
+ reject(getRequest.error); 
+};
     });
   }
 
@@ -344,8 +385,12 @@ class OfflineStorageService {
       transaction.objectStore('cache').clear();
       transaction.objectStore('conflicts').clear();
 
-      transaction.oncomplete = () => resolve();
-      transaction.onerror = () => reject(transaction.error);
+      transaction.oncomplete = () => {
+ resolve(); 
+};
+      transaction.onerror = () => {
+ reject(transaction.error); 
+};
     });
   }
 }

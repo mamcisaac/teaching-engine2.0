@@ -1,12 +1,15 @@
-import { apiClient } from '../api/core/client';
+import { Upload, CheckCircle, AlertCircle, Sparkles, Edit2, Trash2 } from 'lucide-react';
 import React, { useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/Button';
-import { Progress } from '@/components/ui/Progress';
+import { useNavigate } from 'react-router-dom';
+
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/Badge';
+import { Button } from '@/components/ui/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/Input';
+import { Label } from '@/components/ui/Label';
+import { Progress } from '@/components/ui/Progress';
 import {
   Select,
   SelectContent,
@@ -15,11 +18,10 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Input } from '@/components/ui/Input';
-import { Label } from '@/components/ui/Label';
 import { Textarea } from '@/components/ui/Textarea';
-import { Upload, CheckCircle, AlertCircle, Sparkles, Edit2, Trash2 } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
+
+import { apiClient } from '../api/core/client';
 import logger from '../utils/logger';
 interface ParsedExpectation {
   code: string;
@@ -56,7 +58,9 @@ export default function CurriculumImportPage() {
 
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
-      if (acceptedFiles.length === 0) return;
+      if (acceptedFiles.length === 0) {
+return;
+}
 
       const file = acceptedFiles[0];
       setIsUploading(true);
@@ -72,7 +76,7 @@ export default function CurriculumImportPage() {
           },
         });
 
-        const sessionId = uploadResponse.data.sessionId;
+        const {sessionId} = uploadResponse.data;
 
         // Start parsing
         setImportSession({
@@ -143,7 +147,9 @@ export default function CurriculumImportPage() {
   );
 
   const handlePresetSelection = async (presetId: string) => {
-    if (!presetId) return;
+    if (!presetId) {
+return;
+}
 
     setIsUploading(true);
     try {
@@ -179,7 +185,9 @@ export default function CurriculumImportPage() {
   };
 
   const handleSaveExpectation = () => {
-    if (!editingExpectation || !importSession) return;
+    if (!editingExpectation || !importSession) {
+return;
+}
 
     const updatedSubjects = importSession.parsedSubjects.map((subject) => {
       if (subject.name === editingExpectation.subject) {
@@ -206,7 +214,9 @@ export default function CurriculumImportPage() {
   };
 
   const handleDeleteExpectation = (expectation: ParsedExpectation) => {
-    if (!importSession) return;
+    if (!importSession) {
+return;
+}
 
     const updatedSubjects = importSession.parsedSubjects.map((subject) => {
       if (subject.name === expectation.subject) {
@@ -230,7 +240,9 @@ export default function CurriculumImportPage() {
   };
 
   const handleFinalImport = async () => {
-    if (!importSession) return;
+    if (!importSession) {
+return;
+}
 
     try {
       await apiClient.post(`/api/curriculum/import/${importSession.id}`);
@@ -275,13 +287,15 @@ export default function CurriculumImportPage() {
             Upload a curriculum document or select a known curriculum to get started
           </p>
         </div>
-        <Button variant="outline" onClick={() => navigate('/curriculum')}>
+        <Button variant="outline" onClick={() => {
+ navigate('/curriculum'); 
+}}>
           Back to Curriculum
         </Button>
       </div>
 
       {!importSession && (
-        <Tabs defaultValue="upload" className="space-y-6">
+        <Tabs className="space-y-6" defaultValue="upload">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="upload">Upload Document</TabsTrigger>
             <TabsTrigger value="preset">Use Preset</TabsTrigger>
@@ -314,7 +328,7 @@ export default function CurriculumImportPage() {
                       <p className="text-sm text-muted-foreground">
                         Supports PDF, DOCX, and TXT files
                       </p>
-                      <Button variant="outline" disabled={isUploading}>
+                      <Button disabled={isUploading} variant="outline">
                         {isUploading ? 'Uploading...' : 'Browse Files'}
                       </Button>
                     </div>
@@ -360,9 +374,9 @@ export default function CurriculumImportPage() {
                 </div>
 
                 <Button
-                  onClick={() => handlePresetSelection(selectedPreset)}
-                  disabled={!selectedPreset || isUploading}
                   className="w-full"
+                  disabled={!selectedPreset || isUploading}
+                  onClick={() => handlePresetSelection(selectedPreset)}
                 >
                   {isUploading ? 'Loading...' : 'Load Curriculum'}
                 </Button>
@@ -416,7 +430,7 @@ export default function CurriculumImportPage() {
               {importSession.parsedSubjects.map((subject) => (
                 <TabsTrigger key={subject.name} value={subject.name}>
                   {subject.name}
-                  <Badge variant="secondary" className="ml-2">
+                  <Badge className="ml-2" variant="secondary">
                     {subject.expectations.length}
                   </Badge>
                 </TabsTrigger>
@@ -424,7 +438,7 @@ export default function CurriculumImportPage() {
             </TabsList>
 
             {importSession.parsedSubjects.map((subject) => (
-              <TabsContent key={subject.name} value={subject.name} className="space-y-4">
+              <TabsContent key={subject.name} className="space-y-4" value={subject.name}>
                 <Card>
                   <CardHeader>
                     <CardTitle>{subject.name} Expectations</CardTitle>
@@ -454,16 +468,20 @@ export default function CurriculumImportPage() {
                           </div>
                           <div className="flex gap-1 ml-4">
                             <Button
-                              variant="ghost"
                               size="sm"
-                              onClick={() => handleEditExpectation(expectation)}
+                              variant="ghost"
+                              onClick={() => {
+ handleEditExpectation(expectation); 
+}}
                             >
                               <Edit2 className="h-4 w-4" />
                             </Button>
                             <Button
-                              variant="ghost"
                               size="sm"
-                              onClick={() => handleDeleteExpectation(expectation)}
+                              variant="ghost"
+                              onClick={() => {
+ handleDeleteExpectation(expectation); 
+}}
                             >
                               <Trash2 className="h-4 w-4" />
                             </Button>
@@ -489,10 +507,12 @@ export default function CurriculumImportPage() {
                   </p>
                 </div>
                 <div className="flex gap-2">
-                  <Button variant="outline" onClick={() => setImportSession(null)}>
+                  <Button variant="outline" onClick={() => {
+ setImportSession(null); 
+}}>
                     Start Over
                   </Button>
-                  <Button onClick={handleFinalImport} className="gap-2">
+                  <Button className="gap-2" onClick={handleFinalImport}>
                     <Sparkles className="h-4 w-4" />
                     Import Curriculum
                   </Button>
@@ -517,11 +537,12 @@ export default function CurriculumImportPage() {
                   <Label>Code</Label>
                   <Input
                     value={editingExpectation.code}
-                    onChange={(e) =>
-                      setEditingExpectation({
+                    onChange={(e) => {
+ setEditingExpectation({
                         ...editingExpectation,
                         code: e.target.value,
-                      })
+                      }); 
+}
                     }
                   />
                 </div>
@@ -529,11 +550,12 @@ export default function CurriculumImportPage() {
                   <Label>Type</Label>
                   <Select
                     value={editingExpectation.type}
-                    onValueChange={(value: 'overall' | 'specific') =>
-                      setEditingExpectation({
+                    onValueChange={(value: 'overall' | 'specific') => {
+ setEditingExpectation({
                         ...editingExpectation,
                         type: value,
-                      })
+                      }); 
+}
                     }
                   >
                     <SelectTrigger>
@@ -550,14 +572,15 @@ export default function CurriculumImportPage() {
               <div className="space-y-2">
                 <Label>Description</Label>
                 <Textarea
+                  rows={3}
                   value={editingExpectation.description}
-                  onChange={(e) =>
-                    setEditingExpectation({
+                  onChange={(e) => {
+ setEditingExpectation({
                       ...editingExpectation,
                       description: e.target.value,
-                    })
+                    }); 
+}
                   }
-                  rows={3}
                 />
               </div>
 
@@ -566,11 +589,12 @@ export default function CurriculumImportPage() {
                   <Label>Strand</Label>
                   <Input
                     value={editingExpectation.strand}
-                    onChange={(e) =>
-                      setEditingExpectation({
+                    onChange={(e) => {
+ setEditingExpectation({
                         ...editingExpectation,
                         strand: e.target.value,
-                      })
+                      }); 
+}
                     }
                   />
                 </div>
@@ -578,18 +602,21 @@ export default function CurriculumImportPage() {
                   <Label>Substrand (Optional)</Label>
                   <Input
                     value={editingExpectation.substrand || ''}
-                    onChange={(e) =>
-                      setEditingExpectation({
+                    onChange={(e) => {
+ setEditingExpectation({
                         ...editingExpectation,
                         substrand: e.target.value,
-                      })
+                      }); 
+}
                     }
                   />
                 </div>
               </div>
 
               <div className="flex justify-end gap-2">
-                <Button variant="outline" onClick={() => setEditingExpectation(null)}>
+                <Button variant="outline" onClick={() => {
+ setEditingExpectation(null); 
+}}>
                   Cancel
                 </Button>
                 <Button onClick={handleSaveExpectation}>Save Changes</Button>

@@ -1,9 +1,34 @@
+import type { UseQueryResult, UseMutationResult } from '@tanstack/react-query';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
-import type { ReflectionUpdate } from '../../../types';
+import type { ReflectionUpdate, ReflectionJournalEntry, ReflectionInput } from '../../../types';
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 
 import { notesApi } from './api';
+
+// Types for quick notes
+interface QuickNote {
+  id: number;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  tags?: string[];
+}
+
+interface TagInfo {
+  name: string;
+  count: number;
+}
+
+interface NotesByTag {
+  journal: ReflectionJournalEntry[];
+  quick: {
+    id: number;
+    content: string;
+    createdAt: string;
+    tags: string[];
+  }[];
+}
 
 // Journal Query hooks
 export const useJournalEntries = (params?: {
@@ -12,20 +37,20 @@ export const useJournalEntries = (params?: {
   endDate?: string;
   limit?: number;
   offset?: number;
-}) =>
+}): UseQueryResult<ReflectionJournalEntry[]> =>
   useQuery({
     queryKey: queryKeys.notes.journal.list(params),
     queryFn: () => notesApi.journal.getAll(params),
   });
 
-export const useJournalEntry = (id: number) =>
+export const useJournalEntry = (id: number): UseQueryResult<ReflectionJournalEntry> =>
   useQuery({
     queryKey: queryKeys.notes.journal.detail(id),
     queryFn: () => notesApi.journal.getById(id),
     enabled: !!id,
   });
 
-export const useSearchJournalEntries = (query: string) =>
+export const useSearchJournalEntries = (query: string): UseQueryResult<ReflectionJournalEntry[]> =>
   useQuery({
     queryKey: queryKeys.notes.journal.search(query),
     queryFn: () => notesApi.journal.search(query),
@@ -33,7 +58,11 @@ export const useSearchJournalEntries = (query: string) =>
   });
 
 // Journal Mutation hooks
-export const useCreateJournalEntry = () => {
+export const useCreateJournalEntry = (): UseMutationResult<
+  ReflectionJournalEntry,
+  Error,
+  ReflectionInput
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -46,7 +75,11 @@ export const useCreateJournalEntry = () => {
   });
 };
 
-export const useUpdateJournalEntry = () => {
+export const useUpdateJournalEntry = (): UseMutationResult<
+  ReflectionJournalEntry,
+  Error,
+  { id: number; input: ReflectionUpdate }
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -61,7 +94,7 @@ export const useUpdateJournalEntry = () => {
   });
 };
 
-export const useDeleteJournalEntry = () => {
+export const useDeleteJournalEntry = (): UseMutationResult<void, Error, number> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -75,14 +108,18 @@ export const useDeleteJournalEntry = () => {
 };
 
 // Quick Notes Query hooks
-export const useQuickNotes = () =>
+export const useQuickNotes = (): UseQueryResult<QuickNote[]> =>
   useQuery({
     queryKey: queryKeys.notes.quick.all,
     queryFn: notesApi.quick.getAll,
   });
 
 // Quick Notes Mutation hooks
-export const useCreateQuickNote = () => {
+export const useCreateQuickNote = (): UseMutationResult<
+  QuickNote,
+  Error,
+  { content: string; tags?: string[] }
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -96,7 +133,11 @@ export const useCreateQuickNote = () => {
   });
 };
 
-export const useUpdateQuickNote = () => {
+export const useUpdateQuickNote = (): UseMutationResult<
+  QuickNote,
+  Error,
+  { id: number; input: { content?: string; tags?: string[] } }
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -111,7 +152,7 @@ export const useUpdateQuickNote = () => {
   });
 };
 
-export const useDeleteQuickNote = () => {
+export const useDeleteQuickNote = (): UseMutationResult<void, Error, number> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -126,13 +167,13 @@ export const useDeleteQuickNote = () => {
 };
 
 // Tags Query hooks
-export const useNoteTags = () =>
+export const useNoteTags = (): UseQueryResult<TagInfo[]> =>
   useQuery({
     queryKey: queryKeys.notes.tags.all,
     queryFn: notesApi.tags.getAll,
   });
 
-export const useNotesByTag = (tag: string) =>
+export const useNotesByTag = (tag: string): UseQueryResult<NotesByTag> =>
   useQuery({
     queryKey: queryKeys.notes.tags.byTag(tag),
     queryFn: () => notesApi.tags.getByTag(tag),
@@ -140,7 +181,16 @@ export const useNotesByTag = (tag: string) =>
   });
 
 // Export hooks
-export const useExportNotesPDF = () => useMutation({
+export const useExportNotesPDF = (): UseMutationResult<
+  Blob,
+  Error,
+  {
+    type: 'journal' | 'quick' | 'all';
+    startDate?: string;
+    endDate?: string;
+    themeId?: number;
+  }
+> => useMutation({
     mutationFn: notesApi.export.pdf,
     onSuccess: (data, variables) => {
       // Create a download link for the PDF blob
@@ -158,7 +208,16 @@ export const useExportNotesPDF = () => useMutation({
     onError: (error) => handleApiError(error, 'Failed to export notes as PDF'),
   });
 
-export const useExportNotesMarkdown = () => useMutation({
+export const useExportNotesMarkdown = (): UseMutationResult<
+  { content: string },
+  Error,
+  {
+    type: 'journal' | 'quick' | 'all';
+    startDate?: string;
+    endDate?: string;
+    themeId?: number;
+  }
+> => useMutation({
     mutationFn: notesApi.export.markdown,
     onSuccess: (data, variables) => {
       // Create a download link for the markdown content

@@ -4,9 +4,9 @@
  * Transforms parsed curriculum data into database entities
  */
 
-import { Prisma } from '@teaching-engine/database';
+import type { Prisma } from '@teaching-engine/database';
 
-import { ParsedCurriculum, ParsedExpectation } from '../parsers/CurriculumParser';
+import type { ParsedCurriculum, ParsedExpectation } from '../parsers/CurriculumParser';
 
 export interface TransformOptions {
   userId: number;
@@ -97,7 +97,7 @@ export class CurriculumTransformer {
    */
   transformForUpdate(
     parsed: ParsedCurriculum,
-    existingExpectations: Array<{
+    existingExpectations: {
       id: string;
       code: string;
       description: string;
@@ -105,18 +105,18 @@ export class CurriculumTransformer {
       substrand?: string | null;
       grade: number;
       subject: string;
-    }>,
+    }[],
     options: TransformOptions,
   ): {
     toCreate: Prisma.CurriculumExpectationCreateInput[];
-    toUpdate: Array<{
+    toUpdate: {
       id: string;
       data: Prisma.CurriculumExpectationUpdateInput;
-    }>;
+    }[];
     toDeactivate: string[];
   } {
     const toCreate: Prisma.CurriculumExpectationCreateInput[] = [];
-    const toUpdate: Array<{ id: string; data: Prisma.CurriculumExpectationUpdateInput }> = [];
+    const toUpdate: { id: string; data: Prisma.CurriculumExpectationUpdateInput }[] = [];
     const toDeactivate: string[] = [];
 
     // Create lookup map for existing expectations
@@ -126,7 +126,7 @@ export class CurriculumTransformer {
     const processedIds = new Set<string>();
 
     for (const expectation of parsed.expectations) {
-      const typedExpectation = expectation as ParsedExpectation;
+      const typedExpectation = expectation;
       const existing = existingMap.get(typedExpectation.code);
 
       if (existing) {
@@ -181,7 +181,7 @@ export class CurriculumTransformer {
    * Transform to export format
    */
   static transformForExport(
-    expectations: Array<{
+    expectations: {
       id: string;
       code: string;
       description: string;
@@ -189,7 +189,7 @@ export class CurriculumTransformer {
       substrand?: string | null;
       grade: number;
       subject: string;
-    }>,
+    }[],
     format: 'csv' | 'json' | 'excel' = 'json',
   ): unknown {
     switch (format) {

@@ -14,7 +14,7 @@ interface ToastOptions {
   duration?: number;
 }
 
-const toastListeners: Array<(toast: Toast) => void> = [];
+const toastListeners: ((toast: Toast) => void)[] = [];
 
 export function useToast() {
   const [toasts, setToasts] = useState<Toast[]>([]);
@@ -44,7 +44,9 @@ export function useToast() {
       ...options,
     };
 
-    toastListeners.forEach((listener) => listener(newToast));
+    toastListeners.forEach((listener) => {
+ listener(newToast); 
+});
   };
 
   const dismiss = (toastId: string) => {

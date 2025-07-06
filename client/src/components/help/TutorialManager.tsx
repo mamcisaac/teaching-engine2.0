@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
+
 import { useHelp } from '../../contexts/HelpContext';
 import { useTutorials } from '../../hooks/useHelp';
-import { TutorialOverlay } from './TutorialOverlay';
 import { Button } from '../ui/Button';
 import { Modal } from '../ui/Modal';
+
+import { TutorialOverlay } from './TutorialOverlay';
 
 interface TutorialManagerProps {
   children: React.ReactNode;
@@ -82,9 +84,11 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
     return (
       <Modal
         isOpen={showTutorialMenu}
-        onClose={() => setShowTutorialMenu(false)}
-        title="Interactive Tutorials"
         size="lg"
+        title="Interactive Tutorials"
+        onClose={() => {
+ setShowTutorialMenu(false); 
+}}
       >
         <div className="space-y-6">
           <p className="text-gray-600">
@@ -135,13 +139,13 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
                       </div>
                       <div className="ml-4">
                         {isCompleted ? (
-                          <Button variant="secondary" size="sm" disabled>
+                          <Button disabled size="sm" variant="secondary">
                             ✓ Completed
                           </Button>
                         ) : isActive ? (
                           <Button
-                            variant="primary"
                             size="sm"
+                            variant="primary"
                             onClick={() => {
                               setShowTutorialMenu(false);
                               // Resume tutorial - overlay will show automatically
@@ -151,8 +155,8 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
                           </Button>
                         ) : (
                           <Button
-                            variant="primary"
                             size="sm"
+                            variant="primary"
                             onClick={() => {
                               startTutorial(tutorial.id);
                               setShowTutorialMenu(false);
@@ -197,29 +201,31 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }) =>
 
       {/* Tutorial Overlay */}
       <TutorialOverlay
-        isActive={!!activeTutorial}
         currentStep={currentStep}
+        isActive={!!activeTutorial}
+        progress={progress}
         tutorial={activeTutorial || null}
+        onComplete={handleCompleteTutorial}
         onNext={handleNextStep}
         onPrevious={handlePreviousStep}
         onSkip={handleSkipTutorial}
-        onComplete={handleCompleteTutorial}
-        progress={progress}
       />
 
       {/* Floating Tutorial Button */}
       {!activeTutorial && (
         <button
-          onClick={() => setShowTutorialMenu(true)}
           className="fixed bottom-20 right-6 bg-green-600 text-white rounded-full p-3 shadow-lg hover:bg-green-700 transition-colors z-40"
           title="Start Interactive Tutorial"
+          onClick={() => {
+ setShowTutorialMenu(true); 
+}}
         >
-          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
+              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
             />
           </svg>
         </button>

@@ -1,5 +1,5 @@
-import { LessonPlanFormData } from '../hooks/useETFOLessonPlanForm';
-import { ETFOLessonPlan, UnitPlan } from '../hooks/useETFOPlanning';
+import type { LessonPlanFormData } from '../hooks/useETFOLessonPlanForm';
+import type { ETFOLessonPlan, UnitPlan } from '../hooks/useETFOPlanning';
 
 // Business logic for lesson plans
 export class LessonPlanService {
@@ -31,7 +31,7 @@ export class LessonPlanService {
       content += `## ${lesson.titleFr}\n`;
     }
     // Handle date formatting properly to avoid timezone issues
-    const dateObj = new Date(lesson.date + 'T12:00:00'); // Add time to avoid timezone issues
+    const dateObj = new Date(`${lesson.date  }T12:00:00`); // Add time to avoid timezone issues
     content += `\n**Date:** ${dateObj.toLocaleDateString('en-US')}\n`;
     content += `**Duration:** ${lesson.duration} minutes\n`;
 
@@ -108,7 +108,9 @@ export class LessonPlanService {
 
   // Generate substitute teacher summary
   static generateSubSummary(lesson: ETFOLessonPlan): string {
-    if (!lesson.isSubFriendly) return '';
+    if (!lesson.isSubFriendly) {
+return '';
+}
 
     let summary = `**Substitute Teacher Information**\n\n`;
     summary += `Lesson: ${lesson.title}\n`;
@@ -145,7 +147,7 @@ export class LessonPlanService {
       if (Array.isArray(value)) {
         return value.length > 0 && value.some((item) => item.trim());
       }
-      return value && value.toString().trim();
+      return value?.toString().trim();
     });
   }
 }

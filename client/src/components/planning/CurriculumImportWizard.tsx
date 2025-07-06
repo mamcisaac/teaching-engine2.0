@@ -1,8 +1,9 @@
 import React, { useState, useCallback } from 'react';
-import { Button } from '../ui/Button';
-import Dialog from '../Dialog';
-import { useToast } from '../ui/use-toast';
+
 import logger from '../../utils/logger';
+import Dialog from '../Dialog';
+import { Button } from '../ui/Button';
+import { useToast } from '../ui/use-toast';
 interface ParsedExpectation {
   code: string;
   description: string;
@@ -125,7 +126,9 @@ export function CurriculumImportWizard({
 
   const handleFileUpload = useCallback(
     async (file: File) => {
-      if (!file) return;
+      if (!file) {
+return;
+}
 
       setIsUploading(true);
       const formData = new FormData();
@@ -171,7 +174,9 @@ export function CurriculumImportWizard({
   );
 
   const handleConfirmImport = useCallback(async () => {
-    if (!importId || !reviewedData) return;
+    if (!importId || !reviewedData) {
+return;
+}
 
     setIsConfirming(true);
     const token = localStorage.getItem('token');
@@ -204,7 +209,9 @@ export function CurriculumImportWizard({
       }, 2000);
       
       // Store timeout ID for cleanup
-      return () => clearTimeout(timeoutId);
+      return () => {
+ clearTimeout(timeoutId); 
+};
     } catch (_error) {
       logger.error('Confirm import error:', _error);
       toast({
@@ -219,7 +226,9 @@ export function CurriculumImportWizard({
 
   const handleExpectationEdit = useCallback(
     (index: number, field: keyof ParsedExpectation, value: string) => {
-      if (!reviewedData) return;
+      if (!reviewedData) {
+return;
+}
 
       const updatedExpectations = [...reviewedData.expectations];
       updatedExpectations[index] = { ...updatedExpectations[index], [field]: value };
@@ -234,7 +243,9 @@ export function CurriculumImportWizard({
 
   const handleSubjectGradeEdit = useCallback(
     (field: 'subject' | 'grade', value: string | number) => {
-      if (!reviewedData) return;
+      if (!reviewedData) {
+return;
+}
 
       setReviewedData({
         ...reviewedData,
@@ -256,28 +267,30 @@ export function CurriculumImportWizard({
 
       <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-gray-400 transition-colors">
         <input
-          type="file"
-          id="curriculum-file"
           accept=".pdf,.doc,.docx,.txt"
+          className="hidden"
+          disabled={isUploading}
+          id="curriculum-file"
+          type="file"
           onChange={(e) => {
             const file = e.target.files?.[0];
-            if (file) handleFileUpload(file);
+            if (file) {
+handleFileUpload(file);
+}
           }}
-          disabled={isUploading}
-          className="hidden"
         />
-        <label htmlFor="curriculum-file" className="cursor-pointer block">
+        <label className="cursor-pointer block" htmlFor="curriculum-file">
           <svg
             className="mx-auto h-12 w-12 text-gray-400"
-            stroke="currentColor"
             fill="none"
+            stroke="currentColor"
             viewBox="0 0 48 48"
           >
             <path
               d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-              strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
+              strokeWidth={2}
             />
           </svg>
           <h3 className="mt-4 text-lg font-medium text-gray-900">
@@ -289,7 +302,7 @@ export function CurriculumImportWizard({
 
       {isUploading && (
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto" />
           <p className="mt-2 text-sm text-gray-600">Uploading document...</p>
         </div>
       )}
@@ -298,7 +311,7 @@ export function CurriculumImportWizard({
 
   const renderProcessingStep = () => (
     <div className="text-center space-y-6">
-      <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto"></div>
+      <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto" />
       <div>
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Processing Document</h2>
         <p className="text-gray-600 mb-4">
@@ -312,7 +325,9 @@ export function CurriculumImportWizard({
   );
 
   const renderReviewStep = () => {
-    if (!reviewedData) return null;
+    if (!reviewedData) {
+return null;
+}
 
     return (
       <div className="space-y-6">
@@ -327,21 +342,25 @@ export function CurriculumImportWizard({
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
             <input
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               type="text"
               value={reviewedData.subject}
-              onChange={(e) => handleSubjectGradeEdit('subject', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              onChange={(e) => {
+ handleSubjectGradeEdit('subject', e.target.value); 
+}}
             />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Grade Level</label>
             <input
-              type="number"
-              min="1"
-              max="12"
-              value={reviewedData.grade}
-              onChange={(e) => handleSubjectGradeEdit('grade', parseInt(e.target.value))}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              max="12"
+              min="1"
+              type="number"
+              value={reviewedData.grade}
+              onChange={(e) => {
+ handleSubjectGradeEdit('grade', parseInt(e.target.value)); 
+}}
             />
           </div>
         </div>
@@ -370,29 +389,34 @@ export function CurriculumImportWizard({
                   <tr key={index} className="hover:bg-gray-50">
                     <td className="px-4 py-2">
                       <input
+                        className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                         type="text"
                         value={expectation.code}
-                        onChange={(e) => handleExpectationEdit(index, 'code', e.target.value)}
-                        className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        onChange={(e) => {
+ handleExpectationEdit(index, 'code', e.target.value); 
+}}
                       />
                     </td>
                     <td className="px-4 py-2">
                       <textarea
-                        value={expectation.description}
-                        onChange={(e) =>
-                          handleExpectationEdit(index, 'description', e.target.value)
-                        }
-                        rows={2}
                         className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        rows={2}
+                        value={expectation.description}
+                        onChange={(e) => {
+ handleExpectationEdit(index, 'description', e.target.value); 
+}
+                        }
                       />
                     </td>
                     <td className="px-4 py-2">
                       <input
-                        type="text"
-                        value={expectation.strand || ''}
-                        onChange={(e) => handleExpectationEdit(index, 'strand', e.target.value)}
                         className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                         placeholder="Optional"
+                        type="text"
+                        value={expectation.strand || ''}
+                        onChange={(e) => {
+ handleExpectationEdit(index, 'strand', e.target.value); 
+}}
                       />
                     </td>
                   </tr>
@@ -403,12 +427,14 @@ export function CurriculumImportWizard({
         </div>
 
         <div className="flex justify-between">
-          <Button variant="outline" onClick={() => setCurrentStep('upload')}>
+          <Button variant="outline" onClick={() => {
+ setCurrentStep('upload'); 
+}}>
             Back to Upload
           </Button>
           <Button
-            onClick={handleConfirmImport}
             disabled={isConfirming || !reviewedData.subject || !reviewedData.expectations.length}
+            onClick={handleConfirmImport}
           >
             {isConfirming
               ? 'Importing...'
@@ -425,10 +451,10 @@ export function CurriculumImportWizard({
         <svg
           className="h-8 w-8 text-green-600"
           fill="none"
-          viewBox="0 0 24 24"
           stroke="currentColor"
+          viewBox="0 0 24 24"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
         </svg>
       </div>
       <div>
@@ -447,13 +473,13 @@ export function CurriculumImportWizard({
         <div className="px-6 py-4 border-b border-gray-200">
           <div className="flex items-center justify-between">
             <h1 className="text-xl font-semibold text-gray-900">Curriculum Import Wizard</h1>
-            <button onClick={handleClose} className="text-gray-400 hover:text-gray-600">
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <button className="text-gray-400 hover:text-gray-600" onClick={handleClose}>
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
+                  d="M6 18L18 6M6 6l12 12"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
             </button>

@@ -50,7 +50,9 @@ class ClientLogger {
   }
 
   private shouldLog(level: LogLevel): boolean {
-    if (!this.isEnabled) return false;
+    if (!this.isEnabled) {
+return false;
+}
     
     // In production, only log errors and warnings
     if (!this.isDevelopment && (level === 'debug' || level === 'trace' || level === 'info')) {

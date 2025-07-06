@@ -1,5 +1,5 @@
-import { Request } from 'express';
-import { JwtPayload } from 'jsonwebtoken';
+import type { Request } from 'express';
+import type { JwtPayload } from 'jsonwebtoken';
 
 // User roles enum
 export enum UserRole {

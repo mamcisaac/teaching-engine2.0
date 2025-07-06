@@ -24,9 +24,11 @@ export default function TagInput({ tags, onChange, placeholder }: Props) {
           <span key={t} className="px-1 bg-gray-200 text-sm flex items-center gap-1">
             {t}
             <button
-              type="button"
-              onClick={() => onChange(tags.filter((c) => c !== t))}
               aria-label={`Remove ${t}`}
+              type="button"
+              onClick={() => {
+ onChange(tags.filter((c) => c !== t)); 
+}}
             >
               ×
             </button>
@@ -35,15 +37,17 @@ export default function TagInput({ tags, onChange, placeholder }: Props) {
       </div>
       <input
         className="border p-1 mt-1"
+        placeholder={placeholder}
         value={input}
-        onChange={(e) => setInput(e.target.value)}
+        onChange={(e) => {
+ setInput(e.target.value); 
+}}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ',') {
             e.preventDefault();
             addTag();
           }
         }}
-        placeholder={placeholder}
       />
     </div>
   );

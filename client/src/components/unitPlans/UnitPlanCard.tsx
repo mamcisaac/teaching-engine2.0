@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import React, { memo, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { UnitPlan } from '../../hooks/useETFOPlanning';
+
+import type { UnitPlan } from '../../hooks/useETFOPlanning';
 
 interface UnitPlanCardProps {
   unitPlan: UnitPlan;
   onEdit: (unit: UnitPlan) => void;
 }
 
-export const UnitPlanCard: React.FC<UnitPlanCardProps> = memo(function UnitPlanCard({ unitPlan: unit, onEdit }) {
+export const UnitPlanCard: React.FC<UnitPlanCardProps> = memo(({ unitPlan: unit, onEdit }) => {
   // Memoize expensive date formatting
   const dateRange = useMemo(() => {
     const startDate = new Date(unit.startDate).toLocaleDateString();
@@ -62,14 +63,16 @@ export const UnitPlanCard: React.FC<UnitPlanCardProps> = memo(function UnitPlanC
 
         <div className="mt-4 flex gap-2">
           <Link
-            to={`/planner/units/${unit.id}`}
             className="flex-1 text-center px-3 py-2 text-sm font-medium text-indigo-600 bg-indigo-50 rounded-md hover:bg-indigo-100"
+            to={`/planner/units/${unit.id}`}
           >
             View Details
           </Link>
           <button
-            onClick={() => onEdit(unit)}
             className="px-3 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
+            onClick={() => {
+ onEdit(unit); 
+}}
           >
             Edit
           </button>

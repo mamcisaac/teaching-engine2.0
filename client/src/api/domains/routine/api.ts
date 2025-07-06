@@ -340,8 +340,8 @@ export const routineApi = {
   },
 
   // Search and discovery
-  search: async (query: string, type: 'templates' | 'daily' | 'class' = 'templates') => {
-    const { data } = await apiClient.get<any[]>('/api/routines/search', {
+  search: async (query: string, type: 'templates' | 'daily' | 'class' = 'templates'): Promise<(RoutineTemplate | DailyRoutine | ClassRoutine)[]> => {
+    const { data } = await apiClient.get<(RoutineTemplate | DailyRoutine | ClassRoutine)[]>('/api/routines/search', {
       params: { q: query, type },
     });
     return data;
@@ -360,8 +360,8 @@ export const routineApi = {
   },
 
   // Export routines
-  export: async (filters?: RoutineFilters, format: 'csv' | 'pdf' | 'json' = 'csv') => {
-    const { data } = await apiClient.get('/api/routines/export', {
+  export: async (filters?: RoutineFilters, format: 'csv' | 'pdf' | 'json' = 'csv'): Promise<Blob> => {
+    const { data } = await apiClient.get<Blob>('/api/routines/export', {
       params: { ...filters, format },
       responseType: 'blob',
     });

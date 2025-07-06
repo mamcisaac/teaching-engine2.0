@@ -5,10 +5,13 @@
  * for Testing Engine 2.0 frontend components.
  */
 
-import React, { ReactElement } from 'react';
-import { render, RenderOptions } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import type { RenderOptions } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import type { ReactElement } from 'react';
+import React from 'react';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
+
 import { vi } from 'vitest';
 // Import will be handled in individual test files to avoid circular dependencies
 
@@ -280,9 +283,9 @@ export const renderWithProviders = (ui: ReactElement, options: CustomRenderOptio
 
     return (
       <AllProviders
-        queryClient={queryClient}
-        initialEntries={initialEntries}
         initialAuthState={initialAuthState}
+        initialEntries={initialEntries}
+        queryClient={queryClient}
       >
         {children}
       </AllProviders>
@@ -347,8 +350,7 @@ export const renderWithAuth = (ui: ReactElement, options: CustomRenderOptions = 
 /**
  * Render without authentication context (unauthenticated)
  */
-export const renderWithoutAuth = (ui: ReactElement, options: CustomRenderOptions = {}) => {
-  return renderWithProviders(ui, {
+export const renderWithoutAuth = (ui: ReactElement, options: CustomRenderOptions = {}) => renderWithProviders(ui, {
     ...options,
     initialAuthState: {
       user: null,
@@ -357,7 +359,6 @@ export const renderWithoutAuth = (ui: ReactElement, options: CustomRenderOptions
       ...options.initialAuthState,
     },
   });
-};
 
 // Mock localStorage for tests
 export const mockLocalStorage = () => {
@@ -380,9 +381,7 @@ export const mockLocalStorage = () => {
 };
 
 // Common test helpers
-export const waitForLoadingToFinish = () => {
-  return new Promise((resolve) => setTimeout(resolve, 0));
-};
+export const waitForLoadingToFinish = () => new Promise((resolve) => setTimeout(resolve, 0));
 
 export const mockScrollIntoView = () => {
   Element.prototype.scrollIntoView = vi.fn();

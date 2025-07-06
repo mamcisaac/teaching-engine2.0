@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react';
-import logger from '../utils/logger';
+
+import type {
+  KeyboardShortcut} from '../contexts/KeyboardShortcutsContext';
 import {
-  useKeyboardShortcuts as useKeyboardShortcutsContext,
-  KeyboardShortcut,
+  useKeyboardShortcuts as useKeyboardShortcutsContext
 } from '../contexts/KeyboardShortcutsContext';
+import logger from '../utils/logger';
 
 export interface UseKeyboardShortcutOptions {
   key: string;
@@ -93,10 +95,10 @@ export const useKeyboardShortcut = (
  * @deprecated Use individual useKeyboardShortcut calls
  */
 export const useMultipleKeyboardShortcuts = (
-  shortcuts: Array<{
+  shortcuts: {
     handler: (event: KeyboardEvent) => void;
     options: UseKeyboardShortcutOptions;
-  }> = [],
+  }[] = [],
   deps: React.DependencyList = [],
 ) => {
   // This implementation violates Rules of Hooks because the number of hooks

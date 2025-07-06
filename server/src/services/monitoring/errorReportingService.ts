@@ -1,8 +1,8 @@
 import * as Sentry from '@sentry/node';
 import { nodeProfilingIntegration } from '@sentry/profiling-node';
 
-import { AppError } from '../../utils/errors';
 import { logger } from '../../logger';
+import { AppError } from '../../utils/errors';
 
 type Context = Record<string, unknown>;
 
@@ -28,8 +28,8 @@ interface BreadcrumbData {
 }
 
 export class ErrorReportingService {
-  private enabled: boolean = false;
-  private mockMode: boolean = false;
+  private enabled = false;
+  private mockMode = false;
   private sensitiveFields = [
     'password',
     'token',
@@ -242,7 +242,7 @@ export class ErrorReportingService {
 
     if (error instanceof AppError) {
       // Categorize based on status code and error code
-      const statusCode = error.statusCode;
+      const {statusCode} = error;
       const errorCode = error.code;
 
       category.tags = {
@@ -351,7 +351,7 @@ export class ErrorReportingService {
     }
 
     // Sanitize user data
-    if (sanitized.user && sanitized.user.email) {
+    if (sanitized.user?.email) {
       sanitized.user.email = this.maskEmail(sanitized.user.email);
     }
 
@@ -366,7 +366,9 @@ export class ErrorReportingService {
   }
 
   private sanitizeData(data: unknown): unknown {
-    if (!data) return data;
+    if (!data) {
+return data;
+}
 
     if (typeof data === 'string') {
       return this.sanitizeString(data);
@@ -441,19 +443,25 @@ export class ErrorReportingService {
   }
 
   private maskEmail(email: string): string {
-    if (!email || typeof email !== 'string') return '[INVALID_EMAIL]';
+    if (!email || typeof email !== 'string') {
+return '[INVALID_EMAIL]';
+}
 
     const parts = email.split('@');
-    if (parts.length !== 2) return '[INVALID_EMAIL]';
+    if (parts.length !== 2) {
+return '[INVALID_EMAIL]';
+}
 
     const [local, domain] = parts;
-    const maskedLocal = local.length > 3 ? local.substring(0, 3) + '***' : '***';
+    const maskedLocal = local.length > 3 ? `${local.substring(0, 3)  }***` : '***';
 
     return `${maskedLocal}@${domain}`;
   }
 
   private maskIP(ip: string): string {
-    if (!ip || typeof ip !== 'string') return 'xxx.xxx.xxx.xxx';
+    if (!ip || typeof ip !== 'string') {
+return 'xxx.xxx.xxx.xxx';
+}
 
     const parts = ip.split('.');
     if (parts.length === 4) {

@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
+import type { ReactNode } from 'react';
 
 interface DialogProps {
   open: boolean;
@@ -42,22 +42,24 @@ export default function Dialog({
   return (
     <RadixDialog.Root open={open} onOpenChange={handleOpenChange}>
       <RadixDialog.Portal>
-        <RadixDialog.Overlay className="fixed inset-0 bg-black/50 z-50" aria-hidden="true" />
+        <RadixDialog.Overlay aria-hidden="true" className="fixed inset-0 bg-black/50 z-50" />
         <RadixDialog.Content
+          aria-describedby={description ? 'dialog-description' : undefined}
+          aria-labelledby={title ? 'dialog-title' : undefined}
+          aria-modal="true"
           className="fixed inset-0 z-50 flex items-center justify-center outline-none"
           role="dialog"
-          aria-modal="true"
-          aria-labelledby={title ? 'dialog-title' : undefined}
-          aria-describedby={description ? 'dialog-description' : undefined}
         >
           <div
             className={`bg-white rounded shadow w-full ${maxWidthClasses[maxWidth as keyof typeof maxWidthClasses] || maxWidthClasses.lg} mx-4`}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => {
+ e.stopPropagation(); 
+}}
           >
             {title && (
               <div className="px-6 py-4 border-b">
                 <RadixDialog.Title asChild>
-                  <h2 id="dialog-title" className="text-lg font-semibold">
+                  <h2 className="text-lg font-semibold" id="dialog-title">
                     {title}
                   </h2>
                 </RadixDialog.Title>
@@ -65,7 +67,7 @@ export default function Dialog({
             )}
             {description && (
               <RadixDialog.Description asChild>
-                <p id="dialog-description" className="sr-only">
+                <p className="sr-only" id="dialog-description">
                   {description}
                 </p>
               </RadixDialog.Description>

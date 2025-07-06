@@ -6,7 +6,9 @@ interface Props {
 
 export default function MaterialChecklist({ weekStart }: Props) {
   const { data } = useMaterialList(weekStart);
-  if (!data) return null;
+  if (!data) {
+return null;
+}
   return (
     <ul className="list-disc pl-5 space-y-1">
       {data.items.map((item) => (

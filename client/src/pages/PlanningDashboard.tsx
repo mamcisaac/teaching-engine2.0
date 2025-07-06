@@ -1,7 +1,3 @@
-import React, { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/Button';
-import { Link } from 'react-router-dom';
 import {
   BookOpen,
   Calendar,
@@ -14,10 +10,16 @@ import {
   Clock,
   Users,
 } from 'lucide-react';
-import { useRecentPlans } from '../hooks/useRecentPlans';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import { Button } from '@/components/ui/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+
+import { OnboardingTooltip } from '../components/onboarding';
 import { useHelp } from '../contexts/HelpContext';
 import { useOnboarding } from '../contexts/OnboardingContext';
-import { OnboardingTooltip } from '../components/onboarding';
+import { useRecentPlans } from '../hooks/useRecentPlans';
 
 export default function PlanningDashboard() {
   const { startTutorial } = useHelp();
@@ -83,19 +85,23 @@ export default function PlanningDashboard() {
           <h1 className="text-4xl font-bold text-gray-900">Bienvenue dans Teaching Engine</h1>
           <div className="flex items-center gap-2">
             <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => startTutorial('getting-started-tour')}
               className="gap-2 text-blue-600 hover:text-blue-700"
+              size="sm"
+              variant="ghost"
+              onClick={() => {
+ startTutorial('getting-started-tour'); 
+}}
             >
               <HelpCircle className="h-4 w-4" />
               Aide
             </Button>
             <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => resetOnboarding()}
               className="text-gray-500 hover:text-gray-700"
+              size="sm"
+              variant="ghost"
+              onClick={() => {
+ resetOnboarding(); 
+}}
             >
               Restart Tour
             </Button>
@@ -124,10 +130,12 @@ export default function PlanningDashboard() {
                 </div>
               </div>
               <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowGetStarted(false)}
                 className="text-blue-600 hover:text-blue-700"
+                size="sm"
+                variant="ghost"
+                onClick={() => {
+ setShowGetStarted(false); 
+}}
               >
                 ×
               </Button>
@@ -136,16 +144,18 @@ export default function PlanningDashboard() {
           <CardContent>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
-                onClick={() => startTutorial('getting-started-tour')}
                 className="bg-blue-600 hover:bg-blue-700 text-white gap-2"
+                onClick={() => {
+ startTutorial('getting-started-tour'); 
+}}
               >
                 <HelpCircle className="h-4 w-4" />
                 Take the Tour (5 min)
               </Button>
               <Link to="/planner/quick-lesson">
                 <Button
-                  variant="outline"
                   className="border-blue-300 text-blue-700 hover:bg-blue-50"
+                  variant="outline"
                 >
                   <Plus className="h-4 w-4 mr-2" />
                   Create First Lesson
@@ -163,7 +173,7 @@ export default function PlanningDashboard() {
         <div className="grid gap-6 md:grid-cols-3">
           {primaryActions.map((action) => {
             const actionCard = (
-              <Link key={action.id} to={action.path} id={action.id}>
+              <Link key={action.id} id={action.id} to={action.path}>
                 <Card
                   className={`h-full transition-all duration-200 hover:scale-105 hover:shadow-lg border-2 ${
                     action.isPrimary
@@ -193,11 +203,11 @@ export default function PlanningDashboard() {
               return (
                 <OnboardingTooltip
                   key={action.id}
-                  id="start-planning-tooltip"
-                  title="Your First Lesson"
-                  content="This is where the magic begins! Click here to create your first French Immersion lesson plan with AI assistance."
-                  position="bottom"
                   actionText="Start planning"
+                  content="This is where the magic begins! Click here to create your first French Immersion lesson plan with AI assistance."
+                  id="start-planning-tooltip"
+                  position="bottom"
+                  title="Your First Lesson"
                   onAction={() => (window.location.href = action.path)}
                 >
                   {actionCard}
@@ -207,10 +217,10 @@ export default function PlanningDashboard() {
               return (
                 <OnboardingTooltip
                   key={action.id}
-                  id="ai-help-tooltip"
-                  title="AI Teaching Assistant"
                   content="Your bilingual AI helper understands Ontario curriculum and can suggest activities in French and English."
+                  id="ai-help-tooltip"
                   position="bottom"
+                  title="AI Teaching Assistant"
                 >
                   {actionCard}
                 </OnboardingTooltip>
@@ -264,7 +274,7 @@ export default function PlanningDashboard() {
                 <BookOpen className="h-12 w-12 mx-auto mb-3 text-gray-300" />
                 <p>No plans yet. Create your first lesson to get started!</p>
                 <Link to="/planner/quick-lesson">
-                  <Button variant="outline" className="mt-3">
+                  <Button className="mt-3" variant="outline">
                     Create First Plan
                   </Button>
                 </Link>
@@ -287,8 +297,8 @@ export default function PlanningDashboard() {
               {resources.map((resource) => (
                 <Link
                   key={resource.path}
-                  to={resource.path}
                   className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors"
+                  to={resource.path}
                 >
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-gray-100 rounded-lg">{resource.icon}</div>

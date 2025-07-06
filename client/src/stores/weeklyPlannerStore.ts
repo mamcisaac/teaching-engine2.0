@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
+
 import { api } from '../api';
 import logger from '../utils/logger';
 export interface WorkingHours {
@@ -168,103 +169,120 @@ export const useWeeklyPlannerStore = create<WeeklyPlannerState>()(
         isSaving: false,
 
         // View preference setters
-        setDefaultView: (view) =>
-          set((state) => {
+        setDefaultView: (view) => {
+ set((state) => {
             state.defaultView = view;
             state.lastSyncedAt = new Date();
-          }),
+          }); 
+},
 
-        setTimeSlotDuration: (duration) =>
-          set((state) => {
+        setTimeSlotDuration: (duration) => {
+ set((state) => {
             state.timeSlotDuration = duration;
             state.lastSyncedAt = new Date();
-          }),
+          }); 
+},
 
-        setShowWeekends: (show) =>
-          set((state) => {
+        setShowWeekends: (show) => {
+ set((state) => {
             state.showWeekends = show;
             state.lastSyncedAt = new Date();
-          }),
+          }); 
+},
 
-        setStartOfWeek: (day) =>
-          set((state) => {
+        setStartOfWeek: (day) => {
+ set((state) => {
             state.startOfWeek = day;
             state.lastSyncedAt = new Date();
-          }),
+          }); 
+},
 
-        setWorkingHours: (hours) =>
-          set((state) => {
+        setWorkingHours: (hours) => {
+ set((state) => {
             state.workingHours = hours;
             state.lastSyncedAt = new Date();
-          }),
+          }); 
+},
 
         // UI preference setters
-        setSidebarExpanded: (expanded) =>
-          set((state) => {
+        setSidebarExpanded: (expanded) => {
+ set((state) => {
             state.sidebarExpanded = expanded;
-          }),
+          }); 
+},
 
-        setShowMiniCalendar: (show) =>
-          set((state) => {
+        setShowMiniCalendar: (show) => {
+ set((state) => {
             state.showMiniCalendar = show;
-          }),
+          }); 
+},
 
-        setShowResourcePanel: (show) =>
-          set((state) => {
+        setShowResourcePanel: (show) => {
+ set((state) => {
             state.showResourcePanel = show;
-          }),
+          }); 
+},
 
-        setCompactMode: (compact) =>
-          set((state) => {
+        setCompactMode: (compact) => {
+ set((state) => {
             state.compactMode = compact;
-          }),
+          }); 
+},
 
-        setTheme: (theme) =>
-          set((state) => {
+        setTheme: (theme) => {
+ set((state) => {
             state.theme = theme;
-          }),
+          }); 
+},
 
         // Planning preference setters
-        setAutoSave: (autoSave) =>
-          set((state) => {
+        setAutoSave: (autoSave) => {
+ set((state) => {
             state.autoSave = autoSave;
-          }),
+          }); 
+},
 
-        setAutoSaveInterval: (interval) =>
-          set((state) => {
+        setAutoSaveInterval: (interval) => {
+ set((state) => {
             state.autoSaveInterval = interval;
-          }),
+          }); 
+},
 
-        setShowUncoveredOutcomes: (show) =>
-          set((state) => {
+        setShowUncoveredOutcomes: (show) => {
+ set((state) => {
             state.showUncoveredOutcomes = show;
-          }),
+          }); 
+},
 
-        setDefaultLessonDuration: (duration) =>
-          set((state) => {
+        setDefaultLessonDuration: (duration) => {
+ set((state) => {
             state.defaultLessonDuration = duration;
-          }),
+          }); 
+},
 
         // Current state setters
-        setCurrentWeekStart: (date) =>
-          set((state) => {
+        setCurrentWeekStart: (date) => {
+ set((state) => {
             state.currentWeekStart = date;
-          }),
+          }); 
+},
 
-        setLastActiveView: (view) =>
-          set((state) => {
+        setLastActiveView: (view) => {
+ set((state) => {
             state.lastActiveView = view;
-          }),
+          }); 
+},
 
-        setDraftChanges: (changes) =>
-          set((state) => {
+        setDraftChanges: (changes) => {
+ set((state) => {
             state.draftChanges = changes;
             state.hasOfflineChanges = !!changes;
-          }),
+          }); 
+},
 
         // History management with memory optimization
-        saveToHistory: (description) =>
-          set((state) => {
+        saveToHistory: (description) => {
+ set((state) => {
             // Only save minimal state to prevent memory leaks
             const stateSnapshot = {
               defaultView: state.defaultView,
@@ -294,11 +312,14 @@ export const useWeeklyPlannerStore = create<WeeklyPlannerState>()(
             if (state.undoHistory.length % 25 === 0) {
               state.undoHistory = state.undoHistory.slice(-Math.floor(state.maxHistorySize * 0.8));
             }
-          }),
+          }); 
+},
 
-        undo: () =>
-          set((state) => {
-            if (state.undoHistory.length === 0) return;
+        undo: () => {
+ set((state) => {
+            if (state.undoHistory.length === 0) {
+return;
+}
 
             const lastState = state.undoHistory.pop()!;
 
@@ -330,11 +351,14 @@ export const useWeeklyPlannerStore = create<WeeklyPlannerState>()(
             state.isLoading = false;
             state.isSaving = false;
             state.lastSyncedAt = new Date();
-          }),
+          }); 
+},
 
-        redo: () =>
-          set((state) => {
-            if (state.redoHistory.length === 0) return;
+        redo: () => {
+ set((state) => {
+            if (state.redoHistory.length === 0) {
+return;
+}
 
             const nextState = state.redoHistory.pop()!;
 
@@ -361,13 +385,15 @@ export const useWeeklyPlannerStore = create<WeeklyPlannerState>()(
             state.isLoading = false;
             state.isSaving = false;
             state.lastSyncedAt = new Date();
-          }),
+          }); 
+},
 
-        clearHistory: () =>
-          set((state) => {
+        clearHistory: () => {
+ set((state) => {
             state.undoHistory = [];
             state.redoHistory = [];
-          }),
+          }); 
+},
 
         // Server persistence
         loadFromServer: async () => {
@@ -398,7 +424,9 @@ export const useWeeklyPlannerStore = create<WeeklyPlannerState>()(
 
         saveToServer: async () => {
           const state = get();
-          if (state.isSaving) return; // Prevent concurrent saves
+          if (state.isSaving) {
+return;
+} // Prevent concurrent saves
 
           set((s) => {
             s.isSaving = true;
@@ -429,10 +457,11 @@ export const useWeeklyPlannerStore = create<WeeklyPlannerState>()(
           }
         },
 
-        markOfflineChanges: (hasChanges) =>
-          set((state) => {
+        markOfflineChanges: (hasChanges) => {
+ set((state) => {
             state.hasOfflineChanges = hasChanges;
-          }),
+          }); 
+},
 
         syncWithServer: async () => {
           const { loadFromServer, saveToServer, hasOfflineChanges } = get();
@@ -445,13 +474,14 @@ export const useWeeklyPlannerStore = create<WeeklyPlannerState>()(
         },
 
         // Reset to defaults
-        resetToDefaults: () =>
-          set((state) => {
+        resetToDefaults: () => {
+ set((state) => {
             Object.assign(state, defaultState);
             state.lastSyncedAt = new Date();
             state.undoHistory = [];
             state.redoHistory = [];
-          }),
+          }); 
+},
       })),
       {
         name: 'weekly-planner-storage',
@@ -483,7 +513,9 @@ const debouncedAutoSave = () => {
 
   if (timeSinceLastSave < MIN_SAVE_INTERVAL) {
     // Too soon, reschedule
-    if (autoSaveTimeout) clearTimeout(autoSaveTimeout);
+    if (autoSaveTimeout) {
+clearTimeout(autoSaveTimeout);
+}
     autoSaveTimeout = setTimeout(debouncedAutoSave, MIN_SAVE_INTERVAL - timeSinceLastSave);
     return;
   }

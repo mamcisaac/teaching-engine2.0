@@ -1,8 +1,10 @@
-import React from 'react';
 import DOMPurify from 'dompurify';
+import React from 'react';
 
 export const sanitizeHtml = (dirty: string | undefined | null): string => {
-  if (!dirty) return '';
+  if (!dirty) {
+return '';
+}
   
   const clean = DOMPurify.sanitize(dirty, {
     ALLOWED_TAGS: [
@@ -24,7 +26,9 @@ export const sanitizeHtml = (dirty: string | undefined | null): string => {
 };
 
 export const escapeHtml = (unsafe: string | undefined | null): string => {
-  if (!unsafe) return '';
+  if (!unsafe) {
+return '';
+}
   
   return unsafe
     .replace(/&/g, "&amp;")
@@ -63,6 +67,6 @@ export function SafeHtmlRenderer(props: SafeHtmlRendererProps) {
 // Alternative: Use this for truly safe HTML rendering when needed
 export function SafeTextRenderer({ text, className }: { text: string; className?: string }) {
   return React.createElement('div', {
-    className: className
+    className
   }, text);
 }

@@ -3,22 +3,22 @@
  * Extends BaseRouteHandler with unit plan-specific business logic
  */
 
-import { Response, NextFunction } from 'express';
+import type { Prisma } from '@teaching-engine/database';
+import type { Response, NextFunction } from 'express';
 import { z } from 'zod';
-import { Prisma } from '@teaching-engine/database';
 
-import { BaseService } from '../services/base/BaseService.js';
 import { prisma } from '../prisma.js';
-import { UnitPlanCreateData, UnitPlanUpdateData, ResourceData } from '../types/routes.js';
+import { BaseService } from '../services/base/BaseService.js';
+import type { UnitPlanCreateData, UnitPlanUpdateData, ResourceData } from '../types/routes.js';
 
-import { BaseRouteHandler, AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
+import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
+import { BaseRouteHandler } from './base/BaseRouteHandler.js';
 import { commonValidations } from './base/validation.js';
 import {
   optimizedIncludes,
   optimizedQueries,
   queryPerformance,
 } from './optimizations/queryOptimizations.js';
-
 
 // Unit plan-specific validation schemas
 const unitPlanCreateSchema = z.object({
@@ -138,9 +138,15 @@ class UnitPlanService extends BaseService {
       longRangePlan: longRangePlanFilter,
     };
 
-    if (longRangePlanId) where.longRangePlanId = longRangePlanId;
-    if (startDate) where.startDate = { gte: new Date(String(startDate)) };
-    if (endDate) where.endDate = { lte: new Date(String(endDate)) };
+    if (longRangePlanId) {
+where.longRangePlanId = longRangePlanId;
+}
+    if (startDate) {
+where.startDate = { gte: new Date(String(startDate)) };
+}
+    if (endDate) {
+where.endDate = { lte: new Date(String(endDate)) };
+}
 
     // Search functionality using optimized search utility
     if (search) {
@@ -310,8 +316,12 @@ class UnitPlanService extends BaseService {
     });
 
     // Handle date conversion
-    if (data.startDate) updateData.startDate = new Date(data.startDate);
-    if (data.endDate) updateData.endDate = new Date(data.endDate);
+    if (data.startDate) {
+updateData.startDate = new Date(data.startDate);
+}
+    if (data.endDate) {
+updateData.endDate = new Date(data.endDate);
+}
 
     return prisma.unitPlan.update({
       where: { id },
@@ -455,7 +465,7 @@ class UnitPlanService extends BaseService {
         socialJusticeConnections: sourceUnitPlan.socialJusticeConnections,
         technologyIntegration: sourceUnitPlan.technologyIntegration,
         communityConnections: sourceUnitPlan.communityConnections,
-        longRangePlanId: longRangePlanId,
+        longRangePlanId,
         expectations: {
           create: sourceUnitPlan.expectations.map((exp: { expectationId: string }) => ({
             expectationId: exp.expectationId,
@@ -499,9 +509,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
 
   protected getCrudOperations(): CrudOperations<unknown> {
     return {
-      create: async (data: unknown, userId: number) => {
-        return this.unitPlanService.create(data as UnitPlanCreateData, userId);
-      },
+      create: async (data: unknown, userId: number) => this.unitPlanService.create(data as UnitPlanCreateData, userId),
       findMany: async (filters: unknown, userId: number) => {
         const result = await this.unitPlanService.findMany(
           filters as Record<string, unknown>,
@@ -509,15 +517,9 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
         );
         return result.unitPlans;
       },
-      findById: async (id: string, userId: number) => {
-        return this.unitPlanService.findById(id, userId);
-      },
-      update: async (id: string, data: unknown, userId: number) => {
-        return this.unitPlanService.update(id, data as UnitPlanUpdateData, userId);
-      },
-      delete: async (id: string, userId: number) => {
-        return this.unitPlanService.delete(id, userId);
-      },
+      findById: async (id: string, userId: number) => this.unitPlanService.findById(id, userId),
+      update: async (id: string, data: unknown, userId: number) => this.unitPlanService.update(id, data as UnitPlanUpdateData, userId),
+      delete: async (id: string, userId: number) => this.unitPlanService.delete(id, userId),
     };
   }
 
@@ -536,7 +538,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       return;
     } catch (_error) {
       this.logger.error(`Error in ${this.routeName} list:`, _error);
-      return next(_error);
+      next(_error); return;
     }
   }
 
@@ -583,7 +585,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       res.status(201).json(resource);
     } catch (_error) {
       this.logger.error('Error adding resource:', _error);
-      return next(_error);
+      next(_error); return;
     }
   }
 
@@ -606,7 +608,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       res.status(204).send();
     } catch (_error) {
       this.logger.error('Error removing resource:', _error);
-      return next(_error);
+      next(_error); return;
     }
   }
 
@@ -628,7 +630,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       res.status(201).json(duplicatedUnitPlan);
     } catch (_error) {
       this.logger.error('Error duplicating unit plan:', _error);
-      return next(_error);
+      next(_error); return;
     }
   }
 }

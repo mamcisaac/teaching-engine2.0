@@ -3,22 +3,22 @@
  * Extends BaseRouteHandler with ETFO lesson plan-specific business logic
  */
 
-import { Response, NextFunction } from 'express';
+import type { Prisma } from '@teaching-engine/database';
+import type { Response, NextFunction } from 'express';
 import { z } from 'zod';
-import { Prisma } from '@teaching-engine/database';
 
-import { BaseService } from '../services/base/BaseService.js';
 import { prisma } from '../prisma.js';
-import { ETFOLessonPlanCreateData, ETFOLessonPlanUpdateData } from '../types/routes.js';
+import { BaseService } from '../services/base/BaseService.js';
+import type { ETFOLessonPlanCreateData, ETFOLessonPlanUpdateData } from '../types/routes.js';
 
-import { BaseRouteHandler, AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
+import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
+import { BaseRouteHandler } from './base/BaseRouteHandler.js';
 import { commonValidations } from './base/validation.js';
 import {
   optimizedIncludes,
   optimizedQueries,
   queryPerformance,
 } from './optimizations/queryOptimizations.js';
-
 
 // ETFO lesson plan-specific validation schemas
 const lessonPlanCreateSchema = z.object({
@@ -135,9 +135,15 @@ class ETFOLessonPlanService extends BaseService {
 
     const where: Prisma.ETFOLessonPlanWhereInput = { userId };
 
-    if (unitPlanId) where.unitPlanId = String(unitPlanId);
-    if (isSubFriendly !== undefined) where.isSubFriendly = isSubFriendly;
-    if (assessmentType) where.assessmentType = assessmentType;
+    if (unitPlanId) {
+where.unitPlanId = String(unitPlanId);
+}
+    if (isSubFriendly !== undefined) {
+where.isSubFriendly = isSubFriendly;
+}
+    if (assessmentType) {
+where.assessmentType = assessmentType;
+}
 
     // Date filtering using optimized range function
     const dateWhere = optimizedQueries.createDateRangeWhere('date', startDate, endDate);
@@ -276,46 +282,77 @@ class ETFOLessonPlanService extends BaseService {
     const baseUpdateData: Record<string, unknown> = {};
 
     // Only include fields that are actually being updated
-    if (updateData.title !== undefined) baseUpdateData.title = updateData.title;
-    if (updateData.unitPlanId !== undefined) baseUpdateData.unitPlanId = updateData.unitPlanId;
-    if (updateData.duration !== undefined) baseUpdateData.duration = updateData.duration;
-    if (updateData.mindsOn !== undefined) baseUpdateData.mindsOn = updateData.mindsOn;
-    if (updateData.mindsOnFr !== undefined) baseUpdateData.mindsOnFr = updateData.mindsOnFr;
-    if (updateData.action !== undefined) baseUpdateData.action = updateData.action;
-    if (updateData.actionFr !== undefined) baseUpdateData.actionFr = updateData.actionFr;
-    if (updateData.consolidation !== undefined)
-      baseUpdateData.consolidation = updateData.consolidation;
-    if (updateData.consolidationFr !== undefined)
-      baseUpdateData.consolidationFr = updateData.consolidationFr;
-    if (updateData.learningGoals !== undefined)
-      baseUpdateData.learningGoals = updateData.learningGoals;
-    if (updateData.learningGoalsFr !== undefined)
-      baseUpdateData.learningGoalsFr = updateData.learningGoalsFr;
-    if (updateData.materials !== undefined)
-      baseUpdateData.materials = updateData.materials
+    if (updateData.title !== undefined) {
+baseUpdateData.title = updateData.title;
+}
+    if (updateData.unitPlanId !== undefined) {
+baseUpdateData.unitPlanId = updateData.unitPlanId;
+}
+    if (updateData.duration !== undefined) {
+baseUpdateData.duration = updateData.duration;
+}
+    if (updateData.mindsOn !== undefined) {
+baseUpdateData.mindsOn = updateData.mindsOn;
+}
+    if (updateData.mindsOnFr !== undefined) {
+baseUpdateData.mindsOnFr = updateData.mindsOnFr;
+}
+    if (updateData.action !== undefined) {
+baseUpdateData.action = updateData.action;
+}
+    if (updateData.actionFr !== undefined) {
+baseUpdateData.actionFr = updateData.actionFr;
+}
+    if (updateData.consolidation !== undefined) {
+baseUpdateData.consolidation = updateData.consolidation;
+}
+    if (updateData.consolidationFr !== undefined) {
+baseUpdateData.consolidationFr = updateData.consolidationFr;
+}
+    if (updateData.learningGoals !== undefined) {
+baseUpdateData.learningGoals = updateData.learningGoals;
+}
+    if (updateData.learningGoalsFr !== undefined) {
+baseUpdateData.learningGoalsFr = updateData.learningGoalsFr;
+}
+    if (updateData.materials !== undefined) {
+baseUpdateData.materials = updateData.materials
         ? JSON.stringify(updateData.materials)
         : undefined;
-    if (updateData.grouping !== undefined) baseUpdateData.grouping = updateData.grouping;
-    if (updateData.titleFr !== undefined) baseUpdateData.titleFr = updateData.titleFr;
-    if (updateData.accommodations !== undefined)
-      baseUpdateData.accommodations = updateData.accommodations
+}
+    if (updateData.grouping !== undefined) {
+baseUpdateData.grouping = updateData.grouping;
+}
+    if (updateData.titleFr !== undefined) {
+baseUpdateData.titleFr = updateData.titleFr;
+}
+    if (updateData.accommodations !== undefined) {
+baseUpdateData.accommodations = updateData.accommodations
         ? JSON.stringify(updateData.accommodations)
         : undefined;
-    if (updateData.modifications !== undefined)
-      baseUpdateData.modifications = updateData.modifications
+}
+    if (updateData.modifications !== undefined) {
+baseUpdateData.modifications = updateData.modifications
         ? JSON.stringify(updateData.modifications)
         : undefined;
-    if (updateData.extensions !== undefined)
-      baseUpdateData.extensions = updateData.extensions
+}
+    if (updateData.extensions !== undefined) {
+baseUpdateData.extensions = updateData.extensions
         ? JSON.stringify(updateData.extensions)
         : undefined;
-    if (updateData.assessmentType !== undefined)
-      baseUpdateData.assessmentType = updateData.assessmentType;
-    if (updateData.assessmentNotes !== undefined)
-      baseUpdateData.assessmentNotes = updateData.assessmentNotes;
-    if (updateData.isSubFriendly !== undefined)
-      baseUpdateData.isSubFriendly = updateData.isSubFriendly;
-    if (updateData.subNotes !== undefined) baseUpdateData.subNotes = updateData.subNotes;
+}
+    if (updateData.assessmentType !== undefined) {
+baseUpdateData.assessmentType = updateData.assessmentType;
+}
+    if (updateData.assessmentNotes !== undefined) {
+baseUpdateData.assessmentNotes = updateData.assessmentNotes;
+}
+    if (updateData.isSubFriendly !== undefined) {
+baseUpdateData.isSubFriendly = updateData.isSubFriendly;
+}
+    if (updateData.subNotes !== undefined) {
+baseUpdateData.subNotes = updateData.subNotes;
+}
 
     // Handle date conversion
     if (data.date) {
@@ -545,7 +582,7 @@ class ETFOLessonPlanService extends BaseService {
       data: {
         title: title || `${sourceLessonPlan.title} (Copy)`,
         titleFr: sourceLessonPlan.titleFr,
-        unitPlanId: unitPlanId,
+        unitPlanId,
         userId,
         date: date ? new Date(date) : sourceLessonPlan.date,
         duration: sourceLessonPlan.duration,
@@ -609,9 +646,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
 
   protected getCrudOperations(): CrudOperations<unknown> {
     return {
-      create: async (data: unknown, userId: number) => {
-        return this.lessonPlanService.create(data as ETFOLessonPlanCreateData, userId);
-      },
+      create: async (data: unknown, userId: number) => this.lessonPlanService.create(data as ETFOLessonPlanCreateData, userId),
       findMany: async (filters: unknown, userId: number) => {
         const result = await this.lessonPlanService.findMany(
           filters as {
@@ -635,15 +670,9 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
         );
         return result.lessonPlans;
       },
-      findById: async (id: string, userId: number) => {
-        return this.lessonPlanService.findById(id, userId);
-      },
-      update: async (id: string, data: unknown, userId: number) => {
-        return this.lessonPlanService.update(id, data as ETFOLessonPlanUpdateData, userId);
-      },
-      delete: async (id: string, userId: number) => {
-        return this.lessonPlanService.delete(id, userId);
-      },
+      findById: async (id: string, userId: number) => this.lessonPlanService.findById(id, userId),
+      update: async (id: string, data: unknown, userId: number) => this.lessonPlanService.update(id, data as ETFOLessonPlanUpdateData, userId),
+      delete: async (id: string, userId: number) => this.lessonPlanService.delete(id, userId),
     };
   }
 
@@ -730,7 +759,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       res.status(201).json(resource);
     } catch (_error) {
       this.logger.error('Error adding resource:', _error);
-      return next(_error);
+      next(_error); return;
     }
   }
 
@@ -753,7 +782,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       res.status(204).send();
     } catch (_error) {
       this.logger.error('Error removing resource:', _error);
-      return next(_error);
+      next(_error); return;
     }
   }
 
@@ -770,7 +799,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       res.status(201).json(subVersion);
     } catch (_error) {
       this.logger.error('Error creating sub version:', _error);
-      return next(_error);
+      next(_error); return;
     }
   }
 
@@ -793,7 +822,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       return;
     } catch (_error) {
       this.logger.error('Error rescheduling lesson:', _error);
-      return next(_error);
+      next(_error); return;
     }
   }
 
@@ -810,7 +839,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       res.status(201).json(duplicatedLesson);
     } catch (_error) {
       this.logger.error('Error duplicating lesson plan:', _error);
-      return next(_error);
+      next(_error); return;
     }
   }
 }

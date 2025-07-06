@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useRef, useState, useCallback } from 'react';
+
 import logger from '../utils/logger';
 export interface KeyboardShortcut {
   id: string;
@@ -40,7 +41,7 @@ const defaultPreferences: KeyboardShortcutPreferences = {
 
 const KeyboardShortcutsContext = createContext<KeyboardShortcutsContextType | undefined>(undefined);
 
-export const useKeyboardShortcuts = () => {
+export const useKeyboardShortcuts = (): UseQueryResult<unknown> => {
   const context = useContext(KeyboardShortcutsContext);
   if (!context) {
     throw new Error('useKeyboardShortcuts must be used within a KeyboardShortcutsProvider');
@@ -48,16 +49,26 @@ export const useKeyboardShortcuts = () => {
   return context;
 };
 
-const isMac = typeof window !== 'undefined' && navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+const isMac = typeof window !== 'undefined' && navigator.platform.toUpperCase().includes('MAC');
 
 export const formatShortcut = (shortcut: KeyboardShortcut): string => {
   const parts: string[] = [];
   
-  if (shortcut.ctrl && !isMac) parts.push('Ctrl');
-  if (shortcut.cmd && isMac) parts.push('⌘');
-  if (shortcut.ctrl && isMac) parts.push('⌃');
-  if (shortcut.alt) parts.push(isMac ? '⌥' : 'Alt');
-  if (shortcut.shift) parts.push(isMac ? '⇧' : 'Shift');
+  if (shortcut.ctrl && !isMac) {
+parts.push('Ctrl');
+}
+  if (shortcut.cmd && isMac) {
+parts.push('⌘');
+}
+  if (shortcut.ctrl && isMac) {
+parts.push('⌃');
+}
+  if (shortcut.alt) {
+parts.push(isMac ? '⌥' : 'Alt');
+}
+  if (shortcut.shift) {
+parts.push(isMac ? '⇧' : 'Shift');
+}
   
   parts.push(shortcut.key.toUpperCase());
   
@@ -134,7 +145,9 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
 
   // Global keyboard event handler
   useEffect(() => {
-    if (!isEnabled || !preferences.enabled) return;
+    if (!isEnabled || !preferences.enabled) {
+return;
+}
 
     const handleKeyDown = (event: KeyboardEvent) => {
       // Don't trigger shortcuts when typing in input fields
@@ -152,27 +165,41 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
 
       // Check each registered shortcut
       for (const shortcut of shortcutsRef.current) {
-        if (shortcut.enabled === false) continue;
+        if (shortcut.enabled === false) {
+continue;
+}
 
         // Apply custom shortcuts from preferences
         const customShortcut = preferences.customShortcuts[shortcut.id];
         const finalShortcut = customShortcut ? { ...shortcut, ...customShortcut } : shortcut;
 
         // Check if key matches
-        if (event.key.toLowerCase() !== finalShortcut.key.toLowerCase()) continue;
+        if (event.key.toLowerCase() !== finalShortcut.key.toLowerCase()) {
+continue;
+}
 
         // Check modifiers
         const ctrlKey = isMac ? event.metaKey : event.ctrlKey;
         const cmdKey = isMac ? event.metaKey : false;
 
-        if (finalShortcut.ctrl && !ctrlKey) continue;
-        if (finalShortcut.cmd && !cmdKey) continue;
-        if (finalShortcut.alt && !event.altKey) continue;
-        if (finalShortcut.shift && !event.shiftKey) continue;
+        if (finalShortcut.ctrl && !ctrlKey) {
+continue;
+}
+        if (finalShortcut.cmd && !cmdKey) {
+continue;
+}
+        if (finalShortcut.alt && !event.altKey) {
+continue;
+}
+        if (finalShortcut.shift && !event.shiftKey) {
+continue;
+}
 
         // Check for no modifiers when none are specified
         if (!finalShortcut.ctrl && !finalShortcut.cmd && !finalShortcut.alt && !finalShortcut.shift) {
-          if (event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) continue;
+          if (event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) {
+continue;
+}
         }
 
         // Prevent default and run handler
@@ -184,7 +211,9 @@ export const KeyboardShortcutsProvider: React.FC<{ children: React.ReactNode }> 
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+ window.removeEventListener('keydown', handleKeyDown); 
+};
   }, [isEnabled, preferences]);
 
   return (

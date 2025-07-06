@@ -1,21 +1,17 @@
+import { Search, Upload, Edit2, Trash2, CheckCircle, AlertCircle } from 'lucide-react';
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Badge } from '@/components/ui/Badge';
+import { Button } from '@/components/ui/Button';
+
 import {
   useCurriculumExpectations,
   useUpdateCurriculumExpectation,
-  useDeleteCurriculumExpectation,
-  CurriculumExpectation,
+  useDeleteCurriculumExpectation
 } from '../hooks/useETFOPlanning';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
-import { Input } from '@/components/ui/Input';
-import { Button } from '@/components/ui/Button';
+
 import {
   Select,
   SelectContent,
@@ -23,10 +19,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Badge } from '@/components/ui/Badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Search, Upload, Edit2, Trash2, CheckCircle, AlertCircle } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -35,10 +29,20 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/Dialog';
+import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/Label';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import { Textarea } from '@/components/ui/Textarea';
 import { useToast } from '@/components/ui/use-toast';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import type {
+  CurriculumExpectation} from '../hooks/useETFOPlanning';
 
 export default function CurriculumExpectationsPage() {
   const navigate = useNavigate();
@@ -102,7 +106,9 @@ export default function CurriculumExpectationsPage() {
   };
 
   const handleSaveEdit = async () => {
-    if (!editingExpectation) return;
+    if (!editingExpectation) {
+return;
+}
 
     try {
       await updateMutation.mutateAsync({
@@ -186,12 +192,12 @@ export default function CurriculumExpectationsPage() {
       <TableCell>
         <div className="flex items-center gap-2">
           {expectation.coverage ? (
-            <Badge variant="outline" className="gap-1">
+            <Badge className="gap-1" variant="outline">
               <CheckCircle className="h-3 w-3" />
               {expectation.coverage.percentage}%
             </Badge>
           ) : (
-            <Badge variant="outline" className="gap-1 text-muted-foreground">
+            <Badge className="gap-1 text-muted-foreground" variant="outline">
               <AlertCircle className="h-3 w-3" />
               Not planned
             </Badge>
@@ -200,10 +206,12 @@ export default function CurriculumExpectationsPage() {
       </TableCell>
       <TableCell>
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="sm" onClick={() => handleEdit(expectation)}>
+          <Button size="sm" variant="ghost" onClick={() => {
+ handleEdit(expectation); 
+}}>
             <Edit2 className="h-4 w-4" />
           </Button>
-          <Button variant="ghost" size="sm" onClick={() => handleDelete(expectation.id)}>
+          <Button size="sm" variant="ghost" onClick={() => handleDelete(expectation.id)}>
             <Trash2 className="h-4 w-4" />
           </Button>
         </div>
@@ -233,7 +241,7 @@ export default function CurriculumExpectationsPage() {
             Browse and manage curriculum expectations that form the foundation of your planning
           </p>
         </div>
-        <Button onClick={handleImportCurriculum} className="gap-2">
+        <Button className="gap-2" onClick={handleImportCurriculum}>
           <Upload className="h-4 w-4" />
           Import Curriculum
         </Button>
@@ -251,10 +259,12 @@ export default function CurriculumExpectationsPage() {
             <div className="relative">
               <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
+                className="pl-9"
                 placeholder="Search by code or description..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-9"
+                onChange={(e) => {
+ setSearchTerm(e.target.value); 
+}}
               />
             </div>
 
@@ -274,7 +284,9 @@ export default function CurriculumExpectationsPage() {
 
             <Select
               value={String(selectedGrade)}
-              onValueChange={(value) => setSelectedGrade(value === 'all' ? 'all' : Number(value))}
+              onValueChange={(value) => {
+ setSelectedGrade(value === 'all' ? 'all' : Number(value)); 
+}}
             >
               <SelectTrigger>
                 <SelectValue placeholder="All grades" />
@@ -291,7 +303,9 @@ export default function CurriculumExpectationsPage() {
 
             <Select
               value={selectedType}
-              onValueChange={(value) => setSelectedType(value as 'all' | 'overall' | 'specific')}
+              onValueChange={(value) => {
+ setSelectedType(value as 'all' | 'overall' | 'specific'); 
+}}
             >
               <SelectTrigger>
                 <SelectValue placeholder="All types" />
@@ -306,7 +320,7 @@ export default function CurriculumExpectationsPage() {
         </CardContent>
       </Card>
 
-      <Tabs defaultValue={subjects[0] || 'all'} className="space-y-4">
+      <Tabs className="space-y-4" defaultValue={subjects[0] || 'all'}>
         <TabsList className="grid w-full grid-cols-auto">
           {subjects.map((subject) => (
             <TabsTrigger key={subject} value={subject}>
@@ -316,13 +330,13 @@ export default function CurriculumExpectationsPage() {
         </TabsList>
 
         {subjects.map((subject) => (
-          <TabsContent key={subject} value={subject} className="space-y-4">
+          <TabsContent key={subject} className="space-y-4" value={subject}>
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle>{subject} Expectations</CardTitle>
                   <Badge variant="outline">
-                    {groupedExpectations[subject]?.length || 0} expectations
+                    {groupedExpectations[subject].length || 0} expectations
                   </Badge>
                 </div>
               </CardHeader>
@@ -341,18 +355,18 @@ export default function CurriculumExpectationsPage() {
                   <TableBody>
                     {isLoading ? (
                       <TableRow>
-                        <TableCell colSpan={6} className="text-center py-8">
+                        <TableCell className="text-center py-8" colSpan={6}>
                           Loading expectations...
                         </TableCell>
                       </TableRow>
-                    ) : groupedExpectations[subject]?.length === 0 ? (
+                    ) : groupedExpectations[subject].length === 0 ? (
                       <TableRow>
-                        <TableCell colSpan={6} className="text-center py-8">
+                        <TableCell className="text-center py-8" colSpan={6}>
                           No expectations found. Import a curriculum to get started.
                         </TableCell>
                       </TableRow>
                     ) : (
-                      groupedExpectations[subject]?.map((expectation) => (
+                      groupedExpectations[subject].map((expectation) => (
                         <ExpectationRow key={expectation.id} expectation={expectation} />
                       ))
                     )}
@@ -377,40 +391,42 @@ export default function CurriculumExpectationsPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label>Code</Label>
-                  <Input value={editingExpectation.code} disabled />
+                  <Input disabled value={editingExpectation.code} />
                 </div>
                 <div>
                   <Label>Type</Label>
-                  <Input value={editingExpectation.type} disabled />
+                  <Input disabled value={editingExpectation.type} />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <Label>Description (English)</Label>
                 <Textarea
+                  rows={3}
                   value={editingExpectation.description}
-                  onChange={(e) =>
-                    setEditingExpectation({
+                  onChange={(e) => {
+ setEditingExpectation({
                       ...editingExpectation,
                       description: e.target.value,
-                    })
+                    }); 
+}
                   }
-                  rows={3}
                 />
               </div>
 
               <div className="space-y-2">
                 <Label>Description (French)</Label>
                 <Textarea
+                  placeholder="Optional French translation"
+                  rows={3}
                   value={editingExpectation.descriptionFr || ''}
-                  onChange={(e) =>
-                    setEditingExpectation({
+                  onChange={(e) => {
+ setEditingExpectation({
                       ...editingExpectation,
                       descriptionFr: e.target.value,
-                    })
+                    }); 
+}
                   }
-                  rows={3}
-                  placeholder="Optional French translation"
                 />
               </div>
 
@@ -419,11 +435,12 @@ export default function CurriculumExpectationsPage() {
                   <Label>Strand</Label>
                   <Input
                     value={editingExpectation.strand}
-                    onChange={(e) =>
-                      setEditingExpectation({
+                    onChange={(e) => {
+ setEditingExpectation({
                         ...editingExpectation,
                         strand: e.target.value,
-                      })
+                      }); 
+}
                     }
                   />
                 </div>
@@ -431,11 +448,12 @@ export default function CurriculumExpectationsPage() {
                   <Label>Substrand (Optional)</Label>
                   <Input
                     value={editingExpectation.substrand || ''}
-                    onChange={(e) =>
-                      setEditingExpectation({
+                    onChange={(e) => {
+ setEditingExpectation({
                         ...editingExpectation,
                         substrand: e.target.value,
-                      })
+                      }); 
+}
                     }
                   />
                 </div>
@@ -443,7 +461,9 @@ export default function CurriculumExpectationsPage() {
             </div>
           )}
           <DialogFooter>
-            <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
+            <Button variant="outline" onClick={() => {
+ setIsEditDialogOpen(false); 
+}}>
               Cancel
             </Button>
             <Button onClick={handleSaveEdit}>Save Changes</Button>

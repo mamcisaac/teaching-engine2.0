@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
-import { Button } from '../ui/Button';
-import { Badge } from '../ui/Badge';
-import { Alert, AlertDescription } from '../ui/alert';
 import { Sparkles, RefreshCw, Copy, Check } from 'lucide-react';
+import React, { useState } from 'react';
+
+import type { AISuggestion } from '@/hooks/useAIPlanningAssistant';
+
+import { Alert, AlertDescription } from '../ui/alert';
+import { Badge } from '../ui/Badge';
+import { Button } from '../ui/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { useToast } from '../ui/use-toast';
-import { AISuggestion } from '@/hooks/useAIPlanningAssistant';
 
 interface AISuggestionPanelProps {
   title: string;
@@ -35,7 +37,9 @@ export default function AISuggestionPanel({
   const handleCopy = (suggestion: string, index: number) => {
     navigator.clipboard.writeText(suggestion);
     setCopiedIndex(index);
-    setTimeout(() => setCopiedIndex(null), 2000);
+    setTimeout(() => {
+ setCopiedIndex(null); 
+}, 2000);
     toast({
       title: 'Copied',
       description: 'Suggestion copied to clipboard',
@@ -75,11 +79,11 @@ export default function AISuggestionPanel({
             {description && <CardDescription>{description}</CardDescription>}
           </div>
           <Button
-            onClick={onGenerate}
-            disabled={isGenerating}
-            variant="outline"
-            size="sm"
             className="gap-2"
+            disabled={isGenerating}
+            size="sm"
+            variant="outline"
+            onClick={onGenerate}
           >
             {isGenerating ? (
               <>
@@ -97,7 +101,7 @@ export default function AISuggestionPanel({
       </CardHeader>
       <CardContent>
         {error && (
-          <Alert variant="destructive" className="mb-4">
+          <Alert className="mb-4" variant="destructive">
             <AlertDescription>Failed to generate suggestions. Please try again.</AlertDescription>
           </Alert>
         )}
@@ -122,10 +126,12 @@ export default function AISuggestionPanel({
                     <p className="text-sm flex-1">{suggestion}</p>
                     <div className="flex gap-1">
                       <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => handleCopy(suggestion, index)}
                         className="h-8 w-8 p-0"
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => {
+ handleCopy(suggestion, index); 
+}}
                       >
                         {copiedIndex === index ? (
                           <Check className="h-4 w-4 text-green-500" />
@@ -135,10 +141,12 @@ export default function AISuggestionPanel({
                       </Button>
                       {!acceptedIndices.has(index) && (
                         <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleAccept(suggestion, index)}
                           className="h-8 w-8 p-0"
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => {
+ handleAccept(suggestion, index); 
+}}
                         >
                           <Check className="h-4 w-4 text-green-500" />
                         </Button>
@@ -146,7 +154,7 @@ export default function AISuggestionPanel({
                     </div>
                   </div>
                   {acceptedIndices.has(index) && (
-                    <Badge variant="secondary" className="mt-2 text-xs">
+                    <Badge className="mt-2 text-xs" variant="secondary">
                       Accepted
                     </Badge>
                   )}
@@ -155,7 +163,7 @@ export default function AISuggestionPanel({
             </div>
 
             {onAcceptAll && acceptedIndices.size < suggestions.suggestions.length && (
-              <Button onClick={handleAcceptAll} variant="outline" size="sm" className="w-full">
+              <Button className="w-full" size="sm" variant="outline" onClick={handleAcceptAll}>
                 Accept All Suggestions
               </Button>
             )}

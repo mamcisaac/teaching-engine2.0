@@ -9,7 +9,7 @@ import { showSuccessToast, handleApiError } from '../../core/utils';
 import { authApi } from './api';
 
 // Query hooks
-export const useCurrentUser = (): UseQueryResult<User, Error> =>
+export const useCurrentUser = (): UseQueryResult<User> =>
   useQuery({
     queryKey: ['auth', 'currentUser'],
     queryFn: authApi.getCurrentUser,
@@ -21,8 +21,7 @@ export const useCurrentUser = (): UseQueryResult<User, Error> =>
 export const useLogin = (): UseMutationResult<
   TokenResponse,
   Error,
-  LoginCredentials,
-  unknown
+  LoginCredentials
 > => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -53,8 +52,7 @@ export const useLogin = (): UseMutationResult<
 export const useRegister = (): UseMutationResult<
   TokenResponse,
   Error,
-  RegisterData,
-  unknown
+  RegisterData
 > => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -82,7 +80,7 @@ export const useRegister = (): UseMutationResult<
   });
 };
 
-export const useLogout = (): UseMutationResult<void, Error, void, unknown> => {
+export const useLogout = (): UseMutationResult<void, Error, void> => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -107,7 +105,7 @@ export const useLogout = (): UseMutationResult<void, Error, void, unknown> => {
   });
 };
 
-export const useUpdateProfile = (): UseMutationResult<User, Error, Partial<User>, unknown> => {
+export const useUpdateProfile = (): UseMutationResult<User, Error, Partial<User>> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -124,8 +122,7 @@ export const useUpdateProfile = (): UseMutationResult<User, Error, Partial<User>
 export const useChangePassword = (): UseMutationResult<
   void,
   Error,
-  { currentPassword: string; newPassword: string },
-  unknown
+  { currentPassword: string; newPassword: string }
 > => useMutation({
     mutationFn: (passwords: { currentPassword: string; newPassword: string }) =>
       authApi.changePassword(passwords),
@@ -135,7 +132,7 @@ export const useChangePassword = (): UseMutationResult<
     onError: (error) => handleApiError(error, 'Failed to change password'),
   });
 
-export const useRequestPasswordReset = (): UseMutationResult<void, Error, string, unknown> => useMutation({
+export const useRequestPasswordReset = (): UseMutationResult<void, Error, string> => useMutation({
     mutationFn: (email: string) => authApi.requestPasswordReset(email),
     onSuccess: () => {
       showSuccessToast('Password reset email sent. Please check your inbox.');
@@ -146,8 +143,7 @@ export const useRequestPasswordReset = (): UseMutationResult<void, Error, string
 export const useResetPassword = (): UseMutationResult<
   void,
   Error,
-  { token: string; newPassword: string },
-  unknown
+  { token: string; newPassword: string }
 > => {
   const navigate = useNavigate();
 
@@ -162,7 +158,7 @@ export const useResetPassword = (): UseMutationResult<
   });
 };
 
-export const useVerifyEmail = (): UseMutationResult<void, Error, string, unknown> => useMutation({
+export const useVerifyEmail = (): UseMutationResult<void, Error, string> => useMutation({
     mutationFn: (token: string) => authApi.verifyEmail(token),
     onSuccess: () => {
       showSuccessToast('Email verified successfully');
@@ -170,7 +166,7 @@ export const useVerifyEmail = (): UseMutationResult<void, Error, string, unknown
     onError: (error) => handleApiError(error, 'Failed to verify email'),
   });
 
-export const useResendVerificationEmail = (): UseMutationResult<void, Error, void, unknown> => useMutation({
+export const useResendVerificationEmail = (): UseMutationResult<void, Error, void> => useMutation({
     mutationFn: authApi.resendVerificationEmail,
     onSuccess: () => {
       showSuccessToast('Verification email sent. Please check your inbox.');

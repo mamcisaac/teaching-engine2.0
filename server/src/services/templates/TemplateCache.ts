@@ -5,7 +5,7 @@
 
 import { BaseService } from '../base/BaseService';
 
-import { RenderResult } from './engines/RenderEngine';
+import type { RenderResult } from './engines/RenderEngine';
 
 export interface CacheOptions {
   maxSize?: number;
@@ -30,12 +30,12 @@ interface CacheEntry {
 
 export class TemplateCache extends BaseService {
   private static instance: TemplateCache;
-  private cache: Map<string, CacheEntry> = new Map();
+  private cache = new Map<string, CacheEntry>();
   private maxSize: number;
   private maxAge: number;
   private enableCompression: boolean;
-  private hits: number = 0;
-  private misses: number = 0;
+  private hits = 0;
+  private misses = 0;
 
   private constructor(options: CacheOptions = {}) {
     super('TemplateCache');
@@ -139,7 +139,7 @@ export class TemplateCache extends BaseService {
    * Clear all cache entries
    */
   public clear(): void {
-    const size = this.cache.size;
+    const {size} = this.cache;
     this.cache.clear();
     this.hits = 0;
     this.misses = 0;
@@ -231,7 +231,7 @@ export class TemplateCache extends BaseService {
   /**
    * Warm cache with predefined entries
    */
-  public async warmCache(entries: Array<{ key: string; result: RenderResult }>): Promise<void> {
+  public async warmCache(entries: { key: string; result: RenderResult }[]): Promise<void> {
     for (const { key, result } of entries) {
       this.set(key, result);
     }

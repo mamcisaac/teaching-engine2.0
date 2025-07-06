@@ -5,11 +5,10 @@
 
 import * as XLSX from '@datalens-tech/xlsx';
 
-import { CurriculumParser, ParsedCurriculum, ParsedExpectation } from './CurriculumParser';
+import type { ParsedCurriculum, ParsedExpectation } from './CurriculumParser';
+import { CurriculumParser } from './CurriculumParser';
 
-export interface ExcelRow {
-  [key: string]: unknown;
-}
+export type ExcelRow = Record<string, unknown>;
 
 export class ExcelParser extends CurriculumParser {
   /**
@@ -143,7 +142,9 @@ export class ExcelParser extends CurriculumParser {
     const codeKeys = ['Code', 'code', 'Expectation Code', 'expectation_code', 'ID', 'Reference'];
     const code = this.findValue(row, codeKeys);
 
-    if (!code) return null;
+    if (!code) {
+return null;
+}
 
     // Find description column
     const descKeys = [
@@ -156,7 +157,9 @@ export class ExcelParser extends CurriculumParser {
     ];
     const description = this.findValue(row, descKeys);
 
-    if (!description) return null;
+    if (!description) {
+return null;
+}
 
     // Find other fields
     const typeKeys = ['Type', 'type', 'Category', 'Level'];
@@ -203,8 +206,12 @@ export class ExcelParser extends CurriculumParser {
   private parseType(typeValue: string, code: string, description: string): 'overall' | 'specific' {
     if (typeValue) {
       const normalized = typeValue.toLowerCase();
-      if (normalized.includes('overall')) return 'overall';
-      if (normalized.includes('specific')) return 'specific';
+      if (normalized.includes('overall')) {
+return 'overall';
+}
+      if (normalized.includes('specific')) {
+return 'specific';
+}
     }
 
     return this.parseExpectationType(code, description);

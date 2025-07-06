@@ -1,4 +1,5 @@
 import { X } from 'lucide-react';
+
 import { Button } from '../ui/Button';
 
 interface CalendarFilter {
@@ -57,10 +58,10 @@ export default function CalendarFilters({
         <h3 className="font-semibold text-gray-700">Filter Calendar</h3>
         {hasActiveFilters && (
           <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleClearFilters}
             className="text-gray-500 hover:text-gray-700"
+            size="sm"
+            variant="ghost"
+            onClick={handleClearFilters}
           >
             <X className="h-4 w-4 mr-1" />
             Clear All
@@ -76,12 +77,14 @@ export default function CalendarFilters({
             {availableSubjects.map(subject => (
               <button
                 key={subject}
-                onClick={() => handleSubjectToggle(subject)}
                 className={`px-3 py-1 rounded-full text-sm transition-colors ${
                   filters.subjects.includes(subject)
                     ? 'bg-blue-500 text-white'
                     : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
                 }`}
+                onClick={() => {
+ handleSubjectToggle(subject); 
+}}
               >
                 {subject}
               </button>
@@ -97,12 +100,14 @@ export default function CalendarFilters({
           {EVENT_TYPE_OPTIONS.map(option => (
             <button
               key={option.value}
-              onClick={() => handleEventTypeToggle(option.value)}
               className={`px-3 py-1 rounded-full text-sm transition-colors ${
                 filters.eventTypes.includes(option.value)
                   ? 'bg-blue-500 text-white'
                   : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
               }`}
+              onClick={() => {
+ handleEventTypeToggle(option.value); 
+}}
             >
               {option.label}
             </button>
@@ -114,10 +119,12 @@ export default function CalendarFilters({
       <div>
         <label className="flex items-center space-x-2 text-sm">
           <input
-            type="checkbox"
             checked={filters.showWeekends}
-            onChange={(e) => onFiltersChange({ ...filters, showWeekends: e.target.checked })}
             className="rounded border-gray-300"
+            type="checkbox"
+            onChange={(e) => {
+ onFiltersChange({ ...filters, showWeekends: e.target.checked }); 
+}}
           />
           <span className="text-gray-700">Show Weekends</span>
         </label>

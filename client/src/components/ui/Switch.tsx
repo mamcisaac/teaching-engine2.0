@@ -1,5 +1,5 @@
-import React from 'react';
 import { clsx } from 'clsx';
+import React from 'react';
 
 interface SwitchProps {
   checked: boolean;
@@ -50,12 +50,12 @@ export const Switch: React.FC<SwitchProps> = ({
   return (
     <label className={clsx('flex items-center', { 'cursor-pointer': !disabled })}>
       <button
-        type="button"
-        role="switch"
         aria-checked={checked}
         className={switchClasses}
-        onClick={handleChange}
         disabled={disabled}
+        role="switch"
+        type="button"
+        onClick={handleChange}
       >
         <span className={knobClasses} />
       </button>

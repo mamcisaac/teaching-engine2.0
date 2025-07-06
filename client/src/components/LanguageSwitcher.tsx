@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { useLanguage } from '../contexts/LanguageContext';
 
 export default function LanguageSwitcher() {
@@ -20,9 +21,11 @@ export default function LanguageSwitcher() {
   return (
     <div className="relative">
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
         aria-label="Switch language"
+        className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
+        onClick={() => {
+ setIsOpen(!isOpen); 
+}}
       >
         <span className="text-lg">{currentLanguage.flag}</span>
         <span className="hidden sm:block">{currentLanguage.name}</span>
@@ -32,14 +35,16 @@ export default function LanguageSwitcher() {
           stroke="currentColor"
           viewBox="0 0 24 24"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
         </svg>
       </button>
 
       {isOpen && (
         <>
           {/* Backdrop */}
-          <div className="fixed inset-0 z-10" onClick={() => setIsOpen(false)} />
+          <div className="fixed inset-0 z-10" onClick={() => {
+ setIsOpen(false); 
+}} />
 
           {/* Dropdown */}
           <div className="absolute right-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-20">
@@ -47,10 +52,12 @@ export default function LanguageSwitcher() {
               {languages.map((lang) => (
                 <button
                   key={lang.code}
-                  onClick={() => handleLanguageChange(lang.code)}
                   className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-50 flex items-center gap-3 ${
                     language === lang.code ? 'bg-blue-50 text-blue-700' : 'text-gray-700'
                   }`}
+                  onClick={() => {
+ handleLanguageChange(lang.code); 
+}}
                 >
                   <span className="text-lg">{lang.flag}</span>
                   <span>{lang.name}</span>
@@ -61,9 +68,9 @@ export default function LanguageSwitcher() {
                       viewBox="0 0 20 20"
                     >
                       <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                         clipRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        fillRule="evenodd"
                       />
                     </svg>
                   )}

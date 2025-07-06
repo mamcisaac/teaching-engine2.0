@@ -22,8 +22,8 @@ export interface HelperCategory {
 
 export class TemplateHelpers extends BaseService {
   private static instance: TemplateHelpers;
-  private helpers: Map<string, HelperFunction> = new Map();
-  private categories: Map<string, HelperCategory> = new Map();
+  private helpers = new Map<string, HelperFunction>();
+  private categories = new Map<string, HelperCategory>();
 
   private constructor() {
     super('TemplateHelpers');
@@ -99,9 +99,9 @@ export class TemplateHelpers extends BaseService {
           });
         } else if (format === 'time') {
           return dateObj.toLocaleTimeString(locale);
-        } else {
+        } 
           return dateObj.toLocaleDateString(locale);
-        }
+        
       },
       description: 'Format a date',
       category: 'formatting',
@@ -112,11 +112,21 @@ export class TemplateHelpers extends BaseService {
       fn: (...args: unknown[]) => {
         const [grade] = args as [string | number];
         const numGrade = typeof grade === 'string' ? parseFloat(grade) : grade;
-        if (isNaN(numGrade)) return 'N/A';
-        if (numGrade >= 80) return 'A';
-        if (numGrade >= 70) return 'B';
-        if (numGrade >= 60) return 'C';
-        if (numGrade >= 50) return 'D';
+        if (isNaN(numGrade)) {
+return 'N/A';
+}
+        if (numGrade >= 80) {
+return 'A';
+}
+        if (numGrade >= 70) {
+return 'B';
+}
+        if (numGrade >= 60) {
+return 'C';
+}
+        if (numGrade >= 50) {
+return 'D';
+}
         return 'R';
       },
       description: 'Convert numeric grade to letter grade',
@@ -183,7 +193,9 @@ export class TemplateHelpers extends BaseService {
     this.registerHelper('percentage', {
       fn: (...args: unknown[]) => {
         const [value, total] = args as [number, number];
-        if (total === 0) return '0%';
+        if (total === 0) {
+return '0%';
+}
         return `${Math.round((value / total) * 100)}%`;
       },
       description: 'Calculate percentage',
@@ -195,7 +207,9 @@ export class TemplateHelpers extends BaseService {
     this.registerHelper('capitalize', {
       fn: (...args: unknown[]) => {
         const [str] = args as [string];
-        if (!str) return '';
+        if (!str) {
+return '';
+}
         return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
       },
       description: 'Capitalize first letter',
@@ -226,9 +240,13 @@ export class TemplateHelpers extends BaseService {
     this.registerHelper('truncate', {
       fn: (...args: unknown[]) => {
         const [str, length = 50] = args as [string, number?];
-        if (!str) return '';
-        if (str.length <= length) return str;
-        return str.substring(0, length - 3) + '...';
+        if (!str) {
+return '';
+}
+        if (str.length <= length) {
+return str;
+}
+        return `${str.substring(0, length - 3)  }...`;
       },
       description: 'Truncate string to specified length',
       category: 'string',
@@ -280,12 +298,24 @@ export class TemplateHelpers extends BaseService {
     this.registerHelper('gradeLevel', {
       fn: (...args: unknown[]) => {
         const [grade] = args as [number];
-        if (grade <= 0) return 'Pre-K';
-        if (grade <= 8) return `Grade ${grade}`;
-        if (grade === 9) return 'Grade 9';
-        if (grade === 10) return 'Grade 10';
-        if (grade === 11) return 'Grade 11';
-        if (grade === 12) return 'Grade 12';
+        if (grade <= 0) {
+return 'Pre-K';
+}
+        if (grade <= 8) {
+return `Grade ${grade}`;
+}
+        if (grade === 9) {
+return 'Grade 9';
+}
+        if (grade === 10) {
+return 'Grade 10';
+}
+        if (grade === 11) {
+return 'Grade 11';
+}
+        if (grade === 12) {
+return 'Grade 12';
+}
         return 'Post-Secondary';
       },
       description: 'Format grade number to grade level',
@@ -303,9 +333,9 @@ export class TemplateHelpers extends BaseService {
         if (month >= 8) {
           // September or later
           return `${year}-${year + 1}`;
-        } else {
+        } 
           return `${year - 1}-${year}`;
-        }
+        
       },
       description: 'Get current academic year',
       category: 'educational',
@@ -346,7 +376,9 @@ export class TemplateHelpers extends BaseService {
     this.registerHelper('join', {
       fn: (...args: unknown[]) => {
         const [array, separator = ', '] = args as [unknown[], string?];
-        if (!array || !Array.isArray(array)) return '';
+        if (!array || !Array.isArray(array)) {
+return '';
+}
         return array.join(separator);
       },
       description: 'Join array elements with separator',
@@ -535,9 +567,9 @@ export class TemplateHelpers extends BaseService {
   /**
    * Validate all helpers
    */
-  public validateHelpers(): { valid: string[]; invalid: Array<{ name: string; error: string }> } {
+  public validateHelpers(): { valid: string[]; invalid: { name: string; error: string }[] } {
     const valid: string[] = [];
-    const invalid: Array<{ name: string; error: string }> = [];
+    const invalid: { name: string; error: string }[] = [];
 
     for (const [name, helper] of this.helpers) {
       try {

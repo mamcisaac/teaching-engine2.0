@@ -4,7 +4,7 @@
  * Base interface for all template rendering engines
  */
 
-import { Template } from '../providers/TemplateProvider';
+import type { Template } from '../providers/TemplateProvider';
 
 export interface RenderResult {
   content: string | Buffer;

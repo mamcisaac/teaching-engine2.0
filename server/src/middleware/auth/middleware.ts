@@ -1,14 +1,14 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 
-import { prisma } from '../../prisma.js';
 import logger from '../../logger.js';
+import { prisma } from '../../prisma.js';
 import { AuthenticationError } from '../errorHandler.js';
 
-import { AuthRequest, UserRole } from './types';
 import { verifyToken, extractTokenFromHeader } from './jwt';
+import type { AuthRequest, UserRole } from './types';
 
 export class ForbiddenError extends Error {
-  constructor(message: string = 'Forbidden') {
+  constructor(message = 'Forbidden') {
     super(message);
     this.name = 'ForbiddenError';
   }
@@ -78,18 +78,18 @@ export function authorize(...allowedRoles: UserRole[]) {
     const authReq = req as AuthRequest;
 
     if (!authReq.user) {
-      return next(new AuthenticationError('User not authenticated'));
+      next(new AuthenticationError('User not authenticated')); return;
     }
 
     if (allowedRoles.length === 0) {
-      return next();
+      next(); return;
     }
 
     if (!allowedRoles.includes(authReq.user.role)) {
       logger.warn(
         `Access denied for user ${authReq.user.email} with role ${authReq.user.role}. Required roles: ${allowedRoles.join(', ')}`,
       );
-      return next(new ForbiddenError('Insufficient permissions'));
+      next(new ForbiddenError('Insufficient permissions')); return;
     }
 
     next();
@@ -109,7 +109,7 @@ export async function optionalAuthenticate(
     const token = extractTokenFromHeader(req.headers.authorization);
 
     if (!token) {
-      return next();
+      next(); return;
     }
 
     const payload = verifyToken(token);
@@ -147,11 +147,11 @@ export function requireOrganization(req: Request, _res: Response, next: NextFunc
   const authReq = req as AuthRequest;
 
   if (!authReq.user) {
-    return next(new AuthenticationError('User not authenticated'));
+    next(new AuthenticationError('User not authenticated')); return;
   }
 
   if (!authReq.user.organizationId) {
-    return next(new ForbiddenError('Organization membership required'));
+    next(new ForbiddenError('Organization membership required')); return;
   }
 
   next();

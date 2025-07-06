@@ -1,8 +1,9 @@
-import { Router, Request, Response } from 'express';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
 
-import { metricsStore, getPerformanceSummary } from '../middleware/metrics.js';
-import { authMiddleware } from '../middleware/auth.js';
 import logger from '../logger.js';
+import { authMiddleware } from '../middleware/auth.js';
+import { metricsStore, getPerformanceSummary } from '../middleware/metrics.js';
 
 const router = Router();
 
@@ -192,7 +193,7 @@ router.get('/realtime', authMiddleware, (_req: Request, res: Response): void => 
       data: {
         current: {
           requestsPerMinute,
-          activeConnections: metrics.gauges['active_connections'] || 0,
+          activeConnections: metrics.gauges.active_connections || 0,
           memoryUsage: summary.system.memoryUsage,
           cpuUsage: summary.system.cpuUsage,
           cacheHitRate: summary.cache.hitRate,

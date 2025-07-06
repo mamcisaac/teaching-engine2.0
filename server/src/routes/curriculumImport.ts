@@ -1,11 +1,12 @@
-import express, { Request, Response } from 'express';
+import type { Request, Response } from 'express';
+import express from 'express';
 import multer from 'multer';
 
+import logger from '../logger';
 import { curriculumImportService } from '../services';
 // Clustering service removed - over-engineered for single-teacher use
-import logger from '../logger';
 
-import { AuthenticatedRequest } from './base/middleware';
+import type { AuthenticatedRequest } from './base/middleware';
 
 const router = express.Router();
 
@@ -144,7 +145,7 @@ router.post('/parse', async (req: AuthenticatedRequest, res: Response): Promise<
 
     // Parse the uploaded file
     const parseResult = await curriculumImportService.parseUploadedFile(sessionId, {
-      userId: req.user!.id,
+      userId: req.user.id,
       filename: sessionId,
       useAI: useAiExtraction || true,
     });

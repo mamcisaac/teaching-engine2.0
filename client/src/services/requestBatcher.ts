@@ -25,10 +25,10 @@ interface PendingRequest {
 }
 
 class RequestBatcher {
-  private pendingRequests: Map<string, PendingRequest> = new Map();
+  private pendingRequests = new Map<string, PendingRequest>();
   private batchTimeout: NodeJS.Timeout | null = null;
-  private batchDelay: number = 50; // ms to wait before sending batch
-  private maxBatchSize: number = 10;
+  private batchDelay = 50; // ms to wait before sending batch
+  private maxBatchSize = 10;
 
   // Add request to batch
   async addRequest(request: Omit<BatchRequest, 'id'>): Promise<unknown> {
@@ -67,7 +67,9 @@ class RequestBatcher {
 
   // Process pending batch
   private async processBatch() {
-    if (this.pendingRequests.size === 0) return;
+    if (this.pendingRequests.size === 0) {
+return;
+}
 
     // Get all pending requests
     const requests = Array.from(this.pendingRequests.values());
@@ -152,7 +154,7 @@ class RequestBatcher {
       };
 
       const response = await apiClient.post('/api/batch', batchData);
-      const responses: BatchResponse[] = response.data.responses;
+      const {responses} = response.data;
 
       // Map responses back to promises
       const responseMap = new Map(responses.map((r) => [r.id, r]));
@@ -227,7 +229,7 @@ export const batchedApi = {
 // Debounced request helper
 export function createDebouncedRequest<
   T extends (...args: Parameters<T>) => Promise<ReturnType<T>>,
->(fn: T, delay: number = 300): T & { cancel: () => void } {
+>(fn: T, delay = 300): T & { cancel: () => void } {
   let timeout: NodeJS.Timeout | null = null;
   let lastArgs: Parameters<T> | null = null;
   let lastPromise: Promise<ReturnType<T>> | null = null;
@@ -243,7 +245,7 @@ export function createDebouncedRequest<
       lastPromise = new Promise((resolve, reject) => {
         timeout = setTimeout(async () => {
           try {
-            const result = await fn(...(lastArgs as Parameters<T>));
+            const result = await fn(...(lastArgs!));
             resolve(result);
           } catch (error) {
             reject(error);

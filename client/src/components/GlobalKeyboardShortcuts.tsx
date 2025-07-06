@@ -1,6 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+
 import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
+
 import { KeyboardShortcutsHelp } from './KeyboardShortcutsHelp';
 // import { useNotification } from '../contexts/NotificationContext';
 
@@ -12,7 +14,9 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   // Wrap all handlers in useCallback to prevent infinite re-renders
-  const handleShowHelp = useCallback(() => setIsHelpOpen(true), []);
+  const handleShowHelp = useCallback(() => {
+ setIsHelpOpen(true); 
+}, []);
   const handleCreateNewLesson = useCallback(() => {
     navigate('/planner/quick-lesson');
     // addNotification('info', 'Create a new lesson plan');
@@ -83,12 +87,24 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
     setIsSearchOpen(false);
   }, []);
 
-  const handleNavigateDashboard = useCallback(() => navigate('/planner/dashboard'), [navigate]);
-  const handleNavigatePlanning = useCallback(() => navigate('/planner/long-range'), [navigate]);
-  const handleNavigateCurriculum = useCallback(() => navigate('/curriculum'), [navigate]);
-  const handleNavigateHelp = useCallback(() => navigate('/help'), [navigate]);
-  const handleGoBack = useCallback(() => window.history.back(), []);
-  const handleGoForward = useCallback(() => window.history.forward(), []);
+  const handleNavigateDashboard = useCallback(() => {
+ navigate('/planner/dashboard'); 
+}, [navigate]);
+  const handleNavigatePlanning = useCallback(() => {
+ navigate('/planner/long-range'); 
+}, [navigate]);
+  const handleNavigateCurriculum = useCallback(() => {
+ navigate('/curriculum'); 
+}, [navigate]);
+  const handleNavigateHelp = useCallback(() => {
+ navigate('/help'); 
+}, [navigate]);
+  const handleGoBack = useCallback(() => {
+ window.history.back(); 
+}, []);
+  const handleGoForward = useCallback(() => {
+ window.history.forward(); 
+}, []);
 
   // Global: Close modals/overlays (Escape)
   useKeyboardShortcut(
@@ -151,10 +167,14 @@ export const GlobalKeyboardShortcuts: React.FC = () => {
 
   return (
     <>
-      <KeyboardShortcutsHelp isOpen={isHelpOpen} onClose={() => setIsHelpOpen(false)} />
+      <KeyboardShortcutsHelp isOpen={isHelpOpen} onClose={() => {
+ setIsHelpOpen(false); 
+}} />
 
       {/* Global Search Modal */}
-      {isSearchOpen && <GlobalSearch onClose={() => setIsSearchOpen(false)} />}
+      {isSearchOpen && <GlobalSearch onClose={() => {
+ setIsSearchOpen(false); 
+}} />}
     </>
   );
 };
@@ -186,25 +206,27 @@ const GlobalSearch: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
           <form onSubmit={handleSearch}>
             <input
+              autoFocus
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Search for curriculum, lessons, or resources..."
               type="text"
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search for curriculum, lessons, or resources..."
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              autoFocus
+              onChange={(e) => {
+ setQuery(e.target.value); 
+}}
             />
 
             <div className="mt-4 flex justify-end space-x-3">
               <button
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
               >
                 Cancel
               </button>
               <button
-                type="submit"
                 className="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"
+                type="submit"
               >
                 Search
               </button>

@@ -1,12 +1,14 @@
+import { Zap, FileText, ArrowLeft, Info } from 'lucide-react';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
+
+import type { LessonPlanFormData } from '../components/forms/LessonPlanForm';
+import LessonPlanForm from '../components/forms/LessonPlanForm';
+import { OnboardingTooltip } from '../components/onboarding';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import LessonPlanForm, { LessonPlanFormData } from '../components/forms/LessonPlanForm';
-import { Zap, FileText, ArrowLeft, Info } from 'lucide-react';
-import { toast } from 'sonner';
 import { useCreateETFOLessonPlan } from '../hooks/useETFOPlanning';
-import { OnboardingTooltip } from '../components/onboarding';
 import { useShowContextualHints } from '../hooks/useFeatureTutorial';
 import logger from '../utils/logger';
 export default function QuickLessonPage() {
@@ -44,7 +46,9 @@ export default function QuickLessonPage() {
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header */}
       <div className="mb-8">
-        <Button variant="ghost" onClick={() => navigate('/planner')} className="mb-4 gap-2">
+        <Button className="mb-4 gap-2" variant="ghost" onClick={() => {
+ navigate('/planner'); 
+}}>
           <ArrowLeft className="h-4 w-4" />
           Back to Dashboard
         </Button>
@@ -56,10 +60,10 @@ export default function QuickLessonPage() {
           <div>
             {showHints ? (
               <OnboardingTooltip
-                id="quick-lesson-title"
-                title="Quick Lesson Planning"
                 content="Perfect for Grade 1 French Immersion! Create bilingual lessons quickly with AI assistance."
+                id="quick-lesson-title"
                 position="right"
+                title="Quick Lesson Planning"
               >
                 <h1 className="text-3xl font-bold text-gray-900">Quick Lesson Planner</h1>
               </OnboardingTooltip>
@@ -134,10 +138,6 @@ export default function QuickLessonPage() {
         </CardHeader>
         <CardContent>
           <LessonPlanForm
-            onSubmit={handleSubmit}
-            onCancel={() => navigate('/planner')}
-            isSubmitting={isSubmitting}
-            showUnitPlanSelector={false} // Hide unit plan requirement
             initialData={{
               title: '',
               date: new Date().toISOString().split('T')[0],
@@ -150,6 +150,12 @@ export default function QuickLessonPage() {
               isSubFriendly: false,
               expectationIds: [],
             }}
+            isSubmitting={isSubmitting}
+            showUnitPlanSelector={false} // Hide unit plan requirement
+            onCancel={() => {
+ navigate('/planner'); 
+}}
+            onSubmit={handleSubmit}
           />
         </CardContent>
       </Card>

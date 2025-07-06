@@ -48,7 +48,9 @@ export function NavigationProvider({ children }: NavigationProviderProps) {
 
     handleResize();
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    return () => {
+ window.removeEventListener('resize', handleResize); 
+};
   }, [isSidebarOpen]);
 
   const value: NavigationContextValue = {

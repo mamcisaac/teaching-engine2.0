@@ -1,7 +1,8 @@
-import React from 'react';
 import { clsx } from 'clsx';
-import { formatShortcut, KeyboardShortcut } from '../../contexts/KeyboardShortcutsContext';
-import { useKeyboardShortcuts } from '../../contexts/KeyboardShortcutsContext';
+import React from 'react';
+
+import type { KeyboardShortcut } from '../../contexts/KeyboardShortcutsContext';
+import { formatShortcut , useKeyboardShortcuts } from '../../contexts/KeyboardShortcutsContext';
 
 interface ShortcutHintProps {
   shortcut: Partial<KeyboardShortcut>;
@@ -84,8 +85,7 @@ export const ButtonWithShortcut: React.FC<ButtonWithShortcutProps> = ({
   children,
   className,
   ...props
-}) => {
-  return (
+}) => (
     <button
       className={clsx('inline-flex items-center gap-2', className)}
       {...props}
@@ -93,15 +93,14 @@ export const ButtonWithShortcut: React.FC<ButtonWithShortcutProps> = ({
       {children}
       {shortcut && (
         <ShortcutHint 
-          shortcut={shortcut} 
+          className="ml-auto" 
           position="inline" 
+          shortcut={shortcut}
           size="xs"
-          className="ml-auto"
         />
       )}
     </button>
   );
-};
 
 interface TooltipWithShortcutProps {
   content: React.ReactNode;
@@ -116,22 +115,20 @@ export const TooltipWithShortcut: React.FC<TooltipWithShortcutProps> = ({
   content,
   shortcut,
   children
-}) => {
-  return (
+}) => (
     <div className="group relative inline-block">
       {children}
       <div className="invisible group-hover:visible absolute z-10 w-max max-w-xs px-3 py-2 text-sm text-white bg-gray-900 rounded-lg shadow-lg -top-10 left-1/2 transform -translate-x-1/2">
         <div>{content}</div>
         {shortcut && (
           <div className="mt-1 text-xs text-gray-400">
-            Shortcut: <ShortcutHint shortcut={shortcut} position="tooltip" size="xs" />
+            Shortcut: <ShortcutHint position="tooltip" shortcut={shortcut} size="xs" />
           </div>
         )}
-        <div className="absolute w-2 h-2 bg-gray-900 transform rotate-45 -bottom-1 left-1/2 -translate-x-1/2"></div>
+        <div className="absolute w-2 h-2 bg-gray-900 transform rotate-45 -bottom-1 left-1/2 -translate-x-1/2" />
       </div>
     </div>
   );
-};
 
 /**
  * Menu item component that displays a keyboard shortcut
@@ -152,15 +149,14 @@ export const MenuItemWithShortcut: React.FC<MenuItemWithShortcutProps> = ({
   icon,
   disabled = false,
   className
-}) => {
-  return (
+}) => (
     <button
-      onClick={onClick}
-      disabled={disabled}
       className={clsx(
         'w-full flex items-center justify-between px-4 py-2 text-sm text-left hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed',
         className
       )}
+      disabled={disabled}
+      onClick={onClick}
     >
       <div className="flex items-center gap-3">
         {icon && <span className="text-gray-500">{icon}</span>}
@@ -168,12 +164,11 @@ export const MenuItemWithShortcut: React.FC<MenuItemWithShortcutProps> = ({
       </div>
       {shortcut && (
         <ShortcutHint 
-          shortcut={shortcut} 
+          className="ml-8" 
           position="badge" 
+          shortcut={shortcut}
           size="xs"
-          className="ml-8"
         />
       )}
     </button>
   );
-};

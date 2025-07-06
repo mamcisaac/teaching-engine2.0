@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import DOMPurify from 'isomorphic-dompurify';
 
 import logger from '../logger.js';
@@ -155,7 +155,9 @@ const moderateConfig = {
  * Unicode normalization to prevent bypass attacks
  */
 export function unicodeNormalization(input: string): string {
-  if (typeof input !== 'string') return input;
+  if (typeof input !== 'string') {
+return input;
+}
 
   try {
     // Normalize Unicode to canonical form
@@ -230,7 +232,9 @@ export function unicodeNormalization(input: string): string {
  * Advanced XSS pattern detection
  */
 export function detectXssAttempt(input: string): boolean {
-  if (typeof input !== 'string') return false;
+  if (typeof input !== 'string') {
+return false;
+}
 
   // Normalize first to catch Unicode bypasses
   const normalized = unicodeNormalization(input.toLowerCase());
@@ -327,7 +331,9 @@ export function detectXssAttempt(input: string): boolean {
  * Sanitize CSS content to prevent CSS injection attacks
  */
 export function sanitizeCssContent(css: string): string {
-  if (typeof css !== 'string') return '';
+  if (typeof css !== 'string') {
+return '';
+}
 
   try {
     // Normalize first
@@ -372,7 +378,9 @@ export function sanitizeHtmlAdvanced(
   html: string,
   context: 'strict' | 'moderate' | 'text' = 'strict',
 ): string {
-  if (typeof html !== 'string') return '';
+  if (typeof html !== 'string') {
+return '';
+}
 
   try {
     // First normalize Unicode to prevent bypasses
@@ -432,7 +440,7 @@ export function sanitizeHtmlAdvanced(
       }
 
       // Remove MathML with dangerous attributes
-      if (element.tagName === 'MATH' || element.tagName?.startsWith('M')) {
+      if (element.tagName === 'MATH' || element.tagName.startsWith('M')) {
         if (element.hasAttribute('href') || element.hasAttribute('xlink:href')) {
           element.remove();
           return;
@@ -453,7 +461,7 @@ export function sanitizeHtmlAdvanced(
 
     DOMPurify.addHook('afterSanitizeAttributes', (node) => {
       // Ensure no dangerous attributes survived
-      const element = node as Element;
+      const element = node;
       if (element.hasAttributes && element.hasAttributes()) {
         const attrs = Array.from(element.attributes);
         for (const attr of attrs) {
@@ -504,7 +512,9 @@ export function sanitizeHtmlAdvanced(
  * Advanced email sanitization
  */
 export function sanitizeEmailAdvanced(email: string): string {
-  if (typeof email !== 'string') return '';
+  if (typeof email !== 'string') {
+return '';
+}
 
   try {
     // Normalize and trim
@@ -565,7 +575,9 @@ export function sanitizeEmailAdvanced(email: string): string {
  * Advanced URL sanitization
  */
 export function sanitizeUrlAdvanced(url: string): string {
-  if (typeof url !== 'string') return '';
+  if (typeof url !== 'string') {
+return '';
+}
 
   try {
     // Don't use aggressive normalization for URLs as it might break protocol detection
@@ -660,9 +672,9 @@ function sanitizeObjectAdvanced(obj: unknown, depth = 0, parentKey = ''): unknow
       return sanitizeHtmlAdvanced(obj, 'text');
     } else if (/^(description|content|html|body)/i.test(parentKey)) {
       return sanitizeHtmlAdvanced(obj, 'moderate');
-    } else {
+    } 
       return sanitizeHtmlAdvanced(obj, 'strict');
-    }
+    
   }
 
   if (Array.isArray(obj)) {

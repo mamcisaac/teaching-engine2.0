@@ -1,27 +1,5 @@
-import React, { useState, useRef } from 'react';
 import { format, addDays, startOfWeek, endOfWeek, isToday } from 'date-fns';
-import {
-  useDaybookEntries,
-  useETFOLessonPlans,
-  useCreateDaybookEntry,
-  useUpdateDaybookEntry,
-  DaybookEntry,
-  ETFOLessonPlan,
-} from '../hooks/useETFOPlanning';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/Button';
-import { Textarea } from '@/components/ui/Textarea';
-import { Label } from '@/components/ui/Label';
-import { Badge } from '@/components/ui/Badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/Dialog';
+
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
   Clock,
@@ -35,9 +13,35 @@ import {
   CheckCircle,
   Star,
 } from 'lucide-react';
+import React, { useState, useRef } from 'react';
 import { useToast } from '@/components/ui/use-toast';
+
 import { useReactToPrint } from 'react-to-print';
+import { Badge } from '@/components/ui/Badge';
+import { Button } from '@/components/ui/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/Dialog';
+import { Label } from '@/components/ui/Label';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Textarea } from '@/components/ui/Textarea';
+
 import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
+import {
+  useDaybookEntries,
+  useETFOLessonPlans,
+  useCreateDaybookEntry,
+  useUpdateDaybookEntry
+} from '../hooks/useETFOPlanning';
+import type {
+  DaybookEntry,
+  ETFOLessonPlan} from '../hooks/useETFOPlanning';
 
 interface DayEntryProps {
   date: Date;
@@ -76,18 +80,20 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
   const totalDuration = lessons.reduce((sum, lesson) => sum + (lesson.duration || 0), 0);
 
   return (
-    <Card className={`${_isDayToday ? 'ring-2 ring-primary' : ''}`}>
+    <Card className={_isDayToday ? 'ring-2 ring-primary' : ''}>
       <CardHeader>
         <div className="flex items-center justify-between">
           <div>
             <CardTitle className="text-lg">{format(date, 'EEEE, MMMM d')}</CardTitle>
             {_isDayToday && (
-              <Badge variant="default" className="mt-1">
+              <Badge className="mt-1" variant="default">
                 Today
               </Badge>
             )}
           </div>
-          <Button variant="ghost" size="sm" onClick={() => setIsEditing(!isEditing)}>
+          <Button size="sm" variant="ghost" onClick={() => {
+ setIsEditing(!isEditing); 
+}}>
             <PenTool className="h-4 w-4" />
           </Button>
         </div>
@@ -123,7 +129,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
                 </div>
                 <div className="flex gap-1">
                   {lesson.assessmentType && (
-                    <Badge variant="secondary" className="text-xs">
+                    <Badge className="text-xs" variant="secondary">
                       {lesson.assessmentType}
                     </Badge>
                   )}
@@ -143,9 +149,11 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
                 {[1, 2, 3, 4, 5].map((rating) => (
                   <button
                     key={rating}
-                    type="button"
-                    onClick={() => setFormData({ ...formData, overallRating: rating })}
                     className="p-1 hover:scale-110 transition-transform"
+                    type="button"
+                    onClick={() => {
+ setFormData({ ...formData, overallRating: rating }); 
+}}
                   >
                     <Star
                       className={`h-6 w-6 ${
@@ -170,10 +178,12 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
             <div className="space-y-2">
               <Label>What Worked Well?</Label>
               <Textarea
-                value={formData.whatWorked}
-                onChange={(e) => setFormData({ ...formData, whatWorked: e.target.value })}
                 placeholder="Describe successful strategies, activities, or moments..."
                 rows={2}
+                value={formData.whatWorked}
+                onChange={(e) => {
+ setFormData({ ...formData, whatWorked: e.target.value }); 
+}}
               />
             </div>
 
@@ -181,10 +191,12 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
             <div className="space-y-2">
               <Label>What Could Be Improved?</Label>
               <Textarea
-                value={formData.whatDidntWork}
-                onChange={(e) => setFormData({ ...formData, whatDidntWork: e.target.value })}
                 placeholder="Identify challenges or areas for improvement..."
                 rows={2}
+                value={formData.whatDidntWork}
+                onChange={(e) => {
+ setFormData({ ...formData, whatDidntWork: e.target.value }); 
+}}
               />
             </div>
 
@@ -192,10 +204,12 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
             <div className="space-y-2">
               <Label>Next Steps</Label>
               <Textarea
-                value={formData.nextSteps}
-                onChange={(e) => setFormData({ ...formData, nextSteps: e.target.value })}
                 placeholder="What will you do differently next time? Follow-up needed?"
                 rows={2}
+                value={formData.nextSteps}
+                onChange={(e) => {
+ setFormData({ ...formData, nextSteps: e.target.value }); 
+}}
               />
             </div>
 
@@ -206,30 +220,36 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
               <div className="space-y-2">
                 <Label className="text-sm">Engagement Level</Label>
                 <Textarea
-                  value={formData.studentEngagement}
-                  onChange={(e) => setFormData({ ...formData, studentEngagement: e.target.value })}
                   placeholder="How engaged were students? Note participation patterns..."
                   rows={2}
+                  value={formData.studentEngagement}
+                  onChange={(e) => {
+ setFormData({ ...formData, studentEngagement: e.target.value }); 
+}}
                 />
               </div>
 
               <div className="space-y-2">
                 <Label className="text-sm">Challenges Observed</Label>
                 <Textarea
-                  value={formData.studentChallenges}
-                  onChange={(e) => setFormData({ ...formData, studentChallenges: e.target.value })}
                   placeholder="What difficulties did students encounter? Who needs support?"
                   rows={2}
+                  value={formData.studentChallenges}
+                  onChange={(e) => {
+ setFormData({ ...formData, studentChallenges: e.target.value }); 
+}}
                 />
               </div>
 
               <div className="space-y-2">
                 <Label className="text-sm">Successes Noted</Label>
                 <Textarea
-                  value={formData.studentSuccesses}
-                  onChange={(e) => setFormData({ ...formData, studentSuccesses: e.target.value })}
                   placeholder="Notable achievements, breakthroughs, or growth observed..."
                   rows={2}
+                  value={formData.studentSuccesses}
+                  onChange={(e) => {
+ setFormData({ ...formData, studentSuccesses: e.target.value }); 
+}}
                 />
               </div>
             </div>
@@ -238,28 +258,32 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label>Additional Notes</Label>
-                <Badge variant="outline" className="text-xs">
+                <Badge className="text-xs" variant="outline">
                   Public - May appear in newsletters
                 </Badge>
               </div>
               <Textarea
-                value={formData.notes}
-                onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                 placeholder="Any other observations, reminders, or reflections (may be shared in newsletters)..."
                 rows={2}
+                value={formData.notes}
+                onChange={(e) => {
+ setFormData({ ...formData, notes: e.target.value }); 
+}}
               />
             </div>
 
             {/* Would Reuse Lesson */}
             <div className="flex items-center space-x-2">
               <input
-                type="checkbox"
-                id="reuseLesson"
                 checked={formData.wouldReuseLesson}
-                onChange={(e) => setFormData({ ...formData, wouldReuseLesson: e.target.checked })}
                 className="rounded"
+                id="reuseLesson"
+                type="checkbox"
+                onChange={(e) => {
+ setFormData({ ...formData, wouldReuseLesson: e.target.checked }); 
+}}
               />
-              <Label htmlFor="reuseLesson" className="text-sm font-normal cursor-pointer">
+              <Label className="text-sm font-normal cursor-pointer" htmlFor="reuseLesson">
                 I would use this lesson plan again
               </Label>
             </div>
@@ -268,15 +292,17 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label>Private Teacher Notes</Label>
-                <Badge variant="secondary" className="text-xs">
+                <Badge className="text-xs" variant="secondary">
                   Private - For your eyes only
                 </Badge>
               </div>
               <Textarea
-                value={formData.privateNotes}
-                onChange={(e) => setFormData({ ...formData, privateNotes: e.target.value })}
                 placeholder="Confidential notes, behavioral concerns, parent communications, substitute info..."
                 rows={2}
+                value={formData.privateNotes}
+                onChange={(e) => {
+ setFormData({ ...formData, privateNotes: e.target.value }); 
+}}
               />
             </div>
           </div>
@@ -336,10 +362,12 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
         {/* Save button */}
         {isEditing && (
           <div className="flex justify-end gap-2">
-            <Button variant="outline" onClick={() => setIsEditing(false)}>
+            <Button variant="outline" onClick={() => {
+ setIsEditing(false); 
+}}>
               Cancel
             </Button>
-            <Button onClick={handleSave} className="gap-2">
+            <Button className="gap-2" onClick={handleSave}>
               <Save className="h-4 w-4" />
               Save Entry
             </Button>
@@ -407,17 +435,13 @@ export default function DaybookPage() {
     }
   };
 
-  const getDayEntry = (date: Date) => {
-    return entries.find(
+  const getDayEntry = (date: Date) => entries.find(
       (e) => format(new Date(e.date), 'yyyy-MM-dd') === format(date, 'yyyy-MM-dd'),
     );
-  };
 
-  const getDayLessons = (date: Date) => {
-    return lessons.filter(
+  const getDayLessons = (date: Date) => lessons.filter(
       (lesson) => format(new Date(lesson.date), 'yyyy-MM-dd') === format(date, 'yyyy-MM-dd'),
     );
-  };
 
   const weekDays = Array.from({ length: 5 }, (_, i) => addDays(weekStart, i));
 
@@ -451,20 +475,22 @@ export default function DaybookPage() {
         </div>
         <div className="flex items-center gap-3">
           <BlankTemplateQuickActions 
-            templateType="daybook"
             schoolInfo={{
               teacherName: '',
               grade: '',
             }}
+            templateType="daybook"
           />
           <BlankTemplateQuickActions 
-            templateType="weekly"
             schoolInfo={{
               teacherName: '',
               grade: '',
             }}
+            templateType="weekly"
           />
-          <Button onClick={() => setIsPrintDialogOpen(true)} className="gap-2">
+          <Button className="gap-2" onClick={() => {
+ setIsPrintDialogOpen(true); 
+}}>
             <Printer className="h-4 w-4" />
             Print
           </Button>
@@ -478,19 +504,25 @@ export default function DaybookPage() {
             <CardTitle>Week of {format(weekStart, 'MMMM d, yyyy')}</CardTitle>
             <div className="flex items-center gap-2">
               <Button
-                variant="outline"
                 size="sm"
-                onClick={() => setSelectedWeek(addDays(selectedWeek, -7))}
+                variant="outline"
+                onClick={() => {
+ setSelectedWeek(addDays(selectedWeek, -7)); 
+}}
               >
                 <ChevronLeft className="h-4 w-4" />
               </Button>
-              <Button variant="outline" onClick={() => setSelectedWeek(new Date())}>
+              <Button variant="outline" onClick={() => {
+ setSelectedWeek(new Date()); 
+}}>
                 This Week
               </Button>
               <Button
-                variant="outline"
                 size="sm"
-                onClick={() => setSelectedWeek(addDays(selectedWeek, 7))}
+                variant="outline"
+                onClick={() => {
+ setSelectedWeek(addDays(selectedWeek, 7)); 
+}}
               >
                 <ChevronRight className="h-4 w-4" />
               </Button>
@@ -536,12 +568,12 @@ export default function DaybookPage() {
           </CardHeader>
           <CardContent>
             {insights.totalLessons > 0 ? (
-              <Badge variant="default" className="gap-1">
+              <Badge className="gap-1" variant="default">
                 <CheckCircle className="h-3 w-3" />
                 Active
               </Badge>
             ) : (
-              <Badge variant="secondary" className="gap-1">
+              <Badge className="gap-1" variant="secondary">
                 <AlertCircle className="h-3 w-3" />
                 No lessons
               </Badge>
@@ -551,15 +583,15 @@ export default function DaybookPage() {
       </div>
 
       {/* Daily Entries */}
-      <div className="space-y-4" ref={printRef}>
+      <div ref={printRef} className="space-y-4">
         {weekDays.map((day) => (
           <DayEntry
             key={day.toISOString()}
             date={day}
             entry={getDayEntry(day)}
+            isToday={isToday(day)}
             lessons={getDayLessons(day)}
             onSave={(data) => handleSaveEntry(day, data)}
-            isToday={isToday(day)}
           />
         ))}
       </div>
@@ -573,9 +605,11 @@ export default function DaybookPage() {
               <CardDescription>Common reflection templates and weekly prompts</CardDescription>
             </div>
             <Button
-              variant="outline"
               size="sm"
-              onClick={() => setShowQuickTemplates(!showQuickTemplates)}
+              variant="outline"
+              onClick={() => {
+ setShowQuickTemplates(!showQuickTemplates); 
+}}
             >
               {showQuickTemplates ? 'Hide' : 'Show'} Templates
             </Button>
@@ -703,7 +737,9 @@ export default function DaybookPage() {
 
           <Tabs
             value={printType}
-            onValueChange={(value) => setPrintType(value as 'day' | 'week' | 'substitute')}
+            onValueChange={(value) => {
+ setPrintType(value as 'day' | 'week' | 'substitute'); 
+}}
           >
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="day">Today</TabsTrigger>
@@ -711,7 +747,7 @@ export default function DaybookPage() {
               <TabsTrigger value="substitute">Sub Plan</TabsTrigger>
             </TabsList>
 
-            <TabsContent value="day" className="space-y-4">
+            <TabsContent className="space-y-4" value="day">
               <Alert>
                 <AlertCircle className="h-4 w-4" />
                 <AlertDescription>
@@ -720,14 +756,14 @@ export default function DaybookPage() {
               </Alert>
             </TabsContent>
 
-            <TabsContent value="week" className="space-y-4">
+            <TabsContent className="space-y-4" value="week">
               <Alert>
                 <AlertCircle className="h-4 w-4" />
                 <AlertDescription>Print the entire week&apos;s daybook entries</AlertDescription>
               </Alert>
             </TabsContent>
 
-            <TabsContent value="substitute" className="space-y-4">
+            <TabsContent className="space-y-4" value="substitute">
               <Alert>
                 <AlertCircle className="h-4 w-4" />
                 <AlertDescription>
@@ -738,7 +774,9 @@ export default function DaybookPage() {
           </Tabs>
 
           <DialogFooter>
-            <Button variant="outline" onClick={() => setIsPrintDialogOpen(false)}>
+            <Button variant="outline" onClick={() => {
+ setIsPrintDialogOpen(false); 
+}}>
               Cancel
             </Button>
             <Button

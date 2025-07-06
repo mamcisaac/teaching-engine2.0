@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
 import { X, Loader2, AlertCircle, CheckCircle } from 'lucide-react';
-import { Progress } from '../ui/Progress';
-import { Button } from '../ui/Button';
+import React, { useState, useEffect } from 'react';
+
 import { cn } from '../../lib/utils';
+import { Button } from '../ui/Button';
+import { Progress } from '../ui/Progress';
 
 export interface AILoadingStep {
   id: string;
@@ -56,7 +57,9 @@ export function AILoadingIndicator({
         });
       }, 200);
 
-      return () => clearInterval(interval);
+      return () => {
+ clearInterval(interval); 
+};
     } else if (progress > 0) {
       setLocalProgress(progress);
     }
@@ -70,7 +73,9 @@ export function AILoadingIndicator({
         setElapsedTime(Date.now() - startTime);
       }, 1000);
 
-      return () => clearInterval(interval);
+      return () => {
+ clearInterval(interval); 
+};
     }
   }, [state]);
 
@@ -81,7 +86,9 @@ export function AILoadingIndicator({
         onCancel();
       }, autoCloseDelay);
 
-      return () => clearTimeout(timeout);
+      return () => {
+ clearTimeout(timeout); 
+};
     }
   }, [state, autoCloseOnSuccess, autoCloseDelay, onCancel]);
 
@@ -159,15 +166,17 @@ export function AILoadingIndicator({
     }
   };
 
-  if (!isOpen) return null;
+  if (!isOpen) {
+return null;
+}
 
   return (
     <div 
+      aria-describedby="ai-loading-description"
+      aria-labelledby="ai-loading-title"
+      aria-modal="true"
       className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
       role="dialog"
-      aria-modal="true"
-      aria-labelledby="ai-loading-title"
-      aria-describedby="ai-loading-description"
     >
       <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md mx-4">
         {/* Header */}
@@ -176,15 +185,15 @@ export function AILoadingIndicator({
             {getStateIcon()}
             <div>
               <h3 
-                id="ai-loading-title"
                 className={cn('font-semibold', getStateColor())}
+                id="ai-loading-title"
               >
                 {title}
               </h3>
               {subtitle && (
                 <p 
-                  id="ai-loading-description"
                   className="text-sm text-gray-500"
+                  id="ai-loading-description"
                 >
                   {subtitle}
                 </p>
@@ -193,13 +202,13 @@ export function AILoadingIndicator({
           </div>
           {canCancel && onCancel && state !== 'success' && (
             <Button
-              variant="ghost"
-              size="sm"
-              onClick={onCancel}
-              className="h-8 w-8 p-0 hover:bg-gray-100"
               aria-label="Cancel AI generation"
+              className="h-8 w-8 p-0 hover:bg-gray-100"
+              size="sm"
+              variant="ghost"
+              onClick={onCancel}
             >
-              <X className="h-4 w-4" aria-hidden="true" />
+              <X aria-hidden="true" className="h-4 w-4" />
             </Button>
           )}
         </div>
@@ -209,28 +218,28 @@ export function AILoadingIndicator({
           <div className="mb-4">
             <div className="flex justify-between items-center mb-2">
               <span 
-                className="text-sm font-medium text-gray-700"
                 aria-label={`Progress: ${Math.round(displayProgress)} percent complete`}
+                className="text-sm font-medium text-gray-700"
               >
                 {Math.round(displayProgress)}%
               </span>
               {state === 'processing' && (
                 <span 
-                  className="text-xs text-gray-500"
                   aria-label={`Elapsed time: ${formatElapsedTime(elapsedTime)}`}
+                  className="text-xs text-gray-500"
                 >
                   {formatElapsedTime(elapsedTime)}
                 </span>
               )}
             </div>
             <Progress 
-              value={displayProgress} 
-              className="h-2"
-              role="progressbar"
+              aria-valuemax={100} 
               aria-valuemin={0}
-              aria-valuemax={100}
               aria-valuenow={Math.round(displayProgress)}
               aria-valuetext={`${Math.round(displayProgress)}% complete${currentStep ? ` - ${currentStep.description}` : ''}`}
+              className="h-2"
+              role="progressbar"
+              value={displayProgress}
             >
               <div 
                 className={cn('h-full transition-all duration-300', getProgressColor())}
@@ -240,8 +249,8 @@ export function AILoadingIndicator({
             
             {/* Live region for progress announcements */}
             <div 
-              aria-live="polite" 
               aria-atomic="true" 
+              aria-live="polite" 
               className="sr-only"
             >
               {state === 'processing' && currentStep && 
@@ -255,8 +264,8 @@ export function AILoadingIndicator({
         {/* Error announcement - separate from progress bar */}
         {state === 'error' && (
           <div 
-            aria-live="assertive" 
             aria-atomic="true" 
+            aria-live="assertive" 
             className="sr-only"
           >
             AI generation failed{error ? `: ${error}` : ''}
@@ -333,12 +342,12 @@ export function AILoadingIndicator({
         {(state === 'error' || state === 'success') && (
           <div className="flex justify-end gap-2">
             {state === 'error' && (
-              <Button onClick={onCancel} variant="outline" size="sm">
+              <Button size="sm" variant="outline" onClick={onCancel}>
                 Close
               </Button>
             )}
             {state === 'success' && !autoCloseOnSuccess && (
-              <Button onClick={onCancel} size="sm">
+              <Button size="sm" onClick={onCancel}>
                 Done
               </Button>
             )}
@@ -348,7 +357,7 @@ export function AILoadingIndicator({
         {/* Cancel Button for Processing */}
         {state === 'processing' && canCancel && onCancel && (
           <div className="flex justify-end mt-4">
-            <Button onClick={onCancel} variant="outline" size="sm">
+            <Button size="sm" variant="outline" onClick={onCancel}>
               Cancel
             </Button>
           </div>

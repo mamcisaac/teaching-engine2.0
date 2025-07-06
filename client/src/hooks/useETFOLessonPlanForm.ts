@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
+
 import { useAutoSave, useUnsavedChangesWarning } from './useAutoSave';
 
 export interface LessonPlanFormData {
@@ -103,7 +104,7 @@ export function useETFOLessonPlanForm({
   }, []);
 
   // Array field handlers
-  const addArrayItem = useCallback((field: keyof LessonPlanFormData, value: string = '') => {
+  const addArrayItem = useCallback((field: keyof LessonPlanFormData, value = '') => {
     setFormData(prev => ({
       ...prev,
       [field]: [...(prev[field] as string[]), value],
@@ -150,15 +151,13 @@ export function useETFOLessonPlanForm({
   }, [formData, unitPlanId]);
 
   // Clean form data for submission
-  const getCleanFormData = useCallback((): LessonPlanFormData => {
-    return {
+  const getCleanFormData = useCallback((): LessonPlanFormData => ({
       ...formData,
       materials: formData.materials.filter(m => m.trim()),
       accommodations: formData.accommodations.filter(a => a.trim()),
       modifications: formData.modifications.filter(m => m.trim()),
       extensions: formData.extensions.filter(e => e.trim()),
-    };
-  }, [formData]);
+    }), [formData]);
 
   // Reset form
   const resetForm = useCallback(() => {
@@ -188,7 +187,7 @@ export function useETFOLessonPlanForm({
     assessmentNotes?: string;
     isSubFriendly: boolean;
     subNotes?: string;
-    expectations?: Array<{ expectation: { id: string } }>;
+    expectations?: { expectation: { id: string } }[];
   }) => {
     setFormData({
       title: lesson.title,

@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
+
 import logger from '../utils/logger';
 
 export interface KeyboardShortcut {
@@ -50,16 +51,26 @@ const defaultPreferences: KeyboardShortcutPreferences = {
   customShortcuts: {},
 };
 
-const isMac = typeof window !== 'undefined' && navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+const isMac = typeof window !== 'undefined' && navigator.platform.toUpperCase().includes('MAC');
 
 export const formatShortcut = (shortcut: KeyboardShortcut): string => {
   const parts: string[] = [];
 
-  if (shortcut.ctrl && !isMac) parts.push('Ctrl');
-  if (shortcut.cmd && isMac) parts.push('⌘');
-  if (shortcut.ctrl && isMac) parts.push('⌃');
-  if (shortcut.alt) parts.push(isMac ? '⌥' : 'Alt');
-  if (shortcut.shift) parts.push(isMac ? '⇧' : 'Shift');
+  if (shortcut.ctrl && !isMac) {
+parts.push('Ctrl');
+}
+  if (shortcut.cmd && isMac) {
+parts.push('⌘');
+}
+  if (shortcut.ctrl && isMac) {
+parts.push('⌃');
+}
+  if (shortcut.alt) {
+parts.push(isMac ? '⌥' : 'Alt');
+}
+  if (shortcut.shift) {
+parts.push(isMac ? '⇧' : 'Shift');
+}
 
   parts.push(shortcut.key.toUpperCase());
 
@@ -131,7 +142,9 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
 
       startListening: () => {
         const state = get();
-        if (state.isListening) return;
+        if (state.isListening) {
+return;
+}
 
         set((draft) => {
           draft.isListening = true;
@@ -139,7 +152,9 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
 
         const handleKeyDown = (event: KeyboardEvent) => {
           const currentState = get();
-          if (!currentState.isEnabled || !currentState.preferences.enabled) return;
+          if (!currentState.isEnabled || !currentState.preferences.enabled) {
+return;
+}
 
           // Don't trigger shortcuts when typing in input fields
           const target = event.target as HTMLElement;
@@ -158,23 +173,35 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
 
           // Check each registered shortcut
           for (const shortcut of currentState.shortcuts) {
-            if (shortcut.enabled === false) continue;
+            if (shortcut.enabled === false) {
+continue;
+}
 
             // Apply custom shortcuts from preferences
             const customShortcut = currentState.preferences.customShortcuts[shortcut.id];
             const finalShortcut = customShortcut ? { ...shortcut, ...customShortcut } : shortcut;
 
             // Check if key matches
-            if (event.key.toLowerCase() !== finalShortcut.key.toLowerCase()) continue;
+            if (event.key.toLowerCase() !== finalShortcut.key.toLowerCase()) {
+continue;
+}
 
             // Check modifiers
             const ctrlKey = isMac ? event.metaKey : event.ctrlKey;
             const cmdKey = isMac ? event.metaKey : false;
 
-            if (finalShortcut.ctrl && !ctrlKey) continue;
-            if (finalShortcut.cmd && !cmdKey) continue;
-            if (finalShortcut.alt && !event.altKey) continue;
-            if (finalShortcut.shift && !event.shiftKey) continue;
+            if (finalShortcut.ctrl && !ctrlKey) {
+continue;
+}
+            if (finalShortcut.cmd && !cmdKey) {
+continue;
+}
+            if (finalShortcut.alt && !event.altKey) {
+continue;
+}
+            if (finalShortcut.shift && !event.shiftKey) {
+continue;
+}
 
             // Check for no modifiers when none are specified
             if (
@@ -183,7 +210,9 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
               !finalShortcut.alt &&
               !finalShortcut.shift
             ) {
-              if (event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) continue;
+              if (event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) {
+continue;
+}
             }
 
             // Prevent default and run handler
@@ -226,9 +255,7 @@ export const useKeyboardShortcutsStore = create<KeyboardShortcutsState>()(
         return state.shortcuts.filter((s) => s.category === category);
       },
 
-      getFormattedShortcut: (shortcut: KeyboardShortcut) => {
-        return formatShortcut(shortcut);
-      },
+      getFormattedShortcut: (shortcut: KeyboardShortcut) => formatShortcut(shortcut),
     })),
     {
       name: 'keyboard-shortcuts-storage',
@@ -261,8 +288,8 @@ if (typeof window !== 'undefined') {
 }
 
 // Selector hooks for performance
-export const useKeyboardShortcuts = () => useKeyboardShortcutsStore();
+export const useKeyboardShortcuts = (): UseQueryResult<unknown> => useKeyboardShortcutsStore();
 export const useShortcutsByCategory = (category: string) =>
   useKeyboardShortcutsStore((state) => state.getShortcutsByCategory(category));
-export const useShortcutsEnabled = () => useKeyboardShortcutsStore((state) => state.isEnabled);
-export const useKeyboardPreferences = () => useKeyboardShortcutsStore((state) => state.preferences);
+export const useShortcutsEnabled = (): UseQueryResult<unknown> => useKeyboardShortcutsStore((state) => state.isEnabled);
+export const useKeyboardPreferences = (): UseQueryResult<unknown> => useKeyboardShortcutsStore((state) => state.preferences);

@@ -167,7 +167,7 @@ export class SubstitutePlanService {
   }
 
   private static createGeneralNotes(teacherName?: string | null): string {
-    const teacher = teacherName && teacherName.trim() ? teacherName : 'See class information';
+    const teacher = teacherName?.trim() ? teacherName : 'See class information';
 
     return `Welcome! Thank you for substituting today.
 

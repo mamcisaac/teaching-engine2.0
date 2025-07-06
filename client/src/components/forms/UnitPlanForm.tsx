@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from '../ui/Button';
-import RichTextEditor from '../RichTextEditor';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
-import { Label } from '../ui/Label';
-import { Input } from '../ui/Input';
-import { Textarea } from '../ui/Textarea';
 import { Plus, Trash2, Sparkles } from 'lucide-react';
-import ExpectationSelector from '../planning/ExpectationSelector';
-import { AIUnitPlanPanel } from '../ai/AIUnitPlanPanel';
-import { LongRangePlan, CurriculumExpectation } from '../../hooks/useETFOPlanning';
-import { InfoTooltip } from '../ui/Tooltip';
-import BilingualTextInput from '../BilingualTextInput';
+import React, { useState, useEffect } from 'react';
+
 import { useLanguage } from '../../contexts/LanguageContext';
+import type { LongRangePlan, CurriculumExpectation } from '../../hooks/useETFOPlanning';
+import { AIUnitPlanPanel } from '../ai/AIUnitPlanPanel';
+import BilingualTextInput from '../BilingualTextInput';
+import ExpectationSelector from '../planning/ExpectationSelector';
+import RichTextEditor from '../RichTextEditor';
+import { Button } from '../ui/Button';
+import { Input } from '../ui/Input';
+import { Label } from '../ui/Label';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
+import { Textarea } from '../ui/Textarea';
+import { InfoTooltip } from '../ui/Tooltip';
 
 // Extended UnitPlan type with all ETFO fields including bilingual support
 export interface UnitPlanFormData {
@@ -323,10 +324,10 @@ export default function UnitPlanForm({
 
   return (
     <form onSubmit={handleSubmit}>
-      <Tabs defaultValue="overview" className="space-y-4">
+      <Tabs className="space-y-4" defaultValue="overview">
         <TabsList className="grid w-full grid-cols-6">
           <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="ai-assistant" className="gap-2">
+          <TabsTrigger className="gap-2" value="ai-assistant">
             <Sparkles className="h-4 w-4" />
             AI Assistant
           </TabsTrigger>
@@ -336,7 +337,7 @@ export default function UnitPlanForm({
           <TabsTrigger value="connections">Connections</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="overview" className="space-y-6 mt-4">
+        <TabsContent className="space-y-6 mt-4" value="overview">
           {/* Basic Information */}
           <div>
             <h4 className="text-md font-medium text-gray-900 mb-3">Basic Information</h4>
@@ -348,13 +349,14 @@ export default function UnitPlanForm({
                   </label>
                   <select
                     required
-                    value={formData.longRangePlanId}
-                    onChange={(e) =>
-                      setFormData({ ...formData, longRangePlanId: e.target.value })
-                    }
                     className={`w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${
                       errors.longRangePlanId ? 'border-red-500' : ''
                     }`}
+                    value={formData.longRangePlanId}
+                    onChange={(e) => {
+ setFormData({ ...formData, longRangePlanId: e.target.value }); 
+}
+                    }
                   >
                     <option value="">Select a long-range plan...</option>
                     {allLongRangePlans.map((plan) => (
@@ -371,14 +373,18 @@ export default function UnitPlanForm({
 
               <div>
                 <BilingualTextInput
-                  label={t('unit_plan') + ' ' + t('title')}
-                  valueEn={formData.title}
-                  valueFr={formData.titleFr || ''}
-                  onChangeEn={(value) => setFormData({ ...formData, title: value })}
-                  onChangeFr={(value) => setFormData({ ...formData, titleFr: value })}
+                  required
+                  label={`${t('unit_plan')  } ${  t('title')}`}
                   placeholderEn="Enter unit title..."
                   placeholderFr="Entrez le titre de l'unité..."
-                  required={true}
+                  valueEn={formData.title}
+                  valueFr={formData.titleFr || ''}
+                  onChangeEn={(value) => {
+ setFormData({ ...formData, title: value }); 
+}}
+                  onChangeFr={(value) => {
+ setFormData({ ...formData, titleFr: value }); 
+}}
                 />
                 {errors.title && (
                   <p className="mt-1 text-sm text-red-600">{errors.title}</p>
@@ -389,12 +395,14 @@ export default function UnitPlanForm({
                 <div>
                   <Label htmlFor="startDate">Start Date *</Label>
                   <Input
+                    required
+                    className={errors.startDate ? 'border-red-500' : ''}
                     id="startDate"
                     type="date"
-                    required
                     value={formData.startDate}
-                    onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
-                    className={errors.startDate ? 'border-red-500' : ''}
+                    onChange={(e) => {
+ setFormData({ ...formData, startDate: e.target.value }); 
+}}
                   />
                   {errors.startDate && (
                     <p className="mt-1 text-sm text-red-600">{errors.startDate}</p>
@@ -403,12 +411,14 @@ export default function UnitPlanForm({
                 <div>
                   <Label htmlFor="endDate">End Date *</Label>
                   <Input
+                    required
+                    className={errors.endDate ? 'border-red-500' : ''}
                     id="endDate"
                     type="date"
-                    required
                     value={formData.endDate}
-                    onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
-                    className={errors.endDate ? 'border-red-500' : ''}
+                    onChange={(e) => {
+ setFormData({ ...formData, endDate: e.target.value }); 
+}}
                   />
                   {errors.endDate && (
                     <p className="mt-1 text-sm text-red-600">{errors.endDate}</p>
@@ -417,14 +427,15 @@ export default function UnitPlanForm({
                 <div>
                   <Label htmlFor="estimatedHours">Estimated Hours</Label>
                   <Input
-                    id="estimatedHours"
-                    type="number"
-                    min="1"
-                    value={formData.estimatedHours}
-                    onChange={(e) =>
-                      setFormData({ ...formData, estimatedHours: parseInt(e.target.value, 10) || 0 })
-                    }
                     className={errors.estimatedHours ? 'border-red-500' : ''}
+                    id="estimatedHours"
+                    min="1"
+                    type="number"
+                    value={formData.estimatedHours}
+                    onChange={(e) => {
+ setFormData({ ...formData, estimatedHours: parseInt(e.target.value, 10) || 0 }); 
+}
+                    }
                   />
                   {errors.estimatedHours && (
                     <p className="mt-1 text-sm text-red-600">{errors.estimatedHours}</p>
@@ -434,15 +445,19 @@ export default function UnitPlanForm({
 
               <div>
                 <BilingualTextInput
+                  multiline
                   label={t('description')}
-                  valueEn={formData.description}
-                  valueFr={formData.descriptionFr || ''}
-                  onChangeEn={(value) => setFormData({ ...formData, description: value })}
-                  onChangeFr={(value) => setFormData({ ...formData, descriptionFr: value })}
                   placeholderEn="Provide an overview of what this unit will cover..."
                   placeholderFr="Fournissez un aperçu de ce que cette unité couvrira..."
-                  multiline={true}
                   rows={3}
+                  valueEn={formData.description}
+                  valueFr={formData.descriptionFr || ''}
+                  onChangeEn={(value) => {
+ setFormData({ ...formData, description: value }); 
+}}
+                  onChangeFr={(value) => {
+ setFormData({ ...formData, descriptionFr: value }); 
+}}
                 />
               </div>
             </div>
@@ -453,7 +468,9 @@ export default function UnitPlanForm({
             <Label>Big Ideas & Enduring Understandings</Label>
             <RichTextEditor
               value={formData.bigIdeas}
-              onChange={(value) => setFormData({ ...formData, bigIdeas: value })}
+              onChange={(value) => {
+ setFormData({ ...formData, bigIdeas: value }); 
+}}
             />
           </div>
 
@@ -464,28 +481,32 @@ export default function UnitPlanForm({
               {formData.essentialQuestions.map((question, index) => (
                 <div key={index} className="flex gap-2">
                   <Input
+                    placeholder="What is an essential question that will guide learning?"
                     type="text"
                     value={question}
-                    onChange={(e) => updateEssentialQuestion(index, e.target.value)}
-                    placeholder="What is an essential question that will guide learning?"
+                    onChange={(e) => {
+ updateEssentialQuestion(index, e.target.value); 
+}}
                   />
                   <Button
+                    disabled={formData.essentialQuestions.length === 1}
+                    size="sm"
                     type="button"
                     variant="ghost"
-                    size="sm"
-                    onClick={() => removeEssentialQuestion(index)}
-                    disabled={formData.essentialQuestions.length === 1}
+                    onClick={() => {
+ removeEssentialQuestion(index); 
+}}
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
                 </div>
               ))}
               <Button
+                className="w-full"
+                size="sm"
                 type="button"
                 variant="outline"
-                size="sm"
                 onClick={addEssentialQuestion}
-                className="w-full"
               >
                 <Plus className="h-4 w-4 mr-2" />
                 Add Question
@@ -494,12 +515,9 @@ export default function UnitPlanForm({
           </div>
         </TabsContent>
 
-        <TabsContent value="ai-assistant" className="space-y-6 mt-4">
+        <TabsContent className="space-y-6 mt-4" value="ai-assistant">
           <AIUnitPlanPanel
-            unitTitle={formData.title}
-            subject={longRangePlan?.subject || ''}
-            grade={longRangePlan?.grade || 1}
-            duration={2}
+            className="w-full"
             curriculumExpectations={curriculumExpectations
               .filter(exp => formData.expectationIds.includes(exp.id))
               .map(exp => ({
@@ -508,6 +526,10 @@ export default function UnitPlanForm({
                 description: exp.description,
                 strand: exp.strand,
               }))}
+            duration={2}
+            grade={longRangePlan?.grade || 1}
+            subject={longRangePlan?.subject || ''}
+            unitTitle={formData.title}
             onSuggestionAccepted={(type, content) => {
               // Handle AI suggestions
               switch (type) {
@@ -528,43 +550,46 @@ export default function UnitPlanForm({
               setFormData({
                 ...formData,
                 title: plan.title || formData.title,
-                bigIdeas: plan.bigIdeas?.join('\n\n') || formData.bigIdeas,
+                bigIdeas: plan.bigIdeas.join('\n\n') || formData.bigIdeas,
                 essentialQuestions: plan.learningGoals || formData.essentialQuestions,
               });
             }}
-            className="w-full"
           />
         </TabsContent>
 
-        <TabsContent value="planning" className="space-y-6 mt-4">
+        <TabsContent className="space-y-6 mt-4" value="planning">
           <div>
             <Label>Key Vocabulary</Label>
             <div className="space-y-2 mt-2">
               {formData.keyVocabulary.map((term, index) => (
                 <div key={index} className="flex gap-2">
                   <Input
+                    placeholder="Important term or concept..."
                     type="text"
                     value={term}
-                    onChange={(e) => updateKeyVocabulary(index, e.target.value)}
-                    placeholder="Important term or concept..."
+                    onChange={(e) => {
+ updateKeyVocabulary(index, e.target.value); 
+}}
                   />
                   <Button
+                    disabled={formData.keyVocabulary.length === 1}
+                    size="sm"
                     type="button"
                     variant="ghost"
-                    size="sm"
-                    onClick={() => removeKeyVocabulary(index)}
-                    disabled={formData.keyVocabulary.length === 1}
+                    onClick={() => {
+ removeKeyVocabulary(index); 
+}}
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
                 </div>
               ))}
               <Button
+                className="w-full"
+                size="sm"
                 type="button"
                 variant="outline"
-                size="sm"
                 onClick={addKeyVocabulary}
-                className="w-full"
               >
                 <Plus className="h-4 w-4 mr-2" />
                 Add Term
@@ -575,23 +600,27 @@ export default function UnitPlanForm({
           <div>
             <Label>Prior Knowledge Requirements</Label>
             <Textarea
-              value={formData.priorKnowledge}
-              onChange={(e) => setFormData({ ...formData, priorKnowledge: e.target.value })}
+              className="mt-2"
               placeholder="What should students already know before starting this unit?"
               rows={3}
-              className="mt-2"
+              value={formData.priorKnowledge}
+              onChange={(e) => {
+ setFormData({ ...formData, priorKnowledge: e.target.value }); 
+}}
             />
           </div>
 
           <div>
             <ExpectationSelector
-              selectedIds={formData.expectationIds}
-              onChange={(ids) => setFormData({ ...formData, expectationIds: ids })}
+              className={errors.expectationIds ? 'border-red-500' : ''}
               grade={longRangePlan?.grade}
-              subject={longRangePlan?.subject}
               label="Curriculum Expectations *"
               placeholder="Select curriculum expectations for this unit..."
-              className={errors.expectationIds ? 'border-red-500' : ''}
+              selectedIds={formData.expectationIds}
+              subject={longRangePlan?.subject}
+              onChange={(ids) => {
+ setFormData({ ...formData, expectationIds: ids }); 
+}}
             />
             {errors.expectationIds && (
               <p className="mt-1 text-sm text-red-600">{errors.expectationIds}</p>
@@ -602,20 +631,20 @@ export default function UnitPlanForm({
             <Label>Culminating Task Description</Label>
             <RichTextEditor
               value={formData.culminatingTask}
-              onChange={(value) => setFormData({ ...formData, culminatingTask: value })}
+              onChange={(value) => {
+ setFormData({ ...formData, culminatingTask: value }); 
+}}
             />
           </div>
         </TabsContent>
 
-        <TabsContent value="assessment" className="space-y-6 mt-4">
+        <TabsContent className="space-y-6 mt-4" value="assessment">
           <div>
             <div className="flex items-center">
               <Label>Assessment Plan</Label>
               <InfoTooltip content="Describe how you will assess student learning throughout the unit. Include diagnostic, formative, and summative assessments." />
             </div>
             <RichTextEditor
-              value={formData.assessmentPlan}
-              onChange={(value) => setFormData({ ...formData, assessmentPlan: value })}
               placeholder="Include a mix of assessment types:
 
 Diagnostic Assessment (Beginning of Unit):
@@ -635,6 +664,10 @@ Summative Assessment (End of Unit):
 • Unit test covering key concepts
 • Performance task demonstrating skills
 • Portfolio of student work"
+              value={formData.assessmentPlan}
+              onChange={(value) => {
+ setFormData({ ...formData, assessmentPlan: value }); 
+}}
             />
           </div>
 
@@ -651,8 +684,9 @@ Summative Assessment (End of Unit):
               ].map((skill) => (
                 <label key={skill} className="flex items-center space-x-2">
                   <input
-                    type="checkbox"
                     checked={formData.learningSkills.includes(skill)}
+                    className="rounded"
+                    type="checkbox"
                     onChange={(e) => {
                       if (e.target.checked) {
                         setFormData({
@@ -666,7 +700,6 @@ Summative Assessment (End of Unit):
                         });
                       }
                     }}
-                    className="rounded"
                   />
                   <span className="text-sm">{skill}</span>
                 </label>
@@ -686,28 +719,32 @@ Summative Assessment (End of Unit):
               {formData.successCriteria.map((criteria, index) => (
                 <div key={index} className="flex gap-2">
                   <Input
+                    placeholder="I can explain how ecosystems work together..."
                     type="text"
                     value={criteria}
-                    onChange={(e) => updateSuccessCriteria(index, e.target.value)}
-                    placeholder="I can explain how ecosystems work together..."
+                    onChange={(e) => {
+ updateSuccessCriteria(index, e.target.value); 
+}}
                   />
                   <Button
+                    disabled={formData.successCriteria.length === 1}
+                    size="sm"
                     type="button"
                     variant="ghost"
-                    size="sm"
-                    onClick={() => removeSuccessCriteria(index)}
-                    disabled={formData.successCriteria.length === 1}
+                    onClick={() => {
+ removeSuccessCriteria(index); 
+}}
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
                 </div>
               ))}
               <Button
+                className="w-full"
+                size="sm"
                 type="button"
                 variant="outline"
-                size="sm"
                 onClick={addSuccessCriteria}
-                className="w-full"
               >
                 <Plus className="h-4 w-4 mr-2" />
                 Add Success Criteria
@@ -725,7 +762,7 @@ Summative Assessment (End of Unit):
           </div>
         </TabsContent>
 
-        <TabsContent value="differentiation" className="space-y-6 mt-4">
+        <TabsContent className="space-y-6 mt-4" value="differentiation">
           {Object.entries(formData.differentiationStrategies).map(([category, strategies]) => (
             <div key={category}>
               <Label>
@@ -738,43 +775,46 @@ Summative Assessment (End of Unit):
                 {strategies.map((strategy, index) => (
                   <div key={index} className="flex gap-2">
                     <Input
+                      placeholder="Enter differentiation strategy..."
                       type="text"
                       value={strategy}
-                      onChange={(e) =>
-                        updateDifferentiationStrategy(
+                      onChange={(e) => {
+ updateDifferentiationStrategy(
                           category as keyof typeof formData.differentiationStrategies,
                           index,
                           e.target.value
-                        )
+                        ); 
+}
                       }
-                      placeholder="Enter differentiation strategy..."
                     />
                     <Button
+                      disabled={strategies.length === 1}
+                      size="sm"
                       type="button"
                       variant="ghost"
-                      size="sm"
-                      onClick={() =>
-                        removeDifferentiationStrategy(
+                      onClick={() => {
+ removeDifferentiationStrategy(
                           category as keyof typeof formData.differentiationStrategies,
                           index
-                        )
+                        ); 
+}
                       }
-                      disabled={strategies.length === 1}
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
                   </div>
                 ))}
                 <Button
+                  className="w-full"
+                  size="sm"
                   type="button"
                   variant="outline"
-                  size="sm"
-                  onClick={() =>
-                    addDifferentiationStrategy(
+                  onClick={() => {
+ addDifferentiationStrategy(
                       category as keyof typeof formData.differentiationStrategies
-                    )
+                    ); 
+}
                   }
-                  className="w-full"
                 >
                   <Plus className="h-4 w-4 mr-2" />
                   Add Strategy
@@ -784,92 +824,108 @@ Summative Assessment (End of Unit):
           ))}
         </TabsContent>
 
-        <TabsContent value="connections" className="space-y-6 mt-4">
+        <TabsContent className="space-y-6 mt-4" value="connections">
           <div>
             <Label>Cross-Curricular Connections</Label>
             <Textarea
-              value={formData.crossCurricularConnections}
-              onChange={(e) => setFormData({ ...formData, crossCurricularConnections: e.target.value })}
+              className="mt-2"
               placeholder="How does this unit connect to other subject areas?"
               rows={3}
-              className="mt-2"
+              value={formData.crossCurricularConnections}
+              onChange={(e) => {
+ setFormData({ ...formData, crossCurricularConnections: e.target.value }); 
+}}
             />
           </div>
 
           <div>
             <Label>Indigenous Perspectives</Label>
             <Textarea
-              value={formData.indigenousPerspectives}
-              onChange={(e) => setFormData({ ...formData, indigenousPerspectives: e.target.value })}
+              className="mt-2"
               placeholder="How will Indigenous knowledge and perspectives be integrated?"
               rows={3}
-              className="mt-2"
+              value={formData.indigenousPerspectives}
+              onChange={(e) => {
+ setFormData({ ...formData, indigenousPerspectives: e.target.value }); 
+}}
             />
           </div>
 
           <div>
             <Label>Environmental Education</Label>
             <Textarea
-              value={formData.environmentalEducation}
-              onChange={(e) => setFormData({ ...formData, environmentalEducation: e.target.value })}
+              className="mt-2"
               placeholder="How will environmental learning be integrated?"
               rows={3}
-              className="mt-2"
+              value={formData.environmentalEducation}
+              onChange={(e) => {
+ setFormData({ ...formData, environmentalEducation: e.target.value }); 
+}}
             />
           </div>
 
           <div>
             <Label>Social Justice Connections</Label>
             <Textarea
-              value={formData.socialJusticeConnections}
-              onChange={(e) => setFormData({ ...formData, socialJusticeConnections: e.target.value })}
+              className="mt-2"
               placeholder="How will equity and social justice themes be addressed?"
               rows={3}
-              className="mt-2"
+              value={formData.socialJusticeConnections}
+              onChange={(e) => {
+ setFormData({ ...formData, socialJusticeConnections: e.target.value }); 
+}}
             />
           </div>
 
           <div>
             <Label>Technology Integration</Label>
             <Textarea
-              value={formData.technologyIntegration}
-              onChange={(e) => setFormData({ ...formData, technologyIntegration: e.target.value })}
+              className="mt-2"
               placeholder="How will technology be used to enhance learning?"
               rows={3}
-              className="mt-2"
+              value={formData.technologyIntegration}
+              onChange={(e) => {
+ setFormData({ ...formData, technologyIntegration: e.target.value }); 
+}}
             />
           </div>
 
           <div>
             <Label>Community Connections</Label>
             <Textarea
-              value={formData.communityConnections}
-              onChange={(e) => setFormData({ ...formData, communityConnections: e.target.value })}
+              className="mt-2"
               placeholder="How will local partnerships and community connections be utilized?"
               rows={3}
-              className="mt-2"
+              value={formData.communityConnections}
+              onChange={(e) => {
+ setFormData({ ...formData, communityConnections: e.target.value }); 
+}}
             />
           </div>
 
           <div>
             <Label>Parent Communication Plan</Label>
             <Textarea
-              value={formData.parentCommunicationPlan}
-              onChange={(e) => setFormData({ ...formData, parentCommunicationPlan: e.target.value })}
+              className="mt-2"
               placeholder="How will families be kept informed and engaged?"
               rows={3}
-              className="mt-2"
+              value={formData.parentCommunicationPlan}
+              onChange={(e) => {
+ setFormData({ ...formData, parentCommunicationPlan: e.target.value }); 
+}}
             />
           </div>
 
           <div>
             <Label>Field Trips & Guest Speakers</Label>
             <Textarea
-              value={formData.fieldTripsAndGuestSpeakers}
-              onChange={(e) => setFormData({ ...formData, fieldTripsAndGuestSpeakers: e.target.value })}
+              className="mt-2"
               placeholder="What community experiences will enhance learning?"
               rows={3}
-              className="mt-2"
+              value={formData.fieldTripsAndGuestSpeakers}
+              onChange={(e) => {
+ setFormData({ ...formData, fieldTripsAndGuestSpeakers: e.target.value }); 
+}}
             />
           </div>
         </TabsContent>
@@ -881,7 +937,7 @@ Summative Assessment (End of Unit):
             Cancel
           </Button>
         )}
-        <Button type="submit" disabled={isSubmitting}>
+        <Button disabled={isSubmitting} type="submit">
           {isSubmitting ? 'Saving...' : initialData ? 'Update Unit Plan' : 'Create Unit Plan'}
         </Button>
       </div>

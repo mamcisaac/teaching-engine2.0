@@ -1,9 +1,11 @@
 import React from 'react';
+
 import { useAuth } from '../../contexts/AuthContext';
-import { useNavigation } from './NavigationProvider';
-import { SidebarHeader } from './SidebarHeader';
+
 import { ETFONavigationSection } from './ETFONavigationSection';
+import { useNavigation } from './NavigationProvider';
 import { ResourceNavigationSection } from './ResourceNavigationSection';
+import { SidebarHeader } from './SidebarHeader';
 
 export function SidebarComponent() {
   const { logout } = useAuth();
@@ -15,6 +17,7 @@ export function SidebarComponent() {
 
   return (
     <nav
+      aria-label="Main navigation"
       className={`bg-indigo-800 text-white transition-all duration-300 ease-in-out ${
         isMobile
           ? `fixed h-full z-30 ${isSidebarOpen ? 'w-64' : '-translate-x-full w-64'}`
@@ -22,7 +25,6 @@ export function SidebarComponent() {
       }`}
       data-testid="main-sidebar"
       role="navigation"
-      aria-label="Main navigation"
     >
       <SidebarHeader />
       
@@ -34,21 +36,21 @@ export function SidebarComponent() {
       {/* Logout button at bottom */}
       <div className="absolute bottom-0 w-full border-t border-indigo-700 p-4">
         <button
-          onClick={handleLogout}
           className="flex items-center text-indigo-100 hover:text-white w-full"
+          onClick={handleLogout}
         >
           <svg
-            xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5 mr-3"
             fill="none"
-            viewBox="0 0 24 24"
             stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
             />
           </svg>
           {isSidebarOpen && <span>Logout</span>}

@@ -1,5 +1,7 @@
-import { lazy, ComponentType } from 'react';
+import type { ComponentType } from 'react';
+import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
+
 import { ETFOLevel } from '../hooks/useWorkflowState';
 
 // Lazy load pages
@@ -36,11 +38,11 @@ export const plannerRoutes: RouteConfig[] = [
   {
     path: '',
     index: true,
-    element: <Navigate to="/planner/dashboard" replace />,
+    element: <Navigate replace to="/planner/dashboard" />,
   },
   {
     path: 'year',
-    element: <Navigate to="/planner/dashboard" replace />,
+    element: <Navigate replace to="/planner/dashboard" />,
   },
   {
     path: 'long-range',
@@ -92,30 +94,30 @@ export const plannerRoutes: RouteConfig[] = [
   // Legacy redirects
   {
     path: 'unit/:id',
-    element: <Navigate to="/planner/units" replace />,
+    element: <Navigate replace to="/planner/units" />,
   },
   {
     path: 'week/:weekId',
-    element: <Navigate to="/planner/dashboard" replace />,
+    element: <Navigate replace to="/planner/dashboard" />,
   },
   {
     path: 'week',
-    element: <Navigate to="/planner/dashboard" replace />,
+    element: <Navigate replace to="/planner/dashboard" />,
   },
   {
     path: 'day/:date',
-    element: <Navigate to="/planner/daybook" replace />,
+    element: <Navigate replace to="/planner/daybook" />,
   },
   {
     path: 'day',
-    element: <Navigate to="/planner/daybook" replace />,
+    element: <Navigate replace to="/planner/daybook" />,
   },
 ];
 
 export const protectedRoutes: RouteConfig[] = [
   {
     path: '/',
-    element: <Navigate to="/planner/dashboard" replace />,
+    element: <Navigate replace to="/planner/dashboard" />,
   },
   {
     path: '/planner',
@@ -124,15 +126,15 @@ export const protectedRoutes: RouteConfig[] = [
   // Legacy redirects
   {
     path: '/subjects',
-    element: <Navigate to="/curriculum" replace />,
+    element: <Navigate replace to="/curriculum" />,
   },
   {
     path: '/subjects/:id',
-    element: <Navigate to="/curriculum" replace />,
+    element: <Navigate replace to="/curriculum" />,
   },
   {
     path: '/milestones/:id',
-    element: <Navigate to="/curriculum" replace />,
+    element: <Navigate replace to="/curriculum" />,
   },
   // Curriculum routes
   {
@@ -145,32 +147,32 @@ export const protectedRoutes: RouteConfig[] = [
   },
   {
     path: '/outcomes',
-    element: <Navigate to="/curriculum" replace />,
+    element: <Navigate replace to="/curriculum" />,
   },
   {
     path: '/coverage',
-    element: <Navigate to="/curriculum" replace />,
+    element: <Navigate replace to="/curriculum" />,
   },
   {
     path: '/curriculum-audit',
-    element: <Navigate to="/curriculum/expectations" replace />,
+    element: <Navigate replace to="/curriculum/expectations" />,
   },
   // Legacy resources redirects
   {
     path: '/notes',
-    element: <Navigate to="/planner/dashboard" replace />,
+    element: <Navigate replace to="/planner/dashboard" />,
   },
   {
     path: '/reflections',
-    element: <Navigate to="/students" replace />,
+    element: <Navigate replace to="/students" />,
   },
   {
     path: '/timetable',
-    element: <Navigate to="/planner/dashboard" replace />,
+    element: <Navigate replace to="/planner/dashboard" />,
   },
   {
     path: '/activity-library',
-    element: <Navigate to="/planner/dashboard" replace />,
+    element: <Navigate replace to="/planner/dashboard" />,
   },
   // Parent Newsletters
   {
@@ -183,11 +185,11 @@ export const protectedRoutes: RouteConfig[] = [
   },
   {
     path: '/newsletters/new',
-    element: <Navigate to="/newsletters" replace />,
+    element: <Navigate replace to="/newsletters" />,
   },
   {
     path: '/newsletters/draft',
-    element: <Navigate to="/newsletters" replace />,
+    element: <Navigate replace to="/newsletters" />,
   },
   // Templates
   {
@@ -210,35 +212,35 @@ export const protectedRoutes: RouteConfig[] = [
   // Legacy redirects
   {
     path: '/parent-messages',
-    element: <Navigate to="/students" replace />,
+    element: <Navigate replace to="/students" />,
   },
   {
     path: '/parent-contacts',
-    element: <Navigate to="/students" replace />,
+    element: <Navigate replace to="/students" />,
   },
   {
     path: '/students',
-    element: <Navigate to="/planner/dashboard" replace />,
+    element: <Navigate replace to="/planner/dashboard" />,
   },
   {
     path: '/parent-summaries',
-    element: <Navigate to="/students" replace />,
+    element: <Navigate replace to="/students" />,
   },
   {
     path: '/analytics',
-    element: <Navigate to="/" replace />,
+    element: <Navigate replace to="/" />,
   },
   {
     path: '/notifications',
-    element: <Navigate to="/" replace />,
+    element: <Navigate replace to="/" />,
   },
   {
     path: '/settings',
-    element: <Navigate to="/planner/dashboard" replace />,
+    element: <Navigate replace to="/planner/dashboard" />,
   },
   // Catch all
   {
     path: '*',
-    element: <Navigate to="/" replace />,
+    element: <Navigate replace to="/" />,
   },
 ];

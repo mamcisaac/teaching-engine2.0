@@ -1,12 +1,16 @@
 // Lesson Plan Store with Offline Support
 
-import { apiClient } from '../api/core/client';
 import { create } from 'zustand';
 import { persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
-import { createOfflineSlice, createAutoSave, OfflineState, BaseActions } from './basePlanningStore';
-import { offlineStorage, StoredData } from '../services/offlineStorage';
+
+import { apiClient } from '../api/core/client';
+import type { StoredData } from '../services/offlineStorage';
+import { offlineStorage } from '../services/offlineStorage';
 import logger from '../utils/logger';
+
+import { createOfflineSlice, createAutoSave } from './basePlanningStore';
+import type { OfflineState, BaseActions } from './basePlanningStore';
 export interface LessonPlan {
   id: string;
   title: string;
@@ -99,9 +103,15 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
               if (get().isOnline) {
                 let url = '/api/etfo-lesson-plans';
                 const params = new URLSearchParams();
-                if (startDate) params.append('startDate', startDate);
-                if (endDate) params.append('endDate', endDate);
-                if (params.toString()) url += `?${params.toString()}`;
+                if (startDate) {
+params.append('startDate', startDate);
+}
+                if (endDate) {
+params.append('endDate', endDate);
+}
+                if (params.toString()) {
+url += `?${params.toString()}`;
+}
 
                 const response = await apiClient.get(url);
                 const plans = response.data;
@@ -227,7 +237,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
                 });
 
                 return createdLesson;
-              } else {
+              } 
                 // Save offline
                 set((state) => {
                   state.lessonPlans.push(newLesson);
@@ -244,7 +254,7 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
                 });
 
                 return newLesson;
-              }
+              
             } catch (error) {
               logger.error('Failed to create lesson plan:', error);
               set((state) => {
@@ -374,15 +384,17 @@ export const useLessonPlanStore = create<LessonPlanState & BaseActions>()(
             return get().createLessonPlan(duplicatedData);
           },
 
-          setCurrentLesson: (lesson: LessonPlan | null) =>
-            set((state) => {
+          setCurrentLesson: (lesson: LessonPlan | null) => {
+ set((state) => {
               state.currentLesson = lesson;
-            }),
+            }); 
+},
 
-          clearError: () =>
-            set((state) => {
+          clearError: () => {
+ set((state) => {
               state.error = null;
-            }),
+            }); 
+},
         };
       }),
       {

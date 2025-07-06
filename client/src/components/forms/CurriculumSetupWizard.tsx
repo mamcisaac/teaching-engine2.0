@@ -1,11 +1,3 @@
-import React, { useState } from 'react';
-import { Button } from '../ui/Button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
-import { Input } from '../ui/Input';
-import { Label } from '../ui/Label';
-import { Textarea } from '../ui/Textarea';
-import { Progress } from '../ui/Progress';
-import { Badge } from '../ui/Badge';
 import {
   ChevronLeft,
   ChevronRight,
@@ -17,6 +9,15 @@ import {
   Sparkles,
   // Download,
 } from 'lucide-react';
+import React, { useState } from 'react';
+
+import { Badge } from '../ui/Badge';
+import { Button } from '../ui/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+import { Input } from '../ui/Input';
+import { Label } from '../ui/Label';
+import { Progress } from '../ui/Progress';
+import { Textarea } from '../ui/Textarea';
 
 interface WizardStep {
   id: string;
@@ -74,7 +75,7 @@ export default function CurriculumSetupWizard({
 }: CurriculumSetupWizardProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<CurriculumSetupData>({
-    academicYear: new Date().getFullYear() + '-' + (new Date().getFullYear() + 1),
+    academicYear: `${new Date().getFullYear()  }-${  new Date().getFullYear() + 1}`,
     grade: 1,
     subject: '',
     teacherName: '',
@@ -187,18 +188,22 @@ export default function CurriculumSetupWizard({
                 <Label htmlFor="academic-year">Academic Year</Label>
                 <Input
                   id="academic-year"
-                  value={formData.academicYear}
-                  onChange={(e) => setFormData({ ...formData, academicYear: e.target.value })}
                   placeholder="2024-2025"
+                  value={formData.academicYear}
+                  onChange={(e) => {
+ setFormData({ ...formData, academicYear: e.target.value }); 
+}}
                 />
               </div>
               <div>
                 <Label htmlFor="grade">Grade Level</Label>
                 <select
+                  className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                   id="grade"
                   value={formData.grade}
-                  onChange={(e) => setFormData({ ...formData, grade: parseInt(e.target.value) })}
-                  className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  onChange={(e) => {
+ setFormData({ ...formData, grade: parseInt(e.target.value) }); 
+}}
                 >
                   {Array.from({ length: 8 }, (_, i) => (
                     <option key={i + 1} value={i + 1}>Grade {i + 1}</option>
@@ -210,9 +215,11 @@ export default function CurriculumSetupWizard({
               <Label htmlFor="subject">Subject</Label>
               <Input
                 id="subject"
-                value={formData.subject}
-                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                 placeholder="e.g., Mathematics, Science, Language Arts"
+                value={formData.subject}
+                onChange={(e) => {
+ setFormData({ ...formData, subject: e.target.value }); 
+}}
               />
             </div>
             <div className="grid gap-4 md:grid-cols-2">
@@ -220,18 +227,22 @@ export default function CurriculumSetupWizard({
                 <Label htmlFor="teacher-name">Teacher Name</Label>
                 <Input
                   id="teacher-name"
-                  value={formData.teacherName}
-                  onChange={(e) => setFormData({ ...formData, teacherName: e.target.value })}
                   placeholder="Your name"
+                  value={formData.teacherName}
+                  onChange={(e) => {
+ setFormData({ ...formData, teacherName: e.target.value }); 
+}}
                 />
               </div>
               <div>
                 <Label htmlFor="school-name">School Name</Label>
                 <Input
                   id="school-name"
-                  value={formData.schoolName}
-                  onChange={(e) => setFormData({ ...formData, schoolName: e.target.value })}
                   placeholder="School or institution name"
+                  value={formData.schoolName}
+                  onChange={(e) => {
+ setFormData({ ...formData, schoolName: e.target.value }); 
+}}
                 />
               </div>
             </div>
@@ -251,12 +262,14 @@ export default function CurriculumSetupWizard({
                 ].map((option) => (
                   <label key={option.value} className="flex items-start gap-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
                     <input
-                      type="radio"
-                      name="planning-style"
-                      value={option.value}
                       checked={formData.planningStyle === option.value}
-                      onChange={(e) => setFormData({ ...formData, planningStyle: e.target.value as 'thematic' | 'subject-based' | 'inquiry-based' })}
                       className="mt-1"
+                      name="planning-style"
+                      type="radio"
+                      value={option.value}
+                      onChange={(e) => {
+ setFormData({ ...formData, planningStyle: e.target.value as 'thematic' | 'subject-based' | 'inquiry-based' }); 
+}}
                     />
                     <div>
                       <div className="font-medium">{option.label}</div>
@@ -269,9 +282,11 @@ export default function CurriculumSetupWizard({
             <div>
               <Label>Term Structure</Label>
               <select
-                value={formData.termStructure}
-                onChange={(e) => setFormData({ ...formData, termStructure: e.target.value as 'semester' | 'trimester' | 'quarters' | 'full-year' })}
                 className="w-full mt-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                value={formData.termStructure}
+                onChange={(e) => {
+ setFormData({ ...formData, termStructure: e.target.value as 'semester' | 'trimester' | 'quarters' | 'full-year' }); 
+}}
               >
                 <option value="semester">Semester (2 terms)</option>
                 <option value="trimester">Trimester (3 terms)</option>
@@ -282,9 +297,11 @@ export default function CurriculumSetupWizard({
             <div>
               <Label>Assessment Frequency</Label>
               <select
-                value={formData.assessmentFrequency}
-                onChange={(e) => setFormData({ ...formData, assessmentFrequency: e.target.value as 'weekly' | 'bi-weekly' | 'monthly' | 'unit-based' })}
                 className="w-full mt-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                value={formData.assessmentFrequency}
+                onChange={(e) => {
+ setFormData({ ...formData, assessmentFrequency: e.target.value as 'weekly' | 'bi-weekly' | 'monthly' | 'unit-based' }); 
+}}
               >
                 <option value="weekly">Weekly</option>
                 <option value="bi-weekly">Bi-weekly</option>
@@ -317,7 +334,7 @@ export default function CurriculumSetupWizard({
                   variant="outline"
                   onClick={(e) => {
                     const input = e.currentTarget.previousElementSibling as HTMLInputElement;
-                    if (input?.value) {
+                    if (input.value) {
                       addToArray('priorityStrands', input.value);
                       input.value = '';
                     }
@@ -328,12 +345,14 @@ export default function CurriculumSetupWizard({
               </div>
               <div className="flex flex-wrap gap-2">
                 {formData.priorityStrands.map((strand) => (
-                  <Badge key={strand} variant="secondary" className="flex items-center gap-1">
+                  <Badge key={strand} className="flex items-center gap-1" variant="secondary">
                     {strand}
                     <button
-                      type="button"
-                      onClick={() => removeFromArray('priorityStrands', strand)}
                       className="ml-1 text-gray-500 hover:text-gray-700"
+                      type="button"
+                      onClick={() => {
+ removeFromArray('priorityStrands', strand); 
+}}
                     >
                       ×
                     </button>
@@ -360,7 +379,7 @@ export default function CurriculumSetupWizard({
                   variant="outline"
                   onClick={(e) => {
                     const input = e.currentTarget.previousElementSibling as HTMLInputElement;
-                    if (input?.value) {
+                    if (input.value) {
                       addToArray('crossCurricularConnections', input.value);
                       input.value = '';
                     }
@@ -371,12 +390,14 @@ export default function CurriculumSetupWizard({
               </div>
               <div className="flex flex-wrap gap-2">
                 {formData.crossCurricularConnections.map((connection) => (
-                  <Badge key={connection} variant="outline" className="flex items-center gap-1">
+                  <Badge key={connection} className="flex items-center gap-1" variant="outline">
                     {connection}
                     <button
-                      type="button"
-                      onClick={() => removeFromArray('crossCurricularConnections', connection)}
                       className="ml-1 text-gray-500 hover:text-gray-700"
+                      type="button"
+                      onClick={() => {
+ removeFromArray('crossCurricularConnections', connection); 
+}}
                     >
                       ×
                     </button>
@@ -397,7 +418,9 @@ export default function CurriculumSetupWizard({
                   id="year-start"
                   type="date"
                   value={formData.yearStartDate}
-                  onChange={(e) => setFormData({ ...formData, yearStartDate: e.target.value })}
+                  onChange={(e) => {
+ setFormData({ ...formData, yearStartDate: e.target.value }); 
+}}
                 />
               </div>
               <div>
@@ -406,7 +429,9 @@ export default function CurriculumSetupWizard({
                   id="year-end"
                   type="date"
                   value={formData.yearEndDate}
-                  onChange={(e) => setFormData({ ...formData, yearEndDate: e.target.value })}
+                  onChange={(e) => {
+ setFormData({ ...formData, yearEndDate: e.target.value }); 
+}}
                 />
               </div>
             </div>
@@ -415,22 +440,26 @@ export default function CurriculumSetupWizard({
                 <Label htmlFor="unit-count">Number of Units</Label>
                 <Input
                   id="unit-count"
-                  type="number"
-                  min="2"
                   max="12"
+                  min="2"
+                  type="number"
                   value={formData.unitCount}
-                  onChange={(e) => setFormData({ ...formData, unitCount: parseInt(e.target.value) || 6 })}
+                  onChange={(e) => {
+ setFormData({ ...formData, unitCount: parseInt(e.target.value) || 6 }); 
+}}
                 />
               </div>
               <div>
                 <Label htmlFor="unit-length">Average Unit Length (weeks)</Label>
                 <Input
                   id="unit-length"
-                  type="number"
-                  min="1"
                   max="12"
+                  min="1"
+                  type="number"
                   value={formData.avgUnitLength}
-                  onChange={(e) => setFormData({ ...formData, avgUnitLength: parseInt(e.target.value) || 4 })}
+                  onChange={(e) => {
+ setFormData({ ...formData, avgUnitLength: parseInt(e.target.value) || 4 }); 
+}}
                 />
               </div>
             </div>
@@ -459,7 +488,7 @@ export default function CurriculumSetupWizard({
                   variant="outline"
                   onClick={(e) => {
                     const input = e.currentTarget.previousElementSibling as HTMLInputElement;
-                    if (input?.value) {
+                    if (input.value) {
                       addToArray('availableResources', input.value);
                       input.value = '';
                     }
@@ -470,12 +499,14 @@ export default function CurriculumSetupWizard({
               </div>
               <div className="flex flex-wrap gap-2">
                 {formData.availableResources.map((resource) => (
-                  <Badge key={resource} variant="secondary" className="flex items-center gap-1">
+                  <Badge key={resource} className="flex items-center gap-1" variant="secondary">
                     {resource}
                     <button
-                      type="button"
-                      onClick={() => removeFromArray('availableResources', resource)}
                       className="ml-1 text-gray-500 hover:text-gray-700"
+                      type="button"
+                      onClick={() => {
+ removeFromArray('availableResources', resource); 
+}}
                     >
                       ×
                     </button>
@@ -502,7 +533,7 @@ export default function CurriculumSetupWizard({
                   variant="outline"
                   onClick={(e) => {
                     const input = e.currentTarget.previousElementSibling as HTMLInputElement;
-                    if (input?.value) {
+                    if (input.value) {
                       addToArray('technologyAccess', input.value);
                       input.value = '';
                     }
@@ -513,12 +544,14 @@ export default function CurriculumSetupWizard({
               </div>
               <div className="flex flex-wrap gap-2">
                 {formData.technologyAccess.map((tech) => (
-                  <Badge key={tech} variant="outline" className="flex items-center gap-1">
+                  <Badge key={tech} className="flex items-center gap-1" variant="outline">
                     {tech}
                     <button
-                      type="button"
-                      onClick={() => removeFromArray('technologyAccess', tech)}
                       className="ml-1 text-gray-500 hover:text-gray-700"
+                      type="button"
+                      onClick={() => {
+ removeFromArray('technologyAccess', tech); 
+}}
                     >
                       ×
                     </button>
@@ -530,10 +563,12 @@ export default function CurriculumSetupWizard({
               <Label htmlFor="special-requirements">Special Requirements or Considerations</Label>
               <Textarea
                 id="special-requirements"
-                value={formData.specialRequirements}
-                onChange={(e) => setFormData({ ...formData, specialRequirements: e.target.value })}
                 placeholder="Any special needs, accessibility requirements, or other considerations..."
                 rows={3}
+                value={formData.specialRequirements}
+                onChange={(e) => {
+ setFormData({ ...formData, specialRequirements: e.target.value }); 
+}}
               />
             </div>
           </div>
@@ -553,10 +588,12 @@ export default function CurriculumSetupWizard({
                 ].map((option) => (
                   <label key={option.key} className="flex items-start gap-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
                     <input
-                      type="checkbox"
                       checked={formData[option.key as keyof CurriculumSetupData] as boolean}
-                      onChange={(e) => setFormData({ ...formData, [option.key]: e.target.checked })}
                       className="mt-1"
+                      type="checkbox"
+                      onChange={(e) => {
+ setFormData({ ...formData, [option.key]: e.target.checked }); 
+}}
                     />
                     <div>
                       <div className="font-medium">{option.label}</div>
@@ -569,9 +606,11 @@ export default function CurriculumSetupWizard({
             <div>
               <Label>Export Format</Label>
               <select
-                value={formData.exportFormat}
-                onChange={(e) => setFormData({ ...formData, exportFormat: e.target.value as 'json' | 'pdf' | 'both' })}
                 className="w-full mt-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                value={formData.exportFormat}
+                onChange={(e) => {
+ setFormData({ ...formData, exportFormat: e.target.value as 'json' | 'pdf' | 'both' }); 
+}}
               >
                 <option value="json">JSON (for import)</option>
                 <option value="pdf">PDF (for printing)</option>
@@ -612,7 +651,7 @@ export default function CurriculumSetupWizard({
               <span className="text-sm font-medium">{currentStepData.title}</span>
               <span className="text-sm text-gray-600">{Math.round(progressPercentage)}% complete</span>
             </div>
-            <Progress value={progressPercentage} className="mb-2" />
+            <Progress className="mb-2" value={progressPercentage} />
             <p className="text-sm text-gray-600">{currentStepData.description}</p>
           </div>
 
@@ -625,11 +664,11 @@ export default function CurriculumSetupWizard({
           <div className="flex justify-between">
             <div className="flex gap-2">
               <Button
+                className="flex items-center gap-2"
+                disabled={currentStep === 0}
                 type="button"
                 variant="outline"
                 onClick={prevStep}
-                disabled={currentStep === 0}
-                className="flex items-center gap-2"
               >
                 <ChevronLeft className="h-4 w-4" />
                 Previous
@@ -641,17 +680,17 @@ export default function CurriculumSetupWizard({
             <div className="flex gap-2">
               {currentStep === totalSteps - 1 ? (
                 <Button
-                  onClick={handleComplete}
                   className="bg-indigo-600 hover:bg-indigo-700 flex items-center gap-2"
+                  onClick={handleComplete}
                 >
                   <CheckCircle className="h-4 w-4" />
                   Complete Setup
                 </Button>
               ) : (
                 <Button
-                  onClick={nextStep}
-                  disabled={!currentStepData.completed}
                   className="flex items-center gap-2"
+                  disabled={!currentStepData.completed}
+                  onClick={nextStep}
                 >
                   Next
                   <ChevronRight className="h-4 w-4" />

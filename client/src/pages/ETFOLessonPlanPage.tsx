@@ -1,23 +1,4 @@
-import { useState, lazy, Suspense } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import {
-  useUnitPlan,
-  useETFOLessonPlans,
-  useETFOLessonPlan,
-  useCreateETFOLessonPlan,
-  useUpdateETFOLessonPlan,
-  useDeleteETFOLessonPlan,
-} from '../hooks/useETFOPlanning';
-import { useTemplates, useApplyTemplate } from '../hooks/useTemplates';
-import { PlanTemplate, isLessonPlanTemplate, LessonPlanContent } from '../types/template';
-import Dialog from '../components/Dialog';
-import { Button } from '../components/ui/Button';
-import RichTextEditor from '../components/RichTextEditor';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { Label } from '../components/ui/Label';
-import { Input } from '../components/ui/Input';
-import { Textarea } from '../components/ui/Textarea';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import { format } from 'date-fns';
 import {
   Plus,
   Trash2,
@@ -32,9 +13,13 @@ import {
   RefreshCw,
   BookTemplate,
 } from 'lucide-react';
-import { format } from 'date-fns';
-import { Checkbox } from '../components/ui/checkbox';
-import { Badge } from '../components/ui/Badge';
+import { useState, lazy, Suspense } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+
+import Dialog from '../components/Dialog';
+import ExpectationSelector from '../components/planning/ExpectationSelector';
+import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
+import RichTextEditor from '../components/RichTextEditor';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -45,7 +30,25 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '../components/ui/alert-dialog';
-import ExpectationSelector from '../components/planning/ExpectationSelector';
+import { AutoSaveIndicator } from '../components/ui/AutoSaveIndicator';
+import { Badge } from '../components/ui/Badge';
+import { Button } from '../components/ui/Button';
+import {
+  useUnitPlan,
+  useETFOLessonPlans,
+  useETFOLessonPlan,
+  useCreateETFOLessonPlan,
+  useUpdateETFOLessonPlan,
+  useDeleteETFOLessonPlan,
+} from '../hooks/useETFOPlanning';
+import { useTemplates, useApplyTemplate } from '../hooks/useTemplates';
+import { PlanTemplate, isLessonPlanTemplate, LessonPlanContent } from '../types/template';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import { Label } from '../components/ui/Label';
+import { Input } from '../components/ui/Input';
+import { Textarea } from '../components/ui/Textarea';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import { Checkbox } from '../components/ui/checkbox';
 import { InfoTooltip } from '../components/ui/Tooltip';
 
 // Lazy load AI components for better performance
@@ -56,12 +59,10 @@ const WithAIErrorBoundary = lazy(() =>
   import('../components/ai/AIErrorBoundary').then((m) => ({ default: m.WithAIErrorBoundary })),
 );
 import { useAutoSave, useUnsavedChangesWarning } from '../hooks/useAutoSave';
-import { AutoSaveIndicator } from '../components/ui/AutoSaveIndicator';
 import { MobileOptimizedForm, CollapsibleSection } from '../components/ui/MobileOptimizedForm';
-import { generateLessonPlanHTML, printHTML, downloadHTML } from '../utils/printUtils';
-import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
-import { SafeHtmlRenderer } from '../utils/sanitization';
 import logger from '../utils/logger';
+import { generateLessonPlanHTML, printHTML, downloadHTML } from '../utils/printUtils';
+import { SafeHtmlRenderer } from '../utils/sanitization';
 export default function ETFOLessonPlanPage() {
   const { unitId, lessonId } = useParams();
   const navigate = useNavigate();
@@ -136,10 +137,10 @@ export default function ETFOLessonPlanPage() {
         const cleanedData = {
           ...data,
           unitPlanId: unitId || '',
-          materials: data.materials?.filter((m: string) => m.trim()) || [],
-          accommodations: data.accommodations?.filter((a: string) => a.trim()) || [],
-          modifications: data.modifications?.filter((m: string) => m.trim()) || [],
-          extensions: data.extensions?.filter((e: string) => e.trim()) || [],
+          materials: data.materials.filter((m: string) => m.trim()) || [],
+          accommodations: data.accommodations.filter((a: string) => a.trim()) || [],
+          modifications: data.modifications.filter((m: string) => m.trim()) || [],
+          extensions: data.extensions.filter((e: string) => e.trim()) || [],
         };
         await updateLesson.mutateAsync({ id: editingLesson, data: cleanedData });
       }
@@ -406,23 +407,23 @@ export default function ETFOLessonPlanPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-          <Link to="/planner/long-range" className="hover:text-indigo-600">
+          <Link className="hover:text-indigo-600" to="/planner/long-range">
             Long-Range Plans
           </Link>
           <span>›</span>
-          <Link to="/planner/units" className="hover:text-indigo-600">
+          <Link className="hover:text-indigo-600" to="/planner/units">
             Unit Plans
           </Link>
           {unitPlan && (
             <>
               <span>›</span>
-              <Link to={`/planner/units/${unitId}`} className="hover:text-indigo-600">
+              <Link className="hover:text-indigo-600" to={`/planner/units/${unitId}`}>
                 {unitPlan.title}
               </Link>
             </>
           )}
           <span>›</span>
-          <Link to={`/planner/units/${unitId}/lessons`} className="hover:text-indigo-600">
+          <Link className="hover:text-indigo-600" to={`/planner/units/${unitId}/lessons`}>
             Lessons
           </Link>
           <span>›</span>
@@ -452,10 +453,11 @@ export default function ETFOLessonPlanPage() {
               </div>
               <div className="flex gap-2">
                 <Button
-                  variant="outline"
+                  className="flex items-center gap-2"
                   size="sm"
-                  onClick={() =>
-                    printHTML(
+                  variant="outline"
+                  onClick={() => {
+ printHTML(
                       generateLessonPlanHTML(
                         {
                           ...selectedLesson,
@@ -464,18 +466,19 @@ export default function ETFOLessonPlanPage() {
                         unitPlan,
                       ),
                       `${selectedLesson.title}-lesson-plan`,
-                    )
+                    ); 
+}
                   }
-                  className="flex items-center gap-2"
                 >
                   <Printer className="h-4 w-4" />
                   Print
                 </Button>
                 <Button
-                  variant="outline"
+                  className="flex items-center gap-2"
                   size="sm"
-                  onClick={() =>
-                    downloadHTML(
+                  variant="outline"
+                  onClick={() => {
+ downloadHTML(
                       generateLessonPlanHTML(
                         {
                           ...selectedLesson,
@@ -484,9 +487,9 @@ export default function ETFOLessonPlanPage() {
                         unitPlan,
                       ),
                       `${selectedLesson.title}-lesson-plan`,
-                    )
+                    ); 
+}
                   }
-                  className="flex items-center gap-2"
                 >
                   <Download className="h-4 w-4" />
                   Export
@@ -548,8 +551,8 @@ export default function ETFOLessonPlanPage() {
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Learning Goals</h3>
                 <SafeHtmlRenderer
-                  html={selectedLesson.learningGoals}
                   className="prose max-w-none"
+                  html={selectedLesson.learningGoals}
                 />
               </div>
             )}
@@ -563,8 +566,8 @@ export default function ETFOLessonPlanPage() {
                 <CardContent>
                   {selectedLesson.mindsOn ? (
                     <SafeHtmlRenderer
-                      html={selectedLesson.mindsOn}
                       className="prose max-w-none text-sm"
+                      html={selectedLesson.mindsOn}
                     />
                   ) : (
                     <p className="text-sm text-gray-500">No content provided</p>
@@ -580,8 +583,8 @@ export default function ETFOLessonPlanPage() {
                 <CardContent>
                   {selectedLesson.action ? (
                     <SafeHtmlRenderer
-                      html={selectedLesson.action}
                       className="prose max-w-none text-sm"
+                      html={selectedLesson.action}
                     />
                   ) : (
                     <p className="text-sm text-gray-500">No content provided</p>
@@ -597,8 +600,8 @@ export default function ETFOLessonPlanPage() {
                 <CardContent>
                   {selectedLesson.consolidation ? (
                     <SafeHtmlRenderer
-                      html={selectedLesson.consolidation}
                       className="prose max-w-none text-sm"
+                      html={selectedLesson.consolidation}
                     />
                   ) : (
                     <p className="text-sm text-gray-500">No content provided</p>
@@ -702,7 +705,7 @@ export default function ETFOLessonPlanPage() {
                           <span className="font-medium text-sm">{expectation.code}</span>
                           <p className="text-sm text-gray-700 mt-1">{expectation.description}</p>
                         </div>
-                        <Badge variant="outline" className="ml-2">
+                        <Badge className="ml-2" variant="outline">
                           {expectation.strand}
                         </Badge>
                       </div>
@@ -723,17 +726,17 @@ export default function ETFOLessonPlanPage() {
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-          <Link to="/planner/long-range" className="hover:text-indigo-600">
+          <Link className="hover:text-indigo-600" to="/planner/long-range">
             Long-Range Plans
           </Link>
           <span>›</span>
-          <Link to="/planner/units" className="hover:text-indigo-600">
+          <Link className="hover:text-indigo-600" to="/planner/units">
             Unit Plans
           </Link>
           {unitPlan && (
             <>
               <span>›</span>
-              <Link to={`/planner/units/${unitId}`} className="hover:text-indigo-600">
+              <Link className="hover:text-indigo-600" to={`/planner/units/${unitId}`}>
                 {unitPlan.title}
               </Link>
             </>
@@ -755,25 +758,29 @@ export default function ETFOLessonPlanPage() {
 
           <div className="flex items-center gap-3">
             <BlankTemplateQuickActions
-              templateType="lesson"
               schoolInfo={{
                 grade: unitPlan?.longRangePlan ? `Grade ${unitPlan.longRangePlan.grade}` : '',
                 subject: unitPlan?.longRangePlan?.subject || '',
                 academicYear: unitPlan?.longRangePlan?.academicYear || '',
               }}
+              templateType="lesson"
             />
             <Button
-              variant="outline"
-              onClick={() => setIsTemplateModalOpen(true)}
               className="flex items-center gap-2"
+              variant="outline"
+              onClick={() => {
+ setIsTemplateModalOpen(true); 
+}}
             >
               <BookTemplate className="h-4 w-4" />
               Create from Template
             </Button>
             <Button
-              onClick={() => setIsCreateModalOpen(true)}
               className="bg-indigo-600 hover:bg-indigo-700 text-white"
               data-testid="create-lesson-plan-button"
+              onClick={() => {
+ setIsCreateModalOpen(true); 
+}}
             >
               Create Lesson Plan
             </Button>
@@ -784,7 +791,7 @@ export default function ETFOLessonPlanPage() {
       {/* Lesson Plans List */}
       {isLoadingLessons ? (
         <div className="flex items-center justify-center min-h-64">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500" />
         </div>
       ) : lessonPlans.length === 0 ? (
         <div className="text-center py-12 bg-white rounded-lg border-2 border-dashed border-gray-300">
@@ -795,9 +802,11 @@ export default function ETFOLessonPlanPage() {
           </p>
           <div className="mt-6">
             <Button
-              onClick={() => setIsCreateModalOpen(true)}
               className="bg-indigo-600 hover:bg-indigo-700 text-white"
               data-testid="create-lesson-plan-empty-state-button"
+              onClick={() => {
+ setIsCreateModalOpen(true); 
+}}
             >
               Create Lesson Plan
             </Button>
@@ -841,13 +850,13 @@ export default function ETFOLessonPlanPage() {
                   </td>
                   <td className="px-3 sm:px-6 py-2 sm:py-4">
                     <Link
-                      to={`/planner/lessons/${lesson.id}`}
                       className="text-xs sm:text-sm font-medium text-indigo-600 hover:text-indigo-900 block"
+                      to={`/planner/lessons/${lesson.id}`}
                     >
                       {lesson.title}
                     </Link>
                     {lesson.isSubFriendly && (
-                      <Badge variant="secondary" className="mt-1 text-xs">
+                      <Badge className="mt-1 text-xs" variant="secondary">
                         Sub
                       </Badge>
                     )}
@@ -857,7 +866,7 @@ export default function ETFOLessonPlanPage() {
                   </td>
                   <td className="hidden md:table-cell px-3 sm:px-6 py-2 sm:py-4 whitespace-nowrap">
                     {lesson.assessmentType && (
-                      <Badge variant="outline" className="text-xs">
+                      <Badge className="text-xs" variant="outline">
                         {lesson.assessmentType}
                       </Badge>
                     )}
@@ -877,8 +886,8 @@ export default function ETFOLessonPlanPage() {
                   <td className="px-3 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-right text-xs sm:text-sm font-medium">
                     <div className="flex justify-end gap-2">
                       <Button
-                        variant="ghost"
                         size="sm"
+                        variant="ghost"
                         onClick={() => {
                           setEditingLesson(lesson.id);
                           setFormData({
@@ -911,10 +920,12 @@ export default function ETFOLessonPlanPage() {
                         Edit
                       </Button>
                       <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => setDeleteConfirmId(lesson.id)}
                         className="text-red-600 hover:text-red-700"
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => {
+ setDeleteConfirmId(lesson.id); 
+}}
                       >
                         Delete
                       </Button>
@@ -937,18 +948,18 @@ export default function ETFOLessonPlanPage() {
             {editingLesson && (
               <div className="flex items-center gap-2">
                 <AutoSaveIndicator
-                  lastSaved={lastSaved}
-                  isSaving={isSaving}
                   hasUnsavedChanges={hasUnsavedChanges}
+                  isSaving={isSaving}
+                  lastSaved={lastSaved}
                   onManualSave={saveNow}
                 />
                 <Button
+                  className="flex items-center gap-2"
+                  disabled={isSaving || !hasUnsavedChanges}
+                  size="sm"
                   type="button"
                   variant="outline"
-                  size="sm"
                   onClick={saveNow}
-                  disabled={isSaving || !hasUnsavedChanges}
-                  className="flex items-center gap-2"
                 >
                   {isSaving ? (
                     <RefreshCw className="h-4 w-4 animate-spin" />
@@ -963,10 +974,10 @@ export default function ETFOLessonPlanPage() {
 
           <MobileOptimizedForm>
             <form onSubmit={handleSubmit}>
-              <Tabs defaultValue="overview" className="space-y-4">
+              <Tabs className="space-y-4" defaultValue="overview">
                 <TabsList className="grid w-full grid-cols-2 sm:grid-cols-6">
                   <TabsTrigger value="overview">Overview</TabsTrigger>
-                  <TabsTrigger value="ai-assistant" className="gap-2">
+                  <TabsTrigger className="gap-2" value="ai-assistant">
                     <Sparkles className="h-4 w-4" />
                     AI Assistant
                   </TabsTrigger>
@@ -976,59 +987,68 @@ export default function ETFOLessonPlanPage() {
                   <TabsTrigger value="assessment">Assessment</TabsTrigger>
                 </TabsList>
 
-                <TabsContent value="overview" className="space-y-4 mt-4">
-                  <CollapsibleSection title="Basic Information" required defaultExpanded>
+                <TabsContent className="space-y-4 mt-4" value="overview">
+                  <CollapsibleSection defaultExpanded required title="Basic Information">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <Label>Lesson Title *</Label>
                         <Input
                           required
-                          value={formData.title}
-                          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                           placeholder="e.g., Introduction to Ecosystems"
+                          value={formData.title}
+                          onChange={(e) => {
+ setFormData({ ...formData, title: e.target.value }); 
+}}
                         />
                       </div>
                       <div>
                         <Label>Title (French)</Label>
                         <Input
-                          value={formData.titleFr}
-                          onChange={(e) => setFormData({ ...formData, titleFr: e.target.value })}
                           placeholder="e.g., Introduction aux écosystèmes"
+                          value={formData.titleFr}
+                          onChange={(e) => {
+ setFormData({ ...formData, titleFr: e.target.value }); 
+}}
                         />
                       </div>
                     </div>
                   </CollapsibleSection>
 
-                  <CollapsibleSection title="Scheduling & Duration" defaultExpanded>
+                  <CollapsibleSection defaultExpanded title="Scheduling & Duration">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div>
                         <Label>Date *</Label>
                         <Input
-                          type="date"
                           required
+                          type="date"
                           value={formData.date}
-                          onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                          onChange={(e) => {
+ setFormData({ ...formData, date: e.target.value }); 
+}}
                         />
                       </div>
                       <div>
                         <Label>Duration (minutes) *</Label>
                         <Input
-                          type="number"
                           required
-                          min="15"
                           max="300"
+                          min="15"
+                          type="number"
                           value={formData.duration}
-                          onChange={(e) =>
-                            setFormData({ ...formData, duration: Number(e.target.value) })
+                          onChange={(e) => {
+ setFormData({ ...formData, duration: Number(e.target.value) }); 
+}
                           }
                         />
                       </div>
                       <div>
                         <Label>Grouping</Label>
                         <select
-                          value={formData.grouping}
-                          onChange={(e) => setFormData({ ...formData, grouping: e.target.value })}
                           className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                          value={formData.grouping}
+                          onChange={(e) => {
+ setFormData({ ...formData, grouping: e.target.value }); 
+}}
                         >
                           <option value="whole">Whole Class</option>
                           <option value="small">Small Groups</option>
@@ -1040,12 +1060,14 @@ export default function ETFOLessonPlanPage() {
                     </div>
                   </CollapsibleSection>
 
-                  <CollapsibleSection title="Learning Goals" defaultExpanded>
+                  <CollapsibleSection defaultExpanded title="Learning Goals">
                     <div>
                       <Label>Learning Goals</Label>
                       <RichTextEditor
                         value={formData.learningGoals}
-                        onChange={(value) => setFormData({ ...formData, learningGoals: value })}
+                        onChange={(value) => {
+ setFormData({ ...formData, learningGoals: value }); 
+}}
                       />
                     </div>
 
@@ -1053,22 +1075,25 @@ export default function ETFOLessonPlanPage() {
                       <Label>Learning Goals (French)</Label>
                       <RichTextEditor
                         value={formData.learningGoalsFr}
-                        onChange={(value) => setFormData({ ...formData, learningGoalsFr: value })}
+                        onChange={(value) => {
+ setFormData({ ...formData, learningGoalsFr: value }); 
+}}
                       />
                     </div>
                   </CollapsibleSection>
 
-                  <CollapsibleSection title="Special Considerations" defaultExpanded={false}>
+                  <CollapsibleSection defaultExpanded={false} title="Special Considerations">
                     <div className="space-y-4">
                       <div className="flex items-center space-x-2">
                         <Checkbox
-                          id="subFriendly"
                           checked={formData.isSubFriendly}
-                          onCheckedChange={(checked) =>
-                            setFormData({ ...formData, isSubFriendly: checked as boolean })
+                          id="subFriendly"
+                          onCheckedChange={(checked) => {
+ setFormData({ ...formData, isSubFriendly: checked as boolean }); 
+}
                           }
                         />
-                        <Label htmlFor="subFriendly" className="font-normal">
+                        <Label className="font-normal" htmlFor="subFriendly">
                           This lesson is substitute teacher friendly
                         </Label>
                       </div>
@@ -1077,46 +1102,51 @@ export default function ETFOLessonPlanPage() {
                         <div>
                           <Label>Substitute Teacher Notes</Label>
                           <Textarea
-                            value={formData.subNotes}
-                            onChange={(e) => setFormData({ ...formData, subNotes: e.target.value })}
                             placeholder="Special instructions for substitute teachers..."
                             rows={3}
+                            value={formData.subNotes}
+                            onChange={(e) => {
+ setFormData({ ...formData, subNotes: e.target.value }); 
+}}
                           />
                         </div>
                       )}
                     </div>
                   </CollapsibleSection>
 
-                  <CollapsibleSection title="Curriculum Expectations" defaultExpanded>
+                  <CollapsibleSection defaultExpanded title="Curriculum Expectations">
                     <div>
                       <ExpectationSelector
-                        selectedIds={formData.expectationIds}
-                        onChange={(ids) => setFormData({ ...formData, expectationIds: ids })}
                         grade={unitPlan?.longRangePlan?.grade}
-                        subject={unitPlan?.longRangePlan?.subject}
                         label="Curriculum Expectations"
                         placeholder="Select curriculum expectations for this lesson..."
+                        selectedIds={formData.expectationIds}
+                        subject={unitPlan?.longRangePlan?.subject}
+                        onChange={(ids) => {
+ setFormData({ ...formData, expectationIds: ids }); 
+}}
                       />
                     </div>
                   </CollapsibleSection>
                 </TabsContent>
 
-                <TabsContent value="ai-assistant" className="space-y-6 mt-4">
+                <TabsContent className="space-y-6 mt-4" value="ai-assistant">
                   <Suspense
                     fallback={
                       <div className="flex items-center justify-center p-8">
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
                         <span className="ml-2 text-gray-600">Loading AI Assistant...</span>
                       </div>
                     }
                   >
                     <WithAIErrorBoundary>
                       <AILessonPlanPanel
+                        className="w-full"
+                        duration={formData.duration}
+                        grade={unitPlan?.longRangePlan?.grade || 1}
+                        learningGoals={formData.learningGoals ? [formData.learningGoals] : []}
                         lessonTitle={formData.title}
                         subject={unitPlan?.longRangePlan?.subject || ''}
-                        grade={unitPlan?.longRangePlan?.grade || 1}
-                        duration={formData.duration}
-                        learningGoals={formData.learningGoals ? [formData.learningGoals] : []}
                         unitContext={
                           unitPlan
                             ? {
@@ -1131,15 +1161,14 @@ export default function ETFOLessonPlanPage() {
                               }
                             : undefined
                         }
-                        onSuggestionAccepted={handleAISuggestionAccepted}
                         onLessonGenerated={handleAILessonGenerated}
-                        className="w-full"
+                        onSuggestionAccepted={handleAISuggestionAccepted}
                       />
                     </WithAIErrorBoundary>
                   </Suspense>
                 </TabsContent>
 
-                <TabsContent value="three-part" className="space-y-6 mt-4">
+                <TabsContent className="space-y-6 mt-4" value="three-part">
                   <Card>
                     <CardHeader>
                       <CardTitle>Minds On</CardTitle>
@@ -1152,14 +1181,18 @@ export default function ETFOLessonPlanPage() {
                         <Label>Activities (English)</Label>
                         <RichTextEditor
                           value={formData.mindsOn}
-                          onChange={(value) => setFormData({ ...formData, mindsOn: value })}
+                          onChange={(value) => {
+ setFormData({ ...formData, mindsOn: value }); 
+}}
                         />
                       </div>
                       <div>
                         <Label>Activities (French)</Label>
                         <RichTextEditor
                           value={formData.mindsOnFr}
-                          onChange={(value) => setFormData({ ...formData, mindsOnFr: value })}
+                          onChange={(value) => {
+ setFormData({ ...formData, mindsOnFr: value }); 
+}}
                         />
                       </div>
                     </CardContent>
@@ -1177,14 +1210,18 @@ export default function ETFOLessonPlanPage() {
                         <Label>Activities (English)</Label>
                         <RichTextEditor
                           value={formData.action}
-                          onChange={(value) => setFormData({ ...formData, action: value })}
+                          onChange={(value) => {
+ setFormData({ ...formData, action: value }); 
+}}
                         />
                       </div>
                       <div>
                         <Label>Activities (French)</Label>
                         <RichTextEditor
                           value={formData.actionFr}
-                          onChange={(value) => setFormData({ ...formData, actionFr: value })}
+                          onChange={(value) => {
+ setFormData({ ...formData, actionFr: value }); 
+}}
                         />
                       </div>
                     </CardContent>
@@ -1202,47 +1239,55 @@ export default function ETFOLessonPlanPage() {
                         <Label>Activities (English)</Label>
                         <RichTextEditor
                           value={formData.consolidation}
-                          onChange={(value) => setFormData({ ...formData, consolidation: value })}
+                          onChange={(value) => {
+ setFormData({ ...formData, consolidation: value }); 
+}}
                         />
                       </div>
                       <div>
                         <Label>Activities (French)</Label>
                         <RichTextEditor
                           value={formData.consolidationFr}
-                          onChange={(value) => setFormData({ ...formData, consolidationFr: value })}
+                          onChange={(value) => {
+ setFormData({ ...formData, consolidationFr: value }); 
+}}
                         />
                       </div>
                     </CardContent>
                   </Card>
                 </TabsContent>
 
-                <TabsContent value="materials" className="space-y-4 mt-4">
+                <TabsContent className="space-y-4 mt-4" value="materials">
                   <div>
                     <Label>Materials and Resources</Label>
                     <div className="space-y-2 mt-2">
                       {formData.materials.map((material, index) => (
                         <div key={index} className="flex gap-2">
                           <Input
-                            value={material}
-                            onChange={(e) => updateMaterial(index, e.target.value)}
                             placeholder="e.g., Chart paper, markers, science textbook p.45-48"
+                            value={material}
+                            onChange={(e) => {
+ updateMaterial(index, e.target.value); 
+}}
                           />
                           <Button
+                            size="sm"
                             type="button"
                             variant="ghost"
-                            size="sm"
-                            onClick={() => removeMaterial(index)}
+                            onClick={() => {
+ removeMaterial(index); 
+}}
                           >
                             <Trash2 className="h-4 w-4" />
                           </Button>
                         </div>
                       ))}
                       <Button
+                        className="w-full"
+                        size="sm"
                         type="button"
                         variant="outline"
-                        size="sm"
                         onClick={addMaterial}
-                        className="w-full"
                       >
                         <Plus className="h-4 w-4 mr-2" />
                         Add Material
@@ -1251,7 +1296,7 @@ export default function ETFOLessonPlanPage() {
                   </div>
                 </TabsContent>
 
-                <TabsContent value="differentiation" className="space-y-6 mt-4">
+                <TabsContent className="space-y-6 mt-4" value="differentiation">
                   <div>
                     <Label>Accommodations</Label>
                     <p className="text-sm text-gray-600 mb-2">
@@ -1261,26 +1306,30 @@ export default function ETFOLessonPlanPage() {
                       {formData.accommodations.map((accommodation, index) => (
                         <div key={index} className="flex gap-2">
                           <Input
-                            value={accommodation}
-                            onChange={(e) => updateAccommodation(index, e.target.value)}
                             placeholder="e.g., Provide visual aids, allow extra time"
+                            value={accommodation}
+                            onChange={(e) => {
+ updateAccommodation(index, e.target.value); 
+}}
                           />
                           <Button
+                            size="sm"
                             type="button"
                             variant="ghost"
-                            size="sm"
-                            onClick={() => removeAccommodation(index)}
+                            onClick={() => {
+ removeAccommodation(index); 
+}}
                           >
                             <Trash2 className="h-4 w-4" />
                           </Button>
                         </div>
                       ))}
                       <Button
+                        className="w-full"
+                        size="sm"
                         type="button"
                         variant="outline"
-                        size="sm"
                         onClick={addAccommodation}
-                        className="w-full"
                       >
                         <Plus className="h-4 w-4 mr-2" />
                         Add Accommodation
@@ -1297,26 +1346,30 @@ export default function ETFOLessonPlanPage() {
                       {formData.modifications.map((modification, index) => (
                         <div key={index} className="flex gap-2">
                           <Input
-                            value={modification}
-                            onChange={(e) => updateModification(index, e.target.value)}
                             placeholder="e.g., Simplified text, reduced number of questions"
+                            value={modification}
+                            onChange={(e) => {
+ updateModification(index, e.target.value); 
+}}
                           />
                           <Button
+                            size="sm"
                             type="button"
                             variant="ghost"
-                            size="sm"
-                            onClick={() => removeModification(index)}
+                            onClick={() => {
+ removeModification(index); 
+}}
                           >
                             <Trash2 className="h-4 w-4" />
                           </Button>
                         </div>
                       ))}
                       <Button
+                        className="w-full"
+                        size="sm"
                         type="button"
                         variant="outline"
-                        size="sm"
                         onClick={addModification}
-                        className="w-full"
                       >
                         <Plus className="h-4 w-4 mr-2" />
                         Add Modification
@@ -1333,26 +1386,30 @@ export default function ETFOLessonPlanPage() {
                       {formData.extensions.map((extension, index) => (
                         <div key={index} className="flex gap-2">
                           <Input
-                            value={extension}
-                            onChange={(e) => updateExtension(index, e.target.value)}
                             placeholder="e.g., Research project, advanced problems"
+                            value={extension}
+                            onChange={(e) => {
+ updateExtension(index, e.target.value); 
+}}
                           />
                           <Button
+                            size="sm"
                             type="button"
                             variant="ghost"
-                            size="sm"
-                            onClick={() => removeExtension(index)}
+                            onClick={() => {
+ removeExtension(index); 
+}}
                           >
                             <Trash2 className="h-4 w-4" />
                           </Button>
                         </div>
                       ))}
                       <Button
+                        className="w-full"
+                        size="sm"
                         type="button"
                         variant="outline"
-                        size="sm"
                         onClick={addExtension}
-                        className="w-full"
                       >
                         <Plus className="h-4 w-4 mr-2" />
                         Add Extension
@@ -1361,24 +1418,25 @@ export default function ETFOLessonPlanPage() {
                   </div>
                 </TabsContent>
 
-                <TabsContent value="assessment" className="space-y-4 mt-4">
+                <TabsContent className="space-y-4 mt-4" value="assessment">
                   <div>
                     <div className="flex items-center">
                       <Label>Assessment Type</Label>
                       <InfoTooltip content="Choose the primary purpose of assessment for this lesson. You can use multiple types throughout the lesson." />
                     </div>
                     <select
+                      className="w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                       value={formData.assessmentType}
-                      onChange={(e) =>
-                        setFormData({
+                      onChange={(e) => {
+ setFormData({
                           ...formData,
                           assessmentType: e.target.value as
                             | 'diagnostic'
                             | 'formative'
                             | 'summative',
-                        })
+                        }); 
+}
                       }
-                      className="w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                     >
                       <option value="diagnostic">
                         Diagnostic - Assessment FOR Learning (Before/Beginning)
@@ -1426,10 +1484,7 @@ export default function ETFOLessonPlanPage() {
                       <InfoTooltip content="Clear, specific statements that describe what success looks like. Written in student-friendly language starting with 'I can...'" />
                     </div>
                     <Textarea
-                      value={formData.assessmentNotes}
-                      onChange={(e) =>
-                        setFormData({ ...formData, assessmentNotes: e.target.value })
-                      }
+                      className="mt-1"
                       placeholder="Success Criteria (I can statements):
 • I can identify the main idea of a text
 • I can use evidence from the text to support my answer
@@ -1440,7 +1495,11 @@ Assessment Strategies:
 • Exit ticket with key question
 • Self-assessment checklist"
                       rows={6}
-                      className="mt-1"
+                      value={formData.assessmentNotes}
+                      onChange={(e) => {
+ setFormData({ ...formData, assessmentNotes: e.target.value }); 
+}
+                      }
                     />
                     <p className="mt-1 text-xs text-gray-500">
                       Include both success criteria and the specific assessment strategies
@@ -1463,9 +1522,9 @@ Assessment Strategies:
                   Cancel
                 </Button>
                 <Button
-                  type="submit"
-                  disabled={createLesson.isPending || updateLesson.isPending || isSaving}
                   className="bg-indigo-600 hover:bg-indigo-700 text-white"
+                  disabled={createLesson.isPending || updateLesson.isPending || isSaving}
+                  type="submit"
                 >
                   {createLesson.isPending || updateLesson.isPending || isSaving
                     ? 'Saving...'
@@ -1513,7 +1572,9 @@ Assessment Strategies:
                         ? 'border-indigo-500 bg-indigo-50'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
-                    onClick={() => setSelectedTemplate(template)}
+                    onClick={() => {
+ setSelectedTemplate(template); 
+}}
                   >
                     <CardHeader>
                       <div className="flex items-start justify-between">
@@ -1540,7 +1601,7 @@ Assessment Strategies:
                     <CardContent>
                       <p className="text-sm text-gray-700 mb-3">{template.description}</p>
                       <div className="flex flex-wrap gap-1 mb-3">
-                        {template.tags?.slice(0, 3).map((tag) => (
+                        {template.tags.slice(0, 3).map((tag) => (
                           <span
                             key={tag}
                             className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full"
@@ -1581,10 +1642,10 @@ Assessment Strategies:
               Cancel
             </Button>
             <Button
-              type="button"
-              disabled={!selectedTemplate || applyTemplate.isPending}
-              onClick={() => selectedTemplate && handleApplyTemplate(selectedTemplate)}
               className="bg-indigo-600 hover:bg-indigo-700 text-white"
+              disabled={!selectedTemplate || applyTemplate.isPending}
+              type="button"
+              onClick={() => selectedTemplate && handleApplyTemplate(selectedTemplate)}
             >
               {applyTemplate.isPending ? 'Loading...' : 'Use This Template'}
             </Button>
@@ -1593,7 +1654,9 @@ Assessment Strategies:
       </Dialog>
 
       {/* Delete Confirmation Dialog */}
-      <AlertDialog open={!!deleteConfirmId} onOpenChange={() => setDeleteConfirmId(null)}>
+      <AlertDialog open={!!deleteConfirmId} onOpenChange={() => {
+ setDeleteConfirmId(null); 
+}}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Are you sure?</AlertDialogTitle>
@@ -1604,8 +1667,8 @@ Assessment Strategies:
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction
-              onClick={() => deleteConfirmId && handleDelete(deleteConfirmId)}
               className="bg-red-600 hover:bg-red-700"
+              onClick={() => deleteConfirmId && handleDelete(deleteConfirmId)}
             >
               Delete
             </AlertDialogAction>

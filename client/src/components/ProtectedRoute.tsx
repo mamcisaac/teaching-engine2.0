@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
+
 import { useAuth } from '../contexts/AuthContext';
 import logger from '../utils/logger';
 
@@ -25,7 +26,7 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   if (!isInitialized || isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" />
       </div>
     );
   }
@@ -36,7 +37,7 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
     // along to that page after they log in, which is a nicer user experience
     // than dropping them off on the home page.
     logger.info('[ProtectedRoute] Not authenticated, redirecting to login');
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate replace state={{ from: location }} to="/login" />;
   }
 
   return <>{children}</>;

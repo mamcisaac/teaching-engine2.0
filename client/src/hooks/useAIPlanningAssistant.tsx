@@ -1,13 +1,63 @@
-import { apiClient } from '../api/core/client';
-import { useState } from 'react';
+import type { UseMutationResult } from '@tanstack/react-query';
 import { useMutation } from '@tanstack/react-query';
+import { useState } from 'react';
+
+import { apiClient } from '../api/core/client';
 export interface AISuggestion {
   type: 'goals' | 'bigIdeas' | 'activities' | 'materials' | 'assessments' | 'reflections';
   suggestions: string[];
   rationale?: string;
 }
 
-export function useAIPlanningAssistant() {
+interface AIPlanningAssistantReturn {
+  isGenerating: boolean;
+  generateLongRangeGoals: UseMutationResult<AISuggestion, Error, {
+    subject: string;
+    grade: number;
+    termLength: number;
+    focusAreas?: string[];
+  }>;
+  generateUnitBigIdeas: UseMutationResult<AISuggestion, Error, {
+    unitTitle: string;
+    subject: string;
+    grade: number;
+    curriculumExpectations: string[];
+    duration: number;
+  }>;
+  generateLessonActivities: UseMutationResult<AISuggestion, Error, {
+    lessonTitle: string;
+    learningGoals: string[];
+    subject: string;
+    grade: number;
+    duration: number;
+    materials?: string[];
+  }>;
+  generateMaterialsList: UseMutationResult<AISuggestion, Error, {
+    activities: string[];
+    subject: string;
+    grade: number;
+    classSize?: number;
+  }>;
+  generateAssessmentStrategies: UseMutationResult<AISuggestion, Error, {
+    learningGoals: string[];
+    activities: string[];
+    subject: string;
+    grade: number;
+  }>;
+  generateReflectionPrompts: UseMutationResult<AISuggestion, Error, {
+    date: Date;
+    activities: string[];
+    subject: string;
+    grade: number;
+    previousReflections?: string[];
+  }>;
+  getCurriculumAlignedSuggestions: UseMutationResult<string[], Error, {
+    expectationIds: string[];
+    suggestionType: 'activities' | 'assessments' | 'resources';
+  }>;
+}
+
+export function useAIPlanningAssistant(): AIPlanningAssistantReturn {
   const [isGenerating, setIsGenerating] = useState(false);
 
   // Long-range goals generation
@@ -131,7 +181,8 @@ export function useAIPlanningAssistant() {
       setIsGenerating(true);
       try {
         const response = await apiClient.post('/api/ai-planning/curriculum-aligned', params);
-        return response.data.suggestions as string[];
+        const data = response.data as { suggestions: string[] };
+        return data.suggestions;
       } finally {
         setIsGenerating(false);
       }

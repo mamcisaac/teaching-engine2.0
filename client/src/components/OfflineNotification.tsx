@@ -1,10 +1,12 @@
 // Offline Notification Component
 // Shows a persistent notification when the app is offline
 
-import React, { useState, useEffect } from 'react';
 import { WifiOff, X, AlertCircle, RefreshCw } from 'lucide-react';
-import { Button } from './ui/Button';
+import React, { useState, useEffect } from 'react';
+
 import { isOnline } from '../utils/serviceWorkerRegistration';
+
+import { Button } from './ui/Button';
 
 export function OfflineNotification() {
   const [isOnlineState, setIsOnlineState] = useState(isOnline());
@@ -66,11 +68,11 @@ export function OfflineNotification() {
             </div>
             <div className="mt-3 flex items-center gap-2">
               <Button
-                variant="outline"
-                size="sm"
-                onClick={handleRetry}
-                disabled={retrying}
                 className="text-yellow-700 border-yellow-300 hover:bg-yellow-100"
+                disabled={retrying}
+                size="sm"
+                variant="outline"
+                onClick={handleRetry}
               >
                 {retrying ? (
                   <>
@@ -85,10 +87,12 @@ export function OfflineNotification() {
                 )}
               </Button>
               <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setDismissed(true)}
                 className="text-yellow-700 hover:bg-yellow-100"
+                size="sm"
+                variant="ghost"
+                onClick={() => {
+ setDismissed(true); 
+}}
               >
                 Dismiss
               </Button>
@@ -96,8 +100,10 @@ export function OfflineNotification() {
           </div>
           <div className="ml-auto pl-3">
             <button
-              onClick={() => setDismissed(true)}
               className="inline-flex rounded-md bg-yellow-50 p-1.5 text-yellow-500 hover:bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-offset-2 focus:ring-offset-yellow-50"
+              onClick={() => {
+ setDismissed(true); 
+}}
             >
               <span className="sr-only">Dismiss</span>
               <X className="h-4 w-4" />
@@ -158,11 +164,13 @@ export function ConflictResolutionModal({
             <div className="border rounded-lg p-4">
               <label className="flex items-center cursor-pointer">
                 <input
+                  checked={selectedResolution === 'local'}
+                  className="mr-3"
                   type="radio"
                   value="local"
-                  checked={selectedResolution === 'local'}
-                  onChange={(e) => setSelectedResolution(e.target.value as 'local')}
-                  className="mr-3"
+                  onChange={(e) => {
+ setSelectedResolution(e.target.value as 'local'); 
+}}
                 />
                 <div className="flex-1">
                   <div className="font-medium text-gray-900">Keep your version</div>
@@ -180,11 +188,13 @@ export function ConflictResolutionModal({
             <div className="border rounded-lg p-4">
               <label className="flex items-center cursor-pointer">
                 <input
+                  checked={selectedResolution === 'remote'}
+                  className="mr-3"
                   type="radio"
                   value="remote"
-                  checked={selectedResolution === 'remote'}
-                  onChange={(e) => setSelectedResolution(e.target.value as 'remote')}
-                  className="mr-3"
+                  onChange={(e) => {
+ setSelectedResolution(e.target.value as 'remote'); 
+}}
                 />
                 <div className="flex-1">
                   <div className="font-medium text-gray-900">Keep server version</div>
@@ -202,11 +212,13 @@ export function ConflictResolutionModal({
             <div className="border rounded-lg p-4">
               <label className="flex items-center cursor-pointer">
                 <input
+                  checked={selectedResolution === 'merge'}
+                  className="mr-3"
                   type="radio"
                   value="merge"
-                  checked={selectedResolution === 'merge'}
-                  onChange={(e) => setSelectedResolution(e.target.value as 'merge')}
-                  className="mr-3"
+                  onChange={(e) => {
+ setSelectedResolution(e.target.value as 'merge'); 
+}}
                 />
                 <div className="flex-1">
                   <div className="font-medium text-gray-900">Merge changes</div>

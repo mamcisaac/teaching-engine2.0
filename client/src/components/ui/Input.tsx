@@ -1,13 +1,12 @@
-import React from 'react';
 import { clsx } from 'clsx';
+import React from 'react';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, error, ...props }, ref) => {
-    return (
+  ({ className, error, ...props }, ref) => (
       <input
         ref={ref}
         className={clsx(
@@ -19,8 +18,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
         {...props}
       />
-    );
-  },
+    ),
 );
 
 Input.displayName = 'Input';

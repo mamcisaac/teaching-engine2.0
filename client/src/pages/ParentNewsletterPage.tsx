@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { format, startOfMonth, endOfMonth } from 'date-fns';
 import { 
   PlusCircle, Mail, Calendar, Users,
   Languages, Edit3, Trash2,
   RefreshCw, Clock, CheckCircle
 } from 'lucide-react';
-import { format, startOfMonth, endOfMonth } from 'date-fns';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+
+import NewsletterEditor from '../components/NewsletterEditor';
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { 
@@ -19,9 +21,8 @@ import {
   useDeleteNewsletter,
   useStudents
 } from '../hooks/useNewsletterData';
-import { NewsletterDraft, NewsletterTone, NewsletterGenerationParams } from '../types/newsletter';
-import NewsletterEditor from '../components/NewsletterEditor';
 import { cn } from '../lib/utils';
+import type { NewsletterDraft, NewsletterTone, NewsletterGenerationParams } from '../types/newsletter';
 import logger from '../utils/logger';
 export default function ParentNewsletterPage() {
   const { id } = useParams<{ id: string }>();
@@ -106,7 +107,9 @@ export default function ParentNewsletterPage() {
   };
 
   const handleRegenerateNewsletter = async (newTone?: NewsletterTone) => {
-    if (!currentNewsletter) return;
+    if (!currentNewsletter) {
+return;
+}
     
     try {
       const result = await regenerateNewsletter.mutateAsync({
@@ -138,15 +141,17 @@ export default function ParentNewsletterPage() {
   };
 
   const handleSendNewsletter = async (draft: NewsletterDraft) => {
-    if (!draft.id) return;
+    if (!draft.id) {
+return;
+}
     
     try {
       await sendNewsletter.mutateAsync({ 
         newsletterId: draft.id,
         recipientEmails: students
           ?.filter(student => selectedStudentIds.includes(student.id))
-          ?.map(student => student.parentEmail)
-          ?.filter(Boolean) as string[]
+          .map(student => student.parentEmail)
+          .filter(Boolean) as string[]
       });
     } catch (_error) {
       logger.error('Failed to send newsletter:', _error);
@@ -171,7 +176,7 @@ export default function ParentNewsletterPage() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto mb-4" />
           <p className="text-gray-600">Loading students...</p>
         </div>
       </div>
@@ -200,25 +205,29 @@ export default function ParentNewsletterPage() {
                 <div>
                   <label className="block text-xs text-gray-500 mb-1">From</label>
                   <input
+                    className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     type="date"
                     value={format(dateRange.from, 'yyyy-MM-dd')}
-                    onChange={(e) => setDateRange(prev => ({ 
+                    onChange={(e) => {
+ setDateRange(prev => ({ 
                       ...prev, 
                       from: new Date(e.target.value) 
-                    }))}
-                    className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    })); 
+}}
                   />
                 </div>
                 <div>
                   <label className="block text-xs text-gray-500 mb-1">To</label>
                   <input
+                    className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     type="date"
                     value={format(dateRange.to, 'yyyy-MM-dd')}
-                    onChange={(e) => setDateRange(prev => ({ 
+                    onChange={(e) => {
+ setDateRange(prev => ({ 
                       ...prev, 
                       to: new Date(e.target.value) 
-                    }))}
-                    className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    })); 
+}}
                   />
                 </div>
               </div>
@@ -233,13 +242,15 @@ export default function ParentNewsletterPage() {
                 {(['friendly', 'formal', 'informative'] as NewsletterTone[]).map((toneOption) => (
                   <button
                     key={toneOption}
-                    onClick={() => setTone(toneOption)}
                     className={cn(
                       "px-4 py-2 rounded-lg border transition-colors",
                       tone === toneOption
                         ? "bg-blue-600 text-white border-blue-600"
                         : "bg-white text-gray-700 border-gray-300 hover:border-gray-400"
                     )}
+                    onClick={() => {
+ setTone(toneOption); 
+}}
                   >
                     {toneOption.charAt(0).toUpperCase() + toneOption.slice(1)}
                   </button>
@@ -255,10 +266,12 @@ export default function ParentNewsletterPage() {
               <div className="space-y-2">
                 <label className="flex items-center">
                   <input
-                    type="checkbox"
                     checked={includeUpcomingEvents}
-                    onChange={(e) => setIncludeUpcomingEvents(e.target.checked)}
                     className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    type="checkbox"
+                    onChange={(e) => {
+ setIncludeUpcomingEvents(e.target.checked); 
+}}
                   />
                   <span className="ml-2 text-sm text-gray-700">Upcoming events and important dates</span>
                 </label>
@@ -271,13 +284,15 @@ export default function ParentNewsletterPage() {
                 Focus Areas (Optional)
               </label>
               <input
-                type="text"
-                placeholder="e.g., Math progress, Reading milestones, Science projects"
-                value={focusAreas.join(', ')}
-                onChange={(e) => setFocusAreas(
-                  e.target.value.split(',').map(area => area.trim()).filter(Boolean)
-                )}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="e.g., Math progress, Reading milestones, Science projects"
+                type="text"
+                value={focusAreas.join(', ')}
+                onChange={(e) => {
+ setFocusAreas(
+                  e.target.value.split(',').map(area => area.trim()).filter(Boolean)
+                ); 
+}}
               />
               <p className="text-xs text-gray-500 mt-1">
                 Comma-separated list of topics to emphasize
@@ -287,16 +302,18 @@ export default function ParentNewsletterPage() {
             {/* Action buttons */}
             <div className="flex items-center justify-between pt-6 border-t">
               <button
-                onClick={() => navigate('/newsletters')}
                 className="px-4 py-2 text-gray-600 hover:text-gray-800"
+                onClick={() => {
+ navigate('/newsletters'); 
+}}
               >
                 Cancel
               </button>
               
               <button
-                onClick={handleGenerateNewsletter}
-                disabled={generateNewsletter.isPending}
                 className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                disabled={generateNewsletter.isPending}
+                onClick={handleGenerateNewsletter}
               >
                 {generateNewsletter.isPending ? (
                   <RefreshCw className="w-4 h-4 animate-spin" />
@@ -327,15 +344,17 @@ export default function ParentNewsletterPage() {
             
             <div className="flex items-center gap-3">
               <button
-                onClick={() => navigate('/newsletters')}
                 className="px-4 py-2 text-gray-600 hover:text-gray-800"
+                onClick={() => {
+ navigate('/newsletters'); 
+}}
               >
                 Back to Newsletters
               </button>
               
               <button
-                onClick={() => handleDeleteNewsletter(currentNewsletter.id!)}
                 className="flex items-center gap-2 px-4 py-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg"
+                onClick={() => handleDeleteNewsletter(currentNewsletter.id!)}
               >
                 <Trash2 className="w-4 h-4" />
                 Delete
@@ -347,9 +366,9 @@ export default function ParentNewsletterPage() {
         <NewsletterEditor
           draft={currentNewsletter}
           isGenerating={regenerateNewsletter.isPending}
+          onRegenerate={handleRegenerateNewsletter}
           onSave={handleSaveDraft}
           onSend={handleSendNewsletter}
-          onRegenerate={handleRegenerateNewsletter}
         />
       </div>
     );
@@ -368,8 +387,10 @@ export default function ParentNewsletterPage() {
           </div>
           
           <button
-            onClick={() => setShowCreateForm(true)}
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            onClick={() => {
+ setShowCreateForm(true); 
+}}
           >
             <PlusCircle className="w-4 h-4" />
             New Newsletter
@@ -428,16 +449,18 @@ export default function ParentNewsletterPage() {
                 
                 <div className="flex items-center gap-2">
                   <button
-                    onClick={() => navigate(`/newsletters/${draft.id}`)}
                     className="flex items-center gap-2 px-3 py-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg"
+                    onClick={() => {
+ navigate(`/newsletters/${draft.id}`); 
+}}
                   >
                     <Edit3 className="w-4 h-4" />
                     Edit
                   </button>
                   
                   <button
-                    onClick={() => handleDeleteNewsletter(draft.id!)}
                     className="flex items-center gap-2 px-3 py-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg"
+                    onClick={() => handleDeleteNewsletter(draft.id!)}
                   >
                     <Trash2 className="w-4 h-4" />
                     Delete
@@ -455,8 +478,10 @@ export default function ParentNewsletterPage() {
             Create your first newsletter to share classroom updates with parents.
           </p>
           <button
-            onClick={() => setShowCreateForm(true)}
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 mx-auto"
+            onClick={() => {
+ setShowCreateForm(true); 
+}}
           >
             <PlusCircle className="w-4 h-4" />
             Create Newsletter

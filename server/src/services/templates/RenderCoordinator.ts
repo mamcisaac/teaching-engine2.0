@@ -6,13 +6,14 @@
 
 import { BaseService } from '../base/BaseService';
 
-import { TemplateRegistry } from './TemplateRegistry';
+import type { FetchContext } from './data/TemplateDataFetcher';
+import { TemplateDataFetcher } from './data/TemplateDataFetcher';
+import type { RenderResult, RenderContext } from './engines/RenderEngine';
+import { PartialManager } from './PartialManager';
+import type { TemplateProvider, TemplateContext, RenderOptions, Template } from './providers/TemplateProvider';
 import { TemplateCache } from './TemplateCache';
 import { TemplateHelpers } from './TemplateHelpers';
-import { PartialManager } from './PartialManager';
-import { TemplateProvider, TemplateContext, RenderOptions, Template } from './providers/TemplateProvider';
-import { RenderResult, RenderContext } from './engines/RenderEngine';
-import { TemplateDataFetcher, FetchContext } from './data/TemplateDataFetcher';
+import { TemplateRegistry } from './TemplateRegistry';
 
 export interface RenderRequest {
   context: TemplateContext;
@@ -484,12 +485,12 @@ export class RenderCoordinator extends BaseService {
   public async getRenderingStats(): Promise<{
     cacheStats: unknown;
     registryStats: unknown;
-    recentRenders: Array<{
+    recentRenders: {
       templateType: string;
       renderTime: number;
       cacheHit: boolean;
       timestamp: Date;
-    }>;
+    }[];
   }> {
     return {
       cacheStats: this.cache.getStats(),
@@ -510,11 +511,11 @@ export class RenderCoordinator extends BaseService {
    * Warm up caches with common templates
    */
   public async warmupCaches(
-    commonTemplates: Array<{
+    commonTemplates: {
       templateType: string;
       templateId?: string;
       sampleData?: Record<string, unknown>;
-    }>
+    }[]
   ): Promise<void> {
     this.logger.info(`Starting cache warmup: templateCount=${commonTemplates.length}`);
 

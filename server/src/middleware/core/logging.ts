@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 
 import { logger } from '../../logger';
@@ -20,7 +20,9 @@ interface LoggedRequest extends Request {
 
 // Sanitize sensitive data from logs
 const sanitizeData = (data: unknown): unknown => {
-  if (!data || typeof data !== 'object') return data;
+  if (!data || typeof data !== 'object') {
+return data;
+}
 
   const sensitive = ['password', 'token', 'secret', 'authorization', 'cookie'];
   const sanitized = { ...data } as Record<string, unknown>;
@@ -183,11 +185,10 @@ export const auditMiddleware = (
     severity?: 'low' | 'medium' | 'high' | 'critical';
     condition?: (req: Request) => boolean;
   } = {},
-) => {
-  return (req: LoggedRequest, res: Response, next: NextFunction): void => {
+) => (req: LoggedRequest, res: Response, next: NextFunction): void => {
     // Check condition if provided
     if (options.condition && !options.condition(req)) {
-      return next();
+      next(); return;
     }
 
     // Log on response finish
@@ -208,7 +209,6 @@ export const auditMiddleware = (
 
     next();
   };
-};
 
 // Performance logging middleware
 export const performanceLoggingMiddleware = (
@@ -264,7 +264,7 @@ export const developmentLoggingMiddleware = (
   next: NextFunction,
 ): void => {
   if (process.env.NODE_ENV !== 'development') {
-    return next();
+    next(); return;
   }
 
   // Log all headers in development

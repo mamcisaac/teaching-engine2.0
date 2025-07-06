@@ -1,8 +1,9 @@
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
+
 import { authService } from '../services/authService';
+import { errorReportingService } from '../services/errorReportingService';
 import type { User } from '../types';
 import logger from '../utils/logger';
-import { errorReportingService } from '../services/errorReportingService';
 interface AuthContextValue {
   user: User | null;
   login: (email: string, password: string) => Promise<void>;
@@ -99,13 +100,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           response?: { data?: { error?: string }; status?: number };
           message?: string;
         };
-        if (err?.response?.data?.error) {
+        if (err.response?.data?.error) {
           errorMessage = err.response.data.error;
-        } else if (err?.response?.status === 401) {
+        } else if (err.response?.status === 401) {
           errorMessage = 'Invalid email or password';
-        } else if (err?.response?.status && err.response.status >= 500) {
+        } else if (err.response?.status && err.response.status >= 500) {
           errorMessage = 'Server error. Please try again later.';
-        } else if (err?.message) {
+        } else if (err.message) {
           errorMessage = err.message;
         }
 
@@ -134,9 +135,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, [updateAuthState]);
 
-  const getToken = useCallback((): string | null => {
-    return authService.getAccessToken();
-  }, []);
+  const getToken = useCallback((): string | null => authService.getAccessToken(), []);
 
   const refreshToken = useCallback(async (): Promise<boolean> => {
     try {
@@ -147,10 +146,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const userData = await authService.verifyAuth();
         updateAuthState(userData);
         return true;
-      } else {
+      } 
         updateAuthState(null);
         return false;
-      }
+      
     } catch (_error) {
       logger.error('Token refresh failed:', _error);
       updateAuthState(null);
@@ -181,8 +180,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         logger.debug('[AuthContext] Initial auth check:', {
           hasStoredUser: !!storedUser,
           hasToken: !!hasToken,
-          storedUser: storedUser,
-          tokenValue: authService.getAccessToken()?.substring(0, 20) + '...',
+          storedUser,
+          tokenValue: `${authService.getAccessToken()?.substring(0, 20)  }...`,
         });
 
         if (!hasToken) {
@@ -200,7 +199,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (storedUser && hasToken) {
           const checkAuthPromise = checkAuth();
           const timeoutPromise = new Promise((_, reject) =>
-            setTimeout(() => reject(new Error('Auth check timeout')), 1500),
+            setTimeout(() => {
+ reject(new Error('Auth check timeout')); 
+}, 1500),
           );
 
           try {
@@ -243,7 +244,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // Auto-refresh token when it's about to expire
   useEffect(() => {
-    if (!isAuthenticated) return;
+    if (!isAuthenticated) {
+return;
+}
 
     const interval = setInterval(async () => {
       try {
@@ -253,7 +256,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     }, 60000); // Check every minute
 
-    return () => clearInterval(interval);
+    return () => {
+ clearInterval(interval); 
+};
   }, [isAuthenticated, error]);
 
   // Retry auth check with exponential backoff when there are connection issues
@@ -264,7 +269,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         checkAuth();
       }, retryDelay);
 
-      return () => clearTimeout(timeoutId);
+      return () => {
+ clearTimeout(timeoutId); 
+};
     }
   }, [error, retryCount, checkAuth]);
 
@@ -285,6 +292,4 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 }
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
+export const useAuth = (): UseQueryResult<unknown> => useContext(AuthContext);

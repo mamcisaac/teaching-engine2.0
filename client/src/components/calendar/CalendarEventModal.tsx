@@ -1,9 +1,10 @@
-import { apiClient } from '../../api/core';
-import { useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { Calendar, Clock } from 'lucide-react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
 import { toast } from 'sonner';
+
+import { apiClient } from '../../api/core';
 import { Button } from '../ui/Button';
 import {
   Dialog,
@@ -66,7 +67,7 @@ export default function CalendarEventModal({
           subject: data.subject,
           duration: 60, // Default duration
         });
-      } else {
+      } 
         // Create a calendar event
         const eventTypeMap: Record<EventType, string> = {
           'assessment': 'CUSTOM',
@@ -84,7 +85,7 @@ export default function CalendarEventModal({
           allDay: data.allDay,
           eventType: eventTypeMap[eventType],
         });
-      }
+      
     },
     onSuccess: () => {
       toast.success(`${eventType === 'lesson' ? 'Lesson' : 'Event'} created successfully`);
@@ -112,15 +113,19 @@ export default function CalendarEventModal({
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={() => onClose()}>
+    <Dialog open={isOpen} onOpenChange={() => {
+ onClose(); 
+}}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle>Create New Event</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label className="block text-sm font-medium mb-1">Event Type</label>
-            <Select value={eventType} onValueChange={(value) => setEventType(value as EventType)}>
+            <Select value={eventType} onValueChange={(value) => {
+ setEventType(value as EventType); 
+}}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
@@ -135,64 +140,64 @@ export default function CalendarEventModal({
           </div>
 
           <div>
-            <label htmlFor="title" className="block text-sm font-medium mb-1">
+            <label className="block text-sm font-medium mb-1" htmlFor="title">
               Title
             </label>
             <input
-              type="text"
+              required
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               id="title"
               name="title"
+              type="text"
               value={formData.title}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
             />
           </div>
 
           <div>
-            <label htmlFor="description" className="block text-sm font-medium mb-1">
+            <label className="block text-sm font-medium mb-1" htmlFor="description">
               Description
             </label>
             <textarea
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               id="description"
               name="description"
+              rows={3}
               value={formData.description}
               onChange={handleInputChange}
-              rows={3}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           {eventType === 'lesson' && (
             <div>
-              <label htmlFor="subject" className="block text-sm font-medium mb-1">
+              <label className="block text-sm font-medium mb-1" htmlFor="subject">
                 Subject
               </label>
               <input
-                type="text"
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 id="subject"
                 name="subject"
+                placeholder="e.g., Math, Language, Science"
+                type="text"
                 value={formData.subject}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="e.g., Math, Language, Science"
               />
             </div>
           )}
 
           <div>
-            <label htmlFor="date" className="block text-sm font-medium mb-1">
+            <label className="block text-sm font-medium mb-1" htmlFor="date">
               <Calendar className="inline h-4 w-4 mr-1" />
               Date
             </label>
             <input
-              type="date"
+              required
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               id="date"
               name="date"
+              type="date"
               value={formData.date}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
             />
           </div>
 
@@ -201,11 +206,11 @@ export default function CalendarEventModal({
               <div>
                 <label className="flex items-center space-x-2">
                   <input
-                    type="checkbox"
-                    name="allDay"
                     checked={formData.allDay}
-                    onChange={handleInputChange}
                     className="rounded border-gray-300"
+                    name="allDay"
+                    type="checkbox"
+                    onChange={handleInputChange}
                   />
                   <span className="text-sm font-medium">All Day Event</span>
                 </label>
@@ -214,31 +219,31 @@ export default function CalendarEventModal({
               {!formData.allDay && (
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="startTime" className="block text-sm font-medium mb-1">
+                    <label className="block text-sm font-medium mb-1" htmlFor="startTime">
                       <Clock className="inline h-4 w-4 mr-1" />
                       Start Time
                     </label>
                     <input
-                      type="time"
+                      className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       id="startTime"
                       name="startTime"
+                      type="time"
                       value={formData.startTime}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                   <div>
-                    <label htmlFor="endTime" className="block text-sm font-medium mb-1">
+                    <label className="block text-sm font-medium mb-1" htmlFor="endTime">
                       <Clock className="inline h-4 w-4 mr-1" />
                       End Time
                     </label>
                     <input
-                      type="time"
+                      className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       id="endTime"
                       name="endTime"
+                      type="time"
                       value={formData.endTime}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                 </div>
@@ -250,7 +255,7 @@ export default function CalendarEventModal({
             <Button type="button" variant="outline" onClick={onClose}>
               Cancel
             </Button>
-            <Button type="submit" disabled={createEventMutation.isPending}>
+            <Button disabled={createEventMutation.isPending} type="submit">
               {createEventMutation.isPending ? 'Creating...' : 'Create Event'}
             </Button>
           </div>

@@ -1,8 +1,9 @@
-import React from 'react';
-import { Card } from '../ui/card';
-import { Button } from '../ui/Button';
 import { MapPin, Book, Target, FileText, CheckCircle } from 'lucide-react';
-import { PEICurriculumAlignment, PEILearningOutcome } from '../../types/frenchImmersion';
+import React from 'react';
+
+import type { PEICurriculumAlignment, PEILearningOutcome } from '../../types/frenchImmersion';
+import { Button } from '../ui/Button';
+import { Card } from '../ui/card';
 
 interface PEICurriculumConnectorProps {
   grade: number;
@@ -185,22 +186,20 @@ export default function PEICurriculumConnector({
       return PEI_GRADE1_OUTCOMES;
     }
 
-    return Object.entries(PEI_GRADE1_OUTCOMES).reduce(
+    return Object.entries(PEI_GRADE1_OUTCOMES).reduce<Record<string, PEICurriculumAlignment>>(
       (acc, [key, value]) => {
         if (value.subject.toLowerCase().includes(subject.toLowerCase())) {
           acc[key] = value;
         }
         return acc;
       },
-      {} as Record<string, PEICurriculumAlignment>,
+      {},
     );
   };
 
   const relevantOutcomes = getRelevantOutcomes();
 
-  const isOutcomeSelected = (outcome: PEILearningOutcome) => {
-    return selectedOutcomes.some((o) => o.code === outcome.code);
-  };
+  const isOutcomeSelected = (outcome: PEILearningOutcome) => selectedOutcomes.some((o) => o.code === outcome.code);
 
   const toggleOutcome = (outcome: PEILearningOutcome) => {
     if (onOutcomeSelect) {
@@ -228,13 +227,15 @@ export default function PEICurriculumConnector({
       <Card className="p-4">
         <div className="flex gap-4 items-center">
           <input
+            className="flex-1 p-2 border rounded-lg"
+            placeholder="Search outcomes..."
             type="text"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search outcomes..."
-            className="flex-1 p-2 border rounded-lg"
+            onChange={(e) => {
+ setSearchTerm(e.target.value); 
+}}
           />
-          <Button variant="outline" size="sm">
+          <Button size="sm" variant="outline">
             Filter by Strand
           </Button>
         </div>
@@ -245,7 +246,9 @@ export default function PEICurriculumConnector({
         <Card key={strandName} className="overflow-hidden">
           <div
             className="p-4 bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors"
-            onClick={() => setExpandedStrand(expandedStrand === strandName ? null : strandName)}
+            onClick={() => {
+ setExpandedStrand(expandedStrand === strandName ? null : strandName); 
+}}
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -321,11 +324,13 @@ export default function PEICurriculumConnector({
                     </div>
 
                     <Button
+                      className="ml-4"
+                      size="sm"
                       type="button"
                       variant={isOutcomeSelected(outcome) ? 'primary' : 'outline'}
-                      size="sm"
-                      onClick={() => toggleOutcome(outcome)}
-                      className="ml-4"
+                      onClick={() => {
+ toggleOutcome(outcome); 
+}}
                     >
                       {isOutcomeSelected(outcome) ? 'Selected' : 'Select'}
                     </Button>

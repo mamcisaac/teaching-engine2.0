@@ -14,12 +14,12 @@ interface UIState {
   
   // Modals and overlays
   activeModals: string[];
-  activeToasts: Array<{
+  activeToasts: {
     id: string;
     message: string;
     type: 'success' | 'error' | 'warning' | 'info';
     duration?: number;
-  }>;
+  }[];
   
   // Loading states
   globalLoading: boolean;
@@ -27,7 +27,7 @@ interface UIState {
   
   // Navigation
   activeNavSection: string | null;
-  breadcrumbs: Array<{ label: string; href?: string }>;
+  breadcrumbs: { label: string; href?: string }[];
   
   // Preferences
   showTips: boolean;
@@ -51,7 +51,7 @@ interface UIState {
   setGlobalLoading: (loading: boolean) => void;
   setLoadingOverlay: (message: string | null) => void;
   setActiveNavSection: (section: string | null) => void;
-  setBreadcrumbs: (breadcrumbs: Array<{ label: string; href?: string }>) => void;
+  setBreadcrumbs: (breadcrumbs: { label: string; href?: string }[]) => void;
   updatePreferences: (prefs: Partial<{
     showTips: boolean;
     autoSave: boolean;
@@ -62,7 +62,9 @@ interface UIState {
 
 // Helper function to detect system theme preference
 const getSystemTheme = (): 'light' | 'dark' => {
-  if (typeof window === 'undefined') return 'light';
+  if (typeof window === 'undefined') {
+return 'light';
+}
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 };
 
@@ -159,9 +161,7 @@ export const useUIStore = create<UIState>()(
         });
       },
       
-      isModalOpen: (modalId: string) => {
-        return get().activeModals.includes(modalId);
-      },
+      isModalOpen: (modalId: string) => get().activeModals.includes(modalId),
       
       showToast: (message: string, type: 'success' | 'error' | 'warning' | 'info' = 'info', duration = 5000) => {
         const id = `toast-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
@@ -208,7 +208,7 @@ export const useUIStore = create<UIState>()(
         });
       },
       
-      setBreadcrumbs: (breadcrumbs: Array<{ label: string; href?: string }>) => {
+      setBreadcrumbs: (breadcrumbs: { label: string; href?: string }[]) => {
         set((state) => {
           state.breadcrumbs = breadcrumbs;
         });
@@ -264,14 +264,14 @@ if (typeof window !== 'undefined') {
 }
 
 // Selector hooks for performance
-export const useTheme = () => useUIStore(state => ({ 
+export const useTheme = (): UseQueryResult<unknown> => useUIStore(state => ({ 
   theme: state.theme, 
   effectiveTheme: state.effectiveTheme,
   setTheme: state.setTheme,
   toggleTheme: state.toggleTheme
 }));
 
-export const useSidebar = () => useUIStore(state => ({
+export const useSidebar = (): UseQueryResult<unknown> => useUIStore(state => ({
   collapsed: state.sidebarCollapsed,
   width: state.sidebarWidth,
   setCollapsed: state.setSidebarCollapsed,
@@ -279,7 +279,7 @@ export const useSidebar = () => useUIStore(state => ({
   setWidth: state.setSidebarWidth
 }));
 
-export const useModals = () => useUIStore(state => ({
+export const useModals = (): UseQueryResult<unknown> => useUIStore(state => ({
   activeModals: state.activeModals,
   openModal: state.openModal,
   closeModal: state.closeModal,
@@ -287,28 +287,28 @@ export const useModals = () => useUIStore(state => ({
   isModalOpen: state.isModalOpen
 }));
 
-export const useToasts = () => useUIStore(state => ({
+export const useToasts = (): UseQueryResult<unknown> => useUIStore(state => ({
   toasts: state.activeToasts,
   showToast: state.showToast,
   hideToast: state.hideToast,
   clearAllToasts: state.clearAllToasts
 }));
 
-export const useLoading = () => useUIStore(state => ({
+export const useLoading = (): UseQueryResult<unknown> => useUIStore(state => ({
   globalLoading: state.globalLoading,
   loadingOverlay: state.loadingOverlay,
   setGlobalLoading: state.setGlobalLoading,
   setLoadingOverlay: state.setLoadingOverlay
 }));
 
-export const useNavigation = () => useUIStore(state => ({
+export const useNavigation = (): UseQueryResult<unknown> => useUIStore(state => ({
   activeSection: state.activeNavSection,
   breadcrumbs: state.breadcrumbs,
   setActiveSection: state.setActiveNavSection,
   setBreadcrumbs: state.setBreadcrumbs
 }));
 
-export const useUIPreferences = () => useUIStore(state => ({
+export const useUIPreferences = (): UseQueryResult<unknown> => useUIStore(state => ({
   showTips: state.showTips,
   autoSave: state.autoSave,
   compactMode: state.compactMode,

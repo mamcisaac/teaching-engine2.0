@@ -4,27 +4,27 @@ import { apiClient } from '../../core/client';
 // API endpoints
 export const curriculumApi = {
   // Subjects
-  getSubjects: async () => {
+  getSubjects: async (): Promise<Subject[]> => {
     const { data } = await apiClient.get<Subject[]>('/api/subjects');
     return data;
   },
 
-  getSubject: async (id: number) => {
+  getSubject: async (id: number): Promise<Subject> => {
     const { data } = await apiClient.get<Subject>(`/api/subjects/${id}`);
     return data;
   },
 
-  createSubject: async (subject: Omit<Subject, 'id' | 'createdAt' | 'updatedAt'>) => {
+  createSubject: async (subject: Omit<Subject, 'id' | 'createdAt' | 'updatedAt'>): Promise<Subject> => {
     const { data } = await apiClient.post<Subject>('/api/subjects', subject);
     return data;
   },
 
-  updateSubject: async ({ id, ...subject }: Subject) => {
+  updateSubject: async ({ id, ...subject }: Subject): Promise<Subject> => {
     const { data } = await apiClient.put<Subject>(`/api/subjects/${id}`, subject);
     return data;
   },
 
-  deleteSubject: async (id: number) => {
+  deleteSubject: async (id: number): Promise<void> => {
     await apiClient.delete(`/api/subjects/${id}`);
   },
 
@@ -34,29 +34,29 @@ export const curriculumApi = {
     grade?: number;
     strand?: string;
     keyword?: string;
-  }) => {
+  }): Promise<CurriculumExpectation[]> => {
     const { data } = await apiClient.get<CurriculumExpectation[]>('/api/curriculum-expectations', {
       params: filters,
     });
     return data;
   },
 
-  getCurriculumExpectation: async (id: number) => {
+  getCurriculumExpectation: async (id: number): Promise<CurriculumExpectation> => {
     const { data } = await apiClient.get<CurriculumExpectation>(`/api/curriculum-expectations/${id}`);
     return data;
   },
 
-  createCurriculumExpectation: async (expectation: Omit<CurriculumExpectation, 'id'>) => {
+  createCurriculumExpectation: async (expectation: Omit<CurriculumExpectation, 'id'>): Promise<CurriculumExpectation> => {
     const { data } = await apiClient.post<CurriculumExpectation>('/api/curriculum-expectations', expectation);
     return data;
   },
 
-  updateCurriculumExpectation: async ({ id, ...expectation }: CurriculumExpectation) => {
+  updateCurriculumExpectation: async ({ id, ...expectation }: CurriculumExpectation): Promise<CurriculumExpectation> => {
     const { data } = await apiClient.put<CurriculumExpectation>(`/api/curriculum-expectations/${id}`, expectation);
     return data;
   },
 
-  deleteCurriculumExpectation: async (id: number) => {
+  deleteCurriculumExpectation: async (id: number): Promise<void> => {
     await apiClient.delete(`/api/curriculum-expectations/${id}`);
   },
 
@@ -66,39 +66,43 @@ export const curriculumApi = {
     subject?: string;
     theme?: string;
     userId?: number;
-  }) => {
+  }): Promise<ThematicUnit[]> => {
     const { data } = await apiClient.get<ThematicUnit[]>('/api/thematic-units', {
       params: filters,
     });
     return data;
   },
 
-  getThematicUnit: async (id: number) => {
+  getThematicUnit: async (id: number): Promise<ThematicUnit> => {
     const { data } = await apiClient.get<ThematicUnit>(`/api/thematic-units/${id}`);
     return data;
   },
 
-  createThematicUnit: async (unit: Omit<ThematicUnit, 'id' | 'createdAt' | 'updatedAt'>) => {
+  createThematicUnit: async (unit: Omit<ThematicUnit, 'id' | 'createdAt' | 'updatedAt'>): Promise<ThematicUnit> => {
     const { data } = await apiClient.post<ThematicUnit>('/api/thematic-units', unit);
     return data;
   },
 
-  updateThematicUnit: async ({ id, ...unit }: ThematicUnit) => {
+  updateThematicUnit: async ({ id, ...unit }: ThematicUnit): Promise<ThematicUnit> => {
     const { data } = await apiClient.put<ThematicUnit>(`/api/thematic-units/${id}`, unit);
     return data;
   },
 
-  deleteThematicUnit: async (id: number) => {
+  deleteThematicUnit: async (id: number): Promise<void> => {
     await apiClient.delete(`/api/thematic-units/${id}`);
   },
 
-  duplicateThematicUnit: async (id: number) => {
+  duplicateThematicUnit: async (id: number): Promise<ThematicUnit> => {
     const { data } = await apiClient.post<ThematicUnit>(`/api/thematic-units/${id}/duplicate`);
     return data;
   },
 
   // Import/Export
-  importCurriculum: async (file: File, format: 'csv' | 'pdf' | 'docx') => {
+  importCurriculum: async (file: File, format: 'csv' | 'pdf' | 'docx'): Promise<{
+    imported: number;
+    failed: number;
+    errors?: string[];
+  }> => {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('format', format);
@@ -119,20 +123,20 @@ export const curriculumApi = {
     subjectIds?: number[];
     grades?: number[];
     format: 'csv' | 'pdf' | 'json';
-  }) => {
-    const { data } = await apiClient.post('/api/curriculum/export', filters, {
+  }): Promise<Blob> => {
+    const response = await apiClient.post<Blob>('/api/curriculum/export', filters, {
       responseType: 'blob',
     });
-    return data;
+    return response.data;
   },
 
   // Strands and topics
-  getStrands: async (subjectId: number) => {
+  getStrands: async (subjectId: number): Promise<string[]> => {
     const { data } = await apiClient.get<string[]>(`/api/subjects/${subjectId}/strands`);
     return data;
   },
 
-  getTopics: async (subjectId: number, strand: string) => {
+  getTopics: async (subjectId: number, strand: string): Promise<string[]> => {
     const { data } = await apiClient.get<string[]>(`/api/subjects/${subjectId}/strands/${strand}/topics`);
     return data;
   },
@@ -142,7 +146,10 @@ export const curriculumApi = {
     subjects?: string[];
     grades?: number[];
     strands?: string[];
-  }) => {
+  }): Promise<{
+    expectations: CurriculumExpectation[];
+    units: ThematicUnit[];
+  }> => {
     const { data } = await apiClient.get<{
       expectations: CurriculumExpectation[];
       units: ThematicUnit[];

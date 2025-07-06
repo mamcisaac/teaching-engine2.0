@@ -1,8 +1,8 @@
-import { Prisma, PrismaClient } from '@prisma/client';
+import type { Prisma, PrismaClient } from '@prisma/client';
 
-import { ETFOLessonPlanRepository } from '../repositories/ETFOLessonPlanRepository';
-import { RepositoryFactory } from '../repositories/RepositoryFactory';
 import logger from '../logger';
+import type { ETFOLessonPlanRepository } from '../repositories/ETFOLessonPlanRepository';
+import { RepositoryFactory } from '../repositories/RepositoryFactory';
 
 import { BaseService } from './base/BaseService';
 
@@ -33,8 +33,7 @@ export interface ETFOLessonPlanCreateData {
   userId: number;
 }
 
-export interface ETFOLessonPlanUpdateData
-  extends Partial<Omit<ETFOLessonPlanCreateData, 'unitPlanId' | 'userId'>> {}
+export type ETFOLessonPlanUpdateData = Partial<Omit<ETFOLessonPlanCreateData, 'unitPlanId' | 'userId'>>
 
 export interface ETFOLessonPlanFilters {
   unitPlanId?: string;
@@ -217,7 +216,7 @@ export class ETFOLessonPlanService extends BaseService {
 
       // Create minimal duplicate data with only the essential fields
       const createData = {
-        userId: userId,
+        userId,
         unitPlanId: originalPlan.unitPlanId,
         title: `${originalPlan.title} (Copy)`,
         date: originalPlan.date.toISOString(),

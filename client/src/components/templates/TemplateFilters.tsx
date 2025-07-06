@@ -1,8 +1,9 @@
 import { X, Filter } from 'lucide-react';
-import { Button } from '../ui/Button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+
 import type { TemplateSearchOptions, TemplateCategory } from '../../types/template';
 import { TEMPLATE_CATEGORIES, TEMPLATE_TYPES } from '../../types/template';
+import { Button } from '../ui/Button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 
 interface TemplateFiltersProps {
   filters: TemplateSearchOptions;
@@ -54,10 +55,10 @@ export default function TemplateFilters({
         </h3>
         {hasActiveFilters && (
           <Button
-            variant="ghost"
-            size="sm"
-            onClick={clearFilters}
             className="text-gray-500 hover:text-gray-700"
+            size="sm"
+            variant="ghost"
+            onClick={clearFilters}
           >
             <X className="h-4 w-4 mr-1" />
             Clear All
@@ -69,11 +70,13 @@ export default function TemplateFilters({
         {/* Search */}
         <div className="md:col-span-2 lg:col-span-4">
           <input
-            type="text"
-            placeholder="Search templates..."
-            value={filters.search || ''}
-            onChange={(e) => updateFilter('search', e.target.value)}
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Search templates..."
+            type="text"
+            value={filters.search || ''}
+            onChange={(e) => {
+ updateFilter('search', e.target.value); 
+}}
           />
         </div>
 
@@ -82,7 +85,9 @@ export default function TemplateFilters({
           <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
           <Select
             value={filters.type || 'all'}
-            onValueChange={(value) => updateFilter('type', value === 'all' ? undefined : value)}
+            onValueChange={(value) => {
+ updateFilter('type', value === 'all' ? undefined : value); 
+}}
           >
             <SelectTrigger>
               <SelectValue />
@@ -103,8 +108,9 @@ export default function TemplateFilters({
           <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
           <Select
             value={filters.category || 'all'}
-            onValueChange={(value) =>
-              updateFilter('category', value === 'all' ? undefined : (value as TemplateCategory))
+            onValueChange={(value) => {
+ updateFilter('category', value === 'all' ? undefined : (value as TemplateCategory)); 
+}
             }
           >
             <SelectTrigger>
@@ -126,7 +132,9 @@ export default function TemplateFilters({
           <label className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
           <Select
             value={filters.subject || 'all'}
-            onValueChange={(value) => updateFilter('subject', value === 'all' ? undefined : value)}
+            onValueChange={(value) => {
+ updateFilter('subject', value === 'all' ? undefined : value); 
+}}
           >
             <SelectTrigger>
               <SelectValue />
@@ -148,8 +156,9 @@ export default function TemplateFilters({
           <div className="flex gap-2 items-center">
             <Select
               value={filters.gradeMin?.toString() || 'all'}
-              onValueChange={(value) =>
-                updateFilter('gradeMin', value === 'all' ? undefined : parseInt(value))
+              onValueChange={(value) => {
+ updateFilter('gradeMin', value === 'all' ? undefined : parseInt(value)); 
+}
               }
             >
               <SelectTrigger className="flex-1">
@@ -167,8 +176,9 @@ export default function TemplateFilters({
             <span className="text-gray-500">to</span>
             <Select
               value={filters.gradeMax?.toString() || 'all'}
-              onValueChange={(value) =>
-                updateFilter('gradeMax', value === 'all' ? undefined : parseInt(value))
+              onValueChange={(value) => {
+ updateFilter('gradeMax', value === 'all' ? undefined : parseInt(value)); 
+}
               }
             >
               <SelectTrigger className="flex-1">
@@ -193,11 +203,12 @@ export default function TemplateFilters({
           <label className="block text-sm font-medium text-gray-700 mb-1">Sort By</label>
           <Select
             value={filters.sortBy || 'usageCount'}
-            onValueChange={(value) =>
-              updateFilter(
+            onValueChange={(value) => {
+ updateFilter(
                 'sortBy',
                 value as 'title' | 'usageCount' | 'averageRating' | 'createdAt' | 'lastUsedAt',
-              )
+              ); 
+}
             }
           >
             <SelectTrigger>
@@ -217,7 +228,9 @@ export default function TemplateFilters({
           <label className="block text-sm font-medium text-gray-700 mb-1">Order</label>
           <Select
             value={filters.sortOrder || 'desc'}
-            onValueChange={(value) => updateFilter('sortOrder', value as 'asc' | 'desc')}
+            onValueChange={(value) => {
+ updateFilter('sortOrder', value as 'asc' | 'desc'); 
+}}
           >
             <SelectTrigger>
               <SelectValue />
@@ -234,19 +247,23 @@ export default function TemplateFilters({
       <div className="flex flex-wrap gap-2">
         <label className="flex items-center space-x-2 text-sm">
           <input
-            type="checkbox"
             checked={filters.isSystem === true}
-            onChange={(e) => updateFilter('isSystem', e.target.checked ? true : undefined)}
             className="rounded border-gray-300"
+            type="checkbox"
+            onChange={(e) => {
+ updateFilter('isSystem', e.target.checked ? true : undefined); 
+}}
           />
           <span>System Templates Only</span>
         </label>
         <label className="flex items-center space-x-2 text-sm">
           <input
-            type="checkbox"
             checked={filters.isPublic === true}
-            onChange={(e) => updateFilter('isPublic', e.target.checked ? true : undefined)}
             className="rounded border-gray-300"
+            type="checkbox"
+            onChange={(e) => {
+ updateFilter('isPublic', e.target.checked ? true : undefined); 
+}}
           />
           <span>Public Templates Only</span>
         </label>

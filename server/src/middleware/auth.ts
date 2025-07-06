@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from 'express';
 import bcryptjs from 'bcryptjs';
+import type { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
 import logger from '../logger.js';
@@ -254,8 +254,8 @@ export async function register(req: Request, res: Response, next: NextFunction):
       logger.info(
         {
           userResult: user,
-          userId: user?.id,
-          email: user?.email,
+          userId: user.id,
+          email: user.email,
           userType: typeof user,
           userKeys: user ? Object.keys(user) : [],
         },

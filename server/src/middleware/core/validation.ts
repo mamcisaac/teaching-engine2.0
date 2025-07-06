@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
-import { Request, Response, NextFunction } from 'express';
-import { z, ZodError, ZodSchema } from 'zod';
+import type { Request, Response, NextFunction } from 'express';
+import type { ZodSchema } from 'zod';
+import { z, ZodError } from 'zod';
 
-import { ValidationError } from '../../utils/errors';
 import { logger } from '../../logger';
+import { ValidationError } from '../../utils/errors';
 
 // Extended request with validated data
 export interface ValidatedRequest<T = any> extends Request {
@@ -84,9 +85,15 @@ export const validate = <T>(
 
       // Replace original data with validated data if stripUnknown is true
       if (stripUnknown) {
-        if (sources.includes('body')) req.body = validated;
-        if (sources.includes('query')) req.query = validated as any;
-        if (sources.includes('params')) req.params = validated as any;
+        if (sources.includes('body')) {
+req.body = validated;
+}
+        if (sources.includes('query')) {
+req.query = validated as any;
+}
+        if (sources.includes('params')) {
+req.params = validated as any;
+}
       }
 
       next();
@@ -106,7 +113,7 @@ export const validate = <T>(
         // Use custom _error handler if provided
         if (customErrorHandler) {
           const customError = customErrorHandler(_error, req);
-          return next(customError);
+          next(customError); return;
         }
 
         // Format validation _errors
@@ -147,27 +154,24 @@ export const validateIf = <T>(
   condition: (req: Request) => boolean,
   schema: ZodSchema<T>,
   options?: ValidationOptions,
-) => {
-  return (req: ValidatedRequest<T>, res: Response, next: NextFunction) => {
+) => (req: ValidatedRequest<T>, res: Response, next: NextFunction) => {
     if (condition(req)) {
-      return validate(schema, options)(req, res, next);
+      validate(schema, options)(req, res, next); return;
     }
     next();
   };
-};
 
 // Multiple schema validation (OR)
 export const validateOneOf = <T extends ZodSchema<unknown>[]>(
   schemas: T,
   options?: ValidationOptions,
-) => {
-  return async (req: ValidatedRequest, res: Response, next: NextFunction) => {
+) => async (req: ValidatedRequest, res: Response, next: NextFunction) => {
     const errors: ZodError[] = [];
 
     for (const schema of schemas) {
       try {
         await validate(schema, options)(req, res, () => {});
-        return next(); // Success on first valid schema
+        next(); return; // Success on first valid schema
       } catch (_error) {
         if (_error instanceof ZodError) {
           errors.push(_error);
@@ -179,17 +183,14 @@ export const validateOneOf = <T extends ZodSchema<unknown>[]>(
     const combinedErrors = errors.flatMap((e) => e.errors);
     next(new ValidationError('None of the validation schemas passed', combinedErrors));
   };
-};
 
 // Schema composition helpers
-export const mergeSchemas = <T extends ZodSchema<unknown>[]>(...schemas: T): ZodSchema => {
-  return schemas.reduce((merged, schema) => {
+export const mergeSchemas = <T extends ZodSchema<unknown>[]>(...schemas: T): ZodSchema => schemas.reduce((merged, schema) => {
     if ('merge' in merged && typeof merged.merge === 'function') {
       return merged.merge(schema);
     }
     return schema;
   }, z.object({}));
-};
 
 // Common validation patterns
 export const commonValidators = {
@@ -239,14 +240,11 @@ export const sanitizeRequest = (
     query?: string[];
     params?: string[];
   } = {},
-) => {
-  return (req: Request, _res: Response, next: NextFunction) => {
-    const sanitizeHtml = (str: string): string => {
-      return str
+) => (req: Request, _res: Response, next: NextFunction) => {
+    const sanitizeHtml = (str: string): string => str
         .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
         .replace(/<[^>]+>/g, '')
         .trim();
-    };
 
     // Sanitize specified fields
     if (fieldsToSanitize.body && req.body) {
@@ -260,7 +258,7 @@ export const sanitizeRequest = (
     if (fieldsToSanitize.query && req.query) {
       fieldsToSanitize.query.forEach((field) => {
         if (req.query[field] && typeof req.query[field] === 'string') {
-          req.query[field] = sanitizeHtml(req.query[field] as string);
+          req.query[field] = sanitizeHtml(req.query[field]);
         }
       });
     }
@@ -275,13 +273,11 @@ export const sanitizeRequest = (
 
     next();
   };
-};
 
 // Type coercion middleware for query parameters
 export const coerceQueryParams = (
   coercions: Record<string, 'number' | 'boolean' | 'array' | 'date'>,
-) => {
-  return (req: Request, _res: Response, next: NextFunction) => {
+) => (req: Request, _res: Response, next: NextFunction) => {
     for (const [param, type] of Object.entries(coercions)) {
       if (req.query[param] !== undefined) {
         const value = req.query[param] as string;
@@ -305,4 +301,3 @@ export const coerceQueryParams = (
 
     next();
   };
-};

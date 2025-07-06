@@ -1,7 +1,7 @@
 // Centralized middleware exports
 
 // Import dependencies first
-import { Application, Request, Response } from 'express';
+import type { Application, Request, Response } from 'express';
 
 // Core middleware modules
 export * from './core/composer';
@@ -43,9 +43,9 @@ export * from './rateLimit';
 // Import and re-export AuditEventType only once
 import { AuditEventType } from './auditLogger';
 import { middleware } from './chains';
-import { applySecurityMiddleware } from './core/security';
 import { errorLoggingMiddleware, errorHandlerMiddleware, notFoundHandler } from './core/error';
-import { rateLimiters } from './rateLimit';
+import { applySecurityMiddleware } from './core/security';
+import type { rateLimiters } from './rateLimit';
 
 export { AuditEventType };
 

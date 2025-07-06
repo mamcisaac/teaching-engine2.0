@@ -1,5 +1,5 @@
-import { UnitPlanFormData } from '../components/forms/UnitPlanForm';
-import { LessonPlanFormData } from '../components/forms/LessonPlanForm';
+import type { LessonPlanFormData } from '../components/forms/LessonPlanForm';
+import type { UnitPlanFormData } from '../components/forms/UnitPlanForm';
 
 export interface ValidationError {
   field: string;
@@ -18,7 +18,7 @@ export function validateUnitPlan(data: UnitPlanFormData): ValidationResult {
   const errors: Record<string, string> = {};
 
   // Required field validation
-  if (!data.title?.trim()) {
+  if (!data.title.trim()) {
     errors.title = 'Unit title is required';
   }
 
@@ -81,12 +81,12 @@ export function validateUnitPlan(data: UnitPlanFormData): ValidationResult {
   }
 
   // Array validation - ensure at least one meaningful entry
-  const hasEssentialQuestions = data.essentialQuestions?.some((q) => q.trim().length > 0);
+  const hasEssentialQuestions = data.essentialQuestions.some((q) => q.trim().length > 0);
   if (!hasEssentialQuestions) {
     errors.essentialQuestions = 'At least one essential question is required';
   }
 
-  const hasSuccessCriteria = data.successCriteria?.some((c) => c.trim().length > 0);
+  const hasSuccessCriteria = data.successCriteria.some((c) => c.trim().length > 0);
   if (!hasSuccessCriteria) {
     errors.successCriteria = 'At least one success criteria is required';
   }
@@ -104,7 +104,7 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
   const errors: Record<string, string> = {};
 
   // Required field validation
-  if (!data.title?.trim()) {
+  if (!data.title.trim()) {
     errors.title = 'Lesson title is required';
   }
 
@@ -167,7 +167,7 @@ export function validateLessonPlan(data: LessonPlanFormData): ValidationResult {
   }
 
   // Materials validation - at least one meaningful material
-  const hasMaterials = data.materials?.some((m) => m.trim().length > 0);
+  const hasMaterials = data.materials.some((m) => m.trim().length > 0);
   if (!hasMaterials) {
     errors.materials = 'At least one material or resource is required';
   }
@@ -211,30 +211,46 @@ export function validateField(
 ): string | null {
   switch (fieldName) {
     case 'title':
-      if (typeof value !== 'string' || !value.trim()) return 'Title is required';
-      if (value.length > 200) return 'Title must be 200 characters or less';
+      if (typeof value !== 'string' || !value.trim()) {
+return 'Title is required';
+}
+      if (value.length > 200) {
+return 'Title must be 200 characters or less';
+}
       return null;
 
     case 'startDate':
     case 'endDate':
     case 'date': {
-      if (!value) return 'Date is required';
+      if (!value) {
+return 'Date is required';
+}
       const date = new Date(value as string | number | Date);
-      if (isNaN(date.getTime())) return 'Invalid date format';
+      if (isNaN(date.getTime())) {
+return 'Invalid date format';
+}
       return null;
     }
 
     case 'estimatedHours': {
       const numValue = typeof value === 'number' ? value : Number(value);
-      if (!numValue || numValue <= 0) return 'Must be greater than 0';
-      if (numValue > 500) return 'Seems unreasonably high (max 500)';
+      if (!numValue || numValue <= 0) {
+return 'Must be greater than 0';
+}
+      if (numValue > 500) {
+return 'Seems unreasonably high (max 500)';
+}
       return null;
     }
 
     case 'duration': {
       const numValue = typeof value === 'number' ? value : Number(value);
-      if (!numValue || numValue <= 0) return 'Duration must be greater than 0';
-      if (numValue > 480) return 'Cannot exceed 480 minutes (8 hours)';
+      if (!numValue || numValue <= 0) {
+return 'Duration must be greater than 0';
+}
+      if (numValue > 480) {
+return 'Cannot exceed 480 minutes (8 hours)';
+}
       return null;
     }
 

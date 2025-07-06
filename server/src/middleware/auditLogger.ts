@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 
 import logger from '../logger.js';
 
@@ -114,7 +114,7 @@ class AuditLogger {
     eventType: AuditEventType,
     action: string,
     details?: Record<string, unknown>,
-    success: boolean = true,
+    success = true,
     errorMessage?: string,
   ): AuditEvent {
     return {
@@ -136,13 +136,17 @@ class AuditLogger {
   }
 
   private redactEmail(email?: string): string | undefined {
-    if (!email) return undefined;
+    if (!email) {
+return undefined;
+}
     const [local, domain] = email.split('@');
     return `${local.substring(0, 2)}***@${domain}`;
   }
 
   private maskIP(ip?: string): string | undefined {
-    if (!ip) return undefined;
+    if (!ip) {
+return undefined;
+}
     const parts = ip.split('.');
     if (parts.length === 4) {
       return `${parts[0]}.${parts[1]}.xxx.xxx`;
@@ -151,7 +155,9 @@ class AuditLogger {
   }
 
   private sanitizeDetails(details?: Record<string, unknown>): Record<string, unknown> | undefined {
-    if (!details) return undefined;
+    if (!details) {
+return undefined;
+}
 
     const sanitized = { ...details };
 
@@ -201,9 +207,15 @@ class AuditLogger {
       AuditEventType.RATE_LIMIT_EXCEEDED,
     ];
 
-    if (criticalEvents.includes(eventType)) return 'critical';
-    if (highEvents.includes(eventType)) return 'high';
-    if (mediumEvents.includes(eventType)) return 'medium';
+    if (criticalEvents.includes(eventType)) {
+return 'critical';
+}
+    if (highEvents.includes(eventType)) {
+return 'high';
+}
+    if (mediumEvents.includes(eventType)) {
+return 'medium';
+}
     return 'low';
   }
 

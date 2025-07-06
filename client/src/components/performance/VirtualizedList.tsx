@@ -80,9 +80,7 @@ export function VirtualizedList<T>({
   }, [items, visibleRange.start, visibleRange.end]);
 
   // Total height for scrollbar
-  const totalHeight = useMemo(() => {
-    return items.length * itemHeight;
-  }, [items.length, itemHeight]);
+  const totalHeight = useMemo(() => items.length * itemHeight, [items.length, itemHeight]);
 
   // Debounced scroll end handler
   const debouncedScrollEnd = useMemo(
@@ -104,16 +102,16 @@ export function VirtualizedList<T>({
   );
 
   // Cleanup debounced function
-  useEffect(() => {
-    return () => {
+  useEffect(() => () => {
       debouncedScrollEnd.cancel();
-    };
-  }, [debouncedScrollEnd]);
+    }, [debouncedScrollEnd]);
 
   // Scroll to position (useful for external control)
   const _scrollToIndex = useCallback(
     (index: number, align: 'start' | 'center' | 'end' = 'start') => {
-      if (!containerRef.current) return;
+      if (!containerRef.current) {
+return;
+}
 
       let scrollTop = index * itemHeight;
 
@@ -134,8 +132,8 @@ export function VirtualizedList<T>({
   return (
     <div
       ref={containerRef}
-      data-testid="virtualized-list-container"
       className={`overflow-auto ${className}`}
+      data-testid="virtualized-list-container"
       style={{ height }}
       onScroll={handleScroll}
     >
@@ -169,12 +167,10 @@ export function VirtualizedList<T>({
 export function withVirtualizedMemo<T>(
   Component: React.ComponentType<{ item: T; index: number; style: React.CSSProperties }>,
 ) {
-  return React.memo(Component, (prevProps, nextProps) => {
-    return (
+  return React.memo(Component, (prevProps, nextProps) => (
       prevProps.index === nextProps.index &&
       prevProps.item === nextProps.item &&
       prevProps.style.top === nextProps.style.top &&
       prevProps.style.height === nextProps.style.height
-    );
-  });
+    ));
 }

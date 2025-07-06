@@ -1,7 +1,8 @@
-import { apiClient } from '../api/core/client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { handleApiError } from '../utils/errorHandler';
 import { toast } from 'sonner';
+
+import { apiClient } from '../api/core/client';
+import { handleApiError } from '../utils/errorHandler';
 
 // Types
 export interface CurriculumExpectation {
@@ -189,10 +190,18 @@ export function useCurriculumExpectations(filters?: {
     queryKey: ['curriculum-expectations', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.subject) params.append('subject', filters.subject);
-      if (filters?.grade) params.append('grade', filters.grade.toString());
-      if (filters?.strand) params.append('strand', filters.strand);
-      if (filters?.search) params.append('search', filters.search);
+      if (filters?.subject) {
+params.append('subject', filters.subject);
+}
+      if (filters?.grade) {
+params.append('grade', filters.grade.toString());
+}
+      if (filters?.strand) {
+params.append('strand', filters.strand);
+}
+      if (filters?.search) {
+params.append('search', filters.search);
+}
 
       const response = await apiClient.get(`/api/curriculum-expectations?${params}`);
       return response.data as CurriculumExpectation[];
@@ -257,9 +266,15 @@ export function useLongRangePlans(filters?: {
     queryKey: ['long-range-plans', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.academicYear) params.append('academicYear', filters.academicYear);
-      if (filters?.subject) params.append('subject', filters.subject);
-      if (filters?.grade) params.append('grade', filters.grade.toString());
+      if (filters?.academicYear) {
+params.append('academicYear', filters.academicYear);
+}
+      if (filters?.subject) {
+params.append('subject', filters.subject);
+}
+      if (filters?.grade) {
+params.append('grade', filters.grade.toString());
+}
 
       const response = await apiClient.get(`/api/long-range-plans?${params}`);
       return response.data as LongRangePlan[];
@@ -335,9 +350,15 @@ export function useUnitPlans(filters?: {
     queryKey: ['unit-plans', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.longRangePlanId) params.append('longRangePlanId', filters.longRangePlanId);
-      if (filters?.startDate) params.append('startDate', filters.startDate);
-      if (filters?.endDate) params.append('endDate', filters.endDate);
+      if (filters?.longRangePlanId) {
+params.append('longRangePlanId', filters.longRangePlanId);
+}
+      if (filters?.startDate) {
+params.append('startDate', filters.startDate);
+}
+      if (filters?.endDate) {
+params.append('endDate', filters.endDate);
+}
 
       const response = await apiClient.get(`/api/unit-plans?${params}`);
       return response.data as UnitPlan[];
@@ -419,11 +440,18 @@ export function useETFOLessonPlans(filters?: {
     queryKey: ['etfo-lesson-plans', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.unitPlanId) params.append('unitPlanId', filters.unitPlanId);
-      if (filters?.startDate) params.append('startDate', filters.startDate);
-      if (filters?.endDate) params.append('endDate', filters.endDate);
-      if (filters?.isSubFriendly !== undefined)
-        params.append('isSubFriendly', filters.isSubFriendly.toString());
+      if (filters?.unitPlanId) {
+params.append('unitPlanId', filters.unitPlanId);
+}
+      if (filters?.startDate) {
+params.append('startDate', filters.startDate);
+}
+      if (filters?.endDate) {
+params.append('endDate', filters.endDate);
+}
+      if (filters?.isSubFriendly !== undefined) {
+params.append('isSubFriendly', filters.isSubFriendly.toString());
+}
 
       const response = await apiClient.get(`/api/etfo-lesson-plans?${params}`);
       return response.data as ETFOLessonPlan[];
@@ -503,11 +531,18 @@ export function useDaybookEntries(filters?: {
     queryKey: ['daybook-entries', filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.startDate) params.append('startDate', filters.startDate);
-      if (filters?.endDate) params.append('endDate', filters.endDate);
-      if (filters?.hasLessonPlan !== undefined)
-        params.append('hasLessonPlan', filters.hasLessonPlan.toString());
-      if (filters?.rating) params.append('rating', filters.rating.toString());
+      if (filters?.startDate) {
+params.append('startDate', filters.startDate);
+}
+      if (filters?.endDate) {
+params.append('endDate', filters.endDate);
+}
+      if (filters?.hasLessonPlan !== undefined) {
+params.append('hasLessonPlan', filters.hasLessonPlan.toString());
+}
+      if (filters?.rating) {
+params.append('rating', filters.rating.toString());
+}
 
       const response = await apiClient.get(`/api/daybook-entries?${params}`);
       return response.data as DaybookEntry[];

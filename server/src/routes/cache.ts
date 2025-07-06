@@ -1,10 +1,11 @@
-import { Router, Request, Response } from 'express';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
 
-import { authMiddleware } from '../middleware/auth';
 import logger from '../logger.js';
+import { authMiddleware } from '../middleware/auth';
 import { cache, CacheUtils } from '../services/cache';
 
-import { AuthenticatedRequest } from './base/middleware';
+import type { AuthenticatedRequest } from './base/middleware';
 
 const router = Router();
 

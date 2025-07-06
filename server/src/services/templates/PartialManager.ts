@@ -27,8 +27,8 @@ export interface PartialCategory {
 
 export class PartialManager extends BaseService {
   private static instance: PartialManager;
-  private partials: Map<string, PartialInfo> = new Map();
-  private categories: Map<string, PartialCategory> = new Map();
+  private partials = new Map<string, PartialInfo>();
+  private categories = new Map<string, PartialCategory>();
   private partialsDirectory: string;
 
   private constructor(partialsDirectory?: string) {
@@ -581,10 +581,10 @@ export class PartialManager extends BaseService {
    */
   public validateDependencies(): {
     valid: string[];
-    invalid: Array<{ name: string; missing: string[] }>;
+    invalid: { name: string; missing: string[] }[];
   } {
     const valid: string[] = [];
-    const invalid: Array<{ name: string; missing: string[] }> = [];
+    const invalid: { name: string; missing: string[] }[] = [];
 
     for (const [name, partial] of this.partials) {
       if (partial.dependencies && partial.dependencies.length > 0) {

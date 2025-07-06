@@ -1,12 +1,3 @@
-import React, { useState } from 'react';
-import { Button } from '../ui/Button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
-import { Badge } from '../ui/Badge';
-import { Progress } from '../ui/Progress';
-import { Label } from '../ui/Label';
-import { Input } from '../ui/Input';
-// import { Textarea } from '../ui/Textarea';
 import {
   Database,
   FileUp,
@@ -20,11 +11,25 @@ import {
   ListPlus,
   Wand2,
 } from 'lucide-react';
-import UnitPlanForm, { UnitPlanFormData } from './UnitPlanForm';
-import LessonPlanForm, { LessonPlanFormData } from './LessonPlanForm';
+import React, { useState } from 'react';
+
+import type { LongRangePlan, UnitPlan } from '../../hooks/useETFOPlanning';
 import { validateUnitPlan, validateLessonPlan } from '../../utils/formValidation';
-import { LongRangePlan, UnitPlan } from '../../hooks/useETFOPlanning';
 import logger from '../../utils/logger';
+import { Badge } from '../ui/Badge';
+import { Button } from '../ui/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+import { Input } from '../ui/Input';
+import { Label } from '../ui/Label';
+import { Progress } from '../ui/Progress';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
+
+// import { Textarea } from '../ui/Textarea';
+import type { LessonPlanFormData } from './LessonPlanForm';
+import LessonPlanForm from './LessonPlanForm';
+import type { UnitPlanFormData } from './UnitPlanForm';
+import UnitPlanForm from './UnitPlanForm';
+
 interface BatchOperation {
   id: string;
   type: 'unit' | 'lesson';
@@ -102,7 +107,9 @@ export default function FormsDataAgent({
   };
 
   const processBatchOperations = async () => {
-    if (batchOperations.length === 0) return;
+    if (batchOperations.length === 0) {
+return;
+}
 
     setIsProcessing(true);
 
@@ -117,9 +124,9 @@ export default function FormsDataAgent({
       setBatchOperations(validatedOps);
 
       // Separate units and lessons
-      const unitOps = validatedOps.filter((op) => op.type === 'unit' && op.errors?.length === 0);
+      const unitOps = validatedOps.filter((op) => op.type === 'unit' && op.errors.length === 0);
       const lessonOps = validatedOps.filter(
-        (op) => op.type === 'lesson' && op.errors?.length === 0,
+        (op) => op.type === 'lesson' && op.errors.length === 0,
       );
 
       // Process units in batch
@@ -162,7 +169,7 @@ export default function FormsDataAgent({
         prev.map((op) => ({
           ...op,
           status: 'error',
-          errors: ['Processing failed: ' + (_error as Error).message],
+          errors: [`Processing failed: ${  (_error as Error).message}`],
         })),
       );
     } finally {
@@ -237,7 +244,9 @@ export default function FormsDataAgent({
   // Import handling
   const handleFileImport = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (!file) return;
+    if (!file) {
+return;
+}
 
     try {
       const text = await file.text();
@@ -268,32 +277,33 @@ export default function FormsDataAgent({
       </div>
 
       <Tabs
-        value={activeTab}
-        onValueChange={(value) =>
-          setActiveTab(value as 'batch' | 'templates' | 'import' | 'wizard')
-        }
         className="space-y-6"
+        value={activeTab}
+        onValueChange={(value) => {
+ setActiveTab(value as 'batch' | 'templates' | 'import' | 'wizard'); 
+}
+        }
       >
         <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="batch" className="flex items-center gap-2">
+          <TabsTrigger className="flex items-center gap-2" value="batch">
             <ListPlus className="h-4 w-4" />
             Batch Operations
           </TabsTrigger>
-          <TabsTrigger value="templates" className="flex items-center gap-2">
+          <TabsTrigger className="flex items-center gap-2" value="templates">
             <Copy className="h-4 w-4" />
             Templates
           </TabsTrigger>
-          <TabsTrigger value="import" className="flex items-center gap-2">
+          <TabsTrigger className="flex items-center gap-2" value="import">
             <FileUp className="h-4 w-4" />
             Import/Export
           </TabsTrigger>
-          <TabsTrigger value="wizard" className="flex items-center gap-2">
+          <TabsTrigger className="flex items-center gap-2" value="wizard">
             <Wand2 className="h-4 w-4" />
             Setup Wizard
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="batch" className="space-y-6">
+        <TabsContent className="space-y-6" value="batch">
           {/* Batch Operations Overview */}
           <Card>
             <CardHeader>
@@ -315,8 +325,8 @@ export default function FormsDataAgent({
                     </span>
                   </div>
                   <Progress
-                    value={(completedOperations / totalOperations) * 100}
                     className="mb-2"
+                    value={(completedOperations / totalOperations) * 100}
                   />
                   <div className="flex gap-4 text-sm">
                     <span className="flex items-center gap-1 text-green-600">
@@ -337,9 +347,9 @@ export default function FormsDataAgent({
 
               <div className="flex gap-2 mb-4">
                 <Button
-                  onClick={processBatchOperations}
-                  disabled={isProcessing || totalOperations === 0}
                   className="bg-indigo-600 hover:bg-indigo-700"
+                  disabled={isProcessing || totalOperations === 0}
+                  onClick={processBatchOperations}
                 >
                   {isProcessing ? 'Processing...' : 'Process All'}
                 </Button>
@@ -386,9 +396,11 @@ export default function FormsDataAgent({
                           {operation.status}
                         </Badge>
                         <Button
-                          variant="ghost"
                           size="sm"
-                          onClick={() => removeBatchOperation(operation.id)}
+                          variant="ghost"
+                          onClick={() => {
+ removeBatchOperation(operation.id); 
+}}
                         >
                           Remove
                         </Button>
@@ -409,13 +421,13 @@ export default function FormsDataAgent({
               </CardHeader>
               <CardContent>
                 <UnitPlanForm
-                  longRangePlan={null}
+                  showLongRangePlanSelector
                   allLongRangePlans={longRangePlans}
-                  showLongRangePlanSelector={true}
+                  longRangePlan={null}
+                  onCancel={() => {}}
                   onSubmit={(data) => {
                     addBatchOperation('unit', data);
                   }}
-                  onCancel={() => {}}
                 />
               </CardContent>
             </Card>
@@ -427,20 +439,20 @@ export default function FormsDataAgent({
               </CardHeader>
               <CardContent>
                 <LessonPlanForm
-                  unitPlan={null}
+                  showUnitPlanSelector
                   allUnitPlans={unitPlans}
-                  showUnitPlanSelector={true}
+                  unitPlan={null}
+                  onCancel={() => {}}
                   onSubmit={(data) => {
                     addBatchOperation('lesson', data);
                   }}
-                  onCancel={() => {}}
                 />
               </CardContent>
             </Card>
           </div>
         </TabsContent>
 
-        <TabsContent value="templates" className="space-y-6">
+        <TabsContent className="space-y-6" value="templates">
           <Card>
             <CardHeader>
               <CardTitle>Form Templates</CardTitle>
@@ -456,9 +468,11 @@ export default function FormsDataAgent({
                     Download a JSON template for creating multiple unit plans
                   </p>
                   <Button
-                    onClick={() => generateTemplate('unit')}
-                    variant="outline"
                     className="w-full"
+                    variant="outline"
+                    onClick={() => {
+ generateTemplate('unit'); 
+}}
                   >
                     <Download className="h-4 w-4 mr-2" />
                     Download Unit Template
@@ -471,9 +485,11 @@ export default function FormsDataAgent({
                     Download a JSON template for creating multiple lesson plans
                   </p>
                   <Button
-                    onClick={() => generateTemplate('lesson')}
-                    variant="outline"
                     className="w-full"
+                    variant="outline"
+                    onClick={() => {
+ generateTemplate('lesson'); 
+}}
                   >
                     <Download className="h-4 w-4 mr-2" />
                     Download Lesson Template
@@ -494,7 +510,7 @@ export default function FormsDataAgent({
           </Card>
         </TabsContent>
 
-        <TabsContent value="import" className="space-y-6">
+        <TabsContent className="space-y-6" value="import">
           <Card>
             <CardHeader>
               <CardTitle>Import & Export Data</CardTitle>
@@ -506,11 +522,11 @@ export default function FormsDataAgent({
               <div>
                 <Label htmlFor="file-import">Import JSON File</Label>
                 <Input
+                  accept=".json"
+                  className="mt-2"
                   id="file-import"
                   type="file"
-                  accept=".json"
                   onChange={handleFileImport}
-                  className="mt-2"
                 />
                 <p className="text-sm text-gray-600 mt-1">
                   Upload a JSON file containing unit plans or lesson plans
@@ -530,7 +546,7 @@ export default function FormsDataAgent({
           </Card>
         </TabsContent>
 
-        <TabsContent value="wizard" className="space-y-6">
+        <TabsContent className="space-y-6" value="wizard">
           <Card>
             <CardHeader>
               <CardTitle>Curriculum Setup Wizard</CardTitle>

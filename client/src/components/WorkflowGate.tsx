@@ -1,9 +1,11 @@
+import { LockIcon, AlertCircle, CheckCircle } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
+
 import { useWorkflowState, ETFOLevel, ETFO_LEVEL_PATHS } from '../hooks/useWorkflowState';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+
 import { Alert, AlertDescription, AlertTitle } from './ui/alert';
 import { Button } from './ui/Button';
-import { LockIcon, AlertCircle, CheckCircle } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { useToast } from './ui/use-toast';
 
 interface WorkflowGateProps {
@@ -36,7 +38,7 @@ export default function WorkflowGate({ level, children }: WorkflowGateProps) {
   if (isChecking) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" />
       </div>
     );
   }
@@ -49,7 +51,7 @@ export default function WorkflowGate({ level, children }: WorkflowGateProps) {
   // Otherwise, show blocked message
   const blockedReason = getBlockedReason(level);
   const previousLevel = getPreviousLevel(level);
-  const previousLevelProgress = previousLevel ? getLevelProgress(previousLevel) : null;
+  const previousLevelProgress = (previousLevel != null) ? getLevelProgress(previousLevel) : null;
 
   return (
     <div className="container mx-auto py-8 max-w-2xl">
@@ -73,7 +75,7 @@ export default function WorkflowGate({ level, children }: WorkflowGateProps) {
             </AlertDescription>
           </Alert>
 
-          {previousLevel && previousLevelProgress && (
+          {(previousLevel != null) && previousLevelProgress && (
             <div className="space-y-3">
               <h3 className="font-semibold">Previous Level Progress</h3>
               <div className="bg-muted rounded-lg p-4 space-y-2">
@@ -116,18 +118,18 @@ export default function WorkflowGate({ level, children }: WorkflowGateProps) {
           </div>
 
           <div className="flex gap-3">
-            {previousLevel && (
+            {(previousLevel != null) && (
               <Button
-                onClick={() => (window.location.href = ETFO_LEVEL_PATHS[previousLevel])}
                 className="flex-1"
+                onClick={() => (window.location.href = ETFO_LEVEL_PATHS[previousLevel])}
               >
                 Go to {getLevelName(previousLevel)}
               </Button>
             )}
             <Button
+              className="flex-1"
               variant="outline"
               onClick={() => (window.location.href = '/')}
-              className="flex-1"
             >
               Back to Dashboard
             </Button>

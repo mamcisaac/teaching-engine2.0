@@ -1,7 +1,8 @@
-import { Router, Request } from 'express';
+import type { Request } from 'express';
+import { Router } from 'express';
 
-import { prisma } from '../prisma';
 import logger from '../logger';
+import { prisma } from '../prisma';
 const router = Router();
 
 // Track plan access
@@ -174,7 +175,9 @@ router.get('/', async (req: Request, res, _next) => {
             break;
         }
 
-        if (!plan) return null;
+        if (!plan) {
+return null;
+}
 
         // Calculate progress based on plan type
         let progress = undefined;

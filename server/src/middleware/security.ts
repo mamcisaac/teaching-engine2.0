@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction } from 'express';
-import helmet from 'helmet';
 import * as cors from 'cors';
-import { RateLimiterMemory, RateLimiterRedis } from 'rate-limiter-flexible';
+import type { Request, Response, NextFunction } from 'express';
+import helmet from 'helmet';
 import Redis from 'ioredis';
+import { RateLimiterMemory, RateLimiterRedis } from 'rate-limiter-flexible';
 
 import logger from '../logger.js';
 
@@ -103,7 +103,7 @@ function _createRateLimiter() {
  */
 export async function rateLimitMiddleware(_req: Request, _res: Response, next: NextFunction) {
   // SINGLE USER APP - Skip all rate limiting
-  return next();
+  next();
 }
 
 /**
@@ -111,7 +111,7 @@ export async function rateLimitMiddleware(_req: Request, _res: Response, next: N
  */
 export async function authRateLimitMiddleware(_req: Request, _res: Response, next: NextFunction) {
   // SINGLE USER APP - Skip all rate limiting
-  return next();
+  next();
 }
 
 /**
@@ -120,7 +120,7 @@ export async function authRateLimitMiddleware(_req: Request, _res: Response, nex
 export function validateFileUpload(allowedTypes: string[] = ALLOWED_FILE_TYPES) {
   return (req: Request, res: Response, next: NextFunction) => {
     if (!req.file && !req.files) {
-      return next();
+      next(); return;
     }
 
     const files = req.file ? [req.file] : Object.values(req.files || {}).flat();
@@ -212,7 +212,7 @@ function sanitizeObject(obj: Record<string, unknown>): void {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
       if (typeof obj[key] === 'string') {
         // Remove null bytes
-        obj[key] = (obj[key] as string).replace(/\0/g, '');
+        obj[key] = (obj[key]).replace(/\0/g, '');
 
         // Trim whitespace
         obj[key] = (obj[key] as string).trim();
@@ -238,7 +238,7 @@ function sanitizeObject(obj: Record<string, unknown>): void {
 export function csrfProtection(req: Request, res: Response, next: NextFunction) {
   // Skip CSRF for GET requests and API endpoints that use JWT
   if (req.method === 'GET' || req.path.startsWith('/api/')) {
-    return next();
+    next(); return;
   }
 
   const token = req.headers['x-csrf-token'] || req.body?._csrf;

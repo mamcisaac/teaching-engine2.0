@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Copy, Calendar, BookOpen, GraduationCap } from 'lucide-react';
+import React, { useState } from 'react';
+
 import { api } from '../../api';
 import Dialog from '../Dialog';
 import { Button } from '../ui/Button';
-import { Label } from '../ui/Label';
 import { Input } from '../ui/Input';
-import { Textarea } from '../ui/Textarea';
-import { Copy, Calendar, BookOpen, GraduationCap } from 'lucide-react';
+import { Label } from '../ui/Label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { Textarea } from '../ui/Textarea';
 
 interface DuplicatePlanModalProps {
   isOpen: boolean;
@@ -114,7 +115,7 @@ export function DuplicatePlanModal({
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           {!planType && (
             <div>
               <Label>Plan Type</Label>
@@ -154,7 +155,7 @@ export function DuplicatePlanModal({
                   <SelectValue placeholder="Choose a plan" />
                 </SelectTrigger>
                 <SelectContent>
-                  {availablePlans[selectedType as keyof typeof availablePlans]?.map((plan) => (
+                  {availablePlans[selectedType as keyof typeof availablePlans].map((plan) => (
                     <SelectItem key={plan.id} value={plan.id}>
                       <div>
                         <div className="font-medium">{plan.title}</div>
@@ -187,37 +188,43 @@ export function DuplicatePlanModal({
           <div>
             <Label htmlFor="newTitle">New Plan Title</Label>
             <Input
-              id="newTitle"
-              value={newTitle}
-              onChange={(e) => setNewTitle(e.target.value)}
-              placeholder={planTitle ? `Copy of ${planTitle}` : 'Enter new title'}
-              className="mt-1"
               required
+              className="mt-1"
+              id="newTitle"
+              placeholder={planTitle ? `Copy of ${planTitle}` : 'Enter new title'}
+              value={newTitle}
+              onChange={(e) => {
+ setNewTitle(e.target.value); 
+}}
             />
           </div>
 
           <div>
             <Label htmlFor="notes">Notes (Optional)</Label>
             <Textarea
+              className="mt-1"
               id="notes"
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
               placeholder="Add any notes about this duplicate..."
               rows={3}
-              className="mt-1"
+              value={notes}
+              onChange={(e) => {
+ setNotes(e.target.value); 
+}}
             />
           </div>
 
           {(selectedType === 'long-range' || selectedType === 'unit') && (
             <div className="flex items-center gap-2">
               <input
-                type="checkbox"
-                id="includeSubItems"
                 checked={includeSubItems}
-                onChange={(e) => setIncludeSubItems(e.target.checked)}
                 className="rounded"
+                id="includeSubItems"
+                type="checkbox"
+                onChange={(e) => {
+ setIncludeSubItems(e.target.checked); 
+}}
               />
-              <Label htmlFor="includeSubItems" className="text-sm font-normal">
+              <Label className="text-sm font-normal" htmlFor="includeSubItems">
                 Include all {selectedType === 'long-range' ? 'units' : 'lessons'} from the original plan
               </Label>
             </div>
@@ -245,9 +252,9 @@ export function DuplicatePlanModal({
                 Cancel
               </Button>
               <Button
-                type="submit"
-                disabled={!selectedType || !selectedPlanId || !newTitle || duplicateMutation.isPending}
                 className="bg-indigo-600 hover:bg-indigo-700 text-white"
+                disabled={!selectedType || !selectedPlanId || !newTitle || duplicateMutation.isPending}
+                type="submit"
               >
                 {duplicateMutation.isPending ? 'Duplicating...' : 'Duplicate Plan'}
               </Button>

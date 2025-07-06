@@ -4,9 +4,10 @@
  * Exposes authentication middleware functions as API endpoints
  */
 
-import { Router, Request, Response, NextFunction } from 'express';
-import { z } from 'zod';
 import { prisma as defaultPrisma } from '@teaching-engine/database';
+import type { Request, Response, NextFunction } from 'express';
+import { Router } from 'express';
+import { z } from 'zod';
 
 import {
   login,
@@ -17,8 +18,8 @@ import {
   resetPassword,
   authenticate,
 } from '../middleware/auth';
-import { validateRequest } from '../middleware/validateRequest';
 import { authRateLimiter } from '../middleware/rateLimit';
+import { validateRequest } from '../middleware/validateRequest';
 
 // Validation schemas
 const loginSchema = z.object({

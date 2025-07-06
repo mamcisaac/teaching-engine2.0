@@ -46,7 +46,7 @@ export interface RenderOptions {
 }
 
 export abstract class TemplateProvider {
-  protected templates: Map<string, Template> = new Map();
+  protected templates = new Map<string, Template>();
 
   constructor(protected name: string) {}
 

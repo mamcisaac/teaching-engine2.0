@@ -1,11 +1,12 @@
-import { useState, useRef, useEffect } from 'react';
 import { 
   Bold, Italic, Underline, List, ListOrdered, 
   Undo, Redo, Type, Save, Send,
   Eye, Edit3, Languages, Trash2, RefreshCw
 } from 'lucide-react';
-import { NewsletterSection, NewsletterDraft, NewsletterTone } from '../types/newsletter';
+import { useState, useRef, useEffect } from 'react';
+
 import { cn } from '../lib/utils';
+import type { NewsletterSection, NewsletterDraft, NewsletterTone } from '../types/newsletter';
 
 interface NewsletterEditorProps {
   draft: NewsletterDraft;
@@ -30,7 +31,7 @@ export default function NewsletterEditor({
   const [unsavedChanges, setUnsavedChanges] = useState(false);
   const [localDraft, setLocalDraft] = useState<NewsletterDraft>(draft);
   
-  const editorRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const editorRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   // Update local draft when prop changes
   useEffect(() => {
@@ -46,7 +47,9 @@ export default function NewsletterEditor({
         setUnsavedChanges(false);
       }, 2000); // Auto-save after 2 seconds of inactivity
 
-      return () => clearTimeout(timer);
+      return () => {
+ clearTimeout(timer); 
+};
     }
   }, [localDraft, unsavedChanges, onSave]);
 
@@ -122,23 +125,29 @@ export default function NewsletterEditor({
   const renderToolbar = (_sectionId: string) => (
     <div className="flex items-center gap-1 p-2 border-b bg-gray-50 rounded-t-lg">
       <button
-        onClick={() => formatText('bold')}
         className="p-1.5 hover:bg-gray-200 rounded"
         title="Bold (Ctrl+B)"
+        onClick={() => {
+ formatText('bold'); 
+}}
       >
         <Bold className="w-4 h-4" />
       </button>
       <button
-        onClick={() => formatText('italic')}
         className="p-1.5 hover:bg-gray-200 rounded"
         title="Italic (Ctrl+I)"
+        onClick={() => {
+ formatText('italic'); 
+}}
       >
         <Italic className="w-4 h-4" />
       </button>
       <button
-        onClick={() => formatText('underline')}
         className="p-1.5 hover:bg-gray-200 rounded"
         title="Underline (Ctrl+U)"
+        onClick={() => {
+ formatText('underline'); 
+}}
       >
         <Underline className="w-4 h-4" />
       </button>
@@ -146,16 +155,20 @@ export default function NewsletterEditor({
       <div className="w-px h-6 bg-gray-300 mx-1" />
       
       <button
-        onClick={() => formatText('insertUnorderedList')}
         className="p-1.5 hover:bg-gray-200 rounded"
         title="Bullet List"
+        onClick={() => {
+ formatText('insertUnorderedList'); 
+}}
       >
         <List className="w-4 h-4" />
       </button>
       <button
-        onClick={() => formatText('insertOrderedList')}
         className="p-1.5 hover:bg-gray-200 rounded"
         title="Numbered List"
+        onClick={() => {
+ formatText('insertOrderedList'); 
+}}
       >
         <ListOrdered className="w-4 h-4" />
       </button>
@@ -163,16 +176,20 @@ export default function NewsletterEditor({
       <div className="w-px h-6 bg-gray-300 mx-1" />
       
       <button
-        onClick={() => formatText('undo')}
         className="p-1.5 hover:bg-gray-200 rounded"
         title="Undo"
+        onClick={() => {
+ formatText('undo'); 
+}}
       >
         <Undo className="w-4 h-4" />
       </button>
       <button
-        onClick={() => formatText('redo')}
         className="p-1.5 hover:bg-gray-200 rounded"
         title="Redo"
+        onClick={() => {
+ formatText('redo'); 
+}}
       >
         <Redo className="w-4 h-4" />
       </button>
@@ -180,8 +197,10 @@ export default function NewsletterEditor({
       <div className="flex-1" />
       
       <button
-        onClick={() => setEditingSection(null)}
         className="p-1.5 text-blue-600 hover:bg-blue-100 rounded text-sm font-medium"
+        onClick={() => {
+ setEditingSection(null); 
+}}
       >
         Done
       </button>
@@ -200,15 +219,17 @@ export default function NewsletterEditor({
           <div className="flex-1">
             {isEditing && section.isEditable ? (
               <input
+                className="w-full px-2 py-1 text-sm font-medium bg-white border border-gray-300 rounded"
+                placeholder="Section title..."
                 type="text"
                 value={title}
-                onChange={(e) => updateSection(
+                onChange={(e) => {
+ updateSection(
                   section.id, 
                   language === 'en' ? 'title' : 'titleFr', 
                   e.target.value
-                )}
-                className="w-full px-2 py-1 text-sm font-medium bg-white border border-gray-300 rounded"
-                placeholder="Section title..."
+                ); 
+}}
               />
             ) : (
               <h3 className="text-sm font-medium text-gray-900">{title}</h3>
@@ -219,16 +240,20 @@ export default function NewsletterEditor({
             {section.isEditable && (
               <>
                 <button
-                  onClick={() => setEditingSection(isEditing ? null : section.id)}
                   className="p-1.5 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded"
                   title={isEditing ? "Stop editing" : "Edit section"}
+                  onClick={() => {
+ setEditingSection(isEditing ? null : section.id); 
+}}
                 >
                   <Edit3 className="w-4 h-4" />
                 </button>
                 <button
-                  onClick={() => removeSection(section.id)}
                   className="p-1.5 text-red-600 hover:text-red-800 hover:bg-red-100 rounded"
                   title="Remove section"
+                  onClick={() => {
+ removeSection(section.id); 
+}}
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
@@ -242,17 +267,17 @@ export default function NewsletterEditor({
           <div>
             {renderToolbar(section.id)}
             <div
+              dangerouslySetInnerHTML={{ __html: content }}
               ref={(el) => editorRefs.current[section.id] = el}
               contentEditable
               className="p-4 min-h-[100px] focus:outline-none prose prose-sm max-w-none"
-              dangerouslySetInnerHTML={{ __html: content }}
+              style={{ whiteSpace: 'pre-wrap' }}
               onBlur={(e) => updateSection(
                 section.id,
                 language === 'en' ? 'content' : 'contentFr',
                 e.currentTarget.innerHTML
               )}
               onKeyDown={(e) => handleKeyDown(e, section.id, language === 'en' ? 'content' : 'contentFr')}
-              style={{ whiteSpace: 'pre-wrap' }}
             />
           </div>
         ) : (
@@ -281,11 +306,13 @@ export default function NewsletterEditor({
         <div className="flex items-center gap-2">
           {/* Language toggle */}
           <button
-            onClick={() => setLanguage(language === 'en' ? 'fr' : 'en')}
             className={cn(
               "flex items-center gap-2 px-3 py-2 rounded-lg transition-colors",
               "border border-gray-300 hover:bg-gray-50"
             )}
+            onClick={() => {
+ setLanguage(language === 'en' ? 'fr' : 'en'); 
+}}
           >
             <Languages className="w-4 h-4" />
             <span className="text-sm font-medium">
@@ -295,13 +322,15 @@ export default function NewsletterEditor({
 
           {/* Preview toggle */}
           <button
-            onClick={() => setPreviewMode(!previewMode)}
             className={cn(
               "flex items-center gap-2 px-3 py-2 rounded-lg transition-colors",
               previewMode
                 ? "bg-blue-600 text-white"
                 : "border border-gray-300 hover:bg-gray-50"
             )}
+            onClick={() => {
+ setPreviewMode(!previewMode); 
+}}
           >
             <Eye className="w-4 h-4" />
             <span className="text-sm font-medium">
@@ -314,9 +343,11 @@ export default function NewsletterEditor({
             <>
               {onRegenerate && (
                 <button
-                  onClick={() => onRegenerate()}
-                  disabled={isGenerating}
                   className="flex items-center gap-2 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50"
+                  disabled={isGenerating}
+                  onClick={() => {
+ onRegenerate(); 
+}}
                 >
                   <RefreshCw className={cn("w-4 h-4", isGenerating && "animate-spin")} />
                   <span className="text-sm font-medium">Regenerate</span>
@@ -324,11 +355,11 @@ export default function NewsletterEditor({
               )}
               
               <button
+                className="flex items-center gap-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
                 onClick={() => {
                   onSave(localDraft);
                   setUnsavedChanges(false);
                 }}
-                className="flex items-center gap-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
               >
                 <Save className="w-4 h-4" />
                 <span className="text-sm font-medium">Save</span>
@@ -336,9 +367,11 @@ export default function NewsletterEditor({
               
               {onSend && (
                 <button
-                  onClick={() => onSend(localDraft)}
-                  disabled={localDraft.isDraft}
                   className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                  disabled={localDraft.isDraft}
+                  onClick={() => {
+ onSend(localDraft); 
+}}
                 >
                   <Send className="w-4 h-4" />
                   <span className="text-sm font-medium">Send</span>
@@ -353,14 +386,16 @@ export default function NewsletterEditor({
       <div className="mb-6">
         {!previewMode ? (
           <input
-            type="text"
-            value={language === 'en' ? localDraft.title : localDraft.titleFr}
-            onChange={(e) => updateTitle(
-              language === 'en' ? 'title' : 'titleFr',
-              e.target.value
-            )}
             className="w-full text-3xl font-bold text-gray-900 bg-transparent border-none focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-2 py-1"
             placeholder="Newsletter title..."
+            type="text"
+            value={language === 'en' ? localDraft.title : localDraft.titleFr}
+            onChange={(e) => {
+ updateTitle(
+              language === 'en' ? 'title' : 'titleFr',
+              e.target.value
+            ); 
+}}
           />
         ) : (
           <h1 className="text-3xl font-bold text-gray-900">
@@ -373,7 +408,7 @@ export default function NewsletterEditor({
       {isGenerating && (
         <div className="text-center py-8">
           <div className="inline-flex items-center gap-3 px-4 py-2 bg-blue-50 rounded-lg">
-            <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-blue-600"></div>
+            <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-blue-600" />
             <span className="text-blue-600 font-medium">Generating newsletter content...</span>
           </div>
         </div>
@@ -388,8 +423,8 @@ export default function NewsletterEditor({
         {/* Add section button */}
         {!previewMode && (
           <button
-            onClick={addNewSection}
             className="w-full py-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-gray-400 hover:text-gray-700 transition-colors"
+            onClick={addNewSection}
           >
             <div className="flex items-center justify-center gap-2">
               <Type className="w-5 h-5" />

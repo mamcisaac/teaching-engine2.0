@@ -5,11 +5,11 @@
 
 import path from 'path';
 
-import { CurriculumParser, ParserOptions } from './CurriculumParser';
 import { CSVParser } from './CSVParser';
+import type { CurriculumParser, ParserOptions } from './CurriculumParser';
 import { ExcelParser } from './ExcelParser';
-import { PDFParser } from './PDFParser';
 import { JSONParser } from './JSONParser';
+import { PDFParser } from './PDFParser';
 
 export class ParserFactory {
   private static parsers = new Map<string, new (options?: ParserOptions) => CurriculumParser>([

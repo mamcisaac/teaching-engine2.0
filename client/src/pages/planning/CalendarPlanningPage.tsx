@@ -1,12 +1,11 @@
-import { apiClient } from '../../api/core/client';
-import { useState, useMemo, useCallback, Suspense, useEffect } from 'react';
-import { Event, View, SlotInfo, DateLocalizer } from 'react-big-calendar';
-import { format, startOfMonth, endOfMonth } from 'date-fns';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { toast } from 'sonner';
+import { format, startOfMonth, endOfMonth } from 'date-fns';
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Plus, Filter } from 'lucide-react';
-import { useAuth } from '../../contexts/AuthContext';
-import { Button } from '../../components/ui/Button';
+import { useState, useMemo, useCallback, Suspense, useEffect } from 'react';
+import type { Event, View, SlotInfo, DateLocalizer } from 'react-big-calendar';
+import { toast } from 'sonner';
+
+import { apiClient } from '../../api/core/client';
 import {
   CalendarEventModal,
   CalendarEventDetails,
@@ -14,6 +13,8 @@ import {
   BigCalendar,
   createMomentLocalizer,
 } from '../../components/calendar/LazyCalendarComponents';
+import { Button } from '../../components/ui/Button';
+import { useAuth } from '../../contexts/AuthContext';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import '../../styles/calendar.css';
 import type { CalendarEvent, ETFOLessonPlan, UnitPlan } from '../../types';
@@ -65,10 +66,10 @@ const SUBJECT_COLORS: Record<string, string> = {
 const CalendarLoadingFallback = () => (
   <div className="bg-white rounded-lg shadow-lg p-6">
     <div className="animate-pulse">
-      <div className="h-8 bg-gray-200 rounded w-1/3 mb-4"></div>
+      <div className="h-8 bg-gray-200 rounded w-1/3 mb-4" />
       <div className="grid grid-cols-7 gap-2">
         {[...Array(35)].map((_, i) => (
-          <div key={i} className="h-20 bg-gray-100 rounded"></div>
+          <div key={i} className="h-20 bg-gray-100 rounded" />
         ))}
       </div>
     </div>
@@ -193,7 +194,7 @@ export default function CalendarPlanningPage() {
             unitId: lesson.unitPlanId,
             lessonId: lesson.id,
             color:
-              SUBJECT_COLORS[lesson.unitPlan?.longRangePlan?.subject?.toLowerCase() || 'default'] ||
+              SUBJECT_COLORS[lesson.unitPlan?.longRangePlan?.subject.toLowerCase() || 'default'] ||
               SUBJECT_COLORS.default,
             isEditable: true,
           },
@@ -239,22 +240,27 @@ export default function CalendarPlanningPage() {
     // Apply filters
     return allEvents.filter((event) => {
       if (filters.subjects.length > 0 && event.metadata?.subject) {
-        if (!filters.subjects.includes(event.metadata.subject)) return false;
+        if (!filters.subjects.includes(event.metadata.subject)) {
+return false;
+}
       }
       if (filters.eventTypes.length > 0) {
-        if (!filters.eventTypes.includes(event.type)) return false;
+        if (!filters.eventTypes.includes(event.type)) {
+return false;
+}
       }
       if (!filters.showWeekends && event.start) {
         const day = event.start.getDay();
-        if (day === 0 || day === 6) return false;
+        if (day === 0 || day === 6) {
+return false;
+}
       }
       return true;
     });
   }, [calendarEvents, lessons, units, filters]);
 
   // Event style getter
-  const eventStyleGetter = useCallback((event: CalendarViewEvent) => {
-    return {
+  const eventStyleGetter = useCallback((event: CalendarViewEvent) => ({
       style: {
         backgroundColor: event.metadata?.color || '#6B7280',
         borderRadius: '4px',
@@ -263,8 +269,7 @@ export default function CalendarPlanningPage() {
         border: '0px',
         display: 'block',
       },
-    };
-  }, []);
+    }), []);
 
   // Handle event selection
   const handleSelectEvent = useCallback((event: CalendarViewEvent) => {
@@ -329,13 +334,13 @@ export default function CalendarPlanningPage() {
       return (
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-4 calendar-toolbar-mobile md:calendar-toolbar-desktop">
           <div className="flex items-center gap-2 w-full md:w-auto">
-            <Button onClick={goToBack} variant="outline" size="sm">
+            <Button size="sm" variant="outline" onClick={goToBack}>
               <ChevronLeft className="h-4 w-4" />
             </Button>
-            <Button onClick={goToToday} variant="outline" size="sm">
+            <Button size="sm" variant="outline" onClick={goToToday}>
               Today
             </Button>
-            <Button onClick={goToNext} variant="outline" size="sm">
+            <Button size="sm" variant="outline" onClick={goToNext}>
               <ChevronRight className="h-4 w-4" />
             </Button>
             <h2 className="text-lg md:text-xl font-semibold ml-2 md:ml-4">
@@ -345,20 +350,24 @@ export default function CalendarPlanningPage() {
           <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2 w-full md:w-auto">
             <div className="flex gap-2">
               <Button
-                onClick={() => setShowFilters(!showFilters)}
-                variant="outline"
-                size="sm"
                 className={
                   showFilters ? 'bg-gray-100 flex-1 md:flex-initial' : 'flex-1 md:flex-initial'
                 }
+                size="sm"
+                variant="outline"
+                onClick={() => {
+ setShowFilters(!showFilters); 
+}}
               >
                 <Filter className="h-4 w-4 mr-2" />
                 <span className="hidden sm:inline">Filters</span>
               </Button>
               <Button
-                onClick={() => setShowEventModal(true)}
-                size="sm"
                 className="flex-1 md:flex-initial"
+                size="sm"
+                onClick={() => {
+ setShowEventModal(true); 
+}}
               >
                 <Plus className="h-4 w-4 mr-2" />
                 <span className="hidden sm:inline">Add Event</span>
@@ -366,28 +375,34 @@ export default function CalendarPlanningPage() {
             </div>
             <div className="flex gap-1 view-buttons">
               <Button
-                onClick={() => setView('month')}
-                variant={view === 'month' ? 'primary' : 'outline'}
-                size="sm"
                 className="flex-1 md:flex-initial"
+                size="sm"
+                variant={view === 'month' ? 'primary' : 'outline'}
+                onClick={() => {
+ setView('month'); 
+}}
               >
                 <span className="md:hidden">M</span>
                 <span className="hidden md:inline">Month</span>
               </Button>
               <Button
-                onClick={() => setView('week')}
-                variant={view === 'week' ? 'primary' : 'outline'}
-                size="sm"
                 className="flex-1 md:flex-initial"
+                size="sm"
+                variant={view === 'week' ? 'primary' : 'outline'}
+                onClick={() => {
+ setView('week'); 
+}}
               >
                 <span className="md:hidden">W</span>
                 <span className="hidden md:inline">Week</span>
               </Button>
               <Button
-                onClick={() => setView('agenda')}
-                variant={view === 'agenda' ? 'primary' : 'outline'}
-                size="sm"
                 className="flex-1 md:flex-initial"
+                size="sm"
+                variant={view === 'agenda' ? 'primary' : 'outline'}
+                onClick={() => {
+ setView('agenda'); 
+}}
               >
                 <span className="md:hidden">A</span>
                 <span className="hidden md:inline">Agenda</span>
@@ -414,12 +429,9 @@ export default function CalendarPlanningPage() {
 
       {showFilters && (
         <Suspense
-          fallback={<div className="mb-4 p-4 bg-gray-50 rounded-lg animate-pulse h-20"></div>}
+          fallback={<div className="mb-4 p-4 bg-gray-50 rounded-lg animate-pulse h-20" />}
         >
           <CalendarFilters
-            filters={filters}
-            // @ts-expect-error - Type mismatch in CalendarFilter interface
-            onFiltersChange={(newFilters: CalendarFilter) => setFilters(newFilters)}
             availableSubjects={[
               ...new Set(
                 lessons
@@ -427,6 +439,11 @@ export default function CalendarPlanningPage() {
                   .filter(Boolean),
               ),
             ].map((s) => String(s))}
+            filters={filters}
+            // @ts-expect-error - Type mismatch in CalendarFilter interface
+            onFiltersChange={(newFilters: CalendarFilter) => {
+ setFilters(newFilters); 
+}}
           />
         </Suspense>
       )}
@@ -435,25 +452,27 @@ export default function CalendarPlanningPage() {
         {localizerReady && localizer ? (
           <Suspense fallback={<CalendarLoadingFallback />}>
             <BigCalendar
-              localizer={localizer}
-              events={events}
-              startAccessor={(event: object) => (event as CalendarViewEvent).start || new Date()}
-              endAccessor={(event: object) => (event as CalendarViewEvent).end || new Date()}
-              style={{ height: window.innerWidth < 768 ? 500 : 700 }}
-              onSelectEvent={(event: object) => handleSelectEvent(event as CalendarViewEvent)}
-              onSelectSlot={handleSelectSlot}
-              eventPropGetter={(event: object) => eventStyleGetter(event as CalendarViewEvent)}
               selectable
-              view={view}
-              onView={setView}
-              date={currentDate}
-              onNavigate={handleNavigate}
               components={{
                 // @ts-expect-error - Toolbar component type mismatch
                 toolbar: CustomToolbar,
               }}
-              views={['month', 'week', 'agenda']}
+              date={currentDate}
               defaultView={window.innerWidth < 768 ? 'agenda' : 'month'}
+              endAccessor={(event: object) => (event as CalendarViewEvent).end || new Date()}
+              eventPropGetter={(event: object) => eventStyleGetter(event as CalendarViewEvent)}
+              events={events}
+              localizer={localizer}
+              startAccessor={(event: object) => (event as CalendarViewEvent).start || new Date()}
+              style={{ height: window.innerWidth < 768 ? 500 : 700 }}
+              view={view}
+              views={['month', 'week', 'agenda']}
+              onNavigate={handleNavigate}
+              onSelectEvent={(event: object) => {
+ handleSelectEvent(event as CalendarViewEvent); 
+}}
+              onSelectSlot={handleSelectSlot}
+              onView={setView}
             />
           </Suspense>
         ) : (
@@ -466,17 +485,17 @@ export default function CalendarPlanningPage() {
         <Suspense
           fallback={
             <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" />
             </div>
           }
         >
           <CalendarEventModal
             isOpen={showEventModal}
+            selectedDate={selectedSlot?.start || new Date()}
             onClose={() => {
               setShowEventModal(false);
               setSelectedSlot(null);
             }}
-            selectedDate={selectedSlot?.start || new Date()}
             onEventCreated={() => {
               queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
               queryClient.invalidateQueries({ queryKey: ['lessons'] });
@@ -490,14 +509,16 @@ export default function CalendarPlanningPage() {
         <Suspense
           fallback={
             <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" />
             </div>
           }
         >
           <CalendarEventDetails
             // @ts-expect-error - CalendarViewEvent type mismatch
             event={selectedEvent}
-            onClose={() => setSelectedEvent(null)}
+            onClose={() => {
+ setSelectedEvent(null); 
+}}
             onUpdate={() => {
               queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
               queryClient.invalidateQueries({ queryKey: ['lessons'] });

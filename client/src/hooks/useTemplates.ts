@@ -1,6 +1,7 @@
-import { apiClient } from '../api/core/client';
-import React from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import React from 'react';
+
+import { apiClient } from '../api/core/client';
 import type {
   PlanTemplate,
   TemplateSearchOptions,
@@ -21,7 +22,9 @@ export const templatesApi = {
     Object.entries(options).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {
         if (Array.isArray(value)) {
-          value.forEach(item => params.append(key, String(item)));
+          value.forEach(item => {
+ params.append(key, String(item)); 
+});
         } else {
           params.append(key, String(value));
         }
@@ -218,7 +221,9 @@ export function useTemplateSearch(searchTerm: string, otherOptions: Omit<Templat
       setDebouncedSearchTerm(searchTerm);
     }, debounceMs);
 
-    return () => clearTimeout(timer);
+    return () => {
+ clearTimeout(timer); 
+};
   }, [searchTerm, debounceMs]);
 
   return useTemplates({

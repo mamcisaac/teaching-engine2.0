@@ -18,7 +18,7 @@ export default function OralRoutineSummary({ className = '' }: OralRoutineSummar
   });
 
   if (isLoading) {
-    return <div className={`animate-pulse bg-gray-100 rounded-lg h-24 ${className}`}></div>;
+    return <div className={`animate-pulse bg-gray-100 rounded-lg h-24 ${className}`} />;
   }
 
   if (!stats || stats.totalRoutines === 0) {
@@ -41,14 +41,22 @@ export default function OralRoutineSummary({ className = '' }: OralRoutineSummar
     : 'No data';
 
   const getCompletionColor = () => {
-    if (completionRate >= 80) return 'text-green-600';
-    if (completionRate >= 60) return 'text-yellow-600';
+    if (completionRate >= 80) {
+return 'text-green-600';
+}
+    if (completionRate >= 60) {
+return 'text-yellow-600';
+}
     return 'text-red-600';
   };
 
   const getCompletionIcon = () => {
-    if (completionRate >= 80) return '🔥';
-    if (completionRate >= 60) return '👍';
+    if (completionRate >= 80) {
+return '🔥';
+}
+    if (completionRate >= 60) {
+return '👍';
+}
     return '😐';
   };
 

@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 
 import logger from '../logger.js';
 
@@ -16,7 +16,7 @@ export async function validateApiKey(
     const isValidationEnabled = process.env.ENABLE_API_KEY_VALIDATION === 'true';
 
     if (!isValidationEnabled) {
-      return next();
+      next(); return;
     }
 
     // Get the expected API key from environment
@@ -43,7 +43,7 @@ export async function validateApiKey(
     }
 
     // Check Authorization header with Bearer format
-    const authHeader = req.headers['authorization'] as string;
+    const authHeader = req.headers.authorization!;
     if (authHeader && typeof authHeader === 'string') {
       const bearerMatch = authHeader.match(/^Bearer (.+)$/i);
       if (bearerMatch) {

@@ -1,5 +1,6 @@
 // import React from 'react';
 import { format } from 'date-fns';
+
 import { escapeHtml } from './sanitization';
 
 interface UnitPlan {
@@ -22,12 +23,12 @@ interface UnitPlan {
     forELL?: string[];
     forIEP?: string[];
   };
-  expectations?: Array<{
+  expectations?: {
     expectation: {
       code: string;
       description: string;
     };
-  }>;
+  }[];
 }
 
 interface LessonPlan {
@@ -47,16 +48,15 @@ interface LessonPlan {
   assessmentNotes?: string;
   isSubFriendly?: boolean;
   subNotes?: string;
-  expectations?: Array<{
+  expectations?: {
     expectation: {
       code: string;
       description: string;
     };
-  }>;
+  }[];
 }
 
-export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title: string }): string => {
-  return `
+export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title: string }): string => `
     <!DOCTYPE html>
     <html>
     <head>
@@ -328,7 +328,6 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
     </body>
     </html>
   `;
-};
 
 export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { title: string }): string => {
   const mindsOnTime = Math.round(lessonPlan.duration * 0.15);
@@ -633,7 +632,7 @@ export const generateLessonPlanHTML = (lessonPlan: LessonPlan, unitPlan?: { titl
   `;
 };
 
-export const printHTML = (html: string, _filename: string = 'document') => {
+export const printHTML = (html: string, _filename = 'document') => {
   const printWindow = window.open('', '_blank');
   if (printWindow) {
     printWindow.document.write(html);
@@ -647,7 +646,7 @@ export const printHTML = (html: string, _filename: string = 'document') => {
   }
 };
 
-export const downloadHTML = (html: string, filename: string = 'document') => {
+export const downloadHTML = (html: string, filename = 'document') => {
   const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
@@ -788,8 +787,7 @@ const getETFOHeaderStyles = () => `
   }
 `;
 
-export const generateLongRangePlanBlankTemplate = (_schoolInfo: ETFOSchoolInfo = {}): string => {
-  return `
+export const generateLongRangePlanBlankTemplate = (_schoolInfo: ETFOSchoolInfo = {}): string => `
     <!DOCTYPE html>
     <html>
     <head>
@@ -986,10 +984,8 @@ export const generateLongRangePlanBlankTemplate = (_schoolInfo: ETFOSchoolInfo =
     </body>
     </html>
   `;
-};
 
-export const generateUnitPlanBlankTemplate = (_schoolInfo: ETFOSchoolInfo = {}): string => {
-  return `
+export const generateUnitPlanBlankTemplate = (_schoolInfo: ETFOSchoolInfo = {}): string => `
     <!DOCTYPE html>
     <html>
     <head>
@@ -1175,10 +1171,8 @@ export const generateUnitPlanBlankTemplate = (_schoolInfo: ETFOSchoolInfo = {}):
     </body>
     </html>
   `;
-};
 
-export const generateLessonPlanBlankTemplate = (_schoolInfo: ETFOSchoolInfo = {}): string => {
-  return `
+export const generateLessonPlanBlankTemplate = (_schoolInfo: ETFOSchoolInfo = {}): string => `
     <!DOCTYPE html>
     <html>
     <head>
@@ -1447,7 +1441,6 @@ export const generateLessonPlanBlankTemplate = (_schoolInfo: ETFOSchoolInfo = {}
     </body>
     </html>
   `;
-};
 
 export const generateDaybookBlankTemplate = (_schoolInfo: ETFOSchoolInfo = {}): string => {
   const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
@@ -1675,8 +1668,7 @@ export const generateDaybookBlankTemplate = (_schoolInfo: ETFOSchoolInfo = {}): 
   `;
 };
 
-export const generateWeeklyOverviewBlankTemplate = (_schoolInfo: ETFOSchoolInfo = {}): string => {
-  return `
+export const generateWeeklyOverviewBlankTemplate = (_schoolInfo: ETFOSchoolInfo = {}): string => `
     <!DOCTYPE html>
     <html>
     <head>
@@ -1811,4 +1803,3 @@ export const generateWeeklyOverviewBlankTemplate = (_schoolInfo: ETFOSchoolInfo 
     </body>
     </html>
   `;
-};

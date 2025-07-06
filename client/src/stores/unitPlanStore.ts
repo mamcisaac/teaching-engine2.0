@@ -1,12 +1,16 @@
 // Unit Plan Store with Offline Support
 
-import { apiClient } from '../api/core/client';
 import { create } from 'zustand';
 import { persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
-import { createOfflineSlice, createAutoSave, OfflineState, BaseActions } from './basePlanningStore';
-import { offlineStorage, StoredData } from '../services/offlineStorage';
+
+import { apiClient } from '../api/core/client';
+import type { StoredData } from '../services/offlineStorage';
+import { offlineStorage } from '../services/offlineStorage';
 import logger from '../utils/logger';
+
+import { createOfflineSlice, createAutoSave } from './basePlanningStore';
+import type { OfflineState, BaseActions } from './basePlanningStore';
 export interface UnitPlan {
   id: string;
   title: string;
@@ -17,13 +21,13 @@ export interface UnitPlan {
   expectations: string[];
   resources: string[];
   assessments: string[];
-  lessons: Array<{
+  lessons: {
     id: string;
     title: string;
     date: string;
     duration: number;
     isSubFriendly?: boolean;
-  }>;
+  }[];
   createdAt: string;
   updatedAt: string;
 }
@@ -210,7 +214,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
                 });
 
                 return createdPlan;
-              } else {
+              } 
                 // Save offline
                 set((state) => {
                   state.unitPlans.push(newPlan);
@@ -227,7 +231,7 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
                 });
 
                 return newPlan;
-              }
+              
             } catch (error) {
               logger.error('Failed to create unit plan:', error);
               set((state) => {
@@ -341,15 +345,17 @@ export const useUnitPlanStore = create<UnitPlanState & BaseActions>()(
             }
           },
 
-          setCurrentPlan: (plan: UnitPlan | null) =>
-            set((state) => {
+          setCurrentPlan: (plan: UnitPlan | null) => {
+ set((state) => {
               state.currentPlan = plan;
-            }),
+            }); 
+},
 
-          clearError: () =>
-            set((state) => {
+          clearError: () => {
+ set((state) => {
               state.error = null;
-            }),
+            }); 
+},
         };
       }),
       {

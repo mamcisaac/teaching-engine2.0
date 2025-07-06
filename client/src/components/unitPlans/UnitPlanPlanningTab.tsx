@@ -1,14 +1,15 @@
-import React from 'react';
 import { Plus, Trash2 } from 'lucide-react';
-import { CollapsibleSection } from '../ui/MobileOptimizedForm';
-import { Label } from '../ui/Label';
-import { Input } from '../ui/Input';
-import { Textarea } from '../ui/Textarea';
-import { Button } from '../ui/Button';
-import RichTextEditor from '../RichTextEditor';
+import React from 'react';
+
+import type { LongRangePlan } from '../../hooks/useETFOPlanning';
+import type { UnitPlanFormData } from '../../hooks/useUnitPlanForm';
 import ExpectationSelector from '../planning/ExpectationSelector';
-import { UnitPlanFormData } from '../../hooks/useUnitPlanForm';
-import { LongRangePlan } from '../../hooks/useETFOPlanning';
+import RichTextEditor from '../RichTextEditor';
+import { Button } from '../ui/Button';
+import { Input } from '../ui/Input';
+import { Label } from '../ui/Label';
+import { CollapsibleSection } from '../ui/MobileOptimizedForm';
+import { Textarea } from '../ui/Textarea';
 
 interface UnitPlanPlanningTabProps {
   formData: UnitPlanFormData;
@@ -26,20 +27,21 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
   updateArrayItem,
   removeArrayItem,
   longRangePlan,
-}) => {
-  return (
+}) => (
     <div className="space-y-6">
-      <CollapsibleSection title="Big Ideas" defaultExpanded>
+      <CollapsibleSection defaultExpanded title="Big Ideas">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Big Ideas</label>
           <RichTextEditor
             value={formData.bigIdeas}
-            onChange={(value) => updateField('bigIdeas', value)}
+            onChange={(value) => {
+ updateField('bigIdeas', value); 
+}}
           />
         </div>
       </CollapsibleSection>
 
-      <CollapsibleSection title="Essential Questions" defaultExpanded>
+      <CollapsibleSection defaultExpanded title="Essential Questions">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Essential Questions
@@ -48,25 +50,31 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
             {formData.essentialQuestions.map((question, index) => (
               <div key={index} className="flex gap-2">
                 <input
-                  type="text"
-                  value={question}
-                  onChange={(e) => updateArrayItem('essentialQuestions', index, e.target.value)}
                   className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                   placeholder="Enter an essential question..."
+                  type="text"
+                  value={question}
+                  onChange={(e) => {
+ updateArrayItem('essentialQuestions', index, e.target.value); 
+}}
                 />
                 <button
-                  type="button"
-                  onClick={() => removeArrayItem('essentialQuestions', index)}
                   className="px-3 py-2 text-sm text-red-600 hover:text-red-700"
+                  type="button"
+                  onClick={() => {
+ removeArrayItem('essentialQuestions', index); 
+}}
                 >
                   Remove
                 </button>
               </div>
             ))}
             <button
-              type="button"
-              onClick={() => addArrayItem('essentialQuestions')}
               className="text-sm text-indigo-600 hover:text-indigo-700"
+              type="button"
+              onClick={() => {
+ addArrayItem('essentialQuestions'); 
+}}
             >
               + Add Essential Question
             </button>
@@ -82,25 +90,31 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
           {formData.successCriteria.map((criteria, index) => (
             <div key={index} className="flex gap-2">
               <input
-                type="text"
-                value={criteria}
-                onChange={(e) => updateArrayItem('successCriteria', index, e.target.value)}
                 className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder="Students will be able to..."
+                type="text"
+                value={criteria}
+                onChange={(e) => {
+ updateArrayItem('successCriteria', index, e.target.value); 
+}}
               />
               <button
-                type="button"
-                onClick={() => removeArrayItem('successCriteria', index)}
                 className="px-3 py-2 text-sm text-red-600 hover:text-red-700"
+                type="button"
+                onClick={() => {
+ removeArrayItem('successCriteria', index); 
+}}
               >
                 Remove
               </button>
             </div>
           ))}
           <button
-            type="button"
-            onClick={() => addArrayItem('successCriteria')}
             className="text-sm text-indigo-600 hover:text-indigo-700"
+            type="button"
+            onClick={() => {
+ addArrayItem('successCriteria'); 
+}}
           >
             + Add Success Criteria
           </button>
@@ -113,27 +127,33 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
           {formData.keyVocabulary.map((term, index) => (
             <div key={index} className="flex gap-2">
               <Input
+                placeholder="Important term or concept..."
                 type="text"
                 value={term}
-                onChange={(e) => updateArrayItem('keyVocabulary', index, e.target.value)}
-                placeholder="Important term or concept..."
+                onChange={(e) => {
+ updateArrayItem('keyVocabulary', index, e.target.value); 
+}}
               />
               <Button
+                size="sm"
                 type="button"
                 variant="ghost"
-                size="sm"
-                onClick={() => removeArrayItem('keyVocabulary', index)}
+                onClick={() => {
+ removeArrayItem('keyVocabulary', index); 
+}}
               >
                 <Trash2 className="h-4 w-4" />
               </Button>
             </div>
           ))}
           <Button
+            className="w-full"
+            size="sm"
             type="button"
             variant="outline"
-            size="sm"
-            onClick={() => addArrayItem('keyVocabulary')}
-            className="w-full"
+            onClick={() => {
+ addArrayItem('keyVocabulary'); 
+}}
           >
             <Plus className="h-4 w-4 mr-2" />
             Add Term
@@ -144,22 +164,26 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
       <div>
         <Label>Prior Knowledge Requirements</Label>
         <Textarea
-          value={formData.priorKnowledge}
-          onChange={(e) => updateField('priorKnowledge', e.target.value)}
+          className="mt-2"
           placeholder="What should students already know before starting this unit?"
           rows={3}
-          className="mt-2"
+          value={formData.priorKnowledge}
+          onChange={(e) => {
+ updateField('priorKnowledge', e.target.value); 
+}}
         />
       </div>
 
       <div>
         <ExpectationSelector
-          selectedIds={formData.expectationIds}
-          onChange={(ids) => updateField('expectationIds', ids)}
           grade={longRangePlan?.grade}
-          subject={longRangePlan?.subject}
           label="Curriculum Expectations"
           placeholder="Select curriculum expectations for this unit..."
+          selectedIds={formData.expectationIds}
+          subject={longRangePlan?.subject}
+          onChange={(ids) => {
+ updateField('expectationIds', ids); 
+}}
         />
       </div>
 
@@ -167,9 +191,10 @@ export const UnitPlanPlanningTab: React.FC<UnitPlanPlanningTabProps> = ({
         <Label>Culminating Task Description</Label>
         <RichTextEditor
           value={formData.culminatingTask}
-          onChange={(value) => updateField('culminatingTask', value)}
+          onChange={(value) => {
+ updateField('culminatingTask', value); 
+}}
         />
       </div>
     </div>
   );
-};

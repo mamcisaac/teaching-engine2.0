@@ -1,7 +1,8 @@
 import { X, FileText, Calendar, Clock, Users, Tag, ChevronDown, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
-import { Button } from '../ui/Button';
+
 import type { PlanTemplate, UnitPlanContent, LessonPlanContent } from '../../types/template';
+import { Button } from '../ui/Button';
 
 interface TemplatePreviewModalProps {
   template: PlanTemplate;
@@ -44,15 +45,19 @@ export default function TemplatePreviewModal({
     return (
       <div className="space-y-4">
         {sections.map(({ key, title, content, isList, isAssessments, isDiff }) => {
-          if (!content || (Array.isArray(content) && content.length === 0)) return null;
+          if (!content || (Array.isArray(content) && content.length === 0)) {
+return null;
+}
 
           const isExpanded = expandedSections.has(key);
 
           return (
             <div key={key} className="border rounded-lg">
               <button
-                onClick={() => toggleSection(key)}
                 className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
+                onClick={() => {
+ toggleSection(key); 
+}}
               >
                 <h4 className="font-medium text-left">{title}</h4>
                 {isExpanded ? (
@@ -89,7 +94,7 @@ export default function TemplatePreviewModal({
                             {key.replace(/([A-Z])/g, ' $1').trim()}:
                           </div>
                           <ul className="list-disc list-inside ml-4">
-                            {(strategies as string[]).map((strategy, index) => (
+                            {(strategies).map((strategy, index) => (
                               <li key={index} className="text-gray-700 text-sm">{strategy}</li>
                             ))}
                           </ul>
@@ -124,15 +129,19 @@ export default function TemplatePreviewModal({
     return (
       <div className="space-y-4">
         {sections.map(({ key, title, content, isList, assessmentType }) => {
-          if (!content || (Array.isArray(content) && content.length === 0)) return null;
+          if (!content || (Array.isArray(content) && content.length === 0)) {
+return null;
+}
 
           const isExpanded = expandedSections.has(key);
 
           return (
             <div key={key} className="border rounded-lg">
               <button
-                onClick={() => toggleSection(key)}
                 className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
+                onClick={() => {
+ toggleSection(key); 
+}}
               >
                 <h4 className="font-medium text-left">{title}</h4>
                 {isExpanded ? (
@@ -190,8 +199,8 @@ export default function TemplatePreviewModal({
             </div>
           </div>
           <button
-            onClick={onClose}
             className="text-gray-400 hover:text-gray-600 transition-colors"
+            onClick={onClose}
           >
             <X className="h-6 w-6" />
           </button>
@@ -303,7 +312,9 @@ export default function TemplatePreviewModal({
             <Button variant="outline" onClick={onClose}>
               Close
             </Button>
-            <Button onClick={() => onApply(template)}>
+            <Button onClick={() => {
+ onApply(template); 
+}}>
               Use This Template
             </Button>
           </div>

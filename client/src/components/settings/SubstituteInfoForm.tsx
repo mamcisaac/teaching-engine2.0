@@ -31,17 +31,21 @@ export default function SubstituteInfoForm() {
     <div className="space-y-2">
       <textarea
         className="border p-1 w-full"
+        maxLength={1000}
         placeholder="Procedures"
         value={procedures}
-        onChange={(e) => setProcedures(e.target.value)}
-        maxLength={1000}
+        onChange={(e) => {
+ setProcedures(e.target.value); 
+}}
       />
       <textarea
         className="border p-1 w-full"
+        maxLength={1000}
         placeholder="Allergies"
         value={allergies}
-        onChange={(e) => setAllergies(e.target.value)}
-        maxLength={1000}
+        onChange={(e) => {
+ setAllergies(e.target.value); 
+}}
       />
       <button className="px-2 py-1 bg-blue-600 text-white" onClick={handleSave}>
         Save

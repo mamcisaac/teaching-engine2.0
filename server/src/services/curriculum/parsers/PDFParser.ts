@@ -7,7 +7,8 @@
 // import * as pdfParse from 'pdf-parse';
 import pdfParse from '../../../__mocks__/pdf-parse';
 
-import { CurriculumParser, ParsedCurriculum, ParsedExpectation } from './CurriculumParser';
+import type { ParsedCurriculum, ParsedExpectation } from './CurriculumParser';
+import { CurriculumParser } from './CurriculumParser';
 
 export interface PDFSection {
   title: string;
@@ -83,7 +84,7 @@ export class PDFParser extends CurriculumParser {
 
     // Try to extract from PDF metadata
     if (pdfData && typeof pdfData === 'object' && 'info' in pdfData) {
-      const info = (pdfData as { info?: { Title?: string; Subject?: string } }).info;
+      const {info} = (pdfData as { info?: { Title?: string; Subject?: string } });
       metadata.version = info?.Title || info?.Subject;
     }
 
@@ -173,7 +174,7 @@ export class PDFParser extends CurriculumParser {
         };
       } else if (currentSection && line.length > 0) {
         // Add to current section
-        currentSection.content += line + '\n';
+        currentSection.content += `${line  }\n`;
       }
     }
 
@@ -250,7 +251,9 @@ export class PDFParser extends CurriculumParser {
 
         description = this.cleanText(description);
 
-        if (description.length < 10) continue; // Skip very short descriptions
+        if (description.length < 10) {
+continue;
+} // Skip very short descriptions
 
         const expectation: ParsedExpectation = {
           code: this.cleanText(code),

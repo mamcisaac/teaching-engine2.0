@@ -4,16 +4,18 @@
  * Coordinates curriculum import operations using specialized services
  */
 
-import { BaseService } from '../base/BaseService';
 import { prisma } from '../../prisma';
+import { BaseService } from '../base/BaseService';
 
-import { ParserFactory } from './parsers/ParserFactory';
-import { CurriculumValidator, ValidationOptions } from './validators/CurriculumValidator';
-import { CurriculumTransformer, TransformOptions } from './transformers/CurriculumTransformer';
 import { CurriculumExportService } from './CurriculumExportService';
 import { CurriculumSearchService } from './CurriculumSearchService';
 import { CurriculumStatsService } from './CurriculumStatsService';
 import type { ParsedCurriculum } from './parsers/CurriculumParser';
+import { ParserFactory } from './parsers/ParserFactory';
+import { CurriculumTransformer } from './transformers/CurriculumTransformer';
+import type { TransformOptions } from './transformers/CurriculumTransformer';
+import { CurriculumValidator } from './validators/CurriculumValidator';
+import type { ValidationOptions } from './validators/CurriculumValidator';
 
 export interface ImportOptions {
   userId: number;

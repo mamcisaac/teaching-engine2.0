@@ -25,39 +25,49 @@ export const apiClient = axios.create({
 });
 
 // Lazy import to avoid circular dependency
-let authServiceModule: { authService: typeof import('../../services/authService').authService } | undefined;
-const getAuthService = async () => {
+interface AuthServiceModule {
+  authService: {
+    getAuthHeaders: () => { Authorization?: string };
+    ensureValidToken: () => Promise<void>;
+    handleAuthError: (response: Response) => Promise<boolean>;
+    clearTokens: () => void;
+  };
+}
+
+let authServiceModule: AuthServiceModule | undefined;
+const getAuthService = async (): Promise<AuthServiceModule['authService']> => {
   if (!authServiceModule) {
-    authServiceModule = await import('../../services/authService');
+    authServiceModule = await import('../../services/authService') as AuthServiceModule;
   }
   return authServiceModule.authService;
 };
 
 // Add request interceptor for authentication
 apiClient.interceptors.request.use(
-  async (config) => {
+  (config) => {
     // Ensure credentials are included for cookie-based auth
     config.withCredentials = true;
 
     // Add authorization header if we have a token
-    const authService = await getAuthService();
-    const authHeaders = authService.getAuthHeaders();
-    if (authHeaders.Authorization) {
-      config.headers.Authorization = authHeaders.Authorization;
-    }
+    return getAuthService().then(async (authService) => {
+      const authHeaders = authService.getAuthHeaders();
+      if (authHeaders.Authorization !== undefined && authHeaders.Authorization !== null && authHeaders.Authorization !== '') {
+        config.headers.Authorization = authHeaders.Authorization;
+      }
 
-    // Try to ensure we have a valid token before making the request
-    try {
-      await authService.ensureValidToken();
-    } catch (_error) {
-      // If token refresh fails, continue with request anyway
-      // The response interceptor will handle 401 errors
-      logger.warn('Token refresh failed before request:', _error);
-    }
+      // Try to ensure we have a valid token before making the request
+      try {
+        await authService.ensureValidToken();
+      } catch (_error) {
+        // If token refresh fails, continue with request anyway
+        // The response interceptor will handle 401 errors
+        logger.warn('Token refresh failed before request:', _error);
+      }
 
-    return config;
+      return config;
+    });
   },
-  (error: unknown) => Promise.reject(error as Error),
+  (error: unknown): Promise<never> => Promise.reject(error as Error),
 );
 
 // Add response interceptor for error handling
@@ -82,7 +92,7 @@ apiClient.interceptors.response.use(
         if (recovered) {
           // Update the authorization header with the new token
           const authHeaders = authService.getAuthHeaders();
-          if (authHeaders.Authorization && originalRequest.headers) {
+          if (authHeaders.Authorization !== undefined && authHeaders.Authorization !== null && authHeaders.Authorization !== '' && originalRequest.headers) {
             originalRequest.headers.Authorization = authHeaders.Authorization;
           }
           return apiClient(originalRequest);

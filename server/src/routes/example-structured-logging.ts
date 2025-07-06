@@ -3,12 +3,13 @@
  * This demonstrates best practices for logging in route handlers
  */
 
-import { Router, Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
+import { Router } from 'express';
 
-import { structuredLogger, PerformanceLogger } from '../utils/logger-migration';
-import { withLoggingContext } from '../utils/structuredLogger';
 import { authenticate } from '../middleware/authenticate';
 import { prisma } from '../prisma';
+import { structuredLogger, PerformanceLogger } from '../utils/logger-migration';
+import { withLoggingContext } from '../utils/structuredLogger';
 
 const router = Router();
 
@@ -224,7 +225,7 @@ async function simulateExternalApiCall() {
   return { status: 200, data: { message: 'Success' } };
 }
 
-function processData(users: Array<{ id: number; name: string }>, apiResult: { data: unknown }) {
+function processData(users: { id: number; name: string }[], apiResult: { data: unknown }) {
   return users.map((u) => ({ ...u, apiData: apiResult.data }));
 }
 
@@ -233,7 +234,9 @@ async function processItem(item: Record<string, unknown>) {
 }
 
 async function validateWorkflowInput(input: { name?: string }) {
-  if (!input.name) throw new Error('Name is required');
+  if (!input.name) {
+throw new Error('Name is required');
+}
 }
 
 async function processWorkflow(input: Record<string, unknown>) {

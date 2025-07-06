@@ -60,7 +60,7 @@ I hope this newsletter finds you well! Here's a summary of what we've been worki
       content += '\n## Recent Learning Highlights\n\n';
 
       // Group lessons by subject
-      const lessonsBySubject: { [key: string]: LessonPlan[] } = {};
+      const lessonsBySubject: Record<string, LessonPlan[]> = {};
 
       lessonPlans.forEach((lesson) => {
         const subject = lesson.subject || lesson.unitPlan?.title || 'General Studies';
@@ -123,7 +123,9 @@ Warm regards,
 
   // @ts-expect-error Method reserved for future newsletter formatting
   private static _formatLessonSummary(lessons: any[]): string {
-    if (lessons.length === 0) return '';
+    if (lessons.length === 0) {
+return '';
+}
 
     let summary = '### Recent Lessons\n\n';
 
@@ -143,7 +145,9 @@ Warm regards,
 
   // @ts-expect-error Method reserved for future newsletter formatting
   private static _formatReflectionHighlights(reflections: any[]): string {
-    if (reflections.length === 0) return '';
+    if (reflections.length === 0) {
+return '';
+}
 
     let highlights = '### Teacher Reflections\n\n';
 

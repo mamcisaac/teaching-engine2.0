@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
+
 import logger from '../utils/logger';
 
 interface UserProgress {
@@ -180,14 +181,12 @@ export const useHelpStore = create<HelpState>()(
         tutorialProgress: state.tutorialProgress,
       }),
       // Handle Date serialization/deserialization
-      serialize: (state) => {
-        return JSON.stringify(state, (key, value) => {
+      serialize: (state) => JSON.stringify(state, (key, value) => {
           if (key === 'lastVisited' && value instanceof Date) {
             return value.toISOString();
           }
           return value;
-        });
-      },
+        }),
       deserialize: (str) => {
         try {
           const parsed = JSON.parse(str);
@@ -205,17 +204,13 @@ export const useHelpStore = create<HelpState>()(
 );
 
 // Selector hooks for performance
-export const useCurrentSection = () => useHelpStore(state => state.currentSection);
-export const useSearchQuery = () => useHelpStore(state => state.searchQuery);
-export const useActiveFilters = () => useHelpStore(state => state.activeFilters);
-export const useContextualHints = () => useHelpStore(state => state.contextualHints);
+export const useCurrentSection = (): UseQueryResult<unknown> => useHelpStore(state => state.currentSection);
+export const useSearchQuery = (): UseQueryResult<unknown> => useHelpStore(state => state.searchQuery);
+export const useActiveFilters = (): UseQueryResult<unknown> => useHelpStore(state => state.activeFilters);
+export const useContextualHints = (): UseQueryResult<unknown> => useHelpStore(state => state.contextualHints);
 
 // Tutorial progress hook
-export const useTutorialProgress = (tutorialId: string) => {
-  return useHelpStore(state => state.getTutorialProgress(tutorialId));
-};
+export const useTutorialProgress = (tutorialId: string) => useHelpStore(state => state.getTutorialProgress(tutorialId));
 
 // Analytics hook
-export const useHelpAnalytics = () => {
-  return useHelpStore(state => state.getAnalytics());
-};
+export const useHelpAnalytics = (): UseQueryResult<unknown> => useHelpStore(state => state.getAnalytics());

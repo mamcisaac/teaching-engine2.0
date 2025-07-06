@@ -1,9 +1,11 @@
-import { createContext, useContext, ReactNode } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import type { ReactNode } from 'react';
+import { createContext, useContext } from 'react';
+
 import { authService } from '../services/authService';
+import { errorReportingService } from '../services/errorReportingService';
 import type { User } from '../types';
 import logger from '../utils/logger';
-import { errorReportingService } from '../services/errorReportingService';
 
 interface LoginCredentials {
   email: string;
@@ -68,7 +70,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     },
     retry: (failureCount, error) => {
       // Only retry on network errors, not auth errors
-      const statusCode = (error as { response?: { status?: number } })?.response?.status;
+      const statusCode = (error as { response?: { status?: number } }).response?.status;
       if (statusCode === 401 || statusCode === 403) {
         return false;
       }
@@ -95,13 +97,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           message?: string;
         };
         
-        if (err?.response?.data?.error) {
+        if (err.response?.data?.error) {
           errorMessage = err.response.data.error;
-        } else if (err?.response?.status === 401) {
+        } else if (err.response?.status === 401) {
           errorMessage = 'Invalid email or password';
-        } else if (err?.response?.status && err.response.status >= 500) {
+        } else if (err.response?.status && err.response.status >= 500) {
           errorMessage = 'Server error. Please try again later.';
-        } else if (err?.message) {
+        } else if (err.message) {
           errorMessage = err.message;
         }
         
@@ -156,12 +158,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         // Re-verify auth after refresh
         const userData = await checkAuth();
         return !!userData.data;
-      } else {
+      } 
         // Clear auth state on refresh failure
         queryClient.setQueryData(['auth', 'currentUser'], null);
         errorReportingService.setUserContext(null);
         return false;
-      }
+      
     } catch (error) {
       logger.error('Token refresh failed:', error);
       queryClient.setQueryData(['auth', 'currentUser'], null);
@@ -207,7 +209,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 }
 
-export const useAuth = () => {
+export const useAuth = (): UseQueryResult<unknown> => {
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error('useAuth must be used within an AuthProvider');
@@ -216,17 +218,17 @@ export const useAuth = () => {
 };
 
 // Additional hooks for specific auth states
-export const useUser = () => {
+export const useUser = (): UseQueryResult<unknown> => {
   const { user } = useAuth();
   return user;
 };
 
-export const useIsAuthenticated = () => {
+export const useIsAuthenticated = (): UseQueryResult<unknown> => {
   const { isAuthenticated } = useAuth();
   return isAuthenticated;
 };
 
-export const useAuthLoading = () => {
+export const useAuthLoading = (): UseQueryResult<unknown> => {
   const { isLoading } = useAuth();
   return isLoading;
 };

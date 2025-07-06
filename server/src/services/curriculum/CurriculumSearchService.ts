@@ -4,8 +4,8 @@
  * Handles searching and filtering curriculum expectations
  */
 
-import { BaseService } from '../base/BaseService';
 import { prisma } from '../../prisma';
+import { BaseService } from '../base/BaseService';
 
 export interface SearchFilters {
   subjectId?: number;
@@ -143,7 +143,7 @@ export class CurriculumSearchService extends BaseService {
         // Apply filters
         if (filters?.subjectId) {
           // Note: subject is a string field, not a relation
-          where.subject = filters.subjectId?.toString();
+          where.subject = filters.subjectId.toString();
         }
         
         if (filters?.grade) {
@@ -224,7 +224,7 @@ export class CurriculumSearchService extends BaseService {
   /**
    * Get similar expectations
    */
-  public async getSimilarExpectations(expectationId: string, limit: number = 10): Promise<any[]> {
+  public async getSimilarExpectations(expectationId: string, limit = 10): Promise<any[]> {
     return this.executeWithMetrics(
       async () => {
         // Get the reference expectation
@@ -274,7 +274,7 @@ export class CurriculumSearchService extends BaseService {
   public async getAutoCompleteSuggestions(
     query: string,
     field: 'code' | 'description',
-    limit: number = 10
+    limit = 10
   ): Promise<string[]> {
     return this.executeWithMetrics(
       async () => {

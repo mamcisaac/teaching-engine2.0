@@ -1,10 +1,3 @@
-import React, { useState } from 'react';
-import { Button } from '../ui/Button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
-import { Input } from '../ui/Input';
-import { Label } from '../ui/Label';
-// import { Textarea } from '../ui/Textarea';
-import { Badge } from '../ui/Badge';
 import { 
   Download, 
   FileText, 
@@ -15,6 +8,14 @@ import {
   CheckCircle2,
   Wand2,
 } from 'lucide-react';
+import React, { useState } from 'react';
+
+import { Badge } from '../ui/Badge';
+import { Button } from '../ui/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+import { Input } from '../ui/Input';
+import { Label } from '../ui/Label';
+// import { Textarea } from '../ui/Textarea';
 // Removed unused imports - UnitPlanFormData and LessonPlanFormData
 
 interface TemplateConfig {
@@ -95,8 +96,7 @@ export default function FormTemplates({
     includeFields: [] as string[],
   });
 
-  const generateBasicUnitTemplate = (quantity: number = 1): Record<string, unknown>[] => {
-    return Array.from({ length: quantity }, (_, index): Record<string, unknown> => ({
+  const generateBasicUnitTemplate = (quantity = 1): Record<string, unknown>[] => Array.from({ length: quantity }, (_, index): Record<string, unknown> => ({
       title: `${customConfig.prefix}Unit ${index + 1}`,
       description: '',
       bigIdeas: '',
@@ -127,10 +127,8 @@ export default function FormTemplates({
       technologyIntegration: '',
       communityConnections: '',
     }));
-  };
 
-  const generateBasicLessonTemplate = (quantity: number = 1): Record<string, unknown>[] => {
-    return Array.from({ length: quantity }, (_, index): Record<string, unknown> => ({
+  const generateBasicLessonTemplate = (quantity = 1): Record<string, unknown>[] => Array.from({ length: quantity }, (_, index): Record<string, unknown> => ({
       title: `${customConfig.prefix}Lesson ${index + 1}`,
       titleFr: '',
       unitPlanId: '',
@@ -155,10 +153,8 @@ export default function FormTemplates({
       subNotes: '',
       expectationIds: [],
     }));
-  };
 
-  const generateSubFriendlyLessonTemplate = (quantity: number = 1): Record<string, unknown>[] => {
-    return Array.from({ length: quantity }, (_, index): Record<string, unknown> => ({
+  const generateSubFriendlyLessonTemplate = (quantity = 1): Record<string, unknown>[] => Array.from({ length: quantity }, (_, index): Record<string, unknown> => ({
       title: `${customConfig.prefix}Sub Plan ${index + 1}`,
       titleFr: '',
       unitPlanId: '',
@@ -183,12 +179,13 @@ export default function FormTemplates({
       subNotes: 'All materials are pre-arranged. Students know routine. Contact office for any issues.',
       expectationIds: [],
     }));
-  };
 
   const handleTemplateGenerate = () => {
-    if (!selectedTemplate) return;
+    if (!selectedTemplate) {
+return;
+}
 
-    let templateData: Array<Record<string, unknown>> = [];
+    let templateData: Record<string, unknown>[] = [];
 
     switch (selectedTemplate.id) {
       case 'basic-unit':
@@ -212,9 +209,11 @@ export default function FormTemplates({
   };
 
   const handleTemplateDownload = () => {
-    if (!selectedTemplate) return;
+    if (!selectedTemplate) {
+return;
+}
 
-    let templateData: Array<Record<string, unknown>> = [];
+    let templateData: Record<string, unknown>[] = [];
 
     switch (selectedTemplate.id) {
       case 'basic-unit':
@@ -284,7 +283,9 @@ export default function FormTemplates({
                     ? 'border-indigo-500 bg-indigo-50'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
-                onClick={() => setSelectedTemplate(template)}
+                onClick={() => {
+ setSelectedTemplate(template); 
+}}
               >
                 <div className="flex items-start gap-3">
                   <div className="flex-shrink-0 text-indigo-600">
@@ -294,7 +295,7 @@ export default function FormTemplates({
                     <h3 className="font-medium text-sm">{template.name}</h3>
                     <p className="text-xs text-gray-600 mt-1">{template.description}</p>
                     <div className="flex gap-2 mt-2">
-                      <Badge variant="outline" className="text-xs">
+                      <Badge className="text-xs" variant="outline">
                         {template.type}
                       </Badge>
                       <Badge className={`text-xs ${getDifficultyColor(template.difficulty)}`}>
@@ -327,15 +328,16 @@ export default function FormTemplates({
                 <Label htmlFor="quantity">Number of entries</Label>
                 <Input
                   id="quantity"
-                  type="number"
-                  min="1"
                   max="50"
+                  min="1"
+                  type="number"
                   value={customConfig.quantity}
-                  onChange={(e) =>
-                    setCustomConfig({
+                  onChange={(e) => {
+ setCustomConfig({
                       ...customConfig,
                       quantity: parseInt(e.target.value) || 1,
-                    })
+                    }); 
+}
                   }
                 />
               </div>
@@ -343,11 +345,12 @@ export default function FormTemplates({
                 <Label htmlFor="prefix">Title prefix</Label>
                 <Input
                   id="prefix"
-                  value={customConfig.prefix}
-                  onChange={(e) =>
-                    setCustomConfig({ ...customConfig, prefix: e.target.value })
-                  }
                   placeholder="e.g., Grade 3 - "
+                  value={customConfig.prefix}
+                  onChange={(e) => {
+ setCustomConfig({ ...customConfig, prefix: e.target.value }); 
+}
+                  }
                 />
               </div>
             </div>
@@ -359,11 +362,12 @@ export default function FormTemplates({
                   id="start-date"
                   type="date"
                   value={customConfig.dateRange.start}
-                  onChange={(e) =>
-                    setCustomConfig({
+                  onChange={(e) => {
+ setCustomConfig({
                       ...customConfig,
                       dateRange: { ...customConfig.dateRange, start: e.target.value },
-                    })
+                    }); 
+}
                   }
                 />
               </div>
@@ -373,25 +377,26 @@ export default function FormTemplates({
                   id="end-date"
                   type="date"
                   value={customConfig.dateRange.end}
-                  onChange={(e) =>
-                    setCustomConfig({
+                  onChange={(e) => {
+ setCustomConfig({
                       ...customConfig,
                       dateRange: { ...customConfig.dateRange, end: e.target.value },
-                    })
+                    }); 
+}
                   }
                 />
               </div>
             </div>
 
             <div className="flex gap-2">
-              <Button onClick={handleTemplateGenerate} className="flex items-center gap-2">
+              <Button className="flex items-center gap-2" onClick={handleTemplateGenerate}>
                 <Wand2 className="h-4 w-4" />
                 Generate Template
               </Button>
               <Button
+                className="flex items-center gap-2"
                 variant="outline"
                 onClick={handleTemplateDownload}
-                className="flex items-center gap-2"
               >
                 <Download className="h-4 w-4" />
                 Download Template
@@ -418,7 +423,7 @@ export default function FormTemplates({
                   <Badge variant="outline">All available fields</Badge>
                 ) : (
                   selectedTemplate.fields.map((field) => (
-                    <Badge key={field} variant="outline" className="text-xs">
+                    <Badge key={field} className="text-xs" variant="outline">
                       {field}
                     </Badge>
                   ))

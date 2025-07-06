@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { formatDistanceToNow } from 'date-fns';
 import { Check, Clock, Save, AlertCircle, WifiOff, Cloud, CloudOff } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+
+import { isOnline } from '../../utils/serviceWorkerRegistration';
+
 import { Badge } from './Badge';
 import { Button } from './Button';
-import { formatDistanceToNow } from 'date-fns';
 import { Tooltip } from './Tooltip';
-import { isOnline } from '../../utils/serviceWorkerRegistration';
 
 interface AutoSaveIndicatorProps {
   lastSaved: Date | null;
@@ -32,8 +34,12 @@ export function AutoSaveIndicator({
   const [isOnlineState, setIsOnlineState] = useState(isOnlineProp ?? isOnline());
 
   useEffect(() => {
-    const handleOnline = () => setIsOnlineState(true);
-    const handleOffline = () => setIsOnlineState(false);
+    const handleOnline = () => {
+ setIsOnlineState(true); 
+};
+    const handleOffline = () => {
+ setIsOnlineState(false); 
+};
 
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
@@ -117,10 +123,10 @@ export function AutoSaveIndicator({
     <div className={`flex items-center gap-2 ${className}`}>
       <Tooltip content={status.tooltip}>
         <Badge 
-          variant={status.variant} 
           className={`flex items-center gap-1 transition-all duration-200 ${
             hasUnsavedChanges && isOnlineState ? 'animate-pulse' : ''
-          } ${!isOnlineState ? 'opacity-90' : ''}`}
+          } ${!isOnlineState ? 'opacity-90' : ''}`} 
+          variant={status.variant}
         >
           {status.icon}
           <span className="text-xs font-medium">{status.text}</span>
@@ -129,7 +135,7 @@ export function AutoSaveIndicator({
       
       {/* Connection status indicator */}
       {!isOnlineState && (
-        <Badge variant="outline" className="flex items-center gap-1 bg-yellow-50 border-yellow-200">
+        <Badge className="flex items-center gap-1 bg-yellow-50 border-yellow-200" variant="outline">
           <WifiOff className="w-3 h-3 text-yellow-600" />
           <span className="text-xs font-medium text-yellow-700">Offline</span>
         </Badge>
@@ -138,11 +144,11 @@ export function AutoSaveIndicator({
       {/* Manual save button - only show when online */}
       {hasUnsavedChanges && onManualSave && isOnlineState && (
         <Button
-          variant="outline"
-          size="sm"
-          onClick={onManualSave}
-          disabled={isSaving || syncStatus === 'syncing'}
           className="h-6 px-2 text-xs bg-orange-50 border-orange-200 text-orange-700 hover:bg-orange-100"
+          disabled={isSaving || syncStatus === 'syncing'}
+          size="sm"
+          variant="outline"
+          onClick={onManualSave}
         >
           <Save className="w-3 h-3 mr-1" />
           Save now
@@ -165,7 +171,7 @@ export function AutoSaveIndicator({
       {/* Pending changes indicator for offline mode */}
       {!isOnlineState && pendingChanges > 0 && (
         <Tooltip content={`${pendingChanges} changes will sync when you're back online`}>
-          <Badge variant="secondary" className="h-5 px-2 text-xs">
+          <Badge className="h-5 px-2 text-xs" variant="secondary">
             {pendingChanges}
           </Badge>
         </Tooltip>
@@ -207,9 +213,9 @@ export function FormAutoSaveHeader({
     <div className="flex items-center justify-between pb-4 border-b">
       <h3 className="text-lg font-semibold">{title}</h3>
       <AutoSaveIndicator
-        lastSaved={lastSaved}
-        isSaving={isSaving}
         hasUnsavedChanges={hasUnsavedChanges}
+        isSaving={isSaving}
+        lastSaved={lastSaved}
         onManualSave={onManualSave}
       />
     </div>

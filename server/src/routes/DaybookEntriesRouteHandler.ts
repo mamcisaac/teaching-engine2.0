@@ -3,21 +3,21 @@
  * Extends BaseRouteHandler with daybook-specific business logic and analytics
  */
 
-import { Response, NextFunction } from 'express';
+import type { Prisma } from '@teaching-engine/database';
+import type { Response, NextFunction } from 'express';
 import { z } from 'zod';
-import { Prisma } from '@teaching-engine/database';
 
-import { BaseService } from '../services/base/BaseService.js';
 import { prisma } from '../prisma.js';
-import { DaybookEntryCreateData, DaybookEntryUpdateData } from '../types/routes.js';
+import { BaseService } from '../services/base/BaseService.js';
+import type { DaybookEntryCreateData, DaybookEntryUpdateData } from '../types/routes.js';
 
-import { BaseRouteHandler, AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
+import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
+import { BaseRouteHandler } from './base/BaseRouteHandler.js';
 import {
   optimizedIncludes,
   optimizedQueries,
   queryPerformance,
 } from './optimizations/queryOptimizations.js';
-
 
 // Daybook-specific interfaces
 interface DaybookEntryForAnalytics {
@@ -214,7 +214,9 @@ class DaybookService extends BaseService {
     } else if (endDate) {
       where.date = { lte: new Date(endDate) };
     }
-    if (lessonPlanId) where.lessonPlanId = String(lessonPlanId);
+    if (lessonPlanId) {
+where.lessonPlanId = String(lessonPlanId);
+}
 
     // Subject filtering through lesson plan relationship
     if (subject) {
@@ -228,9 +230,13 @@ class DaybookService extends BaseService {
     }
 
     const orderBy: Prisma.DaybookEntryOrderByWithRelationInput = {};
-    if (sort === 'date') orderBy.date = order;
-    else if (sort === 'overallRating') orderBy.overallRating = order;
-    else if (sort === 'createdAt') orderBy.createdAt = order;
+    if (sort === 'date') {
+orderBy.date = order;
+} else if (sort === 'overallRating') {
+orderBy.overallRating = order;
+} else if (sort === 'createdAt') {
+orderBy.createdAt = order;
+}
 
     const result = await queryPerformance.monitorQuery('daybookEntry.findMany', () =>
       optimizedQueries.paginatedQuery(prisma.daybookEntry, where, {
@@ -393,13 +399,13 @@ class DaybookService extends BaseService {
           recentEntries.length
         : 0;
 
-    const subjectBreakdown = recentEntries.reduce(
+    const subjectBreakdown = recentEntries.reduce<Record<string, number>>(
       (acc: Record<string, number>, entry) => {
-        const subject = entry.lessonPlan?.unitPlan?.longRangePlan?.subject || 'Unknown';
+        const subject = entry.lessonPlan?.unitPlan.longRangePlan.subject || 'Unknown';
         acc[subject] = (acc[subject] || 0) + 1;
         return acc;
       },
-      {} as Record<string, number>,
+      {},
     );
 
     return {
@@ -441,9 +447,7 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
 
   protected getCrudOperations(): CrudOperations<unknown> {
     return {
-      create: async (data: unknown, userId: number) => {
-        return this.daybookService.create(data as DaybookEntryCreateData, userId);
-      },
+      create: async (data: unknown, userId: number) => this.daybookService.create(data as DaybookEntryCreateData, userId),
       findMany: async (filters: unknown, userId: number) => {
         const result = await this.daybookService.findMany(
           filters as {
@@ -460,15 +464,9 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
         );
         return result.entries;
       },
-      findById: async (id: string, userId: number) => {
-        return this.daybookService.findById(id, userId);
-      },
-      update: async (id: string, data: unknown, userId: number) => {
-        return this.daybookService.update(id, data as DaybookEntryUpdateData, userId);
-      },
-      delete: async (id: string, userId: number) => {
-        return this.daybookService.delete(id, userId);
-      },
+      findById: async (id: string, userId: number) => this.daybookService.findById(id, userId),
+      update: async (id: string, data: unknown, userId: number) => this.daybookService.update(id, data as DaybookEntryUpdateData, userId),
+      delete: async (id: string, userId: number) => this.daybookService.delete(id, userId),
     };
   }
 
@@ -499,7 +497,7 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
       return;
     } catch (_error) {
       this.logger.error(`Error in ${this.routeName} list:`, _error);
-      return next(_error);
+      next(_error); return;
     }
   }
 
@@ -524,7 +522,7 @@ export class DaybookEntriesRouteHandler extends BaseRouteHandler {
       return;
     } catch (_error) {
       this.logger.error('Error getting insights summary:', _error);
-      return next(_error);
+      next(_error); return;
     }
   }
 }

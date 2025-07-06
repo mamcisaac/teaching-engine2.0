@@ -161,8 +161,8 @@ export const resourceApi = {
     },
 
     // Download resource
-    download: async (id: number) => {
-      const { data } = await apiClient.get(`/api/resources/media/${id}/download`, {
+    download: async (id: number): Promise<Blob> => {
+      const { data } = await apiClient.get<Blob>(`/api/resources/media/${id}/download`, {
         responseType: 'blob',
       });
       return data;
@@ -240,8 +240,8 @@ export const resourceApi = {
     },
 
     // Remove resources from collection
-    removeResources: async (collectionId: number, resourceIds: number[]) => {
-      const { data } = await apiClient.delete(`/api/resources/collections/${collectionId}/resources`, {
+    removeResources: async (collectionId: number, resourceIds: number[]): Promise<ResourceCollection> => {
+      const { data } = await apiClient.delete<ResourceCollection>(`/api/resources/collections/${collectionId}/resources`, {
         data: { resourceIds },
       });
       return data;
@@ -321,8 +321,8 @@ export const resourceApi = {
     return data;
   },
 
-  export: async (resourceIds: number[], format: 'zip' | 'json') => {
-    const { data } = await apiClient.post('/api/resources/export', {
+  export: async (resourceIds: number[], format: 'zip' | 'json'): Promise<Blob> => {
+    const { data } = await apiClient.post<Blob>('/api/resources/export', {
       resourceIds,
       format,
     }, {

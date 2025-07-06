@@ -1,31 +1,33 @@
+import type { UseQueryResult, UseMutationResult } from '@tanstack/react-query';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
+import type { Subject, CurriculumExpectation, ThematicUnit } from '../../../types';
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 
 import { curriculumApi } from './api';
 
 // Subject Query Hooks
-export const useSubjects = () =>
+export const useSubjects = (): UseQueryResult<Subject[]> =>
   useQuery({
     queryKey: queryKeys.curriculum.subjects,
     queryFn: curriculumApi.getSubjects,
   });
 
-export const useSubject = (id: number) =>
+export const useSubject = (id: number): UseQueryResult<Subject> =>
   useQuery({
     queryKey: queryKeys.curriculum.subject(id),
     queryFn: () => curriculumApi.getSubject(id),
     enabled: !!id,
   });
 
-export const useStrands = (subjectId: number) =>
+export const useStrands = (subjectId: number): UseQueryResult<string[]> =>
   useQuery({
     queryKey: ['subject-strands', subjectId],
     queryFn: () => curriculumApi.getStrands(subjectId),
     enabled: !!subjectId,
   });
 
-export const useTopics = (subjectId: number, strand: string) =>
+export const useTopics = (subjectId: number, strand: string): UseQueryResult<string[]> =>
   useQuery({
     queryKey: ['subject-topics', subjectId, strand],
     queryFn: () => curriculumApi.getTopics(subjectId, strand),
@@ -38,13 +40,13 @@ export const useCurriculumExpectations = (filters?: {
   grade?: number;
   strand?: string;
   keyword?: string;
-}) =>
+}): UseQueryResult<CurriculumExpectation[]> =>
   useQuery({
     queryKey: queryKeys.curriculum.expectations(filters),
     queryFn: () => curriculumApi.getCurriculumExpectations(filters),
   });
 
-export const useCurriculumExpectation = (id: number) =>
+export const useCurriculumExpectation = (id: number): UseQueryResult<CurriculumExpectation> =>
   useQuery({
     queryKey: ['curriculum-expectation', id],
     queryFn: () => curriculumApi.getCurriculumExpectation(id),
@@ -57,13 +59,13 @@ export const useThematicUnits = (filters?: {
   subject?: string;
   theme?: string;
   userId?: number;
-}) =>
+}): UseQueryResult<ThematicUnit[]> =>
   useQuery({
     queryKey: queryKeys.curriculum.thematicUnits(filters),
     queryFn: () => curriculumApi.getThematicUnits(filters),
   });
 
-export const useThematicUnit = (id: number) =>
+export const useThematicUnit = (id: number): UseQueryResult<ThematicUnit> =>
   useQuery({
     queryKey: queryKeys.curriculum.thematicUnit(id),
     queryFn: () => curriculumApi.getThematicUnit(id),
@@ -78,7 +80,10 @@ export const useSearchCurriculum = (
     grades?: number[];
     strands?: string[];
   }
-) =>
+): UseQueryResult<{
+  expectations: CurriculumExpectation[];
+  units: ThematicUnit[];
+}> =>
   useQuery({
     queryKey: ['curriculum-search', query, options],
     queryFn: () => curriculumApi.searchCurriculum(query, options),
@@ -86,7 +91,7 @@ export const useSearchCurriculum = (
   });
 
 // Subject Mutation Hooks
-export const useCreateSubject = () => {
+export const useCreateSubject = (): UseMutationResult<Subject, Error, Omit<Subject, 'id' | 'createdAt' | 'updatedAt'>> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -99,7 +104,7 @@ export const useCreateSubject = () => {
   });
 };
 
-export const useUpdateSubject = () => {
+export const useUpdateSubject = (): UseMutationResult<Subject, Error, Subject> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -113,7 +118,7 @@ export const useUpdateSubject = () => {
   });
 };
 
-export const useDeleteSubject = () => {
+export const useDeleteSubject = (): UseMutationResult<void, Error, number> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -127,7 +132,7 @@ export const useDeleteSubject = () => {
 };
 
 // Curriculum Expectation Mutation Hooks
-export const useCreateCurriculumExpectation = () => {
+export const useCreateCurriculumExpectation = (): UseMutationResult<CurriculumExpectation, Error, Omit<CurriculumExpectation, 'id'>> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -140,7 +145,7 @@ export const useCreateCurriculumExpectation = () => {
   });
 };
 
-export const useUpdateCurriculumExpectation = () => {
+export const useUpdateCurriculumExpectation = (): UseMutationResult<CurriculumExpectation, Error, CurriculumExpectation> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -154,7 +159,7 @@ export const useUpdateCurriculumExpectation = () => {
   });
 };
 
-export const useDeleteCurriculumExpectation = () => {
+export const useDeleteCurriculumExpectation = (): UseMutationResult<void, Error, number> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -168,7 +173,7 @@ export const useDeleteCurriculumExpectation = () => {
 };
 
 // Thematic Unit Mutation Hooks
-export const useCreateThematicUnit = () => {
+export const useCreateThematicUnit = (): UseMutationResult<ThematicUnit, Error, Omit<ThematicUnit, 'id' | 'createdAt' | 'updatedAt'>> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -181,7 +186,7 @@ export const useCreateThematicUnit = () => {
   });
 };
 
-export const useUpdateThematicUnit = () => {
+export const useUpdateThematicUnit = (): UseMutationResult<ThematicUnit, Error, ThematicUnit> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -195,7 +200,7 @@ export const useUpdateThematicUnit = () => {
   });
 };
 
-export const useDeleteThematicUnit = () => {
+export const useDeleteThematicUnit = (): UseMutationResult<void, Error, number> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -208,7 +213,7 @@ export const useDeleteThematicUnit = () => {
   });
 };
 
-export const useDuplicateThematicUnit = () => {
+export const useDuplicateThematicUnit = (): UseMutationResult<ThematicUnit, Error, number> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -222,7 +227,11 @@ export const useDuplicateThematicUnit = () => {
 };
 
 // Import/Export Hooks
-export const useImportCurriculum = () => {
+export const useImportCurriculum = (): UseMutationResult<{
+  imported: number;
+  failed: number;
+  errors?: string[];
+}, Error, { file: File; format: 'csv' | 'pdf' | 'docx' }> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -240,17 +249,23 @@ export const useImportCurriculum = () => {
   });
 };
 
-export const useExportCurriculum = () => useMutation({
+export const useExportCurriculum = (): UseMutationResult<Blob, Error, {
+  subjectIds?: number[];
+  grades?: number[];
+  format: 'csv' | 'pdf' | 'json';
+}> => useMutation({
     mutationFn: curriculumApi.exportCurriculum,
     onSuccess: (data, variables) => {
       // Create download link
-      const url = window.URL.createObjectURL(new Blob([data]));
+      const url = window.URL.createObjectURL(data);
       const link = document.createElement('a');
       link.href = url;
       link.setAttribute('download', `curriculum-export.${variables.format}`);
       document.body.appendChild(link);
       link.click();
-      link.remove();
+      if (link.parentNode) {
+        link.parentNode.removeChild(link);
+      }
       window.URL.revokeObjectURL(url);
       
       showSuccessToast('Curriculum exported successfully');

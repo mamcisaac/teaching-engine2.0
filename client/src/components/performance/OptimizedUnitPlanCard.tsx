@@ -1,6 +1,7 @@
 import React, { memo, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { UnitPlan } from '../../hooks/useETFOPlanning';
+
+import type { UnitPlan } from '../../hooks/useETFOPlanning';
 import { cn } from '../../lib/utils';
 
 interface OptimizedUnitPlanCardProps {
@@ -11,12 +12,12 @@ interface OptimizedUnitPlanCardProps {
 }
 
 // Memoized component with optimized re-rendering
-export const OptimizedUnitPlanCard = memo(function OptimizedUnitPlanCard({ 
+export const OptimizedUnitPlanCard = memo(({ 
   unitPlan: unit, 
   onEdit,
   className,
   compact = false,
-}: OptimizedUnitPlanCardProps) {
+}: OptimizedUnitPlanCardProps) => {
   // Memoize expensive date formatting
   const dateRange = useMemo(() => {
     try {
@@ -37,7 +38,9 @@ export const OptimizedUnitPlanCard = memo(function OptimizedUnitPlanCard({
 
   // Memoize progress calculation
   const progressData = useMemo(() => {
-    if (!unit.progress) return null;
+    if (!unit.progress) {
+return null;
+}
     
     return {
       percentage: Math.min(100, Math.max(0, unit.progress.percentage)),
@@ -48,7 +51,9 @@ export const OptimizedUnitPlanCard = memo(function OptimizedUnitPlanCard({
 
   // Memoized edit handler to prevent unnecessary re-renders
   const handleEdit = useMemo(() => 
-    () => onEdit(unit),
+    () => {
+ onEdit(unit); 
+},
     [onEdit, unit]
   );
 
@@ -128,20 +133,20 @@ export const OptimizedUnitPlanCard = memo(function OptimizedUnitPlanCard({
           compact ? 'flex-col space-y-1' : 'flex-row'
         )}>
           <Link
-            to={`/planner/units/${unit.id}`}
             className={cn(
               'text-center px-3 py-2 text-sm font-medium text-indigo-600 bg-indigo-50 rounded-md hover:bg-indigo-100 transition-colors',
               compact ? 'flex-1' : 'flex-1'
             )}
+            to={`/planner/units/${unit.id}`}
           >
             View Details
           </Link>
           <button
-            onClick={handleEdit}
             className={cn(
               'px-3 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors',
               compact ? 'flex-1' : ''
             )}
+            onClick={handleEdit}
           >
             Edit
           </button>
@@ -149,9 +154,9 @@ export const OptimizedUnitPlanCard = memo(function OptimizedUnitPlanCard({
       </div>
     </div>
   );
-}, (prevProps, nextProps) => {
+}, (prevProps, nextProps) => 
   // Custom comparison function to optimize re-renders
-  return (
+   (
     prevProps.unitPlan.id === nextProps.unitPlan.id &&
     prevProps.unitPlan.title === nextProps.unitPlan.title &&
     prevProps.unitPlan.startDate === nextProps.unitPlan.startDate &&
@@ -162,5 +167,5 @@ export const OptimizedUnitPlanCard = memo(function OptimizedUnitPlanCard({
     prevProps.unitPlan.progress?.percentage === nextProps.unitPlan.progress?.percentage &&
     prevProps.compact === nextProps.compact &&
     prevProps.className === nextProps.className
-  );
-});
+  )
+);

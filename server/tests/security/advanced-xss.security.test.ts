@@ -26,7 +26,7 @@ import {
   detectXssAttempt,
   unicodeNormalization,
 } from '../../src/middleware/advancedXssProtection';
-import { generateAuthToken } from '../../src/services/authService';
+import { generateAuthToken } from '../../src/services/auth/authService';
 // Logger is mocked globally, no need to import or mock here
 
 describe('Advanced XSS Protection Security Tests', () => {

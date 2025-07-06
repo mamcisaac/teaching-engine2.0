@@ -2,7 +2,9 @@ import { useNotificationContext } from '../contexts/NotificationContext';
 
 export default function NotificationCenter() {
   const { notifications, markRead } = useNotificationContext();
-  if (notifications.length === 0) return <div>No notifications</div>;
+  if (notifications.length === 0) {
+return <div>No notifications</div>;
+}
   return (
     <ul className="space-y-2">
       {notifications.map((n) => (

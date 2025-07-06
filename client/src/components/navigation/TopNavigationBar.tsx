@@ -1,10 +1,12 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+
 import { useETFOProgress } from '../../hooks/useETFOProgress';
-import { useNavigation } from './NavigationProvider';
-import { secondaryNavItems } from './navigationConfig';
-import NotificationBell from '../NotificationBell';
 import LanguageSwitcher from '../LanguageSwitcher';
+import NotificationBell from '../NotificationBell';
+
+import { secondaryNavItems } from './navigationConfig';
+import { useNavigation } from './NavigationProvider';
 
 export function TopNavigationBar() {
   const location = useLocation();
@@ -17,7 +19,9 @@ export function TopNavigationBar() {
     const etfoMatch = etfoLevels.find((level) =>
       location.pathname.startsWith(level.path),
     );
-    if (etfoMatch) return etfoMatch.name;
+    if (etfoMatch) {
+return etfoMatch.name;
+}
 
     // Check for exact analytics match
     if (location.pathname === '/analytics') {
@@ -28,7 +32,9 @@ export function TopNavigationBar() {
     const secondaryMatch = secondaryNavItems.find((item) =>
       location.pathname.startsWith(item.path),
     );
-    if (secondaryMatch) return secondaryMatch.label;
+    if (secondaryMatch) {
+return secondaryMatch.label;
+}
 
     // Default
     return 'Teaching Engine 2.0';
@@ -39,16 +45,16 @@ export function TopNavigationBar() {
       {/* Mobile menu button */}
       {isMobile && (
         <button
-          onClick={toggleSidebar}
-          className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
           aria-label="Open menu"
+          className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+          onClick={toggleSidebar}
         >
-          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
+              d="M4 6h16M4 12h16M4 18h16"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
             />
           </svg>
         </button>

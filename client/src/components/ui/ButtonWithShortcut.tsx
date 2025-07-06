@@ -1,8 +1,11 @@
 import React from 'react';
-import { Button, ButtonProps } from './Button';
-import { ShortcutHint } from './ShortcutHint';
-import { KeyboardShortcut } from '../../contexts/KeyboardShortcutsContext';
+
+import type { KeyboardShortcut } from '../../contexts/KeyboardShortcutsContext';
 import { useKeyboardShortcut } from '../../hooks/useKeyboardShortcut';
+
+import type { ButtonProps } from './Button';
+import { Button } from './Button';
+import { ShortcutHint } from './ShortcutHint';
 
 export interface ButtonWithShortcutProps extends ButtonProps {
   shortcut?: Partial<KeyboardShortcut>;
@@ -68,11 +71,11 @@ export const ButtonWithShortcut = React.forwardRef<HTMLButtonElement, ButtonWith
     }
 
     return (
-      <Button ref={ref} onClick={onClick} disabled={disabled} {...props}>
+      <Button ref={ref} disabled={disabled} onClick={onClick} {...props}>
         <span className="flex items-center gap-2">
           {children}
           {shortcut && showShortcutHint && (
-            <ShortcutHint shortcut={shortcut} position="inline" size="xs" className="ml-1" />
+            <ShortcutHint className="ml-1" position="inline" shortcut={shortcut} size="xs" />
           )}
         </span>
       </Button>

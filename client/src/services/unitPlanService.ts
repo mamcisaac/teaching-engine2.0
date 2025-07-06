@@ -1,5 +1,5 @@
-import { UnitPlan } from '../hooks/useETFOPlanning';
-import { UnitPlanFormData } from '../hooks/useUnitPlanForm';
+import type { UnitPlan } from '../hooks/useETFOPlanning';
+import type { UnitPlanFormData } from '../hooks/useUnitPlanForm';
 
 // Business logic for unit plans
 export class UnitPlanService {
@@ -111,9 +111,15 @@ export class UnitPlanService {
   // Get status color
   static getStatusColor(unit: UnitPlan): string {
     const progress = unit.progress?.percentage || 0;
-    if (progress === 100) return 'text-green-600';
-    if (progress > 50) return 'text-yellow-600';
-    if (progress > 0) return 'text-orange-600';
+    if (progress === 100) {
+return 'text-green-600';
+}
+    if (progress > 50) {
+return 'text-yellow-600';
+}
+    if (progress > 0) {
+return 'text-orange-600';
+}
     return 'text-gray-600';
   }
 

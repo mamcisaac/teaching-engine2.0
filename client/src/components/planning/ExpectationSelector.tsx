@@ -1,13 +1,15 @@
-import React, { useState, useMemo, useEffect } from 'react';
 import { Check, ChevronDown, ChevronRight, Search, X } from 'lucide-react';
-import { useCurriculumExpectations, CurriculumExpectation } from '../../hooks/useETFOPlanning';
+import React, { useState, useMemo, useEffect } from 'react';
+
+import type { CurriculumExpectation } from '../../hooks/useETFOPlanning';
+import { useCurriculumExpectations } from '../../hooks/useETFOPlanning';
+import { cn } from '../../lib/utils';
+import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { Label } from '../ui/Label';
-import { Badge } from '../ui/Badge';
-import { ScrollArea } from '../ui/scroll-area';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
-import { cn } from '../../lib/utils';
+import { ScrollArea } from '../ui/scroll-area';
 
 interface ExpectationSelectorProps {
   selectedIds: string[];
@@ -23,11 +25,7 @@ interface ExpectationSelectorProps {
   disabled?: boolean;
 }
 
-interface GroupedExpectations {
-  [strand: string]: {
-    [substrand: string]: CurriculumExpectation[];
-  };
-}
+type GroupedExpectations = Record<string, Record<string, CurriculumExpectation[]>>;
 
 export default function ExpectationSelector({
   selectedIds,
@@ -54,7 +52,9 @@ export default function ExpectationSelector({
 
   // Filter expectations based on search
   const filteredExpectations = useMemo(() => {
-    if (!searchQuery.trim()) return expectations;
+    if (!searchQuery.trim()) {
+return expectations;
+}
 
     const query = searchQuery.toLowerCase();
     return expectations.filter(
@@ -85,9 +85,7 @@ export default function ExpectationSelector({
   }, [filteredExpectations]);
 
   // Get selected expectations details
-  const selectedExpectations = useMemo(() => {
-    return expectations.filter((exp) => selectedIds.includes(exp.id));
-  }, [expectations, selectedIds]);
+  const selectedExpectations = useMemo(() => expectations.filter((exp) => selectedIds.includes(exp.id)), [expectations, selectedIds]);
 
   // Auto-expand strands with selected expectations
   useEffect(() => {
@@ -140,15 +138,15 @@ export default function ExpectationSelector({
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
-            variant="outline"
-            role="combobox"
             aria-expanded={open}
-            disabled={disabled}
             className={cn(
               "w-full justify-between",
               error && "border-red-500 focus:ring-red-500 focus:border-red-500",
               className
             )}
+            disabled={disabled}
+            role="combobox"
+            variant="outline"
           >
             <span className="truncate">
               {selectedIds.length > 0
@@ -158,15 +156,17 @@ export default function ExpectationSelector({
             <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[600px] p-0" align="start">
+        <PopoverContent align="start" className="w-[600px] p-0">
           <div className="p-4 border-b">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
+                className="pl-9"
                 placeholder="Search by code, description, or strand..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-9"
+                onChange={(e) => {
+ setSearchQuery(e.target.value); 
+}}
               />
             </div>
           </div>
@@ -183,9 +183,11 @@ export default function ExpectationSelector({
                 Object.entries(groupedExpectations).map(([strand, substrands]) => (
                   <div key={strand} className="mb-4">
                     <button
-                      type="button"
-                      onClick={() => toggleStrand(strand)}
                       className="flex items-center gap-2 w-full text-left font-medium text-sm mb-2 hover:text-primary"
+                      type="button"
+                      onClick={() => {
+ toggleStrand(strand); 
+}}
                     >
                       {expandedStrands.has(strand) ? (
                         <ChevronDown className="h-4 w-4" />
@@ -212,7 +214,9 @@ export default function ExpectationSelector({
                                     'flex items-start gap-2 p-2 rounded-md hover:bg-accent cursor-pointer',
                                     selectedIds.includes(exp.id) && 'bg-accent',
                                   )}
-                                  onClick={() => toggleExpectation(exp.id)}
+                                  onClick={() => {
+ toggleExpectation(exp.id); 
+}}
                                 >
                                   <div className="mt-0.5">
                                     {multiSelect ? (
@@ -245,11 +249,11 @@ export default function ExpectationSelector({
                                   </div>
                                   <div className="flex-1">
                                     <div className="flex items-center gap-2">
-                                      <Badge variant="outline" className="text-xs">
+                                      <Badge className="text-xs" variant="outline">
                                         {exp.code}
                                       </Badge>
                                       {exp.type && (
-                                        <Badge variant="secondary" className="text-xs">
+                                        <Badge className="text-xs" variant="secondary">
                                           {exp.type}
                                         </Badge>
                                       )}
@@ -273,7 +277,7 @@ export default function ExpectationSelector({
             <div className="p-4 border-t">
               <div className="flex items-center justify-between">
                 <span className="text-sm text-muted-foreground">{selectedIds.length} selected</span>
-                <Button variant="ghost" size="sm" onClick={clearAll} className="text-destructive">
+                <Button className="text-destructive" size="sm" variant="ghost" onClick={clearAll}>
                   Clear all
                 </Button>
               </div>
@@ -292,7 +296,7 @@ export default function ExpectationSelector({
             >
               <div className="flex-1">
                 <div className="flex items-center gap-2">
-                  <Badge variant="outline" className="text-xs">
+                  <Badge className="text-xs" variant="outline">
                     {exp.code}
                   </Badge>
                   <span className="text-xs text-muted-foreground">{exp.strand}</span>
@@ -301,10 +305,12 @@ export default function ExpectationSelector({
               </div>
               {multiSelect && (
                 <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => removeExpectation(exp.id)}
                   className="h-auto p-1"
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => {
+ removeExpectation(exp.id); 
+}}
                 >
                   <X className="h-4 w-4" />
                 </Button>

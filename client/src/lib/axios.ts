@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { authService } from '../services/authService';
 import logger from '../utils/logger';
 // Create axios instance with base configuration
@@ -32,9 +33,7 @@ api.interceptors.request.use(
 
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  },
+  (error) => Promise.reject(error),
 );
 
 // Add response interceptor for error handling with automatic retry

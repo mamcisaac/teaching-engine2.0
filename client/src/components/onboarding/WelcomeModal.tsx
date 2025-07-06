@@ -1,8 +1,9 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Clock, Target, Heart, ChevronRight } from 'lucide-react';
-import { Button } from '../ui/Button';
+import React from 'react';
+
 import { useOnboarding } from '../../contexts/OnboardingContext';
+import { Button } from '../ui/Button';
 
 export function WelcomeModal() {
   const { state, startOnboarding, skipOnboarding } = useOnboarding();
@@ -31,21 +32,21 @@ export function WelcomeModal() {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998] flex items-center justify-center p-4"
+      initial={{ opacity: 0 }}
     >
       <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.1 }}
         className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden"
+        initial={{ scale: 0.9, opacity: 0 }}
+        transition={{ delay: 0.1 }}
       >
         {/* Header with gradient */}
         <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-8 text-center">
           <motion.div
-            initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
+            initial={{ y: -20, opacity: 0 }}
             transition={{ delay: 0.2 }}
           >
             <div className="inline-flex items-center justify-center p-3 bg-white/20 rounded-full mb-4">
@@ -62,10 +63,10 @@ export function WelcomeModal() {
         <div className="p-8">
           {/* Personal greeting */}
           <motion.div
-            initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3 }}
             className="mb-8 text-center"
+            initial={{ y: 20, opacity: 0 }}
+            transition={{ delay: 0.3 }}
           >
             <h2 className="text-xl font-semibold text-gray-900 mb-2">
               Bonjour! Let&apos;s get you started
@@ -78,10 +79,10 @@ export function WelcomeModal() {
 
           {/* Features grid */}
           <motion.div
-            initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4 }}
             className="grid gap-4 mb-8"
+            initial={{ y: 20, opacity: 0 }}
+            transition={{ delay: 0.4 }}
           >
             {features.map((feature, index) => (
               <div key={index} className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
@@ -98,30 +99,32 @@ export function WelcomeModal() {
 
           {/* CTA buttons */}
           <motion.div
-            initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.5 }}
             className="flex flex-col sm:flex-row gap-3"
+            initial={{ y: 20, opacity: 0 }}
+            transition={{ delay: 0.5 }}
           >
             <Button
-              onClick={() => startOnboarding('main-onboarding')}
               className="flex-1 bg-blue-600 hover:bg-blue-700 text-white gap-2"
               size="lg"
+              onClick={() => {
+ startOnboarding('main-onboarding'); 
+}}
             >
               Take the 5-minute tour
               <ChevronRight className="h-4 w-4" />
             </Button>
-            <Button onClick={skipOnboarding} variant="outline" size="lg" className="flex-1">
+            <Button className="flex-1" size="lg" variant="outline" onClick={skipOnboarding}>
               I&apos;ll explore on my own
             </Button>
           </motion.div>
 
           {/* Trust indicator */}
           <motion.div
-            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
             className="mt-6 text-center text-sm text-gray-500"
+            initial={{ opacity: 0 }}
+            transition={{ delay: 0.6 }}
           >
             Trusted by 500+ PEI teachers • Built with Ontario curriculum standards
           </motion.div>

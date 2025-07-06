@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { useNavigation } from './NavigationProvider';
 
 export function SidebarHeader() {
@@ -10,38 +11,38 @@ export function SidebarHeader() {
         {isMobile ? 'Teaching Engine' : 'Teacher Planner'}
       </h1>
       <button
-        onClick={toggleSidebar}
-        className="text-white focus:outline-none p-1 rounded-lg hover:bg-indigo-700 transition-colors"
         aria-label={isSidebarOpen ? 'Close sidebar' : 'Open sidebar'}
+        className="text-white focus:outline-none p-1 rounded-lg hover:bg-indigo-700 transition-colors"
+        onClick={toggleSidebar}
       >
         {isSidebarOpen ? (
           <svg
-            xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
             fill="none"
-            viewBox="0 0 24 24"
             stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
+              d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
             />
           </svg>
         ) : (
           <svg
-            xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
             fill="none"
-            viewBox="0 0 24 24"
             stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
+              d="M13 5l7 7-7 7M5 5l7 7-7 7"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              d="M13 5l7 7-7 7M5 5l7 7-7 7"
             />
           </svg>
         )}

@@ -1,13 +1,14 @@
-import { apiClient } from '../api/core/client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { 
+import { toast } from 'sonner';
+
+import { apiClient } from '../api/core/client';
+import type { 
   NewsletterGenerationParams, 
   GeneratedNewsletter, 
   NewsletterDraft, 
   Student,
   ParentSummary
 } from '../types/newsletter';
-import { toast } from 'sonner';
 
 // Hook for fetching all students
 export function useStudents() {
@@ -117,7 +118,9 @@ export function useNewsletter(id: string | undefined) {
   return useQuery<NewsletterDraft>({
     queryKey: ['newsletter', id],
     queryFn: async () => {
-      if (!id) throw new Error('Newsletter ID is required');
+      if (!id) {
+throw new Error('Newsletter ID is required');
+}
       const response = await apiClient.get(`/newsletters/${id}`);
       return response.data;
     },
@@ -169,7 +172,9 @@ export function useParentSummaries(studentId: number | undefined) {
   return useQuery<ParentSummary[]>({
     queryKey: ['parent-summaries', studentId],
     queryFn: async () => {
-      if (!studentId) throw new Error('Student ID is required');
+      if (!studentId) {
+throw new Error('Student ID is required');
+}
       const response = await apiClient.get(`/parent-summaries/student/${studentId}`);
       return response.data;
     },

@@ -8,7 +8,7 @@ import { describe, it, expect, beforeEach, afterEach, beforeAll, afterAll } from
 import supertest from 'supertest';
 import express from 'express';
 import { PrismaClient } from '@teaching-engine/database';
-import { authRoutes } from '../../routes/auth';
+import { authRoutes } from '../../routes/authEndpoints';
 import { rateLimiters, resetRateLimiterState } from '../../middleware/rateLimit';
 import { sanitizeInput } from '../../middleware/inputSanitization';
 import logger from '../../logger';

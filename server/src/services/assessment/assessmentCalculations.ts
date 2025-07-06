@@ -91,9 +91,9 @@ export function determineAchievementLevel(rating: number): string {
     return 'Approaching Standard';
   } else if (rating < 3.5) {
     return 'Meeting Standard';
-  } else {
+  } 
     return 'Exceeding Standard';
-  }
+  
 }
 
 /**

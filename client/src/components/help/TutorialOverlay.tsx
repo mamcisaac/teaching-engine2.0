@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { TutorialOverlayProps } from '../../types/help';
+
+import type { TutorialOverlayProps } from '../../types/help';
 import { Button } from '../ui/Button';
 // import { clsx } from 'clsx';
 
@@ -18,7 +19,9 @@ export const TutorialOverlay: React.FC<TutorialOverlayProps> = ({
 
   // Highlight target element
   useEffect(() => {
-    if (!isActive || !currentStep?.targetElement) return;
+    if (!isActive || !currentStep?.targetElement) {
+return;
+}
 
     const targetElement = document.querySelector(currentStep.targetElement);
     if (targetElement) {
@@ -59,12 +62,12 @@ export const TutorialOverlay: React.FC<TutorialOverlayProps> = ({
               </p>
             </div>
             <button
-              onClick={onSkip}
               className="text-gray-400 hover:text-gray-600 focus:outline-none"
+              onClick={onSkip}
             >
               <span className="sr-only">Skip tutorial</span>
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M6 18L18 6M6 6l12 12" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
               </svg>
             </button>
           </div>
@@ -95,18 +98,18 @@ export const TutorialOverlay: React.FC<TutorialOverlayProps> = ({
               <div className="flex items-center">
                 <div className="flex-shrink-0">
                   {currentStep.action === 'click' && (
-                    <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.122 2.122" />
+                    <svg className="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.122 2.122" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
                     </svg>
                   )}
                   {currentStep.action === 'input' && (
-                    <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    <svg className="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
                     </svg>
                   )}
                   {currentStep.action === 'scroll' && (
-                    <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                    <svg className="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
                     </svg>
                   )}
                 </div>
@@ -136,36 +139,36 @@ export const TutorialOverlay: React.FC<TutorialOverlayProps> = ({
         <div className="px-6 py-4 bg-gray-50 rounded-b-lg">
           <div className="flex items-center justify-between">
             <Button
+              size="sm"
               variant="ghost"
               onClick={onSkip}
-              size="sm"
             >
               Skip Tutorial
             </Button>
             
             <div className="flex space-x-2">
               <Button
-                variant="secondary"
-                onClick={onPrevious}
                 disabled={isFirstStep}
                 size="sm"
+                variant="secondary"
+                onClick={onPrevious}
               >
                 Previous
               </Button>
               
               {isLastStep ? (
                 <Button
+                  size="sm"
                   variant="primary"
                   onClick={onComplete}
-                  size="sm"
                 >
                   Complete
                 </Button>
               ) : (
                 <Button
+                  size="sm"
                   variant="primary"
                   onClick={onNext}
-                  size="sm"
                 >
                   Next
                 </Button>

@@ -1,6 +1,7 @@
 import * as Sentry from '@sentry/react';
 import { Replay } from '@sentry/replay';
-import { ErrorInfo } from 'react';
+import type { ErrorInfo } from 'react';
+
 import { logger } from '../utils/logger';
 
 interface UserContext {
@@ -25,8 +26,8 @@ interface BreadcrumbData {
 }
 
 export class ErrorReportingService {
-  private enabled: boolean = false;
-  private mockMode: boolean = false;
+  private enabled = false;
+  private mockMode = false;
   private sensitiveFields = [
     'password',
     'token',
@@ -367,7 +368,7 @@ export class ErrorReportingService {
       const error = hint.originalException as Error;
 
       // Ignore ResizeObserver errors (browser quirk)
-      if (error.message?.includes('ResizeObserver')) {
+      if (error.message.includes('ResizeObserver')) {
         return null;
       }
 
@@ -446,7 +447,7 @@ export class ErrorReportingService {
     }
 
     // Sanitize user data
-    if (sanitized.user && sanitized.user.email) {
+    if (sanitized.user?.email) {
       sanitized.user.email = this.maskEmail(sanitized.user.email);
     }
 
@@ -466,7 +467,9 @@ export class ErrorReportingService {
   }
 
   private sanitizeData(data: unknown): unknown {
-    if (!data) return data;
+    if (!data) {
+return data;
+}
 
     if (typeof data === 'string') {
       return this.sanitizeString(data);
@@ -560,19 +563,25 @@ export class ErrorReportingService {
   }
 
   private maskEmail(email: string): string {
-    if (!email || typeof email !== 'string') return '[INVALID_EMAIL]';
+    if (!email || typeof email !== 'string') {
+return '[INVALID_EMAIL]';
+}
 
     const parts = email.split('@');
-    if (parts.length !== 2) return '[INVALID_EMAIL]';
+    if (parts.length !== 2) {
+return '[INVALID_EMAIL]';
+}
 
     const [local, domain] = parts;
-    const maskedLocal = local.length > 3 ? local.substring(0, 3) + '***' : '***';
+    const maskedLocal = local.length > 3 ? `${local.substring(0, 3)  }***` : '***';
 
     return `${maskedLocal}@${domain}`;
   }
 
   private maskIP(ip: string): string {
-    if (!ip || typeof ip !== 'string') return 'xxx.xxx.xxx.xxx';
+    if (!ip || typeof ip !== 'string') {
+return 'xxx.xxx.xxx.xxx';
+}
 
     const parts = ip.split('.');
     if (parts.length === 4) {

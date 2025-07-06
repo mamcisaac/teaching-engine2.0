@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { useLanguage } from '../contexts/LanguageContext';
 
 interface BilingualTextInputProps {
@@ -49,16 +50,18 @@ export default function BilingualTextInput({
           {label} {required && <span className="text-red-500">*</span>}
         </label>
         <button
-          type="button"
-          onClick={() => setShowBothLanguages(!showBothLanguages)}
           className="text-xs text-blue-600 hover:text-blue-800 flex items-center gap-1"
+          type="button"
+          onClick={() => {
+ setShowBothLanguages(!showBothLanguages); 
+}}
         >
           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
+              d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"
             />
           </svg>
           {t('bilingual_content')}
@@ -76,9 +79,11 @@ export default function BilingualTextInput({
             </div>
             <InputComponent
               {...inputProps}
-              value={valueEn}
-              onChange={(e) => onChangeEn(e.target.value)}
               placeholder={placeholderEn || placeholder}
+              value={valueEn}
+              onChange={(e) => {
+ onChangeEn(e.target.value); 
+}}
             />
           </div>
 
@@ -91,9 +96,11 @@ export default function BilingualTextInput({
             </div>
             <InputComponent
               {...inputProps}
-              value={valueFr}
-              onChange={(e) => onChangeFr(e.target.value)}
               placeholder={placeholderFr || placeholder}
+              value={valueFr}
+              onChange={(e) => {
+ onChangeFr(e.target.value); 
+}}
             />
           </div>
         </div>
@@ -106,12 +113,13 @@ export default function BilingualTextInput({
           </div>
           <InputComponent
             {...inputProps}
-            value={language === 'en' ? valueEn : valueFr}
-            onChange={(e) =>
-              language === 'en' ? onChangeEn(e.target.value) : onChangeFr(e.target.value)
-            }
             placeholder={
               language === 'en' ? placeholderEn || placeholder : placeholderFr || placeholder
+            }
+            value={language === 'en' ? valueEn : valueFr}
+            onChange={(e) => {
+ language === 'en' ? onChangeEn(e.target.value) : onChangeFr(e.target.value); 
+}
             }
           />
           {/* Show preview of other language if it exists */}

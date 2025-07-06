@@ -1,5 +1,6 @@
-import React, { useState, useMemo, useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import React, { useState, useMemo, useCallback } from 'react';
+
 // Simple debounce implementation
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const debounce = <T extends (...args: any[]) => any>(
@@ -14,7 +15,9 @@ const debounce = <T extends (...args: any[]) => any>(
 };
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
+
 import { LoadingSkeleton } from './LoadingSkeleton';
+
 import { ChevronLeft, ChevronRight, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 
 interface Column<T> {
@@ -153,7 +156,9 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
 
   // Generate pagination buttons
   const paginationButtons = useMemo(() => {
-    if (!data) return [];
+    if (!data) {
+return [];
+}
 
     const { totalPages } = data;
     const buttons: (number | string)[] = [];
@@ -202,7 +207,7 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
     return (
       <div className="text-center py-8">
         <div className="text-red-600 mb-4">Failed to load data</div>
-        <Button onClick={() => refetch()} variant="outline">
+        <Button variant="outline" onClick={() => refetch()}>
           Retry
         </Button>
       </div>
@@ -215,10 +220,12 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
       {enableGlobalSearch && (
         <div className="flex justify-between items-center">
           <Input
+            className="max-w-md"
             placeholder="Search all columns..."
             value={globalSearch}
-            onChange={(e) => handleGlobalSearch(e.target.value)}
-            className="max-w-md"
+            onChange={(e) => {
+ handleGlobalSearch(e.target.value); 
+}}
           />
           {data && (
             <div className="text-sm text-gray-500">
@@ -240,7 +247,9 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
                     column.sortable ? 'cursor-pointer hover:bg-gray-100' : ''
                   }`}
                   style={{ width: column.width }}
-                  onClick={column.sortable ? () => handleSort(column.key as string) : undefined}
+                  onClick={column.sortable ? () => {
+ handleSort(column.key as string); 
+} : undefined}
                 >
                   <div className="flex items-center space-x-1">
                     <span>{column.label}</span>
@@ -256,10 +265,12 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
                 <th key={`filter-${column.key as string}`} className="px-6 py-2">
                   {column.filterable && (
                     <Input
+                      className="text-sm"
                       placeholder={`Filter by ${column.label.toLowerCase()}...`}
                       value={(filters[column.key as string] as string) || ''}
-                      onChange={(e) => handleColumnFilter(column.key as string, e.target.value)}
-                      className="text-sm"
+                      onChange={(e) => {
+ handleColumnFilter(column.key as string, e.target.value); 
+}}
                     />
                   )}
                 </th>
@@ -274,14 +285,14 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
                 <tr key={`skeleton-${index}`}>
                   {columns.map((column) => (
                     <td key={`skeleton-${index}-${column.key as string}`} className="px-6 py-4">
-                      <LoadingSkeleton variant="text" lines={1} />
+                      <LoadingSkeleton lines={1} variant="text" />
                     </td>
                   ))}
                 </tr>
               ))
             ) : data?.items.length === 0 ? (
               <tr>
-                <td colSpan={columns.length} className="px-6 py-8 text-center text-gray-500">
+                <td className="px-6 py-8 text-center text-gray-500" colSpan={columns.length}>
                   {emptyStateMessage}
                 </td>
               </tr>
@@ -314,10 +325,12 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
 
           <div className="flex space-x-1">
             <Button
-              variant="outline"
-              size="sm"
-              onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage <= 1}
+              size="sm"
+              variant="outline"
+              onClick={() => {
+ handlePageChange(currentPage - 1); 
+}}
             >
               <ChevronLeft className="h-4 w-4" />
               Previous
@@ -326,21 +339,25 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
             {paginationButtons.map((page, index) => (
               <Button
                 key={index}
-                variant={page === currentPage ? 'primary' : 'outline'}
-                size="sm"
-                onClick={() => (typeof page === 'number' ? handlePageChange(page) : undefined)}
-                disabled={page === '...'}
                 className={page === '...' ? 'cursor-default' : ''}
+                disabled={page === '...'}
+                size="sm"
+                variant={page === currentPage ? 'primary' : 'outline'}
+                onClick={() => {
+ typeof page === 'number' ? handlePageChange(page) : undefined; 
+}}
               >
                 {page}
               </Button>
             ))}
 
             <Button
-              variant="outline"
+              disabled={currentPage >= (data.totalPages || 1)}
               size="sm"
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage >= (data?.totalPages || 1)}
+              variant="outline"
+              onClick={() => {
+ handlePageChange(currentPage + 1); 
+}}
             >
               Next
               <ChevronRight className="h-4 w-4" />
@@ -352,10 +369,10 @@ export function PaginatedDataTable<T extends Record<string, unknown>>({
       {/* Loading overlay for data fetching */}
       {isLoading && data && (
         <div
-          data-testid="loading-skeleton"
           className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center"
+          data-testid="loading-skeleton"
         >
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
         </div>
       )}
     </div>

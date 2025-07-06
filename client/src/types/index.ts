@@ -70,8 +70,6 @@ export interface PlannerSuggestion {
   subject?: string;
 }
 
-
-
 export interface OralRoutineTemplate {
   id: number;
   title: string;
@@ -118,17 +116,12 @@ export interface OralRoutineStats {
   averageParticipation: number | null;
 }
 
-
-
-
 export interface MaterialList {
   id: number;
   weekStart: string;
   items: string[];
   prepared: boolean;
 }
-
-
 
 export interface TimetableSlot {
   id: number;
@@ -163,7 +156,6 @@ export interface Newsletter {
   createdAt: string;
   updatedAt: string;
 }
-
 
 export interface TeacherPreferencesInput {
   teachingStyles: string[];
@@ -202,9 +194,6 @@ export interface CalendarEvent {
   eventType: 'PD_DAY' | 'ASSEMBLY' | 'TRIP' | 'HOLIDAY' | 'CUSTOM';
   source: 'MANUAL' | 'ICAL_FEED' | 'SYSTEM';
 }
-
-
-
 
 export interface ThematicUnit {
   id: number;
@@ -353,7 +342,6 @@ export interface ReflectionUpdate {
   themeId?: number | null;
 }
 
-
 export interface Student {
   id: number;
   firstName: string;
@@ -446,7 +434,7 @@ export interface StudentInput {
   firstName: string;
   lastName: string;
   grade: number;
-  parentContacts?: Array<{ name: string; email: string }>;
+  parentContacts?: { name: string; email: string }[];
   // Legacy name field for backward compatibility
   name?: string;
 }
@@ -483,5 +471,4 @@ export interface StudentArtifact {
   outcomeIds: string;
   createdAt: string;
 }
-
 

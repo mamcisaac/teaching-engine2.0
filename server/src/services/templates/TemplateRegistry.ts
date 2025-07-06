@@ -5,13 +5,13 @@
 
 import { BaseService } from '../base/BaseService';
 
-import { TemplateProvider, Template } from './providers/TemplateProvider';
+import { HandlebarsEngine } from './engines/HandlebarsEngine';
+import { PdfEngine } from './engines/PdfEngine';
+import type { RenderEngine } from './engines/RenderEngine';
 import { LessonTemplateProvider } from './providers/LessonTemplateProvider';
 import { NewsletterTemplateProvider } from './providers/NewsletterTemplateProvider';
 import { ReportTemplateProvider } from './providers/ReportTemplateProvider';
-import { RenderEngine } from './engines/RenderEngine';
-import { HandlebarsEngine } from './engines/HandlebarsEngine';
-import { PdfEngine } from './engines/PdfEngine';
+import type { TemplateProvider, Template } from './providers/TemplateProvider';
 
 export interface ProviderInfo {
   name: string;
@@ -49,9 +49,9 @@ export interface RegistryStats {
 
 export class TemplateRegistry extends BaseService {
   private static instance: TemplateRegistry;
-  private providers: Map<string, ProviderInfo> = new Map();
-  private engines: Map<string, EngineInfo> = new Map();
-  private providersByType: Map<string, string[]> = new Map();
+  private providers = new Map<string, ProviderInfo>();
+  private engines = new Map<string, EngineInfo>();
+  private providersByType = new Map<string, string[]>();
 
   private constructor() {
     super('TemplateRegistry');
@@ -191,7 +191,7 @@ export class TemplateRegistry extends BaseService {
     const providerNames = this.providersByType.get(type) || [];
     return providerNames
       .map((name) => this.getProvider(name))
-      .filter((provider) => provider !== null) as TemplateProvider[];
+      .filter((provider) => provider !== null);
   }
 
   /**
@@ -479,16 +479,24 @@ export class TemplateRegistry extends BaseService {
    */
   private inferProviderType(name: string, provider: TemplateProvider): string {
     // Try to get type from provider metadata
-    if (provider.getMetadata && provider.getMetadata().type) {
-      const type = provider.getMetadata().type;
+    if (provider.getMetadata?.().type) {
+      const {type} = provider.getMetadata();
       return typeof type === 'string' ? type : 'generic';
     }
 
     // Fallback to name-based inference
-    if (name.includes('lesson')) return 'lesson';
-    if (name.includes('newsletter')) return 'newsletter';
-    if (name.includes('report')) return 'report';
-    if (name.includes('plan')) return 'planning';
+    if (name.includes('lesson')) {
+return 'lesson';
+}
+    if (name.includes('newsletter')) {
+return 'newsletter';
+}
+    if (name.includes('report')) {
+return 'report';
+}
+    if (name.includes('plan')) {
+return 'planning';
+}
 
     return 'generic';
   }

@@ -282,8 +282,7 @@ export const checkMigrationNeeded = (filePath: string, content: string): boolean
 };
 
 // Generate migration checklist for a component
-export const generateMigrationChecklist = (_componentPath: string): string[] => {
-  return [
+export const generateMigrationChecklist = (_componentPath: string): string[] => [
     '□ Replace Context imports with Store imports',
     '□ Remove Provider wrapper from component tree',
     '□ Update hook usage to use Zustand selectors',
@@ -292,4 +291,3 @@ export const generateMigrationChecklist = (_componentPath: string): string[] => 
     '□ Verify no performance regressions',
     '□ Update TypeScript types if needed',
   ];
-};

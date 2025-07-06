@@ -1,5 +1,6 @@
-import { Request, Response, NextFunction } from 'express';
-import jwt, { JwtPayload } from 'jsonwebtoken';
+import type { Request, Response, NextFunction } from 'express';
+import type { JwtPayload } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 import logger from '../logger.js';
 import { prisma } from '../prisma.js';
@@ -44,7 +45,7 @@ export function generateToken(user: {
 
   return jwt.sign(
     payload,
-    JWT_SECRET as string,
+    JWT_SECRET,
     {
       expiresIn: JWT_EXPIRES_IN,
       issuer: 'teaching-engine',
@@ -59,7 +60,7 @@ export function generateToken(user: {
 export function generateRefreshToken(userId: number): string {
   return jwt.sign(
     { userId: userId.toString(), type: 'refresh' },
-    JWT_SECRET as string,
+    JWT_SECRET,
     {
       expiresIn: JWT_REFRESH_EXPIRES_IN,
       issuer: 'teaching-engine',
@@ -78,7 +79,7 @@ function extractToken(req: Request): string | null {
   }
 
   // Check cookies
-  if (req.cookies?.token) {
+  if (req.cookies.token) {
     return req.cookies.token;
   }
 
@@ -99,9 +100,9 @@ export async function verifyToken(token: string): Promise<TokenPayload | { error
     if (process.env.NODE_ENV === 'test') {
       logger.debug(
         {
-          tokenStart: token.substring(0, 20) + '...',
+          tokenStart: `${token.substring(0, 20)  }...`,
           jwtSecret: JWT_SECRET ? 'present' : 'missing',
-          jwtSecretLength: JWT_SECRET?.length,
+          jwtSecretLength: JWT_SECRET.length,
         },
         'Verifying token',
       );
@@ -162,10 +163,10 @@ export async function verifyToken(token: string): Promise<TokenPayload | { error
     } else if (_error instanceof jwt.JsonWebTokenError) {
       logger.debug({ error: _error.message }, 'Invalid token');
       return { error: 'invalid' };
-    } else {
+    } 
       logger.error({ error: _error }, 'Token verification error');
       return { error: 'invalid' }; // Return invalid for any other error
-    }
+    
   }
 }
 
@@ -209,7 +210,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
 
     if (!decoded) {
       if (process.env.NODE_ENV === 'test') {
-        logger.debug({ token: token.substring(0, 20) + '...' }, 'Token verification failed');
+        logger.debug({ token: `${token.substring(0, 20)  }...` }, 'Token verification failed');
       }
       res.status(401).json({
         error: 'Unauthorized',
@@ -256,7 +257,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
       req.originalUrl === '/api/auth/me' ||
       req.url === '/api/auth/me' ||
       req.path.endsWith('/me') ||
-      req.originalUrl?.endsWith('/me') ||
+      req.originalUrl.endsWith('/me') ||
       (req.baseUrl === '/api/auth' && req.path === '/me') ||
       req.baseUrl + req.path === '/api/auth/me';
 
@@ -268,7 +269,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
     }
 
     // Debug logging for path matching
-    if (req.originalUrl?.includes('/me') || req.path?.includes('/me')) {
+    if (req.originalUrl.includes('/me') || req.path.includes('/me')) {
       logger.debug(
         {
           path: req.path,
@@ -419,7 +420,7 @@ export async function optionalAuthenticate(
     const token = extractToken(req);
 
     if (!token) {
-      return next();
+      next(); return;
     }
 
     const decoded = await verifyToken(token);
@@ -546,7 +547,7 @@ export function requireOrganization(req: Request, res: Response, next: NextFunct
 export async function refreshToken(req: Request, res: Response): Promise<void> {
   try {
     // Read refresh token from HTTP-only cookie
-    const refreshToken = req.cookies?.refreshToken;
+    const {refreshToken} = req.cookies;
 
     if (!refreshToken) {
       res.status(400).json({

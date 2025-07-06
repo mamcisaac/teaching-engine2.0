@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
 import { format, startOfWeek, endOfWeek, startOfMonth, endOfMonth, subWeeks, subMonths } from 'date-fns';
+import { Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+
 import { cn } from '../lib/utils';
 
 interface DateRangeSelectorProps {
@@ -129,13 +130,15 @@ export default function DateRangeSelector({
           {presetButtons.map(({ value, label }) => (
             <button
               key={value}
-              onClick={() => handlePresetChange(value)}
               className={cn(
                 "px-3 py-1.5 text-sm rounded-md transition-colors",
                 preset === value
                   ? "bg-blue-600 text-white"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               )}
+              onClick={() => {
+ handlePresetChange(value); 
+}}
             >
               {label}
             </button>
@@ -145,9 +148,11 @@ export default function DateRangeSelector({
         {/* Current range display with navigation */}
         <div className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
           <button
-            onClick={() => quickNavigation('prev')}
             className="p-1 hover:bg-gray-200 rounded transition-colors"
             title="Previous period"
+            onClick={() => {
+ quickNavigation('prev'); 
+}}
           >
             <ChevronLeft className="w-4 h-4 text-gray-600" />
           </button>
@@ -163,9 +168,11 @@ export default function DateRangeSelector({
           </div>
           
           <button
-            onClick={() => quickNavigation('next')}
             className="p-1 hover:bg-gray-200 rounded transition-colors"
             title="Next period"
+            onClick={() => {
+ quickNavigation('next'); 
+}}
           >
             <ChevronRight className="w-4 h-4 text-gray-600" />
           </button>
@@ -180,10 +187,12 @@ export default function DateRangeSelector({
                   Start Date
                 </label>
                 <input
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   type="date"
                   value={customStart}
-                  onChange={(e) => setCustomStart(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  onChange={(e) => {
+ setCustomStart(e.target.value); 
+}}
                 />
               </div>
               <div>
@@ -191,28 +200,30 @@ export default function DateRangeSelector({
                   End Date
                 </label>
                 <input
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  min={customStart}
                   type="date"
                   value={customEnd}
-                  onChange={(e) => setCustomEnd(e.target.value)}
-                  min={customStart}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  onChange={(e) => {
+ setCustomEnd(e.target.value); 
+}}
                 />
               </div>
             </div>
             <div className="mt-3 flex justify-end gap-2">
               <button
+                className="px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
                 onClick={() => {
                   setShowCustomPicker(false);
                   setPreset('thisWeek');
                   handlePresetChange('thisWeek');
                 }}
-                className="px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
               >
                 Cancel
               </button>
               <button
-                onClick={handleCustomDateChange}
                 className="px-3 py-1.5 text-sm bg-blue-600 text-white hover:bg-blue-700 rounded-md transition-colors"
+                onClick={handleCustomDateChange}
               >
                 Apply
               </button>

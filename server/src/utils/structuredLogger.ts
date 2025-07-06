@@ -6,9 +6,9 @@
 import { AsyncLocalStorage } from 'async_hooks';
 import { performance } from 'perf_hooks';
 
-import winston from 'winston';
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { v4 as uuidv4 } from 'uuid';
+import winston from 'winston';
 
 // Async context for storing request metadata
 const asyncLocalStorage = new AsyncLocalStorage<LogContext>();
@@ -25,9 +25,7 @@ export interface LogContext {
   [key: string]: unknown;
 }
 
-export interface LogMeta {
-  [key: string]: unknown;
-}
+export type LogMeta = Record<string, unknown>;
 
 // Log levels
 export enum LogLevel {
@@ -40,25 +38,27 @@ export enum LogLevel {
 }
 
 // Custom log format
-const logFormat = winston.format.combine(
-  winston.format.timestamp({
+const { format } = winston;
+
+const logFormat = format.combine(
+  format.timestamp({
     format: 'YYYY-MM-DD HH:mm:ss.SSS',
   }),
-  winston.format.errors({ stack: true }),
-  winston.format.printf((info) => {
+  format.errors({ stack: true }),
+  format.printf((info) => {
     const context = asyncLocalStorage.getStore();
 
     const log = {
       timestamp: info.timestamp,
       level: info.level,
       message: info.message,
-      correlationId: context?.correlationId || 'no-correlation-id',
-      ...(context?.userId ? { userId: context.userId } : {}),
-      ...(context?.requestId ? { requestId: context.requestId } : {}),
-      ...(context?.sessionId ? { sessionId: context.sessionId } : {}),
-      ...(info.duration ? { duration: info.duration } : {}),
-      ...(info.meta ? { meta: info.meta } : {}),
-      ...(info.error && typeof info.error === 'object' && 'message' in info.error ? {
+      correlationId: context?.correlationId ?? 'no-correlation-id',
+      ...(context?.userId !== undefined ? { userId: context.userId } : {}),
+      ...(context?.requestId !== undefined && context.requestId !== null ? { requestId: context.requestId } : {}),
+      ...(context?.sessionId !== undefined && context.sessionId !== null ? { sessionId: context.sessionId } : {}),
+      ...(info.duration !== undefined && info.duration !== null ? { duration: info.duration } : {}),
+      ...(info.meta !== undefined && info.meta !== null ? { meta: info.meta } : {}),
+      ...(info.error !== undefined && info.error !== null && typeof info.error === 'object' && 'message' in info.error ? {
         error: {
           message: (info.error as Error).message,
           stack: (info.error as Error).stack,
@@ -68,7 +68,7 @@ const logFormat = winston.format.combine(
     };
 
     // Add trace context if available
-    if (context?.traceId) {
+    if (context?.traceId !== undefined && context.traceId !== null && context.traceId !== '') {
       (log as Record<string, unknown>).trace = {
         traceId: context.traceId,
         spanId: context.spanId,
@@ -82,17 +82,17 @@ const logFormat = winston.format.combine(
 
 // Create logger instance
 const logger = winston.createLogger({
-  level: process.env.LOG_LEVEL || 'info',
+  level: process.env.LOG_LEVEL ?? 'info',
   format: logFormat,
   defaultMeta: {
     service: 'teaching-engine',
-    environment: process.env.NODE_ENV || 'development',
-    version: process.env.APP_VERSION || '1.0.0',
+    environment: process.env.NODE_ENV ?? 'development',
+    version: process.env.APP_VERSION ?? '1.0.0',
   },
   transports: [
     // Console transport for development
     new winston.transports.Console({
-      format: winston.format.combine(winston.format.colorize(), winston.format.simple()),
+      format: format.combine(format.colorize(), format.simple()),
       silent: process.env.NODE_ENV === 'test',
     }),
     // File transport for production
@@ -119,7 +119,7 @@ export class StructuredLogger {
   private static instance: StructuredLogger;
 
   static getInstance(): StructuredLogger {
-    if (!StructuredLogger.instance) {
+    if (StructuredLogger.instance === undefined) {
       StructuredLogger.instance = new StructuredLogger();
     }
     return StructuredLogger.instance;
@@ -128,40 +128,40 @@ export class StructuredLogger {
   /**
    * Log with automatic context injection
    */
-  log(level: LogLevel, message: string, meta?: LogMeta) {
+  log(level: LogLevel, message: string, meta?: LogMeta): void {
     const context = asyncLocalStorage.getStore();
-    const duration = context?.startTime
+    const duration = context?.startTime !== undefined && context.startTime !== null
       ? Math.round(performance.now() - context.startTime)
       : undefined;
 
     logger.log(level, message, {
       meta,
       duration,
-      ...(meta?.error ? { error: meta.error } : {}),
+      ...(meta?.error !== undefined && meta.error !== null ? { error: meta.error } : {}),
     });
   }
 
-  error(message: string, error?: Error, meta?: LogMeta) {
+  error(message: string, error?: Error, meta?: LogMeta): void {
     this.log(LogLevel.ERROR, message, { ...meta, error });
   }
 
-  warn(message: string, meta?: LogMeta) {
+  warn(message: string, meta?: LogMeta): void {
     this.log(LogLevel.WARN, message, meta);
   }
 
-  info(message: string, meta?: LogMeta) {
+  info(message: string, meta?: LogMeta): void {
     this.log(LogLevel.INFO, message, meta);
   }
 
-  http(message: string, meta?: LogMeta) {
+  http(message: string, meta?: LogMeta): void {
     this.log(LogLevel.HTTP, message, meta);
   }
 
-  debug(message: string, meta?: LogMeta) {
+  debug(message: string, meta?: LogMeta): void {
     this.log(LogLevel.DEBUG, message, meta);
   }
 
-  trace(message: string, meta?: LogMeta) {
+  trace(message: string, meta?: LogMeta): void {
     this.log(LogLevel.TRACE, message, meta);
   }
 
@@ -179,13 +179,12 @@ export class StructuredLogger {
     return new Proxy(childLogger, {
       get(target, prop) {
         if (typeof target[prop as keyof StructuredLogger] === 'function') {
-          return (...args: unknown[]) => {
-            return asyncLocalStorage.run(childContext as LogContext, () => {
-              return (target[prop as keyof StructuredLogger] as (...args: unknown[]) => unknown)(
+          return (...args: unknown[]) => 
+            asyncLocalStorage.run(childContext as LogContext, () => 
+              (target[prop as keyof StructuredLogger] as (...args: unknown[]) => unknown)(
                 ...args,
-              );
-            });
-          };
+              )
+            );
         }
         return target[prop as keyof StructuredLogger];
       },
@@ -201,7 +200,7 @@ export class StructuredLogger {
 
     if (context) {
       context.spanId = spanId;
-      context.parentSpanId = parentSpanId || context.spanId;
+      context.parentSpanId = parentSpanId ?? context.spanId;
     }
 
     this.trace(`Span started: ${name}`, { spanId, parentSpanId });
@@ -211,9 +210,9 @@ export class StructuredLogger {
   /**
    * End a span and log duration
    */
-  endSpan(spanId: string, name: string) {
+  endSpan(spanId: string, name: string): void {
     const context = asyncLocalStorage.getStore();
-    const duration = context?.startTime
+    const duration = context?.startTime !== undefined && context.startTime !== null
       ? Math.round(performance.now() - context.startTime)
       : undefined;
 
@@ -224,18 +223,18 @@ export class StructuredLogger {
 /**
  * Express middleware for correlation ID and structured logging
  */
-export function correlationMiddleware(req: Request, res: Response, next: NextFunction) {
+export function correlationMiddleware(req: Request, res: Response, next: NextFunction): void {
   // Generate or extract correlation ID
   const correlationId =
-    (req.headers['x-correlation-id'] as string) ||
-    (req.headers['x-request-id'] as string) ||
+    (req.headers['x-correlation-id'] as string) ??
+    (req.headers['x-request-id'] as string) ??
     uuidv4();
 
   // Generate request ID
   const requestId = uuidv4();
 
   // Extract trace context if available
-  const traceId = (req.headers['x-trace-id'] as string) || uuidv4();
+  const traceId = (req.headers['x-trace-id'] as string) ?? uuidv4();
   const spanId = req.headers['x-span-id'] as string;
   const parentSpanId = req.headers['x-parent-span-id'] as string;
 
@@ -244,7 +243,7 @@ export function correlationMiddleware(req: Request, res: Response, next: NextFun
     correlationId,
     requestId,
     traceId,
-    spanId: spanId || uuidv4(),
+    spanId: spanId ?? uuidv4(),
     parentSpanId,
     startTime: performance.now(),
     userId: (req as Request & { user?: { id: number } }).user?.id,
@@ -275,7 +274,7 @@ export function correlationMiddleware(req: Request, res: Response, next: NextFun
     res.send = function (data: unknown) {
       res.send = originalSend;
 
-      const duration = context.startTime ? Math.round(performance.now() - context.startTime) : 0;
+      const duration = context.startTime !== undefined && context.startTime !== null ? Math.round(performance.now() - context.startTime) : 0;
 
       structuredLogger.http(`${req.method} ${req.path} ${res.statusCode}`, {
         statusCode: res.statusCode,
@@ -294,13 +293,15 @@ export function correlationMiddleware(req: Request, res: Response, next: NextFun
  * Sanitize request body to remove sensitive data
  */
 function sanitizeBody(body: unknown): unknown {
-  if (!body || typeof body !== 'object' || body === null) return body;
+  if (body === null || body === undefined || typeof body !== 'object') {
+    return body;
+  }
 
   const sensitiveFields = ['password', 'token', 'secret', 'apiKey', 'creditCard'];
   const sanitized = { ...(body as Record<string, unknown>) };
 
   for (const field of sensitiveFields) {
-    if (sanitized[field]) {
+    if (sanitized[field] !== undefined && sanitized[field] !== null) {
       sanitized[field] = '[REDACTED]';
     }
   }
@@ -312,13 +313,15 @@ function sanitizeBody(body: unknown): unknown {
  * Sanitize headers to remove sensitive data
  */
 function sanitizeHeaders(headers: unknown): unknown {
-  if (!headers || typeof headers !== 'object' || headers === null) return headers;
+  if (headers === null || headers === undefined || typeof headers !== 'object') {
+    return headers;
+  }
 
   const sensitiveHeaders = ['authorization', 'cookie', 'x-api-key'];
   const sanitized = { ...(headers as Record<string, unknown>) };
 
   for (const header of sensitiveHeaders) {
-    if (sanitized[header]) {
+    if (sanitized[header] !== undefined && sanitized[header] !== null) {
       sanitized[header] = '[REDACTED]';
     }
   }
@@ -351,7 +354,7 @@ export function errorLoggingMiddleware(
   req: Request,
   res: Response,
   next: NextFunction,
-) {
+): void {
   const structuredLogger = StructuredLogger.getInstance();
 
   structuredLogger.error('Unhandled error', err, {

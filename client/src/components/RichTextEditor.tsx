@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import { sanitizeHtml } from '../utils/sanitization';
 
 interface Props {
@@ -78,19 +79,19 @@ export default function RichTextEditor({
   return (
     <div className={`relative ${className}`}>
       <div
-        className="border border-gray-300 rounded-md p-3 min-h-[150px] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
-        role="textbox"
+        dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }}
+        contentEditable
         aria-label="Rich text editor"
         aria-multiline="true"
-        contentEditable
-        onInput={handleInput}
-        onPaste={handlePaste}
+        className="border border-gray-300 rounded-md p-3 min-h-[150px] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
         data-placeholder={placeholder}
+        role="textbox"
         style={{
           minHeight: '150px',
         }}
         suppressContentEditableWarning={true}
-        dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }}
+        onInput={handleInput}
+        onPaste={handlePaste}
       />
       
       {/* Placeholder styling - using CSS-in-JS approach for safety */}

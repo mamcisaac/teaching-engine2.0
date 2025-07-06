@@ -1,10 +1,11 @@
-import { apiClient } from '../../api/core/client';
-import { useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { X, Edit, Trash2, Calendar, Clock, Book } from 'lucide-react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { toast } from 'sonner';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
+
+import { apiClient } from '../../api/core/client';
 import { Button } from '../ui/Button';
 
 interface CalendarViewEvent {
@@ -134,8 +135,8 @@ export default function CalendarEventDetails({
             {getEventTypeLabel()}
           </h3>
           <button
-            onClick={onClose}
             className="text-white hover:text-gray-200 transition-colors"
+            onClick={onClose}
           >
             <X className="h-5 w-5" />
           </button>
@@ -147,17 +148,19 @@ export default function CalendarEventDetails({
             {isEditing ? (
               <div className="flex gap-2">
                 <input
+                  autoFocus
+                  className="flex-1 px-2 py-1 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   type="text"
                   value={editedTitle}
-                  onChange={(e) => setEditedTitle(e.target.value)}
-                  className="flex-1 px-2 py-1 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  onChange={(e) => {
+ setEditedTitle(e.target.value); 
+}}
                   onKeyPress={(e) => e.key === 'Enter' && handleSaveTitle()}
-                  autoFocus
                 />
                 <Button
+                  disabled={updateTitleMutation.isPending}
                   size="sm"
                   onClick={handleSaveTitle}
-                  disabled={updateTitleMutation.isPending}
                 >
                   Save
                 </Button>
@@ -177,8 +180,10 @@ export default function CalendarEventDetails({
                 <h2 className="text-xl font-semibold">{event.title}</h2>
                 {event.metadata?.isEditable && (
                   <button
-                    onClick={() => setIsEditing(true)}
                     className="text-gray-500 hover:text-gray-700"
+                    onClick={() => {
+ setIsEditing(true); 
+}}
                   >
                     <Edit className="h-4 w-4" />
                   </button>
@@ -213,7 +218,7 @@ export default function CalendarEventDetails({
             {event.originalData?.description ? (
               <div className="mt-4">
                 <h4 className="font-medium text-gray-700 mb-1">Description</h4>
-                <p className="text-gray-600 text-sm">{String(event.originalData?.description || '')}</p>
+                <p className="text-gray-600 text-sm">{String(event.originalData.description || '')}</p>
               </div>
             ) : null}
           </div>
@@ -221,16 +226,16 @@ export default function CalendarEventDetails({
           {/* Actions */}
           <div className="mt-6 flex gap-2">
             {(event.type === 'lesson' || event.type === 'unit-boundary') && (
-              <Button onClick={handleViewDetails} className="flex-1">
+              <Button className="flex-1" onClick={handleViewDetails}>
                 View Details
               </Button>
             )}
             {event.metadata?.isEditable && (
               <Button
-                onClick={handleDelete}
-                variant="danger"
-                disabled={deleteMutation.isPending}
                 className="flex items-center gap-2"
+                disabled={deleteMutation.isPending}
+                variant="danger"
+                onClick={handleDelete}
               >
                 <Trash2 className="h-4 w-4" />
                 Delete

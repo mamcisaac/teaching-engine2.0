@@ -1,8 +1,11 @@
-import React, { ReactNode, useState } from 'react';
 import { ChevronDown, ChevronUp, Eye, EyeOff } from 'lucide-react';
+import type { ReactNode} from 'react';
+import React, { useState } from 'react';
+
+import { cn } from '../../lib/utils';
+
 import { Button } from './Button';
 import { Card, CardContent, CardHeader, CardTitle } from './card';
-import { cn } from '../../lib/utils';
 
 interface MobileOptimizedFormProps {
   children: ReactNode;
@@ -48,10 +51,12 @@ export function CollapsibleSection({
             {required && <span className="text-red-500 text-sm">*</span>}
           </CardTitle>
           <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setIsExpanded(!isExpanded)}
             className="h-8 w-8 p-0"
+            size="sm"
+            variant="ghost"
+            onClick={() => {
+ setIsExpanded(!isExpanded); 
+}}
           >
             {isExpanded ? (
               <ChevronUp className="h-4 w-4" />
@@ -161,10 +166,12 @@ export function FormPreview({ data, onEdit, className }: FormPreviewProps) {
           <CardTitle className="text-lg">Preview</CardTitle>
           <div className="flex gap-2">
             <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setShowAll(!showAll)}
               className="h-8"
+              size="sm"
+              variant="ghost"
+              onClick={() => {
+ setShowAll(!showAll); 
+}}
             >
               {showAll ? (
                 <>
@@ -179,10 +186,10 @@ export function FormPreview({ data, onEdit, className }: FormPreviewProps) {
               )}
             </Button>
             <Button
-              variant="outline"
-              size="sm"
-              onClick={onEdit}
               className="h-8"
+              size="sm"
+              variant="outline"
+              onClick={onEdit}
             >
               Edit
             </Button>

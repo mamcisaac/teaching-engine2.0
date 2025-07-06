@@ -1,7 +1,10 @@
-import React, { useState, ReactElement, cloneElement } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HelpCircle, X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
-import { useOnboarding, OnboardingStep, OnboardingState } from '../../contexts/OnboardingContext';
+import type { ReactElement} from 'react';
+import React, { useState, cloneElement } from 'react';
+
+import type { OnboardingStep, OnboardingState } from '../../contexts/OnboardingContext';
+import { useOnboarding } from '../../contexts/OnboardingContext';
 import { Button } from '../ui/Button';
 import { Progress } from '../ui/Progress';
 
@@ -65,13 +68,12 @@ function FlowTooltip({
 }: FlowTooltipProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 20 }}
-      transition={{ delay: 0.2 }}
       className={`absolute bg-white rounded-lg shadow-2xl p-6 max-w-md ${
         isCenter ? 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2' : ''
       }`}
+      exit={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 20 }}
       style={
         isCenter
           ? {}
@@ -81,13 +83,14 @@ function FlowTooltip({
               width: '400px',
             }
       }
+      transition={{ delay: 0.2 }}
     >
       {/* Close button */}
       {currentStep.showSkip && (
         <button
-          onClick={skipOnboarding}
-          className="absolute top-2 right-2 p-1 text-gray-400 hover:text-gray-600 transition-colors"
           aria-label="Skip onboarding"
+          className="absolute top-2 right-2 p-1 text-gray-400 hover:text-gray-600 transition-colors"
+          onClick={skipOnboarding}
         >
           <X className="h-5 w-5" />
         </button>
@@ -105,7 +108,7 @@ function FlowTooltip({
             </span>
           )}
         </div>
-        <Progress value={progress} className="h-2" />
+        <Progress className="h-2" value={progress} />
       </div>
 
       {/* Content */}
@@ -136,17 +139,17 @@ function FlowTooltip({
         <div className="flex items-center justify-between pt-2">
           <div className="flex items-center gap-2">
             {canGoBack && (
-              <Button variant="ghost" size="sm" onClick={previousStep} className="gap-1">
+              <Button className="gap-1" size="sm" variant="ghost" onClick={previousStep}>
                 <ChevronLeft className="h-4 w-4" />
                 Previous
               </Button>
             )}
             {currentStep.showSkip && (
               <Button
-                variant="ghost"
-                size="sm"
-                onClick={skipOnboarding}
                 className="text-gray-500"
+                size="sm"
+                variant="ghost"
+                onClick={skipOnboarding}
               >
                 {currentStep.skipButtonText || 'Skip tour'}
               </Button>
@@ -155,9 +158,9 @@ function FlowTooltip({
 
           {!currentStep.requiresAction && (
             <Button
-              onClick={nextStep}
-              size="sm"
               className="gap-1 bg-blue-600 hover:bg-blue-700"
+              size="sm"
+              onClick={nextStep}
             >
               {currentStep.nextButtonText || 'Next'}
               {canGoForward && <ChevronRight className="h-4 w-4" />}
@@ -197,7 +200,9 @@ function HoverTooltip({
   }
 
   const handleMouseEnter = () => {
-    if (hasBeenShown && showOnce) return;
+    if (hasBeenShown && showOnce) {
+return;
+}
 
     setTimeout(() => {
       setIsVisible(true);
@@ -259,12 +264,14 @@ function HoverTooltip({
       <AnimatePresence>
         {isVisible && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
             className={getTooltipStyles()}
-            onMouseEnter={() => setIsVisible(true)}
+            exit={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            onMouseEnter={() => {
+ setIsVisible(true); 
+}}
             onMouseLeave={handleMouseLeave}
           >
             {/* Arrow */}
@@ -272,9 +279,9 @@ function HoverTooltip({
 
             {/* Close button */}
             <button
-              onClick={handleDismiss}
-              className="absolute top-2 right-2 p-1 text-gray-400 hover:text-gray-600 transition-colors"
               aria-label="Dismiss tooltip"
+              className="absolute top-2 right-2 p-1 text-gray-400 hover:text-gray-600 transition-colors"
+              onClick={handleDismiss}
             >
               <X className="h-4 w-4" />
             </button>
@@ -293,11 +300,11 @@ function HoverTooltip({
 
               {actionText && onAction && (
                 <button
+                  className="mt-3 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
                   onClick={() => {
                     onAction();
                     handleDismiss();
                   }}
-                  className="mt-3 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
                 >
                   {actionText} →
                 </button>

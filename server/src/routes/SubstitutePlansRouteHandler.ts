@@ -3,19 +3,19 @@
  * Extends BaseRouteHandler with substitute plan-specific business logic
  */
 
-import { Response, NextFunction } from 'express';
+import type { Prisma } from '@teaching-engine/database';
+import type { Response, NextFunction } from 'express';
 import { z } from 'zod';
-import { Prisma } from '@teaching-engine/database';
 
-import { BaseService } from '../services/base/BaseService.js';
 import { prisma } from '../prisma.js';
+import { BaseService } from '../services/base/BaseService.js';
 import { SubstitutePlanService } from '../services/index.js';
-import { SubstitutePlanCreateData, SubstitutePlanUpdateData } from '../types/routes.js';
+import type { SubstitutePlanCreateData, SubstitutePlanUpdateData } from '../types/routes.js';
 
-import { BaseRouteHandler, AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
+import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
+import { BaseRouteHandler } from './base/BaseRouteHandler.js';
 import { commonValidations } from './base/validation.js';
 import { optimizedQueries, queryPerformance } from './optimizations/queryOptimizations.js';
-
 
 // Substitute plan-specific validation schemas
 const scheduleItemSchema = z.object({
@@ -138,9 +138,15 @@ class SubstitutePlanServiceWrapper extends BaseService {
       Object.assign(where, dateWhere);
     }
 
-    if (grade) where.grade = parseInt(String(grade), 10);
-    if (subject) where.subject = { contains: subject };
-    if (isActive !== undefined) where.isActive = isActive;
+    if (grade) {
+where.grade = parseInt(String(grade), 10);
+}
+    if (subject) {
+where.subject = { contains: subject };
+}
+    if (isActive !== undefined) {
+where.isActive = isActive;
+}
 
     // Filter for upcoming plans
     if (upcoming) {
@@ -291,7 +297,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
     };
   }
 
-  async getUpcomingDates(userId: number, daysAhead: number = 30) {
+  async getUpcomingDates(userId: number, daysAhead = 30) {
     const startDate = new Date();
     const endDate = new Date();
     endDate.setDate(endDate.getDate() + daysAhead);
@@ -344,9 +350,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
 
   protected getCrudOperations(): CrudOperations<unknown> {
     return {
-      create: async (data: unknown, userId: number) => {
-        return this.substitutePlanService.create(data as SubstitutePlanCreateData, userId);
-      },
+      create: async (data: unknown, userId: number) => this.substitutePlanService.create(data as SubstitutePlanCreateData, userId),
       findMany: async (filters: unknown, userId: number) => {
         const result = await this.substitutePlanService.findMany(
           filters as {
@@ -365,15 +369,9 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
         );
         return result.plans;
       },
-      findById: async (id: string, userId: number) => {
-        return this.substitutePlanService.findById(id, userId);
-      },
-      update: async (id: string, data: unknown, userId: number) => {
-        return this.substitutePlanService.update(id, data as SubstitutePlanUpdateData, userId);
-      },
-      delete: async (id: string, userId: number) => {
-        return this.substitutePlanService.delete(id, userId);
-      },
+      findById: async (id: string, userId: number) => this.substitutePlanService.findById(id, userId),
+      update: async (id: string, data: unknown, userId: number) => this.substitutePlanService.update(id, data as SubstitutePlanUpdateData, userId),
+      delete: async (id: string, userId: number) => this.substitutePlanService.delete(id, userId),
     };
   }
 
@@ -401,7 +399,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       return;
     } catch (_error) {
       this.logger.error(`Error in ${this.routeName} list:`, _error);
-      return next(_error);
+      next(_error); return;
     }
   }
 
@@ -448,7 +446,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       res.status(201).json(generatedPlan);
     } catch (_error) {
       this.logger.error('Error generating substitute plan:', _error);
-      return next(_error);
+      next(_error); return;
     }
   }
 
@@ -466,7 +464,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       return;
     } catch (_error) {
       this.logger.error('Error deactivating substitute plan:', _error);
-      return next(_error);
+      next(_error); return;
     }
   }
 
@@ -482,7 +480,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       return;
     } catch (_error) {
       this.logger.error('Error getting substitute plan stats:', _error);
-      return next(_error);
+      next(_error); return;
     }
   }
 
@@ -500,7 +498,7 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       return;
     } catch (_error) {
       this.logger.error('Error getting upcoming dates:', _error);
-      return next(_error);
+      next(_error); return;
     }
   }
 }

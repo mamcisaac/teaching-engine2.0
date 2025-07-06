@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import NodeCache from 'node-cache';
 
 import logger from '../logger.js';
@@ -61,10 +61,10 @@ const stats = {
 /**
  * Generate cache key from request
  */
-function generateCacheKey(req: Request, prefix: string = ''): string {
+function generateCacheKey(req: Request, prefix = ''): string {
   const userId = req.user?.id || 'anonymous';
-  const method = req.method;
-  const path = req.path;
+  const {method} = req;
+  const {path} = req;
   const query = JSON.stringify(req.query);
   const body = req.method === 'GET' ? '' : JSON.stringify(req.body);
 
@@ -77,13 +77,19 @@ function generateCacheKey(req: Request, prefix: string = ''): string {
  */
 function shouldCache(req: Request): boolean {
   // Only cache GET requests
-  if (req.method !== 'GET') return false;
+  if (req.method !== 'GET') {
+return false;
+}
 
   // Don't cache authenticated endpoints by default unless explicitly enabled
-  if (req.headers.authorization && !req.cacheEnabled) return false;
+  if (req.headers.authorization && !req.cacheEnabled) {
+return false;
+}
 
   // Don't cache requests with specific headers
-  if (req.headers['cache-control'] === 'no-cache') return false;
+  if (req.headers['cache-control'] === 'no-cache') {
+return false;
+}
 
   return true;
 }
@@ -106,7 +112,7 @@ export function createCacheMiddleware(
   return async (req: Request, res: Response, next: NextFunction) => {
     // Check if this request should be cached
     if (!condition(req)) {
-      return next();
+      next(); return;
     }
 
     try {
@@ -264,7 +270,7 @@ export function invalidateCache(
       cb?: () => void,
     ) {
       invalidateCacheEntries();
-      return originalEnd.call(this, chunk, encoding as BufferEncoding, cb);
+      return originalEnd.call(this, chunk, encoding!, cb);
     } as Response['end'];
 
     next();
@@ -317,7 +323,9 @@ export function getCacheStats(): Record<string, CacheStats> {
  * Clear all caches
  */
 export function clearAllCaches(): void {
-  Object.values(caches).forEach((cache) => cache.flushAll());
+  Object.values(caches).forEach((cache) => {
+ cache.flushAll(); 
+});
   Object.keys(stats).forEach((key) => {
     stats[key as keyof typeof stats] = { hits: 0, misses: 0 };
   });

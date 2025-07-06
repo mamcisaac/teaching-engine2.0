@@ -1,7 +1,10 @@
-import { Router, Request, Response } from 'express';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
 
-import { Prisma , prisma } from '../prisma';
 import logger from '../logger';
+import type { Prisma } from '../prisma';
+import { prisma } from '../prisma';
+import { cache, cacheMiddleware, CacheKeys, CacheTags } from '../services/cache';
 import {
   getPaginationParams,
   createPaginatedResponse,
@@ -11,7 +14,6 @@ import {
   combineFilters,
   fetchPaginatedData,
 } from '../utils/pagination';
-import { cache, cacheMiddleware, CacheKeys, CacheTags } from '../services/cache';
 
 const router = Router();
 
@@ -72,9 +74,15 @@ router.get('/', validatePagination, async (req: Request, res: Response): Promise
 
     // Build filters
     const baseFilter: Prisma.CurriculumExpectationWhereInput = {};
-    if (subject) baseFilter.subject = subject;
-    if (gradeNumber) baseFilter.grade = gradeNumber;
-    if (strand) baseFilter.strand = strand;
+    if (subject) {
+baseFilter.subject = subject;
+}
+    if (gradeNumber) {
+baseFilter.grade = gradeNumber;
+}
+    if (strand) {
+baseFilter.strand = strand;
+}
 
     // Build search filter for multiple fields
     const searchFilter = createSearchFilter(pagination.search, [

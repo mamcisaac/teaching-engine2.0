@@ -6,9 +6,9 @@
 
 import OpenAI from 'openai';
 
-import { BaseService } from '../base/BaseService';
 import logger from '../../logger';
 import { AppError } from '../../utils/errors';
+import { BaseService } from '../base/BaseService';
 import { cache, CacheKeys, CacheTags } from '../cache';
 
 export interface AIServiceOptions {
@@ -62,12 +62,12 @@ export interface NewsletterGenerationInput {
 interface LessonPlan {
   title: string;
   objectives: string[];
-  activities: Array<{
+  activities: {
     name: string;
     duration: number;
     materials: string[];
     description: string;
-  }>;
+  }[];
   materials: string[];
   duration: number;
   fallback?: boolean;
@@ -90,27 +90,27 @@ interface SubstitutePlan {
   date: Date;
   grade: string;
   subjects: string[];
-  schedule: Array<{
+  schedule: {
     time: string;
     subject: string;
     activity: string;
     materials: string[];
     notes: string;
-  }>;
+  }[];
   generalNotes: string;
-  emergencyContacts: Array<{
+  emergencyContacts: {
     name: string;
     number: string;
-  }>;
+  }[];
 }
 
 interface Newsletter {
   title: string;
   dateRange: { start: Date; end: Date };
-  sections: Array<{
+  sections: {
     title: string;
     content: string;
-  }>;
+  }[];
   footer: string;
 }
 
@@ -383,7 +383,7 @@ export class AIService extends BaseService {
         model: this.model,
         messages: [
           { role: 'system', content: systemPrompt },
-          { role: 'user', content: content },
+          { role: 'user', content },
         ],
         temperature: 0.3,
         max_tokens: this.maxTokens,
@@ -571,12 +571,21 @@ Return a JSON object with the structure: { title, dateRange, sections, footer }`
 
   private validateAndFixLessonPlan(plan: any, input: LessonGenerationInput): LessonPlan {
     // Ensure required fields exist
-    if (!plan.title) plan.title = `${input.topic} - Grade ${input.grade} ${input.subject}`;
-    if (!plan.objectives || !Array.isArray(plan.objectives))
-      plan.objectives = ['Understand key concepts'];
-    if (!plan.activities || !Array.isArray(plan.activities)) plan.activities = [];
-    if (!plan.materials || !Array.isArray(plan.materials)) plan.materials = [];
-    if (!plan.duration) plan.duration = input.duration;
+    if (!plan.title) {
+plan.title = `${input.topic} - Grade ${input.grade} ${input.subject}`;
+}
+    if (!plan.objectives || !Array.isArray(plan.objectives)) {
+plan.objectives = ['Understand key concepts'];
+}
+    if (!plan.activities || !Array.isArray(plan.activities)) {
+plan.activities = [];
+}
+    if (!plan.materials || !Array.isArray(plan.materials)) {
+plan.materials = [];
+}
+    if (!plan.duration) {
+plan.duration = input.duration;
+}
 
     // Validate activity durations sum correctly
     const totalActivityDuration = plan.activities.reduce(
@@ -719,7 +728,7 @@ This is a fallback analysis. For more detailed analysis, please ensure AI servic
       questions.push({
         question: `Question ${i} about ${input.topic} (${difficulty} difficulty)`,
         type: i % 2 === 0 ? 'multiple-choice' : 'short-answer',
-        difficulty: difficulty,
+        difficulty,
         topic: input.topic,
       });
     }
@@ -727,8 +736,8 @@ This is a fallback analysis. For more detailed analysis, please ensure AI servic
     return {
       questions,
       topic: input.topic,
-      difficulty: difficulty,
-      count: count,
+      difficulty,
+      count,
       fallback: true,
     };
   }

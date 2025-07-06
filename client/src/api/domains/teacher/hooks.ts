@@ -6,14 +6,14 @@ import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 import { teacherApi } from './api';
 
 // Preferences Query hooks
-export const useTeacherPreferences = () =>
+export const useTeacherPreferences = (): UseQueryResult<unknown> =>
   useQuery({
     queryKey: queryKeys.teacher.preferences,
     queryFn: teacherApi.preferences.get,
   });
 
 // Preferences Mutation hooks
-export const useUpdateTeacherPreferences = () => {
+export const useUpdateTeacherPreferences = (): UseQueryResult<unknown> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -27,7 +27,7 @@ export const useUpdateTeacherPreferences = () => {
 };
 
 // Reflections Query hooks
-export const useTeacherReflections = () =>
+export const useTeacherReflections = (): UseQueryResult<unknown> =>
   useQuery({
     queryKey: queryKeys.teacher.reflections.all,
     queryFn: teacherApi.reflections.getAll,
@@ -41,7 +41,7 @@ export const useTeacherReflection = (id: number) =>
   });
 
 // Reflections Mutation hooks
-export const useCreateTeacherReflection = () => {
+export const useCreateTeacherReflection = (): UseQueryResult<unknown> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -54,7 +54,7 @@ export const useCreateTeacherReflection = () => {
   });
 };
 
-export const useUpdateTeacherReflection = () => {
+export const useUpdateTeacherReflection = (): UseQueryResult<unknown> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -69,7 +69,7 @@ export const useUpdateTeacherReflection = () => {
   });
 };
 
-export const useDeleteTeacherReflection = () => {
+export const useDeleteTeacherReflection = (): UseQueryResult<unknown> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -83,7 +83,7 @@ export const useDeleteTeacherReflection = () => {
 };
 
 // Dashboard Query hooks
-export const useTeacherDashboardStats = () =>
+export const useTeacherDashboardStats = (): UseQueryResult<unknown> =>
   useQuery({
     queryKey: queryKeys.teacher.dashboard.stats,
     queryFn: teacherApi.dashboard.getStats,
@@ -97,14 +97,14 @@ export const useTeacherRecentActivity = (limit = 10) =>
   });
 
 // Profile Query hooks
-export const useTeacherProfile = () =>
+export const useTeacherProfile = (): UseQueryResult<unknown> =>
   useQuery({
     queryKey: queryKeys.teacher.profile,
     queryFn: teacherApi.profile.get,
   });
 
 // Profile Mutation hooks
-export const useUpdateTeacherProfile = () => {
+export const useUpdateTeacherProfile = (): UseQueryResult<unknown> => {
   const queryClient = useQueryClient();
 
   return useMutation({

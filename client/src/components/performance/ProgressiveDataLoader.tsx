@@ -1,7 +1,9 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
-import { Button } from '../ui/Button';
-import { LoadingSkeleton } from './LoadingSkeleton';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
+
+import { Button } from '../ui/Button';
+
+import { LoadingSkeleton } from './LoadingSkeleton';
 
 interface LoadDataResult<T> {
   data: T[];
@@ -69,7 +71,9 @@ export function ProgressiveDataLoader<T>({
   }, [loadInitialData]);
 
   const loadMoreData = useCallback(async () => {
-    if (loadingMore || !hasMore) return;
+    if (loadingMore || !hasMore) {
+return;
+}
 
     setLoadingMore(true);
     setError(null);
@@ -89,7 +93,9 @@ export function ProgressiveDataLoader<T>({
 
   // Infinite scroll handler
   const handleScroll = useCallback(() => {
-    if (!infiniteScroll || !containerRef.current) return;
+    if (!infiniteScroll || !containerRef.current) {
+return;
+}
 
     const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
     const remainingScroll = scrollHeight - scrollTop - clientHeight;
@@ -101,13 +107,19 @@ export function ProgressiveDataLoader<T>({
 
   // Attach scroll listener for infinite scroll
   useEffect(() => {
-    if (!infiniteScroll) return;
+    if (!infiniteScroll) {
+return;
+}
 
     const container = containerRef.current;
-    if (!container) return;
+    if (!container) {
+return;
+}
 
     container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
+    return () => {
+ container.removeEventListener('scroll', handleScroll); 
+};
   }, [handleScroll, infiniteScroll]);
 
   const handleRetry = () => {
@@ -127,7 +139,7 @@ export function ProgressiveDataLoader<T>({
             <AlertTriangle className="h-12 w-12 text-red-500 mx-auto mb-4" />
             <div className="text-red-600 mb-4">Failed to load data</div>
             <div className="text-gray-500 text-sm mb-4">{error}</div>
-            <Button onClick={handleRetry} variant="outline">
+            <Button variant="outline" onClick={handleRetry}>
               <RefreshCw className="h-4 w-4 mr-2" />
               Retry
             </Button>
@@ -140,7 +152,7 @@ export function ProgressiveDataLoader<T>({
   // Loading state for initial load
   if (loading && items.length === 0) {
     return (
-      <div className={`${className}`} data-testid="progressive-loader-container">
+      <div className={className} data-testid="progressive-loader-container">
         {loadingState || (
           <div className="space-y-4">
             {Array.from({ length: Math.min(batchSize, 10) }).map((_, index) => (
@@ -193,15 +205,15 @@ export function ProgressiveDataLoader<T>({
         <div className="mt-6 text-center">
           {loadingMore ? (
             <div className="py-4">
-              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600 mx-auto mb-2"></div>
+              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600 mx-auto mb-2" />
               <div className="text-sm text-gray-500">Loading...</div>
             </div>
           ) : !infiniteScroll ? (
             <Button
-              onClick={loadMoreData}
-              variant="outline"
-              disabled={loadingMore}
               className="min-w-[120px]"
+              disabled={loadingMore}
+              variant="outline"
+              onClick={loadMoreData}
             >
               Load More
             </Button>
@@ -224,7 +236,7 @@ export function ProgressiveDataLoader<T>({
       {error && items.length > 0 && (
         <div className="mt-4 text-center">
           <div className="text-red-600 text-sm mb-2">Failed to load more items</div>
-          <Button onClick={loadMoreData} variant="outline" size="sm">
+          <Button size="sm" variant="outline" onClick={loadMoreData}>
             Try Again
           </Button>
         </div>

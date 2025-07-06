@@ -1,9 +1,10 @@
-import { Router, Request, Response } from 'express';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
 
-import { authenticate } from '../middleware/auth';
-import { getDashboardMetrics } from '../monitoring/dashboard';
-import { getAlertStatus, triggerManualAlert } from '../monitoring/alerting';
 import logger from '../logger';
+import { authenticate } from '../middleware/auth';
+import { getAlertStatus, triggerManualAlert } from '../monitoring/alerting';
+import { getDashboardMetrics } from '../monitoring/dashboard';
 import { withSpan } from '../monitoring/telemetry';
 import { CacheUtils } from '../services/cache';
 

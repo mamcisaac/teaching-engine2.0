@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { z } from 'zod';
+import type { Request, Response, NextFunction } from 'express';
 
 // Common field schemas
 export const commonSchemas = {
@@ -111,7 +111,7 @@ export const validateId = (id: string | number): number => {
 export const validatePagination = (query: unknown): { page: number; pageSize: number } => {
   const defaultPagination = { page: 1, pageSize: 20 };
   
-  if (!query || typeof query !== 'object') {
+  if (query === null || query === undefined || typeof query !== 'object') {
     return defaultPagination;
   }
   
@@ -126,14 +126,14 @@ export const validatePagination = (query: unknown): { page: number; pageSize: nu
 export const validateDateRange = (from?: string | Date, to?: string | Date): { from?: Date; to?: Date } => {
   const dates: { from?: Date; to?: Date } = {};
   
-  if (from) {
+  if (from !== undefined && from !== null) {
     dates.from = new Date(from);
     if (isNaN(dates.from.getTime())) {
       throw new Error('Invalid from date');
     }
   }
   
-  if (to) {
+  if (to !== undefined && to !== null) {
     dates.to = new Date(to);
     if (isNaN(dates.to.getTime())) {
       throw new Error('Invalid to date');
@@ -158,15 +158,19 @@ export const transformToNumber = (value: unknown): number | undefined => {
 };
 
 export const transformToBoolean = (value: unknown): boolean => {
-  if (typeof value === 'boolean') return value;
+  if (typeof value === 'boolean') {
+    return value;
+  }
   if (typeof value === 'string') {
     return value.toLowerCase() === 'true' || value === '1';
   }
-  return !!value;
+  return Boolean(value);
 };
 
 export const transformToArray = (value: unknown): string[] => {
-  if (Array.isArray(value)) return value;
+  if (Array.isArray(value)) {
+    return value as string[];
+  }
   if (typeof value === 'string') {
     return value.split(',').map(s => s.trim()).filter(Boolean);
   }
@@ -174,30 +178,29 @@ export const transformToArray = (value: unknown): string[] => {
 };
 
 // Sanitization helpers
-export const sanitizeHtml = (html: string): string => {
+export const sanitizeHtml = (html: string): string => 
   // Basic HTML sanitization - in production, use a library like DOMPurify
-  return html
+  html
     .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
     .replace(/<iframe[^>]*>[\s\S]*?<\/iframe>/gi, '')
     .replace(/on\w+\s*=\s*["'][^"']*["']/gi, '')
     .trim();
-};
 
-export const sanitizeFilename = (filename: string): string => {
-  return filename
+export const sanitizeFilename = (filename: string): string => 
+  filename
     .replace(/[^a-zA-Z0-9.-]/g, '_')
     .replace(/_{2,}/g, '_')
     .toLowerCase();
-};
 
 // Custom validators
-export const isValidGrade = (grade: number): boolean => {
-  return Number.isInteger(grade) && grade >= 1 && grade <= 12;
-};
+export const isValidGrade = (grade: number): boolean => 
+  Number.isInteger(grade) && grade >= 1 && grade <= 12;
 
 export const isValidAcademicYear = (year: string): boolean => {
   const pattern = /^\d{4}-\d{4}$/;
-  if (!pattern.test(year)) return false;
+  if (!pattern.test(year)) {
+    return false;
+  }
   
   const [start, end] = year.split('-').map(Number);
   return end === start + 1;
@@ -212,23 +215,22 @@ export const isValidCanadianPostalCode = (code: string): boolean => {
 export const buildFilterSchema = <T extends z.ZodRawShape>(
   baseSchema: z.ZodObject<T>,
   additionalFields?: z.ZodRawShape
-) => {
-  return baseSchema.extend({
+): z.ZodObject<T & typeof commonSchemas.pagination.shape & typeof commonSchemas.dateFilter.shape & { search?: z.ZodOptional<z.ZodString> } & z.ZodRawShape> => 
+  baseSchema.extend({
     ...commonSchemas.pagination.shape,
     ...commonSchemas.dateFilter.shape,
     search: z.string().optional(),
     ...additionalFields,
-  });
-};
+  }) as z.ZodObject<T & typeof commonSchemas.pagination.shape & typeof commonSchemas.dateFilter.shape & { search?: z.ZodOptional<z.ZodString> } & z.ZodRawShape>;
 
 export const buildCreateSchema = <T extends z.ZodRawShape>(
   baseSchema: z.ZodObject<T>,
-  requiredFields: Array<keyof T>
-) => {
+  requiredFields: (keyof T)[]
+): z.ZodObject<z.ZodRawShape> => {
   const shape: z.ZodRawShape = {};
   
   for (const key of requiredFields) {
-    if (baseSchema.shape[key]) {
+    if (baseSchema.shape[key] !== undefined) {
       shape[key as string] = baseSchema.shape[key];
     }
   }
@@ -238,32 +240,32 @@ export const buildCreateSchema = <T extends z.ZodRawShape>(
 
 export const buildUpdateSchema = <T extends z.ZodRawShape>(
   baseSchema: z.ZodObject<T>
-) => {
+): z.ZodObject<z.ZodRawShape> => {
   const shape: z.ZodRawShape = {};
   
   for (const [key, schema] of Object.entries(baseSchema.shape)) {
-    shape[key] = (schema as z.ZodTypeAny).optional();
+    shape[key] = schema.optional();
   }
   
   return z.object(shape);
 };
 
 // Validation middleware factory
-export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>) => {
-  return (req: any, res: any, next: any) => {
+export const createValidationMiddleware = <T>(schema: z.ZodSchema<T>) => 
+  (req: Request & { validated?: T }, res: Response, next: NextFunction): void => {
     try {
       const data = {
-        ...(req.body || {}),
-        ...(req.query || {}),
-        ...(req.params || {}),
-      };
+        ...(req.body as Record<string, unknown> ?? {}),
+        ...(req.query as Record<string, unknown> ?? {}),
+        ...(req.params as Record<string, unknown> ?? {}),
+      } as unknown;
       
       const result = schema.parse(data);
       req.validated = result;
       next();
     } catch (_error) {
       if (_error instanceof z.ZodError) {
-        res.status(400).json({
+        void res.status(400).json({
           success: false,
           error: {
             code: 'VALIDATION_ERROR',

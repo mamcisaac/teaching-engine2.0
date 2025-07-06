@@ -47,7 +47,7 @@ export function validatePasswordStrength(password: string): {
 /**
  * Generate a random password
  */
-export function generateRandomPassword(length: number = 16): string {
+export function generateRandomPassword(length = 16): string {
   const lowercase = 'abcdefghijklmnopqrstuvwxyz';
   const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const numbers = '0123456789';

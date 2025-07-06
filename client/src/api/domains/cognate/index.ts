@@ -5,11 +5,3 @@
 
 export * from './api';
 export * from './hooks';
-
-// Re-export types for convenience
-export type {
-  CognatePair,
-  CognateInput,
-  CognateFilters,
-  CognateStats,
-} from './api';

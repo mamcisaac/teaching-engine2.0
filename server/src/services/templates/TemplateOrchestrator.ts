@@ -6,13 +6,13 @@
 
 import { BaseService } from '../base/BaseService';
 
-import { TemplateRegistry } from './TemplateRegistry';
+import type { RenderEngine, RenderResult } from './engines/RenderEngine';
+import { PartialManager } from './PartialManager';
+import type { TemplateProvider, TemplateContext, RenderOptions, Template } from './providers/TemplateProvider';
+import { RenderCoordinator } from './RenderCoordinator';
 import { TemplateCache } from './TemplateCache';
 import { TemplateHelpers } from './TemplateHelpers';
-import { PartialManager } from './PartialManager';
-import { RenderCoordinator } from './RenderCoordinator';
-import { TemplateProvider, TemplateContext, RenderOptions, Template } from './providers/TemplateProvider';
-import { RenderEngine, RenderResult } from './engines/RenderEngine';
+import { TemplateRegistry } from './TemplateRegistry';
 
 export interface TemplateRenderOptions extends RenderOptions {
   templateType: string;
@@ -126,10 +126,10 @@ export class TemplateOrchestrator extends BaseService {
    * Render multiple templates in batch
    */
   public async renderBatch(
-    requests: Array<{
+    requests: {
       context: TemplateContext;
       options: TemplateRenderOptions;
-    }>
+    }[]
   ): Promise<RenderResult[]> {
     return this.executeWithMetrics(
       async () => {
@@ -342,11 +342,11 @@ export class TemplateOrchestrator extends BaseService {
    * Warm up caches
    */
   public async warmupCaches(
-    templates: Array<{
+    templates: {
       templateType: string;
       templateId?: string;
       sampleData?: Record<string, unknown>;
-    }>
+    }[]
   ): Promise<void> {
     await this.renderCoordinator.warmupCaches(templates);
   }
@@ -400,9 +400,9 @@ export class TemplateOrchestrator extends BaseService {
         return 'healthy';
       } else if (healthyCount >= healthyServices.length / 2) {
         return 'degraded';
-      } else {
+      } 
         return 'unhealthy';
-      }
+      
     } catch (error) {
       return 'unhealthy';
     }
@@ -429,8 +429,7 @@ export const renderLessonPlan = async (
   userId: number,
   lessonData: unknown,
   format: 'html' | 'pdf' = 'html'
-): Promise<RenderResult> => {
-  return templateOrchestrator.render(
+): Promise<RenderResult> => templateOrchestrator.render(
     { userId },
     {
       templateType: 'lesson',
@@ -439,15 +438,13 @@ export const renderLessonPlan = async (
       format,
     }
   );
-};
 
 export const renderNewsletter = async (
   userId: number,
   startDate: Date,
   endDate: Date,
   style: 'standard' | 'detailed' | 'bilingual' = 'standard'
-): Promise<RenderResult> => {
-  return templateOrchestrator.render(
+): Promise<RenderResult> => templateOrchestrator.render(
     { userId },
     {
       templateType: 'newsletter',
@@ -457,15 +454,13 @@ export const renderNewsletter = async (
       format: 'html',
     }
   );
-};
 
 export const renderProgressReport = async (
   userId: number,
   studentId: number,
   reportPeriod: unknown,
   format: 'html' | 'pdf' = 'pdf'
-): Promise<RenderResult> => {
-  return templateOrchestrator.render(
+): Promise<RenderResult> => templateOrchestrator.render(
     { userId },
     {
       templateType: 'report',
@@ -476,4 +471,3 @@ export const renderProgressReport = async (
       format,
     }
   );
-};

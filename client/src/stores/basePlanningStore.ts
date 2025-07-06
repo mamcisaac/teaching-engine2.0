@@ -1,10 +1,11 @@
 // Base Planning Store with Offline Support
 // Provides common offline functionality for all planning stores
 
-import { StateCreator } from 'zustand';
+import type { StateCreator } from 'zustand';
+
 import { offlineStorage } from '../services/offlineStorage';
-import { isOnline } from '../utils/serviceWorkerRegistration';
 import logger from '../utils/logger';
+import { isOnline } from '../utils/serviceWorkerRegistration';
 export interface OfflineState {
   isOnline: boolean;
   lastSyncedAt: Date | null;
@@ -48,7 +49,8 @@ export const createOfflineSlice = <T extends Record<string, unknown>>(
   syncError: null,
 
   // Base actions
-  setOnlineStatus: (isOnline) => set((state) => ({
+  setOnlineStatus: (isOnline) => {
+ set((state) => ({
     ...state,
     isOnline,
     ...(isOnline && state.hasOfflineChanges && (() => {
@@ -61,30 +63,39 @@ export const createOfflineSlice = <T extends Record<string, unknown>>(
       }, 1000);
       return {};
     })())
-  })),
+  })); 
+},
 
-  markOfflineChange: () => set((state) => ({
+  markOfflineChange: () => {
+ set((state) => ({
     ...state,
     hasOfflineChanges: true,
     pendingChanges: state.pendingChanges + 1
-  })),
+  })); 
+},
 
-  clearOfflineChanges: () => set((state) => ({
+  clearOfflineChanges: () => {
+ set((state) => ({
     ...state,
     hasOfflineChanges: false,
     pendingChanges: 0
-  })),
+  })); 
+},
 
-  setSyncStatus: (status, error) => set((state) => ({
+  setSyncStatus: (status, error) => {
+ set((state) => ({
     ...state,
     syncStatus: status,
     syncError: error || null
-  })),
+  })); 
+},
 
-  updateLastSynced: () => set((state) => ({
+  updateLastSynced: () => {
+ set((state) => ({
     ...state,
     lastSyncedAt: new Date()
-  })),
+  })); 
+},
 });
 
 // Sync with server function
@@ -223,7 +234,9 @@ async function resolveConflicts(
   serverData: Record<string, unknown>,
   strategy: 'local-wins' | 'remote-wins' | 'merge'
 ): Promise<Record<string, unknown>> {
-  if (conflicts.length === 0) return localData;
+  if (conflicts.length === 0) {
+return localData;
+}
   
   switch (strategy) {
     case 'local-wins':
@@ -275,12 +288,14 @@ interface AutoSaveStore {
 export function createAutoSave(
   store: AutoSaveStore,
   saveFunction: () => Promise<void>,
-  debounceMs: number = 5000
+  debounceMs = 5000
 ): () => void {
   let timeout: NodeJS.Timeout | null = null;
   
   return () => {
-    if (timeout) clearTimeout(timeout);
+    if (timeout) {
+clearTimeout(timeout);
+}
     
     timeout = setTimeout(async () => {
       const state = store.getState();

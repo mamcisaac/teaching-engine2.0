@@ -1,14 +1,15 @@
-import { Router, Request, Response } from 'express';
-import { z } from 'zod';
-import { Prisma } from '@teaching-engine/database';
-// Note: Authentication is handled at the route mounting level in index.ts
+import type { Prisma } from '@teaching-engine/database';
 import { endOfDay, parseISO } from 'date-fns';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
+import { z } from 'zod';
+// Note: Authentication is handled at the route mounting level in index.ts
 
+import logger from '../logger';
 import { validateRequest } from '../middleware/validateRequest';
 import { prisma } from '../prisma';
-import logger from '../logger';
 
-import { AuthenticatedRequest } from './base/middleware.js';
+import type { AuthenticatedRequest } from './base/middleware.js';
 const router = Router();
 
 // Validation schemas
@@ -130,8 +131,12 @@ router.patch('/:id', async (req: Request, res: Response): Promise<void> => {
     }
 
     // Convert date strings to Date objects if present
-    if (updates.start) updates.start = new Date(updates.start);
-    if (updates.end) updates.end = new Date(updates.end);
+    if (updates.start) {
+updates.start = new Date(updates.start);
+}
+    if (updates.end) {
+updates.end = new Date(updates.end);
+}
 
     const updatedEvent = await prisma.calendarEvent.update({
       where: { id: parseInt(id) },

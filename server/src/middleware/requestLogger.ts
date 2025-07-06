@@ -1,11 +1,10 @@
 import { randomUUID } from 'crypto';
 import { performance } from 'perf_hooks';
 
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 
 // import '../types/express.js';
 import logger from '../logger.js';
-
 
 // Extend Request interface to include logger and timing
 interface ExtendedRequest extends Request {
@@ -57,7 +56,9 @@ export function requestLoggingMiddleware(req: Request, res: Response, next: Next
   let responseLogged = false;
 
   function logResponse() {
-    if (responseLogged) return;
+    if (responseLogged) {
+return;
+}
     responseLogged = true;
 
     const duration = performance.now() - startTime;
@@ -290,7 +291,7 @@ export function logBusinessOperation(
 
   requestLogger.business(operation, {
     ...context,
-    userId: (extendedReq.user as { id?: unknown })?.id,
+    userId: (extendedReq.user as { id?: unknown }).id,
     timestamp: new Date().toISOString(),
   });
 }
@@ -308,7 +309,7 @@ export function logAuditEvent(
 
   requestLogger.audit(operation, {
     ...details,
-    userId: (extendedReq.user as { id?: unknown })?.id,
+    userId: (extendedReq.user as { id?: unknown }).id,
     ip: extendedReq.ip || extendedReq.connection.remoteAddress,
     timestamp: new Date().toISOString(),
   });

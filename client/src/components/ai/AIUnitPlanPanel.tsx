@@ -1,11 +1,3 @@
-import React, { useState, useCallback } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
-import { Button } from '../ui/Button';
-import { Badge } from '../ui/Badge';
-import { Textarea } from '../ui/Textarea';
-import { Input } from '../ui/Input';
-import { Label } from '../ui/Label';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { 
   Sparkles, 
   RefreshCw, 
@@ -19,13 +11,24 @@ import {
   AlertCircle,
   Clock
 } from 'lucide-react';
-import { useToast } from '../ui/use-toast';
+import React, { useState, useCallback } from 'react';
+
 import { useAIPlanningAssistant } from '../../hooks/useAIPlanningAssistant';
 import { useAIStatus, useAIFeature } from '../../hooks/useAIStatus';
-import { AILoadingIndicator, AI_LOADING_PRESETS } from './AILoadingIndicator';
-import { WithAIErrorBoundary } from './AIErrorBoundary';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import logger from '../../utils/logger';
+import { Badge } from '../ui/Badge';
+import { Button } from '../ui/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+import { Input } from '../ui/Input';
+import { Label } from '../ui/Label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
+import { Textarea } from '../ui/Textarea';
+import { useToast } from '../ui/use-toast';
+
+import { WithAIErrorBoundary } from './AIErrorBoundary';
+import { AILoadingIndicator, AI_LOADING_PRESETS } from './AILoadingIndicator';
+
 interface UnitPlanSuggestion {
   type: 'bigIdeas' | 'learningGoals' | 'activities' | 'assessments' | 'materials' | 'vocabulary';
   content: string[];
@@ -37,12 +40,12 @@ interface AIUnitPlanPanelProps {
   subject?: string;
   grade?: number;
   duration?: number;
-  curriculumExpectations?: Array<{
+  curriculumExpectations?: {
     id: string;
     code: string;
     description: string;
     strand: string;
-  }>;
+  }[];
   onSuggestionAccepted?: (type: string, content: string[]) => void;
   onUnitGenerated?: (unitPlan: {
     title: string;
@@ -73,8 +76,8 @@ export function AIUnitPlanPanel({
   
   // Local state for form inputs
   const [formData, setFormData] = useState({
-    unitTitle: unitTitle,
-    subject: subject,
+    unitTitle,
+    subject,
     grade: grade.toString(),
     duration: duration.toString(),
     focusAreas: [] as string[],
@@ -101,7 +104,7 @@ export function AIUnitPlanPanel({
   };
 
   const addFocusArea = () => {
-    const newArea = (document.getElementById('newFocusArea') as HTMLInputElement)?.value?.trim();
+    const newArea = (document.getElementById('newFocusArea') as HTMLInputElement).value.trim();
     if (newArea && !formData.focusAreas.includes(newArea)) {
       handleInputChange('focusAreas', [...formData.focusAreas, newArea]);
       (document.getElementById('newFocusArea') as HTMLInputElement).value = '';
@@ -197,7 +200,7 @@ export function AIUnitPlanPanel({
 
     try {
       // Generate all components sequentially
-      const steps = AI_LOADING_PRESETS.GENERATING_UNIT_PLAN.steps;
+      const {steps} = AI_LOADING_PRESETS.GENERATING_UNIT_PLAN;
       
       for (let i = 0; i < steps.length; i++) {
         setLoadingStep(steps[i].id);
@@ -232,7 +235,7 @@ export function AIUnitPlanPanel({
         duration: parseInt(formData.duration),
         focusAreas: formData.focusAreas,
         teachingApproach: formData.teachingApproach,
-        curriculumExpectations: curriculumExpectations,
+        curriculumExpectations,
         bigIdeas: suggestions.find(s => s.type === 'bigIdeas')?.content || [],
         learningGoals: suggestions.find(s => s.type === 'learningGoals')?.content || [],
         activities: suggestions.find(s => s.type === 'activities')?.content || [],
@@ -322,27 +325,31 @@ export function AIUnitPlanPanel({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <Tabs className="w-full" value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="input">Setup</TabsTrigger>
               <TabsTrigger value="suggestions">Suggestions</TabsTrigger>
               <TabsTrigger value="review">Review</TabsTrigger>
             </TabsList>
 
-            <TabsContent value="input" className="space-y-4">
+            <TabsContent className="space-y-4" value="input">
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="unitTitle">Unit Title</Label>
                   <Input
                     id="unitTitle"
-                    value={formData.unitTitle}
-                    onChange={(e) => handleInputChange('unitTitle', e.target.value)}
                     placeholder="e.g., Forces and Motion"
+                    value={formData.unitTitle}
+                    onChange={(e) => {
+ handleInputChange('unitTitle', e.target.value); 
+}}
                   />
                 </div>
                 <div>
                   <Label htmlFor="subject">Subject</Label>
-                  <Select value={formData.subject} onValueChange={(value) => handleInputChange('subject', value)}>
+                  <Select value={formData.subject} onValueChange={(value) => {
+ handleInputChange('subject', value); 
+}}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select subject" />
                     </SelectTrigger>
@@ -362,7 +369,9 @@ export function AIUnitPlanPanel({
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="grade">Grade</Label>
-                  <Select value={formData.grade} onValueChange={(value) => handleInputChange('grade', value)}>
+                  <Select value={formData.grade} onValueChange={(value) => {
+ handleInputChange('grade', value); 
+}}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -377,11 +386,13 @@ export function AIUnitPlanPanel({
                   <Label htmlFor="duration">Duration (weeks)</Label>
                   <Input
                     id="duration"
-                    type="number"
-                    min="1"
                     max="20"
+                    min="1"
+                    type="number"
                     value={formData.duration}
-                    onChange={(e) => handleInputChange('duration', e.target.value)}
+                    onChange={(e) => {
+ handleInputChange('duration', e.target.value); 
+}}
                   />
                 </div>
               </div>
@@ -390,7 +401,9 @@ export function AIUnitPlanPanel({
                 <Label htmlFor="teachingApproach">Teaching Approach</Label>
                 <Select 
                   value={formData.teachingApproach} 
-                  onValueChange={(value: 'inquiry' | 'direct' | 'balanced') => handleInputChange('teachingApproach', value)}
+                  onValueChange={(value: 'inquiry' | 'direct' | 'balanced') => {
+ handleInputChange('teachingApproach', value); 
+}}
                 >
                   <SelectTrigger>
                     <SelectValue />
@@ -411,17 +424,19 @@ export function AIUnitPlanPanel({
                     placeholder="Add focus area (e.g., Scientific Method)"
                     onKeyPress={(e) => e.key === 'Enter' && addFocusArea()}
                   />
-                  <Button type="button" onClick={addFocusArea} size="sm">
+                  <Button size="sm" type="button" onClick={addFocusArea}>
                     <Plus className="h-4 w-4" />
                   </Button>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {formData.focusAreas.map((area, index) => (
-                    <Badge key={index} variant="secondary" className="gap-1">
+                    <Badge key={index} className="gap-1" variant="secondary">
                       {area}
                       <button
-                        onClick={() => removeFocusArea(area)}
                         className="text-xs hover:text-red-500"
+                        onClick={() => {
+ removeFocusArea(area); 
+}}
                       >
                         ×
                       </button>
@@ -434,10 +449,12 @@ export function AIUnitPlanPanel({
                 <Label htmlFor="additionalContext">Additional Context</Label>
                 <Textarea
                   id="additionalContext"
-                  value={formData.additionalContext}
-                  onChange={(e) => handleInputChange('additionalContext', e.target.value)}
                   placeholder="Any additional context, special considerations, or requirements..."
                   rows={3}
+                  value={formData.additionalContext}
+                  onChange={(e) => {
+ handleInputChange('additionalContext', e.target.value); 
+}}
                 />
               </div>
 
@@ -456,9 +473,9 @@ export function AIUnitPlanPanel({
 
               <div className="flex gap-2 pt-4">
                 <Button 
-                  onClick={generateCompleteUnit} 
+                  className="flex-1" 
                   disabled={isGenerating || !formData.unitTitle || !formData.subject}
-                  className="flex-1"
+                  onClick={generateCompleteUnit}
                 >
                   {isGenerating ? (
                     <>
@@ -476,17 +493,17 @@ export function AIUnitPlanPanel({
 
               <div className="grid grid-cols-2 gap-2">
                 <Button 
-                  variant="outline" 
+                  disabled={isGenerating} 
+                  variant="outline"
                   onClick={() => generateSuggestions('bigIdeas')}
-                  disabled={isGenerating}
                 >
                   <Lightbulb className="h-4 w-4 mr-2" />
                   Big Ideas
                 </Button>
                 <Button 
-                  variant="outline" 
+                  disabled={isGenerating} 
+                  variant="outline"
                   onClick={() => generateSuggestions('activities')}
-                  disabled={isGenerating}
                 >
                   <BookOpen className="h-4 w-4 mr-2" />
                   Activities
@@ -494,7 +511,7 @@ export function AIUnitPlanPanel({
               </div>
             </TabsContent>
 
-            <TabsContent value="suggestions" className="space-y-4">
+            <TabsContent className="space-y-4" value="suggestions">
               {suggestions.length === 0 ? (
                 <div className="text-center py-8 text-gray-500">
                   <Sparkles className="h-8 w-8 mx-auto mb-2 opacity-20" />
@@ -534,19 +551,23 @@ export function AIUnitPlanPanel({
                                   <p className="text-sm flex-1">{item}</p>
                                   <div className="flex gap-1">
                                     <Button
-                                      variant="ghost"
-                                      size="sm"
-                                      onClick={() => copySuggestion(item)}
                                       className="h-8 w-8 p-0"
+                                      size="sm"
+                                      variant="ghost"
+                                      onClick={() => {
+ copySuggestion(item); 
+}}
                                     >
                                       <Copy className="h-4 w-4" />
                                     </Button>
                                     {!isAccepted ? (
                                       <Button
-                                        variant="ghost"
-                                        size="sm"
-                                        onClick={() => acceptSuggestion(suggestion.type, item)}
                                         className="h-8 w-8 p-0"
+                                        size="sm"
+                                        variant="ghost"
+                                        onClick={() => {
+ acceptSuggestion(suggestion.type, item); 
+}}
                                       >
                                         <Check className="h-4 w-4 text-green-500" />
                                       </Button>
@@ -568,7 +589,7 @@ export function AIUnitPlanPanel({
               )}
             </TabsContent>
 
-            <TabsContent value="review" className="space-y-4">
+            <TabsContent className="space-y-4" value="review">
               <div className="text-center py-8 text-gray-500">
                 <Clock className="h-8 w-8 mx-auto mb-2" />
                 <p>Review tab will show the complete generated unit plan.</p>
@@ -581,15 +602,15 @@ export function AIUnitPlanPanel({
 
       {/* Loading Modal */}
       <AILoadingIndicator
+        currentStepId={loadingStep}
         isOpen={showLoadingModal}
+        state={isGenerating ? 'processing' : 'waiting'}
         onCancel={() => {
           setShowLoadingModal(false);
           setIsGenerating(false);
         }}
-        state={isGenerating ? 'processing' : 'waiting'}
-        currentStepId={loadingStep}
         {...AI_LOADING_PRESETS.GENERATING_UNIT_PLAN}
-        canCancel={true}
+        canCancel
       />
     </WithAIErrorBoundary>
   );

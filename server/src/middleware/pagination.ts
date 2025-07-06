@@ -3,16 +3,17 @@
  * Automatically adds pagination support to routes
  */
 
-import { Request, Response, NextFunction, RequestHandler } from 'express';
+import type { Request, Response, NextFunction, RequestHandler } from 'express';
 
+import logger from '../logger';
+import type {
+  PaginationOptions,
+  PaginatedResponse} from '../utils/pagination';
 import {
   getPaginationParams,
-  PaginationOptions,
-  PaginatedResponse,
   createPaginatedResponse,
   setPaginationHeaders,
 } from '../utils/pagination';
-import logger from '../logger';
 
 // Extend Express Request type to include pagination
 declare global {
@@ -178,7 +179,7 @@ export function paginatedHandler<T>(
 /**
  * Cache-aware pagination middleware
  */
-export function cachedPagination(_cacheKeyPrefix: string, _ttl: number = 60) {
+export function cachedPagination(_cacheKeyPrefix: string, _ttl = 60) {
   return async (_req: Request, res: Response, next: NextFunction) => {
     // const _pagination = getPaginationParams(req);
     // const _cacheKey = `${cacheKeyPrefix}:${JSON.stringify({ ...req.query, ...pagination })}`;

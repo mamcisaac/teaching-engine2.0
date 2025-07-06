@@ -1,7 +1,8 @@
-import { Star, Calendar, Clock, Users, FileText, Copy } from 'lucide-react';
 import { format } from 'date-fns';
-import { Button } from '../ui/Button';
+import { Star, Calendar, Clock, Users, FileText, Copy } from 'lucide-react';
+
 import type { PlanTemplate } from '../../types/template';
+import { Button } from '../ui/Button';
 
 interface TemplateCardProps {
   template: PlanTemplate;
@@ -16,13 +17,11 @@ export default function TemplateCard({
   onApply,
   onDuplicate,
 }: TemplateCardProps) {
-  const getTypeIcon = () => {
-    return template.type === 'UNIT_PLAN' ? (
+  const getTypeIcon = () => template.type === 'UNIT_PLAN' ? (
       <FileText className="h-5 w-5 text-blue-600" />
     ) : (
       <Calendar className="h-5 w-5 text-green-600" />
     );
-  };
 
   const getDuration = () => {
     if (template.type === 'UNIT_PLAN' && template.estimatedWeeks) {
@@ -121,26 +120,32 @@ export default function TemplateCard({
       {/* Actions */}
       <div className="flex gap-2">
         <Button
-          variant="outline"
-          size="sm"
-          onClick={() => onPreview(template)}
           className="flex-1"
+          size="sm"
+          variant="outline"
+          onClick={() => {
+ onPreview(template); 
+}}
         >
           Preview
         </Button>
         <Button
-          size="sm"
-          onClick={() => onApply(template)}
           className="flex-1"
+          size="sm"
+          onClick={() => {
+ onApply(template); 
+}}
         >
           Use Template
         </Button>
         {onDuplicate && (
           <Button
-            variant="ghost"
             size="sm"
-            onClick={() => onDuplicate(template)}
             title="Duplicate template"
+            variant="ghost"
+            onClick={() => {
+ onDuplicate(template); 
+}}
           >
             <Copy className="h-4 w-4" />
           </Button>

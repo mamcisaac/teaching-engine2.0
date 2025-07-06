@@ -2,9 +2,13 @@
 // Provides efficient loading of curriculum documents with caching
 
 import React from 'react';
-import { offlineStorage, StoredData } from './offlineStorage';
+
 import { apiClient } from '../api/core/client';
 import logger from '../utils/logger';
+
+import type { StoredData } from './offlineStorage';
+import { offlineStorage } from './offlineStorage';
+
 interface LoadOptions {
   cache?: boolean;
   cacheTime?: number; // minutes
@@ -25,8 +29,8 @@ interface ChunkedDocument {
 }
 
 class LazyLoader {
-  private loadingQueue: Map<string, Promise<unknown>> = new Map();
-  private documentCache: Map<string, ChunkedDocument> = new Map();
+  private loadingQueue = new Map<string, Promise<unknown>>();
+  private documentCache = new Map<string, ChunkedDocument>();
   private intersectionObserver: IntersectionObserver | null = null;
 
   constructor() {
@@ -200,10 +204,10 @@ class LazyLoader {
       return JSON.parse(chunks.join(''));
     } else if (doc.metadata.type === 'text') {
       return chunks.join('');
-    } else {
+    } 
       // Binary data
       return new Blob(chunks as BlobPart[]);
-    }
+    
   }
 
   // Observe element for lazy loading
@@ -271,7 +275,9 @@ export function useLazyDocument(documentId: string | null, options?: LoadOptions
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
-    if (!documentId) return;
+    if (!documentId) {
+return;
+}
 
     let cancelled = false;
 

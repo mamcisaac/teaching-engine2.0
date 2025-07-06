@@ -1,10 +1,11 @@
-import { Router, Request, Response } from 'express';
-import { z } from 'zod';
 import debug from 'debug';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
+import { z } from 'zod';
 
+import logger from '../logger';
 import { authMiddleware } from '../middleware/auth';
 import { AIActivityGeneratorService } from '../services/aiActivityGeneratorService';
-import logger from '../logger';
 const log = debug('server:ai-activity:error');
 // ActivityDiscoveryService removed - over-engineered for single-teacher use
 

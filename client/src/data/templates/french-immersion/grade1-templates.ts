@@ -1,15 +1,15 @@
-import { 
+import type { 
   FrenchImmersionLessonContent, 
   FrenchImmersionUnitContent,
   FrenchImmersionTemplateMetadata 
 } from '../../../types/frenchImmersion';
-import { PlanTemplate } from '../../../types/template';
+import type { PlanTemplate } from '../../../types/template';
 
 // Sample Grade 1 French Immersion Lesson Templates
-export const GRADE1_FI_LESSON_TEMPLATES: Array<PlanTemplate & {
+export const GRADE1_FI_LESSON_TEMPLATES: (PlanTemplate & {
   content: FrenchImmersionLessonContent;
   fiMetadata: FrenchImmersionTemplateMetadata;
-}> = [
+})[] = [
   {
     id: 'fi-lesson-family',
     title: 'Ma famille - My Family',
@@ -259,10 +259,10 @@ export const GRADE1_FI_LESSON_TEMPLATES: Array<PlanTemplate & {
 ];
 
 // Sample Grade 1 French Immersion Unit Templates
-export const GRADE1_FI_UNIT_TEMPLATES: Array<PlanTemplate & {
+export const GRADE1_FI_UNIT_TEMPLATES: (PlanTemplate & {
   content: FrenchImmersionUnitContent;
   fiMetadata: FrenchImmersionTemplateMetadata;
-}> = [
+})[] = [
   {
     id: 'fi-unit-all-about-me',
     title: 'Tout sur moi - All About Me',

@@ -1,31 +1,3 @@
-import { useCurriculumExpectations } from '../api/domains/curriculum';
-import React, { useState, lazy, Suspense } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import {
-  useLongRangePlan,
-  useLongRangePlans,
-  useUnitPlans,
-  useUnitPlan,
-  useCreateUnitPlan,
-  useUpdateUnitPlan,
-  UnitPlan,
-} from '../hooks/useETFOPlanning';
-import { useUnitPlanForm } from '../hooks/useUnitPlanForm';
-// import { UnitPlanService } from '../services/unitPlanService';
-import { useTemplates, useApplyTemplate } from '../hooks/useTemplates';
-import { PlanTemplate, isUnitPlanTemplate, UnitPlanContent } from '../types/template';
-import { PlanningErrorBoundary } from '../components/ErrorBoundaries';
-import { EmptyState } from '../components/LoadingStates';
-import { OptimizedUnitPlanCard, LoadingSkeleton } from '../components/performance';
-import { UnitPlanOverviewTab } from '../components/unitPlans/UnitPlanOverviewTab';
-import { UnitPlanPlanningTab } from '../components/unitPlans/UnitPlanPlanningTab';
-import Dialog from '../components/Dialog';
-import { Button } from '../components/ui/Button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { Label } from '../components/ui/Label';
-import { Input } from '../components/ui/Input';
-import { Textarea } from '../components/ui/Textarea';
 import {
   Plus,
   Sparkles,
@@ -36,6 +8,39 @@ import {
   Trash2,
   BookTemplate,
 } from 'lucide-react';
+import React, { useState, lazy, Suspense } from 'react';
+import { useParams, Link } from 'react-router-dom';
+
+import { useCurriculumExpectations } from '../api/domains/curriculum';
+import Dialog from '../components/Dialog';
+import { PlanningErrorBoundary } from '../components/ErrorBoundaries';
+import { EmptyState } from '../components/LoadingStates';
+import { OptimizedUnitPlanCard, LoadingSkeleton } from '../components/performance';
+import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
+import { AutoSaveIndicator } from '../components/ui/AutoSaveIndicator';
+import { Button } from '../components/ui/Button';
+import { UnitPlanOverviewTab } from '../components/unitPlans/UnitPlanOverviewTab';
+import type {
+  UnitPlan} from '../hooks/useETFOPlanning';
+import {
+  useLongRangePlan,
+  useLongRangePlans,
+  useUnitPlans,
+  useUnitPlan,
+  useCreateUnitPlan,
+  useUpdateUnitPlan
+} from '../hooks/useETFOPlanning';
+import { useTemplates, useApplyTemplate } from '../hooks/useTemplates';
+import { useUnitPlanForm } from '../hooks/useUnitPlanForm';
+// import { UnitPlanService } from '../services/unitPlanService';
+import { PlanTemplate, isUnitPlanTemplate, UnitPlanContent } from '../types/template';
+import { UnitPlanPlanningTab } from '../components/unitPlans/UnitPlanPlanningTab';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import { Label } from '../components/ui/Label';
+import { Input } from '../components/ui/Input';
+import { Textarea } from '../components/ui/Textarea';
+
 // Lazy load AI components for better performance
 const AIUnitPlanPanel = lazy(() =>
   import('../components/ai/AIUnitPlanPanel').then((m) => ({ default: m.AIUnitPlanPanel })),
@@ -43,14 +48,12 @@ const AIUnitPlanPanel = lazy(() =>
 const WithAIErrorBoundary = lazy(() =>
   import('../components/ai/AIErrorBoundary').then((m) => ({ default: m.WithAIErrorBoundary })),
 );
-import { AutoSaveIndicator } from '../components/ui/AutoSaveIndicator';
 import { MobileOptimizedForm } from '../components/ui/MobileOptimizedForm';
+import logger from '../utils/logger';
 import { generateUnitPlanHTML, printHTML, downloadHTML } from '../utils/printUtils';
-import { BlankTemplateQuickActions } from '../components/printing/BlankTemplatePrinter';
 import { SafeHtmlRenderer } from '../utils/sanitization';
 import RichTextEditor from '../components/RichTextEditor';
 import { PlanAccessTracker } from '../components/planning/PlanAccessTracker';
-import logger from '../utils/logger';
 // Extended UnitPlan type with all ETFO fields
 interface ExtendedUnitPlan extends UnitPlan {
   crossCurricularConnections?: string;
@@ -175,7 +178,7 @@ export default function UnitPlansPage() {
         // Add to description or a specific activities field if available
         const currentDesc = formData.description;
         const activitiesText =
-          '\n\nSuggested Activities:\n' + content.map((a) => `• ${a}`).join('\n');
+          `\n\nSuggested Activities:\n${  content.map((a) => `• ${a}`).join('\n')}`;
         updateField('description', currentDesc + activitiesText);
         break;
       }
@@ -292,8 +295,8 @@ export default function UnitPlansPage() {
       <PlanningErrorBoundary>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="mb-8">
-            <LoadingSkeleton variant="text" lines={2} className="mb-4" />
-            <LoadingSkeleton width="200px" height="40px" />
+            <LoadingSkeleton className="mb-4" lines={2} variant="text" />
+            <LoadingSkeleton height="40px" width="200px" />
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: 6 }).map((_, index) => (
@@ -313,11 +316,11 @@ export default function UnitPlansPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-            <Link to="/planner/long-range" className="hover:text-indigo-600">
+            <Link className="hover:text-indigo-600" to="/planner/long-range">
               Long-Range Plans
             </Link>
             <span>›</span>
-            <Link to="/planner/units" className="hover:text-indigo-600">
+            <Link className="hover:text-indigo-600" to="/planner/units">
               Unit Plans
             </Link>
             <span>›</span>
@@ -342,37 +345,39 @@ export default function UnitPlansPage() {
                 </div>
                 <div className="flex gap-2">
                   <Button
-                    variant="outline"
+                    className="flex items-center gap-2"
                     size="sm"
-                    onClick={() =>
-                      printHTML(
+                    variant="outline"
+                    onClick={() => {
+ printHTML(
                         generateUnitPlanHTML({
                           ...unit,
                           startDate: new Date(unit.startDate),
                           endDate: new Date(unit.endDate),
                         }),
                         `${unit.title}-unit-plan`,
-                      )
+                      ); 
+}
                     }
-                    className="flex items-center gap-2"
                   >
                     <Printer className="h-4 w-4" />
                     Print
                   </Button>
                   <Button
-                    variant="outline"
+                    className="flex items-center gap-2"
                     size="sm"
-                    onClick={() =>
-                      downloadHTML(
+                    variant="outline"
+                    onClick={() => {
+ downloadHTML(
                         generateUnitPlanHTML({
                           ...unit,
                           startDate: new Date(unit.startDate),
                           endDate: new Date(unit.endDate),
                         }),
                         `${unit.title}-unit-plan`,
-                      )
+                      ); 
+}
                     }
-                    className="flex items-center gap-2"
                   >
                     <Download className="h-4 w-4" />
                     Export
@@ -382,7 +387,9 @@ export default function UnitPlansPage() {
                       View Lessons
                     </Button>
                   </Link>
-                  <Button variant="outline" onClick={() => handleEditUnit(unit)}>
+                  <Button variant="outline" onClick={() => {
+ handleEditUnit(unit); 
+}}>
                     Edit Unit
                   </Button>
                 </div>
@@ -401,7 +408,7 @@ export default function UnitPlansPage() {
               {unit.bigIdeas && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Big Ideas</h3>
-                  <SafeHtmlRenderer html={unit.bigIdeas} className="prose max-w-none" />
+                  <SafeHtmlRenderer className="prose max-w-none" html={unit.bigIdeas} />
                 </div>
               )}
 
@@ -434,7 +441,7 @@ export default function UnitPlansPage() {
               {unit.assessmentPlan && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Assessment Plan</h3>
-                  <SafeHtmlRenderer html={unit.assessmentPlan} className="prose max-w-none" />
+                  <SafeHtmlRenderer className="prose max-w-none" html={unit.assessmentPlan} />
                 </div>
               )}
 
@@ -468,7 +475,7 @@ export default function UnitPlansPage() {
                     Differentiation Strategies
                   </h3>
                   <div className="grid gap-4 md:grid-cols-2">
-                    {unit.differentiationStrategies?.forStruggling &&
+                    {unit.differentiationStrategies.forStruggling &&
                       unit.differentiationStrategies.forStruggling.length > 0 && (
                         <Card>
                           <CardHeader>
@@ -486,7 +493,7 @@ export default function UnitPlansPage() {
                         </Card>
                       )}
 
-                    {unit.differentiationStrategies?.forAdvanced &&
+                    {unit.differentiationStrategies.forAdvanced &&
                       unit.differentiationStrategies.forAdvanced.length > 0 && (
                         <Card>
                           <CardHeader>
@@ -502,7 +509,7 @@ export default function UnitPlansPage() {
                         </Card>
                       )}
 
-                    {unit.differentiationStrategies?.forELL &&
+                    {unit.differentiationStrategies.forELL &&
                       unit.differentiationStrategies.forELL.length > 0 && (
                         <Card>
                           <CardHeader>
@@ -518,7 +525,7 @@ export default function UnitPlansPage() {
                         </Card>
                       )}
 
-                    {unit.differentiationStrategies?.forIEP &&
+                    {unit.differentiationStrategies.forIEP &&
                       unit.differentiationStrategies.forIEP.length > 0 && (
                         <Card>
                           <CardHeader>
@@ -598,7 +605,7 @@ export default function UnitPlansPage() {
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
           {longRangePlanId ? (
             <>
-              <Link to="/planner/long-range" className="hover:text-indigo-600">
+              <Link className="hover:text-indigo-600" to="/planner/long-range">
                 Long-Range Plans
               </Link>
               <span>›</span>
@@ -608,11 +615,11 @@ export default function UnitPlansPage() {
             </>
           ) : (
             <>
-              <Link to="/curriculum" className="hover:text-indigo-600">
+              <Link className="hover:text-indigo-600" to="/curriculum">
                 Curriculum Expectations
               </Link>
               <span>›</span>
-              <Link to="/planner/long-range" className="hover:text-indigo-600">
+              <Link className="hover:text-indigo-600" to="/planner/long-range">
                 Long-Range Plans
               </Link>
               <span>›</span>
@@ -637,25 +644,29 @@ export default function UnitPlansPage() {
 
           <div className="flex items-center gap-3">
             <BlankTemplateQuickActions
-              templateType="unit"
               schoolInfo={{
                 grade: longRangePlan ? `Grade ${longRangePlan.grade}` : '',
                 subject: longRangePlan?.subject || '',
                 academicYear: longRangePlan?.academicYear || '',
               }}
+              templateType="unit"
             />
             <Button
-              variant="outline"
-              onClick={() => setIsTemplateModalOpen(true)}
               className="flex items-center gap-2"
+              variant="outline"
+              onClick={() => {
+ setIsTemplateModalOpen(true); 
+}}
             >
               <BookTemplate className="h-4 w-4" />
               Create from Template
             </Button>
             <Button
-              onClick={() => setIsCreateModalOpen(true)}
               className="bg-indigo-600 hover:bg-indigo-700 text-white"
               data-testid="create-unit-plan-button"
+              onClick={() => {
+ setIsCreateModalOpen(true); 
+}}
             >
               <Plus className="h-4 w-4 mr-2" />
               Create Unit Plan
@@ -668,32 +679,34 @@ export default function UnitPlansPage() {
       <PlanningErrorBoundary>
         {unitPlans.length === 0 ? (
           <EmptyState
-            icon={
-              <svg
-                className="mx-auto h-12 w-12 text-gray-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                />
-              </svg>
-            }
-            title="No unit plans yet"
-            description="Start by creating your first unit plan for this long-range plan"
             action={
               <Button
-                onClick={() => setIsCreateModalOpen(true)}
                 className="bg-indigo-600 hover:bg-indigo-700 text-white"
                 data-testid="create-unit-plan-empty-state-button"
+                onClick={() => {
+ setIsCreateModalOpen(true); 
+}}
               >
                 Create Unit Plan
               </Button>
             }
+            description="Start by creating your first unit plan for this long-range plan"
+            icon={
+              <svg
+                className="mx-auto h-12 w-12 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                />
+              </svg>
+            }
+            title="No unit plans yet"
           />
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -714,18 +727,18 @@ export default function UnitPlansPage() {
             {editingUnit && (
               <div className="flex items-center gap-2">
                 <AutoSaveIndicator
-                  lastSaved={lastSaved}
-                  isSaving={isSaving}
                   hasUnsavedChanges={hasUnsavedChanges}
+                  isSaving={isSaving}
+                  lastSaved={lastSaved}
                   onManualSave={saveNow}
                 />
                 <Button
+                  className="flex items-center gap-2"
+                  disabled={isSaving || !hasUnsavedChanges}
+                  size="sm"
                   type="button"
                   variant="outline"
-                  size="sm"
                   onClick={saveNow}
-                  disabled={isSaving || !hasUnsavedChanges}
-                  className="flex items-center gap-2"
                 >
                   {isSaving ? (
                     <RefreshCw className="h-4 w-4 animate-spin" />
@@ -740,10 +753,10 @@ export default function UnitPlansPage() {
 
           <MobileOptimizedForm>
             <form onSubmit={handleSubmit}>
-              <Tabs defaultValue="overview" className="space-y-4">
+              <Tabs className="space-y-4" defaultValue="overview">
                 <TabsList className="grid w-full grid-cols-2 sm:grid-cols-6">
                   <TabsTrigger value="overview">Overview</TabsTrigger>
-                  <TabsTrigger value="ai-assistant" className="gap-2">
+                  <TabsTrigger className="gap-2" value="ai-assistant">
                     <Sparkles className="h-4 w-4" />
                     AI Assistant
                   </TabsTrigger>
@@ -753,30 +766,27 @@ export default function UnitPlansPage() {
                   <TabsTrigger value="connections">Connections</TabsTrigger>
                 </TabsList>
 
-                <TabsContent value="overview" className="space-y-6 mt-4">
+                <TabsContent className="space-y-6 mt-4" value="overview">
                   <UnitPlanOverviewTab
-                    formData={formData}
-                    updateField={updateField}
-                    longRangePlanId={longRangePlanId}
                     allLongRangePlans={allLongRangePlans}
+                    formData={formData}
+                    longRangePlanId={longRangePlanId}
+                    updateField={updateField}
                   />
                 </TabsContent>
 
-                <TabsContent value="ai-assistant" className="space-y-6 mt-4">
+                <TabsContent className="space-y-6 mt-4" value="ai-assistant">
                   <Suspense
                     fallback={
                       <div className="flex items-center justify-center p-8">
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
                         <span className="ml-2 text-gray-600">Loading AI Assistant...</span>
                       </div>
                     }
                   >
                     <WithAIErrorBoundary>
                       <AIUnitPlanPanel
-                        unitTitle={formData.title}
-                        subject={longRangePlan?.subject || ''}
-                        grade={longRangePlan?.grade || 1}
-                        duration={2} // Default 2 weeks
+                        className="w-full"
                         curriculumExpectations={curriculumExpectations
                           .filter((exp) => formData.expectationIds.includes(exp.id))
                           .map((exp) => ({
@@ -785,31 +795,36 @@ export default function UnitPlansPage() {
                             description: exp.description,
                             strand: exp.strand,
                           }))}
+                        duration={2} // Default 2 weeks
+                        grade={longRangePlan?.grade || 1}
+                        subject={longRangePlan?.subject || ''}
+                        unitTitle={formData.title}
                         onSuggestionAccepted={handleAISuggestionAccepted}
                         onUnitGenerated={handleAIUnitGenerated}
-                        className="w-full"
                       />
                     </WithAIErrorBoundary>
                   </Suspense>
                 </TabsContent>
 
-                <TabsContent value="planning" className="space-y-6 mt-4">
+                <TabsContent className="space-y-6 mt-4" value="planning">
                   <UnitPlanPlanningTab
-                    formData={formData}
-                    updateField={updateField}
                     addArrayItem={addArrayItem}
-                    updateArrayItem={updateArrayItem}
-                    removeArrayItem={removeArrayItem}
+                    formData={formData}
                     longRangePlan={longRangePlan}
+                    removeArrayItem={removeArrayItem}
+                    updateArrayItem={updateArrayItem}
+                    updateField={updateField}
                   />
                 </TabsContent>
 
-                <TabsContent value="assessment" className="space-y-6 mt-4">
+                <TabsContent className="space-y-6 mt-4" value="assessment">
                   <div>
                     <Label>Assessment Plan</Label>
                     <RichTextEditor
                       value={formData.assessmentPlan}
-                      onChange={(value) => updateField('assessmentPlan', value)}
+                      onChange={(value) => {
+ updateField('assessmentPlan', value); 
+}}
                     />
                   </div>
 
@@ -826,8 +841,9 @@ export default function UnitPlansPage() {
                       ].map((skill) => (
                         <label key={skill} className="flex items-center space-x-2">
                           <input
-                            type="checkbox"
                             checked={formData.learningSkills.includes(skill)}
+                            className="rounded"
+                            type="checkbox"
                             onChange={(e) => {
                               if (e.target.checked) {
                                 updateField('learningSkills', [...formData.learningSkills, skill]);
@@ -838,7 +854,6 @@ export default function UnitPlansPage() {
                                 );
                               }
                             }}
-                            className="rounded"
                           />
                           <span className="text-sm">{skill}</span>
                         </label>
@@ -847,7 +862,7 @@ export default function UnitPlansPage() {
                   </div>
                 </TabsContent>
 
-                <TabsContent value="differentiation" className="space-y-6 mt-4">
+                <TabsContent className="space-y-6 mt-4" value="differentiation">
                   <Card>
                     <CardHeader>
                       <CardTitle className="text-base">Differentiation Strategies</CardTitle>
@@ -863,22 +878,24 @@ export default function UnitPlansPage() {
                             (strategy, index) => (
                               <div key={index} className="flex gap-2">
                                 <Input
+                                  placeholder="Support strategy..."
                                   value={strategy}
-                                  onChange={(e) =>
-                                    updateDifferentiationStrategy(
+                                  onChange={(e) => {
+ updateDifferentiationStrategy(
                                       'forStruggling',
                                       index,
                                       e.target.value,
-                                    )
+                                    ); 
+}
                                   }
-                                  placeholder="Support strategy..."
                                 />
                                 <Button
+                                  size="sm"
                                   type="button"
                                   variant="ghost"
-                                  size="sm"
-                                  onClick={() =>
-                                    removeDifferentiationStrategy('forStruggling', index)
+                                  onClick={() => {
+ removeDifferentiationStrategy('forStruggling', index); 
+}
                                   }
                                 >
                                   <Trash2 className="h-4 w-4" />
@@ -887,10 +904,12 @@ export default function UnitPlansPage() {
                             ),
                           )}
                           <Button
+                            size="sm"
                             type="button"
                             variant="outline"
-                            size="sm"
-                            onClick={() => addDifferentiationStrategy('forStruggling')}
+                            onClick={() => {
+ addDifferentiationStrategy('forStruggling'); 
+}}
                           >
                             Add Strategy
                           </Button>
@@ -903,31 +922,36 @@ export default function UnitPlansPage() {
                           {formData.differentiationStrategies.forAdvanced.map((strategy, index) => (
                             <div key={index} className="flex gap-2">
                               <Input
+                                placeholder="Extension strategy..."
                                 value={strategy}
-                                onChange={(e) =>
-                                  updateDifferentiationStrategy(
+                                onChange={(e) => {
+ updateDifferentiationStrategy(
                                     'forAdvanced',
                                     index,
                                     e.target.value,
-                                  )
+                                  ); 
+}
                                 }
-                                placeholder="Extension strategy..."
                               />
                               <Button
+                                size="sm"
                                 type="button"
                                 variant="ghost"
-                                size="sm"
-                                onClick={() => removeDifferentiationStrategy('forAdvanced', index)}
+                                onClick={() => {
+ removeDifferentiationStrategy('forAdvanced', index); 
+}}
                               >
                                 <Trash2 className="h-4 w-4" />
                               </Button>
                             </div>
                           ))}
                           <Button
+                            size="sm"
                             type="button"
                             variant="outline"
-                            size="sm"
-                            onClick={() => addDifferentiationStrategy('forAdvanced')}
+                            onClick={() => {
+ addDifferentiationStrategy('forAdvanced'); 
+}}
                           >
                             Add Strategy
                           </Button>
@@ -940,27 +964,32 @@ export default function UnitPlansPage() {
                           {formData.differentiationStrategies.forELL.map((strategy, index) => (
                             <div key={index} className="flex gap-2">
                               <Input
-                                value={strategy}
-                                onChange={(e) =>
-                                  updateDifferentiationStrategy('forELL', index, e.target.value)
-                                }
                                 placeholder="Language support strategy..."
+                                value={strategy}
+                                onChange={(e) => {
+ updateDifferentiationStrategy('forELL', index, e.target.value); 
+}
+                                }
                               />
                               <Button
+                                size="sm"
                                 type="button"
                                 variant="ghost"
-                                size="sm"
-                                onClick={() => removeDifferentiationStrategy('forELL', index)}
+                                onClick={() => {
+ removeDifferentiationStrategy('forELL', index); 
+}}
                               >
                                 <Trash2 className="h-4 w-4" />
                               </Button>
                             </div>
                           ))}
                           <Button
+                            size="sm"
                             type="button"
                             variant="outline"
-                            size="sm"
-                            onClick={() => addDifferentiationStrategy('forELL')}
+                            onClick={() => {
+ addDifferentiationStrategy('forELL'); 
+}}
                           >
                             Add Strategy
                           </Button>
@@ -973,27 +1002,32 @@ export default function UnitPlansPage() {
                           {formData.differentiationStrategies.forIEP.map((strategy, index) => (
                             <div key={index} className="flex gap-2">
                               <Input
-                                value={strategy}
-                                onChange={(e) =>
-                                  updateDifferentiationStrategy('forIEP', index, e.target.value)
-                                }
                                 placeholder="IEP accommodation..."
+                                value={strategy}
+                                onChange={(e) => {
+ updateDifferentiationStrategy('forIEP', index, e.target.value); 
+}
+                                }
                               />
                               <Button
+                                size="sm"
                                 type="button"
                                 variant="ghost"
-                                size="sm"
-                                onClick={() => removeDifferentiationStrategy('forIEP', index)}
+                                onClick={() => {
+ removeDifferentiationStrategy('forIEP', index); 
+}}
                               >
                                 <Trash2 className="h-4 w-4" />
                               </Button>
                             </div>
                           ))}
                           <Button
+                            size="sm"
                             type="button"
                             variant="outline"
-                            size="sm"
-                            onClick={() => addDifferentiationStrategy('forIEP')}
+                            onClick={() => {
+ addDifferentiationStrategy('forIEP'); 
+}}
                           >
                             Add Strategy
                           </Button>
@@ -1003,81 +1037,95 @@ export default function UnitPlansPage() {
                   </Card>
                 </TabsContent>
 
-                <TabsContent value="connections" className="space-y-6 mt-4">
+                <TabsContent className="space-y-6 mt-4" value="connections">
                   <div>
                     <Label>Cross-Curricular Connections</Label>
                     <Textarea
-                      value={formData.crossCurricularConnections}
-                      onChange={(e) => updateField('crossCurricularConnections', e.target.value)}
+                      className="mt-2"
                       placeholder="How does this unit connect to other subject areas?"
                       rows={3}
-                      className="mt-2"
+                      value={formData.crossCurricularConnections}
+                      onChange={(e) => {
+ updateField('crossCurricularConnections', e.target.value); 
+}}
                     />
                   </div>
 
                   <div>
                     <Label>Indigenous Perspectives</Label>
                     <Textarea
-                      value={formData.indigenousPerspectives}
-                      onChange={(e) => updateField('indigenousPerspectives', e.target.value)}
+                      className="mt-2"
                       placeholder="How will you incorporate Indigenous knowledge and perspectives?"
                       rows={3}
-                      className="mt-2"
+                      value={formData.indigenousPerspectives}
+                      onChange={(e) => {
+ updateField('indigenousPerspectives', e.target.value); 
+}}
                     />
                   </div>
 
                   <div>
                     <Label>Environmental Education</Label>
                     <Textarea
-                      value={formData.environmentalEducation}
-                      onChange={(e) => updateField('environmentalEducation', e.target.value)}
+                      className="mt-2"
                       placeholder="Environmental learning opportunities in this unit..."
                       rows={3}
-                      className="mt-2"
+                      value={formData.environmentalEducation}
+                      onChange={(e) => {
+ updateField('environmentalEducation', e.target.value); 
+}}
                     />
                   </div>
 
                   <div>
                     <Label>Social Justice Connections</Label>
                     <Textarea
-                      value={formData.socialJusticeConnections}
-                      onChange={(e) => updateField('socialJusticeConnections', e.target.value)}
+                      className="mt-2"
                       placeholder="Equity and social justice themes..."
                       rows={3}
-                      className="mt-2"
+                      value={formData.socialJusticeConnections}
+                      onChange={(e) => {
+ updateField('socialJusticeConnections', e.target.value); 
+}}
                     />
                   </div>
 
                   <div>
                     <Label>Technology Integration</Label>
                     <Textarea
-                      value={formData.technologyIntegration}
-                      onChange={(e) => updateField('technologyIntegration', e.target.value)}
+                      className="mt-2"
                       placeholder="How will technology enhance learning in this unit?"
                       rows={3}
-                      className="mt-2"
+                      value={formData.technologyIntegration}
+                      onChange={(e) => {
+ updateField('technologyIntegration', e.target.value); 
+}}
                     />
                   </div>
 
                   <div>
                     <Label>Community Connections</Label>
                     <Textarea
-                      value={formData.communityConnections}
-                      onChange={(e) => updateField('communityConnections', e.target.value)}
+                      className="mt-2"
                       placeholder="Local partnerships, field trips, guest speakers..."
                       rows={3}
-                      className="mt-2"
+                      value={formData.communityConnections}
+                      onChange={(e) => {
+ updateField('communityConnections', e.target.value); 
+}}
                     />
                   </div>
 
                   <div>
                     <Label>Parent Communication Plan</Label>
                     <Textarea
-                      value={formData.parentCommunicationPlan}
-                      onChange={(e) => updateField('parentCommunicationPlan', e.target.value)}
+                      className="mt-2"
                       placeholder="How will you communicate unit goals and progress to families?"
                       rows={3}
-                      className="mt-2"
+                      value={formData.parentCommunicationPlan}
+                      onChange={(e) => {
+ updateField('parentCommunicationPlan', e.target.value); 
+}}
                     />
                   </div>
                 </TabsContent>
@@ -1096,9 +1144,9 @@ export default function UnitPlansPage() {
                   Cancel
                 </Button>
                 <Button
-                  type="submit"
-                  disabled={createUnit.isPending || updateUnit.isPending || isSaving}
                   className="bg-indigo-600 hover:bg-indigo-700 text-white"
+                  disabled={createUnit.isPending || updateUnit.isPending || isSaving}
+                  type="submit"
                 >
                   {createUnit.isPending || updateUnit.isPending || isSaving
                     ? 'Saving...'
@@ -1146,7 +1194,9 @@ export default function UnitPlansPage() {
                         ? 'border-indigo-500 bg-indigo-50'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
-                    onClick={() => setSelectedTemplate(template)}
+                    onClick={() => {
+ setSelectedTemplate(template); 
+}}
                   >
                     <CardHeader>
                       <div className="flex items-start justify-between">
@@ -1173,7 +1223,7 @@ export default function UnitPlansPage() {
                     <CardContent>
                       <p className="text-sm text-gray-700 mb-3">{template.description}</p>
                       <div className="flex flex-wrap gap-1 mb-3">
-                        {template.tags?.slice(0, 3).map((tag) => (
+                        {template.tags.slice(0, 3).map((tag) => (
                           <span
                             key={tag}
                             className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full"
@@ -1210,10 +1260,10 @@ export default function UnitPlansPage() {
               Cancel
             </Button>
             <Button
-              type="button"
-              disabled={!selectedTemplate || applyTemplate.isPending}
-              onClick={() => selectedTemplate && handleApplyTemplate(selectedTemplate)}
               className="bg-indigo-600 hover:bg-indigo-700 text-white"
+              disabled={!selectedTemplate || applyTemplate.isPending}
+              type="button"
+              onClick={() => selectedTemplate && handleApplyTemplate(selectedTemplate)}
             >
               {applyTemplate.isPending ? 'Loading...' : 'Use This Template'}
             </Button>

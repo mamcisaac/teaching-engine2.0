@@ -4,7 +4,7 @@
  * Centralized optimizations for common query patterns
  */
 
-import { Prisma } from '@teaching-engine/database';
+import type { Prisma } from '@teaching-engine/database';
 
 import logger from '../../logger';
 /**
@@ -233,7 +233,9 @@ export const optimizedQueries = {
    * Optimized search query with text search
    */
   createSearchWhere(searchTerm: string, fields: string[]): any {
-    if (!searchTerm || !fields.length) return {};
+    if (!searchTerm || !fields.length) {
+return {};
+}
 
     return {
       OR: fields.map(field => ({
@@ -257,8 +259,12 @@ export const optimizedQueries = {
 
     if (startDate || endDate) {
       where[dateField] = {};
-      if (startDate) where[dateField].gte = new Date(startDate);
-      if (endDate) where[dateField].lte = new Date(endDate);
+      if (startDate) {
+where[dateField].gte = new Date(startDate);
+}
+      if (endDate) {
+where[dateField].lte = new Date(endDate);
+}
     }
 
     return where;
@@ -368,8 +374,10 @@ export const queryUtils = {
   /**
    * Limit the depth of includes to prevent N+1 queries
    */
-  limitIncludeDepth(include: any, maxDepth: number = 3): any {
-    if (maxDepth <= 0) return undefined;
+  limitIncludeDepth(include: any, maxDepth = 3): any {
+    if (maxDepth <= 0) {
+return undefined;
+}
 
     const limited: any = {};
     for (const [key, value] of Object.entries(include)) {
@@ -402,14 +410,14 @@ export const queryUtils = {
   /**
    * Validate query limits to prevent abuse
    */
-  validateLimit(limit: number, maxAllowed: number = 100): number {
+  validateLimit(limit: number, maxAllowed = 100): number {
     return Math.min(Math.max(1, limit), maxAllowed);
   },
 
   /**
    * Validate offset to prevent expensive queries
    */
-  validateOffset(offset: number, maxAllowed: number = 10000): number {
+  validateOffset(offset: number, maxAllowed = 10000): number {
     return Math.min(Math.max(0, offset), maxAllowed);
   },
 };

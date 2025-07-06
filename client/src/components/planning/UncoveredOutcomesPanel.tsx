@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import React, { useState } from 'react';
+
 import { apiClient } from '../../api/core/client';
 interface CurriculumExpectation {
   id: string;
@@ -54,9 +55,15 @@ export function UncoveredOutcomesPanel({
     queryKey: ['uncovered-outcomes', startDate, endDate, theme],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (startDate) params.append('startDate', startDate.toISOString());
-      if (endDate) params.append('endDate', endDate.toISOString());
-      if (theme) params.append('theme', theme);
+      if (startDate) {
+params.append('startDate', startDate.toISOString());
+}
+      if (endDate) {
+params.append('endDate', endDate.toISOString());
+}
+      if (theme) {
+params.append('theme', theme);
+}
 
       const response = await apiClient.get<UncoveredExpectation[]>(
         `/ai-suggestions/uncovered?${params}`,
@@ -87,7 +94,7 @@ export function UncoveredOutcomesPanel({
   if (isLoading) {
     return (
       <div className="flex items-center justify-center p-8" role="status">
-        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600" />
       </div>
     );
   }
@@ -137,10 +144,12 @@ export function UncoveredOutcomesPanel({
                     </div>
                     <p className="text-xs text-gray-600 mb-2">{suggestion.descriptionFr}</p>
                     <Button
+                      className="mt-2"
                       size="sm"
                       variant="outline"
-                      onClick={() => onSelectSuggestion(suggestion)}
-                      className="mt-2"
+                      onClick={() => {
+ onSelectSuggestion(suggestion); 
+}}
                     >
                       <span className="mr-1">📅</span>
                       Use this activity
@@ -152,9 +161,11 @@ export function UncoveredOutcomesPanel({
               <div className="ml-4">
                 {!suggestion && (
                   <Button
-                    size="sm"
-                    onClick={() => generateSuggestion.mutate(expectation.id)}
                     disabled={generatingFor === expectation.id}
+                    size="sm"
+                    onClick={() => {
+ generateSuggestion.mutate(expectation.id); 
+}}
                   >
                     {generatingFor === expectation.id ? (
                       <>

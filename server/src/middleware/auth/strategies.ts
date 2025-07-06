@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 // Express types imported but not used in this file
+import logger from '../../logger.js';
 import { prisma } from '../../prisma.js';
 import { AuthenticationError, ValidationError, ConflictError } from '../errorHandler.js';
-import logger from '../../logger.js';
 
-import { hashPassword, verifyPassword, validatePasswordStrength } from './password';
 import { generateTokenPair } from './jwt';
-import { LoginCredentials, RegistrationData, TokenResponse, UserResponse, UserRole } from './types';
+import { hashPassword, verifyPassword, validatePasswordStrength } from './password';
+import type { LoginCredentials, RegistrationData, TokenResponse, UserResponse} from './types';
+import { UserRole } from './types';
 
 /**
  * Register a new user
@@ -18,7 +19,7 @@ export async function register(data: RegistrationData): Promise<{
   // Validate password strength
   const passwordValidation = validatePasswordStrength(data.password);
   if (!passwordValidation.isValid) {
-    throw new ValidationError('Invalid password: ' + passwordValidation.errors.join(', '));
+    throw new ValidationError(`Invalid password: ${  passwordValidation.errors.join(', ')}`);
   }
 
   // Check if user already exists
@@ -39,7 +40,7 @@ export async function register(data: RegistrationData): Promise<{
       email: data.email.toLowerCase(),
       password: hashedPassword,
       name: data.name,
-      role: data.role || UserRole.TEACHER,
+      role: (data.role != null) || UserRole.TEACHER,
     },
   });
 
@@ -138,7 +139,7 @@ export async function changePassword(
   // Validate new password
   const passwordValidation = validatePasswordStrength(newPassword);
   if (!passwordValidation.isValid) {
-    throw new ValidationError('Invalid password: ' + passwordValidation.errors.join(', '));
+    throw new ValidationError(`Invalid password: ${  passwordValidation.errors.join(', ')}`);
   }
 
   // Get user
@@ -207,7 +208,7 @@ export async function resetPassword(_token: string, newPassword: string): Promis
   // Validate new password
   const passwordValidation = validatePasswordStrength(newPassword);
   if (!passwordValidation.isValid) {
-    throw new ValidationError('Invalid password: ' + passwordValidation.errors.join(', '));
+    throw new ValidationError(`Invalid password: ${  passwordValidation.errors.join(', ')}`);
   }
 
   // TODO: Implement reset token validation

@@ -3,26 +3,30 @@
 import { create } from 'zustand';
 import { persist, subscribeWithSelector } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
+
 import { apiClient } from '../api/core/client';
-import { createOfflineSlice, createAutoSave, OfflineState, BaseActions } from './basePlanningStore';
-import { offlineStorage, StoredData } from '../services/offlineStorage';
+import type { StoredData } from '../services/offlineStorage';
+import { offlineStorage } from '../services/offlineStorage';
 import logger from '../utils/logger';
+
+import { createOfflineSlice, createAutoSave } from './basePlanningStore';
+import type { OfflineState, BaseActions } from './basePlanningStore';
 export interface DaybookEntry {
   id: string;
   date: string;
   grade: string;
   subject: string;
-  activities: Array<{
+  activities: {
     time: string;
     activity: string;
     materials?: string[];
     notes?: string;
-  }>;
+  }[];
   reflections: string;
-  attendance?: Array<{
+  attendance?: {
     studentId: string;
     present: boolean;
-  }>;
+  }[];
   createdAt: string;
   updatedAt: string;
 }
@@ -245,7 +249,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                 });
 
                 return createdEntry;
-              } else {
+              } 
                 // Save offline
                 set((state) => {
                   // Replace or add entry
@@ -268,7 +272,7 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
                 });
 
                 return newEntry;
-              }
+              
             } catch (error) {
               logger.error('Failed to create daybook entry:', error);
               set((state) => {
@@ -382,20 +386,23 @@ export const useDaybookStore = create<DaybookState & BaseActions>()(
             }
           },
 
-          setSelectedDate: (date: string) =>
-            set((state) => {
+          setSelectedDate: (date: string) => {
+ set((state) => {
               state.selectedDate = date;
-            }),
+            }); 
+},
 
-          setCurrentEntry: (entry: DaybookEntry | null) =>
-            set((state) => {
+          setCurrentEntry: (entry: DaybookEntry | null) => {
+ set((state) => {
               state.currentEntry = entry;
-            }),
+            }); 
+},
 
-          clearError: () =>
-            set((state) => {
+          clearError: () => {
+ set((state) => {
               state.error = null;
-            }),
+            }); 
+},
         };
       }),
       {

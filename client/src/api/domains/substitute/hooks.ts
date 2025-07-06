@@ -52,7 +52,7 @@ export const usePopularTemplates = (limit = 10) =>
   });
 
 // Statistics
-export const useSubstituteStats = () =>
+export const useSubstituteStats = (): UseQueryResult<unknown> =>
   useQuery({
     queryKey: ['substitute-stats'],
     queryFn: substituteApi.getStats,
@@ -69,7 +69,7 @@ export const useSuggestedActivities = (grade: number, subject?: string, duration
   });
 
 // Plan mutation hooks
-export const useCreateSubstitutePlan = () => {
+export const useCreateSubstitutePlan = (): UseQueryResult<unknown> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -86,7 +86,7 @@ export const useCreateSubstitutePlan = () => {
   });
 };
 
-export const useUpdateSubstitutePlan = () => {
+export const useUpdateSubstitutePlan = (): UseQueryResult<unknown> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -104,7 +104,7 @@ export const useUpdateSubstitutePlan = () => {
   });
 };
 
-export const useDeleteSubstitutePlan = () => {
+export const useDeleteSubstitutePlan = (): UseQueryResult<unknown> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -120,7 +120,7 @@ export const useDeleteSubstitutePlan = () => {
   });
 };
 
-export const useDuplicateSubstitutePlan = () => {
+export const useDuplicateSubstitutePlan = (): UseQueryResult<unknown> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -139,7 +139,7 @@ export const useDuplicateSubstitutePlan = () => {
   });
 };
 
-export const useMarkPlanCompleted = () => {
+export const useMarkPlanCompleted = (): UseQueryResult<unknown> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -167,7 +167,7 @@ export const useMarkPlanCompleted = () => {
 };
 
 // Template mutation hooks
-export const useCreateSubstituteTemplate = () => {
+export const useCreateSubstituteTemplate = (): UseQueryResult<unknown> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -183,7 +183,7 @@ export const useCreateSubstituteTemplate = () => {
   });
 };
 
-export const useCreateEmergencyPlan = () => {
+export const useCreateEmergencyPlan = (): UseQueryResult<unknown> => {
   const queryClient = useQueryClient();
 
   return useMutation({

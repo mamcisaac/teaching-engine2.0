@@ -1,26 +1,27 @@
+import type { UseQueryResult, UseMutationResult } from '@tanstack/react-query';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 
 import { cognateApi } from './api';
-import type { CognatePair as _CognatePair, CognateInput, CognateFilters } from './api';
+import type { CognatePair, CognateInput, CognateFilters, CognateStats } from './api';
 
 // Query hooks
-export const useCognates = (userId?: number, filters?: CognateFilters) =>
+export const useCognates = (userId?: number, filters?: CognateFilters): UseQueryResult<CognatePair[]> =>
   useQuery({
     queryKey: queryKeys.cognate.all(userId),
     queryFn: () => cognateApi.getCognates(userId, filters),
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
-export const useCognate = (id: number) =>
+export const useCognate = (id: number): UseQueryResult<CognatePair> =>
   useQuery({
     queryKey: queryKeys.cognate.detail(id),
     queryFn: () => cognateApi.getCognate(id),
     enabled: !!id,
   });
 
-export const useCognateSearch = (query: string, filters?: CognateFilters) =>
+export const useCognateSearch = (query: string, filters?: CognateFilters): UseQueryResult<CognatePair[]> =>
   useQuery({
     queryKey: ['cognate-search', query, filters],
     queryFn: () => cognateApi.searchCognates(query, filters),
@@ -28,7 +29,7 @@ export const useCognateSearch = (query: string, filters?: CognateFilters) =>
     staleTime: 30 * 1000, // 30 seconds
   });
 
-export const useCognateSuggestions = (word: string, language: 'english' | 'french') =>
+export const useCognateSuggestions = (word: string, language: 'english' | 'french'): UseQueryResult<string[]> =>
   useQuery({
     queryKey: ['cognate-suggestions', word, language],
     queryFn: () => cognateApi.getSuggestions(word, language),
@@ -36,28 +37,28 @@ export const useCognateSuggestions = (word: string, language: 'english' | 'frenc
     staleTime: 60 * 1000, // 1 minute
   });
 
-export const useRandomCognates = (count = 10, filters?: CognateFilters) =>
+export const useRandomCognates = (count = 10, filters?: CognateFilters): UseQueryResult<CognatePair[]> =>
   useQuery({
     queryKey: ['random-cognates', count, filters],
     queryFn: () => cognateApi.getRandomCognates(count, filters),
     staleTime: 0, // Always fresh for random results
   });
 
-export const useCognateStats = (userId?: number) =>
+export const useCognateStats = (userId?: number): UseQueryResult<CognateStats> =>
   useQuery({
     queryKey: ['cognate-stats', userId],
     queryFn: () => cognateApi.getStats(userId),
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
-export const useCognateCategories = () =>
+export const useCognateCategories = (): UseQueryResult<string[]> =>
   useQuery({
     queryKey: ['cognate-categories'],
     queryFn: cognateApi.getCategories,
     staleTime: 30 * 60 * 1000, // 30 minutes
   });
 
-export const useCognateExists = (englishWord: string, frenchWord: string) =>
+export const useCognateExists = (englishWord: string, frenchWord: string): UseQueryResult<{ exists: boolean; cognate?: CognatePair }> =>
   useQuery({
     queryKey: ['cognate-exists', englishWord, frenchWord],
     queryFn: () => cognateApi.checkExists(englishWord, frenchWord),
@@ -66,7 +67,12 @@ export const useCognateExists = (englishWord: string, frenchWord: string) =>
   });
 
 // Practice session hooks
-export const usePracticeStats = (sessionId: string) =>
+export const usePracticeStats = (sessionId: string): UseQueryResult<{
+  totalAnswered: number;
+  correctAnswers: number;
+  accuracy: number;
+  timeSpent: number;
+}> =>
   useQuery({
     queryKey: ['practice-stats', sessionId],
     queryFn: () => cognateApi.getPracticeStats(sessionId),
@@ -75,7 +81,7 @@ export const usePracticeStats = (sessionId: string) =>
   });
 
 // Mutation hooks
-export const useCreateCognate = () => {
+export const useCreateCognate = (): UseMutationResult<CognatePair, Error, CognateInput> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -93,7 +99,7 @@ export const useCreateCognate = () => {
   });
 };
 
-export const useUpdateCognate = () => {
+export const useUpdateCognate = (): UseMutationResult<CognatePair, Error, { id: number; updates: Partial<CognateInput> }> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -114,7 +120,7 @@ export const useUpdateCognate = () => {
   });
 };
 
-export const useDeleteCognate = () => {
+export const useDeleteCognate = (): UseMutationResult<void, Error, number> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -133,7 +139,7 @@ export const useDeleteCognate = () => {
   });
 };
 
-export const useBulkCreateCognates = () => {
+export const useBulkCreateCognates = (): UseMutationResult<{ created: CognatePair[]; failed: unknown[] }, Error, CognateInput[]> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -154,7 +160,7 @@ export const useBulkCreateCognates = () => {
   });
 };
 
-export const useVerifyCognate = () => {
+export const useVerifyCognate = (): UseMutationResult<CognatePair, Error, { id: number; verified: boolean }> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -175,7 +181,11 @@ export const useVerifyCognate = () => {
   });
 };
 
-export const useImportCognates = () => {
+export const useImportCognates = (): UseMutationResult<{
+  imported: number;
+  failed: number;
+  errors?: string[];
+}, Error, { file: File; format: 'csv' | 'json' }> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -197,7 +207,7 @@ export const useImportCognates = () => {
   });
 };
 
-export const useExportCognates = () => useMutation({
+export const useExportCognates = (): UseMutationResult<Blob, Error, { format: 'csv' | 'json'; filters?: CognateFilters }> => useMutation({
     mutationFn: ({ format, filters }: { format: 'csv' | 'json'; filters?: CognateFilters }) =>
       cognateApi.exportCognates(format, filters),
     onSuccess: (data, variables) => {
@@ -208,7 +218,9 @@ export const useExportCognates = () => useMutation({
       link.setAttribute('download', `cognates.${variables.format}`);
       document.body.appendChild(link);
       link.click();
-      link.remove();
+      if (link.parentNode) {
+        link.parentNode.removeChild(link);
+      }
       window.URL.revokeObjectURL(url);
       
       showSuccessToast('Cognates exported successfully');
@@ -217,7 +229,10 @@ export const useExportCognates = () => useMutation({
   });
 
 // Practice session mutations
-export const useStartPracticeSession = () => useMutation({
+export const useStartPracticeSession = (): UseMutationResult<{
+  sessionId: string;
+  cognates: CognatePair[];
+}, Error, CognateFilters | undefined> => useMutation({
     mutationFn: (filters?: CognateFilters) => cognateApi.startPracticeSession(filters),
     onSuccess: () => {
       showSuccessToast('Practice session started');
@@ -225,7 +240,14 @@ export const useStartPracticeSession = () => useMutation({
     onError: (error) => handleApiError(error, 'Failed to start practice session'),
   });
 
-export const useSubmitPracticeAnswer = () => {
+export const useSubmitPracticeAnswer = (): UseMutationResult<{
+  correct: boolean;
+  nextCognate?: CognatePair;
+}, Error, {
+  sessionId: string;
+  cognateId: number;
+  correct: boolean;
+}> => {
   const queryClient = useQueryClient();
 
   return useMutation({

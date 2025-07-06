@@ -1,8 +1,9 @@
 import React from 'react';
-import { Modal } from '../ui/Modal';
-import { Button } from '../ui/Button';
-import { HelpModalProps } from '../../types/help';
+
 import { useHelp } from '../../contexts/HelpContext';
+import type { HelpModalProps } from '../../types/help';
+import { Button } from '../ui/Button';
+import { Modal } from '../ui/Modal';
 
 export const HelpModal: React.FC<HelpModalProps> = ({
   isOpen,
@@ -61,11 +62,11 @@ export const HelpModal: React.FC<HelpModalProps> = ({
 
   return (
     <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      title={title}
-      size="lg"
       footer={footer}
+      isOpen={isOpen}
+      size="lg"
+      title={title}
+      onClose={onClose}
     >
       <div className="space-y-4">
         {renderContent()}

@@ -1,9 +1,11 @@
-import React, { Component, ReactNode } from 'react';
 import { AlertTriangle, RefreshCw, FileText, Wifi, Settings } from 'lucide-react';
-import { Button } from '../ui/Button';
-import { Alert, AlertDescription } from '../ui/alert';
+import type { ReactNode } from 'react';
+import React, { Component } from 'react';
+
 import { cn } from '../../lib/utils';
 import logger from '../../utils/logger';
+import { Alert, AlertDescription } from '../ui/alert';
+import { Button } from '../ui/Button';
 interface Props {
   children: ReactNode;
   fallback?: ReactNode;
@@ -218,16 +220,16 @@ export class AIErrorBoundary extends Component<Props, State> {
                 {this.getErrorIcon(aiError.type!)}
                 <div className="flex-1">
                   <h3 
-                    id="ai-error-title"
                     className="font-semibold mb-2"
+                    id="ai-error-title"
                   >
                     AI Assistant Unavailable
                   </h3>
                   <AlertDescription 
+                    aria-live="polite"
                     className="mb-4"
                     id="ai-error-description"
                     role="alert"
-                    aria-live="polite"
                   >
                     {aiError.suggestedAction}
                   </AlertDescription>
@@ -241,42 +243,42 @@ export class AIErrorBoundary extends Component<Props, State> {
 
                   {/* Action Buttons */}
                   <div 
+                    aria-describedby="ai-error-description"
+                    aria-labelledby="ai-error-title"
                     className="flex flex-wrap gap-2"
                     role="group"
-                    aria-labelledby="ai-error-title"
-                    aria-describedby="ai-error-description"
                   >
                     {canRetry && aiError.retryable && (
                       <Button
-                        onClick={this.handleRetry}
+                        aria-label="Retry AI generation"
+                        className="gap-2"
                         size="sm"
                         variant="outline"
-                        className="gap-2"
-                        aria-label="Retry AI generation"
+                        onClick={this.handleRetry}
                       >
-                        <RefreshCw className="h-4 w-4" aria-hidden="true" />
+                        <RefreshCw aria-hidden="true" className="h-4 w-4" />
                         Retry
                       </Button>
                     )}
 
                     {this.props.enableManualFallback && (
                       <Button
-                        onClick={this.handleManualFallback}
+                        aria-label="Continue creating content manually without AI assistance"
+                        className="gap-2"
                         size="sm"
                         variant="outline"
-                        className="gap-2"
-                        aria-label="Continue creating content manually without AI assistance"
+                        onClick={this.handleManualFallback}
                       >
-                        <FileText className="h-4 w-4" aria-hidden="true" />
+                        <FileText aria-hidden="true" className="h-4 w-4" />
                         Continue Manually
                       </Button>
                     )}
 
                     {aiError.type === AIErrorType.API_KEY_MISSING && (
                       <Button
-                        onClick={() => window.open('/settings', '_blank')}
-                        size="sm"
                         className="gap-2"
+                        size="sm"
+                        onClick={() => window.open('/settings', '_blank')}
                       >
                         <Settings className="h-4 w-4" />
                         Open Settings
@@ -340,7 +342,9 @@ export function useAIErrorHandler() {
 
 // Utility function to check if an error is AI-related
 export function isAIError(error: unknown): error is AIError {
-  if (!(error instanceof Error)) return false;
+  if (!(error instanceof Error)) {
+return false;
+}
   
   const message = error.message.toLowerCase();
   return (
@@ -366,7 +370,7 @@ export function WithAIErrorBoundary({
   enableManualFallback = true,
 }: WithAIErrorBoundaryProps) {
   return (
-    <AIErrorBoundary onRetry={onRetry} enableManualFallback={enableManualFallback}>
+    <AIErrorBoundary enableManualFallback={enableManualFallback} onRetry={onRetry}>
       {children}
     </AIErrorBoundary>
   );

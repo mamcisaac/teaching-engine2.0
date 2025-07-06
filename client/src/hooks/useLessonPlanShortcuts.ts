@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import { useKeyboardShortcut } from './useKeyboardShortcut';
 
 interface UseLessonPlanShortcutsProps {
@@ -140,7 +141,9 @@ export const useLessonPlanShortcuts = ({
 
   // Listen for Tab/Shift+Tab for field navigation
   useEffect(() => {
-    if (!enabled) return;
+    if (!enabled) {
+return;
+}
 
     const handleKeyDown = (e: KeyboardEvent) => {
       // Only handle Tab in form contexts
@@ -159,15 +162,23 @@ export const useLessonPlanShortcuts = ({
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+ window.removeEventListener('keydown', handleKeyDown); 
+};
   }, [enabled, onNextField, onPreviousField]);
 
   // Listen for global save event
   useEffect(() => {
-    if (!enabled || !onSave) return;
+    if (!enabled || !onSave) {
+return;
+}
 
-    const handleGlobalSave = () => onSave();
+    const handleGlobalSave = () => {
+ onSave(); 
+};
     window.addEventListener('global:save', handleGlobalSave);
-    return () => window.removeEventListener('global:save', handleGlobalSave);
+    return () => {
+ window.removeEventListener('global:save', handleGlobalSave); 
+};
   }, [enabled, onSave]);
 };

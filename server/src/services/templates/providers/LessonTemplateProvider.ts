@@ -7,7 +7,8 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
 
-import { TemplateProvider, Template, TemplateContext, DataRequirement } from './TemplateProvider';
+import type { Template, TemplateContext, DataRequirement } from './TemplateProvider';
+import { TemplateProvider } from './TemplateProvider';
 
 export class LessonTemplateProvider extends TemplateProvider {
   constructor() {

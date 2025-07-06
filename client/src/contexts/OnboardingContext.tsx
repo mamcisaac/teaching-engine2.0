@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export interface OnboardingStep {
   id: string;
@@ -215,7 +216,7 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
     }));
   }, [state.completedFlows, state.skippedOnboarding]);
 
-  const startOnboarding = (flowId: string = 'main-onboarding') => {
+  const startOnboarding = (flowId = 'main-onboarding') => {
     const flow = TUTORIAL_FLOWS[flowId];
     if (flow) {
       setState(prev => ({
@@ -228,7 +229,9 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
   };
 
   const nextStep = () => {
-    if (!state.currentFlow) return;
+    if (!state.currentFlow) {
+return;
+}
     
     if (state.currentStepIndex < state.currentFlow.steps.length - 1) {
       setState(prev => ({

@@ -4,9 +4,10 @@
  * Provides common functionality and lifecycle management
  */
 
-import { prisma } from '../../prisma.js';
-import logger, { Logger } from '../../logger.js';
+import type { Logger } from '../../logger.js';
+import logger from '../../logger.js';
 import { recordDatabaseQuery } from '../../middleware/metrics.js';
+import { prisma } from '../../prisma.js';
 
 export interface OperationMetrics {
   count: number;
@@ -35,8 +36,8 @@ export abstract class BaseService {
   protected metrics: ServiceMetrics;
   protected startTime: Date;
   protected lastHealthCheck: Date;
-  protected healthyState: boolean = true;
-  private initialized: boolean = false;
+  protected healthyState = true;
+  private initialized = false;
 
   constructor(serviceName: string) {
     this.name = serviceName;

@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useHelpSearch, useHelpContent } from '../../hooks/useHelp';
-import { useHelp } from '../../contexts/HelpContext';
-import { Input } from '../ui/Input';
-import { Button } from '../ui/Button';
 import { clsx } from 'clsx';
+import React, { useState, useRef, useEffect } from 'react';
+
+import { useHelp } from '../../contexts/HelpContext';
+import { useHelpSearch, useHelpContent } from '../../hooks/useHelp';
+import { Button } from '../ui/Button';
+import { Input } from '../ui/Input';
 
 interface HelpSearchProps {
   placeholder?: string;
@@ -35,7 +36,9 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
     };
 
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    return () => {
+ document.removeEventListener('mousedown', handleClickOutside); 
+};
   }, []);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
@@ -65,35 +68,39 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
   return (
     <div ref={searchRef} className="relative">
       {/* Search Input */}
-      <form onSubmit={handleSearchSubmit} className="relative">
+      <form className="relative" onSubmit={handleSearchSubmit}>
         <div className="relative">
           <Input
-            type="text"
+            className="w-full pr-24"
             placeholder={placeholder}
+            type="text"
             value={query}
             onChange={(e) => {
               setQuery(e.target.value);
               setShowSuggestionsDropdown(e.target.value.length > 0 && showSuggestions);
             }}
-            onFocus={() => setShowSuggestionsDropdown(query.length > 0 && showSuggestions)}
-            className="w-full pr-24"
+            onFocus={() => {
+ setShowSuggestionsDropdown(query.length > 0 && showSuggestions); 
+}}
           />
           
           {/* Search Actions */}
           <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
             {showFilters && (
               <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowFiltersDropdown(!showFiltersDropdown)}
                 className={clsx(
                   'p-1',
                   state.activeFilters.length > 0 && 'text-blue-600 bg-blue-50'
                 )}
+                size="sm"
+                type="button"
+                variant="ghost"
+                onClick={() => {
+ setShowFiltersDropdown(!showFiltersDropdown); 
+}}
               >
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
                 </svg>
                 {state.activeFilters.length > 0 && (
                   <span className="ml-1 text-xs">{state.activeFilters.length}</span>
@@ -101,9 +108,9 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
               </Button>
             )}
             
-            <Button type="submit" variant="ghost" size="sm" className="p-1">
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <Button className="p-1" size="sm" type="submit" variant="ghost">
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
               </svg>
             </Button>
           </div>
@@ -121,20 +128,22 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
             >
               {filter}
               <button
-                type="button"
-                onClick={() => removeFilter(filter)}
                 className="ml-1 text-blue-600 hover:text-blue-800"
+                type="button"
+                onClick={() => {
+ removeFilter(filter); 
+}}
               >
-                <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M6 18L18 6M6 6l12 12" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
                 </svg>
               </button>
             </span>
           ))}
           <button
+            className="text-xs text-gray-500 hover:text-gray-700 underline"
             type="button"
             onClick={handleClearAll}
-            className="text-xs text-gray-500 hover:text-gray-700 underline"
           >
             Clear all
           </button>
@@ -151,13 +160,13 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
               {content.slice(0, 3).map((item) => (
                 <button
                   key={item.id}
+                  className="w-full text-left p-2 hover:bg-gray-50 rounded text-sm"
                   onClick={() => {
                     if (onResultSelect) {
                       onResultSelect(item.id);
                     }
                     setShowSuggestionsDropdown(false);
                   }}
-                  className="w-full text-left p-2 hover:bg-gray-50 rounded text-sm"
                 >
                   <div className="font-medium text-gray-900">{item.title}</div>
                   <div className="text-gray-600 text-xs mt-1">{item.section}</div>
@@ -178,8 +187,10 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
               {suggestions.map((suggestion, index) => (
                 <button
                   key={index}
-                  onClick={() => handleSuggestionClick(suggestion)}
                   className="block w-full text-left p-2 hover:bg-gray-50 rounded text-sm text-gray-700"
+                  onClick={() => {
+ handleSuggestionClick(suggestion); 
+}}
                 >
                   {suggestion}
                 </button>
@@ -194,8 +205,10 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
               {popularSearches.map((search, index) => (
                 <button
                   key={index}
-                  onClick={() => handleSuggestionClick(search)}
                   className="block w-full text-left p-2 hover:bg-gray-50 rounded text-sm text-gray-700"
+                  onClick={() => {
+ handleSuggestionClick(search); 
+}}
                 >
                   {search}
                 </button>
@@ -213,8 +226,8 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
               <h4 className="text-sm font-medium text-gray-900">Filters</h4>
               {state.activeFilters.length > 0 && (
                 <button
-                  onClick={clearFilters}
                   className="text-xs text-gray-500 hover:text-gray-700 underline"
+                  onClick={clearFilters}
                 >
                   Clear all
                 </button>
@@ -228,15 +241,19 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
                 <div className="space-y-1">
                   {['beginner', 'intermediate', 'advanced'].map((difficulty) => {
                     const filter = availableFilters.find(f => f.value === difficulty);
-                    if (!filter) return null;
+                    if (!filter) {
+return null;
+}
                     
                     return (
                       <label key={difficulty} className="flex items-center">
                         <input
-                          type="checkbox"
                           checked={state.activeFilters.includes(difficulty)}
-                          onChange={() => handleFilterToggle(difficulty)}
                           className="h-3 w-3 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                          type="checkbox"
+                          onChange={() => {
+ handleFilterToggle(difficulty); 
+}}
                         />
                         <span className="ml-2 text-sm text-gray-700">
                           {filter.label} ({filter.count})
@@ -257,10 +274,12 @@ export const HelpSearch: React.FC<HelpSearchProps> = ({
                     .map((filter) => (
                       <label key={filter.value} className="flex items-center">
                         <input
-                          type="checkbox"
                           checked={state.activeFilters.includes(filter.value)}
-                          onChange={() => handleFilterToggle(filter.value)}
                           className="h-3 w-3 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                          type="checkbox"
+                          onChange={() => {
+ handleFilterToggle(filter.value); 
+}}
                         />
                         <span className="ml-2 text-sm text-gray-700">
                           {filter.label} ({filter.count})

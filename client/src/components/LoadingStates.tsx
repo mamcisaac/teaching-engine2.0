@@ -1,5 +1,6 @@
-import React from 'react';
 import { Loader2, RefreshCw } from 'lucide-react';
+import React from 'react';
+
 import { Card, CardContent, CardHeader } from './ui/card';
 
 // Generic loading spinner
@@ -27,7 +28,7 @@ export const LoadingSpinner: React.FC<{
 // Full page loading state
 export const PageLoader: React.FC<{ message?: string }> = ({ message = 'Loading...' }) => (
   <div className="min-h-screen flex items-center justify-center">
-    <LoadingSpinner size="lg" message={message} />
+    <LoadingSpinner message={message} size="lg" />
   </div>
 );
 
@@ -37,14 +38,14 @@ export const CardSkeleton: React.FC<{ count?: number }> = ({ count = 1 }) => (
     {Array.from({ length: count }).map((_, index) => (
       <Card key={index} className="animate-pulse">
         <CardHeader>
-          <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-          <div className="h-3 bg-gray-200 rounded w-1/2 mt-2"></div>
+          <div className="h-4 bg-gray-200 rounded w-3/4" />
+          <div className="h-3 bg-gray-200 rounded w-1/2 mt-2" />
         </CardHeader>
         <CardContent>
           <div className="space-y-2">
-            <div className="h-3 bg-gray-200 rounded"></div>
-            <div className="h-3 bg-gray-200 rounded"></div>
-            <div className="h-3 bg-gray-200 rounded w-5/6"></div>
+            <div className="h-3 bg-gray-200 rounded" />
+            <div className="h-3 bg-gray-200 rounded" />
+            <div className="h-3 bg-gray-200 rounded w-5/6" />
           </div>
         </CardContent>
       </Card>
@@ -63,7 +64,7 @@ export const TableSkeleton: React.FC<{ rows?: number; columns?: number }> = ({
       <div className="bg-gray-50 px-6 py-3 border-b">
         <div className="flex gap-4">
           {Array.from({ length: columns }).map((_, index) => (
-            <div key={index} className="h-4 bg-gray-200 rounded flex-1"></div>
+            <div key={index} className="h-4 bg-gray-200 rounded flex-1" />
           ))}
         </div>
       </div>
@@ -80,7 +81,7 @@ export const TableSkeleton: React.FC<{ rows?: number; columns?: number }> = ({
                   style={{ 
                     width: `${Math.random() * 30 + 70}%` 
                   }}
-                ></div>
+                 />
               ))}
             </div>
           </div>
@@ -95,32 +96,32 @@ export const FormSkeleton: React.FC = () => (
   <div className="animate-pulse space-y-6">
     {/* Title field */}
     <div>
-      <div className="h-4 bg-gray-200 rounded w-24 mb-2"></div>
-      <div className="h-10 bg-gray-200 rounded"></div>
+      <div className="h-4 bg-gray-200 rounded w-24 mb-2" />
+      <div className="h-10 bg-gray-200 rounded" />
     </div>
     
     {/* Description field */}
     <div>
-      <div className="h-4 bg-gray-200 rounded w-32 mb-2"></div>
-      <div className="h-24 bg-gray-200 rounded"></div>
+      <div className="h-4 bg-gray-200 rounded w-32 mb-2" />
+      <div className="h-24 bg-gray-200 rounded" />
     </div>
     
     {/* Date fields */}
     <div className="grid grid-cols-2 gap-4">
       <div>
-        <div className="h-4 bg-gray-200 rounded w-20 mb-2"></div>
-        <div className="h-10 bg-gray-200 rounded"></div>
+        <div className="h-4 bg-gray-200 rounded w-20 mb-2" />
+        <div className="h-10 bg-gray-200 rounded" />
       </div>
       <div>
-        <div className="h-4 bg-gray-200 rounded w-20 mb-2"></div>
-        <div className="h-10 bg-gray-200 rounded"></div>
+        <div className="h-4 bg-gray-200 rounded w-20 mb-2" />
+        <div className="h-10 bg-gray-200 rounded" />
       </div>
     </div>
     
     {/* Buttons */}
     <div className="flex justify-end gap-3 pt-6 border-t">
-      <div className="h-10 bg-gray-200 rounded w-20"></div>
-      <div className="h-10 bg-gray-200 rounded w-24"></div>
+      <div className="h-10 bg-gray-200 rounded w-20" />
+      <div className="h-10 bg-gray-200 rounded w-24" />
     </div>
   </div>
 );
@@ -128,12 +129,12 @@ export const FormSkeleton: React.FC = () => (
 // Tab content skeleton
 export const TabContentSkeleton: React.FC = () => (
   <div className="animate-pulse space-y-4 mt-4">
-    <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-    <div className="h-4 bg-gray-200 rounded"></div>
-    <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+    <div className="h-4 bg-gray-200 rounded w-3/4" />
+    <div className="h-4 bg-gray-200 rounded" />
+    <div className="h-4 bg-gray-200 rounded w-5/6" />
     <div className="mt-6 grid gap-4">
-      <div className="h-32 bg-gray-200 rounded"></div>
-      <div className="h-32 bg-gray-200 rounded"></div>
+      <div className="h-32 bg-gray-200 rounded" />
+      <div className="h-32 bg-gray-200 rounded" />
     </div>
   </div>
 );
@@ -142,8 +143,8 @@ export const TabContentSkeleton: React.FC = () => (
 export const LessonPlanSkeleton: React.FC = () => (
   <div className="bg-white shadow rounded-lg animate-pulse">
     <div className="px-6 py-4 border-b">
-      <div className="h-6 bg-gray-200 rounded w-3/4"></div>
-      <div className="h-4 bg-gray-200 rounded w-1/2 mt-2"></div>
+      <div className="h-6 bg-gray-200 rounded w-3/4" />
+      <div className="h-4 bg-gray-200 rounded w-1/2 mt-2" />
     </div>
     <div className="p-6 space-y-6">
       {/* Three-part lesson structure */}
@@ -151,13 +152,13 @@ export const LessonPlanSkeleton: React.FC = () => (
         {['Minds On', 'Action', 'Consolidation'].map((section) => (
           <Card key={section}>
             <CardHeader>
-              <div className="h-4 bg-gray-200 rounded w-20"></div>
+              <div className="h-4 bg-gray-200 rounded w-20" />
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                <div className="h-3 bg-gray-200 rounded"></div>
-                <div className="h-3 bg-gray-200 rounded"></div>
-                <div className="h-3 bg-gray-200 rounded w-4/5"></div>
+                <div className="h-3 bg-gray-200 rounded" />
+                <div className="h-3 bg-gray-200 rounded" />
+                <div className="h-3 bg-gray-200 rounded w-4/5" />
               </div>
             </CardContent>
           </Card>
@@ -206,8 +207,8 @@ export const RetryLoad: React.FC<{
   <div className="text-center py-8">
     <p className="text-gray-600 mb-4">{message}</p>
     <button
-      onClick={onRetry}
       className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+      onClick={onRetry}
     >
       <RefreshCw className="h-4 w-4 mr-2" />
       Try Again

@@ -1,6 +1,4 @@
-import React, { memo, useMemo, useCallback } from 'react';
-import { Link } from 'react-router-dom';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+import { formatDistanceToNow } from 'date-fns';
 import {
   Calendar,
   BookOpen,
@@ -10,10 +8,14 @@ import {
   FileText,
   TrendingUp,
 } from 'lucide-react';
-import { formatDistanceToNow } from 'date-fns';
+import React, { memo, useMemo, useCallback } from 'react';
+import { Link } from 'react-router-dom';
+
 import { cn } from '../../lib/utils';
-import { VirtualizedList } from './VirtualizedList';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+
 import { LoadingSkeleton } from './LoadingSkeleton';
+import { VirtualizedList } from './VirtualizedList';
 
 export interface RecentPlan {
   id: string;
@@ -65,13 +67,13 @@ const PLAN_TYPE_CONFIG = {
 
 // Memoized plan item component
 const PlanItem = memo(
-  function PlanItem({
+  ({
     plan,
     compact = false,
   }: {
     plan: RecentPlan & { formattedDate: string; planRoute: string };
     compact?: boolean;
-  }) {
+  }) => {
     const config = PLAN_TYPE_CONFIG[plan.type];
     const Icon = config.icon;
 
@@ -105,7 +107,7 @@ const PlanItem = memo(
     }, [plan.status, plan.progress]);
 
     return (
-      <Link to={plan.planRoute} className="block group">
+      <Link className="block group" to={plan.planRoute}>
         <div
           className={cn(
             'flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors',
@@ -167,36 +169,34 @@ const PlanItem = memo(
       </Link>
     );
   },
-  (prevProps, nextProps) => {
+  (prevProps, nextProps) => 
     // Optimize re-renders by comparing relevant props
-    return (
+     (
       prevProps.plan.id === nextProps.plan.id &&
       prevProps.plan.title === nextProps.plan.title &&
       prevProps.plan.lastAccessed === nextProps.plan.lastAccessed &&
       prevProps.plan.progress === nextProps.plan.progress &&
       prevProps.plan.status === nextProps.plan.status &&
       prevProps.compact === nextProps.compact
-    );
-  },
+    )
+  ,
 );
 
 export const OptimizedRecentPlans = memo(
-  function OptimizedRecentPlans({
+  ({
     plans,
     isLoading,
     className,
     virtualizeThreshold = 50,
     showViewAll = true,
     compact = false,
-  }: OptimizedRecentPlansProps) {
+  }: OptimizedRecentPlansProps) => {
     // Memoize expensive calculations for plan processing
-    const processedPlans = useMemo(() => {
-      return plans.map((plan) => ({
+    const processedPlans = useMemo(() => plans.map((plan) => ({
         ...plan,
         formattedDate: formatDistanceToNow(new Date(plan.lastAccessed), { addSuffix: true }),
         planRoute: `${PLAN_TYPE_CONFIG[plan.type].route}/${plan.id}`,
-      }));
-    }, [plans]);
+      })), [plans]);
 
     // Memoize the render function for virtualized list
     const renderPlanItem = useCallback(
@@ -210,7 +210,7 @@ export const OptimizedRecentPlans = memo(
         style: React.CSSProperties;
       }) => (
         <div style={style}>
-          <PlanItem key={`${item.type}-${item.id}`} plan={item} compact={compact} />
+          <PlanItem key={`${item.type}-${item.id}`} compact={compact} plan={item} />
         </div>
       ),
       [compact],
@@ -231,11 +231,11 @@ export const OptimizedRecentPlans = memo(
               {[1, 2, 3, 4, 5].map((i) => (
                 <LoadingSkeleton
                   key={i}
-                  variant="complex"
                   layout={[
                     { type: 'avatar', size: 'md' },
                     { type: 'text', lines: 2 },
                   ]}
+                  variant="complex"
                 />
               ))}
             </div>
@@ -278,8 +278,8 @@ export const OptimizedRecentPlans = memo(
             </div>
             {showViewAll && (
               <Link
-                to="/planner"
                 className="text-sm text-indigo-600 hover:text-indigo-700 flex items-center gap-1"
+                to="/planner"
               >
                 View all
                 <ChevronRight className="h-3 w-3" />
@@ -291,16 +291,16 @@ export const OptimizedRecentPlans = memo(
           {/* Use virtualization for large lists */}
           {processedPlans.length > virtualizeThreshold ? (
             <VirtualizedList
-              items={processedPlans}
-              itemHeight={compact ? 60 : 80}
-              height={400}
-              renderItem={renderPlanItem}
               className="space-y-1"
+              height={400}
+              itemHeight={compact ? 60 : 80}
+              items={processedPlans}
+              renderItem={renderPlanItem}
             />
           ) : (
             <div className="space-y-1">
               {processedPlans.map((plan) => (
-                <PlanItem key={`${plan.type}-${plan.id}`} plan={plan} compact={compact} />
+                <PlanItem key={`${plan.type}-${plan.id}`} compact={compact} plan={plan} />
               ))}
             </div>
           )}
@@ -309,8 +309,8 @@ export const OptimizedRecentPlans = memo(
           {processedPlans.length >= 10 && (
             <div className="mt-4 pt-4 border-t">
               <Link
-                to="/planner/history"
                 className="text-sm text-indigo-600 hover:text-indigo-700 flex items-center justify-center gap-1"
+                to="/planner/history"
               >
                 <TrendingUp className="h-4 w-4" />
                 View planning history
@@ -321,9 +321,9 @@ export const OptimizedRecentPlans = memo(
       </Card>
     );
   },
-  (prevProps, nextProps) => {
+  (prevProps, nextProps) => 
     // Optimize re-renders by comparing plans array length and loading state
-    return (
+     (
       prevProps.plans.length === nextProps.plans.length &&
       prevProps.isLoading === nextProps.isLoading &&
       prevProps.compact === nextProps.compact &&
@@ -332,6 +332,6 @@ export const OptimizedRecentPlans = memo(
           plan.id === nextProps.plans[index]?.id &&
           plan.lastAccessed === nextProps.plans[index]?.lastAccessed,
       )
-    );
-  },
+    )
+  ,
 );

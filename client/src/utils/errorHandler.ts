@@ -1,5 +1,6 @@
-import { toast } from 'sonner';
 import { AxiosError } from 'axios';
+import { toast } from 'sonner';
+
 import logger from './logger';
 interface ApiError {
   error: string;
@@ -38,29 +39,29 @@ export function handleApiError(error: unknown, customMessage?: string): void {
         break;
 
       case 404:
-        toast.error(customMessage || apiError?.message || 'Resource not found.');
+        toast.error(customMessage || apiError.message || 'Resource not found.');
         break;
 
       case 409:
-        toast.error(customMessage || apiError?.message || 'This item already exists.');
+        toast.error(customMessage || apiError.message || 'This item already exists.');
         break;
 
       case 422:
       case 400:
-        if (apiError?.details && Array.isArray(apiError.details)) {
+        if (apiError.details && Array.isArray(apiError.details)) {
           // Show validation errors
           apiError.details.forEach((detail: { field: string; message: string }) => {
             toast.error(`${detail.field}: ${detail.message}`);
           });
         } else {
           toast.error(
-            customMessage || apiError?.message || 'Invalid request. Please check your input.',
+            customMessage || apiError.message || 'Invalid request. Please check your input.',
           );
         }
         break;
 
       case 429: {
-        const retryAfter = error.response?.headers['retry-after'];
+        const retryAfter = error.response.headers['retry-after'];
         toast.error(
           `Too many requests. Please try again ${retryAfter ? `in ${retryAfter} seconds` : 'later'}.`,
         );
@@ -75,7 +76,7 @@ export function handleApiError(error: unknown, customMessage?: string): void {
         break;
 
       default:
-        toast.error(customMessage || apiError?.error || 'An unexpected error occurred.');
+        toast.error(customMessage || apiError.error || 'An unexpected error occurred.');
     }
   } else if (error instanceof Error) {
     // Handle network errors
@@ -90,15 +91,17 @@ export function handleApiError(error: unknown, customMessage?: string): void {
 }
 
 export function createErrorHandler(defaultMessage?: string) {
-  return (error: unknown) => handleApiError(error, defaultMessage);
+  return (error: unknown) => {
+ handleApiError(error, defaultMessage); 
+};
 }
 
 // Retry logic for transient failures
 export async function retryOperation<T>(
   operation: () => Promise<T>,
-  maxRetries: number = 3,
-  delay: number = 1000,
-  backoff: number = 2,
+  maxRetries = 3,
+  delay = 1000,
+  backoff = 2,
 ): Promise<T> {
   let lastError: unknown;
 

@@ -1,9 +1,10 @@
-import { Router, Request, Response } from 'express';
-import { z } from 'zod';
 import { prisma } from '@teaching-engine/database';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
+import { z } from 'zod';
 
-import { authMiddleware } from '../middleware/auth';
 import logger from '../logger';
+import { authMiddleware } from '../middleware/auth';
 const router = Router();
 
 // Get user's collections

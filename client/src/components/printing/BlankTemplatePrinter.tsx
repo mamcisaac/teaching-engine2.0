@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import { Button } from '../ui/Button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
-import Dialog from '../Dialog';
-import { Input } from '../ui/Input';
-import { Label } from '../ui/Label';
 import { Printer, Download, Eye, FileText, Calendar, BookOpen, NotebookTabs, Grid3x3 } from 'lucide-react';
+import React, { useState } from 'react';
+
+import type {
+  ETFOSchoolInfo
+} from '../../utils/printUtils';
 import {
   generateLongRangePlanBlankTemplate,
   generateUnitPlanBlankTemplate,
@@ -12,9 +11,13 @@ import {
   generateDaybookBlankTemplate,
   generateWeeklyOverviewBlankTemplate,
   printHTML,
-  downloadHTML,
-  ETFOSchoolInfo
+  downloadHTML
 } from '../../utils/printUtils';
+import Dialog from '../Dialog';
+import { Button } from '../ui/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+import { Input } from '../ui/Input';
+import { Label } from '../ui/Label';
 
 interface BlankTemplatePrinterProps {
   isOpen: boolean;
@@ -130,28 +133,34 @@ export function BlankTemplatePrinter({
         <CardContent className="pt-0">
           <div className="flex gap-2">
             <Button
-              variant="outline"
-              size="sm"
-              onClick={() => handlePreview(key)}
               className="flex items-center gap-2"
+              size="sm"
+              variant="outline"
+              onClick={() => {
+ handlePreview(key); 
+}}
             >
               <Eye className="h-4 w-4" />
               Preview
             </Button>
             <Button
-              variant="outline"
-              size="sm"
-              onClick={() => handlePrint(key)}
               className="flex items-center gap-2"
+              size="sm"
+              variant="outline"
+              onClick={() => {
+ handlePrint(key); 
+}}
             >
               <Printer className="h-4 w-4" />
               Print
             </Button>
             <Button
-              variant="outline"
-              size="sm"
-              onClick={() => handleDownload(key)}
               className="flex items-center gap-2"
+              size="sm"
+              variant="outline"
+              onClick={() => {
+ handleDownload(key); 
+}}
             >
               <Download className="h-4 w-4" />
               Download
@@ -189,45 +198,55 @@ export function BlankTemplatePrinter({
                   <Label htmlFor="schoolName">School Name</Label>
                   <Input
                     id="schoolName"
-                    value={schoolInfo.schoolName || ''}
-                    onChange={(e) => handleSchoolInfoChange('schoolName', e.target.value)}
                     placeholder="e.g., Maple Leaf Elementary"
+                    value={schoolInfo.schoolName || ''}
+                    onChange={(e) => {
+ handleSchoolInfoChange('schoolName', e.target.value); 
+}}
                   />
                 </div>
                 <div>
                   <Label htmlFor="teacherName">Teacher Name</Label>
                   <Input
                     id="teacherName"
-                    value={schoolInfo.teacherName || ''}
-                    onChange={(e) => handleSchoolInfoChange('teacherName', e.target.value)}
                     placeholder="e.g., Ms. Johnson"
+                    value={schoolInfo.teacherName || ''}
+                    onChange={(e) => {
+ handleSchoolInfoChange('teacherName', e.target.value); 
+}}
                   />
                 </div>
                 <div>
                   <Label htmlFor="grade">Grade</Label>
                   <Input
                     id="grade"
-                    value={schoolInfo.grade || ''}
-                    onChange={(e) => handleSchoolInfoChange('grade', e.target.value)}
                     placeholder="e.g., Grade 3"
+                    value={schoolInfo.grade || ''}
+                    onChange={(e) => {
+ handleSchoolInfoChange('grade', e.target.value); 
+}}
                   />
                 </div>
                 <div>
                   <Label htmlFor="subject">Subject</Label>
                   <Input
                     id="subject"
-                    value={schoolInfo.subject || ''}
-                    onChange={(e) => handleSchoolInfoChange('subject', e.target.value)}
                     placeholder="e.g., Mathematics"
+                    value={schoolInfo.subject || ''}
+                    onChange={(e) => {
+ handleSchoolInfoChange('subject', e.target.value); 
+}}
                   />
                 </div>
                 <div>
                   <Label htmlFor="academicYear">Academic Year</Label>
                   <Input
                     id="academicYear"
-                    value={schoolInfo.academicYear || ''}
-                    onChange={(e) => handleSchoolInfoChange('academicYear', e.target.value)}
                     placeholder="e.g., 2024-2025"
+                    value={schoolInfo.academicYear || ''}
+                    onChange={(e) => {
+ handleSchoolInfoChange('academicYear', e.target.value); 
+}}
                   />
                 </div>
               </div>
@@ -245,7 +264,9 @@ export function BlankTemplatePrinter({
                 <div className="flex justify-between items-center pt-4 border-t">
                   <Button
                     variant="outline"
-                    onClick={() => setSelectedTemplate(null)}
+                    onClick={() => {
+ setSelectedTemplate(null); 
+}}
                   >
                     View All Templates
                   </Button>
@@ -279,8 +300,8 @@ export function BlankTemplatePrinter({
             <h3 className="text-lg font-semibold">Template Preview</h3>
             <div className="flex gap-2">
               <Button
-                variant="outline"
                 size="sm"
+                variant="outline"
                 onClick={() => {
                   if (previewHTML) {
                     printHTML(previewHTML, 'ETFO-Template-Preview');
@@ -290,7 +311,9 @@ export function BlankTemplatePrinter({
                 <Printer className="h-4 w-4 mr-2" />
                 Print
               </Button>
-              <Button variant="outline" size="sm" onClick={() => setPreviewOpen(false)}>
+              <Button size="sm" variant="outline" onClick={() => {
+ setPreviewOpen(false); 
+}}>
                 Close
               </Button>
             </div>
@@ -300,8 +323,8 @@ export function BlankTemplatePrinter({
             style={{ maxHeight: 'calc(95vh - 120px)' }}
           >
             <iframe
-              srcDoc={previewHTML}
               className="w-full h-full"
+              srcDoc={previewHTML}
               style={{ minHeight: '600px' }}
               title="Template Preview"
             />
@@ -322,7 +345,9 @@ export function BlankTemplateQuickActions({
 }) {
   const [printerOpen, setPrinterOpen] = useState(false);
 
-  if (!templateType) return null;
+  if (!templateType) {
+return null;
+}
 
   const config = templateConfigs[templateType];
 
@@ -340,19 +365,21 @@ export function BlankTemplateQuickActions({
     <>
       <div className="flex items-center gap-2">
         <Button
-          variant="outline"
-          size="sm"
-          onClick={() => setPrinterOpen(true)}
           className="flex items-center gap-2"
+          size="sm"
+          variant="outline"
+          onClick={() => {
+ setPrinterOpen(true); 
+}}
         >
           <FileText className="h-4 w-4" />
           Blank Template
         </Button>
         <Button
-          variant="ghost"
-          size="sm"
-          onClick={handleQuickPrint}
           className="flex items-center gap-2"
+          size="sm"
+          variant="ghost"
+          onClick={handleQuickPrint}
         >
           <Printer className="h-4 w-4" />
           Quick Print
@@ -360,10 +387,12 @@ export function BlankTemplateQuickActions({
       </div>
 
       <BlankTemplatePrinter
-        isOpen={printerOpen}
-        onClose={() => setPrinterOpen(false)}
-        templateType={templateType}
         defaultSchoolInfo={schoolInfo}
+        isOpen={printerOpen}
+        templateType={templateType}
+        onClose={() => {
+ setPrinterOpen(false); 
+}}
       />
     </>
   );

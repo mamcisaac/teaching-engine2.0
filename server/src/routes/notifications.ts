@@ -1,7 +1,8 @@
-import { Router, Request } from 'express';
+import type { Request } from 'express';
+import { Router } from 'express';
 
-import { prisma } from '../prisma';
 import logger from '../logger';
+import { prisma } from '../prisma';
 const router = Router();
 
 // Get notifications for authenticated user

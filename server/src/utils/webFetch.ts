@@ -11,7 +11,7 @@ interface CacheEntry {
 }
 
 export class WebFetch {
-  private cache: Map<string, CacheEntry> = new Map();
+  private cache = new Map<string, CacheEntry>();
   private readonly cacheTime = 15 * 60 * 1000; // 15 minutes
   private readonly userAgent = 'Mozilla/5.0 (compatible; TeachingEngine/2.0; +https://teaching-engine.com)';
   
@@ -40,18 +40,18 @@ export class WebFetch {
         validateStatus: (status) => status < 400
       });
       
-      const html = response.data;
+      const html = response.data as string;
       
       // Cache the result
       this.cache.set(cacheKey, {
-        html,
+        html: html as string,
         timestamp: Date.now()
       });
       
       // Clean old cache entries
       this.cleanCache();
       
-      return html;
+      return html as string;
     } catch (_error) {
       logger.error({ error: _error, url }, 'Error fetching URL');
       
@@ -106,40 +106,40 @@ export class WebFetch {
   // Utility method to extract text content from HTML
   extractText(html: string, selector?: string): string {
     const dom = new JSDOM(html);
-    const document = dom.window.document;
+    const { document } = dom.window;
     
-    if (selector) {
+    if (selector !== undefined && selector !== null && selector !== '') {
       const element = document.querySelector(selector);
-      return element?.textContent?.trim() || '';
+      return element?.textContent?.trim() ?? '';
     }
     
     // Remove script and style elements
     const scripts = document.querySelectorAll('script, style');
     scripts.forEach(el => el.remove());
     
-    return document.body?.textContent?.trim() || '';
+    return document.body?.textContent?.trim() ?? '';
   }
   
   // Utility method to extract meta information
   extractMeta(html: string): Record<string, string> {
     const dom = new JSDOM(html);
-    const document = dom.window.document;
+    const { document } = dom.window;
     const meta: Record<string, string> = {};
     
     // Extract common meta tags
     const metaTags = document.querySelectorAll('meta[name], meta[property]');
     metaTags.forEach(tag => {
-      const name = tag.getAttribute('name') || tag.getAttribute('property');
+      const name = tag.getAttribute('name') ?? tag.getAttribute('property');
       const content = tag.getAttribute('content');
-      if (name && content) {
+      if (name !== null && name !== '' && content !== null && content !== '') {
         meta[name] = content;
       }
     });
     
     // Extract title
     const title = document.querySelector('title');
-    if (title) {
-      meta.title = title.textContent || '';
+    if (title !== null && title !== undefined) {
+      meta.title = title.textContent ?? '';
     }
     
     return meta;

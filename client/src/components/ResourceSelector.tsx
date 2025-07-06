@@ -1,6 +1,8 @@
 import { useState } from 'react';
+
 import { useMediaResources } from '../api/domains/resource';
 import type { MediaResource } from '../api/domains/resource/api';
+
 import Dialog from './Dialog';
 
 interface ResourceSelectorProps {
@@ -55,24 +57,24 @@ export default function ResourceSelector({
   };
 
   const formatFileSize = (bytes: number) => {
-    if (bytes === 0) return '0 Bytes';
+    if (bytes === 0) {
+return '0 Bytes';
+}
     const k = 1024;
     const sizes = ['Bytes', 'KB', 'MB', 'GB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    return `${parseFloat((bytes / Math.pow(k, i)).toFixed(2))  } ${  sizes[i]}`;
   };
 
-  const getResourceUrl = (resource: MediaResource) => {
-    return resource.fileUrl || resource.thumbnailUrl || '/placeholder-image.png';
-  };
+  const getResourceUrl = (resource: MediaResource) => resource.fileUrl || resource.thumbnailUrl || '/placeholder-image.png';
 
   return (
-    <Dialog open={true} onOpenChange={(open) => !open && onClose()}>
+    <Dialog open onOpenChange={(open) => !open && onClose()}>
       <div className="w-full max-w-4xl max-h-[80vh] overflow-hidden flex flex-col">
         {/* Header */}
         <div className="flex justify-between items-center p-6 border-b">
           <h2 className="text-xl font-semibold">{title}</h2>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+          <button className="text-gray-500 hover:text-gray-700" onClick={onClose}>
             ✕
           </button>
         </div>
@@ -83,20 +85,24 @@ export default function ResourceSelector({
             <div>
               <label className="block text-sm font-medium mb-1">Search</label>
               <input
+                className="w-full border rounded px-3 py-2"
+                placeholder="Search resources..."
                 type="text"
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search resources..."
-                className="w-full border rounded px-3 py-2"
+                onChange={(e) => {
+ setSearch(e.target.value); 
+}}
               />
             </div>
             <div>
               <label className="block text-sm font-medium mb-1">File Type</label>
               <select
-                value={selectedFileType}
-                onChange={(e) => setSelectedFileType(e.target.value)}
                 className="w-full border rounded px-3 py-2"
                 disabled={!!fileTypeFilter} // Disable if filtered from props
+                value={selectedFileType}
+                onChange={(e) => {
+ setSelectedFileType(e.target.value); 
+}}
               >
                 <option value="">All Types</option>
                 <option value="image">Images</option>
@@ -121,16 +127,18 @@ export default function ResourceSelector({
               {filteredResources.map((resource) => (
                 <div
                   key={resource.id}
-                  onClick={() => onSelect(resource)}
                   className="border rounded-lg p-4 hover:shadow-md hover:bg-blue-50 cursor-pointer transition-all"
+                  onClick={() => {
+ onSelect(resource); 
+}}
                 >
                   {/* Thumbnail */}
                   <div className="w-full h-32 mb-3 flex items-center justify-center bg-gray-100 rounded">
                     {resource.type === 'image' ? (
                       <img
-                        src={getResourceUrl(resource)}
                         alt={resource.title}
                         className="w-full h-full object-cover rounded"
+                        src={getResourceUrl(resource)}
                         onError={(e) => {
                           e.currentTarget.style.display = 'none';
                           e.currentTarget.nextElementSibling?.classList.remove('hidden');
@@ -186,8 +194,8 @@ export default function ResourceSelector({
               {filteredResources.length} of {resources.length} resources
             </div>
             <button
-              onClick={onClose}
               className="px-4 py-2 text-gray-600 border border-gray-300 rounded hover:bg-gray-50"
+              onClick={onClose}
             >
               Cancel
             </button>

@@ -6,10 +6,11 @@
 
 import * as puppeteer from 'puppeteer';
 
-import { Template } from '../providers/TemplateProvider';
+import type { Template } from '../providers/TemplateProvider';
 
-import { RenderEngine, RenderResult, RenderContext } from './RenderEngine';
 import { HandlebarsEngine } from './HandlebarsEngine';
+import type { RenderResult, RenderContext } from './RenderEngine';
+import { RenderEngine } from './RenderEngine';
 
 export interface PdfOptions {
   format?: 'A4' | 'Letter' | 'Legal';

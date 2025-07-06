@@ -1,7 +1,8 @@
-import { Router, Request, Response } from 'express';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
 
-import { prisma } from '../prisma';
 import logger from '../logger';
+import { prisma } from '../prisma';
 const router = Router();
 
 /**

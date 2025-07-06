@@ -1,36 +1,3 @@
-import React, { useState } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
-import {
-  useTemplates,
-  // useTemplate,
-  useCreateTemplate,
-  // useUpdateTemplate,
-  useDeleteTemplate,
-  useDuplicateTemplate,
-  useApplyTemplate,
-  // useRateTemplate,
-  useTemplateFilterOptions,
-} from '../hooks/useTemplates';
-import {
-  PlanTemplate,
-  TemplateSearchOptions,
-  TemplateCreateData,
-  TemplateType,
-  TemplateCategory,
-  TEMPLATE_TYPES,
-  TEMPLATE_CATEGORIES,
-  isUnitPlanTemplate,
-  isLessonPlanTemplate,
-} from '../types/template';
-import { Button } from '../components/ui/Button';
-import { Input } from '../components/ui/Input';
-import { Label } from '../components/ui/Label';
-import { Textarea } from '../components/ui/Textarea';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-// import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import Dialog from '../components/Dialog';
-import { LoadingSpinner } from '../components/LoadingStates';
-import logger from '../utils/logger';
 import {
   Search,
   Filter,
@@ -52,6 +19,41 @@ import {
   // Heart,
   // ThumbsUp,
 } from 'lucide-react';
+import React, { useState } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+
+import Dialog from '../components/Dialog';
+import { LoadingSpinner } from '../components/LoadingStates';
+import { Button } from '../components/ui/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import { Input } from '../components/ui/Input';
+import { Label } from '../components/ui/Label';
+import { Textarea } from '../components/ui/Textarea';
+import {
+  useTemplates,
+  // useTemplate,
+  useCreateTemplate,
+  // useUpdateTemplate,
+  useDeleteTemplate,
+  useDuplicateTemplate,
+  useApplyTemplate,
+  // useRateTemplate,
+  useTemplateFilterOptions,
+} from '../hooks/useTemplates';
+import type {
+  PlanTemplate,
+  TemplateSearchOptions,
+  TemplateCreateData,
+  TemplateType,
+  TemplateCategory} from '../types/template';
+import {
+  TEMPLATE_TYPES,
+  TEMPLATE_CATEGORIES,
+  isUnitPlanTemplate,
+  isLessonPlanTemplate,
+} from '../types/template';
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import logger from '../utils/logger';
 
 export default function TemplatesPage() {
   const { templateId } = useParams();
@@ -152,7 +154,9 @@ export default function TemplatesPage() {
   };
 
   const handleDeleteTemplate = async () => {
-    if (!selectedTemplate) return;
+    if (!selectedTemplate) {
+return;
+}
 
     try {
       await deleteTemplate.mutateAsync(selectedTemplate.id);
@@ -277,22 +281,22 @@ export default function TemplatesPage() {
 
         <div className="flex gap-2">
           <Button
+            className="flex-1"
             size="sm"
             onClick={() => {
               setSelectedTemplate(template);
               setIsPreviewModalOpen(true);
             }}
-            className="flex-1"
           >
             <Eye className="h-4 w-4 mr-1" />
             Preview
           </Button>
 
           <Button
+            className="flex-1"
             size="sm"
             variant="outline"
             onClick={() => handleApplyTemplate(template)}
-            className="flex-1"
           >
             <Plus className="h-4 w-4 mr-1" />
             Use
@@ -322,7 +326,7 @@ export default function TemplatesPage() {
   if (isLoading) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <LoadingSpinner size="lg" message="Loading templates..." />
+        <LoadingSpinner message="Loading templates..." size="lg" />
       </div>
     );
   }
@@ -332,7 +336,7 @@ export default function TemplatesPage() {
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-          <Link to="/planner" className="hover:text-indigo-600">
+          <Link className="hover:text-indigo-600" to="/planner">
             Planning
           </Link>
           <span>›</span>
@@ -348,9 +352,11 @@ export default function TemplatesPage() {
           </div>
 
           <Button
-            onClick={() => setIsCreateModalOpen(true)}
             className="bg-indigo-600 hover:bg-indigo-700 text-white"
             data-testid="create-template-button"
+            onClick={() => {
+ setIsCreateModalOpen(true); 
+}}
           >
             <Plus className="h-4 w-4 mr-2" />
             Create Template
@@ -364,17 +370,21 @@ export default function TemplatesPage() {
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
+              className="pl-10"
               placeholder="Search templates..."
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
+              onChange={(e) => {
+ setSearchTerm(e.target.value); 
+}}
             />
           </div>
 
           <Button
-            variant="outline"
-            onClick={() => setShowFilters(!showFilters)}
             className="flex items-center gap-2"
+            variant="outline"
+            onClick={() => {
+ setShowFilters(!showFilters); 
+}}
           >
             <Filter className="h-4 w-4" />
             Filters
@@ -393,11 +403,12 @@ export default function TemplatesPage() {
                 <div>
                   <Label>View</Label>
                   <select
-                    value={view}
-                    onChange={(e) =>
-                      setView(e.target.value as 'all' | 'system' | 'public' | 'mine')
-                    }
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
+                    value={view}
+                    onChange={(e) => {
+ setView(e.target.value as 'all' | 'system' | 'public' | 'mine'); 
+}
+                    }
                   >
                     <option value="all">All Templates</option>
                     <option value="system">System Templates</option>
@@ -409,9 +420,11 @@ export default function TemplatesPage() {
                 <div>
                   <Label>Type</Label>
                   <select
-                    value={selectedType}
-                    onChange={(e) => setSelectedType(e.target.value as TemplateType | 'all')}
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
+                    value={selectedType}
+                    onChange={(e) => {
+ setSelectedType(e.target.value as TemplateType | 'all'); 
+}}
                   >
                     <option value="all">All Types</option>
                     <option value="UNIT_PLAN">Unit Plans</option>
@@ -422,11 +435,12 @@ export default function TemplatesPage() {
                 <div>
                   <Label>Category</Label>
                   <select
-                    value={selectedCategory}
-                    onChange={(e) =>
-                      setSelectedCategory(e.target.value as TemplateCategory | 'all')
-                    }
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
+                    value={selectedCategory}
+                    onChange={(e) => {
+ setSelectedCategory(e.target.value as TemplateCategory | 'all'); 
+}
+                    }
                   >
                     <option value="all">All Categories</option>
                     {Object.entries(TEMPLATE_CATEGORIES).map(([key, { label }]) => (
@@ -440,9 +454,11 @@ export default function TemplatesPage() {
                 <div>
                   <Label>Subject</Label>
                   <select
-                    value={selectedSubject}
-                    onChange={(e) => setSelectedSubject(e.target.value)}
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
+                    value={selectedSubject}
+                    onChange={(e) => {
+ setSelectedSubject(e.target.value); 
+}}
                   >
                     <option value="all">All Subjects</option>
                     {filterOptions?.subjects.map((subject) => (
@@ -456,11 +472,12 @@ export default function TemplatesPage() {
                 <div>
                   <Label>Grade</Label>
                   <select
-                    value={selectedGrade}
-                    onChange={(e) =>
-                      setSelectedGrade(e.target.value === 'all' ? 'all' : parseInt(e.target.value))
-                    }
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
+                    value={selectedGrade}
+                    onChange={(e) => {
+ setSelectedGrade(e.target.value === 'all' ? 'all' : parseInt(e.target.value)); 
+}
+                    }
                   >
                     <option value="all">All Grades</option>
                     {filterOptions?.grades.map((grade) => (
@@ -474,13 +491,14 @@ export default function TemplatesPage() {
                 <div>
                   <Label>Sort By</Label>
                   <select
-                    value={sortBy}
-                    onChange={(e) =>
-                      setSortBy(
-                        e.target.value as 'title' | 'usageCount' | 'averageRating' | 'createdAt',
-                      )
-                    }
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
+                    value={sortBy}
+                    onChange={(e) => {
+ setSortBy(
+                        e.target.value as 'title' | 'usageCount' | 'averageRating' | 'createdAt',
+                      ); 
+}
+                    }
                   >
                     <option value="createdAt">Created Date</option>
                     <option value="title">Title</option>
@@ -492,9 +510,11 @@ export default function TemplatesPage() {
                 <div>
                   <Label>Order</Label>
                   <select
-                    value={sortOrder}
-                    onChange={(e) => setSortOrder(e.target.value as 'asc' | 'desc')}
                     className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
+                    value={sortOrder}
+                    onChange={(e) => {
+ setSortOrder(e.target.value as 'asc' | 'desc'); 
+}}
                   >
                     <option value="desc">Descending</option>
                     <option value="asc">Ascending</option>
@@ -525,8 +545,10 @@ export default function TemplatesPage() {
             </p>
             {!searchTerm && (
               <Button
-                onClick={() => setIsCreateModalOpen(true)}
                 data-testid="create-template-empty-state-button"
+                onClick={() => {
+ setIsCreateModalOpen(true); 
+}}
               >
                 Create Template
               </Button>
@@ -546,24 +568,28 @@ export default function TemplatesPage() {
         <div className="p-6 max-w-2xl max-h-[90vh] overflow-y-auto">
           <h3 className="text-lg font-semibold mb-4">Create New Template</h3>
 
-          <form onSubmit={handleCreateTemplate} className="space-y-4">
+          <form className="space-y-4" onSubmit={handleCreateTemplate}>
             <div>
               <Label>Title</Label>
               <Input
-                value={formData.title}
-                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                placeholder="Template title..."
                 required
+                placeholder="Template title..."
+                value={formData.title}
+                onChange={(e) => {
+ setFormData({ ...formData, title: e.target.value }); 
+}}
               />
             </div>
 
             <div>
               <Label>Description</Label>
               <Textarea
-                value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 placeholder="Describe this template..."
                 rows={3}
+                value={formData.description}
+                onChange={(e) => {
+ setFormData({ ...formData, description: e.target.value }); 
+}}
               />
             </div>
 
@@ -571,12 +597,13 @@ export default function TemplatesPage() {
               <div>
                 <Label>Type</Label>
                 <select
-                  value={formData.type}
-                  onChange={(e) =>
-                    setFormData({ ...formData, type: e.target.value as TemplateType })
-                  }
-                  className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
                   required
+                  className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
+                  value={formData.type}
+                  onChange={(e) => {
+ setFormData({ ...formData, type: e.target.value as TemplateType }); 
+}
+                  }
                 >
                   <option value="UNIT_PLAN">Unit Plan</option>
                   <option value="LESSON_PLAN">Lesson Plan</option>
@@ -586,12 +613,13 @@ export default function TemplatesPage() {
               <div>
                 <Label>Category</Label>
                 <select
-                  value={formData.category}
-                  onChange={(e) =>
-                    setFormData({ ...formData, category: e.target.value as TemplateCategory })
-                  }
-                  className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
                   required
+                  className="w-full mt-1 rounded-md border border-gray-300 px-3 py-2"
+                  value={formData.category}
+                  onChange={(e) => {
+ setFormData({ ...formData, category: e.target.value as TemplateCategory }); 
+}
+                  }
                 >
                   {Object.entries(TEMPLATE_CATEGORIES).map(([key, { label }]) => (
                     <option key={key} value={key}>
@@ -605,9 +633,11 @@ export default function TemplatesPage() {
             <div>
               <Label>Subject (optional)</Label>
               <Input
-                value={formData.subject || ''}
-                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                 placeholder="Mathematics, Language Arts, etc."
+                value={formData.subject || ''}
+                onChange={(e) => {
+ setFormData({ ...formData, subject: e.target.value }); 
+}}
               />
             </div>
 
@@ -615,15 +645,16 @@ export default function TemplatesPage() {
               <div>
                 <Label>Minimum Grade (optional)</Label>
                 <Input
-                  type="number"
-                  min="1"
                   max="12"
+                  min="1"
+                  type="number"
                   value={formData.gradeMin || ''}
-                  onChange={(e) =>
-                    setFormData({
+                  onChange={(e) => {
+ setFormData({
                       ...formData,
                       gradeMin: e.target.value ? parseInt(e.target.value) : undefined,
-                    })
+                    }); 
+}
                   }
                 />
               </div>
@@ -631,15 +662,16 @@ export default function TemplatesPage() {
               <div>
                 <Label>Maximum Grade (optional)</Label>
                 <Input
-                  type="number"
-                  min="1"
                   max="12"
+                  min="1"
+                  type="number"
                   value={formData.gradeMax || ''}
-                  onChange={(e) =>
-                    setFormData({
+                  onChange={(e) => {
+ setFormData({
                       ...formData,
                       gradeMax: e.target.value ? parseInt(e.target.value) : undefined,
-                    })
+                    }); 
+}
                   }
                 />
               </div>
@@ -647,11 +679,13 @@ export default function TemplatesPage() {
 
             <div className="flex items-center space-x-2">
               <input
-                type="checkbox"
-                id="isPublic"
                 checked={formData.isPublic}
-                onChange={(e) => setFormData({ ...formData, isPublic: e.target.checked })}
                 className="rounded"
+                id="isPublic"
+                type="checkbox"
+                onChange={(e) => {
+ setFormData({ ...formData, isPublic: e.target.checked }); 
+}}
               />
               <Label htmlFor="isPublic">
                 Make this template public (other teachers can use it)
@@ -659,13 +693,15 @@ export default function TemplatesPage() {
             </div>
 
             <div className="flex justify-end gap-3 pt-4">
-              <Button type="button" variant="outline" onClick={() => setIsCreateModalOpen(false)}>
+              <Button type="button" variant="outline" onClick={() => {
+ setIsCreateModalOpen(false); 
+}}>
                 Cancel
               </Button>
               <Button
-                type="submit"
-                disabled={createTemplate.isPending}
                 className="bg-indigo-600 hover:bg-indigo-700 text-white"
+                disabled={createTemplate.isPending}
+                type="submit"
               >
                 {createTemplate.isPending ? 'Creating...' : 'Create Template'}
               </Button>
@@ -687,8 +723,8 @@ export default function TemplatesPage() {
 
                 <div className="flex gap-2">
                   <Button
-                    onClick={() => handleApplyTemplate(selectedTemplate)}
                     className="bg-indigo-600 hover:bg-indigo-700 text-white"
+                    onClick={() => handleApplyTemplate(selectedTemplate)}
                   >
                     Use Template
                   </Button>
@@ -870,13 +906,15 @@ export default function TemplatesPage() {
           </p>
 
           <div className="flex justify-end gap-3">
-            <Button variant="outline" onClick={() => setIsDeleteModalOpen(false)}>
+            <Button variant="outline" onClick={() => {
+ setIsDeleteModalOpen(false); 
+}}>
               Cancel
             </Button>
             <Button
-              onClick={handleDeleteTemplate}
-              disabled={deleteTemplate.isPending}
               className="bg-red-600 hover:bg-red-700 text-white"
+              disabled={deleteTemplate.isPending}
+              onClick={handleDeleteTemplate}
             >
               {deleteTemplate.isPending ? 'Deleting...' : 'Delete'}
             </Button>

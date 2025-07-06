@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useCallback, FormEvent, ChangeEvent } from 'react';
-import { z } from 'zod';
+import type { FormEvent, ChangeEvent } from 'react';
+import { useState, useCallback } from 'react';
+import type { z } from 'zod';
 
 export interface UseFormOptions<T> {
   initialValues: T;
@@ -10,13 +11,9 @@ export interface UseFormOptions<T> {
   validateOnBlur?: boolean;
 }
 
-export interface FormError {
-  [key: string]: string | undefined;
-}
+export type FormError = Record<string, string | undefined>;
 
-export interface FormTouched {
-  [key: string]: boolean;
-}
+export type FormTouched = Record<string, boolean>;
 
 export function useForm<T extends Record<string, unknown>>({
   initialValues,
@@ -34,7 +31,9 @@ export function useForm<T extends Record<string, unknown>>({
   // Validate a single field
   const validateField = useCallback(
     (name: string, value: unknown): string | undefined => {
-      if (!validationSchema) return undefined;
+      if (!validationSchema) {
+return undefined;
+}
 
       try {
         // For object schemas, try to get the field schema
@@ -59,7 +58,7 @@ export function useForm<T extends Record<string, unknown>>({
           'errors' in error &&
           Array.isArray((error as { errors: unknown[] }).errors)
         ) {
-          return ((error as { errors: { message: string }[] }).errors[0]?.message as string) || 'Invalid value';
+          return ((error as { errors: { message: string }[] }).errors[0]?.message) || 'Invalid value';
         }
         return 'Validation error';
       }
@@ -69,7 +68,9 @@ export function useForm<T extends Record<string, unknown>>({
 
   // Validate all fields
   const validate = useCallback((): boolean => {
-    if (!validationSchema) return true;
+    if (!validationSchema) {
+return true;
+}
 
     try {
       validationSchema.parse(values);
@@ -214,9 +215,7 @@ export function useForm<T extends Record<string, unknown>>({
 
   // Check if field has error and is touched
   const getFieldError = useCallback(
-    (name: string) => {
-      return touched[name] && errors[name] ? errors[name] : undefined;
-    },
+    (name: string) => touched[name] && errors[name] ? errors[name] : undefined,
     [touched, errors],
   );
 

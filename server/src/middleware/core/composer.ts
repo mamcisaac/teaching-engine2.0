@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
-import { Request, Response, NextFunction, RequestHandler } from 'express';
+import type { Request, Response, NextFunction, RequestHandler } from 'express';
 
 import logger from '../../logger';
 
@@ -15,17 +15,16 @@ export type ErrorRequestHandler = (
 ) => void | Promise<void>;
 
 // Compose multiple middleware into a single middleware
-export const compose = (...middlewares: Middleware[]): RequestHandler => {
-  return async (req: Request, res: Response, next: NextFunction) => {
+export const compose = (...middlewares: Middleware[]): RequestHandler => async (req: Request, res: Response, next: NextFunction) => {
     let index = 0;
 
     const dispatch = async (err?: Error): Promise<void> => {
       if (err) {
-        return next(err);
+        next(err); return;
       }
 
       if (index >= middlewares.length) {
-        return next();
+        next(); return;
       }
 
       const middleware = middlewares[index++];
@@ -52,23 +51,20 @@ export const compose = (...middlewares: Middleware[]): RequestHandler => {
 
     await dispatch();
   };
-};
 
 // Conditional middleware - only apply if condition is met
 export const conditional = (
   condition: boolean | ((req: Request) => boolean),
   middleware: Middleware
-): RequestHandler => {
-  return (req: Request, res: Response, next: NextFunction) => {
+): RequestHandler => (req: Request, res: Response, next: NextFunction) => {
     const shouldApply = typeof condition === 'function' ? condition(req) : condition;
     
     if (shouldApply) {
-      return (middleware as RequestHandler)(req, res, next);
+      (middleware as RequestHandler)(req, res, next); return;
     }
     
     next();
   };
-};
 
 // Create middleware that only runs once
 export const once = (middleware: Middleware): RequestHandler => {
@@ -77,7 +73,7 @@ export const once = (middleware: Middleware): RequestHandler => {
   return (req: Request, res: Response, next: NextFunction) => {
     if (!hasRun) {
       hasRun = true;
-      return (middleware as RequestHandler)(req, res, next);
+      (middleware as RequestHandler)(req, res, next); return;
     }
     next();
   };
@@ -86,9 +82,8 @@ export const once = (middleware: Middleware): RequestHandler => {
 // Middleware with timeout
 export const withTimeout = (
   middleware: Middleware,
-  timeout: number = 5000
-): RequestHandler => {
-  return async (req: Request, res: Response, next: NextFunction) => {
+  timeout = 5000
+): RequestHandler => async (req: Request, res: Response, next: NextFunction) => {
     let timeoutId: NodeJS.Timeout | null = null;
     let completed = false;
 
@@ -103,7 +98,9 @@ export const withTimeout = (
     const middlewarePromise = new Promise<void>((resolve, reject) => {
       (middleware as RequestHandler)(req, res, (err?: unknown) => {
         completed = true;
-        if (timeoutId) clearTimeout(timeoutId);
+        if (timeoutId) {
+clearTimeout(timeoutId);
+}
         
         if (err) {
           reject(err);
@@ -120,19 +117,18 @@ export const withTimeout = (
       next(_error as unknown);
     }
   };
-};
 
 // Parallel middleware execution (for independent operations)
-export const parallel = (...middlewares: Middleware[]): RequestHandler => {
-  return async (req: Request, res: Response, next: NextFunction) => {
-    const promises = middlewares.map(middleware => {
-      return new Promise<void>((resolve, reject) => {
+export const parallel = (...middlewares: Middleware[]): RequestHandler => async (req: Request, res: Response, next: NextFunction) => {
+    const promises = middlewares.map(middleware => new Promise<void>((resolve, reject) => {
         (middleware as RequestHandler)(req, res, (err?: unknown) => {
-          if (err) reject(err);
-          else resolve();
+          if (err) {
+reject(err);
+} else {
+resolve();
+}
         });
-      });
-    });
+      }));
 
     try {
       await Promise.all(promises);
@@ -141,7 +137,6 @@ export const parallel = (...middlewares: Middleware[]): RequestHandler => {
       next(_error as unknown);
     }
   };
-};
 
 // Middleware chain builder for fluent API
 export class MiddlewareChain {
@@ -178,15 +173,12 @@ export const chain = (): MiddlewareChain => new MiddlewareChain();
 // Middleware _error wrapper
 export const asyncMiddleware = (
   fn: (req: Request, res: Response, next: NextFunction) => Promise<void>
-): RequestHandler => {
-  return (req: Request, res: Response, next: NextFunction) => {
+): RequestHandler => (req: Request, res: Response, next: NextFunction) => {
     Promise.resolve(fn(req, res, next)).catch(next);
   };
-};
 
 // Log middleware execution time
-export const timed = (name: string, middleware: Middleware): RequestHandler => {
-  return async (req: Request, res: Response, next: NextFunction) => {
+export const timed = (name: string, middleware: Middleware): RequestHandler => async (req: Request, res: Response, next: NextFunction) => {
     const start = Date.now();
     
     const handleNext = (err?: unknown) => {
@@ -215,4 +207,3 @@ export const timed = (name: string, middleware: Middleware): RequestHandler => {
       handleNext(_error as unknown);
     }
   };
-};

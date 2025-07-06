@@ -37,9 +37,8 @@ export const parentApi = {
     },
 
     // Delete parent message
-    delete: async (id: number) => {
-      const { data } = await apiClient.delete(`/api/parent-messages/${id}`);
-      return data;
+    delete: async (id: number): Promise<void> => {
+      await apiClient.delete(`/api/parent-messages/${id}`);
     },
   },
 
@@ -100,16 +99,15 @@ export const parentApi = {
     },
 
     // Delete parent summary
-    delete: async (studentId: number, summaryId: number) => {
-      const { data } = await apiClient.delete(
+    delete: async (studentId: number, summaryId: number): Promise<void> => {
+      await apiClient.delete(
         `/api/students/${studentId}/parent-summaries/${summaryId}`
       );
-      return data;
     },
 
     // Send parent summary via email
-    send: async (studentId: number, summaryId: number) => {
-      const { data } = await apiClient.post(
+    send: async (studentId: number, summaryId: number): Promise<{ success: boolean; message?: string }> => {
+      const { data } = await apiClient.post<{ success: boolean; message?: string }>(
         `/api/students/${studentId}/parent-summaries/${summaryId}/send`
       );
       return data;

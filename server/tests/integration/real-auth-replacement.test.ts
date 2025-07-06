@@ -21,7 +21,7 @@ import {
   validatePassword,
   verifyToken,
   checkPermissions,
-} from '../../src/services/authService';
+} from '../../src/services/auth/authService';
 
 // No mocks for authentication - using REAL components only!
 

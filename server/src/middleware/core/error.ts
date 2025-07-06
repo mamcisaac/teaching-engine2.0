@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { ZodError } from 'zod';
 
 import { logger } from '../../logger';
-import { AppError, handleDatabaseError, formatErrorResponse } from '../../utils/errors';
 import { errorCounter } from '../../monitoring/telemetry';
 import { errorReportingService } from '../../services/monitoring/errorReportingService';
+import { AppError, handleDatabaseError, formatErrorResponse } from '../../utils/errors';
 
 // Extended Express Request with additional properties
 interface ExtendedRequest extends Request {
@@ -123,7 +123,7 @@ export const errorHandlerMiddleware = (
 ): void => {
   // Don't handle if response was already sent
   if (res.headersSent) {
-    return next(err);
+    next(err); return;
   }
 
   // Handle database errors
@@ -182,11 +182,9 @@ export const notFoundHandler = (req: Request, _res: Response, next: NextFunction
 // Async error catcher for route handlers
 export const catchAsync = (
   fn: (req: Request, res: Response, next: NextFunction) => Promise<void>,
-) => {
-  return (req: Request, res: Response, next: NextFunction): void => {
+) => (req: Request, res: Response, next: NextFunction): void => {
     Promise.resolve(fn(req, res, next)).catch(next);
   };
-};
 
 // Error handler for unhandled promise rejections
 export const unhandledRejectionHandler = (reason: unknown, promise: Promise<unknown>): void => {
@@ -253,8 +251,7 @@ export const installGlobalErrorHandlers = (): void => {
 };
 
 // Create error boundary middleware for specific routes
-export const errorBoundary = (handler: (err: unknown, req: Request, res: Response) => void) => {
-  return (err: unknown, req: Request, res: Response, next: NextFunction): void => {
+export const errorBoundary = (handler: (err: unknown, req: Request, res: Response) => void) => (err: unknown, req: Request, res: Response, next: NextFunction): void => {
     try {
       handler(err, req, res);
     } catch (boundaryError) {
@@ -262,4 +259,3 @@ export const errorBoundary = (handler: (err: unknown, req: Request, res: Respons
       next(err); // Pass original error
     }
   };
-};

@@ -1,11 +1,12 @@
-import express, { Response } from 'express';
-import { z } from 'zod';
+import type { Response } from 'express';
+import express from 'express';
 import rateLimit from 'express-rate-limit';
 import DOMPurify from 'isomorphic-dompurify';
+import { z } from 'zod';
 
-import { cuidSchema } from '../validation';
-import { prisma } from '../prisma';
 import logger from '../logger';
+import { prisma } from '../prisma';
+import { cuidSchema } from '../validation';
 const router = express.Router();
 
 // Rate limiting for state operations
@@ -19,9 +20,7 @@ const stateRateLimit = rateLimit({
 });
 
 // Sanitize text content to prevent XSS
-const sanitizeText = (text: string): string => {
-  return DOMPurify.sanitize(text, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
-};
+const sanitizeText = (text: string): string => DOMPurify.sanitize(text, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
 
 // CSRF protection middleware
 const csrfProtection = (
@@ -31,7 +30,7 @@ const csrfProtection = (
 ) => {
   // Skip CSRF protection in test environment
   if (process.env.NODE_ENV === 'test') {
-    return next();
+    next(); return;
   }
 
   const origin = req.get('origin');

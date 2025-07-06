@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { cn } from '../../lib/utils';
 
 interface SkeletonLayoutItem {
@@ -45,8 +46,12 @@ export function LoadingSkeleton({
   };
 
   const containerStyle: React.CSSProperties = {};
-  if (height) containerStyle.height = height;
-  if (width) containerStyle.width = width;
+  if (height) {
+containerStyle.height = height;
+}
+  if (width) {
+containerStyle.width = width;
+}
 
   const SkeletonBox = ({ 
     className: boxClassName = '', 
@@ -62,11 +67,11 @@ export function LoadingSkeleton({
     'aria-label'?: string;
   }) => (
     <div
+      aria-label={ariaLabelProp}
       className={cn(baseClasses, animationClasses, boxClassName)}
-      style={style}
       data-testid={testId}
       role={role}
-      aria-label={ariaLabelProp}
+      style={style}
     />
   );
 
@@ -105,8 +110,8 @@ export function LoadingSkeleton({
               <SkeletonBox
                 key={index}
                 className="h-9 rounded-md"
-                style={{ width: item.width || '100px' }}
                 data-testid="skeleton-button"
+                style={{ width: item.width || '100px' }}
               />
             );
           case 'image':
@@ -131,11 +136,11 @@ export function LoadingSkeleton({
     case 'card':
       return (
         <div
+          aria-label={ariaLabel}
           className={cn('p-4 border rounded-lg', className)}
-          style={containerStyle}
           data-testid="loading-skeleton"
           role="status"
-          aria-label={ariaLabel}
+          style={containerStyle}
         >
           <div className="space-y-4">
             <SkeletonBox 
@@ -162,11 +167,11 @@ export function LoadingSkeleton({
     case 'list':
       return (
         <div
+          aria-label={ariaLabel}
           className={cn('space-y-3', className)}
-          style={containerStyle}
           data-testid="loading-skeleton"
           role="status"
-          aria-label={ariaLabel}
+          style={containerStyle}
         >
           {Array.from({ length: rows }).map((_, index) => (
             <div key={index} className="flex items-center space-x-3" data-testid={`skeleton-row-${index}`}>
@@ -183,11 +188,11 @@ export function LoadingSkeleton({
     case 'table':
       return (
         <div
+          aria-label={ariaLabel}
           className={cn('w-full', className)}
-          style={containerStyle}
           data-testid="loading-skeleton"
           role="status"
-          aria-label={ariaLabel}
+          style={containerStyle}
         >
           {/* Table Header */}
           <div className="flex space-x-4 mb-4" data-testid="skeleton-table-header">
@@ -216,11 +221,11 @@ export function LoadingSkeleton({
     case 'text':
       return (
         <div
+          aria-label={ariaLabel}
           className={cn('space-y-2', className)}
-          style={containerStyle}
           data-testid="loading-skeleton"
           role="status"
-          aria-label={ariaLabel}
+          style={containerStyle}
         >
           {Array.from({ length: lines }).map((_, index) => (
             <SkeletonBox
@@ -238,27 +243,27 @@ export function LoadingSkeleton({
     case 'avatar':
       return (
         <SkeletonBox
+          aria-label={ariaLabel}
           className={cn(
             'rounded-full',
             size === 'sm' ? 'h-8 w-8' :
             size === 'lg' ? 'h-16 w-16' : 'h-12 w-12',
             className
           )}
-          style={containerStyle}
           data-testid="loading-skeleton"
           role="status"
-          aria-label={ariaLabel}
+          style={containerStyle}
         />
       );
 
     case 'complex':
       return (
         <div
+          aria-label={ariaLabel}
           className={cn('p-4', className)}
-          style={containerStyle}
           data-testid="loading-skeleton"
           role="status"
-          aria-label={ariaLabel}
+          style={containerStyle}
         >
           {renderComplexLayout()}
         </div>
@@ -267,11 +272,11 @@ export function LoadingSkeleton({
     default:
       return (
         <SkeletonBox
+          aria-label={ariaLabel}
           className={cn(sizeClasses[size], 'w-full', className)}
-          style={containerStyle}
           data-testid="loading-skeleton"
           role="status"
-          aria-label={ariaLabel}
+          style={containerStyle}
         />
       );
   }

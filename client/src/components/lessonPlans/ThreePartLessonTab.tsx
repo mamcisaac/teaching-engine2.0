@@ -1,9 +1,10 @@
 import React from 'react';
+
+import type { LessonPlanFormData } from '../../hooks/useETFOLessonPlanForm';
+import { LessonPlanService } from '../../services/lessonPlanService';
+import RichTextEditor from '../RichTextEditor';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Label } from '../ui/Label';
-import RichTextEditor from '../RichTextEditor';
-import { LessonPlanFormData } from '../../hooks/useETFOLessonPlanForm';
-import { LessonPlanService } from '../../services/lessonPlanService';
 
 interface ThreePartLessonTabProps {
   formData: LessonPlanFormData;
@@ -30,14 +31,18 @@ export const ThreePartLessonTab: React.FC<ThreePartLessonTabProps> = ({
             <Label>Activities (English)</Label>
             <RichTextEditor
               value={formData.mindsOn}
-              onChange={(value) => updateField('mindsOn', value)}
+              onChange={(value) => {
+ updateField('mindsOn', value); 
+}}
             />
           </div>
           <div>
             <Label>Activities (French)</Label>
             <RichTextEditor
               value={formData.mindsOnFr}
-              onChange={(value) => updateField('mindsOnFr', value)}
+              onChange={(value) => {
+ updateField('mindsOnFr', value); 
+}}
             />
           </div>
         </CardContent>
@@ -55,14 +60,18 @@ export const ThreePartLessonTab: React.FC<ThreePartLessonTabProps> = ({
             <Label>Activities (English)</Label>
             <RichTextEditor
               value={formData.action}
-              onChange={(value) => updateField('action', value)}
+              onChange={(value) => {
+ updateField('action', value); 
+}}
             />
           </div>
           <div>
             <Label>Activities (French)</Label>
             <RichTextEditor
               value={formData.actionFr}
-              onChange={(value) => updateField('actionFr', value)}
+              onChange={(value) => {
+ updateField('actionFr', value); 
+}}
             />
           </div>
         </CardContent>
@@ -80,14 +89,18 @@ export const ThreePartLessonTab: React.FC<ThreePartLessonTabProps> = ({
             <Label>Activities (English)</Label>
             <RichTextEditor
               value={formData.consolidation}
-              onChange={(value) => updateField('consolidation', value)}
+              onChange={(value) => {
+ updateField('consolidation', value); 
+}}
             />
           </div>
           <div>
             <Label>Activities (French)</Label>
             <RichTextEditor
               value={formData.consolidationFr}
-              onChange={(value) => updateField('consolidationFr', value)}
+              onChange={(value) => {
+ updateField('consolidationFr', value); 
+}}
             />
           </div>
         </CardContent>

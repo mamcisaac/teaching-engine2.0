@@ -1,7 +1,8 @@
-import { Router, Request, Response } from 'express';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
 
-import { aiPlanningAssistant } from '../services/ai/aiPlanningService';
 import logger from '../logger';
+import { aiPlanningAssistant } from '../services/ai/aiPlanningService';
 // Simple rate limiting for AI endpoints (to avoid async issues)
 const aiRateLimit = (_req: Request, _res: Response, next: () => void) => {
   // Simple in-memory rate limiting - production should use proper rate limiter
@@ -37,7 +38,7 @@ const sanitizeAIInput = (input: unknown): unknown => {
       .slice(0, 20)
       .forEach((key) => {
         // Limit object keys
-        (sanitized as Record<string, unknown>)[key] = sanitizeAIInput(
+        (sanitized)[key] = sanitizeAIInput(
           (input as Record<string, unknown>)[key],
         );
       });
@@ -105,7 +106,7 @@ router.get('/status', async (req: Request, res: Response): Promise<void> => {
       },
       quota: userQuota,
       health: serviceHealth,
-      userId: userId,
+      userId,
     };
 
     res.json(status);
@@ -145,10 +146,10 @@ router.post(
       }
 
       const suggestions = await aiPlanningAssistant.generateLongRangeGoals({
-        subject: subject!,
+        subject,
         grade: Number(grade),
         termLength: Number(termLength),
-        focusAreas: focusAreas as string[],
+        focusAreas: focusAreas!,
       });
 
       res.json(suggestions);

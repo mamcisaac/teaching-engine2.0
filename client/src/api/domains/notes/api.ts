@@ -12,7 +12,7 @@ export const notesApi = {
       endDate?: string;
       limit?: number;
       offset?: number;
-    }) => {
+    }): Promise<ReflectionJournalEntry[]> => {
       const { data } = await apiClient.get<ReflectionJournalEntry[]>('/api/notes/journal', {
         params,
       });
@@ -20,31 +20,30 @@ export const notesApi = {
     },
 
     // Get journal entry by ID
-    getById: async (id: number) => {
+    getById: async (id: number): Promise<ReflectionJournalEntry> => {
       const { data } = await apiClient.get<ReflectionJournalEntry>(`/api/notes/journal/${id}`);
       return data;
     },
 
     // Create journal entry
-    create: async (input: ReflectionInput) => {
+    create: async (input: ReflectionInput): Promise<ReflectionJournalEntry> => {
       const { data } = await apiClient.post<ReflectionJournalEntry>('/api/notes/journal', input);
       return data;
     },
 
     // Update journal entry
-    update: async (id: number, input: ReflectionUpdate) => {
+    update: async (id: number, input: ReflectionUpdate): Promise<ReflectionJournalEntry> => {
       const { data } = await apiClient.put<ReflectionJournalEntry>(`/api/notes/journal/${id}`, input);
       return data;
     },
 
     // Delete journal entry
-    delete: async (id: number) => {
-      const { data } = await apiClient.delete(`/api/notes/journal/${id}`);
-      return data;
+    delete: async (id: number): Promise<void> => {
+      await apiClient.delete(`/api/notes/journal/${id}`);
     },
 
     // Search journal entries
-    search: async (query: string) => {
+    search: async (query: string): Promise<ReflectionJournalEntry[]> => {
       const { data } = await apiClient.get<ReflectionJournalEntry[]>('/api/notes/journal/search', {
         params: { q: query },
       });
@@ -55,7 +54,13 @@ export const notesApi = {
   // Quick notes
   quick: {
     // Get all quick notes
-    getAll: async () => {
+    getAll: async (): Promise<{
+      id: number;
+      content: string;
+      createdAt: string;
+      updatedAt: string;
+      tags?: string[];
+    }[]> => {
       const { data } = await apiClient.get<{
         id: number;
         content: string;
@@ -67,28 +72,54 @@ export const notesApi = {
     },
 
     // Create quick note
-    create: async (input: { content: string; tags?: string[] }) => {
-      const { data } = await apiClient.post('/api/notes/quick', input);
+    create: async (input: { content: string; tags?: string[] }): Promise<{
+      id: number;
+      content: string;
+      createdAt: string;
+      updatedAt: string;
+      tags?: string[];
+    }> => {
+      const { data } = await apiClient.post<{
+        id: number;
+        content: string;
+        createdAt: string;
+        updatedAt: string;
+        tags?: string[];
+      }>('/api/notes/quick', input);
       return data;
     },
 
     // Update quick note
-    update: async (id: number, input: { content?: string; tags?: string[] }) => {
-      const { data } = await apiClient.put(`/api/notes/quick/${id}`, input);
+    update: async (id: number, input: { content?: string; tags?: string[] }): Promise<{
+      id: number;
+      content: string;
+      createdAt: string;
+      updatedAt: string;
+      tags?: string[];
+    }> => {
+      const { data } = await apiClient.put<{
+        id: number;
+        content: string;
+        createdAt: string;
+        updatedAt: string;
+        tags?: string[];
+      }>(`/api/notes/quick/${id}`, input);
       return data;
     },
 
     // Delete quick note
-    delete: async (id: number) => {
-      const { data } = await apiClient.delete(`/api/notes/quick/${id}`);
-      return data;
+    delete: async (id: number): Promise<void> => {
+      await apiClient.delete(`/api/notes/quick/${id}`);
     },
   },
 
   // Tags
   tags: {
     // Get all tags used in notes
-    getAll: async () => {
+    getAll: async (): Promise<{
+      name: string;
+      count: number;
+    }[]> => {
       const { data } = await apiClient.get<{
         name: string;
         count: number;
@@ -97,7 +128,15 @@ export const notesApi = {
     },
 
     // Get notes by tag
-    getByTag: async (tag: string) => {
+    getByTag: async (tag: string): Promise<{
+      journal: ReflectionJournalEntry[];
+      quick: {
+        id: number;
+        content: string;
+        createdAt: string;
+        tags: string[];
+      }[];
+    }> => {
       const { data } = await apiClient.get<{
         journal: ReflectionJournalEntry[];
         quick: {
@@ -119,12 +158,12 @@ export const notesApi = {
       startDate?: string;
       endDate?: string;
       themeId?: number;
-    }) => {
-      const { data } = await apiClient.get('/api/notes/export/pdf', {
+    }): Promise<Blob> => {
+      const response = await apiClient.get<Blob>('/api/notes/export/pdf', {
         params,
         responseType: 'blob',
       });
-      return data;
+      return response.data;
     },
 
     // Export notes as markdown
@@ -133,7 +172,7 @@ export const notesApi = {
       startDate?: string;
       endDate?: string;
       themeId?: number;
-    }) => {
+    }): Promise<{ content: string }> => {
       const { data } = await apiClient.get<{ content: string }>('/api/notes/export/markdown', {
         params,
       });

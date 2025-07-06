@@ -1,16 +1,18 @@
+import { Keyboard, Settings, RefreshCw, Check, X, Info } from 'lucide-react';
 import React, { useState } from 'react';
+
+import type {
+  KeyboardShortcut} from '../../contexts/KeyboardShortcutsContext';
 import {
   useKeyboardShortcuts,
-  formatShortcut,
-  KeyboardShortcut,
+  formatShortcut
 } from '../../contexts/KeyboardShortcutsContext';
-import { Switch } from '../ui/Switch';
+import { Alert, AlertDescription } from '../ui/alert';
 import { Button } from '../ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Input } from '../ui/Input';
 import { Label } from '../ui/Label';
-import { Keyboard, Settings, RefreshCw, Check, X, Info } from 'lucide-react';
-import { Alert, AlertDescription } from '../ui/alert';
+import { Switch } from '../ui/Switch';
 
 export const KeyboardShortcutsSettings: React.FC = () => {
   const { shortcuts, preferences, updatePreferences } = useKeyboardShortcuts();
@@ -48,7 +50,7 @@ export const KeyboardShortcutsSettings: React.FC = () => {
   const handleKeyCapture = (e: React.KeyboardEvent, _shortcutId: string) => {
     e.preventDefault();
 
-    const key = e.key;
+    const {key} = e;
     const modifiers = {
       ctrl: e.ctrlKey,
       cmd: e.metaKey,
@@ -112,8 +114,8 @@ export const KeyboardShortcutsSettings: React.FC = () => {
             </div>
             <Switch
               checked={preferences.enabled}
-              onChange={(enabled) => updatePreferences({ enabled })}
               size="md"
+              onChange={(enabled) => updatePreferences({ enabled })}
             />
           </div>
 
@@ -127,8 +129,8 @@ export const KeyboardShortcutsSettings: React.FC = () => {
             </div>
             <Switch
               checked={preferences.showHints}
-              onChange={(showHints) => updatePreferences({ showHints })}
               size="md"
+              onChange={(showHints) => updatePreferences({ showHints })}
             />
           </div>
 
@@ -178,6 +180,9 @@ export const KeyboardShortcutsSettings: React.FC = () => {
                           {isEditing ? (
                             <>
                               <Input
+                                readOnly
+                                className="w-32 text-center"
+                                placeholder="Press keys..."
                                 type="text"
                                 value={
                                   captureKey
@@ -188,16 +193,17 @@ export const KeyboardShortcutsSettings: React.FC = () => {
                                       })
                                     : ''
                                 }
-                                onKeyDown={(e) => handleKeyCapture(e, shortcut.id)}
-                                placeholder="Press keys..."
-                                className="w-32 text-center"
-                                readOnly
+                                onKeyDown={(e) => {
+ handleKeyCapture(e, shortcut.id); 
+}}
                               />
                               <Button
+                                disabled={!captureKey}
                                 size="sm"
                                 variant="ghost"
-                                onClick={() => saveCustomShortcut(shortcut.id)}
-                                disabled={!captureKey}
+                                onClick={() => {
+ saveCustomShortcut(shortcut.id); 
+}}
                               >
                                 <Check className="h-4 w-4" />
                               </Button>
@@ -226,16 +232,20 @@ export const KeyboardShortcutsSettings: React.FC = () => {
                               <Button
                                 size="sm"
                                 variant="ghost"
-                                onClick={() => setEditingShortcut(shortcut.id)}
+                                onClick={() => {
+ setEditingShortcut(shortcut.id); 
+}}
                               >
                                 <Settings className="h-4 w-4" />
                               </Button>
                               {hasCustom && (
                                 <Button
                                   size="sm"
-                                  variant="ghost"
-                                  onClick={() => resetShortcut(shortcut.id)}
                                   title="Reset to default"
+                                  variant="ghost"
+                                  onClick={() => {
+ resetShortcut(shortcut.id); 
+}}
                                 >
                                   <RefreshCw className="h-4 w-4" />
                                 </Button>
@@ -253,7 +263,7 @@ export const KeyboardShortcutsSettings: React.FC = () => {
 
           {/* Reset All Button */}
           <div className="pt-4 border-t">
-            <Button variant="secondary" onClick={resetAllShortcuts} className="w-full sm:w-auto">
+            <Button className="w-full sm:w-auto" variant="secondary" onClick={resetAllShortcuts}>
               <RefreshCw className="h-4 w-4 mr-2" />
               Reset All to Defaults
             </Button>

@@ -1,11 +1,14 @@
-import React, { ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import React from 'react';
+
 import { useFeatureTutorial } from '../hooks/useFeatureTutorial';
 import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
-import TeacherOnboardingFlow from './TeacherOnboardingFlow';
+
 import { TutorialManager } from './help/TutorialManager';
 import { NavigationProvider, useNavigation } from './navigation/NavigationProvider';
 import { SidebarComponent } from './navigation/SidebarComponent';
 import { TopNavigationBar } from './navigation/TopNavigationBar';
+import TeacherOnboardingFlow from './TeacherOnboardingFlow';
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -18,7 +21,9 @@ function MainLayoutContent({ children }: MainLayoutProps) {
   useFeatureTutorial();
 
   // Keyboard shortcut to toggle sidebar (Ctrl/Cmd + B)
-  useKeyboardShortcut(() => toggleSidebar(), {
+  useKeyboardShortcut(() => {
+ toggleSidebar(); 
+}, {
     key: 'b',
     ctrl: true,
     cmd: true,
@@ -33,7 +38,9 @@ function MainLayoutContent({ children }: MainLayoutProps) {
         {isMobile && isSidebarOpen && (
           <div
             className="fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden"
-            onClick={() => toggleSidebar()}
+            onClick={() => {
+ toggleSidebar(); 
+}}
           />
         )}
 

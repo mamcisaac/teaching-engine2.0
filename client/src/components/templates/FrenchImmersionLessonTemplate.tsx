@@ -1,14 +1,15 @@
+import { BookOpen, Globe, Users, MessageSquare, Target, FileText } from 'lucide-react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Button } from '../ui/Button';
-import { Card } from '../ui/card';
-// import BilingualTextInput from '../BilingualTextInput';
-import {
+
+import type {
   FrenchImmersionLessonContent,
   BilingualVocabulary,
   BilingualActivity,
 } from '../../types/frenchImmersion';
-import { BookOpen, Globe, Users, MessageSquare, Target, FileText } from 'lucide-react';
+import { Button } from '../ui/Button';
+import { Card } from '../ui/card';
+// import BilingualTextInput from '../BilingualTextInput';
 
 interface FrenchImmersionLessonTemplateProps {
   initialData?: Partial<FrenchImmersionLessonContent>;
@@ -99,7 +100,7 @@ export default function FrenchImmersionLessonTemplate({
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
       {/* Header with Grade 1 French Immersion context */}
       <Card className="bg-gradient-to-r from-blue-50 to-red-50 p-6">
         <div className="flex items-center justify-between">
@@ -135,8 +136,8 @@ export default function FrenchImmersionLessonTemplate({
             <textarea
               {...register('objectivesEn.0')}
               className="w-full p-3 border rounded-lg"
-              rows={3}
               placeholder="Students will be able to..."
+              rows={3}
             />
           </div>
 
@@ -147,8 +148,8 @@ export default function FrenchImmersionLessonTemplate({
             <textarea
               {...register('objectivesFr.0')}
               className="w-full p-3 border rounded-lg"
-              rows={3}
               placeholder="Les élèves seront capables de..."
+              rows={3}
             />
           </div>
         </div>
@@ -176,39 +177,49 @@ export default function FrenchImmersionLessonTemplate({
             <div key={index} className="p-4 bg-gray-50 rounded-lg">
               <div className="grid md:grid-cols-4 gap-3">
                 <input
+                  className="p-2 border rounded"
+                  placeholder="English word"
                   type="text"
                   value={vocab.english}
-                  onChange={(e) => updateVocabulary(index, 'english', e.target.value)}
-                  placeholder="English word"
-                  className="p-2 border rounded"
+                  onChange={(e) => {
+ updateVocabulary(index, 'english', e.target.value); 
+}}
                 />
                 <input
+                  className="p-2 border rounded"
+                  placeholder="Mot français"
                   type="text"
                   value={vocab.french}
-                  onChange={(e) => updateVocabulary(index, 'french', e.target.value)}
-                  placeholder="Mot français"
-                  className="p-2 border rounded"
+                  onChange={(e) => {
+ updateVocabulary(index, 'french', e.target.value); 
+}}
                 />
                 <input
+                  className="p-2 border rounded"
+                  placeholder="Pronunciation"
                   type="text"
                   value={vocab.pronunciation || ''}
-                  onChange={(e) => updateVocabulary(index, 'pronunciation', e.target.value)}
-                  placeholder="Pronunciation"
-                  className="p-2 border rounded"
+                  onChange={(e) => {
+ updateVocabulary(index, 'pronunciation', e.target.value); 
+}}
                 />
                 <div className="flex gap-2">
                   <input
+                    className="flex-1 p-2 border rounded"
+                    placeholder="Context/Visual"
                     type="text"
                     value={vocab.context || ''}
-                    onChange={(e) => updateVocabulary(index, 'context', e.target.value)}
-                    placeholder="Context/Visual"
-                    className="flex-1 p-2 border rounded"
+                    onChange={(e) => {
+ updateVocabulary(index, 'context', e.target.value); 
+}}
                   />
                   <Button
+                    size="sm"
                     type="button"
                     variant="ghost"
-                    size="sm"
-                    onClick={() => removeVocabulary(index)}
+                    onClick={() => {
+ removeVocabulary(index); 
+}}
                   >
                     ✕
                   </Button>
@@ -230,8 +241,8 @@ export default function FrenchImmersionLessonTemplate({
             <textarea
               {...register('languageFocus.sentenceStructures.0')}
               className="w-full p-3 border rounded-lg"
-              rows={2}
               placeholder="Je vois un/une... / C'est..."
+              rows={2}
             />
           </div>
 
@@ -263,8 +274,8 @@ export default function FrenchImmersionLessonTemplate({
             <textarea
               {...register('languageTransitions.fromEnglishToFrench.0')}
               className="w-full p-3 border rounded-lg"
-              rows={2}
               placeholder='Use visual cues, "En français, on dit...", gesture signals'
+              rows={2}
             />
           </div>
 
@@ -275,8 +286,8 @@ export default function FrenchImmersionLessonTemplate({
             <textarea
               {...register('languageTransitions.codeswitchingStrategies.0')}
               className="w-full p-3 border rounded-lg"
-              rows={2}
               placeholder="Use cognates, allow 'franglais' during transition, praise attempts"
+              rows={2}
             />
           </div>
         </div>
@@ -297,8 +308,8 @@ export default function FrenchImmersionLessonTemplate({
             <textarea
               {...register('mindsOn')}
               className="w-full p-3 border rounded-lg"
-              rows={3}
               placeholder="Begin with a French song or chant. Review previous vocabulary with flashcards..."
+              rows={3}
             />
           </div>
 
@@ -309,8 +320,8 @@ export default function FrenchImmersionLessonTemplate({
             <textarea
               {...register('action')}
               className="w-full p-3 border rounded-lg"
-              rows={4}
               placeholder="Introduce new vocabulary with visuals. Practice through games and activities..."
+              rows={4}
             />
           </div>
 
@@ -321,8 +332,8 @@ export default function FrenchImmersionLessonTemplate({
             <textarea
               {...register('consolidation')}
               className="w-full p-3 border rounded-lg"
-              rows={3}
               placeholder="Review key vocabulary. Students share one new word they learned..."
+              rows={3}
             />
           </div>
         </div>
@@ -343,8 +354,8 @@ export default function FrenchImmersionLessonTemplate({
             <textarea
               {...register('culturalConnections.francophoneCulture.0')}
               className="w-full p-3 border rounded-lg"
-              rows={2}
               placeholder="French Canadian traditions, Acadian culture..."
+              rows={2}
             />
           </div>
 
@@ -353,8 +364,8 @@ export default function FrenchImmersionLessonTemplate({
             <textarea
               {...register('culturalConnections.canadianContent.0')}
               className="w-full p-3 border rounded-lg"
-              rows={2}
               placeholder="PEI specific content, Maritime themes..."
+              rows={2}
             />
           </div>
 
@@ -365,8 +376,8 @@ export default function FrenchImmersionLessonTemplate({
             <textarea
               {...register('culturalConnections.globalPerspectives.0')}
               className="w-full p-3 border rounded-lg"
-              rows={2}
               placeholder="Francophone countries, cultural comparisons..."
+              rows={2}
             />
           </div>
         </div>
@@ -384,19 +395,19 @@ export default function FrenchImmersionLessonTemplate({
             <h4 className="font-medium mb-3">Oral French Assessment</h4>
             <div className="space-y-2">
               <label className="flex items-center gap-2">
-                <input type="checkbox" className="rounded" />
+                <input className="rounded" type="checkbox" />
                 <span>Can pronounce new vocabulary correctly</span>
               </label>
               <label className="flex items-center gap-2">
-                <input type="checkbox" className="rounded" />
+                <input className="rounded" type="checkbox" />
                 <span>Attempts to use French during activities</span>
               </label>
               <label className="flex items-center gap-2">
-                <input type="checkbox" className="rounded" />
+                <input className="rounded" type="checkbox" />
                 <span>Responds to simple French instructions</span>
               </label>
               <label className="flex items-center gap-2">
-                <input type="checkbox" className="rounded" />
+                <input className="rounded" type="checkbox" />
                 <span>Shows enthusiasm for French learning</span>
               </label>
             </div>
@@ -406,19 +417,19 @@ export default function FrenchImmersionLessonTemplate({
             <h4 className="font-medium mb-3">Comprehension Assessment</h4>
             <div className="space-y-2">
               <label className="flex items-center gap-2">
-                <input type="checkbox" className="rounded" />
+                <input className="rounded" type="checkbox" />
                 <span>Understands key vocabulary in context</span>
               </label>
               <label className="flex items-center gap-2">
-                <input type="checkbox" className="rounded" />
+                <input className="rounded" type="checkbox" />
                 <span>Can match French words to visuals</span>
               </label>
               <label className="flex items-center gap-2">
-                <input type="checkbox" className="rounded" />
+                <input className="rounded" type="checkbox" />
                 <span>Follows classroom routines in French</span>
               </label>
               <label className="flex items-center gap-2">
-                <input type="checkbox" className="rounded" />
+                <input className="rounded" type="checkbox" />
                 <span>Makes connections between languages</span>
               </label>
             </div>
@@ -430,8 +441,8 @@ export default function FrenchImmersionLessonTemplate({
           <textarea
             {...register('assessmentNotes')}
             className="w-full p-3 border rounded-lg"
-            rows={2}
             placeholder="Observations about individual student progress, language development milestones..."
+            rows={2}
           />
         </div>
       </Card>
@@ -452,8 +463,8 @@ export default function FrenchImmersionLessonTemplate({
               <textarea
                 {...register('parentCommunication.englishMessage')}
                 className="w-full p-3 border rounded-lg"
-                rows={3}
                 placeholder="Today your child learned..."
+                rows={3}
               />
             </div>
 
@@ -464,8 +475,8 @@ export default function FrenchImmersionLessonTemplate({
               <textarea
                 {...register('parentCommunication.frenchMessage')}
                 className="w-full p-3 border rounded-lg"
-                rows={3}
                 placeholder="Aujourd'hui, votre enfant a appris..."
+                rows={3}
               />
             </div>
           </div>
@@ -476,6 +487,8 @@ export default function FrenchImmersionLessonTemplate({
               <div key={index} className="p-3 bg-blue-50 rounded-lg mb-2">
                 <div className="grid md:grid-cols-2 gap-3">
                   <input
+                    className="p-2 border rounded"
+                    placeholder="Activity title (English)"
                     type="text"
                     value={activity.titleEn}
                     onChange={(e) => {
@@ -483,10 +496,10 @@ export default function FrenchImmersionLessonTemplate({
                       updated[index].titleEn = e.target.value;
                       setHomeActivities(updated);
                     }}
-                    placeholder="Activity title (English)"
-                    className="p-2 border rounded"
                   />
                   <input
+                    className="p-2 border rounded"
+                    placeholder="Titre de l'activité (français)"
                     type="text"
                     value={activity.titleFr}
                     onChange={(e) => {
@@ -494,14 +507,12 @@ export default function FrenchImmersionLessonTemplate({
                       updated[index].titleFr = e.target.value;
                       setHomeActivities(updated);
                     }}
-                    placeholder="Titre de l'activité (français)"
-                    className="p-2 border rounded"
                   />
                 </div>
               </div>
             ))}
 
-            <Button type="button" variant="outline" size="sm" onClick={addHomeActivity}>
+            <Button size="sm" type="button" variant="outline" onClick={addHomeActivity}>
               + Add Home Activity
             </Button>
           </div>
@@ -519,12 +530,12 @@ export default function FrenchImmersionLessonTemplate({
           <textarea
             {...register('materials.0')}
             className="w-full p-3 border rounded-lg"
-            rows={3}
             placeholder="• Flashcards with vocabulary
 • French picture books
 • Audio resources (songs, chants)
 • Visual aids and posters
 • Manipulatives for counting"
+            rows={3}
           />
         </div>
       </Card>

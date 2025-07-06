@@ -118,8 +118,12 @@ export const commonQuerySchemas = {
     grade: z.coerce.number().int().min(1).max(12).optional(),
     category: z.string().optional(),
     tags: z.union([z.string(), z.array(z.string())]).optional().transform(val => {
-      if (!val) return undefined;
-      if (Array.isArray(val)) return val;
+      if (!val) {
+return undefined;
+}
+      if (Array.isArray(val)) {
+return val;
+}
       // Split comma-separated string into array
       return val.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
     })
@@ -202,22 +206,17 @@ export const sanitize = {
   /**
    * Remove HTML tags from string
    */
-  removeHtmlTags: (input: string): string => {
-    return input.replace(/<[^>]*>/g, '');
-  },
+  removeHtmlTags: (input: string): string => input.replace(/<[^>]*>/g, ''),
 
   /**
    * Trim and normalize whitespace
    */
-  normalizeWhitespace: (input: string): string => {
-    return input.trim().replace(/\s+/g, ' ');
-  },
+  normalizeWhitespace: (input: string): string => input.trim().replace(/\s+/g, ' '),
 
   /**
    * Sanitize array of strings
    */
-  stringArray: (input: string[]): string[] => {
-    return input
+  stringArray: (input: string[]): string[] => input
       .map(str => {
         // First remove script tags and their content completely
         let cleaned = str.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
@@ -226,8 +225,7 @@ export const sanitize = {
         // Finally normalize whitespace
         return sanitize.normalizeWhitespace(cleaned);
       })
-      .filter(str => str.length > 0);
-  }
+      .filter(str => str.length > 0)
 };
 
 /**
@@ -235,13 +233,11 @@ export const sanitize = {
  */
 export const formatValidationError = (error: z.ZodError): {
   message: string;
-  errors: Array<{ field: string; message: string }>;
-} => {
-  return {
+  errors: { field: string; message: string }[];
+} => ({
     message: 'Validation failed',
     errors: error.errors.map(err => ({
       field: err.path.join('.'),
       message: err.message
     }))
-  };
-};
+  });

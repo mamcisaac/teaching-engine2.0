@@ -1,7 +1,8 @@
+import { clsx } from 'clsx';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import { HelpTooltipProps } from '../../types/help';
-import { clsx } from 'clsx';
+
+import type { HelpTooltipProps } from '../../types/help';
 
 export const HelpTooltip: React.FC<HelpTooltipProps> = ({
   content,
@@ -19,7 +20,9 @@ export const HelpTooltip: React.FC<HelpTooltipProps> = ({
 
   // Calculate tooltip position
   const calculatePosition = useCallback(() => {
-    if (!triggerRef.current || !tooltipRef.current) return;
+    if (!triggerRef.current || !tooltipRef.current) {
+return;
+}
 
     const triggerRect = triggerRef.current.getBoundingClientRect();
     const tooltipRect = tooltipRef.current.getBoundingClientRect();
@@ -49,11 +52,15 @@ export const HelpTooltip: React.FC<HelpTooltipProps> = ({
     }
 
     // Ensure tooltip stays within viewport
-    if (left < 8) left = 8;
+    if (left < 8) {
+left = 8;
+}
     if (left + tooltipRect.width > viewportWidth - 8) {
       left = viewportWidth - tooltipRect.width - 8;
     }
-    if (top < 8) top = 8;
+    if (top < 8) {
+top = 8;
+}
     if (top + tooltipRect.height > viewportHeight - 8) {
       top = viewportHeight - tooltipRect.height - 8;
     }
@@ -83,13 +90,11 @@ export const HelpTooltip: React.FC<HelpTooltipProps> = ({
     }
   }, [isVisible, position, calculatePosition]);
 
-  useEffect(() => {
-    return () => {
+  useEffect(() => () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-    };
-  }, []);
+    }, []);
 
   // Clone the child element and add event handlers
   const triggerElement = React.cloneElement(children, {
@@ -137,12 +142,12 @@ export const HelpTooltip: React.FC<HelpTooltipProps> = ({
               'fixed z-50 px-3 py-2 text-sm text-white bg-gray-900 rounded-lg shadow-lg',
               'transition-opacity duration-200',
             )}
+            role="tooltip"
             style={{
               top: tooltipPosition.top,
               left: tooltipPosition.left,
-              maxWidth: maxWidth,
+              maxWidth,
             }}
-            role="tooltip"
           >
             {content}
             <div className={getArrowClasses()} />

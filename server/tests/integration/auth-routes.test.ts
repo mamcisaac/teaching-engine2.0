@@ -117,8 +117,8 @@ describe('Authentication Routes', () => {
       // Return user with the test email added for tests that need to know the actual email
       return { ...user, testEmail: uniqueEmail };
     } catch (_error) {
-      console.error('Failed to create user:', error);
-      throw error;
+      console.error('Failed to create user:', _error);
+      throw _error;
     }
   };
 

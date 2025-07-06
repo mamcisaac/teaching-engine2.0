@@ -4,7 +4,8 @@
  * Provides templates for various reports
  */
 
-import { TemplateProvider, Template, TemplateContext } from './TemplateProvider';
+import type { Template, TemplateContext } from './TemplateProvider';
+import { TemplateProvider } from './TemplateProvider';
 
 export class ReportTemplateProvider extends TemplateProvider {
   constructor() {

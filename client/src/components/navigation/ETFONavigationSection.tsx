@@ -1,7 +1,9 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+
 import { useETFOProgress } from '../../hooks/useETFOProgress';
 import { useKeyboardShortcut } from '../../hooks/useKeyboardShortcut';
+
 import { useNavigation } from './NavigationProvider';
 
 export function ETFONavigationSection() {
@@ -37,9 +39,9 @@ export function ETFONavigationSection() {
         {isSidebarOpen ? 'ETFO Planning Workflow' : ''}
       </h2>
       {etfoLevels.map((level, index) => {
-        const isAccessible = level.isAccessible;
-        const isComplete = level.isComplete;
-        const progress = level.progress;
+        const {isAccessible} = level;
+        const {isComplete} = level;
+        const {progress} = level;
 
         return (
           <div key={level.id} className="relative">
@@ -54,9 +56,9 @@ export function ETFONavigationSection() {
                       viewBox="0 0 20 20"
                     >
                       <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                         clipRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        fillRule="evenodd"
                       />
                     </svg>
                   )}
@@ -65,8 +67,6 @@ export function ETFONavigationSection() {
               </div>
             )}
             <NavLink
-              to={isAccessible ? level.path : '#'}
-              data-testid={level.id === 2 ? 'long-range-nav' : undefined}
               className={({ isActive }) => {
                 const baseClasses = `flex items-center py-2 px-4 ${!isSidebarOpen && 'justify-center'}`;
 
@@ -80,6 +80,8 @@ export function ETFONavigationSection() {
 
                 return `${baseClasses} text-indigo-100 hover:bg-indigo-700`;
               }}
+              data-testid={level.id === 2 ? 'long-range-nav' : undefined}
+              to={isAccessible ? level.path : '#'}
               onClick={(e) => {
                 if (!isAccessible) {
                   e.preventDefault();
@@ -89,7 +91,7 @@ export function ETFONavigationSection() {
               <span className="mr-3 relative">
                 {level.icon}
                 {isComplete && isSidebarOpen && (
-                  <div className="absolute -top-1 -right-1 h-2 w-2 bg-green-400 rounded-full"></div>
+                  <div className="absolute -top-1 -right-1 h-2 w-2 bg-green-400 rounded-full" />
                 )}
               </span>
               {isSidebarOpen && (
@@ -101,7 +103,7 @@ export function ETFONavigationSection() {
                       <div
                         className="bg-indigo-400 h-1 rounded-full transition-all duration-300"
                         style={{ width: `${progress}%` }}
-                      ></div>
+                       />
                     </div>
                   )}
                 </div>

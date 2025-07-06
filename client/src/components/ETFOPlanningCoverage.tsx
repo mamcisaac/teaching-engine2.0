@@ -1,8 +1,3 @@
-import React from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Progress } from '@/components/ui/Progress';
-import { Badge } from '@/components/ui/Badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   CheckCircle2,
   Circle,
@@ -13,6 +8,13 @@ import {
   Target,
   Users,
 } from 'lucide-react';
+import React from 'react';
+
+import { Badge } from '@/components/ui/Badge';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Progress } from '@/components/ui/Progress';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
 import {
   useLongRangePlans,
   useUnitPlans,
@@ -88,13 +90,15 @@ export default function ETFOPlanningCoverage() {
     },
   ];
 
-  const calculatePercentage = (completed: number, total: number) => {
-    return total > 0 ? Math.round((completed / total) * 100) : 0;
-  };
+  const calculatePercentage = (completed: number, total: number) => total > 0 ? Math.round((completed / total) * 100) : 0;
 
   const getStatusColor = (percentage: number) => {
-    if (percentage >= 80) return 'text-green-600';
-    if (percentage >= 50) return 'text-yellow-600';
+    if (percentage >= 80) {
+return 'text-green-600';
+}
+    if (percentage >= 50) {
+return 'text-yellow-600';
+}
     return 'text-red-600';
   };
 
@@ -121,7 +125,7 @@ export default function ETFOPlanningCoverage() {
                 {overallPercentage}%
               </span>
             </div>
-            <Progress value={overallPercentage} className="h-3" />
+            <Progress className="h-3" value={overallPercentage} />
             <div className="grid grid-cols-3 gap-4 mt-4">
               <div className="text-center">
                 <div className="text-2xl font-bold text-green-600">{overallCompleted}</div>
@@ -168,7 +172,7 @@ export default function ETFOPlanningCoverage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <Progress value={percentage} className="h-2" />
+                  <Progress className="h-2" value={percentage} />
                   <div className="grid grid-cols-3 gap-2 text-sm">
                     <div className="flex items-center gap-1">
                       <CheckCircle2 className="h-4 w-4 text-green-600" />
@@ -199,17 +203,17 @@ export default function ETFOPlanningCoverage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Tabs defaultValue="subject" className="space-y-4">
+          <Tabs className="space-y-4" defaultValue="subject">
             <TabsList>
               <TabsTrigger value="subject">By Subject</TabsTrigger>
               <TabsTrigger value="timeline">Timeline View</TabsTrigger>
               <TabsTrigger value="gaps">Coverage Gaps</TabsTrigger>
             </TabsList>
 
-            <TabsContent value="subject" className="space-y-4">
+            <TabsContent className="space-y-4" value="subject">
               {/* Group plans by subject */}
               {Object.entries(
-                longRangePlans.reduce(
+                longRangePlans.reduce<Record<string, typeof longRangePlans>>(
                   (acc, plan) => {
                     if (!acc[plan.subject]) {
                       acc[plan.subject] = [];
@@ -217,7 +221,7 @@ export default function ETFOPlanningCoverage() {
                     acc[plan.subject].push(plan);
                     return acc;
                   },
-                  {} as Record<string, typeof longRangePlans>,
+                  {},
                 ),
               ).map(([subject, plans]) => (
                 <div key={subject} className="space-y-2">
@@ -245,7 +249,7 @@ export default function ETFOPlanningCoverage() {
                                 {planUnits.length}/{plan._count?.unitPlans || '?'}
                               </span>
                             </div>
-                            <Progress value={unitPercentage} className="w-24 h-2" />
+                            <Progress className="w-24 h-2" value={unitPercentage} />
                           </div>
                         </div>
                       );
@@ -255,7 +259,7 @@ export default function ETFOPlanningCoverage() {
               ))}
             </TabsContent>
 
-            <TabsContent value="timeline" className="space-y-4">
+            <TabsContent className="space-y-4" value="timeline">
               <div className="text-center text-gray-600">
                 <Calendar className="h-12 w-12 mx-auto mb-2 text-gray-400" />
                 <p>Timeline visualization showing planning progress over the school year</p>
@@ -265,7 +269,7 @@ export default function ETFOPlanningCoverage() {
               </div>
             </TabsContent>
 
-            <TabsContent value="gaps" className="space-y-4">
+            <TabsContent className="space-y-4" value="gaps">
               <div className="space-y-3">
                 <h4 className="font-medium flex items-center gap-2">
                   <AlertCircle className="h-5 w-5 text-yellow-600" />
@@ -287,7 +291,7 @@ export default function ETFOPlanningCoverage() {
                             No lesson plans created
                           </span>
                         </div>
-                        <Badge variant="outline" className="bg-yellow-100">
+                        <Badge className="bg-yellow-100" variant="outline">
                           Needs Attention
                         </Badge>
                       </div>
@@ -313,7 +317,7 @@ export default function ETFOPlanningCoverage() {
                             Missing daybook reflection
                           </span>
                         </div>
-                        <Badge variant="outline" className="bg-orange-100">
+                        <Badge className="bg-orange-100" variant="outline">
                           No Reflection
                         </Badge>
                       </div>

@@ -2,9 +2,9 @@
  * Shared middleware for routes
  */
 
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
+import type { ParsedQs } from 'qs';
 import { z } from 'zod';
-import { ParsedQs } from 'qs';
 
 import logger from '../../logger';
 
@@ -53,8 +53,7 @@ export const optionalAuth = (
 /**
  * Role-based authorization middleware
  */
-export const requireRole = (requiredRole: string) => {
-  return (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
+export const requireRole = (requiredRole: string) => (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
     const userRole = req.user?.role;
     if (!userRole || userRole !== requiredRole) {
       res.status(403).json({ error: 'Forbidden: Insufficient permissions' });
@@ -62,13 +61,11 @@ export const requireRole = (requiredRole: string) => {
     }
     next();
   };
-};
 
 /**
  * Validation middleware factory
  */
-export const validate = (schema: z.ZodSchema) => {
-  return (req: Request, res: Response, next: NextFunction): void => {
+export const validate = (schema: z.ZodSchema) => (req: Request, res: Response, next: NextFunction): void => {
     try {
       const validatedData = schema.parse(req.body);
       req.body = validatedData;
@@ -78,20 +75,18 @@ export const validate = (schema: z.ZodSchema) => {
         const formattedError = formatValidationError(_error);
         res.status(400).json(formattedError);
         return;
-      } else {
+      } 
         logger.error({ error: _error }, 'Validation error');
         res.status(500).json({ error: 'Internal server error' });
         return;
-      }
+      
     }
   };
-};
 
 /**
  * Query parameter validation middleware
  */
-export const validateQuery = (schema: z.ZodSchema) => {
-  return (req: Request, res: Response, next: NextFunction): void => {
+export const validateQuery = (schema: z.ZodSchema) => (req: Request, res: Response, next: NextFunction): void => {
     try {
       const validatedQuery = schema.parse(req.query);
       req.query = validatedQuery;
@@ -101,25 +96,22 @@ export const validateQuery = (schema: z.ZodSchema) => {
         const formattedError = formatValidationError(_error);
         res.status(400).json(formattedError);
         return;
-      } else {
+      } 
         logger.error({ error: _error }, 'Query validation error');
         res.status(500).json({ error: 'Internal server error' });
         return;
-      }
+      
     }
   };
-};
 
 /**
  * Async error handler wrapper
  */
 export const asyncHandler = (
   fn: (req: Request, res: Response, next: NextFunction) => Promise<void>,
-) => {
-  return (req: Request, res: Response, next: NextFunction) => {
+) => (req: Request, res: Response, next: NextFunction) => {
     Promise.resolve(fn(req, res, next)).catch(next);
   };
-};
 
 /**
  * Request logging middleware
@@ -276,9 +268,8 @@ export const errorHandler = (
 /**
  * CORS middleware for specific origins
  */
-export const corsMiddleware = (allowedOrigins: string[]) => {
-  return (req: Request, res: Response, next: NextFunction): void => {
-    const origin = req.headers.origin;
+export const corsMiddleware = (allowedOrigins: string[]) => (req: Request, res: Response, next: NextFunction): void => {
+    const {origin} = req.headers;
     if (origin && allowedOrigins.includes(origin)) {
       res.setHeader('Access-Control-Allow-Origin', origin);
     }
@@ -293,7 +284,6 @@ export const corsMiddleware = (allowedOrigins: string[]) => {
 
     next();
   };
-};
 
 /**
  * Security headers middleware

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import Dialog from './Dialog';
+
 import { substituteApi } from '../api/domains/substitute';
+
+import Dialog from './Dialog';
 
 interface Props {
   onClose: () => void;
@@ -24,28 +26,30 @@ export default function SubPlanGenerator({ onClose }: Props) {
   };
 
   // Clean up URL when component unmounts
-  useEffect(() => {
-    return () => {
+  useEffect(() => () => {
       if (url) {
         URL.revokeObjectURL(url);
       }
-    };
-  }, [url]);
+    }, [url]);
 
   return (
-    <Dialog open={true} onOpenChange={onClose}>
+    <Dialog open onOpenChange={onClose}>
       <div className="space-y-2 w-80">
         <h2 className="text-lg">Generate Sub Plan</h2>
         <input
-          type="date"
           className="border p-1 w-full"
+          type="date"
           value={date}
-          onChange={(e) => setDate(e.target.value)}
+          onChange={(e) => {
+ setDate(e.target.value); 
+}}
         />
         <select
           className="border p-1 w-full"
           value={days}
-          onChange={(e) => setDays(Number(e.target.value))}
+          onChange={(e) => {
+ setDays(Number(e.target.value)); 
+}}
         >
           <option value={1}>1 day</option>
           <option value={2}>2 days</option>
@@ -54,7 +58,7 @@ export default function SubPlanGenerator({ onClose }: Props) {
         <button className="px-2 py-1 bg-blue-500 text-white rounded" onClick={generate}>
           Generate
         </button>
-        {url && <iframe src={url} className="w-full h-64 border" />}
+        {url && <iframe className="w-full h-64 border" src={url} />}
       </div>
     </Dialog>
   );

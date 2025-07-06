@@ -4,7 +4,7 @@
  * Generates educational activities using AI
  */
 
-import { ExternalActivity } from '@teaching-engine/database';
+import type { ExternalActivity } from '@teaching-engine/database';
 
 export interface LessonContext {
   title?: string;
@@ -62,7 +62,7 @@ export class AIActivityGeneratorService {
    */
   async generateActivityVariations(
     params: GenerationParams,
-    count: number = 3,
+    count = 3,
   ): Promise<GeneratedActivity[]> {
     const variations: GeneratedActivity[] = [];
 
@@ -108,25 +108,45 @@ export class AIActivityGeneratorService {
     if (params.lessonContext) {
       const context = params.lessonContext;
       prompt += 'Lesson Context:\n';
-      if (context.title) prompt += `Title: ${context.title}\n`;
-      if (context.grade) prompt += `Grade: ${context.grade}\n`;
-      if (context.subject) prompt += `Subject: ${context.subject}\n`;
-      if (context.learningGoals?.length)
-        prompt += `Learning Goals: ${context.learningGoals.join(', ')}\n`;
-      if (context.duration) prompt += `Duration: ${context.duration} minutes\n`;
-      if (context.section) prompt += `Section: ${context.section}\n`;
+      if (context.title) {
+prompt += `Title: ${context.title}\n`;
+}
+      if (context.grade) {
+prompt += `Grade: ${context.grade}\n`;
+}
+      if (context.subject) {
+prompt += `Subject: ${context.subject}\n`;
+}
+      if (context.learningGoals?.length) {
+prompt += `Learning Goals: ${context.learningGoals.join(', ')}\n`;
+}
+      if (context.duration) {
+prompt += `Duration: ${context.duration} minutes\n`;
+}
+      if (context.section) {
+prompt += `Section: ${context.section}\n`;
+}
       prompt += '\n';
     }
 
     if (params.specificRequirements) {
       const reqs = params.specificRequirements;
       prompt += 'Requirements:\n';
-      if (reqs.activityType) prompt += `Activity Type: ${reqs.activityType}\n`;
-      if (reqs.materials?.length) prompt += `Materials Available: ${reqs.materials.join(', ')}\n`;
-      if (reqs.groupSize) prompt += `Group Size: ${reqs.groupSize}\n`;
-      if (reqs.language) prompt += `Language: ${reqs.language}\n`;
-      if (reqs.curriculumExpectations?.length)
-        prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`;
+      if (reqs.activityType) {
+prompt += `Activity Type: ${reqs.activityType}\n`;
+}
+      if (reqs.materials?.length) {
+prompt += `Materials Available: ${reqs.materials.join(', ')}\n`;
+}
+      if (reqs.groupSize) {
+prompt += `Group Size: ${reqs.groupSize}\n`;
+}
+      if (reqs.language) {
+prompt += `Language: ${reqs.language}\n`;
+}
+      if (reqs.curriculumExpectations?.length) {
+prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`;
+}
       prompt += '\n';
     }
 

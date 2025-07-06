@@ -1,10 +1,12 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { Calendar, FileText } from 'lucide-react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+
 import { api } from '../../api';
+import type { PlanTemplate } from '../../types/template';
 import { Button } from '../ui/Button';
 import {
   Dialog,
@@ -20,7 +22,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/select';
-import type { PlanTemplate } from '../../types/template';
 
 interface TemplateApplyModalProps {
   template: PlanTemplate;
@@ -115,7 +116,9 @@ export default function TemplateApplyModal({
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={() => onClose()}>
+    <Dialog open={isOpen} onOpenChange={() => {
+ onClose(); 
+}}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle>Apply Template</DialogTitle>
@@ -124,31 +127,35 @@ export default function TemplateApplyModal({
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+        <form className="space-y-4 mt-4" onSubmit={handleSubmit}>
           {/* Title */}
           <div>
-            <label htmlFor="title" className="block text-sm font-medium mb-1">
+            <label className="block text-sm font-medium mb-1" htmlFor="title">
               Title
             </label>
             <input
-              type="text"
-              id="title"
-              value={formData.title}
-              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="title"
+              type="text"
+              value={formData.title}
+              onChange={(e) => {
+ setFormData({ ...formData, title: e.target.value }); 
+}}
             />
           </div>
 
           {/* Long-Range Plan Selection (for unit templates) */}
           {template.type === 'UNIT_PLAN' && (
             <div>
-              <label htmlFor="longRangePlan" className="block text-sm font-medium mb-1">
+              <label className="block text-sm font-medium mb-1" htmlFor="longRangePlan">
                 Long-Range Plan
               </label>
               <Select
                 value={formData.longRangePlanId}
-                onValueChange={(value) => setFormData({ ...formData, longRangePlanId: value })}
+                onValueChange={(value) => {
+ setFormData({ ...formData, longRangePlanId: value }); 
+}}
               >
                 <SelectTrigger id="longRangePlan">
                   <SelectValue placeholder="Select a long-range plan" />
@@ -167,12 +174,14 @@ export default function TemplateApplyModal({
           {/* Unit Plan Selection (for lesson templates) */}
           {template.type === 'LESSON_PLAN' && (
             <div>
-              <label htmlFor="unitPlan" className="block text-sm font-medium mb-1">
+              <label className="block text-sm font-medium mb-1" htmlFor="unitPlan">
                 Unit Plan
               </label>
               <Select
                 value={formData.unitPlanId}
-                onValueChange={(value) => setFormData({ ...formData, unitPlanId: value })}
+                onValueChange={(value) => {
+ setFormData({ ...formData, unitPlanId: value }); 
+}}
               >
                 <SelectTrigger id="unitPlan">
                   <SelectValue placeholder="Select a unit plan" />
@@ -190,17 +199,19 @@ export default function TemplateApplyModal({
 
           {/* Start Date */}
           <div>
-            <label htmlFor="startDate" className="block text-sm font-medium mb-1">
+            <label className="block text-sm font-medium mb-1" htmlFor="startDate">
               <Calendar className="inline h-4 w-4 mr-1" />
               {template.type === 'UNIT_PLAN' ? 'Start Date' : 'Date'}
             </label>
             <input
-              type="date"
-              id="startDate"
-              value={formData.startDate}
-              onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="startDate"
+              type="date"
+              value={formData.startDate}
+              onChange={(e) => {
+ setFormData({ ...formData, startDate: e.target.value }); 
+}}
             />
           </div>
 
@@ -244,8 +255,8 @@ export default function TemplateApplyModal({
               Cancel
             </Button>
             <Button
-              type="submit"
               disabled={applyTemplateMutation.isPending}
+              type="submit"
             >
               {applyTemplateMutation.isPending ? 'Applying...' : 'Apply Template'}
             </Button>

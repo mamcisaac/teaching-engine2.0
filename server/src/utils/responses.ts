@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import type { Response } from 'express';
 
 import logger from '../logger';
 
@@ -40,16 +40,14 @@ export interface CreatedResponse<T = unknown> extends SuccessResponse<T> {
 export const successResponse = <T>(
   data: T,
   meta?: Omit<SuccessResponse['meta'], 'timestamp'>
-): SuccessResponse<T> => {
-  return {
-    success: true,
-    data,
-    meta: {
-      timestamp: new Date().toISOString(),
-      ...meta,
-    },
-  };
-};
+): SuccessResponse<T> => ({
+  success: true,
+  data,
+  meta: {
+    timestamp: new Date().toISOString(),
+    ...meta,
+  },
+});
 
 export const paginatedResponse = <T>(
   data: T[],
@@ -82,23 +80,21 @@ export const createdResponse = <T>(
   data: T,
   location?: string,
   meta?: Record<string, unknown>
-): CreatedResponse<T> => {
-  return {
-    success: true,
-    data,
-    meta: {
-      timestamp: new Date().toISOString(),
-      location,
-      ...meta,
-    },
-  };
-};
+): CreatedResponse<T> => ({
+  success: true,
+  data,
+  meta: {
+    timestamp: new Date().toISOString(),
+    location,
+    ...meta,
+  },
+});
 
 // Response senders
 export const sendSuccess = <T>(
   res: Response,
   data: T,
-  statusCode: number = 200,
+  statusCode = 200,
   meta?: Record<string, unknown>
 ): void => {
   const response = successResponse(data, {
@@ -120,7 +116,7 @@ export const sendCreated = <T>(
     ...meta,
   });
   
-  if (location) {
+  if (location !== null && location !== undefined && location !== '') {
     res.setHeader('Location', location);
   }
   
@@ -152,7 +148,7 @@ export const sendAccepted = <T>(
   data?: T,
   meta?: Record<string, unknown>
 ): void => {
-  if (data) {
+  if (data !== null && data !== undefined) {
     sendSuccess(res, data, 202, meta);
   } else {
     res.status(202).json({
@@ -174,16 +170,16 @@ export const sendFile = (
   filename?: string,
   contentType?: string
 ): void => {
-  if (contentType) {
+  if (contentType !== null && contentType !== undefined && contentType !== '') {
     res.setHeader('Content-Type', contentType);
   }
   
-  if (filename) {
+  if (filename !== null && filename !== undefined && filename !== '') {
     res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
   }
   
   res.sendFile(filePath, (err) => {
-    if (err) {
+    if (err !== null && err !== undefined) {
       logger.error({ error: err, filePath }, 'Failed to send file');
       res.status(500).json({
         success: false,
@@ -199,7 +195,7 @@ export const sendFile = (
 export const sendJSON = (
   res: Response,
   data: unknown,
-  filename: string = 'data.json'
+  filename = 'data.json'
 ): void => {
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
@@ -209,7 +205,7 @@ export const sendJSON = (
 export const sendCSV = (
   res: Response,
   csvContent: string,
-  filename: string = 'data.csv'
+  filename = 'data.csv'
 ): void => {
   res.setHeader('Content-Type', 'text/csv');
   res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
@@ -219,8 +215,8 @@ export const sendCSV = (
 // Cache control helpers
 export const setCacheHeaders = (
   res: Response,
-  maxAge: number = 300, // 5 minutes default
-  isPrivate: boolean = true
+  maxAge = 300, // 5 minutes default
+  isPrivate = true
 ): void => {
   const cacheControl = isPrivate
     ? `private, max-age=${maxAge}`

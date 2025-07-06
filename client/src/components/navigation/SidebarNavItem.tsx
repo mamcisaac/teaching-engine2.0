@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+
 import { useNavigation } from './NavigationProvider';
 
 interface SidebarNavItemProps {
@@ -15,13 +16,13 @@ export function SidebarNavItem({ path, label, icon, testId }: SidebarNavItemProp
 
   return (
     <NavLink
-      to={path}
-      data-testid={testId}
       className={({ isActive: active }) =>
         `flex items-center py-2 px-4 ${
           active ? 'bg-indigo-900 text-white' : 'text-indigo-100 hover:bg-indigo-700'
         } ${!isSidebarOpen && 'justify-center'}`
       }
+      data-testid={testId}
+      to={path}
     >
       <span className="mr-3">{icon}</span>
       {isSidebarOpen && <span>{label}</span>}

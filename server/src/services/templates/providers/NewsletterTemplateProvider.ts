@@ -4,7 +4,8 @@
  * Provides templates for newsletters
  */
 
-import { TemplateProvider, Template, TemplateContext } from './TemplateProvider';
+import type { Template, TemplateContext } from './TemplateProvider';
+import { TemplateProvider } from './TemplateProvider';
 
 export class NewsletterTemplateProvider extends TemplateProvider {
   constructor() {

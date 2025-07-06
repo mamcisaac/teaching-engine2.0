@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import React, { useState } from 'react';
+
 import { apiClient } from '../../api/core/client';
 import { Button } from '../ui/Button';
-import { Input } from '../ui/Input';
-import { Textarea } from '../ui/Textarea';
-import { Label } from '../ui/Label';
 import {
   Dialog,
   DialogContent,
@@ -13,6 +11,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from '../ui/Dialog';
+import { Input } from '../ui/Input';
+import { Label } from '../ui/Label';
+import { Textarea } from '../ui/Textarea';
 import { useToast } from '../ui/use-toast';
 
 interface AISuggestedActivity {
@@ -119,11 +120,12 @@ export function AISuggestionModal({
               <Input
                 id="title"
                 value={editedSuggestion.title}
-                onChange={(e) =>
-                  setEditedSuggestion({
+                onChange={(e) => {
+ setEditedSuggestion({
                     ...editedSuggestion,
                     title: e.target.value,
-                  })
+                  }); 
+}
                 }
               />
             ) : (
@@ -133,7 +135,7 @@ export function AISuggestionModal({
 
           {/* Duration */}
           <div className="space-y-2">
-            <Label htmlFor="duration" className="flex items-center gap-2">
+            <Label className="flex items-center gap-2" htmlFor="duration">
               <span>⏰</span>
               Duration (minutes)
             </Label>
@@ -142,11 +144,12 @@ export function AISuggestionModal({
                 id="duration"
                 type="number"
                 value={editedSuggestion.duration}
-                onChange={(e) =>
-                  setEditedSuggestion({
+                onChange={(e) => {
+ setEditedSuggestion({
                     ...editedSuggestion,
                     duration: parseInt(e.target.value) || 0,
-                  })
+                  }); 
+}
                 }
               />
             ) : (
@@ -162,11 +165,12 @@ export function AISuggestionModal({
                 id="descriptionFr"
                 rows={4}
                 value={editedSuggestion.descriptionFr}
-                onChange={(e) =>
-                  setEditedSuggestion({
+                onChange={(e) => {
+ setEditedSuggestion({
                     ...editedSuggestion,
                     descriptionFr: e.target.value,
-                  })
+                  }); 
+}
                 }
               />
             ) : (
@@ -180,15 +184,16 @@ export function AISuggestionModal({
             {isEditing ? (
               <Textarea
                 id="descriptionEn"
+                placeholder="Optional English description for teacher reference"
                 rows={3}
                 value={editedSuggestion.descriptionEn}
-                onChange={(e) =>
-                  setEditedSuggestion({
+                onChange={(e) => {
+ setEditedSuggestion({
                     ...editedSuggestion,
                     descriptionEn: e.target.value,
-                  })
+                  }); 
+}
                 }
-                placeholder="Optional English description for teacher reference"
               />
             ) : (
               <p className="text-sm whitespace-pre-wrap text-gray-600">
@@ -199,21 +204,22 @@ export function AISuggestionModal({
 
           {/* Materials */}
           <div className="space-y-2">
-            <Label htmlFor="materials" className="flex items-center gap-2">
+            <Label className="flex items-center gap-2" htmlFor="materials">
               <span>📦</span>
               Materials Needed
             </Label>
             {isEditing ? (
               <Input
                 id="materials"
+                placeholder="Comma-separated list of materials"
                 value={editedSuggestion.materials}
-                onChange={(e) =>
-                  setEditedSuggestion({
+                onChange={(e) => {
+ setEditedSuggestion({
                     ...editedSuggestion,
                     materials: e.target.value,
-                  })
+                  }); 
+}
                 }
-                placeholder="Comma-separated list of materials"
               />
             ) : (
               <div className="flex flex-wrap gap-2">
@@ -233,14 +239,15 @@ export function AISuggestionModal({
               {isEditing ? (
                 <Input
                   id="theme"
+                  placeholder="Optional theme connection"
                   value={editedSuggestion.theme}
-                  onChange={(e) =>
-                    setEditedSuggestion({
+                  onChange={(e) => {
+ setEditedSuggestion({
                       ...editedSuggestion,
                       theme: e.target.value,
-                    })
+                    }); 
+}
                   }
-                  placeholder="Optional theme connection"
                 />
               ) : (
                 <p className="text-sm">
@@ -255,13 +262,17 @@ export function AISuggestionModal({
 
         <DialogFooter className="flex flex-col sm:flex-row gap-2">
           <div className="flex gap-2 flex-1">
-            <Button variant="outline" onClick={() => setIsEditing(!isEditing)}>
+            <Button variant="outline" onClick={() => {
+ setIsEditing(!isEditing); 
+}}>
               {isEditing ? 'Cancel Edit' : 'Edit'}
             </Button>
             <Button
-              variant="outline"
-              onClick={() => deleteSuggestion.mutate()}
               disabled={deleteSuggestion.isPending}
+              variant="outline"
+              onClick={() => {
+ deleteSuggestion.mutate(); 
+}}
             >
               <span className="mr-2">🗑️</span>
               Discard

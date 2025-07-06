@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Send, MessageSquare, X, Sparkles, Mic, MicOff } from 'lucide-react';
-import { api } from '../../api';
+import { useState, useRef, useEffect } from 'react';
 import { toast } from 'sonner';
+
+import { api } from '../../api';
 import type { SpeechRecognition, SpeechRecognitionEvent } from '../../types/speech-recognition';
 
 interface Action {
@@ -103,7 +104,9 @@ export function GPTPlanningAgent({
   // Send message
   const sendMessageMutation = useMutation({
     mutationFn: async (message: string) => {
-      if (!sessionId) throw new Error('No session');
+      if (!sessionId) {
+throw new Error('No session');
+}
       const response = await api.post('/api/ai/agent/messages', {
         sessionId,
         message,
@@ -184,7 +187,7 @@ export function GPTPlanningAgent({
       recognitionRef.current.lang = 'en-US';
 
       recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
-        const transcript = event.results[0][0].transcript;
+        const {transcript} = event.results[0][0];
         setInputValue(transcript);
         setIsListening(false);
       };
@@ -201,7 +204,9 @@ export function GPTPlanningAgent({
   }, []);
 
   const handleSend = () => {
-    if (!inputValue.trim() || sendMessageMutation.isPending) return;
+    if (!inputValue.trim() || sendMessageMutation.isPending) {
+return;
+}
 
     const userMessage = inputValue.trim();
     setInputValue('');
@@ -245,7 +250,9 @@ export function GPTPlanningAgent({
     }
   };
 
-  if (!isOpen) return null;
+  if (!isOpen) {
+return null;
+}
 
   return (
     <div className="fixed bottom-4 right-4 w-96 h-[600px] bg-white rounded-lg shadow-xl border border-gray-200 flex flex-col z-50">
@@ -255,7 +262,7 @@ export function GPTPlanningAgent({
           <MessageSquare className="h-5 w-5 text-purple-600" />
           <h3 className="font-semibold text-gray-900">Planning Assistant</h3>
         </div>
-        <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded">
+        <button className="p-1 hover:bg-gray-100 rounded" onClick={onClose}>
           <X className="h-5 w-5 text-gray-500" />
         </button>
       </div>
@@ -312,8 +319,10 @@ export function GPTPlanningAgent({
             {quickActions.map((action: QuickAction, index: number) => (
               <button
                 key={index}
-                onClick={() => handleQuickAction(action)}
                 className="text-xs px-3 py-1 bg-purple-100 text-purple-700 rounded-full hover:bg-purple-200"
+                onClick={() => {
+ handleQuickAction(action); 
+}}
               >
                 {action.label}
               </button>
@@ -326,29 +335,31 @@ export function GPTPlanningAgent({
       <div className="border-t border-gray-200 p-4">
         <div className="flex gap-2">
           <input
-            type="text"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-            placeholder="Ask me anything about planning..."
             className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
             disabled={sendMessageMutation.isPending}
+            placeholder="Ask me anything about planning..."
+            type="text"
+            value={inputValue}
+            onChange={(e) => {
+ setInputValue(e.target.value); 
+}}
+            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
           />
           <button
-            onClick={toggleVoiceRecognition}
             className={`p-2 rounded-md ${
               isListening
                 ? 'bg-red-100 text-red-600 hover:bg-red-200'
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}
             title={isListening ? 'Stop recording' : 'Start voice input'}
+            onClick={toggleVoiceRecognition}
           >
             {isListening ? <MicOff className="h-5 w-5" /> : <Mic className="h-5 w-5" />}
           </button>
           <button
-            onClick={handleSend}
-            disabled={!inputValue.trim() || sendMessageMutation.isPending}
             className="p-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 disabled:opacity-50"
+            disabled={!inputValue.trim() || sendMessageMutation.isPending}
+            onClick={handleSend}
           >
             <Send className="h-5 w-5" />
           </button>

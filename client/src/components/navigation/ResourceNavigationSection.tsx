@@ -1,7 +1,8 @@
 import React from 'react';
+
+import { secondaryNavItems } from './navigationConfig';
 import { useNavigation } from './NavigationProvider';
 import { SidebarNavItem } from './SidebarNavItem';
-import { secondaryNavItems } from './navigationConfig';
 
 export function ResourceNavigationSection() {
   const { isSidebarOpen } = useNavigation();
@@ -14,9 +15,9 @@ export function ResourceNavigationSection() {
       {secondaryNavItems.map((item) => (
         <SidebarNavItem
           key={item.path}
-          path={item.path}
-          label={item.label}
           icon={item.icon}
+          label={item.label}
+          path={item.path}
         />
       ))}
     </div>

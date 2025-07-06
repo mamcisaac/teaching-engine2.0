@@ -1,9 +1,12 @@
-import { createContext, useContext, ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import { createContext, useContext } from 'react';
+
 import {
   useNotifications as useNotificationsApi,
   useMarkNotificationAsRead,
 } from '../api/domains/notification';
 import type { Notification } from '../types';
+
 import { useAuth } from './AuthContext';
 
 interface NotificationContextValue {
@@ -39,7 +42,9 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
         .filter((notification) => !notification.read)
         .map((notification) => notification.id);
 
-      unreadIds.forEach((id) => markMutation.mutate(id));
+      unreadIds.forEach((id) => {
+ markMutation.mutate(id); 
+});
     }
   };
 
@@ -57,7 +62,7 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
     markAllRead,
     deleteNotification,
     isLoading,
-    error: error as Error | null,
+    error,
     unreadCount,
     hasUnread,
   };
@@ -67,7 +72,7 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export const useNotificationContext = () => {
+export const useNotificationContext = (): UseQueryResult<unknown> => {
   const context = useContext(NotificationContext);
   if (!context) {
     throw new Error('useNotificationContext must be used within a NotificationProvider');
@@ -78,17 +83,17 @@ export const useNotificationContext = () => {
 export const useNotification = useNotificationContext;
 
 // Additional selector hooks for performance
-export const useNotificationsList = () => {
+export const useNotificationsList = (): UseQueryResult<unknown> => {
   const { notifications } = useNotificationContext();
   return notifications;
 };
 
-export const useUnreadCount = () => {
+export const useUnreadCount = (): UseQueryResult<unknown> => {
   const { unreadCount } = useNotificationContext();
   return unreadCount;
 };
 
-export const useHasUnreadNotifications = () => {
+export const useHasUnreadNotifications = (): UseQueryResult<unknown> => {
   const { hasUnread } = useNotificationContext();
   return hasUnread;
 };

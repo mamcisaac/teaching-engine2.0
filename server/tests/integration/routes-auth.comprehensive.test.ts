@@ -17,7 +17,7 @@ import express from 'express';
 import { PrismaClient } from '@teaching-engine/database';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { authRoutes } from '../../src/routes/auth';
+import { authRoutes } from '../../src/routes/authEndpoints';
 import {
   getIntegrationTestPrismaClient,
   cleanIntegrationTestData,

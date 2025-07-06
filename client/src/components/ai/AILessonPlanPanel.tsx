@@ -1,11 +1,3 @@
-import React, { useState, useCallback } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
-import { Button } from '../ui/Button';
-import { Badge } from '../ui/Badge';
-import { Textarea } from '../ui/Textarea';
-import { Input } from '../ui/Input';
-import { Label } from '../ui/Label';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { 
   Sparkles, 
   RefreshCw, 
@@ -23,13 +15,24 @@ import {
   // Square, // Unused import
   Activity
 } from 'lucide-react';
-import { useToast } from '../ui/use-toast';
+import React, { useState, useCallback } from 'react';
+
 import { useAIPlanningAssistant } from '../../hooks/useAIPlanningAssistant';
 import { useAIStatus, useAIFeature } from '../../hooks/useAIStatus';
-import { AILoadingIndicator, AI_LOADING_PRESETS } from './AILoadingIndicator';
-import { WithAIErrorBoundary } from './AIErrorBoundary';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import logger from '../../utils/logger';
+import { Badge } from '../ui/Badge';
+import { Button } from '../ui/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+import { Input } from '../ui/Input';
+import { Label } from '../ui/Label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
+import { Textarea } from '../ui/Textarea';
+import { useToast } from '../ui/use-toast';
+
+import { WithAIErrorBoundary } from './AIErrorBoundary';
+import { AILoadingIndicator, AI_LOADING_PRESETS } from './AILoadingIndicator';
+
 interface LessonPlanSuggestion {
   type: 'mindson' | 'handson' | 'mindson_reflection' | 'materials' | 'assessments' | 'differentiation';
   content: string[];
@@ -64,11 +67,11 @@ interface AILessonPlanPanelProps {
   unitContext?: {
     title: string;
     bigIdeas: string[];
-    expectations: Array<{
+    expectations: {
       id: string;
       code: string;
       description: string;
-    }>;
+    }[];
   };
   onSuggestionAccepted?: (type: string, content: string[]) => void;
   onLessonGenerated?: (lessonPlan: ThreePartStructure) => void;
@@ -92,11 +95,11 @@ export function AILessonPlanPanel({
   
   // Local state for form inputs
   const [formData, setFormData] = useState({
-    lessonTitle: lessonTitle,
-    subject: subject,
+    lessonTitle,
+    subject,
     grade: grade.toString(),
     duration: duration.toString(),
-    learningGoals: learningGoals,
+    learningGoals,
     lessonType: 'new_concept' as 'new_concept' | 'review' | 'assessment' | 'exploration',
     groupingStrategy: 'mixed' as 'individual' | 'pairs' | 'small_groups' | 'whole_class' | 'mixed',
     materials: [] as string[],
@@ -129,7 +132,7 @@ export function AILessonPlanPanel({
   };
 
   const addLearningGoal = () => {
-    const newGoal = (document.getElementById('newLearningGoal') as HTMLInputElement)?.value?.trim();
+    const newGoal = (document.getElementById('newLearningGoal') as HTMLInputElement).value.trim();
     if (newGoal && !formData.learningGoals.includes(newGoal)) {
       handleInputChange('learningGoals', [...formData.learningGoals, newGoal]);
       (document.getElementById('newLearningGoal') as HTMLInputElement).value = '';
@@ -141,7 +144,7 @@ export function AILessonPlanPanel({
   };
 
   const addMaterial = () => {
-    const newMaterial = (document.getElementById('newMaterial') as HTMLInputElement)?.value?.trim();
+    const newMaterial = (document.getElementById('newMaterial') as HTMLInputElement).value.trim();
     if (newMaterial && !formData.materials.includes(newMaterial)) {
       handleInputChange('materials', [...formData.materials, newMaterial]);
       (document.getElementById('newMaterial') as HTMLInputElement).value = '';
@@ -456,7 +459,7 @@ export function AILessonPlanPanel({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <Tabs className="w-full" value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="input">Setup</TabsTrigger>
               <TabsTrigger value="structure">3-Part Structure</TabsTrigger>
@@ -464,26 +467,30 @@ export function AILessonPlanPanel({
               <TabsTrigger value="review">Review</TabsTrigger>
             </TabsList>
 
-            <TabsContent value="input" className="space-y-4">
+            <TabsContent className="space-y-4" value="input">
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="lessonTitle">Lesson Title</Label>
                   <Input
                     id="lessonTitle"
-                    value={formData.lessonTitle}
-                    onChange={(e) => handleInputChange('lessonTitle', e.target.value)}
                     placeholder="e.g., Introduction to Force and Motion"
+                    value={formData.lessonTitle}
+                    onChange={(e) => {
+ handleInputChange('lessonTitle', e.target.value); 
+}}
                   />
                 </div>
                 <div>
                   <Label htmlFor="duration">Duration (minutes)</Label>
                   <Input
                     id="duration"
-                    type="number"
-                    min="15"
                     max="180"
+                    min="15"
+                    type="number"
                     value={formData.duration}
-                    onChange={(e) => handleInputChange('duration', e.target.value)}
+                    onChange={(e) => {
+ handleInputChange('duration', e.target.value); 
+}}
                   />
                 </div>
               </div>
@@ -493,8 +500,9 @@ export function AILessonPlanPanel({
                   <Label htmlFor="lessonType">Lesson Type</Label>
                   <Select 
                     value={formData.lessonType} 
-                    onValueChange={(value: 'new_concept' | 'review' | 'assessment' | 'exploration') => 
-                      handleInputChange('lessonType', value)
+                    onValueChange={(value: 'new_concept' | 'review' | 'assessment' | 'exploration') => {
+ handleInputChange('lessonType', value); 
+}
                     }
                   >
                     <SelectTrigger>
@@ -512,8 +520,9 @@ export function AILessonPlanPanel({
                   <Label htmlFor="groupingStrategy">Grouping Strategy</Label>
                   <Select 
                     value={formData.groupingStrategy} 
-                    onValueChange={(value: 'individual' | 'pairs' | 'small_groups' | 'whole_class' | 'mixed') => 
-                      handleInputChange('groupingStrategy', value)
+                    onValueChange={(value: 'individual' | 'pairs' | 'small_groups' | 'whole_class' | 'mixed') => {
+ handleInputChange('groupingStrategy', value); 
+}
                     }
                   >
                     <SelectTrigger>
@@ -538,7 +547,7 @@ export function AILessonPlanPanel({
                     placeholder="Add learning goal"
                     onKeyPress={(e) => e.key === 'Enter' && addLearningGoal()}
                   />
-                  <Button type="button" onClick={addLearningGoal} size="sm">
+                  <Button size="sm" type="button" onClick={addLearningGoal}>
                     <Plus className="h-4 w-4" />
                   </Button>
                 </div>
@@ -548,8 +557,10 @@ export function AILessonPlanPanel({
                       <Target className="h-4 w-4 text-purple-500 flex-shrink-0" />
                       <span className="flex-1 text-sm">{goal}</span>
                       <button
-                        onClick={() => removeLearningGoal(goal)}
                         className="text-xs text-red-500 hover:text-red-700"
+                        onClick={() => {
+ removeLearningGoal(goal); 
+}}
                       >
                         Remove
                       </button>
@@ -566,17 +577,19 @@ export function AILessonPlanPanel({
                     placeholder="Add material or resource"
                     onKeyPress={(e) => e.key === 'Enter' && addMaterial()}
                   />
-                  <Button type="button" onClick={addMaterial} size="sm">
+                  <Button size="sm" type="button" onClick={addMaterial}>
                     <Plus className="h-4 w-4" />
                   </Button>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {formData.materials.map((material, index) => (
-                    <Badge key={index} variant="secondary" className="gap-1">
+                    <Badge key={index} className="gap-1" variant="secondary">
                       {material}
                       <button
-                        onClick={() => removeMaterial(material)}
                         className="text-xs hover:text-red-500"
+                        onClick={() => {
+ removeMaterial(material); 
+}}
                       >
                         ×
                       </button>
@@ -590,20 +603,24 @@ export function AILessonPlanPanel({
                   <Label htmlFor="priorKnowledge">Prior Knowledge Required</Label>
                   <Textarea
                     id="priorKnowledge"
-                    value={formData.priorKnowledge}
-                    onChange={(e) => handleInputChange('priorKnowledge', e.target.value)}
                     placeholder="What should students already know?"
                     rows={2}
+                    value={formData.priorKnowledge}
+                    onChange={(e) => {
+ handleInputChange('priorKnowledge', e.target.value); 
+}}
                   />
                 </div>
                 <div>
                   <Label htmlFor="accommodations">Accommodations & Modifications</Label>
                   <Textarea
                     id="accommodations"
-                    value={formData.accommodations}
-                    onChange={(e) => handleInputChange('accommodations', e.target.value)}
                     placeholder="Special considerations for student needs"
                     rows={2}
+                    value={formData.accommodations}
+                    onChange={(e) => {
+ handleInputChange('accommodations', e.target.value); 
+}}
                   />
                 </div>
               </div>
@@ -639,9 +656,9 @@ export function AILessonPlanPanel({
 
               <div className="flex gap-2 pt-4">
                 <Button 
-                  onClick={generateThreePartLesson} 
+                  className="flex-1" 
                   disabled={isGenerating || !formData.lessonTitle || formData.learningGoals.length === 0}
-                  className="flex-1"
+                  onClick={generateThreePartLesson}
                 >
                   {isGenerating ? (
                     <>
@@ -659,17 +676,17 @@ export function AILessonPlanPanel({
 
               <div className="grid grid-cols-2 gap-2">
                 <Button 
-                  variant="outline" 
+                  disabled={isGenerating} 
+                  variant="outline"
                   onClick={() => generateSuggestions('materials')}
-                  disabled={isGenerating}
                 >
                   <BookOpen className="h-4 w-4 mr-2" />
                   Materials
                 </Button>
                 <Button 
-                  variant="outline" 
+                  disabled={isGenerating} 
+                  variant="outline"
                   onClick={() => generateSuggestions('assessments')}
-                  disabled={isGenerating}
                 >
                   <Target className="h-4 w-4 mr-2" />
                   Assessments
@@ -677,7 +694,7 @@ export function AILessonPlanPanel({
               </div>
             </TabsContent>
 
-            <TabsContent value="structure" className="space-y-4">
+            <TabsContent className="space-y-4" value="structure">
               {!threePartStructure ? (
                 <div className="text-center py-8 text-gray-500">
                   <Clock className="h-8 w-8 mx-auto mb-2 opacity-20" />
@@ -686,13 +703,13 @@ export function AILessonPlanPanel({
                 </div>
               ) : (
                 <div className="space-y-4">
-                  {(Object.keys(threePartStructure) as Array<keyof ThreePartStructure>).map((phase) => (
+                  {(Object.keys(threePartStructure) as (keyof ThreePartStructure)[]).map((phase) => (
                     <Card key={phase} className="border-l-4 border-l-purple-500">
                       <CardHeader>
                         <CardTitle className="text-base flex items-center gap-2">
                           {getPhaseIcon(phase)}
                           {getPhaseTitle(phase)}
-                          <Badge variant="outline" className="ml-auto">
+                          <Badge className="ml-auto" variant="outline">
                             {threePartStructure[phase].duration} min
                           </Badge>
                         </CardTitle>
@@ -715,7 +732,7 @@ export function AILessonPlanPanel({
               )}
             </TabsContent>
 
-            <TabsContent value="suggestions" className="space-y-4">
+            <TabsContent className="space-y-4" value="suggestions">
               {suggestions.length === 0 ? (
                 <div className="text-center py-8 text-gray-500">
                   <Sparkles className="h-8 w-8 mx-auto mb-2 opacity-20" />
@@ -734,7 +751,7 @@ export function AILessonPlanPanel({
                           {suggestion.type === 'handson' && <Activity className="h-4 w-4" />}
                           {suggestion.type.replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').trim()}
                           {suggestion.timeEstimate && (
-                            <Badge variant="outline" className="ml-auto">
+                            <Badge className="ml-auto" variant="outline">
                               {suggestion.timeEstimate} min
                             </Badge>
                           )}
@@ -762,19 +779,23 @@ export function AILessonPlanPanel({
                                   <p className="text-sm flex-1">{item}</p>
                                   <div className="flex gap-1">
                                     <Button
-                                      variant="ghost"
-                                      size="sm"
-                                      onClick={() => copySuggestion(item)}
                                       className="h-8 w-8 p-0"
+                                      size="sm"
+                                      variant="ghost"
+                                      onClick={() => {
+ copySuggestion(item); 
+}}
                                     >
                                       <Copy className="h-4 w-4" />
                                     </Button>
                                     {!isAccepted ? (
                                       <Button
-                                        variant="ghost"
-                                        size="sm"
-                                        onClick={() => acceptSuggestion(suggestion.type, item)}
                                         className="h-8 w-8 p-0"
+                                        size="sm"
+                                        variant="ghost"
+                                        onClick={() => {
+ acceptSuggestion(suggestion.type, item); 
+}}
                                       >
                                         <Check className="h-4 w-4 text-green-500" />
                                       </Button>
@@ -796,7 +817,7 @@ export function AILessonPlanPanel({
               )}
             </TabsContent>
 
-            <TabsContent value="review" className="space-y-4">
+            <TabsContent className="space-y-4" value="review">
               <div className="text-center py-8 text-gray-500">
                 <CheckCircle className="h-8 w-8 mx-auto mb-2" />
                 <p>Review tab will show the complete generated lesson plan.</p>
@@ -809,15 +830,15 @@ export function AILessonPlanPanel({
 
       {/* Loading Modal */}
       <AILoadingIndicator
+        currentStepId={loadingStep}
         isOpen={showLoadingModal}
+        state={isGenerating ? 'processing' : 'waiting'}
         onCancel={() => {
           setShowLoadingModal(false);
           setIsGenerating(false);
         }}
-        state={isGenerating ? 'processing' : 'waiting'}
-        currentStepId={loadingStep}
         {...AI_LOADING_PRESETS.GENERATING_LESSON_PLAN}
-        canCancel={true}
+        canCancel
       />
     </WithAIErrorBoundary>
   );

@@ -5,8 +5,10 @@
 
 import { structuredLogger } from '../../utils/structuredLogger';
 
-import { RedisCache, getCache as getRedisCache, CacheOptions, CacheStats } from './RedisCache';
-import { MemoryCache, getMemoryCache } from './MemoryCache';
+import type { MemoryCache} from './MemoryCache';
+import { getMemoryCache } from './MemoryCache';
+import type { RedisCache, CacheOptions, CacheStats } from './RedisCache';
+import { getCache as getRedisCache } from './RedisCache';
 
 export type { CacheOptions, CacheStats } from './RedisCache';
 export { cacheMiddleware } from './RedisCache';

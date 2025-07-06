@@ -1,10 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import { CheckCircle } from 'lucide-react';
-import { Button } from '../ui/Button';
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+import type { ETFOLessonPlan } from '../../hooks/useETFOPlanning';
 import { Badge } from '../ui/Badge';
-import { ETFOLessonPlan } from '../../hooks/useETFOPlanning';
+import { Button } from '../ui/Button';
 
 interface LessonPlanTableRowProps {
   lesson: ETFOLessonPlan;
@@ -16,8 +17,7 @@ export const LessonPlanTableRow: React.FC<LessonPlanTableRowProps> = ({
   lesson,
   onEdit,
   onDelete,
-}) => {
-  return (
+}) => (
     <tr className="hover:bg-gray-50">
       <td className="px-3 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-900">
         <span className="block sm:hidden">{format(new Date(lesson.date), 'MMM d')}</span>
@@ -25,13 +25,13 @@ export const LessonPlanTableRow: React.FC<LessonPlanTableRowProps> = ({
       </td>
       <td className="px-3 sm:px-6 py-2 sm:py-4">
         <Link
-          to={`/planner/lessons/${lesson.id}`}
           className="text-xs sm:text-sm font-medium text-indigo-600 hover:text-indigo-900 block"
+          to={`/planner/lessons/${lesson.id}`}
         >
           {lesson.title}
         </Link>
         {lesson.isSubFriendly && (
-          <Badge variant="secondary" className="mt-1 text-xs">
+          <Badge className="mt-1 text-xs" variant="secondary">
             Sub
           </Badge>
         )}
@@ -41,7 +41,7 @@ export const LessonPlanTableRow: React.FC<LessonPlanTableRowProps> = ({
       </td>
       <td className="hidden md:table-cell px-3 sm:px-6 py-2 sm:py-4 whitespace-nowrap">
         {lesson.assessmentType && (
-          <Badge variant="outline" className="text-xs">
+          <Badge className="text-xs" variant="outline">
             {lesson.assessmentType}
           </Badge>
         )}
@@ -61,17 +61,21 @@ export const LessonPlanTableRow: React.FC<LessonPlanTableRowProps> = ({
       <td className="px-3 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-right text-xs sm:text-sm font-medium">
         <div className="flex justify-end gap-2">
           <Button
-            variant="ghost"
             size="sm"
-            onClick={() => onEdit(lesson)}
+            variant="ghost"
+            onClick={() => {
+ onEdit(lesson); 
+}}
           >
             Edit
           </Button>
           <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => onDelete(lesson.id)}
             className="text-red-600 hover:text-red-700"
+            size="sm"
+            variant="ghost"
+            onClick={() => {
+ onDelete(lesson.id); 
+}}
           >
             Delete
           </Button>
@@ -79,4 +83,3 @@ export const LessonPlanTableRow: React.FC<LessonPlanTableRowProps> = ({
       </td>
     </tr>
   );
-};

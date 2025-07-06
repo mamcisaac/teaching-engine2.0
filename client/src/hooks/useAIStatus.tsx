@@ -1,6 +1,9 @@
-import { apiClient } from '../api/core/client';
-import { useState } from 'react';
+import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
+import React, { useState , createContext, useContext } from 'react';
+import type { ReactNode } from 'react';
+
+import { apiClient } from '../api/core/client';
 export interface AIStatusInfo {
   available: boolean;
   hasApiKey: boolean;
@@ -49,10 +52,10 @@ const DEFAULT_AI_STATUS: AIStatusInfo = {
 };
 
 export function useAIStatus(): AIStatusHookReturn {
-  const [userDisabledAI, setUserDisabledAI] = useState(() => {
+  const [userDisabledAI, setUserDisabledAI] = useState(() => 
     // Check if user has manually disabled AI for this session
-    return sessionStorage.getItem('ai_disabled') === 'true';
-  });
+     sessionStorage.getItem('ai_disabled') === 'true'
+  );
 
   // Query AI service status
   const {
@@ -67,7 +70,7 @@ export function useAIStatus(): AIStatusHookReturn {
       try {
         const response = await apiClient.get('/api/ai/status');
         return {
-          ...response.data,
+          ...(response.data as AIStatusInfo),
           lastChecked: new Date(),
         };
       } catch (error: unknown) {
@@ -105,7 +108,7 @@ export function useAIStatus(): AIStatusHookReturn {
     retry: (failureCount, error: unknown) => {
       // Don't retry on auth errors or client errors
       const axiosError = error as { response?: { status?: number } };
-      if (axiosError?.response?.status && axiosError.response.status < 500) {
+      if (axiosError.response?.status !== undefined && axiosError.response.status !== null && axiosError.response.status < 500) {
         return false;
       }
       return failureCount < 3;
@@ -135,14 +138,14 @@ export function useAIStatus(): AIStatusHookReturn {
     return undefined;
   };
 
-  const enableAI = () => {
+  const enableAI = (): void => {
     setUserDisabledAI(false);
     sessionStorage.removeItem('ai_disabled');
     // Refetch status to get current availability
-    refetch();
+    void refetch();
   };
 
-  const disableAI = () => {
+  const disableAI = (): void => {
     setUserDisabledAI(true);
     sessionStorage.setItem('ai_disabled', 'true');
   };
@@ -151,8 +154,8 @@ export function useAIStatus(): AIStatusHookReturn {
     aiStatus,
     isLoading,
     isError,
-    error: error as Error | null,
-    refetch,
+    error,
+    refetch: () => void refetch(),
     isAIEnabled,
     canUseAI,
     aiDisabledReason: getAIDisabledReason(),
@@ -162,7 +165,11 @@ export function useAIStatus(): AIStatusHookReturn {
 }
 
 // Hook for checking specific AI features
-export function useAIFeature(feature: keyof AIStatusInfo['features']) {
+export function useAIFeature(feature: keyof AIStatusInfo['features']): {
+  available: boolean;
+  status: 'healthy' | 'degraded' | 'unavailable';
+  limitations: AIStatusInfo['limitations'];
+} {
   const { aiStatus, canUseAI } = useAIStatus();
   
   return {
@@ -173,22 +180,30 @@ export function useAIFeature(feature: keyof AIStatusInfo['features']) {
 }
 
 // Hook for AI quota management
-export function useAIQuota() {
+export function useAIQuota(): {
+  quotaUsed: number;
+  quotaLimit: number;
+  quotaPercentage: number;
+  requestsRemaining: number;
+  requestsPerHour: number;
+  isNearQuotaLimit: boolean;
+  isQuotaExceeded: boolean;
+} {
   const { aiStatus } = useAIStatus();
   
-  const quotaPercentage = aiStatus.limitations?.quotaLimit 
-    ? (aiStatus.limitations.quotaUsed || 0) / aiStatus.limitations.quotaLimit * 100
+  const quotaPercentage = aiStatus.limitations?.quotaLimit !== undefined && aiStatus.limitations.quotaLimit !== null && aiStatus.limitations.quotaLimit > 0
+    ? (aiStatus.limitations.quotaUsed ?? 0) / aiStatus.limitations.quotaLimit * 100
     : 0;
 
   const isNearQuotaLimit = quotaPercentage > 80;
   const isQuotaExceeded = quotaPercentage >= 100;
 
   return {
-    quotaUsed: aiStatus.limitations?.quotaUsed || 0,
-    quotaLimit: aiStatus.limitations?.quotaLimit || 0,
+    quotaUsed: aiStatus.limitations?.quotaUsed ?? 0,
+    quotaLimit: aiStatus.limitations?.quotaLimit ?? 0,
     quotaPercentage,
-    requestsRemaining: aiStatus.limitations?.requestsRemaining || 0,
-    requestsPerHour: aiStatus.limitations?.requestsPerHour || 0,
+    requestsRemaining: aiStatus.limitations?.requestsRemaining ?? 0,
+    requestsPerHour: aiStatus.limitations?.requestsPerHour ?? 0,
     isNearQuotaLimit,
     isQuotaExceeded,
   };
@@ -209,14 +224,22 @@ export function AIStatusIndicator({
   const { aiStatus, canUseAI, aiDisabledReason } = useAIStatus();
 
   const getStatusColor = () => {
-    if (!canUseAI) return 'text-red-500 bg-red-100';
-    if (aiStatus.serviceHealth === 'degraded') return 'text-yellow-500 bg-yellow-100';
+    if (!canUseAI) {
+return 'text-red-500 bg-red-100';
+}
+    if (aiStatus.serviceHealth === 'degraded') {
+return 'text-yellow-500 bg-yellow-100';
+}
     return 'text-green-500 bg-green-100';
   };
 
   const getStatusText = () => {
-    if (!canUseAI) return 'Unavailable';
-    if (aiStatus.serviceHealth === 'degraded') return 'Limited';
+    if (!canUseAI) {
+return 'Unavailable';
+}
+    if (aiStatus.serviceHealth === 'degraded') {
+return 'Limited';
+}
     return 'Available';
   };
 
@@ -259,7 +282,6 @@ export function AIStatusIndicator({
 }
 
 // Provider for AI status context
-import React, { createContext, useContext, ReactNode } from 'react';
 
 const AIStatusContext = createContext<AIStatusHookReturn | null>(null);
 

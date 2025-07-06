@@ -5,7 +5,7 @@
 
 import { structuredLogger } from '../../utils/structuredLogger';
 
-import { CacheOptions, CacheStats } from './RedisCache';
+import type { CacheOptions, CacheStats } from './RedisCache';
 
 interface CacheEntry<T> {
   value: T;
@@ -35,7 +35,9 @@ export class MemoryCache {
   ) {
     // Start cleanup interval
     const interval = config.cleanupInterval || 60000; // 1 minute default
-    this.cleanupInterval = setInterval(() => this.cleanup(), interval);
+    this.cleanupInterval = setInterval(() => {
+ this.cleanup(); 
+}, interval);
   }
 
   async connect(): Promise<void> {
@@ -104,7 +106,9 @@ export class MemoryCache {
 
   async delete(key: string): Promise<boolean> {
     const entry = this.cache.get(key);
-    if (!entry) return false;
+    if (!entry) {
+return false;
+}
 
     this.cache.delete(key);
     this.removeFromTags(key, entry.tags);
@@ -133,7 +137,9 @@ export class MemoryCache {
 
     for (const tag of tags) {
       const keys = this.tagIndex.get(tag);
-      if (!keys) continue;
+      if (!keys) {
+continue;
+}
 
       for (const key of keys) {
         if (this.cache.delete(key)) {
@@ -169,7 +175,7 @@ export class MemoryCache {
     return value;
   }
 
-  async increment(key: string, amount: number = 1): Promise<number> {
+  async increment(key: string, amount = 1): Promise<number> {
     const current = (await this.get<number>(key)) || 0;
     const newValue = current + amount;
     await this.set(key, newValue);

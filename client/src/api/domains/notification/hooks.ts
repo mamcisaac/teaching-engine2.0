@@ -1,25 +1,26 @@
+import type { UseQueryResult, UseMutationResult } from '@tanstack/react-query';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
+import type { Notification } from '../../../types';
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 
 import { notificationApi } from './api';
-// import type { Notification } from '../../../types';
 
 // Query hooks
-export const useNotifications = () =>
+export const useNotifications = (): UseQueryResult<Notification[]> =>
   useQuery({
     queryKey: queryKeys.notification.all,
     queryFn: notificationApi.getAll,
   });
 
-export const useUnreadNotificationsCount = () =>
+export const useUnreadNotificationsCount = (): UseQueryResult<number> =>
   useQuery({
     queryKey: queryKeys.notification.unreadCount,
     queryFn: notificationApi.getUnreadCount,
     refetchInterval: 60000, // Refresh every minute
   });
 
-export const useNotification = (id: number) =>
+export const useNotification = (id: number): UseQueryResult<Notification> =>
   useQuery({
     queryKey: queryKeys.notification.detail(id),
     queryFn: () => notificationApi.getById(id),
@@ -27,7 +28,7 @@ export const useNotification = (id: number) =>
   });
 
 // Mutation hooks
-export const useMarkNotificationAsRead = () => {
+export const useMarkNotificationAsRead = (): UseMutationResult<Notification, Error, number> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -40,7 +41,7 @@ export const useMarkNotificationAsRead = () => {
   });
 };
 
-export const useMarkAllNotificationsAsRead = () => {
+export const useMarkAllNotificationsAsRead = (): UseMutationResult<{ count: number }, Error, void> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -54,7 +55,7 @@ export const useMarkAllNotificationsAsRead = () => {
   });
 };
 
-export const useDeleteNotification = () => {
+export const useDeleteNotification = (): UseMutationResult<void, Error, number> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -68,7 +69,11 @@ export const useDeleteNotification = () => {
   });
 };
 
-export const useCreateNotification = () => {
+export const useCreateNotification = (): UseMutationResult<Notification, Error, {
+  message: string;
+  type?: string;
+  dueDate?: string;
+}> => {
   const queryClient = useQueryClient();
 
   return useMutation({

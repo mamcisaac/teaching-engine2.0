@@ -4,7 +4,8 @@
  * Parses curriculum expectations from JSON files
  */
 
-import { CurriculumParser, ParsedCurriculum, ParsedExpectation } from './CurriculumParser';
+import type { ParsedCurriculum, ParsedExpectation } from './CurriculumParser';
+import { CurriculumParser } from './CurriculumParser';
 
 export interface JSONExpectation {
   code?: string;
@@ -160,10 +161,14 @@ export class JSONParser extends CurriculumParser {
   /**
    * Find expectations array in nested object
    */
-  private findExpectationsArray(obj: unknown, depth: number = 0): unknown[] | null {
-    if (depth > 3) return null; // Prevent deep recursion
+  private findExpectationsArray(obj: unknown, depth = 0): unknown[] | null {
+    if (depth > 3) {
+return null;
+} // Prevent deep recursion
     
-    if (typeof obj !== 'object' || obj === null) return null;
+    if (typeof obj !== 'object' || obj === null) {
+return null;
+}
 
     for (const key in obj as Record<string, unknown>) {
       const value = (obj as Record<string, unknown>)[key];
@@ -180,7 +185,9 @@ export class JSONParser extends CurriculumParser {
       } else if (typeof value === 'object' && value !== null) {
         // Recurse into objects
         const found = this.findExpectationsArray(value, depth + 1);
-        if (found) return found;
+        if (found) {
+return found;
+}
       }
     }
 
@@ -205,7 +212,9 @@ export class JSONParser extends CurriculumParser {
       item.description || item.content || item.text || ''
     );
 
-    if (!description) return null;
+    if (!description) {
+return null;
+}
 
     // Extract type
     const type = this.parseExpectationTypeFromJSON(
@@ -264,10 +273,18 @@ export class JSONParser extends CurriculumParser {
   private parseExpectationTypeFromJSON(typeValue: string, code: string, description: string): 'overall' | 'specific' {
     if (typeValue) {
       const normalized = typeValue.toLowerCase();
-      if (normalized.includes('overall')) return 'overall';
-      if (normalized.includes('specific')) return 'specific';
-      if (normalized === 'o') return 'overall';
-      if (normalized === 's') return 'specific';
+      if (normalized.includes('overall')) {
+return 'overall';
+}
+      if (normalized.includes('specific')) {
+return 'specific';
+}
+      if (normalized === 'o') {
+return 'overall';
+}
+      if (normalized === 's') {
+return 'specific';
+}
     }
     
     return super.parseExpectationType(code, description);

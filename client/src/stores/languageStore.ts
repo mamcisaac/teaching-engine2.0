@@ -1,7 +1,7 @@
+import type { Draft } from 'immer';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
-import type { Draft } from 'immer';
 
 // Comprehensive translation system for Teaching Engine 2.0
 const translations: Record<string, Record<string, string>> = {
@@ -418,7 +418,7 @@ export const useLanguageStore = create<LanguageState>()(
 
         t: (key: string, fallback?: string, substitutions?: string[]): string => {
           const state = get();
-          let translation = translations[state.language]?.[key] || fallback || key;
+          let translation = translations[state.language][key] || fallback || key;
 
           // Handle string interpolation for placeholders like {0}, {1}, etc.
           if (substitutions) {
@@ -431,7 +431,9 @@ export const useLanguageStore = create<LanguageState>()(
         },
 
         getLocalizedField: (obj: Record<string, unknown>, field: string): string => {
-          if (!obj) return '';
+          if (!obj) {
+return '';
+}
 
           const state = get();
           const localizedFieldName = `${field}${state.language.charAt(0).toUpperCase() + state.language.slice(1)}`;
@@ -452,8 +454,8 @@ export const useLanguageStore = create<LanguageState>()(
 );
 
 // Selector hooks for performance
-export const useCurrentLanguage = () => useLanguageStore((state) => state.language);
-export const useTranslation = () => useLanguageStore((state) => state.t);
-export const useLocalizedField = () => useLanguageStore((state) => state.getLocalizedField);
-export const useIsEnglish = () => useLanguageStore((state) => state.isEnglish);
-export const useIsFrench = () => useLanguageStore((state) => state.isFrench);
+export const useCurrentLanguage = (): UseQueryResult<unknown> => useLanguageStore((state) => state.language);
+export const useTranslation = (): UseQueryResult<unknown> => useLanguageStore((state) => state.t);
+export const useLocalizedField = (): UseQueryResult<unknown> => useLanguageStore((state) => state.getLocalizedField);
+export const useIsEnglish = (): UseQueryResult<unknown> => useLanguageStore((state) => state.isEnglish);
+export const useIsFrench = (): UseQueryResult<unknown> => useLanguageStore((state) => state.isFrench);

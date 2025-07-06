@@ -1,8 +1,5 @@
+import { Target, AlertTriangle } from 'lucide-react';
 import React, { useMemo } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Progress } from '@/components/ui/Progress';
-import { Badge } from '@/components/ui/Badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   PieChart,
   Pie,
@@ -16,7 +13,12 @@ import {
   CartesianGrid,
   Legend,
 } from 'recharts';
-import { Target, AlertTriangle } from 'lucide-react';
+
+import { Badge } from '@/components/ui/Badge';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Progress } from '@/components/ui/Progress';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
 import {
   useCurriculumExpectations,
   useUnitPlans,
@@ -179,8 +181,12 @@ export default function CurriculumExpectationCoverage() {
   ];
 
   const getStatusColor = (percentage: number) => {
-    if (percentage >= 80) return 'text-green-600';
-    if (percentage >= 60) return 'text-yellow-600';
+    if (percentage >= 80) {
+return 'text-green-600';
+}
+    if (percentage >= 60) {
+return 'text-yellow-600';
+}
     return 'text-red-600';
   };
 
@@ -217,12 +223,12 @@ export default function CurriculumExpectationCoverage() {
               <div className="text-sm text-gray-600">Overall Coverage</div>
             </div>
           </div>
-          <Progress value={coverageMetrics.overall.percentage} className="mt-4 h-3" />
+          <Progress className="mt-4 h-3" value={coverageMetrics.overall.percentage} />
         </CardContent>
       </Card>
 
       {/* Coverage Visualizations */}
-      <Tabs defaultValue="subject" className="space-y-4">
+      <Tabs className="space-y-4" defaultValue="subject">
         <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="subject">By Subject</TabsTrigger>
           <TabsTrigger value="strand">By Strand</TabsTrigger>
@@ -246,7 +252,7 @@ export default function CurriculumExpectationCoverage() {
                           {subject.percentage}%
                         </span>
                       </div>
-                      <Progress value={subject.percentage} className="h-2" />
+                      <Progress className="h-2" value={subject.percentage} />
                       <div className="text-sm text-gray-600">
                         {subject.covered} of {subject.total} expectations covered
                       </div>
@@ -254,17 +260,17 @@ export default function CurriculumExpectationCoverage() {
                   ))}
                 </div>
                 <div className="h-64">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <ResponsiveContainer height="100%" width="100%">
                     <PieChart>
                       <Pie
-                        data={coverageMetrics.bySubject}
                         cx="50%"
                         cy="50%"
-                        labelLine={false}
-                        label={({ subject, percentage }) => `${subject}: ${percentage}%`}
-                        outerRadius={80}
-                        fill="#8884d8"
+                        data={coverageMetrics.bySubject}
                         dataKey="covered"
+                        fill="#8884d8"
+                        label={({ subject, percentage }) => `${subject}: ${percentage}%`}
+                        labelLine={false}
+                        outerRadius={80}
                       >
                         {coverageMetrics.bySubject.map((entry, index) => (
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -286,13 +292,13 @@ export default function CurriculumExpectationCoverage() {
             </CardHeader>
             <CardContent>
               <div className="h-96">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer height="100%" width="100%">
                   <BarChart
                     data={coverageMetrics.byStrand}
                     margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
                   >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="strand" angle={-45} textAnchor="end" height={100} />
+                    <XAxis angle={-45} dataKey="strand" height={100} textAnchor="end" />
                     <YAxis />
                     <Tooltip />
                     <Legend />
@@ -332,7 +338,7 @@ export default function CurriculumExpectationCoverage() {
                               {subject.percentage}%
                             </Badge>
                           </div>
-                          <Progress value={subject.percentage} className="h-2" />
+                          <Progress className="h-2" value={subject.percentage} />
                           <div className="text-xs text-gray-600 mt-1">
                             {subject.covered}/{subject.total} covered
                           </div>
@@ -375,7 +381,7 @@ export default function CurriculumExpectationCoverage() {
                               </div>
                               <div className="text-sm text-gray-600 mt-1">{exp.description}</div>
                             </div>
-                            <Badge variant="destructive" className="ml-2">
+                            <Badge className="ml-2" variant="destructive">
                               Regular
                             </Badge>
                           </div>

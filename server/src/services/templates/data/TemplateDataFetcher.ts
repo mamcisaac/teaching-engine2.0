@@ -5,7 +5,7 @@
  */
 
 import { prisma } from '../../../prisma';
-import { DataRequirement } from '../providers/TemplateProvider';
+import type { DataRequirement } from '../providers/TemplateProvider';
 
 export interface FetchContext {
   userId: number;
@@ -104,10 +104,10 @@ export class TemplateDataFetcher {
       name: user.name,
       email: user.email,
       role: user.role,
-      className: (preferences as any)?.className || `Grade ${(preferences as any)?.grade || ''}`,
-      schoolName: (preferences as any)?.schoolName || 'School',
-      schoolPhone: (preferences as any)?.schoolPhone,
-      classWebsite: (preferences as any)?.classWebsite,
+      className: (preferences)?.className || `Grade ${(preferences)?.grade || ''}`,
+      schoolName: (preferences)?.schoolName || 'School',
+      schoolPhone: (preferences)?.schoolPhone,
+      classWebsite: (preferences)?.classWebsite,
       preferredLanguage: user.preferredLanguage,
     };
   }
@@ -161,7 +161,7 @@ export class TemplateDataFetcher {
       userId: context.userId,
     };
 
-    if (context.filters?.startDate && context.filters?.endDate) {
+    if (context.filters?.startDate && context.filters.endDate) {
       where.date = {
         gte: new Date(context.filters.startDate as string | number | Date),
         lte: new Date(context.filters.endDate as string | number | Date),
@@ -459,11 +459,11 @@ export class TemplateDataFetcher {
     ];
 
     // Add subject-specific suggestions
-    if ((subjectSummaries as any[]).some(s => (s as any).subject === 'Mathematics')) {
+    if ((subjectSummaries as any[]).some(s => (s).subject === 'Mathematics')) {
       suggestions.push('Review math facts using everyday situations like cooking or shopping');
     }
 
-    if ((subjectSummaries as any[]).some(s => (s as any).subject === 'Science')) {
+    if ((subjectSummaries as any[]).some(s => (s).subject === 'Science')) {
       suggestions.push('Encourage questions about the natural world during outdoor time');
     }
 

@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 
 import logger from '../logger.js';
 
@@ -67,7 +67,7 @@ class AuditLogger {
         if (res.statusCode >= 400) {
           success = false;
           const errorData = data as { error?: string; message?: string };
-          errorMessage = typeof data === 'string' ? data : errorData?.error || errorData?.message;
+          errorMessage = typeof data === 'string' ? data : errorData.error || errorData.message;
         }
         return originalSend.call(res, data);
       };
@@ -77,7 +77,7 @@ class AuditLogger {
         if (res.statusCode >= 400) {
           success = false;
           const errorData = data as { error?: string; message?: string };
-          errorMessage = errorData?.error || errorData?.message;
+          errorMessage = errorData.error || errorData.message;
         }
         return originalJson.call(res, data);
       };
@@ -87,7 +87,7 @@ class AuditLogger {
         const duration = Date.now() - start;
 
         const entry: AuditLogEntry = {
-          userId: req.user?.id?.toString() || 'anonymous',
+          userId: req.user?.id.toString() || 'anonymous',
           action,
           resource,
           resourceId: req.params.id || req.body?.id,

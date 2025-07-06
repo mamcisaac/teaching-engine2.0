@@ -4,8 +4,8 @@
  * Handles exporting curriculum expectations to various formats
  */
 
-import { BaseService } from '../base/BaseService';
 import { prisma } from '../../prisma';
+import { BaseService } from '../base/BaseService';
 
 import { CurriculumTransformer } from './transformers/CurriculumTransformer';
 

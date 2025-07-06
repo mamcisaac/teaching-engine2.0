@@ -1,10 +1,12 @@
-import React, { useState, memo, useMemo, useCallback } from 'react';
 import { startOfMonth, endOfMonth, eachDayOfInterval, format, isSameMonth } from 'date-fns';
+import React, { useState, memo, useMemo, useCallback } from 'react';
+
 import { useCalendarEvents } from '../../api/domains/calendar';
 import type { CalendarEvent } from '../../types';
+import logger from '../../utils/logger';
+
 import { LoadingSkeleton } from './LoadingSkeleton';
 import { VirtualizedList } from './VirtualizedList';
-import logger from '../../utils/logger';
 
 interface OptimizedCalendarViewProps {
   month: Date;
@@ -18,7 +20,7 @@ interface OptimizedCalendarViewProps {
 }
 
 // Memoized day cell component
-const DayCell = memo(function DayCell({
+const DayCell = memo(({
   date,
   events,
   onEventClick,
@@ -32,7 +34,7 @@ const DayCell = memo(function DayCell({
   onDateClick?: (date: Date) => void;
   isCurrentMonth: boolean;
   maxEventsPerDay: number;
-}) {
+}) => {
   const dayNumber = date.getDate();
   const isToday = useMemo(() => {
     const today = new Date();
@@ -47,9 +49,7 @@ const DayCell = memo(function DayCell({
     onDateClick?.(date);
   }, [date, onDateClick]);
 
-  const visibleEvents = useMemo(() => {
-    return events.slice(0, maxEventsPerDay);
-  }, [events, maxEventsPerDay]);
+  const visibleEvents = useMemo(() => events.slice(0, maxEventsPerDay), [events, maxEventsPerDay]);
 
   const hiddenEventCount = Math.max(0, events.length - maxEventsPerDay);
 
@@ -87,9 +87,9 @@ const DayCell = memo(function DayCell({
       </div>
     </div>
   );
-}, (prevProps, nextProps) => {
+}, (prevProps, nextProps) => 
   // Optimize re-renders by comparing relevant props
-  return (
+   (
     format(prevProps.date, 'yyyy-MM-dd') === format(nextProps.date, 'yyyy-MM-dd') &&
     prevProps.events.length === nextProps.events.length &&
     prevProps.isCurrentMonth === nextProps.isCurrentMonth &&
@@ -98,17 +98,17 @@ const DayCell = memo(function DayCell({
       event.id === nextProps.events[index]?.id &&
       event.title === nextProps.events[index]?.title
     )
-  );
-});
+  )
+);
 
 // Memoized event list item for virtualized view
-const EventListItem = memo(function EventListItem({
+const EventListItem = memo(({
   event,
   onClick,
 }: {
   event: CalendarEvent;
   onClick?: (event: CalendarEvent) => void;
-}) {
+}) => {
   const handleClick = useCallback(() => {
     onClick?.(event);
   }, [event, onClick]);
@@ -137,15 +137,13 @@ const EventListItem = memo(function EventListItem({
       )}
     </div>
   );
-}, (prevProps, nextProps) => {
-  return (
+}, (prevProps, nextProps) => (
     prevProps.event.id === nextProps.event.id &&
     prevProps.event.title === nextProps.event.title &&
     prevProps.event.start === nextProps.event.start
-  );
-});
+  ));
 
-export const OptimizedCalendarView = memo(function OptimizedCalendarView({
+export const OptimizedCalendarView = memo(({
   month,
   events: externalEvents,
   onEventClick,
@@ -154,7 +152,7 @@ export const OptimizedCalendarView = memo(function OptimizedCalendarView({
   compact = false,
   virtualizeEvents = false,
   maxEventsPerDay = 3,
-}: OptimizedCalendarViewProps) {
+}: OptimizedCalendarViewProps) => {
   const [viewMode, setViewMode] = useState<'calendar' | 'list'>('calendar');
 
   // Memoize expensive date calculations
@@ -194,10 +192,12 @@ export const OptimizedCalendarView = memo(function OptimizedCalendarView({
     // Safely process events
     if (Array.isArray(events)) {
       events.forEach((event) => {
-        if (event?.start) {
+        if (event.start) {
           const dateKey = event.start.split('T')[0];
           if (dateKey) {
-            if (!grouped[dateKey]) grouped[dateKey] = [];
+            if (!grouped[dateKey]) {
+grouped[dateKey] = [];
+}
             grouped[dateKey].push(event);
           }
         }
@@ -222,9 +222,9 @@ export const OptimizedCalendarView = memo(function OptimizedCalendarView({
           <h3 className="text-lg font-semibold">
             {format(month, 'MMMM yyyy')}
           </h3>
-          <LoadingSkeleton width="100px" height="32px" />
+          <LoadingSkeleton height="32px" width="100px" />
         </div>
-        <LoadingSkeleton variant="table" rows={6} columns={7} />
+        <LoadingSkeleton columns={7} rows={6} variant="table" />
       </div>
     );
   }
@@ -248,22 +248,26 @@ export const OptimizedCalendarView = memo(function OptimizedCalendarView({
         </h3>
         <div className="flex gap-2">
           <button
-            onClick={() => setViewMode('calendar')}
             className={`px-3 py-1 text-sm rounded ${
               viewMode === 'calendar'
                 ? 'bg-blue-500 text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             }`}
+            onClick={() => {
+ setViewMode('calendar'); 
+}}
           >
             Calendar
           </button>
           <button
-            onClick={() => setViewMode('list')}
             className={`px-3 py-1 text-sm rounded ${
               viewMode === 'list'
                 ? 'bg-blue-500 text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             }`}
+            onClick={() => {
+ setViewMode('list'); 
+}}
           >
             List ({events.length})
           </button>
@@ -290,10 +294,10 @@ export const OptimizedCalendarView = memo(function OptimizedCalendarView({
                 key={dayKey}
                 date={day}
                 events={dayEvents}
-                onEventClick={onEventClick}
-                onDateClick={onDateClick}
                 isCurrentMonth={isCurrentMonth}
                 maxEventsPerDay={compact ? 2 : maxEventsPerDay}
+                onDateClick={onDateClick}
+                onEventClick={onEventClick}
               />
             );
           })}
@@ -306,9 +310,9 @@ export const OptimizedCalendarView = memo(function OptimizedCalendarView({
             </div>
           ) : virtualizeEvents && events.length > 20 ? (
             <VirtualizedList
-              items={events}
-              itemHeight={60}
               height={400}
+              itemHeight={60}
+              items={events}
               renderItem={renderEventItem}
             />
           ) : (
@@ -326,12 +330,12 @@ export const OptimizedCalendarView = memo(function OptimizedCalendarView({
       )}
     </div>
   );
-}, (prevProps, nextProps) => {
+}, (prevProps, nextProps) => 
   // Optimize re-renders by comparing month and events
-  return (
+   (
     format(prevProps.month, 'yyyy-MM') === format(nextProps.month, 'yyyy-MM') &&
     prevProps.events?.length === nextProps.events?.length &&
     prevProps.compact === nextProps.compact &&
     prevProps.maxEventsPerDay === nextProps.maxEventsPerDay
-  );
-});
+  )
+);

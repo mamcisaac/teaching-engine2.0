@@ -1,5 +1,6 @@
-import { apiClient } from '../api/core/client';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+
+import { apiClient } from '../api/core/client';
 import logger from '../utils/logger';
 export interface WorkflowState {
   userId: number;
@@ -88,17 +89,11 @@ export function useWorkflowState() {
     queryClient.invalidateQueries({ queryKey: ['etfo-progress'] });
   };
 
-  const getLevelProgress = (level: ETFOLevel): LevelProgress | undefined => {
-    return workflowState?.progress.find((p) => p.level === level);
-  };
+  const getLevelProgress = (level: ETFOLevel): LevelProgress | undefined => workflowState?.progress.find((p) => p.level === level);
 
-  const isLevelComplete = (level: ETFOLevel): boolean => {
-    return workflowState?.completedLevels.includes(level) || false;
-  };
+  const isLevelComplete = (level: ETFOLevel): boolean => workflowState?.completedLevels.includes(level) || false;
 
-  const isLevelAccessible = (level: ETFOLevel): boolean => {
-    return workflowState?.accessibleLevels.includes(level) || false;
-  };
+  const isLevelAccessible = (level: ETFOLevel): boolean => workflowState?.accessibleLevels.includes(level) || false;
 
   const getBlockedReason = (level: ETFOLevel): string | undefined => {
     const progress = getLevelProgress(level);
@@ -106,11 +101,13 @@ export function useWorkflowState() {
   };
 
   const getNextLevel = (): ETFOLevel | null => {
-    if (!workflowState) return null;
+    if (!workflowState) {
+return null;
+}
 
     // Find the first incomplete but accessible level
     const nextLevel = workflowState.progress.find((p) => !p.isComplete && p.isAccessible);
-    return nextLevel?.level || null;
+    return ((nextLevel?.level) != null) || null;
   };
 
   const getPreviousLevel = (level: ETFOLevel): ETFOLevel | null => {

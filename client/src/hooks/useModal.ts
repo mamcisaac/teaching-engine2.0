@@ -25,7 +25,9 @@ export function useModal<T = unknown>(options: UseModalOptions<T> = {}) {
     setIsOpen(false);
     onClose?.();
     // Clear data after animation completes
-    setTimeout(() => setData(undefined), 300);
+    setTimeout(() => {
+ setData(undefined); 
+}, 300);
   }, [onClose]);
 
   const toggle = useCallback(() => {
@@ -124,16 +126,12 @@ export function useModals(initialModals: string[] = []): UseModalsReturn {
   }, []);
 
   const isModalOpen = useCallback(
-    (name: string) => {
-      return modals[name]?.isOpen || false;
-    },
+    (name: string) => modals[name].isOpen || false,
     [modals],
   );
 
   const getModalData = useCallback(
-    <T = unknown>(name: string): T | undefined => {
-      return modals[name]?.data as T;
-    },
+    <T = unknown>(name: string): T | undefined => modals[name].data as T,
     [modals],
   );
 

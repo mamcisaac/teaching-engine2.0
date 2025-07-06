@@ -3,10 +3,11 @@
  * Handles user profile and account management
  */
 
-import { Router, Request } from 'express';
-import { PrismaClient } from '@teaching-engine/database';
-import { z } from 'zod';
+import type { PrismaClient } from '@teaching-engine/database';
 import bcrypt from 'bcryptjs';
+import type { Request } from 'express';
+import { Router } from 'express';
+import { z } from 'zod';
 
 import { asyncHandler } from '../middleware/errorHandler';
 import { RepositoryFactory } from '../repositories/RepositoryFactory';

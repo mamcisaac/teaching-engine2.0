@@ -2,13 +2,15 @@
 // Example of how to integrate offline functionality into components
 
 import React, { useEffect, useState } from 'react';
-import { useUnitPlanStore } from '../stores/unitPlanStore';
-import { useLessonPlanStore } from '../stores/lessonPlanStore';
-import { useDaybookStore } from '../stores/daybookStore';
-import { useWeeklyPlannerStore } from '../stores/weeklyPlannerStore';
-import { offlineStorage, StoredData } from '../services/offlineStorage';
+
 import { lazyLoader } from '../services/lazyLoader';
+import type { StoredData } from '../services/offlineStorage';
+import { offlineStorage } from '../services/offlineStorage';
 import { batchedApi } from '../services/requestBatcher';
+import { useDaybookStore } from '../stores/daybookStore';
+import { useLessonPlanStore } from '../stores/lessonPlanStore';
+import { useUnitPlanStore } from '../stores/unitPlanStore';
+import { useWeeklyPlannerStore } from '../stores/weeklyPlannerStore';
 import logger from '../utils/logger';
 // Combined offline planning hook
 export function useOfflinePlanning() {
@@ -17,7 +19,7 @@ export function useOfflinePlanning() {
   const daybookStore = useDaybookStore();
   const weeklyPlannerStore = useWeeklyPlannerStore();
 
-  const [conflicts, setConflicts] = useState<Array<{ id: string; [key: string]: unknown }>>([]);
+  const [conflicts, setConflicts] = useState<{ id: string; [key: string]: unknown }[]>([]);
 
   // Check for conflicts on mount
   useEffect(() => {
@@ -50,7 +52,9 @@ export function useOfflinePlanning() {
     };
 
     window.addEventListener('online', handleOnline);
-    return () => window.removeEventListener('online', handleOnline);
+    return () => {
+ window.removeEventListener('online', handleOnline); 
+};
   }, [unitPlanStore, lessonPlanStore, daybookStore, weeklyPlannerStore]);
 
   // Resolve conflict
@@ -83,20 +87,22 @@ export function useOfflinePlanning() {
       statuses.push('syncing');
     }
 
-    if (statuses.includes('error')) return 'error';
-    if (statuses.includes('syncing')) return 'syncing';
+    if (statuses.includes('error')) {
+return 'error';
+}
+    if (statuses.includes('syncing')) {
+return 'syncing';
+}
     return 'idle';
   };
 
   // Get total pending changes
-  const getTotalPendingChanges = () => {
-    return (
+  const getTotalPendingChanges = () => (
       unitPlanStore.pendingChanges +
       lessonPlanStore.pendingChanges +
       daybookStore.pendingChanges +
       (weeklyPlannerStore.hasOfflineChanges ? 1 : 0)
     );
-  };
 
   return {
     // Store instances
@@ -126,7 +132,9 @@ export function useUnitPlanWithOffline(unitPlanId?: string) {
 
   // Load unit plan with offline support
   useEffect(() => {
-    if (!unitPlanId) return;
+    if (!unitPlanId) {
+return;
+}
 
     const loadPlan = async () => {
       setLoading(true);
@@ -147,7 +155,9 @@ export function useUnitPlanWithOffline(unitPlanId?: string) {
     let timeout: NodeJS.Timeout | null = null;
     
     const debounced = (updates: unknown) => {
-      if (timeout) clearTimeout(timeout);
+      if (timeout) {
+clearTimeout(timeout);
+}
       
       return new Promise<void>((resolve) => {
         timeout = setTimeout(async () => {

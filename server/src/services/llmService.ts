@@ -248,7 +248,7 @@ export class LLMService extends BaseService {
    * Enhance the prompt with context and formatting
    */
   private enhancePrompt(request: ContentGenerationRequest): string {
-    let prompt = request.prompt;
+    let {prompt} = request;
 
     // Add context if provided
     if (request.context) {
@@ -361,7 +361,7 @@ export const generateContentDetailed = (
 ): Promise<GenerationResult> => llmService.generateContentDetailed(request);
 
 // Export OpenAI client for direct access (used by tests and other services)
-export const openai = llmService.openai;
+export const {openai} = llmService;
 
 // Default export for ES modules
 export default llmService;

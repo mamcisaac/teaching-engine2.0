@@ -1,6 +1,7 @@
+import { clsx } from 'clsx';
 import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { clsx } from 'clsx';
+
 import { Button } from './Button';
 
 export interface ModalProps {
@@ -59,25 +60,27 @@ export const Modal: React.FC<ModalProps> = ({
     xl: 'max-w-4xl'
   };
 
-  if (!isOpen) return null;
+  if (!isOpen) {
+return null;
+}
 
   return createPortal(
     <div
-      className="fixed inset-0 z-50 overflow-y-auto"
       aria-labelledby="modal-title"
-      role="dialog"
       aria-modal="true"
+      className="fixed inset-0 z-50 overflow-y-auto"
+      role="dialog"
     >
       <div className="flex min-h-screen items-end justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
         {/* Background overlay */}
         <div
-          className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
           aria-hidden="true"
+          className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
           onClick={handleOverlayClick}
         />
 
         {/* This element is to trick the browser into centering the modal contents. */}
-        <span className="hidden sm:inline-block sm:h-screen sm:align-middle" aria-hidden="true">
+        <span aria-hidden="true" className="hidden sm:inline-block sm:h-screen sm:align-middle">
           &#8203;
         </span>
 
@@ -99,24 +102,24 @@ export const Modal: React.FC<ModalProps> = ({
               )}
               {showCloseButton && (
                 <button
-                  type="button"
                   className="ml-auto rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  type="button"
                   onClick={onClose}
                 >
                   <span className="sr-only">Close</span>
                   <svg
-                    className="h-6 w-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
                     aria-hidden="true"
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
+                      d="M6 18L18 6M6 6l12 12"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
                     />
                   </svg>
                 </button>
@@ -157,15 +160,13 @@ export const ModalFooter: React.FC<ModalFooterProps> = ({
   confirmText = 'Confirm',
   confirmVariant = 'primary',
   loading = false,
-}) => {
-  return (
+}) => (
     <div className="flex justify-end space-x-3">
-      <Button variant="secondary" onClick={onCancel} disabled={loading}>
+      <Button disabled={loading} variant="secondary" onClick={onCancel}>
         {cancelText}
       </Button>
-      <Button variant={confirmVariant} onClick={onConfirm} loading={loading}>
+      <Button loading={loading} variant={confirmVariant} onClick={onConfirm}>
         {confirmText}
       </Button>
     </div>
   );
-};

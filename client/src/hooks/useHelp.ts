@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
+
 import { useHelp as useHelpContext } from '../contexts/HelpContext';
-import { HelpContent, Tutorial } from '../types/help';
+import type { HelpContent, Tutorial } from '../types/help';
 
 // Mock help content - in a real app, this would come from markdown files or API
 const mockHelpContent: HelpContent[] = [
@@ -513,8 +514,7 @@ export function useTutorials() {
   const { state } = useHelpContext();
 
   // Get available tutorials
-  const availableTutorials = useMemo(() => {
-    return mockTutorials.filter(tutorial => {
+  const availableTutorials = useMemo(() => mockTutorials.filter(tutorial => {
       // Check if prerequisites are met
       if (tutorial.prerequisites.length > 0) {
         return tutorial.prerequisites.every(prereq =>
@@ -522,18 +522,17 @@ export function useTutorials() {
         );
       }
       return true;
-    });
-  }, [state.completedTutorials]);
+    }), [state.completedTutorials]);
 
   // Get tutorial by ID
-  const getTutorial = (tutorialId: string) => {
-    return mockTutorials.find(tutorial => tutorial.id === tutorialId);
-  };
+  const getTutorial = (tutorialId: string) => mockTutorials.find(tutorial => tutorial.id === tutorialId);
 
   // Get tutorial progress
   const getTutorialProgress = (tutorialId: string) => {
     const tutorial = getTutorial(tutorialId);
-    if (!tutorial) return 0;
+    if (!tutorial) {
+return 0;
+}
 
     const currentStep = state.tutorialProgress[tutorialId] || 0;
     return (currentStep / tutorial.steps.length) * 100;
@@ -554,7 +553,7 @@ export function useHelpAnalytics() {
   const analytics = useMemo(() => {
     const totalPagesViewed = state.userProgress.helpPagesViewed.length;
     const totalTutorialsCompleted = state.userProgress.tutorialsCompleted.length;
-    const totalTimeSpent = state.userProgress.totalTimeSpent;
+    const {totalTimeSpent} = state.userProgress;
 
     // Calculate engagement score (0-100)
     const engagementScore = Math.min(

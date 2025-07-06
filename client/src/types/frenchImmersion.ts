@@ -1,4 +1,4 @@
-import { LessonPlanContent, UnitPlanContent } from './template';
+import type { LessonPlanContent, UnitPlanContent } from './template';
 
 // French Immersion specific content extensions
 export interface FrenchImmersionLessonContent extends LessonPlanContent {

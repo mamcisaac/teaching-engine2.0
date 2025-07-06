@@ -1,10 +1,12 @@
-import { Router, Request } from 'express';
+import type { Request } from 'express';
+import { Router } from 'express';
 import { z } from 'zod';
 
-import { Prisma , prisma } from '../prisma';
-import { validate } from '../validation';
-import { generateLongRangePlanDraft, generatePlanSuggestions } from '../services/ai/aiDraftService';
 import logger from '../logger';
+import type { Prisma } from '../prisma';
+import { prisma } from '../prisma';
+import { generateLongRangePlanDraft, generatePlanSuggestions } from '../services/ai/aiDraftService';
+import { validate } from '../validation';
 const router = Router();
 
 // Validation schemas
@@ -42,9 +44,15 @@ router.get('/', async (req: Request, res, _next) => {
     const { academicYear, subject, grade } = req.query;
 
     const where: Prisma.LongRangePlanWhereInput = { userId };
-    if (academicYear) where.academicYear = String(academicYear);
-    if (subject) where.subject = String(subject);
-    if (grade) where.grade = Number(grade);
+    if (academicYear) {
+where.academicYear = String(academicYear);
+}
+    if (subject) {
+where.subject = String(subject);
+}
+    if (grade) {
+where.grade = Number(grade);
+}
 
     const plans = await prisma.longRangePlan.findMany({
       where,
@@ -62,7 +70,7 @@ router.get('/', async (req: Request, res, _next) => {
     res.json(plans);
     return;
   } catch (_err) {
-    return _next(_err);
+    _next(_err); return;
   }
 });
 
@@ -111,7 +119,7 @@ router.get('/:id', async (req: Request, res, _next) => {
     res.json(plan);
     return;
   } catch (_err) {
-    return _next(_err);
+    _next(_err); return;
   }
 });
 
@@ -185,7 +193,7 @@ router.post('/', validate(longRangePlanCreateSchema), async (req: Request, res, 
     res.status(201).json(plan);
     return;
   } catch (_err) {
-    return _next(_err);
+    _next(_err); return;
   }
 });
 
@@ -261,7 +269,7 @@ router.put('/:id', validate(longRangePlanUpdateSchema), async (req: Request, res
     res.json(updatedPlan);
     return;
   } catch (_err) {
-    return _next(_err);
+    _next(_err); return;
   }
 });
 
@@ -300,7 +308,7 @@ router.delete('/:id', async (req: Request, res, _next) => {
 
     return res.status(204).end();
   } catch (_err) {
-    return _next(_err);
+    _next(_err); return;
   }
 });
 

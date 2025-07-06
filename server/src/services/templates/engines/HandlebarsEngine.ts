@@ -6,13 +6,14 @@
 
 import * as Handlebars from 'handlebars';
 
-import { Template } from '../providers/TemplateProvider';
+import type { Template } from '../providers/TemplateProvider';
 
-import { RenderEngine, RenderResult, RenderContext } from './RenderEngine';
+import type { RenderResult, RenderContext } from './RenderEngine';
+import { RenderEngine } from './RenderEngine';
 
 export class HandlebarsEngine extends RenderEngine {
   private handlebars: typeof Handlebars;
-  private compiledTemplates: Map<string, HandlebarsTemplateDelegate> = new Map();
+  private compiledTemplates = new Map<string, HandlebarsTemplateDelegate>();
 
   constructor() {
     super('handlebars');
@@ -111,7 +112,9 @@ export class HandlebarsEngine extends RenderEngine {
   private registerDefaultHelpers(): void {
     // Date formatting
     this.handlebars.registerHelper('formatDate', (date: unknown, format?: string) => {
-      if (!date) return '';
+      if (!date) {
+return '';
+}
       
       let d: Date;
       if (date === 'now') {
@@ -149,18 +152,20 @@ export class HandlebarsEngine extends RenderEngine {
           month: 'long',
           day: 'numeric',
         });
-      } else {
+      } 
         return d.toLocaleDateString('en-US', {
           year: 'numeric',
           month: 'long',
           day: 'numeric',
         });
-      }
+      
     });
 
     // Time formatting
     this.handlebars.registerHelper('formatTime', (date: unknown) => {
-      if (!date) return '';
+      if (!date) {
+return '';
+}
       const d = new Date(date as string | number | Date);
       return d.toLocaleTimeString('en-US', {
         hour: 'numeric',
@@ -169,16 +174,20 @@ export class HandlebarsEngine extends RenderEngine {
     });
 
     // Number formatting
-    this.handlebars.registerHelper('formatNumber', (num: unknown, decimals: number = 0) => {
+    this.handlebars.registerHelper('formatNumber', (num: unknown, decimals = 0) => {
       const n = parseFloat(num as string);
-      if (isNaN(n)) return '0';
+      if (isNaN(n)) {
+return '0';
+}
       return n.toFixed(decimals);
     });
 
     // Percentage formatting
     this.handlebars.registerHelper('formatPercent', (num: unknown) => {
       const n = parseFloat(num as string);
-      if (isNaN(n)) return '0%';
+      if (isNaN(n)) {
+return '0%';
+}
       return `${Math.round(n)}%`;
     });
 
@@ -191,32 +200,30 @@ export class HandlebarsEngine extends RenderEngine {
     this.handlebars.registerHelper('gte', (a: unknown, b: unknown) => (a as any) >= (b as any));
 
     // Array helpers
-    this.handlebars.registerHelper('length', (arr: unknown[]) => {
-      return Array.isArray(arr) ? arr.length : 0;
-    });
+    this.handlebars.registerHelper('length', (arr: unknown[]) => Array.isArray(arr) ? arr.length : 0);
 
-    this.handlebars.registerHelper('join', (arr: unknown[], separator: string = ', ') => {
-      return Array.isArray(arr) ? arr.join(separator) : '';
-    });
+    this.handlebars.registerHelper('join', (arr: unknown[], separator = ', ') => Array.isArray(arr) ? arr.join(separator) : '');
 
     // String helpers
-    this.handlebars.registerHelper('uppercase', (str: string) => {
-      return typeof str === 'string' ? str.toUpperCase() : '';
-    });
+    this.handlebars.registerHelper('uppercase', (str: string) => typeof str === 'string' ? str.toUpperCase() : '');
 
-    this.handlebars.registerHelper('lowercase', (str: string) => {
-      return typeof str === 'string' ? str.toLowerCase() : '';
-    });
+    this.handlebars.registerHelper('lowercase', (str: string) => typeof str === 'string' ? str.toLowerCase() : '');
 
     this.handlebars.registerHelper('capitalize', (str: string) => {
-      if (typeof str !== 'string') return '';
+      if (typeof str !== 'string') {
+return '';
+}
       return str.charAt(0).toUpperCase() + str.slice(1);
     });
 
-    this.handlebars.registerHelper('truncate', (str: string, length: number = 50) => {
-      if (typeof str !== 'string') return '';
-      if (str.length <= length) return str;
-      return str.substring(0, length) + '...';
+    this.handlebars.registerHelper('truncate', (str: string, length = 50) => {
+      if (typeof str !== 'string') {
+return '';
+}
+      if (str.length <= length) {
+return str;
+}
+      return `${str.substring(0, length)  }...`;
     });
 
     // Math helpers
@@ -229,19 +236,13 @@ export class HandlebarsEngine extends RenderEngine {
     this.handlebars.registerHelper('inc', (value: number) => value + 1);
 
     // JSON helper
-    this.handlebars.registerHelper('json', (context: unknown) => {
-      return JSON.stringify(context, null, 2);
-    });
+    this.handlebars.registerHelper('json', (context: unknown) => JSON.stringify(context, null, 2));
 
     // Default value helper
-    this.handlebars.registerHelper('default', (value: unknown, defaultValue: unknown) => {
-      return value || defaultValue;
-    });
+    this.handlebars.registerHelper('default', (value: unknown, defaultValue: unknown) => value || defaultValue);
 
     // Pluralize helper
-    this.handlebars.registerHelper('pluralize', (count: number, singular: string, plural?: string) => {
-      return count === 1 ? singular : (plural || singular + 's');
-    });
+    this.handlebars.registerHelper('pluralize', (count: number, singular: string, plural?: string) => count === 1 ? singular : (plural || `${singular  }s`));
   }
 
   /**
