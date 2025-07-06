@@ -7,7 +7,7 @@ import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
 import { newsletterApi } from './api';
 
 // Query hooks
-export const useNewsletter = (id: number, type: 'raw' | 'polished' = 'raw'): UseQueryResult<NewsletterDraft> =>
+export const useNewsletter = (id: number, type: 'raw' | 'polished' = 'raw'): UseQueryResult<Newsletter> =>
   useQuery({
     queryKey: queryKeys.newsletter.detail(id, type),
     queryFn: () => newsletterApi.getNewsletter(id, type),
@@ -21,7 +21,7 @@ export const useNewsletterSuggestions = (): UseQueryResult<{ suggested: boolean 
   });
 
 // Mutation hooks
-export const useCreateNewsletterDraft = (): UseMutationResult<NewsletterDraft, Error, NewsletterGenerateInput> => {
+export const useCreateNewsletterDraft = (): UseMutationResult<Newsletter, Error, NewsletterInput> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -49,7 +49,7 @@ export const useCreateNewsletter = (): UseMutationResult<Newsletter, Error, News
   });
 };
 
-export const useGenerateNewsletter = (): UseMutationResult<NewsletterDraft, Error, NewsletterGenerateInput> => useMutation({
+export const useGenerateNewsletter = (): UseMutationResult<{ content: string }, Error, NewsletterGenerateInput> => useMutation({
     mutationFn: newsletterApi.generate,
     onSuccess: (data) => {
       showSuccessToast('Newsletter generated successfully');

@@ -14,7 +14,7 @@ export const useTeacherPreferences = (): UseQueryResult<unknown> =>
   });
 
 // Preferences Mutation hooks
-export const useUpdateTeacherPreferences = (): UseQueryResult<unknown> => {
+export const useUpdateTeacherPreferences = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -42,7 +42,7 @@ export const useTeacherReflection = (id: number) =>
   });
 
 // Reflections Mutation hooks
-export const useCreateTeacherReflection = (): UseQueryResult<unknown> => {
+export const useCreateTeacherReflection = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -55,7 +55,7 @@ export const useCreateTeacherReflection = (): UseQueryResult<unknown> => {
   });
 };
 
-export const useUpdateTeacherReflection = (): UseQueryResult<unknown> => {
+export const useUpdateTeacherReflection = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -70,7 +70,7 @@ export const useUpdateTeacherReflection = (): UseQueryResult<unknown> => {
   });
 };
 
-export const useDeleteTeacherReflection = (): UseQueryResult<unknown> => {
+export const useDeleteTeacherReflection = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -105,7 +105,7 @@ export const useTeacherProfile = (): UseQueryResult<unknown> =>
   });
 
 // Profile Mutation hooks
-export const useUpdateTeacherProfile = (): UseQueryResult<unknown> => {
+export const useUpdateTeacherProfile = () => {
   const queryClient = useQueryClient();
 
   return useMutation({

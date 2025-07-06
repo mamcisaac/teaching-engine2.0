@@ -70,7 +70,7 @@ export const useSuggestedActivities = (grade: number, subject?: string, duration
   });
 
 // Plan mutation hooks
-export const useCreateSubstitutePlan = (): UseQueryResult<unknown> => {
+export const useCreateSubstitutePlan = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -87,7 +87,7 @@ export const useCreateSubstitutePlan = (): UseQueryResult<unknown> => {
   });
 };
 
-export const useUpdateSubstitutePlan = (): UseQueryResult<unknown> => {
+export const useUpdateSubstitutePlan = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -105,7 +105,7 @@ export const useUpdateSubstitutePlan = (): UseQueryResult<unknown> => {
   });
 };
 
-export const useDeleteSubstitutePlan = (): UseQueryResult<unknown> => {
+export const useDeleteSubstitutePlan = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -121,7 +121,7 @@ export const useDeleteSubstitutePlan = (): UseQueryResult<unknown> => {
   });
 };
 
-export const useDuplicateSubstitutePlan = (): UseQueryResult<unknown> => {
+export const useDuplicateSubstitutePlan = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -140,7 +140,7 @@ export const useDuplicateSubstitutePlan = (): UseQueryResult<unknown> => {
   });
 };
 
-export const useMarkPlanCompleted = (): UseQueryResult<unknown> => {
+export const useMarkPlanCompleted = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -168,7 +168,7 @@ export const useMarkPlanCompleted = (): UseQueryResult<unknown> => {
 };
 
 // Template mutation hooks
-export const useCreateSubstituteTemplate = (): UseQueryResult<unknown> => {
+export const useCreateSubstituteTemplate = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -184,7 +184,7 @@ export const useCreateSubstituteTemplate = (): UseQueryResult<unknown> => {
   });
 };
 
-export const useCreateEmergencyPlan = (): UseQueryResult<unknown> => {
+export const useCreateEmergencyPlan = () => {
   const queryClient = useQueryClient();
 
   return useMutation({

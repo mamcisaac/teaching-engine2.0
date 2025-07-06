@@ -414,7 +414,7 @@ export const useImportRoutines = (): UseQueryResult<unknown> => {
   });
 };
 
-export const useExportRoutines = (): UseQueryResult<unknown> => useMutation({
+export const useExportRoutines = () => useMutation({
     mutationFn: ({ filters, format }: { 
       filters?: RoutineFilters; 
       format?: 'csv' | 'pdf' | 'json';
