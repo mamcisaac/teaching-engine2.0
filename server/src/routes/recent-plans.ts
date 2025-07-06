@@ -68,7 +68,7 @@ router.get('/', async (req: Request, res, _next) => {
 
     // Fetch plan details for each recent access
     const recentPlans = await Promise.all(
-      recentAccesses.map(async (access) => {
+      recentAccesses.map(async (access: { planType: string; planId: string; lastAccessed: Date }) => {
         let plan = null;
         let parentInfo = null;
 

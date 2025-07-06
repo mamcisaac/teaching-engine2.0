@@ -191,7 +191,7 @@ export class TemplateDataFetcher {
     });
 
     // Transform to template-friendly format
-    return lessons.map(lesson => ({
+    return lessons.map((lesson: any) => ({
       id: lesson.id,
       title: lesson.title,
       date: lesson.date,
@@ -216,7 +216,7 @@ export class TemplateDataFetcher {
       accommodations: lesson.accommodations,
       modifications: lesson.modifications,
       extensions: lesson.extensions,
-      expectations: lesson.expectations?.map(e => ({
+      expectations: lesson.expectations?.map((e: any) => ({
         code: e.expectationId,
         description: '',
         type: 'specific',
@@ -265,8 +265,8 @@ export class TemplateDataFetcher {
 
     // Group by code pattern (e.g., A1 is overall, A1.1 is specific)
     const grouped = {
-      overall: expectations.filter(e => !e.code.includes('.')),
-      specific: expectations.filter(e => e.code.includes('.')),
+      overall: expectations.filter((e: { code: string }) => !e.code.includes('.')),
+      specific: expectations.filter((e: { code: string }) => e.code.includes('.')),
     };
 
     return grouped;
@@ -415,7 +415,7 @@ export class TemplateDataFetcher {
     });
 
     return entries
-      .map(e => e.notableAchievements)
+      .map((e: { notableAchievements: string | null }) => e.notableAchievements)
       .filter(Boolean) as string[];
   }
 

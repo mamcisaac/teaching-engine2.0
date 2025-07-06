@@ -296,8 +296,8 @@ export class CurriculumSearchService extends BaseService {
         });
 
         return expectations
-          .map(e => field === 'code' ? (e as any).code : (e as any).description)
-          .filter((value): value is string => typeof value === 'string' && Boolean(value));
+          .map((e: { code?: string; description?: string }) => field === 'code' ? e.code : e.description)
+          .filter((value: string | undefined): value is string => typeof value === 'string' && Boolean(value));
       },
       'getAutoCompleteSuggestions'
     );

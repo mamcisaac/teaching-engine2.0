@@ -204,9 +204,9 @@ router.get(
       ]);
 
       res.json({
-        subjects: subjects.map((s) => s.subject),
-        grades: grades.map((g) => g.grade),
-        strands: strands.map((s) => s.strand),
+        subjects: subjects.map((s: { subject: string }) => s.subject),
+        grades: grades.map((g: { grade: number }) => g.grade),
+        strands: strands.map((s: { strand: string }) => s.strand),
       });
       return;
     } catch (_error) {

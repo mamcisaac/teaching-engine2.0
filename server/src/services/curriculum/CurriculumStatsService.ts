@@ -96,7 +96,7 @@ export class CurriculumStatsService extends BaseService {
 
         // Count expectations by subject
         for (const subject of subjects) {
-          const subjectExpectations = allExpectations.filter(e => e.subject === subject.name);
+          const subjectExpectations = allExpectations.filter((e: { subject: string }) => e.subject === subject.name);
           const count = subjectExpectations.length;
           stats.totalExpectations += count;
           stats.bySubject[subject.name] = count;
@@ -344,7 +344,7 @@ export class CurriculumStatsService extends BaseService {
         }
 
         return {
-          mostUsedExpectations: expectations.map(exp => ({
+          mostUsedExpectations: expectations.map((exp: { id: string; code: string; description: string }) => ({
             id: exp.id,
             code: exp.code,
             description: exp.description,
@@ -383,7 +383,14 @@ export class CurriculumStatsService extends BaseService {
 
         // Add expectations count for completed imports
         const importsWithStats = await Promise.all(
-          imports.map(async (importRecord) => {
+          imports.map(async (importRecord: {
+            id: string;
+            userId: number;
+            grade: number | null;
+            subject: string | null;
+            status: string;
+            createdAt: Date;
+          }) => {
             let expectationsCount: number | undefined;
 
             if (importRecord.status === 'COMPLETED') {

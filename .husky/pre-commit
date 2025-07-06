@@ -1,6 +1,21 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+# Run strict linting first (on all files)
+echo "🔍 Running strict linting checks..."
+pnpm lint:strict
+
+# If strict linting fails, show helpful message
+if [ $? -ne 0 ]; then
+  echo "❌ Strict linting failed! Fix the issues above or run:"
+  echo "   pnpm lint:strict:fix"
+  echo ""
+  echo "To bypass (not recommended), use: git commit --no-verify"
+  exit 1
+fi
+
+echo "✅ Strict linting passed!"
+
 # Run tests before commit
 echo "Running tests before commit..."
 pnpm test:quick

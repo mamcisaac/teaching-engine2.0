@@ -400,8 +400,8 @@ describe('SubstitutePlanService', () => {
     });
 
     test('should create consistent schedule structure', () => {
-      const schedule1 = (SubstitutePlanService as unknown).createBasicSchedule();
-      const schedule2 = (SubstitutePlanService as unknown).createBasicSchedule();
+      const schedule1 = (SubstitutePlanService as any).createBasicSchedule();
+      const schedule2 = (SubstitutePlanService as any).createBasicSchedule();
 
       expect(schedule1).toEqual(schedule2);
       expect(schedule1.length).toBe(schedule2.length);

@@ -264,6 +264,32 @@ pnpm test:ci
 pnpm test:help
 ```
 
+## 🔍 Code Quality
+
+### Strict Linting
+
+This project enforces strict ESLint rules for high code quality:
+
+```bash
+# Run strict linting checks
+pnpm lint:strict
+
+# Auto-fix linting issues
+pnpm lint:strict:fix
+
+# Standard linting (for CI)
+pnpm lint
+```
+
+**Key enforcements:**
+- No `any` types in TypeScript
+- Explicit function return types
+- Strict null checks
+- Consistent imports/exports
+- React best practices
+
+See [docs/strict-linting-guide.md](docs/strict-linting-guide.md) for detailed linting rules and examples.
+
 ### Smart Test Detection
 
 The default `pnpm test` command automatically:

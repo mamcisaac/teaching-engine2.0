@@ -1,0 +1,42 @@
+name: Strict Linting
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  strict-lint:
+    runs-on: ubuntu-latest
+    name: Strict ESLint Check
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 10.11.1
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: Generate Prisma Client
+        run: pnpm db:generate
+      
+      - name: Run strict linting
+        run: pnpm lint:strict
+        
+      - name: Upload lint results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eslint-results
+          path: |
+            eslint-report.json
+            eslint-report.html
+          retention-days: 7

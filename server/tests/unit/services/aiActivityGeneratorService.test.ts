@@ -217,7 +217,7 @@ describe('AIActivityGeneratorService', () => {
         },
       };
 
-      const result = (service as unknown).generateTemplateActivity(params);
+      const result = (service as any).generateTemplateActivity(params);
 
       expect(result).toEqual({
         title: 'Science Activity - Basic Lesson',
@@ -275,7 +275,7 @@ describe('AIActivityGeneratorService', () => {
         },
       };
 
-      const result = (service as unknown).generateTemplateActivity(params);
+      const result = (service as any).generateTemplateActivity(params);
 
       expect(result).toMatchObject({
         title: 'Math Activity - Advanced Lesson',
@@ -291,7 +291,7 @@ describe('AIActivityGeneratorService', () => {
     test('should handle empty parameters gracefully', () => {
       const params = {};
 
-      const result = (service as unknown).generateTemplateActivity(params);
+      const result = (service as any).generateTemplateActivity(params);
 
       expect(result).toMatchObject({
         title: 'Learning Activity - Exploration',
@@ -325,7 +325,7 @@ describe('AIActivityGeneratorService', () => {
         },
       };
 
-      const result = (service as unknown).generateTemplateActivity(params);
+      const result = (service as any).generateTemplateActivity(params);
 
       expect(result).toEqual({
         title: 'Mathematics Activity - Fractions Workshop',
@@ -381,7 +381,7 @@ describe('AIActivityGeneratorService', () => {
           },
         };
 
-        const result = (service as unknown).generateTemplateActivity(params);
+        const result = (service as any).generateTemplateActivity(params);
 
         // Should be age-appropriate
         expect(result.title).toContain(`Grade ${grade}`);
@@ -418,7 +418,7 @@ describe('AIActivityGeneratorService', () => {
           },
         };
 
-        const result = (service as unknown).generateTemplateActivity(params);
+        const result = (service as any).generateTemplateActivity(params);
 
         expect(result.title).toContain(subject);
         expect(result.description.toLowerCase()).toContain(subject.toLowerCase());
@@ -435,7 +435,7 @@ describe('AIActivityGeneratorService', () => {
         },
       };
 
-      const result = (service as unknown).generateTemplateActivity(params);
+      const result = (service as any).generateTemplateActivity(params);
 
       // Check all required educational components are present
       expect(result).toHaveProperty('title');

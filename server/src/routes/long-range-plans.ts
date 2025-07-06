@@ -154,7 +154,7 @@ router.post('/', validate(longRangePlanCreateSchema), async (req: Request, res, 
         return res.status(400).json({
           error: 'One or more curriculum expectations not found',
           provided: expectationIds,
-          found: validExpectations.map((e) => e.id),
+          found: validExpectations.map((e: { id: string }) => e.id),
         });
       }
 
@@ -332,7 +332,7 @@ router.post('/ai-draft', async (req: Request, res, _next) => {
 
     const draft = await generateLongRangePlanDraft({
       title: '',
-      expectationIds: expectations.map((exp) => exp.id),
+      expectationIds: expectations.map((exp: { id: string }) => exp.id),
       subject: subject || expectations[0].subject,
       grade: grade || expectations[0].grade,
       academicYear: academicYear || '2024-2025',
@@ -374,7 +374,7 @@ Subject: ${plan.subject}
 Grade: ${plan.grade}
 Goals: ${plan.goals || 'None specified'}
 Themes: ${Array.isArray(plan.themes) ? plan.themes.join(', ') : 'None specified'}
-Expectations: ${plan.expectations.map((e) => `${e.expectation.code}: ${e.expectation.description}`).join('\n')}
+Expectations: ${plan.expectations.map((e: { expectation: { code: string; description: string } }) => `${e.expectation.code}: ${e.expectation.description}`).join('\n')}
     `;
 
     const suggestions = await generatePlanSuggestions('long-range', existingContent);

@@ -453,12 +453,12 @@ class ETFOLessonPlanService extends BaseService {
         subNotes:
           'Auto-generated substitute-friendly version. Please review and customize as needed.',
         expectations: {
-          create: originalLesson.expectations.map((exp) => ({
+          create: originalLesson.expectations.map((exp: { expectationId: string }) => ({
             expectationId: exp.expectationId,
           })),
         },
         resources: {
-          create: originalLesson.resources.map((resource) => ({
+          create: originalLesson.resources.map((resource: { title: string; url: string | null; type: string; content: string | null }) => ({
             title: resource.title,
             url: resource.url,
             type: resource.type,
@@ -564,12 +564,12 @@ class ETFOLessonPlanService extends BaseService {
         isSubFriendly: sourceLessonPlan.isSubFriendly,
         subNotes: sourceLessonPlan.subNotes,
         expectations: {
-          create: sourceLessonPlan.expectations.map((exp) => ({
+          create: sourceLessonPlan.expectations.map((exp: { expectationId: string }) => ({
             expectationId: exp.expectationId,
           })),
         },
         resources: {
-          create: sourceLessonPlan.resources.map((resource) => ({
+          create: sourceLessonPlan.resources.map((resource: { title: string; url: string | null; type: string; content: string | null }) => ({
             title: resource.title,
             url: resource.url,
             type: resource.type,

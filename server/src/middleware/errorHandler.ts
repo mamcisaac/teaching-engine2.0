@@ -399,7 +399,7 @@ export function handleGracefulShutdown(server: { close: (callback: () => void) =
               logger.info('Database connections closed');
               process.exit(0);
             })
-            .catch((err) => {
+            .catch((err: unknown) => {
               logger.error({ error: err }, 'Error closing database connections');
               process.exit(1);
             });

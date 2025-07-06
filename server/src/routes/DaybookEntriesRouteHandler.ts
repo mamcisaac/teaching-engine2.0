@@ -386,12 +386,12 @@ class DaybookService extends BaseService {
 
     const averageRating =
       recentEntries.length > 0
-        ? recentEntries.reduce((sum, entry) => sum + (entry.overallRating || 0), 0) /
+        ? recentEntries.reduce((sum: number, entry: { overallRating: number | null }) => sum + (entry.overallRating || 0), 0) /
           recentEntries.length
         : 0;
 
     const subjectBreakdown = recentEntries.reduce(
-      (acc, entry) => {
+      (acc: Record<string, number>, entry) => {
         const subject = entry.lessonPlan?.unitPlan?.longRangePlan?.subject || 'Unknown';
         acc[subject] = (acc[subject] || 0) + 1;
         return acc;

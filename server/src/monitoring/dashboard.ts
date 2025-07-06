@@ -431,7 +431,7 @@ export const getDashboardMetrics = async (_req: Request, res: Response): Promise
           curriculum: {
             expectations_covered: coveredExpectations,
             coverage_percentage: coveragePercentage,
-            most_used_subjects: subjectCounts.map((sc) => ({
+            most_used_subjects: subjectCounts.map((sc: { subject: string | null; _count: { subject: number } }) => ({
               subject: sc.subject || 'Unknown',
               count: sc._count.subject,
             })),

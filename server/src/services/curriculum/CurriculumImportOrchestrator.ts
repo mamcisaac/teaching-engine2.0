@@ -256,7 +256,7 @@ export class CurriculumImportOrchestrator extends BaseService {
     };
 
     // Start transaction
-    const result = await prisma.$transaction(async (tx) => {
+    const result = await prisma.$transaction(async (tx: any) => {
       // Find or create subject
       let subject = await tx.subject.findFirst({
         where: {

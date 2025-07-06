@@ -289,14 +289,14 @@ describe('NewsletterService', () => {
 
   describe('getUserPreferences', () => {
     it('should return empty preferences object', async () => {
-      const result = await (NewsletterService as any).getUserPreferences(1);
+      const result = await NewsletterService.getUserPreferences(1);
 
       expect(result).toEqual({});
     });
 
     it('should handle different user IDs', async () => {
-      const result1 = await (NewsletterService as any).getUserPreferences(1);
-      const result2 = await (NewsletterService as any).getUserPreferences(999);
+      const result1 = await NewsletterService.getUserPreferences(1);
+      const result2 = await NewsletterService.getUserPreferences(999);
 
       expect(result1).toEqual({});
       expect(result2).toEqual({});

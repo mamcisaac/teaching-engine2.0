@@ -18,7 +18,7 @@ export async function runProgressCheck() {
     include: { lessonPlans: true, user: true },
   });
   for (const plan of unitPlans) {
-    const incompleteLessons = plan.lessonPlans.filter((l) => l.date > today).length;
+    const incompleteLessons = plan.lessonPlans.filter((l: { date: Date }) => l.date > today).length;
     if (incompleteLessons > 0) {
       const message = `Unit Plan "${plan.title}" is ending soon with ${incompleteLessons} upcoming lessons`;
       // DISABLED: Notification model has been archived

@@ -39,6 +39,8 @@
     "test:nonfunction": "concurrently \"pnpm test:performance\" \"pnpm test:visual\"",
     "test:all": "pnpm test && pnpm test:e2e && pnpm test:nonfunction",
     "lint": "eslint --config .eslintrc.json \"**/*.{ts,tsx,js,jsx}\"",
+    "lint:strict": "eslint --config .eslintrc.strict.json \"**/*.{ts,tsx}\" --ignore-pattern \"**/*.test.ts\" --ignore-pattern \"**/*.test.tsx\"",
+    "lint:strict:fix": "eslint --config .eslintrc.strict.json \"**/*.{ts,tsx}\" --ignore-pattern \"**/*.test.ts\" --ignore-pattern \"**/*.test.tsx\" --fix",
     "typecheck": "pnpm --filter client run typecheck && pnpm --filter server run typecheck",
     "prepare": "husky install",
     "db:generate": "pnpm --filter @teaching-engine/database db:generate",
@@ -106,7 +108,7 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
-      "eslint --fix",
+      "eslint --config .eslintrc.strict.json --fix",
       "prettier --write"
     ],
     "*.{json,md,yml,yaml}": [

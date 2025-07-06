@@ -305,12 +305,12 @@ class TemplateService extends BaseService {
     ]);
 
     const uniqueSubjects = subjects
-      .map((t) => t.subject)
-      .filter((s) => s !== null)
+      .map((t: { subject: string | null }) => t.subject)
+      .filter((s: string | null): s is string => s !== null)
       .sort();
 
     const gradeRange = grades.reduce(
-      (range, template) => {
+      (range: { min: number; max: number }, template: { gradeMin: number | null; gradeMax: number | null }) => {
         if (template.gradeMin) range.min = Math.min(range.min, template.gradeMin);
         if (template.gradeMax) range.max = Math.max(range.max, template.gradeMax);
         return range;
@@ -319,8 +319,8 @@ class TemplateService extends BaseService {
     );
 
     const allTags = tags
-      .flatMap((t) => (Array.isArray(t.tags) ? t.tags : []))
-      .filter((tag, index, array) => array.indexOf(tag) === index)
+      .flatMap((t: { tags: unknown }) => (Array.isArray(t.tags) ? t.tags as string[] : []))
+      .filter((tag: string, index: number, array: string[]) => array.indexOf(tag) === index)
       .sort();
 
     return {
@@ -329,7 +329,7 @@ class TemplateService extends BaseService {
         { length: gradeRange.max - gradeRange.min + 1 },
         (_, i) => gradeRange.min + i,
       ),
-      categories: categories.map((c) => c.category),
+      categories: categories.map((c: { category: string }) => c.category),
       tags: allTags,
     };
   }
