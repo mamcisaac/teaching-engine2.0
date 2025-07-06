@@ -3,6 +3,8 @@ import { nodeProfilingIntegration } from '@sentry/profiling-node';
 import { AppError } from '../../utils/errors';
 import { logger } from '../../logger';
 
+type Context = Record<string, any>;
+
 interface UserContext {
   id: string | number;
   email?: string;
@@ -147,7 +149,7 @@ export class ErrorReportingService {
 
       // Add custom context
       if (sanitizedContext) {
-        scope.setContext('custom', sanitizedContext);
+        scope.setContext('custom', sanitizedContext as Context);
       }
 
       // Capture the exception
@@ -210,7 +212,7 @@ export class ErrorReportingService {
       message: breadcrumb.message,
       category: breadcrumb.category,
       level: breadcrumb.level || 'info',
-      data: sanitizedData,
+      data: sanitizedData as { [key: string]: any },
       timestamp: Date.now() / 1000,
     });
   }
@@ -226,7 +228,7 @@ export class ErrorReportingService {
     }
 
     const sanitizedContext = this.sanitizeData(context);
-    Sentry.setContext(key, sanitizedContext);
+    Sentry.setContext(key, sanitizedContext as { [key: string]: any });
   }
 
   categorizeError(error: unknown): ErrorCategory {
@@ -243,14 +245,14 @@ export class ErrorReportingService {
       const errorCode = error.code;
 
       category.tags = {
-        error_code: errorCode,
+        error_code: errorCode || 'UNKNOWN',
         status_code: String(statusCode),
       };
 
       if (statusCode >= 400 && statusCode < 500) {
         category.severity = 'warning';
 
-        if (statusCode === 400 || errorCode.includes('VALIDATION')) {
+        if (statusCode === 400 || errorCode?.includes('VALIDATION')) {
           category.category = 'validation';
         } else if (statusCode === 401 || statusCode === 403) {
           category.category = 'authentication';
@@ -314,7 +316,7 @@ export class ErrorReportingService {
     }
 
     if (breadcrumb.data) {
-      breadcrumb.data = this.sanitizeData(breadcrumb.data);
+      breadcrumb.data = this.sanitizeData(breadcrumb.data) as { [key: string]: any };
     }
 
     return breadcrumb;

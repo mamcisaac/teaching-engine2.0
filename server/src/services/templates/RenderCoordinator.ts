@@ -299,7 +299,7 @@ export class RenderCoordinator extends BaseService {
    * Hash object for cache key
    */
   private hashObject(obj: unknown): string {
-    const str = JSON.stringify(obj, Object.keys(obj).sort());
+    const str = JSON.stringify(obj, Object.keys(obj as any).sort());
     let hash = 0;
     
     for (let i = 0; i < str.length; i++) {

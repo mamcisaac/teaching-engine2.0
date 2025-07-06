@@ -183,10 +183,10 @@ export class HandlebarsEngine extends RenderEngine {
     // Conditional helpers
     this.handlebars.registerHelper('eq', (a: unknown, b: unknown) => a === b);
     this.handlebars.registerHelper('ne', (a: unknown, b: unknown) => a !== b);
-    this.handlebars.registerHelper('lt', (a: unknown, b: unknown) => a < b);
-    this.handlebars.registerHelper('gt', (a: unknown, b: unknown) => a > b);
-    this.handlebars.registerHelper('lte', (a: unknown, b: unknown) => a <= b);
-    this.handlebars.registerHelper('gte', (a: unknown, b: unknown) => a >= b);
+    this.handlebars.registerHelper('lt', (a: unknown, b: unknown) => (a as any) < (b as any));
+    this.handlebars.registerHelper('gt', (a: unknown, b: unknown) => (a as any) > (b as any));
+    this.handlebars.registerHelper('lte', (a: unknown, b: unknown) => (a as any) <= (b as any));
+    this.handlebars.registerHelper('gte', (a: unknown, b: unknown) => (a as any) >= (b as any));
 
     // Array helpers
     this.handlebars.registerHelper('length', (arr: unknown[]) => {

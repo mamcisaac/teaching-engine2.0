@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import type { SignOptions } from 'jsonwebtoken';
 
 const SALT_ROUNDS = 10;
 
@@ -36,8 +37,10 @@ export function generateAccessToken(payload: JWTPayload): string {
     throw new Error('JWT_SECRET is not defined');
   }
   
-  const expiresIn = process.env.JWT_EXPIRES_IN || '7d';
-  return jwt.sign(payload, secret, { expiresIn });
+  const options: SignOptions = {
+    expiresIn: (process.env.JWT_EXPIRES_IN || '7d') as any
+  };
+  return jwt.sign(payload, secret, options);
 }
 
 /**
@@ -49,8 +52,10 @@ export function generateRefreshToken(payload: JWTPayload): string {
     throw new Error('JWT_REFRESH_SECRET is not defined');
   }
   
-  const expiresIn = process.env.JWT_REFRESH_EXPIRES_IN || '30d';
-  return jwt.sign(payload, secret, { expiresIn });
+  const options: SignOptions = {
+    expiresIn: (process.env.JWT_REFRESH_EXPIRES_IN || '30d') as any
+  };
+  return jwt.sign(payload, secret, options);
 }
 
 /**

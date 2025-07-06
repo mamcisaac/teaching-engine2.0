@@ -149,7 +149,7 @@ export function requestLoggerMiddleware(
     requestId: req.id,
     method: req.method,
     path: req.path,
-  });
+  }) as any;
 
   // Helper methods
   req.logInfo = (message: string, meta?: LogMeta) => {
