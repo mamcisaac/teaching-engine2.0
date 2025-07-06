@@ -24,6 +24,8 @@ declare global {
       startTime?: number;
       // Error handling properties
       code?: string;
+      // Cache control
+      cacheEnabled?: boolean;
     }
   }
 }

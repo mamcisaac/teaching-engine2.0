@@ -1,18 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import { compose, chain, conditional, timed } from './core/composer';
-
-// Extend Express types
-declare module 'express-serve-static-core' {
-  interface Request {
-    user?: {
-      id: number;
-      email: string;
-      role: string;
-      organizationId?: number;
-      permissions?: string[];
-    };
-  }
-}
 import {
   requestLoggingMiddleware,
   auditMiddleware,

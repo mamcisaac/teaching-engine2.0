@@ -4,13 +4,6 @@ import crypto from 'crypto';
 import logger from '../logger.js';
 import { cacheMetrics } from './metrics.js';
 
-// Extend Express Request type to include cacheEnabled
-declare module 'express-serve-static-core' {
-  interface Request {
-    cacheEnabled?: boolean;
-  }
-}
-
 // Cache configuration
 const DEFAULT_TTL = 300; // 5 minutes in seconds
 const MAX_CACHE_SIZE = 1000; // Maximum number of cached items
