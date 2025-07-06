@@ -89,7 +89,12 @@
     {
       "files": ["*.ts", "*.tsx"],
       "parserOptions": {
-        "project": ["./tsconfig.json", "./client/tsconfig.json", "./server/tsconfig.json"]
+        "project": [
+          "./tsconfig.json",
+          "./client/tsconfig.json",
+          "./server/tsconfig.json",
+          "./packages/database/tsconfig.json"
+        ]
       }
     },
     {
