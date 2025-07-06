@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from 'express';
 
-import logger from '../logger';
+import { logger } from '../logger';
 
 import { authenticate } from './authenticate';
 import { apiCache, curriculumCache, staticCache, userCache } from './cache';

@@ -1,4 +1,4 @@
-import bcrypt from 'bcryptjs';
+import bcrypt, { hash, compare } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import type { SignOptions } from 'jsonwebtoken';
 
@@ -18,14 +18,14 @@ export interface TokenPair {
  * Hash a password using bcrypt
  */
 export async function hashPassword(password: string): Promise<string> {
-  return bcrypt.hash(password, SALT_ROUNDS);
+  return hash(password, SALT_ROUNDS);
 }
 
 /**
  * Compare a plain text password with a hashed password
  */
 export async function comparePassword(password: string, hash: string): Promise<boolean> {
-  return bcrypt.compare(password, hash);
+  return compare(password, hash);
 }
 
 /**

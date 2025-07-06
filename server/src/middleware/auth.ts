@@ -1,8 +1,8 @@
-import bcryptjs from 'bcryptjs';
+import { hash, compare } from 'bcryptjs';
 import type { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
+import jwt, { sign, verify } from 'jsonwebtoken';
 
-import logger from '../logger.js';
+import { logger } from '../logger.js';
 import { prisma } from '../prisma.js';
 
 import { generateToken, generateRefreshToken } from './authenticate.js';
@@ -25,14 +25,14 @@ const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@
  */
 export async function hashPassword(password: string): Promise<string> {
   const saltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS || '10', 10);
-  return bcryptjs.hash(password, saltRounds);
+  return hash(password, saltRounds);
 }
 
 /**
  * Verify password against hash
  */
 export async function verifyPassword(password: string, hash: string): Promise<boolean> {
-  return bcryptjs.compare(password, hash);
+  return compare(password, hash);
 }
 
 /**
@@ -497,9 +497,14 @@ export async function forgotPassword(
     }
 
     // Generate reset token
-    const resetToken = jwt.sign(
+    const jwtSecret = process.env.JWT_SECRET;
+    if (!jwtSecret) {
+      throw new AppError('JWT secret not configured', 500);
+    }
+    
+    const resetToken = sign(
       { userId: user.id, type: 'password-reset' },
-      process.env.JWT_SECRET!,
+      jwtSecret,
       { expiresIn: '1h' },
     );
 
@@ -548,7 +553,12 @@ export async function resetPassword(
     // Verify reset token
     let decoded: { userId: string; exp: number; type?: string };
     try {
-      const verifyResult = jwt.verify(token, process.env.JWT_SECRET!);
+      const jwtSecret = process.env.JWT_SECRET;
+      if (!jwtSecret) {
+        throw new AppError('JWT secret not configured', 500);
+      }
+      
+      const verifyResult = verify(token, jwtSecret);
       if (typeof verifyResult === 'string') {
         throw new ValidationError('Invalid token format');
       }

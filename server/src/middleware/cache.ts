@@ -3,7 +3,7 @@ import crypto from 'crypto';
 import type { Request, Response, NextFunction } from 'express';
 import NodeCache from 'node-cache';
 
-import logger from '../logger.js';
+import { logger } from '../logger.js';
 
 import { cacheMetrics } from './metrics.js';
 

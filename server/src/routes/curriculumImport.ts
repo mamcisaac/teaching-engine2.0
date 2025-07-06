@@ -1,14 +1,14 @@
 import type { Request, Response } from 'express';
-import express from 'express';
+import express, { Router } from 'express';
 import multer from 'multer';
 
-import logger from '../logger';
+import { logger } from '../logger';
 import { curriculumImportService } from '../services';
 // Clustering service removed - over-engineered for single-teacher use
 
 import type { AuthenticatedRequest } from './base/middleware';
 
-const router = express.Router();
+const router = Router();
 
 // Configure multer for file uploads with enhanced security
 const upload = multer({

@@ -3,7 +3,7 @@
 import { Server } from 'http';
 import path from 'path';
 
-import express, { Request, Response, NextFunction } from 'express';
+import express, { Request, Response, NextFunction, json, urlencoded, static as staticServe } from 'express';
 import cookieParser from 'cookie-parser';
 import debug from 'debug';
 import { config } from 'dotenv';
@@ -31,7 +31,7 @@ import dashboardMetricsRoutes from './routes/dashboard-metrics';
 import authEndpoints from './routes/authEndpoints';
 import { userRoutes } from './routes/user';
 import notificationRoutes from './routes/notifications';
-import logger from './logger.js';
+import { logger } from './logger.js';
 import {
   structuredLogger,
   correlationMiddleware,
@@ -77,7 +77,7 @@ applySecurityMiddleware(app);
 
 // Apply JSON and cookie parsing middleware
 log('Applying body parsing middleware...');
-app.use(express.json({ limit: '10mb' })); // Set reasonable payload limit
+app.use(json({ limit: '10mb' })); // Set reasonable payload limit
 app.use(cookieParser());
 
 // Apply correlation ID middleware first
@@ -301,12 +301,12 @@ app.use(standardErrorHandler);
 
 const clientDist = path.join(__dirname_index, '../../client/dist');
 log('Configuring URL-encoded and cookie parser middleware...');
-app.use(express.urlencoded({ extended: true }));
+app.use(urlencoded({ extended: true }));
 app.use(cookieParser());
 log('Configuring static file serving for uploads...');
-app.use('/uploads', express.static(path.join(__dirname_index, '../uploads')));
+app.use('/uploads', staticServe(path.join(__dirname_index, '../uploads')));
 log('Configuring static file serving for client distribution...');
-app.use(express.static(clientDist));
+app.use(staticServe(clientDist));
 log('Configuring catch-all route for client-side routing...');
 app.get('*', (_req, res) => {
   res.sendFile(path.join(clientDist, 'index.html'));

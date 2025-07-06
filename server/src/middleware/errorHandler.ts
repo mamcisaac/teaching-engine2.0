@@ -3,7 +3,7 @@ import type { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { ZodError } from 'zod';
 
-import logger from '../logger.js';
+import { logger } from '../logger.js';
 
 /**
  * Error interface for type safety

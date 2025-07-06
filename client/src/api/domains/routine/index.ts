@@ -6,13 +6,4 @@
 export * from './api';
 export * from './hooks';
 
-// Re-export types for convenience
-export type {
-  OralRoutineTemplate,
-  DailyOralRoutine,
-  OralRoutineStats,
-  ClassRoutine,
-  RoutineFilters,
-  RoutineTemplateInput,
-  DailyRoutineInput,
-} from './api';
+// Types are already exported via export * from './api' above

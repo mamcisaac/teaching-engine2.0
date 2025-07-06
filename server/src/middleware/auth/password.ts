@@ -1,4 +1,4 @@
-import bcryptjs from 'bcryptjs';
+import { hash, compare } from 'bcryptjs';
 
 // Password configuration
 const PASSWORD_MIN_LENGTH = 8;
@@ -9,14 +9,14 @@ const SALT_ROUNDS = parseInt(process.env.BCRYPT_SALT_ROUNDS || '10', 10);
  * Hash password using bcrypt
  */
 export async function hashPassword(password: string): Promise<string> {
-  return bcryptjs.hash(password, SALT_ROUNDS);
+  return hash(password, SALT_ROUNDS);
 }
 
 /**
  * Verify password against hash
  */
 export async function verifyPassword(password: string, hash: string): Promise<boolean> {
-  return bcryptjs.compare(password, hash);
+  return compare(password, hash);
 }
 
 /**

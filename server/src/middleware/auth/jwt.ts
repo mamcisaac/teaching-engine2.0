@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
-import jwt from 'jsonwebtoken';
+import jwt, { sign, verify } from 'jsonwebtoken';
 
-import logger from '../../logger.js';
+import { logger } from '../../logger.js';
 
 import type { TokenPayload} from './types';
 import { JWTConfig as _JWTConfig } from './types';
@@ -33,7 +33,7 @@ export function generateAccessToken(user: {
     permissions: user.permissions || [],
   };
 
-  return jwt.sign(payload, config.secret, {
+  return sign(payload, config.secret, {
     expiresIn: '24h',
     issuer: config.issuer,
     audience: config.audience,
@@ -44,7 +44,7 @@ export function generateAccessToken(user: {
  * Generate JWT refresh token
  */
 export function generateRefreshToken(userId: number): string {
-  return jwt.sign({ userId: userId.toString(), type: 'refresh' }, config.secret, {
+  return sign({ userId: userId.toString(), type: 'refresh' }, config.secret, {
     expiresIn: '7d',
     issuer: config.issuer,
     audience: config.audience,
@@ -56,7 +56,7 @@ export function generateRefreshToken(userId: number): string {
  */
 export function verifyToken(token: string): TokenPayload {
   try {
-    const decoded = jwt.verify(token, config.secret, {
+    const decoded = verify(token, config.secret, {
       issuer: config.issuer,
       audience: config.audience,
     }) as TokenPayload;

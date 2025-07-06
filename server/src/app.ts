@@ -3,7 +3,7 @@
  * Creates and configures the Express application
  */
 
-import express, { Express, Request, Response, NextFunction } from 'express';
+import express, { Express, Request, Response, NextFunction, json, urlencoded } from 'express';
 import cors from 'cors';
 import { PrismaClient } from '@teaching-engine/database';
 
@@ -21,8 +21,8 @@ export function createApp(prisma: PrismaClient): Express {
       credentials: true,
     }),
   );
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
+  app.use(json());
+  app.use(urlencoded({ extended: true }));
 
   // Rate limiting is applied at route level, not here
 

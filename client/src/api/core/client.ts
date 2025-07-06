@@ -44,28 +44,27 @@ const getAuthService = async (): Promise<AuthServiceModule['authService']> => {
 
 // Add request interceptor for authentication
 apiClient.interceptors.request.use(
-  (config) => {
+  async (config) => {
     // Ensure credentials are included for cookie-based auth
     config.withCredentials = true;
 
     // Add authorization header if we have a token
-    return getAuthService().then(async (authService) => {
-      const authHeaders = authService.getAuthHeaders();
-      if (authHeaders.Authorization !== undefined && authHeaders.Authorization !== null && authHeaders.Authorization !== '') {
-        config.headers.Authorization = authHeaders.Authorization;
-      }
+    const authService = await getAuthService();
+    const authHeaders = authService.getAuthHeaders();
+    if (authHeaders.Authorization) {
+      config.headers.Authorization = authHeaders.Authorization;
+    }
 
-      // Try to ensure we have a valid token before making the request
-      try {
-        await authService.ensureValidToken();
-      } catch (_error) {
-        // If token refresh fails, continue with request anyway
-        // The response interceptor will handle 401 errors
-        logger.warn('Token refresh failed before request:', _error);
-      }
+    // Try to ensure we have a valid token before making the request
+    try {
+      await authService.ensureValidToken();
+    } catch (_error) {
+      // If token refresh fails, continue with request anyway
+      // The response interceptor will handle 401 errors
+      logger.warn('Token refresh failed before request:', _error);
+    }
 
-      return config;
-    });
+    return config;
   },
   (error: unknown): Promise<never> => Promise.reject(error as Error),
 );
@@ -92,7 +91,7 @@ apiClient.interceptors.response.use(
         if (recovered) {
           // Update the authorization header with the new token
           const authHeaders = authService.getAuthHeaders();
-          if (authHeaders.Authorization !== undefined && authHeaders.Authorization !== null && authHeaders.Authorization !== '' && originalRequest.headers) {
+          if (authHeaders.Authorization && originalRequest.headers) {
             originalRequest.headers.Authorization = authHeaders.Authorization;
           }
           return apiClient(originalRequest);

@@ -1,8 +1,8 @@
 import type { Request, Response, NextFunction } from 'express';
-import type { JwtPayload } from 'jsonwebtoken';
-import jwt from 'jsonwebtoken';
+import type { JwtPayload, SignOptions } from 'jsonwebtoken';
+import jwt, { sign, verify, TokenExpiredError, JsonWebTokenError } from 'jsonwebtoken';
 
-import logger from '../logger.js';
+import { logger } from '../logger.js';
 import { prisma } from '../prisma.js';
 
 // User interface is defined in /src/types/express.d.ts
@@ -43,14 +43,14 @@ export function generateToken(user: {
     permissions: user.permissions || [],
   };
 
-  return jwt.sign(
+  return sign(
     payload,
     JWT_SECRET,
     {
       expiresIn: JWT_EXPIRES_IN,
       issuer: 'teaching-engine',
       audience: 'teaching-engine-users',
-    } as jwt.SignOptions,
+    } as SignOptions,
   );
 }
 

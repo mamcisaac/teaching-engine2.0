@@ -1,6 +1,6 @@
 import cron from 'node-cron';
 
-import logger from '../logger';
+import { logger } from '../logger';
 /**
  * Send notifications to remind teachers about upcoming equipment bookings.
  */

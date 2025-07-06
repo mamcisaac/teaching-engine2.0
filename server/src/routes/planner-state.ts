@@ -1,13 +1,13 @@
 import type { Response } from 'express';
-import express from 'express';
-import rateLimit from 'express-rate-limit';
+import express, { Router } from 'express';
+import { rateLimit } from 'express-rate-limit';
 import DOMPurify from 'isomorphic-dompurify';
 import { z } from 'zod';
 
-import logger from '../logger';
+import { logger } from '../logger';
 import { prisma } from '../prisma';
 import { cuidSchema } from '../validation';
-const router = express.Router();
+const router = Router();
 
 // Rate limiting for state operations
 const stateRateLimit = rateLimit({
