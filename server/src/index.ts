@@ -61,8 +61,11 @@ import { userRoutes } from './routes/user';
 // Notification routes and service infrastructure removed - over-engineered for single-teacher use
 import notificationRoutes from './routes/notifications';
 import logger from './logger.js';
-import { structuredLogger, correlationMiddleware, errorLoggingMiddleware as structuredErrorLoggingMiddleware } from './utils/structuredLogger';
-import { createCompatibleLogger } from './utils/logger-migration';
+import {
+  structuredLogger,
+  correlationMiddleware,
+  errorLoggingMiddleware as structuredErrorLoggingMiddleware,
+} from './utils/structuredLogger';
 import { prisma } from './prisma';
 import { rateLimiters } from './middleware/rateLimit/index';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
@@ -82,7 +85,7 @@ import { errorReportingService } from './services/monitoring/errorReportingServi
 import { errorContextMiddleware, authErrorMiddleware } from './middleware/errorContext';
 
 // Create backward-compatible logger for gradual migration
-const compatibleLogger = createCompatibleLogger();
+// Logger is now imported from structuredLogger
 
 // Initialize Express app
 log('Initializing Express application...');
@@ -140,11 +143,15 @@ app.get('/api/health/detailed', (_req, res) => {
 // Use imported authenticate middleware from @/middleware/authenticate
 
 // Legacy login endpoint for backward compatibility
-app.post('/api/login', authRateLimitMiddleware, (req: Request, res: Response, next: NextFunction) => {
-  // Forward to the auth router
-  req.url = '/auth/login';
-  next();
-});
+app.post(
+  '/api/login',
+  authRateLimitMiddleware,
+  (req: Request, res: Response, next: NextFunction) => {
+    // Forward to the auth router
+    req.url = '/auth/login';
+    next();
+  },
+);
 
 // Legacy register endpoint for backward compatibility
 app.post('/api/register', authRateLimitMiddleware, async (req: Request, res: Response) => {
@@ -227,7 +234,13 @@ app.use(
 );
 app.use('/api/long-range-plans', authenticate, rateLimiters.write, userCache, longRangePlanRoutes);
 app.use('/api/unit-plans', authenticate, rateLimiters.write, userCache, unitPlanRoutes);
-app.use('/api/etfo-lesson-plans', authenticate, rateLimiters.write, userCache, etfoLessonPlanRoutes);
+app.use(
+  '/api/etfo-lesson-plans',
+  authenticate,
+  rateLimiters.write,
+  userCache,
+  etfoLessonPlanRoutes,
+);
 app.use('/api/daybook-entries', authenticate, rateLimiters.write, userCache, daybookEntryRoutes);
 app.use('/api/etfo', authenticate, rateLimiters.read, etfoProgressRoutes);
 
@@ -269,12 +282,7 @@ app.get('/api/ai/status', authenticate, async (req: Request, res: Response) => {
 app.use('/api/planner', authenticate, plannerStateRoutes);
 
 // Activity Discovery Routes
-app.use(
-  '/api/activity-collections',
-  authenticate,
-  rateLimiters.write,
-  activityCollectionsRoutes,
-);
+app.use('/api/activity-collections', authenticate, rateLimiters.write, activityCollectionsRoutes);
 app.use('/api/ai-activities', authenticate, rateLimiters.ai, aiActivityGenerationRoutes);
 
 // Batch Processing Routes
@@ -386,43 +394,45 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 
 if (isDirectRun || isE2ETest || isDevelopment) {
   log('Starting server because:', { isDirectRun, isE2ETest, isDevelopment });
-  
+
   // Initialize app asynchronously then start server
-  initializeApp().then(() => {
-    // Start server directly - service initialization removed for simplicity
-    const server = app.listen(PORT, '0.0.0.0', () => {
-      log(`Server is running on port ${PORT}`);
-      log('Server address:', server.address());
-      log('Server started successfully');
+  initializeApp()
+    .then(() => {
+      // Start server directly - service initialization removed for simplicity
+      const server = app.listen(PORT, '0.0.0.0', () => {
+        log(`Server is running on port ${PORT}`);
+        log('Server address:', server.address());
+        log('Server started successfully');
 
-      // Background jobs disabled - ETFO approach uses manual workflow
+        // Background jobs disabled - ETFO approach uses manual workflow
+      });
+
+      server.on('error', (err) => {
+        logger.error({ error: err }, 'Server error');
+      });
+
+      // Handle keep-alive timeouts
+      server.keepAliveTimeout = 65000;
+      server.headersTimeout = 66000;
+
+      // Graceful shutdown
+      process.on('SIGTERM', () => gracefulShutdown('SIGTERM', server));
+      process.on('SIGINT', () => gracefulShutdown('SIGINT', server));
+
+      // Handle uncaught exceptions
+      process.on('uncaughtException', (err) => {
+        error('Uncaught Exception:', err);
+        gracefulShutdown('UNCAUGHT_EXCEPTION', server);
+      });
+
+      process.on('unhandledRejection', (reason, promise) => {
+        error('Unhandled Rejection at:', promise, 'reason:', reason);
+        gracefulShutdown('UNHANDLED_REJECTION', server);
+      });
+    })
+    .catch((err) => {
+      error('Failed to initialize app:', err);
+      process.exit(1);
     });
-
-  server.on('error', (err) => {
-    logger.error({ error: err }, 'Server error');
-  });
-
-  // Handle keep-alive timeouts
-  server.keepAliveTimeout = 65000;
-  server.headersTimeout = 66000;
-
-  // Graceful shutdown
-  process.on('SIGTERM', () => gracefulShutdown('SIGTERM', server));
-  process.on('SIGINT', () => gracefulShutdown('SIGINT', server));
-
-    // Handle uncaught exceptions
-    process.on('uncaughtException', (err) => {
-      error('Uncaught Exception:', err);
-      gracefulShutdown('UNCAUGHT_EXCEPTION', server);
-    });
-
-    process.on('unhandledRejection', (reason, promise) => {
-      error('Unhandled Rejection at:', promise, 'reason:', reason);
-      gracefulShutdown('UNHANDLED_REJECTION', server);
-    });
-  }).catch((err) => {
-    error('Failed to initialize app:', err);
-    process.exit(1);
-  });
 }
 // test

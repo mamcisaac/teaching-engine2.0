@@ -13,7 +13,7 @@ interface CacheEntry<T> {
 }
 
 export class MemoryCache {
-  private cache = new Map<string, CacheEntry<any>>();
+  private cache = new Map<string, CacheEntry<unknown>>();
   private tagIndex = new Map<string, Set<string>>();
   private stats: CacheStats = {
     hits: 0,
@@ -30,7 +30,7 @@ export class MemoryCache {
       maxSize?: number;
       defaultTtl?: number;
       cleanupInterval?: number;
-    } = {}
+    } = {},
   ) {
     // Start cleanup interval
     const interval = config.cleanupInterval || 60000; // 1 minute default
@@ -53,7 +53,7 @@ export class MemoryCache {
 
   async get<T>(key: string): Promise<T | null> {
     const entry = this.cache.get(key);
-    
+
     if (!entry) {
       this.stats.misses++;
       this.updateHitRate();
@@ -82,11 +82,11 @@ export class MemoryCache {
       }
 
       const ttl = options.ttl || this.config.defaultTtl || 3600;
-      const expires = ttl > 0 ? Date.now() + (ttl * 1000) : 0;
+      const expires = ttl > 0 ? Date.now() + ttl * 1000 : 0;
       const tags = options.tags || [];
 
       this.cache.set(key, { value, expires, tags });
-      
+
       // Update tag index
       if (tags.length > 0) {
         this.addToTags(key, tags);
@@ -156,7 +156,7 @@ export class MemoryCache {
   async getOrSet<T>(
     key: string,
     factory: () => Promise<T>,
-    options: CacheOptions = {}
+    options: CacheOptions = {},
   ): Promise<T> {
     const cached = await this.get<T>(key);
     if (cached !== null) {
@@ -169,7 +169,7 @@ export class MemoryCache {
   }
 
   async increment(key: string, amount: number = 1): Promise<number> {
-    const current = await this.get<number>(key) || 0;
+    const current = (await this.get<number>(key)) || 0;
     const newValue = current + amount;
     await this.set(key, newValue);
     return newValue;
@@ -268,6 +268,6 @@ export function getMemoryCache(): MemoryCache {
       cleanupInterval: 60000,
     });
   }
-  
+
   return memoryCacheInstance;
 }

@@ -4,6 +4,7 @@
  */
 
 import { createClient, RedisClientType } from 'redis';
+import { Request, Response, NextFunction } from 'express';
 import { structuredLogger } from '../../utils/structuredLogger';
 import { PerformanceLogger } from '../../utils/logger-migration';
 
@@ -45,7 +46,7 @@ export class RedisCache {
       defaultTtl?: number;
       maxRetries?: number;
       enableCompression?: boolean;
-    } = {}
+    } = {},
   ) {
     this.client = createClient({
       url: config.url || `redis://${config.host || 'localhost'}:${config.port || 6379}`,
@@ -126,7 +127,7 @@ export class RedisCache {
 
     try {
       const value = await this.client.get(fullKey);
-      
+
       if (value === null) {
         this.stats.misses++;
         this.updateHitRate();
@@ -139,7 +140,7 @@ export class RedisCache {
 
       const parsed = this.deserializeValue<T>(value);
       perfLogger.end({ hit: true, key, size: value.length });
-      
+
       return parsed;
     } catch (error) {
       structuredLogger.error('Cache get error', error as Error, { key });
@@ -163,7 +164,7 @@ export class RedisCache {
 
     try {
       const serialized = this.serializeValue(value, options.compress);
-      
+
       if (ttl > 0) {
         await this.client.setEx(fullKey, ttl, serialized);
       } else {
@@ -177,7 +178,7 @@ export class RedisCache {
 
       this.stats.sets++;
       perfLogger.end({ key, ttl, size: serialized.length });
-      
+
       return true;
     } catch (error) {
       structuredLogger.error('Cache set error', error as Error, { key });
@@ -197,7 +198,7 @@ export class RedisCache {
     try {
       const result = await this.client.del(fullKey);
       this.stats.deletes++;
-      
+
       structuredLogger.debug('Cache key deleted', { key, deleted: result > 0 });
       return result > 0;
     } catch (error) {
@@ -214,14 +215,14 @@ export class RedisCache {
     if (!this.isConnected) return 0;
 
     const fullPattern = this.getFullKey(pattern);
-    
+
     try {
       const keys = await this.client.keys(fullPattern);
       if (keys.length === 0) return 0;
 
       const result = await this.client.del(keys);
       this.stats.deletes += result;
-      
+
       structuredLogger.info('Cache keys deleted by pattern', { pattern, count: result });
       return result;
     } catch (error) {
@@ -243,11 +244,11 @@ export class RedisCache {
       for (const tag of tags) {
         const tagKey = `${this.config.keyPrefix || 'cache'}:tag:${tag}`;
         const keys = await this.client.sMembers(tagKey);
-        
+
         if (keys.length > 0) {
           const deleted = await this.client.del(keys);
           totalDeleted += deleted;
-          
+
           // Clean up the tag set
           await this.client.del(tagKey);
         }
@@ -271,7 +272,7 @@ export class RedisCache {
     try {
       await this.client.flushDb();
       this.resetStats();
-      
+
       structuredLogger.warn('Cache cleared');
     } catch (error) {
       structuredLogger.error('Cache clear error', error as Error);
@@ -285,7 +286,7 @@ export class RedisCache {
   async getOrSet<T>(
     key: string,
     factory: () => Promise<T>,
-    options: CacheOptions = {}
+    options: CacheOptions = {},
   ): Promise<T> {
     // Try to get from cache first
     const cached = await this.get<T>(key);
@@ -365,13 +366,13 @@ export class RedisCache {
 
   private serializeValue<T>(value: T, compress?: boolean): string {
     const json = JSON.stringify(value);
-    
+
     if (compress && this.config.enableCompression && json.length > 1024) {
       // In production, use zlib compression
       // For now, just return JSON
       return json;
     }
-    
+
     return json;
   }
 
@@ -386,12 +387,12 @@ export class RedisCache {
 
   private async addToTags(key: string, tags: string[]): Promise<void> {
     const pipeline = this.client.multi();
-    
+
     for (const tag of tags) {
       const tagKey = `${this.config.keyPrefix || 'cache'}:tag:${tag}`;
       pipeline.sAdd(tagKey, key);
     }
-    
+
     await pipeline.exec();
   }
 
@@ -417,7 +418,7 @@ export function getCache(): RedisCache {
       defaultTtl: 3600,
       enableCompression: true,
     });
-    
+
     // Auto-connect in non-test environments
     if (process.env.NODE_ENV !== 'test') {
       cacheInstance.connect().catch((error) => {
@@ -425,7 +426,7 @@ export function getCache(): RedisCache {
       });
     }
   }
-  
+
   return cacheInstance;
 }
 
@@ -434,33 +435,34 @@ export function getCache(): RedisCache {
  */
 export function cacheMiddleware(keyPattern: string, options: CacheOptions = {}) {
   const cache = getCache();
-  
-  return async (req: any, res: any, next: any) => {
-    const key = keyPattern.replace(':id', req.params.id || '')
-      .replace(':userId', req.user?.id || 'anonymous');
-    
+
+  return async (req: Request, res: Response, next: NextFunction) => {
+    const key = keyPattern
+      .replace(':id', req.params.id || '')
+      .replace(':userId', (req as Request & { user?: { id: string } }).user?.id || 'anonymous');
+
     // Try to get from cache
     const cached = await cache.get(key);
     if (cached) {
       res.setHeader('X-Cache', 'HIT');
       return res.json(cached);
     }
-    
+
     // Store original json method
     const originalJson = res.json.bind(res);
-    
+
     // Override json to cache the response
-    res.json = function(data: any) {
+    res.json = function (data: unknown) {
       res.setHeader('X-Cache', 'MISS');
-      
+
       // Cache the response asynchronously
       cache.set(key, data, options).catch((error) => {
         structuredLogger.error('Failed to cache response', error);
       });
-      
+
       return originalJson(data);
     };
-    
+
     next();
   };
 }

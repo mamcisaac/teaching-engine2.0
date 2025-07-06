@@ -83,7 +83,7 @@ router.get('/health/detailed', async (req: Request, res: Response) => {
       try {
         const cacheHealth = await CacheUtils.getHealth();
         health.services.cache = cacheHealth.healthy;
-        (health as any).cache = {
+        (health as Record<string, unknown>).cache = {
           type: cacheHealth.type,
           stats: cacheHealth.stats,
         };

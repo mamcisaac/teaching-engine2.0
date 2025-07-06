@@ -1,14 +1,14 @@
 import { PrismaClient } from '@prisma/client';
 import logger from '../../logger';
 import type { IRepository } from './IRepository';
-import { 
+import {
   PaginationOptions,
   PaginatedResponse,
   createPaginatedResponse,
   getPrismaArgs,
   createSearchFilter,
   combineFilters,
-  fetchPaginatedData
+  fetchPaginatedData,
 } from '../../utils/pagination';
 
 export abstract class BaseRepository<T extends { id: number }, CreateInput, UpdateInput>
@@ -22,8 +22,8 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
     this.modelName = modelName;
   }
 
-  protected get model(): any {
-    return (this.prisma as any)[this.modelName];
+  protected get model(): PrismaClient[keyof PrismaClient] {
+    return (this.prisma as PrismaClient)[this.modelName as keyof PrismaClient];
   }
 
   async findById(id: number): Promise<T | null> {
@@ -45,11 +45,11 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
     searchFields?: string[];
   }): Promise<PaginatedResponse<T>> {
     try {
-      const { 
-        where = {}, 
-        include = {}, 
+      const {
+        where = {},
+        include = {},
         pagination = { page: 1, limit: 20 },
-        searchFields = []
+        searchFields = [],
       } = options || {};
 
       // Build search filter if search term provided
@@ -62,15 +62,16 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
       // Fetch data and count in parallel
       const { data, total } = await fetchPaginatedData(
         () => this.model.count({ where: combinedWhere }),
-        () => this.model.findMany({
-          where: combinedWhere,
-          include,
-          ...prismaArgs,
-        }),
-        pagination
+        () =>
+          this.model.findMany({
+            where: combinedWhere,
+            include,
+            ...prismaArgs,
+          }),
+        pagination,
       );
 
-      return createPaginatedResponse(data, {
+      return createPaginatedResponse(data as T[], {
         page: pagination.page,
         limit: pagination.limit,
         total,
@@ -174,15 +175,22 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
     orderBy?: Record<string, 'asc' | 'desc'>;
   }): Promise<{ data: T[]; nextCursor?: number }> {
     try {
-      const { 
-        where = {}, 
-        include = {}, 
+      const {
+        where = {},
+        include = {},
         cursor,
         limit = 20,
-        orderBy = { id: 'desc' }
+        orderBy = { id: 'desc' },
       } = options || {};
 
-      const queryArgs: any = {
+      const queryArgs: {
+        where: Record<string, unknown>;
+        include: Record<string, boolean>;
+        take: number;
+        orderBy: Record<string, 'asc' | 'desc'>;
+        cursor?: { id: number };
+        skip?: number;
+      } = {
         where,
         include,
         take: limit + 1, // Fetch one extra to check if there's more
@@ -195,7 +203,7 @@ export abstract class BaseRepository<T extends { id: number }, CreateInput, Upda
       }
 
       const items = await this.model.findMany(queryArgs);
-      
+
       let nextCursor: number | undefined;
       if (items.length > limit) {
         const nextItem = items.pop();

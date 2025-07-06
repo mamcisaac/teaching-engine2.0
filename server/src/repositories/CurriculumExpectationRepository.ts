@@ -1,5 +1,4 @@
 import { CurriculumExpectation, Prisma, PrismaClient } from '@prisma/client';
-import { BaseRepository } from './base/BaseRepository';
 import logger from '../logger';
 
 export interface SearchOptions {
@@ -15,11 +14,11 @@ export interface SearchOptions {
 
 export class CurriculumExpectationRepository {
   private prisma: PrismaClient;
-  private model: any;
+  private model: PrismaClient['curriculumExpectation'];
 
   constructor(prisma: PrismaClient) {
     this.prisma = prisma;
-    this.model = (prisma as any).curriculumExpectation;
+    this.model = prisma.curriculumExpectation;
   }
 
   async search(options: SearchOptions) {
@@ -36,12 +35,12 @@ export class CurriculumExpectationRepository {
       } = options;
 
       const where: Prisma.CurriculumExpectationWhereInput = {
-        AND: [],
+        AND: [] as Prisma.CurriculumExpectationWhereInput[],
       };
 
       // Text search across multiple fields
       if (query) {
-        (where.AND as any[]).push({
+        (where.AND as Prisma.CurriculumExpectationWhereInput[]).push({
           OR: [
             { code: { contains: query, mode: 'insensitive' } },
             { description: { contains: query, mode: 'insensitive' } },
@@ -53,41 +52,41 @@ export class CurriculumExpectationRepository {
 
       // Filter by subjects
       if (subjects.length > 0) {
-        (where.AND as any[]).push({
+        (where.AND as Prisma.CurriculumExpectationWhereInput[]).push({
           subject: { in: subjects },
         });
       }
 
       // Filter by grades
       if (grades.length > 0) {
-        (where.AND as any[]).push({
+        (where.AND as Prisma.CurriculumExpectationWhereInput[]).push({
           grade: { in: grades },
         });
       }
 
       // Filter by strands
       if (strands.length > 0) {
-        (where.AND as any[]).push({
+        (where.AND as Prisma.CurriculumExpectationWhereInput[]).push({
           strand: { in: strands },
         });
       }
 
       // Filter by categories
       if (categories.length > 0) {
-        (where.AND as any[]).push({
+        (where.AND as Prisma.CurriculumExpectationWhereInput[]).push({
           category: { in: categories },
         });
       }
 
       // Filter by subcategories
       if (subcategories.length > 0) {
-        (where.AND as any[]).push({
+        (where.AND as Prisma.CurriculumExpectationWhereInput[]).push({
           subcategory: { in: subcategories },
         });
       }
 
       // Remove empty AND array if no filters
-      if ((where.AND as any[]).length === 0) {
+      if ((where.AND as Prisma.CurriculumExpectationWhereInput[]).length === 0) {
         delete where.AND;
       }
 

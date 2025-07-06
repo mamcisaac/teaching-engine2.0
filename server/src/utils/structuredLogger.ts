@@ -4,7 +4,7 @@
  */
 
 import winston from 'winston';
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { AsyncLocalStorage } from 'async_hooks';
 import { performance } from 'perf_hooks';
@@ -21,11 +21,11 @@ export interface LogContext {
   spanId?: string;
   parentSpanId?: string;
   startTime?: number;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface LogMeta {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 // Log levels
@@ -46,7 +46,7 @@ const logFormat = winston.format.combine(
   winston.format.errors({ stack: true }),
   winston.format.printf((info) => {
     const context = asyncLocalStorage.getStore();
-    
+
     const log = {
       timestamp: info.timestamp,
       level: info.level,
@@ -57,7 +57,7 @@ const logFormat = winston.format.combine(
       ...(context?.sessionId && { sessionId: context.sessionId }),
       ...(info.duration && { duration: info.duration }),
       ...(info.meta && { meta: info.meta }),
-      ...(info.error && { 
+      ...(info.error && {
         error: {
           message: info.error.message,
           stack: info.error.stack,
@@ -65,7 +65,7 @@ const logFormat = winston.format.combine(
         },
       }),
     };
-    
+
     // Add trace context if available
     if (context?.traceId) {
       log.trace = {
@@ -74,7 +74,7 @@ const logFormat = winston.format.combine(
         parentSpanId: context.parentSpanId,
       };
     }
-    
+
     return JSON.stringify(log);
   }),
 );
@@ -83,7 +83,7 @@ const logFormat = winston.format.combine(
 const logger = winston.createLogger({
   level: process.env.LOG_LEVEL || 'info',
   format: logFormat,
-  defaultMeta: { 
+  defaultMeta: {
     service: 'teaching-engine',
     environment: process.env.NODE_ENV || 'development',
     version: process.env.APP_VERSION || '1.0.0',
@@ -91,97 +91,98 @@ const logger = winston.createLogger({
   transports: [
     // Console transport for development
     new winston.transports.Console({
-      format: winston.format.combine(
-        winston.format.colorize(),
-        winston.format.simple(),
-      ),
+      format: winston.format.combine(winston.format.colorize(), winston.format.simple()),
       silent: process.env.NODE_ENV === 'test',
     }),
     // File transport for production
-    ...(process.env.NODE_ENV === 'production' ? [
-      new winston.transports.File({ 
-        filename: 'logs/error.log', 
-        level: 'error',
-        maxsize: 10485760, // 10MB
-        maxFiles: 5,
-      }),
-      new winston.transports.File({ 
-        filename: 'logs/combined.log',
-        maxsize: 10485760, // 10MB
-        maxFiles: 10,
-      }),
-    ] : []),
+    ...(process.env.NODE_ENV === 'production'
+      ? [
+          new winston.transports.File({
+            filename: 'logs/error.log',
+            level: 'error',
+            maxsize: 10485760, // 10MB
+            maxFiles: 5,
+          }),
+          new winston.transports.File({
+            filename: 'logs/combined.log',
+            maxsize: 10485760, // 10MB
+            maxFiles: 10,
+          }),
+        ]
+      : []),
   ],
 });
 
 // Add structured logging methods
 export class StructuredLogger {
   private static instance: StructuredLogger;
-  
+
   static getInstance(): StructuredLogger {
     if (!StructuredLogger.instance) {
       StructuredLogger.instance = new StructuredLogger();
     }
     return StructuredLogger.instance;
   }
-  
+
   /**
    * Log with automatic context injection
    */
   log(level: LogLevel, message: string, meta?: LogMeta) {
     const context = asyncLocalStorage.getStore();
-    const duration = context?.startTime 
-      ? Math.round(performance.now() - context.startTime) 
+    const duration = context?.startTime
+      ? Math.round(performance.now() - context.startTime)
       : undefined;
-    
-    logger.log(level, message, { 
-      meta, 
+
+    logger.log(level, message, {
+      meta,
       duration,
       ...(meta?.error && { error: meta.error }),
     });
   }
-  
+
   error(message: string, error?: Error, meta?: LogMeta) {
     this.log(LogLevel.ERROR, message, { ...meta, error });
   }
-  
+
   warn(message: string, meta?: LogMeta) {
     this.log(LogLevel.WARN, message, meta);
   }
-  
+
   info(message: string, meta?: LogMeta) {
     this.log(LogLevel.INFO, message, meta);
   }
-  
+
   http(message: string, meta?: LogMeta) {
     this.log(LogLevel.HTTP, message, meta);
   }
-  
+
   debug(message: string, meta?: LogMeta) {
     this.log(LogLevel.DEBUG, message, meta);
   }
-  
+
   trace(message: string, meta?: LogMeta) {
     this.log(LogLevel.TRACE, message, meta);
   }
-  
+
   /**
    * Create a child logger with additional context
    */
   child(additionalContext: Partial<LogContext>): StructuredLogger {
     const childLogger = new StructuredLogger();
     const parentContext = asyncLocalStorage.getStore() || {};
-    
+
     // Merge contexts
     const childContext = { ...parentContext, ...additionalContext };
-    
+
     // Return a proxy that runs in the child context
     return new Proxy(childLogger, {
       get(target, prop) {
         if (typeof target[prop as keyof StructuredLogger] === 'function') {
-          return (...args: any[]) => {
+          return (...args: unknown[]) => {
             return asyncLocalStorage.run(childContext, () => {
-              return (target[prop as keyof StructuredLogger] as Function)(...args);
+              return (target[prop as keyof StructuredLogger] as (...args: unknown[]) => unknown)(
+                ...args,
+              );
             });
           };
         }
@@ -189,32 +190,32 @@ export class StructuredLogger {
       },
     });
   }
-  
+
   /**
    * Start a new span for distributed tracing
    */
   startSpan(name: string, parentSpanId?: string): string {
     const spanId = uuidv4();
     const context = asyncLocalStorage.getStore();
-    
+
     if (context) {
       context.spanId = spanId;
       context.parentSpanId = parentSpanId || context.spanId;
     }
-    
+
     this.trace(`Span started: ${name}`, { spanId, parentSpanId });
     return spanId;
   }
-  
+
   /**
    * End a span and log duration
    */
   endSpan(spanId: string, name: string) {
     const context = asyncLocalStorage.getStore();
-    const duration = context?.startTime 
-      ? Math.round(performance.now() - context.startTime) 
+    const duration = context?.startTime
+      ? Math.round(performance.now() - context.startTime)
       : undefined;
-    
+
     this.trace(`Span ended: ${name}`, { spanId, duration });
   }
 }
@@ -222,21 +223,21 @@ export class StructuredLogger {
 /**
  * Express middleware for correlation ID and structured logging
  */
-export function correlationMiddleware(req: Request, res: Response, next: Function) {
+export function correlationMiddleware(req: Request, res: Response, next: NextFunction) {
   // Generate or extract correlation ID
-  const correlationId = 
-    req.headers['x-correlation-id'] as string || 
-    req.headers['x-request-id'] as string || 
+  const correlationId =
+    (req.headers['x-correlation-id'] as string) ||
+    (req.headers['x-request-id'] as string) ||
     uuidv4();
-  
+
   // Generate request ID
   const requestId = uuidv4();
-  
+
   // Extract trace context if available
-  const traceId = req.headers['x-trace-id'] as string || uuidv4();
+  const traceId = (req.headers['x-trace-id'] as string) || uuidv4();
   const spanId = req.headers['x-span-id'] as string;
   const parentSpanId = req.headers['x-parent-span-id'] as string;
-  
+
   // Create context
   const context: LogContext = {
     correlationId,
@@ -245,21 +246,21 @@ export function correlationMiddleware(req: Request, res: Response, next: Functio
     spanId: spanId || uuidv4(),
     parentSpanId,
     startTime: performance.now(),
-    userId: (req as any).user?.id,
-    sessionId: (req as any).session?.id,
+    userId: (req as Request & { user?: { id: number } }).user?.id,
+    sessionId: (req as Request & { session?: { id: string } }).session?.id,
     method: req.method,
     path: req.path,
     ip: req.ip,
     userAgent: req.headers['user-agent'],
   };
-  
+
   // Store context in async storage
   asyncLocalStorage.run(context, () => {
     // Add correlation ID to response headers
     res.setHeader('X-Correlation-ID', correlationId);
     res.setHeader('X-Request-ID', requestId);
     res.setHeader('X-Trace-ID', traceId);
-    
+
     // Log request
     const structuredLogger = StructuredLogger.getInstance();
     structuredLogger.http(`${req.method} ${req.path}`, {
@@ -267,23 +268,23 @@ export function correlationMiddleware(req: Request, res: Response, next: Functio
       body: req.method !== 'GET' ? sanitizeBody(req.body) : undefined,
       headers: sanitizeHeaders(req.headers),
     });
-    
+
     // Log response
     const originalSend = res.send;
-    res.send = function(data: any) {
+    res.send = function (data: unknown) {
       res.send = originalSend;
-      
+
       const duration = Math.round(performance.now() - context.startTime);
-      
+
       structuredLogger.http(`${req.method} ${req.path} ${res.statusCode}`, {
         statusCode: res.statusCode,
         duration,
         responseSize: Buffer.byteLength(JSON.stringify(data)),
       });
-      
+
       return res.send(data);
     };
-    
+
     next();
   });
 }
@@ -291,34 +292,36 @@ export function correlationMiddleware(req: Request, res: Response, next: Functio
 /**
  * Sanitize request body to remove sensitive data
  */
-function sanitizeBody(body: any): any {
-  if (!body) return body;
-  
+function sanitizeBody(body: unknown): unknown {
+  if (!body || typeof body !== 'object' || body === null) return body;
+
   const sensitiveFields = ['password', 'token', 'secret', 'apiKey', 'creditCard'];
-  const sanitized = { ...body };
-  
+  const sanitized = { ...(body as Record<string, unknown>) };
+
   for (const field of sensitiveFields) {
     if (sanitized[field]) {
       sanitized[field] = '[REDACTED]';
     }
   }
-  
+
   return sanitized;
 }
 
 /**
  * Sanitize headers to remove sensitive data
  */
-function sanitizeHeaders(headers: any): any {
+function sanitizeHeaders(headers: unknown): unknown {
+  if (!headers || typeof headers !== 'object' || headers === null) return headers;
+
   const sensitiveHeaders = ['authorization', 'cookie', 'x-api-key'];
-  const sanitized = { ...headers };
-  
+  const sanitized = { ...(headers as Record<string, unknown>) };
+
   for (const header of sensitiveHeaders) {
     if (sanitized[header]) {
       sanitized[header] = '[REDACTED]';
     }
   }
-  
+
   return sanitized;
 }
 
@@ -327,12 +330,9 @@ function sanitizeHeaders(headers: any): any {
  */
 export async function withLoggingContext<T>(
   context: Partial<LogContext>,
-  fn: () => Promise<T>
+  fn: () => Promise<T>,
 ): Promise<T> {
-  return asyncLocalStorage.run(
-    { ...asyncLocalStorage.getStore(), ...context } as LogContext,
-    fn
-  );
+  return asyncLocalStorage.run({ ...asyncLocalStorage.getStore(), ...context } as LogContext, fn);
 }
 
 /**
@@ -349,16 +349,16 @@ export function errorLoggingMiddleware(
   err: Error,
   req: Request,
   res: Response,
-  next: Function
+  next: NextFunction,
 ) {
   const structuredLogger = StructuredLogger.getInstance();
-  
+
   structuredLogger.error('Unhandled error', err, {
     statusCode: res.statusCode,
     path: req.path,
     method: req.method,
   });
-  
+
   // Continue to next error handler
   next(err);
 }

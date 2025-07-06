@@ -84,7 +84,6 @@ export function mockCurrentTime(date: Date | string): () => void {
   // Mock new Date() when called without arguments
   global.Date = class extends Date {
     constructor(...args: ConstructorParameters<typeof Date>) {
-      // @ts-expect-error - TypeScript false positive about args.length comparison
       if (args.length === 0) {
         super(targetDate);
       } else {

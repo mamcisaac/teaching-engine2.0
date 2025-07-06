@@ -3,7 +3,7 @@
  * Provides consistent pagination across all API endpoints
  */
 
-import { Request } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
 
 // Pagination query schema
@@ -54,7 +54,7 @@ export interface PaginationMeta {
  */
 export function getPaginationParams(req: Request): PaginationOptions {
   const result = paginationSchema.safeParse(req.query);
-  
+
   if (!result.success) {
     // Return defaults if validation fails
     return {
@@ -63,7 +63,7 @@ export function getPaginationParams(req: Request): PaginationOptions {
       sortOrder: 'desc',
     };
   }
-  
+
   return result.data;
 }
 
@@ -87,7 +87,7 @@ export function calculateTotalPages(total: number, limit: number): number {
 export function createPaginatedResponse<T>(
   data: T[],
   meta: PaginationMeta,
-  baseUrl?: string
+  baseUrl?: string,
 ): PaginatedResponse<T> {
   const totalPages = calculateTotalPages(meta.total, meta.limit);
   const hasNext = meta.page < totalPages;
@@ -108,27 +108,27 @@ export function createPaginatedResponse<T>(
   // Add navigation links if base URL provided
   if (baseUrl) {
     response.links = {};
-    
+
     const url = new URL(baseUrl);
-    
+
     // First page
     if (meta.page > 1) {
       url.searchParams.set('page', '1');
       response.links.first = url.toString();
     }
-    
+
     // Previous page
     if (hasPrevious) {
       url.searchParams.set('page', (meta.page - 1).toString());
       response.links.previous = url.toString();
     }
-    
+
     // Next page
     if (hasNext) {
       url.searchParams.set('page', (meta.page + 1).toString());
       response.links.next = url.toString();
     }
-    
+
     // Last page
     if (meta.page < totalPages) {
       url.searchParams.set('page', totalPages.toString());
@@ -144,19 +144,23 @@ export function createPaginatedResponse<T>(
  */
 export function getPrismaArgs(options: PaginationOptions) {
   const skip = calculateOffset(options.page, options.limit);
-  
-  const args: any = {
+
+  const args: {
+    skip: number;
+    take: number;
+    orderBy?: Record<string, 'asc' | 'desc'>;
+  } = {
     skip,
     take: options.limit,
   };
-  
+
   // Add sorting
   if (options.sortBy) {
     args.orderBy = {
       [options.sortBy]: options.sortOrder || 'desc',
     };
   }
-  
+
   return args;
 }
 
@@ -182,19 +186,17 @@ export interface CursorPaginatedResponse<T> {
 export function createCursorPaginatedResponse<T>(
   data: T[],
   limit: number,
-  getCursor: (item: T) => string | number
+  getCursor: (item: T) => string | number,
 ): CursorPaginatedResponse<T> {
   const hasMore = data.length > limit;
   const items = hasMore ? data.slice(0, limit) : data;
-  
+
   return {
     data: items,
     pagination: {
       limit,
       hasMore,
-      nextCursor: hasMore && items.length > 0 
-        ? getCursor(items[items.length - 1]) 
-        : undefined,
+      nextCursor: hasMore && items.length > 0 ? getCursor(items[items.length - 1]) : undefined,
     },
   };
 }
@@ -202,27 +204,27 @@ export function createCursorPaginatedResponse<T>(
 /**
  * Middleware to validate pagination parameters
  */
-export function validatePagination(req: Request, res: any, next: any) {
+export function validatePagination(req: Request, res: Response, next: NextFunction) {
   const result = paginationSchema.safeParse(req.query);
-  
+
   if (!result.success) {
     return res.status(400).json({
       error: 'Invalid pagination parameters',
       details: result.error.flatten(),
     });
   }
-  
+
   // Attach validated params to request
-  (req as any).pagination = result.data;
+  (req as Request & { pagination: PaginationQuery }).pagination = result.data;
   next();
 }
 
 /**
  * Create pagination metadata for response headers
  */
-export function setPaginationHeaders(
-  res: any,
-  pagination: PaginatedResponse<any>['pagination']
+export function setPaginationHeaders<T>(
+  res: Response,
+  pagination: PaginatedResponse<T>['pagination'],
 ) {
   res.set({
     'X-Page': pagination.page.toString(),
@@ -239,14 +241,14 @@ export function setPaginationHeaders(
  */
 export function createSearchFilter(
   search: string | undefined,
-  fields: string[]
-): any {
+  fields: string[],
+): Record<string, unknown> | undefined {
   if (!search || !fields.length) {
     return undefined;
   }
-  
+
   return {
-    OR: fields.map(field => ({
+    OR: fields.map((field) => ({
       [field]: {
         contains: search,
         mode: 'insensitive',
@@ -258,17 +260,19 @@ export function createSearchFilter(
 /**
  * Combine multiple filters for Prisma where clause
  */
-export function combineFilters(...filters: any[]): any {
-  const validFilters = filters.filter(f => f !== undefined && f !== null);
-  
+export function combineFilters(
+  ...filters: (Record<string, unknown> | undefined | null)[]
+): Record<string, unknown> | undefined {
+  const validFilters = filters.filter((f) => f !== undefined && f !== null);
+
   if (validFilters.length === 0) {
     return undefined;
   }
-  
+
   if (validFilters.length === 1) {
     return validFilters[0];
   }
-  
+
   return {
     AND: validFilters,
   };
@@ -280,13 +284,10 @@ export function combineFilters(...filters: any[]): any {
 export async function fetchPaginatedData<T>(
   countQuery: () => Promise<number>,
   dataQuery: () => Promise<T[]>,
-  options: PaginationOptions
+  _options: PaginationOptions,
 ): Promise<{ data: T[]; total: number }> {
-  const [total, data] = await Promise.all([
-    countQuery(),
-    dataQuery(),
-  ]);
-  
+  const [total, data] = await Promise.all([countQuery(), dataQuery()]);
+
   return { data, total };
 }
 
@@ -296,15 +297,15 @@ export async function fetchPaginatedData<T>(
 export function generatePaginationCacheKey(
   entity: string,
   options: PaginationOptions,
-  additionalParams?: Record<string, any>
+  additionalParams?: Record<string, unknown>,
 ): string {
   const params = {
     ...options,
     ...additionalParams,
   };
-  
+
   const sortedKeys = Object.keys(params).sort();
-  const keyParts = sortedKeys.map(key => `${key}:${params[key]}`);
-  
+  const keyParts = sortedKeys.map((key) => `${key}:${params[key]}`);
+
   return `pagination:${entity}:${keyParts.join(':')}`;
 }

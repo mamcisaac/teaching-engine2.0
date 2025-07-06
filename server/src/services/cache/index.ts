@@ -54,7 +54,10 @@ class UnifiedCache implements ICache {
       try {
         await this.primaryCache.connect();
       } catch (error) {
-        structuredLogger.error('Redis connection failed, falling back to memory cache', error as Error);
+        structuredLogger.error(
+          'Redis connection failed, falling back to memory cache',
+          error as Error,
+        );
         this.primaryCache = null;
         this.useRedis = false;
       }
@@ -99,11 +102,7 @@ class UnifiedCache implements ICache {
     return cache.clear();
   }
 
-  async getOrSet<T>(
-    key: string,
-    factory: () => Promise<T>,
-    options?: CacheOptions
-  ): Promise<T> {
+  async getOrSet<T>(key: string, factory: () => Promise<T>, options?: CacheOptions): Promise<T> {
     const cache = this.getActiveCache();
     return cache.getOrSet(key, factory, options);
   }
@@ -149,7 +148,7 @@ let cacheInstance: UnifiedCache | null = null;
 export function cache(): ICache {
   if (!cacheInstance) {
     cacheInstance = new UnifiedCache();
-    
+
     // Auto-connect in non-test environments
     if (process.env.NODE_ENV !== 'test') {
       cacheInstance.connect().catch((error) => {
@@ -157,7 +156,7 @@ export function cache(): ICache {
       });
     }
   }
-  
+
   return cacheInstance;
 }
 
@@ -165,21 +164,19 @@ export function cache(): ICache {
  * Cache decorator for methods
  */
 export function Cacheable(options: CacheOptions & { keyPrefix?: string } = {}) {
-  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+  return function (target: unknown, propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
-    
-    descriptor.value = async function (...args: any[]) {
+
+    descriptor.value = async function (...args: unknown[]) {
       const cacheService = cache();
-      const keyPrefix = options.keyPrefix || `${target.constructor.name}.${propertyKey}`;
+      const keyPrefix =
+        options.keyPrefix ||
+        `${(target as { constructor: { name: string } }).constructor.name}.${propertyKey}`;
       const key = `${keyPrefix}:${JSON.stringify(args)}`;
-      
-      return cacheService.getOrSet(
-        key,
-        () => originalMethod.apply(this, args),
-        options
-      );
+
+      return cacheService.getOrSet(key, () => originalMethod.apply(this, args), options);
     };
-    
+
     return descriptor;
   };
 }
@@ -187,21 +184,21 @@ export function Cacheable(options: CacheOptions & { keyPrefix?: string } = {}) {
 /**
  * Cache invalidation decorator
  */
-export function CacheInvalidate(tags: string[] | ((args: any[]) => string[])) {
-  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+export function CacheInvalidate(tags: string[] | ((args: unknown[]) => string[])) {
+  return function (target: unknown, propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
-    
-    descriptor.value = async function (...args: any[]) {
+
+    descriptor.value = async function (...args: unknown[]) {
       const result = await originalMethod.apply(this, args);
-      
+
       const cacheService = cache();
       const tagsToInvalidate = typeof tags === 'function' ? tags(args) : tags;
-      
+
       await cacheService.invalidateByTags(tagsToInvalidate);
-      
+
       return result;
     };
-    
+
     return descriptor;
   };
 }
@@ -251,10 +248,10 @@ export const CacheUtils = {
    */
   async warmUp(): Promise<void> {
     structuredLogger.info('Cache warm-up started');
-    
+
     // Add warm-up logic here
     // For example, pre-load popular curriculum expectations
-    
+
     structuredLogger.info('Cache warm-up completed');
   },
 
@@ -269,7 +266,7 @@ export const CacheUtils = {
     const cacheService = cache() as UnifiedCache;
     const healthy = await cacheService.healthCheck();
     const stats = cacheService.getStats();
-    
+
     return {
       healthy,
       type: cacheService.isUsingRedis() ? 'redis' : 'memory',
