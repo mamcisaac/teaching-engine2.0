@@ -228,6 +228,7 @@ export const batchedApi = {
 
 // Debounced request helper
 export function createDebouncedRequest<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   T extends (...args: any[]) => Promise<any>,
 >(fn: T, delay = 300): T & { cancel: () => void } {
   let timeout: NodeJS.Timeout | null = null;
