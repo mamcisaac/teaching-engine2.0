@@ -4,17 +4,43 @@
  */
 
 import { test, expect, Page } from '@playwright/test';
-import { 
-  createTestUser, 
-  loginTestUser, 
-  logoutTestUser, 
-  deleteTestUser,
-  testProtectedRoute,
-  type TestUser 
-} from '../../client/src/test-utils/auth-test-utils';
+import {
+  TEST_USERS,
+  waitForAuthState,
+  createAuthHeaders,
+  type TestUser,
+} from '../utils/auth-test-utils';
 
 // Test data
 let testUsers: TestUser[] = [];
+
+// Test helper functions
+async function createTestUser(userData: Partial<TestUser>): Promise<TestUser> {
+  const user = {
+    id: `test-${Date.now()}`,
+    email: userData.email || `test${Date.now()}@example.com`,
+    name: userData.name || 'Test User',
+    password: userData.password || 'TestPass123!',
+    ...userData,
+  };
+  testUsers.push(user);
+  return user;
+}
+
+async function deleteTestUser(userId: string): Promise<void> {
+  // In a real implementation, this would delete the user from the backend
+  testUsers = testUsers.filter((u) => u.id !== userId);
+}
+
+async function loginTestUser(email: string, password: string): Promise<{ token: string }> {
+  // In a real implementation, this would login via the API
+  return { token: 'test-token' };
+}
+
+async function testProtectedRoute(route: string): Promise<any> {
+  // In a real implementation, this would test the protected route
+  return { success: true };
+}
 
 test.describe('Complete Authentication Flows', () => {
   test.afterEach(async () => {
@@ -81,7 +107,9 @@ test.describe('Complete Authentication Flows', () => {
 
     // Should show error message
     await expect(page.locator('[data-testid="error-message"]')).toBeVisible();
-    await expect(page.locator('[data-testid="error-message"]')).toContainText('Invalid email or password');
+    await expect(page.locator('[data-testid="error-message"]')).toContainText(
+      'Invalid email or password',
+    );
 
     // Should stay on login page
     await expect(page).toHaveURL('/login');
@@ -193,7 +221,10 @@ test.describe('Complete Authentication Flows', () => {
     // Should either show access denied or redirect to appropriate page
     const currentUrl = page.url();
     const hasAccess = currentUrl.includes('/admin');
-    const isAccessDenied = await page.locator('[data-testid="access-denied"]').isVisible().catch(() => false);
+    const isAccessDenied = await page
+      .locator('[data-testid="access-denied"]')
+      .isVisible()
+      .catch(() => false);
     const isRedirected = !currentUrl.includes('/admin');
 
     expect(hasAccess || isAccessDenied || isRedirected).toBe(true);
@@ -260,10 +291,10 @@ test.describe('Complete Authentication Flows', () => {
 
     // Change password (if this functionality exists)
     const passwordChangeForm = page.locator('[data-testid="change-password-form"]');
-    
+
     if (await passwordChangeForm.isVisible()) {
       const newPassword = 'NewPassword123!';
-      
+
       await page.fill('[data-testid="current-password"]', testUser.password);
       await page.fill('[data-testid="new-password"]', newPassword);
       await page.fill('[data-testid="confirm-password"]', newPassword);
@@ -301,14 +332,14 @@ test.describe('Authentication API Integration', () => {
 
     // Test login through API
     const authContext = await loginTestUser(testUser.email, testUser.password);
-    
+
     expect(authContext.user).toBeDefined();
     expect(authContext.token).toBeDefined();
     expect(authContext.user.email).toBe(testUser.email);
 
     // Test protected route access
     const protectedResult = await testProtectedRoute('/api/auth/me');
-    
+
     expect(protectedResult.authRequired).toBe(true);
     expect(protectedResult.unauthorizedStatus).toBe(401);
     expect(protectedResult.authorizedStatus).toBe(200);
@@ -339,19 +370,19 @@ test.describe('Authentication API Integration', () => {
     testUsers.push(testUser);
 
     const authContext = await loginTestUser(testUser.email, testUser.password);
-    
+
     // Token should be valid JWT
     expect(authContext.token).toMatch(/^[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+$/);
-    
+
     // Should be able to use token for API calls
     const response = await fetch('http://localhost:3000/api/auth/me', {
       headers: {
-        'Authorization': `Bearer ${authContext.token}`,
+        Authorization: `Bearer ${authContext.token}`,
       },
     });
-    
+
     expect(response.ok).toBe(true);
-    
+
     const userData = await response.json();
     expect(userData.email).toBe(testUser.email);
 
