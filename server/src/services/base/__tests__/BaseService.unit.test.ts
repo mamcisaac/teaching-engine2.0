@@ -30,16 +30,13 @@ class TestService extends BaseService {
 
   // Public method to test metrics
   public async testMethod(shouldFail: boolean = false): Promise<string> {
-    return this.executeWithMetrics(
-      async () => {
-        if (shouldFail) {
-          throw new Error('Test error');
-        }
-        await new Promise(resolve => setTimeout(resolve, 100));
-        return 'success';
-      },
-      'testMethod'
-    );
+    return this.executeWithMetrics(async () => {
+      if (shouldFail) {
+        throw new Error('Test error');
+      }
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      return 'success';
+    }, 'testMethod');
   }
 
   // Expose protected methods for testing
@@ -48,7 +45,7 @@ class TestService extends BaseService {
   }
 
   public isHealthyForTest() {
-    return this.isHealthy;
+    return this.isHealthy();
   }
 
   // Expose ensureInitialized for testing
@@ -141,12 +138,9 @@ describe('BaseService', () => {
 
     it('should track metrics for different operations', async () => {
       await service.testMethod(false);
-      
+
       // Add another operation
-      await service['executeWithMetrics'](
-        async () => 'another result',
-        'anotherOperation'
-      );
+      await service['executeWithMetrics'](async () => 'another result', 'anotherOperation');
 
       const metrics = service.getMetricsForTest();
       expect(Object.keys(metrics.operations)).toHaveLength(2);
@@ -158,15 +152,15 @@ describe('BaseService', () => {
   describe('Error Handling', () => {
     it('should log errors in executeWithMetrics', async () => {
       const loggerSpy = jest.spyOn(service['logger'], 'error');
-      
+
       await expect(service.testMethod(true)).rejects.toThrow('Test error');
-      
+
       expect(loggerSpy).toHaveBeenCalledWith(
-        expect.stringContaining('Operation failed'),
         expect.objectContaining({
           operation: 'testMethod',
           error: expect.any(Error),
-        })
+        }),
+        expect.stringContaining('Operation failed'),
       );
     });
 
@@ -189,12 +183,10 @@ describe('BaseService', () => {
   describe('Lifecycle', () => {
     it('should handle shutdown gracefully', async () => {
       const shutdownSpy = jest.spyOn(service['logger'], 'info');
-      
+
       await service.shutdown();
-      
-      expect(shutdownSpy).toHaveBeenCalledWith(
-        expect.stringContaining('shutting down')
-      );
+
+      expect(shutdownSpy).toHaveBeenCalledWith(expect.stringContaining('shutting down'));
     });
 
     it('should clean up resources on shutdown', async () => {
@@ -214,7 +206,7 @@ describe('BaseService', () => {
     it('should check dependencies correctly', () => {
       service.checkDependenciesCalled = false;
       const deps = service['checkDependencies']();
-      
+
       expect(service.checkDependenciesCalled).toBe(true);
       expect(deps).toHaveProperty('logger', true);
       expect(deps).toHaveProperty('testDependency', true);
@@ -223,13 +215,13 @@ describe('BaseService', () => {
 
   describe('Edge Cases', () => {
     it('should handle concurrent operations', async () => {
-      const promises = Array(10).fill(null).map(() => 
-        service.testMethod(false)
-      );
+      const promises = Array(10)
+        .fill(null)
+        .map(() => service.testMethod(false));
 
       const results = await Promise.all(promises);
       expect(results).toHaveLength(10);
-      expect(results.every(r => r === 'success')).toBe(true);
+      expect(results.every((r) => r === 'success')).toBe(true);
 
       const metrics = service.getMetricsForTest();
       expect(metrics.totalRequests).toBe(10);
@@ -237,13 +229,13 @@ describe('BaseService', () => {
     });
 
     it('should handle mixed success and failure operations', async () => {
-      const promises = Array(10).fill(null).map((_, i) => 
-        service.testMethod(i % 2 === 0).catch(() => 'failed')
-      );
+      const promises = Array(10)
+        .fill(null)
+        .map((_, i) => service.testMethod(i % 2 === 0).catch(() => 'failed'));
 
       const results = await Promise.all(promises);
-      const successes = results.filter(r => r === 'success').length;
-      const failures = results.filter(r => r === 'failed').length;
+      const successes = results.filter((r) => r === 'success').length;
+      const failures = results.filter((r) => r === 'failed').length;
 
       const metrics = service.getMetricsForTest();
       expect(metrics.successfulRequests).toBe(successes);
