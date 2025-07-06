@@ -4,8 +4,8 @@
  */
 
 import request from 'supertest';
-import { app } from '../index.js';
-import { prisma } from '../prisma.js';
+import { app } from '../../src/index';
+import { prisma } from '../../src/prisma';
 import jwt from 'jsonwebtoken';
 
 describe('ETFO Endpoints Schema Fix Verification', () => {
@@ -102,7 +102,7 @@ describe('ETFO Endpoints Schema Fix Verification', () => {
       expect(response.status).toBe(200);
       expect(response.body).toHaveProperty('lessonPlans');
       expect(response.body).toHaveProperty('pagination');
-      
+
       const lessonPlan = response.body.lessonPlans[0];
       expect(lessonPlan).toHaveProperty('id');
       expect(lessonPlan).toHaveProperty('title');
@@ -139,7 +139,7 @@ describe('ETFO Endpoints Schema Fix Verification', () => {
 
       expect(response.status).toBe(200);
       expect(response.body).toHaveProperty('unitPlans');
-      
+
       const unitPlan = response.body.unitPlans[0];
       expect(unitPlan).toHaveProperty('expectations');
       expect(Array.isArray(unitPlan.expectations)).toBe(true);
@@ -179,10 +179,12 @@ describe('ETFO Endpoints Schema Fix Verification', () => {
           lessonPlanId,
           whatWorked: 'Test worked well',
           expectations: {
-            create: [{
-              expectationId,
-              coverage: 'introduced',
-            }],
+            create: [
+              {
+                expectationId,
+                coverage: 'introduced',
+              },
+            ],
           },
         },
       });
@@ -193,7 +195,7 @@ describe('ETFO Endpoints Schema Fix Verification', () => {
 
       expect(response.status).toBe(200);
       expect(response.body).toHaveProperty('entries');
-      
+
       const entry = response.body.entries[0];
       expect(entry).toHaveProperty('expectations'); // Not expectationCoverage
     });
@@ -209,10 +211,12 @@ describe('ETFO Endpoints Schema Fix Verification', () => {
           lessonPlanId,
           whatWorked: 'Students engaged well',
           overallRating: 4,
-          expectations: [{
-            expectationId,
-            coverage: 'developing',
-          }],
+          expectations: [
+            {
+              expectationId,
+              coverage: 'developing',
+            },
+          ],
         });
 
       expect(response.status).toBe(201);

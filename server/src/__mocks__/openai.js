@@ -1,7 +1,6 @@
 /**
  * Mock implementation of OpenAI for testing
  */
-import { jest } from '@jest/globals';
 
 // Store the original mocks so they can be accessed from tests
 const createMock = jest.fn();
@@ -70,6 +69,7 @@ function MockOpenAI(config = {}) {
 MockOpenAI.mockCreate = createMock;
 MockOpenAI.mockEmbeddings = embeddingsMock;
 
-// Export default and named export for compatibility with different import styles
-export default MockOpenAI;
-export { MockOpenAI as OpenAI };
+// Export for CommonJS compatibility
+module.exports = MockOpenAI;
+module.exports.OpenAI = MockOpenAI;
+module.exports.default = MockOpenAI;
