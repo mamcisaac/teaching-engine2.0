@@ -191,21 +191,11 @@ export function monitorPagination(metricPrefix: string) {
     // Monitor response
     res.on('finish', () => {
       const duration = Date.now() - start;
-      logger.info(`Pagination metrics - ${metricPrefix}.pagination`, {
-        metric: `${metricPrefix}.pagination`,
-        page: pagination.page,
-        limit: pagination.limit,
-        duration,
-        status: res.statusCode,
-      });
+      logger.info(`Pagination metrics - ${metricPrefix}.pagination: page=${pagination.page} limit=${pagination.limit} duration=${duration}ms status=${res.statusCode}`);
       
       // Log slow queries
       if (duration > 1000) {
-        logger.warn(`Slow paginated query - ${req.path}`, {
-          endpoint: req.originalUrl,
-          duration,
-          pagination,
-        });
+        logger.warn(`Slow paginated query - ${req.path}: ${duration}ms`);
       }
     });
     

@@ -171,8 +171,8 @@ describe('AuthService Integration Tests', () => {
       };
 
       server.use(
-        rest.post(`${TEST_API_URL}/api/auth/login`, (req, res, ctx) => {
-          return res(ctx.json(loginResponse));
+        http.post(`${TEST_API_URL}/api/auth/login`, ({ request }) => {
+          return HttpResponse.json(loginResponse);
         })
       );
 
@@ -190,11 +190,8 @@ describe('AuthService Integration Tests', () => {
 
     test('should handle login failure', async () => {
       server.use(
-        rest.post(`${TEST_API_URL}/api/auth/login`, (req, res, ctx) => {
-          return res(
-            ctx.status(401),
-            ctx.json({ error: 'Invalid credentials' })
-          );
+        http.post(`${TEST_API_URL}/api/auth/login`, ({ request }) => {
+          return HttpResponse.json({ error: 'Invalid credentials' }, { status: 401 });
         })
       );
 
@@ -225,17 +222,17 @@ describe('AuthService Integration Tests', () => {
       const newToken = 'new-access-token-' + Date.now();
       
       server.use(
-        rest.post(`${TEST_API_URL}/api/auth/refresh`, (req, res, ctx) => {
+        http.post(`${TEST_API_URL}/api/auth/refresh`, ({ request }) => {
           // Verify refresh token is sent as cookie
-          const cookies = req.headers.get('cookie');
+          const cookies = request.headers.get('cookie');
           if (!cookies?.includes('refreshToken')) {
-            return res(ctx.status(401), ctx.json({ error: 'No refresh token' }));
+            return HttpResponse.json({ error: 'No refresh token' }, { status: 401 });
           }
           
-          return res(ctx.json({ 
+          return HttpResponse.json({ 
             accessToken: newToken,
             expiresIn: 3600
-          }));
+          });
         })
       );
 
@@ -250,8 +247,8 @@ describe('AuthService Integration Tests', () => {
 
     test('should handle refresh token failure', async () => {
       server.use(
-        rest.post(`${TEST_API_URL}/api/auth/refresh`, (req, res, ctx) => {
-          return res(ctx.status(401), ctx.json({ error: 'Invalid refresh token' }));
+        http.post(`${TEST_API_URL}/api/auth/refresh`, ({ request }) => {
+          return HttpResponse.json({ error: 'Invalid refresh token' }, { status: 401 });
         })
       );
 
@@ -271,8 +268,8 @@ describe('AuthService Integration Tests', () => {
       authService.setUser(testUser);
 
       server.use(
-        rest.post(`${TEST_API_URL}/api/auth/logout`, (req, res, ctx) => {
-          return res(ctx.json({ message: 'Logged out successfully' }));
+        http.post(`${TEST_API_URL}/api/auth/logout`, ({ request }) => {
+          return HttpResponse.json({ message: 'Logged out successfully' });
         })
       );
 
@@ -291,11 +288,11 @@ describe('AuthService Integration Tests', () => {
       
       // Set up refresh endpoint
       server.use(
-        rest.post(`${TEST_API_URL}/api/auth/refresh`, (req, res, ctx) => {
-          return res(ctx.json({ 
+        http.post(`${TEST_API_URL}/api/auth/refresh`, ({ request }) => {
+          return HttpResponse.json({ 
             accessToken: 'refreshed-token',
             expiresIn: 3600
-          }));
+          });
         })
       );
 
