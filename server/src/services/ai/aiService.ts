@@ -244,38 +244,45 @@ export class AIService extends BaseService {
 
   async generateSubstitutePlan(input: SubstitutePlanInput): Promise<SubstitutePlan> {
     try {
-      const cacheKey = this.createCacheKey('substitute', input);
-      const cached = this.getFromCache(cacheKey);
-      if (cached) {
-        return cached;
-      }
-
-      const prompt = this.buildSubstitutePrompt(input);
-      const systemPrompt = this.getSubstituteSystemPrompt();
+      const cacheService = cache();
+      const cacheKey = CacheKeys.aiGeneration(this.buildSubstitutePrompt(input));
       
-      const response = await this.openAIClient.chat.completions.create({
-        model: this.model,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: prompt },
-        ],
-        temperature: this.temperature,
-        max_tokens: this.maxTokens,
-      });
+      const plan = await cacheService.getOrSet(
+        cacheKey,
+        async () => {
+          const prompt = this.buildSubstitutePrompt(input);
+          const systemPrompt = this.getSubstituteSystemPrompt();
+          
+          const response = await this.openAIClient.chat.completions.create({
+            model: this.model,
+            messages: [
+              { role: 'system', content: systemPrompt },
+              { role: 'user', content: prompt },
+            ],
+            temperature: this.temperature,
+            max_tokens: this.maxTokens,
+          });
 
-      const content = response.choices[0]?.message?.content;
-      if (!content) {
-        throw new AppError(500, 'No response from AI service');
-      }
+          const content = response.choices[0]?.message?.content;
+          if (!content) {
+            throw new AppError(500, 'No response from AI service');
+          }
 
-      let plan: SubstitutePlan;
-      try {
-        plan = JSON.parse(content);
-      } catch (parseError) {
-        plan = this.createFallbackSubstitutePlan(input);
-      }
+          let parsedPlan: SubstitutePlan;
+          try {
+            parsedPlan = JSON.parse(content);
+          } catch (parseError) {
+            parsedPlan = this.createFallbackSubstitutePlan(input);
+          }
+          
+          return parsedPlan;
+        },
+        {
+          ttl: 3600, // 1 hour cache
+          tags: CacheTags.ai(),
+        }
+      );
       
-      this.setCache(cacheKey, plan);
       return plan;
     } catch (error: any) {
       logger.error('Error generating substitute plan:', error);
@@ -285,38 +292,45 @@ export class AIService extends BaseService {
 
   async generateNewsletter(input: NewsletterGenerationInput): Promise<Newsletter> {
     try {
-      const cacheKey = this.createCacheKey('newsletter', input);
-      const cached = this.getFromCache(cacheKey);
-      if (cached) {
-        return cached;
-      }
-
-      const prompt = this.buildNewsletterPrompt(input);
-      const systemPrompt = this.getNewsletterSystemPrompt();
+      const cacheService = cache();
+      const cacheKey = CacheKeys.aiGeneration(this.buildNewsletterPrompt(input));
       
-      const response = await this.openAIClient.chat.completions.create({
-        model: this.model,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: prompt },
-        ],
-        temperature: this.temperature,
-        max_tokens: this.maxTokens,
-      });
+      const newsletter = await cacheService.getOrSet(
+        cacheKey,
+        async () => {
+          const prompt = this.buildNewsletterPrompt(input);
+          const systemPrompt = this.getNewsletterSystemPrompt();
+          
+          const response = await this.openAIClient.chat.completions.create({
+            model: this.model,
+            messages: [
+              { role: 'system', content: systemPrompt },
+              { role: 'user', content: prompt },
+            ],
+            temperature: this.temperature,
+            max_tokens: this.maxTokens,
+          });
 
-      const content = response.choices[0]?.message?.content;
-      if (!content) {
-        throw new AppError(500, 'No response from AI service');
-      }
+          const content = response.choices[0]?.message?.content;
+          if (!content) {
+            throw new AppError(500, 'No response from AI service');
+          }
 
-      let newsletter: Newsletter;
-      try {
-        newsletter = JSON.parse(content);
-      } catch (parseError) {
-        newsletter = this.createFallbackNewsletter(input);
-      }
+          let parsedNewsletter: Newsletter;
+          try {
+            parsedNewsletter = JSON.parse(content);
+          } catch (parseError) {
+            parsedNewsletter = this.createFallbackNewsletter(input);
+          }
+          
+          return parsedNewsletter;
+        },
+        {
+          ttl: 3600, // 1 hour cache
+          tags: CacheTags.ai(),
+        }
+      );
       
-      this.setCache(cacheKey, newsletter);
       return newsletter;
     } catch (error: any) {
       logger.error('Error generating newsletter:', error);

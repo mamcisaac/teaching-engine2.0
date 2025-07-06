@@ -71,7 +71,7 @@ export class MemoryCache {
 
     this.stats.hits++;
     this.updateHitRate();
-    return entry.value;
+    return entry.value as T;
   }
 
   async set<T>(key: string, value: T, options: CacheOptions = {}): Promise<boolean> {

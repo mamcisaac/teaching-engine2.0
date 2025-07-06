@@ -138,7 +138,7 @@ class SubstitutePlanServiceWrapper extends BaseService {
       Object.assign(where, dateWhere);
     }
 
-    if (grade) where.grade = String(grade);
+    if (grade) where.grade = parseInt(String(grade), 10);
     if (subject) where.subject = { contains: subject };
     if (isActive !== undefined) where.isActive = isActive;
 

@@ -36,9 +36,8 @@ export function generateAccessToken(payload: JWTPayload): string {
     throw new Error('JWT_SECRET is not defined');
   }
   
-  return jwt.sign(payload, secret, {
-    expiresIn: process.env.JWT_EXPIRES_IN || '7d',
-  });
+  const expiresIn = process.env.JWT_EXPIRES_IN || '7d';
+  return jwt.sign(payload, secret, { expiresIn });
 }
 
 /**
@@ -50,9 +49,8 @@ export function generateRefreshToken(payload: JWTPayload): string {
     throw new Error('JWT_REFRESH_SECRET is not defined');
   }
   
-  return jwt.sign(payload, secret, {
-    expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '30d',
-  });
+  const expiresIn = process.env.JWT_REFRESH_EXPIRES_IN || '30d';
+  return jwt.sign(payload, secret, { expiresIn });
 }
 
 /**

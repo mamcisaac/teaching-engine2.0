@@ -7,7 +7,8 @@ import { RedisCache, getCache as getRedisCache, CacheOptions, CacheStats } from 
 import { MemoryCache, getMemoryCache } from './MemoryCache';
 import { structuredLogger } from '../../utils/structuredLogger';
 
-export { CacheOptions, CacheStats, cacheMiddleware } from './RedisCache';
+export type { CacheOptions, CacheStats } from './RedisCache';
+export { cacheMiddleware } from './RedisCache';
 
 export interface ICache {
   connect(): Promise<void>;

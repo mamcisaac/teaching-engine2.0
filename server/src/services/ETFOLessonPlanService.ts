@@ -95,16 +95,10 @@ export class ETFOLessonPlanService extends BaseService {
         };
       }
 
-      const result = await this.repository.findMany({
-        where,
-        include: {
-          expectations: {
-            include: {
-              expectation: true,
-            },
-          },
-        },
-        pagination,
+      const result = await this.repository.findByUserId(userId, {
+        includeRelations: true,
+        skip: pagination.skip || 0,
+        take: pagination.take || 20,
       });
 
       return result;
@@ -114,7 +108,7 @@ export class ETFOLessonPlanService extends BaseService {
     }
   }
 
-  async findById(id: number, userId: number) {
+  async findById(id: string, userId: number) {
     try {
       const plan = await this.repository.findByIdWithRelations(id);
 
@@ -156,7 +150,7 @@ export class ETFOLessonPlanService extends BaseService {
             connect: { id: planData.unitPlanId },
           },
         },
-        expectationIds,
+        expectationIds.map(id => String(id)),
       );
 
       return plan;
@@ -166,7 +160,7 @@ export class ETFOLessonPlanService extends BaseService {
     }
   }
 
-  async update(id: number, userId: number, data: ETFOLessonPlanUpdateData) {
+  async update(id: string, userId: number, data: ETFOLessonPlanUpdateData) {
     try {
       // Verify ownership
       const existingPlan = await this.repository.findById(id);
@@ -182,7 +176,7 @@ export class ETFOLessonPlanService extends BaseService {
           ...updateData,
           date: updateData.date ? new Date(updateData.date) : undefined,
         },
-        expectationIds,
+        (expectationIds || []).map(id => String(id)),
       );
 
       return updatedPlan;
@@ -192,7 +186,7 @@ export class ETFOLessonPlanService extends BaseService {
     }
   }
 
-  async delete(id: number, userId: number) {
+  async delete(id: string, userId: number) {
     try {
       // Verify ownership
       const existingPlan = await this.repository.findById(id);
@@ -208,10 +202,46 @@ export class ETFOLessonPlanService extends BaseService {
     }
   }
 
-  async duplicate(id: number, userId: number) {
+  async duplicate(id: string, userId: number) {
     try {
-      const plan = await this.repository.duplicatePlan(id, userId);
-      return plan;
+      // Get the original plan
+      const originalPlan = await this.repository.findByIdWithRelations(id);
+      if (!originalPlan || originalPlan.userId !== userId) {
+        throw new Error('Lesson plan not found or unauthorized');
+      }
+
+      // Create a duplicate with a new title
+      const duplicateData = {
+        ...originalPlan,
+        title: `${originalPlan.title} (Copy)`,
+        userId: userId,
+        unitPlanId: originalPlan.unitPlanId,
+        date: originalPlan.date.toISOString(),
+      };
+
+      // Remove id and relation fields that should not be copied
+      const { id: _id, createdAt: _createdAt, updatedAt: _updatedAt, unitPlan: _unitPlan, expectations: _expectations, resources: _resources, ...cleanData } = duplicateData;
+
+      // Extract expectation IDs if they exist
+      const expectationIds = originalPlan.expectations?.map(exp => exp.expectationId) || [];
+
+      // Clean up null values to undefined for create method
+      const cleanedData = {
+        ...cleanData,
+        expectationIds: expectationIds.map(id => parseInt(id, 10)),
+        titleFr: cleanData.titleFr || undefined,
+        descriptionFr: cleanData.descriptionFr || undefined,
+        bigIdeas: cleanData.bigIdeas || undefined,
+        learningGoals: cleanData.learningGoals || undefined,
+        successCriteria: cleanData.successCriteria || undefined,
+        materials: cleanData.materials || undefined,
+        accommodations: cleanData.accommodations || undefined,
+        reflection: cleanData.reflection || undefined,
+        notes: cleanData.notes || undefined,
+        subNotes: cleanData.subNotes || undefined,
+      };
+      
+      return await this.create(cleanedData);
     } catch (error) {
       logger.error('Error duplicating ETFO lesson plan:', error);
       throw error;

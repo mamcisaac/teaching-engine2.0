@@ -216,7 +216,7 @@ class UnitPlanService extends BaseService {
       longRangePlanId: data.longRangePlanId,
       description: data.description,
       bigIdeas: data.bigIdeas,
-      essentialQuestions: data.essentialQuestions ? JSON.stringify(data.essentialQuestions) : null,
+      essentialQuestions: data.essentialQuestions ? JSON.stringify(data.essentialQuestions) : undefined,
       startDate: new Date(data.startDate),
       endDate: new Date(data.endDate),
       estimatedHours: data.estimatedHours,
@@ -224,17 +224,17 @@ class UnitPlanService extends BaseService {
       descriptionFr: data.descriptionFr,
       bigIdeasFr: data.bigIdeasFr,
       assessmentPlan: data.assessmentPlan,
-      successCriteria: data.successCriteria ? JSON.stringify(data.successCriteria) : null,
+      successCriteria: data.successCriteria ? JSON.stringify(data.successCriteria) : undefined,
       crossCurricularConnections: data.crossCurricularConnections,
-      learningSkills: data.learningSkills ? JSON.stringify(data.learningSkills) : null,
+      learningSkills: data.learningSkills ? JSON.stringify(data.learningSkills) : undefined,
       culminatingTask: data.culminatingTask,
-      keyVocabulary: data.keyVocabulary ? JSON.stringify(data.keyVocabulary) : null,
+      keyVocabulary: data.keyVocabulary ? JSON.stringify(data.keyVocabulary) : undefined,
       priorKnowledge: data.priorKnowledge,
       parentCommunicationPlan: data.parentCommunicationPlan,
       fieldTripsAndGuestSpeakers: data.fieldTripsAndGuestSpeakers,
       differentiationStrategies: data.differentiationStrategies
         ? JSON.stringify(data.differentiationStrategies)
-        : null,
+        : undefined,
       indigenousPerspectives: data.indigenousPerspectives,
       environmentalEducation: data.environmentalEducation,
       socialJusticeConnections: data.socialJusticeConnections,
@@ -289,7 +289,15 @@ class UnitPlanService extends BaseService {
       throw new Error('Unit plan not found or access denied');
     }
 
-    const { expectationIds, ...updateData } = data;
+    const { expectationIds, ...updateDataBase } = data;
+
+    // Build update data without longRangePlanId and with proper date conversion
+    const updateData: Record<string, unknown> = {};
+    Object.keys(updateDataBase).forEach(key => {
+      if (key !== 'longRangePlanId') { // Skip longRangePlanId - can't be updated
+        updateData[key] = updateDataBase[key as keyof typeof updateDataBase];
+      }
+    });
 
     // Handle date conversion
     if (data.startDate) updateData.startDate = new Date(data.startDate);
@@ -413,6 +421,7 @@ class UnitPlanService extends BaseService {
 
     return prisma.unitPlan.create({
       data: {
+        userId,
         title: title || `${sourceUnitPlan.title} (Copy)`,
         titleFr: sourceUnitPlan.titleFr,
         description: sourceUnitPlan.description,

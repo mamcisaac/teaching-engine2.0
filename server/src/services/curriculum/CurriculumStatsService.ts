@@ -402,8 +402,8 @@ export class CurriculumStatsService extends BaseService {
             return {
               id: importRecord.id,
               userId: importRecord.userId,
-              grade: importRecord.grade,
-              subject: importRecord.subject,
+              grade: importRecord.grade ?? 0, // Default to 0 if null
+              subject: importRecord.subject ?? 'Unknown', // Default to 'Unknown' if null
               status: importRecord.status,
               createdAt: importRecord.createdAt,
               expectationsCount,
