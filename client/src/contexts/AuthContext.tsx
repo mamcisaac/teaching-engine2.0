@@ -168,7 +168,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setIsInitialized(true);
         updateAuthState(null);
       }
-    }, 5000); // 5 second timeout
+    }, 2000); // 2 second timeout - reduced for better UX
 
     const performInitialAuthCheck = async () => {
       logger.debug('[AuthContext] Starting initial auth check');
@@ -196,8 +196,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
 
         // If we have a stored user and token, verify with server
+        // Add a timeout to prevent hanging
         if (storedUser && hasToken) {
-          await checkAuth();
+          const checkAuthPromise = checkAuth();
+          const timeoutPromise = new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('Auth check timeout')), 1500),
+          );
+
+          try {
+            await Promise.race([checkAuthPromise, timeoutPromise]);
+          } catch (timeoutError) {
+            logger.warn('Auth verification timed out, using cached user');
+            // Use cached user data if server check times out
+            if (isMounted && storedUser) {
+              updateAuthState(storedUser);
+            }
+          }
         } else {
           // Clear inconsistent state
           authService.clearTokens();

@@ -196,9 +196,11 @@ class AuthService {
   }
 
   private async _performTokenRefresh(): Promise<boolean> {
+    const baseURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+
     try {
       // Refresh token is now sent as HTTP-only cookie automatically
-      const response = await fetch('/api/auth/refresh', {
+      const response = await fetch(`${baseURL}/api/auth/refresh`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -231,24 +233,26 @@ class AuthService {
   /**
    * Verify current authentication status with server
    */
-  async verifyAuth(): Promise<User | null> {
+  async verifyAuth(isRetry = false): Promise<User | null> {
     const token = this.getAccessToken();
 
     if (!token) {
       return null;
     }
 
+    const baseURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+
     try {
-      const response = await fetch('/api/auth/me', {
+      const response = await fetch(`${baseURL}/api/auth/me`, {
         headers: this.getAuthHeaders(),
         credentials: 'include',
       });
 
       if (response.status === 401) {
-        // Try to refresh token if available
-        if (this.hasRefreshToken() && (await this.refreshToken())) {
+        // Try to refresh token if available, but only if not already retrying
+        if (!isRetry && this.hasRefreshToken() && (await this.refreshToken())) {
           // Retry with new token
-          return this.verifyAuth();
+          return this.verifyAuth(true);
         }
 
         this.clearTokens();
@@ -265,13 +269,13 @@ class AuthService {
     } catch (error) {
       logger.error('Auth verification failed:', error);
 
-      // Try token refresh on network errors
-      if (this.hasRefreshToken()) {
+      // Try token refresh on network errors, but only if not already retrying
+      if (!isRetry && this.hasRefreshToken()) {
         const refreshSuccess = await this.refreshToken();
         if (refreshSuccess) {
           // Retry once after successful refresh
           try {
-            return await this.verifyAuth();
+            return await this.verifyAuth(true);
           } catch (retryError) {
             logger.error('Auth verification retry failed:', retryError);
           }

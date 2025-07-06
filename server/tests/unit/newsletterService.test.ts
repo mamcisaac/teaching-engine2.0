@@ -75,11 +75,11 @@ describe('NewsletterService', () => {
         },
       ];
 
-      const result = (NewsletterService as unknown).generateTemplateContent(
+      const result = (NewsletterService as any)._generateTemplateContent(
         mockLessonPlans,
         mockReflections,
         mockFromDate,
-        mockToDate
+        mockToDate,
       );
 
       expect(result).toContain('Classroom Newsletter');
@@ -119,11 +119,11 @@ describe('NewsletterService', () => {
         },
       ];
 
-      const result = (NewsletterService as unknown).generateTemplateContent(
+      const result = (NewsletterService as any)._generateTemplateContent(
         mockLessonPlans,
         [],
         mockFromDate,
-        mockToDate
+        mockToDate,
       );
 
       expect(result).toContain('**Social Skills**');
@@ -150,11 +150,11 @@ describe('NewsletterService', () => {
         },
       ];
 
-      const result = (NewsletterService as unknown).generateTemplateContent(
+      const result = (NewsletterService as any)._generateTemplateContent(
         mockLessonPlans,
         [],
         mockFromDate,
-        mockToDate
+        mockToDate,
       );
 
       expect(result).toContain('**General Studies**');
@@ -162,11 +162,11 @@ describe('NewsletterService', () => {
     });
 
     it('should generate fallback content when no lessons or reflections', () => {
-      const result = (NewsletterService as unknown).generateTemplateContent(
+      const result = (NewsletterService as any)._generateTemplateContent(
         [],
         [],
         mockFromDate,
-        mockToDate
+        mockToDate,
       );
 
       expect(result).toContain('Classroom Newsletter');
@@ -197,11 +197,11 @@ describe('NewsletterService', () => {
         },
       ];
 
-      const result = (NewsletterService as unknown).generateTemplateContent(
+      const result = (NewsletterService as any)._generateTemplateContent(
         [],
         mockReflections,
         mockFromDate,
-        mockToDate
+        mockToDate,
       );
 
       expect(result).toContain('Classroom Celebrations');
@@ -230,11 +230,11 @@ describe('NewsletterService', () => {
         },
       ];
 
-      const result = (NewsletterService as unknown).generateTemplateContent(
+      const result = (NewsletterService as any)._generateTemplateContent(
         mockLessonPlans,
         [],
         mockFromDate,
-        mockToDate
+        mockToDate,
       );
 
       expect(result).toContain('**Mathematics**');
@@ -249,7 +249,7 @@ describe('NewsletterService', () => {
         [],
         [],
         fromDate,
-        toDate
+        toDate,
       );
 
       expect(result).toContain('2023-10-14 to 2023-10-28'); // Adjusted for actual date formatting
@@ -280,15 +280,15 @@ describe('NewsletterService', () => {
         },
       ];
 
-      const result = (NewsletterService as unknown).generateTemplateContent(
+      const result = (NewsletterService as any)._generateTemplateContent(
         mockLessonPlans,
         [],
         mockFromDate,
-        mockToDate
+        mockToDate,
       );
 
-      expect(result).toContain('**Mathematics**: We\'ve been exploring Addition, Subtraction');
-      expect(result).toContain('**Language Arts**: We\'ve been exploring Writing');
+      expect(result).toContain("**Mathematics**: We've been exploring Addition, Subtraction");
+      expect(result).toContain("**Language Arts**: We've been exploring Writing");
     });
   });
 
@@ -335,9 +335,9 @@ describe('NewsletterService', () => {
     it('should format date range correctly', () => {
       const fromDate = new Date('2023-11-01');
       const toDate = new Date('2023-11-15');
-      
+
       const result = (NewsletterService as unknown).formatDateRange(fromDate, toDate);
-      
+
       expect(result).toBe('2023-10-31 to 2023-11-14'); // Adjusted for actual date formatting
     });
 

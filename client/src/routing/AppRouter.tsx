@@ -18,25 +18,28 @@ function renderRoute(route: RouteConfig, index: number): JSX.Element {
 
   let content: React.ReactNode;
 
-  if (typeof Element === 'function') {
+  if (React.isValidElement(Element)) {
+    // This is already a JSX element (like <Navigate />)
+    content = Element;
+  } else if (Element) {
     // This is a component (including lazy components)
+    // We need to check if it's a lazy component by looking at its type
+    const Component = Element as React.ComponentType;
+
     content = (
       <Suspense fallback={<SuspenseFallback />}>
         {workflowLevel ? (
           <WorkflowGate level={workflowLevel}>
-            <Element />
+            <Component />
           </WorkflowGate>
         ) : (
-          <Element />
+          <Component />
         )}
       </Suspense>
     );
-  } else if (React.isValidElement(Element)) {
-    // This is a JSX element (like <Navigate />)
-    content = Element;
   } else {
-    // This shouldn't happen, but fallback
-    content = Element;
+    // No element provided
+    content = null;
   }
 
   if (children) {
@@ -51,10 +54,21 @@ function renderRoute(route: RouteConfig, index: number): JSX.Element {
 }
 
 export function AppRouter() {
-  const { isLoading, isInitialized } = useAuth();
+  const { isLoading, isInitialized, error } = useAuth();
 
-  if (!isInitialized || isLoading) {
-    return <SuspenseFallback />;
+  // Add debug logging
+  // eslint-disable-next-line no-console
+  console.log('[AppRouter] Auth state:', { isLoading, isInitialized, error });
+
+  // Show loading spinner only during initial auth check
+  // But add a timeout to prevent infinite loading
+  if (!isInitialized) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <SuspenseFallback />
+        <p className="mt-4 text-gray-600">Checking authentication...</p>
+      </div>
+    );
   }
 
   return (

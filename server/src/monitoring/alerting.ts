@@ -198,20 +198,26 @@ const alerts: Alert[] = [
     id: 'unusual_user_activity',
     name: 'Unusual User Activity',
     condition: async () => {
-      // Check for sudden spikes in user activity
-      const now = new Date();
-      const fiveMinutesAgo = new Date(now.getTime() - 5 * 60 * 1000);
+      try {
+        // Check for sudden spikes in user activity
+        const now = new Date();
+        const fiveMinutesAgo = new Date(now.getTime() - 5 * 60 * 1000);
 
-      const recentActivity = await prisma.daybookEntry.count({
-        where: {
-          createdAt: {
-            gte: fiveMinutesAgo,
+        const recentActivity = await prisma.daybookEntry.count({
+          where: {
+            createdAt: {
+              gte: fiveMinutesAgo,
+            },
           },
-        },
-      });
+        });
 
-      // Alert if more than 100 entries in 5 minutes (potential abuse)
-      return recentActivity > 100;
+        // Alert if more than 100 entries in 5 minutes (potential abuse)
+        return recentActivity > 100;
+      } catch (error) {
+        // Silently fail if database is not ready
+        logger.debug('Failed to check unusual user activity', error);
+        return false;
+      }
     },
     message: (context) => `Unusual activity detected: ${context.count} entries in last 5 minutes`,
     severity: 'warning',
@@ -433,15 +439,21 @@ const gatherAlertContext = async (alert: Alert): Promise<AlertContext> => {
     }
 
     case 'unusual_user_activity': {
-      const now = new Date();
-      const fiveMinutesAgo = new Date(now.getTime() - 5 * 60 * 1000);
-      context.count = await prisma.daybookEntry.count({
-        where: {
-          createdAt: {
-            gte: fiveMinutesAgo,
+      try {
+        const now = new Date();
+        const fiveMinutesAgo = new Date(now.getTime() - 5 * 60 * 1000);
+        context.count = await prisma.daybookEntry.count({
+          where: {
+            createdAt: {
+              gte: fiveMinutesAgo,
+            },
           },
-        },
-      });
+        });
+      } catch (error) {
+        // Provide default value if database query fails
+        context.count = 0;
+        logger.debug('Failed to gather unusual user activity context', error);
+      }
       break;
     }
   }

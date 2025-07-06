@@ -106,9 +106,10 @@ export function requestLoggingMiddleware(req: Request, res: Response, next: Next
     return originalSend.call(this, body);
   };
 
-  res.end = function (chunk?: unknown, encoding?: BufferEncoding | 'buffer') {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  res.end = function (this: Response, ...args: any[]): Response {
     logResponse();
-    return originalEnd.call(this, chunk, encoding as BufferEncoding);
+    return originalEnd.apply(this, args);
   };
 
   // Handle request completion
