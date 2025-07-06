@@ -3,11 +3,12 @@
  * Provides consistent, searchable logs with request tracing
  */
 
+import { AsyncLocalStorage } from 'async_hooks';
+import { performance } from 'perf_hooks';
+
 import winston from 'winston';
 import { Request, Response, NextFunction } from 'express';
 import { v4 as uuidv4 } from 'uuid';
-import { AsyncLocalStorage } from 'async_hooks';
-import { performance } from 'perf_hooks';
 
 // Async context for storing request metadata
 const asyncLocalStorage = new AsyncLocalStorage<LogContext>();

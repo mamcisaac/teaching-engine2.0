@@ -12,38 +12,34 @@ export * from './chains';
 
 // Existing middleware (for backward compatibility)
 export { authenticate } from './authenticate';
-export { rateLimiters } from './rateLimit';
 export * from './cache';
 
-// Auth subdirectory exports
-export * from './auth';
+// Auth subdirectory exports - but not authenticate which is exported above
+export * from './auth/jwt';
+export * from './auth/middleware';
+export * from './auth/password';
+// Note: session.ts doesn't exist, removed export
+export * from './auth/strategies';
+export * from './auth/types';
 
 // Rate limit subdirectory exports
 export * from './rateLimit';
 
-// Commonly used middleware combinations
-export { middleware } from './chains';
-
-// Re-export frequently used items
 // Import from core modules
-import { applySecurityMiddleware } from './core/security';
-import { errorLoggingMiddleware, errorHandlerMiddleware, notFoundHandler } from './core/error';
 import { AuditEventType } from './auditLogger';
-import { rateLimiters as rateLimitersCore } from './rateLimit';
 
 // Re-export for convenience
 export {
-  applySecurityMiddleware,
-  errorLoggingMiddleware,
-  errorHandlerMiddleware,
-  notFoundHandler,
   AuditEventType,
-  rateLimitersCore as rateLimitersInternal,
 };
 
 // Helper to apply middleware to Express app
 import { Application, Request, Response } from 'express';
+
 import { middleware } from './chains';
+import { applySecurityMiddleware } from './core/security';
+import { errorLoggingMiddleware, errorHandlerMiddleware, notFoundHandler } from './core/error';
+import { rateLimiters } from './rateLimit';
 
 export const applyMiddleware = (app: Application): void => {
   // Apply security middleware
@@ -97,14 +93,14 @@ export const middlewareGroups = {
 // Quick middleware setup for routes
 export const setup = {
   // Public endpoints
-  public: (rateLimitKey?: keyof typeof rateLimitersCore) =>
+  public: (rateLimitKey?: keyof typeof rateLimiters) =>
     middleware.custom({
       rateLimit: rateLimitKey || 'api',
     }),
 
   // Authenticated endpoints
   authenticated: (options?: {
-    rateLimit?: keyof typeof rateLimitersCore;
+    rateLimit?: keyof typeof rateLimiters;
     cache?: boolean;
     audit?: { event: AuditEventType; severity?: 'low' | 'medium' | 'high' | 'critical' };
   }) =>

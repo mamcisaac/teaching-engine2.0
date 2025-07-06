@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
-import { Prisma } from '../prisma';
-import { prisma } from '../prisma';
+
+import { Prisma , prisma } from '../prisma';
 import logger from '../logger';
 import {
   getPaginationParams,

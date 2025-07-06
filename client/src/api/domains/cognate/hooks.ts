@@ -1,6 +1,8 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { cognateApi } from './api';
+
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+
+import { cognateApi } from './api';
 import type { CognatePair as _CognatePair, CognateInput, CognateFilters } from './api';
 
 // Query hooks
@@ -34,7 +36,7 @@ export const useCognateSuggestions = (word: string, language: 'english' | 'frenc
     staleTime: 60 * 1000, // 1 minute
   });
 
-export const useRandomCognates = (count: number = 10, filters?: CognateFilters) =>
+export const useRandomCognates = (count = 10, filters?: CognateFilters) =>
   useQuery({
     queryKey: ['random-cognates', count, filters],
     queryFn: () => cognateApi.getRandomCognates(count, filters),
@@ -80,9 +82,9 @@ export const useCreateCognate = () => {
     mutationFn: (cognate: CognateInput) => cognateApi.createCognate(cognate),
     onSuccess: (data) => {
       // Invalidate relevant queries
-      queryClient.invalidateQueries({ queryKey: queryKeys.cognate.all() });
-      queryClient.invalidateQueries({ queryKey: ['cognate-stats'] });
-      queryClient.invalidateQueries({ queryKey: ['cognate-categories'] });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.cognate.all() });
+      void queryClient.invalidateQueries({ queryKey: ['cognate-stats'] });
+      void queryClient.invalidateQueries({ queryKey: ['cognate-categories'] });
       
       showSuccessToast('Cognate pair created successfully');
       return data;
@@ -102,8 +104,8 @@ export const useUpdateCognate = () => {
       queryClient.setQueryData(queryKeys.cognate.detail(data.id), data);
       
       // Invalidate list queries
-      queryClient.invalidateQueries({ queryKey: queryKeys.cognate.all() });
-      queryClient.invalidateQueries({ queryKey: ['cognate-stats'] });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.cognate.all() });
+      void queryClient.invalidateQueries({ queryKey: ['cognate-stats'] });
       
       showSuccessToast('Cognate pair updated successfully');
       return data;
@@ -122,8 +124,8 @@ export const useDeleteCognate = () => {
       queryClient.removeQueries({ queryKey: queryKeys.cognate.detail(id) });
       
       // Invalidate list queries
-      queryClient.invalidateQueries({ queryKey: queryKeys.cognate.all() });
-      queryClient.invalidateQueries({ queryKey: ['cognate-stats'] });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.cognate.all() });
+      void queryClient.invalidateQueries({ queryKey: ['cognate-stats'] });
       
       showSuccessToast('Cognate pair deleted successfully');
     },
@@ -138,13 +140,13 @@ export const useBulkCreateCognates = () => {
     mutationFn: (cognates: CognateInput[]) => cognateApi.bulkCreateCognates(cognates),
     onSuccess: (data) => {
       // Invalidate relevant queries
-      queryClient.invalidateQueries({ queryKey: queryKeys.cognate.all() });
-      queryClient.invalidateQueries({ queryKey: ['cognate-stats'] });
-      queryClient.invalidateQueries({ queryKey: ['cognate-categories'] });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.cognate.all() });
+      void queryClient.invalidateQueries({ queryKey: ['cognate-stats'] });
+      void queryClient.invalidateQueries({ queryKey: ['cognate-categories'] });
       
       showSuccessToast(
-        `${data.created.length} cognate pairs created successfully` +
-        (data.failed.length > 0 ? `, ${data.failed.length} failed` : '')
+        `${data.created.length} cognate pairs created successfully${ 
+        data.failed.length > 0 ? `, ${data.failed.length} failed` : ''}`
       );
       return data;
     },
@@ -163,8 +165,8 @@ export const useVerifyCognate = () => {
       queryClient.setQueryData(queryKeys.cognate.detail(data.id), data);
       
       // Invalidate list queries
-      queryClient.invalidateQueries({ queryKey: queryKeys.cognate.all() });
-      queryClient.invalidateQueries({ queryKey: ['cognate-stats'] });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.cognate.all() });
+      void queryClient.invalidateQueries({ queryKey: ['cognate-stats'] });
       
       showSuccessToast(`Cognate pair ${data.verified ? 'verified' : 'unverified'}`);
       return data;
@@ -181,13 +183,13 @@ export const useImportCognates = () => {
       cognateApi.importCognates(file, format),
     onSuccess: (data) => {
       // Invalidate relevant queries
-      queryClient.invalidateQueries({ queryKey: queryKeys.cognate.all() });
-      queryClient.invalidateQueries({ queryKey: ['cognate-stats'] });
-      queryClient.invalidateQueries({ queryKey: ['cognate-categories'] });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.cognate.all() });
+      void queryClient.invalidateQueries({ queryKey: ['cognate-stats'] });
+      void queryClient.invalidateQueries({ queryKey: ['cognate-categories'] });
       
       showSuccessToast(
-        `${data.imported} cognate pairs imported successfully` +
-        (data.failed > 0 ? `, ${data.failed} failed` : '')
+        `${data.imported} cognate pairs imported successfully${ 
+        data.failed > 0 ? `, ${data.failed} failed` : ''}`
       );
       return data;
     },
@@ -195,8 +197,7 @@ export const useImportCognates = () => {
   });
 };
 
-export const useExportCognates = () => {
-  return useMutation({
+export const useExportCognates = () => useMutation({
     mutationFn: ({ format, filters }: { format: 'csv' | 'json'; filters?: CognateFilters }) =>
       cognateApi.exportCognates(format, filters),
     onSuccess: (data, variables) => {
@@ -214,18 +215,15 @@ export const useExportCognates = () => {
     },
     onError: (error) => handleApiError(error, 'Failed to export cognates'),
   });
-};
 
 // Practice session mutations
-export const useStartPracticeSession = () => {
-  return useMutation({
+export const useStartPracticeSession = () => useMutation({
     mutationFn: (filters?: CognateFilters) => cognateApi.startPracticeSession(filters),
     onSuccess: () => {
       showSuccessToast('Practice session started');
     },
     onError: (error) => handleApiError(error, 'Failed to start practice session'),
   });
-};
 
 export const useSubmitPracticeAnswer = () => {
   const queryClient = useQueryClient();
@@ -238,7 +236,7 @@ export const useSubmitPracticeAnswer = () => {
     }) => cognateApi.submitPracticeAnswer(sessionId, cognateId, correct),
     onSuccess: (data, variables) => {
       // Update practice stats
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: ['practice-stats', variables.sessionId] 
       });
     },

@@ -1,5 +1,5 @@
-import { apiClient } from '../../core/client';
 import type { CalendarEvent } from '../../../types';
+import { apiClient } from '../../core/client';
 
 // API endpoints
 export const calendarApi = {
@@ -35,7 +35,7 @@ export const calendarApi = {
   },
 
   // Bulk create events
-  bulkCreateEvents: async (events: Array<Omit<CalendarEvent, 'id' | 'createdAt' | 'updatedAt'>>) => {
+  bulkCreateEvents: async (events: Omit<CalendarEvent, 'id' | 'createdAt' | 'updatedAt'>[]) => {
     const { data } = await apiClient.post<CalendarEvent[]>('/api/calendar-events/bulk', { events });
     return data;
   },

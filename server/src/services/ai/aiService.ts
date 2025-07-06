@@ -5,6 +5,7 @@
  */
 
 import OpenAI from 'openai';
+
 import { BaseService } from '../base/BaseService';
 import logger from '../../logger';
 import { AppError } from '../../utils/errors';

@@ -4,6 +4,7 @@
  */
 
 import { Router, Request, Response, NextFunction } from 'express';
+
 import { structuredLogger, PerformanceLogger } from '../utils/logger-migration';
 import { withLoggingContext } from '../utils/structuredLogger';
 import { authenticate } from '../middleware/authenticate';

@@ -4,9 +4,10 @@
  * Provides templates for lesson plans
  */
 
-import { TemplateProvider, Template, TemplateContext, DataRequirement } from './TemplateProvider';
 import * as fs from 'fs/promises';
 import * as path from 'path';
+
+import { TemplateProvider, Template, TemplateContext, DataRequirement } from './TemplateProvider';
 
 export class LessonTemplateProvider extends TemplateProvider {
   constructor() {

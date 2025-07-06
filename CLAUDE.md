@@ -1,263 +1,246 @@
-# CLAUDE.md - Claude Code Configuration
+# Claude Code Configuration
 
-# This file contains persistent instructions that override default behaviors
+## Build Commands
+- `npm run build`: Build the project
+- `npm run test`: Run the full test suite
+- `npm run lint`: Run ESLint and format checks
+- `npm run typecheck`: Run TypeScript type checking
+- `./claude-flow --help`: Show all available commands
 
-# Documentation: https://docs.anthropic.com/en/docs/claude-code/memory
+## Claude-Flow Complete Command Reference
 
-## Core Coding Principles
+### Core System Commands
+- `./claude-flow start [--ui] [--port 3000] [--host localhost]`: Start orchestration system with optional web UI
+- `./claude-flow status`: Show comprehensive system status
+- `./claude-flow monitor`: Real-time system monitoring dashboard
+- `./claude-flow config <subcommand>`: Configuration management (show, get, set, init, validate)
 
-1. **No artifacts** - Direct code only
-2. **Less is more** - Rewrite existing components vs adding new
-3. **No fallbacks** - They hide real failures
-4. **Full code output** - Never say "[X] remains unchanged"
-5. **Clean codebase** - Flag obsolete files for removal
-6. **Think first** - Clear thinking prevents bugs
+### Agent Management
+- `./claude-flow agent spawn <type> [--name <name>]`: Create AI agents (researcher, coder, analyst, etc.)
+- `./claude-flow agent list`: List all active agents
+- `./claude-flow spawn <type>`: Quick agent spawning (alias for agent spawn)
 
-## Project Overview
+### Task Orchestration
+- `./claude-flow task create <type> [description]`: Create and manage tasks
+- `./claude-flow task list`: View active task queue
+- `./claude-flow workflow <file>`: Execute workflow automation files
 
-Teaching Engine 2.0 is a comprehensive digital teaching assistant for elementary school teachers. Goal: reduce teacher workload by 60% while improving curriculum coverage through intelligent automation and planning tools.
+### Memory Management
+- `./claude-flow memory store <key> <data>`: Store persistent data across sessions
+- `./claude-flow memory get <key>`: Retrieve stored information
+- `./claude-flow memory list`: List all memory keys
+- `./claude-flow memory export <file>`: Export memory to file
+- `./claude-flow memory import <file>`: Import memory from file
+- `./claude-flow memory stats`: Memory usage statistics
+- `./claude-flow memory cleanup`: Clean unused memory entries
 
-## Documentation Structure
+### SPARC Development Modes
+- `./claude-flow sparc "<task>"`: Run orchestrator mode (default)
+- `./claude-flow sparc run <mode> "<task>"`: Run specific SPARC mode
+- `./claude-flow sparc tdd "<feature>"`: Test-driven development mode
+- `./claude-flow sparc modes`: List all 17 available SPARC modes
 
-### Documentation Files & Purpose
+Available SPARC modes: orchestrator, coder, researcher, tdd, architect, reviewer, debugger, tester, analyzer, optimizer, documenter, designer, innovator, swarm-coordinator, memory-manager, batch-executor, workflow-manager
 
-Create `./docs/` folder and maintain these files throughout development:
+### Swarm Coordination
+- `./claude-flow swarm "<objective>" [options]`: Multi-agent swarm coordination
+- `--strategy`: research, development, analysis, testing, optimization, maintenance
+- `--mode`: centralized, distributed, hierarchical, mesh, hybrid
+- `--max-agents <n>`: Maximum number of agents (default: 5)
+- `--parallel`: Enable parallel execution
+- `--monitor`: Real-time monitoring
+- `--output <format>`: json, sqlite, csv, html
 
-- `ROADMAP.md` - Overview, features, architecture, future plans
-- `API_REFERENCE.md` - All endpoints, request/response schemas, examples
-- `DATA_FLOW.md` - System architecture, data patterns, component interactions
-- `SCHEMAS.md` - Database schemas, data models, validation rules
-- `BUG_REFERENCE.md` - Known issues, root causes, solutions, workarounds
-- `VERSION_LOG.md` - Release history, version numbers, change summaries
-- `memory-archive/` - Historical CLAUDE.md content (auto-created by /prune)
+### MCP Server Integration
+- `./claude-flow mcp start [--port 3000] [--host localhost]`: Start MCP server
+- `./claude-flow mcp status`: Show MCP server status
+- `./claude-flow mcp tools`: List available MCP tools
 
-### Documentation Standards
+### Claude Integration
+- `./claude-flow claude auth`: Authenticate with Claude API
+- `./claude-flow claude models`: List available Claude models
+- `./claude-flow claude chat`: Interactive chat mode
 
-**Format Requirements**:
+### Session Management
+- `./claude-flow session`: Manage terminal sessions
+- `./claude-flow repl`: Start interactive REPL mode
 
-- Use clear hierarchical headers (##, ###, ####)
-- Include "Last Updated" date and version at top
-- Keep line length ≤ 100 chars for readability
-- Use code blocks with language hints
-- Include practical examples, not just theory
+### Enterprise Features
+- `./claude-flow project <subcommand>`: Project management (Enterprise)
+- `./claude-flow deploy <subcommand>`: Deployment operations (Enterprise)
+- `./claude-flow cloud <subcommand>`: Cloud infrastructure management (Enterprise)
+- `./claude-flow security <subcommand>`: Security and compliance tools (Enterprise)
+- `./claude-flow analytics <subcommand>`: Analytics and insights (Enterprise)
 
-**Content Guidelines**:
+### Project Initialization
+- `./claude-flow init`: Initialize Claude-Flow project
+- `./claude-flow init --sparc`: Initialize with full SPARC development environment
 
-- Write for future developers (including yourself in 6 months)
-- Focus on "why" not just "what"
-- Link between related docs (use relative paths)
-- Keep each doc focused on its purpose
-- Update version numbers when content changes significantly
+## Quick Start Workflows
 
-### Auto-Documentation Triggers
+### Research Workflow
+```bash
+# Start a research swarm with distributed coordination
+./claude-flow swarm "Research modern web frameworks" --strategy research --mode distributed --parallel --monitor
 
-**ALWAYS document when**:
+# Or use SPARC researcher mode for focused research
+./claude-flow sparc run researcher "Analyze React vs Vue vs Angular performance characteristics"
 
-- Fixing bugs → Update `./docs/BUG_REFERENCE.md` with:
-  - Bug description, root cause, solution, prevention strategy
-- Adding features → Update `./docs/ROADMAP.md` with:
-  - Feature description, architecture changes, API additions
-- Changing APIs → Update `./docs/API_REFERENCE.md` with:
-  - New/modified endpoints, breaking changes flagged, migration notes
-- Architecture changes → Update `./docs/DATA_FLOW.md`
-- Database changes → Update `./docs/SCHEMAS.md`
-- Before ANY commit → Check if docs need updates
+# Store findings in memory for later use
+./claude-flow memory store "research_findings" "Key insights from framework analysis"
+```
 
-### Documentation Review Checklist
+### Development Workflow
+```bash
+# Start orchestration system with web UI
+./claude-flow start --ui --port 3000
 
-When running `/changes`, verify:
+# Run TDD workflow for new feature
+./claude-flow sparc tdd "User authentication system with JWT tokens"
 
-- [ ] All modified APIs documented in API_REFERENCE.md
-- [ ] New bugs added to BUG_REFERENCE.md with solutions
-- [ ] ROADMAP.md reflects completed/planned features
-- [ ] VERSION_LOG.md has entry for current session
-- [ ] Cross-references between docs are valid
-- [ ] Examples still work with current code
+# Development swarm for complex projects
+./claude-flow swarm "Build e-commerce API with payment integration" --strategy development --mode hierarchical --max-agents 8 --monitor
 
-## Test Driven Development (TDD)
+# Check system status
+./claude-flow status
+```
 
-**CRITICAL: This project enforces STRICT TDD - no exceptions**
+### Analysis Workflow
+```bash
+# Analyze codebase performance
+./claude-flow sparc run analyzer "Identify performance bottlenecks in current codebase"
 
-### 🔴 RED-GREEN-REFACTOR Cycle
+# Data analysis swarm
+./claude-flow swarm "Analyze user behavior patterns from logs" --strategy analysis --mode mesh --parallel --output sqlite
 
-- Write tests FIRST - Before implementing any feature
-- Run tests after EVERY change - Use `pnpm test`
-- ALL tests must pass - Never commit with failing tests
-- No feature without tests - Every new method/class must have tests
-- Test-driven refactoring - Write tests before refactoring
+# Store analysis results
+./claude-flow memory store "performance_analysis" "Bottlenecks identified in database queries"
+```
 
-### Test Standards
+### Maintenance Workflow
+```bash
+# System maintenance with safety controls
+./claude-flow swarm "Update dependencies and security patches" --strategy maintenance --mode centralized --monitor
 
-**Real-World Testing Requirements**:
+# Security review
+./claude-flow sparc run reviewer "Security audit of authentication system"
 
-- USE REAL DATA - Connect to actual test databases, make real API calls
-- TEST REAL IMPLEMENTATIONS - Validate actual service methods
-- VERIFY COMPLETE FUNCTIONALITY - Test end-to-end workflows
-- Test with production-scale data volumes
+# Export maintenance logs
+./claude-flow memory export maintenance_log.json
+```
 
-**Testing Frameworks**:
+## Integration Patterns
 
-- Backend: Jest with real database connections
-- Frontend: Vitest + React Testing Library with real backend
-- E2E: Playwright for user journey testing
-
-**Coverage Requirements**:
-
-- Unit Tests: 90% statement coverage, 85% branch coverage
-- Integration Tests: All API endpoints must have tests
-- E2E Tests: All critical user workflows
-- Performance Tests: Response time benchmarks
-
-### Essential Test Commands
+### Memory-Driven Coordination
+Use Memory to coordinate information across multiple SPARC modes and swarm operations:
 
 ```bash
-pnpm test                    # Run all tests
-pnpm test:coverage          # Ensure 90%+ coverage
-pnpm typecheck              # TypeScript validation
-pnpm lint                   # Code quality checks
+# Store architecture decisions
+./claude-flow memory store "system_architecture" "Microservices with API Gateway pattern"
+
+# All subsequent operations can reference this decision
+./claude-flow sparc run coder "Implement user service based on system_architecture in memory"
+./claude-flow sparc run tester "Create integration tests for microservices architecture"
 ```
 
-## Proactive Behaviors
-
-- **Bug fixes**: Always document in BUG_REFERENCE.md
-- **Code changes**: Judge if documentable → Just do it
-- **Project work**: Track with TodoWrite, document at end
-- **Personal conversations**: Offer "Would you like this as a note?"
-
-## Critical Reminders
-
-- Do exactly what's asked - nothing more, nothing less
-- NEVER create files unless absolutely necessary
-- ALWAYS prefer editing existing files over creating new ones
-- NEVER create documentation unless working on a coding project
-- Use `claude code commit` to preserve this CLAUDE.md on new machines
-- When coding, keep the project as modular as possible
-
----
-
-# Project-Specific Configuration
-
-## Tech Stack
-
-- **Backend**: Express.js with TypeScript
-- **Database**: PostgreSQL (production), SQLite (development)
-- **Frontend**: React with TypeScript, TanStack Query
-- **Styling**: Tailwind CSS
-- **Testing**: Jest/Vitest, Playwright
-- **ORM**: Prisma
-
-## Project Structure
-
-```
-teaching-engine2.0/
-├── client/              # React frontend
-├── server/              # Express backend
-├── packages/
-│   └── database/        # Shared Prisma database package
-├── docs/                # Documentation
-│   ├── agents/          # Agent coordination & guides
-│   └── claude/          # Claude-specific docs
-├── scripts/             # Setup and utility scripts
-└── tests/               # E2E tests
-```
-
-## Development Commands
-
-### Quick Reference
+### Multi-Stage Development
+Coordinate complex development through staged execution:
 
 ```bash
-# Development
-pnpm dev                     # Start all dev servers
-pnpm dev:clean              # Clean restart
+# Stage 1: Research and planning
+./claude-flow sparc run researcher "Research authentication best practices"
+./claude-flow sparc run architect "Design authentication system architecture"
 
-# Testing
-pnpm test                   # Run all tests
-pnpm test:coverage         # Check coverage
-pnpm test:watch           # Watch mode
+# Stage 2: Implementation
+./claude-flow sparc tdd "User registration and login functionality"
+./claude-flow sparc run coder "Implement JWT token management"
 
-# Database
-pnpm --filter @teaching-engine/database db:generate  # Generate Prisma client
-pnpm --filter @teaching-engine/database db:migrate   # Run migrations
-pnpm --filter @teaching-engine/database db:studio    # Open Prisma Studio
-pnpm --filter @teaching-engine/database db:seed      # Seed database
-
-# Quality
-pnpm lint                  # Lint code
-pnpm typecheck            # Type checking
-pnpm build                # Production build
+# Stage 3: Testing and deployment
+./claude-flow sparc run tester "Comprehensive security testing"
+./claude-flow swarm "Deploy authentication system" --strategy maintenance --mode centralized
 ```
 
-### Custom Slash Commands
-
-- `/project:test` - Run comprehensive test suite with coverage
-- `/project:db-reset` - Reset and seed development database
-- `/project:dev-clean` - Clean start development servers
-- `/project:build-check` - Full build pipeline with quality checks
-- `/project:etfo` - Focus on ETFO lesson planning features
-- `/project:curriculum` - Work with curriculum import/export
-
-For complete command reference: @docs/claude/commands.md
-
-## Key Documentation References
-
-- Project roadmap: [docs/agents/ROADMAP_FEATURES.md](docs/agents/ROADMAP_FEATURES.md)
-- Missing features: [docs/agents/MISSING_FEATURES.md](docs/agents/MISSING_FEATURES.md)
-- Development workflows: @docs/claude/workflows.md
-- Troubleshooting: @docs/claude/troubleshooting.md
-- Custom commands: @docs/claude/commands.md
-
-## 🆘 Common Issues
-
-### Database Issues
+### Enterprise Integration
+For enterprise environments with additional tooling:
 
 ```bash
-# If Prisma client is out of sync
-pnpm --filter @teaching-engine/database db:generate
+# Project management integration
+./claude-flow project create "authentication-system"
+./claude-flow project switch "authentication-system"
 
-# If migrations fail
-pnpm --filter @teaching-engine/database db:push --force-reset
+# Security compliance
+./claude-flow security scan
+./claude-flow security audit
+
+# Analytics and monitoring
+./claude-flow analytics dashboard
+./claude-flow deploy production --monitor
 ```
 
-### Port Conflicts
+## Advanced Batch Tool Patterns
 
-```bash
-# Kill processes on development ports
-lsof -ti:3000 | xargs kill -9  # Backend
-lsof -ti:5173 | xargs kill -9  # Frontend
+### TodoWrite Coordination
+Always use TodoWrite for complex task coordination:
+
+```javascript
+TodoWrite([
+  {
+    id: "architecture_design",
+    content: "Design system architecture and component interfaces",
+    status: "pending",
+    priority: "high",
+    dependencies: [],
+    estimatedTime: "60min",
+    assignedAgent: "architect"
+  },
+  {
+    id: "frontend_development", 
+    content: "Develop React components and user interface",
+    status: "pending",
+    priority: "medium",
+    dependencies: ["architecture_design"],
+    estimatedTime: "120min",
+    assignedAgent: "frontend_team"
+  }
+]);
 ```
 
-## For AI Coding Agents
+### Task and Memory Integration
+Launch coordinated agents with shared memory:
 
-### Development Practices
+```javascript
+// Store architecture in memory
+Task("System Architect", "Design architecture and store specs in Memory");
 
-- **STRICT TDD ENFORCEMENT** - Write tests FIRST, then implementation
-- **ZERO TOLERANCE** - Never commit failing tests or code without tests
-- **DO NOT** reimplement existing features
-- **DO NOT** make breaking changes to APIs or database schema
-- **ALWAYS** maintain backward compatibility
-- **ALWAYS** achieve 90%+ test coverage - no exceptions
-- **ALWAYS** update documentation when changing functionality
-- **USE** project slash commands for common tasks
-- **FOLLOW** established workflows
+// Other agents use memory for coordination
+Task("Frontend Team", "Develop UI using Memory architecture specs");
+Task("Backend Team", "Implement APIs according to Memory specifications");
+```
 
-### Before Starting Work
+## Code Style Preferences
+- Use ES modules (import/export) syntax
+- Destructure imports when possible
+- Use TypeScript for all new code
+- Follow existing naming conventions
+- Add JSDoc comments for public APIs
+- Use async/await instead of Promise chains
+- Prefer const/let over var
 
-1. Check GitHub Issues for reported bugs or requested features
-2. Review roadmap features in docs/agents/ROADMAP_FEATURES.md
-3. Ensure you understand the existing architecture
-4. Follow all quality standards and use available slash commands
+## Workflow Guidelines
+- Always run typecheck after making code changes
+- Run tests before committing changes
+- Use meaningful commit messages
+- Create feature branches for new functionality
+- Ensure all tests pass before merging
 
-### Production-Quality Mindset
+## Important Notes
+- **Use TodoWrite extensively** for all complex task coordination
+- **Leverage Task tool** for parallel agent execution on independent work
+- **Store all important information in Memory** for cross-agent coordination
+- **Use batch file operations** whenever reading/writing multiple files
+- **Check .claude/commands/** for detailed command documentation
+- **All swarm operations include automatic batch tool coordination**
+- **Monitor progress** with TodoRead during long-running operations
+- **Enable parallel execution** with --parallel flags for maximum efficiency
 
-This is PRODUCTION software used by real teachers:
-
-- Real teachers will use this - Every feature must work reliably
-- Real student data - Handle actual curriculum data and lesson plans
-- Real workflows - Test complete ETFO planning workflows
-- Real performance - Test with realistic data volumes
-- Real edge cases - Test actual error conditions
-- Real integrations - Test with actual external services
-
----
-
-_This file is automatically referenced by Claude Code for project context and development guidance._
+This configuration ensures optimal use of Claude Code's batch tools for swarm orchestration and parallel task execution with full Claude-Flow capabilities.

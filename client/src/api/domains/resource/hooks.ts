@@ -1,6 +1,8 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { resourceApi } from './api';
+
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+
+import { resourceApi } from './api';
 import type {
   MediaResourceInput,
   ResourceFilters,
@@ -22,14 +24,14 @@ export const useMediaResource = (id: number) =>
     enabled: !!id,
   });
 
-export const usePopularResources = (timeframe: 'day' | 'week' | 'month' = 'week', limit: number = 20) =>
+export const usePopularResources = (timeframe: 'day' | 'week' | 'month' = 'week', limit = 20) =>
   useQuery({
     queryKey: ['popular-resources', timeframe, limit],
     queryFn: () => resourceApi.getPopular(timeframe, limit),
     staleTime: 10 * 60 * 1000, // 10 minutes
   });
 
-export const useRecentResources = (limit: number = 20, category?: string) =>
+export const useRecentResources = (limit = 20, category?: string) =>
   useQuery({
     queryKey: ['recent-resources', limit, category],
     queryFn: () => resourceApi.getRecent(limit, category),
@@ -65,14 +67,14 @@ export const useResourceCategories = () =>
   });
 
 // Collection query hooks
-export const useResourceCollections = (includeResources: boolean = false) =>
+export const useResourceCollections = (includeResources = false) =>
   useQuery({
     queryKey: ['resource-collections', includeResources],
     queryFn: () => resourceApi.collections.getAll(includeResources),
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
-export const useResourceCollection = (id: number, includeResources: boolean = true) =>
+export const useResourceCollection = (id: number, includeResources = true) =>
   useQuery({
     queryKey: ['resource-collection', id, includeResources],
     queryFn: () => resourceApi.collections.getById(id, includeResources),
@@ -121,11 +123,11 @@ export const useUploadResource = () => {
     mutationFn: ({ file, metadata }: { file: File; metadata: MediaResourceInput }) =>
       resourceApi.media.upload(file, metadata),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: queryKeys.resource.media(data.userId) });
-      queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
-      queryClient.invalidateQueries({ queryKey: ['resource-tags'] });
-      queryClient.invalidateQueries({ queryKey: ['resource-categories'] });
-      queryClient.invalidateQueries({ queryKey: ['storage-usage'] });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.resource.media(data.userId) });
+      void queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
+      void queryClient.invalidateQueries({ queryKey: ['resource-tags'] });
+      void queryClient.invalidateQueries({ queryKey: ['resource-categories'] });
+      void queryClient.invalidateQueries({ queryKey: ['storage-usage'] });
       
       showSuccessToast('Resource uploaded successfully');
       return data;
@@ -142,12 +144,12 @@ export const useUploadMultipleResources = () => {
       resourceApi.media.uploadMultiple(files, metadata),
     onSuccess: (data) => {
       if (data.length > 0) {
-        queryClient.invalidateQueries({ queryKey: queryKeys.resource.media(data[0].userId) });
+        void queryClient.invalidateQueries({ queryKey: queryKeys.resource.media(data[0].userId) });
       }
-      queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
-      queryClient.invalidateQueries({ queryKey: ['resource-tags'] });
-      queryClient.invalidateQueries({ queryKey: ['resource-categories'] });
-      queryClient.invalidateQueries({ queryKey: ['storage-usage'] });
+      void queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
+      void queryClient.invalidateQueries({ queryKey: ['resource-tags'] });
+      void queryClient.invalidateQueries({ queryKey: ['resource-categories'] });
+      void queryClient.invalidateQueries({ queryKey: ['storage-usage'] });
       
       showSuccessToast(`${data.length} resources uploaded successfully`);
       return data;
@@ -164,9 +166,9 @@ export const useUpdateResource = () => {
       resourceApi.media.update(id, updates),
     onSuccess: (data) => {
       queryClient.setQueryData(queryKeys.resource.detail(data.id), data);
-      queryClient.invalidateQueries({ queryKey: queryKeys.resource.media(data.userId) });
-      queryClient.invalidateQueries({ queryKey: ['resource-tags'] });
-      queryClient.invalidateQueries({ queryKey: ['resource-categories'] });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.resource.media(data.userId) });
+      void queryClient.invalidateQueries({ queryKey: ['resource-tags'] });
+      void queryClient.invalidateQueries({ queryKey: ['resource-categories'] });
       
       showSuccessToast('Resource updated successfully');
       return data;
@@ -182,9 +184,9 @@ export const useDeleteResource = () => {
     mutationFn: (id: number) => resourceApi.media.delete(id),
     onSuccess: (_, id) => {
       queryClient.removeQueries({ queryKey: queryKeys.resource.detail(id) });
-      queryClient.invalidateQueries({ queryKey: ['media-resources'] });
-      queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
-      queryClient.invalidateQueries({ queryKey: ['storage-usage'] });
+      void queryClient.invalidateQueries({ queryKey: ['media-resources'] });
+      void queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
+      void queryClient.invalidateQueries({ queryKey: ['storage-usage'] });
       
       showSuccessToast('Resource deleted successfully');
     },
@@ -203,13 +205,13 @@ export const useBulkDeleteResources = () => {
         queryClient.removeQueries({ queryKey: queryKeys.resource.detail(id) });
       });
       
-      queryClient.invalidateQueries({ queryKey: ['media-resources'] });
-      queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
-      queryClient.invalidateQueries({ queryKey: ['storage-usage'] });
+      void queryClient.invalidateQueries({ queryKey: ['media-resources'] });
+      void queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
+      void queryClient.invalidateQueries({ queryKey: ['storage-usage'] });
       
       showSuccessToast(
-        `${data.deleted} resources deleted successfully` +
-        (data.failed > 0 ? `, ${data.failed} failed` : '')
+        `${data.deleted} resources deleted successfully${ 
+        data.failed > 0 ? `, ${data.failed} failed` : ''}`
       );
       return data;
     },
@@ -226,7 +228,7 @@ export const useGenerateThumbnail = () => {
       options?: { width?: number; height?: number };
     }) => resourceApi.media.generateThumbnail(id, options),
     onSuccess: (data, variables) => {
-      queryClient.invalidateQueries({ queryKey: queryKeys.resource.detail(variables.id) });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.resource.detail(variables.id) });
       
       showSuccessToast('Thumbnail generated successfully');
       return data;
@@ -243,7 +245,7 @@ export const useCreateCollection = () => {
     mutationFn: (collection: Omit<ResourceCollection, 'id' | 'userId' | 'createdAt' | 'updatedAt'>) =>
       resourceApi.collections.create(collection),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ['resource-collections'] });
+      void queryClient.invalidateQueries({ queryKey: ['resource-collections'] });
       
       showSuccessToast('Collection created successfully');
       return data;
@@ -260,7 +262,7 @@ export const useUpdateCollection = () => {
       resourceApi.collections.update(id, updates),
     onSuccess: (data) => {
       queryClient.setQueryData(['resource-collection', data.id], data);
-      queryClient.invalidateQueries({ queryKey: ['resource-collections'] });
+      void queryClient.invalidateQueries({ queryKey: ['resource-collections'] });
       
       showSuccessToast('Collection updated successfully');
       return data;
@@ -276,7 +278,7 @@ export const useDeleteCollection = () => {
     mutationFn: (id: number) => resourceApi.collections.delete(id),
     onSuccess: (_, id) => {
       queryClient.removeQueries({ queryKey: ['resource-collection', id] });
-      queryClient.invalidateQueries({ queryKey: ['resource-collections'] });
+      void queryClient.invalidateQueries({ queryKey: ['resource-collections'] });
       
       showSuccessToast('Collection deleted successfully');
     },
@@ -292,7 +294,7 @@ export const useAddResourcesToCollection = () => {
       resourceApi.collections.addResources(collectionId, resourceIds),
     onSuccess: (data) => {
       queryClient.setQueryData(['resource-collection', data.id], data);
-      queryClient.invalidateQueries({ queryKey: ['resource-collections'] });
+      void queryClient.invalidateQueries({ queryKey: ['resource-collections'] });
       
       showSuccessToast('Resources added to collection');
       return data;
@@ -309,7 +311,7 @@ export const useRemoveResourcesFromCollection = () => {
       resourceApi.collections.removeResources(collectionId, resourceIds),
     onSuccess: (data) => {
       queryClient.setQueryData(['resource-collection', data.id], data);
-      queryClient.invalidateQueries({ queryKey: ['resource-collections'] });
+      void queryClient.invalidateQueries({ queryKey: ['resource-collections'] });
       
       showSuccessToast('Resources removed from collection');
       return data;
@@ -331,9 +333,9 @@ export const useAddLink = () => {
       tags?: string[];
     }) => resourceApi.links.add(linkData),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: queryKeys.resource.media(data.userId) });
-      queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
-      queryClient.invalidateQueries({ queryKey: ['resource-tags'] });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.resource.media(data.userId) });
+      void queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
+      void queryClient.invalidateQueries({ queryKey: ['resource-tags'] });
       
       showSuccessToast('Link added successfully');
       return data;
@@ -349,13 +351,13 @@ export const useBulkImportLinks = () => {
     mutationFn: ({ urls, defaultCategory }: { urls: string[]; defaultCategory: string }) =>
       resourceApi.links.importBulk(urls, defaultCategory),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ['media-resources'] });
-      queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
-      queryClient.invalidateQueries({ queryKey: ['resource-tags'] });
+      void queryClient.invalidateQueries({ queryKey: ['media-resources'] });
+      void queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
+      void queryClient.invalidateQueries({ queryKey: ['resource-tags'] });
       
       showSuccessToast(
-        `${data.imported.length} links imported successfully` +
-        (data.failed.length > 0 ? `, ${data.failed.length} failed` : '')
+        `${data.imported.length} links imported successfully${ 
+        data.failed.length > 0 ? `, ${data.failed.length} failed` : ''}`
       );
       return data;
     },
@@ -370,8 +372,8 @@ export const useStorageCleanup = () => {
   return useMutation({
     mutationFn: resourceApi.storage.cleanup,
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ['storage-usage'] });
-      queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
+      void queryClient.invalidateQueries({ queryKey: ['storage-usage'] });
+      void queryClient.invalidateQueries({ queryKey: ['resource-stats'] });
       
       showSuccessToast(`Cleaned up ${data.cleaned} files, freed ${(data.freed / 1024 / 1024).toFixed(2)} MB`);
       return data;
@@ -386,8 +388,8 @@ export const useStorageOptimize = () => {
   return useMutation({
     mutationFn: (resourceIds?: number[]) => resourceApi.storage.optimize(resourceIds),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ['storage-usage'] });
-      queryClient.invalidateQueries({ queryKey: ['media-resources'] });
+      void queryClient.invalidateQueries({ queryKey: ['storage-usage'] });
+      void queryClient.invalidateQueries({ queryKey: ['media-resources'] });
       
       showSuccessToast(`Optimized ${data.optimized} files, saved ${(data.saved / 1024 / 1024).toFixed(2)} MB`);
       return data;
@@ -412,7 +414,7 @@ export const useShareResource = () => {
     }) => resourceApi.sharing.shareWithUsers(resourceId, userIds, permission),
     onSuccess: (data) => {
       queryClient.setQueryData(queryKeys.resource.detail(data.id), data);
-      queryClient.invalidateQueries({ queryKey: ['sharing-status', data.id] });
+      void queryClient.invalidateQueries({ queryKey: ['sharing-status', data.id] });
       
       showSuccessToast('Resource shared successfully');
       return data;
@@ -428,7 +430,7 @@ export const useGeneratePublicLink = () => {
     mutationFn: ({ resourceId, expiresInDays }: { resourceId: number; expiresInDays?: number }) =>
       resourceApi.sharing.generatePublicLink(resourceId, expiresInDays),
     onSuccess: (data, variables) => {
-      queryClient.invalidateQueries({ queryKey: ['sharing-status', variables.resourceId] });
+      void queryClient.invalidateQueries({ queryKey: ['sharing-status', variables.resourceId] });
       
       showSuccessToast('Public link generated successfully');
       return data;
@@ -443,7 +445,7 @@ export const useRevokePublicLink = () => {
   return useMutation({
     mutationFn: (resourceId: number) => resourceApi.sharing.revokePublicLink(resourceId),
     onSuccess: (_, resourceId) => {
-      queryClient.invalidateQueries({ queryKey: ['sharing-status', resourceId] });
+      void queryClient.invalidateQueries({ queryKey: ['sharing-status', resourceId] });
       
       showSuccessToast('Public link revoked successfully');
     },
@@ -452,8 +454,7 @@ export const useRevokePublicLink = () => {
 };
 
 // Download hooks
-export const useDownloadResource = () => {
-  return useMutation({
+export const useDownloadResource = () => useMutation({
     mutationFn: (id: number) => resourceApi.media.download(id),
     onSuccess: (_data, id) => {
       // Track download
@@ -471,10 +472,8 @@ export const useDownloadResource = () => {
     },
     onError: (error) => handleApiError(error, 'Failed to download resource'),
   });
-};
 
-export const useExportResources = () => {
-  return useMutation({
+export const useExportResources = () => useMutation({
     mutationFn: ({ resourceIds, format }: { resourceIds: number[]; format: 'zip' | 'json' }) =>
       resourceApi.export(resourceIds, format),
     onSuccess: (_data, variables) => {
@@ -492,4 +491,3 @@ export const useExportResources = () => {
     },
     onError: (error) => handleApiError(error, 'Failed to export resources'),
   });
-};

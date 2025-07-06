@@ -5,6 +5,7 @@
 
 import { createClient, RedisClientType } from 'redis';
 import { Request, Response, NextFunction } from 'express';
+
 import { structuredLogger } from '../../utils/structuredLogger';
 import { PerformanceLogger } from '../../utils/logger-migration';
 

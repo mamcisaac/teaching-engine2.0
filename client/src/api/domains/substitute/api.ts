@@ -16,20 +16,20 @@ export interface SubstitutePlan {
     classroom?: string;
     behavior?: string;
   };
-  schedule: Array<{
+  schedule: {
     time: string;
     activity: string;
     materials?: string[];
     notes?: string;
-  }>;
+  }[];
   materials: string[];
   importantNotes?: string;
-  emergencyContacts: Array<{
+  emergencyContacts: {
     name: string;
     role: string;
     phone?: string;
     email?: string;
-  }>;
+  }[];
   classroomInfo: {
     roomNumber?: string;
     keyLocation?: string;
@@ -67,20 +67,20 @@ export interface SubstitutePlanInput {
     classroom?: string;
     behavior?: string;
   };
-  schedule: Array<{
+  schedule: {
     time: string;
     activity: string;
     materials?: string[];
     notes?: string;
-  }>;
+  }[];
   materials: string[];
   importantNotes?: string;
-  emergencyContacts: Array<{
+  emergencyContacts: {
     name: string;
     role: string;
     phone?: string;
     email?: string;
-  }>;
+  }[];
   classroomInfo: {
     roomNumber?: string;
     keyLocation?: string;
@@ -127,16 +127,16 @@ export interface SubstituteStats {
   plansByGrade: Record<number, number>;
   plansBySubject: Record<string, number>;
   averageRating: number;
-  mostUsedTemplates: Array<{
+  mostUsedTemplates: {
     id: number;
     name: string;
     usageCount: number;
-  }>;
-  recentActivity: Array<{
+  }[];
+  recentActivity: {
     type: 'created' | 'used' | 'completed';
     date: string;
     count: number;
-  }>;
+  }[];
 }
 
 // API endpoints
@@ -243,7 +243,7 @@ export const substituteApi = {
   // Templates
   templates: {
     // Get all templates
-    getAll: async (includePublic: boolean = true) => {
+    getAll: async (includePublic = true) => {
       const { data } = await apiClient.get<SubstituteTemplate[]>('/api/substitute-plans/templates', {
         params: { includePublic },
       });
@@ -289,7 +289,7 @@ export const substituteApi = {
     },
 
     // Get popular templates
-    getPopular: async (limit: number = 10) => {
+    getPopular: async (limit = 10) => {
       const { data } = await apiClient.get<SubstituteTemplate[]>('/api/substitute-plans/templates/popular', {
         params: { limit },
       });
@@ -330,12 +330,12 @@ export const substituteApi = {
 
     // Get suggested activities for grade/subject
     getSuggestedActivities: async (grade: number, subject?: string, duration?: number) => {
-      const { data } = await apiClient.get<Array<{
+      const { data } = await apiClient.get<{
         title: string;
         description: string;
         duration: number;
         materials: string[];
-      }>>('/api/substitute-plans/suggested-activities', {
+      }[]>('/api/substitute-plans/suggested-activities', {
         params: { grade, subject, duration },
       });
       return data;
@@ -349,12 +349,12 @@ export const substituteApi = {
       duration: number;
     }) => {
       const { data } = await apiClient.post<{
-        suggestedActivities: Array<{
+        suggestedActivities: {
           activity: string;
           time: string;
           materials: string[];
           notes: string;
-        }>;
+        }[];
         generalInstructions: string;
         materials: string[];
       }>('/api/substitute-plans/generate-suggestions', planData);
@@ -392,7 +392,7 @@ export const substituteApi = {
   feedback: {
     // Get feedback for plans
     getFeedback: async (planId: number) => {
-      const { data } = await apiClient.get<Array<{
+      const { data } = await apiClient.get<{
         id: number;
         rating: number;
         comments: string;
@@ -400,7 +400,7 @@ export const substituteApi = {
         suggestions?: string;
         date: string;
         substituteName?: string;
-      }>>(`/api/substitute-plans/${planId}/feedback`);
+      }[]>(`/api/substitute-plans/${planId}/feedback`);
       return data;
     },
 
@@ -421,12 +421,12 @@ export const substituteApi = {
   classroom: {
     // Get classroom layout suggestions
     getLayoutSuggestions: async (grade: number, classSize: number) => {
-      const { data } = await apiClient.get<Array<{
+      const { data } = await apiClient.get<{
         name: string;
         description: string;
         benefits: string[];
         setup: string[];
-      }>>('/api/substitute-plans/classroom/layouts', {
+      }[]>('/api/substitute-plans/classroom/layouts', {
         params: { grade, classSize },
       });
       return data;
@@ -434,12 +434,12 @@ export const substituteApi = {
 
     // Get behavior management strategies
     getBehaviorStrategies: async (grade: number, issues?: string[]) => {
-      const { data } = await apiClient.get<Array<{
+      const { data } = await apiClient.get<{
         strategy: string;
         description: string;
         implementation: string[];
         ageAppropriate: boolean;
-      }>>('/api/substitute-plans/classroom/behavior', {
+      }[]>('/api/substitute-plans/classroom/behavior', {
         params: { grade, issues: issues?.join(',') },
       });
       return data;
@@ -447,14 +447,14 @@ export const substituteApi = {
 
     // Get emergency procedures
     getEmergencyProcedures: async () => {
-      const { data } = await apiClient.get<Array<{
+      const { data } = await apiClient.get<{
         type: string;
         procedure: string[];
-        contacts: Array<{
+        contacts: {
           role: string;
           number: string;
-        }>;
-      }>>('/api/substitute-plans/classroom/emergency');
+        }[];
+      }[]>('/api/substitute-plans/classroom/emergency');
       return data;
     },
   },
@@ -505,7 +505,7 @@ export const substituteApi = {
 
   extractWeeklyPlan: async (
     startDate: string,
-    days: number = 5,
+    days = 5,
     options: {
       includeGoals?: boolean;
       includeRoutines?: boolean;
@@ -534,7 +534,9 @@ export const substituteApi = {
     const params = new URLSearchParams();
     if (conditions) {
       Object.entries(conditions).forEach(([key, value]) => {
-        if (value) params.append(key, value as string);
+        if (value) {
+params.append(key, value as string);
+}
       });
     }
 
@@ -554,8 +556,12 @@ export const substituteApi = {
     className?: string,
   ) => {
     const params = new URLSearchParams();
-    if (teacherName) params.append('teacherName', teacherName);
-    if (className) params.append('className', className);
+    if (teacherName) {
+params.append('teacherName', teacherName);
+}
+    if (className) {
+params.append('className', className);
+}
 
     const response = await apiClient.get(`/subplan/extract/scenarios/${scenarioId}?${params}`);
     return response.data;
@@ -566,7 +572,9 @@ export const substituteApi = {
     format: 'organized' | 'emergency' | 'card' | 'formatted' = 'organized',
   ) => {
     const params = new URLSearchParams();
-    if (userId) params.append('userId', userId.toString());
+    if (userId) {
+params.append('userId', userId.toString());
+}
     params.append('format', format);
 
     const response = await apiClient.get(`/subplan/extract/contacts?${params}`);
@@ -578,7 +586,9 @@ export const substituteApi = {
     userId?: number,
   ) => {
     const params = new URLSearchParams({ date });
-    if (userId) params.append('userId', userId.toString());
+    if (userId) {
+params.append('userId', userId.toString());
+}
 
     const response = await apiClient.get(`/subplan/extract/materials/day?${params}`);
     return response.data;
@@ -586,11 +596,13 @@ export const substituteApi = {
 
   extractWeeklyMaterials: async (
     startDate: string,
-    days: number = 5,
+    days = 5,
     userId?: number,
   ) => {
     const params = new URLSearchParams({ startDate, days: days.toString() });
-    if (userId) params.append('userId', userId.toString());
+    if (userId) {
+params.append('userId', userId.toString());
+}
 
     const response = await apiClient.get(`/subplan/extract/materials/weekly?${params}`);
     return response.data;

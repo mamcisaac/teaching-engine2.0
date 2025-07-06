@@ -1,7 +1,9 @@
 import { User, Prisma, PrismaClient } from '@prisma/client';
-import { BaseRepository } from './base/BaseRepository';
+
 import { hashPassword } from '../utils/auth';
 import logger from '../logger';
+
+import { BaseRepository } from './base/BaseRepository';
 
 export interface UserWithoutPassword {
   id: number;

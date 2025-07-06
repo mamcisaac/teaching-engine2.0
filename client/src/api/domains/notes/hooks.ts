@@ -1,7 +1,9 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { notesApi } from './api';
-import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+
 import type { ReflectionUpdate } from '../../../types';
+import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+
+import { notesApi } from './api';
 
 // Journal Query hooks
 export const useJournalEntries = (params?: {
@@ -38,7 +40,7 @@ export const useCreateJournalEntry = () => {
     mutationFn: notesApi.journal.create,
     onSuccess: () => {
       showSuccessToast('Journal entry created successfully');
-      queryClient.invalidateQueries({ queryKey: queryKeys.notes.journal.all });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.notes.journal.all });
     },
     onError: (error) => handleApiError(error, 'Failed to create journal entry'),
   });
@@ -52,8 +54,8 @@ export const useUpdateJournalEntry = () => {
       notesApi.journal.update(id, input),
     onSuccess: (_, { id }) => {
       showSuccessToast('Journal entry updated successfully');
-      queryClient.invalidateQueries({ queryKey: queryKeys.notes.journal.all });
-      queryClient.invalidateQueries({ queryKey: queryKeys.notes.journal.detail(id) });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.notes.journal.all });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.notes.journal.detail(id) });
     },
     onError: (error) => handleApiError(error, 'Failed to update journal entry'),
   });
@@ -66,7 +68,7 @@ export const useDeleteJournalEntry = () => {
     mutationFn: notesApi.journal.delete,
     onSuccess: () => {
       showSuccessToast('Journal entry deleted successfully');
-      queryClient.invalidateQueries({ queryKey: queryKeys.notes.journal.all });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.notes.journal.all });
     },
     onError: (error) => handleApiError(error, 'Failed to delete journal entry'),
   });
@@ -87,8 +89,8 @@ export const useCreateQuickNote = () => {
     mutationFn: notesApi.quick.create,
     onSuccess: () => {
       showSuccessToast('Quick note created successfully');
-      queryClient.invalidateQueries({ queryKey: queryKeys.notes.quick.all });
-      queryClient.invalidateQueries({ queryKey: queryKeys.notes.tags.all });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.notes.quick.all });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.notes.tags.all });
     },
     onError: (error) => handleApiError(error, 'Failed to create quick note'),
   });
@@ -102,8 +104,8 @@ export const useUpdateQuickNote = () => {
       notesApi.quick.update(id, input),
     onSuccess: () => {
       showSuccessToast('Quick note updated successfully');
-      queryClient.invalidateQueries({ queryKey: queryKeys.notes.quick.all });
-      queryClient.invalidateQueries({ queryKey: queryKeys.notes.tags.all });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.notes.quick.all });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.notes.tags.all });
     },
     onError: (error) => handleApiError(error, 'Failed to update quick note'),
   });
@@ -116,8 +118,8 @@ export const useDeleteQuickNote = () => {
     mutationFn: notesApi.quick.delete,
     onSuccess: () => {
       showSuccessToast('Quick note deleted successfully');
-      queryClient.invalidateQueries({ queryKey: queryKeys.notes.quick.all });
-      queryClient.invalidateQueries({ queryKey: queryKeys.notes.tags.all });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.notes.quick.all });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.notes.tags.all });
     },
     onError: (error) => handleApiError(error, 'Failed to delete quick note'),
   });
@@ -138,8 +140,7 @@ export const useNotesByTag = (tag: string) =>
   });
 
 // Export hooks
-export const useExportNotesPDF = () => {
-  return useMutation({
+export const useExportNotesPDF = () => useMutation({
     mutationFn: notesApi.export.pdf,
     onSuccess: (data, variables) => {
       // Create a download link for the PDF blob
@@ -156,10 +157,8 @@ export const useExportNotesPDF = () => {
     },
     onError: (error) => handleApiError(error, 'Failed to export notes as PDF'),
   });
-};
 
-export const useExportNotesMarkdown = () => {
-  return useMutation({
+export const useExportNotesMarkdown = () => useMutation({
     mutationFn: notesApi.export.markdown,
     onSuccess: (data, variables) => {
       // Create a download link for the markdown content
@@ -177,4 +176,3 @@ export const useExportNotesMarkdown = () => {
     },
     onError: (error) => handleApiError(error, 'Failed to export notes as Markdown'),
   });
-};

@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
-import { Request, Response, NextFunction } from 'express';
 import { performance } from 'perf_hooks';
+
+import { Request, Response, NextFunction } from 'express';
+
 import logger from '../logger.js';
 
 // Simple metrics collection without external dependencies

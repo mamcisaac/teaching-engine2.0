@@ -5,14 +5,17 @@
 
 import { Response, NextFunction } from 'express';
 import { z } from 'zod';
-import { BaseRouteHandler, AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
-import { BaseService } from '../services/base/BaseService.js';
-import { commonValidations } from './base/validation.js';
-import { prisma } from '../prisma.js';
 import { Prisma } from '@teaching-engine/database';
+
+import { BaseService } from '../services/base/BaseService.js';
+import { prisma } from '../prisma.js';
 import { SubstitutePlanService } from '../services/index.js';
-import { optimizedQueries, queryPerformance } from './optimizations/queryOptimizations.js';
 import { SubstitutePlanCreateData, SubstitutePlanUpdateData } from '../types/routes.js';
+
+import { BaseRouteHandler, AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
+import { commonValidations } from './base/validation.js';
+import { optimizedQueries, queryPerformance } from './optimizations/queryOptimizations.js';
+
 
 // Substitute plan-specific validation schemas
 const scheduleItemSchema = z.object({

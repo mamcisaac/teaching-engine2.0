@@ -4,6 +4,7 @@
  */
 
 import { structuredLogger } from '../../utils/structuredLogger';
+
 import { CacheOptions, CacheStats } from './RedisCache';
 
 interface CacheEntry<T> {

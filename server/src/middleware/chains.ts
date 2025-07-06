@@ -1,4 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
+
+import logger from '../logger';
+
 import { compose, chain, conditional, timed } from './core/composer';
 import {
   requestLoggingMiddleware,
@@ -18,7 +21,6 @@ import {
 import { authenticate } from './authenticate';
 import { rateLimiters } from './rateLimit';
 import { apiCache, curriculumCache, staticCache, userCache } from './cache';
-import logger from '../logger';
 // Environment checks
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isProduction = process.env.NODE_ENV === 'production';

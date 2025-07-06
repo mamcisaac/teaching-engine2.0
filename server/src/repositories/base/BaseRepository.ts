@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
+
 import logger from '../../logger';
-import type { IRepository } from './IRepository';
 import {
   PaginationOptions,
   PaginatedResponse,
@@ -10,6 +10,8 @@ import {
   combineFilters,
   fetchPaginatedData,
 } from '../../utils/pagination';
+
+import type { IRepository } from './IRepository';
 
 export abstract class BaseRepository<T extends { id: number }, CreateInput, UpdateInput>
   implements IRepository<T, CreateInput, UpdateInput>

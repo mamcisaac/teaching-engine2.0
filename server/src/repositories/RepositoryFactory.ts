@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+
 import { UserRepository } from './UserRepository';
 import { CurriculumExpectationRepository } from './CurriculumExpectationRepository';
 import { ETFOLessonPlanRepository } from './ETFOLessonPlanRepository';

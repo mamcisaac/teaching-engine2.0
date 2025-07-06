@@ -5,17 +5,20 @@
 
 import { Response, NextFunction } from 'express';
 import { z } from 'zod';
-import { BaseRouteHandler, AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
-import { BaseService } from '../services/base/BaseService.js';
-import { commonValidations } from './base/validation.js';
-import { prisma } from '../prisma.js';
 import { Prisma } from '@teaching-engine/database';
+
+import { BaseService } from '../services/base/BaseService.js';
+import { prisma } from '../prisma.js';
+import { TemplateCreateData, TemplateUpdateData } from '../types/routes.js';
+
+import { BaseRouteHandler, AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
+import { commonValidations } from './base/validation.js';
 import {
   optimizedIncludes,
   optimizedQueries,
   queryPerformance,
 } from './optimizations/queryOptimizations.js';
-import { TemplateCreateData, TemplateUpdateData } from '../types/routes.js';
+
 
 // Template-specific validation schemas
 const templateContentSchema = z.object({

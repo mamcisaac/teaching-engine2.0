@@ -4,6 +4,7 @@
  */
 
 import { parse } from 'csv-parse/sync';
+
 import { CurriculumParser, ParsedCurriculum, ParsedExpectation } from './CurriculumParser';
 
 export interface CSVRow {

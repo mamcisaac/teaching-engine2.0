@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
+import { prisma } from '@teaching-engine/database';
+
 import { logger } from '../logger';
 import { getMetrics } from '../middleware/metrics';
-import { prisma } from '@teaching-engine/database';
+
 import { withSpan, errorCounter } from './telemetry';
 
 // Optional nodemailer import - alerting works without email

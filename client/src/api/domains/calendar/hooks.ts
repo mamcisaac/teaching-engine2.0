@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { calendarApi } from './api';
-import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+
 import type { CalendarEvent as _CalendarEvent } from '../../../types';
+import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+
+import { calendarApi } from './api';
 
 // Query hooks
 export const useCalendarEvents = (start: string, end: string) =>
@@ -49,12 +51,12 @@ export const useCreateCalendarEvent = () => {
     onSuccess: (data) => {
       showSuccessToast('Event created successfully');
       // Invalidate calendar queries for the event's date range
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: ['calendar-events'],
-        predicate: (__query) => {
+        predicate: (__query) => 
           // Invalidate queries that might include this event
-          return true;
-        },
+           true
+        ,
       });
     },
     onError: (error) => handleApiError(error, 'Failed to create event'),
@@ -68,8 +70,8 @@ export const useUpdateCalendarEvent = () => {
     mutationFn: calendarApi.updateEvent,
     onSuccess: (data) => {
       showSuccessToast('Event updated successfully');
-      queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
-      queryClient.invalidateQueries({ queryKey: ['calendar-event', data.id] });
+      void queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
+      void queryClient.invalidateQueries({ queryKey: ['calendar-event', data.id] });
     },
     onError: (error) => handleApiError(error, 'Failed to update event'),
   });
@@ -82,7 +84,7 @@ export const useDeleteCalendarEvent = () => {
     mutationFn: calendarApi.deleteEvent,
     onSuccess: () => {
       showSuccessToast('Event deleted successfully');
-      queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
+      void queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
     },
     onError: (error) => handleApiError(error, 'Failed to delete event'),
   });
@@ -95,14 +97,13 @@ export const useBulkCreateEvents = () => {
     mutationFn: calendarApi.bulkCreateEvents,
     onSuccess: (data) => {
       showSuccessToast(`${data.length} events created successfully`);
-      queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
+      void queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
     },
     onError: (error) => handleApiError(error, 'Failed to create events'),
   });
 };
 
-export const useExportCalendar = () => {
-  return useMutation({
+export const useExportCalendar = () => useMutation({
     mutationFn: ({ format, start, end }: { format: 'ics' | 'pdf'; start: string; end: string }) =>
       calendarApi.exportCalendar(format, start, end),
     onSuccess: (data, variables) => {
@@ -120,7 +121,6 @@ export const useExportCalendar = () => {
     },
     onError: (error) => handleApiError(error, 'Failed to export calendar'),
   });
-};
 
 export const useImportCalendar = () => {
   const queryClient = useQueryClient();
@@ -132,13 +132,11 @@ export const useImportCalendar = () => {
       if (data.failed > 0) {
         showSuccessToast(`${data.failed} events failed to import`);
       }
-      queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
+      void queryClient.invalidateQueries({ queryKey: ['calendar-events'] });
     },
     onError: (error) => handleApiError(error, 'Failed to import calendar'),
   });
 };
 
 // Convenience hook for adding events
-export const useAddCalendarEvent = () => {
-  return useCreateCalendarEvent();
-};
+export const useAddCalendarEvent = () => useCreateCalendarEvent();

@@ -1,9 +1,10 @@
 import express, { Response } from 'express';
-import { prisma } from '../prisma';
 import { z } from 'zod';
 import rateLimit from 'express-rate-limit';
-import { cuidSchema } from '../validation';
 import DOMPurify from 'isomorphic-dompurify';
+
+import { cuidSchema } from '../validation';
+import { prisma } from '../prisma';
 import logger from '../logger';
 const router = express.Router();
 

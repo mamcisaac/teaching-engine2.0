@@ -1,4 +1,3 @@
-import { apiClient } from '../../core/client';
 import type { 
   Student, 
   StudentInput, 
@@ -11,6 +10,7 @@ import type {
   GenerateParentSummaryRequest,
   SaveParentSummaryRequest
 } from '../../../types';
+import { apiClient } from '../../core/client';
 
 // API endpoints
 export const studentApi = {

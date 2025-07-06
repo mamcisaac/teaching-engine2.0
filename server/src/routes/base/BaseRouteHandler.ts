@@ -6,9 +6,11 @@
 
 import { Router, Response, NextFunction } from 'express';
 import { z } from 'zod';
+
 import { prisma } from '../../prisma';
 import logger from '../../logger';
 import { BaseService } from '../../services/base/BaseService';
+
 import { AuthenticatedRequest } from './middleware';
 
 export type { AuthenticatedRequest };

@@ -1,5 +1,6 @@
 import * as Sentry from '@sentry/node';
 import { nodeProfilingIntegration } from '@sentry/profiling-node';
+
 import { AppError } from '../../utils/errors';
 import { logger } from '../../logger';
 

@@ -1,6 +1,8 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { planningApi } from './api';
+
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+
+import { planningApi } from './api';
 
 // Query Hooks
 export const useYearPlan = (teacherId: number, year: number) =>
@@ -17,13 +19,11 @@ export const useDailyPlan = (date: string) =>
     enabled: !!date,
   });
 
-export const useLessonPlan = (weekStart: string) => {
-  return useQuery({
+export const useLessonPlan = (weekStart: string) => useQuery({
     queryKey: queryKeys.planning.lessonPlan(weekStart),
     queryFn: () => planningApi.getLessonPlan(weekStart),
     enabled: !!weekStart,
   });
-};
 
 export const useMaterialList = (weekStart: string) =>
   useQuery({
@@ -47,15 +47,13 @@ export const usePlannerSuggestions = (weekStart: string, filters?: Record<string
   });
 
 // Mutation Hooks
-export const useShareYearPlan = () => {
-  return useMutation({
+export const useShareYearPlan = () => useMutation({
     mutationFn: planningApi.shareYearPlan,
     onSuccess: () => {
       showSuccessToast('Year plan shared successfully');
     },
     onError: (error) => handleApiError(error, 'Failed to share year plan'),
   });
-};
 
 export const useUpdateDailyPlan = () => {
   const queryClient = useQueryClient();
@@ -64,7 +62,7 @@ export const useUpdateDailyPlan = () => {
     mutationFn: planningApi.updateDailyPlan,
     onSuccess: (data) => {
       showSuccessToast('Daily plan updated successfully');
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: queryKeys.planning.dailyPlan(data.date) 
       });
     },
@@ -79,7 +77,7 @@ export const useGenerateDailyPlan = () => {
     mutationFn: planningApi.generateDailyPlan,
     onSuccess: (data) => {
       showSuccessToast('Daily plan generated successfully');
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: queryKeys.planning.dailyPlan(data.date) 
       });
     },
@@ -94,7 +92,7 @@ export const useGeneratePlan = () => {
     mutationFn: planningApi.generateLessonPlan,
     onSuccess: (data) => {
       showSuccessToast('Lesson plan generated successfully');
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: queryKeys.planning.lessonPlan(data.weekStart) 
       });
     },
@@ -109,7 +107,7 @@ export const useDeleteResource = () => {
     mutationFn: planningApi.deleteResource,
     onSuccess: () => {
       showSuccessToast('Resource deleted successfully');
-      queryClient.invalidateQueries({ queryKey: ['resources'] });
+      void queryClient.invalidateQueries({ queryKey: ['resources'] });
     },
     onError: (error) => handleApiError(error, 'Failed to delete resource'),
   });

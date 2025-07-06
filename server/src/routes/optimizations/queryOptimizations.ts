@@ -5,6 +5,7 @@
  */
 
 import { Prisma } from '@teaching-engine/database';
+
 import logger from '../../logger';
 /**
  * Optimized select patterns for common relationships

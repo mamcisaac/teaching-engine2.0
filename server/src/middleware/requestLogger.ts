@@ -1,8 +1,11 @@
-import { Request, Response, NextFunction } from 'express';
-// import '../types/express.js';
 import { randomUUID } from 'crypto';
-import logger from '../logger.js';
 import { performance } from 'perf_hooks';
+
+import { Request, Response, NextFunction } from 'express';
+
+// import '../types/express.js';
+import logger from '../logger.js';
+
 
 // Extend Request interface to include logger and timing
 interface ExtendedRequest extends Request {

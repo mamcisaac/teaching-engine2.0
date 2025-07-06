@@ -4,8 +4,9 @@
  * Transforms parsed curriculum data into database entities
  */
 
-import { ParsedCurriculum, ParsedExpectation } from '../parsers/CurriculumParser';
 import { Prisma } from '@teaching-engine/database';
+
+import { ParsedCurriculum, ParsedExpectation } from '../parsers/CurriculumParser';
 
 export interface TransformOptions {
   userId: number;

@@ -102,7 +102,7 @@ export const cognateApi = {
   },
 
   // Get random cognate pairs for practice
-  getRandomCognates: async (count: number = 10, filters?: CognateFilters) => {
+  getRandomCognates: async (count = 10, filters?: CognateFilters) => {
     const { data } = await apiClient.get<CognatePair[]>('/api/cognates/random', {
       params: { count, ...filters },
     });

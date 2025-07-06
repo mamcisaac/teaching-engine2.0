@@ -1,23 +1,27 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { describe, it, expect } from '@jest/globals';
 import fc from 'fast-check';
-import { 
-  arbitraries, 
-  properties, 
+import {
+  arbitraries,
+  properties,
   educationProperties,
-  matchers, 
   invariants,
-  runPropertyTest 
-} from '../../test-utils/property-test-utils';
-import { 
+  matchers,
+  runPropertyTest
+} from '../../test-utils/property-test-utils.js';
+import {
   calculateGPA,
   calculateAverageRating,
   determineAchievementLevel,
-  generateProgressReport,
   validateAssessmentData,
   aggregateAssessmentsByStrand,
-  calculateTrendAnalysis
-} from '../assessment/AssessmentCalculator';
+  calculateTrendAnalysis,
+  generateProgressReport,
+  type AssessmentWithRating,
+  type AssessmentData,
+  type StrandAggregation,
+  type TrendAnalysis
+} from '../assessment/assessmentCalculations.js';
 
 describe('Assessment Services - Property Tests', () => {
   describe('calculateGPA', () => {

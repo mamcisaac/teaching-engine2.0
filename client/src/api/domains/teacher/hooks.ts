@@ -1,7 +1,9 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { teacherApi } from './api';
-import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+
 import type { TeacherReflectionInput } from '../../../types';
+import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+
+import { teacherApi } from './api';
 
 // Preferences Query hooks
 export const useTeacherPreferences = () =>
@@ -18,7 +20,7 @@ export const useUpdateTeacherPreferences = () => {
     mutationFn: teacherApi.preferences.update,
     onSuccess: () => {
       showSuccessToast('Preferences updated successfully');
-      queryClient.invalidateQueries({ queryKey: queryKeys.teacher.preferences });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.teacher.preferences });
     },
     onError: (error) => handleApiError(error, 'Failed to update preferences'),
   });
@@ -46,7 +48,7 @@ export const useCreateTeacherReflection = () => {
     mutationFn: teacherApi.reflections.create,
     onSuccess: () => {
       showSuccessToast('Reflection created successfully');
-      queryClient.invalidateQueries({ queryKey: queryKeys.teacher.reflections.all });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.teacher.reflections.all });
     },
     onError: (error) => handleApiError(error, 'Failed to create reflection'),
   });
@@ -60,8 +62,8 @@ export const useUpdateTeacherReflection = () => {
       teacherApi.reflections.update(id, input),
     onSuccess: (_, { id }) => {
       showSuccessToast('Reflection updated successfully');
-      queryClient.invalidateQueries({ queryKey: queryKeys.teacher.reflections.all });
-      queryClient.invalidateQueries({ queryKey: queryKeys.teacher.reflections.detail(id) });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.teacher.reflections.all });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.teacher.reflections.detail(id) });
     },
     onError: (error) => handleApiError(error, 'Failed to update reflection'),
   });
@@ -74,7 +76,7 @@ export const useDeleteTeacherReflection = () => {
     mutationFn: teacherApi.reflections.delete,
     onSuccess: () => {
       showSuccessToast('Reflection deleted successfully');
-      queryClient.invalidateQueries({ queryKey: queryKeys.teacher.reflections.all });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.teacher.reflections.all });
     },
     onError: (error) => handleApiError(error, 'Failed to delete reflection'),
   });
@@ -88,7 +90,7 @@ export const useTeacherDashboardStats = () =>
     refetchInterval: 300000, // Refresh every 5 minutes
   });
 
-export const useTeacherRecentActivity = (limit: number = 10) =>
+export const useTeacherRecentActivity = (limit = 10) =>
   useQuery({
     queryKey: queryKeys.teacher.dashboard.activity(limit),
     queryFn: () => teacherApi.dashboard.getRecentActivity(limit),
@@ -109,7 +111,7 @@ export const useUpdateTeacherProfile = () => {
     mutationFn: teacherApi.profile.update,
     onSuccess: () => {
       showSuccessToast('Profile updated successfully');
-      queryClient.invalidateQueries({ queryKey: queryKeys.teacher.profile });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.teacher.profile });
     },
     onError: (error) => handleApiError(error, 'Failed to update profile'),
   });

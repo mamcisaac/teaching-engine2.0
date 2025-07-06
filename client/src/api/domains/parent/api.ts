@@ -1,4 +1,3 @@
-import { apiClient } from '../../core/client';
 import type { 
   ParentMessage, 
   ParentMessageInput, 
@@ -7,6 +6,7 @@ import type {
   SaveParentSummaryRequest, 
   ParentSummaryGeneration 
 } from '../../../types';
+import { apiClient } from '../../core/client';
 
 // API endpoints
 export const parentApi = {

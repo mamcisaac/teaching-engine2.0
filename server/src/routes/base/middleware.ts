@@ -5,7 +5,9 @@
 import { Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
 import { ParsedQs } from 'qs';
+
 import logger from '../../logger';
+
 import { formatValidationError } from './validation.js';
 
 export interface AuthenticatedRequest extends Request {

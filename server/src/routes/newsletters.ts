@@ -5,9 +5,10 @@
 
 import { Router, Request, Response } from 'express';
 import { z } from 'zod';
+import debug from 'debug';
+
 import { renderNewsletter } from '../services';
 import { prisma } from '../prisma';
-import debug from 'debug';
 
 const log = debug('server:newsletter:routes');
 const router = Router();

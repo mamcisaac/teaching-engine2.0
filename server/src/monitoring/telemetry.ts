@@ -9,6 +9,7 @@ import { OTLPMetricExporter } from '@opentelemetry/exporter-metrics-otlp-http';
 // import { BatchSpanProcessor } from '@opentelemetry/sdk-trace-base';
 import { trace, metrics, context, SpanStatusCode } from '@opentelemetry/api';
 import type { Span, SpanOptions, Attributes } from '@opentelemetry/api';
+
 import { logger } from '../logger';
 
 // Environment configuration

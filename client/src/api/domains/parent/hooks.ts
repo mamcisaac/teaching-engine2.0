@@ -1,10 +1,12 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { parentApi } from './api';
-import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+
 import type { 
   ParentMessageInput, 
   SaveParentSummaryRequest
 } from '../../../types';
+import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+
+import { parentApi } from './api';
 
 // Parent Messages Query hooks
 export const useParentMessages = () =>
@@ -28,7 +30,7 @@ export const useCreateParentMessage = () => {
     mutationFn: parentApi.messages.create,
     onSuccess: () => {
       showSuccessToast('Parent message created successfully');
-      queryClient.invalidateQueries({ queryKey: queryKeys.parent.messages.all });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.parent.messages.all });
     },
     onError: (error) => handleApiError(error, 'Failed to create parent message'),
   });
@@ -42,8 +44,8 @@ export const useUpdateParentMessage = () => {
       parentApi.messages.update(id, input),
     onSuccess: (_, { id }) => {
       showSuccessToast('Parent message updated successfully');
-      queryClient.invalidateQueries({ queryKey: queryKeys.parent.messages.all });
-      queryClient.invalidateQueries({ queryKey: queryKeys.parent.messages.detail(id) });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.parent.messages.all });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.parent.messages.detail(id) });
     },
     onError: (error) => handleApiError(error, 'Failed to update parent message'),
   });
@@ -56,7 +58,7 @@ export const useDeleteParentMessage = () => {
     mutationFn: parentApi.messages.delete,
     onSuccess: () => {
       showSuccessToast('Parent message deleted successfully');
-      queryClient.invalidateQueries({ queryKey: queryKeys.parent.messages.all });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.parent.messages.all });
     },
     onError: (error) => handleApiError(error, 'Failed to delete parent message'),
   });
@@ -78,15 +80,13 @@ export const useParentSummary = (studentId: number, summaryId: number) =>
   });
 
 // Parent Summaries Mutation hooks
-export const useGenerateParentSummary = () => {
-  return useMutation({
+export const useGenerateParentSummary = () => useMutation({
     mutationFn: parentApi.summaries.generate,
     onSuccess: () => {
       showSuccessToast('Parent summary generated successfully');
     },
     onError: (error) => handleApiError(error, 'Failed to generate parent summary'),
   });
-};
 
 export const useSaveParentSummary = () => {
   const queryClient = useQueryClient();
@@ -95,7 +95,7 @@ export const useSaveParentSummary = () => {
     mutationFn: parentApi.summaries.save,
     onSuccess: (_, request) => {
       showSuccessToast(request.isDraft ? 'Draft saved successfully' : 'Parent summary saved successfully');
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: queryKeys.parent.summaries.byStudent(request.studentId) 
       });
     },
@@ -118,10 +118,10 @@ export const useUpdateParentSummary = () => {
     }) => parentApi.summaries.update(studentId, summaryId, input),
     onSuccess: (_, { studentId, summaryId }) => {
       showSuccessToast('Parent summary updated successfully');
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: queryKeys.parent.summaries.byStudent(studentId) 
       });
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: queryKeys.parent.summaries.detail(studentId, summaryId) 
       });
     },
@@ -137,7 +137,7 @@ export const useDeleteParentSummary = () => {
       parentApi.summaries.delete(studentId, summaryId),
     onSuccess: (_, { studentId }) => {
       showSuccessToast('Parent summary deleted successfully');
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: queryKeys.parent.summaries.byStudent(studentId) 
       });
     },
@@ -145,8 +145,7 @@ export const useDeleteParentSummary = () => {
   });
 };
 
-export const useSendParentSummary = () => {
-  return useMutation({
+export const useSendParentSummary = () => useMutation({
     mutationFn: ({ studentId, summaryId }: { studentId: number; summaryId: number }) =>
       parentApi.summaries.send(studentId, summaryId),
     onSuccess: () => {
@@ -154,4 +153,3 @@ export const useSendParentSummary = () => {
     },
     onError: (error) => handleApiError(error, 'Failed to send parent summary'),
   });
-};

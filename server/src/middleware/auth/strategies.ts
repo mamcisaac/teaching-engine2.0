@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 // Express types imported but not used in this file
 import { prisma } from '../../prisma.js';
+import { AuthenticationError, ValidationError, ConflictError } from '../errorHandler.js';
+import logger from '../../logger.js';
+
 import { hashPassword, verifyPassword, validatePasswordStrength } from './password';
 import { generateTokenPair } from './jwt';
 import { LoginCredentials, RegistrationData, TokenResponse, UserResponse, UserRole } from './types';
-import { AuthenticationError, ValidationError, ConflictError } from '../errorHandler.js';
-import logger from '../../logger.js';
 
 /**
  * Register a new user

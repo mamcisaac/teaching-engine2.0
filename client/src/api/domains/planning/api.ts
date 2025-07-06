@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
-import { apiClient } from '../../core/client';
-import { getWeekStartISO } from '../../core/utils';
 import type { 
   YearPlanEntry, 
   DailyPlan, 
@@ -8,6 +6,8 @@ import type {
   LessonPlan,
   PlannerSuggestion
 } from '../../../types';
+import { apiClient } from '../../core/client';
+import { getWeekStartISO } from '../../core/utils';
 
 // API endpoints
 export const planningApi = {
@@ -60,7 +60,7 @@ export const planningApi = {
   },
 
   getMaterialDetails: async (weekStart: string) => {
-    const { data } = await apiClient.get<{ items: Array<{ category: string; items: string[] }> }>(
+    const { data } = await apiClient.get<{ items: { category: string; items: string[] }[] }>(
       `/api/materials/${weekStart}/details`
     );
     return data;
@@ -80,9 +80,7 @@ export const planningApi = {
   },
 
   // Printables
-  downloadPrintables: async (weekStart: string) => {
-    return apiClient.get(`/printables?weekStart=${weekStart}`, {
+  downloadPrintables: async (weekStart: string) => apiClient.get(`/printables?weekStart=${weekStart}`, {
       responseType: 'blob',
-    });
-  },
+    }),
 };

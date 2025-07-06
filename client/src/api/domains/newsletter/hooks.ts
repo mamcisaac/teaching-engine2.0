@@ -1,7 +1,9 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { newsletterApi } from './api';
-import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+
 import type { Newsletter as _Newsletter } from '../../../types';
+import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+
+import { newsletterApi } from './api';
 
 // Query hooks
 export const useNewsletter = (id: number, type: 'raw' | 'polished' = 'raw') =>
@@ -25,7 +27,7 @@ export const useCreateNewsletterDraft = () => {
     mutationFn: newsletterApi.createDraft,
     onSuccess: (data) => {
       showSuccessToast('Newsletter draft created successfully');
-      queryClient.invalidateQueries({ queryKey: queryKeys.newsletter.all });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.newsletter.all });
       return data;
     },
     onError: (error) => handleApiError(error, 'Failed to create newsletter draft'),
@@ -39,15 +41,14 @@ export const useCreateNewsletter = () => {
     mutationFn: newsletterApi.create,
     onSuccess: (data) => {
       showSuccessToast('Newsletter created successfully');
-      queryClient.invalidateQueries({ queryKey: queryKeys.newsletter.all });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.newsletter.all });
       return data;
     },
     onError: (error) => handleApiError(error, 'Failed to create newsletter'),
   });
 };
 
-export const useGenerateNewsletter = () => {
-  return useMutation({
+export const useGenerateNewsletter = () => useMutation({
     mutationFn: newsletterApi.generate,
     onSuccess: (data) => {
       showSuccessToast('Newsletter generated successfully');
@@ -55,4 +56,3 @@ export const useGenerateNewsletter = () => {
     },
     onError: (error) => handleApiError(error, 'Failed to generate newsletter'),
   });
-};

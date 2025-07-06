@@ -1,8 +1,8 @@
 import { Router, Request } from 'express';
-import { Prisma } from '../prisma';
-import { prisma } from '../prisma';
-import { validate } from '../validation';
 import { z } from 'zod';
+
+import { Prisma , prisma } from '../prisma';
+import { validate } from '../validation';
 import { generateLongRangePlanDraft, generatePlanSuggestions } from '../services/ai/aiDraftService';
 import logger from '../logger';
 const router = Router();

@@ -1,5 +1,5 @@
-import { apiClient } from '../../core/client';
 import type { TeacherPreferencesInput, TeacherReflection, TeacherReflectionInput } from '../../../types';
+import { apiClient } from '../../core/client';
 
 // API endpoints
 export const teacherApi = {
@@ -59,25 +59,25 @@ export const teacherApi = {
         totalStudents: number;
         totalLessonPlans: number;
         upcomingEvents: number;
-        recentActivity: Array<{
+        recentActivity: {
           id: string;
           type: string;
           description: string;
           timestamp: string;
-        }>;
+        }[];
       }>('/api/teacher/dashboard/stats');
       return data;
     },
 
     // Get recent activity
-    getRecentActivity: async (limit: number = 10) => {
-      const { data } = await apiClient.get<Array<{
+    getRecentActivity: async (limit = 10) => {
+      const { data } = await apiClient.get<{
         id: string;
         type: string;
         description: string;
         timestamp: string;
         metadata?: Record<string, unknown>;
-      }>>('/api/teacher/dashboard/activity', {
+      }[]>('/api/teacher/dashboard/activity', {
         params: { limit },
       });
       return data;

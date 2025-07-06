@@ -3,9 +3,10 @@
  * Manages template partials and reusable components
  */
 
-import { BaseService } from '../base/BaseService';
 import * as fs from 'fs/promises';
 import * as path from 'path';
+
+import { BaseService } from '../base/BaseService';
 
 export interface PartialInfo {
   name: string;

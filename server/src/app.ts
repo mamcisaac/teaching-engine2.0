@@ -6,6 +6,7 @@
 import express, { Express, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import { PrismaClient } from '@teaching-engine/database';
+
 import { errorHandler } from './middleware/errorHandler';
 import authEndpoints from './routes/authEndpoints';
 import { userRoutes } from './routes/user';

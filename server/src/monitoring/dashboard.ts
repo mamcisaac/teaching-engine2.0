@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
+import * as os from 'os';
+
 import { Request, Response } from 'express';
+import { prisma } from '@teaching-engine/database';
+
 import { getMetrics } from '../middleware/metrics';
 import { logger } from '../logger';
-import { prisma } from '@teaching-engine/database';
-import * as os from 'os';
+
 import { withSpan, updateSystemHealth } from './telemetry';
 
 interface DashboardMetrics {

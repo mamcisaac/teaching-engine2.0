@@ -1,9 +1,12 @@
 import express, { Request, Response } from 'express';
 import multer from 'multer';
+
 import { curriculumImportService } from '../services';
+
 // Clustering service removed - over-engineered for single-teacher use
-import { AuthenticatedRequest } from './base/middleware';
 import logger from '../logger';
+
+import { AuthenticatedRequest } from './base/middleware';
 
 const router = express.Router();
 

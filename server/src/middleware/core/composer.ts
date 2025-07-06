@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { Request, Response, NextFunction, RequestHandler } from 'express';
+
 import logger from '../../logger';
 
 // Middleware type
@@ -91,7 +92,7 @@ export const withTimeout = (
     let timeoutId: NodeJS.Timeout | null = null;
     let completed = false;
 
-    const timeoutPromise = new Promise<void>((_, reject) => {
+    const timeoutPromise = new Promise<void>((_resolve, reject) => {
       timeoutId = setTimeout(() => {
         if (!completed) {
           reject(new Error(`Middleware timeout after ${timeout}ms`));

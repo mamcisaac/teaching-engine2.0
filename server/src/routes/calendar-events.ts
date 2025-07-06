@@ -1,11 +1,14 @@
 import { Router, Request, Response } from 'express';
 import { z } from 'zod';
 import { Prisma } from '@teaching-engine/database';
+
 // Note: Authentication is handled at the route mounting level in index.ts
-import { validateRequest } from '../middleware/validateRequest';
 import { endOfDay, parseISO } from 'date-fns';
+
+import { validateRequest } from '../middleware/validateRequest';
 import { prisma } from '../prisma';
 import logger from '../logger';
+
 import { AuthenticatedRequest } from './base/middleware.js';
 const router = Router();
 

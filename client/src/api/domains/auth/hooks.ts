@@ -1,12 +1,15 @@
+import type { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { authApi } from './api';
-import { showSuccessToast, handleApiError } from '../../core/utils';
+
 import { authService } from '../../../services/authService';
-import type { LoginCredentials, RegisterData, User } from '../../../types';
+import type { LoginCredentials, RegisterData, User, TokenResponse } from '../../../types';
+import { showSuccessToast, handleApiError } from '../../core/utils';
+
+import { authApi } from './api';
 
 // Query hooks
-export const useCurrentUser = () =>
+export const useCurrentUser = (): UseQueryResult<User, Error> =>
   useQuery({
     queryKey: ['auth', 'currentUser'],
     queryFn: authApi.getCurrentUser,
@@ -15,7 +18,12 @@ export const useCurrentUser = () =>
   });
 
 // Mutation hooks
-export const useLogin = () => {
+export const useLogin = (): UseMutationResult<
+  TokenResponse,
+  Error,
+  LoginCredentials,
+  unknown
+> => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -33,7 +41,7 @@ export const useLogin = () => {
       authService.setUser(data.user);
 
       // Invalidate and refetch user data
-      queryClient.invalidateQueries({ queryKey: ['auth', 'currentUser'] });
+      void queryClient.invalidateQueries({ queryKey: ['auth', 'currentUser'] });
 
       showSuccessToast('Logged in successfully');
       navigate('/dashboard');
@@ -42,7 +50,12 @@ export const useLogin = () => {
   });
 };
 
-export const useRegister = () => {
+export const useRegister = (): UseMutationResult<
+  TokenResponse,
+  Error,
+  RegisterData,
+  unknown
+> => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -60,7 +73,7 @@ export const useRegister = () => {
       authService.setUser(data.user);
 
       // Invalidate and refetch user data
-      queryClient.invalidateQueries({ queryKey: ['auth', 'currentUser'] });
+      void queryClient.invalidateQueries({ queryKey: ['auth', 'currentUser'] });
 
       showSuccessToast('Registration successful');
       navigate('/onboarding');
@@ -69,7 +82,7 @@ export const useRegister = () => {
   });
 };
 
-export const useLogout = () => {
+export const useLogout = (): UseMutationResult<void, Error, void, unknown> => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -94,7 +107,7 @@ export const useLogout = () => {
   });
 };
 
-export const useUpdateProfile = () => {
+export const useUpdateProfile = (): UseMutationResult<User, Error, Partial<User>, unknown> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -108,8 +121,12 @@ export const useUpdateProfile = () => {
   });
 };
 
-export const useChangePassword = () => {
-  return useMutation({
+export const useChangePassword = (): UseMutationResult<
+  void,
+  Error,
+  { currentPassword: string; newPassword: string },
+  unknown
+> => useMutation({
     mutationFn: (passwords: { currentPassword: string; newPassword: string }) =>
       authApi.changePassword(passwords),
     onSuccess: () => {
@@ -117,19 +134,21 @@ export const useChangePassword = () => {
     },
     onError: (error) => handleApiError(error, 'Failed to change password'),
   });
-};
 
-export const useRequestPasswordReset = () => {
-  return useMutation({
+export const useRequestPasswordReset = (): UseMutationResult<void, Error, string, unknown> => useMutation({
     mutationFn: (email: string) => authApi.requestPasswordReset(email),
     onSuccess: () => {
       showSuccessToast('Password reset email sent. Please check your inbox.');
     },
     onError: (error) => handleApiError(error, 'Failed to send password reset email'),
   });
-};
 
-export const useResetPassword = () => {
+export const useResetPassword = (): UseMutationResult<
+  void,
+  Error,
+  { token: string; newPassword: string },
+  unknown
+> => {
   const navigate = useNavigate();
 
   return useMutation({
@@ -143,22 +162,18 @@ export const useResetPassword = () => {
   });
 };
 
-export const useVerifyEmail = () => {
-  return useMutation({
+export const useVerifyEmail = (): UseMutationResult<void, Error, string, unknown> => useMutation({
     mutationFn: (token: string) => authApi.verifyEmail(token),
     onSuccess: () => {
       showSuccessToast('Email verified successfully');
     },
     onError: (error) => handleApiError(error, 'Failed to verify email'),
   });
-};
 
-export const useResendVerificationEmail = () => {
-  return useMutation({
+export const useResendVerificationEmail = (): UseMutationResult<void, Error, void, unknown> => useMutation({
     mutationFn: authApi.resendVerificationEmail,
     onSuccess: () => {
       showSuccessToast('Verification email sent. Please check your inbox.');
     },
     onError: (error) => handleApiError(error, 'Failed to send verification email'),
   });
-};

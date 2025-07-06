@@ -1,5 +1,5 @@
-import { apiClient } from '../../core/client';
 import type { ReflectionJournalEntry, ReflectionInput, ReflectionUpdate } from '../../../types';
+import { apiClient } from '../../core/client';
 
 // API endpoints
 export const notesApi = {
@@ -56,13 +56,13 @@ export const notesApi = {
   quick: {
     // Get all quick notes
     getAll: async () => {
-      const { data } = await apiClient.get<Array<{
+      const { data } = await apiClient.get<{
         id: number;
         content: string;
         createdAt: string;
         updatedAt: string;
         tags?: string[];
-      }>>('/api/notes/quick');
+      }[]>('/api/notes/quick');
       return data;
     },
 
@@ -89,10 +89,10 @@ export const notesApi = {
   tags: {
     // Get all tags used in notes
     getAll: async () => {
-      const { data } = await apiClient.get<Array<{
+      const { data } = await apiClient.get<{
         name: string;
         count: number;
-      }>>('/api/notes/tags');
+      }[]>('/api/notes/tags');
       return data;
     },
 
@@ -100,12 +100,12 @@ export const notesApi = {
     getByTag: async (tag: string) => {
       const { data } = await apiClient.get<{
         journal: ReflectionJournalEntry[];
-        quick: Array<{
+        quick: {
           id: number;
           content: string;
           createdAt: string;
           tags: string[];
-        }>;
+        }[];
       }>(`/api/notes/tags/${encodeURIComponent(tag)}`);
       return data;
     },

@@ -1,21 +1,23 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
+import type { AxiosError } from 'axios';
 import { toast } from 'sonner';
-import { AxiosError } from 'axios';
 
 // Helper function to get ISO week start date
 export const getWeekStartISO = (date: Date): string => {
   const d = new Date(date);
-  const _day = d.getDay();
-  const diff = d.getDate() - _day + (_day === 0 ? -6 : 1);
+  const day = d.getDay();
+  const diff = d.getDate() - day + (day === 0 ? -6 : 1);
   d.setDate(diff);
   d.setHours(0, 0, 0, 0);
   return d.toISOString();
 };
 
 // Error handling utilities
-export const handleApiError = (error: unknown, defaultMessage: string) => {
-  if (error instanceof AxiosError) {
-    const message = error.response?.data?.error || error.response?.data?.message || defaultMessage;
+export const handleApiError = (error: unknown, defaultMessage: string): never => {
+  const isAxiosError = (err: unknown): err is AxiosError => typeof err === 'object' && err !== null && 'isAxiosError' in err;
+
+  if (isAxiosError(error)) {
+    const responseData = error.response?.data as { error?: string; message?: string } | undefined;
+    const message = responseData?.error ?? responseData?.message ?? defaultMessage;
     toast.error(message);
     throw new Error(message);
   }
@@ -24,7 +26,7 @@ export const handleApiError = (error: unknown, defaultMessage: string) => {
 };
 
 // Success notification utility
-export const showSuccessToast = (message: string) => {
+export const showSuccessToast = (message: string): void => {
   toast.success(message);
 };
 

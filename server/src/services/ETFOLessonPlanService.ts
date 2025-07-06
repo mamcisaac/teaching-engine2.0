@@ -1,8 +1,10 @@
-import { BaseService } from './base/BaseService';
+import { Prisma, PrismaClient } from '@prisma/client';
+
 import { ETFOLessonPlanRepository } from '../repositories/ETFOLessonPlanRepository';
 import { RepositoryFactory } from '../repositories/RepositoryFactory';
-import { Prisma, PrismaClient } from '@prisma/client';
 import logger from '../logger';
+
+import { BaseService } from './base/BaseService';
 
 export interface ETFOLessonPlanCreateData {
   title: string;

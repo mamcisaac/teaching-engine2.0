@@ -5,16 +5,19 @@
 
 import { Response, NextFunction } from 'express';
 import { z } from 'zod';
-import { BaseRouteHandler, AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
+import { Prisma } from '@teaching-engine/database';
+
 import { BaseService } from '../services/base/BaseService.js';
 import { prisma } from '../prisma.js';
-import { Prisma } from '@teaching-engine/database';
+import { DaybookEntryCreateData, DaybookEntryUpdateData } from '../types/routes.js';
+
+import { BaseRouteHandler, AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler.js';
 import {
   optimizedIncludes,
   optimizedQueries,
   queryPerformance,
 } from './optimizations/queryOptimizations.js';
-import { DaybookEntryCreateData, DaybookEntryUpdateData } from '../types/routes.js';
+
 
 // Daybook-specific interfaces
 interface DaybookEntryForAnalytics {

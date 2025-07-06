@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { routineApi } from './api';
+
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+
+import { routineApi } from './api';
 import type {
   DailyOralRoutine,
   ClassRoutine,
@@ -131,9 +133,9 @@ export const useCreateRoutineTemplate = () => {
   return useMutation({
     mutationFn: (template: RoutineTemplateInput) => routineApi.templates.create(template),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.templates() });
-      queryClient.invalidateQueries({ queryKey: ['routine-categories'] });
-      queryClient.invalidateQueries({ queryKey: ['routine-tags'] });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.templates() });
+      void queryClient.invalidateQueries({ queryKey: ['routine-categories'] });
+      void queryClient.invalidateQueries({ queryKey: ['routine-tags'] });
       
       showSuccessToast('Routine template created successfully');
       return data;
@@ -150,8 +152,8 @@ export const useUpdateRoutineTemplate = () => {
       routineApi.templates.update(id, updates),
     onSuccess: (data) => {
       queryClient.setQueryData(['routine-template', data.id], data);
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.templates() });
-      queryClient.invalidateQueries({ queryKey: ['routine-tags'] });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.templates() });
+      void queryClient.invalidateQueries({ queryKey: ['routine-tags'] });
       
       showSuccessToast('Routine template updated successfully');
       return data;
@@ -167,7 +169,7 @@ export const useDeleteRoutineTemplate = () => {
     mutationFn: (id: number) => routineApi.templates.delete(id),
     onSuccess: (_, id) => {
       queryClient.removeQueries({ queryKey: ['routine-template', id] });
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.templates() });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.templates() });
       
       showSuccessToast('Routine template deleted successfully');
     },
@@ -181,7 +183,7 @@ export const useDuplicateRoutineTemplate = () => {
   return useMutation({
     mutationFn: (id: number) => routineApi.templates.duplicate(id),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.templates() });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.templates() });
       
       showSuccessToast('Routine template duplicated successfully');
       return data;
@@ -196,7 +198,7 @@ export const useImportPublicTemplate = () => {
   return useMutation({
     mutationFn: (templateId: number) => routineApi.templates.importFromPublic(templateId),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.templates() });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.templates() });
       
       showSuccessToast('Template imported successfully');
       return data;
@@ -212,9 +214,9 @@ export const useCreateDailyRoutine = () => {
   return useMutation({
     mutationFn: (routine: DailyRoutineInput) => routineApi.daily.create(routine),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.daily() });
-      queryClient.invalidateQueries({ queryKey: ['daily-routines-by-date', data.date] });
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.stats() });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.daily() });
+      void queryClient.invalidateQueries({ queryKey: ['daily-routines-by-date', data.date] });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.stats() });
       
       showSuccessToast('Daily routine created successfully');
       return data;
@@ -231,9 +233,9 @@ export const useUpdateDailyRoutine = () => {
       routineApi.daily.update(id, updates),
     onSuccess: (data) => {
       queryClient.setQueryData(['daily-routine', data.id], data);
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.daily() });
-      queryClient.invalidateQueries({ queryKey: ['daily-routines-by-date', data.date] });
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.stats() });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.daily() });
+      void queryClient.invalidateQueries({ queryKey: ['daily-routines-by-date', data.date] });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.stats() });
       
       showSuccessToast('Daily routine updated successfully');
       return data;
@@ -249,8 +251,8 @@ export const useDeleteDailyRoutine = () => {
     mutationFn: (id: number) => routineApi.daily.delete(id),
     onSuccess: (_, id) => {
       queryClient.removeQueries({ queryKey: ['daily-routine', id] });
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.daily() });
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.stats() });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.daily() });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.stats() });
       
       showSuccessToast('Daily routine deleted successfully');
     },
@@ -273,9 +275,9 @@ export const useMarkRoutineCompleted = () => {
     }) => routineApi.daily.markCompleted(id, data),
     onSuccess: (data) => {
       queryClient.setQueryData(['daily-routine', data.id], data);
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.daily() });
-      queryClient.invalidateQueries({ queryKey: ['daily-routines-by-date', data.date] });
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.stats() });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.daily() });
+      void queryClient.invalidateQueries({ queryKey: ['daily-routines-by-date', data.date] });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.stats() });
       
       showSuccessToast('Routine marked as completed');
       return data;
@@ -291,11 +293,11 @@ export const useCreateWeeklyRoutines = () => {
     mutationFn: ({ startDate, templateIds }: { startDate: string; templateIds: number[] }) =>
       routineApi.daily.createWeekly(startDate, templateIds),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.daily() });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.daily() });
       
       // Invalidate specific dates
       data.forEach(routine => {
-        queryClient.invalidateQueries({ queryKey: ['daily-routines-by-date', routine.date] });
+        void queryClient.invalidateQueries({ queryKey: ['daily-routines-by-date', routine.date] });
       });
       
       showSuccessToast(`${data.length} routines created for the week`);
@@ -313,7 +315,7 @@ export const useCreateClassRoutine = () => {
     mutationFn: (routine: Omit<ClassRoutine, 'id' | 'createdAt' | 'updatedAt'>) =>
       routineApi.class.create(routine),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.class });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.class });
       
       showSuccessToast('Class routine created successfully');
       return data;
@@ -330,7 +332,7 @@ export const useUpdateClassRoutine = () => {
       routineApi.class.update(id, updates),
     onSuccess: (data) => {
       queryClient.setQueryData(['class-routine', data.id], data);
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.class });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.class });
       
       showSuccessToast('Class routine updated successfully');
       return data;
@@ -346,7 +348,7 @@ export const useDeleteClassRoutine = () => {
     mutationFn: (id: number) => routineApi.class.delete(id),
     onSuccess: (_, id) => {
       queryClient.removeQueries({ queryKey: ['class-routine', id] });
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.class });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.class });
       
       showSuccessToast('Class routine deleted successfully');
     },
@@ -362,8 +364,8 @@ export const useUploadRoutineAudio = () => {
     mutationFn: ({ templateId, audioFile }: { templateId: number; audioFile: File }) =>
       routineApi.media.uploadAudio(templateId, audioFile),
     onSuccess: (data, variables) => {
-      queryClient.invalidateQueries({ queryKey: ['routine-template', variables.templateId] });
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.templates() });
+      void queryClient.invalidateQueries({ queryKey: ['routine-template', variables.templateId] });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.templates() });
       
       showSuccessToast('Audio uploaded successfully');
       return data;
@@ -379,8 +381,8 @@ export const useUploadVisualAids = () => {
     mutationFn: ({ templateId, files }: { templateId: number; files: File[] }) =>
       routineApi.media.uploadVisualAids(templateId, files),
     onSuccess: (data, variables) => {
-      queryClient.invalidateQueries({ queryKey: ['routine-template', variables.templateId] });
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.templates() });
+      void queryClient.invalidateQueries({ queryKey: ['routine-template', variables.templateId] });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.templates() });
       
       showSuccessToast('Visual aids uploaded successfully');
       return data;
@@ -397,13 +399,13 @@ export const useImportRoutines = () => {
     mutationFn: ({ file, format }: { file: File; format: 'csv' | 'json' }) =>
       routineApi.import(file, format),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: queryKeys.routine.templates() });
-      queryClient.invalidateQueries({ queryKey: ['routine-categories'] });
-      queryClient.invalidateQueries({ queryKey: ['routine-tags'] });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.routine.templates() });
+      void queryClient.invalidateQueries({ queryKey: ['routine-categories'] });
+      void queryClient.invalidateQueries({ queryKey: ['routine-tags'] });
       
       showSuccessToast(
-        `${data.imported} routines imported successfully` +
-        (data.failed > 0 ? `, ${data.failed} failed` : '')
+        `${data.imported} routines imported successfully${ 
+        data.failed > 0 ? `, ${data.failed} failed` : ''}`
       );
       return data;
     },
@@ -411,8 +413,7 @@ export const useImportRoutines = () => {
   });
 };
 
-export const useExportRoutines = () => {
-  return useMutation({
+export const useExportRoutines = () => useMutation({
     mutationFn: ({ filters, format }: { 
       filters?: RoutineFilters; 
       format?: 'csv' | 'pdf' | 'json';
@@ -432,4 +433,3 @@ export const useExportRoutines = () => {
     },
     onError: (error) => handleApiError(error, 'Failed to export routines'),
   });
-};

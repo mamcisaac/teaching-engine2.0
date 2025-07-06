@@ -6,6 +6,7 @@
 
 import { BaseService } from '../base/BaseService';
 import { prisma } from '../../prisma';
+
 import { ParserFactory } from './parsers/ParserFactory';
 import { CurriculumValidator, ValidationOptions } from './validators/CurriculumValidator';
 import { CurriculumTransformer, TransformOptions } from './transformers/CurriculumTransformer';

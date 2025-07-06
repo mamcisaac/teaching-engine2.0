@@ -1,4 +1,5 @@
 import { CurriculumExpectation, Prisma, PrismaClient } from '@prisma/client';
+
 import logger from '../logger';
 
 export interface SearchOptions {

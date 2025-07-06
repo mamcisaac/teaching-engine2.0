@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import express, { Request, Response, NextFunction } from 'express';
 import { Server } from 'http';
 import path from 'path';
+
+import express, { Request, Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
 import debug from 'debug';
 import { config } from 'dotenv';
 import { authenticate } from './middleware/authenticate';
-
 // Load environment variables
 config();
 
@@ -18,15 +18,12 @@ const error = debug('server:error');
 const __dirname_index = __dirname;
 
 // Use global Express Request type with user: { id: number; email: string }
-
 // ETFO-aligned route imports
 import curriculumImportRoutes from './routes/curriculumImport';
 // Student-related routes removed - app does not store student data
-
 // Key Teacher Features - Newsletter and Substitute Plans
 import newsletterRoutes from './routes/newsletters';
 import { router as substitutePlanRoutes } from './routes/substitute-plans';
-
 import curriculumExpectationRoutes from './routes/curriculum-expectations';
 import longRangePlanRoutes from './routes/long-range-plans';
 import { router as unitPlanRoutes } from './routes/unit-plans';
@@ -418,6 +415,8 @@ if (isDirectRun || isE2ETest || isDevelopment) {
         error('Unhandled Rejection at:', promise, 'reason:', reason);
         gracefulShutdown('UNHANDLED_REJECTION', server);
       });
+      
+      return server;
     })
     .catch((err) => {
       error('Failed to initialize app:', err);

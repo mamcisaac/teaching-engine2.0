@@ -11,6 +11,13 @@
     "db:deploy": "prisma migrate deploy",
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
+    "db:seed:test": "tsx prisma/seed.ts",
+    "db:seed:integration": "tsx prisma/seed-integration.ts",
+    "db:seed:api-tests": "tsx prisma/seed-api-tests.ts",
+    "db:seed:frontend": "tsx prisma/seed-frontend.ts",
+    "db:seed:security": "tsx prisma/seed-security.ts",
+    "db:seed:coverage": "tsx prisma/seed-coverage.ts",
+    "db:seed:performance": "tsx prisma/seed-performance.ts",
     "postinstall": "node -e \"if (!process.env.SKIP_PRISMA_GENERATE && !process.env.npm_lifecycle_event?.includes('dev')) { require('child_process').execSync('prisma generate', {stdio: 'inherit'}); }\"",
     "migrate:etfo": "tsx src/migrations/migrate-to-etfo.ts"
   },

@@ -1,6 +1,7 @@
+import type { AxiosError, AxiosRequestConfig } from 'axios';
 import axios from 'axios';
-import { authService } from '../../services/authService';
-import logger from '../../utils/logger';
+
+import { logger } from '../../utils/logger';
 // Extend the ImportMeta interface to include Vite's environment variables
 declare global {
   interface ImportMetaEnv {
@@ -23,6 +24,15 @@ export const apiClient = axios.create({
   },
 });
 
+// Lazy import to avoid circular dependency
+let authServiceModule: { authService: typeof import('../../services/authService').authService } | undefined;
+const getAuthService = async () => {
+  if (!authServiceModule) {
+    authServiceModule = await import('../../services/authService');
+  }
+  return authServiceModule.authService;
+};
+
 // Add request interceptor for authentication
 apiClient.interceptors.request.use(
   async (config) => {
@@ -30,6 +40,7 @@ apiClient.interceptors.request.use(
     config.withCredentials = true;
 
     // Add authorization header if we have a token
+    const authService = await getAuthService();
     const authHeaders = authService.getAuthHeaders();
     if (authHeaders.Authorization) {
       config.headers.Authorization = authHeaders.Authorization;
@@ -46,27 +57,32 @@ apiClient.interceptors.request.use(
 
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  },
+  (error: unknown) => Promise.reject(error as Error),
 );
 
 // Add response interceptor for error handling
 apiClient.interceptors.response.use(
   (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
+  async (error: AxiosError) => {
+    const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    if (error.response?.status === 401 && originalRequest._retry !== true) {
       originalRequest._retry = true;
 
       // Try to handle the auth error with the auth service
       try {
-        const recovered = await authService.handleAuthError(error.response);
+        const authService = await getAuthService();
+        // Convert AxiosResponse to standard Response for compatibility
+        const response = new Response(JSON.stringify(error.response.data), {
+          status: error.response.status,
+          statusText: error.response.statusText,
+          headers: new Headers(error.response.headers as Record<string, string>),
+        });
+        const recovered = await authService.handleAuthError(response);
         if (recovered) {
           // Update the authorization header with the new token
           const authHeaders = authService.getAuthHeaders();
-          if (authHeaders.Authorization) {
+          if (authHeaders.Authorization && originalRequest.headers) {
             originalRequest.headers.Authorization = authHeaders.Authorization;
           }
           return apiClient(originalRequest);
@@ -76,26 +92,27 @@ apiClient.interceptors.response.use(
       }
 
       // If we couldn't recover, clear tokens and let the app handle redirect
+      const authService = await getAuthService();
       authService.clearTokens();
-      return Promise.reject(error);
+      return Promise.reject(error as Error);
     }
 
-    return Promise.reject(error);
+    return Promise.reject(error as Error);
   },
 );
 
 // Export commonly used types
-export type ApiResponse<T> = {
+export interface ApiResponse<T> {
   data: T;
   message?: string;
-};
+}
 
-export type PaginatedResponse<T> = {
+export interface PaginatedResponse<T> {
   data: T[];
   total: number;
   page: number;
   pageSize: number;
-};
+}
 
 // Export base URL for reference
 export const API_BASE_URL = baseURL;

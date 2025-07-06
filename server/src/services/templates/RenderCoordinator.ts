@@ -5,6 +5,7 @@
  */
 
 import { BaseService } from '../base/BaseService';
+
 import { TemplateRegistry } from './TemplateRegistry';
 import { TemplateCache } from './TemplateCache';
 import { TemplateHelpers } from './TemplateHelpers';

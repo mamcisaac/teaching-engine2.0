@@ -5,8 +5,10 @@
  */
 
 import * as Handlebars from 'handlebars';
-import { RenderEngine, RenderResult, RenderContext } from './RenderEngine';
+
 import { Template } from '../providers/TemplateProvider';
+
+import { RenderEngine, RenderResult, RenderContext } from './RenderEngine';
 
 export class HandlebarsEngine extends RenderEngine {
   private handlebars: typeof Handlebars;

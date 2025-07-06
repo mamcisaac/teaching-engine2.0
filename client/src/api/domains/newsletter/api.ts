@@ -1,5 +1,5 @@
-import { apiClient } from '../../core/client';
 import type { Newsletter } from '../../../types';
+import { apiClient } from '../../core/client';
 
 // API endpoints
 export const newsletterApi = {
@@ -15,7 +15,7 @@ export const newsletterApi = {
   createDraft: async (input: {
     weekStart: string;
     weekEnd: string;
-    items: Array<{ type: string; content: string }>;
+    items: { type: string; content: string }[];
   }) => {
     const { data } = await apiClient.post<Newsletter>('/api/newsletters/draft', input);
     return data;
@@ -25,7 +25,7 @@ export const newsletterApi = {
   create: async (input: {
     weekStart: string;
     weekEnd: string;
-    items: Array<{ type: string; content: string }>;
+    items: { type: string; content: string }[];
   }) => {
     const { data } = await apiClient.post<Newsletter>('/api/newsletters', input);
     return data;

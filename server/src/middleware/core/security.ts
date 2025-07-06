@@ -2,9 +2,10 @@
 import { Application, Request, Response, NextFunction } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
+import DOMPurify from 'isomorphic-dompurify';
+
 import { AppError } from '../../utils/errors';
 import { logger } from '../../logger';
-import DOMPurify from 'isomorphic-dompurify';
 
 // CORS configuration
 const corsOptions: cors.CorsOptions = {

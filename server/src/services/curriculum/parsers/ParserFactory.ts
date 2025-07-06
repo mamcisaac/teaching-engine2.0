@@ -4,6 +4,7 @@
  */
 
 import path from 'path';
+
 import { CurriculumParser, ParserOptions } from './CurriculumParser';
 import { CSVParser } from './CSVParser';
 import { ExcelParser } from './ExcelParser';

@@ -57,7 +57,7 @@ export interface ResourceStats {
   totalSize: number; // in bytes
   byType: Record<string, number>;
   byCategory: Record<string, number>;
-  popularTags: Array<{ name: string; count: number }>;
+  popularTags: { name: string; count: number }[];
   recentUploads: number; // last 7 days
   storageUsed: {
     used: number;
@@ -127,7 +127,9 @@ export const resourceApi = {
     uploadMultiple: async (files: File[], metadata: MediaResourceInput[]) => {
       const formData = new FormData();
       
-      files.forEach(file => formData.append('files', file));
+      files.forEach(file => {
+ formData.append('files', file); 
+});
       formData.append('metadata', JSON.stringify(metadata));
 
       const { data } = await apiClient.post<MediaResource[]>('/api/resources/media/upload-multiple', formData, {
@@ -196,7 +198,7 @@ export const resourceApi = {
   // Collections
   collections: {
     // Get all collections
-    getAll: async (includeResources: boolean = false) => {
+    getAll: async (includeResources = false) => {
       const { data } = await apiClient.get<ResourceCollection[]>('/api/resources/collections', {
         params: { includeResources },
       });
@@ -204,7 +206,7 @@ export const resourceApi = {
     },
 
     // Get single collection
-    getById: async (id: number, includeResources: boolean = true) => {
+    getById: async (id: number, includeResources = true) => {
       const { data } = await apiClient.get<ResourceCollection>(`/api/resources/collections/${id}`, {
         params: { includeResources },
       });
@@ -268,7 +270,7 @@ export const resourceApi = {
   },
 
   // Get popular/trending resources
-  getPopular: async (timeframe: 'day' | 'week' | 'month' = 'week', limit: number = 20) => {
+  getPopular: async (timeframe: 'day' | 'week' | 'month' = 'week', limit = 20) => {
     const { data } = await apiClient.get<MediaResource[]>('/api/resources/popular', {
       params: { timeframe, limit },
     });
@@ -276,7 +278,7 @@ export const resourceApi = {
   },
 
   // Get recently added resources
-  getRecent: async (limit: number = 20, category?: string) => {
+  getRecent: async (limit = 20, category?: string) => {
     const { data } = await apiClient.get<MediaResource[]>('/api/resources/recent', {
       params: { limit, category },
     });
@@ -297,12 +299,12 @@ export const resourceApi = {
 
   // Tags and categories
   getTags: async () => {
-    const { data } = await apiClient.get<Array<{ name: string; count: number }>>('/api/resources/tags');
+    const { data } = await apiClient.get<{ name: string; count: number }[]>('/api/resources/tags');
     return data;
   },
 
   getCategories: async () => {
-    const { data } = await apiClient.get<Array<{ name: string; count: number }>>('/api/resources/categories');
+    const { data } = await apiClient.get<{ name: string; count: number }[]>('/api/resources/categories');
     return data;
   },
 
@@ -362,7 +364,7 @@ export const resourceApi = {
     importBulk: async (urls: string[], defaultCategory: string) => {
       const { data } = await apiClient.post<{
         imported: MediaResource[];
-        failed: Array<{ url: string; error: string }>;
+        failed: { url: string; error: string }[];
       }>('/api/resources/links/bulk-import', {
         urls,
         defaultCategory,
@@ -435,12 +437,12 @@ export const resourceApi = {
       const { data } = await apiClient.get<{
         isPublic: boolean;
         publicLink?: string;
-        sharedWith: Array<{
+        sharedWith: {
           userId: number;
           userName: string;
           permission: string;
           sharedAt: string;
-        }>;
+        }[];
       }>(`/api/resources/media/${resourceId}/sharing`);
       return data;
     },

@@ -5,8 +5,10 @@
  */
 
 import * as puppeteer from 'puppeteer';
-import { RenderEngine, RenderResult, RenderContext } from './RenderEngine';
+
 import { Template } from '../providers/TemplateProvider';
+
+import { RenderEngine, RenderResult, RenderContext } from './RenderEngine';
 import { HandlebarsEngine } from './HandlebarsEngine';
 
 export interface PdfOptions {

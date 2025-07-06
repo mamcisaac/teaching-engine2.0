@@ -1,6 +1,8 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { curriculumApi } from './api';
+
 import { queryKeys, showSuccessToast, handleApiError } from '../../core/utils';
+
+import { curriculumApi } from './api';
 
 // Subject Query Hooks
 export const useSubjects = () =>
@@ -91,7 +93,7 @@ export const useCreateSubject = () => {
     mutationFn: curriculumApi.createSubject,
     onSuccess: () => {
       showSuccessToast('Subject created successfully');
-      queryClient.invalidateQueries({ queryKey: queryKeys.curriculum.subjects });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.curriculum.subjects });
     },
     onError: (error) => handleApiError(error, 'Failed to create subject'),
   });
@@ -104,8 +106,8 @@ export const useUpdateSubject = () => {
     mutationFn: curriculumApi.updateSubject,
     onSuccess: (data) => {
       showSuccessToast('Subject updated successfully');
-      queryClient.invalidateQueries({ queryKey: queryKeys.curriculum.subjects });
-      queryClient.invalidateQueries({ queryKey: queryKeys.curriculum.subject(data.id) });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.curriculum.subjects });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.curriculum.subject(data.id) });
     },
     onError: (error) => handleApiError(error, 'Failed to update subject'),
   });
@@ -118,7 +120,7 @@ export const useDeleteSubject = () => {
     mutationFn: curriculumApi.deleteSubject,
     onSuccess: () => {
       showSuccessToast('Subject deleted successfully');
-      queryClient.invalidateQueries({ queryKey: queryKeys.curriculum.subjects });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.curriculum.subjects });
     },
     onError: (error) => handleApiError(error, 'Failed to delete subject'),
   });
@@ -132,7 +134,7 @@ export const useCreateCurriculumExpectation = () => {
     mutationFn: curriculumApi.createCurriculumExpectation,
     onSuccess: () => {
       showSuccessToast('Curriculum expectation created successfully');
-      queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
+      void queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
     },
     onError: (error) => handleApiError(error, 'Failed to create curriculum expectation'),
   });
@@ -145,8 +147,8 @@ export const useUpdateCurriculumExpectation = () => {
     mutationFn: curriculumApi.updateCurriculumExpectation,
     onSuccess: (data) => {
       showSuccessToast('Curriculum expectation updated successfully');
-      queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
-      queryClient.invalidateQueries({ queryKey: ['curriculum-expectation', data.id] });
+      void queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
+      void queryClient.invalidateQueries({ queryKey: ['curriculum-expectation', data.id] });
     },
     onError: (error) => handleApiError(error, 'Failed to update curriculum expectation'),
   });
@@ -159,7 +161,7 @@ export const useDeleteCurriculumExpectation = () => {
     mutationFn: curriculumApi.deleteCurriculumExpectation,
     onSuccess: () => {
       showSuccessToast('Curriculum expectation deleted successfully');
-      queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
+      void queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
     },
     onError: (error) => handleApiError(error, 'Failed to delete curriculum expectation'),
   });
@@ -173,7 +175,7 @@ export const useCreateThematicUnit = () => {
     mutationFn: curriculumApi.createThematicUnit,
     onSuccess: () => {
       showSuccessToast('Thematic unit created successfully');
-      queryClient.invalidateQueries({ queryKey: ['thematic-units'] });
+      void queryClient.invalidateQueries({ queryKey: ['thematic-units'] });
     },
     onError: (error) => handleApiError(error, 'Failed to create thematic unit'),
   });
@@ -186,8 +188,8 @@ export const useUpdateThematicUnit = () => {
     mutationFn: curriculumApi.updateThematicUnit,
     onSuccess: (data) => {
       showSuccessToast('Thematic unit updated successfully');
-      queryClient.invalidateQueries({ queryKey: ['thematic-units'] });
-      queryClient.invalidateQueries({ queryKey: queryKeys.curriculum.thematicUnit(data.id) });
+      void queryClient.invalidateQueries({ queryKey: ['thematic-units'] });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.curriculum.thematicUnit(data.id) });
     },
     onError: (error) => handleApiError(error, 'Failed to update thematic unit'),
   });
@@ -200,7 +202,7 @@ export const useDeleteThematicUnit = () => {
     mutationFn: curriculumApi.deleteThematicUnit,
     onSuccess: () => {
       showSuccessToast('Thematic unit deleted successfully');
-      queryClient.invalidateQueries({ queryKey: ['thematic-units'] });
+      void queryClient.invalidateQueries({ queryKey: ['thematic-units'] });
     },
     onError: (error) => handleApiError(error, 'Failed to delete thematic unit'),
   });
@@ -213,7 +215,7 @@ export const useDuplicateThematicUnit = () => {
     mutationFn: curriculumApi.duplicateThematicUnit,
     onSuccess: () => {
       showSuccessToast('Thematic unit duplicated successfully');
-      queryClient.invalidateQueries({ queryKey: ['thematic-units'] });
+      void queryClient.invalidateQueries({ queryKey: ['thematic-units'] });
     },
     onError: (error) => handleApiError(error, 'Failed to duplicate thematic unit'),
   });
@@ -231,15 +233,14 @@ export const useImportCurriculum = () => {
       if (data.failed > 0) {
         showSuccessToast(`${data.failed} items failed to import`);
       }
-      queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
-      queryClient.invalidateQueries({ queryKey: queryKeys.curriculum.subjects });
+      void queryClient.invalidateQueries({ queryKey: ['curriculum-expectations'] });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.curriculum.subjects });
     },
     onError: (error) => handleApiError(error, 'Failed to import curriculum'),
   });
 };
 
-export const useExportCurriculum = () => {
-  return useMutation({
+export const useExportCurriculum = () => useMutation({
     mutationFn: curriculumApi.exportCurriculum,
     onSuccess: (data, variables) => {
       // Create download link
@@ -256,4 +257,3 @@ export const useExportCurriculum = () => {
     },
     onError: (error) => handleApiError(error, 'Failed to export curriculum'),
   });
-};

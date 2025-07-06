@@ -5,6 +5,9 @@
  */
 
 import { Router, Request, Response, NextFunction } from 'express';
+import { z } from 'zod';
+import { prisma as defaultPrisma } from '@teaching-engine/database';
+
 import {
   login,
   register,
@@ -16,8 +19,6 @@ import {
 } from '../middleware/auth';
 import { validateRequest } from '../middleware/validateRequest';
 import { authRateLimiter } from '../middleware/rateLimit';
-import { z } from 'zod';
-import { prisma as defaultPrisma } from '@teaching-engine/database';
 
 // Validation schemas
 const loginSchema = z.object({

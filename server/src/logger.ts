@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
-import pino from 'pino';
 import { performance } from 'perf_hooks';
+
+import pino from 'pino';
 
 // Log levels configuration - kept for future use
 // const _LOG_LEVELS = {

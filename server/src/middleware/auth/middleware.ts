@@ -1,9 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
-import { verifyToken, extractTokenFromHeader } from './jwt';
-import { AuthRequest, UserRole } from './types';
+
 import { prisma } from '../../prisma.js';
 import logger from '../../logger.js';
 import { AuthenticationError } from '../errorHandler.js';
+
+import { AuthRequest, UserRole } from './types';
+import { verifyToken, extractTokenFromHeader } from './jwt';
 
 export class ForbiddenError extends Error {
   constructor(message: string = 'Forbidden') {

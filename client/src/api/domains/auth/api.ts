@@ -1,5 +1,5 @@
-import { apiClient } from '../../core/client';
 import type { User, LoginCredentials, RegisterData, TokenResponse } from '../../../types';
+import { apiClient } from '../../core/client';
 
 // API endpoints
 export const authApi = {

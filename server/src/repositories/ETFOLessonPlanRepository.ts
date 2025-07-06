@@ -1,4 +1,5 @@
 import { ETFOLessonPlan, Prisma, PrismaClient } from '@prisma/client';
+
 import logger from '../logger';
 
 export interface ETFOLessonPlanWithRelations extends ETFOLessonPlan {

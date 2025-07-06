@@ -7,6 +7,7 @@ import { Router, Request } from 'express';
 import { PrismaClient } from '@teaching-engine/database';
 import { z } from 'zod';
 import bcrypt from 'bcryptjs';
+
 import { asyncHandler } from '../middleware/errorHandler';
 import { RepositoryFactory } from '../repositories/RepositoryFactory';
 // Authentication middleware available if needed

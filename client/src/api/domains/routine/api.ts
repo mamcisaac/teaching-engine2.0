@@ -42,27 +42,27 @@ export interface OralRoutineStats {
   averageEngagement: number;
   routinesByCategory: Record<string, number>;
   routinesByDifficulty: Record<string, number>;
-  weeklyProgress: Array<{
+  weeklyProgress: {
     week: string;
     completed: number;
     planned: number;
-  }>;
-  engagementTrends: Array<{
+  }[];
+  engagementTrends: {
     date: string;
     engagement: number;
-  }>;
+  }[];
 }
 
 export interface ClassRoutine {
   id: number;
   name: string;
   type: 'entry' | 'transition' | 'exit' | 'emergency';
-  steps: Array<{
+  steps: {
     order: number;
     instruction: string;
     duration?: number;
     visualCue?: string;
-  }>;
+  }[];
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
@@ -271,11 +271,11 @@ export const routineApi = {
 
     // Get engagement trends
     getEngagementTrends: async (startDate: string, endDate: string) => {
-      const { data } = await apiClient.get<Array<{
+      const { data } = await apiClient.get<{
         date: string;
         engagement: number;
         routineCount: number;
-      }>>('/api/routines/stats/engagement', {
+      }[]>('/api/routines/stats/engagement', {
         params: { startDate, endDate },
       });
       return data;
@@ -283,12 +283,12 @@ export const routineApi = {
 
     // Get completion rates
     getCompletionRates: async (period: 'week' | 'month' | 'quarter') => {
-      const { data } = await apiClient.get<Array<{
+      const { data } = await apiClient.get<{
         period: string;
         planned: number;
         completed: number;
         rate: number;
-      }>>('/api/routines/stats/completion', {
+      }[]>('/api/routines/stats/completion', {
         params: { period },
       });
       return data;
@@ -322,7 +322,9 @@ export const routineApi = {
     // Upload visual aids
     uploadVisualAids: async (templateId: number, files: File[]) => {
       const formData = new FormData();
-      files.forEach(file => formData.append('visuals', file));
+      files.forEach(file => {
+ formData.append('visuals', file); 
+});
 
       const { data } = await apiClient.post<{ visualAids: string[] }>(
         `/api/routines/templates/${templateId}/visuals`,
@@ -353,7 +355,7 @@ export const routineApi = {
 
   // Get popular tags
   getTags: async () => {
-    const { data } = await apiClient.get<Array<{ name: string; count: number }>>('/api/routines/tags');
+    const { data } = await apiClient.get<{ name: string; count: number }[]>('/api/routines/tags');
     return data;
   },
 

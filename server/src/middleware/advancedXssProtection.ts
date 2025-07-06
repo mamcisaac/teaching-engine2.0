@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import DOMPurify from 'isomorphic-dompurify';
+
 import logger from '../logger.js';
 
 /**

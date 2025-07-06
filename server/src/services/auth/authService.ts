@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import bcrypt from 'bcryptjs';
+
 import { BaseService } from '../base/BaseService';
 
 export class AuthService extends BaseService {

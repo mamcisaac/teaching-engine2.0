@@ -3,9 +3,10 @@
  * Provides a consistent interface with automatic fallback
  */
 
+import { structuredLogger } from '../../utils/structuredLogger';
+
 import { RedisCache, getCache as getRedisCache, CacheOptions, CacheStats } from './RedisCache';
 import { MemoryCache, getMemoryCache } from './MemoryCache';
-import { structuredLogger } from '../../utils/structuredLogger';
 
 export type { CacheOptions, CacheStats } from './RedisCache';
 export { cacheMiddleware } from './RedisCache';

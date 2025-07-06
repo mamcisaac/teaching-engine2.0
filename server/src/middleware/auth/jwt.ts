@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import jwt from 'jsonwebtoken';
-import { TokenPayload, JWTConfig as _JWTConfig } from './types';
+
 import logger from '../../logger.js';
+
+import { TokenPayload, JWTConfig as _JWTConfig } from './types';
 
 // JWT Configuration
 const config = {

@@ -1,5 +1,5 @@
-import { apiClient } from '../../core/client';
 import type { Subject, CurriculumExpectation, ThematicUnit } from '../../../types';
+import { apiClient } from '../../core/client';
 
 // API endpoints
 export const curriculumApi = {

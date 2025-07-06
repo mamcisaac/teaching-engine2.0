@@ -160,6 +160,7 @@ const unitTestProject = {
   testMatch: [
     '<rootDir>/tests/unit/**/*.test.ts',
     '<rootDir>/src/**/*.unit.test.ts',
+    '<rootDir>/src/**/*.test.ts',
     // Removed security tests from unit test matches
   ],
   testTimeout: 8000, // Reduced to 8 seconds for unit tests

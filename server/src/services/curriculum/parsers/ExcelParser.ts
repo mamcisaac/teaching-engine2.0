@@ -3,7 +3,8 @@
  * Parses curriculum expectations from Excel files
  */
 
-import * as XLSX from 'xlsx';
+import * as XLSX from '@datalens-tech/xlsx';
+
 import { CurriculumParser, ParsedCurriculum, ParsedExpectation } from './CurriculumParser';
 
 export interface ExcelRow {

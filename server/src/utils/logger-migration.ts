@@ -3,9 +3,10 @@
  * Helps migrate from old logger to structured logger
  */
 
-import { structuredLogger, LogMeta, StructuredLogger } from './structuredLogger';
 import * as winston from 'winston';
 import { Request, Response } from 'express';
+
+import { structuredLogger, LogMeta, StructuredLogger } from './structuredLogger';
 
 // Legacy logger interface for backward compatibility
 interface LegacyLogger {

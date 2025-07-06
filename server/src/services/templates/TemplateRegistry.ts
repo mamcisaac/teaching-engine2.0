@@ -4,6 +4,7 @@
  */
 
 import { BaseService } from '../base/BaseService';
+
 import { TemplateProvider, Template } from './providers/TemplateProvider';
 import { LessonTemplateProvider } from './providers/LessonTemplateProvider';
 import { NewsletterTemplateProvider } from './providers/NewsletterTemplateProvider';

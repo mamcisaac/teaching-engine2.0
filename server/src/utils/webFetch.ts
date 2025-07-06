@@ -1,6 +1,8 @@
+import { createHash } from 'crypto';
+
 import axios from 'axios';
 import { JSDOM } from 'jsdom';
-import { createHash } from 'crypto';
+
 import logger from '../logger.js';
 
 interface CacheEntry {
