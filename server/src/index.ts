@@ -6,7 +6,6 @@ import express, { Request, Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
 import debug from 'debug';
 import { config } from 'dotenv';
-
 import { authenticate } from './middleware/authenticate';
 // Load environment variables
 config();
