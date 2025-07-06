@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// External imports (npm packages)
 import { Server } from 'http';
 import path from 'path';
 
@@ -8,21 +9,7 @@ import debug from 'debug';
 import { config } from 'dotenv';
 
 import { authenticate } from './middleware/authenticate';
-// Load environment variables
-config();
-
-// Create debug logger
-const log = debug('server:main');
-const error = debug('server:error');
-
-// Get directory name
-const __dirname_index = __dirname;
-
-// Use global Express Request type with user: { id: number; email: string }
-// ETFO-aligned route imports
 import curriculumImportRoutes from './routes/curriculumImport';
-// Student-related routes removed - app does not store student data
-// Key Teacher Features - Newsletter and Substitute Plans
 import newsletterRoutes from './routes/newsletters';
 import { router as substitutePlanRoutes } from './routes/substitute-plans';
 import curriculumExpectationRoutes from './routes/curriculum-expectations';
@@ -32,7 +19,6 @@ import { router as etfoLessonPlanRoutes } from './routes/etfo-lesson-plans';
 import { router as daybookEntryRoutes } from './routes/daybook-entries';
 import etfoProgressRoutes from './routes/etfo-progress';
 import plannerStateRoutes from './routes/planner-state';
-// Workflow state routes removed - over-engineered for single-teacher use
 import aiPlanningRoutes from './routes/ai-planning';
 import activityCollectionsRoutes from './routes/activity-collections';
 import aiActivityGenerationRoutes from './routes/ai-activity-generation';
@@ -42,10 +28,8 @@ import recentPlansRoutes from './routes/recent-plans';
 import cacheRoutes from './routes/cache';
 import metricsRoutes from './routes/metrics';
 import dashboardMetricsRoutes from './routes/dashboard-metrics';
-// batchApiRoutes removed - premature optimization for single-teacher use
 import authEndpoints from './routes/authEndpoints';
 import { userRoutes } from './routes/user';
-// Notification routes and service infrastructure removed - over-engineered for single-teacher use
 import notificationRoutes from './routes/notifications';
 import logger from './logger.js';
 import {
@@ -56,7 +40,6 @@ import {
 import { prisma } from './prisma';
 import { rateLimiters } from './middleware/rateLimit/index';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
-// performanceMonitoring removed - adds unnecessary complexity for single-teacher use
 import {
   applySecurityMiddleware,
   authRateLimitMiddleware,
@@ -70,6 +53,16 @@ import { initTelemetry, startAlertMonitoring } from './monitoring';
 import monitoringRoutes from './routes/monitoring';
 import { errorReportingService } from './services/monitoring/errorReportingService';
 import { errorContextMiddleware, authErrorMiddleware } from './middleware/errorContext';
+
+// Load environment variables
+config();
+
+// Create debug logger
+const log = debug('server:main');
+const error = debug('server:error');
+
+// Get directory name
+const __dirname_index = __dirname;
 
 // Create backward-compatible logger for gradual migration
 // Logger is now imported from structuredLogger
