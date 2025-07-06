@@ -128,7 +128,7 @@ export const useRoutineTags = (): UseQueryResult<unknown> =>
   });
 
 // Template mutation hooks
-export const useCreateRoutineTemplate = (): UseQueryResult<unknown> => {
+export const useCreateRoutineTemplate = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -145,7 +145,7 @@ export const useCreateRoutineTemplate = (): UseQueryResult<unknown> => {
   });
 };
 
-export const useUpdateRoutineTemplate = (): UseQueryResult<unknown> => {
+export const useUpdateRoutineTemplate = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -163,7 +163,7 @@ export const useUpdateRoutineTemplate = (): UseQueryResult<unknown> => {
   });
 };
 
-export const useDeleteRoutineTemplate = (): UseQueryResult<unknown> => {
+export const useDeleteRoutineTemplate = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -178,7 +178,7 @@ export const useDeleteRoutineTemplate = (): UseQueryResult<unknown> => {
   });
 };
 
-export const useDuplicateRoutineTemplate = (): UseQueryResult<unknown> => {
+export const useDuplicateRoutineTemplate = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -193,7 +193,7 @@ export const useDuplicateRoutineTemplate = (): UseQueryResult<unknown> => {
   });
 };
 
-export const useImportPublicTemplate = (): UseQueryResult<unknown> => {
+export const useImportPublicTemplate = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -209,7 +209,7 @@ export const useImportPublicTemplate = (): UseQueryResult<unknown> => {
 };
 
 // Daily routine mutation hooks
-export const useCreateDailyRoutine = (): UseQueryResult<unknown> => {
+export const useCreateDailyRoutine = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -226,7 +226,7 @@ export const useCreateDailyRoutine = (): UseQueryResult<unknown> => {
   });
 };
 
-export const useUpdateDailyRoutine = (): UseQueryResult<unknown> => {
+export const useUpdateDailyRoutine = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -245,7 +245,7 @@ export const useUpdateDailyRoutine = (): UseQueryResult<unknown> => {
   });
 };
 
-export const useDeleteDailyRoutine = (): UseQueryResult<unknown> => {
+export const useDeleteDailyRoutine = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -261,7 +261,7 @@ export const useDeleteDailyRoutine = (): UseQueryResult<unknown> => {
   });
 };
 
-export const useMarkRoutineCompleted = (): UseQueryResult<unknown> => {
+export const useMarkRoutineCompleted = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -287,7 +287,7 @@ export const useMarkRoutineCompleted = (): UseQueryResult<unknown> => {
   });
 };
 
-export const useCreateWeeklyRoutines = (): UseQueryResult<unknown> => {
+export const useCreateWeeklyRoutines = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -309,7 +309,7 @@ export const useCreateWeeklyRoutines = (): UseQueryResult<unknown> => {
 };
 
 // Class routine mutation hooks
-export const useCreateClassRoutine = (): UseQueryResult<unknown> => {
+export const useCreateClassRoutine = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -325,7 +325,7 @@ export const useCreateClassRoutine = (): UseQueryResult<unknown> => {
   });
 };
 
-export const useUpdateClassRoutine = (): UseQueryResult<unknown> => {
+export const useUpdateClassRoutine = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -342,7 +342,7 @@ export const useUpdateClassRoutine = (): UseQueryResult<unknown> => {
   });
 };
 
-export const useDeleteClassRoutine = (): UseQueryResult<unknown> => {
+export const useDeleteClassRoutine = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -358,7 +358,7 @@ export const useDeleteClassRoutine = (): UseQueryResult<unknown> => {
 };
 
 // Media mutation hooks
-export const useUploadRoutineAudio = (): UseQueryResult<unknown> => {
+export const useUploadRoutineAudio = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -375,7 +375,7 @@ export const useUploadRoutineAudio = (): UseQueryResult<unknown> => {
   });
 };
 
-export const useUploadVisualAids = (): UseQueryResult<unknown> => {
+export const useUploadVisualAids = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -393,7 +393,7 @@ export const useUploadVisualAids = (): UseQueryResult<unknown> => {
 };
 
 // Import/Export hooks
-export const useImportRoutines = (): UseQueryResult<unknown> => {
+export const useImportRoutines = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
