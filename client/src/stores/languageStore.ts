@@ -454,8 +454,8 @@ return '';
 );
 
 // Selector hooks for performance
-export const useCurrentLanguage = (): UseQueryResult<unknown> => useLanguageStore((state) => state.language);
-export const useTranslation = (): UseQueryResult<unknown> => useLanguageStore((state) => state.t);
-export const useLocalizedField = (): UseQueryResult<unknown> => useLanguageStore((state) => state.getLocalizedField);
-export const useIsEnglish = (): UseQueryResult<unknown> => useLanguageStore((state) => state.isEnglish);
-export const useIsFrench = (): UseQueryResult<unknown> => useLanguageStore((state) => state.isFrench);
+export const useCurrentLanguage = (): string => useLanguageStore((state) => state.language);
+export const useTranslation = () => useLanguageStore((state) => state.t);
+export const useLocalizedField = () => useLanguageStore((state) => state.getLocalizedField);
+export const useIsEnglish = (): boolean => useLanguageStore((state) => state.isEnglish);
+export const useIsFrench = (): boolean => useLanguageStore((state) => state.isFrench);

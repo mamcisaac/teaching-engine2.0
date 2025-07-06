@@ -204,13 +204,13 @@ export const useHelpStore = create<HelpState>()(
 );
 
 // Selector hooks for performance
-export const useCurrentSection = (): UseQueryResult<unknown> => useHelpStore(state => state.currentSection);
-export const useSearchQuery = (): UseQueryResult<unknown> => useHelpStore(state => state.searchQuery);
-export const useActiveFilters = (): UseQueryResult<unknown> => useHelpStore(state => state.activeFilters);
-export const useContextualHints = (): UseQueryResult<unknown> => useHelpStore(state => state.contextualHints);
+export const useCurrentSection = (): string | null => useHelpStore(state => state.currentSection);
+export const useSearchQuery = (): string => useHelpStore(state => state.searchQuery);
+export const useActiveFilters = (): string[] => useHelpStore(state => state.activeFilters);
+export const useContextualHints = (): boolean => useHelpStore(state => state.contextualHints);
 
 // Tutorial progress hook
 export const useTutorialProgress = (tutorialId: string) => useHelpStore(state => state.getTutorialProgress(tutorialId));
 
 // Analytics hook
-export const useHelpAnalytics = (): UseQueryResult<unknown> => useHelpStore(state => state.getAnalytics());
+export const useHelpAnalytics = () => useHelpStore(state => state.getAnalytics());

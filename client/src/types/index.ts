@@ -43,7 +43,7 @@ export type {
 } from '../hooks/useETFOPlanning';
 
 // Re-export newsletter types
-export type { ParentSummary } from './newsletter';
+export type { ParentSummary, NewsletterDraft, NewsletterGenerationParams, GeneratedNewsletter, NewsletterInput, NewsletterGenerateInput } from './newsletter';
 import type { ParentSummary } from './newsletter';
 
 // Planning types 

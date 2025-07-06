@@ -321,6 +321,6 @@ return;
 export const useOnboardingComplete = (flowId: string) => useOnboardingStore((state) => state.completedFlows.includes(flowId));
 
 // Selector hooks for performance
-export const useOnboardingActive = (): UseQueryResult<unknown> => useOnboardingStore((state) => state.isOnboardingActive);
-export const useCurrentStep = (): UseQueryResult<unknown> => useOnboardingStore((state) => state.currentStep);
-export const useOnboardingProgress = (): UseQueryResult<unknown> => useOnboardingStore((state) => state.progress);
+export const useOnboardingActive = (): boolean => useOnboardingStore((state) => state.isOnboardingActive);
+export const useCurrentStep = (): OnboardingStep | null => useOnboardingStore((state) => state.currentStep);
+export const useOnboardingProgress = (): number => useOnboardingStore((state) => state.progress);

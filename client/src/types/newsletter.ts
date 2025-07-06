@@ -72,3 +72,19 @@ export interface GeneratedNewsletter {
     templateType?: string;
   };
 }
+
+// Input types for newsletter API calls
+export interface NewsletterInput {
+  weekStart: string;
+  weekEnd: string;
+  items: { type: string; content: string }[];
+}
+
+export interface NewsletterGenerateInput {
+  weekStart: string;
+  weekEnd: string;
+  lessonsCompleted: string[];
+  reflections: string[];
+  achievements: string[];
+  nextWeekPlans: string[];
+}

@@ -72,7 +72,7 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export const useNotificationContext = (): UseQueryResult<unknown> => {
+export const useNotificationContext = (): NotificationContextValue => {
   const context = useContext(NotificationContext);
   if (!context) {
     throw new Error('useNotificationContext must be used within a NotificationProvider');
@@ -83,17 +83,17 @@ export const useNotificationContext = (): UseQueryResult<unknown> => {
 export const useNotification = useNotificationContext;
 
 // Additional selector hooks for performance
-export const useNotificationsList = (): UseQueryResult<unknown> => {
+export const useNotificationsList = (): Notification[] => {
   const { notifications } = useNotificationContext();
   return notifications;
 };
 
-export const useUnreadCount = (): UseQueryResult<unknown> => {
+export const useUnreadCount = (): number => {
   const { unreadCount } = useNotificationContext();
   return unreadCount;
 };
 
-export const useHasUnreadNotifications = (): UseQueryResult<unknown> => {
+export const useHasUnreadNotifications = (): boolean => {
   const { hasUnread } = useNotificationContext();
   return hasUnread;
 };

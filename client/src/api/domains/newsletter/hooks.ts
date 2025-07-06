@@ -14,7 +14,7 @@ export const useNewsletter = (id: number, type: 'raw' | 'polished' = 'raw'): Use
     enabled: !!id,
   });
 
-export const useNewsletterSuggestions = (): UseQueryResult<string[]> =>
+export const useNewsletterSuggestions = (): UseQueryResult<{ suggested: boolean }> =>
   useQuery({
     queryKey: queryKeys.newsletter.suggestions,
     queryFn: newsletterApi.getSuggestions,

@@ -209,7 +209,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 }
 
-export const useAuth = (): UseQueryResult<unknown> => {
+export const useAuth = (): AuthContextValue => {
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error('useAuth must be used within an AuthProvider');
@@ -218,17 +218,17 @@ export const useAuth = (): UseQueryResult<unknown> => {
 };
 
 // Additional hooks for specific auth states
-export const useUser = (): UseQueryResult<unknown> => {
+export const useUser = (): User | null => {
   const { user } = useAuth();
   return user;
 };
 
-export const useIsAuthenticated = (): UseQueryResult<unknown> => {
+export const useIsAuthenticated = (): boolean => {
   const { isAuthenticated } = useAuth();
   return isAuthenticated;
 };
 
-export const useAuthLoading = (): UseQueryResult<unknown> => {
+export const useAuthLoading = (): boolean => {
   const { isLoading } = useAuth();
   return isLoading;
 };

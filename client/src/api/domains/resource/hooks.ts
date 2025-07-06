@@ -123,9 +123,14 @@ export const useStorageUsage = (): UseQueryResult<{
   });
 
 export const useSharingStatus = (resourceId: number): UseQueryResult<{
-  isShared: boolean;
-  sharedWith: number[];
-  permissions: Record<string, boolean>;
+  isPublic: boolean;
+  publicLink?: string;
+  sharedWith: {
+    userId: number;
+    userName: string;
+    permission: string;
+    sharedAt: string;
+  }[];
 }> =>
   useQuery({
     queryKey: ['sharing-status', resourceId],
@@ -509,7 +514,7 @@ export const useShareResource = (): UseMutationResult<
 };
 
 export const useGeneratePublicLink = (): UseMutationResult<
-  { url: string; expiresAt?: string },
+  { link: string; expiresAt?: string },
   Error,
   { resourceId: number; expiresInDays?: number }
 > => {

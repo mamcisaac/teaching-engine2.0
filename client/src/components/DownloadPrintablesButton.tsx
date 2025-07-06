@@ -6,8 +6,8 @@ interface Props {
 
 export default function DownloadPrintablesButton({ weekStart }: Props) {
   const handleClick = async () => {
-    const res = await planningApi.downloadPrintables(weekStart);
-    const url = window.URL.createObjectURL(res.data);
+    const blob = await planningApi.downloadPrintables(weekStart);
+    const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = 'printables.zip';

@@ -28,7 +28,7 @@ export const apiClient = axios.create({
 interface AuthServiceModule {
   authService: {
     getAuthHeaders: () => { Authorization?: string };
-    ensureValidToken: () => Promise<void>;
+    ensureValidToken: () => Promise<boolean>;
     handleAuthError: (response: Response) => Promise<boolean>;
     clearTokens: () => void;
   };

@@ -340,8 +340,8 @@ export const routineApi = {
   },
 
   // Search and discovery
-  search: async (query: string, type: 'templates' | 'daily' | 'class' = 'templates'): Promise<(RoutineTemplate | DailyRoutine | ClassRoutine)[]> => {
-    const { data } = await apiClient.get<(RoutineTemplate | DailyRoutine | ClassRoutine)[]>('/api/routines/search', {
+  search: async (query: string, type: 'templates' | 'daily' | 'class' = 'templates'): Promise<(OralRoutineTemplate | DailyOralRoutine | ClassRoutine)[]> => {
+    const { data } = await apiClient.get<(OralRoutineTemplate | DailyOralRoutine | ClassRoutine)[]>('/api/routines/search', {
       params: { q: query, type },
     });
     return data;

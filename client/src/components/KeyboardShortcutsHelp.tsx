@@ -214,7 +214,7 @@ return null;
 };
 
 // Standalone hook to show keyboard shortcuts help
-export const useKeyboardShortcutsHelp = (): UseQueryResult<unknown> => {
+export const useKeyboardShortcutsHelp = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const showHelp = () => {

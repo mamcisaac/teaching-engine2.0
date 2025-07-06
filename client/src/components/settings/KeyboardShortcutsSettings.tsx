@@ -154,7 +154,7 @@ export const KeyboardShortcutsSettings: React.FC = () => {
                   {categoryLabels[category as KeyboardShortcut['category']]}
                 </h3>
                 <div className="space-y-2">
-                  {categoryShortcuts.map((shortcut) => {
+                  {(categoryShortcuts as KeyboardShortcut[]).map((shortcut) => {
                     const customShortcut = preferences.customShortcuts[shortcut.id];
                     const isEditing = editingShortcut === shortcut.id;
                     const hasCustom = !!customShortcut;

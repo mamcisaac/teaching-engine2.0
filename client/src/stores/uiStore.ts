@@ -264,14 +264,14 @@ if (typeof window !== 'undefined') {
 }
 
 // Selector hooks for performance
-export const useTheme = (): UseQueryResult<unknown> => useUIStore(state => ({ 
+export const useTheme = () => useUIStore(state => ({ 
   theme: state.theme, 
   effectiveTheme: state.effectiveTheme,
   setTheme: state.setTheme,
   toggleTheme: state.toggleTheme
 }));
 
-export const useSidebar = (): UseQueryResult<unknown> => useUIStore(state => ({
+export const useSidebar = () => useUIStore(state => ({
   collapsed: state.sidebarCollapsed,
   width: state.sidebarWidth,
   setCollapsed: state.setSidebarCollapsed,
@@ -279,7 +279,7 @@ export const useSidebar = (): UseQueryResult<unknown> => useUIStore(state => ({
   setWidth: state.setSidebarWidth
 }));
 
-export const useModals = (): UseQueryResult<unknown> => useUIStore(state => ({
+export const useModals = () => useUIStore(state => ({
   activeModals: state.activeModals,
   openModal: state.openModal,
   closeModal: state.closeModal,
@@ -287,28 +287,28 @@ export const useModals = (): UseQueryResult<unknown> => useUIStore(state => ({
   isModalOpen: state.isModalOpen
 }));
 
-export const useToasts = (): UseQueryResult<unknown> => useUIStore(state => ({
+export const useToasts = () => useUIStore(state => ({
   toasts: state.activeToasts,
   showToast: state.showToast,
   hideToast: state.hideToast,
   clearAllToasts: state.clearAllToasts
 }));
 
-export const useLoading = (): UseQueryResult<unknown> => useUIStore(state => ({
+export const useLoading = () => useUIStore(state => ({
   globalLoading: state.globalLoading,
   loadingOverlay: state.loadingOverlay,
   setGlobalLoading: state.setGlobalLoading,
   setLoadingOverlay: state.setLoadingOverlay
 }));
 
-export const useNavigation = (): UseQueryResult<unknown> => useUIStore(state => ({
+export const useNavigation = () => useUIStore(state => ({
   activeSection: state.activeNavSection,
   breadcrumbs: state.breadcrumbs,
   setActiveSection: state.setActiveNavSection,
   setBreadcrumbs: state.setBreadcrumbs
 }));
 
-export const useUIPreferences = (): UseQueryResult<unknown> => useUIStore(state => ({
+export const useUIPreferences = () => useUIStore(state => ({
   showTips: state.showTips,
   autoSave: state.autoSave,
   compactMode: state.compactMode,

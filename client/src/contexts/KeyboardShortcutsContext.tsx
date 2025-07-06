@@ -41,7 +41,7 @@ const defaultPreferences: KeyboardShortcutPreferences = {
 
 const KeyboardShortcutsContext = createContext<KeyboardShortcutsContextType | undefined>(undefined);
 
-export const useKeyboardShortcuts = (): UseQueryResult<unknown> => {
+export const useKeyboardShortcuts = (): KeyboardShortcutsContextType => {
   const context = useContext(KeyboardShortcutsContext);
   if (!context) {
     throw new Error('useKeyboardShortcuts must be used within a KeyboardShortcutsProvider');

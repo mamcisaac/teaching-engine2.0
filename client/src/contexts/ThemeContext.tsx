@@ -24,4 +24,4 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-export const useTheme = (): UseQueryResult<unknown> => useContext(ThemeContext);
+export const useTheme = (): ThemeContextValue => useContext(ThemeContext);

@@ -288,8 +288,8 @@ if (typeof window !== 'undefined') {
 }
 
 // Selector hooks for performance
-export const useKeyboardShortcuts = (): UseQueryResult<unknown> => useKeyboardShortcutsStore();
+export const useKeyboardShortcuts = (): KeyboardShortcutsState => useKeyboardShortcutsStore();
 export const useShortcutsByCategory = (category: string) =>
   useKeyboardShortcutsStore((state) => state.getShortcutsByCategory(category));
-export const useShortcutsEnabled = (): UseQueryResult<unknown> => useKeyboardShortcutsStore((state) => state.isEnabled);
-export const useKeyboardPreferences = (): UseQueryResult<unknown> => useKeyboardShortcutsStore((state) => state.preferences);
+export const useShortcutsEnabled = (): boolean => useKeyboardShortcutsStore((state) => state.isEnabled);
+export const useKeyboardPreferences = (): KeyboardShortcutPreferences => useKeyboardShortcutsStore((state) => state.preferences);
