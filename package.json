@@ -46,7 +46,7 @@
     "db:push": "pnpm --filter @teaching-engine/database db:push",
     "db:deploy": "pnpm --filter @teaching-engine/database db:deploy",
     "db:studio": "pnpm --filter @teaching-engine/database db:studio",
-    "db:seed": "NODE_OPTIONS='--import tsx' NODE_ENV=development node scripts/seed.ts",
+    "db:seed": "pnpm --filter @teaching-engine/database db:seed",
     "db:seed:test": "NODE_OPTIONS='--import tsx' NODE_ENV=test node scripts/seed.ts",
     "postinstall": "pnpm --filter @teaching-engine/database db:generate",
     "setup:e2e:db": "tsx scripts/setup-e2e-db.ts",
